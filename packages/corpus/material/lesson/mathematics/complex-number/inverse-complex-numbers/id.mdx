@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Invers Bilangan Kompleks",
   description: "Hitung invers bilangan kompleks dengan konjugat dan modulus, lalu gunakan invers tersebut untuk membagi dua bilangan kompleks melalui contoh bertahap.",
@@ -20,6 +18,10 @@ Jika bilangan kompleks <InlineMath math="z" /> dikalikan dengan inversnya <Inlin
 ## Menemukan Rumus Invers
 
 Kita sudah tahu dari materi [sifat perkalian bilangan kompleks](/id/materi/matematika/bilangan-kompleks/sifat-perkalian-bilangan-kompleks#invers-perkalian) bahwa untuk <InlineMath math="z = x + iy" />, inversnya adalah:
+
+Kalikan pembilang dan penyebut dengan **konjugat penyebut**. Hasil kali dua konjugat adalah kuadrat modulus, sehingga penyebut menjadi bilangan real positif untuk bilangan kompleks tak nol:
+
+<BlockMath math="\frac1z=\frac1{x+iy}\cdot\frac{x-iy}{x-iy}=\frac{x-iy}{x^2+y^2},\quad z\ne0" />
 
 <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
 
@@ -44,11 +46,10 @@ Menggunakan rumus pertama:
 <MathContainer>
   <BlockMath math="\begin{aligned} x^2+y^2 &amp;= (1)^2 + (-1)^2 \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
   <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
-  <BlockMath math="= \frac{1}{2} - i\frac{-1}{2}" />
-  <BlockMath math="= \frac{1}{2} + \frac{1}{2}i" />
+  <BlockMath math="z^{-1}=\frac12-i\frac{-1}{2}=\frac12+\frac12i" />
 </MathContainer>
 
-Menggunakan rumus konjugat dan modulus:
+Menggunakan **rumus konjugat dan modulus**:
 
 <MathContainer>
   <BlockMath math="\bar{z} = 1 - (-1)i = 1+i" />
@@ -82,6 +83,7 @@ Kedua rumus memberikan invers yang sama:
     }
     cameraPosition={[0.4, -0.1, 4]}
     cameraTarget={[0.4, -0.1, 0]}
+    showZAxis={false}
     data={[
       {
         points: [
@@ -113,17 +115,23 @@ Kedua rumus memberikan invers yang sama:
   />
 </ContentStack>
 
+### Membagi dengan Invers
+
+Untuk **membagi dua bilangan kompleks**, kalikan pembilang dengan invers penyebut. Penyebut harus tak nol. Pada contoh berikut, dua bagian real dan imajiner tetap dihitung dengan sifat distributif:
+
+<BlockMath math="\begin{aligned}\frac{1-i}{2+3i}&amp;=(1-i)\frac{2-3i}{2^2+3^2} \\ &amp;=\frac{2-3i-2i+3i^2}{13} \\ &amp;=\frac{-1-5i}{13}=-\frac1{13}-\frac5{13}i\end{aligned}" />
+
 ## Latihan
 
-Diberikan bilangan kompleks <InlineMath math="z_1 = 1-i" /> dan <InlineMath math="z_2 = 2+3i" />. Tentukan invers dari <InlineMath math="z_1 + z_2" />. Hasilnya harus memenuhi <InlineMath math="(z_1 + z_2) \cdot w = 1" />, dan itu pemeriksaan yang bisa kamu pakai pada jawabanmu. Jumlahkan dulu kedua bilangan kompleksnya komponen demi komponen, lalu baru cari invers dari hasil penjumlahan itu.
+Diberikan bilangan kompleks <InlineMath math="z_1 = 1-i" /> dan <InlineMath math="z_2 = 2+3i" />. Tentukan **invers dari jumlah** <InlineMath math="z_1 + z_2" />. Hasilnya harus memenuhi <InlineMath math="(z_1 + z_2) \cdot w = 1" />, dan itu pemeriksaan yang bisa kamu pakai pada jawabanmu. Jumlahkan dulu kedua bilangan kompleksnya komponen demi komponen, lalu baru cari invers dari hasil penjumlahan itu.
 
 ### Pembahasan
 
-Langkah 1: Cari <InlineMath math="z_1 + z_2" />.
+**Langkah 1**: Cari <InlineMath math="z_1 + z_2" />.
 
 <BlockMath math="\begin{aligned} z &amp;= z_1 + z_2 \\ &amp;= (1-i) + (2+3i) \\ &amp;= (1+2) + (-1+3)i \\ &amp;= 3+2i \end{aligned}" />
 
-Langkah 2: Cari invers dari <InlineMath math="z = 3+2i" />.
+**Langkah 2**: Cari invers dari <InlineMath math="z = 3+2i" />.
 Di sini <InlineMath math="x=3" /> dan <InlineMath math="y=2" />.
 Kita gunakan rumus <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />.
 
@@ -134,3 +142,7 @@ Kita gunakan rumus <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />.
 </MathContainer>
 
 Jadi, invers dari <InlineMath math="z_1 + z_2" /> adalah <InlineMath math="\frac{3}{13} - \frac{2}{13}i" />.
+
+Periksa dengan mengalikan jumlah semula dengan invers yang ditemukan:
+
+<BlockMath math="(3+2i)\frac{3-2i}{13}=\frac{9-6i+6i-4i^2}{13}=\frac{13}{13}=1" />

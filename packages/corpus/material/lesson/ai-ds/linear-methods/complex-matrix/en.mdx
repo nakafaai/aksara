@@ -3,7 +3,7 @@ export const metadata = {
     description: "Work with complex matrices, compute conjugate transposes, and use the Hermitian inner product to measure complex vectors correctly.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -38,33 +38,23 @@ The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <
 
 ## Properties of Adjoint Matrix
 
-The adjoint obeys a short list of rules, so you can move it through a sum, a product, and a scalar multiple without returning to the definition. Each rule pairs a name with the equation it produces, and that pair is what you apply when you simplify an expression by hand.
+The adjoint **reverses the order of a product** and conjugates scalars. For sums and products below, the matrix dimensions must be compatible.
 
-### Rules for the Adjoint
+| Rule | Identity | Why it works |
+| --- | --- | --- |
+| Real entries | <InlineMath math="A^H=A^T" /> | Conjugation leaves real entries unchanged. |
+| Taking the adjoint twice | <InlineMath math="(A^H)^H=A" /> | Both the transpose and conjugation are undone. |
+| Addition | <InlineMath math="(A+B)^H=A^H+B^H" /> | Conjugation distributes over addition. |
+| Scalar multiplication | <InlineMath math="(\lambda A)^H=\overline\lambda A^H" /> | The scalar is conjugated with every entry. |
+| Product | <InlineMath math="(AB)^H=B^HA^H" /> | Transposing swaps the order of row-column matching. |
 
-1. **Relationship with real transpose**: For <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" />, we have <InlineMath math="A^H = A^T" />
+For the one-entry matrix <InlineMath math="A=(1+i)" />, compare the conjugate of <InlineMath math="iA" /> with multiplying the conjugate of <InlineMath math="A" /> by <InlineMath math="i" />:
 
-For real entries, complex conjugation changes nothing. Therefore, the adjoint equals the ordinary transpose.
-
-2. **Involution**: <InlineMath math="(A^H)^H = A" />
-
-If we take the adjoint of an adjoint, we return to the original matrix.
-
-### Linear Operation Properties
-
-Both rules hold whenever the dimensions match, so you can move the adjoint past a sum or a scalar multiple without expanding the entries. That keeps the work on the matrix level instead of the entry level.
-
-3. **Linearity of addition**: <InlineMath math="(A + B)^H = A^H + B^H" />
-
-4. **Conjugate linearity in a scalar**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
-
-Scalar multiplication requires the conjugate of the scalar <InlineMath math="\lambda" />.
-
-### Multiplication Properties
-
-5. **Order reversal for products**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
-
-This rule is not anticommutativity. It says that applying the adjoint to a product reverses the order of its factors, just as transposition does for real matrices.
+<MathContainer>
+<BlockMath math="(iA)^H=\overline{-1+i}=-1-i" />
+<BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
+<BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
+</MathContainer>
 
 ## Euclidean Norm on Complex Spaces
 

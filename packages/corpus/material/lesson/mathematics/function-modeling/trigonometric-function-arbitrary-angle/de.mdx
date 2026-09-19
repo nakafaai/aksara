@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bestimme trigonometrische Werte in jedem Quadranten mit dem Einheitskreis, den Vorzeichen und den Bezugswinkeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -12,11 +12,11 @@ export const metadata = {
 
 Bewegt sich der Minutenzeiger einer Uhr von <InlineMath math="12" /> auf <InlineMath math="6" />, überstreicht er einen Winkel von <InlineMath math="180^\circ" />. Bei einer vollständigen Umdrehung überstreicht der Zeiger <InlineMath math="360^\circ" />.
 
-<Highlight>Trigonometrische Funktionen sind nicht auf spitze Winkel in rechtwinkligen Dreiecken beschränkt.</Highlight> Wir benötigen sie auch für solche größeren Winkel.
+Trigonometrische Werte gelten für **Winkel in jedem Quadranten**, also auch außerhalb der spitzen Winkel eines rechtwinkligen Dreiecks.
 
 ## Einheitskreis
 
-Um trigonometrische Funktionen beliebiger Winkel zu verstehen, verwenden wir den Einheitskreis. Er hat den Radius <InlineMath math="1" /> und seinen Mittelpunkt im Ursprung <InlineMath math="O(0,0)" />.
+Um trigonometrische Funktionen beliebiger Winkel zu verstehen, verwenden wir den Einheitskreis. Er hat den **Radius** <InlineMath math="1" /> und seinen Mittelpunkt im Ursprung <InlineMath math="O(0,0)" />.
 
 <UnitCircle
   title="Erkundung des Einheitskreises"
@@ -30,17 +30,20 @@ Dabei gilt:
 - Die positive Richtung ist gegen den Uhrzeigersinn
 - Jeder Punkt auf dem Kreis hat die Koordinaten <InlineMath math="(x, y)" />
 
-**Wichtige Definitionen:**
+**Wichtige Definitionen**:
 
 <MathContainer>
-  <BlockMath math="\sin \theta = y \text{(vertikale Koordinate)}" />
-  <BlockMath math="\cos \theta = x \text{(horizontale Koordinate)}" />
-  <BlockMath math="\tan \theta = \frac{y}{x} = \frac{\sin \theta}{\cos \theta}, \quad x \neq 0" />
+
+<BlockMath math="\sin \theta = y \text{(vertikale Koordinate)}" />
+
+<BlockMath math="\cos \theta = x \text{(horizontale Koordinate)}" />
+
+<BlockMath math="\tan \theta = \frac{y}{x} = \frac{\sin \theta}{\cos \theta}, \quad x \neq 0" />
 </MathContainer>
 
 ## Vorzeichen der Funktionen in jedem Quadranten
 
-Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> positiv oder negativ sein. Deshalb ändern sich die Vorzeichen der trigonometrischen Funktionen je nach Quadrant.
+Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> positiv oder negativ sein. Deshalb ändern sich die **Vorzeichen der trigonometrischen Funktionen** je nach Quadrant.
 
 <UnitCircle
   title="Visualisierung von Vorzeichenänderungen"
@@ -48,7 +51,7 @@ Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> 
   angle={135}
 />
 
-**Zeichen in jedem Quadranten:**
+**Zeichen in jedem Quadranten**:
 
 | Quadrant | Winkelbereich | <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="\sin" /> | <InlineMath math="\cos" /> | <InlineMath math="\tan" /> |
 | -------- | ------------------------------------------ | --- | --- | --- | --- | --- |
@@ -57,19 +60,19 @@ Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> 
 | <InlineMath math="\text{III}" /> | <InlineMath math="180^\circ < \theta < 270^\circ" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
 | <InlineMath math="\text{IV}" /> | <InlineMath math="270^\circ < \theta < 360^\circ" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
 
-Eine sprachabhängige Eselsbrücke ist nicht nötig. Die Vorzeichen lassen sich direkt aus den Koordinaten ablesen: <InlineMath math="\sin\theta" /> hat das Vorzeichen von <InlineMath math="y" />, <InlineMath math="\cos\theta" /> das Vorzeichen von <InlineMath math="x" />, und <InlineMath math="\tan\theta=y/x" /> ist genau dann positiv, wenn <InlineMath math="x" /> und <InlineMath math="y" /> dasselbe Vorzeichen haben.
+Die Vorzeichen lassen sich aus den Koordinaten ablesen: <InlineMath math="\sin\theta" /> hat das Vorzeichen von <InlineMath math="y" />, <InlineMath math="\cos\theta" /> das Vorzeichen von <InlineMath math="x" />, und <InlineMath math="\tan\theta=y/x" /> ist genau dann positiv, wenn <InlineMath math="x" /> und <InlineMath math="y" /> dasselbe Vorzeichen haben.
 
 ## Referenzwinkel
 
-Für einen Winkel, dessen Endschenkel auf keiner Koordinatenachse liegt, ist der Referenzwinkel der eindeutige spitze Winkel <InlineMath math="0^\circ<\alpha<90^\circ" /> zwischen diesem Endschenkel und der nächstgelegenen <InlineMath math="x" />-Achse. So lassen sich bekannte Werte spitzer Winkel wiederverwenden. Bei einem Quadrantenwinkel wie <InlineMath math="90^\circ" /> oder <InlineMath math="180^\circ" /> werden die Koordinaten direkt am Einheitskreis abgelesen.
+Für einen Winkel, dessen Endschenkel auf keiner Koordinatenachse liegt, ist der Referenzwinkel der **eindeutige spitze Winkel** <InlineMath math="0^\circ<\alpha<90^\circ" /> zwischen diesem Endschenkel und der nächstgelegenen <InlineMath math="x" />-Achse. So lassen sich bekannte Werte spitzer Winkel wiederverwenden. Bei einem Quadrantenwinkel wie <InlineMath math="90^\circ" /> oder <InlineMath math="180^\circ" /> werden die Koordinaten direkt am Einheitskreis abgelesen.
 
 <UnitCircle
   title="Referenzwinkel verstehen"
-  description={<>Beobachte, wie sich der spitze Referenzwinkel zur <InlineMath math="x" />-Achse mit dem Winkel verändert.</>}
+  description={<>Bestimme den spitzen Referenzwinkel zur <InlineMath math="x" />-Achse.</>}
   angle={135}
 />
 
-**So wird der Referenzwinkel <InlineMath math="\alpha" /> für einen Nichtquadrantenwinkel <InlineMath math="0^\circ<\theta<360^\circ" /> bestimmt:**
+**So wird der Referenzwinkel <InlineMath math="\alpha" /> für einen Nichtquadrantenwinkel <InlineMath math="0^\circ<\theta<360^\circ" /> bestimmt**:
 
 - Quadrant I: <InlineMath math="\alpha = \theta" />
 - Quadrant II: <InlineMath math="\alpha = 180^\circ - \theta" />
@@ -87,9 +90,9 @@ Hier sind systematische Schritte zur Bestimmung trigonometrischer Funktionswerte
 
 ### Winkel im zweiten Quadranten
 
-**Problem:** Bestimme <InlineMath math="\sin 120^\circ" />, <InlineMath math="\cos 120^\circ" /> und <InlineMath math="\tan 120^\circ" />
+**Problem**: Bestimme <InlineMath math="\sin 120^\circ" />, <InlineMath math="\cos 120^\circ" /> und <InlineMath math="\tan 120^\circ" />
 
-**Lösung:**
+**Lösung**:
 
 - Winkel <InlineMath math="120^\circ" /> liegt im Quadranten II, da <InlineMath math="90^\circ < 120^\circ < 180^\circ" /> gilt
 - Referenzwinkel: <InlineMath math="\alpha = 180^\circ - 120^\circ = 60^\circ" />
@@ -98,16 +101,19 @@ Hier sind systematische Schritte zur Bestimmung trigonometrischer Funktionswerte
 Verwendung spezieller Winkelwerte für <InlineMath math="60^\circ" />:
 
 <MathContainer>
-  <BlockMath math="\sin 120^\circ = +\sin 60^\circ = \frac{\sqrt{3}}{2}" />
-  <BlockMath math="\cos 120^\circ = -\cos 60^\circ = -\frac{1}{2}" />
-  <BlockMath math="\tan 120^\circ = -\tan 60^\circ = -\sqrt{3}" />
+
+<BlockMath math="\sin 120^\circ = +\sin 60^\circ = \frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 120^\circ = -\cos 60^\circ = -\frac{1}{2}" />
+
+<BlockMath math="\tan 120^\circ = -\tan 60^\circ = -\sqrt{3}" />
 </MathContainer>
 
 ### Winkel im dritten Quadranten
 
-**Aufgabe:** Bestimme trigonometrische Werte für den Winkel <InlineMath math="240^\circ" />
+**Aufgabe**: Bestimme trigonometrische Werte für den Winkel <InlineMath math="240^\circ" />
 
-**Lösung:**
+**Lösung**:
 
 - Winkel <InlineMath math="240^\circ" /> liegt im Quadranten III, da <InlineMath math="180^\circ < 240^\circ < 270^\circ" /> gilt
 - Referenzwinkel: <InlineMath math="\alpha = 240^\circ - 180^\circ = 60^\circ" />
@@ -116,18 +122,21 @@ Verwendung spezieller Winkelwerte für <InlineMath math="60^\circ" />:
 Verwendung spezieller Winkelwerte für <InlineMath math="60^\circ" />:
 
 <MathContainer>
-  <BlockMath math="\sin 240^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
-  <BlockMath math="\cos 240^\circ = -\cos 60^\circ = -\frac{1}{2}" />
-  <BlockMath math="\tan 240^\circ = +\tan 60^\circ = \sqrt{3}" />
+
+<BlockMath math="\sin 240^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 240^\circ = -\cos 60^\circ = -\frac{1}{2}" />
+
+<BlockMath math="\tan 240^\circ = +\tan 60^\circ = \sqrt{3}" />
 </MathContainer>
 
 ### Winkel im vierten Quadranten
 
-**Aufgabe:** Bestimme trigonometrische Werte für den Winkel <InlineMath math="300^\circ" />
+**Aufgabe**: Bestimme trigonometrische Werte für den Winkel <InlineMath math="300^\circ" />
 
-**Lösung:**
+**Lösung**:
 
-- Winkel <InlineMath math="300^\circ" /> liegt im Quadranten IV, da <InlineMath math="270^\circ < 300^\circ < 360^\circ" /> gilt
+- Winkel <InlineMath math="300^\circ" /> liegt im **Quadranten IV**, da <InlineMath math="270^\circ < 300^\circ < 360^\circ" /> gilt
 
 - Referenzwinkel: <InlineMath math="\alpha = 360^\circ - 300^\circ = 60^\circ" />
 - Im Quadranten IV: <InlineMath math="\sin(-), \cos(+), \tan(-)" />
@@ -135,44 +144,45 @@ Verwendung spezieller Winkelwerte für <InlineMath math="60^\circ" />:
 Verwendung spezieller Winkelwerte für <InlineMath math="60^\circ" />:
 
 <MathContainer>
-  <BlockMath math="\sin 300^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
-  <BlockMath math="\cos 300^\circ = +\cos 60^\circ = \frac{1}{2}" />
-  <BlockMath math="\tan 300^\circ = -\tan 60^\circ = -\sqrt{3}" />
+
+<BlockMath math="\sin 300^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 300^\circ = +\cos 60^\circ = \frac{1}{2}" />
+
+<BlockMath math="\tan 300^\circ = -\tan 60^\circ = -\sqrt{3}" />
 </MathContainer>
 
 ## Umgang mit Sonderwinkeln
 
-Winkel außerhalb des ersten Quadranten, negative Winkel und Winkel über eine volle Umdrehung <Highlight>lassen sich auf einen Referenzwinkel zurückführen</Highlight>. Der Referenzwinkel behält die Werte, die du für den ersten Quadranten schon kennst, und nur das Vorzeichen kann sich ändern, sodass der Quadrant dieses Vorzeichen festlegt.
+Negative Winkel und Winkel über eine volle Umdrehung kannst du durch **Winkel mit demselben Endschenkel** ersetzen. Liegt der Endpunkt auf einer Achse, liest du die Koordinaten direkt ab. Sonst verwendest du einen Referenzwinkel und die Vorzeichen des Quadranten.
 
 ### Negative Winkel
 
-Ein negativer Winkel bedeutet, dass du vom Startpunkt aus im Uhrzeigersinn läufst. Rechne ihn zuerst in einen Winkel zwischen <InlineMath math="0^\circ" /> und <InlineMath math="360^\circ" /> um, damit die bekannten Werte gelten.
-
-Wenn der Winkel negativ ist, bewegen wir uns im Uhrzeigersinn. Nutze die Eigenschaften:
+Negative Winkel werden **im Uhrzeigersinn** gemessen. Du kannst eine volle Umdrehung addieren oder direkt die Eigenschaften gerader und ungerader Funktionen verwenden:
 
 - <InlineMath math="\sin(-\theta) = -\sin \theta" /> (ungerade Funktion)
 - <InlineMath math="\cos(-\theta) = \cos \theta" /> (gerade Funktion)
 - <InlineMath math="\tan(-\theta) = -\tan \theta" /> (ungerade Funktion)
 
-**Beispiel:** <InlineMath math="\sin(-30^\circ) = -\sin 30^\circ = -\frac{1}{2}" />
+**Beispiel**: <InlineMath math="\sin(-30^\circ) = -\sin 30^\circ = -\frac{1}{2}" />
 
 ### Winkel größer als eine volle Umdrehung
 
 Ein Winkel über <InlineMath math="360^\circ" /> enthält volle Umdrehungen, die den Endpunkt nicht verändern. Ziehst du sie ab, bleibt derselbe Punkt auf dem Einheitskreis und derselbe Funktionswert.
 
-Verwende die Periodizität. Subtrahiere oder addiere Vielfache von <InlineMath math="360^\circ" />, bis der Winkel zwischen <InlineMath math="0^\circ" /> und <InlineMath math="360^\circ" /> liegt.
+Verwende die **Periodizität**. Subtrahiere oder addiere Vielfache von <InlineMath math="360^\circ" />, bis der Winkel zwischen <InlineMath math="0^\circ" /> und <InlineMath math="360^\circ" /> liegt.
 
-**Beispiel:**
+**Beispiel**:
 
 - Ziehe zwei volle Umdrehungen ab:
 
-   <BlockMath math="\begin{aligned} &amp;750^\circ - 2(360^\circ) \\ &amp;= 750^\circ - 720^\circ \\ &amp;= 30^\circ \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;750^\circ - 2(360^\circ) \\ &amp;= 750^\circ - 720^\circ \\ &amp;= 30^\circ \end{aligned}" />
 
 - Also <InlineMath math="\sin 750^\circ = \sin 30^\circ = \frac{1}{2}" />
 
 ## Übungen
 
-Jede Aufgabe verlangt einen trigonometrischen Wert für einen Winkel außerhalb des ersten Quadranten. Führe den Winkel zuerst auf seinen Referenzwinkel zurück und setze dann das passende Vorzeichen.
+Jede Aufgabe verlangt einen trigonometrischen Wert für einen Winkel außerhalb des ersten Quadranten. Führe den Winkel zuerst auf seinen Referenzwinkel zurück und setze dann das **passende Vorzeichen**.
 
 1. Bestimme die Werte von <InlineMath math="\sin 315^\circ" />, <InlineMath math="\cos 315^\circ" /> und <InlineMath math="\tan 315^\circ" />.
 
@@ -184,71 +194,102 @@ Jede Aufgabe verlangt einen trigonometrischen Wert für einen Winkel außerhalb 
 
 5. Ein Windmühlenflügel dreht sich aus seiner Ausgangsposition um <InlineMath math="1050^\circ" />. Seine Spitze liegt anfangs auf der positiven <InlineMath math="x" />-Achse des Einheitskreises. Bestimme die Koordinaten der Flügelspitze nach der Drehung.
 
-### Lösungen
+### Winkel im Vierten Quadranten
 
-1. Für den Winkel <InlineMath math="315^\circ" /> müssen wir zunächst seinen Quadranten bestimmen.
+Für den Winkel <InlineMath math="315^\circ" /> müssen wir zunächst seinen Quadranten bestimmen.
 
-   Da <InlineMath math="270^\circ < 315^\circ < 360^\circ" /> liegt der Winkel im Quadranten IV.
+Da <InlineMath math="270^\circ < 315^\circ < 360^\circ" /> liegt der Winkel im Quadranten IV.
 
-   Der Referenzwinkel beträgt <InlineMath math="360^\circ - 315^\circ = 45^\circ" />.
+Der **Referenzwinkel** beträgt <InlineMath math="360^\circ - 315^\circ = 45^\circ" />.
 
-   <MathContainer>
-     <BlockMath math="\sin 315^\circ = -\sin 45^\circ = -\frac{\sqrt{2}}{2}" />
-     <BlockMath math="\cos 315^\circ = +\cos 45^\circ = \frac{\sqrt{2}}{2}" />
-     <BlockMath math="\tan 315^\circ = -\tan 45^\circ = -1" />
-   </MathContainer>
+<MathContainer>
 
-2. Berechnen wir jeden Term einzeln. Verwende für <InlineMath math="\sin(-60^\circ)" /> die ungerade Funktionseigenschaft.
+<BlockMath math="\sin 315^\circ = -\sin 45^\circ = -\frac{\sqrt{2}}{2}" />
 
-   Für <InlineMath math="\cos 210^\circ" /> liegt der Winkel im Quadranten III und hat den Referenzwinkel <InlineMath math="30^\circ" />.
+<BlockMath math="\cos 315^\circ = +\cos 45^\circ = \frac{\sqrt{2}}{2}" />
 
-   Für <InlineMath math="\tan(-135^\circ)" /> nutzen wir ebenfalls die Ungeradheit des Tangens.
+<BlockMath math="\tan 315^\circ = -\tan 45^\circ = -1" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\sin(-60^\circ) = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
-     <BlockMath math="\cos 210^\circ = -\cos 30^\circ = -\frac{\sqrt{3}}{2}" />
-     <BlockMath math="\begin{aligned} \tan(-135^\circ) &amp;= -\tan 135^\circ \\ &amp;= -(-\tan 45^\circ) \\ &amp;= 1 \end{aligned}" />
-     <BlockMath math="\begin{aligned} \text{Ergebnis} &amp;= -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 \\ &amp;= -\sqrt{3} - 1 \end{aligned}" />
-   </MathContainer>
+### Trigonometrische Werte Verbinden
 
-3. Gegeben <InlineMath math="\sin \theta = \frac{3}{5}" /> im Quadranten II.
+Berechnen wir jeden Term einzeln. Verwende für <InlineMath math="\sin(-60^\circ)" /> die ungerade Funktionseigenschaft.
 
-   Die pythagoräische Identität liefert <InlineMath math="\cos \theta" />.
+Für <InlineMath math="\cos 210^\circ" /> liegt der Winkel im Quadranten III und hat den Referenzwinkel <InlineMath math="30^\circ" />.
 
-   Im zweiten Quadranten ist <InlineMath math="\cos" /> negativ.
+Für den negativen Tangens verwenden wir die **Ungeradheit**, wie die folgende Rechnung zeigt.
 
-   <MathContainer>
-     <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
-     <BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
-     <BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
-   </MathContainer>
-        Der Wert ist in Quadrant II negativ:
+<MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\cos\theta=-\frac45" />
-     <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
-   </MathContainer>
+<BlockMath math="\sin(-60^\circ) = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
 
-4. Vereinfache zunächst die Winkel.
+<BlockMath math="\cos 210^\circ = -\cos 30^\circ = -\frac{\sqrt{3}}{2}" />
 
-   <BlockMath math="\begin{aligned} &amp;840^\circ - 2(360^\circ) \\ &amp;= 120^\circ \end{aligned}" />
+<BlockMath math="\begin{aligned} \tan(-135^\circ) &amp;= -\tan 135^\circ \\ &amp;= -(-\tan 45^\circ) \\ &amp;= 1 \end{aligned}" />
 
-   Für <InlineMath math="-330^\circ" /> addieren wir <InlineMath math="360^\circ" /> und erhalten <InlineMath math="30^\circ" />.
+<BlockMath math="\begin{aligned} \text{Ergebnis} &amp;= -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 \\ &amp;= -\sqrt{3} - 1 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} \sin 840^\circ &amp;= \sin 120^\circ \\ &amp;= \sin(180^\circ - 60^\circ) \\ &amp;= \sin 60^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
-     <BlockMath math="\begin{aligned} \cos(-330^\circ) &amp;= \cos 330^\circ \\ &amp;= \cos(360^\circ - 30^\circ) \\ &amp;= \cos 30^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
-     <BlockMath math="\begin{aligned} \sin 840^\circ \cdot \cos(-330^\circ) &amp;= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} \\ &amp;= \frac{3}{4} \end{aligned}" />
-   </MathContainer>
+### Kosinus aus Sinus Bestimmen
 
-5. Winkel <InlineMath math="1050^\circ" /> muss zunächst vereinfacht werden.
+Gegeben <InlineMath math="\sin \theta = \frac{3}{5}" /> im Quadranten II.
 
-   <BlockMath math="\begin{aligned} &amp;1050^\circ - 2(360^\circ) \\ &amp;= 1050^\circ - 720^\circ \\ &amp;= 330^\circ \end{aligned}" />
+Die **pythagoräische Identität** liefert <InlineMath math="\cos \theta" />.
 
-   Winkel <InlineMath math="330^\circ" /> liegt im Quadranten IV mit Referenzwinkel <InlineMath math="30^\circ" />.
+Im zweiten Quadranten ist <InlineMath math="\cos" /> negativ.
 
-   <MathContainer>
-     <BlockMath math="x = \cos 330^\circ = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
-     <BlockMath math="y = \sin 330^\circ = -\sin 30^\circ = -\frac{1}{2}" />
-   </MathContainer>
-        Die Blattspitze hat die Koordinaten <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
+<MathContainer>
+
+<BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+
+<BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
+
+<BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
+</MathContainer>
+Der Wert ist in Quadrant II negativ:
+
+<MathContainer>
+
+<BlockMath math="\cos\theta=-\frac45" />
+
+<BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
+</MathContainer>
+
+### Volle Umdrehungen Abziehen
+
+**Vereinfache zunächst die Winkel**.
+
+<BlockMath math="\begin{aligned} &amp;840^\circ - 2(360^\circ) \\ &amp;= 120^\circ \end{aligned}" />
+
+Für <InlineMath math="-330^\circ" /> addieren wir <InlineMath math="360^\circ" /> und erhalten <InlineMath math="30^\circ" />.
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} \sin 840^\circ &amp;= \sin 120^\circ \\ &amp;= \sin(180^\circ - 60^\circ) \\ &amp;= \sin 60^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \cos(-330^\circ) &amp;= \cos 330^\circ \\ &amp;= \cos(360^\circ - 30^\circ) \\ &amp;= \cos 30^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \sin 840^\circ \cdot \cos(-330^\circ) &amp;= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} \\ &amp;= \frac{3}{4} \end{aligned}" />
+</MathContainer>
+
+### Koordinaten der Flügelspitze
+
+Winkel <InlineMath math="1050^\circ" /> muss zunächst vereinfacht werden.
+
+<BlockMath math="\begin{aligned} &amp;1050^\circ - 2(360^\circ) \\ &amp;= 1050^\circ - 720^\circ \\ &amp;= 330^\circ \end{aligned}" />
+
+Winkel <InlineMath math="330^\circ" /> liegt im Quadranten IV mit **Referenzwinkel** <InlineMath math="30^\circ" />.
+
+<MathContainer>
+
+<BlockMath math="x = \cos 330^\circ = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
+
+<BlockMath math="y = \sin 330^\circ = -\sin 30^\circ = -\frac{1}{2}" />
+</MathContainer>
+Die Blattspitze hat die Koordinaten <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
+
+<UnitCircle
+  title="Koordinaten nach der Drehung"
+  description="Ändere den Winkel von 330 auf 1050 Grad: Der Endpunkt bleibt gleich, weil sich die Winkel um zwei volle Umdrehungen unterscheiden."
+  angle={330}
+/>

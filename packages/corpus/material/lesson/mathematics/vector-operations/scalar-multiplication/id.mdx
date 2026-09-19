@@ -3,13 +3,13 @@ export const metadata = {
   description: "Perkalian skalar dapat mengubah besar dan arah vektor. Terapkan operasi ini dalam perhitungan, fisika, dan geometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Vektor dan Operasinya",
 };
 
 ## Pengaruh Skalar terhadap Besar dan Arah Vektor
 
-<Highlight>Hasilnya adalah vektor baru yang besarnya dikalikan dengan nilai mutlak skalar.</Highlight> Untuk vektor asal tak nol, tanda skalar menentukan apakah arahnya tetap atau berbalik.
+Perkalian dengan skalar menghasilkan vektor baru. Besar vektor hasil adalah besar vektor asal dikalikan **nilai mutlak skalar**. Untuk vektor asal tak nol, tanda skalar menentukan apakah arahnya tetap atau berbalik.
 
 Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math="\vec{v}" /> adalah vektor, maka perkalian skalar dengan vektor dilambangkan sebagai <InlineMath math="k \cdot \vec{v}" />.
 
@@ -20,13 +20,29 @@ Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math=
 3. Jika <InlineMath math="k = 0" />, maka vektor hasil adalah vektor nol.
 4. Besar vektor hasil adalah besar vektor asal yang dikalikan dengan faktor <InlineMath math="|k|" />.
 
+
+Vektor pada diagram memakai <InlineMath math="\vec v=(2,1)" />. **Selisih koordinat ujung dan pangkal** untuk ketiga panah adalah <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" />, dan <InlineMath math="(-2,-1)" />.
+
+<ContentBlock>
+  <Vector3d
+    title="Skalar Mengubah Panjang dan Arah"
+    description="Pangkal panah dipisahkan agar ketiga vektor dapat dibandingkan. Faktor positif mempertahankan arah dan faktor negatif membalik arah."
+    vectors={[
+      { from: [0, 0, 0], to: [2, 1, 0], color: "#9333ea", label: <InlineMath math="\vec v" /> },
+      { from: [0, 2, 0], to: [4, 4, 0], color: "#ea580c", label: <InlineMath math="2\vec v" /> },
+      { from: [0, 4, 0], to: [-2, 3, 0], color: "#0d9488", label: <InlineMath math="-\vec v" /> },
+    ]}
+    cameraPosition={[6, 6, 10]}
+  />
+</ContentBlock>
+
 ## Representasi Perkalian Skalar dengan Vektor
 
-Mengalikan vektor dengan suatu bilangan mengubah panjangnya sebesar faktor itu dan bisa membalik arahnya. Hasilnya tetap sebuah vektor pada garis yang sama, sehingga panjang dan arahnya dapat diperiksa secara terpisah.
+Panjang hasil perkalian ditentukan oleh **nilai mutlak skalar**, sedangkan tanda skalar menentukan apakah arah tetap atau terbalik. Hasil dengan skalar nol adalah vektor nol yang tidak memiliki arah.
 
 ### Besar dan Arah Vektor yang Diskala
 
-Secara geometris, perkalian skalar mengubah besar vektor dengan faktor <InlineMath math="|k|" />. Untuk vektor tak nol, arah hasil bergantung pada tanda <InlineMath math="k" />:
+Secara geometris, perkalian skalar mengubah besar vektor dengan faktor <InlineMath math="|k|" />. Untuk vektor tak nol, arah hasil bergantung pada **tanda** <InlineMath math="k" />:
 
 - Jika <InlineMath math="k > 0" />, arah vektor tidak berubah
 - Jika <InlineMath math="k < 0" />, arah vektor berlawanan dengan vektor asal
@@ -36,6 +52,8 @@ Pada kedua kasus tersebut, termasuk ketika <InlineMath math="k=0" />, besarnya m
 <BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
 
 ### Mengalikan Setiap Komponen dengan Skalar
+
+Terapkan **faktor yang sama pada setiap komponen**. Urutan komponen tetap mengikuti urutan sumbu.
 
 Jika <InlineMath math="\vec{v} = (v_1, v_2, v_3)" /> adalah vektor di ruang <InlineMath math="3" /> dimensi, maka:
 
@@ -51,7 +69,7 @@ Dalam notasi vektor satuan:
 
 ## Mengalikan Vektor dengan Skalar Positif dan Negatif
 
-Faktor yang lebih besar dari satu memanjangkan vektor, faktor antara nol dan satu memperpendeknya, sedangkan <Highlight>faktor negatif juga membalik arahnya</Highlight>. Karena itu, perkalian dengan skalar negatif selalu mengubah arah, sedangkan perkalian dengan skalar positif tidak pernah mengubah arah.
+Faktor yang lebih besar dari satu memanjangkan vektor, faktor antara nol dan satu memperpendeknya, sedangkan <Highlight>faktor negatif juga membalik arahnya</Highlight>. Pernyataan arah ini berlaku untuk **vektor asal tak nol**. Vektor nol tetap menjadi vektor nol setelah dikalikan skalar apa pun dan tidak memiliki arah yang terdefinisi.
 
 ### Mengalikan dengan Skalar Positif
 
@@ -59,10 +77,7 @@ Diketahui vektor <InlineMath math="\vec{a} = 2\vec{i} + 3\vec{j} + 5\vec{k}" />.
 
 **Penyelesaian:**
 
-<MathContainer>
-  <BlockMath math="2\vec{a} = 2(2\vec{i} + 3\vec{j} + 5\vec{k})" />
-  <BlockMath math="= 4\vec{i} + 6\vec{j} + 10\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{a} &amp;= 2(2\vec{i} + 3\vec{j} + 5\vec{k}) \\ &amp;= 4\vec{i} + 6\vec{j} + 10\vec{k} \end{aligned}" />
 
 ### Mengalikan dengan Skalar Negatif
 
@@ -70,10 +85,7 @@ Diketahui vektor <InlineMath math="\vec{v} = (4, -2, 3)" />. Tentukan hasil dari
 
 **Penyelesaian:**
 
-<MathContainer>
-  <BlockMath math="-3\vec{v} = -3(4, -2, 3)" />
-  <BlockMath math="= (-12, 6, -9)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
 
 Perhatikan bahwa arah vektor hasil berlawanan dengan vektor asal karena skalarnya negatif.
 
@@ -89,7 +101,7 @@ Perkalian skalar dengan vektor memiliki banyak aplikasi dalam fisika dan matemat
 
 ## Latihan Soal
 
-Setiap soal mengalikan vektor dengan satu atau dua skalar. Kalikan setiap komponen dengan faktor yang sama, lalu gabungkan hasilnya jika ada dua skalar.
+Setiap soal mengalikan vektor dengan satu atau dua skalar. Kalikan **setiap komponen dengan faktor yang sama**, lalu gabungkan hasilnya jika ada dua skalar.
 
 1. Diketahui vektor <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />. Tentukan hasil dari <InlineMath math="-2\vec{a}" />.
 
@@ -103,9 +115,7 @@ Setiap soal mengalikan vektor dengan satu atau dua skalar. Kalikan setiap kompon
 
 ## Kunci Jawaban
 
-Setiap jawaban memuat langkah perhitungan dan nilai akhirnya, sehingga kamu bisa membandingkan pekerjaanmu baris per baris. Baca dulu langkahnya, baru periksa angkamu.
-
-Setiap jawaban mengalikan komponen satu per satu lalu menggabungkan sukunya kembali. Bandingkan hasilmu dengan nilai pada setiap koordinat.
+Setiap jawaban mengalikan **semua komponen dengan faktor yang sama**, lalu menggabungkan komponen pada sumbu yang bersesuaian. Saat faktor negatif mengalikan komponen negatif, komponen hasil menjadi positif. Untuk koordinat titik, tambahkan vektor perpindahan pada posisi awal.
 
 ### Soal Pertama
 
@@ -113,10 +123,7 @@ Diketahui vektor <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />.
 
 **Penyelesaian:**
 
-<MathContainer>
-  <BlockMath math="-2\vec{a} = -2(3\vec{i} - 4\vec{j} + 2\vec{k})" />
-  <BlockMath math="= -6\vec{i} + 8\vec{j} - 4\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -2\vec{a} &amp;= -2(3\vec{i} - 4\vec{j} + 2\vec{k}) \\ &amp;= -6\vec{i} + 8\vec{j} - 4\vec{k} \end{aligned}" />
 
 Jadi, hasil dari <InlineMath math="-2\vec{a}" /> adalah <InlineMath math="-6\vec{i} + 8\vec{j} - 4\vec{k}" />.
 
@@ -126,14 +133,7 @@ Vektor <InlineMath math="\vec{u} = (2, -5, 1)" /> dan <InlineMath math="\vec{v} 
 
 **Penyelesaian:**
 
-<MathContainer>
-  <BlockMath math="2\vec{u} = 2(2, -5, 1) = (4, -10, 2)" />
-  <BlockMath math="3\vec{v} = 3(-4, 3, 6) = (-12, 9, 18)" />
-  <BlockMath math="2\vec{u} - 3\vec{v} = (4, -10, 2) - (-12, 9, 18)" />
-  <BlockMath math="= (4 - (-12), -10 - 9, 2 - 18)" />
-  <BlockMath math="= (4 + 12, -10 - 9, 2 - 18)" />
-  <BlockMath math="= (16, -19, -16)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{u} &amp;= 2(2, -5, 1) = (4, -10, 2) \\ 3\vec{v} &amp;= 3(-4, 3, 6) = (-12, 9, 18) \\ 2\vec{u} - 3\vec{v} &amp;= (4, -10, 2) - (-12, 9, 18) \\ &amp;= (4 - (-12), -10 - 9, 2 - 18) \\ &amp;= (4 + 12, -10 - 9, 2 - 18) \\ &amp;= (16, -19, -16) \end{aligned}" />
 
 Jadi, vektor <InlineMath math="2\vec{u} - 3\vec{v}" /> adalah <InlineMath math="(16, -19, -16)" /> atau <InlineMath math="16\vec{i} - 19\vec{j} - 16\vec{k}" />.
 
@@ -151,12 +151,7 @@ Kita tahu:
 
 Periksa apakah <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{BU} + \overrightarrow{UR} = 0{,}65 \cdot \overrightarrow{BR} + 0{,}35 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= (0{,}65 + 0{,}35) \cdot \overrightarrow{BR}" />
-  <BlockMath math="= 1 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= \overrightarrow{BR}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{BU} + \overrightarrow{UR} &amp;= 0{,}65 \cdot \overrightarrow{BR} + 0{,}35 \cdot \overrightarrow{BR} \\ &amp;= (0{,}65 + 0{,}35) \cdot \overrightarrow{BR} \\ &amp;= 1 \cdot \overrightarrow{BR} \\ &amp;= \overrightarrow{BR} \end{aligned}" />
 
 Hasil ini menunjukkan bahwa <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />, yang sesuai dengan hukum penjumlahan vektor untuk titik-titik <InlineMath math="B" />, <InlineMath math="U" />, dan <InlineMath math="R" /> yang segaris.
 
@@ -171,12 +166,7 @@ Diketahui <InlineMath math="|\vec{p}| = 5 \text{ satuan}" /> dan <InlineMath mat
 
 Untuk menentukan panjang vektor <InlineMath math="\vec{q}" />, kita menggunakan sifat perkalian skalar:
 
-<MathContainer>
-  <BlockMath math="|\vec{q}| = |3\vec{p}|" />
-  <BlockMath math="= |3| \cdot |\vec{p}|" />
-  <BlockMath math="= 3 \cdot 5" />
-  <BlockMath math="= 15" />
-</MathContainer>
+<BlockMath math="\begin{aligned} |\vec{q}| &amp;= |3\vec{p}| \\ &amp;= |3| \cdot |\vec{p}| \\ &amp;= 3 \cdot 5 \\ &amp;= 15 \end{aligned}" />
 
 Jadi, panjang vektor <InlineMath math="\vec{q}" /> adalah <InlineMath math="15 \text{ satuan}" />.
 
@@ -187,20 +177,11 @@ Diketahui titik <InlineMath math="A(2, 3, -1)" />, <InlineMath math="B(5, -2, 4)
 **Penyelesaian:**
 Pertama, kita tentukan vektor <InlineMath math="\overrightarrow{AB}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AB} = B - A" />
-  <BlockMath math="= (5, -2, 4) - (2, 3, -1)" />
-  <BlockMath math="= (5-2, -2-3, 4-(-1))" />
-  <BlockMath math="= (3, -5, 5)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AB} &amp;= B - A \\ &amp;= (5, -2, 4) - (2, 3, -1) \\ &amp;= (5-2, -2-3, 4-(-1)) \\ &amp;= (3, -5, 5) \end{aligned}" />
 
 Kemudian, kita gunakan hubungan <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" /> untuk menentukan vektor <InlineMath math="\overrightarrow{AC}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />
-  <BlockMath math="= 2(3, -5, 5)" />
-  <BlockMath math="= (6, -10, 10)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AC} &amp;= 2\overrightarrow{AB} \\ &amp;= 2(3, -5, 5) \\ &amp;= (6, -10, 10) \end{aligned}" />
 
 Selanjutnya, kita tentukan koordinat titik <InlineMath math="C" />:
 

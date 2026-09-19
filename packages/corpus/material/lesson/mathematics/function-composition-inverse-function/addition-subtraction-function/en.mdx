@@ -1,11 +1,9 @@
-
-
 export const metadata = {
   title: "Addition and Subtraction of Functions",
   description: "Add and subtract functions pointwise, intersect their domains, and verify both operations through examples and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -44,7 +42,7 @@ Two functions can be combined point by point. For the same input <InlineMath mat
       }),
       pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
       smooth: false,
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="g(x)=2" />, at: 20, offset: [0.5, -0.8, 0] }],
     },
     {
@@ -62,13 +60,14 @@ Two functions can be combined point by point. For the same input <InlineMath mat
       labels: [{ text: <InlineMath math="(f+g)(x)=x+2" />, at: 14, offset: [-1.5, 0, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraTarget={[0, 1.5, 0]}
   cameraPosition={[0, 1.5, 13]}
 />
 
 ## Addition of Two Functions
 
-The sum function adds the two outputs at the same input:
+The sum function adds **two outputs at the same input**:
 
 <BlockMath math="(f+g)(x) = f(x) + g(x)" />
 
@@ -109,7 +108,7 @@ The process is similar to addition. To subtract function <InlineMath math="g" />
 
 <BlockMath math="(f-g)(x) = f(x) - g(x)" />
 
-Its domain is also the same as for addition, namely the intersection of the domain of <InlineMath math="f" /> and the domain of <InlineMath math="g" />. Why? Because again, the value of <InlineMath math="x" /> must be processable by both initial functions before it can be subtracted.
+Its domain is also the same as for addition, namely the **intersection of the domain** of <InlineMath math="f" /> and the domain of <InlineMath math="g" />. Why? Because again, the value of <InlineMath math="x" /> must be processable by both initial functions before it can be subtracted.
 
 <BlockMath math="D_{f-g} = D_f \cap D_g" />
 
@@ -125,76 +124,83 @@ We use the same functions as in the addition example:
 <BlockMath math="\begin{aligned} (f-g)(x) &amp;= f(x) - g(x) \\ &amp;= x^2 - \sqrt{x+2} \end{aligned}" />
 
 **Step 2**: Determine the domain of the resulting function
+
 Its domain is the same as the domain of the addition result because the intersection rule is the same:
 
 <BlockMath math="\begin{aligned} &amp;D_{f-g} = D_f \cap D_g \\ &amp;= \{x | x \ge -2, x \in \mathbb{R}\} \end{aligned}" />
 
 So, the resulting function from subtraction is <InlineMath math="(f-g)(x) = x^2 - \sqrt{x+2}" /> with domain <InlineMath math="\{x | x \ge -2, x \in \mathbb{R}\}" />.
 
+For the same input, compare the sums and differences below. **Reversing the subtraction** changes the sign of the result.
+
+| <InlineMath math="x" /> | <InlineMath math="f(x)" /> | <InlineMath math="g(x)" /> | <InlineMath math="(f+g)(x)" /> | <InlineMath math="(f-g)(x)" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="2" /> |
+
 ## Practice Problems
 
 Given the functions <InlineMath math="f(x) = 2x - 1" /> with <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> and function <InlineMath math="g(x) = x^2 + 3" /> with <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
 
-1.  Determine <InlineMath math="(f+g)(x)" /> and its domain <InlineMath math="D_{f+g}" />.
+1.  Determine <InlineMath math="(f+g)(x)" /> and its **domain** <InlineMath math="D_{f+g}" />.
 2.  Determine <InlineMath math="(f-g)(x)" /> and its domain <InlineMath math="D_{f-g}" />.
 3.  Calculate the value of <InlineMath math="(f+g)(2)" />.
 4.  Calculate the value of <InlineMath math="(f-g)(-1)" />.
 
-### Answer Key
+### Sum and domain
 
-1.  **Finding <InlineMath math="(f+g)(x)" />:**
+<MathContainer>
+  <BlockMath math="(f+g)(x) = f(x) + g(x)" />
+  <BlockMath math="(f+g)(x) = (2x - 1) + (x^2 + 3)" />
+  <BlockMath math="(f+g)(x) = x^2 + 2x + 2" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f+g)(x) = f(x) + g(x)" />
-      <BlockMath math="= (2x - 1) + (x^2 + 3)" />
-      <BlockMath math="= x^2 + 2x + 2" />
-    </MathContainer>
+Finding Domain <InlineMath math="D_{f+g}" />:
 
-    **Finding Domain <InlineMath math="D_{f+g}" />:**
+<MathContainer>
+  <BlockMath math="D_{f+g} = D_f \cap D_g" />
+  <BlockMath math="D_{f+g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f+g} = \{x | x \in \mathbb{R}\}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="D_{f+g} = D_f \cap D_g" />
-      <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-      <BlockMath math="= \{x | x \in \mathbb{R}\}" />
-    </MathContainer>
+So, <InlineMath math="(f+g)(x) = x^2 + 2x + 2" /> with domain **all real numbers**.
 
-    So, <InlineMath math="(f+g)(x) = x^2 + 2x + 2" /> with domain all real numbers.
+### Difference and domain
 
-2.  **Finding <InlineMath math="(f-g)(x)" />:**
+<MathContainer>
+  <BlockMath math="(f-g)(x) = f(x) - g(x)" />
+  <BlockMath math="(f-g)(x) = (2x - 1) - (x^2 + 3)" />
+  <BlockMath math="(f-g)(x) = 2x - 1 - x^2 - 3" />
+  <BlockMath math="(f-g)(x) = -x^2 + 2x - 4" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f-g)(x) = f(x) - g(x)" />
-      <BlockMath math="= (2x - 1) - (x^2 + 3)" />
-      <BlockMath math="= 2x - 1 - x^2 - 3" />
-      <BlockMath math="= -x^2 + 2x - 4" />
-    </MathContainer>
+Finding Domain <InlineMath math="D_{f-g}" />:
 
-    **Finding Domain <InlineMath math="D_{f-g}" />:**
+<MathContainer>
+  <BlockMath math="D_{f-g} = D_f \cap D_g" />
+  <BlockMath math="D_{f-g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f-g} = \{x | x \in \mathbb{R}\}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="D_{f-g} = D_f \cap D_g" />
-      <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-      <BlockMath math="= \{x | x \in \mathbb{R}\}" />
-    </MathContainer>
+So, <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" /> with domain **all real numbers**.
 
-    So, <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" /> with domain all real numbers.
+### Sum at two
 
-3.  **Calculating <InlineMath math="(f+g)(2)" />:**
+Substitute the requested input into the **sum already calculated**: <InlineMath math="(f+g)(x) = x^2 + 2x + 2" />
 
-    We use the result from number 1: <InlineMath math="(f+g)(x) = x^2 + 2x + 2" />
+<MathContainer>
+  <BlockMath math="(f+g)(2) = (2)^2 + 2(2) + 2" />
+  <BlockMath math="(f+g)(2) = 4 + 4 + 2" />
+  <BlockMath math="(f+g)(2) = 10" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f+g)(2) = (2)^2 + 2(2) + 2" />
-      <BlockMath math="= 4 + 4 + 2" />
-      <BlockMath math="= 10" />
-    </MathContainer>
+### Difference at minus one
 
-4.  **Calculating <InlineMath math="(f-g)(-1)" />:**
+Substitute the requested input into the **difference already calculated**: <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" />
 
-    We use the result from number 2: <InlineMath math="(f-g)(x) = -x^2 + 2x - 4" />
-
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;(f-g)(-1) \\ &amp;= -(-1)^2 + 2(-1) - 4 \end{aligned}" />
-      <BlockMath math="= -(1) - 2 - 4" />
-      <BlockMath math="= -7" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f-g)(-1) \\ &amp;= -(-1)^2 + 2(-1) - 4 \end{aligned}" />
+  <BlockMath math="(f-g)(-1) = -(1) - 2 - 4" />
+  <BlockMath math="(f-g)(-1) = -7" />
+</MathContainer>

@@ -15,119 +15,45 @@ Let <InlineMath math="z_1" />, <InlineMath math="z_2" />, and <InlineMath math="
 
 ## Addition Properties
 
-Addition of complex numbers keeps the familiar properties of real addition, and each check runs on the real part and the imaginary part separately. Splitting a sum into two real sums is what keeps those proofs short.
+Complex addition works **separately on the real and imaginary parts**. Real-number addition allows reordering and regrouping, so both rules apply to each complex component. For example, changing the order can be checked directly:
 
-### Commutativity
+<BlockMath math="\begin{aligned}(x_1+iy_1)+(x_2+iy_2)&amp;=(x_1+x_2)+i(y_1+y_2) \\ &amp;=(x_2+x_1)+i(y_2+y_1) \\ &amp;=(x_2+iy_2)+(x_1+iy_1)\end{aligned}" />
 
-Changing the order of two complex addends does not change their sum.
-
-<BlockMath math="z_1 + z_2 = z_2 + z_1" />
-
-Example: <InlineMath math="(2+i) + (1-3i) = (1-3i) + (2+i) = 3-2i" />
-
-### Addition Associativity
-
-When adding three complex numbers, the grouping of the addition does not affect the result.
-
-<BlockMath math="(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)" />
-
-### Identity Element
-
-There exists a complex number <InlineMath math="0 = 0 + 0i" /> (zero) such that when added to any complex number <InlineMath math="z_1" />, the result is <InlineMath math="z_1" /> itself.
-
-<BlockMath math="z_1 + 0 = z_1" />
-
-### Inverse Element
-
-Every complex number <InlineMath math="z_1 = x + iy" /> has an additive inverse (opposite), denoted by <InlineMath math="-z_1 = -x - iy" />, such that their sum is the zero element (<InlineMath math="0" />).
-
-<BlockMath math="z_1 + (-z_1) = 0" />
-
-Example:
-
-If <InlineMath math="z_1 = 5-2i" />, then <InlineMath math="-z_1 = -5+2i" />.
-
-Then <InlineMath math="(5-2i) + (-5+2i) = (5-5) + i(-2+2) = 0 + 0i = 0" />.
+| Property | Rule | Worked example |
+| --- | --- | --- |
+| Commutative | <InlineMath math="z_1+z_2=z_2+z_1" /> | <InlineMath math="(2+i)+(1-3i)=3-2i=(1-3i)+(2+i)" /> |
+| Associative | <InlineMath math="(z_1+z_2)+z_3=z_1+(z_2+z_3)" /> | <InlineMath math="((2+i)+(1-3i))+(-1+2i)=2=(2+i)+((1-3i)+(-1+2i))" /> |
+| Identity | <InlineMath math="z+0=z" /> | <InlineMath math="(2+i)+(0+0i)=2+i" /> |
+| Inverse | <InlineMath math="z+(-z)=0" /> | <InlineMath math="(5-2i)+(-5+2i)=(5-5)+(-2+2)i=0" /> |
 
 ## Scalar Multiplication
 
-Multiplying by a real scalar follows the same group of properties, so the same checks apply with one real factor. The scalar touches the real part and the imaginary part in the same way, which is why distributivity and the zero scalar keep working.
+Scalar multiplication means **multiplying both components by the same factor**. For <InlineMath math="z=x+iy" />, the result is <InlineMath math="cz=cx+i(cy)" />. Every rule below applies to both components through real-number associativity and distributivity.
 
-### Multiplication Associativity
-
-The grouping of scalar multiplication does not affect the result.
-
-<BlockMath math="c(dz_1) = (cd)z_1" />
-
-### Scalar Distributivity
-
-Multiplying a complex number by a sum of scalars is equivalent to multiplying it by each scalar and then adding the results.
-
-<BlockMath math="(c + d)z_1 = cz_1 + dz_1" />
-
-### Complex Distributivity
-
-A scalar can be distributed over the addition of complex numbers.
-
-<BlockMath math="c(z_1 + z_2) = cz_1 + cz_2" />
-
-### Scalar Identity
-
-Multiplying a complex number by the scalar <InlineMath math="1" /> does not change the complex number.
-
-<BlockMath math="1 z_1 = z_1" />
-
-### Zero Scalar
-
-Multiplying a complex number by the scalar <InlineMath math="0" /> results in the complex number zero.
-
-<BlockMath math="0 z_1 = 0" />
+| Property | Rule | Worked example |
+| --- | --- | --- |
+| Associative | <InlineMath math="c(dz)=(cd)z" /> | <InlineMath math="2(3(1+i))=2(3+3i)=6+6i=6(1+i)" /> |
+| Distributive over scalars | <InlineMath math="(c+d)z=cz+dz" /> | <InlineMath math="(2+3)(1+i)=5+5i=(2+2i)+(3+3i)" /> |
+| Distributive over complex numbers | <InlineMath math="c(z_1+z_2)=cz_1+cz_2" /> | <InlineMath math="2((1+i)+(2-i))=6=(2+2i)+(4-2i)" /> |
+| Identity | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
+| Zero scalar | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
 
 ## Simplifying Expressions with Addition Properties
 
-Distributivity carries a scalar into a sum term by term, and equal coefficients with opposite signs then cancel. Both moves keep the real part and the imaginary part unchanged, so any identity built from them holds for every complex number.
+**Distributivity** carries a scalar into a sum term by term, and equal coefficients with opposite signs then cancel. Both moves keep the real part and the imaginary part unchanged, so any identity built from them holds for every complex number.
 
 ### Verifying the Additive Inverse
 
-Show that for any complex number <InlineMath math="z" />, <InlineMath math="4z + (-4)z = 0" /> holds.
+The **distributive property** combines two terms containing the same complex number. Adding their opposite coefficients leaves a zero scalar:
 
-**Solution:**
-
-Use distributivity to combine the scalar coefficients, then use the fact that multiplying by the zero scalar gives zero.
-
-Apply the distributive property:
-
-<MathContainer>
-  <BlockMath math="4z + (-4)z = (4 + (-4))z" />
-  <BlockMath math="= (0)z \quad \text{(Scalar addition)}" />
-</MathContainer>
-  Multiplication by the zero scalar gives:
-
-<BlockMath math="= 0" />
-
-It is proven that <InlineMath math="4z + (-4)z = 0" />.
+<BlockMath math="4z+(-4)z=(4+(-4))z=0z=0" />
 
 ## Exercise
 
-Using the addition properties, prove that <InlineMath math="3z - \frac{1}{2}(2z) = 2z" /> for any complex number <InlineMath math="z" />. Work on the left side only, and name the property you apply at each step, so the argument covers every complex number.
+Using the **addition properties**, prove that <InlineMath math="3z - \frac{1}{2}(2z) = 2z" /> for any complex number <InlineMath math="z" />. Work on the left side only, and name the property you apply at each step, so the argument covers every complex number.
 
 ### Worked Solution
 
-Write subtraction as addition of the opposite:
+Write subtraction as **addition of the opposite**, use associativity to regroup the scalars, and then use distributivity to combine their coefficients:
 
-<BlockMath math="\begin{aligned} &amp;3z-\frac12(2z) \\ &amp;=3z+(-\frac12)(2z) \end{aligned}" />
-  Regroup the scalar factors:
-
-<BlockMath math="= 3z + ((-\frac{1}{2}) \times 2)z" />
-  Multiply the scalars:
-
-<BlockMath math="= 3z + (-1)z" />
-  Apply the distributive property:
-
-<MathContainer>
-  <BlockMath math="= (3 + (-1))z" />
-  <BlockMath math="= (2)z \quad \text{(Scalar addition)}" />
-  <BlockMath math="= 2z" />
-</MathContainer>
-
-It is proven that <InlineMath math="3z - \frac{1}{2}(2z) = 2z" />.
+<BlockMath math="\begin{aligned}3z-\frac12(2z)&amp;=3z+\left(-\frac12\right)(2z) \\ &amp;=3z+\left(\left(-\frac12\right)2\right)z \\ &amp;=3z+(-1)z \\ &amp;=(3-1)z=2z\end{aligned}" />

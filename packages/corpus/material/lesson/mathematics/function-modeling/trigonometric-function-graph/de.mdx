@@ -4,41 +4,49 @@ export const metadata = {
   description: "Lies Sinus-, Kosinus- und Tangensgraphen mithilfe interaktiver Darstellungen zu Bogenmaß, Amplitude, Periode und Transformationen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Funktionen und ihre Modellierung",
 };
 
 ## Periodische Muster mit Winkelfunktionen beschreiben
 
-<Highlight>Meereswellen zeigen ein wiederkehrendes Auf und Ab.</Highlight> Solche periodischen Muster lassen sich mit trigonometrischen Funktionen modellieren.
+Bewegungen, die sich **regelmäßig wiederholen**, lassen sich mit Sinus oder Kosinus modellieren. Das Modell beschreibt eine ideale Welle und nicht jede Veränderung des Meerwassers.
 
 Zum Lesen trigonometrischer Funktionsgraphen benötigen wir Winkel im Bogenmaß. Gradangaben sind im Alltag verbreitet, während das Bogenmaß die natürliche Einheit für Analysis und Funktionsgraphen ist.
 
 ## Grad und Bogenmaß umrechnen
 
-Eine vollständige Umdrehung eines Kreises beträgt <InlineMath math="360^\circ" /> oder <InlineMath math="2\pi" /> Bogenmaß. Diese Beziehung liefert uns Umrechnungsformeln:
+Eine **vollständige Umdrehung** eines Kreises beträgt <InlineMath math="360^\circ" /> oder <InlineMath math="2\pi" /> Bogenmaß. Diese Beziehung liefert uns Umrechnungsformeln:
 
 <MathContainer>
-  <BlockMath math="180^\circ = \pi \text{ Bogenmaß}" />
-  <BlockMath math="1^\circ = \frac{\pi}{180} \text{ Bogenmaß}" />
-  <BlockMath math="1 \text{ Radiant} = \frac{180^\circ}{\pi} \approx 57{,}3^\circ" />
+
+<BlockMath math="180^\circ = \pi \text{ Bogenmaß}" />
+
+<BlockMath math="1^\circ = \frac{\pi}{180} \text{ Bogenmaß}" />
+
+<BlockMath math="1 \text{ Radiant} = \frac{180^\circ}{\pi} \approx 57{,}3^\circ" />
 </MathContainer>
 
 ### Umrechnungsbeispiele
 
-Grad in Bogenmaß umrechnen:
+**Grad in Bogenmaß** umrechnen:
 
 <MathContainer>
-  <BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ Bogenmaß}" />
-  <BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ Bogenmaß}" />
-  <BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ Bogenmaß}" />
+
+<BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ Bogenmaß}" />
+
+<BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ Bogenmaß}" />
+
+<BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ Bogenmaß}" />
 </MathContainer>
 
 Bogenmaß in Grad umrechnen:
 
 <MathContainer>
-  <BlockMath math="\frac{\pi}{6} \text{ Bogenmaß} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
-  <BlockMath math="\frac{3\pi}{4} \text{ Bogenmaß} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
+
+<BlockMath math="\frac{\pi}{6} \text{ Bogenmaß} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
+
+<BlockMath math="\frac{3\pi}{4} \text{ Bogenmaß} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
 </MathContainer>
 
 ## Amplitude und Periode im Sinusgraphen
@@ -59,7 +67,7 @@ Die Amplitude ist <Highlight>der größte vertikale Abstand von der Mittellinie<
         const x = (i / 99) * 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <>Amplitude = <InlineMath math="2" /></>, at: 25, offset: [0, 0.5, 0] }],
       showPoints: false,
     },
@@ -73,12 +81,14 @@ Die Amplitude ist <Highlight>der größte vertikale Abstand von der Mittellinie<
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  cameraPosition={[Math.PI, 0, 10]}
+  cameraTarget={[Math.PI, 0, 0]}
 />
 
 ### Periode
 
-Die Periode ist die Länge des Intervalls für einen vollständigen Zyklus. Für <InlineMath math="y = \sin(Bx)" /> und <InlineMath math="y = \cos(Bx)" /> beträgt sie <InlineMath math="\frac{2\pi}{|B|}" />.
+Die **Periode** ist die Länge des Intervalls für einen vollständigen Zyklus. Für <InlineMath math="y = \sin(Bx)" /> und <InlineMath math="y = \cos(Bx)" /> beträgt sie <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Periodenkonzept"
@@ -114,27 +124,20 @@ Die Periode ist die Länge des Intervalls für einen vollständigen Zyklus. Für
       ],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  showZAxis={false}
+  cameraPosition={[2*Math.PI, 0, 16]}
+  cameraTarget={[2*Math.PI, 0, 0]}
 />
 
 ### Amplitude und Periode aus den Koeffizienten
 
-In der Form <InlineMath math="y = A \sin(Bx)" /> legt der Faktor <InlineMath math="A" /> die Amplitude fest und der Faktor <InlineMath math="B" /> die Periode. Die Formeln unten bestimmen beide Größen aus diesen zwei Koeffizienten. Sinus und Kosinus haben immer eine definierte Amplitude, der Tangens dagegen keine, weil seine Werte unbeschränkt sind.
+Für die folgenden Formeln gelten <InlineMath math="A\neq0" /> und <InlineMath math="B\neq0" />. Die Amplitude verwendet den **Betrag**, die Grundperiode ist der kleinste positive Wiederholungsabstand. Ist bei Sinus oder Kosinus einer der Koeffizienten null, ist die Funktion konstant und hat keine kleinste positive Periode.
 
-- <InlineMath math="y = A \sin(Bx)" /> und <InlineMath math="y = A \cos(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \sin(Bx)" />
-    <BlockMath math="y = A \cos(Bx)" />
-  </MathContainer>
-
-- <InlineMath math="y = A \tan(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \tan(Bx)" />
-    <BlockMath math="\text{Amplitude} = \text{nicht definiert}" />
-    <BlockMath math="\text{Periode} = \frac{\pi}{|B|}" />
-  </MathContainer>
+| Funktion | Amplitude | Periode |
+| --- | --- | --- |
+| <InlineMath math="A\sin(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\cos(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\tan(Bx)" /> | Nicht definiert | <InlineMath math="\pi/\lvert B\rvert" /> |
 
 ## Graph der Sinusfunktion
 
@@ -151,25 +154,25 @@ Die Funktion <InlineMath math="y = \sin x" /> ist periodisch mit der Periode <In
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Grapheneigenschaften:** <InlineMath math="y = \sin x" />
+**Grapheneigenschaften**: <InlineMath math="y = \sin x" />
 
 - **Periode**: <InlineMath math="2\pi" /> (der Graph wiederholt sich nach <InlineMath math="2\pi \text{ Einheiten}" />)
 - **Amplitude**: <InlineMath math="1" /> (Maximalwert minus Minimalwert, dann geteilt durch <InlineMath math="2" />)
 - **Definitionsbereich**: Alle reellen Zahlen
 - **Wertebereich**: <InlineMath math="[-1, 1]" />
-- **Schnittpunkte mit der <InlineMath math="x" />-Achse**: <InlineMath math="x = n\pi" />, wobei <InlineMath math="n" /> eine ganze Zahl ist
+- Schnittpunkte mit der <InlineMath math="x" />-Achse: <InlineMath math="x = n\pi" />, wobei <InlineMath math="n" /> eine ganze Zahl ist
 - **Maximalwert**: <InlineMath math="1" /> bei <InlineMath math="x = \frac{\pi}{2} + 2n\pi" />
 - **Minimalwert**: <InlineMath math="-1" /> bei <InlineMath math="x = \frac{3\pi}{2} + 2n\pi" />
 
@@ -188,8 +191,7 @@ Die Funktion <InlineMath math="y = \cos x" /> hat eine sinusähnliche Form, ist 
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -197,22 +199,23 @@ Die Funktion <InlineMath math="y = \cos x" /> hat eine sinusähnliche Form, ist 
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Grapheneigenschaften:** <InlineMath math="y = \cos x" />
+**Grapheneigenschaften**: <InlineMath math="y = \cos x" />
 
 - **Periode**: <InlineMath math="2\pi" />
 - **Amplitude**: <InlineMath math="1" />
 - **Definitionsbereich**: Alle reellen Zahlen
 - **Wertebereich**: <InlineMath math="[-1, 1]" />
-- **Schnittpunkte mit der <InlineMath math="x" />-Achse**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- Schnittpunkte mit der <InlineMath math="x" />-Achse: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
 - **Maximalwert**: <InlineMath math="1" /> bei <InlineMath math="x = 2n\pi" />
 - **Minimalwert**: <InlineMath math="-1" /> bei <InlineMath math="x = \pi + 2n\pi" />
 
 ### Sinus und Kosinus vergleichen
 
-Beide Kurven wiederholen sich nach einer vollen Umdrehung und unterscheiden sich um eine waagerechte Verschiebung. Vergleiche die Hochpunkte und Nullstellen beider Kurven in derselben Ansicht.
+Beide Kurven wiederholen sich nach einer vollen Umdrehung und unterscheiden sich um eine **waagerechte Verschiebung**. Vergleiche die Hochpunkte und Nullstellen beider Kurven in derselben Ansicht.
 
 <LineEquation
   title={<>Vergleich der Graphen von <InlineMath math="\sin" /> und <InlineMath math="\cos" /></>}
@@ -225,19 +228,17 @@ Beide Kurven wiederholen sich nach einer vollen Umdrehung und unterscheiden sich
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -245,6 +246,7 @@ Beide Kurven wiederholen sich nach einer vollen Umdrehung und unterscheiden sich
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
@@ -261,12 +263,12 @@ Die Funktion <InlineMath math="y = \tan x" /> unterscheidet sich von <InlineMath
   description="Die roten vertikalen Linien markieren die Asymptoten."
   data={[
     // Tangensfunktion
-    ...Array.from({ length: 11 }, (_, periodIndex) => {
-      const offset = (periodIndex - 5) * Math.PI;
+    ...Array.from({ length: 3 }, (_, periodIndex) => {
+      const offset = (periodIndex - 1) * Math.PI;
       return {
         smooth: false,
         points: (() => {
-          const parameters = Array.from({ length: 641 }, (_, i) => (i - 320) / 64);
+          const parameters = Array.from({ length: 321 }, (_, i) => (i - 160) / 64);
           parameters.push(0.02885536458803665);
           return parameters
             .sort((a, b) => a - b)
@@ -278,46 +280,45 @@ Die Funktion <InlineMath math="y = \tan x" /> unterscheidet sich von <InlineMath
         })(),
         color: "#059669",
         labels:
-          periodIndex === 5
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 322, offset: [2, 0.5, 0] }]
+          periodIndex === 1
+            ? [{ text: <InlineMath math="y=\tan x" />, at: 162, offset: [2, 0.5, 0] }]
             : [],
         showPoints: false,
       };
     }),
     // Vertikale Asymptoten
-    ...Array.from({ length: 12 }, (_, i) => {
-      const x = (i - 5) * Math.PI - Math.PI / 2;
+    ...Array.from({ length: 4 }, (_, i) => {
+      const x = (i - 1) * Math.PI - Math.PI / 2;
       return {
-        points: [{ x, y: -80, z: 0 }, { x, y: 5, z: 0 }, { x, y: 80, z: 0 }],
+        points: [{ x, y: -6, z: 0 }, { x, y: 5, z: 0 }, { x, y: 6, z: 0 }],
         smooth: false,
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 6 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 2 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Grapheneigenschaften:** <InlineMath math="y = \tan x" />
+**Grapheneigenschaften**: <InlineMath math="y = \tan x" />
 
 - **Periode**: <InlineMath math="\pi" /> (kürzer als bei <InlineMath math="\sin" /> und <InlineMath math="\cos" />)
 - **Amplitude**: nicht definiert
 - **Definitionsbereich**: <InlineMath math="x \neq \frac{\pi}{2} + n\pi" />
 - **Wertebereich**: Alle reellen Zahlen
 - **Vertikale Asymptoten**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
-- **Schnittpunkte mit der <InlineMath math="x" />-Achse**: <InlineMath math="x = n\pi" />
+- Schnittpunkte mit der <InlineMath math="x" />-Achse: <InlineMath math="x = n\pi" />
 
 ## Transformationen trigonometrischer Funktionen
 
-Jeder Parameter wirkt an einer anderen Stelle der Gleichung, deshalb ändert jeder Parameter genau ein Merkmal der Kurve. Die Beispiele zeigen die Wirkung jeweils an einem Graphen.
-
-Amplitude, Periode und Phasenverschiebung verändern die Kurve auf jeweils eigene Weise.
+Änderungen von **Amplitude, Periode und Mittellinie** lassen sich an den Koeffizienten erkennen. Vergleiche beim Ändern eines Koeffizienten die Hochpunkte und Nullstellen, um seine Wirkung zu sehen.
 
 ### Amplitudenänderungen
 
-Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math="|A|" />.
+Für <InlineMath math="y = A \sin x" /> beträgt die **Amplitude** <InlineMath math="|A|" />.
 
 <LineEquation
   title="Wirkung der Amplitude"
@@ -330,19 +331,17 @@ Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math=
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
@@ -352,8 +351,7 @@ Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math=
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
@@ -361,12 +359,13 @@ Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math=
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Periodenänderungen
 
-Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math="\frac{2\pi}{|B|}" />.
+Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die **Periode** <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Wirkung der Periode"
@@ -379,19 +378,17 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 1109 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 1108) * 4 * Math.PI;
         return { x, y: Math.sin(2 * x), z: 0 };
       }),
       color: "#e11d48",
@@ -401,8 +398,7 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: Math.sin(0.5 * x), z: 0 };
       }),
       color: "#059669",
@@ -410,16 +406,19 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Vertikale und horizontale Verschiebungen
 
+Diese Form trennt **Verschiebungen innerhalb und außerhalb der Funktion**. Die Mittellinie lautet <InlineMath math="y=D" /> und muss nicht mit der waagerechten Achse zusammenfallen.
+
 Allgemeine Form:
 
 <BlockMath math="y = A \sin(B(x - C)) + D" />
 
-- <InlineMath math="A" />: Amplitude
+- <InlineMath math="|A|" />: Amplitude
 - <InlineMath math="B" />: Bestimmt die Periode (
   <InlineMath math="\text{Periode} = \frac{2\pi}{|B|}" />)
 - <InlineMath math="C" />: Horizontale Verschiebung (Phase)
@@ -439,19 +438,17 @@ Die folgende Darstellung verbindet Amplitude, horizontale Verschiebung und verti
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x - Math.PI / 4) + 1, z: 0 };
       }),
       color: "#e11d48",
@@ -461,6 +458,7 @@ Die folgende Darstellung verbindet Amplitude, horizontale Verschiebung und verti
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
@@ -495,37 +493,73 @@ Die fünf Aufgaben unten wenden die Regeln für Periode, Amplitude und Verschieb
    - Amplitude <InlineMath math="3" />
    - Periode <InlineMath math="\pi" />
    - <InlineMath math="\frac{\pi}{4}" /> nach rechts verschoben
-   - <InlineMath math="2 \text{ Einheiten}" /> nach oben verschoben
+   - <InlineMath math="2 \text{ Einheiten}" /> **nach oben** verschoben
 
-### Lösungen
+### Winkelumrechnung
 
-1. Winkelumrechnung:
+Rechne die Einheiten mit dem passenden **Umrechnungsfaktor** um.
 
-   - <InlineMath math="120^\circ = 120 \times \frac{\pi}{180} = \frac{2\pi}{3}" /> Bogenmaß
-   - <InlineMath math="\frac{5\pi}{6} = \frac{5\pi}{6} \times \frac{180}{\pi} = 150^\circ" />
+- <InlineMath math="120^\circ\cdot\frac{\pi\,\mathrm{rad}}{180^\circ}=\frac{2\pi}{3}\,\mathrm{rad}" /> Bogenmaß
+- <InlineMath math="\frac{5\pi}{6}\,\mathrm{rad}\cdot\frac{180^\circ}{\pi\,\mathrm{rad}}=150^\circ" />
 
-2. Periode und Amplitude:
+Eine volle Umdrehung entspricht dreihundertsechzig Grad oder zwei Pi Radiant. Ihr Verhältnis ist eins. Der Umrechnungsfaktor ändert deshalb die Einheit, aber nicht die Größe des Winkels.
 
-   - <InlineMath math="y = 3 \sin(2x)" />: Amplitude <InlineMath math="3" />, Periode <InlineMath math="\frac{2\pi}{2} = \pi" />
-   - <InlineMath math="y = -2 \cos(\frac{x}{3})" />: Amplitude <InlineMath math="2" />, Periode <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
+### Amplitude und Periode
 
-3. Für <InlineMath math="y = 2 \sin(x + \frac{\pi}{3}) - 1" />:
+Verwende den **Betrag des Koeffizienten** für die Amplitude. Das Minuszeichen spiegelt die Kosinuskurve, ohne ihre Amplitude negativ zu machen.
 
-   - Amplitude: <InlineMath math="2" />
-   - Periode: <InlineMath math="2\pi" />
-   - Phasenverschiebung: <InlineMath math="\frac{\pi}{3}" /> nach links
-   - Vertikale Verschiebung: <InlineMath math="1 \text{ Einheit}" /> nach unten
+- <InlineMath math="y = 3 \sin(2x)" />: Amplitude <InlineMath math="3" />, Periode <InlineMath math="\frac{2\pi}{2} = \pi" />
+- <InlineMath math="y = -2 \cos(\frac{x}{3})" />: Amplitude <InlineMath math="2" />, Periode <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
 
-4. Für <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5" />:
+Bei der zweiten Kurve beträgt der Eingabekoeffizient ein Drittel. Das Kosinusargument wächst erst bei einer Eingabezunahme um sechs Pi um zwei Pi. Die Periode ist deshalb dreimal so lang wie beim Grundkosinus.
 
-   - Maximale Höhe: <InlineMath math="5 + 2 = 7 \text{ Meter}" />
-   - Minimale Höhe: <InlineMath math="5 - 2 = 3 \text{ Meter}" />
-   - Periode: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ Stunden}" />
+<BlockMath math="\frac{T}{3}=2\pi \quad\Rightarrow\quad T=6\pi" />
 
-5. Gleichung, die die Anforderungen erfüllt:
+### Verschobene Kurve Skizzieren
 
-   <BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+Die Schreibweise <InlineMath math="x+\pi/3=x-(-\pi/3)" /> zeigt die **Verschiebung nach links**. Diese fünf Punkte bestimmen eine vollständige Periode:
 
-   oder
+- Amplitude: <InlineMath math="2" />
+- Periode: <InlineMath math="2\pi" />
+- Phasenverschiebung: <InlineMath math="\frac{\pi}{3}" /> nach links
+- Vertikale Verschiebung: <InlineMath math="1 \text{ Einheit}" /> nach unten
 
-   <BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />
+| <InlineMath math="x" /> | <InlineMath math="-\pi/3" /> | <InlineMath math="\pi/6" /> | <InlineMath math="2\pi/3" /> | <InlineMath math="7\pi/6" /> | <InlineMath math="5\pi/3" /> |
+| --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+
+<LineEquation
+  title="Eine Periode Skizzieren"
+  description="Die markierten Punkte zeigen Mittellinie, Hochpunkt und Tiefpunkt nach den Verschiebungen."
+  data={[
+    { points: Array.from({length: 161}, (_, i) => { const x = -Math.PI / 3 + i * 2 * Math.PI / 160; return {x, y: 2 * Math.sin(x + Math.PI / 3) - 1, z: 0}; }), smooth: false, showPoints: false, color: "#9333ea" },
+    ...[{x: -Math.PI/3,y:-1,z:0},{x:Math.PI/6,y:1,z:0},{x:2*Math.PI/3,y:-1,z:0},{x:7*Math.PI/6,y:-3,z:0},{x:5*Math.PI/3,y:-1,z:0}].map((point) => ({points:[point],showPoints:true,color:"#ea580c"}))
+  ]}
+  showZAxis={false}
+  cameraPosition={[2,-1,11]}
+  cameraTarget={[2,-1,0]}
+/>
+
+### Gezeitenmodell
+
+Der Wasserstand schwankt um eine **Mittellinie** von fünf Metern mit einer maximalen Abweichung von zwei Metern.
+
+- Maximale Höhe: <InlineMath math="5 + 2 = 7 \text{ Meter}" />
+- Minimale Höhe: <InlineMath math="5 - 2 = 3 \text{ Meter}" />
+- Periode: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ Stunden}" />
+
+Der Sinus liegt zwischen minus eins und eins. Das Modell liefert deshalb immer Höhen zwischen drei und sieben Metern. Während einer Periode wächst das Sinusargument um zwei Pi.
+
+<BlockMath math="\frac{\pi}{6}T=2\pi \quad\Rightarrow\quad T=12" />
+
+### Gleichung Aufstellen
+
+Bestimme den Frequenzkoeffizienten aus der **gegebenen Periode** und setze die waagerechte Verschiebung in die Klammer ein.
+
+<BlockMath math="2\pi/B=\pi\;\Rightarrow\;B=2" />
+
+<BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+
+Durch Ausmultiplizieren des Arguments ergibt sich die gleichwertige Form:
+
+<BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />

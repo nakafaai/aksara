@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kreissektoren erkennen und ihre Fläche aus Radius und Mittelpunktswinkel berechnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -13,16 +13,11 @@ export const metadata = {
 
 Ein Kreissektor ist <Highlight>der Teil einer Kreisscheibe</Highlight>, der von zwei Radien und dem dazwischenliegenden Kreisbogen begrenzt wird. Ein radial aus einer runden Torte geschnittenes Stück oder eine Orangenspalte hat annähernd diese Form.
 
-Sein Rand besteht aus drei Teilen:
-
-- Zwei Radien, die sich im Kreismittelpunkt treffen
-- Ein Bogen, der die Enden beider Radien verbindet
-
 Die beiden Radien bilden im Kreismittelpunkt einen Mittelpunktswinkel. Bei festem Radius bestimmt dieser Winkel, welchen Anteil der Kreisscheibe der Sektor einnimmt.
 
 ## Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche
 
-Bei festem Radius wächst die Sektorfläche proportional zum Mittelpunktswinkel. Ein doppelt so großer Winkel gehört also zu einer doppelt so großen Sektorfläche.
+Bei **festem Radius** wächst die Sektorfläche proportional zum Mittelpunktswinkel. Teilt man eine volle Umdrehung in gleiche Winkel, wird auch die Kreisfläche in gleich große Teile zerlegt. Ein doppelt so großer Winkel gehört also zu einer doppelt so großen Sektorfläche.
 
 Misst der Mittelpunktswinkel <InlineMath math="\alpha" /> Grad, dann beträgt der Flächenanteil des Sektors <InlineMath math="\frac{\alpha}{360^\circ}" /> der gesamten Kreisfläche.
 
@@ -34,7 +29,7 @@ Bei <InlineMath math="90^\circ" /> umfasst der Sektor ein Viertel der Kreisfläc
 
 ## Berechnung der Sektorfläche
 
-Für die Berechnung benötigen wir den Radius und den Mittelpunktswinkel.
+Ein Winkel von 60 Grad erfasst **ein Sechstel der Kreisfläche**. Berechne zuerst die gesamte Fläche aus dem Radius und multipliziere dann mit dem Winkelanteil. Lass Pi bis zum letzten Rechenschritt als Symbol stehen.
 
 Ein Kreis habe den Radius <InlineMath math="14 \text{ cm}" /> und der Sektor den Mittelpunktswinkel <InlineMath math="60^\circ" />. Einsetzen liefert:
 
@@ -50,7 +45,7 @@ Die Sektorfläche beträgt exakt <InlineMath math="\frac{98\pi}{3} \text{ cm}^2"
 
 ## Winkel und Flächenanteil vergleichen
 
-Die folgenden Darstellungen zeigen, wie der Flächenanteil mit dem Winkel zunimmt:
+Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen über die Mittelpunktswinkel vergleichen. Der Sektor mit 120 Grad hat die doppelte Fläche des Sektors mit 60 Grad. Der Sektor mit 270 Grad erfasst drei Viertel des Kreises und lässt ein Viertel übrig.
 
 <ContentStack>
 
@@ -371,7 +366,7 @@ Die folgenden Darstellungen zeigen, wie der Flächenanteil mit dem Winkel zunimm
 
 ## Übungsaufgaben
 
-In jeder Aufgabe ist der Flächeninhalt eines Sektors gesucht, deshalb gibst du den Mittelpunktswinkel im Bogenmaß an und verwendest danach die Sektorformel.
+Aufgabe eins und drei fragen nach der **Sektorfläche**, Aufgabe zwei nach dem Mittelpunktswinkel. Die Winkel stehen bereits in Grad. Verwende deshalb ihren Anteil an 360 Grad, ohne sie ins Bogenmaß umzuwandeln.
 
 1. Ein Kreis hat den Radius <InlineMath math="21 \text{ cm}" />. Bestimme die Fläche des Sektors mit <InlineMath math="120^\circ" />.
 
@@ -381,42 +376,44 @@ In jeder Aufgabe ist der Flächeninhalt eines Sektors gesucht, deshalb gibst du 
 
 ### Ausführliche Lösungen
 
-1. **Lösungsschritte:**
+Vergleiche **Flächenanteil und Winkelanteil**. Dividiere in Aufgabe zwei zuerst die Sektorfläche durch die gesamte Kreisfläche. Wandle bei Aufgabe drei den Durchmesser vor dem Quadrieren in den Radius um.
 
-   Gegeben: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+**Lösung 1**
 
-   <MathContainer>
-   <BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-   <BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
-   <BlockMath math="= \frac{1}{3} \times \pi \times 441" />
-   <BlockMath math="= \frac{441\pi}{3}" />
-   <BlockMath math="= 147\pi \text{ cm}^2" />
-   <BlockMath math="\approx 461{,}81 \text{ cm}^2" />
-   </MathContainer>
+Gegeben: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
 
-2. **Lösungsschritte:**
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+<BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
+<BlockMath math="= \frac{1}{3} \times \pi \times 441" />
+<BlockMath math="= \frac{441\pi}{3}" />
+<BlockMath math="= 147\pi \text{ cm}^2" />
+<BlockMath math="\approx 461{,}81 \text{ cm}^2" />
+</MathContainer>
 
-   Gegeben: Sektorfläche = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+**Lösung 2**
 
-   <MathContainer>
-   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
-   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
-   <BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
-   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
-   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
-   <BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
-   <BlockMath math="\alpha = 90^\circ" />
-   </MathContainer>
+Gegeben: Sektorfläche = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
 
-3. **Lösungsschritte:**
+<MathContainer>
+<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
+<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
+<BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
+<BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
+<BlockMath math="\alpha = 90^\circ" />
+</MathContainer>
 
-   Gegeben ist der Durchmesser <InlineMath math="28 \text{ cm}" />, also <InlineMath math="r = 14 \text{ cm}" />.
-   Bei <InlineMath math="8" /> gleich großen radialen Sektoren beträgt der Mittelpunktswinkel jedes Stücks <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />.
+**Lösung 3**
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Fläche jedes Stücks} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
-   <BlockMath math="= \frac{1}{8} \times \pi \times 196" />
-   <BlockMath math="= \frac{196\pi}{8}" />
-   <BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
-   <BlockMath math="\approx 76{,}97 \text{ cm}^2" />
-   </MathContainer>
+Gegeben ist der Durchmesser <InlineMath math="28 \text{ cm}" />, also <InlineMath math="r = 14 \text{ cm}" />.
+Bei <InlineMath math="8" /> gleich großen radialen Sektoren beträgt der Mittelpunktswinkel jedes Stücks <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Fläche jedes Stücks} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
+<BlockMath math="= \frac{1}{8} \times \pi \times 196" />
+<BlockMath math="= \frac{196\pi}{8}" />
+<BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
+<BlockMath math="\approx 76{,}97 \text{ cm}^2" />
+</MathContainer>

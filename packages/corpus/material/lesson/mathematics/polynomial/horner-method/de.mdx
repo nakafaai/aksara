@@ -47,43 +47,28 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Im Horner-Schema brauchen wir nur die Koeffizienten <InlineMath math="(1, 0, -7, 8)" /> und den Wert <InlineMath math="c=2" />. Die ersten drei Zahlen der unteren Zeile, <InlineMath math="(1, 2, -3)" />, sind die Koeffizienten des Quotienten <InlineMath math="1x^2 + 2x - 3" />. Die letzte Zahl <InlineMath math="\boxed{2}" /> ist der Rest.
 
-Das Schema wiederholt weder Variablen noch Potenzen. Die untere Zeile enthält direkt die Koeffizienten des Quotienten und anschließend den Rest.
-
 Direkt anwendbar ist das Schema bei einem linearen Divisor der Form <InlineMath math="(x-c)" />. Ein Divisor wie <InlineMath math="(ax-b)" /> muss zuerst passend umgeformt werden.
 
 ## Das Hornerverfahren vorbereiten
 
-Vor der Division mit der Horner-Methode sind mehrere Vorbereitungsschritte erforderlich:
+Die **Koeffizientenfolge** muss alle Potenzen vom höchsten Exponenten bis zum konstanten Glied enthalten. Für einen fehlenden Term trägst du null ein. Bei <InlineMath math="2x^3+5x^2+6" /> erhältst du:
 
-1.  **Koeffizienten des Dividenden <InlineMath math="P(x)" /> notieren:**
+| Potenz | Koeffizient |
+| --- | --- |
+| <InlineMath math="x^3" /> | 2 |
+| <InlineMath math="x^2" /> | 5 |
+| <InlineMath math="x" /> | 0 |
+| <InlineMath math="1" /> | 6 |
 
-    Schreibe die Koeffizienten vom höchsten Exponenten bis zum konstanten Glied auf. Fehlt eine Potenz, muss an ihrer Stelle der Koeffizient <InlineMath math="0" /> stehen.
-
-    **Beispiel:**
-
-    Bei <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> fehlt der <InlineMath math="x" />-Term. Seine Stelle erhält daher den Koeffizienten <InlineMath math="0" />. Die vollständige Folge lautet <InlineMath math="2, 5, 0, 6" />.
-
-2.  **Den Wert <InlineMath math="c" /> aus dem Divisor <InlineMath math="x-c" /> ablesen:**
-
-    Lies <InlineMath math="c" /> aus dem Divisor ab. Steht er als <InlineMath math="x-c" />, verwenden wir <InlineMath math="c" />. Bei <InlineMath math="x+c" /> entspricht der Divisor <InlineMath math="x - (-c)" />, daher verwenden wir <InlineMath math="-c" />.
-
-    **Beispiel:**
-
-    Wenn der Teiler <InlineMath math="x+3" /> ist, dann <InlineMath math="x - (-3)" />, also <InlineMath math="c = -3" />.
-
-3.  **Horner-Schema aufbauen:**
-
-    Setze <InlineMath math="c" /> links vor das Schema und schreibe die Koeffizienten von <InlineMath math="P(x)" /> in die obere Zeile.
+Links im Schema steht die **Nullstelle des Divisors**. Aus <InlineMath math="x+3=x-(-3)" /> folgt <InlineMath math="c=-3" />, nicht drei. Die Polynomkoeffizienten stehen in der oberen Zeile.
 
 ## Die Division mit dem Hornerverfahren durchführen
 
-Hier sind die Schritte zur Durchführung einer Division nach dem Horner-Schema:
+In jeder Spalte **multiplizierst du das vorige Ergebnis und addierst den nächsten Koeffizienten**. Diese Regel folgt aus der geschachtelten Produktdarstellung des Polynoms:
 
-1.  **Ersten Koeffizienten herunterziehen:** Übertrage <InlineMath math="a_n" /> unverändert in die untere Zeile.
-2.  **Multiplizieren:** Multipliziere die zuletzt eingetragene Zahl mit <InlineMath math="c" /> und schreibe das Ergebnis unter den nächsten Koeffizienten <InlineMath math="a_{n-1}" />.
-3.  **Addieren:** Addiere das Zwischenergebnis zum Koeffizienten <InlineMath math="a_{n-1}" /> und schreibe die Summe in die untere Zeile.
-4.  **Wiederholen:** Wiederhole Schritt 2, also die Multiplikation mit <InlineMath math="c" />, und Schritt 3, also die anschließende Addition, bis alle Koeffizienten verarbeitet sind.
-5.  **Ergebnis lesen:** Die letzte Zahl der unteren Zeile ist der **Rest <InlineMath math="S" />**. Die übrigen Zahlen sind von links nach rechts die **Koeffizienten des Quotienten <InlineMath math="H(x)" />**, beginnend bei der Potenz <InlineMath math="n-1" />.
+<BlockMath math="2x^3+5x^2+6=((2x+5)x+0)x+6" />
+
+Beginne mit dem ersten Koeffizienten, also zwei. Nach dem letzten Koeffizienten erhältst du den Polynomwert an der Nullstelle des Divisors. Nach dem Restsatz ist das der Divisionsrest. Die vorigen Ergebnisse sind die Koeffizienten des Quotienten.
 
 ## Das Hornerverfahren anwenden
 
@@ -108,56 +93,44 @@ x+3\overline{\big)2x^3 + 5x^2 + 0x + 6} \\
 
 **Horners Methode:**
 
-1.  **Vorbereitung:**
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-3 & 2 & 5 & 0 & 6 \\
+  &   & -6 & 3 & -9 \\
+\hline
+  & 2 & -1 & 3 & \boxed{-3} \\
+\end{array}
+"
+/>
 
-    - Koeffizienten von <InlineMath math="P(x)" />: <InlineMath math="2, 5, 0" /> (für <InlineMath math="x^1" />), <InlineMath math="6" /> (konstant).
-    - Der Teiler ist <InlineMath math="x+3" />, also <InlineMath math="x - (-3)" />, also <InlineMath math="c = -3" />.
+| Nächster Koeffizient | Multiplikation | Addition |
+| --- | --- | --- |
+| 5 | <InlineMath math="2(-3)=-6" /> | <InlineMath math="5-6=-1" /> |
+| 0 | <InlineMath math="(-1)(-3)=3" /> | <InlineMath math="0+3=3" /> |
+| 6 | <InlineMath math="3(-3)=-9" /> | <InlineMath math="6-9=-3" /> |
 
-2.  **Horner-Prozess:**
+Die letzte Zahl ist der **Rest**, also <InlineMath math="-3" />. Die vorigen Zahlen <InlineMath math="2,-1,3" /> liefern den Quotienten <InlineMath math="H(x)=2x^2-x+3" />. Damit gilt:
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -3 & 2 & 5 & 0 & 6 \\
-      &   & -6 & 3 & -9 \\
-    \hline
-      & 2 & -1 & 3 & \boxed{-3} \\
-    \end{array}
-    "
-    />
+<BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
-3.  **Schema-Erklärung:**
+### Ein Divisor mit einem Leitkoeffizienten ungleich eins
 
-    - Ziehe <InlineMath math="2" />, den Koeffizienten von <InlineMath math="x^3" />, herunter.
-    - Aus <InlineMath math="2 \times (-3) = -6" /> folgt der Eintrag <InlineMath math="-6" /> unter <InlineMath math="5" />.
-    - Addiere <InlineMath math="5 + (-6) = -1" /> und schreibe <InlineMath math="-1" /> in die untere Zeile.
-    - Aus <InlineMath math="-1 \times (-3) = 3" /> folgt der Eintrag <InlineMath math="3" /> unter <InlineMath math="0" />.
-    - Addiere <InlineMath math="0 + 3 = 3" /> und schreibe <InlineMath math="3" /> in die untere Zeile.
-    - Aus <InlineMath math="3 \times (-3) = -9" /> folgt der Eintrag <InlineMath math="-9" /> unter <InlineMath math="6" />.
-    - Addiere <InlineMath math="6 + (-9) = -3" />. Die letzte Zahl <InlineMath math="-3" /> ist der Rest.
+Bei einem Divisor <InlineMath math="ax-b" /> mit <InlineMath math="a\ne0" /> verwendest du <InlineMath math="c=b/a" /> im Schema. Danach **teilst du den erhaltenen Quotienten durch den Leitkoeffizienten des Divisors**. Der Rest bleibt unverändert.
 
-4.  **Ergebnis:**
+Dasselbe Schema funktioniert zum Beispiel für <InlineMath math="2x+6=2(x+3)" />. Damit das Produkt gleich bleibt, teilst du den bisherigen Quotienten durch zwei:
 
-    - Die letzte Zahl in der Ergebniszeile ist <InlineMath math="\boxed{-3}" />. Dies ist der **Rest (<InlineMath math="S" />)**.
-    - Die anderen Zahlen sind <InlineMath math="2, -1, 3" />. Dies sind die Koeffizienten des **Quotienten (<InlineMath math="H(x)" />)**. Da <InlineMath math="P(x)" /> den Grad <InlineMath math="3" /> hat, hat <InlineMath math="H(x)" /> den Grad <InlineMath math="2" />.
-    - Also <InlineMath math="H(x) = 2x^2 - 1x + 3 = 2x^2 - x + 3" />.
-
-5.  **Schreiben in Form eines Divisionsalgorithmus:**
-
-    <MathContainer>
-      <BlockMath math="P(x) = (x-c) H(x) + S" />
-      <BlockMath math="\begin{aligned} &amp;2x^3 + 5x^2 + 6 \\ &amp;= (x+3)(2x^2 - x + 3) - 3 \end{aligned}" />
-    </MathContainer>
+<BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
 ## Übung
 
-Bestimme Quotient und Rest der Division von <InlineMath math="x^4 + 4" /> durch <InlineMath math="x - 1" /> sowohl mit dem Horner-Schema als auch mit der Polynomdivision.
+Bestimme **Quotient und Rest** der Division von <InlineMath math="x^4 + 4" /> durch <InlineMath math="x - 1" /> sowohl mit dem Horner-Schema als auch mit der Polynomdivision.
 
 Gib das Ergebnis in der Form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" /> an. Beide Verfahren müssen dieselben Werte liefern, und die Gradprüfung sagt dir, wie viele Terme der Quotient haben kann.
 
 ### Ausführliche Lösung
 
-- Dividende: <InlineMath math="P(x) = x^4 + 4 = x^4 + 0x^3 + 0x^2 + 0x + 4" />.
+- Dividend: <InlineMath math="P(x) = x^4 + 4 = x^4 + 0x^3 + 0x^2 + 0x + 4" />.
 - Teiler: <InlineMath math="Q(x) = x - 1" />, also <InlineMath math="c = 1" />.
 
 **Polynomdivision:**

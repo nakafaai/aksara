@@ -34,40 +34,21 @@ Die geometrische Reihe entsteht durch Addition ihrer Glieder:
 
 ## Formel für die Summe der ersten Glieder herleiten
 
-Wie lässt sich die Summe der ersten <InlineMath math="n" /> Glieder <InlineMath math="(S_n)" /> berechnen, ohne jedes Glied einzeln zu addieren?
+Der entscheidende Schritt ist **die Subtraktion zweier fast gleicher Summen**. Multipliziere die Setzlingssumme der ersten drei Monate mit dem Faktor drei. Die Glieder 12 und 36 kommen dann in beiden Summen vor und heben sich auf.
 
-Die Tabelle zeigt das Muster anhand der Setzlingsfolge:
+<BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
 
-| Notation | Direkte Summierung | Verwendung von <InlineMath math="U_{n+1}" /> und <InlineMath math="U_1" /> | Allgemeine Form |
-| :------------- | :---------------- | :---------------------------------------------------------------------- | :---------------------------------------- |
-| <InlineMath math="S_2" /> | <InlineMath math="4 + 12 = 16" /> | <InlineMath math="S_2 = \frac{36 - 4}{3 - 1} = \frac{32}{2} = 16" /> | <InlineMath math="S_2 = \frac{U_3 - U_1}{r - 1}" /> |
-| <InlineMath math="S_3" /> | <InlineMath math="4 + 12 + 36 = 52" /> | <InlineMath math="S_3 = \frac{108 - 4}{3 - 1} = \frac{104}{2} = 52" /> | <InlineMath math="S_3 = \frac{U_4 - U_1}{r - 1}" /> |
-| <InlineMath math="S_4" /> | <InlineMath math="4 + 12 + 36 + 108 = 160" /> | <InlineMath math="S_4 = \frac{324 - 4}{3 - 1} = \frac{320}{2} = 160" /> | <InlineMath math="S_4 = \frac{U_5 - U_1}{r - 1}" /> |
-| <InlineMath math="\vdots" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> |
-| <InlineMath math="S_n" /> | <InlineMath math="\dots" /> | <InlineMath math="\dots" /> | <InlineMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" /> |
-
-Für <InlineMath math="r\ne1" /> liefert die rechte untere Zelle die allgemeine Form:
-
-<BlockMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" />
-
-Für das <InlineMath math="n" />-te Glied einer geometrischen Folge gilt <InlineMath math="U_n = ar^{n-1}" />. Daher ist <InlineMath math="U_{n+1} = ar^{(n+1)-1} = ar^n" />. Setzen wir <InlineMath math="U_{n+1} = ar^n" /> und <InlineMath math="U_1 = a" /> in die Formel für <InlineMath math="S_n" /> ein:
-
-<MathContainer>
-  <BlockMath math="S_n = \frac{ar^n - a}{r - 1}" />
-  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
-</MathContainer>
-
-Damit ist die Summe der ersten <InlineMath math="n" /> Glieder bestimmt.
-
-Eine zweite Herleitung multipliziert die Summe mit <InlineMath math="r" /> und subtrahiert beide Zeilen:
+Wende dieselbe Subtraktion auf eine Summe mit Anfangsglied <InlineMath math="a" />, Faktor <InlineMath math="r" /> und <InlineMath math="n" /> Gliedern an. Die Multiplikation mit dem Faktor verschiebt jedes Glied um eine Position:
 
 <MathContainer>
   <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
   <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
-  <BlockMath math="(1-r)S_n=a(1-r^n)" />
+  <BlockMath math="\begin{aligned}rS_n-S_n&amp;=ar^n-a\\(r-1)S_n&amp;=a(r^n-1)\end{aligned}" />
 </MathContainer>
 
-Die mittleren Glieder heben sich auf. Deshalb enthält das Ergebnis nur das erste Glied und die Potenz unmittelbar nach dem letzten Glied.
+Es bleiben nur **das erste Glied und das Glied nach dem letzten** übrig. Mit <InlineMath math="U_1=a" /> und <InlineMath math="U_{n+1}=ar^n" /> dürfen wir für <InlineMath math="r\ne1" /> beide Seiten durch <InlineMath math="r-1" /> teilen:
+
+<BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
 
 ## Geometrische Reihenformel
 
@@ -82,6 +63,8 @@ Eine äquivalente Form ist
 Beide Formen gelten für positive und negative Faktoren, solange <InlineMath math="r\ne1" />. Für <InlineMath math="r=1" /> sind alle Glieder gleich <InlineMath math="a" />. Dann gilt:
 
 <BlockMath math="S_n=na" />
+
+Beim Faktor eins wäre die Division durch <InlineMath math="r-1" /> eine **Division durch null**. Addiere stattdessen direkt, zum Beispiel <InlineMath math="5+5+5+5=4\cdot5=20" />. Beim Faktor null kann nur das erste Glied ungleich null sein, also gilt <InlineMath math="S_n=a" />.
 
 **Dabei gilt:**
 
@@ -127,7 +110,7 @@ Die Addition ist sinnvoll, weil jeder Monatswert neu produzierte Fahrräder besc
 
 ## Übung mit einem negativen Faktor
 
-Berechne die endliche Summe:
+Berechne die **endliche Summe**:
 
 <BlockMath math="81-27+9-3+1" />
 
@@ -135,7 +118,7 @@ Das erste Glied ist <InlineMath math="a=81" />, der Faktor ist <InlineMath math=
 
 <MathContainer>
   <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
-  <BlockMath math="S_5=81\left(\frac{244/243}{4/3}\right)=61" />
+  <BlockMath math="\begin{aligned}S_5&amp;=81\left(\frac{244/243}{4/3}\right)\\&amp;=81\cdot\frac{244}{243}\cdot\frac34\\&amp;=\frac{244}{4}=61\end{aligned}" />
 </MathContainer>
 
 Die direkte Addition bestätigt das Ergebnis: <InlineMath math="81-27+9-3+1=61" />.

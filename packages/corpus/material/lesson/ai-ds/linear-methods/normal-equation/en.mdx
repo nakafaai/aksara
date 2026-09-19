@@ -3,7 +3,7 @@ export const metadata = {
     description: "Derive normal equations for least squares from orthogonality, solve the closed form when it exists, and identify singular cases.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -23,11 +23,11 @@ This is called the **normal equation** because the residual at a minimizer <High
 
 ## Least Squares and the Normal Equation
 
-A vector <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimizes <InlineMath math="\|A \cdot x - b\|_2^2" /> if and only if it satisfies <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. The optimization problem and the normal equation therefore have the same solution set. That equivalence is what turns a minimization problem into a linear system you can solve with elimination or a factorization.
+A vector <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimizes <InlineMath math="\|A \cdot x - b\|_2^2" /> if and only if it satisfies <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. The optimization problem and the normal equation therefore have the **same solution set**. That equivalence is what turns a minimization problem into a linear system you can solve with elimination or a factorization.
 
 ## The Residual Is Orthogonal to the Column Space
 
-When <InlineMath math="\hat{x}" /> minimizes <InlineMath math="\|A\hat{x} - b\|_2^2" />, the residual vector <InlineMath math="A\hat{x} - b" /> is orthogonal to every vector in the column space of <InlineMath math="A" />.
+When <InlineMath math="\hat{x}" /> minimizes <InlineMath math="\|A\hat{x} - b\|_2^2" />, the residual vector <InlineMath math="A\hat{x} - b" /> is **orthogonal to every vector** in the column space of <InlineMath math="A" />.
 
 This column space consists of all vectors that can be written as <InlineMath math="Ax" /> for <InlineMath math="x \in \mathbb{R}^n" />. The orthogonality condition means
 
@@ -57,7 +57,7 @@ Using the Pythagorean theorem, we can write
   <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
-Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the cross term is zero. This leaves:
+Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the **cross term is zero**. This leaves:
 
 <BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
 
@@ -69,7 +69,7 @@ This inequality proves that <InlineMath math="\hat{x}" /> indeed gives the minim
 
 ## Existence and Uniqueness
 
-The normal equation is consistent for every matrix <InlineMath math="A \in \mathbb{R}^{m\times n}" /> and every vector <InlineMath math="b \in \mathbb{R}^m" /> because a least-squares minimizer always exists in finite dimensions. The minimizer is unique exactly when <InlineMath math="A" /> has full column rank:
+The normal equation is consistent for every matrix <InlineMath math="A \in \mathbb{R}^{m\times n}" /> and every vector <InlineMath math="b \in \mathbb{R}^m" /> because a least-squares minimizer always exists in finite dimensions. The minimizer is unique exactly when <InlineMath math="A" /> has **full column rank**:
 
 <BlockMath math="\operatorname{rank}(A)=n" />
 
@@ -97,12 +97,37 @@ The calculation gives:
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-This equality of null spaces shows that <InlineMath math="A^{\mathsf T}A" /> is positive definite exactly when <InlineMath math="A" /> has full column rank.
+This **equality of null spaces** shows that <InlineMath math="A^{\mathsf T}A" /> is positive definite exactly when <InlineMath math="A" /> has full column rank.
 
 ## Numerical warning
 
-Positive definiteness gives uniqueness and permits a Cholesky solve, but it does not guarantee good conditioning. For a full-column-rank matrix,
+Positive definiteness gives uniqueness and permits a Cholesky solve, but it **does not guarantee good conditioning**. For a full-column-rank matrix,
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
 Explicitly forming <InlineMath math="A^{\mathsf T}A" /> can therefore magnify sensitivity and rounding effects. The inverse formula proves an algebraic identity. In software, use <InlineMath math="\mathrm{QR}" /> for a well-determined full-rank least-squares solve and <InlineMath math="\mathrm{SVD}" /> when rank deficiency or severe ill-conditioning matters.
+
+## An Example with Two Observations
+
+Let <InlineMath math="A=(1,2)^T" /> and <InlineMath math="b=(2,1)^T" />. One scalar parameter cannot match both observations: the first equation asks for <InlineMath math="x=2" />, while the second asks for <InlineMath math="x=1/2" />. The least-squares solution balances their **squared residuals**.
+
+<MathContainer>
+<BlockMath math="A^TA=1^2+2^2=5,\qquad A^Tb=1\cdot2+2\cdot1=4" />
+<BlockMath math="5\hat x=4\Rightarrow\hat x=\frac45" />
+<BlockMath math="A\hat x=\begin{pmatrix}4/5\\8/5\end{pmatrix},\qquad r=A\hat x-b=\begin{pmatrix}-6/5\\3/5\end{pmatrix}" />
+<BlockMath math="A^Tr=1\cdot(-6/5)+2\cdot(3/5)=0" />
+</MathContainer>
+
+The residual is perpendicular to the line of possible predictions. Moving along that line adds a nonnegative squared distance, as the Pythagorean proof requires.
+
+<LineEquation
+  title="A Prediction and Its Perpendicular Residual"
+  description="The green line contains all predictions Ax. The orange segment connects (4/5,8/5) to the observation (2,1)."
+  cameraPosition={[1, 1, 6]}
+  cameraTarget={[1, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0.8, y: 1.6, z: 0 }, { x: 1.5, y: 3, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#0d9488", labels: [{ text: "Ax", at: 1 }] },
+    { points: [{ x: 0.8, y: 1.6, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#f97316", labels: [{ text: "b", at: 1 }] },
+  ]}
+/>

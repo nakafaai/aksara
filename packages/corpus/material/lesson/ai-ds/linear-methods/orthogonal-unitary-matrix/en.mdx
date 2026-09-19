@@ -3,7 +3,7 @@ export const metadata = {
     description: "Compare orthogonal and unitary matrices through inner-product preservation, determinant and eigenvalue structure, rotations, and reflections.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -23,7 +23,7 @@ A complex square matrix <InlineMath math="U\in\mathbb{C}^{n\times n}" /> is unit
 <BlockMath math="U^{-1}=U^H" />
 </MathContainer>
 
-Here <InlineMath math="U^H=\overline{U}^{,T}" /> is the conjugate transpose. <Highlight>A real orthogonal matrix is a unitary matrix whose entries happen to be real.</Highlight>
+Here <InlineMath math="U^H=\overline{U}^{T}" /> is the conjugate transpose. A real orthogonal matrix is a **unitary matrix with real entries**.
 
 The defining equations are equivalent to saying that the columns form an orthonormal basis. The rows are orthonormal as well.
 
@@ -58,7 +58,7 @@ For a real orthogonal matrix, the determinant is real, so
 
 <BlockMath math="\det Q\in\{-1,1\}" />
 
-The case <InlineMath math="\det Q=1" /> preserves orientation. The case <InlineMath math="\det Q=-1" /> reverses orientation and contains a reflection component.
+The case <InlineMath math="\det Q=1" /> **preserves orientation**. The case <InlineMath math="\det Q=-1" /> reverses orientation and contains a reflection component.
 
 ## Eigenvalues and Spectral Structure
 
@@ -69,7 +69,7 @@ If <InlineMath math="Uv=\lambda v" /> with <InlineMath math="v\ne0" />, then
 <BlockMath math="|\lambda|=1" />
 </MathContainer>
 
-Every eigenvalue therefore lies on the complex unit circle. Nonreal eigenvalues of a real orthogonal matrix occur in conjugate pairs. A unitary matrix is normal, so the complex spectral theorem gives
+Every eigenvalue therefore lies on the **complex unit circle**. Nonreal eigenvalues of a real orthogonal matrix occur in conjugate pairs. A unitary matrix is normal, so the complex spectral theorem gives
 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
@@ -92,7 +92,7 @@ The characteristic polynomial is
 <BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
 </MathContainer>
 
-Unless <InlineMath math="\alpha" /> is a multiple of <InlineMath math="\pi" />, the rotation has no real eigenvector. That is expected: no nonzero real direction remains fixed or merely changes sign under a genuine planar rotation.
+Unless <InlineMath math="\alpha" /> is a multiple of <InlineMath math="\pi" />, the rotation has **no real eigenvector**. That is expected: no nonzero real direction remains fixed or merely changes sign under a genuine planar rotation.
 
 ## Reflection Example
 
@@ -100,11 +100,11 @@ For a unit vector <InlineMath math="u\in\mathbb{R}^n" />, the Householder matrix
 
 <BlockMath math="H=I-2uu^T" />
 
-The matrix <InlineMath math="H" /> reflects a vector across the hyperplane perpendicular to <InlineMath math="u" />. Its orthogonality can be checked from
+The matrix <InlineMath math="H" /> reflects a vector across the **hyperplane perpendicular** to <InlineMath math="u" />. Its orthogonality can be checked from
 
 <MathContainer>
 <BlockMath math="H^T=H" />
-<BlockMath math="H^2=(I-2uu^T)^2=I" />
+<BlockMath math="\begin{aligned} H^2 &amp;= I-4uu^T+4u(u^Tu)u^T \\ &amp;= I-4uu^T+4uu^T=I \end{aligned}" />
 </MathContainer>
 
 The two identities above give <InlineMath math="H^TH=I" />. Its eigenvalue in the direction <InlineMath math="u" /> is <InlineMath math="-1" />, while every vector perpendicular to <InlineMath math="u" /> has eigenvalue <InlineMath math="1" />. Therefore <InlineMath math="\det H=-1" />.
@@ -120,7 +120,7 @@ The two identities above give <InlineMath math="H^TH=I" />. Its eigenvalue in th
 | Singular values | all <InlineMath math="1" /> | all <InlineMath math="1" /> |
 | Two-norm condition number | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Products and inverses remain in the same class:
+**Products and inverses** remain in the same class:
 
 <MathContainer>
 <BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />

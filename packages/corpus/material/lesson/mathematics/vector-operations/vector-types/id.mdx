@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bandingkan besar dan arah vektor, lalu pelajari vektor lawan, vektor nol, dan vektor ekuivalen melalui diagram dan latihan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Vektor dan Operasinya",
 };
 
@@ -12,7 +12,7 @@ export const metadata = {
 
 Setiap vektor tak nol <Highlight>memiliki dua ciri utama</Highlight>: **besar** dan **arah**. Vektor nol merupakan kasus khusus karena besarnya nol dan tidak memiliki arah.
 
-Auf vektor <InlineMath math="\overrightarrow{CD}" />, kedua ciri itu tampak langsung:
+Pada vektor <InlineMath math="\overrightarrow{CD}" />, kedua ciri itu tampak langsung:
 
 <VectorChart
   title={
@@ -61,20 +61,22 @@ Bayangkan Andi berjalan sejauh <InlineMath math="100 \text{ m}" /> dengan sudut 
       name: <InlineMath math="A" />,
       points: [
         { x: 0, y: 0 },
-        { x: 5, y: 2 },
+        { x: 50 * Math.sqrt(3), y: 50 },
       ],
     },
     {
       id: "-A",
       name: <InlineMath math="-A" />,
       points: [
-        { x: 0, y: 0.5 },
-        { x: 5, y: 2.5 },
+        { x: 0, y: 10 },
+        { x: 50 * Math.sqrt(3), y: 60 },
       ],
       direction: "backward",
     },
   ]}
 />
+
+Kedua pangkal panah digeser agar tidak bertumpuk. Pergeseran pangkal tidak mengubah besar atau arah vektor. Komponen perpindahan berangkat adalah <InlineMath math="(50\sqrt3,50)\,\text{m}" />, sedangkan komponen perpindahan pulang adalah negatifnya.
 
 - Vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="-\vec{A}" /> memiliki panjang yang sama (<InlineMath math="|\vec{A}| = |-\vec{A}|" />).
 - Arah vektor <InlineMath math="-\vec{A}" /> tepat berlawanan dengan arah vektor <InlineMath math="\vec{A}" />. Jika <InlineMath math="\vec{A}" /> menunjuk ke satu arah, <InlineMath math="-\vec{A}" /> menunjuk ke arah sebaliknya (berbeda <InlineMath math="180^\circ" />).
@@ -88,6 +90,8 @@ Pada vektor nol, titik pangkal dan titik ujungnya berimpit sehingga panjang pana
 **Contoh**:
 
 Jika Andi berjalan <InlineMath math="100 \text{ m}" /> ke timur, kemudian berjalan kembali <InlineMath math="100 \text{ m}" /> ke barat, maka total perpindahan Andi adalah nol. Perpindahan total ini dapat direpresentasikan sebagai vektor nol (<InlineMath math="\vec{0}" />).
+
+<BlockMath math="\Delta x=100\,\text{m}+(-100\,\text{m})=0\,\text{m}" />
 
 ## Vektor Ekuivalen atau Vektor yang Sama
 
@@ -179,7 +183,7 @@ Vektor <InlineMath math="\vec{A}" /> **bukan** vektor lawan dari <InlineMath mat
 
 Karena syarat kedua tidak terpenuhi, <InlineMath math="\vec{A}" /> bukanlah vektor lawan dari <InlineMath math="\vec{B}" />.
 
-**Bagaimana cara membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> berlawanan?**
+Bagaimana cara membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> berlawanan?
 
 Dengan mempertahankan <InlineMath math="\vec{A}" />, kita dapat membuat <InlineMath math="\vec{B}" /> menjadi vektor lawannya dengan mengubah titik ujung <InlineMath math="\vec{B}" />:
 
@@ -211,3 +215,7 @@ Dengan mempertahankan <InlineMath math="\vec{A}" />, kita dapat membuat <InlineM
     },
   ]}
 />
+
+Dengan pangkal tetap di <InlineMath math="(1,4)" /> dan komponen yang diperlukan <InlineMath math="-\vec A=(1,4)" />, titik ujung baru diperoleh sebagai:
+
+<BlockMath math="(1,4)+(1,4)=(2,8)" />

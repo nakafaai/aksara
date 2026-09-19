@@ -3,19 +3,19 @@ export const metadata = {
    description: "Describe how a matrix transforms its eigenvectors, calculate those vectors, and determine their eigenspaces.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## Eigenvalues and Eigenvectors
 
-Most vectors change both length and direction under a matrix transformation. For an eigenvector, the result stays on the same line. A positive eigenvalue preserves its orientation, a negative eigenvalue reverses it, and a zero eigenvalue sends it to the zero vector.
+Most vectors change both length and direction under a matrix transformation. For an eigenvector, the result stays on the same line. For a real eigenvalue, a positive value preserves its orientation, a negative eigenvalue reverses it, and a zero value sends it to the zero vector.
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be a square matrix. An **eigenvector** <InlineMath math="v \in \mathbb{K}^n" /> for an **eigenvalue** <InlineMath math="\lambda \in \mathbb{K}" /> is a non-zero vector <InlineMath math="v \neq 0" /> that satisfies:
 
 <BlockMath math="A \cdot v = \lambda \cdot v" />
 
-Multiplying <InlineMath math="v" /> by <InlineMath math="A" /> therefore changes only its scale or orientation. The line through the vector stays the same.
+For real eigenvalues, multiplying <InlineMath math="v" /> by <InlineMath math="A" /> changes its scale or orientation along a real line. Complex eigenvalues describe multiplication by a complex scalar on a one-dimensional complex subspace.
 
 > By definition, eigenvalues can equal <InlineMath math="0" />, but <Highlight>eigenvectors are always non-zero</Highlight>.
 
@@ -31,7 +31,7 @@ Because <InlineMath math="t\neq0" />, the vector <InlineMath math="tv" /> is non
 
 ## Examples of Eigenvector Calculations
 
-The examples here verify the equation <InlineMath math="Av=\lambda v" /> directly, once with a diagonal matrix and once with a symmetric one. Working through both shows where the eigenvalue comes from and how the eigenvector is found, which is the same procedure you need for a matrix that is neither.
+The examples here **verify the equation** <InlineMath math="Av=\lambda v" /> directly, once with a diagonal matrix and once with a symmetric one. Working through both shows where the eigenvalue comes from and how the eigenvector is found, which is the same procedure you need for a matrix that is neither.
 
 ### Diagonal Matrix
 
@@ -39,19 +39,23 @@ Consider the matrix:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}" />
 
-The vector <InlineMath math="v_1" /> below is an eigenvector for <InlineMath math="\lambda_1 = 1" />. Multiplication by <InlineMath math="A" /> verifies this:
+The vector <InlineMath math="v_1" /> below is an eigenvector for <InlineMath math="\lambda_1 = 1" />. **Multiplication by** <InlineMath math="A" /> verifies this:
 
 <MathContainer>
 <BlockMath math="v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}" />
 <BlockMath math="A \cdot v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} = 1 \cdot v_1" />
 </MathContainer>
 
-The vector <InlineMath math="v_2" /> below is an eigenvector for <InlineMath math="\lambda_2 = 2" />. Multiplication by <InlineMath math="A" /> verifies this:
+The vector <InlineMath math="v_2" /> below is an eigenvector for <InlineMath math="\lambda_2 = 2" />. **Multiplication by** <InlineMath math="A" /> verifies this:
 
 <MathContainer>
 <BlockMath math="v_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} = 2 \cdot v_2" />
 </MathContainer>
+
+A vector outside these coordinate axes generally **changes direction**. For the diagonal matrix above:
+
+<BlockMath math="A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\2\end{pmatrix}\neq\lambda\begin{pmatrix}1\\1\end{pmatrix}\quad\text{for every }\lambda" />
 
 ### Symmetric Matrix
 
@@ -59,7 +63,7 @@ Consider the matrix:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" />
 
-The vector <InlineMath math="v_1" /> below is an eigenvector for <InlineMath math="\lambda_1 = 2" />. Multiplication by <InlineMath math="A" /> verifies this:
+The vector <InlineMath math="v_1" /> below is an eigenvector for <InlineMath math="\lambda_1 = 2" />. **Multiplication** by <InlineMath math="A" /> verifies this:
 
 <MathContainer>
 <BlockMath math="v_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
@@ -75,7 +79,7 @@ The vector <InlineMath math="v_2" /> below is an eigenvector for <InlineMath mat
 
 ## Linear Independence of Eigenvectors
 
-Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> be pairwise distinct eigenvalues of <InlineMath math="A" />, so <InlineMath math="\lambda_i \neq \lambda_j" /> whenever <InlineMath math="i \neq j" />. Then corresponding eigenvectors <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> are linearly independent.
+Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> be **pairwise distinct eigenvalues** of <InlineMath math="A" />, so <InlineMath math="\lambda_i \neq \lambda_j" /> whenever <InlineMath math="i \neq j" />. Then corresponding eigenvectors <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> are linearly independent.
 
 By mathematical induction, this theorem implies that an <InlineMath math="n \times n" /> matrix has at most <InlineMath math="n" /> distinct eigenvalues.
 
@@ -113,7 +117,7 @@ Each eigenspace satisfies the following properties:
 
 ## Relationship with Invertibility
 
-Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is invertible if and only if zero is not one of its eigenvalues.
+Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is invertible if and only if **zero is not one** of its eigenvalues.
 
 Indeed, <InlineMath math="A" /> is invertible if and only if <InlineMath math="\operatorname{rank} A = n" />, equivalently <InlineMath math="E_A(0) = \ker A = \{0\}" />. An eigenvalue of zero therefore means that the matrix sends some nonzero vector to zero, and that is exactly what rules out invertibility.
 
@@ -121,7 +125,7 @@ Indeed, <InlineMath math="A" /> is invertible if and only if <InlineMath math="\
 
 If matrix <InlineMath math="A" /> is invertible and <InlineMath math="v \neq 0" /> is an eigenvector of <InlineMath math="A" /> for eigenvalue <InlineMath math="\lambda \in \mathbb{K}" />, then <InlineMath math="v" /> is also an eigenvector of <InlineMath math="A^{-1}" /> for eigenvalue <InlineMath math="\frac{1}{\lambda}" />.
 
-Applying <InlineMath math="A^{-1}" /> to <InlineMath math="A \cdot v = \lambda \cdot v" /> gives:
+**Applying** <InlineMath math="A^{-1}" /> to <InlineMath math="A \cdot v = \lambda \cdot v" /> gives:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
@@ -137,4 +141,4 @@ For a square matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, the fol
 6. <InlineMath math="\det A \neq 0" />
 7. <InlineMath math="0" /> is not an eigenvalue of <InlineMath math="A" />
 
-Any one of these conditions is enough to prove that the matrix is invertible.
+**Any one of these conditions** is enough to prove that the matrix is invertible.

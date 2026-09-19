@@ -3,7 +3,7 @@ export const metadata = {
   description: "Solve linear least-squares problems with QR decomposition and the Moore-Penrose pseudoinverse, then compare their numerical behavior with normal equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -17,7 +17,7 @@ Every minimizer satisfies the normal equation
 
 <BlockMath math="A^T A\hat{x}=A^T b" />
 
-<Highlight>This equation is always consistent.</Highlight> The minimizer is unique exactly when <InlineMath math="\operatorname{rank}(A)=n" />, which requires <InlineMath math="m\ge n" />. In that full-column-rank case,
+This equation is <Highlight>always consistent</Highlight>. The minimizer is unique exactly when <InlineMath math="\operatorname{rank}(A)=n" />, which requires <InlineMath math="m\ge n" />. In that full-column-rank case,
 
 <BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
 
@@ -27,7 +27,7 @@ When <InlineMath math="A" /> is rank deficient, the fitted vector <InlineMath ma
 
 ### Why a Solution Always Exists
 
-The column space of <InlineMath math="A" /> is a finite-dimensional closed subspace of <InlineMath math="\mathbb{R}^m" />. Therefore, <InlineMath math="b" /> has a unique orthogonal projection onto it. Any <InlineMath math="\hat{x}" /> satisfying <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> is a least-squares solution.
+The column space of <InlineMath math="A" /> is a finite-dimensional closed subspace of <InlineMath math="\mathbb{R}^m" />. Therefore, <InlineMath math="b" /> has a **unique orthogonal projection** onto it. Any <InlineMath math="\hat{x}" /> satisfying <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> is a least-squares solution.
 
 The normal equation expresses the same geometry because
 
@@ -37,7 +37,7 @@ This equation says that the residual <InlineMath math="A\hat{x}-b" /> is orthogo
 
 ## Moore Penrose Pseudoinverse
 
-The Moore-Penrose pseudoinverse is defined for every real matrix, including rectangular and rank-deficient matrices. If
+The Moore-Penrose pseudoinverse is defined for every real matrix, including rectangular and rank-deficient matrices. Write its singular value decomposition as
 
 <BlockMath math="A=U\Sigma V^T" />
 
@@ -72,13 +72,15 @@ The least-squares objective separates into
 
 <BlockMath math="\begin{aligned} \|Ax-b\|_2^2 &amp;=\|R_1x-Q_1^Tb\|_2^2 \\ &amp;\quad{}+\|(I-Q_1Q_1^T)b\|_2^2 \end{aligned}" />
 
-The second term does not depend on <InlineMath math="x" />. Therefore, the minimizer is obtained by solving the upper-triangular system
+The second term does not depend on <InlineMath math="x" />. Therefore, the minimizer is obtained by solving the **upper-triangular system**
 
 <BlockMath math="R_1\hat{x}=Q_1^Tb" />
 
 This route solves the original least-squares problem directly. It does not form <InlineMath math="A^TA" /> and then solve the normal equation.
 
 ## Worked Polynomial Fit Example
+
+The numerical factors and coefficients below are **rounded to five decimal places**. The exact matrix equalities hold before rounding.
 
 Fit <InlineMath math="y=at^2+bt+c" /> to seven observations. The design matrix and observation vector are
 
@@ -100,7 +102,7 @@ First compute
 
 <BlockMath math="Q_1^Tb=\begin{pmatrix}-9.71429\\16.02569\\3.48060\end{pmatrix}" />
 
-Then use back substitution:
+Then use **back substitution**:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;-1.73205x_3=3.48060 \\ &amp;\Longrightarrow \\ &amp;x_3=-2.00952 \end{aligned}" />
@@ -119,6 +121,7 @@ The calculation gives:
 <LineEquation
   title={<>Least-squares fit <InlineMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" /></>}
   description={<>The cyan curve is the fitted polynomial, while the orange points are the seven observations in <InlineMath math="b" />.</>}
+  showZAxis={false}
   cameraPosition={[0, 6, 26]}
   cameraTarget={[0, 6, 0]}
   data={(() => {
@@ -165,6 +168,6 @@ The calculation gives:
 | --- | --- | --- | --- |
 | Normal equations and Cholesky | form <InlineMath math="A^TA" /> in <InlineMath math="O(mn^2)" />, then factor in about <InlineMath math="\frac{1}{3}n^3" /> flops | fast when the problem is well conditioned and full rank | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
 | Householder <InlineMath math="\mathrm{QR}" /> | about <InlineMath math="2mn^2-\frac{2}{3}n^3" /> flops | avoids forming <InlineMath math="A^TA" /> and is usually more stable | requires a rank-aware variant when columns are dependent |
-| <InlineMath math="\mathrm{SVD}" /> | more work than <InlineMath math="\mathrm{QR}" /> | determines rank and gives the minimum-norm solution | highest cost of the three |
+| <InlineMath math="\mathrm{SVD}" /> | more work than <InlineMath math="\mathrm{QR}" /> | determines rank and gives the **minimum-norm solution** | highest cost of the three |
 
 Use <InlineMath math="\mathrm{QR}" /> as the usual choice for dense, full-rank problems. Use <InlineMath math="\mathrm{SVD}" /> when the matrix is rank deficient, severely ill conditioned, or requires a minimum-norm solution. Form the normal matrix only when the speed gain is worth the loss of numerical stability. Do not compute an inverse explicitly in production code.

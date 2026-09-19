@@ -2,13 +2,27 @@ export const metadata = {
   title: "Lösung zu Aufgabe 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Rolle die Mantelfläche zu einem Rechteck ab. Die gegenüberliegenden Punkte haben waagerecht den Abstand eines halben Umfangs, also <InlineMath math="\pi r=3\pi\,\mathrm{cm}" />. Der Höhenunterschied bleibt <InlineMath math="8\,\mathrm{cm}" />.
+Rolle die **Mantelfläche** zu einem Rechteck ab. Die gegenüberliegenden Punkte haben waagerecht den Abstand eines halben Umfangs, also <InlineMath math="\pi r=3\pi\,\mathrm{cm}" />. Der Höhenunterschied bleibt <InlineMath math="8\,\mathrm{cm}" />.
 
 Der kürzeste Weg wird auf der abgewickelten Fläche zu einer geraden Strecke. Ihr Längenquadrat folgt aus dem Satz des Pythagoras.
 
 <BlockMath math="L^2=8^2+(3\pi)^2=64+9\pi^2" />
 
 Beide Richtungen um den Zylinder liefern denselben Abstand. Zusätzliche Umläufe verlängern den waagerechten Weg. Das kleinste Längenquadrat beträgt deshalb <InlineMath math="(64+9\pi^2)\,\mathrm{cm}^2" />.
+
+<LineEquation
+  title="Abgewickelte Hälfte des Zylindermantels"
+  description="Das Rechteck zeigt nur den halben Mantel. Seine Breite ist der halbe Umfang, seine Höhe die Zylinderhöhe."
+  cameraPosition={[4.7, 4, 16]}
+  cameraTarget={[4.7, 4, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }, { x: 0, y: 8, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ text: "P", at: 0, offset: [-0.4, -0.4, 0] }, { text: "Q", at: 1, offset: [0.4, 0.4, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: <InlineMath math="3\pi\,\mathrm{cm}" />, at: 0, offset: [4.7, -0.6, 0] }] },
+    { points: [{ x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: "8 cm", at: 0, offset: [0.8, 4, 0] }] },
+  ]}
+/>

@@ -1,10 +1,11 @@
 export const metadata = {
   title: "Solution to Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-19",
   datePublished: "2025-06-11",
 };
 
-Given that the graph of quadratic function <InlineMath math="f(x) = ax^2 + bx + c" /> intersects the <InlineMath math="y" />-axis at point <InlineMath math="(0, 8)" /> and has a vertex at <InlineMath math="(2, -4)" />.
+Given that the graph of quadratic function <InlineMath math="f(x) = ax^2 + bx + c" /> intersects the <InlineMath math="y" />-axis at point <InlineMath math="(0, 8)" /> and has a **vertex** at <InlineMath math="(2, -4)" />.
 
 From point <InlineMath math="(0, 8)" />, substitute <InlineMath math="x = 0" /> and <InlineMath math="f(0) = 8" /> into the function equation
 
@@ -44,11 +45,31 @@ From <InlineMath math="b = -4a" />, we get <InlineMath math="b = -4(3) = -12" />
 
 So the quadratic function equation is <InlineMath math="f(x) = 3x^2 - 12x + 8" />.
 
-**Statement <InlineMath math="\text{(I)}" />: The complete equation of the quadratic function is <InlineMath math="f(x) = 3x^2 - 12x + 8" />**
+<LineEquation
+  title="Vertex and Points on the Parabola"
+  description="The vertex is (2, −4). The points (0, 8) and (3, −1) provide two checks of the function values."
+  data={[{
+    points: Array.from({ length: 81 }, (_, i) => { const x = i / 20; return { x, y: 3 * (x - 2) ** 2 - 4, z: 0 }; }),
+    color: "#9333ea",
+    smooth: false,
+    showPoints: true,
+    pointIndices: [0, 40, 60],
+    labels: [
+      { at: 0, text: <InlineMath math="(0,8)" />, offset: [0.7, 0.5, 0] },
+      { at: 40, text: <InlineMath math="(2,-4)" />, offset: [0, -0.6, 0] },
+      { at: 60, text: <InlineMath math="(3,-1)" />, offset: [0.8, 0, 0] },
+    ],
+  }]}
+  cameraPosition={[2, 2, 18]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+/>
+
+**Statement (I)**: The complete equation of the quadratic function is <InlineMath math="f(x) = 3x^2 - 12x + 8" />
 
 Based on the calculation above, the quadratic function equation is <InlineMath math="f(x) = 3x^2 - 12x + 8" />. Therefore, statement <InlineMath math="\text{(I)}" /> is true.
 
-**Statement <InlineMath math="\text{(II)}" />: The point <InlineMath math="(3, -1)" /> lies on function <InlineMath math="f" />**
+**Statement (II)**: The point <InlineMath math="(3, -1)" /> lies on the graph of <InlineMath math="f" />
 
 Substitute <InlineMath math="x = 3" /> into the function <InlineMath math="f(x) = 3x^2 - 12x + 8" />
 
@@ -59,9 +80,9 @@ Substitute <InlineMath math="x = 3" /> into the function <InlineMath math="f(x) 
 <BlockMath math="= -1" />
 </MathContainer>
 
-So <InlineMath math="f(3) = -1" />, which means the point <InlineMath math="(3, -1)" /> lies on function <InlineMath math="f" />. Therefore, statement <InlineMath math="\text{(II)}" /> is true.
+So <InlineMath math="f(3) = -1" />, which means the point <InlineMath math="(3, -1)" /> lies on the graph of <InlineMath math="f" />. Therefore, statement <InlineMath math="\text{(II)}" /> is true.
 
-**Statement <InlineMath math="\text{(III)}" />: The value of <InlineMath math="f(-1)" /> is <InlineMath math="22" />**
+**Statement (III)**: The value of <InlineMath math="f(-1)" /> is <InlineMath math="22" />
 
 Substitute <InlineMath math="x = -1" /> into the function <InlineMath math="f(x) = 3x^2 - 12x + 8" />
 

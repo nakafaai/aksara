@@ -2,20 +2,22 @@ export const metadata = {
   title: "Lösung zu Aufgabe 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Für die Fläche von <InlineMath math="S" /> bestimmen wir zunächst die Eckpunkte der Lösungsmenge. Sie wird durch drei Geraden begrenzt:
+Für die Fläche von <InlineMath math="S" /> bestimmen wir zunächst die **Eckpunkte der Lösungsmenge**. Sie wird durch drei Geraden begrenzt:
 
 1. Gerade <InlineMath math="1" />: <InlineMath math="y = 2x + 4" />
 2. Gerade <InlineMath math="2" />: <InlineMath math="y = -x + 4" />
 3. Gerade <InlineMath math="3" />: <InlineMath math="x = 4" />
 
+Die ersten beiden Ungleichungen ergeben <InlineMath math="-x+4\le y\le2x+4" />. Die untere Grenze darf die obere nicht überschreiten. Daher folgt aus <InlineMath math="-x+4\le2x+4" /> die Bedingung <InlineMath math="x\ge0" />. Zusammen mit <InlineMath math="x\le4" /> liegt die gesuchte Fläche für <InlineMath math="0\le x\le4" /> zwischen den beiden Geraden.
+
 Nun berechnen wir die Schnittpunkte dieser Geraden.
 
-#### Schnittpunkt von Gerade eins und Gerade zwei
+#### Die drei Eckpunkte bestimmen
 
-Wir setzen die beiden Terme für <InlineMath math="y" /> gleich:
+Am Schnittpunkt stimmen die **Werte der vertikalen Koordinate** überein:
 
 <MathContainer>
   <BlockMath math="2x + 4 = -x + 4" />
@@ -29,8 +31,6 @@ Wir setzen <InlineMath math="x = 0" /> in eine der Gleichungen ein, etwa in Gera
 
 Der erste Schnittpunkt ist also <InlineMath math="A(0, 4)" />.
 
-#### Schnittpunkt von Gerade eins und Gerade drei
-
 Wir setzen <InlineMath math="x = 4" /> in die Gleichung der Geraden <InlineMath math="1" /> ein:
 
 <MathContainer>
@@ -39,8 +39,6 @@ Wir setzen <InlineMath math="x = 4" /> in die Gleichung der Geraden <InlineMath 
 </MathContainer>
 
 Der zweite Schnittpunkt ist also <InlineMath math="B(4, 12)" />.
-
-#### Schnittpunkt von Gerade zwei und Gerade drei
 
 Wir setzen <InlineMath math="x = 4" /> in die Gleichung der Geraden <InlineMath math="2" /> ein:
 
@@ -62,6 +60,13 @@ Wir können die Fläche anhand der Grundseite und der Höhe berechnen.
 
 - **Höhe**: Der horizontale Abstand vom Punkt <InlineMath math="A" /> zur Linie <InlineMath math="x = 4" />.
   Höhe <InlineMath math="= x_{BC} - x_A = 4 - 0 = 4" />.
+
+<MathVisual
+ title="Dreiecksfläche und horizontale Höhe"
+ description="Die vertikale Grundseite BC hat die Länge 12. Die horizontale Höhe von A zu BC hat die Länge 4. Beide stehen senkrecht aufeinander."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:5},y:{min:-1,max:13}},view:{kind:"fit",padding:0.1},objects:[{id:"region",kind:"polygon",appearance:"primary",vertices:[{x:0,y:4},{x:4,y:12},{x:4,y:0}]},{id:"height",kind:"segment",appearance:"highlight",from:{x:0,y:4},to:{x:4,y:4}}],labels:[{key:"a",objectId:"region",at:{x:0,y:4},placement:"left"},{key:"b",objectId:"region",at:{x:4,y:12},placement:"above"},{key:"c",objectId:"region",at:{x:4,y:0},placement:"below"},{key:"h",objectId:"height",at:{x:2,y:4},placement:"below"}]}}
+ labels={{a:<InlineMath math="A(0,4)" />,b:<InlineMath math="B(4,12)" />,c:<InlineMath math="C(4,0)" />,h:<InlineMath math="h=4" />}}
+/>
 
 Dabei bezeichnet <InlineMath math="F" /> die Fläche, <InlineMath math="b" /> die Länge der Grundseite und <InlineMath math="h" /> die Höhe des Dreiecks.
 

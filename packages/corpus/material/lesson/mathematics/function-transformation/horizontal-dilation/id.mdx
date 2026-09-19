@@ -3,15 +3,13 @@ export const metadata = {
   description: "Pengali input menentukan skala horizontal suatu fungsi. Terapkan aturan tersebut pada grafik, domain, dan contoh perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Transformasi Fungsi",
 };
 
-
-
 ## Mengubah Lebar Grafik melalui Masukan Fungsi
 
-Dilatasi horizontal mengubah lebar grafik fungsi sepanjang sumbu <InlineMath math="x" /> tanpa mengubah tingginya. <Highlight>Grafik yang diregangkan menjadi lebih lebar, grafik yang dimampatkan menjadi lebih sempit</Highlight>, dan setiap titik mempertahankan nilai <InlineMath math="y" /> aslinya.
+Dilatasi horizontal mengubah **jarak titik dari sumbu vertikal** tanpa mengubah nilai keluaran. Grafik dapat meregang, memampat, atau tercermin, tetapi titik yang bersesuaian tetap memiliki nilai <InlineMath math="y" /> yang sama.
 
 Jika kamu memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" />. Di sini <InlineMath math="k \ne 0" /> adalah bilangan yang mengalikan masukan, dan skala horizontal grafik baru adalah <InlineMath math="s = \frac{1}{|k|}" />.
 
@@ -20,8 +18,10 @@ Jika kamu memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal m
 Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor tak nol <InlineMath math="k" /> yang mengalikan masukan, dilatasi horizontal didefinisikan sebagai:
 
 <MathContainer>
-  <BlockMath math="g(x) = f(kx)" />
-  <BlockMath math="s = \frac{1}{|k|}" />
+
+<BlockMath math="g(x) = f(kx)" />
+
+<BlockMath math="s = \frac{1}{|k|}" />
 </MathContainer>
 
 Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada lebar grafik:
@@ -32,13 +32,14 @@ Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada lebar grafik:
 
 Nilai <InlineMath math="k = 0" /> tidak termasuk. Jika <InlineMath math="f(0)" /> terdefinisi, semua input menghasilkan nilai <InlineMath math="f(0)" />, sehingga grafik fungsi menjadi satu garis horizontal.
 
-Hubungan kebalikan ini penting. Faktor yang lebih besar membuat grafik <Highlight>lebih sempit</Highlight>, karena skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
+Hubungan kebalikan ini penting. Besar mutlak faktor yang lebih besar membuat grafik <Highlight>lebih sempit</Highlight>, karena skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
 
 ## Visualisasi Dilatasi Horizontal
 
-Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan hubungan kebalikan tersebut untuk beberapa pengali masukan.
+Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan hubungan kebalikan tersebut untuk beberapa **pengali masukan**.
 
 <LineEquation
+  showZAxis={false}
   title={<>Dilatasi Horizontal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
   description="Bandingkan perubahan lebar grafik akibat beberapa pengali masukan."
   data={[
@@ -86,16 +87,18 @@ Grafik tersebut menunjukkan:
 
 ## Dilatasi Horizontal pada Fungsi Linear
 
-Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
+**Aturan yang sama** berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
 
 <LineEquation
+  showZAxis={false}
   title={<>Dilatasi Horizontal Fungsi Linear <InlineMath math="f(x) = x + 2" /></>}
   description={<>Pengali masukan mengubah gradien, tetapi mempertahankan titik potong sumbu <InlineMath math="y" />.</>}
+  cameraPosition={[0, 2, 14]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       points: Array.from({ length: 239 }, (_, pointIndex) => {
-        const i = pointIndex - 210;
-        const x = (i - 10) * 0.5;
+        const x = -6 + pointIndex / 238 * 12;
         return { x, y: x + 2, z: 0 };
       }),
       smooth: false,
@@ -105,8 +108,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
     },
     {
       points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const i = pointIndex - 27;
-        const x = (i - 10) * 0.5;
+        const x = -6 + pointIndex / 47 * 12;
         return { x, y: 2 * x + 2, z: 0 };
       }),
       smooth: false,
@@ -116,8 +118,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
     },
     {
       points: Array.from({ length: 354 }, (_, pointIndex) => {
-        const i = pointIndex - 315;
-        const x = (i - 10) * 0.5;
+        const x = -6 + pointIndex / 353 * 12;
         return { x, y: 0.5 * x + 2, z: 0 };
       }),
       smooth: false,
@@ -150,42 +151,44 @@ Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />.
 
 Domain ikut menyempit atau melebar bersama grafik karena domain memuat batas nilai <InlineMath math="x" />, sedangkan range tidak berubah karena tinggi grafik di setiap titik tetap. [Translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal) menggeser koordinat itu tanpa mengubah ukurannya.
 
+Untuk faktor **negatif**, urutan batas domain berbalik. Jika domain asal <InlineMath math="[c,d]" />, domain baru adalah <InlineMath math="[d/k,c/k]" />. Contohnya, <InlineMath math="2\le -2x\le 6" /> menghasilkan <InlineMath math="-3\le x\le -1" />.
+
 ## Mengubah Laju Pertumbuhan Fungsi Eksponensial
 
 Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, pengali masukan mengubah seberapa cepat grafik naik.
 
 <LineEquation
+  showZAxis={false}
   title={<>Dilatasi Horizontal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
   description="Pengali masukan mengubah seberapa cepat kurva eksponensial naik."
-  cameraPosition={[8, 6, 8]}
+  cameraPosition={[0, 3, 12]}
+  cameraTarget={[0, 3, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -4 + pointIndex / 960 * 7;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 900 }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -4 + pointIndex / 960 * 7;
         return { x, y: Math.pow(2, 2 * x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{2x}" />, offset: [1, 2, 0], at: 900 }],
+      labels: [{ text: <InlineMath math="g(x)=2^{2x}" />, offset: [1, 2, 0], at: 549 }],
       showPoints: false,
     },
   ]}
 />
 
 Pada fungsi eksponensial:
-- Asimtot horizontal tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
+- **Asimtot horizontal** tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
 - Titik potong dengan sumbu <InlineMath math="y" /> tetap sama di <InlineMath math="(0, 1)" />
 - Laju pertumbuhan fungsi berubah sesuai pengali masukan
 
@@ -194,6 +197,7 @@ Pada fungsi eksponensial:
 Pengali masukan negatif menggabungkan penskalaan horizontal dengan pencerminan.
 
 <LineEquation
+  showZAxis={false}
   title={<>Dilatasi Horizontal dengan Pengali Masukan Negatif pada <InlineMath math="f(x) = x^2 + 1" /></>}
   description="Nilai absolutnya menentukan skala horizontal, sedangkan tandanya menyebabkan refleksi."
   cameraPosition={[0, 3, 13]}
@@ -225,139 +229,148 @@ Pengali masukan negatif menggabungkan penskalaan horizontal dengan pencerminan.
 Ketika pengali masukan negatif:
 - Grafik mengalami refleksi terhadap sumbu <InlineMath math="y" />
 - Besar skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />
-- Bentuk grafik tetap sama karena fungsi kuadrat simetris
+- Pencerminan tidak terlihat pada fungsi genap ini, tetapi faktor <InlineMath math="2" /> tetap **memampatkan lebarnya menjadi setengah**: <InlineMath math="f(-2x)=f(2x)=4x^2+1" />. Grafik tersebut berbeda dari <InlineMath math="f(x)=x^2+1" />.
 
 ## Latihan
 
 Tiga soal berikut memakai aturan lebar grafik yang baru saja kamu pelajari. Setiap soal mengalikan masukan dengan faktor tertentu, jadi perhatikan apakah faktornya lebih besar dari satu, di antara nol dan satu, atau negatif. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi yang dihasilkan oleh pengali masukan <InlineMath math="3" />.
+1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi yang dihasilkan oleh **pengali masukan** <InlineMath math="3" />.
 
 2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan faktor masukan <InlineMath math="\frac{1}{2}" />. Tentukan persamaan fungsi hasilnya, lalu tentukan domain fungsi tersebut.
 
 3. Fungsi <InlineMath math="h(x) = |x - 2|" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />. Tentukan titik puncak fungsi hasilnya.
 
-### Kunci Jawaban
-
 Dilatasi horizontal mengganti <InlineMath math="x" /> menjadi hasil kali faktor dengan <InlineMath math="x" />, karena di situlah letak aturan lebarnya. Persamaannya lalu disederhanakan dan grafik barunya diperiksa untuk memastikan apakah grafik meregang atau memampat.
 
-1. Dilatasi horizontal dengan pengali masukan <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+### Menskalakan fungsi kuadrat
 
-   <LineEquation
-     title={<>Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dan Hasil Dilatasinya</>}
-     description={
-       <>
-         Pengali masukan <InlineMath math="3" /> menghasilkan skala horizontal{" "}
-         <InlineMath math="\frac{1}{3}" />, sehingga parabola menjadi lebih sempit.
-       </>
-     }
-     cameraPosition={[12, 8, 12]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x - 2 * x + 1, z: 0 };
-         }),
-         color: "#9333ea",
-         labels: [{ text: <InlineMath math="f(x)=x^2-2x+1" />, offset: [4, 1, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: 9 * x * x - 6 * x + 1, z: 0 };
-         }),
-         color: "#ea580c",
-         labels: [{ text: <InlineMath math="f'(x)=9x^2-6x+1" />, offset: [3, 2, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+Dilatasi horizontal dengan **pengali masukan** <InlineMath math="3" />:
 
-2. Persamaan fungsi hasil dilatasi:
+<BlockMath math="F(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 
-   - Dilatasi horizontal: <InlineMath math="g'(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
-   - Domain setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" /> karena pengali masukannya positif
+<LineEquation
+  showZAxis={false}
+  title={<>Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dan Hasil Dilatasinya</>}
+  description={
+    <>
+      Pengali masukan <InlineMath math="3" /> menghasilkan skala horizontal{" "}
+      <InlineMath math="\frac{1}{3}" />, sehingga parabola menjadi lebih sempit.
+    </>
+  }
+  cameraPosition={[1, 2, 14]}
+  cameraTarget={[1, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x - 2 * x + 1, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2-2x+1" />, offset: [4, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: 9 * x * x - 6 * x + 1, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="F(x)=9x^2-6x+1" />, offset: [3, 2, 0] }],
+      showPoints: false,
+    },
+  ]}
+/>
 
-   Visualisasi:
+### Menskalakan fungsi akar
 
-   <LineEquation
-     title={<>Fungsi <InlineMath math="g(x) = \sqrt{x}" /> dan Hasil Dilatasinya</>}
-     description={
-       <>
-         Pengali masukan <InlineMath math="0{,}5" /> menghasilkan skala horizontal{" "}
-         <InlineMath math="2" />, sehingga kurva akar kuadrat menjadi dua kali lebih lebar.
-       </>
-     }
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#7c3aed",
-         labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841895);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: 0.7071067811865476 * t, z: 0 };
-             });
-         })(),
-         color: "#0d9488",
-         labels: [{ at: 64, text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
-         showPoints: false,
-       },
-     ]}
-     cameraTarget={[2, 1, 0]}
-     cameraPosition={[2, 1, 8]}
-   />
+Persamaan fungsi hasil dilatasi:
 
-3. Fungsi asli <InlineMath math="h(x) = |x - 2|" /> memiliki titik puncak di <InlineMath math="(2, 0)" />.
-   Setelah dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />: <InlineMath math="h'(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, titik puncaknya menjadi <InlineMath math="(-2, 0)" />.
+- Dilatasi horizontal: <InlineMath math="G(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
+- **Domain** setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" /> karena pengali masukannya positif
 
-   <LineEquation
-     title={<>Fungsi <InlineMath math="h(x) = |x - 2|" /> dan Hasil Dilatasinya</>}
-     description={<>Pengali masukan <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="y" /> tanpa mengubah skala horizontalnya.</>}
-     cameraPosition={[10, 6, 10]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 86 }, (_, pointIndex) => {
-           const i = pointIndex - 18;
-           const x = (i - 20) * 0.25;
-           return { x, y: Math.abs(x - 2), z: 0 };
-         }),
-         color: "#4f46e5",
-         labels: [{ text: <InlineMath math="h(x)=|x-2|" />, offset: [2.5, 1, 0], at: 38 }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 94 }, (_, pointIndex) => {
-           const i = pointIndex - 41;
-           const x = (i - 20) * 0.25;
-           return { x, y: Math.abs(-x - 2), z: 0 };
-         }),
-         color: "#059669",
-         labels: [{ text: <InlineMath math="h'(x)=|-x-2|" />, offset: [2.5, 2, 0], at: 61 }],
-         showPoints: false,
-       },
-     ]}
-   />
+Visualisasi:
+
+<LineEquation
+  showZAxis={false}
+  title={<>Fungsi <InlineMath math="g(x) = \sqrt{x}" /> dan Hasil Dilatasinya</>}
+  description={
+    <>
+      Pengali masukan <InlineMath math="0{,}5" /> menghasilkan skala horizontal{" "}
+      <InlineMath math="2" />, sehingga kurva akar kuadrat menjadi dua kali lebih lebar.
+    </>
+  }
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#7c3aed",
+      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841895);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: 0.7071067811865476 * t, z: 0 };
+          });
+      })(),
+      color: "#0d9488",
+      labels: [{ at: 64, text: <InlineMath math="G(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraTarget={[2, 1, 0]}
+  cameraPosition={[2, 1, 8]}
+/>
+
+### Menentukan titik puncak
+
+Fungsi asli <InlineMath math="h(x) = |x - 2|" /> memiliki titik puncak di <InlineMath math="(2, 0)" />.
+Setelah dilatasi horizontal dengan **pengali masukan** <InlineMath math="-1" />: <InlineMath math="H(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, titik puncaknya menjadi <InlineMath math="(-2, 0)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Fungsi <InlineMath math="h(x) = |x - 2|" /> dan Hasil Dilatasinya</>}
+  description={<>Pengali masukan <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="y" /> tanpa mengubah skala horizontalnya.</>}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 86 }, (_, pointIndex) => {
+        const x = -6 + pointIndex / 85 * 12;
+        return { x, y: Math.abs(x - 2), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, offset: [2.5, 1, 0], at: 38 }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 94 }, (_, pointIndex) => {
+        const x = -6 + pointIndex / 93 * 12;
+        return { x, y: Math.abs(-x - 2), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="H(x)=|-x-2|" />, offset: [2.5, 2, 0], at: 61 }],
+      showPoints: false,
+    },
+  ]}
+/>

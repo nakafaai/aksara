@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$75{,}3$$",
+          label: "$$75.3$$",
         },
         {
           isCorrect: false,
-          label: "$$74{,}9$$",
+          label: "$$74.9$$",
         },
         {
           isCorrect: false,
-          label: "$$75{,}1$$",
+          label: "$$75.1$$",
         },
         {
           isCorrect: false,
-          label: "$$75{,}5$$",
+          label: "$$75.5$$",
         },
         {
           isCorrect: false,
-          label: "$$75{,}7$$",
+          label: "$$75.7$$",
         },
       ],
     },
@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "combined-class-scores",
 };
 
 export default item;

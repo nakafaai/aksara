@@ -4,13 +4,15 @@ export const metadata = {
     "Distinguish allowed inputs, the declared target set, and the outputs a function actually reaches through concrete examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Function Composition and Inverse Function",
 };
 
 ## Domain
 
-The **domain** is the set of all inputs for which a function is defined. An input outside this set cannot be evaluated by that function.
+The **domain** is the set of inputs specified for a function. Its rule must be defined for every member of that set. When no domain is stated, we usually find the largest real domain: denominators must be nonzero and even roots require nonnegative radicands.
+
+A domain may also be **deliberately restricted**. For example, the rule <InlineMath math="x^2" /> is defined for all real numbers, but a function can be specified only for <InlineMath math="x\ge0" />.
 
 ### Finding the Domain Example
 
@@ -20,11 +22,11 @@ This function divides by its input, and a division is defined only when its deno
 
 The rule divides <InlineMath math="1" /> by the input. At input <InlineMath math="0" />, the denominator becomes zero:
 
-<BlockMath math="f(0) = \frac{1}{0}" />
+<BlockMath math="\frac10" />
 
 Division by zero is undefined, so <InlineMath math="0" /> is excluded while every other real number is allowed.
 
-So, the domain of the function <InlineMath math="f(x) = \frac{1}{x}" /> is all real numbers except <InlineMath math="0" />.
+So, the domain of the function <InlineMath math="f(x) = \frac{1}{x}" /> is **all real numbers** except <InlineMath math="0" />.
 
 Another example:
 
@@ -32,7 +34,7 @@ Another example:
 
 This rule takes the square root of its input. Testing <InlineMath math="-4" /> gives:
 
-<BlockMath math="g(-4) = \sqrt{-4}" />
+<BlockMath math="\sqrt{-4}" />
 
 Over the real numbers, a square root requires a nonnegative radicand. Therefore, only <InlineMath math="0" /> and positive inputs are allowed.
 
@@ -62,9 +64,9 @@ The codomain therefore describes the permitted target space. It is not a list of
 
 ## Range
 
-The Range is the **collection of all output values that are _actually_ produced** by the function when we input all members of the domain. The Range is part of (or sometimes exactly the same as) the Codomain.
+The **range** is the set of outputs actually produced as every member of the domain is used. It is a subset of the codomain.
 
-**Example:**
+**Example**:
 
 For this example, the domain and codomain of <InlineMath math="f(x) = x^2" /> are the integers.
 
@@ -72,12 +74,13 @@ For this example, the domain and codomain of <InlineMath math="f(x) = x^2" /> ar
 
 When we input values from the domain:
 
-- <InlineMath math="f(-2) = 4" />
-- <InlineMath math="f(-1) = 1" />
-- <InlineMath math="f(0) = 0" />
-- <InlineMath math="f(1) = 1" />
-- <InlineMath math="f(2) = 4" />
-- and so on...
+| Input | Squared output |
+| --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="(-2)^2=4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="(-1)^2=1" /> |
+| <InlineMath math="0" /> | <InlineMath math="0^2=0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1^2=1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2^2=4" /> |
 
 The values that _actually_ come out as output are <InlineMath math="0, 1, 4, 9, 16" />, and so on (non-negative square numbers).
 
@@ -94,6 +97,37 @@ Not all members of the codomain are part of the range.
 ## Different Roles of Domain Codomain and Range
 
 The domain keeps invalid inputs, such as division by zero, out of the function. The codomain declares the target space, while the range identifies the values the function actually reaches.
+
+To see the difference, restrict the square example to <InlineMath math="D=\{-2,-1,0,1,2\}" /> and choose <InlineMath math="K=\{0,1,2,3,4\}" />. **Each input has one arrow**, but some codomain members receive none.
+
+<Mermaid
+  title="Domain Codomain and Attained Outputs"
+  description="Arrows map five inputs to their squares. The range sits inside the codomain. Two codomain members are not reached."
+  chart={`flowchart LR
+  subgraph D["Domain D"]
+    d1["-2"]
+    d2["-1"]
+    d3["0"]
+    d4["1"]
+    d5["2"]
+  end
+  subgraph K["Codomain K"]
+    subgraph R["Range R"]
+      r0["0"]
+      r1["1"]
+      r4["4"]
+    end
+    k2["2"]
+    k3["3"]
+  end
+  d1 --> r4
+  d2 --> r1
+  d3 --> r0
+  d4 --> r1
+  d5 --> r4`}
+/>
+
+The arrows reach <InlineMath math="0,1,4" />, so <InlineMath math="R=\{0,1,4\}" />. The values <InlineMath math="2" /> and <InlineMath math="3" /> remain in the codomain but are outside the range of this restricted example.
 
 ## Mathematical Relationship
 
@@ -113,7 +147,7 @@ Every value actually reached by the function must belong to the codomain. The re
 
 ## Check Your Understanding
 
-Let <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> be defined by <InlineMath math="h(x)=\frac1{x-2}" />. Answer the three questions below for this function. Start from the input that the denominator forbids, then ask which output values the fraction can reach.
+Let <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> be defined by <InlineMath math="h(x)=\frac1{x-2}" />. Answer the three questions below for this function. Start from the input that the denominator forbids, then ask which **output** values the fraction can reach.
 
 1. Why is <InlineMath math="2" /> excluded from the domain?
 2. Can <InlineMath math="0" /> belong to the range?
@@ -123,10 +157,10 @@ Let <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> be defined by 
 
 1. At <InlineMath math="x=2" />, the denominator is zero:
 
-   <BlockMath math="h(2)=\frac1{2-2}=\frac10" />
+   <BlockMath math="2-2=0" />
 
    The expression is undefined, so <InlineMath math="2" /> cannot be in the domain.
-2. No. A fraction with numerator <InlineMath math="1" /> cannot equal <InlineMath math="0" />.
+2. No. A fraction with **numerator** <InlineMath math="1" /> cannot equal <InlineMath math="0" />.
 3. Every nonzero real value is reached. Given <InlineMath math="y\neq0" />, choosing <InlineMath math="x=2+\frac1y" /> gives <InlineMath math="h(x)=y" />. Thus:
 
    <BlockMath math="R_h=\mathbb{R}\setminus\{0\}" />

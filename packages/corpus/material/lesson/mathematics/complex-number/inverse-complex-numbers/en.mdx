@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Inverse of Complex Numbers",
   description: "Calculate reciprocals of complex numbers using conjugates and moduli, then use those reciprocals to divide complex numbers in worked examples.",
@@ -20,6 +18,10 @@ Multiplying the complex number <InlineMath math="z" /> by its inverse <InlineMat
 ## Finding the Inverse Formula
 
 We already know from the material on [properties of complex number multiplication](/en/subjects/mathematics/complex-number/properties-multiplication-complex-numbers#multiplicative-inverse) that for <InlineMath math="z = x + iy" />, its inverse is:
+
+Multiply numerator and denominator by the **conjugate of the denominator**. The product of conjugates is the squared modulus, so the denominator becomes positive and real for every nonzero complex number:
+
+<BlockMath math="\frac1z=\frac1{x+iy}\cdot\frac{x-iy}{x-iy}=\frac{x-iy}{x^2+y^2},\quad z\ne0" />
 
 <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
 
@@ -44,11 +46,10 @@ Using the first formula:
 <MathContainer>
   <BlockMath math="\begin{aligned} x^2+y^2 &amp;= (1)^2 + (-1)^2 \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
   <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
-  <BlockMath math="= \frac{1}{2} - i\frac{-1}{2}" />
-  <BlockMath math="= \frac{1}{2} + \frac{1}{2}i" />
+  <BlockMath math="z^{-1}=\frac12-i\frac{-1}{2}=\frac12+\frac12i" />
 </MathContainer>
 
-Using the conjugate and modulus formula:
+Using the **conjugate and modulus formula**:
 
 <MathContainer>
   <BlockMath math="\bar{z} = 1 - (-1)i = 1+i" />
@@ -83,6 +84,7 @@ Both formulas give the same reciprocal:
     }
     cameraPosition={[0.4, -0.1, 4]}
     cameraTarget={[0.4, -0.1, 0]}
+    showZAxis={false}
     data={[
       {
         points: [
@@ -114,17 +116,23 @@ Both formulas give the same reciprocal:
   />
 </ContentStack>
 
+### Dividing with the Reciprocal
+
+To **divide two complex numbers**, multiply the numerator by the reciprocal of the denominator. The denominator must be nonzero. In the following example, use distribution to calculate both the real and imaginary parts:
+
+<BlockMath math="\begin{aligned}\frac{1-i}{2+3i}&amp;=(1-i)\frac{2-3i}{2^2+3^2} \\ &amp;=\frac{2-3i-2i+3i^2}{13} \\ &amp;=\frac{-1-5i}{13}=-\frac1{13}-\frac5{13}i\end{aligned}" />
+
 ## Exercise
 
-Given the complex numbers <InlineMath math="z_1 = 1-i" /> and <InlineMath math="z_2 = 2+3i" />. Find the inverse of <InlineMath math="z_1 + z_2" />. The result must satisfy <InlineMath math="(z_1 + z_2) \cdot w = 1" />, which is the check you can run on your answer.
+Given the complex numbers <InlineMath math="z_1 = 1-i" /> and <InlineMath math="z_2 = 2+3i" />. Find the **inverse of the sum** <InlineMath math="z_1 + z_2" />. The result must satisfy <InlineMath math="(z_1 + z_2) \cdot w = 1" />, which is the check you can run on your answer.
 
 ### Worked Solutions
 
-Step 1: Find <InlineMath math="z_1 + z_2" />.
+**Step 1**: Find <InlineMath math="z_1 + z_2" />.
 
 <BlockMath math="\begin{aligned} z &amp;= z_1 + z_2 \\ &amp;= (1-i) + (2+3i) \\ &amp;= (1+2) + (-1+3)i \\ &amp;= 3+2i \end{aligned}" />
 
-Step 2: Find the inverse of <InlineMath math="z = 3+2i" />.
+**Step 2**: Find the **inverse of the sum** <InlineMath math="z = 3+2i" />.
 Here <InlineMath math="x=3" /> and <InlineMath math="y=2" />.
 We use the formula <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />.
 
@@ -135,3 +143,7 @@ We use the formula <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />.
 </MathContainer>
 
 So, the inverse of <InlineMath math="z_1 + z_2" /> is <InlineMath math="\frac{3}{13} - \frac{2}{13}i" />.
+
+Check by multiplying the original sum by the reciprocal you found:
+
+<BlockMath math="(3+2i)\frac{3-2i}{13}=\frac{9-6i+6i-4i^2}{13}=\frac{13}{13}=1" />

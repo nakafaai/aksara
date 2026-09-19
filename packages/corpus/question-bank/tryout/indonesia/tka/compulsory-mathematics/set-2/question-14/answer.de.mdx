@@ -2,10 +2,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Für die Streckung mit Zentrum <InlineMath math="C" /> gilt <InlineMath math="A'=C+3(A-C)" />. Stelle die Gleichung nach dem Zentrum um.
+Für die **Streckung mit Zentrum** <InlineMath math="C" /> gilt <InlineMath math="A'=C+3(A-C)" />. Stelle die Gleichung nach dem Zentrum um.
 
 <BlockMath math="\begin{aligned}
 A'&=3A-2C \\
@@ -19,5 +19,21 @@ Addiere die Koordinaten des Zentrums und multipliziere mit <InlineMath math="2" 
 
 <BlockMath math="\begin{aligned}
 2(x_C+y_C)&=2\left(-1-\frac72\right) \\
-&=-9
+&=-2-7=-9
 \end{aligned}" />
+
+Der Vektor von C nach A wird dreimal so lang und behält seine Richtung. Die Koordinatendifferenzen prüfen diesen Zusammenhang.
+
+<BlockMath math="\begin{aligned}A-C&=\left(3,\frac92\right) \\ A^{\prime}-C&=\left(9,\frac{27}{2}\right)=3(A-C)\end{aligned}" />
+
+<LineEquation
+  title="Streckungszentrum außerhalb des Ursprungs"
+  description="A liegt auf einem Drittel der Strecke von C zum Bildpunkt A′."
+  cameraPosition={[3.5, 3.25, 23]}
+  cameraTarget={[3.5, 3.25, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: -1, y: -3.5, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 8, y: 10, z: 0 }], color: "#64748b", smooth: false, labels: [{ text: "C", at: 0, offset: [-0.5, -0.5, 0] }, { text: "A", at: 1, offset: [-0.5, 0.5, 0] }, { text: <InlineMath math="A^{\prime}" />, at: 2, offset: [0.4, 0.5, 0] }] },
+    { points: [{ x: -1, y: -3.5, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, lineWidth: 4 },
+  ]}
+/>

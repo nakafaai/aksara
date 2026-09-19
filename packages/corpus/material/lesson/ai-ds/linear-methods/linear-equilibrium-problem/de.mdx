@@ -3,7 +3,7 @@ export const metadata = {
   description: "Löse inkonsistente lineare Systeme mit kleinsten Quadraten, Residualnormen, orthogonaler Projektion, Normalgleichungen und numerisch stabilen Verfahren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Lineare Methoden der KI",
 };
 
@@ -13,7 +13,7 @@ Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \
 
 <BlockMath math="Ax=b" />
 
-Liegt <InlineMath math="b" /> nicht im Spaltenraum von <InlineMath math="A" />, besitzt dieses System keine exakte Lösung. Das kommt häufig vor, wenn ein Modell an <Highlight>verrauschte Messwerte</Highlight> angepasst wird oder <Highlight>ein überbestimmtes System mehr unabhängige Gleichungen als Unbekannte</Highlight> enthält.
+Liegt <InlineMath math="b" /> nicht im Spaltenraum von <InlineMath math="A" />, besitzt dieses System keine exakte Lösung. Das kommt häufig vor, wenn ein Modell an <Highlight>verrauschte Messwerte</Highlight> angepasst wird oder ein überbestimmtes System mehr Gleichungen als Unbekannte enthält und diese Gleichungen widersprüchlich sind.
 
 Wenn kein Vektor <InlineMath math="x" /> die Gleichung <InlineMath math="Ax=b" /> exakt erfüllt, definieren wir das Residuum
 
@@ -38,11 +38,13 @@ Der Vektor <InlineMath math="A\hat{x}" /> ist der Punkt in <InlineMath math="\op
 <BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
 </MathContainer>
 
-Die zweite Gleichung heißt **Normalgleichung**.
+Die zweite Gleichung heißt **[Normalgleichung](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/normalengleichung)**.
 
 <LineEquation
   title="Orthogonale Projektion beim Ausgleichsproblem"
   description={<>Der blaue Vektor endet bei <InlineMath math="A\hat{x}" />, der orangefarbene bei <InlineMath math="b" />, und der violette Vektor ist das Residuum <InlineMath math="A\hat{x}-b" />.</>}
+  cameraPosition={[9, 8, 12]}
+  cameraTarget={[1.5, 1.5, 3]}
   data={[
     {
       points: [
@@ -104,7 +106,7 @@ Die Zielfunktion für dieses Beispiel lautet
 <BlockMath math="\begin{aligned} F'(x) &amp;=2(x-1)+2(x-2) \\ &amp;\quad+2(x-6) \\ &amp;=6x-18 \end{aligned}" />
 </MathContainer>
 
-Setzen wir die Ableitung gleich null, erhalten wir <InlineMath math="\hat{x}=3" />. Der angepasste Vektor und das Residuum sind
+Setzen wir die **Ableitung gleich null**, erhalten wir <InlineMath math="\hat{x}=3" />. Der angepasste Vektor und das Residuum sind
 
 <MathContainer>
 <BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
@@ -119,7 +121,7 @@ Damit ist die Normalgleichung erfüllt.
 
 ## Andere Residualnormen
 
-Die gewählte Norm bestimmt, welche Fehlerart bei der Anpassung im Vordergrund steht.
+Die gewählte Norm bestimmt, **welche Fehlerart** bei der Anpassung im Vordergrund steht.
 
 | Zielfunktion | Was sie steuert |
 | --- | --- |
@@ -129,20 +131,28 @@ Die gewählte Norm bestimmt, welche Fehlerart bei der Anpassung im Vordergrund s
 
 Die Formulierungen mit <InlineMath math="\ell_1" /> und <InlineMath math="\ell_\infty" /> lassen sich als lineare Programme schreiben. Ihre Eignung hängt weiterhin vom Entstehungsprozess der Daten und vom relevanten Fehlerkriterium der Anwendung ab.
 
+Bei denselben Beobachtungen 1, 2 und 6 verändert die Norm die angepasste Konstante. Kleinste Quadrate wählen den Mittelwert, der absolute Verlust den Median, und der kleinste maximale Fehler gleicht die Abstände zu beiden Extremwerten aus.
+
+| Kriterium | Optimale Konstante | Minimaler Zielfunktionswert |
+|---|---|---|
+| <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
+| <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
+| <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
 ## Ein stabiles numerisches Verfahren wählen
 
-Hat <InlineMath math="A" /> vollen Spaltenrang, ist der Ausgleichsvektor eindeutig. Aus der Normalgleichung folgt dann
+Hat <InlineMath math="A" /> **vollen Spaltenrang**, ist der Ausgleichsvektor eindeutig. Aus der Normalgleichung folgt dann
 
 <BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
 Diese Identität beschreibt den eindeutigen Minimierer, wenn <InlineMath math="A" /> vollen Spaltenrang hat. Berechne ihn nicht durch ausdrückliches Bilden der Inversen. Wähle das numerische Verfahren anhand von Rang und Kondition:
 
-- verwendet man eine <InlineMath math="\mathrm{QR}" />-Zerlegung für ein stabiles Ausgleichsproblem mit vollem Rang
-- verwendet man eine <InlineMath math="\mathrm{SVD}" />, wenn Rangmangel oder schlechte Konditionierung wichtig sind
-- verwendet man die Pseudoinverse, um bei mehreren Minimierern die Lösung mit kleinster Norm auszuwählen
+- Verwende eine <InlineMath math="\mathrm{QR}" />-Zerlegung für ein stabiles Ausgleichsproblem mit vollem Rang
+- Verwende eine <InlineMath math="\mathrm{SVD}" />, wenn Rangmangel oder schlechte Konditionierung wichtig sind
+- Verwende die Pseudoinverse, um bei mehreren Minimierern die Lösung mit kleinster Norm auszuwählen
 
 Es gibt außerdem eine präzise statistische Interpretation. Wir betrachten das folgende Modell.
 
-<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I),\quad \sigma^2>0" />
 
 Ist <InlineMath math="A" /> fest und sind die gaußverteilten Fehler unabhängig mit gleicher Varianz, liefert die Methode der kleinsten Quadrate den Maximum-Likelihood-Schätzer für <InlineMath math="x_*" />. Korrelierte Fehler oder unterschiedliche Varianzen erfordern Gewichte, die der Fehlerkovarianz entsprechen.

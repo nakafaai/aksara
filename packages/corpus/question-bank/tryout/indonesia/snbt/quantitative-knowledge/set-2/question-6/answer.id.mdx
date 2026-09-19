@@ -2,44 +2,26 @@ export const metadata = {
   title: "Pembahasan Soal 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Untuk membentuk bilangan ganjil empat angka yang berbeda dari angka-angka <InlineMath math="1, 2, 3, 4, 5, 6" />, kita dapat menggunakan metode pengisian tempat (filling slots).
+Kita membentuk bilangan empat angka dari <InlineMath math="1,2,3,4,5,6" /> dengan **tanpa pengulangan angka**. Syarat ganjil hanya membatasi angka satuan, jadi tentukan satuan terlebih dahulu.
 
-Terdapat <InlineMath math="4" /> posisi angka: Ribuan, Ratusan, Puluhan, dan Satuan.
+#### Menentukan Pilihan Setiap Posisi
 
-#### Posisi satuan
+Posisi satuan harus diisi **angka ganjil**, yaitu <InlineMath math="1,3,5" />. Setelah satu angka terpakai, angka tersebut tidak boleh digunakan lagi. Semua angka yang tersedia bukan nol, sehingga tidak ada larangan tambahan pada posisi ribuan.
 
-Agar bilangan tersebut ganjil, maka angka satuan haruslah bilangan ganjil. Dari pilihan angka yang tersedia (<InlineMath math="1, 2, 3, 4, 5, 6" />), angka ganjil adalah <InlineMath math="1, 3, 5" />.
+| Urutan pemilihan | Posisi | Banyak pilihan | Alasan |
+| --- | --- | --- | --- |
+| 1 | Satuan | <InlineMath math="3" /> | Pilih 1, 3, atau 5 |
+| 2 | Ribuan | <InlineMath math="6-1=5" /> | Satu angka sudah digunakan |
+| 3 | Ratusan | <InlineMath math="6-2=4" /> | Dua angka sudah digunakan |
+| 4 | Puluhan | <InlineMath math="6-3=3" /> | Tiga angka sudah digunakan |
 
-Jadi, terdapat **<InlineMath math="3" />** pilihan angka untuk posisi satuan.
+#### Mengalikan Banyak Pilihan
 
-#### Posisi ribuan
+Gunakan **aturan perkalian** karena setiap pilihan pada satu tahap dilanjutkan dengan semua pilihan yang masih tersedia pada tahap berikutnya. Menghitung satuan terlebih dahulu tidak mengubah letak angka satuan dalam bilangan akhir.
 
-Setelah satu angka digunakan untuk posisi satuan, tersisa <InlineMath math="6 - 1 = 5" /> angka yang dapat dipilih untuk posisi ribuan (karena angka harus berbeda).
+<BlockMath math="N=3\times5\times4\times3=180" />
 
-Jadi, terdapat **<InlineMath math="5" />** pilihan angka untuk posisi ribuan.
-
-#### Posisi ratusan
-
-Setelah dua angka digunakan (untuk satuan dan ribuan), tersisa <InlineMath math="6 - 2 = 4" /> angka.
-
-Jadi, terdapat **<InlineMath math="4" />** pilihan angka untuk posisi ratusan.
-
-#### Posisi puluhan
-
-Setelah tiga angka digunakan, tersisa <InlineMath math="6 - 3 = 3" /> angka.
-
-Jadi, terdapat **<InlineMath math="3" />** pilihan angka untuk posisi puluhan.
-
-#### Perhitungan Total
-
-Banyaknya bilangan yang dapat dibentuk adalah hasil perkalian dari banyaknya pilihan di setiap posisi:
-
-<MathContainer>
-  <BlockMath math="\text{Total} = 5 \times 4 \times 3 \times 3" />
-  <BlockMath math="\text{Total} = 180" />
-</MathContainer>
-
-Jadi, terdapat <InlineMath math="180" /> bilangan yang dapat dibentuk.
+Sebagai contoh, setelah satuan dipilih 5, ribuan dapat dipilih 1, ratusan 2, dan puluhan 3. Hasilnya adalah <InlineMath math="1235" />, bilangan ganjil dengan empat angka berbeda. Jadi, ada <InlineMath math="180" /> bilangan yang memenuhi syarat.

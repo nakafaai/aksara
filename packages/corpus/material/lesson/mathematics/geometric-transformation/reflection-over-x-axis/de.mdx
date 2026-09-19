@@ -5,13 +5,13 @@ export const metadata = {
   description: "Spiegle Punkte, Dreiecke und Geraden an der x-Achse und leite die Koordinatenregel aus den Abständen zum Spiegel her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
 ## Nur die senkrechte Koordinate wechselt ihr Vorzeichen
 
-Bei einer Spiegelung an der <InlineMath math="x" />-Achse liegt jeder Bildpunkt auf der gegenüberliegenden Seite der <InlineMath math="x" />-Achse und hat denselben Abstand zu ihr. Die <InlineMath math="x" />-Achse wirkt dabei <Highlight>wie ein waagerechter Spiegel</Highlight>.
+Bei einer Spiegelung an der <InlineMath math="x" />-Achse liegt der Bildpunkt eines Punktes außerhalb der Achse auf der gegenüberliegenden Seite der <InlineMath math="x" />-Achse und hat denselben Abstand zu ihr. Die <InlineMath math="x" />-Achse wirkt dabei <Highlight>wie ein waagerechter Spiegel</Highlight>.
 
 Hat ein Punkt <InlineMath math="P" /> die Koordinaten <InlineMath math="(x,y)" />, dann behält sein Bildpunkt <InlineMath math="P'" /> dieselbe <InlineMath math="x" />-Koordinate. Nur die <InlineMath math="y" />-Koordinate wechselt ihr Vorzeichen: Aus dem bisherigen <InlineMath math="y" />-Wert wird sein Gegenwert.
 
@@ -19,9 +19,7 @@ Wenn der Anfangspunkt mathematisch gesehen <InlineMath math="P(x,y)" /> ist, dan
 
 ### Punkte und ihre Spiegelbilder visualisieren
 
-Betrachten wir einige Punkte und ihre Spiegelungen, nachdem sie an der <InlineMath math="x" />-Achse gespiegelt wurden.
-
-Achte darauf, dass die <InlineMath math="y" />-Koordinate ihr Vorzeichen ändert, während die <InlineMath math="x" />-Koordinate gleich bleibt.
+Betrachte **Punktpaare auf derselben senkrechten Geraden**. Ein Punkt über der Achse wird nach unten gespiegelt, ein Punkt unter der Achse nach oben. Urbild und Bild behalten dabei denselben Abstand zur Achse.
 
 <LineEquation
   title={
@@ -43,10 +41,9 @@ Achte darauf, dass die <InlineMath math="y" />-Koordinate ihr Vorzeichen ändert
       { x: -3, y: 1, label: <InlineMath math="B" /> },
       { x: 1, y: 2, label: <InlineMath math="C" /> },
       { x: 4, y: -2, label: <InlineMath math="D" /> },
-    ].map((p, i) => ({
+    ].map((p) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
-        { x: p.x, y: p.y, z: 0 }, // Single point
       ],
       color: "#d97706",
       labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -57,10 +54,9 @@ Achte darauf, dass die <InlineMath math="y" />-Koordinate ihr Vorzeichen ändert
       { x: -3, y: -1, label: <InlineMath math="B'" /> },
       { x: 1, y: -2, label: <InlineMath math="C'" /> },
       { x: 4, y: 2, label: <InlineMath math="D'" /> },
-    ].map((p, i) => ({
+    ].map((p) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
-        { x: p.x, y: p.y, z: 0 }, // Single point
       ],
       color: "#0891b2",
       labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -80,21 +76,23 @@ Jedes Punktepaar behält denselben Wert von <InlineMath math="x" /> und wechselt
 
 ## Eigenschaften der Spiegelung an der horizontalen Achse
 
-Aus diesen Beobachtungen folgt die Regel für die Spiegelung an der <InlineMath math="x" />-Achse:
+Die Spiegelung behält die waagerechte Koordinate bei und **kehrt das Vorzeichen der senkrechten Koordinate um**. Die Mitte zwischen Urbild und Bildpunkt liegt auf der Spiegelachse:
 
-<BlockMath math="P(x,y) \xrightarrow{\text{X-Achse}} P'(x,-y)" />
+<BlockMath math="P(x,y)\longmapsto P'(x,-y),\qquad M=\left(\frac{x+x}{2},\frac{y+(-y)}{2}\right)=(x,0)" />
 
-Dies bedeutet, dass das Bild des Punktes <InlineMath math="P(x,y)" />, der an der <InlineMath math="x" />-Achse gespiegelt wird, <InlineMath math="P'(x,-y)" /> ist. Die <InlineMath math="x" />-Achse fungiert in diesem Fall als Gerade <InlineMath math="y=0" />.
+Beide Punkte haben den Abstand <InlineMath math="|y|" /> zur Achse. Liegt der Ausgangspunkt auf der Achse, ist seine senkrechte Koordinate null und er bleibt fest:
+
+<BlockMath math="P(x,0)\longmapsto P'(x,-0)=P(x,0)" />
 
 ## Dreiecke und Geraden spiegeln
 
-Ein Dreieck zu spiegeln heißt, jeden seiner Punkte zu spiegeln. Bei einer Geraden wird stattdessen die Gleichung transformiert, und die Beispiele unten machen beides. Beim Dreieck werden die drei Eckpunkte transformiert, bei der Geraden wird die Spiegelungsvorschrift in die Gleichung eingesetzt.
+Die Spiegelung wirkt auf **jeden Punkt einer Figur**. Drei Eckpunkte reichen aus, um das Bilddreieck festzulegen. Bei einer Geraden setzt du die Koordinatenregel in ihre Gleichung ein. So werden alle Punkte der Geraden gleichzeitig beschrieben.
 
 ### Ein Dreieck spiegeln
 
 Bestimme das Bild des Dreiecks <InlineMath math="ABC" /> mit den Eckpunkten <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" /> und <InlineMath math="C(-2,-1)" /> bei der Spiegelung an der <InlineMath math="x" />-Achse.
 
-Um das Bild des Dreiecks <InlineMath math="ABC" /> zu bestimmen, wenden wir die Spiegelungseigenschaft auf jeden seiner Eckpunkte an:
+Um das Bild des Dreiecks <InlineMath math="ABC" /> zu bestimmen, wenden wir die Spiegelungseigenschaft auf **jeden seiner Eckpunkte** an:
 
 <MathContainer>
   <BlockMath math="A(-1,4) \xrightarrow{\text{X-Achse}} A'(-1,-4)" />
@@ -182,7 +180,7 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
 
 Die Gerade <InlineMath math="2x - 3y = 0" /> wird an der <InlineMath math="x" />-Achse gespiegelt. Bestimme die Gleichung ihrer Bildgeraden.
 
-**Lösung:**
+**Lösung**:
 
 Ein beliebiger Punkt <InlineMath math="P(a,b)" /> liege auf der Geraden <InlineMath math="2x - 3y = 0" />. Dann gilt:
 
@@ -194,7 +192,7 @@ Um die Gleichung der gespiegelten Geraden zu erhalten, ersetzen wir die Koordina
 
 Daraus erhalten wir <InlineMath math="a = x'" /> und <InlineMath math="b = -y'" />.
 
-Wir setzen <InlineMath math="a = x'" /> und <InlineMath math="b = -y'" /> in die ursprüngliche Gleichung <InlineMath math="2a - 3b = 0" /> ein:
+Wir setzen <InlineMath math="a = x'" /> und <InlineMath math="b = -y'" /> in die **ursprüngliche Gleichung** <InlineMath math="2a - 3b = 0" /> ein:
 
 <MathContainer>
   <BlockMath math="2(x') - 3(-y') = 0" />

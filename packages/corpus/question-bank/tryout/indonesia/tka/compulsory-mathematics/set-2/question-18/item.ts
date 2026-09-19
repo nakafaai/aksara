@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "park-and-pond",
+  stimulusKey: "water-tank",
 };
 
 export default item;

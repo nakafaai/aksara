@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunkan hubungan proporsional antara panjang busur, luas juring, sudut, dan jari-jari, lalu gunakan pada pengukuran Bumi oleh Eratosthenes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -21,14 +21,16 @@ Rumus ini menunjukkan bahwa perbandingan panjang busur terhadap keliling lingkar
 
 ## Rumus Panjang Busur dan Luas Juring
 
-Berdasarkan hubungan proporsional tersebut, kita dapat menurunkan formula untuk menghitung panjang busur dan luas juring:
+Kalikan **bagian sudut** dengan keliling untuk memperoleh panjang busur, atau dengan luas lingkaran untuk memperoleh luas juring. Kedua rumus memakai jari-jari dan sudut dari juring yang sama:
 
 <MathContainer>
 <BlockMath math="\text{Panjang Busur} = \frac{\alpha}{360^\circ} \times 2\pi r" />
 <BlockMath math="\text{Luas Juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Dari kedua formula ini, kita dapat menemukan hubungan langsung antara panjang busur dan luas juring:
+Misalkan panjang busur adalah <InlineMath math="s" /> dan luas juring adalah <InlineMath math="A" />. Untuk sudut yang tidak nol, bagi kedua rumus. Faktor sudut yang sama saling menghapus:
+
+<BlockMath math="\frac{A}{s}=\frac{\frac{\alpha}{360^\circ}\pi r^2}{\frac{\alpha}{360^\circ}2\pi r}=\frac{r}{2}\quad\Longrightarrow\quad A=\frac{sr}{2}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\text{Luas Juring} \\ &amp;= \frac{1}{2} \times \text{Panjang Busur} \times r \end{aligned}" />
@@ -36,7 +38,7 @@ Dari kedua formula ini, kita dapat menemukan hubungan langsung antara panjang bu
 
 ## Visualisasi Hubungan Proporsional
 
-Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Setiap sudut pusat menghasilkan perbandingan yang konsisten antara panjang busur dan luas juring terhadap keseluruhan lingkaran.
+Gambar memakai **jari-jari yang sama**, yaitu 4 satuan. Bandingkan bagian sudut dengan bagian keliling dan luas. Ketika sudut naik dari 45 menjadi 90 derajat, panjang busur dan luas juring sama-sama menjadi dua kali lipat.
 
 <ContentStack>
 
@@ -285,35 +287,28 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
 
 </ContentStack>
 
-Visualisasi di atas mengikuti hubungan yang sama untuk setiap sudut pusat <InlineMath math="\alpha" />:
-
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Panjang Busur} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Keliling Lingkaran} \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;\text{Luas Juring} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Luas Lingkaran} \end{aligned}" />
-</MathContainer>
-
-Atau dalam bentuk rumus lengkap:
-
-<MathContainer>
-<BlockMath math="\text{Panjang Busur} = \frac{\alpha}{360^\circ} \times 2\pi r" />
-<BlockMath math="\text{Luas Juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-Pada lingkaran yang sama, sudut pusat yang sama menghasilkan busur dan juring yang kongruen. Untuk sudut-sudut yang bersebelahan, panjang busur dan luas juringnya juga dapat dijumlahkan.
+| Sudut | Panjang busur | Luas juring |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\pi" /> | <InlineMath math="2\pi" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="2\pi" /> | <InlineMath math="4\pi" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="8\pi/3" /> | <InlineMath math="16\pi/3" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="4\pi" /> | <InlineMath math="8\pi" /> |
 
 ## Aplikasi dalam Pengukuran Bumi
 
-Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />, memakai gagasan perbandingan yang sama untuk memperkirakan keliling Bumi. Pada titik balik matahari musim panas, Matahari tepat di atas Syene, sedangkan benda tegak di Alexandria menunjukkan selisih sudut <InlineMath math="7{,}2^\circ" />. Jarak kedua kota saat itu diperkirakan <InlineMath math="5{.}000 \text{ stadia}" />.
+Dalam model sederhana pengukuran Eratosthenes, Bumi dianggap berbentuk bola, kedua kota berada pada **meridian yang sama**, dan sinar Matahari sejajar. Pada tengah hari saat titik balik musim panas, Matahari dianggap tepat di atas Syene. Di Alexandria, arah Matahari membentuk sudut sekitar <InlineMath math="7{,}2^\circ" /> terhadap garis vertikal. Dengan sinar sejajar, sudut itu sama dengan sudut kedua kota di pusat Bumi.
+
+Jika jarak permukaan kedua kota dianggap <InlineMath math="5{.}000 \text{ stadia}" />, jarak tersebut mewakili seperlima puluh keliling. Model ini menjelaskan metode geometrinya, bukan pengukuran modern yang persis untuk kedua kota.
 
 <LineEquation
   title={<>Pengukuran Keliling Bumi oleh Eratosthenes</>}
   description={<>Model menghubungkan sudut <InlineMath math="7{,}2^\circ" /> dengan jarak permukaan <InlineMath math="5{.}000 \text{ stadia}" />.</>}
-  cameraPosition={[0.3, 0, 13.5]}
-  cameraTarget={[0.3, 0, 0]}
+  cameraPosition={[2.5, 0.4, 8]}
+  cameraTarget={[2.5, 0.4, 0]}
   data={[
     {
       points: Array.from({ length: 73 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 72;
+        const angle = (-15 + (i * 45) / 72) * Math.PI / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
@@ -327,8 +322,8 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
       labels: [
         {
           text: "Bumi",
-          at: 18,
-          offset: [1.5, 0, 0],
+          at: 72,
+          offset: [-0.4, 0.2, 0],
         },
       ],
     },
@@ -384,7 +379,7 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
         {
           text: <InlineMath math="5{.}000\,\text{stadia}" />,
           at: 50,
-          offset: [-0.7, 2.3, 0],
+          offset: [0.5, 0.4, 0],
         },
       ],
     },
@@ -424,11 +419,11 @@ Misalkan <InlineMath math="D" /> adalah jarak Aleksandria ke Syene dan <InlineMa
   <BlockMath math="\begin{aligned} &amp;\text{Keliling Bumi} \\ &amp;= 5{.}000 \times 50 \\ &amp;= 250{.}000 \text{ stadia} \end{aligned}" />
 </MathContainer>
 
-Panjang satu stadion kuno tidak diketahui secara pasti. Dengan salah satu konversi yang umum dipakai, hasil tersebut kira-kira <InlineMath math="40{.}000 \text{ km}" />.
+Panjang satu stadion kuno **tidak diketahui secara pasti**. Jika digunakan asumsi 160 meter per stadion, hasil 250.000 stadia menjadi 40.000 km. Pilihan panjang stadion lain memberi konversi berbeda.
 
 ## Hubungan Antara Busur dan Juring
 
-Pada lingkaran berjari-jari <InlineMath math="r" /> dengan sudut pusat yang tidak nol, luas juring dibagi panjang busurnya sama dengan <InlineMath math="r/2" />:
+Pada lingkaran berjari-jari <InlineMath math="r" /> dengan **sudut pusat yang tidak nol**, luas juring dibagi panjang busurnya sama dengan <InlineMath math="r/2" />:
 
 <MathContainer>
 <BlockMath math="\frac{\text{Luas Juring}}{\text{Panjang Busur}} = \frac{r}{2}" />
@@ -440,7 +435,7 @@ Hubungan ini menunjukkan bahwa rasio luas juring terhadap panjang busur selalu s
 
 ## Latihan
 
-Setiap soal menghubungkan panjang busur dengan luas juring pada lingkaran yang sama, jadi tuliskan kedua besaran dari jari-jari dan sudut pusat yang sama. Hubungan antara panjang busur dan luas juring itu memberi nilai yang belum diketahui tanpa perlu menghitung sudutnya lebih dulu.
+Dua soal pertama memakai **hubungan luas dan panjang busur** untuk mencari luas atau jari-jari. Soal ketiga memakai perbandingan busur terhadap keliling pada model Bumi berbentuk bola.
 
 1. Sebuah lingkaran memiliki jari-jari <InlineMath math="14 \text{ cm}" />. Jika panjang busur suatu juring adalah <InlineMath math="22 \text{ cm}" />, tentukan luas juring tersebut.
 
@@ -450,39 +445,41 @@ Setiap soal menghubungkan panjang busur dengan luas juring pada lingkaran yang s
 
 ### Pembahasan
 
-1. **Langkah Penyelesaian:**
+Perhatikan **besaran yang dicari**. Luas diperoleh dengan mengalikan panjang busur dan setengah jari-jari. Untuk mencari jari-jari, susun ulang persamaan itu. Keliling Bumi diperoleh dari bagian satu putaran.
 
-   Diketahui: <InlineMath math="r = 14 \text{ cm}" />, panjang busur = <InlineMath math="22 \text{ cm}" />
+**Pembahasan 1**
 
-   Menggunakan hubungan: <InlineMath math="\text{Luas Juring} = \frac{1}{2} \times \text{Panjang Busur} \times r" />
+Diketahui: <InlineMath math="r = 14 \text{ cm}" />, panjang busur = <InlineMath math="22 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="\text{Luas Juring} = \frac{1}{2} \times 22 \times 14" />
-   <BlockMath math="= \frac{22 \times 14}{2}" />
-   <BlockMath math="= \frac{308}{2}" />
-   <BlockMath math="= 154 \text{ cm}^2" />
-   </MathContainer>
+Menggunakan hubungan: <InlineMath math="\text{Luas Juring} = \frac{1}{2} \times \text{Panjang Busur} \times r" />
 
-2. **Langkah Penyelesaian:**
+<MathContainer>
+<BlockMath math="\text{Luas Juring} = \frac{1}{2} \times 22 \times 14" />
+<BlockMath math="= \frac{22 \times 14}{2}" />
+<BlockMath math="= \frac{308}{2}" />
+<BlockMath math="= 154 \text{ cm}^2" />
+</MathContainer>
 
-   Diketahui: luas juring = <InlineMath math="154 \text{ cm}^2" />, panjang busur = <InlineMath math="22 \text{ cm}" />
+**Pembahasan 2**
 
-   Menggunakan hubungan: <InlineMath math="\frac{\text{Luas Juring}}{\text{Panjang Busur}} = \frac{r}{2}" />
+Diketahui: luas juring = <InlineMath math="154 \text{ cm}^2" />, panjang busur = <InlineMath math="22 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="\frac{154}{22} = \frac{r}{2}" />
-   <BlockMath math="7 = \frac{r}{2}" />
-   <BlockMath math="r = 14 \text{ cm}" />
-   </MathContainer>
+Menggunakan hubungan: <InlineMath math="\frac{\text{Luas Juring}}{\text{Panjang Busur}} = \frac{r}{2}" />
 
-3. **Langkah Penyelesaian:**
+<MathContainer>
+<BlockMath math="\frac{154}{22} = \frac{r}{2}" />
+<BlockMath math="7 = \frac{r}{2}" />
+<BlockMath math="r = 14 \text{ cm}" />
+</MathContainer>
 
-   Diketahui: jarak = <InlineMath math="1{.}000 \text{ km}" />, sudut = <InlineMath math="9^\circ" />
+**Pembahasan 3**
 
-   Menggunakan perbandingan: <InlineMath math="\frac{\text{Jarak}}{\text{Keliling Bumi}} = \frac{9^\circ}{360^\circ}" />
+Diketahui: jarak = <InlineMath math="1{.}000 \text{ km}" />, sudut = <InlineMath math="9^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} \frac{1{.}000}{\text{Keliling Bumi}} &amp;= \frac{9^\circ}{360^\circ} \\ &amp;= \frac{1}{40} \end{aligned}" />
-   <BlockMath math="\text{Keliling Bumi} = 1{.}000 \times 40" />
-   <BlockMath math="= 40{.}000 \text{ km}" />
-   </MathContainer>
+Menggunakan perbandingan: <InlineMath math="\frac{\text{Jarak}}{\text{Keliling Bumi}} = \frac{9^\circ}{360^\circ}" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \frac{1{.}000}{\text{Keliling Bumi}} &amp;= \frac{9^\circ}{360^\circ} \\ &amp;= \frac{1}{40} \end{aligned}" />
+<BlockMath math="\text{Keliling Bumi} = 1{.}000 \times 40" />
+<BlockMath math="= 40{.}000 \text{ km}" />
+</MathContainer>

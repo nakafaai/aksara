@@ -11,7 +11,7 @@ export const metadata = {
 
 Some optimization problems ask for the smallest possible value. A manufacturer may want the lowest cost, or a design may need the least total area under a fixed geometric condition. The objective changes, but the modeling process is the same: translate the constraint, build a function in one variable, and interpret its vertex.
 
-Finding a minimum does not mean choosing zero automatically. The original problem determines which values are permitted, and <Highlight>the minimum must lie within that feasible domain</Highlight>.
+Finding a minimum does not mean choosing zero automatically. The original problem determines which values are permitted, and **the input at which the minimum occurs** must belong to that feasible domain.
 
 ## Why an upward opening quadratic has a minimum
 
@@ -19,7 +19,7 @@ A quadratic function has the form
 
 <BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
 
-When <InlineMath math="a>0" />, its graph opens upward. The vertex is therefore the lowest point of the graph. If the vertex lies inside the feasible domain, its function value is the minimum.
+When <InlineMath math="a>0" />, its graph opens upward. The vertex is therefore the **lowest point of the graph**. If the vertex lies inside the feasible domain, its function value is the minimum.
 
 ### Locating the vertex
 
@@ -30,7 +30,7 @@ For <InlineMath math="f(x)=ax^2+bx+c" />, use
   <BlockMath math="y_v=f(x_v)" />
 </MathContainer>
 
-The equivalent discriminant form is
+The equivalent **discriminant form** is
 
 <MathContainer>
   <BlockMath math="\Delta=b^2-4ac" />
@@ -43,82 +43,65 @@ Always return to the context after calculating the vertex. Check the domain, uni
 
 A <InlineMath math="40\text{ cm}" /> wire is cut into two pieces. Each piece is bent into a square. Where should the wire be cut so that the sum of the two square areas is as small as possible?
 
-1. **Name the side lengths.** Let the first square have side <InlineMath math="x\text{ cm}" /> and the second have side <InlineMath math="y\text{ cm}" />.
-2. **Translate the wire-length constraint.**
+**Step 1**: Name the side lengths. Let the first square have side <InlineMath math="x\text{ cm}" /> and the second have side <InlineMath math="y\text{ cm}" />.
+**Step 2**: Translate the wire-length constraint.
 
-   <MathContainer>
-     <BlockMath math="4x+4y=40" />
-     <BlockMath math="x+y=10" />
-     <BlockMath math="y=10-x" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="4x+4y=40" />
+  <BlockMath math="x+y=10" />
+  <BlockMath math="y=10-x" />
+</MathContainer>
 
-3. **Build the total-area function.**
+**Step 3**: Build the total-area function.
 
-   <MathContainer>
-     <BlockMath math="A=x^2+y^2" />
-     <BlockMath math="A(x)=x^2+(10-x)^2" />
-     <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
-     <BlockMath math="A(x)=2x^2-20x+100" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="A=x^2+y^2" />
+  <BlockMath math="A(x)=x^2+(10-x)^2" />
+  <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
+  <BlockMath math="A(x)=2x^2-20x+100" />
+</MathContainer>
 
-4. **State the feasible domain.** Both squares must have positive side lengths, so <InlineMath math="0<x<10" />. Because <InlineMath math="a=2>0" />, the graph opens upward.
-5. **Locate the vertex.**
+**Step 4**: State the feasible domain. Both squares must have positive side lengths, so <InlineMath math="0<x<10" />. Because <InlineMath math="a=2>0" />, the graph opens upward.
+**Step 5**: Locate the vertex.
 
-   <BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
+<BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
 
-6. **Recover the second side length and evaluate the total area.**
+**Step 6**: Recover the second side length and evaluate the total area.
 
-   <MathContainer>
-     <BlockMath math="y=10-x=10-5=5" />
-     <BlockMath math="A(5)=5^2+5^2=50" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y=10-x=10-5=5" />
+  <BlockMath math="A(5)=5^2+5^2=50" />
+</MathContainer>
 
-7. **Interpret the cut.** Each square needs perimeter <InlineMath math="4(5)=20\text{ cm}" />, so the wire is cut into two <InlineMath math="20\text{ cm}" /> pieces. The full <InlineMath math="40\text{ cm}" /> wire is still used. Only the sum of the enclosed areas is minimized.
+**Step 7**: Interpret the cut. Each square needs perimeter <InlineMath math="4(5)=20\text{ cm}" />, so the wire is cut into two <InlineMath math="20\text{ cm}" /> pieces. The full <InlineMath math="40\text{ cm}" /> wire is still used. Only the sum of the enclosed areas is minimized.
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Total-area model <InlineMath math="A(x)=2x^2-20x+100" />
-      </>
-    }
-    description={
-      <>
-        The graph is shown for <InlineMath math="0\le x\le10" />. Within the feasible interval <InlineMath math="0<x<10" />, it reaches its lowest point at <InlineMath math="(5,50)" />.
-      </>
-    }
-    cameraPosition={[5, 53.5, 13]}
-    cameraTarget={[5, 53.5, 0]}
-    data={[
-      {
-        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        smooth: false,
-        points: Array.from({ length: 101 }, (_, sampleIndex) => {
-          const x = sampleIndex / 10;
-          return {
-          x,
-          y: 2 * x * x - 20 * x + 100,
-          z: 0,
-        };
-        }),
-        color: "#7c3aed",
-        labels: [
-          {
-            text: "Minimum point",
-            at: 50,
-            offset: [0, -1.5, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+The completed square explains the minimum. The squared term **cannot be negative** and is zero exactly when the first side is five:
+
+<BlockMath math="A(x)=2(x-5)^2+50\ge50" />
+
+<MathVisual
+  title="Area against the Chosen Dimension"
+  description="The horizontal axis shows the first square side in centimeters. One vertical unit represents ten square centimeters, so the plotted quantity is A(x)/10. The point (5,5) means a 5 cm side and 50 cm² total area."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.5, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: 0.2, b: -2, c: 10 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 5 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="x=5,\ A=50" /> }}
+/>
+
+The graph endpoints show limiting cases. Zero and ten are excluded when both side lengths must be positive.
 
 The minimum total area is <InlineMath math="50\text{ cm}^2" />, obtained when both squares have side length <InlineMath math="5\text{ cm}" />.
 
 ## Constraint Model Domain and Vertex
 
-The table collects the three pieces that turn the wire problem into one variable. Each row states a part of the problem beside its mathematical form.
+The table collects the three pieces that turn the wire problem into **one variable**. Each row states a part of the problem beside its mathematical form.
 
 | Part of the problem | Mathematical statement | Meaning |
 | ------------------- | ---------------------- | ------- |
@@ -128,7 +111,7 @@ The table collects the three pieces that turn the wire problem into one variable
 
 ## Another Application with Production Cost
 
-Suppose the cost of producing <InlineMath math="x" /> items, measured in thousands of rupiah, is
+Suppose the cost of producing <InlineMath math="x" /> items, measured in **thousands of rupiah**, is
 
 <BlockMath math="C(x)=3x^2-60x+500" />
 
@@ -143,14 +126,14 @@ The model predicts a minimum cost of <InlineMath math="\text{IDR }200\,000" /> a
 
 ## Practice
 
-The task asks for two numbers with a fixed sum and the largest possible product, so the sum replaces one variable. Write the product as a function of a single number first.
+The sum is fixed, so choosing the first number also fixes the second. The objective is to minimize **the sum of their squares**, not the sum of the numbers themselves. Use their relationship to write the objective in one variable.
 
 The sum of two positive numbers is <InlineMath math="16" />. Determine the two numbers that minimize the sum of their squares, and find that minimum sum.
 
 ### Worked solution
 
 1. Let the first number be <InlineMath math="x" /> and the second be <InlineMath math="y" />.
-2. Translate the sum constraint.
+2. Translate the **sum constraint**.
 
    <MathContainer>
      <BlockMath math="x+y=16" />

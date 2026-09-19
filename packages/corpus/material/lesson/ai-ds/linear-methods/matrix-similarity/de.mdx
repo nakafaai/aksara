@@ -3,7 +3,7 @@ export const metadata = {
     description: "Matrixähnlichkeit als Basiswechsel verstehen. Determinante, charakteristisches Polynom, Eigenwerte und Spur bleiben dabei erhalten.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -54,7 +54,7 @@ Deshalb:
 <BlockMath math="= A \cdot S \cdot \xi" />
 </MathContainer>
 
-Dieselbe Koordinatenbeziehung lässt sich auch wie folgt schreiben.
+**Dieselbe Koordinatenbeziehung** lässt sich auch wie folgt schreiben.
 
 <BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
 
@@ -74,11 +74,22 @@ Es seien
 <BlockMath math="\begin{aligned} &amp;S=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}, \\ &amp;S^{-1}=\begin{pmatrix}1&amp;-1\\0&amp;1\end{pmatrix} \end{aligned}" />
 </MathContainer>
 
-Dieselbe Transformation besitzt in der von den Spalten von <InlineMath math="S" /> gebildeten Basis die Matrix
+**Dieselbe Transformation** besitzt in der von den Spalten von <InlineMath math="S" /> gebildeten Basis die Matrix
+
+<BlockMath math="AS=\begin{pmatrix}2&2\\0&3\end{pmatrix},\qquad S^{-1}AS=\begin{pmatrix}2&2-3\\0&3\end{pmatrix}" />
 
 <BlockMath math="B=S^{-1}AS=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />
 
 Obwohl die Einträge verschieden sind, haben beide Matrizen das charakteristische Polynom <InlineMath math="(t-2)(t-3)" />, die Spur <InlineMath math="5" /> und die Determinante <InlineMath math="6" />.
+
+| Koordinaten | Eingabe | Ausgabe |
+| --- | --- | --- |
+| Kanonische Basis | <InlineMath math="x=(2,1)^T" /> | <InlineMath math="Ax=(4,3)^T" /> |
+| Neue Basis | <InlineMath math="\xi=S^{-1}x=(1,1)^T" /> | <InlineMath math="B\xi=(1,3)^T" /> |
+
+Die Rückumrechnung ergibt **denselben Ausgabevektor**:
+
+<BlockMath math="S\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1+3\\3\end{pmatrix}=\begin{pmatrix}4\\3\end{pmatrix}=Ax" />
 
 ## Invariante Eigenschaften ähnlicher Matrizen
 
@@ -94,7 +105,7 @@ Sie besitzen jedoch nicht zwingend dieselben Einträge, Eigenvektorkoordinaten, 
 
 ### Beweis der Determinantengleichheit
 
-Für die Determinante können wir zeigen:
+**Für die Determinante** können wir zeigen:
 
 <MathContainer>
 <BlockMath math="\det(B) = \det(S^{-1} \cdot A \cdot S)" />
@@ -110,7 +121,7 @@ Aus <InlineMath math="\det(S^{-1}) = \frac{1}{\det(S)}" /> folgt:
 
 ### Korrespondenz der Eigenwerte
 
-Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath math="A" /> mit dem Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, so dass <InlineMath math="A \cdot v = \lambda \cdot v" />, dann ist <InlineMath math="w = S^{-1} \cdot v" /> ein Eigenvektor von <InlineMath math="B" /> mit demselben Eigenwert:
+Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath math="A" /> mit dem Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, so dass <InlineMath math="A \cdot v = \lambda \cdot v" />, dann ist <InlineMath math="w = S^{-1} \cdot v" /> ein Eigenvektor von <InlineMath math="B" /> mit **demselben Eigenwert**:
 
 <MathContainer>
 <BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot w" />

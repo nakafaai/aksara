@@ -21,7 +21,9 @@ Bei der Skalarmultiplikation wird eine komplexe Zahl mit einer reellen Zahl, dem
       <InlineMath math="c=-0{,}5" />.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0.75, 1.5, 9]}
+  cameraTarget={[0.75, 1.5, 0]}
+  showZAxis={false}
   data={[
     // Ursprünglicher Vektor z
     {
@@ -59,12 +61,14 @@ Bei der Skalarmultiplikation wird eine komplexe Zahl mit einer reellen Zahl, dem
   ]}
 />
 
-Die Visualisierung zeigt drei Fälle:
+Für einen Vektor ungleich null gelten folgende Fälle:
 
 - Die Multiplikation von <InlineMath math="z" /> mit einem Skalar <InlineMath math="c > 1" />, etwa <InlineMath math="2" />, **streckt** den Vektor <InlineMath math="z" /> in derselben Richtung.
 - Die Multiplikation von <InlineMath math="z" /> mit <InlineMath math="0 < c < 1" /> **staucht** den Vektor <InlineMath math="z" /> in derselben Richtung.
 - Die Multiplikation von <InlineMath math="z" /> mit <InlineMath math="c = 0" /> verschiebt die Vektorspitze in den Ursprung, also gilt <InlineMath math="0z = 0" />.
 - Für <InlineMath math="z\neq0" /> **kehrt** die Multiplikation mit einem Skalar <InlineMath math="c < 0" />, etwa <InlineMath math="-0{,}5" />, die Richtung des Vektors um <InlineMath math="180^\circ" /> um und multipliziert seine Länge mit <InlineMath math="|c|" />.
+
+Der Skalar eins lässt den Vektor unverändert. Ein Skalar null oder die komplexe Zahl null ergibt den **Nullvektor ohne Richtung**.
 
 ## Eine komplexe Zahl mit einem Skalar multiplizieren
 
@@ -72,9 +76,15 @@ Ist <InlineMath math="z = x + iy" /> eine komplexe Zahl und <InlineMath math="c"
 
 <BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
 
-Der Skalar <InlineMath math="c" /> wird also sowohl mit dem Realteil <InlineMath math="x" /> als auch mit dem Imaginärteil <InlineMath math="y" /> multipliziert.
+Der **gleiche Faktor für beide Komponenten**, <InlineMath math="c" />, wird sowohl mit dem Realteil <InlineMath math="x" /> als auch mit dem Imaginärteil <InlineMath math="y" /> multipliziert.
+
+Die Länge wird mit dem **Absolutwert des Skalars** multipliziert, nicht mit seinem vorzeichenbehafteten Wert. Das folgt aus der Betragsformel:
+
+<BlockMath math="\begin{aligned}|cz|&amp;=\sqrt{(cx)^2+(cy)^2}\\&amp;=\sqrt{c^2(x^2+y^2)}\\&amp;=|c|\sqrt{x^2+y^2}=|c||z|\end{aligned}" />
 
 ### Komplexe Zahlen mit reellen Skalaren multiplizieren
+
+Achte auf das **Vorzeichen jeder Komponente**. Im zweiten Beispiel wird ein negativer Skalar mit einem negativen Imaginärteil multipliziert. Der Imaginärteil des Produkts ist deshalb positiv.
 
 Für <InlineMath math="z = -3 + 4i" /> und <InlineMath math="c = 3" /> ergibt sich:
 
@@ -90,7 +100,9 @@ Ein reeller Skalar verändert die Länge des Pfeils und kann ihn zusätzlich umd
 
 ### Skalar größer als eins
 
-Hier ist der Faktor größer als eins, deshalb behält der Pfeil seine Richtung und seine Länge wächst mit dem Faktor.
+Ein positiver Skalar erhält die Richtung. Ein Wert größer als eins **streckt den Vektor**. Im gezeigten Beispiel werden beide Komponenten mit demselben Faktor multipliziert:
+
+<BlockMath math="\frac32(-2+i)=\frac32(-2)+\frac32i=-3+\frac32i" />
 
 <LineEquation
   title={
@@ -107,6 +119,7 @@ Hier ist der Faktor größer als eins, deshalb behält der Pfeil seine Richtung 
   }
   cameraPosition={[-1.5, 0.75, 6.5]}
   cameraTarget={[-1.5, 0.75, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -133,7 +146,9 @@ Hier ist der Faktor größer als eins, deshalb behält der Pfeil seine Richtung 
 
 ### Skalar zwischen Null und Eins
 
-Hier liegt der Faktor zwischen null und eins, deshalb behält der Pfeil seine Richtung und wird kürzer.
+Ein Skalar zwischen null und eins **staucht den Vektor**, ohne seine Richtung umzukehren. Beim Faktor drei Viertel bleibt jede Komponente bei drei Vierteln ihres Ausgangswerts:
+
+<BlockMath math="\frac34(3-2i)=\frac94-\frac64i=\frac94-\frac32i" />
 
 <LineEquation
   title={
@@ -150,6 +165,7 @@ Hier liegt der Faktor zwischen null und eins, deshalb behält der Pfeil seine Ri
   }
   cameraPosition={[1.5, -1, 6.5]}
   cameraTarget={[1.5, -1, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -176,7 +192,7 @@ Hier liegt der Faktor zwischen null und eins, deshalb behält der Pfeil seine Ri
 
 ### Negativer Skalar
 
-Die Multiplikation mit <InlineMath math="-1" /> ergibt die Gegenzahl der komplexen Zahl.
+Die Multiplikation mit <InlineMath math="-1" /> ergibt die **Gegenzahl** der komplexen Zahl.
 
 <LineEquation
   title={
@@ -192,6 +208,8 @@ Die Multiplikation mit <InlineMath math="-1" /> ergibt die Gegenzahl der komplex
     </>
   }
   cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
   data={[
     {
       points: [

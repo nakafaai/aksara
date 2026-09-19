@@ -9,43 +9,45 @@ export const metadata = {
 
 ## Nilai Fungsi dari Ekspresi Polinomial
 
-<Highlight>Setiap nilai input yang diperbolehkan menghasilkan tepat satu nilai fungsi.</Highlight> Dengan ekspresi polinomial <InlineMath math="2x^2 - 3x + 1" /> sebagai aturannya, fungsinya ditulis <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Substitusikan input <InlineMath math="x = 2" />, hitung pangkatnya lebih dahulu, lalu kamu memperoleh <InlineMath math="P(2) = 3" />.
+Setiap masukan menghasilkan <Highlight>tepat satu nilai fungsi</Highlight>. Untuk aturan <InlineMath math="P(x)=2x^2-3x+1" />, masukan <InlineMath math="x=2" /> dihitung dengan urutan pangkat, perkalian, lalu penjumlahan:
+
+<BlockMath math="P(2)=2(2)^2-3(2)+1=8-6+1=3" />
+
+<MathVisual
+  title="Dari masukan ke titik pada grafik"
+  description="Grafik P(x) = 2x² - 3x + 1. Titik (2,3) menunjukkan bahwa masukan 2 menghasilkan keluaran 3."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 1 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [{ key: "value", objectId: "value", at: { x: 2, y: 3 }, placement: "above-left" }],
+  }}
+  labels={{ value: <InlineMath math="(2,3)" /> }}
+/>
+
+Koefisien real dan pangkat bilangan cacah membuat polinomial terdefinisi untuk **setiap masukan real**. Kamu tidak perlu mengecualikan masukan karena penyebut variabel atau akar variabel.
 
 ## Bentuk Umum Fungsi Polinomial
 
-Sebuah fungsi polinomial dalam variabel <InlineMath math="x" /> umumnya ditulis dalam bentuk:
+Untuk polinomial tak nol, bentuk umum mengurutkan **pangkat dan koefisien**. Koefisien utama tidak nol, dan indeks pangkat terbesar menentukan derajat:
 
-<BlockMath math="\begin{aligned} P(x) &amp;= a_n x^n + a_{n-1} x^{n-1} \\ &amp;\quad{}+ a_{n-2} x^{n-2} + \dots + a_1 x + a_0 \end{aligned}" />
+<BlockMath math="P(x)=\sum_{k=0}^{n}a_kx^k,\qquad a_n\ne0,\quad n\in\{0,1,2,\ldots\}" />
 
-Bentuk umum tersebut memiliki komponen berikut:
+| Notasi | Makna |
+| --- | --- |
+| <InlineMath math="P(x)" /> | Nilai fungsi saat masukannya x. |
+| <InlineMath math="x" /> | Variabel masukan. |
+| <InlineMath math="n" /> | Derajat, berupa bilangan cacah. |
+| <InlineMath math="a_0,a_1,\ldots,a_n" /> | Koefisien real untuk setiap pangkat. |
+| <InlineMath math="a_nx^n" /> | Suku utama, yaitu suku berpangkat tertinggi. |
+| <InlineMath math="a_n" /> | Koefisien utama, harus tidak nol. |
+| <InlineMath math="a_0" /> | Konstanta, yaitu nilai fungsi saat masukan nol. |
 
-- **<InlineMath math="P(x)" />**:
-
-  Notasi fungsi, dibaca "P dari x", yang menunjukkan nilai fungsi bergantung pada nilai <InlineMath math="x" />.
-
-- **<InlineMath math="x" />**:
-
-  Variabel dari fungsi polinomial.
-
-- **<InlineMath math="n" />**:
-
-  Pangkat tertinggi dari variabel <InlineMath math="x" />. Nilai <InlineMath math="n" /> ini harus merupakan **bilangan cacah** (<InlineMath math="0, 1, 2, 3, \dots" />). Bilangan cacah <InlineMath math="n" /> ini juga menentukan **derajat** dari fungsi polinomial tersebut.
-
-- **<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />**:
-
-  Koefisien fungsi polinomial. Fungsi polinomial real memiliki koefisien berupa bilangan real.
-
-- **<InlineMath math="a_n x^n" />**:
-
-  Suku dengan pangkat tertinggi. Suku ini disebut **suku utama** (leading term).
-
-- **<InlineMath math="a_n" />**:
-
-  **Koefisien utama** <InlineMath math="a_n" /> harus **tak nol**, yaitu <InlineMath math="a_n \neq 0" />, agar fungsi tersebut berderajat <InlineMath math="n" />.
-
-- **<InlineMath math="a_0" />**:
-
-  Suku yang tidak memiliki variabel <InlineMath math="x" /> (atau bisa dianggap <InlineMath math="a_0 x^0" />). Suku ini disebut **suku tetap** atau **konstanta**.
+Fungsi <InlineMath math="P(x)=0" /> juga merupakan fungsi polinomial. Namun, **polinomial nol tidak memiliki suku utama tak nol**, sehingga bentuk berderajat pasti di atas tidak digunakan untuk menentukan derajatnya.
 
 ## Contoh Fungsi Polinomial
 
@@ -58,17 +60,17 @@ Misalkan kita punya fungsi: <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />
 - Koefisien lainnya adalah <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" />.
 - Suku tetapnya adalah <InlineMath math="-1" /> (<InlineMath math="a_0 = -1" />).
 
-Fungsi polinomial memiliki pangkat variabel berupa bilangan cacah dan <Highlight>koefisien utama yang tidak nol</Highlight>.
+Pada polinomial tak nol, <Highlight>koefisien utama tidak nol</Highlight>. Koefisien suku lain boleh nol, seperti koefisien pangkat tiga pada latihan berikut.
 
 ## Latihan
 
 <BlockMath math="p(t)=-2t^4+3t^2-t+8" />
 
-Tentukan derajat, suku utama, koefisien utama, koefisien <InlineMath math="t^3" />, dan suku tetap. Setelah itu, hitung <InlineMath math="p(2)" />.
+Tentukan derajat, suku utama, **koefisien utama**, koefisien <InlineMath math="t^3" />, dan suku tetap. Setelah itu, hitung <InlineMath math="p(2)" />.
 
 ### Pembahasan
 
-Tuliskan pangkat yang hilang secara eksplisit:
+Tuliskan **pangkat yang hilang** secara eksplisit:
 
 <BlockMath math="p(t)=-2t^4+0t^3+3t^2-t+8" />
 
@@ -80,8 +82,4 @@ Tuliskan pangkat yang hilang secara eksplisit:
 
 Substitusikan <InlineMath math="t=2" /> ke dalam fungsi:
 
-<MathContainer>
-  <BlockMath math="p(2)=-2(2)^4+3(2)^2-2+8" />
-  <BlockMath math="=-32+12-2+8" />
-  <BlockMath math="=-14" />
-</MathContainer>
+<BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />

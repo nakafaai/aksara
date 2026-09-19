@@ -11,24 +11,30 @@ export const metadata = {
 
 Der Rest einer Polynomdivision lässt sich oft bestimmen, ohne die vollständige [Division](/de/faecher/mathematik/polynome/polynomdivision) oder das [Horner-Schema](/de/faecher/mathematik/polynome/horner-schema) auszuführen. Der **Restsatz** verbindet diesen Rest direkt mit einem Funktionswert des Polynoms.
 
+Der Satz gilt für einen **linearen Divisor**. Setze den Wert ein, bei dem dieser Divisor null wird.
+
 ### Aussage des Restsatzes
 
 Wenn ein Polynom <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> geteilt wird, dann ist der Rest <InlineMath math="S = P(c)" />.
 
-Um den Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> zu bestimmen, genügt also die Auswertung von <InlineMath math="P(x)" /> bei <InlineMath math="x = c" />.
+Um den **Rest** bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> zu bestimmen, genügt also die Auswertung von <InlineMath math="P(x)" /> bei <InlineMath math="x = c" />.
+
+Für <InlineMath math="P(x)=2x^2-3x+4" /> und den Divisor <InlineMath math="x-2" /> erhältst du:
+
+<BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
 
 ### Warum der Restsatz gilt
 
-Der Satz folgt direkt aus dem bekannten Polynomdivisionsalgorithmus:
+Der Satz folgt direkt aus dem bekannten **Polynomdivisionsalgorithmus**:
 
 <BlockMath math="P(x) = (x - c) \cdot H(x) + S" />
 
-Wo:
+Dabei gilt:
 
 - <InlineMath math="P(x)" /> ist das Dividendenpolynom.
 - <InlineMath math="(x - c)" /> ist das Teilerpolynom (Grad <InlineMath math="1" />).
 - <InlineMath math="H(x)" /> ist der Quotient.
-- <InlineMath math="S" /> ist der Rest (eine Konstante, da der Divisor der Grad <InlineMath math="1" /> ist).
+- <InlineMath math="S" /> ist der Rest (eine Konstante, da der Divisor vom Grad <InlineMath math="1" /> ist).
 
 Setzen wir nun <InlineMath math="x = c" /> in den Divisionsalgorithmus ein:
 
@@ -41,6 +47,18 @@ Setzen wir nun <InlineMath math="x = c" /> in den Divisionsalgorithmus ein:
 
 Dies beweist, dass der Wert des Polynoms <InlineMath math="P(x)" /> bei <InlineMath math="x = c" /> gleich dem Rest <InlineMath math="S" /> ist, wenn <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> geteilt wird.
 
+Beim quadratischen Beispiel **wird das Produkt aus Divisor und Quotient für die Eingabe zwei null**. Der Rest bleibt in der Divisionsidentität immer sechs:
+
+<BlockMath math="2x^2-3x+4=(x-2)(2x+1)+6" />
+
+| Eingabe | Polynomwert | Divisor mal Quotient | Rest |
+| --- | --- | --- | --- |
+| 1 | 3 | -3 | 6 |
+| 2 | 6 | 0 | 6 |
+| 3 | 13 | 7 | 6 |
+
+Bei einem Divisor zweiten Grades kann der Rest linear sein. Ein einzelner Polynomwert reicht dann nicht aus, um den gesamten Rest zu bestimmen.
+
 ## Rechnen mit dem Restsatz
 
 Mit dem Restsatz <Highlight>lässt sich ein Divisionsrest schnell bestimmen</Highlight>, ohne den gesamten Divisionsweg auszuschreiben.
@@ -51,7 +69,7 @@ Bestimme den Rest bei der Division von <InlineMath math="P(x) = 2x^5 + 5x^4 - 10
 
 Der Teiler ist <InlineMath math="x + 4" /> oder <InlineMath math="x - (-4)" />, also <InlineMath math="c = -4" />.
 
-Koeffizienten von <InlineMath math="P(x)" /> (Vervollständigung des <InlineMath math="x" />-Terms): <InlineMath math="2, 5, -10, 9, 0, -10" />.
+Koeffizienten von <InlineMath math="P(x)" /> (**null für den fehlenden Term ergänzen**): <InlineMath math="2, 5, -10, 9, 0, -10" />.
 
 <BlockMath
   math="
@@ -71,7 +89,7 @@ Aus Horners Methode erhalten wir:
 
 ### Verwendung des Restsatzes
 
-Nach dem Restsatz ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x - (-4)" /> gleich <InlineMath math="P(-4)" />.
+Nach dem **Restsatz** ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x - (-4)" /> gleich <InlineMath math="P(-4)" />.
 
 Berechnen wir <InlineMath math="P(-4)" />:
 
@@ -91,11 +109,11 @@ Die Auswertung von <InlineMath math="P(c)" /> liefert also genau den Rest der Di
 
 ## Übung
 
-Bestimme mithilfe des Restsatzes den Rest bei der Division von <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> durch <InlineMath math="x - 7" />. Der Divisor <InlineMath math="x - 7" /> entspricht dem Wert <InlineMath math="x = 7" />, sodass eine einzige Substitution genügt. Setze diesen Wert in das Polynom ein und gib die erhaltene Zahl als Rest an.
+Bestimme mithilfe des Restsatzes den **Rest** bei der Division von <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> durch <InlineMath math="x - 7" />. Der Divisor <InlineMath math="x - 7" /> entspricht dem Wert <InlineMath math="x = 7" />, sodass eine einzige Substitution genügt. Setze diesen Wert in das Polynom ein und gib die erhaltene Zahl als Rest an.
 
 ### Ausführliche Lösung
 
-Nach dem Restsatz ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x-7" /> gleich <InlineMath math="P(7)" />.
+Nach dem **Restsatz** ist der Rest bei der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x-7" /> gleich <InlineMath math="P(7)" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} P(7) &amp;= 3(7)^5 - 20(7)^4 \\ &amp;\quad{}- 6(7)^3 - 48(7) - 8 \end{aligned}" />

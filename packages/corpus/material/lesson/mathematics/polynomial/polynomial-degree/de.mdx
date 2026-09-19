@@ -9,11 +9,13 @@ export const metadata = {
 
 ## Grad eines Monoms
 
+Die folgenden Regeln für Monomgrade setzen einen <Highlight>Koeffizienten ungleich null</Highlight> voraus. Das Nullpolynom wird getrennt behandelt, weil es keinen von null verschiedenen Term besitzt.
+
 Jedes Monom besitzt einen **Grad**. Er wird durch die Exponenten seiner Variablen bestimmt. Bei einer Variablen ist der Grad die Hochzahl selbst, bei mehreren Variablen die Summe aller Hochzahlen des Terms.
 
 ### Grad eines Monoms mit einer Variablen
 
-Bei einem Monom mit nur einer Variablen, etwa <InlineMath math="ax^n" />, ist der Grad gleich dem Exponenten <InlineMath math="n" />.
+Bei einem Monom mit nur einer Variablen, etwa <InlineMath math="ax^n" />, ist der Grad **gleich dem Exponenten** <InlineMath math="n" />.
 
 **Beispiele:**
 
@@ -31,7 +33,7 @@ Wenn ein Monom mehr als eine Variable hat, ist sein Grad die **Summe** aller Var
 
 ### Grad einer Konstante
 
-Eine von null verschiedene Konstante wie <InlineMath math="5" /> hat den **Grad <InlineMath math="0" />**. Schließlich können wir sie als <InlineMath math="5x^0" /> schreiben, weil <InlineMath math="x^0 = 1" /> gilt.
+Eine von null verschiedene Konstante wie <InlineMath math="5" /> hat den **Grad** <InlineMath math="0" />. Schließlich können wir sie als <InlineMath math="5x^0" /> schreiben, weil <InlineMath math="x^0 = 1" /> gilt.
 
 Die Tabelle fasst die bisherigen Beispiele zusammen:
 
@@ -42,10 +44,6 @@ Die Tabelle fasst die bisherigen Beispiele zusammen:
 | <InlineMath math="0{,}12x" /> | <InlineMath math="1" /> | Der Exponent von <InlineMath math="x" /> ist <InlineMath math="1" />.                     |
 | <InlineMath math="2{,}17x^3yz^3" /> | <InlineMath math="7" /> | Summe der Exponenten <InlineMath math="3+1+3=7" />.                   |
 | <InlineMath math="10" /> | <InlineMath math="0" /> | Konstante ungleich Null. Kann als <InlineMath math="10x^0" /> geschrieben werden. |
-
-### Definition des Monomialgrades
-
-Der Grad eines Monoms mit einem Koeffizienten ungleich null ist die Summe der Exponenten aller Variablen. Für <InlineMath math="ax^n" /> ist der Grad daher <InlineMath math="n" />. Eine Konstante ungleich null hat den Grad null, weil ihre Variable mit der Hochzahl null geschrieben werden kann.
 
 ## Bestimmen des Grades eines Polynoms
 
@@ -59,7 +57,13 @@ Sobald der Grad jedes einzelnen Terms feststeht, lässt sich auch der Grad des g
 2.  Bestimme den Grad jedes Terms.
 3.  Wähle den höchsten dieser Grade. Er ist der Grad des Polynoms.
 
-**Beispiel** 1:
+Fasse <Highlight>gleichartige Terme zuerst zusammen</Highlight>. Terme mit hohen Exponenten können sich aufheben. Liest du die höchste Potenz vor dem Vereinfachen ab, kann deshalb der falsche Grad entstehen. Zum Beispiel:
+
+<BlockMath math="x^4-x^4+3x^2+1=3x^2+1\quad\Rightarrow\quad\deg(3x^2+1)=2" />
+
+Nach dem Zusammenfassen ist der Koeffizient der vierten Potenz null. Der höchste verbleibende Term hat den Grad zwei.
+
+**Beispiel 1**:
 
 Bestimme den Grad des folgenden Polynoms:
 
@@ -72,7 +76,7 @@ Bestimme den Grad des folgenden Polynoms:
 
 Der höchste Termgrad ist <InlineMath math="3" />. Daher hat das Polynom den Grad <InlineMath math="3" />.
 
-**Beispiel** 2:
+**Beispiel 2**:
 
 Bestimme den Grad des folgenden Polynoms:
 
@@ -84,7 +88,7 @@ Bestimme den Grad des folgenden Polynoms:
 
 Der höchste Termgrad ist <InlineMath math="11" />. Daher hat das Polynom den Grad <InlineMath math="11" />.
 
-**Beispiel** 3:
+**Beispiel 3**:
 
 Bestimme den Grad des folgenden Polynoms:
 
@@ -96,10 +100,6 @@ Bestimme den Grad des folgenden Polynoms:
 - Der Term <InlineMath math="1{,}72" /> hat den Grad <InlineMath math="0" />.
 
 Der höchste Grad ist <InlineMath math="3" />. Daher ist der Grad dieses Polynoms <InlineMath math="3" />.
-
-### Definition des Polynomgrades
-
-Der Grad eines Polynoms ist <Highlight>der höchste Grad seiner Terme</Highlight>. In <InlineMath math="4x^3 - 2x + 7" /> haben die drei Terme die Grade <InlineMath math="3" />, <InlineMath math="1" /> und <InlineMath math="0" />, also legt der höchste dieser Grade den Grad des ganzen Polynoms fest.
 
 ### Grad des Nullpolynoms
 
@@ -118,11 +118,11 @@ Bestimme den Grad von
 
 <BlockMath math="P(x,y)=4x^3y^2-7x^2y^5+6" />
 
-Erkläre anschließend, warum dieselbe Regel dem Nullpolynom nicht den Grad <InlineMath math="0" /> zuweisen kann.
+Erkläre anschließend, warum dieselbe **Gradregel** dem Nullpolynom nicht den Grad <InlineMath math="0" /> zuweisen kann.
 
 ### Ausführliche Lösung
 
-Wir addieren in jedem von null verschiedenen Term die Exponenten:
+Wir addieren in jedem **von null verschiedenen Term** die Exponenten:
 
 - <InlineMath math="4x^3y^2" /> hat den Grad <InlineMath math="3+2=5" />.
 - <InlineMath math="-7x^2y^5" /> hat den Grad <InlineMath math="2+5=7" />.
@@ -131,3 +131,7 @@ Wir addieren in jedem von null verschiedenen Term die Exponenten:
 Der größte Termgrad ist <InlineMath math="7" />, also gilt <InlineMath math="\deg P=7" />.
 
 Das Nullpolynom besitzt keinen von null verschiedenen Term, dessen Grad als größter gewählt werden könnte. Deshalb ist sein Grad undefiniert. Würde man den Grad auf <InlineMath math="0" /> setzen, wären einige Regeln für Polynomgrade nicht mehr gültig.
+
+Nimm beispielsweise <InlineMath math="P(x)=x" /> und <InlineMath math="Q(x)=0" />. Hätte das Nullpolynom den Grad null, hätten die beiden Seiten der Produktregel unterschiedliche Werte:
+
+<BlockMath math="\underbrace{\deg(x\cdot0)}_{0}\ne\underbrace{\deg x+\deg0}_{1+0=1}" />

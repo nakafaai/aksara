@@ -3,13 +3,13 @@ export const metadata = {
    description: "Berechne Determinanten mit dem Laplaceschen Entwicklungssatz aus Minoren und Kofaktoren und vergleiche das Ergebnis bei einer Matrix der Ordnung drei mit der Regel von Sarrus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
 ## Eine Determinante nach einer Zeile oder Spalte entwickeln
 
-Die Laplace-Entwicklung schreibt eine Determinante als Summe von Kofaktoren <Highlight>entlang einer beliebigen Zeile oder Spalte</Highlight>. Jeder Kofaktor enthält die Determinante einer um eins kleineren Matrix.
+Die Laplace-Entwicklung schreibt eine Determinante als Summe von Einträgen multipliziert mit ihren Kofaktoren <Highlight>entlang einer beliebigen Zeile oder Spalte</Highlight>. Jeder Kofaktor enthält die Determinante einer um eins kleineren Matrix.
 
 Wähle eine Zeile oder Spalte mit vielen Nulleinträgen. Die entsprechenden Terme entfallen, sodass weniger kleinere Determinanten berechnet werden müssen.
 
@@ -17,11 +17,17 @@ Wähle eine Zeile oder Spalte mit vielen Nulleinträgen. Die entsprechenden Term
 
 Für die Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> kann die Determinante auf zwei Arten berechnet werden:
 
-Dabei bezeichnet <InlineMath math="A_{ij}" /> die <InlineMath math="(n-1) \times (n-1)" />-Matrix, die entsteht, wenn man aus <InlineMath math="A" /> die Zeile <InlineMath math="i" /> und die Spalte <InlineMath math="j" /> streicht. Ihr vorzeichenbehafteter Beitrag ist der Kofaktor
+Dabei bezeichnet <InlineMath math="A_{ij}" /> die <InlineMath math="(n-1) \times (n-1)" />-Matrix, die entsteht, wenn man aus <InlineMath math="A" /> die Zeile <InlineMath math="i" /> und die Spalte <InlineMath math="j" /> streicht. Die Minordeterminante mit ihrem **wechselnden Vorzeichen** ist der Kofaktor
 
 <BlockMath math="C_{ij}=(-1)^{i+j}\det A_{ij}" />
 
-### Entwicklung nach einer Spalte
+Dieses Vorzeichenmuster für drei Zeilen und Spalten zeigt: Jeder Schritt nach rechts oder unten kehrt das Vorzeichen um.
+
+| | j = 1 | j = 2 | j = 3 |
+|---|---|---|---|
+| i = 1 | + | − | + |
+| i = 2 | − | + | − |
+| i = 3 | + | − | + |
 
 Die Entwicklung nach einer beliebigen Spalte <InlineMath math="j" /> ergibt
 
@@ -30,8 +36,6 @@ Die Entwicklung nach einer beliebigen Spalte <InlineMath math="j" /> ergibt
 </MathContainer>
 
 Die Formel zur Spaltenentwicklung gilt für jedes <InlineMath math="j \in \{1, 2, \ldots, n\}" />.
-
-### Entwicklung nach einer Zeile
 
 Die Determinante kann auch anhand der Zeile <InlineMath math="i" /> berechnet werden:
 
@@ -43,7 +47,7 @@ Die Formel zur Zeilenentwicklung gilt für jedes <InlineMath math="i \in \{1, 2,
 
 ## Kofaktorentwicklung nach Matrixgröße
 
-Die Entwicklungsregel funktioniert bei jeder Größe gleich, aber die Anzahl der Terme wächst schnell, deshalb zeigen die folgenden Fälle, wie sich die Arbeit mit größer werdender Matrix ändert.
+Die Entwicklungsregel funktioniert bei jeder Größe gleich, aber die **Anzahl der Terme wächst schnell**, deshalb zeigen die folgenden Fälle, wie sich die Arbeit mit größer werdender Matrix ändert.
 
 ### Matrix der Größe zwei mal zwei
 
@@ -51,7 +55,7 @@ Für eine Matrix der Größe <InlineMath math="n = 2" />:
 
 <BlockMath math="A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}" />
 
-Entwicklung nach der ersten Zeile:
+**Entwicklung nach der ersten Zeile**:
 
 <MathContainer>
 <BlockMath math="\det A = a_{11} \cdot \det(a_{22}) - a_{12} \cdot \det(a_{21})" />
@@ -64,7 +68,7 @@ Für eine Matrix der Größe <InlineMath math="n = 3" />:
 
 <BlockMath math="A = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}" />
 
-Entwicklung nach der ersten Zeile:
+**Entwicklung nach der ersten Zeile**:
 
 <BlockMath math="\begin{aligned} \det A &amp;= a_{11} \cdot \det \begin{pmatrix} a_{22} &amp; a_{23} \\ a_{32} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}- a_{12} \cdot \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}+ a_{13} \cdot \det \begin{pmatrix} a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{pmatrix} \end{aligned}" />
 
@@ -97,11 +101,11 @@ Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte
 <BlockMath math="T(n)=\Theta(n!)" />
 </MathContainer>
 
-Das faktorielle Wachstum macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer <InlineMath math="\mathrm{LU}" />-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
+Das **faktorielle Wachstum** macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer <InlineMath math="\mathrm{LU}" />-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
 
 ## Nulleinträge nutzen
 
-Enthält eine Matrix viele Nulleinträge, wählt man eine Zeile oder Spalte mit möglichst vielen Nullen. Jeder Term verschwindet, dessen ausgewählter Koeffizient <InlineMath math="a_{ij}" /> null ist, sodass sein Minor nicht berechnet werden muss.
+Enthält eine Matrix viele Nulleinträge, wählt man eine Zeile oder Spalte mit **möglichst vielen Nullen**. Jeder Term verschwindet, dessen ausgewählter Koeffizient <InlineMath math="a_{ij}" /> null ist, sodass sein Minor nicht berechnet werden muss.
 
 ### Eine Zeile mit Nulleinträgen wählen
 
@@ -109,11 +113,11 @@ Angenommen, wir haben eine Matrix:
 
 <BlockMath math="A = \begin{pmatrix} 0 & 3 & 3 \\ 2 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}" />
 
-Entwicklung nach der ersten Zeile:
+**Entwicklung nach der ersten Zeile**:
 
 <BlockMath math="\begin{aligned} \det A &amp;= 0 \cdot \det(\ldots) - 3 \cdot \det \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \end{pmatrix} \\ &amp;\quad{}+ 3 \cdot \det \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
 
-Da das erste Element Null ist, lautet die Berechnung:
+Da das **erste Element Null** ist, lautet die Berechnung:
 
 <MathContainer>
 <BlockMath math="\begin{aligned}  &amp;= -3 \cdot (2 \cdot 1 - 0 \cdot 1) \\ &amp;\quad{}+ 3 \cdot (2 \cdot 0 - 2 \cdot 1) \end{aligned}" />
@@ -123,23 +127,19 @@ Da das erste Element Null ist, lautet die Berechnung:
 
 Durch die Auswahl von Zeilen oder Spalten mit vielen Nullen können wir Berechnungen einsparen.
 
-## Determinante nach dem Vertauschen von Zeilen und Spalten
+## Determinante der transponierten Matrix
 
 Aus der Laplace-Entwicklung folgt außerdem:
 
 <BlockMath math="\det A^T = \det A" />
 
-Das bedeutet, dass die Determinante einer Matrix gleich der Determinante ihrer Transponierten ist.
+Das bedeutet, dass die Determinante einer Matrix gleich der **Determinante ihrer Transponierten** ist.
 
 ### Konsequenzen für Zeilen und Spalten
 
-Aufgrund dieser Transpositionseigenschaft gelten alle Determinanteneigenschaften, die für Zeilen der Matrix <InlineMath math="A" /> gelten, auch für Spalten der Matrix <InlineMath math="A" />.
+Aufgrund dieser **Transpositionseigenschaft** gelten alle Determinanteneigenschaften, die für Zeilen der Matrix <InlineMath math="A" /> gelten, auch für Spalten der Matrix <InlineMath math="A" />.
 
 Zum Beispiel:
 - Wenn zwei Zeilen identisch sind, ist die Determinante Null, ebenso wenn zwei Spalten identisch sind
 - Das Vertauschen zweier Zeilen ändert das Vorzeichen der Determinante, ebenso das Vertauschen zweier Spalten
 - Entsprechende elementare Zeilen- und Spaltenoperationen folgen analogen Determinantenregeln
-
-## Größere Matrizen
-
-Die Laplace-Entwicklung gilt auch für Matrizen mit <InlineMath math="n = 4" /> oder mehr Zeilen. Bei dichten Matrizen werden meist die Gauß-Elimination oder eine <InlineMath math="\mathrm{LU}" />-Zerlegung verwendet, weil sie <InlineMath math="O(n^3)" /> Rechenoperationen statt faktoriellen Wachstums benötigen.

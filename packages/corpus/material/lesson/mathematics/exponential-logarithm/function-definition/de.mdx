@@ -24,13 +24,13 @@ Eine skalierte Exponentialfunktion hat die Form:
 
 <BlockMath math="g(x)=k\,a^x" />
 
-Dabei ist <InlineMath math="k\neq0" /> ein vertikaler Streckfaktor. <Highlight>Die Basis bestimmt Wachstum oder Zerfall</Highlight>. <InlineMath math="k" /> bestimmt den Anfangswert und die Seite der <InlineMath math="x" />-Achse, auf der der Graph liegt.
+Dabei ist <InlineMath math="k\neq0" /> ein vertikaler Streckfaktor. Die Basis bestimmt den **Änderungsfaktor pro Eingabeeinheit**. <InlineMath math="k" /> bestimmt den Anfangswert und die Seite der <InlineMath math="x" />-Achse, auf der der Graph liegt.
 
 ## Definitionsmenge Wertemenge und Achsenschnittpunkt
 
 Für die Standardfunktion <InlineMath math="f(x)=a^x" /> gilt:
 
-1. Die Definitionsmenge ist <InlineMath math="\mathbb{R}" />.
+1. Die **Definitionsmenge** ist <InlineMath math="\mathbb{R}" />.
 2. Die Wertemenge ist <InlineMath math="(0,\infty)" />.
 3. Der Graph schneidet die <InlineMath math="y" />-Achse bei <InlineMath math="(0,1)" />, weil <InlineMath math="a^0=1" /> gilt.
 4. Der Graph schneidet die <InlineMath math="x" />-Achse nie, weil <InlineMath math="a^x>0" /> gilt.
@@ -41,7 +41,7 @@ Für <InlineMath math="g(x)=k\,a^x" /> liegt der Schnittpunkt mit der <InlineMat
 
 ## Warum zwei Basen ausgeschlossen sind
 
-Zwei Werte der Basis machen die Exponentialfunktion unbrauchbar, jeder aus einem eigenen Grund. Die Basis eins liefert für jede Eingabe denselben Wert, sodass die Funktion sich nicht mehr ändert, und die Basis null verliert das Wachstum, weil jede positive Potenz der Basis null gleich null bleibt.
+Die Basis eins schließen wir aus, weil sie eine **konstante Funktion** ergibt. Die Basis null schließen wir aus, weil ihre **negativen Potenzen nicht definiert** sind. Die Gründe unterscheiden sich: Die konstante Funktion besitzt weiterhin für jede reelle Eingabe einen Wert, die Basis null dagegen nicht.
 
 ### Basis Eins
 
@@ -49,7 +49,7 @@ Für <InlineMath math="a=1" /> gilt:
 
 <BlockMath math="g(x)=k\cdot1^x=k" />
 
-Der Funktionswert ändert sich nicht. Deshalb handelt es sich um eine konstante Funktion. Exponentielles Wachstum und exponentieller Zerfall benötigen eine wiederholte Änderung mit demselben Faktor.
+Der Funktionswert ändert sich nicht. Deshalb handelt es sich um eine **konstante Funktion**. Exponentielles Wachstum und exponentieller Zerfall benötigen eine wiederholte Änderung mit demselben Faktor.
 
 <FunctionChart
   a={1}
@@ -64,7 +64,7 @@ Der Funktionswert ändert sich nicht. Deshalb handelt es sich um eine konstante 
 
 ### Basis Null
 
-Der Ausdruck <InlineMath math="0^x" /> definiert keine reellwertige Funktion für alle reellen Eingaben:
+Der Ausdruck <InlineMath math="0^x" /> kann nicht **alle reellen Zahlen als Definitionsmenge** haben:
 
 <MathContainer>
   <BlockMath math="0^x=0\qquad\text{für }x>0" />
@@ -75,7 +75,7 @@ Für <InlineMath math="x=0" /> wird dem Ausdruck <InlineMath math="0^0" /> in di
 
 ## Form und Verhalten von Exponentialfunktionen
 
-1. Für <InlineMath math="f(x)=4^x" /> gilt <InlineMath math="a=4>1" />. Die Funktion ist daher steigend. Zu ihren Werten gehören <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" /> und <InlineMath math="f(2)=16" />.
+1. Für <InlineMath math="f(x)=4^x" /> gilt <InlineMath math="a=4>1" />. Die **Funktion ist daher steigend**. Zu ihren Werten gehören <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" /> und <InlineMath math="f(2)=16" />.
 
 2. <InlineMath math="f(x)=3^{x+1}" /> lässt sich als <InlineMath math="f(x)=3\cdot3^x" /> schreiben. Der Faktor <InlineMath math="3" /> verschiebt den Schnittpunkt mit der <InlineMath math="y" />-Achse von <InlineMath math="1" /> auf <InlineMath math="3" />.
 
@@ -101,4 +101,10 @@ Für <InlineMath math="x=0" /> wird dem Ausdruck <InlineMath math="0^0" /> in di
 3. **Halbwertszeit**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, wobei <InlineMath math="h" /> die Halbwertszeit ist.
 4. **Frühe Übertragung**: <InlineMath math="C(n)=C_0R^n" />, wobei <InlineMath math="R" /> ein angenommener durchschnittlicher Faktor pro Zyklus ist.
 
-Jede Formel erhält erst durch klar benannte Variablen, Einheiten, Intervalle und Annahmen eine Bedeutung. Dieselbe exponentielle Form kann verschiedene Zusammenhänge beschreiben. Die Symbole allein besitzen noch keine reale Bedeutung.
+Im Verdopplungsmodell ist <InlineMath math="P_0" /> die Anfangsmenge. Die Größen <InlineMath math="t" /> und <InlineMath math="d" /> verwenden dieselbe Zeiteinheit. Im Halbwertszeitmodell ist <InlineMath math="A_0" /> die Anfangsmenge, und <InlineMath math="t" /> und <InlineMath math="h" /> haben ebenfalls dieselbe Zeiteinheit. Im Übertragungsmodell ist <InlineMath math="C_0" /> die anfängliche Anzahl und <InlineMath math="n" /> zählt die Zyklen. Jedes Modell setzt für die betrachteten Intervalle einen gleichbleibenden Änderungsfaktor voraus.
+
+Beim Wachstum mit Zinseszinseffekt bezeichnet <InlineMath math="P" /> den Anfangswert und <InlineMath math="t" /> die Zahl der Intervalle. Ein Anfangswert von <InlineMath math="100" /> wächst zum Beispiel um <InlineMath math="10\%" /> pro Intervall, also ist <InlineMath math="r=0{,}1" />. Nach zwei Intervallen gilt:
+
+<BlockMath math="A(2)=100(1+0{,}1)^2=100(1{,}21)=121" />
+
+Der zweite Zuwachs wird aus <InlineMath math="110" /> berechnet. Deshalb **wächst auch der hinzugefügte Betrag**, obwohl der Prozentsatz gleich bleibt.

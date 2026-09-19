@@ -34,41 +34,21 @@ The geometric series is the sum of the terms of this sequence:
 
 ## Finding the Formula for the Sum of the First Terms
 
-How can we calculate the sum of the first <InlineMath math="n" /> terms <InlineMath math="(S_n)" /> without adding them one by one? The following calculation derives the formula.
+The key is **subtracting two nearly identical sums**. For the first three months, multiply the seedling total by the ratio three. The terms 12 and 36 then occur in both sums and cancel.
 
-Consider this table which shows the process of rediscovering the formula for the sum of a geometric series:
+<BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
 
-| Notation                     | Direct Summation                              | Using <InlineMath math="U_{n+1}" /> and <InlineMath math="U_1" />       | General Form                                            |
-| :--------------------------- | :-------------------------------------------- | :---------------------------------------------------------------------- | :------------------------------------------------------ |
-| <InlineMath math="S_2" />    | <InlineMath math="4 + 12 = 16" />             | <InlineMath math="S_2 = \frac{36 - 4}{3 - 1} = \frac{32}{2} = 16" />    | <InlineMath math="S_2 = \frac{U_3 - U_1}{r - 1}" />     |
-| <InlineMath math="S_3" />    | <InlineMath math="4 + 12 + 36 = 52" />        | <InlineMath math="S_3 = \frac{108 - 4}{3 - 1} = \frac{104}{2} = 52" />  | <InlineMath math="S_3 = \frac{U_4 - U_1}{r - 1}" />     |
-| <InlineMath math="S_4" />    | <InlineMath math="4 + 12 + 36 + 108 = 160" /> | <InlineMath math="S_4 = \frac{324 - 4}{3 - 1} = \frac{320}{2} = 160" /> | <InlineMath math="S_4 = \frac{U_5 - U_1}{r - 1}" />     |
-| <InlineMath math="\vdots" /> | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="\dots" />                             |
-| <InlineMath math="S_n" />    | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" /> |
-
-For <InlineMath math="r\ne1" />, the bottom-right cell gives the general form:
-
-<BlockMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" />
-
-We know that the formula for the <InlineMath math="n" />-th term in a geometric sequence is <InlineMath math="U_n = ar^{n-1}" />. Thus, <InlineMath math="U_{n+1} = ar^{(n+1)-1} = ar^n" />.
-Substitute <InlineMath math="U_{n+1} = ar^n" /> and <InlineMath math="U_1 = a" /> into the <InlineMath math="S_n" /> formula:
-
-<MathContainer>
-  <BlockMath math="S_n = \frac{ar^n - a}{r - 1}" />
-  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
-</MathContainer>
-
-This is the formula for the sum of the first <InlineMath math="n" /> terms of a geometric series.
-
-We can also derive the same result by multiplying the sum by <InlineMath math="r" /> and subtracting:
+Now apply the same subtraction to a sum with first term <InlineMath math="a" />, ratio <InlineMath math="r" />, and <InlineMath math="n" /> terms. Multiplying by the ratio shifts every term one position forward:
 
 <MathContainer>
   <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
   <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
-  <BlockMath math="(1-r)S_n=a(1-r^n)" />
+  <BlockMath math="\begin{aligned}rS_n-S_n&amp;=ar^n-a\\(r-1)S_n&amp;=a(r^n-1)\end{aligned}" />
 </MathContainer>
 
-The middle terms cancel. This explains why the formula contains only the first term and the next power after the final term.
+Only **the first term and the term after the last** remain. Since <InlineMath math="U_1=a" /> and <InlineMath math="U_{n+1}=ar^n" />, for <InlineMath math="r\ne1" /> we can divide both sides by <InlineMath math="r-1" />:
+
+<BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
 
 ## Geometric Series Formula
 
@@ -83,6 +63,8 @@ An equivalent form is
 Both forms work for positive or negative ratios as long as <InlineMath math="r\ne1" />. If <InlineMath math="r=1" />, all terms equal <InlineMath math="a" />, so:
 
 <BlockMath math="S_n=na" />
+
+At ratio one, division by <InlineMath math="r-1" /> would be **division by zero**. Instead, add directly, for example <InlineMath math="5+5+5+5=4\cdot5=20" />. At ratio zero, only the first term can be nonzero, so <InlineMath math="S_n=a" />.
 
 **Legend:**
 
@@ -128,7 +110,7 @@ The addition is meaningful here because each monthly value represents newly prod
 
 ## Practice with a Negative Ratio
 
-Calculate the finite sum:
+Calculate the **finite sum**:
 
 <BlockMath math="81-27+9-3+1" />
 
@@ -136,7 +118,7 @@ The first term is <InlineMath math="a=81" />, the ratio is <InlineMath math="r=-
 
 <MathContainer>
   <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
-  <BlockMath math="S_5=81\left(\frac{244/243}{4/3}\right)=61" />
+  <BlockMath math="\begin{aligned}S_5&amp;=81\left(\frac{244/243}{4/3}\right)\\&amp;=81\cdot\frac{244}{243}\cdot\frac34\\&amp;=\frac{244}{4}=61\end{aligned}" />
 </MathContainer>
 
 Check by direct addition: <InlineMath math="81-27+9-3+1=61" />.

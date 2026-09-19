@@ -35,99 +35,95 @@ Sebelum memulai pembagian, ada beberapa hal yang perlu dipersiapkan:
 
 ## Langkah Pembagian Bersusun
 
-Proses pembagian dilakukan langkah demi langkah sebagai berikut:
-
-1.  **Bagi:** Bagi suku pertama <InlineMath math="P(x)" /> dengan suku pertama <InlineMath math="Q(x)" />. Tulis hasilnya sebagai suku pertama dari hasil bagi (<InlineMath math="H(x)" />) di atas garis.
-2.  **Kali:** Kalikan suku hasil bagi yang baru saja didapat dengan _seluruh_ suku pembagi <InlineMath math="Q(x)" />.
-3.  **Kurang:** Tulis hasil perkalian tersebut di bawah <InlineMath math="P(x)" />, luruskan suku-suku sejenis, lalu kurangkan dari <InlineMath math="P(x)" /> untuk mendapatkan sisa sementara.
-4.  **Turunkan:** Turunkan suku berikutnya dari <InlineMath math="P(x)" /> ke samping sisa sementara untuk membentuk polinomial baru.
-5.  **Ulangi:** Ulangi langkah <InlineMath math="1\text{-}4" /> dengan polinomial baru ini, sampai derajat sisa sementara lebih kecil dari derajat pembagi <InlineMath math="Q(x)" />.
+Pembagi harus **bukan polinomial nol**. Pada setiap putaran, perkalian dan pengurangan menghilangkan suku berpangkat tertinggi pada sisa sementara. Proses ini berhenti ketika sisa nol atau derajat sisa lebih kecil daripada derajat pembagi.
 
 ### Contoh Pembagian Bersusun
 
 Bagilah <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> dengan <InlineMath math="Q(x) = x^2 + 4x - 1" />.
 
-1. **Persiapan:**
+**Langkah 1**. Persiapan
 
-   - <InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (lengkapi suku <InlineMath math="x^2" />)
-   - <InlineMath math="Q(x) = x^2 + 4x - 1" />
+<InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (lengkapi suku <InlineMath math="x^2" />)
+<InlineMath math="Q(x) = x^2 + 4x - 1" />
 
-2. **Proses Pembagian:**
+**Langkah 2**. Proses Pembagian
 
-   Hasil baginya adalah <InlineMath math="4x^2+x" /> dan sisanya <InlineMath math="-2x+1" />. Langkah berikut memperlihatkan setiap perkalian dan pengurangan, termasuk koefisien nol pada <InlineMath math="x^2" />.
+Hasil baginya adalah <InlineMath math="4x^2+x" /> dan sisanya <InlineMath math="-2x+1" />. Langkah berikut memperlihatkan setiap perkalian dan pengurangan, termasuk koefisien nol pada <InlineMath math="x^2" />.
 
-3. **Penjelasan Langkah Demi Langkah:**
+**Langkah 3**. Penjelasan Langkah Demi Langkah
 
-   **Iterasi** <InlineMath math="1" />:
+**Iterasi 1**:
 
-   - **Bagi:** Bagi suku pertama <InlineMath math="4x^4" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
+**Bagi:** Bagi suku pertama <InlineMath math="4x^4" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
+<BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
 
-     Tulis <InlineMath math="4x^2" /> sebagai suku pertama hasil bagi.
+Tulis <InlineMath math="4x^2" /> sebagai suku pertama hasil bagi.
 
-   - **Kali:** Kalikan <InlineMath math="4x^2" /> dengan pembagi <InlineMath math="x^2 + 4x - 1" />:
+**Kali:** Kalikan <InlineMath math="4x^2" /> dengan pembagi <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
-   - **Kurang:** Kurangkan hasil perkalian dari polinomial awal:
+**Kurang:** Kurangkan hasil perkalian dari polinomial awal:
 
-     <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
 
-   - **Turunkan:** Turunkan suku berikutnya (<InlineMath math="-3x" />) untuk mendapatkan polinomial baru:
+**Turunkan:** Turunkan suku berikutnya (<InlineMath math="-3x" />) untuk mendapatkan polinomial baru:
 
-     <InlineMath math="x^3 + 4x^2 - 3x" />
+<InlineMath math="x^3 + 4x^2 - 3x" />
 
-   **Iterasi** <InlineMath math="2" />:
+**Iterasi 2**:
 
-   - **Bagi:** Bagi suku pertama polinomial baru <InlineMath math="x^3" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
+**Bagi:** Bagi suku pertama polinomial baru <InlineMath math="x^3" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{x^3}{x^2} = x" />
+<BlockMath math="\frac{x^3}{x^2} = x" />
 
-     Tulis <InlineMath math="+x" /> sebagai suku berikutnya hasil bagi.
+Tulis <InlineMath math="+x" /> sebagai suku berikutnya hasil bagi.
 
-   - **Kali:** Kalikan <InlineMath math="x" /> dengan pembagi <InlineMath math="x^2 + 4x - 1" />:
+**Kali:** Kalikan <InlineMath math="x" /> dengan pembagi <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
+<BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
 
-   - **Kurang:** Kurangkan hasil perkalian dari polinomial saat ini:
+**Kurang:** Kurangkan hasil perkalian dari polinomial saat ini:
 
-     <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
-   - **Turunkan:** Turunkan suku berikutnya (<InlineMath math="+1" />) untuk mendapatkan sisa sementara:
+**Turunkan:** Turunkan suku berikutnya (<InlineMath math="+1" />) untuk mendapatkan sisa sementara:
 
-     <BlockMath math="-2x + 1" />
+<BlockMath math="-2x + 1" />
 
-   **Berhenti:** Derajat sisa (<InlineMath math="-2x+1" />, derajat <InlineMath math="1" />) lebih kecil dari derajat pembagi (<InlineMath math="x^2+4x-1" />, derajat <InlineMath math="2" />), maka pembagian berhenti.
+**Berhenti:** Derajat sisa (<InlineMath math="-2x+1" />, derajat <InlineMath math="1" />) lebih kecil dari derajat pembagi (<InlineMath math="x^2+4x-1" />, derajat <InlineMath math="2" />), maka pembagian berhenti.
 
-4. **Hasil:**
+**Langkah 4**. Hasil
 
-     - Hasil Bagi (<InlineMath math="H(x)" />) adalah <InlineMath math="4x^2 + x" />.
-     - Sisa (<InlineMath math="S(x)" />) adalah <InlineMath math="-2x + 1" />.
+Hasil Bagi (<InlineMath math="H(x)" />) adalah <InlineMath math="4x^2 + x" />.
+Sisa (<InlineMath math="S(x)" />) adalah <InlineMath math="-2x + 1" />.
 
-5. **Penulisan dalam Algoritma Pembagian:**
+**Langkah 5**. Penulisan dalam Algoritma Pembagian
 
-     Berdasarkan algoritma pembagian, kita dapat menuliskan hasilnya sebagai:
+Berdasarkan algoritma pembagian, kita dapat menuliskan hasilnya sebagai:
 
-     - Bentuk Pecahan:
+Bentuk Pecahan:
 
-       <BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
 
-     - Bentuk Perkalian:
+Bentuk Perkalian:
 
-       <BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
 
 Pembagian bersusun mencatat setiap langkah pembagian, perkalian, dan pengurangan. Susunan yang eksplisit ini berlaku untuk pembagi berderajat positif berapa pun dan memudahkan pemeriksaan kembali melalui <InlineMath math="P(x)=Q(x)H(x)+S(x)" />.
 
+Bentuk pecahan hanya berlaku untuk input dengan <InlineMath math="Q(x)\ne0" />. Identitas perkalian tetap berlaku untuk semua input.
+
 ## Latihan
 
-Carilah polinomial hasil bagi <InlineMath math="H(x)" /> dan polinomial sisa <InlineMath math="S(x)" /> setelah <InlineMath math="P(x) = x^3 - x + 9" /> dibagi dengan <InlineMath math="Q(x) = x^2 - 2x + 3" />. Periksa hasilnya dengan mengalikan pembagi dengan hasil baginya, lalu menambahkan sisanya.
+Carilah **polinomial hasil bagi** <InlineMath math="H(x)" /> dan polinomial sisa <InlineMath math="S(x)" /> setelah <InlineMath math="P(x) = x^3 - x + 9" /> dibagi dengan <InlineMath math="Q(x) = x^2 - 2x + 3" />. Periksa hasilnya dengan mengalikan pembagi dengan hasil baginya, lalu menambahkan sisanya.
 
 Nyatakan hasilnya ke dalam bentuk <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />.
 
 ### Pembahasan
 
-Lengkapi <InlineMath math="P(x)" /> menjadi <InlineMath math="x^3 + 0x^2 - x + 9" />.
+**Lengkapi koefisien nol** pada <InlineMath math="P(x)" /> menjadi <InlineMath math="x^3 + 0x^2 - x + 9" />.
 
 <BlockMath
   math="

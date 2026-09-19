@@ -2,14 +2,14 @@ export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-17",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Gegeben seien die Funktion <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> und <InlineMath math="F(x) = \int f(x) \, dx" /> mit der Bedingung <InlineMath math="F(-3) = 2" />.
+Gegeben seien die Funktion <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> und <InlineMath math="F(x) = \int f(x) \, dx" /> mit der **Anfangsbedingung** <InlineMath math="F(-3) = 2" />.
 
 #### Substitution
 
-Um dieses Integral zu lösen, verwenden wir die Substitutionsmethode.
+Wir verwenden **Substitution**, weil die Ableitung des inneren quadratischen Terms den Faktor <InlineMath math="x+3" /> vor der vierten Potenz enthält.
 
 Sei <InlineMath math="u = x^2 + 6x + 8" />.
 
@@ -31,7 +31,7 @@ Wir teilen beide Seiten durch <InlineMath math="2" />:
 
 #### Das Integral lösen
 
-Wir setzen in das Integral ein:
+Nach dem Variablenwechsel nutzen wir die **Potenzregel der Integration**:
 
 <BlockMath math="\begin{aligned}F(x)&=\int f(x)\,dx\\&=\int(x+3)u^4\,dx\end{aligned}" />
 
@@ -50,7 +50,7 @@ Wir ersetzen <InlineMath math="u = x^2 + 6x + 8" /> zurück:
 
 #### Bestimmung der Konstante C
 
-Nun verwenden wir die Bedingung <InlineMath math="F(-3) = 2" />:
+Nun verwenden wir die **Anfangsbedingung** <InlineMath math="F(-3) = 2" />:
 
 <BlockMath math="\begin{aligned}F(-3)&=\frac1{10}\bigl(9-18+8\bigr)^5\\&\quad+C\\&=2\end{aligned}" />
 
@@ -76,3 +76,7 @@ Wir setzen den Wert von <InlineMath math="C" /> in <InlineMath math="F(x)" /> ei
 <BlockMath math="\begin{aligned}F(x)&=\frac1{10}(x^2+6x+8)^5\\&\quad+\frac{21}{10}\end{aligned}" />
 
 Mit dieser Konstante gilt wie gefordert <InlineMath math="F(-3)=2" />.
+
+Das Ergebnis ist [eine Stammfunktion](/de/faecher/mathematik/integralrechnung/definition-des-unbestimmten-integrals). Zur Prüfung **leiten wir das Ergebnis ab**:
+
+<BlockMath math="\begin{aligned}F\prime(x)&=\frac5{10}(x^2+6x+8)^4(2x+6)\\&=(x+3)(x^2+6x+8)^4\\&=f(x)\end{aligned}" />

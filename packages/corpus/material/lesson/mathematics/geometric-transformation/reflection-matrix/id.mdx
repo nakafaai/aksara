@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan empat matriks pencerminan dasar dan terapkan pada titik maupun segitiga.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Transformasi Geometri",
 };
 
@@ -36,6 +36,8 @@ Jadi, matriks pencerminan terhadap sumbu <InlineMath math="x" /> adalah:
 
 Pencerminan titik <InlineMath math="(x,y)" /> terhadap sumbu <InlineMath math="y" /> menghasilkan <InlineMath math="(-x,y)" />.
 
+Di sini, hanya **koordinat horizontal yang berubah tanda**. Baris pertama memilih negatif koordinat horizontal, sementara baris kedua mempertahankan koordinat vertikal.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ y \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} -1x + 0y \\ 0x + 1y \end{pmatrix}" />
@@ -50,6 +52,8 @@ Matriksnya adalah:
 ## Matriks Pencerminan terhadap Garis Diagonal Utama
 
 Pencerminan titik <InlineMath math="(x,y)" /> terhadap garis <InlineMath math="y=x" /> menghasilkan <InlineMath math="(y,x)" />.
+
+Matriks ini **menukar kedua koordinat**. Entri satu berada di luar diagonal utama karena baris pertama mengambil koordinat vertikal dan baris kedua mengambil koordinat horizontal.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} y \\ x \end{pmatrix}" />
@@ -66,6 +70,8 @@ Matriksnya adalah:
 
 Pencerminan titik <InlineMath math="(x,y)" /> terhadap garis <InlineMath math="y=-x" /> menghasilkan <InlineMath math="(-y,-x)" />.
 
+Matriks ini **menukar sekaligus menegatifkan kedua koordinat**. Entri negatif satu di luar diagonal utama menerapkan kedua operasi dalam satu perkalian.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} 0x - 1y \\ -1x + 0y \end{pmatrix}" />
@@ -79,28 +85,22 @@ Matriksnya adalah:
 
 ## Berbagai Matriks Pencerminan Dasar
 
-Setiap matriks di bawah bekerja pada vektor kolom yang memuat koordinat sebuah titik. Bacalah satu baris sebagai <Highlight>aturan untuk satu koordinat hasil</Highlight>, sehingga baris pertama menghasilkan <InlineMath math="x" /> baru dan baris kedua menghasilkan <InlineMath math="y" /> baru. Matriks untuk kedua sumbu koordinat dan untuk titik pusat menyusul.
+Untuk membandingkan empat matriks, gunakan **titik asal yang sama**, yaitu <InlineMath math="P(3,-4)" />. Perhatikan perbedaan antara membalik tanda dan menukar koordinat:
 
-- Matriks pencerminan terhadap sumbu <InlineMath math="x" />:
-
-  <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-- Matriks pencerminan terhadap sumbu <InlineMath math="y" />:
-
-  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
-- Matriks pencerminan terhadap garis <InlineMath math="y=x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
-- Matriks pencerminan terhadap garis <InlineMath math="y=-x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+| Cermin | Aturan koordinat | Bayangan |
+| --- | --- | --- |
+| <InlineMath math="y=0" /> | <InlineMath math="(x,y)\mapsto(x,-y)" /> | <InlineMath math="(3,4)" /> |
+| <InlineMath math="x=0" /> | <InlineMath math="(x,y)\mapsto(-x,y)" /> | <InlineMath math="(-3,-4)" /> |
+| <InlineMath math="y=x" /> | <InlineMath math="(x,y)\mapsto(y,x)" /> | <InlineMath math="(-4,3)" /> |
+| <InlineMath math="y=-x" /> | <InlineMath math="(x,y)\mapsto(-y,-x)" /> | <InlineMath math="(4,-3)" /> |
 
 ## Mencari Bayangan Titik dengan Matriks
 
 Carilah bayangan <InlineMath math="(3,-4)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
-Menggunakan matriks pencerminan terhadap sumbu <InlineMath math="x" />:
+Gunakan **perkalian baris dan kolom** dengan matriks pencerminan terhadap sumbu <InlineMath math="x" />:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
@@ -110,7 +110,7 @@ Jadi, bayangannya adalah <InlineMath math="(3,4)" />.
 
 Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan <InlineMath math="A(3,1)" />, <InlineMath math="B(-2,3)" />, dan <InlineMath math="C(2,-1)" /> yang dicerminkan terhadap sumbu <InlineMath math="y" />!
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Matriks pencerminan terhadap sumbu <InlineMath math="y" /> adalah:
 
@@ -120,7 +120,7 @@ Matriks titik-titik sudut segitiga <InlineMath math="ABC" />:
 
 <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-Kolom-kolomnya mewakili <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> dari kiri ke kanan. Kalikan setiap kolom dengan matriks pencerminan untuk mendapatkan kedua koordinat bayangannya.
+Kolom-kolomnya mewakili <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> dari kiri ke kanan. Kalikan **setiap kolom titik** dengan matriks pencerminan untuk mendapatkan kedua koordinat bayangannya.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
@@ -187,12 +187,13 @@ Jadi, bayangannya adalah segitiga <InlineMath math="A'B'C'" /> dengan <InlineMat
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Latihan
 
-Setiap soal berikut meminta bayangan sebuah titik atau bangun setelah dicerminkan. Tuliskan dulu matriks pencerminan yang sesuai, lalu kalikan dengan vektor koordinat titik yang ditinjau.
+Pilih **matriks sesuai garis cermin**, lalu kalikan dengan vektor koordinat. Pada soal segitiga, simpan ketiga titik sudut dalam urutan kolom yang sama.
 
 1.  Carilah bayangan titik <InlineMath math="(3,5)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" /> menggunakan matriks pencerminan berikut:
 
@@ -201,30 +202,36 @@ Setiap soal berikut meminta bayangan sebuah titik atau bangun setelah dicerminka
 
 ### Pembahasan
 
-1.  Kalikan vektor posisi titik <InlineMath math="(3,5)" /> dengan matriks pencerminan terhadap sumbu <InlineMath math="x" />:
+Baris pertama menentukan koordinat horizontal, baris kedua menentukan koordinat vertikal. Untuk cermin diagonal negatif, hasilnya **menukar koordinat dan membalik tanda**.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
+**Pembahasan 1**
 
-    Bayangan: <InlineMath math="(3,-5)" />.
+Kalikan vektor posisi titik <InlineMath math="(3,5)" /> dengan matriks pencerminan terhadap sumbu <InlineMath math="x" />:
 
-2.  Matriks pencerminan terhadap <InlineMath math="y=-x" /> adalah:
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+Bayangan: <InlineMath math="(3,-5)" />.
 
-    Matriks titik <InlineMath math="ABC" />:
+**Pembahasan 2**
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+Matriks pencerminan terhadap <InlineMath math="y=-x" /> adalah:
 
-      <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-    </MathContainer>
-          Hitung setiap entri dengan mengalikan baris dan kolom:
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+Matriks titik <InlineMath math="ABC" />:
 
-      <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-    Bayangan: <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" />, <InlineMath math="C'(1,-2)" />.
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+</MathContainer>
+Hitung setiap entri dengan mengalikan baris dan kolom:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+
+  <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
+</MathContainer>
+
+Bayangan: <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" />, <InlineMath math="C'(1,-2)" />.

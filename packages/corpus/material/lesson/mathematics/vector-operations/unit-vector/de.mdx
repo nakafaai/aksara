@@ -5,7 +5,7 @@ export const metadata = {
   description: "Normiere einen Vektor ungleich null zum Einheitsvektor und verbinde den Betrag 1 mit Richtung und den kartesischen Standardeinheitsvektoren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -19,7 +19,7 @@ Betrachten wir den Vektor <InlineMath math="\overrightarrow{PQ}" /> in einem kar
 
 <BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
 
-Dabei ist <InlineMath math="|\overrightarrow{PQ}|" /> der Betrag des Vektors <InlineMath math="\overrightarrow{PQ}" />.
+Der Nenner <InlineMath math="|\overrightarrow{PQ}|" /> ist der Betrag von <InlineMath math="\overrightarrow{PQ}" /> und muss **größer als null** sein. Zum Nullvektor gibt es keinen zugehörigen Einheitsvektor, weil die Division durch null nicht definiert ist.
 
 Der Einheitsvektor zeigt in dieselbe Richtung wie der ursprüngliche Vektor, hat aber den normierten Betrag <InlineMath math="1 \text{ Einheit}" />.
 
@@ -47,7 +47,7 @@ Der Einheitsvektor zeigt in dieselbe Richtung wie der ursprüngliche Vektor, hat
 
 ## Berechnung eines Einheitsvektors
 
-Teilst du einen Vektor durch seinen eigenen Betrag, bleibt die Richtung erhalten und der Betrag wird auf eins reduziert. Arbeite die drei Schritte unten der Reihe nach für jeden Vektor ungleich dem Nullvektor durch.
+Teilst du einen Vektor ungleich null durch seinen Betrag, bleibt **seine Richtung** erhalten und der Betrag wird eins. Ein ursprünglich längerer Vektor wird verkürzt. Ein Vektor mit einem Betrag kleiner als eins wird vergrößert.
 
 1. Bestimme den ursprünglichen Vektor
 2. Berechne seinen Betrag
@@ -61,7 +61,7 @@ Zuerst berechnen wir seinen Betrag:
 
 <BlockMath math="\begin{aligned} |\vec{v}| &amp;= \sqrt{3^2 + 6^2 + 4^2} \\ &amp;= \sqrt{9 + 36 + 16} \\ &amp;= \sqrt{61} \end{aligned}" />
 
-Anschließend teilen wir den Vektor durch diesen Betrag:
+Anschließend **teilen wir den Vektor durch diesen Betrag**:
 
 <BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
 
@@ -100,11 +100,11 @@ Damit erhalten wir:
 
 ## Länge und Komponenten eines Einheitsvektors
 
-Das Kennzeichen eines Einheitsvektors ist seine Länge eins, und diese Länge bindet seine Komponenten aneinander. Die Summe der Komponentenquadrate ergibt eins, und diese Gleichung bestimmt den Schritt von einem beliebigen Vektor zu seinem Einheitsvektor.
+Das Kennzeichen eines Einheitsvektors ist seine Länge eins, und diese Länge bindet seine Komponenten aneinander. Die **Summe der Komponentenquadrate** ergibt eins, und diese Gleichung bestimmt den Schritt von einem Vektor ungleich null zu seinem Einheitsvektor.
 
 ### Betrag eines Einheitsvektors
 
-Ein Einheitsvektor hat den Betrag <InlineMath math="1" />. Addiere im Beispiel zuerst die Quadrate der drei Koordinaten. Ein Betrag ist nicht negativ. Zum Schluss nimmst du daher die positive Quadratwurzel.
+Ein Einheitsvektor hat den Betrag <InlineMath math="1" />. Addiere im Beispiel zuerst die Quadrate der drei Koordinaten. Ein Betrag ist nicht negativ. Zum Schluss nimmst du daher die **positive Quadratwurzel**.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;|\hat{v}|^2 \\ &amp;=\left(\frac{3}{\sqrt{61}}\right)^2+\left(\frac{6}{\sqrt{61}}\right)^2 \\ &amp;\quad+\left(\frac{4}{\sqrt{61}}\right)^2 \\ &amp;=\frac{9+36+16}{61} \\ &amp;=\frac{61}{61} \\ &amp;=1 \end{aligned}" />
@@ -113,7 +113,7 @@ Ein Einheitsvektor hat den Betrag <InlineMath math="1" />. Addiere im Beispiel z
 
 ### Einheitsvektoren auf Koordinatenachsen
 
-Im dreidimensionalen Koordinatensystem gibt es drei Standardeinheitsvektoren, die jeweils in die positive Richtung einer Koordinatenachse zeigen:
+Im dreidimensionalen Koordinatensystem gibt es drei Standardeinheitsvektoren, die jeweils in die **positive Richtung einer Koordinatenachse** zeigen:
 
 - <InlineMath math="\hat{\imath}" /> ist der Einheitsvektor in positiver <InlineMath math="x" />-Richtung
 - <InlineMath math="\hat{\jmath}" /> ist der Einheitsvektor in positiver <InlineMath math="y" />-Richtung
@@ -152,12 +152,22 @@ Jeder Vektor in <InlineMath math="\mathbb{R}^3" /> kann als lineare Kombination 
 
 ## Eine Richtung mit einem Einheitsvektor angeben
 
-Ein Einheitsvektor trennt die Richtung vom Betrag, sodass sich die Richtung allein angeben lässt. Zwei Vektoren mit derselben Richtung teilen sich einen Einheitsvektor, und damit ist der Einheitsvektor eine kurze Schreibweise für diese Richtung.
+Ein Einheitsvektor **trennt die Richtung vom Betrag**, sodass sich die Richtung allein angeben lässt. Zwei Vektoren mit derselben Richtung teilen sich einen Einheitsvektor, und damit ist der Einheitsvektor eine kurze Schreibweise für diese Richtung.
 
 ### Eine Richtung angeben
 
-Einheitsvektoren beschreiben eine Richtung unabhängig vom Betrag. In der Physik geben sie zum Beispiel die Richtung einer Kraft, Geschwindigkeit oder Beschleunigung an. Der Betrag bleibt dabei als eigener Faktor stehen, sodass du Richtung und Länge getrennt behandeln kannst.
+Einheitsvektoren beschreiben eine Richtung unabhängig vom Betrag. In der Physik geben sie zum Beispiel die Richtung einer Kraft, Geschwindigkeit oder Beschleunigung an. Der Betrag bleibt dabei als **eigener Faktor** stehen, sodass du Richtung und Länge getrennt behandeln kannst.
 
 ### Physikalische Berechnungen
 
-Einheitsvektoren stellen eine Kraft als Komponenten entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse dar. Jeder Koeffizient gibt den vorzeichenbehafteten Betrag entlang einer Achse an. Eine Kraft <InlineMath math="3\mathbf{i} - 4\mathbf{j}" /> wirkt damit mit <InlineMath math="3 \text{ Einheiten}" /> entlang der <InlineMath math="x" />-Achse und mit <InlineMath math="-4 \text{ Einheiten}" /> entlang der <InlineMath math="y" />-Achse.
+Eine Kraft habe eine Komponente von <InlineMath math="3\text{ N}" /> in positiver <InlineMath math="x" />-Richtung und eine Komponente von <InlineMath math="-4\text{ N}" /> entlang der <InlineMath math="y" />-Achse. Das Minuszeichen gibt die Richtung entgegen der positiven Achse an. Den **Betrag der Kraft** berechnen wir aus beiden Komponenten:
+
+<MathContainer>
+  <BlockMath math="\vec F=(3\hat\imath-4\hat\jmath)\text{ N}" />
+  <BlockMath math="|\vec F|=\sqrt{3^2+(-4)^2}\text{ N}=5\text{ N}" />
+  <BlockMath math="\hat F=\frac{\vec F}{|\vec F|}=\frac35\hat\imath-\frac45\hat\jmath" />
+</MathContainer>
+
+Der Einheitsvektor trägt keine Einheit Newton, weil sich die Einheiten im Zähler und Nenner kürzen. Multiplizierst du die Richtung mit dem Kraftbetrag, erhältst du die ursprünglichen Komponenten zurück:
+
+<BlockMath math="5\text{ N}\left(\frac35\hat\imath-\frac45\hat\jmath\right)=(3\hat\imath-4\hat\jmath)\text{ N}" />

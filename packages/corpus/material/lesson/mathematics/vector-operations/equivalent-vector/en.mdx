@@ -5,7 +5,7 @@ export const metadata = {
     description: "Decide whether two vectors are equivalent from their components, and explain why changing the starting point does not change a vector's magnitude or direction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vector and Operations",
 };
 
@@ -37,7 +37,7 @@ Equivalent vectors can have different positions in a plane or space, but they ma
 
 ## Conditions for Equivalent Vectors
 
-Two vectors are equal only when both conditions hold at the same time, so check both before you call them equal. A pair that satisfies only one of the two conditions is not equivalent.
+Two vectors are equal only when **both conditions hold at the same time**, so check both before you call them equal. A pair that satisfies only one of the two conditions is not equivalent.
 
 Two nonzero vectors <InlineMath math="\overrightarrow{CD}" /> and <InlineMath math="\overrightarrow{PQ}" /> are equal if:
 
@@ -46,9 +46,11 @@ Two nonzero vectors <InlineMath math="\overrightarrow{CD}" /> and <InlineMath ma
 
 ## Representation of Equivalent Vectors
 
-Two vectors are equivalent when they share the same length and the same direction, so either one can stand in for the other. That replacement moves a vector to a convenient starting point without changing the vector itself.
+Two vectors are equivalent when they share the **same length and the same direction**, so either one can stand in for the other. That replacement moves a vector to a convenient starting point without changing the vector itself.
 
 ### In Component Form
+
+Vector equality means **every corresponding component is equal**. Check each axis, rather than only comparing the two magnitudes.
 
 In a two-dimensional Cartesian plane, two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> are equivalent if:
 
@@ -83,7 +85,7 @@ This equality holds exactly when <InlineMath math="a_1 = b_1" />, <InlineMath ma
 
 ### In Terms of Initial and Terminal Points
 
-If vector <InlineMath math="\overrightarrow{AB}" /> has initial point <InlineMath math="A(x_1, y_1)" /> and terminal point <InlineMath math="B(x_2, y_2)" />, then the vector can be expressed as:
+If vector <InlineMath math="\overrightarrow{AB}" /> has **initial point** <InlineMath math="A(x_1, y_1)" /> and terminal point <InlineMath math="B(x_2, y_2)" />, then the vector can be expressed as:
 
 <BlockMath math="\overrightarrow{AB} = (x_2 - x_1, y_2 - y_1)" />
 
@@ -95,23 +97,25 @@ In this equation, <InlineMath math="C(x_3, y_3)" /> is the initial point and <In
 
 ## Rules That Follow from Vector Equality
 
-Each of the three rules keeps the endpoints of a chain and removes one repeated vector, so a long list collapses into a single relation. Intermediate vectors can be left out without changing the statement.
-
-Equality of vectors behaves like equality of numbers. The three rules below let a chain of equivalent vectors be shortened.
+Vector equality follows from **equality of every component**. Reflexivity compares a vector with itself, symmetry swaps the order of two equal vectors, and transitivity connects two equalities through a shared intermediate vector.
 
 ### Reflexive Property
 
-Every vector is equivalent to itself.
+Every vector is equivalent to **itself**.
 
 <BlockMath math="\vec{a} = \vec{a}" />
 
 ### Symmetric Property
+
+You may **exchange the left and right sides** of a vector equality.
 
 If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{b}" />, then vector <InlineMath math="\vec{b}" /> is also equivalent to vector <InlineMath math="\vec{a}" />.
 
 <BlockMath math="\text{If } \vec{a} = \vec{b} \text{, then } \vec{b} = \vec{a}" />
 
 ### Transitive Property
+
+Two equalities can be connected through the **same intermediate vector**.
 
 If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{b}" /> and vector <InlineMath math="\vec{b}" /> is equivalent to vector <InlineMath math="\vec{c}" />, then vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{c}" />.
 
@@ -153,13 +157,13 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
 
 ## Checking Equivalent Vectors from Their Components
 
-Two vectors are equivalent when the change in the first coordinate matches and the change in the second coordinate matches. The examples below compare those changes directly.
+Two vectors are equivalent when the **change in the first coordinate matches** and the change in the second coordinate matches. The examples below compare those changes directly.
 
 ### Equality from Matching Component Changes
 
 Vector <InlineMath math="\overrightarrow{AB}" /> with <InlineMath math="A(2, 3)" /> and <InlineMath math="B(5, 7)" /> is equivalent to vector <InlineMath math="\overrightarrow{CD}" /> with <InlineMath math="C(1, 1)" /> and <InlineMath math="D(4, 5)" />.
 
-Proof:
+Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{AB} = (5-2, 7-3) = (3, 4)" />
@@ -201,7 +205,7 @@ Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, 
 
 Vector <InlineMath math="\overrightarrow{PQ}" /> with <InlineMath math="P(0, 0)" /> and <InlineMath math="Q(2, 2)" /> is equivalent to vector <InlineMath math="\overrightarrow{RS}" /> with <InlineMath math="R(3, 1)" /> and <InlineMath math="S(5, 3)" />.
 
-Proof:
+Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{PQ} = (2-0, 2-0) = (2, 2)" />
@@ -241,4 +245,4 @@ Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, 
 
 ## Why Starting Points Can Differ
 
-Equivalent vectors have the same magnitude and direction even when their starting points differ. The same displacement can therefore be drawn at different positions without changing the vector. This is useful when comparing translations or moving a vector within a geometric construction.
+Equivalent vectors have the same magnitude and direction even when their **starting points differ**. The same displacement can therefore be drawn at different positions without changing the vector. This is useful when comparing translations or moving a vector within a geometric construction.

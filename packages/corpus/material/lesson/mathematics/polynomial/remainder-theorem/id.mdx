@@ -11,17 +11,21 @@ export const metadata = {
 
 Sisa pembagian polinomial sering dapat ditentukan tanpa menyelesaikan [pembagian bersusun](/id/materi/matematika/polinomial/pembagian-polinomial) atau [skema Horner](/id/materi/matematika/polinomial/metode-horner). **Teorema Sisa** menghubungkan sisa tersebut langsung dengan satu nilai polinomial. Nilai yang dipakai adalah akar dari pembaginya, yaitu nilai yang membuat pembaginya sama dengan nol.
 
+Teorema ini berlaku untuk **pembagi linear**. Nilai yang kamu substitusikan adalah nilai yang membuat pembagi tersebut nol.
+
 ### Pernyataan Teorema Sisa
 
 Jika suatu polinomial <InlineMath math="P(x)" /> dibagi oleh <InlineMath math="(x - c)" />, maka sisa pembagiannya adalah <InlineMath math="S = P(c)" />.
 
-Untuk mencari sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="(x-c)" />, hitung <InlineMath math="P(x)" /> pada <InlineMath math="x=c" />.
+Untuk mencari **sisa pembagian** <InlineMath math="P(x)" /> oleh <InlineMath math="(x-c)" />, hitung <InlineMath math="P(x)" /> pada <InlineMath math="x=c" />.
 
 Pada <InlineMath math="P(x) = 2x^2 - 3x + 4" /> yang dibagi <InlineMath math="x - 2" />, sisanya adalah <InlineMath math="P(2) = 6" />, jadi satu substitusi sudah menjawab soalnya.
 
+<BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
 ### Mengapa Teorema Sisa Berlaku
 
-Teorema ini berasal langsung dari algoritma pembagian polinomial yang sudah kita kenal:
+Teorema ini berasal langsung dari **algoritma pembagian polinomial** yang sudah kita kenal:
 
 <BlockMath math="P(x) = (x - c) \cdot H(x) + S" />
 
@@ -43,6 +47,18 @@ Sekarang, coba kita substitusikan <InlineMath math="x = c" /> ke dalam persamaan
 
 Terbukti bahwa nilai polinomial <InlineMath math="P(x)" /> saat <InlineMath math="x = c" /> sama dengan sisa <InlineMath math="S" /> ketika <InlineMath math="P(x)" /> dibagi oleh <InlineMath math="(x - c)" />.
 
+Untuk contoh kuadrat tadi, pembagi dan hasil bagi membentuk produk yang **menjadi nol tepat saat inputnya dua**. Sisa tetap bernilai enam dalam identitas pembagian:
+
+<BlockMath math="2x^2-3x+4=(x-2)(2x+1)+6" />
+
+| Input | Nilai polinomial | Produk pembagi dan hasil bagi | Sisa |
+| --- | --- | --- | --- |
+| 1 | 3 | -3 | 6 |
+| 2 | 6 | 0 | 6 |
+| 3 | 13 | 7 | 6 |
+
+Jika pembaginya berderajat dua, sisa dapat berupa polinomial linear. Karena itu, satu nilai polinomial belum cukup untuk menentukan seluruh sisa pembagian tersebut.
+
 ## Menghitung Teorema Sisa
 
 Teorema ini <Highlight>menentukan sisa secara langsung</Highlight> sekaligus menjelaskan mengapa evaluasi polinomial muncul dalam soal pembagian. Substitusi nilai yang membuat pembaginya nol mengubah pembagian menjadi satu evaluasi, dan cara itu biasanya lebih singkat.
@@ -53,7 +69,7 @@ Tentukan sisa pembagian jika <InlineMath math="P(x) = 2x^5 + 5x^4 - 10x^3 + 9x^2
 
 Pembagi adalah <InlineMath math="x + 4" />, atau <InlineMath math="x - (-4)" />, jadi <InlineMath math="c = -4" />.
 
-Koefisien <InlineMath math="P(x)" /> (lengkapi suku <InlineMath math="x" />): <InlineMath math="2, 5, -10, 9, 0, -10" />.
+Koefisien <InlineMath math="P(x)" /> (lengkapi **suku yang tidak ada dengan koefisien nol**): <InlineMath math="2, 5, -10, 9, 0, -10" />.
 
 <BlockMath
   math="
@@ -73,7 +89,7 @@ Dari metode Horner, kita dapatkan:
 
 ### Menggunakan Teorema Sisa
 
-Menurut Teorema Sisa, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x - (-4)" /> adalah <InlineMath math="P(-4)" />.
+Menurut **Teorema Sisa**, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x - (-4)" /> adalah <InlineMath math="P(-4)" />.
 
 Hitung <InlineMath math="P(-4)" />:
 
@@ -93,11 +109,11 @@ Menghitung <InlineMath math="P(c)" /> dengan demikian memberikan tepat sisa pemb
 
 ## Latihan
 
-Jika <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> dibagi dengan <InlineMath math="x - 7" />, tentukan sisanya menggunakan Teorema Sisa. Pembagi <InlineMath math="x - 7" /> berkaitan dengan nilai <InlineMath math="x = 7" />, sehingga satu substitusi sudah cukup. Hitung nilai polinomialnya pada nilai itu, lalu laporkan angka yang diperoleh sebagai sisanya.
+Jika <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> dibagi dengan <InlineMath math="x - 7" />, tentukan **sisanya menggunakan Teorema Sisa**. Pembagi <InlineMath math="x - 7" /> berkaitan dengan nilai <InlineMath math="x = 7" />, sehingga satu substitusi sudah cukup. Hitung nilai polinomialnya pada nilai itu, lalu laporkan angka yang diperoleh sebagai sisanya.
 
 ### Pembahasan
 
-Menurut Teorema Sisa, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x - 7" /> adalah <InlineMath math="P(7)" />.
+Menurut **Teorema Sisa**, sisa pembagian <InlineMath math="P(x)" /> oleh <InlineMath math="x - 7" /> adalah <InlineMath math="P(7)" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} P(7) &amp;= 3(7)^5 - 20(7)^4 \\ &amp;\quad{}- 6(7)^3 - 48(7) - 8 \end{aligned}" />

@@ -15,94 +15,48 @@ A perfect square trinomial follows the pattern <InlineMath math="x^2 + 2px + p^2
 
 ## Quadratics That Are Hard to Factor
 
-Factoring <InlineMath math="x^2 + 4x + 2 = 0" /> over the rational numbers would require two rational numbers with product <InlineMath math="2" /> and sum <InlineMath math="4" />. No such pair exists.
+We do not need a rational factor pair because we can <Highlight>add the same value to both sides</Highlight>:
 
-Completing the square produces an equivalent equation and its roots without requiring that rational pair.
+<BlockMath math="\begin{aligned}x^2+4x+2&amp;=0\\x^2+4x+4&amp;=2\\(x+2)^2&amp;=2\\x&amp;=-2\pm\sqrt2\end{aligned}" />
+
+Since <InlineMath math="\sqrt2" /> is irrational, both roots are irrational. That explains why no rational factor pair exists.
 
 ## Steps for Completing the Square
 
-Here are the steps to solve a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> using the completing the square method:
+Start with <InlineMath math="a\ne0" />. Divide the whole equation by <InlineMath math="a" />, then write <InlineMath math="m=b/a" /> and <InlineMath math="k=c/a" />. The completing term uses the <Highlight>coefficient after division</Highlight>, namely <InlineMath math="m" />, rather than the original coefficient <InlineMath math="b" />.
 
-1. Ensure the coefficient of <InlineMath math="x^2" /> is <InlineMath math="1" />
+<BlockMath math="\begin{aligned}x^2+mx+k&amp;=0\\x^2+mx&amp;=-k\\x^2+mx+\frac{m^2}{4}&amp;=-k+\frac{m^2}{4}\\\left(x+\frac m2\right)^2&amp;=\frac{m^2}{4}-k\end{aligned}" />
 
-   If the coefficient <InlineMath math="a" /> of <InlineMath math="x^2" /> is not <InlineMath math="1" />, divide the entire equation by the value of <InlineMath math="a" />.
+Two rectangles each have area <InlineMath math="px" />. Placing them beside a square of area <InlineMath math="x^2" /> leaves a corner of area <InlineMath math="p^2" />. Adding that corner completes a square with side <InlineMath math="x+p" />.
 
-   **Example:** For the equation <InlineMath math="2x^2 + 6x + 3 = 0" />
+<MathVisual
+  title="The corner that completes the square"
+  description="For x = 2 and p = 1, area 4 plus two rectangles of area 2 and a corner of area 1 gives a square of area 9."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: 1, y: 2.5 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 2.5, y: 2.5 }, placement: "above" },
+    ],
+  }}
+  labels={{ square: <InlineMath math="x^2" />, right: <InlineMath math="px" />, top: <InlineMath math="px" />, corner: <InlineMath math="p^2" /> }}
+/>
 
-   <MathContainer>
-     <BlockMath math="\frac{2x^2 + 6x + 3}{2} = \frac{0}{2}" />
-     <BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
-   </MathContainer>
-
-2. **Move the Constant Term to the Right Side**
-
-   Move the constant term to the right side of the equation.
-
-   **Example:** From the equation <InlineMath math="x^2 + 3x + \frac{3}{2} = 0" />
-
-   <BlockMath math="x^2 + 3x = -\frac{3}{2}" />
-
-3. **Add the Completing-Square Term to Both Sides**
-
-   Add <InlineMath math="\left(\frac{b}{2}\right)^2" /> to both sides of the equation. This value is the square of half the coefficient of <InlineMath math="x" />.
-
-   **Example:** For the equation <InlineMath math="x^2 + 3x = -\frac{3}{2}" />
-
-   Half of the coefficient of <InlineMath math="x" /> is <InlineMath math="\frac{3}{2}" />
-
-   The square of this value: <InlineMath math="\left(\frac{3}{2}\right)^2 = \frac{9}{4}" />
-
-   Add to both sides:
-
-   <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
-
-4. **Factor the Left Side into a Perfect Square**
-
-   The left side now has the form <InlineMath math="x^2 + bx + \left(\frac{b}{2}\right)^2" />, which can be factored as <InlineMath math="\left(x + \frac{b}{2}\right)^2" />.
-
-   **Example:** From the equation <InlineMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
-
-   <BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
-
-5. **Simplify the Right Side**
-
-   Put the fractions over a common denominator and combine their numerators.
-
-   **Example:** For <InlineMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
-
-   <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
-
-   So the equation becomes:
-
-   <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
-
-6. **Take the Square Root of Both Sides**
-
-   To eliminate the square, take the square root of both sides.
-
-   **Example:** From the equation <InlineMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
-
-   <BlockMath math="x + \frac{3}{2} = \pm\sqrt{\frac{3}{4}} = \pm\frac{\sqrt{3}}{2}" />
-
-7. **Isolate the Variable**
-
-   Isolate the variable <InlineMath math="x" /> to find the roots of the equation.
-
-   **Example:** From <InlineMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
-
-   For the positive sign:
-
-   <BlockMath math="x = \frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} + \frac{\sqrt{3}}{2}" />
-
-   For the negative sign:
-
-   <BlockMath math="x = -\frac{\sqrt{3}}{2} - \frac{3}{2} = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />
-
-The roots of the equation are <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> and <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
+The picture uses positive lengths <InlineMath math="x=2" /> and <InlineMath math="p=1" />, so <InlineMath math="4+2+2+1=9" />. The algebraic identity still holds for every real value, including values that cannot represent lengths.
 
 ## Solving Quadratic Equations by Completing the Square
 
-Each equation below is solved by turning the left side into a perfect square. The first has a leading coefficient of one, and the later examples divide by the coefficient first.
+Each equation below is solved by turning the left side into a **perfect square**. The first has a leading coefficient of one, and the later examples divide by the coefficient first.
 
 ### Equation with Leading Coefficient One
 
@@ -118,7 +72,7 @@ Solve the equation: <InlineMath math="x^2 + 5x + 6 = 0" />
 
 <MathContainer>
   <BlockMath math="\text{Half the coefficient of } x = \frac{5}{2}" />
-  <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(\frac{5}{2}\right)^2 \\ &amp;= \frac{25}{4} \end{aligned}" />
+  <BlockMath math="\left(\frac{5}{2}\right)^2 = \frac{25}{4}" />
   <BlockMath math="x^2 + 5x + \frac{25}{4} = -6 + \frac{25}{4}" />
 </MathContainer>
 
@@ -162,7 +116,7 @@ Solve the equation: <InlineMath math="2x^2 + 6x + 3 = 0" />
 
 <MathContainer>
   <BlockMath math="\text{Half the coefficient of } x = \frac{3}{2}" />
-  <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(\frac{3}{2}\right)^2 \\ &amp;= \frac{9}{4} \end{aligned}" />
+  <BlockMath math="\left(\frac{3}{2}\right)^2 = \frac{9}{4}" />
   <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
 </MathContainer>
 
@@ -192,9 +146,9 @@ The roots of the equation are <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3
 
 ## Checks for Common Errors
 
-The two checks below cover the steps that are easiest to skip. Each one names the step and the value to verify.
+Check <Highlight>coefficient normalization, addition on both sides, and the final form</Highlight> in these three examples.
 
-1. **For equations with coefficient of <InlineMath math="x^2" /> not equal to <InlineMath math="1" />**: Always divide the entire equation by the coefficient <InlineMath math="a" /> first. Example: <InlineMath math="3x^2 + 6x + 2 = 0" /> becomes <InlineMath math="x^2 + 2x + \frac{2}{3} = 0" />
+1. For equations with coefficient of <InlineMath math="x^2" /> not equal to <InlineMath math="1" />: Always divide the entire equation by the coefficient <InlineMath math="a" /> first. Example: <InlineMath math="3x^2 + 6x + 2 = 0" /> becomes <InlineMath math="x^2 + 2x + \frac{2}{3} = 0" />
 
 2. **Constant to be added**: Always add the square of half the coefficient of <InlineMath math="x" /> to both sides. Example: For <InlineMath math="x^2 + 8x = 5" />, add <InlineMath math="\left(\frac{8}{2}\right)^2 = 16" /> to both sides.
 
@@ -202,13 +156,11 @@ The two checks below cover the steps that are easiest to skip. Each one names th
 
 ## Special Cases and Variations
 
-A negative discriminant makes the square root imaginary, while a perfect square leaves a single repeated solution. Each case changes the number of roots you should report.
-
-Not every quadratic equation produces two real solutions.
+Once the equation is <InlineMath math="(x+p)^2=q" />, the <Highlight>sign of the right-hand side</Highlight> determines the real solutions. A positive <InlineMath math="q" /> gives two roots, zero gives a repeated root, and a negative value gives no real roots.
 
 ### When the Discriminant is Negative
 
-If <InlineMath math="b^2 - 4ac < 0" />, then the equation has no real roots.
+If <InlineMath math="b^2 - 4ac < 0" />, then the equation has **no real roots**.
 
 **Concrete example:** <InlineMath math="x^2 + 2x + 2 = 0" />
 
@@ -223,9 +175,13 @@ Add <InlineMath math="1" /> to both sides:
 
 Since no real number has a square of <InlineMath math="-1" />, this equation has no real roots.
 
+Over the complex numbers, use <InlineMath math="i^2=-1" /> to obtain:
+
+<BlockMath math="(x+1)^2=-1\quad\Rightarrow\quad x+1=\pm i\quad\Rightarrow\quad x=-1\pm i" />
+
 ### For Incomplete Quadratic Equations
 
-For equations of the form <InlineMath math="ax^2 + c = 0" />, we don't need to complete the square.
+For equations of the form <InlineMath math="ax^2 + c = 0" />, we can **isolate the square directly**.
 
 **Concrete example:** <InlineMath math="3x^2 - 12 = 0" />
 
@@ -239,7 +195,7 @@ The roots of the equation are <InlineMath math="x = 2" /> and <InlineMath math="
 
 ## Practice Problems
 
-Completing the square rewrites the equation until the left side becomes a perfect square. Write down each step, because the position of the vertex can be read off the result directly.
+At each step, perform the <Highlight>same operation on both sides</Highlight>. After making the leading coefficient one, square half of the new linear coefficient, then use both square-root signs.
 
 Solve the following quadratic equations using the completing the square method:
 
@@ -251,188 +207,200 @@ Solve the following quadratic equations using the completing the square method:
 
 ### Answer Key
 
-1. <InlineMath math="x^2 + 5x + 6 = 0" />
+**Problem 1**
 
-   1. Move the constant to the right side:
+<InlineMath math="x^2 + 5x + 6 = 0" />
 
-      <BlockMath math="x^2 + 5x = -6" />
+**Step 1**: Move the constant to the right side:
 
-   2. Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
+<BlockMath math="x^2 + 5x = -6" />
 
-      <MathContainer>
-        <BlockMath math="\text{Half the coefficient of } x = \frac{5}{2}" />
-        <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(\frac{5}{2}\right)^2 \\ &amp;= \frac{25}{4} \end{aligned}" />
-        <BlockMath math="x^2 + 5x + \frac{25}{4} = -6 + \frac{25}{4}" />
-      </MathContainer>
+**Step 2**: Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
 
-   3. Factor the left side into a perfect square:
+<MathContainer>
+  <BlockMath math="\text{Half the coefficient of } x = \frac{5}{2}" />
+  <BlockMath math="\left(\frac{5}{2}\right)^2 = \frac{25}{4}" />
+  <BlockMath math="x^2 + 5x + \frac{25}{4} = -6 + \frac{25}{4}" />
+</MathContainer>
 
-      <BlockMath math="\left(x + \frac{5}{2}\right)^2 = -6 + \frac{25}{4}" />
+**Step 3**: Factor the left side into a perfect square:
 
-   4. Simplify the right side:
+<BlockMath math="\left(x + \frac{5}{2}\right)^2 = -6 + \frac{25}{4}" />
 
-      <MathContainer>
-        <BlockMath math="-6 + \frac{25}{4} = \frac{-24 + 25}{4} = \frac{1}{4}" />
-        <BlockMath math="\left(x + \frac{5}{2}\right)^2 = \frac{1}{4}" />
-      </MathContainer>
+**Step 4**: Simplify the right side:
 
-   5. Take the square root of both sides:
+<MathContainer>
+  <BlockMath math="-6 + \frac{25}{4} = \frac{-24 + 25}{4} = \frac{1}{4}" />
+  <BlockMath math="\left(x + \frac{5}{2}\right)^2 = \frac{1}{4}" />
+</MathContainer>
 
-      <BlockMath math="x + \frac{5}{2} = \pm\frac{1}{2}" />
+**Step 5**: Take the square root of both sides:
 
-   6. Solve for the value of <InlineMath math="x" />:
+<BlockMath math="x + \frac{5}{2} = \pm\frac{1}{2}" />
 
-      <MathContainer>
-        <BlockMath math="x + \frac{5}{2} = \frac{1}{2} \quad \text{or} \quad x + \frac{5}{2} = -\frac{1}{2}" />
-        <BlockMath math="\begin{aligned} &amp;x = \frac{1}{2} - \frac{5}{2} = -2 \\ &amp;\text{or} \\ &amp;x = -\frac{1}{2} - \frac{5}{2} = -3 \end{aligned}" />
-      </MathContainer>
+**Step 6**: Solve for the value of <InlineMath math="x" />:
 
-   Therefore, the roots of the equation are <InlineMath math="x = -2" /> and <InlineMath math="x = -3" />.
+<MathContainer>
+  <BlockMath math="x + \frac{5}{2} = \frac{1}{2} \quad \text{or} \quad x + \frac{5}{2} = -\frac{1}{2}" />
+  <BlockMath math="\begin{aligned} &amp;x = \frac{1}{2} - \frac{5}{2} = -2 \\ &amp;\text{or} \\ &amp;x = -\frac{1}{2} - \frac{5}{2} = -3 \end{aligned}" />
+</MathContainer>
 
-2. <InlineMath math="2x^2 + 6x + 3 = 0" />
+Therefore, the roots of the equation are <InlineMath math="x = -2" /> and <InlineMath math="x = -3" />.
 
-   1. Divide all terms by the coefficient <InlineMath math="a = 2" />:
+**Problem 2**
 
-      <BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
+<InlineMath math="2x^2 + 6x + 3 = 0" />
 
-   2. Move the constant to the right side:
+**Step 1**: Divide all terms by the coefficient <InlineMath math="a = 2" />:
 
-      <BlockMath math="x^2 + 3x = -\frac{3}{2}" />
+<BlockMath math="x^2 + 3x + \frac{3}{2} = 0" />
 
-   3. Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
+**Step 2**: Move the constant to the right side:
 
-      <MathContainer>
-        <BlockMath math="\text{Half the coefficient of } x = \frac{3}{2}" />
-        <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(\frac{3}{2}\right)^2 \\ &amp;= \frac{9}{4} \end{aligned}" />
-        <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
-      </MathContainer>
+<BlockMath math="x^2 + 3x = -\frac{3}{2}" />
 
-   4. Factor the left side into a perfect square:
+**Step 3**: Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
 
-      <BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
+<MathContainer>
+  <BlockMath math="\text{Half the coefficient of } x = \frac{3}{2}" />
+  <BlockMath math="\left(\frac{3}{2}\right)^2 = \frac{9}{4}" />
+  <BlockMath math="x^2 + 3x + \frac{9}{4} = -\frac{3}{2} + \frac{9}{4}" />
+</MathContainer>
 
-   5. Simplify the right side:
+**Step 4**: Factor the left side into a perfect square:
 
-      <MathContainer>
-        <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
-        <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
-      </MathContainer>
+<BlockMath math="\left(x + \frac{3}{2}\right)^2 = -\frac{3}{2} + \frac{9}{4}" />
 
-   6. Take the square root of both sides:
+**Step 5**: Simplify the right side:
 
-      <BlockMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
+<MathContainer>
+  <BlockMath math="-\frac{3}{2} + \frac{9}{4} = \frac{-6 + 9}{4} = \frac{3}{4}" />
+  <BlockMath math="\left(x + \frac{3}{2}\right)^2 = \frac{3}{4}" />
+</MathContainer>
 
-   7. Solve for the value of <InlineMath math="x" />:
+**Step 6**: Take the square root of both sides:
 
-      <MathContainer>
-        <BlockMath math="\begin{aligned} &amp;x = -\frac{3}{2} + \frac{\sqrt{3}}{2} \\ &amp;\text{or} \\ &amp;x = -\frac{3}{2} - \frac{\sqrt{3}}{2} \end{aligned}" />
-      </MathContainer>
+<BlockMath math="x + \frac{3}{2} = \pm\frac{\sqrt{3}}{2}" />
 
-   Therefore, the roots of the equation are <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> and <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
+**Step 7**: Solve for the value of <InlineMath math="x" />:
 
-3. <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x = -\frac{3}{2} + \frac{\sqrt{3}}{2} \\ &amp;\text{or} \\ &amp;x = -\frac{3}{2} - \frac{\sqrt{3}}{2} \end{aligned}" />
+</MathContainer>
 
-   1. Divide all terms by the coefficient <InlineMath math="a = 6" />:
+Therefore, the roots of the equation are <InlineMath math="x = -\frac{3}{2} + \frac{\sqrt{3}}{2}" /> and <InlineMath math="x = -\frac{3}{2} - \frac{\sqrt{3}}{2}" />.
 
-      <BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = 0" />
+**Problem 3**
 
-   2. Move the constant to the right side:
+<InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
 
-      <BlockMath math="x^2 + \frac{1}{3}x = -\frac{1}{36}" />
+**Step 1**: Divide all terms by the coefficient <InlineMath math="a = 6" />:
 
-   3. Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
+<BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = 0" />
 
-      <MathContainer>
-        <BlockMath math="\text{Half the coefficient of } x = \frac{1}{6}" />
-        <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(\frac{1}{6}\right)^2 \\ &amp;= \frac{1}{36} \end{aligned}" />
-        <BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = -\frac{1}{36} + \frac{1}{36}" />
-      </MathContainer>
+**Step 2**: Move the constant to the right side:
 
-   4. Factor the left side into a perfect square:
+<BlockMath math="x^2 + \frac{1}{3}x = -\frac{1}{36}" />
 
-      <BlockMath math="\left(x + \frac{1}{6}\right)^2 = -\frac{1}{36} + \frac{1}{36}" />
+**Step 3**: Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
 
-   5. Simplify the right side:
+<MathContainer>
+  <BlockMath math="\text{Half the coefficient of } x = \frac{1}{6}" />
+  <BlockMath math="\left(\frac{1}{6}\right)^2 = \frac{1}{36}" />
+  <BlockMath math="x^2 + \frac{1}{3}x + \frac{1}{36} = -\frac{1}{36} + \frac{1}{36}" />
+</MathContainer>
 
-      <BlockMath math="\left(x + \frac{1}{6}\right)^2 = 0" />
+**Step 4**: Factor the left side into a perfect square:
 
-   6. Take the square root of both sides:
+<BlockMath math="\left(x + \frac{1}{6}\right)^2 = -\frac{1}{36} + \frac{1}{36}" />
 
-      <BlockMath math="x + \frac{1}{6} = 0" />
+**Step 5**: Simplify the right side:
 
-   7. Solve for the value of <InlineMath math="x" />:
+<BlockMath math="\left(x + \frac{1}{6}\right)^2 = 0" />
 
-      <BlockMath math="x = -\frac{1}{6}" />
+**Step 6**: Take the square root of both sides:
 
-   This equation has the repeated root <InlineMath math="x = -\frac{1}{6}" />.
+<BlockMath math="x + \frac{1}{6} = 0" />
 
-4. <InlineMath math="x^2 - 12x - 15 = 0" />
+**Step 7**: Solve for the value of <InlineMath math="x" />:
 
-   1. Move the constant to the right side:
+<BlockMath math="x = -\frac{1}{6}" />
 
-      <BlockMath math="x^2 - 12x = 15" />
+This equation has the repeated root <InlineMath math="x = -\frac{1}{6}" />.
 
-   2. Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
+**Problem 4**
 
-      Half the coefficient of <InlineMath math="x" /> is <InlineMath math="-6" />.
-      <MathContainer>
-        <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= (-6)^2 \\ &amp;= 36 \end{aligned}" />
-        <BlockMath math="x^2 - 12x + 36 = 15 + 36" />
-      </MathContainer>
+<InlineMath math="x^2 - 12x - 15 = 0" />
 
-   3. Factor the left side into a perfect square:
+**Step 1**: Move the constant to the right side:
 
-      <BlockMath math="(x - 6)^2 = 51" />
+<BlockMath math="x^2 - 12x = 15" />
 
-   4. Take the square root of both sides:
+**Step 2**: Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
 
-      <BlockMath math="x - 6 = \pm\sqrt{51}" />
+Half the coefficient of <InlineMath math="x" /> is <InlineMath math="-6" />.
 
-   5. Solve for the value of <InlineMath math="x" />:
+<MathContainer>
+  <BlockMath math="(-6)^2 = 36" />
+  <BlockMath math="x^2 - 12x + 36 = 15 + 36" />
+</MathContainer>
 
-      <BlockMath math="x = 6 \pm \sqrt{51}" />
+**Step 3**: Factor the left side into a perfect square:
 
-   The roots of the equation are <InlineMath math="x = 6 + \sqrt{51}" /> and <InlineMath math="x = 6 - \sqrt{51}" />.
+<BlockMath math="(x - 6)^2 = 51" />
 
-5. <InlineMath math="\frac{3}{2}x^2 - 8x - 6 = 0" />
+**Step 4**: Take the square root of both sides:
 
-   1. Divide all terms by the coefficient <InlineMath math="a = \frac{3}{2}" />:
+<BlockMath math="x - 6 = \pm\sqrt{51}" />
 
-      <MathContainer>
-        <BlockMath math="x^2 - \frac{16}{3}x - 4 = 0" />
-      </MathContainer>
+**Step 5**: Solve for the value of <InlineMath math="x" />:
 
-   2. Move the constant to the right side:
+<BlockMath math="x = 6 \pm \sqrt{51}" />
 
-      <BlockMath math="x^2 - \frac{16}{3}x = 4" />
+The roots of the equation are <InlineMath math="x = 6 + \sqrt{51}" /> and <InlineMath math="x = 6 - \sqrt{51}" />.
 
-   3. Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
+**Problem 5**
 
-      Half the coefficient of <InlineMath math="x" /> is <InlineMath math="-\frac83" />.
-      <MathContainer>
-        <BlockMath math="\begin{aligned} &amp;\text{The square of this value} \\ &amp;= \left(-\frac{8}{3}\right)^2 \\ &amp;= \frac{64}{9} \end{aligned}" />
-        <BlockMath math="x^2 - \frac{16}{3}x + \frac{64}{9} = 4 + \frac{64}{9}" />
-      </MathContainer>
+<InlineMath math="\frac{3}{2}x^2 - 8x - 6 = 0" />
 
-   4. Factor the left side into a perfect square:
+**Step 1**: Divide all terms by the coefficient <InlineMath math="a = \frac{3}{2}" />:
 
-      <BlockMath math="\left(x - \frac{8}{3}\right)^2 = 4 + \frac{64}{9}" />
+<MathContainer>
+  <BlockMath math="x^2 - \frac{16}{3}x - 4 = 0" />
+</MathContainer>
 
-   5. Simplify the right side:
+**Step 2**: Move the constant to the right side:
 
-      <MathContainer>
-        <BlockMath math="4 + \frac{64}{9} = \frac{36 + 64}{9} = \frac{100}{9}" />
-        <BlockMath math="\left(x - \frac{8}{3}\right)^2 = \frac{100}{9}" />
-      </MathContainer>
+<BlockMath math="x^2 - \frac{16}{3}x = 4" />
 
-   6. Take the square root of both sides:
+**Step 3**: Add the square of half the coefficient of <InlineMath math="x" /> to both sides:
 
-      <BlockMath math="x - \frac{8}{3} = \pm\frac{10}{3}" />
+Half the coefficient of <InlineMath math="x" /> is <InlineMath math="-\frac83" />.
 
-   7. Solve for the value of <InlineMath math="x" />:
+<MathContainer>
+  <BlockMath math="\left(-\frac{8}{3}\right)^2 = \frac{64}{9}" />
+  <BlockMath math="x^2 - \frac{16}{3}x + \frac{64}{9} = 4 + \frac{64}{9}" />
+</MathContainer>
 
-      <MathContainer>
-        <BlockMath math="\begin{aligned} &amp;x = \frac{8}{3} + \frac{10}{3} = \frac{18}{3} = 6 \\ &amp;\text{or} \\ &amp;x = \frac{8}{3} - \frac{10}{3} = -\frac{2}{3} \end{aligned}" />
-      </MathContainer>
+**Step 4**: Factor the left side into a perfect square:
 
-   The roots of the equation are <InlineMath math="x = 6" /> and <InlineMath math="x = -\frac{2}{3}" />.
+<BlockMath math="\left(x - \frac{8}{3}\right)^2 = 4 + \frac{64}{9}" />
+
+**Step 5**: Simplify the right side:
+
+<MathContainer>
+  <BlockMath math="4 + \frac{64}{9} = \frac{36 + 64}{9} = \frac{100}{9}" />
+  <BlockMath math="\left(x - \frac{8}{3}\right)^2 = \frac{100}{9}" />
+</MathContainer>
+
+**Step 6**: Take the square root of both sides:
+
+<BlockMath math="x - \frac{8}{3} = \pm\frac{10}{3}" />
+
+**Step 7**: Solve for the value of <InlineMath math="x" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x = \frac{8}{3} + \frac{10}{3} = \frac{18}{3} = 6 \\ &amp;\text{or} \\ &amp;x = \frac{8}{3} - \frac{10}{3} = -\frac{2}{3} \end{aligned}" />
+</MathContainer>
+
+The roots of the equation are <InlineMath math="x = 6" /> and <InlineMath math="x = -\frac{2}{3}" />.

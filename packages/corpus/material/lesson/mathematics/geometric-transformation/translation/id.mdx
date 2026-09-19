@@ -4,7 +4,7 @@ export const metadata = {
   description: "Translasikan titik, garis, dan segitiga dengan vektor, lalu periksa setiap hasil translasi melalui contoh perhitungan dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Transformasi Geometri",
 };
 
@@ -14,7 +14,7 @@ Translasi, juga dikenal sebagai pergeseran, adalah jenis transformasi geometri y
 
 ### Definisi Translasi
 
-Setiap translasi ditentukan oleh vektor pergeseran:
+Setiap translasi ditentukan oleh **vektor pergeseran** yang sama untuk semua titik:
 
 <BlockMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />
 
@@ -39,7 +39,7 @@ Translasikan titik <InlineMath math="(3,2)" /> dengan vektor berikut, lalu tentu
 
 Di sini, <InlineMath math="x=3" />, <InlineMath math="y=2" />, <InlineMath math="a=-2" />, dan <InlineMath math="b=3" />.
 
-Menggunakan rumus:
+Geser **dua satuan ke kiri dan tiga satuan ke atas**. Jumlahkan komponen horizontal dan vertikal secara terpisah:
 
 <MathContainer>
   <BlockMath math="x' = x + a = 3 + (-2) = 1" />
@@ -84,6 +84,8 @@ Jadi, bayangan titik <InlineMath math="(3,2)" /> adalah <InlineMath math="(1,5)"
       labels: [{ text: <>vektor <InlineMath math="(-2,3)" /></>, at: 0, offset: [-1, 1.5, 0] }],
     }, // Vektor Translasi dari P ke P'
   ]}
+  cameraPosition={[2, 3.5, 8]}
+  cameraTarget={[2, 3.5, 0]}
 />
 
 ## Mentranslasikan sebuah Garis
@@ -95,11 +97,11 @@ Tentukan bayangan garis <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> oleh tran
 Misalkan <InlineMath math="P(x,y)" /> adalah sembarang titik pada garis <InlineMath math="l" />. Oleh translasi ini, bayangannya adalah <InlineMath math="P'(x',y')" /> dengan koordinat:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} x' &amp;= x + (-1) \\ &amp;= x - 1 \\ &amp;\implies x \\ &amp;= x' + 1 \end{aligned}" />
+  <BlockMath math="x'=x-1\quad\Longrightarrow\quad x=x'+1" />
   <BlockMath math="y' = y + 1 \implies y = y' - 1" />
 </MathContainer>
 
-Substitusikan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> ini ke dalam persamaan garis <InlineMath math="l" />:
+Gunakan **koordinat asal** dalam persamaan garis. Substitusikan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> ini ke dalam persamaan garis <InlineMath math="l" />:
 
 <MathContainer>
   <BlockMath math="2(x' + 1) + 3(y' - 1) - 1 = 0" />
@@ -128,27 +130,25 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
     data={[
       {
         // Garis Asli: 2x + 3y - 1 = 0  => y = (-2/3)x + 1/3
-        points: Array.from({ length: 27 }, (_, pointIndex) => {
-          const i = pointIndex - 8;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 1 / 3, z: 0 };
         }),
-        pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+          showPoints: false,
         smooth: false,
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 10, offset: [0.7, -3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 3, offset: [-0.7, -1, 0] }],
       },
       {
         // Garis Bayangan: 2x + 3y - 2 = 0 => y = (-2/3)x + 2/3
-        points: Array.from({ length: 24 }, (_, pointIndex) => {
-          const i = pointIndex - 5;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 2 / 3, z: 0 };
         }),
-        pointIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          showPoints: false,
         smooth: false,
         color: "#db2777",
-        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 13, offset: [-0.7, 3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 5, offset: [0.7, 1, 0] }],
       },
     ]}
     cameraPosition={[0, 0, 10]}
@@ -156,6 +156,8 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
 </ContentStack>
 
 ## Latihan
+
+Terapkan **vektor yang sama** pada setiap titik. Untuk persamaan garis, nyatakan koordinat asal dalam koordinat bayangan terlebih dahulu. Pada segitiga, periksa ketiga titik sudut agar bentuk bangun tetap sama.
 
 1.  Translasikan titik <InlineMath math="(-4,4)" /> dengan vektor berikut, lalu tentukan bayangannya:
 
@@ -171,38 +173,58 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
 
 ### Pembahasan
 
-1.  Untuk titik <InlineMath math="(-4,4)" />, gunakan <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
+Tanda negatif berarti geser ke kiri atau ke bawah. Pada persamaan garis, gunakan **substitusi balik** karena persamaan awal menyatakan koordinat sebelum translasi.
 
-    <MathContainer>
-      <BlockMath math="x' = -4 + (-2) = -6" />
-      <BlockMath math="y' = 4 + (-3) = 1" />
-    </MathContainer>
+**Pembahasan 1**
 
-    Jadi, bayangan titiknya adalah <InlineMath math="(-6,1)" />.
+Untuk titik <InlineMath math="(-4,4)" />, gunakan <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
 
-2.  Untuk garis <InlineMath math="5x - 2y + 3 = 0" />, gunakan <InlineMath math="a=2, b=-1" />.
+<MathContainer>
+<BlockMath math="x' = -4 + (-2) = -6" />
+<BlockMath math="y' = 4 + (-3) = 1" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = x + 2 \implies x = x' - 2" />
-      <BlockMath math="y' = y - 1 \implies y = y' + 1" />
-    </MathContainer>
+Jadi, bayangan titiknya adalah <InlineMath math="(-6,1)" />.
 
-    Substitusi ke persamaan garis:
+**Pembahasan 2**
 
-    <MathContainer>
-      <BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
-      <BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
-      <BlockMath math="5x' - 2y' - 9 = 0" />
-    </MathContainer>
+Untuk garis <InlineMath math="5x - 2y + 3 = 0" />, gunakan <InlineMath math="a=2, b=-1" />.
 
-    Persamaan garis bayangan: <InlineMath math="5x - 2y - 9 = 0" />.
+<MathContainer>
+<BlockMath math="x' = x + 2 \implies x = x' - 2" />
+<BlockMath math="y' = y - 1 \implies y = y' + 1" />
+</MathContainer>
 
-3.  Translasikan setiap titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(1,5)" /> dengan <InlineMath math="a=2, b=3" />.
+Substitusi ke persamaan garis:
 
-    <MathContainer>
-      <BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
-      <BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
-      <BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
+<BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
+<BlockMath math="5x' - 2y' - 9 = 0" />
+</MathContainer>
 
-    Koordinat bayangan segitiga adalah <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" />, dan <InlineMath math="C'(3,8)" />.
+Persamaan garis bayangan: <InlineMath math="5x - 2y - 9 = 0" />.
+
+**Pembahasan 3**
+
+Translasikan setiap titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(1,5)" /> dengan <InlineMath math="a=2, b=3" />.
+
+<MathContainer>
+<BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
+<BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
+<BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
+</MathContainer>
+
+Koordinat bayangan segitiga adalah <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" />, dan <InlineMath math="C'(3,8)" />.
+
+<LineEquation
+  title="Segitiga Sebelum dan Sesudah Translasi"
+  description="Ketiga titik bergeser dengan vektor yang sama. Panjang sisi dan luas segitiga tetap."
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 1, z: 0 }, { x: 1, y: 5, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, color: "#7c3aed", labels: [{ text: "A", at: 0, offset: [-0.3, -0.3, 0] }, { text: "B", at: 1, offset: [0.3, -0.3, 0] }, { text: "C", at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 3, y: 4, z: 0 }, { x: 6, y: 4, z: 0 }, { x: 3, y: 8, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, color: "#059669", labels: [{ text: "A'", at: 0, offset: [-0.3, -0.3, 0] }, { text: "B'", at: 1, offset: [0.3, -0.3, 0] }, { text: "C'", at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", cone: { position: "end", size: 0.2 } },
+  ]}
+  cameraPosition={[3.5, 4.5, 12]}
+  cameraTarget={[3.5, 4.5, 0]}
+/>

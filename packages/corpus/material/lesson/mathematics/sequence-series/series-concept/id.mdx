@@ -11,13 +11,13 @@ export const metadata = {
 
 Bagaimana suku-suku suatu barisan dapat diakumulasikan? Bentuk seperti <InlineMath math="1+2+3+\cdots" /> disebut **deret**.
 
-Deret bilangan <Highlight>dibentuk dengan menjumlahkan suku-suku [suatu barisan](/id/materi/matematika/barisan-dan-deret/konsep-barisan)</Highlight> sesuai urutannya. Dua contoh yang umum adalah deret aritmetika, yang sukunya berasal dari barisan aritmetika, dan **deret geometri**, yang sukunya berasal dari barisan geometri.
+Deret bilangan dibentuk dengan **menjumlahkan suku-suku** [suatu barisan](/id/materi/matematika/barisan-dan-deret/konsep-barisan) sesuai urutannya. Dua contoh yang umum adalah deret aritmetika, yang sukunya berasal dari barisan aritmetika, dan **deret geometri**, yang sukunya berasal dari barisan geometri.
 
 Pada contoh jabat tangan di bawah, setiap orang baru menambahkan satu suku pada jumlah seluruh jabat tangan.
 
 ## Jumlah Parsial Menghubungkan Barisan dan Deret
 
-Untuk barisan <InlineMath math="(U_n)" />, jumlah <InlineMath math="n" /> suku pertamanya disebut jumlah parsial ke-<InlineMath math="n" />:
+Untuk barisan <InlineMath math="(U_n)" />, jumlah <InlineMath math="n" /> suku pertamanya disebut **jumlah parsial** ke-<InlineMath math="n" />:
 
 <BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
 
@@ -27,14 +27,25 @@ Soal berhingga meminta satu jumlah parsial tertentu. Untuk deret tak hingga, kit
 
 Bayangkan ada beberapa orang dalam satu kelompok. Jika setiap orang berjabat tangan tepat satu kali dengan setiap orang lain di kelompok itu, berapa total jabat tangan yang terjadi?
 
-Coba hitung:
+Dengan tiga orang, orang pertama berjabat tangan dengan dua orang lain. Masih ada satu pasangan antara orang kedua dan ketiga, sehingga totalnya <InlineMath math="2+1=3" />. Untuk empat orang, diagram memiliki **satu garis untuk setiap pasangan**. Garis yang berpotongan tidak menambahkan orang atau jabat tangan baru.
 
-- **Jika ada <InlineMath math="2 \text{ orang}" />:** Hanya ada <InlineMath math="1 \text{ jabat tangan}" />.
-- **Jika ada <InlineMath math="3 \text{ orang}" />:** Orang pertama berjabat tangan dengan <InlineMath math="2 \text{ orang}" /> lainnya. Orang kedua sudah berjabat tangan dengan orang pertama, jadi tinggal berjabat tangan dengan orang ketiga. Total ada <InlineMath math="2 + 1 = 3 \text{ jabat tangan}" />.
-- **Jika ada <InlineMath math="4 \text{ orang}" />:** Dengan pola yang sama, kita akan mendapatkan <InlineMath math="3 + 2 + 1 = 6 \text{ jabat tangan}" />.
-- **Jika ada <InlineMath math="5 \text{ orang}" />:** Totalnya adalah <InlineMath math="4 + 3 + 2 + 1 = 10 \text{ jabat tangan}" />.
+<Mermaid
+  title="Pasangan Jabat Tangan"
+  description="Setiap garis menghubungkan satu pasangan. Hitung setiap garis sekali meskipun garis memiliki dua ujung."
+  chart={`flowchart LR
+  A["Orang pertama"]
+  B["Orang kedua"]
+  C["Orang ketiga"]
+  D["Orang keempat"]
+  A --- B
+  A --- C
+  A --- D
+  B --- C
+  B --- D
+  C --- D`}
+/>
 
-Perhatikan polanya! Banyaknya jabat tangan yang terjadi membentuk suatu penjumlahan berurutan dari bilangan asli.
+Tabel menunjukkan jumlah jabat tangan ketika satu orang baru bergabung. Setiap orang baru berjabat tangan dengan semua orang yang sudah ada, sehingga tambahan jabat tangannya berturut-turut adalah <InlineMath math="1,2,3,4" />.
 
 | Banyaknya orang yang hadir | Banyak jabat tangan | Uraian dari banyak jabat tangan |
 | :------------------------- | :------------------ | :------------------------------ |
@@ -49,7 +60,7 @@ Setiap pasangan harus dihitung tepat sekali. Jika jabat tangan setiap orang dihi
 
 ### Cara Menghitung yang Kedua
 
-Satu jabat tangan merupakan satu pasangan orang yang urutannya tidak diperhatikan. Banyak pasangan yang dapat dipilih dari <InlineMath math="n" /> orang adalah:
+Satu jabat tangan merupakan satu pasangan orang yang **urutannya tidak diperhatikan**. Banyak pasangan yang dapat dipilih dari <InlineMath math="n" /> orang adalah:
 
 <BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
 
@@ -63,7 +74,7 @@ Setiap bentuk <InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath ma
 
 ## Latihan
 
-Berapa banyak jabat tangan yang terjadi di antara <InlineMath math="12 \text{ orang}" /> jika setiap pasangan berjabat tangan tepat sekali?
+Berapa banyak jabat tangan yang terjadi di antara <InlineMath math="12 \text{ orang}" /> jika setiap pasangan berjabat tangan **tepat sekali**?
 
 Cara penjumlahan berurutan memberi:
 

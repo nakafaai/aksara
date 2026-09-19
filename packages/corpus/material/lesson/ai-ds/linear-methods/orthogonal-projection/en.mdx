@@ -3,13 +3,13 @@ export const metadata = {
   description: "Derive orthogonal projections from the best-approximation theorem, compute them with orthonormal and arbitrary bases, and verify their geometry numerically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
 ## The Best Approximation Theorem
 
-Let <InlineMath math="V" /> be an inner-product space and let <InlineMath math="S\subseteq V" /> be a finite-dimensional subspace. For every <InlineMath math="f\in V" />, there is a unique vector <InlineMath math="g\in S" /> such that
+Let <InlineMath math="V" /> be a real inner-product space and let <InlineMath math="S\subseteq V" /> be a finite-dimensional subspace. For every <InlineMath math="f\in V" />, there is a unique vector <InlineMath math="g\in S" /> such that
 
 <BlockMath math="\|f-g\|=\min_{\varphi\in S}\|f-\varphi\|" />
 
@@ -24,11 +24,11 @@ Equivalently,
 
 <BlockMath math="\begin{aligned} &amp;\langle f-g,\varphi\rangle=0 \\ &amp;\text{for every }\varphi\in S \end{aligned}" />
 
-<Highlight>In a Hilbert space the same theorem holds for every closed subspace.</Highlight> A finite-dimensional subspace is automatically closed.
+In a Hilbert space the same theorem holds for <Highlight>every closed subspace</Highlight>. A finite-dimensional subspace is automatically closed.
 
 ## Why Orthogonality Gives the Minimum
 
-Let <InlineMath math="g=P_Sf" /> and choose any <InlineMath math="\varphi\in S" />. Since <InlineMath math="g-\varphi\in S" /> and <InlineMath math="f-g\perp S" />, the Pythagorean identity gives
+Let <InlineMath math="g=P_Sf" /> and choose any <InlineMath math="\varphi\in S" />. Since <InlineMath math="g-\varphi\in S" /> and <InlineMath math="f-g\perp S" />, the **Pythagorean identity** gives
 
 <MathContainer>
 <BlockMath math="f-\varphi=(f-g)+(g-\varphi)" />
@@ -47,7 +47,7 @@ If <InlineMath math="\varphi_1,\ldots,\varphi_n" /> is an orthonormal basis of <
 <BlockMath math="\|f-P_Sf\|^2=\|f\|^2-\sum_{i=1}^n|\langle f,\varphi_i\rangle|^2" />
 </MathContainer>
 
-The second line follows by splitting <InlineMath math="f" /> into the perpendicular components <InlineMath math="P_Sf" /> and <InlineMath math="f-P_Sf" />.
+The second line follows by splitting <InlineMath math="f" /> into the **perpendicular components** <InlineMath math="P_Sf" /> and <InlineMath math="f-P_Sf" />.
 
 For a real matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> with orthonormal columns,
 
@@ -64,7 +64,7 @@ The two vectors are
 <BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
 </MathContainer>
 
-Project the vector <InlineMath math="f" /> onto <InlineMath math="S=\operatorname{span}\{u\}" />. The projection coefficient is
+Project the vector <InlineMath math="f" /> onto <InlineMath math="S=\operatorname{span}\{u\}" />. The **projection coefficient** is
 
 <BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
 
@@ -80,7 +80,9 @@ The calculation gives:
 <LineEquation
   title={<>Projection of <InlineMath math="f" /> onto <InlineMath math="\operatorname{span}\{u\}" /></>}
   description={<>The cyan vector is <InlineMath math="f" />, the orange vector is <InlineMath math="g=P_Sf" />, and the purple segment is the perpendicular residual <InlineMath math="r=f-g" />.</>}
-  cameraPosition={[5, 5, 7]}
+  cameraPosition={[1, 1.5, 7]}
+  cameraTarget={[1, 1.5, 0]}
+  showZAxis={false}
   data={[
     {
       points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
@@ -109,14 +111,14 @@ Let <InlineMath math="\psi_1,\ldots,\psi_n" /> be any basis of <InlineMath math=
 
 <BlockMath math="g=\sum_{i=1}^n\alpha_i\psi_i" />
 
-The orthogonality conditions give the Gram system
+The orthogonality conditions give the **Gram system**
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle, \\ &amp;k=1,\ldots,n \end{aligned}" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
-In this system, <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> and <InlineMath math="c_k=\langle f,psi_k\rangle" />. Since the basis vectors are linearly independent,
+In this system, <InlineMath math="G_{ki}=\langle\psi_i,\psi_k\rangle" /> and <InlineMath math="c_k=\langle f,\psi_k\rangle" />. Since the basis vectors are linearly independent,
 
 <BlockMath math="\begin{aligned} &amp;z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0 \\ &amp;\text{for }z\ne0 \end{aligned}" />
 
@@ -145,10 +147,10 @@ The calculation gives:
 
 <MathContainer>
 <BlockMath math="P_Sf(x)=\frac13" />
-<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\frac{8}{45} \end{aligned}" />
+<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\int_{-1}^1\left(x^4-\frac23x^2+\frac19\right)dx\\&amp;=\frac25-\frac49+\frac29=\frac{8}{45} \end{aligned}" />
 </MathContainer>
 
-The linear term vanishes because <InlineMath math="x^3" /> is odd on the symmetric interval.
+The linear term vanishes because <InlineMath math="x^3" /> is **odd on the symmetric interval**.
 
 ## Properties of an Orthogonal Projector
 

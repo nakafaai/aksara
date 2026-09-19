@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bandingkan matriks ortogonal dan uniter melalui pelestarian hasil kali dalam, struktur determinan dan nilai eigen, rotasi, serta refleksi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Metode Linear AI",
 };
 
@@ -23,7 +23,7 @@ Matriks persegi kompleks <InlineMath math="U\in\mathbb{C}^{n\times n}" /> disebu
 <BlockMath math="U^{-1}=U^H" />
 </MathContainer>
 
-Di sini, <InlineMath math="U^H=\overline{U}^{,T}" /> adalah transpos konjugat. <Highlight>Matriks ortogonal real merupakan matriks uniter yang semua entrinya real.</Highlight>
+Di sini, <InlineMath math="U^H=\overline{U}^{T}" /> adalah transpos konjugat. Matriks ortogonal real merupakan **matriks uniter dengan entri real**.
 
 Persamaan definisi tersebut setara dengan pernyataan bahwa kolom-kolomnya membentuk basis ortonormal. Baris-barisnya juga ortonormal.
 
@@ -58,7 +58,7 @@ Untuk matriks ortogonal real, determinannya real, sehingga
 
 <BlockMath math="\det Q\in\{-1,1\}" />
 
-Kasus <InlineMath math="\det Q=1" /> mempertahankan orientasi. Kasus <InlineMath math="\det Q=-1" /> membalik orientasi dan mengandung komponen refleksi.
+Kasus <InlineMath math="\det Q=1" /> **mempertahankan orientasi**. Kasus <InlineMath math="\det Q=-1" /> membalik orientasi dan mengandung komponen refleksi.
 
 ## Nilai Eigen dan Struktur Spektral
 
@@ -69,7 +69,7 @@ Jika <InlineMath math="Uv=\lambda v" /> dengan <InlineMath math="v\ne0" />, maka
 <BlockMath math="|\lambda|=1" />
 </MathContainer>
 
-Jadi, setiap nilai eigen berada pada lingkaran satuan kompleks. Nilai eigen tak real dari matriks ortogonal real muncul sebagai pasangan konjugat. Matriks uniter bersifat normal, sehingga teorema spektral kompleks memberikan
+Jadi, setiap nilai eigen berada pada **lingkaran satuan kompleks**. Nilai eigen tak real dari matriks ortogonal real muncul sebagai pasangan konjugat. Matriks uniter bersifat normal, sehingga teorema spektral kompleks memberikan
 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
@@ -92,7 +92,7 @@ Polinomial karakteristiknya adalah
 <BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
 </MathContainer>
 
-Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini tidak memiliki vektor eigen real. Pada rotasi bidang sejati, tidak ada arah real tak nol yang tetap atau hanya berubah tanda.
+Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini **tidak memiliki vektor eigen real**. Pada rotasi bidang sejati, tidak ada arah real tak nol yang tetap atau hanya berubah tanda.
 
 ## Contoh Refleksi
 
@@ -100,11 +100,11 @@ Untuk vektor satuan <InlineMath math="u\in\mathbb{R}^n" />, matriks Householder
 
 <BlockMath math="H=I-2uu^T" />
 
-Matriks <InlineMath math="H" /> merefleksikan vektor terhadap hiperbidang yang tegak lurus pada <InlineMath math="u" />. Sifat ortogonalnya dapat diperiksa melalui
+Matriks <InlineMath math="H" /> merefleksikan vektor terhadap **hiperbidang yang tegak lurus** pada <InlineMath math="u" />. Sifat ortogonalnya dapat diperiksa melalui
 
 <MathContainer>
 <BlockMath math="H^T=H" />
-<BlockMath math="H^2=(I-2uu^T)^2=I" />
+<BlockMath math="\begin{aligned} H^2 &amp;= I-4uu^T+4u(u^Tu)u^T \\ &amp;= I-4uu^T+4uu^T=I \end{aligned}" />
 </MathContainer>
 
 Dari kedua identitas di atas, kita memperoleh <InlineMath math="H^TH=I" />. Pada arah <InlineMath math="u" />, matriks <InlineMath math="H" /> memiliki nilai eigen <InlineMath math="-1" />. Setiap vektor yang tegak lurus terhadap <InlineMath math="u" /> memiliki nilai eigen <InlineMath math="1" />. Karena itu, <InlineMath math="\det H=-1" />.
@@ -120,7 +120,7 @@ Dari kedua identitas di atas, kita memperoleh <InlineMath math="H^TH=I" />. Pada
 | Nilai singular | semuanya <InlineMath math="1" /> | semuanya <InlineMath math="1" /> |
 | Bilangan kondisi norma dua | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Hasil kali dan invers tetap berada dalam kelas yang sama:
+**Hasil kali dan invers** tetap berada dalam kelas yang sama:
 
 <MathContainer>
 <BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />

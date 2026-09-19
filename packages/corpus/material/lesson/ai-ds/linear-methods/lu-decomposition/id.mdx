@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorkan matriks persegi sebagai PA = LU, ikuti contoh eliminasi lengkap, selesaikan sistem linear berulang, dan implementasikan algoritma NumPy yang aman.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Metode Linear AI",
 };
 
@@ -33,11 +33,11 @@ Kemudian terapkan pembaruan baris berikut.
 
 <BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
-Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, kolom <InlineMath math="L" /> yang sudah terisi juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
+Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, **kolom <InlineMath math="L" /> yang sudah terisi** juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
 
 ## Memfaktorkan Matriks dengan Pivoting Parsial
 
-Perhatikan
+Kita akan mencatat **kedua pertukaran baris** agar permutasi akhir sesuai dengan faktor.
 
 <MathContainer>
 <BlockMath math="A=\begin{pmatrix}0&2&1\\1&1&0\\2&1&1\end{pmatrix}" />
@@ -46,11 +46,15 @@ Perhatikan
 
 ### Pivot pertama
 
-Pada kolom pertama, magnitudo terbesar adalah <InlineMath math="2" /> di baris ketiga. Tukar baris pertama dan ketiga. Pengali eliminasi pertama adalah <InlineMath math="\ell_{31}=1/2" />. Entri lain di bawah pivot sudah bernilai nol.
+Entri terbesar pada kolom pertama memiliki magnitudo <InlineMath math="2" />. **Tukar baris pertama dan ketiga**, lalu hilangkan entri baris kedua dengan pengali <InlineMath math="\ell_{21}=1/2" />. Baris ketiga sudah diawali nol.
+
+<BlockMath math="\begin{pmatrix}2&amp;1&amp;1\\1&amp;1&amp;0\\0&amp;2&amp;1\end{pmatrix}\longrightarrow\begin{pmatrix}2&amp;1&amp;1\\0&amp;1/2&amp;-1/2\\0&amp;2&amp;1\end{pmatrix}" />
 
 ### Pivot kedua
 
-Entri tersisa dengan magnitudo terbesar pada kolom kedua adalah <InlineMath math="2" />, sehingga pertukaran kedua tidak diperlukan. Pengali untuk baris terakhir adalah <InlineMath math="\ell_{32}=1/4" />.
+Pivot berikutnya memiliki magnitudo <InlineMath math="2" /> di baris ketiga, sehingga **tukar baris kedua dan ketiga**. Tukar juga pengali kolom pertama yang sudah disimpan pada <InlineMath math="L" />. Pengali untuk baris terakhir kemudian menjadi <InlineMath math="\ell_{32}=(1/2)/2=1/4" />.
+
+<BlockMath math="u_{33}=-\frac12-\frac14\cdot1=-\frac34" />
 
 Faktor yang dihasilkan adalah
 
@@ -70,7 +74,7 @@ Dari <InlineMath math="PA=LU" />, persamaan <InlineMath math="Ax=b" /> berubah m
 
 <BlockMath math="LUx=Pb" />
 
-Kita menyelesaikan sistem ini dalam dua tahap menggunakan matriks segitiga.
+Kita menyelesaikan sistem ini dalam **dua tahap** menggunakan matriks segitiga.
 
 ### Substitusi maju
 
@@ -85,11 +89,11 @@ Untuk matriks segitiga bawah umum,
 
 <BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
-Entri diagonal <InlineMath math="L" /> pada dekomposisi ini semuanya satu.
+**Entri diagonal** <InlineMath math="L" /> pada dekomposisi ini semuanya satu.
 
 ### Substitusi mundur
 
-Kemudian selesaikan <InlineMath math="Ux=y" /> dari baris terakhir ke atas:
+Kemudian selesaikan <InlineMath math="Ux=y" /> dari **baris terakhir ke atas**:
 
 <BlockMath math="x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^{n}u_{ij}x_j\right)" />
 
@@ -105,7 +109,7 @@ Faktorisasi <InlineMath math="\mathrm{LU}" /> padat membutuhkan sekitar
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-Jumlah tersebut menyatakan operasi titik mengambang ketika perkalian dan pengurangan dihitung secara terpisah. Setelah faktor tersedia, setiap ruas kanan baru hanya membutuhkan <InlineMath math="O(n^2)" /> kerja untuk dua substitusi. Pemakaian ulang faktor <InlineMath math="\mathrm{LU}" /> menghindari faktorisasi <InlineMath math="O(n^3)" /> untuk setiap ruas kanan.
+Jumlah tersebut menyatakan operasi titik mengambang ketika perkalian dan pengurangan dihitung secara terpisah. Setelah faktor tersedia, setiap ruas kanan baru hanya membutuhkan <InlineMath math="O(n^2)" /> kerja untuk dua substitusi. **Pemakaian ulang** faktor <InlineMath math="\mathrm{LU}" /> menghindari faktorisasi <InlineMath math="O(n^3)" /> untuk setiap ruas kanan.
 
 Determinan juga dapat diperoleh dari faktor:
 
@@ -121,9 +125,17 @@ Determinan juga dapat diperoleh dari faktor:
 
 def plu_factor(matrix, tolerance=1e-12):
     """Return P, L, U such that P @ matrix == L @ U."""
-    A = np.asarray(matrix, dtype=float)
-    if A.ndim != 2 or A.shape[0] != A.shape[1]:
-        raise ValueError("PLU factorization requires a square matrix")
+    A = np.asarray(matrix)
+    if np.iscomplexobj(A):
+        raise ValueError("this example requires real entries")
+    A = A.astype(float)
+    if A.ndim != 2 or A.shape[0] != A.shape[1] or A.shape[0] == 0:
+        raise ValueError("PLU factorization requires a nonempty square matrix")
+    if not np.all(np.isfinite(A)):
+        raise ValueError("matrix entries must be finite")
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("relative tolerance must be finite and nonnegative")
+    threshold = tolerance * np.linalg.norm(A, ord=np.inf)
 
     n = A.shape[0]
     U = A.copy()
@@ -132,7 +144,7 @@ def plu_factor(matrix, tolerance=1e-12):
 
     for k in range(n - 1):
         pivot = k + np.argmax(np.abs(U[k:, k]))
-        if abs(U[pivot, k]) <= tolerance:
+        if abs(U[pivot, k]) <= threshold:
             raise np.linalg.LinAlgError("matrix is singular to working precision")
 
         if pivot != k:
@@ -144,7 +156,7 @@ def plu_factor(matrix, tolerance=1e-12):
             L[i, k] = U[i, k] / U[k, k]
             U[i, k:] -= L[i, k] * U[k, k:]
 
-    if abs(U[-1, -1]) <= tolerance:
+    if abs(U[-1, -1]) <= threshold:
         raise np.linalg.LinAlgError("matrix is singular to working precision")
 
     return P, L, U
@@ -161,8 +173,9 @@ def forward_substitution(L, right_hand_side):
 def backward_substitution(U, right_hand_side, tolerance=1e-12):
     y = np.asarray(right_hand_side, dtype=float)
     x = np.empty_like(y)
+    threshold = tolerance * np.linalg.norm(U, ord=np.inf)
     for i in range(len(y) - 1, -1, -1):
-        if abs(U[i, i]) <= tolerance:
+        if abs(U[i, i]) <= threshold:
             raise np.linalg.LinAlgError("singular triangular system")
         x[i] = (y[i] - U[i, i + 1:] @ x[i + 1:]) / U[i, i]
     return x
@@ -170,7 +183,13 @@ def backward_substitution(U, right_hand_side, tolerance=1e-12):
 
 def plu_solve(matrix, right_hand_side):
     P, L, U = plu_factor(matrix)
-    y = forward_substitution(L, P @ right_hand_side)
+    b = np.asarray(right_hand_side)
+    if np.iscomplexobj(b):
+        raise ValueError("this example requires a real right-hand side")
+    b = b.astype(float)
+    if b.shape != (len(P),) or not np.all(np.isfinite(b)):
+        raise ValueError("right-hand side must be a finite vector of matching size")
+    y = forward_substitution(L, P @ b)
     x = backward_substitution(U, y)
     return x, P, L, U
 
@@ -184,8 +203,10 @@ assert np.allclose(A @ x, b)
 assert np.allclose(x, np.array([1, 2, 3], dtype=float))`
 }]} />
 
-Pemeriksaan tersebut menjadi bagian dari contoh karena urutan faktor dan pencatatan pertukaran baris merupakan sumber kesalahan implementasi yang umum.
+Pemeriksaan tersebut menjadi bagian dari contoh karena **urutan faktor** dan pencatatan pertukaran baris merupakan sumber kesalahan implementasi yang umum.
+
+Toleransi pivot dihitung relatif terhadap norma tak hingga matriks. Karena itu, penskalaan seragam pada sistem berkondisi baik tidak menyebabkan kegagalan hanya karena semua entri kecil. Ambang ini merupakan keputusan numerik, bukan bukti singularitas eksak.
 
 ## Batas penggunaan metode
 
-Implementasi ini hanya menyelesaikan sistem dengan matriks persegi yang dapat dibalik. Program menganggap pivot numerik nol sebagai kegagalan. Gunakan <InlineMath math="\mathrm{QR}" /> untuk masalah kuadrat terkecil dengan matriks persegi panjang. Untuk matriks yang tidak berperingkat penuh, gunakan <InlineMath math="\mathrm{QR}" /> dengan pivot kolom atau <InlineMath math="\mathrm{SVD}" />. Faktorisasi <InlineMath math="\mathrm{PLU}" /> masih dapat dibuat untuk matriks persegi singular, tetapi program ini tidak dapat memakainya untuk memperoleh satu solusi unik.
+Implementasi ini hanya menyelesaikan sistem dengan **matriks persegi yang dapat dibalik**. Program menganggap pivot numerik nol sebagai kegagalan. Gunakan <InlineMath math="\mathrm{QR}" /> untuk masalah kuadrat terkecil dengan matriks persegi panjang. Untuk matriks yang tidak berperingkat penuh, gunakan <InlineMath math="\mathrm{QR}" /> dengan pivot kolom atau <InlineMath math="\mathrm{SVD}" />. Faktorisasi <InlineMath math="\mathrm{PLU}" /> masih dapat dibuat untuk matriks persegi singular, tetapi program ini tidak dapat memakainya untuk memperoleh satu solusi unik.

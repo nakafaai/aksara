@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Perkalian dan Pembagian Fungsi",
     description: "Bentuk hasil kali dan hasil bagi dua fungsi, tentukan domainnya, lalu kecualikan nilai yang membuat penyebut nol.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -44,7 +43,7 @@ Fungsi hasil kali mengalikan <InlineMath math="f(x)" /> dan <InlineMath math="g(
         }),
         pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         smooth: false,
-        color: "#0284c7",
+        color: "#0d9488",
         labels: [{ text: <InlineMath math="g(x)=2" />, at: 20, offset: [0.5, -0.8, 0] }],
       },
       {
@@ -62,6 +61,7 @@ Fungsi hasil kali mengalikan <InlineMath math="f(x)" /> dan <InlineMath math="g(
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-2.5, 1, 0] }],
       },
     ]}
+    showZAxis={false}
     cameraTarget={[0, 1.5, 0]}
     cameraPosition={[0, 1.5, 13]}
   />
@@ -70,7 +70,7 @@ Fungsi hasil kali mengalikan <InlineMath math="f(x)" /> dan <InlineMath math="g(
 
 </ContentStack>
 
-<Highlight>Seperti fungsi jumlah atau selisih, fungsi hasil kali hanya terdefinisi saat kedua fungsi asal terdefinisi.</Highlight> Domainnya adalah irisan kedua domain.
+Fungsi hasil kali memerlukan <Highlight>masukan yang sah untuk kedua fungsi</Highlight>. Domain hasil kali adalah irisan kedua domain.
 
 <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
 
@@ -87,8 +87,8 @@ Pakai fungsi yang sedikit berbeda kali ini:
 
 <MathContainer>
   <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
-  <BlockMath math="= (x^2) \cdot (x - 1)" />
-  <BlockMath math="= x^3 - x^2" />
+  <BlockMath math="(f \cdot g)(x) = (x^2) \cdot (x - 1)" />
+  <BlockMath math="(f \cdot g)(x) = x^3 - x^2" />
 </MathContainer>
 
 **Langkah 2**: Tentukan domain fungsi hasil perkalian
@@ -97,8 +97,8 @@ Kita cari irisan dari <InlineMath math="D_f" /> dan <InlineMath math="D_g" />:
 
 <MathContainer>
   <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
-  <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-  <BlockMath math="= \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\}" />
 </MathContainer>
 
 Jadi, fungsi hasil perkaliannya adalah <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /> dengan domain semua bilangan real.
@@ -152,75 +152,81 @@ Atau bisa ditulis juga sebagai:
 
 Jadi, fungsi hasil pembagiannya adalah <InlineMath math="(\frac{f}{g})(x) = \frac{x^2}{x-1}" /> dengan domain semua bilangan real kecuali <InlineMath math="x=1" />.
 
+### Penyederhanaan tidak memperluas domain
+
+Jika faktor yang sama muncul pada pembilang dan penyebut, kita boleh mencoret faktor itu hanya saat nilainya tidak nol.
+
+<BlockMath math="h(x)=\frac{x^2-1}{x-1}=\frac{(x-1)(x+1)}{x-1}=x+1,\quad x\neq1" />
+
+Rumus sederhana tetap memiliki **batasan domain awal**. Pada masukan dua, pecahan dan bentuk sederhana sama-sama bernilai tiga. Pada masukan satu, pecahan awal tidak terdefinisi meskipun bentuk linear bernilai dua.
+
 ## Latihan Soal
 
-Diketahui fungsi <InlineMath math="f(x) = \sqrt{x+4}" /> dengan <InlineMath math="D_f = \{x | x \ge -4, x \in \mathbb{R}\}" /> dan fungsi <InlineMath math="g(x) = x^2 - 9" /> dengan <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />. Tentukan setiap hasil operasi pada soal berikut. Pada pembagian, nilai yang membuat penyebutnya nol juga dikeluarkan dari daerah asal.
+Diketahui fungsi <InlineMath math="f(x) = \sqrt{x+4}" /> dengan <InlineMath math="D_f = \{x | x \ge -4, x \in \mathbb{R}\}" /> dan fungsi <InlineMath math="g(x) = x^2 - 9" /> dengan <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />. Tentukan setiap hasil operasi pada soal berikut. Pada pembagian, nilai yang membuat **penyebutnya nol** juga dikeluarkan dari daerah asal.
 
 1.  Tentukan <InlineMath math="(f \cdot g)(x)" /> dan domainnya <InlineMath math="D_{f \cdot g}" />.
 2.  Tentukan <InlineMath math="(\frac{f}{g})(x)" /> dan domainnya <InlineMath math="D_{\frac{f}{g}}" />.
 3.  Hitung nilai <InlineMath math="(f \cdot g)(5)" />.
 4.  Apakah <InlineMath math="(\frac{f}{g})(3)" /> terdefinisi? Jelaskan.
 
-### Kunci Jawaban
+### Hasil kali dan domain
 
-1.  **Mencari <InlineMath math="(f \cdot g)(x)" />:**
+<MathContainer>
+  <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
+  <BlockMath math="(f \cdot g)(x) = (\sqrt{x+4}) \cdot (x^2 - 9)" />
+  <BlockMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
-      <BlockMath math="= (\sqrt{x+4}) \cdot (x^2 - 9)" />
-      <BlockMath math="= (x^2 - 9)\sqrt{x+4}" />
-    </MathContainer>
+Mencari **Domain** <InlineMath math="D_{f \cdot g}" />:
 
-    **Mencari Domain <InlineMath math="D_{f \cdot g}" />:**
+<MathContainer>
+  <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
-      <BlockMath math="= \{x | x \ge -4, x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-      <BlockMath math="= \{x | x \ge -4, x \in \mathbb{R}\}" />
-    </MathContainer>
+Jadi, <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \in \mathbb{R}\}" />.
 
-    Jadi, <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \in \mathbb{R}\}" />.
+### Hasil bagi dan domain
 
-2.  **Mencari <InlineMath math="(\frac{f}{g})(x)" />:**
+<BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{\sqrt{x+4}}{x^2 - 9}" />
 
-    <BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{\sqrt{x+4}}{x^2 - 9}" />
+Mencari Domain <InlineMath math="D_{\frac{f}{g}}" />:
 
-    **Mencari Domain <InlineMath math="D_{\frac{f}{g}}" />:**
+Irisan domain: <InlineMath math="D_f \cap D_g = \{x | x \ge -4, x \in \mathbb{R}\}" />.
 
-    Irisan domain: <InlineMath math="D_f \cap D_g = \{x | x \ge -4, x \in \mathbb{R}\}" />.
+Cari <InlineMath math="x" /> yang membuat <InlineMath math="g(x)=0" />:
 
-    Cari <InlineMath math="x" /> yang membuat <InlineMath math="g(x)=0" />:
+<MathContainer>
+  <BlockMath math="g(x) = 0" />
+  <BlockMath math="x^2 - 9 = 0" />
+  <BlockMath math="(x-3)(x+3) = 0" />
+  <BlockMath math="x = 3 \text{ atau } x = -3" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="g(x) = 0" />
-      <BlockMath math="x^2 - 9 = 0" />
-      <BlockMath math="(x-3)(x+3) = 0" />
-      <BlockMath math="x = 3 \text{ atau } x = -3" />
-    </MathContainer>
+Kecualikan <InlineMath math="x=3" /> dan <InlineMath math="x=-3" /> dari **irisan domain**:
 
-    Kecualikan <InlineMath math="x=3" /> dan <InlineMath math="x=-3" /> dari irisan domain:
+<BlockMath math="D_{\frac fg}=\{x\in\mathbb R\mid x\geq-4\}\setminus\{-3,3\}" />
 
-    <BlockMath math="D_{\frac fg}=\{x\in\mathbb R\mid x\geq-4\}\setminus\{-3,3\}" />
+Atau bisa ditulis:
 
-    Atau bisa ditulis:
+<BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
 
-    <BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
+Jadi, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
 
-    Jadi, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
+### Nilai hasil kali pada lima
 
-3.  **Menghitung <InlineMath math="(f \cdot g)(5)" />:**
+Substitusikan masukan yang diminta ke **rumus hasil kali yang sudah dihitung**: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
 
-    Kita gunakan hasil dari nomor 1: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
+Karena <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> ada di dalam domain <InlineMath math="D_{f \cdot g}" />.
 
-    Karena <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> ada di dalam domain <InlineMath math="D_{f \cdot g}" />.
+<MathContainer>
+  <BlockMath math="(f \cdot g)(5) = (5^2 - 9)\sqrt{5+4}" />
+  <BlockMath math="(f \cdot g)(5) = (25 - 9)\sqrt{9}" />
+  <BlockMath math="(f \cdot g)(5) = (16)(3)" />
+  <BlockMath math="(f \cdot g)(5) = 48" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f \cdot g)(5) = (5^2 - 9)\sqrt{5+4}" />
-      <BlockMath math="= (25 - 9)\sqrt{9}" />
-      <BlockMath math="= (16)(3)" />
-      <BlockMath math="= 48" />
-    </MathContainer>
+### Mengapa pembagian pada tiga tidak terdefinisi
 
-4.  **Apakah <InlineMath math="(\frac{f}{g})(3)" /> terdefinisi?**
-
-    Tidak terdefinisi. Kita lihat domain dari <InlineMath math="(\frac{f}{g})(x)" /> pada nomor 2, yaitu <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. Nilai <InlineMath math="x=3" /> secara eksplisit dikecualikan dari domain karena akan menyebabkan penyebut <InlineMath math="g(x) = x^2 - 9" /> menjadi nol (<InlineMath math="3^2 - 9 = 0" />). Pembagian dengan nol tidak diperbolehkan dalam matematika.
+Tidak terdefinisi. Kita lihat domain dari <InlineMath math="(\frac{f}{g})(x)" /> pada nomor 2, yaitu <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. Nilai <InlineMath math="x=3" /> secara eksplisit dikecualikan dari domain karena akan menyebabkan penyebut <InlineMath math="g(x) = x^2 - 9" /> menjadi nol (<InlineMath math="3^2 - 9 = 0" />). **Pembagian dengan nol** tidak diperbolehkan dalam matematika.

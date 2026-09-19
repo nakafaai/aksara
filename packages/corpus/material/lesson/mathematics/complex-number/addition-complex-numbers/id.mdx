@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Penjumlahan Bilangan Kompleks",
   description: "Jumlahkan bagian real dan imajiner dua bilangan kompleks, lalu tunjukkan jumlah kedua bilangan sebagai diagonal dengan aturan jajar genjang.",
@@ -26,8 +24,8 @@ Untuk membentuk <InlineMath math="z_1 + z_2" />, <Highlight>jumlahkan sesama bag
 
 Misal <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" />.
 
-- Bagian real <InlineMath math="z_1" /> adalah <InlineMath math="2" />, bagian real <InlineMath math="z_2" /> adalah <InlineMath math="1" />.
-- Bagian imajiner <InlineMath math="z_1" /> adalah <InlineMath math="3" />, bagian imajiner <InlineMath math="z_2" /> adalah <InlineMath math="-1" />.
+- **Bagian real** <InlineMath math="z_1" /> adalah <InlineMath math="2" />, bagian real <InlineMath math="z_2" /> adalah <InlineMath math="1" />.
+- **Bagian imajiner** <InlineMath math="z_1" /> adalah <InlineMath math="3" />, bagian imajiner <InlineMath math="z_2" /> adalah <InlineMath math="-1" />.
 
 Maka penjumlahannya:
 
@@ -35,7 +33,7 @@ Maka penjumlahannya:
 
 ### Menjumlahkan pada Bidang Kompleks
 
-Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secara geometris di bidang kompleks. Kalau kita gambarkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> sebagai vektor (panah) dari titik asal <InlineMath math="(0, 0)" />, maka hasil penjumlahannya, <InlineMath math="z_1 + z_2" />, adalah vektor diagonal dari jajar genjang yang dibentuk oleh <InlineMath math="z_1" /> dan <InlineMath math="z_2" />.
+Dengan **aturan jajar genjang**, penjumlahan bilangan kompleks bisa kita lihat secara geometris di bidang kompleks. Kalau kita gambarkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> sebagai vektor (panah) dari titik asal <InlineMath math="(0, 0)" />, maka hasil penjumlahannya, <InlineMath math="z_1 + z_2" />, adalah vektor diagonal dari jajar genjang yang dibentuk oleh <InlineMath math="z_1" /> dan <InlineMath math="z_2" />.
 
 <LineEquation
   title="Penjumlahan Bilangan Kompleks secara Geometris"
@@ -47,6 +45,7 @@ Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secar
   }
   cameraPosition={[1.5, 1, 8]}
   cameraTarget={[1.5, 1, 0]}
+  showZAxis={false}
   data={[
     // Vektor z1
     {
@@ -78,7 +77,7 @@ Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secar
       ],
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.4, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.55, 0, 0] }],
       cone: { position: "end" },
     },
     // Garis bantu jajar genjang (dari ujung z1 ke ujung z1+z2)
@@ -104,15 +103,17 @@ Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secar
 
 ## Perkalian Skalar Negasi dan Pengurangan
 
-Pemisahan bagian real dan imajiner juga berlaku pada perkalian skalar, negasi, dan pengurangan. Perkalian dengan bilangan real menskalakan kedua bagian, negasi membalik kedua tandanya, dan pengurangan menggabungkan negasi dengan penjumlahan. Setiap aturan bekerja pada kedua bagian itu secara terpisah, jadi kamu tidak perlu mencampurnya.
+Pemisahan **bagian real dan imajiner** juga berlaku pada perkalian skalar, negasi, dan pengurangan. Perkalian dengan bilangan real menskalakan kedua bagian, negasi membalik kedua tandanya, dan pengurangan menggabungkan negasi dengan penjumlahan. Setiap aturan bekerja pada kedua bagian itu secara terpisah, jadi kamu tidak perlu mencampurnya.
 
 ### Perkalian Skalar
 
-Saat bilangan kompleks <InlineMath math="z = x + iy" /> dikalikan dengan skalar real <InlineMath math="c" />, skalar tersebut mengalikan bagian real dan bagian imajiner.
+Saat bilangan kompleks <InlineMath math="z = x + iy" /> dikalikan dengan skalar real <InlineMath math="c" />, skalar tersebut mengalikan **kedua bagian dengan faktor yang sama**.
 
 <BlockMath math="cz = c(x + iy) = cx + i(cy)" />
 
 Pada bidang kompleks, perkalian ini mengubah panjang vektor <InlineMath math="z" /> dengan faktor <InlineMath math="|c|" />. Jika <InlineMath math="c" /> negatif, arah vektornya juga berbalik.
+
+Untuk skalar nol, kedua komponen menjadi nol. **Vektor nol** tidak memiliki arah.
 
 ### Negatif dari Bilangan Kompleks
 
@@ -120,11 +121,11 @@ Negatif dari <InlineMath math="z = x + iy" /> adalah <InlineMath math="-z" />. I
 
 <BlockMath math="\begin{aligned} -z &amp;= -(x + iy) \\ &amp;= -x + i(-y) \\ &amp;= -x - iy \end{aligned}" />
 
-Secara geometris, <InlineMath math="-z" /> adalah vektor dengan panjang yang sama dengan <InlineMath math="z" />, tapi arahnya berlawanan <InlineMath math="180^\circ" />.
+Untuk <InlineMath math="z\ne0" />, secara geometris <InlineMath math="-z" /> adalah vektor dengan panjang yang sama dengan <InlineMath math="z" />, tapi **arah vektor berlawanan** <InlineMath math="180^\circ" />.
 
 ### Pengurangan Dua Bilangan Kompleks
 
-Mengurangkan <InlineMath math="z_2" /> dari <InlineMath math="z_1" /> (<InlineMath math="z_1 - z_2" />) sama artinya dengan menjumlahkan <InlineMath math="z_1" /> dengan negatif dari <InlineMath math="z_2" /> (<InlineMath math="z_1 + (-z_2)" />).
+Mengurangkan <InlineMath math="z_2" /> dari <InlineMath math="z_1" /> (<InlineMath math="z_1 - z_2" />) sama artinya dengan menjumlahkan <InlineMath math="z_1" /> dengan **negatif** dari <InlineMath math="z_2" /> (<InlineMath math="z_1 + (-z_2)" />).
 
 <BlockMath math="\begin{aligned} &amp;z_1 - z_2 = z_1 + (-z_2) \\ &amp;= (x_1 + (-x_2)) + i(y_1 + (-y_2)) \\ &amp;= (x_1 - x_2) + i(y_1 - y_2) \end{aligned}" />
 
@@ -141,34 +142,23 @@ Gunakan dua bilangan berikut:
   <BlockMath math="z_2 = -3 + \sqrt{2}i" />
 </MathContainer>
 
-Hitung tiga bentuk berikut dengan memisahkan bagian real dan imajinernya:
+Hitung tiga bentuk berikut dengan **memisahkan bagian real dan imajiner**:
 
-1.  **<InlineMath math="2z_1" /> (Perkalian Skalar):**
+1.  <InlineMath math="2z_1" /> (**Perkalian Skalar**):
 
     <BlockMath math="\begin{aligned} 2z_1 &amp;= 2(2 + \frac{1}{2}i) \\ &amp;= 2(2) + i(2 \times \frac{1}{2}) \\ &amp;= 4 + i \end{aligned}" />
 
-2.  **<InlineMath math="z_1 + 3z_2" /> (Penjumlahan dan Perkalian Skalar):**
+2.  <InlineMath math="z_1 + 3z_2" /> (**Penjumlahan dan Perkalian Skalar**):
 
-    <MathContainer>
-      <BlockMath math="z_1 + 3z_2 = (2 + \frac{1}{2}i) + 3(-3 + \sqrt{2}i)" />
-      <BlockMath math="= (2 + \frac{1}{2}i) + (3(-3) + i(3\sqrt{2}))" />
-      <BlockMath math="= (2 + \frac{1}{2}i) + (-9 + 3\sqrt{2}i)" />
-      <BlockMath math="= (2 - 9) + i(\frac{1}{2} + 3\sqrt{2})" />
-      <BlockMath math="= -7 + i(\frac{1}{2} + 3\sqrt{2})" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned}z_1+3z_2&amp;=(2+\frac12i)+3(-3+\sqrt2i)\\&amp;=(2-9)+i(\frac12+3\sqrt2)\\&amp;=-7+i(\frac12+3\sqrt2)\end{aligned}" />
 
-3.  **<InlineMath math="2z_1 - z_2" /> (Pengurangan dan Perkalian Skalar):**
+3.  <InlineMath math="2z_1 - z_2" /> (**Pengurangan dan Perkalian Skalar**):
 
-    <MathContainer>
-      <BlockMath math="2z_1 - z_2 = (4 + i) - (-3 + \sqrt{2}i)" />
-      <BlockMath math="= (4 - (-3)) + i(1 - \sqrt{2})" />
-      <BlockMath math="= (4 + 3) + i(1 - \sqrt{2})" />
-      <BlockMath math="= 7 + i(1 - \sqrt{2})" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned}2z_1-z_2&amp;=(4+i)-(-3+\sqrt2i)\\&amp;=(4-(-3))+i(1-\sqrt2)\\&amp;=7+i(1-\sqrt2)\end{aligned}" />
 
 ## Latihan
 
-Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Latihan ini melatih penjumlahan dan pengurangan pada dua bentuk sekaligus, lalu meminta kamu menempatkan hasilnya pada bidang kompleks. Hitung dulu setiap hasilnya, baru gambarkan ketiga vektornya.
+Hitung **jumlah dan selisih** kedua bilangan, lalu gunakan komponen hasil penjumlahan sebagai koordinat ujung diagonal. Tanda negatif pada pengurangan berlaku untuk seluruh bilangan yang dikurangkan, termasuk komponen imajiner.
 
 Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Tentukan:
 
@@ -178,7 +168,7 @@ Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Tent
 
 ### Penyelesaian
 
-Jumlahkan dan kurangkan bagian yang bersesuaian, lalu baca hasil penjumlahannya sebagai diagonal pada bidang kompleks.
+Jumlahkan dan kurangkan bagian yang bersesuaian, lalu baca jumlah sebagai **diagonal** pada bidang kompleks.
 
 1.  Jumlahkan bagian real dan bagian imajiner secara terpisah:
 
@@ -201,6 +191,7 @@ Jumlahkan dan kurangkan bagian yang bersesuaian, lalu baca hasil penjumlahannya 
       }
       cameraPosition={[2, 0.5, 8]}
       cameraTarget={[2, 0.5, 0]}
+      showZAxis={false}
       data={[
         {
           points: [

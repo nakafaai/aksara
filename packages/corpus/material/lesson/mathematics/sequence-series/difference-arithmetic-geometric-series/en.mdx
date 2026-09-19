@@ -9,8 +9,6 @@ export const metadata = {
 
 ## Arithmetic Series
 
-**Basic concept:**
-
 An arithmetic series is the **sum** of the terms of an **arithmetic sequence**. Remember, an arithmetic sequence is one that has a constant **difference (common difference)** between its terms (<InlineMath math="b" />).
 
 So, we are summing terms with the pattern: <InlineMath math="a, a+b, a+2b, a+3b, \dots" />.
@@ -23,13 +21,11 @@ An equivalent formula is:
 
 <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
 
-Where <InlineMath math="a" /> is the first term and <InlineMath math="U_n" /> is the <InlineMath math="n" />-th term.
+Here, <InlineMath math="a" /> is the first term and <InlineMath math="U_n" /> is the <InlineMath math="n" />-th term.
 
-Imagine you are stacking bricks. The first layer has <InlineMath math="1" /> brick, the second layer has <InlineMath math="3" /> bricks, the third layer has <InlineMath math="5" /> bricks, and so on (common difference <InlineMath math="= 2" />). An arithmetic series represents the **total** number of bricks needed to make a stack <InlineMath math="n" /> layers high.
+Imagine you are stacking bricks. The first layer has <InlineMath math="1" /> brick, the second layer has <InlineMath math="3" /> bricks, the third layer has <InlineMath math="5" /> bricks, and so on (common difference <InlineMath math="b=2" />). An arithmetic series represents the **total** number of bricks needed to make a stack <InlineMath math="n" /> layers high.
 
 ## Geometric Series
-
-**Basic concept:**
 
 A geometric series is the **sum** of the terms of a **geometric sequence**. Remember, a geometric sequence is one that has a constant **ratio (common ratio)** between its terms (<InlineMath math="r" />).
 
@@ -54,7 +50,7 @@ The table places the two sum formulas side by side, so the term being added and 
 | Feature                                   | Arithmetic Series                                                                  | Geometric Series                                                            |
 | ----------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | **Basis**                                 | Sum of terms in an arithmetic sequence (common difference <InlineMath math="b" />) | Sum of terms in a geometric sequence (common ratio <InlineMath math="r" />) |
-| **Sum Formula <InlineMath math="S_n" />** | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" />                                     | <InlineMath math="\frac{a(r^n - 1)}{r-1}" />                                |
+| **Sum formula** <InlineMath math="S_n" /> | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" />                                     | <InlineMath math="\frac{a(r^n - 1)}{r-1}" />                                |
 | **Pattern**                               | Constant addition/subtraction                                                      | Constant multiplication/division                                            |
 
 ## Calculating Arithmetic and Geometric Sums
@@ -63,7 +59,7 @@ For the arithmetic series:
 
 <BlockMath math="5+8+11+14+17" />
 
-This series has the common difference <InlineMath math="b=3" />. Its first five terms sum to:
+This series has the **common difference** <InlineMath math="b=3" />. Its first five terms sum to:
 
 <BlockMath math="S_5=\frac52(5+17)=55" />
 
@@ -77,7 +73,17 @@ This series has the common ratio <InlineMath math="r=2" />. Its first five terms
 
 ## Patterns of Terms and Partial Sums
 
-The terms of an arithmetic series change linearly with the index, while its partial sums generally change quadratically. The terms of a geometric series change exponentially, while its finite partial sums follow the geometric sum formula.
+Arithmetic terms depend linearly on the index, and their partial sums are quadratic when the difference is nonzero. In a geometric sequence, **each term is multiplied by a fixed ratio**. A positive ratio other than one gives an exponential pattern. A negative ratio alternates the signs.
+
+For the two examples just calculated, compare the accumulated sums after each term is added:
+
+| Number of terms | Arithmetic sum | Geometric sum |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="2" /> | <InlineMath math="13" /> | <InlineMath math="15" /> |
+| <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="35" /> |
+| <InlineMath math="4" /> | <InlineMath math="38" /> | <InlineMath math="75" /> |
+| <InlineMath math="5" /> | <InlineMath math="55" /> | <InlineMath math="155" /> |
 
 The name of a series comes from its sequence of terms. The partial sums <InlineMath math="S_1,S_2,S_3,\ldots" /> can follow a different pattern.
 
@@ -90,7 +96,7 @@ Classify each series and calculate its sum. <Highlight>Decide the type from the 
 
 ### Solution
 
-The first series is arithmetic with <InlineMath math="b=-5" />. The second is geometric with <InlineMath math="r=3" />:
+The first series is **arithmetic** with <InlineMath math="b=-5" />. The second is geometric with <InlineMath math="r=3" />:
 
 <MathContainer>
   <BlockMath math="S_5=\frac52(30+10)=100" />

@@ -3,13 +3,13 @@ export const metadata = {
    description: "Jelaskan hubungan determinan dengan faktor volume berorientasi, turunkan sifat yang menentukan determinan, lalu gunakan determinan nol untuk memeriksa peringkat dan apakah matriks dapat dibalik.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-10",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Makna Geometris Determinan
 
-<Highlight>Determinan matriks persegi mengukur faktor perubahan volume berorientasi dari transformasi linearnya.</Highlight> Nilai mutlaknya memberi faktor volume, sedangkan tandanya menunjukkan apakah orientasi dipertahankan atau dibalik.
+Determinan matriks persegi mengukur <Highlight>faktor perubahan volume berorientasi</Highlight> dari transformasi linearnya. Nilai mutlaknya memberi faktor volume, sedangkan tandanya menunjukkan apakah orientasi dipertahankan atau dibalik.
 
 Setiap matriks persegi memiliki satu determinan. Determinan nol berarti hasil transformasi berada dalam himpunan berdimensi lebih rendah. Karena itu, transformasi tidak memiliki invers.
 
@@ -25,9 +25,19 @@ Tanda dan nilai determinan memberi tiga kemungkinan berikut:
 | <InlineMath math="\det A<0" /> | Mengalikan volume dengan <InlineMath math="\lvert\det A\rvert" /> dan membalik orientasi | Dapat dibalik |
 | <InlineMath math="\det A=0" /> | Mengubah volume menjadi nol dan menghasilkan himpunan berdimensi lebih rendah | Tidak dapat dibalik |
 
+
+Kubus satuan berwarna hijau kebiruan berubah menjadi bangun jingga melalui matriks berikut. Sisi miring menunjukkan geseran, tetapi volume dihitung dari **panjang alas dan tinggi tegak lurus**.
+
+<BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
+
+<LineEquation title="Volume kubus setelah peregangan dan geseran" description="Kubus satuan hijau kebiruan dan bangun jingga memakai titik asal yang sama. Putar model untuk melihat tinggi tegak lurus dan sisi miringnya." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+
+Panjang alas berubah menjadi 2, sedangkan kedua tinggi tetap 1. Jadi, volumenya berubah dari 1 menjadi 2. Panjang sisi miring bukan tinggi tegak lurus.
+
+
 ## Tiga Sifat Penentu Determinan
 
-Hanya ada satu fungsi determinan yang memenuhi tiga sifat berikut. Setiap sifat menetapkan satu perilaku fungsi itu: reaksinya terhadap operasi baris, hasilnya ketika dua baris sama, dan nilai yang harus dikembalikan matriks identitas. Ketiganya bersama-sama menentukan determinan secara lengkap.
+Hanya ada satu fungsi determinan yang memenuhi **tiga sifat berikut**. Setiap sifat menetapkan satu perilaku fungsi itu: reaksinya terhadap operasi baris, hasilnya ketika dua baris sama, dan nilai yang harus dikembalikan matriks identitas. Ketiganya bersama-sama menentukan determinan secara lengkap.
 
 ### Sifat Linear pada Setiap Baris
 
@@ -62,7 +72,7 @@ Di sini <InlineMath math="I" /> adalah matriks identitas dengan ukuran yang sesu
 
 ## Operasi Matriks dan Determinan
 
-Jika seluruh matriks dikalikan dengan skalar <InlineMath math="\lambda" />, determinannya menjadi <InlineMath math="\lambda^n" /> kali determinan semula.
+Jika **seluruh matriks** dikalikan dengan skalar <InlineMath math="\lambda" />, determinannya menjadi <InlineMath math="\lambda^n" /> kali determinan semula.
 
 <BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
 
@@ -78,8 +88,6 @@ Penambahan kelipatan satu baris ke baris lain yang berbeda tidak mengubah determ
 <BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
-
-Mengalikan baris dengan skalar <InlineMath math="\lambda \neq 0" /> mengubah determinan menjadi <InlineMath math="\det A' = \lambda \cdot \det A" />. Menukar baris mengubah tanda menjadi <InlineMath math="\det A' = -\det A" />. Menambahkan kelipatan baris lain tidak mengubah determinan sama sekali.
 
 ## Syarat Matriks Dapat Dibalik
 
@@ -127,9 +135,7 @@ Jika suatu baris juga diskalakan, faktor skalanya harus dicatat terpisah. Dengan
 
 ## Kesalahan Umum tentang Determinan
 
-Determinan **tidak** bersifat aditif:
-
-<BlockMath math="\det(A + B) \neq \det A + \det B" />
+Determinan **tidak aditif secara umum**. Identitas penjumlahan determinan gagal pada contoh berikut.
 
 Sebagai contoh sederhana:
 

@@ -3,13 +3,13 @@ export const metadata = {
    description: "Bestimme mit Eigenwerten und Eigenvektoren, ob eine Matrix diagonalisierbar ist, und vergleiche algebraische mit geometrischer Multiplizität.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Lineare Methoden der KI",
 };
 
 ## Eine Basis aus Eigenvektoren wählen
 
-<Highlight>Die Diagonalisierung schreibt eine lineare Transformation in einer Basis aus Eigenvektoren.</Highlight> In dieser Basis wird jede Koordinate mit ihrem Eigenwert multipliziert, ohne sich mit den anderen Koordinaten zu vermischen.
+Die Diagonalisierung schreibt eine lineare Transformation in einer <Highlight>Basis aus Eigenvektoren</Highlight>. In dieser Basis wird jede Koordinate mit ihrem Eigenwert multipliziert, ohne sich mit den anderen Koordinaten zu vermischen.
 
 Das Hauptziel besteht darin, eine Basis zu finden, in der die lineare Transformation <InlineMath math="y = A \cdot x" /> durch die Diagonalmatrix <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> dargestellt wird. Lässt sich die Eigenbasis orthonormal wählen, dann gilt <InlineMath math="S^{-1} = S^T" /> im reellen und <InlineMath math="S^{-1} = S^H" /> im komplexen Fall.
 
@@ -20,6 +20,8 @@ Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> heißt **diagona
 <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
 Äquivalent dazu gilt <InlineMath math="A = S\Lambda S^{-1}" />. Wiederholte Anwendungen haben dann die Form:
+
+Für jede nichtnegative ganze Zahl <InlineMath math="m" />:
 
 <BlockMath math="A^m = S\Lambda^m S^{-1}" />
 
@@ -37,7 +39,7 @@ Die Matrix <InlineMath math="S" /> enthält die Eigenvektoren als Spalten:
 
 <BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
 
-Wenn <InlineMath math="A" /> diagonalisierbar ist, dann bilden die Spalten <InlineMath math="v_1, \ldots, v_n" /> von <InlineMath math="S" /> eine Basis von Eigenvektoren. Aus <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> erhalten wir <InlineMath math="A \cdot S = S \cdot \Lambda" /> und somit <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> für <InlineMath math="i = 1, \ldots, n" />.
+Wenn <InlineMath math="A" /> diagonalisierbar ist, dann bilden die Spalten <InlineMath math="v_1, \ldots, v_n" /> von <InlineMath math="S" /> eine **Basis von Eigenvektoren**. Aus <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> erhalten wir <InlineMath math="A \cdot S = S \cdot \Lambda" /> und somit <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> für <InlineMath math="i = 1, \ldots, n" />.
 
 Wenn umgekehrt <InlineMath math="v_1, \ldots, v_n" /> eine Basis von Eigenvektoren ist, dann ist <InlineMath math="S" /> invertierbar und aus <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> für <InlineMath math="i = 1, \ldots, n" /> erhalten wir <InlineMath math="A \cdot S = S \cdot \Lambda" /> und damit <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
@@ -55,7 +57,12 @@ Diese Matrix hat den Eigenwert <InlineMath math="\lambda = 1" /> mit der algebra
 <BlockMath math="= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \end{pmatrix}\right\}" />
 </MathContainer>
 
-Die oben angegebene lineare Hülle enthält alle skalaren Vielfachen des dargestellten Vektors und hat die Dimension <InlineMath math="1" />. Damit liefert der Eigenraum nur einen unabhängigen Eigenvektor, eine Basis von <InlineMath math="\mathbb{K}^2" /> benötigt aber zwei. Daher ist <InlineMath math="A" /> nicht diagonalisierbar.
+Die oben angegebene lineare Hülle enthält alle skalaren Vielfachen des dargestellten Vektors und hat die Dimension <InlineMath math="1" />. Damit liefert der Eigenraum **nur einen unabhängigen Eigenvektor**, eine Basis von <InlineMath math="\mathbb{K}^2" /> benötigt aber zwei. Daher ist <InlineMath math="A" /> nicht diagonalisierbar.
+
+| Matrix | Algebraische Multiplizität von 1 | Dimension des Eigenraums | Diagonalisierbar? |
+| --- | --- | --- | --- |
+| Einheitsmatrix <InlineMath math="I_2" /> | 2 | 2 | Ja |
+| Matrix <InlineMath math="A" /> oben | 2 | 1 | Nein |
 
 ## Voraussetzungen für die Matrixdiagonalisierung
 
@@ -65,7 +72,7 @@ Wenn eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> diagonalisi
 
 Die Matrix <InlineMath math="A" /> besitzt insgesamt <InlineMath math="n" /> Eigenwerte <InlineMath math="\lambda_i \in \mathbb{K}" />, wenn die Multiplizitäten mitgezählt werden. Die Eigenwerte müssen nicht paarweise verschieden sein.
 
-Der gewählte Körper ist entscheidend. Eine reelle Matrix kann über <InlineMath math="\mathbb{R}" /> nicht diagonalisierbar sein, aber über <InlineMath math="\mathbb{C}" /> diagonalisierbar werden, sobald ihr charakteristisches Polynom dort zerfällt.
+**Der gewählte Körper** ist entscheidend. Eine reelle Matrix kann über <InlineMath math="\mathbb{R}" /> nicht diagonalisierbar sein, aber über <InlineMath math="\mathbb{C}" /> diagonalisierbar werden, sobald ihr charakteristisches Polynom dort zerfällt.
 
 Bei lauter verschiedenen Eigenwerten entfällt der Vergleich von algebraischer und geometrischer Multiplizität. Das charakteristische Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath math="A \in \mathbb{K}^{n \times n}" /> zerfalle über <InlineMath math="\mathbb{K}" /> wie folgt.
 

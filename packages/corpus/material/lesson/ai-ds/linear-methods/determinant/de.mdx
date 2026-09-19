@@ -3,13 +3,13 @@ export const metadata = {
    description: "Deute die Determinante als orientierten Volumenfaktor und verbinde ihre definierenden Eigenschaften mit Rang und Invertierbarkeit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
 ## Volumenänderung und Orientierung einer linearen Abbildung
 
-<Highlight>Die Determinante einer quadratischen Matrix misst die orientierte Volumenskalierung ihrer linearen Abbildung.</Highlight> Ihr Betrag gibt den Volumenfaktor an, ihr Vorzeichen zeigt, ob die Orientierung erhalten oder umgekehrt wird.
+Die Determinante einer quadratischen Matrix misst die <Highlight>orientierte Volumenskalierung</Highlight> ihrer linearen Abbildung. Ihr Betrag gibt den Volumenfaktor an, ihr Vorzeichen zeigt, ob die Orientierung erhalten oder umgekehrt wird.
 
 Jede quadratische Matrix besitzt genau eine Determinante. Bei einer Determinante von null liegt das Bild in einer Menge niedrigerer Dimension. Die Abbildung ist daher nicht invertierbar.
 
@@ -25,9 +25,19 @@ Vorzeichen und Wert der Determinante ergeben drei Fälle:
 | <InlineMath math="\det A<0" /> | Skaliert das Volumen mit <InlineMath math="\lvert\det A\rvert" /> und kehrt die Orientierung um | Invertierbar |
 | <InlineMath math="\det A=0" /> | Skaliert das Volumen auf null und bildet den Raum auf eine Menge niedrigerer Dimension ab | Nicht invertierbar |
 
+
+Der türkisfarbene Einheitswürfel wird durch die folgende Matrix zum orangefarbenen Parallelepiped. Die schrägen Kanten zeigen die Scherung. Das Volumen ergibt sich aus **Grundkantenlänge und senkrechten Höhen**.
+
+<BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
+
+<LineEquation title="Würfelvolumen nach Streckung und Scherung" description="Der türkisfarbene Einheitswürfel und sein orangefarbenes Bild haben denselben Ursprung. Drehe das Modell, um senkrechte Höhen und schräge Kanten zu vergleichen." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+
+Die Grundkantenlänge wird 2, beide senkrechten Höhen bleiben 1. Das Volumen wächst deshalb von 1 auf 2. Die Länge einer schrägen Kante ist keine senkrechte Höhe.
+
+
 ## Drei bestimmende Eigenschaften der Determinante
 
-Genau eine Determinantenfunktion erfüllt die folgenden drei Eigenschaften. Jede Eigenschaft legt ein Verhalten dieser Funktion fest: ihre Reaktion auf eine Zeilenoperation, das Ergebnis bei zwei gleichen Zeilen und den Wert, den die Einheitsmatrix liefern muss. Zusammen bestimmen sie die Determinante vollständig.
+Genau eine Determinantenfunktion erfüllt die folgenden **drei Eigenschaften**. Jede Eigenschaft legt ein Verhalten dieser Funktion fest: ihre Reaktion auf eine Zeilenoperation, das Ergebnis bei zwei gleichen Zeilen und den Wert, den die Einheitsmatrix liefern muss. Zusammen bestimmen sie die Determinante vollständig.
 
 ### Lineare Eigenschaft in jeder Zeile
 
@@ -62,7 +72,7 @@ Dabei ist <InlineMath math="I" /> die Einheitsmatrix passender Größe. Multilin
 
 ## Matrixoperationen und Determinante
 
-Wenn wir die gesamte Matrix mit einem Skalar <InlineMath math="\lambda" /> multiplizieren, wird die Determinante durch die Potenz von n beeinflusst:
+Wenn wir die **gesamte Matrix** mit einem Skalar <InlineMath math="\lambda" /> multiplizieren, trägt jede Zeile einen Faktor zur Determinante bei:
 
 <BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
 
@@ -78,8 +88,6 @@ Das Addieren eines Vielfachen einer Zeile zu einer anderen Zeile verändert die 
 <BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
-
-Die Multiplikation einer Zeile mit dem Skalar <InlineMath math="\lambda \neq 0" /> ändert die Determinante in <InlineMath math="\det A' = \lambda \cdot \det A" />. Durch Vertauschen der Zeilen ändert sich das Vorzeichen zu <InlineMath math="\det A' = -\det A" />. Das Hinzufügen mehrerer anderer Zeilen ändert die Determinante überhaupt nicht.
 
 ## Beziehung zur Matrixinvertibilität
 
@@ -127,9 +135,7 @@ Wird eine Zeile zusätzlich skaliert, muss dieser Faktor gesondert berücksichti
 
 ## Häufige Fehler bei der Determinante
 
-Die Determinante ist **nicht** additiv:
-
-<BlockMath math="\det(A + B) \neq \det A + \det B" />
+Die Determinante ist **im Allgemeinen nicht additiv**. Das folgende Beispiel widerlegt eine Additionsregel.
 
 Als einfaches Beispiel:
 

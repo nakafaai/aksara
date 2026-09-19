@@ -15,119 +15,45 @@ Misalkan <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath m
 
 ## Penjumlahan
 
-Penjumlahan bilangan kompleks mempertahankan sifat penjumlahan bilangan real yang sudah dikenal, dan setiap pemeriksaannya berjalan terpisah pada bagian real dan bagian imajiner. Memecah satu penjumlahan menjadi dua penjumlahan real itulah yang membuat pembuktiannya singkat.
+Penjumlahan kompleks dihitung **secara terpisah pada bagian real dan imajiner**. Karena penjumlahan bilangan real boleh ditukar dan dikelompokkan ulang, kedua aturan itu berlaku pada setiap komponen bilangan kompleks. Misalnya, pertukaran urutan dapat diperiksa langsung:
 
-### Komutatif
+<BlockMath math="\begin{aligned}(x_1+iy_1)+(x_2+iy_2)&amp;=(x_1+x_2)+i(y_1+y_2) \\ &amp;=(x_2+x_1)+i(y_2+y_1) \\ &amp;=(x_2+iy_2)+(x_1+iy_1)\end{aligned}" />
 
-Urutan penjumlahan tidak penting, hasilnya tetap sama.
-
-<BlockMath math="z_1 + z_2 = z_2 + z_1" />
-
-Contoh: <InlineMath math="(2+i) + (1-3i) = (1-3i) + (2+i) = 3-2i" />
-
-### Asosiatif Penjumlahan
-
-Saat menjumlahkan tiga bilangan kompleks, pengelompokan penjumlahannya tidak memengaruhi hasil.
-
-<BlockMath math="(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)" />
-
-### Elemen Identitas
-
-Ada bilangan kompleks <InlineMath math="0 = 0 + 0i" /> (nol) yang jika dijumlahkan dengan bilangan kompleks <InlineMath math="z_1" /> mana pun, hasilnya adalah <InlineMath math="z_1" /> itu sendiri.
-
-<BlockMath math="z_1 + 0 = z_1" />
-
-### Elemen Invers
-
-Setiap bilangan kompleks <InlineMath math="z_1 = x + iy" /> punya invers penjumlahan (lawan), yaitu <InlineMath math="-z_1 = -x - iy" />, sehingga jika dijumlahkan hasilnya adalah elemen nol (<InlineMath math="0" />).
-
-<BlockMath math="z_1 + (-z_1) = 0" />
-
-Contoh:
-
-Jika <InlineMath math="z_1 = 5-2i" />, maka <InlineMath math="-z_1 = -5+2i" />.
-
-Maka <InlineMath math="(5-2i) + (-5+2i) = (5-5) + i(-2+2) = 0 + 0i = 0" />.
+| Sifat | Aturan | Contoh perhitungan |
+| --- | --- | --- |
+| Komutatif | <InlineMath math="z_1+z_2=z_2+z_1" /> | <InlineMath math="(2+i)+(1-3i)=3-2i=(1-3i)+(2+i)" /> |
+| Asosiatif | <InlineMath math="(z_1+z_2)+z_3=z_1+(z_2+z_3)" /> | <InlineMath math="((2+i)+(1-3i))+(-1+2i)=2=(2+i)+((1-3i)+(-1+2i))" /> |
+| Identitas | <InlineMath math="z+0=z" /> | <InlineMath math="(2+i)+(0+0i)=2+i" /> |
+| Invers | <InlineMath math="z+(-z)=0" /> | <InlineMath math="(5-2i)+(-5+2i)=(5-5)+(-2+2)i=0" /> |
 
 ## Perkalian Skalar
 
-Perkalian dengan skalar real mengikuti kelompok sifat yang sama, jadi pemeriksaannya juga sama dengan satu faktor real. Skalar memperlakukan bagian real dan bagian imajiner dengan cara yang sama, dan itulah alasan sifat distributif serta skalar nol tetap berlaku.
+Perkalian skalar berarti **mengalikan kedua komponen dengan faktor yang sama**. Untuk <InlineMath math="z=x+iy" />, hasilnya <InlineMath math="cz=cx+i(cy)" />. Setiap aturan di bawah berlaku pada kedua komponen karena sifat distributif dan asosiatif bilangan real.
 
-### Asosiatif Perkalian
-
-Pengelompokan perkalian skalar tidak memengaruhi hasil.
-
-<BlockMath math="c(dz_1) = (cd)z_1" />
-
-### Distributif Skalar
-
-Mengalikan bilangan kompleks dengan jumlah dua skalar setara dengan mengalikannya dengan setiap skalar, lalu menjumlahkan hasilnya.
-
-<BlockMath math="(c + d)z_1 = cz_1 + dz_1" />
-
-### Distributif Kompleks
-
-Skalar bisa didistribusikan terhadap penjumlahan bilangan kompleks.
-
-<BlockMath math="c(z_1 + z_2) = cz_1 + cz_2" />
-
-### Identitas Skalar
-
-Mengalikan bilangan kompleks dengan skalar <InlineMath math="1" /> tidak mengubah bilangan kompleks tersebut.
-
-<BlockMath math="1 z_1 = z_1" />
-
-### Skalar Nol
-
-Mengalikan bilangan kompleks dengan skalar <InlineMath math="0" /> menghasilkan bilangan kompleks nol.
-
-<BlockMath math="0 z_1 = 0" />
+| Sifat | Aturan | Contoh perhitungan |
+| --- | --- | --- |
+| Asosiatif | <InlineMath math="c(dz)=(cd)z" /> | <InlineMath math="2(3(1+i))=2(3+3i)=6+6i=6(1+i)" /> |
+| Distributif terhadap skalar | <InlineMath math="(c+d)z=cz+dz" /> | <InlineMath math="(2+3)(1+i)=5+5i=(2+2i)+(3+3i)" /> |
+| Distributif terhadap kompleks | <InlineMath math="c(z_1+z_2)=cz_1+cz_2" /> | <InlineMath math="2((1+i)+(2-i))=6=(2+2i)+(4-2i)" /> |
+| Identitas | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
+| Skalar nol | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
 
 ## Menyederhanakan Ekspresi dengan Sifat Penjumlahan
 
-Sifat distributif memungkinkanmu mengalikan skalar ke dalam penjumlahan suku demi suku, dan koefisien yang sama dengan tanda berlawanan lalu saling menghapus. Kedua langkah itu tidak mengubah bagian real maupun bagian imajiner, sehingga identitas yang dibangun dari keduanya berlaku untuk setiap bilangan kompleks.
+**Sifat distributif** memungkinkanmu mengalikan skalar ke dalam penjumlahan suku demi suku, dan koefisien yang sama dengan tanda berlawanan lalu saling menghapus. Kedua langkah itu tidak mengubah bagian real maupun bagian imajiner, sehingga identitas yang dibangun dari keduanya berlaku untuk setiap bilangan kompleks.
 
 ### Membuktikan Invers Penjumlahan
 
-Tunjukkan bahwa untuk sembarang bilangan kompleks <InlineMath math="z" />, berlaku <InlineMath math="4z + (-4)z = 0" />.
+**Sifat distributif** menggabungkan dua suku yang mengandung bilangan kompleks yang sama. Setelah koefisien berlawanan dijumlahkan, faktor skalarnya menjadi nol:
 
-**Penyelesaian:**
-
-Gunakan sifat distributif untuk menggabungkan koefisien skalarnya, lalu gunakan fakta bahwa perkalian dengan skalar nol menghasilkan nol.
-
-Gunakan sifat distributif:
-
-<MathContainer>
-  <BlockMath math="4z + (-4)z = (4 + (-4))z" />
-  <BlockMath math="= (0)z \quad \text{(Penjumlahan skalar)}" />
-</MathContainer>
-  Perkalian dengan skalar nol memberikan:
-
-<BlockMath math="= 0" />
-
-Jadi, terbukti bahwa <InlineMath math="4z + (-4)z = 0" />.
+<BlockMath math="4z+(-4)z=(4+(-4))z=0z=0" />
 
 ## Latihan
 
-Dengan menggunakan sifat penjumlahan, buktikan bahwa <InlineMath math="3z - \frac{1}{2}(2z) = 2z" /> untuk sembarang bilangan kompleks <InlineMath math="z" />. Kerjakan ruas kiri saja, lalu sebutkan sifat yang kamu pakai pada setiap langkah agar pembuktiannya mencakup setiap bilangan kompleks.
+Dengan menggunakan **sifat penjumlahan**, buktikan bahwa <InlineMath math="3z - \frac{1}{2}(2z) = 2z" /> untuk sembarang bilangan kompleks <InlineMath math="z" />. Kerjakan ruas kiri saja, lalu sebutkan sifat yang kamu pakai pada setiap langkah agar pembuktiannya mencakup setiap bilangan kompleks.
 
 ### Pembahasan
 
-Tuliskan pengurangan sebagai penjumlahan dengan lawannya:
+Tuliskan pengurangan sebagai **penjumlahan dengan lawan**, gunakan asosiatif untuk mengelompokkan skalar, lalu distributif untuk menggabungkan koefisien:
 
-<BlockMath math="\begin{aligned} &amp;3z-\frac12(2z) \\ &amp;=3z+(-\frac12)(2z) \end{aligned}" />
-  Kelompokkan kembali faktor skalarnya:
-
-<BlockMath math="= 3z + ((-\frac{1}{2}) \times 2)z" />
-  Kalikan faktor skalarnya:
-
-<BlockMath math="= 3z + (-1)z" />
-  Gunakan sifat distributif:
-
-<MathContainer>
-  <BlockMath math="= (3 + (-1))z" />
-  <BlockMath math="= (2)z \quad \text{(Penjumlahan skalar)}" />
-  <BlockMath math="= 2z" />
-</MathContainer>
-
-Jadi, terbukti bahwa <InlineMath math="3z - \frac{1}{2}(2z) = 2z" />.
+<BlockMath math="\begin{aligned}3z-\frac12(2z)&amp;=3z+\left(-\frac12\right)(2z) \\ &amp;=3z+\left(\left(-\frac12\right)2\right)z \\ &amp;=3z+(-1)z \\ &amp;=(3-1)z=2z\end{aligned}" />

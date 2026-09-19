@@ -2,12 +2,12 @@ export const metadata = {
   title: "Lösung zu Aufgabe 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-10-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Ergänze zum Quadrat, um Scheitel und Minimum zu bestimmen.
+**Ergänze zum Quadrat**, um Scheitel und Minimum zu bestimmen.
 
-<BlockMath math="f(x)=(x-2)^2-1" />
+<BlockMath math="\begin{aligned} f(x)&=x^2-4x+3 \\ &=x^2-4x+4-4+3 \\ &=(x-2)^2-1 \end{aligned}" />
 
 Ein Quadrat ist nicht negativ. Daher liegt der Scheitel in <InlineMath math="(2,-1)" /> und der Wertebereich ist <InlineMath math="[-1,\infty)" />. Nähert sich <InlineMath math="x" /> von links der <InlineMath math="2" />, wird <InlineMath math="(x-2)^2" /> kleiner. Die Funktion fällt also auf <InlineMath math="(-\infty,2]" />.
 
@@ -20,3 +20,19 @@ f^{-1}(y)&=2+\sqrt{y+1}
 \end{aligned}" />
 
 Für die Umkehrfunktion gilt <InlineMath math="y\ge-1" />. Alle Aussagen stimmen bis auf die Injektivität auf ganz <InlineMath math="\mathbb R" />.
+
+Der orange Ast zeigt die Einschränkung <InlineMath math="x\ge2" />. Hier gehört zu jedem Funktionswert genau ein Eingabewert. Deshalb besitzt die eingeschränkte Funktion eine Umkehrfunktion.
+
+<LineEquation
+  title="Parabeläste und der Definitionsbereich der Umkehrfunktion"
+  description="Der Scheitel liegt bei (2,−1). Die Punkte (1,0) und (3,0) haben denselben Funktionswert, also ist die Funktion auf allen reellen Zahlen nicht injektiv."
+  cameraPosition={[2, 2, 12]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -0.5 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = 2 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true, labels: [{ text: "(1,0)", at: 0, offset: [-0.3, -0.4, 0] }, { text: "(3,0)", at: 1, offset: [0.3, -0.4, 0] }] },
+    { points: [{ x: 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: true, labels: [{ text: "(2,−1)", at: 0, offset: [0, -0.5, 0] }] },
+  ]}
+/>

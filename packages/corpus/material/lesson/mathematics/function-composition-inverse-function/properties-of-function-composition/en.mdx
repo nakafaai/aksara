@@ -3,13 +3,13 @@ export const metadata = {
   description: "Show that function composition generally depends on order, then prove its associative and identity properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Function Composition and Inverse Function",
 };
 
 ## Changing the Order and Grouping of Functions
 
-<Highlight>Function composition applies functions in sequence.</Highlight> The examples below show how changing the order can change the result, while changing only the grouping does not:
+Composition applies functions in a **specified order**. Use these three rules to compare a change of order with a change of grouping:
 
 <MathContainer>
   <BlockMath math="f(x) = 2x + 1" />
@@ -27,23 +27,23 @@ In a composition, each function receives the output of the function to its right
 
 In general, <InlineMath math="(f \circ g)(x)" /> is **not equal to** <InlineMath math="(g \circ f)(x)" />.
 
-**Example:**
+**Example**:
 
 Compare <InlineMath math="(g \circ f)(x)" /> and <InlineMath math="(f \circ g)(x)" />.
 
-1.  **Calculating <InlineMath math="(g \circ f)(x)" />:**
+**Calculating <InlineMath math="(g \circ f)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
-      <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
+  <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
+</MathContainer>
 
-2.  **Calculating <InlineMath math="(f \circ g)(x)" />:**
+**Calculating <InlineMath math="(f \circ g)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
-      <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
+  <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
+</MathContainer>
 
 The two polynomial expressions have different coefficients, so they are not the same function. A single input also gives a direct counterexample:
 
@@ -61,38 +61,49 @@ Mathematically, for functions <InlineMath math="f" />, <InlineMath math="g" />, 
 
 We may first form <InlineMath math="f\circ g" /> and then compose that function with <InlineMath math="h" />, or first form <InlineMath math="g\circ h" /> and then compose <InlineMath math="f" /> with the result. On any input for which both sides are defined, both expressions apply <InlineMath math="h" />, then <InlineMath math="g" />, then <InlineMath math="f" />.
 
-**Example:**
+**Example**:
 
 Check if <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
-1.  **Calculating <InlineMath math="((f \circ g) \circ h)(x)" />:**
+**Calculating <InlineMath math="((f \circ g) \circ h)(x)" />**:
 
-    We already know <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
+We already know <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
-2.  **Calculating <InlineMath math="(f \circ (g \circ h))(x)" />:**
+**Calculating <InlineMath math="(f \circ (g \circ h))(x)" />**:
 
-    First, find <InlineMath math="(g \circ h)(x)" />:
+First, find <InlineMath math="(g \circ h)(x)" />:
 
-    <MathContainer>
-      <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
-      <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
+  <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
+</MathContainer>
 
-    Now, compose <InlineMath math="f" /> with this result:
+Now, compose <InlineMath math="f" /> with this result:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
 Since both results are the same (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) for <InlineMath math="x\neq-1" />, the associative property holds on their common domain: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
 This associative property also applies to other combinations of function order, such as <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> and <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
+
+At <InlineMath math="x=0" />, both groupings follow the **same calculation path**. Grouping two rules does not change their order of application:
+
+<Mermaid
+  title="The Fixed Order in Associative Composition"
+  description="Input zero passes through h, then g, then f, producing eleven."
+  chart={`flowchart LR
+    X["0"] -->|"h"| H["1"]
+    H -->|"g"| G["5"]
+    G -->|"f"| F["11"]`}
+/>
 
 ### Identity Element
 
@@ -105,7 +116,7 @@ Composing with the identity for the matching set leaves <InlineMath math="f" /> 
   <BlockMath math="(I_B\circ f)(x)=I_B(f(x))=f(x)" />
 </MathContainer>
 
-**Example:**
+**Example**:
 
 With <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> and <InlineMath math="f(x) = 2x + 1" />:
 

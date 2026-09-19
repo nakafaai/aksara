@@ -9,43 +9,45 @@ export const metadata = {
 
 ## Mapping Inputs to Polynomial Values
 
-<Highlight>Each input value produces exactly one output value.</Highlight> With the polynomial expression <InlineMath math="2x^2 - 3x + 1" /> as its rule, the function is written <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Substituting the input <InlineMath math="x = 2" /> and evaluating the powers first returns <InlineMath math="P(2) = 3" />.
+Each input produces <Highlight>exactly one function value</Highlight>. For <InlineMath math="P(x)=2x^2-3x+1" />, evaluate <InlineMath math="x=2" /> by calculating powers, then multiplication, then addition:
+
+<BlockMath math="P(2)=2(2)^2-3(2)+1=8-6+1=3" />
+
+<MathVisual
+  title="From an input to a point on the graph"
+  description="The graph of P(x) = 2x² - 3x + 1. Point (2,3) shows that input 2 produces output 3."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 1 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [{ key: "value", objectId: "value", at: { x: 2, y: 3 }, placement: "above-left" }],
+  }}
+  labels={{ value: <InlineMath math="(2,3)" /> }}
+/>
+
+Real coefficients and nonnegative integer exponents make a polynomial defined for **every real input**. There is no variable denominator or variable radical that requires excluding an input.
 
 ## General Form of a Polynomial Function
 
-A polynomial function in the variable <InlineMath math="x" /> is generally written in the form:
+For a nonzero polynomial, the general form organizes **powers and coefficients**. The leading coefficient is nonzero, and the largest exponent determines the degree:
 
-<BlockMath math="\begin{aligned} P(x) &amp;= a_n x^n + a_{n-1} x^{n-1} \\ &amp;\quad{}+ a_{n-2} x^{n-2} + \dots + a_1 x + a_0 \end{aligned}" />
+<BlockMath math="P(x)=\sum_{k=0}^{n}a_kx^k,\qquad a_n\ne0,\quad n\in\{0,1,2,\ldots\}" />
 
-The general form has the following components:
+| Notation | Meaning |
+| --- | --- |
+| <InlineMath math="P(x)" /> | Function value at input x. |
+| <InlineMath math="x" /> | The input variable. |
+| <InlineMath math="n" /> | Degree, a nonnegative integer. |
+| <InlineMath math="a_0,a_1,\ldots,a_n" /> | Real coefficients for each power. |
+| <InlineMath math="a_nx^n" /> | The leading term, with the highest power. |
+| <InlineMath math="a_n" /> | The leading coefficient, which must be nonzero. |
+| <InlineMath math="a_0" /> | The constant, equal to the value at input zero. |
 
-- **<InlineMath math="P(x)" />**:
-
-  Function notation, read "P of x", indicating the function's value depends on the value of <InlineMath math="x" />.
-
-- **<InlineMath math="x" />**:
-
-  The variable of the polynomial function.
-
-- **<InlineMath math="n" />**:
-
-  The highest power of the variable <InlineMath math="x" />. This value <InlineMath math="n" /> must be a **non-negative integer** (<InlineMath math="0, 1, 2, 3, \dots" />). This non-negative integer <InlineMath math="n" /> also determines the **degree** of the polynomial function.
-
-- **<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />**:
-
-  The coefficients of the polynomial function. A **real polynomial function** has real-number coefficients.
-
-- **<InlineMath math="a_n x^n" />**:
-
-  The term with the highest power. This term is called the **leading term**.
-
-- **<InlineMath math="a_n" />**:
-
-  The **leading coefficient** <InlineMath math="a_n" /> must be **nonzero**, so <InlineMath math="a_n\neq0" />, for the function to have degree <InlineMath math="n" />.
-
-- **<InlineMath math="a_0" />**:
-
-  The term without the variable <InlineMath math="x" /> (or can be considered <InlineMath math="a_0 x^0" />). This term is called the **constant term** or **constant**.
+The function <InlineMath math="P(x)=0" /> is also polynomial. However, the **zero polynomial has no nonzero leading term**, so the displayed nonzero form does not assign its degree.
 
 ## Example of a Polynomial Function
 
@@ -58,17 +60,17 @@ Suppose we have the function: <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />
 - Other coefficients are <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" />.
 - Its constant term is <InlineMath math="-1" /> (<InlineMath math="a_0 = -1" />).
 
-A polynomial function has <Highlight>nonnegative integer exponents and a nonzero leading coefficient</Highlight>.
+A nonzero polynomial has a <Highlight>nonzero leading coefficient</Highlight>. Other coefficients may be zero, as the cubic coefficient is in the exercise below.
 
 ## Exercise
 
 <BlockMath math="p(t)=-2t^4+3t^2-t+8" />
 
-Identify its degree, leading term, leading coefficient, coefficient of <InlineMath math="t^3" />, and constant term. Then calculate <InlineMath math="p(2)" />.
+Identify its degree, leading term, **leading coefficient**, coefficient of <InlineMath math="t^3" />, and constant term. Then calculate <InlineMath math="p(2)" />.
 
 ### Worked Solution
 
-Write the missing power explicitly:
+Write the **missing power** explicitly:
 
 <BlockMath math="p(t)=-2t^4+0t^3+3t^2-t+8" />
 
@@ -80,8 +82,4 @@ Write the missing power explicitly:
 
 Evaluate the function by substituting <InlineMath math="t=2" />:
 
-<MathContainer>
-  <BlockMath math="p(2)=-2(2)^4+3(2)^2-2+8" />
-  <BlockMath math="=-32+12-2+8" />
-  <BlockMath math="=-14" />
-</MathContainer>
+<BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />

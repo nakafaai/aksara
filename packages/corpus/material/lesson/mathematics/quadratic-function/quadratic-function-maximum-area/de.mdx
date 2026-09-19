@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Rechtecke bei vorgegebener Zaunlänge vergleichen
 
-<Highlight>Bei einer Optimierungsaufgabe suchen wir den besten Wert, der eine vorgegebene Bedingung erfüllt.</Highlight> Aus einem Zaun fester Länge lassen sich zum Beispiel viele Rechtecke bilden. Ihre Flächen sind jedoch unterschiedlich groß. Mit einer quadratischen Funktion können wir alle zulässigen Rechtecke in einem Modell vergleichen.
+Bei einer Optimierungsaufgabe suchen wir **den besten zulässigen Wert**. Aus einem Zaun fester Länge lassen sich zum Beispiel viele Rechtecke bilden. Ihre Flächen sind jedoch unterschiedlich groß. Mit einer quadratischen Funktion können wir alle zulässigen Rechtecke in einem Modell vergleichen.
 
 Drücke eine Seitenlänge durch die andere aus, setze diese Beziehung in die Flächenformel ein und deute anschließend den Scheitel der entstehenden Parabel. Dieses Verfahren gilt für alle rechteckigen Zaunaufgaben mit derselben Art von Nebenbedingung.
 
@@ -30,7 +30,7 @@ Für <InlineMath math="f(x)=ax^2+bx+c" /> berechnen wir die Scheitelkoordinaten 
   <BlockMath math="y_v=f(x_v)" />
 </MathContainer>
 
-Gleichwertig dazu ist die Darstellung über die Diskriminante:
+Gleichwertig dazu ist die Darstellung über die **Diskriminante**:
 
 <MathContainer>
   <BlockMath math="\Delta=b^2-4ac" />
@@ -43,82 +43,65 @@ Die Rechnung liefert den Scheitel. Ob er in der Aufgabe tatsächlich zulässig i
 
 Ein Landwirt hat <InlineMath math="20\text{ m}" /> Zaunmaterial und möchte damit ein rechteckiges Hühnergehege einzäunen. Welche Seitenlängen ergeben die größtmögliche Fläche?
 
-1. **Benenne die Seitenlängen.** Die Länge sei <InlineMath math="p\text{ m}" />, die Breite <InlineMath math="l\text{ m}" />.
-2. **Übersetze die Umfangsbedingung.**
+**Schritt 1**: Benenne die Seitenlängen. Die Länge sei <InlineMath math="p\text{ m}" />, die Breite <InlineMath math="l\text{ m}" />.
+**Schritt 2**: Übersetze die Umfangsbedingung.
 
-   <MathContainer>
-     <BlockMath math="2p+2l=20" />
-     <BlockMath math="p+l=10" />
-     <BlockMath math="p=10-l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="2p+2l=20" />
+  <BlockMath math="p+l=10" />
+  <BlockMath math="p=10-l" />
+</MathContainer>
 
-3. **Stelle eine Flächenfunktion mit nur einer Variablen auf.**
+**Schritt 3**: Stelle eine Flächenfunktion mit nur einer Variablen auf.
 
-   <MathContainer>
-     <BlockMath math="A=p\cdot l" />
-     <BlockMath math="A(l)=(10-l)l" />
-     <BlockMath math="A(l)=10l-l^2" />
-     <BlockMath math="A(l)=-l^2+10l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="A=p\cdot l" />
+  <BlockMath math="A(l)=(10-l)l" />
+  <BlockMath math="A(l)=10l-l^2" />
+  <BlockMath math="A(l)=-l^2+10l" />
+</MathContainer>
 
-4. **Gib den zulässigen Bereich an.** Beide Seitenlängen müssen positiv sein, also gilt <InlineMath math="0<l<10" />. Der Koeffizient <InlineMath math="a=-1" /> ist negativ. Der Flächengraph öffnet sich deshalb nach unten.
-5. **Bestimme den Scheitel.**
+**Schritt 4**: Gib den zulässigen Bereich an. Beide Seitenlängen müssen positiv sein, also gilt <InlineMath math="0<l<10" />. Der Koeffizient <InlineMath math="a=-1" /> ist negativ. Der Flächengraph öffnet sich deshalb nach unten.
+**Schritt 5**: Bestimme den Scheitel.
 
-   <BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
+<BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
 
-6. **Berechne die andere Seitenlänge und die Fläche.**
+**Schritt 6**: Berechne die andere Seitenlänge und die Fläche.
 
-   <MathContainer>
-     <BlockMath math="p=10-l=10-5=5" />
-     <BlockMath math="A(5)=5\cdot5=25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="p=10-l=10-5=5" />
+  <BlockMath math="A(5)=5\cdot5=25" />
+</MathContainer>
 
-7. **Prüfe, ob der Scheitel die größte Fläche liefert.** Der Scheitel liegt im Bereich <InlineMath math="0<l<10" />. An den Randwerten fällt das Rechteck zusammen und die Fläche nähert sich <InlineMath math="0" />. Damit liefert der innere Scheitel das globale Maximum.
+**Schritt 7**: Prüfe, ob der Scheitel die größte Fläche liefert. Der Scheitel liegt im Bereich <InlineMath math="0<l<10" />. An den Randwerten fällt das Rechteck zusammen und die Fläche nähert sich <InlineMath math="0" />. Damit liefert der innere Scheitel das globale Maximum.
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Flächenmodell <InlineMath math="A(l)=-l^2+10l" />
-      </>
-    }
-    description={
-      <>
-        Der Graph ist für <InlineMath math="0\le l\le10" /> dargestellt. Im zulässigen Intervall <InlineMath math="0<l<10" /> erreicht er seinen höchsten Punkt bei <InlineMath math="(5,25)" />.
-      </>
-    }
-    cameraPosition={[5, 22, 12]}
-    cameraTarget={[5, 22, 0]}
-    data={[
-      {
-        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        smooth: false,
-        points: Array.from({ length: 101 }, (_, sampleIndex) => {
-          const l = sampleIndex / 10;
-          return {
-          x: l,
-          y: -l * l + 10 * l,
-          z: 0,
-        };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: "Hochpunkt",
-            at: 50,
-            offset: [0, 2, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+Die quadratische Ergänzung begründet das Maximum. Von 25 wird ein **nichtnegatives Quadrat** abgezogen. Genau bei Breite fünf ist dieser Abzug null:
+
+<BlockMath math="A(l)=25-(l-5)^2\le25" />
+
+<MathVisual
+  title="Fläche in Abhängigkeit von der Seitenlänge"
+  description="Waagerecht liest du die Breite in Metern, senkrecht die Fläche in Quadratmetern. Der Punkt (5,25) ist das Maximum."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 10, c: 0 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 25 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 25 }, placement: "above" }]
+  }}
+  labels={{ vertex: <InlineMath math="(5,25)" /> }}
+/>
+
+Die Endpunkte zeigen nur Grenzfälle. Null und zehn gehören nicht zu den zulässigen Werten für Figuren mit positiven Seiten.
 
 Die größtmögliche Fläche beträgt somit <InlineMath math="25\text{ m}^2" />. Sie entsteht bei einem Quadrat mit den Seitenlängen <InlineMath math="5\text{ m}\times5\text{ m}" />.
 
 ## Nebenbedingung Modell Definitionsbereich und Scheitel
 
-Die Tabelle sammelt die vier Teile, die aus dem Zaunproblem eine einzige Variable machen. Jede Zeile nennt einen Teil des Problems neben seiner mathematischen Form.
+Die Tabelle sammelt die vier Teile, die aus dem Zaunproblem **eine einzige Variable** machen. Jede Zeile nennt einen Teil des Problems neben seiner mathematischen Form.
 
 | Teil der Aufgabe | Mathematische Aussage | Bedeutung |
 | ---------------- | ---------------------- | --------- |
@@ -129,13 +112,11 @@ Die Tabelle sammelt die vier Teile, die aus dem Zaunproblem eine einzige Variabl
 
 ## Dasselbe Verfahren bei einer Gewinnfunktion
 
-Bei einer Gewinnfunktion suchst du ebenfalls den höchsten Punkt der Parabel, nur heißen die Koordinaten jetzt Menge und Gewinn.
-
-Dasselbe Verfahren funktioniert, wenn eine Größe einer nach unten geöffneten Parabel folgt. Die Gewinnfunktion ist ein solcher Fall, und ihr Scheitel liefert die Menge mit dem größten Gewinn.
+Dasselbe Verfahren funktioniert, wenn eine Größe einer **nach unten geöffneten Parabel** folgt. Die Gewinnfunktion ist ein solcher Fall, und ihr Scheitel liefert die Menge mit dem größten Gewinn.
 
 ### Produktionsgewinn
 
-Der Gewinn beim Verkauf von <InlineMath math="x" /> Spielzeugen werde in Tausend Rupiah durch folgende Funktion beschrieben:
+Der Gewinn beim Verkauf von <InlineMath math="x" /> Spielzeugen werde in **Tausend Rupiah** durch folgende Funktion beschrieben:
 
 <BlockMath math="P(x)=-2x^2+100x" />
 
@@ -154,7 +135,7 @@ Die Höhe einer Spielzeugrakete nach <InlineMath math="t\text{ s}" /> werde besc
 
 <BlockMath math="h(t)=-5t^2+40t" />
 
-Der physikalisch sinnvolle Zeitraum ergibt sich aus den Zeitpunkten, zu denen die Höhe null ist:
+Der **physikalisch sinnvolle Zeitraum** ergibt sich aus den Zeitpunkten, zu denen die Höhe null ist:
 
 <MathContainer>
   <BlockMath math="-5t^2+40t=-5t(t-8)=0" />
@@ -172,14 +153,14 @@ Die Rakete erreicht eine maximale Höhe von <InlineMath math="80\text{ m}" /> na
 
 ## Übungsaufgabe
 
-Die Aufgabe gibt den Umfang vor und verlangt das größte Rechteck, also muss die Nebenbedingung die zweite Variable ersetzen. Schreibe zuerst die Fläche als Funktion einer einzigen Variablen auf.
+Die Aufgabe gibt den Umfang vor und verlangt das größte Rechteck, also muss die Nebenbedingung die **zweite Variable ersetzen**. Schreibe zuerst die Fläche als Funktion einer einzigen Variablen auf.
 
 Ein Rechteck hat den Umfang <InlineMath math="60\text{ cm}" />. Bestimme die Länge und Breite, für die seine Fläche maximal wird, und berechne diese maximale Fläche.
 
 ### Ausführliche Lösung
 
 1. Die Länge sei <InlineMath math="p\text{ cm}" />, die Breite <InlineMath math="l\text{ cm}" />.
-2. Forme die Umfangsbedingung nach der Länge um.
+2. Forme die **Umfangsbedingung** nach der Länge um.
 
    <MathContainer>
      <BlockMath math="2p+2l=60" />

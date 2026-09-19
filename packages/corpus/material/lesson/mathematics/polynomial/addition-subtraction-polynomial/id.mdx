@@ -1,8 +1,6 @@
-
-
 export const metadata = {
   title: "Penjumlahan dan Pengurangan Polinomial",
-    description: "Jumlahkan dan kurangkan polinomial dengan menggabungkan suku sejenis memakai cara horizontal, vertikal, dan grafik.",
+  description: "Jumlahkan dan kurangkan polinomial dengan menggabungkan suku sejenis memakai cara horizontal, vertikal, dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
   dateModified: "2026-09-13",
@@ -51,19 +49,7 @@ Untuk menjumlahkan dua polinomial, <Highlight>jumlahkan koefisien suku-suku yang
 
 Tentukan hasil dari <InlineMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />.
 
-<BlockMath math="\begin{aligned} &amp;(2x^3 + 7x^2 + 3x + 5) \\ &amp;\quad{}+ (6x^3 + 2x^2 + 4x + 1) \end{aligned}" />
-  Hilangkan tanda kurung:
-
-<BlockMath math="\begin{aligned}  &amp;=2x^3+7x^2+3x+5 \\ &amp;\quad{}+6x^3+2x^2+4x+1 \end{aligned}" />
-  Kelompokkan suku-suku sejenis:
-
-<BlockMath math="\begin{aligned}  &amp;=(2x^3+6x^3)+(7x^2+2x^2) \\ &amp;\quad{}+(3x+4x)+(5+1) \end{aligned}" />
-  Gunakan sifat distributif:
-
-<BlockMath math="\begin{aligned}  &amp;=(2+6)x^3+(7+2)x^2 \\ &amp;\quad{}+(3+4)x+(5+1) \end{aligned}" />
-  Hasilnya adalah:
-
-<BlockMath math="= 8x^3 + 9x^2 + 7x + 6" />
+<BlockMath math="\begin{aligned}(2x^3+7x^2+3x+5)+(6x^3+2x^2+4x+1)&amp;=(2+6)x^3+(7+2)x^2+(3+4)x+(5+1) \\ &amp;=8x^3+9x^2+7x+6\end{aligned}" />
 
 ## Pengurangan Polinomial
 
@@ -80,24 +66,7 @@ Untuk mengurangkan dua polinomial, kita **mengubah tanda setiap suku pada polino
 
 Tentukan hasil dari <InlineMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />.
 
-<BlockMath math="\begin{aligned} &amp;(9x^3 + 4x^2 + 6x + 5) \\ &amp;\quad{}- (2x^3 + 3x^2 + 3x + 4) \end{aligned}" />
-  Ubah tanda setiap suku lalu hilangkan kurung:
-
-<BlockMath math="\begin{aligned}  &amp;=9x^3+4x^2+6x+5 \\ &amp;\quad{}-2x^3-3x^2-3x-4 \end{aligned}" />
-  Kelompokkan suku-suku sejenis:
-
-<BlockMath math="\begin{aligned}  &amp;=(9x^3-2x^3)+(4x^2-3x^2) \\ &amp;\quad{}+(6x-3x)+(5-4) \end{aligned}" />
-  Gunakan sifat distributif:
-
-<BlockMath math="\begin{aligned}  &amp;=(9-2)x^3+(4-3)x^2 \\ &amp;\quad{}+(6-3)x+(5-4) \end{aligned}" />
-  Hasilnya adalah:
-
-<MathContainer>
-  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1" />
-  <BlockMath math="= 7x^3 + x^2 + 3x + 1" />
-</MathContainer>
-
-Perhatikan saat mengurangkan, tanda negatif di depan kurung mengubah tanda _setiap_ suku di dalam kurung tersebut.
+<BlockMath math="\begin{aligned}(9x^3+4x^2+6x+5)-(2x^3+3x^2+3x+4)&amp;=9x^3+4x^2+6x+5-2x^3-3x^2-3x-4 \\ &amp;=(9-2)x^3+(4-3)x^2+(6-3)x+(5-4) \\ &amp;=7x^3+x^2+3x+1\end{aligned}" />
 
 ## Metode Vertikal atau Bersusun
 
@@ -106,7 +75,7 @@ Selain metode horizontal, penjumlahan dan pengurangan polinomial juga bisa dilak
 **Langkah-langkah:**
 
 1.  Susun kedua polinomial secara vertikal.
-2.  Pastikan suku-suku yang sejenis berada dalam satu kolom.
+2.  Pastikan **suku-suku sejenis berada dalam satu kolom**.
 3.  Jika ada suku yang tidak ada pada salah satu polinomial, berikan ruang kosong atau tulis koefisien <InlineMath math="0" />.
 4.  Jumlahkan atau kurangkan koefisien pada setiap kolom.
 
@@ -136,9 +105,7 @@ Metode horizontal mengelompokkan suku sejenis di dalam setiap polinomial sebelum
 
 ## Penjumlahan dan Pengurangan Grafik Fungsi Polinomial
 
-Selain melakukan operasi secara aljabar, kita juga bisa memahami penjumlahan dan pengurangan polinomial secara visual melalui grafiknya.
-
-Misalkan kita memiliki tiga grafik fungsi polinomial:
+Untuk menggabungkan grafik, pertahankan **input yang sama**. Hanya nilai keluaran pada posisi mendatar itu yang dijumlahkan atau dikurangkan. Kamu tidak menjumlahkan koordinat mendatar kedua titik. Tiga fungsi berikut menyediakan contoh linear, kuartik, dan kubik.
 
 <ContentStack>
   <LineEquation
@@ -148,17 +115,15 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
       </>
     }
     description={<>Fungsi linear derajat <InlineMath math="1" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
-        points: [
-          { x: -12, y: -11, z: 0 },
-          ...Array.from({ length: 51 }, (_, i) => {
-            const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
             return { x, y: x + 1, z: 0 };
           }),
-          { x: 10, y: 11, z: 0 },
-        ],
         smooth: false,
         color: "#0284c7",
         showPoints: false,
@@ -172,12 +137,14 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
       </>
     }
     description={<>Fungsi derajat <InlineMath math="4" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
         }),
         color: "#65a30d",
@@ -192,12 +159,14 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
       </>
     }
     description={<>Fungsi derajat <InlineMath math="3" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 261 }, (_, i) => {
-          const x = (i - 130) / 40;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
         }),
         color: "#d97706",
@@ -209,23 +178,21 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
 
 ### Sketsa Grafik Hasil Penjumlahan dan Pengurangan
 
-Tanpa perlu mengetahui persamaan pasti dari fungsi <InlineMath math="f" />, <InlineMath math="g" />, atau <InlineMath math="h" />, kita bisa mensketsa grafik hasil penjumlahannya (misal <InlineMath math="f(x) + g(x)" />) atau pengurangannya (misal <InlineMath math="f(x) - g(x)" />) dengan cara berikut:
+Baca **tinggi kedua grafik pada input yang sama**. Misalnya pada <InlineMath math="x=1" />, kita memperoleh <InlineMath math="f(1)=2" /> dan <InlineMath math="g(1)=-1/2" />. Jadi tinggi grafik jumlah adalah <InlineMath math="2-1/2=3/2" />, sedangkan tinggi grafik selisih adalah <InlineMath math="2-(-1/2)=5/2" />.
 
-1.  Pilih beberapa nilai <InlineMath math="x" /> yang sama pada kedua grafik.
-2.  Untuk setiap nilai <InlineMath math="x" />, baca nilai <InlineMath math="y" /> dari masing-masing grafik. Misalkan <InlineMath math="y_f = f(x)" /> dan <InlineMath math="y_g = g(x)" />.
-3.  **Untuk penjumlahan (<InlineMath math="f(x) + g(x)" />):** Hitung nilai <InlineMath math="y_{\text{baru}} = y_f + y_g" />.
-4.  **Untuk pengurangan (<InlineMath math="f(x) - g(x)" />):** Hitung nilai <InlineMath math="y_{\text{baru}} = y_f - y_g" />.
-5.  Plot titik <InlineMath math="(x, y_{\text{baru}})" />.
-6.  Ulangi untuk beberapa nilai <InlineMath math="x" /> lainnya.
-7.  Hubungkan titik-titik baru tersebut dengan kurva mulus.
+| Input | Nilai pertama | Nilai kedua | Jumlah | Selisih |
+| --- | --- | --- | --- | --- |
+| -2 | -1 | 1 | 0 | -2 |
+| -1 | 0 | -0.5 | -0.5 | 0.5 |
+| 0 | 1 | 1 | 2 | 0 |
+| 1 | 2 | -0.5 | 1.5 | 2.5 |
+| 2 | 3 | 1 | 4 | 2 |
 
-**Mengapa cara ini tepat?**
-
-Karena definisi dari penjumlahan atau pengurangan fungsi adalah menjumlahkan atau mengurangkan nilai output (<InlineMath math="y" />) mereka untuk setiap nilai input (<InlineMath math="x" />) yang sama.
+Setiap titik hasil tetap memakai input yang sama. Hubungkan titik hasil untuk membuat sketsa. Karena tabel hanya memuat beberapa input, bentuk di antaranya merupakan perkiraan sampai lebih banyak titik atau persamaan fungsi diperiksa.
 
 ### Contoh Sketsa Grafik
 
-Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g(x)" /> dan pengurangan <InlineMath math="f(x) - g(x)" /> yang didapat dengan metode penjumlahan/pengurangan nilai <InlineMath math="y" /> secara vertikal untuk setiap <InlineMath math="x" />.
+Grafik berikut memperlihatkan **fungsi asal dan hasil operasi pada sumbu yang sama**. Bandingkan ketiga tinggi pada posisi mendatar satu. Penjumlahan dan pengurangan memberi kurva berbeda meskipun kedua fungsi asal tetap sama.
 
 <ContentStack>
   <LineEquation
@@ -242,12 +209,16 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
         <InlineMath math="x + 1 + 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: "f", offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: "g", offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 140) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#7c3aed",
@@ -269,12 +240,16 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
         <InlineMath math="x + 1 - (0{,}5x^4 - 2x^2 + 1)" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: "f", offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: "g", offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 130) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#db2777",
@@ -295,23 +270,14 @@ Diberikan
   <BlockMath math="B(x)=-x^3+6x^2-3x+7" />
 </MathContainer>
 
-Tentukan <InlineMath math="A(x)+B(x)" /> dan <InlineMath math="A(x)-B(x)" />.
+Tentukan **jumlah dan selisih** <InlineMath math="A(x)+B(x)" /> dan <InlineMath math="A(x)-B(x)" />.
 
 ### Pembahasan
 
-Untuk penjumlahan, gabungkan koefisien dari suku-suku yang berpangkat sama:
+Untuk penjumlahan, gabungkan **koefisien suku sejenis**:
 
-<MathContainer>
-  <BlockMath math="A(x)+B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=(3-1)x^3+(-2+6)x^2 \\ &amp;\quad{}+(5-3)x+(-4+7) \end{aligned}" />
-  <BlockMath math="=2x^3+4x^2+2x+3" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)+B(x)&amp;=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7) \\ &amp;=2x^3+4x^2+2x+3\end{aligned}" />
 
 Untuk pengurangan, distribusikan tanda negatif ke setiap suku dalam <InlineMath math="B(x)" /> sebelum menggabungkan suku sejenis:
 
-<MathContainer>
-  <BlockMath math="A(x)-B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=3x^3-2x^2+5x \\ &amp;\quad{}-4-(-x^3+6x^2-3x+7) \end{aligned}" />
-  <BlockMath math="\begin{aligned}  &amp;=(3+1)x^3+(-2-6)x^2 \\ &amp;\quad{}+(5+3)x+(-4-7) \end{aligned}" />
-  <BlockMath math="=4x^3-8x^2+8x-11" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)-B(x)&amp;=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7) \\ &amp;=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7) \\ &amp;=4x^3-8x^2+8x-11\end{aligned}" />

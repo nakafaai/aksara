@@ -26,141 +26,130 @@ Der Satz liefert nur **mögliche** rationale Nullstellen. Jeder Kandidat <Inline
 
 ## Den Satz über rationale Nullstellen anwenden
 
-Hier sind die Schritte zum Finden rationaler Wurzeln mithilfe dieses Theorems, oft kombiniert mit dem Faktorsatz:
+**Ein Kandidat ist noch keine Nullstelle**. Verwende positive und negative Teiler des konstanten Glieds als Zähler und positive Teiler des Leitkoeffizienten als Nenner. Kürze die Brüche, damit du gleiche Werte nicht mehrfach prüfst. Teste jeden Kandidaten durch Einsetzen oder mit dem [Horner-Schema](/de/faecher/mathematik/polynome/horner-schema).
 
-1.  **Koeffizienten prüfen:** Stelle sicher, dass <InlineMath math="a_n, \dots, a_0" /> ganze Zahlen sind. Bestimme das konstante Glied <InlineMath math="a_0" /> und den Leitkoeffizienten <InlineMath math="a_n" />.
-2.  **Faktoren von <InlineMath math="p" /> auflisten:** Notiere alle positiven und negativen ganzzahligen Faktoren von <InlineMath math="a_0" />.
-3.  **Faktoren von <InlineMath math="q" /> auflisten:** Notiere alle positiven und negativen ganzzahligen Faktoren von <InlineMath math="a_n" />.
-4.  **Kandidaten <InlineMath math="\frac{p}{q}" /> bilden:** Bilde alle Werte <InlineMath math="\frac{p}{q}" />, indem du jeden Faktor <InlineMath math="p" /> durch jeden Faktor <InlineMath math="q" /> teilst. Kürze die Brüche und entferne doppelte Werte.
-5.  **Kandidaten prüfen:** Setze jeden Wert <InlineMath math="\frac{p}{q}" /> in <InlineMath math="P(x)" /> ein oder verwende das [Horner-Schema](/de/faecher/mathematik/polynome/horner-schema). Gilt <InlineMath math="P(\frac{p}{q}) = 0" />, ist <InlineMath math="\frac{p}{q}" /> eine Nullstelle und <InlineMath math="(x - \frac{p}{q})" /> beziehungsweise <InlineMath math="(qx - p)" /> ein Faktor.
-6.  **Weiter faktorisieren:** Nutze nach dem Fund einer Nullstelle <InlineMath math="c" /> den Quotienten aus dem Horner-Schema, um die restlichen Nullstellen zu bestimmen.
+Ist das konstante Glied null, klammere zuerst <InlineMath math="x" /> aus. Zum Beispiel besitzt <InlineMath math="x^3-2x^2=x^2(x-2)" /> die Nullstelle null. Der verbleibende Faktor liefert die Nullstelle zwei.
+
+Passt kein Kandidat, gibt es lediglich **keine rationalen Nullstellen**. Für <InlineMath math="x^2-2" /> sind die Kandidaten <InlineMath math="\pm1,\pm2" />, doch keiner ergibt den Polynomwert null. Trotzdem gibt es die reellen Nullstellen <InlineMath math="\pm\sqrt2" />.
 
 ### Nullstellen mit dem Faktorsatz und rationalen Kandidaten finden
 
 Faktorisiere das Polynom <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> vollständig.
 
-1.  **Koeffizienten identifizieren:**
+**Schritt 1**. Koeffizienten identifizieren
 
-    Die Koeffizienten sind ganze Zahlen. <InlineMath math="a_0 = -18" /> und <InlineMath math="a_n = 1" />.
+Die Koeffizienten sind ganze Zahlen. <InlineMath math="a_0 = -18" /> und <InlineMath math="a_n = 1" />.
 
-2.  **Faktoren von <InlineMath math="p" /> (von <InlineMath math="a_0 = -18" />):**
+**Schritt 2**. Faktoren von <InlineMath math="p" /> (von <InlineMath math="a_0 = -18" />)
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-3.  **Faktoren von <InlineMath math="q" /> (von <InlineMath math="a_n = 1" />):**
+**Schritt 3**. Faktoren von <InlineMath math="q" /> (von <InlineMath math="a_n = 1" />)
 
-    <BlockMath math="\pm 1" />
+<BlockMath math="\pm 1" />
 
-4.  **Mögliche Nullstellen <InlineMath math="\frac{p}{q}" />:**
+**Schritt 4**. Mögliche Nullstellen <InlineMath math="\frac{p}{q}" />
 
-    Die Division aller <InlineMath math="p" /> durch <InlineMath math="q = \pm 1" /> ergibt:
+Die Division aller <InlineMath math="p" /> durch <InlineMath math="q = \pm 1" /> ergibt:
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-5.  **Mögliche Nullstellen prüfen:** Prüfen wir einige Werte aus der Liste.
+**Schritt 5**
 
-    - Prüfe <InlineMath math="x = 1" />:
+| Kandidat | Ergebnis des Einsetzens | Entscheidung |
+| --- | --- | --- |
+| 1 | <InlineMath math="1+2-9-18=-24" /> | Keine Nullstelle |
+| -1 | <InlineMath math="-1+2+9-18=-8" /> | Keine Nullstelle |
+| 2 | <InlineMath math="8+8-18-18=-20" /> | Keine Nullstelle |
+| -2 | <InlineMath math="-8+8+18-18=0" /> | Nullstelle |
+| 3 | <InlineMath math="27+18-27-18=0" /> | Nullstelle |
 
-      <BlockMath math="P(1) = 1 + 2 - 9 - 18 = -24 \neq 0" />
+Verwende die Nullstelle <InlineMath math="3" /> für die Division. Auch <InlineMath math="-2" /> ist eine Nullstelle. Sie erscheint wieder beim Faktorisieren des Quotienten.
 
-    - Prüfe <InlineMath math="x = -1" />:
+**Schritt 6**. Weiter faktorisieren (mit der Nullstelle <InlineMath math="x = 3" />)
 
-      <BlockMath math="P(-1) = -1 + 2 + 9 - 18 = -8 \neq 0" />
+Teile <InlineMath math="P(x)" /> mithilfe des Horner-Schemas durch <InlineMath math="(x-3)" /> mit <InlineMath math="c = 3" />.
 
-    - Prüfe <InlineMath math="x = 2" />:
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+3 & 1 & 2 & -9 & -18 \\
+  &   & 3 & 15 & 18 \\
+\hline
+  & 1 & 5 & 6 & \boxed{0} \\
+\end{array}
+"
+/>
 
-      <BlockMath math="P(2) = 8 + 8 - 18 - 18 = -20 \neq 0" />
+Der Quotient ist <InlineMath math="H(x) = x^2 + 5x + 6" />.
 
-    - Prüfe <InlineMath math="x = -2" />:
+Also <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
 
-      <BlockMath math="P(-2) = -8 + 8 + 18 - 18 = 0" />
+**Schritt 7**. Quotienten faktorisieren
 
-      Erfolg! <InlineMath math="x = -2" /> ist also eine Wurzel und <InlineMath math="(x+2)" /> ein Faktor.
+Faktorisiere <InlineMath math="x^2 + 5x + 6" />.
 
-    - Alternativ prüfen wir <InlineMath math="x = 3" />:
+<BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
 
-      <BlockMath math="P(3) = (3)^3 + 2(3)^2 - 9(3) - 18 = 27 + 18 - 27 - 18 = 0" />
+**Schritt 8**. Vollständige Faktorisierung
 
-      Erfolg! <InlineMath math="x = 3" /> ist also eine Wurzel und <InlineMath math="(x-3)" /> ein Faktor.
-
-6.  **Weiter faktorisieren (mit der Nullstelle <InlineMath math="x = 3" />):**
-
-    Teile <InlineMath math="P(x)" /> mithilfe des Horner-Schemas durch <InlineMath math="(x-3)" /> mit <InlineMath math="c = 3" />.
-
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    3 & 1 & 2 & -9 & -18 \\
-      &   & 3 & 15 & 18 \\
-    \hline
-      & 1 & 5 & 6 & \boxed{0} \\
-    \end{array}
-    "
-    />
-
-    Der Quotient ist <InlineMath math="H(x) = x^2 + 5x + 6" />.
-
-    Also <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
-
-7.  **Quotienten faktorisieren:**
-
-    Faktorisiere <InlineMath math="x^2 + 5x + 6" />.
-
-    <BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
-
-8.  **Vollständige Faktorisierung:**
-
-    <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+<BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
 
 ## Übung
 
-Faktorisiere <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> vollständig mithilfe des Satzes über rationale Nullstellen und des Faktorsatzes. Notiere die möglichen Nullstellen aus den Teilern des konstanten Glieds und des Leitkoeffizienten, prüfe sie der Reihe nach und teile jeden bestätigten Faktor heraus.
+Faktorisiere <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> vollständig mithilfe des **Satzes über rationale Nullstellen** und des Faktorsatzes. Notiere die möglichen Nullstellen aus den Teilern des konstanten Glieds und des Leitkoeffizienten, prüfe sie der Reihe nach und teile jeden bestätigten Faktor heraus.
 
 ### Ausführliche Lösung
 
-1.  **Koeffizienten identifizieren:** <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
-2.  **Faktoren von <InlineMath math="p" /> (aus <InlineMath math="20" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
-3.  **Faktoren von <InlineMath math="q" /> (aus <InlineMath math="2" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
-4.  **Mögliche Nullstellen <InlineMath math="\frac{p}{q}" />:** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
-5.  **Nullstellen prüfen:**
+**Schritt 1**. Koeffizienten identifizieren <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
 
-    Prüfe <InlineMath math="x = 2" />.
+**Schritt 2**. Faktoren von <InlineMath math="p" /> (aus <InlineMath math="20" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
 
-    <MathContainer>
-      <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
-      <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
-      <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
-      <BlockMath math="P(2) = 4 - 4 = 0" />
-    </MathContainer>
+**Schritt 3**. Faktoren von <InlineMath math="q" /> (aus <InlineMath math="2" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
 
-    Da <InlineMath math="P(2)=0" /> gilt, ist <InlineMath math="x=2" /> eine Wurzel und <InlineMath math="(x-2)" /> ein Faktor.
+**Schritt 4**. Mögliche Nullstellen <InlineMath math="\frac{p}{q}" /> <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
 
-6.  **Division mit dem Horner-Schema (<InlineMath math="c = 2" />):**
+**Schritt 5**. Nullstellen prüfen
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    2 & 2 & -3 & -12 & 20 \\
-      &   & 4 & 2 & -20 \\
-    \hline
-      & 2 & 1 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+Prüfe <InlineMath math="x = 2" />.
 
-    Der Quotient ist <InlineMath math="H(x) = 2x^2 + x - 10" />.
+<MathContainer>
+  <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
+  <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
+  <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
+  <BlockMath math="P(2) = 4 - 4 = 0" />
+</MathContainer>
 
-    <InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
+Da <InlineMath math="P(2)=0" /> gilt, ist <InlineMath math="x=2" /> eine Wurzel und <InlineMath math="(x-2)" /> ein Faktor.
 
-7.  **Quotienten faktorisieren:**
+**Schritt 6**. Division mit dem Horner-Schema (<InlineMath math="c = 2" />)
 
-    Faktorisiere <InlineMath math="2x^2 + x - 10" />.
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & -12 & 20 \\
+  &   & 4 & 2 & -20 \\
+\hline
+  & 2 & 1 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    <BlockMath math="2x^2 + x - 10 = (2x+5)(x-2)" />
+Der Quotient ist <InlineMath math="H(x) = 2x^2 + x - 10" />.
 
-8.  **Vollständige Faktorisierung:**
+<InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
 
-    <MathContainer>
-      <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
-      <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
-    </MathContainer>
+**Schritt 7**. Quotienten faktorisieren
+
+Faktorisiere <InlineMath math="2x^2 + x - 10" />.
+
+<BlockMath math="\begin{aligned}2x^2+x-10&amp;=2x^2-4x+5x-10 \\ &amp;=2x(x-2)+5(x-2) \\ &amp;=(2x+5)(x-2)\end{aligned}" />
+
+**Schritt 8**. Vollständige Faktorisierung
+
+<MathContainer>
+  <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
+  <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
+</MathContainer>
+
+Die Nullstelle <InlineMath math="2" /> tritt doppelt auf, denn der Faktor <InlineMath math="x-2" /> steht im Quadrat. Die andere Nullstelle ist <InlineMath math="-5/2" /> und folgt aus <InlineMath math="2x+5=0" />.

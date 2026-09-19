@@ -2,7 +2,28 @@ export const metadata = {
   title: "Lösung zu Aufgabe 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-19",
 };
 
-Die Spiegelung an <InlineMath math="y=-x" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,-x)" /> ab. Daher wird <InlineMath math="(3,-1)" /> zunächst zu <InlineMath math="(1,-3)" /> und nach der Streckung mit Faktor <InlineMath math="2" /> zu <InlineMath math="(2,-6)" />. Die Koordinatensumme ist <InlineMath math="-4" />.
+Führe die **Spiegelung vor der Streckung** aus, wie in der Aufgabe angegeben. Bei der Spiegelung an <InlineMath math="y=-x" /> werden die Koordinaten vertauscht und beide Vorzeichen geändert. Nenne den Bildpunkt R.
+
+<BlockMath math="R=(-(-1),-3)=(1,-3)" />
+
+Die Streckung um den Ursprung multipliziert beide Koordinaten von R mit 2.
+
+<BlockMath math="\begin{aligned}Q&=(2\cdot1,2\cdot(-3))=(2,-6) \\ x_Q+y_Q&=2+(-6)=-4\end{aligned}" />
+
+Zur Kontrolle: Der Mittelpunkt von P und R ist (2,−2) und liegt auf der Spiegelgeraden. PR hat die Steigung 1 und steht senkrecht auf der Spiegelgeraden mit Steigung −1. Die gesuchte Koordinatensumme ist −4.
+
+<LineEquation
+  title="Spiegelung und anschließende Streckung"
+  description="Violett verbindet P mit R über die Spiegelgerade. Orange verläuft vom Ursprung durch R nach Q."
+  cameraPosition={[2, -3, 11]}
+  cameraTarget={[2, -3, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: -0.5, y: 0.5, z: 0 }, { x: 5.5, y: -5.5, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
+    { points: [{ x: 3, y: -1, z: 0 }, { x: 1, y: -3, z: 0 }], smooth: false, color: "#9333ea", labels: [{ text: "P", at: 0, offset: [0.3, 0.4, 0] }, { text: "R", at: 1, offset: [-0.5, 0, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: -3, z: 0 }, { x: 2, y: -6, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "Q", at: 2, offset: [0.4, -0.3, 0] }] },
+  ]}
+/>

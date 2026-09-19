@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan identitas perkalian, pembagian, perpangkatan, dan perubahan basis untuk menyederhanakan bentuk, menyelesaikan persamaan, dan membaca model logaritmik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -15,17 +15,15 @@ Logaritma adalah operasi kebalikan dari perpangkatan. Jika <InlineMath math="b^x
 
 ## Identitas Dasar Logaritma
 
-Kalau suatu bentuk memuat perkalian, pembagian, atau pangkat, salah satu aturan ini memecahnya menjadi logaritma terpisah lebih dahulu. Setelah itu nilainya sering bisa dihitung langsung.
-
-Identitas berikut adalah yang pertama kamu pakai.
+Untuk setiap aturan di bawah, gunakan **argumen positif**. Khusus aturan pangkat, bilangan yang dipangkatkan tetap positif walaupun hasil pangkat mungkin dapat dihitung untuk bilangan negatif.
 
 ### Identitas Perkalian
 
 <BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
 
-Logaritma dari perkalian sama dengan penjumlahan logaritma masing-masing bilangan.
+Logaritma dari perkalian sama dengan **penjumlahan logaritma** masing-masing bilangan.
 
-**Contoh:**
+**Contoh**:
 
 <BlockMath math="\begin{aligned} \log_2(8 \times 4) &amp;= {\log_2 8} + {\log_2 4} \\ &amp;= 3 + 2 \\ &amp;= 5 \end{aligned}" />
 
@@ -33,9 +31,9 @@ Logaritma dari perkalian sama dengan penjumlahan logaritma masing-masing bilanga
 
 <BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
 
-Logaritma dari pembagian sama dengan pengurangan logaritma pembilang dengan logaritma penyebut.
+Logaritma dari pembagian sama dengan **pengurangan logaritma** pembilang dengan logaritma penyebut.
 
-**Contoh:**
+**Contoh**:
 
 <BlockMath math="\begin{aligned} \log_3\left(\frac{81}{9}\right) &amp;= {\log_3 81} - {\log_3 9} \\ &amp;= 4 - 2 \\ &amp;= 2 \end{aligned}" />
 
@@ -43,17 +41,19 @@ Logaritma dari pembagian sama dengan pengurangan logaritma pembilang dengan loga
 
 <BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
 
-Logaritma dari suatu bilangan berpangkat sama dengan pangkat dikali logaritma bilangan tersebut.
+Logaritma dari suatu bilangan berpangkat sama dengan **pangkat dikali logaritma** bilangan tersebut.
 
-**Contoh:**
+**Contoh**:
 
 <BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
 
 ## Identitas Khusus Logaritma
 
-Setiap aturan berikut menyebut syarat berlakunya sebelum menunjukkan bentuk ubahannya. Periksa basis dan argumennya dulu sebelum kamu memakai aturannya.
+Periksa **syarat basis** sebelum memakai aturan: basis lama dan basis baru harus positif serta bukan satu.
 
-Sebagian identitas hanya berlaku untuk basis tertentu atau argumen tertentu.
+Misalnya, mengganti basis dua dengan basis sepuluh tetap memberi nilai yang sama. Penyebut tidak nol karena basis asal bukan satu.
+
+<BlockMath math="\log_2 8=\frac{\log_{10}8}{\log_{10}2}=\frac{3\log_{10}2}{\log_{10}2}=3" />
 
 ### Perubahan Basis
 
@@ -61,7 +61,7 @@ Sebagian identitas hanya berlaku untuk basis tertentu atau argumen tertentu.
 
 Gunakan identitas ini untuk menulis ulang logaritma dalam basis yang tersedia atau lebih mudah dihitung.
 
-**Contoh:**
+**Contoh**:
 
 Karena <InlineMath math="9=3^2" />, pembilangnya tepat dua kali penyebutnya:
 
@@ -71,55 +71,100 @@ Karena <InlineMath math="9=3^2" />, pembilangnya tepat dua kali penyebutnya:
 
 Jika <InlineMath math="\log_b M = {\log_b N}" />, maka <InlineMath math="M = N" />
 
-Dua bilangan yang memiliki nilai logaritma sama (dengan basis sama) pasti merupakan bilangan yang sama. Sebagai contoh, <InlineMath math="\log_2 8 = \log_2 2^3" /> dan kedua ruas bernilai <InlineMath math="3" />, sehingga angka <InlineMath math="8" /> dan <InlineMath math="2^3" /> memang sama. Aturan ini berlaku karena setiap nilai logaritma dengan basis tetap berasal dari tepat satu angka.
+Dua bilangan yang memiliki **nilai logaritma sama** (dengan basis sama) pasti merupakan bilangan yang sama. Sebagai contoh, <InlineMath math="\log_2 8 = \log_2 2^3" /> dan kedua ruas bernilai <InlineMath math="3" />, sehingga angka <InlineMath math="8" /> dan <InlineMath math="2^3" /> memang sama. Aturan ini berlaku karena setiap nilai logaritma dengan basis tetap berasal dari tepat satu angka.
 
 ### Membandingkan Dua Logaritma
 
-Identitas ini menghubungkan tanda logaritma dengan posisi argumennya terhadap basis, dan itulah yang kamu butuhkan saat logaritma muncul di dalam ketaksamaan.
+Perbandingan bergantung pada **arah grafik**. Basis lebih besar dari satu mempertahankan urutan argumen. Basis antara nol dan satu membalik urutan.
 
 - Jika <InlineMath math="b > 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M < N" />
 - Jika <InlineMath math="0 < b < 1" /> dan <InlineMath math="\log_b M < {\log_b N}" />, maka <InlineMath math="M > N" />
 
+<LineEquation
+  title="Urutan pada dua basis"
+  description="Pada masukan 2 dan 4, logaritma basis dua menghasilkan 1 dan 2. Logaritma basis setengah menghasilkan minus 1 dan minus 2."
+  data={[
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="\log_2 x" />, at: 100, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: -t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="\log_{1/2} x" />, at: 100, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraTarget={[3, 0, 0]}
+  cameraPosition={[3, 0, 14]}
+/>
+
 ## Penerapan Identitas Logaritma
 
-Di sini identitas bertemu bentuk aljabar, jadi bentuknya harus dirapikan lebih dahulu. Kerjakan bertahap dan tuliskan identitas yang kamu pakai pada setiap langkah.
+Di sini identitas bertemu bentuk aljabar, jadi bentuknya harus dirapikan lebih dahulu. Kerjakan bertahap dan tuliskan **identitas yang kamu pakai** pada setiap langkah.
 
 Identitas ini berguna saat suatu bentuk harus disederhanakan sebelum bisa diselesaikan.
 
 ### Menyederhanakan Ekspresi
 
+Gunakan **identitas perkalian lalu pembagian** untuk menggabungkan tiga suku.
+
 Sederhanakan <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 <MathContainer>
-  <BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
-  <BlockMath math="= {\log_2(32 \times 8)} - {\log_2 4}" />
-  <BlockMath math="= {\log_2 256} - {\log_2 4}" />
-  <BlockMath math="= {\log_2\left(\frac{256}{4}\right)}" />
-  <BlockMath math="= {\log_2 64} = 6" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2(32 \times 8)} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 256} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2\left(\frac{256}{4}\right)}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 64} = 6" />
 </MathContainer>
 
 ### Menyelesaikan Persamaan
 
+Syarat awalnya adalah **argumen positif**, sehingga masukan harus lebih besar dari nol. Hasil sembilan memenuhi syarat itu.
+
 Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 <MathContainer>
-  <BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
-  <BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
-  <BlockMath math="x \times 9 = 81" />
-  <BlockMath math="x = \frac{81}{9} = 9" />
+
+<BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+
+<BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
+
+<BlockMath math="x \times 9 = 81" />
+
+<BlockMath math="x = \frac{81}{9} = 9" />
 </MathContainer>
 
 ## Penerapan dalam Model
 
 Dalam model, besaran yang dicari berada di posisi pangkat, dan logaritma menurunkannya. Contoh berikut menunjukkan identitas mana yang dibutuhkan pada setiap soal.
 
-Identitas logaritma juga muncul saat model memuat pertumbuhan atau peluruhan eksponensial.
+Identitas logaritma juga muncul saat model memuat pertumbuhan atau **peluruhan eksponensial**.
 
 ### Skala Magnitudo Logaritmik
+
+Model ini membandingkan **rasio amplitudo**, dengan logaritma basis sepuluh.
 
 Dalam model magnitudo sederhana, amplitudo gelombang seismik terukur <InlineMath math="A" /> dibandingkan dengan amplitudo acuan <InlineMath math="A_0" />:
 
@@ -131,15 +176,19 @@ Keterangan:
 - <InlineMath math="A" /> adalah amplitudo terukur
 - <InlineMath math="A_0" /> adalah amplitudo acuan
 
-**Contoh:** Misalkan amplitudo terukur bernilai <InlineMath math="10^7" /> kali amplitudo acuan. Berapa magnitudo yang diberikan oleh model sederhana tersebut?
+**Contoh**: Misalkan amplitudo terukur bernilai <InlineMath math="10^7" /> kali amplitudo acuan. Berapa magnitudo yang diberikan oleh model sederhana tersebut?
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 <MathContainer>
-  <BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
-  <BlockMath math="= \log\left(\frac{10^7 A_0}{A_0}\right)" />
-  <BlockMath math="= \log(10^7)" />
-  <BlockMath math="= 7" />
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+<BlockMath math="M = \log\left(\frac{10^7 A_0}{A_0}\right)" />
+
+<BlockMath math="M = \log(10^7)" />
+
+<BlockMath math="M = 7" />
 </MathContainer>
 
 Rasio amplitudo tersebut setara dengan magnitudo <InlineMath math="7" /> dalam model sederhana ini. Perhitungan magnitudo gempa sebenarnya juga memperhitungkan instrumen, jenis gelombang, dan jarak sumber.
@@ -157,21 +206,40 @@ Keterangan:
 - <InlineMath math="C" /> = kapasitas yang diinginkan
 - <InlineMath math="C_0" /> = kapasitas maksimum
 
-**Contoh:** Tentukan waktu yang diperlukan untuk mengisi daya baterai yang dayanya kosong menjadi <InlineMath math="90\%" /> penuh. Anggap <InlineMath math="k = 0{,}02" />.
+**Contoh**: Tentukan waktu yang diperlukan untuk mengisi daya baterai yang dayanya kosong menjadi <InlineMath math="90\%" /> penuh. Anggap <InlineMath math="k = 0{,}02\ \text{min}^{-1}" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 <MathContainer>
-  <BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
-  <BlockMath math="= -\frac{1}{0{,}02}\ln\left(1 - \frac{0{,}9C_0}{C_0}\right)" />
-  <BlockMath math="= -50\ln(1 - 0{,}9)" />
-  <BlockMath math="= -50\ln(0{,}1)" />
-  <BlockMath math="\approx 115{,}13" />
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+<BlockMath math="t = -\frac{1}{0{,}02}\ln\left(1 - \frac{0{,}9C_0}{C_0}\right)" />
+
+<BlockMath math="t = -50\ln(1 - 0{,}9)" />
+
+<BlockMath math="t = -50\ln(0{,}1)" />
+
+<BlockMath math="t \approx 115{,}13" />
 </MathContainer>
 
 Dalam model sederhana ini, pengisian hingga <InlineMath math="90\%" /> memerlukan sekitar <InlineMath math="115 \text{ menit}" />. Sistem pengisian nyata dapat mengubah lajunya saat kapasitas hampir penuh.
 
+**Domain model pengisian** adalah kapasitas terisi dari nol sampai kurang dari kapasitas maksimum.
+
+<BlockMath math="C_0>0,\quad k>0,\quad0\leq C<C_0" />
+
+Dalam model ini, **seratus persen didekati tanpa tercapai** pada waktu berhingga. Membandingkan beberapa target menunjukkan mengapa tambahan satu persen di dekat penuh dapat memerlukan waktu lebih lama.
+
+| Target terisi | Waktu (menit) |
+| --- | --- |
+| <InlineMath math="50\%" /> | <InlineMath math="-50\ln(0{,}5)\approx34{,}66" /> |
+| <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0{,}1)\approx115{,}13" /> |
+| <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0{,}01)\approx230{,}26" /> |
+
 ### Depresiasi Harga Mobil
+
+Laju model tetap merupakan **asumsi selama selang yang dihitung**. Nilai mobil menjadi separuh setiap lima tahun.
 
 Jika laju penurunan nilai sesaat sebanding dengan nilai mobil saat itu, model eksponensialnya berbentuk:
 
@@ -179,17 +247,21 @@ Jika laju penurunan nilai sesaat sebanding dengan nilai mobil saat itu, model ek
 
 Pada model ini, <InlineMath math="H(t)" /> adalah nilai mobil pada waktu <InlineMath math="t" />.
 
-**Contoh:** Harga mobil baru adalah <InlineMath math="200 \text{ juta rupiah}" /> dan nilai dalam model setelah <InlineMath math="5 \text{ tahun}" /> menjadi <InlineMath math="100 \text{ juta rupiah}" />. Jika laju penurunan eksponensial yang sama berlanjut, tentukan nilai dalam model setelah <InlineMath math="10 \text{ tahun}" />.
+**Contoh**: Harga mobil baru adalah <InlineMath math="200 \text{ juta rupiah}" /> dan nilai dalam model setelah <InlineMath math="5 \text{ tahun}" /> menjadi <InlineMath math="100 \text{ juta rupiah}" />. Jika laju penurunan eksponensial yang sama berlanjut, tentukan nilai dalam model setelah <InlineMath math="10 \text{ tahun}" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Nyatakan <InlineMath math="H(t)" /> dalam juta rupiah dan <InlineMath math="t" /> dalam tahun. Saat pembelian:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
-  <BlockMath math="e^{5k} = \frac{1}{2} \text{, sehingga } 5k = \ln\left(\frac{1}{2}\right)" />
-  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
+
+<BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
+
+<BlockMath math="e^{5k} = \frac{1}{2} \text{, sehingga } 5k = \ln\left(\frac{1}{2}\right)" />
+
+<BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
 </MathContainer>
 
 Dari hasil tersebut, diperoleh harga mobil setiap saat <InlineMath math="t" /> adalah:
@@ -204,52 +276,61 @@ Jadi, harga mobil setelah <InlineMath math="10 \text{ tahun}" /> digunakan adala
 
 Tiga soal berikut membutuhkan bentuk ubahan yang berbeda, jadi tuliskan dulu aturan yang kamu perlukan sebelum menghitung. Setelah itu bandingkan langkahmu dengan langkah pada pembahasan.
 
-**Soal** 1
+**Soal 1**
 
 Sederhanakan: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
 
-**Soal** 2
+**Soal 2**
 
 Jika <InlineMath math="\log_2 x = 3" /> dan <InlineMath math="\log_2 y = 5" />, tentukan nilai <InlineMath math="\log_2(xy)" />
 
-**Soal** 3
+**Soal 3**
 
 Tentukan nilai <InlineMath math="x" /> jika <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
 
 ### Pembahasan
 
-**Jawaban** <InlineMath math="1" />
+**Jawaban 1**
 
 Setiap bilangan merupakan pangkat dari <InlineMath math="5" />. Hitung ketiga logaritma sebelum menggabungkannya:
 
 <MathContainer>
-  <BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
-  <BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+<BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+
+<BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
 </MathContainer>
 
 Nilai bentuk yang telah disederhanakan adalah <InlineMath math="4" />.
 
-**Jawaban** <InlineMath math="2" />
+**Jawaban 2**
 
 Gunakan identitas perkalian karena bentuk yang ditanyakan memuat <InlineMath math="xy" />:
 
 <MathContainer>
-  <BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
-  <BlockMath math="= 3 + 5 = 8" />
+
+<BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
+
+<BlockMath math="\log_2(xy) = 3 + 5 = 8" />
 </MathContainer>
 
 Jadi, <InlineMath math="\log_2(xy)=8" />.
 
-**Jawaban** <InlineMath math="3" />
+**Jawaban 3**
 
 Gunakan identitas pembagian di ruas kanan, lalu gunakan kesamaan dua logaritma dengan basis yang sama:
 
 <MathContainer>
-  <BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
-  <BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
-  <BlockMath math="\log_4(x-1) = {\log_4 8}" />
-  <BlockMath math="x - 1 = 8" />
-  <BlockMath math="x = 9" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 8}" />
+
+<BlockMath math="x - 1 = 8" />
+
+<BlockMath math="x = 9" />
 </MathContainer>
 
 Logaritma mensyaratkan <InlineMath math="x-1>0" />. Karena <InlineMath math="9-1=8>0" />, penyelesaiannya valid.

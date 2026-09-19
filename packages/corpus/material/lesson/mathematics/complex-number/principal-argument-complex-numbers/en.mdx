@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Principal Argument of Complex Numbers",
   description: "Find the unique principal argument of a nonzero complex number in the interval from negative pi to pi and reduce coterminal angles to that representative.",
@@ -33,81 +31,58 @@ Some references use <InlineMath math="[0, 2\pi)" /> instead. Both conventions se
 
 ## Determining the Principal Argument
 
-Find any argument first, then add or subtract full turns until the result lies in <InlineMath math="(-\pi, \pi]" /> or <InlineMath math="(-180^\circ, 180^\circ]" />. An angle of <InlineMath math="300^\circ" /> lies outside both intervals, and subtracting one full turn brings it to <InlineMath math="-60^\circ" />, which is the principal value.
+Find any argument, then **add or subtract full turns** until the angle lies in the principal interval. In degrees, the left endpoint is excluded and the right endpoint is included. The negative real axis therefore uses positive 180 degrees.
+
+| Starting angle | Calculation | Principal argument |
+| --- | --- | --- |
+| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ-360^\circ=-60^\circ" /> | <InlineMath math="-60^\circ" /> |
+| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ-360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ+360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> | <InlineMath math="180^\circ" /> |
 
 ### Finding the Principal Argument
 
-1.  **Find the Principal Argument of <InlineMath math="z = 1 + i" />**
+Check the **quadrant of the point** before using inverse tangent. The component ratio determines the slope, so two opposite directions can have the same tangent.
 
-    The point <InlineMath math="(1, 1)" /> is in Quadrant <InlineMath math="I" />.
+For <InlineMath math="z=1+i" />: <InlineMath math="(1,1)" /> lies in quadrant I.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{1} = 1" />
-      <BlockMath math="\theta = \arctan(1) = 45^\circ" />
-    </MathContainer>
+<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{1}=1\\\operatorname{Arg}(1+i)&amp;=45^\circ=\frac{\pi}{4}\end{aligned}" />
 
-    Since <InlineMath math="45^\circ" /> is already within <InlineMath math="(-180^\circ, 180^\circ]" />, the Principal Argument is:
+For <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> lies in quadrant I.
 
-    <BlockMath math="\text{Arg}(z) = 45^\circ \text{ or } \frac{\pi}{4} \text{ radians}" />
+<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{\sqrt{3}}\\\operatorname{Arg}(\sqrt{3}+i)&amp;=30^\circ=\frac{\pi}{6}\end{aligned}" />
 
-2.  **Find the Principal Argument of <InlineMath math="z = \sqrt{3} + i" />**
+<MathVisual
+  title="Angles from the positive real axis"
+  description="Two vectors in quadrant I make angles of 45 and 30 degrees with the positive real axis. The arcs show the angles being measured."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3), y: 1 }, appearance: "secondary" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.45, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: 0, sweepDegrees: 30, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.42, y: 0.17 }, placement: "above-left" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="\sqrt{3}+i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="30^\circ" />,
+  }}
+/>
 
-    The point <InlineMath math="(\sqrt{3}, 1)" /> is in Quadrant <InlineMath math="I" />.
+For a point in quadrant II, inverse tangent alone gives the wrong direction. The point <InlineMath math="(-1,1)" /> lies in quadrant II, so add half a turn:
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{\sqrt{3}}" />
-      <BlockMath math="\theta = \arctan\left(\frac{1}{\sqrt{3}}\right) = 30^\circ" />
-    </MathContainer>
-
-    Since <InlineMath math="30^\circ" /> is already within <InlineMath math="(-180^\circ, 180^\circ]" />, the Principal Argument is:
-
-    <BlockMath math="\text{Arg}(z) = 30^\circ \text{ or } \frac{\pi}{6} \text{ radians}" />
-
-<ContentBlock>
-  <LineEquation
-    title="Principal Argument Visualization"
-    description={
-      <>
-        The vectors <InlineMath math="z_1=1+i" /> and
-        <InlineMath math="z_2=\sqrt{3}+i" /> are shown with their Principal Arguments
-        <InlineMath math="45^\circ" /> and <InlineMath math="30^\circ" />.
-      </>
-    }
-    cameraPosition={[0.9, 0.5, 5]}
-    cameraTarget={[0.9, 0.5, 0]}
-    data={[
-      {
-        points: [
-          { x: 0, y: 0, z: 0 },
-          { x: 1, y: 1, z: 0 },
-        ],
-        smooth: false,
-        color: "#0284c7",
-        labels: [{ text: <InlineMath math="z_1=1+i" />, at: 1, offset: [-1, 0.5, 0] }],
-        cone: { position: "end" },
-      },
-      {
-        points: [
-          { x: 0, y: 0, z: 0 },
-          { x: Math.sqrt(3), y: 1, z: 0 },
-        ],
-        smooth: false,
-        color: "#65a30d",
-        labels: [{ text: <InlineMath math="z_2=\sqrt{3}+i" />, at: 1, offset: [0.15, 0.65, 0] }],
-        cone: { position: "end" },
-      },
-      // Positive real axis line for angle reference
-      {
-        points: [
-          { x: 0, y: 0, z: 0 },
-          { x: 2, y: 0, z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-      },
-    ]}
-  />
-</ContentBlock>
+<BlockMath math="\begin{aligned}\arctan\left(\frac{1}{-1}\right)&amp;=-45^\circ\\\operatorname{Arg}(-1+i)&amp;=-45^\circ+180^\circ=135^\circ\end{aligned}" />
 
 ## Equality of Two Complex Numbers in Polar Form
 
@@ -124,42 +99,27 @@ Two nonzero complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \t
 
 If we use the **Principal Argument** in <InlineMath math="(-\pi, \pi]" />, the second condition simplifies to <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
 
-### Checking for Equality
+### Comparing Equality
 
-Determine if the following pairs of complex numbers are equal or different?
+Compare **both modulus and direction**. Equal moduli are not enough when the vectors point in different directions.
 
-1.  <InlineMath math="z_1 = \sqrt{2}(\cos 45^\circ + i\sin 45^\circ)" /> and <InlineMath math="z_2 = \sqrt{2}(\cos 95^\circ + i\sin 95^\circ)" />
-2.  <InlineMath math="z_1 = \cos 30^\circ + i\sin 30^\circ" /> and <InlineMath math="z_2 = \cos 390^\circ + i\sin 390^\circ" />
-
-**Solution:**
-
-1.  Consider:
-
-    - Modulus: <InlineMath math="|z_1| = \sqrt{2}" /> and <InlineMath math="|z_2| = \sqrt{2}" />. (Equal)
-    - Principal Argument: <InlineMath math="\text{Arg}(z_1) = 45^\circ" /> and <InlineMath math="\text{Arg}(z_2) = 95^\circ" />. (Different)
-
-    Since their principal arguments are different (<InlineMath math="45^\circ \neq 95^\circ" />), then <InlineMath math="z_1 \neq z_2" />.
-
-2.  Consider:
-
-    - Modulus: <InlineMath math="|z_1| = 1" /> and <InlineMath math="|z_2| = 1" />. (Equal)
-    - Arguments: <InlineMath math="\theta_1 = 30^\circ" /> and <InlineMath math="\theta_2 = 390^\circ" />.
-    - Difference of arguments: <InlineMath math="\theta_1 - \theta_2 = 30^\circ - 390^\circ = -360^\circ" />.
-
-    Since the difference of the arguments is a multiple of <InlineMath math="360^\circ" /> (<InlineMath math="-360^\circ = -1 \times 360^\circ" />), then <InlineMath math="z_1 = z_2" />.
-
-    Alternatively, subtract one full turn: <InlineMath math="390^\circ - 360^\circ = 30^\circ" />. Thus <InlineMath math="z_2" /> and <InlineMath math="z_1" /> have the same principal argument.
+| Pair | Moduli | Angle difference | Conclusion |
+| --- | --- | --- | --- |
+| <InlineMath math="\sqrt{2}(\cos45^\circ+i\sin45^\circ)" />, <InlineMath math="\sqrt{2}(\cos95^\circ+i\sin95^\circ)" /> | <InlineMath math="\sqrt{2}=\sqrt{2}" /> | <InlineMath math="45^\circ-95^\circ=-50^\circ" /> | Different |
+| <InlineMath math="\cos30^\circ+i\sin30^\circ" />, <InlineMath math="\cos390^\circ+i\sin390^\circ" /> | <InlineMath math="1=1" /> | <InlineMath math="30^\circ-390^\circ=-360^\circ" /> | Equal |
 
 ## Exercise
 
-Find the Principal Argument (in degrees) for the following complex numbers. Start from the signs of the real and imaginary part, because those signs decide the quadrant before you apply an inverse trigonometric function.
+The component signs identify the **quadrant or axis**. Find the angle and check that it lies in the principal interval. Find the principal argument of each number below in degrees. If the real component is zero, the tangent ratio is undefined, but you can still identify the direction of the vector.
 
 1.  <InlineMath math="1 + \sqrt{3}i" />
 2.  <InlineMath math="-i" />
 
 ### Worked Solutions
 
-1.  **For <InlineMath math="z = 1 + \sqrt{3}i" />:**
+In quadrant I, use the component ratio. On the imaginary axis, read the **vector direction** directly to avoid division by zero.
+
+1.  <InlineMath math="z = 1 + \sqrt{3}i" />:
 
     The point <InlineMath math="(1, \sqrt{3})" /> is in Quadrant <InlineMath math="I" />.
 
@@ -170,7 +130,7 @@ Find the Principal Argument (in degrees) for the following complex numbers. Star
 
     Since <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z) = 60^\circ" />.
 
-2.  **For <InlineMath math="z = -i" />:**
+2.  <InlineMath math="z = -i" />:
 
     Write it as <InlineMath math="z = 0 - 1i" />. The point <InlineMath math="(0, -1)" /> lies directly on the negative imaginary axis, so no division by <InlineMath math="x=0" /> is needed.
 

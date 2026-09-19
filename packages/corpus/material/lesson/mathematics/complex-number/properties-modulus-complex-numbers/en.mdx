@@ -9,11 +9,11 @@ export const metadata = {
 
 ## How Operations Affect the Modulus
 
-Let <InlineMath math="z_1" /> and <InlineMath math="z_2" /> be complex numbers. <Highlight>The modulus measures the distance of a number from the origin</Highlight>, so every rule about it answers one question: how does that distance change when the number is negated, conjugated, subtracted, multiplied, or divided?
+The modulus measures **distance from the origin**. Negation and conjugation preserve that distance. Products, quotients, and sums follow different rules, which we can derive from components and vector lengths.
 
 ### Modulus Under Negation and Conjugation
 
-Negation and conjugation leave the modulus of a complex number unchanged.
+Negation and conjugation leave the modulus **unchanged**.
 
 <BlockMath math="|z_1| = |-z_1| = |\bar{z_1}|" />
 
@@ -29,7 +29,7 @@ All three yield the same value.
 
 ### Modulus of Difference
 
-The modulus of the difference of two complex numbers is the same if the order is reversed.
+The modulus of a difference measures the **distance between two points**, so reversing their order does not change that distance.
 
 <BlockMath math="|z_1 - z_2| = |z_2 - z_1|" />
 
@@ -41,7 +41,7 @@ This is a direct consequence of the <InlineMath math="|-z| = |z|" /> property. W
 
 ### Square of Modulus
 
-The square of the modulus of a complex number is equal to the complex number multiplied by its conjugate.
+The square of the modulus of a complex number is equal to the complex number multiplied by its **conjugate**.
 
 <BlockMath math="|z_1|^2 = z_1 \times \bar{z_1}" />
 
@@ -49,7 +49,7 @@ The square of the modulus of a complex number is equal to the complex number mul
 
 If <InlineMath math="z_1 = x + iy" />, then <InlineMath math="\bar{z_1} = x - iy" />.
 
-<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &= (x + iy)(x - iy) \\ &= x^2 - (iy)^2 \\ &= x^2 - i^2y^2 \\ &= x^2 - (-1)y^2 \\ &= x^2 + y^2\end{aligned}" />
+<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &amp;= (x + iy)(x - iy) \\ &amp;= x^2 - (iy)^2 \\ &amp;= x^2 - i^2y^2 \\ &amp;= x^2 - (-1)y^2 \\ &amp;= x^2 + y^2\end{aligned}" />
 
 We also know that <InlineMath math="|z_1| = \sqrt{x^2 + y^2}" />, so <InlineMath math="|z_1|^2 = (\sqrt{x^2 + y^2})^2 = x^2 + y^2" />.
 
@@ -63,25 +63,23 @@ The modulus of the product of two complex numbers is equal to <Highlight>the pro
 
 This follows from multiplying each number by its conjugate:
 
-<MathContainer>
-  <BlockMath math="|z_1z_2|^2=(z_1z_2)\overline{(z_1z_2)}" />
-  <BlockMath math="=z_1\bar{z_1}\,z_2\bar{z_2}" />
-  <BlockMath math="=|z_1|^2|z_2|^2" />
-</MathContainer>
+<BlockMath math="\begin{aligned}|z_1z_2|^2&amp;=(z_1z_2)\overline{(z_1z_2)}\\&amp;=z_1\bar z_1z_2\bar z_2\\&amp;=|z_1|^2|z_2|^2\end{aligned}" />
 
 Both moduli are non-negative, so taking the square root gives the product rule.
 
 ### Modulus of Quotient
 
-The modulus of the quotient of two complex numbers is equal to the quotient of their individual moduli (provided the denominator is non-zero).
+The modulus of the quotient of two complex numbers is equal to the **quotient of their individual moduli** (provided the denominator is non-zero).
 
 <BlockMath math="\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}, \quad \text{for } z_2 \neq 0" />
 
 The quotient rule follows from the product rule because <InlineMath math="z_1=(z_1/z_2)z_2" /> when <InlineMath math="z_2\neq0" />.
 
+<BlockMath math="\begin{aligned}|z_1|&amp;=\left|\frac{z_1}{z_2}\right||z_2|\\\left|\frac{z_1}{z_2}\right|&amp;=\frac{|z_1|}{|z_2|}\end{aligned}" />
+
 ### Triangle Inequality
 
-The modulus of the sum of two complex numbers is less than or equal to the sum of their individual moduli.
+The modulus of the sum of two complex numbers is **less than or equal to** the sum of their individual moduli.
 
 <BlockMath math="|z_1 + z_2| \leq |z_1| + |z_2|" />
 
@@ -89,13 +87,46 @@ The modulus of the sum of two complex numbers is less than or equal to the sum o
 
 Geometrically, place the vectors <InlineMath math="z_1" /> and <InlineMath math="z_2" /> head to tail. The direct vector from the starting point to the endpoint is <InlineMath math="z_1 + z_2" />, and its length cannot exceed the sum <InlineMath math="|z_1| + |z_2|" /> of the other two side lengths.
 
+The direct distance is shorter than the path through the right-angle corner:
+
+<BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
+
+<MathVisual
+  title="Direct distance and a two-side path"
+  description="A horizontal vector of length 3 and a vertical vector of length 4 produce a direct vector of length 5. The length 5 does not exceed the path length 3 plus 4."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "horizontal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "vertical", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "direct", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "horizontal", objectId: "horizontal", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "vertical", objectId: "vertical", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "direct", objectId: "direct", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{ horizontal: "3", vertical: "4", direct: "5" }}
+/>
+
 ### Reverse Triangle Inequality
 
-The difference between the moduli of two complex numbers cannot exceed the distance between the numbers themselves.
+The **absolute difference between the moduli** of two complex numbers cannot exceed the distance between the numbers themselves.
 
 <BlockMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1-z_2|" />
 
 This inequality provides a lower bound for a distance or sum. For example, replacing <InlineMath math="z_2" /> with <InlineMath math="-z_2" /> gives <InlineMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1+z_2|" />.
+
+To derive the lower bound, write the first number as the difference plus the second number, then use the triangle inequality:
+
+<BlockMath math="\begin{aligned}|z_1|&amp;=|(z_1-z_2)+z_2|\\&amp;\leq|z_1-z_2|+|z_2|\\|z_1|-|z_2|&amp;\leq|z_1-z_2|\end{aligned}" />
+
+Swap the two numbers to bound the opposite difference. Together the two bounds give the absolute difference between the moduli.
+
+<BlockMath math="\begin{aligned}|z_2|-|z_1|&amp;\leq|z_2-z_1|=|z_1-z_2|\\\bigl||z_1|-|z_2|\bigr|&amp;\leq|z_1-z_2|\end{aligned}" />
 
 ## Using Modulus Properties
 
@@ -124,13 +155,15 @@ The quotient rule avoids expanding the fraction with the conjugate of the denomi
 
 ## Exercise
 
-Each item asks for a modulus, so write the real and the imaginary part first and then evaluate the square root.
+Choose the **modulus rule for the operation**. The first item needs a product of moduli, the second compares two calculations, and the third gives only lengths, so its answer is an interval.
 
 1.  If <InlineMath math="z_1 = 6 + 8i" /> and <InlineMath math="z_2 = 3 - i" />, calculate <InlineMath math="|z_1 \times z_2|" /> using the modulus properties.
 2.  If <InlineMath math="z = 5 - 12i" />, prove that <InlineMath math="|z|^2 = z \times \bar{z}" />.
 3.  If <InlineMath math="|z_1|=3" /> and <InlineMath math="|z_2|=5" />, determine the possible bounds for <InlineMath math="|z_1+z_2|" />.
 
 ### Worked Solutions
+
+Calculate the moduli before multiplying, use conjugation for the squared modulus, then apply **upper and lower bounds** to the sum.
 
 1.  We use the property <InlineMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />.
 
@@ -158,7 +191,7 @@ Each item asks for a modulus, so write the real and the imaginary part first and
 
     The conjugate of <InlineMath math="z" /> is <InlineMath math="\bar{z} = 5 + 12i" />.
 
-    <BlockMath math="\begin{aligned}z \times \bar{z} &= (5 - 12i)(5 + 12i) \\ &= 5^2 - (12i)^2 \\ &= 25 - 144i^2 \\ &= 25 - 144(-1) \\ &= 25 + 144 \\ &= 169\end{aligned}" />
+    <BlockMath math="\begin{aligned}z \times \bar{z} &amp;= (5 - 12i)(5 + 12i) \\ &amp;= 5^2 - (12i)^2 \\ &amp;= 25 - 144i^2 \\ &amp;= 25 - 144(-1) \\ &amp;= 25 + 144 \\ &amp;= 169\end{aligned}" />
 
     Since the left side (<InlineMath math="169" />) equals the right side (<InlineMath math="169" />), the statement <InlineMath math="|z|^2 = z \times \bar{z}" /> is proven.
 
@@ -167,3 +200,7 @@ Each item asks for a modulus, so write the real and the imaginary part first and
     <BlockMath math="\bigl||z_1|-|z_2|\bigr|\leq|z_1+z_2|\leq|z_1|+|z_2|" />
 
     Substituting the known moduli gives <InlineMath math="2\leq|z_1+z_2|\leq8" />. The exact value depends on the angle between the two complex numbers.
+
+Both endpoints are attainable: opposite directions give the lower bound, while the same direction gives the upper bound.
+
+<BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />

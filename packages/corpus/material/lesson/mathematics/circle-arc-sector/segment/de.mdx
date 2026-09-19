@@ -3,7 +3,7 @@ export const metadata = {
   description: "Die Fläche kleiner und großer Kreissegmente ergibt sich aus Sektorfläche und Dreiecksfläche.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -14,7 +14,7 @@ Eine Gerade, die einen Kreis in zwei Punkten schneidet, bildet eine [Sehne](/de/
 
 ## Unterschied zwischen Bogen und Segment
 
-Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
+Ein Bogen ist eine **gekrümmte Linie**, ein Kreissegment dagegen die Fläche zwischen Bogen und Sehne. Für die Bogenlänge verwendest du Längeneinheiten wie Zentimeter. Die Segmentfläche misst du in Flächeneinheiten wie Quadratzentimeter.
 
 <ContentStack>
 
@@ -102,13 +102,9 @@ Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
 
 </ContentStack>
 
-**Der entscheidende Unterschied:**
-- **Bogen**: Gekrümmte Linie auf dem Umfang eines Kreises (hat nur Länge, keine Fläche)
-- **Kreissegment**: Von Bogen und Sehne begrenzter Bereich (besitzt eine Fläche)
-
 ## Kleines und großes Kreissegment
 
-Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines oder ein großes Kreissegment:
+Wähle zuerst den **begrenzenden Bogen**, bevor du das Segment einordnest. Ein kleiner Bogen begrenzt weniger als die halbe Kreisfläche. Der große Bogen begrenzt den Rest. Ist die Sehne ein Durchmesser, sind beide Flächen gleich groß.
 
 <ContentStack>
 
@@ -186,7 +182,7 @@ Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines od
       showPoints: false,
       lineWidth: 3,
     },
-    // Segment (schraffierte Fläche)
+    // Segment (Flächenrand)
     { kind: "circle-segment", color: "#ea580c",
       radius: 4,
       startDegrees: 30,
@@ -273,7 +269,7 @@ Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines od
       showPoints: false,
       lineWidth: 3,
     },
-    // Großes Segment (schraffierte Fläche)
+    // Großes Segment (Flächenrand)
     { kind: "circle-segment", color: "#65a30d",
       radius: 4,
       startDegrees: 45,
@@ -294,7 +290,7 @@ Bei festem Radius unterscheidet der Mittelpunktswinkel die beiden Segmente:
 
 ## Segmentflächenformel
 
-Das kleine Kreissegment entsteht, wenn wir vom Kreissektor das Dreieck aus den beiden Radien und der Sehne abziehen.
+Das kleine Kreissegment entsteht, wenn wir die **Dreiecksfläche von der Sektorfläche abziehen**.
 
 Vergleiche Bogenlänge und Segmentfläche, bevor du die Formeln verwendest.
 
@@ -326,7 +322,7 @@ Für ein großes Kreissegment verwenden wir zunächst den ergänzenden kleinen W
 
 ## Sektor Dreieck und Kreissegment
 
-Die Abbildung markiert den Sektor, das von den beiden Radien und der Sehne gebildete Dreieck sowie das Segment, das nach dem Abziehen der Dreiecksfläche übrig bleibt.
+Im dargestellten Sektor mit 90 Grad verbindet die Sehne die Endpunkte zweier senkrechter Radien. Die **Fläche zwischen Bogen und Sehne** bleibt übrig, wenn du das rechtwinklige Dreieck aus dem Sektor entfernst.
 
 <ContentStack>
 
@@ -410,7 +406,7 @@ Die Abbildung markiert den Sektor, das von den beiden Radien und der Sehne gebil
 
 ## Segmentflächenberechnung
 
-Wir berechnen nun die Segmentfläche für <InlineMath math="\alpha = 90^\circ" /> und <InlineMath math="r = 10 \text{ cm}" />.
+Verwende dieselbe **Viertelkreisform** wie in der Zeichnung, aber mit neuen Maßen: Mittelpunktswinkel <InlineMath math="90^\circ" /> und Radius <InlineMath math="10\text{ cm}" />. Berechne Sektorfläche und Dreiecksfläche zunächst getrennt.
 
 **Schritt 1**: Sektorfläche berechnen
 
@@ -443,7 +439,7 @@ Für einen Winkel <InlineMath math="90^\circ" /> ist das gebildete Dreieck ein r
 
 ## Übungen
 
-In jeder Aufgabe ist die Fläche eines Kreissegments gesucht, deshalb ziehst du das Dreieck vom Sektor mit demselben Mittelpunktswinkel ab.
+Aufgabe eins fragt nach der **Segmentfläche**, Aufgabe zwei nach dem Winkel zu einer Fläche. Aufgabe drei bestimmt den gefüllten Tankquerschnitt. Miss die Wassertiefe vom Boden aus, um den Abstand zwischen Oberfläche und Mittelpunkt zu finden.
 
 1. Ein Kreis hat den Radius <InlineMath math="7 \text{ cm}" />. Bestimme die Fläche des Segments zu einem Mittelpunktswinkel von <InlineMath math="60^\circ" />.
 
@@ -453,92 +449,96 @@ In jeder Aufgabe ist die Fläche eines Kreissegments gesucht, deshalb ziehst du 
 
 ### Ausführliche Lösungen
 
-1. **Lösungsschritte:**
+Berechne ein kleines Segment als **Sektor minus Dreieck**. Ist die Fläche gegeben, suchst du den Winkel, der in der Formel diese Fläche liefert. Zeichne beim Tank zuerst die Sehne an der Wasseroberfläche.
 
-   Gegeben: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
+**Lösung 1**
 
-   Sektorfläche berechnen:
+Gegeben: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\text{Sektorfläche} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
-   <BlockMath math="= \frac{1}{6} \times \pi \times 49" />
-   <BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
-   </MathContainer>
+Sektorfläche berechnen:
 
-   Dreiecksfläche berechnen:
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
+<BlockMath math="= \frac{1}{6} \times \pi \times 49" />
+<BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\text{Dreiecksfläche} = \frac{1}{2} r^2 \sin 60^\circ" />
-   <BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
-   <BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
-   </MathContainer>
+Dreiecksfläche berechnen:
 
-   Segmentfläche berechnen:
+<MathContainer>
+<BlockMath math="\text{Dreiecksfläche} = \frac{1}{2} r^2 \sin 60^\circ" />
+<BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
+<BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\text{Segmentfläche} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
-   <BlockMath math="\approx 25{,}6563 - 21{,}2176 = 4{,}4387 \text{ cm}^2" />
-   </MathContainer>
+Segmentfläche berechnen:
 
-2. **Lösungsschritte:**
+<MathContainer>
+<BlockMath math="\text{Segmentfläche} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
+<BlockMath math="\approx 25{,}6563 - 21{,}2176 = 4{,}4387 \text{ cm}^2" />
+</MathContainer>
 
-   Gegeben: Segmentfläche <InlineMath math="\approx 15{,}3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
+**Lösung 2**
 
-   Verwendet wird: <InlineMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+Gegeben: Segmentfläche <InlineMath math="\approx 15{,}3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
 
-   Löse die Gleichung numerisch im Intervall für kleine Winkel <InlineMath math="0^\circ<\alpha<180^\circ" />. Das ergibt:
-   <InlineMath math="\alpha \approx 120^\circ" />
+Verwendet wird: <InlineMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
 
-   Überprüfung:
+Bestimme den Winkel durch **Eingrenzen eines Intervalls**. Die kleine Segmentfläche wächst mit dem Winkel. Einsetzen mit dem Taschenrechner im Gradmodus ergibt:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} \text{Sektorfläche} &amp;= \frac{120^\circ}{360^\circ} \times \pi \times 25 \\ &amp;= \frac{25\pi}{3} \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\text{Dreiecksfläche} \\ &amp;= \frac{1}{2} \times 25 \times \sin 120^\circ \\ &amp;= \frac{25\sqrt{3}}{4} \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\text{Segmentfläche} \\ &amp;= \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \\ &amp;\approx 26{,}1799 - 10{,}8253 \\ &amp;= 15{,}3546 \text{ cm}^2 \end{aligned}" />
-   </MathContainer>
+<BlockMath math="A(\alpha)=\frac{25\pi\alpha}{360^\circ}-\frac{25}{2}\sin\alpha" />
 
-   Das stimmt nach dem Runden mit der angegebenen Fläche überein. Der Mittelpunktswinkel beträgt daher ungefähr <InlineMath math="120^\circ" />.
+| Versuchswinkel | Berechnete Fläche |
+| --- | --- |
+| <InlineMath math="110^\circ" /> | <InlineMath math="12{,}2521\text{ cm}^2" /> |
+| <InlineMath math="130^\circ" /> | <InlineMath math="18{,}7860\text{ cm}^2" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="15{,}3546\text{ cm}^2" /> |
 
-3. **Lösungsschritte:**
+Die gesuchte Fläche liegt zwischen den Ergebnissen für 110 und 130 Grad. Probiere die Intervallmitte von 120 Grad. Ihre Fläche stimmt bis zur vierten Nachkommastelle mit der Vorgabe überein:
 
-   Gegeben: Tankradius = <InlineMath math="2 \text{ m}" />, Wasserhöhe = <InlineMath math="1{,}5 \text{ m}" />
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Sektorfläche} &amp;= \frac{120^\circ}{360^\circ} \times \pi \times 25 \\ &amp;= \frac{25\pi}{3} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Dreiecksfläche} \\ &amp;= \frac{1}{2} \times 25 \times \sin 120^\circ \\ &amp;= \frac{25\sqrt{3}}{4} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Segmentfläche} \\ &amp;= \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \\ &amp;\approx 26{,}1799 - 10{,}8253 \\ &amp;= 15{,}3546 \text{ cm}^2 \end{aligned}" />
+</MathContainer>
 
-   Da die Wasserhöhe (<InlineMath math="1{,}5 \text{ m}" />) kleiner als der Radius (<InlineMath math="2 \text{ m}" />) ist, bildet der gefüllte Teil des Kreisquerschnitts ein kleines Kreissegment.
+Das stimmt nach dem Runden mit der angegebenen Fläche überein. Der Mittelpunktswinkel beträgt daher ungefähr <InlineMath math="120^\circ" />.
 
-   Für einen liegenden Zylinder verwenden wir die Kreissegmentformel mit der Segmenthöhe.
+**Lösung 3**
 
-   Die Segmenthöhe vom Tankboden ist:
+Im Tankquerschnitt bildet die **Wasseroberfläche eine Sehne**. Der Abstand vom Mittelpunkt zur Oberfläche ist der Radius abzüglich der Wassertiefe:
 
-   Die vom Boden gemessene Wasserhöhe beträgt <InlineMath math="h=1{,}5\text{ m}" />.
+<BlockMath math="d=r-h=2-1{,}5=0{,}5\text{ m}" />
 
-   Für die gefüllte Querschnittsfläche gilt:
+<LineEquation
+  title="Tankquerschnitt bei 1,5 Metern Wassertiefe"
+  description="Waagerechte blaue Linien schraffieren das Wasser. Die Oberfläche liegt 0,5 Meter unter dem Mittelpunkt und 1,5 Meter über dem Boden."
+  data={[
+    { kind: "circle-outline", radius: 2, color: "#7c3aed", showPoints: false },
+    ...Array.from({ length: 14 }, (_, i) => {
+      const y = -1.9 + i * 0.1;
+      const x = Math.sqrt(4 - y * y);
+      return { points: [{ x: -x, y, z: 0 }, { x, y, z: 0 }], smooth: false, showPoints: false, color: "#0891b2" };
+    }),
+    { points: [{ x: -Math.sqrt(3.75), y: -0.5, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0891b2", lineWidth: 3 },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="d" />, at: 0, offset: [0.25, -0.25, 0] }] },
+    { points: [{ x: 0, y: -0.5, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, showPoints: false, color: "#65a30d", labels: [{ text: <InlineMath math="h" />, at: 1, offset: [0.25, 0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="r=2" />, at: 1, offset: [-0.8, 0.45, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: -Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
+  ]}
+  cameraPosition={[0, 0, 6.5]}
+/>
 
-   Bezeichne die Segmentfläche mit <InlineMath math="A" /> und definiere das Höhenverhältnis <InlineMath math="u" />:
+Ziehe Radien zu beiden Endpunkten der Wasseroberfläche. Der halbe Sektorwinkel sei <InlineMath math="\varphi" />. Das rechtwinklige Dreieck auf der rechten Seite ergibt:
 
-   <MathContainer>
-     <BlockMath math="u=\frac{r-h}{r}" />
+<BlockMath math="\cos\varphi=\frac{d}{r}=\frac{0{,}5}{2}=0{,}25,\qquad \varphi=\arccos(0{,}25)\approx1{,}3181161\text{ rad}" />
 
-     <BlockMath math="A=r^2\left(\arccos u-u\sqrt{1-u^2}\right)" />
-   </MathContainer>
+<BlockMath math="\frac{c}{2}=\sqrt{r^2-d^2}=\sqrt{4-0{,}25}=\sqrt{3{,}75}\text{ m}" />
 
-   Der von <InlineMath math="\arccos" /> gelieferte Winkel wird dabei im Bogenmaß eingesetzt, wie es die Flächenformel verlangt.
+Der Sektor mit vollem Winkel <InlineMath math="2\varphi" /> hat die Fläche <InlineMath math="r^2\varphi" />. Die abzuziehende Dreiecksfläche ist die halbe Wasserbreite mal Abstand vom Mittelpunkt zur Oberfläche:
 
-   Ersatzwerte:
+<BlockMath math="A_{\triangle}=\frac{1}{2}\times(2\sqrt{3{,}75})\times0{,}5=0{,}5\sqrt{3{,}75}\text{ m}^2" />
 
-   <MathContainer>
-   <BlockMath math="\frac{r-h}{r} = \frac{2-1{,}5}{2} = 0{,}25" />
-   <BlockMath math="\arccos(0{,}25) \approx 1{,}3181 \text{ rad}" />
-   <BlockMath math="\sqrt{1-0{,}25^2} = \sqrt{0{,}9375} \approx 0{,}9682" />
-   </MathContainer>
+Ziehe die beiden Flächen voneinander ab. Setze den Winkel **im Bogenmaß** ein und runde erst das Endergebnis:
 
-   Gefüllte Querschnittsfläche berechnen:
-
-   <MathContainer>
-     <BlockMath math="\theta=\arccos(0{,}25)" />
-
-     <BlockMath math="v=0{,}25\sqrt{0{,}9375}" />
-
-     <BlockMath math="A=4(\theta-v)" />
-     <BlockMath math="\approx 4 \times 1{,}0760546" />
-     <BlockMath math="\approx 4{,}3042 \text{ m}^2" />
-   </MathContainer>
+<BlockMath math="A=4\arccos(0{,}25)-0{,}5\sqrt{3{,}75}\approx5{,}2724643-0{,}9682458\approx4{,}3042\text{ m}^2" />

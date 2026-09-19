@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Gleiche Differenzen zwischen aufeinanderfolgenden Gliedern
 
-Eine arithmetische Folge ist eine Zahlenfolge, bei der die Differenz zwischen zwei aufeinanderfolgenden Gliedern konstant ist. Diese gemeinsame Differenz wird mit <InlineMath math="b" /> bezeichnet. Um zu prüfen, ob eine Zahlenfolge arithmetisch ist, ziehst du jedes Glied vom nächsten ab und prüfst, ob <Highlight>jede Subtraktion dieselbe Zahl ergibt</Highlight>.
+Eine arithmetische Folge ist eine Zahlenfolge, bei der die Differenz zwischen zwei aufeinanderfolgenden Gliedern konstant ist. Diese gemeinsame Differenz wird mit <InlineMath math="b" /> bezeichnet. Um zu prüfen, ob eine Zahlenfolge arithmetisch ist, ziehst du jedes Glied vom nächsten ab und prüfst, ob jede Subtraktion **dieselbe Zahl** ergibt.
 
 ## Beispiele für arithmetische Folgen
 
-Jedes Glied dieser Folge wächst um <InlineMath math="2" />:
+**Jedes Glied** dieser Folge wächst um <InlineMath math="2" />:
 
 <InlineMath math="4, 6, 8, 10, ..." />
 
@@ -27,7 +27,7 @@ Da die Differenz zwischen aufeinanderfolgenden Gliedern immer <InlineMath math="
 
 ## Gemeinsame Differenz
 
-Die gemeinsame Differenz <InlineMath math="b" /> wird bestimmt, indem man jeweils ein Glied vom folgenden Glied abzieht:
+Die gemeinsame Differenz <InlineMath math="b" /> wird bestimmt, indem man jeweils **ein Glied vom folgenden Glied abzieht**:
 
 <BlockMath math="\begin{aligned} b &amp;= U_2 - U_1 \\ &amp;= U_3 - U_2 \\ &amp;= U_4 - U_3 \\ &amp;= ... \\ &amp;= U_n - U_{n-1} \end{aligned}" />
 
@@ -38,11 +38,11 @@ Dabei gilt:
 
 ## Formel für ein beliebiges Folgenglied
 
-Zwei Formen beschreiben dieselbe arithmetische Folge. Die allgemeine Formel liefert jedes Glied aus seiner Position mit dem ersten Glied und der gemeinsamen Differenz. Die rekursive Form erzeugt jedes Glied aus dem vorherigen Glied.
+Zwei Formen beschreiben dieselbe arithmetische Folge. Die allgemeine Formel liefert jedes Glied aus seiner Position mit dem **ersten Glied und der gemeinsamen Differenz**. Die rekursive Form erzeugt jedes Glied aus dem vorherigen Glied.
 
 ### Allgemeines Glied der arithmetischen Folge
 
-Das <InlineMath math="n" />-te Glied einer arithmetischen Folge lässt sich mit folgender Formel bestimmen:
+Das <InlineMath math="n" />-te **Glied einer arithmetischen Folge** lässt sich mit folgender Formel bestimmen:
 
 <BlockMath math="U_n = a + (n-1)b" />
 
@@ -57,11 +57,15 @@ Dabei gilt:
 
 Schreiben wir die ersten Glieder einer arithmetischen Folge aus:
 
-- <InlineMath math="1" />. Glied: <InlineMath math="U_1 = a" />
-- <InlineMath math="2" />. Glied: <InlineMath math="U_2 = a + b" />
-- <InlineMath math="3" />. Glied: <InlineMath math="U_3 = a + 2b" />
-- <InlineMath math="4" />. Glied: <InlineMath math="U_4 = a + 3b" />
-- <InlineMath math="5" />. Glied: <InlineMath math="U_5 = a + 4b" />
+Vom ersten zum vierten Glied brauchst du **drei Schritte**, nicht vier. Bei jedem Schritt addierst du dieselbe Differenz.
+
+| Gliednummer | Anzahl der Additionen | Gliedwert |
+| --- | --- | --- |
+| 1 | 0 | <InlineMath math="U_1 = a" /> |
+| 2 | 1 | <InlineMath math="U_2 = a + 1b" /> |
+| 3 | 2 | <InlineMath math="U_3 = a + 2b" /> |
+| 4 | 3 | <InlineMath math="U_4 = a + 3b" /> |
+| 5 | 4 | <InlineMath math="U_5 = a + 4b" /> |
 
 Das Muster führt für das <InlineMath math="n" />-te Glied zur allgemeinen Formel:
 
@@ -69,7 +73,7 @@ Das Muster führt für das <InlineMath math="n" />-te Glied zur allgemeinen Form
 
 ### Rekursive Form
 
-Dieselbe arithmetische Folge kann auch durch ihr erstes Glied und eine Regel für das jeweils nächste Glied definiert werden:
+Dieselbe arithmetische Folge kann auch durch ihr erstes Glied und eine Regel für das jeweils **nächste Glied** definiert werden:
 
 <MathContainer>
   <BlockMath math="U_1=a" />
@@ -80,7 +84,7 @@ Die explizite Formel liefert jedes Glied direkt. Die rekursive Form baut die Fol
 
 ## Anwendungen arithmetischer Folgen
 
-Jedes Beispiel unten nennt einen Startwert und eine konstante Änderung pro Schritt. Im Beispiel mit dem Theatersaal wächst die Sitzzahl pro Reihe um vier Sitze, und die allgemeine Formel liefert die Sitzzahl für jede Reihennummer.
+Jedes Beispiel unten nennt einen Startwert und eine **konstant**e Änderung pro Schritt. Im Beispiel mit dem Theatersaal wächst die Sitzzahl pro Reihe um vier Sitze, und die allgemeine Formel liefert die Sitzzahl für jede Reihennummer.
 
 ### Sitzreihen in einem Theater
 
@@ -109,7 +113,7 @@ Die Zahl der Sitzplätze steigt von einer Reihe zur nächsten stets um <InlineMa
 **Schritt 2**: Zahl der Sitzplätze in Reihe <InlineMath math="15" /> berechnen
 
 <MathContainer>
-  <BlockMath math="U_{15} = a + (n-1)b" />
+  <BlockMath math="U_{15} = a + (15-1)b" />
   <BlockMath math="U_{15} = 20 + (15-1)4" />
   <BlockMath math="U_{15} = 20 + (14)4" />
   <BlockMath math="U_{15} = 20 + 56" />
@@ -118,11 +122,11 @@ Die Zahl der Sitzplätze steigt von einer Reihe zur nächsten stets um <InlineMa
 
 Es gibt also <InlineMath math="76" /> Sitzplätze in Reihe <InlineMath math="15" />.
 
-Dieses Ergebnis beschreibt nur die <InlineMath math="15" />. Sitzreihe. Für die Gesamtzahl der Plätze in den ersten fünfzehn Reihen summierst du die zugehörige arithmetische Reihe.
+Dieses Ergebnis zählt **die Plätze einer einzigen Reihe**, der <InlineMath math="15" />. Sitzreihe. Für die Gesamtzahl der Plätze in den ersten fünfzehn Reihen summierst du die zugehörige arithmetische Reihe.
 
 ## Steigende fallende und konstante Folgen
 
-Eine arithmetische Folge steigt für <InlineMath math="b>0" />, fällt für <InlineMath math="b<0" /> und bleibt für <InlineMath math="b=0" /> konstant. Zum Beispiel:
+Eine arithmetische Folge steigt für <InlineMath math="b>0" />, fällt für <InlineMath math="b<0" /> und bleibt für <InlineMath math="b=0" /> **konstant**. Zum Beispiel:
 
 <BlockMath math="12,9,6,3,\ldots\qquad b=-3" />
 
@@ -130,13 +134,13 @@ Das Vorzeichen der gemeinsamen Differenz zeigt somit, wie sich die Folge entwick
 
 ## Erste Übung
 
-Diese Aufgabe gibt zwei Glieder einer arithmetischen Folge an bekannten Positionen und verlangt die allgemeine Formel. Jede Position ergibt eine Gleichung, und die gemeinsame Lösung beider Gleichungen liefert das erste Glied und die gemeinsame Differenz.
+Diese Aufgabe gibt **zwei Glieder** einer arithmetischen Folge an bekannten Positionen und verlangt die allgemeine Formel. Jede Position ergibt eine Gleichung, und die gemeinsame Lösung beider Gleichungen liefert das erste Glied und die gemeinsame Differenz.
 
 In einer arithmetischen Folge ist das <InlineMath math="3" />. Glied gleich <InlineMath math="9" /> und das <InlineMath math="6" />. Glied gleich <InlineMath math="18" />. Bestimme eine Formel für das <InlineMath math="n" />-te Glied.
 
 ### Lösung zur ersten Übung
 
-Für die allgemeine Formel benötigen wir das erste Glied <InlineMath math="(a)" /> und die gemeinsame Differenz <InlineMath math="(b)" />.
+Für die allgemeine Formel benötigen wir das **erste Glied** <InlineMath math="(a)" /> und die gemeinsame Differenz <InlineMath math="(b)" />.
 
 <MathContainer>
   <BlockMath math="U_3 = a + 2b = 9" />
@@ -181,7 +185,7 @@ Zur Kontrolle setzen wir <InlineMath math="n=3" /> und <InlineMath math="n=6" />
 
 ## Zweite Übung
 
-Rudi zahlt jeden Monat einen Betrag auf sein Bankkonto ein. Der Einzahlungsbetrag steigt monatlich um einen konstanten Wert. Im <InlineMath math="5" />. Monat zahlt er <InlineMath math="\text{Rp}70{.}000{,}00" /> ein, im <InlineMath math="9" />. Monat <InlineMath math="\text{Rp}90{.}000{,}00" />.
+Rudi zahlt jeden Monat einen Betrag auf sein Bankkonto ein. Der Einzahlungsbetrag steigt monatlich um einen **konstant**en Wert. Im <InlineMath math="5" />. Monat zahlt er <InlineMath math="\text{Rp}70{.}000{,}00" /> ein, im <InlineMath math="9" />. Monat <InlineMath math="\text{Rp}90{.}000{,}00" />.
 
 1. Um welchen Betrag steigt die monatliche Einzahlung?
 
@@ -189,38 +193,38 @@ Rudi zahlt jeden Monat einen Betrag auf sein Bankkonto ein. Der Einzahlungsbetra
 
 ### Lösung zur zweiten Übung
 
-Die monatlichen Einzahlungen bilden eine arithmetische Folge, weil ihre Zunahme konstant ist.
+Jedes Glied beschreibt **die Einzahlung eines Monats**, nicht den Kontostand. Zwischen dem fünften und dem neunten Monat liegen vier Monate. Die Differenz der Einzahlungen umfasst deshalb vier gleiche Erhöhungen.
 
-1. **Monatliche Zunahme bestimmen**
+#### Monatliche Zunahme bestimmen
 
-    <MathContainer>
-      <BlockMath math="U_5 = 70{.}000" />
-      <BlockMath math="a + (5-1)b = 70{.}000" />
-      <BlockMath math="a + 4b = 70{.}000 \text{... (Gleichung 1)}" />
-      <BlockMath math="U_9 = 90{.}000" />
-      <BlockMath math="a + (9-1)b = 90{.}000" />
-      <BlockMath math="a + 8b = 90{.}000 \text{... (Gleichung 2)}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="U_5 = 70{.}000" />
+  <BlockMath math="a + (5-1)b = 70{.}000" />
+  <BlockMath math="a + 4b = 70{.}000 \text{... (Gleichung 1)}" />
+  <BlockMath math="U_9 = 90{.}000" />
+  <BlockMath math="a + (9-1)b = 90{.}000" />
+  <BlockMath math="a + 8b = 90{.}000 \text{... (Gleichung 2)}" />
+</MathContainer>
 
-    Wir subtrahieren Gleichung 1 von Gleichung 2:
+Wir **subtrahieren Gleichung 1 von Gleichung 2**:
 
-    <MathContainer>
-      <BlockMath math="4b = 20{.}000" />
-      <BlockMath math="b = 5{.}000" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="4b = 20{.}000" />
+  <BlockMath math="b = 5{.}000" />
+</MathContainer>
 
-    Die monatliche Einzahlung steigt also um <InlineMath math="\text{Rp}5{.}000{,}00" />.
+Die monatliche Einzahlung steigt also um <InlineMath math="\text{Rp}5{.}000{,}00" />.
 
-2. **Einzahlung im ersten Monat bestimmen**
+#### Einzahlung im ersten Monat bestimmen
 
-    Nun setzen wir <InlineMath math="b = 5{.}000" /> in Gleichung (1) ein und bestimmen <InlineMath math="a" />:
+Nun **setzen** wir <InlineMath math="b = 5{.}000" /> in Gleichung (1) ein und bestimmen <InlineMath math="a" />:
 
-    <MathContainer>
-      <BlockMath math="a + 4b = 70{.}000" />
-      <BlockMath math="a + 4(5{.}000) = 70{.}000" />
-      <BlockMath math="a + 20{.}000 = 70{.}000" />
-      <BlockMath math="a = 70{.}000 - 20{.}000" />
-      <BlockMath math="a = 50{.}000" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="a + 4b = 70{.}000" />
+  <BlockMath math="a + 4(5{.}000) = 70{.}000" />
+  <BlockMath math="a + 20{.}000 = 70{.}000" />
+  <BlockMath math="a = 70{.}000 - 20{.}000" />
+  <BlockMath math="a = 50{.}000" />
+</MathContainer>
 
-    Im ersten Monat zahlte Rudi somit <InlineMath math="\text{Rp}50{.}000{,}00" /> ein.
+Im ersten Monat zahlte Rudi somit <InlineMath math="\text{Rp}50{.}000{,}00" /> ein.

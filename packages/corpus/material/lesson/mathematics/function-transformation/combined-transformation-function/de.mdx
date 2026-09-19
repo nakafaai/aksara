@@ -3,25 +3,23 @@ export const metadata = {
   description: "Kombiniere mehrere Funktionstransformationen und vergleiche ihre Graphen bei unterschiedlicher Reihenfolge.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Funktionstransformation",
 };
 
-
-
 ## Mehrere Transformationen nacheinander anwenden
 
-<Highlight>Bei einer kombinierten Transformation werden zwei oder mehr Veränderungen nacheinander auf dieselbe Funktion angewendet.</Highlight> Jede Operation erhält das Ergebnis der vorherigen Operation, sodass eine andere Reihenfolge die Endfunktion verändern kann.
+Kombinierte Transformationen wenden **Veränderungen nacheinander** auf dieselbe Funktion an. Jede Operation erhält das vorherige Ergebnis. Eine andere Reihenfolge kann deshalb die Endfunktion verändern.
 
 In der Mathematik lassen sich Verschiebung, Spiegelung, Drehung und Skalierung miteinander verbinden. Dabei muss jeder Zwischenschritt erhalten bleiben, denn die Reihenfolge bestimmt häufig das Endergebnis.
 
 ## Vertikale und horizontale Kombinationen
 
-Verbundene Transformationen zerfallen in zwei Gruppen, und jede Gruppe wirkt auf eine andere Achse. Vertikale Operationen verändern die Ausgabe der Funktion, also verschieben sie den Graphen nach oben oder unten oder ändern seine Höhe. Horizontale Operationen verändern das Argument, also verschieben sie den Graphen zur Seite, spiegeln ihn an der <InlineMath math="y" />-Achse oder ändern seine Breite.
+Bei Verschiebungen, Achsenspiegelungen und Skalierungen unterscheiden wir **Argument und Funktionswert**, und jede Gruppe wirkt auf eine andere Achse. Vertikale Operationen verändern die Ausgabe der Funktion, also verschieben sie den Graphen nach oben oder unten oder ändern seine Höhe. Horizontale Operationen verändern das Argument, also verschieben sie den Graphen zur Seite, spiegeln ihn an der <InlineMath math="y" />-Achse oder ändern seine Breite.
 
 ### Vertikale kombinierte Transformationen
 
-Vertikale Transformationen verändern die Lage oder Größe entlang der <InlineMath math="y" />-Achse. Eine häufige Kombination ist eine vertikale Verschiebung, gefolgt von einer vertikalen Skalierung.
+Vertikale Transformationen verändern die Lage oder Größe entlang der <InlineMath math="y" />-Achse. Eine häufige Kombination ist eine **vertikale Verschiebung**, gefolgt von einer vertikalen Skalierung.
 
 Wird <InlineMath math="f(x)" /> zuerst um <InlineMath math="b" /> vertikal verschoben und danach mit dem Faktor <InlineMath math="k" /> vertikal skaliert, lautet die neue Funktion:
 
@@ -29,7 +27,7 @@ Wird <InlineMath math="f(x)" /> zuerst um <InlineMath math="b" /> vertikal versc
 
 ### Horizontale kombinierte Transformationen
 
-Horizontale Transformationen verändern die Lage oder Größe entlang der <InlineMath math="x" />-Achse. Ein Beispiel ist die Spiegelung an der <InlineMath math="y" />-Achse mit anschließender horizontaler Verschiebung.
+Horizontale Transformationen verändern die Lage oder Größe entlang der <InlineMath math="x" />-Achse. Ein Beispiel ist die **Spiegelung** an der <InlineMath math="y" />-Achse mit anschließender horizontaler Verschiebung.
 
 Wird <InlineMath math="f(x)" /> an der <InlineMath math="y" />-Achse gespiegelt und danach horizontal um <InlineMath math="a" /> verschoben, gilt:
 
@@ -39,17 +37,15 @@ Wird <InlineMath math="f(x)" /> an der <InlineMath math="y" />-Achse gespiegelt 
 
 Wir wenden zwei Transformationen nacheinander auf <InlineMath math="f(x) = x^2" /> an:
 
-**Rechenweg:**
-
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = x^2" />
 
-2. **Schritt 1** **- Vertikale Verschiebung**: um <InlineMath math="2 \text{ Einheiten}" /> nach oben
+2. **Schritt 1**: Vertikale Verschiebung um <InlineMath math="2 \text{ Einheiten}" /> nach oben
 
-   <BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
+<BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
 
-3. **Schritt 2** **- Vertikale Skalierung**: mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
+3. **Schritt 2**: Vertikale Skalierung mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
 
-   <BlockMath math="\begin{aligned} g(x) &amp;= 0{,}5 \cdot f_1(x) \\ &amp;= 0{,}5(x^2 + 2) \\ &amp;= 0{,}5x^2 + 1 \end{aligned}" />
+<BlockMath math="\begin{aligned} g(x) &amp;= 0{,}5 \cdot f_1(x) \\ &amp;= 0{,}5(x^2 + 2) \\ &amp;= 0{,}5x^2 + 1 \end{aligned}" />
 
 **Beispielrechnung für <InlineMath math="x = 2" />:**
 - Ausgangsfunktion: <InlineMath math="f(2) = 2^2 = 4" />
@@ -59,12 +55,15 @@ Wir wenden zwei Transformationen nacheinander auf <InlineMath math="f(x) = x^2" 
 Der Graph zeigt jeden Zwischenschritt:
 
 <LineEquation
+  showZAxis={false}
   title={<>Vertikale Verschiebung und anschließende Skalierung</>}
   description={
     <>
       Die quadratische Funktion wird zuerst um <InlineMath math="2 \text{ Einheiten}" /> nach oben verschoben und danach mit <InlineMath math="0{,}5" /> vertikal skaliert.
     </>
   }
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
@@ -90,7 +89,7 @@ Der Graph zeigt jeden Zwischenschritt:
         const i = sampleIndex / 5;
         const x = (i - 10) * 0.4;
         const y = x * x + 2;
-        return { x, y: y, z: 0 };
+        return { x, y, z: 0 };
       }),
       color: "#0d9488",
       showPoints: false,
@@ -155,9 +154,11 @@ Die Reihenfolge der Transformationen kann das Ergebnis verändern. Wir vergleich
 Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMath math="h_B(1) = 4" />. Beim zweiten Weg wird die Verschiebung ebenfalls mit dem Faktor zwei multipliziert.
 
 <LineEquation
+  showZAxis={false}
   title={<>Vergleich zweier Transformationsreihenfolgen</>}
   description="Der Graph zeigt, warum Skalieren und Verschieben nicht beliebig vertauscht werden können."
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
@@ -221,17 +222,15 @@ Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMat
 
 Auch Spiegelung und horizontale Verschiebung lassen sich kombinieren:
 
-**Rechenweg:**
-
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = 1{,}5^x" />
 
-2. **Schritt 1** **- Spiegelung an der <InlineMath math="y" />-Achse**: Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
+2. **Schritt 1**: Spiegelung an der <InlineMath math="y" />-Achse Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
 
-   <BlockMath math="f_1(x) = f(-x) = 1{,}5^{-x}" />
+<BlockMath math="f_1(x) = f(-x) = 1{,}5^{-x}" />
 
-3. **Schritt 2** **- Horizontale Verschiebung**: um <InlineMath math="2 \text{ Einheiten}" /> nach rechts
+3. **Schritt 2**: Horizontale Verschiebung um <InlineMath math="2 \text{ Einheiten}" /> nach rechts
 
-   <BlockMath math="\begin{aligned} g(x) &amp;= f_1(x-2) \\ &amp;= 1{,}5^{-(x-2)} \\ &amp;= 1{,}5^{-x+2} \end{aligned}" />
+<BlockMath math="\begin{aligned} g(x) &amp;= f_1(x-2) \\ &amp;= 1{,}5^{-(x-2)} \\ &amp;= 1{,}5^{-x+2} \end{aligned}" />
 
 **Beispielrechnung für <InlineMath math="x = 3" />:**
 - Ausgangsfunktion: <InlineMath math="f(3) = 1{,}5^3 = 3{,}375" />
@@ -241,16 +240,16 @@ Auch Spiegelung und horizontale Verschiebung lassen sich kombinieren:
 Der Graph zeigt wieder beide Zwischenschritte:
 
 <LineEquation
+  showZAxis={false}
   title={<>Spiegelung und anschließende horizontale Verschiebung</>}
   description={<>Die Exponentialfunktion wird zuerst an der <InlineMath math="y" />-Achse gespiegelt und danach nach rechts verschoben.</>}
-  cameraPosition={[8, 6, 8]}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 1178 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 1020;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.4;
+        const x = -3 + pointIndex / 1177 * 7;
         const y = Math.pow(1.5, x);
         return { x, y, z: 0 };
       }),
@@ -259,7 +258,7 @@ Der Graph zeigt wieder beide Zwischenschritte:
       labels: [
         {
           text: <InlineMath math="f" />,
-          at: 1104,
+          at: 750,
           offset: [0.5, 1.5, 0],
         },
       ],
@@ -267,9 +266,7 @@ Der Graph zeigt wieder beide Zwischenschritte:
     {
       smooth: false,
       points: Array.from({ length: 359 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 59;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.4;
+        const x = -3 + pointIndex / 358 * 7;
         const y = Math.pow(1.5, -x);
         return { x, y, z: 0 };
       }),
@@ -286,9 +283,7 @@ Der Graph zeigt wieder beide Zwischenschritte:
     {
       smooth: false,
       points: Array.from({ length: 311 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 11;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.4;
+        const x = -3 + pointIndex / 310 * 7;
         const y = Math.pow(1.5, -(x - 2));
         return { x, y, z: 0 };
       }),
@@ -307,20 +302,20 @@ Der Graph zeigt wieder beide Zwischenschritte:
 
 ## Eigenschaften kombinierter Transformationen
 
-Zwei kombinierte Transformationen ergeben nur dann denselben Graphen, wenn sie auf verschiedene Achsen wirken oder aus derselben Gruppe in einer passenden Reihenfolge stammen. Die folgende Tabelle fasst zusammen, was das Ergebnis bestimmt.
+Vergleiche die **Endformeln beider Reihenfolgen**, um ihre Vertauschbarkeit zu prüfen. Auch Sonderfälle können übereinstimmen, etwa der Skalierungsfaktor eins oder eine Verschiebung um null.
 
 | Eigenschaft | Bedeutung | Beispiel |
 | --- | --- | --- |
-| Reihenfolge zählt | Zwei Transformationen auf derselben Achse sind selten vertauschbar, ein Tausch ändert also meist den Graphen | Erst vertikal skalieren, dann vertikal verschieben ergibt <InlineMath math="k(f(x)+b)" />, die umgekehrte Reihenfolge ergibt <InlineMath math="k f(x)+b" /> |
+| Reihenfolge zählt | Zwei Operationen auf derselben Achse sind nicht immer vertauschbar | Skalieren und dann Verschieben ergibt <InlineMath math="kf(x)+b" />. Verschieben und dann Skalieren ergibt <InlineMath math="k(f(x)+b)" /> |
 | Verschiedene Achsen sind frei | Eine horizontale und eine vertikale Transformation lassen sich in beliebiger Reihenfolge ausführen | Erst die Höhe ändern und dann seitlich verschieben führt in beiden Reihenfolgen zum selben Graphen |
 | Gleiche Art verbindet sich | Verschiebungen in dieselbe Richtung addieren ihre Abstände, Skalierungen auf derselben Achse multiplizieren ihre Faktoren | Erst um <InlineMath math="2" /> nach oben, dann um <InlineMath math="3" /> nach oben verschiebt den Graphen um <InlineMath math="5" /> nach oben |
-| Stetigkeit bleibt erhalten | Hat die Ausgangsfunktion keine Lücke und keinen Sprung, hat es die Ergebnisfunktion auch nicht | Eine stetige Funktion <InlineMath math="f(x)" /> bleibt nach jeder Kombination stetig |
+| Stetigkeit bleibt erhalten | Hat die Ausgangsfunktion keine Lücke und keinen Sprung, hat es die Ergebnisfunktion auch nicht | Eine stetige Funktion <InlineMath math="f(x)" /> bleibt nach kombinierten Verschiebungen, Achsenspiegelungen und Skalierungen mit Faktoren ungleich null stetig |
 
-Die Reihenfolgeregel verursacht die meisten Fehler. Wenn zwei Operationen auf derselben Achse wirken, arbeite <Highlight>vom Argument nach außen</Highlight>: Wende zuerst die Operation an, die am nächsten an <InlineMath math="x" /> steht, und gehe dann nach außen weiter.
+Verwende **Zwischenfunktionen** in der verlangten Reihenfolge. Für <InlineMath math="f_1(x)=f(-x)" /> ergibt eine anschließende Rechtsverschiebung <InlineMath math="g(x)=f_1(x-a)=f(-(x-a))" />. Die Rechenreihenfolge im Argument ist keine allgemeine Regel für die Reihenfolge der Graphenbewegungen.
 
 ## Übungen
 
-Die folgenden Aufgaben verbinden zwei oder mehr Transformationen, lies also zuerst die angegebene Reihenfolge. Arbeite vom Argument bei <InlineMath math="x" /> nach außen und prüfe, ob beide Operationen auf derselben Achse wirken. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+Die folgenden Aufgaben verbinden zwei oder mehr Transformationen, lies also zuerst die angegebene Reihenfolge. Notiere das **Ergebnis jedes Schritts**, bevor du die nächste Transformation anwendest. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
 
 1. Verschiebe die Funktion <InlineMath math="f(x) = x^2" /> um <InlineMath math="3 \text{ Einheiten}" /> nach oben und skaliere sie danach vertikal mit <InlineMath math="\frac{1}{2}" />. Bestimme die neue Funktionsgleichung.
 
@@ -332,270 +327,281 @@ Die folgenden Aufgaben verbinden zwei oder mehr Transformationen, lies also zuer
 
 5. Bestimme die neue Funktionsgleichung, wenn <InlineMath math="f(x) = |x|" /> um <InlineMath math="2 \text{ Einheiten}" /> nach links verschoben, an der <InlineMath math="x" />-Achse gespiegelt und danach vertikal mit dem Faktor <InlineMath math="3" /> gestreckt wird.
 
-### Lösungen
+### Ausgaben verschieben und skalieren
 
-Jede Lösung schreibt zuerst <InlineMath math="x" /> gemäß der angegebenen Reihenfolge um und multipliziert oder addiert danach außen. Der neue Graph wird mit dem ursprünglichen verglichen, damit die Reihenfolge nachweislich stimmt.
+Schrittweise Transformation von <InlineMath math="f(x) = x^2" />:
 
-1. Schrittweise Transformation von <InlineMath math="f(x) = x^2" />:
+Schritt 1: **vertikale Verschiebung** um <InlineMath math="+3" />
 
-   Schritt 1: vertikale Verschiebung um <InlineMath math="+3" />
+<BlockMath math="f_1(x) = x^2 + 3" />
 
-   <BlockMath math="f_1(x) = x^2 + 3" />
+Schritt 2: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
 
-   Schritt 2: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
+<BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
 
-   <BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
+Die neue Funktionsgleichung lautet damit <InlineMath math="g(x) = \frac{1}{2}x^2 + \frac{3}{2}" />.
 
-   Die neue Funktionsgleichung lautet damit <InlineMath math="g(x) = \frac{1}{2}x^2 + \frac{3}{2}" />.
+<LineEquation
+  showZAxis={false}
+  title={<>Schritt für Schritt: erst verschieben, dann skalieren</>}
+  description="Ausgangsgraph und Endergebnis der quadratischen Funktion im Vergleich."
+  cameraPosition={[0, 0, 12]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x;
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f" />,
+          at: 25,
+          offset: [-0.6, -0.3, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = 0.5 * (x * x + 3);
+        return { x, y, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g" />,
+          at: 80,
+          offset: [0.6, -0.3, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-   <LineEquation
-     title={<>Schritt für Schritt: erst verschieben, dann skalieren</>}
-     description="Ausgangsgraph und Endergebnis der quadratischen Funktion im Vergleich."
-     cameraPosition={[0, 0, 12]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x;
-           return { x, y, z: 0 };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="f" />,
-             at: 25,
-             offset: [-0.6, -0.3, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = 0.5 * (x * x + 3);
-           return { x, y, z: 0 };
-         }),
-         color: "#ea580c",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="g" />,
-             at: 80,
-             offset: [0.6, -0.3, 0],
-           },
-         ],
-       },
-     ]}
-   />
+### Das Argument spiegeln und verschieben
 
-2. Schrittweise Transformation von <InlineMath math="g(x) = 2^x" />:
+Schrittweise Transformation von <InlineMath math="g(x) = 2^x" />:
 
-   Schritt 1: Spiegelung an der <InlineMath math="y" />-Achse
+Schritt 1: Spiegelung an der <InlineMath math="y" />-Achse
 
-   <BlockMath math="g_1(x) = 2^{-x}" />
+<BlockMath math="g_1(x) = 2^{-x}" />
 
-   Schritt 2: horizontale Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach rechts
+Schritt 2: **horizontale Verschiebung** um <InlineMath math="1 \text{ Einheit}" /> nach rechts
 
-   <BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
+<BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
 
-   Die neue Funktionsgleichung lautet damit <InlineMath math="h(x) = 2^{1-x}" />.
+Die neue Funktionsgleichung lautet damit <InlineMath math="h(x) = 2^{1-x}" />.
 
-   <LineEquation
-     title={<>Spiegelung und Verschiebung der Exponentialfunktion</>}
-     description="Ausgangsgraph und Ergebnis nach beiden Transformationen."
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 1126 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex - 1020;
-           const i = sampleIndex / 7;
-           const x = (i - 7) * 0.4;
-           const y = Math.pow(2, x);
-           return { x, y, z: 0 };
-         }),
-         color: "#0d9488",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="g" />,
-             at: 1104,
-             offset: [0.5, 0.5, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 300 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex + 0;
-           const i = sampleIndex / 7;
-           const x = (i - 7) * 0.4;
-           const y = Math.pow(2, 1 - x);
-           return { x, y, z: 0 };
-         }),
-         color: "#7c3aed",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="h" />,
-             at: 21,
-             offset: [0, -2.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+<LineEquation
+  showZAxis={false}
+  title={<>Spiegelung und Verschiebung der Exponentialfunktion</>}
+  description="Ausgangsgraph und Ergebnis nach beiden Transformationen."
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 1126 }, (_, pointIndex) => {
+        const x = -3 + pointIndex / 1125 * 7;
+        const y = Math.pow(2, x);
+        return { x, y, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g" />,
+          at: 750,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 300 }, (_, pointIndex) => {
+        const x = -3 + pointIndex / 299 * 7;
+        const y = Math.pow(2, 1 - x);
+        return { x, y, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="h" />,
+          at: 160,
+          offset: [0, -2.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-3. Vergleich zweier Transformationsordnungen:
+### Zwei Reihenfolgen vergleichen
 
-   **Reihenfolge A**: zuerst skalieren, dann verschieben
+Vergleich zweier Transformationsordnungen:
 
-   <MathContainer>
-   <BlockMath math="h_1(x) = 3x^2" />
-   <BlockMath math="h_A(x) = 3x^2 + 2" />
-   </MathContainer>
+**Reihenfolge A**: zuerst skalieren, dann verschieben
 
-   **Reihenfolge B**: zuerst verschieben, dann skalieren
+<MathContainer>
+<BlockMath math="h_1(x) = 3x^2" />
+<BlockMath math="h_A(x) = 3x^2 + 2" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="h_2(x) = x^2 + 2" />
-   <BlockMath math="h_B(x) = 3(x^2 + 2) = 3x^2 + 6" />
-   </MathContainer>
+**Reihenfolge B**: zuerst verschieben, dann skalieren
 
-   Die Ergebnisse sind verschieden: <InlineMath math="h_A(x) = 3x^2 + 2" /> und <InlineMath math="h_B(x) = 3x^2 + 6" />.
+<MathContainer>
+<BlockMath math="h_2(x) = x^2 + 2" />
+<BlockMath math="h_B(x) = 3(x^2 + 2) = 3x^2 + 6" />
+</MathContainer>
 
-   <LineEquation
-     title={<>Einfluss der Reihenfolge auf das Ergebnis</>}
-     description="Die beiden Reihenfolgen führen zu unterschiedlichen vertikalen Lagen."
-     cameraPosition={[10, 9, 10]}
-     cameraTarget={[0, 3, 0]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 123 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex - 11;
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x;
-           return { x, y, z: 0 };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="h" />,
-             at: 36,
-             offset: [-1, -0.5, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = 3 * x * x + 2;
-           return { x, y, z: 0 };
-         }),
-         color: "#059669",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="h_A" />,
-             at: 80,
-             offset: [0, -7.52, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = 3 * (x * x + 2);
-           return { x, y, z: 0 };
-         }),
-         color: "#d97706",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="h_B" />,
-             at: 20,
-             offset: [0, -8.32, 0],
-           },
-         ],
-       },
-     ]}
-   />
+Die Ergebnisse sind verschieden: <InlineMath math="h_A(x) = 3x^2 + 2" /> und <InlineMath math="h_B(x) = 3x^2 + 6" />.
 
-4. Analyse der Transformation <InlineMath math="g(x) = 2\sqrt{x + 3} - 1" /> aus <InlineMath math="f(x) = \sqrt{x}" />:
+<LineEquation
+  showZAxis={false}
+  title={<>Einfluss der Reihenfolge auf das Ergebnis</>}
+  description="Die beiden Reihenfolgen führen zu unterschiedlichen vertikalen Lagen."
+  cameraPosition={[0, 3, 16]}
+  cameraTarget={[0, 3, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 123 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 11;
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x;
+        return { x, y, z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="h" />,
+          at: 36,
+          offset: [-1, -0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = 3 * x * x + 2;
+        return { x, y, z: 0 };
+      }),
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="h_A" />,
+          at: 80,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = 3 * (x * x + 2);
+        return { x, y, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="h_B" />,
+          at: 20,
+          offset: [-0.5, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-   Die Transformationen erfolgen nacheinander:
-   - Verschiebung um <InlineMath math="3 \text{ Einheiten}" /> nach links: <InlineMath math="f(x + 3) = \sqrt{x + 3}" />
-   - Vertikale Skalierung mit Faktor <InlineMath math="2" />: <InlineMath math="2\sqrt{x + 3}" />
-   - Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach unten: <InlineMath math="2\sqrt{x + 3} - 1" />
+### Transformationen der Wurzelkurve ablesen
 
-5. Schrittweise Transformation von <InlineMath math="f(x) = |x|" />:
+Analyse der Transformation <InlineMath math="g(x) = 2\sqrt{x + 3} - 1" /> aus <InlineMath math="f(x) = \sqrt{x}" />:
 
-   <MathContainer>
-   <BlockMath math="f_1(x) = |x + 2|" />
-   <BlockMath math="f_2(x) = -|x + 2|" />
-   <BlockMath math="g(x) = -3|x + 2|" />
-   </MathContainer>
+Die Transformationen erfolgen nacheinander:
+- Verschiebung um <InlineMath math="3 \text{ Einheiten}" /> nach links: <InlineMath math="f(x + 3) = \sqrt{x + 3}" />
+- Vertikale Skalierung mit Faktor <InlineMath math="2" />: <InlineMath math="2\sqrt{x + 3}" />
+- Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach unten: <InlineMath math="2\sqrt{x + 3} - 1" />
 
-   Die neue Funktionsgleichung lautet damit <InlineMath math="g(x) = -3|x + 2|" />.
+Das ist **eine gültige Reihenfolge**. Die horizontale Verschiebung lässt sich mit den beiden vertikalen Operationen vertauschen. Erst nach unten verschieben und dann verdoppeln ergibt jedoch eine andere Funktion. Aus <InlineMath math="x+3\ge0" /> folgt der Definitionsbereich <InlineMath math="x\ge-3" />. Der kleinste Funktionswert ist <InlineMath math="-1" />.
 
-   <LineEquation
-     title={<>Verschiebung, Spiegelung und Skalierung der Betragsfunktion</>}
-     description="Ausgangsgraph und Ergebnis nach allen drei Transformationen."
-     cameraPosition={[0, 0, 12]}
-     data={[
-       {
-         smooth: false,
-         points: [
-           { x: -9, y: 9, z: 0 },
-           ...Array.from({ length: 101 }, (_, sampleIndex) => {
-             const i = sampleIndex / 5;
-             const x = (i - 10) * 0.3;
-             const y = Math.abs(x);
-             return { x, y, z: 0 };
-           }),
-           { x: 9, y: 9, z: 0 },
-         ],
-         color: "#0891b2",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="f" />,
-             at: 76,
-             offset: [0.5, 0.3, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: [
-           { x: -5, y: -9, z: 0 },
-           ...[
-                    { x: -3, y: -3, z: 0 },
-                    { x: -2, y: 0, z: 0 },
-                    { x: -1.5, y: -1.5, z: 0 },
-                    { x: 3, y: -15, z: 0 },
-                  ],
-         ],
-         color: "#db2777",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="g" />,
-             at: 3,
-             offset: [-0.8, -0.3, 0],
-           },
-         ],
-       },
-     ]}
-   />
+### Den Betragsgraphen verändern
+
+Verschiebe den Scheitelpunkt **zwei Einheiten nach links**. Wechsle danach das Vorzeichen jedes Funktionswerts und verdreifache seinen Betrag. Der neue Scheitelpunkt liegt bei <InlineMath math="(-2,0)" />.
+
+Schrittweise Transformation von <InlineMath math="f(x) = |x|" />:
+
+<MathContainer>
+<BlockMath math="f_1(x) = |x + 2|" />
+<BlockMath math="f_2(x) = -|x + 2|" />
+<BlockMath math="g(x) = -3|x + 2|" />
+</MathContainer>
+
+Die neue Funktionsgleichung lautet damit <InlineMath math="g(x) = -3|x + 2|" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Verschiebung, Spiegelung und Skalierung der Betragsfunktion</>}
+  description="Ausgangsgraph und Ergebnis nach allen drei Transformationen."
+  cameraPosition={[0, 0, 12]}
+  data={[
+    {
+      smooth: false,
+      points: [
+        { x: -9, y: 9, z: 0 },
+        ...Array.from({ length: 101 }, (_, sampleIndex) => {
+          const i = sampleIndex / 5;
+          const x = (i - 10) * 0.3;
+          const y = Math.abs(x);
+          return { x, y, z: 0 };
+        }),
+        { x: 9, y: 9, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f" />,
+          at: 76,
+          offset: [0.5, 0.3, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: [
+        { x: -5, y: -9, z: 0 },
+        ...[
+                 { x: -3, y: -3, z: 0 },
+                 { x: -2, y: 0, z: 0 },
+                 { x: -1.5, y: -1.5, z: 0 },
+                 { x: 3, y: -15, z: 0 },
+               ],
+      ],
+      color: "#db2777",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g" />,
+          at: 3,
+          offset: [-0.8, -0.3, 0],
+        },
+      ],
+    },
+  ]}
+/>

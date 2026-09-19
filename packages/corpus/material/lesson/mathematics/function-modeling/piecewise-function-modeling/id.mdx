@@ -4,7 +4,7 @@ export const metadata = {
   description: "Membuat model fungsi piecewise dari batas interval, tarif bertingkat, gerak bertahap, dan titik sambung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -20,7 +20,7 @@ Fungsi piecewise dapat ditulis dalam bentuk:
 
 <BlockMath math="f(x) = \begin{cases} f_1(x), & \text{jika } x \in D_1 \\ f_2(x), & \text{jika } x \in D_2 \\ f_3(x), & \text{jika } x \in D_3 \\ \vdots \\ f_n(x), & \text{jika } x \in D_n \end{cases}" />
 
-Dalam definisi ini, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> adalah interval yang membagi domain fungsi tanpa tumpang tindih.
+Dalam definisi ini, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> adalah interval yang membagi domain fungsi **tanpa tumpang tindih**.
 
 Saat membaca atau membuat fungsi piecewise, perhatikan tiga hal berikut:
 
@@ -30,11 +30,11 @@ Saat membaca atau membuat fungsi piecewise, perhatikan tiga hal berikut:
 
 ## Bentuk Potongan yang Sering Dipakai
 
-Fungsi piecewise disusun dari potongan sederhana, dan setiap potongan punya aturannya sendiri pada selangnya. Potongan linear dan potongan kuadrat paling sering muncul, karena keduanya mudah dibaca dari syaratnya dan mudah digambar.
+Bentuk rumus menentukan bentuk setiap potongan. **Rumus linear** menghasilkan ruas atau sinar garis, sedangkan rumus kuadrat menghasilkan bagian parabola. Syarat interval menentukan bagian mana yang dipakai.
 
 ### Potongan Linear
 
-Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini sering muncul ketika perubahan berlangsung dengan laju tetap, tetapi lajunya berubah setelah melewati titik tertentu.
+Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini sering muncul ketika perubahan berlangsung dengan **laju tetap**, tetapi lajunya berubah setelah melewati titik tertentu.
 
 <LineEquation
   title="Fungsi Piecewise Linear"
@@ -69,7 +69,6 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
           const x = 2 + i * 0.1;
           return { x, y: 0.5 * x, z: 0 };
         }),
-        { x: 100, y: 50, z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -77,7 +76,9 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
       labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Fungsi di atas dapat ditulis sebagai:
@@ -88,7 +89,7 @@ Perhatikan bahwa tiga baris pada rumus itu bukan tiga fungsi yang terpisah. Keti
 
 ### Potongan Kuadratik
 
-Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat menggambarkan bagian model yang melengkung.
+Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat menggambarkan **bagian model yang melengkung**.
 
 <LineEquation
   title="Fungsi Piecewise Kombinasi"
@@ -97,13 +98,13 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
     {
       smooth: false,
       endpoints: { end: "open" },
-      points: Array.from({ length: 751 }, (_, sampleIndex) => {
-        const x = (sampleIndex - 750) / 50;
+      points: Array.from({ length: 151 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 150) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 75, offset: [-1, -1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -112,7 +113,6 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
           const x = 0 + i * 0.1;
           return { x, y: 2 * x, z: 0 };
         }),
-        { x: 100, y: 200, z: 0 },
       ],
       smooth: false,
       color: "#0d9488",
@@ -120,18 +120,22 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
+
+Grafik menggabungkan **dua aturan** berikut. Pada batas <InlineMath math="x=0" />, aturan kedua memberi nilai fungsi. Lingkaran terbuka pada aturan pertama tidak menambah nilai lain.
+
+<BlockMath math="f(x)=\begin{cases}x^2,&amp;x&lt;0\\2x,&amp;x\geq0\end{cases}" />
 
 ## Titik Sambung dan Kontinuitas
 
-Di setiap batas selang ada dua aturan yang bertemu, dan grafiknya bisa memiliki lubang atau lompatan di sana.
-
-Potongan-potongannya bertemu di batas selang, dan apa yang terjadi di sana menentukan apakah fungsinya kontinu.
+Di **titik sambung**, periksa keluaran saat mendekati batas dari kiri dan kanan, lalu bandingkan dengan nilai fungsi tepat pada batas. Ketiga nilai tersebut dapat sama, tetapi bisa juga menunjukkan lubang atau lompatan.
 
 ### Sambungan Tanpa Lompatan
 
-Fungsi piecewise kontinu jika grafiknya tidak melompat di titik sambung. Nilai dari kiri, nilai dari kanan, dan nilai fungsi di titik itu harus sama.
+Fungsi piecewise kontinu jika grafiknya tidak melompat di titik sambung. Nilai dari kiri, nilai dari kanan, dan nilai fungsi di titik itu **harus sama**.
 
 Syarat kontinuitas di titik <InlineMath math="x = c" />:
 
@@ -151,7 +155,7 @@ Untuk kontinu di <InlineMath math="x = 2" />:
 
 Fungsi piecewise diskontinu memiliki "lompatan" atau "lubang" pada titik-titik tertentu.
 
-Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi mendekati nilai keluaran yang berbeda:
+Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi mendekati **nilai keluaran yang berbeda**:
 
 <BlockMath math="f(x)=\begin{cases}x+2,&\text{jika }x<1\\2x-3,&\text{jika }x\geq1\end{cases}" />
 
@@ -166,7 +170,6 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
     {
       endpoints: { end: "open" },
       points: [
-        { x: -100, y: -98, z: 0 },
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -1 + i * 0.1;
           return { x, y: x + 2, z: 0 };
@@ -175,7 +178,7 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -184,7 +187,6 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
           const x = 1 + i * 0.1;
           return { x, y: 2 * x - 3, z: 0 };
         }),
-        { x: 100, y: 197, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
@@ -192,12 +194,14 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Pemodelan dengan Fungsi Piecewise
 
-Situasi yang berganti aturan pada suatu ambang cocok dimodelkan dengan fungsi piecewise. Tarif progresif dan kecepatan bertahap sama-sama mengganti aturannya di satu titik yang bisa kamu sebut, dan titik itu menjadi batas antara dua potongan.
+Situasi yang berganti aturan pada suatu ambang cocok dimodelkan dengan fungsi piecewise. Tarif progresif dan kecepatan bertahap sama-sama mengganti aturannya di satu titik yang bisa kamu sebut, dan titik itu menjadi **batas antara dua potongan**.
 
 ### Tarif Progresif
 
@@ -205,7 +209,7 @@ Fungsi sepotong-sepotong memodelkan aturan yang berubah pada batas tertentu. Paj
 
 **Contoh: Tarif Listrik**
 
-Perusahaan listrik menerapkan tarif bertingkat:
+Dalam contoh hipotetis ini, **tarif baru hanya berlaku untuk pemakaian tambahan** di tingkat tersebut. Pemakaian pada tingkat sebelumnya tetap dihitung dengan tarif sebelumnya:
 
 - <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp }1{.}000/\text{kWh}" />
 - <InlineMath math="50<x\leq100" /> kWh: <InlineMath math="\text{Rp }1{.}500/\text{kWh}" />
@@ -217,7 +221,11 @@ Model matematikanya:
 
 Angka <InlineMath math="50{.}000" /> pada baris kedua berasal dari biaya <InlineMath math="50 \text{ kWh}" /> pertama. Angka <InlineMath math="125{.}000" /> pada baris ketiga berasal dari biaya sampai <InlineMath math="100 \text{ kWh}" /> pertama. Dengan cara ini, biaya tidak mulai dari <InlineMath math="0" /> lagi setiap masuk interval baru.
 
-**Tabel biaya listrik:**
+Biaya pada satu interval tidak menggantikan biaya sebelumnya. Misalnya, untuk <InlineMath math="75\text{ kWh}" />:
+
+<BlockMath math="C(75)=1000(50)+1500(75-50)=50000+37500=87500" />
+
+**Tabel biaya listrik**:
 
 | Pemakaian (kWh) | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="75" /> | <InlineMath math="100" /> | <InlineMath math="150" /> |
 | --------------- | ------ | ------ | ------ | ------- | ------- |
@@ -237,18 +245,18 @@ Fungsi jarak terhadap waktu:
 
 <BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{jika } 0 \leq t \leq 0{,}5\end{gathered}\\[4pt]\begin{gathered}2{,}5 + 15(t-0{,}5)\\\text{jika } 0{,}5 &lt; t \leq 1{,}5\end{gathered}\\[4pt]\begin{gathered}17{,}5 + 60(t-1{,}5)\\\text{jika } 1{,}5 &lt; t \leq 2\end{gathered}\end{cases}" />
 
-Konstanta <InlineMath math="2{,}5" /> dan <InlineMath math="17{,}5" /> sama dengan jarak yang sudah ditempuh pada awal setiap interval baru. Dengan kedua konstanta tersebut, <InlineMath math="s(t)" /> tetap kontinu saat moda transportasi berubah.
+Konstanta <InlineMath math="2{,}5" /> dan <InlineMath math="17{,}5" /> sama dengan **jarak yang sudah ditempuh** pada awal setiap interval baru. Dengan kedua konstanta tersebut, <InlineMath math="s(t)" /> tetap kontinu saat moda transportasi berubah.
 
 ## Menentukan Persamaan Fungsi Piecewise
 
 Untuk menentukan persamaan fungsi piecewise dari grafik atau situasi:
 
-- Pisahkan domain berdasarkan batas ketika aturan berubah.
+- Pisahkan domain berdasarkan **batas ketika aturan berubah**.
 - Tentukan rumus untuk setiap interval.
 - Periksa titik sambung agar tanda interval dan nilai fungsi tidak saling bertabrakan.
 - Tulis semua potongan dalam notasi piecewise.
 
-**Contoh:**
+**Contoh**:
 
 Dari grafik yang menunjukkan:
 
@@ -270,9 +278,11 @@ Fungsi piecewise:
 
 ## Latihan
 
+Pilih **interval yang memuat masukan** sebelum melakukan substitusi. Untuk model biaya dan upah, jumlah yang terkumpul pada interval sebelumnya tetap dibawa ke interval berikutnya.
+
 1. Tentukan nilai <InlineMath math="f(1)" />, <InlineMath math="f(3)" />, dan <InlineMath math="f(5)" /> untuk fungsi:
 
-   <BlockMath math="f(x) = \begin{cases} x^2, & \text{jika } x < 2 \\ 2x + 1, & \text{jika } 2 \leq x < 4 \\ 9, & \text{jika } x \geq 4 \end{cases}" />
+<BlockMath math="f(x) = \begin{cases} x^2, & \text{jika } x < 2 \\ 2x + 1, & \text{jika } 2 \leq x < 4 \\ 9, & \text{jika } x \geq 4 \end{cases}" />
 
 2. Sebuah perusahaan taksi online menerapkan tarif:
 
@@ -282,11 +292,11 @@ Fungsi piecewise:
 
 3. Tentukan apakah fungsi berikut kontinu di <InlineMath math="x = 1" />:
 
-   <BlockMath math="g(x) = \begin{cases} 3x - 1, & \text{jika } x < 1 \\ 2, & \text{jika } x = 1 \\ x + 1, & \text{jika } x > 1 \end{cases}" />
+<BlockMath math="g(x) = \begin{cases} 3x - 1, & \text{jika } x < 1 \\ 2, & \text{jika } x = 1 \\ x + 1, & \text{jika } x > 1 \end{cases}" />
 
 4. Sketsa grafik fungsi:
 
-   <BlockMath math="h(x) = \begin{cases} -x + 2, & \text{jika } x < 0 \\ x^2, & \text{jika } 0 \leq x < 2 \\ 4, & \text{jika } x \geq 2 \end{cases}" />
+<BlockMath math="h(x) = \begin{cases} -x + 2, & \text{jika } x < 0 \\ x^2, & \text{jika } 0 \leq x < 2 \\ 4, & \text{jika } x \geq 2 \end{cases}" />
 
 5. Seorang pekerja dibayar dengan sistem:
 
@@ -294,109 +304,122 @@ Fungsi piecewise:
 
    Jika pekerja tersebut boleh bekerja paling lama <InlineMath math="12 \text{ jam/hari}" />, buatlah fungsi upah hariannya.
 
-### Kunci Jawaban
+### Nilai Fungsi
 
-1. **Menghitung nilai fungsi:**
+Tentukan **baris yang berlaku** untuk setiap masukan, kemudian hitung nilainya.
 
-   Untuk <InlineMath math="f(1)" />: karena <InlineMath math="1 < 2" />, gunakan <InlineMath math="f(x) = x^2" />
+Untuk <InlineMath math="f(1)" />: karena <InlineMath math="1 < 2" />, gunakan <InlineMath math="f(x) = x^2" />
 
-   <BlockMath math="f(1) = 1^2 = 1" />
+<BlockMath math="f(1) = 1^2 = 1" />
 
-   Untuk <InlineMath math="f(3)" />: karena <InlineMath math="2 \leq 3 < 4" />, gunakan <InlineMath math="f(x) = 2x + 1" />
+Untuk <InlineMath math="f(3)" />: karena <InlineMath math="2 \leq 3 < 4" />, gunakan <InlineMath math="f(x) = 2x + 1" />
 
-   <BlockMath math="f(3) = 2(3) + 1 = 7" />
+<BlockMath math="f(3) = 2(3) + 1 = 7" />
 
-   Untuk <InlineMath math="f(5)" />: karena <InlineMath math="5 \geq 4" />, gunakan <InlineMath math="f(x) = 9" />
+Untuk <InlineMath math="f(5)" />: karena <InlineMath math="5 \geq 4" />, gunakan <InlineMath math="f(x) = 9" />
 
-   <BlockMath math="f(5) = 9" />
+<BlockMath math="f(5) = 9" />
 
-2. **Model tarif taksi:**
+### Tarif Taksi
 
-   Misalkan <InlineMath math="x" /> adalah jarak dalam km, maka:
+Biaya pada batas pertama menjadi **biaya awal** interval berikutnya. Sampai <InlineMath math="10\text{ km}" />, biaya yang terkumpul adalah:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{jika } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="10000+4000(10-2)=10000+32000=42000" />
 
-   Atau disederhanakan:
+Misalkan <InlineMath math="x" /> adalah jarak dalam km, maka:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{jika } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{jika } x > 10\end{gathered}\end{cases}" />
 
-3. **Memeriksa kontinuitas:**
+Atau disederhanakan:
 
-   Di <InlineMath math="x = 1" />:
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{jika } x > 10\end{gathered}\end{cases}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="g(1) = 2" />
-   </MathContainer>
+### Kontinuitas di Titik Sambung
 
-   Karena <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" />, maka fungsi **kontinu** di <InlineMath math="x = 1" />.
+Di <InlineMath math="x = 1" />:
 
-4. **Sketsa grafik <InlineMath math="h(x)" />:**
+<MathContainer>
 
-   <LineEquation
-     title={
-       <>
-         Grafik Fungsi <InlineMath math="h(x)" />
-       </>
-     }
-     description={
-       <>
-         Fungsi piecewise dengan tiga bagian: linear menurun, kuadratik, dan
-         konstan
-       </>
-     }
-     data={[
-       {
-         endpoints: { end: "open" },
-         points: [
-           { x: -100, y: 102, z: 0 },
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = -2 + i * 0.1;
-             return { x, y: -x + 2, z: 0 };
-           }),
-         ],
-         smooth: false,
-         color: "#9333ea",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
-       },
-       {
-         smooth: false,
-         endpoints: { start: "closed", end: "open" },
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = 0 + i * 0.1;
-           return { x, y: x * x, z: 0 };
-         }),
-         color: "#ea580c",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
-       },
-       {
-         endpoints: { start: "closed" },
-         points: [
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = 2 + i * 0.1;
-             return { x, y: 4, z: 0 };
-           }),
-           { x: 100, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+<BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
 
-5. **Fungsi upah harian:**
+<BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
 
-   Misalkan <InlineMath math="t" /> adalah jam kerja, maka:
+<BlockMath math="g(1) = 2" />
+</MathContainer>
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Karena <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" />, maka fungsi **kontinu** di <InlineMath math="x = 1" />.
 
-   Atau disederhanakan:
+### Sketsa Tiga Potongan
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Perhatikan **titik terbuka dan tertutup**: pada <InlineMath math="x=0" /> nilai fungsi adalah <InlineMath math="0" />, bukan <InlineMath math="2" />. Pada <InlineMath math="x=2" /> nilai fungsi adalah <InlineMath math="4" />.
+
+<LineEquation
+  title={
+    <>
+      Grafik Fungsi <InlineMath math="h(x)" />
+    </>
+  }
+  description={
+    <>
+      Fungsi piecewise dengan tiga bagian: linear menurun, kuadratik, dan
+      konstan
+    </>
+  }
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -2 + i * 0.1;
+          return { x, y: -x + 2, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+    {
+      smooth: false,
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = 0 + i * 0.1;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 4, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
+/>
+
+### Upah Harian
+
+Upah setelah delapan jam memuat **upah yang sudah terkumpul**, lalu tambahan untuk jam lembur.
+
+<BlockMath math="50000(8)=400000" />
+
+Misalkan <InlineMath math="t" /> adalah jam kerja, maka:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+
+Atau disederhanakan:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />

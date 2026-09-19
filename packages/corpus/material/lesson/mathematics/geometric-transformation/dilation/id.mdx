@@ -4,7 +4,7 @@ export const metadata = {
   description: "Tentukan bayangan hasil dilatasi dari pusat dan faktor skala, lalu pelajari perbesaran dan pengecilan melalui grafik serta pembahasan soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Transformasi Geometri",
 };
 
@@ -14,18 +14,24 @@ Dilatasi adalah transformasi geometri yang mengubah ukuran suatu objek (memperbe
 
 ### Definisi Formal Dilatasi
 
-Misalkan <InlineMath math="C" /> adalah pusat dilatasi dan <InlineMath math="k \neq 0" /> adalah faktor skala. Dilatasi <InlineMath math="D_{(C,k)}" /> memetakan titik <InlineMath math="A" /> ke bayangan <InlineMath math="A' = D_{(C,k)}(A)" /> dan memenuhi <InlineMath math="\vec{CA'} = k \cdot \vec{CA}" />. Hubungan itu berlaku untuk setiap titik <InlineMath math="A" />, sementara pusat <InlineMath math="C" /> tidak pernah berpindah karena <InlineMath math="\vec{CC}" /> selalu berupa vektor nol.
+Pusat dilatasi <InlineMath math="C" /> **tetap di tempat**. Untuk faktor <InlineMath math="k\ne0" />, posisi setiap bayangan ditentukan oleh vektor dari pusat:
 
-Artinya, <InlineMath math="\vec{CA'}" /> adalah <InlineMath math="k" /> kali <InlineMath math="\vec{CA}" />.
+<BlockMath math="\overrightarrow{CA'}=k\overrightarrow{CA},\qquad CA'=|k|\,CA" />
 
-- Jika <InlineMath math="|k| > 1" />, terjadi perbesaran.
-- Jika <InlineMath math="0 < |k| < 1" />, terjadi pengecilan.
-- Jika <InlineMath math="k > 0" />, titik awal dan bayangannya berada pada sisi yang sama dari pusat dilatasi.
-- Jika <InlineMath math="k < 0" />, titik awal dan bayangannya berada pada sisi yang berlawanan dari pusat dilatasi. Arah vektor dari pusat ke bayangan berlawanan dengan arah vektor dari pusat ke titik awal.
+**Nilai mutlak faktor** mengatur perbandingan panjang, sedangkan tandanya mengatur arah dari pusat. Pernyataan arah di tabel berlaku untuk titik yang tidak berimpit dengan pusat.
+
+| Faktor | Ukuran | Posisi terhadap pusat |
+| --- | --- | --- |
+| <InlineMath math="k>1" /> | Diperbesar | Sisi sama |
+| <InlineMath math="0<k<1" /> | Diperkecil | Sisi sama |
+| <InlineMath math="k=1" /> | Ukuran tetap | Sisi sama |
+| <InlineMath math="-1<k<0" /> | Diperkecil | Sisi berlawanan |
+| <InlineMath math="k=-1" /> | Ukuran tetap | Sisi berlawanan |
+| <InlineMath math="k<-1" /> | Diperbesar | Sisi berlawanan |
 
 ## Dilatasi terhadap Titik Asal
 
-Jika pusat dilatasi adalah titik asal <InlineMath math="O(0,0)" /> dan faktor skala adalah <InlineMath math="k" />, maka untuk sebuah titik <InlineMath math="A(x,y)" />, bayangannya <InlineMath math="A'(x',y')" /> diberikan oleh:
+Jika pusatnya titik asal, **kedua koordinat dikalikan faktor skala**. Ini langsung mengikuti hubungan vektor karena koordinat pusat nol:
 
 <MathContainer>
   <BlockMath math="x' = kx" />
@@ -38,7 +44,7 @@ Jika titik <InlineMath math="A(1,2)" /> didilatasi terhadap titik asal <InlineMa
 
 Di sini, <InlineMath math="x=1" />, <InlineMath math="y=2" />, dan <InlineMath math="k=2" />.
 
-Pusat dilatasi <InlineMath math="O(0,0)" />.
+**Pusat dilatasi** adalah <InlineMath math="O(0,0)" />. Faktor dua berarti **jarak dari pusat menjadi dua kali**:
 
 <MathContainer>
   <BlockMath math="x' = 2 \cdot 1 = 2" />
@@ -97,7 +103,8 @@ Jadi, bayangannya adalah <InlineMath math="A'(2,4)" />.
       color: "#4f46e5",
     }, // Garis OA'
   ]}
-  cameraPosition={[1, 2, 15]}
+  cameraPosition={[1, 2, 8]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Dilatasi terhadap Titik Sembarang
@@ -109,7 +116,7 @@ Jika pusat dilatasi adalah titik sembarang <InlineMath math="C(a,b)" /> dan fakt
   <BlockMath math="y' = b + k(y - b)" />
 </MathContainer>
 
-Rumus ini dapat diterapkan dengan menggeser koordinat agar <InlineMath math="C" /> menjadi titik asal, melakukan dilatasi dengan faktor <InlineMath math="k" />, lalu menggeser koordinat kembali.
+Rumus ini dapat diterapkan dengan **menggeser koordinat** agar <InlineMath math="C" /> menjadi titik asal, melakukan dilatasi dengan faktor <InlineMath math="k" />, lalu menggeser koordinat kembali.
 
 ### Mendilatasikan Sebuah Titik terhadap Titik Sembarang
 
@@ -117,7 +124,7 @@ Jika titik <InlineMath math="C(5,2)" /> didilatasi terhadap titik <InlineMath ma
 
 Di sini, titik yang akan didilatasi adalah <InlineMath math="C(5,2)" /> jadi <InlineMath math="x=5, y=2" />.
 
-Pusat dilatasi adalah <InlineMath math="P(2,3)" />, jadi <InlineMath math="a=2, b=3" />.
+**Pusat dilatasi** adalah <InlineMath math="P(2,3)" />, jadi <InlineMath math="a=2, b=3" />.
 
 Faktor skala <InlineMath math="k=2" />.
 
@@ -184,7 +191,7 @@ Jadi, bayangannya adalah <InlineMath math="C'(8,1)" />.
 
 ## Latihan
 
-Dua soal pertama mendilatasi satu titik, pertama terhadap titik asal lalu terhadap pusat yang berbeda. Soal ketiga mendilatasi seluruh segitiga dengan faktor negatif, sehingga bayangannya berada di sisi berlawanan dari pusat.
+Dua soal pertama mendilatasi satu titik, pertama terhadap titik asal lalu terhadap pusat yang berbeda. Soal ketiga mendilatasi seluruh segitiga dengan **faktor negatif**, sehingga bayangannya berada di sisi berlawanan dari pusat.
 
 1.  Tentukan bayangan <InlineMath math="B(2,5)" /> oleh dilatasi <InlineMath math="D_{(O,3)}" /> (pusat di <InlineMath math="O(0,0)" />, faktor <InlineMath math="3" />).
 2.  Tentukan bayangan <InlineMath math="B(2,5)" /> oleh dilatasi dengan pusat <InlineMath math="P(1,3)" /> dan faktor <InlineMath math="3" />.
@@ -192,28 +199,52 @@ Dua soal pertama mendilatasi satu titik, pertama terhadap titik asal lalu terhad
 
 ### Pembahasan
 
-1.  Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=3" />.
+Bedakan **pusat dan titik yang didilatasi**. Kurangi koordinat pusat dari koordinat titik, kalikan faktor skala, lalu tambahkan pusat kembali. Untuk pusat di asal, pengurangan dan penambahan nol tidak mengubah hasil.
 
-    <MathContainer>
-      <BlockMath math="x' = 3 \cdot 2 = 6" />
-      <BlockMath math="y' = 3 \cdot 5 = 15" />
-    </MathContainer>
+**Pembahasan 1**
 
-    Jadi, bayangannya <InlineMath math="B'(6,15)" />.
+Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=3" />.
 
-2.  Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="P(1,3)" />, <InlineMath math="k=3" />. (<InlineMath math="x=2, y=5, a=1, b=3" />)
+<MathContainer>
+  <BlockMath math="x' = 3 \cdot 2 = 6" />
+  <BlockMath math="y' = 3 \cdot 5 = 15" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 1 + 3(2 - 1) \\ &amp;= 1 + 3(1) \\ &amp;= 1 + 3 \\ &amp;= 4 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 3 + 3(5 - 3) \\ &amp;= 3 + 3(2) \\ &amp;= 3 + 6 \\ &amp;= 9 \end{aligned}" />
-    </MathContainer>
+Jadi, bayangannya <InlineMath math="B'(6,15)" />.
 
-    Jadi, bayangannya <InlineMath math="B'(4,9)" />.
+**Pembahasan 2**
 
-3.  Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=-2" />.
+Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="P(1,3)" />, <InlineMath math="k=3" />. (<InlineMath math="x=2, y=5, a=1, b=3" />)
 
-    - Untuk <InlineMath math="A(1,1)" />: <InlineMath math="A'(-2 \cdot 1, -2 \cdot 1) = A'(-2,-2)" />.
-    - Untuk <InlineMath math="B(3,1)" />: <InlineMath math="B'(-2 \cdot 3, -2 \cdot 1) = B'(-6,-2)" />.
-    - Untuk <InlineMath math="C(1,4)" />: <InlineMath math="C'(-2 \cdot 1, -2 \cdot 4) = C'(-2,-8)" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 1 + 3(2 - 1) \\ &amp;= 1 + 3(1) \\ &amp;= 1 + 3 \\ &amp;= 4 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 + 3(5 - 3) \\ &amp;= 3 + 3(2) \\ &amp;= 3 + 6 \\ &amp;= 9 \end{aligned}" />
+</MathContainer>
 
-    Koordinat bayangan segitiga: <InlineMath math="A'(-2,-2)" />, <InlineMath math="B'(-6,-2)" />, <InlineMath math="C'(-2,-8)" />.
+Jadi, bayangannya <InlineMath math="B'(4,9)" />.
+
+**Pembahasan 3**
+
+Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=-2" />.
+
+<MathContainer>
+  <BlockMath math="A'=(-2\cdot1,-2\cdot1)=(-2,-2)" />
+  <BlockMath math="B'=(-2\cdot3,-2\cdot1)=(-6,-2)" />
+  <BlockMath math="C'=(-2\cdot1,-2\cdot4)=(-2,-8)" />
+</MathContainer>
+
+Koordinat bayangan segitiga: <InlineMath math="A'(-2,-2)" />, <InlineMath math="B'(-6,-2)" />, <InlineMath math="C'(-2,-8)" />.
+
+Dua sisi siku-siku awal panjangnya <InlineMath math="2" /> dan <InlineMath math="3" />. Setelah dilatasi, panjangnya menjadi <InlineMath math="4" /> dan <InlineMath math="6" />. Jadi, **panjang dikalikan dua**, sedangkan luas dikalikan empat:
+
+<BlockMath math="L=\frac12\cdot2\cdot3=3,\qquad L'=\frac12\cdot4\cdot6=12=4L" />
+
+<LineEquation title="Faktor negatif memperbesar ke sisi berlawanan" description="Segitiga ABC dan bayangannya dengan pusat O dan faktor negatif dua."
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 4, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#d97706", labels: [{ text: "A", at: 0, offset: [-0.4, -0.3, 0] }, { text: "B", at: 1, offset: [0.4, 0, 0] }, { text: "C", at: 2, offset: [0.3, 0.3, 0] }] },
+    { points: [{ x: -2, y: -2, z: 0 }, { x: -6, y: -2, z: 0 }, { x: -2, y: -8, z: 0 }, { x: -2, y: -2, z: 0 }], smooth: false, showPoints: true, color: "#059669", labels: [{ text: "A'", at: 0, offset: [0.4, 0.3, 0] }, { text: "B'", at: 1, offset: [-0.4, 0, 0] }, { text: "C'", at: 2, offset: [0.3, -0.3, 0] }] },
+    { points: [{ x: -2, y: -2, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, color: "#4f46e5", labels: [{ text: "O", at: 1, offset: [0.5, -0.3, 0] }] },
+  ]}
+  cameraTarget={[-1.5, -2, 0]}
+  cameraPosition={[-1.5, -2, 18]}
+/>

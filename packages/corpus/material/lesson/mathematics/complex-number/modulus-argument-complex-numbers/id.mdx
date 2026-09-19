@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Modulus dan Argumen Bilangan Kompleks",
   description: "Hitung modulus dan argumen bilangan kompleks, terapkan aturan kuadran, lalu ubah bentuk Kartesius menjadi bentuk polar dan sebaliknya.",
@@ -15,6 +13,8 @@ Bilangan kompleks <InlineMath math="z = x + iy" /> dapat digambarkan sebagai tit
 
 Vektor ini memiliki **panjang** dan **arah**. Nah, panjang dan arah inilah yang kita sebut sebagai **Modulus** dan **Argumen**.
 
+Pada titik asal, modulus nol tetapi **argumen tidak terdefinisi**, karena vektor nol tidak memiliki arah.
+
 ## Modulus Bilangan Kompleks
 
 **Modulus** dari suatu bilangan kompleks <InlineMath math="z = x + iy" />, ditulis sebagai <InlineMath math="|z|" />, adalah **jarak** dari titik pangkal <InlineMath math="(0,0)" /> ke titik <InlineMath math="(x, y)" /> pada bidang kompleks. Ini sama saja dengan **panjang vektor** yang merepresentasikan <InlineMath math="z" />.
@@ -28,7 +28,9 @@ Vektor ini memiliki **panjang** dan **arah**. Nah, panjang dan arah inilah yang 
       segitiga siku-siku.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[1.5, 2, 8]}
+  cameraTarget={[1.5, 2, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -65,12 +67,12 @@ Vektor ini memiliki **panjang** dan **arah**. Nah, panjang dan arah inilah yang 
       ],
       smooth: false,
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [1.5, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [0.65, -2, 0] }],
     },
   ]}
 />
 
-Untuk menghitung modulus, <Highlight>kita bisa menggunakan Teorema Pythagoras</Highlight> pada segitiga siku-siku yang dibentuk oleh bagian riil (<InlineMath math="x" />), bagian imajiner (<InlineMath math="y" />), dan modulus (<InlineMath math="|z|" />) sebagai sisi miringnya.
+Untuk menghitung modulus, <Highlight>kita bisa menggunakan Teorema Pythagoras</Highlight> pada segitiga siku-siku yang dibentuk oleh panjang komponen riil (<InlineMath math="|x|" />), panjang komponen imajiner (<InlineMath math="|y|" />), dan modulus (<InlineMath math="|z|" />) sebagai sisi miringnya.
 
 **Definisi Modulus:**
 
@@ -82,23 +84,23 @@ Modulus selalu bernilai **non-negatif** (tidak pernah negatif) karena merupakan 
 
 ### Menghitung Modulus
 
-Empat perhitungan berjalan dari tripel Pythagoras melalui pasangan umum sampai ke sumbu real dan imajiner, supaya kamu melihat rumus akar yang sama berlaku di setiap posisi.
+Kuadratkan **kedua komponen dengan tanda yang benar**, jumlahkan kedua kuadrat, lalu ambil akar tak negatif. Tanda negatif suatu komponen tidak membuat jarak menjadi negatif.
 
-1.  **Tentukan modulus dari <InlineMath math="z_1 = 3 + 4i" />**, dengan <InlineMath math="x=3, y=4" />
+1.  <InlineMath math="z_1 = 3 + 4i" />, dengan <InlineMath math="x=3, y=4" />
 
     <BlockMath math="\begin{aligned} |z_1| &amp;= \sqrt{3^2 + 4^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
 
-2.  **Tentukan modulus dari <InlineMath math="z_2 = -1 - 2i" />**, dengan <InlineMath math="x=-1, y=-2" />
+2.  <InlineMath math="z_2 = -1 - 2i" />, dengan <InlineMath math="x=-1, y=-2" />
 
     <BlockMath math="\begin{aligned} |z_2| &amp;= \sqrt{(-1)^2 + (-2)^2} \\ &amp;= \sqrt{1 + 4} \\ &amp;= \sqrt{5} \end{aligned}" />
 
-3.  **Tentukan modulus dari <InlineMath math="z_3 = 5" />**, dengan <InlineMath math="x=5, y=0" />
+3.  <InlineMath math="z_3 = 5" />, dengan <InlineMath math="x=5, y=0" />
 
     <BlockMath math="|z_3| = \sqrt{5^2 + 0^2} = \sqrt{25} = 5" />
 
     (Modulus bilangan riil adalah nilai mutlaknya).
 
-4.  **Tentukan modulus dari <InlineMath math="z_4 = -2i" />**, dengan <InlineMath math="x=0, y=-2" />
+4.  <InlineMath math="z_4 = -2i" />, dengan <InlineMath math="x=0, y=-2" />
 
     <BlockMath math="|z_4| = \sqrt{0^2 + (-2)^2} = \sqrt{4} = 2" />
 
@@ -122,21 +124,12 @@ Rasio <InlineMath math="|y/x|" /> positif dan berhingga, sehingga sudut acuannya
 
 Tanda <InlineMath math="x" /> dan <InlineMath math="y" /> menunjukkan kuadrannya. Dari kuadran itu, sudut acuan diubah menjadi Argumen Utama dalam <InlineMath math="(-180^\circ, 180^\circ]" />:
 
-- **Kuadran <InlineMath math="I" />** (<InlineMath math="x>0, y>0" />):
-
-  <BlockMath math="\text{Arg}(z) = \alpha" />
-
-- **Kuadran <InlineMath math="II" />** (<InlineMath math="x<0, y>0" />):
-
-  <BlockMath math="\text{Arg}(z) = 180^\circ - \alpha" />
-
-- **Kuadran <InlineMath math="III" />** (<InlineMath math="x<0, y<0" />):
-
-  <BlockMath math="\text{Arg}(z) = -180^\circ + \alpha" />
-
-- **Kuadran <InlineMath math="IV" />** (<InlineMath math="x>0, y<0" />):
-
-  <BlockMath math="\text{Arg}(z) = -\alpha" />
+| Kuadran | Tanda komponen | Argumen utama |
+| --- | --- | --- |
+| I | <InlineMath math="x>0,\ y>0" /> | <InlineMath math="\alpha" /> |
+| II | <InlineMath math="x<0,\ y>0" /> | <InlineMath math="180^\circ-\alpha" /> |
+| III | <InlineMath math="x<0,\ y<0" /> | <InlineMath math="-180^\circ+\alpha" /> |
+| IV | <InlineMath math="x>0,\ y<0" /> | <InlineMath math="-\alpha" /> |
 
 Titik pada sumbu tidak memerlukan hasil bagi <InlineMath math="y/x" />. Arahnya dapat dibaca langsung:
 
@@ -149,9 +142,9 @@ Titik pada sumbu tidak memerlukan hasil bagi <InlineMath math="y/x" />. Arahnya 
 
 ### Menghitung Argumen
 
-Untuk setiap titik, tentukan dulu kuadrannya, lalu hitung sudut acuan <InlineMath math="\alpha" /> dari <InlineMath math="|y/x|" />, kemudian terapkan aturan kuadran di atas.
+Untuk setiap titik, tentukan dulu **kuadran titik**, lalu hitung sudut acuan <InlineMath math="\alpha" /> dari <InlineMath math="|y/x|" />, kemudian terapkan aturan kuadran di atas.
 
-1.  **Tentukan Argumen Utama dari <InlineMath math="z_1 = 1 + i" />**
+1.  <InlineMath math="z_1 = 1 + i" />
 
     Titik <InlineMath math="(1, 1)" /> berada di Kuadran <InlineMath math="I" />.
 
@@ -160,7 +153,7 @@ Untuk setiap titik, tentukan dulu kuadrannya, lalu hitung sudut acuan <InlineMat
       <BlockMath math="\begin{aligned} \theta &amp;= \arctan(1) \\ &amp;= 45^\circ \text{ atau } \frac{\pi}{4} \text{ radian} \end{aligned}" />
     </MathContainer>
 
-2.  **Tentukan Argumen Utama dari <InlineMath math="z_2 = -\sqrt{3} + i" />**
+2.  <InlineMath math="z_2 = -\sqrt{3} + i" />
 
     Titik <InlineMath math="(-\sqrt{3}, 1)" /> berada di Kuadran <InlineMath math="II" />.
 
@@ -172,7 +165,7 @@ Untuk setiap titik, tentukan dulu kuadrannya, lalu hitung sudut acuan <InlineMat
 
     Kuadran <InlineMath math="II" /> berada di atas sumbu riil negatif, sehingga sudut acuannya dikurangkan dari <InlineMath math="180^\circ" />.
 
-3.  **Tentukan Argumen Utama dari <InlineMath math="z_3 = -1 - i\sqrt{3}" />**
+3.  <InlineMath math="z_3 = -1 - i\sqrt{3}" />
 
     Titik <InlineMath math="(-1, -\sqrt{3})" /> berada di Kuadran <InlineMath math="III" />.
 
@@ -184,7 +177,7 @@ Untuk setiap titik, tentukan dulu kuadrannya, lalu hitung sudut acuan <InlineMat
 
     Kuadran <InlineMath math="III" /> berada di bawah sumbu riil negatif, sehingga Argumen Utamanya bernilai negatif.
 
-4.  **Tentukan Argumen Utama dari <InlineMath math="z_4 = 3 - 3i" />**
+4.  <InlineMath math="z_4 = 3 - 3i" />
 
     Titik <InlineMath math="(3, -3)" /> berada di Kuadran <InlineMath math="IV" />.
 
@@ -196,9 +189,21 @@ Untuk setiap titik, tentukan dulu kuadrannya, lalu hitung sudut acuan <InlineMat
 
     Kuadran <InlineMath math="IV" /> berada di bawah sumbu riil positif, sehingga Argumen Utamanya bernilai negatif.
 
+## Konversi Bentuk Kartesius dan Polar
+
+Modulus dan argumen memberi **bentuk polar** dari bilangan kompleks. Untuk mengubah kembali ke bentuk Kartesius, kalikan modulus dengan kosinus dan sinus sudut. Gunakan bilangan yang sama untuk memeriksa kedua arah konversi.
+
+Dari bentuk Kartesius:
+
+<BlockMath math="\begin{aligned}z&amp;=2+2i\\r&amp;=\sqrt{2^2+2^2}=2\sqrt2,\quad\theta=45^\circ\\z&amp;=2\sqrt2(\cos45^\circ+i\sin45^\circ)\end{aligned}" />
+
+Dari bentuk polar:
+
+<BlockMath math="\begin{aligned}z&amp;=2\sqrt2\left(\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right)\\&amp;=2+2i\end{aligned}" />
+
 ## Latihan
 
-Tentukan modulus dan Argumen Utama (dalam derajat) dari bilangan kompleks berikut. Untuk setiap bilangan, hitung dulu jaraknya dari titik asal, lalu pilih sudut yang berada di dalam <InlineMath math="(-180^\circ, 180^\circ]" />.
+Tentukan modulus dan Argumen Utama (dalam derajat) dari bilangan kompleks berikut. Untuk setiap bilangan, hitung dulu **jarak dari titik asal**, lalu pilih sudut yang berada di dalam <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 1.  <InlineMath math="z_a = 2 + 2i" />
 2.  <InlineMath math="z_b = -4" />
@@ -206,7 +211,9 @@ Tentukan modulus dan Argumen Utama (dalam derajat) dari bilangan kompleks beriku
 
 ### Pembahasan
 
-1.  **Untuk <InlineMath math="z_a = 2 + 2i" />:**
+Gunakan **jarak untuk modulus** dan posisi titik untuk argumen. Titik di sumbu negatif memerlukan sudut yang berbeda dari titik di kuadran I.
+
+1.  <InlineMath math="z_a = 2 + 2i" />:
 
     <InlineMath math="x=2, y=2" /> (Kuadran <InlineMath math="I" />) Modulus:
 
@@ -220,7 +227,7 @@ Tentukan modulus dan Argumen Utama (dalam derajat) dari bilangan kompleks beriku
 
     <BlockMath math="\theta=\arctan(1)=45^\circ" />
 
-2.  **Untuk <InlineMath math="z_b = -4" />:**
+2.  <InlineMath math="z_b = -4" />:
 
     <InlineMath math="z_b = -4 + 0i" />. <InlineMath math="x=-4, y=0" /> (Sumbu
     riil negatif) Modulus:
@@ -231,7 +238,7 @@ Tentukan modulus dan Argumen Utama (dalam derajat) dari bilangan kompleks beriku
 
     <BlockMath math="\theta = 180^\circ" />
 
-3.  **Untuk <InlineMath math="z_c = -i" />:**
+3.  <InlineMath math="z_c = -i" />:
 
     <InlineMath math="z_c = 0 - 1i" />. <InlineMath math="x=0, y=-1" /> (Sumbu
     imajiner negatif) Modulus:

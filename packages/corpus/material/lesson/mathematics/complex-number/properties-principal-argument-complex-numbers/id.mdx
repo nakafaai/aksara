@@ -30,11 +30,15 @@ Ini berarti jika <InlineMath math="\theta_1" /> adalah argumen <InlineMath math=
 
 maka <InlineMath math="\theta_1 + \theta_2" /> adalah salah satu argumen dari <InlineMath math="z_1 z_2" />.
 
-**Untuk mencari Argumen Utama <InlineMath math="\text{Arg}(z_1 z_2)" />:**
+Untuk mencari Argumen Utama <InlineMath math="\text{Arg}(z_1 z_2)" />:
 
 1.  Hitung <InlineMath math="\text{Arg}(z_1) + \text{Arg}(z_2)" />.
 2.  Jika hasilnya sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" /> atau <InlineMath math="(-\pi, \pi]" />, hasil itu adalah Argumen Utamanya.
 3.  Jika belum, tambahkan atau kurangkan putaran penuh sampai hasilnya masuk ke interval tersebut.
+
+Identitas penjumlahan sudut menjelaskan asal rumus perkalian. Kalikan kedua bentuk polar dan kelompokkan komponen riil serta imajiner:
+
+<BlockMath math="\begin{aligned}\frac{z_1z_2}{r_1r_2}&amp;=(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)\\&amp;\quad+i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2)\\&amp;=\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\end{aligned}" />
 
 ### Argumen Hasil Bagi
 
@@ -48,15 +52,25 @@ Ini berarti jika <InlineMath math="\theta_1" /> adalah argumen <InlineMath math=
 
 maka <InlineMath math="\theta_1 - \theta_2" /> adalah salah satu argumen dari <InlineMath math="\frac{z_1}{z_2}" />.
 
-**Untuk mencari Argumen Utama <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:**
+Untuk mencari Argumen Utama <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:
 
 1.  Hitung <InlineMath math="\text{Arg}(z_1) - \text{Arg}(z_2)" />.
 2.  Jika hasilnya sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" /> atau <InlineMath math="(-\pi, \pi]" />, hasil itu adalah Argumen Utamanya.
 3.  Jika belum, masukkan hasilnya ke interval tersebut dengan langkah putaran penuh yang sama seperti pada hasil kali.
 
+### Mengembalikan Sudut ke Interval Utama
+
+Jumlah atau selisih sudut belum tentu merupakan argumen utama. **Kurangi atau tambahkan satu putaran penuh** untuk memilih sudut pada interval yang ditetapkan. Perhatikan pula batas kiri yang tidak termasuk.
+
+| Operasi | Sudut sebelum penyesuaian | Argumen utama |
+| --- | --- | --- |
+| Perkalian | <InlineMath math="120^\circ+120^\circ=240^\circ" /> | <InlineMath math="240^\circ-360^\circ=-120^\circ" /> |
+| Pembagian | <InlineMath math="-150^\circ-60^\circ=-210^\circ" /> | <InlineMath math="-210^\circ+360^\circ=150^\circ" /> |
+| Batas interval | <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> |
+
 ## Penggunaan Sifat Argumen
 
-Diberikan dua bilangan kompleks:
+Gunakan **penjumlahan sudut** untuk hasil kali dan pengurangan sudut untuk hasil bagi. Kedua modulus positif hanya mengubah panjang vektor. Diberikan:
 
 <MathContainer>
   <BlockMath math="z_1 = 2(\cos 45^\circ + i\sin 45^\circ)" />
@@ -84,7 +98,7 @@ Kita tahu Argumen Utama dari masing-masing adalah:
 
    <BlockMath math="\text{Arg}(z_1 \times z_2) = 140^\circ" />
 
-   Himpunan semua argumennya adalah <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
+   Himpunan semua argumen hasil operasi adalah <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
 
 2. **Argumen Hasil Bagi (<InlineMath math="\frac{z_1}{z_2}" />):**
 
@@ -96,11 +110,11 @@ Kita tahu Argumen Utama dari masing-masing adalah:
 
    <BlockMath math="\text{Arg}\left(\frac{z_1}{z_2}\right) = -50^\circ" />
 
-   Himpunan semua argumennya adalah <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
+   Himpunan semua argumen hasil operasi adalah <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
 
 ## Latihan
 
-Kedua bilangan sudah ditulis dalam bentuk polar, sehingga kedua argumennya dapat digabungkan langsung, dan selang argumen utama menentukan apakah hasilnya perlu ditambah atau dikurangi satu putaran penuh. Diketahui <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> dan <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Tentukan:
+Kedua bilangan sudah ditulis dalam bentuk polar, sehingga kedua argumennya dapat digabungkan langsung, dan **selang argumen utama** menentukan apakah hasilnya perlu ditambah atau dikurangi satu putaran penuh. Diketahui <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> dan <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Tentukan:
 
 1.  <InlineMath math="\text{Arg}(z_a \times z_b)" />
 2.  <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right)" />
@@ -109,7 +123,7 @@ Kedua bilangan sudah ditulis dalam bentuk polar, sehingga kedua argumennya dapat
 
 Diketahui <InlineMath math="\text{Arg}(z_a) = 120^\circ" /> dan <InlineMath math="\text{Arg}(z_b) = 50^\circ" />.
 
-Modulus yang positif tidak mengubah arah kedua bilangan kompleks, sehingga kita hanya memerlukan kedua argumennya.
+**Modulus yang positif** tidak mengubah arah kedua bilangan kompleks, sehingga kita hanya memerlukan kedua argumennya.
 
 1.  **Argumen Hasil Kali:**
 

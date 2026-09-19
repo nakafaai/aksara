@@ -5,7 +5,7 @@ export const metadata = {
   description: "Normalize a nonzero vector to obtain a unit vector, then connect magnitude 1 with direction and the standard Cartesian basis vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vector and Operations",
 };
 
@@ -19,7 +19,7 @@ Consider vector <InlineMath math="\overrightarrow{PQ}" /> in a Cartesian coordin
 
 <BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
 
-Where <InlineMath math="|\overrightarrow{PQ}|" /> is the length or magnitude of vector <InlineMath math="\overrightarrow{PQ}" />.
+The denominator <InlineMath math="|\overrightarrow{PQ}|" /> is the magnitude of <InlineMath math="\overrightarrow{PQ}" /> and must be **greater than zero**. The zero vector has no corresponding unit vector because division by zero is undefined.
 
 A unit vector always points in the same direction as the original vector but has its length normalized to <InlineMath math="1 \text{ unit}" />.
 
@@ -47,7 +47,7 @@ A unit vector always points in the same direction as the original vector but has
 
 ## Calculating a Unit Vector
 
-Dividing a vector by its own length keeps its direction and scales its length down to one. Work through the three steps below for any nonzero vector.
+Dividing a nonzero vector by its length preserves **its direction** and gives length one. A vector initially longer than one becomes shorter. A vector initially shorter than one is enlarged.
 
 1. Identify the original vector
 2. Calculate the length of the vector
@@ -61,7 +61,7 @@ First, calculate its magnitude:
 
 <BlockMath math="\begin{aligned} |\vec{v}| &amp;= \sqrt{3^2 + 6^2 + 4^2} \\ &amp;= \sqrt{9 + 36 + 16} \\ &amp;= \sqrt{61} \end{aligned}" />
 
-Then divide the vector by that magnitude:
+Then **divide the vector by that magnitude**:
 
 <BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
 
@@ -100,11 +100,11 @@ The unit vector is therefore:
 
 ## Length and Components of a Unit Vector
 
-The defining feature of a unit vector is its length of one, which forces a relation between its components. Squaring the components and adding them gives one, and that equation governs the step from any vector to its unit vector.
+The defining feature of a unit vector is its length of one, which forces a relation between its components. **Squaring the components and adding them** gives one, and that equation governs the step from any nonzero vector to its unit vector.
 
 ### Length of a Unit Vector
 
-A unit vector has length <InlineMath math="1" />. For this example, add the squares of the three coordinates first. A length is nonnegative, so take the positive square root at the end.
+A unit vector has length <InlineMath math="1" />. For this example, add the squares of the three coordinates first. A length is nonnegative, so take the **positive square root** at the end.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;|\hat{v}|^2 \\ &amp;=\left(\frac{3}{\sqrt{61}}\right)^2+\left(\frac{6}{\sqrt{61}}\right)^2 \\ &amp;\quad+\left(\frac{4}{\sqrt{61}}\right)^2 \\ &amp;=\frac{9+36+16}{61} \\ &amp;=\frac{61}{61} \\ &amp;=1 \end{aligned}" />
@@ -113,7 +113,7 @@ A unit vector has length <InlineMath math="1" />. For this example, add the squa
 
 ### Unit Vectors on Coordinate Axes
 
-In a three-dimensional coordinate system, there are three standard unit vectors that point along the positive coordinate axes:
+In a three-dimensional coordinate system, there are three standard unit vectors that point along the **positive coordinate axes**:
 
 - <InlineMath math="\hat{\imath}" /> is the unit vector in the positive <InlineMath math="x" />-axis direction
 - <InlineMath math="\hat{\jmath}" /> is the unit vector in the positive <InlineMath math="y" />-axis direction
@@ -152,12 +152,22 @@ Every vector in <InlineMath math="\mathbb{R}^3" /> can be expressed as a linear 
 
 ## Recording Direction with a Unit Vector
 
-A unit vector separates direction from magnitude, so it can describe a direction on its own. Two vectors that point the same way share one unit vector, which makes the unit vector a compact way to record a direction.
+A unit vector **separates direction from magnitude**, so it can describe a direction on its own. Two vectors that point the same way share one unit vector, which makes the unit vector a compact way to record a direction.
 
 ### Indicating Direction
 
-A unit vector records direction with magnitude <InlineMath math="1" />. In physics, it can specify the direction of a force, velocity, or acceleration separately from that quantity's magnitude.
+A unit vector records direction with magnitude <InlineMath math="1" />. In physics, it can specify the direction of a force, velocity, or acceleration **separately from that quantity's magnitude**.
 
 ### Physics Calculations
 
-Unit vectors express a force as components along the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes. Each coefficient gives the signed magnitude along one axis. A force written as <InlineMath math="3\mathbf{i} - 4\mathbf{j}" /> therefore points <InlineMath math="3 \text{ units}" /> along the <InlineMath math="x" />-axis and <InlineMath math="-4 \text{ units}" /> along the <InlineMath math="y" />-axis.
+Suppose a force has a <InlineMath math="3\text{ N}" /> component along the positive <InlineMath math="x" />-axis and a <InlineMath math="-4\text{ N}" /> component along the <InlineMath math="y" />-axis. The negative sign indicates the direction opposite the positive axis. The **force magnitude** follows from the two components:
+
+<MathContainer>
+  <BlockMath math="\vec F=(3\hat\imath-4\hat\jmath)\text{ N}" />
+  <BlockMath math="|\vec F|=\sqrt{3^2+(-4)^2}\text{ N}=5\text{ N}" />
+  <BlockMath math="\hat F=\frac{\vec F}{|\vec F|}=\frac35\hat\imath-\frac45\hat\jmath" />
+</MathContainer>
+
+The unit vector has no newton unit because the numerator and denominator units cancel. Multiplying the direction by the force magnitude restores the original components:
+
+<BlockMath math="5\text{ N}\left(\frac35\hat\imath-\frac45\hat\jmath\right)=(3\hat\imath-4\hat\jmath)\text{ N}" />

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Find tangent lines to parabolas, ellipses, and hyperbolas from a point on the curve, a given slope, or an external point.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Analytic Geometry",
 };
 
@@ -11,21 +11,31 @@ export const metadata = {
 
 A ruler placed against a smooth curve can meet it at just one point without crossing it nearby. The line along the ruler models a **tangent line** at that point.
 
-After a line equation is substituted into the equation of a parabola, ellipse, or hyperbola, <Highlight>a tangent produces a repeated root</Highlight>. A secant produces two distinct roots. On the parabola <InlineMath math="y = x^2" />, the repeated root identifies the single point where the tangent touches the curve.
+When substituting a line into a conic produces a quadratic equation, a tangent is identified by a <Highlight>repeated root</Highlight>. Two distinct roots mean two intersections. Check the quadratic coefficient before using the discriminant. For example, a line parallel to a hyperbola asymptote can produce a linear equation.
 
 The given information determines the method: a known tangent point gives a point form, a known slope gives a line with an unknown intercept, and an external point gives a family of lines through that point.
 
 ## Point on the Curve
 
-When the point of tangency is known, implicit differentiation gives the slope there. Combining that slope with the point-slope equation produces a direct point form.
+When the **point of tangency is known**, implicit differentiation gives the slope there. Combining that slope with the point-slope equation produces a direct point form.
 
 ### Point Form from Implicit Differentiation
 
-For a point <InlineMath math="T(x_1, y_1)" /> on a conic, the resulting point form replaces each squared coordinate by a product with the corresponding tangent-point coordinate. Linear terms are shared symmetrically between the variable point and the tangent point. This compact form comes from the derivative calculation. Before using it, check that <InlineMath math="T" /> lies on the curve.
+For a point <InlineMath math="T(x_1, y_1)" /> on a conic, the resulting point form replaces each squared coordinate by a product with the corresponding tangent-point coordinate. Linear terms are shared symmetrically between the variable point and the tangent point. This compact form comes from the derivative calculation. Before using it, check that <InlineMath math="T" /> **lies on the curve**.
 
 For the parabola <InlineMath math="y^2 = 4px" /> at the tangent point <InlineMath math="T(x_1, y_1)" />, the tangent line equation is:
 
 <BlockMath math="yy_1 = 2p(x + x_1)" />
+
+To derive the formula, take <InlineMath math="p \ne 0" /> and <InlineMath math="y_1 \ne 0" />. Differentiate the parabola equation with respect to <InlineMath math="x" />.
+
+<BlockMath math="2y\frac{dy}{dx}=4p\quad\Longrightarrow\quad m=\frac{2p}{y_1}" />
+
+Multiply the point-slope equation by <InlineMath math="y_1" />, then use <InlineMath math="y_1^2=4px_1" /> because the tangent point lies on the parabola.
+
+<BlockMath math="\begin{aligned}y-y_1&amp;=\frac{2p}{y_1}(x-x_1)\\yy_1-y_1^2&amp;=2px-2px_1\\yy_1-4px_1&amp;=2px-2px_1\\yy_1&amp;=2p(x+x_1)\end{aligned}" />
+
+At the vertex <InlineMath math="(0,0)" />, the slope with respect to the horizontal axis is undefined. The point form still gives the vertical tangent <InlineMath math="x=0" />. For the example <InlineMath math="(2,4)" />, checking the point gives <InlineMath math="4^2=8(2)=16" />.
 
 Apply the formula to the parabola <InlineMath math="y^2 = 8x" /> at <InlineMath math="(2, 4)" />.
 
@@ -96,9 +106,29 @@ Now we substitute into the parabola equation to find the tangent points:
 
 Using [the quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula), we get <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />. The tangent points are <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />. Joining each one to <InlineMath math="A(2,5)" /> gives the two tangents <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \frac{1}{2}x + 4" />.
 
+<LineEquation
+  title="Two Tangents and the Chord of Contact"
+  description="A parabola, two tangent points, and the line connecting those points."
+  showZAxis={false}
+  cameraPosition={[5, 4, 18]}
+  cameraTarget={[5, 4, 0]}
+  data={[
+    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
+    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
+    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
+      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
+    ] },
+    { points: [{ x: 2, y: 5, z: 0 }], color: "#2563eb", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
+  ]}
+/>
+
+Compare the **two lines through the external point** with the pink chord of contact. Both tangents pass through <InlineMath math="A" />, while the chord joins <InlineMath math="T_1" /> to <InlineMath math="T_2" /> and intersects the parabola at those two points.
+
 ## Tangent Line Equations for Each Conic Section
 
-The table summarizes tangent-line equations written in point form.
+The table summarizes tangent-line equations written in **point form**.
 
 | Conic Section | Tangent Line Equation |
 |---|---|
@@ -117,7 +147,7 @@ The table summarizes tangent-line equations written in point form.
 
 ## Exercises
 
-Each problem gives a conic section and a point on it, and asks for the tangent line at that point. Write the conic in standard form before applying the tangent formula.
+Choose the method from the given information: **a tangent point, a slope, or an external point**. Check tangent points on the curve and verify that each resulting line satisfies the stated condition.
 
 1. Find the tangent line equation of parabola <InlineMath math="y^2 = 12x" /> at point <InlineMath math="(3, 6)" />.
 
@@ -129,132 +159,137 @@ Each problem gives a conic section and a point on it, and asks for the tangent l
 
 ### Worked Solutions
 
-1. **Solution**:
+**Solution 1**:
 
-   Given: parabola <InlineMath math="y^2 = 12x" /> with tangent point <InlineMath math="(3, 6)" />.
+Given: parabola <InlineMath math="y^2 = 12x" /> with tangent point <InlineMath math="(3, 6)" />.
 
-   From equation <InlineMath math="y^2 = 12x" />, we get <InlineMath math="4p = 12" /> so <InlineMath math="p = 3" />.
+From equation <InlineMath math="y^2 = 12x" />, we get <InlineMath math="4p = 12" /> so <InlineMath math="p = 3" />.
 
-   Use the parabola tangent line formula:
+Use the parabola tangent line formula:
 
-   <MathContainer>
-     <BlockMath math="yy_1 = 2p(x + x_1)" />
-     <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
-     <BlockMath math="6y = 6(x + 3)" />
-     <BlockMath math="6y = 6x + 18" />
-     <BlockMath math="y = x + 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="yy_1 = 2p(x + x_1)" />
+  <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
+  <BlockMath math="6y = 6(x + 3)" />
+  <BlockMath math="6y = 6x + 18" />
+  <BlockMath math="y = x + 3" />
+</MathContainer>
 
-   So the tangent line equation is <InlineMath math="y = x + 3" />.
+So the tangent line equation is <InlineMath math="y = x + 3" />.
 
-2. **Solution**:
+**Solution 2**:
 
-   Given: hyperbola <InlineMath math="4x^2 - 9y^2 = 36" /> or <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
+Given: hyperbola <InlineMath math="4x^2 - 9y^2 = 36" /> or <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
 
-   Line <InlineMath math="x + 4y + 10 = 0" /> has gradient <InlineMath math="m = -\frac{1}{4}" />.
+Line <InlineMath math="x + 4y + 10 = 0" /> has gradient <InlineMath math="m = -\frac{1}{4}" />.
 
-   Since the tangent line is perpendicular to that line, then the tangent line gradient is:
+Since the tangent line is perpendicular to that line, then the tangent line gradient is:
 
-   <BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
+<BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
 
-   Hyperbola tangent line formula with gradient <InlineMath math="m" />:
+Hyperbola tangent line formula with gradient <InlineMath math="m" />:
 
-   <BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
+<BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
 
-   With <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" />, and <InlineMath math="m = 4" />:
+This formula requires <InlineMath math="a^2m^2-b^2>0" />. If the expression is zero, the resulting line is an asymptote, not a tangent.
 
-   <MathContainer>
-     <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{140}" />
-     <BlockMath math="y = 4x \pm 2\sqrt{35}" />
-   </MathContainer>
+With <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" />, and <InlineMath math="m = 4" />:
 
-   So the tangent line equations are <InlineMath math="y = 4x + 2\sqrt{35}" /> or <InlineMath math="y = 4x - 2\sqrt{35}" />.
+<MathContainer>
+  <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{140}" />
+  <BlockMath math="y = 4x \pm 2\sqrt{35}" />
+</MathContainer>
 
-3. **Solution**:
+So the tangent line equations are <InlineMath math="y = 4x + 2\sqrt{35}" /> or <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
-   Given: ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> and point <InlineMath math="A(1, 3)" />.
+**Solution 3**:
 
-   First check whether point <InlineMath math="A(1, 3)" /> is on the ellipse:
+Given: ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> and point <InlineMath math="A(1, 3)" />.
 
-   <BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
+First check whether point <InlineMath math="A(1, 3)" /> is on the ellipse:
 
-   Since <InlineMath math="\frac{85}{36} > 1" />, point <InlineMath math="A" /> is outside the ellipse.
+<BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
 
-   Write a line through <InlineMath math="A(1,3)" /> with slope <InlineMath math="m" />:
+Since <InlineMath math="\frac{85}{36} > 1" />, point <InlineMath math="A" /> is outside the ellipse.
 
-   <BlockMath math="y-3=m(x-1)" />
+Write a line through <InlineMath math="A(1,3)" /> with slope <InlineMath math="m" />:
 
-   Substituting this line into the ellipse and requiring a zero discriminant gives:
+<BlockMath math="y-3=m(x-1)" />
 
-   <MathContainer>
-     <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
-     <BlockMath math="8m^2 + 6m - 5 = 0" />
-     <BlockMath math="(4m+5)(2m-1)=0" />
-     <BlockMath math="m=-\frac{5}{4} \quad \text{or} \quad m=\frac{1}{2}" />
-   </MathContainer>
+Substituting this line into the ellipse and requiring a zero discriminant gives:
 
-   Insert each slope into the point-slope equation:
+<MathContainer>
+  <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
+  <BlockMath math="(4+9m^2)x^2+18m(3-m)x+9(3-m)^2-36=0" />
+  <BlockMath math="D=[18m(3-m)]^2-4(4+9m^2)[9(3-m)^2-36]=0" />
+  <BlockMath math="D=144[9m^2-(3-m)^2+4]=144(8m^2+6m-5)=0" />
+  <BlockMath math="8m^2 + 6m - 5 = 0" />
+  <BlockMath math="(4m+5)(2m-1)=0" />
+  <BlockMath math="m=-\frac{5}{4} \quad \text{or} \quad m=\frac{1}{2}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
-   </MathContainer>
+Insert each slope into the point-slope equation:
 
-   Thus the two tangent lines are <InlineMath math="5x+4y-17=0" /> and <InlineMath math="x-2y+5=0" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
+</MathContainer>
 
-4. **Solution**:
+Thus the two tangent lines are <InlineMath math="5x+4y-17=0" /> and <InlineMath math="x-2y+5=0" />.
 
-   Given: parabola <InlineMath math="y^2 = 8x" /> and point <InlineMath math="A(2, 5)" />.
+**Solution 4**:
 
-   First check whether point <InlineMath math="A(2, 5)" /> is on the parabola:
+Given: parabola <InlineMath math="y^2 = 8x" /> and point <InlineMath math="A(2, 5)" />.
 
-   <BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
+First check whether point <InlineMath math="A(2, 5)" /> is on the parabola:
 
-   Point <InlineMath math="A" /> is outside the parabola.
+<BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
 
-   Use the parabola polar equation with <InlineMath math="p = 2" />:
+Point <InlineMath math="A" /> is outside the parabola.
 
-   <BlockMath math="yy_1 = 4(x + x_1)" />
+Use the parabola polar equation with <InlineMath math="p = 2" />:
 
-   Substitute <InlineMath math="x_1 = 2" /> and <InlineMath math="y_1 = 5" />:
+<BlockMath math="yy_1 = 4(x + x_1)" />
 
-   <MathContainer>
-     <BlockMath math="5y = 4(x + 2)" />
-     <BlockMath math="5y = 4x + 8" />
-     <BlockMath math="y = \frac{4x + 8}{5}" />
-   </MathContainer>
+Substitute <InlineMath math="x_1 = 2" /> and <InlineMath math="y_1 = 5" />:
 
-   Substitute into the parabola equation:
+<MathContainer>
+  <BlockMath math="5y = 4(x + 2)" />
+  <BlockMath math="5y = 4x + 8" />
+  <BlockMath math="y = \frac{4x + 8}{5}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
-     <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
-     <BlockMath math="(4x + 8)^2 = 200x" />
-     <BlockMath math="16x^2 + 64x + 64 = 200x" />
-     <BlockMath math="16x^2 - 136x + 64 = 0" />
-     <BlockMath math="2x^2 - 17x + 8 = 0" />
-   </MathContainer>
+Substitute into the parabola equation:
 
-   Use the quadratic formula:
+<MathContainer>
+  <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
+  <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
+  <BlockMath math="(4x + 8)^2 = 200x" />
+  <BlockMath math="16x^2 + 64x + 64 = 200x" />
+  <BlockMath math="16x^2 - 136x + 64 = 0" />
+  <BlockMath math="2x^2 - 17x + 8 = 0" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
+Use the quadratic formula:
 
-   So <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />.
+<BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
 
-   The tangent points are at <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />.
+So <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />.
 
-   Tangent line equation through <InlineMath math="(\frac{1}{2}, 2)" />:
+The tangent points are at <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />.
 
-   <BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
+Tangent line equation through <InlineMath math="(\frac{1}{2}, 2)" />:
 
-   So <InlineMath math="y = 2x + 1" />.
+<BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
 
-   Tangent line equation through <InlineMath math="(8, 8)" />:
+So <InlineMath math="y = 2x + 1" />.
 
-   <BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
+Tangent line equation through <InlineMath math="(8, 8)" />:
 
-   So <InlineMath math="y = \frac{1}{2}x + 4" />.
+<BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
 
-   The tangent line equations are <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \frac{1}{2}x + 4" />.
+So <InlineMath math="y = \frac{1}{2}x + 4" />.
+
+The tangent line equations are <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \frac{1}{2}x + 4" />.

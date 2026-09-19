@@ -3,7 +3,7 @@ export const metadata = {
   description: "Klasifikasikan dua lingkaran sebagai berpotongan, bersinggungan, terpisah, atau konsentris dari jarak pusat dan jari-jarinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Geometri Analitik",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 ## Membandingkan Jarak Antarpusat dengan Jari-jari
 
-Keliling dua lingkaran dapat berpotongan di dua titik, bersentuhan di satu titik, atau tetap terpisah. Daerah di dalamnya dapat saling bertumpang tindih, bertemu pada satu titik batas, atau menyisakan jarak.
+Keliling dua lingkaran yang berbeda dapat berpotongan di dua titik, bersentuhan di satu titik, atau tidak memiliki titik bersama. Jika pusat dan jari-jarinya sama, kedua lingkaran berhimpit dan seluruh titik pada kelilingnya sama.
 
-Dalam geometri analitik, pusat dan jari-jari kedua lingkaran sudah cukup untuk menentukan kedudukannya secara tepat. <Highlight>Besaran penentunya adalah jarak antara kedua pusat</Highlight>.
+Dalam geometri analitik, pusat dan jari-jari kedua lingkaran sudah cukup untuk menentukan kedudukannya secara tepat. Bandingkan **jarak antarpusat** dengan jumlah dan selisih mutlak kedua jari-jari.
 
 Perbandingan yang sama digunakan untuk memeriksa apakah dua daerah berbentuk lingkaran saling tumpang tindih, bersentuhan, atau memiliki celah, misalnya pada peta jangkauan atau rancangan geometri.
 
@@ -115,7 +115,7 @@ Untuk dua lingkaran dengan jari-jari <InlineMath math="r_1" /> dan <InlineMath m
 Kedua batas ketat pada pertidaksamaan menjelaskan syarat tersebut:
 
 - **Batas atas**: Saat jarak pusat sama dengan <InlineMath math="r_1 + r_2" />, kedua lingkaran bersinggungan luar
-- **Batas bawah**: Saat jarak pusat sama dengan <InlineMath math="|r_1 - r_2|" />, lingkaran kecil bersinggungan dalam dengan lingkaran besar
+- **Batas bawah**: Saat jarak pusat sama dengan <InlineMath math="|r_1 - r_2|>0" />, lingkaran kecil bersinggungan dalam dengan lingkaran besar
 - **Di antara kedua batas**: Kedua keliling berpotongan di dua titik
 
 ## Lingkaran Bersinggungan
@@ -388,6 +388,46 @@ Kondisi terpisah terjadi ketika jarak antar pusat lebih besar dari jumlah kedua 
 
 Dalam keadaan ini, tidak ada titik yang menjadi anggota kedua daerah lingkaran sekaligus.
 
+
+Satu lingkaran juga dapat berada **di dalam tanpa bersinggungan**, meskipun pusat kedua lingkaran berbeda. Pada diagram berikut, jari-jari lingkaran besar adalah <InlineMath math="4" />, jari-jari lingkaran kecil <InlineMath math="1" />, dan jarak antarpusat <InlineMath math="1" />.
+
+<LineEquation
+  title="Lingkaran di Dalam tanpa Bersinggungan"
+  description="Pusat kedua lingkaran berbeda dan kelilingnya tidak bertemu."
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline",
+      radius: 4,
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 181 }, (_, i) => ({
+        x: 1 + Math.cos((i * Math.PI) / 90),
+        y: Math.sin((i * Math.PI) / 90),
+        z: 0,
+      })),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="P_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+  ]}
+/>
+
+Karena <InlineMath math="0<1<4-1" />, lingkaran kecil berada sepenuhnya di dalam lingkaran besar. Pusatnya berbeda, jadi kedua lingkaran tidak konsentris.
+
 ## Lingkaran Konsentris dan Berhimpit
 
 **Lingkaran konsentris** memiliki pusat yang sama tetapi jari-jari berbeda, seperti lingkaran-lingkaran pada papan sasaran panahan.
@@ -439,7 +479,7 @@ Dalam keadaan ini, tidak ada titik yang menjadi anggota kedua daerah lingkaran s
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2, y: 0, z: 0 }
+        { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 }
       ],
       color: "#ca8a04",
       showPoints: false,
@@ -539,8 +579,3 @@ Lingkaran kedua: pusat <InlineMath math="(3, 4)" />, jari-jari <InlineMath math=
 </MathContainer>
 
 Karena <InlineMath math="2 < 5 < 8" />, maka kedua lingkaran **saling berpotongan**.
-
-Sebagai pemeriksaan, substitusikan ketiga nilai ke syarat <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
-- <InlineMath math="|3 - 5| = 2" />
-- <InlineMath math="3 + 5 = 8" />
-- <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (kondisi berpotongan terpenuhi)

@@ -3,13 +3,13 @@ export const metadata = {
   description: "Beschreibe, wie die Skalarmultiplikation Betrag und Richtung eines Vektors verändert, und wende sie in Rechnungen, Physik und Geometrie an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Vektoren und ihre Operationen",
 };
 
 ## Wie ein reeller Faktor Betrag und Richtung verändert
 
-Bei der Skalarmultiplikation wird eine reelle Zahl, der Skalar, mit einem Vektor <InlineMath math="\vec{v}" /> multipliziert. <Highlight>Der Betrag des neuen Vektors wird mit dem Betrag des Skalars vervielfacht.</Highlight> Ist der ursprüngliche Vektor nicht null, bestimmt das Vorzeichen des Skalars, ob die Richtung gleich bleibt oder sich umkehrt.
+Bei der Skalarmultiplikation wird eine reelle Zahl, der Skalar, mit einem Vektor <InlineMath math="\vec{v}" /> multipliziert. Der Betrag des Ergebnisvektors ist der ursprüngliche Betrag multipliziert mit **dem Betrag des Skalars**. Ist der ursprüngliche Vektor nicht null, bestimmt das Vorzeichen des Skalars, ob die Richtung gleich bleibt oder sich umkehrt.
 
 Ist <InlineMath math="k" /> ein reeller Skalar und <InlineMath math="\vec{v}" /> ein Vektor, schreiben wir die Skalarmultiplikation als <InlineMath math="k \cdot \vec{v}" />.
 
@@ -22,13 +22,29 @@ Die Skalarmultiplikation verändert einen Vektor nach den folgenden Regeln:
 3. Wenn <InlineMath math="k = 0" />, dann ist der resultierende Vektor ein Nullvektor.
 4. Der Betrag des Ergebnisvektors entsteht, indem der ursprüngliche Betrag mit <InlineMath math="|k|" /> multipliziert wird.
 
+
+Das Diagramm verwendet <InlineMath math="\vec v=(2,1)" />. **Endpunkt minus Anfangspunkt** ergibt für die drei Pfeile <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" /> und <InlineMath math="(-2,-1)" />.
+
+<ContentBlock>
+  <Vector3d
+    title="Länge und Richtung beim Skalieren"
+    description="Die Pfeilanfänge sind versetzt, damit du alle drei Vektoren vergleichen kannst. Ein positiver Faktor erhält die Richtung, ein negativer kehrt sie um."
+    vectors={[
+      { from: [0, 0, 0], to: [2, 1, 0], color: "#9333ea", label: <InlineMath math="\vec v" /> },
+      { from: [0, 2, 0], to: [4, 4, 0], color: "#ea580c", label: <InlineMath math="2\vec v" /> },
+      { from: [0, 4, 0], to: [-2, 3, 0], color: "#0d9488", label: <InlineMath math="-\vec v" /> },
+    ]}
+    cameraPosition={[6, 6, 10]}
+  />
+</ContentBlock>
+
 ## Darstellung der Skalarmultiplikation von Vektoren
 
-Wird ein Vektor mit einer Zahl multipliziert, ändert sich seine Länge um diesen Faktor und die Richtung kann sich umkehren. Das Ergebnis bleibt ein Vektor auf derselben Geraden, sodass Länge und Richtung getrennt geprüft werden können.
+Der **Betrag des Skalars** bestimmt die neue Länge. Sein Vorzeichen entscheidet, ob die Richtung gleich bleibt oder sich umkehrt. Die Multiplikation mit null ergibt den Nullvektor, der keine Richtung besitzt.
 
 ### Betrag und Richtung eines skalierten Vektors
 
-Geometrisch verändert die Multiplikation den Betrag eines Vektors um den Faktor <InlineMath math="|k|" />. Für einen Vektor ungleich null hängt die Richtung vom Vorzeichen von <InlineMath math="k" /> ab:
+Geometrisch verändert die Multiplikation den Betrag eines Vektors um den Faktor <InlineMath math="|k|" />. Für einen Vektor ungleich null hängt die Richtung vom **Vorzeichen** von <InlineMath math="k" /> ab:
 
 - Wenn <InlineMath math="k > 0" />, bleibt die Richtung des Vektors unverändert
 - Wenn <InlineMath math="k < 0" />, ist die Richtung des Vektors entgegengesetzt zum ursprünglichen Vektor
@@ -38,6 +54,8 @@ In beiden Fällen und auch für <InlineMath math="k=0" /> gilt für den Betrag:
 <BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
 
 ### Einen Vektor komponentenweise skalieren
+
+Multipliziere **jede Komponente mit demselben Faktor**. Die Reihenfolge der Komponenten folgt weiterhin der Reihenfolge der Koordinatenachsen.
 
 Wenn <InlineMath math="\vec{v} = (v_1, v_2, v_3)" /> ein Vektor im <InlineMath math="3" />-dimensionalen Raum ist, dann:
 
@@ -53,7 +71,7 @@ In Einheitsvektornotation:
 
 ## Vektoren mit positiven und negativen Skalaren multiplizieren
 
-Ein Faktor größer als eins verlängert den Vektor, ein Faktor zwischen null und eins verkürzt ihn, und ein <Highlight>negativer Faktor dreht zusätzlich die Richtung um</Highlight>. Die Multiplikation mit einem negativen Skalar ändert die Richtung also immer, mit einem positiven Skalar dagegen nie.
+Ein Faktor größer als eins verlängert den Vektor, ein Faktor zwischen null und eins verkürzt ihn, und ein <Highlight>negativer Faktor dreht zusätzlich die Richtung um</Highlight>. Diese Richtungsaussagen gelten für einen **Ausgangsvektor ungleich null**. Der Nullvektor bleibt bei Multiplikation mit jedem Skalar null und hat keine definierte Richtung.
 
 ### Mit einem positiven Skalar multiplizieren
 
@@ -61,10 +79,7 @@ Gegeben ist der Vektor <InlineMath math="\vec{a} = 2\vec{i} + 3\vec{j} + 5\vec{k
 
 **Lösung:**
 
-<MathContainer>
-  <BlockMath math="2\vec{a} = 2(2\vec{i} + 3\vec{j} + 5\vec{k})" />
-  <BlockMath math="= 4\vec{i} + 6\vec{j} + 10\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{a} &amp;= 2(2\vec{i} + 3\vec{j} + 5\vec{k}) \\ &amp;= 4\vec{i} + 6\vec{j} + 10\vec{k} \end{aligned}" />
 
 ### Mit einem negativen Skalar multiplizieren
 
@@ -72,10 +87,7 @@ Gegeben ist der Vektor <InlineMath math="\vec{v} = (4, -2, 3)" />. Bestimme das 
 
 **Lösung:**
 
-<MathContainer>
-  <BlockMath math="-3\vec{v} = -3(4, -2, 3)" />
-  <BlockMath math="= (-12, 6, -9)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
 
 Weil der Skalar negativ ist, zeigt der Ergebnisvektor in die entgegengesetzte Richtung.
 
@@ -91,7 +103,7 @@ Die Skalarmultiplikation von Vektoren hat viele Anwendungen in der Physik und Ma
 
 ## Übungsaufgaben
 
-Jede Aufgabe multipliziert einen Vektor mit einem oder zwei Skalaren. Multipliziere jede Komponente mit demselben Faktor und fasse die Ergebnisse zusammen, wenn zwei Skalare auftreten.
+Jede Aufgabe multipliziert einen Vektor mit einem oder zwei Skalaren. Multipliziere **jede Komponente mit demselben Faktor** und fasse die Ergebnisse zusammen, wenn zwei Skalare auftreten.
 
 1. Gegeben ist der Vektor <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />. Bestimme <InlineMath math="-2\vec{a}" />.
 
@@ -105,9 +117,7 @@ Jede Aufgabe multipliziert einen Vektor mit einem oder zwei Skalaren. Multiplizi
 
 ## Lösungen
 
-Jede Lösung erhält den Rechenweg und das Endergebnis, damit du deinen eigenen Versuch Zeile für Zeile vergleichen kannst. Lies zuerst die Rechnung und prüfe erst danach deine Werte.
-
-Jede Lösung multipliziert Komponente für Komponente und fasst die Terme danach zusammen. Vergleiche dein Ergebnis mit dem Wert an jeder Koordinate.
+Jede Lösung multipliziert **alle Komponenten mit demselben Faktor** und fasst anschließend die Komponenten derselben Achse zusammen. Ein negativer Faktor mal eine negative Komponente ergibt eine positive Komponente. Einen Endpunkt erhältst du, indem du den Verschiebungsvektor zum Anfangspunkt addierst.
 
 ### Erstes Problem
 
@@ -115,10 +125,7 @@ Gegeben ist der Vektor <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k
 
 **Lösung:**
 
-<MathContainer>
-  <BlockMath math="-2\vec{a} = -2(3\vec{i} - 4\vec{j} + 2\vec{k})" />
-  <BlockMath math="= -6\vec{i} + 8\vec{j} - 4\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -2\vec{a} &amp;= -2(3\vec{i} - 4\vec{j} + 2\vec{k}) \\ &amp;= -6\vec{i} + 8\vec{j} - 4\vec{k} \end{aligned}" />
 
 Damit ist <InlineMath math="-2\vec{a}" /> gleich <InlineMath math="-6\vec{i} + 8\vec{j} - 4\vec{k}" />.
 
@@ -128,14 +135,7 @@ Gegeben sind die Vektoren <InlineMath math="\vec{u} = (2, -5, 1)" /> und <Inline
 
 **Lösung:**
 
-<MathContainer>
-  <BlockMath math="2\vec{u} = 2(2, -5, 1) = (4, -10, 2)" />
-  <BlockMath math="3\vec{v} = 3(-4, 3, 6) = (-12, 9, 18)" />
-  <BlockMath math="2\vec{u} - 3\vec{v} = (4, -10, 2) - (-12, 9, 18)" />
-  <BlockMath math="= (4 - (-12), -10 - 9, 2 - 18)" />
-  <BlockMath math="= (4 + 12, -10 - 9, 2 - 18)" />
-  <BlockMath math="= (16, -19, -16)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{u} &amp;= 2(2, -5, 1) = (4, -10, 2) \\ 3\vec{v} &amp;= 3(-4, 3, 6) = (-12, 9, 18) \\ 2\vec{u} - 3\vec{v} &amp;= (4, -10, 2) - (-12, 9, 18) \\ &amp;= (4 - (-12), -10 - 9, 2 - 18) \\ &amp;= (4 + 12, -10 - 9, 2 - 18) \\ &amp;= (16, -19, -16) \end{aligned}" />
 
 Der Ergebnisvektor <InlineMath math="2\vec{u} - 3\vec{v}" /> hat also die Komponenten <InlineMath math="(16, -19, -16)" /> oder lautet in Einheitsvektorschreibweise <InlineMath math="16\vec{i} - 19\vec{j} - 16\vec{k}" />.
 
@@ -153,12 +153,7 @@ Wir wissen:
 
 Zunächst prüfen wir <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{BU} + \overrightarrow{UR} = 0{,}65 \cdot \overrightarrow{BR} + 0{,}35 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= (0{,}65 + 0{,}35) \cdot \overrightarrow{BR}" />
-  <BlockMath math="= 1 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= \overrightarrow{BR}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{BU} + \overrightarrow{UR} &amp;= 0{,}65 \cdot \overrightarrow{BR} + 0{,}35 \cdot \overrightarrow{BR} \\ &amp;= (0{,}65 + 0{,}35) \cdot \overrightarrow{BR} \\ &amp;= 1 \cdot \overrightarrow{BR} \\ &amp;= \overrightarrow{BR} \end{aligned}" />
 
 Damit gilt <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />, passend zur Vektoraddition entlang der kollinearen Punkte <InlineMath math="B" />, <InlineMath math="U" /> und <InlineMath math="R" />.
 
@@ -175,12 +170,7 @@ Gegeben sind <InlineMath math="|\vec{p}| = 5 \text{ Einheiten}" /> und <InlineMa
 
 Für den Betrag von <InlineMath math="\vec{q}" /> verwenden wir die Betragsregel der Skalarmultiplikation:
 
-<MathContainer>
-  <BlockMath math="|\vec{q}| = |3\vec{p}|" />
-  <BlockMath math="= |3| \cdot |\vec{p}|" />
-  <BlockMath math="= 3 \cdot 5" />
-  <BlockMath math="= 15" />
-</MathContainer>
+<BlockMath math="\begin{aligned} |\vec{q}| &amp;= |3\vec{p}| \\ &amp;= |3| \cdot |\vec{p}| \\ &amp;= 3 \cdot 5 \\ &amp;= 15 \end{aligned}" />
 
 Der Betrag von <InlineMath math="\vec{q}" /> ist somit <InlineMath math="15 \text{ Einheiten}" />.
 
@@ -191,20 +181,11 @@ Die Punkte <InlineMath math="A(2, 3, -1)" /> und <InlineMath math="B(5, -2, 4)" 
 **Lösung:**
 Zuerst bestimmen wir den Vektor <InlineMath math="\overrightarrow{AB}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AB} = B - A" />
-  <BlockMath math="= (5, -2, 4) - (2, 3, -1)" />
-  <BlockMath math="= (5-2, -2-3, 4-(-1))" />
-  <BlockMath math="= (3, -5, 5)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AB} &amp;= B - A \\ &amp;= (5, -2, 4) - (2, 3, -1) \\ &amp;= (5-2, -2-3, 4-(-1)) \\ &amp;= (3, -5, 5) \end{aligned}" />
 
 Dann verwenden wir die Beziehung <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />, um den Vektor <InlineMath math="\overrightarrow{AC}" /> zu bestimmen:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />
-  <BlockMath math="= 2(3, -5, 5)" />
-  <BlockMath math="= (6, -10, 10)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AC} &amp;= 2\overrightarrow{AB} \\ &amp;= 2(3, -5, 5) \\ &amp;= (6, -10, 10) \end{aligned}" />
 
 Nun bestimmen wir die Koordinaten des Punktes <InlineMath math="C" />:
 

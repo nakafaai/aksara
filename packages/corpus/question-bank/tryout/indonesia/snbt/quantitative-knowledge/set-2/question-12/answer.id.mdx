@@ -2,20 +2,22 @@ export const metadata = {
   title: "Pembahasan Soal 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Untuk menghitung luas daerah <InlineMath math="S" />, kita perlu menentukan titik-titik pojok (vertices) dari daerah penyelesaian sistem pertidaksamaan tersebut. Daerah ini dibatasi oleh tiga garis:
+Untuk menghitung luas daerah <InlineMath math="S" />, kita perlu menentukan **titik-titik pojok (vertices)** dari daerah penyelesaian sistem pertidaksamaan tersebut. Daerah ini dibatasi oleh tiga garis:
 
 1. Garis <InlineMath math="1" />: <InlineMath math="y = 2x + 4" />
 2. Garis <InlineMath math="2" />: <InlineMath math="y = -x + 4" />
 3. Garis <InlineMath math="3" />: <InlineMath math="x = 4" />
 
+Dua pertidaksamaan pertama memberi <InlineMath math="-x+4\le y\le2x+4" />. Batas bawah tidak boleh melebihi batas atas, sehingga <InlineMath math="-x+4\le2x+4" /> menghasilkan <InlineMath math="x\ge0" />. Bersama <InlineMath math="x\le4" />, daerah yang dicari terletak di antara kedua garis untuk <InlineMath math="0\le x\le4" />.
+
 Cari titik potong antar garis-garis tersebut.
 
-#### Titik Potong Garis Pertama dan Kedua
+#### Menentukan Ketiga Titik Sudut
 
-Samakan nilai <InlineMath math="y" /> dari kedua persamaan:
+Pada titik potong, **koordinat vertikal kedua garis** sama:
 
 <MathContainer>
   <BlockMath math="2x + 4 = -x + 4" />
@@ -29,8 +31,6 @@ Substitusi <InlineMath math="x = 0" /> ke salah satu persamaan (misal Garis <Inl
 
 Jadi, titik potong pertama adalah <InlineMath math="A(0, 4)" />.
 
-#### Titik Potong Garis Pertama dan Ketiga
-
 Substitusi <InlineMath math="x = 4" /> ke persamaan Garis <InlineMath math="1" />:
 
 <MathContainer>
@@ -39,8 +39,6 @@ Substitusi <InlineMath math="x = 4" /> ke persamaan Garis <InlineMath math="1" /
 </MathContainer>
 
 Jadi, titik potong kedua adalah <InlineMath math="B(4, 12)" />.
-
-#### Titik Potong Garis Kedua dan Ketiga
 
 Substitusi <InlineMath math="x = 4" /> ke persamaan Garis <InlineMath math="2" />:
 
@@ -55,13 +53,20 @@ Jadi, titik potong ketiga adalah <InlineMath math="C(4, 0)" />.
 
 Daerah <InlineMath math="S" /> berbentuk segitiga dengan titik sudut <InlineMath math="A(0, 4)" />, <InlineMath math="B(4, 12)" />, dan <InlineMath math="C(4, 0)" />.
 
-Kita dapat menghitung luasnya dengan menggunakan alas dan tinggi.
+Kita dapat menghitung luas segitiga dengan menggunakan alas dan tinggi.
 
 - **Alas**: Garis vertikal yang menghubungkan titik <InlineMath math="B" /> dan <InlineMath math="C" /> (karena keduanya memiliki <InlineMath math="x = 4" />).
   Panjang alas <InlineMath math="= y_B - y_C = 12 - 0 = 12" />.
 
 - **Tinggi**: Jarak horizontal dari titik <InlineMath math="A" /> ke garis <InlineMath math="x = 4" />.
   Tinggi <InlineMath math="= x_{BC} - x_A = 4 - 0 = 4" />.
+
+<MathVisual
+ title="Daerah Segitiga dan Tinggi Horizontal"
+ description="Alas BC vertikal sepanjang 12. Tinggi dari A ke BC horizontal sepanjang 4, sehingga kedua ukuran saling tegak lurus."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:5},y:{min:-1,max:13}},view:{kind:"fit",padding:0.1},objects:[{id:"region",kind:"polygon",appearance:"primary",vertices:[{x:0,y:4},{x:4,y:12},{x:4,y:0}]},{id:"height",kind:"segment",appearance:"highlight",from:{x:0,y:4},to:{x:4,y:4}}],labels:[{key:"a",objectId:"region",at:{x:0,y:4},placement:"left"},{key:"b",objectId:"region",at:{x:4,y:12},placement:"above"},{key:"c",objectId:"region",at:{x:4,y:0},placement:"below"},{key:"h",objectId:"height",at:{x:2,y:4},placement:"below"}]}}
+ labels={{a:<InlineMath math="A(0,4)" />,b:<InlineMath math="B(4,12)" />,c:<InlineMath math="C(4,0)" />,h:<InlineMath math="h=4" />}}
+/>
 
 Misalkan <InlineMath math="L" /> adalah luas, <InlineMath math="b" /> panjang alas, dan <InlineMath math="h" /> tinggi segitiga.
 

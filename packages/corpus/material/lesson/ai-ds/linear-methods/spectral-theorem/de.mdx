@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bestimme, wann Matrizen mit einer Orthonormalbasis aus Eigenvektoren diagonalisiert werden können, und verbinde normale, hermitesche sowie unitäre Matrizen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -27,7 +27,7 @@ Diese algebraische Bedingung macht Eigenräume zu verschiedenen Eigenwerten orth
 
 Bei einer normalen Matrix stimmt der Nullraum der Matrix mit dem Nullraum ihrer konjugierten Transponierten überein.
 
-Der Kern ist die Menge aller Vektoren <InlineMath math="x" />, die <InlineMath math="Ax=0" /> erfüllen. Aus der Normalität folgt für jedes <InlineMath math="x" /> die Normidentität
+Der Kern ist die Menge aller Vektoren <InlineMath math="x" />, die <InlineMath math="Ax=0" /> erfüllen. Aus der Normalität folgt für jedes <InlineMath math="x" /> die **Normidentität**
 
 <MathContainer>
 <BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
@@ -53,13 +53,13 @@ Diese Identität beweist zugleich die Orthogonalität. Gelten <InlineMath math="
 
 ## Hermitesche und Unitäre Matrizen als Beispiele für Normalmatrizen
 
-Eine hermitesche Matrix stimmt mit ihrer eigenen Adjungierten überein, und bei einer unitären Matrix ist die Inverse gleich der Adjungierten, sodass beide Seiten der Normalitätsbedingung zum selben Produkt werden.
+Eine hermitesche Matrix stimmt mit ihrer eigenen Adjungierten überein, und bei einer unitären Matrix ist die Inverse gleich der Adjungierten, sodass beide Seiten der Normalitätsbedingung zum **selben Produkt** werden.
 
 ### Hermitesche Matrizen und reelle Eigenwerte
 
 Für eine hermitesche Matrix gilt <InlineMath math="A^H=A" />, daher sind beide Seiten der Normalitätsbedingung gleich <InlineMath math="A^2" />.
 
-<Highlight>Eigenwerte hermitescher Matrizen sind immer reell</Highlight>. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, dann liefert die hermitesche Symmetrie:
+Eigenwerte hermitescher Matrizen sind <Highlight>immer reell</Highlight>. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, dann liefert die hermitesche Symmetrie:
 
 <BlockMath math="\begin{aligned} \lambda v^H v &amp;= v^HAv \\ &amp;= v^HA^Hv \\ &amp;= (Av)^Hv \\ &amp;= \overline{\lambda}v^Hv \\ &amp;\Rightarrow \lambda \\ &amp;=\overline{\lambda} \end{aligned}" />
 
@@ -78,13 +78,15 @@ Die konjugierte Transponierte ergibt wieder dieselbe Matrix, also <InlineMath ma
 <BlockMath math="\begin{aligned} &amp;U=(u_1\quad u_3), \\ &amp;U^HHU=\operatorname{diag}(1,3) \end{aligned}" />
 </MathContainer>
 
-Die Vektoren sind orthonormal, denn <InlineMath math="u_1^Hu_3=0" /> und beide haben die Norm <InlineMath math="1" />. So zeigt sich der Spektralsatz an einem konkreten <InlineMath math="2\times2" />-Beispiel.
+Die Vektoren sind **orthonormal, denn** <InlineMath math="u_1^Hu_3=0" /> und beide haben die Norm <InlineMath math="1" />. So zeigt sich der Spektralsatz an einem konkreten <InlineMath math="2\times2" />-Beispiel.
+
+<BlockMath math="u_1^Hu_3=\frac{(i)(i)+1}{2}=0,\qquad Hu_1=\frac1{\sqrt2}\begin{pmatrix}-2i+i\\(-i)(-i)+2\end{pmatrix}=u_1" />
 
 ### Unitäre Matrizen und Eigenwerte auf dem Einheitskreis
 
 Unitäre Matrizen erfüllen <InlineMath math="A^H = A^{-1}" />. Eingesetzt in die Definition der Normalität ergibt sich <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
 
-Eigenwerte unitärer Matrizen haben den Betrag <InlineMath math="1" /> und liegen daher auf dem Einheitskreis. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, bewahrt die unitäre Abbildung die Norm:
+Eigenwerte unitärer Matrizen haben den Betrag <InlineMath math="1" /> und liegen daher auf dem **Einheitskreis**. Gilt <InlineMath math="Av=\lambda v" /> mit <InlineMath math="v\neq0" />, bewahrt die unitäre Abbildung die Norm:
 
 <MathContainer>
 <BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />

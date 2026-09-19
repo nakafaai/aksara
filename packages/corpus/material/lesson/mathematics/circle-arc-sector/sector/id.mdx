@@ -3,7 +3,7 @@ export const metadata = {
   description: "Juring dibatasi oleh dua jari-jari dan sebuah busur. Besarnya ditentukan oleh sudut pusat, dan juring dapat berupa juring kecil atau juring besar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -12,7 +12,7 @@ export const metadata = {
 
 Juring adalah daerah pada lingkaran yang dibatasi oleh <Highlight>dua jari-jari dan salah satu busur</Highlight> di antara kedua ujungnya. Potongan kue bundar yang dipotong dari pusat dapat menjadi model: kedua sisi lurusnya mewakili jari-jari, sedangkan sisi lengkungnya mewakili busur.
 
-Setiap juring memiliki tiga komponen utama yang saling terkait. Pertama adalah dua jari-jari yang bertemu di pusat lingkaran. Kedua adalah busur yang menghubungkan ujung kedua jari-jari tersebut. Ketiga adalah daerah yang terlingkupi oleh kedua jari-jari dan busur.
+Perhatikan batas dan daerahnya pada gambar. **Busur** hanya bagian lengkung pada tepi, sedangkan **juring** mencakup seluruh daerah di antara dua jari-jari dan busur.
 
 <LineEquation
   title={<>Visualisasi Juring dalam Lingkaran</>}
@@ -48,7 +48,7 @@ Setiap juring memiliki tiga komponen utama yang saling terkait. Pertama adalah d
       segments: 25,
       color: "#ea580c",
       lineWidth: 4,
-      label: { text: "Juring", offset: [0.5, 0.5, 0] } }
+      label: { text: "Busur", offset: [0.5, 0.5, 0] } }
   ]}
   cameraPosition={[0, 0, 10]}
 />
@@ -59,7 +59,7 @@ Juring memiliki titik sudut di pusat lingkaran. Kedua jari-jari bertemu di sana 
 
 Pada lingkaran dengan jari-jari tetap, semakin besar sudut pusat, semakin besar pula juringnya. Sebaliknya, sudut pusat yang lebih kecil menghasilkan juring yang lebih kecil.
 
-Jika sudut pusat yang dipilih kurang dari <InlineMath math="180^\circ" />, <Highlight>daerah yang dibatasi disebut juring kecil</Highlight>. Jika sudutnya lebih dari <InlineMath math="180^\circ" />, daerah itu disebut juring besar. Sudut tepat <InlineMath math="180^\circ" /> menghasilkan setengah lingkaran.
+Jika sudut pusat yang dipilih kurang dari <InlineMath math="180^\circ" />, daerah yang dibatasi disebut <Highlight>juring kecil</Highlight>. Jika sudutnya lebih dari <InlineMath math="180^\circ" />, daerah itu disebut juring besar. Sudut tepat <InlineMath math="180^\circ" /> menghasilkan setengah lingkaran.
 
 Dalam lingkaran yang sama, panjang busur dan luas juring sama-sama sebanding dengan sudut pusat. Karena itu, sudut pusat yang sama pada lingkaran tersebut menghasilkan panjang busur dan luas juring yang sama.
 
@@ -67,129 +67,38 @@ Dalam lingkaran yang sama, panjang busur dan luas juring sama-sama sebanding den
 
 Sudut pusat diukur di pusat lingkaran, di antara dua jari-jari yang membatasi juring. Sudut ini dapat dinyatakan dalam derajat atau radian.
 
-Sebagai contoh, <InlineMath math="90^\circ" /> adalah seperempat putaran penuh sehingga luas juringnya seperempat luas lingkaran. Juring dengan sudut pusat <InlineMath math="180^\circ" /> memiliki setengah luas lingkaran.
+Sebagai contoh, <InlineMath math="90^\circ" /> adalah **seperempat putaran penuh** sehingga luas juringnya seperempat luas lingkaran. Juring dengan sudut pusat <InlineMath math="180^\circ" /> memiliki setengah luas lingkaran.
 
 <LineEquation
-  title={<>Perbandingan Juring dengan Sudut Pusat Berbeda</>}
-  description={<>Juring dengan sudut pusat <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" />, dan <InlineMath math="120^\circ" /> pada lingkaran yang sama.</>}
+  title="Juring pada Lingkaran yang Sama"
+  description="Tiga juring bersebelahan dengan jari-jari sama, tanpa menumpuk bidang yang berbeda."
   data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 60,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2
-    },
-    { kind: "circle-arc", radius: 4,
-      startDegrees: 0,
-      sweepDegrees: 60,
-      segments: 20,
-      color: "#d97706",
-      lineWidth: 3,
-      label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 4, y: 0, z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 26 }, (_, i) => {
-        const angle = (i / 25) * (Math.PI / 2);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 2
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.3, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 4, y: 0, z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = (i / 30) * (2 * Math.PI / 3);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 4
-        };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="120^\circ" />, at: 15, offset: [0.2, 0.6, 0] }
-      ]
-    }
+    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
+    ...[0, 60, 150, 270].map((degrees) => ({ kind: "circle-radius", radius: 4, degrees, color: "#7c3aed", showPoints: false })),
+    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [-0.3, 0.4, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 120, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="120^\circ" />, offset: [-0.5, -0.3, 0] } },
   ]}
-  showZAxis={true}
-  cameraTarget={[0, 0, 2]}
-  cameraPosition={[8, 5, 14]}
+  cameraPosition={[0, 0, 12]}
 />
+
 
 Hubungan ini merupakan perbandingan bagian terhadap keseluruhan. Jika sudut pusat <InlineMath math="\theta" /> dinyatakan dalam derajat, perbandingan luas juring terhadap luas lingkaran adalah <InlineMath math="\frac{\theta}{360^\circ}" />. Jika <InlineMath math="\theta" /> dinyatakan dalam radian, perbandingannya adalah <InlineMath math="\frac{\theta}{2\pi}" />.
 
+| Sudut pusat | Bagian dari satu lingkaran |
+| --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}=\frac{1}{6}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{1}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{120}{360}=\frac{1}{3}" /> |
+
 ## Mengenali Juring dalam Berbagai Konteks
 
-Geometri juring dapat menggambarkan daerah yang disapu melalui sudut tertentu. Sebagai contoh, penyiram ideal dengan jangkauan <InlineMath math="r" /> dan sudut sapuan <InlineMath math="\theta" /> mencakup sebuah juring sebelum pengaruh penghalang, angin, dan sebaran air yang tidak merata diperhitungkan.
+Geometri juring dapat menggambarkan **daerah yang disapu** melalui sudut tertentu. Sebagai contoh, penyiram ideal dengan jangkauan <InlineMath math="r" /> dan sudut sapuan <InlineMath math="\theta" /> mencakup sebuah juring sebelum pengaruh penghalang, angin, dan sebaran air yang tidak merata diperhitungkan.
 
 Juring juga muncul pada diagram lingkaran dan pola radial. Perbandingan sudut pusat menentukan bagian yang bersesuaian dari seluruh cakram, tetapi geometri saja tidak menentukan beban atau efisiensi sebuah mesin.
 
 Pada muka jam yang tandanya berjarak sama, dua tanda jam yang berdekatan membatasi satu dari <InlineMath math="12" /> juring sama besar. Masing-masing memiliki sudut pusat <InlineMath math="30^\circ" />. Potongan pizza atau kue bundar juga menjadi model yang mudah dikenali, asalkan kedua sisinya mengikuti jari-jari.
+
+Pada penyiram ideal berjari-jari <InlineMath math="6\text{ m}" /> yang menyapu <InlineMath math="90^\circ" />, daerah yang disiram adalah seperempat cakram:
+
+<BlockMath math="L=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />

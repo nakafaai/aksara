@@ -3,7 +3,7 @@ export const metadata = {
   description: "Describe a sector using two radii and an arc, relate its size to the central angle, and distinguish minor from major sectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -12,7 +12,7 @@ export const metadata = {
 
 A sector is the region of a circle bounded by <Highlight>two radii and one arc</Highlight>. A slice cut from the center of a round cake is a useful model: its two straight sides represent radii, and its curved edge represents the arc.
 
-Every sector has three main components that are interconnected. First are the two radii that meet at the center of the circle. Second is the arc that connects the endpoints of both radii. Third is the area enclosed by both radii and the arc.
+Distinguish the boundary from the region in the diagram. The **arc** is only the curved edge, while the **sector** includes the entire region between the radii and the arc.
 
 <LineEquation
   title={<>Sector Visualization in a Circle</>}
@@ -48,7 +48,7 @@ Every sector has three main components that are interconnected. First are the tw
       segments: 25,
       color: "#ea580c",
       lineWidth: 4,
-      label: { text: "Sector", offset: [0.5, 0.5, 0] } }
+      label: { text: "Arc", offset: [0.5, 0.5, 0] } }
   ]}
   cameraPosition={[0, 0, 10]}
 />
@@ -59,7 +59,7 @@ A sector has its vertex at the circle's center. The two radii meet there and for
 
 For a fixed circle, the central angle determines what fraction of the circle belongs to the sector. A larger central angle selects a larger fraction. A smaller angle selects a smaller fraction.
 
-If the chosen central angle is less than <InlineMath math="180^\circ" />, <Highlight>the bounded region is the minor sector</Highlight>. If it is greater than <InlineMath math="180^\circ" />, the region is the major sector. An angle of exactly <InlineMath math="180^\circ" /> gives a semicircle.
+If the chosen central angle is less than <InlineMath math="180^\circ" />, the bounded region is the <Highlight>minor sector</Highlight>. If it is greater than <InlineMath math="180^\circ" />, the region is the major sector. An angle of exactly <InlineMath math="180^\circ" /> gives a semicircle.
 
 Within the same circle, arc length and sector area are both proportional to the central angle. Consequently, equal central angles in that circle determine equal arc lengths and equal sector areas.
 
@@ -67,129 +67,38 @@ Within the same circle, arc length and sector area are both proportional to the 
 
 The central angle is measured at the circle's center between the two bounding radii. It can be expressed in degrees or radians.
 
-For example, <InlineMath math="90^\circ" /> is one quarter of a full turn, so its sector has one quarter of the circle's area. A <InlineMath math="180^\circ" /> sector has half of the circle's area.
+For example, <InlineMath math="90^\circ" /> is **one quarter of a full turn**, so its sector has one quarter of the circle's area. A <InlineMath math="180^\circ" /> sector has half of the circle's area.
 
 <LineEquation
-  title={<>Comparison of Sectors with Different Central Angles</>}
-  description={<>Sectors with central angles of <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" />, and <InlineMath math="120^\circ" /> on the same circle.</>}
+  title="Sectors on the Same Circle"
+  description="Three adjacent sectors share one radius and one plane."
   data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 60,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2
-    },
-    { kind: "circle-arc", radius: 4,
-      startDegrees: 0,
-      sweepDegrees: 60,
-      segments: 20,
-      color: "#d97706",
-      lineWidth: 3,
-      label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 4, y: 0, z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 26 }, (_, i) => {
-        const angle = (i / 25) * (Math.PI / 2);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 2
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.3, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 4, y: 0, z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = (i / 30) * (2 * Math.PI / 3);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 4
-        };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="120^\circ" />, at: 15, offset: [0.2, 0.6, 0] }
-      ]
-    }
+    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
+    ...[0, 60, 150, 270].map((degrees) => ({ kind: "circle-radius", radius: 4, degrees, color: "#7c3aed", showPoints: false })),
+    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [-0.3, 0.4, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 120, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="120^\circ" />, offset: [-0.5, -0.3, 0] } },
   ]}
-  showZAxis={true}
-  cameraTarget={[0, 0, 2]}
-  cameraPosition={[8, 5, 14]}
+  cameraPosition={[0, 0, 12]}
 />
+
 
 The relationship is a part-to-whole ratio. If the central angle is <InlineMath math="\theta" /> in degrees, then the ratio of sector area to circle area is <InlineMath math="\frac{\theta}{360^\circ}" />. If <InlineMath math="\theta" /> is measured in radians, the ratio is <InlineMath math="\frac{\theta}{2\pi}" />.
 
+| Central angle | Fraction of the circle |
+| --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}=\frac{1}{6}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{1}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{120}{360}=\frac{1}{3}" /> |
+
 ## Recognizing Sectors in Context
 
-Sector geometry can describe a region swept through a fixed angle. For example, an idealized sprinkler with range <InlineMath math="r" /> and sweep angle <InlineMath math="\theta" /> covers a sector before obstacles, wind, and uneven water distribution are considered.
+Sector geometry can describe a **region swept** through a fixed angle. For example, an idealized sprinkler with range <InlineMath math="r" /> and sweep angle <InlineMath math="\theta" /> covers a sector before obstacles, wind, and uneven water distribution are considered.
 
 Sectors also appear in circular diagrams and radial templates. The central-angle ratio determines the corresponding fraction of the full disk, but geometry alone does not determine a machine's load or efficiency.
 
 On an evenly marked clock face, adjacent hour marks bound one of <InlineMath math="12" /> equal sectors, each with a central angle of <InlineMath math="30^\circ" />. A slice cut from the center of a round pizza or cake is another familiar model, provided its sides follow radii.
+
+An ideal sprinkler with radius <InlineMath math="6\text{ m}" /> sweeping <InlineMath math="90^\circ" /> waters one quarter of a disk:
+
+<BlockMath math="L=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />

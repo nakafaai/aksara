@@ -3,16 +3,14 @@ export const metadata = {
   description: "Hitung panjang tali busur dan jaraknya dari pusat, lalu gunakan hubungan dua tali busur yang berpotongan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Busur dan Juring Lingkaran",
 };
 
 
 ## Ruas Garis antara Dua Titik pada Lingkaran
 
-<Highlight>Tali busur adalah ruas garis yang kedua ujungnya terletak pada lingkaran.</Highlight> Tali tegang yang direntangkan di antara dua titik pada keliling dapat menjadi modelnya. Setiap tali busur menentukan busur kecil dan busur besar, serta membagi cakram menjadi [tembereng kecil dan tembereng besar](/id/materi/matematika/busur-dan-juring-lingkaran/tembereng).
-
-Di antara tali busur pada lingkaran yang sama, tali busur yang lebih jauh dari pusat lebih pendek. Tali busur terpanjang melalui pusat dan disebut diameter.
+Tali busur adalah ruas garis dengan **kedua ujung pada lingkaran**. Tali tegang yang direntangkan di antara dua titik pada keliling dapat menjadi modelnya. Tali busur yang bukan diameter membagi cakram menjadi [tembereng kecil dan tembereng besar](/id/materi/matematika/busur-dan-juring-lingkaran/tembereng). Diameter menghasilkan dua setengah lingkaran sama besar.
 
 <LineEquation
   title={<>Visualisasi Tali Busur dalam Lingkaran</>}
@@ -86,7 +84,7 @@ Jarak yang dipakai adalah jarak tegak lurus dari pusat ke tali busur. Garis tega
 
 Jika <InlineMath math="d" /> adalah jarak tegak lurus tersebut, <InlineMath math="r" /> adalah jari-jari, dan <InlineMath math="l" /> adalah panjang tali busur, teorema Pythagoras memberikan:
 
-<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+<BlockMath math="d^2+(l/2)^2=r^2\quad\Longrightarrow\quad l=2\sqrt{r^2-d^2}" />
 
 Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melalui pusat), maka <InlineMath math="l = 2r" /> yang merupakan diameter.
 
@@ -155,13 +153,11 @@ Rumus ini menunjukkan bahwa ketika <InlineMath math="d = 0" /> (tali busur melal
 
 ## Sifat Tali Busur yang Sama Panjang
 
-Tali busur yang sama panjang pada lingkaran yang sama memiliki jarak tegak lurus yang sama dari pusat. Sebaliknya, tali busur dengan jarak tegak lurus yang sama dari pusat memiliki panjang yang sama.
+Tali busur yang **sama panjang pada lingkaran yang sama** memiliki jarak tegak lurus yang sama dari pusat. Sebaliknya, jarak tegak lurus yang sama menghasilkan panjang yang sama.
 
-Jadi, jika dua tali busur sama panjang, maka:
+Pada gambar pertama, dua diameter memiliki panjang <InlineMath math="CD=EF=8" />. Tali busur <InlineMath math="AB" /> berjarak <InlineMath math="2" /> dari pusat, sehingga:
 
-1. Jarak kedua tali busur ke pusat lingkaran adalah sama
-2. Busur kecil yang bersesuaian memiliki panjang yang sama
-3. Sudut pusat kecil yang dibentang memiliki besar yang sama
+<BlockMath math="AB=2\sqrt{4^2-2^2}=2\sqrt{12}=4\sqrt3<8" />
 
 ## Teorema Tali Busur Berpotongan
 
@@ -171,9 +167,31 @@ Ketika dua tali busur berpotongan di dalam lingkaran, terdapat hubungan khusus a
 
 Hubungan ini disebut teorema tali busur berpotongan. Gunakan teorema ini untuk menentukan satu panjang ruas jika tiga panjang ruas lainnya diketahui.
 
+
+Tambahkan ruas <InlineMath math="AC" /> dan <InlineMath math="DB" />. Sudut <InlineMath math="APC" /> dan <InlineMath math="DPB" /> sama karena bertolak belakang. Sudut <InlineMath math="PAC" /> dan <InlineMath math="PDB" /> menghadap busur <InlineMath math="BC" /> yang sama. Maka kedua segitiga **sebangun** dan:
+
+<BlockMath math="\frac{AP}{PD}=\frac{CP}{PB}\quad\Longrightarrow\quad AP\cdot PB=CP\cdot PD" />
+
+<LineEquation
+  title="Tali Busur dan Segitiga Sebangun"
+  description="Dua tali busur berpotongan dan dua ruas bantu menunjukkan segitiga yang sebangun."
+  data={[
+    { points: Array.from({ length: 181 }, (_, i) => ({ x: 1 + Math.sqrt(65) * Math.cos(i * Math.PI / 90), y: -4 + Math.sqrt(65) * Math.sin(i * Math.PI / 90), z: 0 })), smooth: false, color: "#0891b2", showPoints: false },
+    { points: [{ x: -6, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: "A", at: 0, offset: [-0.5, 0.4, 0] }, { text: "B", at: 1, offset: [0.5, 0.4, 0] }] },
+    { points: [{ x: 0, y: 4, z: 0 }, { x: 0, y: -12, z: 0 }], smooth: false, color: "#9333ea", showPoints: true, labels: [{ text: "C", at: 0, offset: [0.4, 0.5, 0] }, { text: "D", at: 1, offset: [0.4, -0.5, 0] }] },
+    { points: [{ x: -6, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
+    { points: [{ x: 0, y: -12, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: "P", at: 0, offset: [0.5, 0.5, 0] }] },
+  ]}
+  cameraTarget={[1, -4, 0]}
+  cameraPosition={[1, -4, 24]}
+/>
+
+<BlockMath math="AP\cdot PB=6\times8=48=4\times12=CP\cdot PD" />
+
 ## Latihan
 
-Setiap soal memberikan bagian-bagian lingkaran dan meminta panjang tali busurnya, jadi gunakan jari-jari dan jarak tegak lurus dari pusat ke tali busur.
+Bedakan panjang tali busur dari **jarak tegak lurus ke pusat**. Soal keempat memakai hasil kali ruas pada dua tali busur berpotongan, sedangkan soal lain memakai segitiga siku-siku.
 
 1. Sebuah lingkaran memiliki jari-jari <InlineMath math="13 \text{ cm}" />. Jika jarak sebuah tali busur ke pusat lingkaran adalah <InlineMath math="5 \text{ cm}" />, tentukan panjang tali busur tersebut.
 
@@ -187,79 +205,81 @@ Setiap soal memberikan bagian-bagian lingkaran dan meminta panjang tali busurnya
 
 ### Pembahasan
 
-1. **Jawaban: <InlineMath math="24 \text{ cm}" />**
+Pada segitiga siku-siku, gunakan **setengah panjang tali busur** sebagai salah satu sisi siku-siku. Panjang utuh diperoleh setelah hasil itu dikalikan dua.
 
-   Diketahui: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 5 \text{ cm}" />
+**Pembahasan 1**: <InlineMath math="24 \text{ cm}" />
 
-   Menggunakan rumus panjang tali busur:
+Diketahui: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 5 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
-   <BlockMath math="l = 2\sqrt{13^2 - 5^2}" />
-   <BlockMath math="l = 2\sqrt{169 - 25}" />
-   <BlockMath math="l = 2\sqrt{144} = 2 \times 12 = 24 \text{ cm}" />
-   </MathContainer>
+Menggunakan rumus panjang tali busur:
 
-2. **Jawaban: <InlineMath math="6 \text{ cm}" />**
+<MathContainer>
+<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+<BlockMath math="l = 2\sqrt{13^2 - 5^2}" />
+<BlockMath math="l = 2\sqrt{169 - 25}" />
+<BlockMath math="l = 2\sqrt{144} = 2 \times 12 = 24 \text{ cm}" />
+</MathContainer>
 
-   Diketahui: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="l = 16 \text{ cm}" />
+**Pembahasan 2**: <InlineMath math="6 \text{ cm}" />
 
-   Menggunakan rumus panjang tali busur:
+Diketahui: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="l = 16 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="16 = 2\sqrt{10^2 - d^2}" />
-   <BlockMath math="8 = \sqrt{100 - d^2}" />
-   <BlockMath math="64 = 100 - d^2" />
-   <BlockMath math="d^2 = 100 - 64 = 36" />
-   <BlockMath math="d = 6 \text{ cm}" />
-   </MathContainer>
+Menggunakan rumus panjang tali busur:
 
-3. **Jawaban: <InlineMath math="3 \text{ cm}" />**
+<MathContainer>
+<BlockMath math="16 = 2\sqrt{10^2 - d^2}" />
+<BlockMath math="8 = \sqrt{100 - d^2}" />
+<BlockMath math="64 = 100 - d^2" />
+<BlockMath math="d^2 = 100 - 64 = 36" />
+<BlockMath math="d = 6 \text{ cm}" />
+</MathContainer>
 
-   Diketahui: <InlineMath math="r = 15 \text{ cm}" />, <InlineMath math="l_1 = 24 \text{ cm}" />, <InlineMath math="l_2 = 18 \text{ cm}" />
+**Pembahasan 3**: <InlineMath math="3 \text{ cm}" />
 
-   Mencari jarak tali busur pertama:
+Diketahui: <InlineMath math="r = 15 \text{ cm}" />, <InlineMath math="l_1 = 24 \text{ cm}" />, <InlineMath math="l_2 = 18 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="24 = 2\sqrt{15^2 - d_1^2}" />
-   <BlockMath math="12 = \sqrt{225 - d_1^2}" />
-   <BlockMath math="144 = 225 - d_1^2" />
-   <BlockMath math="d_1^2 = 81, \text{ maka } d_1 = 9 \text{ cm}" />
-   </MathContainer>
+Mencari jarak tali busur pertama:
 
-   Mencari jarak tali busur kedua:
+<MathContainer>
+<BlockMath math="24 = 2\sqrt{15^2 - d_1^2}" />
+<BlockMath math="12 = \sqrt{225 - d_1^2}" />
+<BlockMath math="144 = 225 - d_1^2" />
+<BlockMath math="d_1^2 = 81, \text{ maka } d_1 = 9 \text{ cm}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="18 = 2\sqrt{15^2 - d_2^2}" />
-   <BlockMath math="9 = \sqrt{225 - d_2^2}" />
-   <BlockMath math="81 = 225 - d_2^2" />
-   <BlockMath math="d_2^2 = 144, \text{ maka } d_2 = 12 \text{ cm}" />
-   </MathContainer>
+Mencari jarak tali busur kedua:
 
-   Selisih jarak: <InlineMath math="d_2 - d_1 = 12 - 9 = 3 \text{ cm}" />
+<MathContainer>
+<BlockMath math="18 = 2\sqrt{15^2 - d_2^2}" />
+<BlockMath math="9 = \sqrt{225 - d_2^2}" />
+<BlockMath math="81 = 225 - d_2^2" />
+<BlockMath math="d_2^2 = 144, \text{ maka } d_2 = 12 \text{ cm}" />
+</MathContainer>
 
-4. **Jawaban: <InlineMath math="12 \text{ cm}" />**
+Selisih jarak: <InlineMath math="d_2 - d_1 = 12 - 9 = 3 \text{ cm}" />
 
-   Diketahui: PT = <InlineMath math="6 \text{ cm}" />, TQ = <InlineMath math="8 \text{ cm}" />, RT = <InlineMath math="4 \text{ cm}" />
+**Pembahasan 4**: <InlineMath math="12 \text{ cm}" />
 
-   Menggunakan teorema tali busur berpotongan:
+Diketahui: <InlineMath math="PT" /> = <InlineMath math="6 \text{ cm}" />, <InlineMath math="TQ" /> = <InlineMath math="8 \text{ cm}" />, <InlineMath math="RT" /> = <InlineMath math="4 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="PT \times TQ = RT \times TS" />
-   <BlockMath math="6 \times 8 = 4 \times TS" />
-   <BlockMath math="48 = 4 \times TS" />
-   <BlockMath math="TS = 12 \text{ cm}" />
-   </MathContainer>
+Menggunakan teorema tali busur berpotongan:
 
-5. **Jawaban: <InlineMath math="10 \text{ cm}" />**
+<MathContainer>
+<BlockMath math="PT \times TQ = RT \times TS" />
+<BlockMath math="6 \times 8 = 4 \times TS" />
+<BlockMath math="48 = 4 \times TS" />
+<BlockMath math="TS = 12 \text{ cm}" />
+</MathContainer>
 
-   Diketahui: diameter = <InlineMath math="26 \text{ cm}" />, maka <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 12 \text{ cm}" />
+**Pembahasan 5**: <InlineMath math="10 \text{ cm}" />
 
-   Menggunakan rumus panjang tali busur:
+Diketahui: diameter = <InlineMath math="26 \text{ cm}" />, maka <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 12 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="l = 2\sqrt{r^2 - d^2}" />
-   <BlockMath math="l = 2\sqrt{13^2 - 12^2}" />
-   <BlockMath math="l = 2\sqrt{169 - 144}" />
-   <BlockMath math="l = 2\sqrt{25} = 2 \times 5 = 10 \text{ cm}" />
-   </MathContainer>
+Menggunakan rumus panjang tali busur:
+
+<MathContainer>
+<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+<BlockMath math="l = 2\sqrt{13^2 - 12^2}" />
+<BlockMath math="l = 2\sqrt{169 - 144}" />
+<BlockMath math="l = 2\sqrt{25} = 2 \times 5 = 10 \text{ cm}" />
+</MathContainer>

@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Pohon Penularan Ideal
 
-<Highlight>Bayangkan pada awalnya ada satu orang yang terinfeksi.</Highlight> Orang tersebut kemudian menulari tepat <InlineMath math="3" /> orang lain. Pada fase berikutnya, masing-masing dari ketiga orang itu menulari <InlineMath math="3" /> orang lagi. Agar polanya mudah dihitung, kita anggap setiap orang yang baru terinfeksi selalu menulari tepat <InlineMath math="3" /> orang lain, tidak ada satu orang pun yang tertular dari dua sumber, dan belum ada yang pulih.
+Pada awal perhitungan ada satu orang yang terinfeksi. Orang tersebut menulari tepat <InlineMath math="3" /> orang lain. Pada fase berikutnya, setiap orang yang baru terinfeksi menulari <InlineMath math="3" /> orang lagi. Aturan percabangan itu memakai **faktor pengali tetap**. Agar polanya mudah dihitung, kita anggap setiap orang yang baru terinfeksi selalu menulari tepat <InlineMath math="3" /> orang lain, tidak ada satu orang pun yang tertular dari dua sumber, dan belum ada yang pulih.
 
 Dengan aturan sederhana tadi, jumlah orang yang baru terinfeksi pada setiap fase menjadi tiga kali jumlah pada fase sebelumnya. Contoh ini hanya dipakai untuk mempelajari fungsi eksponensial. Saat wabah benar-benar terjadi, seseorang bisa tertular dari lebih dari satu sumber, sebagian orang akan pulih, dan laju penularan dapat terus berubah.
 
@@ -18,19 +18,21 @@ Dengan aturan sederhana tadi, jumlah orang yang baru terinfeksi pada setiap fase
 
 Jumlah berikut menghitung **orang yang baru terinfeksi pada fase tersebut**. Untuk mengetahui jumlahnya selama beberapa fase, kita menjumlahkan semua fase yang sudah selesai:
 
-- **Fase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> orang yang baru terinfeksi
-- **Fase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> orang yang baru terinfeksi
-- **Fase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> orang yang baru terinfeksi
-- **Fase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> orang yang baru terinfeksi
-- **Fase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> orang yang baru terinfeksi
+| Fase | Baru terinfeksi | Total sejak fase pertama |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="12" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="39" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="120" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="363" /> |
 
 Jika <InlineMath math="N(x)" /> adalah jumlah orang yang baru terinfeksi pada fase <InlineMath math="x" />, maka:
 
 <BlockMath math="N(x)=3^x" />
 
-Jumlah orang yang baru terinfeksi dari fase pertama hingga fase <InlineMath math="x" /> merupakan jumlah geometri:
+Jumlah orang yang baru terinfeksi dari fase pertama hingga fase <InlineMath math="x" /> mengikuti [deret geometri](/id/materi/matematika/barisan-dan-deret/deret-geometri) dengan suku pertama dan rasio sama-sama <InlineMath math="3" />:
 
-<BlockMath math="\begin{aligned} S(x) &amp;=3+3^2+\cdots+3^x \\ &amp;=\frac{3^{x+1}-3}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} S(x) &=3+3^2+\cdots+3^x \\ &=3\frac{3^x-1}{3-1} \\ &=\frac{3^{x+1}-3}{2} \end{aligned}" />
 
 Memisahkan kedua besaran ini mencegah kesalahan pemodelan yang umum: <InlineMath math="N(x)" /> menjelaskan satu fase, sedangkan <InlineMath math="S(x)" /> menjumlahkan semua fase yang telah selesai.
 
@@ -83,6 +85,8 @@ Untuk <InlineMath math="f(x)=a^x" /> dengan <InlineMath math="a>0" /> dan <Inlin
 3. Jika <InlineMath math="a>1" />, fungsi tersebut naik.
 4. Jika <InlineMath math="0<a<1" />, fungsi tersebut turun.
 5. Untuk <InlineMath math="a>1" />, nilai <InlineMath math="a" /> yang lebih besar menghasilkan pertumbuhan lebih besar pada setiap interval. Untuk <InlineMath math="0<a<1" />, nilai <InlineMath math="a" /> yang lebih kecil menghasilkan peluruhan lebih besar pada setiap interval.
+
+Sifat fungsi umum berlaku untuk **masukan real**. Ketika menghitung fase penularan, kita hanya memakai masukan bilangan bulat tak negatif. Jadi, domain fungsi matematis dan waktu pengamatan model perlu dibedakan.
 
 ## Tempat Model Eksponensial Digunakan
 

@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Numbers Assigned to Ordered Positions
 
-We use the following notation:
+A number sequence is an ordered list of numbers. Each number is called a **term**. We use the following notation:
 
 - The term at index <InlineMath math="1" /> is denoted by <InlineMath math="U_1" />
 - The term at index <InlineMath math="2" /> is denoted by <InlineMath math="U_2" />
@@ -22,7 +22,7 @@ More precisely, a sequence assigns one value to each allowed index:
 
 <BlockMath math="U:\{1,2,3,\ldots\}\to\mathbb{R},\qquad n\mapsto U_n" />
 
-<Highlight>Order is part of the definition</Highlight>. The sequences <InlineMath math="1,2,3,\ldots" /> and <InlineMath math="3,2,1,\ldots" /> may contain some of the same numbers, but they are not the same sequence.
+**Order** is part of the definition. The sequences <InlineMath math="1,2,3,\ldots" /> and <InlineMath math="3,2,1,\ldots" /> may contain some of the same numbers, but they are not the same sequence.
 
 ## Explicit and Recursive Rules
 
@@ -66,11 +66,7 @@ We can create a table to observe the pattern:
 | ---------------- | --- | --- | --- | --- | --- | --- |
 | Number of chairs | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="14" /> |
 
-The table shows the first three pairs:
-
-- When there is <InlineMath math="1 \text{ table}" />, there are <InlineMath math="4" /> chairs
-- When there are <InlineMath math="2 \text{ tables}" />, there are <InlineMath math="6" /> chairs
-- When there are <InlineMath math="3 \text{ tables}" />, there are <InlineMath math="8" /> chairs
+In a straight row, each table provides **two chairs along the long sides**. Two more chairs sit at the ends of the row. Therefore, <InlineMath math="n" /> tables give <InlineMath math="2n" /> chairs along the sides and <InlineMath math="2" /> at the ends.
 
 Each additional <InlineMath math="1 \text{ table}" /> adds <InlineMath math="2" /> chairs. The relationship between the number of tables and chairs follows the formula:
 
@@ -90,13 +86,13 @@ The same pattern can be written recursively:
 
 ## Using the Rule to Answer a Seating Question
 
-A sequence rule can answer a counting question directly. In the example below, the rule converts a number of people into a number of tables.
+A sequence rule can answer a counting question directly. In the example below, the rule converts a **number of people into a number of tables**.
 
 ### Determining the Number of Chairs and Tables
 
 The sequence rule answers questions such as:
 
-**If there are <InlineMath math="20 \text{ people}" /> who will sit on chairs, how many tables need to be joined?**
+If <InlineMath math="20 \text{ people}" /> each need a chair, **how many tables** must be joined?
 
 We can use the formula <InlineMath math="U_n = 2n + 2" /> where <InlineMath math="U_n = 20" />, so:
 
@@ -110,17 +106,17 @@ We can use the formula <InlineMath math="U_n = 2n + 2" /> where <InlineMath math
 
 ## Types of Sequences
 
-Based on their patterns, number sequences fall into several types. The two that turn up most often add a fixed difference or multiply by a fixed ratio, and each of them has its own formulas.
+Based on their patterns, number sequences fall into several types. The two that turn up most often add a **fixed difference** or multiply by a fixed ratio, and each of them has its own formulas.
 
 ### Arithmetic Sequence
 
-A number sequence where the difference between two consecutive terms is always constant. This difference is called the common difference (<InlineMath math="b" />).
+A number sequence where the difference between two consecutive terms is always constant. This difference is called the **common difference** (<InlineMath math="b" />).
 
 Example: <InlineMath math="2, 4, 6, 8, 10, \ldots" /> Common difference <InlineMath math="(b) = 2" />
 
 ### Geometric Sequence
 
-A number sequence where the ratio between two consecutive terms is always constant. This ratio is called the common ratio (<InlineMath math="r" />).
+A number sequence where the ratio between two consecutive terms is always constant. This ratio is called the **common ratio** (<InlineMath math="r" />).
 
 Example: <InlineMath math="2, 6, 18, 54, \ldots" /> Common ratio <InlineMath math="(r) = 3" />
 
@@ -130,9 +126,23 @@ Besides arithmetic and geometric sequences, there are many other types of sequen
 
 Example of a Fibonacci sequence: <InlineMath math="0, 1, 1, 2, 3, 5, 8, 13, \ldots" />
 
+For indices <InlineMath math="n\geq1" />, the **sum of the two preceding terms** gives the Fibonacci recursion:
+
+<BlockMath math="F_1=0,\quad F_2=1,\quad F_{n+2}=F_{n+1}+F_n" />
+
 ## A Finite Prefix Does Not Determine One Unique Rule
 
-A short list of terms can suggest a plausible pattern, but it does not logically force one continuation. The prefix <InlineMath math="1,2,4" /> might continue as <InlineMath math="8,16,\ldots" /> if every term is doubled. A different rule could agree with the first three terms and change from the fourth term onward.
+A short list of terms can suggest a plausible pattern, but it **does not logically force one continuation**. The prefix <InlineMath math="1,2,4" /> might continue as <InlineMath math="8,16,\ldots" /> if every term is doubled. A different rule could agree with the first three terms and change from the fourth term onward.
+
+Two rules that match at the first three positions are <InlineMath math="A_n=2^{n-1}" /> and <InlineMath math="B_n=1+\frac{n(n-1)}2" />. They first differ at the fourth position:
+
+| Position | Doubling rule | Quadratic rule |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="11" /> |
 
 A fully defined sequence needs an unambiguous rule or enough conditions to identify it. Guessing a pattern produces a conjecture. A proof requires a rule that determines every term.
 
@@ -140,7 +150,7 @@ A fully defined sequence needs an unambiguous rule or enough conditions to ident
 
 To determine the pattern of a sequence:
 
-1. Observe the differences between consecutive terms
+1. Observe the **differences between consecutive terms**
 2. Check if the difference is constant (arithmetic sequence)
 3. If not, check if the ratio is constant (geometric sequence)
 4. If neither, check for other possible patterns
@@ -151,7 +161,7 @@ A sequence assigns one term to each index. Its rule may be explicit, recursive, 
 
 Given <InlineMath math="V_n=n^2-n" />:
 
-1. Find the first five terms.
+1. Find the **first five terms**.
 2. Give a recursive rule for the sequence.
 
 <MathContainer>
@@ -161,4 +171,4 @@ Given <InlineMath math="V_n=n^2-n" />:
 
 The recursive increment is <InlineMath math="2n" /> because:
 
-<BlockMath math="\begin{aligned} &amp;V_{n+1}-V_n \\ &amp;=((n+1)^2-(n+1))-(n^2-n) \\ &amp;=2n \end{aligned}" />
+<BlockMath math="\begin{aligned} V_{n+1}-V_n &=((n+1)^2-(n+1))-(n^2-n) \\ &=n^2+2n+1-n-1-n^2+n \\ &=2n \end{aligned}" />

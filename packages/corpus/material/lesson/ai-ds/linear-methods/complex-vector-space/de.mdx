@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baue komplexe Vektorräume aus dem Körper der komplexen Zahlen auf und erkenne, wie der Skalarkörper Dimension und Linearität verändert.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -25,6 +25,26 @@ Der **Betrag** einer komplexen Zahl wird mit der Formel berechnet:
 
 Dieser Betrag ist der Abstand der komplexen Zahl vom Ursprung in der komplexen Ebene.
 
+
+Für <InlineMath math="z=3+4i" /> ändert die Konjugation das Vorzeichen der imaginären Koordinate und erhält den Abstand vom Ursprung. Vergleiche die beiden Strecken im Diagramm.
+
+<MathContainer>
+<BlockMath math="\overline z=3-4i" />
+<BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
+</MathContainer>
+
+<LineEquation
+  title="Konjugation spiegelt an der reellen Achse"
+  description="Waagerecht steht der Realteil, senkrecht der Imaginärteil. Die Punkte 3+4i und 3-4i haben denselben Abstand vom Ursprung."
+  cameraPosition={[1.5, 0, 12]}
+  cameraTarget={[1.5, 0, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#0d9488", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: "3+4i", at: 1 }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }], color: "#f97316", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: "3-4i", at: 1 }] },
+  ]}
+/>
+
 ## Fundamentalsatz der Algebra
 
 Der Fundamentalsatz der Algebra besagt, dass jedes nichtkonstante Polynom mit komplexen Koeffizienten eine komplexe Nullstelle besitzt.
@@ -39,7 +59,7 @@ Wiederholtes Anwenden des Satzes zeigt, dass ein Polynom vom Grad <InlineMath ma
 
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
-Es besitzt also genau <InlineMath math="n" /> komplexe Nullstellen, wenn Vielfachheiten mitgezählt werden. Die Voraussetzung "nichtkonstant" ist wichtig: Ein von null verschiedenes konstantes Polynom hat keine Nullstelle.
+Es besitzt also genau <InlineMath math="n" /> komplexe Nullstellen, wenn **Vielfachheiten mitgezählt werden**. Die Voraussetzung "nichtkonstant" ist wichtig: Ein von null verschiedenes konstantes Polynom hat keine Nullstelle.
 
 ## Definition und Axiome des komplexen Vektorraums
 
@@ -89,7 +109,7 @@ Die Elemente <InlineMath math="x \in V" /> werden **Vektoren** genannt, und die 
 
 Die Menge <InlineMath math="V=\mathbb C^2" /> ist mit komponentenweisen Operationen ein komplexer Vektorraum. Zum Beispiel gilt
 
-<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+<BlockMath math="\begin{aligned} (1+i)\begin{pmatrix}1\\-i\end{pmatrix} &amp;= \begin{pmatrix}(1+i)\cdot1\\(1+i)(-i)\end{pmatrix} \\ &amp;= \begin{pmatrix}1+i\\-i-i^2\end{pmatrix} = \begin{pmatrix}1+i\\1-i\end{pmatrix} \end{aligned}" />
 
 <Highlight>Der Skalarkörper verändert die Dimension</Highlight>. Die Menge <InlineMath math="\mathbb C" /> besitzt als komplexer Vektorraum die Basis <InlineMath math="\{1\}" />, als reeller Vektorraum dagegen die Basis <InlineMath math="\{1,i\}" />:
 
@@ -102,4 +122,4 @@ Die Menge <InlineMath math="V=\mathbb C^2" /> ist mit komponentenweisen Operatio
 
 Rein algebraische Ergebnisse aus den Vektorraumaxiomen gelten sowohl über <InlineMath math="\mathbb R" /> als auch über <InlineMath math="\mathbb C" />. Ergebnisse, die eine Ordnung oder ein rein reelles Skalarprodukt verwenden, benötigen angepasste Voraussetzungen. Komplexe Skalarprodukte verwenden beispielsweise die Konjugation, und die komplexen Zahlen besitzen keine mit ihrer Arithmetik verträgliche Körperordnung.
 
-Der Skalarkörper entscheidet außerdem, welche Abbildungen linear sind. Die komplexe Konjugation ist über <InlineMath math="\mathbb R" /> linear, über <InlineMath math="\mathbb C" /> jedoch nicht, denn <InlineMath math="\overline{iz}=-i\overline z" /> statt <InlineMath math="i\overline z" />. Vor Aussagen über Basis, Dimension oder lineare Abbildungen muss der Skalarkörper deshalb immer feststehen.
+Der **Skalarkörper** entscheidet außerdem, welche Abbildungen linear sind. Die komplexe Konjugation ist über <InlineMath math="\mathbb R" /> linear, über <InlineMath math="\mathbb C" /> jedoch nicht, denn <InlineMath math="\overline{iz}=-i\overline z" /> statt <InlineMath math="i\overline z" />. Vor Aussagen über Basis, Dimension oder lineare Abbildungen muss der Skalarkörper deshalb immer feststehen.

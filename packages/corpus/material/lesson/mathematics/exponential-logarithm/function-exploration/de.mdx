@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Eine einfache Geschichte zur Ansteckung
 
-Stell dir vor, eine infizierte Person steckt genau <InlineMath math="3" /> weitere Menschen an. <Highlight>In der nächsten Phase steckt jede dieser drei Personen wieder drei Menschen an.</Highlight> Damit die Rechnung übersichtlich bleibt, nehmen wir an: Niemand wird von zwei Personen gleichzeitig angesteckt, noch niemand ist genesen und der Faktor drei bleibt immer gleich.
+Die Rechnung beginnt mit einer infizierten Person, die genau <InlineMath math="3" /> weitere Menschen ansteckt. In der nächsten Phase steckt jede neu infizierte Person weitere <InlineMath math="3" /> Menschen an. Diese Verzweigungsregel verwendet einen **festen Multiplikationsfaktor**. Damit die Rechnung übersichtlich bleibt, nehmen wir an: Niemand wird von zwei Personen gleichzeitig angesteckt, noch niemand ist genesen und der Faktor drei bleibt immer gleich.
 
 So entsteht ein leicht erkennbares Muster: In jeder Phase stecken sich dreimal so viele Menschen neu an wie in der Phase davor. Bei einem echten Ausbruch ist das natürlich anders. Kontakte überschneiden sich, Menschen genesen und die Ansteckung verändert sich mit der Zeit. Unser Beispiel erklärt exponentielles Wachstum unter gleich bleibenden Bedingungen.
 
@@ -18,19 +18,21 @@ So entsteht ein leicht erkennbares Muster: In jeder Phase stecken sich dreimal s
 
 Jede Zahl zeigt, wie viele Menschen sich **in genau dieser Phase** neu anstecken. Sie ist noch nicht die Summe aller Phasen:
 
-- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> neu infizierte Personen
-- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> neu infizierte Personen
-- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> neu infizierte Personen
-- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> neu infizierte Personen
-- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> neu infizierte Personen
+| Phase | Neu infiziert | Summe seit der ersten Phase |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="12" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="39" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="120" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="363" /> |
 
 <InlineMath math="N(x)" /> bezeichnet die Zahl der Menschen, die sich in Phase <InlineMath math="x" /> neu anstecken:
 
 <BlockMath math="N(x)=3^x" />
 
-Addieren wir dagegen alle neuen Infektionen von Phase eins bis Phase <InlineMath math="x" />, erhalten wir diese geometrische Summe:
+Die Summe der neuen Infektionen von Phase eins bis Phase <InlineMath math="x" /> ist eine [geometrische Reihe](/de/faecher/mathematik/folgen-und-reihen/geometrische-reihe). Das erste Glied und der Quotient sind beide <InlineMath math="3" />:
 
-<BlockMath math="\begin{aligned} S(x) &amp;=3+3^2+\cdots+3^x \\ &amp;=\frac{3^{x+1}-3}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} S(x) &=3+3^2+\cdots+3^x \\ &=3\frac{3^x-1}{3-1} \\ &=\frac{3^{x+1}-3}{2} \end{aligned}" />
 
 Die beiden Formeln beantworten also verschiedene Fragen: <InlineMath math="N(x)" /> beschreibt eine einzelne Phase, <InlineMath math="S(x)" /> addiert alle abgeschlossenen Phasen.
 
@@ -85,6 +87,8 @@ Für <InlineMath math="f(x)=a^x" /> mit <InlineMath math="a>0" /> und <InlineMat
 3. Für <InlineMath math="a>1" /> ist die Funktion steigend.
 4. Für <InlineMath math="0<a<1" /> ist die Funktion fallend.
 5. Für <InlineMath math="a>1" /> führt ein größerer Wert von <InlineMath math="a" /> zu stärkerem Wachstum pro Intervall. Für <InlineMath math="0<a<1" /> führt ein kleinerer Wert von <InlineMath math="a" /> zu stärkerem Zerfall pro Intervall.
+
+Diese allgemeinen Funktionseigenschaften gelten für **reelle Eingaben**. Für die Anzahl der Übertragungsphasen verwenden wir nur nichtnegative ganze Zahlen. Die Definitionsmenge der mathematischen Funktion und die Beobachtungszeitpunkte des Modells unterscheiden sich also.
 
 ## Einsatzbereiche exponentieller Modelle
 

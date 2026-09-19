@@ -4,36 +4,42 @@ export const metadata = {
     description: "Bestimme Drehzentrum, Drehrichtung und Drehwinkel und berechne die Bildkoordinaten von Punkten und Geraden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
 ## Drehzentrum und Drehwinkel legen die Abbildung fest
 
-Eine Drehung bewegt jeden Punkt einer Figur <Highlight>um denselben Winkel um ein festes Drehzentrum</Highlight>. Die Figur wird versetzt und gedreht, während Abstände, Winkel, Form, Größe und die Reihenfolge ihrer Eckpunkte erhalten bleiben.
+Eine Drehung bewegt jeden Punkt einer Figur <Highlight>um denselben Winkel</Highlight> um ein festes Zentrum. Die Figur wird versetzt und gedreht, während Abstände, Winkel, Form, Größe und die Reihenfolge ihrer Eckpunkte erhalten bleiben.
 
 Zwei Angaben bestimmen eine Drehung:
 
-- **Drehzentrum (C):** Der feste Punkt, um den die Drehung erfolgt.
-- **Drehwinkel (<InlineMath math="\theta" />):** Ein gerichteter Winkel, der Größe und Richtung der Drehung angibt. Ein positiver Winkel dreht gegen den Uhrzeigersinn, ein negativer Winkel im Uhrzeigersinn.
+- **Drehzentrum (C)**: Der feste Punkt, um den die Drehung erfolgt.
+- **Drehwinkel (<InlineMath math="\theta" />)**: Ein gerichteter Winkel, der Größe und Richtung der Drehung angibt. Ein positiver Winkel dreht gegen den Uhrzeigersinn, ein negativer Winkel im Uhrzeigersinn.
 
 ### Definition einer Drehung
 
-Gegeben seien ein Drehzentrum <InlineMath math="C" /> und ein gerichteter Winkel <InlineMath math="\theta" />. Die Drehung mit dem Zentrum <InlineMath math="C" /> um den Winkel <InlineMath math="\theta" />, bezeichnet durch <InlineMath math="\rho_{C,\theta}" /> oder <InlineMath math="R(C,\theta)" />, ist als Transformation definiert, die Folgendes abbildet:
+Das Zentrum <InlineMath math="C" /> **bleibt fest**. Für einen Punkt <InlineMath math="P\ne C" /> bleibt der Abstand <InlineMath math="CP=CP'" /> erhalten. Die Richtung vom Zentrum wird um den gerichteten Winkel <InlineMath math="\theta" /> gedreht. Gemessen wird vom Strahl <InlineMath math="CP" /> zum Strahl <InlineMath math="CP'" />, gegen den Uhrzeigersinn positiv.
 
-1. Das Drehzentrum <InlineMath math="C" /> wird auf sich selbst abgebildet (<InlineMath math="C'=C" />).
-2. Jeder Punkt <InlineMath math="P" /> wird auf einen Punkt <InlineMath math="P'" /> abgebildet. Dabei gilt <InlineMath math="CP = CP'" />, und der gerichtete Winkel vom Strahl <InlineMath math="\vec{CP}" /> zum Strahl <InlineMath math="\vec{CP'}" /> beträgt <InlineMath math="\theta" />.
+Winkel, die sich um eine volle Drehung unterscheiden, ergeben denselben Bildpunkt. Beispielsweise ergibt eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn dasselbe Bild wie <InlineMath math="270^\circ" /> im Uhrzeigersinn:
+
+<BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
 ## Drehung um den Ursprung
 
-Ein häufiger Sonderfall ist die Drehung um den Ursprung <InlineMath math="O(0,0)" />.
-
-Wenn ein Punkt <InlineMath math="P(x,y)" /> um einen Winkel <InlineMath math="\theta" /> um den Ursprung <InlineMath math="O(0,0)" /> gedreht wird, können seine Bildkoordinaten <InlineMath math="P'(x',y')" /> mit folgenden Formeln berechnet werden:
+Bei einer Drehung um den Ursprung bestimmen **Sinus und Kosinus des Drehwinkels**, wie die Koordinaten kombiniert werden. Mit den Werten besonderer Winkel erhältst du kürzere Regeln:
 
 <MathContainer>
   <BlockMath math="x' = x \cos \theta - y \sin \theta" />
   <BlockMath math="y' = x \sin \theta + y \cos \theta" />
 </MathContainer>
+
+| Winkel | Bildpunkt | Richtung |
+| --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(-y,x)" /> | Vierteldrehung gegen den Uhrzeigersinn |
+| <InlineMath math="-90^\circ" /> | <InlineMath math="(y,-x)" /> | Vierteldrehung im Uhrzeigersinn |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-x,-y)" /> | Halbe Drehung |
+
 
 ## Drehen eines Punktes um eine Vierteldrehung
 
@@ -43,7 +49,7 @@ Hier: <InlineMath math="x=0" />, <InlineMath math="y=4" /> und <InlineMath math=
 
 Wir kennen <InlineMath math="\cos 90^\circ = 0" /> und <InlineMath math="\sin 90^\circ = 1" />.
 
-Wir setzen die Werte in die Drehformeln ein:
+Wir verwenden einen **positiven Winkel** für die Drehung gegen den Uhrzeigersinn:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= (0) \cos 90^\circ - (4) \sin 90^\circ \\ &amp;= 0 \cdot 0 - 4 \cdot 1 \\ &amp;= -4 \end{aligned}" />
@@ -67,6 +73,7 @@ Somit ist das Bild des Punktes <InlineMath math="B(0,4)" /> <InlineMath math="B'
     </>
   }
   data={[
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.PI / 2 + i * Math.PI / 64; return { x: 4 * Math.cos(angle), y: 4 * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [-0.3, 0.3, 0] }] },
     {
       points: [{ x: 0, y: 0, z: 0 }],
       color: "#e11d48",
@@ -119,7 +126,7 @@ Sei <InlineMath math="P(x,y)" /> ein beliebiger Punkt auf der Geraden <InlineMat
 
 Daraus erhalten wir <InlineMath math="y = -x'" /> und <InlineMath math="x = y'" />.
 
-Wir setzen <InlineMath math="x = y'" /> und <InlineMath math="y = -x'" /> in die ursprüngliche Geradengleichung <InlineMath math="y=2x" /> ein:
+Wir setzen <InlineMath math="x = y'" /> und <InlineMath math="y = -x'" /> in die **ursprüngliche Geradengleichung** <InlineMath math="y=2x" /> ein:
 
 <MathContainer>
   <BlockMath math="(-x') = 2(y')" />
@@ -151,9 +158,8 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
     }, // Drehzentrum
     {
       // Ursprüngliche Gerade: y = 2x
-      points: Array.from({ length: 17 }, (_, pointIndex) => {
-        const i = pointIndex - 3;
-        const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.25;
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
       smooth: false,
@@ -163,15 +169,14 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
     },
     {
       // Bildgerade: y = -1/2 x
-      points: Array.from({ length: 47 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const xVal = (i - 5) * 0.5;
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 19, offset: [0.3, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 2, offset: [0.3, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -179,7 +184,7 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
 
 ## Übungen
 
-Die Aufgaben drehen einen Punkt, eine Gerade und einen weiteren Punkt um den Ursprung. Die Gerade wird über ihre Gleichung gedreht, sodass sich alle ihre Punkte zusammen bewegen.
+Die ersten beiden Aufgaben verwenden eine **positive Vierteldrehung**. Die letzte verwendet eine halbe Drehung, bei der beide Koordinaten das Vorzeichen wechseln. Setze bei einer Geraden in die Ausgangsgleichung ein, damit alle Punkte erfasst werden.
 
 1.  Der Punkt <InlineMath math="A(3,0)" /> wird um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung <InlineMath math="(0,0)" /> gedreht. Bestimme seinen Bildpunkt.
 2.  Bestimme die Bildgerade von <InlineMath math="y=4x" /> nach einer Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung <InlineMath math="(0,0)" />.
@@ -187,38 +192,46 @@ Die Aufgaben drehen einen Punkt, eine Gerade und einen weiteren Punkt um den Urs
 
 ### Lösungen
 
-1.  Punkt <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
+Verwende die Sinus- und Kosinuswerte des gegebenen Winkels. Bei einer Geraden **drückst du die ursprünglichen Koordinaten durch die Bildkoordinaten aus**, bevor du in die Gleichung einsetzt.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
-    </MathContainer>
+**Lösung 1**
 
-    Daher ist sein Bild <InlineMath math="A'(0,3)" />.
+Punkt <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
 
-2.  Gerade <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = -y" />
-      <BlockMath math="y' = x" />
-    </MathContainer>
+Daher ist sein Bild <InlineMath math="A'(0,3)" />.
 
-    Also <InlineMath math="y = -x'" /> und <InlineMath math="x = y'" />.
+**Lösung 2**
 
-    Wir setzen in die Geradengleichung ein: <InlineMath math="(-x') = 4(y')" />.
+Gerade <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
 
-    Bildgeradengleichung: <InlineMath math="-x = 4y" /> oder <InlineMath math="y = -\frac{1}{4}x" />.
+<MathContainer>
+  <BlockMath math="x' = -y" />
+  <BlockMath math="y' = x" />
+</MathContainer>
 
-3.  Punkt <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+Also <InlineMath math="y = -x'" /> und <InlineMath math="x = y'" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 180^\circ = -1" />
-      <BlockMath math="\sin 180^\circ = 0" />
-    </MathContainer>
+Wir setzen in die Geradengleichung ein: <InlineMath math="(-x') = 4(y')" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
-    </MathContainer>
+Bildgeradengleichung: <InlineMath math="-x = 4y" /> oder <InlineMath math="y = -\frac{1}{4}x" />.
 
-    Somit ist das Bild des Punktes <InlineMath math="P" /> <InlineMath math="P'(2,5)" />.
+**Lösung 3**
+
+Punkt <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+
+<MathContainer>
+  <BlockMath math="\cos 180^\circ = -1" />
+  <BlockMath math="\sin 180^\circ = 0" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
+
+Somit ist das Bild des Punktes <InlineMath math="P" /> <InlineMath math="P'(2,5)" />.

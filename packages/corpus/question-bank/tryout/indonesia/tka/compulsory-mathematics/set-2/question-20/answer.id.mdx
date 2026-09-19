@@ -2,10 +2,10 @@ export const metadata = {
   title: "Pembahasan Soal 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Tarik garis tegak lurus dari <InlineMath math="B" /> ke garis <InlineMath math="SA" /> dengan kaki <InlineMath math="H" />. Pada segitiga siku-siku <InlineMath math="SHB" />, <InlineMath math="SB" /> adalah sisi miring. Periksa dahulu apakah <InlineMath math="H" /> berada pada ruas <InlineMath math="SA" />.
+Tarik **garis tegak lurus** dari <InlineMath math="B" /> ke garis <InlineMath math="SA" /> dengan kaki <InlineMath math="H" />. Pada segitiga siku-siku <InlineMath math="SHB" />, <InlineMath math="SB" /> adalah sisi miring. Periksa dahulu apakah <InlineMath math="H" /> berada pada ruas <InlineMath math="SA" />.
 
 <BlockMath math="SH=10\cos60^\circ=10\cdot\frac12=5" />
 
@@ -17,3 +17,18 @@ BH&=10\cdot\frac{\sqrt3}{2}=5\sqrt3
 \end{aligned}" />
 
 Jarak terpendeknya <InlineMath math="5\sqrt3\,\mathrm{km}" />.
+
+<LineEquation
+  title="Jarak titik ke ruas garis"
+  description="H berada di dalam ruas SA, sehingga ruas tegak lurus BH benar-benar mencapai jarak terpendek ke ruas SA."
+  cameraPosition={[4, 4, 16]}
+  cameraTarget={[4, 4, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#64748b", labels: [{ text: "S", at: 0, offset: [-0.4, -0.4, 0] }, { text: "A", at: 1, offset: [0.4, -0.4, 0] }, { text: "8 km", at: 0, offset: [3.5, -0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 5 * Math.sqrt(3), z: 0 }], smooth: false, color: "#9333ea", labels: [{ text: "B", at: 1, offset: [0, 0.5, 0] }, { text: "10 km", at: 0, offset: [1.5, 4.5, 0] }] },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: 5 * Math.sqrt(3), z: 0 }], smooth: false, color: "#d97706", labels: [{ text: "H", at: 0, offset: [0.4, -0.35, 0] }] },
+    { points: [{ x: 4.5, y: 0, z: 0 }, { x: 4.5, y: 0.5, z: 0 }, { x: 5, y: 0.5, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
+    { points: Array.from({ length: 31 }, (_, i) => { const t = Math.PI * i / 90; return { x: 1.4 * Math.cos(t), y: 1.4 * Math.sin(t), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "60°", at: 15, offset: [0.7, 0.4, 0] }] },
+  ]}
+/>

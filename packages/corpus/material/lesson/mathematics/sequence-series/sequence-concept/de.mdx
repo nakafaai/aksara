@@ -22,7 +22,7 @@ Genauer gesagt weist eine Folge jedem zulässigen Index einen Wert zu:
 
 <BlockMath math="U:\{1,2,3,\ldots\}\to\mathbb{R},\qquad n\mapsto U_n" />
 
-<Highlight>Die Reihenfolge gehört zur Definition</Highlight>. Die Folgen <InlineMath math="1,2,3,\ldots" /> und <InlineMath math="3,2,1,\ldots" /> können dieselben Zahlen enthalten, sind aber nicht dieselbe Folge.
+Die **Reihenfolge** gehört zur Definition. Die Folgen <InlineMath math="1,2,3,\ldots" /> und <InlineMath math="3,2,1,\ldots" /> können dieselben Zahlen enthalten, sind aber nicht dieselbe Folge.
 
 ## Explizite und rekursive Regeln
 
@@ -66,11 +66,7 @@ Wir können eine Tabelle erstellen, um das Muster zu beobachten:
 | ---------------- | --- | --- | --- | --- | --- | --- |
 | Anzahl Stühle | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="14" /> |
 
-Die Tabelle zeigt die ersten drei Paare:
-
-- Wenn es <InlineMath math="1 \text{ Tisch}" /> gibt, gibt es <InlineMath math="4" /> Stühle
-- Wenn es <InlineMath math="2 \text{ Tische}" /> gibt, gibt es <InlineMath math="6" /> Stühle
-- Wenn es <InlineMath math="3 \text{ Tische}" /> gibt, gibt es <InlineMath math="8" /> Stühle
+In einer geraden Reihe bietet jeder Tisch **zwei Stühle an den Längsseiten**. Zwei weitere Stühle stehen an den beiden Enden der Reihe. Bei <InlineMath math="n" /> Tischen gibt es daher <InlineMath math="2n" /> Stühle an den Seiten und <InlineMath math="2" /> an den Enden.
 
 Mit jedem zusätzlichen <InlineMath math="1 \text{ Tisch}" /> kommen <InlineMath math="2" /> weitere Stühle hinzu. Das Muster wird durch folgende Formel beschrieben:
 
@@ -90,13 +86,13 @@ Das gleiche Muster kann rekursiv geschrieben werden:
 
 ## Mit der Regel eine Sitzfrage beantworten
 
-Eine Folgenregel kann eine Zählfrage direkt beantworten. Im Beispiel unten wandelt die Regel eine Personenzahl in eine Tischanzahl um. Setze die Zahl der Personen in die Regel ein und prüfe anschließend, ob das Ergebnis zum beschriebenen Aufbau passt.
+Eine Folgenregel kann eine Zählfrage direkt beantworten. Im Beispiel unten wandelt die Regel eine **Personenzahl in eine Tischanzahl** um. Setze die Zahl der Personen in die Regel ein und prüfe anschließend, ob das Ergebnis zum beschriebenen Aufbau passt.
 
 ### Bestimmen der Anzahl der Stühle und Tische
 
 Mit der Folgenregel lässt sich zum Beispiel diese Frage beantworten:
 
-**Wie viele Tische müssen zusammengestellt werden, damit <InlineMath math="20 \text{ Personen}" /> sitzen können?**
+**Wie viele Tische** müssen zusammengestellt werden, damit <InlineMath math="20 \text{ Personen}" /> jeweils einen Stuhl haben?
 
 Wir können die Formel <InlineMath math="U_n = 2n + 2" /> mit <InlineMath math="U_n = 20" /> verwenden, also:
 
@@ -110,23 +106,39 @@ Es müssen also <InlineMath math="9 \text{ Tische}" /> zusammengestellt werden, 
 
 ## Typen von Folgen
 
-Nach ihrem Muster lassen sich Zahlenfolgen in verschiedene Typen einteilen. Die beiden häufigsten addieren eine feste Differenz oder multiplizieren mit einem festen Quotienten, und für beide gibt es eigene Formeln.
+Nach ihrem Muster lassen sich Zahlenfolgen in verschiedene Typen einteilen. Die beiden häufigsten addieren eine **feste Differenz** oder multiplizieren mit einem festen Quotienten, und für beide gibt es eigene Formeln.
 
 ### Arithmetische Folge
 
-Bei einer arithmetischen Folge ist die Differenz zwischen zwei aufeinanderfolgenden Gliedern konstant. Diese konstante Differenz wird mit <InlineMath math="b" /> bezeichnet. In der Folge <InlineMath math="2, 4, 6, 8, 10, \ldots" /> beträgt die Differenz <InlineMath math="2" />, weil jedes Glied um zwei größer ist als das vorige.
+Bei einer arithmetischen Folge ist die **Differenz zwischen zwei aufeinanderfolgenden Gliedern** konstant. Diese konstante Differenz wird mit <InlineMath math="b" /> bezeichnet. In der Folge <InlineMath math="2, 4, 6, 8, 10, \ldots" /> beträgt die Differenz <InlineMath math="2" />, weil jedes Glied um zwei größer ist als das vorige.
 
 ### Geometrische Folge
 
-Bei einer geometrischen Folge ist der Quotient zweier aufeinanderfolgender Glieder konstant. Dieser Faktor wird mit <InlineMath math="r" /> bezeichnet. In der Folge <InlineMath math="2, 6, 18, 54, \ldots" /> beträgt der Faktor <InlineMath math="3" />, weil jedes Glied das Dreifache des vorigen ist.
+Bei einer geometrischen Folge ist der **Quotient zweier aufeinanderfolgender Glieder** konstant. Dieser Faktor wird mit <InlineMath math="r" /> bezeichnet. In der Folge <InlineMath math="2, 6, 18, 54, \ldots" /> beträgt der Faktor <InlineMath math="3" />, weil jedes Glied das Dreifache des vorigen ist.
 
 ### Weitere Folgen
 
 Neben arithmetischen und geometrischen Folgen gibt es viele andere Arten wie Fibonacci-Folgen, quadratische Folgen und kubische Folgen. Eine Fibonacci-Folge beginnt mit <InlineMath math="0" /> und <InlineMath math="1" />, und jedes weitere Glied ist die Summe der beiden vorigen, ihr Muster lässt sich also nicht als feste Differenz oder fester Quotient schreiben.
 
+Die ersten Glieder der Fibonacci-Folge lauten <InlineMath math="0,1,1,2,3,5,8,13,\ldots" />.
+
+Für Indizes <InlineMath math="n\geq1" /> liefert die **Summe der beiden vorherigen Glieder** die Fibonacci-Rekursion:
+
+<BlockMath math="F_1=0,\quad F_2=1,\quad F_{n+2}=F_{n+1}+F_n" />
+
 ## Endlich viele Glieder bestimmen keine eindeutige Regel
 
-Eine kurze Liste von Gliedern kann ein plausibles Muster nahelegen, erzwingt aber keine eindeutige Fortsetzung. Die Folge <InlineMath math="1,2,4" /> könnte mit <InlineMath math="8,16,\ldots" /> weitergehen, wenn jedes Glied verdoppelt wird. Eine andere Regel könnte zu den ersten drei Gliedern passen und sich ab dem vierten Glied unterscheiden.
+Eine kurze Liste von Gliedern kann ein plausibles Muster nahelegen, erzwingt aber **keine eindeutige Fortsetzung**. Die Folge <InlineMath math="1,2,4" /> könnte mit <InlineMath math="8,16,\ldots" /> weitergehen, wenn jedes Glied verdoppelt wird. Eine andere Regel könnte zu den ersten drei Gliedern passen und sich ab dem vierten Glied unterscheiden.
+
+Zwei Regeln stimmen an den ersten drei Positionen überein: <InlineMath math="A_n=2^{n-1}" /> und <InlineMath math="B_n=1+\frac{n(n-1)}2" />. Ab der vierten Position unterscheiden sich die Werte:
+
+| Position | Verdopplungsregel | Quadratische Regel |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="11" /> |
 
 Eine vollständig definierte Folge braucht eine eindeutige Regel oder genügend Bedingungen. Ein erkanntes Muster liefert eine Vermutung. Ein Beweis benötigt eine Regel, die jedes Glied bestimmt.
 
@@ -134,7 +146,7 @@ Eine vollständig definierte Folge braucht eine eindeutige Regel oder genügend 
 
 So lässt sich das Muster einer Folge untersuchen:
 
-1. Berechne die Differenzen aufeinanderfolgender Glieder.
+1. Berechne die **Differenzen aufeinanderfolgender Glieder**.
 2. Prüfe, ob die Differenz konstant ist. Dann liegt eine arithmetische Folge vor.
 3. Falls nicht, prüfe, ob der Quotient konstant ist. Dann liegt eine geometrische Folge vor.
 4. Trifft beides nicht zu, untersuche andere mögliche Regeln.
@@ -145,7 +157,7 @@ Eine Folge ordnet jedem Index ein Glied zu. Ihre Regel kann explizit, rekursiv o
 
 Gegeben <InlineMath math="V_n=n^2-n" />:
 
-1. Bestimme die ersten fünf Glieder.
+1. Bestimme die **ersten fünf Glieder**.
 2. Gib eine rekursive Regel für die Folge an.
 
 <MathContainer>
@@ -155,4 +167,4 @@ Gegeben <InlineMath math="V_n=n^2-n" />:
 
 Das rekursive Inkrement ist <InlineMath math="2n" />, weil:
 
-<BlockMath math="\begin{aligned} &amp;V_{n+1}-V_n \\ &amp;=((n+1)^2-(n+1))-(n^2-n) \\ &amp;=2n \end{aligned}" />
+<BlockMath math="\begin{aligned} V_{n+1}-V_n &=((n+1)^2-(n+1))-(n^2-n) \\ &=n^2+2n+1-n-1-n^2+n \\ &=2n \end{aligned}" />

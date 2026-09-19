@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Grundidee logarithmischer Funktionen",
   description: "Logarithmen als Umkehrung von Exponentialfunktionen verstehen: mit Graphen, Rechenregeln, nachvollziehbaren Beispielen und Übungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -30,21 +29,15 @@ Eine logarithmische Funktion zur Basis <InlineMath math="b" /> mit <InlineMath m
 
 <BlockMath math="f(x) = \log_b x \quad \text{für jeden } x &gt; 0" />
 
-Drei Basen kommen besonders häufig vor:
-
-1. **Zehnerlogarithmus** (Basis <InlineMath math="10" />): <InlineMath math="f(x) = \log x" />
-
-   Beispiel: <InlineMath math="\log 100 = 2" /> weil <InlineMath math="10^2 = 100" />
-
-2. **Natürlicher Logarithmus** (Basis <InlineMath math="e \approx 2{,}7183" />): <InlineMath math="f(x) = \ln x" />
-
-   Beispiel: <InlineMath math="\ln e = 1" /> weil <InlineMath math="e^1 = e" />
-
-3. **Binärer Logarithmus** (Basis <InlineMath math="2" />): <InlineMath math="f(x) = \log_2 x" />
-
-   Beispiel: <InlineMath math="\log_2 8 = 3" /> weil <InlineMath math="2^3 = 8" />
+| Name | Basis | Schreibweise und Beispiel | Begründung |
+| --- | --- | --- | --- |
+| **Zehnerlogarithmus** | <InlineMath math="10" /> | <InlineMath math="\log100=2" /> | <InlineMath math="10^2=100" /> |
+| **Natürlicher Logarithmus** | <InlineMath math="e\approx2{,}7183" /> | <InlineMath math="\ln e=1" /> | <InlineMath math="e^1=e" /> |
+| **Binärer Logarithmus** | <InlineMath math="2" /> | <InlineMath math="\log_2 8=3" /> | <InlineMath math="2^3=8" /> |
 
 ## Graph einer logarithmischen Funktion
+
+Das **Vertauschen der Koordinaten** erklärt die Spiegelung. Aus dem Punkt <InlineMath math="(3,8)" /> auf dem Exponentialgraphen wird der Punkt <InlineMath math="(8,3)" /> auf dem Logarithmusgraphen. Jede Eingabe des Logarithmus bleibt positiv.
 
 <LineEquation
   title="Vergleich von Exponential- und Logarithmusfunktionen"
@@ -60,8 +53,8 @@ Drei Basen kommen besonders häufig vor:
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 881 },
-          (_, i) => -16 + (i / 880) * 22
+          { length: 281 },
+          (_, i) => -4 + i / 40
         );
         return parameters
           .sort((a, b) => a - b)
@@ -70,16 +63,16 @@ Drei Basen kommen besonders häufig vor:
             return { x, y: Math.pow(2, x), z: 0 };
           });
       })(),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=2^x" />, at: 720, offset: [-0.7, 3, 0] }],
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=2^x" />, at: 240, offset: [-0.7, 3, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 881 },
-          (_, i) => -16 + (i / 880) * 22
+          { length: 281 },
+          (_, i) => -4 + i / 40
         );
         return parameters
           .sort((a, b) => a - b)
@@ -89,25 +82,23 @@ Drei Basen kommen besonders häufig vor:
           });
       })(),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 720, offset: [1.2, -1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 240, offset: [1.2, -1.2, 0] }],
       showPoints: false,
     },
     {
       points: [
-      { x: -160, y: -160, z: 0 },
-      { x: -3, y: -3, z: 0 },
+            { x: -3, y: -3, z: 0 },
       { x: 8, y: 8, z: 0 },
-      { x: 160, y: 160, z: 0 },
-      ],
+            ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 2, offset: [-0.8, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.8, -2.5, 0] }],
       showPoints: false,
     },
   ]}
   cameraPosition={[2.5, 2.5, 14]}
   cameraTarget={[2.5, 2.5, 0]}
-  showZAxis
+  showZAxis={false}
 />
 
 **Eigenschaften des Graphen** von <InlineMath math="f(x) = \log_b x" /> für <InlineMath math="b > 1" />:
@@ -120,33 +111,45 @@ Drei Basen kommen besonders häufig vor:
 
 ## Eigenschaften von Logarithmen
 
-Jede Eigenschaft ergibt sich aus der Definition des Logarithmus als Umkehrung der Exponentialfunktion, weil das Rückgängigmachen auch deren Rechenregeln rückgängig macht. Die grundlegenden Eigenschaften betreffen einen einzelnen Wert, die Recheneigenschaften ein Produkt, einen Quotienten oder eine Potenz.
+Jede Eigenschaft ergibt sich aus der Definition des Logarithmus als **Umkehrung der Exponentialfunktion**, weil das Rückgängigmachen auch deren Rechenregeln rückgängig macht. Die grundlegenden Eigenschaften betreffen einen einzelnen Wert, die Recheneigenschaften ein Produkt, einen Quotienten oder eine Potenz.
 
 ### Einen einzelnen Logarithmus lesen
 
-Diese Identitäten folgen direkt aus der Definition, und jede hat eine passende Eigenschaft der Potenzrechnung.
+Die ersten beiden Identitäten beschreiben **die Exponenten null und eins**. Die nächsten beiden heben Logarithmus und Exponentialfunktion bei gleicher Basis auf.
 
 <MathContainer>
-  <BlockMath math="\log_b 1 = 0" />
-  <BlockMath math="\log_b b = 1" />
-  <BlockMath math="\log_b b^n = n" />
-  <BlockMath math="b^{\log_b x} = x" />
+
+<BlockMath math="\log_b 1 = 0" />
+
+<BlockMath math="\log_b b = 1" />
+
+<BlockMath math="\log_b b^n = n" />
+
+<BlockMath math="b^{\log_b x} = x" />
 </MathContainer>
 
 ### Rechenregeln
 
-Diese Regeln schreiben den Logarithmus eines Produkts, eines Quotienten oder einer Potenz in einzelne Terme um.
+Diese Regeln benötigen **positive Argumente**: <InlineMath math="x,y>0" />. Für beide Basen gilt <InlineMath math="a,b>0" /> und <InlineMath math="a,b\neq1" />. Der Exponent <InlineMath math="n" /> darf jede reelle Zahl sein.
 
 <MathContainer>
-  <BlockMath math="\log_b (xy) = \log_b x + \log_b y" />
-  <BlockMath math="\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y" />
-  <BlockMath math="\log_b x^n = n \cdot \log_b x" />
-  <BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(Basiswechsel)}" />
+
+<BlockMath math="\log_b (xy) = \log_b x + \log_b y" />
+
+<BlockMath math="\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y" />
+
+<BlockMath math="\log_b x^n = n \cdot \log_b x" />
+
+<BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(Basiswechsel)}" />
 </MathContainer>
+
+Eine **Multiplikation im Logarithmus** wird zum Beispiel zur Addition zweier Logarithmuswerte.
+
+<BlockMath math="\log_2(8\cdot4)=\log_2 8+\log_2 4=3+2=5" />
 
 ## Exponentielles Modell aus zwei Datenpunkten
 
-Das [indonesische Gesundheitsministerium](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang), kurz Kemenkes, meldete am 2. März 2020 zwei bestätigte COVID-19-Fälle.
+Das [indonesische Gesundheitsministerium](https://kemkes.go.id/id/positif-covid-19-usai-kontak-wn-jepang), kurz Kemenkes, meldete am 2. März 2020 zwei bestätigte COVID-19-Fälle.
 
 Am 30. April 2020 [meldete das Ministerium](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu) insgesamt 10.118 bestätigte Fälle.
 
@@ -154,9 +157,20 @@ Zwischen beiden Meldungen liegen <InlineMath math="59 \text{ vergangene Tage}" /
 
 Um Logarithmen anzuwenden, passen wir eine einfache Exponentialkurve an diese beiden gemeldeten Werte an. Dabei bezeichnet <InlineMath math="t" /> die seit dem 2. März vergangenen Tage und <InlineMath math="P(t)" /> die Fallzahl auf der Kurve. Aus <InlineMath math="P(0)=2" /> und <InlineMath math="P(59)=10{.}118" /> folgt:
 
+Um die **Rate aus den beiden Datenpunkten** zu bestimmen, beginnen wir mit folgendem Modell. Die erste Meldung bestimmt den Anfangsfaktor. Die Meldung nach 59 Tagen bestimmt die Rate.
+
+<MathContainer>
+
+<BlockMath math="P(t)=Ce^{kt},\quad P(0)=C=2" />
+
+<BlockMath math="10118=2e^{59k}\quad\Longrightarrow\quad5059=e^{59k}" />
+
+<BlockMath math="\ln5059=59k\quad\Longrightarrow\quad k=\frac{\ln5059}{59}" />
+</MathContainer>
+
 <ContentStack>
 
-  <BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
+<BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
 
   <LineEquation
     title="Exponentialfunktion durch zwei Datenpunkte"
@@ -165,7 +179,7 @@ Um Logarithmen anzuwenden, passen wir eine einfache Exponentialkurve an diese be
         Eine Einheit auf der waagerechten Achse <InlineMath math="X=t/10" /> entspricht{" "}
         <InlineMath math="10" /> Tagen. Eine Einheit auf der senkrechten Achse{" "}
         <InlineMath math="Y=P(t)/10000" /> entspricht <InlineMath math="10{.}000" /> Fällen.
-        Die beiden orangefarbenen Punkte zeigen gemeldete Werte. Blau zeigt die Extrapolation von{" "}
+        Die beiden orangefarbenen Punkte zeigen gemeldete Werte. Türkis zeigt die Extrapolation von{" "}
         <InlineMath math="t=59" /> bis <InlineMath math="t=71" />.
       </>
     }
@@ -192,28 +206,32 @@ Um Logarithmen anzuwenden, passen wir eine einfache Exponentialkurve an diese be
           const P = 2 * Math.pow(5059, t / 59);
           return { x: t / 10, y: P / 10000, z: 0 };
         }),
-        color: "#0284c7",
+        color: "#0d9488",
         showPoints: false,
       },
     ]}
     cameraPosition={[3.3, 2.5, 10]}
     cameraTarget={[3.3, 2.5, 0]}
-    showZAxis
+    showZAxis={false}
   />
 </ContentStack>
 
 Wird die angepasste Rate fortgeschrieben, erreicht die Kurve den Schwellenwert <InlineMath math="50{.}000" /> laut logarithmischer Rechnung bei:
 
 <MathContainer>
-  <BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
-  <BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70{,}1 \text{ Tage}" />
+
+<BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
+
+<BlockMath math="25000=e^{\frac{\ln5059}{59}t}\quad\Longrightarrow\quad\ln25000=\frac{\ln5059}{59}t" />
+
+<BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70{,}1 \text{ Tage}" />
 </MathContainer>
 
 Das bleibt eine mathematische Illustration innerhalb dieses Modells. Bestätigte Fallzahlen hängen auch von Tests, Meldesystemen, Verhalten und gesundheitspolitischen Maßnahmen ab. Eine feste exponentielle Rate darf deshalb nicht unbegrenzt fortgeschrieben werden.
 
 ## Übungen
 
-Diese vier Aufgaben führen vom Lesen eines einzelnen Logarithmus bis zum Lösen eines exponentiellen Modells. Rechne jede Aufgabe vor den Lösungen und prüfe deine Antworten danach an den Rechenschritten.
+Diese vier Aufgaben führen vom Lesen eines einzelnen Logarithmus bis zum Lösen eines **exponentiellen Modells**. Rechne jede Aufgabe vor den Lösungen und prüfe deine Antworten danach an den Rechenschritten.
 
 1. Bestimme den Wert von <InlineMath math="\log_3 27" />, <InlineMath math="\log_5 \frac{1}{125}" /> und <InlineMath math="\ln e^3" />.
 
@@ -223,32 +241,44 @@ Diese vier Aufgaben führen vom Lesen eines einzelnen Logarithmus bis zum Lösen
 
 4. Eine Investition wächst nach der Formel <InlineMath math="A = 1000 \cdot 2^t" /> (in Millionen Rupiah). Wie viele Jahre sind nötig, bis die Investition <InlineMath math="8 \text{ Milliarden Rupiah}" /> beträgt?
 
-### Ausführliche Lösungen
+### Exponenten ablesen
 
-1. Jeder Logarithmus ist als Frage nach einem Exponenten zu lesen. Die gesuchten Potenzen sind:
+Jeder Logarithmus ist als Frage nach einem Exponenten zu lesen. Die gesuchten **Potenzen** sind:
 
-   <MathContainer>
-     <BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
-     <BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
-     <BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
-   </MathContainer>
+<MathContainer>
 
-2. Die logarithmische Gleichung wird in die exponentielle Form umgeschrieben:
+<BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
 
-   <BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
+<BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
 
-   Mit <InlineMath math="x=16" /> ergibt die Probe <InlineMath math="\log_2 16=4" />. Das Ergebnis stimmt also.
+<BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
+</MathContainer>
 
-3. Die drei Potenzen zur Basis <InlineMath math="2" /> werden bestimmt und anschließend verrechnet:
+### Die logarithmische Form umschreiben
 
-   <BlockMath math="\begin{aligned} &amp;\log_2 8+\log_2 4-\log_2 2 \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+Die logarithmische Gleichung wird in die **exponentielle Form** umgeschrieben:
 
-4. In der Formel wird <InlineMath math="A" /> in Millionen Rupiah angegeben. Daher gilt <InlineMath math="8 \text{ Milliarden Rupiah}=8000 \text{ Millionen Rupiah}" />. Nun wird der Zielwert eingesetzt und der Exponentialterm freigestellt:
+<BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
 
-   <MathContainer>
-     <BlockMath math="8000=1000\cdot2^t" />
-     <BlockMath math="8=2^t" />
-     <BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
-   </MathContainer>
+Mit <InlineMath math="x=16" /> ergibt die Probe <InlineMath math="\log_2 16=4" />. Das Ergebnis stimmt also.
 
-   Die Investition erreicht den Zielwert nach <InlineMath math="3 \text{ Jahren}" />.
+### Logarithmuswerte kombinieren
+
+Die drei **Potenzen** zur Basis <InlineMath math="2" /> werden bestimmt und anschließend verrechnet:
+
+<BlockMath math="\begin{aligned} &amp;\log_2 8+\log_2 4-\log_2 2 \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+### Einheiten der Investition umrechnen
+
+In der Formel wird <InlineMath math="A" /> in **Millionen Rupiah** angegeben. Daher gilt <InlineMath math="8 \text{ Milliarden Rupiah}=8000 \text{ Millionen Rupiah}" />. Nun wird der Zielwert eingesetzt und der Exponentialterm freigestellt:
+
+<MathContainer>
+
+<BlockMath math="8000=1000\cdot2^t" />
+
+<BlockMath math="8=2^t" />
+
+<BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
+</MathContainer>
+
+Die Investition erreicht den Zielwert nach <InlineMath math="3 \text{ Jahren}" />.

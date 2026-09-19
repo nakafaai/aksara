@@ -3,7 +3,7 @@ export const metadata = {
   description: "Den proportionalen Zusammenhang zwischen Bogenlänge, Sektorfläche und Mittelpunktswinkel verstehen und anwenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -21,14 +21,16 @@ Alle drei Brüche beschreiben denselben Anteil am vollständigen Kreis.
 
 ## Formeln für Bogenlänge und Sektorfläche
 
-Aus der Proportion folgen die beiden bekannten Formeln:
+Multipliziere den **Winkelanteil** mit dem Kreisumfang, um die Bogenlänge zu erhalten, oder mit der Kreisfläche für die Sektorfläche. Beide Formeln verwenden Radius und Winkel desselben Sektors:
 
 <MathContainer>
 <BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
 <BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Eliminieren wir den Winkelanteil, erhalten wir einen direkten Zusammenhang:
+Bezeichne die Bogenlänge mit <InlineMath math="s" /> und die Sektorfläche mit <InlineMath math="A" />. Dividiere bei einem Winkel ungleich null die beiden Formeln. Der gemeinsame Winkelanteil kürzt sich heraus:
+
+<BlockMath math="\frac{A}{s}=\frac{\frac{\alpha}{360^\circ}\pi r^2}{\frac{\alpha}{360^\circ}2\pi r}=\frac{r}{2}\quad\Longrightarrow\quad A=\frac{sr}{2}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\text{Sektorfläche} \\ &amp;= \frac{1}{2} \times \text{Bogenlänge} \times r \end{aligned}" />
@@ -36,7 +38,7 @@ Eliminieren wir den Winkelanteil, erhalten wir einen direkten Zusammenhang:
 
 ## Visualisierung proportionaler Beziehungen
 
-Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunktswinkel.
+Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den Winkelanteil mit dem Umfangs- und Flächenanteil. Wächst der Winkel von 45 auf 90 Grad, verdoppeln sich sowohl Bogenlänge als auch Sektorfläche.
 
 <ContentStack>
 
@@ -285,35 +287,28 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
 
 </ContentStack>
 
-Für jeden Mittelpunktswinkel <InlineMath math="\alpha" /> gilt damit:
-
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Bogenlänge} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Kreisumfang} \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \text{Kreisfläche} \end{aligned}" />
-</MathContainer>
-
-Oder in vollständiger Formelform:
-
-<MathContainer>
-<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
-<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-Auf demselben Kreis gehören zu gleich großen Mittelpunktswinkeln gleich lange Bögen und gleich große Sektoren. Bei benachbarten Winkeln addieren sich auch die zugehörigen Bogenlängen und Sektorflächen.
+| Winkel | Bogenlänge | Sektorfläche |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\pi" /> | <InlineMath math="2\pi" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="2\pi" /> | <InlineMath math="4\pi" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="8\pi/3" /> | <InlineMath math="16\pi/3" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="4\pi" /> | <InlineMath math="8\pi" /> |
 
 ## Anwendung in der Erdmessung
 
-Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebte, nutzte dieselbe Proportion zur Abschätzung des Erdumfangs. Zur Sommersonnenwende stand die Sonne in Syene senkrecht, während ein senkrechter Stab in Alexandria eine Winkeldifferenz von <InlineMath math="7{,}2^\circ" /> zeigte. Die Entfernung zwischen beiden Orten wurde mit <InlineMath math="5{.}000 \text{ Stadien}" /> angesetzt.
+Im vereinfachten Modell der Messung von Eratosthenes ist die Erde eine Kugel. Die Städte liegen auf **demselben Meridian**, und Sonnenstrahlen treffen parallel ein. Zur Sommersonnenwende steht die Sonne im Modell mittags senkrecht über Syene. In Alexandria beträgt ihr Winkel zur Vertikalen etwa <InlineMath math="7{,}2^\circ" />. Wegen der parallelen Strahlen entspricht dieser Winkel dem Winkel zwischen den Städten im Erdmittelpunkt.
+
+Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ Stadien}" /> entspricht die Strecke einem Fünfzigstel des Umfangs. Das Modell erklärt die geometrische Methode und gibt keine exakten heutigen Ortsmessungen wieder.
 
 <LineEquation
   title={<>Erdumfangsmessung durch Eratosthenes</>}
   description={<>Das Modell verbindet einen Winkel von <InlineMath math="7{,}2^\circ" /> mit einer Oberflächenstrecke von <InlineMath math="5{.}000 \text{ Stadien}" />.</>}
-  cameraPosition={[0.3, 0, 13.5]}
-  cameraTarget={[0.3, 0, 0]}
+  cameraPosition={[2.5, 0.4, 8]}
+  cameraTarget={[2.5, 0.4, 0]}
   data={[
     {
       points: Array.from({ length: 73 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 72;
+        const angle = (-15 + (i * 45) / 72) * Math.PI / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
@@ -327,8 +322,8 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
       labels: [
         {
           text: "Erde",
-          at: 18,
-          offset: [1.5, 0, 0],
+          at: 72,
+          offset: [-0.4, 0.2, 0],
         },
       ],
     },
@@ -384,7 +379,7 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
         {
           text: <InlineMath math="5{.}000\,\text{Stadien}" />,
           at: 50,
-          offset: [-0.7, 2.3, 0],
+          offset: [0.5, 0.4, 0],
         },
       ],
     },
@@ -424,11 +419,11 @@ Dabei ist <InlineMath math="D" /> die Entfernung von Alexandria nach Syene und <
   <BlockMath math="\begin{aligned} &amp;\text{Erdumfang} \\ &amp;= 5{.}000 \times 50 \\ &amp;= 250{.}000 \text{ Stadien} \end{aligned}" />
 </MathContainer>
 
-Die genaue Länge eines antiken Stadions ist nicht sicher bekannt. Mit einer häufig verwendeten Umrechnung entspricht das Ergebnis ungefähr <InlineMath math="40{.}000 \text{ km}" />.
+Die Länge des antiken Stadions ist **nicht sicher bekannt**. Nimmt man 160 Meter pro Stadion an, entsprechen 250.000 Stadien einer Strecke von 40.000 km. Andere angenommene Stadienlängen ergeben andere Umrechnungen.
 
 ## Direkte Beziehung zwischen Bogen und Sektor
 
-Bei einem Kreis mit Radius <InlineMath math="r" /> und einem von null verschiedenen Mittelpunktswinkel ergibt die Sektorfläche geteilt durch die Bogenlänge <InlineMath math="r/2" />:
+Bei einem Kreis mit Radius <InlineMath math="r" /> und einem **von null verschiedenen Mittelpunktswinkel** ergibt die Sektorfläche geteilt durch die Bogenlänge <InlineMath math="r/2" />:
 
 <MathContainer>
 <BlockMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
@@ -440,7 +435,7 @@ Das Verhältnis hängt allein vom Radius ab. Der Mittelpunktswinkel kürzt sich 
 
 ## Übungen
 
-In jeder Aufgabe sind Bogenlänge und Sektorfläche desselben Kreises verknüpft, deshalb schreibst du beide Größen aus demselben Radius und Mittelpunktswinkel. Die Beziehung zwischen Bogenlänge und Fläche liefert dann den fehlenden Wert, ohne dass du den Winkel erneut bestimmen musst.
+Die ersten beiden Aufgaben verwenden die **Beziehung zwischen Fläche und Bogenlänge**, um eine Fläche oder einen Radius zu bestimmen. Die dritte nutzt den Anteil des Bogens am Umfang einer kugelförmigen Erde.
 
 1. Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Die Bogenlänge eines Sektors beträgt <InlineMath math="22 \text{ cm}" />. Bestimme seine Fläche.
 
@@ -450,39 +445,41 @@ In jeder Aufgabe sind Bogenlänge und Sektorfläche desselben Kreises verknüpft
 
 ### Ausführliche Lösungen
 
-1. **Lösungsschritte:**
+Bestimme zuerst die **gesuchte Größe**. Für die Fläche multiplizierst du die Bogenlänge mit dem halben Radius. Für den Radius stellst du die Gleichung um. Den Erdumfang erhältst du über den Anteil an einer vollen Umdrehung.
 
-   Gegeben: <InlineMath math="r = 14 \text{ cm}" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
+**Lösung 1**
 
-   Verwendet wird: <InlineMath math="\text{Sektorfläche} = \frac{1}{2} \times \text{Bogenlänge} \times r" />
+Gegeben: <InlineMath math="r = 14 \text{ cm}" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="\text{Sektorfläche} = \frac{1}{2} \times 22 \times 14" />
-   <BlockMath math="= \frac{22 \times 14}{2}" />
-   <BlockMath math="= \frac{308}{2}" />
-   <BlockMath math="= 154 \text{ cm}^2" />
-   </MathContainer>
+Verwendet wird: <InlineMath math="\text{Sektorfläche} = \frac{1}{2} \times \text{Bogenlänge} \times r" />
 
-2. **Lösungsschritte:**
+<MathContainer>
+<BlockMath math="\text{Sektorfläche} = \frac{1}{2} \times 22 \times 14" />
+<BlockMath math="= \frac{22 \times 14}{2}" />
+<BlockMath math="= \frac{308}{2}" />
+<BlockMath math="= 154 \text{ cm}^2" />
+</MathContainer>
 
-   Gegeben: Sektorfläche = <InlineMath math="154 \text{ cm}^2" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
+**Lösung 2**
 
-   Verwendet wird: <InlineMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
+Gegeben: Sektorfläche = <InlineMath math="154 \text{ cm}^2" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="\frac{154}{22} = \frac{r}{2}" />
-   <BlockMath math="7 = \frac{r}{2}" />
-   <BlockMath math="r = 14 \text{ cm}" />
-   </MathContainer>
+Verwendet wird: <InlineMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
 
-3. **Lösungsschritte:**
+<MathContainer>
+<BlockMath math="\frac{154}{22} = \frac{r}{2}" />
+<BlockMath math="7 = \frac{r}{2}" />
+<BlockMath math="r = 14 \text{ cm}" />
+</MathContainer>
 
-   Gegeben: Abstand = <InlineMath math="1{.}000 \text{ km}" />, Winkel = <InlineMath math="9^\circ" />
+**Lösung 3**
 
-   Verwenden des Verhältnisses: <InlineMath math="\frac{\text{Entfernung}}{\text{Erdumfang}} = \frac{9^\circ}{360^\circ}" />
+Gegeben: Abstand = <InlineMath math="1{.}000 \text{ km}" />, Winkel = <InlineMath math="9^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} \frac{1{.}000}{\text{Erdumfang}} &amp;= \frac{9^\circ}{360^\circ} \\ &amp;= \frac{1}{40} \end{aligned}" />
-   <BlockMath math="\text{Erdumfang} = 1{.}000 \times 40" />
-   <BlockMath math="= 40{.}000 \text{ km}" />
-   </MathContainer>
+Verwenden des Verhältnisses: <InlineMath math="\frac{\text{Entfernung}}{\text{Erdumfang}} = \frac{9^\circ}{360^\circ}" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \frac{1{.}000}{\text{Erdumfang}} &amp;= \frac{9^\circ}{360^\circ} \\ &amp;= \frac{1}{40} \end{aligned}" />
+<BlockMath math="\text{Erdumfang} = 1{.}000 \times 40" />
+<BlockMath math="= 40{.}000 \text{ km}" />
+</MathContainer>

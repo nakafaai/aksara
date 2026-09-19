@@ -3,7 +3,7 @@ export const metadata = {
    description: "Turunkan persamaan normal untuk kuadrat terkecil, cari solusi bentuk tertutup, dan periksa syarat keberadaan serta keunikan solusi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -23,11 +23,11 @@ Persamaan ini disebut **persamaan normal** karena residual pada titik minimum <H
 
 ## Kuadrat Terkecil dan Persamaan Normal
 
-Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> meminimumkan <InlineMath math="\|A \cdot x - b\|_2^2" /> jika dan hanya jika memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. Jadi, masalah optimasi dan persamaan normal memiliki himpunan solusi yang sama. Kesetaraan itulah yang mengubah masalah minimisasi menjadi sistem linear yang dapat diselesaikan dengan eliminasi atau faktorisasi.
+Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> meminimumkan <InlineMath math="\|A \cdot x - b\|_2^2" /> jika dan hanya jika memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. Jadi, masalah optimasi dan persamaan normal memiliki **himpunan solusi yang sama**. Kesetaraan itulah yang mengubah masalah minimisasi menjadi sistem linear yang dapat diselesaikan dengan eliminasi atau faktorisasi.
 
 ## Residual Tegak Lurus terhadap Ruang Kolom
 
-Ketika <InlineMath math="\hat{x}" /> meminimumkan <InlineMath math="\|A\hat{x} - b\|_2^2" />, vektor residual <InlineMath math="A\hat{x} - b" /> tegak lurus terhadap setiap vektor dalam ruang kolom <InlineMath math="A" />.
+Ketika <InlineMath math="\hat{x}" /> meminimumkan <InlineMath math="\|A\hat{x} - b\|_2^2" />, vektor residual <InlineMath math="A\hat{x} - b" /> **tegak lurus terhadap setiap vektor** dalam ruang kolom <InlineMath math="A" />.
 
 Ruang kolom ini terdiri dari semua vektor yang dapat ditulis sebagai <InlineMath math="Ax" /> untuk <InlineMath math="x \in \mathbb{R}^n" />. Kondisi ortogonalitas berarti
 
@@ -57,7 +57,7 @@ Menggunakan teorema Pythagoras, kita dapat menuliskan
   <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
-Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, suku silang bernilai nol. Yang tersisa adalah:
+Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, **suku silang bernilai nol**. Yang tersisa adalah:
 
 <BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
 
@@ -69,7 +69,7 @@ Ketidaksamaan ini membuktikan bahwa <InlineMath math="\hat{x}" /> memang memberi
 
 ## Eksistensi dan Keunikan
 
-Persamaan normal konsisten untuk setiap matriks <InlineMath math="A \in \mathbb{R}^{m\times n}" /> dan setiap vektor <InlineMath math="b \in \mathbb{R}^m" /> karena peminimum kuadrat terkecil selalu ada dalam dimensi hingga. Peminimumnya unik tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh:
+Persamaan normal konsisten untuk setiap matriks <InlineMath math="A \in \mathbb{R}^{m\times n}" /> dan setiap vektor <InlineMath math="b \in \mathbb{R}^m" /> karena peminimum kuadrat terkecil selalu ada dalam dimensi hingga. Peminimumnya unik tepat ketika <InlineMath math="A" /> memiliki **peringkat kolom penuh**:
 
 <BlockMath math="\operatorname{rank}(A)=n" />
 
@@ -97,12 +97,37 @@ Jadi,
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-Kesamaan ruang nol ini menunjukkan bahwa <InlineMath math="A^{\mathsf T}A" /> positif definit tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh.
+**Kesamaan ruang nol** ini menunjukkan bahwa <InlineMath math="A^{\mathsf T}A" /> positif definit tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh.
 
 ## Peringatan numerik
 
-Sifat positif definit memberikan keunikan dan memungkinkan penyelesaian Cholesky, tetapi tidak menjamin kondisi numerik yang baik. Untuk matriks berperingkat kolom penuh,
+Sifat positif definit memberikan keunikan dan memungkinkan penyelesaian Cholesky, tetapi **tidak menjamin kondisi numerik yang baik**. Untuk matriks berperingkat kolom penuh,
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
 Pembentukan <InlineMath math="A^{\mathsf T}A" /> secara langsung dapat memperbesar kepekaan dan efek pembulatan. Rumus invers membuktikan sebuah identitas aljabar. Dalam perangkat lunak, gunakan <InlineMath math="\mathrm{QR}" /> untuk kuadrat terkecil berperingkat penuh dan <InlineMath math="\mathrm{SVD}" /> ketika matriks kekurangan peringkat atau memiliki kondisi yang sangat buruk.
+
+## Contoh Dua Pengamatan
+
+Misalkan <InlineMath math="A=(1,2)^T" /> dan <InlineMath math="b=(2,1)^T" />. Satu parameter skalar tidak dapat memenuhi kedua pengamatan. Persamaan pertama meminta <InlineMath math="x=2" />, sedangkan persamaan kedua meminta <InlineMath math="x=1/2" />. Solusi kuadrat terkecil meminimumkan jumlah **kuadrat residual** kedua pengamatan.
+
+<MathContainer>
+<BlockMath math="A^TA=1^2+2^2=5,\qquad A^Tb=1\cdot2+2\cdot1=4" />
+<BlockMath math="5\hat x=4\Rightarrow\hat x=\frac45" />
+<BlockMath math="A\hat x=\begin{pmatrix}4/5\\8/5\end{pmatrix},\qquad r=A\hat x-b=\begin{pmatrix}-6/5\\3/5\end{pmatrix}" />
+<BlockMath math="A^Tr=1\cdot(-6/5)+2\cdot(3/5)=0" />
+</MathContainer>
+
+Residual tegak lurus terhadap garis yang memuat semua prediksi. Perpindahan di sepanjang garis menambahkan kuadrat jarak tak negatif, sesuai dengan pembuktian Pythagoras.
+
+<LineEquation
+  title="Prediksi dan Residual Tegak Lurus"
+  description="Garis hijau memuat semua prediksi Ax. Ruas oranye menghubungkan (4/5,8/5) dengan pengamatan (2,1)."
+  cameraPosition={[1, 1, 6]}
+  cameraTarget={[1, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0.8, y: 1.6, z: 0 }, { x: 1.5, y: 3, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#0d9488", labels: [{ text: "Ax", at: 1 }] },
+    { points: [{ x: 0.8, y: 1.6, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#f97316", labels: [{ text: "b", at: 1 }] },
+  ]}
+/>

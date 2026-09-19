@@ -3,7 +3,7 @@ export const metadata = {
    description: "Relate induced matrix norms, spectral radius, singular values, condition numbers, and perturbation bounds, then distinguish conditioning from stability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -20,7 +20,7 @@ This definition immediately gives two essential bounds for dimensionally compati
 <BlockMath math="\|AB\|\le\|A\|\|B\|" />
 </MathContainer>
 
-<Highlight>The vector norm determines the induced matrix norm.</Highlight>
+The **chosen vector norm** determines the induced matrix norm.
 
 | Vector norm | Induced matrix norm |
 | --- | --- |
@@ -46,7 +46,7 @@ If <InlineMath math="A" /> is real symmetric, its singular values are the absolu
 
 <BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
 
-For a general nonnormal matrix, the spectral radius and spectral norm need not be equal.
+For a general nonnormal matrix, the spectral radius and spectral norm **need not be equal**.
 
 ## Condition number of a linear solve
 
@@ -62,11 +62,11 @@ For an invertible symmetric matrix, this becomes
 
 <BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-Use the eigenvalue with the smallest magnitude in the denominator. Its sign does not decide the choice.
+Use the eigenvalue with the **smallest magnitude** in the denominator. Its sign does not decide the choice.
 
 | Size of <InlineMath math="\kappa(A)" /> | Interpretation |
 | --- | --- |
-| Near <InlineMath math="1" /> | In the worst case, the relative change in the solution is about as large as the relative change in the input. |
+| Near <InlineMath math="1" /> | In the **worst case**, the relative change in the solution is about as large as the relative change in the input. |
 | Large | Some input directions can produce much larger relative changes in the solution. |
 | Infinite | The matrix is singular, so the inverse problem is not uniquely solvable. |
 
@@ -84,11 +84,23 @@ For <InlineMath math="b=(b_1,b_2)^{\mathsf T}" />, the solution is
 
 <BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
 
-A small change in <InlineMath math="b_2" /> is amplified by <InlineMath math="1/\varepsilon" /> in the second solution component. The matrix is close to singular because it multiplies vectors along the second coordinate direction by <InlineMath math="\varepsilon" />, which is close to zero.
+A small change in <InlineMath math="b_2" /> is **amplified by** <InlineMath math="1/\varepsilon" /> in the second solution component. The matrix is close to singular because it multiplies vectors along the second coordinate direction by <InlineMath math="\varepsilon" />, which is close to zero.
+
+Set <InlineMath math="\varepsilon=1/1000" /> and compare two right-hand sides. Only the second observation changes.
+
+| <InlineMath math="b" /> | <InlineMath math="x=A^{-1}b" /> |
+| --- | --- |
+| <InlineMath math="(1,1/1000)^T" /> | <InlineMath math="(1,1)^T" /> |
+| <InlineMath math="(1,2/1000)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<MathContainer>
+<BlockMath math="\Delta b_2=\frac1{1000},\qquad\Delta x_2=\frac{1/1000}{1/1000}=1" />
+<BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
+</MathContainer>
 
 ## Perturbation bound
 
-Compare the original system <InlineMath math="Ax=b" /> with a system whose matrix and vector change slightly:
+Assume <InlineMath math="A" /> is invertible and <InlineMath math="b\ne0" />, so the relative errors below have **nonzero denominators**. Compare the original system <InlineMath math="Ax=b" /> with a system whose matrix and vector change slightly:
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 

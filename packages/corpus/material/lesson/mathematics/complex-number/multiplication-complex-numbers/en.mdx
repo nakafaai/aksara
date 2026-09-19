@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Multiplication of Complex Numbers",
   description: "Multiply complex numbers with the distributive property and simplify the result through worked binomial examples.",
@@ -15,29 +13,9 @@ Multiplying two complex numbers is similar to multiplying two binomial algebraic
 
 Start with <InlineMath math="z_1 = x_1 + iy_1" /> and <InlineMath math="z_2 = x_2 + iy_2" />, then distribute each term of the first factor across the second.
 
-<MathContainer>
-  <BlockMath math="z_1 \times z_2 = (x_1 + iy_1)(x_2 + iy_2)" />
-  <BlockMath math="= x_1(x_2 + iy_2) + iy_1(x_2 + iy_2)" />
-  <BlockMath math="= (x_1x_2 + ix_1y_2) + (ix_2y_1 + i^2y_1y_2)" />
-</MathContainer>
+Replace the **square of the imaginary unit** by minus one, then group real and imaginary terms. The product of two imaginary terms contributes to the real part, not the imaginary part:
 
-Because <InlineMath math="i^2 = -1" />, replace the quadratic imaginary term:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}  &amp;= (x_1x_2 + ix_1y_2) \\ &amp;\quad{}+ (ix_2y_1 + (-1)y_1y_2) \end{aligned}" />
-  <BlockMath math="= x_1x_2 + ix_1y_2 + ix_2y_1 - y_1y_2" />
-</MathContainer>
-
-Next, group the real terms and the imaginary terms:
-
-<MathContainer>
-  <BlockMath math="= (x_1x_2 - y_1y_2) + (ix_1y_2 + ix_2y_1)" />
-  <BlockMath math="= (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
-</MathContainer>
-
-So, the general formula for complex number multiplication is:
-
-<BlockMath math="\begin{aligned} z_1 \times z_2 &amp;= (x_1x_2 - y_1y_2) \\ &amp;\quad{}+ i(x_1y_2 + x_2y_1) \end{aligned}" />
+<BlockMath math="\begin{aligned}z_1z_2&amp;=(x_1+iy_1)(x_2+iy_2) \\ &amp;=x_1x_2+ix_1y_2+ix_2y_1+i^2y_1y_2 \\ &amp;=x_1x_2-y_1y_2+i(x_1y_2+x_2y_1)\end{aligned}" />
 
 ## Two Ways to Calculate the Same Product
 
@@ -45,33 +23,13 @@ Let <InlineMath math="z_1 = 2+i" /> and <InlineMath math="z_2 = 1-2i" />. Find <
 
 **Solution:**
 
-Using the distributive property:
+Using the **distributive property**:
 
-<MathContainer>
-  <BlockMath math="z_1 \times z_2 = (2+i)(1-2i)" />
-  <BlockMath math="= 2(1-2i) + i(1-2i)" />
-  <BlockMath math="= (2 - 4i) + (i - 2i^2)" />
-</MathContainer>
-  Use <InlineMath math="i^2=-1" />:
+<BlockMath math="\begin{aligned}z_1z_2&amp;=(2+i)(1-2i) \\ &amp;=2-4i+i-2i^2 \\ &amp;=2+2+(-4+1)i=4-3i\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="= (2 - 4i) + (i - 2(-1))" />
-  <BlockMath math="= (2 - 4i) + (i + 2)" />
-  <BlockMath math="= (2+2) + (-4i + i)" />
-  <BlockMath math="= 4 - 3i" />
-</MathContainer>
+The product lies at <InlineMath math="(4,-3)" /> in the complex plane. **Do not multiply coordinates separately**. The calculation <InlineMath math="(2\cdot1,1\cdot(-2))=(2,-2)" /> is not complex multiplication because it omits the cross terms and the sign change from the square of the imaginary unit.
 
-Or using the general formula with <InlineMath math="x_1 = 2, y_1 = 1, x_2 = 1, y_2 = -2" />:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} z_1 \times z_2 &amp;= (x_1x_2 - y_1y_2) \\ &amp;\quad{}+ i(x_1y_2 + x_2y_1) \end{aligned}" />
-  <BlockMath math="\begin{aligned}  &amp;= (2)(1) - (1)(-2) \\ &amp;\quad{}+ i((2)(-2) + (1)(1)) \end{aligned}" />
-  <BlockMath math="= (2 - (-2)) + i(-4 + 1)" />
-  <BlockMath math="= (2+2) + i(-3)" />
-  <BlockMath math="= 4 - 3i" />
-</MathContainer>
-
-Both methods give the same result, <InlineMath math="4-3i" />.
+<BlockMath math="z_1z_2=(2\cdot1-1\cdot(-2))+i(2\cdot(-2)+1\cdot1)=4-3i" />
 
 <LineEquation
   title="Visualization of Complex Number Multiplication"
@@ -84,6 +42,7 @@ Both methods give the same result, <InlineMath math="4-3i" />.
   }
   cameraPosition={[2, -1, 9]}
   cameraTarget={[2, -1, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -120,32 +79,15 @@ Both methods give the same result, <InlineMath math="4-3i" />.
 
 ## Exercise
 
-This problem multiplies two complex numbers, one written in rectangular form and one with a fractional real part. Expand the product with the distributive law, replace <InlineMath math="i^2" /> with <InlineMath math="-1" />, and collect the real and imaginary parts.
+This problem multiplies two complex numbers, one written in rectangular form and one with a fractional real part. Expand the product with the **distributive law**, replace <InlineMath math="i^2" /> with <InlineMath math="-1" />, and collect the real and imaginary parts.
 
 Let <InlineMath math="z_1 = 1+i" /> and <InlineMath math="z_2 = \frac{1}{2} - 2i" />. Find <InlineMath math="z_1 \times z_2" />.
 
 ### Worked Solution
 
-Using the distributive property:
+Using the **distributive property**:
 
 <MathContainer>
-  <BlockMath math="z_1 \times z_2 = (1+i)(\frac{1}{2} - 2i)" />
-  <BlockMath math="= 1(\frac{1}{2} - 2i) + i(\frac{1}{2} - 2i)" />
-  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i - 2i^2)" />
-  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i - 2(-1))" />
-  <BlockMath math="= (\frac{1}{2} - 2i) + (\frac{1}{2}i + 2)" />
-  <BlockMath math="= (\frac{1}{2} + 2) + (-2i + \frac{1}{2}i)" />
-  <BlockMath math="= (\frac{1}{2} + \frac{4}{2}) + (-\frac{4}{2}i + \frac{1}{2}i)" />
-  <BlockMath math="= \frac{5}{2} - \frac{3}{2}i" />
-</MathContainer>
-
-Using the general formula with <InlineMath math="x_1 = 1, y_1 = 1, x_2 = \frac{1}{2}, y_2 = -2" />:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} z_1 \times z_2 &amp;= (x_1x_2 - y_1y_2) \\ &amp;\quad{}+ i(x_1y_2 + x_2y_1) \end{aligned}" />
-  <BlockMath math="\begin{aligned}  &amp;= ((1)(\frac{1}{2}) - (1)(-2)) \\ &amp;\quad{}+ i((1)(-2) + (\frac{1}{2})(1)) \end{aligned}" />
-  <BlockMath math="= (\frac{1}{2} - (-2)) + i(-2 + \frac{1}{2})" />
-  <BlockMath math="= (\frac{1}{2} + 2) + i(-\frac{4}{2} + \frac{1}{2})" />
-  <BlockMath math="= (\frac{1}{2} + \frac{4}{2}) + i(-\frac{3}{2})" />
-  <BlockMath math="= \frac{5}{2} - \frac{3}{2}i" />
+  <BlockMath math="\begin{aligned}(1+i)\left(\frac12-2i\right)&amp;=\frac12-2i+\frac12i-2i^2 \\ &amp;=\left(\frac12+2\right)+\left(-2+\frac12\right)i \\ &amp;=\left(\frac12+\frac42\right)+\left(-\frac42+\frac12\right)i \\ &amp;=\frac52-\frac32i\end{aligned}" />
+  <BlockMath math="z_1z_2=\left(1\cdot\frac12-1\cdot(-2)\right)+i\left(1\cdot(-2)+\frac12\cdot1\right)=\frac52-\frac32i" />
 </MathContainer>

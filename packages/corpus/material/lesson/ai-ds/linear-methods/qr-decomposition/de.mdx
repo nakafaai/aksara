@@ -3,7 +3,7 @@ export const metadata = {
    description: "QR-Zerlegung mit Gram-Schmidt- und Householder-Verfahren. Volle und reduzierte Faktorisierung, numerische Stabilität und Rechenaufwand werden hergeleitet.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Lineare Methoden der KI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Die <InlineMath math="\mathrm{QR}" />-Zerlegung faktorisiert eine Matrix in einen orthogonalen und einen oberen dreieckigen Faktor. <Highlight>Orthogonale Multiplikationen erhalten Längen und Winkel</Highlight> und eignen sich deshalb für stabile numerische Rechnungen.
 
-Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. Dann gibt es eine orthogonale Matrix <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> mit <InlineMath math="Q^TQ=I" /> und eine obere Dreiecksmatrix <InlineMath math="R\in\mathbb{R}^{m\times n}" />, deren erste <InlineMath math="n" /> Diagonaleinträge positiv sind, sodass
+Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. Dann gibt es eine orthogonale Matrix <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> mit <InlineMath math="Q^TQ=I" /> und eine obere Dreiecksmatrix <InlineMath math="R\in\mathbb{R}^{m\times n}" />, deren erste <InlineMath math="n" /> **Diagonaleinträge** positiv sind, sodass
 
 <BlockMath math="A = Q \cdot R" />
 
@@ -19,7 +19,7 @@ Diese Faktorisierung heißt <InlineMath math="\mathrm{QR}" />-Zerlegung von <Inl
 
 ### Beweis mit Orthogonalisierung nach Gram und Schmidt
 
-Sei <InlineMath math="a_j" /> die <InlineMath math="j" />-te Spalte von <InlineMath math="A" />. Das Gram-Schmidt-Verfahren entfernt die Anteile in bereits bestimmten Richtungen und normiert anschließend den Rest:
+Sei <InlineMath math="a_j" /> die <InlineMath math="j" />-te Spalte von <InlineMath math="A" />. Das Gram-Schmidt-Verfahren **entfernt die Anteile** in bereits bestimmten Richtungen und normiert anschließend den Rest:
 
 <MathContainer>
 <BlockMath math="\tilde{q}_j := a_j - \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k" />
@@ -46,11 +46,11 @@ Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Vollständige und reduzierte Zerlegung mit QR
 
-Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit unterschiedlichen Matrixgrößen. Beide ergeben beim Zurückmultiplizieren wieder <InlineMath math="A" />, sodass die Wahl davon abhängt, ob du die vollständige Orthonormalbasis brauchst oder nur die Spalten, die die Daten tragen.
+Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit **unterschiedlichen Matrixgrößen**. Beide ergeben beim Zurückmultiplizieren wieder <InlineMath math="A" />, sodass die Wahl davon abhängt, ob du die vollständige Orthonormalbasis brauchst oder nur die Spalten, die die Daten tragen.
 
 ### Vollständige Zerlegung mit QR
 
-Die vollständige Form behält alle <InlineMath math="m" /> Spalten von <InlineMath math="Q" />:
+Die vollständige Form **behält alle** <InlineMath math="m" /> Spalten von <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R" />
 
@@ -58,7 +58,7 @@ Dabei ist <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> orthogonal. Die Matri
 
 ### Reduzierte Zerlegung mit QR
 
-Die reduzierte Form entfernt diese Nullzeilen und die dazugehörigen ungenutzten Spalten von <InlineMath math="Q" />:
+Die reduzierte Form **entfernt diese Nullzeilen** und die dazugehörigen ungenutzten Spalten von <InlineMath math="Q" />:
 
 <BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
@@ -72,7 +72,7 @@ Der Kern von <InlineMath math="A^T" /> enthält genau die Vektoren <InlineMath m
 
 ### Eindeutigkeit
 
-Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle Diagonaleinträge von <InlineMath math="R_1" /> positiv sind. Diese Vorzeichenbedingung beseitigt die verbleibende Freiheit, denn multiplizierst du eine Spalte von <InlineMath math="Q_1" /> und die zugehörige Zeile von <InlineMath math="R_1" /> mit <InlineMath math="-1" />, bleibt das Produkt unverändert.
+Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle **Diagonaleinträge** von <InlineMath math="R_1" /> **positiv** sind. Diese Vorzeichenbedingung beseitigt die verbleibende Freiheit, denn multiplizierst du eine Spalte von <InlineMath math="Q_1" /> und die zugehörige Zeile von <InlineMath math="R_1" /> mit <InlineMath math="-1" />, bleibt das Produkt unverändert.
 
 ## Beispiel einer dünnen Zerlegung mit QR
 
@@ -80,7 +80,7 @@ Sei
 
 <BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
 
-Gram-Schmidt liefert zunächst
+**Gram-Schmidt liefert** zunächst
 
 <MathContainer>
 <BlockMath math="q_1=\frac{a_1}{\|a_1\|_2}=\frac1{\sqrt2}\begin{pmatrix}1\\1\\0\end{pmatrix}" />
@@ -99,7 +99,7 @@ Damit gilt
 
 ## Householderverfahren zur Zerlegung mit QR
 
-Das klassische Gram-Schmidt-Verfahren lässt sich direkt herleiten, kann aber bei nahezu linear abhängigen Spalten in Gleitkommaarithmetik Orthogonalität verlieren. Das modifizierte Verfahren verringert diesen Fehler. Numerische Software verwendet für dichte Matrizen meist Householder-Spiegelungen. Givens-Rotationen eignen sich, wenn nur einzelne Einträge beseitigt werden sollen.
+Das klassische Gram-Schmidt-Verfahren lässt sich direkt herleiten, kann aber bei **nahezu linear abhängigen Spalten** in Gleitkommaarithmetik Orthogonalität verlieren. Das modifizierte Verfahren verringert diesen Fehler. Numerische Software verwendet für dichte Matrizen meist Householder-Spiegelungen. Givens-Rotationen eignen sich, wenn nur einzelne Einträge beseitigt werden sollen.
 
 ### Householdertransformation
 
@@ -107,11 +107,11 @@ Für einen Einheitsvektor <InlineMath math="v\in\mathbb{R}^m" /> ist die Househo
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
 
-Das äußere Produkt <InlineMath math="vv^T" /> multipliziert eine <InlineMath math="m\times1" />-Spalte mit einer <InlineMath math="1\times m" />-Zeile und ergibt daher eine <InlineMath math="m\times m" />-Matrix vom Rang eins. Das umgekehrte Produkt <InlineMath math="v^Tv" /> ist der Skalar <InlineMath math="1" />.
+Das **äußere Produkt** <InlineMath math="vv^T" /> multipliziert eine <InlineMath math="m\times1" />-Spalte mit einer <InlineMath math="1\times m" />-Zeile und ergibt daher eine <InlineMath math="m\times m" />-Matrix vom Rang eins. Das umgekehrte Produkt <InlineMath math="v^Tv" /> ist der Skalar <InlineMath math="1" />.
 
 ## Eigenschaften der Householdertransformation
 
-Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften. Symmetrie und Orthogonalität folgen aus dem Einheitsvektor in der Definition, die Spiegelung erklärt die Wirkung auf einen Vektor, und die Konditionszahl eins zeigt, dass die Spiegelung eine Rechnung nicht vergrößert.
+Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften. Symmetrie und Orthogonalität folgen aus dem Einheitsvektor in der Definition, die Spiegelung erklärt die Wirkung auf einen Vektor, und **Konditionszahl eins** bedeutet, dass eine exakte Spiegelung die euklidische Norm eines Störvektors erhält.
 
 1. <InlineMath math="S" /> ist symmetrisch: <InlineMath math="S^T = S" />
 
@@ -123,7 +123,7 @@ Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten 
 
 ## Householderverfahren
 
-Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. In jedem Householder-Schritt werden die Einträge unter einer Diagonalposition null, während die bereits erzeugten Nullen erhalten bleiben.
+Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. **In jedem Householder-Schritt** werden die Einträge unter einer Diagonalposition null, während die bereits erzeugten Nullen erhalten bleiben.
 
 Wir beginnen mit <InlineMath math="A_1=A" /> und spiegeln die erste Spalte auf ein Vielfaches des ersten Koordinatenvektors:
 
@@ -143,7 +143,7 @@ Mit <InlineMath math="S_1=I_m-2v_1v_1^T" /> werden alle Einträge der ersten Spa
 
 In der Matrix <InlineMath math="A_2" /> gilt <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> und <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
 
-Im nächsten Schritt spiegeln wir die erste Spalte der verbleibenden Untermatrix:
+Im nächsten Schritt spiegeln wir die erste Spalte der **verbleibenden Untermatrix**:
 
 <MathContainer>
 <BlockMath math="\tilde{a}_2 \text{ erste Spalte von } \tilde{A}_2" />
@@ -194,7 +194,7 @@ Im Schritt <InlineMath math="i" /> wird der aktive Teil der <InlineMath math="i"
 
 <BlockMath math="\begin{aligned} \tilde{a}_i &amp;= \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} \\ &amp;:= \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1} \end{aligned}" />
 
-Danach werden Norm, Vorzeichen und Householder-Vektor berechnet. Das Vorzeichen verhindert die Subtraktion fast gleicher Zahlen:
+Danach werden Norm, Vorzeichen und Householder-Vektor berechnet. Das Vorzeichen verhindert die **Subtraktion fast gleicher Zahlen**:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
@@ -231,30 +231,32 @@ Nach <InlineMath math="n" /> Schritten gilt
 
 ## Numerische Eigenschaften und Aufwand
 
-Die Umsetzung der Zerlegung in Gleitkommaarithmetik wirft zwei praktische Fragen auf, nämlich wie viele Operationen sie kostet und wie sich der Rundungsfehler verhält. Beide Antworten entscheiden, ob das Verfahren zum Problem passt: Die Operationszahl bestimmt die Laufzeit bei einer großen Matrix, und das Rundungsverhalten bestimmt, wie viel vom berechneten Ergebnis du verwerten kannst.
+Die Umsetzung der Zerlegung in Gleitkommaarithmetik wirft zwei praktische Fragen auf, nämlich wie viele Operationen sie kostet und wie sich der **Rundungsfehler** verhält. Beide Antworten entscheiden, ob das Verfahren zum Problem passt: Die Operationszahl bestimmt die Laufzeit bei einer großen Matrix, und das Rundungsverhalten bestimmt, wie viel vom berechneten Ergebnis du verwerten kannst.
 
 ### Rechenkomplexität
+
+Die folgende Zählung speichert <InlineMath math="Q" /> **implizit als Reflektoren** und berechnet <InlineMath math="R" />. Das explizite Bilden der vollständigen <InlineMath math="m\times m" />-Matrix <InlineMath math="Q" /> benötigt zusätzliche Arbeit.
 
 Für <InlineMath math="m\ge n" /> benötigt eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Householder-Spiegelungen ungefähr:
 
 <BlockMath math="2mn^2-\frac23n^3" />
-Die ungefähre Anzahl an Gleitkommaoperationen für <InlineMath math="m=n" /> beträgt:
+Die ungefähre Anzahl an **Gleitkommaoperationen** für <InlineMath math="m=n" /> beträgt:
 
 <BlockMath math="\frac43n^3" />
 
 ### Numerische Eigenschaften
 
-1. Orthogonale Multiplikationen erhalten die Singulärwerte. Daher gilt für eine Matrix mit vollem Spaltenrang <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" />.
+Orthogonale Multiplikationen **erhalten die Singulärwerte**. Daher gilt für eine Matrix mit vollem Spaltenrang <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" />.
 
-2. Im Schritt <InlineMath math="i" /> entsteht der neue Diagonaleintrag <InlineMath math="\pm\|\widetilde a_i\|_2" />. Das folgende Vorzeichen verhindert beim Berechnen des Reflektors die Subtraktion fast gleicher Zahlen:
+Im Schritt <InlineMath math="i" /> entsteht der neue Diagonaleintrag <InlineMath math="\pm\|\widetilde a_i\|_2" />. Das folgende Vorzeichen verhindert beim Berechnen des Reflektors die Subtraktion fast gleicher Zahlen:
 
-   <MathContainer>
-     <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
-     <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
+  <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
+</MathContainer>
 
-   Nach der Faktorisierung können die Vorzeichen einer Spalte von <InlineMath math="Q" /> und der zugehörigen Zeile von <InlineMath math="R" /> gemeinsam gewechselt werden, damit die Diagonale von <InlineMath math="R" /> positiv ist. Gilt <InlineMath math="\|\widetilde a_i\|_2=0" />, fehlt der volle Spaltenrang und diese Eindeutigkeitsbedingung entfällt. Eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung eignet sich besser, wenn der numerische Rang bestimmt werden soll.
+Nach der Faktorisierung können die Vorzeichen einer Spalte von <InlineMath math="Q" /> und der zugehörigen Zeile von <InlineMath math="R" /> gemeinsam gewechselt werden, damit die Diagonale von <InlineMath math="R" /> positiv ist. Gilt <InlineMath math="\|\widetilde a_i\|_2=0" />, fehlt der volle Spaltenrang und diese Eindeutigkeitsbedingung entfällt. Eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung eignet sich besser, wenn der numerische Rang bestimmt werden soll.
 
-3. Eine kompakte Implementierung speichert jeden Householder-Vektor <InlineMath math="u_i" /> unterhalb der Diagonale der Arbeitskopie von <InlineMath math="A" /> und die Diagonaleinträge separat. So lassen sich die Reflektoren anwenden, ohne <InlineMath math="Q" /> explizit zu bilden.
+Eine kompakte Implementierung skaliert den Householder-Vektor so, dass sein erster aktiver Eintrag 1 ist. Die übrigen Einträge werden unterhalb der Diagonalen gespeichert, die Reflektorstärke in einem separaten Skalar. Diagonale und oberes Dreieck enthalten weiterhin <InlineMath math="R" />. Die gespeicherten Reflektoren lassen sich ohne explizites <InlineMath math="Q" /> anwenden.
 
-4. Die reduzierte Faktorisierung behält die ersten <InlineMath math="n" /> Spalten von <InlineMath math="Q" /> und die ersten <InlineMath math="n" /> Zeilen von <InlineMath math="R" />.
+Die reduzierte Faktorisierung behält die ersten <InlineMath math="n" /> Spalten von <InlineMath math="Q" /> und die ersten <InlineMath math="n" /> Zeilen von <InlineMath math="R" />.

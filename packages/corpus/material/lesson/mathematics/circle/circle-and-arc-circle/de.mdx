@@ -4,7 +4,7 @@ export const metadata = {
     "Kreise aus ihrem festen Abstand aufbauen und Kreisbögen, Mittelpunkt- und Umfangswinkel, Bogenlänge sowie Sektorfläche an Abbildungen und vollständig gerechneten Aufgaben verknüpfen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kreis",
 };
 
@@ -14,7 +14,7 @@ export const metadata = {
 
 Ein Kreis ist die Menge aller Punkte einer Ebene, die von einem Punkt den gleichen festen Abstand haben. Dieser Punkt ist der **Kreismittelpunkt**, der feste Abstand ist der **Radius**.
 
-Liegt der Mittelpunkt bei <InlineMath math="O(a,b)" /> und beträgt der Radius <InlineMath math="r" />, folgt aus der Abstandsformel die Kreisgleichung:
+Liegt der Mittelpunkt bei <InlineMath math="O(a,b)" /> und beträgt der Radius <InlineMath math="r > 0" />, folgt aus der Abstandsformel die Kreisgleichung:
 
 <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
@@ -74,16 +74,19 @@ Das folgende Diagramm ordnet Mittelpunkt, Radius, Durchmesser und Sehne ein:
   cameraPosition={[0, 0, 10]}
 />
 
-**Diese vier Bestandteile sollten zuerst erkannt werden:**
+Diese vier Bestandteile sollten zuerst erkannt werden:
 
-- **Mittelpunkt (<InlineMath math="O" />)**: fester Bezugspunkt für jeden Radius
-- **Radius (<InlineMath math="r" />)**: Strecke vom Mittelpunkt zu einem Punkt auf dem Kreis
-- **Durchmesser (<InlineMath math="d" />)**: Sehne durch den Mittelpunkt, daher <InlineMath math="d = 2r" />
+- **Mittelpunkt** (<InlineMath math="O" />): fester Bezugspunkt für jeden Radius
+- **Radius** (<InlineMath math="r" />): Strecke vom Mittelpunkt zu einem Punkt auf dem Kreis
+- **Durchmesser** (<InlineMath math="d" />): Sehne durch den Mittelpunkt, daher <InlineMath math="d = 2r" />
 - **Sehne**: Strecke zwischen zwei Punkten auf dem Kreis
 
 ## Kreisbögen
 
 Ein Kreisbogen ist <Highlight>ein Teil des Kreisumfangs</Highlight>, der durch zwei Punkte auf dem Kreis begrenzt wird. Ein Bogen wird mit einem gebogenen Symbol über den Buchstaben gekennzeichnet, zum Beispiel <InlineMath math="\overset{\frown}{AB}" />.
+
+
+Die Bogenlänge hängt von **Radius und Mittelpunktswinkel** ab. Ein Bogen besitzt ein Winkelmaß in Grad und eine Länge, die in Längeneinheiten angegeben wird.
 
 ### Arten von Bögen
 
@@ -130,15 +133,15 @@ Ein Kreisbogen ist <Highlight>ein Teil des Kreisumfangs</Highlight>, der durch z
   cameraPosition={[0, 0, 10]}
 />
 
-**Bogenarten nach ihrer Länge:**
-
-- **Kleiner Bogen**: Bogen, dessen Länge weniger als die Hälfte des Kreisumfangs beträgt
-- **Großer Bogen**: Bogen, dessen Länge mehr als die Hälfte des Kreisumfangs beträgt
-- **Halbkreis**: Bogen, dessen Länge genau der Hälfte des Kreisumfangs entspricht
+| Bogenart | Anteil am Umfang | Beispiel für das Winkelmaß |
+|---|---|---|
+| **Kleiner Bogen** | Weniger als die Hälfte | <InlineMath math="90^\circ/360^\circ=1/4" /> |
+| **Großer Bogen** | Mehr als die Hälfte | <InlineMath math="270^\circ/360^\circ=3/4" /> |
+| **Halbkreis** | Genau die Hälfte | <InlineMath math="180^\circ/360^\circ=1/2" /> |
 
 ## Mittelpunktswinkel und Umfangswinkel
 
-Ein Mittelpunktswinkel hat seinen Scheitel im Kreismittelpunkt, ein Umfangswinkel auf dem Kreis. Beide liegen über demselben Bogen, und ein festes Verhältnis verbindet ihre Größen. Der [Mittelpunktswinkel und der Umfangswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-umfangswinkel) über demselben Bogen stehen stets im Verhältnis zwei zu eins.
+Ein Mittelpunktswinkel hat seinen Scheitel im Kreismittelpunkt, ein Umfangswinkel auf dem Kreis. Wenn beide über **demselben Bogen** liegen, ist der Mittelpunktswinkel doppelt so groß wie der Umfangswinkel.
 
 ### Mittelpunktswinkel
 
@@ -220,14 +223,16 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
   cameraPosition={[0, 0, 10]}
 />
 
-**Eigenschaften des Mittelpunktswinkels:**
+Mittelpunktswinkel und zugehöriger Bogen haben **dasselbe Winkelmaß**. Ohne den Radius bestimmt dieses Maß aber noch keine Länge. Die folgenden zwei Kreise haben denselben Winkel, jedoch unterschiedliche Bogenlängen.
 
-- Das Maß des Mittelpunktswinkels entspricht dem Maß des Bogens, den er umfasst
-- Hat der Mittelpunktswinkel das Maß <InlineMath math="\alpha" />, dann besitzt der zugehörige Bogen ebenfalls das Gradmaß <InlineMath math="\alpha" />.
+| Radius | Mittelpunktswinkel | Bogenlänge |
+|---|---|---|
+| <InlineMath math="3\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(3)=\pi\text{ cm}" /> |
+| <InlineMath math="6\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(6)=2\pi\text{ cm}" /> |
 
 ### Umfangswinkel
 
-Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf dem Kreis. Seine beiden Schenkel sind Sehnen.
+Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen **Scheitelpunkt auf dem Kreis**. Seine beiden Schenkel sind Sehnen.
 
 <LineEquation
   title={
@@ -317,9 +322,9 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
 </MathContainer>
 
-Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, ist der Umfangswinkel halb so groß wie der Mittelpunktswinkel.
+Wenn ein [Mittelpunktswinkel und ein Umfangswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-umfangswinkel) über demselben Bogen liegen, ist der Umfangswinkel halb so groß wie der Mittelpunktswinkel.
 
-**Beispielanwendung:**
+**Beispielanwendung**:
 
 <LineEquation
   title="Mittelpunktswinkel und Umfangswinkel"
@@ -419,11 +424,11 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
 
 ## Bogenlänge und Sektorfläche
 
-Bogen und Sektor nehmen denselben Anteil des ganzen Kreises ein. Dieser gemeinsame Anteil ist das Verhältnis des Mittelpunktswinkels zu <InlineMath math="360^\circ" />, sodass dieses eine Verhältnis sowohl die Bogenlänge als auch die Sektorfläche festlegt.
+Bogen und Sektor nehmen **denselben Anteil** des ganzen Kreises ein. Dieser gemeinsame Anteil ist das Verhältnis des Mittelpunktswinkels zu <InlineMath math="360^\circ" />, sodass dieses eine Verhältnis sowohl die Bogenlänge als auch die Sektorfläche festlegt.
 
 ### Bogenlänge
 
-Ein Bogen umfasst denselben Anteil des Kreisumfangs wie sein Mittelpunktswinkel von einer vollen Drehung. Für einen Mittelpunktswinkel von <InlineMath math="\alpha" /> Grad gilt:
+Ein Bogen umfasst denselben **Anteil des Kreisumfangs** wie sein Mittelpunktswinkel von einer vollen Drehung. Für einen Mittelpunktswinkel von <InlineMath math="\alpha" /> Grad gilt:
 
 <MathContainer>
   <BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
@@ -438,7 +443,7 @@ Dabei gilt:
 
 ### Sektorfläche
 
-Ein Kreissektor ist die von zwei Radien und dem dazwischenliegenden Bogen begrenzte Fläche. Sein Flächenanteil entspricht dem Anteil des Mittelpunktswinkels an einer vollen Drehung.
+Ein Kreissektor ist die von **zwei Radien** und dem dazwischenliegenden Bogen begrenzte Fläche. Sein Flächenanteil entspricht dem Anteil des Mittelpunktswinkels an einer vollen Drehung.
 
 <MathContainer>
   <BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
@@ -507,7 +512,7 @@ Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Der zugehörige Mi
 1. Bogenlänge
 2. Sektorfläche
 
-**Lösung:**
+**Lösung**:
 
 Gegeben: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
 
@@ -531,32 +536,35 @@ Gegeben: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^
 
 ## Übungsaufgaben
 
-Die Aufgaben verbinden Mittelpunktswinkel, Umfangswinkel und Bogenmaße. Entscheide vor dem Einsetzen, welche Beziehung sie verknüpft.
+Die Aufgaben verbinden Mittelpunktswinkel, Umfangswinkel und Bogenmaße. Entscheide vor dem Einsetzen, **welche Beziehung** sie verknüpft.
 
 1. Ein Kreis hat den Durchmesser <InlineMath math="20 \text{ cm}" />. Ein Umfangswinkel über einem Bogen misst <InlineMath math="30^\circ" />. Bestimme den Mittelpunktswinkel über demselben Bogen.
 
-2. In einem Kreis mit Mittelpunkt <InlineMath math="O" /> und Radius <InlineMath math="21 \text{ cm}" /> gehört zum Bogen <InlineMath math="AB" /> der Mittelpunktswinkel <InlineMath math="120^\circ" />. Berechne:
-
-   - Bogenlänge <InlineMath math="AB" />
-   - Sektorfläche <InlineMath math="AOB" />
+2. In einem Kreis mit Mittelpunkt <InlineMath math="O" /> und Radius <InlineMath math="21 \text{ cm}" /> gehört zum Bogen <InlineMath math="AB" /> der Mittelpunktswinkel <InlineMath math="120^\circ" />. Berechne die Länge des Bogens <InlineMath math="AB" /> und die Fläche des Sektors <InlineMath math="AOB" />.
 
 3. Zwei Umfangswinkel stehen über demselben Bogen. Einer misst <InlineMath math="45^\circ" />. Wie groß ist der andere?
 
 ### Ausführliche Lösungen
 
-1. Der Durchmesser wird für diese Aufgabe nicht benötigt. Entscheidend ist, dass beide Winkel über demselben Bogen liegen. Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel:
+**Lösung 1**
 
-   <BlockMath math="\begin{aligned} \text{Mittelpunktswinkel} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
+Der Durchmesser wird für diese Aufgabe nicht benötigt. Entscheidend ist, dass beide Winkel über **demselben Bogen** liegen. Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel:
 
-   Der Mittelpunktswinkel beträgt also <InlineMath math="60^\circ" />.
+<BlockMath math="\begin{aligned} \text{Mittelpunktswinkel} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
 
-2. Der Winkel <InlineMath math="120^\circ" /> entspricht einem Drittel der vollen Drehung, denn <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Dieser Anteil wird zuerst auf den Umfang und danach auf die Kreisfläche angewendet.
+Der Mittelpunktswinkel beträgt also <InlineMath math="60^\circ" />.
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43{,}98\text{ cm} \end{aligned}" />
-     <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461{,}81\text{ cm}^2 \end{aligned}" />
-   </MathContainer>
+**Lösung 2**
 
-   Damit beträgt die Bogenlänge <InlineMath math="14\pi\text{ cm}" /> und die Sektorfläche <InlineMath math="147\pi\text{ cm}^2" />.
+Der Winkel <InlineMath math="120^\circ" /> entspricht einem Drittel der vollen Drehung, denn <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Dieser Anteil wird zuerst auf den Umfang und danach auf die Kreisfläche angewendet.
 
-3. Umfangswinkel über demselben Bogen sind gleich groß. Da der erste Winkel <InlineMath math="45^\circ" /> misst, beträgt auch der zweite <InlineMath math="45^\circ" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43{,}98\text{ cm} \end{aligned}" />
+  <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461{,}81\text{ cm}^2 \end{aligned}" />
+</MathContainer>
+
+Damit beträgt die Bogenlänge <InlineMath math="14\pi\text{ cm}" /> und die Sektorfläche <InlineMath math="147\pi\text{ cm}^2" />.
+
+**Lösung 3**
+
+Umfangswinkel über demselben Bogen sind gleich groß. Da der erste Winkel <InlineMath math="45^\circ" /> misst, beträgt auch der zweite <InlineMath math="45^\circ" />.

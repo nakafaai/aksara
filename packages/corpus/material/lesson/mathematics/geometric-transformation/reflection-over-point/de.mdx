@@ -4,7 +4,7 @@ export const metadata = {
     description: "Deute die Punktspiegelung als halbe Drehung und berechne Bildpunkte sowie Bildgeraden mit Koordinatenformeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
@@ -16,18 +16,14 @@ Liegt das Spiegelzentrum bei <InlineMath math="P(a,b)" /> und wird <InlineMath m
 
 ### Regel für die Spiegelung an einem Punkt
 
-Wenn ein Punkt <InlineMath math="Q(x, y)" /> am Punkt <InlineMath math="P(a, b)" /> gespiegelt wird, werden die Koordinaten seines Bildes, <InlineMath math="Q'(x', y')" />, durch die Formel bestimmt:
+Das Spiegelzentrum ist der **Mittelpunkt** der Verbindungsstrecke. Der Mittelwert jedes Koordinatenpaares entspricht deshalb der jeweiligen Koordinate des Zentrums:
 
 <MathContainer>
-  <BlockMath math="x' = 2a - x" />
-  <BlockMath math="y' = 2b - y" />
+  <BlockMath math="\frac{x+x'}{2}=a\quad\Longrightarrow\quad x'=2a-x" />
+  <BlockMath math="\frac{y+y'}{2}=b\quad\Longrightarrow\quad y'=2b-y" />
 </MathContainer>
 
-Äquivalent dazu können wir den Bildpunkt direkt angeben:
-
-<BlockMath math="Q'(-x + 2a, -y + 2b)" />
-
-Die <InlineMath math="x" />-Koordinate des Bildpunktes ist also das Doppelte der <InlineMath math="x" />-Koordinate des Spiegelzentrums minus die ursprüngliche <InlineMath math="x" />-Koordinate. Für die <InlineMath math="y" />-Koordinate gilt dasselbe.
+Ein Punkt im Zentrum bleibt fest. Beispielsweise ergibt <InlineMath math="Q(a,b)" /> den Bildpunkt <InlineMath math="Q'(2a-a,2b-b)=(a,b)" />.
 
 ## Einen Punkt an einem anderen Punkt spiegeln
 
@@ -37,7 +33,7 @@ Wir spiegeln also den Punkt <InlineMath math="Q(5,4)" /> am Spiegelzentrum <Inli
 
 Hier <InlineMath math="x=5" />, <InlineMath math="y=4" />, <InlineMath math="a=2" /> und <InlineMath math="b=3" />.
 
-Mit der Formel:
+Berechne **das Doppelte jeder Zentrumskoordinate** und ziehe dann die ursprüngliche Punktkoordinate ab:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(2) - 5 \\ &amp;= 4 - 5 \\ &amp;= -1 \end{aligned}" />
@@ -88,6 +84,8 @@ Somit ist das Bild des Punktes <InlineMath math="(5,4)" /> <InlineMath math="(-1
       color: "#db2777",
     }, // Verbindungsstrecke QQ'
   ]}
+  cameraPosition={[2, 3, 10]}
+  cameraTarget={[2, 3, 0]}
 />
 
 ## Eine Gerade an einem Punkt spiegeln
@@ -97,11 +95,11 @@ Bestimme die Bildgerade der Geraden <InlineMath math="l" /> mit <InlineMath math
 Wir wählen einen beliebigen Punkt <InlineMath math="(x,y)" /> auf der Geraden <InlineMath math="l" />. Nach der Spiegelung am Punkt <InlineMath math="P(1,3)" /> hat sein Bild die Koordinaten <InlineMath math="(x',y')" />. Damit gilt:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x \\ &amp;= 2 - x' \end{aligned}" />
-  <BlockMath math="\begin{aligned} y' &amp;= 2(3) - y \\ &amp;= 6 - y \\ &amp;\implies y \\ &amp;= 6 - y' \end{aligned}" />
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(3) - y \\ &amp;= 6 - y \\ &amp;\implies y = 6 - y' \end{aligned}" />
 </MathContainer>
 
-Wir setzen <InlineMath math="x = 2 - x'" /> und <InlineMath math="y = 6 - y'" /> in die Gleichung der Geraden <InlineMath math="l" /> ein:
+Wir setzen <InlineMath math="x = 2 - x'" /> und <InlineMath math="y = 6 - y'" /> in die **Ausgangsgleichung** der Geraden <InlineMath math="l" /> ein:
 
 <MathContainer>
   <BlockMath math="2(2 - x') - (6 - y') + 3 = 0" />
@@ -130,6 +128,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
     </>
   }
   data={[
+    { points: [{ x: 0, y: 3, z: 0 }, { x: 2, y: 3, z: 0 }], smooth: false, showPoints: true, color: "#db2777" },
     {
       points: [{ x: 1, y: 3, z: 0 }],
       color: "#e11d48",
@@ -138,23 +137,23 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
     },
     {
       // Ursprüngliche Gerade: 2x - y + 3 = 0  => y = 2x + 3
-      points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = i - 5;
+      points: Array.from({ length: 7 }, (_, i) => {
+        const xVal = i / 2 - 1;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
       smooth: false,
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 5, offset: [-2.5, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 4, offset: [-1.5, 0.3, 0] }],
     },
     {
       // Bildgerade: 2x - y - 1 = 0 => y = 2x - 1
-      points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = i - 5;
+      points: Array.from({ length: 7 }, (_, i) => {
+        const xVal = i / 2;
         return { x: xVal, y: 2 * xVal - 1, z: 0 };
       }),
       smooth: false,
       color: "#059669",
-      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 5, offset: [3, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 2, offset: [1.3, -0.5, 0] }],
     },
   ]}
   cameraPosition={[1, 3, 13]}
@@ -163,7 +162,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
 ## Übungen
 
-Die Aufgaben verwenden eine Punktspiegelung an einem gegebenen Zentrum. Die dritte spiegelt eine Gerade, sodass ihre Gleichung transformiert wird.
+Die Aufgaben verwenden eine **Punktspiegelung** an einem gegebenen Zentrum. Die dritte spiegelt eine Gerade, sodass ihre Gleichung transformiert wird.
 
 1.  Bestimme das Bild des Punktes <InlineMath math="(3, -4)" /> unter der Punktspiegelung <InlineMath math="\sigma_{(-2,3)}" />.
 2.  Der Punkt <InlineMath math="K(-5, 1)" /> wird am Ursprung <InlineMath math="O(0,0)" /> gespiegelt. Bestimme die Koordinaten seines Bildpunktes.
@@ -171,37 +170,45 @@ Die Aufgaben verwenden eine Punktspiegelung an einem gegebenen Zentrum. Die drit
 
 ### Lösungen
 
-1.  Zentrum <InlineMath math="P(-2,3)" />, Punkt <InlineMath math="Q(3,-4)" />. Also <InlineMath math="a=-2, b=3, x=3, y=-4" />.
+Prüfe bei einem Punkt, ob **das Zentrum die Mitte** zwischen Urbild und Bild ist. Bei einer Geraden drückst du zunächst die ursprünglichen Koordinaten durch die Bildkoordinaten aus und setzt dann ein.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(-2) - 3 \\ &amp;= -4 - 3 \\ &amp;= -7 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 2b - y \\ &amp;= 2(3) - (-4) \\ &amp;= 6 + 4 \\ &amp;= 10 \end{aligned}" />
-    </MathContainer>
+**Lösung 1**
 
-    Somit ist das Bild des Punktes <InlineMath math="Q(3,-4)" /> <InlineMath math="(-7,10)" />.
+Zentrum <InlineMath math="P(-2,3)" />, Punkt <InlineMath math="Q(3,-4)" />. Also <InlineMath math="a=-2, b=3, x=3, y=-4" />.
 
-2.  Zentrum <InlineMath math="O(0,0)" />, Punkt <InlineMath math="K(-5,1)" />. Also <InlineMath math="a=0, b=0, x=-5, y=1" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(-2) - 3 \\ &amp;= -4 - 3 \\ &amp;= -7 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2b - y \\ &amp;= 2(3) - (-4) \\ &amp;= 6 + 4 \\ &amp;= 10 \end{aligned}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = 2(0) - (-5) = 0 + 5 = 5" />
-      <BlockMath math="y' = 2(0) - 1 = 0 - 1 = -1" />
-    </MathContainer>
+Somit ist das Bild des Punktes <InlineMath math="Q(3,-4)" /> <InlineMath math="(-7,10)" />.
 
-    Somit ist das Bild des Punktes <InlineMath math="K(-5,1)" /> <InlineMath math="K'(5,-1)" />.
+**Lösung 2**
 
-3.  Spiegelzentrum <InlineMath math="P(1,-3)" />, Gerade <InlineMath math="2x + 5y + 6 = 0" />.
+Zentrum <InlineMath math="O(0,0)" />, Punkt <InlineMath math="K(-5,1)" />. Also <InlineMath math="a=0, b=0, x=-5, y=1" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x \\ &amp;= 2 - x' \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 2(-3) - y \\ &amp;= -6 - y \\ &amp;\implies y \\ &amp;= -6 - y' \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x' = 2(0) - (-5) = 0 + 5 = 5" />
+  <BlockMath math="y' = 2(0) - 1 = 0 - 1 = -1" />
+</MathContainer>
 
-    Wir setzen die Ausdrücke in die Geradengleichung ein:
+Somit ist das Bild des Punktes <InlineMath math="K(-5,1)" /> <InlineMath math="K'(5,-1)" />.
 
-    <MathContainer>
-      <BlockMath math="2(2 - x') + 5(-6 - y') + 6 = 0" />
-      <BlockMath math="4 - 2x' - 30 - 5y' + 6 = 0" />
-      <BlockMath math="-2x' - 5y' - 20 = 0" />
-    </MathContainer>
+**Lösung 3**
 
-    Die Gleichung der Bildgeraden lautet <InlineMath math="-2x - 5y - 20 = 0" /> oder äquivalent <InlineMath math="2x + 5y + 20 = 0" />.
+Spiegelzentrum <InlineMath math="P(1,-3)" />, Gerade <InlineMath math="2x + 5y + 6 = 0" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(-3) - y \\ &amp;= -6 - y \\ &amp;\implies y = -6 - y' \end{aligned}" />
+</MathContainer>
+
+Wir setzen die Ausdrücke in die Geradengleichung ein:
+
+<MathContainer>
+  <BlockMath math="2(2 - x') + 5(-6 - y') + 6 = 0" />
+  <BlockMath math="4 - 2x' - 30 - 5y' + 6 = 0" />
+  <BlockMath math="-2x' - 5y' - 20 = 0" />
+</MathContainer>
+
+Die Gleichung der Bildgeraden lautet <InlineMath math="-2x - 5y - 20 = 0" /> oder äquivalent <InlineMath math="2x + 5y + 20 = 0" />.

@@ -34,41 +34,21 @@ Deret geometrinya adalah jumlahan suku-suku barisan tersebut:
 
 ## Menemukan Rumus Jumlah Suku Pertama
 
-Bagaimana cara menghitung jumlah <InlineMath math="n" /> suku pertama <InlineMath math="(S_n)" /> tanpa menjumlahkannya satu per satu? Perhitungan berikut menurunkan rumus tersebut.
+Kita akan **mengurangkan dua jumlah yang hampir sama**. Untuk tiga bulan pertama, kalikan jumlah bibit dengan rasio tiga. Suku 12 dan 36 kemudian muncul pada kedua jumlah dan saling menghapus.
 
-Perhatikan tabel ini yang menunjukkan proses menemukan kembali rumus jumlah deret geometri:
+<BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
 
-| Notasi                       | Penjumlahan Langsung                          | Menggunakan <InlineMath math="U_{n+1}" /> dan <InlineMath math="U_1" /> | Bentuk Umum                                             |
-| :--------------------------- | :-------------------------------------------- | :---------------------------------------------------------------------- | :------------------------------------------------------ |
-| <InlineMath math="S_2" />    | <InlineMath math="4 + 12 = 16" />             | <InlineMath math="S_2 = \frac{36 - 4}{3 - 1} = \frac{32}{2} = 16" />    | <InlineMath math="S_2 = \frac{U_3 - U_1}{r - 1}" />     |
-| <InlineMath math="S_3" />    | <InlineMath math="4 + 12 + 36 = 52" />        | <InlineMath math="S_3 = \frac{108 - 4}{3 - 1} = \frac{104}{2} = 52" />  | <InlineMath math="S_3 = \frac{U_4 - U_1}{r - 1}" />     |
-| <InlineMath math="S_4" />    | <InlineMath math="4 + 12 + 36 + 108 = 160" /> | <InlineMath math="S_4 = \frac{324 - 4}{3 - 1} = \frac{320}{2} = 160" /> | <InlineMath math="S_4 = \frac{U_5 - U_1}{r - 1}" />     |
-| <InlineMath math="\vdots" /> | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="\dots" />                             |
-| <InlineMath math="S_n" />    | <InlineMath math="\dots" />                   | <InlineMath math="\dots" />                                             | <InlineMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" /> |
-
-Untuk <InlineMath math="r\ne1" />, bagian kanan bawah tabel memberikan bentuk umum:
-
-<BlockMath math="S_n = \frac{U_{n+1} - U_1}{r - 1}" />
-
-Kita tahu bahwa rumus suku ke-<InlineMath math="n" /> pada barisan geometri adalah <InlineMath math="U_n = ar^{n-1}" />. Maka, <InlineMath math="U_{n+1} = ar^{(n+1)-1} = ar^n" />.
-Substitusikan <InlineMath math="U_{n+1} = ar^n" /> dan <InlineMath math="U_1 = a" /> ke dalam rumus <InlineMath math="S_n" />:
-
-<MathContainer>
-  <BlockMath math="S_n = \frac{ar^n - a}{r - 1}" />
-  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
-</MathContainer>
-
-Ini adalah rumus jumlah <InlineMath math="n" /> suku pertama deret geometri.
-
-Hasil yang sama dapat diturunkan dengan mengalikan jumlah tersebut dengan <InlineMath math="r" />, lalu mengurangkan hasil kali itu dari jumlah tersebut:
+Sekarang lakukan pengurangan yang sama pada jumlah dengan suku pertama <InlineMath math="a" />, rasio <InlineMath math="r" />, dan <InlineMath math="n" /> suku. Mengalikan dengan rasio menggeser setiap suku satu posisi ke depan:
 
 <MathContainer>
   <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
   <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
-  <BlockMath math="(1-r)S_n=a(1-r^n)" />
+  <BlockMath math="\begin{aligned}rS_n-S_n&amp;=ar^n-a\\(r-1)S_n&amp;=a(r^n-1)\end{aligned}" />
 </MathContainer>
 
-Suku-suku di bagian tengah saling menghapus. Inilah alasan rumus akhirnya hanya memuat suku pertama dan pangkat sesudah suku terakhir.
+Hanya **suku pertama dan suku sesudah suku terakhir** yang tersisa. Karena <InlineMath math="U_1=a" /> dan <InlineMath math="U_{n+1}=ar^n" />, untuk <InlineMath math="r\ne1" /> kita boleh membagi kedua sisi dengan <InlineMath math="r-1" />:
+
+<BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
 
 ## Rumus Deret Geometri
 
@@ -83,6 +63,8 @@ Bentuk yang setara adalah
 Kedua bentuk berlaku untuk rasio positif maupun negatif selama <InlineMath math="r\ne1" />. Jika <InlineMath math="r=1" />, semua suku sama dengan <InlineMath math="a" />, sehingga:
 
 <BlockMath math="S_n=na" />
+
+Pada rasio satu, pembagian dengan <InlineMath math="r-1" /> berarti **pembagian dengan nol**. Kita menghitung langsung, misalnya <InlineMath math="5+5+5+5=4\cdot5=20" />. Untuk rasio nol, hanya suku pertama yang tidak harus nol, sehingga <InlineMath math="S_n=a" />.
 
 **Keterangan:**
 
@@ -128,7 +110,7 @@ Penjumlahan ini bermakna karena setiap nilai bulanan menyatakan sepeda yang baru
 
 ## Latihan dengan Rasio Negatif
 
-Hitung jumlah berhingga berikut:
+Hitung **jumlah berhingga** berikut:
 
 <BlockMath math="81-27+9-3+1" />
 
@@ -136,7 +118,7 @@ Suku pertamanya <InlineMath math="a=81" />, rasionya <InlineMath math="r=-\frac1
 
 <MathContainer>
   <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
-  <BlockMath math="S_5=81\left(\frac{244/243}{4/3}\right)=61" />
+  <BlockMath math="\begin{aligned}S_5&amp;=81\left(\frac{244/243}{4/3}\right)\\&amp;=81\cdot\frac{244}{243}\cdot\frac34\\&amp;=\frac{244}{4}=61\end{aligned}" />
 </MathContainer>
 
 Periksa dengan penjumlahan langsung: <InlineMath math="81-27+9-3+1=61" />.

@@ -4,40 +4,21 @@ export const metadata = {
     description: "Construct a reflection across any line with perpendicular bisectors and equal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
 ## How a Mirror Line Pairs Points
 
-Reflection over a line is a type of geometric transformation that moves every point on a plane to its mirror image position.
+In a line reflection, the **mirror line** is the symmetry boundary between a point and its image. A point on the mirror stays fixed. A point outside it maps to the opposite side at the same perpendicular distance.
 
-The line used as the reference for this reflection is called the **mirror line** or **axis of reflection**.
+If <InlineMath math="P" /> lies on the mirror, <InlineMath math="P'=P" />. Otherwise, draw the perpendicular from <InlineMath math="P" /> to the mirror and call its foot <InlineMath math="M" />. Continue the segment an equal distance beyond the mirror to locate the image <InlineMath math="P'" />:
 
-Imagine standing in front of a flat mirror. Your image in the mirror is the result of reflecting yourself over the surface of the mirror.
+<BlockMath math="PM=MP',\qquad PP'\perp m" />
 
-Mathematically, if we have a point <InlineMath math="P(x,y)" /> and a line <InlineMath math="m" /> as the axis of reflection, then the image point <InlineMath math="P'(x',y')" /> will have the following properties:
+## Reflecting a Point across an Oblique Line
 
-1.  **If point <InlineMath math="P" /> lies on the mirror line <InlineMath math="m" />**:
-
-    Its image is the point itself.
-
-    <BlockMath math="P' = P" />
-
-2.  **If point <InlineMath math="P" /> does not lie on the mirror line <InlineMath math="m" />**:
-
-    The line <InlineMath math="m" /> is <Highlight>the perpendicular bisector</Highlight> of the line segment <InlineMath math="PP'" />. Therefore:
-
-    <MathContainer>
-      <BlockMath math="\overline{PP'} \perp m" />
-      <BlockMath math="d(P,m) = d(P',m)" />
-    </MathContainer>
-
-    Consequently, the line <InlineMath math="m" /> intersects the line segment <InlineMath math="PP'" /> exactly at its midpoint. We call this intersection point <InlineMath math="M" />.
-
-## Visualization of Point Reflection over a Line
-
-The following example checks both reflection properties at once:
+Reflect <InlineMath math="P(2,4)" /> across <InlineMath math="m:y=\frac12x+1" />. The **midpoint** <InlineMath math="M" /> lies on the mirror, while the segment joining the point to its image is perpendicular to the mirror.
 
 <LineEquation
   title="Point Reflection over a Line"
@@ -48,7 +29,8 @@ The following example checks both reflection properties at once:
       <InlineMath math="P'(3.6, 0.8)" />.
     </>
   }
-  cameraPosition={[12, 8, 12]}
+  cameraPosition={[2.5, 2.5, 9]}
+  cameraTarget={[2.5, 2.5, 0]}
   data={[
     {
       points: [
@@ -62,7 +44,7 @@ The following example checks both reflection properties at once:
         {
           text: <InlineMath math="m" />,
           at: 1,
-          offset: [1.2, 0.5, 0],
+          offset: [0.3, 0.4, 0],
         },
       ],
     },
@@ -114,4 +96,28 @@ The following example checks both reflection properties at once:
   ]}
 />
 
-For every line reflection, the segment from the original point to its image is perpendicular to the mirror line, and both points have the same distance from that line. These two conditions determine the image coordinates.
+### Finding the Perpendicular Foot
+
+The mirror slope is <InlineMath math="\frac12" />. The **perpendicular slope** is therefore <InlineMath math="-2" />, since their product is <InlineMath math="-1" />. The perpendicular through <InlineMath math="P(2,4)" /> has equation:
+
+<BlockMath math="y-4=-2(x-2)\quad\Longrightarrow\quad y=-2x+8" />
+
+At the intersection, both equations give the same vertical coordinate:
+
+<MathContainer>
+  <BlockMath math="\frac12x+1=-2x+8\quad\Longrightarrow\quad\frac52x=7\quad\Longrightarrow\quad x=\frac{14}{5}" />
+  <BlockMath math="y=\frac12\cdot\frac{14}{5}+1=\frac75+\frac55=\frac{12}{5},\qquad M\left(\frac{14}{5},\frac{12}{5}\right)" />
+</MathContainer>
+
+### Finding and Checking the Image
+
+Since <InlineMath math="M" /> is the **segment midpoint**, double its coordinates and subtract the coordinates of <InlineMath math="P" /> to find the image:
+
+<BlockMath math="P'=2M-P=\left(2\cdot\frac{14}{5}-2,2\cdot\frac{12}{5}-4\right)=\left(\frac{18}{5},\frac45\right)" />
+
+The distances to the mirror are the segment lengths to <InlineMath math="M" />. This calculation checks the equal lengths visible in the diagram:
+
+<MathContainer>
+  <BlockMath math="PM=\sqrt{\left(\frac{14}{5}-2\right)^2+\left(\frac{12}{5}-4\right)^2}=\sqrt{\frac{16+64}{25}}=\frac{4\sqrt5}{5}" />
+  <BlockMath math="MP'=\sqrt{\left(\frac{18}{5}-\frac{14}{5}\right)^2+\left(\frac45-\frac{12}{5}\right)^2}=\frac{4\sqrt5}{5}" />
+</MathContainer>

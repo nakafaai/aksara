@@ -19,15 +19,12 @@ Sei <InlineMath math="P(x)" /> ein Polynom und <InlineMath math="c" /> eine reel
 
 <InlineMath math="(x - c)" /> ist ein **Faktor** von <InlineMath math="P(x)" /> **genau dann, wenn** <InlineMath math="P(c) = 0" />.
 
-Dies ist eine zweiseitige Aussage:
+Die Aussage gilt in **beide Richtungen**. Ist ein Faktor bekannt, wird das Produkt beim Einsetzen seiner Nullstelle null. Umgekehrt bedeutet ein Polynomwert von null, dass bei der Division kein Rest bleibt.
 
-1.  **Wenn <InlineMath math="(x - c)" /> ein Faktor von <InlineMath math="P(x)" /> ist, dann <InlineMath math="P(c) = 0" />.**
-
-    (Wenn eine Zahl perfekt durch eine andere Zahl teilbar ist, muss der Rest Null sein).
-
-2.  **Wenn <InlineMath math="P(c) = 0" />, dann ist <InlineMath math="(x - c)" /> ein Faktor von <InlineMath math="P(x)" />.**
-
-    (Wenn der Wert des Polynoms bei <InlineMath math="x=c" /> Null ist, bedeutet dies, dass <InlineMath math="(x-c)" /> das Polynom genau teilt).
+| Bekannte Information | Folgerung |
+| --- | --- |
+| <InlineMath math="P(x)=(x-c)H(x)" /> | <InlineMath math="P(c)=(c-c)H(c)=0" /> |
+| <InlineMath math="P(c)=0" /> | <InlineMath math="P(x)=(x-c)H(x)+0" /> |
 
 ### Verbindung zum Restsatz
 
@@ -44,112 +41,109 @@ Und aus dem Restsatz wissen wir <InlineMath math="S = P(c)" />.
 
 ## Verwendung des Faktorsatzes zur Faktorisierung von Polynomen
 
-Der Faktorsatz macht aus einer bestätigten Nullstelle einen linearen Faktor. Wird dieser Vorgang wiederholt, sinkt der Grad, bis sich das verbleibende Polynom im betrachteten Zahlbereich faktorisieren lässt.
+Jede **bestätigte Nullstelle** liefert einen Linearfaktor. Dividiere das Polynom durch diesen Faktor und zerlege anschließend den Quotienten. Bei jeder Division durch einen Linearfaktor sinkt der Grad um eins. Dadurch wird die nächste Rechnung einfacher.
 
-**Allgemeine Schritte:**
+Die Faktorisierung hängt vom Zahlbereich ab. Über den reellen Zahlen lässt sich <InlineMath math="x^2+1" /> nicht in Linearfaktoren zerlegen, denn <InlineMath math="x^2+1>0" />. Behalte solche Faktoren sowie einen gegebenenfalls nötigen Leitkoeffizienten bei. Zum Beispiel:
 
-1.  **Nullstelle finden:** Suche mithilfe geeigneter Kandidaten oder eines Hinweises, etwa der Koeffizientensumme, einen Wert <InlineMath math="c" /> mit <InlineMath math="P(c) = 0" />.
-2.  **Faktor bestätigen:** Gilt <InlineMath math="P(c) = 0" />, dann ist <InlineMath math="(x - c)" /> nach dem Faktorsatz ein Faktor von <InlineMath math="P(x)" />.
-3.  **Polynom dividieren:** Teile <InlineMath math="P(x)" /> mit dem Horner-Schema oder der Polynomdivision durch <InlineMath math="(x - c)" />. Der Quotient ist <InlineMath math="H(x)" />.
-
-    <BlockMath math="P(x) = (x - c) \cdot H(x)" />
-
-4.  **Quotienten faktorisieren:** Lässt sich <InlineMath math="H(x)" /> weiter zerlegen, wiederhole den Vorgang ab Schritt 1 für <InlineMath math="H(x)" />, bis <InlineMath math="H(x)" /> vollständig faktorisiert ist.
-5.  **Faktorisierung notieren:** Schreibe <InlineMath math="P(x)" /> als Produkt aller gefundenen Faktoren.
+<BlockMath math="2x^3-2x^2+2x-2=2(x-1)(x^2+1)" />
 
 ### Faktorisierung eines Polynoms
 
 Sei <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" />. Die Koeffizientensumme <InlineMath math="1 + 2 - 13 + 10" /> ist <InlineMath math="0" />. Genau diese Summe entsteht beim Einsetzen von eins, also gilt <InlineMath math="P(1) = 0" />.
 
-1.  **Null bestätigen:**
+**Schritt 1**. Null bestätigen
 
-    Berechne <InlineMath math="P(1)" />.
+Berechne <InlineMath math="P(1)" />.
 
-    <MathContainer>
-      <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
-      <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
-      <BlockMath math="P(1) = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
+  <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
+  <BlockMath math="P(1) = 0" />
+</MathContainer>
 
-2.  **Faktor bestätigen:**
+**Schritt 2**. Faktor bestätigen
 
-    Da <InlineMath math="P(1) = 0" />, ist <InlineMath math="(x - 1)" /> ein Faktor von <InlineMath math="P(x)" />.
+Da <InlineMath math="P(1) = 0" />, ist <InlineMath math="(x - 1)" /> ein Faktor von <InlineMath math="P(x)" />.
 
-3.  **Polynom dividieren:**
+**Schritt 3**. Polynom dividieren
 
-    Wir verwenden die Horner-Methode, um <InlineMath math="P(x)" /> durch <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />) zu dividieren.
+Wir verwenden die Horner-Methode, um <InlineMath math="P(x)" /> durch <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />) zu dividieren.
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    1 & 1 & 2 & -13 & 10 \\
-      &   & 1 & 3 & -10 \\
-    \hline
-      & 1 & 3 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+1 & 1 & 2 & -13 & 10 \\
+  &   & 1 & 3 & -10 \\
+\hline
+  & 1 & 3 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    Der Quotient ist <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. Der Rest beträgt erwartungsgemäß <InlineMath math="0" />.
+Der Quotient ist <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. Der Rest beträgt erwartungsgemäß <InlineMath math="0" />.
 
-    Also <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
+Also <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
 
-4.  **Quotienten faktorisieren:**
+**Schritt 4**. Quotienten faktorisieren
 
-    Faktorisiere das quadratische Polynom <InlineMath math="H(x) = x^2 + 3x - 10" />.
+Faktorisiere das quadratische Polynom <InlineMath math="H(x) = x^2 + 3x - 10" />.
 
-    <BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
+Die Zahlen <InlineMath math="-2" /> und <InlineMath math="5" /> passen: Ihre Summe ist <InlineMath math="3" />, ihr Produkt <InlineMath math="-10" />.
 
-5.  **Vollständige Faktorisierung:**
+<BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
 
-    Fasse alle Faktoren zusammen.
+**Schritt 5**. Vollständige Faktorisierung
 
-    <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
+Fasse alle Faktoren zusammen.
+
+<BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 ## Übung
 
-Sei <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Zeige, dass <InlineMath math="P(-1) = 0" /> gilt, und verwende dieses Ergebnis, um <InlineMath math="P(x)" /> vollständig zu faktorisieren. Nachdem das Horner-Schema den ersten Faktor geliefert hat, teile weiter, bis der Quotient quadratisch ist, und faktorisiere diesen Quotienten.
+Sei <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Zeige, dass <InlineMath math="P(-1) = 0" /> gilt, und verwende dieses Ergebnis, um <InlineMath math="P(x)" /> **vollständig zu faktorisieren**. Schon die Division dieses kubischen Polynoms durch den ersten Linearfaktor liefert einen quadratischen Quotienten. Suche zwei Zahlen, deren Summe und Produkt zu den entsprechenden Koeffizienten passen.
 
 ### Ausführliche Lösung
 
-1.  **Zeige <InlineMath math="P(-1) = 0" />:**
+**Schritt 1**. Zeige <InlineMath math="P(-1) = 0" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
-      <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
-      <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
-      <BlockMath math="P(-1) = -3 + 3 = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
+  <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
+  <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
+  <BlockMath math="P(-1) = -3 + 3 = 0" />
+</MathContainer>
 
-    Damit ist <InlineMath math="P(-1) = 0" /> bestätigt.
+Damit ist <InlineMath math="P(-1) = 0" /> bestätigt.
 
-2.  **Faktor bestätigen:**
+**Schritt 2**. Faktor bestätigen
 
-    Da <InlineMath math="P(-1) = 0" />, ist <InlineMath math="(x - (-1)) = (x + 1)" /> ein Faktor von <InlineMath math="P(x)" />.
+Da <InlineMath math="P(-1) = 0" />, ist <InlineMath math="(x - (-1)) = (x + 1)" /> ein Faktor von <InlineMath math="P(x)" />.
 
-3.  **Polynom dividieren (Horner-Methode mit <InlineMath math="c = -1" />):**
+**Schritt 3**. Polynom dividieren (Horner-Methode mit <InlineMath math="c = -1" />)
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -1 & 1 & -2 & -21 & -18 \\
-       &   & -1 & 3 & 18 \\
-    \hline
-       & 1 & -3 & -18 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-1 & 1 & -2 & -21 & -18 \\
+   &   & -1 & 3 & 18 \\
+\hline
+   & 1 & -3 & -18 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    Der Quotient ist <InlineMath math="H(x) = x^2 - 3x - 18" />.
+Der Quotient ist <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    Also <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
+Also <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
 
-4.  **Quotienten faktorisieren:**
+**Schritt 4**. Quotienten faktorisieren
 
-    Faktor <InlineMath math="H(x) = x^2 - 3x - 18" />.
+Faktorisiere <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    <BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
+Für diesen Quotienten gilt <InlineMath math="-6+3=-3" /> und <InlineMath math="(-6)(3)=-18" />.
 
-5.  **Vollständige Faktorisierung:**
+<BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
 
-    <BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />
+**Schritt 5**. Vollständige Faktorisierung
+
+<BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />

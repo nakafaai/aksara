@@ -3,7 +3,7 @@ export const metadata = {
   description: "Den Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche verstehen und für Berechnungen nutzen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Zwei Radien bilden den Mittelpunktswinkel
 
-<Highlight>Ein Kreissektor wird von zwei Radien und dem dazwischenliegenden Kreisbogen begrenzt.</Highlight> Die beiden Radien bilden einen Winkel mit Scheitel im Kreismittelpunkt. Diesen Winkel nennen wir Mittelpunktswinkel. Ein geöffnetes Fächerblatt oder ein Tortenstück zeigt dieselbe Form.
+Ein Kreissektor wird von <Highlight>zwei Radien und dem dazwischenliegenden Kreisbogen</Highlight> begrenzt. Die beiden Radien bilden einen Winkel mit Scheitel im Kreismittelpunkt. Diesen Winkel nennen wir Mittelpunktswinkel. Ein geöffnetes Fächerblatt oder ein Tortenstück zeigt dieselbe Form.
 
 Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt. Ein größerer Winkel erzeugt bei gleichem Radius einen größeren Sektor, ein kleinerer Winkel einen kleineren. Genau diese Proportionalität verwenden wir bei der Flächenberechnung.
 
@@ -78,7 +78,7 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
       smooth: false,
       lineWidth: 4,
       labels: [
-        { text: "Sektor", at: 20, offset: [-0.8, 0.6, 0] }
+        { text: "Bogen", at: 20, offset: [-0.8, 0.6, 0] }
       ]
     },
     {
@@ -106,13 +106,9 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
 
 ## Eigenschaften des Mittelpunktswinkels
 
-Ein Mittelpunktswinkel lässt sich an drei Merkmalen erkennen:
+Im **selben Kreis** gehören zu gleich großen Mittelpunktswinkeln gleich große Sektorflächen. Die beiden Radien bilden die Winkelschenkel, der Mittelpunkt ist der Scheitel. Teilt man eine volle Umdrehung in acht gleiche Winkel, erhält jeder Sektor ein Achtel der Kreisfläche.
 
-- **Winkelschenkel**: Beide sind gleich lange Radien
-- **Scheitelpunkt**: Er liegt genau im Kreismittelpunkt
-- **Kreisanteil**: Das Winkelmaß bestimmt den Anteil des Sektors am gesamten Kreis
-
-Sektoren desselben Kreises haben genau dann dieselbe Fläche, wenn ihre Mittelpunktswinkel gleich groß sind. So lässt sich ein Kreis über gleiche Winkel in flächengleiche Teile zerlegen.
+<BlockMath math="\theta=\frac{360^\circ}{8}=45^\circ,\qquad A=\frac{1}{8}\pi r^2" />
 
 ## Zusammenhang mit der Sektorfläche
 
@@ -134,146 +130,28 @@ In beiden Formeln bedeuten die Variablen:
 Bei festem Radius ist <Highlight>die Sektorfläche proportional zum Winkel</Highlight>. Verdoppelt sich der Winkel, verdoppelt sich die Fläche. Halbiert sich der Winkel, halbiert sich auch die Fläche.
 
 <LineEquation
-  title={<>Sektoren mit verschiedenen Mittelpunktswinkeln</>}
-  description={<>Die Winkel <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" /> und <InlineMath math="135^\circ" /> veranschaulichen den proportionalen Flächenzuwachs.</>}
+  title="Sektoren in einem Kreis vergleichen"
+  description="Benachbarte Sektoren mit 45, 90 und 135 Grad haben denselben Radius."
   data={[
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5 * Math.cos(Math.PI / 4), y: 3.5 * Math.sin(Math.PI / 4), z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i / 15) * (Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="45^\circ" />, at: 49, offset: [0.4, 0.2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5, y: 0, z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 26 }, (_, i) => {
-        const angle = (i / 25) * (Math.PI / 2);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 2
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.2, 0.4, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5, y: 0, z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5 * Math.cos(3 * Math.PI / 4), y: 3.5 * Math.sin(3 * Math.PI / 4), z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 36 }, (_, i) => {
-        const angle = (i / 35) * (3 * Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 4
-        };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="135^\circ" />, at: 17, offset: [-0.2, 0.4, 0] }
-      ]
-    }
+    { kind: "circle-outline", radius: 3.5, color: "#0d9488", showPoints: false },
+    ...[0, 45, 135, 270].map((degrees) => ({ kind: "circle-radius", radius: 3.5, degrees, color: "#7c3aed", showPoints: false })),
+    { kind: "circle-arc", radius: 3.5, startDegrees: 0, sweepDegrees: 45, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="45^\circ" />, offset: [0.4, 0.2, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 45, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [0, 0.4, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 135, sweepDegrees: 135, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="135^\circ" />, offset: [-0.4, -0.2, 0] } },
   ]}
-  cameraPosition={[9.6, 7.2, 11.6]}
-  cameraTarget={[0, 0, 2]}
-  showZAxis={true}
+  cameraPosition={[0, 0, 11]}
 />
+
+| Mittelpunktswinkel | Kreisanteil | Sektorfläche |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{45}{360}=\frac{1}{8}" /> | <InlineMath math="\frac{1\pi r^2}{8}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{2}{8}" /> | <InlineMath math="\frac{2\pi r^2}{8}" /> |
+| <InlineMath math="135^\circ" /> | <InlineMath math="\frac{135}{360}=\frac{3}{8}" /> | <InlineMath math="\frac{3\pi r^2}{8}" /> |
+
 
 ## Mittelpunktswinkel erkennen und messen
 
-Prüfe zuerst die Lage des Scheitels: Beim Mittelpunktswinkel liegt er im Kreismittelpunkt, beim Umfangswinkel dagegen auf der Kreislinie. Außerdem müssen beide Schenkel des Mittelpunktswinkels Radien sein.
+Prüfe zuerst die **Lage des Scheitels**: Beim Mittelpunktswinkel liegt er im Kreismittelpunkt, beim Umfangswinkel dagegen auf der Kreislinie. Außerdem müssen beide Schenkel des Mittelpunktswinkels Radien sein.
 
 **Mögliche Bestimmungen:**
 
@@ -366,35 +244,27 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
 
 ## Satz über Mittelpunktswinkel und Bogen
 
-Für einen Mittelpunktswinkel und den zugehörigen Bogen gilt:
+Das **Gradmaß eines Bogens** entspricht dem Mittelpunktswinkel über diesem Bogen. Es unterscheidet sich von der Bogenlänge: Bei gleichem Winkel erzeugt ein größerer Radius einen längeren Bogen. Im selben Kreis gehören zu gleichen Winkeln kongruente Bögen und Sektoren. Gleiche Sektorflächen bedeuten auch gleiche Winkel.
 
-**Hauptsatz:**
-- Das Gradmaß eines Mittelpunktswinkels entspricht dem Gradmaß des zugehörigen Bogens
-- Misst der Mittelpunktswinkel <InlineMath math="\alpha" /> Grad, dann misst auch der erfasste Bogen <InlineMath math="\alpha" /> Grad
+Bei benachbarten Sektoren ohne Überlappung addieren sich Winkel, Bogenlängen und Flächen. Die Sektoren mit 45 und 90 Grad in der Zeichnung ergeben zusammen beispielsweise einen Sektor mit 135 Grad:
 
-**Eigenschaften:**
-
-- Im gleichen Kreis erzeugen kongruente Mittelpunktswinkel kongruente Bögen und Sektoren
-- Haben zwei Sektoren desselben Kreises dieselbe Fläche, sind ihre Mittelpunktswinkel gleich groß
-- Addieren sich benachbarte Mittelpunktswinkel, addieren sich auch die zugehörigen Bogenmaße
-
-Diese Eigenschaften verbinden Mittelpunktswinkel, Bogenmaß und Sektorfläche innerhalb eines Kreises. Dabei ist das Gradmaß eines Bogens von seiner physikalischen Länge zu unterscheiden.
+<BlockMath math="\frac{45^\circ}{360^\circ}\pi r^2+\frac{90^\circ}{360^\circ}\pi r^2=\frac{135^\circ}{360^\circ}\pi r^2" />
 
 ## Den Mittelpunktswinkel berechnen
 
 Je nach gegebenen Größen lässt sich der Mittelpunktswinkel auf drei Arten bestimmen:
 
-1. **Aus Sektorfläche und Radius:**
+**Aus Sektorfläche und Radius:**
 
-   <BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
+<BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
 
-2. **Aus Bogenlänge und Radius:**
+**Aus Bogenlänge und Radius:**
 
-   <BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
+<BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
 
-3. **Aus gleicher Kreisteilung:**
+**Aus gleicher Kreisteilung:**
 
-   <BlockMath math="\alpha = \frac{360^\circ}{n}" />
+<BlockMath math="\alpha = \frac{360^\circ}{n}" />
 
 Dabei bezeichnet:
 - <InlineMath math="\alpha" /> den Mittelpunktswinkel in Grad
@@ -403,7 +273,7 @@ Dabei bezeichnet:
 - <InlineMath math="r" /> den Radius
 - <InlineMath math="n" /> die Anzahl gleich großer Teile
 
-Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge oder Anzahl gleicher Teile.
+Welche Formel passt, entscheidet die **Aufgabenangabe**: Fläche, Bogenlänge oder Anzahl gleicher Teile.
 
 <LineEquation
   title={<>Größen bei der Winkelberechnung</>}
@@ -484,6 +354,14 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
   ]}
   cameraPosition={[0, 0, 11]}
 />
+
+Nimm in der Zeichnung einen Radius von 4 Einheiten an. Ist die Sektorfläche mit <InlineMath math="16\pi/5" /> Flächeneinheiten gegeben, stellst du die Flächenformel nach dem Winkel um:
+
+<BlockMath math="\alpha=\frac{360^\circ\times A}{\pi r^2}=\frac{360^\circ\times(16\pi/5)}{\pi\times4^2}=\frac{360^\circ}{5}=72^\circ" />
+
+Derselbe Sektor hat eine Bogenlänge von <InlineMath math="8\pi/5" /> Einheiten. Aus der Bogenlängenformel folgt derselbe Winkel:
+
+<BlockMath math="\alpha=\frac{180^\circ\times s}{\pi r}=\frac{180^\circ\times(8\pi/5)}{4\pi}=72^\circ" />
 
 **Beispiele für gleich große Kreisteile:**
 

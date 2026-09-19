@@ -1,15 +1,15 @@
 export const metadata = {
-   title: "Basic Procedure for Diagonalization",
-   description: "Diagonalize a matrix in three steps by computing its eigenvalues, finding its eigenspaces, and checking whether they provide enough eigenvectors.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-16",
-   dateModified: "2026-09-12",
-   subject: "Linear Methods of AI",
+title: "Basic Procedure for Diagonalization",
+description: "Diagonalize a matrix in three steps by computing its eigenvalues, finding its eigenspaces, and checking whether they provide enough eigenvectors.",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2025-07-16",
+dateModified: "2026-09-19",
+subject: "Linear Methods of AI",
 };
 
 ## Changing to an Eigenvector Basis
 
-<Highlight>Diagonalization does not change the linear transformation itself.</Highlight> It changes the coordinate basis so that the transformation acts independently along eigenvector directions. In the diagonal representation, matrix multiplication reduces to scaling each eigenvector coordinate.
+Diagonalization does not change the <Highlight>linear transformation itself</Highlight>. It changes the coordinate basis so that the transformation acts independently along eigenvector directions. In the diagonal representation, matrix multiplication reduces to scaling each eigenvector coordinate.
 
 To diagonalize a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, compute its eigenvalues and eigenspaces. If there are <InlineMath math="n" /> linearly independent eigenvectors, place those vectors in a change-of-basis matrix.
 
@@ -17,28 +17,28 @@ To diagonalize a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, com
 
 The diagonalization procedure consists of three main steps that must be performed sequentially:
 
-1. **Compute the characteristic polynomial** to find all eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> along with their algebraic multiplicities <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
+**Compute the characteristic polynomial** to find all eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> along with their algebraic multiplicities <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
 
-   Over the chosen field <InlineMath math="\mathbb{K}" />, the characteristic polynomial <InlineMath math="\chi_A(t)" /> must split completely into linear factors:
+Over the chosen field <InlineMath math="\mathbb{K}" />, the characteristic polynomial <InlineMath math="\chi_A(t)" /> must split completely into linear factors:
 
-   <MathContainer>
-   <BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
-   <BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
+<BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
+</MathContainer>
 
-   If it does not split, then the matrix is not diagonalizable over that field.
+If it does not split, then the matrix is not diagonalizable over that field.
 
-2. **Compute the eigenspaces** for each eigenvalue by solving the homogeneous linear system:
+**Compute the eigenspaces** for each eigenvalue by solving the homogeneous linear system:
 
-   <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
+<BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
 
-   Here we find every vector that matrix <InlineMath math="A" /> maps to a scalar multiple of itself. The factor is the eigenvalue <InlineMath math="\lambda_i" />. A negative factor reverses the vector's direction but keeps it on the same line.
+Here we find every vector that matrix <InlineMath math="A" /> maps to a scalar multiple of itself. The factor is the eigenvalue <InlineMath math="\lambda_i" />. A negative factor reverses the vector's direction but keeps it on the same line.
 
-3. **Check the diagonalization conditions** by verifying whether the algebraic multiplicity equals the geometric multiplicity for all eigenvalues. Mathematically, for all <InlineMath math="i = 1, \ldots, k" /> we must have <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" />.
+**Check the diagonalization conditions** by verifying whether the algebraic multiplicity equals the geometric multiplicity for all eigenvalues. Mathematically, for all <InlineMath math="i = 1, \ldots, k" /> we must have <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" />.
 
-   This condition ensures that we have <Highlight>enough independent eigenvectors to form a complete basis</Highlight>. If satisfied, the basis vectors from all eigenspaces form the columns of the transformation matrix <InlineMath math="S" />, yielding:
+This condition ensures that we have <Highlight>enough independent eigenvectors to form a complete basis</Highlight>. If satisfied, the basis vectors from all eigenspaces form the columns of the transformation matrix <InlineMath math="S" />, yielding:
 
-   <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+<BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
 ## Example Application of the Procedure
 
@@ -48,28 +48,32 @@ Consider the matrix:
 
 Apply the diagonalization procedure to this example:
 
-1. We compute the characteristic polynomial and factor it:
+We compute the characteristic polynomial and factor it:
 
-   <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
 
-   After factoring, we obtain:
+After factoring, we obtain:
 
-   <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
+<BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
 
-   The factors give the eigenvalues <InlineMath math="\lambda_1 = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" /> and <InlineMath math="\lambda_2 = -1" /> with algebraic multiplicity <InlineMath math="\mu_A(-1) = 1" />. Their multiplicities sum to <InlineMath math="2 + 1 = 3" />, which equals the matrix dimension.
+The factors give the eigenvalues <InlineMath math="\lambda_1 = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" /> and <InlineMath math="\lambda_2 = -1" /> with algebraic multiplicity <InlineMath math="\mu_A(-1) = 1" />. Their multiplicities sum to <InlineMath math="2 + 1 = 3" />, which equals the matrix dimension.
 
-2. We determine the eigenspace for each eigenvalue:
+We determine the eigenspace for each eigenvalue:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
-   <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
+<BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
+</MathContainer>
 
-   Here, the kernel or null space contains every vector that the matrix maps to the zero vector, while the span of a collection of vectors contains all of their linear combinations.
+For eigenvalue 1, every row of <InlineMath math="A-I" /> gives the same **plane equation** <InlineMath math="z=x+y" />. For eigenvalue −1, solve the first two equations in <InlineMath math="(A+I)v=0" />:
 
-3. We check whether the diagonalization conditions are satisfied. For eigenvalue <InlineMath math="\lambda_1 = 1" />, its algebraic multiplicity is <InlineMath math="2" /> and its eigenspace has dimension <InlineMath math="2" /> (two independent basis vectors). For eigenvalue <InlineMath math="\lambda_2 = -1" />, its algebraic multiplicity is <InlineMath math="1" /> and its eigenspace has dimension <InlineMath math="1" />.
+<BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
 
-   Since <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> and <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" />, the diagonalization conditions are satisfied.
+Here, the kernel or null space contains every vector that the matrix maps to the zero vector, while the span of a collection of vectors contains all of their linear combinations.
+
+We check whether the diagonalization conditions are satisfied. For eigenvalue <InlineMath math="\lambda_1 = 1" />, its algebraic multiplicity is <InlineMath math="2" /> and its eigenspace has dimension <InlineMath math="2" /> (two independent basis vectors). For eigenvalue <InlineMath math="\lambda_2 = -1" />, its algebraic multiplicity is <InlineMath math="1" /> and its eigenspace has dimension <InlineMath math="1" />.
+
+Since <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> and <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" />, the diagonalization conditions are satisfied.
 
 Now we can form the transformation matrix <InlineMath math="S" /> by arranging all eigenvectors as columns, and the diagonal matrix <InlineMath math="\Lambda" /> with eigenvalues on the main diagonal:
 
@@ -78,10 +82,14 @@ Now we can form the transformation matrix <InlineMath math="S" /> by arranging a
 <BlockMath math="\Lambda = \begin{pmatrix} 1 & & \\ & 1 & \\ & & -1 \end{pmatrix}" />
 </MathContainer>
 
-The columns of <InlineMath math="S" /> and the corresponding diagonal entries of <InlineMath math="\Lambda" /> must remain in the same order. Here the construction is valid because:
+The columns of <InlineMath math="S" /> and the corresponding diagonal entries of <InlineMath math="\Lambda" /> must remain in the **same order**. Here the construction is valid because:
 
 <BlockMath math="\det S = -2 \neq 0, \qquad S^{-1}AS = \Lambda" />
 
 The matrix <InlineMath math="A" /> is successfully diagonalized to <InlineMath math="\Lambda" /> through the transformation <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
 The procedure therefore proves both requirements: the eigenvectors form a basis, and the matrix representation in that basis is diagonal.
+
+Rotate the model to separate the **two eigenspaces**. Every point of the green plane <InlineMath math="z=x+y" /> stays fixed because its eigenvalue is 1. The orange vector <InlineMath math="v_3" /> lies outside that plane and maps to the red vector <InlineMath math="Av_3=-v_3" />. Together, these directions span the whole space.
+
+<LineEquation description="The green plane stays fixed, while the orange vector becomes the opposite red vector. Rotate the model to see that the orange vector lies outside the plane." title="An invariant plane and a reversed direction" cameraPosition={[7, 6, 9]} cameraTarget={[0, 0, 0]} data={[{"points": [{"x": -1, "y": -1, "z": -2}, {"x": 1, "y": -1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": -1, "z": -2}, {"x": -1, "y": 1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 0, "z": -1}, {"x": 1, "y": 0, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": -1, "z": -1}, {"x": 0, "y": 1, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 1, "y": -1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 0, "z": 1}], "color": "#2563eb", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₁", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 0, "y": 1, "z": 1}], "color": "#9333ea", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₂", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 3, "z": 2}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₃", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -3, "z": -2}], "color": "#dc2626", "smooth": false, "pointIndices": [1], "labels": [{"text": "Av₃", "at": 1}]}]} />

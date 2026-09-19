@@ -13,7 +13,7 @@ Adding the terms of an infinite sequence produces an **infinite series**. We det
 
 ## Convergence of Sequences
 
-A sequence <InlineMath math="(a_n)" /> converges to <InlineMath math="L" /> when its terms can be made arbitrarily close to <InlineMath math="L" /> by taking <InlineMath math="n" /> sufficiently large. We write:
+A sequence <InlineMath math="(a_n)" /> converges to <InlineMath math="L" /> when its terms can be made **arbitrarily close** to <InlineMath math="L" /> by taking <InlineMath math="n" /> sufficiently large. We write:
 
 <BlockMath math="\lim_{n\to\infty}a_n=L" />
 
@@ -41,10 +41,11 @@ A series is **convergent** when its partial sums approach a _finite_ value. In a
 
 ### Partial Sums Settle on One Limit
 
-A convergent series has two properties that follow from its partial sums. The partial sums approach one real number, and the terms must shrink toward zero.
+If the partial sums <InlineMath math="S_n" /> approach <InlineMath math="L" />, the preceding partial sums approach the same value. Their difference is the newly added term:
 
-- Its partial sum (the sum of the first <InlineMath math="n" /> terms, <InlineMath math="S_n" />) approaches a value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} S_n = L" />, where <InlineMath math="L" /> is a real number).
-- Necessary condition (but not sufficient): the <InlineMath math="n" />th term (<InlineMath math="u_n" />) must approach <InlineMath math="0" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
+<BlockMath math="a_n=S_n-S_{n-1}\longrightarrow L-L=0" />
+
+Thus, terms approaching zero are a **necessary condition**, not a guarantee of convergence. We still have to examine the partial sums.
 
 ### Examples of Convergent Series
 
@@ -52,7 +53,7 @@ A geometric series converges whenever the absolute value of its ratio is smaller
 
 <BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
 
-A ratio of <InlineMath math="1" /> or larger leaves the series without a finite sum.
+With a nonzero first term and **a ratio of magnitude at least one**, a geometric series has no finite sum. A series whose terms are all zero still converges to zero.
 
 ## Divergent Series
 
@@ -64,30 +65,26 @@ A series is **divergent** when its partial sums do not approach a finite value. 
 
 ### Partial Sums Fail to Settle
 
-A divergent series either has no single limit or moves without bound. The two conditions below separate those cases.
+A divergent series either has **no single limit** or moves without bound. The two conditions below separate those cases.
 
 - Its partial sum (<InlineMath math="S_n" />) does not approach a specific value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity.
 - If <InlineMath math="u_n\not\to 0" />, then the series is _definitely_ divergent. This covers both a nonzero term limit and a term sequence that has no limit.
 
 ### Series That Diverge
 
-The three families below diverge for different reasons. The harmonic series shows that shrinking terms alone cannot force convergence.
+Compare the terms with their partial sums. In the first three examples, even the terms fail to approach zero. The harmonic series needs an additional argument because its terms do approach zero.
 
-- **Arithmetic Series (except <InlineMath math="0 + 0 + \dots" />)**: Their partial sums grow toward <InlineMath math="\infty" /> or decrease toward <InlineMath math="-\infty" />.
+| Series | First partial sums | Behavior |
+| --- | --- | --- |
+| <InlineMath math="1+2+3+4+\cdots" /> | <InlineMath math="1,3,6,10" /> | Unbounded increase |
+| <InlineMath math="2+4+8+16+\cdots" /> | <InlineMath math="2,6,14,30" /> | Unbounded increase |
+| <InlineMath math="1-2+4-8+\cdots" /> | <InlineMath math="1,-1,3,-5" /> | Alternating signs with growing magnitudes |
 
-  For instance: <InlineMath math="1 + 2 + 3 + 4 + \dots" /> (approaches <InlineMath math="\infty" />)
+For the **harmonic series**, group the terms after <InlineMath math="1+1/2" /> into blocks of two, four, eight, and so on. Each block contributes at least one half:
 
-- **Geometric Series with <InlineMath math="|r| \ge 1" />**:
+<BlockMath math="\begin{aligned}\frac13+\frac14&amp;\ge2\cdot\frac14=\frac12\\\frac15+\frac16+\frac17+\frac18&amp;\ge4\cdot\frac18=\frac12\\\sum_{k=2^{m-1}+1}^{2^m}\frac1k&amp;\ge2^{m-1}\cdot\frac1{2^m}=\frac12\end{aligned}" />
 
-  - If <InlineMath math="r \ge 1" />, its partial sums approach <InlineMath math="\pm \infty" />, depending on the sign of the first term.
-
-    Example: <InlineMath math="2 + 4 + 8 + 16 + \dots" /> (approaches <InlineMath math="\infty" />)
-
-  - If <InlineMath math="r \le -1" />, its partial sums oscillate.
-
-    Example: <InlineMath math="1 - 2 + 4 - 8 + \dots" /> (Partial sums: <InlineMath math="1, -1, 3, -5, \dots" /> do not approach one value)
-
-- **Harmonic Series**: In <InlineMath math="1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots" />, the <InlineMath math="n" />th term <InlineMath math="u_n = \frac{1}{n}" /> approaches <InlineMath math="0" />, but the partial sums still grow toward infinity <InlineMath math="\infty" />. Thus, <InlineMath math="u_n \to 0" /> is necessary but not sufficient for convergence.
+There are infinitely many blocks contributing at least <InlineMath math="1/2" /> each. The partial sums therefore exceed every bound, even though <InlineMath math="1/n\to0" />. The harmonic series therefore demonstrates that **terms approaching zero are not enough**.
 
 ## Complete Classification of Geometric Series
 
@@ -95,7 +92,7 @@ Consider the series:
 
 <BlockMath math="a+ar+ar^2+\dots" />
 
-For <InlineMath math="a\ne0" />, every possible ratio falls into one of these cases:
+For <InlineMath math="a\ne0" />, **every possible ratio** falls into one of these cases:
 
 - If <InlineMath math="|r|<1" />, the series converges to <InlineMath math="a/(1-r)" />.
 - If <InlineMath math="r=1" />, the partial sums are <InlineMath math="na" /> and diverge.
@@ -108,7 +105,9 @@ A divergent series therefore does not always have the value <InlineMath math="\i
 
 Every monotone and bounded sequence converges. This criterion is useful when a limit is difficult to read directly from a formula.
 
-The partial sums of a series with non-negative terms are increasing. If those partial sums are also bounded above, the series converges.
+The partial sums of a series with non-negative terms are nondecreasing. If those partial sums are also bounded above, the series converges.
+
+For example, the series <InlineMath math="1+1/2+1/4+\cdots" /> has <InlineMath math="S_n=2-2^{1-n}<2" />. Each added term is positive, so the partial sums increase. Two is an **upper bound** for every partial sum, so the series converges.
 
 ## Comparing Convergent and Divergent Series
 
@@ -117,12 +116,12 @@ The table collects the three tests, so the partial-sum behavior, the term condit
 | Feature      | Convergent Series                                                                         | Divergent Series                                                                                                      |
 | ------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | **Partial sums** | Approach a _finite_ value <InlineMath math="L" />. <InlineMath math="S_\infty = L" /> | Do not approach a finite value. They may approach <InlineMath math="+\infty" /> or <InlineMath math="-\infty" />, or they may oscillate |
-| **Term <InlineMath math="n" />** | <InlineMath math="u_n\to0" /> is necessary | If <InlineMath math="u_n\not\to0" />, divergence is certain. However, <InlineMath math="u_n\to0" /> may also hold |
-| **Examples** | Geometric series <InlineMath math="\lvert r\rvert < 1" />                                          | Arithmetic series, geometric series <InlineMath math="\lvert r\rvert \geq 1" />, harmonic series                               |
+| **General term** | <InlineMath math="u_n\to0" /> is necessary | If <InlineMath math="u_n\not\to0" />, divergence is certain. However, <InlineMath math="u_n\to0" /> may also hold |
+| **Examples** | Geometric series <InlineMath math="\lvert r\rvert < 1" />                                          | Nonzero arithmetic series, geometric series with a nonzero first term and <InlineMath math="\lvert r\rvert \geq 1" />, harmonic series                               |
 
 ## Exercise
 
-Decide whether each series converges or diverges. Check the term behaviour first, because a term that does not approach zero already settles the question. Write your conclusion for each series before you read the solution.
+Decide whether each series converges or diverges. Check the term behaviour first, because a term that **does not approach zero** already settles the question. Write your conclusion for each series before you read the solution.
 
 1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
 2. <InlineMath math="\sum_{k=1}^{\infty}1" />
@@ -132,8 +131,10 @@ Decide whether each series converges or diverges. Check the term behaviour first
 
 1. The first series is geometric with <InlineMath math="|r|=1/4<1" />, so it converges:
 
-   <BlockMath math="\frac{3}{1-1/4}=4" />
+   <BlockMath math="\frac{3}{1-1/4}=\frac{3}{3/4}=3\cdot\frac43=4" />
 
 2. The terms of the second series do not approach zero, so the series diverges.
 
 3. The partial sums of the third series alternate between two values. This oscillation prevents them from approaching one limit.
+
+For the second series, <InlineMath math="S_n=n" />, so the partial sums are unbounded. For the third, <InlineMath math="S_1=1" />, <InlineMath math="S_2=0" />, <InlineMath math="S_3=1" />, and <InlineMath math="S_4=0" />. Its two subsequences have different limits, so the full sequence of partial sums has **no single limit**.

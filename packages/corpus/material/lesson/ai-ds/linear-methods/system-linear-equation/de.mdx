@@ -3,7 +3,7 @@ export const metadata = {
     description: "Stelle aus Daten ein überbestimmtes lineares System auf und verstehe, warum die kleinsten Quadrate bei fehlender exakter Lösung das bestangepasste Polynom liefern.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -15,7 +15,7 @@ Ein System heißt überbestimmt, wenn die Anzahl <InlineMath math="m" /> der Gle
 
 ## Quadratische Anpassung an sieben Messwerte
 
-Betrachten wir <InlineMath math="7" /> Datenpunkte, an die ein quadratisches Polynom angepasst werden soll.
+Betrachten wir <InlineMath math="7" /> Datenpunkte, an die ein **quadratisches Polynom** angepasst werden soll.
 
 Die Beobachtungen sind:
 
@@ -32,7 +32,7 @@ Unbekannt sind die <InlineMath math="3" /> Parameter <InlineMath math="a_2" /> (
 
 ## Aufstellen des Gleichungssystems
 
-Setzen wir jedes Paar <InlineMath math="(t_i,y_i)" /> in das Polynom ein, entsteht jeweils eine Gleichung. Die <InlineMath math="7" /> Beobachtungen liefern somit <InlineMath math="7" /> Gleichungen für nur <InlineMath math="3" /> unbekannte Koeffizienten.
+Setzen wir jedes Paar <InlineMath math="(t_i,y_i)" /> in das Polynom ein, entsteht **jeweils eine Gleichung**. Die <InlineMath math="7" /> Beobachtungen liefern somit <InlineMath math="7" /> Gleichungen für nur <InlineMath math="3" /> unbekannte Koeffizienten.
 
 <MathContainer>
 <BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2{,}2" />
@@ -58,7 +58,7 @@ Nach dem Auswerten der Potenzen von <InlineMath math="t_i" /> ergibt sich:
 
 ## Matrixform
 
-Das obige Gleichungssystem kann in der Matrixform <InlineMath math="A \cdot x = b" /> geschrieben werden.
+Das obige Gleichungssystem kann in der **Matrixform** <InlineMath math="A \cdot x = b" /> geschrieben werden.
 
 <BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2{,}2 \\ -4{,}2 \\ -4{,}2 \\ -1{,}8 \\ 1{,}8 \\ 8{,}2 \\ 15{,}8 \end{pmatrix}" />
 
@@ -97,6 +97,15 @@ Dieses Kriterium gewichtet große Abweichungen stärker und liefert genau eine b
 <BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
 </MathContainer>
 
+Die mittlere Gleichung liefert direkt den linearen Koeffizienten. Drücke mit der letzten Gleichung die Konstante durch den quadratischen Koeffizienten aus und setze das Ergebnis in die erste Gleichung ein.
+
+<MathContainer>
+<BlockMath math="28a_1=\frac{424}{5}\quad\Rightarrow\quad a_1=\frac{106}{35}" />
+<BlockMath math="28a_2+7a_0=\frac{67}{5}\quad\Rightarrow\quad a_0=\frac{67}{35}-4a_2" />
+<BlockMath math="196a_2+28\left(\frac{67}{35}-4a_2\right)=136" />
+<BlockMath math="84a_2=\frac{412}{5}\quad\Rightarrow\quad a_2=\frac{103}{105},\quad a_0=-\frac{211}{105}" />
+</MathContainer>
+
 Ihre Lösung ist
 
 <MathContainer>
@@ -118,3 +127,49 @@ Der Residuenvektor <InlineMath math="r" /> erfüllt
 Die Gleichung <InlineMath math="A^Tr=0" /> besagt, dass der verbleibende Fehler zu jeder Spalte von <InlineMath math="A" /> orthogonal ist. Geometrisch ist <InlineMath math="A\hat x" /> die orthogonale Projektion von <InlineMath math="b" /> auf den Spaltenraum von <InlineMath math="A" />.
 
 Überbestimmte Systeme treten in Technik und Naturwissenschaften häufig auf, weil Experimente viele Messwerte für Modelle mit wenigen Parametern liefern. Die Methode der kleinsten Quadrate nutzt alle Messwerte, ohne vorzugeben, verrauschte Daten passten exakt zum Modell.
+
+Die Kurve zeigt das angepasste Modell, die Punkte markieren die Beobachtungen. Drehe oder vergrößere die Darstellung und vergleiche jeden Punkt mit der Kurve. Der vertikale Unterschied ist das Residuum beim selben Zeitwert.
+
+<LineEquation
+  title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
+  description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 6, 26]}
+  cameraTarget={[0, 6, 0]}
+  data={(() => {
+    // Die von A und b codierten Messwerte
+    const originalData = [
+      [-3, -2.2],
+      [-2, -4.2],
+      [-1, -4.2],
+      [0, -1.8],
+      [1, 1.8],
+      [2, 8.2],
+      [3, 15.8]
+    ];
+
+    // Koeffizienten aus der QR-Lösung
+    const a = 0.98095;
+    const b = 3.02857;
+    const c = -2.00952;
+
+    return [
+      {
+        points: Array.from({ length: 50 }, (_, i) => {
+          const t = -3 + (i * 6) / 49;
+          const y = a * t * t + b * t + c;
+          return { x: t, y: y, z: 0 };
+        }),
+        color: "#0891b2",
+        smooth: false,
+        showPoints: false
+      },
+      ...originalData.map(([t, y]) => ({
+        points: [{ x: t, y, z: 0 }],
+        color: "#ea580c",
+        smooth: false,
+        showPoints: true
+      }))
+    ];
+  })()}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite die Standardgleichung eines Kreises aus seinem Mittelpunkt und Radius her und prüfe sie in Beispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Analytische Geometrie",
 };
 
@@ -136,13 +136,13 @@ In der Darstellung ist <InlineMath math="P" /> der Mittelpunkt. Die Punkte <Inli
 
 ## Kreis als Punkte mit festem Abstand
 
-Nun formulieren wir den Gedanken präzise. Ein Kreis mit Mittelpunkt <InlineMath math="P(a, b)" /> und Radius <InlineMath math="r" /> ist die Menge aller Punkte <InlineMath math="(x, y)" />, für die gilt:
+Nun formulieren wir den Gedanken präzise. Ein Kreis mit Mittelpunkt <InlineMath math="P(a, b)" /> und Radius <InlineMath math="r>0" /> ist die Menge aller Punkte <InlineMath math="(x, y)" />, für die gilt:
 
 <BlockMath math="d(P, (x,y)) = r" />
 
 Dabei ist <InlineMath math="d(P, (x,y))" /> der Abstand vom Mittelpunkt <InlineMath math="P" /> zum Punkt <InlineMath math="(x, y)" /> auf dem Kreis.
 
-Mit der Abstandsformel im kartesischen Koordinatensystem wird daraus:
+Mit der **Abstandsformel** im kartesischen Koordinatensystem wird daraus:
 
 <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
 
@@ -246,7 +246,7 @@ Für den Kreis in der obigen Visualisierung lautet die Gleichung:
 
 ### Sonderform der Kreisgleichung
 
-Liegt der Mittelpunkt im Ursprung <InlineMath math="(0, 0)" />, entfallen beide Verschiebungsterme und die Gleichung wird zu:
+Liegt der Mittelpunkt im **Ursprung** <InlineMath math="(0, 0)" />, entfallen beide Verschiebungsterme und die Gleichung wird zu:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
@@ -285,7 +285,7 @@ Die Darstellung zeigt, dass Radius und Durchmesser durch denselben Mittelpunkt v
       points: Array.from({ length: 2 }, (_, i) => {
         const center = { x: 0, y: 0 };
         const radius = 3;
-        const angle = 0; // horizontal radius showing radius
+        const angle = Math.PI / 4; // radius at 45 degrees
         return {
           x: center.x + i * radius * Math.cos(angle),
           y: center.y + i * radius * Math.sin(angle),
@@ -342,3 +342,7 @@ Wir setzen Mittelpunkt und Radius in die Standardform ein:
 </MathContainer>
 
 Die Kreisgleichung lautet also <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+
+Prüfe den Punkt <InlineMath math="(8,-2)" />. Er liegt <InlineMath math="5" /> Einheiten rechts vom Mittelpunkt. Das **Einsetzen seiner Koordinaten** muss das Quadrat des Radius ergeben:
+
+<BlockMath math="(8-3)^2+(-2+2)^2=5^2+0^2=25" />

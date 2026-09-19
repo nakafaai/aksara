@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Modulus and Argument of Complex Numbers",
   description: "Calculate the modulus and argument of a complex number, apply quadrant rules, and convert between Cartesian and polar forms.",
@@ -15,6 +13,8 @@ A complex number <InlineMath math="z = x + iy" /> can be represented as a point 
 
 This vector has a **length** and a **direction**. This length and direction are what we call the **Modulus** and **Argument**.
 
+At the origin, the modulus is zero but the **argument is undefined**, because the zero vector has no direction.
+
 ## Modulus of a Complex Number
 
 The **Modulus** of a complex number <InlineMath math="z = x + iy" />, written as <InlineMath math="|z|" />, is the **distance** from the origin <InlineMath math="(0,0)" /> to the point <InlineMath math="(x, y)" /> on the complex plane. This is the same as the **length of the vector** representing <InlineMath math="z" />.
@@ -28,7 +28,9 @@ The **Modulus** of a complex number <InlineMath math="z = x + iy" />, written as
       corresponding right triangle.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[1.5, 2, 8]}
+  cameraTarget={[1.5, 2, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -65,12 +67,12 @@ The **Modulus** of a complex number <InlineMath math="z = x + iy" />, written as
       ],
       smooth: false,
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [1.5, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [0.65, -2, 0] }],
     },
   ]}
 />
 
-To calculate the modulus, <Highlight>we can use the Pythagorean Theorem</Highlight> on the right-angled triangle formed by the real part (<InlineMath math="x" />), the imaginary part (<InlineMath math="y" />), and the modulus (<InlineMath math="|z|" />) as the hypotenuse.
+To calculate the modulus, <Highlight>we can use the Pythagorean Theorem</Highlight> on the right-angled triangle formed by the component lengths (<InlineMath math="|x|" /> and <InlineMath math="|y|" />), and the modulus (<InlineMath math="|z|" />) as the hypotenuse.
 
 **Definition of Modulus:**
 
@@ -82,23 +84,23 @@ The modulus is always **non-negative** (never negative) because it represents a 
 
 ### Calculating the Modulus
 
-The four computations run from a first-quadrant triple through a general pair to the real and imaginary axes, so you see the same square-root formula handle every position.
+Square **both components with their signs**, add the squares, then take the nonnegative square root. A negative component does not make the distance negative.
 
-1.  **Find the modulus of <InlineMath math="z_1 = 3 + 4i" />**, with <InlineMath math="x=3, y=4" />
+1.  <InlineMath math="z_1 = 3 + 4i" />, with <InlineMath math="x=3, y=4" />
 
     <BlockMath math="\begin{aligned} |z_1| &amp;= \sqrt{3^2 + 4^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
 
-2.  **Find the modulus of <InlineMath math="z_2 = -1 - 2i" />**, with <InlineMath math="x=-1, y=-2" />
+2.  <InlineMath math="z_2 = -1 - 2i" />, with <InlineMath math="x=-1, y=-2" />
 
     <BlockMath math="\begin{aligned} |z_2| &amp;= \sqrt{(-1)^2 + (-2)^2} \\ &amp;= \sqrt{1 + 4} \\ &amp;= \sqrt{5} \end{aligned}" />
 
-3.  **Find the modulus of <InlineMath math="z_3 = 5" />**, with <InlineMath math="x=5, y=0" />
+3.  <InlineMath math="z_3 = 5" />, with <InlineMath math="x=5, y=0" />
 
     <BlockMath math="|z_3| = \sqrt{5^2 + 0^2} = \sqrt{25} = 5" />
 
     (The modulus of a real number is its absolute value).
 
-4.  **Find the modulus of <InlineMath math="z_4 = -2i" />**, with <InlineMath math="x=0, y=-2" />
+4.  <InlineMath math="z_4 = -2i" />, with <InlineMath math="x=0, y=-2" />
 
     <BlockMath math="|z_4| = \sqrt{0^2 + (-2)^2} = \sqrt{4} = 2" />
 
@@ -122,21 +124,12 @@ The ratio <InlineMath math="|y/x|" /> is positive and finite, so the reference a
 
 The signs of <InlineMath math="x" /> and <InlineMath math="y" /> locate the quadrant. They determine how the reference angle becomes the Principal Argument in <InlineMath math="(-180^\circ, 180^\circ]" />:
 
-- **Quadrant <InlineMath math="I" />** (<InlineMath math="x>0, y>0" />):
-
-  <BlockMath math="\text{Arg}(z) = \alpha" />
-
-- **Quadrant <InlineMath math="II" />** (<InlineMath math="x<0, y>0" />):
-
-  <BlockMath math="\text{Arg}(z) = 180^\circ - \alpha" />
-
-- **Quadrant <InlineMath math="III" />** (<InlineMath math="x<0, y<0" />):
-
-  <BlockMath math="\text{Arg}(z) = -180^\circ + \alpha" />
-
-- **Quadrant <InlineMath math="IV" />** (<InlineMath math="x>0, y<0" />):
-
-  <BlockMath math="\text{Arg}(z) = -\alpha" />
+| Quadrant | Component signs | Principal argument |
+| --- | --- | --- |
+| I | <InlineMath math="x>0,\ y>0" /> | <InlineMath math="\alpha" /> |
+| II | <InlineMath math="x<0,\ y>0" /> | <InlineMath math="180^\circ-\alpha" /> |
+| III | <InlineMath math="x<0,\ y<0" /> | <InlineMath math="-180^\circ+\alpha" /> |
+| IV | <InlineMath math="x>0,\ y<0" /> | <InlineMath math="-\alpha" /> |
 
 Points on an axis do not require a quotient <InlineMath math="y/x" />. Read their direction directly:
 
@@ -149,9 +142,9 @@ Points on an axis do not require a quotient <InlineMath math="y/x" />. Read thei
 
 ### Calculating the Argument
 
-For each point, first locate the quadrant, then compute the reference angle <InlineMath math="\alpha" /> from <InlineMath math="|y/x|" />, then apply the quadrant rule above.
+For each point, first locate the **quadrant**, then compute the reference angle <InlineMath math="\alpha" /> from <InlineMath math="|y/x|" />, then apply the quadrant rule above.
 
-1.  **Find the Principal Argument of <InlineMath math="z_1 = 1 + i" />**
+1.  <InlineMath math="z_1 = 1 + i" />
 
     The point <InlineMath math="(1, 1)" /> is in Quadrant <InlineMath math="I" />.
 
@@ -160,7 +153,7 @@ For each point, first locate the quadrant, then compute the reference angle <Inl
       <BlockMath math="\begin{aligned} &amp;\theta = \arctan(1) = 45^\circ \text{ or } \frac{\pi}{4} \text{ radians} \end{aligned}" />
     </MathContainer>
 
-2.  **Find the Principal Argument of <InlineMath math="z_2 = -\sqrt{3} + i" />**
+2.  <InlineMath math="z_2 = -\sqrt{3} + i" />
 
     The point <InlineMath math="(-\sqrt{3}, 1)" /> is in Quadrant <InlineMath math="II" />.
 
@@ -172,7 +165,7 @@ For each point, first locate the quadrant, then compute the reference angle <Inl
 
     Quadrant <InlineMath math="II" /> lies above the negative real axis, so subtract the reference angle from <InlineMath math="180^\circ" />.
 
-3.  **Find the Principal Argument of <InlineMath math="z_3 = -1 - i\sqrt{3}" />**
+3.  <InlineMath math="z_3 = -1 - i\sqrt{3}" />
 
     The point <InlineMath math="(-1, -\sqrt{3})" /> is in Quadrant <InlineMath math="III" />.
 
@@ -184,7 +177,7 @@ For each point, first locate the quadrant, then compute the reference angle <Inl
 
     Quadrant <InlineMath math="III" /> lies below the negative real axis, so its Principal Argument is negative.
 
-4.  **Find the Principal Argument of <InlineMath math="z_4 = 3 - 3i" />**
+4.  <InlineMath math="z_4 = 3 - 3i" />
 
     The point <InlineMath math="(3, -3)" /> is in Quadrant <InlineMath math="IV" />.
 
@@ -196,9 +189,21 @@ For each point, first locate the quadrant, then compute the reference angle <Inl
 
     Quadrant <InlineMath math="IV" /> lies below the positive real axis, so its Principal Argument is negative.
 
+## Converting between Cartesian and Polar Forms
+
+The modulus and argument give the **polar form** of a complex number. To return to Cartesian form, multiply the modulus by the cosine and sine of the angle. Use the same number to check both directions of conversion.
+
+From Cartesian form:
+
+<BlockMath math="\begin{aligned}z&amp;=2+2i\\r&amp;=\sqrt{2^2+2^2}=2\sqrt2,\quad\theta=45^\circ\\z&amp;=2\sqrt2(\cos45^\circ+i\sin45^\circ)\end{aligned}" />
+
+From polar form:
+
+<BlockMath math="\begin{aligned}z&amp;=2\sqrt2\left(\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right)\\&amp;=2+2i\end{aligned}" />
+
 ## Exercise
 
-Find the modulus and Principal Argument (in degrees) of the following complex numbers. For each number, compute the distance from the origin first, then choose the angle inside <InlineMath math="(-180^\circ, 180^\circ]" />.
+Find the modulus and Principal Argument (in degrees) of the following complex numbers. For each number, compute the **distance from the origin** first, then choose the angle inside <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 1.  <InlineMath math="z_a = 2 + 2i" />
 2.  <InlineMath math="z_b = -4" />
@@ -206,7 +211,9 @@ Find the modulus and Principal Argument (in degrees) of the following complex nu
 
 ### Worked Solutions
 
-1.  **For <InlineMath math="z_a = 2 + 2i" />:**
+Use **distance for the modulus** and the position of the point for its argument. Points on negative axes need different angles from a point in quadrant I.
+
+1.  <InlineMath math="z_a = 2 + 2i" />:
 
     <InlineMath math="x=2, y=2" /> (Quadrant <InlineMath math="I" />) Modulus:
 
@@ -220,7 +227,7 @@ Find the modulus and Principal Argument (in degrees) of the following complex nu
 
     <BlockMath math="\theta=\arctan(1)=45^\circ" />
 
-2.  **For <InlineMath math="z_b = -4" />:**
+2.  <InlineMath math="z_b = -4" />:
 
     <InlineMath math="z_b = -4 + 0i" />. <InlineMath math="x=-4, y=0" /> (Negative
     real axis) Modulus:
@@ -231,7 +238,7 @@ Find the modulus and Principal Argument (in degrees) of the following complex nu
 
     <BlockMath math="\theta = 180^\circ" />
 
-3.  **For <InlineMath math="z_c = -i" />:**
+3.  <InlineMath math="z_c = -i" />:
 
     <InlineMath math="z_c = 0 - 1i" />. <InlineMath math="x=0, y=-1" /> (Negative
     imaginary axis) Modulus:

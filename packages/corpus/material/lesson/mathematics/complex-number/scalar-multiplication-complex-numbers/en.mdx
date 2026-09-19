@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Scalar Multiplication of Complex Numbers",
   description: "Relate real scalar multiplication to changes in the length and direction of a complex vector.",
@@ -22,7 +20,9 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
       <InlineMath math="c=-0.5" />.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0.75, 1.5, 9]}
+  cameraTarget={[0.75, 1.5, 0]}
+  showZAxis={false}
   data={[
     // Original vector z
     {
@@ -60,12 +60,14 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
   ]}
 />
 
-The visualization shows how the scalar changes the vector:
+For a nonzero vector, the following cases apply:
 
 - Multiplying <InlineMath math="z" /> by a scalar <InlineMath math="c > 1" /> (like <InlineMath math="2" />) will **stretch** the vector <InlineMath math="z" /> in the same direction.
 - Multiplying <InlineMath math="z" /> by a scalar <InlineMath math="0 < c < 1" /> will **shrink** the vector <InlineMath math="z" /> in the same direction.
 - Multiplying <InlineMath math="z" /> by <InlineMath math="c = 0" /> sends the vector to the origin, so <InlineMath math="0z = 0" />.
 - For <InlineMath math="z\neq0" />, multiplying by a scalar <InlineMath math="c < 0" /> (like <InlineMath math="-0.5" />) **reverses the direction** of the vector by <InlineMath math="180^\circ" /> and multiplies its length by <InlineMath math="|c|" />.
+
+A scalar of one leaves the vector unchanged. A zero scalar or a zero complex number produces the **zero vector with no direction**.
 
 ## Multiplying a Complex Number by a Scalar
 
@@ -73,9 +75,15 @@ If <InlineMath math="z = x + iy" /> is a complex number and <InlineMath math="c"
 
 <BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
 
-The formula multiplies the scalar <InlineMath math="c" /> by the real part <InlineMath math="x" /> and the imaginary part <InlineMath math="y" /> separately.
+The formula applies the **same factor to both components** by multiplying the scalar <InlineMath math="c" /> by the real part <InlineMath math="x" /> and the imaginary part <InlineMath math="y" /> separately.
+
+The length is multiplied by the **absolute value of the scalar**, rather than its signed value. This follows from the modulus formula:
+
+<BlockMath math="\begin{aligned}|cz|&amp;=\sqrt{(cx)^2+(cy)^2}\\&amp;=\sqrt{c^2(x^2+y^2)}\\&amp;=|c|\sqrt{x^2+y^2}=|c||z|\end{aligned}" />
 
 ### Scaling Complex Numbers by Real Scalars
+
+Track the **sign of each component**. In the second example, a negative scalar multiplies a negative imaginary component, so the imaginary component of the product is positive.
 
 If <InlineMath math="z = -3 + 4i" /> and <InlineMath math="c = 3" />, then:
 
@@ -91,7 +99,9 @@ A real scalar changes the length of the arrow and can also turn it around. The c
 
 ### Scalar Greater than One
 
-Here the factor is larger than one, so the arrow keeps its direction and its length grows by the factor.
+A positive scalar preserves direction, while a value greater than one **stretches the vector**. For the example in the diagram, multiply both components by the same factor:
+
+<BlockMath math="\frac32(-2+i)=\frac32(-2)+\frac32i=-3+\frac32i" />
 
 <LineEquation
   title={
@@ -108,6 +118,7 @@ Here the factor is larger than one, so the arrow keeps its direction and its len
   }
   cameraPosition={[-1.5, 0.75, 6.5]}
   cameraTarget={[-1.5, 0.75, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -134,7 +145,9 @@ Here the factor is larger than one, so the arrow keeps its direction and its len
 
 ### Scalar between Zero and One
 
-Here the factor lies between zero and one, so the arrow keeps its direction and becomes shorter.
+A scalar between zero and one **shrinks the vector** without reversing its direction. Multiplication by three quarters leaves each component at three quarters of its starting value:
+
+<BlockMath math="\frac34(3-2i)=\frac94-\frac64i=\frac94-\frac32i" />
 
 <LineEquation
   title={
@@ -151,6 +164,7 @@ Here the factor lies between zero and one, so the arrow keeps its direction and 
   }
   cameraPosition={[1.5, -1, 6.5]}
   cameraTarget={[1.5, -1, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -177,7 +191,7 @@ Here the factor lies between zero and one, so the arrow keeps its direction and 
 
 ### Negative Scalar
 
-Multiplication by <InlineMath math="-1" /> yields the additive inverse (negative) of the complex number.
+Multiplication by <InlineMath math="-1" /> yields the **additive inverse (negative)** of the complex number.
 
 <LineEquation
   title={
@@ -193,6 +207,8 @@ Multiplication by <InlineMath math="-1" /> yields the additive inverse (negative
     </>
   }
   cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
   data={[
     {
       points: [

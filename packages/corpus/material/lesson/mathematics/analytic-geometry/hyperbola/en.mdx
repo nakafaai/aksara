@@ -3,7 +3,7 @@ export const metadata = {
   description: "Determine a hyperbola's foci, asymptotes, eccentricity, and vertices from its standard equation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Analytic Geometry",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## The Branches and Foci of a Hyperbola
 
-The vertical outline of a cooling tower often resembles a hyperbola. A conical shock wave from a supersonic aircraft can also trace a hyperbolic path where it intersects the ground. In both cases, the modeled curve has two branches that bend away from a center and approach their asymptotes.
+The vertical outline of a cooling tower often resembles a hyperbola. A conical shock wave from a supersonic aircraft can also trace a hyperbolic path where it intersects the ground. A physical model may show only part of the curve. The complete mathematical hyperbola has two branches.
 
 Geometrically, a hyperbola appears when a plane cuts both halves of a double cone. Unlike an ellipse, which is closed, a hyperbola has **two separate branches** facing away from one another.
 
@@ -278,7 +278,7 @@ Read the graph through these five features:
 
 ## Equation of a Hyperbola
 
-The standard equation depends on the orientation of the branches and the position of the center. We will use two cases. The positive squared term decides the direction, so a positive <InlineMath math="x^2" /> term opens left and right while a positive <InlineMath math="y^2" /> term opens up and down.
+Take <InlineMath math="a > 0" /> and <InlineMath math="b > 0" />. The constant in the definition must satisfy <InlineMath math="0 < 2a < 2c" />, where <InlineMath math="2c" /> is the distance between the foci. The standard equation depends on the orientation of the branches and the position of the center. We will use two cases. The **positive squared term** decides the direction, so a positive <InlineMath math="x^2" /> term opens left and right while a positive <InlineMath math="y^2" /> term opens up and down.
 
 ### Center at the Origin
 
@@ -385,7 +385,7 @@ If the center of the hyperbola is at <InlineMath math="O(0,0)" />, there are two
   cameraPosition={[0, 0, 12]}
 />
 
-When the transverse axis is parallel to the <InlineMath math="x" /> axis, the equation of the hyperbola is:
+When the **transverse axis is parallel** to the <InlineMath math="x" /> axis, the equation of the hyperbola is:
 
 <BlockMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />
 
@@ -498,7 +498,7 @@ When the transverse axis is parallel to the <InlineMath math="y" /> axis, the eq
 
 ### Shifted Center
 
-For a hyperbola centered at <InlineMath math="(h, k)" />, the equation becomes:
+For a **hyperbola centered at** <InlineMath math="(h, k)" />, the equation becomes:
 
 For a horizontal transverse axis:
 
@@ -535,11 +535,21 @@ For a horizontal transverse axis:
 
 <BlockMath math="y = \pm \frac{a}{b}x" />
 
+
+In the horizontal graph above, <InlineMath math="a=3" /> and <InlineMath math="b=2" />. Compare the upper right branch with its positive asymptote at <InlineMath math="x=5" />.
+
+<BlockMath math="\begin{aligned}\frac{25}{9}-\frac{y^2}{4}&amp;=1\\y^2&amp;=\frac{64}{9}\\y&amp;=\frac{8}{3}\end{aligned}" />
+
+<BlockMath math="y_{\mathrm{asym}}=\frac{2}{3}\cdot5=\frac{10}{3},\qquad\frac{10}{3}-\frac{8}{3}=\frac{2}{3}" />
+
+Thus **approaching an asymptote** does not mean lying on it. At this coordinate, the vertical gap between the curve and the line is still <InlineMath math="2/3" /> of a unit.
+
+
 > The asymptotes describe the limiting directions of the two branches. As the distance from the center grows, each branch approaches an asymptote without intersecting it.
 
 ## Exercises
 
-Each problem gives a hyperbola equation and asks for its centre, vertices, asymptotes, or foci, so bring the equation into standard form first.
+Use the vertices to find the transverse semiaxis, the foci to find the focal distance, and the **positive squared term** to identify the opening direction. When the center shifts, the asymptotes must also pass through that center.
 
 1. Determine the equation of a hyperbola with center at <InlineMath math="(0,0)" />, vertices at <InlineMath math="(\pm 2, 0)" />, and foci at <InlineMath math="(\pm 3, 0)" />.
 
@@ -551,90 +561,90 @@ Each problem gives a hyperbola equation and asks for its centre, vertices, asymp
 
 ### Worked Solutions
 
-1. **Solution**:
+**Solution 1**:
 
-   Given:
-   - Center at <InlineMath math="(0,0)" />
-   - Vertices at <InlineMath math="(\pm 2, 0)" />, so <InlineMath math="a = 2" />
-   - Foci at <InlineMath math="(\pm 3, 0)" />, so <InlineMath math="c = 3" />
-   - Horizontal transverse axis (since vertices and foci are on the <InlineMath math="x" /> axis)
+Given:
+- Center at <InlineMath math="(0,0)" />
+- Vertices at <InlineMath math="(\pm 2, 0)" />, so <InlineMath math="a = 2" />
+- Foci at <InlineMath math="(\pm 3, 0)" />, so <InlineMath math="c = 3" />
+- Horizontal transverse axis (since vertices and foci are on the <InlineMath math="x" /> axis)
 
-   Use the relationship <InlineMath math="c^2 = a^2 + b^2" />:
+Use the relationship <InlineMath math="c^2 = a^2 + b^2" />:
 
-   <MathContainer>
-     <BlockMath math="3^2 = 2^2 + b^2" />
-     <BlockMath math="9 = 4 + b^2" />
-     <BlockMath math="b^2 = 5" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="3^2 = 2^2 + b^2" />
+  <BlockMath math="9 = 4 + b^2" />
+  <BlockMath math="b^2 = 5" />
+</MathContainer>
 
-   Equation of a hyperbola with a horizontal transverse axis:
+Equation of a hyperbola with a horizontal transverse axis:
 
-   <BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
+<BlockMath math="\frac{x^2}{4} - \frac{y^2}{5} = 1" />
 
-2. **Solution**:
+**Solution 2**:
 
-   From the equation <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />:
-   - <InlineMath math="a^2 = 25" />, so <InlineMath math="a = 5" />
-   - <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
+From the equation <InlineMath math="\frac{x^2}{25} - \frac{y^2}{9} = 1" />:
+- <InlineMath math="a^2 = 25" />, so <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
 
-   Since it has the form <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, the transverse axis is horizontal.
+Since it has the form <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" />, the transverse axis is horizontal.
 
-   Calculate <InlineMath math="c" />:
+Calculate <InlineMath math="c" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 + b^2 = 25 + 9 = 34" />
-     <BlockMath math="c = \sqrt{34} \approx 5.831" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 + b^2 = 25 + 9 = 34" />
+  <BlockMath math="c = \sqrt{34} \approx 5.831" />
+</MathContainer>
 
-   Coordinates of foci: <InlineMath math="(\pm \sqrt{34}, 0)" />
+Coordinates of foci: <InlineMath math="(\pm \sqrt{34}, 0)" />
 
-   Eccentricity:
+Eccentricity:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5.831}{5} \approx 1.166" />
+<BlockMath math="e = \frac{c}{a} = \frac{\sqrt{34}}{5} \approx \frac{5.831}{5} \approx 1.166" />
 
-   Asymptote equations (horizontal transverse axis):
+Asymptote equations (horizontal transverse axis):
 
-   <BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
+<BlockMath math="y = \pm \frac{b}{a}x = \pm \frac{3}{5}x" />
 
-3. **Solution**:
+**Solution 3**:
 
-   Given:
-   - Center: <InlineMath math="(h,k) = (1, -2)" />
-   - Horizontal transverse axis
-   - <InlineMath math="a = 3" />, so <InlineMath math="a^2 = 9" />
-   - <InlineMath math="b = 4" />, so <InlineMath math="b^2 = 16" />
+Given:
+- Center: <InlineMath math="(h,k) = (1, -2)" />
+- Horizontal transverse axis
+- <InlineMath math="a = 3" />, so <InlineMath math="a^2 = 9" />
+- <InlineMath math="b = 4" />, so <InlineMath math="b^2 = 16" />
 
-   Equation of a hyperbola with center <InlineMath math="(h,k)" /> and a horizontal transverse axis:
+Equation of a hyperbola with center <InlineMath math="(h,k)" /> and a horizontal transverse axis:
 
-   <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+<BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
 
-   Substituting values:
+Substituting values:
 
-   <BlockMath math="\frac{(x-1)^2}{9} - \frac{(y+2)^2}{16} = 1" />
+<BlockMath math="\frac{(x-1)^2}{9} - \frac{(y+2)^2}{16} = 1" />
 
-4. **Solution**:
+**Solution 4**:
 
-   From the equation <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />:
-   - Center: <InlineMath math="(h,k) = (2, -1)" />
-   - <InlineMath math="a^2 = 4" />, so <InlineMath math="a = 2" />
-   - <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
-   - Vertical transverse axis (since it has the form <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
+From the equation <InlineMath math="\frac{(y+1)^2}{4} - \frac{(x-2)^2}{9} = 1" />:
+- Center: <InlineMath math="(h,k) = (2, -1)" />
+- <InlineMath math="a^2 = 4" />, so <InlineMath math="a = 2" />
+- <InlineMath math="b^2 = 9" />, so <InlineMath math="b = 3" />
+- Vertical transverse axis (since it has the form <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />)
 
-   For a hyperbola with center <InlineMath math="(h,k)" /> and a vertical transverse axis, the asymptote equations are:
+For a hyperbola with center <InlineMath math="(h,k)" /> and a vertical transverse axis, the asymptote equations are:
 
-   <BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
+<BlockMath math="y - k = \pm \frac{a}{b}(x - h)" />
 
-   Substituting values:
+Substituting values:
 
-   <MathContainer>
-     <BlockMath math="y - (-1) = \pm \frac{2}{3}(x - 2)" />
-     <BlockMath math="y + 1 = \pm \frac{2}{3}(x - 2)" />
-     <BlockMath math="y = -1 \pm \frac{2}{3}(x - 2)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y - (-1) = \pm \frac{2}{3}(x - 2)" />
+  <BlockMath math="y + 1 = \pm \frac{2}{3}(x - 2)" />
+  <BlockMath math="y = -1 \pm \frac{2}{3}(x - 2)" />
+</MathContainer>
 
-    So the asymptote equations are:
+ So the asymptote equations are:
 
-    <MathContainer>
-       <BlockMath math="y = -1 + \frac{2}{3}(x - 2)" />
-       <BlockMath math="y = -1 - \frac{2}{3}(x - 2)" />
-     </MathContainer>
+ <MathContainer>
+    <BlockMath math="y = -1 + \frac{2}{3}(x - 2)" />
+    <BlockMath math="y = -1 - \frac{2}{3}(x - 2)" />
+  </MathContainer>

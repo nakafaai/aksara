@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use product, quotient, power, and change-of-base identities to simplify expressions, solve equations, and interpret logarithmic models.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Functions and Their Modeling",
 };
 
@@ -15,17 +15,15 @@ Logarithms undo exponentiation. If <InlineMath math="b^x = a" />, then <InlineMa
 
 ## Basic Logarithmic Identities
 
-When a term contains a product, a quotient, or a power, one of these rules splits it into separate logarithms first. After that the expression can often be evaluated mentally.
-
-The identities below are the ones you reach for first.
+Use **positive arguments** for every rule below. For the power rule, the base of the power remains positive even if the power itself could also be evaluated at a negative number.
 
 ### Product Identity
 
 <BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
 
-The logarithm of a product equals the sum of the logarithms of each number.
+The logarithm of a product equals the **sum of the logarithms** of each number.
 
-**Example:**
+**Example**:
 
 <BlockMath math="\begin{aligned} \log_2(8 \times 4) &amp;= {\log_2 8} + {\log_2 4} \\ &amp;= 3 + 2 \\ &amp;= 5 \end{aligned}" />
 
@@ -33,9 +31,9 @@ The logarithm of a product equals the sum of the logarithms of each number.
 
 <BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
 
-The logarithm of a quotient equals the difference between the logarithm of the numerator and the logarithm of the denominator.
+The logarithm of a quotient equals the **difference between the logarithm** of the numerator and the logarithm of the denominator.
 
-**Example:**
+**Example**:
 
 <BlockMath math="\begin{aligned} \log_3\left(\frac{81}{9}\right) &amp;= {\log_3 81} - {\log_3 9} \\ &amp;= 4 - 2 \\ &amp;= 2 \end{aligned}" />
 
@@ -43,17 +41,19 @@ The logarithm of a quotient equals the difference between the logarithm of the n
 
 <BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
 
-The logarithm of a number raised to a power equals the power multiplied by the logarithm of that number.
+The logarithm of a number raised to a power equals the **power multiplied by the logarithm** of that number.
 
-**Example:**
+**Example**:
 
 <BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
 
 ## Special Logarithmic Identities
 
-Each rule below names the case it applies to before it shows the rewrite. Always check the base and the argument before you use one of them.
+Check the **base conditions** before applying a rule: both the original and replacement bases must be positive and different from one.
 
-Some identities hold only for a particular base or a particular argument.
+For example, changing from base two to base ten preserves the value. The denominator is nonzero because the original base is not one.
+
+<BlockMath math="\log_2 8=\frac{\log_{10}8}{\log_{10}2}=\frac{3\log_{10}2}{\log_{10}2}=3" />
 
 ### Change of Base
 
@@ -61,7 +61,7 @@ Some identities hold only for a particular base or a particular argument.
 
 Use this identity to rewrite a logarithm in a base that is available or easier to evaluate.
 
-**Example:**
+**Example**:
 
 Because <InlineMath math="9=3^2" />, the numerator is exactly twice the denominator:
 
@@ -71,55 +71,100 @@ Because <InlineMath math="9=3^2" />, the numerator is exactly twice the denomina
 
 If <InlineMath math="\log_b M = {\log_b N}" />, then <InlineMath math="M = N" />
 
-Two numbers that have the same logarithmic value (with the same base) must be the same number. For example, <InlineMath math="\log_2 8 = \log_2 2^3" /> and both sides equal <InlineMath math="3" />, so the arguments <InlineMath math="8" /> and <InlineMath math="2^3" /> are equal. The rule works because each value of a logarithm with a fixed base comes from exactly one argument.
+Two numbers that have the **same logarithmic value** (with the same base) must be the same number. For example, <InlineMath math="\log_2 8 = \log_2 2^3" /> and both sides equal <InlineMath math="3" />, so the arguments <InlineMath math="8" /> and <InlineMath math="2^3" /> are equal. The rule works because each value of a logarithm with a fixed base comes from exactly one argument.
 
 ### Comparing Two Logarithms
 
-This identity links the sign of a logarithm to where its argument sits relative to the base, which is what you need when a logarithm appears inside an inequality.
+The comparison depends on the **direction of the graph**. A base above one preserves the ordering of the arguments. A base between zero and one reverses it.
 
 - If <InlineMath math="b > 1" /> and <InlineMath math="\log_b M < {\log_b N}" />, then <InlineMath math="M < N" />
 - If <InlineMath math="0 < b < 1" /> and <InlineMath math="\log_b M < {\log_b N}" />, then <InlineMath math="M > N" />
 
+<LineEquation
+  title="Ordering with two bases"
+  description="At inputs 2 and 4, base-two logarithms give 1 and 2. Base-one-half logarithms give minus 1 and minus 2."
+  data={[
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="\log_2 x" />, at: 100, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: -t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="\log_{1/2} x" />, at: 100, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraTarget={[3, 0, 0]}
+  cameraPosition={[3, 0, 14]}
+/>
+
 ## Applications of Logarithmic Identities
 
-Here an identity meets an algebraic expression, so the expression has to reach a suitable form first. Work step by step and note which identity you use at each step.
+Here an identity meets an algebraic expression, so the expression has to reach a suitable form first. Work step by step and note **which identity you use** at each step.
 
 The identities earn their place when an expression must be simplified before it can be solved.
 
 ### Simplifying Expressions
 
+Use the **product and then quotient identities** to combine the three terms.
+
 Simplify <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
-  <BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
-  <BlockMath math="= {\log_2(32 \times 8)} - {\log_2 4}" />
-  <BlockMath math="= {\log_2 256} - {\log_2 4}" />
-  <BlockMath math="= {\log_2\left(\frac{256}{4}\right)}" />
-  <BlockMath math="= {\log_2 64} = 6" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2(32 \times 8)} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 256} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2\left(\frac{256}{4}\right)}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 64} = 6" />
 </MathContainer>
 
 ### Solving Equations
 
+The initial condition is a **positive argument**, so the input must be above zero. The solution nine satisfies that condition.
+
 Find the value of <InlineMath math="x" /> if <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
-  <BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
-  <BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
-  <BlockMath math="x \times 9 = 81" />
-  <BlockMath math="x = \frac{81}{9} = 9" />
+
+<BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+
+<BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
+
+<BlockMath math="x \times 9 = 81" />
+
+<BlockMath math="x = \frac{81}{9} = 9" />
 </MathContainer>
 
 ## Applications in Models
 
-In a model the unknown quantity sits in the exponent, and a logarithm brings it down. The examples below show which identity each one needs.
+In a model the **unknown quantity sits in the exponent**, and a logarithm brings it down. The examples below show which identity each one needs.
 
 Logarithmic identities also appear when a model contains exponential growth or decay.
 
 ### A Logarithmic Magnitude Scale
+
+This model compares an **amplitude ratio**, using logarithms to base ten.
 
 A simplified magnitude scale can compare a measured seismic-wave amplitude <InlineMath math="A" /> with a reference amplitude <InlineMath math="A_0" />:
 
@@ -131,15 +176,19 @@ Where:
 - <InlineMath math="A" /> is the measured amplitude
 - <InlineMath math="A_0" /> is the reference amplitude
 
-**Example:** Suppose a measured amplitude is <InlineMath math="10^7" /> times the reference amplitude. What magnitude does the simplified model give?
+**Example**: Suppose a measured amplitude is <InlineMath math="10^7" /> times the reference amplitude. What magnitude does the simplified model give?
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
-  <BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
-  <BlockMath math="= \log\left(\frac{10^7 A_0}{A_0}\right)" />
-  <BlockMath math="= \log(10^7)" />
-  <BlockMath math="= 7" />
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+<BlockMath math="M = \log\left(\frac{10^7 A_0}{A_0}\right)" />
+
+<BlockMath math="M = \log(10^7)" />
+
+<BlockMath math="M = 7" />
 </MathContainer>
 
 The amplitude ratio therefore corresponds to magnitude <InlineMath math="7" /> in this simplified model. Actual earthquake-magnitude calculations also account for the instrument, wave type, and source distance.
@@ -157,21 +206,40 @@ Where:
 - <InlineMath math="C" /> = desired capacity
 - <InlineMath math="C_0" /> = maximum capacity
 
-**Example:** Determine the time required to charge a battery from empty to <InlineMath math="90\%" /> full. Assume <InlineMath math="k = 0.02" />.
+**Example**: Determine the time required to charge a battery from empty to <InlineMath math="90\%" /> full. Assume <InlineMath math="k = 0.02\ \text{min}^{-1}" />.
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
-  <BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
-  <BlockMath math="= -\frac{1}{0.02}\ln\left(1 - \frac{0.9C_0}{C_0}\right)" />
-  <BlockMath math="= -50\ln(1 - 0.9)" />
-  <BlockMath math="= -50\ln(0.1)" />
-  <BlockMath math="\approx 115.13" />
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+<BlockMath math="t = -\frac{1}{0.02}\ln\left(1 - \frac{0.9C_0}{C_0}\right)" />
+
+<BlockMath math="t = -50\ln(1 - 0.9)" />
+
+<BlockMath math="t = -50\ln(0.1)" />
+
+<BlockMath math="t \approx 115.13" />
 </MathContainer>
 
 Within this idealized model, reaching <InlineMath math="90\%" /> takes approximately <InlineMath math="115 \text{ minutes}" />. Real charging systems can change their rate near full capacity.
 
+The **charging model domain** runs from zero stored charge to less than the maximum.
+
+<BlockMath math="C_0>0,\quad k>0,\quad0\leq C<C_0" />
+
+In this model, **full charge is approached without being reached** in finite time. Comparing targets shows why an extra percent near full charge can take longer.
+
+| Charge target | Time (minutes) |
+| --- | --- |
+| <InlineMath math="50\%" /> | <InlineMath math="-50\ln(0.5)\approx34.66" /> |
+| <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0.1)\approx115.13" /> |
+| <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0.01)\approx230.26" /> |
+
 ### Car Price Depreciation
+
+The fixed model rate is an **assumption over the modeled interval**. The car value halves every five years.
 
 If the instantaneous depreciation rate is proportional to a car's current value, an exponential model has the form:
 
@@ -179,17 +247,21 @@ If the instantaneous depreciation rate is proportional to a car's current value,
 
 In this model, <InlineMath math="H(t)" /> is the car's value at time <InlineMath math="t" />.
 
-**Example:** A new car costs <InlineMath math="200 \text{ million rupiah}" /> and its modeled value after <InlineMath math="5 \text{ years}" /> is <InlineMath math="100 \text{ million rupiah}" />. Assuming the same exponential depreciation rate continues, determine the modeled value after <InlineMath math="10 \text{ years}" />.
+**Example**: A new car costs <InlineMath math="200 \text{ million rupiah}" /> and its modeled value after <InlineMath math="5 \text{ years}" /> is <InlineMath math="100 \text{ million rupiah}" />. Assuming the same exponential depreciation rate continues, determine the modeled value after <InlineMath math="10 \text{ years}" />.
 
-**Solution:**
+**Solution**:
 
 Measure <InlineMath math="H(t)" /> in millions of rupiah and <InlineMath math="t" /> in years. At purchase:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
-  <BlockMath math="e^{5k} = \frac{1}{2} \text{, therefore } 5k = \ln\left(\frac{1}{2}\right)" />
-  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0.1386" />
+
+<BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
+
+<BlockMath math="e^{5k} = \frac{1}{2} \text{, therefore } 5k = \ln\left(\frac{1}{2}\right)" />
+
+<BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0.1386" />
 </MathContainer>
 
 From these results, the car's price at any time <InlineMath math="t" /> is:
@@ -204,52 +276,61 @@ The car's price after <InlineMath math="10 \text{ years}" /> of use is:
 
 The three problems each need a different rewrite, so write down which rule you need before you calculate. Then compare your route with the route the solution takes.
 
-**Problem** 1
+**Problem 1**
 
 Simplify: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
 
-**Problem** 2
+**Problem 2**
 
 If <InlineMath math="\log_2 x = 3" /> and <InlineMath math="\log_2 y = 5" />, find the value of <InlineMath math="\log_2(xy)" />
 
-**Problem** 3
+**Problem 3**
 
 Find the value of <InlineMath math="x" /> if <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
 
 ### Worked Solutions
 
-**Answer** <InlineMath math="1" />
+**Answer 1**
 
 Each number is a power of <InlineMath math="5" />. Evaluate the three logarithms before combining them:
 
 <MathContainer>
-  <BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
-  <BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+<BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+
+<BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
 </MathContainer>
 
 The simplified value is <InlineMath math="4" />.
 
-**Answer** <InlineMath math="2" />
+**Answer 2**
 
 Use the product identity because the target contains <InlineMath math="xy" />:
 
 <MathContainer>
-  <BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
-  <BlockMath math="= 3 + 5 = 8" />
+
+<BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
+
+<BlockMath math="\log_2(xy) = 3 + 5 = 8" />
 </MathContainer>
 
 <InlineMath math="\log_2(xy)=8" />.
 
-**Answer** <InlineMath math="3" />
+**Answer 3**
 
 Use the quotient identity on the right-hand side, then use equality of logarithms with the same base:
 
 <MathContainer>
-  <BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
-  <BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
-  <BlockMath math="\log_4(x-1) = {\log_4 8}" />
-  <BlockMath math="x - 1 = 8" />
-  <BlockMath math="x = 9" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 8}" />
+
+<BlockMath math="x - 1 = 8" />
+
+<BlockMath math="x = 9" />
 </MathContainer>
 
 The logarithm requires <InlineMath math="x-1>0" />. Since <InlineMath math="9-1=8>0" />, the solution is valid.

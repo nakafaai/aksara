@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Brennpunkte und Achsen einer Ellipse und leite ihre Standardgleichungen in Rechenbeispielen her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Analytische Geometrie",
 };
 
@@ -235,19 +235,40 @@ Die wichtigsten Bestandteile sind:
 
 2. Die **Brennpunkte** <InlineMath math="F_1" /> und <InlineMath math="F_2" /> sind die beiden festen Bezugspunkte der Ellipsendefinition. Ihr Abstand voneinander beträgt <InlineMath math="2c" />.
 
-3. Die **Hauptachse** ist die längere Symmetrieachse. Sie verläuft durch Mittelpunkt und Brennpunkte und endet in <InlineMath math="A_1" /> und <InlineMath math="A_2" />.
+3. Die **Hauptachse** ist der längste Durchmesser, also eine Strecke mit beiden Endpunkten auf der Ellipse. Sie verläuft durch Mittelpunkt und Brennpunkte und endet in <InlineMath math="A_1" /> und <InlineMath math="A_2" />.
 
-4. Die **Nebenachse** ist die kürzere Symmetrieachse. Sie steht senkrecht auf der Hauptachse und endet in <InlineMath math="B_1" /> und <InlineMath math="B_2" />.
+4. Die **Nebenachse** ist der kürzeste Durchmesser, also eine Strecke durch den Mittelpunkt mit beiden Endpunkten auf der Ellipse. Sie steht senkrecht auf der Hauptachse und endet in <InlineMath math="B_1" /> und <InlineMath math="B_2" />.
 
 5. Die **große Halbachse** <InlineMath math="a" /> ist die halbe Hauptachsenlänge, also der Abstand vom Mittelpunkt zu einem Hauptscheitel.
 
 6. Die **kleine Halbachse** <InlineMath math="b" /> ist die halbe Nebenachsenlänge, also der Abstand vom Mittelpunkt zu einem Nebenscheitel.
 
-> Für eine echte Ellipse gilt <InlineMath math="a > b" />. Im Grenzfall <InlineMath math="a = b" /> fallen beide Halbachsen zusammen und die Kurve ist ein Kreis.
+> Für eine echte Ellipse gilt <InlineMath math="a > b > 0" />. Im Grenzfall <InlineMath math="a = b" /> fallen beide Halbachsen zusammen und die Kurve ist ein Kreis.
 
 ## Ellipsengleichungen
 
-Die Gleichungsform hängt davon ab, wo der Mittelpunkt liegt und ob die Hauptachse horizontal oder vertikal verläuft. Den Mittelpunkt liest du an den Zahlen ab, die in den Klammern subtrahiert werden, die Richtung an dem quadratischen Term mit dem größeren Nenner.
+Die Gleichungsform hängt davon ab, wo der Mittelpunkt liegt und ob die Hauptachse horizontal oder vertikal verläuft. Den Mittelpunkt liest du an den Zahlen ab, die in den Klammern subtrahiert werden, die Richtung an dem quadratischen Term mit dem **größeren Nenner**.
+
+### Von den Abständen zur Gleichung
+
+Lege die Brennpunkte auf <InlineMath math="(-c,0)" /> und <InlineMath math="(c,0)" /> mit <InlineMath math="a > c > 0" />. Für einen Punkt <InlineMath math="P(x,y)" /> nennen wir die Abstände zum linken und rechten Brennpunkt <InlineMath math="d_1" /> und <InlineMath math="d_2" />. Ihre **konstante Summe** schreiben wir als <InlineMath math="2a" />.
+
+<MathContainer>
+  <BlockMath math="d_1=\sqrt{(x+c)^2+y^2},\qquad d_2=\sqrt{(x-c)^2+y^2}" />
+  <BlockMath math="d_1+d_2=2a" />
+</MathContainer>
+
+Quadriere <InlineMath math="d_1=2a-d_2" />. Bei der Differenz der quadrierten Abstände bleibt der Term <InlineMath math="4cx" />.
+
+<BlockMath math="\begin{aligned}d_1^2-d_2^2 &amp;=4a^2-4ad_2\\4cx &amp;=4a^2-4ad_2\\ad_2 &amp;=a^2-cx\end{aligned}" />
+
+Setze die Abstandsformel für <InlineMath math="d_2" /> ein, quadriere und fasse gleichartige Terme zusammen.
+
+<BlockMath math="\begin{aligned}a^2[(x-c)^2+y^2]&amp;=(a^2-cx)^2\\a^2x^2-2a^2cx+a^2c^2+a^2y^2&amp;=a^4-2a^2cx+c^2x^2\\(a^2-c^2)x^2+a^2y^2&amp;=a^2(a^2-c^2)\end{aligned}" />
+
+Wegen <InlineMath math="a^2-c^2 > 0" /> können wir <InlineMath math="b^2=a^2-c^2" /> setzen und beide Seiten durch <InlineMath math="a^2b^2" /> teilen. So entsteht die **Normalform der Ellipsengleichung**.
+
+<BlockMath math="b^2x^2+a^2y^2=a^2b^2\quad\Longrightarrow\quad\frac{x^2}{a^2}+\frac{y^2}{b^2}=1" />
 
 ### Mittelpunkt im Ursprung
 
@@ -255,7 +276,7 @@ Liegt der Mittelpunkt bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche A
 
 <LineEquation
   title="Horizontale Hauptachse"
-  description={<>Ellipse <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> mit <InlineMath math="a > b" />.</>}
+  description={<>Ellipse <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> mit <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -339,15 +360,15 @@ Liegt der Mittelpunkt bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche A
   cameraPosition={[0, 0, 12]}
 />
 
-Verläuft die Hauptachse parallel zur <InlineMath math="x" />-Achse, lautet die Ellipsengleichung:
+Verläuft die **Hauptachse parallel** zur <InlineMath math="x" />-Achse, lautet die Ellipsengleichung:
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-Diese Gleichung gilt für <InlineMath math="a > b" />.
+Diese Gleichung gilt für <InlineMath math="a > b > 0" />.
 
 <LineEquation
   title="Vertikale Hauptachse"
-  description={<>Ellipse <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> mit <InlineMath math="a > b" />.</>}
+  description={<>Ellipse <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> mit <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -435,11 +456,11 @@ Verläuft die Hauptachse parallel zur <InlineMath math="y" />-Achse, lautet die 
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-Diese Gleichung gilt für <InlineMath math="a > b" />.
+Diese Gleichung gilt für <InlineMath math="a > b > 0" />.
 
 ### Verschobener Mittelpunkt
 
-Liegt der Mittelpunkt im Punkt <InlineMath math="(h, k)" /> statt im Ursprung, entstehen die verschobenen Formen:
+Liegt der Mittelpunkt im Punkt <InlineMath math="(h, k)" /> statt im Ursprung, entstehen die **verschobenen Formen**:
 
 Bei horizontaler Hauptachse:
 
@@ -555,7 +576,7 @@ Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je n
 
 ## Übungen
 
-In jeder Aufgabe ist eine Ellipsengleichung gegeben und ein Merkmal wie Mittelpunkt, Achsen oder Brennpunkte gesucht, deshalb formst du die Gleichung zuerst in die Normalform um.
+Die Aufgaben geben unterschiedliche Größen vor. Unterscheide **volle Achsenlängen von Halbachsen** und nutze dann die Brennpunkte oder Punkte auf der Kurve, um fehlende Parameter zu bestimmen.
 
 1. Bestimme die Gleichung einer Ellipse mit Mittelpunkt <InlineMath math="(0,0)" />, Hauptachsenlänge <InlineMath math="12" />, Nebenachsenlänge <InlineMath math="8" /> und horizontaler Hauptachse.
 
@@ -567,110 +588,110 @@ In jeder Aufgabe ist eine Ellipsengleichung gegeben und ein Merkmal wie Mittelpu
 
 ### Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Gegeben sind:
-   - Mittelpunkt <InlineMath math="(0,0)" />
-   - Hauptachsenlänge <InlineMath math="12" />, daher <InlineMath math="2a = 12" /> und <InlineMath math="a = 6" />
-   - Nebenachsenlänge <InlineMath math="8" />, daher <InlineMath math="2b = 8" /> und <InlineMath math="b = 4" />
-   - Horizontale Hauptachse
+Gegeben sind:
+- Mittelpunkt <InlineMath math="(0,0)" />
+- Hauptachsenlänge <InlineMath math="12" />, daher <InlineMath math="2a = 12" /> und <InlineMath math="a = 6" />
+- Nebenachsenlänge <InlineMath math="8" />, daher <InlineMath math="2b = 8" /> und <InlineMath math="b = 4" />
+- Horizontale Hauptachse
 
-   Ellipsengleichung mit horizontaler Hauptachse:
+Ellipsengleichung mit horizontaler Hauptachse:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Nach dem Einsetzen von <InlineMath math="a = 6" /> und <InlineMath math="b = 4" /> folgt:
+Nach dem Einsetzen von <InlineMath math="a = 6" /> und <InlineMath math="b = 4" /> folgt:
 
-   <BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
+<BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Aus der Gleichung <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" /> lesen wir ab:
-   - <InlineMath math="a^2 = 25" />, daher <InlineMath math="a = 5" />
-   - <InlineMath math="b^2 = 16" />, daher <InlineMath math="b = 4" />
+Aus der Gleichung <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" /> lesen wir ab:
+- <InlineMath math="a^2 = 25" />, daher <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 16" />, daher <InlineMath math="b = 4" />
 
-   Weil <InlineMath math="a^2 > b^2" /> gilt, ist die Hauptachse horizontal.
+Weil <InlineMath math="a^2 > b^2" /> gilt, ist die Hauptachse horizontal.
 
-   Nun berechnen wir <InlineMath math="c" />:
+Nun berechnen wir <InlineMath math="c" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
-     <BlockMath math="c = 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
+  <BlockMath math="c = 3" />
+</MathContainer>
 
-   Die Brennpunkte liegen bei <InlineMath math="(\pm 3, 0)" />, also bei <InlineMath math="(-3, 0)" /> und <InlineMath math="(3, 0)" />.
+Die Brennpunkte liegen bei <InlineMath math="(\pm 3, 0)" />, also bei <InlineMath math="(-3, 0)" /> und <InlineMath math="(3, 0)" />.
 
-   Exzentrizität:
+Exzentrizität:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{,}6" />
+<BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{,}6" />
 
-3. **Lösung**:
+**Lösung 3**:
 
-   Gegeben sind:
-   - Mittelpunkt: <InlineMath math="(3, -1)" />
-   - Brennpunkte: <InlineMath math="(3, 2)" /> und <InlineMath math="(3, -4)" />
-   - Nebenachsenlänge <InlineMath math="6" />, daher <InlineMath math="2b = 6" /> und <InlineMath math="b = 3" />
+Gegeben sind:
+- Mittelpunkt: <InlineMath math="(3, -1)" />
+- Brennpunkte: <InlineMath math="(3, 2)" /> und <InlineMath math="(3, -4)" />
+- Nebenachsenlänge <InlineMath math="6" />, daher <InlineMath math="2b = 6" /> und <InlineMath math="b = 3" />
 
-   Da die Brennpunkte die gleichen <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 3" />) haben, ist die Hauptachse vertikal.
+Da die Brennpunkte die gleichen <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 3" />) haben, ist die Hauptachse vertikal.
 
-   <BlockMath math="\begin{aligned} &amp;\begin{gathered}\text{Abstand zwischen}\\\text{Brennpunkten}\end{gathered} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\begin{gathered}\text{Abstand zwischen}\\\text{Brennpunkten}\end{gathered} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
-   Daher gilt <InlineMath math="2c = 6" /> und somit <InlineMath math="c = 3" />.
+Daher gilt <InlineMath math="2c = 6" /> und somit <InlineMath math="c = 3" />.
 
-   Mit <InlineMath math="c^2 = a^2-b^2" /> bestimmen wir <InlineMath math="a" />:
+Mit <InlineMath math="c^2 = a^2-b^2" /> bestimmen wir <InlineMath math="a" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2" />
-     <BlockMath math="9 = a^2 - 9" />
-     <BlockMath math="a^2 = 18" />
-     <BlockMath math="a = 3\sqrt{2}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2" />
+  <BlockMath math="9 = a^2 - 9" />
+  <BlockMath math="a^2 = 18" />
+  <BlockMath math="a = 3\sqrt{2}" />
+</MathContainer>
 
-   Ellipsengleichung mit Mittelpunkt <InlineMath math="(h,k) = (3,-1)" /> und vertikaler Hauptachse:
+Ellipsengleichung mit Mittelpunkt <InlineMath math="(h,k) = (3,-1)" /> und vertikaler Hauptachse:
 
-   <BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
+<BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
 
-4. **Lösung**:
+**Lösung 4**:
 
-   Eine Ellipse mit Mittelpunkt <InlineMath math="(0,0)" /> und horizontaler Hauptachse hat die Gleichung:
+Eine Ellipse mit Mittelpunkt <InlineMath math="(0,0)" /> und horizontaler Hauptachse hat die Gleichung:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Einsetzen des Punkts <InlineMath math="(4,3)" />:
+Einsetzen des Punkts <InlineMath math="(4,3)" />:
 
-   <BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
+<BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
 
-   Einsetzen des Punkts <InlineMath math="(6,2)" />:
+Einsetzen des Punkts <InlineMath math="(6,2)" />:
 
-   <BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
+<BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
 
-   Mit <InlineMath math="u = \frac{1}{a^2}" /> und <InlineMath math="v = \frac{1}{b^2}" /> wird daraus ein lineares Gleichungssystem:
+Mit <InlineMath math="u = \frac{1}{a^2}" /> und <InlineMath math="v = \frac{1}{b^2}" /> wird daraus ein lineares Gleichungssystem:
 
-   <MathContainer>
-     <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
-     <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
+  <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
+</MathContainer>
 
-   Aus Gleichung (1) folgt <InlineMath math="v = \frac{1-16u}{9}" />.
+Aus Gleichung (1) folgt <InlineMath math="v = \frac{1-16u}{9}" />.
 
-   Dies setzen wir in Gleichung (2) ein:
+Dies setzen wir in Gleichung (2) ein:
 
-   <MathContainer>
-     <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
-     <BlockMath math="36u + \frac{4-64u}{9} = 1" />
-     <BlockMath math="324u + 4 - 64u = 9" />
-     <BlockMath math="260u = 5" />
-     <BlockMath math="u = \frac{1}{52}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
+  <BlockMath math="36u + \frac{4-64u}{9} = 1" />
+  <BlockMath math="324u + 4 - 64u = 9" />
+  <BlockMath math="260u = 5" />
+  <BlockMath math="u = \frac{1}{52}" />
+</MathContainer>
 
-   Folglich ist <InlineMath math="a^2 = 52" />.
+Folglich ist <InlineMath math="a^2 = 52" />.
 
-   Rückeinsetzen liefert:
+Rückeinsetzen liefert:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
+</MathContainer>
 
-   Damit ist <InlineMath math="b^2 = 13" />.
+Damit ist <InlineMath math="b^2 = 13" />.
 
-   Die gesuchte Ellipsengleichung lautet <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />.
+Die gesuchte Ellipsengleichung lautet <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />.

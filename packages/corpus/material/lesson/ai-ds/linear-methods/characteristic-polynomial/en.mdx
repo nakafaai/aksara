@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use characteristic polynomials to find eigenvalues, determine algebraic multiplicity, and relate their coefficients to a matrix's trace.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -41,13 +41,13 @@ In the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath 
 This means:
 - The highest coefficient is always <InlineMath math="(-1)^n" />
 - The second highest coefficient is related to the matrix trace
-- The constant term is the determinant of the matrix
+- The **constant term** is the determinant of the matrix
 
 ## Eigenvalues as Polynomial Roots
 
 The value <InlineMath math="\lambda \in \mathbb{K}" /> is an eigenvalue of <InlineMath math="A" /> if and only if <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-**The eigenvalues are the roots of the characteristic polynomial**.
+The eigenvalues are the **roots of the characteristic polynomial**.
 
 For <InlineMath math="t \in \mathbb{K}" />, consider the following equation.
 
@@ -61,7 +61,7 @@ Now, what happens if an eigenvalue appears multiple times as a root of the chara
 
 ### Multiplicity Bounds
 
-For every eigenvalue <InlineMath math="\lambda" />, its algebraic multiplicity satisfies
+For every eigenvalue <InlineMath math="\lambda" />, its **algebraic multiplicity satisfies**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
@@ -75,15 +75,15 @@ For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \math
 
 > The geometric multiplicity of every eigenvalue is always less than or equal to its algebraic multiplicity.
 
-The geometric multiplicity counts independent eigenvectors in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
+The geometric multiplicity **counts independent eigenvectors** in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
 
 ## Computing Characteristic Polynomials
 
-The definition is applied to concrete matrices now, and the coefficient identities serve as checks on the expansion. Follow each determinant step by step, then compare the roots with the trace and the determinant to confirm that the polynomial is correct.
+The definition is applied to concrete matrices now, and the **coefficient identities** serve as checks on the expansion. Follow each determinant step by step, then compare the roots with the trace and the determinant to confirm that the polynomial is correct.
 
 ### Third Order Matrix
 
-This third order matrix produces a characteristic polynomial of degree three:
+This third order matrix produces a characteristic polynomial of **degree three**:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
 
@@ -109,7 +109,7 @@ The roots pass two useful checks: their sum is the trace, and their product is t
 
 ### Repeated Eigenvalue in an Upper Triangular Matrix
 
-This matrix has the same diagonal entry twice, namely <InlineMath math="1" />:
+This matrix has the **same diagonal entry twice**, namely <InlineMath math="1" />:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
@@ -121,11 +121,15 @@ Its characteristic polynomial is:
 <BlockMath math="= t^2 - 2 \cdot t + 1" />
 </MathContainer>
 
-This matrix has the root <InlineMath math="\lambda = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> is the only eigenvalue of <InlineMath math="A" />. We have calculated that <InlineMath math="\dim \text{ Eig}_A(1) = 1" />.
+This matrix has the root <InlineMath math="\lambda = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> is the only eigenvalue of <InlineMath math="A" />.
+
+<BlockMath math="(A-I)\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2y\\0\end{pmatrix}=0\iff y=0,\qquad E_A(1)=\operatorname{span}\left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}" />
+
+The eigenspace has **dimension 1**, even though the polynomial root occurs twice.
 
 ## Characteristic Polynomials of Geometric Transformations
 
-The calculation now runs on familiar maps of <InlineMath math="\mathbb{R}^2" />, so the algebraic result and its geometric meaning appear together. Rotation, reflection, scaling, and shearing each produce a polynomial whose roots describe what that map does to directions.
+The calculation now runs on familiar maps of <InlineMath math="\mathbb{R}^2" />, so the algebraic result and its **geometric meaning** appear together. Rotation, reflection, scaling, and shearing each produce a polynomial whose roots describe what that map does to directions.
 
 ### Rotation
 
@@ -137,11 +141,11 @@ Its characteristic polynomial is:
 
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
-Its discriminant is <InlineMath math="-4\sin^2(\alpha)" />. The roots are real exactly when <InlineMath math="\sin(\alpha)=0" />, so, modulo a full turn, <InlineMath math="\alpha\equiv0" /> or <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
+**Its discriminant** is <InlineMath math="-4\sin^2(\alpha)" />. The roots are real exactly when <InlineMath math="\sin(\alpha)=0" />, so, modulo a full turn, <InlineMath math="\alpha\equiv0" /> or <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
 ### Reflection
 
-Reflection across the <InlineMath math="x" />-axis has the matrix:
+**Reflection across** the <InlineMath math="x" />-axis has the matrix:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -153,7 +157,7 @@ The eigenvalues are <InlineMath math="\lambda_1 = 1" /> and <InlineMath math="\l
 
 ### Scaling
 
-Scaling has the matrix:
+**Scaling has** the matrix:
 
 <BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
 
@@ -165,7 +169,7 @@ The eigenvalue is <InlineMath math="\lambda = s" /> with <InlineMath math="\mu_A
 
 ### Shearing
 
-For a shear with <InlineMath math="s \neq 0" />, the matrix is:
+**For a shear** with <InlineMath math="s \neq 0" />, the matrix is:
 
 <BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
 
@@ -177,7 +181,7 @@ The eigenvalue is <InlineMath math="\lambda = 1" /> with <InlineMath math="\mu_A
 
 ## Properties of Similar Matrices
 
-Similar matrices describe the same linear transformation in different bases. They therefore have the same characteristic polynomial, eigenvalues, trace, and determinant.
+Similar matrices describe the **same linear transformation** in different bases. They therefore have the same characteristic polynomial, eigenvalues, trace, and determinant.
 
 Let <InlineMath math="S \in \mathbb{K}^{n \times n}" /> be invertible and <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Then:
 
@@ -198,4 +202,4 @@ Indeed, using <InlineMath math="Av=\lambda v" /> and <InlineMath math="w=S^{-1}v
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 
-Similarity preserves eigenvalues while the inverse basis change converts the corresponding eigenvectors.
+Similarity preserves eigenvalues while the **inverse basis change** converts the corresponding eigenvectors.

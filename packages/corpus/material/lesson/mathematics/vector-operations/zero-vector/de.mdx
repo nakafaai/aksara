@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze den Nullvektor als additives neutrales Element und deute ihn in Algebra, Physik und Computergrafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -21,7 +21,7 @@ Der Nullvektor besitzt einige besondere Eigenschaften:
 
 2. Sein Betrag ist null: <InlineMath math="|\vec{0}| = 0" />
 
-3. Er kann nicht normiert werden, weil die Division durch seinen Betrag null nicht definiert ist.
+3. Er kann **nicht normiert werden**, weil die Division durch seinen Betrag null nicht definiert ist.
 
 4. Jeder Vektorraum besitzt genau ein additives neutrales Element. Sein Nullvektor ist daher eindeutig.
 
@@ -31,7 +31,7 @@ Der Nullvektor besitzt einige besondere Eigenschaften:
 
 ## Darstellung des Nullvektors
 
-Jede kartesische Komponente des Nullvektors ist null, deshalb hat er den Betrag null und keine Richtung. Die Aufstellung unten zeigt seine Koordinaten im ein-, zwei- und dreidimensionalen Raum.
+**Jede kartesische Komponente** des Nullvektors ist null, deshalb hat er den Betrag null und keine Richtung. Die Aufstellung unten zeigt seine Koordinaten im ein-, zwei- und dreidimensionalen Raum.
 
 - Im <InlineMath math="1" />-dimensionalen Raum: <InlineMath math="\vec{0} = (0)" />
 - Im <InlineMath math="2" />-dimensionalen Raum: <InlineMath math="\vec{0} = (0, 0)" />
@@ -43,28 +43,42 @@ Eine Person, die an ihren Ausgangspunkt zurückkehrt, hat insgesamt die Verschie
 
 Andi geht <InlineMath math="100 \text{ m}" /> nach Osten und anschließend <InlineMath math="100 \text{ m}" /> nach Westen. Seine Wegstrecke beträgt <InlineMath math="200 \text{ m}" />. Weil Anfangs- und Endposition übereinstimmen, ist seine Verschiebung dennoch null.
 
+Wähle Osten als positive Richtung und die Anfangsposition als <InlineMath math="0\text{ m}" />. **Die Wegstrecke wächst** auch auf dem Rückweg, während die Position wieder den Anfangswert erreicht.
+
+| Etappe | Position relativ zum Start | Zurückgelegte Wegstrecke |
+| --- | --- | --- |
+| Start | <InlineMath math="0\text{ m}" /> | <InlineMath math="0\text{ m}" /> |
+| Nach dem Weg nach Osten | <InlineMath math="100\text{ m}" /> | <InlineMath math="100\text{ m}" /> |
+| Nach der Rückkehr nach Westen | <InlineMath math="0\text{ m}" /> | <InlineMath math="200\text{ m}" /> |
+
+<BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
+
 ## Nullvektor in Vektoroperationen
 
-Der Nullvektor verhält sich in der Vektorarithmetik wie die Zahl null. Addierst du ihn zu einem Vektor, bleibt dieser unverändert, und multiplizierst du ihn mit einem Skalar, ergibt sich wieder der Nullvektor.
+Sowohl das Addieren als auch das Subtrahieren des Nullvektors **lässt den ursprünglichen Vektor unverändert**. Bei der Subtraktion zählt die Reihenfolge: Ziehst du einen Vektor vom Nullvektor ab, erhältst du seinen Gegenvektor.
 
 ### Addition mit Nullvektor
 
 Für einen beliebigen Vektor <InlineMath math="\vec{a}" /> gilt:
 
-<BlockMath math="\vec{a} + \vec{0} = \vec{a}" />
+<BlockMath math="\vec{a} + \vec{0} = \vec{a},\qquad (3,-2)+(0,0)=(3,-2)" />
 
-Der Nullvektor verändert den addierten Vektor also nicht.
+Der Nullvektor **verändert den addierten Vektor also nicht**.
 
 ### Subtraktion mit Nullvektor
+
+Beim Abziehen des Nullvektors bleibt der **ursprüngliche Vektor unverändert**. Vertauschst du die Reihenfolge, erhältst du seinen Gegenvektor.
 
 Für jeden Vektor <InlineMath math="\vec{a}" />:
 
 <MathContainer>
-  <BlockMath math="\vec{a} - \vec{0} = \vec{a}" />
-  <BlockMath math="\vec{0} - \vec{a} = -\vec{a}" />
+  <BlockMath math="\vec{a} - \vec{0} = \vec{a},\qquad (3,-2)-(0,0)=(3,-2)" />
+  <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
 </MathContainer>
 
 ### Skalare Multiplikation mit Nullvektor
+
+Jede Nullkomponente bleibt nach der Multiplikation null. Das Ergebnis ist daher **weiterhin der Nullvektor**, unabhängig vom Skalar.
 
 Für jeden Skalar <InlineMath math="k" />:
 
@@ -75,5 +89,5 @@ Für jeden Skalar <InlineMath math="k" />:
 Der Nullvektor tritt in den folgenden Zusammenhängen auf:
 
 1. In einem homogenen linearen Gleichungssystem ist der Nullvektor stets die triviale Lösung.
-2. In der Physik bedeutet eine resultierende Kraft von null bei einem Körper mit einer Masse ungleich null, dass die Beschleunigung null ist. In einem Inertialsystem bleibt der Körper deshalb in Ruhe oder bewegt sich nach dem ersten Newtonschen Gesetz mit konstanter Geschwindigkeit weiter.
+2. In der Physik bedeutet eine resultierende Kraft von null bei einem Körper mit einer Masse ungleich null, dass die **Beschleunigung null** ist. In einem Inertialsystem bleibt der Körper deshalb in Ruhe oder bewegt sich nach dem ersten Newtonschen Gesetz mit konstanter Geschwindigkeit weiter.
 3. In der Computergrafik steht der Nullvektor für keine Verschiebung. Als Translationsvektor lässt er eine Position daher unverändert.

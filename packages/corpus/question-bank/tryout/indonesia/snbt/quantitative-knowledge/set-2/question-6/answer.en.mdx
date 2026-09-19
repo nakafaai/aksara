@@ -2,44 +2,26 @@ export const metadata = {
   title: "Explanation 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-To form a distinct four-digit odd number from the digits <InlineMath math="1, 2, 3, 4, 5, 6" />, we can use the filling slots method.
+Form four-digit numbers from <InlineMath math="1,2,3,4,5,6" /> with **no repeated digits**. Only the units digit determines whether a number is odd, so choose that digit first.
 
-There are <InlineMath math="4" /> digit positions: Thousands, Hundreds, Tens, and Units.
+#### Counting Choices for Each Position
 
-#### Units position
+The units position requires an **odd digit**, namely <InlineMath math="1,3,5" />. Once a digit has been used, it cannot be selected again. None of the available digits is zero, so the thousands position has no additional restriction.
 
-For the number to be odd, the units digit must be an odd number. From the available digits (<InlineMath math="1, 2, 3, 4, 5, 6" />), the odd numbers are <InlineMath math="1, 3, 5" />.
+| Selection order | Position | Choices | Reason |
+| --- | --- | --- | --- |
+| 1 | Units | <InlineMath math="3" /> | Choose 1, 3, or 5 |
+| 2 | Thousands | <InlineMath math="6-1=5" /> | One digit has been used |
+| 3 | Hundreds | <InlineMath math="6-2=4" /> | Two digits have been used |
+| 4 | Tens | <InlineMath math="6-3=3" /> | Three digits have been used |
 
-So, there are **<InlineMath math="3" />** choices for the units position.
+#### Multiplying the Choices
 
-#### Thousands position
+Use the **multiplication rule** because every choice at one stage can be followed by every remaining choice at the next stage. Choosing the units digit first does not change its position in the final number.
 
-After one digit is used for the units position, there are <InlineMath math="6 - 1 = 5" /> digits remaining for the thousands position (since the digits must be distinct).
+<BlockMath math="N=3\times5\times4\times3=180" />
 
-So, there are **<InlineMath math="5" />** choices for the thousands position.
-
-#### Hundreds position
-
-After two digits are used (for units and thousands), there are <InlineMath math="6 - 2 = 4" /> digits remaining.
-
-So, there are **<InlineMath math="4" />** choices for the hundreds position.
-
-#### Tens position
-
-After three digits are used, there are <InlineMath math="6 - 3 = 3" /> digits remaining.
-
-So, there are **<InlineMath math="3" />** choices for the tens position.
-
-#### Total Calculation
-
-The number of numbers that can be formed is the product of the number of choices for each position:
-
-<MathContainer>
-  <BlockMath math="\text{Total} = 5 \times 4 \times 3 \times 3" />
-  <BlockMath math="\text{Total} = 180" />
-</MathContainer>
-
-So, there are <InlineMath math="180" /> numbers that can be formed.
+For example, after choosing 5 for the units, choose 1 for the thousands, 2 for the hundreds, and 3 for the tens. The result is <InlineMath math="1235" />, an odd number with four distinct digits. Therefore, <InlineMath math="180" /> numbers satisfy the conditions.

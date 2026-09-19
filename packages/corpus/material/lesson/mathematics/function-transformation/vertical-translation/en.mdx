@@ -3,15 +3,13 @@ export const metadata = {
   description: "Shift function graphs up or down while tracking coordinates, asymptotes, and ranges.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Function Transformation",
 };
 
-
-
 ## Moving a Graph Up or Down
 
-Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. <Highlight>Every point moves by the same vertical distance, as if the entire graph were lifted or lowered.</Highlight>
+Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. Each point moves by the **same vertical distance**, lifting or lowering the whole graph.
 
 If you have a function <InlineMath math="f(x)" />, then vertical translation produces a new function <InlineMath math="g(x) = f(x) + k" /> where <InlineMath math="k" /> is the translation constant.
 
@@ -72,11 +70,12 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
   ]}
   cameraTarget={[0, 0.5, 0]}
   cameraPosition={[0, 0.5, 14]}
+  showZAxis={false}
 />
 
 The graph shows:
 - The original function <InlineMath math="f(x) = 2x" /> passes through the origin
-- Function <InlineMath math="g(x) = 2x + 3" /> is the result of translation upward by <InlineMath math="3 \text{ units}" />
+- Function <InlineMath math="g(x) = 2x + 3" /> is the result of translation **upward** by <InlineMath math="3 \text{ units}" />
 - Function <InlineMath math="h(x) = 2x - 2" /> is the result of translation downward by <InlineMath math="2 \text{ units}" />
 
 ## Vertical Translation on Quadratic Functions
@@ -118,16 +117,19 @@ The same translation rule applies to the quadratic function <InlineMath math="f(
       showPoints: false,
     },
   ]}
+  cameraPosition={[0, 3, 16]}
+  cameraTarget={[0, 3, 0]}
+  showZAxis={false}
 />
 
 The vertices make the displacement explicit:
-- The vertex of the original parabola <InlineMath math="f(x) = x^2" /> is at <InlineMath math="(0, 0)" />
+- The **vertex** of the original parabola <InlineMath math="f(x) = x^2" /> is at <InlineMath math="(0, 0)" />
 - After vertical translation <InlineMath math="+4" />, the vertex of <InlineMath math="g(x) = x^2 + 4" /> is at <InlineMath math="(0, 4)" />
 - After vertical translation <InlineMath math="-3" />, the vertex of <InlineMath math="h(x) = x^2 - 3" /> is at <InlineMath math="(0, -3)" />
 
 ## Which Values the Vertical Shift Moves
 
-Once you know the direction of the shift, you still need to know which parts of the function move with it. A vertical translation acts on the output, so the height of the graph moves while the allowed values of <InlineMath math="x" /> stay the same.
+Once you know the direction of the shift, you still need to know which parts of the function move with it. A vertical translation acts on the output, so the **height** of the graph moves while the allowed values of <InlineMath math="x" /> stay the same.
 
 Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. After a translation by <InlineMath math="k" />, that point moves to <InlineMath math="(a, b + k)" /> on the graph of <InlineMath math="f(x) + k" />. The <InlineMath math="x" /> coordinate does not change, only the <InlineMath math="y" /> value moves.
 
@@ -142,7 +144,7 @@ The range moves with the graph because it describes the height of the output val
 
 ## Moving an Exponential Graph Vertically
 
-For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical translation also moves the horizontal asymptote.
+For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical translation also moves the **horizontal asymptote**.
 
 <LineEquation
   title={<>Vertical Translation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
@@ -151,37 +153,37 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical tran
     {
       smooth: false,
       points: Array.from({ length: 695 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 315;
-        const x = (i - 15) * 0.2;
+        const x = -4 + (pointIndex / 694) * 8;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 660 }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 347 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 346 }, (_, pointIndex) => {
-        const i = pointIndex - 315;
-        const x = (i - 15) * 0.2;
+        const x = -4 + (pointIndex / 345) * 8;
         return { x, y: Math.pow(2, x) + 2, z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0], at: 330 }],
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0], at: 173 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 697 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 315;
-        const x = (i - 15) * 0.2;
+        const x = -4 + (pointIndex / 696) * 8;
         return { x, y: Math.pow(2, x) - 1, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0], at: 660 }],
+      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0], at: 347 }],
       showPoints: false,
     },
   ]}
+  cameraPosition={[0, 3, 12]}
+  cameraTarget={[0, 3, 0]}
+  showZAxis={false}
 />
 
 The horizontal asymptote at <InlineMath math="y = 0" /> on <InlineMath math="f(x) = 2^x" /> moves to <InlineMath math="y = k" /> on <InlineMath math="f(x) + k" />. Unlike a horizontal shift, this changes the height the curve approaches, so the asymptote is no longer pinned to the <InlineMath math="x" />-axis.
@@ -192,133 +194,148 @@ The <InlineMath math="y" />-intercept moves from <InlineMath math="(0, 1)" /> to
 
 The three problems below use the sign rule you have just learned. Each one adds the constant to the output, so watch the value of <InlineMath math="k" />. Try them without the answer key first, then compare your steps with the worked answers.
 
-1. Given the function <InlineMath math="f(x) = x^2 + 4x + 3" />. Determine the equation of the function resulting from vertical translation upward by <InlineMath math="5 \text{ units}" />.
+1. Given the function <InlineMath math="f(x) = x^2 + 4x + 3" />. Determine the equation of the function resulting from vertical translation **upward** by <InlineMath math="5 \text{ units}" />.
 
 2. The graph of the function <InlineMath math="g(x) = 3x + 2" /> is translated vertically downward by <InlineMath math="7 \text{ units}" />. Determine the equation of the resulting translated function, then determine the <InlineMath math="y" />-intercept after translation.
 
 3. Function <InlineMath math="h(x) = \sqrt{x}" /> undergoes vertical translation such that point <InlineMath math="(4, 2)" /> becomes <InlineMath math="(4, 5)" />. Determine the translation constant value and the equation of the resulting translated function.
 
-### Answer Key
+### Raising a Parabola
 
-Every worked answer starts by adding the constant to all output values, because that is where the sign rule lives. The equation is then simplified and the new graph is checked to confirm the direction of the shift.
+Adding **to the output** gives:
 
-1. Vertical translation upward by <InlineMath math="5 \text{ units}" />: <InlineMath math="f'(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
+Vertical translation upward by <InlineMath math="5 \text{ units}" />:
 
-   <LineEquation
-     title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Translation Result</>}
-     description={
-       <>
-         Original quadratic function and the result of vertical translation
-         upward by <InlineMath math="5 \text{ units}" />.
-       </>
-     }
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x + 4 * x + 3, z: 0 };
-         }),
-         color: "#9333ea",
-         labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, at: 10, offset: [0, 1.5, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x + 4 * x + 3 + 5, z: 0 };
-         }),
-         color: "#ea580c",
-         labels: [{ text: <InlineMath math="f'(x)=x^2+4x+8" />, at: 10, offset: [0, -0.5, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+<BlockMath math="F(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
 
-2. Equation of the resulting translated function:
+<LineEquation
+  title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Translation Result</>}
+  description={
+    <>
+      Original quadratic function and the result of vertical translation
+      upward by <InlineMath math="5 \text{ units}" />.
+    </>
+  }
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 4 * x + 3, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, at: 10, offset: [0, 1.5, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 4 * x + 3 + 5, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="F(x)=x^2+4x+8" />, at: 10, offset: [0, -0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 3, 16]}
+  cameraTarget={[0, 3, 0]}
+  showZAxis={false}
+/>
 
-   - Translation downward by <InlineMath math="7 \text{ units}" />: <InlineMath math="g'(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
-   - <InlineMath math="y" />-intercept: substitute <InlineMath math="x = 0" /> into <InlineMath math="g'(x) = 3(0) - 5 = -5" />, so the intercept point is <InlineMath math="(0, -5)" />
+### The Line Intercept
 
-   Visualization:
+Equation of the resulting translated function:
 
-   <LineEquation
-     title={<>Function <InlineMath math="g(x) = 3x + 2" /> and Its Translation Result</>}
-     description={
-       <>
-         Original linear function and the result of vertical translation
-         downward by <InlineMath math="7 \text{ units}" />.
-       </>
-     }
-     data={[
-       {
-         points: Array.from({ length: 29 }, (_, pointIndex) => {
-           const i = pointIndex - 8;
-           const x = (i - 10) * 0.5;
-           return { x, y: 3 * x + 2, z: 0 };
-         }),
-         smooth: false,
-         color: "#7c3aed",
-         labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0], at: 18 }],
-         showPoints: false,
-       },
-       {
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = (i - 10) * 0.5;
-           return { x, y: 3 * x + 2 - 7, z: 0 };
-         }),
-         smooth: false,
-         color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+- Translation **downward** by <InlineMath math="7 \text{ units}" />: <InlineMath math="G(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
+- <InlineMath math="y" />-intercept: substitute <InlineMath math="x = 0" /> into <InlineMath math="G(0) = 3(0) - 5 = -5" />, so the intercept point is <InlineMath math="(0, -5)" />
 
-3. Point <InlineMath math="(4, 2)" /> on <InlineMath math="h(x) = \sqrt{x}" /> becomes <InlineMath math="(4, 5)" />, meaning vertical translation by <InlineMath math="k = 5 - 2 = 3 \text{ units}" /> upward.
-   Equation of the translation result: <InlineMath math="h'(x) = \sqrt{x} + 3" />
+Visualization:
 
-   <LineEquation
-     title={<>Function <InlineMath math="h(x) = \sqrt{x}" /> and Its Translation Result</>}
-     description={
-       <>
-         Original square root function and the result of vertical translation
-         upward by <InlineMath math="3 \text{ units}" />.
-       </>
-     }
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#4f46e5",
-         labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.58113883008419);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t + 3, z: 0 };
-             });
-         })(),
-         color: "#059669",
-         labels: [{ at: 64, text: <InlineMath math="h'(x)=\sqrt{x}+3" />, offset: [0, -0.1, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+<LineEquation
+  title={<>Function <InlineMath math="g(x) = 3x + 2" /> and Its Translation Result</>}
+  description={
+    <>
+      Original linear function and the result of vertical translation
+      downward by <InlineMath math="7 \text{ units}" />.
+    </>
+  }
+  data={[
+    {
+      points: Array.from({ length: 29 }, (_, pointIndex) => {
+        const i = pointIndex - 8;
+        const x = (i - 10) * 0.5;
+        return { x, y: 3 * x + 2, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0], at: 18 }],
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 21 }, (_, i) => {
+        const x = (i - 10) * 0.5;
+        return { x, y: 3 * x + 2 - 7, z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="G(x)=3x-5" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 3, 16]}
+  cameraTarget={[0, 3, 0]}
+  showZAxis={false}
+/>
+
+### Moving a Square Root Point
+
+Point <InlineMath math="(4, 2)" /> on <InlineMath math="h(x) = \sqrt{x}" /> becomes <InlineMath math="(4, 5)" />, meaning vertical translation by <InlineMath math="k = 5 - 2 = 3 \text{ units}" /> **upward**.
+Equation of the translation result: <InlineMath math="H(x) = \sqrt{x} + 3" />
+
+<LineEquation
+  title={<>Function <InlineMath math="h(x) = \sqrt{x}" /> and Its Translation Result</>}
+  description={
+    <>
+      Original square root function and the result of vertical translation
+      upward by <InlineMath math="3 \text{ units}" />.
+    </>
+  }
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#4f46e5",
+      labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(1.58113883008419);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t + 3, z: 0 };
+          });
+      })(),
+      color: "#059669",
+      labels: [{ at: 64, text: <InlineMath math="H(x)=\sqrt{x}+3" />, offset: [0, -0.1, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[6, 3, 16]}
+  cameraTarget={[6, 3, 0]}
+  showZAxis={false}
+/>

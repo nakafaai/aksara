@@ -3,7 +3,7 @@ export const metadata = {
   description: "Lagebeziehungen zweier Kreise anhand von Mittelpunktabstand und Radien bestimmen: schneidend, berührend, getrennt oder konzentrisch.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Analytische Geometrie",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 ## Mittelpunktsabstand und Radien miteinander vergleichen
 
-Die Umfänge zweier Kreise können sich in zwei Punkten schneiden, sich in einem Punkt berühren oder getrennt bleiben. Ihre Kreisflächen überlappen sich entsprechend, treffen sich nur am Rand oder lassen eine Lücke.
+Zwei verschiedene Kreislinien können sich in zwei Punkten schneiden, sich in einem Punkt berühren oder keinen gemeinsamen Punkt haben. Sind Mittelpunkt und Radius gleich, fallen die Kreise zusammen. Dann sind alle Punkte der Kreislinie gemeinsam.
 
-In der analytischen Geometrie reichen die Mittelpunkte und Radien aus, um die Lage eindeutig zu bestimmen. Entscheidend ist <Highlight>der Abstand zwischen den beiden Mittelpunkten</Highlight>.
+In der analytischen Geometrie reichen die Mittelpunkte und Radien aus, um die Lage eindeutig zu bestimmen. Vergleiche den **Mittelpunktsabstand** mit der Summe und dem absoluten Unterschied der Radien.
 
 Mit demselben Vergleich lässt sich prüfen, ob sich zwei kreisförmige Bereiche überlappen, berühren oder einen Abstand voneinander haben, etwa in Abdeckungskarten oder geometrischen Entwürfen.
 
@@ -115,7 +115,7 @@ Für zwei Kreise mit den Radien <InlineMath math="r_1" /> und <InlineMath math="
 Die beiden strengen Grenzen erklären diese Bedingung:
 
 - **Obergrenze**: Bei <InlineMath math="r_1 + r_2" /> berühren sich die Kreise von außen
-- **Untere Grenze**: Bei <InlineMath math="|r_1 - r_2|" /> berührt der kleinere Kreis den größeren von innen
+- **Untere Grenze**: Bei <InlineMath math="|r_1 - r_2|>0" /> berührt der kleinere Kreis den größeren von innen
 - **Zwischen den Grenzen**: Die Kreislinien schneiden sich in zwei Punkten
 
 ## Sich berührende Kreise
@@ -388,6 +388,46 @@ Der getrennte Zustand liegt vor, wenn der Abstand zwischen den Mittelpunkten gr�
 
 In diesem Fall gehört kein Punkt zu beiden Kreisflächen.
 
+
+Ein Kreis kann **ohne Berührung innerhalb eines anderen** liegen, obwohl die Mittelpunkte verschieden sind. Im Diagramm beträgt der größere Radius <InlineMath math="4" />, der kleinere Radius <InlineMath math="1" /> und der Mittelpunktsabstand <InlineMath math="1" />.
+
+<LineEquation
+  title="Ineinanderliegende Kreise ohne Berührung"
+  description="Die Mittelpunkte unterscheiden sich und die Kreislinien treffen sich nicht."
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline",
+      radius: 4,
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 181 }, (_, i) => ({
+        x: 1 + Math.cos((i * Math.PI) / 90),
+        y: Math.sin((i * Math.PI) / 90),
+        z: 0,
+      })),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="P_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+  ]}
+/>
+
+Wegen <InlineMath math="0<1<4-1" /> liegt der kleine Kreis vollständig im großen. Ihre Mittelpunkte sind verschieden, deshalb sind die Kreise nicht konzentrisch.
+
 ## Konzentrische und zusammenfallende Kreise
 
 **Konzentrische Kreise** haben denselben Mittelpunkt, aber unterschiedliche Radien, wie die Kreislinien auf einer Zielscheibe.
@@ -439,7 +479,7 @@ In diesem Fall gehört kein Punkt zu beiden Kreisflächen.
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2, y: 0, z: 0 }
+        { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 }
       ],
       color: "#ca8a04",
       showPoints: false,
@@ -539,8 +579,3 @@ Zweiter Kreis: Mittelpunkt <InlineMath math="(3, 4)" />, Radius <InlineMath math
 </MathContainer>
 
 Da <InlineMath math="2 < 5 < 8" /> gilt, **schneiden sich die beiden Kreise**.
-
-Zur Kontrolle setzen wir die drei Werte in <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" /> ein:
-- <InlineMath math="|3 - 5| = 2" />
-- <InlineMath math="3 + 5 = 8" />
-- <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (Schnittbedingung erfüllt)

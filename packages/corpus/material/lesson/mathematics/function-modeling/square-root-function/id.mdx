@@ -3,7 +3,7 @@ export const metadata = {
   description: "Analisis fungsi akar melalui domain, daerah hasil, transformasi grafik, persamaan, pertidaksamaan, serta model ketinggian.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -25,15 +25,17 @@ Fungsi akar memiliki tiga ciri utama:
 
 ## Domain dan Range Fungsi Akar
 
-Bentuk di dalam akar tidak boleh negatif, dan batas itulah yang menentukan domain. Range hanya memuat nilai tak negatif, karena hasil akar tidak pernah bernilai negatif.
-
-Domain berisi nilai masukan yang membuat ekspresi di dalam akar tidak negatif. Range berisi nilai keluaran yang dapat dihasilkan fungsi.
+**Domain membatasi masukan**, sedangkan range mencatat keluaran yang benar-benar dicapai. Untuk akar kuadrat utama tanpa pengali atau pergeseran luar, keluaran selalu nonnegatif. Namun, radikan yang terbatas dapat membuat range memiliki batas atas.
 
 ### Menentukan Domain
 
+Syarat ini diperiksa hanya pada masukan yang membuat **radikan terdefinisi**. Jika radikan berupa pecahan, larangan penyebut nol tetap berlaku.
+
+<BlockMath math="D_f=\{x\in D_g\mid g(x)\geq0\}" />
+
 Domain fungsi akar <InlineMath math="f(x) = \sqrt{g(x)}" /> adalah semua nilai <InlineMath math="x" /> yang membuat <InlineMath math="g(x) \geq 0" />.
 
-**Langkah-langkah menentukan domain:**
+**Langkah-langkah menentukan domain**:
 
 | Langkah | Penjelasan                                            | Contoh: <InlineMath math="f(x) = \sqrt{x-2}" />                   |
 | ------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
@@ -50,9 +52,20 @@ Pada <InlineMath math="f(x) = \sqrt{x-2}" />, radikannya dapat menghasilkan semu
 
 <BlockMath math="R_f = \{y \mid y \geq 0, y \in \mathbb{R}\}" />
 
+Range juga bergantung pada **nilai maksimum radikan**. Sebagai pembanding, radikan berikut tidak pernah melebihi empat.
+
+<MathContainer>
+
+<BlockMath math="r(x)=\sqrt{4-x^2},\quad -2\leq x\leq2" />
+
+<BlockMath math="0\leq4-x^2\leq4\quad\Longrightarrow\quad0\leq r(x)\leq2" />
+
+<BlockMath math="r(-2)=0,\quad r(0)=2,\quad r(2)=0" />
+</MathContainer>
+
 ## Grafik Fungsi Akar Dasar
 
-Grafik dasar hanya ada untuk <InlineMath math="x \geq 0" /> dan melalui titik <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" />, serta <InlineMath math="(4,2)" />. Untuk menaikkan keluaran satu satuan lagi, masukan harus bertambah lebih besar daripada sebelumnya.
+Grafik dasar hanya ada untuk <InlineMath math="x \geq 0" /> dan melalui titik <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" />, serta <InlineMath math="(4,2)" />. **Untuk menaikkan keluaran** satu satuan lagi, masukan harus bertambah lebih besar daripada sebelumnya.
 
 <LineEquation
   title={
@@ -69,7 +82,7 @@ Grafik dasar hanya ada untuk <InlineMath math="x \geq 0" /> dan melalui titik <I
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -89,16 +102,18 @@ Grafik dasar hanya ada untuk <InlineMath math="x \geq 0" /> dan melalui titik <I
       ],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## Transformasi Fungsi Akar
 
-Pergeseran, peregangan, dan pencerminan memindahkan titik awal grafik beserta posisi kurvanya. Pergeseran memindahkan titik awal, peregangan mengubah seberapa cepat kurvanya naik, dan pencerminan membalik arah bukaannya.
+Pergeseran mengubah **posisi titik awal**. Peregangan vertikal mengubah tinggi setiap titik relatif terhadap sumbu horizontal, sementara pencerminan dapat membalik arah kurva. Pada fungsi induk, titik awal tetap di nol ketika hanya diregangkan.
 
 ### Translasi Horizontal
 
-Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasar sejauh <InlineMath math="h \text{ satuan}" /> ke kanan (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
+Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasar sejauh <InlineMath math="h \text{ satuan}" /> **ke kanan** (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
 
 <LineEquation
   title="Translasi Horizontal Fungsi Akar"
@@ -113,7 +128,7 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -135,7 +150,7 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -157,7 +172,7 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -177,13 +192,14 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
       ],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[3, 1, 13]}
   cameraTarget={[3, 1, 0]}
 />
 
 ### Translasi Vertikal
 
-Fungsi <InlineMath math="f(x) = \sqrt{x} + k" /> menggeser grafik fungsi akar dasar sejauh <InlineMath math="k \text{ satuan}" /> ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+Fungsi <InlineMath math="f(x) = \sqrt{x} + k" /> menggeser grafik fungsi akar dasar sejauh <InlineMath math="k \text{ satuan}" /> **ke atas** (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
 
 | Fungsi                                    | Transformasi            | Domain                         | Range                           |
 | ----------------------------------------- | ----------------------- | ------------------------------ | ------------------------------- |
@@ -193,7 +209,7 @@ Fungsi <InlineMath math="f(x) = \sqrt{x} + k" /> menggeser grafik fungsi akar da
 
 ### Dilatasi
 
-Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> meregangkan grafik secara vertikal, sedangkan <InlineMath math="0<|a|<1" /> memampatkannya. Nilai <InlineMath math="a" /> yang negatif juga mencerminkan grafik terhadap sumbu <InlineMath math="x" />.
+Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> **meregangkan grafik secara vertikal**, sedangkan <InlineMath math="0<|a|<1" /> memampatkannya. Nilai <InlineMath math="a" /> yang negatif juga mencerminkan grafik terhadap sumbu <InlineMath math="x" />.
 
 <LineEquation
   title="Dilatasi Vertikal Fungsi Akar"
@@ -208,7 +224,7 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -230,7 +246,7 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -252,7 +268,7 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -272,7 +288,9 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
       ],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## Fungsi Akar Bentuk Umum
@@ -290,7 +308,7 @@ Pada bentuk ini:
 
 Domain real ditentukan oleh <InlineMath math="b(x-h)\geq 0" />. Tanda <InlineMath math="a" /> kemudian menentukan apakah range memanjang ke atas atau ke bawah dari <InlineMath math="y=k" />.
 
-**Langkah-langkah menggambar grafik:**
+**Langkah-langkah menggambar grafik**:
 
 | Langkah | Tindakan            | Contoh: <InlineMath math="f(x) = 2\sqrt{x-1} + 3" />                                           |
 | ------- | ------------------- | ---------------------------------------------------------------------------------------------- |
@@ -303,7 +321,7 @@ Domain real ditentukan oleh <InlineMath math="b(x-h)\geq 0" />. Tanda <InlineMat
 
 ## Persamaan Fungsi Akar
 
-Untuk menyelesaikan persamaan yang memuat akar kuadrat, pisahkan bentuk akarnya, kuadratkan kedua ruas, selesaikan persamaan hasilnya, lalu periksa setiap kandidat pada persamaan semula. Penguadratan tidak selalu dapat dibalik untuk sembarang ekspresi real, sehingga dapat menghasilkan solusi semu.
+Untuk menyelesaikan persamaan yang memuat akar kuadrat, **pisahkan bentuk akarnya**, kuadratkan kedua ruas, selesaikan persamaan hasilnya, lalu periksa setiap kandidat pada persamaan semula. Penguadratan tidak selalu dapat dibalik untuk sembarang ekspresi real, sehingga dapat menghasilkan solusi semu.
 
 | Langkah | Penjelasan            | Contoh: <InlineMath math="\sqrt{2x+3} = 5" />          |
 | ------- | --------------------- | ------------------------------------------------------ |
@@ -313,24 +331,37 @@ Untuk menyelesaikan persamaan yang memuat akar kuadrat, pisahkan bentuk akarnya,
 | <InlineMath math="4" /> | Selesaikan            | <InlineMath math="2x = 22 \Rightarrow x = 11" />       |
 | <InlineMath math="5" /> | Verifikasi            | <InlineMath math="\sqrt{2(11)+3} = \sqrt{25} = 5" /> ✓ |
 
-## Pertidaksamaan Fungsi Akar
-
-Untuk menyelesaikan pertidaksamaan akar, tentukan domain lebih dahulu. Sebelum menguadratkan, periksa juga tanda ruas yang tidak memuat bentuk akar agar pertidaksamaan yang diperoleh tetap ekuivalen.
-
-**Contoh:** Selesaikan <InlineMath math="\sqrt{x-1} < 3" />
+**Periksa kembali pada persamaan awal** untuk membuang solusi semu. Misalnya, menguadratkan akar kuadrat yang disamakan dengan minus dua menghasilkan kandidat empat, tetapi kandidat itu gagal saat disubstitusikan.
 
 <MathContainer>
-  <BlockMath math="\text{Syarat: } x-1 \geq 0 \Rightarrow x \geq 1" />
-  <BlockMath math="\sqrt{x-1} < 3" />
-  <BlockMath math="x-1 < 9" />
-  <BlockMath math="x < 10" />
+
+<BlockMath math="\sqrt{x}=-2\quad\Longrightarrow\quad x=4" />
+
+<BlockMath math="\sqrt4=2\neq-2" />
+</MathContainer>
+
+## Pertidaksamaan Fungsi Akar
+
+Untuk menyelesaikan pertidaksamaan akar, **tentukan domain lebih dahulu**. Sebelum menguadratkan, periksa juga tanda ruas yang tidak memuat bentuk akar agar pertidaksamaan yang diperoleh tetap ekuivalen.
+
+**Contoh**: Selesaikan <InlineMath math="\sqrt{x-1} < 3" />
+
+<MathContainer>
+
+<BlockMath math="\text{Syarat: } x-1 \geq 0 \Rightarrow x \geq 1" />
+
+<BlockMath math="\sqrt{x-1} < 3" />
+
+<BlockMath math="x-1 < 9" />
+
+<BlockMath math="x < 10" />
 </MathContainer>
 
 Karena kedua ruas non-negatif pada domain, penguadratan mempertahankan pertidaksamaan. Gabungan <InlineMath math="x\geq 1" /> dan <InlineMath math="x<10" /> menghasilkan <InlineMath math="1 \leq x < 10" />.
 
 ## Latihan Soal
 
-Soal-soal ini meminta domain, daerah hasil, atau grafik fungsi akar. Mulailah dari syarat di dalam tanda akar.
+Soal-soal ini meminta domain, daerah hasil, atau grafik fungsi akar. Mulailah dari **syarat di dalam tanda akar**.
 
 1. Tentukan domain dan range dari fungsi <InlineMath math="f(x) = \sqrt{3x-6}" />
 
@@ -338,110 +369,130 @@ Soal-soal ini meminta domain, daerah hasil, atau grafik fungsi akar. Mulailah da
 
 3. Selesaikan persamaan <InlineMath math="\sqrt{x+5} + \sqrt{x} = 5" />
 
-4. Sebuah roket diluncurkan vertikal. Ketinggiannya setelah <InlineMath math="t \text{ detik}" /> diberikan oleh <InlineMath math="h(t) = 100\sqrt{t} \text{ meter}" />. Berapa ketinggian roket setelah <InlineMath math="9 \text{ detik}" />?
+4. Dalam model latihan, sebuah roket diluncurkan vertikal. Ketinggian menurut model setelah <InlineMath math="t \text{ detik}" /> diberikan oleh <InlineMath math="h(t) = 100\sqrt{t} \text{ meter}" />. Berapa ketinggian roket setelah <InlineMath math="9 \text{ detik}" />?
 
 5. Tentukan nilai <InlineMath math="x" /> yang memenuhi <InlineMath math="2\sqrt{x-3} \geq 6" />
 
-### Pembahasan
+### Domain dan daerah hasil
 
-1. Radikan harus non-negatif:
+**Radikan harus non-negatif**:
 
-   <MathContainer>
-     <BlockMath math="3x-6\geq 0" />
-     <BlockMath math="x\geq 2." />
-   </MathContainer>
+<MathContainer>
 
-   Jadi, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. Untuk <InlineMath math="x\geq 2" />, nilai <InlineMath math="3x-6" /> mencakup semua bilangan nonnegatif. Karena itu, <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
+<BlockMath math="3x-6\geq 0" />
 
-2. **Menggambar grafik** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+<BlockMath math="x\geq 2." />
+</MathContainer>
 
-   **Langkah-langkah menggambar:**
+Jadi, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. Untuk <InlineMath math="x\geq 2" />, nilai <InlineMath math="3x-6" /> mencakup semua bilangan nonnegatif. Karena itu, <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
 
-   | Langkah | Penjelasan                | Detail untuk <InlineMath math="g(x) = -\sqrt{x+4} + 2" />                                                                                                             |
-   | ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | <InlineMath math="1" /> | Identifikasi transformasi | <InlineMath math="a = -1" /> (refleksi terhadap sumbu <InlineMath math="x" />), <InlineMath math="h = -4" /> (geser <InlineMath math="4 \text{ satuan}" /> ke kiri), <InlineMath math="k = 2" /> (geser <InlineMath math="2 \text{ satuan}" /> ke atas) |
-   | <InlineMath math="2" /> | Tentukan titik awal       | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Titik awal: <InlineMath math="(-4, 2)" /> |
-   | <InlineMath math="3" /> | Tentukan domain           | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" />                                                                                                                |
-   | <InlineMath math="4" /> | Tentukan range            | Karena <InlineMath math="a = -1 < 0" />, grafik turun dari titik awal, sehingga <InlineMath math="y \leq 2" />                                                        |
-   | <InlineMath math="5" /> | Buat tabel nilai          | Pilih nilai <InlineMath math="x \geq -4" />                                                                                                                           |
+### Menggambar fungsi yang dicerminkan
 
-   **Tabel nilai:**
+**Menggambar grafik** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
 
-   | <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
-   | ----------------------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
-   | <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
-   | <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
-   | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
-   | <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
-   | <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
+**Langkah-langkah menggambar**:
 
-   <LineEquation
-     title={
-       <>
-         Grafik <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
-       </>
-     }
-     description={<>Grafik fungsi akar yang mengalami refleksi terhadap sumbu <InlineMath math="x" /> dan translasi.</>}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(2.5298221281347035);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t + -4;
-               return { x, y: -1 * t + 2, z: 0 };
-             });
-         })(),
-         color: "#7c3aed",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-             at: 102,
-             offset: [0, -1, 0],
-           },
-           {
-             text: <InlineMath math="(-4,2)" />,
-             at: 0,
-             offset: [0.5, 0.5, 0],
-           },
-         ],
-       },
-     ]}
-     cameraPosition={[1, 0.4, 14]}
-     cameraTarget={[1, 0.4, 0]}
-   />
+| Langkah | Penjelasan                | Detail untuk <InlineMath math="g(x) = -\sqrt{x+4} + 2" />                                                                                                             |
+| ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <InlineMath math="1" /> | Identifikasi transformasi | <InlineMath math="a = -1" /> (refleksi terhadap sumbu <InlineMath math="x" />), <InlineMath math="h = -4" /> (geser <InlineMath math="4 \text{ satuan}" /> ke kiri), <InlineMath math="k = 2" /> (geser <InlineMath math="2 \text{ satuan}" /> ke atas) |
+| <InlineMath math="2" /> | Tentukan titik awal       | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Titik awal: <InlineMath math="(-4, 2)" /> |
+| <InlineMath math="3" /> | Tentukan domain           | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" />                                                                                                                |
+| <InlineMath math="4" /> | Tentukan range            | Karena <InlineMath math="a = -1 < 0" />, grafik turun dari titik awal, sehingga <InlineMath math="y \leq 2" />                                                        |
+| <InlineMath math="5" /> | Buat tabel nilai          | Pilih nilai <InlineMath math="x \geq -4" />                                                                                                                           |
 
-   Grafik dimulai dari <InlineMath math="(-4,2)" />. Tanda negatif mencerminkan grafik induk terhadap sumbu <InlineMath math="x" />, sehingga kurva menurun ke kanan dan nilai fungsinya selalu kurang dari atau sama dengan <InlineMath math="2" />.
+**Tabel nilai**:
 
-3. Domain mensyaratkan <InlineMath math="x\geq 0" />. Pisahkan salah satu bentuk akar:
+| <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
+| ----------------------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
+| <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
+| <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
+| <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+| <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
 
-   <MathContainer>
-     <BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
-     <BlockMath math="x+5=25-10\sqrt{x}+x" />
-     <BlockMath math="10\sqrt{x}=20" />
-     <BlockMath math="\sqrt{x}=2" />
-     <BlockMath math="x=4." />
-   </MathContainer>
+<LineEquation
+  title={
+    <>
+      Grafik <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+    </>
+  }
+  description={<>Grafik fungsi akar yang mengalami refleksi terhadap sumbu <InlineMath math="x" /> dan translasi.</>}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(2.5298221281347035);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -4;
+            return { x, y: -1 * t + 2, z: 0 };
+          });
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
+          at: 102,
+          offset: [0, -1, 0],
+        },
+        {
+          text: <InlineMath math="(-4,2)" />,
+          at: 0,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 0.4, 14]}
+  cameraTarget={[1, 0.4, 0]}
+/>
 
-   Periksa pada persamaan semula: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Jadi, <InlineMath math="x=4" /> merupakan solusi yang sah.
+Grafik dimulai dari <InlineMath math="(-4,2)" />. Tanda negatif mencerminkan grafik induk terhadap sumbu <InlineMath math="x" />, sehingga kurva menurun ke kanan dan nilai fungsinya selalu kurang dari atau sama dengan <InlineMath math="2" />.
 
-4. Substitusikan <InlineMath math="t=9" /> ke dalam model:
+### Menyelesaikan dua bentuk akar
 
-   <BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+Domain mensyaratkan <InlineMath math="x\geq 0" />. **Pisahkan salah satu bentuk akar**:
 
-   Model memakai <InlineMath math="t\geq 0" />, dan <InlineMath math="9" /> berada dalam domain tersebut. Ketinggian menurut model adalah <InlineMath math="300\text{ m}" />.
+<MathContainer>
 
-5. Catat dahulu domain <InlineMath math="x-3\geq 0" />, sehingga <InlineMath math="x\geq 3" />. Bagi dengan bilangan positif <InlineMath math="2" />, lalu kuadratkan kedua ruas yang non-negatif:
+<BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
 
-   <MathContainer>
-     <BlockMath math="2\sqrt{x-3}\geq 6" />
-     <BlockMath math="\sqrt{x-3}\geq 3" />
-     <BlockMath math="x-3\geq 9" />
-     <BlockMath math="x\geq 12." />
-   </MathContainer>
+<BlockMath math="x+5=25-10\sqrt{x}+x" />
 
-   Irisan hasil ini dengan domain tetap memberikan <InlineMath math="x\geq 12" />.
+<BlockMath math="10\sqrt{x}=20" />
+
+<BlockMath math="\sqrt{x}=2" />
+
+<BlockMath math="x=4." />
+</MathContainer>
+
+Periksa pada persamaan semula: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Jadi, <InlineMath math="x=4" /> merupakan solusi yang sah.
+
+### Menghitung model ketinggian
+
+**Substitusikan** <InlineMath math="t=9" /> ke dalam model:
+
+<BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+
+Model memakai <InlineMath math="t\geq 0" />, dan <InlineMath math="9" /> berada dalam domain tersebut. Ketinggian menurut model adalah <InlineMath math="300\text{ m}" />.
+
+### Menyelesaikan pertidaksamaan
+
+Catat dahulu domain <InlineMath math="x-3\geq 0" />, sehingga <InlineMath math="x\geq 3" />. **Bagi dengan bilangan positif** <InlineMath math="2" />, lalu kuadratkan kedua ruas yang non-negatif:
+
+<MathContainer>
+
+<BlockMath math="2\sqrt{x-3}\geq 6" />
+
+<BlockMath math="\sqrt{x-3}\geq 3" />
+
+<BlockMath math="x-3\geq 9" />
+
+<BlockMath math="x\geq 12." />
+</MathContainer>
+
+Irisan hasil ini dengan domain tetap memberikan <InlineMath math="x\geq 12" />.

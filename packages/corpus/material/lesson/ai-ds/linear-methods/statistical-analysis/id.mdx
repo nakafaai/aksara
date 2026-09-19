@@ -3,19 +3,19 @@ export const metadata = {
     description: "Perkirakan kovarian parameter dan interval kepercayaan dengan informasi Fisher serta kuadrat terkecil berbobot.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Mulai dari Model Statistik
 
-<Highlight>Kuadrat terkecil baru menjadi penduga statistik setelah kita menyatakan bagaimana observasi dihasilkan.</Highlight> Misalkan
+Kuadrat terkecil baru menjadi penduga statistik setelah kita menyatakan <Highlight>bagaimana observasi dihasilkan</Highlight>. Misalkan
 
 <BlockMath math="y=X\beta+\varepsilon" />
 
 Dalam model ini, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> adalah matriks desain tetap, <InlineMath math="\beta\in\mathbb{R}^p" /> adalah vektor parameter yang belum diketahui, dan <InlineMath math="y\in\mathbb{R}^m" /> adalah vektor observasi. Untuk kuadrat terkecil Gaussian biasa, anggap
 
-<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
+<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m),\qquad \sigma^2>0" />
 
 Asumsi kedua adalah <InlineMath math="X" /> memiliki rank kolom penuh. Dengan kedua asumsi tersebut, vektor observasi <InlineMath math="y" /> mengikuti <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Rataan vektor <InlineMath math="y" /> adalah <InlineMath math="X\beta" />, sedangkan matriks kovariansnya adalah <InlineMath math="\sigma^2I_m" />.
 
@@ -62,7 +62,7 @@ Pada model Gaussian, interval kepercayaan dua sisi yang eksak sebesar <InlineMat
 
 <BlockMath math="\hat\beta_j\pm t_{m-p,\,1-\alpha/2}\,s\sqrt{[(X^TX)^{-1}]_{jj}}" />
 
-Interval ini merupakan pernyataan tentang prosedur dalam pengambilan sampel berulang. Artinya bukan peluang bahwa satu parameter tetap berada di dalam interval yang sudah dihitung.
+Interval ini merupakan pernyataan tentang prosedur dalam **pengambilan sampel berulang**. Artinya bukan peluang bahwa satu parameter tetap berada di dalam interval yang sudah dihitung.
 
 ## Komputasi Stabil dari Dekomposisi Ortogonal
 
@@ -73,7 +73,7 @@ Misalkan <InlineMath math="X=QR" /> merupakan dekomposisi <InlineMath math="\mat
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-Dalam kode numerik, selesaikan sistem segitiga <InlineMath math="R\hat\beta=Q^Ty" /> tanpa membentuk <InlineMath math="R^{-1}" /> secara eksplisit. <InlineMath math="\mathrm{QR}" /> juga menghindari penguadratan bilangan kondisi akibat membentuk <InlineMath math="X^TX" /> hanya untuk menyelesaikan masalah kuadrat terkecil.
+Dalam kode numerik, **selesaikan sistem segitiga** <InlineMath math="R\hat\beta=Q^Ty" /> tanpa membentuk <InlineMath math="R^{-1}" /> secara eksplisit. <InlineMath math="\mathrm{QR}" /> juga menghindari penguadratan bilangan kondisi akibat membentuk <InlineMath math="X^TX" /> hanya untuk menyelesaikan masalah kuadrat terkecil.
 
 ## Kuadrat Terkecil Berbobot dan Tergeneralisasi
 
@@ -97,7 +97,7 @@ Untuk galat independen dengan varians <InlineMath math="\sigma_i^2" />, gunakan 
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-Setiap observasi <InlineMath math="i" /> memperoleh bobot <InlineMath math="1/\sigma_i^2" />. Whitening dengan <InlineMath math="W=\Omega^{-1/2}" /> mengubah masalah ini menjadi kuadrat terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
+Setiap observasi <InlineMath math="i" /> memperoleh **bobot** <InlineMath math="1/\sigma_i^2" />. Whitening dengan <InlineMath math="W=\Omega^{-1/2}" /> mengubah masalah ini menjadi kuadrat terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
 
 ## Mencocokkan Model Linear Berbobot
 
@@ -108,12 +108,22 @@ Perhatikan tiga observasi untuk intersep dan kemiringan:
 <BlockMath math="\begin{aligned} &amp;\Omega=\operatorname{diag}(1,1,4), \\ &amp;\Omega^{-1}=\operatorname{diag}\left(1,1,\frac14\right) \end{aligned}" />
 </MathContainer>
 
-Observasi ketiga memiliki simpangan baku <InlineMath math="2" />, sehingga bobotnya hanya seperempat bobot masing-masing dari dua observasi pertama. Persamaan normal berbobotnya adalah
+Observasi ketiga memiliki simpangan baku <InlineMath math="2" />, sehingga bobotnya hanya **seperempat bobot** masing-masing dari dua observasi pertama. Persamaan normal berbobotnya adalah
 
 <MathContainer>
 <BlockMath math="X^T\Omega^{-1}X=\begin{pmatrix}\frac94&\frac32\\\frac32&2\end{pmatrix}" />
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
+
+Tuliskan kedua persamaan lalu eliminasi intersep untuk menghitung parameter:
+
+<BlockMath math="\begin{aligned}9\hat\beta_0+6\hat\beta_1&=17\\3\hat\beta_0+4\hat\beta_1&=9\\6\hat\beta_1&=27-17=10\\\hat\beta_1&=\frac53,\qquad\hat\beta_0=\frac{9-4(5/3)}3=\frac79\end{aligned}" />
+
+| Observasi | Simpangan baku | Bobot invers varians |
+| --- | --- | --- |
+| 1 | 1 | 1 |
+| 2 | 1 | 1 |
+| 3 | 2 | <InlineMath math="1/4" /> |
 
 Penyelesaian sistem persamaan normal berbobot memberikan
 

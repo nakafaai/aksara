@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build circle tangents from a known contact point, a given slope, or a point outside the circle, with complete worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Analytic Geometry",
 };
 
@@ -15,7 +15,7 @@ Picture a bicycle wheel resting on a level road. At that instant, the road touch
 
 We will build the equation of that line in three situations: when the point of tangency is known, when the slope is known, and when the line must pass through a point outside the circle.
 
-The geometry is the same in each situation. <Highlight>A tangent touches the circle once</Highlight>, while the radius to the point of tangency supplies the perpendicular direction or the required distance.
+The geometry is the same in each situation. A tangent touches the circle at <Highlight>exactly one point</Highlight>, while the radius to the point of tangency supplies the perpendicular direction or the required distance.
 
 ## Tangent at a Known Point
 
@@ -75,7 +75,7 @@ When the point of tangency is known, first verify that the point lies on the cir
         // Direction perpendicular to radius (negative reciprocal gradient)
         const perpSlope = -pointX / pointY;
 
-        const range = 5;
+        const range = 3;
         const points = [
           {
             x: pointX - range,
@@ -89,8 +89,8 @@ When the point of tangency is known, first verify that the point lies on the cir
           },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.15,
+          y: (points[1].y - points[0].y) * 0.15,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -101,7 +101,7 @@ When the point of tangency is known, first verify that the point lies on the cir
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tangent", at: 1, offset: [4, 3.5, 0] }],
+      labels: [{ text: "Tangent", at: 2, offset: [0.5, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -204,8 +204,8 @@ If the slope is known but the intercept is not, use the defining distance condit
           { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.15,
+          y: (points[1].y - points[0].y) * 0.15,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -232,8 +232,8 @@ If the slope is known but the intercept is not, use the defining distance condit
           { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.15,
+          y: (points[1].y - points[0].y) * 0.15,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -255,13 +255,8 @@ If the slope is known but the intercept is not, use the defining distance condit
         const c1 = k - m*h + r * Math.sqrt(1 + m * m);
 
         // Find tangent point by substitution
-        const a = 1 + m*m;
-        const b = 2*m*(c1 - k) - 2*h;
-        const c = (c1 - k)*(c1 - k) + h*h - r*r;
-
-        const discriminant = b*b - 4*a*c;
-        const tangentX = (-b + Math.sqrt(discriminant)) / (2*a);
-        const tangentY = m * tangentX + c1;
+        const tangentX = (h + m * (k - c1)) / (1 + m * m);
+          const tangentY = m * tangentX + c1;
 
         return [
           { x: h, y: k, z: 0 },
@@ -322,7 +317,7 @@ The two parallel tangents are:
 
 ## Tangents Through an Outside Point
 
-From a point outside a circle, exactly two tangent lines can be drawn. When both tangents have finite slopes, their slopes can be found from one quadratic equation.
+From a point outside a circle, **exactly two tangent lines** can be drawn. When both tangents have finite slopes, their slopes can be found from one quadratic equation.
 
 <LineEquation
   title="Tangents Through an Outside Point"
@@ -377,20 +372,8 @@ From a point outside a circle, exactly two tangent lines can be drawn. When both
 
         // Substitute y = m1*x + c1 into (x-h)^2 + (y-k)^2 = r^2
         // (x-h)^2 + (m1*x + c1 - k)^2 = r^2
-        const A = 1 + m1*m1;
-        const B = 2*m1*(c1 - k) - 2*h;
-        const C = (c1 - k)*(c1 - k) + h*h - r*r;
-
-        const discX = B*B - 4*A*C;
-
-        // Two solutions, choose the one in the correct direction
-        const x1 = (-B + Math.sqrt(discX)) / (2*A);
-        const x2 = (-B - Math.sqrt(discX)) / (2*A);
-
-        // Choose x that gives the correct tangent point
-        // Tangent point should be between center and external point in certain direction
-        const xTangent = Math.abs(x1 - h) < Math.abs(x2 - h) ? x1 : x2;
-        const yTangent = m1 * xTangent + c1;
+        const xTangent = (h + m1 * (k - c1)) / (1 + m1 * m1);
+          const yTangent = m1 * xTangent + c1;
 
         return [{ x: xTangent, y: yTangent, z: 0 }];
       })(),
@@ -416,19 +399,8 @@ From a point outside a circle, exactly two tangent lines can be drawn. When both
 
         // Substitute y = m2*x + c2 into (x-h)^2 + (y-k)^2 = r^2
         // (x-h)^2 + (m2*x + c2 - k)^2 = r^2
-        const A = 1 + m2*m2;
-        const B = 2*m2*(c2 - k) - 2*h;
-        const C = (c2 - k)*(c2 - k) + h*h - r*r;
-
-        const discX = B*B - 4*A*C;
-
-        // Two solutions, choose the one in the correct direction
-        const x1 = (-B + Math.sqrt(discX)) / (2*A);
-        const x2 = (-B - Math.sqrt(discX)) / (2*A);
-
-        // Choose x that gives the correct tangent point
-        const xTangent = Math.abs(x1 - h) < Math.abs(x2 - h) ? x1 : x2;
-        const yTangent = m2 * xTangent + c2;
+        const xTangent = (h + m2 * (k - c2)) / (1 + m2 * m2);
+          const yTangent = m2 * xTangent + c2;
 
         return [{ x: xTangent, y: yTangent, z: 0 }];
       })(),
@@ -461,8 +433,8 @@ From a point outside a circle, exactly two tangent lines can be drawn. When both
           { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.15,
+          y: (points[1].y - points[0].y) * 0.15,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -500,8 +472,8 @@ From a point outside a circle, exactly two tangent lines can be drawn. When both
           { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.15,
+          y: (points[1].y - points[0].y) * 0.15,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -584,7 +556,7 @@ So <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> and <InlineMath math=
 
 ## Practice
 
-Each problem asks for the equation of a line that touches the circle at one point, so start from the tangency condition and then use the given point or gradient.
+Each problem asks for the equation of a line that touches the circle at one point, so start from the **tangency condition** and then use the given point or gradient.
 
 1. Determine the tangent line equation for circle <InlineMath math="x^2 + y^2 = 16" /> at point <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />.
 
@@ -596,104 +568,104 @@ Each problem asks for the equation of a line that touches the circle at one poin
 
 ### Worked Solutions
 
-1. **Solution**:
+**Solution 1**:
 
-   For circle <InlineMath math="x^2 + y^2 = 16" /> at point <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />, use the formula:
+For circle <InlineMath math="x^2 + y^2 = 16" /> at point <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />, use the formula:
 
-   <BlockMath math="x \cdot x_1 + y \cdot y_1 = r^2" />
+<BlockMath math="x \cdot x_1 + y \cdot y_1 = r^2" />
 
-   **Step 1**: Substitute tangent point coordinates
+**Step 1**: Substitute tangent point coordinates
 
-   <MathContainer>
-     <BlockMath math="x \cdot 2\sqrt{2} + y \cdot 2\sqrt{2} = 16" />
-     <BlockMath math="2\sqrt{2}x + 2\sqrt{2}y = 16" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x \cdot 2\sqrt{2} + y \cdot 2\sqrt{2} = 16" />
+  <BlockMath math="2\sqrt{2}x + 2\sqrt{2}y = 16" />
+</MathContainer>
 
-   **Step 2**: Simplify by dividing both sides by <InlineMath math="2\sqrt{2}" />
+**Step 2**: Simplify by dividing both sides by <InlineMath math="2\sqrt{2}" />
 
-   <BlockMath math="\begin{aligned} x + y &amp;= \frac{16}{2\sqrt{2}} \\ &amp;= \frac{8}{\sqrt{2}} \\ &amp;= \frac{8\sqrt{2}}{2} \\ &amp;= 4\sqrt{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} x + y &amp;= \frac{16}{2\sqrt{2}} \\ &amp;= \frac{8}{\sqrt{2}} \\ &amp;= \frac{8\sqrt{2}}{2} \\ &amp;= 4\sqrt{2} \end{aligned}" />
 
-   So the tangent line equation is <InlineMath math="x + y = 4\sqrt{2}" />.
+So the tangent line equation is <InlineMath math="x + y = 4\sqrt{2}" />.
 
-2. **Solution**:
+**Solution 2**:
 
-   For gradient <InlineMath math="m = -\frac{1}{2}" /> and <InlineMath math="r = 3" />, use the formula:
+For gradient <InlineMath math="m = -\frac{1}{2}" /> and <InlineMath math="r = 3" />, use the formula:
 
-   <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-   **Step 1**: Calculate value of <InlineMath math="\sqrt{1 + m^2}" />
+**Step 1**: Calculate value of <InlineMath math="\sqrt{1 + m^2}" />
 
-   <BlockMath math="\begin{aligned} \sqrt{1 + m^2} &amp;= \sqrt{1 + \left(-\frac{1}{2}\right)^2} \\ &amp;= \sqrt{1 + \frac{1}{4}} \\ &amp;= \sqrt{\frac{5}{4}} \\ &amp;= \frac{\sqrt{5}}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} \sqrt{1 + m^2} &amp;= \sqrt{1 + \left(-\frac{1}{2}\right)^2} \\ &amp;= \sqrt{1 + \frac{1}{4}} \\ &amp;= \sqrt{\frac{5}{4}} \\ &amp;= \frac{\sqrt{5}}{2} \end{aligned}" />
 
-   **Step 2**: Substitute into formula
+**Step 2**: Substitute into formula
 
-   <BlockMath math="y = -\frac{1}{2}x \pm 3 \cdot \frac{\sqrt{5}}{2} = -\frac{1}{2}x \pm \frac{3\sqrt{5}}{2}" />
+<BlockMath math="y = -\frac{1}{2}x \pm 3 \cdot \frac{\sqrt{5}}{2} = -\frac{1}{2}x \pm \frac{3\sqrt{5}}{2}" />
 
-   So the two tangent line equations are: <InlineMath math="y = -\frac{1}{2}x + \frac{3\sqrt{5}}{2}" /> and <InlineMath math="y = -\frac{1}{2}x - \frac{3\sqrt{5}}{2}" />.
+So the two tangent line equations are: <InlineMath math="y = -\frac{1}{2}x + \frac{3\sqrt{5}}{2}" /> and <InlineMath math="y = -\frac{1}{2}x - \frac{3\sqrt{5}}{2}" />.
 
-3. **Solution**:
+**Solution 3**:
 
-   Circle <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> has center <InlineMath math="(3,4)" /> and radius <InlineMath math="r = 5" />.
+Circle <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> has center <InlineMath math="(3,4)" /> and radius <InlineMath math="r = 5" />.
 
-   **Step 1**: Check position of point <InlineMath math="(11,10)" />
+**Step 1**: Check position of point <InlineMath math="(11,10)" />
 
-   <BlockMath math="\begin{aligned} &amp;(11-3)^2 + (10-4)^2 \\ &amp;= 8^2 + 6^2 \\ &amp;= 64 + 36 \\ &amp;= 100 > 25 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(11-3)^2 + (10-4)^2 \\ &amp;= 8^2 + 6^2 \\ &amp;= 64 + 36 \\ &amp;= 100 > 25 \end{aligned}" />
 
-   Point is outside the circle.
+Point is outside the circle.
 
-   **Step 2**: Translate the center to the origin. Relative to the center, point <InlineMath math="(11,10)" /> has coordinates <InlineMath math="(8,6)" />.
+**Step 2**: Translate the center to the origin. Relative to the center, point <InlineMath math="(11,10)" /> has coordinates <InlineMath math="(8,6)" />.
 
-   **Step 3**: Form the quadratic for the slopes from <InlineMath math="(8,6)" /> to circle <InlineMath math="x^2 + y^2 = 25" />.
+**Step 3**: Form the quadratic for the slopes from <InlineMath math="(8,6)" /> to circle <InlineMath math="x^2 + y^2 = 25" />.
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(8^2 - 25)m^2 - 2(8)(6)m \\ &amp;\quad{}+ (6^2 - 25) = 0 \end{aligned}" />
-     <BlockMath math="39m^2 - 96m + 11 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(8^2 - 25)m^2 - 2(8)(6)m \\ &amp;\quad{}+ (6^2 - 25) = 0 \end{aligned}" />
+  <BlockMath math="39m^2 - 96m + 11 = 0" />
+</MathContainer>
 
-   **Step 4**: Solve it with the quadratic formula.
+**Step 4**: Solve it with the quadratic formula.
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} m &amp;= \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} \\ &amp;= \frac{96 \pm \sqrt{9216 - 1716}}{78} \end{aligned}" />
-     <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} m &amp;= \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} \\ &amp;= \frac{96 \pm \sqrt{9216 - 1716}}{78} \end{aligned}" />
+  <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
+</MathContainer>
 
-   **Step 5**: Simplify the slopes and use point-slope form through <InlineMath math="(11,10)" />.
+**Step 5**: Simplify the slopes and use point-slope form through <InlineMath math="(11,10)" />.
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;m_1 = \frac{48 + 25\sqrt{3}}{39} \\ &amp;\text{and} \\ &amp;m_2 = \frac{48 - 25\sqrt{3}}{39} \end{aligned}" />
-     <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
-     <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_1 = \frac{48 + 25\sqrt{3}}{39} \\ &amp;\text{and} \\ &amp;m_2 = \frac{48 - 25\sqrt{3}}{39} \end{aligned}" />
+  <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
+  <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
+</MathContainer>
 
-   These are the two tangent lines through <InlineMath math="(11,10)" />.
+These are the two tangent lines through <InlineMath math="(11,10)" />.
 
-4. **Solution**:
+**Solution 4**:
 
-   **Step 1**: Complete the square to write the circle in standard form.
+**Step 1**: Complete the square to write the circle in standard form.
 
-   <MathContainer>
-     <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
-     <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
-     <BlockMath math="(x-3)^2 + (y-4)^2 = 25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
+  <BlockMath math="(x-3)^2 + (y-4)^2 = 25" />
+</MathContainer>
 
-   Center <InlineMath math="(3,4)" />, radius <InlineMath math="r = 5" />.
+Center <InlineMath math="(3,4)" />, radius <InlineMath math="r = 5" />.
 
-   **Step 2**: Read the slope of the given line. Since <InlineMath math="3x + 4y = 7" /> is <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, every parallel line has slope <InlineMath math="m = -\frac{3}{4}" />.
+**Step 2**: Read the slope of the given line. Since <InlineMath math="3x + 4y = 7" /> is <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, every parallel line has slope <InlineMath math="m = -\frac{3}{4}" />.
 
-   **Step 3**: Substitute center <InlineMath math="(3,4)" />, radius, and slope into the tangent formula.
+**Step 3**: Substitute center <InlineMath math="(3,4)" />, radius, and slope into the tangent formula.
 
-   <MathContainer>
-     <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
-     <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5 \cdot \frac{5}{4}" />
-     <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
+  <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5 \cdot \frac{5}{4}" />
+  <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
+</MathContainer>
 
-   **Step 4**: Simplify both equations.
+**Step 4**: Simplify both equations.
 
-   <MathContainer>
-     <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />
-     <BlockMath math="y = -\frac{3}{4}x" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />
+  <BlockMath math="y = -\frac{3}{4}x" />
+</MathContainer>
 
-   So the two tangent line equations are: <InlineMath math="y = -\frac{3}{4}x + \frac{25}{2}" /> and <InlineMath math="y = -\frac{3}{4}x" />.
+So the two tangent line equations are: <InlineMath math="y = -\frac{3}{4}x + \frac{25}{2}" /> and <InlineMath math="y = -\frac{3}{4}x" />.

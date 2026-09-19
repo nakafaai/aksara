@@ -3,13 +3,13 @@ export const metadata = {
     description: "Parameteridentifizierbarkeit mit Matrixrang, Singulärwerten, Kondition und stabilen rangaufdeckenden Faktorisierungen verbinden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
 ## Identifizierbarkeit in einem linearen Modell
 
-<Highlight>Ein Parameter ist identifizierbar, wenn die verfügbaren Daten ihn eindeutig bestimmen.</Highlight> Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> und <InlineMath math="m \geq n" /> gegeben. Das lineare Ausgleichsproblem lautet
+Ein Parameter ist identifizierbar, wenn die verfügbaren Daten ihn **eindeutig bestimmen**. Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> und <InlineMath math="m \geq n" /> gegeben. Das lineare Ausgleichsproblem lautet
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,9 +30,21 @@ Diese Aussagen sind äquivalent. Gibt es ein <InlineMath math="z \in \ker(A)" />
 
 Diese Gleichheit zeigt, dass die Daten <InlineMath math="x" /> nicht von <InlineMath math="x+z" /> unterscheiden können. Gilt <InlineMath math="\ker(A)=\{0\}" />, dann ist <InlineMath math="A^TA" /> positiv definit und das Ausgleichsproblem besitzt genau einen Minimierer.
 
+Bei der folgenden Matrix sind beide Spalten identisch. Nur die Summe der Parameter beeinflusst die Vorhersage.
+
+<BlockMath math="A=\begin{pmatrix}1&amp;1\\2&amp;2\end{pmatrix},\qquad Ax=\begin{pmatrix}x_1+x_2\\2(x_1+x_2)\end{pmatrix}" />
+
+| Parametervektor | Vorhersage |
+| --- | --- |
+| <InlineMath math="(1,0)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(0,1)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(1/2,1/2)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
+
 ## Eindeutigkeit der Lösung und numerische Stabilität
 
-Voller Spaltenrang <Highlight>garantiert eine eindeutige exakte Lösung</Highlight>, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
+Voller Spaltenrang <Highlight>garantiert einen eindeutigen Ausgleichsminimierer</Highlight>, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
 
 | Frage | Diagnose | Bedeutung |
 | --- | --- | --- |
@@ -44,7 +56,7 @@ Strukturelle Identifizierbarkeit ist eine exakte algebraische Eigenschaft. Prakt
 
 ## Faktorisierungen zur Rangbestimmung
 
-Mit zwei verbreiteten Faktorisierungen lässt sich der Rang bestimmen, ohne Determinanten zu berechnen, die empfindlich auf numerische Fehler reagieren:
+Mit zwei verbreiteten **Faktorisierungen lässt sich der Rang bestimmen**, ohne Determinanten zu berechnen, die empfindlich auf numerische Fehler reagieren:
 
 | Methode | Stärke | Typischer Einsatz |
 | --- | --- | --- |
@@ -63,7 +75,7 @@ In dieser Zerlegung sind <InlineMath math="U \in \mathbb{R}^{m \times m}" /> und
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
-Der exakte Rang ist die Anzahl der positiven Singulärwerte:
+Der exakte Rang ist die **Anzahl der positiven Singulärwerte**:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
@@ -75,7 +87,7 @@ Ist der exakte Rang <InlineMath math="r" /> mit <InlineMath math="0<r<q" />, dan
 
 <BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
 
-Gleitkommadaten enthalten nur selten exakte Nullen. Ein numerischer Rang zählt deshalb die Singulärwerte oberhalb eines skalenabhängigen Schwellenwerts <InlineMath math="\tau" />:
+Gleitkommadaten enthalten nur selten exakte Nullen. Ein numerischer Rang zählt deshalb die Singulärwerte oberhalb eines **skalenabhängigen Schwellenwerts** <InlineMath math="\tau" />:
 
 <MathContainer>
 <BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
@@ -90,9 +102,9 @@ Der Faktor <InlineMath math="c" /> richtet sich nach Anwendung und Rauschmodell.
 
 Die Identität
 
-<BlockMath math="A^TA=V\Sigma^2V^T" />
+<BlockMath math="A^TA=V(\Sigma^T\Sigma)V^T" />
 
-Diese Identität zeigt, warum die quadrierten Singulärwerte Eigenwerte von <InlineMath math="A^TA" /> sind. Bei numerischen Berechnungen quadriert das explizite Bilden von <InlineMath math="A^TA" /> die Konditionszahl:
+Diese Identität zeigt, warum die quadrierten Singulärwerte Eigenwerte von <InlineMath math="A^TA" /> sind. Bei numerischen Berechnungen mit vollem Spaltenrang **quadriert das explizite Bilden** von <InlineMath math="A^TA" /> die Konditionszahl:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 

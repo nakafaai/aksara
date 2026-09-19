@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "combined-class-scores",
 };
 
 export default item;

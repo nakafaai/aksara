@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Wie Rechenoperationen den Betrag beeinflussen
 
-Seien <InlineMath math="z_1" /> und <InlineMath math="z_2" /> komplexe Zahlen. Der Betrag misst den Abstand einer Zahl vom Ursprung, sodass jede Regel darüber eine Frage beantwortet: <Highlight>Wie ändert sich dieser Abstand, wenn die Zahl negiert, konjugiert, subtrahiert, multipliziert oder dividiert wird?</Highlight>
+Der Betrag misst den **Abstand vom Ursprung**. Negation und Konjugation erhalten diesen Abstand. Für Produkte, Quotienten und Summen gelten unterschiedliche Regeln, die wir aus Komponenten und Vektorlängen herleiten können.
 
 ### Betrag bei Negation und Konjugation
 
-Der Betrag einer komplexen Zahl bleibt unverändert, wenn die Zahl negiert oder konjugiert wird.
+Der Betrag einer komplexen Zahl bleibt **unverändert**, wenn die Zahl negiert oder konjugiert wird.
 
 <BlockMath math="|z_1| = |-z_1| = |\bar{z_1}|" />
 
@@ -29,7 +29,7 @@ Alle drei ergeben den gleichen Wert.
 
 ### Betrag einer Differenz
 
-Der Betrag einer Differenz ändert sich nicht, wenn die Reihenfolge der beiden komplexen Zahlen vertauscht wird.
+Der Betrag einer Differenz ist der **Abstand zwischen zwei Punkten**. Beim Vertauschen der Punkte bleibt dieser Abstand gleich.
 
 <BlockMath math="|z_1 - z_2| = |z_2 - z_1|" />
 
@@ -41,7 +41,7 @@ Das folgt direkt aus <InlineMath math="|-z| = |z|" />, denn <InlineMath math="z_
 
 ### Quadrat des Betrags
 
-Das Quadrat des Betrags einer komplexen Zahl ist das Produkt der Zahl mit ihrem Konjugierten.
+Das Quadrat des Betrags einer komplexen Zahl ist das Produkt der Zahl mit ihrem **Konjugierten**.
 
 <BlockMath math="|z_1|^2 = z_1 \times \bar{z_1}" />
 
@@ -49,7 +49,7 @@ Das Quadrat des Betrags einer komplexen Zahl ist das Produkt der Zahl mit ihrem 
 
 Wenn <InlineMath math="z_1 = x + iy" />, dann <InlineMath math="\bar{z_1} = x - iy" />.
 
-<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &= (x + iy)(x - iy) \\ &= x^2 - (iy)^2 \\ &= x^2 - i^2y^2 \\ &= x^2 - (-1)y^2 \\ &= x^2 + y^2\end{aligned}" />
+<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &amp;= (x + iy)(x - iy) \\ &amp;= x^2 - (iy)^2 \\ &amp;= x^2 - i^2y^2 \\ &amp;= x^2 - (-1)y^2 \\ &amp;= x^2 + y^2\end{aligned}" />
 
 Außerdem ist <InlineMath math="|z_1| = \sqrt{x^2 + y^2}" />, also <InlineMath math="|z_1|^2 = (\sqrt{x^2 + y^2})^2 = x^2 + y^2" />.
 
@@ -63,25 +63,23 @@ Der Betrag eines Produkts ist <Highlight>das Produkt der beiden Beträge</Highli
 
 Der Zusammenhang lässt sich zeigen, indem das Produkt mit seinem Konjugierten multipliziert wird:
 
-<MathContainer>
-  <BlockMath math="|z_1z_2|^2=(z_1z_2)\overline{(z_1z_2)}" />
-  <BlockMath math="=z_1\bar{z_1}\,z_2\bar{z_2}" />
-  <BlockMath math="=|z_1|^2|z_2|^2" />
-</MathContainer>
+<BlockMath math="\begin{aligned}|z_1z_2|^2&amp;=(z_1z_2)\overline{(z_1z_2)}\\&amp;=z_1\bar z_1z_2\bar z_2\\&amp;=|z_1|^2|z_2|^2\end{aligned}" />
 
 Da beide Beträge nicht negativ sind, liefert das Ziehen der Quadratwurzel die Produktregel.
 
 ### Betrag eines Quotienten
 
-Der Betrag eines Quotienten ist der Quotient der beiden Beträge, sofern der Nenner nicht null ist.
+Der Betrag eines Quotienten ist der **Quotient der beiden Beträge**, sofern der Nenner nicht null ist.
 
 <BlockMath math="\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}, \quad \text{für } z_2 \neq 0" />
 
 Die Quotientenregel folgt aus der Produktregel, weil <InlineMath math="z_1=(z_1/z_2)z_2" /> für <InlineMath math="z_2\neq0" /> gilt.
 
+<BlockMath math="\begin{aligned}|z_1|&amp;=\left|\frac{z_1}{z_2}\right||z_2|\\\left|\frac{z_1}{z_2}\right|&amp;=\frac{|z_1|}{|z_2|}\end{aligned}" />
+
 ### Dreiecksungleichung
 
-Der Betrag einer Summe ist höchstens so groß wie die Summe der beiden Beträge.
+Der Betrag einer Summe ist **höchstens so groß wie** die Summe der beiden Beträge.
 
 <BlockMath math="|z_1 + z_2| \leq |z_1| + |z_2|" />
 
@@ -89,13 +87,46 @@ Der Betrag einer Summe ist höchstens so groß wie die Summe der beiden Beträge
 
 Geometrisch werden die Vektoren <InlineMath math="z_1" /> und <InlineMath math="z_2" /> aneinandergelegt. Der direkte Vektor vom Anfangs- zum Endpunkt ist <InlineMath math="z_1 + z_2" />. Seine Länge kann die Summe <InlineMath math="|z_1| + |z_2|" /> der beiden anderen Seitenlängen nicht überschreiten.
 
+Der direkte Abstand ist kürzer als der Weg über die Ecke des rechtwinkligen Dreiecks:
+
+<BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
+
+<MathVisual
+  title="Direkter Abstand und Weg über zwei Seiten"
+  description="Ein waagerechter Vektor der Länge 3 und ein senkrechter Vektor der Länge 4 ergeben einen direkten Vektor der Länge 5. Die Länge 5 überschreitet die Weglänge 3 plus 4 nicht."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "horizontal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "vertical", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "direct", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "horizontal", objectId: "horizontal", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "vertical", objectId: "vertical", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "direct", objectId: "direct", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{ horizontal: "3", vertical: "4", direct: "5" }}
+/>
+
 ### Umgekehrte Dreiecksungleichung
 
-Die Differenz der beiden Beträge kann nicht größer sein als der Abstand zwischen den Zahlen selbst.
+Der **Absolutwert der Differenz beider Beträge** kann nicht größer sein als der Abstand zwischen den Zahlen selbst.
 
 <BlockMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1-z_2|" />
 
 Diese Ungleichung liefert eine Untergrenze für einen Abstand oder eine Summe. Ersetzt man beispielsweise <InlineMath math="z_2" /> durch <InlineMath math="-z_2" />, folgt <InlineMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1+z_2|" />.
+
+Für die untere Grenze schreiben wir die erste Zahl als Differenz plus zweite Zahl und verwenden die Dreiecksungleichung:
+
+<BlockMath math="\begin{aligned}|z_1|&amp;=|(z_1-z_2)+z_2|\\&amp;\leq|z_1-z_2|+|z_2|\\|z_1|-|z_2|&amp;\leq|z_1-z_2|\end{aligned}" />
+
+Vertausche beide Zahlen, um die entgegengesetzte Differenz zu begrenzen. Beide Grenzen zusammen ergeben den Absolutwert der Differenz der Beträge.
+
+<BlockMath math="\begin{aligned}|z_2|-|z_1|&amp;\leq|z_2-z_1|=|z_1-z_2|\\\bigl||z_1|-|z_2|\bigr|&amp;\leq|z_1-z_2|\end{aligned}" />
 
 ## Anwendung der Betragsregeln
 
@@ -124,13 +155,15 @@ Dieser Weg ist kürzer, als den Bruch zunächst mit dem Konjugierten des Nenners
 
 ## Übungen
 
-In jedem Punkt ist ein Betrag gesucht, deshalb notierst du zuerst Real- und Imaginärteil und ziehst danach die Wurzel.
+Wähle die **passende Betragsregel**. Die erste Aufgabe benötigt ein Produkt von Beträgen, die zweite vergleicht zwei Rechnungen. Die dritte gibt nur Längen vor, deshalb ist ihre Antwort ein Intervall.
 
 1.  Für <InlineMath math="z_1 = 6 + 8i" /> und <InlineMath math="z_2 = 3 - i" />: Berechne <InlineMath math="|z_1 \times z_2|" /> mithilfe der Betragsregeln.
 2.  Für <InlineMath math="z = 5 - 12i" />: Zeige, dass <InlineMath math="|z|^2 = z \times \bar{z}" /> gilt.
 3.  Für <InlineMath math="|z_1|=3" /> und <InlineMath math="|z_2|=5" />: Bestimme die möglichen Grenzen für <InlineMath math="|z_1+z_2|" />.
 
 ### Lösungen
+
+Berechne zuerst die Beträge, verwende das Konjugierte für das Betragsquadrat und bestimme dann **Obergrenze und Untergrenze** der Summe.
 
 1.  Wir verwenden die Eigenschaft <InlineMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />.
 
@@ -158,7 +191,7 @@ In jedem Punkt ist ein Betrag gesucht, deshalb notierst du zuerst Real- und Imag
 
     Das Konjugat von <InlineMath math="z" /> ist <InlineMath math="\bar{z} = 5 + 12i" />.
 
-    <BlockMath math="\begin{aligned}z \times \bar{z} &= (5 - 12i)(5 + 12i) \\ &= 5^2 - (12i)^2 \\ &= 25 - 144i^2 \\ &= 25 - 144(-1) \\ &= 25 + 144 \\ &= 169\end{aligned}" />
+    <BlockMath math="\begin{aligned}z \times \bar{z} &amp;= (5 - 12i)(5 + 12i) \\ &amp;= 5^2 - (12i)^2 \\ &amp;= 25 - 144i^2 \\ &amp;= 25 - 144(-1) \\ &amp;= 25 + 144 \\ &amp;= 169\end{aligned}" />
 
     Da die linke Seite <InlineMath math="169" /> und die rechte Seite <InlineMath math="169" /> ergeben, ist <InlineMath math="|z|^2 = z \times \bar{z}" /> für dieses Beispiel bestätigt.
 
@@ -167,3 +200,7 @@ In jedem Punkt ist ein Betrag gesucht, deshalb notierst du zuerst Real- und Imag
     <BlockMath math="\bigl||z_1|-|z_2|\bigr|\leq|z_1+z_2|\leq|z_1|+|z_2|" />
 
     Setzt man die bekannten Beträge ein, erhält man <InlineMath math="2\leq|z_1+z_2|\leq8" />. Der genaue Wert hängt vom Winkel zwischen den beiden komplexen Zahlen ab.
+
+Beide Grenzen sind erreichbar: Entgegengesetzte Richtungen liefern die Untergrenze, dieselbe Richtung liefert die Obergrenze.
+
+<BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />

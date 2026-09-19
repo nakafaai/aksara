@@ -30,13 +30,13 @@ The mathematical series does not have a final bounce. Instead, its partial sums 
 
 <BlockMath math="|r| < 1 \quad \text{or} \quad -1 < r < 1" />
 
-A series like this is called **convergent**, meaning <Highlight>its partial sums approach a specific finite value</Highlight>. In the ball example, <InlineMath math="r = \frac{1}{4}" />, and since <InlineMath math="-1 < \frac{1}{4} < 1" />, the series is convergent.
+A series like this is called **convergent**, meaning its partial sums approach **one finite value**. In the ball example, <InlineMath math="r = \frac{1}{4}" />, and since <InlineMath math="-1 < \frac{1}{4} < 1" />, the series is convergent.
 
 If <InlineMath math="|r| \ge 1" /> and <InlineMath math="a\ne0" />, the terms do not approach zero, so the series is **divergent**. Its partial sums may grow without bound, decrease without bound, or oscillate. Divergence means that no finite limit exists. It does not always mean <InlineMath math="+\infty" /> or <InlineMath math="-\infty" />.
 
 ## Calculating the Sum of an Infinite Series
 
-How do we calculate the sum of a convergent infinite series? We start with the formula for the sum of the first <InlineMath math="n" /> terms of a geometric series:
+How do we calculate the **sum of a convergent infinite series**? We start with the formula for the sum of the first <InlineMath math="n" /> terms of a geometric series:
 
 <BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
 
@@ -68,22 +68,33 @@ Here <InlineMath math="a=1" /> and <InlineMath math="r=\frac12" />, so:
 
 No finite partial sum equals <InlineMath math="2" />, but the partial sums can get as close to <InlineMath math="2" /> as desired. The infinite sum is the limit of those finite partial sums.
 
+
+<LineEquation
+  title="Partial sums approaching two"
+  description="Points show the sum after 1 through 6 terms. Connecting lines indicate their order, while the horizontal line marks the limit 2. Rotate or zoom to compare the points with the limit line."
+  cameraPosition={[3, 1, 9]}
+  cameraTarget={[3, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 1.5, z: 0 }, { x: 3, y: 1.75, z: 0 }, { x: 4, y: 1.875, z: 0 }, { x: 5, y: 1.9375, z: 0 }, { x: 6, y: 1.96875, z: 0 }], smooth: false, showPoints: true, color: "blue", labels: [{ text: "S(n)", at: 3, offset: [0, -0.25, 0] }] },
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: "2", at: 1, offset: [0, 0.2, 0] }] }
+  ]}
+/>
+
+We can also calculate the gap to the limit. After six terms, the sum is <InlineMath math="1.96875" /> and the gap is <InlineMath math="0.03125" />. Each additional term halves **the remaining gap to the limit**.
+
+<BlockMath math="S_n=2-2^{1-n},\qquad 2-S_n=2^{1-n}" />
+
 ## Calculating the Total Distance
 
 We can calculate the total distance traveled by the ball using the <InlineMath math="S_\infty" /> formula. There are two parts to the path:
 
-1.  **Downward Path:** The ball falls from height <InlineMath math="a" />, then falls again after the first bounce (<InlineMath math="ar" />), falls again after the second bounce (<InlineMath math="ar^2" />), and so on.
+**Count the initial drop once**. Each rebound height is then traveled twice, once upward and once downward. Separate the two directions so that no part of the path is missed.
 
-    - Downward series: <InlineMath math="a + ar + ar^2 + ar^3 + \dots" />
-    - First term (<InlineMath math="a_{\downarrow}" />) is <InlineMath math="a" />
-    - Ratio (<InlineMath math="r_{\downarrow}" />) is <InlineMath math="r" />
-    - Sum of downward path: <InlineMath math="S_{\downarrow}=\frac{a_{\downarrow}}{1-r_{\downarrow}}=\frac{a}{1-r}" />
-
-2.  **Upward Path:** The ball moves up after the first bounce (<InlineMath math="ar" />), up again after the second bounce (<InlineMath math="ar^2" />), and so on.
-    - Upward series: <InlineMath math="ar + ar^2 + ar^3 + \dots" />
-    - First term (<InlineMath math="a_{\uparrow}" />) is <InlineMath math="ar" />
-    - Ratio (<InlineMath math="r_{\uparrow}" />) is <InlineMath math="r" />
-    - Sum of upward path: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
+| Direction | Heights traveled | First term | Distance sum |
+| --- | --- | --- | --- |
+| Down | <InlineMath math="a,ar,ar^2,\ldots" /> | <InlineMath math="a" /> | <InlineMath math="S_{\downarrow}=\frac{a}{1-r}" /> |
+| Up | <InlineMath math="ar,ar^2,ar^3,\ldots" /> | <InlineMath math="ar" /> | <InlineMath math="S_{\uparrow}=\frac{ar}{1-r}" /> |
 
 The total distance is the sum of all downward distances and all upward distances.
 
@@ -116,8 +127,8 @@ Find the sum of:
 
 <BlockMath math="12-6+3-\frac32+\cdots" />
 
-Here <InlineMath math="a=12" /> and <InlineMath math="r=-\frac12" />. Since <InlineMath math="|r|<1" />, the series converges:
+Here <InlineMath math="a=12" /> and <InlineMath math="r=-\frac12" />. Since <InlineMath math="|r|<1" />, the **series converges**:
 
-<BlockMath math="S_\infty=\frac{12}{1-(-1/2)}=8" />
+<BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 The negative ratio makes the terms alternate in sign, but their magnitudes shrink quickly enough for the partial sums to approach <InlineMath math="8" />.

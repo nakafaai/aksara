@@ -3,7 +3,7 @@ export const metadata = {
     description: "Arbeite mit komplexen Matrizen, berechne konjugiert transponierte Matrizen und miss komplexe Vektoren korrekt mit dem hermiteschen Skalarprodukt.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -38,33 +38,23 @@ Der Eintrag in Zeile <InlineMath math="j" /> und Spalte <InlineMath math="i" /> 
 
 ## Eigenschaften der adjungierten Matrix
 
-Die Adjungierte folgt wenigen Regeln, mit denen du sie durch eine Summe, ein Produkt und ein skalares Vielfaches schieben kannst, ohne zur Definition zurückzugehen. Jede Regel verbindet einen Namen mit der Gleichung, die sie erzeugt, und genau dieses Paar verwendest du beim Vereinfachen von Hand.
+Die Adjungierte **kehrt die Reihenfolge der Faktoren um** und konjugiert Skalare. Für die folgenden Summen und Produkte müssen die Matrixdimensionen zusammenpassen.
 
-### Regeln für die Adjungierte
+| Regel | Identität | Begründung |
+| --- | --- | --- |
+| Reelle Einträge | <InlineMath math="A^H=A^T" /> | Konjugation ändert reelle Einträge nicht. |
+| Zweimal adjungieren | <InlineMath math="(A^H)^H=A" /> | Transposition und Konjugation werden jeweils rückgängig gemacht. |
+| Addition | <InlineMath math="(A+B)^H=A^H+B^H" /> | Konjugation verteilt sich über die Addition. |
+| Skalarmultiplikation | <InlineMath math="(\lambda A)^H=\overline\lambda A^H" /> | Der Skalar wird mit jedem Eintrag konjugiert. |
+| Produkt | <InlineMath math="(AB)^H=B^HA^H" /> | Transposition kehrt die Reihenfolge der Zeilen-Spalten-Zuordnung um. |
 
-1. **Beziehung zur echten Transponierung**: Für <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" /> gilt <InlineMath math="A^H = A^T" />
+Vergleiche für die Matrix mit einem Eintrag <InlineMath math="A=(1+i)" /> die Konjugierte von <InlineMath math="iA" /> mit dem Produkt aus <InlineMath math="i" /> und der Konjugierten von <InlineMath math="A" />:
 
-Bei reellen Einträgen ändert die komplexe Konjugation nichts. Deshalb ist die Adjungierte gleich der gewöhnlichen Transponierten.
-
-2. **Involution**: <InlineMath math="(A^H)^H = A" />
-
-Wenn wir den Adjungierten eines Adjungierten nehmen, kehren wir zur ursprünglichen Matrix zurück.
-
-### Eigenschaften der linearen Operation
-
-Beide Regeln gelten, solange die Dimensionen zusammenpassen, sodass die Adjungierte an einer Summe oder an einem skalaren Vielfachen vorbeizieht, ohne dass du die Einträge einzeln ausschreibst. Die Arbeit bleibt damit auf der Ebene der Matrix.
-
-3. **Linearität der Addition**: <InlineMath math="(A + B)^H = A^H + B^H" />
-
-4. **Konjugierte Linearität bezüglich eines Skalars**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
-
-Bei der Skalarmultiplikation muss der Skalar <InlineMath math="\lambda" /> konjugiert werden.
-
-### Multiplikationseigenschaften
-
-5. **Umkehrung der Produktreihenfolge**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
-
-Diese Regel ist keine Antikommutativität. Sie besagt, dass das Adjungieren eines Produkts die Reihenfolge seiner Faktoren umkehrt, genau wie die Transposition bei reellen Matrizen.
+<MathContainer>
+<BlockMath math="(iA)^H=\overline{-1+i}=-1-i" />
+<BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
+<BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
+</MathContainer>
 
 ## Euklidische Norm für komplexe Räume
 

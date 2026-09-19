@@ -4,15 +4,13 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the falling diagonal using coordinate rules and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
 ## Swapping Coordinates and Reversing Both Signs
 
-Reflection over the line <InlineMath math="y = -x" /> <Highlight>is a geometric transformation where each point of an object is mapped to a new position</Highlight>, with the line <InlineMath math="y = -x" /> acting as a mirror.
-
-The line connecting the original point to its image will be perpendicular to the line <InlineMath math="y = -x" />, and the distance from the original point to the mirror line is equal to the distance from its image to the mirror line.
+The line <InlineMath math="y=-x" /> acts as the <Highlight>mirror line</Highlight>. A point and its image have equal distances from it. For a point outside the line, the joining segment is perpendicular to the mirror. Points on the mirror line remain fixed.
 
 ### Rule for Reflection over the Negative Diagonal Line
 
@@ -38,6 +36,10 @@ The image of point <InlineMath math="D" /> is <InlineMath math="D'(-1, -2)" />.
 
 The following point pairs show both steps of reflection across <InlineMath math="y = -x" />:
 
+Check the **midpoint of the pair**: it must lie on the mirror line. The joining segment must also be perpendicular to that line, giving the two points equal distances from it.
+
+<BlockMath math="M=\left(\frac{2+(-1)}2,\frac{1+(-2)}2\right)=\left(\frac12,-\frac12\right)" />
+
 <LineEquation
   title={
     <>
@@ -51,6 +53,7 @@ The following point pairs show both steps of reflection across <InlineMath math=
     </>
   }
   data={[
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 0.5, y: -0.5, z: 0 }, { x: -1, y: -2, z: 0 }], smooth: false, color: "#65a30d", showPoints: false, labels: [{ text: "M", at: 1, offset: [0.3, -0.3, 0] }] },
     {
       points: [
         { x: -6, y: 6, z: 0 },
@@ -94,7 +97,7 @@ The following point pairs show both steps of reflection across <InlineMath math=
 
 Determine the image of triangle <InlineMath math="ABC" /> with vertices <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, and <InlineMath math="C(-3,-1)" /> reflected over the line <InlineMath math="y=-x" />.
 
-To reflect the triangle, we reflect each of its vertices:
+To reflect the triangle, we reflect **each of its vertices**:
 
 1.  Point <InlineMath math="A(-2, 4)" />: Its image is <InlineMath math="A'(-4, 2)" />.
 2.  Point <InlineMath math="B(3, 1)" />: Its image is <InlineMath math="B'(-1, -3)" />.
@@ -119,12 +122,12 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-4, 2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Reflection line
     // Triangle ABC (Original)
     ...[
@@ -177,7 +180,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
 
 The line <InlineMath math="y = -4x - 2" /> is reflected across <InlineMath math="y=-x" />. Determine the equation of its image.
 
-To find the equation of the image, we use the rule <InlineMath math="x' = -y" /> and <InlineMath math="y' = -x" />. This means we replace every <InlineMath math="x" /> in the original equation with <InlineMath math="-y" /> and every <InlineMath math="y" /> with <InlineMath math="-x" />.
+To find the equation of the image, we use the rule <InlineMath math="x' = -y" /> and <InlineMath math="y' = -x" />. This means we replace every <InlineMath math="x" /> in the **original equation** with <InlineMath math="-y" /> and every <InlineMath math="y" /> with <InlineMath math="-x" />.
 
 Original equation:
 
@@ -214,17 +217,18 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-3.7, 1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Reflection line
     {
       // Original Line y = -4x - 2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 0.5; // x range to prevent it from being too steep
+        const xVal = -2 + i * 0.3;
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
       color: "#9333ea",
@@ -233,8 +237,9 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
     },
     {
       // Image Line y = (-1/4)x + 1/2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 2; // x range to prevent it from being too flat
+        const xVal = (i - 5) * 1.2;
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
       color: "#db2777",
@@ -248,7 +253,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
 
 ## Exercises
 
-All three problems reflect over the line <InlineMath math="y=-x" />. The last one reflects a whole line, so its equation is transformed.
+Apply the **same coordinate rule** to the single point and to every triangle vertex. In the final problem, apply the rule to the line equation to obtain its entire set of image points.
 
 1.  Determine the coordinates of the image of point <InlineMath math="S(5, -9)" /> if it is reflected over the line <InlineMath math="y = -x" />!
 2.  Determine the image of triangle <InlineMath math="ABC" /> with vertices <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, and <InlineMath math="C(-2, 0)" /> reflected over the line <InlineMath math="y = -x" />.
@@ -256,27 +261,35 @@ All three problems reflect over the line <InlineMath math="y=-x" />. The last on
 
 ### Solutions
 
-1.  The image of point <InlineMath math="S(5, -9)" /> is <InlineMath math="S'(9, -5)" />.
+Check the coordinate order when **swapping coordinates**. Each sign must follow the chosen reflection rule. For a line, simplify the equation after completing every substitution.
 
-    **Explanation:**
+**Solution 1**
 
-    <MathContainer>
-      <BlockMath math="x' = -(-9) = 9" />
-      <BlockMath math="y' = -(5) = -5" />
-    </MathContainer>
+The image of point <InlineMath math="S(5, -9)" /> is <InlineMath math="S'(9, -5)" />.
 
-2.  The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
+**Explanation**:
 
-    - <InlineMath math="A'(2, -1)" /> (from <InlineMath math="A(1, -2)" />)
-    - <InlineMath math="B'(-3, -2)" /> (from <InlineMath math="B(2, 3)" />)
-    - <InlineMath math="C'(0, 2)" /> (from <InlineMath math="C(-2, 0)" />)
+<MathContainer>
+  <BlockMath math="x' = -(-9) = 9" />
+  <BlockMath math="y' = -(5) = -5" />
+</MathContainer>
 
-3.  The equation of the image of the line <InlineMath math="4x + 3y - 2 = 0" /> is <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+**Solution 2**
 
-    **Explanation:** Substitute <InlineMath math="x \rightarrow -y" /> and <InlineMath math="y \rightarrow -x" /> into the original equation:
+The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
 
-    <MathContainer>
-      <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
-      <BlockMath math="-4y - 3x - 2 = 0" />
-      <BlockMath math="3x + 4y + 2 = 0" />
-    </MathContainer>
+- <InlineMath math="A'(2, -1)" /> (from <InlineMath math="A(1, -2)" />)
+- <InlineMath math="B'(-3, -2)" /> (from <InlineMath math="B(2, 3)" />)
+- <InlineMath math="C'(0, 2)" /> (from <InlineMath math="C(-2, 0)" />)
+
+**Solution 3**
+
+The equation of the image of the line <InlineMath math="4x + 3y - 2 = 0" /> is <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+
+**Explanation**: Substitute <InlineMath math="x \rightarrow -y" /> and <InlineMath math="y \rightarrow -x" /> into the original equation:
+
+<MathContainer>
+  <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
+  <BlockMath math="-4y - 3x - 2 = 0" />
+  <BlockMath math="3x + 4y + 2 = 0" />
+</MathContainer>

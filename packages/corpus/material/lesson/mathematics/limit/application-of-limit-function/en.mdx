@@ -3,7 +3,7 @@ export const metadata = {
     description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Limits",
 };
 
@@ -29,38 +29,35 @@ Abbreviate the square-root term as <InlineMath math="R(t)" />:
   <BlockMath math="\begin{aligned} &amp;\lim_{t\to\infty}N(t) \\ &amp;=\lim_{t\to\infty}(285000-R(t)) \end{aligned}" />
 </MathContainer>
 
-**Long-term behavior:**
+To calculate the limit exactly, factor <InlineMath math="t^2" /> out of the radical. For <InlineMath math="t>0" />, its square root is <InlineMath math="t" />:
 
-When <InlineMath math="t" /> is very large, the term <InlineMath math="t^2" /> will dominate inside the root because:
-- <InlineMath math="t^2" /> grows faster than <InlineMath math="t" /> and the constant <InlineMath math="(190.68)^3" />
-- For <InlineMath math="t \gg 1" />, <InlineMath math="t^2 - t + (190.68)^3 \approx t^2" />
+<BlockMath math="R(t)=t\sqrt{1-\frac1t+\frac{(190.68)^3}{t^2}}" />
 
-So,
+The final square-root factor approaches <InlineMath math="1" />, while <InlineMath math="t\to\infty" />. Thus <InlineMath math="R(t)\to\infty" /> and the **case-count formula becomes negative** for sufficiently large input:
 
-For large positive <InlineMath math="t" />:
+<BlockMath math="\lim_{t\to\infty}N(t)=-\infty" />
 
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;\sqrt{t^2 - t + (190.68)^3} \\ &amp;\approx\sqrt{t^2}=|t|=t \end{aligned}" />
-  <BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
-</MathContainer>
+> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. Read this simplified formula as a mathematical example of evaluating a formula, and keep it out of medical or policy decisions.
 
-> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. Read this simplified formula as a mathematical example of exponential growth inside the model, and keep it out of medical or policy decisions.
+### Inputs That Produce a Nonnegative Result
 
-### Model Output at a Vaccination Target
+We can calculate the condition <InlineMath math="N(t)\ge0" /> instead of just stating it. Both sides being squared below are nonnegative:
 
-In this model, limits and function values show what the formula gives near a chosen vaccination target. That calculation does not establish that the target is effective. Evidence about the population and disease transmission is still required.
+<BlockMath math="C=(190.68)^3" />
 
-Suppose the vaccination target is <InlineMath math="V \text{ people}" /> among residents older than <InlineMath math="18 \text{ years}" />. Substitute <InlineMath math="V" /> into the formula to calculate the case count given by the model at that target. This result comes from the formula alone and does not establish that the target is the best strategy.
+<BlockMath math="\begin{aligned}N(t)\ge0&\iff\sqrt{t^2-t+C}\le285000\\&\iff t^2-t+C\le285000^2\\&\iff0\le t\le\frac{1+\sqrt{1+4(285000^2-C)}}2\end{aligned}" />
+
+For <InlineMath math="t\ge0" />, the upper bound is approximately <InlineMath math="284988.34" />. The example input <InlineMath math="282367" /> lies below it. This only checks for a **nonnegative output**, not agreement with data.
 
 ## Application in Economics
 
-A marginal quantity measures the change produced by one extra unit. The limit turns that change into an instantaneous rate, which is what the marginal value means once the extra unit is made arbitrarily small.
+A marginal quantity measures the change produced by one extra unit. The limit turns that change into an **instantaneous rate**, which is what the marginal value means once the extra unit is made arbitrarily small.
 
 ### Marginal Cost Analysis
 
 In a differentiable cost model, **marginal cost** is the instantaneous rate at which total cost changes with output. It is defined by the derivative:
 
-**Mathematical definition using limits:**
+**Mathematical definition using limits**:
 
 <BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
 
@@ -83,13 +80,31 @@ Since <InlineMath math="e^{-rt} \to 0" /> as <InlineMath math="t \to \infty" />,
 
 Here, <InlineMath math="K" /> is a parameter of the simplified model. A real environment's carrying capacity can change, so the limit does not claim that every measured population will settle permanently at one fixed value.
 
+Take <InlineMath math="A=4" /> and introduce dimensionless coordinates <InlineMath math="u=rt" /> and <InlineMath math="q=P/K" />. The graph then shows the **fraction of carrying capacity reached**:
+
+<BlockMath math="q(u)=\frac1{1+4e^{-u}}" />
+
+At <InlineMath math="u=0" />, <InlineMath math="q=1/5" />. At <InlineMath math="u=\ln4" />, <InlineMath math="q=1/(1+4/4)=1/2" />. The curve approaches <InlineMath math="q=1" /> without reaching it at finite time.
+
+<LineEquation
+  title="Population as a Fraction of Carrying Capacity"
+  description="The horizontal axis is u equal to r times t. The vertical axis is q equal to P divided by K. The orange line marks the limit one."
+  showZAxis={false}
+  cameraTarget={[3, 0.5, 0]}
+  cameraPosition={[3, 0.5, 11]}
+  data={[
+    { points: Array.from({ length: 121 }, (_, i) => { const x = i * 0.05; return { x, y: 1 / (1 + 4 * Math.exp(-x)), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 6, y: 1, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 1, text: "q = 1", offset: [0, 0.3, 0] }] },
+  ]}
+/>
+
 ## Application in Technology and Science
 
-Each example applies a limit to a process that develops over time. In both cases the question is how one quantity develops while another quantity approaches a limit value.
+The filter example varies frequency, whereas the reaction example varies time. Identify the **variable being approached** before evaluating the limit so that its meaning is clear.
 
-### Digital Signal Analysis
+### Frequency Response of an Analog Filter
 
-For a **normalized first-order low-pass model** with cutoff frequency <InlineMath math="\omega_c > 0" />, the magnitude response is:
+For a **normalized first-order analog low-pass model** with cutoff angular frequency <InlineMath math="\omega_c>0" />, the magnitude response is:
 
 <BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
 
@@ -100,7 +115,9 @@ Its limiting values make the idealized behavior explicit:
 <BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
 </MathContainer>
 
-This model passes very low frequencies with unit gain and increasingly attenuates high frequencies. It describes one kind of mathematical filter. Other digital filters can follow different rules.
+This analog model passes very low frequencies with gain approaching one and increasingly attenuates high frequencies. At the cutoff frequency, substitution gives:
+
+<BlockMath math="|H(i\omega_c)|=\frac1{\sqrt{1+1^2}}=\frac1{\sqrt2}" />
 
 ### Chemical Reaction Rate
 
@@ -116,7 +133,7 @@ This conclusion belongs to that irreversible first-order model. A reversible rea
 
 ## Calculating Cases at a Vaccination Target
 
-Let <InlineMath math="t" /> be the number of vaccinated people. The following model calculates the number of remaining positive cases, <InlineMath math="N(t)" />:
+Let <InlineMath math="t" /> be the number of vaccinated people. The following model calculates the number of **remaining positive cases**, <InlineMath math="N(t)" />:
 
 <BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
 
@@ -128,8 +145,8 @@ The calculation uses these assumptions:
 
 - Total population is <InlineMath math="576{,}260 \text{ people}" />.
 - Children make up <InlineMath math="21\%" /> of the population and adults make up <InlineMath math="79\%" />.
-- The positive-case proportion is <InlineMath math="30\%" /> in each age group.
-- Only adults outside the positive-case group are eligible for vaccination.
+- The **positive-case proportion** is <InlineMath math="30\%" /> in each age group.
+- In this fictional scenario, eligible adults are older than <InlineMath math="18 \text{ years}" /> and outside the positive-case group.
 
 These assumptions give the following population counts:
 
@@ -185,6 +202,8 @@ The displayed value is rounded to two decimal places. The next calculation retai
 
 If <InlineMath math="282{,}367" /> people are vaccinated, the supplied formula gives approximately <InlineMath math="2{,}621" /> remaining cases. This result comes only from the simplified formula. Real data is still required for a forecast or a decision about health-resource allocation.
 
+The **initial values do not agree**: the formula gives <InlineMath math="N(0)\approx282367" />, while the population assumptions give <InlineMath math="172878" /> initial cases. This example therefore practices evaluating and questioning a model. The formula result cannot be treated as a forecast for the stated population.
+
 ## Limits of the Formula and Model
 
 The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical question for the supplied formula. A real decision would still require independently validated evidence about:
@@ -198,7 +217,7 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
 
 ## Exercises
 
-Each problem gives a situation and asks for the value a quantity approaches. Identify the quantity first, then evaluate the limit.
+Each problem gives a situation and asks for the **value a quantity approaches**. Identify the quantity first, then evaluate the limit.
 
 1. A pharmaceutical company models cumulative vaccine production with <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" /> for <InlineMath math="t \geq 0" />. Determine the long-term production ceiling predicted by the model.
 
@@ -206,66 +225,66 @@ Each problem gives a situation and asks for the value a quantity approaches. Ide
 
 3. The total cost model for producing <InlineMath math="x" /> masks is <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Determine the marginal-cost function using the limit definition, then compare it with the exact cost of increasing output from <InlineMath math="x" /> to <InlineMath math="x+1" />.
 
-### Worked Solutions
+### The Cumulative Production Limit
 
-1. **Solution:**
+The model's **long-term ceiling** is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
 
-   The model's long-term ceiling is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
+<BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0.1t})" />
+<BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ vaccine units} \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
-   <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0.1t})" />
-   <BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ vaccine units} \end{aligned}" />
-   </MathContainer>
+The modeled cumulative production approaches <InlineMath math="50{,}000" /> vaccine units. It does not equal that value at any finite <InlineMath math="t" /> because <InlineMath math="e^{-0.1t}>0" /> for finite <InlineMath math="t" />.
 
-   The modeled cumulative production approaches <InlineMath math="50{,}000" /> vaccine units. It does not equal that value at any finite <InlineMath math="t" /> because <InlineMath math="e^{-0.1t}>0" /> for finite <InlineMath math="t" />.
+### The Message Reach Limit
 
-2. **Solution:**
+Divide the numerator and denominator by <InlineMath math="t" /> to identify the **term that approaches zero**. This division is valid for <InlineMath math="t>0" />, as required near this limit.
 
-   <MathContainer>
-   <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
-   <BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
-   <BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ people}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
+<BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
+<BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ people}" />
+</MathContainer>
 
-   Within the model, cumulative reach approaches <InlineMath math="100{,}000 \text{ people}" /> as time grows. That number is the model's saturation level. A real message may reach a different audience because its conditions can change.
+Within the model, cumulative reach approaches <InlineMath math="100{,}000 \text{ people}" /> as time grows. That number is the model's saturation level. A real message may reach a different audience because its conditions can change.
 
-3. **Solution:**
+### Marginal Cost and One Whole Unit
 
-   Marginal cost is the derivative of the cost function, which can be calculated using the limit definition:
+Marginal cost is the derivative of the cost function, which can be calculated using the limit definition:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
+</MathContainer>
 
-   **Detailed steps:**
+**Detailed steps**:
 
-   <BlockMath math="\begin{aligned} C(x + \Delta x) &amp;= 1000 + 5(x + \Delta x) \\ &amp;\quad{}+ 0.01(x + \Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} C(x + \Delta x) &amp;= 1000 + 5(x + \Delta x) \\ &amp;\quad{}+ 0.01(x + \Delta x)^2 \end{aligned}" />
 
-   We expand:
+We expand:
 
-   <BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
+<BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
 
-   Then we substitute:
+Then we substitute:
 
-   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) \\ &amp;= 1000 + 5x \\ &amp;\quad{}+ 5\Delta x + 0.01x^2 \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) \\ &amp;= 1000 + 5x \\ &amp;\quad{}+ 5\Delta x + 0.01x^2 \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
 
-   So,
+So,
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) \\ &amp;= 5\Delta x \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0.02x + 0.01\Delta x \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) \\ &amp;= 5 + 0.02x \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) \\ &amp;= 5\Delta x \\ &amp;\quad{}+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0.02x + 0.01\Delta x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) \\ &amp;= 5 + 0.02x \end{aligned}" />
+</MathContainer>
 
-   Thus, the marginal-cost function is <InlineMath math="C'(x)=5+0.02x" /> currency units per output unit.
+Thus, the marginal-cost function is <InlineMath math="C'(x)=5+0.02x" /> currency units per output unit.
 
-   The exact cost of the next whole unit is:
+The exact cost of the next whole unit is:
 
-   <MathContainer>
-   <BlockMath math="C(x+1)-C(x)" />
-   <BlockMath math="\begin{aligned}  &amp;=1000 +5(x+1) \\ &amp;\quad{}+0.01(x+1)^2 \\ &amp;\quad{}-(1000+5x+0.01x^2) \end{aligned}" />
-   <BlockMath math="=5.01+0.02x" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="C(x+1)-C(x)" />
+<BlockMath math="\begin{aligned}  &amp;=1000 +5(x+1) \\ &amp;\quad{}+0.01(x+1)^2 \\ &amp;\quad{}-(1000+5x+0.01x^2) \end{aligned}" />
+<BlockMath math="=5.01+0.02x" />
+</MathContainer>
 
-   The derivative underestimates this particular one-unit increment by <InlineMath math="0.01" /> currency unit. That comparison shows why marginal cost is an instantaneous rate and only an approximation to a discrete next-unit cost.
+The derivative underestimates this particular one-unit increment by <InlineMath math="0.01" /> currency unit. That comparison shows why marginal cost is an instantaneous rate and only an approximation to a discrete next-unit cost.

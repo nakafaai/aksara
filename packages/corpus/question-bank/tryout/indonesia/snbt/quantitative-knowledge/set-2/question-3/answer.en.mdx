@@ -2,14 +2,14 @@ export const metadata = {
   title: "Explanation 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
 };
 
 First, we need to determine the function <InlineMath math="g(x)" />.
 
 Given <InlineMath math="f(x) = 2x + 5" /> and <InlineMath math="(f \circ g)(x) = 2x^2 - 6x + 9" />.
 
-Based on the definition of function composition <InlineMath math="(f \circ g)(x) = f(g(x))" />, we have:
+Based on the definition of **function composition** <InlineMath math="(f \circ g)(x) = f(g(x))" />, we have:
 
 <MathContainer>
   <BlockMath math="f(g(x)) = 2(g(x)) + 5" />
@@ -22,11 +22,11 @@ Now, check the truth of each statement.
 
 #### Statement One
 
-The value of <InlineMath math="g(1)" />:
+**Substitute the input** <InlineMath math="x=1" />:
 
 <BlockMath math="\begin{aligned}g(1)&=1^2 - 3(1) + 2\\&=1 - 3 + 2\\&=0\end{aligned}" />
 
-Statement (1) is **True**.
+Statement (1) is true.
 
 #### Statement Two
 
@@ -39,11 +39,22 @@ To determine the number of intersection points of the quadratic function <Inline
 
 Since <InlineMath math="D > 0" />, the function <InlineMath math="g" /> intersects the <InlineMath math="x" />-axis at **two distinct points**. The statement says there is only one intersection, so it is false.
 
-Statement (2) is **False**.
+Statement (2) is false.
+
+<BlockMath math="g(x)=(x-1)(x-2)" />
+
+<LineEquation
+  title="Two Roots of the Quadratic"
+  description="The curve crosses the horizontal axis at x=1 and x=2, corresponding to factors x−1 and x−2."
+  data={[{ points: Array.from({length:61},(_,i)=>{const x=i/20;return {x,y:(x-1)*(x-2),z:0};}), smooth:false, showPoints:true, pointIndices:[20,40],color:"#9333ea",labels:[{at:20,text:<InlineMath math="(1,0)" />,offset:[-0.3,-0.4,0]},{at:40,text:<InlineMath math="(2,0)" />,offset:[0.3,-0.4,0]}] }]}
+  cameraPosition={[1.5, 0.7, 6]}
+  cameraTarget={[1.5, 0.7, 0]}
+  showZAxis={false}
+/>
 
 #### Statement Three
 
-Finding the inverse of <InlineMath math="f(x) = 2x + 5" />:
+Finding the **inverse function** of <InlineMath math="f(x) = 2x + 5" />:
 
 Let <InlineMath math="f(x) = y" />, then:
 
@@ -58,11 +69,11 @@ So the inverse is:
 
 <BlockMath math="f^{-1}(x) = \frac{1}{2}x - \frac{5}{2}" />
 
-Statement (3) is **False** because the term is <InlineMath math="-\frac{5}{2}" />.
+Statement (3) is false because the term is <InlineMath math="-\frac{5}{2}" />.
 
 #### Statement Four
 
-Summing <InlineMath math="f(x)" /> and <InlineMath math="g(x)" />:
+Add the functions by **collecting like terms**:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}f(x)+g(x)&=(2x+5)\\&\quad+(x^2-3x+2)\end{aligned}" />
@@ -70,8 +81,6 @@ Summing <InlineMath math="f(x)" /> and <InlineMath math="g(x)" />:
   <BlockMath math="= x^2 - x + 7" />
 </MathContainer>
 
-Statement (4) is **True**.
-
-#### True Function Statements
+Statement (4) is true.
 
 The correct statements are statements (1) and (4). Thus, there are <InlineMath math="2" /> true statements.

@@ -2,20 +2,27 @@ export const metadata = {
   title: "Solution to Question 25",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-There are <InlineMath math="\binom82=28" /> equally likely unordered pairs. An odd sum requires one odd card and one even card. Each group contains four cards.
+There are <InlineMath math="\binom82=\frac{8\cdot7}{2\cdot1}=28" /> equally likely **unordered pairs**. An odd sum requires one odd card and one even card. Each group contains four cards.
+
+For events that do not depend on order, each unordered pair comes from two equally likely ordered draws. All unordered pairs are therefore equally likely too.
 
 <BlockMath math="P=\frac{4\cdot4}{28}=\frac47" />
 
 The available primes are <InlineMath math="2,3,5,7" />. For the larger number to be <InlineMath math="8" />, the other card can be any of the seven smaller cards.
 
 <BlockMath math="\begin{aligned}
-P(\text{prime, prime})&=\frac{\binom42}{28}=\frac3{14} \\
+P(\text{both prime})&=\frac{\binom42}{28}=\frac{4\cdot3}{2\cdot1\cdot28}=\frac6{28}=\frac3{14} \\
 P(\max=8)&=\frac7{28}=\frac14
 \end{aligned}" />
 
 Given an even first card, four odd cards remain among seven. The probability of an odd second card is <InlineMath math="\frac47" />. This differs from the unconditional probability <InlineMath math="\frac48=\frac12" />, so the events are not independent.
 
 The four numerical probability statements are true. The independence statement is false.
+
+| First card | Even cards remaining | Odd cards remaining |
+| --- | --- | --- |
+| Even | 3 | 4 |
+| Odd | 4 | 3 |

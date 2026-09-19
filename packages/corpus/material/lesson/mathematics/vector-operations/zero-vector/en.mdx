@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use the zero vector as the additive identity and interpret it in algebra, physics, and computer graphics.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   subject: "Vector and Operations",
 };
 
@@ -21,7 +21,7 @@ Zero vector has several special properties that distinguish it from other vector
 
 2. Its magnitude is zero: <InlineMath math="|\vec{0}| = 0" />
 
-3. It cannot be normalized because dividing by its zero magnitude is undefined.
+3. It **cannot be normalized** because dividing by its zero magnitude is undefined.
 
 4. Every vector space has exactly one additive identity, so its zero vector is unique.
 
@@ -31,7 +31,7 @@ Zero vector has several special properties that distinguish it from other vector
 
 ## Representation of Zero Vector
 
-Every Cartesian component of the zero vector equals zero, so its length is zero and it has no direction. The list below shows the coordinates in one, two, and three dimensions.
+**Every Cartesian component** of the zero vector equals zero, so its length is zero and it has no direction. The list below shows the coordinates in one, two, and three dimensions.
 
 - In <InlineMath math="1" />-dimensional space: <InlineMath math="\vec{0} = (0)" />
 - In <InlineMath math="2" />-dimensional space: <InlineMath math="\vec{0} = (0, 0)" />
@@ -43,30 +43,42 @@ One example of a zero vector in daily life is the displacement of someone who re
 
 If Andi walks <InlineMath math="100 \text{ m}" /> east and then <InlineMath math="100 \text{ m}" /> west, his total displacement is zero. Although Andi has traveled a total distance of <InlineMath math="200 \text{ m}" />, his displacement (the difference between final and initial positions) is zero.
 
+Take east as positive and the starting position as <InlineMath math="0\text{ m}" />. **Distance traveled increases** on the return trip, while the position returns to its starting value.
+
+| Stage | Position from the start | Distance traveled |
+| --- | --- | --- |
+| Start | <InlineMath math="0\text{ m}" /> | <InlineMath math="0\text{ m}" /> |
+| After walking east | <InlineMath math="100\text{ m}" /> | <InlineMath math="100\text{ m}" /> |
+| After returning west | <InlineMath math="0\text{ m}" /> | <InlineMath math="200\text{ m}" /> |
+
+<BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
+
 ## Zero Vector in Vector Operations
 
-Vector arithmetic needs one element that leaves every vector unchanged, and the zero vector fills that role. Adding it changes nothing, and subtracting it only flips the sign.
-
-The zero vector behaves like the number zero in vector arithmetic.
+Adding the zero vector and subtracting the zero vector both **preserve the original vector**. Subtraction order matters: subtracting a vector from the zero vector gives that vector's opposite.
 
 ### Addition with Zero Vector
 
 If <InlineMath math="\vec{a}" /> is any vector, then:
 
-<BlockMath math="\vec{a} + \vec{0} = \vec{a}" />
+<BlockMath math="\vec{a} + \vec{0} = \vec{a},\qquad (3,-2)+(0,0)=(3,-2)" />
 
-The zero vector is therefore the identity element for vector addition.
+The zero vector is therefore the **identity element** for vector addition.
 
 ### Subtraction with Zero Vector
+
+Subtracting the zero vector **preserves the original vector**. Reversing the subtraction gives the opposite of the original vector.
 
 For any vector <InlineMath math="\vec{a}" />:
 
 <MathContainer>
-  <BlockMath math="\vec{a} - \vec{0} = \vec{a}" />
-  <BlockMath math="\vec{0} - \vec{a} = -\vec{a}" />
+  <BlockMath math="\vec{a} - \vec{0} = \vec{a},\qquad (3,-2)-(0,0)=(3,-2)" />
+  <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
 </MathContainer>
 
 ### Scalar Multiplication with Zero Vector
+
+Every zero component remains zero after multiplication, so the result is **still the zero vector** for every scalar.
 
 For any scalar <InlineMath math="k" />:
 
@@ -77,5 +89,5 @@ For any scalar <InlineMath math="k" />:
 The zero vector appears in the following settings:
 
 1. In a homogeneous system of linear equations, the zero vector is always the trivial solution.
-2. In physics, a zero resultant force on an object with nonzero mass means zero acceleration. In an inertial frame, the object therefore remains at rest or continues with constant velocity, as described by Newton's first law.
+2. In physics, a zero resultant force on an object with nonzero mass means **zero acceleration**. In an inertial frame, the object therefore remains at rest or continues with constant velocity, as described by Newton's first law.
 3. In computer graphics, the zero vector represents no displacement and therefore leaves a position unchanged when used as a translation vector.

@@ -3,13 +3,13 @@ export const metadata = {
     description: "Hubungan antara identifiabilitas parameter, peringkat matriks, nilai singular, dan kondisi numerik, beserta cara memperkirakan peringkat matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Identifiabilitas dalam Model Linear
 
-<Highlight>Sebuah parameter dapat diidentifikasi jika data yang tersedia menentukan nilai parameter tersebut secara unik.</Highlight> Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, dan <InlineMath math="m \geq n" />. Masalah kuadrat terkecil linear adalah
+Sebuah parameter dapat diidentifikasi jika data yang tersedia **menentukan nilai parameter secara unik**. Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, dan <InlineMath math="m \geq n" />. Masalah kuadrat terkecil linear adalah
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,9 +30,21 @@ Kedua pernyataan ini ekuivalen. Jika terdapat <InlineMath math="z \in \ker(A)" /
 
 Kesamaan tersebut menunjukkan bahwa data tidak dapat membedakan <InlineMath math="x" /> dan <InlineMath math="x+z" />. Jika <InlineMath math="\ker(A)=\{0\}" />, maka <InlineMath math="A^TA" /> bersifat definit positif dan masalah kuadrat terkecil memiliki satu peminimum.
 
+Sebagai contoh, kedua kolom matriks berikut sama. Hanya jumlah kedua parameter yang memengaruhi prediksi.
+
+<BlockMath math="A=\begin{pmatrix}1&amp;1\\2&amp;2\end{pmatrix},\qquad Ax=\begin{pmatrix}x_1+x_2\\2(x_1+x_2)\end{pmatrix}" />
+
+| Vektor parameter | Prediksi |
+| --- | --- |
+| <InlineMath math="(1,0)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(0,1)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(1/2,1/2)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
+
 ## Keunikan Solusi dan Kestabilan Numerik
 
-Peringkat kolom penuh <Highlight>menjamin solusi eksak yang unik</Highlight>, tetapi belum menjamin keandalan numerik. Nilai singular tak nol yang sangat kecil dapat membuat estimasi sangat sensitif terhadap perubahan kecil pada data.
+Peringkat kolom penuh <Highlight>menjamin peminimum kuadrat terkecil yang unik</Highlight>, tetapi belum menjamin keandalan numerik. Nilai singular tak nol yang sangat kecil dapat membuat estimasi sangat sensitif terhadap perubahan kecil pada data.
 
 | Pertanyaan | Diagnostik | Makna |
 | --- | --- | --- |
@@ -44,7 +56,7 @@ Identifiabilitas struktural merupakan sifat aljabar eksak. Identifiabilitas prak
 
 ## Faktorisasi untuk Menentukan Peringkat
 
-Dua faktorisasi umum dapat menentukan peringkat tanpa mengandalkan perhitungan determinan yang peka terhadap galat numerik:
+Dua **faktorisasi umum dapat menentukan peringkat** tanpa mengandalkan perhitungan determinan yang peka terhadap galat numerik:
 
 | Metode | Kekuatan | Penggunaan umum |
 | --- | --- | --- |
@@ -63,7 +75,7 @@ Dalam dekomposisi ini, <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
-Peringkat eksak sama dengan banyaknya nilai singular positif:
+Peringkat eksak sama dengan **banyaknya nilai singular positif**:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
@@ -75,7 +87,7 @@ Jika peringkat eksaknya <InlineMath math="r" /> dengan <InlineMath math="0<r<q" 
 
 <BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
 
-Data titik mengambang jarang memuat nol eksak. Peringkat numerik menghitung nilai singular yang melampaui ambang berskala <InlineMath math="\tau" />:
+Data titik mengambang jarang memuat nol eksak. Peringkat numerik menghitung nilai singular yang melampaui **ambang berskala** <InlineMath math="\tau" />:
 
 <MathContainer>
 <BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
@@ -90,9 +102,9 @@ Faktor <InlineMath math="c" /> bergantung pada penerapan dan perkiraan besarnya 
 
 Identitas
 
-<BlockMath math="A^TA=V\Sigma^2V^T" />
+<BlockMath math="A^TA=V(\Sigma^T\Sigma)V^T" />
 
-Identitas ini menunjukkan bahwa kuadrat nilai singular merupakan nilai eigen dari <InlineMath math="A^TA" />. Untuk perhitungan numerik, membentuk <InlineMath math="A^TA" /> secara eksplisit akan menguadratkan bilangan kondisi:
+Identitas ini menunjukkan bahwa kuadrat nilai singular merupakan nilai eigen dari <InlineMath math="A^TA" />. Untuk matriks berperingkat kolom penuh dalam perhitungan numerik, membentuk <InlineMath math="A^TA" /> secara eksplisit akan **menguadratkan bilangan kondisi**:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 

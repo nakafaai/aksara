@@ -3,7 +3,7 @@ export const metadata = {
     description: "Nutze charakteristische Polynome, um Eigenwerte und algebraische Multiplizitäten zu bestimmen und ihre Koeffizienten mit der Matrixspur zu verbinden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -41,13 +41,13 @@ Im charakteristischen Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath ma
 Das bedeutet:
 - Der höchste Koeffizient ist immer <InlineMath math="(-1)^n" />
 - Der zweithöchste Koeffizient bezieht sich auf die Matrixspur
-- Der konstante Term ist die Determinante der Matrix
+- Der **konstante Term** ist die Determinante der Matrix
 
 ## Eigenwerte als Polynomwurzeln
 
 Der Wert <InlineMath math="\lambda \in \mathbb{K}" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-Daher sind **die Eigenwerte die Nullstellen des charakteristischen Polynoms**.
+Daher sind die Eigenwerte die **Nullstellen des charakteristischen Polynoms**.
 
 Für <InlineMath math="t \in \mathbb{K}" /> betrachten wir die folgende Gleichung.
 
@@ -61,7 +61,7 @@ Was passiert nun, wenn ein Eigenwert mehrmals als Wurzel des charakteristischen 
 
 ### Multiplizitätsgrenzen
 
-Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine algebraische Vielfachheit
+Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine **algebraische Vielfachheit**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
@@ -75,15 +75,15 @@ Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \
 
 > Die geometrische Vielfachheit jedes Eigenwerts ist immer kleiner oder gleich seiner algebraischen Vielfachheit.
 
-Die geometrische Vielfachheit zählt die unabhängigen Eigenvektoren im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
+Die geometrische Vielfachheit **zählt die unabhängigen Eigenvektoren** im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
 
 ## Charakteristische Polynome berechnen
 
-Die Definition wird jetzt auf konkrete Matrizen angewendet, und die Koeffizientenbeziehungen dienen als Kontrolle der Rechnung. Verfolge jeden Determinantenschritt und vergleiche die Wurzeln anschließend mit Spur und Determinante, um das Polynom zu bestätigen.
+Die Definition wird jetzt auf konkrete Matrizen angewendet, und die **Koeffizientenbeziehungen** dienen als Kontrolle der Rechnung. Verfolge jeden Determinantenschritt und vergleiche die Wurzeln anschließend mit Spur und Determinante, um das Polynom zu bestätigen.
 
 ### Matrix dritter Ordnung
 
-Diese Matrix dritter Ordnung erzeugt ein charakteristisches Polynom vom Grad drei:
+Diese Matrix dritter Ordnung erzeugt ein charakteristisches Polynom vom **Grad drei**:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
 
@@ -109,7 +109,7 @@ Die Nullstellen bestehen zwei nützliche Kontrollen: Ihre Summe ist die Spur, ih
 
 ### Wiederholter Eigenwert bei einer oberen Dreiecksmatrix
 
-Diese Matrix hat zweimal denselben Diagonaleintrag, nämlich <InlineMath math="1" />:
+Diese Matrix hat zweimal **denselben Diagonaleintrag**, nämlich <InlineMath math="1" />:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
@@ -121,11 +121,15 @@ Ihr charakteristisches Polynom lautet:
 <BlockMath math="= t^2 - 2 \cdot t + 1" />
 </MathContainer>
 
-Diese Matrix hat die Wurzel <InlineMath math="\lambda = 1" /> mit der algebraischen Multiplizität <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> ist der einzige Eigenwert von <InlineMath math="A" />. Wir haben berechnet, dass <InlineMath math="\dim \text{ Eig}_A(1) = 1" />.
+Diese Matrix hat die Wurzel <InlineMath math="\lambda = 1" /> mit der algebraischen Multiplizität <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> ist der einzige Eigenwert von <InlineMath math="A" />.
+
+<BlockMath math="(A-I)\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2y\\0\end{pmatrix}=0\iff y=0,\qquad E_A(1)=\operatorname{span}\left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}" />
+
+Der Eigenraum hat **Dimension 1**, obwohl die Polynomnullstelle doppelt vorkommt.
 
 ## Charakteristische Polynome geometrischer Transformationen
 
-Die Rechnung wird jetzt an vertrauten Abbildungen auf <InlineMath math="\mathbb{R}^2" /> wiederholt, sodass algebraisches Ergebnis und geometrische Bedeutung zusammen erscheinen. Rotation, Reflexion, Skalierung und Scheren liefern jeweils ein Polynom, dessen Wurzeln beschreiben, was diese Abbildung mit Richtungen macht.
+Die Rechnung wird jetzt an vertrauten Abbildungen auf <InlineMath math="\mathbb{R}^2" /> wiederholt, sodass algebraisches Ergebnis und **geometrische Bedeutung** zusammen erscheinen. Rotation, Reflexion, Skalierung und Scheren liefern jeweils ein Polynom, dessen Wurzeln beschreiben, was diese Abbildung mit Richtungen macht.
 
 ### Rotation
 
@@ -137,11 +141,11 @@ Ihr charakteristisches Polynom lautet:
 
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
-Die Diskriminante ist <InlineMath math="-4\sin^2(\alpha)" />. Die Nullstellen sind genau dann reell, wenn <InlineMath math="\sin(\alpha)=0" />. Innerhalb einer vollen Umdrehung gilt also <InlineMath math="\alpha\equiv0" /> oder <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
+Die **Diskriminante** ist <InlineMath math="-4\sin^2(\alpha)" />. Die Nullstellen sind genau dann reell, wenn <InlineMath math="\sin(\alpha)=0" />. Innerhalb einer vollen Umdrehung gilt also <InlineMath math="\alpha\equiv0" /> oder <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
 ### Reflexion
 
-Die Spiegelung an der <InlineMath math="x" />-Achse hat die Matrix:
+Die **Spiegelung an** der <InlineMath math="x" />-Achse hat die Matrix:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -153,7 +157,7 @@ Die Eigenwerte sind <InlineMath math="\lambda_1 = 1" /> und <InlineMath math="\l
 
 ### Skalierung
 
-Die Skalierung hat die Matrix:
+Die **Skalierung hat** die Matrix:
 
 <BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
 
@@ -165,7 +169,7 @@ Der Eigenwert ist <InlineMath math="\lambda = s" /> mit <InlineMath math="\mu_A(
 
 ### Scheren
 
-Für eine Scherung mit <InlineMath math="s \neq 0" /> lautet die Matrix:
+**Für eine Scherung** mit <InlineMath math="s \neq 0" /> lautet die Matrix:
 
 <BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
 
@@ -177,7 +181,7 @@ Der Eigenwert ist <InlineMath math="\lambda = 1" /> mit <InlineMath math="\mu_A(
 
 ## Eigenschaften ähnlicher Matrizen
 
-Ähnliche Matrizen beschreiben dieselbe lineare Abbildung in verschiedenen Basen. Sie besitzen deshalb dasselbe charakteristische Polynom, dieselben Eigenwerte, dieselbe Spur und dieselbe Determinante.
+Ähnliche Matrizen beschreiben **dieselbe lineare Abbildung** in verschiedenen Basen. Sie besitzen deshalb dasselbe charakteristische Polynom, dieselben Eigenwerte, dieselbe Spur und dieselbe Determinante.
 
 Sei <InlineMath math="S \in \mathbb{K}^{n \times n}" /> invertierbar und <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Dann:
 
@@ -198,4 +202,4 @@ Mit <InlineMath math="Av=\lambda v" /> und <InlineMath math="w=S^{-1}v" /> folgt
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 
-Damit bewahrt die Ähnlichkeit die Eigenwerte, während der inverse Basiswechsel die zugehörigen Eigenvektoren umrechnet.
+Damit bewahrt die Ähnlichkeit die Eigenwerte, während der **inverse Basiswechsel** die zugehörigen Eigenvektoren umrechnet.

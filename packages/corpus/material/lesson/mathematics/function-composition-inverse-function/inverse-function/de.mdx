@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Umkehrfunktion",
     description: "Bestimme eine Umkehrfunktion, prüfe, ob die ursprüngliche Funktion bijektiv ist, und verbinde beide Graphen mit der Spiegelung an der ersten Winkelhalbierenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
@@ -27,7 +26,7 @@ Die umgekehrte Zuordnung führt von „Matematika“ zurück zu „Mathematics�
 
 ## Definition der Umkehrfunktion
 
-Eine Umkehrfunktion kehrt die Zuordnung der ursprünglichen Funktion um. Ordnet <InlineMath math="f" /> einem Element <InlineMath math="x" /> aus der Definitionsmenge <InlineMath math="A" /> das Element <InlineMath math="y" /> in der Zielmenge <InlineMath math="B" /> zu, dann ordnet <InlineMath math="f^{-1}" /> (gesprochen „f invers“) dem Wert <InlineMath math="y" /> aus <InlineMath math="B" /> wieder den Wert <InlineMath math="x" /> in <InlineMath math="A" /> zu.
+Eine Umkehrfunktion **vertauscht Eingabe und Ausgabe**. Ordnet <InlineMath math="f" /> einem Element <InlineMath math="x" /> aus der Definitionsmenge <InlineMath math="A" /> das Element <InlineMath math="y" /> in der Zielmenge <InlineMath math="B" /> zu, dann ordnet <InlineMath math="f^{-1}" /> (gesprochen „f invers“) dem Wert <InlineMath math="y" /> aus <InlineMath math="B" /> wieder den Wert <InlineMath math="x" /> in <InlineMath math="A" /> zu.
 
 Mathematisch:
 
@@ -37,12 +36,19 @@ Kurz gesagt: Wenn <InlineMath math="f" /> aus <InlineMath math="x" /> den Wert <
 
 Die Schreibweise <InlineMath math="f^{-1}(x)" /> bezeichnet die Umkehrfunktion. Der Kehrwert wird als <InlineMath math="\frac{1}{f(x)}" /> geschrieben.
 
+Um die beiden Schreibweisen zu unterscheiden, betrachten wir <InlineMath math="f(x)=2x+3" />. Die Umkehrfunktion sucht die ursprüngliche Eingabe. Beim Kehrwert wird eins durch den Funktionswert geteilt.
+
+| Eingabe | Umkehrfunktion | Kehrwert |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="f^{-1}(3)=0" /> | <InlineMath math="1/f(3)=1/9" /> |
+| <InlineMath math="5" /> | <InlineMath math="f^{-1}(5)=1" /> | <InlineMath math="1/f(5)=1/13" /> |
+
 ## Voraussetzung für eine Umkehrfunktion
 
 Damit eine Funktion <InlineMath math="f:A\to B" /> <Highlight>eine beidseitige Umkehrfunktion</Highlight> <InlineMath math="f^{-1}:B\to A" /> besitzt, muss <InlineMath math="f" /> **bijektiv** sein. Eine bijektive Funktion ist sowohl **injektiv** (eins zu eins) als auch **surjektiv**.
 
-- **Injektiv (eins zu eins):** Verschiedene Eingaben erzeugen verschiedene Ausgaben.
-- **Surjektiv:** Jedes Element der Zielmenge wird von mindestens einer Eingabe erreicht.
+- **Injektiv (eins zu eins)**: Verschiedene Eingaben erzeugen verschiedene Ausgaben.
+- **Surjektiv**: Jedes Element der Zielmenge wird von mindestens einer Eingabe erreicht.
 
 Die festgelegte Definitionsmenge und Zielmenge sind dabei entscheidend. Ist <InlineMath math="f" /> injektiv, erreicht aber nicht ganz <InlineMath math="B" />, kann man die Zielmenge durch die tatsächliche Bildmenge ersetzen. Schreiben wir diese als <InlineMath math="\operatorname{Im}(f)" />, dann ist <InlineMath math="f:A\to \operatorname{Im}(f)" /> bijektiv und besitzt eine Umkehrfunktion <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. Ist <InlineMath math="f" /> nicht injektiv, ordnet die umgekehrte Relation einer Ausgabe mehrere Eingaben zu. Sie ist dann keine Funktion, sofern man die ursprüngliche Definitionsmenge nicht einschränkt.
 
@@ -61,31 +67,30 @@ Mit den folgenden Schritten bestimmst du aus <InlineMath math="f(x)" /> die Form
 3.  Löse die Gleichung für <InlineMath math="y" /> anhand von <InlineMath math="x" /> auf.
 4.  Ersetze <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />, um die Umkehrfunktionsformel zu erhalten.
 
-**Beispiel:**
+**Beispiel**:
 
 Sei <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="f(x) = 2x + 3" /> definiert. Bestimme die Umkehrfunktion.
 
-1.  Ersetze <InlineMath math="f(x)" /> durch <InlineMath math="y" />:
+**Schritt 1**. Ersetze <InlineMath math="f(x)" /> durch <InlineMath math="y" />:
 
-    <BlockMath math="y = 2x + 3" />
+<BlockMath math="y = 2x + 3" />
 
-2.  <InlineMath math="x" /> und <InlineMath math="y" /> vertauschen:
+**Schritt 2**. <InlineMath math="x" /> und <InlineMath math="y" /> vertauschen:
 
-    <BlockMath math="x = 2y + 3" />
+<BlockMath math="x = 2y + 3" />
 
-3.  Nach <InlineMath math="y" /> auflösen:
+**Schritt 3**. Nach <InlineMath math="y" /> auflösen:
 
-    <MathContainer>
-      <BlockMath math="x - 3 = 2y" />
-      <BlockMath math="\frac{x - 3}{2} = y" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x - 3 = 2y" />
+  <BlockMath math="\frac{x - 3}{2} = y" />
+</MathContainer>
 
-4.  Ersetze <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />:
+**Schritt 4**. Ersetze <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />:
 
-    <BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
+<BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
 
 Die Umkehrfunktion von <InlineMath math="f(x) = 2x + 3" /> ist also <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />.
-
 ## Graph einer Funktion und ihrer Umkehrung
 
 Der Graph der Umkehrfunktion <InlineMath math="f^{-1}(x)" /> entsteht durch Spiegelung des Graphen von <InlineMath math="f(x)" /> an der Geraden <InlineMath math="y = x" />.
@@ -161,13 +166,16 @@ Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />,
       ],
     },
   ]}
+  showZAxis={false}
   cameraTarget={[0, 0, 0]}
   cameraPosition={[0, 0, 13]}
 />
 
+Die Spiegelung **vertauscht die Koordinaten**. Der Punkt <InlineMath math="(1,5)" /> auf dem ursprünglichen Graphen wird zum Punkt <InlineMath math="(5,1)" /> auf dem Graphen der Umkehrfunktion. Beide liegen auf gegenüberliegenden Seiten der Spiegelachse und haben den Mittelpunkt <InlineMath math="(3,3)" />.
+
 ## Verständnis prüfen
 
-Sei <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="r(x)=3x-5" /> definiert. Arbeite die drei Schritte unten für diese Funktion ab. Prüfe am Ende beide Verkettungen, denn eine korrekte Umkehrfunktion hebt die Ausgangsfunktion in beiden Reihenfolgen auf.
+Sei <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="r(x)=3x-5" /> definiert. Arbeite die drei Schritte unten für diese Funktion ab. Prüfe am Ende **beide Verkettungen**, denn eine korrekte Umkehrfunktion hebt die Ausgangsfunktion in beiden Reihenfolgen auf.
 
 1. Bestimme <InlineMath math="r^{-1}(x)" />.
 2. Überprüfe beide Verkettungen <InlineMath math="r^{-1}(r(x))" /> und <InlineMath math="r(r^{-1}(x))" />.
@@ -175,7 +183,7 @@ Sei <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="r(x)
 
 ### Lösung
 
-Beginne mit <InlineMath math="y=3x-5" />, vertausche die Variablen und löse nach <InlineMath math="y" /> auf:
+Beginne mit <InlineMath math="y=3x-5" />, vertausche die **Variablen** und löse nach <InlineMath math="y" /> auf:
 
 <MathContainer>
   <BlockMath math="x=3y-5" />

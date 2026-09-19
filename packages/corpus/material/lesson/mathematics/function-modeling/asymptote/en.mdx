@@ -1,21 +1,21 @@
-
-
 export const metadata = {
   title: "Asymptote",
   description: "Find vertical, horizontal, and oblique asymptotes with worked examples and interactive visualizations. Learn techniques for graphing rational functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Functions and Their Modeling",
 };
 
 ## Lines That a Graph Approaches
 
-An asymptote is <Highlight>a line that a graph approaches</Highlight> in a particular limiting process. Near a vertical asymptote, the function grows without bound. Near a horizontal or oblique asymptote, the distance between the graph and the line tends to zero as the input grows in magnitude.
+An asymptote is <Highlight>a line that a graph approaches</Highlight> in a particular limiting process. Near a vertical asymptote, the magnitude of the function grows without bound. Near a horizontal or oblique asymptote, the distance between the graph and the line tends to zero as the input grows in magnitude.
 
-A graph may cross a horizontal or oblique asymptote at a finite input. The asymptote describes the value that the graph approaches far away. It does not act as a wall.
+A graph may cross a horizontal or oblique asymptote at a finite input. These two types describe the graph at large input magnitudes. It does not act as a wall.
 
 ## Types of Asymptotes
+
+The **direction of the line** distinguishes the three asymptote types.
 
 Asymptotes fall into three types. The type follows from how the graph approaches the line, so each one has its own identifying feature. The three types are named after the direction of the line the graph approaches.
 
@@ -23,48 +23,63 @@ Asymptotes fall into three types. The type follows from how the graph approaches
 
 A vertical asymptote is a vertical line that the graph approaches when the function value approaches positive or negative infinity.
 
-**Definition:** The line <InlineMath math="x = a" /> is a vertical asymptote if at least one of these one-sided limits is infinite:
+**Definition**: The line <InlineMath math="x = a" /> is a vertical asymptote if at least one of these one-sided limits is infinite:
 
 - When <InlineMath math="x" /> approaches <InlineMath math="a" /> from the left, <InlineMath math="f(x) \to \pm\infty" />
 - When <InlineMath math="x" /> approaches <InlineMath math="a" /> from the right, <InlineMath math="f(x) \to \pm\infty" />
 
-**How to find:** First cancel any common polynomial factors. In the simplified rational function, a vertical asymptote occurs when <InlineMath math="Q(x) = 0" /> while <InlineMath math="P(x) \neq 0" />. If the factor cancels, the graph has a hole at that input.
+**How to find**: First cancel any common polynomial factors. In the simplified rational function, a vertical asymptote occurs when <InlineMath math="Q(x) = 0" /> while <InlineMath math="P(x) \neq 0" />. An excluded input becomes a hole only if **every vanishing denominator factor** cancels completely. If that factor still remains in the denominator, the input remains a vertical asymptote.
+
+| Original expression | Simplified expression | Behavior at one |
+| --- | --- | --- |
+| <InlineMath math="\frac{x-1}{x-1}" /> | <InlineMath math="1,\quad x\neq1" /> | Hole |
+| <InlineMath math="\frac{x-1}{(x-1)^2}" /> | <InlineMath math="\frac1{x-1},\quad x\neq1" /> | Vertical asymptote |
 
 ### Horizontal Asymptote
 
 A horizontal asymptote is a horizontal line that the graph approaches as <InlineMath math="x" /> tends toward positive infinity, negative infinity, or both.
 
-**Definition:** The line <InlineMath math="y = b" /> is a horizontal asymptote in each direction where the corresponding limit holds:
+**Definition**: The line <InlineMath math="y = b" /> is a horizontal asymptote in each direction where the corresponding limit holds:
 
 - <InlineMath math="\lim_{x \to \infty} f(x) = b" />
 - <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
 
 ### Oblique Asymptote
 
+The term **oblique** requires a nonzero slope. With zero slope, the line is a horizontal asymptote.
+
+<BlockMath math="m\neq0" />
+
 An oblique asymptote is a slanted line that the graph approaches as <InlineMath math="x" /> tends toward positive infinity, negative infinity, or both.
 
-**Definition:** The line <InlineMath math="y = mx + c" /> is an oblique asymptote in a direction where the difference tends to zero:
+**Definition**: The line <InlineMath math="y = mx + c" /> is an oblique asymptote in a direction where the difference tends to zero:
 
 <MathContainer>
-  <BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
-  <BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+
+<BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+
+<BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
 </MathContainer>
 
 ## Asymptotes in Rational Functions
+
+The **polynomial degrees** determine the end behavior of a rational function.
 
 Consider rational functions <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials. For these functions the asymptotes follow directly from the zeros of the denominator and from the degrees of the two polynomials.
 
 ### Finding Vertical Asymptotes
 
-**Steps:**
+**Cancel common factors first**, keeping the original domain. Then use the numerator and denominator of the reduced expression in the steps below.
+
+**Steps**:
 
 1. Find the value of <InlineMath math="x" /> that makes <InlineMath math="Q(x) = 0" />
 2. Check if <InlineMath math="P(x) \neq 0" /> at that value
 3. If yes, then there is a vertical asymptote at <InlineMath math="x = a" />
 
-**Example:** Determine the vertical asymptote of <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />
+**Example**: Determine the vertical asymptote of <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />
 
-**Solution:**
+**Solution**:
 
 - Denominator is zero when: <InlineMath math="x - 2 = 0" />, so <InlineMath math="x = 2" />
 - When <InlineMath math="x = 2" />, numerator is <InlineMath math="2 + 3 = 5 \neq 0" />
@@ -77,7 +92,7 @@ The following values show the function's behavior around the vertical asymptote:
 | <InlineMath math="1.9" />  | <InlineMath math="\frac{1.9 + 3}{1.9 - 2} = \frac{4.9}{-0.1} = -49" /> | Approaches <InlineMath math="-\infty" /> |
 | <InlineMath math="1.99" /> | <InlineMath math="\frac{4.99}{-0.01} = -499" />                        | Getting more negative                    |
 | <InlineMath math="2.01" /> | <InlineMath math="\frac{5.01}{0.01} = 501" />                          | Approaches <InlineMath math="+\infty" /> |
-| <InlineMath math="2.1" />  | <InlineMath math="\frac{5.1}{0.1} = 51" />                             | Getting more positive                    |
+| <InlineMath math="2.1" />  | <InlineMath math="\frac{5.1}{0.1} = 51" />                             | Value right of the asymptote                    |
 
 <LineEquation
   title={
@@ -96,7 +111,7 @@ The following values show the function's behavior around the vertical asymptote:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         parameters.push(1.0986122886681096);
         return parameters
           .sort((a, b) => a - b)
@@ -110,7 +125,7 @@ The following values show the function's behavior around the vertical asymptote:
       labels: [
         {
           text: <InlineMath math="x \to 2^{-}" />,
-          at: 391,
+          at: 379,
           offset: [-0.5, -3, 0],
         },
       ],
@@ -118,7 +133,7 @@ The following values show the function's behavior around the vertical asymptote:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         parameters.push(1.3862943611198906);
         return parameters
           .sort((a, b) => a - b)
@@ -132,16 +147,16 @@ The following values show the function's behavior around the vertical asymptote:
       labels: [
         {
           text: <InlineMath math="x \to 2^{+}" />,
-          at: 407,
+          at: 415,
           offset: [-0.4, 2.75, 0],
         },
       ],
     },
     {
       points: [
-        { x: 2, y: -50, z: 0 },
+        { x: 2, y: -12, z: 0 },
         { x: 2, y: 0, z: 0 },
-        { x: 2, y: 50, z: 0 },
+        { x: 2, y: 12, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -149,31 +164,32 @@ The following values show the function's behavior around the vertical asymptote:
       labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1.5, -1, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[2, 1, 15]}
   cameraTarget={[2, 1, 0]}
 />
 
 ### Finding Horizontal Asymptotes
 
-**Rules for rational functions:**
+**Rules for rational functions**:
 
-Let the degree of numerator is <InlineMath math="m" /> and degree of denominator = <InlineMath math="n" />
+Let the degree of the numerator be <InlineMath math="m" /> and the degree of the denominator be <InlineMath math="n" />
 
 1. If <InlineMath math="m < n" />: Horizontal asymptote is <InlineMath math="y = 0" />
 2. If <InlineMath math="m = n" />: Horizontal asymptote is <InlineMath math="y = \frac{a}{b}" /> (ratio of leading coefficients)
 3. If <InlineMath math="m > n" />: No horizontal asymptote (but there might be an oblique asymptote)
 
-**Example:** Determine the horizontal asymptote of:
+**Example**: Determine the horizontal asymptote of:
 
 1. <InlineMath math="f(x) = \frac{2x + 1}{x^2 - 4}" />
 
-   **Solution:**
+   **Solution**:
 
    The numerator degree is <InlineMath math="= 1" /> and the denominator degree is <InlineMath math="= 2" />. Since <InlineMath math="1 < 2" />, the horizontal asymptote is <InlineMath math="y = 0" />.
 
 2. <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />
 
-   **Solution:**
+   **Solution**:
 
    The numerator degree is <InlineMath math="= 2" /> and the denominator degree is <InlineMath math="= 2" />. Since the degrees are equal, the horizontal asymptote is <InlineMath math="y = \frac{3}{2}" />.
 
@@ -202,7 +218,7 @@ The following values show how the function approaches the horizontal asymptote:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -5 + (i / 500) * 10);
+        const parameters = Array.from({ length: 501 }, (_, i) => -3 + (i / 500) * 6);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -215,31 +231,38 @@ The following values show how the function approaches the horizontal asymptote:
     },
     {
       points: [
-      { x: -160, y: 1.5, z: 0 },
       { x: -10, y: 1.5, z: 0 },
       { x: 0, y: 1.5, z: 0 },
       { x: 10, y: 1.5, z: 0 },
-      { x: 160, y: 1.5, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1.5" />, at: 2, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1.5" />, at: 1, offset: [2, 0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ### Finding Oblique Asymptotes
 
 Oblique asymptotes appear when <InlineMath math="\text{degree of numerator} = \text{degree of denominator} + 1" />.
 
-**How to find:** Perform polynomial division.
+**How to find**: Perform polynomial division.
 
-**Example:** Determine the oblique asymptote of <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />
+**Example**: Determine the oblique asymptote of <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />
 
-**Solution:**
+**Solution**:
 Using polynomial division:
+
+Polynomial division uses **two subtractions**. Each row removes the highest-degree term of the previous remainder.
+
+| Quotient term | Product with divisor | Remainder |
+| --- | --- | --- |
+| <InlineMath math="x" /> | <InlineMath math="x(x-1)=x^2-x" /> | <InlineMath math="(x^2+2x-1)-(x^2-x)=3x-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="3(x-1)=3x-3" /> | <InlineMath math="(3x-1)-(3x-3)=2" /> |
 
 <BlockMath math="\begin{aligned} f(x) &amp;= \frac{x^2 + 2x - 1}{x - 1} \\ &amp;= x + 3 + \frac{2}{x - 1} \end{aligned}" />
 
@@ -264,7 +287,7 @@ Oblique asymptote: <InlineMath math="y = x + 3" />
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -278,7 +301,7 @@ Oblique asymptote: <InlineMath math="y = x + 3" />
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -291,32 +314,30 @@ Oblique asymptote: <InlineMath math="y = x + 3" />
     },
     {
       points: [
-      { x: -160, y: -157, z: 0 },
       { x: -8, y: -5, z: 0 },
       { x: 0, y: 3, z: 0 },
       { x: 10, y: 13, z: 0 },
-      { x: 160, y: 163, z: 0 },
       ],
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+3" />, at: 2, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+3" />, at: 1, offset: [3, 1.5, 0] }],
     },
     {
       points: [
-      { x: 1, y: -80, z: 0 },
       { x: 1, y: -10, z: 0 },
       { x: 1, y: 0, z: 0 },
       { x: 1, y: 15, z: 0 },
-      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ## Drawing Graphs with Asymptotes
@@ -329,7 +350,7 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
 4. **Determine some additional points**
 5. **Draw the curve** that approaches the asymptotes
 
-**Complete Example:** Draw the graph of <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
+**Complete Example**: Draw the graph of <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
 
 **Step 1**: Find asymptotes
 
@@ -374,7 +395,7 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -382,13 +403,13 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
             return { x, y: (x + 1) / (x - 2), z: 0 };
           });
       })(),
-      color: "#0284c7",
+      color: "#0d9488",
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -396,34 +417,30 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
             return { x, y: (x + 1) / (x - 2), z: 0 };
           });
       })(),
-      color: "#0284c7",
+      color: "#0d9488",
       showPoints: false,
     },
     {
       points: [
-      { x: 2, y: -80, z: 0 },
-      { x: 2, y: -20, z: 0 },
+      { x: 2, y: -12, z: 0 },
       { x: 2, y: 0, z: 0 },
-      { x: 2, y: 20, z: 0 },
-      { x: 2, y: 80, z: 0 },
+      { x: 2, y: 12, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-      { x: -160, y: 1, z: 0 },
       { x: -5, y: 1, z: 0 },
       { x: 0, y: 1, z: 0 },
       { x: 9, y: 1, z: 0 },
-      { x: 160, y: 1, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1" />, at: 2, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [1, 0.5, 0] }],
     },
     {
       points: [{ x: -1, y: 0, z: 0 }],
@@ -438,12 +455,14 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
       labels: [{ text: <InlineMath math="(0,-0.5)" />, at: 0, offset: [-1.5, -1, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ## Practice Problems
 
-Each problem asks for an asymptote of a given function, so find the term that drives the curve first, either a denominator that reaches zero or an exponential term that dominates.
+Check **denominator factors and the degree difference** for each function. Every function in these exercises is rational.
 
 1. Determine all asymptotes of <InlineMath math="f(x) = \frac{2x^2 - 3x + 1}{x - 3}" />
 
@@ -453,11 +472,9 @@ Each problem asks for an asymptote of a given function, so find the term that dr
 
 4. Draw a sketch of the graph <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> complete with its asymptotes.
 
-### Worked Solutions
+### Vertical and oblique asymptotes
 
-**Problem** 1:
-
-The denominator is zero at <InlineMath math="x = 3" />, while the numerator there is <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Because the numerator does not vanish, <InlineMath math="x = 3" /> is a vertical asymptote.
+The denominator is zero at <InlineMath math="x = 3" />, while the **numerator** there is <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Because the numerator does not vanish, <InlineMath math="x = 3" /> is a vertical asymptote.
 
 Polynomial division separates the long-term linear behavior from the remainder:
 
@@ -465,26 +482,28 @@ Polynomial division separates the long-term linear behavior from the remainder:
 
 As <InlineMath math="x \to \pm\infty" />, the remainder <InlineMath math="\frac{10}{x - 3} \to 0" />. Therefore the oblique asymptote is <InlineMath math="y = 2x + 3" />.
 
-**Problem** 2:
+### Two vertical asymptotes
 
 Factor both polynomials before classifying their zeros:
 
 <MathContainer>
-  <BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
-  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+
+<BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+
+<BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
 </MathContainer>
 
-There is no common factor to cancel. The denominator zeros <InlineMath math="x = -3" /> and <InlineMath math="x = 3" /> are therefore vertical asymptotes. The numerator zeros <InlineMath math="x = -2" /> and <InlineMath math="x = 2" /> are <InlineMath math="x" />-intercepts. Since numerator and denominator have the same degree and both leading coefficients are <InlineMath math="1" />, the horizontal asymptote is <InlineMath math="y = 1" />.
+There is no **common factor** to cancel. The denominator zeros <InlineMath math="x = -3" /> and <InlineMath math="x = 3" /> are therefore vertical asymptotes. The numerator zeros <InlineMath math="x = -2" /> and <InlineMath math="x = 2" /> are <InlineMath math="x" />-intercepts. Since numerator and denominator have the same degree and both leading coefficients are <InlineMath math="1" />, the horizontal asymptote is <InlineMath math="y = 1" />.
 
-**Problem** 3:
+### Limiting average cost
 
 <BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
 
-When <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Therefore <InlineMath math="C(x) \to 3" />. The cost approaches <InlineMath math="3" /> per unit but does not equal that value for any finite positive <InlineMath math="x" />.
+When <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Therefore <InlineMath math="C(x) \to 3" />. The cost approaches <InlineMath math="3" /> per unit but does not equal that value for any **finite positive** <InlineMath math="x" />.
 
-**Problem** 4:
+### Three graph branches
 
-Factor the denominator as <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Neither factor cancels with the numerator, so the vertical asymptotes are <InlineMath math="x = -1" /> and <InlineMath math="x = 1" />. Because the numerator degree is smaller than the denominator degree, <InlineMath math="h(x) \to 0" /> as <InlineMath math="x \to \pm\infty" />. Hence the horizontal asymptote is <InlineMath math="y = 0" />.
+Factor the denominator as <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Neither factor cancels with the **numerator**, so the vertical asymptotes are <InlineMath math="x = -1" /> and <InlineMath math="x = 1" />. Because the numerator degree is smaller than the denominator degree, <InlineMath math="h(x) \to 0" /> as <InlineMath math="x \to \pm\infty" />. Hence the horizontal asymptote is <InlineMath math="y = 0" />.
 
 The asymptotes split the domain into three intervals. The sign of <InlineMath math="h(x)" /> is negative on <InlineMath math="x < -1" />, positive on <InlineMath math="-1 < x < 0" />, negative on <InlineMath math="0 < x < 1" />, and positive on <InlineMath math="x > 1" />. These signs, together with the intercept <InlineMath math="(0,0)" />, determine the placement of all three branches.
 
@@ -516,7 +535,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -530,7 +549,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -4 + (i / 500) * 8);
+        const parameters = Array.from({ length: 501 }, (_, i) => -1.6 + (i / 500) * 3.2);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -544,7 +563,7 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -6 + (i / 500) * 10);
+        const parameters = Array.from({ length: 501 }, (_, i) => -2 + (i / 500) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -557,43 +576,39 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     },
     {
       points: [
-      { x: -1, y: -80, z: 0 },
       { x: -1, y: -10, z: 0 },
       { x: -1, y: 0, z: 0 },
       { x: -1, y: 10, z: 0 },
-      { x: -1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=-1" />, at: 2, offset: [-2, 1, 0] }],
+      labels: [{ text: <InlineMath math="x=-1" />, at: 1, offset: [-2, 1, 0] }],
     },
     {
       points: [
-      { x: 1, y: -80, z: 0 },
       { x: 1, y: -10, z: 0 },
       { x: 1, y: 0, z: 0 },
       { x: 1, y: 10, z: 0 },
-      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-      { x: -160, y: 0, z: 0 },
       { x: -3, y: 0, z: 0 },
       { x: 0, y: 0, z: 0 },
       { x: 3, y: 0, z: 0 },
-      { x: 160, y: 0, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=0" />, at: 2, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0" />, at: 1, offset: [1, 0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />

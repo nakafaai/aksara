@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ubah persamaan lingkaran antara bentuk baku dan bentuk umum, lalu tentukan pusat serta jari-jarinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometri Analitik",
 };
 
@@ -19,13 +19,13 @@ Persamaan lingkaran memuat koordinat **pusat** dan nilai **jari-jari**, sehingga
 
 Kita mulai dari kasus paling sederhana, yaitu lingkaran yang berpusat di titik asal <InlineMath math="O(0,0)" />.
 
-Kalau kita punya lingkaran dengan pusat di <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="r" />, maka setiap titik <InlineMath math="(x,y)" /> pada lingkaran tersebut punya jarak yang sama dari pusat, yaitu sebesar <InlineMath math="r" />.
+Kalau kita punya lingkaran dengan pusat di <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="r>0" />, maka setiap titik <InlineMath math="(x,y)" /> pada lingkaran tersebut punya jarak yang sama dari pusat, yaitu sebesar <InlineMath math="r" />.
 
 Pakai rumus jarak, kita dapatkan:
 
 <BlockMath math="\sqrt{x^2 + y^2} = r" />
 
-Jika kedua ruas dikuadratkan, kita memperoleh persamaan lingkaran dengan pusat di titik asal:
+Jika **kedua ruas dikuadratkan**, kita memperoleh persamaan lingkaran dengan pusat di titik asal:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
@@ -219,7 +219,7 @@ Langkah melengkapkan kuadrat menunjukkan asal rumus pusat dan jari-jari:
 
 ## Menentukan Pusat dan Radius
 
-Dari bentuk baku <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, kita langsung dapat membaca:
+Dari **bentuk baku** <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" />, kita langsung dapat membaca:
 
 Pusat lingkarannya di <InlineMath math="(a,b)" /> dan jari-jarinya <InlineMath math="r" /> (yang didapat dari <InlineMath math="r = \sqrt{r^2}" />).
 
@@ -232,7 +232,7 @@ Sementara itu, dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /
 
 ## Latihan
 
-Setiap soal memberikan pusat dan jari-jari, tiga titik, atau persamaan umum, lalu meminta persamaan lingkarannya, jadi pilih bentuk yang sesuai dengan informasi yang diberikan. Informasi itulah yang menentukan pilihan bentuk, karena bentuk baku langsung memakai pusat dan jari-jari sementara bentuk umum harus diselesaikan lebih dulu.
+Pilih bentuk persamaan dari **informasi yang diketahui**. Pusat dan jari-jari dapat langsung dimasukkan ke bentuk baku. Jika yang diketahui ujung-ujung diameter, tentukan titik tengah dan setengah panjang diameter terlebih dahulu.
 
 1. Tentukan persamaan lingkaran yang berpusat di <InlineMath math="(3,-2)" /> dengan jari-jari <InlineMath math="5" />.
 
@@ -244,54 +244,53 @@ Setiap soal memberikan pusat dan jari-jari, tiga titik, atau persamaan umum, lal
 
 ### Pembahasan
 
-1. **Penyelesaian**:
+**Pembahasan 1**:
 
-   Diketahui pusat <InlineMath math="(a,b) = (3,-2)" /> dan jari-jari <InlineMath math="r = 5" />.
+Diketahui pusat <InlineMath math="(a,b) = (3,-2)" /> dan jari-jari <InlineMath math="r = 5" />.
 
-   Pakai rumus persamaan lingkaran:
+Pakai rumus persamaan lingkaran:
 
-   <MathContainer>
-     <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
-     <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
-     <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+  <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
+  <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
+</MathContainer>
 
-   Jadi persamaan lingkarannya adalah <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+Jadi persamaan lingkarannya adalah <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
 
-2. **Penyelesaian**:
+**Pembahasan 2**:
 
-   Dari persamaan <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, kita identifikasi koefisien:
+Dari persamaan <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, kita identifikasi koefisien:
 
-   <InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
+<InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
-     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
-     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
 
-   Jadi pusat lingkaran di <InlineMath math="(3,-2)" /> dengan jari-jari <InlineMath math="5" />.
+Jadi pusat lingkaran di <InlineMath math="(3,-2)" /> dengan jari-jari <InlineMath math="5" />.
 
-3. **Penyelesaian**:
+**Pembahasan 3**:
 
-   Karena lingkaran berpusat di <InlineMath math="O(0,0)" /> dan melalui titik <InlineMath math="(6,-8)" />, maka jari-jarinya adalah jarak dari pusat ke titik tersebut.
+Karena lingkaran berpusat di <InlineMath math="O(0,0)" /> dan melalui titik <InlineMath math="(6,-8)" />, maka jari-jarinya adalah jarak dari pusat ke titik tersebut.
 
-   <BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
+<BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
 
-   Persamaan lingkarannya: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
+Persamaan lingkarannya: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
 
-4. **Penyelesaian**:
+**Pembahasan 4**:
 
-   Pusat lingkaran adalah titik tengah dari diameter <InlineMath math="AB" />:
+Pusat lingkaran adalah titik tengah dari diameter <InlineMath math="AB" />:
 
-   <BlockMath math="\begin{aligned} &amp;\text{Pusat} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Pusat} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
 
-   Jari-jari adalah setengah panjang diameter:
+Jari-jari adalah setengah panjang diameter:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;\text{Panjang } AB \\ &amp;= \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2} \\ &amp;= \sqrt{(7-1)^2 + (-1-3)^2} \end{aligned}" />
-     <BlockMath math="\begin{aligned}  &amp;= \sqrt{6^2 + (-4)^2} \\ &amp;= \sqrt{36 + 16} \\ &amp;= \sqrt{52} \\ &amp;= \sqrt{4 \times 13} \\ &amp;= 2\sqrt{13} \end{aligned}" />
-     <BlockMath math="r = \frac{\text{diameter}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned}AB&amp;=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}\\&amp;=\sqrt{(7-1)^2+(-1-3)^2}\\&amp;=\sqrt{6^2+(-4)^2}\\&amp;=\sqrt{36+16}\\&amp;=\sqrt{52}\\&amp;=2\sqrt{13}\end{aligned}" />
+  <BlockMath math="r = \frac{\text{diameter}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
+</MathContainer>
 
-   Persamaan lingkarannya: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />
+Persamaan lingkarannya: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />

@@ -2,19 +2,33 @@ export const metadata = {
   title: "Solution to Question 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Apply the tangent-secant theorem from the external point <InlineMath math="P" />:
+Apply the **tangent-secant theorem** from the external point <InlineMath math="P" />:
 
 <BlockMath math="PA^2=PB\cdot PC" />
 
-Let <InlineMath math="PB=x" />. Since <InlineMath math="BC=10" />, the whole secant has length <InlineMath math="PC=x+10" />. Therefore,
+Let <InlineMath math="PB=x" />. Since <InlineMath math="BC=10" />, the secant segment from P to C has length <InlineMath math="PC=x+10" />. Therefore,
 
 <BlockMath math="\begin{aligned}
 12^2&=x(x+10),\\
 x^2+10x-144&=0,\\
-(x-8)(x+18)&=0.
+(x-8)(x+18)&=0 \\
+x&=8\ \text{or}\ x=-18.
 \end{aligned}" />
 
 A length must be positive, so <InlineMath math="x=8" /> and <InlineMath math="PC=8+10=18\,\mathrm{cm}" />.
+
+<LineEquation
+  title="A tangent and a secant segment"
+  description="P, B and C lie on one line in that order. Multiply PB by the entire segment PC, not just BC."
+  cameraPosition={[9,0,28]}
+  cameraTarget={[9,0,0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 121 }, (_, i) => { const t = 2*Math.PI*i/120; return { x: 13+5*Math.cos(t), y: 5*Math.sin(t), z: 0 }; }), color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }, { x: 18, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "P", at: 0, offset: [-0.4, -0.6, 0] }, { text: "B", at: 1, offset: [-0.3, -0.6, 0] }, { text: "C", at: 2, offset: [0.4, -0.6, 0] }, { text: "10 cm", at: 1, offset: [5, -0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 144/13, y: 60/13, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "A", at: 1, offset: [-0.3, 0.6, 0] }, { text: "12 cm", at: 0, offset: [5, 3.2, 0] }] },
+  ]}
+/>

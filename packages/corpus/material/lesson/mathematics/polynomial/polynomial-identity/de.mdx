@@ -15,7 +15,7 @@ Eine gewöhnliche Gleichung kann nur für bestimmte Werte erfüllt sein. So gilt
 
 ## Häufig verwendete Polynomidentitäten
 
-Diese Polynomidentitäten werden besonders häufig gebraucht:
+Diese **Polynomidentitäten** helfen dir beim Ausmultiplizieren und Faktorisieren:
 
 <MathContainer>
   <BlockMath math="a^2 - b^2 = (a + b)(a - b)" />
@@ -29,104 +29,83 @@ Diese Polynomidentitäten werden besonders häufig gebraucht:
 
 Diese Identitäten lassen sich in beide Richtungen lesen: von der Produktform zur entwickelten Form oder von der entwickelten Form zur Faktorform. Welche Richtung passt, hängt von der geforderten Operation ab.
 
+### Die Differenz zweier Quadrate als Fläche
+
+Entferne aus der rechten oberen Ecke eines Quadrats mit Seitenlänge <InlineMath math="4" /> ein Quadrat mit Seitenlänge <InlineMath math="1" />. Die zwei farbigen Teile behalten **denselben Flächeninhalt**, wenn du daraus ein Rechteck mit Seitenlängen <InlineMath math="5" /> und <InlineMath math="3" /> legst. Das größere Teil wird gedreht, nicht vergrößert.
+
+<MathVisual
+  title="Zwei Anordnungen mit Flächeninhalt 15"
+  description="Ein Vier-mal-vier-Quadrat ohne eine Eins-mal-eins-Ecke wird zu einem Fünf-mal-drei-Rechteck umgelegt."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-large", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "left-small", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "right-large", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 3 }, { x: 6, y: 3 }], appearance: "primary" },
+      { id: "right-small", kind: "polygon", vertices: [{ x: 10, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 3 }, { x: 10, y: 3 }], appearance: "secondary" }
+    ],
+    labels: [
+      { key: "left-large", objectId: "left-large", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "left-small", objectId: "left-small", at: { x: 3.5, y: 1.5 }, placement: "above" },
+      { key: "right-large", objectId: "right-large", at: { x: 8, y: 1.5 }, placement: "above" },
+      { key: "right-small", objectId: "right-small", at: { x: 10.5, y: 1.5 }, placement: "above" }
+    ]
+  }}
+  labels={{ "left-large": "12", "left-small": "3", "right-large": "12", "right-small": "3" }}
+/>
+
+<BlockMath math="4^2-1^2=16-1=15=(4+1)(4-1)" />
+
+Die Zeichnung zeigt <InlineMath math="a=4" /> und <InlineMath math="b=1" />. Für die Flächenkonstruktion gilt <InlineMath math="a>b>0" />. Die algebraische Identität gilt dagegen für alle reellen Zahlen.
+
 ## Eine Polynomidentität nachweisen
 
-Wie lässt sich entscheiden, ob eine Gleichung tatsächlich eine Identität ist?
-
-1.  **Identität beweisen:**
-
-    Forme eine Seite der Gleichung, meist die kompliziertere, mit gültigen algebraischen Schritten um. Stimmt sie anschließend exakt mit der anderen Seite überein, ist die Gleichung für alle Variablenwerte wahr.
-
-2.  **Identität widerlegen:**
-
-    Dafür genügt **ein Gegenbeispiel**: Finde einen Variablenwert, für den linke und rechte Seite verschieden sind. Dann kann die Gleichung keine Identität sein.
+Um eine **Identität zu beweisen**, formst du eine Seite mit gültigen Rechenschritten in die andere um. Jeder Schritt muss für alle Variablenwerte gelten. Um eine **Identität zu widerlegen**, genügt ein einziger Wert, bei dem die Seiten verschieden sind.
 
 ### Beispiele zum Beweisen von Identitäten
 
-Entscheide mit einem Beweis oder Gegenbeispiel, ob die folgenden Gleichungen Polynomidentitäten sind.
+Entscheide durch **Ausmultiplizieren oder ein Gegenbeispiel**, ob die folgenden Gleichungen Identitäten sind.
 
-1. <InlineMath math="(2x^2 - y^2)^2 = 4x^4 - 4x^2y^2 + y^4" />
-2. <InlineMath math="(2a - 5)(2a + 5) = 4a^2 - 20a + 25" />
+1. <InlineMath math="(2x^2-y^2)^2=4x^4-4x^2y^2+y^4" />
+2. <InlineMath math="(2a-5)(2a+5)=4a^2-20a+25" />
 
-**Lösung:**
+**Beispiel 1**. Verwende die zweite binomische Formel mit <InlineMath math="A=2x^2" /> und <InlineMath math="B=y^2" />:
 
-1. Wir entwickeln die linke Seite mit <InlineMath math="(A - B)^2 = A^2 - 2AB + B^2" />, wobei <InlineMath math="A = 2x^2" /> und <InlineMath math="B = y^2" /> gilt.
+<BlockMath math="\begin{aligned}(2x^2-y^2)^2 &amp;=(2x^2)^2-2(2x^2)(y^2)+(y^2)^2 \\ &amp;=4x^4-4x^2y^2+y^4\end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(2x^2-y^2)^2 \\ &amp;=(2x^2)^2-2(2x^2)(y^2)+(y^2)^2 \end{aligned}" />
-     <BlockMath math="= 4x^4 - 4x^2y^2 + y^4" />
-   </MathContainer>
+Das Ergebnis stimmt für alle Variablenwerte mit der rechten Seite überein. Die Gleichung ist daher eine **Polynomidentität**.
 
-   Die entwickelte linke Seite <InlineMath math="4x^4 - 4x^2y^2 + y^4" /> stimmt exakt mit der rechten Seite überein. Die Gleichung ist daher **eine Polynomidentität**.
+**Beispiel 2**. Setze auf beiden Seiten <InlineMath math="a=0" /> ein:
 
-2. Für ein Gegenbeispiel setzen wir auf beiden Seiten <InlineMath math="a = 0" /> ein.
+<BlockMath math="\begin{aligned}(2(0)-5)(2(0)+5)&amp;=(-5)(5)=-25 \\ 4(0)^2-20(0)+25&amp;=25\end{aligned}" />
 
-   - **Linke Seite:**
+Links erhältst du <InlineMath math="-25" />, rechts <InlineMath math="25" />. Dieser Unterschied zeigt, dass die Gleichung **keine Identität** ist. Richtig lautet die Umformung:
 
-     <MathContainer>
-       <BlockMath math="\begin{aligned} &amp;(2a - 5)(2a + 5) \\ &amp;= (2(0) - 5)(2(0) + 5) \end{aligned}" />
-       <BlockMath math="= (0 - 5)(0 + 5)" />
-       <BlockMath math="= (-5)(5)" />
-       <BlockMath math="= -25" />
-     </MathContainer>
-
-   - **Rechte Seite:**
-
-     <MathContainer>
-       <BlockMath math="\begin{aligned} &amp;4a^2 - 20a + 25 \\ &amp;= 4(0)^2 - 20(0) + 25 \end{aligned}" />
-       <BlockMath math="= 4(0) - 0 + 25" />
-       <BlockMath math="= 0 - 0 + 25" />
-       <BlockMath math="= 25" />
-     </MathContainer>
-
-   Da für <InlineMath math="a = 0" /> die linke Seite (<InlineMath math="-25" />) nicht gleich der rechten Seite (<InlineMath math="25" />) ist, ist diese Gleichung **keine polynomische Identität**.
-
-   Die korrekte Identität für <InlineMath math="(2a-5)(2a+5)" /> lautet <InlineMath math="(2a)^2 - 5^2 = 4a^2 - 25" />. Dabei wird <InlineMath math="(A-B)(A+B)=A^2-B^2" /> verwendet.
+<BlockMath math="(2a-5)(2a+5)=(2a)^2-5^2=4a^2-25" />
 
 ## Übung
 
-Entscheide für jede Gleichung, ob sie eine Polynomidentität ist, und begründe deine Entscheidung. Ein einziger Wert, für den die Gleichung nicht gilt, genügt als Gegenbeispiel, und für eine echte Identität müssen beide Seiten ausmultipliziert werden.
+Entscheide, ob jede Gleichung eine Identität ist. Zeige eine **für alle Werte gültige Umformung** oder gib ein Gegenbeispiel an.
 
-1. <InlineMath math="(2m - 3)^3 = 8m^3 - 27" />
-2. <InlineMath math="(2x - 3)^2 + 5 = 4x^2 - 12x + 14" />
+Gleichheit bei einem einzelnen Wert beweist noch keine Identität. Bei der ersten Gleichung stimmen beide Seiten zum Beispiel für den Wert null überein. Bei einem anderen Wert können sie trotzdem verschieden sein.
+
+1. <InlineMath math="(2m-3)^3=8m^3-27" />
+2. <InlineMath math="(2x-3)^2+5=4x^2-12x+14" />
 
 ### Ausführliche Lösung
 
-1. Testen wir mit dem Wert <InlineMath math="m = 1" />.
+**Aufgabe 1**. Wähle <InlineMath math="m=1" />:
 
-   - **Linke Seite:**
+<BlockMath math="\begin{aligned}(2(1)-3)^3&amp;=(-1)^3=-1 \\ 8(1)^3-27&amp;=8-27=-19\end{aligned}" />
 
-     <MathContainer>
-       <BlockMath math="(2m - 3)^3 = (2(1) - 3)^3" />
-       <BlockMath math="= (2 - 3)^3" />
-       <BlockMath math="= (-1)^3" />
-       <BlockMath math="= -1" />
-     </MathContainer>
+Die Seiten unterscheiden sich. Die Gleichung ist **keine Identität**. Die gemischten Terme in der dritten Potenz dürfen nicht entfallen:
 
-   - **Rechte Seite:**
+<BlockMath math="\begin{aligned}(2m-3)^3&amp;=(2m)^3-3(2m)^2(3)+3(2m)(3)^2-3^3 \\ &amp;=8m^3-36m^2+54m-27\end{aligned}" />
 
-     <MathContainer>
-       <BlockMath math="8m^3 - 27 = 8(1)^3 - 27" />
-       <BlockMath math="= 8(1) - 27" />
-       <BlockMath math="= 8 - 27" />
-       <BlockMath math="= -19" />
-     </MathContainer>
+**Aufgabe 2**. Multipliziere das Quadrat aus und behalte die zusätzliche Konstante <InlineMath math="5" /> bei:
 
-   Da für <InlineMath math="m=1" /> die linke Seite (<InlineMath math="-1" />) <InlineMath math="\neq" /> die rechte Seite (<InlineMath math="-19" />) ist, ist diese Gleichung **keine polynomische Identität**.
+<BlockMath math="\begin{aligned}(2x-3)^2+5&amp;=(2x)^2-2(2x)(3)+3^2+5 \\ &amp;=4x^2-12x+9+5 \\ &amp;=4x^2-12x+14\end{aligned}" />
 
-   Die korrekte Identität ist <InlineMath math="(2m-3)^3 = (2m)^3 - 3(2m)^2(3) + 3(2m)(3)^2 - 3^3 = 8m^3 - 36m^2 + 54m - 27" />.
-
-2. Wir entwickeln die linke Seite mit <InlineMath math="(A - B)^2 = A^2 - 2AB + B^2" />, wobei <InlineMath math="A = 2x" /> und <InlineMath math="B = 3" /> gilt.
-
-   Bezeichne das ausmultiplizierte Quadrat mit <InlineMath math="B" /> und behalte die zusätzliche Konstante bei:
-
-   <MathContainer>
-     <BlockMath math="B=(2x)^2-2(2x)(3)+(3)^2" />
-
-     <BlockMath math="(2x-3)^2+5=B+5" />
-     <BlockMath math="= [4x^2 - 12x + 9] + 5" />
-     <BlockMath math="= 4x^2 - 12x + 9 + 5" />
-     <BlockMath math="= 4x^2 - 12x + 14" />
-   </MathContainer>
-
-   Die entwickelte linke Seite <InlineMath math="4x^2 - 12x + 14" /> stimmt exakt mit der rechten Seite überein. Die Gleichung ist daher **eine Polynomidentität**.
+Das Ergebnis stimmt für alle Variablenwerte mit der rechten Seite überein. Die Gleichung ist daher eine **Polynomidentität**.

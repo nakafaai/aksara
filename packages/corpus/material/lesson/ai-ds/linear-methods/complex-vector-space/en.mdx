@@ -3,7 +3,7 @@ export const metadata = {
     description: "Build complex vector spaces from the complex field, understand the vector-space axioms, and see why the chosen scalar field changes dimension and linearity.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -25,6 +25,26 @@ The **modulus** or absolute value of a complex number is calculated with the for
 
 This modulus gives the "distance" of the complex number from the origin in the complex plane.
 
+
+For <InlineMath math="z=3+4i" />, conjugation changes the sign of the imaginary coordinate while preserving the distance from zero. Follow the two segments in the diagram.
+
+<MathContainer>
+<BlockMath math="\overline z=3-4i" />
+<BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
+</MathContainer>
+
+<LineEquation
+  title="Conjugation Reflects across the Real Axis"
+  description="Horizontal coordinate: real part. Vertical coordinate: imaginary part. The points 3+4i and 3-4i are equally far from zero."
+  cameraPosition={[1.5, 0, 12]}
+  cameraTarget={[1.5, 0, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#0d9488", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: "3+4i", at: 1 }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }], color: "#f97316", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: "3-4i", at: 1 }] },
+  ]}
+/>
+
 ## Fundamental Theorem of Algebra
 
 The fundamental theorem of algebra says that every nonconstant polynomial with complex coefficients has a complex root.
@@ -39,7 +59,7 @@ Applying the theorem repeatedly shows that a degree-<InlineMath math="n" /> poly
 
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
-It has exactly <InlineMath math="n" /> complex roots when multiplicities are counted. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
+It has exactly <InlineMath math="n" /> complex roots when **multiplicities are counted**. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
 
 ## Definition and Axioms of Complex Vector Space
 
@@ -87,7 +107,7 @@ Elements <InlineMath math="x \in V" /> are called **vectors**, and elements <Inl
 
 The set <InlineMath math="V=\mathbb C^2" /> is a complex vector space with componentwise operations. For instance,
 
-<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+<BlockMath math="\begin{aligned} (1+i)\begin{pmatrix}1\\-i\end{pmatrix} &amp;= \begin{pmatrix}(1+i)\cdot1\\(1+i)(-i)\end{pmatrix} \\ &amp;= \begin{pmatrix}1+i\\-i-i^2\end{pmatrix} = \begin{pmatrix}1+i\\1-i\end{pmatrix} \end{aligned}" />
 
 <Highlight>The scalar field changes how we count dimensions</Highlight>. The set <InlineMath math="\mathbb C" /> itself has basis <InlineMath math="\{1\}" /> as a complex vector space, but basis <InlineMath math="\{1,i\}" /> as a real vector space:
 
@@ -100,4 +120,4 @@ The set <InlineMath math="V=\mathbb C^2" /> is a complex vector space with compo
 
 Purely algebraic results derived from the vector-space axioms work over both <InlineMath math="\mathbb R" /> and <InlineMath math="\mathbb C" />. Results that use order or a real-only inner product need their assumptions adjusted. For example, complex inner products use conjugation, and complex numbers have no field order compatible with their arithmetic.
 
-The scalar field also decides which maps are linear. Complex conjugation is linear over <InlineMath math="\mathbb R" />. Over <InlineMath math="\mathbb C" />, multiplication by <InlineMath math="i" /> shows why linearity fails: <InlineMath math="\overline{iz}=-i\overline z" />. Always state the scalar field before discussing a basis, dimension, or linear map.
+The **scalar field** also decides which maps are linear. Complex conjugation is linear over <InlineMath math="\mathbb R" />. Over <InlineMath math="\mathbb C" />, multiplication by <InlineMath math="i" /> shows why linearity fails: <InlineMath math="\overline{iz}=-i\overline z" />. Always state the scalar field before discussing a basis, dimension, or linear map.

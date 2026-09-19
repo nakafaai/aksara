@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Multiplication and Division of Functions",
     description: "Form products and quotients of functions, determine their domains, and exclude zeros of the denominator.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -44,7 +43,7 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
         }),
         pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         smooth: false,
-        color: "#0284c7",
+        color: "#0d9488",
         labels: [{ text: <InlineMath math="g(x)=2" />, at: 20, offset: [0.5, -0.8, 0] }],
       },
       {
@@ -62,6 +61,7 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-2.5, 1, 0] }],
       },
     ]}
+    showZAxis={false}
     cameraTarget={[0, 1.5, 0]}
     cameraPosition={[0, 1.5, 13]}
   />
@@ -70,7 +70,7 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
 
 </ContentStack>
 
-<Highlight>As with a sum or difference, the product is defined only where both original functions are defined.</Highlight> Its domain is the intersection of their domains.
+A product requires <Highlight>a valid input for both functions</Highlight>. Its domain is the intersection of their domains.
 
 <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
 
@@ -87,8 +87,8 @@ Use slightly different functions this time:
 
 <MathContainer>
   <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
-  <BlockMath math="= (x^2) \cdot (x - 1)" />
-  <BlockMath math="= x^3 - x^2" />
+  <BlockMath math="(f \cdot g)(x) = (x^2) \cdot (x - 1)" />
+  <BlockMath math="(f \cdot g)(x) = x^3 - x^2" />
 </MathContainer>
 
 **Step 2**: Determine the domain of the resulting function
@@ -97,8 +97,8 @@ We find the intersection of <InlineMath math="D_f" /> and <InlineMath math="D_g"
 
 <MathContainer>
   <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
-  <BlockMath math="= \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-  <BlockMath math="= \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\}" />
 </MathContainer>
 
 So, the resulting function from multiplication is <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /> with the domain of all real numbers.
@@ -152,75 +152,81 @@ Or it can also be written as:
 
 So, the resulting function from division is <InlineMath math="(\frac{f}{g})(x) = \frac{x^2}{x-1}" /> with the domain of all real numbers except <InlineMath math="x=1" />.
 
+### Simplifying does not enlarge the domain
+
+If the numerator and denominator have a common factor, we may cancel that factor only where it is nonzero.
+
+<BlockMath math="h(x)=\frac{x^2-1}{x-1}=\frac{(x-1)(x+1)}{x-1}=x+1,\quad x\neq1" />
+
+The simplified formula keeps the **original domain restriction**. At input two, the fraction and simplified expression both equal three. At input one, the original fraction is undefined even though the linear expression equals two.
+
 ## Practice Problems
 
 Given the function <InlineMath math="f(x) = \sqrt{x+4}" /> with <InlineMath math="D_f = \{x | x \ge -4, x \in \mathbb{R}\}" /> and function <InlineMath math="g(x) = x^2 - 9" /> with <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
 
-1.  Determine <InlineMath math="(f \cdot g)(x)" /> and its domain <InlineMath math="D_{f \cdot g}" />.
+1.  Determine <InlineMath math="(f \cdot g)(x)" /> and its **domain** <InlineMath math="D_{f \cdot g}" />.
 2.  Determine <InlineMath math="(\frac{f}{g})(x)" /> and its domain <InlineMath math="D_{\frac{f}{g}}" />.
 3.  Calculate the value of <InlineMath math="(f \cdot g)(5)" />.
 4.  Is <InlineMath math="(\frac{f}{g})(3)" /> defined? Explain.
 
-### Answer Key
+### Product and domain
 
-1.  **Finding <InlineMath math="(f \cdot g)(x)" />:**
+<MathContainer>
+  <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
+  <BlockMath math="(f \cdot g)(x) = (\sqrt{x+4}) \cdot (x^2 - 9)" />
+  <BlockMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
-      <BlockMath math="= (\sqrt{x+4}) \cdot (x^2 - 9)" />
-      <BlockMath math="= (x^2 - 9)\sqrt{x+4}" />
-    </MathContainer>
+Finding **Domain** <InlineMath math="D_{f \cdot g}" />:
 
-    **Finding Domain <InlineMath math="D_{f \cdot g}" />:**
+<MathContainer>
+  <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
-      <BlockMath math="= \{x | x \ge -4, x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
-      <BlockMath math="= \{x | x \ge -4, x \in \mathbb{R}\}" />
-    </MathContainer>
+So, <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" /> with domain <InlineMath math="\{x | x \ge -4, x \in \mathbb{R}\}" />.
 
-    So, <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" /> with domain <InlineMath math="\{x | x \ge -4, x \in \mathbb{R}\}" />.
+### Quotient and domain
 
-2.  **Finding <InlineMath math="(\frac{f}{g})(x)" />:**
+<BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{\sqrt{x+4}}{x^2 - 9}" />
 
-    <BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{\sqrt{x+4}}{x^2 - 9}" />
+Finding Domain <InlineMath math="D_{\frac{f}{g}}" />:
 
-    **Finding Domain <InlineMath math="D_{\frac{f}{g}}" />:**
+Domain intersection: <InlineMath math="D_f \cap D_g = \{x | x \ge -4, x \in \mathbb{R}\}" />.
 
-    Domain intersection: <InlineMath math="D_f \cap D_g = \{x | x \ge -4, x \in \mathbb{R}\}" />.
+Find <InlineMath math="x" /> that makes <InlineMath math="g(x)=0" />:
 
-    Find <InlineMath math="x" /> that makes <InlineMath math="g(x)=0" />:
+<MathContainer>
+  <BlockMath math="g(x) = 0" />
+  <BlockMath math="x^2 - 9 = 0" />
+  <BlockMath math="(x-3)(x+3) = 0" />
+  <BlockMath math="x = 3 \text{ or } x = -3" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="g(x) = 0" />
-      <BlockMath math="x^2 - 9 = 0" />
-      <BlockMath math="(x-3)(x+3) = 0" />
-      <BlockMath math="x = 3 \text{ or } x = -3" />
-    </MathContainer>
+Exclude <InlineMath math="x=3" /> and <InlineMath math="x=-3" /> from the **domain intersection**:
 
-    Exclude <InlineMath math="x=3" /> and <InlineMath math="x=-3" /> from the domain intersection:
+<BlockMath math="D_{\frac fg}=\{x\in\mathbb R\mid x\geq-4\}\setminus\{-3,3\}" />
 
-    <BlockMath math="D_{\frac fg}=\{x\in\mathbb R\mid x\geq-4\}\setminus\{-3,3\}" />
+Or it can be written as:
 
-    Or it can be written as:
+<BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
 
-    <BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
+So, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> with domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
 
-    So, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> with domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
+### Product at five
 
-3.  **Calculating <InlineMath math="(f \cdot g)(5)" />:**
+Substitute the requested input into the **product already calculated**: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
 
-    We use the result from number 1: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
+Since <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> is in the domain <InlineMath math="D_{f \cdot g}" />.
 
-    Since <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> is in the domain <InlineMath math="D_{f \cdot g}" />.
+<MathContainer>
+  <BlockMath math="(f \cdot g)(5) = (5^2 - 9)\sqrt{5+4}" />
+  <BlockMath math="(f \cdot g)(5) = (25 - 9)\sqrt{9}" />
+  <BlockMath math="(f \cdot g)(5) = (16)(3)" />
+  <BlockMath math="(f \cdot g)(5) = 48" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(f \cdot g)(5) = (5^2 - 9)\sqrt{5+4}" />
-      <BlockMath math="= (25 - 9)\sqrt{9}" />
-      <BlockMath math="= (16)(3)" />
-      <BlockMath math="= 48" />
-    </MathContainer>
+### Why the quotient is undefined at three
 
-4.  **Is <InlineMath math="(\frac{f}{g})(3)" /> defined?**
-
-    Undefined. We look at the domain of <InlineMath math="(\frac{f}{g})(x)" /> from number 2, which is <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. The value <InlineMath math="x=3" /> is explicitly excluded from the domain because it would cause the denominator <InlineMath math="g(x) = x^2 - 9" /> to become zero (<InlineMath math="3^2 - 9 = 0" />). Division by zero is not allowed in mathematics.
+Undefined. We look at the domain of <InlineMath math="(\frac{f}{g})(x)" /> from number 2, which is <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. The value <InlineMath math="x=3" /> is explicitly excluded from the domain because it would cause the denominator <InlineMath math="g(x) = x^2 - 9" /> to become zero (<InlineMath math="3^2 - 9 = 0" />). **Division by zero** is not allowed in mathematics.

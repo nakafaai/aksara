@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-2$$",
+          label: "$$(1,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$-1$$",
+          label: "$$(0,2)$$",
         },
         {
           isCorrect: true,
-          label: "$$-\\frac32$$",
+          label: "$$(2,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
+          label: "$$(3,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac32$$",
+          label: "$$(1,0)$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-2$$",
+          label: "$$(1,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$-1$$",
+          label: "$$(0,2)$$",
         },
         {
           isCorrect: true,
-          label: "$$-\\frac32$$",
+          label: "$$(2,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
+          label: "$$(3,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac32$$",
+          label: "$$(1,0)$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-2$$",
+          label: "$$(1,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$-1$$",
+          label: "$$(0,2)$$",
         },
         {
           isCorrect: true,
-          label: "$$-\\frac32$$",
+          label: "$$(2,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
+          label: "$$(3,1)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac32$$",
+          label: "$$(1,0)$$",
         },
       ],
     },

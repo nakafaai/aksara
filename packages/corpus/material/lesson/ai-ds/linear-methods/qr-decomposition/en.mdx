@@ -3,7 +3,7 @@ export const metadata = {
     description: "Factor matrices with QR decomposition using the Gram Schmidt process or Householder transformations, then solve linear systems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-14",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Linear Methods of AI",
 };
 
@@ -19,7 +19,7 @@ This factorization is the <InlineMath math="\mathrm{QR}" /> decomposition of <In
 
 ### Proof with Gram Schmidt Orthogonalization
 
-Let <InlineMath math="a_j" /> denote column <InlineMath math="j" /> of <InlineMath math="A" />. Gram-Schmidt removes the components in the directions already found, then normalizes what remains:
+Let <InlineMath math="a_j" /> denote column <InlineMath math="j" /> of <InlineMath math="A" />. Gram-Schmidt **removes the components** in the directions already found, then normalizes what remains:
 
 <MathContainer>
 <BlockMath math="\tilde{q}_j := a_j - \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k" />
@@ -46,11 +46,11 @@ The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Full and Reduced QR Decomposition
 
-For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes. Both forms multiply back to <InlineMath math="A" />, so the choice depends on whether you need the complete orthonormal basis or only the columns that carry the data.
+For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with **different matrix sizes**. Both forms multiply back to <InlineMath math="A" />, so the choice depends on whether you need the complete orthonormal basis or only the columns that carry the data.
 
 ### Full QR Decomposition
 
-The full form keeps all <InlineMath math="m" /> columns of <InlineMath math="Q" />:
+The full form **keeps all** <InlineMath math="m" /> columns of <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R" />
 
@@ -58,7 +58,7 @@ Here <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> is orthogonal and <InlineM
 
 ### Reduced QR Decomposition
 
-The reduced form removes those zero rows and the matching unused columns of <InlineMath math="Q" />:
+The reduced form **removes those zero rows** and the matching unused columns of <InlineMath math="Q" />:
 
 <BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
@@ -72,7 +72,7 @@ The null space of <InlineMath math="A^T" /> is the set of vectors <InlineMath ma
 
 ### Uniqueness Property
 
-For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every diagonal entry of <InlineMath math="R_1" /> is positive. That sign condition removes the remaining freedom, because multiplying a column of <InlineMath math="Q_1" /> and the matching row of <InlineMath math="R_1" /> by <InlineMath math="-1" /> leaves the product unchanged.
+For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every **diagonal entry** of <InlineMath math="R_1" /> is positive. That sign condition removes the remaining freedom, because multiplying a column of <InlineMath math="Q_1" /> and the matching row of <InlineMath math="R_1" /> by <InlineMath math="-1" /> leaves the product unchanged.
 
 ## Worked Thin QR Example
 
@@ -81,7 +81,7 @@ Let
 
 <BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
 
-Gram-Schmidt first gives
+**Gram-Schmidt first** gives
 
 <MathContainer>
 <BlockMath math="q_1=\frac{a_1}{\|a_1\|_2}=\frac1{\sqrt2}\begin{pmatrix}1\\1\\0\end{pmatrix}" />
@@ -100,7 +100,7 @@ The calculation gives:
 
 ## Householder Method for QR Decomposition
 
-Classical Gram-Schmidt gives a direct derivation, but nearly dependent columns can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
+Classical Gram-Schmidt gives a direct derivation, but **nearly dependent columns** can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
 
 ### Householder Transformation
 
@@ -108,11 +108,11 @@ For a unit vector <InlineMath math="v\in\mathbb{R}^m" />, define the Householder
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
 
-The outer product <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\times1" /> column by a <InlineMath math="1\times m" /> row, so it produces an <InlineMath math="m\times m" /> rank-one matrix. The reversed product <InlineMath math="v^Tv" /> is the scalar <InlineMath math="1" />.
+The **outer product** <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\times1" /> column by a <InlineMath math="1\times m" /> row, so it produces an <InlineMath math="m\times m" /> rank-one matrix. The reversed product <InlineMath math="v^Tv" /> is the scalar <InlineMath math="1" />.
 
 ## Properties of Householder Transformation
 
-For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and a condition number of one says that the reflection never enlarges a computation.
+For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and **condition number one** means that an exact reflection preserves the Euclidean norm of a perturbation vector.
 
 1. <InlineMath math="S" /> is symmetric: <InlineMath math="S^T = S" />
 
@@ -124,7 +124,7 @@ For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the fol
 
 ## Householder Procedure
 
-Let <InlineMath math="A\in\mathbb{R}^{m\times n}" /> satisfy <InlineMath math="m\geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. Each Householder step zeros the entries below one diagonal position while leaving the zeros created by earlier steps unchanged.
+Let <InlineMath math="A\in\mathbb{R}^{m\times n}" /> satisfy <InlineMath math="m\geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. **Each Householder step** zeros the entries below one diagonal position while leaving the zeros created by earlier steps unchanged.
 
 Start with <InlineMath math="A_1=A" />. Reflect its first column onto a multiple of the first coordinate vector:
 
@@ -144,7 +144,7 @@ With <InlineMath math="S_1=I_m-2v_1v_1^T" />, the first column below the diagona
 
 In the matrix <InlineMath math="A_2" />, <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> and <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
 
-Apply the next reflector only to the remaining lower-right submatrix:
+Apply the next reflector only to the **remaining lower-right submatrix**:
 
 <MathContainer>
 <BlockMath math="\tilde{a}_2 \text{ first column of } \tilde{A}_2" />
@@ -195,7 +195,7 @@ At step <InlineMath math="i" />, take the active part of column <InlineMath math
 
 <BlockMath math="\begin{aligned} \tilde{a}_i &amp;= \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} \\ &amp;:= \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1} \end{aligned}" />
 
-Compute its norm, choose a sign that avoids cancellation, and form the Householder vector:
+Compute its norm, choose a sign that **avoids cancellation**, and form the Householder vector:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
@@ -232,30 +232,32 @@ After <InlineMath math="n" /> steps,
 
 ## Numerical Aspects and Householder Complexity
 
-Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the rounding error behaves. Both answers decide whether the method fits the problem: the operation count sets the run time for a large matrix, and the rounding behavior decides how much of the computed result you can trust.
+Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the **rounding error behaves**. Both answers decide whether the method fits the problem: the operation count sets the run time for a large matrix, and the rounding behavior decides how much of the computed result you can trust.
 
 ### Computational Complexity
+
+The count below stores <InlineMath math="Q" /> **implicitly as reflectors** and computes <InlineMath math="R" />. Explicitly constructing a full <InlineMath math="m\times m" /> matrix <InlineMath math="Q" /> costs additional work.
 
 For <InlineMath math="m\ge n" />, a <InlineMath math="\mathrm{QR}" /> decomposition with Householder reflectors requires approximately:
 
 <BlockMath math="2mn^2-\frac23n^3" />
-The approximate number of floating-point operations when <InlineMath math="m=n" /> is:
+The approximate number of **floating-point operations** when <InlineMath math="m=n" /> is:
 
 <BlockMath math="\frac43n^3" />
 
 ### Numerical Properties
 
-1. Orthogonal multiplication preserves singular values, so <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> for a full-column-rank matrix.
+Orthogonal multiplication **preserves singular values**, so <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> for a full-column-rank matrix.
 
-2. At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm\|\widetilde a_i\|_2" />. Choose the sign below while computing the reflector to avoid subtracting nearly equal numbers:
+At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm\|\widetilde a_i\|_2" />. Choose the sign below while computing the reflector to avoid subtracting nearly equal numbers:
 
-   <MathContainer>
-     <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
-     <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
+  <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
+</MathContainer>
 
-   After the factorization, matching signs in one column of <InlineMath math="Q" /> and one row of <InlineMath math="R" /> can be flipped to make the diagonal of <InlineMath math="R" /> positive. If <InlineMath math="\|\widetilde a_i\|_2=0" />, the matrix lacks full column rank and this uniqueness condition no longer applies. A column-pivoted, rank-revealing <InlineMath math="\mathrm{QR}" /> decomposition is more informative when numerical rank matters.
+After the factorization, matching signs in one column of <InlineMath math="Q" /> and one row of <InlineMath math="R" /> can be flipped to make the diagonal of <InlineMath math="R" /> positive. If <InlineMath math="\|\widetilde a_i\|_2=0" />, the matrix lacks full column rank and this uniqueness condition no longer applies. A column-pivoted, rank-revealing <InlineMath math="\mathrm{QR}" /> decomposition is more informative when numerical rank matters.
 
-3. A compact implementation stores each Householder vector <InlineMath math="u_i" /> below the diagonal of the working copy of <InlineMath math="A" /> and stores the diagonal entries separately. The reflectors can then be applied without constructing <InlineMath math="Q" /> explicitly.
+A compact implementation rescales the Householder vector so its first active entry is 1. Its remaining entries fit below the diagonal of the working matrix, while a separate scalar stores the reflector strength. The diagonal and upper triangle retain <InlineMath math="R" />. Apply the stored reflectors without constructing <InlineMath math="Q" /> explicitly.
 
-4. The reduced factorization keeps the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> and the first <InlineMath math="n" /> rows of <InlineMath math="R" />.
+The reduced factorization keeps the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> and the first <InlineMath math="n" /> rows of <InlineMath math="R" />.

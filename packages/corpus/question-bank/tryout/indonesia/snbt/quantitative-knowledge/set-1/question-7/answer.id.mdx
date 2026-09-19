@@ -2,12 +2,12 @@ export const metadata = {
   title: "Pembahasan Soal 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
 };
 
-Diketahui <InlineMath math="\sin A = \frac{5}{13}" /> dan <InlineMath math="\cos B = \frac{8}{17}" /> dengan <InlineMath math="A" /> dan <InlineMath math="B" /> adalah sudut lancip.
+Diketahui <InlineMath math="\sin A = \frac{5}{13}" /> dan <InlineMath math="\cos B = \frac{8}{17}" /> dengan <InlineMath math="A" /> dan <InlineMath math="B" /> adalah **sudut lancip**.
 
-Dari <InlineMath math="\sin A = \frac{5}{13}" />, sisi depannya adalah <InlineMath math="5" /> dan sisi miringnya <InlineMath math="13" />. Maka sisi sampingnya adalah
+Dari <InlineMath math="\sin A = \frac{5}{13}" />, pilih segitiga siku-siku dengan sisi depan sudut <InlineMath math="A" /> sepanjang <InlineMath math="5" /> dan sisi miring sepanjang <InlineMath math="13" />. Sisi samping sudut <InlineMath math="A" /> dihitung dengan Teorema Pythagoras:
 
 <BlockMath math="\begin{aligned}&\sqrt{13^2 - 5^2}\\&=\sqrt{169 - 25}\\&=\sqrt{144}\\&=12\end{aligned}" />
 
@@ -18,7 +18,7 @@ Jadi untuk sudut <InlineMath math="A" />
 <UnitCircle
   title={<>Sudut <InlineMath math="A" /></>}
   description={<>Visualisasi sudut <InlineMath math="A" /> dengan <InlineMath math="\sin A = \frac{5}{13}" />, <InlineMath math="\cos A = \frac{12}{13}" />, dan <InlineMath math="\tan A = \frac{5}{12}" />.</>}
-  angle={22.62}
+  angle={Math.asin(5 / 13) * 180 / Math.PI}
   trigValues={{
     sin: "5/13",
     cos: "12/13",
@@ -26,7 +26,7 @@ Jadi untuk sudut <InlineMath math="A" />
   }}
 />
 
-Dari <InlineMath math="\cos B = \frac{8}{17}" />, sisi sampingnya adalah <InlineMath math="8" /> dan sisi miringnya <InlineMath math="17" />. Maka sisi depannya adalah
+Dari <InlineMath math="\cos B = \frac{8}{17}" />, pilih sisi samping sudut <InlineMath math="B" /> sepanjang <InlineMath math="8" /> dan sisi miring sepanjang <InlineMath math="17" />. Sisi depan sudut <InlineMath math="B" /> adalah:
 
 <BlockMath math="\begin{aligned}&\sqrt{17^2 - 8^2}\\&=\sqrt{289 - 64}\\&=\sqrt{225}\\&=15\end{aligned}" />
 
@@ -37,7 +37,7 @@ Jadi untuk sudut <InlineMath math="B" />
 <UnitCircle
   title={<>Sudut <InlineMath math="B" /></>}
   description={<>Visualisasi sudut <InlineMath math="B" /> dengan <InlineMath math="\sin B = \frac{15}{17}" />, <InlineMath math="\cos B = \frac{8}{17}" />, dan <InlineMath math="\tan B = \frac{15}{8}" />.</>}
-  angle={61.93}
+  angle={Math.acos(8 / 17) * 180 / Math.PI}
   trigValues={{
     sin: "15/17",
     cos: "8/17",
@@ -45,7 +45,7 @@ Jadi untuk sudut <InlineMath math="B" />
   }}
 />
 
-**Pernyataan (1): <InlineMath math="\tan A + \tan B = \frac{19}{20}" />**
+**Pernyataan (1)**: <InlineMath math="\tan A + \tan B = \frac{19}{20}" />
 
 <MathContainer>
 <BlockMath math="\tan A + \tan B = \frac{5}{12} + \frac{15}{8}" />
@@ -55,7 +55,7 @@ Jadi untuk sudut <InlineMath math="B" />
 
 Hasil perhitungannya adalah <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. Pernyataan (1) memberi hasil <InlineMath math="\frac{19}{20}" />, sehingga salah.
 
-**Pernyataan (2): <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />**
+**Pernyataan (2)**: <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned}&\cos A\sin B+\cos B\sin A\\&=\frac{12}{13}\cdot\frac{15}{17}\\&\quad+\frac8{17}\cdot\frac5{13}\end{aligned}" />
@@ -65,7 +65,7 @@ Hasil perhitungannya adalah <InlineMath math="\tan A + \tan B = \frac{55}{24}" /
 
 Pernyataan (2) benar.
 
-**Pernyataan (3): <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />**
+**Pernyataan (3)**: <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />
 
 <MathContainer>
 <BlockMath math="\frac{\tan A}{\tan B} = \frac{\frac{5}{12}}{\frac{15}{8}}" />
@@ -76,7 +76,7 @@ Pernyataan (2) benar.
 
 Hasil perhitungannya adalah <InlineMath math="\frac{\tan A}{\tan B} = \frac{2}{9}" />. Pernyataan (3) memberi hasil <InlineMath math="\frac{25}{32}" />, sehingga salah.
 
-**Pernyataan (4): <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />**
+**Pernyataan (4)**: <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />
 
 <MathContainer>
 <BlockMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{\sin A}{\cos A} \cdot \frac{\cos B}{\sin B}" />

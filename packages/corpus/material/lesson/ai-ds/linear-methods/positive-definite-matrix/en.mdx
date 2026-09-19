@@ -3,7 +3,7 @@ export const metadata = {
   description: "Classify symmetric and Hermitian matrices with quadratic forms, eigenvalues, principal minors, Cholesky factors, and optimization geometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -15,7 +15,7 @@ For a real symmetric matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" />, co
 
 The complex version uses a Hermitian matrix and <InlineMath math="q(x)=x^HAx" />. The sign of this scalar classifies the matrix:
 
-| Class | Condition for every nonzero <InlineMath math="x" /> |
+| Class | Sign condition |
 | --- | --- |
 | Positive definite | <InlineMath math="x^TAx>0" /> |
 | Positive semidefinite | <InlineMath math="x^TAx\ge0" /> |
@@ -23,7 +23,9 @@ The complex version uses a Hermitian matrix and <InlineMath math="q(x)=x^HAx" />
 | Negative semidefinite | <InlineMath math="x^TAx\le0" /> |
 | Indefinite | the quadratic form takes both positive and negative values |
 
-<Highlight>Symmetry is part of the usual definition.</Highlight> For a nonsymmetric real matrix,
+For the four definite or semidefinite classes, the inequality must hold for **every nonzero vector**. Indefinite means that at least one vector gives a positive value and another gives a negative value.
+
+**Symmetry** is part of the usual definition. For a nonsymmetric real matrix,
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
@@ -49,7 +51,7 @@ Every diagonal entry of a positive definite matrix is positive because
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-A matrix can have positive diagonal entries and still fail to be positive definite because the cross terms also affect <InlineMath math="x^TAx" />.
+A matrix can have positive diagonal entries and still fail to be positive definite because the **cross terms** also affect <InlineMath math="x^TAx" />.
 
 ## Ellipsoid Geometry
 
@@ -61,7 +63,36 @@ The set <InlineMath math="E" /> is an ellipsoid centered at the origin. In eigen
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-This equation shows that the principal axes of the ellipsoid follow the eigenvectors of <InlineMath math="A" />. The <InlineMath math="i" />th semiaxis has length <InlineMath math="1/\sqrt{\lambda_i}" />. Small eigenvalues produce longer semiaxes, while large eigenvalues produce shorter semiaxes.
+This equation shows that the **principal axes** of the ellipsoid follow the eigenvectors of <InlineMath math="A" />. The <InlineMath math="i" />th semiaxis has length <InlineMath math="1/\sqrt{\lambda_i}" />. Small eigenvalues produce longer semiaxes, while large eigenvalues produce shorter semiaxes.
+
+
+For <InlineMath math="A=\operatorname{diag}(1,1/4,1/9)" />, the three eigenvalues give semiaxis lengths <InlineMath math="1,2,3" />. Rotate the model to compare the three directions. The curves are cross-sections of the same ellipsoid, not different surfaces.
+
+<BlockMath math="x^2+\frac{y^2}{4}+\frac{z^2}{9}=1" />
+
+<LineEquation
+  title="Eigenvalues Set the Semiaxis Lengths"
+  description="Cross-sections of x² + y²/4 + z²/9 = 1. The semiaxes along x, y, z have lengths 1, 2, 3."
+  cameraPosition={[6, 5, 7]}
+  data={[
+    ...Array.from({ length: 4 }, (_, meridian) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const turn = meridian * Math.PI / 4;
+        return { x: Math.cos(turn) * Math.sin(angle), y: 2 * Math.sin(turn) * Math.sin(angle), z: 3 * Math.cos(angle) };
+      }),
+      smooth: false, showPoints: false, color: "#0d9488",
+    })),
+    ...Array.from({ length: 5 }, (_, latitude) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const tilt = (latitude + 1) * Math.PI / 6;
+        return { x: Math.sin(tilt) * Math.cos(angle), y: 2 * Math.sin(tilt) * Math.sin(angle), z: 3 * Math.cos(tilt) };
+      }),
+      smooth: false, showPoints: false, color: "#f97316",
+    })),
+  ]}
+/>
 
 ## Principal Minor Tests
 
@@ -71,7 +102,7 @@ Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k"
 
 <BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
-This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires every principal minor to be nonnegative. Checking the leading ones alone is insufficient.
+This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires **every principal minor** to be nonnegative. Checking the leading ones alone is insufficient.
 
 ## Worked Two by Two Checks
 
@@ -86,7 +117,7 @@ Its leading principal minors are
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-Both leading principal minors are positive, so <InlineMath math="A" /> is positive definite. Both eigenvalues are also positive:
+Both **leading principal minors are positive**, so <InlineMath math="A" /> is positive definite. Both eigenvalues are also positive:
 
 <BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5.61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3.38197 \end{aligned}" />
 
@@ -124,7 +155,7 @@ This equation shows that <InlineMath math="M^TM" /> is always positive semidefin
 
 Full column rank automatically implies <InlineMath math="m\ge n" />. It does not need to be assumed before the semidefinite statement.
 
-More generally, a Gram matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> is positive semidefinite and becomes positive definite exactly when the vectors <InlineMath math="v_i" /> are linearly independent.
+More generally, a Gram matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> is positive semidefinite and becomes positive definite exactly when the vectors <InlineMath math="v_i" /> are **linearly independent**.
 
 ## Unique Minimizer of a Quadratic Objective
 
@@ -139,7 +170,7 @@ Its gradient and Hessian are
 <BlockMath math="\nabla^2F(x)=A" />
 </MathContainer>
 
-If <InlineMath math="A" /> is positive definite, <InlineMath math="F" /> is strictly convex and has the unique minimizer
+If <InlineMath math="A" /> is positive definite, <InlineMath math="F" /> is **strictly convex** and has the unique minimizer
 
 <BlockMath math="x_*=A^{-1}b" />
 
@@ -155,4 +186,4 @@ For Hermitian <InlineMath math="A" />, the eigenvalues of <InlineMath math="A-tI
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. In numerical algorithms, solve the linear system directly because forming an explicit inverse requires more operations and can amplify rounding error.
+If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. In numerical algorithms, **solve the linear system directly** because forming an explicit inverse requires more operations and can amplify rounding error.

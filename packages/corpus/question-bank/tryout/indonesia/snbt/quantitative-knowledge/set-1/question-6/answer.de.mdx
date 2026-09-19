@@ -2,12 +2,18 @@ export const metadata = {
   title: "Lösung zu Aufgabe 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
 };
 
+Da der Umfang der Raute <InlineMath math="PQRS" /> <InlineMath math="20\text{ Einheiten}" /> beträgt, ist jede Seite
 
+<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ Einheiten}\end{aligned}" />
 
-Das Diagramm zeigt die Eckpunkte der Raute bei <InlineMath math="P(0, 0)" />, <InlineMath math="Q(4, 3)" />, <InlineMath math="R(8, 0)" /> und <InlineMath math="S(4, -3)" />.
+Die Diagonalen einer Raute **halbieren sich rechtwinklig**. Der Mittelpunkt von <InlineMath math="PR" /> ist <InlineMath math="O(4,0)" />, also gilt <InlineMath math="PO=4" />. Im rechtwinkligen Dreieck <InlineMath math="POQ" /> ist <InlineMath math="PQ=5" /> die Hypotenuse.
+
+<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+
+Da <InlineMath math="Q" /> oberhalb der waagerechten Achse liegt, hat dieser Punkt die Koordinaten <InlineMath math="Q(4,3)" />. Gegenüber liegt <InlineMath math="S(4,-3)" />.
 
 Zunächst berechnen wir die Steigung der Geraden <InlineMath math="PS" />:
 
@@ -31,9 +37,9 @@ Da die gesuchte Gerade senkrecht auf <InlineMath math="PS" /> steht, ist das Pro
 
 Die Gerade durch <InlineMath math="Q" />, die senkrecht auf <InlineMath math="PS" /> steht, hat also die Steigung <InlineMath math="m = \frac{4}{3}" />.
 
-Eine Gerade in der Form <InlineMath math="ax + by = c" /> hat die Steigung <InlineMath math="m = -\frac{a}{b}" />.
+Mit der **Punkt-Steigungs-Form** und <InlineMath math="Q(4,3)" /> bestimmen wir die gesuchte Gerade:
 
-Wir suchen daher die Antwortmöglichkeit mit der Steigung <InlineMath math="\frac{4}{3}" />.
+<BlockMath math="\begin{aligned}y-3&=\frac43(x-4)\\3y-9&=4x-16\\4x-3y&=7\end{aligned}" />
 
 <MathVisual
   title="Senkrechte Geraden"
@@ -42,8 +48,8 @@ Wir suchen daher die Antwortmöglichkeit mit der Steigung <InlineMath math="\fra
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -3, max: 11 },
-      y: { min: -6, max: 12 },
+      x: { min: -1, max: 9 },
+      y: { min: -4, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
@@ -63,8 +69,8 @@ Wir suchen daher die Antwortmöglichkeit mit der Steigung <InlineMath math="\fra
         kind: "line",
         appearance: "secondary",
         through: [
-          { x: -2, y: -5 },
-          { x: 10, y: 11 },
+          { x: 1, y: -1 },
+          { x: 7, y: 7 },
         ],
       },
     ],

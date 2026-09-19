@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the four basic reflection matrices and apply them to points and triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
@@ -36,6 +36,8 @@ The reflection matrix for the <InlineMath math="x" />-axis is:
 
 Reflecting a point <InlineMath math="(x,y)" /> across the <InlineMath math="y" />-axis results in <InlineMath math="(-x,y)" />.
 
+Only the **horizontal coordinate changes sign**. The first row selects the negative horizontal coordinate, while the second preserves the vertical coordinate.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ y \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} -1x + 0y \\ 0x + 1y \end{pmatrix}" />
@@ -50,6 +52,8 @@ The matrix is:
 ## Reflection Matrix for Main Diagonal Line
 
 Reflecting a point <InlineMath math="(x,y)" /> across the line <InlineMath math="y=x" /> results in <InlineMath math="(y,x)" />.
+
+This matrix **exchanges the coordinates**. Its ones lie off the main diagonal because the first row selects the vertical coordinate and the second selects the horizontal coordinate.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} y \\ x \end{pmatrix}" />
@@ -66,6 +70,8 @@ The matrix is:
 
 Reflecting a point <InlineMath math="(x,y)" /> across the line <InlineMath math="y=-x" /> results in <InlineMath math="(-y,-x)" />.
 
+This matrix **exchanges and negates both coordinates**. The off-diagonal negative ones apply both operations in one multiplication.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} 0x - 1y \\ -1x + 0y \end{pmatrix}" />
@@ -79,28 +85,22 @@ The matrix is:
 
 ## Basic Reflection Matrices
 
-Each matrix below acts on a column vector that holds the coordinates of a point. Read one row as <Highlight>the rule for one output coordinate</Highlight>, so the first row produces the new <InlineMath math="x" /> and the second row produces the new <InlineMath math="y" />. The matrices for the coordinate axes and for the origin follow.
+Compare the four matrices using **the same original point**, <InlineMath math="P(3,-4)" />. Notice the difference between reversing signs and exchanging coordinates:
 
-- Reflection matrix for the <InlineMath math="x" />-axis:
-
-  <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-- Reflection matrix for the <InlineMath math="y" />-axis:
-
-  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
-- Reflection matrix for line <InlineMath math="y=x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
-- Reflection matrix for line <InlineMath math="y=-x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+| Mirror | Coordinate rule | Image |
+| --- | --- | --- |
+| <InlineMath math="y=0" /> | <InlineMath math="(x,y)\mapsto(x,-y)" /> | <InlineMath math="(3,4)" /> |
+| <InlineMath math="x=0" /> | <InlineMath math="(x,y)\mapsto(-x,y)" /> | <InlineMath math="(-3,-4)" /> |
+| <InlineMath math="y=x" /> | <InlineMath math="(x,y)\mapsto(y,x)" /> | <InlineMath math="(-4,3)" /> |
+| <InlineMath math="y=-x" /> | <InlineMath math="(x,y)\mapsto(-y,-x)" /> | <InlineMath math="(4,-3)" /> |
 
 ## Finding the Image of a Point using Matrix
 
 Find the image of <InlineMath math="(3,-4)" /> reflected across the <InlineMath math="x" />-axis.
 
-**Solution:**
+**Solution**:
 
-Using the reflection matrix for the <InlineMath math="x" />-axis:
+Use **row-by-column multiplication** with the reflection matrix for the <InlineMath math="x" />-axis:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
@@ -110,7 +110,7 @@ The image is <InlineMath math="(3,4)" />.
 
 Determine the image of triangle <InlineMath math="ABC" /> with vertices <InlineMath math="A(3,1)" />, <InlineMath math="B(-2,3)" />, and <InlineMath math="C(2,-1)" /> reflected across the <InlineMath math="y" />-axis!
 
-**Solution:**
+**Solution**:
 
 The reflection matrix for the <InlineMath math="y" />-axis is:
 
@@ -120,7 +120,7 @@ The matrix of triangle <InlineMath math="ABC" />'s vertices:
 
 <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-The columns represent <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, from left to right. Multiply each column by the reflection matrix to find both coordinates of its image.
+The columns represent <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, from left to right. Multiply **each point column** by the reflection matrix to find both coordinates of its image.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
@@ -186,10 +186,13 @@ The image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath mat
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Exercises
+
+Choose the **matrix for the mirror line**, then multiply by the coordinate vector. For the triangle, keep the three vertices in the same column order.
 
 1.  Find the image of point <InlineMath math="(3,5)" /> reflected across the <InlineMath math="x" />-axis using the following reflection matrix:
 
@@ -198,30 +201,36 @@ The image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath mat
 
 ### Solutions
 
-1.  Multiply the position vector of <InlineMath math="(3,5)" /> by the reflection matrix for the <InlineMath math="x" />-axis:
+The first row gives the horizontal coordinate and the second gives the vertical coordinate. Reflection across the negative diagonal **exchanges the coordinates and reverses their signs**.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
+**Solution 1**
 
-    Image: <InlineMath math="(3,-5)" />.
+Multiply the position vector of <InlineMath math="(3,5)" /> by the reflection matrix for the <InlineMath math="x" />-axis:
 
-2.  The reflection matrix for <InlineMath math="y=-x" /> is:
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+Image: <InlineMath math="(3,-5)" />.
 
-    Matrix of <InlineMath math="ABC" /> vertices:
+**Solution 2**
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+The reflection matrix for <InlineMath math="y=-x" /> is:
 
-      <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-    </MathContainer>
-          Compute each entry by multiplying a row by a column:
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+Matrix of <InlineMath math="ABC" /> vertices:
 
-      <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-    Image: <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" />, <InlineMath math="C'(1,-2)" />.
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+</MathContainer>
+Compute each entry by multiplying a row by a column:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+
+  <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
+</MathContainer>
+
+Image: <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" />, <InlineMath math="C'(1,-2)" />.

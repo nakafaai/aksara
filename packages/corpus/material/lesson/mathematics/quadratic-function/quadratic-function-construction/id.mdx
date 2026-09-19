@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Menyusun Fungsi Kuadrat",
   description: "Susun fungsi kuadrat dari tiga titik, bentuk puncak, akar, atau simetri, lalu periksa setiap metode melalui contoh dan pembahasan.",
@@ -23,15 +21,15 @@ Fungsi kuadrat dapat ditulis dalam tiga bentuk yang setara:
 
 Ketiga bentuk ini saling berhubungan dan dapat diubah dari satu bentuk ke bentuk lainnya.
 
+<BlockMath math="x^2-2x-3=(x-3)(x+1)=(x-1)^2-4" />
+
 ## Cara Menyusun Fungsi Kuadrat
 
-Syarat yang diberikan menentukan cara paling singkat untuk menyusun fungsinya. Tiga titik, titik puncak bersama satu titik lain, dan kedua titik potong masing-masing memasok informasi yang tepat untuk salah satu dari tiga bentuk tersebut.
-
-Fungsi kuadrat sudah tertentu setelah cukup banyak syarat diketahui.
+Pilih bentuk yang langsung memakai <Highlight>informasi yang diketahui</Highlight>. Tiga titik memberi persamaan untuk koefisien. Titik puncak memerlukan satu titik lain di luar sumbu simetri, sedangkan dua akar masih memerlukan satu titik tambahan untuk menentukan faktor pengali.
 
 ### Tiga Titik
 
-Tiga titik dengan koordinat <InlineMath math="x" /> yang berbeda menentukan tepat satu polinom berderajat paling tinggi <InlineMath math="2" />. Polinom tersebut merupakan fungsi kuadrat hanya jika koefisien yang dihasilkan memenuhi <InlineMath math="a\neq0" />.
+Tiga titik dengan koordinat <InlineMath math="x" /> yang **berbeda** menentukan tepat satu polinom berderajat paling tinggi <InlineMath math="2" />. Polinom tersebut merupakan fungsi kuadrat hanya jika koefisien yang dihasilkan memenuhi <InlineMath math="a\neq0" />.
 
 Jika kita memiliki tiga titik <InlineMath math="(x_1, y_1)" />, <InlineMath math="(x_2, y_2)" />, dan <InlineMath math="(x_3, y_3)" />, kita dapat memasukkan nilai-nilai ini ke dalam persamaan standar untuk mendapatkan tiga persamaan linear dengan tiga variabel <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />.
 
@@ -88,62 +86,110 @@ Fungsi kuadrat yang dihasilkan adalah:
 
 <BlockMath math="f(x) = x^2 - 2x - 3" />
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Grafik <InlineMath math="f(x) = x^2 - 2x - 3" />
-      </>
+<MathVisual
+  title="Tiga titik pada satu parabola"
+  description="Kurva x² - 2x - 3 melalui K(-1,0), L(0,-3), dan M(1,-4)."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -2.5,
+      "max": 4.5
+    },
+    "y": {
+      "min": -5,
+      "max": 6
     }
-    description={
-      <>
-        Parabola yang melalui titik <InlineMath math="K(-1, 0)" />,{" "}
-        <InlineMath math="L(0, -3)" />, dan <InlineMath math="M(1, -4)" />.
-      </>
-    }
-    cameraPosition={[1, -1, 14]}
-    cameraTarget={[1, -1, 0]}
-    data={[
-      {
-        pointIndices: [0, 16, 32, 48, 64, 80, 96],
-        smooth: false,
-        points: Array.from({ length: 123 }, (_, pointIndex) => {
-          const sampleIndex = pointIndex + 0;
-          const i = sampleIndex / 16;
-          const x = i - 3; // x values from -3 to 3
-          return { x, y: x * x - 2 * x - 3, z: 0 };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
-            at: 80,
-            offset: [0, -3.1, 0],
-          },
-          {
-            text: <InlineMath math="L(0, -3)" />,
-            at: 48,
-            offset: [-1.7, 0.1, 0],
-          },
-          {
-            text: <InlineMath math="M(1, -4)" />,
-            at: 64,
-            offset: [0, -0.75, 0],
-          },
-          {
-            text: <InlineMath math="K(-1, 0)" />,
-            at: 32,
-            offset: [-1.7, -0.6, 0],
-          },
-        ],
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 1,
+        "b": -2,
+        "c": -3
       },
-    ]}
-  />
-</ContentBlock>
+      "domain": {
+        "min": -2,
+        "max": 4
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "k",
+      "kind": "point",
+      "at": {
+        "x": -1,
+        "y": 0
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "l",
+      "kind": "point",
+      "at": {
+        "x": 0,
+        "y": -3
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "m",
+      "kind": "point",
+      "at": {
+        "x": 1,
+        "y": -4
+      },
+      "appearance": "answer"
+    }
+  ],
+  "labels": [
+    {
+      "key": "k",
+      "objectId": "k",
+      "at": {
+        "x": -1,
+        "y": 0
+      },
+      "placement": "above"
+    },
+    {
+      "key": "l",
+      "objectId": "l",
+      "at": {
+        "x": 0,
+        "y": -3
+      },
+      "placement": "below"
+    },
+    {
+      "key": "m",
+      "objectId": "m",
+      "at": {
+        "x": 1,
+        "y": -4
+      },
+      "placement": "below"
+    }
+  ]
+}}
+  labels={{ k: <InlineMath math="(-1,0)" />, l: <InlineMath math="(0,-3)" />, m: <InlineMath math="(1,-4)" /> }}
+/>
 
 ### Titik Puncak
 
 Jika kita mengetahui koordinat titik puncak <InlineMath math="(h, k)" /> dan satu titik lain <InlineMath math="(p, q)" /> pada grafik, kita dapat menggunakan bentuk vertex <InlineMath math="f(x) = a(x - h)^2 + k" /> untuk menemukan nilai <InlineMath math="a" />.
+
+Titik tambahan harus memenuhi <InlineMath math="p\ne h" /> agar <Highlight>faktor pengali dapat ditentukan</Highlight>. Jika <InlineMath math="q=k" />, hasilnya <InlineMath math="a=0" /> dan bukan fungsi kuadrat:
+
+<BlockMath math="q=a(p-h)^2+k\quad\Rightarrow\quad a=\frac{q-k}{(p-h)^2}" />
 
 **Contoh**:
 
@@ -165,56 +211,88 @@ Fungsi kuadrat yang dihasilkan adalah:
 
 <BlockMath math="f(x) = (x - 2)^2 = x^2 - 4x + 4" />
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Grafik <InlineMath math="f(x) = (x - 2)^2" />
-      </>
+<MathVisual
+  title="Puncak dan titik tambahan"
+  description="Kurva (x-2)² memiliki puncak (2,0) dan melalui (4,4)."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -0.5,
+      "max": 4.5
+    },
+    "y": {
+      "min": -1,
+      "max": 5
     }
-    description={
-      <>
-        Parabola dengan titik puncak <InlineMath math="(2, 0)" /> dan melalui
-        titik <InlineMath math="(4, 4)" />
-      </>
-    }
-    cameraPosition={[2, 2.5, 12]}
-    cameraTarget={[2, 2.5, 0]}
-    data={[
-      {
-        pointIndices: [0, 12, 24, 36, 48, 60, 72, 84, 96],
-        smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
-          const i = sampleIndex / 12;
-          const x = i - 1; // x values from -1 to 7
-          return { x, y: Math.pow(x - 2, 2), z: 0 };
-        }),
-        color: "#4f46e5",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=(x - 2)^2" />,
-            at: 84,
-            offset: [-4, -9.3, 0],
-          },
-          {
-            text: <InlineMath math="(2, 0)" />,
-            at: 36,
-            offset: [0, -0.7, 0],
-          },
-          {
-            text: <InlineMath math="(4, 4)" />,
-            at: 60,
-            offset: [1.3, 0.3, 0],
-          },
-        ],
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 1,
+        "b": -4,
+        "c": 4
       },
-    ]}
-  />
-</ContentBlock>
+      "domain": {
+        "min": 0,
+        "max": 4
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "v",
+      "kind": "point",
+      "at": {
+        "x": 2,
+        "y": 0
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "p",
+      "kind": "point",
+      "at": {
+        "x": 4,
+        "y": 4
+      },
+      "appearance": "answer"
+    }
+  ],
+  "labels": [
+    {
+      "key": "v",
+      "objectId": "v",
+      "at": {
+        "x": 2,
+        "y": 0
+      },
+      "placement": "below"
+    },
+    {
+      "key": "p",
+      "objectId": "p",
+      "at": {
+        "x": 4,
+        "y": 4
+      },
+      "placement": "above"
+    }
+  ]
+}}
+  labels={{ v: <InlineMath math="(2,0)" />, p: <InlineMath math="(4,4)" /> }}
+/>
 
 ### Akar dan Satu Titik Tambahan
 
-Jika kita mengetahui akar-akar (titik potong dengan sumbu <InlineMath math="x" />) <InlineMath math="p" /> dan <InlineMath math="q" /> dari fungsi kuadrat, serta satu titik tambahan <InlineMath math="(r, s)" /> dengan <InlineMath math="r\neq p" />, <InlineMath math="r\neq q" />, dan <InlineMath math="s\neq0" />, bentuk faktor <InlineMath math="f(x) = a(x - p)(x - q)" /> dapat digunakan untuk menentukan <InlineMath math="a" />.
+Jika kita mengetahui akar-akar (titik potong dengan sumbu <InlineMath math="x" />) <InlineMath math="p" /> dan <InlineMath math="q" /> dari fungsi kuadrat, serta satu titik tambahan <InlineMath math="(r, s)" /> dengan <InlineMath math="r\neq p" />, <InlineMath math="r\neq q" />, dan <InlineMath math="s\neq0" />, **bentuk faktor** <InlineMath math="f(x) = a(x - p)(x - q)" /> dapat digunakan untuk menentukan <InlineMath math="a" />.
 
 **Contoh**:
 
@@ -237,57 +315,102 @@ Fungsi kuadrat yang dihasilkan adalah:
 
 <BlockMath math="\begin{aligned} f(x) &amp;= (x + 2)(x - 3) \\ &amp;= x^2 - x - 6 \end{aligned}" />
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Grafik <InlineMath math="f(x) = (x + 2)(x - 3)" />
-      </>
+<MathVisual
+  title="Akar dan titik tambahan"
+  description="Kurva x² - x - 6 memotong sumbu horizontal pada -2 dan 3 serta melalui (1,-6)."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -3,
+      "max": 4
+    },
+    "y": {
+      "min": -7,
+      "max": 3.5
     }
-    description={
-      <>
-        Parabola dengan akar-akar <InlineMath math="x = -2" /> dan{" "}
-        <InlineMath math="x = 3" />, melalui titik <InlineMath math="(1, -6)" />
-      </>
-    }
-    cameraPosition={[0.5, -2, 15]}
-    cameraTarget={[0.5, -2, 0]}
-    data={[
-      {
-        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        smooth: false,
-        points: Array.from({ length: 101 }, (_, sampleIndex) => {
-          const i = sampleIndex / 10;
-          const x = i - 4; // x values from -4 to 6
-          return { x, y: (x + 2) * (x - 3), z: 0 };
-        }),
-        color: "#ea580c",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=(x + 2)(x - 3)" />,
-            at: 60,
-            offset: [-1.5, -4, 0],
-          },
-          {
-            text: <InlineMath math="(-2, 0)" />,
-            at: 20,
-            offset: [-1.5, -0.7, 0],
-          },
-          {
-            text: <InlineMath math="(3, 0)" />,
-            at: 70,
-            offset: [1.5, -0.7, 0],
-          },
-          {
-            text: <InlineMath math="(1, -6)" />,
-            at: 50,
-            offset: [0.3, -0.8, 0],
-          },
-        ],
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 1,
+        "b": -1,
+        "c": -6
       },
-    ]}
-  />
-</ContentBlock>
+      "domain": {
+        "min": -2.5,
+        "max": 3.5
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "p",
+      "kind": "point",
+      "at": {
+        "x": -2,
+        "y": 0
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "q",
+      "kind": "point",
+      "at": {
+        "x": 3,
+        "y": 0
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "r",
+      "kind": "point",
+      "at": {
+        "x": 1,
+        "y": -6
+      },
+      "appearance": "answer"
+    }
+  ],
+  "labels": [
+    {
+      "key": "p",
+      "objectId": "p",
+      "at": {
+        "x": -2,
+        "y": 0
+      },
+      "placement": "above"
+    },
+    {
+      "key": "q",
+      "objectId": "q",
+      "at": {
+        "x": 3,
+        "y": 0
+      },
+      "placement": "above"
+    },
+    {
+      "key": "r",
+      "objectId": "r",
+      "at": {
+        "x": 1,
+        "y": -6
+      },
+      "placement": "below"
+    }
+  ]
+}}
+  labels={{ p: <InlineMath math="(-2,0)" />, q: <InlineMath math="(3,0)" />, r: <InlineMath math="(1,-6)" /> }}
+/>
 
 ### Memilih Fungsi dari Dua Syarat
 
@@ -322,9 +445,17 @@ Dengan <InlineMath math="a = 1" />, <InlineMath math="b = -2" />, dan <InlineMat
 
 <BlockMath math="f(x) = x^2 - 2x - 3" />
 
+Pilihan koefisien utama lain memberi <Highlight>fungsi berbeda dengan syarat yang sama</Highlight>:
+
+<BlockMath math="a=2,\quad b=-4,\quad c=0\quad\Rightarrow\quad f(x)=2x^2-4x,\quad -\frac b{2a}=1,\quad D=16" />
+
 ### Koordinat Simetris
 
 Titik-titik yang simetris juga dapat dipakai untuk menentukan fungsi kuadrat.
+
+Dua nilai keluaran yang sama pada masukan berlawanan membuat <Highlight>koefisien linear nol</Highlight>. Substitusi kedua titik membuktikannya:
+
+<BlockMath math="f(4)-f(-4)=(16a+4b+c)-(16a-4b+c)=8b=1-1=0" />
 
 **Contoh**:
 
@@ -348,78 +479,118 @@ Fungsi kuadrat yang dihasilkan adalah:
 
 <BlockMath math="f(x) = \frac{1}{16}x^2" />
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Grafik <InlineMath math="f(x) = \frac{1}{16}x^2" />
-      </>
+<MathVisual
+  title="Titik yang simetris"
+  description="Kurva x²/16 melalui (0,0) serta dua titik sama tinggi (-4,1) dan (4,1)."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -5.5,
+      "max": 5.5
+    },
+    "y": {
+      "min": -0.5,
+      "max": 2.5
     }
-    description={
-      <>
-        Parabola melalui titik <InlineMath math="(0, 0)" />,{" "}
-        <InlineMath math="(4, 1)" />, dan <InlineMath math="(-4, 1)" />
-      </>
-    }
-    cameraPosition={[0, 1, 13]}
-    cameraTarget={[0, 1, 0]}
-    data={[
-      {
-        pointIndices: [59, 67, 75, 83, 91, 99, 107, 115, 123, 131, 139, 147, 155],
-        smooth: false,
-        points: Array.from({ length: 215 }, (_, pointIndex) => {
-          const sampleIndex = pointIndex - 59;
-          const i = sampleIndex / 8;
-          const x = i - 6; // x values from -6 to 6
-          return { x, y: (1 / 16) * x * x, z: 0 };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=\frac{1}{16}x^2" />,
-            at: 147,
-            offset: [-5, 1.9375, 0],
-          },
-          {
-            text: <InlineMath math="(0, 0)" />,
-            at: 107,
-            offset: [0.3, -0.6, 0],
-          },
-          {
-            text: <InlineMath math="(4, 1)" />,
-            at: 139,
-            offset: [0, 0.9, 0],
-          },
-          {
-            text: <InlineMath math="(-4, 1)" />,
-            at: 75,
-            offset: [0, 0.9, 0],
-          },
-        ],
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 0.0625,
+        "b": 0,
+        "c": 0
       },
-    ]}
-  />
-</ContentBlock>
+      "domain": {
+        "min": -5,
+        "max": 5
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "o",
+      "kind": "point",
+      "at": {
+        "x": 0,
+        "y": 0
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "p",
+      "kind": "point",
+      "at": {
+        "x": -4,
+        "y": 1
+      },
+      "appearance": "answer"
+    },
+    {
+      "id": "q",
+      "kind": "point",
+      "at": {
+        "x": 4,
+        "y": 1
+      },
+      "appearance": "answer"
+    }
+  ],
+  "labels": [
+    {
+      "key": "o",
+      "objectId": "o",
+      "at": {
+        "x": 0,
+        "y": 0
+      },
+      "placement": "below"
+    },
+    {
+      "key": "p",
+      "objectId": "p",
+      "at": {
+        "x": -4,
+        "y": 1
+      },
+      "placement": "above"
+    },
+    {
+      "key": "q",
+      "objectId": "q",
+      "at": {
+        "x": 4,
+        "y": 1
+      },
+      "placement": "above"
+    }
+  ]
+}}
+  labels={{ o: <InlineMath math="(0,0)" />, p: <InlineMath math="(-4,1)" />, q: <InlineMath math="(4,1)" /> }}
+/>
 
 ## Transformasi Antar Bentuk Fungsi Kuadrat
 
-Setiap perubahan cukup dengan satu langkah aljabar, sedangkan grafiknya tetap sama.
-
-Fungsi kuadrat yang sama dapat ditulis dalam bentuk umum, bentuk faktor, atau bentuk puncak.
+Mengubah bentuk memakai <Highlight>identitas aljabar</Highlight>, sehingga nilai fungsi untuk setiap masukan tetap sama. Bentuk puncak selalu tersedia, sedangkan bentuk faktor linear real memerlukan akar real.
 
 ### Bentuk Standar ke Bentuk Vertex
 
-Perubahan ini memakai cara melengkapi kuadrat, karena langkah itu menghasilkan bentuk <InlineMath math="(x-h)^2" />. Perhitungan berikut menunjukkan setiap langkah antaranya.
+Keluarkan koefisien utama, lalu <Highlight>tambahkan dan kurangkan kuadrat yang sama</Highlight> di dalam kurung. Dengan cara ini nilai fungsi tidak berubah:
 
-Untuk mengubah <InlineMath math="f(x) = ax^2 + bx + c" /> menjadi bentuk vertex <InlineMath math="f(x) = a(x - h)^2 + k" />:
+<BlockMath math="\begin{aligned} f(x)&amp;=a\left(x^2+\frac ba x\right)+c\\&amp;=a\left[\left(x+\frac b{2a}\right)^2-\frac{b^2}{4a^2}\right]+c\\&amp;=a\left(x+\frac b{2a}\right)^2+c-\frac{b^2}{4a}\end{aligned}" />
 
-1. Tentukan koordinat <InlineMath math="x" /> dari titik puncak: <InlineMath math="h = -\frac{b}{2a}" />
-2. Hitung nilai fungsi di titik puncak: <InlineMath math="k = f(h) = f(-\frac{b}{2a})" />
-3. Atau gunakan rumus: <InlineMath math="k = c - \frac{b^2}{4a}" />
+<BlockMath math="h=-\frac b{2a},\qquad k=c-\frac{b^2}{4a}" />
 
 ### Bentuk Standar ke Bentuk Faktor
 
-Untuk mengubah <InlineMath math="f(x) = ax^2 + bx + c" /> menjadi bentuk faktor di dalam bilangan real, periksa dahulu bahwa diskriminannya tidak negatif:
+Untuk mengubah <InlineMath math="f(x) = ax^2 + bx + c" /> menjadi bentuk faktor di dalam bilangan real, periksa dahulu bahwa **diskriminannya tidak negatif**:
 
 1. Tentukan akar-akar persamaan <InlineMath math="ax^2 + bx + c = 0" /> menggunakan rumus:
 
@@ -442,14 +613,14 @@ Untuk mengubah <InlineMath math="f(x) = a(x - p)(x - q)" /> menjadi bentuk stand
   <BlockMath math="f(x) = ax^2 - a(p+q)x + apq" />
 </MathContainer>
 
-Dengan membandingkan dengan bentuk standar, kita mendapatkan:
+Dengan **membandingkan koefisien** dengan bentuk standar, kita mendapatkan:
 
 - <InlineMath math="b = -a(p+q)" />
 - <InlineMath math="c = apq" />
 
 ## Latihan dan Penyelesaian
 
-Setiap latihan memberi sekumpulan syarat dan meminta fungsi yang sesuai. Susun fungsinya, lalu periksa apakah grafik fungsi itu melewati setiap titik yang diberikan. Fungsi yang benar memenuhi semua syarat itu sekaligus.
+Pilih <Highlight>bentuk yang sesuai dengan syarat</Highlight>, lalu tentukan koefisien yang belum diketahui. Setelah itu, substitusikan kembali setiap titik. Pemeriksaan ini memastikan fungsi memenuhi seluruh syarat secara bersamaan.
 
 ### Latihan Pertama
 
@@ -494,13 +665,17 @@ Jadi, persamaan fungsi kuadratnya adalah:
 
 <BlockMath math="f(x) = \frac{9}{5}x^2 - \frac{6}{5}x - \frac{28}{5}" />
 
+Periksa **ketiga titik** pada fungsi hasil perhitungan:
+
+<BlockMath math="\begin{aligned}f(-2)&amp;=\frac{36+12-28}{5}=4\\f(1)&amp;=\frac{9-6-28}{5}=-5\\f(3)&amp;=\frac{81-18-28}{5}=7\end{aligned}" />
+
 ### Latihan Kedua
 
 Tentukan persamaan fungsi kuadrat yang memiliki titik puncak <InlineMath math="(-1, 4)" /> dan melalui titik <InlineMath math="(2, -5)" />.
 
 **Jawaban**:
 
-Gunakan bentuk vertex dengan <InlineMath math="h = -1" /> dan <InlineMath math="k = 4" />:
+Gunakan **bentuk puncak** dengan <InlineMath math="h = -1" /> dan <InlineMath math="k = 4" />:
 
 <BlockMath math="\begin{aligned} f(x) &amp;= a(x - (-1))^2 + 4 \\ &amp;= a(x + 1)^2 + 4 \end{aligned}" />
 
@@ -527,7 +702,7 @@ Gunakan bentuk faktor dengan <InlineMath math="p = -3" /> dan <InlineMath math="
 
 <BlockMath math="\begin{aligned} f(x) &amp;= a(x - (-3))(x - 2) \\ &amp;= a(x + 3)(x - 2) \end{aligned}" />
 
-Karena fungsi memiliki nilai maksimum, maka <InlineMath math="a < 0" />.
+Karena fungsi memiliki **nilai maksimum**, maka <InlineMath math="a < 0" />.
 
 Titik puncak berada di <InlineMath math="x = \frac{p + q}{2} = \frac{-3 + 2}{2} = -\frac{1}{2}" />.
 

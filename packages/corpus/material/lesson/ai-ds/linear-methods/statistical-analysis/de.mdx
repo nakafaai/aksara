@@ -3,7 +3,7 @@ export const metadata = {
     description: "Schätze Parameterkovarianzen und Konfidenzintervalle mit Fisher-Information und gewichteten kleinsten Quadraten.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -15,7 +15,7 @@ Die Methode der kleinsten Quadrate wird erst dann zu einem statistischen Schätz
 
 In diesem Modell ist <InlineMath math="X\in\mathbb{R}^{m\times p}" /> eine feste Designmatrix, <InlineMath math="\beta\in\mathbb{R}^p" /> der unbekannte Parametervektor und <InlineMath math="y\in\mathbb{R}^m" /> der Beobachtungsvektor. Für gewöhnliche gaußsche kleinste Quadrate nehmen wir an,
 
-<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
+<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m),\qquad \sigma^2>0" />
 
 Die zweite Annahme ist, dass <InlineMath math="X" /> vollen Spaltenrang besitzt. Unter diesen beiden Annahmen ist der Beobachtungsvektor <InlineMath math="y" /> gemäß <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" /> verteilt. Sein Erwartungswert ist <InlineMath math="X\beta" />, und seine Kovarianzmatrix ist <InlineMath math="\sigma^2I_m" />.
 
@@ -62,7 +62,7 @@ Unter dem gaußschen Modell lautet ein exaktes zweiseitiges <InlineMath math="10
 
 <BlockMath math="\hat\beta_j\pm t_{m-p,\,1-\alpha/2}\,s\sqrt{[(X^TX)^{-1}]_{jj}}" />
 
-Das Intervall beschreibt die Überdeckungsrate des Verfahrens bei wiederholten Stichproben. Es ist nicht die Wahrscheinlichkeit, dass ein fester Parameter in einem bereits berechneten Intervall liegt.
+Das Intervall beschreibt die Überdeckungsrate des Verfahrens bei **wiederholten Stichproben**. Es ist nicht die Wahrscheinlichkeit, dass ein fester Parameter in einem bereits berechneten Intervall liegt.
 
 ## Stabile Berechnung aus einer orthogonalen Zerlegung
 
@@ -73,7 +73,7 @@ Sei <InlineMath math="X=QR" /> die reduzierte <InlineMath math="\mathrm{QR}" />-
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-In numerischem Code löst man das Dreieckssystem <InlineMath math="R\hat\beta=Q^Ty" />, statt <InlineMath math="R^{-1}" /> explizit zu bilden. <InlineMath math="\mathrm{QR}" /> vermeidet außerdem, dass sich die Konditionszahl durch die allein zum Lösen des Kleinste-Quadrate-Problems gebildete Matrix <InlineMath math="X^TX" /> quadriert.
+In numerischem Code **löst man das Dreieckssystem** <InlineMath math="R\hat\beta=Q^Ty" />, statt <InlineMath math="R^{-1}" /> explizit zu bilden. <InlineMath math="\mathrm{QR}" /> vermeidet außerdem, dass sich die Konditionszahl durch die allein zum Lösen des Kleinste-Quadrate-Problems gebildete Matrix <InlineMath math="X^TX" /> quadriert.
 
 ## Gewichtete und verallgemeinerte kleinste Quadrate
 
@@ -97,7 +97,7 @@ Für unabhängige Fehler mit Varianzen <InlineMath math="\sigma_i^2" /> gilt <In
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-Jede Beobachtung <InlineMath math="i" /> erhält das Gewicht <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
+Jede Beobachtung <InlineMath math="i" /> erhält das **Gewicht** <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
 
 ## Ein gewichtetes lineares Modell anpassen
 
@@ -108,12 +108,22 @@ Betrachten wir drei Beobachtungen für einen Achsenabschnitt und eine Steigung:
 <BlockMath math="\begin{aligned} &amp;\Omega=\operatorname{diag}(1,1,4), \\ &amp;\Omega^{-1}=\operatorname{diag}\left(1,1,\frac14\right) \end{aligned}" />
 </MathContainer>
 
-Die dritte Beobachtung hat die Standardabweichung <InlineMath math="2" /> und erhält daher nur ein Viertel des Gewichts der beiden ersten Beobachtungen. Die gewichteten Normalgleichungen lauten
+Die dritte Beobachtung hat die Standardabweichung <InlineMath math="2" /> und erhält daher nur ein **Viertel des Gewichts** der beiden ersten Beobachtungen. Die gewichteten Normalgleichungen lauten
 
 <MathContainer>
 <BlockMath math="X^T\Omega^{-1}X=\begin{pmatrix}\frac94&\frac32\\\frac32&2\end{pmatrix}" />
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
+
+Schreibe beide Gleichungen aus und eliminiere den Achsenabschnitt:
+
+<BlockMath math="\begin{aligned}9\hat\beta_0+6\hat\beta_1&=17\\3\hat\beta_0+4\hat\beta_1&=9\\6\hat\beta_1&=27-17=10\\\hat\beta_1&=\frac53,\qquad\hat\beta_0=\frac{9-4(5/3)}3=\frac79\end{aligned}" />
+
+| Beobachtung | Standardabweichung | Inverse-Varianz-Gewicht |
+| --- | --- | --- |
+| 1 | 1 | 1 |
+| 2 | 1 | 1 |
+| 3 | 2 | <InlineMath math="1/4" /> |
 
 Das Lösen der gewichteten Normalgleichungen ergibt
 

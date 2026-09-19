@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2{,}4$$",
+          label: "$$2.4$$",
         },
         {
           isCorrect: true,
-          label: "$$3{,}6$$",
+          label: "$$3.6$$",
         },
         {
           isCorrect: false,
-          label: "$$3{,}0$$",
+          label: "$$3.0$$",
         },
         {
           isCorrect: false,
-          label: "$$4{,}2$$",
+          label: "$$4.2$$",
         },
         {
           isCorrect: false,
-          label: "$$4{,}8$$",
+          label: "$$4.8$$",
         },
       ],
     },
@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "stationery-bundles",
+  stimulusKey: "sugar-mixture",
 };
 
 export default item;

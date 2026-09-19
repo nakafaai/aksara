@@ -3,13 +3,13 @@ export const metadata = {
    description: "Interpret the determinant as an oriented volume scale, derive its defining properties, and connect a zero determinant to rank and invertibility.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-10",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## How a Matrix Changes Volume and Orientation
 
-<Highlight>The determinant of a square matrix measures the oriented volume scaling of its linear transformation.</Highlight> Its absolute value gives the volume factor, while its sign records whether orientation is preserved or reversed.
+The determinant of a square matrix measures the <Highlight>oriented volume scaling</Highlight> of its linear transformation. Its absolute value gives the volume factor, while its sign records whether orientation is preserved or reversed.
 
 Every square matrix has one determinant. A zero determinant means that the image lies in a lower-dimensional set, so the transformation is not invertible.
 
@@ -25,9 +25,19 @@ The sign and value of the determinant give three cases:
 | <InlineMath math="\det A<0" /> | Scales volume by <InlineMath math="\lvert\det A\rvert" /> and reverses orientation | Invertible |
 | <InlineMath math="\det A=0" /> | Maps the volume to zero and the image to a lower-dimensional set | Not invertible |
 
+
+The teal unit cube becomes the orange parallelepiped under the following matrix. The sloping edges show shear, but volume uses **base length and perpendicular heights**.
+
+<BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
+
+<LineEquation title="Cube volume after stretching and shearing" description="The teal unit cube and orange image share the origin. Rotate the model to compare perpendicular heights with sloping edges." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+
+The base length becomes 2, while both perpendicular heights remain 1. The volume therefore changes from 1 to 2. The sloping edge length is not a perpendicular height.
+
+
 ## Three Determining Properties of Determinant
 
-Only one determinant function satisfies the following three properties. Each property fixes one behavior of that function: how it reacts to a row operation, what happens when two rows coincide, and which value the identity matrix must return. Together they determine the determinant completely.
+Only one determinant function satisfies the following **three properties**. Each property fixes one behavior of that function: how it reacts to a row operation, what happens when two rows coincide, and which value the identity matrix must return. Together they determine the determinant completely.
 
 ### Linear Property on Each Row
 
@@ -62,7 +72,7 @@ Here <InlineMath math="I" /> is the identity matrix of the relevant size. Multil
 
 ## Matrix Operations and Determinant
 
-If we multiply the entire matrix by a scalar <InlineMath math="\lambda" />, the determinant will be affected by the power of n:
+If we multiply the **entire matrix** by a scalar <InlineMath math="\lambda" />, the determinant gains one factor from each row:
 
 <BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
 
@@ -78,8 +88,6 @@ Adding a multiple of one row to a different row does not change the determinant:
 <BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
-
-Multiplying a row by scalar <InlineMath math="\lambda \neq 0" /> changes the determinant to <InlineMath math="\det A' = \lambda \cdot \det A" />. Swapping rows changes the sign to <InlineMath math="\det A' = -\det A" />. Adding multiples of other rows doesn't change the determinant at all.
 
 ## Relationship with Matrix Invertibility
 
@@ -127,9 +135,7 @@ If a row is also scaled, that scale factor must be tracked separately. With the 
 
 ## Common Mistakes About Determinant
 
-The determinant is **not** additive:
-
-<BlockMath math="\det(A + B) \neq \det A + \det B" />
+The determinant is **not additive in general**. The following example disproves an addition rule.
 
 As a simple example:
 

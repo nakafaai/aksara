@@ -2,12 +2,14 @@ export const metadata = {
   title: "Solution to Question 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Undo the transformations in reverse order. Let <InlineMath math="R" /> be the point after reflection and before dilation. With scale factor <InlineMath math="-2" />, the equation <InlineMath math="Q=C-2(R-C)" /> gives:
+Undo the transformations in **reverse order**. Let <InlineMath math="R" /> be the point after reflection and before dilation. With scale factor <InlineMath math="-2" />, the equation <InlineMath math="Q=C-2(R-C)" /> gives:
 
 <BlockMath math="\begin{aligned}
+Q-C&=-2(R-C) \\
+R-C&=-\frac12(Q-C) \\
 R&=C-\frac12(Q-C) \\
 &=(1,-2)-\frac12(6,2) \\
 &=(-2,-3)
@@ -21,3 +23,16 @@ Q&=C-2(R-C) \\
 &=(1,-2)+(6,2) \\
 &=(7,0)
 \end{aligned}" />
+
+<LineEquation
+  title="Reflection and negative dilation"
+  description="R and Q are on opposite sides of center C. Distance CQ is twice CR."
+  cameraPosition={[2,-2,17]}
+  cameraTarget={[2,-2,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: -4, y: -4, z: 0 }, { x: 1, y: 1, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -3, y: -2, z: 0 }, { x: -2, y: -3, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0, -0.6, 0] }] },
+    { points: [{ x: -2, y: -3, z: 0 }, { x: 1, y: -2, z: 0 }, { x: 7, y: 0, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "C", at: 1, offset: [0, -0.6, 0] }, { text: "Q", at: 2, offset: [0.4, 0.4, 0] }] },
+  ]}
+/>

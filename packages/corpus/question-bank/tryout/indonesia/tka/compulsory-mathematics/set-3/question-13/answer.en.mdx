@@ -2,16 +2,31 @@ export const metadata = {
   title: "Solution to Question 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Add the two translation vectors, then subtract their sum from the final point to recover the starting point.
+Add the two translation vectors, then **subtract their sum** from the final point to recover the starting point.
 
 <BlockMath math="\begin{aligned}
-v&=(6,-1)+(-2,4)=(4,3) \\
-P&=(10,9)-(4,3)=(6,6)
+v&=(6,-1)+(-2,4) \\
+&=(6-2,-1+4)=(4,3) \\
+P&=Q-v=(10,9)-(4,3) \\
+&=(10-4,9-3)=(6,6)
 \end{aligned}" />
 
 The Manhattan distance adds the absolute values of the two coordinates.
 
 <BlockMath math="|6|+|6|=12" />
+
+<LineEquation
+  title="Translations and Manhattan distance"
+  description="The gray route to P has 6 horizontal and 6 vertical units. The colored arrows translate P through R to Q."
+  cameraPosition={[6,4.5,21]}
+  cameraTarget={[6,4.5,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "6", at: 0, offset: [3, -0.5, 0] }, { text: "6", at: 1, offset: [-0.5, 3, 0] }] },
+    { points: [{ x: 6, y: 6, z: 0 }, { x: 12, y: 5, z: 0 }], color: "#9333ea", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0.4, -0.4, 0] }] },
+    { points: [{ x: 12, y: 5, z: 0 }, { x: 10, y: 9, z: 0 }], color: "#d97706", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "Q", at: 1, offset: [0.3, 0.4, 0] }] },
+  ]}
+/>

@@ -3,17 +3,19 @@ export const metadata = {
     description: "Follow QR iteration from orthogonal factorization to Schur form, then read real and complex eigenvalues without forming a characteristic polynomial.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## Repeated Basis Changes Preserve the Eigenvalues
 
-The <InlineMath math="\mathrm{QR}" /> algorithm computes all eigenvalues of a square matrix through repeated changes of basis. <Highlight>Each step produces a similar matrix, so the eigenvalues stay the same.</Highlight> The iteration approaches a diagonal or Schur form, where the eigenvalues are obtained from diagonal entries or small diagonal blocks.
+The <InlineMath math="\mathrm{QR}" /> algorithm computes all eigenvalues of a square matrix through repeated changes of basis. Each step produces a <Highlight>similar matrix</Highlight>, so the eigenvalues stay the same. The iteration aims for a diagonal or Schur form, where eigenvalues are read from diagonal entries or small diagonal blocks. Convergence requires suitable shift and deflation strategies.
 
 The version below is the unshifted <InlineMath math="\mathrm{QR}" /> iteration. Production eigensolvers also use shifts, reduce the matrix to Hessenberg form, and deflate converged blocks to improve speed and numerical reliability.
 
 ## One QR Iteration
+
+For the deflation test below, first reduce the matrix by unitary similarity to **upper Hessenberg form**, whose entries below the first subdiagonal are zero. Start the iteration with that matrix. In the 2×2 example below, this condition already holds.
 
 1. Start with <InlineMath math="A_0=A" />.
 
@@ -44,7 +46,7 @@ Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />
 
 ## What the Iteration Converges To
 
-The final form depends on the matrix and the number system used.
+The final form depends on the matrix and the **number system** used.
 
 | Matrix | Converged form | How to read the eigenvalues |
 |---|---|---|
@@ -53,6 +55,12 @@ The final form depends on the matrix and the number system used.
 | General real | Quasi-upper-triangular real Schur form | Each <InlineMath math="1\times1" /> block gives a real eigenvalue. Each <InlineMath math="2\times2" /> block gives a complex-conjugate pair |
 
 The eigenvalues can appear in any order. Repeated values and special arrangements need separate handling because a strict magnitude ordering does not cover them.
+
+Unshifted iteration does **not always converge to the listed form**. For example, the symmetric matrix below admits <InlineMath math="Q=C" /> and <InlineMath math="R=I" />, so the next iterate is unchanged:
+
+<BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
+
+Its eigenvalues are 1 and −1. Their equal magnitudes show why practical algorithms need appropriate shifts and convergence checks.
 
 ## Worked Symmetric Example
 
@@ -67,10 +75,8 @@ One <InlineMath math="\mathrm{QR}" /> factorization and reverse multiplication g
 <BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
 </MathContainer>
 
-The off-diagonal magnitude has already fallen from <InlineMath math="1" /> to <InlineMath math="3/5" />. Further iterations drive both off-diagonal entries toward zero:
+The **off-diagonal magnitude** has already fallen from <InlineMath math="1" /> to <InlineMath math="3/5" />. Further iterations drive both off-diagonal entries toward zero:
 
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 The limiting diagonal contains the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Every iterate is similar to <InlineMath math="A_0" />, so these values belong to the original matrix.
-
-> <InlineMath math="\mathrm{QR}" /> iteration is a similarity process. For symmetric matrices it approaches a diagonal form. For general real matrices it approaches a real Schur form that may contain essential <InlineMath math="2\times2" /> blocks.

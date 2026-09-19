@@ -3,7 +3,7 @@ export const metadata = {
   description: "Classify two circles as intersecting, tangent, separate, or concentric from their center distance and radii.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Analytic Geometry",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 ## Comparing the Distance Between Centers with the Radii
 
-The circumferences of two circles may cross at two points, touch at one point, or remain separate. Their disks may therefore overlap, meet at one boundary point, or leave a gap.
+Two distinct circles may cross at two points, touch at one point, or have no common points. If both centers and radii are equal, the circles coincide and every point on their circumference is shared.
 
-In analytic geometry, the centers and radii are enough to determine the relationship precisely. The decisive quantity is <Highlight>the distance between the two centers</Highlight>.
+In analytic geometry, the centers and radii are enough to determine the relationship precisely. Compare the **distance between centers** with the sum and absolute difference of the radii.
 
 The same comparison appears when checking whether circular regions overlap, touch, or leave a gap, for example in coverage maps or geometric designs.
 
@@ -115,7 +115,7 @@ For two circles with radii <InlineMath math="r_1" /> and <InlineMath math="r_2" 
 The two strict bounds explain the condition:
 
 - **Upper bound**: At <InlineMath math="r_1 + r_2" />, the circles are externally tangent
-- **Lower bound**: At <InlineMath math="|r_1 - r_2|" />, the smaller circle is internally tangent to the larger circle
+- **Lower bound**: At <InlineMath math="|r_1 - r_2|>0" />, the smaller circle is internally tangent to the larger circle
 - **Between the bounds**: The circumferences cross at two points
 
 ## Tangent Circles
@@ -388,6 +388,46 @@ The separate condition occurs when the distance between centers is greater than 
 
 In this case, no point belongs to both disks.
 
+
+One circle can also lie **inside another without touching**, even when their centers differ. In this diagram, the larger radius is <InlineMath math="4" />, the smaller radius is <InlineMath math="1" />, and the center distance is <InlineMath math="1" />.
+
+<LineEquation
+  title="Contained Circles without Contact"
+  description="The centers differ and the circumferences do not meet."
+  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  data={[
+    {
+      kind: "circle-outline",
+      radius: 4,
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 181 }, (_, i) => ({
+        x: 1 + Math.cos((i * Math.PI) / 90),
+        y: Math.sin((i * Math.PI) / 90),
+        z: 0,
+      })),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="P_2" />, at: 1, offset: [0.5, -0.5, 0] },
+      ],
+    },
+  ]}
+/>
+
+Since <InlineMath math="0<1<4-1" />, the smaller circle lies strictly inside the larger one. Their centers differ, so they are not concentric.
+
 ## Concentric and Coincident Circles
 
 **Concentric circles** have the same center but different radii, like the circular boundaries on an archery target.
@@ -439,7 +479,7 @@ In this case, no point belongs to both disks.
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2, y: 0, z: 0 }
+        { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 }
       ],
       color: "#ca8a04",
       showPoints: false,
@@ -539,8 +579,3 @@ Second circle: center <InlineMath math="(3, 4)" />, radius <InlineMath math="r_2
 </MathContainer>
 
 Since <InlineMath math="2 < 5 < 8" />, the two circles are **intersecting**.
-
-As a check, substitute the three values into <InlineMath math="|r_1 - r_2| < d < r_1 + r_2" />:
-- <InlineMath math="|3 - 5| = 2" />
-- <InlineMath math="3 + 5 = 8" />
-- <InlineMath math="2 < 5 < 8" /> <InlineMath math="\checkmark" /> (intersection condition satisfied)

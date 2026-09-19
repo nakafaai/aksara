@@ -3,19 +3,19 @@ export const metadata = {
     description: "Estimate parameter covariance and confidence intervals with Fisher information and weighted least squares.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## Start with the Statistical Model
 
-<Highlight>Least squares becomes a statistical estimator only after we state how the observations were generated.</Highlight> Let
+Least squares becomes a statistical estimator only after we state <Highlight>how the observations were generated</Highlight>. Let
 
 <BlockMath math="y=X\beta+\varepsilon" />
 
 In this model, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> is a fixed design matrix, <InlineMath math="\beta\in\mathbb{R}^p" /> is the unknown parameter vector, and <InlineMath math="y\in\mathbb{R}^m" /> contains the observations. For ordinary Gaussian least squares, assume
 
-<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
+<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m),\qquad \sigma^2>0" />
 
 The second assumption is that <InlineMath math="X" /> has full column rank. Under these two assumptions, the observation vector <InlineMath math="y" /> follows <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Its mean is <InlineMath math="X\beta" />, and its covariance matrix is <InlineMath math="\sigma^2I_m" />.
 
@@ -62,7 +62,7 @@ Under the Gaussian model, an exact two-sided <InlineMath math="100(1-\alpha)\%" 
 
 <BlockMath math="\hat\beta_j\pm t_{m-p,\,1-\alpha/2}\,s\sqrt{[(X^TX)^{-1}]_{jj}}" />
 
-The interval is a repeated-sampling statement about the procedure. It is not the probability that a fixed parameter lies in one already computed interval.
+The interval is a **repeated-sampling statement** about the procedure. It is not the probability that a fixed parameter lies in one already computed interval.
 
 ## Stable Computation from an Orthogonal Decomposition
 
@@ -73,7 +73,7 @@ Let <InlineMath math="X=QR" /> be the reduced <InlineMath math="\mathrm{QR}" /> 
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-In numerical code, solve the triangular system <InlineMath math="R\hat\beta=Q^Ty" /> directly. This avoids forming <InlineMath math="R^{-1}" />. <InlineMath math="\mathrm{QR}" /> also avoids squaring the condition number through <InlineMath math="X^TX" />.
+In numerical code, **solve the triangular system** <InlineMath math="R\hat\beta=Q^Ty" /> directly. This avoids forming <InlineMath math="R^{-1}" />. <InlineMath math="\mathrm{QR}" /> also avoids squaring the condition number through <InlineMath math="X^TX" />.
 
 ## Weighted and Generalized Least Squares
 
@@ -97,7 +97,7 @@ For independent errors with variances <InlineMath math="\sigma_i^2" />, use <Inl
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-Each observation <InlineMath math="i" /> receives weight <InlineMath math="1/\sigma_i^2" />. Whitening with <InlineMath math="W=\Omega^{-1/2}" /> converts the problem to ordinary least squares for <InlineMath math="\widetilde X=WX" /> and <InlineMath math="\widetilde y=Wy" />.
+Each observation <InlineMath math="i" /> receives **weight** <InlineMath math="1/\sigma_i^2" />. Whitening with <InlineMath math="W=\Omega^{-1/2}" /> converts the problem to ordinary least squares for <InlineMath math="\widetilde X=WX" /> and <InlineMath math="\widetilde y=Wy" />.
 
 ## Fitting a Weighted Linear Model
 
@@ -108,12 +108,22 @@ Consider three observations for an intercept and slope:
 <BlockMath math="\begin{aligned} &amp;\Omega=\operatorname{diag}(1,1,4), \\ &amp;\Omega^{-1}=\operatorname{diag}\left(1,1,\frac14\right) \end{aligned}" />
 </MathContainer>
 
-The third observation has standard deviation <InlineMath math="2" />, so it receives only one quarter of the weight of either of the first two. The weighted normal equations are
+The third observation has standard deviation <InlineMath math="2" />, so it receives only **one quarter of the weight** of either of the first two. The weighted normal equations are
 
 <MathContainer>
 <BlockMath math="X^T\Omega^{-1}X=\begin{pmatrix}\frac94&\frac32\\\frac32&2\end{pmatrix}" />
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
+
+Writing the two equations and eliminating the intercept makes the parameter calculation explicit:
+
+<BlockMath math="\begin{aligned}9\hat\beta_0+6\hat\beta_1&=17\\3\hat\beta_0+4\hat\beta_1&=9\\6\hat\beta_1&=27-17=10\\\hat\beta_1&=\frac53,\qquad\hat\beta_0=\frac{9-4(5/3)}3=\frac79\end{aligned}" />
+
+| Observation | Standard deviation | Inverse-variance weight |
+| --- | --- | --- |
+| 1 | 1 | 1 |
+| 2 | 1 | 1 |
+| 3 | 2 | <InlineMath math="1/4" /> |
 
 Solving the weighted normal equations gives
 

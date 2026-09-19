@@ -4,13 +4,13 @@ export const metadata = {
     description: "Relate sine, cosine, and tangent ratios in right triangles to coordinates on the unit circle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-14",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Trigonometry",
 };
 
 ## Side Ratios for a Fixed Acute Angle
 
-<Highlight>For a fixed acute angle in a right triangle, corresponding side lengths always have the same ratios.</Highlight> The three primary ratios are sine (<InlineMath math="\sin" />), cosine (<InlineMath math="\cos" />), and tangent (<InlineMath math="\tan" />).
+For a **fixed acute angle** in a right triangle, corresponding side lengths always have the same ratios. The three primary ratios are sine (<InlineMath math="\sin" />), cosine (<InlineMath math="\cos" />), and tangent (<InlineMath math="\tan" />).
 
 <MathContainer>
   <BlockMath math="\sin \theta = \frac{\text{opposite side}}{\text{hypotenuse}}" />
@@ -24,7 +24,7 @@ Trigonometric ratios use the following terms:
 
 1. **Hypotenuse**: The longest side of a right triangle, always opposite to the right angle <InlineMath math="90^\circ" />.
 2. **Opposite side**: The side that is opposite to the angle <InlineMath math="\theta" /> we are examining.
-3. **Adjacent side**: The shorter side that touches the angle <InlineMath math="\theta" /> we are examining.
+3. **Adjacent side**: The leg that touches the angle <InlineMath math="\theta" /> we are examining.
 
 <ContentBlock>
   <Triangle
@@ -41,7 +41,7 @@ Trigonometric ratios use the following terms:
 
 ## Sine
 
-The sine of angle <InlineMath math="\theta" /> is the ratio between the length of the opposite side and the length of the hypotenuse.
+The sine of angle <InlineMath math="\theta" /> is the **ratio of opposite side to hypotenuse**.
 
 <BlockMath math="\sin \theta = \frac{\text{opposite side}}{\text{hypotenuse}}" />
 
@@ -64,7 +64,7 @@ The sine of angle <InlineMath math="\theta" /> is the ratio between the length o
 
 ### Examples of Sine Values
 
-The table lists the sine of the standard angles in exact form and as a decimal, so you can check a value in either representation.
+The table lists the sine of the standard angles in **exact form** and as a decimal, so you can check a value in either representation.
 
 | Angle                     | Exact Sine Value                         | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
@@ -76,7 +76,7 @@ The table lists the sine of the standard angles in exact form and as a decimal, 
 
 ## Cosine
 
-The cosine of angle <InlineMath math="\theta" /> is the ratio between the length of the adjacent side and the length of the hypotenuse.
+The cosine of angle <InlineMath math="\theta" /> is the **ratio of adjacent side to hypotenuse**.
 
 <BlockMath math="\cos \theta = \frac{\text{adjacent side}}{\text{hypotenuse}}" />
 
@@ -99,7 +99,7 @@ The cosine of angle <InlineMath math="\theta" /> is the ratio between the length
 
 ### Examples of Cosine Values
 
-The same standard angles appear here with their cosine values, and the decimal column gives the rounded value next to each exact one.
+The same standard angles appear here with their cosine values, and the decimal column gives the **rounded value** next to each exact one.
 
 | Angle                     | Exact Cosine Value                       | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
@@ -134,7 +134,7 @@ The tangent of angle <InlineMath math="\theta" /> is <Highlight>the ratio betwee
 
 ### Examples of Tangent Values
 
-The table completes the three primary ratios with the tangent values for the same standard angles.
+The table completes the three primary ratios with the **tangent values** for the same standard angles.
 
 | Angle                     | Exact Tangent Value                      | Approximate Decimal        |
 | ------------------------- | ---------------------------------------- | -------------------------- |
@@ -146,7 +146,7 @@ The table completes the three primary ratios with the tangent values for the sam
 
 ## Relationship between Sin Cos and Tan in the Unit Circle
 
-To understand how these trigonometric ratios work for all angles, we can use the concept of the unit circle (a circle with radius <InlineMath math="1" />).
+To understand how these trigonometric ratios work for all angles, we can use the concept of the **unit circle** (a circle with radius <InlineMath math="1" />).
 
 <UnitCircle
   title="Unit Circle and Trigonometric Ratios"
@@ -162,16 +162,21 @@ In the unit circle:
 
 ## Relationships Between the Three Trigonometric Ratios
 
-These three trigonometric ratios are related by the following formulas:
+On the unit circle, the right triangle has legs <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> for an acute angle, and hypotenuse <InlineMath math="1" />. The **Pythagorean theorem** immediately relates the squares of the two ratios:
 
-<MathContainer>
-  <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta},\qquad \cos \theta\ne0" />
-  <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
-</MathContainer>
+<BlockMath math="(\cos\theta)^2+(\sin\theta)^2=1^2=1" />
+
+Outside the first quadrant, coordinates can be negative, but the circle equation <InlineMath math="x^2+y^2=1" /> still holds. The identity therefore holds for every angle.
+
+Tangent divides the opposite side by the adjacent side. Let <InlineMath math="a" /> be the opposite side, <InlineMath math="b" /> the adjacent side, and <InlineMath math="c" /> the hypotenuse. Dividing sine by cosine cancels the hypotenuse factor:
+
+<BlockMath math="\frac{\sin\theta}{\cos\theta}=\frac{a/c}{b/c}=\frac{a}{c}\cdot\frac{c}{b}=\frac{a}{b}=\tan\theta" />
+
+The **denominator must be nonzero**. On the unit circle, this tangent relationship holds exactly when <InlineMath math="\cos\theta\ne0" />.
 
 ## Exercise
 
-The following right triangle has a <InlineMath math="30^\circ" /> angle and hypotenuse <InlineMath math="1" />. Determine the exact opposite and adjacent side lengths, then find <InlineMath math="\sin 30^\circ" />, <InlineMath math="\cos 30^\circ" />, and <InlineMath math="\tan 30^\circ" />.
+The following right triangle has a <InlineMath math="30^\circ" /> angle and hypotenuse <InlineMath math="1" />. Determine the **exact opposite and adjacent side lengths**, then find <InlineMath math="\sin 30^\circ" />, <InlineMath math="\cos 30^\circ" />, and <InlineMath math="\tan 30^\circ" />.
 
 <Triangle
   title={
@@ -185,6 +190,7 @@ The following right triangle has a <InlineMath math="30^\circ" /> angle and hypo
     </>
   }
   angle={30}
+  size={1}
   labels={{
     opposite: "Opposite Side",
     adjacent: "Adjacent Side",
@@ -202,4 +208,4 @@ The exact special-angle ratios give the two leg lengths directly:
   <BlockMath math="\begin{aligned} \tan 30^\circ &amp;=\frac{1/2}{\sqrt{3}/2} \\ &amp;=\frac{1}{\sqrt{3}} \\ &amp;=\frac{\sqrt{3}}{3} \\ &amp;\approx0.577 \end{aligned}" />
 </MathContainer>
 
-Using exact values before rounding preserves the identity <InlineMath math="\tan \theta=\sin \theta/\cos \theta" /> and avoids error from dividing already rounded decimals.
+Using **exact values before rounding** preserves the identity <InlineMath math="\tan \theta=\sin \theta/\cos \theta" /> and avoids error from dividing already rounded decimals.

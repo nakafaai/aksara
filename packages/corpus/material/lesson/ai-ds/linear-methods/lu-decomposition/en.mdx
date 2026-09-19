@@ -3,7 +3,7 @@ export const metadata = {
   description: "Factor a square matrix as PA = LU, follow a complete elimination example, solve repeated linear systems, and implement a guarded NumPy algorithm.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -33,11 +33,11 @@ Then apply the following row update.
 
 <BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
-The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the already-filled columns of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
+The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the **already-filled columns** of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
 ## Factoring a Matrix with Partial Pivoting
 
-Consider
+We will track **both row swaps** so the final permutation agrees with the factors.
 
 <MathContainer>
 <BlockMath math="A=\begin{pmatrix}0&2&1\\1&1&0\\2&1&1\end{pmatrix}" />
@@ -46,11 +46,15 @@ Consider
 
 ### First pivot
 
-In the first column, the largest magnitude is <InlineMath math="2" /> in row three. Swap rows one and three. The first elimination multiplier is <InlineMath math="\ell_{31}=1/2" />. The other entry below the pivot is already zero.
+The largest entry in the first column has magnitude <InlineMath math="2" />. **Swap rows one and three**, then eliminate the entry in row two with multiplier <InlineMath math="\ell_{21}=1/2" />. Row three already starts with zero.
+
+<BlockMath math="\begin{pmatrix}2&amp;1&amp;1\\1&amp;1&amp;0\\0&amp;2&amp;1\end{pmatrix}\longrightarrow\begin{pmatrix}2&amp;1&amp;1\\0&amp;1/2&amp;-1/2\\0&amp;2&amp;1\end{pmatrix}" />
 
 ### Second pivot
 
-The largest remaining entry in column two is <InlineMath math="2" />, so no second swap is needed. The multiplier for the final row is <InlineMath math="\ell_{32}=1/4" />.
+The next pivot has magnitude <InlineMath math="2" /> in row three, so **swap rows two and three**. Swap their already stored first-column multipliers in <InlineMath math="L" /> as well. The multiplier for the final row is then <InlineMath math="\ell_{32}=(1/2)/2=1/4" />.
+
+<BlockMath math="u_{33}=-\frac12-\frac14\cdot1=-\frac34" />
 
 The resulting factors are
 
@@ -70,7 +74,7 @@ From <InlineMath math="PA=LU" />, the equation <InlineMath math="Ax=b" /> become
 
 <BlockMath math="LUx=Pb" />
 
-We solve this system in two stages using triangular matrices.
+We solve this system in **two stages** using triangular matrices.
 
 ### Forward substitution
 
@@ -85,11 +89,11 @@ For a general lower triangular matrix,
 
 <BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
-The diagonal entries of this <InlineMath math="L" /> are all one.
+The **diagonal entries** of this <InlineMath math="L" /> are all one.
 
 ### Backward substitution
 
-Then solve <InlineMath math="Ux=y" /> from the last row upward:
+Then solve <InlineMath math="Ux=y" /> from the **last row upward**:
 
 <BlockMath math="x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^{n}u_{ij}x_j\right)" />
 
@@ -105,7 +109,7 @@ Dense <InlineMath math="\mathrm{LU}" /> factorization requires approximately
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-This count gives the number of floating-point operations when multiplications and subtractions are counted separately. Once the factors are available, each new right-hand side requires only <InlineMath math="O(n^2)" /> work for the two substitutions. Reusing the same <InlineMath math="\mathrm{LU}" /> factors therefore avoids repeating the <InlineMath math="O(n^3)" /> factorization for every right-hand side.
+This count gives the number of floating-point operations when multiplications and subtractions are counted separately. Once the factors are available, each new right-hand side requires only <InlineMath math="O(n^2)" /> work for the two substitutions. **Reusing the same** <InlineMath math="\mathrm{LU}" /> factors therefore avoids repeating the <InlineMath math="O(n^3)" /> factorization for every right-hand side.
 
 The determinant also follows from the factors:
 
@@ -121,9 +125,17 @@ The determinant also follows from the factors:
 
 def plu_factor(matrix, tolerance=1e-12):
     """Return P, L, U such that P @ matrix == L @ U."""
-    A = np.asarray(matrix, dtype=float)
-    if A.ndim != 2 or A.shape[0] != A.shape[1]:
-        raise ValueError("PLU factorization requires a square matrix")
+    A = np.asarray(matrix)
+    if np.iscomplexobj(A):
+        raise ValueError("this example requires real entries")
+    A = A.astype(float)
+    if A.ndim != 2 or A.shape[0] != A.shape[1] or A.shape[0] == 0:
+        raise ValueError("PLU factorization requires a nonempty square matrix")
+    if not np.all(np.isfinite(A)):
+        raise ValueError("matrix entries must be finite")
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("relative tolerance must be finite and nonnegative")
+    threshold = tolerance * np.linalg.norm(A, ord=np.inf)
 
     n = A.shape[0]
     U = A.copy()
@@ -132,7 +144,7 @@ def plu_factor(matrix, tolerance=1e-12):
 
     for k in range(n - 1):
         pivot = k + np.argmax(np.abs(U[k:, k]))
-        if abs(U[pivot, k]) <= tolerance:
+        if abs(U[pivot, k]) <= threshold:
             raise np.linalg.LinAlgError("matrix is singular to working precision")
 
         if pivot != k:
@@ -144,7 +156,7 @@ def plu_factor(matrix, tolerance=1e-12):
             L[i, k] = U[i, k] / U[k, k]
             U[i, k:] -= L[i, k] * U[k, k:]
 
-    if abs(U[-1, -1]) <= tolerance:
+    if abs(U[-1, -1]) <= threshold:
         raise np.linalg.LinAlgError("matrix is singular to working precision")
 
     return P, L, U
@@ -161,8 +173,9 @@ def forward_substitution(L, right_hand_side):
 def backward_substitution(U, right_hand_side, tolerance=1e-12):
     y = np.asarray(right_hand_side, dtype=float)
     x = np.empty_like(y)
+    threshold = tolerance * np.linalg.norm(U, ord=np.inf)
     for i in range(len(y) - 1, -1, -1):
-        if abs(U[i, i]) <= tolerance:
+        if abs(U[i, i]) <= threshold:
             raise np.linalg.LinAlgError("singular triangular system")
         x[i] = (y[i] - U[i, i + 1:] @ x[i + 1:]) / U[i, i]
     return x
@@ -170,7 +183,13 @@ def backward_substitution(U, right_hand_side, tolerance=1e-12):
 
 def plu_solve(matrix, right_hand_side):
     P, L, U = plu_factor(matrix)
-    y = forward_substitution(L, P @ right_hand_side)
+    b = np.asarray(right_hand_side)
+    if np.iscomplexobj(b):
+        raise ValueError("this example requires a real right-hand side")
+    b = b.astype(float)
+    if b.shape != (len(P),) or not np.all(np.isfinite(b)):
+        raise ValueError("right-hand side must be a finite vector of matching size")
+    y = forward_substitution(L, P @ b)
     x = backward_substitution(U, y)
     return x, P, L, U
 
@@ -184,8 +203,10 @@ assert np.allclose(A @ x, b)
 assert np.allclose(x, np.array([1, 2, 3], dtype=float))`
 }]} />
 
-The checks are part of the example because factor order and row-swap bookkeeping are common implementation errors.
+The checks are part of the example because **factor order** and row-swap bookkeeping are common implementation errors.
+
+The pivot tolerance is relative to the matrix infinity norm. Uniformly rescaling a well-conditioned system therefore does not trigger failure just because every entry is small. The threshold is a numerical decision, not proof of exact singularity.
 
 ## Scope of the method
 
-This implementation solves systems only for nonsingular square matrices and treats a zero numerical pivot as a failure. Use <InlineMath math="\mathrm{QR}" /> for rectangular least-squares problems and column-pivoted <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> for rank-deficient problems. A <InlineMath math="\mathrm{PLU}" /> factorization may still exist for a singular square matrix, but this solver cannot use it to obtain a unique solution.
+This implementation solves systems only for **nonsingular square matrices** and treats a zero numerical pivot as a failure. Use <InlineMath math="\mathrm{QR}" /> for rectangular least-squares problems and column-pivoted <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> for rank-deficient problems. A <InlineMath math="\mathrm{PLU}" /> factorization may still exist for a singular square matrix, but this solver cannot use it to obtain a unique solution.

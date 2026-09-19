@@ -2,16 +2,17 @@ export const metadata = {
   title: "Solution to Question 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-10-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-The function <InlineMath math="f(x)=2+\frac7{x-1}" /> has asymptotes <InlineMath math="x=1" /> and <InlineMath math="y=2" />, intersecting at <InlineMath math="(1,2)" />. For <InlineMath math="x>1" />, the fraction is positive, so <InlineMath math="f(x)>2" />.
+The function <InlineMath math="f(x)=2+\frac7{x-1}" /> has **asymptotes** <InlineMath math="x=1" /> and <InlineMath math="y=2" />, intersecting at <InlineMath math="(1,2)" />. For <InlineMath math="x>1" />, the fraction is positive, so <InlineMath math="f(x)>2" />.
 
 On each interval <InlineMath math="(-\infty,1)" /> and <InlineMath math="(1,\infty)" />, the reciprocal <InlineMath math="\frac1{x-1}" /> decreases as <InlineMath math="x" /> increases. Multiplication by positive <InlineMath math="7" /> and addition of <InlineMath math="2" /> preserve this behavior. To find fixed points, solve <InlineMath math="f(x)=x" />.
 
 <BlockMath math="\begin{aligned}
 x&=2+\frac7{x-1} \\
 x(x-1)&=2(x-1)+7 \\
+x^2-x&=2x-2+7 \\
 x^2-3x-5&=0
 \end{aligned}" />
 
@@ -19,8 +20,29 @@ The discriminant <InlineMath math="9+20=29>0" /> gives two real roots. Since <In
 
 <BlockMath math="\begin{aligned}
 y-2&=\frac7{x-1} \\
+(y-2)(x-1)&=7 \\
+x-1&=\frac7{y-2} \\
 x&=1+\frac7{y-2} \\
 f^{-1}(y)&=\frac{y+5}{y-2}
 \end{aligned}" />
 
 The function and its inverse have different domains, excluding <InlineMath math="1" /> and <InlineMath math="2" /> respectively. Thus <InlineMath math="f^{-1}=f" /> is false. The other four statements are true.
+
+Fixed points are intersections with the line <InlineMath math="y=x" />. The quadratic roots are <InlineMath math="x=\frac{3\pm\sqrt{29}}2" />. To see why the function decreases on each interval, take <InlineMath math="a<b" /> on the same side of 1. The denominator below is positive and the numerator is negative.
+
+<BlockMath math="f(b)-f(a)=\frac{7(a-b)}{(b-1)(a-1)}<0" />
+
+<LineEquation
+  title="Two branches and two fixed points"
+  description="Purple is the function and orange is y = x. Gray lines show the two asymptotes."
+  cameraPosition={[1, 2, 20]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-6, 0], [2, 8]].map(([a,b]) => ({ points: Array.from({ length: 81 }, (_, i) => { const x = a + (b-a)*i/80; return { x, y: 2 + 7/(x-1), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false })),
+    { points: [{ x: -5, y: -5, z: 0 }, { x: 7, y: 7, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -6, y: 2, z: 0 }, { x: 8, y: 2, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [-1, 1].map((sign) => { const x = (3 + sign*Math.sqrt(29))/2; return { x, y: x, z: 0 }; }), color: "#d97706", lineWidth: 0, smooth: false, showPoints: true },
+  ]}
+/>

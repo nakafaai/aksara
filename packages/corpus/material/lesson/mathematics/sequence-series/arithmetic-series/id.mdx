@@ -17,22 +17,21 @@ Contohnya, <InlineMath math="1, 2, 3, \dots, 100"/> adalah barisan aritmetika de
 
 ### Pemasangan Suku oleh Gauss
 
-Gauss memasangkan suku dari kedua ujung daftar:
+Gauss memasangkan suku dari **kedua ujung daftar**:
 
-- Jika suku pertama <InlineMath math="(1)" /> dijumlahkan dengan suku terakhir <InlineMath math="(100)" />, hasilnya <InlineMath math="101" />.
-- Jika suku kedua <InlineMath math="(2)" /> dijumlahkan dengan suku kedua terakhir <InlineMath math="(99)" />, hasilnya juga <InlineMath math="101" />.
-- Jika suku ketiga <InlineMath math="(3)" /> dijumlahkan dengan suku ketiga terakhir <InlineMath math="(98)" />, hasilnya tetap <InlineMath math="101" />.
-- Pola yang sama berlanjut sampai bagian tengah daftar.
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;\underbrace{1+100}_{101}, \underbrace{2+99}_{101}, \underbrace{3+98}_{101}, \dots, \\ &amp;\underbrace{50+51}_{101} \end{aligned}" />
-</MathContainer>
+| Pasangan | Dari awal | Dari akhir | Jumlah |
+| --- | --- | --- | --- |
+| 1 | 1 | 100 | 101 |
+| 2 | 2 | 99 | 101 |
+| 3 | 3 | 98 | 101 |
+| … | … | … | … |
+| 50 | 50 | 51 | 101 |
 
 Ada <InlineMath math="50" /> pasang bilangan, dan setiap pasangan berjumlah <InlineMath math="101" />. Jadi, jumlah keseluruhannya adalah <InlineMath math="50 \times 101 = 5050"/>.
 
 ## Menemukan Rumus Umum
 
-Cara Gauss tadi bisa kita pakai untuk membuat rumus umum jumlah <InlineMath math="n"/> suku pertama deret aritmetika, yang biasa disimbolkan dengan <InlineMath math="S_n"/>.
+Cara Gauss tadi bisa kita pakai untuk membuat **rumus umum jumlah** <InlineMath math="n"/> suku pertama deret aritmetika, yang biasa disimbolkan dengan <InlineMath math="S_n"/>.
 
 Mulailah dengan sebuah deret aritmetika:
 
@@ -55,7 +54,7 @@ Jumlahkan kedua bentuk <InlineMath math="S_n"/> tersebut suku demi suku:
 <MathContainer>
   <BlockMath math="\begin{aligned} S_n &amp;= a + (a+b) \\ &amp;\quad{}+ \dots + (a+(n-2)b) \\ &amp;\quad{}+ (a+(n-1)b) \end{aligned}" />
   <BlockMath math="\begin{aligned} S_n &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;2S_n \\ &amp;=[2a+(n-1)b]+[2a+(n-1)b] \\ &amp;\quad{}+\dots+[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \end{aligned}" />
+  <BlockMath math="\begin{aligned} 2S_n &amp;=[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \\ &amp;\quad{}+\dots+[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \end{aligned}" />
 </MathContainer>
 
 Setiap pasangan suku pada baris atas dan bawah memiliki jumlah yang sama, yaitu <InlineMath math="2a + (n-1)b" />. Karena setiap baris memuat <InlineMath math="n" /> suku, penjumlahan itu menghasilkan <InlineMath math="n" /> pasangan yang sama.
@@ -74,11 +73,11 @@ Penurunan rumus ini berlaku untuk <InlineMath math="n" /> genap maupun ganjil. K
 
 Ada dua bentuk rumus yang paling sering digunakan untuk menghitung <InlineMath math="S_n"/>:
 
-1.  Jika diketahui **suku pertama <InlineMath math="(a)" />** dan **beda <InlineMath math="(b)" />**:
+1.  Jika diketahui **suku pertama** <InlineMath math="a" /> dan **beda** <InlineMath math="b" />:
 
     <BlockMath math="S_n = \frac{n}{2}(2a + (n - 1)b)" />
 
-2.  Jika diketahui **suku pertama <InlineMath math="(a)" />** dan **suku ke-<InlineMath math="(n)" /> <InlineMath math="(U_n)" />**:
+2.  Jika diketahui **suku pertama** <InlineMath math="a" /> dan **suku terakhir** <InlineMath math="U_n" />:
     Ingat rumus suku ke-<InlineMath math="n"/> adalah <InlineMath math="U_n = a + (n-1)b"/>. Substitusi ini ke rumus pertama:
 
     <MathContainer>
@@ -86,8 +85,7 @@ Ada dua bentuk rumus yang paling sering digunakan untuk menghitung <InlineMath m
       <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
     </MathContainer>
 
-    Rumus kedua ini mirip cara Gauss: jumlah suku pertama dan terakhir,
-    dikalikan banyaknya pasangan <InlineMath math="(\frac{n}{2})" />.
+    Rumus kedua menyatakan **banyaknya suku dikali rata-rata suku pertama dan terakhir**. Rata-rata itu adalah <InlineMath math="(a+U_n)/2" />, sehingga rumus tetap berlaku ketika banyaknya suku ganjil.
 
 **Keterangan:**
 
@@ -99,11 +97,11 @@ Ada dua bentuk rumus yang paling sering digunakan untuk menghitung <InlineMath m
 
 ## Menghitung Dua Deret Aritmetika
 
-Kedua soal di bawah memberi suku-suku yang diperlukan untuk rumus jumlah. Substitusi nilainya lebih dulu, lalu bandingkan hasilmu dengan pembahasan. Pada tiap soal, tentukan dulu apakah deretnya aritmetika, karena pilihan itu menentukan rumus yang dipakai.
+Kedua soal di bawah memberi **suku-suku yang diperlukan** untuk rumus jumlah. Substitusi nilainya lebih dulu, lalu bandingkan hasilmu dengan pembahasan. Pada tiap soal, tentukan dulu apakah deretnya aritmetika, karena pilihan itu menentukan rumus yang dipakai.
 
-### Soal Pertama
+### Jumlah Bilangan Satu sampai Seratus
 
-Hitung kembali jumlah deret <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100"/>.
+Hitung kembali **jumlah deret** <InlineMath math="1 + 2 + 3 + \dots + 98 + 99 + 100"/>.
 
 Diketahui:
 
@@ -122,9 +120,9 @@ Karena <InlineMath math="a"/> dan <InlineMath math="U_n"/> diketahui, kita pakai
 
 Jumlah <InlineMath math="5050" /> sama dengan hasil metode pemasangan Gauss.
 
-### Soal Kedua
+### Jumlah dari Suku Pertama dan Beda
 
-Diketahui deret aritmetika: <InlineMath math="13 + 16 + 19 + 22 + \dots"/>. Hitunglah jumlah <InlineMath math="30" /> suku pertama <InlineMath math="(S_{30})"/>!
+Diketahui **deret aritmetika**: <InlineMath math="13 + 16 + 19 + 22 + \dots"/>. Hitunglah jumlah <InlineMath math="30" /> suku pertama <InlineMath math="(S_{30})"/>!
 
 Diketahui:
 
@@ -154,11 +152,11 @@ Sebuah gedung pertunjukan memiliki <InlineMath math="20" /> kursi pada baris per
   <BlockMath math="S_{15}=\frac{15}{2}(20+76)=720" />
 </MathContainer>
 
-Hasil pertama hanya menyatakan jumlah kursi pada baris ke-<InlineMath math="15" />. Hasil kedua menyatakan jumlah kursi pada seluruh lima belas baris pertama, sehingga suku barisan dan jumlah deret menjawab dua pertanyaan yang berbeda.
+Hasil pertama hanya menyatakan jumlah kursi pada baris ke-<InlineMath math="15" />. Hasil kedua menyatakan jumlah kursi pada seluruh lima belas baris pertama, sehingga suku barisan dan **jumlah deret** menjawab dua pertanyaan yang berbeda.
 
 ## Latihan
 
-Hitung deret aritmetika berhingga berikut:
+Hitung **deret aritmetika berhingga** berikut:
 
 <BlockMath math="8+13+18+\dots+103" />
 
@@ -167,9 +165,8 @@ Hitung deret aritmetika berhingga berikut:
 Tentukan dahulu banyaknya suku. Beda deret tersebut adalah <InlineMath math="5" />:
 
 <MathContainer>
-  <BlockMath math="103=8+(n-1)5" />
-  <BlockMath math="n=20" />
+  <BlockMath math="\begin{aligned}103&amp;=8+5(n-1)\\95&amp;=5(n-1)\\19&amp;=n-1\\n&amp;=20\end{aligned}" />
   <BlockMath math="S_{20}=\frac{20}{2}(8+103)=1110" />
 </MathContainer>
 
-Jadi, jumlah deret tersebut adalah <InlineMath math="1110" />.
+Jadi, **jumlah deret** tersebut adalah <InlineMath math="1110" />.

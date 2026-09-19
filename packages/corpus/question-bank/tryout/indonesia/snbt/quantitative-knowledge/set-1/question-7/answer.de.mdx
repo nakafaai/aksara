@@ -2,10 +2,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
 };
 
-Gegeben sind <InlineMath math="\sin A = \frac{5}{13}" /> und <InlineMath math="\cos B = \frac{8}{17}" />, wobei <InlineMath math="A" /> und <InlineMath math="B" /> spitze Winkel sind.
+Gegeben sind <InlineMath math="\sin A = \frac{5}{13}" /> und <InlineMath math="\cos B = \frac{8}{17}" />, wobei <InlineMath math="A" /> und <InlineMath math="B" /> **spitze Winkel** sind.
 
 Aus <InlineMath math="\sin A = \frac{5}{13}" /> lesen wir für ein passendes rechtwinkliges Dreieck die Gegenkathete <InlineMath math="5" /> und die Hypotenuse <InlineMath math="13" /> ab. Die Ankathete ist daher:
 
@@ -18,7 +18,7 @@ Damit gilt für den Winkel <InlineMath math="A" />:
 <UnitCircle
   title={<>Winkel <InlineMath math="A" /></>}
   description={<>Visualisierung des Winkels <InlineMath math="A" /> mit <InlineMath math="\sin A = \frac{5}{13}" />, <InlineMath math="\cos A = \frac{12}{13}" /> und <InlineMath math="\tan A = \frac{5}{12}" />.</>}
-  angle={22.62}
+  angle={Math.asin(5 / 13) * 180 / Math.PI}
   trigValues={{
     sin: "5/13",
     cos: "12/13",
@@ -37,7 +37,7 @@ Damit gilt für den Winkel <InlineMath math="B" />:
 <UnitCircle
   title={<>Winkel <InlineMath math="B" /></>}
   description={<>Visualisierung des Winkels <InlineMath math="B" /> mit <InlineMath math="\sin B = \frac{15}{17}" />, <InlineMath math="\cos B = \frac{8}{17}" /> und <InlineMath math="\tan B = \frac{15}{8}" />.</>}
-  angle={61.93}
+  angle={Math.acos(8 / 17) * 180 / Math.PI}
   trigValues={{
     sin: "15/17",
     cos: "8/17",
@@ -45,7 +45,7 @@ Damit gilt für den Winkel <InlineMath math="B" />:
   }}
 />
 
-**Aussage (1): <InlineMath math="\tan A + \tan B = \frac{19}{20}" />**
+**Aussage (1)**: <InlineMath math="\tan A + \tan B = \frac{19}{20}" />
 
 <MathContainer>
 <BlockMath math="\tan A + \tan B = \frac{5}{12} + \frac{15}{8}" />
@@ -55,7 +55,7 @@ Damit gilt für den Winkel <InlineMath math="B" />:
 
 Die Rechnung ergibt <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. In Aussage (1) steht <InlineMath math="\frac{19}{20}" />, daher ist sie falsch.
 
-**Aussage (2): <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />**
+**Aussage (2)**: <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned}&\cos A\sin B+\cos B\sin A\\&=\frac{12}{13}\cdot\frac{15}{17}\\&\quad+\frac8{17}\cdot\frac5{13}\end{aligned}" />
@@ -65,7 +65,7 @@ Die Rechnung ergibt <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. In Au
 
 Aussage (2) ist wahr.
 
-**Aussage (3): <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />**
+**Aussage (3)**: <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />
 
 <MathContainer>
 <BlockMath math="\frac{\tan A}{\tan B} = \frac{\frac{5}{12}}{\frac{15}{8}}" />
@@ -76,7 +76,7 @@ Aussage (2) ist wahr.
 
 Die Rechnung ergibt <InlineMath math="\frac{\tan A}{\tan B} = \frac{2}{9}" />. In Aussage (3) steht <InlineMath math="\frac{25}{32}" />, daher ist sie falsch.
 
-**Aussage (4): <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />**
+**Aussage (4)**: <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />
 
 <MathContainer>
 <BlockMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{\sin A}{\cos A} \cdot \frac{\cos B}{\sin B}" />

@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Inverse Function",
     description: "Find an inverse function, verify that the original function is bijective, and relate the two graphs through reflection across the line y equals x.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -27,7 +26,7 @@ The reverse mapping sends "Matematika" back to "Mathematics". This mapping is an
 
 ## Definition of Inverse Function
 
-An inverse function is a function that "reverses" the operation of an initial function. If function <InlineMath math="f" /> maps element <InlineMath math="x" /> from domain <InlineMath math="A" /> to element <InlineMath math="y" /> in codomain <InlineMath math="B" />, then its inverse function, denoted as <InlineMath math="f^{-1}" /> (read "f inverse"), maps element <InlineMath math="y" /> from <InlineMath math="B" /> back to element <InlineMath math="x" /> in <InlineMath math="A" />.
+An inverse function **exchanges the input and output**. If function <InlineMath math="f" /> maps element <InlineMath math="x" /> from domain <InlineMath math="A" /> to element <InlineMath math="y" /> in codomain <InlineMath math="B" />, then its inverse function, denoted as <InlineMath math="f^{-1}" /> (read "f inverse"), maps element <InlineMath math="y" /> from <InlineMath math="B" /> back to element <InlineMath math="x" /> in <InlineMath math="A" />.
 
 Mathematically:
 
@@ -37,12 +36,19 @@ In other words, if <InlineMath math="f" /> changes <InlineMath math="x" /> to <I
 
 The notation <InlineMath math="f^{-1}(x)" /> denotes the inverse function. The multiplicative inverse or reciprocal is written <InlineMath math="\frac{1}{f(x)}" />.
 
+To distinguish the two notations, take <InlineMath math="f(x)=2x+3" />. The inverse finds the original input, while the reciprocal divides one by the function value.
+
+| Input | Inverse function | Reciprocal |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="f^{-1}(3)=0" /> | <InlineMath math="1/f(3)=1/9" /> |
+| <InlineMath math="5" /> | <InlineMath math="f^{-1}(5)=1" /> | <InlineMath math="1/f(5)=1/13" /> |
+
 ## Condition for a Function to Have an Inverse
 
 For a function <InlineMath math="f:A\to B" /> <Highlight>to have a two-sided inverse</Highlight> <InlineMath math="f^{-1}:B\to A" />, the function <InlineMath math="f" /> must be **bijective**. A bijective function is both **injective** (one-to-one) and **surjective** (onto).
 
-- **Injective (One-to-one):** Every distinct element in the domain maps to a distinct element in the codomain. No two different inputs produce the same output.
-- **Surjective (Onto):** Every element in the codomain is the result of mapping from at least one element in the domain. All possible outputs occur.
+- **Injective (One-to-one)**: Every distinct element in the domain maps to a distinct element in the codomain. No two different inputs produce the same output.
+- **Surjective (Onto)**: Every element in the codomain is the result of mapping from at least one element in the domain. All possible outputs occur.
 
 The specified domain and codomain matter. If <InlineMath math="f" /> is injective but does not reach all of <InlineMath math="B" />, we can replace its codomain by its actual range. Writing that range as <InlineMath math="\operatorname{Im}(f)" />, the resulting function <InlineMath math="f:A\to \operatorname{Im}(f)" /> is bijective and therefore has an inverse <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. If <InlineMath math="f" /> is not injective, reversing its pairs sends one output to more than one input, so the reversed relation is not a function unless the original domain is restricted.
 
@@ -61,31 +67,30 @@ To find the formula for the inverse function <InlineMath math="f^{-1}(x)" /> fro
 3.  Solve the equation for <InlineMath math="y" /> in terms of <InlineMath math="x" />.
 4.  Replace <InlineMath math="y" /> with <InlineMath math="f^{-1}(x)" /> to get the inverse function formula.
 
-**Example:**
+**Example**:
 
 Let <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath math="f(x) = 2x + 3" />. Find its inverse.
 
-1.  Replace <InlineMath math="f(x)" /> with <InlineMath math="y" />:
+**Step 1**. Replace <InlineMath math="f(x)" /> with <InlineMath math="y" />:
 
-    <BlockMath math="y = 2x + 3" />
+<BlockMath math="y = 2x + 3" />
 
-2.  Swap <InlineMath math="x" /> and <InlineMath math="y" />:
+**Step 2**. Swap <InlineMath math="x" /> and <InlineMath math="y" />:
 
-    <BlockMath math="x = 2y + 3" />
+<BlockMath math="x = 2y + 3" />
 
-3.  Solve for <InlineMath math="y" />:
+**Step 3**. Solve for <InlineMath math="y" />:
 
-    <MathContainer>
-      <BlockMath math="x - 3 = 2y" />
-      <BlockMath math="\frac{x - 3}{2} = y" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x - 3 = 2y" />
+  <BlockMath math="\frac{x - 3}{2} = y" />
+</MathContainer>
 
-4.  Replace <InlineMath math="y" /> with <InlineMath math="f^{-1}(x)" />:
+**Step 4**. Replace <InlineMath math="y" /> with <InlineMath math="f^{-1}(x)" />:
 
-    <BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
+<BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
 
 So, the inverse function of <InlineMath math="f(x) = 2x + 3" /> is <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />.
-
 ## Graph of a Function and Its Inverse
 
 The graph of the inverse function <InlineMath math="f^{-1}(x)" /> is a reflection of the graph of the original function <InlineMath math="f(x)" /> across the line <InlineMath math="y = x" />.
@@ -161,13 +166,16 @@ For example, look at the graph of <InlineMath math="f(x) = 2x + 3" />, its inver
       ],
     },
   ]}
+  showZAxis={false}
   cameraTarget={[0, 0, 0]}
   cameraPosition={[0, 0, 13]}
 />
 
+Reflection **exchanges the coordinates**. The point <InlineMath math="(1,5)" /> on the original graph becomes <InlineMath math="(5,1)" /> on the inverse graph. They lie on opposite sides of the mirror line and have midpoint <InlineMath math="(3,3)" />.
+
 ## Check Your Understanding
 
-Let <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath math="r(x)=3x-5" />. Work through the three steps below for this function. Check both compositions at the end, because a correct inverse undoes the original in both orders.
+Let <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath math="r(x)=3x-5" />. Work through the three steps below for this function. Check **both compositions** at the end, because a correct inverse undoes the original in both orders.
 
 1. Find <InlineMath math="r^{-1}(x)" />.
 2. Verify both compositions <InlineMath math="r^{-1}(r(x))" /> and <InlineMath math="r(r^{-1}(x))" />.
@@ -175,7 +183,7 @@ Let <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> be defined by <InlineMath ma
 
 ### Solution
 
-Starting with <InlineMath math="y=3x-5" />, swap the variables and solve for <InlineMath math="y" />:
+Starting with <InlineMath math="y=3x-5" />, **swap the variables** and solve for <InlineMath math="y" />:
 
 <MathContainer>
   <BlockMath math="x=3y-5" />

@@ -4,13 +4,13 @@ export const metadata = {
   description: "Spiegle Punkte, Dreiecke und Geraden an der y-Achse und wende die Koordinatenregel auf Gleichungen und Visualisierungen an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
 ## Nur die waagerechte Koordinate wechselt ihr Vorzeichen
 
-Die Spiegelung an der <InlineMath math="y" />-Achse bildet jeden Punkt auf die gegenüberliegende Seite der <InlineMath math="y" />-Achse ab. Stell dir die <InlineMath math="y" />-Achse als senkrechten Spiegel vor: <Highlight>Urbild und Bildpunkt haben denselben Abstand</Highlight> zur <InlineMath math="y" />-Achse.
+Stell dir die senkrechte Achse als Spiegel vor. Urbild und Bildpunkt haben <Highlight>denselben Abstand zur Achse</Highlight>. Punkte außerhalb der Achse wechseln die Seite. Punkte auf der Achse bleiben dagegen an ihrem Ort.
 
 ### Regel für die Spiegelung an der vertikalen Achse
 
@@ -23,7 +23,7 @@ Wenn ein Punkt <InlineMath math="P(x, y)" /> an der <InlineMath math="y" />-Achs
 
 Somit ist das Bild des Punktes <InlineMath math="P(x, y)" /> <InlineMath math="P'(-x, y)" />.
 
-Die <InlineMath math="y" />-Koordinate bleibt unverändert, während die <InlineMath math="x" />-Koordinate ihr Vorzeichen wechselt.
+Die <InlineMath math="y" />-Koordinate **bleibt unverändert**, während die <InlineMath math="x" />-Koordinate ihr Vorzeichen wechselt.
 
 ## Einen Punkt spiegeln
 
@@ -35,7 +35,7 @@ Die ursprüngliche <InlineMath math="y" />-Koordinate ist <InlineMath math="4" /
 
 Somit ist das Bild des Punktes <InlineMath math="A" /> <InlineMath math="A'(-3, 4)" />.
 
-Die Visualisierung zeigt diese Symmetrie unmittelbar:
+Beide Punkte liegen **drei Einheiten von der Achse entfernt** auf derselben Höhe. Die waagerechte Verbindung zeigt die gleichen Abstände auf beiden Seiten:
 
 <LineEquation
   title={
@@ -51,6 +51,7 @@ Die Visualisierung zeigt diese Symmetrie unmittelbar:
     </>
   }
   data={[
+    { points: [{ x: -3, y: 4, z: 0 }, { x: 0, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
     {
       points: [{ x: 3, y: 4, z: 0 }],
       color: "#059669",
@@ -64,7 +65,8 @@ Die Visualisierung zeigt diese Symmetrie unmittelbar:
       labels: [{ text: <InlineMath math="A'(-3,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 3, 10]}
+  cameraTarget={[0, 3, 0]}
 />
 
 ## Ein Dreieck spiegeln
@@ -146,7 +148,7 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
 
 ## Eine Geradengleichung spiegeln
 
-Gegeben ist die Gerade <InlineMath math="y = x + 2" />. Für ihre Spiegelung an der <InlineMath math="y" />-Achse ersetzen wir in der ursprünglichen Gleichung <InlineMath math="x" /> durch <InlineMath math="-x" />, denn <InlineMath math="x' = -x" />. Die Variable <InlineMath math="y" /> ersetzen wir durch <InlineMath math="y" />, denn <InlineMath math="y' = y" />.
+Gegeben ist die Gerade <InlineMath math="y = x + 2" />. Für ihre Spiegelung an der <InlineMath math="y" />-Achse ersetzen wir in der **ursprünglichen Gleichung** <InlineMath math="x" /> durch <InlineMath math="-x" />, denn <InlineMath math="x' = -x" />. Die Variable <InlineMath math="y" /> ersetzen wir durch <InlineMath math="y" />, denn <InlineMath math="y' = y" />.
 
 Ursprüngliche Gleichung:
 
@@ -173,35 +175,34 @@ Die beiden Geraden sehen so aus:
   data={[
     {
       // Ursprüngliche Gerade y = x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = (i - 5) * 0.8; // x von -4 bis 4 für eine passende Darstellung
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: x + 2, z: 0 };
       }),
-      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      showPoints: false,
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 21, offset: [0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
       // Gespiegelte Gerade y = -x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 8;
-        const x = (i - 5) * 0.8; // x from -4 to 4
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: -x + 2, z: 0 };
       }),
-      pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+      showPoints: false,
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-x+2" />, at: 9, offset: [-0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 2, 12]}
+  cameraTarget={[0, 2, 0]}
 />
 
 ## Übungen
 
-Die Aufgaben spiegeln einen Punkt, ein Dreieck und eine Gerade an der <InlineMath math="y" />-Achse. Eine Gerade zu spiegeln heißt, <InlineMath math="x" /> in der Gleichung durch sein Negatives zu ersetzen.
+Die Aufgaben spiegeln einen Punkt, ein Dreieck und eine Gerade an der <InlineMath math="y" />-Achse. Eine Gerade zu spiegeln heißt, <InlineMath math="x" /> in der Gleichung durch **sein Negatives** zu ersetzen.
 
 1.  Bestimme die Koordinaten des Bildpunktes von <InlineMath math="K(-5, 8)" /> bei der Spiegelung an der <InlineMath math="y" />-Achse.
 2.  Ein Dreieck <InlineMath math="ABC" /> hat die Eckpunkte <InlineMath math="A(2, 1)" />, <InlineMath math="B(5, 3)" /> und <InlineMath math="C(3, 6)" />. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" /> nach der Spiegelung an der <InlineMath math="y" />-Achse.
@@ -210,30 +211,38 @@ Die Aufgaben spiegeln einen Punkt, ein Dreieck und eine Gerade an der <InlineMat
 
 ### Lösungen
 
-1.  Das Bild des Punktes <InlineMath math="K(-5, 8)" /> ist <InlineMath math="K'(5, 8)" />.
+Bei einem Punkt **kehrst du das Vorzeichen der waagerechten Koordinate um** und behältst die senkrechte bei. Bei einer Geraden ersetzt du die waagerechte Koordinate in der Ausgangsgleichung durch ihr Negatives und vereinfachst die Vorzeichenprodukte.
 
-    **Erklärung:** <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
+**Lösung 1**
 
-2.  Die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" /> sind:
+Das Bild des Punktes <InlineMath math="K(-5, 8)" /> ist <InlineMath math="K'(5, 8)" />.
 
-    - <InlineMath math="A'(-2, 1)" />
-    - <InlineMath math="B'(-5, 3)" />
-    - <InlineMath math="C'(-3, 6)" />
+**Erklärung**: <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
 
-3.  Die Gleichung der Bildgeraden zu <InlineMath math="3x - 2y + 6 = 0" /> ist <InlineMath math="-3x - 2y + 6 = 0" />.
+**Lösung 2**
 
-    **Erklärung:** Wir ersetzen <InlineMath math="x" /> durch <InlineMath math="-x" /> in der ursprünglichen Gleichung:
+Die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" /> sind:
 
-    <MathContainer>
-      <BlockMath math="3(-x) - 2y + 6 = 0" />
-      <BlockMath math="-3x - 2y + 6 = 0" />
-    </MathContainer>
+<BlockMath math="A(2,1)\mapsto A'(-2,1),\quad B(5,3)\mapsto B'(-5,3),\quad C(3,6)\mapsto C'(-3,6)" />
 
-4.  Die Gleichung der Bildgeraden zu <InlineMath math="y = -3x - 4" /> ist <InlineMath math="y = 3x - 4" />.
+**Lösung 3**
 
-    **Erklärung:** Wir ersetzen <InlineMath math="x" /> durch <InlineMath math="-x" />:
+Die Gleichung der Bildgeraden zu <InlineMath math="3x - 2y + 6 = 0" /> ist <InlineMath math="-3x - 2y + 6 = 0" />.
 
-    <MathContainer>
-      <BlockMath math="y = -3(-x) - 4" />
-      <BlockMath math="y = 3x - 4" />
-    </MathContainer>
+**Erklärung**: Wir ersetzen <InlineMath math="x" /> durch <InlineMath math="-x" /> in der ursprünglichen Gleichung:
+
+<MathContainer>
+  <BlockMath math="3(-x) - 2y + 6 = 0" />
+  <BlockMath math="-3x - 2y + 6 = 0" />
+</MathContainer>
+
+**Lösung 4**
+
+Die Gleichung der Bildgeraden zu <InlineMath math="y = -3x - 4" /> ist <InlineMath math="y = 3x - 4" />.
+
+**Erklärung**: Wir ersetzen <InlineMath math="x" /> durch <InlineMath math="-x" />:
+
+<MathContainer>
+  <BlockMath math="y = -3(-x) - 4" />
+  <BlockMath math="y = 3x - 4" />
+</MathContainer>

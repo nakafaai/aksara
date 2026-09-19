@@ -4,26 +4,19 @@ export const metadata = {
   description: "Reflect points across a vertical mirror line and derive image coordinates from equal horizontal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
 ## Equal Distances on Either Side of a Vertical Mirror
 
-Reflection over the vertical line <InlineMath math="x = k" /> moves each point of an object to its reflected position. The line <InlineMath math="x = k" /> is the mirror line.
-
-The horizontal distance from the original point to the mirror line <Highlight>is equal to the horizontal distance from the image point</Highlight> to the mirror line. The <InlineMath math="y" />-coordinate of the point does not change.
+A point on the mirror line remains fixed. For a point outside the line, the original and image lie on opposite sides at <Highlight>equal perpendicular distances</Highlight>.
 
 ### Rule for Reflection over a Vertical Line
 
-If a point <InlineMath math="P(x, y)" /> is reflected over the line <InlineMath math="x = k" />, its image's coordinates, <InlineMath math="P'(x', y')" />, are determined by the rule:
+The **midpoint** of the segment joining a point and its image lies on the mirror line. Both points share the coordinate measured along the line. Using the midpoint coordinate gives:
 
-<MathContainer>
-  <BlockMath math="x' = 2k - x" />
-  <BlockMath math="y' = y" />
-</MathContainer>
-
-The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(2k - x, y)" />. The <InlineMath math="y" />-coordinate remains the same, while the <InlineMath math="x" />-coordinate changes according to its distance from the line <InlineMath math="x=k" />.
+<BlockMath math="\frac{x+x'}{2}=k\quad\Longrightarrow\quad x+x'=2k\quad\Longrightarrow\quad x'=2k-x,\qquad y'=y" />
 
 ## Reflecting a Point over a Vertical Line
 
@@ -67,8 +60,8 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
   data={[
     {
       points: [
-        { x: 3, y: -5, z: 0 },
-        { x: 3, y: 5, z: 0 },
+        { x: 3, y: 1, z: 0 },
+        { x: 3, y: 6, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
@@ -95,13 +88,13 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
       color: "#db2777",
     }, // Horizontal helper line
   ]}
-  cameraTarget={[3, 3, 0]}
-  cameraPosition={[3, 3, 10]}
+  cameraTarget={[3, 4, 0]}
+  cameraPosition={[3, 4, 8]}
 />
 
 ## Exercises
 
-Each problem reflects over the vertical line <InlineMath math="x=k" />. The last one gives the image and asks for the original point, so the same formula is solved backwards.
+Use the **mirror line coordinate** when substituting into the formula. In the last problem, the image coordinates are known and you work backwards to find the original point.
 
 1.  Determine the image of point <InlineMath math="P(3,2)" /> by reflection over the line <InlineMath math="x=5" />.
 2.  A point <InlineMath math="B(-2, 5)" /> is reflected over the line <InlineMath math="x=1" />. Determine the coordinates of its image!
@@ -109,35 +102,43 @@ Each problem reflects over the vertical line <InlineMath math="x=k" />. The last
 
 ### Solutions
 
-1.  Given <InlineMath math="P(3,2)" /> and the mirror line <InlineMath math="x=5" />. So <InlineMath math="x=3, y=2, k=5" />.
+Check the result using the **midpoint coordinate**. The average of the changing coordinates must equal the mirror line coordinate. The other coordinate stays unchanged.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
-      <BlockMath math="y' = y = 2" />
-    </MathContainer>
+**Solution 1**
 
-    Thus, the image of point <InlineMath math="P" /> is <InlineMath math="P'(7,2)" />.
+Given <InlineMath math="P(3,2)" /> and the mirror line <InlineMath math="x=5" />. So <InlineMath math="x=3, y=2, k=5" />.
 
-2.  Given <InlineMath math="B(-2, 5)" /> and the mirror line <InlineMath math="x=1" />. So <InlineMath math="x=-2, y=5, k=1" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
+  <BlockMath math="y' = y = 2" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
-      <BlockMath math="y' = y = 5" />
-    </MathContainer>
+Thus, the image of point <InlineMath math="P" /> is <InlineMath math="P'(7,2)" />.
 
-    Thus, the image of point <InlineMath math="B" /> is <InlineMath math="B'(4,5)" />.
+**Solution 2**
 
-3.  Given the image <InlineMath math="C'(0,3)" /> and the mirror line <InlineMath math="x=-2" />. So <InlineMath math="x'=0, y'=3, k=-2" />.
+Given <InlineMath math="B(-2, 5)" /> and the mirror line <InlineMath math="x=1" />. So <InlineMath math="x=-2, y=5, k=1" />.
 
-    We know <InlineMath math="x' = 2k - x" /> and <InlineMath math="y' = y" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
+  <BlockMath math="y' = y = 5" />
+</MathContainer>
 
-    From <InlineMath math="y' = y" />, then <InlineMath math="y = 3" />.
+Thus, the image of point <InlineMath math="B" /> is <InlineMath math="B'(4,5)" />.
 
-    From <InlineMath math="x' = 2k - x" />, then <InlineMath math="0 = 2(-2) - x" />.
+**Solution 3**
 
-    <MathContainer>
-      <BlockMath math="0 = -4 - x" />
-      <BlockMath math="x = -4" />
-    </MathContainer>
+Given the image <InlineMath math="C'(0,3)" /> and the mirror line <InlineMath math="x=-2" />. So <InlineMath math="x'=0, y'=3, k=-2" />.
 
-    The coordinates of point <InlineMath math="C" /> are <InlineMath math="C(-4,3)" />.
+We know <InlineMath math="x' = 2k - x" /> and <InlineMath math="y' = y" />.
+
+From <InlineMath math="y' = y" />, then <InlineMath math="y = 3" />.
+
+From <InlineMath math="x' = 2k - x" />, then <InlineMath math="0 = 2(-2) - x" />.
+
+<MathContainer>
+  <BlockMath math="0 = -4 - x" />
+  <BlockMath math="x = -4" />
+</MathContainer>
+
+The coordinates of point <InlineMath math="C" /> are <InlineMath math="C(-4,3)" />.

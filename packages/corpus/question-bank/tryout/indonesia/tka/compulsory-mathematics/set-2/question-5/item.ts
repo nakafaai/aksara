@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "stationery-bundles",
+  stimulusKey: "sugar-mixture",
 };
 
 export default item;

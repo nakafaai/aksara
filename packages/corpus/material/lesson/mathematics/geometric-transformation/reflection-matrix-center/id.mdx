@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan matriks pencerminan terhadap titik asal dan terapkan pada titik maupun segitiga utuh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Transformasi Geometri",
 };
 
@@ -31,21 +31,23 @@ Dengan menyamakan <Highlight>koefisien-koefisien yang bersesuaian</Highlight>, k
 
 ### Matriks Pencerminan terhadap Titik Pusat
 
-Pencerminan terhadap titik pusat <InlineMath math="O(0,0)" /> mengubah tanda kedua koordinat:
+Matriks ini adalah **negatif matriks identitas**. Jika pencerminan dilakukan dua kali, kedua tanda kembali seperti semula:
 
-<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
 
 ## Aplikasi Matriks Pencerminan terhadap Titik Pusat
 
-Matriks di bawah mengubah pencerminan terhadap titik pusat menjadi satu perkalian. Contoh-contohnya memakainya pada titik tunggal, lalu pada seluruh segitiga. Karena pencerminan ini <Highlight>memetakan setiap titik ke titik lawannya</Highlight>, koordinat bayangan cukup dihitung dari koordinat masukan.
+Satu perkalian matriks dapat bekerja pada **beberapa kolom sekaligus**. Setiap kolom menyimpan satu titik, sehingga susunan kolom menentukan urutan titik sudut pada bangun.
+
+<BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
 
 ### Mencerminkan Dua Titik
 
 Tentukan bayangan titik <InlineMath math="A(-1,1)" /> dan <InlineMath math="B(3,-2)" /> yang dicerminkan terhadap titik pusat!
 
-**Penyelesaian:**
+**Penyelesaian**:
 
-Menggunakan matriks transformasi:
+Gunakan **baris pertama untuk koordinat horizontal** dan baris kedua untuk koordinat vertikal:
 
 <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -131,35 +133,39 @@ Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(-3,2)" />.
 
 ## Latihan
 
-Kedua soal mencerminkan terhadap titik asal. Soal kedua memakai matriks pencerminan pada setiap titik sudut segitiga.
+Kedua soal mencerminkan terhadap titik asal. Soal kedua memakai matriks pencerminan pada **setiap titik sudut segitiga**.
 
 1.  Tentukan bayangan titik <InlineMath math="A(1,-7)" /> dan <InlineMath math="B(-7,-2)" /> yang dicerminkan terhadap titik pusat!
 2.  Sebuah segitiga <InlineMath math="PQR" /> memiliki titik sudut <InlineMath math="P(2,2)" />, <InlineMath math="Q(5,2)" />, dan <InlineMath math="R(3,5)" />. Tentukan koordinat bayangan segitiga <InlineMath math="P'Q'R'" /> setelah dicerminkan terhadap titik pusat menggunakan perkalian matriks.
 
 ### Pembahasan
 
-Setiap penyelesaian mengalikan matriks pencerminan dengan koordinat satu titik. Tulis matriksnya lebih dahulu, lalu terapkan pada setiap titik sudut segitiga agar bayangannya tersusun dari titik-titik sudutnya.
+Pertahankan **urutan kolom titik** saat mengalikan matriks. Perkalian dengan matriks diagonal ini mengubah tanda setiap entri, tanpa menukar posisi horizontal dan vertikal.
 
-1.  Matriks pencerminan terhadap titik pusat:
+**Pembahasan 1**
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+Matriks pencerminan terhadap titik pusat:
 
-    Untuk <InlineMath math="A(1,-7)" />:
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
+Untuk <InlineMath math="A(1,-7)" />:
 
-    Bayangan titik <InlineMath math="A" /> adalah <InlineMath math="A'(-1,7)" />. Untuk <InlineMath math="B(-7,-2)" />:
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
+Bayangan titik <InlineMath math="A" /> adalah <InlineMath math="A'(-1,7)" />. Untuk <InlineMath math="B(-7,-2)" />:
 
-    Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(7,2)" />.
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
 
-2.  Matriks titik <InlineMath math="PQR" />:
+Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(7,2)" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+**Pembahasan 2**
 
-      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+Matriks titik <InlineMath math="PQR" />:
 
-    Bayangan: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Bayangan: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.

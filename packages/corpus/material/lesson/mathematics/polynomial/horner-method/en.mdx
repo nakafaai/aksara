@@ -47,43 +47,28 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Notice how Horner's method only focuses on the coefficients <InlineMath math="(1, 0, -7, 8)" /> and the value <InlineMath math="c=2" />. The bottom row in Horner's method <InlineMath math="(1, 2, -3)" /> directly gives the coefficients of the quotient <InlineMath math="1x^2 + 2x - 3" />, and the last number <InlineMath math="\boxed{2}" /> is the remainder.
 
-The scheme omits the repeated variables and powers required by long division. Its bottom row already contains the quotient coefficients followed by the remainder.
-
 This method can only be directly used if the divisor is a linear polynomial of degree one, i.e., in the form <InlineMath math="(x-c)" /> or <InlineMath math="(ax-b)" /> (which can be transformed).
 
 ## Preparing to Use the Horner Method
 
-Before performing division with Horner's method, there are several preparation steps:
+The **coefficient order** must include every power, from the highest down to the constant. A missing term still needs a position, filled by zero. For <InlineMath math="2x^3+5x^2+6" />, use:
 
-1.  **Identify Coefficients of the Dividend (<InlineMath math="P(x)" />):**
+| Power | Coefficient |
+| --- | --- |
+| <InlineMath math="x^3" /> | 2 |
+| <InlineMath math="x^2" /> | 5 |
+| <InlineMath math="x" /> | 0 |
+| <InlineMath math="1" /> | 6 |
 
-    Write down all coefficients of the polynomial to be divided in order, starting from the term with the highest power down to the constant. Ensure no power is skipped. If a term with a certain power is missing, its coefficient is written as <InlineMath math="0" />.
-
-    **Example:**
-
-    For <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" />, the coefficient of the <InlineMath math="x" /> term is <InlineMath math="0" />. So, the coefficients we write in order are: <InlineMath math="2, 5, 0, 6" />.
-
-2.  **Identify the Value <InlineMath math="c" /> from the Divisor (<InlineMath math="x-c" />):**
-
-    Determine the value of <InlineMath math="c" /> from the divisor polynomial. Remember, if the divisor is <InlineMath math="x-c" />, the value used is <InlineMath math="c" />. If the divisor is <InlineMath math="x+c" />, it is equivalent to <InlineMath math="x - (-c)" />, so the value used is <InlineMath math="-c" />.
-
-    **Example:**
-
-    If the divisor is <InlineMath math="x+3" />, then <InlineMath math="x - (-3)" />, so <InlineMath math="c = -3" />.
-
-3.  **Set Up the Horner Scheme:**
-
-    Draw the Horner scheme or diagram. Place the value <InlineMath math="c" /> on the left and write the coefficients of <InlineMath math="P(x)" /> in the top row.
+Place the **root of the divisor** on the left of the scheme. The divisor <InlineMath math="x+3=x-(-3)" /> gives <InlineMath math="c=-3" />, not three. Write the polynomial coefficients across the top row.
 
 ## Division with the Horner Method
 
-Here are the steps to perform division using the Horner scheme:
+In each column, **multiply the previous result and add the next coefficient**. This rule comes from writing the polynomial as nested products:
 
-1.  **Bring Down the First Coefficient:** Bring down the first coefficient (<InlineMath math="a_n" />) directly to the result row (the bottom row).
-2.  **Multiply and Place:** Multiply the coefficient just brought down by the value <InlineMath math="c" />. Place the result under the second coefficient (<InlineMath math="a_{n-1}" />).
-3.  **Add:** Add the second coefficient (<InlineMath math="a_{n-1}" />) to the result from the previous step. Write the sum in the result row, directly below it.
-4.  **Repeat:** Repeat step 2 (multiply by <InlineMath math="c" />) and step 3 (add to the coefficient above it) for all remaining coefficients.
-5.  **Final Result:** The last number in the result row is the **remainder (<InlineMath math="S" />)**. The other numbers in the result row, from left to right, are the **coefficients of the quotient polynomial (<InlineMath math="H(x)" />)**, starting from the power <InlineMath math="n-1" />.
+<BlockMath math="2x^3+5x^2+6=((2x+5)x+0)x+6" />
+
+Start with the first coefficient, two. After every coefficient has been processed, the last result is the polynomial value at the divisor’s root. By the Remainder Theorem, it is the remainder. The earlier results give the quotient coefficients.
 
 ## Using the Horner Method
 
@@ -108,50 +93,38 @@ x+3\overline{\big)2x^3 + 5x^2 + 0x + 6} \\
 
 **Horner's Method:**
 
-1.  **Preparation:**
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-3 & 2 & 5 & 0 & 6 \\
+  &   & -6 & 3 & -9 \\
+\hline
+  & 2 & -1 & 3 & \boxed{-3} \\
+\end{array}
+"
+/>
 
-    - Coefficients of <InlineMath math="P(x)" />: <InlineMath math="2, 5, 0" /> (for <InlineMath math="x^1" />), <InlineMath math="6" /> (constant).
-    - The divisor is <InlineMath math="x+3" />, so <InlineMath math="x - (-3)" />, thus <InlineMath math="c = -3" />.
+| Next coefficient | Multiplication | Addition |
+| --- | --- | --- |
+| 5 | <InlineMath math="2(-3)=-6" /> | <InlineMath math="5-6=-1" /> |
+| 0 | <InlineMath math="(-1)(-3)=3" /> | <InlineMath math="0+3=3" /> |
+| 6 | <InlineMath math="3(-3)=-9" /> | <InlineMath math="6-9=-3" /> |
 
-2.  **Horner Process:**
+The final number is the **remainder**, <InlineMath math="-3" />. The preceding numbers, <InlineMath math="2,-1,3" />, give the quotient <InlineMath math="H(x)=2x^2-x+3" />. Therefore:
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -3 & 2 & 5 & 0 & 6 \\
-      &   & -6 & 3 & -9 \\
-    \hline
-      & 2 & -1 & 3 & \boxed{-3} \\
-    \end{array}
-    "
-    />
+<BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
-3.  **Scheme Explanation:**
+### A Divisor with a Leading Coefficient Other Than One
 
-    - Bring down the number <InlineMath math="2" /> (coefficient of <InlineMath math="x^3" />).
-    - <InlineMath math="2 \times (-3) = -6" />. Place <InlineMath math="-6" /> under <InlineMath math="5" />.
-    - <InlineMath math="5 + (-6) = -1" />. Write <InlineMath math="-1" /> in the result row.
-    - <InlineMath math="-1 \times (-3) = 3" />. Place <InlineMath math="3" /> under <InlineMath math="0" />.
-    - <InlineMath math="0 + 3 = 3" />. Write <InlineMath math="3" /> in the result row.
-    - <InlineMath math="3 \times (-3) = -9" />. Place <InlineMath math="-9" /> under <InlineMath math="6" />.
-    - <InlineMath math="6 + (-9) = -3" />. Write <InlineMath math="-3" /> (remainder) in the result row on the far right.
+For a divisor <InlineMath math="ax-b" /> with <InlineMath math="a\ne0" />, use <InlineMath math="c=b/a" /> in the scheme. However, **divide the resulting quotient by the divisor’s leading coefficient**. The remainder stays unchanged.
 
-4.  **Result:**
+For example, use the same scheme for <InlineMath math="2x+6=2(x+3)" />. To preserve the product, divide the previous quotient by two:
 
-    - The last number in the result row is <InlineMath math="\boxed{-3}" />. This is the **Remainder (<InlineMath math="S" />)**.
-    - The other numbers are <InlineMath math="2, -1, 3" />. These are the coefficients of the **Quotient (<InlineMath math="H(x)" />)**. Since <InlineMath math="P(x)" /> is degree <InlineMath math="3" />, <InlineMath math="H(x)" /> is degree <InlineMath math="2" />.
-    - Thus, <InlineMath math="H(x) = 2x^2 - 1x + 3 = 2x^2 - x + 3" />.
-
-5.  **Writing in Division Algorithm Form:**
-
-    <MathContainer>
-      <BlockMath math="P(x) = (x-c) H(x) + S" />
-      <BlockMath math="\begin{aligned} &amp;2x^3 + 5x^2 + 6 \\ &amp;= (x+3)(2x^2 - x + 3) - 3 \end{aligned}" />
-    </MathContainer>
+<BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
 ## Exercise
 
-Find the quotient and remainder from the division of <InlineMath math="x^4 + 4" /> by <InlineMath math="x - 1" /> using Horner's method and long division.
+Find the **quotient and remainder** from the division of <InlineMath math="x^4 + 4" /> by <InlineMath math="x - 1" /> using Horner's method and long division.
 
 State the result in the form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />. Both methods must give identical values, and the degree check tells you how many terms the quotient can have.
 

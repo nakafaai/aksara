@@ -4,13 +4,13 @@ export const metadata = {
   description: "Tangentengleichungen aus dem senkrechten Radius herleiten und Aufgaben zu äußeren Punkten sowie gemeinsamen Tangenten Schritt für Schritt lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Kreis",
 };
 
 ## Den Kreis in genau einem Punkt berühren
 
-Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt. Dieser Punkt heißt Berührpunkt.
+Eine Tangente schneidet einen Kreis in <Highlight>genau einem Punkt</Highlight>. Dieser Schnittpunkt heißt **Berührpunkt**.
 
 <LineEquation
   title="Kreistangente"
@@ -49,8 +49,8 @@ Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt.
           { x: 3, y: 3, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -67,17 +67,21 @@ Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt.
   cameraPosition={[0, 0, 10]}
 />
 
-Eine Tangente verläuft <Highlight>im Tangentenpunkt immer senkrecht zum Radius</Highlight> des Kreises.
+Eine Tangente steht im Berührpunkt <Highlight>senkrecht zum Radius</Highlight>.
 
 ## Gleichung der Kreistangente
 
-Eine Tangente berührt den Kreis in genau einem Punkt, und der Radius dorthin steht senkrecht auf der Tangente. Diese Rechtwinkligkeit liefert die Steigung der Tangente, weil das Produkt beider Steigungen <InlineMath math="-1" /> ergibt.
+Wenn Radius und Tangente beide eine definierte Steigung besitzen, ist das Produkt ihrer Steigungen <InlineMath math="-1" />. Bei einer vertikalen Geraden verwendest du die **Punktform**, ohne durch Koordinaten zu teilen. Für alle folgenden Formeln gilt <InlineMath math="r>0" />.
 
 ### Tangente durch einen Punkt auf dem Kreis
 
-Liegt der Punkt <InlineMath math="(x_1, y_1)" /> auf dem Kreis <InlineMath math="x^2 + y^2 = r^2" />, dann lautet die Gleichung der Tangente an diesem Punkt:
+Liegt der Punkt <InlineMath math="(x_1, y_1)" /> **auf dem Kreis** <InlineMath math="x^2 + y^2 = r^2" />, dann lautet die Gleichung der Tangente an diesem Punkt:
 
 <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+
+Liegt der Mittelpunkt im Ursprung, steht der Radiusvektor <InlineMath math="(x_1,y_1)" /> senkrecht zur Geradenrichtung <InlineMath math="(x-x_1,y-y_1)" />. Ihr Skalarprodukt ist null. Nutze außerdem <InlineMath math="x_1^2+y_1^2=r^2" />.
+
+<BlockMath math="\begin{aligned}x_1(x-x_1)+y_1(y-y_1)&amp;=0\\x_1x+y_1y&amp;=x_1^2+y_1^2=r^2\end{aligned}" />
 
 Der Kreis in dieser Formel steht in der Standardform für einen Kreis mit Mittelpunkt im Ursprung.
 
@@ -89,6 +93,10 @@ Für einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" />:
 
 Die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = r^2" /> mit der Steigung <InlineMath math="m" /> lautet:
 
+Schreibe die Gerade als <InlineMath math="mx-y+c=0" />. Sie ist eine Tangente, wenn der **Abstand vom Mittelpunkt zur Geraden** dem Radius entspricht.
+
+<BlockMath math="\frac{|c|}{\sqrt{m^2+1}}=r\quad\Longrightarrow\quad c=\pm r\sqrt{m^2+1}" />
+
 <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
 Für einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" />:
@@ -97,7 +105,7 @@ Für einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" />:
 
 ## Tangenten von einem Punkt außerhalb des Kreises
 
-Von einem Punkt außerhalb des Kreises können zwei Tangenten an den Kreis gezogen werden.
+Von einem Punkt außerhalb des Kreises können **zwei Tangenten** an den Kreis gezogen werden.
 
 <LineEquation
   title="Zwei Tangenten von einem äußeren Punkt"
@@ -188,6 +196,8 @@ Von einem Punkt außerhalb des Kreises können zwei Tangenten an den Kreis gezog
       labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
     },
 
+    { points: [{ x: 1.25, y: 1.25 * Math.sqrt(3), z: 0 }, { x: 0, y: 0, z: 0 }, { x: 1.25, y: -1.25 * Math.sqrt(3), z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false },
 ]}
 cameraPosition={[1.5, 0, 10.5]}
   cameraTarget={[1.5, 0, 0]}
@@ -197,15 +207,19 @@ cameraPosition={[1.5, 0, 10.5]}
 
 Wenn <InlineMath math="P(x_1, y_1)" /> ein Punkt außerhalb des Kreises mit Mittelpunkt <InlineMath math="O(a, b)" /> und Radius <InlineMath math="r" /> ist, dann beträgt die Länge der Tangentenstrecke von <InlineMath math="P" /> bis zum Berührpunkt:
 
+Im rechtwinkligen Dreieck <InlineMath math="OPT" /> ist <InlineMath math="OP" /> die **Hypotenuse** und <InlineMath math="OT=r" />. Der Satz des Pythagoras liefert daher:
+
+<BlockMath math="PT^2+OT^2=OP^2\quad\Longrightarrow\quad PT=\sqrt{OP^2-r^2}" />
+
 <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
 
 ## Gemeinsame Tangenten zweier Kreise
 
-Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen oder außen vorbeigehen. Ob eine gemeinsame Tangente überhaupt existiert, hängt davon ab, wie weit die Kreise auseinanderliegen.
+Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen oder außen vorbeigehen. Ob eine gemeinsame Tangente überhaupt existiert, hängt davon ab, **wie weit die Kreise auseinanderliegen**.
 
 ### Äußere gemeinsame Tangenten
 
-Äußere gemeinsame Tangenten berühren beide Kreise, ohne die Strecke zwischen ihren Mittelpunkten zu schneiden.
+Äußere gemeinsame Tangenten berühren beide Kreise, **ohne die Strecke zwischen ihren Mittelpunkten zu schneiden**.
 
 <LineEquation
   title="Äußere gemeinsame Tangenten"
@@ -284,8 +298,8 @@ Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen ode
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -296,7 +310,7 @@ Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen ode
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-5.8, 0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-3, 0.6, 0] }],
     },
     {
       points: (() => {
@@ -332,8 +346,8 @@ Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen ode
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -344,7 +358,7 @@ Zwei Kreise können gemeinsame Tangenten haben, die zwischen ihnen verlaufen ode
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-5.8, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-3, -0.6, 0] }],
     },
 
 ]}
@@ -357,11 +371,11 @@ Länge der äußeren gemeinsamen Tangente:
 
 In dieser Formel ist <InlineMath math="d" /> der Abstand zwischen den beiden Kreismittelpunkten.
 
-Das äußere Tangentenstück hat nur für <InlineMath math="d>|r_1-r_2|" /> eine positive Länge. Bei Gleichheit berühren sich die Kreise von innen und das Stück zwischen den beiden Berührpunkten schrumpft auf die Länge null.
+Das äußere Tangentenstück hat nur für <InlineMath math="d>|r_1-r_2|" /> eine positive Länge. Für <InlineMath math="d=|r_1-r_2|>0" /> berühren sich die Kreise von innen. Die Strecke zwischen den Berührpunkten hat dann die Länge null. Bei <InlineMath math="d=0" /> und gleichen Radien sind die Kreise dagegen identisch.
 
 ### Innere gemeinsame Tangenten
 
-Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Verbindungslinie der beiden Kreismittelpunkte schneiden.
+Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die **Verbindungsstrecke der beiden Mittelpunkte** schneiden.
 
 <LineEquation
   title="Innere gemeinsame Tangenten"
@@ -441,8 +455,8 @@ Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Ver
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -490,8 +504,8 @@ Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Ver
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -517,13 +531,13 @@ Das innere Tangentenstück hat nur für <InlineMath math="d>r_1+r_2" /> eine pos
 
 ## Tangentengleichungen bestimmen
 
-Die Beispiele unten stellen Tangentengleichungen aus unterschiedlichen Vorgaben auf. Arbeite die Substitution in jedem Fall durch. Prüfe am Ende jedes Beispiels, ob der Berührpunkt tatsächlich auf der Geraden und auf dem Kreis liegt.
+Die Beispiele unten stellen Tangentengleichungen aus unterschiedlichen Vorgaben auf. Arbeite die Substitution in jedem Fall durch. Prüfe am Ende jedes Beispiels, ob der Berührpunkt tatsächlich **auf der Geraden und auf dem Kreis** liegt.
 
 ### Bestimmen der Tangente durch einen Punkt auf dem Kreis
 
 Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> am Punkt <InlineMath math="(3, 4)" />.
 
-**Lösung:**
+**Lösung**:
 
 Da der Punkt <InlineMath math="(3, 4)" /> auf dem Kreis liegt (nachweisbar: <InlineMath math="3^2 + 4^2 = 9 + 16 = 25" />), lautet die Gleichung der Tangente:
 
@@ -536,7 +550,7 @@ Da der Punkt <InlineMath math="(3, 4)" /> auf dem Kreis liegt (nachweisbar: <Inl
 
 Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 16" />, die parallel zur Geraden <InlineMath math="3x - 4y + 5 = 0" /> verläuft.
 
-**Lösung:**
+**Lösung**:
 
 Die Steigung der Geraden <InlineMath math="3x - 4y + 5 = 0" /> beträgt <InlineMath math="m = \frac{3}{4}" />.
 
@@ -560,7 +574,7 @@ Daher lauten die Gleichungen der Tangenten:
 
 Bestimme die Länge der Tangente vom Punkt <InlineMath math="P(7, 1)" /> zum Kreis <InlineMath math="x^2 + y^2 = 25" />.
 
-**Lösung:**
+**Lösung**:
 
 Kreismittelpunkt <InlineMath math="O(0, 0)" /> und Radius <InlineMath math="r = 5" />.
 
@@ -574,97 +588,96 @@ Kreismittelpunkt <InlineMath math="O(0, 0)" /> und Radius <InlineMath math="r = 
 
 ## Übungsaufgaben
 
-Jede Aufgabe gibt einen Kreis und eine Zusatzbedingung wie einen Punkt oder eine parallele Gerade. Nutze den senkrechten Radius, um die Tangentengleichung aufzustellen.
+Unterscheide Aufgaben zu Geradengleichungen von Aufgaben zu Streckenlängen. Für Gleichungen nutzt du den **gegebenen Punkt oder die Steigung**. Für Längen bestimmst du das passende rechtwinklige Dreieck und den jeweiligen Mittelpunktabstand.
 
 1. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 36" /> im Punkt <InlineMath math="(-3, 3\sqrt{3})" />!
 
-2. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" />, die senkrecht zur Geraden <InlineMath math="2x + y - 5 = 0" /> steht!
+2. Bestimme die Gleichungen beider Tangenten an den Kreis <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" />, die senkrecht zur Geraden <InlineMath math="2x + y - 5 = 0" /> stehen!
 
-3. Vom Punkt <InlineMath math="A(10, 0)" /> werden Tangenten zum Kreis <InlineMath math="x^2 + y^2 = 36" /> gezogen. Bestimme:
+3. Vom Punkt <InlineMath math="A(10, 0)" /> werden Tangenten zum Kreis <InlineMath math="x^2 + y^2 = 36" /> gezogen. Bestimme die Länge jeder Strecke von <InlineMath math="A" /> zum Berührpunkt und die Koordinaten beider Berührpunkte.
 
-   - Länge der Tangente
-   - Koordinaten von Tangentenpunkten
-
-4. Zwei Kreise haben die Mittelpunkte <InlineMath math="O_1(-4, 0)" /> und <InlineMath math="O_2(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme die Länge der äußeren gemeinsamen Tangente!
+4. Zwei Kreise haben die Mittelpunkte <InlineMath math="O_1(-4, 0)" /> und <InlineMath math="O_2(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme die Länge des äußeren gemeinsamen Tangentenabschnitts!
 
 5. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, die durch den Punkt <InlineMath math="(8, -2)" /> verläuft!
 
 ### Ausführliche Lösungen
 
-1.  **Tangentengleichung an einem Punkt auf dem Kreis**
+**Lösung 1**: Tangentengleichung an einem Punkt auf dem Kreis
 
-    Punkt auf Kreis überprüfen:
+Punkt auf Kreis überprüfen:
 
-    <BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
+<BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
 
-    Tangentengleichung:
+Tangentengleichung:
 
-    <MathContainer>
-      <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
-      <BlockMath math="-3x + 3\sqrt{3}y = 36" />
-      <BlockMath math="-x + \sqrt{3}y = 12" />
-      <BlockMath math="x - \sqrt{3}y + 12 = 0" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+<BlockMath math="-3x + 3\sqrt{3}y = 36" />
+<BlockMath math="-x + \sqrt{3}y = 12" />
+<BlockMath math="x - \sqrt{3}y + 12 = 0" />
+</MathContainer>
 
-2.  **Tangente senkrecht zu einer vorgegebenen Geraden**
+**Lösung 2**: Tangente senkrecht zu einer vorgegebenen Geraden
 
-    Die Steigung der Linie <InlineMath math="2x + y - 5 = 0" /> beträgt <InlineMath math="m_1 = -2" />.
+Die Steigung der Linie <InlineMath math="2x + y - 5 = 0" /> beträgt <InlineMath math="m_1 = -2" />.
 
-    Da die Geraden senkrecht zueinander stehen, gilt <InlineMath math="m_2 = \frac{1}{2}" />.
+Da die Geraden senkrecht zueinander stehen, gilt <InlineMath math="m_2 = \frac{1}{2}" />.
 
-    Tangentengleichung:
+Tangentengleichung:
 
-    <MathContainer>
-      <BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
-      <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
-      <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
-      <BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
+<BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
+</MathContainer>
 
-    Daher: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
+Daher: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
 
-3.  **Tangente von einem äußeren Punkt**
+**Lösung 3**: Tangente von einem äußeren Punkt
 
-    - Länge der Tangente:
+Länge der Tangente:
 
-      <MathContainer>
-        <BlockMath math="\begin{aligned} AT &amp;= \sqrt{10^2 + 0^2 - 36} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
-      </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} AT &amp;= \sqrt{10^2 + 0^2 - 36} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
+</MathContainer>
 
-    - Für die Berührpunkte sei <InlineMath math="T(x,y)" /> einer der beiden Punkte. Weil der Radius <InlineMath math="OT" /> senkrecht auf der Tangente <InlineMath math="AT" /> steht, ist das Skalarprodukt ihrer Richtungsvektoren null:
+Für die Berührpunkte sei <InlineMath math="T(x,y)" /> einer der beiden Punkte. Weil der Radius <InlineMath math="OT" /> senkrecht auf der Tangente <InlineMath math="AT" /> steht, ist das Skalarprodukt ihrer Richtungsvektoren null:
 
-      <MathContainer>
-        <BlockMath math="(A-T)\cdot T=0" />
-        <BlockMath math="(10-x)x-y^2=0" />
-        <BlockMath math="10x-(x^2+y^2)=0" />
-        <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
-        <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
-      </MathContainer>
+<MathContainer>
+  <BlockMath math="(A-T)\cdot T=0" />
+  <BlockMath math="(10-x)x-y^2=0" />
+  <BlockMath math="10x-(x^2+y^2)=0" />
+  <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+  <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+</MathContainer>
 
-      Damit sind die Berührpunkte <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> und <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
+Damit sind die Berührpunkte <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> und <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
 
-4.  **Äußere gemeinsame Tangente**
+**Lösung 4**: Äußere gemeinsame Tangente
 
-    <MathContainer>
-      <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-      <BlockMath math="\begin{aligned} l &amp;= \sqrt{d^2 - (r_2 - r_1)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+<BlockMath math="\begin{aligned} l &amp;= \sqrt{d^2 - (r_2 - r_1)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+</MathContainer>
 
-5.  **Tangente durch einen Punkt auf dem Kreis**
+**Lösung 5**: Tangente durch einen Punkt auf dem Kreis
 
-    Kreis: <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />
+Ergänze die Quadrate, um Mittelpunkt und Radius abzulesen:
 
-    Mittelpunkt <InlineMath math="(3, -2)" />, Radius <InlineMath math="r = 5" />
+<BlockMath math="\begin{aligned}x^2-6x+y^2+4y&amp;=12\\(x-3)^2-9+(y+2)^2-4&amp;=12\\(x-3)^2+(y+2)^2&amp;=25\end{aligned}" />
 
-    Prüfe, ob der Punkt <InlineMath math="(8, -2)" /> auf dem Kreis liegt:
+Mittelpunkt <InlineMath math="(3, -2)" />, Radius <InlineMath math="r = 5" />
 
-    <BlockMath math="\begin{aligned} (8-3)^2 + (-2+2)^2 &amp;= 25 + 0 \\ &amp;= 25 \end{aligned}" />
+Prüfe, ob der Punkt <InlineMath math="(8, -2)" /> auf dem Kreis liegt:
 
-    Die linke Seite ist <InlineMath math="r^2=25" />. Der Punkt liegt also auf dem Kreis, und die Tangentengleichung lautet:
+<BlockMath math="\begin{aligned} (8-3)^2 + (-2+2)^2 &amp;= 25 + 0 \\ &amp;= 25 \end{aligned}" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;(8-3)(x-3) \\ &amp;\quad{}+ (-2+2)(y+2) = 25 \end{aligned}" />
-      <BlockMath math="5(x-3) + 0 = 25" />
-      <BlockMath math="x - 3 = 5" />
-      <BlockMath math="x = 8" />
-    </MathContainer>
+Die linke Seite ist <InlineMath math="r^2=25" />. Der Punkt liegt also auf dem Kreis, und die Tangentengleichung lautet:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;(8-3)(x-3) \\ &amp;\quad{}+ (-2+2)(y+2) = 25 \end{aligned}" />
+<BlockMath math="5(x-3) + 0 = 25" />
+<BlockMath math="x - 3 = 5" />
+<BlockMath math="x = 8" />
+</MathContainer>

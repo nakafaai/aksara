@@ -3,11 +3,13 @@ export const metadata = {
   description: "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Jelaskan arti varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Metode Linear AI",
 };
 
 ## Mulai dengan Data Terpusat
+
+Asumsikan <InlineMath math="m\ge2" /> agar penyebut kovarians sampel tidak nol.
 
 Misalkan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> memuat <InlineMath math="m" /> pengamatan dari <InlineMath math="n" /> fitur. <InlineMath math="\mathrm{PCA}" /> dimulai dengan mengurangi setiap fitur dengan nilai rata-ratanya:
 
@@ -39,7 +41,7 @@ Arah komponen utama pertama menyelesaikan
 
 <BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
 
-Setiap arah berikutnya memaksimumkan varians yang sama dengan syarat tegak lurus terhadap semua arah sebelumnya. Koordinat baru, atau skor, adalah
+Setiap arah berikutnya memaksimumkan varians yang sama dengan syarat **tegak lurus terhadap semua arah sebelumnya**. Koordinat baru, atau skor, adalah
 
 <BlockMath math="Z=X_cV" />
 
@@ -47,9 +49,11 @@ Kovarians sampel dari skor <InlineMath math="Z" /> berbentuk diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
-Jadi, komponen utama tidak berkorelasi. Komponen tersebut tidak selalu independen. Independensi berlaku pada model khusus, termasuk distribusi Gaussian bersama.
+Jadi, komponen utama tidak berkorelasi. Komponen tersebut tidak selalu independen. Untuk vektor acak Gaussian bersama, basis eigen tetap dari kovarians populasi menghasilkan komponen transformasi yang independen. Korelasi sampel nol saja tidak membuktikan independensi populasi.
 
 ## Varians Terjelaskan dan Reduksi Dimensi
+
+Rasio memerlukan **varians total positif**, yaitu <InlineMath math="\operatorname{tr}(C)>0" />. Jika semua pengamatan terpusat bernilai nol, seluruh nilai eigen nol dan rasio varians terjelaskan tidak terdefinisi.
 
 Proporsi varians sampel total yang dijelaskan komponen <InlineMath math="j" /> adalah
 
@@ -63,7 +67,7 @@ Mempertahankan <InlineMath math="k" /> vektor eigen pertama dalam <InlineMath ma
 <BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
 </MathContainer>
 
-Di antara semua rekonstruksi linear ber-rank <InlineMath math="k" />, pilihan ini meminimumkan galat rekonstruksi kuadrat. Dengan konvensi kovarians sampel di atas,
+Di antara semua rekonstruksi linear dengan rank paling tinggi <InlineMath math="k" />, pilihan ini **meminimumkan galat rekonstruksi kuadrat**. Dengan konvensi kovarians sampel di atas,
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
@@ -73,7 +77,7 @@ Di antara semua rekonstruksi linear ber-rank <InlineMath math="k" />, pilihan in
 
 <BlockMath math="X_c=U\Sigma V^T" />
 
-Vektor singular kanan memberi arah komponen utama, sedangkan nilai eigen memenuhi hubungan berikut:
+**Vektor singular kanan** memberi arah komponen utama, sedangkan nilai eigen memenuhi hubungan berikut:
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
@@ -100,7 +104,7 @@ Arah komponen utama adalah kolom <InlineMath math="R" />:
 <BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2{,}25" />
 </MathContainer>
 
-Rasio varians yang dijelaskan komponen pertama dapat dihitung dari kedua nilai eigen:
+**Rasio varians** yang dijelaskan komponen pertama dapat dihitung dari kedua nilai eigen:
 
 <BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
 
@@ -147,7 +151,7 @@ Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaska
       }]
     },
     {
-      points: [{ x: -3.464, y: -2, z: 0 }, { x: 3.464, y: 2, z: 0 }],
+      points: [{ x: -2 * Math.sqrt(3), y: -2, z: 0 }, { x: 2 * Math.sqrt(3), y: 2, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
@@ -158,7 +162,7 @@ Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaska
       }]
     },
     {
-      points: [{ x: -1.5, y: 2.598, z: 0 }, { x: 1.5, y: -2.598, z: 0 }],
+      points: [{ x: -1.5, y: 1.5 * Math.sqrt(3), z: 0 }, { x: 1.5, y: -1.5 * Math.sqrt(3), z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
@@ -169,7 +173,8 @@ Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaska
       }]
     }
   ]}
-  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 11]}
 />
 
 ## Batas Penggunaan PCA

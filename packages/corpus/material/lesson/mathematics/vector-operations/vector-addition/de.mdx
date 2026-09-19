@@ -5,7 +5,7 @@ export const metadata = {
     description: "Addiere Vektoren mit Dreiecks-, Parallelogramm-, Polygon- und Komponentenverfahren und deute die Resultierende in einer physikalischen Situation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -17,7 +17,7 @@ Geht jemand zum Beispiel <InlineMath math="2 \text{ m}" /> nach Osten und anschl
 
 ## Vektoraddition mit der Dreiecksmethode
 
-Bei der Dreiecksmethode werden die Vektorpfeile hintereinander angeordnet:
+Bei der Dreiecksmethode werden die Vektorpfeile **hintereinander** angeordnet:
 
 1. Zeichne den ersten Vektor <InlineMath math="\vec{a}" />
 2. Verschiebe den zweiten Vektor <InlineMath math="\vec{b}" /> parallel, bis sein Anfangspunkt an der Spitze des ersten liegt
@@ -256,7 +256,7 @@ Die beiden folgenden Darstellungen verwenden <InlineMath math="A=(3,1,0)" />, <I
 
 ## Vektoraddition mit Komponenten
 
-Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. In einem Koordinatensystem wird dabei jede Achsenkomponente getrennt verrechnet.
+Addiere **Komponenten derselben Achse**. Waagerechte Komponenten gehören zusammen, ebenso die senkrechten.
 
 <Vector3d
   cameraPosition={[10, 8, -10]}
@@ -373,11 +373,20 @@ Beim Überqueren eines Flusses überlagern sich die Fahrt des Bootes und die Str
   />
 </ContentBlock>
 
+Im Diagramm zeigt die waagerechte Achse entlang der Strömung und die senkrechte Achse quer über den Fluss. Die Bootsgeschwindigkeit relativ zum Wasser sei <InlineMath math="(0,4)\,\text{m/s}" />, die Strömungsgeschwindigkeit <InlineMath math="(3,0)\,\text{m/s}" />. Durch Addition der Komponenten erhältst du die **Geschwindigkeit relativ zum Ufer**:
+
+<MathContainer>
+  <BlockMath math="\vec v_R=(0+3,4+0)\,\text{m/s}=(3,4)\,\text{m/s}" />
+  <BlockMath math="|\vec v_R|=\sqrt{3^2+4^2}\,\text{m/s}=\sqrt{25}\,\text{m/s}=5\,\text{m/s}" />
+</MathContainer>
+
+Das Boot fährt über den Fluss und wird gleichzeitig von der Strömung versetzt. Sein Geschwindigkeitsbetrag relativ zum Ufer ist <InlineMath math="5\,\text{m/s}" />, nicht <InlineMath math="4+3=7\,\text{m/s}" />, weil die beiden Geschwindigkeiten senkrecht aufeinander stehen.
+
 Auch die Verschiebungen einer Reise lassen sich addieren. Ihre Resultierende gibt die Gesamtverschiebung an. Die Routenlänge und der kürzeste Weg müssen aus dem Reiseweg bestimmt werden.
 
 ## Unterschied zwischen Skalaraddition und Vektoraddition
 
-Sowohl die Skalaraddition als auch die Vektoraddition liefern für feste Eingaben genau ein Ergebnis. Skalare besitzen nur einen Zahlenwert, Vektoren zusätzlich eine Richtung. Eine geänderte Richtung ist deshalb eine geänderte Eingabe und kann eine andere Resultierende ergeben.
+Sowohl die Skalaraddition als auch die Vektoraddition liefern für feste Eingaben genau ein Ergebnis. Skalare besitzen nur einen Zahlenwert, Vektoren ungleich null zusätzlich eine Richtung. Eine geänderte Richtung ist deshalb eine geänderte Eingabe und kann eine andere Resultierende ergeben.
 
 **Beispiel für Skalaraddition**:
 

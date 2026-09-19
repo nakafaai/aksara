@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build linear-in-parameter models from basis functions, stack measurements into a design matrix, and distinguish exact linear models from local linearization.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
@@ -57,13 +57,23 @@ An interaction between two inputs:
 
 Terms such as <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, and <InlineMath math="ts" /> may be nonlinear in the inputs. They are known coefficients once the inputs are observed, so <Highlight>the model remains linear in its unknown parameters</Highlight>.
 
+Take the observations <InlineMath math="(t,y)=(0,1),(1,3),(2,5)" /> and the basis <InlineMath math="1,t" />. Each observed input gives one row of the design matrix.
+
+<MathContainer>
+<BlockMath math="\begin{pmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}1\\3\\5\end{pmatrix}" />
+<BlockMath math="a=1,\qquad a+b=3\Rightarrow b=2" />
+<BlockMath math="a+2b=1+2(2)=5" />
+</MathContainer>
+
+The third observation agrees with the first two: one parameter vector <InlineMath math="(a,b)=(1,2)" /> explains all three values.
+
 ## Multiple responses
 
 If every input produces several responses, place their parameter vectors in a matrix <InlineMath math="B" />. For a row of basis values <InlineMath math="\phi(t)^{\mathsf T}" />,
 
 <BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
 
-Each column of <InlineMath math="B" /> describes one response. This is still a linear model because every output is a linear combination of the same known basis values.
+**Each column** of <InlineMath math="B" /> describes one response. This is still a linear model because every output is a linear combination of the same known basis values.
 
 ## The Ideal Gas Law
 
@@ -73,7 +83,7 @@ At known temperature <InlineMath math="T" /> and volume <InlineMath math="V" />,
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
-Pressure <InlineMath math="p" /> is linear in the unknown amount of substance <InlineMath math="n" />, measured in moles. The quantity <InlineMath math="n" /> is not itself the number of molecules. The number of specified entities is <InlineMath math="N=nN_A" />.
+Pressure <InlineMath math="p" /> is linear in the **unknown amount of substance** <InlineMath math="n" />, measured in moles. The quantity <InlineMath math="n" /> is not itself the number of molecules. The number of specified entities is <InlineMath math="N=nN_A" />.
 
 Repeated pressure measurements at several known <InlineMath math="(T_i,V_i)" /> values yield one design-matrix row <InlineMath math="RT_i/V_i" /> per observation.
 
@@ -83,7 +93,7 @@ A genuinely nonlinear parameter model has the form
 
 <BlockMath math="y=g(t,x)" />
 
-In this model, parameters may occur inside exponentials, powers, or products with one another. Near a current parameter value <InlineMath math="x_0" />, a first-order Taylor approximation gives
+In this model, parameters may occur inside exponentials, powers, or products with one another. Near a current parameter value <InlineMath math="x_0" />, a **first-order Taylor approximation** gives
 
 <BlockMath math="g(t,x) \approx g(t,x_0) +J_xg(t,x_0)(x-x_0)" />
 
@@ -94,7 +104,7 @@ The Jacobian <InlineMath math="J_xg(t,x_0)" /> is known after choosing <InlineMa
 Before interpreting fitted parameters, verify that:
 
 - the design matrix columns represent the intended basis functions and units
-- the data contain enough independent information for the parameters, typically <InlineMath math="\operatorname{rank}(A)=n" />
+- the data contain enough **independent information** for the parameters, typically <InlineMath math="\operatorname{rank}(A)=n" />
 - feature scales and the condition number do not make the solve numerically fragile
 - the chosen residual loss matches the noise and outlier assumptions
 - a local linearization is checked again against the original nonlinear model

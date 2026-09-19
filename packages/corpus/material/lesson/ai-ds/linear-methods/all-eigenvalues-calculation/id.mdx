@@ -3,17 +3,19 @@ export const metadata = {
     description: "Ikuti iterasi QR dari faktorisasi ortogonal sampai bentuk Schur, lalu baca nilai eigen real dan kompleks tanpa membentuk polinom karakteristik.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Perubahan Basis Berulang yang Mempertahankan Nilai Eigen
 
-Algoritma <InlineMath math="\mathrm{QR}" /> menghitung seluruh nilai eigen matriks persegi melalui perubahan basis yang berulang. <Highlight>Setiap langkah menghasilkan matriks serupa, sehingga nilai eigennya tetap sama.</Highlight> Iterasi mendekati bentuk diagonal atau bentuk Schur. Nilai eigen kemudian diperoleh dari elemen diagonal atau blok kecil pada diagonal.
+Algoritma <InlineMath math="\mathrm{QR}" /> menghitung seluruh nilai eigen matriks persegi melalui perubahan basis yang berulang. Setiap langkah menghasilkan <Highlight>matriks serupa</Highlight>, sehingga nilai eigennya tetap sama. Tujuan iterasi adalah memperoleh bentuk diagonal atau bentuk Schur. Konvergensi memerlukan pemilihan strategi pergeseran dan deflasi yang sesuai. Nilai eigen kemudian diperoleh dari elemen diagonal atau blok kecil pada diagonal.
 
 Versi di bawah adalah iterasi <InlineMath math="\mathrm{QR}" /> tanpa geseran. Algoritma nilai eigen yang dipakai dalam perangkat lunak numerik juga menggunakan geseran, mereduksi matriks ke bentuk Hessenberg, dan memisahkan blok yang sudah konvergen agar proses perhitungan menjadi lebih cepat dan andal.
 
 ## Satu Iterasi QR
+
+Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan uniter ke **bentuk Hessenberg atas**, yaitu semua entri di bawah subdiagonal pertama nol. Mulai iterasi dari matriks tersebut. Contoh 2×2 di bawah sudah memenuhi syarat ini.
 
 1. Mulai dengan <InlineMath math="A_0=A" />.
 
@@ -44,7 +46,7 @@ Jadi, <InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math
 
 ## Bentuk Hasil Konvergensi
 
-Bentuk akhir bergantung pada jenis matriks dan sistem bilangan yang digunakan.
+Bentuk akhir bergantung pada jenis matriks dan **sistem bilangan** yang digunakan.
 
 | Matriks | Bentuk konvergen | Cara membaca nilai eigen |
 |---|---|---|
@@ -53,6 +55,12 @@ Bentuk akhir bergantung pada jenis matriks dan sistem bilangan yang digunakan.
 | Real umum | Bentuk Schur real kuasi-segitiga atas | Setiap blok <InlineMath math="1\times1" /> memberi satu nilai eigen real. Setiap blok <InlineMath math="2\times2" /> memberi sepasang nilai eigen kompleks konjugat |
 
 Nilai eigen dapat muncul dalam urutan apa pun. Nilai yang berulang dan susunan khusus perlu ditangani terpisah karena syarat urutan nilai mutlak yang ketat tidak mencakup keduanya.
+
+Iterasi tanpa geseran **tidak selalu berkonvergensi ke bentuk tersebut**. Sebagai contoh, matriks simetris berikut memiliki faktorisasi <InlineMath math="Q=C" /> dan <InlineMath math="R=I" />, sehingga iterasi berikutnya tidak berubah:
+
+<BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
+
+Nilai eigennya 1 dan −1. Magnitudo yang sama menjelaskan kebutuhan geseran yang sesuai serta pemeriksaan konvergensi dalam algoritma numerik.
 
 ## Contoh Kerja Matriks Simetris
 
@@ -67,10 +75,8 @@ Satu faktorisasi <InlineMath math="\mathrm{QR}" /> dan perkalian terbalik mengha
 <BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
 </MathContainer>
 
-Besar elemen di luar diagonal sudah turun dari <InlineMath math="1" /> menjadi <InlineMath math="3/5" />. Iterasi berikutnya mendorong kedua elemen di luar diagonal menuju nol:
+**Besar elemen di luar diagonal** sudah turun dari <InlineMath math="1" /> menjadi <InlineMath math="3/5" />. Iterasi berikutnya mendorong kedua elemen di luar diagonal menuju nol:
 
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 Diagonal hasil limit memuat nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />. Setiap hasil iterasi serupa dengan <InlineMath math="A_0" />, sehingga kedua nilai tersebut memang milik matriks semula.
-
-> Setiap langkah iterasi <InlineMath math="\mathrm{QR}" /> menghasilkan matriks yang serupa dengan matriks sebelumnya, sehingga nilai eigennya tetap sama. Untuk matriks simetris, iterasi mendekati bentuk diagonal. Untuk matriks real umum, iterasi mendekati bentuk Schur real. Blok <InlineMath math="2\times2" /> pada bentuk tersebut mewakili pasangan nilai eigen kompleks dan harus tetap diperhitungkan.

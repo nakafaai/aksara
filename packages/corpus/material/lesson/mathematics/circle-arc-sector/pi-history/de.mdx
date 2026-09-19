@@ -3,7 +3,7 @@ export const metadata = {
   description: "Wie Mathematiker von Babylon bis Zu Chongzhi Pi eingrenzten und annäherten und wie sich das heutige Symbol durchsetzte.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Definition von Pi
 
-Bei jedem Kreis ist <Highlight>das Verhältnis von Umfang zu Durchmesser gleich</Highlight>. Diese Konstante heißt <InlineMath math="\pi" /> (Pi), und ihr Wert beginnt mit <InlineMath math="3{,}14159" />.
+Bei jedem Kreis ist <Highlight>das Verhältnis von Umfang zu Durchmesser</Highlight> gleich. Diese Konstante heißt <InlineMath math="\pi" /> (Pi), und ihr Wert beginnt mit <InlineMath math="3{,}14159" />.
 
 Mathematisch kann <InlineMath math="\pi" /> wie folgt definiert werden:
 
@@ -21,13 +21,14 @@ Die Größe des Kreises spielt dabei keine Rolle: Verdoppeln sich alle Längen, 
 
 ## Frühe Näherungen
 
-Erhaltene antike Quellen enthalten mehrere Näherungswerte. Eine mesopotamische Näherung lautet <InlineMath math="\pi \approx \frac{25}{8}=3{,}125" />.
+Erhaltene antike Quellen enthalten mehrere **Näherungswerte**. Eine mesopotamische Näherung lautet <InlineMath math="\pi \approx \frac{25}{8}=3{,}125" />.
 
 Der ägyptische Rhind-Papyrus, der auf etwa <InlineMath math="1650 \text{ v. Chr.}" /> datiert wird, enthält eine Regel, die <InlineMath math="\pi \approx \frac{256}{81}" /> entspricht. Das ergibt ungefähr <InlineMath math="3{,}16049" />. Keine der beiden Näherungen ist der exakte Wert von <InlineMath math="\pi" />. Von diesen beiden liegt der mesopotamische Wert <InlineMath math="3{,}125" /> sogar näher.
 
-<MathContainer>
-<BlockMath math="\frac{256}{81} = 3{,}16049\ldots" />
-</MathContainer>
+In der ägyptischen Flächenregel erhält ein Kreis mit Durchmesser <InlineMath math="9" /> die angenäherte Fläche <InlineMath math="8^2=64" />. Der Vergleich mit <InlineMath math="\pi r^2" /> erklärt den Bruch:
+
+<BlockMath math="\pi\approx\frac{64}{(9/2)^2}=\frac{64}{81/4}=\frac{256}{81}" />
+
 
 ## Archimedes und die Polygonmethode
 
@@ -41,8 +42,8 @@ Der Umfang des einbeschriebenen Vielecks liegt unter dem Kreisumfang, der des um
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 37 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 36;
+      points: Array.from({ length: 181 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
@@ -52,7 +53,7 @@ Der Umfang des einbeschriebenen Vielecks liegt unter dem Kreisumfang, der des um
       color: "#0891b2",
       smooth: false,
       showPoints: false,
-      labels: [{ text: "Kreis", at: 9, offset: [0.5, 0.5, 0] }]
+      labels: [{ text: "Kreis", at: 45, offset: [0.5, 0.5, 0] }]
     },
     {
       points: Array.from({ length: 7 }, (_, i) => {
@@ -72,10 +73,10 @@ Der Umfang des einbeschriebenen Vielecks liegt unter dem Kreisumfang, der des um
       points: Array.from({ length: 7 }, (_, i) => {
         const angle = (i * 2 * Math.PI) / 6;
         const radius = 3;
-        const apothem = radius / Math.cos(Math.PI / 6);
+        const outerRadius = radius / Math.cos(Math.PI / 6);
         return {
-          x: apothem * Math.cos(angle),
-          y: apothem * Math.sin(angle),
+          x: outerRadius * Math.cos(angle),
+          y: outerRadius * Math.sin(angle),
           z: 0
         };
       }),
@@ -87,6 +88,15 @@ Der Umfang des einbeschriebenen Vielecks liegt unter dem Kreisumfang, der des um
   ]}
 />
 
+Bei den gezeichneten Sechsecken beträgt der Radius <InlineMath math="3" /> und der Durchmesser <InlineMath math="6" />. Jede Seite des inneren Sechsecks ist so lang wie der Radius. Die äußere Sechseckseite folgt aus einem rechtwinkligen Dreieck mit Winkel <InlineMath math="30^\circ" />:
+
+<BlockMath math="P_{\mathrm{in}}=6(3)=18,\qquad P_{\mathrm{out}}=6\left(2(3)\tan30^\circ\right)=12\sqrt3" />
+
+Teilst du beide Vieleckumfänge durch denselben Durchmesser, erhältst du **untere und obere Schranken**:
+
+<BlockMath math="\frac{18}{6}<\pi<\frac{12\sqrt3}{6}\quad\Longrightarrow\quad3<\pi<2\sqrt3" />
+
+
 Mit <InlineMath math="96" />-seitigen Vielecken bewies Archimedes, dass <InlineMath math="\pi" /> zwischen <InlineMath math="\frac{223}{71}" /> und <InlineMath math="\frac{22}{7}" /> liegt. Dabei bildet <InlineMath math="\frac{22}{7}" /> die obere Schranke. Der Wert liegt etwas über <InlineMath math="\pi" />:
 
 <MathContainer>
@@ -95,9 +105,9 @@ Mit <InlineMath math="96" />-seitigen Vielecken bewies Archimedes, dass <InlineM
 
 ## Beiträge chinesischer Mathematiker
 
-Im <InlineMath math="5" />. Jahrhundert n. Chr. verfeinerte der chinesische Mathematiker und Astronom Zu Chongzhi die Polygonmethode. Er bestimmte die Schranke <InlineMath math="3{,}1415926 < \pi < 3{,}1415927" /> mit einer Intervallbreite von nur <InlineMath math="10^{-7}" />.
+Im <InlineMath math="5" />. Jahrhundert n. Chr. bestimmte der chinesische Mathematiker und Astronom Zu Chongzhi die überlieferte Schranke <InlineMath math="3{,}1415926 < \pi < 3{,}1415927" /> mit einer Intervallbreite von nur <InlineMath math="10^{-7}" />.
 
-Zu Chongzhi gab außerdem die Näherung <InlineMath math="\pi \approx \frac{355}{113}" /> an. Sie ergibt <InlineMath math="3{,}1415929" /> und stimmt in den ersten sechs Nachkommastellen mit <InlineMath math="\pi" /> überein. Seine Schranke mit sieben Nachkommastellen wurde erst durch al-Kashis Arbeit im <InlineMath math="15" />. Jahrhundert übertroffen, fast ein Jahrtausend später.
+Zu Chongzhi gab außerdem die **Bruchnäherung** <InlineMath math="\pi \approx \frac{355}{113}" /> an. Ihre Dezimaldarstellung beginnt mit <InlineMath math="3{,}1415929" /> und stimmt in den ersten sechs Nachkommastellen mit <InlineMath math="\pi" /> überein. Seine Schranke mit sieben Nachkommastellen wurde erst durch al-Kashis Arbeit im <InlineMath math="15" />. Jahrhundert übertroffen, fast ein Jahrtausend später.
 
 <MathContainer>
 <BlockMath math="\frac{355}{113} = 3{,}1415929\ldots" />
@@ -105,17 +115,17 @@ Zu Chongzhi gab außerdem die Näherung <InlineMath math="\pi \approx \frac{355}
 
 ## Das moderne Symbol
 
-Der walisische Mathematiker William Jones verwendete <InlineMath math="\pi" /> in seinem Werk „Synopsis Palmariorum Matheseos“ von <InlineMath math="1706" /> in der heute üblichen Bedeutung. Die Schreibweise setzte sich nicht sofort allgemein durch.
+Der walisische Mathematiker William Jones verwendete <InlineMath math="\pi" /> in seinem Werk „Synopsis Palmariorum Matheseos“ von <InlineMath math="1706" /> in der **heute üblichen Bedeutung**. Die Schreibweise setzte sich nicht sofort allgemein durch.
 
 Leonhard Euler übernahm das Symbol später in seinen einflussreichen Arbeiten. Dadurch wurde <InlineMath math="\pi" /> zur bis heute üblichen mathematischen Notation.
 
 ## Besondere Eigenschaften von Pi
 
-<InlineMath math="\pi" /> ist irrational und lässt sich daher nicht als Bruch zweier ganzer Zahlen schreiben. Johann Heinrich Lambert lieferte im <InlineMath math="18" />. Jahrhundert den ersten strengen Beweis dafür. Ferdinand von Lindemann bewies <InlineMath math="1882" />, dass <InlineMath math="\pi" /> außerdem transzendent ist. Die Zahl ist also keine Nullstelle eines von null verschiedenen Polynoms mit rationalen Koeffizienten.
+<InlineMath math="\pi" /> ist **irrational** und lässt sich daher nicht als Bruch zweier ganzer Zahlen schreiben. Johann Heinrich Lambert lieferte im <InlineMath math="18" />. Jahrhundert den ersten strengen Beweis dafür. Ferdinand von Lindemann bewies <InlineMath math="1882" />, dass <InlineMath math="\pi" /> außerdem **transzendent** ist. Die Zahl ist also keine Nullstelle eines von null verschiedenen Polynoms mit rationalen Koeffizienten.
 
-Für viele einfache Rechnungen genügen <InlineMath math="\pi \approx 3{,}14" /> oder <InlineMath math="\pi \approx \frac{22}{7}" />. Präzise technische und wissenschaftliche Berechnungen verwenden entsprechend mehr Stellen.
+Für einen Kreis mit Durchmesser <InlineMath math="10\text{ cm}" /> liefert <InlineMath math="3{,}14" /> den Umfang <InlineMath math="31{,}4\text{ cm}" />. Mit einem genaueren Pi-Wert erhältst du etwa <InlineMath math="31{,}41593\text{ cm}" />. Die Differenz beträgt etwa <InlineMath math="0{,}01593\text{ cm}" />. Die Näherung muss daher zur verlangten Genauigkeit passen.
 
-Das Verhältnis, das <InlineMath math="\pi" /> in der Kreisgeometrie definiert, lautet:
+Die Umfangsformel und die Flächenformel verwenden dieselbe Konstante:
 
 <MathContainer>
 <BlockMath math="C = \pi \cdot d" />

@@ -4,13 +4,13 @@ export const metadata = {
   description: "Cerminkan titik, segitiga, dan garis terhadap sumbu vertikal serta terapkan aturan koordinat pada persamaan dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Transformasi Geometri",
 };
 
 ## Mengubah Tanda Koordinat Horizontal Titik
 
-Pencerminan terhadap sumbu <InlineMath math="y" /> adalah <Highlight>salah satu jenis transformasi geometri yang memindahkan setiap titik pada suatu objek ke posisi baru.</Highlight> Bayangkan sumbu <InlineMath math="y" /> sebagai cermin. Setiap titik akan memiliki bayangan di sisi berlawanan dari sumbu <InlineMath math="y" /> dengan jarak yang sama dari sumbu <InlineMath math="y" />.
+Bayangkan sumbu vertikal sebagai cermin. Titik dan bayangannya memiliki <Highlight>jarak yang sama dari sumbu</Highlight>. Titik di luar sumbu berpindah ke sisi berlawanan, sedangkan titik tepat pada sumbu tetap di tempat.
 
 ### Aturan Pencerminan terhadap Sumbu Vertikal
 
@@ -23,7 +23,7 @@ Jika sebuah titik <InlineMath math="P(x, y)" /> dicerminkan terhadap sumbu <Inli
 
 Jadi, bayangan titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(-x, y)" />.
 
-Perhatikan bahwa nilai koordinat <InlineMath math="y" /> tidak berubah, sedangkan nilai koordinat <InlineMath math="x" /> menjadi lawannya (negatifnya jika positif, positifnya jika negatif).
+Perhatikan bahwa nilai koordinat <InlineMath math="y" /> **tidak berubah**, sedangkan nilai koordinat <InlineMath math="x" /> menjadi lawannya (negatifnya jika positif, positifnya jika negatif).
 
 ## Mencerminkan Titik
 
@@ -35,7 +35,7 @@ Koordinat <InlineMath math="y" /> asli adalah <InlineMath math="4" />, maka <Inl
 
 Jadi, bayangan titik <InlineMath math="A" /> adalah <InlineMath math="A'(-3, 4)" />.
 
-Diagram berikut memperlihatkan simetrinya:
+Kedua titik berada **tiga satuan dari sumbu** pada ketinggian yang sama. Ruas penghubung mendatar memperlihatkan jarak yang sama di kedua sisi:
 
 <LineEquation
   title={
@@ -51,6 +51,7 @@ Diagram berikut memperlihatkan simetrinya:
     </>
   }
   data={[
+    { points: [{ x: -3, y: 4, z: 0 }, { x: 0, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
     {
       points: [{ x: 3, y: 4, z: 0 }],
       color: "#059669",
@@ -64,7 +65,8 @@ Diagram berikut memperlihatkan simetrinya:
       labels: [{ text: <InlineMath math="A'(-3,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 3, 10]}
+  cameraTarget={[0, 3, 0]}
 />
 
 ## Mencerminkan Segitiga
@@ -146,7 +148,7 @@ Dengan menghubungkan titik-titik bayangan <InlineMath math="P'Q'R'" />, kita men
 
 ## Mencerminkan Persamaan Garis
 
-Misalkan kita memiliki garis dengan persamaan <InlineMath math="y = x + 2" />. Untuk mencari persamaan bayangannya setelah dicerminkan terhadap sumbu <InlineMath math="y" />, kita substitusikan <InlineMath math="x" /> dengan <InlineMath math="-x" /> (karena <InlineMath math="x' = -x" />) dan <InlineMath math="y" /> dengan <InlineMath math="y" /> (karena <InlineMath math="y' = y" />) ke dalam persamaan asli.
+Misalkan kita memiliki garis dengan persamaan <InlineMath math="y = x + 2" />. Untuk mencari persamaan bayangannya setelah dicerminkan terhadap sumbu <InlineMath math="y" />, kita substitusikan <InlineMath math="x" /> dengan <InlineMath math="-x" /> (karena <InlineMath math="x' = -x" />) dan <InlineMath math="y" /> dengan <InlineMath math="y" /> (karena <InlineMath math="y' = y" />) ke dalam **persamaan asli**.
 
 Persamaan asli:
 
@@ -173,35 +175,34 @@ Grafik berikut membandingkan garis asli dan bayangannya:
   data={[
     {
       // Original Line y = x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = (i - 5) * 0.8; // x from -4 to 4 for better fit
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: x + 2, z: 0 };
       }),
-      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      showPoints: false,
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 21, offset: [0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
       // Reflected Line y = -x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 8;
-        const x = (i - 5) * 0.8; // x from -4 to 4
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: -x + 2, z: 0 };
       }),
-      pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+      showPoints: false,
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-x+2" />, at: 9, offset: [-0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 2, 12]}
+  cameraTarget={[0, 2, 0]}
 />
 
 ## Latihan
 
-Soal-soal ini mencerminkan titik, segitiga, dan garis terhadap sumbu <InlineMath math="y" />. Mencerminkan garis berarti mengganti <InlineMath math="x" /> dengan negatifnya pada persamaan, sedangkan setiap titik mempertahankan koordinat <InlineMath math="y" /> dan hanya membalik tanda <InlineMath math="x" />.
+Soal-soal ini mencerminkan titik, segitiga, dan garis terhadap sumbu <InlineMath math="y" />. Mencerminkan garis berarti mengganti <InlineMath math="x" /> dengan negatifnya pada persamaan, sedangkan setiap titik mempertahankan koordinat <InlineMath math="y" /> dan hanya **membalik tanda** <InlineMath math="x" />.
 
 1.  Tentukan koordinat bayangan dari titik <InlineMath math="K(-5, 8)" /> jika dicerminkan terhadap sumbu <InlineMath math="y" />!
 2.  Sebuah segitiga <InlineMath math="ABC" /> memiliki titik sudut <InlineMath math="A(2, 1)" />, <InlineMath math="B(5, 3)" />, dan <InlineMath math="C(3, 6)" />. Tentukan koordinat bayangan segitiga <InlineMath math="A'B'C'" /> setelah dicerminkan terhadap sumbu <InlineMath math="y" />!
@@ -210,30 +211,38 @@ Soal-soal ini mencerminkan titik, segitiga, dan garis terhadap sumbu <InlineMath
 
 ### Pembahasan
 
-1.  Bayangan titik <InlineMath math="K(-5, 8)" /> adalah <InlineMath math="K'(5, 8)" />.
+Untuk titik, **balik tanda koordinat horizontal** dan pertahankan koordinat vertikal. Untuk garis, ganti koordinat horizontal pada persamaan awal dengan negatifnya, kemudian sederhanakan perkalian tanda negatif.
 
-    **Penjelasan:** <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
+**Pembahasan 1**
 
-2.  Koordinat bayangan segitiga <InlineMath math="A'B'C'" /> adalah:
+Bayangan titik <InlineMath math="K(-5, 8)" /> adalah <InlineMath math="K'(5, 8)" />.
 
-    - <InlineMath math="A'(-2, 1)" />
-    - <InlineMath math="B'(-5, 3)" />
-    - <InlineMath math="C'(-3, 6)" />
+**Penjelasan**: <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
 
-3.  Persamaan bayangan garis <InlineMath math="3x - 2y + 6 = 0" /> adalah <InlineMath math="-3x - 2y + 6 = 0" />.
+**Pembahasan 2**
 
-    **Penjelasan:** Substitusi <InlineMath math="x" /> dengan <InlineMath math="-x" /> ke dalam persamaan asli:
+Koordinat bayangan segitiga <InlineMath math="A'B'C'" /> adalah:
 
-    <MathContainer>
-      <BlockMath math="3(-x) - 2y + 6 = 0" />
-      <BlockMath math="-3x - 2y + 6 = 0" />
-    </MathContainer>
+<BlockMath math="A(2,1)\mapsto A'(-2,1),\quad B(5,3)\mapsto B'(-5,3),\quad C(3,6)\mapsto C'(-3,6)" />
 
-4.  Persamaan bayangan garis <InlineMath math="y = -3x - 4" /> adalah <InlineMath math="y = 3x - 4" />.
+**Pembahasan 3**
 
-    **Penjelasan:** Substitusi <InlineMath math="x" /> dengan <InlineMath math="-x" />:
+Persamaan bayangan garis <InlineMath math="3x - 2y + 6 = 0" /> adalah <InlineMath math="-3x - 2y + 6 = 0" />.
 
-    <MathContainer>
-      <BlockMath math="y = -3(-x) - 4" />
-      <BlockMath math="y = 3x - 4" />
-    </MathContainer>
+**Penjelasan**: Substitusi <InlineMath math="x" /> dengan <InlineMath math="-x" /> ke dalam persamaan asli:
+
+<MathContainer>
+  <BlockMath math="3(-x) - 2y + 6 = 0" />
+  <BlockMath math="-3x - 2y + 6 = 0" />
+</MathContainer>
+
+**Pembahasan 4**
+
+Persamaan bayangan garis <InlineMath math="y = -3x - 4" /> adalah <InlineMath math="y = 3x - 4" />.
+
+**Penjelasan**: Substitusi <InlineMath math="x" /> dengan <InlineMath math="-x" />:
+
+<MathContainer>
+  <BlockMath math="y = -3(-x) - 4" />
+  <BlockMath math="y = 3x - 4" />
+</MathContainer>

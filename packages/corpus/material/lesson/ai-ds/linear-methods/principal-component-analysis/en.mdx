@@ -3,11 +3,13 @@ export const metadata = {
   description: "Derive PCA from centered data, covariance eigenvectors, and the singular value decomposition. Interpret explained variance and low-rank reconstruction geometrically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Linear Methods of AI",
 };
 
 ## Start with Centered Data
+
+Assume <InlineMath math="m\ge2" /> so the sample covariance denominator is nonzero.
 
 Let <InlineMath math="X\in\mathbb{R}^{m\times n}" /> contain <InlineMath math="m" /> observations of <InlineMath math="n" /> features. <InlineMath math="\mathrm{PCA}" /> begins by subtracting each feature mean:
 
@@ -39,7 +41,7 @@ The first principal direction solves
 
 <BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
 
-Each later direction maximizes the same variance subject to being orthogonal to all earlier directions. The transformed coordinates, or scores, are
+Each later direction maximizes the same variance subject to being **orthogonal to all earlier directions**. The transformed coordinates, or scores, are
 
 <BlockMath math="Z=X_cV" />
 
@@ -47,9 +49,11 @@ The sample covariance of the scores <InlineMath math="Z" /> is diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
-The principal components are therefore uncorrelated. They are not generally independent. Independence follows in special models, including a jointly Gaussian distribution.
+The principal components are therefore uncorrelated. They are not generally independent. For a jointly Gaussian random vector, a fixed eigenbasis of its population covariance gives independent transformed components. Zero sample correlations alone do not prove population independence.
 
 ## Explained Variance and Dimension Reduction
+
+The ratios require **positive total variance**, <InlineMath math="\operatorname{tr}(C)>0" />. If every centered observation is zero, every eigenvalue is zero and explained-variance ratios are undefined.
 
 The proportion of total sample variance explained by component <InlineMath math="j" /> is
 
@@ -63,7 +67,7 @@ Keeping the first <InlineMath math="k" /> eigenvectors in <InlineMath math="V_k"
 <BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
 </MathContainer>
 
-Among all rank-<InlineMath math="k" /> linear reconstructions, this choice minimizes squared reconstruction error. With the sample-covariance convention above,
+Among all linear reconstructions of rank at most <InlineMath math="k" />, this choice **minimizes squared reconstruction error**. With the sample-covariance convention above,
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
@@ -73,7 +77,7 @@ Among all rank-<InlineMath math="k" /> linear reconstructions, this choice minim
 
 <BlockMath math="X_c=U\Sigma V^T" />
 
-The right singular vectors give the principal directions, while the eigenvalues satisfy:
+The **right singular vectors** give the principal directions, while the eigenvalues satisfy:
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
@@ -100,7 +104,7 @@ The principal directions are the columns of <InlineMath math="R" />:
 <BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2.25" />
 </MathContainer>
 
-The variance ratio explained by the first component is calculated from the two eigenvalues:
+The **variance ratio** explained by the first component is calculated from the two eigenvalues:
 
 <BlockMath math="\frac{9}{9+2.25}=0.8=80\%" />
 
@@ -147,7 +151,7 @@ The result <InlineMath math="80\%" /> is the fraction of the total variance expl
       }]
     },
     {
-      points: [{ x: -3.464, y: -2, z: 0 }, { x: 3.464, y: 2, z: 0 }],
+      points: [{ x: -2 * Math.sqrt(3), y: -2, z: 0 }, { x: 2 * Math.sqrt(3), y: 2, z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
@@ -158,7 +162,7 @@ The result <InlineMath math="80\%" /> is the fraction of the total variance expl
       }]
     },
     {
-      points: [{ x: -1.5, y: 2.598, z: 0 }, { x: 1.5, y: -2.598, z: 0 }],
+      points: [{ x: -1.5, y: 1.5 * Math.sqrt(3), z: 0 }, { x: 1.5, y: -1.5 * Math.sqrt(3), z: 0 }],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
@@ -169,7 +173,8 @@ The result <InlineMath math="80\%" /> is the fraction of the total variance expl
       }]
     }
   ]}
-  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
+  cameraPosition={[0, 0, 11]}
 />
 
 ## Interpretation Boundaries

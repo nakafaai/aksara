@@ -9,104 +9,40 @@ export const metadata = {
 
 ## Struktur Monomial
 
-**Monomial** adalah koefisien yang dikalikan dengan variabel berpangkat bilangan cacah. Bandingkan beberapa bentuk aljabar berikut:
+**Monomial** adalah satu suku yang memuat koefisien dan variabel dengan pangkat bilangan cacah. Bilangan cacah berarti <InlineMath math="0,1,2,3,\ldots" />. Koefisien boleh negatif atau berupa pecahan, tetapi pangkat variabel harus memenuhi syarat itu.
 
-<MathContainer>
-  <BlockMath math="\sqrt[3]{p} \quad \text{(bukan monomial)}" />
-  <BlockMath math="2x^2y \quad \text{(monomial)}" />
-  <BlockMath math="-8 \quad \text{(monomial)}" />
-  <BlockMath math="\frac{2}{m} \quad \text{(bukan monomial)}" />
-  <BlockMath math="1{,}24k^4 \quad \text{(monomial)}" />
-  <BlockMath math="5a^{-6} \quad \text{(bukan monomial)}" />
-</MathContainer>
+Pada <InlineMath math="2x^2y" />, **koefisiennya** adalah <InlineMath math="2" />. Pangkat variabel <InlineMath math="x" /> adalah <InlineMath math="2" />, sedangkan pangkat <InlineMath math="y" /> yang tidak ditulis adalah <InlineMath math="1" />. Konstanta juga termasuk monomial karena tidak bergantung pada variabel.
 
-Dari bentuk-bentuk di atas, kita bisa mengelompokkannya menjadi dua:
-
-1.  **Kelompok 1 (Monomial):** <InlineMath math="2x^2y" />, <InlineMath math="-8" />, <InlineMath math="1{,}24k^4" />
-2.  **Kelompok 2 (Bukan Monomial):** <InlineMath math="\sqrt[3]{p}" />, <InlineMath math="\frac{2}{m}" />, <InlineMath math="5a^{-6}" />
-
-Bentuk aljabar pada Kelompok 1 inilah yang kita sebut sebagai **monomial**.
-
-### Monomial
-
-**Monomial** adalah suatu bilangan, suatu variabel berpangkat bilangan cacah (<InlineMath math="0, 1, 2, 3, \dots" />), atau perkalian antara bilangan dan satu atau lebih variabel berpangkat bilangan cacah.
-
-Bedah mengapa Kelompok 1 adalah monomial dan Kelompok 2 bukan:
-
-- **Kelompok 1 (Monomial):**
-
-  - <InlineMath math="2x^2y" />:
-
-    Perkalian bilangan (<InlineMath math="2" />) dan variabel (<InlineMath math="x" />, <InlineMath math="y" />) dengan pangkat bilangan cacah (<InlineMath math="2" /> dan <InlineMath math="1" />).
-
-  - <InlineMath math="-8" />:
-
-    Konstanta (bilangan saja). Atau ini sama saja dengan <InlineMath math="-8x^0" />.
-
-  - <InlineMath math="1{,}24k^4" />:
-
-    Perkalian bilangan <InlineMath math="1{,}24" /> dan variabel (<InlineMath math="k" />) dengan pangkat bilangan cacah (<InlineMath math="4" />).
-
-- **Kelompok 2 (Bukan Monomial):**
-
-  - <InlineMath math="\sqrt[3]{p} = p^{1/3}" />:
-
-    Pangkat variabel <InlineMath math="p" /> bukan bilangan cacah (<InlineMath math="1/3" />).
-
-  - <InlineMath math="\frac{2}{m} = 2m^{-1}" />:
-
-    Pangkat variabel <InlineMath math="m" /> bukan bilangan cacah (<InlineMath math="-1" />).
-
-  - <InlineMath math="5a^{-6}" />:
-
-    Pangkat variabel <InlineMath math="a" /> bukan bilangan cacah (<InlineMath math="-6" />).
-
-Pada monomial, <Highlight>pangkat setiap variabel harus berupa bilangan cacah</Highlight>. Bilangan yang mengalikan variabel, seperti <InlineMath math="2" /> pada <InlineMath math="2x^2y" />, disebut **koefisien**.
+| Bentuk | Pangkat variabel | Keputusan |
+| --- | --- | --- |
+| <InlineMath math="2x^2y" /> | <InlineMath math="2,1" /> | Monomial |
+| <InlineMath math="-8" /> | Tanpa variabel | Monomial |
+| <InlineMath math="1{,}24k^4" /> | <InlineMath math="4" /> | Monomial |
+| <InlineMath math="\sqrt[3]{p}=p^{1/3}" /> | <InlineMath math="1/3" /> | Bukan monomial |
+| <InlineMath math="\frac2m=2m^{-1}" /> | <InlineMath math="-1" /> | Bukan monomial |
+| <InlineMath math="5a^{-6}" /> | <InlineMath math="-6" /> | Bukan monomial |
 
 ## Definisi Polinomial
 
-**Polinomial** adalah jumlah berhingga dari beberapa monomial. Satu monomial juga termasuk polinomial.
+**Polinomial** adalah jumlah berhingga monomial. Satu monomial juga termasuk polinomial. Periksa setiap suku untuk menentukan apakah semua pangkat variabel memenuhi syarat.
 
-<MathContainer>
-  <BlockMath math="4x^3y - 3x^2" />
-  <BlockMath math="x + 2\sqrt{x}" />
-  <BlockMath math="2x^3 - 5x^{-2} + 1" />
-</MathContainer>
+| Ekspresi | Pemeriksaan suku | Keputusan |
+| --- | --- | --- |
+| <InlineMath math="4x^3y-3x^2" /> | Kedua suku mempunyai pangkat bilangan cacah. | Polinomial |
+| <InlineMath math="x+2\sqrt{x}" /> | Pangkat pada suku akar adalah <InlineMath math="1/2" />. | Bukan polinomial |
+| <InlineMath math="2x^3-5x^{-2}+1" /> | Pangkat negatif muncul pada suku <InlineMath math="-5x^{-2}" />. | Bukan polinomial |
 
-Identifikasi mana yang polinomial dan mana yang bukan:
+### Pengurangan sebagai Penjumlahan
 
-1. <InlineMath math="4x^3y - 3x^2" />
+Tanda minus tidak menghalangi suatu bentuk menjadi polinomial. Pengurangan sama dengan <Highlight>menambahkan suku berkoefisien negatif</Highlight>. Variabel dan pangkat pada suku tersebut tetap sama:
 
-   - Suku <InlineMath math="4x^3y" /> adalah monomial.
-   - Suku <InlineMath math="-3x^2" /> adalah monomial.
-   - Kesimpulan: **Polinomial** (pengurangan dua monomial).
+<BlockMath math="4x^3y-3x^2=4x^3y+(-3x^2)" />
 
-2. <InlineMath math="x + 2\sqrt{x}" />
-
-   - Suku <InlineMath math="x" /> adalah monomial.
-   - Suku <InlineMath math="2\sqrt{x} = 2x^{1/2}" /> bukan monomial (pangkat bukan bilangan cacah).
-   - Kesimpulan: **Bukan Polinomial**.
-
-3. <InlineMath math="2x^3 - 5x^{-2} + 1" />
-
-   - Suku <InlineMath math="2x^3" /> adalah monomial.
-   - Suku <InlineMath math="-5x^{-2}" /> bukan monomial (pangkat bukan bilangan cacah).
-   - Suku <InlineMath math="1" /> adalah monomial (konstanta).
-   - Kesimpulan: **Bukan Polinomial**.
-
-### Penjumlahan dan Pengurangan dalam Polinomial
-
-Definisi polinomial menggunakan _penjumlahan_ monomial, sedangkan contoh 1 ditulis dengan _pengurangan_ <InlineMath math="4x^3y - 3x^2" />. Kedua bentuk tersebut tidak bertentangan.
-
-Ingat kembali bahwa pengurangan bisa kita pandang sebagai penjumlahan dengan bilangan negatif. Jadi, <InlineMath math="4x^3y - 3x^2" /> itu sama saja dengan <InlineMath math="4x^3y + (-3x^2)" />.
-
-Karena <InlineMath math="4x^3y" /> dan <InlineMath math="-3x^2" /> keduanya monomial, hasil penjumlahannya tetap berupa polinomial. Itulah mengapa pengurangan antarmonomial juga menghasilkan polinomial.
-
-Sebuah ekspresi aljabar disebut polinomial jika semua sukunya berupa monomial, sehingga setiap variabel berpangkat bilangan cacah.
+Coba <InlineMath math="x=1" /> dan <InlineMath math="y=2" />. Kedua cara menulis menghasilkan <InlineMath math="8-3=8+(-3)=5" />. Yang berubah hanya cara menulis operasinya, bukan nilai atau pangkat variabel.
 
 ## Latihan
 
-Tentukan apakah setiap ekspresi berikut merupakan polinomial dalam variabel yang disebutkan. Jelaskan aturan pangkat yang menentukan jawabanmu. Periksa pangkat setiap variabel pada setiap suku, termasuk suku yang ditulis sebagai pecahan atau akar, sebelum memutuskan.
+Tentukan apakah setiap ekspresi berikut merupakan polinomial dalam variabel yang disebutkan. Jelaskan aturan pangkat yang menentukan jawabanmu. Periksa **pangkat setiap variabel** pada setiap suku, termasuk suku yang ditulis sebagai pecahan atau akar, sebelum memutuskan.
 
 1. <InlineMath math="7x^4-2x+9" /> dalam <InlineMath math="x" />
 2. <InlineMath math="\sqrt{x}+1" /> dalam <InlineMath math="x" />
@@ -117,7 +53,7 @@ Tentukan apakah setiap ekspresi berikut merupakan polinomial dalam variabel yang
 
 Setiap langkah berikut menyebutkan syarat yang menentukan jawabannya, sehingga aturan pangkat yang memutuskan setiap bentuk tertulis tepat di sampingnya.
 
-1. **Polinomial.** Pangkat <InlineMath math="x" /> adalah <InlineMath math="4" />, <InlineMath math="1" />, dan <InlineMath math="0" />.
-2. **Bukan polinomial.** Karena <InlineMath math="\sqrt{x}=x^{1/2}" />, pangkat <InlineMath math="1/2" /> bukan bilangan cacah.
-3. **Bukan polinomial.** Karena <InlineMath math="\frac{3}{x^2}=3x^{-2}" />, pangkat <InlineMath math="-2" /> bernilai negatif.
-4. **Polinomial.** Semua pangkat <InlineMath math="y" /> dan <InlineMath math="z" /> merupakan bilangan cacah. Sebuah suku boleh tidak menuliskan salah satu variabel karena pangkat variabel tersebut berarti <InlineMath math="0" />.
+1. **Polinomial**. Pangkat <InlineMath math="x" /> adalah <InlineMath math="4" />, <InlineMath math="1" />, dan <InlineMath math="0" />.
+2. **Bukan polinomial**. Karena <InlineMath math="\sqrt{x}=x^{1/2}" />, pangkat <InlineMath math="1/2" /> bukan bilangan cacah.
+3. **Bukan polinomial**. Karena <InlineMath math="\frac{3}{x^2}=3x^{-2}" />, pangkat <InlineMath math="-2" /> bernilai negatif.
+4. **Polinomial**. Semua pangkat <InlineMath math="y" /> dan <InlineMath math="z" /> merupakan bilangan cacah. Sebuah suku boleh tidak menuliskan salah satu variabel karena pangkat variabel tersebut berarti <InlineMath math="0" />.

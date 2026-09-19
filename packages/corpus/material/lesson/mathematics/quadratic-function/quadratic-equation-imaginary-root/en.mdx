@@ -13,7 +13,7 @@ Start with the equation:
 
 <BlockMath math="x^2+1=0" />
 
-To satisfy this equation, <InlineMath math="x^2" /> would have to equal <InlineMath math="-1" />. <Highlight>No real number has a negative square, so the equation has no real solution.</Highlight> We extend the number system with the imaginary unit <InlineMath math="i" />, which satisfies the following definition:
+To satisfy this equation, <InlineMath math="x^2" /> would have to equal <InlineMath math="-1" />. The square of a real number is **never negative**, so the equation has no real solution. We extend the number system with the imaginary unit <InlineMath math="i" />, which satisfies the following definition:
 
 <BlockMath math="i^2=-1" />
 
@@ -44,9 +44,7 @@ Because <InlineMath math="D<0" />, write <InlineMath math="D=-|D|" />. Then
 
 ## Finding and Classifying Nonreal Roots
 
-Once the discriminant turns negative you leave the real numbers and work with <InlineMath math="i" />. The two roots then form a conjugate pair whose sum and product stay real.
-
-A negative discriminant determines the form of the two nonreal roots and shows that they form a conjugate pair.
+For a negative discriminant, first take the square root of its absolute value, then include the factor <InlineMath math="i" />. The plus and minus choices produce conjugate roots with **the same real part** and opposite imaginary parts.
 
 ### Finding Two Nonreal Roots
 
@@ -54,7 +52,7 @@ Solve
 
 <BlockMath math="x^2+4x+5=0" />
 
-The coefficients are <InlineMath math="a=1" />, <InlineMath math="b=4" />, and <InlineMath math="c=5" />. First calculate the discriminant:
+The coefficients are <InlineMath math="a=1" />, <InlineMath math="b=4" />, and <InlineMath math="c=5" />. First calculate the **discriminant**:
 
 <BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
 
@@ -71,10 +69,7 @@ The calculation gives:
 
 We can check one root directly:
 
-<MathContainer>
-  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
-  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
 
 The other root follows by changing the sign of the imaginary part.
 
@@ -84,7 +79,7 @@ Consider
 
 <BlockMath math="2x^2+x+3=0" />
 
-Here <InlineMath math="a=2" />, <InlineMath math="b=1" />, and <InlineMath math="c=3" />. Its discriminant is
+Here <InlineMath math="a=2" />, <InlineMath math="b=1" />, and <InlineMath math="c=3" />. Its **discriminant** is
 
 <BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
 
@@ -105,7 +100,24 @@ The first example can be rewritten as
 
 <BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
 
-For every real <InlineMath math="x" />, the value of <InlineMath math="(x+2)^2" /> is nonnegative, so <InlineMath math="f(x)\ge1" />. The graph stays above the <InlineMath math="x" />-axis and has no real intercepts. The complex roots are not extra points on this real graph. They belong to the extended number system.
+For every real <InlineMath math="x" />, the value of <InlineMath math="(x+2)^2" /> is **nonnegative**, so <InlineMath math="f(x)\ge1" />. The graph stays above the <InlineMath math="x" />-axis and has no real intercepts. The complex roots are not extra points on this real graph. They belong to the extended number system.
+
+
+<MathVisual
+  title="A Parabola Without an x Intercept"
+  description="The vertex is at (-2,1). Pan or zoom to check that the smallest function value is one, not zero."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -2, y: 1 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: -2, y: 1 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="(-2,1)" /> }}
+/>
 
 ## Why the Roots Come in Conjugate Pairs
 
@@ -113,11 +125,11 @@ For real coefficients, the quadratic formula contains
 
 <BlockMath math="-b\pm i\sqrt{|D|}" />
 
-The two choices of the sign change only the imaginary part. This produces <InlineMath math="u+vi" /> and <InlineMath math="u-vi" />, called complex conjugates. If one is a root of a polynomial with real coefficients, its conjugate is also a root.
+The two choices of the sign change only the **imaginary part**. This produces <InlineMath math="u+vi" /> and <InlineMath math="u-vi" />, called complex conjugates. If one is a root of a polynomial with real coefficients, its conjugate is also a root.
 
 ## Practice Problem
 
-The problem asks for the solutions over the complex numbers, so the square root of a negative number is allowed. Write <InlineMath math="i" /> explicitly and collect the real and imaginary parts at the end.
+The problem asks for the solutions over the **complex numbers**, so the square root of a negative number is allowed. Write <InlineMath math="i" /> explicitly and collect the real and imaginary parts at the end.
 
 Solve <InlineMath math="2x^2+2x+5=0" /> over the complex numbers.
 
@@ -139,3 +151,10 @@ So the conjugate roots are
 <BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{and} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
 
 Their sum is <InlineMath math="-1=-\frac ba" /> and their product is <InlineMath math="\frac52=\frac ca" />, which checks the result against Vieta's formulas.
+
+When adding conjugates, **the imaginary parts cancel**. For their product, use the difference of two squares and <InlineMath math="i^2=-1" />:
+
+<MathContainer>
+  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
+  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+</MathContainer>

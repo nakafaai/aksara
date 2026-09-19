@@ -1,10 +1,10 @@
 export const metadata = {
-   title: "Spektralsatz für komplexe Matrizen",
-   description: "Beweise, dass eine normale Matrix eine Orthonormalbasis aus Eigenvektoren besitzt, und nutze diese Basis zur unitären Diagonalisierung.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2026-08-22",
-   dateModified: "2026-09-13",
-   subject: "Lineare Methoden der KI",
+title: "Spektralsatz für komplexe Matrizen",
+description: "Beweise, dass eine normale Matrix eine Orthonormalbasis aus Eigenvektoren besitzt, und nutze diese Basis zur unitären Diagonalisierung.",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2026-08-22",
+dateModified: "2026-09-19",
+subject: "Lineare Methoden der KI",
 };
 
 ## Charakterisierung der unitären Diagonalisierung
@@ -39,26 +39,26 @@ Das bedeutet <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, sodass:
 <BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
-Da dies für alle Basisvektoren gilt, ist <InlineMath math="AA^H = A^H A" />, was bedeutet, dass <InlineMath math="A" /> normal ist.
+Da dies für **alle Basisvektoren** gilt, ist <InlineMath math="AA^H = A^H A" />, was bedeutet, dass <InlineMath math="A" /> normal ist.
 
 ## Beweis von der Normalität zur Diagonalisierung
 
-Die Gegenrichtung lässt sich durch vollständige Induktion über die Matrixgröße zeigen. Der Basisschritt behandelt die kleinste Größe, für die die Aussage gilt, und der Induktionsschritt führt eine normale <InlineMath math="n \times n" />-Matrix auf einen normalen Block der Größe <InlineMath math="(n-1) \times (n-1)" /> zurück.
+Die Gegenrichtung lässt sich durch **vollständige Induktion** über die Matrixgröße zeigen. Der Basisschritt behandelt die kleinste Größe, für die die Aussage gilt, und der Induktionsschritt führt eine normale <InlineMath math="n \times n" />-Matrix auf einen normalen Block der Größe <InlineMath math="(n-1) \times (n-1)" /> zurück.
 
 ### Mathematische Induktionsstruktur
 
-Der Beweis wird durch Induktion geführt, deshalb legen die Schritte unten den Induktionsanfang fest, nennen die Induktionsannahme und vollziehen danach den Schritt von <InlineMath math="n" /> nach <InlineMath math="n+1" />.
+Der Beweis wird durch Induktion geführt, deshalb legen die Schritte unten den Induktionsanfang fest, nennen die Induktionsannahme und vollziehen danach den Schritt von <InlineMath math="n-1" /> nach <InlineMath math="n" />.
 
-1. **Basisschritt**
-   Für <InlineMath math="n = 0" /> erfüllt die leere Matrix die Aussage.
+**Basisschritt**
+Für <InlineMath math="n = 0" /> erfüllt die leere Matrix die Aussage.
 
-2. **Induktionshypothese**
-   Nimm an, dass die Aussage für alle Normalmatrizen der Größe <InlineMath math="(n-1) \times (n-1)" /> wahr ist.
+**Induktionshypothese**
+Nimm an, dass die Aussage für alle Normalmatrizen der Größe <InlineMath math="(n-1) \times (n-1)" /> wahr ist.
 
-3. **Induktionsschritt**
-   Sei <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Nach dem Fundamentalsatz der Algebra besitzt <InlineMath math="A" /> einen Eigenwert <InlineMath math="\lambda_1 \in \mathbb{C}" />. Sei <InlineMath math="v_1 \in \mathbb{C}^n" /> ein zugehöriger Eigenvektor mit <InlineMath math="v_1^H v_1 = 1" />.
+**Induktionsschritt**
+Sei <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Nach dem Fundamentalsatz der Algebra besitzt <InlineMath math="A" /> einen Eigenwert <InlineMath math="\lambda_1 \in \mathbb{C}" />. Sei <InlineMath math="v_1 \in \mathbb{C}^n" /> ein zugehöriger Eigenvektor mit <InlineMath math="v_1^H v_1 = 1" />.
 
-   Es gilt <InlineMath math="Av_1 = \lambda_1 v_1" />. Das folgende Lemma zeigt, dass außerdem <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> gilt.
+Es gilt <InlineMath math="Av_1 = \lambda_1 v_1" />. Das folgende Lemma zeigt, dass außerdem <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> gilt.
 
 ### Warum die Adjungierte denselben Eigenvektor besitzt
 
@@ -69,7 +69,7 @@ Sei <InlineMath math="B=A-\lambda_1I" />. Da <InlineMath math="A" /> normal ist,
 <BlockMath math="=v_1^HB^HBv_1=\|Bv_1\|_2^2=0" />
 </MathContainer>
 
-Also ist <InlineMath math="B^Hv_1=0" /> und damit genau <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. Dieser Zwischenschritt sorgt dafür, dass das orthogonale Komplement von <InlineMath math="v_1" /> invariant ist.
+Also ist <InlineMath math="B^Hv_1=0" /> und damit genau <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. Dieser Zwischenschritt sorgt dafür, dass das **orthogonale Komplement** von <InlineMath math="v_1" /> invariant ist.
 
 ### Bildung des invarianten Unterraums
 
@@ -90,7 +90,7 @@ Also <InlineMath math="Aw \in W" />, was bedeutet:
 
 <BlockMath math="A(W) = \{Aw \mid w \in W\} \subset W" />
 
-Mit anderen Worten ist <InlineMath math="W" /> unter <InlineMath math="A" /> invariant: Wendet man <InlineMath math="A" /> auf einen Vektor aus <InlineMath math="W" /> an, liegt das Ergebnis wieder in <InlineMath math="W" />.
+Mit anderen Worten ist <InlineMath math="W" /> unter <InlineMath math="A" /> **invariant**: Wendet man <InlineMath math="A" /> auf einen Vektor aus <InlineMath math="W" /> an, liegt das Ergebnis wieder in <InlineMath math="W" />.
 
 ### Unitäre Transformation und Bewahrung der Normalität
 
@@ -107,7 +107,7 @@ Der rechte untere Block <InlineMath math="A'" /> hat die Größe
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-Da unitäre Ähnlichkeitstransformationen die Normalität bewahren, gilt:
+Da unitäre Ähnlichkeitstransformationen die **Normalität bewahren**, gilt:
 
 <MathContainer>
 <BlockMath math="(T^H \cdot A \cdot T) \cdot (T^H \cdot A \cdot T)^H" />
@@ -121,7 +121,7 @@ Daher ist auch die Blockdiagonalmatrix normal, was bedeutet, dass auch <InlineMa
 
 ## Konstruktion einer vollständigen orthonormalen Basis
 
-Nach der Induktionshypothese besitzt <InlineMath math="A'" /> eine Orthonormalbasis <InlineMath math="v'_2, \ldots, v'_n" /> aus Eigenvektoren. Sei <InlineMath math="S'" /> die unitäre Matrix mit diesen Spalten, wobei:
+Nach der Induktionshypothese besitzt <InlineMath math="A'" /> eine **Orthonormalbasis** <InlineMath math="v'_2, \ldots, v'_n" /> aus Eigenvektoren. Sei <InlineMath math="S'" /> die unitäre Matrix mit diesen Spalten, wobei:
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -159,7 +159,7 @@ Reelle normale Matrizen sind über <InlineMath math="\mathbb{C}" /> weiterhin un
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-Jeder <InlineMath math="2\times2" />-Block steht für ein konjugiertes Eigenwertpaar <InlineMath math="a\pm bi" />. Eine reelle normale Matrix ist über <InlineMath math="\mathbb{R}" /> genau dann orthogonal diagonalisierbar, wenn alle Eigenwerte reell sind.
+Jeder <InlineMath math="2\times2" />-Block steht für ein konjugiertes Eigenwertpaar <InlineMath math="a\pm bi" />. Eine reelle normale Matrix ist über <InlineMath math="\mathbb{R}" /> genau dann orthogonal diagonalisierbar, wenn **alle Eigenwerte reell** sind.
 
 Symmetrische Matrizen und orthogonale Matrizen sind immer normal. Für eine symmetrische Matrix mit <InlineMath math="A^T = A" /> gilt
 
@@ -174,7 +174,7 @@ Für eine orthogonale Matrix <InlineMath math="A^T = A^{-1}" /> gilt:
 
 ### Rotationsbeispiel
 
-Eine Vierteldrehung wird durch die folgende Matrix dargestellt:
+Eine **Vierteldrehung** wird durch die folgende Matrix dargestellt:
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 

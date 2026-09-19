@@ -5,7 +5,9 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Calculate in thousand rupiah. Reverse the price changes in order: remove the tax, restore the voucher deduction, then remove the markup.
+Calculate in thousand rupiah. **Reverse** the price changes in order: remove the tax, restore the voucher deduction, then remove the markup.
+
+Tax is calculated on the price after the voucher. The final price is therefore <InlineMath math="110\%" /> of that price, so divide by <InlineMath math="1.10" /> to recover the price before tax.
 
 Before the <InlineMath math="10\%" /> tax, the price after the voucher was
 
@@ -13,6 +15,6 @@ Before the <InlineMath math="10\%" /> tax, the price after the voucher was
 
 Restore the <InlineMath math="50" /> thousand rupiah voucher, then divide by the markup factor <InlineMath math="1.20" />.
 
-<BlockMath math="\begin{aligned} 550+50 &=600 \\ P_0 &=600\div1.20=500 \\ 605-P_0 &=605-500=105 \end{aligned}" />
+<BlockMath math="\begin{aligned} 550+50 &amp;=600 \\ P_0 &amp;=600\div1.20=500 \\ 605-P_0 &amp;=605-500=105 \end{aligned}" />
 
 The final price therefore exceeds the initial price by <InlineMath math="105" /> thousand rupiah.

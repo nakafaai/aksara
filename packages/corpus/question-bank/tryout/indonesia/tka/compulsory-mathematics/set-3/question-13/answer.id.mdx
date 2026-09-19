@@ -2,16 +2,31 @@ export const metadata = {
   title: "Pembahasan Soal 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Jumlahkan kedua vektor translasi, lalu kurangkan vektor total dari titik akhir untuk memperoleh titik awal.
+Jumlahkan kedua vektor translasi, lalu **kurangkan vektor total** dari titik akhir untuk memperoleh titik awal.
 
 <BlockMath math="\begin{aligned}
-v&=(6,-1)+(-2,4)=(4,3) \\
-P&=(10,9)-(4,3)=(6,6)
+v&=(6,-1)+(-2,4) \\
+&=(6-2,-1+4)=(4,3) \\
+P&=Q-v=(10,9)-(4,3) \\
+&=(10-4,9-3)=(6,6)
 \end{aligned}" />
 
 Jarak Manhattan menjumlahkan nilai mutlak kedua koordinat.
 
 <BlockMath math="|6|+|6|=12" />
+
+<LineEquation
+  title="Translasi dan jarak Manhattan"
+  description="Rute abu-abu menuju P terdiri dari 6 satuan mendatar dan 6 satuan tegak. Dua panah berwarna menunjukkan translasi dari P melalui R menuju Q."
+  cameraPosition={[6,4.5,21]}
+  cameraTarget={[6,4.5,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "6", at: 0, offset: [3, -0.5, 0] }, { text: "6", at: 1, offset: [-0.5, 3, 0] }] },
+    { points: [{ x: 6, y: 6, z: 0 }, { x: 12, y: 5, z: 0 }], color: "#9333ea", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0.4, -0.4, 0] }] },
+    { points: [{ x: 12, y: 5, z: 0 }, { x: 10, y: 9, z: 0 }], color: "#d97706", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "Q", at: 1, offset: [0.3, 0.4, 0] }] },
+  ]}
+/>

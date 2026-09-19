@@ -4,7 +4,7 @@ export const metadata = {
   description: "Translate points, lines, and triangles with vectors, then verify each image through worked examples and graphs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
@@ -14,7 +14,7 @@ Translation, also known as a shift or slide, is a type of geometric transformati
 
 ### Definition of Translation
 
-Every translation is determined by its displacement vector:
+Every translation uses the same **displacement vector** for every point:
 
 <BlockMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />
 
@@ -39,7 +39,7 @@ Translate the point <InlineMath math="(3,2)" /> by the following vector and dete
 
 Here, <InlineMath math="x=3" />, <InlineMath math="y=2" />, <InlineMath math="a=-2" />, and <InlineMath math="b=3" />.
 
-Using the formula:
+Move **two units left and three units up**. Add the horizontal and vertical components separately:
 
 <MathContainer>
   <BlockMath math="x' = x + a = 3 + (-2) = 1" />
@@ -84,6 +84,8 @@ The image of point <InlineMath math="(3,2)" /> is <InlineMath math="(1,5)" />.
       labels: [{ text: <>vector <InlineMath math="(-2,3)" /></>, at: 0, offset: [-1, 1.5, 0] }],
     }, // Translation Vector from P to P'
   ]}
+  cameraPosition={[2, 3.5, 8]}
+  cameraTarget={[2, 3.5, 0]}
 />
 
 ## Translating a Line
@@ -95,11 +97,11 @@ Determine the image of the line <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> u
 Let <InlineMath math="P(x,y)" /> be any point on line <InlineMath math="l" />. Under this translation, its image is <InlineMath math="P'(x',y')" /> where:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} x' &amp;= x + (-1) \\ &amp;= x - 1 \\ &amp;\implies x \\ &amp;= x' + 1 \end{aligned}" />
+  <BlockMath math="x'=x-1\quad\Longrightarrow\quad x=x'+1" />
   <BlockMath math="y' = y + 1 \implies y = y' - 1" />
 </MathContainer>
 
-Substitute these values of <InlineMath math="x" /> and <InlineMath math="y" /> into the equation of line <InlineMath math="l" />:
+Use the **original coordinates** in the line equation. Substitute these values of <InlineMath math="x" /> and <InlineMath math="y" /> into the equation of line <InlineMath math="l" />:
 
 <MathContainer>
   <BlockMath math="2(x' + 1) + 3(y' - 1) - 1 = 0" />
@@ -128,27 +130,25 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
     data={[
       {
         // Original Line: 2x + 3y - 1 = 0  => y = (-2/3)x + 1/3
-        points: Array.from({ length: 27 }, (_, pointIndex) => {
-          const i = pointIndex - 8;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 1 / 3, z: 0 };
         }),
-        pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+          showPoints: false,
         smooth: false,
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 10, offset: [0.7, -3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 3, offset: [-0.7, -1, 0] }],
       },
       {
         // Image Line: 2x + 3y - 2 = 0 => y = (-2/3)x + 2/3
-        points: Array.from({ length: 24 }, (_, pointIndex) => {
-          const i = pointIndex - 5;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 2 / 3, z: 0 };
         }),
-        pointIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          showPoints: false,
         smooth: false,
         color: "#db2777",
-        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 13, offset: [-0.7, 3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 5, offset: [0.7, 1, 0] }],
       },
     ]}
     cameraPosition={[0, 0, 10]}
@@ -156,6 +156,8 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
 </ContentStack>
 
 ## Exercises
+
+Apply the **same vector** to every point. For a line equation, express the original coordinates in terms of the image coordinates first. For a triangle, check all three vertices so the shape stays unchanged.
 
 1.  Translate the point <InlineMath math="(-4,4)" /> by the following vector and determine its image:
 
@@ -171,38 +173,58 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
 
 ### Solutions
 
-1.  For the point <InlineMath math="(-4,4)" />, use <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
+A negative sign means a shift left or down. In the line equation, use **inverse substitution** because the original equation describes coordinates before the translation.
 
-    <MathContainer>
-      <BlockMath math="x' = -4 + (-2) = -6" />
-      <BlockMath math="y' = 4 + (-3) = 1" />
-    </MathContainer>
+**Solution 1**
 
-    Thus, the image point is <InlineMath math="(-6,1)" />.
+For the point <InlineMath math="(-4,4)" />, use <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
 
-2.  For the line <InlineMath math="5x - 2y + 3 = 0" />, use <InlineMath math="a=2, b=-1" />.
+<MathContainer>
+<BlockMath math="x' = -4 + (-2) = -6" />
+<BlockMath math="y' = 4 + (-3) = 1" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = x + 2 \implies x = x' - 2" />
-      <BlockMath math="y' = y - 1 \implies y = y' + 1" />
-    </MathContainer>
+Thus, the image point is <InlineMath math="(-6,1)" />.
 
-    Substitute into the line equation:
+**Solution 2**
 
-    <MathContainer>
-      <BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
-      <BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
-      <BlockMath math="5x' - 2y' - 9 = 0" />
-    </MathContainer>
+For the line <InlineMath math="5x - 2y + 3 = 0" />, use <InlineMath math="a=2, b=-1" />.
 
-    Image line equation: <InlineMath math="5x - 2y - 9 = 0" />.
+<MathContainer>
+<BlockMath math="x' = x + 2 \implies x = x' - 2" />
+<BlockMath math="y' = y - 1 \implies y = y' + 1" />
+</MathContainer>
 
-3.  Translate each vertex <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, and <InlineMath math="C(1,5)" /> using <InlineMath math="a=2, b=3" />.
+Substitute into the line equation:
 
-    <MathContainer>
-      <BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
-      <BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
-      <BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
+<BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
+<BlockMath math="5x' - 2y' - 9 = 0" />
+</MathContainer>
 
-    The coordinates of the image triangle are <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" />, and <InlineMath math="C'(3,8)" />.
+Image line equation: <InlineMath math="5x - 2y - 9 = 0" />.
+
+**Solution 3**
+
+Translate each vertex <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, and <InlineMath math="C(1,5)" /> using <InlineMath math="a=2, b=3" />.
+
+<MathContainer>
+<BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
+<BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
+<BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
+</MathContainer>
+
+The coordinates of the image triangle are <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" />, and <InlineMath math="C'(3,8)" />.
+
+<LineEquation
+  title="Triangle Before and After Translation"
+  description="All three vertices move by the same vector. Side lengths and triangle area are preserved."
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 1, z: 0 }, { x: 1, y: 5, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, color: "#7c3aed", labels: [{ text: "A", at: 0, offset: [-0.3, -0.3, 0] }, { text: "B", at: 1, offset: [0.3, -0.3, 0] }, { text: "C", at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 3, y: 4, z: 0 }, { x: 6, y: 4, z: 0 }, { x: 3, y: 8, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, color: "#059669", labels: [{ text: "A'", at: 0, offset: [-0.3, -0.3, 0] }, { text: "B'", at: 1, offset: [0.3, -0.3, 0] }, { text: "C'", at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", cone: { position: "end", size: 0.2 } },
+  ]}
+  cameraPosition={[3.5, 4.5, 12]}
+  cameraTarget={[3.5, 4.5, 0]}
+/>

@@ -3,13 +3,15 @@ export const metadata = {
   description: "Chebyshev- und Legendre-Basen entstehen aus gewichteten Skalarprodukten. Sie werden für Funktionsprojektionen, Intervalltransformationen und die Gauß-Quadratur verwendet.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Lineare Methoden der KI",
 };
 
 ## Orthogonalität für Funktionen
 
-Sei <InlineMath math="w(x)>0" /> auf einem Intervall <InlineMath math="[a,b]" />. Das gewichtete Skalarprodukt und die davon erzeugte Norm sind
+Wir betrachten reelle stetige Funktionen auf einem endlichen Intervall <InlineMath math="a&lt;b" /> und ein integrierbares Gewicht, das im Inneren positiv ist. Integrierbare Singularitäten an den Randpunkten sind erlaubt, wie beim folgenden Chebyshev-Gewicht.
+
+Das gewichtete Skalarprodukt und die zugehörige Norm lauten
 
 <MathContainer>
 <BlockMath math="\langle f,g\rangle_w=\int_a^b f(x)g(x)w(x)\,dx" />
@@ -20,7 +22,7 @@ Zwei Funktionen sind orthogonal, wenn <InlineMath math="\langle f,g\rangle_w=0" 
 
 <BlockMath math="\begin{aligned} &amp;\|f-g\|_w^2 \\ &amp;=\int_a^b|f(x)-g(x)|^2w(x)\,dx \end{aligned}" />
 
-<Highlight>Dagegen misst die Maximumsnorm den größten punktweisen Fehler.</Highlight>
+Dagegen misst die Maximumsnorm den <Highlight>größten punktweisen Fehler</Highlight>.
 
 <BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
 
@@ -52,9 +54,11 @@ Die Rekursionskoeffizienten lauten
 <MathContainer>
 <BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
 <BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
+
+Die Dreitermrekursion und <InlineMath math="\beta_k" /> gelten für <InlineMath math="k\ge1" />.
 </MathContainer>
 
-Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Die Orthogonalität entfernt alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />, deshalb enthält die Rekursionsformel nur drei Terme.
+Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Die Orthogonalität entfernt alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />, deshalb enthält die Rekursionsformel nur **drei Terme**.
 
 ## Polynome nach Tschebyschow erster Art
 
@@ -72,12 +76,13 @@ Ihre gewichtete Orthogonalität lautet
 
 <BlockMath math="\begin{aligned} &amp;\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx \\ &amp;=\begin{cases}\pi,&amp;j=k=0,\\\frac{\pi}{2},&amp;j=k>0,\\0,&amp;j\ne k.\end{cases} \end{aligned}" />
 
-Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die kleinste Maximumsnorm. Es löst damit das Minimax-Approximationsproblem für monische Polynome vom Grad <InlineMath math="k" />.
+Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die **kleinste Maximumsnorm**. Es löst damit das Minimax-Approximationsproblem für monische Polynome vom Grad <InlineMath math="k" />.
 
 <LineEquation
   title={<>Die ersten Chebyshev-Polynome <InlineMath math="T_0,T_1,T_2,T_3" /></>}
   description={<>Alle vier bleiben im Intervall <InlineMath math="[-1,1]" /> zwischen <InlineMath math="-1" /> und <InlineMath math="1" />.</>}
-  cameraPosition={[3, 3, 5]}
+  cameraPosition={[0, 0, 4.5]}
+  showZAxis={false}
   data={(() => {
     const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
     const polynomials = [
@@ -124,11 +129,11 @@ Zum Beispiel gilt
 <BlockMath math="x^2=\frac13P_0(x)+\frac23P_2(x)" />
 </MathContainer>
 
-Die zweite Identität ist eine exakte orthogonale Entwicklung und keine Näherung.
+Die zweite Identität ist eine **exakte orthogonale Entwicklung** und keine Näherung.
 
 ## Das Intervall orthogonaler Polynome ändern
 
-Um das Intervall <InlineMath math="[-1,1]" /> auf <InlineMath math="[a,b]" /> abzubilden, verwenden wir die folgende affine Variablentransformation.
+Um das Intervall <InlineMath math="[-1,1]" /> auf <InlineMath math="[a,b]" /> abzubilden, verwenden wir die folgende **affine Variablentransformation**.
 
 <MathContainer>
 <BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />
@@ -150,7 +155,11 @@ Sei <InlineMath math="p_n" /> das orthogonale Polynom vom Grad <InlineMath math=
 
 <BlockMath math="\int_a^b f(x)w(x)\,dx\approx\sum_{i=1}^n w_i f(x_i)" />
 
-Die Regel ist für jedes Polynom bis zum Grad <InlineMath math="2n-1" /> exakt. Legendre-Nullstellen liefern die Gauß-Legendre-Quadratur für das Gewicht <InlineMath math="w(x)=1" />. Chebyshev-Nullstellen liefern die Gauß-Chebyshev-Quadratur für <InlineMath math="w(x)=1/\sqrt{1-x^2}" />.
+Die Regel ist **für jedes Polynom** bis zum Grad <InlineMath math="2n-1" /> exakt. Legendre-Nullstellen liefern die Gauß-Legendre-Quadratur für das Gewicht <InlineMath math="w(x)=1" />. Chebyshev-Nullstellen liefern die Gauß-Chebyshev-Quadratur für <InlineMath math="w(x)=1/\sqrt{1-x^2}" />.
+
+Bei zwei Gauß-Legendre-Knoten liefert <InlineMath math="P_2(x)=0" /> die Werte <InlineMath math="x=\pm1/\sqrt3" />. Beide Gewichte sind 1. Prüfe das quadratische Integral direkt:
+
+<BlockMath math="\int_{-1}^1x^2\,dx=\frac23=1\left(-\frac1{\sqrt3}\right)^2+1\left(\frac1{\sqrt3}\right)^2" />
 
 | Basis | Gewicht auf <InlineMath math="[-1,1]" /> | Besonders geeignet für |
 | --- | --- | --- |

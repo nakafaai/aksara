@@ -5,11 +5,11 @@ export const metadata = {
     description: "Add vectors with triangle, parallelogram, polygon, and component methods, then interpret the resultant in a physical situation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vector and Operations",
 };
 
-## Adding Displacements Tip to Tail
+## How Direction Affects a Displacement Sum
 
 Vector addition differs from scalar addition. In scalar addition, we only add magnitudes without considering direction. For example, <InlineMath math="2 \text{ kg}" /> of sugar plus <InlineMath math="3 \text{ kg}" /> of sugar equals <InlineMath math="5 \text{ kg}" /> of sugar. However, in vector addition, we must consider both magnitude and direction.
 
@@ -59,7 +59,7 @@ Mathematically, if <InlineMath math="\overrightarrow{AB}" /> and <InlineMath mat
 
 <BlockMath math="\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC} = \vec{a} + \vec{b}" />
 
-Vector addition satisfies the commutative property:
+Vector addition satisfies the **commutative property**:
 
 <BlockMath math="\vec{a} + \vec{b} = \vec{b} + \vec{a}" />
 
@@ -254,7 +254,7 @@ In the following two diagrams, <InlineMath math="A=(3,1,0)" />, <InlineMath math
 
 ## Vector Addition by Components
 
-Besides graphical methods, vectors can also be added by their components. In a coordinate system, each vector can be expressed in terms of its components.
+Add **components along the same axis**. Combine horizontal with horizontal and vertical with vertical.
 
 <Vector3d
   cameraPosition={[10, 8, -10]}
@@ -371,11 +371,20 @@ Vector addition can determine the velocity of a boat crossing a river:
   />
 </ContentBlock>
 
+In this diagram, take the horizontal axis along the current and the vertical axis across the river. Suppose the boat velocity relative to the water is <InlineMath math="(0,4)\,\text{m/s}" /> and the current velocity is <InlineMath math="(3,0)\,\text{m/s}" />. Add the components to find the **velocity relative to the shore**:
+
+<MathContainer>
+  <BlockMath math="\vec v_R=(0+3,4+0)\,\text{m/s}=(3,4)\,\text{m/s}" />
+  <BlockMath math="|\vec v_R|=\sqrt{3^2+4^2}\,\text{m/s}=\sqrt{25}\,\text{m/s}=5\,\text{m/s}" />
+</MathContainer>
+
+The boat moves across the river while drifting with the current. Its speed relative to the shore is <InlineMath math="5\,\text{m/s}" />, rather than <InlineMath math="4+3=7\,\text{m/s}" />, because the two velocities are perpendicular.
+
 A sequence of displacement vectors can likewise be added. Its resultant gives the net displacement. Route length and the shortest route must be determined from the path of the journey.
 
 ## Difference Between Scalar and Vector Addition
 
-Both scalar addition and vector addition produce a unique result for fixed inputs. The difference is that scalar inputs carry only magnitude, while vector inputs also carry direction. Changing a vector's direction therefore changes the input and can change the resultant.
+Both scalar addition and vector addition produce a unique result for fixed inputs. The difference is that a scalar is described by one value, while a nonzero vector also carries direction. Changing a vector's direction therefore changes the input and can change the resultant.
 
 **Example of scalar addition**:
 

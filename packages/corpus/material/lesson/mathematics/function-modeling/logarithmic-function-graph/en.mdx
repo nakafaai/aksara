@@ -4,7 +4,7 @@ export const metadata = {
   description: "Draw logarithmic function graphs one step at a time. Explore transformations, asymptotes, and key characteristics with interactive visualizations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Functions and Their Modeling",
 };
 
@@ -14,7 +14,7 @@ A logarithmic graph <Highlight>changes quickly near its vertical asymptote</High
 
 ## Characteristics of Logarithmic Graphs
 
-The following graph compares <InlineMath math="y = \log_b x" /> for several bases greater than <InlineMath math="1" />. Every graph passes through <InlineMath math="(1,0)" /> and increases at a different rate.
+The following graph compares <InlineMath math="y = \log_b x" /> for several bases greater than <InlineMath math="1" />. **Every graph** passes through <InlineMath math="(1,0)" /> and increases at a different rate.
 
 <LineEquation
   title="Comparison of Logarithmic Graphs with Different Bases"
@@ -28,8 +28,8 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -39,16 +39,16 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
             return { x, y: Math.log2(x), z: 0 };
           });
       })(),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1250, offset: [-0.2, 0.65, 0] }],
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 219, offset: [-0.2, 0.65, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -59,15 +59,15 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
           });
       })(),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{10} x" />, at: 1250, offset: [0.3, -1.55, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{10} x" />, at: 219, offset: [0.3, -1.55, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -78,179 +78,188 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
           });
       })(),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=\ln x" />, at: 1250, offset: [0.3, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\ln x" />, at: 219, offset: [0.3, -0.5, 0] }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[4, 0, 13]}
   cameraTarget={[4, 0, 0]}
 />
 
 ### Properties of Logarithmic Graphs
 
-For function <InlineMath math="f(x) = \log_b x" /> with <InlineMath math="b > 1" />:
+For function <InlineMath math="f(x) = \log_b x" /> with <InlineMath math="b>0,\ b\neq1" />:
 
 1. **Domain**: <InlineMath math="x > 0" /> (positive numbers only)
-2. **Range**: All real numbers (<InlineMath math="-\infty < y < \infty" />)
-3. **<InlineMath math="x" />-intercept**: <InlineMath math="(1, 0)" /> because <InlineMath math="\log_b 1 = 0" />
+2. Range: All real numbers (<InlineMath math="-\infty < y < \infty" />)
+3. <InlineMath math="x" />-intercept: <InlineMath math="(1, 0)" /> because <InlineMath math="\log_b 1 = 0" />
 4. **Vertical asymptote**: <InlineMath math="y" />-axis (<InlineMath math="x = 0" />)
-5. **Function behavior**:
-   - Increasing for <InlineMath math="b > 1" />
-   - Decreasing for <InlineMath math="0 < b < 1" />
+5. Increasing for <InlineMath math="b > 1" />
+6. Decreasing for <InlineMath math="0 < b < 1" />
 
 ## Drawing Logarithmic Function Graphs
 
-The following concrete examples show each step for drawing a logarithmic function graph.
+Choose **powers of the base** as inputs. An input of <InlineMath math="b^n" /> has output <InlineMath math="n" />, so you obtain exact points without rounding.
 
-1. **Drawing <InlineMath math="y = \log_2 x" />**
+Negative powers also give valid positive inputs. With base two, an input of one quarter gives an output of negative two.
 
-   To draw this graph, we create a table of values by choosing <InlineMath math="x" /> values that are powers of <InlineMath math="2" />:
+<BlockMath math="2^{-2}=\frac14 \quad\Longleftrightarrow\quad \log_2\frac14=-2" />
 
-   | <InlineMath math="x" />            | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
-   | ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
-   | <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+### The Base Two Graph
 
-   <LineEquation
-     title={
-       <>
-         Graph of <InlineMath math="y = \log_2 x" />
-       </>
-     }
-     description="Compare the intercept, asymptote, and direction of the curve."
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from(
-             { length: 1305 },
-             (_, i) => -48 + (i / 1304) * 52.15888308335967
-           );
-           parameters.push(1.6214662906712296);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = Math.exp(t);
-               return { x, y: Math.log2(x), z: 0 };
-             });
-         })(),
-         color: "#0284c7",
-         labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1241, offset: [-0.3, 1, 0] }],
-         showPoints: false,
-       },
-       {
-         points: [{ x: 0.125, y: -3, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 0.25, y: -2, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 0.5, y: -1, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1, y: 0, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [1, -1, 0] }],
-       },
-       {
-         points: [{ x: 2, y: 1, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 4, y: 2, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 8, y: 3, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-     ]}
-     cameraPosition={[3, -0.5, 12]}
-     cameraTarget={[3, -0.5, 0]}
-   />
+To draw this graph, we create a table of values by choosing <InlineMath math="x" /> values that are **powers** of <InlineMath math="2" />:
 
-2. **Drawing <InlineMath math="y = \log_{\frac{1}{3}} x" />**
+| <InlineMath math="x" />            | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
+| ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
 
-   For base <InlineMath math="0 < b < 1" />, the graph will be decreasing:
+<LineEquation
+  title={
+    <>
+      Graph of <InlineMath math="y = \log_2 x" />
+    </>
+  }
+  description="Compare the intercept, asymptote, and direction of the curve."
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from(
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
+        );
+        parameters.push(1.6214662906712296);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.exp(t);
+            return { x, y: Math.log2(x), z: 0 };
+          });
+      })(),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 205, offset: [-0.3, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0.125, y: -3, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0.25, y: -2, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0.5, y: -1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [1, -1, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 8, y: 3, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, -0.5, 12]}
+  cameraTarget={[3, -0.5, 0]}
+/>
 
-   | <InlineMath math="x" />                        | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
-   | ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
-   | <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+### The Base One Third Graph
 
-   <LineEquation
-     title={
-       <>
-         Graph of <InlineMath math="y = \log_{\frac{1}{3}} x" />
-       </>
-     }
-     description={<>Graph decreases because the base lies between <InlineMath math="0" /> and <InlineMath math="1" />.</>}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from(
-             { length: 1305 },
-             (_, i) => -48 + (i / 1304) * 52.15888308335967
-           );
-           parameters.push(1.111957191471041);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = Math.exp(t);
-               return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
-             });
-         })(),
-         color: "#e11d48",
-         labels: [{ text: <InlineMath math="y=\log_{\frac{1}{3}} x" />, at: 1228, offset: [0.5, -1, 0] }],
-         showPoints: false,
-       },
-       {
-         points: [{ x: 1 / 27, y: 3, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1 / 9, y: 2, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1 / 3, y: 1, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1, y: 0, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
-       },
-       {
-         points: [{ x: 3, y: -1, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 9, y: -2, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-     ]}
-     cameraPosition={[0, 0, 15]}
-   />
+For base <InlineMath math="0 < b < 1" />, the graph will be **decreasing**:
+
+| <InlineMath math="x" />                        | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
+| ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+
+<LineEquation
+  title={
+    <>
+      Graph of <InlineMath math="y = \log_{\frac{1}{3}} x" />
+    </>
+  }
+  description={<>Graph decreases because the base lies between <InlineMath math="0" /> and <InlineMath math="1" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from(
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
+        );
+        parameters.push(1.111957191471041);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.exp(t);
+            return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
+          });
+      })(),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="y=\log_{\frac{1}{3}} x" />, at: 185, offset: [0.5, -1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: [{ x: 1 / 27, y: 3, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1 / 9, y: 2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1 / 3, y: 1, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [{ x: 3, y: -1, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 9, y: -2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[4, 0, 13]}
+  cameraTarget={[4, 0, 0]}
+/>
 
 ## Comparing Logarithmic Graphs
 
-Place logarithmic graphs with different bases on one coordinate system to compare their shapes directly:
+Graphs whose bases are reciprocals have **opposite outputs**. Since <InlineMath math="\log(1/2)=-\log 2" />, the two curves below are reflections across the horizontal axis.
+
+<BlockMath math="\log_{1/2}x=-\log_2x" />
 
 <LineEquation
   title={
@@ -267,7 +276,7 @@ Place logarithmic graphs with different bases on one coordinate system to compar
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log2(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [
         { text: <InlineMath math="y=\log_{2} x" />, at: 40, offset: [0.5, 0.5, 0] },
       ],
@@ -296,7 +305,9 @@ Place logarithmic graphs with different bases on one coordinate system to compar
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 12]}
+  cameraTarget={[3, 0, 0]}
 />
 
 | Property           | <InlineMath math="b > 1" />  | <InlineMath math="0 < b < 1" /> |
@@ -309,15 +320,15 @@ Place logarithmic graphs with different bases on one coordinate system to compar
 
 ## Transformations of Logarithmic Graphs
 
-A vertical shift moves the whole curve and leaves the vertical asymptote at <InlineMath math="x = 0" />. A horizontal shift instead moves the asymptote together with the <InlineMath math="x" />-intercept to the right or left, so the whole graph moves sideways.
+A **vertical shift** moves the whole curve and leaves the vertical asymptote at <InlineMath math="x = 0" />. A horizontal shift instead moves the asymptote together with the <InlineMath math="x" />-intercept to the right or left, so the whole graph moves sideways.
 
 ### Vertical Translation
 
-We can shift the logarithmic function graph by adding or subtracting a constant <InlineMath math="k" /> to the function.
+Add a constant **outside the logarithm** to move every output. The domain and vertical asymptote stay fixed, but the horizontal intercept satisfies <InlineMath math="\log_b x=-k" />, so <InlineMath math="x=b^{-k}" />.
 
 <ContentStack>
 
-  <BlockMath math="y = \log_b x + k" />
+<BlockMath math="y = \log_b x + k" />
 
   <LineEquation
     title="Vertical Translation"
@@ -332,8 +343,8 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -344,15 +355,15 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
             });
         })(),
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1236, offset: [0.5, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -362,16 +373,16 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
               return { x, y: Math.log2(x) + 2, z: 0 };
             });
         })(),
-        color: "#0284c7",
-        labels: [{ text: <InlineMath math="y=\log_{2} x+2" />, at: 1236, offset: [0.5, -1, 0] }],
+        color: "#0d9488",
+        labels: [{ text: <InlineMath math="y=\log_{2} x+2" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -382,22 +393,23 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
             });
         })(),
         color: "#e11d48",
-        labels: [{ text: <InlineMath math="y=\log_{2} x-2" />, at: 1236, offset: [0.5, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x-2" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
     ]}
-    cameraPosition={[3, 0, 13]}
+    showZAxis={false}
+  cameraPosition={[3, 0, 13]}
     cameraTarget={[3, 0, 0]}
   />
 </ContentStack>
 
 ### Horizontal Translation
 
-We can shift the logarithmic function graph by adding or subtracting a constant <InlineMath math="h" /> to the function.
+Replace the input with the **argument** <InlineMath math="x-h" /> to shift the graph. The condition <InlineMath math="x-h>0" /> gives domain <InlineMath math="x>h" /> and asymptote <InlineMath math="x=h" />. The horizontal intercept moves from <InlineMath math="1" /> to <InlineMath math="h+1" />.
 
 <ContentStack>
 
-  <BlockMath math="y = \log_b (x - h)" />
+<BlockMath math="y = \log_b (x - h)" />
 
   <LineEquation
     title="Horizontal Translation"
@@ -411,8 +423,8 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
       {
         smooth: false,
         points: (() => {
-          const points = Array.from({ length: 481 }, (_, i) => {
-            const y = (i - 320) / 32;
+          const points = Array.from({ length: 225 }, (_, i) => {
+            const y = (i - 128) / 32;
             return { x: Math.pow(2, y), y, z: 0 };
           });
           const x = (40 / 99) * 10 + 0.1;
@@ -420,14 +432,14 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
           return points.sort((a, b) => a.x - b.x);
         })(),
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 386, offset: [0.5, 1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 194, offset: [0.5, 1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
-          const points = Array.from({ length: 481 }, (_, i) => {
-            const y = (i - 320) / 32;
+          const points = Array.from({ length: 225 }, (_, i) => {
+            const y = (i - 128) / 32;
             return { x: 2 + Math.pow(2, y), y, z: 0 };
           });
           const x = (40 / 99) * 8 + 2.1;
@@ -435,18 +447,19 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
           return points.sort((a, b) => a.x - b.x);
         })(),
         color: "#059669",
-        labels: [{ text: <InlineMath math="y=\log_{2}(x-2)" />, at: 376, offset: [1, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2}(x-2)" />, at: 184, offset: [1, -1, 0] }],
         showPoints: false,
       },
     ]}
-    cameraPosition={[3, 0, 13]}
+    showZAxis={false}
+  cameraPosition={[3, 0, 13]}
     cameraTarget={[3, 0, 0]}
   />
 </ContentStack>
 
 ## Exercises
 
-The four problems below practice reading a logarithmic graph and predicting how a change inside the argument moves it. Work each one before the worked solutions, then compare your reasoning with the answers that follow.
+These problems connect the **positive-argument condition** to the domain, asymptote, and direction of a shift. Use powers of the base to locate points before sketching each curve.
 
 1. Create a value table and draw the graphs of:
 
@@ -462,138 +475,143 @@ The four problems below practice reading a logarithmic graph and predicting how 
 
 4. Sketch the graph of <InlineMath math="y = \log_3 x + 2" /> and determine the <InlineMath math="y" />-intercept.
 
-### Worked Solutions
+### Two Value Tables
 
-1. Value tables:
+For <InlineMath math="y = \log_3 x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
 
-   For <InlineMath math="y = \log_3 x" />:
-   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
-   |-------------------------|-------------------------------------|------------------------------------|----|----|----|
-   | <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+For <InlineMath math="y = \log_{\frac{1}{2}} x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
 
-   For <InlineMath math="y = \log_{\frac{1}{2}} x" />:
-   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
-   |-------------------------|-------------------------------------|------------------------------------|----|----|----|
-   | <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
+Plot each ordered pair and draw a smooth curve that stays to the right of the **vertical asymptote** <InlineMath math="x=0" />. The base <InlineMath math="3" /> graph rises, while the base <InlineMath math="\frac{1}{2}" /> graph falls.
 
-   Plot each ordered pair and draw a smooth curve that stays to the right of the vertical asymptote <InlineMath math="x=0" />. The base <InlineMath math="3" /> graph rises, while the base <InlineMath math="\frac{1}{2}" /> graph falls.
+### Domain and Asymptote
 
-2. For <InlineMath math="f(x) = \log_5 (x + 3)" />:
+The logarithm is defined only when its argument is positive. The boundary of that condition gives the vertical asymptote:
 
-   The logarithm is defined only when its argument is positive. The boundary of that condition gives the vertical asymptote:
+- Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
+- Range: All real numbers
+- Vertical asymptote: <InlineMath math="x = -3" />
 
-   - Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
-   - Range: All real numbers
-   - Vertical asymptote: <InlineMath math="x = -3" />
+The boundary is excluded because a logarithm needs a **positive argument**, not zero. Negative two is allowed, but negative three makes the argument zero.
 
-3. For <InlineMath math="g(x) = \log_2 (x - 4)" />:
+<BlockMath math="(-2)+3=1>0,\qquad (-3)+3=0" />
 
-   Replacing <InlineMath math="x" /> with <InlineMath math="x-4" /> shifts the graph right. The same expression must also remain positive:
+### A Four Unit Shift
 
-   - Shift: <InlineMath math="4 \text{ units}" /> to the right
-   - Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
+Replacing <InlineMath math="x" /> with <InlineMath math="x-4" /> shifts the graph right. The same expression must also remain positive:
 
-4. For <InlineMath math="y = \log_3 x + 2" />:
+- Shift: <InlineMath math="4 \text{ units}" /> to the right
+- Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
 
-   Adding <InlineMath math="2" /> outside the logarithm shifts every point vertically without changing the domain or the asymptote:
+Check the horizontal intercept: input one on the original graph becomes input five. Its **output** remains zero.
 
-   - Graph <InlineMath math="y = \log_3 x" /> shifted <InlineMath math="2 \text{ units}" /> up
-   - There is no <InlineMath math="y" />-intercept because the domain is <InlineMath math="x > 0" />
+<BlockMath math="\log_b(5-4)=\log_b1=0,\qquad b>0,\ b\ne1" />
 
-   In particular, a <InlineMath math="y" />-intercept would require <InlineMath math="x=0" />, where the logarithm is undefined. The graph below confirms that it approaches but never reaches the <InlineMath math="y" />-axis.
+### An Upward Shift
 
-   <ContentBlock>
-     <LineEquation
-       title={
-         <>
-           Sketch of Graph <InlineMath math="y = \log_3 x + 2" />
-         </>
-       }
-       description={
-         <>
-           Logarithmic graph base <InlineMath math="3" /> shifted <InlineMath math="2 \text{ units}" /> up.
-         </>
-       }
-       data={[
-         {
-           smooth: false,
-           points: (() => {
-             const parameters = Array.from(
-               { length: 1305 },
-               (_, i) => -48 + (i / 1304) * 52.15888308335967
-             );
-             parameters.push(1.3988166392051704);
-             return parameters
-               .sort((a, b) => a - b)
-               .map((t) => {
-                 const x = Math.exp(t);
-                 return { x, y: Math.log(x) / Math.log(3), z: 0 };
-               });
-           })(),
-           color: "#9333ea",
-           labels: [{ text: <InlineMath math="y=\log_{3} x" />, at: 1235, offset: [0.5, -0.5, 0] }],
-           showPoints: false,
-         },
-         {
-           smooth: false,
-           points: (() => {
-             const parameters = Array.from(
-               { length: 1305 },
-               (_, i) => -48 + (i / 1304) * 52.15888308335967
-             );
-             parameters.push(1.6214662906712296);
-             return parameters
-               .sort((a, b) => a - b)
-               .map((t) => {
-                 const x = Math.exp(t);
-                 return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
-               });
-           })(),
-           color: "#059669",
-           labels: [{ text: <InlineMath math="y=\log_{3} x+2" />, at: 1241, offset: [0.5, 1, 0] }],
-           showPoints: false,
-         },
-         {
-           points: [{ x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [{ x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [{ x: 1, y: 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-           labels: [{ text: <InlineMath math="(1,2)" />, at: 0, offset: [0, 1, 0] }],
-         },
-         {
-           points: [{ x: 3, y: 3, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-           labels: [{ text: <InlineMath math="(3,3)" />, at: 0, offset: [0, 0.5, 0] }],
-         },
-         {
-           points: [{ x: 9, y: 4, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [
-           { x: 0, y: -80, z: 0 },
-           { x: 0, y: -2, z: 0 },
-           { x: 0, y: 5, z: 0 },
-           { x: 0, y: 80, z: 0 },
-           ],
-           smooth: false,
-           color: "#9333ea",
-           labels: [{ text: <><InlineMath math="x=0" /> (asymptote)</>, at: 2, offset: [3.8, 0.7, 0] }],
-           showPoints: false,
-         },
-       ]}
-       cameraPosition={[4, 1, 13]}
-       cameraTarget={[4, 1, 0]}
-     />
-   </ContentBlock>
+Adding <InlineMath math="2" /> outside the logarithm shifts every point vertically without changing the **domain** or the asymptote:
+
+- Graph <InlineMath math="y = \log_3 x" /> shifted <InlineMath math="2 \text{ units}" /> up
+- There is no <InlineMath math="y" />-intercept because the domain is <InlineMath math="x > 0" />
+
+In particular, a <InlineMath math="y" />-intercept would require <InlineMath math="x=0" />, where the logarithm is undefined. The graph below confirms that it approaches but never reaches the <InlineMath math="y" />-axis.
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Sketch of Graph <InlineMath math="y = \log_3 x + 2" />
+      </>
+    }
+    description={
+      <>
+        Logarithmic graph base <InlineMath math="3" /> shifted <InlineMath math="2 \text{ units}" /> up.
+      </>
+    }
+    data={[
+      {
+        smooth: false,
+        points: (() => {
+          const parameters = Array.from(
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
+          );
+          parameters.push(1.3988166392051704);
+          return parameters
+            .sort((a, b) => a - b)
+            .map((t) => {
+              const x = Math.exp(t);
+              return { x, y: Math.log(x) / Math.log(3), z: 0 };
+            });
+        })(),
+        color: "#9333ea",
+        labels: [{ text: <InlineMath math="y=\log_{3} x" />, at: 196, offset: [0.5, -0.5, 0] }],
+        showPoints: false,
+      },
+      {
+        smooth: false,
+        points: (() => {
+          const parameters = Array.from(
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
+          );
+          parameters.push(1.6214662906712296);
+          return parameters
+            .sort((a, b) => a - b)
+            .map((t) => {
+              const x = Math.exp(t);
+              return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
+            });
+        })(),
+        color: "#059669",
+        labels: [{ text: <InlineMath math="y=\log_{3} x+2" />, at: 205, offset: [0.5, 1, 0] }],
+        showPoints: false,
+      },
+      {
+        points: [{ x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1, y: 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="(1,2)" />, at: 0, offset: [0, 1, 0] }],
+      },
+      {
+        points: [{ x: 3, y: 3, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="(3,3)" />, at: 0, offset: [0, 0.5, 0] }],
+      },
+      {
+        points: [{ x: 9, y: 4, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [
+        { x: 0, y: -2, z: 0 },
+        { x: 0, y: 5, z: 0 },
+        ],
+        smooth: false,
+        color: "#9333ea",
+        labels: [{ text: <><InlineMath math="x=0" /> (asymptote)</>, at: 1, offset: [3.8, 0.7, 0] }],
+        showPoints: false,
+      },
+    ]}
+    showZAxis={false}
+  cameraPosition={[4, 1, 13]}
+    cameraTarget={[4, 1, 0]}
+  />
+</ContentBlock>

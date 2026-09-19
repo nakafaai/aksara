@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Luas Persegi Panjang dengan Panjang Pagar Tetap
 
-<Highlight>Masalah optimasi mencari nilai terbaik yang tetap memenuhi syarat pada soal.</Highlight> Pagar dengan panjang tetap, misalnya, dapat membentuk banyak persegi panjang dengan luas berbeda. Nyatakan luas sebagai fungsi kuadrat untuk membandingkan semua ukuran sisi yang dapat dibuat dengan panjang pagar tersebut.
+Masalah optimasi mencari **nilai terbaik yang memenuhi syarat** pada soal. Pagar dengan panjang tetap, misalnya, dapat membentuk banyak persegi panjang dengan luas berbeda. Nyatakan luas sebagai fungsi kuadrat untuk membandingkan semua ukuran sisi yang dapat dibuat dengan panjang pagar tersebut.
 
 Nyatakan satu ukuran berdasarkan ukuran lainnya, substitusikan hubungan tersebut ke rumus luas, lalu gunakan titik puncak parabola untuk menentukan ukuran dengan luas terbesar. Langkah yang sama dapat digunakan pada masalah persegi panjang lain yang panjang kelilingnya sudah ditentukan.
 
@@ -30,7 +30,7 @@ Untuk <InlineMath math="f(x)=ax^2+bx+c" />, koordinat titik puncak ditentukan de
   <BlockMath math="y_v=f(x_v)" />
 </MathContainer>
 
-Bentuk ekuivalen yang menggunakan diskriminan adalah
+Bentuk ekuivalen yang menggunakan **diskriminan** adalah
 
 <MathContainer>
   <BlockMath math="\Delta=b^2-4ac" />
@@ -43,82 +43,65 @@ Perhitungan aljabar menentukan titik puncak, sedangkan konteks menentukan apakah
 
 Seorang petani memiliki pagar sepanjang <InlineMath math="20\text{ m}" /> dan ingin membuat kandang ayam berbentuk persegi panjang. Ukuran berapa yang menghasilkan luas terbesar?
 
-1. **Namai kedua ukuran.** Misalkan panjangnya <InlineMath math="p\text{ m}" /> dan lebarnya <InlineMath math="l\text{ m}" />.
-2. **Tulis keliling sebagai persamaan.**
+**Langkah 1**: Namai kedua ukuran. Misalkan panjangnya <InlineMath math="p\text{ m}" /> dan lebarnya <InlineMath math="l\text{ m}" />.
+**Langkah 2**: Tulis keliling sebagai persamaan.
 
-   <MathContainer>
-     <BlockMath math="2p+2l=20" />
-     <BlockMath math="p+l=10" />
-     <BlockMath math="p=10-l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="2p+2l=20" />
+  <BlockMath math="p+l=10" />
+  <BlockMath math="p=10-l" />
+</MathContainer>
 
-3. **Susun fungsi luas dengan satu variabel.**
+**Langkah 3**: Susun fungsi luas dengan satu variabel.
 
-   <MathContainer>
-     <BlockMath math="A=p\cdot l" />
-     <BlockMath math="A(l)=(10-l)l" />
-     <BlockMath math="A(l)=10l-l^2" />
-     <BlockMath math="A(l)=-l^2+10l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="A=p\cdot l" />
+  <BlockMath math="A(l)=(10-l)l" />
+  <BlockMath math="A(l)=10l-l^2" />
+  <BlockMath math="A(l)=-l^2+10l" />
+</MathContainer>
 
-4. **Nyatakan domain yang diperbolehkan.** Kedua sisi harus positif, sehingga <InlineMath math="0<l<10" />. Koefisien <InlineMath math="a=-1" /> bernilai negatif, jadi grafik luas terbuka ke bawah.
-5. **Tentukan titik puncak.**
+**Langkah 4**: Nyatakan domain yang diperbolehkan. Kedua sisi harus positif, sehingga <InlineMath math="0<l<10" />. Koefisien <InlineMath math="a=-1" /> bernilai negatif, jadi grafik luas terbuka ke bawah.
+**Langkah 5**: Tentukan titik puncak.
 
-   <BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
+<BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
 
-6. **Tentukan ukuran lainnya dan hitung luas.**
+**Langkah 6**: Tentukan ukuran lainnya dan hitung luas.
 
-   <MathContainer>
-     <BlockMath math="p=10-l=10-5=5" />
-     <BlockMath math="A(5)=5\cdot5=25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="p=10-l=10-5=5" />
+  <BlockMath math="A(5)=5\cdot5=25" />
+</MathContainer>
 
-7. **Pastikan titik puncak memberi luas maksimum.** Titik puncak berada di dalam <InlineMath math="0<l<10" />. Pada nilai batas, persegi panjang menjadi pipih dan luasnya mendekati <InlineMath math="0" />, sehingga titik puncak di bagian dalam memberi maksimum global.
+**Langkah 7**: Pastikan titik puncak memberi luas maksimum. Titik puncak berada di dalam <InlineMath math="0<l<10" />. Pada nilai batas, persegi panjang menjadi pipih dan luasnya mendekati <InlineMath math="0" />, sehingga titik puncak di bagian dalam memberi maksimum global.
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Model luas <InlineMath math="A(l)=-l^2+10l" />
-      </>
-    }
-    description={
-      <>
-        Grafik ditampilkan untuk <InlineMath math="0\le l\le10" />. Di dalam selang yang memenuhi syarat, yaitu <InlineMath math="0<l<10" />, grafik mencapai titik tertinggi di <InlineMath math="(5,25)" />.
-      </>
-    }
-    cameraPosition={[5, 22, 12]}
-    cameraTarget={[5, 22, 0]}
-    data={[
-      {
-        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        smooth: false,
-        points: Array.from({ length: 101 }, (_, sampleIndex) => {
-          const l = sampleIndex / 10;
-          return {
-          x: l,
-          y: -l * l + 10 * l,
-          z: 0,
-        };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: "Titik maksimum",
-            at: 50,
-            offset: [0, 2, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+Bentuk kuadrat sempurna menunjukkan alasan nilai ini maksimum. Kita mengurangkan **kuadrat yang tidak negatif** dari 25. Pengurang itu menjadi nol tepat ketika lebar bernilai lima:
+
+<BlockMath math="A(l)=25-(l-5)^2\le25" />
+
+<MathVisual
+  title="Luas dan Ukuran yang Dipilih"
+  description="Sumbu mendatar menunjukkan lebar kandang dalam meter, sumbu tegak menunjukkan luas dalam meter persegi. Titik (5,25) adalah maksimum."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 10, c: 0 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 25 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 25 }, placement: "above" }]
+  }}
+  labels={{ vertex: <InlineMath math="(5,25)" /> }}
+/>
+
+Ujung grafik hanya menunjukkan batas model. Ukuran nol dan sepuluh tidak termasuk pilihan bangun dengan sisi positif.
 
 Jadi, luas terbesarnya adalah <InlineMath math="25\text{ m}^2" />, yang diperoleh dari persegi berukuran <InlineMath math="5\text{ m}\times5\text{ m}" />.
 
 ## Menentukan Domain Model dan Titik Puncak
 
-Tabel mengumpulkan empat bagian yang mengubah soal pagar menjadi satu variabel. Setiap baris menyebut satu bagian soal beserta bentuk matematisnya.
+Tabel mengumpulkan empat bagian yang mengubah soal pagar menjadi **satu variabel**. Setiap baris menyebut satu bagian soal beserta bentuk matematisnya.
 
 | Bagian masalah | Pernyataan matematika | Makna |
 | -------------- | --------------------- | ----- |
@@ -129,11 +112,11 @@ Tabel mengumpulkan empat bagian yang mengubah soal pagar menjadi satu variabel. 
 
 ## Menerapkan Cara yang Sama pada Laba
 
-Cara yang sama berlaku ketika suatu besaran mengikuti parabola terbuka ke bawah. Titik puncaknya memberi nilai terbesar, dan koordinat mendatarnya menunjukkan kondisi yang menghasilkan nilai itu.
+Cara yang sama berlaku ketika suatu besaran mengikuti **parabola terbuka ke bawah**. Titik puncaknya memberi nilai terbesar, dan koordinat mendatarnya menunjukkan kondisi yang menghasilkan nilai itu.
 
 ### Keuntungan produksi
 
-Misalkan keuntungan dari penjualan <InlineMath math="x" /> mainan, dalam ribuan rupiah, dinyatakan oleh
+Misalkan keuntungan dari penjualan <InlineMath math="x" /> mainan, dalam **ribuan rupiah**, dinyatakan oleh
 
 <BlockMath math="P(x)=-2x^2+100x" />
 
@@ -152,7 +135,7 @@ Misalkan ketinggian roket mainan setelah <InlineMath math="t\text{ s}" /> dinyat
 
 <BlockMath math="h(t)=-5t^2+40t" />
 
-Interval yang bermakna secara fisik diperoleh dari waktu ketika ketinggian bernilai nol:
+**Interval yang bermakna secara fisik** diperoleh dari waktu ketika ketinggian bernilai nol:
 
 <MathContainer>
   <BlockMath math="-5t^2+40t=-5t(t-8)=0" />
@@ -170,12 +153,12 @@ Roket mencapai ketinggian maksimum <InlineMath math="80\text{ m}" /> setelah <In
 
 ## Latihan
 
-Sebuah persegi panjang memiliki keliling <InlineMath math="60\text{ cm}" />. Tentukan panjang dan lebar yang memaksimalkan luasnya, lalu hitung luas maksimum tersebut. Tulis luas sebagai fungsi satu variabel, lalu cari titik puncak parabola itu.
+Sebuah persegi panjang memiliki keliling <InlineMath math="60\text{ cm}" />. Tentukan panjang dan lebar yang **memaksimalkan luasnya**, lalu hitung luas maksimum tersebut. Tulis luas sebagai fungsi satu variabel, lalu cari titik puncak parabola itu.
 
 ### Pembahasan lengkap
 
 1. Misalkan panjangnya <InlineMath math="p\text{ cm}" /> dan lebarnya <InlineMath math="l\text{ cm}" />.
-2. Gunakan persamaan keliling untuk menyatakan panjang berdasarkan lebar.
+2. Gunakan **persamaan keliling** untuk menyatakan panjang berdasarkan lebar.
 
    <MathContainer>
      <BlockMath math="2p+2l=60" />

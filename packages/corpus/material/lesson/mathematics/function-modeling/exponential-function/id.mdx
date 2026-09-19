@@ -1,10 +1,9 @@
-
 export const metadata = {
   title: "Fungsi Eksponensial",
     description: "Modelkan pertumbuhan dan peluruhan eksponensial pada populasi, zat radioaktif, dan bunga majemuk.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -12,7 +11,7 @@ export const metadata = {
 
 Fungsi eksponensial <Highlight>menempatkan variabel bebas sebagai pangkat</Highlight>. Model pertumbuhan dan peluruhan berikut memakai bentuk umum <InlineMath math="f(x) = a \cdot b^x" /> dengan <InlineMath math="a > 0" />, <InlineMath math="b > 0" />, dan <InlineMath math="b \neq 1" />.
 
-**Komponen fungsi eksponensial:**
+**Komponen fungsi eksponensial**:
 
 Dalam fungsi <InlineMath math="f(x) = a \cdot b^x" />:
 
@@ -23,31 +22,33 @@ Dalam fungsi <InlineMath math="f(x) = a \cdot b^x" />:
 
 ## Karakteristik Fungsi Eksponensial
 
-Fungsi eksponensial memiliki beberapa sifat khusus yang membedakannya dari fungsi lain. Bilangan pokoknya menentukan apakah grafiknya naik atau turun, dan nilai pada <InlineMath math="x = 0" /> selalu tetap. Bilangan pokok yang lebih besar dari satu membuat grafik naik makin cepat, sedangkan bilangan pokok antara nol dan satu membuat grafiknya turun.
+Dengan nilai awal positif, **basis menentukan arah perubahan**. Nilai saat masukan nol adalah faktor awal.
+
+Kenaikan satu satuan pada masukan selalu mengalikan keluaran dengan basis yang sama. Hubungan ini membedakan perubahan eksponensial dari penambahan tetap pada fungsi linear.
+
+<BlockMath math="\frac{f(x+1)}{f(x)}=\frac{ab^{x+1}}{ab^x}=b" />
 
 ### Perilaku Grafik Fungsi Eksponensial
 
-Dua identitas menentukan bentuk setiap grafik eksponensial: grafik selalu melewati titik saat masukannya nol, dan menjumlahkan dua masukan sama dengan mengalikan kedua nilai fungsinya. Kedua identitas itu memudahkan menghitung nilai baru.
+Aturan pangkat memberikan identitas berikut. Saat mengalikan dua nilai fungsi, **faktor awal** muncul dua kali. Karena itu, kita perlu membagi hasil kali tersebut dengan faktor awal untuk mendapatkan nilai pada jumlah masukan.
 
 <MathContainer>
-  <BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
-  <BlockMath math="\begin{aligned} f(x_1 + x_2) &amp;= a \cdot b^{x_1 + x_2} \\ &amp;= a \cdot b^{x_1} \cdot b^{x_2} \end{aligned}" />
-  <BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+
+<BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
+
+<BlockMath math="\begin{aligned} f(x_1 + x_2) &amp;= a \cdot b^{x_1 + x_2} \\ &amp;= a \cdot b^{x_1} \cdot b^{x_2} \end{aligned}" />
+
+<BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+
+<BlockMath math="f(x_1+x_2)=\frac{f(x_1)f(x_2)}{a},\quad f(x_1-x_2)=\frac{a f(x_1)}{f(x_2)}" />
 </MathContainer>
 
 ### Jenis Fungsi Eksponensial
 
-**Fungsi Pertumbuhan Eksponensial** (<InlineMath math="b > 1" />):
-
-- Nilai fungsi meningkat seiring bertambahnya <InlineMath math="x" />
-- Grafik naik dari kiri ke kanan
-- Contoh: <InlineMath math="f(x) = 2^x" />
-
-**Fungsi Peluruhan Eksponensial** (<InlineMath math="0 < b < 1" />):
-
-- Nilai fungsi menurun seiring bertambahnya <InlineMath math="x" />
-- Grafik turun dari kiri ke kanan
-- Contoh: <InlineMath math="f(x) = (0{,}5)^x" />
+| Jenis | Basis | Perubahan | Contoh |
+| --- | --- | --- | --- |
+| **Pertumbuhan** | <InlineMath math="b>1" /> | Meningkat | <InlineMath math="2^x" /> |
+| **Peluruhan** | <InlineMath math="0<b<1" /> | Menurun | <InlineMath math="(1/2)^x" /> |
 
 ## Grafik Fungsi Eksponensial
 
@@ -83,10 +84,11 @@ Berikut adalah visualisasi berbagai fungsi eksponensial:
       labels: [{ text: <InlineMath math="g(x)=(0{,}5)^x" />, at: 50, offset: [-2, -0.5, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 10]}
 />
 
-Perbandingan nilai fungsi <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = (0{,}5)^x" />:
+Perbandingan **nilai fungsi** <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = (0{,}5)^x" />:
 
 | <InlineMath math="x" />                                    | <InlineMath math="-2" />   | <InlineMath math="-1" />  | <InlineMath math="0" />   | <InlineMath math="1" />   | <InlineMath math="2" />    | <InlineMath math="3" />     |
 | ------------------------------------ | ---- | --- | --- | --- | ---- | ----- |
@@ -95,11 +97,11 @@ Perbandingan nilai fungsi <InlineMath math="f(x) = 2^x" /> dan <InlineMath math=
 
 ## Transformasi Fungsi Eksponensial
 
-Pergeseran vertikal memindahkan asimtotnya, sedangkan pergeseran horizontal memindahkan titik acuan pada grafik. Setiap konstanta yang ditambahkan pada fungsi menggeser grafik ke satu arah tetap, dan persamaan hasil transformasinya menunjukkan arah itu.
+**Pergeseran vertikal** memindahkan asimtotnya, sedangkan pergeseran horizontal memindahkan titik acuan pada grafik. Setiap konstanta yang ditambahkan pada fungsi menggeser grafik ke satu arah tetap, dan persamaan hasil transformasinya menunjukkan arah itu.
 
 ### Translasi Vertikal
 
-Fungsi <InlineMath math="f(x) = a \cdot b^x + c" /> menggeser grafik ke atas (jika <InlineMath math="c > 0" />) atau ke bawah (jika <InlineMath math="c < 0" />).
+Fungsi <InlineMath math="f(x) = a \cdot b^x + c" /> menggeser grafik **ke atas** (jika <InlineMath math="c > 0" />) atau ke bawah (jika <InlineMath math="c < 0" />).
 
 <LineEquation
   title={<>Translasi Vertikal</>}
@@ -112,49 +114,51 @@ Fungsi <InlineMath math="f(x) = a \cdot b^x + c" /> menggeser grafik ke atas (ji
   data={[
     {
       smooth: false,
-      points: [
-        ...Array.from({ length: 56 }, (_, i) => {
-          const x = i - 64;
-          return { x, y: Math.pow(2, x), z: 0 };
-        }),
-        ...Array.from({ length: 276 }, (_, i) => {
-          const x = (i - 200) / 25;
-          return { x, y: Math.pow(2, x), z: 0 };
-        }),
-      ],
+      points: Array.from({ length: 176 }, (_, i) => {
+        const x = -4 + i / 25;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 281, offset: [1.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 125, offset: [1.5, -0.5, 0] }],
     },
     {
       smooth: false,
-      points: [
-        ...Array.from({ length: 56 }, (_, i) => {
-          const x = i - 64;
-          return { x, y: Math.pow(2, x) + 2, z: 0 };
-        }),
-        ...Array.from({ length: 276 }, (_, i) => {
-          const x = (i - 200) / 25;
-          return { x, y: Math.pow(2, x) + 2, z: 0 };
-        }),
-      ],
+      points: Array.from({ length: 176 }, (_, i) => {
+        const x = -4 + i / 25;
+        return { x, y: Math.pow(2, x) + 2, z: 0 };
+      }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 281, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 125, offset: [0, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[8, 5, 8]}
+  showZAxis={false}
+  cameraTarget={[0, 3, 0]}
+  cameraPosition={[0, 3, 13]}
 />
 
 ### Translasi Horizontal
 
 Fungsi <InlineMath math="f(x) = a \cdot b^{x-h}" /> menggeser grafik ke kanan jika <InlineMath math="h > 0" /> atau ke kiri jika <InlineMath math="h < 0" />. Pergeseran itu memindahkan setiap titik dengan besar yang sama, sehingga asimtotnya tetap dan bentuk kurvanya tidak berubah.
 
+Untuk **geser dua satuan ke kanan**, setiap masukan lama bertambah dua, sedangkan keluaran tetap.
+
+<BlockMath math="g(x)=2^{x-2},\qquad g(2)=2^0=1" />
+
+| Titik lama | Titik baru |
+| --- | --- |
+| <InlineMath math="(0,1)" /> | <InlineMath math="(2,1)" /> |
+| <InlineMath math="(1,2)" /> | <InlineMath math="(3,2)" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="(4,4)" /> |
+
 ## Aplikasi Fungsi Eksponensial
 
-Pada contoh berikut, besaran berubah dengan faktor tetap pada setiap selang waktu yang sama. Faktor itu menyatakan laju pertumbuhan atau peluruhan, dan nilainya ditentukan dari data yang diberikan.
+Besaran pada setiap contoh berikut berubah dengan **faktor tetap** dalam selang yang sama. Faktor tersebut menyatakan pertumbuhan populasi, peluruhan, atau pertambahan saldo karena bunga.
 
-Besaran pada setiap contoh berikut berubah dengan faktor tetap dalam selang yang sama. Faktor tersebut menyatakan pertumbuhan populasi, peluruhan, atau pertambahan saldo karena bunga.
+Persentase yang sama dihitung dari jumlah terbaru, sehingga kenaikan absolut tidak tetap. Pertumbuhan sepuluh persen mengubah seratus menjadi seratus sepuluh, lalu menjadi seratus dua puluh satu.
+
+<BlockMath math="100\cdot1{,}1=110,\qquad110\cdot1{,}1=121" />
 
 ### Pertumbuhan Populasi
 
@@ -162,13 +166,11 @@ Jika suatu populasi memiliki laju pertumbuhan proporsional yang tetap dan kondis
 
 <BlockMath math="P(t) = P_0 \cdot (1 + r)^t" />
 
-**Contoh:** Populasi bakteri yang berkembang biak setiap jam dengan laju <InlineMath math="20\%" />:
+**Contoh**: Populasi bakteri yang berkembang biak setiap jam dengan laju <InlineMath math="20\%" />:
 
 - Populasi awal: <InlineMath math="1000 \text{ bakteri}" />
 - Laju pertumbuhan: <InlineMath math="r = 0{,}2" />
 - Fungsi: <InlineMath math="P(t) = 1000 \cdot (1{,}2)^t" />
-
-### Tabel Pertumbuhan Bakteri
 
 | Waktu (jam) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
 | ----------- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -182,6 +184,16 @@ Zat radioaktif meluruh mengikuti fungsi eksponensial. Jika massa awal adalah <In
 
 <BlockMath math="M(t) = M_0 \cdot \left(\frac{1}{2}\right)^{t/t_{1/2}}" />
 
+Sebagai contoh, massa awal delapan puluh gram dengan **waktu paruh dua tahun** berkurang menjadi separuh setiap dua tahun.
+
+<BlockMath math="M(4)=80\left(\frac12\right)^{4/2}=80\cdot\frac14=20" />
+
+| Waktu (tahun) | Massa (gram) |
+| --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="40" /> |
+| <InlineMath math="4" /> | <InlineMath math="20" /> |
+
 ### Bunga Majemuk
 
 Investasi dengan bunga majemuk tumbuh secara eksponensial. Jika modal awal <InlineMath math="P" />, suku bunga <InlineMath math="r" /> per tahun, dan waktu <InlineMath math="t \text{ tahun}" />:
@@ -189,6 +201,12 @@ Investasi dengan bunga majemuk tumbuh secara eksponensial. Jika modal awal <Inli
 <BlockMath math="A = P \cdot \left(1 + \frac{r}{n}\right)^{nt}" />
 
 Pada rumus ini, <InlineMath math="n" /> adalah banyaknya penggabungan bunga dalam satu tahun.
+
+Misalkan modal awal satu juta rupiah mendapat suku bunga nominal tahunan sepuluh persen, dengan **penggabungan dua kali setahun**. Pada model ini tidak ada setoran, penarikan, biaya, atau pajak.
+
+<BlockMath math="A=1{.}000{.}000\left(1+\frac{0{,}10}{2}\right)^{2\cdot1}=1{.}000{.}000(1{,}05)^2=1{.}102{.}500" />
+
+Setiap setengah tahun, saldo dikalikan dengan faktor yang sama. Jadi saldo akhir tahun menurut model adalah Rp1.102.500.
 
 ## Persamaan Eksponensial
 
@@ -200,13 +218,17 @@ Persamaan eksponensial adalah persamaan yang memuat variabel pada eksponen. Bent
 
 Jika <InlineMath math="b^{f(x)} = b^{g(x)}" />, maka <InlineMath math="f(x) = g(x)" />
 
-**Contoh:** Selesaikan <InlineMath math="2^{x+1} = 8" />
+**Contoh**: Selesaikan <InlineMath math="2^{x+1} = 8" />
 
 <MathContainer>
-  <BlockMath math="2^{x+1} = 8" />
-  <BlockMath math="2^{x+1} = 2^3" />
-  <BlockMath math="x + 1 = 3" />
-  <BlockMath math="x = 2" />
+
+<BlockMath math="2^{x+1} = 8" />
+
+<BlockMath math="2^{x+1} = 2^3" />
+
+<BlockMath math="x + 1 = 3" />
+
+<BlockMath math="x = 2" />
 </MathContainer>
 
 **Metode 2: Menggunakan Logaritma**
@@ -225,51 +247,55 @@ Setiap soal memberikan keterangan tentang fungsi eksponensial lalu meminta fungs
 
 3. Populasi suatu kota adalah <InlineMath math="50{.}000 \text{ jiwa}" /> dan tumbuh <InlineMath math="3\%" /> per tahun. Berapa populasinya setelah <InlineMath math="10 \text{ tahun}" />?
 
-4. Suatu zat radioaktif memiliki waktu paruh <InlineMath math="5 \text{ tahun}" />. Jika massa awalnya <InlineMath math="100 \text{ gram}" />, berapa massa yang tersisa setelah <InlineMath math="15 \text{ tahun}" />?
+4. Suatu zat radioaktif memiliki **waktu paruh** <InlineMath math="5 \text{ tahun}" />. Jika massa awalnya <InlineMath math="100 \text{ gram}" />, berapa massa yang tersisa setelah <InlineMath math="15 \text{ tahun}" />?
 
-### Pembahasan
+### Menghitung nilai fungsi
 
-Tutup satu pembahasan, kerjakan sendiri, lalu bandingkan langkahmu dan nilai akhirmu. Kerjakan secara berurutan agar setiap langkah dapat diperiksa, karena satu langkah yang salah akan terbawa ke hasil akhir.
-
-#### Menghitung nilai fungsi
-
-Substitusikan <InlineMath math="x = 3" /> ke <InlineMath math="f(x) = 5 \cdot 2^x" />. Hitung pangkat terlebih dahulu, lalu kalikan dengan faktor awal.
+Substitusikan <InlineMath math="x = 3" /> ke <InlineMath math="f(x) = 5 \cdot 2^x" />. Hitung pangkat terlebih dahulu, lalu kalikan dengan **faktor awal**.
 
 <BlockMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
 
 Jadi, <InlineMath math="f(3) = 40" />.
 
-#### Menyamakan basis
+### Menyamakan basis
 
-Tuliskan <InlineMath math="27" /> sebagai <InlineMath math="3^3" />. Karena basis positifnya sama, pangkatnya juga harus sama.
+Tuliskan <InlineMath math="27" /> sebagai <InlineMath math="3^3" />. Karena basis tiga positif dan bukan satu, dua pangkat bernilai sama hanya jika **eksponennya sama**.
 
 <MathContainer>
-  <BlockMath math="3^{2x-1} = 3^3" />
-  <BlockMath math="2x - 1 = 3" />
-  <BlockMath math="x = 2" />
+
+<BlockMath math="3^{2x-1} = 3^3" />
+
+<BlockMath math="2x - 1 = 3" />
+
+<BlockMath math="x = 2" />
 </MathContainer>
 
 Pengecekan memberi <InlineMath math="3^{2(2)-1} = 3^3 = 27" />, sehingga solusinya benar.
 
-#### Memodelkan pertumbuhan populasi
+### Memodelkan pertumbuhan populasi
 
-Populasi awalnya <InlineMath math="P_0 = 50{.}000" />, laju pertumbuhan tahunannya <InlineMath math="r = 0{,}03" />, dan waktunya <InlineMath math="t = 10" /> tahun. Faktor pertumbuhan per tahunnya adalah <InlineMath math="1 + r = 1{,}03" />.
+Populasi awalnya <InlineMath math="P_0 = 50{.}000" />, **laju pertumbuhan** tahunannya <InlineMath math="r = 0{,}03" />, dan waktunya <InlineMath math="t = 10" /> tahun. Faktor pertumbuhan per tahunnya adalah <InlineMath math="1 + r = 1{,}03" />.
 
 <MathContainer>
-  <BlockMath math="P(10) = 50{.}000 \cdot (1{,}03)^{10}" />
-  <BlockMath math="\begin{aligned} P(10) &amp;\approx 50{.}000 \cdot 1{,}343916 \\ &amp;= 67{.}195{,}82 \end{aligned}" />
-  <BlockMath math="P(10) \approx 67{.}196 \text{ jiwa}" />
+
+<BlockMath math="P(10) = 50{.}000 \cdot (1{,}03)^{10}" />
+
+<BlockMath math="\begin{aligned} P(10) &amp;\approx 50{.}000 \cdot 1{,}343916 \\ &amp;\approx 67{.}195{,}82 \end{aligned}" />
+
+<BlockMath math="P(10) \approx 67{.}196 \text{ jiwa}" />
 </MathContainer>
 
 Jumlah penduduk dibulatkan ke bilangan bulat terdekat.
 
-#### Menggunakan waktu paruh
+### Menggunakan waktu paruh
 
-Lima belas tahun memuat <InlineMath math="15/5 = 3" /> periode waktu paruh. Artinya, massa dikalikan <InlineMath math="1/2" /> sebanyak tiga kali.
+Lima belas tahun memuat <InlineMath math="15/5 = 3" /> periode **waktu paruh**. Artinya, massa dikalikan <InlineMath math="1/2" /> sebanyak tiga kali.
 
 <MathContainer>
-  <BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
-  <BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12{,}5 \text{ gram}" />
+
+<BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
+
+<BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12{,}5 \text{ gram}" />
 </MathContainer>
 
 Setelah <InlineMath math="15 \text{ tahun}" />, massa yang tersisa adalah <InlineMath math="12{,}5 \text{ gram}" />.

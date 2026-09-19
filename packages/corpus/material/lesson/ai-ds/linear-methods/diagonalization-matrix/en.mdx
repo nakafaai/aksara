@@ -3,13 +3,13 @@ export const metadata = {
    description: "Use eigenvalues and eigenvectors to decide whether a matrix is diagonalizable and compare algebraic with geometric multiplicity.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Linear Methods of AI",
 };
 
 ## A Basis That Separates the Coordinate Directions
 
-<Highlight>Diagonalization rewrites a linear transformation in a basis of eigenvectors.</Highlight> In that basis, each coordinate is multiplied by its own eigenvalue, so the coordinates stop mixing with one another.
+Diagonalization rewrites a linear transformation in a <Highlight>basis of eigenvectors</Highlight>. In that basis, each coordinate is multiplied by its own eigenvalue, so the coordinates stop mixing with one another.
 
 The main goal is to find a basis in which the linear transformation <InlineMath math="y = A \cdot x" /> is represented by the diagonal matrix <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />. If the eigenbasis can be chosen orthonormally, then <InlineMath math="S^{-1} = S^T" /> in the real case and <InlineMath math="S^{-1} = S^H" /> in the complex case.
 
@@ -20,6 +20,8 @@ A matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is called **diagona
 <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
 Equivalently, <InlineMath math="A = S\Lambda S^{-1}" />. Repeated application then has the form:
+
+For every nonnegative integer <InlineMath math="m" />:
 
 <BlockMath math="A^m = S\Lambda^m S^{-1}" />
 
@@ -37,7 +39,7 @@ The matrix <InlineMath math="S" /> has the eigenvectors as its columns:
 
 <BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
 
-If <InlineMath math="A" /> is diagonalizable, then the columns <InlineMath math="v_1, \ldots, v_n" /> of <InlineMath math="S" /> form a basis of eigenvectors. From <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> we obtain <InlineMath math="A \cdot S = S \cdot \Lambda" /> and thus <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> for <InlineMath math="i = 1, \ldots, n" />.
+If <InlineMath math="A" /> is diagonalizable, then the columns <InlineMath math="v_1, \ldots, v_n" /> of <InlineMath math="S" /> form a **basis of eigenvectors**. From <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> we obtain <InlineMath math="A \cdot S = S \cdot \Lambda" /> and thus <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> for <InlineMath math="i = 1, \ldots, n" />.
 
 Conversely, if <InlineMath math="v_1, \ldots, v_n" /> is a basis of eigenvectors, then <InlineMath math="S" /> is invertible and from <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> for <InlineMath math="i = 1, \ldots, n" /> we obtain <InlineMath math="A \cdot S = S \cdot \Lambda" /> and thus <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
@@ -55,7 +57,12 @@ This matrix has eigenvalue <InlineMath math="\lambda = 1" /> with algebraic mult
 <BlockMath math="= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \end{pmatrix}\right\}" />
 </MathContainer>
 
-The span shown above contains all scalar multiples of the displayed vector and has dimension <InlineMath math="1" />. Thus the eigenspace supplies only one independent eigenvector, but a basis of <InlineMath math="\mathbb{K}^2" /> needs two. Therefore <InlineMath math="A" /> is not diagonalizable.
+The span shown above contains all scalar multiples of the displayed vector and has dimension <InlineMath math="1" />. Thus the eigenspace supplies **only one independent eigenvector**, but a basis of <InlineMath math="\mathbb{K}^2" /> needs two. Therefore <InlineMath math="A" /> is not diagonalizable.
+
+| Matrix | Algebraic multiplicity of 1 | Dimension of the eigenspace | Diagonalizable? |
+| --- | --- | --- | --- |
+| Identity <InlineMath math="I_2" /> | 2 | 2 | Yes |
+| Matrix <InlineMath math="A" /> above | 2 | 1 | No |
 
 ## Requirements for Matrix Diagonalization
 
@@ -65,7 +72,7 @@ If a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is diagonalizabl
 
 The matrix <InlineMath math="A" /> has <InlineMath math="n" /> eigenvalues <InlineMath math="\lambda_i \in \mathbb{K}" />, counted with multiplicity, and they need not be distinct.
 
-The chosen field matters. A real matrix can fail to be diagonalizable over <InlineMath math="\mathbb{R}" /> yet become diagonalizable over <InlineMath math="\mathbb{C}" /> after its characteristic polynomial splits there.
+**The chosen field matters**. A real matrix can fail to be diagonalizable over <InlineMath math="\mathbb{R}" /> yet become diagonalizable over <InlineMath math="\mathbb{C}" /> after its characteristic polynomial splits there.
 
 Distinct eigenvalues remove the need to compare algebraic and geometric multiplicities. Suppose the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath math="A \in \mathbb{K}^{n \times n}" /> factors over <InlineMath math="\mathbb{K}" /> as follows.
 

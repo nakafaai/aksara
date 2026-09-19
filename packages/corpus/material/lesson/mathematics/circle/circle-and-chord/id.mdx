@@ -4,13 +4,13 @@ export const metadata = {
   description: "Hubungkan panjang tali busur dengan jari-jari, sudut pusat, dan jarak dari pusat, lalu terapkan teoremanya dalam pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Lingkaran",
 };
 
 ## Ruas Garis yang Menghubungkan Dua Titik pada Lingkaran
 
-<Highlight>Tali busur adalah ruas garis yang kedua ujungnya terletak pada lingkaran.</Highlight> Diameter merupakan tali busur khusus yang melewati pusat. Tali busur lain tidak harus melewati pusat.
+Tali busur adalah <Highlight>ruas garis dengan kedua ujung pada lingkaran</Highlight>. Diameter merupakan tali busur khusus yang melewati pusat. Tali busur lain tidak harus melewati pusat.
 
 <LineEquation
   title="Tali Busur pada Lingkaran"
@@ -94,7 +94,7 @@ Tali busur <InlineMath math="AB" /> dan <InlineMath math="CD" /> menghadap sudut
 
 ## Hubungan Panjang Tali Busur dan Jaraknya dari Pusat
 
-Panjang tali busur dan jaraknya dari titik pusat saling menentukan. Jarak yang lebih kecil menghasilkan tali busur yang lebih panjang, dan kedua besaran itu dapat diubah dengan teorema Pythagoras.
+Dalam **lingkaran yang sama**, panjang tali busur dan jarak tegak lurus dari pusat saling menentukan. Jarak yang lebih kecil menghasilkan tali busur yang lebih panjang, dan kedua besaran itu dapat diubah dengan teorema Pythagoras.
 
 ### Tali Busur Sama Panjang
 
@@ -185,7 +185,7 @@ Jika <InlineMath math="PQ = RS" />, maka jarak dari pusat <InlineMath math="O" /
 
 ### Garis dari Pusat Tegak Lurus Tali Busur
 
-Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan membagi tali busur tersebut menjadi dua bagian yang sama panjang.
+Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan membagi tali busur tersebut menjadi **dua bagian yang sama panjang**.
 
 <LineEquation
   title="Garis Tegak Lurus dari Pusat"
@@ -251,8 +251,8 @@ Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan mem
           (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
         return [
           { x: chordMidX - 0.3, y: chordMidY, z: 0 },
-          { x: chordMidX - 0.3, y: chordMidY + 0.3, z: 0 },
-          { x: chordMidX, y: chordMidY + 0.3, z: 0 },
+          { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
+          { x: chordMidX, y: chordMidY - 0.3, z: 0 },
         ];
       })(),
       color: "#d97706",
@@ -267,7 +267,7 @@ Pada diagram di atas, <InlineMath math="OM \perp AB" /> dan <InlineMath math="M"
 
 ## Panjang Tali Busur
 
-Tali busur dan sudut pusatnya membentuk segitiga sama kaki dari dua jari-jari. Rumus berikut berasal dari membagi segitiga itu menjadi dua. Dari segitiga separuh itu, setengah panjang tali busur sama dengan <InlineMath math="r\sin(\theta/2)" />.
+Tali busur dan sudut pusatnya membentuk segitiga sama kaki dari dua jari-jari. Rumus berikut berasal dari **membagi segitiga itu menjadi dua**. Dari segitiga separuh itu, setengah panjang tali busur sama dengan <InlineMath math="r\sin(\theta/2)" />.
 
 ### Rumus Panjang Tali Busur
 
@@ -276,7 +276,7 @@ Tali busur dan sudut pusatnya membentuk segitiga sama kaki dari dua jari-jari. R
 Keterangan:
 
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat terkecil yang menghadap tali busur. Gunakan mode kalkulator yang sesuai dengan satuan sudut
+- <InlineMath math="\theta" /> = **sudut pusat terkecil** yang menghadap tali busur. Gunakan mode kalkulator yang sesuai dengan satuan sudut
 
 Ketika sudut pusat terkecil <InlineMath math="\theta" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="180^\circ" />, nilai <InlineMath math="\sin(\theta/2)" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="1" />. Panjang tali busur pun bertambah dari <InlineMath math="0" /> sampai sebesar diameter <InlineMath math="2r" />.
 
@@ -369,13 +369,13 @@ Ketika sudut pusat terkecil <InlineMath math="\theta" /> bertambah dari <InlineM
 
 ### Jarak Tali Busur dari Pusat
 
-Jarak tali busur dari pusat lingkaran dapat dihitung dengan rumus:
+Pada segitiga siku-siku yang terbentuk, jarak dari pusat adalah sisi samping sudut setengah. Karena jari-jari adalah sisi miring, perbandingan **kosinus sudut setengah** memberikan:
 
 <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right)" />
 
-Atau jika diketahui panjang tali busur <InlineMath math="l" />:
+Jika panjang tali busur <InlineMath math="l" /> diketahui, gunakan **setengah panjang tali busur** sebagai salah satu sisi siku-siku:
 
-<BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+<BlockMath math="d^2+\left(\frac{l}{2}\right)^2=r^2\quad\Longrightarrow\quad d=\sqrt{r^2-\left(\frac{l}{2}\right)^2}" />
 
 ## Teorema Perpotongan Tali Busur
 
@@ -383,108 +383,34 @@ Jika dua tali busur berpotongan di dalam lingkaran, maka hasil kali segmen-segme
 
 <LineEquation
   title="Perpotongan Dua Tali Busur"
-  description={
-    <>
-      Teorema perpotongan tali busur: <InlineMath math="PA \times PB = PC \times PD" />.
-    </>
-  }
+  description="Perpotongan tali busur yang tidak berada di pusat lingkaran."
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 3;
-        const angle2 = (4 * Math.PI) / 3;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = (5 * Math.PI) / 6;
-        const angle2 = (11 * Math.PI) / 6;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        // Calculate intersection point P
-        const A = {
-          x: 5 * Math.cos(Math.PI / 3),
-          y: 5 * Math.sin(Math.PI / 3),
-        };
-        const B = {
-          x: 5 * Math.cos((4 * Math.PI) / 3),
-          y: 5 * Math.sin((4 * Math.PI) / 3),
-        };
-        const C = {
-          x: 5 * Math.cos((5 * Math.PI) / 6),
-          y: 5 * Math.sin((5 * Math.PI) / 6),
-        };
-        const D = {
-          x: 5 * Math.cos((11 * Math.PI) / 6),
-          y: 5 * Math.sin((11 * Math.PI) / 6),
-        };
-
-        // Line AB: parametric form
-        // Line CD: parametric form
-        // Solve for intersection
-        const denominator =
-          (A.x - B.x) * (C.y - D.y) - (A.y - B.y) * (C.x - D.x);
-        const t =
-          ((A.x - C.x) * (C.y - D.y) - (A.y - C.y) * (C.x - D.x)) / denominator;
-
-        const P = {
-          x: A.x + t * (B.x - A.x),
-          y: A.y + t * (B.y - A.y),
-        };
-
-        return [{ x: P.x, y: P.y, z: 0 }];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.3, 0, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 15]}
+    { kind: "circle-outline", radius: 5, color: "#9333ea" },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
+      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
+      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
+  ]}
 />
 
-Pada diagram di atas berlaku: <InlineMath math="PA \times PB = PC \times PD" />
+Pada diagram, lingkaran berjari-jari <InlineMath math="5" /> memiliki titik potong <InlineMath math="P(1,0)" />. Panjang potongan horizontal berbeda, tetapi **hasil kali kedua potongan** sama dengan hasil kali potongan vertikal.
+
+<MathContainer>
+  <BlockMath math="PA=5-1=4,\quad PB=1-(-5)=6" />
+  <BlockMath math="PC=PD=\sqrt{5^2-1^2}=\sqrt{24}" />
+  <BlockMath math="PA\cdot PB=4\cdot6=24=\sqrt{24}\cdot\sqrt{24}=PC\cdot PD" />
+</MathContainer>
 
 ## Sudut Keliling dalam Segmen yang Sama
 
-Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sama jika titik sudutnya berada pada sisi yang sama terhadap tali busur tersebut.
+Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sama jika titik sudutnya berada pada **sisi yang sama** terhadap tali busur tersebut.
 
 <LineEquation
   title="Sudut Keliling dalam Segmen yang Sama"
@@ -567,7 +493,7 @@ Pada diagram di atas, <InlineMath math="\angle ACB = \angle ADB" /> karena kedua
 
 ## Apotema
 
-Apotema tali busur adalah ruas garis yang ditarik tegak lurus dari pusat lingkaran ke tali busur. Panjangnya merupakan jarak terpendek antara pusat dan tali busur.
+Apotema tali busur adalah ruas garis yang ditarik tegak lurus dari pusat lingkaran ke tali busur. Panjangnya merupakan **jarak terpendek** antara pusat dan tali busur.
 
 <LineEquation
   title="Apotema pada Tali Busur"
@@ -649,7 +575,7 @@ Keterangan:
 
 ## Tali Busur Sejajar
 
-Dua tali busur yang sejajar dalam lingkaran memiliki sifat khusus.
+Dua tali busur sejajar memotong **busur penghubung yang sama panjang** pada kedua sisi lingkaran. Bandingkan busur kecil di kiri dan kanan, bukan busur panjang yang melewati sisi lain lingkaran.
 
 <LineEquation
   title="Tali Busur Sejajar"
@@ -710,7 +636,7 @@ Dua tali busur yang sejajar dalam lingkaran memiliki sifat khusus.
         const angle1 = Math.atan2(y1, -x1);
         const y2 = -2;
         const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, -x2);
+        const angle2 = Math.atan2(y2, -x2) + 2 * Math.PI;
         const numPoints = 20;
         return Array.from({ length: numPoints + 1 }, (_, i) => {
           const angle = angle1 + (angle2 - angle1) * (i / numPoints);
@@ -754,12 +680,9 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
 
 ## Latihan Soal
 
-Setiap soal memberi satu ukuran tali busur dan meminta ukuran lain. Tentukan hubungan yang berlaku, lalu hitung nilai yang belum diketahui.
+Empat soal pertama memakai sudut, jarak dari pusat, atau potongan tali busur untuk mencari ukuran yang belum diketahui. Pada soal terakhir, gunakan **batas nilai sinus** untuk membuktikan panjang maksimum.
 
-1. Sebuah lingkaran memiliki jari-jari <InlineMath math="10 \text{ cm}" />. Jika sudut pusat yang menghadap tali busur adalah <InlineMath math="60^\circ" />, tentukan:
-
-   - Panjang tali busur
-   - Jarak tali busur dari pusat lingkaran
+1. Sebuah lingkaran memiliki jari-jari <InlineMath math="10 \text{ cm}" />. Jika sudut pusat yang menghadap tali busur adalah <InlineMath math="60^\circ" />, tentukan panjang tali busur dan jarak tali busur dari pusat lingkaran.
 
 2. Dua tali busur <InlineMath math="AB" /> dan <InlineMath math="CD" /> berpotongan di titik <InlineMath math="P" /> di dalam lingkaran. Jika <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, dan <InlineMath math="PC = 3 \text{ cm}" />, tentukan panjang <InlineMath math="PD" />.
 
@@ -771,69 +694,69 @@ Setiap soal memberi satu ukuran tali busur dan meminta ukuran lain. Tentukan hub
 
 ### Pembahasan
 
-1. **Menghitung panjang tali busur dan jaraknya dari pusat**
+**Pembahasan 1**: Menghitung panjang tali busur dan jaraknya dari pusat
 
-   Diketahui: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
+Diketahui: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
-     <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0{,}5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
-     <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
-     <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0{,}5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
+  <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
+  <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
+</MathContainer>
 
-2. **Teorema perpotongan tali busur**
+**Pembahasan 2**: Teorema perpotongan tali busur
 
-   Diketahui: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
+Diketahui: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="PA \times PB = PC \times PD" />
-     <BlockMath math="4 \times 6 = 3 \times PD" />
-     <BlockMath math="24 = 3 \times PD" />
-     <BlockMath math="PD = 8 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="PA \times PB = PC \times PD" />
+  <BlockMath math="4 \times 6 = 3 \times PD" />
+  <BlockMath math="24 = 3 \times PD" />
+  <BlockMath math="PD = 8 \text{ cm}" />
+</MathContainer>
 
-3. **Menghitung jarak tali busur dari pusat**
+**Pembahasan 3**: Menghitung jarak tali busur dari pusat
 
-   Diketahui: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
+Diketahui: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
-     <BlockMath math="d = \sqrt{13^2 - 12^2}" />
-     <BlockMath math="d = \sqrt{169 - 144}" />
-     <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+  <BlockMath math="d = \sqrt{13^2 - 12^2}" />
+  <BlockMath math="d = \sqrt{169 - 144}" />
+  <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
+</MathContainer>
 
-4. **Tali busur sejajar**
+**Pembahasan 4**: Tali busur sejajar
 
-   Diketahui: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
+Diketahui: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
 
-   Untuk tali busur pertama:
+Untuk tali busur pertama:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-   Untuk tali busur kedua:
+Untuk tali busur kedua:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-5. **Bukti diameter adalah tali busur terpanjang**
+**Pembahasan 5**: Bukti diameter adalah tali busur terpanjang
 
-   Untuk sebarang tali busur, ambil <InlineMath math="\theta" /> sebagai sudut pusat yang lebih kecil, sehingga <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
+Untuk sebarang tali busur, ambil <InlineMath math="\theta" /> sebagai sudut pusat yang lebih kecil, sehingga <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
 
-   <MathContainer>
-     <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
+</MathContainer>
 
-   Nilai maksimum <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> tercapai ketika <InlineMath math="\frac{\theta}{2} = 90^\circ" />, yaitu <InlineMath math="\theta = 180^\circ" />.
+Nilai maksimum <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> tercapai ketika <InlineMath math="\frac{\theta}{2} = 90^\circ" />, yaitu <InlineMath math="\theta = 180^\circ" />.
 
-   Saat <InlineMath math="\theta = 180^\circ" />, tali busur melewati pusat lingkaran (diameter) dengan panjang:
+Saat <InlineMath math="\theta = 180^\circ" />, tali busur melewati pusat lingkaran (diameter) dengan panjang:
 
-   <MathContainer>
-     <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
+</MathContainer>
 
-   Terbukti bahwa diameter adalah tali busur terpanjang.
+Terbukti bahwa diameter adalah tali busur terpanjang.

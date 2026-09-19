@@ -4,40 +4,21 @@ export const metadata = {
     description: "Konstruiere eine Spiegelung an einer beliebigen Geraden mit Mittelsenkrechten und gleichen Abständen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
 ## Die Spiegelachse als Mittelsenkrechte
 
-Eine Spiegelung an einer Geraden bildet jeden Punkt der Ebene auf seine spiegelbildliche Position ab.
+Bei einer Geradenspiegelung bildet die **Spiegelgerade** die Symmetrieachse zwischen Urbild und Bild. Ein Punkt auf der Geraden bleibt fest. Ein Punkt außerhalb wird auf die andere Seite mit demselben senkrechten Abstand abgebildet.
 
-Die Gerade, an der gespiegelt wird, heißt **Spiegelgerade** oder **Spiegelachse**.
+Liegt <InlineMath math="P" /> auf der Spiegelgeraden, gilt <InlineMath math="P'=P" />. Andernfalls zeichnest du das Lot von <InlineMath math="P" /> auf die Gerade. Sein Fußpunkt heißt <InlineMath math="M" />. Verlängere die Strecke um dieselbe Länge über die Gerade hinaus. So erhältst du den Bildpunkt <InlineMath math="P'" />:
 
-Stell dir einen ebenen Spiegel vor: Gegenstand und Spiegelbild liegen auf entgegengesetzten Seiten der Spiegelfläche und haben denselben Abstand zu ihr. Genau diese Beziehung beschreibt die geometrische Spiegelung.
+<BlockMath math="PM=MP',\qquad PP'\perp m" />
 
-Gegeben seien ein Punkt <InlineMath math="P(x,y)" /> und eine Spiegelgerade <InlineMath math="m" />. Der Bildpunkt <InlineMath math="P'(x',y')" /> hat die folgenden Eigenschaften:
+## Einen Punkt an einer schrägen Geraden spiegeln
 
-1.  **Wenn der Punkt <InlineMath math="P" /> auf der Spiegelgeraden <InlineMath math="m" /> liegt**:
-
-    Sein Bild ist der Punkt selbst.
-
-    <BlockMath math="P' = P" />
-
-2.  **Falls der Punkt <InlineMath math="P" /> nicht auf der Spiegelgeraden <InlineMath math="m" />** liegt:
-
-    Die Gerade <InlineMath math="m" /> <Highlight>ist die Mittelsenkrechte der Strecke</Highlight> <InlineMath math="PP'" />. Daraus folgen zwei Beziehungen:
-
-    <MathContainer>
-      <BlockMath math="\overline{PP'} \perp m" />
-      <BlockMath math="d(P,m) = d(P',m)" />
-    </MathContainer>
-
-    Folglich schneidet die Gerade <InlineMath math="m" /> die Strecke <InlineMath math="PP'" /> genau in deren Mittelpunkt. Wir nennen diesen Schnittpunkt <InlineMath math="M" />.
-
-## Spiegelung eines Punktes an einer Geraden visualisieren
-
-Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
+Spiegle <InlineMath math="P(2,4)" /> an <InlineMath math="m:y=\frac12x+1" />. Der **Mittelpunkt** <InlineMath math="M" /> liegt auf der Spiegelgeraden. Die Verbindung zwischen Urbild und Bild steht senkrecht auf der Geraden.
 
 <LineEquation
   title="Spiegelung eines Punktes an einer Geraden"
@@ -48,7 +29,8 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
       <InlineMath math="P'(3{,}6\mid0{,}8)" />.
     </>
   }
-  cameraPosition={[12, 8, 12]}
+  cameraPosition={[2.5, 2.5, 9]}
+  cameraTarget={[2.5, 2.5, 0]}
   data={[
     {
       points: [
@@ -62,7 +44,7 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
         {
           text: <InlineMath math="m" />,
           at: 1,
-          offset: [1.2, 0.5, 0],
+          offset: [0.3, 0.4, 0],
         },
       ],
     },
@@ -114,4 +96,28 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
   ]}
 />
 
-Diese geometrische Beziehung gilt für jede Spiegelgerade: Ausgangspunkt und Bildpunkt liegen auf einer Senkrechten zur Spiegelgeraden und haben von ihr den gleichen Abstand.
+### Den Lotfußpunkt berechnen
+
+Die Spiegelgerade hat die Steigung <InlineMath math="\frac12" />. Die **senkrechte Gerade** hat deshalb die Steigung <InlineMath math="-2" />, denn das Produkt beträgt <InlineMath math="-1" />. Für die Senkrechte durch <InlineMath math="P(2,4)" /> gilt:
+
+<BlockMath math="y-4=-2(x-2)\quad\Longrightarrow\quad y=-2x+8" />
+
+Am Schnittpunkt ergeben beide Gleichungen dieselbe senkrechte Koordinate:
+
+<MathContainer>
+  <BlockMath math="\frac12x+1=-2x+8\quad\Longrightarrow\quad\frac52x=7\quad\Longrightarrow\quad x=\frac{14}{5}" />
+  <BlockMath math="y=\frac12\cdot\frac{14}{5}+1=\frac75+\frac55=\frac{12}{5},\qquad M\left(\frac{14}{5},\frac{12}{5}\right)" />
+</MathContainer>
+
+### Den Bildpunkt bestimmen und prüfen
+
+Da <InlineMath math="M" /> der **Streckenmittelpunkt** ist, verdoppelst du seine Koordinaten und subtrahierst die Koordinaten von <InlineMath math="P" />:
+
+<BlockMath math="P'=2M-P=\left(2\cdot\frac{14}{5}-2,2\cdot\frac{12}{5}-4\right)=\left(\frac{18}{5},\frac45\right)" />
+
+Die Abstände zur Spiegelgeraden sind die Streckenlängen zum Lotfußpunkt <InlineMath math="M" />. Die Rechnung prüft die gleichen Längen aus dem Diagramm:
+
+<MathContainer>
+  <BlockMath math="PM=\sqrt{\left(\frac{14}{5}-2\right)^2+\left(\frac{12}{5}-4\right)^2}=\sqrt{\frac{16+64}{25}}=\frac{4\sqrt5}{5}" />
+  <BlockMath math="MP'=\sqrt{\left(\frac{18}{5}-\frac{14}{5}\right)^2+\left(\frac45-\frac{12}{5}\right)^2}=\frac{4\sqrt5}{5}" />
+</MathContainer>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Relate a central angle's measure to its arc and calculate either measure from the other.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -104,138 +104,35 @@ If <InlineMath math="\angle AOB = 60^\circ" />, then arc <InlineMath math="AB" /
 
 ## Types of Arcs Based on Central Angle
 
-Based on the measure of their central angles, arcs fall into three types. The central angle decides which fraction of the circumference the arc covers.
+The central angle selects a **fraction of the circumference**. Compare it with half a turn to distinguish the three arc types. Two arcs with the same endpoints together complete a full turn.
 
 ### Minor Arc
 
-A minor arc is subtended by a central angle less than <InlineMath math="180^\circ" />. It is shorter than half the circumference. At <InlineMath math="90^\circ" /> it covers a quarter of the circumference, because <InlineMath math="90/360" /> is exactly one quarter.
+A minor arc is subtended by a central angle less than <InlineMath math="180^\circ" />. It is **shorter than half the circumference**. At <InlineMath math="90^\circ" /> it covers a quarter of the circumference, because <InlineMath math="90/360" /> is exactly one quarter.
 
 ### Semicircle Arc
 
-A semicircular arc is subtended by a central angle of exactly <InlineMath math="180^\circ" />. Its endpoints lie on a diameter, so its length is half the circle's circumference.
+A semicircular arc is subtended by a central angle of exactly <InlineMath math="180^\circ" />. Its endpoints lie on **a diameter**, so its length is half the circle's circumference.
 
 ### Major Arc
 
-A major arc is subtended by a reflex central angle greater than <InlineMath math="180^\circ" />. It is longer than half the circumference. Its degree measure is the remainder of the full turn after subtracting the corresponding minor arc measure:
+A major arc is subtended by a **reflex central angle** greater than <InlineMath math="180^\circ" />. It is longer than half the circumference. Its degree measure is the remainder of the full turn after subtracting the corresponding minor arc measure:
 
-<ContentStack>
-
-The major arc’s degree measure is <InlineMath math="360^\circ" /> minus the minor arc’s degree measure.
+<BlockMath math="\theta_{\mathrm{major}}=360^\circ-60^\circ=300^\circ" />
 
 <LineEquation
-  title="Comparison of Arc Types"
-  description="Visualization of minor arc, semicircle, and major arc."
+  title="Minor and Major Arcs with Shared Endpoints"
+  description="The 60-degree minor arc and the 300-degree major arc complete one circumference."
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = i * (Math.PI / 3) / 20;
-        return {
-          x: 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 50, offset: [1, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = i * (Math.PI / 3) / 30;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#65a30d",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Minor Arc <InlineMath math="(60^\circ)" /></>, at: 15, offset: [0, 1.4, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = Math.PI + (i * Math.PI / 20);
-        return {
-          x: 2.5 * Math.cos(angle),
-          y: 2.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 50, offset: [0, -0.8, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 51 }, (_, i) => {
-        const angle = Math.PI + (i * Math.PI / 50);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: "Semicircle", at: 25, offset: [0, -1, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
+    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 0, color: "#ea580c", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 60, color: "#ea580c", showPoints: false },
+    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.3, 0.4, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 300, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="300^\circ" />, offset: [-0.3, -0.4, 0] } },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 12]}
 />
-</ContentStack>
+
 
 ## Arc Length Calculation
 
@@ -248,7 +145,7 @@ The variables in this formula are:
 - <InlineMath math="\theta" /> = central angle measure in degrees
 - <InlineMath math="r" /> = radius of the circle
 
-A radian measures arc length divided by radius, so an angle in radians gives the formula directly:
+An angle in radians is **arc length divided by radius**, so an angle in radians gives the formula directly:
 
 <BlockMath math="s = \theta \times r" />
 
@@ -258,7 +155,7 @@ Here <InlineMath math="\theta" /> must be measured in radians.
 
 Consider a circle with radius <InlineMath math="r = 6 \text{ cm}" /> and central angle <InlineMath math="\theta = 120^\circ" />.
 
-Substitute the radius and central angle into the arc-length formula:
+This angle covers **one third of a turn**, so take one third of the circumference:
 
 <MathContainer>
 <BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
@@ -344,13 +241,13 @@ The arc corresponding to the central angle <InlineMath math="120^\circ" /> is th
 
 ## Examples of Central Angles
 
-On a gear or disk, parts separated by equal central angles are spaced evenly. To calculate the distance between those parts along the edge, we also need the radius. On an analog clock, the hands sweep central angles as time passes. Arc geometry can also model the shape of an arch or dome, but structural design requires additional information.
+A clock's **minute hand** completes one turn each hour. In five minutes, it sweeps <InlineMath math="30^\circ" />. If the hand is <InlineMath math="10\text{ cm}" /> long, its tip travels the arc:
 
-If Earth is modeled as a sphere, a route along a great circle has length <InlineMath math="s=r\theta" /> for a central angle <InlineMath math="\theta" /> in radians. This spherical model is sufficient for a mathematical example, but precise navigation requires an Earth model and route data with suitable accuracy.
+<BlockMath math="s=\frac{30^\circ}{360^\circ}\times2\pi(10)=\frac{5\pi}{3}\text{ cm}" />
 
 ## Exercises
 
-Each problem relates a central angle to the arc it cuts, so choose between degrees and radians and keep one unit throughout the calculation.
+Each problem relates a central angle to the arc it cuts, so choose between **degrees and radians** and keep one unit throughout the calculation.
 
 1. A circle has a radius of <InlineMath math="8 \text{ cm}" />. If the central angle facing an arc is <InlineMath math="45^\circ" />, calculate the length of that arc.
 
@@ -362,102 +259,104 @@ Each problem relates a central angle to the arc it cuts, so choose between degre
 
 ### Worked Solutions
 
-1. **Solution:**
+Track the **fraction of a full turn** in problems one, three, and four. In problem two, rearrange the equation because the angle is the unknown.
 
-   Given: <InlineMath math="r = 8 \text{ cm}" /> and <InlineMath math="\theta = 45^\circ" />
+**Solution 1**
 
-   Find: Arc length <InlineMath math="s" />
+Given: <InlineMath math="r = 8 \text{ cm}" /> and <InlineMath math="\theta = 45^\circ" />
 
-   **Step 1**: Use the arc length formula
+Find: Arc length <InlineMath math="s" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Step 1**: Use the arc length formula
 
-   **Step 2**: Substitute the known values
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
+**Step 2**: Substitute the known values
 
-   **Step 3**: Simplify the fraction
+<BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
 
-   <BlockMath math="s = \frac{1}{8} \times 16\pi" />
+**Step 3**: Simplify the fraction
 
-   **Step 4**: Calculate the final result
+<BlockMath math="s = \frac{1}{8} \times 16\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Step 4**: Calculate the final result
 
-   Therefore, the arc length is <InlineMath math="2\pi \text{ cm}" /> or approximately <InlineMath math="6.28 \text{ cm}" />.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-2. **Solution:**
+Therefore, the arc length is <InlineMath math="2\pi \text{ cm}" /> or approximately <InlineMath math="6.28 \text{ cm}" />.
 
-   Given: <InlineMath math="s = 10\pi \text{ cm}" /> and <InlineMath math="r = 15 \text{ cm}" />
+**Solution 2**
 
-   Find: Central angle measure <InlineMath math="\theta" />
+Given: <InlineMath math="s = 10\pi \text{ cm}" /> and <InlineMath math="r = 15 \text{ cm}" />
 
-   **Step 1**: Use the arc length formula
+Find: Central angle measure <InlineMath math="\theta" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Step 1**: Use the arc length formula
 
-   **Step 2**: Substitute the known values
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
+**Step 2**: Substitute the known values
 
-   **Step 3**: Simplify the equation
+<BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
 
-   <BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
+**Step 3**: Simplify the equation
 
-   **Step 4**: Isolate <InlineMath math="\theta" />
+<BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
 
-   <BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
+**Step 4**: Isolate <InlineMath math="\theta" />
 
-   **Step 5**: Calculate the final result
+<BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
 
-   <BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
+**Step 5**: Calculate the final result
 
-   Therefore, the central angle measure facing that arc is <InlineMath math="120^\circ" />.
+<BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
 
-3. **Solution:**
+Therefore, the central angle measure facing that arc is <InlineMath math="120^\circ" />.
 
-   Given: <InlineMath math="\angle AOB = 72^\circ" /> and <InlineMath math="r = 5 \text{ cm}" />
+**Solution 3**
 
-   Find: Length of arc <InlineMath math="AB" />
+Given: <InlineMath math="\angle AOB = 72^\circ" /> and <InlineMath math="r = 5 \text{ cm}" />
 
-   **Step 1**: Use the arc length formula
+Find: Length of arc <InlineMath math="AB" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Step 1**: Use the arc length formula
 
-   **Step 2**: Substitute the known values
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
+**Step 2**: Substitute the known values
 
-   **Step 3**: Simplify the fraction
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
+**Step 3**: Simplify the fraction
 
-   **Step 4**: Calculate the final result
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Step 4**: Calculate the final result
 
-   The length of arc <InlineMath math="AB" /> is <InlineMath math="2\pi \text{ cm}" />.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-4. **Solution:**
+The length of arc <InlineMath math="AB" /> is <InlineMath math="2\pi \text{ cm}" />.
 
-   Given: <InlineMath math="r = 30 \text{ cm}" /> and <InlineMath math="\theta = 150^\circ" />
+**Solution 4**
 
-   Find: Distance traveled (arc length)
+Given: <InlineMath math="r = 30 \text{ cm}" /> and <InlineMath math="\theta = 150^\circ" />
 
-   **Step 1**: Use the arc length formula
+Find: Distance traveled (arc length)
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Step 1**: Use the arc length formula
 
-   **Step 2**: Substitute the known values
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
+**Step 2**: Substitute the known values
 
-   **Step 3**: Simplify the fraction
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
+**Step 3**: Simplify the fraction
 
-   **Step 4**: Calculate the final result
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
 
-   <BlockMath math="s = 25\pi \text{ cm}" />
+**Step 4**: Calculate the final result
 
-   The point moves <InlineMath math="25\pi \text{ cm}" /> along its circular path, or approximately <InlineMath math="78.54 \text{ cm}" />.
+<BlockMath math="s = 25\pi \text{ cm}" />
+
+The point moves <InlineMath math="25\pi \text{ cm}" /> along its circular path, or approximately <InlineMath math="78.54 \text{ cm}" />.

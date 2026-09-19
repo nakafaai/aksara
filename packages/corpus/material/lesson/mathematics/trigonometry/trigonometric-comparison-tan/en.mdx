@@ -4,13 +4,13 @@ export const metadata = {
   description: "Calculate tangent ratios using opposite and adjacent sides. Solve height problems, slopes, and angles with worked examples and practice exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-14",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Trigonometry",
 };
 
 ## Comparing Opposite and Adjacent Sides
 
-The tangent ratio, written as <InlineMath math="\tan" />, compares the side opposite an angle with the adjacent side in a right triangle. <Highlight>Both sides are measured from the same acute angle.</Highlight> Because only the ratio is used, a larger triangle with the same angle gives the same tangent value.
+The tangent ratio, written as <InlineMath math="\tan" />, compares the side opposite an angle with the adjacent side in a right triangle. Both sides are identified relative to **the same acute angle**. Because only the ratio is used, a larger triangle with the same angle gives the same tangent value.
 
 ### Tangent
 
@@ -45,15 +45,15 @@ Tangent values for special angles can be written exactly, with decimals shown on
 - <InlineMath math="\tan 45^\circ = 1" />
 - <InlineMath math="\tan 60^\circ = \sqrt{3} \approx 1.732" />
 
-These exact values come from side ratios in right triangles with angles of <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, or <InlineMath math="60^\circ" />.
+These **exact values** come from side ratios in right triangles with angles of <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, or <InlineMath math="60^\circ" />.
 
 ## Calculating Tangent Values
 
-A tangent value follows from the two legs of the right triangle, so the example below reads the opposite side and the adjacent side from the drawing and then divides them.
+A tangent value follows from the two legs of the right triangle, so the example below reads the **opposite side and the adjacent side** from the drawing and then divides them.
 
 ### Example of Calculating Tangent
 
-Consider a right triangle with a <InlineMath math="30^\circ" /> angle, opposite side <InlineMath math="15 \text{ cm}" />, adjacent side <InlineMath math="15\sqrt{3} \text{ cm}" />, and hypotenuse <InlineMath math="30 \text{ cm}" />.
+Consider a right triangle with a <InlineMath math="30^\circ" /> angle, **opposite side** <InlineMath math="15 \text{ cm}" />, adjacent side <InlineMath math="15\sqrt{3} \text{ cm}" />, and hypotenuse <InlineMath math="30 \text{ cm}" />.
 
 <Triangle
   title={
@@ -68,10 +68,11 @@ Consider a right triangle with a <InlineMath math="30^\circ" /> angle, opposite 
     </>
   }
   angle={30}
+  size={30}
   labels={{
-    opposite: <InlineMath math="15\,\mathrm{cm}" />,
-    adjacent: <InlineMath math="15\sqrt{3}\,\mathrm{cm}" />,
-    hypotenuse: <InlineMath math="30\,\mathrm{cm}" />,
+    opposite: "opposite side",
+    adjacent: "adjacent side",
+    hypotenuse: "hypotenuse",
   }}
 />
 
@@ -81,7 +82,7 @@ The tangent value of this angle is:
 
 ### Measuring Slopes and Heights
 
-Tangent relates a slope angle to the vertical and horizontal changes in a right triangle. This relationship can be used to:
+Tangent relates a slope angle to the **vertical and horizontal changes** in a right triangle. This relationship can be used to:
 
 1. Calculate an object's height from its angle of elevation and horizontal distance
 2. Calculate the slope of a road or staircase from its vertical rise and horizontal run
@@ -103,19 +104,20 @@ Consider the following right-angled triangle. The acute angle is <InlineMath mat
       adjacent side <InlineMath math="7 \text{ cm}" />.
     </>
   }
-  angle={65}
+  angle={Math.atan(15 / 7) * 180 / Math.PI}
+  size={Math.sqrt(274)}
   labels={{
-    opposite: <InlineMath math="15\,\mathrm{cm}" />,
-    adjacent: <InlineMath math="7\,\mathrm{cm}" />,
+    opposite: "opposite side",
+    adjacent: "adjacent side",
     hypotenuse: "hypotenuse",
   }}
 />
 
-Find <InlineMath math="\tan \theta" /> and explain which two sides determine the ratio.
+Find <InlineMath math="\tan \theta" /> and explain **which two sides** determine the ratio.
 
 ### Worked Solution
 
-Relative to <InlineMath math="\theta" />, the side of length <InlineMath math="15 \text{ cm}" /> is the opposite side and the side of length <InlineMath math="7 \text{ cm}" /> is the adjacent side. Tangent compares exactly these two sides:
+Relative to <InlineMath math="\theta" />, the side of length <InlineMath math="15 \text{ cm}" /> is the opposite side and the side of length <InlineMath math="7 \text{ cm}" /> is the adjacent side. Tangent compares **opposite side to adjacent side**:
 
 <BlockMath math="\begin{aligned} &amp;\tan \theta = \frac{\text{opposite side}}{\text{adjacent side}} \\ &amp;= \frac{15 \text{ cm}}{7 \text{ cm}} \\ &amp;= \frac{15}{7} \approx 2.14 \end{aligned}" />
 

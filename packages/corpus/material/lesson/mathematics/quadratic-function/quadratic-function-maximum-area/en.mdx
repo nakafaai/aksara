@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Rectangles Enclosed by a Fixed Length of Fencing
 
-<Highlight>An optimization problem asks for the best value that is still allowed by a constraint.</Highlight> For example, a fixed length of fencing can enclose many rectangles, but those rectangles do not all have the same area. A quadratic function models the area of every permitted rectangle in terms of one side length.
+An optimization problem asks for **the best value allowed by the constraints**. For example, a fixed length of fencing can enclose many rectangles, but those rectangles do not all have the same area. A quadratic function models the area of every permitted rectangle in terms of one side length.
 
 Express one dimension in terms of the other, substitute that relationship into the area formula, and then interpret the vertex of the resulting parabola. This procedure works for any rectangular fencing problem with the same type of constraint.
 
@@ -30,7 +30,7 @@ For <InlineMath math="f(x)=ax^2+bx+c" />, the vertex coordinates are found from
   <BlockMath math="y_v=f(x_v)" />
 </MathContainer>
 
-The equivalent discriminant form is
+The equivalent **discriminant form** is
 
 <MathContainer>
   <BlockMath math="\Delta=b^2-4ac" />
@@ -43,82 +43,65 @@ The algebra identifies the vertex, but the context decides whether that vertex i
 
 A farmer has <InlineMath math="20\text{ m}" /> of fencing and wants to enclose a rectangular chicken coop. What dimensions produce the greatest possible area?
 
-1. **Name the dimensions.** Let the length be <InlineMath math="p\text{ m}" /> and the width be <InlineMath math="l\text{ m}" />.
-2. **Translate the perimeter constraint.**
+**Step 1**: Name the dimensions. Let the length be <InlineMath math="p\text{ m}" /> and the width be <InlineMath math="l\text{ m}" />.
+**Step 2**: Translate the perimeter constraint.
 
-   <MathContainer>
-     <BlockMath math="2p+2l=20" />
-     <BlockMath math="p+l=10" />
-     <BlockMath math="p=10-l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="2p+2l=20" />
+  <BlockMath math="p+l=10" />
+  <BlockMath math="p=10-l" />
+</MathContainer>
 
-3. **Build an area function in one variable.**
+**Step 3**: Build an area function in one variable.
 
-   <MathContainer>
-     <BlockMath math="A=p\cdot l" />
-     <BlockMath math="A(l)=(10-l)l" />
-     <BlockMath math="A(l)=10l-l^2" />
-     <BlockMath math="A(l)=-l^2+10l" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="A=p\cdot l" />
+  <BlockMath math="A(l)=(10-l)l" />
+  <BlockMath math="A(l)=10l-l^2" />
+  <BlockMath math="A(l)=-l^2+10l" />
+</MathContainer>
 
-4. **State the feasible domain.** Both side lengths must be positive, so <InlineMath math="0<l<10" />. The coefficient <InlineMath math="a=-1" /> is negative, which means the area graph opens downward.
-5. **Locate the vertex.**
+**Step 4**: State the feasible domain. Both side lengths must be positive, so <InlineMath math="0<l<10" />. The coefficient <InlineMath math="a=-1" /> is negative, which means the area graph opens downward.
+**Step 5**: Locate the vertex.
 
-   <BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
+<BlockMath math="l_v=-\frac{b}{2a}=-\frac{10}{2(-1)}=\frac{-10}{-2}=5" />
 
-6. **Recover the other dimension and evaluate the area.**
+**Step 6**: Recover the other dimension and evaluate the area.
 
-   <MathContainer>
-     <BlockMath math="p=10-l=10-5=5" />
-     <BlockMath math="A(5)=5\cdot5=25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="p=10-l=10-5=5" />
+  <BlockMath math="A(5)=5\cdot5=25" />
+</MathContainer>
 
-7. **Confirm that the vertex gives the maximum area.** The vertex lies inside <InlineMath math="0<l<10" />. At the boundary values, the rectangle collapses and the area approaches <InlineMath math="0" />, so the interior vertex gives the global maximum.
+**Step 7**: Confirm that the vertex gives the maximum area. The vertex lies inside <InlineMath math="0<l<10" />. At the boundary values, the rectangle collapses and the area approaches <InlineMath math="0" />, so the interior vertex gives the global maximum.
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Area model <InlineMath math="A(l)=-l^2+10l" />
-      </>
-    }
-    description={
-      <>
-        The graph is shown for <InlineMath math="0\le l\le10" />. Within the feasible interval <InlineMath math="0<l<10" />, it reaches its highest point at <InlineMath math="(5,25)" />.
-      </>
-    }
-    cameraPosition={[5, 22, 12]}
-    cameraTarget={[5, 22, 0]}
-    data={[
-      {
-        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        smooth: false,
-        points: Array.from({ length: 101 }, (_, sampleIndex) => {
-          const l = sampleIndex / 10;
-          return {
-          x: l,
-          y: -l * l + 10 * l,
-          z: 0,
-        };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: "Maximum point",
-            at: 50,
-            offset: [0, 2, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+The completed square explains the maximum. We subtract a **nonnegative square** from 25. That subtraction is zero exactly when the width is five:
+
+<BlockMath math="A(l)=25-(l-5)^2\le25" />
+
+<MathVisual
+  title="Area against the Chosen Dimension"
+  description="The horizontal axis shows width in meters, the vertical axis area in square meters. The point (5,25) is the maximum."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 10, c: 0 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 25 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 25 }, placement: "above" }]
+  }}
+  labels={{ vertex: <InlineMath math="(5,25)" /> }}
+/>
+
+The graph endpoints show limiting cases. Zero and ten are excluded when both side lengths must be positive.
 
 The greatest area is therefore <InlineMath math="25\text{ m}^2" />, obtained from a <InlineMath math="5\text{ m}\times5\text{ m}" /> square.
 
 ## Constraint Model Domain and Vertex
 
-The table collects the four pieces that turn the fence problem into one variable. Each row states a part of the problem beside its mathematical form.
+The table collects the four pieces that turn the fence problem into **one variable**. Each row states a part of the problem beside its mathematical form.
 
 | Part of the problem | Mathematical statement | Meaning |
 | ------------------- | ---------------------- | ------- |
@@ -129,13 +112,11 @@ The table collects the four pieces that turn the fence problem into one variable
 
 ## Applying the Same Method to Profit
 
-A profit function also asks for the highest point of the parabola, only the coordinates now mean quantity and profit.
-
-The same method works whenever a quantity follows a downward parabola. A profit function is one such case, and its vertex gives the quantity with the largest profit.
+The same method works whenever a quantity follows a **downward parabola**. A profit function is one such case, and its vertex gives the quantity with the largest profit.
 
 ### Production profit
 
-Suppose the profit from selling <InlineMath math="x" /> toys, measured in thousands of rupiah, is
+Suppose the profit from selling <InlineMath math="x" /> toys, measured in **thousands of rupiah**, is
 
 <BlockMath math="P(x)=-2x^2+100x" />
 
@@ -154,7 +135,7 @@ Suppose a toy rocket's height after <InlineMath math="t\text{ s}" /> is
 
 <BlockMath math="h(t)=-5t^2+40t" />
 
-The physically meaningful interval follows from the times at which the height is zero:
+The **physically meaningful interval** follows from the times at which the height is zero:
 
 <MathContainer>
   <BlockMath math="-5t^2+40t=-5t(t-8)=0" />
@@ -172,14 +153,14 @@ The rocket reaches a maximum height of <InlineMath math="80\text{ m}" /> after <
 
 ## Practice
 
-The problem fixes the perimeter and asks for the largest rectangle, so the constraint has to replace the second variable. Write the area as a function of one variable first.
+The problem fixes the perimeter and asks for the largest rectangle, so the constraint has to **replace the second variable**. Write the area as a function of one variable first.
 
 A rectangle has perimeter <InlineMath math="60\text{ cm}" />. Determine the length and width that maximize its area, and find the maximum area.
 
 ### Worked solution
 
 1. Let the length be <InlineMath math="p\text{ cm}" /> and the width be <InlineMath math="l\text{ cm}" />.
-2. Convert the perimeter constraint into an expression for the length.
+2. Convert the **perimeter constraint** into an expression for the length.
 
    <MathContainer>
      <BlockMath math="2p+2l=60" />

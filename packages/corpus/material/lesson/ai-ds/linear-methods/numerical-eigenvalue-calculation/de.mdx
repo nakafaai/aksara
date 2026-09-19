@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne Eigenwerte mit Potenziteration, verschobener inverser Iteration und dem QR-Algorithmus. Lerne Konvergenzannahmen, Residuenprüfungen und die Verfahrenswahl kennen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Lineare Methoden der KI",
 };
 
@@ -13,7 +13,7 @@ Ein Eigenpaar einer quadratischen Matrix <InlineMath math="A" /> erfüllt
 
 <BlockMath math="Av=\lambda v,\qquad v\ne0" />
 
-Bei einer kleinen symbolischen Matrix kann man <InlineMath math="\det(A-\lambda I)=0" /> lösen. <Highlight>Numerische Software bildet das charakteristische Polynom meist nicht, weil seine Koeffizienten empfindlich auf Rundung reagieren können.</Highlight> Wird nur ein Teil des Spektrums einer großen dünn besetzten Matrix benötigt, verwenden Krylow-Verfahren Matrix-Vektor-Produkte, ohne dieses Polynom zu bilden. Algorithmen für das vollständige Spektrum einer dichten Matrix arbeiten stattdessen mit Matrixfaktorisierungen.
+Bei einer kleinen symbolischen Matrix kann man <InlineMath math="\det(A-\lambda I)=0" /> lösen. Numerische Software <Highlight>bildet das charakteristische Polynom meist nicht</Highlight>, weil seine Koeffizienten empfindlich auf Rundung reagieren können. Wird nur ein Teil des Spektrums einer großen dünn besetzten Matrix benötigt, verwenden Krylow-Verfahren Matrix-Vektor-Produkte, ohne dieses Polynom zu bilden. Algorithmen für das vollständige Spektrum einer dichten Matrix arbeiten stattdessen mit Matrixfaktorisierungen.
 
 Der benötigte Teil des Spektrums und die Matrixstruktur bestimmen das passende Verfahren:
 
@@ -24,6 +24,8 @@ Der benötigte Teil des Spektrums und die Matrixstruktur bestimmen das passende 
 
 ## Potenziteration
 
+Die folgenden Formeln verwenden reelle Matrizen und Iterierte. Bei komplexen Iterierten ersetzt du die Transponierte im Rayleigh-Quotienten durch die konjugiert Transponierte. Für <InlineMath math="z_k=0" /> ist keine Normierung möglich. Prüfe, ob der vorherige Vektor ein Eigenvektor zum Eigenwert null ist.
+
 Wähle einen von null verschiedenen Startvektor <InlineMath math="q_0" /> und normiere ihn. Wiederhole
 
 <MathContainer>
@@ -32,7 +34,7 @@ Wähle einen von null verschiedenen Startvektor <InlineMath math="q_0" /> und no
 <BlockMath math="\mu_k=q_k^TAq_k" />
 </MathContainer>
 
-Der Skalar <InlineMath math="\mu_k" /> ist der Rayleigh-Quotient. Für eine diagonalisierbare Matrix mit eindeutig größtem Betrag,
+Der Skalar <InlineMath math="\mu_k" /> ist der Rayleigh-Quotient. Für eine diagonalisierbare Matrix mit **eindeutig größtem Betrag**,
 
 <BlockMath math="|\lambda_1|>|\lambda_2|\ge\cdots\ge|\lambda_n|" />
 
@@ -40,7 +42,7 @@ Wenn die angezeigte Ungleichung gilt und der Startvektor eine von null verschied
 
 <BlockMath math="\left|\frac{\lambda_2}{\lambda_1}\right|^k" />
 
-Daraus folgen zwei mögliche Fehlerfälle. Gleiche dominante Beträge können die Konvergenz zu einem einzelnen Vektor verhindern. Ein Startvektor, der orthogonal zum dominanten Eigenraum ist, findet diesen Eigenraum nie.
+Daraus folgen zwei mögliche Fehlerfälle. Gleiche dominante Beträge können die Konvergenz zu einem einzelnen Vektor verhindern. Ein Koeffizient null in dominanter Richtung der Eigenbasis verhindert die Konvergenz zu dieser Richtung. Bei symmetrischen Matrizen entspricht dies der Orthogonalität zum dominanten Eigenvektor. Bei nichtnormalen Matrizen muss der Koeffizient in der möglicherweise nichtorthogonalen Eigenbasis geprüft werden.
 
 ### Mit dem Residuum abbrechen
 
@@ -82,9 +84,16 @@ Die Iterierten nähern sich
 
 <BlockMath math="q_*=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\qquad \lambda_*=3" />
 
-Der andere Eigenwert ist <InlineMath math="1" />. Der erwartete Konvergenzfaktor beträgt daher <InlineMath math="|1/3|" /> pro Iteration, sobald der asymptotische Bereich erreicht ist.
+Der andere Eigenwert ist <InlineMath math="1" />. Der erwartete **Konvergenzfaktor** beträgt daher <InlineMath math="|1/3|" /> pro Iteration, sobald der asymptotische Bereich erreicht ist.
 
-## Verschobene inverse Iteration
+| Iteration | Rayleigh-Schätzung | Residuumsnorm |
+| --- | --- | --- |
+| 1 | <InlineMath math="14/5" /> | <InlineMath math="3/5" /> |
+| 2 | <InlineMath math="122/41" /> | <InlineMath math="9/41" /> |
+
+## Verschobene inverse
+
+Wähle eine Verschiebung, die **kein Eigenwert** ist. Die Konvergenz zu einer Eigenrichtung verlangt einen eindeutig nächsten Eigenwert und einen Startkoeffizienten ungleich null in seiner Eigenbasisrichtung. Gleiche Abstände können die Konvergenz zu einer Richtung verhindern. Iteration
 
 Die Potenziteration bevorzugt den größten Betrag. Um einen Eigenwert nahe der Verschiebung <InlineMath math="\sigma" /> zu finden, wiederholt man
 
@@ -94,7 +103,7 @@ Die Potenziteration bevorzugt den größten Betrag. Um einen Eigenwert nahe der 
 <BlockMath math="\mu_k=q_k^TAq_k" />
 </MathContainer>
 
-Die Eigenwerte von <InlineMath math="(A-\sigma I)^{-1}" /> sind <InlineMath math="1/(\lambda_i-\sigma)" />. Daher wird der Eigenwert mit dem kleinsten Abstand zu <InlineMath math="\sigma" /> dominant. Bilde die Inverse niemals explizit. Faktorisiere <InlineMath math="A-\sigma I" /> und löse in jeder Iteration ein lineares Gleichungssystem. Bei fester Verschiebung kann die Faktorisierung wiederverwendet werden.
+Die Eigenwerte von <InlineMath math="(A-\sigma I)^{-1}" /> sind <InlineMath math="1/(\lambda_i-\sigma)" />. Daher wird der Eigenwert mit dem kleinsten Abstand zu <InlineMath math="\sigma" /> dominant. Bilde die Inverse niemals explizit. **Faktorisiere** <InlineMath math="A-\sigma I" /> und löse in jeder Iteration ein lineares Gleichungssystem. Bei fester Verschiebung kann die Faktorisierung wiederverwendet werden.
 
 Liegt <InlineMath math="\sigma" /> sehr nahe an einem Eigenwert, ist das verschobene System schlecht konditioniert. Genaue lineare Lösungen und Residuenprüfungen sind deshalb unverzichtbar.
 
@@ -107,7 +116,7 @@ Beginne mit <InlineMath math="A_0=A" />. Berechne in Iteration <InlineMath math=
 <BlockMath math="A_{k+1}=R_kQ_k=Q_k^TA_kQ_k" />
 </MathContainer>
 
-Jeder Schritt ist eine orthogonale Ähnlichkeitstransformation und erhält daher die Eigenwerte. Praktische <InlineMath math="\mathrm{QR}" />-Algorithmen reduzieren eine dichte Matrix zuerst auf Hessenberg-Form, verwenden Verschiebungen und trennen konvergierte Blöcke ab. Bei einer reellen unsymmetrischen Matrix ist das Ergebnis im Allgemeinen eine reelle Schur-Form mit diagonalen <InlineMath math="1\times1" />- und <InlineMath math="2\times2" />-Blöcken. Eine symmetrische Matrix wird auf Tridiagonalform reduziert und konvergiert zu einer Diagonalmatrix.
+Jeder Schritt ist eine **orthogonale Ähnlichkeitstransformation** und erhält daher die Eigenwerte. Praktische <InlineMath math="\mathrm{QR}" />-Algorithmen reduzieren eine dichte Matrix zuerst auf Hessenberg-Form, verwenden Verschiebungen und trennen konvergierte Blöcke ab. Bei einer reellen unsymmetrischen Matrix ist das Ergebnis im Allgemeinen eine reelle Schur-Form mit diagonalen <InlineMath math="1\times1" />- und <InlineMath math="2\times2" />-Blöcken. Eine symmetrische Matrix wird auf Tridiagonalform reduziert und konvergiert zu einer Diagonalmatrix.
 
 ## Das passende Verfahren wählen
 
@@ -119,4 +128,4 @@ Jeder Schritt ist eine orthogonale Ähnlichkeitstransformation und erhält daher
 | Mehrere Eigenpaare einer großen unsymmetrischen dünn besetzten Matrix | Arnoldi | Unterraumgröße, Neustarts und Residuen |
 | Vollständiges Spektrum einer dichten Matrix | Verschobenes <InlineMath math="\mathrm{QR}" />-Verfahren zur Schur-Form | konvergierte diagonale oder quasidiagonale Blöcke |
 
-Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: Kontrolliere die Residuen, erhalte komplex konjugierte Paare reeller Matrizen und prüfe die Genauigkeit eines Eigenvektors getrennt von einer stabilen Eigenwertschätzung.
+Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: **Kontrolliere die Residuen**, erhalte komplex konjugierte Paare reeller Matrizen und prüfe die Genauigkeit eines Eigenvektors getrennt von einer stabilen Eigenwertschätzung.

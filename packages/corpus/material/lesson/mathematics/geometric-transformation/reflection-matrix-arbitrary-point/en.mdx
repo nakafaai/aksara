@@ -4,7 +4,7 @@ export const metadata = {
   description: "Reflect points about an arbitrary center by combining translations with matrix operations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Geometric Transformation",
 };
 
@@ -14,15 +14,13 @@ The image of a point <InlineMath math="(x,y)" /> reflected about the point <Inli
 
 If the reflection center is outside the origin, we need a translation in addition to multiplication by a <InlineMath math="2 \times 2" /> matrix.
 
-Use three operations:
+**Translate to the center, negate, then translate back**. Track the coordinates through the three operations:
 
-1. Subtract the center coordinates from <InlineMath math="(x,y)" /> to obtain <InlineMath math="(x-a, y-b)" />.
-2. Reflect the translated point over the origin using this matrix:
-
-   <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
-3. Translate the result back by adding the coordinates of the center of reflection <InlineMath math="(a,b)" />.
-
-Mathematically, if <InlineMath math="(x', y')" /> is the image of <InlineMath math="(x,y)" />:
+| Operation | Coordinates |
+| --- | --- |
+| Subtract the center | <InlineMath math="(x-a,y-b)" /> |
+| Reflect over the origin | <InlineMath math="(-x+a,-y+b)" /> |
+| Add the center | <InlineMath math="(-x+2a,-y+2b)" /> |
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
@@ -33,19 +31,9 @@ The final vector gives <Highlight>the coordinate rule</Highlight> <InlineMath ma
 
 ### Matrix Operation for Reflection over a Point
 
-For reflection about the point <InlineMath math="P(a,b)" />, the image of any point <InlineMath math="(x,y)" /> is:
+Multiplication by a <InlineMath math="2 \times 2" /> matrix alone always maps <InlineMath math="(0,0)" /> to <InlineMath math="(0,0)" />. Reflection about a nonzero center maps the origin to <InlineMath math="(2a,2b)" />, so we need an **added translation vector**:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix}" />
-
-The equivalent centered form shows the three operations directly:
-
-<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
-
-Expanding the matrix expression gives:
-
-<BlockMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
-
-This is exactly the coordinate rule <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In vector form, the same relation is <InlineMath math="Q'=2P-Q" />: <Highlight>the center is the midpoint</Highlight> of the original point and its image.
+<BlockMath math="\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}+2\begin{pmatrix}a\\b\end{pmatrix}" />
 
 ## Finding the Image of a Point
 
@@ -59,7 +47,7 @@ The point being reflected is <InlineMath math="(x,y) = (2,3)" /> and the center 
   <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
-The diagram places the center midway between the original point and its image.
+The diagram places **the center midway** between the original point and its image.
 
 <LineEquation
   title={
@@ -102,63 +90,72 @@ The diagram places the center midway between the original point and its image.
       color: "#4f46e5",
     }, // Line QQ'
   ]}
-  cameraPosition={[1, 1, 10]}
+  cameraPosition={[1, 1, 8]}
+  cameraTarget={[1, 1, 0]}
 />
 
 ## Exercises
 
-Both problems use a center that is not the origin. The second one reflects a whole line, so the image line has to be written as an equation.
+Both problems use **a center that is not the origin**. The second one reflects a whole line, so the image line has to be written as an equation.
 
 1.  Determine the image of point <InlineMath math="(3,1)" /> after reflection about point <InlineMath math="(-2,-1)" />.
 2.  A line passes through points <InlineMath math="A(1,2)" /> and <InlineMath math="B(3,4)" />. Determine the equation of the image line after reflection about point <InlineMath math="C(0,1)" />.
 
 ### Solutions
 
-1.  Point <InlineMath math="(x,y) = (3,1)" />. Center <InlineMath math="(a,b) = (-2,-1)" />.
+Calculate **twice the center vector** before subtracting the point coordinates. For the line problem, two image points determine an equation. Check whether that equation describes a different line from the original.
 
-    Using the formula <InlineMath math="x' = 2a-x" /> and <InlineMath math="y' = 2b-y" />:
+**Solution 1**
 
-    <MathContainer>
-      <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
-      <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
-    </MathContainer>
+Point <InlineMath math="(x,y) = (3,1)" />. Center <InlineMath math="(a,b) = (-2,-1)" />.
 
-    Its image is <InlineMath math="(-7,-3)" />. Or using matrix operations:
+Using the formula <InlineMath math="x' = 2a-x" /> and <InlineMath math="y' = 2b-y" />:
 
-    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
+<MathContainer>
+  <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
+  <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
+</MathContainer>
 
-2.  Center of reflection <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
+Its image is <InlineMath math="(-7,-3)" />. Or using matrix operations:
 
-    Image of point <InlineMath math="A(1,2)" />:
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
 
-    <MathContainer>
-      <BlockMath math="x'_A = 2(0)-1 = -1" />
-      <BlockMath math="y'_A = 2(1)-2 = 0" />
-    </MathContainer>
+**Solution 2**
 
-    So <InlineMath math="A'(-1,0)" />.
+Center of reflection <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
 
-    Image of point <InlineMath math="B(3,4)" />:
+Image of point <InlineMath math="A(1,2)" />:
 
-    <MathContainer>
-      <BlockMath math="x'_B = 2(0)-3 = -3" />
-      <BlockMath math="y'_B = 2(1)-4 = -2" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x'_A = 2(0)-1 = -1" />
+  <BlockMath math="y'_A = 2(1)-2 = 0" />
+</MathContainer>
 
-    So <InlineMath math="B'(-3,-2)" />.
+So <InlineMath math="A'(-1,0)" />.
 
-    The image line passes through <InlineMath math="A'(-1,0)" /> and <InlineMath math="B'(-3,-2)" />.
+Image of point <InlineMath math="B(3,4)" />:
 
-    Gradient <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
+<MathContainer>
+  <BlockMath math="x'_B = 2(0)-3 = -3" />
+  <BlockMath math="y'_B = 2(1)-4 = -2" />
+</MathContainer>
 
-    Equation of the line:
+So <InlineMath math="B'(-3,-2)" />.
 
-    <MathContainer>
-      <BlockMath math="y - y'_A = m'(x - x'_A)" />
-      <BlockMath math="y - 0 = 1(x - (-1))" />
-      <BlockMath math="y = x + 1" />
-    </MathContainer>
+The image line passes through <InlineMath math="A'(-1,0)" /> and <InlineMath math="B'(-3,-2)" />.
 
-    or
+Gradient <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
 
-    <BlockMath math="x - y + 1 = 0" />
+Equation of the line:
+
+<MathContainer>
+  <BlockMath math="y - y'_A = m'(x - x'_A)" />
+  <BlockMath math="y - 0 = 1(x - (-1))" />
+  <BlockMath math="y = x + 1" />
+</MathContainer>
+
+The same line has the standard form:
+
+<BlockMath math="x - y + 1 = 0" />
+
+The result is the original line <InlineMath math="y=x+1" /> again. The center <InlineMath math="C(0,1)" /> lies on it because <InlineMath math="1=0+1" />. A half-turn swaps points along any line through its center, so **the line as a set stays unchanged**.

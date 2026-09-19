@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelkan diskon toko buku, kapasitas lift, serta fungsi lantai dan langit-langit dengan fungsi tangga yang memakai aturan berbeda pada setiap interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -14,26 +14,28 @@ Fungsi tangga <Highlight>memiliki nilai konstan pada setiap interval</Highlight>
 
 ### Definisi Fungsi Tangga
 
+Rumus berikut memperlihatkan **sejumlah interval**. Untuk fungsi lantai dan langit-langit pada seluruh bilangan real, interval berlanjut ke kiri dan kanan tanpa batas.
+
 Fungsi tangga dapat didefinisikan sebagai fungsi sepotong-sepotong (piecewise function) yang berbentuk:
 
 <BlockMath math="f(x) = \begin{cases} c_1, & \text{jika } a_1 \leq x < b_1 \\ c_2, & \text{jika } a_2 \leq x < b_2 \\ c_3, & \text{jika } a_3 \leq x < b_3 \\ \vdots \\ c_n, & \text{jika } a_n \leq x < b_n \end{cases}" />
 
 Dalam definisi ini, <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> adalah konstanta dan <InlineMath math="[a_i, b_i)" /> adalah interval yang tidak saling tumpang tindih.
 
-**Karakteristik fungsi tangga:**
+**Karakteristik fungsi tangga**:
 
 - Nilai konstan pada setiap interval
-- Diskontinuitas lompat di titik-titik batas interval
+- Kemungkinan diskontinuitas lompat di batas interval
 - Grafik berbentuk seperti tangga
 - Termasuk dalam kategori fungsi sepotong-sepotong
 
 ## Berbagai Jenis Fungsi Tangga
 
-Nilai fungsi tangga hanya bergantung pada selang tempat inputnya berada, sehingga nilainya tetap di dalam satu selang dan melompat di batasnya. Fungsi lantai, fungsi langit-langit, dan fungsi Heaviside berbeda pada sisi mana nilai baru itu muncul.
+Fungsi lantai membulatkan **ke bilangan bulat di bawah atau sama dengan masukan**, sedangkan fungsi langit-langit memilih bilangan bulat di atas atau sama dengan masukan. Fungsi Heaviside memakai dua nilai tetap dengan satu lompatan di nol.
 
 ### Fungsi Lantai atau Floor Function
 
-Fungsi lantai, dilambangkan dengan <InlineMath math="\lfloor x \rfloor" />, memberikan bilangan bulat terbesar yang kurang dari atau sama dengan <InlineMath math="x" />.
+Fungsi lantai, dilambangkan dengan <InlineMath math="\lfloor x \rfloor" />, memberikan **bilangan bulat terbesar** yang kurang dari atau sama dengan <InlineMath math="x" />.
 
 <BlockMath math="\lfloor x \rfloor = \max\{n \in \mathbb{Z} : n \leq x\}" />
 
@@ -70,10 +72,11 @@ Grafik menandai setiap ujung kiri yang termasuk dengan titik penuh dan setiap uj
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
-**Tabel nilai fungsi lantai:**
+**Tabel nilai fungsi lantai**:
 
 | <InlineMath math="x" /> | <InlineMath math="-2{,}5" /> | <InlineMath math="-1{,}7" /> | <InlineMath math="-1" /> | <InlineMath math="-0{,}3" /> | <InlineMath math="0" /> | <InlineMath math="0{,}8" /> | <InlineMath math="1" /> | <InlineMath math="1{,}9" /> | <InlineMath math="2{,}4" /> |
 | --------------------------------------- | ---- | ---- | --- | ---- | --- | --- | --- | --- | --- |
@@ -81,7 +84,7 @@ Grafik menandai setiap ujung kiri yang termasuk dengan titik penuh dan setiap uj
 
 ### Fungsi Pembulatan ke Atas atau Ceiling Function
 
-Fungsi langit-langit, dilambangkan dengan <InlineMath math="\lceil x \rceil" />, memberikan bilangan bulat terkecil yang lebih besar dari atau sama dengan <InlineMath math="x" />.
+Fungsi langit-langit, dilambangkan dengan <InlineMath math="\lceil x \rceil" />, memberikan **bilangan bulat terkecil** yang lebih besar dari atau sama dengan <InlineMath math="x" />.
 
 <BlockMath math="\lceil x \rceil = \min\{n \in \mathbb{Z} : n \geq x\}" />
 
@@ -118,6 +121,7 @@ Grafik menandai setiap ujung kiri yang tidak termasuk dengan titik kosong dan se
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -127,7 +131,7 @@ Contoh berikut memakai konvensi umum untuk fungsi unit step atau fungsi Heavisid
 
 <BlockMath math="H(x) = \begin{cases} 0, & \text{jika } x < 0 \\ 1, & \text{jika } x \geq 0 \end{cases}" />
 
-Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <InlineMath math="x < 0" /> dan <InlineMath math="1" /> untuk <InlineMath math="x \geq 0" />. Bidang lain kadang memilih <InlineMath math="H(0)=0" /> atau <InlineMath math="H(0)=\frac12" />, sehingga nilai fungsi pada titik lompatan harus selalu dinyatakan.
+Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <InlineMath math="x < 0" /> dan <InlineMath math="1" /> untuk <InlineMath math="x \geq 0" />. Bidang lain kadang memilih <InlineMath math="H(0)=0" /> atau <InlineMath math="H(0)=\frac12" />, sehingga **nilai fungsi pada titik lompatan** harus selalu dinyatakan.
 
 <LineEquation
   title={
@@ -146,7 +150,7 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
       endpoints: { end: "open" },
       lineWidth: 4,
       points: [
-        { x: -10, y: 0, z: 0 },
+        { x: -4, y: 0, z: 0 },
         { x: 0, y: 0, z: 0 },
       ],
       color: "#0d9488",
@@ -158,33 +162,32 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
       lineWidth: 4,
       points: [
         { x: 0, y: 1, z: 0 },
-        { x: 10, y: 1, z: 0 },
+        { x: 4, y: 1, z: 0 },
       ],
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-7, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-1, 0.5, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
 ## Sifat Fungsi Tangga
 
-**Sifat umum:**
+Domain harus sesuai dengan **interval yang ditetapkan**, bukan otomatis semua bilangan real. Nilai keluaran pada contoh-contoh ini diskrit. Pada batas dua interval, lompatan hanya terjadi jika konstanta di kedua sisi berbeda.
 
-1. Domain: <InlineMath math="\mathbb{R}" /> (biasanya)
-2. Range: Himpunan nilai diskrit
-3. Kontinuitas: diskontinuitas lompat di titik-titik tertentu
+Pada fungsi lantai dan langit-langit, **dua bilangan bulat mengapit masukan**. Untuk masukan bulat, kedua hasil sama. Untuk masukan bukan bulat, selisihnya satu.
 
-**Sifat khusus fungsi lantai dan langit-langit:**
+**Sifat khusus fungsi lantai dan langit-langit**:
 
 1. <InlineMath math="\lfloor x \rfloor \leq x < \lfloor x \rfloor + 1" />
 2. <InlineMath math="\lceil x \rceil - 1 < x \leq \lceil x \rceil" />
 3. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor + 1 \text{ jika } x \notin \mathbb{Z}" />
 4. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor \text{ jika } x \in \mathbb{Z}" />
 
-**Tabel perbandingan fungsi lantai dan langit-langit:**
+**Tabel perbandingan fungsi lantai dan langit-langit**:
 
 | <InlineMath math="x" /> | <InlineMath math="\lfloor x \rfloor" /> | <InlineMath math="\lceil x \rceil" /> | Selisih |
 | ---- | --------------------------------------- | ------------------------------------- | ------- |
@@ -196,11 +199,11 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
 
 ## Transformasi Fungsi Tangga
 
-Pergeseran memindahkan semua titik lompatan sekaligus, sedangkan penskalaan mengubah jarak antarlompatan. Keduanya bekerja pada seluruh grafik, sehingga bentuk anak tangganya tetap sama. Untuk memeriksa hasilnya, bandingkan satu titik pada setiap selang sebelum dan sesudah transformasi.
+**Pergeseran vertikal** mengubah tinggi setiap anak tangga tanpa mengubah posisi batas interval. Pergeseran horizontal mengubah batas interval. Penskalaan vertikal mengubah tinggi lompatan, sedangkan penskalaan horizontal mengubah lebar interval.
 
 ### Translasi Vertikal
 
-Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungsi lantai ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser **tinggi grafik fungsi lantai** ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
 
 <LineEquation
   title={<>Translasi Vertikal Fungsi Lantai</>}
@@ -264,16 +267,17 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungs
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
 ### Translasi Horizontal
 
-Fungsi <InlineMath math="f(x) = \lfloor x - h \rfloor" /> menggeser grafik ke kanan (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />). Sebagai contoh, <InlineMath math="g(x) = \lfloor x - 2 \rfloor" /> memindahkan setiap anak tangga dua satuan ke kanan, sehingga lompatan pertama terjadi di <InlineMath math="x = 2" />. Memasukkan nilai <InlineMath math="h" /> yang negatif memindahkan lompatan itu ke arah sebaliknya.
+Fungsi <InlineMath math="f(x)=\lfloor x-h\rfloor" /> menggeser grafik **secara horizontal**. Lompatan yang semula di <InlineMath math="x=m" /> berpindah ke <InlineMath math="x=m+h" /> untuk setiap bilangan bulat <InlineMath math="m" />. Untuk <InlineMath math="h=2" />, lompatan di nol berpindah ke dua. Ini bukan lompatan pertama karena ada lompatan pada semua bilangan bulat.
 
 ## Latihan
 
-Soal-soal ini menggabungkan nilai lantai dan langit-langit dengan besaran yang berubah dalam langkah bulat. Hitung bagian bilangan bulatnya lebih dulu, lalu gabungkan sukunya.
+Soal-soal ini menggabungkan **nilai lantai dan langit-langit** dengan besaran yang berubah dalam langkah bulat. Hitung bagian bilangan bulatnya lebih dulu, lalu gabungkan sukunya.
 
 1. Tentukan nilai dari <InlineMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil" />
 
@@ -292,96 +296,115 @@ Soal-soal ini menggabungkan nilai lantai dan langit-langit dengan besaran yang b
 
 5. Sebuah lift dapat menampung maksimal <InlineMath math="8 \text{ orang}" />. Jika ada <InlineMath math="n \text{ orang}" /> yang ingin naik lift, berapa kali lift harus beroperasi?
 
-### Kunci Jawaban
+### Nilai Lantai dan Langit-langit
 
-1. **Menghitung nilai fungsi lantai dan langit-langit:**
+Untuk **masukan negatif**, pembulatan ke bawah bergerak menuju bilangan yang lebih kecil, bukan menuju nol.
 
-   <BlockMath math="\lfloor3{,}7\rfloor=3" />
+<BlockMath math="\lfloor3{,}7\rfloor=3" />
 
-   <InlineMath math="3" /> adalah bilangan bulat terbesar yang kurang dari atau sama dengan <InlineMath math="3{,}7" />.
-   <BlockMath math="\lceil-2{,}3\rceil=-2" />
+<InlineMath math="3" /> adalah bilangan bulat terbesar yang kurang dari atau sama dengan <InlineMath math="3{,}7" />.
+<BlockMath math="\lceil-2{,}3\rceil=-2" />
 
-   <InlineMath math="-2" /> adalah bilangan bulat terkecil yang lebih dari atau sama dengan <InlineMath math="-2{,}3" />.
-   <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
+<InlineMath math="-2" /> adalah bilangan bulat terkecil yang lebih dari atau sama dengan <InlineMath math="-2{,}3" />.
+<BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
-2. **Model fungsi diskon toko buku:**
+### Diskon dan Total Harga
 
-   Misalkan <InlineMath math="n\in\mathbb{N}" /> adalah banyak buku yang dibeli, berupa bilangan bulat positif. Total harga setelah diskon adalah:
+Persentase diskon adalah **fungsi tangga**, tetapi total harga <InlineMath math="H(n)" /> bertambah dengan jumlah buku di dalam setiap tingkat. Jadi, model total harga berikut merupakan fungsi sepotong-sepotong pada jumlah buku bulat, bukan fungsi tangga yang konstan pada setiap tingkat.
 
-   <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{jika } n > 20\end{gathered}\end{cases}" />
+Diskon berlaku untuk **seluruh pembelian**. Sebagai contoh, enam buku mendapat diskon sepuluh persen:
 
-3. **Grafik fungsi <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
+<BlockMath math="H(6)=50000(6)(1-10/100)=270000" />
 
-   Untuk setiap interval:
+Misalkan <InlineMath math="n\in\mathbb{N}" /> adalah banyak buku yang dibeli, berupa bilangan bulat positif. Total harga setelah diskon adalah:
 
-   - <InlineMath math="-3 \leq x < -2: f(x) = 2(-3) - 1 = -7" />
-   - <InlineMath math="-2 \leq x < -1: f(x) = 2(-2) - 1 = -5" />
-   - <InlineMath math="-1 \leq x < 0: f(x) = 2(-1) - 1 = -3" />
-   - <InlineMath math="0 \leq x < 1: f(x) = 2(0) - 1 = -1" />
-   - <InlineMath math="1 \leq x < 2: f(x) = 2(1) - 1 = 1" />
-   - <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
-   - Pada titik ujung, <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
+<BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{jika } n > 20\end{gathered}\end{cases}" />
 
-   Grafik berikut menampilkan nilai fungsi pada setiap interval dan titik ujung:
+### Grafik Bertingkat
 
-   <LineEquation
-     title={
-       <>
-         Grafik <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />
-       </>
-     }
-     description={
-       <>
-         Grafik menunjukkan transformasi fungsi lantai dengan faktor skala <InlineMath math="2" /> dan
-         translasi vertikal <InlineMath math="-1" />.
-       </>
-     }
-     data={[
-       ...Array.from({ length: 6 }, (_, intervalIndex) => {
-         const integerValue = intervalIndex - 3;
-         const functionValue = 2 * integerValue - 1;
-         return {
-           endpoints: { start: "closed", end: "open" },
-           points: [
-             { x: integerValue, y: functionValue, z: 0 },
-             { x: integerValue + 1, y: functionValue, z: 0 },
-           ],
-           color: "#7c3aed",
-           showPoints: false,
-           smooth: false,
-           labels:
-             integerValue === 1
-               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
-               : [],
-         };
-       }),
-       {
-         endpoints: { start: "closed" },
-         points: [
-           { x: 3, y: 5, z: 0 },
-         ],
-         color: "#7c3aed",
-         showPoints: true,
-         smooth: false,
-       },
-     ]}
-     cameraPosition={[0, 0, 10]}
-   />
+Periksa **ujung kanan domain** secara terpisah: nilai di <InlineMath math="x=3" /> berbeda dari nilai pada interval tepat di sebelah kirinya.
 
-4. **Menyelesaikan persamaan <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />:**
+Untuk setiap interval:
 
-   <MathContainer>
-     <BlockMath math="5 \leq 2x + 1 < 6" />
-     <BlockMath math="4 \leq 2x < 5" />
-     <BlockMath math="2 \leq x < 2{,}5" />
-   </MathContainer>
+- <InlineMath math="-3 \leq x < -2: f(x) = 2(-3) - 1 = -7" />
+- <InlineMath math="-2 \leq x < -1: f(x) = 2(-2) - 1 = -5" />
+- <InlineMath math="-1 \leq x < 0: f(x) = 2(-1) - 1 = -3" />
+- <InlineMath math="0 \leq x < 1: f(x) = 2(0) - 1 = -1" />
+- <InlineMath math="1 \leq x < 2: f(x) = 2(1) - 1 = 1" />
+- <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
+- Pada titik ujung, <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
 
-   Jadi himpunan penyelesaiannya adalah <InlineMath math="\{x\mid 2 \leq x &lt; 2{,}5\}" />.
+Grafik berikut menampilkan nilai fungsi pada setiap interval dan titik ujung:
 
-5. **Menghitung jumlah operasi lift:**
+<LineEquation
+  title={
+    <>
+      Grafik <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />
+    </>
+  }
+  description={
+    <>
+      Grafik menunjukkan transformasi fungsi lantai dengan faktor skala <InlineMath math="2" /> dan
+      translasi vertikal <InlineMath math="-1" />.
+    </>
+  }
+  data={[
+    ...Array.from({ length: 6 }, (_, intervalIndex) => {
+      const integerValue = intervalIndex - 3;
+      const functionValue = 2 * integerValue - 1;
+      return {
+        endpoints: { start: "closed", end: "open" },
+        points: [
+          { x: integerValue, y: functionValue, z: 0 },
+          { x: integerValue + 1, y: functionValue, z: 0 },
+        ],
+        color: "#7c3aed",
+        showPoints: false,
+        smooth: false,
+        labels:
+          integerValue === 1
+            ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
+            : [],
+      };
+    }),
+    {
+      endpoints: { start: "closed" },
+      points: [
+        { x: 3, y: 5, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      smooth: false,
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[0, -1, 16]}
+  cameraTarget={[0, -1, 0]}
+/>
 
-   Jika <InlineMath math="n\in\mathbb{Z}_{\geq0}" /> adalah banyak orang dan lift dapat menampung paling banyak <InlineMath math="8 \text{ orang}" />, maka banyak perjalanan lift yang diperlukan adalah:
+### Persamaan Fungsi Lantai
 
-   <BlockMath math="f(n) = \lceil \frac{n}{8} \rceil" />
+Gunakan **ketaksamaan pembatas fungsi lantai**, kurangi kedua batas dengan satu, lalu bagi seluruh pertidaksamaan dengan dua.
 
-   Fungsi langit-langit digunakan karena setiap sisa orang yang tidak nol memerlukan satu perjalanan tambahan. Rumus ini juga memberi <InlineMath math="f(0)=0" /> ketika tidak ada orang yang menunggu.
+<MathContainer>
+
+<BlockMath math="5 \leq 2x + 1 < 6" />
+
+<BlockMath math="4 \leq 2x < 5" />
+
+<BlockMath math="2 \leq x < 2{,}5" />
+</MathContainer>
+
+Jadi himpunan penyelesaiannya adalah <InlineMath math="\{x\mid 2 \leq x &lt; 2{,}5\}" />.
+
+### Jumlah Perjalanan Lift
+
+Yang dihitung adalah **perjalanan naik yang membawa penumpang**, dengan lift kembali kosong bila diperlukan. Untuk sembilan orang, satu perjalanan penuh belum cukup:
+
+<BlockMath math="9=8+1,\qquad \lceil9/8\rceil=2" />
+
+Jika <InlineMath math="n\in\mathbb{Z}_{\geq0}" /> adalah banyak orang dan lift dapat menampung paling banyak <InlineMath math="8 \text{ orang}" />, maka banyak perjalanan lift yang diperlukan adalah:
+
+<BlockMath math="f(n) = \lceil \frac{n}{8} \rceil" />
+
+Fungsi langit-langit digunakan karena setiap sisa orang yang tidak nol memerlukan satu perjalanan tambahan. Rumus ini juga memberi <InlineMath math="f(0)=0" /> ketika tidak ada orang yang menunggu.

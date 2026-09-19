@@ -3,21 +3,19 @@ export const metadata = {
   description: "Drehe Punkte und Funktionskurven mit Koordinatenformeln um einen festgelegten Mittelpunkt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Funktionstransformation",
 };
 
-
-
 ## Alle Graphenpunkte um dasselbe Zentrum drehen
 
-<Highlight>Eine Drehung bewegt jeden Punkt einer Figur um einen festen Mittelpunkt und durch denselben Winkel.</Highlight> Bei einem Funktionsgraphen wird deshalb die gesamte Punktmenge gedreht.
+Eine Drehung bewegt die Punkte einer Figur um **denselben Mittelpunkt und Winkel**. Bei einem Funktionsgraphen wird deshalb die gesamte Punktmenge gedreht.
 
 Stell dir ein Rad vor, das sich dreht. Jeder Punkt auf dem Rad bewegt sich auf einem Kreis um die Radmitte. Bei der Drehung eines Graphen geschieht dasselbe. Jeder Punkt bewegt sich um das Drehzentrum und behält dabei denselben Abstand.
 
 ## Drehformel für einen beliebigen Mittelpunkt
 
-Um den Punkt <InlineMath math="(x, y)" /> um den Mittelpunkt <InlineMath math="(a, b)" /> durch den Winkel <InlineMath math="\theta" /> zu drehen, berechnest du zuerst seine Koordinaten relativ zum Mittelpunkt. Nenne diese Koordinaten <InlineMath math="u" /> und <InlineMath math="v" />:
+Um den Punkt <InlineMath math="(x, y)" /> um den Mittelpunkt <InlineMath math="(a, b)" /> durch den Winkel <InlineMath math="\theta" /> zu drehen, berechnest du zuerst seine Koordinaten **relativ zum Mittelpunkt**. Nenne diese Koordinaten <InlineMath math="u" /> und <InlineMath math="v" />:
 
 <BlockMath math="\begin{aligned} u &amp;= x-a \\ v &amp;= y-b \end{aligned}" />
 
@@ -33,34 +31,35 @@ Die Symbole in diesen Gleichungen bedeuten:
 
 ## Drehungen um den Ursprung
 
-Bei einer Drehung um den Ursprung <InlineMath math="(0, 0)" /> entfernt das Einsetzen von <InlineMath math="a=b=0" /> die Verschiebungsterme aus der allgemeinen Formel. Übrig bleibt eine reine Drehung um den Winkel <InlineMath math="\theta" />, die für jeden Punkt dieselbe Matrix verwendet. Die beiden Fälle unten unterscheiden sich nur in der Richtung des Drehwinkels.
+Bei einer Drehung um den Ursprung <InlineMath math="(0, 0)" /> entfernt das Einsetzen von <InlineMath math="a=b=0" /> die Verschiebungsterme aus der allgemeinen Formel. Übrig bleibt eine reine Drehung um den Winkel <InlineMath math="\theta" />, die für jeden Punkt dieselbe Matrix verwendet. Die folgenden drei Fälle verwenden jeweils einen positiven Winkel, also eine Drehung **gegen den Uhrzeigersinn**.
 
 1. Drehung um <InlineMath math="90^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (-y, x)" />
+<BlockMath math="(x, y) \rightarrow (-y, x)" />
 
 2. Drehung um <InlineMath math="180^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (-x, -y)" />
+<BlockMath math="(x, y) \rightarrow (-x, -y)" />
 
 3. Drehung um <InlineMath math="270^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (y, -x)" />
+<BlockMath math="(x, y) \rightarrow (y, -x)" />
 
 ## Eine gedrehte Parabel
 
 Bei einer Kurve drehst du jeden einzelnen Punkt. Die quadratische Funktion <InlineMath math="y = x^2" /> eignet sich dafür gut, weil je zwei Punkte denselben Funktionswert haben und du das Ergebnis damit leicht nachrechnen kannst. Die folgende Darstellung zeigt die ursprüngliche Parabel und ihre Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
 
 <LineEquation
+  showZAxis={false}
   title={<>Drehung von <InlineMath math="y = x^2" /> um den Ursprung</>}
   description={<>Vergleich der ursprünglichen Parabel mit dem Ergebnis einer Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 135 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 17;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.25;
+        const x = -2.5 + pointIndex / 134 * 5;
         const y = x * x;
         return { x, y, z: 0 };
       }),
@@ -77,9 +76,7 @@ Bei einer Kurve drehst du jeden einzelnen Punkt. Die quadratische Funktion <Inli
     {
       smooth: false,
       points: Array.from({ length: 369 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 134;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.25;
+        const x = -2.5 + pointIndex / 368 * 5;
         const y = x * x;
         // 90° rotation around origin: (x,y) → (-y,x)
         const xRotated = -y;
@@ -99,6 +96,12 @@ Bei einer Kurve drehst du jeden einzelnen Punkt. Die quadratische Funktion <Inli
   ]}
 />
 
+Die gedrehte Kurve erfüllt eine **Relation**, aber keine eindeutige Funktion der waagerechten Koordinate:
+
+<BlockMath math="X=-y=-x^2=-Y^2" />
+
+Die Punkte <InlineMath math="(1,1)" /> und <InlineMath math="(-1,1)" /> werden zu <InlineMath math="(-1,1)" /> und <InlineMath math="(-1,-1)" />. Zur Eingabe <InlineMath math="X=-1" /> gehören zwei Werte von <InlineMath math="Y" />.
+
 ## Eigenschaften einer Drehung
 
 Eine Drehung verschiebt den Graphen um einen festen Mittelpunkt, ohne seine Größe zu ändern. Form und Ausrichtung verhalten sich dabei unterschiedlich. Die Tabelle stellt gegenüber, was unverändert bleibt und was sich ändert.
@@ -108,22 +111,31 @@ Eine Drehung verschiebt den Graphen um einen festen Mittelpunkt, ohne seine Grö
 | Form | Die Form des Graphen ändert sich nicht | Die Drehung verschiebt jeden Punkt um denselben Winkel um denselben Mittelpunkt |
 | Abstände | Der Abstand zwischen zwei Punkten bleibt gleich | Zwei Punkte werden um denselben Mittelpunkt gedreht, deshalb bleibt die Verbindungsstrecke erhalten |
 | Winkel zwischen den Seiten | Die Winkel der Figur bleiben gleich | Eine Drehung ist eine starre Bewegung, sie verbiegt die Figur nicht |
-| Ausrichtung | Der Graph zeigt in eine neue Richtung | Jeder Punkt ändert seine Lage relativ zum Mittelpunkt |
+| Ausrichtung | Der Graph zeigt in eine neue Richtung | Punkte außerhalb des Mittelpunkts bewegen sich auf Kreisbögen um diesen Punkt |
 | Zusammensetzen | Zwei Drehungen um denselben Mittelpunkt addieren ihre Winkel | Erst um <InlineMath math="\theta_1" />, dann um <InlineMath math="\theta_2" /> drehen ergibt eine einzige Drehung um <InlineMath math="\theta_1 + \theta_2" /> |
 
 Weil Abstände und Winkel gleich bleiben, heißt die Drehung eine starre Bewegung. Diese eine Tatsache erklärt, warum Form und Größe erhalten bleiben und nur <Highlight>Lage und Ausrichtung wandern</Highlight>.
 
 ## Drehungen verschiedener Kurven
 
-Eine Drehung wirkt nicht auf jede Kurve gleich. Eine Gerade bleibt nach der Drehung eine Gerade, ihre Steigung und ihre Lage ändern sich aber. Eine Exponentialkurve dagegen kann nach der Drehung ihre Achse wechseln und muss danach keine Funktion der horizontalen Koordinate mehr sein. Die beiden folgenden Beispiele zeigen diesen Unterschied.
+Eine Drehung wirkt nicht auf jede Kurve gleich. Eine Gerade bleibt nach der Drehung eine Gerade, ihre **Steigung** und ihre Lage ändern sich aber. Eine Exponentialkurve dagegen kann nach der Drehung ihre Achse wechseln und muss danach keine Funktion der horizontalen Koordinate mehr sein. Die beiden folgenden Beispiele zeigen diesen Unterschied.
 
 ### Eine gedrehte Gerade
 
 Bei einer Geraden <InlineMath math="y = mx + c" /> dreht sich jeder Punkt in eine neue Lage, deshalb ändern sich <Highlight>Steigung und Lage gleichzeitig</Highlight>. Die Drehung um <InlineMath math="45^\circ" /> gegen den Uhrzeigersinn um den Ursprung zeigt, wie aus der ursprünglichen Geraden eine zweite Gerade wird.
 
+Für das Beispiel <InlineMath math="y=2x+1" /> liefert die Drehregel die folgenden neuen Koordinaten. Eliminiere die alte Variable, um die Gleichung der gedrehten Geraden zu erhalten.
+
+<BlockMath math="X=\frac{x-(2x+1)}{\sqrt2}=-\frac{x+1}{\sqrt2},\qquad Y=\frac{x+(2x+1)}{\sqrt2}=\frac{3x+1}{\sqrt2}" />
+
+<BlockMath math="x=-\sqrt2X-1 \quad\Rightarrow\quad Y=-3X-\sqrt2" />
+
 <LineEquation
+  showZAxis={false}
   title={<>Drehung der Geraden <InlineMath math="y = 2x + 1" /></>}
   description={<>Drehung um <InlineMath math="45^\circ" /> gegen den Uhrzeigersinn um den Ursprung.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       points: Array.from({ length: 23 }, (_, pointIndex) => {
@@ -173,17 +185,23 @@ Bei einer Geraden <InlineMath math="y = mx + c" /> dreht sich jeder Punkt in ein
 
 Auch eine Exponentialkurve lässt sich punktweise drehen. Das Ergebnis muss allerdings nicht mehr der Graph einer Funktion der horizontalen Koordinate sein.
 
+Bei dieser konkreten Drehung bleibt das Ergebnis **eine Funktion**. Mit <InlineMath math="X=-2^x" /> und <InlineMath math="Y=x" /> folgt:
+
+<BlockMath math="Y=\log_2(-X),\qquad X<0" />
+
+Die ursprüngliche waagerechte Asymptote wird zur senkrechten Asymptote <InlineMath math="X=0" />.
+
 <LineEquation
+  showZAxis={false}
   title={<>Drehung der Kurve <InlineMath math="y = 2^x" /></>}
   description={<>Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn.</>}
-  cameraPosition={[8, 6, 8]}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 779 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 680;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.5;
+        const x = -4 + pointIndex / 778 * 7;
         const y = Math.pow(2, x);
         return { x, y, z: 0 };
       }),
@@ -192,7 +210,7 @@ Auch eine Exponentialkurve lässt sich punktweise drehen. Das Ergebnis muss alle
       labels: [
         {
           text: <InlineMath math="y=2^x" />,
-          at: 764,
+          at: 556,
           offset: [-0.2, -2, 0],
         },
       ],
@@ -200,9 +218,7 @@ Auch eine Exponentialkurve lässt sich punktweise drehen. Das Ergebnis muss alle
     {
       smooth: false,
       points: Array.from({ length: 326 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 201;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.5;
+        const x = -4 + pointIndex / 325 * 7;
         const y = Math.pow(2, x);
         // 90° rotation around origin: (x,y) → (-y,x)
         const xRotated = -y;
@@ -214,7 +230,7 @@ Auch eine Exponentialkurve lässt sich punktweise drehen. Das Ergebnis muss alle
       labels: [
         {
           text: <>nach <InlineMath math="90^\circ" /> Drehung</>,
-          at: 222,
+          at: 186,
           offset: [-0.5, 0.5, 0],
         },
       ],
@@ -224,13 +240,13 @@ Auch eine Exponentialkurve lässt sich punktweise drehen. Das Ergebnis muss alle
 
 ## So konstruierst du eine gedrehte Kurve
 
-Beim Drehen einer ganzen Kurve wirkt die Drehformel auf einzelne Punkte, deshalb läuft die Arbeit Punkt für Punkt. Lege zuerst Mittelpunkt und Drehwinkel fest, weil beide in jeder folgenden Rechnung stehen.
+Beim Drehen einer ganzen Kurve wirkt die **Drehformel** auf einzelne Punkte, deshalb läuft die Arbeit Punkt für Punkt. Lege zuerst Mittelpunkt und Drehwinkel fest, weil beide in jeder folgenden Rechnung stehen.
 
-Wähle danach mehrere Punkte auf der ursprünglichen Kurve, darunter die beiden Enden und einen Scheitelpunkt, und wende die Drehformel auf jeden dieser Punkte an. Zeichne die gedrehten Punkte ein, verbinde sie in der ursprünglichen Reihenfolge und prüfe dazwischen einige zusätzliche Punkte. Das Ergebnis muss keine Funktion von <InlineMath math="x" /> mehr sein, weil zwei gedrehte Punkte denselben <InlineMath math="x" />-Wert haben können.
+Wähle danach mehrere Punkte auf der ursprünglichen Kurve, darunter vorhandene Endpunkte und Scheitelpunkte, und wende die Drehformel auf jeden dieser Punkte an. Zeichne die gedrehten Punkte ein, verbinde sie in der ursprünglichen Reihenfolge und prüfe dazwischen einige zusätzliche Punkte. Das Ergebnis muss keine Funktion von <InlineMath math="x" /> mehr sein, weil zwei gedrehte Punkte denselben <InlineMath math="x" />-Wert haben können.
 
 ## Übungen
 
-In jeder Aufgabe ist genau eine Drehung durchzuführen. Notiere zuerst Mittelpunkt und Drehwinkel, weil beide in jeder Rechnung stehen, und achte auf die Richtung, denn gegen den Uhrzeigersinn und mit dem Uhrzeigersinn liefern verschiedene Ergebnisse. Rechne zuerst ohne Lösungen und vergleiche danach deine Rechenschritte mit den ausführlichen Lösungen.
+In jeder Aufgabe ist genau eine Drehung durchzuführen. Notiere zuerst **Mittelpunkt und Drehwinkel**, weil beide in jeder Rechnung stehen, und achte auf die Richtung, denn gegen den Uhrzeigersinn und mit dem Uhrzeigersinn liefern verschiedene Ergebnisse. Rechne zuerst ohne Lösungen und vergleiche danach deine Rechenschritte mit den ausführlichen Lösungen.
 
 1. Drehe den Punkt <InlineMath math="(3, 4)" /> um den Ursprung und um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn.
 
@@ -242,295 +258,313 @@ In jeder Aufgabe ist genau eine Drehung durchzuführen. Notiere zuerst Mittelpun
 
 5. Die Funktion <InlineMath math="y = \sqrt{x}" /> für <InlineMath math="x \geq 0" /> wird um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung gedreht. Beschreibe die Form der neuen Kurve.
 
-### Lösungen
+### Einen Punkt drehen
 
-Jede Lösung nennt zuerst Mittelpunkt und Drehwinkel und setzt beide in die Drehformel ein. Der gedrehte Punkt wird anschließend gegen den ursprünglichen Punkt geprüft, damit der Abstand zum Mittelpunkt nachweislich gleich bleibt.
+Mit der <InlineMath math="90^\circ" />-**Rotationsformel**:
 
-1. Mit der <InlineMath math="90^\circ" />-Rotationsformel:
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (-y, x)" />
+<BlockMath math="(3, 4) \rightarrow (-4, 3)" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (-y, x)" />
-   <BlockMath math="(3, 4) \rightarrow (-4, 3)" />
-   </MathContainer>
+Der gedrehte Punkt lautet damit <InlineMath math="(-4, 3)" />.
 
-   Der gedrehte Punkt lautet damit <InlineMath math="(-4, 3)" />.
+<LineEquation
+  showZAxis={false}
+  title={<>Drehung des Punktes <InlineMath math="(3, 4)" /></>}
+  description={<>Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 4, z: 0 }
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(3, 4)" />,
+          at: 1,
+          offset: [0.3, 0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -4, y: 3, z: 0 }
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(-4, 3)" />,
+          at: 1,
+          offset: [-0.5, 0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+  ]}
+/>
 
-   <LineEquation
-     title={<>Drehung des Punktes <InlineMath math="(3, 4)" /></>}
-     description={<>Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: [
-           { x: 0, y: 0, z: 0 },
-           { x: 3, y: 4, z: 0 }
-         ],
-         smooth: false,
-         color: "#9333ea",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(3, 4)" />,
-             at: 1,
-             offset: [0.3, 0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-       {
-         points: [
-           { x: 0, y: 0, z: 0 },
-           { x: -4, y: 3, z: 0 }
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(-4, 3)" />,
-             at: 1,
-             offset: [-0.5, 0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-     ]}
-   />
+### Den Scheitelpunkt drehen
 
-2. Der ursprüngliche Scheitelpunkt wird um <InlineMath math="180^\circ" /> gedreht:
+Der ursprüngliche **Scheitelpunkt** wird um <InlineMath math="180^\circ" /> gedreht:
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (-x, -y)" />
-   <BlockMath math="(1, 0) \rightarrow (-1, 0)" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (-x, -y)" />
+<BlockMath math="(1, 0) \rightarrow (-1, 0)" />
+</MathContainer>
 
-   Der neue Scheitelpunkt liegt bei <InlineMath math="(-1, 0)" />.
+Der neue Scheitelpunkt liegt bei <InlineMath math="(-1, 0)" />.
 
-   <LineEquation
-     title={<>Drehung der Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
-     description={<>Drehung um <InlineMath math="180^\circ" /> um den Ursprung.</>}
-     cameraPosition={[10, 6, 10]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 127 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex + 0;
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x - 2 * x + 1;
-           return { x, y, z: 0 };
-         }),
-         color: "#0d9488",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
-             at: 90,
-             offset: [1, 0.5, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 160 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex + 0;
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x - 2 * x + 1;
-           // 180° rotation: (x,y) → (-x,-y)
-           const xRotated = -x;
-           const yRotated = -y;
-           return { x: xRotated, y: yRotated, z: 0 };
-         }),
-         color: "#7c3aed",
-         showPoints: false,
-         labels: [
-           {
-             text: <>nach <InlineMath math="180^\circ" /> Drehung</>,
-             at: 40,
-             offset: [-0.5, -0.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+<LineEquation
+  showZAxis={false}
+  title={<>Drehung der Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
+  description={<>Drehung um <InlineMath math="180^\circ" /> um den Ursprung.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 127 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex + 0;
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x - 2 * x + 1;
+        return { x, y, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
+          at: 90,
+          offset: [1, 0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 160 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex + 0;
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x - 2 * x + 1;
+        // 180° rotation: (x,y) → (-x,-y)
+        const xRotated = -x;
+        const yRotated = -y;
+        return { x: xRotated, y: yRotated, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <>nach <InlineMath math="180^\circ" /> Drehung</>,
+          at: 40,
+          offset: [-0.5, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-3. Wir wählen zwei Punkte auf der Geraden und drehen sie um <InlineMath math="270^\circ" />:
+### Die Geradengleichung bestimmen
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (y, -x)" />
-   <BlockMath math="(0, -2) \rightarrow (-2, 0)" />
-   <BlockMath math="(1, 1) \rightarrow (1, -1)" />
-   <BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
-   <BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
-   </MathContainer>
+Wir wählen **zwei Punkte** auf der Geraden und drehen sie um <InlineMath math="270^\circ" />:
 
-   Die gedrehte Gerade hat damit die Gleichung <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (y, -x)" />
+<BlockMath math="(0, -2) \rightarrow (-2, 0)" />
+<BlockMath math="(1, 1) \rightarrow (1, -1)" />
+<BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
+<BlockMath math="0=-\frac{1}{3}(-2)+b \quad\Rightarrow\quad b=-\frac{2}{3}" />
+<BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
+</MathContainer>
 
-   <LineEquation
-     title={<>Drehung der Geraden <InlineMath math="y = 3x - 2" /></>}
-     description={<>Drehung um <InlineMath math="270^\circ" /> um den Ursprung.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: Array.from({ length: 14 }, (_, pointIndex) => {
-           const i = pointIndex - 3;
-           const x = (i - 5) * 0.8;
-           const y = 3 * x - 2;
-           return { x, y, z: 0 };
-         }),
-         smooth: false,
-         color: "#059669",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=3x - 2" />,
-             at: 9,
-             offset: [2, 0.5, 0],
-           },
-         ],
-       },
-       {
-         points: Array.from({ length: 17 }, (_, pointIndex) => {
-           const i = pointIndex - 5;
-           const x = (i - 5) * 0.8;
-           const y = 3 * x - 2;
-           // 270° rotation: (x,y) → (y,-x)
-           const xRotated = y;
-           const yRotated = -x;
-           return { x: xRotated, y: yRotated, z: 0 };
-         }),
-         smooth: false,
-         color: "#d97706",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
-             at: 10,
-             offset: [-0.5, 1.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+Die gedrehte Gerade hat damit die Gleichung <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
 
-4. Berechne zuerst die Koordinaten des Punktes <InlineMath math="(2, 5)" /> relativ zum Mittelpunkt <InlineMath math="(1, 1)" />:
+<LineEquation
+  showZAxis={false}
+  title={<>Drehung der Geraden <InlineMath math="y = 3x - 2" /></>}
+  description={<>Drehung um <InlineMath math="270^\circ" /> um den Ursprung.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 14 }, (_, pointIndex) => {
+        const i = pointIndex - 3;
+        const x = (i - 5) * 0.8;
+        const y = 3 * x - 2;
+        return { x, y, z: 0 };
+      }),
+      smooth: false,
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=3x - 2" />,
+          at: 9,
+          offset: [2, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 17 }, (_, pointIndex) => {
+        const i = pointIndex - 5;
+        const x = (i - 5) * 0.8;
+        const y = 3 * x - 2;
+        // 270° rotation: (x,y) → (y,-x)
+        const xRotated = y;
+        const yRotated = -x;
+        return { x: xRotated, y: yRotated, z: 0 };
+      }),
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
+          at: 10,
+          offset: [-0.5, 1.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-   <BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
+### Um einen anderen Mittelpunkt drehen
 
-   Setze diese Werte und den Winkel <InlineMath math="60^\circ" /> in die Drehformeln ein. Beide Mittelpunktkoordinaten sind <InlineMath math="1" />, deshalb wird in jeder Formel <InlineMath math="1" /> addiert:
+Berechne zuerst die Koordinaten des Punktes <InlineMath math="(2, 5)" /> relativ zum Mittelpunkt <InlineMath math="(1, 1)" />:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
-   <BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
 
-   Die neuen Koordinaten lauten <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />.
+Setze diese Werte und den Winkel <InlineMath math="60^\circ" /> in die Drehformeln ein. Beide **Mittelpunktkoordinaten** sind <InlineMath math="1" />, deshalb wird in jeder Formel <InlineMath math="1" /> addiert:
 
-   <LineEquation
-     title={<>Drehung von <InlineMath math="(2, 5)" /> um <InlineMath math="(1, 1)" /></>}
-     description={<>Drehung um <InlineMath math="60^\circ" /> gegen den Uhrzeigersinn.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: [
-           { x: 1, y: 1, z: 0 },
-           { x: 2, y: 5, z: 0 }
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(2, 5)" />,
-             at: 1,
-             offset: [0.7, -0.2, 0],
-           },
-           {
-             text: <>Drehzentrum <InlineMath math="(1,1)" /></>,
-             at: 0,
-             offset: [0.3, -0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-       {
-         points: [
-           { x: 1, y: 1, z: 0 },
-           { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
-         ],
-         smooth: false,
-         color: "#db2777",
-         showPoints: false,
-         labels: [
-           {
-             text: "gedrehter Punkt",
-             at: 1,
-             offset: [-0.5, 0.1, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-     ]}
-   />
+<MathContainer>
+<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
+<BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
+</MathContainer>
 
-5. Nach der Drehung der Funktion <InlineMath math="y = \sqrt{x}" /> um <InlineMath math="90^\circ" /> gilt:
+Die neuen Koordinaten lauten <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />.
 
-   <MathContainer>
-   <BlockMath math="x = -\sqrt{y}" />
-   <BlockMath math="y = x^2 \text{ für } x \leq 0" />
-   </MathContainer>
+<LineEquation
+  showZAxis={false}
+  title={<>Drehung von <InlineMath math="(2, 5)" /> um <InlineMath math="(1, 1)" /></>}
+  description={<>Drehung um <InlineMath math="60^\circ" /> gegen den Uhrzeigersinn.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: [
+        { x: 1, y: 1, z: 0 },
+        { x: 2, y: 5, z: 0 }
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(2, 5)" />,
+          at: 1,
+          offset: [0.7, -0.2, 0],
+        },
+        {
+          text: <>Drehzentrum <InlineMath math="(1,1)" /></>,
+          at: 0,
+          offset: [0.3, -0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+    {
+      points: [
+        { x: 1, y: 1, z: 0 },
+        { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
+      ],
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [
+        {
+          text: "gedrehter Punkt",
+          at: 1,
+          offset: [-0.5, 0.1, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+  ]}
+/>
 
-   Die gedrehte Kurve ist die linke Hälfte einer nach oben geöffneten Parabel. Ihr Definitionsbereich ist <InlineMath math="x \leq 0" />, ihr Wertebereich <InlineMath math="y \geq 0" />. Sie entspricht der Spiegelung der rechten Hälfte von <InlineMath math="y = x^2" /> an der <InlineMath math="y" />-Achse.
+### Die Wurzelkurve drehen
 
-   <LineEquation
-     title={<>Drehung der Funktion <InlineMath math="y = \sqrt{x}" /></>}
-     description={<>Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.9364916731037085);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#65a30d",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=\sqrt{x}" />,
-             at: 78,
-             offset: [0.5, 0.3, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.9364916731037085);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = -t;
-               return { x, y: t * t, z: 0 };
-             });
-         })(),
-         color: "#e11d48",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=x^2 (x \le 0)" />,
-             at: 78,
-             offset: [-0.8, -0.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+Nach der Drehung der Funktion <InlineMath math="y = \sqrt{x}" /> um <InlineMath math="90^\circ" /> gilt:
+
+<MathContainer>
+<BlockMath math="X=-y=-\sqrt{x},\quad Y=x" />
+<BlockMath math="X=-\sqrt{Y}\le0 \quad\Rightarrow\quad Y=X^2" />
+<BlockMath math="y = x^2 \text{ für } x \leq 0" />
+</MathContainer>
+
+Die gedrehte Kurve ist die linke Hälfte einer nach oben geöffneten Parabel. Ihr **Definitionsbereich** ist <InlineMath math="x \leq 0" />, ihr Wertebereich <InlineMath math="y \geq 0" />. Sie entspricht der Spiegelung der rechten Hälfte von <InlineMath math="y = x^2" /> an der <InlineMath math="y" />-Achse.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Drehung der Funktion <InlineMath math="y = \sqrt{x}" /></>}
+  description={<>Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.9364916731037085);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#65a30d",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=\sqrt{x}" />,
+          at: 78,
+          offset: [0.5, 0.3, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.9364916731037085);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = -t;
+            return { x, y: t * t, z: 0 };
+          });
+      })(),
+      color: "#e11d48",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=x^2 (x \le 0)" />,
+          at: 78,
+          offset: [-0.8, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>

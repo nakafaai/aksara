@@ -3,7 +3,7 @@ export const metadata = {
   description: "Mittelpunktswinkel erkennen, zugehörige Bögen einordnen und Bogenlängen sicher berechnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -102,138 +102,35 @@ Gilt <InlineMath math="\angle AOB = 60^\circ" />, dann misst auch der Bogen <Inl
 
 ## Bogenarten nach dem Mittelpunktswinkel
 
-Je nach Mittelpunktswinkel unterscheiden wir drei Fälle. Der Mittelpunktswinkel entscheidet, welcher Anteil des Kreisumfangs zum Bogen gehört. Ein Bogen unter 180 Grad heißt minor, über 180 Grad major, und genau 180 Grad ergeben einen Halbkreis.
+Der Mittelpunktswinkel wählt einen **Anteil des Kreisumfangs** aus. Vergleiche ihn mit einer halben Umdrehung, um die drei Bogenarten zu unterscheiden. Zwei Bögen mit denselben Endpunkten ergänzen sich zu einer vollen Umdrehung.
 
 ### Kleiner Bogen
 
-Ein kleiner Bogen wird von einem Mittelpunktswinkel unter <InlineMath math="180^\circ" /> aufgespannt und ist kürzer als der halbe Kreisumfang. Bei <InlineMath math="90^\circ" /> umfasst er ein Viertel des Umfangs, weil <InlineMath math="90/360" /> genau ein Viertel ist.
+Ein kleiner Bogen wird von einem Mittelpunktswinkel unter <InlineMath math="180^\circ" /> aufgespannt und ist **kürzer als der halbe Kreisumfang**. Bei <InlineMath math="90^\circ" /> umfasst er ein Viertel des Umfangs, weil <InlineMath math="90/360" /> genau ein Viertel ist.
 
 ### Halbkreisbogen
 
-Ein Halbkreisbogen gehört genau zu <InlineMath math="180^\circ" />. Seine Endpunkte liegen auf einem Durchmesser, und seine Länge entspricht der Hälfte des Kreisumfangs. Der zugehörige Sektor ist der Halbkreis selbst.
+Ein Halbkreisbogen gehört genau zu <InlineMath math="180^\circ" />. Seine Endpunkte liegen auf **einem Durchmesser**, und seine Länge entspricht der Hälfte des Kreisumfangs. Der zugehörige Sektor ist der Halbkreis selbst.
 
 ### Großer Bogen
 
-Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ" /> aufgespannt und ist länger als der halbe Kreisumfang. Sein Gradmaß ergänzt das des zugehörigen kleinen Bogens zu einem Vollwinkel:
+Ein großer Bogen wird von einem **Reflexwinkel** über <InlineMath math="180^\circ" /> aufgespannt und ist länger als der halbe Kreisumfang. Sein Gradmaß ergänzt das des zugehörigen kleinen Bogens zu einem Vollwinkel:
 
-<ContentStack>
-
-Das Gradmaß des großen Bogens ergibt sich aus <InlineMath math="360^\circ" /> minus dem Gradmaß des kleinen Bogens.
+<BlockMath math="\theta_{\mathrm{major}}=360^\circ-60^\circ=300^\circ" />
 
 <LineEquation
-  title="Vergleich der Bogentypen"
-  description="Visualisierung von kleinem Bogen, Halbkreis und großem Bogen."
+  title="Kleiner und großer Bogen mit gemeinsamen Endpunkten"
+  description="Der kleine Bogen mit 60 Grad und der große Bogen mit 300 Grad bilden den ganzen Kreisumfang."
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = i * (Math.PI / 3) / 20;
-        return {
-          x: 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 50, offset: [1, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = i * (Math.PI / 3) / 30;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#65a30d",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Kleiner Bogen <InlineMath math="(60^\circ)" /></>, at: 15, offset: [0, 1.4, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = Math.PI + (i * Math.PI / 20);
-        return {
-          x: 2.5 * Math.cos(angle),
-          y: 2.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 50, offset: [0, -0.8, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 51 }, (_, i) => {
-        const angle = Math.PI + (i * Math.PI / 50);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: "Halbkreis", at: 25, offset: [0, -1, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
+    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 0, color: "#ea580c", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 60, color: "#ea580c", showPoints: false },
+    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.3, 0.4, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 300, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="300^\circ" />, offset: [-0.3, -0.4, 0] } },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 12]}
 />
-</ContentStack>
+
 
 ## Bogenlänge berechnen
 
@@ -246,7 +143,7 @@ Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="\theta" /> den Mittelpunktswinkel in Grad
 - <InlineMath math="r" /> den Kreisradius
 
-Das Bogenmaß ist als Bogenlänge geteilt durch Radius definiert. Für einen Winkel im Bogenmaß folgt daher direkt:
+Das Bogenmaß ist als **Bogenlänge geteilt durch Radius** definiert. Für einen Winkel im Bogenmaß folgt daher direkt:
 
 <BlockMath math="s = \theta \times r" />
 
@@ -256,7 +153,7 @@ Dabei muss <InlineMath math="\theta" /> im Bogenmaß eingesetzt werden.
 
 Betrachten wir einen Kreis mit <InlineMath math="r = 6 \text{ cm}" /> und <InlineMath math="\theta = 120^\circ" />.
 
-Einsetzen in die Bogenlängenformel ergibt:
+Der Winkel umfasst **ein Drittel einer Umdrehung**. Nimm deshalb ein Drittel des Kreisumfangs:
 
 <MathContainer>
 <BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
@@ -342,13 +239,13 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
 
 ## Beispiele für Mittelpunktswinkel
 
-Bei einem Zahnrad oder einer Kreisscheibe sind Teile mit gleichen Mittelpunktswinkeln gleichmäßig angeordnet. Um den Abstand dieser Teile am Rand zu berechnen, benötigen wir zusätzlich den Radius. Die Zeiger einer analogen Uhr überstreichen mit der Zeit Mittelpunktswinkel. Mit der Geometrie von Kreisbögen lässt sich auch die Form eines Bogens oder einer Kuppel modellieren. Für die Tragwerksplanung sind jedoch weitere Angaben nötig.
+Der **Minutenzeiger** einer Uhr macht pro Stunde eine volle Umdrehung. In fünf Minuten überstreicht er <InlineMath math="30^\circ" />. Ist er <InlineMath math="10\text{ cm}" /> lang, legt seine Spitze folgende Bogenlänge zurück:
 
-Wird die Erde als Kugel modelliert, hat eine Route auf einem Großkreis die Länge <InlineMath math="s=r\theta" />, wenn der Mittelpunktswinkel <InlineMath math="\theta" /> im Bogenmaß angegeben ist. Für ein mathematisches Beispiel reicht dieses Kugelmodell aus. Eine genaue Navigation benötigt jedoch ein passendes Erdmodell und ausreichend genaue Routendaten.
+<BlockMath math="s=\frac{30^\circ}{360^\circ}\times2\pi(10)=\frac{5\pi}{3}\text{ cm}" />
 
 ## Übungen
 
-In jeder Aufgabe wird ein Mittelpunktswinkel mit dem zugehörigen Bogen verknüpft, deshalb wählst du zwischen Grad und Bogenmaß und behältst eine Einheit bis zum Ende bei.
+In jeder Aufgabe wird ein Mittelpunktswinkel mit dem zugehörigen Bogen verknüpft, deshalb wählst du zwischen **Grad und Bogenmaß** und behältst eine Einheit bis zum Ende bei.
 
 1. Ein Kreis hat den Radius <InlineMath math="8 \text{ cm}" />. Berechne die Länge des Bogens zu <InlineMath math="45^\circ" />.
 
@@ -360,102 +257,104 @@ In jeder Aufgabe wird ein Mittelpunktswinkel mit dem zugehörigen Bogen verknüp
 
 ### Ausführliche Lösungen
 
-1. **Lösung:**
+Bestimme bei den Aufgaben eins, drei und vier den **Anteil einer vollen Umdrehung**. In Aufgabe zwei stellst du die Gleichung nach dem gesuchten Winkel um.
 
-   Gegeben: <InlineMath math="r = 8 \text{ cm}" /> und <InlineMath math="\theta = 45^\circ" />
+**Lösung 1**
 
-   Gesucht: Bogenlänge <InlineMath math="s" />
+Gegeben: <InlineMath math="r = 8 \text{ cm}" /> und <InlineMath math="\theta = 45^\circ" />
 
-   **Schritt 1**: Bogenlängenformel aufstellen
+Gesucht: Bogenlänge <InlineMath math="s" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Schritt 1**: Bogenlängenformel aufstellen
 
-   **Schritt 2**: Bekannte Werte einsetzen
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
+**Schritt 2**: Bekannte Werte einsetzen
 
-   **Schritt 3**: Bruch vereinfachen
+<BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
 
-   <BlockMath math="s = \frac{1}{8} \times 16\pi" />
+**Schritt 3**: Bruch vereinfachen
 
-   **Schritt 4**: Ergebnis berechnen
+<BlockMath math="s = \frac{1}{8} \times 16\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Schritt 4**: Ergebnis berechnen
 
-   Die Bogenlänge beträgt <InlineMath math="2\pi \text{ cm}" />, also ungefähr <InlineMath math="6{,}28 \text{ cm}" />.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-2. **Lösung:**
+Die Bogenlänge beträgt <InlineMath math="2\pi \text{ cm}" />, also ungefähr <InlineMath math="6{,}28 \text{ cm}" />.
 
-   Gegeben: <InlineMath math="s = 10\pi \text{ cm}" /> und <InlineMath math="r = 15 \text{ cm}" />
+**Lösung 2**
 
-   Gesucht: Mittelpunktswinkel <InlineMath math="\theta" />
+Gegeben: <InlineMath math="s = 10\pi \text{ cm}" /> und <InlineMath math="r = 15 \text{ cm}" />
 
-   **Schritt 1**: Bogenlängenformel aufstellen
+Gesucht: Mittelpunktswinkel <InlineMath math="\theta" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Schritt 1**: Bogenlängenformel aufstellen
 
-   **Schritt 2**: Bekannte Werte einsetzen
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
+**Schritt 2**: Bekannte Werte einsetzen
 
-   **Schritt 3**: Gleichung vereinfachen
+<BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
 
-   <BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
+**Schritt 3**: Gleichung vereinfachen
 
-   **Schritt 4**: <InlineMath math="\theta" /> isolieren
+<BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
 
-   <BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
+**Schritt 4**: <InlineMath math="\theta" /> isolieren
 
-   **Schritt 5**: Ergebnis berechnen
+<BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
 
-   <BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
+**Schritt 5**: Ergebnis berechnen
 
-   Der zugehörige Mittelpunktswinkel beträgt <InlineMath math="120^\circ" />.
+<BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
 
-3. **Lösung:**
+Der zugehörige Mittelpunktswinkel beträgt <InlineMath math="120^\circ" />.
 
-   Gegeben: <InlineMath math="\angle AOB = 72^\circ" /> und <InlineMath math="r = 5 \text{ cm}" />
+**Lösung 3**
 
-   Gesucht: Länge des Bogens <InlineMath math="AB" />
+Gegeben: <InlineMath math="\angle AOB = 72^\circ" /> und <InlineMath math="r = 5 \text{ cm}" />
 
-   **Schritt 1**: Bogenlängenformel aufstellen
+Gesucht: Länge des Bogens <InlineMath math="AB" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Schritt 1**: Bogenlängenformel aufstellen
 
-   **Schritt 2**: Bekannte Werte einsetzen
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
+**Schritt 2**: Bekannte Werte einsetzen
 
-   **Schritt 3**: Bruch vereinfachen
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
+**Schritt 3**: Bruch vereinfachen
 
-   **Schritt 4**: Ergebnis berechnen
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Schritt 4**: Ergebnis berechnen
 
-   Der Bogen <InlineMath math="AB" /> ist damit <InlineMath math="2\pi \text{ cm}" /> lang.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-4. **Lösung:**
+Der Bogen <InlineMath math="AB" /> ist damit <InlineMath math="2\pi \text{ cm}" /> lang.
 
-   Gegeben: <InlineMath math="r = 30 \text{ cm}" /> und <InlineMath math="\theta = 150^\circ" />
+**Lösung 4**
 
-   Gesucht: zurückgelegte Strecke, also die Bogenlänge
+Gegeben: <InlineMath math="r = 30 \text{ cm}" /> und <InlineMath math="\theta = 150^\circ" />
 
-   **Schritt 1**: Bogenlängenformel aufstellen
+Gesucht: zurückgelegte Strecke, also die Bogenlänge
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Schritt 1**: Bogenlängenformel aufstellen
 
-   **Schritt 2**: Bekannte Werte einsetzen
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
+**Schritt 2**: Bekannte Werte einsetzen
 
-   **Schritt 3**: Bruch vereinfachen
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
+**Schritt 3**: Bruch vereinfachen
 
-   **Schritt 4**: Ergebnis berechnen
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
 
-   <BlockMath math="s = 25\pi \text{ cm}" />
+**Schritt 4**: Ergebnis berechnen
 
-   Der Punkt legt auf seiner Kreisbahn <InlineMath math="25\pi \text{ cm}" /> zurück, also ungefähr <InlineMath math="78{,}54 \text{ cm}" />.
+<BlockMath math="s = 25\pi \text{ cm}" />
+
+Der Punkt legt auf seiner Kreisbahn <InlineMath math="25\pi \text{ cm}" /> zurück, also ungefähr <InlineMath math="78{,}54 \text{ cm}" />.

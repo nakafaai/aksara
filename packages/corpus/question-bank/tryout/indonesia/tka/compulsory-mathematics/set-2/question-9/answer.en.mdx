@@ -2,19 +2,22 @@ export const metadata = {
   title: "Solution to Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-10-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-The first term is <InlineMath math="u_1=S_1=5" />. For <InlineMath math="n\ge2" />, subtract consecutive partial sums to leave only the <InlineMath math="n" />th term.
+The first term is <InlineMath math="u_1=S_1=5" />. For <InlineMath math="n\ge2" />, **subtract consecutive partial sums** to leave only the <InlineMath math="n" />th term.
 
 <BlockMath math="\begin{aligned}
 u_n&=S_n-S_{n-1} \\
-&=3n^2+2n \\
-&\quad-\bigl(3(n-1)^2+2(n-1)\bigr) \\
+&=3n^2+2n-\bigl(3(n^2-2n+1)+2n-2\bigr) \\
+&=3n^2+2n-(3n^2-4n+1) \\
+&=3n^2+2n-3n^2+4n-1 \\
 &=6n-1
 \end{aligned}" />
 
 This formula also gives <InlineMath math="u_1=5" />. The difference <InlineMath math="u_{n+1}-u_n=6" /> is constant, so the sequence is arithmetic. Evaluate the values in the statements.
+
+<BlockMath math="u_{n+1}-u_n=[6(n+1)-1]-(6n-1)=6" />
 
 <BlockMath math="\begin{aligned}
 u_{10}&=6(10)-1=59 \\

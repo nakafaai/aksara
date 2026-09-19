@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bilde Punkte und Figuren mit quadratischen Matrizen zweiter Ordnung ab und erkenne Drehungen, Spiegelungen und Scherungen an ihren Matrizen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Geometrische Transformation",
 };
 
@@ -38,9 +38,9 @@ Berechne dieses Matrixprodukt und bestimme die zugehörige Transformation:
 
 <BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
 
-**Lösung:**
+**Lösung**:
 
-Das Matrixprodukt ist:
+Verwende die **erste Zeile für die waagerechte Koordinate** und die zweite für die senkrechte Koordinate:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
 
@@ -110,9 +110,9 @@ Bestimme das Bild von <InlineMath math="\triangle ABC" /> mit den Eckpunkten <In
 
 <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-**Lösung:**
+**Lösung**:
 
-Zuerst schreiben wir die Punktkoordinaten als Spalten einer Matrix:
+Zuerst schreiben wir die Punktkoordinaten als **Spalten einer Matrix**:
 
 <BlockMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />
 
@@ -204,6 +204,8 @@ Die Matrix <InlineMath math="R_{180^\circ}" /> beschreibt eine Drehung um <Inlin
 
 ## Übungen
 
+Bestimme zunächst die **Koordinatenregel** durch Multiplikation von Zeilen und Spalten. Bei der zweiten Aufgabe hängt die waagerechte Änderung von der Höhe ab. Verschiedene Punkte müssen sich deshalb nicht gleich weit bewegen.
+
 1.  Berechne das folgende Matrixprodukt. Welche Transformation beschreibt die Matrix?
 
     <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
@@ -215,31 +217,53 @@ Die Matrix <InlineMath math="R_{180^\circ}" /> beschreibt eine Drehung um <Inlin
 
 ### Lösungen
 
-1.  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} y \\ -x \end{pmatrix} \end{aligned}" />
+Lies beide Ausgabekoordinaten, bevor du die Transformation benennst. Eine **Drehung erhält Längen**, während eine allgemeine Matrix entsprechende Seitenlängen verändern kann.
 
-    Der Punkt <InlineMath math="(x,y)" /> wird auf <InlineMath math="(y,-x)" /> abgebildet.
+**Lösung 1**
 
-    Dies ist eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn. Gleichwertig dazu ist eine Drehung um <InlineMath math="270^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} y \\ -x \end{pmatrix} \end{aligned}" />
 
-2.  Transformationsmatrix:
+Der Punkt <InlineMath math="(x,y)" /> wird auf <InlineMath math="(y,-x)" /> abgebildet.
 
-    <BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+Dies ist eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn. Gleichwertig dazu ist eine Drehung um <InlineMath math="270^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
 
-    Eckpunkte: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
+**Lösung 2**
 
-    Punktmatrix:
+Transformationsmatrix:
 
-    <BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
+<BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
-    Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+Eckpunkte: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(2)+(2)(0) \\ &amp;m_{12}=(1)(2)+(2)(1) \\ &amp;m_{13}=(1)(0)+(2)(1) \\ &amp;m_{21}=(0)(2)+(1)(0) \\ &amp;m_{22}=(0)(2)+(1)(1) \\ &amp;m_{23}=(0)(0)+(1)(1) \end{aligned}" />
+Punktmatrix:
 
-      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
-      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+<BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
 
-    Die Bildpunkte sind <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" /> und <InlineMath math="C'(2,1)" />.
+Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
 
-    Diese Transformation heißt horizontale Scherung, weil die <InlineMath math="x" />-Koordinate um das Doppelte der <InlineMath math="y" />-Koordinate verschoben wird, während <InlineMath math="y" /> unverändert bleibt.
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(2)+(2)(0) \\ &amp;m_{12}=(1)(2)+(2)(1) \\ &amp;m_{13}=(1)(0)+(2)(1) \\ &amp;m_{21}=(0)(2)+(1)(0) \\ &amp;m_{22}=(0)(2)+(1)(1) \\ &amp;m_{23}=(0)(0)+(1)(1) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Die Bildpunkte sind <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" /> und <InlineMath math="C'(2,1)" />.
+
+Diese Transformation heißt horizontale Scherung, weil die <InlineMath math="x" />-Koordinate um das Doppelte der <InlineMath math="y" />-Koordinate verschoben wird, während <InlineMath math="y" /> unverändert bleibt.
+
+Bei dieser Scherung wird aus der senkrechten Seite <InlineMath math="AB" /> die schräge Seite <InlineMath math="A' B'" />. Die **entsprechende Seitenlänge ändert sich**, aber beide Dreiecke behalten dieselbe waagerechte Grundseitenlänge und Höhe:
+
+<MathContainer>
+  <BlockMath math="AB=1,\qquad A'B'=\sqrt{(4-2)^2+(1-0)^2}=\sqrt5" />
+  <BlockMath math="L=\frac12\cdot2\cdot1=1,\qquad L'=\frac12\cdot2\cdot1=1" />
+</MathContainer>
+
+<LineEquation title="Horizontale Scherung eines Dreiecks" description="Punkte auf Höhe eins verschieben sich zwei Einheiten nach rechts. A auf der waagerechten Achse bleibt fest."
+  data={[
+    { points: [{ x: 2, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }, { x: 2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#d97706", labels: [{ text: "A=A'", at: 0, offset: [0, -0.3, 0] }, { text: "B=C'", at: 1, offset: [0, 0.3, 0] }, { text: "C", at: 2, offset: [-0.2, 0.3, 0] }] },
+    { points: [{ x: 2, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#059669", labels: [{ text: "B'", at: 1, offset: [0.2, 0.3, 0] }] },
+  ]}
+  cameraTarget={[2, 0.5, 0]}
+  cameraPosition={[2, 0.5, 6]}
+/>
