@@ -206,7 +206,7 @@ layer(publicationTestLayer)("question publication", (it) => {
         ),
         makeStaleHead(
           englishHead,
-          "tka/mathematics/set-9/question-1",
+          "tka/compulsory-mathematics/set-9/question-1",
           "tka-math"
         ),
       ]);

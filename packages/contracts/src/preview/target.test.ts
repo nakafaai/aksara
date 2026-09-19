@@ -189,7 +189,7 @@ describe("try-out preview target", () => {
         placement: {
           ...testPreviewTarget.placement,
           questionSourcePath:
-            "packages/corpus/question-bank/tryout/indonesia/tka/mathematics/set-1/question-1",
+            "packages/corpus/question-bank/tryout/indonesia/tka/compulsory-mathematics/set-1/question-1",
         },
       },
     ];

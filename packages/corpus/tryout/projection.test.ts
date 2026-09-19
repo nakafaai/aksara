@@ -8,8 +8,8 @@ import {
 } from "#corpus/test/tryout";
 import { projectTryoutSources } from "#corpus/tryout/projection";
 
-const ENGLISH_PATH_PATTERN = /\/mathematics$/u;
-const INDONESIAN_PATH_PATTERN = /\/matematika$/u;
+const ENGLISH_PATH_PATTERN = /\/compulsory-mathematics$/u;
+const INDONESIAN_PATH_PATTERN = /\/matematika-wajib$/u;
 
 describe("tryout projection", () => {
   it.effect(
@@ -106,7 +106,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
-              row.trackKey === "mathematics" &&
+              row.trackKey === "compulsory-mathematics" &&
               row.appLocale === "en"
           )?.row
         );
@@ -115,7 +115,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
-              row.trackKey === "mathematics" &&
+              row.trackKey === "compulsory-mathematics" &&
               row.appLocale === "id"
           )?.row
         );
@@ -124,7 +124,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "section" &&
               row.examKey === "tka" &&
-              row.sectionKey === "mathematics" &&
+              row.sectionKey === "compulsory-mathematics" &&
               row.setKey === "set-1" &&
               row.appLocale === "id"
           )?.row
@@ -133,17 +133,38 @@ describe("tryout projection", () => {
         expect(trackEn.publicPath).toMatch(ENGLISH_PATH_PATTERN);
         expect(trackId.publicPath).toMatch(INDONESIAN_PATH_PATTERN);
         expect(trackEn.graph).toMatchObject({
-          conceptId: "concept:tryout:indonesia:tka:mathematics",
-          learningObjectId: "lo:tryout-track:indonesia:tka:mathematics",
+          conceptId: "concept:tryout:indonesia:tka:compulsory-mathematics",
+          learningObjectId:
+            "lo:tryout-track:indonesia:tka:compulsory-mathematics",
           lensId: "lens:tryout:indonesia:tka",
         });
         expect(trackId.graph.conceptId).toBe(trackEn.graph.conceptId);
         expect(trackId.graph.assetId).not.toBe(trackEn.graph.assetId);
+        expect(
+          projection.catalog.some(
+            ({ row }) =>
+              row.kind === "track" &&
+              row.examKey === "tka" &&
+              row.trackKey === "mathematics"
+          )
+        ).toBe(false);
+        expect(
+          projection.catalog.find(
+            ({ row }) =>
+              row.kind === "track" &&
+              row.examKey === "tka" &&
+              row.trackKey === "compulsory-mathematics" &&
+              row.appLocale === "de"
+          )?.row
+        ).toMatchObject({
+          publicPath: "try-out/indonesien/tka/pflichtmathematik",
+        });
         expect(internal).toMatchObject({
           graph: {
-            conceptId: "concept:tryout:indonesia:tka:mathematics:mathematics",
+            conceptId:
+              "concept:tryout:indonesia:tka:compulsory-mathematics:compulsory-mathematics",
             learningObjectId:
-              "lo:tryout-section:indonesia:tka:mathematics:set-1:mathematics",
+              "lo:tryout-section:indonesia:tka:compulsory-mathematics:set-1:compulsory-mathematics",
             lensId: "lens:tryout:indonesia:tka",
           },
           visibility: "internal-entry",
@@ -177,7 +198,11 @@ describe("tryout projection", () => {
           )
         ).toEqual(Array.from({ length: 10 }, () => 160));
         expect(
-          ["mathematics", "indonesian-language", "english-language"].map(
+          [
+            "compulsory-mathematics",
+            "indonesian-language",
+            "english-language",
+          ].map(
             (trackKey) =>
               tka.filter(
                 ({ appLocale, trackKey: placementTrackKey }) =>
@@ -247,7 +272,7 @@ describe("tryout projection", () => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        const groupPath = "/tka/mathematics/set-1/";
+        const groupPath = "/tka/compulsory-mathematics/set-1/";
         const fifth = yield* Effect.fromNullishOr(
           questions.find(({ questionKey }) =>
             questionKey.includes(`${groupPath}question-5`)

@@ -16,6 +16,11 @@ it("requires a visible phrase inside the rendered emphasis marker", () => {
     '<Lab labels={{ body: <Highlight title="invisible" /> }} />',
     '<Lab labels={{ body: <Highlight><span title="invisible" /></Highlight> }} />',
     '{<Highlight>{" "}</Highlight>}',
+    '<Highlight>{false ? "sample space" : null}</Highlight>',
+    '<Highlight>{true ? " " : "sample space"}</Highlight>',
+    '<Highlight>{visible ? "sample space" : null}</Highlight>',
+    '<Highlight>{visible ? "sample space" : " "}</Highlight>',
+    '<Highlight>{false && "sample space"}</Highlight>',
   ]) {
     assert.equal(hasMarkedPhrase(parseLessonMdx(source)), false, source);
   }
@@ -28,6 +33,10 @@ it("requires a visible phrase inside the rendered emphasis marker", () => {
     "<Highlight><span>sample space</span></Highlight>",
     "<Lab labels={{ body: <Highlight><span>sample space</span></Highlight> }} />",
     '{<Highlight>{"sample space"}</Highlight>}',
+    '<Highlight>{true ? "sample space" : null}</Highlight>',
+    '<Highlight>{false ? null : "sample space"}</Highlight>',
+    '<Highlight>{visible ? "sample space" : "event"}</Highlight>',
+    '<Highlight>{"sample " + "space"}</Highlight>',
   ]) {
     assert.equal(hasMarkedPhrase(parseLessonMdx(source)), true, source);
   }
