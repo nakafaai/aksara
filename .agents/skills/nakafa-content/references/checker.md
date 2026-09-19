@@ -71,7 +71,8 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
 - Lessons and articles receive the full authored teaching profile, including
   opening emphasis and section-body checks.
-- Assessed questions receive link, component, emphasis-syntax, and math checks.
+- Assessed questions receive forbidden-control-character, link, component,
+  emphasis-syntax, and math checks.
   The checker preserves their language register, punctuation, titles, and quoted
   source wording. A question is not a lesson or an invitation to rewrite a
   passage whose meaning is being assessed.

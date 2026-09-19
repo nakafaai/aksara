@@ -83,20 +83,20 @@ an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
 
-The corpus suites assert an empty issue list for both authored scopes at every
+The corpus suites assert an empty issue list for all three authored scopes at every
 tier, so a `review` candidate fails the repository suite exactly as a blocking
 rule does. The CLI default mode is a debugging filter for a focused run, not a
 release exception: narrow or repair the rule and the sentence before landing a
 change that leaves any finding.
 
-The gate owns two authored scopes. Lessons live in
-`packages/corpus/material/lesson`; articles live in `packages/corpus/articles`.
-Both suites assert zero findings, so an article change must keep its three
-locale siblings clean as well. Point the same command at one article directory
-with `--root` while editing. The question bank is out of scope; the reasons and
-the measured evidence are recorded in
-[checker limits and gate scope](checker.md#deterministic-gate-scope).
-`packages/corpus/pages` is out of scope as well: it holds the legal notice,
+The gate owns three authored scopes: lessons in
+`packages/corpus/material/lesson`, articles in `packages/corpus/articles`, and
+assessed questions with worked answers in `packages/corpus/question-bank`.
+All three suites assert zero findings. Keep each document's locale siblings
+clean, and point the command at one directory with `--root` while editing.
+Question prompts and worked answers use separate profiles and parity groups,
+as defined in [checker limits and gate scope](checker.md#deterministic-gate-scope).
+`packages/corpus/pages` remains out of scope: it holds the legal notice,
 privacy policy, security policy, and developer resources, which are reviewed as
 public legal and product copy under their own acceptance path.
 
