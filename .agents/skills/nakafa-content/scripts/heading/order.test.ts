@@ -5,6 +5,18 @@ import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 const AUTHORED = "export const metadata = {};\n\n";
 
+it("keeps a standalone answer inside the app-owned explanation heading", () => {
+  const valid = `${AUTHORED}#### Menentukan laju\n\n##### Satuan laju\n\n#### Menghitung waktu`;
+  assert.deepEqual(findHeadingOrderIssues(valid, parseLessonMdx(valid), 4), []);
+  const invalid = `${AUTHORED}##### Laju\n\n#### Waktu\n\n### Keluar dari pembahasan`;
+  assert.deepEqual(
+    findHeadingOrderIssues(invalid, parseLessonMdx(invalid), 4).map(
+      ({ line }) => line
+    ),
+    [3, 7]
+  );
+});
+
 it("rejects a body heading whose level jumps", () => {
   assert.deepEqual(
     findHeadingOrderIssues(

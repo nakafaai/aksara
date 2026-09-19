@@ -34,6 +34,7 @@ node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/chec
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles --strict-review
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/question-bank --strict-review
 ```
 
 Run that suite before the corpus gate when changing a voice rule. The
@@ -82,20 +83,20 @@ an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
 
-The corpus suites assert an empty issue list for both authored scopes at every
+The corpus suites assert an empty issue list for all three authored scopes at every
 tier, so a `review` candidate fails the repository suite exactly as a blocking
 rule does. The CLI default mode is a debugging filter for a focused run, not a
 release exception: narrow or repair the rule and the sentence before landing a
 change that leaves any finding.
 
-The gate owns two authored scopes. Lessons live in
-`packages/corpus/material/lesson`; articles live in `packages/corpus/articles`.
-Both suites assert zero findings, so an article change must keep its three
-locale siblings clean as well. Point the same command at one article directory
-with `--root` while editing. The question bank is out of scope; the reasons and
-the measured evidence are recorded in
-[checker limits and gate scope](checker.md#deterministic-gate-scope).
-`packages/corpus/pages` is out of scope as well: it holds the legal notice,
+The gate owns three authored scopes: lessons in
+`packages/corpus/material/lesson`, articles in `packages/corpus/articles`, and
+assessed questions with worked answers in `packages/corpus/question-bank`.
+All three suites assert zero findings. Keep each document's locale siblings
+clean, and point the command at one directory with `--root` while editing.
+Question prompts and worked answers use separate profiles and parity groups,
+as defined in [checker limits and gate scope](checker.md#deterministic-gate-scope).
+`packages/corpus/pages` remains out of scope: it holds the legal notice,
 privacy policy, security policy, and developer resources, which are reviewed as
 public legal and product copy under their own acceptance path.
 
@@ -183,11 +184,14 @@ boundary before widening a rule. Preserve the following verification boundaries:
   Reihenfolge vor:`, while `A und B können in dieser Reihenfolge nur
   multipliziert werden.` stays valid because it names the required operand
   order, as the shipped matrix lesson does.
-- `highlight-ceiling` fixtures cover three highlights in one section, three in
-  the introduction before any heading, one per section across several sections,
-  and a code block that mentions the marker only as text. `highlight-nesting`
-  fixtures cover a highlight inside a highlight and markers nested across both
-  syntaxes, while sibling markers in one section stay valid.
+- Emphasis fixtures prove that Markdown strong emphasis and `<Highlight>`
+  satisfy the same presence rule, including JSX passed through labels, while
+  marker text in code does not count. `highlight-nesting` fixtures reject
+  nested markers across both syntaxes while preserving sibling phrases.
+- Question-bank fixtures preserve assessed wording, compare answer locale
+  siblings independently of prompts, enforce the app-owned heading boundary,
+  and retain authored address checks in worked answers. Numeric semicolons in
+  decimal-comma math lists remain notation rather than prose punctuation.
 - Blockquote bodies are scanned for the address rules and for an editorial
   prefix such as `Quick check:` or `Cek cepat:` (`blockquote-editorial-label`),
   because a blockquote may be a real quotation with protected bytes. A

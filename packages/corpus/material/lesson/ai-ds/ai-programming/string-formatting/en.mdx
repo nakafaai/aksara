@@ -3,15 +3,15 @@ export const metadata = {
     description: "Use format(), f-strings, column width, alignment, numeric precision, signs, and error handling to shape Python text output.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
 ## Format Fields and Width
 
-<Highlight>String formatting controls how values appear as text.</Highlight> It can align table columns, choose a numeric notation, control precision, and insert values into readable messages. Python provides the `str.format()` method and f-strings for this work.
+String formatting controls <Highlight>how values appear as text</Highlight>. It can align table columns, choose a numeric notation, control precision, and insert values into readable messages. Python provides the `str.format()` method and f-strings for this work.
 
-The basic replacement field has the form `{field_name:format_spec}`. A width inside the format specification sets the minimum amount of space. Python keeps the complete value when it needs more room.
+The basic replacement field has the form `{field_name:format_spec}`. A width inside the format specification sets the **minimum amount of space**. Python keeps the complete value when it needs more room.
 
 ### Format Types for Number Systems
 
@@ -101,7 +101,7 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
 
 ## Argument Reference Methods
 
-Replacement fields can select positional arguments by index, keyword arguments by name, or positional arguments through automatic numbering.
+A replacement field selects **the value to insert into the text**. Use an index for a positional argument, a name for a keyword argument, or automatic numbering to take positional arguments in order.
 
 <Mermaid
   title="How Placeholders Pick Values"
@@ -163,11 +163,11 @@ except IndexError as e:
 
 ## Precision Control and Sign Specification
 
-Digits after the point and the way a sign is shown are controlled separately. Both settings shape how one number is rendered: the precision field limits how much of the value survives, and the sign flag decides how the value announces whether it is positive or negative.
+Precision controls the digits in the formatted text, while the sign option controls a plus, minus, or space. For example, `format(12.3, "+.2f")` produces `+12.30`: the `+` sign and the two decimal places come from separate options.
 
 ### Precision for Decimal Numbers
 
-Precision has a different meaning for each presentation type. For `f` and `e`, it sets digits after the decimal point. For `g`, it sets significant digits.
+Precision has a different meaning for each presentation type. For `f` and `e`, it sets digits after the decimal point. For `g`, it sets **significant digits**. Every table row uses the input `123.98765`, so you can compare different displays of the same value.
 
 | Format Type | Precision Behavior | Example |
 |-------------|-------------------|---------|
@@ -230,11 +230,7 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 
 ## F Strings and Dynamic Templates
 
-An f-string keeps an expression and its surrounding text in one place, so the expression is evaluated when that line runs and the result reflects the current values. A template stored as a string does the same work when the text is not fixed while you write the code.
-
-### F Strings and Python Version
-
-F-strings have been available since Python 3.6. They evaluate expressions directly inside replacement fields, which often makes local formatting easier to read than a separate `format()` argument list.
+F-strings have been available since Python 3.6. They evaluate **expressions inside replacement fields** when the line runs. In `f"Age next year: {age + 1}"`, Python first calculates `age + 1`, then inserts the sum into the text.
 
 ### Dynamic Format Templates
 
@@ -270,7 +266,7 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   ]}
 />
 
-### Complete Format Specification Pattern
+### Reading a Format Specification
 
 <Mermaid
   title="Order Inside a Format Specifier"
@@ -292,4 +288,6 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   `}
 />
 
-For the subset covered here, read `{value:*^+10.2f}` as field name `value`, fill `*`, center alignment `^`, explicit sign `+`, minimum width `10`, precision `2`, and fixed-point type `f`. Python's full formatting mini-language also supports options such as grouping and alternate forms, so consult it when you need more than this core pattern.
+Try `"{value:*^+10.2f}".format(value=12.3)`. The output is `**+12.30**`. Type `f` with precision `2` produces `12.30`, the `+` sign adds one character, and four fill characters complete the minimum width of ten. Alignment `^` divides those four fill characters into two on the left and two on the right.
+
+Formatting produces a new [string object](/en/subjects/ai-ds/ai-programming/string-object). The number `12.3` stays unchanged, so you can still use it in another calculation.

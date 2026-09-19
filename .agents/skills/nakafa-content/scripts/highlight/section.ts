@@ -1,4 +1,15 @@
-import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { Predicate } from "effect";
+import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
+import {
+  attributeEstree,
+  type EstreeNode,
+  estreeChildren,
+  jsxComponentName,
+  type MdxNode,
+  visitMdxNodes,
+  walkEstreeDeep,
+} from "#nakafa-content/mdx/parse";
+import { staticStringCandidates } from "#nakafa-content/mdx/static";
 
 /** One heading-delimited part of a lesson document and the node that opens it. */
 export interface HighlightSection {
@@ -7,7 +18,7 @@ export interface HighlightSection {
 }
 
 /** Tells highlight rules whether a tree carries authored lesson metadata. */
-export function isAuthoredLesson(tree: MdxNode | undefined): boolean {
+export function isAuthoredLesson(tree: MdxNode | undefined): tree is MdxNode {
   return (tree?.children ?? []).some((node) => node.type === "mdxjsEsm");
 }
 
@@ -19,10 +30,8 @@ export function isAuthoredLesson(tree: MdxNode | undefined): boolean {
  * its own section, so an introduction is measured exactly like a titled
  * section.
  *
- * `level` is the deepest heading that still opens a section. The ceiling rule
- * passes `6` so every subsection is measured on its own, and the opening rule
- * passes `2` so the first top-level section counts together with the
- * subsections a learner reads inside it.
+ * `level` is the deepest heading that still opens a section. The opening rule
+ * passes `2` so the first top-level section includes its subsections.
  */
 export function splitHighlightSections(
   tree: MdxNode,
@@ -42,4 +51,77 @@ export function splitHighlightSections(
     current.nodes.push(node);
   }
   return sections;
+}
+
+/** Recognizes either rendered marker, including JSX inside component labels. */
+export function hasMarkedPhrase(node: MdxNode): boolean {
+  let marked = false;
+  visitMdxNodes(node, (current) => {
+    if (
+      (current.type === "strong" ||
+        ((current.type === "mdxJsxFlowElement" ||
+          current.type === "mdxJsxTextElement") &&
+          isHighlightComponentName(current.name))) &&
+      hasPhraseText(current)
+    ) {
+      marked = true;
+    }
+    const expressions = (current.attributes ?? []).flatMap((attribute) => {
+      if (Predicate.isString(attribute.value)) {
+        return [];
+      }
+      const expression = attributeEstree(attribute);
+      return expression ? [expression] : [];
+    });
+    if (
+      (current.type === "mdxFlowExpression" ||
+        current.type === "mdxTextExpression") &&
+      current.data?.estree
+    ) {
+      expressions.push(current.data.estree);
+    }
+    for (const expression of expressions) {
+      walkEstreeDeep(expression, (child) => {
+        if (
+          child.type === "JSXElement" &&
+          isHighlightComponentName(jsxComponentName(child)) &&
+          estreeChildren(child.children).some(hasExpressionText)
+        ) {
+          marked = true;
+        }
+      });
+    }
+  });
+  return marked;
+}
+
+/** Reads actual child text, excluding element attributes and empty markers. */
+function hasPhraseText(node: MdxNode): boolean {
+  if (
+    (node.type === "text" || node.type === "inlineCode") &&
+    Predicate.isString(node.value) &&
+    node.value.trim().length > 0
+  ) {
+    return true;
+  }
+  if (node.data?.estree && hasExpressionText(node.data.estree)) {
+    return true;
+  }
+  return (node.children ?? []).some(hasPhraseText);
+}
+
+/** Reads static rendered JSX children without counting invisible attributes. */
+function hasExpressionText(node: EstreeNode): boolean {
+  if (node.type === "JSXText" || node.type === "Literal") {
+    return (
+      Predicate.isNumber(node.value) ||
+      (Predicate.isString(node.value) && node.value.trim().length > 0)
+    );
+  }
+  if (staticStringCandidates(node).some(({ text }) => text.trim().length > 0)) {
+    return true;
+  }
+  return [node.children, node.expression, node.body].some((field) =>
+    estreeChildren(field).some(hasExpressionText)
+  );
 }

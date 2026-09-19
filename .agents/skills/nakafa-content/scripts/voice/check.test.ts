@@ -22,8 +22,6 @@ import {
 import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
 const PASSING_REPORT_PATTERN = /passed for 1 files/u;
-const LESSON_ROOT = join(process.cwd(), "packages/corpus/material/lesson");
-const ARTICLE_ROOT = join(process.cwd(), "packages/corpus/articles");
 
 type TestServices = FileSystem.FileSystem | Scope.Scope;
 
@@ -69,13 +67,15 @@ const temporaryRoot = (
   );
 
 checkTest(
-  "accepts every current authored scope through the production checker",
+  "checks every current lesson, article, question and worked answer",
   Effect.gen(function* () {
+    const corpusRoot = join(process.cwd(), "packages/corpus");
     for (const [root, minimum] of [
-      [LESSON_ROOT, 1000],
-      [ARTICLE_ROOT, 21],
+      ["material/lesson", 1149],
+      ["articles", 21],
+      ["question-bank", 9650],
     ] as const) {
-      const report = yield* checkLessonRoot(root);
+      const report = yield* checkLessonRoot(join(corpusRoot, root));
       assert.ok(report.fileCount >= minimum);
       assert.deepEqual(report.issues, []);
     }

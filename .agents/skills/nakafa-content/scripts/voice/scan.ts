@@ -1,11 +1,8 @@
+import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import { findSectionBodyIssues } from "#nakafa-content/body/section";
 import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
 import { exerciseSectionLines } from "#nakafa-content/exercise/context";
-import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
-import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
 import { findUndefinedHeadingAbbreviationIssues } from "#nakafa-content/heading/abbreviation";
-import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
-import { NAVIGATION_VOICE_RULES } from "#nakafa-content/link/check";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
 import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
@@ -14,38 +11,20 @@ import {
   parseLessonMdx,
   type SourceRange,
 } from "#nakafa-content/mdx/parse";
-import { TECHNICAL_METAPHOR_RULES } from "#nakafa-content/metaphor/technical";
-import {
-  ADDRESS_VOICE_RULES,
-  unanchoredGermanFormalAddressOffset,
-} from "#nakafa-content/voice/address";
-import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice/ambiguity";
-import { CLAIM_VOICE_RULES } from "#nakafa-content/voice/claim";
-import { CONTRAST_VOICE_RULES } from "#nakafa-content/voice/contrast";
-import { DEFECT_VOICE_RULES } from "#nakafa-content/voice/defect";
-import { DEMONSTRATIVE_VOICE_RULES } from "#nakafa-content/voice/demonstrative";
-import { FLOW_VOICE_RULES } from "#nakafa-content/voice/flow";
-import {
-  findStructuralIssues,
-  HEADING_VOICE_RULES,
-} from "#nakafa-content/voice/heading";
-import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice/language";
+import { unanchoredGermanFormalAddressOffset } from "#nakafa-content/voice/address";
+import { findStructuralIssues } from "#nakafa-content/voice/heading";
 import { UnsupportedLessonLocale } from "#nakafa-content/voice/locale";
-import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
-import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
-import { NARRATION_VOICE_RULES } from "#nakafa-content/voice/narration";
-import {
-  PEDAGOGY_VOICE_RULES,
-  REPETITIVE_OPENER_RULES,
-} from "#nakafa-content/voice/pedagogy";
-import { POINTER_VOICE_RULES } from "#nakafa-content/voice/pointer";
+import { REPETITIVE_OPENER_RULES } from "#nakafa-content/voice/pedagogy";
 import { findVisibleProseRuleIssues } from "#nakafa-content/voice/prose";
 import {
   maskRawLineProtectedContent,
   rawLineProtectedRanges,
 } from "#nakafa-content/voice/protection";
 import { findBlockquoteEditorialLabelIssues } from "#nakafa-content/voice/quote";
-import { REPORTING_VOICE_RULES } from "#nakafa-content/voice/reporting";
+import {
+  ANSWER_VOICE_RULES,
+  LESSON_VOICE_RULES,
+} from "#nakafa-content/voice/rules";
 import {
   classifyLine,
   createLineState,
@@ -57,7 +36,6 @@ import {
   maskMultilineQuotations,
   multilineQuotationRanges,
 } from "#nakafa-content/voice/text";
-import { TRANSITION_VOICE_RULES } from "#nakafa-content/voice/transition";
 import {
   isLessonVoiceLocale,
   type LessonVoiceIssue,
@@ -65,34 +43,6 @@ import {
   type LessonVoiceRule,
   type LineState,
 } from "#nakafa-content/voice/types";
-import { VAGUE_VOICE_RULES } from "#nakafa-content/voice/vague";
-import { VISIBILITY_VOICE_RULES } from "#nakafa-content/voice/visibility";
-
-const LESSON_VOICE_RULES = [
-  ...ADDRESS_VOICE_RULES,
-  ...DEFECT_VOICE_RULES,
-  ...METAPHOR_VOICE_RULES,
-  ...TECHNICAL_METAPHOR_RULES,
-  ...METHOD_VOICE_RULES,
-  ...TRANSITION_VOICE_RULES,
-  ...CLAIM_VOICE_RULES,
-  ...CONTRAST_VOICE_RULES,
-  ...DEMONSTRATIVE_VOICE_RULES,
-  ...FLOW_VOICE_RULES,
-  ...FLOW_CONTEXT_RULES,
-  ...FLOW_STYLE_RULES,
-  ...HEADING_VOICE_RULES,
-  ...LANGUAGE_VOICE_RULES,
-  ...LANGUAGE_CALQUE_RULES,
-  ...NAVIGATION_VOICE_RULES,
-  ...AMBIGUITY_VOICE_RULES,
-  ...REPORTING_VOICE_RULES,
-  ...VISIBILITY_VOICE_RULES,
-  ...NARRATION_VOICE_RULES,
-  ...VAGUE_VOICE_RULES,
-  ...PEDAGOGY_VOICE_RULES,
-  ...POINTER_VOICE_RULES,
-] satisfies readonly LessonVoiceRule[];
 
 const REPETITIVE_OPENER_LIMIT = 2;
 
@@ -110,7 +60,12 @@ function matchLineRules(
       ? quotationMaskedLine
       : searchableLine;
     const match = rule.patterns[locale]?.exec(ruleLine);
-    if (match?.index === undefined) {
+    if (
+      match?.index === undefined ||
+      (rule.id === "duplicate-adjacent-word" &&
+        originalLine.slice(match.index, match.index + match[0].length) !==
+          match[0])
+    ) {
       return [];
     }
     return [
@@ -179,7 +134,8 @@ function inspectLessonLine(
   protectedRanges: readonly SourceRange[],
   quotationRanges: readonly { end: number; start: number }[],
   state: LineState,
-  matchesByRule: Map<string, LessonVoiceIssue[]>
+  matchesByRule: Map<string, LessonVoiceIssue[]>,
+  bodyKind?: QuestionBodyKind
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
   const issues = findStructuralIssues(
@@ -187,7 +143,8 @@ function inspectLessonLine(
     line,
     lineNumber,
     state,
-    context.isProtectedRegion
+    context.isProtectedRegion,
+    bodyKind === undefined
   );
   if (!context.isProtectedRegion || context.isMetadataDescription) {
     const searchableLine = context.isMetadataDescription
@@ -200,7 +157,7 @@ function inspectLessonLine(
         );
     issues.push(
       ...matchLineRules(
-        LESSON_VOICE_RULES,
+        bodyKind === "answer" ? ANSWER_VOICE_RULES : LESSON_VOICE_RULES,
         locale,
         searchableLine,
         line,
@@ -211,7 +168,7 @@ function inspectLessonLine(
         ? matchMetadataGermanAddress(locale, searchableLine, line, lineNumber)
         : [])
     );
-    if (!context.isProtectedRegion) {
+    if (!context.isProtectedRegion && bodyKind !== "answer") {
       recordRepetitiveOpeners(
         matchesByRule,
         locale,
@@ -242,7 +199,8 @@ function deduplicateIssues(issues: LessonVoiceIssue[]): LessonVoiceIssue[] {
 export function findLessonVoiceIssues(
   locale: string,
   source: string,
-  tree?: MdxNode
+  tree?: MdxNode,
+  bodyKind?: QuestionBodyKind
 ): LessonVoiceIssue[] {
   if (!isLessonVoiceLocale(locale)) {
     throw new UnsupportedLessonLocale({ locale });
@@ -269,7 +227,8 @@ export function findLessonVoiceIssues(
         protectedRanges,
         quotationRanges,
         state,
-        matchesByRule
+        matchesByRule,
+        bodyKind
       )
     );
     lineOffset += line.length + 1;
@@ -282,15 +241,17 @@ export function findLessonVoiceIssues(
       locale,
       source,
       parsedTree,
-      LESSON_VOICE_RULES
+      bodyKind === "answer" ? ANSWER_VOICE_RULES : LESSON_VOICE_RULES
     ),
     ...findPlainMathLabelIssues(source, parsedTree),
     ...findMalformedLatexCommandIssues(source, parsedTree),
     ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
     ...findEmphasisArtifactIssues(source, parsedTree),
-    ...findSectionBodyIssues(source, parsedTree),
-    ...findUndefinedHeadingAbbreviationIssues(source, parsedTree)
+    ...(bodyKind ? [] : findSectionBodyIssues(source, parsedTree)),
+    ...(bodyKind
+      ? []
+      : findUndefinedHeadingAbbreviationIssues(source, parsedTree))
   );
   const exerciseLines = exerciseSectionLines(locale, source);
   return deduplicateIssues(issues).filter(

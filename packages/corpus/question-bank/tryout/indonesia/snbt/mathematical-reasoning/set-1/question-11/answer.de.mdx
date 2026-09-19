@@ -1,18 +1,155 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
 Wir berechnen das Sandvolumen einer vollen LKW-Ladefläche und multiplizieren es mit dem Preis pro Kubikmeter.
 
-#### Berechnen des LKW-Ladeflächenvolumens
+#### Volumen der Ladefläche
 
 Die Ladefläche hat die Form eines Quaders mit den Maßen:
 - Länge (<InlineMath math="p" />) ist <InlineMath math="4 \text{ m}" />
 - Breite (<InlineMath math="l" />) ist <InlineMath math="2 \text{ m}" />
 - Höhe (<InlineMath math="t" />) ist <InlineMath math="1{,}5 \text{ m}" />
+
+<MathVisual
+  title="Sandvolumen auf der Ladefläche"
+  description="Drehe den Quader und vergleiche Länge, Breite und Höhe. Jede Maßangabe gehört zur beschrifteten Kante."
+  scene={{
+  "space": "space",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -1,
+      "max": 5
+    },
+    "y": {
+      "min": -1,
+      "max": 2.5
+    },
+    "z": {
+      "min": -1,
+      "max": 3
+    }
+  },
+  "view": {
+    "kind": "camera",
+    "position": {
+      "x": 7,
+      "y": 5,
+      "z": 7
+    },
+    "target": {
+      "x": 2,
+      "y": 0.75,
+      "z": 1
+    }
+  },
+  "objects": [
+    {
+      "id": "bed",
+      "kind": "cuboid",
+      "appearance": "reference",
+      "center": {
+        "x": 2,
+        "y": 0.75,
+        "z": 1
+      },
+      "size": {
+        "length": 4,
+        "width": 2,
+        "height": 1.5
+      }
+    },
+    {
+      "id": "length",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "to": {
+        "x": 4,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "id": "width",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      },
+      "to": {
+        "x": 4,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "id": "height",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "to": {
+        "x": 0,
+        "y": 1.5,
+        "z": 2
+      }
+    }
+  ],
+  "labels": [
+    {
+      "key": "length",
+      "objectId": "length",
+      "at": {
+        "x": 2,
+        "y": 0,
+        "z": 2
+      },
+      "placement": "below"
+    },
+    {
+      "key": "width",
+      "objectId": "width",
+      "at": {
+        "x": 4,
+        "y": 0,
+        "z": 1
+      },
+      "placement": "below-right"
+    },
+    {
+      "key": "height",
+      "objectId": "height",
+      "at": {
+        "x": 0,
+        "y": 0.75,
+        "z": 2
+      },
+      "placement": "left"
+    }
+  ]
+}}
+  labels={{
+    length: <InlineMath math="4 \text{ m}" />,
+    width: <InlineMath math="2 \text{ m}" />,
+    height: <InlineMath math="1{,}5 \text{ m}" />,
+  }}
+/>
+
+Die Grundfläche ergibt sich aus **Länge mal Breite**. Grundfläche mal Höhe ergibt das mit Sand gefüllte Volumen.
 
 Die Formel für das Volumen eines Quaders lautet:
 

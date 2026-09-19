@@ -35,7 +35,8 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
  */
 export function findHeadingOrderIssues(
   source: string,
-  tree: MdxNode = parseLessonMdx(source)
+  tree: MdxNode = parseLessonMdx(source),
+  bodyHeadingDepth = BODY_HEADING_DEPTH
 ): LessonVoiceIssue[] {
   const children = tree.children ?? [];
   if (!children.some((node) => node.type === "mdxjsEsm")) {
@@ -54,8 +55,8 @@ export function findHeadingOrderIssues(
     const skipped =
       previousDepth !== undefined && heading.depth > previousDepth + 1;
     const misrooted =
-      previousDepth === undefined && heading.depth !== BODY_HEADING_DEPTH;
-    if (skipped || misrooted) {
+      previousDepth === undefined && heading.depth !== bodyHeadingDepth;
+    if (skipped || misrooted || heading.depth < bodyHeadingDepth) {
       issues.push({
         column: heading.position.start.column,
         excerpt: (lines[heading.position.start.line - 1] ?? "").trim(),

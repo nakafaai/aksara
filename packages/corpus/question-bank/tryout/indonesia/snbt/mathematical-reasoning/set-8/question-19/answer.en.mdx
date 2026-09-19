@@ -2,13 +2,113 @@ export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-The plane through the three axis intercepts has equation
+The distance from a point to a plane is the length of a segment **perpendicular to the plane**. First find the equation of plane <InlineMath math="ABC" />, then calculate its distance from <InlineMath math="O=(0,0,0)" />.
+
+#### Finding the plane equation
+
+The plane meets the axes at <InlineMath math="A=(4,0,0)" />, <InlineMath math="B=(0,6,0)" />, and <InlineMath math="C=(0,0,8)" />. Its intercept form is
 
 <BlockMath math="\frac{x}{4}+\frac{y}{6}+\frac{z}{8}=1" />
 
-or <InlineMath math="6x+4y+3z-24=0" />. The distance from origin <InlineMath math="O" /> to the plane is
+Multiply both sides by <InlineMath math="24" /> to remove every denominator.
 
-<BlockMath math="\begin{aligned}d&=\frac{|{-24}|}{\sqrt{6^2+4^2+3^2}} \\ &=\frac{24}{\sqrt{61}}\end{aligned}" />
+<BlockMath math="\begin{aligned}6x+4y+3z&=24\\6x+4y+3z-24&=0\end{aligned}" />
+
+The coefficients <InlineMath math="(6,4,3)" /> form a **normal vector**, which points perpendicular to the plane.
+
+<MathVisual
+  title="Perpendicular distance to the plane"
+  description="Rotate the cuboid to see OH perpendicular to plane ABC. H lies on the plane, rather than on a cuboid edge."
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 7 },
+      z: { min: -1, max: 9 },
+    },
+    view: {
+      kind: "camera",
+      position: { x: 12, y: 11, z: 14 },
+      target: { x: 2, y: 3, z: 4 },
+    },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 2, y: 3, z: 4 },
+        size: { length: 4, width: 8, height: 6 },
+      },
+      {
+        id: "cross-section",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 4, y: 0, z: 0 },
+          { x: 0, y: 6, z: 0 },
+          { x: 0, y: 0, z: 8 },
+        ],
+      },
+      {
+        id: "origin",
+        kind: "point",
+        appearance: "secondary",
+        at: { x: 0, y: 0, z: 0 },
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 4, y: 0, z: 0 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 6, z: 0 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 0, z: 8 },
+      },
+      { id: "normal", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+      { id: "foot", kind: "point", appearance: "secondary", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+    ],
+    labels: [
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "point-a", objectId: "point-a", at: { x: 4, y: 0, z: 0 }, placement: "below-right" },
+      { key: "point-b", objectId: "point-b", at: { x: 0, y: 6, z: 0 }, placement: "above-left" },
+      { key: "point-c", objectId: "point-c", at: { x: 0, y: 0, z: 8 }, placement: "above-left" },
+      { key: "foot", objectId: "foot", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    foot: <InlineMath math="H" />,
+    origin: <InlineMath math="O" />,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
+/>
+
+#### Calculating the perpendicular length
+
+For plane <InlineMath math="ax+by+cz+d=0" /> and point <InlineMath math="(x_0,y_0,z_0)" />, the distance formula is
+
+<BlockMath math="D=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}" />
+
+Substitute the plane coefficients and the origin coordinates.
+
+<BlockMath math="\begin{aligned}D&=\frac{|6(0)+4(0)+3(0)-24|}{\sqrt{6^2+4^2+3^2}}\\&=\frac{24}{\sqrt{36+16+9}}\\&=\frac{24}{\sqrt{61}}\end{aligned}" />
+
+Segment <InlineMath math="OH" /> shows this distance in the model. To check the construction, its perpendicular foot is <InlineMath math="H=(144/61,96/61,72/61)" />. Segment <InlineMath math="OH" /> follows the normal direction because the coordinates of <InlineMath math="H" /> equal <InlineMath math="(24/61)(6,4,3)" />. Substituting into the plane equation gives
+
+<BlockMath math="\begin{aligned}&6\left(\frac{144}{61}\right)+4\left(\frac{96}{61}\right)\\&\quad+3\left(\frac{72}{61}\right)\\&=\frac{864+384+216}{61}\\&=\frac{1464}{61}=24\end{aligned}" />
+
+Thus <InlineMath math="H" /> lies on plane <InlineMath math="ABC" />, and the required distance is <InlineMath math="24/\sqrt{61}" /> units.

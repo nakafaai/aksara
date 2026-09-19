@@ -43,8 +43,9 @@
   a table, or two candidate nouns. The deterministic gate blocks a heading whose
   demonstrative (`ini`, `itu`, `tersebut`, `this`, `that`, `diese`) has no stated
   referent. A heading that carries the `-nya` clitic stays a manual review item:
-  47 Indonesian headings in the two authored roots contain a word ending in
-  `-nya`, and almost every one binds to a noun the same heading already names.
+  the lesson and article audit found 47 Indonesian headings containing a word
+  ending in `-nya`, and almost every one bound to a noun the heading already
+  named. That evidence does not establish the meaning of a question or answer.
   Body prose stays a mandatory manual review item, because no rule can separate
   a bare pronoun from a possessive determiner without reading the whole
   sentence. The review tier reports three narrow body shapes, so a

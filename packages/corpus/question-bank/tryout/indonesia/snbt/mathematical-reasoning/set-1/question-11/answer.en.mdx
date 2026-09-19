@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Solution for Question 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
@@ -13,6 +13,143 @@ The truck bed is shaped like a cuboid with dimensions:
 - Length (<InlineMath math="p" />) is <InlineMath math="4 \text{ m}" />
 - Width (<InlineMath math="l" />) is <InlineMath math="2 \text{ m}" />
 - Height (<InlineMath math="t" />) is <InlineMath math="1.5 \text{ m}" />
+
+<MathVisual
+  title="Sand volume in the truck bed"
+  description="Rotate the cuboid to compare the length, width, and height. Each dimension label belongs to the edge it measures."
+  scene={{
+  "space": "space",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -1,
+      "max": 5
+    },
+    "y": {
+      "min": -1,
+      "max": 2.5
+    },
+    "z": {
+      "min": -1,
+      "max": 3
+    }
+  },
+  "view": {
+    "kind": "camera",
+    "position": {
+      "x": 7,
+      "y": 5,
+      "z": 7
+    },
+    "target": {
+      "x": 2,
+      "y": 0.75,
+      "z": 1
+    }
+  },
+  "objects": [
+    {
+      "id": "bed",
+      "kind": "cuboid",
+      "appearance": "reference",
+      "center": {
+        "x": 2,
+        "y": 0.75,
+        "z": 1
+      },
+      "size": {
+        "length": 4,
+        "width": 2,
+        "height": 1.5
+      }
+    },
+    {
+      "id": "length",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "to": {
+        "x": 4,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "id": "width",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 4,
+        "y": 0,
+        "z": 0
+      },
+      "to": {
+        "x": 4,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "id": "height",
+      "kind": "segment",
+      "appearance": "primary",
+      "from": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "to": {
+        "x": 0,
+        "y": 1.5,
+        "z": 2
+      }
+    }
+  ],
+  "labels": [
+    {
+      "key": "length",
+      "objectId": "length",
+      "at": {
+        "x": 2,
+        "y": 0,
+        "z": 2
+      },
+      "placement": "below"
+    },
+    {
+      "key": "width",
+      "objectId": "width",
+      "at": {
+        "x": 4,
+        "y": 0,
+        "z": 1
+      },
+      "placement": "below-right"
+    },
+    {
+      "key": "height",
+      "objectId": "height",
+      "at": {
+        "x": 0,
+        "y": 0.75,
+        "z": 2
+      },
+      "placement": "left"
+    }
+  ]
+}}
+  labels={{
+    length: <InlineMath math="4 \text{ m}" />,
+    width: <InlineMath math="2 \text{ m}" />,
+    height: <InlineMath math="1.5 \text{ m}" />,
+  }}
+/>
+
+The base area is **length times width**. Multiplying that area by the height gives the volume occupied by sand.
 
 The formula for the volume of a cuboid is:
 

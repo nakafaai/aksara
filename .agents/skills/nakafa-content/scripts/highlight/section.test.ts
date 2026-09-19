@@ -1,6 +1,37 @@
 import { assert, it } from "@effect/vitest";
 
-import { splitHighlightSections } from "#nakafa-content/highlight/section";
+import {
+  hasMarkedPhrase,
+  splitHighlightSections,
+} from "#nakafa-content/highlight/section";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+
+it("requires a visible phrase inside the rendered emphasis marker", () => {
+  for (const source of [
+    "<Highlight />",
+    "**` `**",
+    "<Highlight> </Highlight>",
+    '<Highlight><span title="invisible" /></Highlight>',
+    "{<Highlight>{null}</Highlight>}",
+    '<Lab labels={{ body: <Highlight title="invisible" /> }} />',
+    '<Lab labels={{ body: <Highlight><span title="invisible" /></Highlight> }} />',
+    '{<Highlight>{" "}</Highlight>}',
+  ]) {
+    assert.equal(hasMarkedPhrase(parseLessonMdx(source)), false, source);
+  }
+  for (const source of [
+    "**sample space**",
+    "<Highlight>{0}</Highlight>",
+    "<Highlight>{`sample space`}</Highlight>",
+    "**`sample space`**",
+    '<Highlight>{"sample space"}</Highlight>',
+    "<Highlight><span>sample space</span></Highlight>",
+    "<Lab labels={{ body: <Highlight><span>sample space</span></Highlight> }} />",
+    '{<Highlight>{"sample space"}</Highlight>}',
+  ]) {
+    assert.equal(hasMarkedPhrase(parseLessonMdx(source)), true, source);
+  }
+});
 
 it("measures content without parsed children as no sections", () => {
   assert.deepEqual(splitHighlightSections({ type: "root" }, 2), []);

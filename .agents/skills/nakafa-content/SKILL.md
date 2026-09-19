@@ -109,9 +109,11 @@ Read only what the task needs. Each reference owns one concern.
   teaching step, so explain the concept and link only where the prose genuinely
   invokes the relation. The [link policy](references/links.md) owns
   the link rules.
-- Run the deterministic gate on both authored roots, lessons
-  (`packages/corpus/material/lesson`) and articles (`packages/corpus/articles`).
-  Both roots must reach zero findings at every tier. The commands live in
+- Run the deterministic gate on lessons (`packages/corpus/material/lesson`),
+  articles (`packages/corpus/articles`), and the question bank
+  (`packages/corpus/question-bank`). The question bank uses separate profiles
+  for assessed prompts and authored solutions. All roots must reach zero
+  findings at every tier. The commands live in
   [verification](references/verification.md#lesson-voice-gate). Scope and rule
   admission live in
   [checker limits and gate scope](references/checker.md#deterministic-gate-scope).

@@ -3,15 +3,15 @@ export const metadata = {
     description: "Formatiere Python-Ausgaben mit str.format(), F-Strings, Feldbreite, Ausrichtung, Genauigkeit und Vorzeichen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
 ## Formatfelder und Breite
 
-<Highlight>Stringformatierung bestimmt, wie Werte als Text erscheinen.</Highlight> Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
+Stringformatierung bestimmt, <Highlight>wie Werte als Text erscheinen</Highlight>. Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
 
-Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine Mindestbreite fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus.
+Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine **Mindestbreite** fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus.
 
 ### Formattypen für Zahlensysteme
 
@@ -68,7 +68,7 @@ Das Diagramm vergleicht denselben Text links, rechts und mittig in einer festen 
 
 | Symbol | Name | Verhalten | Standard für |
 |--------|------|----------|-------------|
-| `<` | Links | Text links, Abstand rechts | String, Objekte |
+| `<` | Links | Text links, Abstand rechts | Strings |
 | `>` | Rechts | Text rechts, Abstand links | Zahlen |
 | `^` | Zentriert | Text in der Mitte, gleichmäßiger Abstand | - |
 
@@ -101,7 +101,7 @@ print('x = {0:12e}'.format(x))      # Ausgabe: x = 1.239800e+02`
 
 ## Argumentreferenzmethoden
 
-Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortargumente über einen Namen oder Positionsargumente über eine automatische Nummerierung auswählen.
+Ein Ersetzungsfeld wählt **den Wert für die Textausgabe**. Verwende einen Index für ein Positionsargument, einen Namen für ein Schlüsselwortargument oder die automatische Nummerierung, um Positionsargumente der Reihe nach einzusetzen.
 
 <Mermaid
   title="Wie Platzhalter Werte auswählen"
@@ -163,16 +163,16 @@ except IndexError as e:
 
 ## Präzision und Vorzeichen
 
-Die Nachkommastellen und die Darstellung eines Vorzeichens werden getrennt gesteuert. Die Präzision legt fest, wie viele Stellen nach dem Komma erscheinen, das Vorzeichenformat entscheidet, ob ein Pluszeichen auch bei positiven Zahlen steht.
+Die Präzision steuert die Ziffern im formatierten Text. Die Vorzeichenoption bestimmt, ob ein Plus, Minus oder Leerzeichen erscheint. Zum Beispiel ergibt `format(12.3, "+.2f")` den Text `+12.30`: Das Pluszeichen und die zwei Nachkommastellen stammen aus getrennten Optionen.
 
 ### Präzision für Dezimalzahlen
 
-Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` bestimmt sie die Stellen nach dem Dezimalpunkt, bei `g` die Anzahl signifikanter Ziffern.
+Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` bestimmt sie die Stellen nach dem Dezimalpunkt, bei `g` die **Anzahl signifikanter Ziffern**. Jede Tabellenzeile verwendet die Eingabe `123.98765`. So vergleichst du verschiedene Darstellungen desselben Werts.
 
 | Formattyp | Präzisionsverhalten | Beispiel |
 |-------------|-----|---------|
 | `f/F` | Dezimalstellen | `{:.2f}` → `123.99` |
-| `e/E` | Dezimalstellen in der Exponentialfunktion | `{:.2e}` → `1.24e+02` |
+| `e/E` | Dezimalstellen in wissenschaftlicher Schreibweise | `{:.2e}` → `1.24e+02` |
 | `g/G` | Signifikante Ziffern | `{:.3g}` → `124` |
 
 ### Vorzeichenoptionen
@@ -230,11 +230,7 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
 
 ## Formatierte Strings und dynamische Vorlagen
 
-Ein f-String hält einen Ausdruck und den umgebenden Text an einer Stelle, sodass der Ausdruck beim Ausführen der Zeile ausgewertet wird und das Ergebnis die aktuellen Werte zeigt. Eine Vorlage, die als String gespeichert ist, leistet dieselbe Arbeit, wenn der Text beim Schreiben des Codes noch nicht feststeht.
-
-### Formatierte Strings und Version von Python
-
-F-Strings gibt es seit Python 3.6. Sie werten Ausdrücke direkt im Ersetzungsfeld aus. Dadurch ist eine lokale Formatierung oft leichter lesbar als eine getrennte Argumentliste für `format()`.
+F-Strings gibt es seit Python 3.6. Sie werten **Ausdrücke innerhalb der Ersetzungsfelder** aus, sobald die Codezeile ausgeführt wird. Bei `f"Alter im nächsten Jahr: {age + 1}"` berechnet Python zuerst `age + 1` und setzt dann die Summe in den Text ein.
 
 ### Dynamische Formatvorlagen
 
@@ -270,7 +266,7 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
   ]}
 />
 
-### Vollständiges Formatspezifikationsmuster
+### Eine Formatspezifikation lesen
 
 <Mermaid
   title="Reihenfolge innerhalb eines Formatbezeichners"
@@ -292,4 +288,6 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
   `}
 />
 
-Für die hier behandelte Teilmenge liest du `{value:*^+10.2f}` als Feldname `value`, Füllzeichen `*`, mittige Ausrichtung `^`, ausdrückliches Vorzeichen `+`, Mindestbreite `10`, Präzision `2` und Festkommatyp `f`. Die vollständige Formatierungs-Minisprache von Python unterstützt außerdem Optionen wie Zifferngruppierung und alternative Darstellungen. Schlage dort nach, wenn du mehr als dieses Kernmuster brauchst.
+Probiere `"{value:*^+10.2f}".format(value=12.3)` aus. Die Ausgabe lautet `**+12.30**`. Der Typ `f` mit Präzision `2` erzeugt `12.30`, das Pluszeichen ergänzt ein Zeichen, und vier Füllzeichen vervollständigen die Mindestbreite von zehn Zeichen. Die Ausrichtung `^` verteilt diese vier Füllzeichen gleichmäßig: zwei links und zwei rechts.
+
+Die Formatierung erzeugt ein neues [Stringobjekt](/de/faecher/ki-und-data-science/ki-programmierung/strings-als-objekte). Die Zahl `12.3` bleibt unverändert. Du kannst sie weiterhin für eine andere Berechnung verwenden.

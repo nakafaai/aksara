@@ -37,6 +37,7 @@ it("preserves German anaphoric Sie and accepts du address", () => {
     "Die Programme haben eine gemeinsame Fähigkeit: Sie können Muster erkennen.",
     "Die [Werkzeuge](/de/werkzeuge) stehen bereit.\n\nSie können beide Seiten vergleichen.",
     "Bearbeite jede Aufgabe selbst, bevor du die Lösung liest.",
+    "1. Die milderen Bestimmungen würden Korruption begünstigen.\n2. Sie würden die abschreckende Wirkung schwächen.",
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("de", source), []);

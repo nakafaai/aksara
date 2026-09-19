@@ -172,7 +172,7 @@ function isForbiddenControlCharacter(code: number): boolean {
 }
 
 /** Rejects invisible control bytes that can silently corrupt prose or math. */
-function findForbiddenControlCharacterIssue(
+export function findForbiddenControlCharacterIssue(
   line: string
 ): SourceIssue | undefined {
   for (let index = 0; index < line.length; index += 1) {
@@ -275,7 +275,8 @@ export function findStructuralIssues(
   line: string,
   lineNumber: number,
   state: LineState,
-  isProtectedRegion: boolean
+  isProtectedRegion: boolean,
+  inspectMetadataTitle: boolean
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
   const controlCharacterIssue = locateIssue(
@@ -285,9 +286,10 @@ export function findStructuralIssues(
   if (controlCharacterIssue) {
     issues.push(controlCharacterIssue);
   }
-  const metadataTitleIssue = state.inMetadata
-    ? locateIssue(findMetadataTitleSymbolIssue(line, locale), lineNumber)
-    : undefined;
+  const metadataTitleIssue =
+    inspectMetadataTitle && state.inMetadata
+      ? locateIssue(findMetadataTitleSymbolIssue(line, locale), lineNumber)
+      : undefined;
   if (metadataTitleIssue) {
     issues.push(metadataTitleIssue);
   }
