@@ -60,13 +60,7 @@ const snbtQuant = [
   "Set9Question3Graph",
   "UnitCircle",
 ];
-const tkaMath = [
-  "HistogramChart",
-  "LineEquation",
-  "NumberLine",
-  "Set1Question19Graph",
-  "Set1Question30Illustration",
-];
+const tkaMath = ["HistogramChart", "LineEquation", "NumberLine"];
 
 /** Creates the complete reviewed renderer manifest for question fixtures. */
 export const questionManifest = Effect.fn("QuestionTest.manifest")(() =>
