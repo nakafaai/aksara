@@ -2,16 +2,16 @@ import { Effect, Schema } from "effect";
 
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
+import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
-import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const readinessPrograms = [
   snbtReadiness,
-  tkaMathematicsReadiness,
+  tkaCompulsoryMathematicsReadiness,
   tkaIndonesianReadiness,
   tkaEnglishReadiness,
 ];

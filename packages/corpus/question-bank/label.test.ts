@@ -5,7 +5,7 @@ import { Effect } from "effect";
 import { validateQuestionLabels } from "#corpus/question-bank/label";
 
 const sourcePath = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/tryout/indonesia/tka/mathematics/test-set/question-1/item.ts"
+  "packages/corpus/question-bank/tryout/indonesia/tka/compulsory-mathematics/test-set/question-1/item.ts"
 );
 
 /** Builds one valid source item around the label being inspected. */

@@ -1,6 +1,7 @@
 import { Predicate } from "effect";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
 import {
+  asEstreeNode,
   attributeEstree,
   type EstreeNode,
   estreeChildren,
@@ -9,7 +10,10 @@ import {
   visitMdxNodes,
   walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";
-import { staticStringCandidates } from "#nakafa-content/mdx/static";
+import {
+  isFullyStaticStringExpression,
+  staticStringCandidates,
+} from "#nakafa-content/mdx/static";
 
 /** One heading-delimited part of a lesson document and the node that opens it. */
 export interface HighlightSection {
@@ -118,10 +122,28 @@ function hasExpressionText(node: EstreeNode): boolean {
       (Predicate.isString(node.value) && node.value.trim().length > 0)
     );
   }
-  if (staticStringCandidates(node).some(({ text }) => text.trim().length > 0)) {
+  if (node.type === "ConditionalExpression") {
+    const test = asEstreeNode(node.test);
+    let branches = [node.consequent, node.alternate];
+    if (test?.type === "Literal") {
+      branches = test.value ? [node.consequent] : [node.alternate];
+    }
+    return branches.every((branch) =>
+      estreeChildren(branch).some(hasExpressionText)
+    );
+  }
+  if (node.expression || node.body) {
+    return [node.expression, node.body].some((field) =>
+      estreeChildren(field).some(hasExpressionText)
+    );
+  }
+  const candidates = staticStringCandidates(node);
+  if (
+    candidates.length > 0 &&
+    isFullyStaticStringExpression(node) &&
+    candidates.every(({ text }) => text.trim().length > 0)
+  ) {
     return true;
   }
-  return [node.children, node.expression, node.body].some((field) =>
-    estreeChildren(field).some(hasExpressionText)
-  );
+  return estreeChildren(node.children).some(hasExpressionText);
 }

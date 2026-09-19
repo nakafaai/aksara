@@ -12,9 +12,9 @@ import {
   questionLayer,
 } from "#corpus/test/question-layer";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
+import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
-import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
 import {
   validateAssessmentReadinessEntries,
   validateAssessmentReadinessRegistry,
@@ -32,7 +32,7 @@ const loadReadinessRegistry = Effect.fn(
   );
   const readiness = yield* Effect.all([
     snbtReadiness,
-    tkaMathematicsReadiness,
+    tkaCompulsoryMathematicsReadiness,
     tkaIndonesianReadiness,
     tkaEnglishReadiness,
   ]);
@@ -96,12 +96,12 @@ describe("assessment readiness registry", () => {
           expect.objectContaining({
             _tag: "AssessmentReadinessRegistryError",
             count: 0,
-            identity: "indonesia\u0000tka\u0000mathematics",
+            identity: "indonesia\u0000tka\u0000compulsory-mathematics",
           }),
           expect.objectContaining({
             _tag: "AssessmentReadinessRegistryError",
             count: 0,
-            identity: "indonesia\u0000tka\u0000mathematics",
+            identity: "indonesia\u0000tka\u0000compulsory-mathematics",
           }),
         ]);
       }),

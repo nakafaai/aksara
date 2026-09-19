@@ -8,6 +8,72 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 describe("tryout catalog", () => {
   it.effect(
+    "derives graph identity from source keys for routes and internal entries",
+    () =>
+      Effect.gen(function* () {
+        const catalog = yield* Effect.flatMap(
+          decodeTryoutRegistry(),
+          projectTryoutCatalog
+        );
+        const trackEn = yield* Effect.fromNullishOr(
+          catalog.find(
+            (row) =>
+              row.kind === "track" &&
+              row.examKey === "tka" &&
+              row.trackKey === "compulsory-mathematics" &&
+              row.appLocale === "en"
+          )
+        );
+        const trackId = yield* Effect.fromNullishOr(
+          catalog.find(
+            (row) =>
+              row.kind === "track" &&
+              row.examKey === "tka" &&
+              row.trackKey === "compulsory-mathematics" &&
+              row.appLocale === "id"
+          )
+        );
+        const internal = yield* Effect.fromNullishOr(
+          catalog.find(
+            (row) =>
+              row.kind === "section" &&
+              row.examKey === "tka" &&
+              row.sectionKey === "compulsory-mathematics" &&
+              row.setKey === "set-1" &&
+              row.appLocale === "id"
+          )
+        );
+
+        expect(trackEn.publicPath).toBe(
+          "try-out/indonesia/tka/compulsory-mathematics"
+        );
+        expect(trackId.publicPath).toBe(
+          "try-out/indonesia/tka/matematika-wajib"
+        );
+        expect(trackEn.graph).toMatchObject({
+          conceptId: "concept:tryout:indonesia:tka:compulsory-mathematics",
+          learningObjectId:
+            "lo:tryout-track:indonesia:tka:compulsory-mathematics",
+          lensId: "lens:tryout:indonesia:tka",
+        });
+        expect(trackId.graph.conceptId).toBe(trackEn.graph.conceptId);
+        expect(trackId.graph.assetId).not.toBe(trackEn.graph.assetId);
+        expect(internal).toMatchObject({
+          graph: {
+            conceptId:
+              "concept:tryout:indonesia:tka:compulsory-mathematics:compulsory-mathematics",
+            learningObjectId:
+              "lo:tryout-section:indonesia:tka:compulsory-mathematics:set-1:compulsory-mathematics",
+            lensId: "lens:tryout:indonesia:tka",
+          },
+          visibility: "internal-entry",
+        });
+        expect("publicPath" in internal).toBe(false);
+      }),
+    { timeout: 30_000 }
+  );
+
+  it.effect(
     "projects exact localized hierarchy counts and route ownership",
     () =>
       Effect.gen(function* () {

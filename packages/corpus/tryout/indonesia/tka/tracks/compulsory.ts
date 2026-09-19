@@ -1,15 +1,15 @@
 import { TKA_QUESTION_ROOT } from "#corpus/tryout/indonesia/tka/identity";
 import type { TryoutTrackSourceInput } from "#corpus/tryout/schema";
 
-/** Active official-format TKA Mathematics sets. */
-export const tkaMathematicsTrack = {
-  key: "mathematics",
+/** Active official-format TKA Compulsory Mathematics sets. */
+export const tkaCompulsoryMathematicsTrack = {
+  key: "compulsory-mathematics",
   kind: "subject",
   order: 1,
   routeSlugs: {
-    de: "mathematik",
-    en: "mathematics",
-    id: "matematika",
+    de: "pflichtmathematik",
+    en: "compulsory-mathematics",
+    id: "matematika-wajib",
   },
   sets: [1, 2, 3].map((setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -23,16 +23,16 @@ export const tkaMathematicsTrack = {
       },
       sections: [
         {
-          key: "mathematics",
+          key: "compulsory-mathematics",
           languagePolicy: { kind: "app-locale" as const },
           order: 1,
           questionCount: 25,
-          questionSourcePath: `${TKA_QUESTION_ROOT}/mathematics/${setKey}`,
+          questionSourcePath: `${TKA_QUESTION_ROOT}/compulsory-mathematics/${setKey}`,
           rendererDomain: "tka-math" as const,
           routeSlugs: {
-            de: "mathematik",
-            en: "mathematics",
-            id: "matematika",
+            de: "pflichtmathematik",
+            en: "compulsory-mathematics",
+            id: "matematika-wajib",
           },
           timeLimitSeconds: 4500,
           translations: {

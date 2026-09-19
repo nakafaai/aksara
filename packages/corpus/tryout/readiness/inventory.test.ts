@@ -11,7 +11,7 @@ import {
   physicalQuestionBankTestTimeout,
   questionLayer,
 } from "#corpus/test/question-layer";
-import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
+import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
@@ -20,14 +20,16 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 const loadTkaReadiness = Effect.fn("AksaraCorpus.test.loadTkaReadiness")(
   function* () {
     const source = yield* tkaTryoutSource;
-    const readiness = yield* tkaMathematicsReadiness;
+    const readiness = yield* tkaCompulsoryMathematicsReadiness;
     const registry = yield* decodeTryoutRegistry();
     const banks = yield* indexQuestionBanks(registry);
     const discovered = yield* discoverQuestionSources(corpusRoot, banks).pipe(
       Effect.provide(questionLayer)
     );
     const questions = discovered.filter(({ setKey }) =>
-      setKey.startsWith("question-bank/tryout/indonesia/tka/mathematics/")
+      setKey.startsWith(
+        "question-bank/tryout/indonesia/tka/compulsory-mathematics/"
+      )
     );
     return { questions, readiness, source };
   }
@@ -55,7 +57,7 @@ function mapBlueprints(
 const rejectField = Effect.fn("AksaraCorpus.test.rejectReadinessField")(
   (
     source: Effect.Success<typeof tkaTryoutSource>,
-    readiness: Effect.Success<typeof tkaMathematicsReadiness>,
+    readiness: Effect.Success<typeof tkaCompulsoryMathematicsReadiness>,
     questions: readonly QuestionSource[]
   ) =>
     validateAssessmentQuestionReadiness(source, readiness, questions).pipe(
