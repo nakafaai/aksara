@@ -16,6 +16,8 @@ Setiap vektor pada bidang koordinat <Highlight>dapat diuraikan sepanjang kedua s
 Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membentang sepanjang sumbu <InlineMath math="x" /> dan <InlineMath math="y" />. Setiap vektor pada bidang merupakan kombinasi linear dari vektor satuan <InlineMath math="\mathbf{i}" /> dan <InlineMath math="\mathbf{j}" />.
 
 <Vector3d
+  cameraPosition={[1.8, 4, 12.5]}
+  cameraTarget={[1.8, 4, 0]}
   title="Visualisasi Vektor dan Komponennya"
   description={
     <>
@@ -26,18 +28,27 @@ Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membe
   }
   vectors={[
     {
+      labelOffset: [-0.3, 0.7, 0],
+      labelProgress: 0.75,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [6, 8, 0],
       color: "#e11d48",
       label: <InlineMath math="AB" />,
     },
     {
+      labelOffset: [0, -0.6, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [6, 0, 0],
       color: "#0d9488",
       label: <>Komponen <InlineMath math="x" /></>,
     },
     {
+      labelOffset: [-0.4, 0, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "right",
       from: [0, 0, 0],
       to: [0, 8, 0],
       color: "#65a30d",
@@ -88,35 +99,48 @@ Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" 
 Vektor dapat digunakan pada bidang datar dua dimensi dan ruang tiga dimensi.
 
 <Vector3d
+  cameraPosition={[11, 10, -11]}
+  cameraTarget={[1.5, 3.5, 2]}
   title="Vektor dalam Ruang 3D"
   description="Visualisasi vektor beserta komponennya dalam ruang tiga dimensi."
   vectors={[
     {
+      labelOffset: [0, 0.8, 0],
+      labelProgress: 0.85,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [5, 7, 4],
       color: "#ea580c",
       label: "Vektor 3D",
     },
     {
+      labelOffset: [0, -0.7, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [5, 0, 0],
       color: "#0d9488",
       label: <>Komponen <InlineMath math="x" /></>,
     },
     {
+      labelOffset: [-0.8, 0, 0],
+      labelProgress: 0.6,
+      labelAnchorX: "left",
       from: [0, 0, 0],
       to: [0, 7, 0],
       color: "#65a30d",
       label: <>Komponen <InlineMath math="y" /></>,
     },
     {
+      labelOffset: [0.5, -0.3, 0],
+      labelProgress: 0.6,
+      labelAnchorX: "left",
       from: [0, 0, 0],
       to: [0, 0, 4],
       color: "#ca8a04",
       label: <>Komponen <InlineMath math="z" /></>,
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
 Dalam ruang tiga dimensi, sebuah vektor memiliki **tiga komponen**: komponen <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor di ruang tiga dimensi dapat dinyatakan sebagai:

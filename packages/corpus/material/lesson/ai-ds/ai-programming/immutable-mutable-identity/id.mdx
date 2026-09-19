@@ -3,13 +3,13 @@ export const metadata = {
     description: "Bedakan identitas objek dari kesamaan nilai, lalu pelajari referensi, shallow copy, mutation, dan reassignment pada objek Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## List dan Perubahan Objek
 
-Dalam Python, `list` bersifat mutable, sehingga isinya dapat diubah setelah dibuat. Dampak suatu operasi bergantung pada apakah operasi itu <Highlight>mengubah objek yang sama, membuat objek baru, atau hanya mengikat nama lain ke objek lama</Highlight>.
+Dalam Python, `list` bersifat mutable, sehingga isinya dapat diubah setelah dibuat. Dampak suatu operasi bergantung pada apakah operasi itu <Highlight>mengubah objek yang sama atau mengikat ulang nama</Highlight>.
 
 Ketika sebuah `list` di-assign ke variabel, variabel tersebut hanya menyimpan referensi ke objek `list`. Assignment tidak menyalin isi `list`, sehingga beberapa nama atau container dapat merujuk ke objek yang sama.
 
@@ -31,11 +31,11 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Perhatikan bagaimana perubahan pada `list1` juga memengaruhi `list2`. Kedua nama tersebut merujuk pada objek list yang sama di memori.
+Perhatikan bagaimana perubahan pada `list1` juga memengaruhi `list2`. `list2` adalah list luar yang berbeda. Elemen `list2[1]` merujuk ke objek yang sama dengan `list1`.
 
 ### Full Slice Membuat Shallow Copy
 
-Full slice seperti `data[:]` membuat `list` luar baru, tetapi elemen di dalamnya tetap merujuk ke objek yang sama. Hasil ini disebut shallow copy. Mengganti elemen pada bagian luar tidak memengaruhi `list` asal, tetapi objek mutable yang tersimpan di dalamnya masih dipakai bersama.
+Full slice seperti `data[:]` membuat **`list` luar baru**, tetapi elemen di dalamnya tetap merujuk ke objek yang sama. Hasil ini disebut shallow copy. Mengganti elemen pada bagian luar tidak memengaruhi `list` asal, tetapi objek mutable yang tersimpan di dalamnya masih dipakai bersama.
 
 <CodeBlock
   data={[
@@ -65,7 +65,7 @@ print(nested1)  # [[1, 3], [2]]`
 
 ## Identitas Tipe dan Nilai Objek
 
-Setiap objek Python memiliki tiga karakteristik: identitas, tipe, dan nilai.
+Setiap objek Python memiliki tiga karakteristik: **identitas, tipe, dan nilai**.
 
 <Mermaid
   title="Identitas Menunjukkan Objek yang Dipakai"
@@ -84,7 +84,7 @@ Setiap objek Python memiliki tiga karakteristik: identitas, tipe, dan nilai.
 
 ### Identitas Objek
 
-Dua referensi memiliki identitas yang sama jika keduanya menunjuk ke objek yang sama. `id()` mengembalikan integer yang unik di antara objek-objek yang hidup bersamaan, sedangkan `is` membandingkan identitas secara langsung. Bahasa Python tidak menjamin bahwa integer tersebut merupakan alamat memori fisik.
+Dua referensi memiliki identitas yang sama jika keduanya menunjuk ke objek yang sama. `id()` mengembalikan integer yang **unik di antara objek-objek yang hidup bersamaan**, sedangkan `is` membandingkan identitas secara langsung. Bahasa Python tidak menjamin bahwa integer tersebut merupakan alamat memori fisik.
 
 <CodeBlock
   data={[
@@ -94,20 +94,20 @@ Dua referensi memiliki identitas yang sama jika keduanya menunjuk ke objek yang 
       code: `a = 300
 print(a)          # 300
 print(type(a))    # <class 'int'>
-print(id(a))      # 10120
+print(id(a))      # Contoh: 10120
 
 b = a  # b mereferensi objek yang sama dengan a
-print(id(b))      # 10120 (sama dengan a)
+print(id(b))      # Contoh: 10120 (sama dengan a)
 
 a = a + 1  # Membuat objek baru
-print(id(a))      # 10492 (berbeda dari sebelumnya)`
+print(id(a))      # Contoh: 10492 (berbeda dari sebelumnya)`
     }
   ]}
 />
 
 ### Membandingkan Identitas dan Nilai
 
-Gunakan `is` untuk memeriksa apakah dua nama merujuk pada objek yang sama, terutama pada kondisi seperti `value is None`. Gunakan `==` untuk membandingkan nilai objek. Interpreter dapat memakai kembali objek tertentu atau menghitung ekspresi konstanta lebih awal. Akibatnya, dua nilai immutable kadang memiliki identitas yang sama. Jangan jadikan perilaku internal tersebut sebagai dasar logika program.
+Gunakan `is` untuk memeriksa apakah dua nama merujuk pada objek yang sama, terutama pada kondisi seperti `value is None`. Gunakan `==` untuk **membandingkan nilai objek**. Interpreter dapat memakai kembali objek tertentu atau menghitung ekspresi konstanta lebih awal. Akibatnya, dua nilai immutable kadang memiliki identitas yang sama. Jangan jadikan perilaku internal tersebut sebagai dasar logika program.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ Dua nama yang menunjuk ke satu objek mutable sama-sama melihat perubahan isi itu
 
 ### Objek Immutable
 
-Objek immutable tidak dapat diubah setelah dibuat. Operasi yang tampak mengubah nilai objek sebenarnya membuat objek baru dan mengikat nama variabel ke objek tersebut.
+Objek immutable **tidak dapat diubah setelah dibuat**. Operasi yang tampak mengubah nilai objek sebenarnya membuat objek baru dan mengikat nama variabel ke objek tersebut.
 
 <CodeBlock
   data={[
@@ -143,14 +143,14 @@ Objek immutable tidak dapat diubah setelah dibuat. Operasi yang tampak mengubah 
       filename: "immutable_objects.py",
       code: `# Integer bersifat immutable
 a = 300
-print(id(a))  # 10120
+print(id(a))  # Contoh: 10120
 
 a = a + 1     # Membuat objek baru
-print(id(a))  # 10492 (berbeda)
+print(id(a))  # Contoh: 10492 (berbeda)
 
 # String juga bersifat immutable
 str_var = 'hello'
-print(id(str_var))  # 75568
+print(id(str_var))  # Contoh: 75568
 
 # Mencoba mengubah string akan menghasilkan error
 # str_var[1] = 'a'  # TypeError`
@@ -171,7 +171,7 @@ Urutan referensi dalam `tuple` tidak dapat diubah, tetapi sebuah referensi tetap
 
 ### Objek Mutable
 
-Objek mutable dapat diubah tanpa membuat objek baru. Identitas objek tetap sama meskipun isinya berubah.
+Objek mutable dapat diubah tanpa membuat objek baru. **Identitas objek tetap sama** meskipun isinya berubah.
 
 <CodeBlock
   data={[
@@ -180,7 +180,8 @@ Objek mutable dapat diubah tanpa membuat objek baru. Identitas objek tetap sama 
       filename: "mutable_objects.py",
       code: `# List bersifat mutable
 list_var = [0, 1, 2]
-original_id = id(list_var)
+original = list_var
+original_id = id(original)
 
 # Mengubah elemen mempertahankan identitas list
 list_var[0] = 9
@@ -206,7 +207,7 @@ Tipe mutable dalam Python meliputi:
 
 ### Reassignment dan Mutation
 
-Reassignment mengikat sebuah nama ke objek lain. Mutation mengubah isi objek yang sama, sehingga perubahannya dapat diakses melalui semua nama yang masih merujuk ke objek tersebut.
+Reassignment **mengikat sebuah nama** ke objek lain. Mutation mengubah isi objek yang sama, sehingga perubahannya dapat diakses melalui semua nama yang masih merujuk ke objek tersebut.
 
 <CodeBlock
   data={[
@@ -216,8 +217,8 @@ Reassignment mengikat sebuah nama ke objek lain. Mutation mengubah isi objek yan
       code: `list1 = [0, 1, 2]
 list2 = list1  # Kedua variabel mereferensi objek yang sama
 
-print(id(list1))     # 700
-print(id(list2))     # 700 (sama)
+print(id(list1))     # Contoh: 700
+print(id(list2))     # Contoh: 700 (sama)
 
 # Perubahan isi memengaruhi kedua variabel
 list1[1] = 'x'
@@ -233,8 +234,8 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
 />
 
 <Mermaid
-  title="Reassignment dan Mutation"
-  description="Bandingkan reassignment yang menunjuk ke objek baru dengan mutation yang mengubah objek yang sama."
+  title="Dua Nama Melihat Satu Mutasi"
+  description="Kedua nama tetap merujuk ke list yang sama setelah elemen list diubah."
   chart={`
     flowchart TD
         subgraph Sebelum ["Sebelum Modifikasi"]

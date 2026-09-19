@@ -4,24 +4,16 @@ export const metadata = {
   datePublished: "2025-12-23",
 };
 
-Die Zahlenfolge <InlineMath math="72, x, 65, 60, 30, 27, y, 8" /> wechselt zwischen Subtraktion und Division:
+Wende die **Operationen in der vorgegebenen Reihenfolge** an. Das Subtrahieren ungerader Zahlen wechselt sich mit dem Dividieren durch die folgenden ganzen Zahlen ab.
 
-<MathContainer>
-  <BlockMath math="72 \xrightarrow{-7} x = 65" />
-  <BlockMath math="x \xrightarrow{\div 1} 65" />
-  <BlockMath math="65 \xrightarrow{-5} 60" />
-  <BlockMath math="60 \xrightarrow{\div 2} 30" />
-  <BlockMath math="30 \xrightarrow{-3} 27" />
-  <BlockMath math="27 \xrightarrow{\div 3} 9" />
-  <BlockMath math="9 \xrightarrow{-1} 8" />
-</MathContainer>
+| Übergang | Operation | Ergebnis |
+| --- | --- | --- |
+| <InlineMath math="72 \to x" /> | <InlineMath math="72-7" /> | <InlineMath math="x=65" /> |
+| <InlineMath math="x \to 65" /> | <InlineMath math="65\div1" /> | <InlineMath math="65" /> |
+| <InlineMath math="65 \to 60" /> | <InlineMath math="65-5" /> | <InlineMath math="60" /> |
+| <InlineMath math="60 \to 30" /> | <InlineMath math="60\div2" /> | <InlineMath math="30" /> |
+| <InlineMath math="30 \to 27" /> | <InlineMath math="30-3" /> | <InlineMath math="27" /> |
+| <InlineMath math="27 \to y" /> | <InlineMath math="27\div3" /> | <InlineMath math="y=9" /> |
+| <InlineMath math="y \to 8" /> | <InlineMath math="9-1" /> | <InlineMath math="8" /> |
 
-Dabei werden abwechselnd
-1. die absteigenden ungeraden Zahlen <InlineMath math="7, 5, 3, 1" /> subtrahiert und
-2. durch die aufsteigenden ganzen Zahlen <InlineMath math="1, 2, 3" /> dividiert.
-
-Nach diesem Muster:
-- Der Wert von <InlineMath math="x" /> wird aus <InlineMath math="72 - 7 = 65" /> ermittelt.
-- Der Wert von <InlineMath math="y" /> wird aus <InlineMath math="27 \div 3 = 9" /> ermittelt.
-
-Die Werte von <InlineMath math="x" /> und <InlineMath math="y" /> sind also jeweils <InlineMath math="65" /> und <InlineMath math="9" />.
+Damit erfüllt folgendes Wertepaar alle Übergänge: <InlineMath math="x=65" /> und <InlineMath math="y=9" />.

@@ -5,14 +5,14 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Suppose <InlineMath math="-1 < x < 1" />, where:
+Examine the **effect of the denominator** for <InlineMath math="-1<x<1" />, where:
 
 -   <InlineMath math="P = \frac{1 + x^4}{1 - x^2}" />
 -   <InlineMath math="Q = 1 + x^4" />
 
 #### Analyzing the denominator
 
-From <InlineMath math="-1 < x < 1" />, squaring gives:
+From <InlineMath math="-1 < x < 1" />, the **square is nonnegative** and less than one:
 
 <BlockMath math="0 \leq x^2 < 1" />
 
@@ -22,7 +22,7 @@ Therefore, the denominator satisfies:
 
 #### Comparing the Quantities
 
-We divide <InlineMath math="P" /> by <InlineMath math="Q" />:
+Since <InlineMath math="Q=1+x^4\ge1" /> is **always positive**, dividing both quantities by <InlineMath math="Q" /> preserves their order:
 
 <MathContainer>
   <BlockMath math="\frac{P}{Q} = \frac{\frac{1 + x^4}{1 - x^2}}{1 + x^4} = \frac{1}{1 - x^2}" />
@@ -30,14 +30,12 @@ We divide <InlineMath math="P" /> by <InlineMath math="Q" />:
 
 Now we analyze two cases:
 
-**Case** 1: If <InlineMath math="0 < 1 - x^2 < 1" />
+**Case 1**: If <InlineMath math="0 < 1 - x^2 < 1" />
 
 Then <InlineMath math="\frac{1}{1 - x^2} > 1" />, so <InlineMath math="P > Q" />.
 
-**Case** 2: If <InlineMath math="1 - x^2 = 1" /> (i.e., when <InlineMath math="x = 0" />)
+**Case 2**: If <InlineMath math="1 - x^2 = 1" /> (i.e., when <InlineMath math="x = 0" />)
 
 Then <InlineMath math="\frac{1}{1 - x^2} = 1" />, so <InlineMath math="P = Q" />.
-
-#### Relationship Shared by Both Cases
 
 When <InlineMath math="x\ne0" />, we have <InlineMath math="P>Q" />. When <InlineMath math="x=0" />, we have <InlineMath math="P=Q" />. Combining both cases, the relationship that always holds is <InlineMath math="P\ge Q" />.

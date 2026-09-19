@@ -5,39 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-We will check each number based on the two given conditions:
+We need numbers that **fail at least one condition**. Every candidate leaves remainder 3 on division by 7, but each must also be odd.
 
-*   Condition 1: Divided by <InlineMath math="7" />, the remainder is <InlineMath math="3" />.
-*   Condition 2: Divided by <InlineMath math="2" />, the remainder is <InlineMath math="1" /> (meaning it is an odd number).
+| Entry | Number | Division by 7 | Division by 2 |
+| --- | --- | --- | --- |
+| 1 | 94 | <InlineMath math="94=7\cdot13+3" /> | <InlineMath math="94=2\cdot47+0" /> |
+| 2 | 80 | <InlineMath math="80=7\cdot11+3" /> | <InlineMath math="80=2\cdot40+0" /> |
+| 3 | 38 | <InlineMath math="38=7\cdot5+3" /> | <InlineMath math="38=2\cdot19+0" /> |
+| 4 | 17 | <InlineMath math="17=7\cdot2+3" /> | <InlineMath math="17=2\cdot8+1" /> |
 
-#### Checking the First Number
-
-*   **Divided by** <InlineMath math="7" />: <InlineMath math="94=7\cdot13+3" /> remainder <InlineMath math="3" /> (Satisfies condition 1).
-*   **Divided by** <InlineMath math="2" />: <InlineMath math="94" /> is an even number, so <InlineMath math="94 \div 2" /> remainder <InlineMath math="0" /> (Does not satisfy condition 2).
-
-Conclusion: Number <InlineMath math="94" /> **does not satisfy both conditions**.
-
-#### Checking the Second Number
-
-*   **Divided by** <InlineMath math="7" />: <InlineMath math="80=7\cdot11+3" /> remainder <InlineMath math="3" /> (Satisfies condition 1).
-*   **Divided by** <InlineMath math="2" />: <InlineMath math="80" /> is an even number, so <InlineMath math="80 \div 2" /> remainder <InlineMath math="0" /> (Does not satisfy condition 2).
-
-Conclusion: Number <InlineMath math="80" /> **does not satisfy both conditions**.
-
-#### Checking the Third Number
-
-*   **Divided by** <InlineMath math="7" />: <InlineMath math="38=7\cdot5+3" /> remainder <InlineMath math="3" /> (Satisfies condition 1).
-*   **Divided by** <InlineMath math="2" />: <InlineMath math="38" /> is an even number, so <InlineMath math="38 \div 2" /> remainder <InlineMath math="0" /> (Does not satisfy condition 2).
-
-Conclusion: Number <InlineMath math="38" /> **does not satisfy both conditions**.
-
-#### Checking the Fourth Number
-
-*   **Divided by** <InlineMath math="7" />: <InlineMath math="17=7\cdot2+3" /> remainder <InlineMath math="3" /> (Satisfies condition 1).
-*   **Divided by** <InlineMath math="2" />: <InlineMath math="17" /> is an odd number, so <InlineMath math="17 \div 2" /> remainder <InlineMath math="1" /> (Satisfies condition 2).
-
-Conclusion: Number <InlineMath math="17" /> **satisfies both conditions**.
-
-#### Final Conclusion
-
-The question asks which entries **do not satisfy both conditions**. Based on the check above, the numbers that do not satisfy both conditions are numbers (<InlineMath math="1" />), (<InlineMath math="2" />), and (<InlineMath math="3" />).
+The numbers 94, 80, and 38 are **even**, so they fail the required remainder 1 on division by 2. The number 17 satisfies both conditions. The requested entries are therefore (1), (2), and (3).

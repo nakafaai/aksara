@@ -1,54 +1,25 @@
 export const metadata = {
   title: "Solution for Question 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-We will sort all apple masses from smallest to largest, then divide them into two groups: the <InlineMath math="6" /> heaviest apples for Ferdian and the <InlineMath math="6" /> lightest apples for Belle.
+The new distribution assigns **the six lightest and six heaviest apples** from the combined collection. Exchanging apples does not change their masses.
 
-#### Sorting Apple Mass Data
+#### Distributing the Sorted Apples
 
-The combined apple mass data (with <InlineMath math="x = 180" />) is:
+Using <InlineMath math="x=180" />, the sorted masses give the two groups below. Keep **both 180-gram apples** as separate observations.
 
+| Recipient | Positions after sorting | Apple masses (grams) |
+| --- | --- | --- |
+| Belle | 1 to 6 | 154, 157, 161, 162, 163, 167 |
+| Ferdian | 7 to 12 | 170, 171, 175, 180, 180, 182 |
 
-<BlockMath math="\begin{gathered}157, 163, 182, \\ 171, 167, 180, \\ 180, 175, 162, \\ 154, 161, 170\end{gathered}" />
+#### Finding the Difference between Total Masses
 
-Sorted from smallest to largest:
+Let <InlineMath math="S_B" /> and <InlineMath math="S_F" /> be **the total masses carried by Belle and Ferdian** after the exchange. Add the six masses in each row before subtracting the totals.
 
-<BlockMath math="\begin{gathered}154, 157, 161, \\ 162, 163, 167, \\ 170, 171, 175, \\ 180, 180, 182\end{gathered}" />
+<BlockMath math="\begin{aligned}S_B&=154+157+161\\&\quad+162+163+167\\&=964\text{ g}\\S_F&=170+171+175\\&\quad+180+180+182\\&=1{,}058\text{ g}\\S_F-S_B&=1{,}058-964\\&=94\text{ g}\end{aligned}" />
 
-#### Apple Distribution
-
-**Belle (<InlineMath math="6" /> lightest apples):**
-
-<BlockMath math="\begin{gathered}154, 157, 161, \\ 162, 163, 167\end{gathered}" />
-
-**Ferdian (<InlineMath math="6" /> heaviest apples):**
-
-<BlockMath math="\begin{gathered}170, 171, 175, \\ 180, 180, 182\end{gathered}" />
-
-#### Calculating Total Mass Each
-
-**Total Mass for Belle:**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}&154 + 157 + 161 \\ &\quad+162 + 163 + 167\end{aligned}" />
-  <BlockMath math="964 \text{ grams}" />
-</MathContainer>
-
-**Total Mass for Ferdian:**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}&170 + 171 + 175 \\ &\quad+180 + 180 + 182\end{aligned}" />
-  <BlockMath math="1{,}058 \text{ grams}" />
-</MathContainer>
-
-#### Calculating Mass Difference
-
-<MathContainer>
-  <BlockMath math="1{,}058 - 964" />
-  <BlockMath math="94 \text{ grams}" />
-</MathContainer>
-
-So, the difference in apple mass carried by Ferdian and Belle is **<InlineMath math="94 \text{ grams}" />**.
+The combined mass remains <InlineMath math="964+1{,}058=2{,}022" /> grams. Only its distribution changes. Ferdian carries **94 grams more** than Belle.

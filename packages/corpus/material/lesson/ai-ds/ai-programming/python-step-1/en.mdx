@@ -3,7 +3,7 @@ export const metadata = {
   description: "Run Python in interactive mode, scripts, and Jupyter, then build small programs with variables, input, and output.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-09-04",
+  dateModified: "2026-09-19",
   subject: "AI Programming",
 };
 
@@ -17,7 +17,7 @@ When you need to check syntax or find a function in the standard library, open t
 
 ## Hello World Program
 
-A common first program displays the text "Hello World!". Running it confirms that Python can execute a file and gives you a small, complete program to inspect.
+A common first program **displays the text "Hello World!"**. Running it confirms that Python can execute a file and gives you a small, complete program to inspect.
 
 <CodeBlock
   data={[{
@@ -31,11 +31,11 @@ The built-in `print()` function writes the value inside its parentheses to the o
 
 ## Three Ways to Run Python Programs
 
-Python code can be run in three common ways. The interactive prompt is best for trying one expression at a time, a saved script file is best for a program you run again, and a notebook is best for mixing code with written notes.
+Python code can be run in three common ways. The interactive prompt is best for trying one expression at a time, a saved script file is best for a program you run again, and a notebook is best for **mixing code with written notes**.
 
 ### Interactive Mode
 
-Interactive mode runs Python statements directly in the terminal. Use it to check a short expression or inspect a value without creating a file.
+Interactive mode runs Python statements directly in the terminal. Use it to check a short expression or **inspect a value without creating a file**.
 
 Here's how to use interactive mode. First open a terminal or command prompt, then type `python` or `python3` and press Enter. You'll see the `>>>` prompt indicating Python is ready to receive commands. Next, write Python code and press Enter to execute it.
 
@@ -44,9 +44,6 @@ Here's how to use interactive mode. First open a terminal or command prompt, the
     language: "bash",
     filename: "terminal",
     code: `$ python3
-Python 3.8.5 (default, Sep  4 2020, 02:22:02)
-[Clang 10.0.0 ] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
 >>> print("Hello World!")
 Hello World!
 >>> 2 + 3
@@ -60,9 +57,9 @@ Hello, Alice!
 
 ### Script Mode
 
-Script mode is a way to run saved Python files. This is suitable for more complex programs or programs you want to save for repeated use.
+Script mode is a way to **run saved Python files**. This is suitable for more complex programs or programs you want to save for repeated use.
 
-To run a script, create a file with the `.py` extension in a text editor, write the Python code, and save the file. Then open a terminal, go to the folder that contains the file, and run `python filename.py`.
+To run a script, create a file with the `.py` extension in a text editor, write the Python code, and save the file. Then open a terminal, go to the folder that contains the file, and run `python3 filename.py`.
 
 <CodeBlock
   data={[{
@@ -95,21 +92,23 @@ Happy learning Python!`
 
 ### Jupyter Lab and Notebooks
 
-Jupyter is an interactive environment often used for data science and teaching. A notebook combines executable code, its output, and written explanation in one document.
+Jupyter is an interactive environment often used for data science and teaching. A notebook combines **executable code**, its output, and written explanation in one document.
 
 Each cell can run independently, and its output appears directly below it. Because code, results, explanatory text, images, and graphs stay in one document, a notebook can record each step of an experiment or data analysis.
 
+Cells share state in the same kernel. After restarting the kernel, run the cells from top to bottom: a cell using `math` or a function depends on the cell that defined that name.
+
 Install JupyterLab in a dedicated Python environment so its packages do not interfere with unrelated projects:
+
+These commands use macOS/Linux paths. On Windows, use `py -m venv .venv`, then `.venv\Scripts\python -m pip install jupyterlab` and `.venv\Scripts\jupyter lab`.
 
 <CodeBlock
   data={[{
     language: "bash",
     filename: "terminal",
     code: `# Install JupyterLab with the selected Python interpreter
-python3 -m pip install jupyterlab
-
-# Or install it from conda-forge in a Conda environment
-conda install -c conda-forge jupyterlab`
+python3 -m venv .venv
+.venv/bin/python -m pip install jupyterlab`
   }]}
 />
 
@@ -120,7 +119,7 @@ Second, run Jupyter Lab:
     language: "bash",
     filename: "terminal",
     code: `# Run Jupyter Lab
-jupyter lab
+.venv/bin/jupyter lab
 
 # Will open browser with Jupyter interface`
   }]}
@@ -156,11 +155,11 @@ print(f"Circle area with radius {test_radius} is {result:.2f}")`
 
 ## Basic Python Syntax
 
-A first Python program reads its statements from top to bottom. A variable stores a value, a data type decides which operations that value supports, and input, output, and arithmetic turn those values into a working program.
+A first Python program reads its statements from top to bottom. A variable stores a value, a **data type decides which operations** that value supports, and input, output, and arithmetic turn those values into a working program.
 
 ### Variables and Data Types
 
-Python has several basic data types. A variable name refers to a value. Assigning another value makes the name point to that new value.
+Python has several basic data types. A **variable name refers to a value**. Assigning another value makes the name point to that new value.
 
 <CodeBlock
   data={[{
@@ -176,7 +175,7 @@ message = 'Hello Python!'
 age = 25
 year = 2025
 
-# Float (decimal numbers)
+# Float (floating-point numbers)
 height = 175.5
 pi = 3.14159
 
@@ -207,7 +206,7 @@ print(type(person))      # <class 'dict'>`
 
 ### Input and Output
 
-A program receives user data as input and returns text or calculated values as output. Python uses `input()` to read text and `print()` to display a result.
+A program receives user data as input and returns text or calculated values as output. Python uses `input()` to **read text** and `print()` to display a result.
 
 <CodeBlock
   data={[{
@@ -237,7 +236,7 @@ print("Age next year:", next_year)`
 
 ### Basic Mathematical Operations
 
-Python supports various mathematical operations:
+Python supports various **mathematical operations**:
 
 <CodeBlock
   data={[{
@@ -274,11 +273,11 @@ print(f"Current value of x: {x}")`
 
 ## Practical Exercises
 
-Complete these exercises to practice variables, input, output, and basic operations. Write each answer yourself before checking it, because the exercise trains the steps you take. The solutions follow the same order as the problems.
+Complete these exercises to practice **variables, input, output, and basic operations**. Write each answer yourself before checking it, because the exercise trains the steps you take. The solutions follow the same order as the problems.
 
 ### Simple Calculator
 
-This program reads two numbers and an operator, then prints the result. It combines input, type conversion, and branching in one file.
+This program reads **two numbers and an operator**, then prints the result. It combines input, type conversion, and branching in one file.
 
 <CodeBlock
   data={[{
@@ -317,20 +316,24 @@ if result is not None:
 
 ### Temperature Conversion
 
-This program converts a Celsius temperature into Fahrenheit and Kelvin, and it rejects a value below absolute zero.
+This program converts a **Celsius temperature into Fahrenheit and Kelvin**, and it rejects a value below absolute zero.
+
+The freezing and boiling statements approximate pure water at one atmosphere. Try `26.85`: the conversion produces `80.3 °F` and `300.0 K`.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "temperature_converter.py",
-    code: `# Temperature converter from Celsius to Fahrenheit and Kelvin
+    code: `import math
+
+# Temperature converter from Celsius to Fahrenheit and Kelvin
 print("=== TEMPERATURE CONVERTER ===")
 
 # Input temperature in Celsius
 celsius = float(input("Enter temperature in Celsius: "))
 
-if celsius < -273.15:
-    raise ValueError("Temperature cannot be below absolute zero")
+if not math.isfinite(celsius) or celsius < -273.15:
+    raise ValueError("Temperature must be finite and at or above absolute zero")
 
 # Convert to Fahrenheit and Kelvin
 fahrenheit = (celsius * 9/5) + 32
@@ -355,7 +358,7 @@ elif celsius > 100:
 
 ### Student Profile
 
-This program asks for a student's details, stores them in variables, and prints a short profile.
+This program asks for a student's details, stores them in variables, and **prints a short profile**.
 
 <CodeBlock
   data={[{
@@ -369,8 +372,10 @@ name = input("Full name: ")
 student_id = input("Student ID: ")
 major = input("Major: ")
 semester = int(input("Semester: "))
+if semester < 1:
+    raise ValueError("Semester must be at least 1")
 hobby = input("Favorite hobby: ")
-current_year = int(input("Current year: "))
+current_year = int(input("Start year of the current academic year: "))
 
 # Estimate using two semesters per academic year
 entry_year = current_year - (semester - 1) // 2
@@ -401,7 +406,7 @@ else:
 
 ### Check Your Work
 
-Your practice programs are correct when:
+**Your practice programs are correct** when:
 
 - The calculator asks for two numbers and one operator, then displays the result of the selected operation.
 - The temperature converter displays Fahrenheit and Kelvin values from the Celsius input.

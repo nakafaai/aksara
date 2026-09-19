@@ -5,31 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kita bandingkan banyak simetri lipat dengan banyak putaran yang membuat setiap bangun tepat menutupi dirinya kembali. Sesuai ketentuan soal, putaran penuh <InlineMath math="360^\circ" /> dihitung satu kali.
+Kita bandingkan **simetri putar dan simetri lipat**. Putaran penuh <InlineMath math="360^\circ" /> dihitung satu kali, seperti ketentuan soal.
 
-1. **Segitiga siku-siku sama kaki**
-   - Simetri lipat: <InlineMath math="1" /> (garis tinggi dari sudut siku-siku ke hipotenusa).
-   - Simetri putar: <InlineMath math="1" /> (putaran <InlineMath math="360^\circ" />).
-   - **Kesimpulan**: Jumlahnya sama.
+| Bangun | Simetri putar | Sumbu lipat |
+| --- | --- | --- |
+| Segitiga siku-siku sama kaki | 1: 360° | 1: garis dari sudut siku-siku ke titik tengah hipotenusa |
+| Trapesium siku-siku bukan persegi panjang | 1: 360° | 0 |
+| Persegi panjang bukan persegi | 2: 180° dan 360° | 2: garis melalui titik tengah sisi-sisi yang berhadapan |
+| Belah ketupat bukan persegi | 2: 180° dan 360° | 2: kedua diagonal |
 
-2. **Trapesium siku-siku**
-   - Simetri lipat: <InlineMath math="0" />.
-   - Simetri putar: <InlineMath math="1" /> (putaran <InlineMath math="360^\circ" />).
-   - **Kesimpulan**: Jumlahnya tidak sama.
+Pada belah ketupat ini, **kedua diagonal** membagi bangun menjadi bagian yang saling mencerminkan. Putaran 180° menukar titik-titik sudut yang berhadapan.
 
-3. **Persegi panjang** (bukan persegi)
-   - Simetri lipat: <InlineMath math="2" /> (sumbu vertikal dan horizontal).
-   - Simetri putar: <InlineMath math="2" /> (putaran <InlineMath math="180^\circ" /> dan <InlineMath math="360^\circ" />).
-   - **Kesimpulan**: Jumlahnya sama.
+<MathVisual
+ title="Dua diagonal sebagai sumbu simetri"
+ description="Diagonal mendatar dan tegak membagi belah ketupat menjadi pasangan segitiga yang saling mencerminkan."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
+ labels={{}}
+/>
 
-4. **Belah ketupat** (bukan persegi)
-   - Simetri lipat: <InlineMath math="2" /> (kedua diagonal).
-   - Simetri putar: <InlineMath math="2" /> (putaran <InlineMath math="180^\circ" /> dan <InlineMath math="360^\circ" />).
-   - **Kesimpulan**: Jumlahnya sama.
-
-Bangun yang memiliki banyak simetri putar sama dengan banyak simetri lipat adalah:
-1. Segitiga siku-siku sama kaki.
-2. Persegi panjang.
-3. Belah ketupat.
-
-Jadi, ada <InlineMath math="3" /> bangun yang memenuhi kondisi tersebut.
+Jumlah tersebut sama untuk segitiga, persegi panjang, dan belah ketupat. Jadi, ada <InlineMath math="3" /> bangun yang memenuhi syarat.

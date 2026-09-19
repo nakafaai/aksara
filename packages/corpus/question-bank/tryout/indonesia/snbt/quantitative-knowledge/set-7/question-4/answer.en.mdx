@@ -5,50 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-We compare the number of lines of symmetry with the order of rotational symmetry for each figure. The full <InlineMath math="360^\circ" /> turn counts as order <InlineMath math="1" />. A figure must have at most <InlineMath math="2" /> of each.
+Each figure must meet **both upper bounds**: at most two reflection axes and at most two matching positions during one full turn. Count the initial position once, via the <InlineMath math="360^\circ" /> turn.
 
-#### Analyzing Right Trapezoid
+| Figure | Reflection axes | Rotational symmetries |
+| --- | --- | --- |
+| Right trapezoid | 0 | 1: only 360° |
+| Regular pentagon | 5: each vertex to the opposite side midpoint | 5: multiples of 72° |
+| Equilateral triangle | 3: each vertex to the opposite side midpoint | 3: 120°, 240°, 360° |
+| Kite that is not a rhombus | 1: the diagonal through vertices where equal adjacent sides meet | 1: only 360° |
 
-A right trapezoid has no axis of symmetry and no rotational symmetry of higher order (only order <InlineMath math="1" />, which is the initial position).
+The kite below has **one reflection axis**. A 180° turn does not map it onto itself because the top and bottom vertices are at different distances from the diagonal intersection.
 
-*   Lines of symmetry: <InlineMath math="0" />
-*   Rotational symmetry: <InlineMath math="1" />
+<MathVisual title="The reflection axis of a kite" description="The vertical diagonal divides the kite into two mirror-image halves." scene={{space:"plane",frame:{kind:"cartesian",x:{min:-3,max:3},y:{min:-2,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"kite",kind:"polygon",appearance:"primary",vertices:[{x:0,y:3},{x:2,y:0},{x:0,y:-1},{x:-2,y:0}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:-1},to:{x:0,y:3}}],labels:[]}} labels={{}} />
 
-This figure satisfies the condition (since <InlineMath math="0 \le 2" /> and <InlineMath math="1 \le 2" />).
-
-#### Analyzing Regular Pentagon
-
-A regular pentagon has <InlineMath math="5" /> equal sides.
-
-*   Lines of symmetry: <InlineMath math="5" />
-*   Rotational symmetry: <InlineMath math="5" />
-
-This figure does **not** satisfy the condition.
-
-#### Analyzing Equilateral Triangle
-
-An equilateral triangle has <InlineMath math="3" /> equal sides.
-
-*   Lines of symmetry: <InlineMath math="3" />
-*   Rotational symmetry: <InlineMath math="3" />
-
-This figure does **not** satisfy the condition.
-
-#### Kite
-
-This kite is not a rhombus.
-
-A kite has one main axis of symmetry.
-
-*   Lines of symmetry: <InlineMath math="1" />
-*   Rotational symmetry: <InlineMath math="1" />
-
-This figure satisfies the condition.
-
-#### Figures Satisfying the Conditions
-
-The plane figures that satisfy the condition are:
-1. Right trapezoid.
-2. Kite (not a rhombus).
-
-Thus, there are <InlineMath math="2" /> plane figures that satisfy the condition.
+The right trapezoid and kite satisfy both bounds, giving <InlineMath math="2" /> figures.

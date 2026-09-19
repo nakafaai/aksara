@@ -5,39 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Wir prüfen jede Zahl anhand der beiden angegebenen Bedingungen:
+Gesucht sind Zahlen, die **mindestens eine Bedingung verletzen**. Alle Kandidaten haben bei Division durch 7 den Rest 3. Zusätzlich müsste die Zahl ungerade sein.
 
-*   Bedingung 1: Geteilt durch <InlineMath math="7" />, der Rest ist <InlineMath math="3" />.
-*   Bedingung 2: Geteilt durch <InlineMath math="2" />, der Rest ist <InlineMath math="1" /> (was bedeutet, dass es eine ungerade Zahl ist).
+| Eintrag | Zahl | Division durch 7 | Division durch 2 |
+| --- | --- | --- | --- |
+| 1 | 94 | <InlineMath math="94=7\cdot13+3" /> | <InlineMath math="94=2\cdot47+0" /> |
+| 2 | 80 | <InlineMath math="80=7\cdot11+3" /> | <InlineMath math="80=2\cdot40+0" /> |
+| 3 | 38 | <InlineMath math="38=7\cdot5+3" /> | <InlineMath math="38=2\cdot19+0" /> |
+| 4 | 17 | <InlineMath math="17=7\cdot2+3" /> | <InlineMath math="17=2\cdot8+1" /> |
 
-#### Erste Zahl
-
-*   **Dividiert durch** <InlineMath math="7" />: <InlineMath math="94=7\cdot13+3" /> Rest <InlineMath math="3" /> (Erfüllt Bedingung 1).
-*   **Geteilt durch** <InlineMath math="2" />: <InlineMath math="94" /> ist eine gerade Zahl, daher ist <InlineMath math="94 \div 2" /> Rest <InlineMath math="0" /> (Erfüllt die Bedingung 2 nicht).
-
-Die Zahl <InlineMath math="94" /> erfüllt also nicht beide Bedingungen.
-
-#### Zweite Zahl
-
-*   **Dividiert durch** <InlineMath math="7" />: <InlineMath math="80=7\cdot11+3" /> Rest <InlineMath math="3" /> (Erfüllt Bedingung 1).
-*   **Geteilt durch** <InlineMath math="2" />: <InlineMath math="80" /> ist eine gerade Zahl, daher ist <InlineMath math="80 \div 2" /> Rest <InlineMath math="0" /> (Erfüllt die Bedingung 2 nicht).
-
-Die Zahl <InlineMath math="80" /> erfüllt also nicht beide Bedingungen.
-
-#### Dritte Zahl
-
-*   **Dividiert durch** <InlineMath math="7" />: <InlineMath math="38=7\cdot5+3" /> Rest <InlineMath math="3" /> (Erfüllt Bedingung 1).
-*   **Geteilt durch** <InlineMath math="2" />: <InlineMath math="38" /> ist eine gerade Zahl, daher ist <InlineMath math="38 \div 2" /> Rest <InlineMath math="0" /> (Erfüllt die Bedingung 2 nicht).
-
-Die Zahl <InlineMath math="38" /> erfüllt also nicht beide Bedingungen.
-
-#### Vierte Zahl
-
-*   **Dividiert durch** <InlineMath math="7" />: <InlineMath math="17=7\cdot2+3" /> Rest <InlineMath math="3" /> (Erfüllt Bedingung 1).
-*   **Geteilt durch** <InlineMath math="2" />: <InlineMath math="17" /> ist eine ungerade Zahl, daher ist <InlineMath math="17 \div 2" /> Rest <InlineMath math="1" /> (erfüllt die Bedingung 2).
-
-Die Zahl <InlineMath math="17" /> erfüllt beide Bedingungen.
-
-#### Zahlen mit mindestens einer verletzten Bedingung
-
-Gesucht sind die Einträge, die **nicht beide Bedingungen erfüllen**. Die Prüfung zeigt, dass die Zahlen (<InlineMath math="1" />), (<InlineMath math="2" />) und (<InlineMath math="3" />) nicht beide Bedingungen erfüllen.
+Die Zahlen 94, 80 und 38 sind **gerade**. Sie verletzen daher die Bedingung Rest 1 bei Division durch 2. Die Zahl 17 erfüllt beide Bedingungen. Gesucht sind somit die Einträge (1), (2) und (3).

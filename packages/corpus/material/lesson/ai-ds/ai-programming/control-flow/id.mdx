@@ -3,7 +3,7 @@ export const metadata = {
     description: "Atur alur eksekusi Python dengan conditional statement, while loop, for loop, break, continue, pass, enumerate, zip, dan range.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -96,7 +96,7 @@ else:
 
 ## Fungsi Enumerate
 
-Gunakan `enumerate()` ketika iterasi membutuhkan pencacah sekaligus nilai setiap elemen. Fungsi ini mengembalikan iterator yang menghasilkan tuple `(indeks, nilai)`.
+Gunakan `enumerate()` ketika iterasi membutuhkan **pencacah sekaligus nilai setiap elemen**. Fungsi ini mengembalikan iterator yang menghasilkan tuple `(indeks, nilai)`.
 
 <CodeBlock
   data={[
@@ -142,7 +142,7 @@ Pada `for i, fruit in enumerate(fruits)`, tuple unpacking memisahkan setiap pasa
 
 ## While Loop
 
-`while` loop mengeksekusi blok selama kondisi `while` bernilai truthy. `for` loop mengambil item dari iterable satu per satu, sedangkan `while` mengulang berdasarkan kondisi yang biasanya diperbarui oleh isi blok.
+`while` loop mengeksekusi blok **selama kondisi `while` bernilai truthy**. `for` loop mengambil item dari iterable satu per satu, sedangkan `while` mengulang berdasarkan kondisi yang biasanya diperbarui oleh isi blok.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ print(z)
 
 ## Fungsi Zip
 
-Fungsi `zip()` memasangkan elemen yang posisinya sama dari beberapa iterable. Iterasi berhenti ketika iterable terpendek kehabisan elemen, sehingga jumlah pasangan sama dengan panjang iterable terpendek.
+Fungsi `zip()` **memasangkan elemen yang posisinya sama** dari beberapa iterable. Iterasi berhenti ketika iterable terpendek kehabisan elemen, sehingga jumlah pasangan sama dengan panjang iterable terpendek.
 
 ### Penggunaan Dasar Zip
 
@@ -201,11 +201,11 @@ for pair in zip(p, q):
   ]}
 />
 
-Fungsi `zip()` mengembalikan iterator berisi tuple. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default, iterasi berhenti ketika iterable terpendek habis, sehingga elemen yang tersisa pada input lebih panjang tidak masuk ke hasil. Gunakan `zip(..., strict=True)` untuk memunculkan error ketika panjang input berbeda.
+Fungsi `zip()` mengembalikan **iterator berisi tuple**. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default, iterasi berhenti ketika iterable terpendek habis, sehingga elemen yang tersisa pada input lebih panjang tidak masuk ke hasil. Gunakan `zip(..., strict=True)` untuk memunculkan error ketika panjang input berbeda.
 
 ### Mengonversi Hasil Zip
 
-`zip()` mengembalikan iterator, sehingga kamu sering perlu mengubahnya menjadi koleksi sebelum bisa membaca pasangannya. Contoh berikut mengubah hasilnya menjadi list dan dictionary.
+Kamu bisa membaca pasangan dari iterator `zip()` langsung lewat loop. Ubah iterator menjadi **list atau tuple** jika pasangan tersebut perlu disimpan untuk digunakan ulang.
 
 <CodeBlock
   data={[
@@ -230,7 +230,7 @@ print(tuple(zipped_new))  # Mengonversi ke tuple
 
 ### Unzipping dengan Operator Asterisk
 
-Unpacking operator `*` memisahkan kumpulan pasangan yang tidak kosong. Pada `zip(*pairs)`, semua nilai pertama dikumpulkan bersama, begitu pula semua nilai kedua.
+Unpacking operator `*` memisahkan **kumpulan pasangan yang tidak kosong**. Pada `zip(*pairs)`, semua nilai pertama dikumpulkan bersama, begitu pula semua nilai kedua.
 
 <CodeBlock
   data={[
@@ -250,7 +250,7 @@ Proses ini disebut "unzipping" karena memisahkan kembali data yang telah digabun
 
 ## Range dan For Loop
 
-Fungsi `range()` menghasilkan urutan bilangan bulat untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap. Karena `range` menghasilkan setiap nilai saat dibutuhkan, bukan menyimpan seluruh urutan sekaligus, pemakaian memorinya tetap kecil meskipun loop berjalan jutaan kali.
+Fungsi `range()` menghasilkan **urutan bilangan bulat** untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap. Karena `range` menghasilkan setiap nilai saat dibutuhkan, bukan menyimpan seluruh urutan sekaligus, pemakaian memorinya tetap kecil meskipun loop berjalan jutaan kali.
 
 ### Sintaks Range
 
@@ -263,30 +263,42 @@ Fungsi `range()` menghasilkan urutan bilangan bulat untuk iterasi. Gunakan fungs
 # range(stop) - dari 0 sampai stop-1
 for i in range(4):
     print(i)
-# Output: 0, 1, 2, 3
+# Output:
+# 0
+# 1
+# 2
+# 3
 
 print()
 
 # range(start, stop) - dari start sampai stop-1
 for i in range(2, 6):
     print(i)
-# Output: 2, 3, 4, 5
+# Output:
+# 2
+# 3
+# 4
+# 5
 
 print()
 
 # range(start, stop, step) - dengan langkah tertentu
 for i in range(8, 4, -1):
     print(i)
-# Output: 8, 7, 6, 5`
+# Output:
+# 8
+# 7
+# 6
+# 5`
     }
   ]}
 />
 
-Range mengikuti pola aritmetika. Elemen ke-i adalah `start + i * step` untuk setiap `i` dari <InlineMath math="0" /> sampai `n-1`.
+Range mengikuti **pola aritmetika**. Elemen ke-i adalah `start + i * step` untuk setiap `i` dari <InlineMath math="0" /> sampai `n-1`.
 
 ### Efisiensi Range vs List
 
-`range` menyimpan nilai start, stop, dan step secara ringkas tanpa membuat seluruh bilangan menjadi list. Nilai dihitung saat diminta, sehingga penggunaan memorinya tidak bertambah mengikuti banyaknya bilangan yang direpresentasikan.
+`range` **menyimpan nilai start, stop, dan step** secara ringkas tanpa membuat seluruh bilangan menjadi list. Nilai dihitung saat diminta, sehingga penggunaan memorinya tidak bertambah mengikuti banyaknya bilangan yang direpresentasikan.
 
 <CodeBlock
   data={[
@@ -317,7 +329,7 @@ for i in range(n):  # Tidak menyimpan semua angka di memori
 
 ## Conditional Statements
 
-Conditional statement membuat program memilih cabang berdasarkan kondisi yang dievaluasi. Indentasi adalah bagian dari sintaks Python. Gunakan empat spasi per tingkat dan jangan mencampur tab dengan spasi dalam satu blok.
+Conditional statement membuat program **memilih cabang** berdasarkan kondisi yang dievaluasi. Indentasi adalah bagian dari sintaks Python. Gunakan empat spasi per tingkat dan jangan mencampur tab dengan spasi dalam satu blok.
 
 ### Percabangan dengan Beberapa Kondisi
 
@@ -342,7 +354,7 @@ else:
   ]}
 />
 
-Kondisi tidak memerlukan tanda kurung, sedangkan titik dua setelah setiap kepala cabang wajib ada. Setiap statement dalam satu blok harus memakai tingkat indentasi yang konsisten.
+Kondisi tidak memerlukan tanda kurung, sedangkan titik dua setelah setiap kepala cabang wajib ada. Setiap statement dalam satu blok harus memakai **tingkat indentasi yang konsisten**.
 
 ### Nested If
 
@@ -354,12 +366,14 @@ Kondisi tidak memerlukan tanda kurung, sedangkan titik dua setelah setiap kepala
       code: `# Menentukan kuadran dari koordinat titik
 x = (-1, -3)
 
-if x[0] >= 0:
-    if x[1] >= 0:
+if x[0] == 0 or x[1] == 0:
+    print('pada sumbu koordinat')
+elif x[0] > 0:
+    if x[1] > 0:
         print('kuadran pertama')
     else:
         print('kuadran keempat')
-elif x[1] >= 0:
+elif x[1] > 0:
     print('kuadran kedua')
 else:
     print('kuadran ketiga')
@@ -368,11 +382,11 @@ else:
   ]}
 />
 
-Gunakan percabangan `if` bertingkat jika keputusan berikutnya hanya perlu diperiksa setelah kondisi sebelumnya terpenuhi.
+Gunakan **percabangan bertingkat** ketika pilihan cabang menentukan kondisi berikutnya yang perlu diperiksa. Pemeriksaan koordinat nol di awal mencegah titik pada sumbu disebut berada di kuadran.
 
 ## Sintaks For Loop
 
-`for` loop mengunjungi setiap elemen dalam iterable, seperti list, tuple, string, atau range.
+`for` loop mengunjungi **setiap elemen dalam iterable**, seperti list, tuple, string, atau range.
 
 <CodeBlock
   data={[
@@ -399,4 +413,4 @@ for char in text:
   ]}
 />
 
-Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, memiliki indeks, dapat digunakan ulang, atau berhingga. `for` loop meminta nilai berikutnya dari iterator. Operator `in` melakukan uji keanggotaan sesuai tipe, sedangkan titik dua dan indentasi yang konsisten membentuk blok statement.
+Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, memiliki indeks, dapat digunakan ulang, atau berhingga. `for` loop meminta nilai berikutnya dari iterator. Dalam kepala `for`, `in` menghubungkan target iterasi dengan iterable. Dalam ekspresi seperti `3 in [1, 3]`, `in` menguji keanggotaan.

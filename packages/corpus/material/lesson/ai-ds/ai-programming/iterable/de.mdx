@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Elemente eines Objekts nacheinander abrufen
 
-In Python ist ein Iterable ein Objekt, <Highlight>das einer Schleife oder einem anderen Verbraucher nacheinander Elemente liefern kann</Highlight>. Strings, Listen, Tupel, Mengen, Dictionaries, Dateien und Generatoren sind alle iterierbar, obwohl sie ihre Elemente unterschiedlich ordnen und erzeugen.
+In Python ist ein Iterable ein Objekt, das einer Schleife oder einem anderen Verbraucher **Elemente nacheinander** liefern kann. Strings, Listen, Tupel, Mengen, Dictionaries, Dateien und Generatoren sind alle iterierbar, obwohl sie ihre Elemente unterschiedlich ordnen und erzeugen.
 
-Ein Iterable muss weder geordnet noch indizierbar, wiederverwendbar oder endlich sein. Entscheidend ist nur, dass `iter()` einen Iterator liefert, über den sich die Elemente nacheinander abrufen lassen, bis er erschöpft ist.
+Ein Iterable muss weder geordnet noch indizierbar, wiederverwendbar oder endlich sein. `iter()` muss einen Iterator liefern, über den sich Elemente nacheinander abrufen lassen. Ein endlicher Iterator stoppt, sobald er erschöpft ist.
 
 ### Typen von Iterables
 
-Python stellt viele Arten von Iterables bereit, die dir in gewöhnlichen Programmen begegnen.
+Strings, Listen und Tupel liefern **ein Element pro Schleifendurchlauf**. Die Beispiele weisen der Schleifenvariablen jeweils ein Zeichen, eine Zahl oder eine Koordinate zu.
 
 <CodeBlock
   data={[
@@ -37,7 +37,7 @@ for char in text:
 
 print()
 
-# Als iterierbar auflisten
+# Liste als Iterable
 numbers = [1, 2, 3, 4, 5]
 print("Elemente in der Liste:")
 for num in numbers:
@@ -68,13 +68,29 @@ for coord in coordinates:
 
 Der String liefert Zeichen in Textreihenfolge. Listen und Tupel liefern ihre gespeicherten Elemente in Positionsreihenfolge. Andere Iterable-Typen können anderen Ordnungsregeln folgen.
 
+Eine Liste lässt sich erneut durchlaufen, doch ein Generatorobjekt **merkt sich den Iterationsfortschritt**. Der erste Aufruf von `list(iterator)` verbraucht den Generator unten. Der zweite startet die Berechnung nicht neu und liefert daher eine leere Liste.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterator_consumption.py",
+      code: `numbers = [1, 2, 3]
+iterator = (number * 2 for number in numbers)
+print(list(iterator))  # Output: [2, 4, 6]
+print(list(iterator))  # Output: []
+print(list(numbers))   # Output: [1, 2, 3]`
+    }
+  ]}
+/>
+
 ## Mitgliedschaftsoperatoren
 
-Die Operatoren `in` und `not in` fragen, ob ein Container einen bestimmten Wert enthält. Jeder Container-Typ legt fest, wie die Mitgliedschaft geprüft wird: Eine Liste durchsucht ihre Elemente, ein Dictionary sucht unter den Schlüsseln, und ein String sucht nach einem Teilstring.
+Die Operatoren `in` und `not in` fragen, ob ein Container **einen bestimmten Wert enthält**. Jeder Container-Typ legt fest, wie die Mitgliedschaft geprüft wird: Eine Liste durchsucht ihre Elemente, ein Dictionary sucht unter den Schlüsseln, und ein String sucht nach einem Teilstring.
 
 ### Verwendung von In und Not In
 
-Eingebaute Sequenzen durchsuchen ihre Elemente bis zu einem Treffer oder bis zum Ende. Mengen und Dictionaries verwenden ihr eigenes Suchverhalten. Ein Mitgliedschaftstest in einem Dictionary durchsucht seine Schlüssel.
+Listen und Tupel vergleichen ihre Elemente bis zu einem Treffer oder bis zum Ende. Strings suchen Teilstrings. Sets und Dictionaries verwenden ihr eigenes Suchverfahren. Bei einem Dictionary prüft `in` **Schlüssel, keine Werte**.
 
 <CodeBlock
   data={[
@@ -113,7 +129,7 @@ if "Java" not in message:
 
 ### Sonderfälle in Strings
 
-Bei Strings darf der linke Operand ein einzelnes Zeichen oder ein längerer Teilstring sein. Der Test unterscheidet Groß- und Kleinschreibung und sucht nach einem zusammenhängenden Vorkommen.
+Bei Strings darf der linke Operand ein einzelnes Zeichen oder ein längerer Teilstring sein. Der Test unterscheidet **Groß- und Kleinschreibung** und sucht nach einem zusammenhängenden Vorkommen.
 
 <CodeBlock
   data={[
@@ -151,7 +167,7 @@ Die eingebauten Funktionen `any()` und `all()` verbrauchen ein Iterable und prü
 
 ### Die Funktion Any
 
-`any()` gibt nach dem ersten wahren Element `True` zurück. Nur wenn alle Elemente falsch sind oder das Iterable leer ist, lautet das Ergebnis `False`.
+`any()` gibt nach dem **ersten wahren Element** `True` zurück. Nur wenn alle Elemente falsch sind oder das Iterable leer ist, lautet das Ergebnis `False`.
 
 <CodeBlock
   data={[
@@ -186,7 +202,7 @@ if any(numbers):
 
 ### Die Funktion All
 
-`all()` gibt nach dem ersten falschen Element `False` zurück. Endet die Iteration ohne ein solches Element, lautet das Ergebnis `True`. Das erklärt auch den leeren Fall: Es gibt kein Element, das die Bedingung verletzt.
+`all()` gibt nach dem **ersten falschen Element** `False` zurück. Endet die Iteration ohne ein solches Element, lautet das Ergebnis `True`. Das erklärt auch den leeren Fall: Es gibt kein Element, das die Bedingung verletzt.
 
 <CodeBlock
   data={[
@@ -214,18 +230,20 @@ print("Alle Bedingungen wahr:", all(mixed_conditions))
 ages = [18, 21, 25, 30]
 if all(age >= 18 for age in ages):
     print("Alle Teilnehmer sind Erwachsene")
-# Ausgabe: Alle Teilnehmer sind Erwachsene`
+# Ausgabe: Alle Teilnehmer sind Erwachsene
+
+print(all([]))  # Output: True`
     }
   ]}
 />
 
 ## Entpackoperator
 
-In einem Funktionsaufruf erweitert ein vorangestelltes Sternchen (`*`) ein Iterable zu Positionsargumenten. Die Anzahl der entstandenen Argumente muss weiterhin zur aufgerufenen Funktion passen.
+In einem Funktionsaufruf erweitert ein vorangestelltes Sternchen (`*`) ein Iterable zu **Positionsargumenten**. Die Anzahl der entstandenen Argumente muss weiterhin zur aufgerufenen Funktion passen.
 
 ### Problem ohne Entpackoperator
 
-Eine Funktion, die getrennte Koordinaten erwartet, erhält eine Liste als einziges Argument, wenn du sie nicht entpackst. Manuelle Indizes funktionieren bei einer festen Form, wiederholen aber die Containerstruktur an jeder Aufrufstelle.
+Eine Funktion, die getrennte Koordinaten erwartet, erhält eine **Liste als einziges Argument**, wenn du sie nicht entpackst. Manuelle Indizes funktionieren bei einer festen Form, wiederholen aber die Containerstruktur an jeder Aufrufstelle.
 
 <CodeBlock
   data={[
@@ -243,7 +261,7 @@ try:
     print(result)
 except TypeError as e:
     print("Error:", e)
-# Ausgabe: Error: must be real number rather than list
+# Ausgabe: Error: must be real number, not list
 
 # Manueller Weg, der für viele Argumente mühsam ist
 result = math.hypot(coordinates[0], coordinates[1])
@@ -262,7 +280,7 @@ print("Ergebnis mit vier Argumenten:", result)
 
 ### Lösung mit dem Entpackoperator
 
-Ein `*` vor dem Iterable im Aufruf übergibt jedes erzeugte Element als eigenes Positionsargument.
+Ein `*` vor dem Iterable im Aufruf übergibt jedes erzeugte Element als **eigenes Positionsargument**.
 
 <CodeBlock
   data={[
@@ -303,7 +321,7 @@ print("Durchschnittsnote:", average)
 
 ### Praktische Anwendungen des Entpackens
 
-Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Schnittstelle einzelne erweiterte Elemente erwartet. Nimmt die Funktion ein Iterable an, übergibst du dieses direkt.
+Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Schnittstelle **einzelne erweiterte Elemente** erwartet. Nimmt die Funktion ein Iterable an, übergibst du dieses direkt.
 
 <CodeBlock
   data={[

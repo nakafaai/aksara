@@ -5,41 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analyze each plane figure based on the number of its reflectional and rotational symmetries.
+A figure must meet **both minimum counts**: at least two rotational symmetries and three reflection axes. Count the initial position as one rotational symmetry.
 
-The required conditions are:
+| Figure | Rotational symmetries | Reflection axes | Both conditions? |
+| --- | --- | --- | --- |
+| Scalene triangle | 1: initial position | 0: no reflection axis | No |
+| Parallelogram that is neither rectangle nor rhombus | 2: rotations of 0° and 180° | 0: no reflection axis | No |
+| Ellipse that is not a circle | 2: rotations of 0° and 180° | 2: major and minor axes | No |
+| Regular hexagon | 6: multiples of 60° from 0° to 300° | 6: three through opposite vertices and three through opposite side midpoints | Yes |
 
-1.  Rotational symmetry <InlineMath math="\ge 2" />
-2.  Reflectional symmetry <InlineMath math="\ge 3" />
+The diagram shows the **six reflection axes** of the regular hexagon. The ellipse has only two axes and falls short of the required three. Therefore, only one figure meets both conditions.
 
-#### Scalene Triangle
-
-*   **Reflectional symmetry:** <InlineMath math="0" /> (has no axis of symmetry).
-*   **Rotational symmetry:** <InlineMath math="1" /> (only returns to original position after <InlineMath math="360^\circ" /> rotation).
-
-**Conclusion:** Does not satisfy both conditions.
-
-#### General Parallelogram
-
-*   **Reflectional symmetry:** <InlineMath math="0" /> (has no axis of symmetry).
-*   **Rotational symmetry:** <InlineMath math="2" /> (rotational symmetry of order <InlineMath math="2" />).
-
-**Conclusion:** Satisfies the rotational symmetry condition, but **does not satisfy** the reflectional symmetry condition.
-
-#### Ellipse
-
-*   **Reflectional symmetry:** <InlineMath math="2" /> (major and minor axes).
-*   **Rotational symmetry:** <InlineMath math="2" /> (rotational symmetry of order <InlineMath math="2" />).
-
-**Conclusion:** Satisfies the rotational symmetry condition, but **does not satisfy** the reflectional symmetry condition (only has <InlineMath math="2" />, requires at least <InlineMath math="3" />).
-
-#### Regular Hexagon
-
-*   **Reflectional symmetry:** <InlineMath math="6" /> (has <InlineMath math="6" /> axes of symmetry).
-*   **Rotational symmetry:** <InlineMath math="6" /> (rotational symmetry of order <InlineMath math="6" />).
-
-**Conclusion:** Satisfies both conditions (rotational symmetry <InlineMath math="6 \ge 2" /> and reflectional symmetry <InlineMath math="6 \ge 3" />).
-
-#### Final Conclusion
-
-Of the four plane figures, only **<InlineMath math="1" /> plane figure** satisfies the criteria, which is the Regular Hexagon.
+<MathVisual
+ title="Six reflection axes of a hexagon"
+ description="Three lines pass through opposite vertices. The other three pass through the midpoints of opposite sides."
+ scene={{"space":"plane","frame":{"kind":"cartesian","x":{"min":-3,"max":3},"y":{"min":-3,"max":3}},"view":{"kind":"fit","padding":0.1},"objects":[{"id":"hexagon","kind":"polygon","appearance":"primary","vertices":[{"x":2.0,"y":0},{"x":1.0,"y":1.732050807569},{"x":-1.0,"y":1.732050807569},{"x":-2.0,"y":0},{"x":-1.0,"y":-1.732050807569},{"x":1.0,"y":-1.732050807569}]},{"id":"axis-0","kind":"segment","appearance":"highlight","from":{"x":-2.3,"y":0},"to":{"x":2.3,"y":0}},{"id":"axis-1","kind":"segment","appearance":"secondary","from":{"x":-1.991858428704,"y":-1.15},"to":{"x":1.991858428704,"y":1.15}},{"id":"axis-2","kind":"segment","appearance":"highlight","from":{"x":-1.15,"y":-1.991858428704},"to":{"x":1.15,"y":1.991858428704}},{"id":"axis-3","kind":"segment","appearance":"secondary","from":{"x":0,"y":-2.3},"to":{"x":0,"y":2.3}},{"id":"axis-4","kind":"segment","appearance":"highlight","from":{"x":1.15,"y":-1.991858428704},"to":{"x":-1.15,"y":1.991858428704}},{"id":"axis-5","kind":"segment","appearance":"secondary","from":{"x":1.991858428704,"y":-1.15},"to":{"x":-1.991858428704,"y":1.15}}],"labels":[]}}
+ labels={{}}
+/>

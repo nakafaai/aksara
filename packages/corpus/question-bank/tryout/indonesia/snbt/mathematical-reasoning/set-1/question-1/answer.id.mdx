@@ -1,60 +1,56 @@
 export const metadata = {
   title: "Pembahasan Soal 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
-Kita akan menentukan dimensi kandang dan jumlah panel yang dibutuhkan.
+Panel menutup **empat dinding kandang**. Tinggi panel sama dengan tinggi dinding, jadi setiap panel menyumbang lebar 0,8 m sepanjang keliling kandang. Kita perlu menemukan ukuran alas yang memakai panel utuh sebelum menghitung biaya.
 
-#### Analisis Dimensi Kandang
+#### Menentukan Ukuran Alas
 
-Diketahui:
-- Tinggi kandang <InlineMath math="= 3 \text{ m}" />.
-- Luas alas <InlineMath math="= 256 \text{ m}^2" />.
-- Ukuran panel <InlineMath math="80 \text{ cm} \times 300 \text{ cm}" /> (<InlineMath math="0{,}8 \text{ m} \times 3 \text{ m}" />).
+Tuliskan lebar kandang sebagai <InlineMath math="l=0{,}8m" /> dan panjangnya sebagai <InlineMath math="p=0{,}8n" />. Bilangan bulat positif <InlineMath math="m" /> dan <InlineMath math="n" /> menyatakan banyak panel pada satu sisi lebar dan satu sisi panjang. Karena luas alas 256 m²:
 
-Karena tinggi panel sama dengan tinggi kandang (<InlineMath math="3 \text{ m}" />), panel dipasang secara vertikal. Agar tidak ada pemotongan, panjang dan lebar kandang harus merupakan kelipatan dari lebar panel, yaitu <InlineMath math="0{,}8 \text{ m}" />.
+<BlockMath math="\begin{aligned}
+pl&=256 \\
+(0{,}8n)(0{,}8m)&=256 \\
+0{,}64mn&=256 \\
+mn&=\frac{256}{0{,}64}=400
+\end{aligned}" />
 
-Batasan lebar (<InlineMath math="l" />):
+Batas lebar 5 m sampai 7,5 m membatasi jumlah panel pada sisi lebar.
 
-<BlockMath math="5 \leq l \leq 7{,}5" />
+<BlockMath math="\begin{aligned}
+5\le0{,}8m&\le7{,}5 \\
+6{,}25\le m&\le9{,}375
+\end{aligned}" />
 
-Kita cari kelipatan <InlineMath math="0{,}8" /> yang berada dalam rentang tersebut:
-- <InlineMath math="0{,}8 \times 7 = 5{,}6" />
-- <InlineMath math="0{,}8 \times 8 = 6{,}4" />
-- <InlineMath math="0{,}8 \times 9 = 7{,}2" />
+Maka <InlineMath math="m" /> hanya mungkin 7, 8, atau 9. Syarat pentingnya adalah **jumlah panel pada kedua sisi harus bulat**.
 
-Cek pasangan panjang (<InlineMath math="p" />) yang sesuai agar luasnya <InlineMath math="256" /> dan <InlineMath math="p" /> juga kelipatan <InlineMath math="0{,}8" />:
+| Panel pada sisi lebar <InlineMath math="m" /> | Lebar (m) | Panel pada sisi panjang <InlineMath math="n=400/m" /> | Memakai panel utuh? |
+| ---: | ---: | --- | --- |
+| 7 | 5,6 | <InlineMath math="400/7=57+1/7" /> | Tidak |
+| 8 | 6,4 | <InlineMath math="400/8=50" /> | Ya |
+| 9 | 7,2 | <InlineMath math="400/9=44+4/9" /> | Tidak |
 
-1. Jika <InlineMath math="l = 5{,}6" />, maka <InlineMath math="p = \frac{256}{5{,}6} \approx 45{,}71" /> (Bukan kelipatan <InlineMath math="0{,}8" />).
-2. Jika <InlineMath math="l = 6{,}4" />, maka <InlineMath math="p = \frac{256}{6{,}4} = 40" />.
-   Cek kelipatan: <InlineMath math="\frac{40}{0{,}8} = 50" /> (Valid).
-3. Jika <InlineMath math="l = 7{,}2" />, maka <InlineMath math="p = \frac{256}{7{,}2} \approx 35{,}56" /> (Bukan kelipatan <InlineMath math="0{,}8" />).
+Jadi, lebar kandang 6,4 m dan panjangnya <InlineMath math="0{,}8(50)=40\,\mathrm{m}" />. Cek luasnya: <InlineMath math="6{,}4\times40=256\,\mathrm{m}^2" />.
 
-Jadi, ukuran kandang yang mungkin adalah **lebar <InlineMath math="6{,}4 \text{ m}" />** dan **panjang <InlineMath math="40 \text{ m}" />**.
+#### Menghitung Panel dan Biaya
 
-#### Menghitung Jumlah Panel
+Ada **dua pasang sisi yang sama panjang**. Setiap sisi lebar memakai 8 panel dan setiap sisi panjang memakai 50 panel.
 
-Jumlah panel untuk sisi lebar:
+<BlockMath math="\begin{aligned}
+N&=2(8)+2(50) \\
+&=16+100=116
+\end{aligned}" />
 
-<BlockMath math="\frac{6{,}4}{0{,}8} = 8 \text{ panel}" />
+Kalikan 116 panel dengan harga Rp40.000,00 per panel.
 
-Jumlah panel untuk sisi panjang:
+<BlockMath math="\begin{aligned}
+C&=116\times40{.}000 \\
+&=(100+16)\times40{.}000 \\
+&=4{.}000{.}000+640{.}000 \\
+&=4{.}640{.}000
+\end{aligned}" />
 
-<BlockMath math="\frac{40}{0{,}8} = 50 \text{ panel}" />
-
-Total panel yang dibutuhkan untuk mengelilingi kandang (<InlineMath math="2" /> sisi lebar + <InlineMath math="2" /> sisi panjang):
-
-<BlockMath math="\begin{aligned}2(8+50)&=2\times58 \\ &=116\end{aligned}" />
-
-#### Menghitung Biaya
-
-Harga satu panel adalah <InlineMath math="\text{Rp}40{.}000{,}00" />.
-
-<MathContainer>
-  <BlockMath math="116 \times 40{.}000" />
-  <BlockMath math="=4{.}640{.}000" />
-</MathContainer>
-
-Jadi, biaya yang dibutuhkan adalah <InlineMath math="\text{Rp}4{.}640{.}000{,}00" />.
+Biaya pembelian panel adalah **Rp4.640.000,00**.

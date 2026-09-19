@@ -3,17 +3,17 @@ export const metadata = {
     description: "Definisikan fungsi Python dengan parameter dan return value, lalu pelajari scope, closure, dan error handling.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## Memakai Ulang Kode melalui Fungsi
 
-Fungsi <Highlight>memberi nama pada sekumpulan instruksi agar logika yang sama dapat dijalankan tanpa menyalin kode</Highlight>. Parameter menyatakan input yang diterima, function body berisi kode yang dijalankan, dan statement `return` mengirimkan hasil kepada pemanggil.
+Fungsi <Highlight>memberi nama pada operasi yang dapat dipakai ulang</Highlight>. Parameter menyatakan input yang diterima, function body berisi kode yang dijalankan, dan statement `return` mengirimkan hasil kepada pemanggil.
 
 ## Struktur dan Sintaks Fungsi
 
-Setiap fungsi Python mengikuti struktur dasar yang sama:
+Setiap fungsi Python mengikuti **struktur dasar** yang sama:
 
 <CodeBlock
   data={[
@@ -37,11 +37,11 @@ Komponen fungsi terdiri dari:
 3. Tanda kurung yang berisi daftar parameter (bisa kosong)
 4. Titik dua untuk mengakhiri baris definisi
 5. Blok kode yang diindentasi
-6. Statement `return` bersifat opsional dan mengembalikan nilai kepada pemanggil
+6. Statement `return` bersifat opsional dan **mengembalikan nilai** kepada pemanggil
 
 ## Cara Kerja Pemanggilan Fungsi
 
-Saat fungsi dipanggil, Python memastikan nama atau ekspresi tersebut merujuk ke objek callable. Python kemudian memasangkan setiap argumen dengan parameter dan menjalankan function body di local scope baru.
+Saat fungsi dipanggil, Python memastikan nama atau ekspresi tersebut merujuk ke objek callable. Python kemudian **memasangkan setiap argumen dengan parameter** dan menjalankan function body di local scope baru.
 
 <CodeBlock
   data={[
@@ -72,7 +72,7 @@ Proses yang terjadi saat pemanggilan fungsi:
 
 ## Parameter dan Argumen
 
-Parameter adalah variabel yang didefinisikan dalam fungsi, sedangkan argumen adalah nilai aktual yang dikirimkan saat memanggil fungsi. Python menyediakan beberapa jenis parameter untuk fleksibilitas yang lebih besar.
+Parameter adalah variabel yang didefinisikan dalam fungsi, sedangkan argumen adalah **nilai aktual yang dikirimkan** saat memanggil fungsi. Python menyediakan beberapa jenis parameter untuk fleksibilitas yang lebih besar.
 
 ### Parameter Posisi dan Kata Kunci
 
@@ -101,14 +101,14 @@ print(perkenalan("Andi", umur=28, kota="Surabaya"))
 
 Aturan penggunaan parameter:
 
-1. Argumen posisi diberikan sesuai urutan parameter
+1. **Argumen posisi diberikan sesuai urutan parameter**
 2. Keyword argument dapat diberikan dalam urutan apa saja
 3. Argumen posisi ditulis sebelum keyword argument
 4. Parameter dengan default value tidak wajib diberi argumen
 
 ### Argumen Tambahan
 
-Python dapat mengumpulkan argumen tambahan melalui `*args` dan `**kwargs`. Fungsi tetap perlu memeriksa jumlah, jenis, dan nilai argumen sesuai aturan yang dibutuhkan program.
+Python dapat **mengumpulkan argumen tambahan** melalui `*args` dan `**kwargs`. Fungsi tetap perlu memeriksa jumlah, jenis, dan nilai argumen sesuai aturan yang dibutuhkan program.
 
 <CodeBlock
   data={[
@@ -147,7 +147,7 @@ Parameter `*args` mengumpulkan argumen posisi tambahan ke dalam `tuple`, sedangk
 
 ## Return Value
 
-Fungsi dapat mengembalikan nilai dengan statement `return`. Jika tidak ada `return`, atau jika `return` ditulis tanpa nilai, fungsi mengembalikan `None`.
+Fungsi dapat **mengembalikan nilai** dengan statement `return`. Jika tidak ada `return`, atau jika `return` ditulis tanpa nilai, fungsi mengembalikan `None`.
 
 <CodeBlock
   data={[
@@ -185,7 +185,7 @@ print(f"Hasil fungsi cetak_pesan: {hasil}")  # Output: Hasil fungsi cetak_pesan:
 
 ## Scope dalam Fungsi
 
-Setiap nama dalam Python memiliki scope yang menentukan bagian program yang dapat mengaksesnya. Ketika beberapa scope memakai nama yang sama, Python mencarinya menurut urutan LEGB.
+Setiap nama dalam Python memiliki **scope yang menentukan bagian program** yang dapat mengaksesnya. Ketika beberapa scope memakai nama yang sama, Python mencarinya menurut urutan LEGB.
 
 <Mermaid
   title="Urutan Pencarian Nama"
@@ -228,7 +228,7 @@ print(f"Counter akhir: {counter}")      # Output: Counter akhir: 1`
   ]}
 />
 
-<Highlight>Aturan pencarian variabel mengikuti urutan LEGB</Highlight>:
+Pencarian nama mengikuti **urutan LEGB**:
 
 1. **Local** - di dalam fungsi saat ini
 2. **Enclosing** - di fungsi luar tempat fungsi saat ini dibuat, khusus untuk fungsi bersarang
@@ -237,7 +237,7 @@ print(f"Counter akhir: {counter}")      # Output: Counter akhir: 1`
 
 ## Fungsi sebagai First Class Object
 
-Python memperlakukan fungsi sebagai nilai. Karena itu, fungsi dapat disimpan dalam variabel, diberikan sebagai argumen, atau dikembalikan oleh fungsi lain. Sifat ini disebut first class object.
+Python memperlakukan **fungsi sebagai nilai**. Karena itu, fungsi dapat disimpan dalam variabel, diberikan sebagai argumen, atau dikembalikan oleh fungsi lain. Sifat ini disebut first class object.
 
 <CodeBlock
   data={[
@@ -261,7 +261,10 @@ print(operasi(5))  # Output: 10
 # Menyimpan fungsi dalam list
 daftar_operasi = [kali_dua, kali_tiga]
 for op in daftar_operasi:
-    print(op(4))  # Output: 8 kemudian 12
+    print(op(4))
+# Output:
+# 8
+# 12
 
 # Mengirim fungsi sebagai argumen
 hasil1 = terapkan_operasi(kali_dua, 7)
@@ -273,7 +276,7 @@ print(f"Hasil: {hasil1}, {hasil2}")  # Output: Hasil: 14, 21`
 
 ## Dokumentasi Fungsi dengan Docstring
 
-Docstring adalah string literal yang ditempatkan sebagai statement pertama dalam definisi fungsi. Isinya menjelaskan tujuan fungsi dan cara menggunakannya.
+Docstring adalah string literal yang ditempatkan sebagai **statement pertama** dalam definisi fungsi. Isinya menjelaskan tujuan fungsi dan cara menggunakannya.
 
 <CodeBlock
   data={[
@@ -282,7 +285,7 @@ Docstring adalah string literal yang ditempatkan sebagai statement pertama dalam
       filename: "docstring_example.py",
       code: `def hitung_faktorial(n):
     """
-    Menghitung faktorial dari bilangan bulat positif.
+    Menghitung faktorial dari bilangan bulat nonnegatif.
 
     Parameter:
         n (int): Bilangan bulat nonnegatif
@@ -328,7 +331,7 @@ Konvensi penulisan docstring yang baik:
 
 ## Closure pada Fungsi Bersarang
 
-Python mengizinkan fungsi didefinisikan di dalam fungsi lain. Jika inner function dikembalikan, fungsi tersebut tetap dapat mengakses nama dari enclosing scope. Inner function beserta environment yang dipertahankan ini disebut `closure`.
+Python mengizinkan fungsi didefinisikan di dalam fungsi lain. Jika inner function dikembalikan, fungsi tersebut tetap dapat mengakses **nama dari enclosing scope**. Inner function beserta environment yang dipertahankan ini disebut `closure`.
 
 <CodeBlock
   data={[
@@ -381,7 +384,7 @@ print(calc['kali'](6, 7))    # Output: 42`
 
 ## Error Handling dalam Fungsi
 
-Tentukan jenis dan nilai input yang diterima fungsi, lalu hasilkan error yang jelas ketika kontrak input dilanggar. Tangkap exception hanya ketika kode dapat memulihkan keadaan, menambahkan keterangan yang berguna, atau menjelaskan kegagalan kepada pengguna.
+Tentukan **jenis dan nilai input** yang diterima fungsi, lalu hasilkan error yang jelas ketika kontrak input dilanggar. Tangkap exception hanya ketika kode dapat memulihkan keadaan, menambahkan keterangan yang berguna, atau menjelaskan kegagalan kepada pengguna.
 
 <CodeBlock
   data={[

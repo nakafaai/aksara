@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Solution for Question 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
-We will calculate the total cost to be paid through this special installment scheme and compare it with the initial price of the laptop.
+We will calculate the total cost to be paid through this special installment scheme and compare it with **the original laptop price**.
 
 #### Installment Pattern
 
-The installments paid form a decreasing arithmetic sequence:
+The installments paid form a **decreasing arithmetic sequence**:
 - First installment (<InlineMath math="a" />) is <InlineMath math="2{,}000{,}000" />
 - Second installment is <InlineMath math="1{,}800{,}000" />
 - Difference (<InlineMath math="b" />) is <InlineMath math="-200{,}000" />
@@ -18,10 +18,9 @@ The pattern decreases by <InlineMath math="200{,}000" /> each month. Because the
 
 We can now determine the number of positive installments (<InlineMath math="n" />) using <InlineMath math="U_n = 200{,}000" />:
 
-<MathContainer>
-  <BlockMath math="U_n = a + (n-1)b" />
-  <BlockMath math="\begin{aligned}&200{,}000=2{,}000{,}000 \\ &\qquad+(n-1)(-200{,}000)\end{aligned}" />
-</MathContainer>
+<BlockMath math="U_n=a+(n-1)b" />
+
+<BlockMath math="200{,}000=2{,}000{,}000+(n-1)(-200{,}000)" />
 
 We divide both sides by <InlineMath math="200{,}000" /> to simplify:
 
@@ -35,16 +34,25 @@ So, there are <InlineMath math="10" /> installments.
 
 #### Calculating Total Payment
 
-The total payment is the sum of the arithmetic series (<InlineMath math="S_{10}" />):
+The total payment is the **sum of the ten positive installments** (<InlineMath math="S_{10}" />):
 
-<MathContainer>
-  <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
-  <BlockMath math="\begin{aligned}S_{10}&=\frac{10}{2}(a+U_{10}) \\ a+U_{10}&=2{,}000{,}000+200{,}000 \\ &=2{,}200{,}000\end{aligned}" />
-  <BlockMath math="S_{10} = 5(2{,}200{,}000)" />
-  <BlockMath math="S_{10} = 11{,}000{,}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+S_{10}&=\frac{10}{2}(2{,}000{,}000+200{,}000) \\
+&=5(2{,}200{,}000) \\
+&=11{,}000{,}000
+\end{aligned}" />
 
 The total paid is <InlineMath math="\text{Rp}11{,}000{,}000.00" />.
+
+You can also pair the first installment with the last, the second with the ninth, and so on. Every pair has the same sum.
+
+| Paired months | Combined payment (thousand rupiah) |
+| --- | --- |
+| 1 + 10 | <InlineMath math="2000+200=2200" /> |
+| 2 + 9 | <InlineMath math="1800+400=2200" /> |
+| 3 + 8 | <InlineMath math="1600+600=2200" /> |
+| 4 + 7 | <InlineMath math="1400+800=2200" /> |
+| 5 + 6 | <InlineMath math="1200+1000=2200" /> |
 
 #### Calculating Price Increase Percentage
 
@@ -53,7 +61,7 @@ Price difference is
 
 <BlockMath math="\begin{aligned}&11{,}000{,}000-10{,}000{,}000 \\ &=1{,}000{,}000\end{aligned}" />
 
-Percentage price increase:
+Use **the original price as the reference** for the percentage increase:
 
 <MathContainer>
   <BlockMath math="\frac{1{,}000{,}000}{10{,}000{,}000} \times 100\%" />

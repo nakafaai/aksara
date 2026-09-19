@@ -3,7 +3,7 @@ export const metadata = {
   description: "In Python sind Zahlen, Zeichenketten, Listen und Funktionen Objekte mit eigenen Attributen und Methoden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -17,11 +17,11 @@ Der Typ eines Objekts bestimmt seine Attribute und Methoden. Da diese Regel für
 
 ## Arten des Programmaufbaus im Vergleich
 
-Das gleiche Objektmodell trägt mehrere Arten, ein Programm aufzubauen. Ein prozeduraler Stil ordnet Schritte und einen ausdrücklichen Datenfluss, ein funktionaler Stil setzt eine Berechnung aus geschachtelten Funktionsaufrufen zusammen, und ein objektorientierter Stil legt Daten zusammen mit den Operationen ab, die sie verarbeiten. Wer diese drei Stile unterscheiden kann, erkennt im fremden Code schneller, wohin der Ablauf führt.
+Das gleiche Objektmodell trägt mehrere Arten, ein Programm aufzubauen. Ein prozeduraler Stil ordnet Schritte und einen ausdrücklichen Datenfluss, ein funktionaler Stil setzt eine Berechnung aus geschachtelten Funktionsaufrufen zusammen, und ein objektorientierter Stil legt **Daten zusammen mit den Operationen** ab, die sie verarbeiten. Wer diese drei Stile unterscheiden kann, erkennt im fremden Code schneller, wohin der Ablauf führt.
 
 ### Prozeduraler Stil
 
-In einem prozeduralen Stil wird ein Programm um Operationen und einen expliziten Datenfluss organisiert. Datenstrukturen und die Funktionen, die sie erhalten, können getrennt bleiben, auch wenn die Sprache zusätzlich Klassen unterstützt.
+In einem prozeduralen Stil wird ein Programm um **Operationen und einen expliziten Datenfluss** organisiert. Datenstrukturen und die Funktionen, die sie erhalten, können getrennt bleiben, auch wenn die Sprache zusätzlich Klassen unterstützt.
 
 <CodeBlock
   data={[{
@@ -62,7 +62,7 @@ Hier speichert das C-`struct` den Parkzustand und jede Funktion erhält einen Ze
 
 ### Objektorientierte Sprachen
 
-In einem objektorientierten Stil kann eine Klasse zusammengehörigen Zustand und Verhalten hinter einer Schnittstelle bündeln. Attribute beschreiben den Objektzustand, Methoden die Operationen, die ihn verwenden oder verändern.
+In einem objektorientierten Stil kann eine Klasse **zusammengehörigen Zustand und Verhalten** hinter einer Schnittstelle bündeln. Attribute beschreiben den Objektzustand, Methoden die Operationen, die ihn verwenden oder verändern.
 
 <CodeBlock
   data={[{
@@ -93,9 +93,19 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
 
 Die Python-Version speichert die Regeln und Operationen des Parksystems in einer Klasse. Die Methode `occupy` prüft beim Aufruf die Kapazität. Externer Code kann die öffentlichen Attribute `max` und `occ` jedoch direkt ändern. Dieses kurze Beispiel schützt den Zustand des Objekts daher noch nicht vollständig.
 
+### Funktionaler Stil
+
+Eine reine Funktion berechnet **ein Ergebnis aus Eingaben ohne Zustandsänderung**. Hier erhält die Funktion Kapazität und Fahrzeugzahl als Argumente und liefert die freien Plätze zurück.
+
+<CodeBlock data={[{ language: "python", filename: "functional_parking.py", code: `def available_spaces(capacity, occupied):
+    return capacity - occupied
+
+print(available_spaces(100, 1))
+# Ausgabe: 99` }]} />
+
 ## Parksystem am Beispiel
 
-In diesem Beispiel ist das Parksystem ein Objekt mit Zustand und Verhalten. Sein Zustand speichert die maximale Kapazität und die Zahl der belegten Stellplätze. Seine Methoden erfassen einfahrende und ausfahrende Autos.
+In diesem Beispiel ist das Parksystem ein Objekt mit Zustand und Verhalten. Sein Zustand speichert die **maximale Kapazität und die Zahl der belegten Stellplätze**. Seine Methoden erfassen einfahrende und ausfahrende Autos.
 
 <CodeBlock
   data={[{
@@ -104,8 +114,8 @@ In diesem Beispiel ist das Parksystem ein Objekt mit Zustand und Verhalten. Sein
     code: `class ParkingSystem:
     def __init__(self, capacity):
         """Parksystem mit bestimmter Kapazität initialisieren"""
-        if capacity <= 0:
-            raise ValueError("Die Kapazität muss positiv sein")
+        if type(capacity) is not int or capacity <= 0:
+            raise ValueError("Die Kapazität muss eine positive ganze Zahl sein")
         self.capacity = capacity
         self.vehicles = []  # Liste der geparkten Fahrzeuge
 
@@ -157,7 +167,7 @@ print(parking.is_full())`
 
 ### Zahlen sind Objekte
 
-Eine ganze Zahl ist ein Objekt mit Methoden. Das Beispiel ruft die Methode `bit_length()` der Zahl `42` auf und gibt das Ergebnis aus.
+Eine ganze Zahl ist ein **Objekt mit Methoden**. Das Beispiel ruft die Methode `bit_length()` der Zahl `42` auf und gibt das Ergebnis aus.
 
 <CodeBlock
   data={[{
@@ -178,13 +188,13 @@ print(price.as_integer_ratio())  # Methode zur Umrechnung in ein Verhältnis
 # Sogar die Ergebnisse mathematischer Operationen sind Objekte
 result = 10 + 5
 print(type(result))         # <class 'int'>
-print(dir(result))          # Alle verfügbaren Methoden anzeigen`
+print(dir(result))          # Attributnamen erkunden`
   }]}
 />
 
 ### Strings sind Objekte
 
-Ein String ist ein Objekt mit Methoden, die neue Werte erzeugen. Das Beispiel ruft mehrere String-Methoden auf einem Text auf.
+Ein String ist ein Objekt mit Methoden, die **neue Werte erzeugen**. Das Beispiel ruft mehrere String-Methoden auf einem Text auf.
 
 <CodeBlock
   data={[{
@@ -194,10 +204,10 @@ Ein String ist ein Objekt mit Methoden, die neue Werte erzeugen. Das Beispiel ru
 message = "Python zu lernen macht Spaß"
 
 # Strings haben viele nützliche Methoden
-print(message.upper())              # PYTHON LERNEN MACHT SPASS
-print(message.lower())              # Python lernen macht Spaß
-print(message.title())              # Python zu lernen macht Spaß
-print(message.count('N'))           # Zähle den Buchstaben „n“
+print(message.upper())              # Ausgabe: PYTHON ZU LERNEN MACHT SPASS
+print(message.lower())              # Ausgabe: python zu lernen macht spaß
+print(message.title())              # Ausgabe: Python Zu Lernen Macht Spaß
+print(message.count('n'))           # Zähle den Buchstaben „n“
 print(message.replace('Python', 'Programming'))  # Wort ersetzen
 
 # Methoden zur Überprüfung
@@ -222,7 +232,7 @@ print(rejoined)`
 
 ### Listen sind Objekte
 
-Eine Liste ist ein Objekt, dessen Methoden den Inhalt verändern. Das Beispiel beginnt mit einer Obstliste und ruft die Listenmethoden auf.
+Eine Liste bietet **Methoden zur Änderung ihres Inhalts** wie `append()` sowie lesende Methoden wie `count()`. Das Beispiel beginnt mit einer Obstliste und ruft die Listenmethoden auf.
 
 <CodeBlock
   data={[{
@@ -267,7 +277,7 @@ print(f"Copy: {copy_list}")`
 
 ### Wörterbücher sind Objekte
 
-Ein Wörterbuch ist ein Objekt mit Methoden zum Lesen und Ändern seiner Paare. Das Beispiel verwendet einen Studierendendatensatz für diese Methoden.
+Ein Wörterbuch ist ein Objekt mit Methoden zum **Lesen und Ändern** seiner Paare. Das Beispiel verwendet einen Studierendendatensatz für diese Methoden.
 
 <CodeBlock
   data={[{
@@ -318,7 +328,7 @@ print(university["students"]["CS"])`
 
 ## Funktionen sind auch Objekte
 
-Du kannst Funktionen wie andere Daten weitergeben, speichern und verwenden.
+Du kannst Funktionen wie andere Daten **weitergeben, speichern und verwenden**.
 
 <CodeBlock
   data={[{
@@ -378,7 +388,7 @@ print(square(5))                    # 25`
 
 ## Klassen und Instanzen als Objekte
 
-Eine Klasse definiert, wie ihre Instanzen entstehen und wie gemeinsames Verhalten aufgelöst wird. Die Klasse selbst ist ebenfalls ein Objekt, während jede Instanz ihren eigenen Instanzzustand trägt.
+Eine Klasse definiert, wie ihre Instanzen entstehen und wie gemeinsames Verhalten aufgelöst wird. Die Klasse selbst ist ebenfalls ein Objekt, während **jede Instanz ihren eigenen Instanzzustand** trägt.
 
 <CodeBlock
   data={[{
@@ -407,7 +417,7 @@ class Student:
             'name': self.name,
             'major': self.major,
             'semester': self.semester,
-            'courses': self.courses,
+            'courses': tuple(self.courses),
             'university': self.university
         }
 
@@ -452,7 +462,7 @@ print(Student.university)           # Universitas Indonesia`
 
 ## Spezielle Methoden
 
-Spezielle Methoden beginnen und enden mit doppelten Unterstrichen. Python ruft sie über Syntax und Built-ins wie `+`, `abs()`, `repr()` und Wahrheitstests auf. Implementiere eine solche Methode nur, wenn ihre Bedeutung für die Domäne natürlich ist.
+Spezielle Methoden beginnen und enden mit **doppelten Unterstrichen**. Python ruft sie über Syntax und Built-ins wie `+`, `abs()`, `repr()` und Wahrheitstests auf. Implementiere eine solche Methode nur, wenn ihre Bedeutung für die Domäne natürlich ist.
 
 <CodeBlock
   data={[{
@@ -513,7 +523,15 @@ print(bool(zero))                    # False`
 
 ## Objektorientierte Programmierpraxis
 
-Das folgende Beispiel verbindet mehrere Klassen, um Bücher, Mitglieder und Ausleihen in einer Bibliothek abzubilden.
+Das folgende Beispiel verbindet mehrere Klassen, um **Bücher, Mitglieder und Ausleihen** in einer Bibliothek abzubilden.
+
+| Schritt | Erstes Buch | Alices Ausleihen |
+| --- | --- | --- |
+| Vor der Ausleihe | Verfügbar, ohne Entleiher | Leer |
+| Nach `borrow_book()` | Von Alice ausgeliehen | Enthält das erste Buch |
+| Nach `return_book()` | Wieder verfügbar | Leer |
+
+Buchtitel, Autoren und Kennungen sind Übungsdaten. Buch- und Mitgliederlisten bleiben öffentliche Attribute. Das Beispiel erklärt Objektbeziehungen, keine Mehrbenutzerspeicherung.
 
 <CodeBlock
   data={[{
@@ -565,7 +583,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Mitglied nicht gefunden"
 
         # Buch finden
@@ -575,7 +593,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Buch nicht verfügbar"
 
         # Ausleihe verarbeiten
@@ -593,7 +611,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Mitglied nicht gefunden"
 
         book = None
@@ -602,7 +620,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Das Buch wurde nicht in der Ausleihliste gefunden"
 
         # Rückgabe verarbeiten
@@ -621,7 +639,7 @@ class Library:
         """Von einem Mitglied ausgeliehene Bücher zurückgeben"""
         for member in self.members:
             if member.member_id == member_id:
-                return member.borrowed_books
+                return list(member.borrowed_books)
         return []
 
 # Beispielhafte Nutzung eines Bibliothekssystems

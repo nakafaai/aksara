@@ -5,21 +5,17 @@ export const metadata = {
   datePublished: "2026-01-01",
 };
 
-First, record the number of choices for each position:
+Each position has a **fixed number of choices**, because repetition is allowed. Choosing one character does not reduce the choices at another position.
 
-| Digit from <InlineMath math="\{2, 4, 6, 8\}" /> | First Letter (Not <InlineMath math="\mathrm{E}" />) | Digit from <InlineMath math="\{5, 6, 7\}" /> | Second Letter (<InlineMath math="\mathrm{U}" />) |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="2, 4, 6, 8" /> | <InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" /> | <InlineMath math="5, 6, 7" /> | <InlineMath math="\mathrm{U}" /> |
-| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
+| Position | Allowed characters | Number of choices |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="\{2,4,6,8\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="\{\mathrm{A},\mathrm{I},\mathrm{O},\mathrm{U}\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="\{5,6,7\}" /> | <InlineMath math="3" /> |
+| <InlineMath math="4" /> | <InlineMath math="\{\mathrm{U}\}" /> | <InlineMath math="1" /> |
 
-From the table above, we get the number of choices for each position:
-- **Position** <InlineMath math="1" />: The set <InlineMath math="\{2, 4, 6, 8\}" /> gives <InlineMath math="4" /> choices. Because the set is stated explicitly, <InlineMath math="0" /> is not included.
-- **Position** <InlineMath math="2" />: Vowels except <InlineMath math="\mathrm{E}" /> (<InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" />) have <InlineMath math="4" /> choices.
-- **Position** <InlineMath math="3" />: Digits from set <InlineMath math="\{5, 6, 7\}" /> have <InlineMath math="3" /> choices.
-- **Position** <InlineMath math="4" />: Letter <InlineMath math="\mathrm{U}" /> has only <InlineMath math="1" /> choice.
+The first position cannot contain <InlineMath math="0" /> because it is absent from the given set. Each first choice can combine with all four first letters, all three second digits, and the fixed last letter. Apply the **multiplication rule**:
 
-Since each position must be filled simultaneously, we use the multiplication rule:
+<BlockMath math="4\times4\times3\times1=16\times3=48" />
 
-<BlockMath math="4 \times 4 \times 3 \times 1 = 48" />
-
-Thus, there are <InlineMath math="48" /> possible passwords.
+There are therefore <InlineMath math="48" /> possible passwords.

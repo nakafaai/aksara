@@ -3,19 +3,19 @@ export const metadata = {
     description: "Python mit Listenkomprehensionen, Lambda-Funktionen und verkürzten Zuweisungen klar und kompakt schreiben.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
 ## Wiederkehrenden Code kürzer schreiben
 
-<Highlight>Syntaktischer Zucker ist eine knappe Schreibweise für Verhalten, das sich auch ausführlicher ausdrücken ließe.</Highlight> Sie kann wiederkehrenden Ballast entfernen. Kürzerer Code ist aber nur dann hilfreich, wenn sein Zweck weiterhin klar bleibt.
+Syntaktischer Zucker ist eine <Highlight>knappe Schreibweise</Highlight> für Verhalten, das sich auch ausführlicher ausdrücken ließe. Sie kann wiederkehrenden Ballast entfernen. Kürzerer Code ist aber nur dann hilfreich, wenn sein Zweck weiterhin klar bleibt.
 
 Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Wähle die Form, in der deine Absicht am leichtesten zu verstehen ist.
 
 ## Listenkomprehension
 
-Eine Listenkomprehension erzeugt eine neue Liste aus einem beliebigen Iterable. Sie kann Werte transformieren, filtern oder beides in einem Ausdruck verbinden.
+Eine Listenkomprehension erzeugt eine **neue Liste aus einem Iterable**. Sie kann Werte transformieren, filtern oder beides in einem Ausdruck verbinden.
 
 Listenkomprehensionen haben mehrere Syntaxformen:
 
@@ -40,7 +40,7 @@ In der dritten Form steht der bedingte Ausdruck vor `for`. In der zweiten Form f
 
 ### Listenkomprehensionen in der Praxis
 
-Die folgenden Beispiele unterscheiden einen bedingten Ausdruck von einem Filter.
+Die folgenden Beispiele unterscheiden **einen bedingten Ausdruck von einem Filter**.
 
 <CodeBlock
   data={[
@@ -94,17 +94,17 @@ print(y_standard)
 
 Listenkomprehensionen können eine einfache Transformation oder einen Filter kompakt ausdrücken. Sie sind häufig effizient, <Highlight>doch Lesbarkeit ist wichtiger als eine geringe Zeilenzahl</Highlight>. Sobald der Ausdruck schwer verständlich wird, ist eine gewöhnliche Schleife die bessere Wahl. Die Schreibweise erinnert an die mathematische Mengennotation. Eine Python-Liste bewahrt jedoch Reihenfolge und Duplikate, eine mathematische Menge nicht.
 
-Beispielsweise kann `[i**2 for i in x]` als „Quadrat von i für jedes i in x“ gelesen werden, was der mathematischen Notation <InlineMath math="\{i^2 : i \in X\}" /> sehr ähnlich ist.
+Beispielsweise kann `[i**2 for i in range(4)]` die Liste `[0, 1, 4, 9]` erzeugen. Diese Quadratliste steht mit der mathematischen Notation <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" /> in Beziehung.
 
 ## Lambdafunktionen
 
-Ein Lambda-Ausdruck erzeugt ein Funktionsobjekt ohne `def`-Anweisung. Er eignet sich besonders für eine kleine Funktion, die direkt als Argument übergeben wird.
+Ein Lambda-Ausdruck erzeugt ein **Funktionsobjekt** ohne `def`-Anweisung. Er eignet sich besonders für eine kleine Funktion, die direkt als Argument übergeben wird.
 
 Der Lambda-Körper besteht aus genau einem Ausdruck, dessen Wert zurückgegeben wird. Er darf eine Funktion wie `print()` aufrufen, aber keine Anweisungsformen wie `return`, eine gewöhnliche Zuweisung, `for` oder `while` enthalten. Ein Lambda kann an eine Variable gebunden werden. Für wiederverwendetes Verhalten ist eine benannte Funktion mit `def` meist klarer.
 
 ### Lambda verwenden
 
-Ein Lambda schreibt eine kleine Funktion in einem Ausdruck. Das Beispiel zeigt die Syntax und weist eine Funktion einem Namen zu.
+Ein Lambda schreibt eine kleine Funktion in **einem Ausdruck**. Das Beispiel zeigt die Syntax und weist eine Funktion einem Namen zu.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ def add_normal(x, y):
 
 ### Lambda mit integrierten Funktionen
 
-Kurze Lambdas eignen sich als Callbacks, besonders als `key`-Funktion für `sorted()`. Auch `map()` und `filter()` akzeptieren sie, wobei eine entsprechende Komprehension manchmal leichter lesbar ist:
+Kurze Lambdas eignen sich als Callbacks, besonders als **Sortierschlüssel** über `key` für `sorted()`. Auch `map()` und `filter()` akzeptieren sie, wobei eine entsprechende Komprehension manchmal leichter lesbar ist:
 
 <CodeBlock
   data={[
@@ -160,11 +160,11 @@ print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]
 
 ## Andere syntaktische Zuckerfunktionen
 
-Python besitzt weitere kompakte Schreibweisen für häufige Operationen. Sie können die Lesbarkeit verbessern, garantieren aber keine höhere Laufzeitgeschwindigkeit. Jede Form ersetzt eine längere Anweisung, ohne das berechnete Ergebnis zu ändern.
+Python besitzt weitere kompakte Schreibweisen für häufige Operationen. Sie können die Lesbarkeit verbessern, garantieren aber **keine höhere Laufzeitgeschwindigkeit**. Prüfe vor dem Ersetzen einer ausführlichen Form, ob das Verhalten übereinstimmt, besonders bei veränderlichen Objekten.
 
 ### Zuweisungsoperatoren
 
-Python bietet prägnantere Zuweisungsoperatoren für allgemeine Operationen:
+Python bietet prägnantere **Zuweisungsoperatoren** für allgemeine Operationen:
 
 <CodeBlock
   data={[
@@ -192,7 +192,7 @@ Bei unveränderlichen Zahlen liefern diese Beispiele dieselben Werte wie die aus
 
 ### Negative Indizierung
 
-Python erlaubt die Verwendung negativer Indizes, um von hinten auf Elemente zuzugreifen:
+Python erlaubt die Verwendung negativer Indizes, um **von hinten auf Elemente zuzugreifen**:
 
 <CodeBlock
   data={[
@@ -218,7 +218,7 @@ print(data[:-2])   # Ausgabe: [10, 20, 30]`
 
 ### Mehrfachzuweisung
 
-Python ermöglicht die Zuweisung mehrerer Variablen in einer einzigen Zeile:
+Python ermöglicht die **Zuweisung mehrerer Variablen** in einer einzigen Zeile:
 
 <CodeBlock
   data={[
@@ -252,4 +252,4 @@ print(f"Nachher: a={a}, b={b}")  # Ausgabe: Nachher: a=10, b=5`
 | Zuweisung | `a = a + 5` | `a += 5` |
 | Auf das letzte Element zugreifen | `data[len(data) - 1]` | `data[-1]` |
 
-Verwende die kompakte Form nur, wenn die Operation ohne verborgenen Kontrollfluss oder verborgene Nebenwirkungen erkennbar ist. Andernfalls ist die ausführliche Form geeigneter.
+Verwende die kompakte Form nur, wenn die **Operation ohne verborgenen Kontrollfluss** oder verborgene Nebenwirkungen erkennbar ist. Andernfalls ist die ausführliche Form geeigneter.

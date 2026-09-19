@@ -5,14 +5,14 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Es gilt <InlineMath math="-1 < x < 1" /> mit:
+Wir untersuchen den **Einfluss des Nenners** für <InlineMath math="-1<x<1" />, wobei gilt:
 
 -   <InlineMath math="P = \frac{1 + x^4}{1 - x^2}" />
 -   <InlineMath math="Q = 1 + x^4" />
 
 #### Analyse des Nenners
 
-Aus <InlineMath math="-1 < x < 1" /> folgt durch Quadrieren:
+Aus <InlineMath math="-1 < x < 1" /> ist das **Quadrat nicht negativ** und kleiner als eins:
 
 <BlockMath math="0 \leq x^2 < 1" />
 
@@ -22,7 +22,7 @@ Damit gilt für den Nenner:
 
 #### Vergleich der Größen
 
-Wir dividieren <InlineMath math="P" /> durch <InlineMath math="Q" />:
+Da <InlineMath math="Q=1+x^4\ge1" /> **stets positiv** ist, bleibt beim Teilen beider Größen durch <InlineMath math="Q" /> ihre Reihenfolge erhalten:
 
 <MathContainer>
   <BlockMath math="\frac{P}{Q} = \frac{\frac{1 + x^4}{1 - x^2}}{1 + x^4} = \frac{1}{1 - x^2}" />
@@ -30,14 +30,12 @@ Wir dividieren <InlineMath math="P" /> durch <InlineMath math="Q" />:
 
 Jetzt analysieren wir zwei Fälle:
 
-**Fall** 1: Wenn <InlineMath math="0 < 1 - x^2 < 1" />
+**Fall 1**: Wenn <InlineMath math="0 < 1 - x^2 < 1" />
 
 Dann <InlineMath math="\frac{1}{1 - x^2} > 1" />, also <InlineMath math="P > Q" />.
 
-**Fall** 2: Wenn <InlineMath math="1 - x^2 = 1" /> (d. h. wenn <InlineMath math="x = 0" />)
+**Fall 2**: Wenn <InlineMath math="1 - x^2 = 1" /> (d. h. wenn <InlineMath math="x = 0" />)
 
 Dann <InlineMath math="\frac{1}{1 - x^2} = 1" />, also <InlineMath math="P = Q" />.
-
-#### Gemeinsame Beziehung beider Fälle
 
 Für <InlineMath math="x\ne0" /> gilt <InlineMath math="P>Q" />. Für <InlineMath math="x=0" /> gilt <InlineMath math="P=Q" />. Beide Fälle ergeben zusammen die stets gültige Beziehung <InlineMath math="P\ge Q" />.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Verarbeite Text mit Python-String-Methoden für Umwandlung, Suche und Zeichenklassifikation.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -42,7 +42,7 @@ Mit Slicing und Verkettung kannst du aus einem vorhandenen String einen neuen au
 
 ## Stringlänge messen
 
-Bei einem Python-String zählt `len()` die Unicode-Codepoints. Ein gewöhnlicher lateinischer Buchstabe, ein Leerzeichen oder ein Satzzeichen zählt meist eins. Ein einziges sichtbares Graphem kann jedoch aus mehreren Codepoints bestehen, etwa bei manchen Emojis oder kombinierenden Zeichen.
+Bei einem Python-String zählt `len()` die **Unicode-Codepoints**. Ein gewöhnlicher lateinischer Buchstabe, ein Leerzeichen oder ein Satzzeichen zählt meist eins. Ein einziges sichtbares Graphem kann jedoch aus mehreren Codepoints bestehen, etwa bei manchen Emojis oder kombinierenden Zeichen.
 
 <CodeBlock
   data={[
@@ -68,7 +68,7 @@ print(f"String mit Escape-Sequenz: {len(special)} Zeichen")
 print(f"String-Anzeige: {repr(special)}")
 
 raw_newline = r"\\n"
-print(f"Raw-Schreibweise \\n: {len(raw_newline)} Codepoints")`
+print(f"Raw-Schreibweise {raw_newline!r}: {len(raw_newline)} Codepoints")`
     }
   ]}
 />
@@ -77,11 +77,11 @@ In einem normalen Stringliteral werden die Quellschreibweisen `\n` und `\t` jewe
 
 ## Methoden zur Transformation von Strings
 
-Diese Methoden liefern einen neuen String und lassen den ursprünglichen unverändert. Das liegt daran, dass ein String unveränderlich ist, jede Umwandlung also einen zweiten Wert erzeugt, statt den ersten zu bearbeiten.
+Diese Methoden liefern einen neuen String und **lassen den ursprünglichen unverändert**. Das liegt daran, dass ein String unveränderlich ist, jede Umwandlung also einen zweiten Wert erzeugt, statt den ersten zu bearbeiten.
 
 ### Ändern der Großschreibung und Kleinschreibung
 
-Python bietet mehrere Methoden zur Umwandlung der Groß- und Kleinschreibung. Jede liefert einen neuen String und folgt den Unicode-Regeln für die Schreibweise.
+Python bietet mehrere Methoden zur Umwandlung der Groß- und Kleinschreibung. Jede liefert einen neuen String und folgt den **Unicode-Regeln** für die Schreibweise.
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ print(f"Komplexer Titel: {complex_text.title()}")`
 
 ### Zeichen am Anfang und Ende entfernen
 
-Ohne Argument entfernen `strip()`, `lstrip()` und `rstrip()` umgebenden Whitespace. Mit `chars` gibst du Python eine Menge einzelner Zeichen. Python entfernt passende Zeichen wiederholt vom jeweiligen Rand.
+Ohne Argument entfernen `strip()`, `lstrip()` und `rstrip()` umgebenden Whitespace. Mit `chars` gibst du Python eine **Menge einzelner Zeichen**. Python entfernt passende Zeichen wiederholt vom jeweiligen Rand.
 
 <CodeBlock
   data={[
@@ -163,11 +163,11 @@ Möchtest du genau ein Token entfernen, verwendest du `removeprefix()` oder `rem
 
 ## Strings durchsuchen und Zeichen prüfen
 
-Eine Gruppe von Methoden findet die Stelle eines Musters im Text, eine andere Gruppe beantwortet Ja-Nein-Fragen dazu. Die suchenden Methoden geben eine Position zurück, die prüfenden Methoden geben `True` oder `False` zurück.
+Eine Gruppe von Methoden findet die Stelle eines Musters im Text, eine andere Gruppe beantwortet Ja-Nein-Fragen dazu. Die suchenden Methoden **geben eine Position zurück**, die prüfenden Methoden geben `True` oder `False` zurück.
 
 ### Position eines Teilstrings ermitteln
 
-`index()` und `find()` suchen die Position eines Teilstrings. Sie unterscheiden sich darin, wie sie einen fehlenden Treffer melden.
+`index()` und `find()` suchen die Position eines Teilstrings. Sie unterscheiden sich darin, wie sie einen **fehlenden Treffer** melden.
 
 <CodeBlock
   data={[
@@ -202,7 +202,7 @@ substring = "Programmiersprache"
 start_pos = text.find(substring, 20)  # Start ab Position 20
 print(f"'{substring}' nach Position 20: {start_pos}")
 
-# Vorkommen eines Teilstrings zählen
+# **Vorkommen eines Teilstrings** zählen
 count = text.count("a")
 print(f"Der Buchstabe „a“ kommt {count}-mal vor")`
     }
@@ -213,7 +213,7 @@ Wähle die Methode passend zum Fehlervertrag: `find()` gibt `-1` zurück, `index
 
 ### Zeichenklassen prüfen
 
-Methoden wie `isalpha()` und `isdigit()` geben einen booleschen Wert zurück, nachdem sie geprüft haben, ob die Codepoints im String eine bestimmte Kategorienregel erfüllen. Diese Methoden prüfen nur Zeichenkategorien. Für Benutzernamen, E-Mail-Adressen oder Kontonummern brauchst du zusätzliche Regeln für das vollständige Format.
+Methoden wie `isalpha()` und `isdigit()` geben einen booleschen Wert zurück, nachdem sie geprüft haben, ob die Codepoints im String eine bestimmte Kategorienregel erfüllen. Diese Methoden prüfen **nur Zeichenkategorien**. Für Benutzernamen, E-Mail-Adressen oder Kontonummern brauchst du zusätzliche Regeln für das vollständige Format.
 
 <CodeBlock
   data={[
@@ -268,7 +268,7 @@ Methoden wie `isdigit()` und `isalnum()` berücksichtigen Unicode, und für den 
 
 ## Suchmethoden für Präfixe und Suffixe
 
-Mit `startswith()` und `endswith()` prüfst du, ob ein String mit einem bestimmten Teilstring beginnt oder endet.
+Mit `startswith()` und `endswith()` prüfst du, ob ein String mit einem bestimmten Teilstring **beginnt oder endet**.
 
 <CodeBlock
   data={[
@@ -306,7 +306,7 @@ urls = [
 print("\\nURL-Analyse:")
 for url in urls:
     if url.startswith("https://"):
-        print(f"Sichere Website: {url}")
+        print(f"HTTPS: {url}")
     elif url.startswith("http://"):
         print(f"Website: {url}")
     elif url.startswith("ftp://"):
@@ -323,13 +323,15 @@ print(f"\\nBeginnt mit einer Begrüßung: {text.startswith(('Hi', 'Hello', 'Hey'
 
 Beide Methoden akzeptieren ein Tupel, sodass ein Aufruf mehrere Präfixe oder Suffixe prüfen kann.
 
+Das Präfix `https://` ordnet den Text nach dem URL-Schema ein. Es belegt weder die Vertrauenswürdigkeit der Website noch die Gültigkeit der Adresse.
+
 ## Methoden Replace und Split
 
-Diese beiden Methoden ändern, wie ein String in Teile zerlegt wird. `replace` tauscht einen Teilstring gegen einen anderen, `split` zerlegt den String an einem Trennzeichen in eine Liste.
+Diese beiden Methoden ändern, wie ein String in Teile zerlegt wird. `replace` **tauscht einen Teilstring** gegen einen anderen, `split` zerlegt den String an einem Trennzeichen in eine Liste.
 
 ### Teilstrings ersetzen
 
-`replace()` ersetzt Vorkommen eines Teilstrings durch einen neuen String.
+`replace()` ersetzt **Vorkommen eines Teilstrings** durch einen neuen String.
 
 <CodeBlock
   data={[
@@ -374,7 +376,7 @@ print(f"Bereinigte Telefonnummer: {clean_phone}")`
 
 ### Strings aufteilen
 
-`split()` zerlegt einen String an einem angegebenen Trennzeichen und gibt die Teile als Liste zurück. Ohne Trennzeichen behandelt die Methode aufeinanderfolgenden Whitespace als einen Separator und lässt leere Felder an den Rändern weg.
+`split()` zerlegt einen String an einem angegebenen Trennzeichen und gibt die Teile als Liste zurück. Ohne Trennzeichen behandelt die Methode **aufeinanderfolgenden Whitespace** als einen Separator und lässt leere Felder an den Rändern weg.
 
 <CodeBlock
   data={[
@@ -425,7 +427,9 @@ Verwende `split()` nur bei wirklich einfachen Trennregeln. Die Methode versteht 
 
 ## Verkettung von Stringmethoden
 
-Da String-Methoden neue Strings zurückgeben, kannst du mehrere Umwandlungen in einem Ausdruck verketten. Halte die Kette so kurz, dass jeder Schritt klar bleibt. Wenn dazwischen eine Prüfung oder Erklärung nötig ist, gib dem Zwischenergebnis einen Namen.
+Transformationsmethoden, die **Strings zurückgeben**, lassen sich verketten. Eine Methode wie `split()` liefert eine Liste. Die nächste Operation muss zu diesem Ergebnistyp passen. Halte die Kette so kurz, dass jeder Schritt klar bleibt. Wenn dazwischen eine Prüfung oder Erklärung nötig ist, gib dem Zwischenergebnis einen Namen.
+
+Nach dem ersten `.strip()` bleiben Leerzeichen zwischen `+++` und `Python`. Deshalb entfernt `.strip("+- ")` **Pluszeichen, Minuszeichen und Leerzeichen** an beiden Rändern vor der Kleinschreibung.
 
 <CodeBlock
   data={[
@@ -439,7 +443,7 @@ print(f"Eingabe: '{messy_input}'")
 # Mehrere Methoden verketten
 clean_result = (messy_input
                 .strip()  # Leerzeichen am Anfang und Ende entfernen
-                .strip("+-")  # Plus- und Minuszeichen entfernen
+                .strip("+- ")  # Plus- und Minuszeichen entfernen
                 .lower()  # In Kleinbuchstaben umwandeln
                 .replace("anfänger", "fortgeschrittene"))  # Wort ersetzen
 
@@ -491,7 +495,9 @@ Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht au
 
 ## Praktische Anwendungen von Methoden für Strings
 
-Jedes kleine Beispiel zeigt das Verhalten einer Stringmethode unter klar genannten Annahmen. Validatoren und Parser für den Produktionseinsatz brauchen Regeln für ihre echten Daten.
+Jedes kleine Beispiel zeigt das Verhalten einer Stringmethode unter **klar genannten Annahmen**. Validatoren und Parser für den Produktionseinsatz brauchen Regeln für ihre echten Daten.
+
+Die Telefonfunktion formatiert nur zwei Beispielmuster. Indonesische Telefonnummern sind nicht auf diese Längen beschränkt. Dateinamen werden ohne Verzeichnispfad angenommen. Die E-Mail-Normalisierung oben zeigt Stringverarbeitung, keine vollständige Adressvalidierung.
 
 <CodeBlock
   data={[
@@ -509,7 +515,7 @@ def format_phone_number(phone):
 
     digits_only = "".join(char for char in phone if char in "0123456789")
 
-    # Format nach indonesischem Standard
+    # Zwei Beispielmuster, nicht alle indonesischen Nummerierungsregeln
     if len(digits_only) == 13 and digits_only.startswith("62"):
         return f"+{digits_only[:2]}-{digits_only[2:5]}-{digits_only[5:9]}-{digits_only[9:]}"
     elif len(digits_only) == 12 and digits_only.startswith("08"):

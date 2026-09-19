@@ -5,50 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir vergleichen die Anzahl der Spiegelachsen mit der Ordnung der Drehsymmetrie jeder Figur. Die volle Drehung um <InlineMath math="360^\circ" /> zählt als Ordnung <InlineMath math="1" />. Beide Werte dürfen höchstens <InlineMath math="2" /> betragen.
+Jede Figur muss **beide Obergrenzen** einhalten: höchstens zwei Spiegelachsen und höchstens zwei deckende Lagen bei einer vollen Drehung. Die Ausgangslage wird einmal über die Drehung um <InlineMath math="360^\circ" /> gezählt.
 
-#### Rechtwinkliges Trapez
+| Figur | Spiegelachsen | Deckende Drehungen |
+| --- | --- | --- |
+| Rechtwinkliges Trapez | 0 | 1: nur 360° |
+| Regelmäßiges Fünfeck | 5: von jeder Ecke zum Mittelpunkt der gegenüberliegenden Seite | 5: Vielfache von 72° |
+| Gleichseitiges Dreieck | 3: von jeder Ecke zum Mittelpunkt der gegenüberliegenden Seite | 3: 120°, 240°, 360° |
+| Drachenviereck, keine Raute | 1: die Diagonale durch die Ecken zwischen gleich langen Nachbarseiten | 1: nur 360° |
 
-Ein rechtwinkliges Trapez hat keine Spiegelachse und nur die Drehsymmetrie der Ordnung <InlineMath math="1" />, also die Ausgangslage nach einer vollen Drehung.
+Das Drachenviereck besitzt **eine Spiegelachse**. Bei einer Drehung um 180° liegt es nicht auf sich selbst, denn die obere und untere Ecke haben unterschiedliche Abstände vom Diagonalenschnittpunkt.
 
-*   Spiegelachsen: <InlineMath math="0" />
-*   Ordnung der Drehsymmetrie: <InlineMath math="1" />
+<MathVisual title="Die Spiegelachse des Drachenvierecks" description="Die senkrechte Diagonale teilt das Drachenviereck in spiegelbildliche Hälften." scene={{space:"plane",frame:{kind:"cartesian",x:{min:-3,max:3},y:{min:-2,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"kite",kind:"polygon",appearance:"primary",vertices:[{x:0,y:3},{x:2,y:0},{x:0,y:-1},{x:-2,y:0}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:-1},to:{x:0,y:3}}],labels:[]}} labels={{}} />
 
-Diese Figur erfüllt die Bedingung, denn <InlineMath math="0 \le 2" /> und <InlineMath math="1 \le 2" />.
-
-#### Regelmäßiges Fünfeck
-
-Ein regelmäßiges Fünfeck hat <InlineMath math="5" /> gleiche Seiten.
-
-*   Spiegelachsen: <InlineMath math="5" />
-*   Ordnung der Drehsymmetrie: <InlineMath math="5" />
-
-Diese Figur erfüllt die Bedingung **nicht**.
-
-#### Gleichseitiges Dreieck
-
-Ein gleichseitiges Dreieck hat <InlineMath math="3" /> gleiche Seiten.
-
-*   Spiegelachsen: <InlineMath math="3" />
-*   Ordnung der Drehsymmetrie: <InlineMath math="3" />
-
-Diese Figur erfüllt die Bedingung **nicht**.
-
-#### Drachenviereck
-
-Dieses Drachenviereck ist keine Raute.
-
-Ein Drachenviereck hat eine Spiegelachse und nur die Drehsymmetrie der Ausgangslage.
-
-*   Spiegelachsen: <InlineMath math="1" />
-*   Ordnung der Drehsymmetrie: <InlineMath math="1" />
-
-Diese Figur erfüllt die Bedingung.
-
-#### Figuren mit erfüllten Bedingungen
-
-Die ebenen Figuren, die die Bedingung erfüllen, sind:
-1. Rechtwinkliges Trapez.
-2. Drachenviereck (keine Raute).
-
-Somit erfüllen <InlineMath math="2" /> Figuren die Bedingung.
+Das rechtwinklige Trapez und das Drachenviereck erfüllen beide Grenzen. Die Antwort ist also <InlineMath math="2" />.

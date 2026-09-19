@@ -5,21 +5,17 @@ export const metadata = {
   datePublished: "2026-01-01",
 };
 
-Kita catat banyaknya pilihan untuk setiap posisi:
+Tiap posisi mempunyai **pilihan yang tetap**, karena pengulangan diperbolehkan. Memilih satu karakter tidak mengurangi pilihan pada posisi lain.
 
-| Angka dari <InlineMath math="\{2, 4, 6, 8\}" /> | Huruf Pertama (Bukan <InlineMath math="\mathrm{E}" />) | Angka dari <InlineMath math="\{5, 6, 7\}" /> | Huruf Kedua (<InlineMath math="\mathrm{U}" />) |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="2, 4, 6, 8" /> | <InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" /> | <InlineMath math="5, 6, 7" /> | <InlineMath math="\mathrm{U}" /> |
-| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
+| Posisi | Karakter yang boleh dipakai | Banyak pilihan |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="\{2,4,6,8\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="\{\mathrm{A},\mathrm{I},\mathrm{O},\mathrm{U}\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="\{5,6,7\}" /> | <InlineMath math="3" /> |
+| <InlineMath math="4" /> | <InlineMath math="\{\mathrm{U}\}" /> | <InlineMath math="1" /> |
 
-Dari tabel di atas, kita peroleh jumlah pilihan untuk setiap posisi:
-- **Posisi** <InlineMath math="1" />: Himpunan <InlineMath math="\{2, 4, 6, 8\}" /> memberi <InlineMath math="4" /> pilihan. Karena himpunannya disebutkan secara eksplisit, angka <InlineMath math="0" /> tidak ikut dihitung.
-- **Posisi** <InlineMath math="2" />: Huruf vokal selain <InlineMath math="\mathrm{E}" /> (<InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" />) ada <InlineMath math="4" /> pilihan.
-- **Posisi** <InlineMath math="3" />: Angka dari himpunan <InlineMath math="\{5, 6, 7\}" /> ada <InlineMath math="3" /> pilihan.
-- **Posisi** <InlineMath math="4" />: Huruf <InlineMath math="\mathrm{U}" /> hanya ada <InlineMath math="1" /> pilihan.
+Angka <InlineMath math="0" /> tidak boleh dipakai pada posisi pertama karena tidak termasuk himpunan yang diberikan. Setiap pilihan pertama dapat dipasangkan dengan keempat huruf pertama, lalu ketiga angka kedua, dan huruf terakhir yang tetap. Gunakan **aturan perkalian**:
 
-Karena setiap posisi harus diisi secara bersamaan, kita gunakan aturan perkalian:
+<BlockMath math="4\times4\times3\times1=16\times3=48" />
 
-<BlockMath math="4 \times 4 \times 3 \times 1 = 48" />
-
-Jadi, terdapat <InlineMath math="48" /> kata sandi yang mungkin.
+Jadi, ada <InlineMath math="48" /> kata sandi yang mungkin.

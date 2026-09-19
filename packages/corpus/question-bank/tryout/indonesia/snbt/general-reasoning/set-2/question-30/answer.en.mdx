@@ -7,9 +7,11 @@ export const metadata = {
 
 Let <InlineMath math="x" /> and <InlineMath math="y" /> count packages <InlineMath math="X" /> and <InlineMath math="Y" />. The material and labour constraints and profit <InlineMath math="L" /> are
 
-<BlockMath math="\begin{aligned}3x+2y&\leq24\\x+4y&\leq20\\L&=6x+7y\end{aligned}" />
+<BlockMath math="\begin{aligned}3x+2y&amp;\leq24\\x+4y&amp;\leq20\\L&amp;=6x+7y\end{aligned}" />
 
-Each <InlineMath math="Y" /> requires <InlineMath math="4" /> hours, so check <InlineMath math="y=0,1,2,3,4,5" />. For each <InlineMath math="y" />, take the largest feasible <InlineMath math="x" />. This maximizes profit for that row because every <InlineMath math="X" /> has positive profit.
+Each <InlineMath math="Y" /> requires <InlineMath math="4" /> hours, so check <InlineMath math="y=0,1,2,3,4,5" />. For each <InlineMath math="y" />, take the **largest feasible** <InlineMath math="x" />. This maximizes profit for that row because every <InlineMath math="X" /> has positive profit.
+
+For example, with <InlineMath math="y=3" />, the material constraint gives <InlineMath math="3x+6\leq24" />, so <InlineMath math="x\leq6" />. The labour constraint gives <InlineMath math="x+12\leq20" />, so <InlineMath math="x\leq8" />. The tighter limit is <InlineMath math="x=6" />.
 
 | Number of Y | Maximum number of X | Profit |
 | :---: | :---: | :---: |
@@ -28,4 +30,4 @@ The unique maximum profit, <InlineMath math="57" />, occurs at <InlineMath math=
   <BlockMath math="20-18=2" />
 </MathContainer>
 
-The unused labour is therefore **<InlineMath math="2" /> hours**.
+The **unused labour** is therefore <InlineMath math="2" /> hours.

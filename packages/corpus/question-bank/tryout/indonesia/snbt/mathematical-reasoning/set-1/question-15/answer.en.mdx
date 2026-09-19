@@ -1,32 +1,31 @@
 export const metadata = {
   title: "Solution for Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-We will use the concept of inverse proportion to determine the total number of workers needed, then calculate the difference with the initial number of workers.
+The question asks for **additional workers**, not the entire workforce. Find the total needed for a forty-day schedule, then subtract the eighty workers already available.
 
-#### Calculating Total Workload
+#### Keeping the Workload Equal
 
-The total project workload is constant, which is:
+One worker-day is the work completed by one person in one working day. With equal, constant daily productivity, **the project workload stays fixed** when the workforce changes.
 
-<BlockMath math="\begin{aligned}&80 \times 50 \\ &=4{,}000 \text{ man-days}\end{aligned}" />
+<BlockMath math="W=80\times50=4{,}000\text{ worker-days}" />
 
-#### Calculating Required Number of Workers
+Let <InlineMath math="P" /> be the total workforce from the first day. These workers must complete that workload in forty working days.
 
-If the completion time is accelerated to <InlineMath math="40 \text{ days }" />, the number of workers required (<InlineMath math="P" />) is:
+<BlockMath math="\begin{aligned}40P&=4{,}000\\P&=\frac{4{,}000}{40}\\&=100\text{ workers}\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="P \times 40 = 4{,}000" />
-  <BlockMath math="P = \frac{4{,}000}{40}" />
-  <BlockMath math="P = 100 \text{ people}" />
-</MathContainer>
+| Schedule | Workers | Working days | Workload (worker-days) |
+| --- | --- | --- | --- |
+| Original | 80 | 50 | 4,000 |
+| Shortened | 100 | 40 | 4,000 |
 
-#### Calculating Additional Workers
+#### Finding the Addition to the Original Workforce
 
-The existing number of workers is <InlineMath math="80" />. Thus, the additional workers needed are:
+Eighty of the hundred required workers are already available. The **additional number equals the required total minus the original number**.
 
-<BlockMath math="\begin{aligned}&100 - 80 \\ &=20 \text{ people}\end{aligned}" />
+<BlockMath math="P_{\text{additional}}=100-80=20\text{ workers}" />
 
-So, the number of additional workers needed is **<InlineMath math="20 \text{ people}" />**.
+Check the schedule: <InlineMath math="(80+20)\times40=4{,}000" /> worker-days, equal to the original workload. Therefore, **20 additional workers** are needed from the first day.

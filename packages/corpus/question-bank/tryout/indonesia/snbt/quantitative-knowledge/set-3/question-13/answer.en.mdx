@@ -5,38 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-There are <InlineMath math="3" /> boxes available.
-Two marbles will be placed into these boxes, with the condition that one box can only hold one marble.
+Number the boxes 1, 2, and 3 from left to right. Every **pair of boxes is equally likely**, so count pairs rather than the order in which the marbles are placed.
 
-Let the boxes be numbered <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> (from left to right).
+| Occupied boxes | Box 1 | Box 2 | Box 3 | Adjacent? |
+| --- | --- | --- | --- | --- |
+| 1, 2 | Filled | Filled | Empty | Yes |
+| 2, 3 | Empty | Filled | Filled | Yes |
+| 1, 3 | Filled | Empty | Filled | No |
 
-**Sample space**
+There are three pairs. Only boxes 1 and 3 leave an **empty box between them**, so only that pair meets the condition.
 
-Every pair of boxes is equally likely, so the probability is the number of favourable pairs divided by the total number of pairs.
-
-The total number of ways to choose <InlineMath math="2" /> boxes from <InlineMath math="3" /> available boxes:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}n(S)&=C(3,2)\\&=\frac{3!}{2!(3-2)!}\\&=\frac{3\times2!}{2!\times1!}\\&=3\end{aligned}" />
-</MathContainer>
-
-Possible pairs of filled boxes:
--   Boxes <InlineMath math="\{1, 2\}" />: adjacent
--   Boxes <InlineMath math="\{2, 3\}" />: adjacent
--   Boxes <InlineMath math="\{1, 3\}" />: not adjacent
-
-**Desired event**
-
-The event that marbles are not adjacent (<InlineMath math="A" />) occurs when the filled boxes are <InlineMath math="\{1, 3\}" />.
-
-<BlockMath math="n(A) = 1" />
-
-**Probability**
-
-The probability that marbles are stored not adjacent to each other:
-
-<MathContainer>
-  <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{1}{3}" />
-</MathContainer>
-
-Thus, the probability that the marbles are stored not adjacent to each other is <InlineMath math="\frac{1}{3}" />.
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac13" />

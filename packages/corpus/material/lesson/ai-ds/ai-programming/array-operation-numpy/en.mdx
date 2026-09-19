@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Broadcasting in NumPy
 
-[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) is <Highlight>NumPy's rule for combining arrays with different but compatible shapes</Highlight>. A dimension of size one is treated as if it had the same size as the corresponding dimension of the other array, without copying the data into a larger array.
+[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) is NumPy's rule for combining arrays with **different but compatible shapes**. A dimension of size one is treated as if it had the same size as the corresponding dimension of the other array, without copying the data into a larger array.
 
 Vectorization lets one expression operate over an entire array. NumPy executes the underlying loop in optimized compiled code, which is often faster than an explicit Python loop.
 
@@ -43,12 +43,12 @@ Three rules cover every case. The table below states the condition each rule che
 | Rule | Condition on the shapes | What NumPy does |
 | --- | --- | --- |
 | Rule <InlineMath math="1" /> | The two shapes have a different number of dimensions | NumPy adds dimensions of size <InlineMath math="1" /> on the left of the shorter shape |
-| Rule <InlineMath math="2" /> | An aligned pair has equal sizes, or one side has size <InlineMath math="1" /> | NumPy repeats the single entry along that dimension until both sizes match |
+| Rule <InlineMath math="2" /> | An aligned pair has equal sizes, or one side has size <InlineMath math="1" /> | Equal sizes already match. A size-one dimension is reused conceptually without materializing repeated copies |
 | Rule <InlineMath math="3" /> | An aligned pair has different sizes and neither side has size <InlineMath math="1" /> | NumPy raises a `ValueError` |
 
 ### Array with Scalar
 
-Broadcasting also applies between an array and a single number. NumPy stretches the scalar across every element, so you do not need an explicit loop.
+Broadcasting also applies between an **array and a single number**. NumPy stretches the scalar across every element, so you do not need an explicit loop.
 
 <CodeBlock
   data={[
@@ -77,7 +77,7 @@ print(f"Result a + b: {result}")
 
 ### Two Dimensional Array with One Dimensional Array
 
-When arrays have compatible but different shapes, NumPy can adjust them automatically through broadcasting. This applies one operation across every row or column without manually copying values.
+When arrays have **compatible but different shapes**, NumPy can adjust them automatically through broadcasting. This applies one operation across every row or column without manually copying values.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ print(result)
 
 ### Failed Broadcasting Case
 
-Not every pair of shapes can be aligned. The example below shows a shape pair that breaks rule <InlineMath math="3" /> and the error NumPy returns.
+For shapes `(2, 3)` and `(2,)`, the **last dimensions do not match**: their sizes are `3` and `2`, and neither is `1`. NumPy raises `ValueError` before performing the addition.
 
 <CodeBlock
   data={[
@@ -135,7 +135,7 @@ except ValueError as e:
 
 ## Array Arithmetic Operations
 
-NumPy arithmetic operators work element by element unless an operation explicitly has different semantics, such as matrix multiplication.
+NumPy arithmetic operators work **element by element** unless an operation explicitly has different semantics, such as matrix multiplication.
 
 When an array is combined with a scalar, broadcasting applies that scalar to every element. No manual indexing loop is required.
 
@@ -192,16 +192,16 @@ print(f"a * b = {a * b}")
 # Matrix multiplication (dot product)
 print("Matrix multiplication:")
 print(f"a @ b = {a @ b}")
-# Output: 10 (dot product result)`
+# Output: 10`
     }
   ]}
 />
 
-Element-wise multiplication (`*`) and matrix multiplication (`@` or `np.dot()`) perform different operations. Element-wise multiplication multiplies entries at the same position, while matrix multiplication follows the row-by-column rule from linear algebra.
+The `*` operator multiplies **entries at the same position**. For the two one-dimensional arrays above, `@` returns their dot product: `0 + 3 + 4 + 3 + 0` equals `10`. For two matrices, `@` follows the row-by-column rule. Do not treat `np.dot()` as equivalent to `@` for all array shapes. Their rules differ in higher dimensions.
 
 ### Comparison and Logic
 
-NumPy comparison operations produce boolean arrays. Use those arrays to filter data or combine several conditions.
+NumPy comparison operations produce **boolean arrays**. Use those arrays to filter data or combine several conditions.
 
 <CodeBlock
   data={[
@@ -234,7 +234,7 @@ For element-wise boolean logic, use `~` for NOT, `&` for AND, and `|` for OR, or
 
 ## Statistical Functions and Reductions
 
-Reduction functions combine many elements into fewer values. Without `axis`, a reduction combines all elements into one value. With `axis`, it combines values along that axis while leaving the other axes in place. For a table of exam scores, this can produce an average for each subject or each student.
+Reduction functions combine **many elements into fewer values**. Without `axis`, a reduction combines all elements into one value. With `axis`, it combines values along that axis while leaving the other axes in place. For a table of exam scores, this can produce an average for each subject or each student.
 
 NumPy provides statistical functions for summaries such as totals, means, and standard deviations. Each function can process the entire array or a selected axis.
 
@@ -271,7 +271,7 @@ print(f"Standard deviation: {np.std(data):.2f}")
 
 ### Operations with Axes
 
-For a two-dimensional array, `axis=0` collapses the row dimension and produces one value per column. `axis=1` collapses the column dimension and produces one value per row.
+For a two-dimensional array, `axis=0` collapses the row dimension and produces **one value per column**. `axis=1` collapses the column dimension and produces one value per row.
 
 The selected axis determines which dimension a statistical function reduces. For monthly sales data across several products, one axis can produce totals per product and the other totals per month.
 
@@ -309,7 +309,7 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
 
 ## Array Shape Manipulation
 
-Shape operations reorganize how the same elements are indexed. A reshape keeps the number of elements unchanged while assigning them to different dimensions.
+Shape operations reorganize how the same elements are indexed. A reshape keeps the **number of elements unchanged** while assigning them to different dimensions.
 
 New NumPy arrays are commonly C-contiguous, meaning the last index changes fastest in memory. Views created by slicing or transposing can have different strides, so an array is not always stored in one simple row-major layout. The `order` and stride rules matter when reshaping or flattening.
 
@@ -328,14 +328,14 @@ print(f"Shape: {a.shape}")
 
 # See how it's stored in memory
 print(f"Stored in memory as: {a.ravel()}")
-# Output: [0 1 2 3] (row-major order)`
+# Output: [0 1 2 3]`
     }
   ]}
 />
 
 ### Flatten and Ravel
 
-Both `flatten()` and `ravel()` return a one-dimensional array. `flatten()` always creates a copy, while `ravel()` returns a view when possible and a copy when the memory layout requires it.
+Both `flatten()` and `ravel()` return a one-dimensional array. `flatten()` **always creates a copy**, while `ravel()` returns a view when possible and a copy when the memory layout requires it.
 
 <CodeBlock
   data={[
@@ -376,7 +376,7 @@ print(a)`
 
 ### Reshape and Resize
 
-`reshape()` changes the shape as long as the number of elements stays the same and returns a view when possible. The `ndarray.resize()` method used below changes the original array in place.
+`reshape()` changes the shape as long as the number of elements stays the same and returns a view when possible. The `ndarray.resize()` method used below **changes the original array in place**.
 
 <CodeBlock
   data={[
@@ -411,7 +411,7 @@ print(a_flat)  # Now a_flat is 2D`
 
 ### Transpose
 
-A transpose permutes an array's axes. For a two-dimensional array it swaps rows and columns. NumPy provides the `transpose()` method and the shorter `.T` attribute.
+A transpose permutes an array's axes. For a two-dimensional array it **swaps rows and columns**. NumPy provides the `transpose()` method and the shorter `.T` attribute.
 
 <CodeBlock
   data={[
@@ -441,11 +441,11 @@ print("Is transpose a view?", np.shares_memory(a, b))`
   ]}
 />
 
-## Data Standardization with Z Transform
+## Data Standardization with Z Scores
 
-Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with nonzero standard deviation and puts features on comparable numerical scales.
+Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with **nonzero standard deviation** and puts features on comparable numerical scales.
 
-The Z-Transform formula is <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, where:
+The z-score formula is <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, where:
 - <InlineMath math="X" /> is the feature matrix of size <InlineMath math="n \times k" />
 - <InlineMath math="n" /> is the number of observations (rows)
 - <InlineMath math="k" /> is the number of features (columns)
@@ -456,12 +456,12 @@ The Z-Transform formula is <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, whe
   data={[
     {
       language: "python",
-      filename: "z_transform.py",
+      filename: "z_score.py",
       code: `import numpy as np
 
 # Create sample data (5 observations, 3 features)
-np.random.seed(42)
-X = np.random.randn(5, 3) * 10 + 50  # Data with mean~50, std~10
+rng = np.random.default_rng(42)
+X = rng.standard_normal((5, 3)) * 10 + 50  # Samples from a normal distribution with mean 50 and std 10
 
 print("Original data:")
 print(X)
@@ -474,17 +474,16 @@ sigma = np.std(X, axis=0)  # Standard deviation of each column
 print(f"Mean of each feature: {mu}")
 print(f"Standard deviation of each feature: {sigma}")
 
-# Perform Z-Transform
+# Perform z-score standardization
 Z = (X - mu) / sigma
 
-print("Data after Z-Transform:")
+print("Data after z-score standardization:")
 print(Z)
 
 # Verify standardization results
 print("Standardization verification:")
 print(f"New mean: {np.mean(Z, axis=0)}")  # Should be close to 0
 print(f"New standard deviation: {np.std(Z, axis=0)}")  # Should be close to 1
-# New mean output: [ 1.24344979e-15  8.88178420e-17 -1.77635684e-16] (close to 0)
 # New standard deviation output: [1. 1. 1.]`
     }
   ]}

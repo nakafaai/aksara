@@ -2,7 +2,16 @@ export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Der Ablauf beginnt mit der Vorbereitung eines ruhigen Zeitraums und dem Ausschluss geplanter Wasserverwendung. Danach wird der Zählerstand festgehalten, die gewählte Zeit abgewartet und ein zweiter Stand verglichen. Bei einer Bewegung wird der Test wiederholt. Anschließend folgt eine sichere Meldung mit den gesammelten Beobachtungen.
+Die Reihenfolge ist wichtig, weil **ein Vergleich zwei Ablesungen** mit einer Phase ohne beabsichtigten Wasserverbrauch dazwischen braucht. Bei Bewegung wird wiederholt, anschließend werden Beobachtungen gesichert und sicher gemeldet. Das Verfahren ersetzt keinen Zähler und bestimmt keinen verborgenen Leitungsort.
+
+<Mermaid title="Ablauf der Zählerprüfung" description="Der Test ohne Verbrauch wird bei Bewegung wiederholt. Braucht ein notwendiges Gerät weiterhin Wasser, wird dieser Test verschoben." chart={`flowchart TD
+  A["Bedingungen vorbereiten"]
+  B["Zählerstand notieren"]
+  C["Ohne Verbrauch warten"]
+  D["Ablesen und vergleichen"]
+  E["Bei Bewegung wiederholen"]
+  F["Belege sichern und melden"]
+  A --> B --> C --> D --> E --> F`} />

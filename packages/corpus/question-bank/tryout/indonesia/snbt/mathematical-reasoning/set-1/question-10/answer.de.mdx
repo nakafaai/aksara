@@ -2,14 +2,14 @@ export const metadata = {
   title: "Lösung zu Aufgabe 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Wir werden den Wert von <InlineMath math="x" /> finden, der die Oberfläche der Box maximiert, und dann diese Oberfläche berechnen.
+Wir werden den Wert von <InlineMath math="x" /> finden, der **die Oberfläche der Box maximiert**, und dann diese Oberfläche berechnen.
 
 #### Formel zur Bestimmung der Oberfläche
 
-Die Oberfläche eines Quaders (<InlineMath math="L" />) kann mit der Formel berechnet werden:
+Ein geschlossener Quader besitzt **Grund- und Deckfläche** mit der gemeinsamen Fläche <InlineMath math="2pl" />. Die vier Seitenflächen ergeben <InlineMath math="2pt+2lt=2(p+l)t=Kt" />. Addiert erhältst du die gesamte Oberfläche.
 
 <BlockMath math="L=2pl+Kt" />
 
@@ -28,7 +28,7 @@ Setze diese Abmessungen in die Oberflächenformel ein:
 
 #### Vereinfachung der Oberflächenfunktion
 
-Wir erweitern die obige Gleichung:
+Multipliziere **die Produkte der Seitenmaße** aus und fasse gleiche Potenzen zusammen:
 
 **Grundflächenteil:**
 
@@ -51,6 +51,17 @@ Wir erweitern die obige Gleichung:
 
 #### Den Maximalwert finden
 
+Den Höchstwert kannst du auch ohne Ableitung durch **quadratische Ergänzung** beweisen.
+
+<BlockMath math="\begin{aligned}
+L(x)&=-10(x^2-8x)-50 \\
+&=-10((x-4)^2-16)-50 \\
+&=-10(x-4)^2+160-50 \\
+&=110-10(x-4)^2
+\end{aligned}" />
+
+Ein Quadrat ist nie negativ. Daher gelten <InlineMath math="-10(x-4)^2\le0" /> und <InlineMath math="L(x)\le110" />. Gleichheit tritt genau bei <InlineMath math="x=4" /> ein. Damit ist der Höchstwert im gesamten zulässigen Bereich bewiesen.
+
 Die Funktion <InlineMath math="L(x)" /> ist eine quadratische Funktion mit einem negativen Koeffizienten <InlineMath math="x^2" />, daher öffnet sich ihr parabolischer Graph nach unten und hat einen Maximalwert. Der Maximalwert wird erreicht, wenn seine erste Ableitung gleich Null ist (<InlineMath math="L'(x) = 0" />).
 
 <MathContainer>
@@ -64,7 +75,7 @@ Länge, Breite und Höhe müssen positiv sein. Die Bedingungen <InlineMath math=
 
 #### Berechnung der maximalen Oberfläche
 
-Setze <InlineMath math="x = 4" /> in die Funktion <InlineMath math="L(x)" /> ein:
+Setze **<InlineMath math="x=4" /> mit positiven Kantenmaßen** in die Funktion <InlineMath math="L(x)" /> ein:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}L(4)&=-10(4)^2+80(4) \\ &\quad-50\end{aligned}" />

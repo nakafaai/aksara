@@ -16,6 +16,8 @@ Every vector in the coordinate plane <Highlight>can be decomposed along the two 
 The scalar components tell us how far and in which signed direction the vector extends along the <InlineMath math="x" />- and <InlineMath math="y" />-axes. Every vector in the plane is a linear combination of the unit vectors <InlineMath math="\mathbf{i}" /> and <InlineMath math="\mathbf{j}" />.
 
 <Vector3d
+  cameraPosition={[1.8, 4, 12.5]}
+  cameraTarget={[1.8, 4, 0]}
   title="Vector Visualization and Its Components"
   description={
     <>
@@ -26,18 +28,27 @@ The scalar components tell us how far and in which signed direction the vector e
   }
   vectors={[
     {
+      labelOffset: [-0.3, 0.7, 0],
+      labelProgress: 0.75,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [6, 8, 0],
       color: "#e11d48",
       label: <InlineMath math="AB" />,
     },
     {
+      labelOffset: [0, -0.6, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [6, 0, 0],
       color: "#0d9488",
       label: <><InlineMath math="x" />-component</>,
     },
     {
+      labelOffset: [-0.4, 0, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "right",
       from: [0, 0, 0],
       to: [0, 8, 0],
       color: "#65a30d",
@@ -88,35 +99,48 @@ For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}
 Vectors can be used on a two-dimensional plane and in three-dimensional space.
 
 <Vector3d
+  cameraPosition={[11, 10, -11]}
+  cameraTarget={[1.5, 3.5, 2]}
   title="Vectors in 3D Space"
   description="Visualization of a vector and its components in three-dimensional space."
   vectors={[
     {
+      labelOffset: [0, 0.8, 0],
+      labelProgress: 0.85,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [5, 7, 4],
       color: "#ea580c",
       label: "3D Vector",
     },
     {
+      labelOffset: [0, -0.7, 0],
+      labelProgress: 0.5,
+      labelAnchorX: "center",
       from: [0, 0, 0],
       to: [5, 0, 0],
       color: "#0d9488",
       label: <><InlineMath math="x" />-component</>,
     },
     {
+      labelOffset: [-0.8, 0, 0],
+      labelProgress: 0.6,
+      labelAnchorX: "left",
       from: [0, 0, 0],
       to: [0, 7, 0],
       color: "#65a30d",
       label: <><InlineMath math="y" />-component</>,
     },
     {
+      labelOffset: [0.5, -0.3, 0],
+      labelProgress: 0.6,
+      labelAnchorX: "left",
       from: [0, 0, 0],
       to: [0, 0, 4],
       color: "#ca8a04",
       label: <><InlineMath math="z" />-component</>,
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
 In three-dimensional space, a vector has **three components**: the <InlineMath math="x" />-, <InlineMath math="y" />-, and <InlineMath math="z" />-components. A vector in three-dimensional space can be expressed as:

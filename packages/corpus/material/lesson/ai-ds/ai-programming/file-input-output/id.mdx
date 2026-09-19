@@ -3,7 +3,7 @@ export const metadata = {
     description: "Membaca dan menulis file dalam Python, mode pembukaan file, method read dan readline, serta pengalihan output.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -11,9 +11,11 @@ export const metadata = {
 
 Python <Highlight>membaca dan menulis file melalui objek file</Highlight>. Dalam text mode, objek ini mendekode byte yang tersimpan menjadi string dengan encoding yang dipilih. Dalam binary mode, byte diteruskan tanpa perubahan.
 
+Siapkan empat file teks UTF-8 di folder latihan: `file.txt`, `data.txt`, `sample.txt`, dan `input.txt`, masing-masing berisi `Halo Python` tanpa baris baru di akhir. Jalankan contoh baca sebelum contoh tulis, karena mode `w` mengganti isi file. Pada contoh posisi, pembacaan pertama menghasilkan `Halo `, pembacaan kedua `Pyt`, dan pembacaan ulang juga `Pyt`.
+
 ### Membaca Seluruh Isi File
 
-Method `read()` memuat seluruh isi file ke dalam memori sekaligus:
+Method `read()` memuat **seluruh sisa isi file** ke dalam memori sekaligus:
 
 <CodeBlock
   data={[
@@ -25,7 +27,8 @@ with open('file.txt', 'r', encoding='utf-8') as f:
     txt = f.read()
 
 print(txt)
-# Output: [isi lengkap file akan ditampilkan]`
+# Output:
+# Halo Python`
     }
   ]}
 />
@@ -34,7 +37,7 @@ print(txt)
 
 ### Membaca File Baris per Baris
 
-Untuk file yang besar, membaca baris per baris lebih efisien karena tidak memuat seluruh file ke memori sekaligus.
+Untuk file yang besar, **membaca baris per baris** lebih efisien karena tidak memuat seluruh file ke memori sekaligus.
 
 <CodeBlock
   data={[
@@ -56,11 +59,11 @@ Setiap baris mempertahankan newline di akhirnya jika karakter itu memang ada. Ba
 
 ## Menulis ke File
 
-Menulis ke file membuat data atau hasil perhitungan tetap tersimpan setelah program berhenti berjalan. Python membuka file dengan mode yang menentukan apakah isi lama diganti atau ditambah, lalu menulis lewat objek file yang dikembalikan.
+Menulis ke file membuat data atau hasil perhitungan tetap tersimpan setelah program berhenti berjalan. Python membuka file dengan mode yang menentukan apakah **isi lama diganti atau ditambah**, lalu menulis lewat objek file yang dikembalikan.
 
 ### Menulis String ke File
 
-Contoh berikut membuka file untuk ditulis, menuliskan barisnya, lalu menutupnya, dan urutan itulah yang selalu dipakai setiap operasi penulisan.
+Contoh ini memakai mode `w` untuk **mengganti seluruh isi file**. Sepuluh pemanggilan `write()` berlangsung di dalam satu blok `with` sebelum file ditutup.
 
 <CodeBlock
   data={[
@@ -83,7 +86,7 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 ### Mengalihkan Output Print ke File
 
-Kamu dapat mengalihkan output fungsi `print()` langsung ke file menggunakan parameter `file`.
+Kamu dapat mengalihkan output fungsi `print()` langsung ke file menggunakan **parameter `file`**.
 
 <CodeBlock
   data={[
@@ -107,7 +110,7 @@ Argumen `file` memakai kembali pemformatan `print()` sambil mengarahkan teks has
 
 ## Mode Pembukaan File
 
-Python menyediakan berbagai mode untuk membuka file sesuai dengan kebutuhan operasi yang akan dilakukan.
+Python menyediakan berbagai **mode untuk membuka file** sesuai dengan kebutuhan operasi yang akan dilakukan.
 
 <Mermaid
   title="Pilih Mode Sebelum Membuka File"
@@ -155,15 +158,15 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
   ]}
 />
 
-Mode menentukan apakah file harus sudah ada, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
+Mode menentukan **apakah file harus sudah ada**, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
 
 ## Method untuk Membaca File
 
-Python menyediakan lebih dari satu cara membaca file, dan pilihannya bergantung pada berapa banyak isi yang dibutuhkan sekaligus serta apakah posisi baca perlu diperhatikan setelahnya. `read()` mengambil seluruh sisa isi atau sejumlah karakter tertentu, sedangkan `readline()` dan `readlines()` bekerja baris per baris.
+Python menyediakan lebih dari satu cara membaca file, dan pilihannya bergantung pada **berapa banyak isi** yang dibutuhkan sekaligus serta apakah posisi baca perlu diperhatikan setelahnya. `read()` mengambil seluruh sisa isi atau paling banyak sejumlah karakter tertentu. `readline()` mengambil satu baris, sedangkan `readlines()` tanpa argumen memuat semua baris tersisa ke dalam list.
 
 ### Method Read dengan Parameter
 
-`read()` menerima argumen ukuran, sehingga kamu bisa mengambil sejumlah karakter setiap kali. Contoh berikut membaca file dalam potongan kecil lalu mencetak setiap potongannya.
+`read()` menerima **argumen ukuran**, sehingga kamu bisa mengambil sejumlah karakter setiap kali. Contoh ini membandingkan pembacaan paling banyak sepuluh karakter, seluruh isi, dan satu baris.
 
 <CodeBlock
   data={[
@@ -191,7 +194,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### Posisi File dan Pembacaan
 
-File yang baru dibuka berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan penanda posisi khusus. Simpan penanda itu dan berikan kembali kepada Python saat kamu memerlukan posisi yang sama.
+File yang dibuka dengan mode `r` berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan **penanda posisi khusus**. Simpan penanda itu dan berikan kembali kepada Python saat kamu memerlukan posisi yang sama.
 
 <CodeBlock
   data={[

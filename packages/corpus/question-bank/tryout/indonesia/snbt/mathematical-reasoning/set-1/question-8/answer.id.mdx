@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Pembahasan Soal 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-Kita akan mencari panjang alas balok menggunakan rumus keliling alas persegi panjang.
+Kita akan mencari panjang alas balok menggunakan **keliling alas persegi panjang**.
 
 #### Menggunakan Rumus Keliling Alas
 
-Alas kardus berbentuk persegi panjang, sehingga rumus kelilingnya (<InlineMath math="K" />) adalah:
+Alas kardus memiliki **dua pasang sisi sama panjang**, sehingga rumus kelilingnya (<InlineMath math="K" />) adalah:
 
 <BlockMath math="K = 2(p + l)" />
 
@@ -25,7 +25,7 @@ Kita substitusikan nilai-nilai tersebut ke dalam rumus:
 
 Kita sederhanakan persamaan untuk mendapatkan nilai <InlineMath math="p" />.
 
-Bagi kedua ruas dengan <InlineMath math="2" />:
+**Bagi kedua ruas** dengan <InlineMath math="2" />:
 
 <MathContainer>
   <BlockMath math="\frac{6x}{2} = p + 4x - 5" />
@@ -41,3 +41,27 @@ Pindahkan suku-suku agar <InlineMath math="p" /> berdiri sendiri:
 </MathContainer>
 
 Jadi, panjang alas kardus tersebut adalah <InlineMath math="(5 - x) \text{ cm}" />.
+
+Sebagai contoh, ambil <InlineMath math="x=3" />. Lebar alas menjadi <InlineMath math="4(3)-5=7" /> cm, panjangnya <InlineMath math="5-3=2" /> cm, dan tingginya <InlineMath math="5-3/3=4" /> cm. Keliling alas <InlineMath math="2(2+7)=18=6(3)" /> cm sesuai dengan soal. Tinggi tidak masuk dalam perhitungan keliling alas.
+
+<MathVisual
+  title="Contoh balok ketika x = 3"
+  description="Balok ini berukuran 2 cm × 7 cm × 4 cm. Ikuti empat rusuk alas untuk membedakan keliling alas dari tinggi balok."
+  labels={{ p: "2 cm", l: "7 cm", t: "4 cm" }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3, max: 3 }, z: { min: -4.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 7, height: 4 } },
+      { id: "p", kind: "segment", appearance: "primary", from: { x: -1, y: -2, z: 3.5 }, to: { x: 1, y: -2, z: 3.5 } },
+      { id: "l", kind: "segment", appearance: "secondary", from: { x: 1, y: -2, z: -3.5 }, to: { x: 1, y: -2, z: 3.5 } },
+      { id: "t", kind: "segment", appearance: "highlight", from: { x: -1, y: -2, z: 3.5 }, to: { x: -1, y: 2, z: 3.5 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 0, y: -2, z: 3.5 }, placement: "below" },
+      { key: "l", objectId: "l", at: { x: 1, y: -2, z: 0 }, placement: "right" },
+      { key: "t", objectId: "t", at: { x: -1, y: 0, z: 3.5 }, placement: "left" },
+    ],
+  }}
+/>

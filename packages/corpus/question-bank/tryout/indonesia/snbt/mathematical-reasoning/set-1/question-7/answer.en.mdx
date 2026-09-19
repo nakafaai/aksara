@@ -1,40 +1,30 @@
 export const metadata = {
   title: "Solution for Question 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
-We will calculate the work rate of each tractor (the portion of the field that can be plowed in one day) and sum the rates of tractor <InlineMath math="1" /> and <InlineMath math="3" />.
+We add **the fractions of the field plowed per day**, not the completion times. Treat the entire field as one unit of work.
 
-#### Calculating Tractor Work Rates
+#### Converting Time to Work Rate
 
-**Tractor** <InlineMath math="1" />:
+A tractor that plows one field in three days at a constant rate finishes one third each day. In general, its rate is **one field divided by the completion time**.
 
-Time required is <InlineMath math="3 \text{ days }" />.
-Work rate per day is <InlineMath math="\frac{1}{3}" /> part.
+| Tractor | Time for one field (days) | Rate (fields per day) |
+| --- | --- | --- |
+| 1 | 3 | <InlineMath math="1\div3=1/3" /> |
+| 2 | <InlineMath math="4\frac15=21/5" /> | <InlineMath math="1\div(21/5)=5/21" /> |
+| 3 | <InlineMath math="3.5=7/2" /> | <InlineMath math="1\div(7/2)=2/7" /> |
 
-**Tractor** <InlineMath math="2" />:
+#### Combining Two Tractor Rates
 
-Time required is <InlineMath math="4 \frac{1}{5} = \frac{21}{5}\text{ days}" />.
-Work rate per day is <InlineMath math="1\div\frac{21}{5}=\frac{5}{21}" /> part.
+The tractors work on **nonoverlapping parts of the field**. In one day, tractor 1 plows <InlineMath math="1/3" /> of the field and tractor 3 plows <InlineMath math="2/7" />. Use a common denominator to add the fractions.
 
-**Tractor** <InlineMath math="3" />:
+<BlockMath math="\begin{aligned}
+\frac13+\frac27&=\frac{1\cdot7}{3\cdot7}+\frac{2\cdot3}{7\cdot3} \\
+&=\frac7{21}+\frac6{21} \\
+&=\frac{13}{21}
+\end{aligned}" />
 
-Time required is <InlineMath math="3.5 = \frac{7}{2}\text{ days}" />.
-Work rate per day is <InlineMath math="1\div\frac{7}{2}=\frac{2}{7}" /> part.
-
-#### Calculating Combined First and Third Tractors
-
-On the first day, only tractors <InlineMath math="1" /> and <InlineMath math="3" /> are used. Thus, the portion of the field that can be plowed is the sum of the work rates of these two tractors.
-
-<BlockMath math="\frac{1}{3} + \frac{2}{7}" />
-
-We find a common denominator of <InlineMath math="21" />:
-
-<MathContainer>
-  <BlockMath math="\frac{7}{21} + \frac{6}{21}" />
-  <BlockMath math="\frac{13}{21}" />
-</MathContainer>
-
-So, the portion of the field that can be plowed by both tractors is **<InlineMath math="\frac{13}{21}" />** part.
+Together they therefore plow **<InlineMath math="13/21" /> of the field in one day**. Rental costs and tractor 2’s rate are not needed for this question.

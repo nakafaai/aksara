@@ -3,7 +3,7 @@ export const metadata = {
     description: "Ikuti cara nama Python terikat pada objek, lalu terapkan aturan penamaan, kata kunci terlarang, dan konvensi yang mudah dibaca.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -15,7 +15,7 @@ Ketika Python mengeksekusi `x = 2`, Python mengevaluasi ekspresi <InlineMath mat
 
 ## Cara Kerja Variabel dan Memori
 
-Built-in `id()` mengembalikan bilangan bulat yang mengidentifikasi sebuah objek secara unik selama masa hidup objek tersebut. CPython biasanya memakai alamat memori objek sebagai dasar nilai itu, tetapi Python tidak menjamin cara yang sama pada setiap implementasi.
+Built-in `id()` mengembalikan bilangan bulat yang **mengidentifikasi sebuah objek secara unik** selama masa hidup objek tersebut. CPython biasanya memakai alamat memori objek sebagai dasar nilai itu, tetapi Python tidak menjamin cara yang sama pada setiap implementasi.
 
 <Mermaid
   title="Nama Variabel Menunjuk ke Objek"
@@ -30,14 +30,12 @@ Built-in `id()` mengembalikan bilangan bulat yang mengidentifikasi sebuah objek 
     subgraph "Variabel"
         V1["x"]
         V2["y"]
-        V3["z"]
         V4["text"]
         V5["numbers"]
     end
 
     V1 --> M1
     V2 --> M1
-    V3 --> M1
     V4 --> M2
     V5 --> M3`}
 />
@@ -60,7 +58,7 @@ print(y is x)   # Output: True
 # Membuat variabel z dengan nilai yang sama
 z = 2
 print(z)        # Output: 2
-print(z == x)   # Output: True (nilainya sama)
+print(z == x)   # Output: True
 # Jangan mengandalkan z is x. Python dapat memakai kembali objek sebagai optimasi`
     }
   ]}
@@ -70,11 +68,11 @@ Assignment `y = x` membuat kedua nama merujuk pada objek yang sama pada saat itu
 
 ## Karakteristik Variabel Python
 
-Saat kamu memberi nilai pada sebuah nama, ingat dua hal. Python langsung mengikat nama itu pada sebuah objek tanpa deklarasi terpisah. Setelah itu, kamu dapat mengikat nama yang sama pada objek bertipe berbeda.
+Saat kamu memberi nilai pada sebuah nama, ingat dua hal. Python langsung mengikat nama itu pada sebuah objek **tanpa deklarasi terpisah**. Setelah itu, kamu dapat mengikat nama yang sama pada objek bertipe berbeda.
 
 ### Tidak Ada Deklarasi Variabel
 
-Python mengikat nama ketika assignment dijalankan, tanpa deklarasi variabel terpisah. Objek memiliki tipe, dan `type(value)` menampilkan tipe objek yang sedang ditunjuk oleh sebuah nama.
+Python mengikat nama ketika assignment dijalankan, tanpa deklarasi variabel terpisah. **Objek memiliki tipe**, dan `type(value)` menampilkan tipe objek yang sedang ditunjuk oleh sebuah nama.
 
 <CodeBlock
   data={[
@@ -98,7 +96,7 @@ print(type(aktif))      # Output: <class 'bool'>`
 
 ### Tipe Data Dinamis
 
-Python memakai dynamic typing: setiap objek memiliki tipe, sedangkan nama yang sama dapat diikat ulang pada objek dari tipe berbeda saat program berjalan.
+Python memakai dynamic typing: setiap objek memiliki tipe, sedangkan **nama yang sama dapat diikat ulang** pada objek dari tipe berbeda saat program berjalan.
 
 <CodeBlock
   data={[
@@ -123,11 +121,11 @@ print(f"Nilai: {data}, Tipe: {type(data)}")`
 
 ## Aturan Nama Variabel
 
-Nama variabel harus memenuhi aturan berikut agar dapat diterima oleh Python. Nama boleh memuat huruf, angka, dan garis bawah, tetapi tidak boleh diawali angka dan tidak boleh sama dengan kata kunci yang dipakai Python.
+Nama variabel harus memenuhi aturan berikut agar dapat diterima oleh Python. Nama boleh memuat huruf, angka, dan garis bawah, tetapi **tidak boleh diawali angka** dan tidak boleh sama dengan kata kunci yang dipakai Python.
 
 ### Komponen Nama Variabel
 
-Identifier dimulai dengan underscore atau huruf Unicode. Karakter berikutnya boleh berupa huruf, underscore, atau digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak identifier non-ASCII, tetapi nama `snake_case` ASCII yang deskriptif biasanya lebih mudah diketik, dicari, dan dipakai lintas tools.
+Identifier dimulai dengan **underscore atau huruf Unicode**. Karakter berikutnya boleh berupa huruf, underscore, atau digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak identifier non-ASCII, tetapi nama `snake_case` ASCII yang deskriptif biasanya lebih mudah diketik, dicari, dan dipakai lintas tools.
 
 <CodeBlock
   data={[
@@ -149,7 +147,7 @@ print(nama_siswa, nilai1, _total, MAX_SIZE, camelCase, snake_case)`
 
 ### Aturan Wajib
 
-Beberapa aturan wajib yang harus kamu patuhi dalam penamaan variabel Python. Nama variabel tidak boleh dimulai dengan angka. Python akan menghasilkan error sintaks jika kamu mencoba membuat variabel yang dimulai dengan angka.
+Beberapa aturan wajib yang harus kamu patuhi dalam penamaan variabel Python. Nama variabel **tidak boleh dimulai dengan angka**. Python akan menghasilkan error sintaks jika kamu mencoba membuat variabel yang dimulai dengan angka.
 
 <CodeBlock
   data={[
@@ -173,7 +171,7 @@ print(data1, data_2, _data3)`
 
 ### Sensitivitas Huruf Besar Kecil
 
-Python membedakan antara huruf besar dan huruf kecil dalam nama variabel. Ini berarti `nama`, `Nama`, dan `NAMA` adalah tiga variabel yang berbeda.
+Python membedakan antara **huruf besar dan huruf kecil** dalam nama variabel. Ini berarti `nama`, `Nama`, dan `NAMA` adalah tiga variabel yang berbeda.
 
 <CodeBlock
   data={[
@@ -198,11 +196,22 @@ print(Nama == NAMA)         # Output: False`
 
 ## Kata Kunci yang Tidak Boleh Digunakan
 
-Python memakai beberapa kata sebagai bagian dari sintaks, sehingga kata-kata tersebut tidak dapat digunakan sebagai nama variabel. Memberi nilai pada salah satu kata itu menghasilkan `SyntaxError` sebelum program berjalan.
+Python memakai beberapa kata sebagai bagian dari sintaks, sehingga kata-kata tersebut **tidak dapat digunakan sebagai nama variabel**. Memberi nilai pada salah satu kata itu menghasilkan `SyntaxError` sebelum program berjalan.
 
 ### Daftar Kata Kunci Python
 
-Berikut adalah kata kunci yang tidak boleh digunakan sebagai nama variabel. Kelompok pertama meliputi `and`, `as`, `assert`, `async`, `await`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`. Kelompok kedua mencakup `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`. Kelompok ketiga terdiri dari `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`, `False`, `True`, `None`.
+**Kata kunci tetap** berikut tidak boleh dipakai sebagai identifier. Kelompok tabel menunjukkan kegunaannya dalam sintaks.
+
+| Peran | Kata kunci |
+| --- | --- |
+| Logika dan nilai | `and`, `or`, `not`, `True`, `False`, `None` |
+| Percabangan dan iterasi | `if`, `elif`, `else`, `for`, `while`, `break`, `continue`, `pass` |
+| Definisi dan lingkup | `def`, `class`, `lambda`, `return`, `yield`, `global`, `nonlocal` |
+| Import dan alias | `import`, `from`, `as` |
+| Error dan konteks | `try`, `except`, `finally`, `raise`, `assert`, `with` |
+| Operasi lain | `async`, `await`, `del`, `in`, `is` |
+
+Sebaliknya, soft keyword seperti `match`, `case`, `type`, dan `_` hanya khusus pada konteks sintaks tertentu. `keyword.iskeyword("match")` bernilai `False`, sedangkan `keyword.issoftkeyword("match")` bernilai `True`.
 
 <CodeBlock
   data={[
@@ -228,7 +237,7 @@ print(kondisi_if, loop_for, fungsi_def, kelas_class)`
 
 ### Memeriksa Kata Kunci
 
-Python menyediakan modul `keyword` untuk memeriksa apakah suatu kata adalah kata kunci atau tidak.
+Python menyediakan modul `keyword` untuk **memeriksa apakah suatu kata** adalah kata kunci atau tidak.
 
 <CodeBlock
   data={[
@@ -253,11 +262,11 @@ print(f"Apakah 'class' kata kunci? {keyword.iskeyword('class')}")`
 
 ## Nama Variabel yang Mudah Dibaca
 
-Setelah aturan sintaks terpenuhi, pilih nama yang menyatakan arti setiap nilai. Nama seperti `total_harga` menyampaikan lebih banyak kepada pembaca berikutnya daripada `th`, dan kebiasaan itu menjaga program panjang tetap terbaca berbulan-bulan kemudian.
+Setelah aturan sintaks terpenuhi, pilih nama yang menyatakan **arti setiap nilai**. Nama seperti `total_harga` menyampaikan lebih banyak kepada pembaca berikutnya daripada `th`, dan kebiasaan itu menjaga program panjang tetap terbaca berbulan-bulan kemudian.
 
 ### Nama yang Bermakna
 
-Gunakan nama variabel yang menjelaskan dengan jelas apa yang disimpan dalam variabel tersebut. Nama yang bermakna membuat kode lebih mudah dipahami, baik oleh diri sendiri maupun orang lain.
+Gunakan nama variabel yang menjelaskan dengan jelas **apa yang disimpan dalam variabel** tersebut. Nama yang bermakna membuat kode lebih mudah dipahami, baik oleh diri sendiri maupun orang lain.
 
 <CodeBlock
   data={[
@@ -288,7 +297,7 @@ print(f"Umur: {umur} tahun")`
 
 ### Panjang Nama yang Sesuai
 
-Hindari nama variabel yang terlalu panjang karena akan membuat kode sulit dibaca. Sebaliknya, nama yang terlalu pendek mungkin tidak memberikan informasi yang cukup.
+Hindari nama variabel yang terlalu panjang karena akan membuat kode sulit dibaca. Sebaliknya, nama yang terlalu pendek mungkin tidak memberikan **informasi yang cukup**.
 
 <CodeBlock
   data={[
@@ -318,7 +327,7 @@ rata_rata_nilai = 85.5`
 
 ### Gaya Penulisan yang Konsisten
 
-Python menggunakan gaya snake_case untuk nama variabel. Kata-katanya dipisahkan dengan underscore dan ditulis dengan huruf kecil.
+Konvensi Python menyarankan gaya **snake_case untuk nama variabel**. Kata-katanya dipisahkan dengan underscore dan ditulis dengan huruf kecil.
 
 <CodeBlock
   data={[
@@ -349,7 +358,7 @@ print(f"Rata-rata skor: {rata_rata_skor:.2f}")`
 
 ### Menghindari Kebingungan
 
-Hindari menggunakan karakter yang dapat menyebabkan kebingungan, terutama huruf yang mirip dengan angka.
+Hindari menggunakan karakter yang dapat menyebabkan kebingungan, terutama **huruf yang mirip dengan angka**.
 
 <CodeBlock
   data={[
@@ -381,19 +390,24 @@ can_edit = True`
 
 ## Contoh Penggunaan Variabel dalam Program
 
-Program berikut menggunakan variabel untuk menghitung luas dan keliling persegi panjang.
+Program berikut menggunakan variabel untuk menghitung **luas dan keliling persegi panjang**.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "rectangle_calculator.py",
-      code: `# Program menghitung luas dan keliling persegi panjang
+      code: `import math
+
+# Program menghitung luas dan keliling persegi panjang
 print("=== Kalkulator Persegi Panjang ===")
 
 # Input dari pengguna
 panjang = float(input("Masukkan panjang (cm): "))
 lebar = float(input("Masukkan lebar (cm): "))
+
+if not (math.isfinite(panjang) and math.isfinite(lebar) and panjang > 0 and lebar > 0):
+    raise ValueError("Ukuran harus positif dan berhingga")
 
 # Perhitungan
 luas = panjang * lebar
@@ -404,17 +418,11 @@ print(f"\\nHasil Perhitungan:")
 print(f"Panjang: {panjang} cm")
 print(f"Lebar: {lebar} cm")
 print(f"Luas: {luas} cm²")
-print(f"Keliling: {keliling} cm")
-
-# Validasi input
-if panjang <= 0 or lebar <= 0:
-    print("\\nPeringatan: Panjang dan lebar harus lebih besar dari 0!")
-else:
-    print("\\nPerhitungan valid.")`
+print(f"Keliling: {keliling} cm")`
     }
   ]}
 />
 
-Dalam program ini, `panjang` dan `lebar` menamai dua input, sedangkan `luas` dan `keliling` menamai hasil perhitungan. Kondisi terakhir menolak ukuran yang tidak positif sebelum nilai luas dan keliling dinyatakan valid.
+Dalam program ini, `panjang` dan `lebar` menamai dua input, sedangkan `luas` dan `keliling` menamai hasil perhitungan. Pemeriksaan menolak ukuran yang tidak positif atau tidak berhingga sebelum menghitung. Dengan panjang `5` dan lebar `3`, hasilnya adalah luas `15.0 cm²` dan keliling `16.0 cm`. Teks yang bukan angka ditolak oleh `float()`.
 
 Nama variabel yang konsisten membuat kode Python lebih mudah dibaca. Saat mempelajari perubahan objek dan argumen fungsi, bedakan equality, identity, dan reassignment karena ketiganya menjawab pertanyaan yang berbeda.

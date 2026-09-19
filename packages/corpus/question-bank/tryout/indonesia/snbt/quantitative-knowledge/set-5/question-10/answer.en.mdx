@@ -5,26 +5,20 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-We analyze the lines of symmetry (reflectional symmetry) and rotational symmetry order for each given plane figure:
+Compare the **number of reflection axes and rotational symmetry order**. Count the initial position once, equivalent to the position after a 360° turn.
 
-1. **Regular Hexagon**
-   - Lines of symmetry: <InlineMath math="6" /> (lines through vertices and midpoints of sides).
-   - Rotational symmetry order: <InlineMath math="6" /> (angles of rotation <InlineMath math="60^\circ" />, <InlineMath math="120^\circ" />, <InlineMath math="180^\circ" />, <InlineMath math="240^\circ" />, <InlineMath math="300^\circ" />, <InlineMath math="360^\circ" />).
-   - Conclusion: <InlineMath math="6 = 6" />. Figure (1) satisfies the condition.
+| Figure | Reflection axes | Rotational order | Equal? |
+| --- | --- | --- | --- |
+| Regular hexagon | 6: three through opposite vertices and three through opposite side midpoints | 6: multiples of 60° | Yes |
+| Isosceles right triangle | 1: from the right-angle vertex to the hypotenuse midpoint | 1: initial position only | Yes |
+| Right trapezoid with exactly one parallel side pair | 0: no reflection axis | 1: initial position only | No |
+| Non-square rectangle | 2: through the midpoints of opposite sides | 2: initial position and 180° | Yes |
 
-2. **Isosceles Right Triangle**
-   - Lines of symmetry: <InlineMath math="1" /> (altitude from the right angle to the hypotenuse).
-   - Rotational symmetry order: <InlineMath math="1" /> (only the initial position <InlineMath math="360^\circ" />).
-   - Conclusion: <InlineMath math="1 = 1" />. Figure (2) satisfies the condition.
+The line in this triangle is its **only reflection axis**. A half turn does not map the triangle onto itself.
 
-3. **Right Trapezoid**
-   - Lines of symmetry: <InlineMath math="0" /> (no axis of symmetry).
-   - Rotational symmetry order: <InlineMath math="1" /> (only the initial position <InlineMath math="360^\circ" />).
-   - Conclusion: <InlineMath math="0 \neq 1" />. Figure (3) does not satisfy the condition.
+<MathVisual title="Reflection axis of an isosceles right triangle" description="The line in this triangle is its only reflection axis. A half turn does not map the triangle onto itself."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-0.5,max:3.5},y:{min:-0.5,max:3.5}},view:{kind:"fit",padding:0.1},objects:[{id:"triangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:3,y:0},{x:0,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:1.5,y:1.5}}],labels:[]}}
+ labels={{}}
+/>
 
-4. **Non-square Rectangle**
-   - Lines of symmetry: <InlineMath math="2" /> (vertical and horizontal lines through the center).
-   - Rotational symmetry order: <InlineMath math="2" /> (angles of rotation <InlineMath math="180^\circ" /> and <InlineMath math="360^\circ" />).
-   - Conclusion: <InlineMath math="2 = 2" />. Figure (4) satisfies the condition.
-
-Thus, the figures that have the same number of lines of symmetry as the order of rotational symmetry are figures (1), (2), and (4). There are <InlineMath math="3" /> figures.
+Figures (1), (2), and (4) meet the condition, giving 3 figures.

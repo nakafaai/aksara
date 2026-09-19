@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use Python's math module, numeric built-ins, import styles, domains, and constants in verified calculations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -15,15 +15,15 @@ An `import` loads a module when needed and binds a name through which your code 
 
 ## The math Module for Mathematical Functions
 
-The `math` module provides real-valued functions and constants. It accepts compatible real numbers such as `int` and `float`, but does not accept complex values for operations such as `sqrt()`. Use `cmath` when the domain or result may be complex.
+The `math` module provides **real-valued functions and constants**. It accepts compatible real numbers such as `int` and `float`, but does not accept complex values for operations such as `sqrt()`. Use `cmath` when the domain or result may be complex.
 
 ## How to Import the math Module
 
-Python offers several ways to import a module, and the choice affects how each later call looks. You can import the whole module, import selected names from it, or rename the module during the import.
+Python offers several ways to import a module, and the choice affects **how each later call looks**. You can import the whole module, import selected names from it, or rename the module during the import.
 
 ### Basic Import with Namespace
 
-The statement `import math` imports the module under the `math` namespace. Functions and constants are then accessed with names such as `math.sqrt` and `math.pi`.
+The statement `import math` imports the module under the **`math` namespace**. Functions and constants are then accessed with names such as `math.sqrt` and `math.pi`.
 
 <CodeBlock
   data={[
@@ -46,7 +46,7 @@ print(math.pi)  # Output: 3.141592653589793
 
 ### Import with Alias
 
-An alias binds the module to another local name. Use one only when it follows an established convention or resolves a genuine naming conflict. `math` is already short and explicit.
+An alias binds the module to **another local name**. Use one only when it follows an established convention or resolves a genuine naming conflict. `math` is already short and explicit.
 
 <CodeBlock
   data={[
@@ -59,7 +59,7 @@ An alias binds the module to another local name. Use one only when it follows an
 print(m.sqrt(9))  # Output: 3.0
 print(m.pi)       # Output: 3.141592653589793
 
-# Original name 'math' is no longer available
+# This import binds m, not math
 # math.sqrt(9)  # NameError: name 'math' is not defined`
     }
   ]}
@@ -90,7 +90,7 @@ print(pi)       # Output: 3.141592653589793
 
 ### Import Specific Functions
 
-Import only the functions the program uses. The function name remains available without a module prefix, while the import line still records its source.
+Import **only the functions the program uses**. The function name remains available without a module prefix, while the import line still records its source.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ print(sqrt(9))  # Output: 3.0
 
 ### Import with Function Alias
 
-An imported function can receive an alias to resolve a name conflict or follow an established local convention.
+An imported function can receive an alias to **resolve a name conflict** or follow an established local convention.
 
 <CodeBlock
   data={[
@@ -136,11 +136,11 @@ print(fac(5))  # Output: 120
 
 ## Built In Functions vs Module Functions
 
-Python provides numeric built-ins such as `abs()` and `round()` without an import. They work across types through Python's numeric protocols. Each type can define the operations it supports.
+Python provides numeric built-ins such as `abs()` and `round()` **without an import**. They work across types through Python's numeric protocols. Each type can define the operations it supports.
 
 ### Absolute Value Function
 
-For real numbers, `abs()` returns a nonnegative magnitude. For a complex number, it returns the distance from the origin.
+For real numbers, `abs()` returns a nonnegative magnitude. For a complex number, it returns the **distance from the origin**.
 
 <CodeBlock
   data={[
@@ -163,7 +163,7 @@ The result for `4 + 3j` is <InlineMath math="5.0" /> because <InlineMath math="|
 
 ### Rounding Function
 
-For Python's built-in numeric types, `round()` rounds to the nearest value and resolves exact halfway cases by rounding to even. Without `ndigits`, `round()` returns an integer for a float. Pass `ndigits` as the second argument to choose the place value used for rounding.
+For Python's built-in numeric types, `round()` rounds to the nearest value and resolves exact halfway cases by **rounding to even**. Without `ndigits`, `round()` returns an integer for a float. Pass `ndigits` as the second argument to choose the place value used for rounding.
 
 <CodeBlock
   data={[
@@ -173,7 +173,7 @@ For Python's built-in numeric types, `round()` rounds to the nearest value and r
       code: `# Standard rounding
 print(round(-3.8))  # Output: -4
 print(round(3.5))   # Output: 4
-print(round(4.5))   # Output: 4 (not 5!)
+print(round(4.5))   # Output: 4
 
 # Rounding with specific precision
 print(round(3.141592653589793, 3))  # Output: 3.142
@@ -186,11 +186,11 @@ print(round(1234.4321, -2))         # Output: 1200.0`
 
 ## Functions and Constants in the math Module
 
-Each `math` function has a domain. For example, `sqrt(x)` requires a nonnegative real input and logarithms require positive real inputs. A value outside the domain raises a `ValueError` instead of returning a number.
+Each `math` function **has a domain**. For example, `sqrt(x)` requires a nonnegative real input and logarithms require positive real inputs. A value outside the domain raises a `ValueError` instead of returning a number.
 
 ### Square Root and Logarithm Functions
 
-The example calls the square root and logarithm functions, and it shows how Python reports an input outside the allowed domain.
+The example calls the square root and logarithm functions, and it shows how Python reports **an input outside the allowed domain**.
 
 <CodeBlock
   data={[
@@ -200,26 +200,32 @@ The example calls the square root and logarithm functions, and it shows how Pyth
       code: `import math
 
 # Square root function
-print(f"Square root of 16: {math.sqrt(16)}")  # Output: 4.0
+print(f"Square root of 16: {math.sqrt(16)}")  # Output: Square root of 16: 4.0
 
 # Exponential function (e^x)
-print(f"e to the power of 2: {math.exp(2)}")  # Output: 7.38905609893065
+print(f"e to the power of 2: {math.exp(2)}")  # Output: e to the power of 2: 7.38905609893065
 
 # Natural logarithm function
-print(f"ln(10): {math.log(10)}")  # Output: 2.302585092994046
+print(f"ln(10): {math.log(10)}")  # Output: ln(10): 2.302585092994046
 
 # Base 10 logarithm function
-print(f"log10(100): {math.log10(100)}")  # Output: 2.0
+print(f"log10(100): {math.log10(100)}")  # Output: log10(100): 2.0
 
 # Logarithm with specific base
-print(f"log2(8): {math.log(8, 2)}")  # Output: 3.0`
+print(f"log2(8): {math.log(8, 2)}")  # Output: log2(8): 3.0
+
+try:
+    math.sqrt(-1)
+except ValueError as error:
+    print(type(error).__name__)
+# Output: ValueError`
     }
   ]}
 />
 
 ### Trigonometry Functions
 
-The trigonometry functions expect radians. The example converts an angle and calls the three primary functions.
+The trigonometry functions **expect radians**. The example converts an angle and calls the three primary functions.
 
 <CodeBlock
   data={[
@@ -231,21 +237,21 @@ The trigonometry functions expect radians. The example converts an angle and cal
 # Trigonometry functions (input in radians)
 angle_rad = math.pi / 4  # 45 degrees in radians
 
-print(f"sin(π/4): {math.sin(angle_rad)}")  # Output: 0.7071067811865475
-print(f"cos(π/4): {math.cos(angle_rad)}")  # Output: 0.7071067811865476
-print(f"tan(π/4): {math.tan(angle_rad)}")  # Output: 0.9999999999999999
+print(f"sin(π/4): {math.sin(angle_rad)}")  # Output: sin(π/4): 0.7071067811865475
+print(f"cos(π/4): {math.cos(angle_rad)}")  # Output: cos(π/4): 0.7071067811865476
+print(f"tan(π/4): {math.tan(angle_rad)}")  # Output: tan(π/4): 0.9999999999999999
 
 # Converting degrees to radians
 angle_deg = 45
 angle_rad = math.radians(angle_deg)
-print(f"45 degrees = {angle_rad} radians")  # Output: 0.7853981633974483`
+print(f"45 degrees = {angle_rad} radians")  # Output: 45 degrees = 0.7853981633974483 radians`
     }
   ]}
 />
 
 ### Ceiling Floor and Factorial Functions
 
-Rounding up, rounding down, and factorial answer different questions. The example applies each function and prints the result.
+Rounding up, rounding down, and factorial answer **different questions**. The example applies each function and prints the result.
 
 <CodeBlock
   data={[
@@ -257,20 +263,20 @@ Rounding up, rounding down, and factorial answer different questions. The exampl
 number = 4.7
 
 # Ceiling: smallest integer >= x
-print(f"ceil(4.7): {math.ceil(number)}")    # Output: 5
+print(f"ceil(4.7): {math.ceil(number)}")    # Output: ceil(4.7): 5
 
 # Floor: largest integer <= x
-print(f"floor(4.7): {math.floor(number)}")  # Output: 4
+print(f"floor(4.7): {math.floor(number)}")  # Output: floor(4.7): 4
 
 # Factorial
-print(f"5!: {math.factorial(5)}")  # Output: 120`
+print(f"5!: {math.factorial(5)}")  # Output: 5!: 120`
     }
   ]}
 />
 
 ### Mathematical Constants
 
-The module also exposes constants, including finite mathematical constants and special floating-point values.
+The module also exposes constants, including finite mathematical constants and **special floating-point values**.
 
 <CodeBlock
   data={[
@@ -301,11 +307,11 @@ print(f"Circle area with radius {circle_radius}: {circle_area}")`
 
 ## Choosing the Right Import Method
 
-Choose an import style that shows the module name at each call when that context matters, and introduce only the names the program actually uses. A single function used once reads well as `from math import sqrt`, while several calls are clearer with `import math`.
+Choose an import style that shows the **module name at each call** when that context matters, and introduce only the names the program actually uses. A single function used once reads well as `from math import sqrt`, while several calls are clearer with `import math`.
 
 ### Guide to Choosing Import Methods
 
-Pick the import style from how many names you need and how readable the call site stays. The list below orders the options from the most explicit to the least.
+Pick the import style from how many names you need and **how readable the call site stays**. The list below orders the options from the most explicit to the least.
 
 1. **Prefer `import math`** when the program uses several members. Calls such as `math.sqrt()` keep the module name next to the function.
 2. **Use `import math as m` deliberately** only when the alias is a documented local convention.
@@ -313,6 +319,10 @@ Pick the import style from how many names you need and how readable the call sit
 4. **Avoid `from math import *`** because its names have no module prefix and can replace names that the program already uses.
 
 ### Calculating Distance and Area
+
+For points `(0, 0)` and `(3, 4)`, the **Euclidean distance** is the square root of the sum of squared coordinate differences. For sides `3`, `4`, and `5`, Heron’s formula agrees with the right-triangle area formula.
+
+<BlockMath math="\begin{aligned}d&=\sqrt{(3-0)^2+(4-0)^2}=5\\s&=\frac{3+4+5}{2}=6\\A&=\sqrt{6(6-3)(6-4)(6-5)}=\sqrt{36}=6\end{aligned}" />
 
 <CodeBlock
   data={[
@@ -327,6 +337,8 @@ def calculate_euclidean_distance(x1, y1, x2, y2):
 
 def calculate_triangle_area(a, b, c):
     """Calculate triangle area using Heron's formula"""
+    if not all(math.isfinite(side) for side in (a, b, c)):
+        raise ValueError("Side lengths must be finite")
     if min(a, b, c) <= 0:
         raise ValueError("Side lengths must be positive")
 
@@ -353,4 +365,4 @@ print(f"Triangle area with sides 3, 4, 5: {area}")`
   ]}
 />
 
-Clear numerical code makes three decisions explicit: which namespace owns an operation, which input domain the operation accepts, and how exceptional inputs are handled. Those decisions matter more than shortening a function name by a few characters.
+Clear numerical code makes three decisions explicit: which namespace owns an operation, **which input domain** the operation accepts, and how exceptional inputs are handled. Those decisions matter more than shortening a function name by a few characters.

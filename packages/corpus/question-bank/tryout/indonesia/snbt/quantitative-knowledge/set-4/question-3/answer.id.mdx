@@ -5,39 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kita analisis terlebih dahulu kondisi proyek sebelum dan sesudah ada pekerja yang sakit.
+Karena laju kerja setiap orang sama dan tetap, ukur pekerjaan dalam **orang-hari**: satu orang bekerja selama satu hari menghasilkan satu satuan pekerjaan.
 
-**Rencana Awal:**
+| Tahap | Perhitungan | Beban kerja dalam orang-hari |
+| --- | --- | --- |
+| Seluruh proyek | <InlineMath math="12\cdot16" /> | 192 |
+| Empat hari pertama | <InlineMath math="12\cdot4" /> | 48 |
+| Pekerjaan tersisa | <InlineMath math="192-48" /> | 144 |
 
-Pekerjaan direncanakan selesai oleh <InlineMath math="12\text{ orang}" /> dalam <InlineMath math="16\text{ hari}" />.
-Total beban kerja adalah <InlineMath math="12 \times 16 = 192\text{ satuan}" /> pekerjaan.
+Setelah empat orang berhenti, tersisa <InlineMath math="12-4=8" /> pekerja. Mereka harus menyelesaikan 144 orang-hari. Jika <InlineMath math="w" /> adalah jumlah hari yang masih diperlukan, maka:
 
-**Setelah <InlineMath math="4 \text{ Hari }" /> Berjalan:**
+<BlockMath math="\begin{aligned}8w&=144\\w&=144/8\\w&=18\end{aligned}" />
 
-Pekerjaan sudah dikerjakan selama <InlineMath math="4\text{ hari}" /> oleh <InlineMath math="12\text{ orang}" />.
-Pekerjaan yang sudah selesai adalah <InlineMath math="12 \times 4 = 48\text{ satuan}" />.
-Sisa beban kerja adalah <InlineMath math="192 - 48 = 144\text{ satuan}" />.
-
-Selain itu, sisa waktu normalnya adalah <InlineMath math="16 - 4 = 12\text{ hari}" /> jika dikerjakan oleh <InlineMath math="12\text{ orang}" />.
-
-**Kondisi Perubahan:**
-
-Terdapat <InlineMath math="4\text{ orang}" /> sakit, sehingga sisa pekerja yang ada adalah <InlineMath math="12 - 4 = 8\text{ orang}" />.
-Kita gunakan perbandingan berbalik nilai untuk mencari waktu tambahan (<InlineMath math="w" />) yang dibutuhkan oleh <InlineMath math="8\text{ orang}" /> untuk menyelesaikan sisa pekerjaan.
-
-Dengan <InlineMath math="w" /> menyatakan banyak hari yang masih dibutuhkan:
-
-<BlockMath math="\begin{aligned}
-12\cdot12&=8w \\
-144&=8w \\
-w&=\frac{144}{8} \\
-w&=18
-\end{aligned}" />
-
-Jadi, <InlineMath math="8\text{ orang}" /> pekerja membutuhkan <InlineMath math="18\text{ hari}" /> lagi untuk menyelesaikan sisa proyek.
-
-Total waktu penyelesaian proyek adalah waktu yang sudah berjalan ditambah waktu sisa yang dibutuhkan.
+Yang ditanyakan adalah **waktu sejak hari pertama**, sehingga empat hari yang sudah berjalan tetap dihitung.
 
 <BlockMath math="4+18=22" />
-
-Jadi, proyek tersebut dapat diselesaikan dalam waktu <InlineMath math="22\text{ hari}" />.

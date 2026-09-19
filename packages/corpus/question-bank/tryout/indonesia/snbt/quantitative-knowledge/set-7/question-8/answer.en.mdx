@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-We have two groups:
+Compare the **two groups of animal keepers**:
 - People raising goats: <InlineMath math="K = 450" />
 - People raising chickens: <InlineMath math="A = 300" />
 - Total population: <InlineMath math="S = 600" />
@@ -14,13 +14,13 @@ Let <InlineMath math="M" /> and <InlineMath math="m" /> denote the maximum and m
 
 #### Maximum Number of People Raising Both
 
-The maximum number of people raising both animals is the size of the smaller group. This happens if all members of the smaller group are also members of the larger group.
+The maximum number of people raising both animals is the size of the smaller group. This happens if **all members of the smaller group** are also members of the larger group.
 
 <BlockMath math="\begin{aligned}M&=\min(K,A)\\&=\min(450,300)\\&=300\end{aligned}" />
 
 #### Minimum Number of People Raising Both
 
-The minimum number of people raising both animals occurs when the two groups are spread out as much as possible, minimizing their intersection. The formula is:
+The minimum overlap occurs when the **union is as large as possible**, namely 600 people. Adding the group sizes gives <InlineMath math="450+300=750" />. The excess <InlineMath math="750-600" /> counts people included twice:
 
 <BlockMath math="m=\max(0,K+A-S)" />
 
@@ -28,9 +28,16 @@ Substitute the known values:
 
 <BlockMath math="\begin{aligned}m&=\max(0,750-600)\\&=\max(0,150)\\&=150\end{aligned}" />
 
+Both bounds can be attained by the following population allocations.
+
+| Bound | Goats only | Both | Chickens only | Neither |
+| --- | --- | --- | --- | --- |
+| M | 150 | 300 | 0 | 150 |
+| m | 300 | 150 | 150 | 0 |
+
 #### Sum of Maximum and Minimum
 
-We are asked to find the sum of these maximum and minimum values.
+We are asked to find the **sum of the maximum and minimum values**.
 
 <BlockMath math="\begin{aligned}M+m&=300+150\\&=450\end{aligned}" />
 

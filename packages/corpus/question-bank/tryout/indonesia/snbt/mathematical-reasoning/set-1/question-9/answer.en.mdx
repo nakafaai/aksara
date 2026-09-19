@@ -1,23 +1,29 @@
-
 export const metadata = {
   title: "Solution for Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
 };
 
-We will determine the set of values for <InlineMath math="x" /> that satisfies the condition for the cuboid to have real (positive) dimensions.
+We seek values of <InlineMath math="x" /> for which **length, width, and height are all positive**. A zero edge would flatten the box, and a negative length cannot measure an edge.
 
 #### Determining Cuboid Dimensions
 
-From the base perimeter <InlineMath math="2(p+l)=6x" /> and width <InlineMath math="l=4x-5" />, we obtain:
+Use **the base perimeter** to derive the length without relying on another question. All dimensions below are in centimeters.
+
+<BlockMath math="\begin{aligned}
+2(p+l)&=6x \\
+p&=3x-l \\
+&=3x-(4x-5)=5-x
+\end{aligned}" />
+
 - Length (<InlineMath math="p" />) is <InlineMath math="5 - x" />
 - Width (<InlineMath math="l" />) is <InlineMath math="4x - 5" />
 - Height (<InlineMath math="t" />) is <InlineMath math="5 - \frac{1}{3}x" />
 
 #### Positive Dimension Conditions
 
-For the cuboid to be real, all its dimensions must be positive (<InlineMath math="> 0" />).
+For a nondegenerate box, **every edge dimension must be positive** (<InlineMath math=">0" />).
 
 **Condition 1: <InlineMath math="p > 0" />**
 
@@ -49,7 +55,7 @@ For the cuboid to be real, all its dimensions must be positive (<InlineMath math
 
 #### Determining Set Intersection
 
-We find the intersection of these three conditions:
+Find **the intersection of all three conditions**, so every condition holds at once:
 1. <InlineMath math="x < 5" />
 2. <InlineMath math="x > \frac{5}{4}" /> (or <InlineMath math="1.25" />)
 3. <InlineMath math="x < 15" />
@@ -89,3 +95,5 @@ From conditions 1 and 3, we take the stricter one, which is <InlineMath math="x 
 So, the set <InlineMath math="A" /> is:
 
 <BlockMath math="A=\left\{x\in\mathbb R\mid\frac54<x<5\right\}" />
+
+Both endpoints are excluded. At <InlineMath math="x=5/4" />, the width is zero. At <InlineMath math="x=5" />, the length is zero. That is why the number line has open endpoints.

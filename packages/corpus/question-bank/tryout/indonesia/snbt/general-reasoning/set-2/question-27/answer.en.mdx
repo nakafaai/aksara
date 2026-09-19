@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Express every price in thousand rupiah. Reverse the price changes, starting by removing the tax.
+Express every price in thousand rupiah. Undo the price changes in **reverse order**. The <InlineMath math="10\%" /> tax multiplies the price by <InlineMath math="1.10" />, so divide to recover the price before tax:
 
 <BlockMath math="\frac{792}{1.10}=720" />
 
@@ -13,10 +13,10 @@ Add back the voucher to recover the marked-up price.
 
 <BlockMath math="720+80=800" />
 
-Divide by the markup factor to obtain the original price <InlineMath math="p" />.
+Divide by the markup factor <InlineMath math="1+0.25=1.25" /> to obtain the original price <InlineMath math="p" />.
 
 <BlockMath math="p=\frac{800}{1.25}=640" />
 
-Calculate the effective increase from the original to the final price, including the voucher and tax.
+Use the **original price as the denominator** to calculate the effective increase to the final price, including the voucher and tax.
 
-<BlockMath math="\begin{aligned}r&=\frac{792-640}{640}\times100\%\\&=\frac{152}{640}\times100\%\\&=23.75\%\end{aligned}" />
+<BlockMath math="\begin{aligned}r&amp;=\frac{792-640}{640}\times100\%\\&amp;=\frac{152}{640}\times100\%\\&amp;=23.75\%\end{aligned}" />

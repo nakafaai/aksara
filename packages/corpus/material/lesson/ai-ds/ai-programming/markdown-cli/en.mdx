@@ -3,7 +3,7 @@ export const metadata = {
   description: "Write Markdown and use safe command-line workflows to inspect, convert, and version documentation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "AI Programming",
 };
 
@@ -15,7 +15,9 @@ That readable source is Markdown's main advantage. You can review changes line b
 
 ### Basic Markdown Syntax
 
-The following sample collects common syntax in one file. A hash introduces a heading, while surrounding markers express emphasis, links, code, and other structures:
+The following sample collects common syntax in one file. A **hash introduces a heading**, while surrounding markers express emphasis, links, code, and other structures:
+
+The example uses Markdown features supported by Pandoc and GitHub Flavored Markdown. Tables and `~~strikethrough~~` are extensions, so not every Markdown renderer supports them. The shell examples use Bash on macOS or Linux. Adapt example paths to your practice directory.
 
 <CodeBlock
   data={[{
@@ -61,9 +63,9 @@ def hello_world():
 
 ### Markdown Workflow
 
-Keep the source file as the reviewed artifact and treat rendered files as reproducible output. A short workflow is enough: create, edit, validate, convert, and preview.
+Keep the **source file as the reviewed artifact** and treat rendered files as reproducible output. A short workflow is enough: create, edit, validate, convert, and preview.
 
-Create a file with the `.md` extension, write its content, and convert it with an installed tool such as Pandoc. HTML output is self-contained when `--standalone` is supplied. PDF output additionally needs a compatible PDF engine on the machine.
+Create a file with the `.md` extension, write its content, and convert it with an installed tool such as Pandoc. With `--standalone`, HTML output includes the document header and body. Linked images and styles remain separate unless explicitly embedded. PDF output additionally needs a compatible PDF engine on the machine.
 
 <CodeBlock
   data={[{
@@ -76,7 +78,7 @@ touch document.md
 nano document.md
 
 # Convert to HTML using pandoc
-pandoc document.md -o document.html
+pandoc document.md --standalone -o document.html
 
 # Convert to PDF when a supported PDF engine is installed
 pandoc document.md -o document.pdf
@@ -88,13 +90,13 @@ open document.html`
 
 ## Command Line Interface Basics
 
-A command-line interface, or CLI, accepts textual commands through a shell. Each command has a program name, optional flags, and arguments such as paths.
+A command-line interface, or CLI, accepts **textual commands through a shell**. Each command has a program name, optional flags, and arguments such as paths.
 
 CLI commands can be inspected, repeated, scripted, and reviewed. The shell follows the written path and every flag exactly, so resolve the target and review destructive flags before running the command.
 
 ### Directory Navigation and Exploration
 
-Before changing files, confirm the current directory, inspect its contents, and move with explicit paths:
+Before changing files, confirm the **current directory**, inspect its contents, and move with explicit paths:
 
 <CodeBlock
   data={[{
@@ -109,7 +111,8 @@ ls -l    # detailed format
 ls -la   # including hidden files
 
 # Change directory
-cd "$HOME/documents"
+mkdir -p "$HOME/markdown-practice"
+cd "$HOME/markdown-practice"
 cd ..    # go up one level
 cd ~     # go to home directory
 cd -     # return to previous directory
@@ -122,7 +125,7 @@ mkdir -p project/src/components  # create directory hierarchy`
 
 ### File and Directory Operations
 
-File commands act on real paths immediately. Inspect the target before a removal, quote paths that may contain spaces, and avoid recursive force flags unless the exact directory is proven disposable.
+File commands act on real paths immediately. **Inspect the target before a removal**, quote paths that may contain spaces, and avoid recursive force flags unless the exact directory is proven disposable.
 
 <CodeBlock
   data={[{
@@ -152,7 +155,7 @@ less file.txt       # view with navigation`
 
 ### Integrating Markdown with CLI
 
-A small build script makes the conversion repeatable. It should fail when a command fails, create its own output directory, quote every path, and handle the case where no source file exists:
+A small build script makes the conversion repeatable. It should **fail when a command fails**, create its own output directory, quote every path, and handle the case where no source file exists:
 
 <CodeBlock
   data={[{
@@ -197,7 +200,7 @@ chmod +x build.sh
 
 ### CLI Tools for Markdown
 
-Use tools from their official installation channels, then verify the installed commands before relying on them in a script. Pandoc converts documents, while a Markdown linter checks source conventions:
+Use tools from their official installation channels, then **verify the installed commands** before relying on them in a script. Pandoc converts documents, while a Markdown linter checks source conventions:
 
 <CodeBlock
   data={[{
@@ -224,6 +227,8 @@ pandoc input.md -o output.html --template=custom.html`
 
 <Highlight>Keep authored Markdown in version control</Highlight>, validate before conversion, build into a replaceable output directory, and review the diff before committing:
 
+The `site` directory in this example contains only generated output and is replaced by the build. Keep authored files in `docs`, not in `site`.
+
 <CodeBlock
   data={[{
     language: "bash",
@@ -235,10 +240,13 @@ set -eu
 
 SOURCE_DIR="docs"
 OUTPUT_DIR="site"
-STAGING_DIR=$(mktemp -d)
+STAGING_DIR=$(mktemp -d "./.site-build.XXXXXX")
 trap 'rm -rf "$STAGING_DIR"' EXIT
 
-mapfile -d '' source_files < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+source_files=()
+while IFS= read -r -d '' file; do
+    source_files+=("$file")
+done < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
 if [ "\${#source_files[@]}" -eq 0 ]; then
     echo "No Markdown sources found" >&2
     exit 1
@@ -269,7 +277,7 @@ git diff -- docs`
 
 ### Real Project Example
 
-The final example creates four source pages and combines them into one standalone HTML document. Every input path is explicit, so the build fails when a page is missing:
+The final example creates four source pages and combines them into **one standalone HTML document**. Every input path is explicit, so the build fails when a page is missing:
 
 <CodeBlock
   data={[{
@@ -290,26 +298,26 @@ cat << 'EOF' > docs/README.md
 Complete documentation for AI programming projects.
 
 ## How a Document Is Organized
-- [API Reference](api/README.md)
-- [Tutorials](tutorials/README.md)
-- [User Guides](guides/README.md)
+- [API Reference](#api)
+- [Tutorials](#tutorials)
+- [User Guides](#guides)
 EOF
 
 # Create the referenced pages
 cat << 'EOF' > docs/api/README.md
-# API Reference
+# API Reference {#api}
 
 Describe each public interface and include one verified example.
 EOF
 
 cat << 'EOF' > docs/tutorials/README.md
-# Tutorials
+# Tutorials {#tutorials}
 
 Guide the reader through one complete task.
 EOF
 
 cat << 'EOF' > docs/guides/README.md
-# User Guides
+# User Guides {#guides}
 
 Explain recurring workflows and their safety boundaries.
 EOF

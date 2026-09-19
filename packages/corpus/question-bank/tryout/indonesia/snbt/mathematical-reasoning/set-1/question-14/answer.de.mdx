@@ -1,29 +1,27 @@
 export const metadata = {
     title: "Lösung zu Aufgabe 14",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-Wir werden das Konzept der umgekehrten Proportion verwenden, um dieses Problem zu lösen. Je mehr Arbeitskräfte vorhanden sind, desto kürzer ist der Zeitaufwand und umgekehrt.
+Der Arbeitsumfang bleibt gleich. Bei gleicher, konstanter Tagesleistung aller Arbeitskräfte sind **Personenzahl und Arbeitsdauer umgekehrt proportional**. Vierundsechzig Arbeitskräfte brauchen deshalb länger als achtzig.
 
-#### Berechnung der Gesamtarbeitsbelastung
+#### Festen Arbeitsumfang bestimmen
 
-Der Gesamtarbeitsaufwand des Projekts kann in „Manntagen“ ausgedrückt werden:
+Ein **Personentag** bezeichnet die Arbeit einer Person an einem Arbeitstag. Achtzig Arbeitskräfte erbringen in fünfzig Tagen den folgenden Arbeitsumfang.
 
-<BlockMath math="\begin{aligned}&80 \times 50 \\ &=4{.}000 \text{ Manntage}\end{aligned}" />
+<BlockMath math="W=80\times50=4{.}000\text{ Personentage}" />
 
-#### Zeitberechnung mit neuen Mitarbeitern
+| Arbeitskräfte von Beginn an | Zeit (Arbeitstage) | Arbeitsumfang (Personentage) |
+| --- | --- | --- |
+| 80 | 50 | 4.000 |
+| 64 | <InlineMath math="t" /> | <InlineMath math="64t=4{.}000" /> |
 
-Wenn die Anzahl der Arbeiter auf <InlineMath math="64" /> reduziert wird, beträgt der Zeitaufwand (<InlineMath math="t" />):
+#### Tag der Fertigstellung bestimmen
 
-<MathContainer>
-  <BlockMath math="64 \times t = 4{.}000" />
-  <BlockMath math="t = \frac{4{.}000}{64}" />
-</MathContainer>
+Teile den Arbeitsumfang durch die Personenzahl, um **die Arbeitsdauer** zu erhalten. Alle Arbeitskräfte beginnen am Projektanfang. Deshalb musst du keine vorherige Arbeitsphase abziehen.
 
-Wir berechnen das Divisionsergebnis:
+<BlockMath math="\begin{aligned}64t&=4{.}000\\t&=\frac{4{.}000}{64}\\&=\frac{4{.}000\div32}{64\div32}\\&=\frac{125}{2}=62{,}5\text{ Arbeitstage}\end{aligned}" />
 
-<BlockMath math="\begin{aligned}t&=\frac{1{.}000}{16} \\ &=\frac{500}{8} \\ &=\frac{125}{2} \\ &=62{,}5\end{aligned}" />
-
-Die genaue Dauer beträgt <InlineMath math="62{,}5 \text{ Tage}" />. Das Projekt wird also in der Mitte des <InlineMath math="63" />. Arbeitstages fertig. Gefragt ist daher der Arbeitstag **<InlineMath math="63" />**.
+Nach 62 Tagen sind <InlineMath math="64\times62=3{.}968" /> Personentage geleistet. Die übrigen <InlineMath math="4{.}000-3{.}968=32" /> Personentage benötigen noch einen halben Tag. Das Projekt endet daher **am 63. Arbeitstag**, genau in dessen Mitte. Die Zahl 63 benennt den Tag der Fertigstellung. Die genaue Dauer beträgt weiterhin 62,5 Tage.

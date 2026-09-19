@@ -23,6 +23,8 @@ Metode grafis mencari resultan dengan sketsa berskala. Panjang panah dibuat seba
 Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama, lalu letakkan pangkal vektor kedua di ujung vektor pertama. Resultan ditarik dari pangkal vektor pertama ke ujung vektor kedua.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Penjumlahan Kepala-ke-Ekor</>}
   description={
     <>
@@ -66,8 +68,6 @@ Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama
       },
     ];
   })()}
-  cameraPosition={[8, 6, 10]}
-  cameraTarget={[3, -0.7, 0]}
 />
 
 Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan koordinat adalah meter: perpindahan pertama <InlineMath math="(4,1)" />, lalu perpindahan kedua <InlineMath math="(2,3)" />. Titik akhir berada di <InlineMath math="(6,4)" />. Kamu menambahkan perubahan posisi pada setiap sumbu.
@@ -79,6 +79,8 @@ Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan ko
 Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**. Contohnya, dua tali menarik sebuah cincin. Pada model, salinan vektor mempertahankan panjang dan arah panah asli. Ikuti sisi bawah lalu sisi kanan, atau sisi kiri lalu sisi atas: kedua jalur berakhir pada titik yang sama.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Diagonal Jajargenjang</>}
   description={<>Panah ungu menghubungkan pangkal bersama ke titik akhir kedua jalur. Vektor a dan b tetap sama meskipun digeser sejajar.</>}
   vectors={[
@@ -88,8 +90,6 @@ Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**.
     {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
   ]}
-  cameraPosition={[3,2,13]}
-  cameraTarget={[3,2,0]}
 />
 
 ### Metode Poligon untuk Banyak Vektor
@@ -111,6 +111,8 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
 <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
 <Vector3d
+  cameraPosition={[2, -0.5, 7]}
+  cameraTarget={[2, -0.5, 0]}
   title={<>Menambahkan Vektor Negatif</>}
   description={<>Dari ujung a di (4,1), bergerak dua satuan ke kiri dan tiga satuan ke bawah. Resultan berakhir di (2,-2).</>}
   vectors={[
@@ -118,6 +120,4 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
     {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
   ]}
-  cameraPosition={[2,0,10]}
-  cameraTarget={[2,0,0]}
 />

@@ -5,39 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Posisi awal dihitung sebagai satu simetri putar. Dengan kesepakatan tersebut, keempat bangun dapat dibandingkan sebagai berikut.
+Kita menghitung **posisi awal** sebagai satu simetri putar. Bandingkan jumlah posisi yang membuat bangun berimpit kembali dengan jumlah garis lipat yang membagi bangun menjadi dua bagian saling mencerminkan.
 
-| Bangun Datar | Simetri Putar | Simetri Lipat |
-| :--- | :---: | :---: |
-| Segidelapan beraturan | <InlineMath math="8" /> | <InlineMath math="8" /> |
-| Belah ketupat | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| Segitiga sama kaki bukan sama sisi | <InlineMath math="1" /> | <InlineMath math="1" /> |
-| Layang-layang | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Bangun | Simetri putar | Simetri lipat |
+| --- | --- | --- |
+| Segidelapan beraturan | 8: rotasi kelipatan 45° dari 0° sampai 315° | 8: empat garis melalui pasangan titik sudut berhadapan dan empat melalui titik tengah sisi berhadapan |
+| Belah ketupat bukan persegi | 2: rotasi 0° dan 180° | 2: kedua diagonal |
+| Segitiga sama kaki bukan sama sisi | 1: hanya posisi awal | 1: garis dari puncak ke titik tengah alas |
+| Layang-layang bukan belah ketupat | 1: hanya posisi awal | 1: diagonal yang melalui kedua puncak tempat sisi-sisi sama panjang bertemu |
 
-#### Penjelasan
+Belah ketupat di bawah memiliki **dua sumbu simetri**, yaitu kedua diagonal. Rotasi 180° menukar titik sudut yang berhadapan dan menghasilkan bangun yang berimpit kembali.
 
-##### Segidelapan beraturan
+<MathVisual
+ title="Dua diagonal sebagai sumbu simetri"
+ description="Diagonal mendatar dan tegak membagi belah ketupat menjadi pasangan segitiga yang saling mencerminkan."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
+ labels={{}}
+/>
 
-- Simetri putar <InlineMath math="8" /> (dapat diputar <InlineMath math="45^\circ, 90^\circ, 135^\circ, \ldots, 315^\circ" />).
-- Simetri lipat <InlineMath math="8" /> (melalui diagonal dan garis tengah).
-
-##### Belah ketupat bukan persegi
-
-- Simetri putar <InlineMath math="2" /> (posisi awal dan rotasi <InlineMath math="180^\circ" />).
-- Simetri lipat <InlineMath math="2" /> (melalui kedua diagonal).
-
-##### Segitiga sama kaki bukan sama sisi
-
-- Simetri putar <InlineMath math="1" /> (hanya posisi awal).
-- Simetri lipat <InlineMath math="1" /> (melalui garis tinggi dari sudut puncak).
-
-##### Layang-layang yang bukan belah ketupat
-
-- Simetri putar <InlineMath math="1" /> (hanya posisi awal).
-- Simetri lipat <InlineMath math="1" /> (melalui salah satu diagonal).
-
-#### Perbandingan Banyak Simetri
-
-Setiap bangun memiliki jumlah simetri putar yang sama dengan jumlah simetri lipatnya. Jadi, tidak ada bangun yang memiliki lebih banyak simetri putar.
-
-Jadi, jawabannya adalah <InlineMath math="0" />.
+Pada setiap baris, kedua jumlah sama. Tidak ada bangun dengan simetri putar lebih banyak, sehingga jawabannya 0.

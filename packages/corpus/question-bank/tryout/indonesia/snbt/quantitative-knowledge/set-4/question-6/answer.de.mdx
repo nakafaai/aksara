@@ -5,11 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Für die Tangentengleichung benötigen wir die Steigung <InlineMath math="m" /> und den Berührpunkt.
+Für die Tangentengleichung benötigen wir **Steigung und Berührpunkt**.
 
 #### Die Steigung bestimmen
 
-Die Steigung liefert die erste Ableitung <InlineMath math="y'" />.
+Die Steigung liefert die **erste Ableitung** <InlineMath math="y'" />.
 
 <MathContainer>
   <BlockMath math="y = x^2 - x + 2" />
@@ -22,7 +22,7 @@ Setzen wir <InlineMath math="x = 1" /> in <InlineMath math="y'" /> ein, erhalten
 
 #### Bestimmung des Tangentenpunktes
 
-Den zugehörigen Ordinatenwert <InlineMath math="y" /> erhalten wir ebenfalls für <InlineMath math="x = 1" />.
+Den **vertikalen Koordinatenwert des Berührpunkts** <InlineMath math="y" /> erhalten wir ebenfalls für <InlineMath math="x = 1" />.
 
 <MathContainer>
   <BlockMath math="y = (1)^2 - 1 + 2" />
@@ -33,7 +33,7 @@ Der Tangentenpunkt ist also <InlineMath math="(1, 2)" />.
 
 #### Bestimmung der Gleichung der Tangente
 
-Nun setzen wir <InlineMath math="m = 1" /> und den Punkt <InlineMath math="(1, 2)" /> in die Punkt-Steigungs-Form <InlineMath math="y - y_1 = m(x - x_1)" /> ein.
+Nun setzen wir <InlineMath math="m = 1" /> und den Punkt <InlineMath math="(1, 2)" /> in die **Punkt-Steigungs-Form** <InlineMath math="y - y_1 = m(x - x_1)" /> ein.
 
 <MathContainer>
   <BlockMath math="y - 2 = 1(x - 1)" />
@@ -43,3 +43,15 @@ Nun setzen wir <InlineMath math="m = 1" /> und den Punkt <InlineMath math="(1, 2
 </MathContainer>
 
 Die Gleichung der Tangente lautet also <InlineMath math="y = x + 1" />.
+
+<LineEquation
+ title="Kurve und Tangente"
+ description="Die violette Kurve und die orange Gerade haben im Punkt (1,2) dieselbe Steigung 1."
+ cameraPosition={[1,2.5,7]}
+ cameraTarget={[1,2.5,0]}
+ showZAxis={false}
+ data={[
+  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
+  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
+ ]}
+/>

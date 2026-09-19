@@ -3,23 +3,23 @@ export const metadata = {
     description: "Inspect Python numeric objects through their types, attributes, methods, and complex-number operations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-16",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
 ## Numbers as Objects
 
-Every Python number is an object, and that object carries a numeric type. The type decides which attributes and methods you can reach with dot notation, on top of the arithmetic operators every number already supports.
+Every Python number is an object with a [numeric type](/en/subjects/ai-ds/ai-programming/numbers). That type determines which attributes and methods you can access through dot notation.
 
-Writing <InlineMath math="5" /> creates an `int` and writing <InlineMath math="3.14" /> creates a `float`. Numeric objects are <Highlight>immutable</Highlight>, so a method never edits the number you called it on. A call such as `conjugate()` builds a new value and returns it, while the original number keeps the value it already had.
+Writing <InlineMath math="5" /> creates an `int`, while writing <InlineMath math="3.14" /> creates a `float`. The built-in numeric objects covered here are <Highlight>immutable</Highlight>. A method call such as `conjugate()` returns a result without changing the original object's value.
 
-The [numbers lesson](/en/subjects/ai-ds/ai-programming/numbers) shows how Python picks a type for each literal you write. The [immutable and mutable identity](/en/subjects/ai-ds/ai-programming/immutable-mutable-identity) lesson explains what that immutability changes once you assign a result to a variable.
+If `a = 5`, the assignment `a = a + 1` binds the name `a` to an object whose value is `6`. Distinguish [object identity from name assignment](/en/subjects/ai-ds/ai-programming/immutable-mutable-identity): the object whose value was `5` has not changed into `6`.
 
 ## Accessing Attributes and Methods
 
-An attribute names a value that already sits inside the object, and a method names an action the object can perform. You read an attribute with `object.attribute` and call a method with `object.method()`. The parentheses in the second form are what tell Python to run the method.
+Attribute access reads **a value through a named object member**, while a method call performs an operation. In general, an attribute may also compute a value when accessed. You read an attribute with `object.attribute` and call a method with `object.method()`. The parentheses in the second form are what tell Python to run the method.
 
-A complex number shows the difference clearly. The expression `c.real` is data that Python already stores inside `c`, so reading it costs no extra work. The call `c.conjugate()` is work Python performs at that moment, and the result is a second complex number that leaves `c` untouched.
+A complex number shows the difference clearly. The expression `c.real` is data that Python already stores inside `c`, and attribute access returns that real component. The call `c.conjugate()` is work Python performs at that moment, and the result is a second complex number that leaves `c` untouched.
 
 <CodeBlock
   data={[
@@ -45,9 +45,11 @@ print(c.conjugate())  # Output: (2-3j)`
 
 Python chooses the numeric type from the literal you write, and that type decides which attributes and methods the value carries. Asking Python for the class before you call a type-specific method keeps you from guessing whether that operation exists on that value.
 
-The `type()` function returns the <Highlight>class of the value</Highlight>, which is the name Python uses for that numeric type. The three literals below look similar when you pass them to a function, but `type()` reports a different class for each one.
+The `type()` function returns the <Highlight>class of the value</Highlight>, which is a class object, not a string naming the type. The three literals below look similar when you pass them to a function, but `type()` reports a different class for each one.
 
 ### Using the Type Function
+
+Distinguish **literals from expressions**: `3j` is an imaginary literal, while `2 + 3j` is an addition that produces a `complex` object.
 
 <CodeBlock
   data={[
@@ -62,21 +64,21 @@ print(type(2+3j))      # Output: <class 'complex'>`
   ]}
 />
 
-| Literal | Class that `type()` reports | Reason Python chooses that class |
+| Expression | Class that `type()` reports | Reason Python chooses that class |
 | --- | --- | --- |
 | `42` | `int` | The literal has no decimal point and no exponent |
 | `3.14` | `float` | The literal contains a decimal point |
-| `2+3j` | `complex` | The literal carries the imaginary unit `j` |
+| `2+3j` | `complex` | Adding an integer and the imaginary literal `3j` produces `complex` |
 
 ## Reading the Parts of a Complex Number
 
-A complex number keeps two components apart, and Python exposes both as attributes instead of making you unpack them. The `real` attribute holds the real component, the `imag` attribute holds the coefficient of the imaginary unit, and both come back as <Highlight>floats even when you wrote whole numbers</Highlight>.
+A complex number keeps two components apart, and Python exposes both as attributes instead of making you unpack them. The `real` attribute holds the real component, the `imag` attribute holds the **coefficient of** the imaginary unit, and both come back as <Highlight>floats even when you wrote whole numbers</Highlight>.
 
 Each attribute returns one component of the number. Comparing a pure real number, a pure imaginary number, and a mixed number shows which component belongs to which attribute.
 
 ### The real Attribute
 
-The `real` attribute returns the real component of the number. Reading it never changes the number, so you can inspect the same value as often as you need.
+The `real` attribute returns the **real component of the number**. Reading it never changes the number, so you can inspect the same value as often as you need.
 
 <CodeBlock
   data={[
@@ -102,7 +104,7 @@ print(f"Real part of {z3} is {z3.real}")
 
 ### The imag Attribute
 
-The `imag` attribute returns the coefficient of <InlineMath math="i" />. Python writes that unit as `j` inside a complex literal. The sign belongs to the coefficient, so a subtracted term comes back as a negative number.
+The `imag` attribute returns the coefficient of <InlineMath math="i" />. Python writes that unit as `j` inside a complex literal. The **sign belongs to the coefficient**, so a subtracted term comes back as a negative number.
 
 <CodeBlock
   data={[
@@ -130,7 +132,7 @@ The result for `z2` is <InlineMath math="-4.0" />, because the coefficient carri
 
 ## Methods on Complex Numbers
 
-Complex numbers also carry their own methods, and the ones below cover the operations you reach for most often. Every method returns a new complex number, so you can keep calling methods on the result without changing the value you started from.
+Complex numbers also carry their own methods, and the ones below cover the operations you reach for most often. The `conjugate()` method **returns a complex number**, so you can keep calling methods on the result without changing the value you started from.
 
 ### The Conjugate Method
 
@@ -162,7 +164,7 @@ The second result shows the rule on a negative coefficient. The imaginary part o
 
 ### Computing the Size of a Complex Number
 
-The identity <InlineMath math="z\overline{z}=|z|^2" /> connects a complex number to its modulus, and the example below works that identity out in code. In ordinary Python code you would call `abs(z)` for the modulus, so read this example as the reason that built-in works.
+The identity <InlineMath math="z\overline{z}=|z|^2" /> **connects a complex number to its modulus**, and the example below works that identity out in code. In ordinary Python code you would call `abs(z)` for the modulus, so read this example as the reason that built-in works.
 
 <CodeBlock
   data={[
@@ -196,7 +198,7 @@ Multiplying <InlineMath math="z" /> by its conjugate cancels the imaginary part 
 
 ## Methods on Integers and Floats
 
-Integers and floats expose methods that match their own representation, and those methods are not interchangeable with the complex ones. `bit_length()` counts bits in the absolute integer value, `to_bytes()` writes those bits into a byte sequence, `is_integer()` checks whether a float has a fractional part, and `as_integer_ratio()` reports the fraction a float actually stores.
+Integers and floats expose methods that match **their own representation**, and those methods are not interchangeable with the complex ones. `bit_length()` counts bits in the absolute integer value, `to_bytes()` writes those bits into a byte sequence, `is_integer()` checks whether a float has a fractional part, and `as_integer_ratio()` reports the fraction a float actually stores.
 
 | Method | Type it belongs to | Question it answers |
 | --- | --- | --- |
@@ -204,6 +206,8 @@ Integers and floats expose methods that match their own representation, and thos
 | `to_bytes()` | `int` | Which bytes represent this value in a chosen width and order |
 | `is_integer()` | `float` | Does this float have no fractional part |
 | `as_integer_ratio()` | `float` | Which exact fraction does the stored value equal |
+
+Modern Python also gives `int` the methods `is_integer()` and `as_integer_ratio()`: `(42).is_integer()` returns `True`, and `(42).as_integer_ratio()` returns `(42, 1)`. The table selects the types used in these examples rather than listing every type that owns a method.
 
 ### Integer Numbers
 
@@ -229,7 +233,7 @@ print(f"Byte representation of {n}: {byte_representation}")
   ]}
 />
 
-`bit_length()` counts the bits needed for the absolute integer value, excluding its sign and leading zeros. `to_bytes()` additionally requires an output length and byte order, so the two-byte result above begins with a zero byte.
+`bit_length()` counts the bits needed for the absolute integer value, **excluding its sign and leading zeros**. Here, `to_bytes()` receives an explicit output length and byte order, so the two-byte result above begins with a zero byte.
 
 ### Float Numbers
 
@@ -261,11 +265,11 @@ print(f"Ratio of {f}: {ratio}")
 
 ## Validating and Calculating with Numeric Objects
 
-Attributes and methods also support checks and conversions, and those two steps belong together. You check the input first and you calculate second, so an invalid value never reaches the arithmetic that follows it.
+Attributes and methods also support checks and conversions, and those two steps belong together. You **check the input first** and you calculate second, so values that violate the chosen domain rules can be rejected before arithmetic.
 
 ### Checking the Input Before Calculating
 
-Attributes can carry explicit validation rules. The function below requires a `complex` object first, then applies two example domain rules to its components and reports a message for each case it rejects.
+Attributes can carry explicit validation rules. The function below requires a `complex` object first, then applies **two example domain rules** to its components and reports a message for each case it rejects.
 
 <CodeBlock
   data={[
@@ -297,7 +301,7 @@ for num in test_numbers:
 
 The function returns a pair of values, so the caller receives the decision and the reason together. Of the four test numbers, <InlineMath math="3+4j" /> and <InlineMath math="2.5+1.5j" /> pass all three checks, <InlineMath math="-2+5j" /> is rejected for a negative real part, and <InlineMath math="7+0j" /> is rejected because its imaginary part is zero.
 
-### Calculating with the Checked Input
+### Calculating with Complex Numbers
 
 <CodeBlock
   data={[
@@ -327,6 +331,6 @@ complex_operations(z1, z2)`
   ]}
 />
 
-With those inputs, `z1 + z2` is <InlineMath math="3+1j" />, because the real parts and the imaginary parts add separately. The expression `z1 * z2.conjugate()` multiplies <InlineMath math="2+3j" /> by <InlineMath math="1+2j" /> and returns <InlineMath math="-4+7j" />.
+With those inputs, `z1 + z2` is <InlineMath math="3+1j" />, because the **real parts and the imaginary parts add separately**. The expression `z1 * z2.conjugate()` multiplies <InlineMath math="2+3j" /> by <InlineMath math="1+2j" /> and returns <InlineMath math="-4+7j" />.
 
 Identify the numeric type, then check whether an operation returns a component, a representation, or a new value, because that return type decides how the next expression can use the result.

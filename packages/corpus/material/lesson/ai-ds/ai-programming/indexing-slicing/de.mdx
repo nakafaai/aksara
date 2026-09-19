@@ -9,13 +9,20 @@ export const metadata = {
 
 ## Ein Element auswählen
 
-Die Indizierung <Highlight>wählt ein Element einer Zeichenfolge oder Liste über seine Position aus</Highlight>. Ist zum Beispiel `buchstaben = ["a", "b", "c"]`, dann liefert `buchstaben[1]` den Wert `"b"`.
+Die Indizierung wählt **ein Element über seine Position** aus einer Zeichenfolge oder Liste aus. Ist zum Beispiel `buchstaben = ["a", "b", "c"]`, dann liefert `buchstaben[1]` den Wert `"b"`.
 
-Python zählt Indizes ab <InlineMath math="0" />. Das erste Element hat den Index <InlineMath math="0" />, das zweite den Index <InlineMath math="1" /> und so weiter. Negative Indizes zählen vom Ende rückwärts.
+Python zählt Indizes ab <InlineMath math="0" />. Das erste Element hat den Index <InlineMath math="0" />, das zweite den Index <InlineMath math="1" /> und so weiter. **Negative Indizes** zählen vom Ende rückwärts.
 
 ### Positive und negative Indizes
 
 Positive Indizes beginnen mit <InlineMath math="0" /> am Anfang. Negative Indizes beginnen mit <InlineMath math="-1" /> am Ende.
+
+Die Tabelle zeigt **zwei Indizes für dasselbe Element**. Sowohl `1` als auch `-4` wählen `e`. Der Code verwendet `repr()`, damit Anführungszeichen und leere Strings in der Ausgabe sichtbar sind.
+
+| Zeichen | `H` | `e` | `l` | `l` | `o` |
+| --- | --- | --- | --- | --- | --- |
+| Index vom Anfang | `0` | `1` | `2` | `3` | `4` |
+| Index vom Ende | `-5` | `-4` | `-3` | `-2` | `-1` |
 
 <CodeBlock
   data={[
@@ -26,16 +33,16 @@ Positive Indizes beginnen mit <InlineMath math="0" /> am Anfang. Negative Indize
 s = "Hello"
 
 # Zugriff auf Zeichen mit positiven Indizes
-print(s[0])    # Ausgabe: 'H'
-print(s[4])    # Ausgabe: 'o'
+print(repr(s[0]))    # Ausgabe: 'H'
+print(repr(s[4]))    # Ausgabe: 'o'
 
 # Zugriff auf Zeichen mit negativen Indizes
-print(s[-1])   # Ausgabe: 'o' (letztes Zeichen)
-print(s[-5])   # Ausgabe: 'H' (erstes Zeichen)
+print(repr(s[-1]))   # Ausgabe: 'o'
+print(repr(s[-5]))   # Ausgabe: 'H'
 
 # Es wird versucht, auf einen nicht vorhandenen Index zuzugreifen
 try:
-    print(s[5])
+    print(repr(s[5]))
 except IndexError:
     print("IndexError: Index außerhalb des gültigen Bereichs")`
     }
@@ -46,11 +53,11 @@ Ein Index außerhalb des gültigen Bereichs löst einen `IndexError` aus. Python
 
 ## Mehrere Elemente auswählen
 
-Beim Slicing werden mehrere Elemente einer Zeichenfolge oder Liste ausgewählt. Dazu legst du einen Startindex, einen Endindex und bei Bedarf den Abstand zwischen den ausgewählten Elementen fest.
+Beim Slicing werden mehrere Elemente einer Zeichenfolge oder Liste ausgewählt. Dazu legst du einen Startindex, einen Endindex und bei Bedarf den **Abstand zwischen den ausgewählten Elementen** fest.
 
 ### Slicing mit zwei Grenzen
 
-Die Schreibweise `[i:j]` verwendet `i` als Startindex und `j` als Endindex. Das Element am Startindex gehört zum Ergebnis, das Element am Endindex nicht.
+Die Schreibweise `[i:j]` verwendet `i` als Startindex und `j` als Endindex. Das Element am Startindex gehört zum Ergebnis, das **Element am Endindex nicht**.
 
 <CodeBlock
   data={[
@@ -61,17 +68,17 @@ Die Schreibweise `[i:j]` verwendet `i` als Startindex und `j` als Endindex. Das 
 s = "Hello"
 
 # Slicing von Index 1 bis 3, ohne Index 3
-print(s[1:3])    # Ausgabe: 'el'
+print(repr(s[1:3]))    # Ausgabe: 'el'
 
 # Slicing von Index 3 bis zum Ende
-print(s[3:])     # Ausgabe: 'lo'
+print(repr(s[3:]))     # Ausgabe: 'lo'
 
 # Slicing vom Anfang bis Index 3
-print(s[:3])     # Ausgabe: 'Hel'
+print(repr(s[:3]))     # Ausgabe: 'Hel'
 
 # Slicing mit negativen Indizes
-print(s[-4:-2])  # Ausgabe: 'el'
-print(s[-2:-4])  # Ausgabe: '' (leerer String)`
+print(repr(s[-4:-2]))  # Ausgabe: 'el'
+print(repr(s[-2:-4]))  # Ausgabe: ''`
     }
   ]}
 />
@@ -80,7 +87,7 @@ Ist der Startindex bei positiver Schrittweite größer als der Endindex, entsteh
 
 ### Abstand zwischen ausgewählten Elementen
 
-Der dritte Wert in `[start:stop:schritt]` legt den Abstand zwischen ausgewählten Elementen fest. Eine Schrittweite von <InlineMath math="2" /> wählt ein Element aus und überspringt das nächste.
+Der dritte Wert in `[start:stop:schritt]` legt den Abstand zwischen ausgewählten Elementen fest. Eine Schrittweite von <InlineMath math="2" /> wählt ein Element aus und **überspringt das nächste**.
 
 <CodeBlock
   data={[
@@ -91,29 +98,29 @@ Der dritte Wert in `[start:stop:schritt]` legt den Abstand zwischen ausgewählte
 s = "Hello World!"
 
 # Jedes zweite Zeichen auswählen
-print(s[::2])      # Ausgabe: 'HloWrd'
+print(repr(s[::2]))      # Ausgabe: 'HloWrd'
 
 # Ab Index 1 jedes zweite Zeichen auswählen
-print(s[1::2])     # Ausgabe: 'el ol!'
+print(repr(s[1::2]))     # Ausgabe: 'el ol!'
 
 # String mit negativer Schrittweite umkehren
-print(s[::-1])     # Ausgabe: '!dlroW olleH'
+print(repr(s[::-1]))     # Ausgabe: '!dlroW olleH'
 
 # Slicing ab einem bestimmten Index mit negativer Schrittweite
-print(s[-1:4:-1])  # Ausgabe: '!dlroW'`
+print(repr(s[-1:4:-1]))  # Ausgabe: '!dlroW '`
     }
   ]}
 />
 
-Ein negativer Schritt kehrt die Auswahlrichtung um. Bei <InlineMath math="-1" /> übernimmt Python alle Elemente vom Ende bis zum Anfang.
+Ein negativer Schritt kehrt die Auswahlrichtung um. `s[::-1]` lässt beide Grenzen weg und wählt alle Elemente vom Ende bis zum Anfang aus. Die Schrittweite darf nicht null sein, weil damit kein nächster Index erreicht wird.
 
 ## Regeln für Slicing
 
-Ein Slice wird als `start:stop:step` geschrieben. <Highlight>Der Startindex gehört zum Ergebnis, der Endindex nicht</Highlight>, und eine negative Schrittweite liest die Sequenz von rechts nach links.
+Ein Slice wird als `start:stop:step` geschrieben. Der Startindex gehört zum Ergebnis, **der Endindex nicht**, und eine negative Schrittweite liest die Sequenz von rechts nach links.
 
 ### Anzahl der ausgewählten Elemente
 
-Im einfachen Fall <InlineMath math="0 \le i \le j \le n" /> mit der positiven Standardschrittweite hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python normalisiert sie zunächst anhand der Sequenzlänge. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
+Sei <InlineMath math="n" /> die Länge von `s`. Im einfachen Fall <InlineMath math="0 \le i \le j \le n" /> mit der positiven Standardschrittweite hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python **normalisiert sie zunächst anhand der Sequenzlänge**. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -125,7 +132,7 @@ s = "Hello"
 
 # Slicing s[1:4]
 result = s[1:4]
-print(f"Ergebnis: '{result}', Länge: {len(result)}")  # Ausgabe: 'ell', 3
+print(f"Ergebnis: '{result}', Länge: {len(result)}")  # Ausgabe: Ergebnis: 'ell', Länge: 3
 
 # Beweisen, dass s[:i] + s[i:] == s
 i = 2
@@ -134,8 +141,8 @@ right_part = s[i:]
 print(f"'{left_part}' + '{right_part}' = '{left_part + right_part}'")
 
 # Slicing außerhalb der Grenzen löst keinen Fehler aus
-print(s[3:10])   # Ausgabe: 'lo'
-print(s[10:])    # Ausgabe: '' (leerer String)`
+print(repr(s[3:10]))   # Ausgabe: 'lo'
+print(repr(s[10:]))    # Ausgabe: ''`
     }
   ]}
 />
@@ -144,7 +151,7 @@ Python begrenzt Indizes beim Slicing auf den gültigen Bereich der Zeichenfolge 
 
 ## Ausgewählte Indizes
 
-Mit `range()` kannst du zeigen, welche Indizes ein Slice auswählt. Dieses Modell erklärt das Ergebnis, ohne Annahmen über die interne Umsetzung des jeweiligen Python-Typs zu treffen.
+Mit `range()` kannst du zeigen, **welche Indizes ein Slice auswählt**. Dieses Modell erklärt das Ergebnis, ohne Annahmen über die interne Umsetzung des jeweiligen Python-Typs zu treffen.
 
 <CodeBlock
   data={[
@@ -182,11 +189,11 @@ Der Vergleich mit dem `range()`-Modell zeigt, wie Start, Stopp und Schrittweite 
 
 ## Kurzformen beim Slicing
 
-Lasse die Start- oder Endgrenze weg, wenn die Auswahl bis zu einem Ende der Daten reichen soll. Eine leere Startgrenze beginnt bei Index `0`, eine leere Endgrenze läuft bis zum letzten Element.
+Ausgelassene Grenzen folgen der **Richtung der Schrittweite**. Bei positiver Schrittweite beginnt die Auswahl standardmäßig am Anfang und reicht bis hinter das letzte Element. Bei negativer Schrittweite beginnt sie am letzten Element und reicht bis vor das erste.
 
 ### Vom Anfang oder bis zum Ende
 
-Lässt du den Startparameter leer, beginnt der Slice am Anfang. Ein leerer Endparameter setzt den Slice bis zum Ende des Strings oder der Liste fort.
+Mit der **positiven Standardschrittweite** wählt `s[:3]` den Anfang und `s[3:]` das Ende aus. Bei `s[::-1]` folgen beide ausgelassenen Grenzen der negativen Richtung, sodass die Reihenfolge umgekehrt wird.
 
 <CodeBlock
   data={[
@@ -197,13 +204,13 @@ Lässt du den Startparameter leer, beginnt der Slice am Anfang. Ein leerer Endpa
 s = "Hello"
 
 # Die ersten drei Zeichen auswählen
-print(s[:3])     # Ausgabe: 'Hel'
+print(repr(s[:3]))     # Ausgabe: 'Hel'
 
 # Zeichen vom Index 3 bis zum Ende übernehmen
-print(s[3:])     # Ausgabe: 'lo'
+print(repr(s[3:]))     # Ausgabe: 'lo'
 
 # Alle Zeichen übernehmen
-print(s[:])      # Ausgabe: 'Hello'
+print(repr(s[:]))      # Ausgabe: 'Hello'
 
 # Praxisbeispiel mit Liste
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -227,7 +234,7 @@ Mit diesen Formen wählst du einen bestimmten Bereich oder regelmäßig verteilt
 
 ## Teile von Strings und Listen verarbeiten
 
-Die folgenden Beispiele verwenden Indizierung und Slicing, um Strings umzukehren, Telefonnummern zu formatieren, Initialen zu bilden und Palindrome zu prüfen. Das Beispiel mit der Dateiendung verwendet `Path.suffix`, weil Dateiendungen keine feste Länge haben.
+Die folgenden Beispiele verwenden Indizierung und Slicing, um Strings umzukehren, Telefonnummern zu formatieren, Initialen zu bilden und Palindrome zu prüfen. Das Beispiel mit der Dateiendung verwendet `Path.suffix`, weil **Dateiendungen keine feste Länge** haben.
 
 <CodeBlock
   data={[

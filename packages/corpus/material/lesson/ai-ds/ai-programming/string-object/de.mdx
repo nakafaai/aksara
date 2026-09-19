@@ -3,7 +3,7 @@ export const metadata = {
     description: "Stelle Text mit Python-Strings dar. Schreibe lange Stringliterale über mehrere Quellcodezeilen und verknüpfe Literale oder Variablen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -16,6 +16,8 @@ Strings haben drei Merkmale:
 1. **Geordnete Zeichenfolge:** Jedes Zeichen hat eine feste Position.
 2. **Als Literal geschrieben:** Einfache oder doppelte Anführungszeichen begrenzen den Text im Quellcode.
 3. **Typ `str`:** Python speichert den entstandenen Wert als String.
+
+Python zählt Positionen nach **Unicode-Codepunkten**, nicht immer nach sichtbaren Zeichen. Beispielsweise ergibt `len("é")` den Wert `1`, aber `len("e\u0301")` den Wert `2`: Die zweite Form besteht aus `e` und einem eigenen kombinierenden Akzent.
 
 <CodeBlock
   data={[
@@ -46,11 +48,11 @@ Die interaktive Eingabe zeigt die Repräsentation eines Strings. Python kann daf
 
 ## Leere Strings und die Funktion Str
 
-Python kann leere Strings erzeugen und Werte anderer Datentypen in Strings umwandeln. Ein leerer String enthält kein Zeichen und hat die Länge null, `str()` erzeugt dagegen die Textdarstellung eines beliebigen Werts.
+Python kann leere Strings erzeugen und **Werte anderer Datentypen** in Strings umwandeln. Ein leerer String enthält kein Zeichen und hat die **Länge null**, `str()` erzeugt dagegen die Textdarstellung eines beliebigen Werts.
 
 ### Leere Strings
 
-Ein leerer String enthält kein Zeichen und hat die Länge null. Du schreibst ihn als ein Paar Anführungszeichen ohne Inhalt.
+Ein leerer String enthält kein Zeichen und hat die **Länge null**. Du schreibst ihn als ein Paar Anführungszeichen ohne Inhalt.
 
 <CodeBlock
   data={[
@@ -67,7 +69,7 @@ Ein leerer String enthält kein Zeichen und hat die Länge null. Du schreibst ih
 
 ### Die Funktion Str
 
-Die Funktion `str()` liefert eine gut lesbare Stringdarstellung eines Werts. Verwende sie, wenn ein Text eine Zahl oder einen anderen Wert enthalten soll, der noch kein String ist.
+Die Funktion `str()` liefert eine **gut lesbare Stringdarstellung** eines Werts. Verwende sie, wenn ein Text eine Zahl oder einen anderen Wert enthalten soll, der noch kein String ist.
 
 <CodeBlock
   data={[
@@ -88,11 +90,11 @@ Die Funktion `str()` liefert eine gut lesbare Stringdarstellung eines Werts. Ver
 
 ## Mehrzeilige Zeichenfolgen
 
-Python unterscheidet zwischen Quellcode, der über mehrere Zeilen verteilt ist, und tatsächlichen Zeilenumbrüchen in einem String. Eine Zeile lässt sich im Quellcode umbrechen, ohne dass ein Umbruch im Wert landet, während ein String mit dreifachen Anführungszeichen jeden Umbruch speichert.
+Python unterscheidet zwischen Quellcode, der über mehrere Zeilen verteilt ist, und **tatsächlichen Zeilenumbrüchen** in einem String. Eine Zeile lässt sich im Quellcode umbrechen, ohne dass ein Umbruch im Wert landet, während ein String mit dreifachen Anführungszeichen jeden Umbruch speichert.
 
 ### Zeilenfortsetzungszeichen
 
-Ein Backslash am Ende einer physischen Quellcodezeile setzt die Anweisung ausdrücklich fort. Im Beispiel enthält die fortgesetzte Anweisung zwei benachbarte Literale, die Python ohne Zeilenumbruch im Wert verbindet.
+Ein Backslash am Ende einer physischen Quellcodezeile **setzt die Anweisung ausdrücklich fort**. Im Beispiel enthält die fortgesetzte Anweisung zwei benachbarte Literale, die Python ohne Zeilenumbruch im Wert verbindet.
 
 <CodeBlock
   data={[
@@ -114,7 +116,7 @@ xxxyyy`
 
 ### Zeilenfortsetzung mit Klammern
 
-Innerhalb von Klammern setzt Python eine Anweisung über den Zeilenumbruch hinweg fort, ohne dass ein Backslash nötig ist. Kommentare oder Leerzeichen am Zeilenende unterbrechen diese Fortsetzung nicht. Beim Verschieben einer Zeile muss außerdem kein Fortsetzungszeichen mitverschoben werden.
+Innerhalb von Klammern setzt Python eine Anweisung über den Zeilenumbruch hinweg fort, **ohne dass ein Backslash nötig ist**. Kommentare oder Leerzeichen am Zeilenende unterbrechen diese Fortsetzung nicht. Beim Verschieben einer Zeile muss außerdem kein Fortsetzungszeichen mitverschoben werden.
 
 <CodeBlock
   data={[
@@ -138,7 +140,7 @@ xxxyyy`
 
 ### Dreifache Anführungszeichen
 
-Literale mit drei Anführungszeichen können tatsächliche Zeilenumbrüche speichern. Diese erscheinen als `\n`-Zeichen im Stringwert.
+Literale mit drei Anführungszeichen können **tatsächliche Zeilenumbrüche** speichern. Diese erscheinen als `\n`-Zeichen im Stringwert.
 
 <CodeBlock
   data={[
@@ -165,11 +167,11 @@ Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, m
 
 ## Verknüpfung von Stringliteralen
 
-Python kann Stringliterale bereits beim Lesen des Quellcodes oder Stringwerte während der Programmausführung verbinden. Benachbarte Literale werden ohne Operator zusammengefügt, Werte in Variablen brauchen dagegen einen Operator.
+Python kann Stringliterale bereits beim Lesen des Quellcodes oder Stringwerte während der Programmausführung verbinden. Benachbarte Literale werden **ohne Operator zusammengefügt**, Werte in Variablen brauchen dagegen einen Operator.
 
 ### Angrenzende Literalverkettung
 
-Python verbindet benachbarte Stringliterale beim Lesen des Quellcodes. Diese Kurzform funktioniert nur für Text, der direkt als Literal im Code steht.
+Python verbindet **benachbarte Stringliterale** beim Lesen des Quellcodes. Diese Kurzform funktioniert nur für Text, der direkt als Literal im Code steht.
 
 <CodeBlock
   data={[
@@ -189,7 +191,7 @@ Python verbindet benachbarte Stringliterale beim Lesen des Quellcodes. Diese Kur
 
 ### Plusoperator
 
-Der Operator `+` verkettet zwei Stringwerte zur Laufzeit.
+Der Operator `+` verkettet **zwei Stringwerte** zur Laufzeit.
 
 <CodeBlock
   data={[
@@ -205,7 +207,7 @@ Der Operator `+` verkettet zwei Stringwerte zur Laufzeit.
 
 ### Multiplikationsoperator
 
-Der Operator `*` wiederholt einen String so oft, wie es die angegebene ganze Zahl bestimmt.
+Der Operator `*` **wiederholt einen String** so oft, wie es die angegebene ganze Zahl bestimmt.
 
 <CodeBlock
   data={[
@@ -221,11 +223,11 @@ Der Operator `*` wiederholt einen String so oft, wie es die angegebene ganze Zah
 
 ## Verknüpfung von Stringvariablen
 
-Variablen enthalten Werte und keine Literaltoken. Deshalb brauchen sie beim Verknüpfen einen Operator. Benachbarte Literale werden dagegen schon beim Lesen des Quellcodes zusammengefügt, und dieser Unterschied erklärt, warum `"a" "b"` funktioniert, `name other` aber nicht.
+Variablen enthalten Werte und keine Literaltoken. Deshalb brauchen sie **beim Verknüpfen einen Operator**. Benachbarte Literale werden dagegen schon beim Lesen des Quellcodes zusammengefügt, und dieser Unterschied erklärt, warum `"a" "b"` funktioniert, `name other` aber nicht.
 
 ### Operatoren verwenden
 
-Verwende `+`, um Stringwerte zu verketten, und `*` mit einer ganzen Zahl, um einen String zu wiederholen. Variablennamen ohne Operator nebeneinander zu schreiben, ist ungültige Syntax.
+Verwende `+`, um Stringwerte zu verketten, und `*` mit einer ganzen Zahl, um einen String zu wiederholen. Variablennamen ohne Operator nebeneinander zu schreiben, ist **ungültige Syntax**.
 
 <CodeBlock
   data={[
@@ -260,7 +262,7 @@ Verwende `+`, um Stringwerte zu verketten, und `*` mit einer ganzen Zahl, um ein
 
 ### Häufige Fehler
 
-Die folgenden Formen scheitern schon beim Einlesen des Codes, weil zwischen der Variablen und dem nächsten Ausdruck kein Operator steht.
+Die folgenden Formen scheitern schon beim Einlesen des Codes, weil zwischen der Variablen und dem nächsten Ausdruck **kein Operator** steht.
 
 <CodeBlock
   data={[

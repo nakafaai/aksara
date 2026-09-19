@@ -2,14 +2,14 @@ export const metadata = {
   title: "Solution for Question 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-We will find the value of <InlineMath math="x" /> that maximizes the surface area of the box, and then calculate that surface area.
+We will find the value of <InlineMath math="x" /> that **maximizes the box’s surface area**, and then calculate that surface area.
 
 #### Determining Surface Area Formula
 
-The surface area of a cuboid (<InlineMath math="L" />) can be calculated with the formula:
+A closed box has **a base and a top** with combined area <InlineMath math="2pl" />. The four vertical faces have total area <InlineMath math="2pt+2lt=2(p+l)t=Kt" />. Adding them gives the surface-area formula.
 
 <BlockMath math="L=2pl+Kt" />
 
@@ -28,7 +28,7 @@ Substitute these dimensions into the surface area formula:
 
 #### Simplifying the Surface Area Function
 
-We expand the equation above:
+Expand **the products of side dimensions** so like powers can be collected:
 
 **Base Area Part:**
 
@@ -51,6 +51,17 @@ We expand the equation above:
 
 #### Finding the Maximum Value
 
+You can also prove the maximum without differentiation by **completing the square**.
+
+<BlockMath math="\begin{aligned}
+L(x)&=-10(x^2-8x)-50 \\
+&=-10((x-4)^2-16)-50 \\
+&=-10(x-4)^2+160-50 \\
+&=110-10(x-4)^2
+\end{aligned}" />
+
+A square is never negative. Thus <InlineMath math="-10(x-4)^2\le0" /> and <InlineMath math="L(x)\le110" />. Equality holds exactly when <InlineMath math="x=4" />. This proves the maximum over the entire permitted domain.
+
 The function <InlineMath math="L(x)" /> is a quadratic function with a negative <InlineMath math="x^2" /> coefficient, so its parabolic graph opens downwards and has a maximum value. The maximum value is reached when its first derivative equals zero (<InlineMath math="L'(x) = 0" />).
 
 <MathContainer>
@@ -64,7 +75,7 @@ The length, width, and height must all be positive. The conditions <InlineMath m
 
 #### Calculating Maximum Surface Area
 
-Substitute <InlineMath math="x = 4" /> into the function <InlineMath math="L(x)" />:
+Substitute **<InlineMath math="x=4" />, which gives positive dimensions**, into the function <InlineMath math="L(x)" />:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}L(4)&=-10(4)^2+80(4) \\ &\quad-50\end{aligned}" />

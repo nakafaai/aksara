@@ -1,32 +1,31 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-Wir werden das Konzept der umgekehrten Proportion verwenden, um die Gesamtzahl der benötigten Arbeitskräfte zu bestimmen, und dann die Differenz zur ursprünglichen Anzahl der Arbeitskräfte berechnen.
+Gesucht sind **zusätzliche Arbeitskräfte**, nicht die gesamte Belegschaft. Bestimme zunächst die Personenzahl für vierzig Arbeitstage und ziehe dann die achtzig bereits verfügbaren Arbeitskräfte ab.
 
-#### Berechnung der Gesamtarbeitsbelastung
+#### Den Arbeitsumfang gleich halten
 
-Die Gesamtarbeitsbelastung des Projekts ist konstant und beträgt:
+Ein Personentag entspricht der Arbeit einer Person an einem Arbeitstag. Bei gleicher, konstanter Tagesleistung bleibt **der Arbeitsumfang des Projekts unverändert**, auch wenn sich die Personenzahl ändert.
 
-<BlockMath math="\begin{aligned}&80 \times 50 \\ &=4{.}000 \text{ Manntage}\end{aligned}" />
+<BlockMath math="W=80\times50=4{.}000\text{ Personentage}" />
 
-#### Berechnung der erforderlichen Anzahl von Arbeitskräften
+Mit <InlineMath math="P" /> bezeichnen wir die gesamte Personenzahl ab dem ersten Tag. Diese Arbeitskräfte müssen den Arbeitsumfang in vierzig Arbeitstagen leisten.
 
-Wenn die Fertigstellungszeit auf <InlineMath math="40 \text{ Tage }" /> beschleunigt wird, beträgt die Anzahl der erforderlichen Arbeiter (<InlineMath math="P" />):
+<BlockMath math="\begin{aligned}40P&=4{.}000\\P&=\frac{4{.}000}{40}\\&=100\text{ Arbeitskräfte}\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="P \times 40 = 4{.}000" />
-  <BlockMath math="P = \frac{4{.}000}{40}" />
-  <BlockMath math="P = 100 \text{ Menschen}" />
-</MathContainer>
+| Zeitplan | Arbeitskräfte | Arbeitstage | Arbeitsumfang (Personentage) |
+| --- | --- | --- | --- |
+| Ursprünglich | 80 | 50 | 4.000 |
+| Verkürzt | 100 | 40 | 4.000 |
 
-#### Berechnung zusätzlicher Arbeitskräfte
+#### Zusätzliche Arbeitskräfte berechnen
 
-Die vorhandene Anzahl an Arbeitern beträgt <InlineMath math="80" />. Somit werden folgende zusätzliche Arbeitskräfte benötigt:
+Von den hundert benötigten Arbeitskräften sind achtzig bereits vorhanden. Die **zusätzliche Zahl ist die Differenz zwischen Gesamtbedarf und ursprünglicher Zahl**.
 
-<BlockMath math="\begin{aligned}&100 - 80 \\ &=20 \text{ Menschen}\end{aligned}" />
+<BlockMath math="P_{\text{zusätzlich}}=100-80=20\text{ Arbeitskräfte}" />
 
-Die Anzahl der benötigten zusätzlichen Arbeitskräfte beträgt also **<InlineMath math="20 \text{ Menschen}" />**.
+Zur Kontrolle gilt <InlineMath math="(80+20)\times40=4{.}000" /> Personentage, genau der ursprüngliche Arbeitsumfang. Es werden also **20 zusätzliche Arbeitskräfte** ab dem ersten Tag benötigt.

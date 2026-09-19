@@ -23,6 +23,8 @@ The graphical method finds the resultant using a scaled drawing. Arrow lengths a
 The triangle method is used to add two vectors. Draw the first vector, then place the tail of the second vector at the tip of the first. The resultant is drawn from the tail of the first vector to the tip of the second.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Head-to-Tail Addition</>}
   description={
     <>
@@ -66,8 +68,6 @@ The triangle method is used to add two vectors. Draw the first vector, then plac
       },
     ];
   })()}
-  cameraPosition={[8, 6, 10]}
-  cameraTarget={[3, -0.7, 0]}
 />
 
 Place the **tail of the second vector at the tip of the first**. Coordinate units in the model are metres: the first displacement is <InlineMath math="(4,1)" />, followed by <InlineMath math="(2,3)" />. The endpoint is <InlineMath math="(6,4)" /> because you add the position changes along each axis.
@@ -79,6 +79,8 @@ Place the **tail of the second vector at the tip of the first**. Coordinate unit
 Two forces acting at one point can be drawn from a **shared tail**. For example, two ropes pull a ring. The copied vectors in the model keep the original arrow lengths and directions. Follow the lower side then the right side, or the left side then the upper side: both paths end at the same point.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>The Parallelogram Diagonal</>}
   description={<>The purple arrow connects the shared tail to the endpoint of both paths. Vectors a and b remain equal to their parallel copies.</>}
   vectors={[
@@ -88,8 +90,6 @@ Two forces acting at one point can be drawn from a **shared tail**. For example,
     {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
   ]}
-  cameraPosition={[3,2,13]}
-  cameraTarget={[3,2,0]}
 />
 
 ### Polygon Method for Many Vectors
@@ -111,6 +111,8 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
 <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
 <Vector3d
+  cameraPosition={[2, -0.5, 7]}
+  cameraTarget={[2, -0.5, 0]}
   title={<>Adding the Negative Vector</>}
   description={<>From the tip of a at (4,1), move two units left and three units down. The resultant ends at (2,-2).</>}
   vectors={[
@@ -118,6 +120,4 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
     {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
   ]}
-  cameraPosition={[2,0,10]}
-  cameraTarget={[2,0,0]}
 />

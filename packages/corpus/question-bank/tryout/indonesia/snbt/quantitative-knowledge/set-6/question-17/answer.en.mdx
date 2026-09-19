@@ -5,26 +5,13 @@ export const metadata = {
   datePublished: "2025-12-23",
 };
 
-Given the conditions for integer <InlineMath math="m" />:
-*   <InlineMath math="m \equiv 3 \pmod{7}" /> (If divided by <InlineMath math="7" />, remainder is <InlineMath math="3" />)
-*   <InlineMath math="m \equiv 2 \pmod{3}" /> (If divided by <InlineMath math="3" />, remainder is <InlineMath math="2" />)
+Each candidate must satisfy **both remainder conditions**. Write each number as the divisor times the quotient, plus the remainder.
 
-Check each statement:
+| Number | Division by 7 | Division by 3 | Satisfies both |
+| --- | --- | --- | --- |
+| 52 | <InlineMath math="52=7\times7+3" /> | <InlineMath math="52=3\times17+1" /> | No |
+| 59 | <InlineMath math="59=7\times8+3" /> | <InlineMath math="59=3\times19+2" /> | Yes |
+| 42 | <InlineMath math="42=7\times6+0" /> | <InlineMath math="42=3\times14+0" /> | No |
+| 38 | <InlineMath math="38=7\times5+3" /> | <InlineMath math="38=3\times12+2" /> | Yes |
 
-#### Analysis of Statement One
-
-For <InlineMath math="m=52" />, we have <InlineMath math="52=7\times7+3" /> but <InlineMath math="52=17\times3+1" />. The second remainder condition fails, so statement 1 is **incorrect**.
-
-#### Analysis of Statement Two
-
-For <InlineMath math="m=59" />, we have <InlineMath math="59=8\times7+3" /> and <InlineMath math="59=19\times3+2" />. Both conditions hold, so statement 2 is **correct**.
-
-#### Analysis of Statement Three
-
-For <InlineMath math="m=42" />, we have <InlineMath math="42=6\times7+0" /> and <InlineMath math="42=14\times3+0" />. Both divisions have remainder <InlineMath math="0" />, so statement 3 is **incorrect**.
-
-#### Analysis of Statement Four
-
-For <InlineMath math="m=38" />, we have <InlineMath math="38=5\times7+3" /> and <InlineMath math="38=12\times3+2" />. Both conditions hold, so statement 4 is **correct**.
-
-Therefore, exactly statements **(2) and (4)** are correct.
+Only 59 and 38 leave remainder 3 modulo 7 and remainder 2 modulo 3. Therefore, **statements 2 and 4** are correct.

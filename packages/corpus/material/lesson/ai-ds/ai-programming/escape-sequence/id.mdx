@@ -3,7 +3,7 @@ export const metadata = {
     description: "Cara Python membaca notasi backslash untuk tanda kutip, baris baru, tab, dan karakter khusus di dalam string.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -15,11 +15,11 @@ Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupa
 
 ## Masalah dalam Penulisan String
 
-Tanda kutip dan backslash perlu perhatian di dalam string, karena Python membacanya sebelum string itu terbentuk. Tanda kutip dalam yang sama dengan pembatas akan menutup literal terlalu awal, sedangkan backslash selalu memulai sebuah escape. Menambahkan escape pada karakter itu menjaga karakter tersebut tetap di dalam teks, dan dua backslash menghasilkan satu backslash pada nilai akhir.
+**Tanda kutip dan backslash** perlu perhatian di dalam string, karena Python membacanya sebelum string itu terbentuk. Tanda kutip dalam yang sama dengan pembatas akan menutup literal terlalu awal, sedangkan backslash dalam string biasa menandai notasi escape. Menambahkan escape pada karakter itu menjaga karakter tersebut tetap di dalam teks, dan dua backslash menghasilkan satu backslash pada nilai akhir.
 
 ### Konflik Tanda Kutip
 
-Jika tanda kutip yang sama dipakai sebagai pembatas string dan muncul di dalam teksnya, tanda kutip yang tidak didahului backslash akan menutup literal terlalu awal. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
+Jika tanda kutip yang sama dipakai sebagai pembatas string dan muncul di dalam teksnya, tanda kutip yang tidak didahului backslash akan **menutup literal terlalu awal**. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
 
 <CodeBlock
   data={[
@@ -56,7 +56,7 @@ Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks
 >>> 'He said: "I\\'m Bob."'
 'He said: "I\\'m Bob."'
 
-# Python memproses escape sequence saat di-print
+# print menampilkan nilai string setelah escape diproses
 >>> print('He said: "I\\'m Bob."')
 He said: "I'm Bob."`
     }
@@ -67,7 +67,7 @@ Dalam contoh ini, `\'` memberi tahu Python agar mempertahankan tanda kutip tungg
 
 ### Menampilkan Karakter Backslash
 
-Untuk menampilkan satu backslash di dalam string biasa, tulis dua backslash berturut-turut.
+Untuk menampilkan satu backslash di dalam string biasa, tulis **dua backslash** berturut-turut.
 
 <CodeBlock
   data={[
@@ -92,7 +92,7 @@ Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa mena
 
 ## Daftar Escape Sequence
 
-Tabel berikut memuat notasi escape yang sering dipakai dalam Python.
+Tabel berikut memuat **notasi escape** yang sering dipakai dalam Python.
 
 | Notasi | Makna |
 |---|---|
@@ -112,7 +112,7 @@ Setiap notasi menghasilkan karakter tertentu di dalam string. Sebagian mengatur 
 
 ### Escape Kurung Kurawal dalam Format String
 
-Dalam `str.format()` dan f-string, kurung kurawal menandai bagian yang akan diisi nilai. Kurung kurawal ganda membuat tanda tersebut dibaca sebagai teks biasa. Mekanisme ini berbeda dari notasi backslash di dalam literal string.
+Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan diisi nilai**. Kurung kurawal ganda membuat tanda tersebut dibaca sebagai teks biasa. Mekanisme ini berbeda dari notasi backslash di dalam literal string.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}
 
 ## Menggabungkan Escape Sequence
 
-Contoh berikut menggabungkan tab, baris baru, tanda kutip, dan backslash literal dalam satu output.
+Contoh berikut menggabungkan **tab dan baris baru** bersama tanda kutip dan backslash literal dalam satu output.
 
 <CodeBlock
   data={[

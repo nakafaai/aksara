@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Indexing dan Slicing
 
-Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa `axis`. Slicing pada `list` Python membuat `list` baru. Basic slicing NumPy biasanya menghasilkan `view` yang berbagi data dengan array asal. <Highlight>Advanced indexing dengan array integer atau Boolean selalu membuat copy</Highlight>.
+Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa `axis`. Slicing pada `list` Python membuat `list` baru. Basic slicing pada `ndarray` menghasilkan **view yang berbagi data** dengan array asal. Membaca elemen melalui advanced indexing dengan array integer atau Boolean menghasilkan copy.
 
 [`View`](https://numpy.org/doc/stable/user/basics.indexing.html) tidak menyalin data. Karena `view` dan array asal memakai data yang sama, perubahan melalui `view` juga mengubah elemen terkait pada array asal.
 
 ## Operasi Array Satu Dimensi
 
-Array satu dimensi memakai sintaks indeks Python. Basic slicing seperti `a[1:4]` menghasilkan `view`, sehingga perubahan melalui `view` juga mengubah elemen yang sama di `a`.
+Array satu dimensi memakai sintaks indeks Python. Basic slicing seperti `a[1:4]` menghasilkan `view`, sehingga perubahan melalui `view` juga **mengubah elemen yang sama** di `a`.
 
 <CodeBlock
   data={[
@@ -29,7 +29,7 @@ a = np.linspace(0, 7, 8)
 print("Array asal:", a)  # Output: Array asal: [0. 1. 2. 3. 4. 5. 6. 7.]
 
 # Indexing elemen tunggal
-print("Elemen ke-3:", a[3])  # Output: Elemen ke-3: 3.0
+print("Elemen pada indeks 3:", a[3])  # Output: Elemen pada indeks 3: 3.0
 print("Elemen terakhir:", a[-1])  # Output: Elemen terakhir: 7.0
 
 # Slicing dasar
@@ -78,7 +78,7 @@ print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
 
 ## Operasi Array Multidimensi
 
-Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani satu dimensi array, dimulai dari dimensi pertama. <Highlight>Indeks berupa bilangan bulat menghapus dimensi itu dari array hasil</Highlight>, sedangkan potongan seperti `:` mempertahankan dimensi tersebut. Contohnya, pada array dua dimensi `a`, `a[1, :]` menghasilkan array satu dimensi dari baris kedua, sedangkan `a[1:2, :]` tetap menghasilkan array dua dimensi berisi satu baris.
+Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani satu dimensi array, dimulai dari dimensi pertama. Indeks berupa bilangan bulat **menghapus dimensi itu** dari array hasil, sedangkan potongan seperti `:` mempertahankan dimensi tersebut. Contohnya, pada array dua dimensi `a`, `a[1, :]` menghasilkan array satu dimensi dari baris kedua, sedangkan `a[1:2, :]` tetap menghasilkan array dua dimensi berisi satu baris.
 
 <CodeBlock
   data={[
@@ -112,7 +112,7 @@ print("a[:,2]:", a[:,2])  # Output: a[:,2]: [ 3.  6.  9. 12.]`
   ]}
 />
 
-Kombinasi slice pada beberapa axis memilih subarray berbentuk persegi atau berselang tanpa menulis loop:
+Kombinasi slice pada beberapa axis memilih subarray berbentuk persegi panjang atau berselang tanpa menulis loop:
 
 <CodeBlock
   data={[
@@ -138,8 +138,8 @@ print(a[1:3, 0:2])
 print("a[::2, :]:")
 print(a[::2, :])
 # Output:
-# [[ 1.  2.  3.]
-#  [ 7.  8.  9.]]
+# [[1. 2. 3.]
+#  [7. 8. 9.]]
 
 # Slicing kolom dengan step
 print("a[:, ::2]:")
@@ -155,7 +155,7 @@ print(a[:, ::2])
 
 ### Ringkasan Operasi Dua Dimensi
 
-Tabel berikut mengumpulkan bentuk indeks dan slice untuk array dua dimensi di satu tempat, lengkap dengan bentuk hasil masing-masing.
+Tabel berikut mengumpulkan bentuk indeks dan slice untuk array dua dimensi di satu tempat, lengkap dengan **bentuk hasil masing-masing**.
 
 | Operasi | Deskripsi | Contoh Hasil |
 |---------|-----------|--------------|
@@ -168,7 +168,7 @@ Tabel berikut mengumpulkan bentuk indeks dan slice untuk array dua dimensi di sa
 
 ## Advanced Indexing
 
-Advanced indexing memakai array integer atau Boolean untuk memilih elemen secara bebas dan selalu menghasilkan copy. Pada sumber satu dimensi, bentuk array indeks menentukan bentuk hasil. Pada sumber multidimensi, NumPy menerapkan `broadcasting` pada array indeks, lalu menggabungkan bentuk array indeks dengan dimensi yang tersisa dari basic slicing.
+Advanced indexing memakai array integer atau Boolean untuk memilih elemen secara bebas dan selalu menghasilkan copy. Pada sumber satu dimensi, **bentuk array indeks menentukan bentuk hasil**. Pada sumber multidimensi, NumPy menerapkan `broadcasting` pada array indeks, lalu menggabungkan bentuk array indeks dengan dimensi yang tersisa dari basic slicing.
 
 <CodeBlock
   data={[
@@ -272,7 +272,7 @@ print(a[row_mask, 2:5])
 
 ## Teknik Lanjutan
 
-Bagian ketiga pada slice adalah step. Nilai ini memilih interval teratur, menerima nilai negatif untuk menelusuri urutan terbalik, dan dapat dipakai secara terpisah pada setiap axis.
+Bagian ketiga pada slice adalah step. Nilai ini memilih **interval teratur**, menerima nilai negatif untuk menelusuri urutan terbalik, dan dapat dipakai secara terpisah pada setiap axis.
 
 <CodeBlock
   data={[
@@ -347,7 +347,7 @@ print(a[1, ..., ::2])
 
 ## Indexing dengan Boolean Mask
 
-Boolean indexing memeriksa mask pada setiap posisi. Nilai `True` memilih elemen, sedangkan `False` melewatinya.
+Boolean indexing memeriksa mask pada setiap posisi. **Nilai `True` memilih elemen**, sedangkan `False` melewatinya.
 
 <CodeBlock
   data={[
@@ -413,15 +413,17 @@ print("Setelah a[a < 5] = 0:")
 print(a)
 # Output:
 # [[ 0  0  0  0]
-#  [ 0  0  6  7]
+#  [ 0  5  6  7]
 #  [ 8  9 10 11]]`
     }
   ]}
 />
 
+Bedakan **membaca hasil seleksi dan memberi nilai**. `selected = a[mask]` membuat copy, tetapi `a[a < 5] = 0` menulis langsung ke posisi terpilih pada `a`. Nilai `5` tetap ada karena kondisi memakai `< 5`, bukan `<= 5`.
+
 ## Indexing dengan Array Indeks
 
-Istilah `fancy indexing` biasanya merujuk pada advanced indexing dengan array integer. Cara ini dapat mengurutkan ulang posisi, memilih posisi yang sama beberapa kali, atau menyusun hasil mengikuti bentuk array indeks.
+Istilah `fancy indexing` biasanya merujuk pada advanced indexing dengan array integer. Cara ini dapat mengurutkan ulang posisi, **memilih posisi yang sama beberapa kali**, atau menyusun hasil mengikuti bentuk array indeks.
 
 <CodeBlock
   data={[
@@ -505,7 +507,7 @@ print(a[[0, 2], 1:4])
 
 ## Memilih dan Menyusun Ulang Data dalam Array
 
-Aturan seleksi yang sama dapat dipakai untuk menyaring baris, mengambil sampel, dan menyusun ulang data tanpa menulis loop.
+Aturan seleksi yang sama dapat dipakai untuk **menyaring baris, mengambil sampel**, dan menyusun ulang data tanpa menulis loop.
 
 Contoh ini memperlihatkan mask dan pemberian nilai. Dalam analisis sebenarnya, konteks pengukuran harus menentukan ambang suhu dan aturan penggantian:
 
@@ -539,7 +541,7 @@ print("Data setelah cleaning:", temperatures_cleaned)  # Output: Data setelah cl
   ]}
 />
 
-Untuk memperoleh sampel yang sama setiap kali kode dijalankan, buat generator acak lokal dengan `seed` yang tetap. Cara ini tidak mengubah state generator acak global NumPy:
+Untuk mengulang sampel dengan generator dan versi NumPy yang sama, gunakan `seed` yang tetap pada generator lokal:
 
 <CodeBlock
   data={[

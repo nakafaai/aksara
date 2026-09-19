@@ -3,7 +3,7 @@ export const metadata = {
     description: "Python escape sequences with backslash notation for quotes, newlines, tabs, and special characters in strings.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -15,11 +15,11 @@ The backslash changes how Python parses the following characters. It is part of 
 
 ## Problems in String Writing
 
-Quotes and backslashes need care inside a string, because Python reads them before the string exists. An inner quote that matches the delimiter closes the literal too early, and a backslash always starts an escape. Escaping the character keeps it in the text, and writing two backslashes keeps one backslash in the value.
+**Quotes and backslashes** need care inside a string, because Python reads them before the string exists. An inner quote that matches the delimiter closes the literal too early, and a backslash in an ordinary string starts escape notation. Escaping the character keeps it in the text, and writing two backslashes keeps one backslash in the value.
 
 ### Quote Conflicts
 
-When the same quote character both delimits a string and appears inside it, an unescaped inner quote closes the literal too early. The remaining characters are then parsed as invalid Python code.
+When the same quote character both delimits a string and appears inside it, an unescaped inner quote **closes the literal too early**. The remaining characters are then parsed as invalid Python code.
 
 <CodeBlock
   data={[
@@ -45,7 +45,7 @@ When you use single quotes to create a string, but there's also a single quote i
 
 ### Solution with Backslash
 
-Place a backslash (`\`) before a character to create an escape sequence. The backslash <Highlight>tells Python to read the next character</Highlight> as part of the text.
+Place a backslash (`\`) before an inner quotation mark. Python reads the escaped quote as <Highlight>part of the string</Highlight> instead of its closing delimiter.
 
 <CodeBlock
   data={[
@@ -56,7 +56,7 @@ Place a backslash (`\`) before a character to create an escape sequence. The bac
 >>> 'He said: "I\\'m Bob."'
 'He said: "I\\'m Bob."'
 
-# When printed, escape sequence is interpreted
+# print displays the string value after escape processing
 >>> print('He said: "I\\'m Bob."')
 He said: "I'm Bob."`
     }
@@ -67,7 +67,7 @@ In this example, `\'` tells Python to keep the single quote inside the text. The
 
 ### Displaying Backslash Characters
 
-Since backslash has a special meaning in escape sequences, how do you display the backslash itself? You need to use two backslashes consecutively.
+Since backslash has a special meaning in escape sequences, how do you display the backslash itself? You need to use **two backslashes** consecutively.
 
 <CodeBlock
   data={[
@@ -92,7 +92,7 @@ A raw string prefix such as `r` keeps most backslashes as written. Quotes still 
 
 ## Escape Sequence Reference
 
-Here are escape sequences commonly used in programming:
+These **escape sequences** represent characters in Python string literals:
 
 | Escape Sequence | Meaning |
 |---|---|
@@ -112,7 +112,7 @@ Each escape sequence has a specific function to control the display or format of
 
 ### Escaping Curly Braces in Format Strings
 
-In `str.format()` and f-strings, curly braces delimit replacement fields. Doubling a brace escapes it for the formatting syntax. This is separate from backslash escape sequences in string literals.
+In `str.format()` and f-strings, curly braces delimit **replacement fields**. Doubling a brace escapes it for the formatting syntax. This is separate from backslash escape sequences in string literals.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ Write `{{` to produce `{` and `}}` to produce `}`. In `'{{{}}}'`, the outer doub
 
 ## Combining Escape Sequences
 
-The example below uses escape sequences to control tabs, line breaks, quotation marks, and literal backslashes in one output.
+The example below uses escape sequences to control **tabs and line breaks** alongside quotation marks and literal backslashes in one output.
 
 <CodeBlock
   data={[

@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Basic Indexing and Slicing Concepts
 
-Indexing selects values at specific positions, while slicing selects a range along one or more axes. A Python list slice creates a new list. Basic NumPy slicing usually <Highlight>creates a view that shares the original array's data</Highlight>, whereas integer-array and boolean advanced indexing create copies.
+Indexing selects values at specific positions, while slicing selects a range along one or more axes. A Python list slice creates a new list. Basic slicing of an `ndarray` creates a **view sharing the original data**, while reading through integer-array or boolean advanced indexing creates a copy.
 
 [Views](https://numpy.org/doc/stable/user/basics.indexing.html) avoid copying data, but a write through a view also changes the corresponding values in the original array.
 
 ## One Dimensional Array Operations
 
-One-dimensional arrays use familiar Python indexing syntax. A basic slice such as `a[1:4]` returns a view, so changing that view changes the same elements in `a`.
+One-dimensional arrays use familiar Python indexing syntax. A basic slice such as `a[1:4]` returns a view, so **changing that view changes the same elements** in `a`.
 
 <CodeBlock
   data={[
@@ -29,7 +29,7 @@ a = np.linspace(0, 7, 8)
 print("Original array:", a)  # Output: Original array: [0. 1. 2. 3. 4. 5. 6. 7.]
 
 # Single element indexing
-print("3rd element:", a[3])  # Output: 3rd element: 3.0
+print("Element at index 3:", a[3])  # Output: Element at index 3: 3.0
 print("Last element:", a[-1])  # Output: Last element: 7.0
 
 # Basic slicing
@@ -78,7 +78,7 @@ print("Copy:", copy_array)  # Output: Copy: [777   3   4]`
 
 ## Multidimensional Array Operations
 
-In a multidimensional selection, each comma-separated entry addresses one array dimension, starting with the first dimension. <Highlight>An integer index removes that dimension from the result array</Highlight>, while a slice such as `:` keeps it. For example, on a two-dimensional array `a`, `a[1, :]` produces a one-dimensional array holding the second row, while `a[1:2, :]` still produces a two-dimensional array holding one row.
+In a multidimensional selection, each comma-separated entry addresses one array dimension, starting with the first dimension. An integer index **removes that dimension** from the result array, while a slice such as `:` keeps it. For example, on a two-dimensional array `a`, `a[1, :]` produces a one-dimensional array holding the second row, while `a[1:2, :]` still produces a two-dimensional array holding one row.
 
 <CodeBlock
   data={[
@@ -138,8 +138,8 @@ print(a[1:3, 0:2])
 print("a[::2, :]:")
 print(a[::2, :])
 # Output:
-# [[ 1.  2.  3.]
-#  [ 7.  8.  9.]]
+# [[1. 2. 3.]
+#  [7. 8. 9.]]
 
 # Column slicing with step
 print("a[:, ::2]:")
@@ -155,7 +155,7 @@ print(a[:, ::2])
 
 ### Two Dimensional Operations Summary
 
-The table collects the indexing and slicing forms for a two-dimensional array in one place, together with the shape of each result.
+The table collects the indexing and slicing forms for a two-dimensional array in one place, together with the **shape of each result**.
 
 | Operation | Description | Example Result |
 |-----------|-------------|----------------|
@@ -168,7 +168,7 @@ The table collects the indexing and slicing forms for a two-dimensional array in
 
 ## Advanced Indexing
 
-Advanced indexing uses integer or boolean arrays to select arbitrary elements and always returns a copy. For a one-dimensional source, an integer index array gives the result its shape. With multidimensional sources, NumPy broadcasts the index arrays and combines that shape with any dimensions left by basic slices.
+Advanced indexing uses integer or boolean arrays to select arbitrary elements and always returns a copy. For a one-dimensional source, an **integer index array gives the result its shape**. With multidimensional sources, NumPy broadcasts the index arrays and combines that shape with any dimensions left by basic slices.
 
 <CodeBlock
   data={[
@@ -272,7 +272,7 @@ print(a[row_mask, 2:5])
 
 ## Advanced Techniques
 
-The third slice field is the step. It selects regular intervals, supports negative values for reverse traversal, and works independently on each axis.
+The third slice field is the step. It selects **regular intervals**, supports negative values for reverse traversal, and works independently on each axis.
 
 <CodeBlock
   data={[
@@ -347,7 +347,7 @@ print(a[1, ..., ::2])
 
 ## Boolean Indexing
 
-Boolean indexing evaluates a mask at each relevant position. `True` selects the value and `False` leaves it out.
+Boolean indexing evaluates a mask at each relevant position. **`True` selects the value** and `False` leaves it out.
 
 <CodeBlock
   data={[
@@ -413,15 +413,17 @@ print("After a[a < 5] = 0:")
 print(a)
 # Output:
 # [[ 0  0  0  0]
-#  [ 0  0  6  7]
+#  [ 0  5  6  7]
 #  [ 8  9 10 11]]`
     }
   ]}
 />
 
+Distinguish **reading a selection from assignment**. `selected = a[mask]` creates a copy, but `a[a < 5] = 0` writes directly to the selected positions in `a`. The value `5` remains because the condition is `< 5`, not `<= 5`.
+
 ## Fancy Indexing
 
-Fancy indexing is a common name for advanced integer indexing. It can reorder positions, repeat them, or arrange the result according to an index array.
+Fancy indexing is a common name for advanced integer indexing. It can **reorder positions, repeat them**, or arrange the result according to an index array.
 
 <CodeBlock
   data={[
@@ -505,7 +507,7 @@ print(a[[0, 2], 1:4])
 
 ## Selecting and Rearranging Array Data
 
-Use the same selection rules to filter rows, draw samples, and rearrange data without writing loops.
+Use the same selection rules to **filter rows, draw samples**, and rearrange data without writing loops.
 
 This example demonstrates masks and assignment. In a real analysis, the measurement context must determine the temperature thresholds and replacement rule:
 
@@ -539,7 +541,7 @@ print("Data after cleaning:", temperatures_cleaned)  # Output: Data after cleani
   ]}
 />
 
-For reproducible sampling, create a local random generator with an explicit seed. This keeps NumPy's old global random state unchanged:
+To repeat a sample with the same generator and NumPy version, pass a fixed seed to a local generator:
 
 <CodeBlock
   data={[

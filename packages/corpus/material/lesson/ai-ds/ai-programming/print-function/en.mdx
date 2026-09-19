@@ -3,7 +3,7 @@ export const metadata = {
     description: "Python print output, sep and end parameters, and formatting techniques for precise output control.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -15,7 +15,7 @@ The print function belongs to the built-in function category, just like `len()`,
 
 ## Basic Print Function Syntax
 
-The complete print function syntax has several parameters that can be customized to control how output is displayed.
+The complete print function syntax has several **output parameters** to control how output is displayed.
 
 <CodeBlock
   data={[
@@ -23,7 +23,7 @@ The complete print function syntax has several parameters that can be customized
       language: "python",
       filename: "print_syntax.py",
       code: `# Complete print function syntax
-# print(*objects, sep=' ', end='\\n', file=sys.stdout, flush=False)
+# print(*objects, sep=' ', end='\\n', file=None, flush=False)
 
 # Basic usage example
 print("Hello, World!")
@@ -43,7 +43,7 @@ The `*objects` notation means that `print()` accepts zero or more positional obj
 
 ## The Sep Parameter
 
-The `sep` parameter determines the character or string used to separate multiple objects in a single print call. The default value of `sep` is a single space.
+The `sep` parameter determines the character or string used to separate multiple objects in a single print call. The default value of `sep` is **a single space**.
 
 <CodeBlock
   data={[
@@ -125,7 +125,7 @@ Changing `end` lets several calls continue on one line. Pass `flush=True` when t
 
 ## Displaying Various Data Types
 
-`print()` accepts objects of many types and obtains their human-readable string representation before writing it. Custom classes can control that representation with `__str__()`.
+`print()` accepts objects of many types and obtains their **human-readable string representation** before writing it. Custom classes can control that representation with `__str__()`.
 
 <CodeBlock
   data={[
@@ -163,11 +163,11 @@ One `print()` call can accept values of different types, convert each value to t
 
 ## Output Formatting Techniques
 
-A plain `print()` call is enough for a quick look, and formatted output needs one more tool. An f-string builds one text value from expressions that sit next to their surrounding words, and the `end` argument controls what `print()` writes after that value. Both keep the output readable without a separate concatenation step.
+A plain `print()` call is enough for a quick look, and formatted output needs one more tool. An f-string builds **one text value** from expressions that sit next to their surrounding words, and the `end` argument controls what `print()` writes after that value. Both keep the output readable without a separate concatenation step.
 
 ### Print with F String
 
-An f-string evaluates expressions inside braces and applies optional format specifications. It keeps the values and their surrounding text in one readable expression.
+An f-string evaluates **expressions inside braces** and applies optional format specifications. It keeps the values and their surrounding text in one readable expression.
 
 <CodeBlock
   data={[
@@ -211,11 +211,11 @@ print(f"Completion: {completion:.1%}")  # 87.5%`
   ]}
 />
 
-F-string provides a very readable and efficient way to combine text with variables or calculation results.
+An f-string combines text with variables or calculation results in one expression.
 
 ### Print Without Newline
 
-When you want to display output on one line gradually, the `end` parameter can be changed to avoid automatic newlines.
+When you want to display output on one line gradually, the `end` parameter can be changed to **avoid automatic newlines**.
 
 <CodeBlock
   data={[

@@ -5,41 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analisis setiap bangun datar berdasarkan jumlah simetri lipat dan simetri putarnya.
+Bangun harus memenuhi **kedua batas minimum**: paling sedikit dua simetri putar dan tiga simetri lipat. Posisi awal dihitung sebagai satu simetri putar.
 
-Syarat yang diminta adalah:
+| Bangun | Simetri putar | Simetri lipat | Memenuhi keduanya? |
+| --- | --- | --- | --- |
+| Segitiga sembarang | 1: posisi awal | 0: tidak ada sumbu simetri | Tidak |
+| Jajar genjang bukan persegi panjang atau belah ketupat | 2: rotasi 0° dan 180° | 0: tidak ada sumbu simetri | Tidak |
+| Elips bukan lingkaran | 2: rotasi 0° dan 180° | 2: sumbu mayor dan minor | Tidak |
+| Segienam beraturan | 6: rotasi kelipatan 60° dari 0° sampai 300° | 6: tiga melalui titik sudut berhadapan dan tiga melalui titik tengah sisi berhadapan | Ya |
 
-1.  Simetri putar <InlineMath math="\ge 2" />
-2.  Simetri lipat <InlineMath math="\ge 3" />
+Pada segienam beraturan, **keenam sumbu simetri** terlihat pada gambar. Elips hanya memiliki dua sumbu, sehingga belum memenuhi syarat tiga sumbu. Jadi, hanya satu bangun memenuhi kedua syarat.
 
-#### Segitiga Sembarang
-
-*   **Simetri lipat:** <InlineMath math="0" /> (tidak memiliki sumbu simetri).
-*   **Simetri putar:** <InlineMath math="1" /> (hanya kembali ke posisi semula setelah diputar <InlineMath math="360^\circ" />).
-
-**Kesimpulan:** Tidak memenuhi kedua syarat.
-
-#### Jajar Genjang Umum
-
-*   **Simetri lipat:** <InlineMath math="0" /> (tidak memiliki sumbu simetri).
-*   **Simetri putar:** <InlineMath math="2" /> (simetri putar tingkat <InlineMath math="2" />).
-
-**Kesimpulan:** Memenuhi syarat simetri putar, tetapi **tidak memenuhi** syarat simetri lipat.
-
-#### Elips
-
-*   **Simetri lipat:** <InlineMath math="2" /> (sumbu mayor dan sumbu minor).
-*   **Simetri putar:** <InlineMath math="2" /> (simetri putar tingkat <InlineMath math="2" />).
-
-**Kesimpulan:** Memenuhi syarat simetri putar, tetapi **tidak memenuhi** syarat simetri lipat (karena hanya punya <InlineMath math="2" />, diminta minimal <InlineMath math="3" />).
-
-#### Segienam Beraturan
-
-*   **Simetri lipat:** <InlineMath math="6" /> (memiliki <InlineMath math="6" /> sumbu simetri).
-*   **Simetri putar:** <InlineMath math="6" /> (simetri putar tingkat <InlineMath math="6" />).
-
-**Kesimpulan:** Memenuhi kedua syarat (simetri putar <InlineMath math="6 \ge 2" /> dan simetri lipat <InlineMath math="6 \ge 3" />).
-
-#### Kesimpulan Akhir
-
-Dari keempat bangun datar tersebut, hanya **<InlineMath math="1" /> bidang datar** yang memenuhi kriteria, yaitu Segienam beraturan.
+<MathVisual
+ title="Enam sumbu simetri segienam"
+ description="Tiga garis melalui pasangan titik sudut berhadapan. Tiga garis lainnya melalui titik tengah sisi berhadapan."
+ scene={{"space":"plane","frame":{"kind":"cartesian","x":{"min":-3,"max":3},"y":{"min":-3,"max":3}},"view":{"kind":"fit","padding":0.1},"objects":[{"id":"hexagon","kind":"polygon","appearance":"primary","vertices":[{"x":2.0,"y":0},{"x":1.0,"y":1.732050807569},{"x":-1.0,"y":1.732050807569},{"x":-2.0,"y":0},{"x":-1.0,"y":-1.732050807569},{"x":1.0,"y":-1.732050807569}]},{"id":"axis-0","kind":"segment","appearance":"highlight","from":{"x":-2.3,"y":0},"to":{"x":2.3,"y":0}},{"id":"axis-1","kind":"segment","appearance":"secondary","from":{"x":-1.991858428704,"y":-1.15},"to":{"x":1.991858428704,"y":1.15}},{"id":"axis-2","kind":"segment","appearance":"highlight","from":{"x":-1.15,"y":-1.991858428704},"to":{"x":1.15,"y":1.991858428704}},{"id":"axis-3","kind":"segment","appearance":"secondary","from":{"x":0,"y":-2.3},"to":{"x":0,"y":2.3}},{"id":"axis-4","kind":"segment","appearance":"highlight","from":{"x":1.15,"y":-1.991858428704},"to":{"x":-1.15,"y":1.991858428704}},{"id":"axis-5","kind":"segment","appearance":"secondary","from":{"x":1.991858428704,"y":-1.15},"to":{"x":-1.991858428704,"y":1.15}}],"labels":[]}}
+ labels={{}}
+/>

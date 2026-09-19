@@ -1,29 +1,27 @@
 export const metadata = {
     title: "Solution for Question 14",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-We will use the concept of inverse proportion to solve this problem. The more workers there are, the shorter the time required, and vice versa.
+The amount of work stays fixed. If every worker has the same constant daily rate, **worker count and completion time are inversely proportional**. Sixty-four workers therefore need longer than eighty workers.
 
-#### Calculating Total Workload
+#### Finding the Fixed Workload
 
-The total project workload can be expressed in "man-days":
+One **worker-day** is the work done by one worker in one working day. Eighty workers working for fifty days provide the following workload.
 
-<BlockMath math="\begin{aligned}&80 \times 50 \\ &=4{,}000 \text{ man-days}\end{aligned}" />
+<BlockMath math="W=80\times50=4{,}000\text{ worker-days}" />
 
-#### Calculating Time with New Workers
+| Workers from the start | Time (working days) | Workload (worker-days) |
+| --- | --- | --- |
+| 80 | 50 | 4,000 |
+| 64 | <InlineMath math="t" /> | <InlineMath math="64t=4{,}000" /> |
 
-If the number of workers is reduced to <InlineMath math="64" />, the time required (<InlineMath math="t" />) is:
+#### Finding the Completion Day
 
-<MathContainer>
-  <BlockMath math="64 \times t = 4{,}000" />
-  <BlockMath math="t = \frac{4{,}000}{64}" />
-</MathContainer>
+Divide the workload by the worker count to obtain **the project duration**. All workers start at the beginning, so there is no earlier stage of work to subtract.
 
-We calculate the division result:
+<BlockMath math="\begin{aligned}64t&=4{,}000\\t&=\frac{4{,}000}{64}\\&=\frac{4{,}000\div32}{64\div32}\\&=\frac{125}{2}=62.5\text{ working days}\end{aligned}" />
 
-<BlockMath math="\begin{aligned}t&=\frac{1{,}000}{16} \\ &=\frac{500}{8} \\ &=\frac{125}{2} \\ &=62.5\end{aligned}" />
-
-The exact duration is <InlineMath math="62.5 \text{ days}" />, so the project is completed halfway through the <InlineMath math="63" />rd working day. Therefore, the requested working day is **<InlineMath math="63" />**.
+After 62 days, they supply <InlineMath math="64\times62=3{,}968" /> worker-days. The remaining <InlineMath math="4{,}000-3{,}968=32" /> worker-days take another half day. The project therefore finishes **on working day 63**, halfway through that day. The number 63 identifies the completion day, while the exact duration remains 62.5 days.

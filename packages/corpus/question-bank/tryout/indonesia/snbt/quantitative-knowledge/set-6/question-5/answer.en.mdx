@@ -5,38 +5,23 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Given the equation <InlineMath math="x^2 + y^2 = 169" /> where <InlineMath math="x" /> and <InlineMath math="y" /> are integers. The value <InlineMath math="169" /> is the square of <InlineMath math="13" /> (<InlineMath math="13^2 = 169" />). The integer pairs <InlineMath math="(x, y)" /> satisfying this circle equation can be found using Pythagorean triples or properties of perfect squares.
+We need **all integer pairs**, not just one Pythagorean triple. Squaring removes the sign, so let <InlineMath math="u=\min(|x|,|y|)" /> and <InlineMath math="v=\max(|x|,|y|)" />. Then <InlineMath math="2u^2\le169" />, so we only need to test <InlineMath math="u=0,1,\ldots,9" />. The value <InlineMath math="169-u^2" /> must be a **perfect square**.
 
-The possible pairs are:
+| <InlineMath math="u" /> | <InlineMath math="169-u^2" /> | <InlineMath math="v" /> |
+| --- | --- | --- |
+| 0 | 169 | 13 |
+| 1 | 168 | Not an integer |
+| 2 | 165 | Not an integer |
+| 3 | 160 | Not an integer |
+| 4 | 153 | Not an integer |
+| 5 | 144 | 12 |
+| 6 | 133 | Not an integer |
+| 7 | 120 | Not an integer |
+| 8 | 105 | Not an integer |
+| 9 | 88 | Not an integer |
 
-1. If one variable is <InlineMath math="0" />, then the other is <InlineMath math="\pm 13" />. Pairs: <InlineMath math="(13,0)" />, <InlineMath math="(-13,0)" />, <InlineMath math="(0,13)" />, <InlineMath math="(0,-13)" />. Possible values for <InlineMath math="x + y" />:
+Thus the absolute values are only <InlineMath math="(0,13)" /> or <InlineMath math="(5,12)" />, including swapped coordinates. The first pair gives sums <InlineMath math="\pm13" />. For the second pair, check both signs:
 
-   <BlockMath math="\pm 13 + 0 = \pm 13" />
+<BlockMath math="\begin{aligned}5+12&=17\\5-12&=-7\\-5+12&=7\\-5-12&=-17\end{aligned}" />
 
-2. If both variables are non-zero, we look for combinations of squares summing to <InlineMath math="169" />. The Pythagorean triple involving <InlineMath math="13" /> as the hypotenuse is <InlineMath math="(5, 12, 13)" /> because <InlineMath math="5^2+12^2=169" />. Possible pairs <InlineMath math="(x, y)" /> (including negative values): <InlineMath math="(\pm 5, \pm 12)" /> and <InlineMath math="(\pm 12, \pm 5)" />. Possible values for <InlineMath math="x + y" /> from these combinations:
-
-   <BlockMath math="\begin{aligned} 5 + 12 &= 17 \\ 5 + (-12) &= -7 \\ -5 + 12 &= 7 \\ -5 + (-12) &= -17 \end{aligned}" />
-
-   Thus, <InlineMath math="x + y" /> can be <InlineMath math="\pm 17" /> or <InlineMath math="\pm 7" />.
-
-The set of all possible values for <InlineMath math="x + y" /> is <InlineMath math="\{\pm 13, \pm 17, \pm 7\}" />.
-
-#### Statement One Analysis
-
-The value <InlineMath math="\pm 7" /> is in the solution set. Statement 1 is **CORRECT**.
-
-#### Statement Two Analysis
-
-The value <InlineMath math="\pm 10" /> is **NOT** in the solution set. Statement 2 is **INCORRECT**.
-
-#### Statement Three Analysis
-
-The value <InlineMath math="\pm 13" /> is in the solution set. Statement 3 is **CORRECT**.
-
-#### Statement Four Analysis
-
-The value <InlineMath math="\pm 14" /> is **NOT** in the solution set. Statement 4 is **INCORRECT**.
-
-#### True Equation Statements
-
-The correct statements are **(1) and (3)**.
+All possible sums are <InlineMath math="\{-17,-13,-7,7,13,17\}" />. Neither <InlineMath math="\pm10" /> nor <InlineMath math="\pm14" /> occurs, so only **statements 1 and 3** are correct.

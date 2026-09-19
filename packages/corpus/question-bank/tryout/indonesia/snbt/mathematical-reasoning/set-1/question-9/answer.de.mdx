@@ -1,23 +1,29 @@
-
 export const metadata = {
   title: "Lösung zu Aufgabe 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
 };
 
-Wir werden die Wertemenge für <InlineMath math="x" /> bestimmen, der die Bedingung erfüllt, dass der Quader reale (positive) Abmessungen hat.
+Gesucht sind Werte von <InlineMath math="x" />, bei denen **Länge, Breite und Höhe alle positiv** sind. Eine Kantenlänge null würde den Quader abflachen. Negative Längen sind keine möglichen Kantenmaße.
 
 #### Quadermaße ermitteln
 
-Aus dem Grundumfang <InlineMath math="2(p+l)=6x" /> und der Breite <InlineMath math="l=4x-5" /> folgt:
+Leite die Länge aus **dem Grundumfang** her, ohne ein Ergebnis aus einer anderen Aufgabe vorauszusetzen. Alle folgenden Maße sind in Zentimetern angegeben.
+
+<BlockMath math="\begin{aligned}
+2(p+l)&=6x \\
+p&=3x-l \\
+&=3x-(4x-5)=5-x
+\end{aligned}" />
+
 - Länge (<InlineMath math="p" />) ist <InlineMath math="5 - x" />
 - Breite (<InlineMath math="l" />) ist <InlineMath math="4x - 5" />
 - Höhe (<InlineMath math="t" />) ist <InlineMath math="5 - \frac{1}{3}x" />
 
 #### Positive Dimensionsbedingungen
 
-Damit der Quader real ist, müssen alle seine Abmessungen positiv sein (<InlineMath math="> 0" />).
+Damit der Quader ein Volumen ungleich null hat, muss **jedes Kantenmaß positiv** sein (<InlineMath math=">0" />).
 
 **Bedingung 1: <InlineMath math="p > 0" />**
 
@@ -49,7 +55,7 @@ Damit der Quader real ist, müssen alle seine Abmessungen positiv sein (<InlineM
 
 #### Schnittmenge bestimmen
 
-Wir finden die gemeinsame Lösungsmenge dieser drei Bedingungen:
+Gesucht ist **die Schnittmenge aller drei Bedingungen**, sodass alle zugleich gelten:
 1. <InlineMath math="x < 5" />
 2. <InlineMath math="x > \frac{5}{4}" /> (oder <InlineMath math="1{,}25" />)
 3. <InlineMath math="x < 15" />
@@ -89,3 +95,5 @@ Von den Bedingungen 1 und 3 nehmen wir die strengere, nämlich <InlineMath math=
 Die Menge <InlineMath math="A" /> ist also:
 
 <BlockMath math="A=\left\{x\in\mathbb R\mid\frac54<x<5\right\}" />
+
+Beide Randpunkte sind ausgeschlossen. Bei <InlineMath math="x=5/4" /> ist die Breite null, bei <InlineMath math="x=5" /> die Länge. Deshalb zeigt der Zahlenstrahl offene Randpunkte.

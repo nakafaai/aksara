@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-Die Länge der Grundfläche des Quaders ermitteln wir mithilfe der Formel für den Umfang eines Rechtecks.
+Die Länge der Grundfläche des Quaders ermitteln wir mithilfe der **Umfangsformel für die rechteckige Grundfläche**.
 
 #### Verwendung der Basisumfangsformel
 
-Die Basis des Kastens ist rechteckig, daher lautet seine Umfangsformel (<InlineMath math="K" />):
+Die rechteckige Grundfläche hat **zwei Paare gleich langer Seiten**, daher lautet seine Umfangsformel (<InlineMath math="K" />):
 
 <BlockMath math="K = 2(p + l)" />
 
@@ -25,7 +25,7 @@ Wir setzen diese Werte in die Formel ein:
 
 Wir vereinfachen die Gleichung, um sie nach <InlineMath math="p" /> aufzulösen.
 
-Teile beide Seiten durch <InlineMath math="2" />:
+**Teile beide Seiten** durch <InlineMath math="2" />:
 
 <MathContainer>
   <BlockMath math="\frac{6x}{2} = p + 4x - 5" />
@@ -41,3 +41,27 @@ Ordne die Terme um, um <InlineMath math="p" /> zu isolieren:
 </MathContainer>
 
 Die Länge der Basis der Box beträgt also <InlineMath math="(5 - x) \text{ cm}" />.
+
+Setze beispielsweise <InlineMath math="x=3" />. Die Grundfläche ist <InlineMath math="4(3)-5=7" /> cm breit und <InlineMath math="5-3=2" /> cm lang. Die Höhe beträgt <InlineMath math="5-3/3=4" /> cm. Der Grundumfang <InlineMath math="2(2+7)=18=6(3)" /> cm stimmt mit der Vorgabe überein. Die Höhe geht nicht in den Grundumfang ein.
+
+<MathVisual
+  title="Beispielquader für x = 3"
+  description="Der Quader misst 2 cm × 7 cm × 4 cm. Verfolge die vier Grundkanten, um Grundumfang und Höhe auseinanderzuhalten."
+  labels={{ p: "2 cm", l: "7 cm", t: "4 cm" }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3, max: 3 }, z: { min: -4.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 7, height: 4 } },
+      { id: "p", kind: "segment", appearance: "primary", from: { x: -1, y: -2, z: 3.5 }, to: { x: 1, y: -2, z: 3.5 } },
+      { id: "l", kind: "segment", appearance: "secondary", from: { x: 1, y: -2, z: -3.5 }, to: { x: 1, y: -2, z: 3.5 } },
+      { id: "t", kind: "segment", appearance: "highlight", from: { x: -1, y: -2, z: 3.5 }, to: { x: -1, y: 2, z: 3.5 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 0, y: -2, z: 3.5 }, placement: "below" },
+      { key: "l", objectId: "l", at: { x: 1, y: -2, z: 0 }, placement: "right" },
+      { key: "t", objectId: "t", at: { x: -1, y: 0, z: 3.5 }, placement: "left" },
+    ],
+  }}
+/>

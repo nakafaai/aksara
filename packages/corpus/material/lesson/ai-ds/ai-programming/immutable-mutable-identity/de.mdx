@@ -3,13 +3,13 @@ export const metadata = {
   description: "Veränderbarkeit von Python-Objekten, Identität, Listenreferenzen und Speicherverwaltung anhand praktischer Beispiele und Code.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "KI-Programmierung",
 };
 
 ## Listen und Veränderlichkeit
 
-In Python sind Listen Datenstrukturen, die nach ihrer Erstellung geändert werden können. Wir wollen verstehen, wie sich Listen verhalten, wenn wir bestimmte Vorgänge ausführen.
+In Python sind Listen Datenstrukturen, die nach ihrer Erstellung geändert werden können. Eine Mutation verändert die vorhandene Liste. Eine Zuweisung bindet einen Namen.
 
 Wird eine Liste einer Variablen zugewiesen, <Highlight>verweist die Variable auf dieses Listenobjekt</Highlight>. Die Zuweisung kopiert die Liste nicht. Eine weitere Variable oder ein Container kann daher auf genau dasselbe Objekt verweisen.
 
@@ -31,11 +31,11 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Änderungen an `list1` sind auch über `list2` sichtbar. `list2` verweist auf dasselbe Listenobjekt wie `list1`. Beide Namen zeigen auf eine einzige Liste.
+Änderungen an `list1` sind auch über `list2` sichtbar. `list2` ist eine andere, äußere Liste. Ihr Element `list2[1]` verweist auf dasselbe Objekt wie `list1`.
 
 ### Ein vollständiger Slice erzeugt eine flache Kopie
 
-Ein vollständiger Slice erzeugt eine neue äußere Liste mit Verweisen auf dieselben Elemente. Das ist eine flache Kopie. Wird ein äußeres Element ersetzt, bleibt die ursprüngliche Liste unverändert. Ein verschachteltes veränderliches Element wird jedoch weiterhin gemeinsam genutzt.
+Ein vollständiger Slice erzeugt eine **neue äußere Liste** mit Verweisen auf dieselben Elemente. Das ist eine flache Kopie. Wird ein äußeres Element ersetzt, bleibt die ursprüngliche Liste unverändert. Ein verschachteltes veränderliches Element wird jedoch weiterhin gemeinsam genutzt.
 
 <CodeBlock
   data={[
@@ -65,7 +65,7 @@ print(nested1)  # [[1, 3], [2]]`
 
 ## Identität Typ und Wert eines Objekts
 
-Jedes Python-Objekt besitzt drei Merkmale: Identität, Typ und Wert.
+Jedes Python-Objekt besitzt drei Merkmale: **Identität, Typ und Wert**.
 
 <Mermaid
   title="Identität zeigt an, welches Objekt verwendet wird"
@@ -84,7 +84,7 @@ Jedes Python-Objekt besitzt drei Merkmale: Identität, Typ und Wert.
 
 ### Objektidentität
 
-Zwei Verweise haben dieselbe Identität, wenn sie auf dasselbe Objekt zeigen. `id()` liefert eine Ganzzahl, die unter gleichzeitig lebenden Objekten eindeutig ist. `is` vergleicht die Identität direkt. Die Sprache garantiert nicht, dass diese Ganzzahl eine physische Speicheradresse ist.
+Zwei Verweise haben dieselbe Identität, wenn sie auf dasselbe Objekt zeigen. `id()` liefert eine Ganzzahl, die **unter gleichzeitig lebenden Objekten eindeutig** ist. `is` vergleicht die Identität direkt. Die Sprache garantiert nicht, dass diese Ganzzahl eine physische Speicheradresse ist.
 
 <CodeBlock
   data={[
@@ -94,20 +94,20 @@ Zwei Verweise haben dieselbe Identität, wenn sie auf dasselbe Objekt zeigen. `i
       code: `a = 300
 print(a)          # 300
 print(type(a))    # <class 'int'>
-print(id(a))      # 10120
+print(id(a))      # Beispiel: 10120
 
 b = a  # b verweist auf dasselbe Objekt wie a
-print(id(b))      # 10120 (wie a)
+print(id(b))      # Beispiel: 10120 (wie a)
 
 a = a + 1  # Erstellt neues Objekt
-print(id(a))      # 10492 (anders als zuvor)`
+print(id(a))      # Beispiel: 10492 (anders als zuvor)`
     }
   ]}
 />
 
 ### Identität und Wert vergleichen
 
-Verwende `is`, wenn es um die Identität eines Objekts geht, besonders bei Prüfungen wie `value is None`. Verwende `==`, wenn Werte verglichen werden sollen. Interpreter-Caches und Constant Folding können dazu führen, dass gleiche unveränderliche Werte dieselbe Identität haben. An dieses Implementierungsdetail darf Anwendungslogik jedoch nicht gekoppelt sein.
+Verwende `is`, wenn es um die Identität eines Objekts geht, besonders bei Prüfungen wie `value is None`. Verwende `==`, **wenn Werte verglichen werden sollen**. Interpreter-Caches und Constant Folding können dazu führen, dass gleiche unveränderliche Werte dieselbe Identität haben. An dieses Implementierungsdetail darf Anwendungslogik jedoch nicht gekoppelt sein.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ Dieser Unterschied wirkt, sobald zwei Namen auf dasselbe Objekt zeigen, denn bei
 
 ### Unveränderliche Objekte
 
-Unveränderliche Objekte können nach der Erstellung nicht mehr geändert werden. Jede Operation, die scheinbar das Objekt verändert, erstellt tatsächlich ein neues Objekt.
+Unveränderliche Objekte können **nach der Erstellung nicht mehr geändert** werden. Jede Operation, die scheinbar das Objekt verändert, erstellt tatsächlich ein neues Objekt.
 
 <CodeBlock
   data={[
@@ -143,14 +143,14 @@ Unveränderliche Objekte können nach der Erstellung nicht mehr geändert werden
       filename: "immutable_objects.py",
       code: `# Ganzzahl ist unveränderlich
 a = 300
-print(id(a))  # 10120
+print(id(a))  # Beispiel: 10120
 
 a = a + 1     # Erstellt neues Objekt
-print(id(a))  # 10492 (anders)
+print(id(a))  # Beispiel: 10492 (anders)
 
 # String ist auch unveränderlich
 str_var = 'hello'
-print(id(str_var))  # 75568
+print(id(str_var))  # Beispiel: 75568
 
 # Der Versuch, die Zeichenfolge zu ändern, führt zu einem Fehler
 # str_var[1] = 'a'  # TypeError`
@@ -171,7 +171,7 @@ Die eigene Folge von Verweisen eines Tupels kann nicht verändert werden. Ein Ob
 
 ### Veränderliche Objekte
 
-Veränderbare Objekte können nach der Erstellung geändert werden, ohne dass ein neues Objekt erstellt werden muss. Die Identität des Objekts bleibt gleich, auch wenn sich sein Wert ändert.
+Veränderbare Objekte können nach der Erstellung geändert werden, ohne dass ein neues Objekt erstellt werden muss. Die **Identität des Objekts bleibt gleich**, auch wenn sich sein Wert ändert.
 
 <CodeBlock
   data={[
@@ -180,7 +180,8 @@ Veränderbare Objekte können nach der Erstellung geändert werden, ohne dass ei
       filename: "mutable_objects.py",
       code: `# Liste ist veränderbar
 list_var = [0, 1, 2]
-original_id = id(list_var)
+original = list_var
+original_id = id(original)
 
 # Das Ändern eines Elements erhält die Identität der Liste
 list_var[0] = 9
@@ -206,7 +207,7 @@ Zu den häufigen veränderlichen Typen in Python gehören:
 
 ### Zuweisung und Änderungsverhalten
 
-Zuweisung (Gewährung eines neuen Werts) und direkte Änderung sind zwei verschiedene Vorgänge.
+Eine Zuweisung **bindet einen Namen an ein Objekt**. Eine direkte Änderung verändert das vorhandene Objekt.
 
 <CodeBlock
   data={[
@@ -216,8 +217,8 @@ Zuweisung (Gewährung eines neuen Werts) und direkte Änderung sind zwei verschi
       code: `list1 = [0, 1, 2]
 list2 = list1  # Beide Variablen verweisen auf dasselbe Objekt
 
-print(id(list1))     # 700
-print(id(list2))     # 700 (gleich)
+print(id(list1))     # Beispiel: 700
+print(id(list2))     # Beispiel: 700 (gleich)
 
 # Die direkte Änderung wirkt sich auf beide Variablen aus
 list1[1] = 'x'
@@ -233,8 +234,8 @@ print(list2)         # [0, 'x', 2] (unverändert)`
 />
 
 <Mermaid
-  title="Zuweisung bindet neu, Mutation verändert"
-  description="Vergleiche eine Zuweisung, die einen Namen neu bindet, mit einer Mutation am bestehenden Objekt."
+  title="Zwei Namen sehen dieselbe Mutation"
+  description="Beide Namen verweisen nach der Änderung eines Elements weiterhin auf dieselbe Liste."
   chart={`
     flowchart TD
         subgraph Vorher ["Vor der Änderung"]
@@ -251,4 +252,4 @@ print(list2)         # [0, 'x', 2] (unverändert)`
   `}
 />
 
-Mutabilität entscheidet, ob eine Operation ein vorhandenes Objekt verändert oder einen Namen an ein anderes Objekt bindet. Unveränderlichkeit beseitigt eine Quelle von Fehlern bei gemeinsamem Zustand, macht ein Programm allein aber noch nicht threadsicher. Verwiesene veränderliche Objekte, zusammengesetzte Operationen und externe Ressourcen benötigen weiterhin eine bewusst gewählte Synchronisierung.
+Mutabilität bestimmt, ob sich ein vorhandenes Objekt ändern lässt. Eine Zuweisung kann einen Namen unabhängig davon neu binden. Unveränderlichkeit beseitigt eine Quelle von Fehlern bei gemeinsamem Zustand, macht ein Programm allein aber noch nicht threadsicher. Verwiesene veränderliche Objekte, zusammengesetzte Operationen und externe Ressourcen benötigen weiterhin eine bewusst gewählte Synchronisierung.

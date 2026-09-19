@@ -27,7 +27,7 @@ Vectorization means <Highlight>expressing one operation for an entire array</Hig
     {
       language: "python",
       filename: "vectorization_comparison.py",
-      code: `# Element multiplication using Python list (slow)
+      code: `# Element multiplication using Python list
 x = [1, 2, 3, 4, 5]
 y = [2, 3, 4, 5, 6]
 z = []
@@ -35,7 +35,7 @@ for i in range(len(x)):
     z.append(x[i] * y[i])
 print("List result:", z)  # Output: List result: [2, 6, 12, 20, 30]
 
-# Element multiplication using NumPy (fast)
+# Element multiplication using NumPy
 import numpy as np
 x_np = np.array([1, 2, 3, 4, 5])
 y_np = np.array([2, 3, 4, 5, 6])
@@ -47,7 +47,7 @@ print("NumPy result:", z_np)  # Output: NumPy result: [ 2  6 12 20 30]`
 
 ## Manual Array Creation
 
-Use `np.array()` to convert an existing Python data structure into a NumPy array.
+Use `np.array()` to convert an **existing Python data structure** into a NumPy array.
 
 One-dimensional arrays are like a sequence of numbers in a single row. You can create them from Python lists using the `np.array()` function.
 
@@ -127,7 +127,7 @@ print("Axis 2 (columns):", a.shape[2])  # Output: Axis 2 (columns): 3`
 | **Two-dimensional** | `(2, 2)` | Table with rows and columns | `[[0, 1], [2, 3]]` | Axis <InlineMath math="0" /> for rows, Axis <InlineMath math="1" /> for columns |
 | **Three-dimensional** | `(2, 2, 3)` | Stack of tables (planes) | <InlineMath math="2" /> planes, each plane <InlineMath math="2 \times 3" /> | Axis <InlineMath math="0" /> depth, Axis <InlineMath math="1" /> height, Axis <InlineMath math="2" /> width |
 
-The higher the array dimension, the more complex the data structure, but the basic principle remains the same. Each axis represents one dimension of data organization.
+The higher the array dimension, the more complex the data structure, but the basic principle remains the same. **Each axis** represents one dimension of data organization.
 
 NumPy can create arrays from various Python data structures, including lists, tuples, and mixtures of both.
 
@@ -156,11 +156,11 @@ print("Automatic data type:", arr_mixed.dtype)  # Output: Automatic data type: f
 
 ## Array Creation Functions
 
-Writing every element by hand only works for tiny examples. NumPy therefore ships dedicated creation functions that build an array from a rule instead of from a literal list, which keeps the code short and the shape explicit. The functions below fall into three groups: filled arrays with a constant value, arrays of random numbers, and arrays that follow a mathematical pattern.
+Writing every element by hand only works for tiny examples. NumPy therefore ships dedicated creation functions that build an **array from a rule** instead of from a literal list, which keeps the code short and the shape explicit. The functions below fall into three groups: filled arrays with a constant value, arrays of random numbers, and arrays that follow a mathematical pattern.
 
 ### Constant Value Functions
 
-The `np.ones()` function creates an array filled with <InlineMath math="1" />. It is useful when every element needs the same initial value.
+The `np.ones()` function creates an array filled with <InlineMath math="1" />. It is useful when every element needs the **same initial value**.
 
 <CodeBlock
   data={[
@@ -235,7 +235,7 @@ print(a)
 
 ### Random Functions
 
-Random functions are useful for creating simulation data or initialization with random values.
+Use the **random number generator** `np.random.default_rng()` to create simulation data. The same seed reproduces a sequence with the same generator and NumPy version. The uniform values below lie in `[0, 1)`: zero is included and one is excluded.
 
 <CodeBlock
   data={[
@@ -245,34 +245,34 @@ Random functions are useful for creating simulation data or initialization with 
       code: `import numpy as np
 
 # Set seed for consistent results
-np.random.seed(10)
+rng = np.random.default_rng(10)
 
 # Array with uniform random values between 0 and 1
-a = np.random.rand(2, 3)
-print("Random uniform [0,1]:")
+a = rng.random((2, 3))
+print("Random uniform [0,1):")
 print(a)
 # Output:
-# [[0.77132064 0.02075195 0.63364823]
-#  [0.74880388 0.49850701 0.22479665]]
+# [[0.95600171 0.20768181 0.82844489]
+#  [0.14928212 0.51280462 0.1359196 ]]
 
 # Array with normal distribution (mean=0, std=1)
-a = np.random.randn(3)
-print("Random normal:", a)  # Output: Random normal: [ 0.62133597 -0.72008556  0.26551159]
+a = rng.standard_normal(3)
+print("Random normal:", a)  # Output: Random normal: [0.84304257 0.85793655 0.47518364]
 
 # Array with random integers in specific range
-a = np.random.randint(1, 10, size=(2, 3))
+a = rng.integers(1, 10, size=(2, 3))
 print("Random integers [1,10):")
 print(a)
 # Output:
-# [[7 9 2]
-#  [9 5 2]]`
+# [[5 9 3]
+#  [8 1 4]]`
     }
   ]}
 />
 
 ### Mathematical Functions
 
-The `np.fromfunction` function creates an array by calling a function with the index of each position. The returned value becomes the element at that position.
+The `np.fromfunction` function passes **arrays of index coordinates** to your function. Here, `f(i, j)` receives an array of row indices in `i` and an array of column indices in `j`. Adding `i + j` works element by element: position `[1, 2]`, for example, receives `3`.
 
 <CodeBlock
   data={[
@@ -319,10 +319,10 @@ The `np.empty` function allocates an array without initializing its element valu
 
 # Create empty array (undefined values)
 a = np.empty((3, 2))
-print("Empty array (random values from memory):")
+a.fill(0)  # Fill every element before reading its value
+print("Array after filling:")
 print(a)
-# Output will vary because values are not initialized
-# Example output:
+# Output:
 # [[0. 0.]
 #  [0. 0.]
 #  [0. 0.]]
@@ -335,11 +335,11 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 
 ## Arrays from Sequences
 
-Some arrays are easier to describe as a sequence than as a rule for each element: every value between two limits, or a fixed number of evenly spaced points. `np.arange` and `np.linspace` build such arrays, and the difference between them is how the end of the sequence is specified.
+Some arrays are easier to describe as a sequence than as a rule for each element: every value between two limits, or a **fixed number of evenly spaced points**. `np.arange` and `np.linspace` build such arrays, and the difference between them is how the end of the sequence is specified.
 
 ### NumPy Arange Function
 
-The `np.arange` function resembles Python's `range()`, but returns an array and accepts floating-point arguments. For noninteger steps, floating-point rounding can make the final values less predictable, so `np.linspace` is often clearer when the number of points matters.
+The `np.arange` function resembles Python's `range()`, but returns an array and accepts floating-point arguments. For noninteger steps, **floating-point rounding** can make the final values less predictable, so `np.linspace` is often clearer when the number of points matters.
 
 <CodeBlock
   data={[
@@ -372,7 +372,7 @@ print("- start default is 0")`
 
 ### NumPy Linspace Function
 
-Unlike `np.arange` which uses fixed steps, `np.linspace` divides a range into a number of evenly spaced points.
+Unlike `np.arange` which uses fixed steps, `np.linspace` divides a range into a **number of evenly spaced points**.
 
 <CodeBlock
   data={[
@@ -400,7 +400,7 @@ print("arange: step is given, number of elements follows")`
 
 ### Comparing arange and linspace
 
-Both functions build an array from a range, and the parameter you pass decides the difference. `arange` fixes the step between elements, while `linspace` fixes how many elements you want.
+Both functions build an array from a range, and the parameter you pass decides the difference. `arange` fixes the **step between elements**, while `linspace` fixes how many elements you want.
 
 | Aspect | `np.arange` | `np.linspace` |
 |--------|-------------|---------------|
@@ -412,7 +412,7 @@ Both functions build an array from a range, and the parameter you pass decides t
 
 ## Basic Operations
 
-After creating arrays, you can perform various operations to manipulate and analyze data.
+Before reshaping an array, inspect its **element count and shape**. The array below has two rows and three columns, so its `size` is `6`. Its explicit `int64` dtype uses eight bytes per element.
 
 <CodeBlock
   data={[
@@ -422,7 +422,7 @@ After creating arrays, you can perform various operations to manipulate and anal
       code: `import numpy as np
 
 # Create example array
-a = np.array([[1, 2, 3], [4, 5, 6]])
+a = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
 print("Array:")
 print(a)
 # Output:
@@ -438,7 +438,7 @@ print("Itemsize (bytes per element):", a.itemsize)  # Output: Itemsize (bytes pe
   ]}
 />
 
-Arrays can be reshaped using the `reshape()` function to rearrange dimensions without changing the data:
+The **element count must stay the same** when you use `reshape()`: `3 * 4`, `2 * 6`, and `4 * 3` all equal `12`. Passing `-1` asks NumPy to infer one missing dimension. Reshaping may return a view or a copy, depending on the array layout.
 
 <CodeBlock
   data={[

@@ -5,21 +5,20 @@ export const metadata = {
   datePublished: "2025-12-30",
 };
 
-This is a chain of two implications.
+Both rules apply **at the final review**. Use the following statements for the same activity.
 
-Let:
-- <InlineMath math="p" /> = Activity has been carried out.
-- <InlineMath math="q" /> = Activity report is submitted.
-- <InlineMath math="r" /> = Employee honorarium is paid.
+| Symbol | Statement |
+| --- | --- |
+| <InlineMath math="p" /> | The activity has been completed |
+| <InlineMath math="q" /> | The report has been submitted |
+| <InlineMath math="r" /> | The employee’s honorarium has been paid |
 
-Premise 1: If the activity has been carried out, then the activity report is submitted (<InlineMath math="p \rightarrow q" />).
+For a completed activity, the first rule guarantees a submitted report. The second then guarantees payment. This gives a **chain of implications**:
 
-Premise 2: If the activity report is submitted, then the employee honorarium is paid (<InlineMath math="q \rightarrow r" />).
+<BlockMath math="p\Rightarrow q,\qquad q\Rightarrow r\quad\Longrightarrow\quad p\Rightarrow r" />
 
-The conclusion from these two premises is <InlineMath math="p \rightarrow r" />. The statement <InlineMath math="p \rightarrow r" /> is equivalent to its contrapositive, which is <InlineMath math="\sim r \rightarrow \sim p" />.
+If payment has not been made, the activity cannot already be completed under these rules: completion would guarantee payment. This is the **contrapositive**, not a reversal of the implication.
 
-<BlockMath math="\begin{aligned}p&\Rightarrow q\\q&\Rightarrow r\\p&\Rightarrow r\\\neg r&\Rightarrow\neg p\end{aligned}" />
+<BlockMath math="\neg r\Rightarrow\neg p" />
 
-Meaning: "If the employee honorarium is not paid, it means the activity has not been carried out."
-
-Therefore, the most appropriate conclusion is **if the employee's honorarium is not paid, it means the activity has not been carried out**.
+The fifth option states this conclusion. The premises do not say that a fee must be available before an activity can take place, and they give no rule about the manager’s honorarium.

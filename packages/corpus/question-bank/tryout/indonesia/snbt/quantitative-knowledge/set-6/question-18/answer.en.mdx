@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Given:
+Use the **total survey population** as the upper bound for the union:
 
 - The universal set <InlineMath math="S" /> contains <InlineMath math="300" /> teenagers.
 - The sports set <InlineMath math="O" /> contains <InlineMath math="135" /> teenagers.
@@ -15,7 +15,7 @@ We are asked to find the difference between the maximum value (<InlineMath math=
 
 #### Minimum overlap
 
-The intersection is smallest when the union is as large as possible. The union cannot contain more than the <InlineMath math="300" /> surveyed teenagers, and this bound is reached when everyone participates in at least one activity.
+The intersection is smallest when the **union is as large as possible**. The union cannot contain more than the <InlineMath math="300" /> surveyed teenagers, and this bound is reached when everyone participates in at least one activity.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}n(O\cup C)&=n(O)+n(C)\\&\quad{}-n(O\cap C)\end{aligned}" />
@@ -27,7 +27,7 @@ The intersection is smallest when the union is as large as possible. The union c
 
 #### Maximum overlap
 
-The maximum intersection occurs when the smaller set is a subset of the larger set. In this case, all sports participants also participate in nature lover activities.
+The maximum intersection occurs when the smaller set is a subset of the larger set. In this case, **all sports participants** also participate in nature activities.
 
 <MathContainer>
   <BlockMath math="B = \min(n(O), n(C))" />
@@ -36,6 +36,13 @@ The maximum intersection occurs when the smaller set is a subset of the larger s
 </MathContainer>
 
 #### Calculating the Difference
+
+Both bounds are attainable with the following **allocation of participants**. Each row still totals 300.
+
+| Bound | Sports only | Both | Nature only | Neither |
+| --- | --- | --- | --- | --- |
+| A | 45 | 90 | 165 | 0 |
+| B | 0 | 135 | 120 | 45 |
 
 <MathContainer>
   <BlockMath math="B - A = 135 - 90" />

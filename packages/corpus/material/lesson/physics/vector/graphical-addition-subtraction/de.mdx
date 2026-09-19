@@ -23,6 +23,8 @@ Bei der grafischen Methode entsteht die Resultierende in einer maßstäblichen Z
 Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor und setze den Fußpunkt des zweiten an seine Spitze. Die Resultierende führt vom ursprünglichen Fußpunkt direkt zur letzten Pfeilspitze.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Spitze-an-Fußpunkt-Addition</>}
   description={
     <>
@@ -66,8 +68,6 @@ Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor 
       },
     ];
   })()}
-  cameraPosition={[8, 6, 10]}
-  cameraTarget={[3, -0.7, 0]}
 />
 
 Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordinateneinheit im Modell ist Meter: Auf die Verschiebung <InlineMath math="(4,1)" /> folgt <InlineMath math="(2,3)" />. Der Endpunkt liegt bei <InlineMath math="(6,4)" />, weil du die Ortsänderungen entlang jeder Achse addierst.
@@ -79,6 +79,8 @@ Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordi
 Zwei Kräfte, die an einem Punkt angreifen, lassen sich mit einem **gemeinsamen Fußpunkt** zeichnen. Zum Beispiel ziehen zwei Seile an einem Ring. Die verschobenen Vektoren im Modell behalten Länge und Richtung der ursprünglichen Pfeile. Ob du erst der unteren und dann der rechten Seite folgst oder erst der linken und dann der oberen: Beide Wege enden am selben Punkt.
 
 <Vector3d
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Die Diagonale des Parallelogramms</>}
   description={<>Der violette Pfeil verbindet den gemeinsamen Fußpunkt mit dem Endpunkt beider Wege. Die Vektoren a und b stimmen mit ihren parallel verschobenen Kopien überein.</>}
   vectors={[
@@ -88,8 +90,6 @@ Zwei Kräfte, die an einem Punkt angreifen, lassen sich mit einem **gemeinsamen 
     {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
   ]}
-  cameraPosition={[3,2,13]}
-  cameraTarget={[3,2,0]}
 />
 
 ### Polygonverfahren für viele Vektoren
@@ -113,6 +113,8 @@ Für die Subtraktion **kehrst du den abzuziehenden Vektor um**. Beim selben Vekt
 <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
 <Vector3d
+  cameraPosition={[2, -0.5, 7]}
+  cameraTarget={[2, -0.5, 0]}
   title={<>Den Gegenvektor addieren</>}
   description={<>Gehe von der Spitze von a bei (4,1) zwei Einheiten nach links und drei nach unten. Die Resultierende endet bei (2,-2).</>}
   vectors={[
@@ -120,6 +122,4 @@ Für die Subtraktion **kehrst du den abzuziehenden Vektor um**. Beim selben Vekt
     {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
     {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
   ]}
-  cameraPosition={[2,0,10]}
-  cameraTarget={[2,0,0]}
 />

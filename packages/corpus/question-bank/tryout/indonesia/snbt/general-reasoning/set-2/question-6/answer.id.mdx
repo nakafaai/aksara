@@ -5,32 +5,26 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Sesuai ketentuan soal, kita melanjutkan siklus perubahan tahunan terpendek yang terlihat. Ketentuan ini mencegah penafsiran pola yang berbeda-beda dari lima titik data saja.
+Soal meminta kita meneruskan **siklus perubahan terpendek** yang cocok dengan data. Prediksi berikut memakai asumsi itu. Lima data penjualan saja tidak menjamin pola yang sama akan terjadi di dunia nyata.
 
-#### Analisis Pola Penjualan
+#### Menentukan penjualan berikutnya
 
-1. **Baju**: Data penjualan adalah <InlineMath math="50, 35, 20, 70, 55" />.
-   - Perubahannya adalah <InlineMath math="-15, -15, +50, -15" />. Deret ini memulai siklus berulang <InlineMath math="-15, -15, +50" />, sehingga perubahan berikutnya adalah <InlineMath math="-15" />.
-   - Prediksi tahun <InlineMath math="2016" />: <InlineMath math="55 - 15 = 40" />.
+Hitung **selisih dua tahun berurutan**. Misalnya, baju berubah dari <InlineMath math="50" /> ke <InlineMath math="35" />, sehingga perubahan pertama adalah <InlineMath math="35-50=-15" />. Lakukan hal yang sama untuk setiap pasangan tahun.
 
-2. **Celana**: Data penjualan adalah <InlineMath math="60, 60, 50, 40, 40" />.
-   - Perubahannya adalah <InlineMath math="0, -10, -10, 0" />.
-   - Pola berulang dengan siklus "tetap, turun, turun". Maka selanjutnya adalah penurunan sebesar <InlineMath math="10" />.
-   - Prediksi tahun <InlineMath math="2016" />: <InlineMath math="40 - 10 = 30" />.
+| Barang | Perubahan yang diketahui | Siklus | Prediksi |
+| --- | --- | --- | --- |
+| Baju | <InlineMath math="-15,-15,+50,-15" /> | <InlineMath math="-15,-15,+50" /> | <InlineMath math="55-15=40" /> |
+| Celana | <InlineMath math="0,-10,-10,0" /> | <InlineMath math="0,-10,-10" /> | <InlineMath math="40-10=30" /> |
+| Jas | <InlineMath math="+15,-10,+15,-10" /> | <InlineMath math="+15,-10" /> | <InlineMath math="50+15=65" /> |
 
-3. **Jas**: Data penjualan adalah <InlineMath math="40, 55, 45, 60, 50" />.
-   - Perubahannya adalah <InlineMath math="+15, -10, +15, -10" />.
-   - Pola berselang-seling tambah <InlineMath math="15" /> dan kurang <InlineMath math="10" />. Langkah berikutnya adalah tambah <InlineMath math="15" />.
-   - Prediksi tahun <InlineMath math="2016" />: <InlineMath math="50 + 15 = 65" />.
+#### Memeriksa pilihan
 
-#### Evaluasi Pilihan
+Pernyataan pertama memakai **kurang dari**, padahal jumlah baju dan celana tepat sama dengan batas yang disebutkan:
 
-Menggunakan hasil prediksi (Baju = <InlineMath math="40" />, Celana = <InlineMath math="30" />, Jas = <InlineMath math="65" />):
+<BlockMath math="40+30=70,\qquad 70\not<70" />
 
-1. **Penjualan celana <InlineMath math="10" /> lebih sedikit dari baju**: <InlineMath math="30 = 40 - 10" /> (Benar).
-2. **Penjualan jas <InlineMath math="35" /> lebih banyak dari celana**: <InlineMath math="65 = 30 + 35" /> (Benar).
-3. **Jumlah penjualan baju dan celana kurang dari** <InlineMath math="70" />: <InlineMath math="40 + 30 = 70" />. Hasilnya tepat sama dengan <InlineMath math="70" />. Jadi, pernyataan ini **salah**.
-4. **Penjualan baju <InlineMath math="10" /> lebih banyak dari celana**: <InlineMath math="40 = 30 + 10" /> (Benar).
-5. **Penjualan celana <InlineMath math="35" /> lebih sedikit dari jas**: <InlineMath math="30 = 65 - 35" /> (Benar).
+Empat pernyataan lainnya mengikuti dua selisih berikut:
 
-Jadi, prediksi yang salah adalah **jumlah penjualan baju dan celana kurang dari** <InlineMath math="70" />.
+<BlockMath math="\begin{aligned}40-30&amp;=10\\65-30&amp;=35\end{aligned}" />
+
+Artinya, baju lebih banyak sepuluh daripada celana, atau celana lebih sedikit sepuluh daripada baju. Jas lebih banyak tiga puluh lima daripada celana, atau celana lebih sedikit tiga puluh lima daripada jas. Jadi, prediksi yang salah adalah pilihan pertama.

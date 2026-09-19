@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Wörterbücher definieren und erstellen
 
-Ein Dictionary ist <Highlight>eine veränderliche Zuordnung von eindeutigen Schlüsseln zu Werten</Highlight>. Du schlägst jedes Element über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
+Ein Dictionary ist eine veränderliche Zuordnung von **eindeutigen Schlüsseln zu Werten**. Du schlägst jedes Element über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
 
 ### Möglichkeiten zum Erstellen von Wörterbüchern
 
-Python bietet mehrere Möglichkeiten zum Erstellen von Wörterbüchern, darunter leere und bereits gefüllte.
+Python bietet mehrere Möglichkeiten zum Erstellen von Wörterbüchern, darunter **leere und bereits gefüllte**.
 
 <CodeBlock
   data={[
@@ -44,14 +44,14 @@ mass = dict(Mercury=3.3e23, Venus=4.9e24, Earth=6.0e24)
 print("Dictionary month:", month)
 print("Dictionary mass:", mass)
 # Ausgabe: Dictionary month: {1: 'Jan', 2: 'Feb', 3: 'Mar'}
-# Ausgabe: Dictionary mass: {'Mercury': 3.3e23, 'Venus': 4.9e24, 'Earth': 6.0e24}`
+# Ausgabe: Dictionary mass: {'Mercury': 3.3e+23, 'Venus': 4.9e+24, 'Earth': 6e+24}`
     }
   ]}
 />
 
 ### Wörterbuchsyntax
 
-Die Darstellung eines Dictionarys verwendet geschweifte Klammern. Kommas trennen die Einträge, ein Doppelpunkt trennt jeweils den Schlüssel vom Wert. Die leere Darstellung `{}` erzeugt ein leeres Dictionary.
+Die Darstellung eines Dictionarys verwendet geschweifte Klammern. Kommas trennen die Einträge, **ein Doppelpunkt** trennt jeweils den Schlüssel vom Wert. Die leere Darstellung `{}` erzeugt ein leeres Dictionary.
 
 <CodeBlock
   data={[
@@ -66,27 +66,20 @@ print(phone)
   ]}
 />
 
-<Highlight>Schlüssel müssen hashbar sein</Highlight>. Deshalb werden häufig unveränderliche Werte wie Strings, Zahlen und geeignete Tupel verwendet. Werte dürfen beliebige Python-Objekte sein, auch weitere Dictionaries.
+**Schlüssel müssen hashbar sein**. Strings und Zahlen eignen sich häufig. Ein Tupel ist nur dann hashbar, wenn alle seine Elemente hashbar sind. Ein Tupel mit einer Liste erfüllt diese Bedingung nicht. Listen selbst sind nicht hashbar. Werte dürfen beliebige Python-Objekte sein, auch weitere Dictionaries.
 
 ## Wörterbuch als Container
 
-Ein Dictionary ist ein Container, weil es eine Sammlung anderer Objekte enthält. Es ordnet jedem Schlüssel genau einen Wert zu und bewahrt dabei die Reihenfolge, in der die Schlüssel erstmals eingefügt wurden.
+Ein Dictionary ist ein Container, weil es eine Sammlung anderer Objekte enthält. Es ordnet **jedem Schlüssel genau einen Wert** zu und bewahrt dabei die Reihenfolge, in der die Schlüssel erstmals eingefügt wurden.
 
 <Mermaid
   title="Das Wörterbuch speichert Paare nach Schlüssel"
   description="Sieh dir an, wie ein Schlüssel den zugehörigen Wert ohne numerische Position auswählt."
   chart={`
-    flowchart TD
-        A[Python Containers] --> B[String]
-        A --> C[List]
-        A --> D[Tuple]
-        A --> E[Dictionary]
-        A --> F[Set]
-
-        E --> E1[Key-value pairs]
-        E --> E2[Unique keys]
-        E --> E3[Mutable]
-        E --> E4[Nach Einfügung geordnet]
+    flowchart LR
+        A["phone['ann']"] --> V1["110"]
+        B["phone['bob']"] --> V2["991"]
+        C["phone['cat']"] --> V3["112"]
   `}
 />
 
@@ -94,11 +87,11 @@ Listen und Tupel ordnen Elemente nach Position, Dictionaries dagegen nach Schlü
 
 ## Wörterbucheigenschaften
 
-Ein Dictionary ist veränderlich, seine Schlüssel sind eindeutig und hashbar, und seine Iterationsreihenfolge folgt der Einfügereihenfolge der Schlüssel. Diese drei Eigenschaften erklären fast alles, was dir später auffällt: warum du Einträge nach dem Anlegen ergänzen oder entfernen kannst, warum eine Zuweisung an einen vorhandenen Schlüssel den alten Wert ersetzt statt einen zweiten Eintrag anzulegen, und warum das Durchlaufen eine stabile Reihenfolge liefert.
+Ein Dictionary ist veränderlich, seine **Schlüssel sind eindeutig und hashbar**, und seine Iterationsreihenfolge folgt der Einfügereihenfolge der Schlüssel. Diese drei Eigenschaften erklären fast alles, was dir später auffällt: warum du Einträge nach dem Anlegen ergänzen oder entfernen kannst, warum eine Zuweisung an einen vorhandenen Schlüssel den alten Wert ersetzt statt einen zweiten Eintrag anzulegen, und warum das Durchlaufen eine stabile Reihenfolge liefert.
 
 ### Einfügereihenfolge und eindeutige Schlüssel
 
-Die Python-Sprachspezifikation garantiert die Einfügereihenfolge von Dictionaries seit Python `3.7`. Ein neuer Wert für einen vorhandenen Schlüssel aktualisiert den Eintrag, ohne den Schlüssel zu verschieben. Löschst du ihn und fügst ihn erneut ein, steht er anschließend am Ende.
+Die Python-Sprachspezifikation garantiert die Einfügereihenfolge von Dictionaries seit Python `3.7`. Ein neuer Wert für einen vorhandenen Schlüssel aktualisiert den Eintrag, **ohne den Schlüssel zu verschieben**. Löschst du ihn und fügst ihn erneut ein, steht er anschließend am Ende.
 
 <CodeBlock
   data={[
@@ -119,7 +112,7 @@ Da Schlüssel eindeutig sind, bleibt bei einem wiederholten Schlüssel in einer 
 
 ## Zugriff auf Wörterbücher
 
-Um einen Wert aus einem Dictionary abzurufen, gibst du seinen Schlüssel an. Ein verständlicher Schlüssel wie ein Name oder ein Datum übernimmt dabei die Aufgabe eines fortlaufenden Zahlenindex.
+Um einen Wert aus einem Dictionary abzurufen, **gibst du seinen Schlüssel an**. Ein verständlicher Schlüssel wie ein Name oder ein Datum übernimmt dabei die Aufgabe eines fortlaufenden Zahlenindex.
 
 ### Indizierung mit Schlüsseln
 
@@ -149,11 +142,11 @@ print(phone)
   ]}
 />
 
-Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern aktualisiert einen vorhandenen Schlüssel oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
+Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern **aktualisiert einen vorhandenen Schlüssel** oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
 
 ## Wörterbuch Iteration
 
-Wähle die Iterationsform danach, ob du nur Schlüssel, nur Werte oder beide Teile jedes Eintrags brauchst. Ein Dictionary direkt zu durchlaufen liefert die Schlüssel, `.values()` liefert die Werte, und `.items()` liefert Schlüssel-Wert-Paare.
+Wähle die Iterationsform danach, ob du **nur Schlüssel, nur Werte** oder beide Teile jedes Eintrags brauchst. Ein Dictionary direkt zu durchlaufen liefert die Schlüssel, `.values()` liefert die Werte, und `.items()` liefert Schlüssel-Wert-Paare.
 
 ### Schlüssel eines Dictionarys durchlaufen
 
@@ -176,7 +169,7 @@ for key in phone:
   ]}
 />
 
-Wenn du ein Dictionary direkt durchläufst, liefert Python seine Schlüssel in Einfügereihenfolge.
+Wenn du ein Dictionary direkt durchläufst, liefert Python seine **Schlüssel in Einfügereihenfolge**.
 
 ### Einträge eines Dictionarys durchlaufen
 
@@ -199,11 +192,11 @@ for key, val in phone.items():
   ]}
 />
 
-Die Ansicht `items()` liefert Schlüssel und Wert gemeinsam. Durch Tupelentpackung kannst du beide in einer Schleife benennen.
+Die Ansicht `items()` liefert **Schlüssel und Wert gemeinsam**. Durch Tupelentpackung kannst du beide in einer Schleife benennen.
 
 ## Drei Arten von Dictionary Views
 
-Ein Dictionary stellt dynamische Ansichten seiner Schlüssel, Werte und Schlüssel-Wert-Paare bereit. Eine solche Ansicht ist keine Kopie: Sie liest bei jeder Iteration den aktuellen Inhalt des Dictionaries, sodass eine Änderung nach dem Erzeugen der Ansicht sofort sichtbar wird.
+Ein Dictionary stellt **dynamische Ansichten** seiner Schlüssel, Werte und Schlüssel-Wert-Paare bereit. Eine solche Ansicht ist keine Kopie: Sie liest bei jeder Iteration den aktuellen Inhalt des Dictionaries, sodass eine Änderung nach dem Erzeugen der Ansicht sofort sichtbar wird.
 
 ### Dictionary Views erzeugen
 
@@ -228,16 +221,21 @@ print("Werte:", list(values))
 # Schlüssel-Wert-Paare abrufen
 items = phone.items()
 print("Items:", list(items))
-# Ausgabe: Items: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]`
+# Ausgabe: Items: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]
+
+snapshot = list(keys)
+phone['eve'] = 111
+print(list(keys))  # Output: ['ann', 'bob', 'cat', 'dan', 'eve']
+print(snapshot)    # Output: ['ann', 'bob', 'cat', 'dan']`
     }
   ]}
 />
 
-Diese Methoden geben dynamische Ansichtsobjekte und keine Listen zurück. Eine Ansicht spiegelt spätere Änderungen am Dictionary wider und kann durchlaufen werden, unterstützt aber weder Positionsindizes noch Elementzuweisungen. Rufe `list()` nur auf, wenn du ausdrücklich eine getrennte Listenmomentaufnahme brauchst.
+Diese Views lassen sich durchlaufen, unterstützen aber weder Positionsindizes noch Elementzuweisungen. `list()` erzeugt eine **Momentaufnahme der aktuellen Einträge**. Ein später hinzugefügter Schlüssel erscheint in der View, nicht aber in der Momentaufnahme. Veränderliche Werte bleiben dabei über Verweise mit denselben Objekten verbunden.
 
 ## Die Methode Get
 
-Verwende `get()`, wenn ein fehlender Schlüssel erwartet wird und du einen Ersatzwert möchtest. Verwende eckige Klammern, wenn ein fehlender Schlüssel als Fehler behandelt werden soll.
+Verwende `get()`, wenn ein fehlender Schlüssel erwartet wird und du **einen Ersatzwert** möchtest. Verwende eckige Klammern, wenn ein fehlender Schlüssel als Fehler behandelt werden soll.
 
 ### Fehler beim Klammerzugriff auf fehlende Schlüssel
 
@@ -258,7 +256,7 @@ except KeyError as e:
   ]}
 />
 
-Der Zugriff auf einen nicht vorhandenen Schlüssel mit eckigen Klammern führt zu einem `KeyError`.
+Der Zugriff auf einen **nicht vorhandenen Schlüssel** mit eckigen Klammern führt zu einem `KeyError`.
 
 ### Lösung mit der Methode Get
 
@@ -288,4 +286,4 @@ print("Ergebnis get('ann'):", result)
   ]}
 />
 
-`get()` gibt den gespeicherten Wert zurück, wenn der Schlüssel vorhanden ist. Andernfalls liefert die Methode den angegebenen Standardwert oder `None`, wenn kein Standardwert übergeben wurde. Wähle einen Standard, der nicht mit einem gültigen gespeicherten Wert verwechselt werden kann, falls diese Unterscheidung wichtig ist.
+`get()` gibt den gespeicherten Wert zurück, wenn der Schlüssel vorhanden ist. Andernfalls liefert die Methode den **angegebenen Standardwert** oder `None`, wenn kein Standardwert übergeben wurde. Wähle einen Standard, der nicht mit einem gültigen gespeicherten Wert verwechselt werden kann, falls diese Unterscheidung wichtig ist.

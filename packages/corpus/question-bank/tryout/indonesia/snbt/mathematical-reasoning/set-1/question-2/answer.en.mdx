@@ -1,86 +1,53 @@
 export const metadata = {
   title: "Solution for Question 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   datePublished: "2025-11-23",
 };
 
-We will calculate the total cost required by Rani, which consists of the purchase price of the seedling packages and the cost of fertilizer for the land used.
+Rani pays for **two seedling packages and fertilizer for the planted area**. The full plot area is not the basis for fertilizer cost because part of the plot remains unplanted.
 
-#### Determining the Number of Seedlings
+#### Finding the Planted Area
 
-Rani buys <InlineMath math="2" /> packages of fruit seedlings. Each package contains <InlineMath math="2" /> strawberry seedlings, <InlineMath math="1" /> orange seedling, and <InlineMath math="4" /> mango seedlings. Thus, the total seedlings obtained from <InlineMath math="2" /> packages are:
+Two packages contain 4 strawberry, 2 orange, and 8 mango seedlings. Each orange plot has twice a strawberry plot's length and twice its width. Its **area is therefore four times as large**, not twice as large.
 
-- Strawberry: <InlineMath math="2 \times 2 = 4" /> seedlings.
-- Orange: <InlineMath math="2 \times 1 = 2" /> seedlings.
-- Mango: <InlineMath math="2 \times 4 = 8" /> seedlings.
+| Seedling | Number | Area per seedling (cm²) | Total area (cm²) |
+| --- | --- | --- | --- |
+| Strawberry | <InlineMath math="2\times2=4" /> | <InlineMath math="10\times5=50" /> | <InlineMath math="4\times50=200" /> |
+| Orange | <InlineMath math="2\times1=2" /> | <InlineMath math="(2\times10)(2\times5)=200" /> | <InlineMath math="2\times200=400" /> |
+| Mango | <InlineMath math="2\times4=8" /> | <InlineMath math="5\times2.5=12.5" /> | <InlineMath math="8\times12.5=100" /> |
 
-#### Calculating the Required Land Area
+Add the three group areas. Convert cm² to m² by dividing by <InlineMath math="100^2=10{,}000" />, because both length dimensions change units.
 
-We calculate the land area for each type of seedling:
+<BlockMath math="\begin{aligned}
+A&=200+400+100=700\,\mathrm{cm}^2 \\
+&=\frac{700}{10{,}000}\,\mathrm{m}^2 \\
+&=0.07\,\mathrm{m}^2
+\end{aligned}" />
 
-**Strawberry Seedlings**
+The plots can also be arranged without overlap. Put the two orange plots in a 40 cm × 10 cm row, the four strawberry plots in a 40 cm × 5 cm row, and the eight mango plots in a 40 cm × 2.5 cm row. Together they form a 40 cm × 17.5 cm rectangle, which fits within the 100 cm × 35 cm plot.
 
-The land size for one strawberry seedling is <InlineMath math="10 \text{ cm} \times 5 \text{ cm}" />.
+<LineEquation
+  title="Arranging the Seedling Plots"
+  description="Each box represents one seedling. Purple is orange, amber is strawberry, and teal is mango. Coordinates are in centimeters."
+  cameraPosition={[20,8.75,50]}
+  cameraTarget={[20,8.75,0]}
+  showZAxis={false}
+  data={[
+    ...[{ count: 2, width: 20, bottom: 0, height: 10, color: "#9333ea" }, { count: 4, width: 10, bottom: 10, height: 5, color: "#d97706" }, { count: 8, width: 5, bottom: 15, height: 2.5, color: "#0d9488" }].flatMap(({ count, width, bottom, height, color }) => Array.from({ length: count }, (_,i) => ({ points: [{ x: i*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom, z: 0 }], color, smooth: false, showPoints: false }))),
+  ]}
+/>
 
-<BlockMath math="\begin{aligned}&10 \times 5 \\ &=50 \text{ cm}^2\end{aligned}" />
+#### Calculating Seedling and Fertilizer Costs
 
-Total area for <InlineMath math="4" /> strawberry seedlings:
+Seedlings are priced by package, while fertilizer is charged for **the 0.07 m² planted area**. All costs in the calculation below are in rupiah.
 
-<BlockMath math="\begin{aligned}&4 \times 50 \\ &=200 \text{ cm}^2\end{aligned}" />
+Here, <InlineMath math="C_b" /> is the seedling cost and <InlineMath math="C_p" /> is the fertilizer cost.
 
-**Orange Seedlings**
+<BlockMath math="\begin{aligned}
+C_b&=2\times45{,}000=90{,}000 \\
+C_p&=0.07\times100{,}000=7{,}000 \\
+C&=90{,}000+7{,}000=97{,}000
+\end{aligned}" />
 
-The orange plot has twice the strawberry plot's length and twice its width, so its dimensions are <InlineMath math="20 \text{ cm} \times 10 \text{ cm}" />.
-
-<BlockMath math="\begin{aligned}&20 \times 10 \\ &=200 \text{ cm}^2\end{aligned}" />
-
-Total area for <InlineMath math="2" /> orange seedlings:
-
-<BlockMath math="\begin{aligned}&2 \times 200 \\ &=400 \text{ cm}^2\end{aligned}" />
-
-**Mango Seedlings**
-
-The land size for one mango seedling is <InlineMath math="5 \text{ cm} \times 2.5 \text{ cm}" />.
-
-<BlockMath math="\begin{aligned}&5 \times 2.5 \\ &=12.5 \text{ cm}^2\end{aligned}" />
-
-Total area for <InlineMath math="8" /> mango seedlings:
-
-<BlockMath math="\begin{aligned}&8 \times 12.5 \\ &=100 \text{ cm}^2\end{aligned}" />
-
-**Total Land Area**
-
-<MathContainer>
-  <BlockMath math="200 + 400 + 100" />
-  <BlockMath math="700 \text{ cm}^2" />
-</MathContainer>
-
-The available plot has an area of <InlineMath math="0.35 \text{ m}^2" /> (<InlineMath math="3{,}500 \text{ cm}^2" />), so the seedlings fit. Fertilizer is needed only for the <InlineMath math="700 \text{ cm}^2" /> actually planted.
-
-We convert the area unit to square meters (<InlineMath math="1 \text{ m}^2 = 10{,}000 \text{ cm}^2" />):
-
-<BlockMath math="\begin{aligned}&\frac{700}{10{,}000} \\ &=0.07 \text{ m}^2\end{aligned}" />
-
-#### Calculating Total Cost
-
-**Seed Cost**
-
-The price of <InlineMath math="1" /> package is <InlineMath math="\text{Rp}45{,}000.00" />. For <InlineMath math="2" /> packages:
-
-<BlockMath math="\begin{aligned}&2 \times 45{,}000 \\ &=90{,}000\end{aligned}" />
-
-**Fertilizer Cost**
-
-The price of fertilizer is <InlineMath math="\text{Rp}100{,}000.00/\text{m}^2" />. For land with an area of <InlineMath math="0.07 \text{ m}^2" />:
-
-<BlockMath math="\begin{aligned}&0.07 \times 100{,}000 \\ &=7{,}000\end{aligned}" />
-
-**Total Expenditure**
-
-<MathContainer>
-  <BlockMath math="90{,}000 + 7{,}000" />
-  <BlockMath math="97{,}000" />
-</MathContainer>
-
-So, the amount of money Rani has to spend is <InlineMath math="\text{Rp}97{,}000.00" />.
+Rani therefore pays **Rp97,000.00**.

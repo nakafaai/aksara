@@ -5,22 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analysis of book distribution based on student preferences and availability (only <InlineMath math="1" /> copy for each type):
+Start with the student who has **only one choice**. Reni likes only religious books, so that book must go to Reni. Tita likes dictionaries and religious books. With the religious book assigned to Reni, Tita must receive the **dictionary**.
 
-1. **Reni**: Likes only religious books. Since there are no other options for Reni, **Reni must get the religious book**.
+Also check that this assignment allows every student to receive exactly one book they like:
 
-2. **Tita**: Likes dictionaries and religious books.
-   - Since the religious book has already been taken by Reni, the only remaining option for Tita is the dictionary.
-   - Thus, **Tita gets the dictionary**.
-
-Analysis for other students (additional context):
-
-- **Qila**: Likes religious books and literature. Religion (Reni) is taken. So Qila gets **literature**.
-
-- **Putri**: Likes science, literature, and history. Literature (Qila) is taken. Science and history remain.
-
-- **Sinta**: Likes science, dictionaries, religious books, and literature. Dictionary (Tita), Religion (Reni), and Literature (Qila) are taken. Sinta must get **science**.
-
-- Therefore, **Putri** gets **history**.
-
-So, the book that must be given to Tita is the **dictionary**.
+| Student | Book | Reason after the earlier assignments |
+| --- | --- | --- |
+| Reni | Religion | Reni’s only choice |
+| Tita | Dictionary | Religion is assigned to Reni |
+| Qila | Literature | Religion is assigned to Reni |
+| Sinta | Science | Dictionary, religion, and literature are assigned |
+| Putri | History | Science and literature are assigned |

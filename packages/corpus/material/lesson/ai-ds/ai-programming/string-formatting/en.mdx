@@ -15,7 +15,7 @@ The basic replacement field has the form `{field_name:format_spec}`. A width ins
 
 ### Format Types for Number Systems
 
-A format specifier can present one integer in a different number system. The table lists the type characters and the output each one produces for the same value.
+A format specifier can present one integer in a **different number system**. The table lists the type characters and the output each one produces for the same value.
 
 | Format Type | Symbol | Example Input | Output | Usage |
 |-------------|---------|--------------|--------|-------|
@@ -43,11 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ## Position Settings and Fill Characters
 
-A field of fixed width needs a rule for where the text sits and what fills the rest. The alignment character places the value against the left edge, the right edge, or the middle of that width, and a fill character decides which symbol pads the remaining space. Together they keep columns of numbers and labels aligned.
+A field of fixed width needs a rule for **where the text sits** and what fills the rest. The alignment character places the value against the left edge, the right edge, or the middle of that width, and a fill character decides which symbol pads the remaining space. Together they keep columns of numbers and labels aligned.
 
 ### Alignment Options
 
-The diagram compares the same text placed left, right, and centre inside one fixed width, so the alignment character becomes easy to read.
+The diagram compares the same text placed **left, right, and centre** inside one fixed width, so the alignment character becomes easy to read.
 
 <Mermaid
   title="How Width Places Text"
@@ -122,7 +122,7 @@ A replacement field selects **the value to insert into the text**. Use an index 
 
 ### Reference Method Comparison
 
-A format string can name its arguments in three ways. The table compares them by what each one needs and where each one stops.
+A format string can name its arguments in **three ways**. The table compares them by what each one needs and where each one stops.
 
 | Method | Syntax | Advantages | Limitations |
 |--------|---------|-----------|-------------|
@@ -163,7 +163,7 @@ except IndexError as e:
 
 ## Precision Control and Sign Specification
 
-Precision controls the digits in the formatted text, while the sign option controls a plus, minus, or space. For example, `format(12.3, "+.2f")` produces `+12.30`: the `+` sign and the two decimal places come from separate options.
+Precision controls the **digits in the formatted text**, while the sign option controls a plus, minus, or space. For example, `format(12.3, "+.2f")` produces `+12.30`: the `+` sign and the two decimal places come from separate options.
 
 ### Precision for Decimal Numbers
 
@@ -194,7 +194,7 @@ Precision has a different meaning for each presentation type. For `f` and `e`, i
   `}
 />
 
-In the space row, the symbol is one blank character inside the format specifier, as in `{: d}`. Because that character is invisible, the table names it as a literal space.
+In the space row, the symbol is **one blank character** inside the format specifier, as in `{: d}`. Because that character is invisible, the table names it as a literal space.
 
 | Symbol | Behavior | Example |
 |--------|----------|---------|
@@ -234,7 +234,7 @@ F-strings have been available since Python 3.6. They evaluate **expressions insi
 
 ### Dynamic Format Templates
 
-Nested replacement fields can set width, fill, or alignment from another value. Use this form when those format values are known only at runtime.
+**Nested replacement fields** can set width, fill, or alignment from another value. Use this form when those format values are known only at runtime.
 
 <CodeBlock
   data={[
@@ -288,6 +288,6 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   `}
 />
 
-Try `"{value:*^+10.2f}".format(value=12.3)`. The output is `**+12.30**`. Type `f` with precision `2` produces `12.30`, the `+` sign adds one character, and four fill characters complete the minimum width of ten. Alignment `^` divides those four fill characters into two on the left and two on the right.
+Try `"{value:*^+10.2f}".format(value=12.3)`. The output is `**+12.30**`. Type `f` with precision `2` produces `12.30`, the `+` sign adds one character, and four fill characters complete the **minimum width of ten**. Alignment `^` divides those four fill characters into two on the left and two on the right.
 
 Formatting produces a new [string object](/en/subjects/ai-ds/ai-programming/string-object). The number `12.3` stays unchanged, so you can still use it in another calculation.

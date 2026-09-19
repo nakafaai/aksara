@@ -5,38 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir teilen die Arbeit in die Zeit vor und nach dem Ausfall der vier Arbeiter auf.
+Da alle Arbeitskräfte dieselbe konstante Leistung haben, messen wir die Arbeit in **Personentagen**: Eine Person erledigt an einem Tag eine Arbeitseinheit.
 
-**Ursprünglicher Plan:**
+| Phase | Berechnung | Arbeit in Personentagen |
+| --- | --- | --- |
+| Gesamtes Projekt | <InlineMath math="12\cdot16" /> | 192 |
+| Erste vier Tage | <InlineMath math="12\cdot4" /> | 48 |
+| Verbleibende Arbeit | <InlineMath math="192-48" /> | 144 |
 
-Im ursprünglichen Plan erledigen <InlineMath math="12\text{ Arbeiter}" /> das Projekt in <InlineMath math="16\text{ Tagen}" />.
-Der gesamte Arbeitsaufwand beträgt daher <InlineMath math="12 \times 16 = 192" /> Personentage.
+Nach dem Ausfall von vier Personen bleiben <InlineMath math="12-4=8" /> Arbeitskräfte. Sie müssen noch 144 Personentage erledigen. Für die benötigte Tageszahl <InlineMath math="w" /> gilt:
 
-**Nach <InlineMath math="4 \text{ Tage }" />:**
+<BlockMath math="\begin{aligned}8w&=144\\w&=144/8\\w&=18\end{aligned}" />
 
-In den ersten <InlineMath math="4\text{ Tagen}" /> arbeiten noch <InlineMath math="12\text{ Arbeiter}" />.
-Sie erledigen <InlineMath math="12 \times 4 = 48\text{ Personentage}" />.
-Damit bleiben <InlineMath math="192 - 48 = 144\text{ Personentage}" /> übrig.
-
-Im ursprünglichen Plan entspräche das den verbleibenden <InlineMath math="16 - 4 = 12\text{ Tagen}" /> für <InlineMath math="12\text{ Arbeiter}" />.
-
-**Geänderter Zustand:**
-
-Nach dem Ausfall von <InlineMath math="4" /> Arbeitern bleiben <InlineMath math="12 - 4 = 8\text{ Arbeiter}" /> übrig. Sei <InlineMath math="w" /> die Zeit, die diese <InlineMath math="8\text{ Arbeiter}" /> für die restliche Arbeit benötigen.
-
-Mit <InlineMath math="w" /> als Anzahl der noch benötigten Tage gilt:
-
-<BlockMath math="\begin{aligned}
-12\cdot12&=8w \\
-144&=8w \\
-w&=\frac{144}{8} \\
-w&=18
-\end{aligned}" />
-
-Die <InlineMath math="8\text{ Arbeiter}" /> benötigen also weitere <InlineMath math="18" /> Tage.
-
-Die gesamte Projektabschlusszeit ist die bereits verstrichene Zeit plus die verbleibende benötigte Zeit.
+Gesucht ist die **Zeit ab dem ersten Tag**. Deshalb zählen die bereits vergangenen vier Tage mit.
 
 <BlockMath math="4+18=22" />
-
-Das Projekt ist nach insgesamt <InlineMath math="22\text{ Tagen}" /> abgeschlossen.

@@ -5,31 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-We compare the number of lines of symmetry with the number of rotations that map each figure onto itself. As stated in the question, the full <InlineMath math="360^\circ" /> turn counts once.
+Compare **rotational symmetries and reflection axes**. Count the full <InlineMath math="360^\circ" /> turn once, as specified in the question.
 
-1. **Isosceles right triangle**
-   - Lines of symmetry: <InlineMath math="1" /> (altitude from the right angle to the hypotenuse).
-   - Rotational symmetries: <InlineMath math="1" /> (rotation of <InlineMath math="360^\circ" />).
-   - **Conclusion**: The numbers are equal.
+| Figure | Rotational symmetries | Reflection axes |
+| --- | --- | --- |
+| Isosceles right triangle | 1: 360° | 1: from the right angle to the hypotenuse midpoint |
+| Right trapezoid that is not a rectangle | 1: 360° | 0 |
+| Rectangle that is not a square | 2: 180° and 360° | 2: through the midpoints of opposite sides |
+| Rhombus that is not a square | 2: 180° and 360° | 2: both diagonals |
 
-2. **Right trapezoid**
-   - Lines of symmetry: <InlineMath math="0" />.
-   - Rotational symmetries: <InlineMath math="1" /> (rotation of <InlineMath math="360^\circ" />).
-   - **Conclusion**: The numbers are not equal.
+In this rhombus, **both diagonals** divide the shape into mirror images. A 180° turn swaps opposite vertices.
 
-3. **Rectangle** (not a square)
-   - Lines of symmetry: <InlineMath math="2" /> (vertical and horizontal axes).
-   - Rotational symmetries: <InlineMath math="2" /> (rotation of <InlineMath math="180^\circ" /> and <InlineMath math="360^\circ" />).
-   - **Conclusion**: The numbers are equal.
+<MathVisual
+ title="Both diagonals are reflection axes"
+ description="The horizontal and vertical diagonals each divide the rhombus into a pair of mirror-image triangles."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
+ labels={{}}
+/>
 
-4. **Rhombus** (not a square)
-   - Lines of symmetry: <InlineMath math="2" /> (both diagonals).
-   - Rotational symmetries: <InlineMath math="2" /> (rotation of <InlineMath math="180^\circ" /> and <InlineMath math="360^\circ" />).
-   - **Conclusion**: The numbers are equal.
-
-The figures that have the same number of rotational symmetries and lines of symmetry are:
-1. Isosceles right triangle.
-2. Rectangle.
-3. Rhombus.
-
-So, there are <InlineMath math="3" /> figures that satisfy the condition.
+The counts match for the triangle, rectangle, and rhombus. Thus <InlineMath math="3" /> figures meet the condition.

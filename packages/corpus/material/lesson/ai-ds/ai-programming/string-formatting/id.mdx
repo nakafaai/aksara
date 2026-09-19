@@ -15,7 +15,7 @@ Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dal
 
 ### Tipe Format untuk Sistem Bilangan
 
-Penentu format dapat menampilkan satu bilangan bulat dalam sistem bilangan lain. Tabel berikut memuat karakter tipe dan keluaran masing-masing untuk nilai yang sama.
+Penentu format dapat menampilkan satu bilangan bulat dalam **sistem bilangan lain**. Tabel berikut memuat karakter tipe dan keluaran masing-masing untuk nilai yang sama.
 
 | Tipe format | Simbol | Contoh input | Output | Kegunaan |
 |-------------|---------|--------------|--------|----------|
@@ -43,9 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ## Pengaturan Posisi dan Karakter Pengisi
 
-Lebar field yang tetap memerlukan aturan tentang letak teks dan isi sisanya. Kamu perlu menentukan apakah teks diletakkan di kiri, tengah, atau kanan, dan karakter apa yang dipakai untuk mengisi ruang kosong.
+Lebar field yang tetap memerlukan aturan tentang **letak teks dan isi sisanya**. Kamu perlu menentukan apakah teks diletakkan di kiri, tengah, atau kanan, dan karakter apa yang dipakai untuk mengisi ruang kosong.
 
 ### Opsi Perataan
+
+Perataan menempatkan nilai di **kiri, kanan, atau tengah** bidang, sedangkan karakter pengisi menempati ruang yang tersisa.
 
 <Mermaid
   title="Lebar Format Menentukan Posisi Teks"
@@ -120,7 +122,7 @@ Replacement field memilih **nilai yang akan dimasukkan ke teks**. Pakai indeks u
 
 ### Perbandingan Referensi Argumen
 
-Satu format string dapat menamai argumennya dengan tiga cara. Tabel berikut membandingkan syarat dan batas masing-masing cara.
+Satu format string dapat menamai argumennya dengan **tiga cara**. Tabel berikut membandingkan syarat dan batas masing-masing cara.
 
 | Cara | Sintaks | Kelebihan | Batasan |
 |--------|---------|-----------|---------|
@@ -161,7 +163,7 @@ except IndexError as e:
 
 ## Kontrol Presisi dan Spesifikasi Tanda
 
-Presisi mengatur digit pada teks hasil pemformatan, sedangkan opsi tanda mengatur kemunculan plus, minus, atau spasi. Misalnya, `format(12.3, "+.2f")` menghasilkan `+12.30`: tanda `+` dan dua tempat desimal berasal dari dua opsi yang berbeda.
+Presisi mengatur **digit pada teks hasil pemformatan**, sedangkan opsi tanda mengatur kemunculan plus, minus, atau spasi. Misalnya, `format(12.3, "+.2f")` menghasilkan `+12.30`: tanda `+` dan dua tempat desimal berasal dari dua opsi yang berbeda.
 
 ### Presisi untuk Angka Desimal
 
@@ -192,7 +194,7 @@ Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentuk
   `}
 />
 
-Pada baris spasi, simbolnya memang satu karakter kosong di dalam format specifier, seperti pada `{: d}`. Karena karakter itu tidak terlihat, tabel menamainya sebagai spasi literal.
+Pada baris spasi, simbolnya memang **satu karakter kosong** di dalam format specifier, seperti pada `{: d}`. Karena karakter itu tidak terlihat, tabel menamainya sebagai spasi literal.
 
 | Simbol | Perilaku | Contoh |
 |--------|----------|--------|
@@ -232,7 +234,7 @@ F-string tersedia sejak Python 3.6 dan mengevaluasi **ekspresi di dalam replacem
 
 ### Template Format Dinamis
 
-Replacement field bertingkat dapat menentukan lebar, karakter pengisi, atau perataan dari nilai lain. Gunakan bentuk ini ketika nilai spesifikasi format baru diketahui saat program berjalan.
+**Replacement field bertingkat** dapat menentukan lebar, karakter pengisi, atau perataan dari nilai lain. Gunakan bentuk ini ketika nilai spesifikasi format baru diketahui saat program berjalan.
 
 <CodeBlock
   data={[
@@ -286,6 +288,6 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   `}
 />
 
-Coba `"{nilai:*^+10.2f}".format(nilai=12.3)`. Hasilnya adalah `**+12.30**`. Tipe `f` dengan presisi `2` membentuk `12.30`, tanda `+` menambah satu karakter, lalu empat karakter pengisi melengkapi lebar minimum sepuluh karakter. Perataan `^` membagi empat pengisi itu menjadi dua di kiri dan dua di kanan.
+Coba `"{nilai:*^+10.2f}".format(nilai=12.3)`. Hasilnya adalah `**+12.30**`. Tipe `f` dengan presisi `2` membentuk `12.30`, tanda `+` menambah satu karakter, lalu empat karakter pengisi melengkapi **lebar minimum sepuluh karakter**. Perataan `^` membagi empat pengisi itu menjadi dua di kiri dan dua di kanan.
 
 Pemformatan menghasilkan [objek string](/id/materi/ai-ds/pemrograman-ai/objek-string) baru. Nilai angka `12.3` tetap sama, sehingga kamu masih dapat memakai angka itu untuk perhitungan berikutnya.

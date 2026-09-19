@@ -5,26 +5,20 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Kita analisis simetri lipat dan simetri putar untuk setiap bangun datar yang diberikan:
+Bandingkan **banyak sumbu simetri dan tingkat simetri putar**. Posisi awal dihitung satu kali, sama dengan keadaan setelah rotasi 360°.
 
-1. **Segienam beraturan**
-   - Simetri lipat: <InlineMath math="6" /> (garis melalui sudut dan garis melalui sisi).
-   - Simetri putar: <InlineMath math="6" /> (sudut putar <InlineMath math="60^\circ" />, <InlineMath math="120^\circ" />, <InlineMath math="180^\circ" />, <InlineMath math="240^\circ" />, <InlineMath math="300^\circ" />, <InlineMath math="360^\circ" />).
-   - Kesimpulan: <InlineMath math="6 = 6" />. Bangun (1) memenuhi.
+| Bangun | Sumbu simetri | Tingkat simetri putar | Sama? |
+| --- | --- | --- | --- |
+| Segienam beraturan | 6: tiga melalui titik sudut berhadapan dan tiga melalui titik tengah sisi berhadapan | 6: kelipatan 60° | Ya |
+| Segitiga siku-siku sama kaki | 1: dari sudut siku-siku ke titik tengah hipotenusa | 1: hanya posisi awal | Ya |
+| Trapesium siku-siku dengan tepat satu pasang sisi sejajar | 0: tidak ada sumbu simetri | 1: hanya posisi awal | Tidak |
+| Persegi panjang bukan persegi | 2: melalui titik tengah pasangan sisi berhadapan | 2: posisi awal dan 180° | Ya |
 
-2. **Segitiga siku-siku sama kaki**
-   - Simetri lipat: <InlineMath math="1" /> (garis tinggi dari sudut siku-siku ke hipotenusa).
-   - Simetri putar: <InlineMath math="1" /> (hanya posisi awal <InlineMath math="360^\circ" />).
-   - Kesimpulan: <InlineMath math="1 = 1" />. Bangun (2) memenuhi.
+Garis pada segitiga berikut adalah **satu-satunya sumbu simetri**. Rotasi setengah putaran tidak membuat segitiga berimpit kembali.
 
-3. **Trapesium siku-siku**
-   - Simetri lipat: <InlineMath math="0" /> (tidak memiliki sumbu simetri).
-   - Simetri putar: <InlineMath math="1" /> (hanya posisi awal <InlineMath math="360^\circ" />).
-   - Kesimpulan: <InlineMath math="0 \neq 1" />. Bangun (3) tidak memenuhi.
+<MathVisual title="Sumbu simetri segitiga siku-siku sama kaki" description="Garis pada segitiga berikut adalah satu-satunya sumbu simetri. Rotasi setengah putaran tidak membuat segitiga berimpit kembali."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-0.5,max:3.5},y:{min:-0.5,max:3.5}},view:{kind:"fit",padding:0.1},objects:[{id:"triangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:3,y:0},{x:0,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:1.5,y:1.5}}],labels:[]}}
+ labels={{}}
+/>
 
-4. **Persegi panjang bukan persegi**
-   - Simetri lipat: <InlineMath math="2" /> (garis vertikal dan horizontal di tengah).
-   - Simetri putar: <InlineMath math="2" /> (sudut putar <InlineMath math="180^\circ" /> dan <InlineMath math="360^\circ" />).
-   - Kesimpulan: <InlineMath math="2 = 2" />. Bangun (4) memenuhi.
-
-Jadi, bangun yang memiliki banyak simetri lipat sama dengan simetri putar adalah bangun (1), (2), dan (4). Ada <InlineMath math="3" /> bangun.
+Bangun (1), (2), dan (4) memenuhi syarat. Jadi, ada 3 bangun.

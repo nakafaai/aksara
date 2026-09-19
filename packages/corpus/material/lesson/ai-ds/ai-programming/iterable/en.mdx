@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Objects That Yield Items One at a Time
 
-In Python, an iterable is <Highlight>an object that can produce one item at a time for a loop or another consumer</Highlight>. Strings, lists, tuples, sets, dictionaries, files, and generators are all iterable even though they organize and produce items differently.
+In Python, an iterable is an object that can produce **one item at a time** for a loop or another consumer. Strings, lists, tuples, sets, dictionaries, files, and generators are all iterable even though they organize and produce items differently.
 
-An iterable does not have to be ordered, indexable, reusable, or finite. Its defining requirement is that `iter()` returns an iterator that yields items until it is exhausted.
+An iterable does not have to be ordered, indexable, reusable, or finite. Calling `iter()` must return an iterator that yields items. A finite iterator stops when it is exhausted.
 
 ### Types of Iterables
 
-Python provides various types of iterables that you commonly use in everyday programming.
+Strings, lists, and tuples yield **one item per iteration**. The examples below show a character, a number, or a coordinate being passed to the loop variable.
 
 <CodeBlock
   data={[
@@ -68,13 +68,29 @@ for coord in coordinates:
 
 The string yields characters in text order. Lists and tuples yield their stored elements in position order. Other iterable types may follow different ordering rules.
 
+A list can be traversed again, but a generator object **remembers its iteration progress**. The first `list(iterator)` exhausts the generator below. The second call does not restart the computation, so it returns an empty list.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterator_consumption.py",
+      code: `numbers = [1, 2, 3]
+iterator = (number * 2 for number in numbers)
+print(list(iterator))  # Output: [2, 4, 6]
+print(list(iterator))  # Output: []
+print(list(numbers))   # Output: [1, 2, 3]`
+    }
+  ]}
+/>
+
 ## Membership Operators
 
-The operators `in` and `not in` ask whether a container contains a value. Each container type defines how membership is checked: a list scans its elements, a dictionary looks up its keys, and a string looks for a substring.
+The operators `in` and `not in` ask whether a container **contains a value**. Each container type defines how membership is checked: a list scans its elements, a dictionary looks up its keys, and a string looks for a substring.
 
 ### Using in and not in Operators
 
-Built-in sequences search their items until they find a match or reach the end. Sets and dictionaries use their own lookup behavior. A membership check on a dictionary searches its keys.
+Lists and tuples compare elements until a match or the end. Strings search for a substring. Sets and dictionaries use their own lookup behavior. In a dictionary, `in` checks **keys, not values**.
 
 <CodeBlock
   data={[
@@ -113,7 +129,7 @@ if "Java" not in message:
 
 ### Special Cases in Strings
 
-For strings, the left operand may be a single character or a longer substring. The test is case-sensitive and checks for one contiguous occurrence.
+For strings, the left operand may be a single character or a longer substring. The test is **case-sensitive** and checks for one contiguous occurrence.
 
 <CodeBlock
   data={[
@@ -151,7 +167,7 @@ The built-ins `any()` and `all()` consume an iterable and test the truthiness of
 
 ### The Any Function
 
-`any()` returns `True` after the first truthy item. It returns `False` only when every item is falsy or the iterable is empty.
+`any()` returns `True` after the **first truthy item**. It returns `False` only when every item is falsy or the iterable is empty.
 
 <CodeBlock
   data={[
@@ -186,7 +202,7 @@ if any(numbers):
 
 ### The All Function
 
-`all()` returns `False` after the first falsy item. If iteration ends without one, it returns `True`. This also explains the empty case: there is no item that violates the condition.
+`all()` returns `False` after the **first falsy item**. If iteration ends without one, it returns `True`. This also explains the empty case: there is no item that violates the condition.
 
 <CodeBlock
   data={[
@@ -214,18 +230,20 @@ print("All conditions true:", all(mixed_conditions))
 ages = [18, 21, 25, 30]
 if all(age >= 18 for age in ages):
     print("All participants are adults")
-# Output: All participants are adults`
+# Output: All participants are adults
+
+print(all([]))  # Output: True`
     }
   ]}
 />
 
 ## Unpacking Operator
 
-In a function call, a leading asterisk (`*`) expands an iterable into positional arguments. The resulting argument count must still match what the function accepts.
+In a function call, a leading asterisk (`*`) expands an iterable into **positional arguments**. The resulting argument count must still match what the function accepts.
 
 ### Problems Without Unpacking
 
-A function expecting separate coordinates receives a list as one argument unless you unpack it. Manual indexing works for a fixed shape but repeats the container structure at every call site.
+A function expecting separate coordinates receives a **list as one argument** unless you unpack it. Manual indexing works for a fixed shape but repeats the container structure at every call site.
 
 <CodeBlock
   data={[
@@ -243,7 +261,7 @@ try:
     print(result)
 except TypeError as e:
     print("Error:", e)
-# Output: Error: must be real number rather than list
+# Output: Error: must be real number, not list
 
 # Manual way that's troublesome for many arguments
 result = math.hypot(coordinates[0], coordinates[1])
@@ -262,7 +280,7 @@ print("Result with 4 arguments:", result)
 
 ### Solution with Unpacking Operator
 
-Placing `*` before the iterable in the call passes each produced item as its own positional argument.
+Placing `*` before the iterable in the call passes each produced item as its **own positional argument**.
 
 <CodeBlock
   data={[
@@ -303,7 +321,7 @@ print("Average grade:", average)
 
 ### Practical Uses of Unpacking
 
-The same syntax works in function calls and in collection displays. Use it when the interface expects expanded items. Pass the iterable directly when the function accepts one iterable.
+The same syntax works in function calls and in collection displays. Use it when the interface expects **expanded items**. Pass the iterable directly when the function accepts one iterable.
 
 <CodeBlock
   data={[

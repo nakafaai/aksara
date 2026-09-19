@@ -3,7 +3,7 @@ export const metadata = {
     description: "Fungsi print Python, parameter sep dan end, serta teknik formatting untuk mengontrol output dengan presisi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -15,7 +15,7 @@ Built-in `print()` <Highlight>menulis representasi teks suatu nilai ke output st
 
 ## Sintaks Dasar Fungsi Print
 
-Sintaks lengkap fungsi print memiliki beberapa parameter yang dapat dikustomisasi untuk mengontrol cara output ditampilkan.
+Sintaks lengkap fungsi print memiliki beberapa **parameter pengatur output** untuk mengontrol cara output ditampilkan.
 
 <CodeBlock
   data={[
@@ -23,7 +23,7 @@ Sintaks lengkap fungsi print memiliki beberapa parameter yang dapat dikustomisas
       language: "python",
       filename: "sintaks_print.py",
       code: `# Sintaks lengkap fungsi print
-# print(*objects, sep=' ', end='\\n', file=sys.stdout, flush=False)
+# print(*objects, sep=' ', end='\\n', file=None, flush=False)
 
 # Contoh penggunaan dasar
 print("Hello, World!")
@@ -79,7 +79,7 @@ Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi
 
 ## Parameter End
 
-Parameter `end` menentukan karakter atau string yang ditulis setelah objek. Parameter ini memakai newline (`\n`) secara default, sehingga pemanggilan `print` berikutnya dimulai pada baris baru.
+Parameter `end` menentukan karakter atau string yang ditulis setelah objek. Parameter ini memakai **newline** (`\n`) secara default, sehingga pemanggilan `print` berikutnya dimulai pada baris baru.
 
 <CodeBlock
   data={[
@@ -125,7 +125,7 @@ Mengubah `end` memungkinkan beberapa pemanggilan melanjutkan output pada baris y
 
 ## Menampilkan Berbagai Tipe Data
 
-`print()` menerima objek dari berbagai tipe dan mengambil representasi string yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi tersebut melalui `__str__()`.
+`print()` menerima objek dari berbagai tipe dan mengambil **representasi string** yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi tersebut melalui `__str__()`.
 
 <CodeBlock
   data={[
@@ -163,11 +163,11 @@ Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah set
 
 ## Teknik Formatting Output
 
-Pemanggilan `print()` sederhana cukup untuk melihat hasil sekilas, sedangkan keluaran yang rapi memerlukan satu alat lagi. F-string menyusun satu nilai teks dari ekspresi yang ditulis berdampingan dengan kata-kata di sekitarnya, dan argumen `end` mengatur apa yang ditulis `print()` setelah nilai itu. Keduanya menjaga keluaran tetap mudah dibaca tanpa langkah penggabungan terpisah.
+Pemanggilan `print()` sederhana cukup untuk melihat hasil sekilas, sedangkan keluaran yang rapi memerlukan satu alat lagi. F-string menyusun **satu nilai teks** dari ekspresi yang ditulis berdampingan dengan kata-kata di sekitarnya, dan argumen `end` mengatur apa yang ditulis `print()` setelah nilai itu. Keduanya menjaga keluaran tetap mudah dibaca tanpa langkah penggabungan terpisah.
 
 ### Print dengan F String
 
-F-string mengevaluasi ekspresi di dalam kurung kurawal dan dapat menerapkan format specification. Nilai dan teks yang mengelilinginya tetap berada dalam satu ekspresi yang mudah dibaca.
+F-string mengevaluasi **ekspresi di dalam kurung kurawal** dan dapat menerapkan format specification. Nilai dan teks yang mengelilinginya tetap berada dalam satu ekspresi yang mudah dibaca.
 
 <CodeBlock
   data={[
@@ -215,7 +215,7 @@ F-string menggabungkan teks dengan variabel atau hasil perhitungan dalam format 
 
 ### Print Tanpa Newline
 
-Ketika kamu ingin menampilkan output dalam satu baris secara bertahap, parameter `end` dapat diubah untuk menghindari newline otomatis.
+Ketika kamu ingin menampilkan output dalam satu baris secara bertahap, parameter `end` dapat diubah untuk **menghindari newline otomatis**.
 
 <CodeBlock
   data={[

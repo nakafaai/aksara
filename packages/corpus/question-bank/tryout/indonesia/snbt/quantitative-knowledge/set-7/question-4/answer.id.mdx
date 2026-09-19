@@ -5,48 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kita membandingkan banyak simetri lipat dengan tingkat simetri putar setiap bangun. Putaran penuh <InlineMath math="360^\circ" /> dihitung sebagai simetri putar tingkat <InlineMath math="1" />. Sebuah bangun harus memiliki paling banyak <InlineMath math="2" /> untuk keduanya.
+Setiap bangun harus memenuhi **dua batas sekaligus**: paling banyak dua sumbu lipat dan paling banyak dua posisi yang berimpit saat diputar satu putaran penuh. Posisi awal dihitung sekali, melalui putaran <InlineMath math="360^\circ" />.
 
-#### Analisis Trapesium Siku-siku
+| Bangun | Sumbu lipat | Simetri putar |
+| --- | --- | --- |
+| Trapesium siku-siku | 0 | 1: hanya 360° |
+| Segilima beraturan | 5: setiap sudut ke titik tengah sisi di seberangnya | 5: setiap kelipatan 72° |
+| Segitiga sama sisi | 3: setiap sudut ke titik tengah sisi di seberangnya | 3: 120°, 240°, 360° |
+| Layang-layang bukan belah ketupat | 1: diagonal yang melalui pertemuan sisi-sisi sama panjang | 1: hanya 360° |
 
-Trapesium siku-siku tidak memiliki sumbu simetri maupun simetri putar tingkat tinggi (hanya simetri putar tingkat <InlineMath math="1" />, yaitu posisi awal).
+Layang-layang berikut hanya memiliki **satu sumbu lipat**. Putaran 180° tidak membuat bangun berimpit karena puncak atas dan bawah berjarak berbeda dari perpotongan diagonal.
 
-*   Simetri lipat: <InlineMath math="0" />
-*   Simetri putar: <InlineMath math="1" />
+<MathVisual title="Sumbu simetri layang-layang" description="Diagonal vertikal membagi layang-layang menjadi dua bagian yang saling mencerminkan." scene={{space:"plane",frame:{kind:"cartesian",x:{min:-3,max:3},y:{min:-2,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"kite",kind:"polygon",appearance:"primary",vertices:[{x:0,y:3},{x:2,y:0},{x:0,y:-1},{x:-2,y:0}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:-1},to:{x:0,y:3}}],labels:[]}} labels={{}} />
 
-Bangun ini memenuhi syarat (karena <InlineMath math="0 \le 2" /> dan <InlineMath math="1 \le 2" />).
-
-#### Analisis Segilima Beraturan
-
-Segilima beraturan memiliki <InlineMath math="5" /> sisi yang sama panjang.
-
-*   Simetri lipat: <InlineMath math="5" />
-*   Simetri putar: <InlineMath math="5" />
-
-Bangun ini **tidak** memenuhi syarat.
-
-#### Analisis Segitiga Sama Sisi
-
-Segitiga sama sisi memiliki <InlineMath math="3" /> sisi yang sama panjang.
-
-*   Simetri lipat: <InlineMath math="3" />
-*   Simetri putar: <InlineMath math="3" />
-
-Bangun ini **tidak** memenuhi syarat.
-
-#### Analisis Layang-layang Bukan Belah Ketupat
-
-Layang-layang memiliki satu sumbu simetri utama.
-
-*   Simetri lipat: <InlineMath math="1" />
-*   Simetri putar: <InlineMath math="1" />
-
-Bangun ini memenuhi syarat.
-
-#### Bangun yang Memenuhi Syarat
-
-Bangun datar yang memenuhi syarat adalah:
-1. Trapesium siku-siku.
-2. Layang-layang bukan belah ketupat.
-
-Jadi, ada <InlineMath math="2" /> bidang datar yang memenuhi syarat.
+Trapesium siku-siku dan layang-layang memenuhi kedua batas. Jadi, jawabannya <InlineMath math="2" /> bangun.

@@ -1,30 +1,26 @@
 export const metadata = {
   title: "Solution for Question 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-23",
 };
 
-We will calculate the combined work rate of Kardi and Anton, then determine the time needed to complete the total work.
+Kardi and Anton work on separate walls, so we can add their **daily work rates**. All walls have the same area, and each worker maintains a constant rate.
 
-#### Calculating Combined Work Rate
+#### Adding the Work Rates
 
-Work rate of each person per day:
-- Kardi: <InlineMath math="10" /> walls/day.
-- Anton: <InlineMath math="6" /> walls/day.
+A rate tells us **how many walls are completed in one day**, rather than how many days the work takes. Kardi completes ten walls per day and Anton completes six.
 
-If they work together, their combined rate is:
+| Worker | Rate (walls per day) |
+| --- | --- |
+| Kardi | 10 |
+| Anton | 6 |
+| Both | <InlineMath math="10+6=16" /> |
 
-<BlockMath math="\begin{aligned}&10 + 6 \\ &=16 \text{ walls/day}\end{aligned}" />
+#### Finding the Time to Finish All Walls
 
-#### Calculating Completion Time
+Divide **the number of walls by the combined rate**. Since the rate is measured in walls per day, the quotient is a duration in working days.
 
-The total work to be completed is <InlineMath math="56" /> walls. The time required (<InlineMath math="t" />) can be calculated by dividing the total work by the combined rate.
+<BlockMath math="\begin{aligned}t&=\frac{56\text{ walls}}{16\text{ walls/day}}\\&=\frac{56\div8}{16\div8}\text{ days}\\&=\frac72\text{ days}=3.5\text{ days}\end{aligned}" />
 
-<BlockMath math="t = \frac{56}{16}" />
-
-We simplify the fraction:
-
-<BlockMath math="t = \frac{7}{2} = 3.5 \text{ days}" />
-
-So, the time required for both of them is <InlineMath math="3.5\text{ days}" />.
+After three days, they finish <InlineMath math="3\times16=48" /> walls. The remaining eight walls take another <InlineMath math="8/16=1/2" /> day. They therefore need **three and a half working days**.

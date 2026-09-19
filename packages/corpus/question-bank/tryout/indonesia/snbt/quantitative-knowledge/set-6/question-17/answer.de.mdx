@@ -5,26 +5,13 @@ export const metadata = {
   datePublished: "2025-12-23",
 };
 
-Für die ganze Zahl <InlineMath math="m" /> gelten die Bedingungen:
-*   <InlineMath math="m \equiv 3 \pmod{7}" /> (Bei Division durch <InlineMath math="7" /> ist der Rest <InlineMath math="3" />)
-*   <InlineMath math="m \equiv 2 \pmod{3}" /> (Bei Division durch <InlineMath math="3" /> ist der Rest <InlineMath math="2" />)
+Jeder Kandidat muss **beide Restbedingungen** erfüllen. Schreibe jede Zahl als Divisor mal Quotient plus Rest.
 
-Überprüfen wir jede Aussage:
+| Zahl | Division durch 7 | Division durch 3 | Erfüllt beide |
+| --- | --- | --- | --- |
+| 52 | <InlineMath math="52=7\times7+3" /> | <InlineMath math="52=3\times17+1" /> | Nein |
+| 59 | <InlineMath math="59=7\times8+3" /> | <InlineMath math="59=3\times19+2" /> | Ja |
+| 42 | <InlineMath math="42=7\times6+0" /> | <InlineMath math="42=3\times14+0" /> | Nein |
+| 38 | <InlineMath math="38=7\times5+3" /> | <InlineMath math="38=3\times12+2" /> | Ja |
 
-#### Analyse der ersten Aussage
-
-Für <InlineMath math="m=52" /> gilt <InlineMath math="52=7\times7+3" />, aber <InlineMath math="52=17\times3+1" />. Die zweite Restbedingung ist nicht erfüllt. Aussage 1 ist **falsch**.
-
-#### Analyse der zweiten Aussage
-
-Für <InlineMath math="m=59" /> gilt <InlineMath math="59=8\times7+3" /> und <InlineMath math="59=19\times3+2" />. Beide Restbedingungen sind erfüllt. Aussage 2 ist **richtig**.
-
-#### Analyse der dritten Aussage
-
-Für <InlineMath math="m=42" /> gilt <InlineMath math="42=6\times7+0" /> und <InlineMath math="42=14\times3+0" />. Beide Divisionen haben Rest <InlineMath math="0" />, also ist Aussage 3 **falsch**.
-
-#### Analyse der vierten Aussage
-
-Für <InlineMath math="m=38" /> gilt <InlineMath math="38=5\times7+3" /> und <InlineMath math="38=12\times3+2" />. Beide Restbedingungen sind erfüllt. Aussage 4 ist **richtig**.
-
-Somit sind genau die Aussagen **(2) und (4)** richtig.
+Nur 59 und 38 lassen Rest 3 bei Division durch 7 und Rest 2 bei Division durch 3. Damit sind **Aussage 2 und 4** richtig.
