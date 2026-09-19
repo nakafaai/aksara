@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "sensory imagery as a term without a role in the story",
+          label: "Sensory imagery as a term without a role in the story",
         },
         {
           isCorrect: false,

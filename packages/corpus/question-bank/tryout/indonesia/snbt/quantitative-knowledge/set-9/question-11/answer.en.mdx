@@ -2,8 +2,10 @@ export const metadata = {
   title: "Solution for Problem 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
+
+Use **complement probabilities** to calculate the chance of failing.
 
 Let:
 -   <InlineMath math="P(A)" /> = Probability Ali passes
@@ -20,13 +22,10 @@ Given:
 
 Because the three outcomes are independent, we multiply the appropriate pass and fail probabilities within each case. Exactly one person passes in one of three mutually exclusive cases:
 
-#### Only Ali passes
-
-<BlockMath math="\begin{aligned}&P(A\cap B^c\cap D^c)\\&=0.75 \cdot 0.2 \cdot 0.15\\&= 0.0225\end{aligned}" />
-
-#### Only Bima passes
-
-<BlockMath math="\begin{aligned}&P(B\cap A^c\cap D^c)\\&=0.8 \cdot 0.25 \cdot 0.15\\&= 0.03\end{aligned}" />
+| Only person who passes | Probability calculation |
+| --- | --- |
+| Ali | <InlineMath math="P(A\cap B^c\cap D^c)=0.75 \cdot 0.2 \cdot 0.15= 0.0225" /> |
+| Bima | <InlineMath math="P(B\cap A^c\cap D^c)=0.8 \cdot 0.25 \cdot 0.15= 0.03" /> |
 
 #### Only Dika passes
 
@@ -34,7 +33,7 @@ Because the three outcomes are independent, we multiply the appropriate pass and
 
 #### Total Probability
 
-Thus, the probability that only one person passes is the sum of these three possibilities:
+Thus, the probability that only one person passes is the **sum of three mutually exclusive case probabilities**:
 
 <BlockMath math="\begin{aligned}&0.0225+0.03\\&\quad+0.0425\\&=0.095\end{aligned}" />
 

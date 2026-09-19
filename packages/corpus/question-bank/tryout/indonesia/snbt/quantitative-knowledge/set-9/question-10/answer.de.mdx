@@ -1,12 +1,13 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-20",
   datePublished: "2025-12-26",
 };
 
 #### Verhältnis der Seitenlängen
 
-Das Volumen <InlineMath math="V" /> eines Würfels ist proportional zur dritten Potenz seiner Seitenlänge <InlineMath math="s" />. Gegeben ist das Volumenverhältnis <InlineMath math="1 : 27" />:
+Das Volumen <InlineMath math="V" /> eines Würfels ist proportional zur **dritten Potenz seiner Seitenlänge** <InlineMath math="s" />. Gegeben ist das Volumenverhältnis <InlineMath math="1 : 27" />:
 
 <MathContainer>
   <BlockMath math="\frac{V_1}{V_2} = \left(\frac{s_1}{s_2}\right)^3" />
@@ -19,7 +20,7 @@ Das Verhältnis der Seitenlängen der beiden Würfel beträgt also <InlineMath m
 
 #### Verhältnis der Oberflächen
 
-Die Oberfläche <InlineMath math="L" /> eines Würfels ist proportional zum Quadrat seiner Seitenlänge.
+Die Oberfläche <InlineMath math="L" /> eines Würfels ist proportional zum **Quadrat seiner Seitenlänge**.
 
 <MathContainer>
   <BlockMath math="\frac{L_1}{L_2} = \frac{6s_1^2}{6s_2^2}" />
@@ -29,3 +30,22 @@ Die Oberfläche <InlineMath math="L" /> eines Würfels ist proportional zum Quad
 </MathContainer>
 
 Somit beträgt das Verhältnis der Oberflächen der beiden Würfel <InlineMath math="1 : 9" />.
+
+<MathVisual
+  title="Würfel mit Kantenlängen 1 und 3"
+  description="Drehe die Würfel. Dreifache Kantenlänge bedeutet neunfache Seitenfläche und 27-faches Volumen."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 4 }, z: { min: -2, max: 2 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 0, y: 1.5, z: 0 } },
+    objects: [
+      { id: "small", kind: "cuboid", appearance: "primary", center: { x: -2.5, y: 0.5, z: 0 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "large", kind: "cuboid", appearance: "secondary", center: { x: 1.5, y: 1.5, z: 0 }, size: { length: 3, height: 3, width: 3 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: -2.5, y: 1, z: 0.5 }, placement: "above" },
+      { key: "large", objectId: "large", at: { x: 1.5, y: 3, z: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{ small: <InlineMath math="s_1=1" />, large: <InlineMath math="s_2=3" /> }}
+/>

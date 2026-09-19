@@ -5,40 +5,24 @@ export const metadata = {
   dateModified: "2026-09-19",
 };
 
-Use the stated continuation rule to extend each row by one week.
+The rule applies to the **weekly increases**, rather than directly to the sales counts. Calculate the differences between consecutive weeks before extending the pattern.
 
-#### Square headscarves
+#### Calculate the next increases
 
-The sequence is <InlineMath math="12,15,21,30" />. Its successive increases are
+| Style | Known increases | Next increase |
+| --- | --- | --- |
+| Square | <InlineMath math="15-12=3" />, <InlineMath math="21-15=6" />, <InlineMath math="30-21=9" /> | Rises by three, so <InlineMath math="9+3=12" /> |
+| Bergo | <InlineMath math="16-14=2" />, <InlineMath math="18-16=2" />, <InlineMath math="20-18=2" /> | Remains <InlineMath math="2" /> |
+| Pashmina | <InlineMath math="14-9=5" />, <InlineMath math="20-14=6" />, <InlineMath math="27-20=7" /> | Rises by one, so <InlineMath math="7+1=8" /> |
 
-<MathContainer>
-  <BlockMath math="15-12=3" />
-  <BlockMath math="21-15=6" />
-  <BlockMath math="30-21=9" />
-</MathContainer>
+The three sequences of increases are **arithmetic sequences** with common differences of three, zero, and one. A zero common difference for bergo means its sales increase stays constant.
 
-The increases themselves rise by <InlineMath math="3" />, so the next increase
-is <InlineMath math="12" />. The week <InlineMath math="5" /> value is
-<InlineMath math="30+12=42" />.
+#### Add to the counts for week four
 
-#### Bergo headscarves
+Add each calculated increase to the latest count, rather than the initial count:
 
-The sequence <InlineMath math="14,16,18,20" /> has the **constant increase**
-<InlineMath math="2" />. Its next value is <InlineMath math="20+2=22" />.
+<BlockMath math="\begin{aligned}S_5&amp;=30+12=42\\B_5&amp;=20+2=22\\P_5&amp;=27+8=35\end{aligned}" />
 
-#### Pashmina headscarves
+Here <InlineMath math="S" />, <InlineMath math="B" />, and <InlineMath math="P" /> denote square, bergo, and pashmina headscarves. The predicted counts satisfy <InlineMath math="42>35>22" />. Therefore, **square headscarves sell the most**, while bergo sells the least.
 
-The sequence <InlineMath math="9,14,20,27" /> has successive increases
-<InlineMath math="5,6,7" />. The next increase is <InlineMath math="8" />, so
-the next value is <InlineMath math="27+8=35" />.
-
-#### Compare the predictions
-
-Verify each statement based on the prediction results:
-
-- Bergo reaches <InlineMath math="22" />. The value <InlineMath math="24" /> does not match the table’s pattern.
-- Square headscarves reach <InlineMath math="42" />, more than pashmina at
-  <InlineMath math="35" /> and bergo at <InlineMath math="22" />.
-- Pashmina therefore does not sell less than bergo.
-
-The correct prediction is **<InlineMath math="42" /> square headscarves**.
+The correct choice predicts <InlineMath math="42" /> square headscarves. Bergo is not predicted to reach <InlineMath math="24" />, pashmina is not the best seller, and pashmina still exceeds bergo.

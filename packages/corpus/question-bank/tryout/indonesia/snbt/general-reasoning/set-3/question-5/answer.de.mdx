@@ -5,27 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Um die Zahl der möglichen Kartennummern zu bestimmen, zerlegen wir zunächst ihre <InlineMath math="12" /> Stellen.
-
-Gegeben:
-1.  **Präfix (erste <InlineMath math="4" /> Ziffern)**: fest vorgegeben als <InlineMath math="0844" />.
-2.  **Suffix (letzte <InlineMath math="4" /> Ziffern)**: fest vorgegeben als <InlineMath math="1221" />.
-3.  **Mittlere Ziffern**: diese vier Stellen werden frei gewählt.
-
-Die Anzahl der anzuordnenden Ziffern beträgt:
+Nur die **vier mittleren Ziffern** können variieren. Die ersten vier und die letzten vier Ziffern sind fest vorgegeben.
 
 <BlockMath math="12-4-4=4" />
 
-Die zum Füllen dieser <InlineMath math="4" /> mittleren Ziffern verfügbaren Ziffern sind <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />.
-Die Gesamtzahl der verfügbaren Ziffern beträgt <InlineMath math="7" />.
+| Teil der Nummer | Inhalt | Möglichkeiten |
+| --- | --- | --- |
+| Erste vier Ziffern | <InlineMath math="0844" /> | Eine feste Anordnung |
+| Vier mittlere Ziffern | Jeweils aus <InlineMath math="\{2,3,4,5,7,8,9\}" /> gewählt | Sieben Möglichkeiten pro Stelle |
+| Letzte vier Ziffern | <InlineMath math="1221" /> | Eine feste Anordnung |
 
-Da die Aufgabe Wiederholungen ausdrücklich erlaubt, kann jede der <InlineMath math="4" /> mittleren Stellen unabhängig mit einer der <InlineMath math="7" /> verfügbaren Ziffern besetzt werden.
+Weil **Wiederholungen erlaubt** sind, bleibt eine gewählte Ziffer auch für die nächste Stelle verfügbar. Zum Beispiel darf an allen vier Stellen <InlineMath math="2" /> stehen. Jede Stelle hat weiterhin sieben Möglichkeiten. Die Anzahl sinkt also nicht auf sechs, fünf und schließlich vier.
 
-Die Berechnung lautet wie folgt:
+Multipliziere die Anzahlen der Möglichkeiten an den vier Stellen:
 
-<MathContainer>
-  <BlockMath math="7^4=7\times7\times7\times7" />
-  <BlockMath math="7^4 = 2401" />
-</MathContainer>
+<BlockMath math="7^4=7\times7\times7\times7=49\times49=2401" />
 
-Somit beträgt die Anzahl der Kartennummern, die erstellt werden können, <InlineMath math="2401" />.
+Es gibt <InlineMath math="2401" /> verschiedene Kartennummern. Präfix und Suffix liefern keinen zusätzlichen Auswahlfaktor, weil sie jeweils nur eine feste Anordnung haben.

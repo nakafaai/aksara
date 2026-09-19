@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "stock rotation as the main measure in a service trial",
+          label: "Stock rotation as the main measure in a service trial",
         },
         {
           isCorrect: false,

@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "register as the main measure in a service trial",
+          label: "Register as the main measure in a service trial",
         },
         {
           isCorrect: false,

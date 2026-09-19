@@ -5,8 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Von den Nutzenden von <InlineMath math="A" /> ziehen wir diejenigen in <InlineMath math="A\cap B" /> und <InlineMath math="A\cap C" /> ab. Die Nutzenden aller drei Dienste wurden dabei zweimal abgezogen und müssen einmal wieder addiert werden.
+Gesucht sind **Personen, die nur A nutzen**. Deshalb müssen wir alle A-Nutzenden ausschließen, die auch B oder C nutzen. Trenne zunächst die überlappenden Gruppen:
 
-<BlockMath math="90-35-28+15=42" />
+| Gruppe der A-Nutzenden | Anzahl |
+| --- | --- |
+| A und B, ohne C | <InlineMath math="35-15=20" /> |
+| A und C, ohne B | <InlineMath math="28-15=13" /> |
+| A, B und C | <InlineMath math="15" /> |
 
-Damit nutzen <InlineMath math="42" /> Personen ausschließlich Dienst <InlineMath math="A" />.
+Diese drei Zeilen überschneiden sich nicht. Somit nutzen <InlineMath math="20+13+15=48" /> Personen neben A noch einen weiteren Dienst. Es bleiben
+
+<BlockMath math="90-48=42." />
+
+Dasselbe lässt sich mit dem Prinzip von Inklusion und Exklusion schreiben:
+
+<BlockMath math="90-35-28+15=55-28+15=27+15=42." />
+
+Warum addieren wir <InlineMath math="15" />? Die Nutzenden aller drei Dienste wurden über die beiden Schnittmengen **zweimal abgezogen**, obwohl sie nur einmal ausgeschlossen werden sollen. Einmaliges Wiederaddieren korrigiert diesen doppelten Abzug.

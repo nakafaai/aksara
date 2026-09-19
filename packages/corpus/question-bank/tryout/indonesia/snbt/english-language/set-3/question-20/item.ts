@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "irony as a term without a role in the story",
+          label: "Irony as a term without a role in the story",
         },
         {
           isCorrect: true,

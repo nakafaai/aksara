@@ -2,10 +2,10 @@ export const metadata = {
   title: "Pembahasan Soal 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Diketahui sistem pertidaksamaan:
+Cari **batas atas yang dapat dicapai** untuk jumlah <InlineMath math="x+y" /> pada sistem berikut:
 
 <BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
 
@@ -23,6 +23,10 @@ Sekarang periksa <InlineMath math="a=5" />. Batas atasnya menjadi:
 
 <BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
 
+Cari titik potong kedua garis batas dengan eliminasi:
+
+<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
+
 Titik potong <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> memenuhi kedua persamaan batas:
 
 <MathContainer>
@@ -32,3 +36,20 @@ Titik potong <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> memenuh
 </MathContainer>
 
 Jadi, <InlineMath math="5" /> merupakan batas atas sekaligus nilai yang dapat dicapai. Dengan demikian, <InlineMath math="a=5" />.
+
+<MathVisual
+ title="Daerah layak untuk a = 5"
+ description="Titik sudut tempat dua batas berpotongan mencapai jumlah koordinat lima."
+ scene={{
+ space: "plane",
+ frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
+ view: { kind: "fit", padding: 0.5 },
+ objects: [
+ { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
+ { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
+ { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
+ ],
+ labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
+ }}
+ labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
+/>

@@ -7,12 +7,12 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Measuring truss in one preliminary comparison",
+          label: "Measuring a truss in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Treating truss as the sole explanation for the observed result",
+            "Treating a truss as the sole explanation for the observed result",
         },
         {
           isCorrect: true,
@@ -20,11 +20,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A final rule derived from the first comparison of truss",
+          label:
+            "A final rule derived from the first comparison of truss designs",
         },
         {
           isCorrect: false,
-          label: "A limitation that makes another test of truss unnecessary",
+          label: "A limitation that makes another test of a truss unnecessary",
         },
       ],
     },

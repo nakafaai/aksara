@@ -2,10 +2,10 @@ export const metadata = {
   title: "Solution 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-The volume cannot be calculated yet because <InlineMath math="x" /> is unknown. Start with the surface area.
+The volume cannot be calculated yet because <InlineMath math="x" /> is unknown. Start with the **surface area** to determine <InlineMath math="x" />.
 
 Let <InlineMath math="l" />, <InlineMath math="w" />, and <InlineMath math="h" /> denote length, width, and height. The surface area formula is:
 
@@ -13,7 +13,9 @@ Let <InlineMath math="l" />, <InlineMath math="w" />, and <InlineMath math="h" /
 
 Substituting the dimensions gives:
 
-<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=12x^2+20x-88\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+
+The first factor gives <InlineMath math="x=-\frac{11}{3}" />, while the second gives <InlineMath math="x=2" />.
 
 Since <InlineMath math="x>0" />, we take <InlineMath math="x=2" />. The prism therefore measures <InlineMath math="6\text{ cm}" /> by <InlineMath math="4\text{ cm}" /> by <InlineMath math="2\text{ cm}" />.
 
@@ -22,3 +24,25 @@ Each unit cube has volume <InlineMath math="1\text{ cm}^3" />, so the required n
 <BlockMath math="6\times4\times2=48" />
 
 The prism needs <InlineMath math="48" /> unit cubes.
+
+Picture **two layers of unit cubes**. Each layer contains <InlineMath math="6\times4=24" /> cubes, giving <InlineMath math="2\times24=48" /> in total.
+
+<MathVisual
+ title="A prism measuring 6 by 4 by 2 centimeters"
+ description="A prism measuring 6 by 4 by 2 centimeters"
+ scene={{
+ space: "space",
+ frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 3 }, z: { min: -3, max: 3 } },
+ view: { kind: "camera", position: { x: 8, y: 6, z: 10 }, target: { x: 0, y: 1, z: 0 } },
+ objects: [
+ { id: "prism", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 6, height: 2, width: 4 } },
+ { id: "layer", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: 1, z: -2 }, { x: 3, y: 1, z: -2 }, { x: 3, y: 1, z: 2 }, { x: -3, y: 1, z: 2 }] },
+ ],
+ labels: [
+ { key: "length", objectId: "prism", at: { x: 0, y: 0, z: 2 }, placement: "below" },
+ { key: "width", objectId: "prism", at: { x: 3, y: 0, z: 0 }, placement: "right" },
+ { key: "height", objectId: "prism", at: { x: -3, y: 1, z: 2 }, placement: "left" },
+ ],
+ }}
+ labels={{ length: <InlineMath math="6" />, width: <InlineMath math="4" />, height: <InlineMath math="2" /> }}
+/>

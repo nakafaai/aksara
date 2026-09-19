@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *motif* identifies how the recurring stamp links the missing record, Samira's action, and the next volunteer's response into one idea.",
+            "The definition of *motif* identifies how the recurring stamp links the missing package date, Samira's action, and the next volunteer's response into one idea.",
         },
         {
           isCorrect: false,

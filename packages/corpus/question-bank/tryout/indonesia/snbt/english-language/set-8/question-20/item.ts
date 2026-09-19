@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "metaphor as a term without a role in the story",
+          label: "Metaphor as a term without a role in the story",
         },
         {
           isCorrect: false,

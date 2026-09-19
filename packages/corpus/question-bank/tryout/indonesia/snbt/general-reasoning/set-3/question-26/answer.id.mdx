@@ -5,8 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kurangi keluaran cacat dari keluaran total setiap mesin:
+Periksa **syarat keluaran tanpa cacat** sebelum membandingkan indeks. Produk cacat harus dikeluarkan dari jumlah produksi, karena ambang <InlineMath math="650" /> berlaku untuk unit baik.
 
-<BlockMath math="\begin{aligned} 620-20&=600 \\ 540-18&=522 \\ 700-28&=672 \end{aligned}" />
+| Mesin | Keluaran tanpa cacat | Memenuhi ambang? |
+| --- | --- | --- |
+| <InlineMath math="A" /> | <InlineMath math="620-20=600" /> | Tidak, <InlineMath math="600<650" /> |
+| <InlineMath math="B" /> | <InlineMath math="540-18=522" /> | Tidak, <InlineMath math="522<650" /> |
+| <InlineMath math="C" /> | <InlineMath math="700-28=672" /> | Ya, <InlineMath math="672\geq650" /> |
 
-Hanya mesin <InlineMath math="C" /> yang mencapai ambang <InlineMath math="650" /> unit. Jadi, mesin itu terpilih tanpa perlu membandingkan indeks dengan mesin yang tidak memenuhi syarat.
+Hanya mesin <InlineMath math="C" /> yang memenuhi syarat, sehingga mesin <InlineMath math="C" /> terpilih. Indeks mesin <InlineMath math="A" /> atau <InlineMath math="B" /> tidak dapat membuat kedua mesin itu lolos syarat keluaran. Perbandingan indeks baru diperlukan jika ada lebih dari satu mesin yang memenuhi ambang.

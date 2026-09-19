@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "tone as a term without a role in the story",
+          label: "Tone as a term without a role in the story",
         },
         {
           isCorrect: false,

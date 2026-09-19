@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "wayfinding as the main measure in a service trial",
+          label: "Wayfinding as the main measure in a service trial",
         },
         {
           isCorrect: false,

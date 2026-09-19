@@ -5,29 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Nyatakan setiap hubungan sebagai proposisi:
+Kita dapat membuktikan kesimpulan dengan **dua kemungkinan** untuk hubungan <InlineMath math="E" /> dan <InlineMath math="F" />.
 
-- <InlineMath math="p" /> berarti <InlineMath math="A=B" />.
-- <InlineMath math="q" /> berarti <InlineMath math="C\neq D" />.
-- <InlineMath math="r" /> berarti <InlineMath math="E=F" />.
-- <InlineMath math="s" /> berarti <InlineMath math="G=H" />.
+Jika <InlineMath math="E\neq F" />, pernyataan <InlineMath math="A=B\lor E\neq F" /> sudah benar, apa pun hubungan <InlineMath math="A" /> dan <InlineMath math="B" />. Sekarang periksa kemungkinan lain, yaitu <InlineMath math="E=F" />:
 
-Ketiga premis menjadi:
+| Langkah | Hubungan yang diperoleh | Alasan |
+| --- | --- | --- |
+| Gunakan premis kedua | <InlineMath math="G=H" /> | Kesamaan ini mengikuti <InlineMath math="E=F" /> |
+| Gunakan premis ketiga | <InlineMath math="C=D" /> | <InlineMath math="G\neq H" /> salah, sehingga bagian lain dari pernyataan atau harus benar |
+| Gunakan premis pertama | <InlineMath math="A=B" /> | <InlineMath math="C\neq D" /> salah, sehingga <InlineMath math="A=B" /> harus benar |
 
-<MathContainer>
-  <BlockMath math="p\lor q" />
-  <BlockMath math="\neg r\lor s" />
-  <BlockMath math="\neg q\lor\neg s" />
-</MathContainer>
+Dalam kedua kemungkinan, sedikitnya salah satu bagian kesimpulan benar. Jadi, simpulan yang pasti benar ialah
 
-#### Hilangkan Proposisi Perantara
+<BlockMath math="A=B\lor E\neq F." />
 
-Resolusi premis pertama dan ketiga pada <InlineMath math="q" /> menghasilkan:
-
-<BlockMath math="p\lor\neg s" />
-
-Lalu, resolusi hasil tersebut dengan premis kedua pada <InlineMath math="s" /> menghasilkan:
-
-<BlockMath math="p\lor\neg r" />
-
-Jika diterjemahkan kembali, <InlineMath math="p\lor\neg r" /> berarti **<InlineMath math="A=B" /> atau <InlineMath math="E\neq F" />**.
+Perhatikan bahwa **atau tidak berarti dan**. Kita tidak memperoleh kepastian bahwa kedua bagian kesimpulan sekaligus benar.

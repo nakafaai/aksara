@@ -5,14 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Es gibt <InlineMath math="\binom{10}{2}=45" /> gleich wahrscheinliche Paare. Die Anzahlen roter, gemischter und blauer Paare sind
+Wir zählen **gleich wahrscheinliche Kugelpaare**, statt die drei Farbergebnisse als gleich wahrscheinlich anzusehen. Da die Reihenfolge der beiden Kugeln keine Rolle spielt, gibt es insgesamt folgende Anzahl möglicher Paare:
 
-<BlockMath math="\begin{aligned} \binom{6}{2}&=15 \\ 6\times4&=24 \\ \binom{4}{2}&=6 \end{aligned}" />
+<BlockMath math="\binom{10}{2}=\frac{10\times9}{2}=45" />
 
-Der Erwartungswert des angegebenen Gewinns in Tausend Rupiah beträgt
+| Farben des Paares | Anzahl der Paare | Angegebener Gewinn, Tausend Rupiah |
+| --- | --- | ---: |
+| Rot und Rot | <InlineMath math="\binom{6}{2}=\frac{6\times5}{2}=15" /> | 30 |
+| Rot und Blau | <InlineMath math="6\times4=24" /> | 15 |
+| Blau und Blau | <InlineMath math="\binom{4}{2}=\frac{4\times3}{2}=6" /> | 0 |
 
-<BlockMath math="\begin{aligned} E&=\frac{30(15)+15(24)+0(6)}{45} \\ &=18 \end{aligned}" />
+Die Tabelle erfasst <InlineMath math="15+24+6=45" /> Paare, also alle Möglichkeiten. Für den Erwartungswert gewichten wir jeden Gewinn mit der Wahrscheinlichkeit des zugehörigen Ergebnisses:
 
-Die tatsächliche Auszahlung beträgt <InlineMath math="90\%" /> jedes Gewinns. Ihr Erwartungswert wird daher mit demselben Faktor multipliziert:
+<BlockMath math="\begin{aligned} E&amp;=\frac{30(15)+15(24)+0(6)}{45} \\ &amp;=\frac{450+360+0}{45} \\ &amp;=\frac{810}{45}=18. \end{aligned}" />
 
-<BlockMath math="0{,}9\times18=16{,}2=\frac{81}{5}" />
+Der Betreiber zahlt **denselben Anteil jedes Gewinns** aus, nämlich <InlineMath math="90\%" />. Deshalb wird auch der Erwartungswert mit diesem Faktor multipliziert:
+
+<BlockMath math="0{,}9\times18=16{,}2=\frac{81}{5}\text{ Tausend Rupiah}." />

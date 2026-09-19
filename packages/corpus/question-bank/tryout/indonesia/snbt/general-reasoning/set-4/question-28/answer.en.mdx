@@ -5,13 +5,13 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The block <InlineMath math="AB" /> has a fixed internal order. Along with the other four reports, there are five objects. Exactly half of their arrangements place <InlineMath math="C" /> before <InlineMath math="D" />:
+Because A and B are adjacent in a **fixed order**, treat <InlineMath math="AB" /> as one object. The five objects are <InlineMath math="AB,C,D,E,F" />. Swapping C and D pairs every arrangement with one in the opposite order while preserving the AB block. Thus, exactly half place C before D:
 
-<BlockMath math="\frac{5!}{2}=60" />
+<BlockMath math="\frac{5!}{2}=\frac{120}{2}=60" />
 
-Subtract arrangements where <InlineMath math="C" /> and <InlineMath math="D" /> are also adjacent. The block <InlineMath math="CD" /> has fixed order, leaving four objects that can be arranged in:
+Subtract arrangements where <InlineMath math="C" /> and <InlineMath math="D" /> are also adjacent. The order <InlineMath math="DC" /> was already excluded, so only the block <InlineMath math="CD" /> needs subtracting. The four objects are <InlineMath math="AB,CD,E,F" />, with count:
 
-<BlockMath math="4!=24" />
+<BlockMath math="4!=4\times3\times2\times1=24" />
 
 This leaves <InlineMath math="60-24=36" /> valid arrangements. All <InlineMath math="6!=720" /> original arrangements are equally likely, so:
 

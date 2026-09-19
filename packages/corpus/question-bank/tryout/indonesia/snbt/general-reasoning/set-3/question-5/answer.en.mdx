@@ -5,27 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-To arrange a card number consisting of <InlineMath math="12" /> digits, we need to understand the structure of the number.
-
-Given:
-1.  **Prefix (first <InlineMath math="4" /> digits)**: Fixed, which is <InlineMath math="0844" />.
-2.  **Suffix (last <InlineMath math="4" /> digits)**: Fixed, which is <InlineMath math="1221" />.
-3.  **Middle Digits**: The part that needs to be arranged.
-
-The number of digits to be arranged is:
+Only the **four middle digits** can vary. The first four and last four digits are fixed.
 
 <BlockMath math="12-4-4=4" />
 
-The digits available to fill these <InlineMath math="4" /> middle digits are <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />.
-The total number of available digits is <InlineMath math="7" />.
+| Part of the number | Contents | Choices |
+| --- | --- | --- |
+| First four digits | <InlineMath math="0844" /> | One fixed arrangement |
+| Four middle digits | Each chosen from <InlineMath math="\{2,3,4,5,7,8,9\}" /> | Seven choices at each position |
+| Last four digits | <InlineMath math="1221" /> | One fixed arrangement |
 
-The question explicitly allows repetition, so each of the <InlineMath math="4" /> positions can independently be filled by any of the <InlineMath math="7" /> available digits.
+Because **repetition is allowed**, choosing a digit at one position does not remove it from the choices for the next position. For example, all four positions may contain <InlineMath math="2" />. Each position therefore still has seven choices, rather than the number falling to six, five, then four.
 
-The calculation is as follows:
+Multiply the numbers of choices at the four positions:
 
-<MathContainer>
-  <BlockMath math="7^4=7\times7\times7\times7" />
-  <BlockMath math="7^4 = 2401" />
-</MathContainer>
+<BlockMath math="7^4=7\times7\times7\times7=49\times49=2401" />
 
-Thus, the number of card numbers that can be created is <InlineMath math="2401" />.
+There are <InlineMath math="2401" /> different card numbers. The prefix and suffix add no choice factor because each has only one arrangement.

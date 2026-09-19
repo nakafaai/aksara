@@ -2,10 +2,10 @@ export const metadata = {
   title: "Pembahasan Soal 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Diketahui fungsi kuadrat:
+Gunakan **sumbu simetri** untuk menentukan koefisien fungsi kuadrat berikut:
 
 <BlockMath math="y = kx^2 + 8x + (k-1)" />
 
@@ -28,3 +28,15 @@ Substitusikan <InlineMath math="k=-1" />, lalu lengkapi kuadrat sempurna:
 </MathContainer>
 
 Karena <InlineMath math="(x-4)^2 \ge 0" />, suku <InlineMath math="-(x-4)^2" /> paling besar bernilai <InlineMath math="0" />. Nilai itu tercapai saat <InlineMath math="x=4" />, sehingga nilai maksimum fungsi adalah <InlineMath math="14" />.
+
+<LineEquation
+ title="Puncak parabola pada (4, 14)"
+ description="Grafik membuka ke bawah. Titik pada sumbu simetri mencapai nilai tertinggi."
+ cameraPosition={[4, 6, 24]}
+ cameraTarget={[4, 6, 0]}
+ showZAxis={false}
+ data={[
+ { points: Array.from({ length: 81 }, (_, i) => ({ x: i / 10, y: -((i / 10 - 4) ** 2) + 14, z: 0 })), color: "#4f46e5", smooth: false, showPoints: false },
+ { points: [{ x: 4, y: -2, z: 0 }, { x: 4, y: 14, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [1], labels: [{ at: 1, text: <InlineMath math="(4,14)" />, offset: [1, 0.5, 0] }] },
+ ]}
+/>

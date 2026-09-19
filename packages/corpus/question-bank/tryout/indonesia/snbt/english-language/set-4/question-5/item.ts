@@ -7,20 +7,20 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Measuring solute in one preliminary comparison",
+          label: "Measuring solute concentration in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Treating solute as the sole explanation for the observed result",
+            "Treating the solute as the sole explanation for the observed result",
         },
         {
           isCorrect: false,
-          label: "A final rule derived from the first comparison of solute",
+          label: "A final rule derived from the first solute trial",
         },
         {
           isCorrect: false,
-          label: "A limitation that makes another test of solute unnecessary",
+          label: "A limitation that makes another solute trial unnecessary",
         },
         {
           isCorrect: true,

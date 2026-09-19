@@ -2,15 +2,10 @@ export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-25",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Let:
-- <InlineMath math="S" /> be the set of all students
-- <InlineMath math="P" /> be the students in Scouts
-- <InlineMath math="F" /> be the students in futsal
-
-First use inclusion-exclusion to count students in at least one activity:
+Students who join **both activities are counted twice** if we simply add the Scouts and futsal totals. Subtract the overlap once. With <InlineMath math="P" /> denoting Scouts and <InlineMath math="F" /> denoting futsal, we obtain:
 
 <BlockMath math="\begin{aligned}n(P\cup F)&=n(P)+n(F)\\&\quad{}-n(P\cap F)\\&=12+15-7\\&=20\end{aligned}" />
 

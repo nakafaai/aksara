@@ -5,29 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir führen vier Propositionen ein:
+Wir können die Schlussfolgerung durch **zwei Fälle** für die Beziehung zwischen <InlineMath math="E" /> und <InlineMath math="F" /> beweisen.
 
-- <InlineMath math="p" /> bedeutet <InlineMath math="A=B" />.
-- <InlineMath math="q" /> bedeutet <InlineMath math="C\neq D" />.
-- <InlineMath math="r" /> bedeutet <InlineMath math="E=F" />.
-- <InlineMath math="s" /> bedeutet <InlineMath math="G=H" />.
+Falls <InlineMath math="E\neq F" /> gilt, ist <InlineMath math="A=B\lor E\neq F" /> bereits wahr, unabhängig von der Beziehung zwischen <InlineMath math="A" /> und <InlineMath math="B" />. Betrachten wir nun den anderen Fall, nämlich <InlineMath math="E=F" />:
 
-Damit lauten die Prämissen:
+| Schritt | Ergebnis | Begründung |
+| --- | --- | --- |
+| Zweite Prämisse verwenden | <InlineMath math="G=H" /> | Diese Gleichheit folgt aus <InlineMath math="E=F" /> |
+| Dritte Prämisse verwenden | <InlineMath math="C=D" /> | <InlineMath math="G\neq H" /> ist falsch, also muss der andere Teil der Oder-Aussage wahr sein |
+| Erste Prämisse verwenden | <InlineMath math="A=B" /> | <InlineMath math="C\neq D" /> ist falsch, also muss <InlineMath math="A=B" /> wahr sein |
 
-<MathContainer>
-  <BlockMath math="p\lor q" />
-  <BlockMath math="\neg r\lor s" />
-  <BlockMath math="\neg q\lor\neg s" />
-</MathContainer>
+In beiden Fällen ist mindestens ein Teil der Schlussfolgerung wahr. Zwingend gilt deshalb
 
-#### Zwischenpropositionen Eliminieren
+<BlockMath math="A=B\lor E\neq F." />
 
-Die Resolution der ersten und dritten Prämisse über <InlineMath math="q" /> ergibt:
-
-<BlockMath math="p\lor\neg s" />
-
-Nun lösen wir dieses Ergebnis mit der zweiten Prämisse über <InlineMath math="s" /> auf:
-
-<BlockMath math="p\lor\neg r" />
-
-In den ursprünglichen Aussagen bedeutet <InlineMath math="p\lor\neg r" /> daher **<InlineMath math="A=B" /> oder <InlineMath math="E\neq F" />**.
+Beachte, dass **oder nicht und bedeutet**. Wir haben nicht bewiesen, dass beide Teile der Schlussfolgerung zugleich wahr sein müssen.

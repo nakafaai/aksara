@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Mit denselben Messregeln plante das Team einen längeren Test mit Fotoetiketten mit getrennter Auswertung neuer und erfahrener Ausleihender.",
+            "Unter denselben Messregeln plante das Team einen längeren Test der Fotoetiketten mit getrennter Auswertung neuer und erfahrener Ausleihender.",
         },
         {
           isCorrect: false,

@@ -5,27 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Untuk menyusun nomor kartu yang terdiri dari <InlineMath math="12" /> digit, kita perlu mengetahui struktur nomor tersebut.
-
-Diketahui:
-1.  **Prefix (<InlineMath math="4" /> digit awal)**: Tetap, yaitu <InlineMath math="0844" />.
-2.  **Suffix (<InlineMath math="4" /> digit akhir)**: Tetap, yaitu <InlineMath math="1221" />.
-3.  **Digit Tengah**: Bagian yang harus disusun.
-
-Jumlah digit yang harus disusun adalah:
+Hanya **empat digit tengah** yang dapat berubah. Empat digit awal dan empat digit akhir sudah ditentukan.
 
 <BlockMath math="12-4-4=4" />
 
-Angka yang tersedia untuk mengisi <InlineMath math="4" /> digit tengah tersebut adalah <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />.
-Jumlah angka yang tersedia adalah <InlineMath math="7" /> angka.
+| Bagian nomor | Isi | Pilihan |
+| --- | --- | --- |
+| Empat digit awal | <InlineMath math="0844" /> | Satu susunan tetap |
+| Empat digit tengah | Masing-masing dipilih dari <InlineMath math="\{2,3,4,5,7,8,9\}" /> | Tujuh pilihan di setiap posisi |
+| Empat digit akhir | <InlineMath math="1221" /> | Satu susunan tetap |
 
-Karena soal memperbolehkan pengulangan, setiap posisi dari <InlineMath math="4" /> digit tengah dapat diisi secara bebas oleh salah satu dari <InlineMath math="7" /> angka yang tersedia.
+Karena **pengulangan diperbolehkan**, angka yang dipilih untuk satu posisi tetap boleh dipakai pada posisi berikutnya. Misalnya, keempat posisi boleh sama-sama diisi <InlineMath math="2" />. Jadi, jumlah pilihan tetap tujuh pada setiap posisi, bukan berkurang menjadi enam, lima, lalu empat.
 
-Perhitungannya adalah sebagai berikut:
+Kalikan banyak pilihan pada keempat posisi:
 
-<MathContainer>
-  <BlockMath math="7^4=7\times7\times7\times7" />
-  <BlockMath math="7^4 = 2401" />
-</MathContainer>
+<BlockMath math="7^4=7\times7\times7\times7=49\times49=2401" />
 
-Jadi, banyak nomor kartu yang dapat dibuat adalah <InlineMath math="2401" />.
+Ada <InlineMath math="2401" /> nomor kartu berbeda. Awalan dan akhiran tidak menambah faktor pilihan karena masing-masing hanya memiliki satu susunan.

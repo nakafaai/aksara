@@ -2,10 +2,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Das Volumen lässt sich noch nicht berechnen, weil <InlineMath math="x" /> unbekannt ist. Zuerst verwenden wir die Oberfläche.
+Das Volumen lässt sich noch nicht berechnen, weil <InlineMath math="x" /> unbekannt ist. Zuerst bestimmen wir <InlineMath math="x" /> mithilfe der **Oberfläche**.
 
 Mit <InlineMath math="l" />, <InlineMath math="b" /> und <InlineMath math="h" /> für Länge, Breite und Höhe lautet die Oberflächenformel:
 
@@ -13,7 +13,9 @@ Mit <InlineMath math="l" />, <InlineMath math="b" /> und <InlineMath math="h" />
 
 Wir setzen die Maße des Quaders ein:
 
-<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=12x^2+20x-88\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+
+Der erste Faktor liefert <InlineMath math="x=-\frac{11}{3}" />, der zweite <InlineMath math="x=2" />.
 
 Wegen <InlineMath math="x>0" /> gilt <InlineMath math="x=2" />. Der Quader misst also <InlineMath math="6\text{ cm}" /> mal <InlineMath math="4\text{ cm}" /> mal <InlineMath math="2\text{ cm}" />.
 
@@ -22,3 +24,25 @@ Jeder Einheitswürfel hat das Volumen <InlineMath math="1\text{ cm}^3" />. Daher
 <BlockMath math="6\times4\times2=48" />
 
 Es werden <InlineMath math="48" /> Einheitswürfel benötigt.
+
+Stelle dir **zwei Schichten aus Einheitswürfeln** vor. Jede Schicht enthält <InlineMath math="6\times4=24" /> Würfel, insgesamt also <InlineMath math="2\times24=48" />.
+
+<MathVisual
+ title="Ein Quader mit den Maßen 6, 4 und 2 Zentimeter"
+ description="Ein Quader mit den Maßen 6, 4 und 2 Zentimeter"
+ scene={{
+ space: "space",
+ frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 3 }, z: { min: -3, max: 3 } },
+ view: { kind: "camera", position: { x: 8, y: 6, z: 10 }, target: { x: 0, y: 1, z: 0 } },
+ objects: [
+ { id: "prism", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 6, height: 2, width: 4 } },
+ { id: "layer", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: 1, z: -2 }, { x: 3, y: 1, z: -2 }, { x: 3, y: 1, z: 2 }, { x: -3, y: 1, z: 2 }] },
+ ],
+ labels: [
+ { key: "length", objectId: "prism", at: { x: 0, y: 0, z: 2 }, placement: "below" },
+ { key: "width", objectId: "prism", at: { x: 3, y: 0, z: 0 }, placement: "right" },
+ { key: "height", objectId: "prism", at: { x: -3, y: 1, z: 2 }, placement: "left" },
+ ],
+ }}
+ labels={{ length: <InlineMath math="6" />, width: <InlineMath math="4" />, height: <InlineMath math="2" /> }}
+/>

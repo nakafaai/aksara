@@ -5,14 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Terdapat <InlineMath math="\binom{10}{2}=45" /> pasangan yang sama mungkin. Banyak pasangan merah-merah, campuran, dan biru-biru berturut-turut adalah
+Kita menghitung **pasangan bola yang sama mungkin**, bukan menganggap ketiga jenis warna memiliki peluang yang sama. Karena urutan dua bola tidak diperhatikan, jumlah seluruh pasangan adalah
 
-<BlockMath math="\begin{aligned} \binom{6}{2}&=15 \\ 6\times4&=24 \\ \binom{4}{2}&=6 \end{aligned}" />
+<BlockMath math="\binom{10}{2}=\frac{10\times9}{2}=45." />
 
-Hitung nilai harapan hadiah yang tercantum, dalam ribu rupiah:
+| Warna pasangan | Banyak pasangan | Hadiah tercantum, ribu rupiah |
+| --- | --- | ---: |
+| Merah dan merah | <InlineMath math="\binom{6}{2}=\frac{6\times5}{2}=15" /> | 30 |
+| Merah dan biru | <InlineMath math="6\times4=24" /> | 15 |
+| Biru dan biru | <InlineMath math="\binom{4}{2}=\frac{4\times3}{2}=6" /> | 0 |
 
-<BlockMath math="\begin{aligned} E&=\frac{30(15)+15(24)+0(6)}{45} \\ &=18 \end{aligned}" />
+Jumlah pada tabel adalah <InlineMath math="15+24+6=45" />, sesuai dengan seluruh pasangan. Nilai harapan merupakan rata-rata hadiah dengan bobot peluang setiap kejadian:
 
-Pembayaran aktual adalah <InlineMath math="90\%" /> dari setiap hadiah, sehingga nilai harapannya juga dikalikan faktor yang sama:
+<BlockMath math="\begin{aligned} E&amp;=\frac{30(15)+15(24)+0(6)}{45} \\ &amp;=\frac{450+360+0}{45} \\ &amp;=\frac{810}{45}=18. \end{aligned}" />
 
-<BlockMath math="0{,}9\times18=16{,}2=\frac{81}{5}" />
+Operator membayar **faktor yang sama untuk setiap hadiah**, yaitu <InlineMath math="90\%" />. Karena itu, nilai harapan pembayaran aktual juga dikalikan faktor tersebut:
+
+<BlockMath math="0{,}9\times18=16{,}2=\frac{81}{5}\text{ ribu rupiah}." />

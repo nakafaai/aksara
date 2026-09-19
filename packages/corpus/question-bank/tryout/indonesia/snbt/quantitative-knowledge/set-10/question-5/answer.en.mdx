@@ -2,10 +2,10 @@ export const metadata = {
   title: "Solution for Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Given the system of inequalities:
+Find an **attainable upper bound** for <InlineMath math="x+y" /> under these constraints:
 
 <BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
 
@@ -23,6 +23,10 @@ It remains to check <InlineMath math="a=5" />. The bound becomes:
 
 <BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
 
+Find the intersection of the boundary lines by elimination:
+
+<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
+
 The intersection point <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> satisfies both boundary equations:
 
 <MathContainer>
@@ -32,3 +36,20 @@ The intersection point <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" 
 </MathContainer>
 
 Thus, <InlineMath math="5" /> is both an upper bound and an attainable value. Therefore, <InlineMath math="a=5" />.
+
+<MathVisual
+ title="Feasible region for a = 5"
+ description="The vertex where the two boundaries meet attains a coordinate sum of five."
+ scene={{
+ space: "plane",
+ frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
+ view: { kind: "fit", padding: 0.5 },
+ objects: [
+ { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
+ { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
+ { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
+ ],
+ labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
+ }}
+ labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
+/>

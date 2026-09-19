@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "cognitive load as a definition without a reviewable action",
+          label: "Cognitive load as a definition without a reviewable action",
         },
         {
           isCorrect: false,

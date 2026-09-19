@@ -5,29 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Introduce four propositions:
+We can prove the conclusion by considering **two possibilities** for the relationship between <InlineMath math="E" /> and <InlineMath math="F" />.
 
-- <InlineMath math="p" /> means <InlineMath math="A=B" />.
-- <InlineMath math="q" /> means <InlineMath math="C\neq D" />.
-- <InlineMath math="r" /> means <InlineMath math="E=F" />.
-- <InlineMath math="s" /> means <InlineMath math="G=H" />.
+If <InlineMath math="E\neq F" />, the statement <InlineMath math="A=B\lor E\neq F" /> already holds, regardless of the relationship between <InlineMath math="A" /> and <InlineMath math="B" />. Now consider the other possibility, <InlineMath math="E=F" />:
 
-The premises become:
+| Step | Result | Reason |
+| --- | --- | --- |
+| Use the second premise | <InlineMath math="G=H" /> | This equality follows from <InlineMath math="E=F" /> |
+| Use the third premise | <InlineMath math="C=D" /> | <InlineMath math="G\neq H" /> is false, so the other part of the or statement must be true |
+| Use the first premise | <InlineMath math="A=B" /> | <InlineMath math="C\neq D" /> is false, so <InlineMath math="A=B" /> must be true |
 
-<MathContainer>
-  <BlockMath math="p\lor q" />
-  <BlockMath math="\neg r\lor s" />
-  <BlockMath math="\neg q\lor\neg s" />
-</MathContainer>
+In either possibility, at least one part of the conclusion is true. Therefore, the necessary conclusion is
 
-#### Eliminate the Middle Propositions
+<BlockMath math="A=B\lor E\neq F." />
 
-Resolve the first and third premises on <InlineMath math="q" />:
-
-<BlockMath math="p\lor\neg s" />
-
-Now resolve that result with the second premise on <InlineMath math="s" />:
-
-<BlockMath math="p\lor\neg r" />
-
-Returning to the original statements, <InlineMath math="p\lor\neg r" /> means **<InlineMath math="A=B" /> or <InlineMath math="E\neq F" />**.
+Remember that **or does not mean and**. We have not established that both parts of the conclusion must be true together.

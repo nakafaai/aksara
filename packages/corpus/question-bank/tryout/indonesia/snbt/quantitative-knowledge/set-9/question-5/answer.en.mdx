@@ -2,10 +2,10 @@ export const metadata = {
   title: "Solution for Problem 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Let <InlineMath math="A" /> be the event that the number of green balls drawn is twice the number of white balls drawn.
+Let <InlineMath math="A" /> be the event that the number of green balls drawn is **twice the number of white balls drawn**.
 
 There are <InlineMath math="9" /> balls in the box:
 
@@ -16,30 +16,20 @@ There are <InlineMath math="9" /> balls in the box:
 The balls are drawn uniformly at random without replacement, so every unordered selection of <InlineMath math="7" /> balls is equally likely. The number of possible selections is:
 
 <MathContainer>
-  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = 36" />
+  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = \frac{9\cdot8}{2\cdot1}=36" />
 </MathContainer>
 
 Let <InlineMath math="w" />, <InlineMath math="g" />, and <InlineMath math="r" /> denote the numbers of white, green, and red balls drawn. The condition is <InlineMath math="g=2w" />, while <InlineMath math="r+g+w=7" />. Since at most two white balls are available, we check <InlineMath math="w=0" />, <InlineMath math="w=1" />, and <InlineMath math="w=2" />.
 
-#### No white balls
-
-In this case, <InlineMath math="w=0" />.
-
-Then <InlineMath math="g=0" /> and <InlineMath math="r=7" />. This is impossible because only <InlineMath math="1" /> red ball is available.
-
-#### One white ball
-
-In this case, <InlineMath math="w=1" />.
-
-Then <InlineMath math="g=2" /> and <InlineMath math="r=7-1-2=4" />. This is also impossible because only <InlineMath math="1" /> red ball is available.
-
-#### Two white balls
-
-In this case, <InlineMath math="w=2" />.
-
-Then <InlineMath math="g=4" /> and <InlineMath math="r=7-2-4=1" />. This case is possible within the available numbers of each color.
+| White | Green | Red required | Within the available counts? |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="7-0-0=7" /> | No, only one red ball is available |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="7-1-2=4" /> | No, only one red ball is available |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="7-2-4=1" /> | Yes |
 
 The number of favorable selections is:
+
+For four green balls, <InlineMath math="C^6_4=\frac{6\cdot5}{2\cdot1}=15" />. Both white balls and the sole red ball must be selected, so each of those choices has one possibility.
 
 <MathContainer>
   <BlockMath math="n(A) = C^2_2 \cdot C^6_4 \cdot C^1_1" />

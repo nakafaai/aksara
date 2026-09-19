@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The blue date stamp gains meaning through its connection to the missing record, Samira's choice, and the next volunteer's response.",
+            "The blue date stamp gains meaning through its connection to the missing package date, Samira's choice, and the next volunteer's response.",
         },
         {
           isCorrect: false,

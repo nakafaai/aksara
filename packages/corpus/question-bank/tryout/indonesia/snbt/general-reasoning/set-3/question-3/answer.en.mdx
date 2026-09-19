@@ -5,67 +5,34 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The code is a one-to-one substitution of letters in Indonesian digit names. A repeated code letter must therefore represent a repeated ordinary letter, and two different code letters cannot represent the same ordinary letter.
+The code uses a **one-to-one substitution**. A code letter always represents the same ordinary letter, and two different code letters cannot represent the same ordinary letter.
 
-#### First Word Pattern Analysis
+#### Decode the first two digit names
 
-Given:
+In <InlineMath math="\text{ABQBO}" />, the **second and fourth letters match**, while the other three positions differ. Among the Indonesian names of zero through nine, two have five letters: <InlineMath math="\text{EMPAT}" /> and <InlineMath math="\text{TUJUH}" />. The letters of <InlineMath math="\text{EMPAT}" /> are all different, so only <InlineMath math="\text{TUJUH}" /> fits.
 
-<BlockMath math="\text{ABQBO} - \text{APNH} = 4" />
+<BlockMath math="\text{ABQBO}=\text{TUJUH}=7" />
 
-Observe the word <InlineMath math="\text{ABQBO}" />:
-- Consists of <InlineMath math="5" /> letters.
-- The letters in positions <InlineMath math="2" /> and <InlineMath math="4" /> are the same (letter <InlineMath math="B" />).
+Substitute this value into the given equation to find the next digit name:
 
-Among the Indonesian names of the digits, <InlineMath math="\text{TUJUH}" /> has exactly this five-letter pattern: its second and fourth letters are both <InlineMath math="\text{U}" />, while the other positions differ. Therefore:
+<BlockMath math="\begin{aligned}7-\text{APNH}&amp;=4\\\text{APNH}&amp;=7-4=3\end{aligned}" />
 
-<BlockMath math="\text{ABQBO} = \text{TUJUH} = 7" />
+Therefore, <InlineMath math="\text{APNH}=\text{TIGA}" />. These two decoded words give the mappings we need:
 
-This gives the mappings:
-- <InlineMath math="A = T" />
-- <InlineMath math="B = U" />
-- <InlineMath math="Q = J" />
-- <InlineMath math="O = H" />
+| Code letter | Ordinary letter |
+| --- | --- |
+| A | T |
+| B | U |
+| P | I |
+| N | G |
+| H | A |
 
-#### Second Word Pattern Analysis
+#### Decode the requested expression
 
-From the equation:
+Using these mappings, <InlineMath math="\text{KBH}" /> becomes <InlineMath math="\text{?UA}" />. The only three-letter Indonesian digit name ending in <InlineMath math="\text{UA}" /> is <InlineMath math="\text{DUA}" />, with value <InlineMath math="2" />.
 
-<MathContainer>
-  <BlockMath math="7 - \text{APNH} = 4" />
-  <BlockMath math="\text{APNH} = 3" />
-</MathContainer>
+The code <InlineMath math="\text{SPTH}" /> becomes <InlineMath math="\text{?I?A}" />. Both <InlineMath math="\text{TIGA}" /> and <InlineMath math="\text{LIMA}" /> match this pattern, but check the **mappings already used**. Ordinary <InlineMath math="\mathrm{T}" /> is already represented by code <InlineMath math="\mathrm{A}" />, and ordinary <InlineMath math="\mathrm{G}" /> by code <InlineMath math="\mathrm{N}" />. Choosing <InlineMath math="\text{TIGA}" /> would make codes <InlineMath math="\mathrm{S}" /> and <InlineMath math="\mathrm{T}" /> repeat those mappings, violating the one-to-one rule. Therefore, <InlineMath math="\text{SPTH}=\text{LIMA}=5" />.
 
-The Indonesian name of <InlineMath math="3" /> is <InlineMath math="\text{TIGA}" />. It has four distinct letters and starts with <InlineMath math="\text{T}" />, matching the already known mapping <InlineMath math="A = T" />. Thus:
+Subtract the two values in the requested order:
 
-<BlockMath math="\text{APNH} = \text{TIGA} = 3" />
-
-Additional letter mapping from <InlineMath math="\text{APNH} = \text{TIGA}" />:
-- <InlineMath math="P = I" />
-- <InlineMath math="N = G" />
-- <InlineMath math="H = A" />
-
-#### Calculating the Question
-
-Question:
-
-<BlockMath math="\text{KBH} - \text{SPTH}" />
-
-1. **Finding the Value of KBH**
-   - Pattern: <InlineMath math="K - B - H" />
-   - Substitute known letters: <InlineMath math="\text{?UA}" /> (since <InlineMath math="B = U" />, <InlineMath math="H = A" />)
-   - The three-letter Indonesian digit name ending in <InlineMath math="\text{UA}" /> is <InlineMath math="\text{DUA}" /> (<InlineMath math="2" />).
-   - So, <InlineMath math="\text{KBH} = 2" />.
-
-2. **Finding the Value of SPTH**
-   - Pattern: <InlineMath math="S - P - T - H" />
-   - Substitute known letters: <InlineMath math="\text{?I?A}" /> (since <InlineMath math="P = I" />, <InlineMath math="H = A" />)
-   - Both <InlineMath math="\text{TIGA}" /> and <InlineMath math="\text{LIMA}" /> match the visible pattern <InlineMath math="\_\text{I}\_\text{A}" />.
-   - However, <InlineMath math="\text{TIGA}" /> already uses the ordinary letters represented by <InlineMath math="A" /> and <InlineMath math="N" />. Because <InlineMath math="S" /> and <InlineMath math="T" /> are different code letters, they cannot represent those same letters.
-   - Therefore the only valid decoding is <InlineMath math="\text{SPTH} = \text{LIMA} = 5" />.
-
-#### Final Result
-
-<BlockMath math="\text{KBH} - \text{SPTH} = 2 - 5 = -3" />
-
-Thus, the answer is <InlineMath math="-3" />.
+<BlockMath math="\text{KBH}-\text{SPTH}=2-5=-3" />

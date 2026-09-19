@@ -5,67 +5,34 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kode ini merupakan substitusi satu-ke-satu pada huruf-huruf nama bilangan dalam bahasa Indonesia. Huruf kode yang berulang harus mewakili huruf biasa yang berulang, sedangkan dua huruf kode yang berbeda tidak boleh mewakili huruf biasa yang sama.
+Kode memakai **substitusi satu-ke-satu**. Huruf kode yang sama selalu mewakili huruf biasa yang sama, dan dua huruf kode berbeda tidak boleh mewakili satu huruf biasa yang sama.
 
-#### Analisis Pola Kata Pertama
+#### Temukan dua nama bilangan pertama
 
-Diketahui:
+Pada <InlineMath math="\text{ABQBO}" />, **huruf kedua dan keempat sama**, sedangkan ketiga posisi lain berbeda. Di antara nama bilangan nol sampai sembilan, ada dua nama dengan lima huruf: <InlineMath math="\text{EMPAT}" /> dan <InlineMath math="\text{TUJUH}" />. Kata <InlineMath math="\text{EMPAT}" /> memiliki lima huruf berbeda, sehingga hanya <InlineMath math="\text{TUJUH}" /> yang cocok.
 
-<BlockMath math="\text{ABQBO} - \text{APNH} = 4" />
+<BlockMath math="\text{ABQBO}=\text{TUJUH}=7" />
 
-Perhatikan kata <InlineMath math="\text{ABQBO}" />:
-- Terdiri dari <InlineMath math="5" /> huruf.
-- Huruf ke-<InlineMath math="2" /> dan ke-<InlineMath math="4" /> sama (huruf <InlineMath math="B" />).
+Masukkan nilai tersebut ke persamaan soal untuk menemukan nama bilangan berikutnya:
 
-Di antara nama bilangan nol sampai sembilan, <InlineMath math="\text{TUJUH}" /> memiliki tepat pola lima huruf tersebut: huruf kedua dan keempat sama-sama <InlineMath math="\text{U}" />, sedangkan posisi lainnya berbeda. Jadi:
+<BlockMath math="\begin{aligned}7-\text{APNH}&amp;=4\\\text{APNH}&amp;=7-4=3\end{aligned}" />
 
-<BlockMath math="\text{ABQBO} = \text{TUJUH} = 7" />
+Jadi, <InlineMath math="\text{APNH}=\text{TIGA}" />. Kedua kata hasil penguraian memberi pemetaan yang kita perlukan:
 
-Pemetaan hurufnya adalah:
-- <InlineMath math="A = T" />
-- <InlineMath math="B = U" />
-- <InlineMath math="Q = J" />
-- <InlineMath math="O = H" />
+| Huruf kode | Huruf biasa |
+| --- | --- |
+| A | T |
+| B | U |
+| P | I |
+| N | G |
+| H | A |
 
-#### Analisis Pola Kata Kedua
+#### Uraikan kode yang ditanyakan
 
-Dari persamaan:
+Dengan pemetaan tersebut, <InlineMath math="\text{KBH}" /> menjadi <InlineMath math="\text{?UA}" />. Satu-satunya nama bilangan tiga huruf yang berakhiran <InlineMath math="\text{UA}" /> adalah <InlineMath math="\text{DUA}" />, sehingga nilainya <InlineMath math="2" />.
 
-<MathContainer>
-  <BlockMath math="7 - \text{APNH} = 4" />
-  <BlockMath math="\text{APNH} = 3" />
-</MathContainer>
+Kode <InlineMath math="\text{SPTH}" /> menjadi <InlineMath math="\text{?I?A}" />. Pola ini cocok dengan <InlineMath math="\text{TIGA}" /> dan <InlineMath math="\text{LIMA}" />, tetapi kita harus memeriksa **pemetaan yang sudah dipakai**. Huruf biasa <InlineMath math="\mathrm{T}" /> sudah diwakili kode <InlineMath math="\mathrm{A}" />, dan huruf biasa <InlineMath math="\mathrm{G}" /> sudah diwakili kode <InlineMath math="\mathrm{N}" />. Memilih <InlineMath math="\text{TIGA}" /> akan membuat kode <InlineMath math="\mathrm{S}" /> dan <InlineMath math="\mathrm{T}" /> mengulang kedua pemetaan itu. Aturan satu-ke-satu melarangnya. Maka, <InlineMath math="\text{SPTH}=\text{LIMA}=5" />.
 
-Nama bilangan <InlineMath math="3" /> adalah <InlineMath math="\text{TIGA}" />. Kata ini terdiri dari empat huruf berbeda dan berawal dengan <InlineMath math="\text{T}" />, sesuai dengan pemetaan <InlineMath math="A = T" /> yang sudah diketahui. Jadi:
+Sekarang kurangkan kedua nilai dalam urutan yang diminta:
 
-<BlockMath math="\text{APNH} = \text{TIGA} = 3" />
-
-Mapping huruf tambahan dari <InlineMath math="\text{APNH} = \text{TIGA}" />:
-- <InlineMath math="P = I" />
-- <InlineMath math="N = G" />
-- <InlineMath math="H = A" />
-
-#### Menghitung Pertanyaan
-
-Ditanya:
-
-<BlockMath math="\text{KBH} - \text{SPTH}" />
-
-1. **Mencari Nilai KBH**
-   - Pola: <InlineMath math="K - B - H" />
-   - Substitusi huruf yang diketahui: <InlineMath math="\text{?UA}" /> (karena <InlineMath math="B = U" />, <InlineMath math="H = A" />)
-   - Nama bilangan tiga huruf yang berakhiran <InlineMath math="\text{UA}" /> adalah <InlineMath math="\text{DUA}" /> (<InlineMath math="2" />).
-   - Jadi, <InlineMath math="\text{KBH} = 2" />.
-
-2. **Mencari Nilai SPTH**
-   - Pola: <InlineMath math="S - P - T - H" />
-   - Substitusi huruf yang diketahui: <InlineMath math="\text{?I?A}" /> (karena <InlineMath math="P = I" />, <InlineMath math="H = A" />)
-   - <InlineMath math="\text{TIGA}" /> dan <InlineMath math="\text{LIMA}" /> sama-sama cocok dengan pola yang terlihat, yaitu <InlineMath math="\_\text{I}\_\text{A}" />.
-   - Namun, <InlineMath math="\text{TIGA}" /> memakai huruf biasa yang sudah diwakili oleh kode <InlineMath math="A" /> dan <InlineMath math="N" />. Karena <InlineMath math="S" /> dan <InlineMath math="T" /> adalah huruf kode yang berbeda, keduanya tidak boleh mewakili huruf biasa yang sama.
-   - Jadi, satu-satunya penguraian yang sah adalah <InlineMath math="\text{SPTH} = \text{LIMA} = 5" />.
-
-#### Hasil Akhir
-
-<BlockMath math="\text{KBH} - \text{SPTH} = 2 - 5 = -3" />
-
-Jadi, jawabannya adalah <InlineMath math="-3" />.
+<BlockMath math="\text{KBH}-\text{SPTH}=2-5=-3" />

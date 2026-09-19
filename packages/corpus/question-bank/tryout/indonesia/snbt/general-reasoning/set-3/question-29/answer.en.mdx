@@ -5,14 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-There are <InlineMath math="\binom{10}{2}=45" /> equally likely pairs. The red-red, mixed, and blue-blue pair counts are
+We count **equally likely pairs of balls**, rather than treating the three colour outcomes as equally likely. Since the order of the two balls does not matter, the total number of pairs is
 
-<BlockMath math="\begin{aligned} \binom{6}{2}&=15 \\ 6\times4&=24 \\ \binom{4}{2}&=6 \end{aligned}" />
+<BlockMath math="\binom{10}{2}=\frac{10\times9}{2}=45." />
 
-The expected listed payout, in thousand rupiah, is
+| Pair colours | Number of pairs | Listed payout, thousand rupiah |
+| --- | --- | ---: |
+| Red and red | <InlineMath math="\binom{6}{2}=\frac{6\times5}{2}=15" /> | 30 |
+| Red and blue | <InlineMath math="6\times4=24" /> | 15 |
+| Blue and blue | <InlineMath math="\binom{4}{2}=\frac{4\times3}{2}=6" /> | 0 |
 
-<BlockMath math="\begin{aligned} E&=\frac{30(15)+15(24)+0(6)}{45} \\ &=18 \end{aligned}" />
+The table accounts for <InlineMath math="15+24+6=45" /> pairs, matching the total. The expected payout is the average prize weighted by each outcome's probability:
 
-The actual payout is <InlineMath math="90\%" /> of each prize, so its expectation is multiplied by the same factor:
+<BlockMath math="\begin{aligned} E&amp;=\frac{30(15)+15(24)+0(6)}{45} \\ &amp;=\frac{450+360+0}{45} \\ &amp;=\frac{810}{45}=18. \end{aligned}" />
 
-<BlockMath math="0.9\times18=16.2=\frac{81}{5}" />
+The operator applies **the same factor to every prize**, namely <InlineMath math="90\%" />. We therefore multiply the expectation by this factor as well:
+
+<BlockMath math="0.9\times18=16.2=\frac{81}{5}\text{ thousand rupiah}." />

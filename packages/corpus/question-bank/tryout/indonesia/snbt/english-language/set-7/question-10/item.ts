@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "actionable information as the main measure in a service trial",
+            "Actionable information as the main measure in a service trial",
         },
         {
           isCorrect: true,

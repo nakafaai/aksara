@@ -7,12 +7,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Measuring confounding variable in one preliminary comparison",
+          label:
+            "Measuring a confounding variable in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Treating confounding variable as the sole explanation for the observed result",
+            "Treating a confounding variable as the sole explanation for the observed result",
         },
         {
           isCorrect: true,
@@ -21,12 +22,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A final rule derived from the first comparison of confounding variable",
+            "A final rule derived from the first comparison of a confounding variable",
         },
         {
           isCorrect: false,
           label:
-            "A limitation that makes another test of confounding variable unnecessary",
+            "A limitation that makes another test of a confounding variable unnecessary",
         },
       ],
     },

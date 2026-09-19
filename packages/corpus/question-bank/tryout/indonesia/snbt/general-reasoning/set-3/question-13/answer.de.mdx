@@ -5,43 +5,24 @@ export const metadata = {
   dateModified: "2026-09-19",
 };
 
-Wir setzen das in der Aufgabe genannte Zuwachsmuster in jeder Zeile um eine
-Woche fort.
+Die Regel gilt für die **wöchentlichen Zuwächse**, nicht unmittelbar für die Verkaufszahlen. Berechne zuerst die Differenzen aufeinanderfolgender Wochen und setze dann das Muster fort.
 
-#### Quadratische Tücher
+#### Die nächsten Zuwächse berechnen
 
-Die Folge lautet <InlineMath math="12,15,21,30" />. Ihre aufeinanderfolgenden
-Zuwächse sind
+| Modell | Bekannte Zuwächse | Nächster Zuwachs |
+| --- | --- | --- |
+| Quadratisches Tuch | <InlineMath math="15-12=3" />, <InlineMath math="21-15=6" />, <InlineMath math="30-21=9" /> | Steigt um drei, also <InlineMath math="9+3=12" /> |
+| Bergo | <InlineMath math="16-14=2" />, <InlineMath math="18-16=2" />, <InlineMath math="20-18=2" /> | Bleibt bei <InlineMath math="2" /> |
+| Pashmina | <InlineMath math="14-9=5" />, <InlineMath math="20-14=6" />, <InlineMath math="27-20=7" /> | Steigt um eins, also <InlineMath math="7+1=8" /> |
 
-<MathContainer>
-  <BlockMath math="15-12=3" />
-  <BlockMath math="21-15=6" />
-  <BlockMath math="30-21=9" />
-</MathContainer>
+Die drei Zuwachsfolgen sind **arithmetische Folgen** mit den Differenzen drei, null und eins. Die Differenz null bei Bergo bedeutet, dass der Verkaufszuwachs konstant bleibt.
 
-Die Zuwächse steigen jeweils um <InlineMath math="3" />. Der nächste Zuwachs
-beträgt daher <InlineMath math="12" />, und für Woche
-<InlineMath math="5" /> ergibt sich <InlineMath math="30+12=42" />.
+#### Zu den Zahlen der vierten Woche addieren
 
-#### Tücher des Modells Bergo
+Addiere jeden berechneten Zuwachs zur letzten Verkaufszahl und nicht zur ersten:
 
-Die Folge <InlineMath math="14,16,18,20" /> hat den **konstanten Zuwachs**
-<InlineMath math="2" />. Der nächste Wert ist <InlineMath math="20+2=22" />.
+<BlockMath math="\begin{aligned}S_5&amp;=30+12=42\\B_5&amp;=20+2=22\\P_5&amp;=27+8=35\end{aligned}" />
 
-#### Tücher des Modells Pashmina
+Dabei stehen <InlineMath math="S" />, <InlineMath math="B" /> und <InlineMath math="P" /> für quadratische Tücher, Bergo und Pashmina. Für die Vorhersagen gilt <InlineMath math="42>35>22" />. Somit werden **quadratische Tücher am häufigsten verkauft**, Bergo dagegen am seltensten.
 
-Die Folge <InlineMath math="9,14,20,27" /> hat die Zuwächse
-<InlineMath math="5,6,7" />. Als Nächstes kommt <InlineMath math="8" /> hinzu,
-also ergibt sich <InlineMath math="27+8=35" />.
-
-#### Ergebnisse vergleichen
-
-Prüfen wir die Aussagen anhand der berechneten Werte:
-
-- Für Bergo ergeben sich <InlineMath math="22" />. Der Wert <InlineMath math="24" /> passt nicht zum Muster der Tabelle.
-- Mit <InlineMath math="42" /> werden mehr quadratische Tücher verkauft als
-  Pashmina-Tücher mit <InlineMath math="35" /> und Bergo-Tücher mit
-  <InlineMath math="22" />.
-- Pashmina wird somit nicht seltener verkauft als Bergo.
-
-Richtig ist somit die Vorhersage von **<InlineMath math="42" /> verkauften quadratischen Tüchern**.
+Richtig ist die Vorhersage von <InlineMath math="42" /> quadratischen Tüchern. Für Bergo ergeben sich nicht <InlineMath math="24" />. Pashmina ist nicht das meistverkaufte Modell, liegt aber weiterhin vor Bergo.

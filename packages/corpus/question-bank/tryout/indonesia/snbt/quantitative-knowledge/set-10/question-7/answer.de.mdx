@@ -2,10 +2,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Gegeben sei die quadratische Funktion:
+Bestimme mithilfe der **Symmetrieachse** den Koeffizienten dieser quadratischen Funktion:
 
 <BlockMath math="y = kx^2 + 8x + (k-1)" />
 
@@ -28,3 +28,15 @@ Setze <InlineMath math="k=-1" /> ein und ergänze zum Quadrat:
 </MathContainer>
 
 Da <InlineMath math="(x-4)^2 \ge 0" /> gilt, kann <InlineMath math="-(x-4)^2" /> höchstens <InlineMath math="0" /> sein. Dieser Wert wird bei <InlineMath math="x=4" /> erreicht. Der Maximalwert der Funktion ist daher <InlineMath math="14" />.
+
+<LineEquation
+ title="Parabelscheitel bei (4, 14)"
+ description="Der Graph ist nach unten geöffnet. Am Punkt auf der Symmetrieachse wird der höchste Wert erreicht."
+ cameraPosition={[4, 6, 24]}
+ cameraTarget={[4, 6, 0]}
+ showZAxis={false}
+ data={[
+ { points: Array.from({ length: 81 }, (_, i) => ({ x: i / 10, y: -((i / 10 - 4) ** 2) + 14, z: 0 })), color: "#4f46e5", smooth: false, showPoints: false },
+ { points: [{ x: 4, y: -2, z: 0 }, { x: 4, y: 14, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [1], labels: [{ at: 1, text: <InlineMath math="(4,14)" />, offset: [1, 0.5, 0] }] },
+ ]}
+/>

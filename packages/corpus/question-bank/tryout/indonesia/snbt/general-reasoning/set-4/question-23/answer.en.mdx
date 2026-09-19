@@ -5,8 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Start with users of <InlineMath math="A" /> and subtract those in <InlineMath math="A\cap B" /> and <InlineMath math="A\cap C" />. Users of all three services have been removed twice, so add them back once.
+We want **users of A only**, so we must remove A users who also use B or C. First separate the overlapping groups:
 
-<BlockMath math="90-35-28+15=42" />
+| Group of A users | Number of people |
+| --- | --- |
+| A and B, without C | <InlineMath math="35-15=20" /> |
+| A and C, without B | <InlineMath math="28-15=13" /> |
+| A, B, and C | <InlineMath math="15" /> |
 
-Therefore, <InlineMath math="42" /> participants use only service <InlineMath math="A" />.
+These three rows do not overlap. Thus, <InlineMath math="20+13+15=48" /> users of A also use another service. The remaining number is
+
+<BlockMath math="90-48=42." />
+
+The same reasoning can be written using inclusion and exclusion:
+
+<BlockMath math="90-35-28+15=55-28+15=27+15=42." />
+
+Why add <InlineMath math="15" />? Users of all three services were **subtracted twice** through the two intersections, although they should be removed only once. Adding them back once corrects that double subtraction.
