@@ -34,6 +34,7 @@ node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/chec
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles --strict-review
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/question-bank --strict-review
 ```
 
 Run that suite before the corpus gate when changing a voice rule. The
@@ -183,11 +184,14 @@ boundary before widening a rule. Preserve the following verification boundaries:
   Reihenfolge vor:`, while `A und B können in dieser Reihenfolge nur
   multipliziert werden.` stays valid because it names the required operand
   order, as the shipped matrix lesson does.
-- `highlight-ceiling` fixtures cover three highlights in one section, three in
-  the introduction before any heading, one per section across several sections,
-  and a code block that mentions the marker only as text. `highlight-nesting`
-  fixtures cover a highlight inside a highlight and markers nested across both
-  syntaxes, while sibling markers in one section stay valid.
+- Emphasis fixtures prove that Markdown strong emphasis and `<Highlight>`
+  satisfy the same presence rule, including JSX passed through labels, while
+  marker text in code does not count. `highlight-nesting` fixtures reject
+  nested markers across both syntaxes while preserving sibling phrases.
+- Question-bank fixtures preserve assessed wording, compare answer locale
+  siblings independently of prompts, enforce the app-owned heading boundary,
+  and retain authored address checks in worked answers. Numeric semicolons in
+  decimal-comma math lists remain notation rather than prose punctuation.
 - Blockquote bodies are scanned for the address rules and for an editorial
   prefix such as `Quick check:` or `Cek cepat:` (`blockquote-editorial-label`),
   because a blockquote may be a real quotation with protected bytes. A

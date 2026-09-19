@@ -2,13 +2,113 @@ export const metadata = {
   title: "Pembahasan Soal 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Bidang yang melalui tiga titik potong sumbu memiliki persamaan
+Jarak titik ke bidang adalah panjang ruas **tegak lurus bidang**. Kita perlu menentukan persamaan bidang <InlineMath math="ABC" /> sebelum menghitung jarak dari <InlineMath math="O=(0,0,0)" />.
+
+#### Menentukan persamaan bidang
+
+Bidang memotong sumbu di <InlineMath math="A=(4,0,0)" />, <InlineMath math="B=(0,6,0)" />, dan <InlineMath math="C=(0,0,8)" />. Bentuk potong sumbunya adalah
 
 <BlockMath math="\frac{x}{4}+\frac{y}{6}+\frac{z}{8}=1" />
 
-atau <InlineMath math="6x+4y+3z-24=0" />. Jarak titik asal <InlineMath math="O" /> ke bidang tersebut adalah
+Kalikan kedua ruas dengan <InlineMath math="24" /> agar semua penyebut hilang.
 
-<BlockMath math="\begin{aligned}d&=\frac{|{-24}|}{\sqrt{6^2+4^2+3^2}} \\ &=\frac{24}{\sqrt{61}}\end{aligned}" />
+<BlockMath math="\begin{aligned}6x+4y+3z&=24\\6x+4y+3z-24&=0\end{aligned}" />
+
+Koefisien <InlineMath math="(6,4,3)" /> membentuk **vektor normal**, yaitu arah yang tegak lurus bidang.
+
+<MathVisual
+  title="Jarak tegak lurus ke bidang"
+  description="Putar balok untuk melihat OH yang tegak lurus bidang ABC. Titik H berada pada bidang, bukan pada rusuk balok."
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 7 },
+      z: { min: -1, max: 9 },
+    },
+    view: {
+      kind: "camera",
+      position: { x: 12, y: 11, z: 14 },
+      target: { x: 2, y: 3, z: 4 },
+    },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 2, y: 3, z: 4 },
+        size: { length: 4, width: 8, height: 6 },
+      },
+      {
+        id: "cross-section",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 4, y: 0, z: 0 },
+          { x: 0, y: 6, z: 0 },
+          { x: 0, y: 0, z: 8 },
+        ],
+      },
+      {
+        id: "origin",
+        kind: "point",
+        appearance: "secondary",
+        at: { x: 0, y: 0, z: 0 },
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 4, y: 0, z: 0 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 6, z: 0 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 0, z: 8 },
+      },
+      { id: "normal", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+      { id: "foot", kind: "point", appearance: "secondary", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+    ],
+    labels: [
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "point-a", objectId: "point-a", at: { x: 4, y: 0, z: 0 }, placement: "below-right" },
+      { key: "point-b", objectId: "point-b", at: { x: 0, y: 6, z: 0 }, placement: "above-left" },
+      { key: "point-c", objectId: "point-c", at: { x: 0, y: 0, z: 8 }, placement: "above-left" },
+      { key: "foot", objectId: "foot", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    foot: <InlineMath math="H" />,
+    origin: <InlineMath math="O" />,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
+/>
+
+#### Menghitung panjang ruas tegak lurus
+
+Untuk bidang <InlineMath math="ax+by+cz+d=0" /> dan titik <InlineMath math="(x_0,y_0,z_0)" />, rumus jaraknya ialah
+
+<BlockMath math="D=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}" />
+
+Masukkan koefisien bidang dan koordinat titik asal.
+
+<BlockMath math="\begin{aligned}D&=\frac{|6(0)+4(0)+3(0)-24|}{\sqrt{6^2+4^2+3^2}}\\&=\frac{24}{\sqrt{36+16+9}}\\&=\frac{24}{\sqrt{61}}\end{aligned}" />
+
+Ruas <InlineMath math="OH" /> pada model menunjukkan jarak tersebut. Sebagai pemeriksaan, kaki tegak lurusnya adalah <InlineMath math="H=(144/61,96/61,72/61)" />. Ruas <InlineMath math="OH" /> searah vektor normal karena koordinat <InlineMath math="H" /> sama dengan <InlineMath math="(24/61)(6,4,3)" />. Substitusi ke persamaan bidang memberi
+
+<BlockMath math="\begin{aligned}6\left(\frac{144}{61}\right)+4\left(\frac{96}{61}\right)+3\left(\frac{72}{61}\right)&=\frac{864+384+216}{61}\\&=\frac{1464}{61}\\&=24\end{aligned}" />
+
+Jadi, <InlineMath math="H" /> benar-benar berada pada bidang <InlineMath math="ABC" />, dan jarak yang dicari adalah <InlineMath math="24/\sqrt{61}" /> satuan.

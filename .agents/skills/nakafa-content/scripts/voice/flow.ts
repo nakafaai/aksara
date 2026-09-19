@@ -1,4 +1,3 @@
-import { GERMAN_FORMAL_ADDRESS_PATTERN } from "#nakafa-content/voice/address";
 import type { LessonVoiceRule } from "#nakafa-content/voice/types";
 
 /** Checks stiff lesson choreography and personified instructional prose. */
@@ -66,14 +65,6 @@ export const FLOW_VOICE_RULES = [
       en: /\bthis is (?:the )?most common example[.!?]?\s*$/iu,
       id: /(?:\bpertanyaan menarik\s*:|\b(?:ini adalah )?contoh paling umum[.!?]?\s*$)/iu,
     },
-  },
-  {
-    id: "german-formal-address",
-    inspectLinkLabels: true,
-    patterns: {
-      de: GERMAN_FORMAL_ADDRESS_PATTERN,
-    },
-    protectInlineQuotations: true,
   },
   {
     id: "decorative-code-metaphor",

@@ -65,22 +65,30 @@ authorship detector. Admit a new rule only when all of these conditions hold:
 
 ## Deterministic gate scope
 
-The gate runs on lessons (`packages/corpus/material/lesson`) and articles
-(`packages/corpus/articles`). Both scopes must reach zero findings, and the
-production suites assert that. The same command accepts `--root` for any other
-authored tree, including a single lesson directory.
+The checker discovers locale-qualified files across lessons, articles, and the
+question bank. Its document role comes from the contract-owned question body
+kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
-The question bank is deliberately outside the gate. Its files are named
-`answer.id.mdx` and `question.en.mdx`, so file discovery reads the trailing
-locale segment and the tree is now reachable, but the rule set does not fit it:
-a measured run over all 9650 question-bank MDX files reports 25,254 findings,
-dominated by
-rules that do not apply to assessed items. Metadata titles such as
-`Pembahasan Soal 4` contain digits, so the heading-symbol rule fires on nearly
-every item; the per-document highlight floor and `locale-representation-parity`
-assume a lesson with locale siblings, while an assessed prompt exists in one
-language only. Gating the question bank needs its own rule profile, and that is
-a separate change with its own evidence run.
+- Lessons and articles receive the full authored teaching profile, including
+  opening emphasis and section-body checks.
+- Assessed questions receive link, component, emphasis-syntax, and math checks.
+  The checker preserves their language register, punctuation, titles, and quoted
+  source wording. A question is not a lesson or an invitation to rewrite a
+  passage whose meaning is being assessed.
+- Worked answers receive authored address, mechanical and language checks,
+  valid math and emphasis, links, and heading order beginning at `####` under
+  the app-owned `###` explanation heading. Their locale structures are compared
+  only with other answers. Lesson-only opening and body-length requirements do
+  not turn a short, complete calculation into filler. Abbreviations may already
+  be defined in the prompt. Phrases such as “gagasan utama”, “the next section”,
+  and “not only” can analyze the assessed passage, so lesson narrative heuristics
+  do not reject them in an answer. Read the prompt and all answer siblings to
+  evaluate their pedagogical use.
+
+A full question-bank run covers 9650 MDX files. A clean automated result proves
+only these boundaries, never mathematical accuracy or the completeness of every
+worked solution. The [worked-solution review](worked-solutions.md) still owns
+those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
 `--strict-review` fails it while the repository suite still rejects it. A
@@ -137,19 +145,12 @@ know, so it is not the full id list.
   skips one. The corpus nests answer-key headings to `####` and `#####` under a
   `###` heading, which stays valid because no level is skipped, so the gate
   enforces order rather than a maximum depth.
-- `highlight-ceiling` blocks a third `<Highlight>` inside one heading span, so
-  the explicit marker keeps naming the decisive rule, condition, or key term of
-  that span, and `lesson-without-highlight` owns the floor of one per authored
-  locale document. One heading span carries at most two, while one top-level
-  `##` section carries more because its `###` subsections each mark their own
-  phrases. `lesson-opening-highlight` owns the opening floor: the first section
-  a learner reads marks at least one phrase with either marker. The rule does
-  not cap `**` density or total marked surface: both markers render the same
-  treatment, so an author can mark several phrases in one span with `**`, and
-  that spacing judgement stays editorial. `highlight-nesting` blocks one marker
-  nested inside the other, and `highlight-variant` blocks an unknown tone or a
-  dynamic expression, so only `success`, `warning`, or a bare `<Highlight>`
-  reach the learner.
+- `lesson-without-highlight` and `lesson-opening-highlight` recognize both
+  Markdown strong emphasis and `<Highlight>` through the parsed tree, including
+  rendered JSX labels. Marker text inside code does not count. There is no
+  syntax-specific density quota. Choose phrases by their teaching purpose and
+  review the combined marked surface. `highlight-nesting` and
+  `highlight-variant` still reject nested markers and unsupported tones.
 - `internal-link-generic-label`, `internal-link-only-block`, and
   `internal-link-navigation-heading` block a label that names no destination
   concept, a paragraph or list item whose visible content is only links, and a

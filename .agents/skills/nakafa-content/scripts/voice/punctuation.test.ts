@@ -284,3 +284,17 @@ it("ignores module code and non-object metadata", () => {
     assert.deepEqual(findLearnerFacingSemicolonIssues(source), []);
   }
 });
+
+it("preserves decimal-comma list separators without allowing semicolon prose", () => {
+  for (const source of [
+    '<InlineMath math="0{,}6;\\ 0{,}4;\\ 0{,}2" />',
+    '<InlineMath math={"-0{,}2;\\\\ -0{,}4"} />',
+  ]) {
+    assert.deepEqual(findLearnerFacingSemicolonIssues(source), []);
+  }
+  assert.equal(
+    findLearnerFacingSemicolonIssues('<InlineMath math="x; y" />').length,
+    1
+  );
+  assert.equal(findLearnerFacingSemicolonIssues("Use 1; 2 follows.").length, 1);
+});

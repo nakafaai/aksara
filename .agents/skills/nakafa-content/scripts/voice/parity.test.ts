@@ -222,3 +222,38 @@ it("parses source when callers do not already have an MDX tree", () => {
     },
   ]);
 });
+
+it("compares answer siblings without borrowing the assessed question structure", () => {
+  const documents = [
+    {
+      file: "/corpus/item/question.en.mdx",
+      locale: "en" as const,
+      source: "A passage.\n\n- One\n- Two",
+    },
+    {
+      file: "/corpus/item/answer.en.mdx",
+      locale: "en" as const,
+      source: "#### Calculation\n\nA result.",
+    },
+    {
+      file: "/corpus/item/answer.id.mdx",
+      locale: "id" as const,
+      source: "#### Perhitungan\n\nHasil.",
+    },
+    {
+      file: "/corpus/item/answer.de.mdx",
+      locale: "de" as const,
+      source: "#### Rechnung\n\nErgebnis.",
+    },
+  ];
+  assert.deepEqual(findSiblingRepresentationIssues("/corpus", documents), []);
+  const divergent = documents.at(2);
+  assert.ok(divergent);
+  divergent.source += "\n\n- Satu\n- Dua";
+  assert.deepEqual(
+    findSiblingRepresentationIssues("/corpus", documents).map(
+      ({ file }) => file
+    ),
+    ["item/answer.id.mdx"]
+  );
+});

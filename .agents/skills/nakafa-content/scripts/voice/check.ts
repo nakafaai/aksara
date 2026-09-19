@@ -4,23 +4,16 @@ import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
 import { Effect, FileSystem } from "effect";
-import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
-import { findHighlightCeilingIssues } from "#nakafa-content/highlight/ceiling";
-import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
-import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
-import { findHighlightVariantIssues } from "#nakafa-content/highlight/variant";
-import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
-import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
-import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import {
+  findDocumentIssues,
+  questionBodyKind,
+} from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
-import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
-import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
-import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import {
   isLessonVoiceLocale,
   type LessonVoiceLocale,
@@ -149,20 +142,8 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       })
     );
     const issues = documents.flatMap(
-      ({ locale, repositoryPath, source, tree }) =>
-        [
-          ...findLessonVoiceIssues(locale, source, tree),
-          ...findMathBlockFragmentIssues(source, tree),
-          ...findLearnerFacingSemicolonIssues(source, tree),
-          ...findExternalLinkPlacementIssues(source, tree),
-          ...findInternalLinkIssues(source, tree),
-          ...findHeadingOrderIssues(source, tree),
-          ...findHighlightCeilingIssues(source, tree),
-          ...findHighlightNestingIssues(source, tree),
-          ...findOpeningHighlightIssues(source, tree),
-          ...findHighlightVariantIssues(source, tree),
-          ...findExactLineSmoothingIssues(source, tree),
-        ].map((issue) => ({
+      ({ file, locale, repositoryPath, source, tree }) =>
+        findDocumentIssues(file, locale, source, tree).map((issue) => ({
           file: repositoryPath,
           locale,
           ...issue,
@@ -177,7 +158,14 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       })
     );
     issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
-    issues.push(...findLessonHighlightIssues(root, siblingDocuments));
+    issues.push(
+      ...findLessonHighlightIssues(
+        root,
+        siblingDocuments.filter(
+          ({ file }) => questionBodyKind(file) === undefined
+        )
+      )
+    );
     const report: LessonVoiceReport = {
       fileCount: files.length,
       issues,

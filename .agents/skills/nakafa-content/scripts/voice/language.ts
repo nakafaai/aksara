@@ -96,6 +96,7 @@ export const LANGUAGE_VOICE_RULES = [
     patterns: {
       id: /\bmembuat\b(?=[^,;:.!?\n]{0,100}\b(?:dapat|bisa)\b)(?![^,;:.!?\n]{0,100}\b(?:dan|tetapi|lalu|yang)\b)[^,;:.!?\n]{0,100}\b(?:dapat|bisa)\b/iu,
     },
+    protectInlineQuotations: true,
   },
   {
     id: "unexplained-output-scheduling",

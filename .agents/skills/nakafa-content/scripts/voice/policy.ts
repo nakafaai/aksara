@@ -31,7 +31,6 @@ const BLOCKING_RULES = new Set([
   "heading-symbol",
   "heading-undefined-abbreviation",
   "heading-without-body",
-  "highlight-ceiling",
   "highlight-nesting",
   "highlight-variant",
   "indonesian-mathematical-family-calque",

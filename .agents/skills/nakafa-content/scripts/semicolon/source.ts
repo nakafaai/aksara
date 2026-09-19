@@ -6,9 +6,19 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 const ENTITY_TERMINATOR_PATTERN = /&(?:#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]+);$/iu;
 const SEMICOLON_ENTITY_PATTERN = /&(?:#0*59|#x0*3b|semi);$/iu;
 const TRAILING_BACKSLASH_PATTERN = /\\+$/u;
+const MATH_NUMBER_END = /[+-]?\d+(?:\{[.,]\}\d+|[.,]\d+)?$/u;
+const MATH_NUMBER_START = /^(?:\s|\\[,;! ])*[+-]?\d/u;
 
 export interface SemicolonScanOptions {
   allowLatexSpacing?: boolean;
+}
+
+/** Preserves mathematical list separators, including decimal-comma sequences. */
+function isMathListSeparator(text: string, offset: number): boolean {
+  return (
+    MATH_NUMBER_END.test(text.slice(0, offset)) &&
+    MATH_NUMBER_START.test(text.slice(offset + 1))
+  );
 }
 
 /** Adds punctuation from parser-rendered text while preserving source offsets. */
@@ -27,7 +37,7 @@ export function addRenderedSemicolonsInRange(
       const preceding = text.slice(0, match.index);
       const slashCount =
         preceding.match(TRAILING_BACKSLASH_PATTERN)?.[0].length ?? 0;
-      if (slashCount % 2 === 1) {
+      if (slashCount % 2 === 1 || isMathListSeparator(text, match.index)) {
         continue;
       }
     }
@@ -67,7 +77,10 @@ export function addSemicolonsInRange(
     if (source[offset] !== ";") {
       continue;
     }
-    if (options.allowLatexSpacing && source[offset - 1] === "\\") {
+    if (
+      options.allowLatexSpacing &&
+      (source[offset - 1] === "\\" || isMathListSeparator(source, offset))
+    ) {
       continue;
     }
     if (entityTerminatorKind(source, offset) === "other") {

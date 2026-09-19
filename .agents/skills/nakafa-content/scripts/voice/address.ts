@@ -13,7 +13,7 @@ const GERMAN_ADDRESS_PRONOUN_PATTERN = /(?:Sie|Ihnen|Ihr(?:e|en|em|er|es)?)/u;
 const GERMAN_FEMININE_SUBJECT_PATTERN =
   /(?:^|[.!?]\s+)(?:Die|Eine|Diese|Jene|Beide|Mehrere)\s+(?:[\p{Ll}][\p{L}-]*\s+){0,4}(?:`[\p{Lu}][\p{L}-]*`|[\p{Lu}][\p{L}-]*\b)/u;
 const GERMAN_PLURAL_SUBJECT_PATTERN =
-  /(?:^|[\s,])(?:Die|Diese|Jene|Beide|Mehrere|Ähnliche|Normierte|beide[nm]?|mehrere|ähnliche|normierte)(?:\s+[\p{Ll}][\p{L}-]*){0,3}\s+(?:`[\p{Lu}][\p{L}-]*`|[\p{Lu}][\p{L}-]*)(?:\s+(?:<[^>\n]+>|`[\p{L}\p{N}_-]+`|[\p{L}-]+)){0,14}\s+(?:beschreiben|besitzen|bleiben|erfüllen|haben|können|lauten|liegen|schließen|sind|stehen|werden|zeigen)\b/u;
+  /(?:^|[\s,])(?:Die|Diese|Jene|Beide|Mehrere|Ähnliche|Normierte|beide[nm]?|mehrere|ähnliche|normierte)(?:\s+[\p{Ll}][\p{L}-]*){0,3}\s+(?:`[\p{Lu}][\p{L}-]*`|[\p{Lu}][\p{L}-]*)(?:\s+(?:<[^>\n]+>|`[\p{L}\p{N}_-]+`|[\p{L}-]+)){0,14}\s+(?:beschreiben|besitzen|bleiben|erfüllen|haben|können|lauten|liegen|schließen|sind|stehen|werden|würden|zeigen)\b/u;
 
 export const GERMAN_FORMAL_ADDRESS_PATTERN =
   /(?:(?<=[\p{L}\p{N},;]\s)(?:Sie|Ihnen|Ihr(?:e|en|em|er|es)?)\b|^\s*(?:#{1,6}\s+|\|\s*(?:Aufgabe|Hinweis|Kontrolle|Schritt|Tipp)\s*\|\s*)(?:\*{1,2}|_{1,2})?(?:Sie(?:\*{1,2}|_{1,2})?\s+(?:können|sollten|müssen|dürfen|berechnen|bestimmen|erkennen|finden|lösen|prüfen|sehen|vergleichen|verwenden|wählen|zeichnen)\b|Ihnen(?:\*{1,2}|_{1,2})?\s+(?:steht|stehen|wird)\b|Ihr(?:e|en|em|er|es)?(?:\*{1,2}|_{1,2})?\s+(?:Antwort|Aufgabe|Eingabe|Ergebnis|Lösung|Rechnung|Ziel)\b))/u;
@@ -65,8 +65,16 @@ export function establishedGermanFormalSentenceOffset(
   return match.index + match[0].search(GERMAN_ADDRESS_PRONOUN_PATTERN);
 }
 
-/** Enforces Nakafa's Indonesian learner address in authored visible prose. */
+/** Enforces Nakafa's learner address in authored visible prose. */
 export const ADDRESS_VOICE_RULES = [
+  {
+    id: "german-formal-address",
+    inspectLinkLabels: true,
+    patterns: {
+      de: GERMAN_FORMAL_ADDRESS_PATTERN,
+    },
+    protectInlineQuotations: true,
+  },
   {
     id: "indonesian-formal-learner-address",
     inspectLinkLabels: true,

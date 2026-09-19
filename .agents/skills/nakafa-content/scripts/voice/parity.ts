@@ -277,7 +277,12 @@ export function findSiblingRepresentationIssues(
   root: string,
   documents: readonly LessonSiblingDocument[]
 ): LessonVoiceFileIssue[] {
-  const groups = groupByKey(documents, (document) => dirname(document.file));
+  const groups = groupByKey(documents, (document) => {
+    const stem = basename(document.file, ".mdx");
+    const separator = stem.lastIndexOf(".");
+    const role = separator === -1 ? "" : stem.slice(0, separator);
+    return `${dirname(document.file)}/${role}`;
+  });
   const issues: LessonVoiceFileIssue[] = [];
 
   for (const siblings of groups.values()) {

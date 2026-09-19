@@ -2,13 +2,113 @@ export const metadata = {
   title: "Lösung zu Aufgabe 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Die Ebene durch die drei Achsenabschnitte hat die Gleichung
+Der Abstand eines Punktes von einer Ebene ist die Länge einer Strecke **senkrecht zur Ebene**. Bestimme zuerst die Gleichung der Ebene <InlineMath math="ABC" /> und dann ihren Abstand von <InlineMath math="O=(0,0,0)" />.
+
+#### Die Ebenengleichung bestimmen
+
+Die Ebene schneidet die Achsen in <InlineMath math="A=(4,0,0)" />, <InlineMath math="B=(0,6,0)" /> und <InlineMath math="C=(0,0,8)" />. Ihre Achsenabschnittsform lautet
 
 <BlockMath math="\frac{x}{4}+\frac{y}{6}+\frac{z}{8}=1" />
 
-oder <InlineMath math="6x+4y+3z-24=0" />. Der Abstand des Ursprungs <InlineMath math="O" /> von dieser Ebene ist
+Multipliziere beide Seiten mit <InlineMath math="24" />, damit alle Nenner verschwinden.
 
-<BlockMath math="\begin{aligned}d&=\frac{|{-24}|}{\sqrt{6^2+4^2+3^2}} \\ &=\frac{24}{\sqrt{61}}\end{aligned}" />
+<BlockMath math="\begin{aligned}6x+4y+3z&=24\\6x+4y+3z-24&=0\end{aligned}" />
+
+Die Koeffizienten <InlineMath math="(6,4,3)" /> bilden einen **Normalenvektor**. Seine Richtung steht senkrecht auf der Ebene.
+
+<MathVisual
+  title="Senkrechter Abstand zur Ebene"
+  description="Drehe den Quader und betrachte OH senkrecht zur Ebene ABC. H liegt auf der Ebene und nicht auf einer Quaderkante."
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 7 },
+      z: { min: -1, max: 9 },
+    },
+    view: {
+      kind: "camera",
+      position: { x: 12, y: 11, z: 14 },
+      target: { x: 2, y: 3, z: 4 },
+    },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 2, y: 3, z: 4 },
+        size: { length: 4, width: 8, height: 6 },
+      },
+      {
+        id: "cross-section",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 4, y: 0, z: 0 },
+          { x: 0, y: 6, z: 0 },
+          { x: 0, y: 0, z: 8 },
+        ],
+      },
+      {
+        id: "origin",
+        kind: "point",
+        appearance: "secondary",
+        at: { x: 0, y: 0, z: 0 },
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 4, y: 0, z: 0 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 6, z: 0 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 0, z: 8 },
+      },
+      { id: "normal", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+      { id: "foot", kind: "point", appearance: "secondary", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 } },
+    ],
+    labels: [
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "point-a", objectId: "point-a", at: { x: 4, y: 0, z: 0 }, placement: "below-right" },
+      { key: "point-b", objectId: "point-b", at: { x: 0, y: 6, z: 0 }, placement: "above-left" },
+      { key: "point-c", objectId: "point-c", at: { x: 0, y: 0, z: 8 }, placement: "above-left" },
+      { key: "foot", objectId: "foot", at: { x: 2.360655737704918, y: 1.5737704918032787, z: 1.180327868852459 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    foot: <InlineMath math="H" />,
+    origin: <InlineMath math="O" />,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
+/>
+
+#### Die senkrechte Strecke berechnen
+
+Für die Ebene <InlineMath math="ax+by+cz+d=0" /> und den Punkt <InlineMath math="(x_0,y_0,z_0)" /> gilt die Abstandsformel
+
+<BlockMath math="D=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}" />
+
+Setze die Koeffizienten der Ebene und die Koordinaten des Ursprungs ein.
+
+<BlockMath math="\begin{aligned}D&=\frac{|6(0)+4(0)+3(0)-24|}{\sqrt{6^2+4^2+3^2}}\\&=\frac{24}{\sqrt{36+16+9}}\\&=\frac{24}{\sqrt{61}}\end{aligned}" />
+
+Die Strecke <InlineMath math="OH" /> zeigt diesen Abstand im Modell. Zur Kontrolle betrachten wir den Lotfußpunkt <InlineMath math="H=(144/61,96/61,72/61)" />. Die Strecke <InlineMath math="OH" /> verläuft in Normalenrichtung, denn die Koordinaten von <InlineMath math="H" /> sind <InlineMath math="(24/61)(6,4,3)" />. Einsetzen in die Ebenengleichung ergibt
+
+<BlockMath math="\begin{aligned}6\left(\frac{144}{61}\right)+4\left(\frac{96}{61}\right)+3\left(\frac{72}{61}\right)&=\frac{864+384+216}{61}\\&=\frac{1464}{61}\\&=24\end{aligned}" />
+
+Damit liegt <InlineMath math="H" /> auf der Ebene <InlineMath math="ABC" />. Der gesuchte Abstand beträgt <InlineMath math="24/\sqrt{61}" /> Längeneinheiten.

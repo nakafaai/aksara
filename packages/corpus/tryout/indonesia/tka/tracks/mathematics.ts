@@ -36,9 +36,9 @@ export const tkaMathematicsTrack = {
           },
           timeLimitSeconds: 4500,
           translations: {
-            de: { title: "Mathematik" },
-            en: { title: "Mathematics" },
-            id: { title: "Matematika" },
+            de: { title: "Pflichtmathematik" },
+            en: { title: "Compulsory Mathematics" },
+            id: { title: "Matematika Wajib" },
           },
           visibility: "internal-entry" as const,
         },
@@ -51,8 +51,8 @@ export const tkaMathematicsTrack = {
     };
   }),
   translations: {
-    de: { title: "Mathematik" },
-    en: { title: "Mathematics" },
-    id: { title: "Matematika" },
+    de: { title: "Pflichtmathematik" },
+    en: { title: "Compulsory Mathematics" },
+    id: { title: "Matematika Wajib" },
   },
 } satisfies TryoutTrackSourceInput;

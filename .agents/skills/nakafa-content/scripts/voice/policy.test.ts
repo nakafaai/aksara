@@ -20,7 +20,6 @@ const blockingRules = [
   "german-formal-address",
   "heading-symbol",
   "heading-order",
-  "highlight-ceiling",
   "highlight-nesting",
   "indonesian-mathematical-family-calque",
   "indonesian-detached-discussion-passive",

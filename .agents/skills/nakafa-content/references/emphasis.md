@@ -25,14 +25,21 @@ uses the warning surface.
   review](review.md#final-language-review), because no rule reports that shape.
 - Let each locale choose its own phrase instead of translating a sibling's
   marked words. A locale that marks nothing has left that step unmarked for its
-  readers, so every authored locale document carries at least one `<Highlight>`
-  (`lesson-without-highlight`). The opening section a learner reads first marks
+  readers, so every authored locale document carries at least one marked phrase
+  using either syntax (`lesson-without-highlight`). The opening section a learner reads first marks
   at least one phrase with either marker (`lesson-opening-highlight`).
-- `<Highlight>` is the explicit marker for a heading span's decisive rule,
-  condition, or key term, so one heading span carries at most two
-  (`highlight-ceiling`): the decisive phrase and one key term. A `##` section
-  whose `###` subsections each mark their own phrases therefore carries more in
-  total. Reach for `**` for every other emphasised phrase.
+- Use the same judgment for both syntaxes. Do not enforce a component-only
+  quota or switch to `**` to evade a limit. A comparison table can mark several
+  distinct criteria, while a short paragraph may need only one phrase. Check
+  whether the marked words alone still identify the concept and its condition.
+- Leave the sentence-ending period, comma, colon, or question mark outside the
+  marked phrase. Preserve punctuation that belongs to an assessed quotation or
+  the term itself. Mark a complete step label, such as `**Langkah 1**`, rather
+  than `**Langkah** 1`. The number identifies the step and belongs with its noun.
+- In a worked answer, mark the deciding condition, operation, or interpretation.
+  Keep the complete substitution and calculation visible in math blocks. Do
+  not mark the entire conclusion or every answer option merely to distinguish
+  it from the explanation. Quoted assessed wording stays exact.
 - Keep the marked phrase self-contained. It names its own object, condition, or
   quantity, so a learner never has to leave the paragraph to resolve it. A bare
   `berikut` that points at the block below, or an `ini`, `itu`, or `tersebut`

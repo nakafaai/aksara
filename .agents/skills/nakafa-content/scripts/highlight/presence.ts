@@ -1,13 +1,14 @@
 import { relative } from "node:path";
 
-import { isAuthoredLesson } from "#nakafa-content/highlight/section";
+import {
+  hasMarkedPhrase,
+  isAuthoredLesson,
+} from "#nakafa-content/highlight/section";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type {
   LessonVoiceFileIssue,
   LessonVoiceLocale,
 } from "#nakafa-content/voice/types";
-
-const HIGHLIGHT_PATTERN = /<Highlight(?:\s[^>]*)?>[\s\S]*?<\/Highlight>/u;
 
 interface LessonSiblingDocument {
   file: string;
@@ -19,7 +20,7 @@ interface LessonSiblingDocument {
 /**
  * Finds every authored locale document that carries no highlight.
  *
- * Each locale is rendered on its own, so one locale without `<Highlight>`
+ * Each locale is rendered on its own, so one locale without either emphasis marker
  * leaves the lesson's decisive rule, condition, or key term unmarked for the
  * learners reading that language, even when a sibling locale marks it.
  */
@@ -32,12 +33,12 @@ export function findLessonHighlightIssues(
     if (!isAuthoredLesson(document.tree)) {
       continue;
     }
-    if (HIGHLIGHT_PATTERN.test(document.source)) {
+    if (hasMarkedPhrase(document.tree)) {
       continue;
     }
     issues.push({
       column: 1,
-      excerpt: "Lesson carries no <Highlight> phrase",
+      excerpt: "Lesson carries no marked phrase",
       file: relative(root, document.file),
       line: 1,
       locale: document.locale,

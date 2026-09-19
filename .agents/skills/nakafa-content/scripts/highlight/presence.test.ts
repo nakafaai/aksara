@@ -108,6 +108,33 @@ it("accepts a floor carried by a highlight variant", () => {
   );
 });
 
+it("counts Markdown emphasis and rendered JSX but not marker text inside code", () => {
+  const sources = [
+    "The **denominator** counts every student.",
+    "<Lab labels={{ body: <>The <Highlight>denominator</Highlight> counts every student.</> }} />",
+    "{<Highlight>denominator</Highlight>}",
+  ];
+  for (const body of sources) {
+    assert.deepEqual(
+      findLessonHighlightIssues(ROOT, lesson({ en: authored(body) })),
+      []
+    );
+  }
+  for (const body of [
+    "`<Highlight>code example</Highlight>`",
+    "```mdx\n<Highlight>code example</Highlight>\n```",
+    '<CodeBlock flag {...properties} data={[{ code: "<Highlight>example</Highlight>" }]} />',
+    '<Lab label="unmarked" body={<>Text</>} />',
+  ]) {
+    assert.deepEqual(
+      findLessonHighlightIssues(ROOT, lesson({ en: authored(body) })).map(
+        ({ rule }) => rule
+      ),
+      ["lesson-without-highlight"]
+    );
+  }
+});
+
 it("ignores a document that declares no lesson metadata", () => {
   assert.deepEqual(
     findLessonHighlightIssues(
