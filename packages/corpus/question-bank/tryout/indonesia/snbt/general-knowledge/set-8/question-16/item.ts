@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Prüfung oder Anpassung an einer Referenz, damit Ergebnisse richtig gedeutet werden können",
+            "Prüfung von Ergebnissen anhand einer Referenz, damit sie angemessen gedeutet werden können",
         },
         {
           isCorrect: false,
@@ -35,7 +35,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "checking or adjusting against a reference so results can be interpreted accurately",
+            "checking results against a reference so they can be interpreted appropriately",
         },
         {
           isCorrect: false,
@@ -64,7 +64,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "penyesuaian atau pemeriksaan terhadap acuan agar hasil dapat ditafsirkan secara tepat",
+            "pemeriksaan hasil terhadap acuan agar hasil dapat ditafsirkan secara tepat",
         },
         {
           isCorrect: false,

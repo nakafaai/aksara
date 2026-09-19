@@ -1,31 +1,24 @@
 export const metadata = {
   title: "Pembahasan Soal 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Definisi Variabel
+#### Memodelkan jumlah truk dan muatan
 
-Misalkan:
-- Banyak truk jenis <InlineMath math="\text{I}" /> adalah <InlineMath math="x" />.
-- Banyak truk jenis <InlineMath math="\text{II}" /> adalah <InlineMath math="y" />.
-- Banyak truk jenis <InlineMath math="\text{III}" /> adalah <InlineMath math="z" />.
+Karena setiap truk **terisi penuh**, jumlah seluruh kapasitas truk sama dengan berat barang. Variabel menyatakan banyak truk setiap jenis.
 
-#### Membentuk Sistem Persamaan
+| Jenis | Banyak truk | Kapasitas setiap truk |
+| --- | --- | --- |
+| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
+| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
+| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
 
-Dari soal diketahui:
-1. Total truk yang disewa adalah <InlineMath math="20" />.
-
-   <BlockMath math="x + y + z = 20 \quad (1)" />
-
-2. Total kapasitas angkut adalah <InlineMath math="96\text{ t}" />, dengan kapasitas masing-masing jenis adalah <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="6\text{ t}" />.
-
-   <BlockMath math="3x + 4y + 6z = 96 \quad (2)" />
-
-3. Diketahui perusahaan menyewa <InlineMath math="4" /> truk jenis <InlineMath math="\text{I}" />.
-
-   <BlockMath math="x = 4" />
+<MathContainer>
+  <BlockMath math="x+y+z=20\quad(1)" />
+  <BlockMath math="3x+4y+6z=96\quad(2)" />
+</MathContainer>
 
 #### Menyelesaikan Sistem Persamaan
 
@@ -52,7 +45,7 @@ Samakan **koefisien variabel yang dieliminasi**. Untuk menghilangkan <InlineMath
 
 <BlockMath math="\begin{aligned}3(y+z)&=3(16) \\ 3y+3z&=48 \\ 2y+3z&=42\end{aligned}" />
 
-Kurangkan kedua persamaan tersebut:
+Kurangkan persamaan kedua dari persamaan pertama:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}&(3y+3z)-(2y+3z) \\ &\quad=48-42\end{aligned}" />
@@ -60,3 +53,10 @@ Kurangkan kedua persamaan tersebut:
 </MathContainer>
 
 Jadi, banyak truk jenis <InlineMath math="\text{II}" /> yang disewa adalah <InlineMath math="6" />.
+
+Sebagai pemeriksaan, <InlineMath math="z=16-6=10" />.
+
+<MathContainer>
+  <BlockMath math="4+6+10=20" />
+  <BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+</MathContainer>

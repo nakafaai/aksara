@@ -1,31 +1,24 @@
 export const metadata = {
   title: "Solution to Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Defining Variables
+#### Modeling truck counts and loads
 
-Let:
-- Number of type <InlineMath math="\text{I}" /> trucks be <InlineMath math="x" />.
-- Number of type <InlineMath math="\text{II}" /> trucks be <InlineMath math="y" />.
-- Number of type <InlineMath math="\text{III}" /> trucks be <InlineMath math="z" />.
+Because every truck is **fully loaded**, the total of their capacities equals the cargo weight. The variables count trucks of each type.
 
-#### Forming System of Equations
+| Type | Count | Capacity per truck |
+| --- | --- | --- |
+| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
+| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
+| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
 
-From the problem, we know:
-1. The total number of trucks rented is <InlineMath math="20" />.
-
-   <BlockMath math="x + y + z = 20 \quad (1)" />
-
-2. The total carrying capacity is <InlineMath math="96\text{ t}" />, with capacities for each type being <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="6\text{ t}" />, respectively.
-
-   <BlockMath math="3x + 4y + 6z = 96 \quad (2)" />
-
-3. It is known that the company rents <InlineMath math="4" /> type <InlineMath math="\text{I}" /> trucks.
-
-   <BlockMath math="x = 4" />
+<MathContainer>
+  <BlockMath math="x+y+z=20\quad(1)" />
+  <BlockMath math="3x+4y+6z=96\quad(2)" />
+</MathContainer>
 
 #### Solving the System
 
@@ -60,3 +53,10 @@ Subtract the second equation from the first:
 </MathContainer>
 
 Thus, the number of type <InlineMath math="\text{II}" /> trucks rented is <InlineMath math="6" />.
+
+As a check, <InlineMath math="z=16-6=10" />.
+
+<MathContainer>
+  <BlockMath math="4+6+10=20" />
+  <BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+</MathContainer>

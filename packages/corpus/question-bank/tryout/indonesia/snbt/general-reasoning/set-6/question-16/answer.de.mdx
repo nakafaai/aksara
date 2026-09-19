@@ -5,22 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir verteilen die Tickets auf <InlineMath math="5" /> Kinder <InlineMath math="\{\mathrm{A}, \mathrm{B}, \mathrm{C}, \mathrm{D}, \mathrm{E}\}" /> und <InlineMath math="5" /> Reiseziele. Jedes Kind erhält genau ein Ziel, und jedes Ziel wird genau einmal vergeben.
+A möchte nur nach Yogyakarta oder Lombok. E erhält bereits Lombok, und **jedes Ziel wird genau einmal vergeben**. Für A bleibt deshalb **Yogyakarta**.
 
-Zuerst betrachten wir Ziele, die nur bei einem Kind auf der Wunschliste stehen:
-1.  **Bali:** Dieses Ziel steht nur bei **B**. Also muss **B nach Bali** reisen.
-2.  **Manado:** Dieses Ziel steht nur bei **C**. Also muss **C nach Manado** reisen.
+Wir prüfen, ob sich auch die übrigen Tickets nach den Regeln verteilen lassen:
 
-Damit bleiben <InlineMath math="3" /> Kinder <InlineMath math="\{\mathrm{A}, \mathrm{D}, \mathrm{E}\}" /> und <InlineMath math="3" /> Reiseziele übrig: Yogyakarta, Lombok und Padang.
--   A möchte nach Yogyakarta oder Lombok.
--   D möchte nach Yogyakarta oder Padang.
--   E möchte nach Padang, Lombok oder Yogyakarta.
+| Kind | Reiseziel | Begründung |
+| --- | --- | --- |
+| E | Lombok | In der Aufgabe vorgegeben |
+| A | Yogyakarta | Lombok ist bereits an E vergeben |
+| B | Bali | Bali muss vergeben werden und steht nur auf der Liste von B |
+| C | Manado | Manado muss vergeben werden und steht nur auf der Liste von C |
+| D | Padang | Yogyakarta ist an A vergeben, sodass für D nur Padang bleibt |
 
-Die Zusatzangabe legt fest, dass **E nach Lombok reist**.
-
-Da Lombok bereits an E vergeben ist, prüfen wir die Möglichkeiten von A:
--   A wollte ursprünglich nach Yogyakarta oder Lombok reisen.
--   Lombok steht nicht mehr zur Verfügung, weil E dorthin reist.
--   Für A bleibt daher nur **Yogyakarta**.
-
-Der Vater gibt A also das Ticket nach **Yogyakarta**. Zur Vervollständigung der Verteilung erhält D automatisch das Ticket nach Padang.
+Alle fünf Ziele werden genau einmal vergeben. Jedes Kind erhält ein Ziel von seiner Wunschliste. Damit erfüllt die Verteilung sämtliche Bedingungen.

@@ -2,7 +2,7 @@ export const metadata = {
   title: "Solution to Question 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-20",
 };
 
 Count all paths from <InlineMath math="O=(0,0)" /> to <InlineMath math="T=(6,4)" />, then remove those through <InlineMath math="A=(2,2)" /> or <InlineMath math="B=(4,3)" />. The key is to **correct the double counting** of paths through both forbidden points.
@@ -131,7 +131,7 @@ Count all paths from <InlineMath math="O=(0,0)" /> to <InlineMath math="T=(6,4)"
 
 #### Counting every step order
 
-Every path needs six steps right and four steps up. Choose four of the ten step positions for the upward steps. The other six positions must then be rightward steps.
+Every path needs six steps right and four steps up. **Choose four of the ten step positions** for the upward steps. The other six positions must then be rightward steps.
 
 <BlockMath math="\binom{10}{4}=\frac{10\times9\times8\times7}{4\times3\times2\times1}=210" />
 
@@ -159,7 +159,7 @@ A path through both points must reach <InlineMath math="A" /> first. Returning f
 
 #### Correcting the double subtraction
 
-Subtracting <InlineMath math="N_A" /> and <InlineMath math="N_B" /> removes the same <InlineMath math="54" /> forbidden paths twice. Add them back once so that each forbidden path is removed exactly once.
+Subtracting <InlineMath math="N_A" /> and <InlineMath math="N_B" /> removes the same <InlineMath math="54" /> forbidden paths twice. **Add them back once** so that each forbidden path is removed exactly once.
 
 <BlockMath math="\begin{aligned}N&=210-90-105+54\\&=120-105+54\\&=15+54\\&=69\end{aligned}" />
 

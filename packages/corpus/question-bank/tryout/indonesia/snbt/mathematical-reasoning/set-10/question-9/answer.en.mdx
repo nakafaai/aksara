@@ -2,11 +2,50 @@ export const metadata = {
   title: "Solution to Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-The distance from the centre <InlineMath math="(0,0)" /> to the line <InlineMath math="x+2y-5=0" /> is <InlineMath math="5/\sqrt5=\sqrt5" />. The perpendicular from the centre bisects the chord. If <InlineMath math="a" /> is half the chord length, then the right triangle gives
+The distance from the centre <InlineMath math="(0,0)" /> to the line <InlineMath math="x+2y-5=0" /> is <InlineMath math="\frac{|0+2(0)-5|}{\sqrt{1^2+2^2}}=\frac5{\sqrt5}=\sqrt5" />. The **perpendicular from the centre bisects the chord**. If <InlineMath math="a" /> is half the chord length, then the right triangle gives
 
-<BlockMath math="a^2+(\sqrt5)^2=5^2" />
+<BlockMath math="\begin{aligned}a^2+(\sqrt5)^2&=5^2\\a^2&=25-5=20\\a&=\sqrt{20}=2\sqrt5\end{aligned}" />
 
 Thus <InlineMath math="a=2\sqrt5" />, and the full chord has length <InlineMath math="4\sqrt5" />.
+
+<MathVisual
+  title="A Radius and Half the Chord"
+  description="OM is perpendicular to the chord and meets its midpoint M. The radius OA is the hypotenuse of triangle OMA."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "normal", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "radius", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "midpoint", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+      {
+        id: "circle",
+        kind: "circle",
+        appearance: "reference",
+        center: { x: 0, y: 0 },
+        radius: 5,
+      },
+      {
+        id: "chord",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 5, y: 0 },
+        to: { x: -3, y: 4 },
+      },
+    ],
+    labels: [
+      { key: "midpoint", objectId: "midpoint", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "origin", objectId: "normal", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "end", objectId: "radius", at: { x: 5, y: 0 }, placement: "below-right" }
+    ]
+  }}
+  labels={{ midpoint: <InlineMath math="M" />, origin: <InlineMath math="O" />, end: <InlineMath math="A" /> }}
+/>

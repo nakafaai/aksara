@@ -5,11 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gunakan prinsip inklusi dan eksklusi untuk menghitung peserta yang menggunakan sedikitnya satu layanan. Menjumlahkan pengguna A, B, dan C langsung akan menghitung pengguna dua layanan dua kali. Karena itu, kurangi ketiga irisan berpasangan. Pengguna ketiga layanan kemudian perlu ditambahkan kembali sekali, sebab mereka semula dihitung tiga kali dan sudah dikurangi tiga kali.
+Kita perlu menghitung **setiap peserta tepat sekali**, walaupun seorang peserta memakai beberapa layanan. Prinsip inklusi dan eksklusi memperbaiki hitungan ganda dengan cara berikut:
+
+| Layanan yang dipakai seorang peserta | Hitungan awal dari A + B + C | Koreksi irisan dua layanan | Koreksi irisan tiga layanan | Hitungan akhir |
+| --- | --- | --- | --- | --- |
+| Tepat satu | 1 | 0 | 0 | 1 |
+| Tepat dua | 2 | −1 | 0 | 1 |
+| Ketiganya | 3 | −3 | +1 | 1 |
+
+Pengguna ketiga layanan semula terhitung tiga kali, lalu dikurangi tiga kali karena masuk ke setiap irisan berpasangan. Karena itu, jumlah pengguna ketiga layanan perlu **ditambahkan kembali sekali**.
 
 Misalkan <InlineMath math="U" /> adalah banyak peserta yang menggunakan sedikitnya satu layanan:
 
-<BlockMath math="\begin{aligned}U&=64+58+49\\&\quad-24-19-17+8\\&=171-60+8\\&=119\end{aligned}" />
+<BlockMath math="\begin{aligned}U&amp;=64+58+49\\&amp;\quad-24-19-17+8\\&amp;=171-60+8\\&amp;=119\end{aligned}" />
 
 Peserta yang tidak menggunakan layanan mana pun adalah sisa dari seluruh <InlineMath math="140" /> peserta:
 

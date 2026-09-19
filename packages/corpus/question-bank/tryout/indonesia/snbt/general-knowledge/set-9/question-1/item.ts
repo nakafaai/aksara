@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die letzte zusätzliche Einheit bringt gegenüber der vorherigen nur einen geringen Mehrnutzen.",
+            "Die letzte zusätzliche Einheit fügt dem bereits erzielten Nutzen nur einen kleinen Betrag hinzu.",
         },
         {
           isCorrect: false,
@@ -53,7 +53,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The final additional unit provides only a small increase in benefit compared with the previous unit.",
+            "The final additional unit adds only a small amount to the benefit already obtained.",
         },
         {
           isCorrect: false,
@@ -83,7 +83,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
+            "Unit tambahan terakhir hanya menambah sedikit manfaat pada manfaat yang sudah diperoleh.",
         },
         {
           isCorrect: false,

@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Jumlah denda yang besar tidak selalu menunjukkan bahwa layanan perpustakaan bekerja lebih baik.",
+            "Besarnya pendapatan denda tidak selalu menunjukkan bahwa layanan perpustakaan bekerja lebih baik.",
         },
         {
           isCorrect: false,

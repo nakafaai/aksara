@@ -2,18 +2,24 @@ export const metadata = {
   title: "Solution to Question 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
 The available time gives <InlineMath math="x+2y\le20" /> and <InlineMath math="3x+2y\le36" />, with <InlineMath math="x,y\ge0" />.
 
-Profit in units of one hundred thousand rupiah is <InlineMath math="P=5x+8y" />. Its value at each vertex of the feasible region is:
+Profit in units of one hundred thousand rupiah is <InlineMath math="P=5x+8y" />. Compare its values at the **vertices of the feasible region**.
+
+The nonzero axis vertices are <InlineMath math="(0,10)" /> and <InlineMath math="(12,0)" />, taking the tighter time limit on each axis. For the intersection, subtract the boundary equations:
+
+<BlockMath math="\begin{aligned}(3x+2y)-(x+2y)&=36-20\\2x&=16\\x&=8,\qquad y=(20-8)/2=6\end{aligned}" />
 
 | Vertex | Profit |
 | --- | ---: |
 | <InlineMath math="(0,0)" /> | <InlineMath math="0" /> |
-| <InlineMath math="(0,10)" /> | <InlineMath math="80" /> |
-| <InlineMath math="(8,6)" /> | <InlineMath math="88" /> |
-| <InlineMath math="(12,0)" /> | <InlineMath math="60" /> |
+| <InlineMath math="(0,10)" /> | <InlineMath math="5(0)+8(10)=80" /> |
+| <InlineMath math="(8,6)" /> | <InlineMath math="5(8)+8(6)=88" /> |
+| <InlineMath math="(12,0)" /> | <InlineMath math="5(12)+8(0)=60" /> |
 
 The maximum occurs at <InlineMath math="(x,y)=(8,6)" />, corresponding to <InlineMath math="8" /> chairs and <InlineMath math="6" /> tables. Profit is <InlineMath math="88" /> units of one hundred thousand rupiah, or <InlineMath math="8.8" /> million rupiah.
+
+A linear profit function reaches its maximum over this bounded polygon at a vertex. The best vertex already has whole-number coordinates, so <InlineMath math="(8,6)" /> also attains the maximum under the integer requirement. It uses <InlineMath math="8+2(6)=20" /> carpentry hours and <InlineMath math="3(8)+2(6)=36" /> finishing hours.

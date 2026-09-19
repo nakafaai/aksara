@@ -5,12 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Check each claim by comparing participation across the three grade levels:
+To check a change from Grade X to Grade XII, read one row from left to right. To compare hobbies within a grade, compare the numbers **in the same column**.
 
-- Basketball participation does not always increase. It rises from <InlineMath math="100" /> to <InlineMath math="150" />, then falls to <InlineMath math="120" />.
-- Dance does not have fewer participants than singing in every grade. The dance counts are <InlineMath math="75" />, <InlineMath math="78" />, and <InlineMath math="80" />. Each exceeds the singing count in the same grade, namely <InlineMath math="57" />, <InlineMath math="46" />, and <InlineMath math="44" />.
-- Painting participation does not always increase. It falls from <InlineMath math="68" /> to <InlineMath math="54" />, then to <InlineMath math="44" />.
-- Singing is not the least popular hobby. Acting has fewer participants than singing in every grade.
-- Acting has <InlineMath math="40" />, <InlineMath math="7" />, and <InlineMath math="18" /> participants. Each is the smallest value in its grade's column.
+| Claim | Check against the data | Result |
+| --- | --- | --- |
+| Basketball participation always increases | It rises from 100 to 150, then falls to 120 | False |
+| Dance always has fewer participants than singing | 75 > 57, 78 > 46, and 80 > 44 | False |
+| Painting participation always increases | It falls from 68 to 54, then to 44 | False |
+| Acting has the fewest participants in every grade | 40, 7, and 18 are the smallest numbers in the Grade X, XI, and XII columns, respectively | True |
+| Singing has the fewest participants | Acting has fewer participants than singing in all three grades | False |
 
-Therefore, the statement supported by the whole table is that **acting has the fewest participants in every grade**.
+Acting therefore has **the fewest participants** in every grade. Its participation does not need to decrease from one grade to the next for this claim to hold. We compare acting with the other hobbies within each grade.

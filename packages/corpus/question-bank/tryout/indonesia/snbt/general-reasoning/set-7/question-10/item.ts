@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$890\\text{ Personen}$$",
+          label: "$$890\\text{ Besuche}$$",
         },
         {
           isCorrect: false,
-          label: "$$760\\text{ Personen}$$",
+          label: "$$760\\text{ Besuche}$$",
         },
         {
           isCorrect: false,
-          label: "$$960\\text{ Personen}$$",
+          label: "$$960\\text{ Besuche}$$",
         },
         {
           isCorrect: false,
-          label: "$$1060\\text{ Personen}$$",
+          label: "$$1060\\text{ Besuche}$$",
         },
         {
           isCorrect: false,
-          label: "$$1160\\text{ Personen}$$",
+          label: "$$1160\\text{ Besuche}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$890\\text{ people}$$",
+          label: "$$890\\text{ visits}$$",
         },
         {
           isCorrect: false,
-          label: "$$760\\text{ people}$$",
+          label: "$$760\\text{ visits}$$",
         },
         {
           isCorrect: false,
-          label: "$$960\\text{ people}$$",
+          label: "$$960\\text{ visits}$$",
         },
         {
           isCorrect: false,
-          label: "$$1060\\text{ people}$$",
+          label: "$$1060\\text{ visits}$$",
         },
         {
           isCorrect: false,
-          label: "$$1160\\text{ people}$$",
+          label: "$$1160\\text{ visits}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$890\\text{ orang}$$",
+          label: "$$890\\text{ kunjungan}$$",
         },
         {
           isCorrect: false,
-          label: "$$760\\text{ orang}$$",
+          label: "$$760\\text{ kunjungan}$$",
         },
         {
           isCorrect: false,
-          label: "$$960\\text{ orang}$$",
+          label: "$$960\\text{ kunjungan}$$",
         },
         {
           isCorrect: false,
-          label: "$$1060\\text{ orang}$$",
+          label: "$$1060\\text{ kunjungan}$$",
         },
         {
           isCorrect: false,
-          label: "$$1160\\text{ orang}$$",
+          label: "$$1160\\text{ kunjungan}$$",
         },
       ],
     },

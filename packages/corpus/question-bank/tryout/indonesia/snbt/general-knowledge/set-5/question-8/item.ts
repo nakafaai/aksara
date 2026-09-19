@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt"; der folgende nutzt "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind" als Hauptbeleg.',
+            "Die Dokumente am Anfang belegen einen einzigen Umzugstag, der folgende Teil entfernt die Aussage zum schrittweisen Umzug.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können".',
+            "Der erste Teil vergleicht die Sicherheit der Aussagen, der folgende wählt die überzeugendste Stimme für die Ausstellung.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind" fest.',
+            "Der erste Teil erklärt Gebäudeschäden, der folgende bewertet Bautechniken, die den Umzug beschleunigten.",
         },
         {
           isCorrect: true,
           label:
-            "Der Widerspruch führt zur Dokumentenprüfung; deren Ergebnis ermöglicht eine Deutung, die beide Stimmen bewahrt.",
+            "Der Widerspruch führt zur Dokumentenprüfung, deren Ergebnis eine Deutung ermöglicht, die beide Stimmen bewahrt.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen" aus dem Beleg "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt" ab.',
+            "Der erste Teil sammelt schriftliche Quellen, der folgende erklärt die Rekonstruktion für endgültig und nicht mehr prüfbedürftig.",
         },
       ],
     },
@@ -38,17 +38,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The opening ceremony took place months after some classes moved", and the later part uses "Written documents prove that oral testimony has no historical value" as its main support.',
+            "The initial documents establish one moving day, and the later part removes the account of a staged move.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "The archive should choose the most confident witness and delete inconsistent recordings" as a final conclusion; the later part only states the plan "Original recordings are preserved so later researchers can reassess the interpretation".',
+            "The first part compares witness confidence, and the later part selects the most convincing voice for the exhibition.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Written documents prove that oral testimony has no historical value" from the same perspective without adding a test.',
+            "The first part explains building damage, and the later part evaluates construction techniques that accelerated the move.",
         },
         {
           isCorrect: true,
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "The archive should choose the most confident witness and delete inconsistent recordings" from the evidence "The opening ceremony took place months after some classes moved".',
+            "The first part gathers written sources, and the later part declares the reconstruction final and beyond reassessment.",
         },
       ],
     },
@@ -68,17 +68,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah", lalu bagian kedua memakai "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah" sebagai dukungan utama.',
+            "Dokumen pada bagian awal menetapkan satu hari perpindahan, lalu bagian berikutnya menghapus kesaksian tentang perpindahan bertahap.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya".',
+            "Bagian awal membandingkan keyakinan narasumber, lalu bagian berikutnya memilih suara yang paling meyakinkan untuk pameran.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal menjelaskan kerusakan gedung, lalu bagian berikutnya menilai teknik pembangunan yang mempercepat perpindahan.",
         },
         {
           isCorrect: true,
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai" dari bukti "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah".',
+            "Bagian awal mengumpulkan sumber tertulis, lalu bagian berikutnya menyatakan rekonstruksi sudah final dan tidak perlu diperiksa ulang.",
         },
       ],
     },

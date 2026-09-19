@@ -5,7 +5,33 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Because the ground is level and both shadows are formed at the same time, the sun angle is the same. Each person and shadow therefore forms a similar right triangle. The ratio of height to shadow length is equal. Let <InlineMath math="h_N" /> and <InlineMath math="s_N" /> be Nafis's height and shadow length, and <InlineMath math="h_M" /> and <InlineMath math="s_M" /> be Mirza's height and shadow length. All lengths are in meters.
+Because the ground is level and both shadows are formed at the same time, the sun angle is the same. Each person and their shadow form a right triangle. The two triangles are **similar**. The ratio of height to shadow length is equal. Let <InlineMath math="h_N" /> and <InlineMath math="s_N" /> be Nafis's height and shadow length, and <InlineMath math="h_M" /> and <InlineMath math="s_M" /> be Mirza's height and shadow length. All lengths are in meters.
+
+<MathVisual
+  title="Heights and shadows form similar triangles"
+  description="The triangles are shown separately. Each vertical side represents a person’s height, the horizontal side represents their shadow, and the sloping side follows the sunlight. Both sloping sides have the same gradient."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "nafis", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }, { x: 0, y: 1.5 }], appearance: "primary" },
+      { id: "mirza", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 6, y: 3 }, { x: 0, y: 5 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "nafis-height", objectId: "nafis", at: { x: 0, y: 0.75 }, placement: "left" },
+      { key: "nafis-shadow", objectId: "nafis", at: { x: 2.25, y: 0 }, placement: "below" },
+      { key: "mirza-height", objectId: "mirza", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "mirza-shadow", objectId: "mirza", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "nafis-height": <InlineMath math="h_N=1.5\text{ m}" />,
+    "nafis-shadow": <InlineMath math="s_N=4.5\text{ m}" />,
+    "mirza-height": <InlineMath math="h_M" />,
+    "mirza-shadow": <InlineMath math="s_M=6\text{ m}" />,
+  }}
+/>
 
 Given:
 - Nafis's height = <InlineMath math="1.5\text{ meters}" />

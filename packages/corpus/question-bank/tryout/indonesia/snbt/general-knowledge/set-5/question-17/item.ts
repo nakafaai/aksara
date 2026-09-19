@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Der begrenzte Test zeigte weniger kurze Verzögerungen durch Erinnerungen und schnellere Rückgaben einiger lange fehlender Bücher durch Sperren.",
+            "Der begrenzte Test zeigte weniger kurze Verzögerungen nach Erinnerungen und schnellere Rückgaben einiger lange fehlender Bücher nach Sperren.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The limited trial showed that reminders reduced brief delays and restrictions accelerated some long-overdue returns.",
+            "The limited trial recorded fewer brief delays after reminders and faster returns of some long-overdue books after restrictions.",
         },
         {
           isCorrect: false,
@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Uji terbatas menunjukkan pengingat mengurangi keterlambatan singkat dan pembatasan mempercepat beberapa pengembalian lama.",
+            "Uji terbatas mencatat berkurangnya keterlambatan singkat setelah pengingat dan lebih cepatnya beberapa pengembalian lama setelah pembatasan.",
         },
         {
           isCorrect: false,

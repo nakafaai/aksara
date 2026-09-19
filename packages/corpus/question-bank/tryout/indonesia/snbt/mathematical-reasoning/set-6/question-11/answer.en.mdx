@@ -1,28 +1,24 @@
 export const metadata = {
   title: "Solution to Question 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Identifying the Concept
-
-This problem asks us to select team members based on their expertise. Since the order of selection does not matter (who is chosen first or second does not change the team composition), we use the concept of **Combination**.
+This problem asks us to select team members based on their expertise. Since the order of selection does not matter (who is chosen first or second does not change the team composition), we use the concept of **combinations**.
 
 The combination formula is:
 
 <BlockMath math="C^n_r = \frac{n!}{r!(n - r)!}" />
 
-#### Calculating Mathematician Combinations
+#### Selecting both specialist groups
 
-From <InlineMath math="3" /> mathematicians, <InlineMath math="2" /> will be chosen:
+From <InlineMath math="3" /> **mathematicians**, <InlineMath math="2" /> will be chosen:
 
 <MathContainer>
   <BlockMath math="C^3_2 = \frac{3!}{2!(3 - 2)!}" />
   <BlockMath math="C^3_2 = \frac{3 \times 2!}{2! \times 1!} = 3" />
 </MathContainer>
-
-#### Calculating Physicist Combinations
 
 From <InlineMath math="5" /> physicists, <InlineMath math="3" /> will be chosen:
 
@@ -34,7 +30,7 @@ From <InlineMath math="5" /> physicists, <InlineMath math="3" /> will be chosen:
 
 #### Calculating Total Ways
 
-Each pair of mathematicians can be combined with each group of three physicists. We therefore multiply the two counts:
+**Each pair of mathematicians** can be combined with each group of three physicists. We therefore multiply the two counts:
 
 <MathContainer>
   <BlockMath math="C^3_2 \times C^5_3" />

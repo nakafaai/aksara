@@ -24,6 +24,7 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ENTITY_PATTERN = /&(?:#[xX][\dA-Fa-f]+|#\d+|[A-Za-z][A-Za-z\d]*);/u;
 const NON_WHITESPACE_PATTERN = /\S/u;
+const BROKEN_ESCAPE_PATTERN = /\t(?:ext\s*\{|imes(?![A-Za-z]))/gu;
 
 interface MathText {
   readonly offsets: readonly number[];
@@ -41,7 +42,15 @@ function isJsxMdxNode(node: MdxNode): node is JsxMdxNode {
 
 /** Collects every displayed-math composition finding in one decoded value. */
 function findingsInMathValue(value: string): MathFinding[] {
-  return [...findGluedTextGroups(value), ...findAlignedFindings(value)];
+  const escapedCommands = Array.from(
+    value.matchAll(BROKEN_ESCAPE_PATTERN),
+    ({ index }) => ({ offset: index, rule: "malformed-latex-command" })
+  );
+  return [
+    ...escapedCommands,
+    ...findGluedTextGroups(value),
+    ...findAlignedFindings(value),
+  ];
 }
 
 /** Records one decoded value's findings at their authored source offsets. */
@@ -157,7 +166,8 @@ function collectJsxAttributeFindings(
       ? asEstreeNode(attributeValue.expression)
       : attributeValue;
   assert.ok(value !== undefined);
-  if (value.type === "Literal" && Predicate.isString(value.value)) {
+  if (attributeValue.type === "Literal") {
+    assert.ok(Predicate.isString(value.value));
     const { start, end } = value;
     assert.ok(start !== undefined);
     assert.ok(end !== undefined);

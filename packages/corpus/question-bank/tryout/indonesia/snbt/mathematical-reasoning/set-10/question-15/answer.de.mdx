@@ -2,7 +2,34 @@ export const metadata = {
   title: "Lösung zu Aufgabe 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Vom Punkt B aus bildet die Sichtlinie mit der Nordrichtung einen Winkel von <InlineMath math="30^\circ" /> nach Westen. Die westliche Komponente bis A beträgt <InlineMath math="30" /> km. Für die Entfernung <InlineMath math="d" /> von B zum Leuchtturm gilt daher <InlineMath math="d\sin30^\circ=30" />. Somit ist <InlineMath math="d=60" /> km.
+Der Peilwinkel wird **von Norden nach Westen** gemessen. Bei B bildet die Richtung zum Leuchtturm daher <InlineMath math="30^\circ" /> mit der Nordrichtung. Der waagerechte Abstand <InlineMath math="AB=30\text{ km}" /> liegt diesem Winkel gegenüber. Die Sichtentfernung <InlineMath math="d" /> ist die Hypotenuse:
+
+<BlockMath math="\begin{aligned}\sin30^\circ&=\frac{30}{d}\\\frac12&=\frac{30}{d}\\d&=\frac{30}{1/2}=60\text{ km}\end{aligned}" />
+
+Prüfe die westliche Komponente: <InlineMath math="60\sin30^\circ=30\text{ km}" />. In der Skizze bezeichnet <InlineMath math="L" /> den Leuchtturm und <InlineMath math="N" /> die Nordrichtung. Die Koordinaten sind in Kilometern angegeben.
+
+<MathVisual
+  title="Peilwinkel von Norden messen"
+  description="Der markierte Winkel liegt zwischen dem Nordstrahl ab B und der Sichtlinie BL."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 35 }, y: { min: -5, max: 58 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 0, y: 51.96152422706631 }] },
+      { id: "north", kind: "ray", appearance: "reference", from: { x: 30, y: 0 }, through: { x: 30, y: 20 } },
+      { id: "bearing", kind: "arc", appearance: "highlight", center: { x: 30, y: 0 }, radius: 8, startDegrees: 90, sweepDegrees: 30 }
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 30, y: 0 }, placement: "below-right" },
+      { key: "l", objectId: "triangle", at: { x: 0, y: 51.96152422706631 }, placement: "above" },
+      { key: "north", objectId: "north", at: { x: 30, y: 28 }, placement: "right" },
+      { key: "angle", objectId: "bearing", at: { x: 25, y: 11 }, placement: "above-left" }
+    ]
+  }}
+  labels={{ a: <InlineMath math="A" />, b: <InlineMath math="B" />, l: <InlineMath math="L" />, north: <InlineMath math="N" />, angle: <InlineMath math="30^\circ" /> }}
+/>

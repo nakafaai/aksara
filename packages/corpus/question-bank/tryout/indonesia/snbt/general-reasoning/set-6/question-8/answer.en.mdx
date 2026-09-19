@@ -5,21 +5,21 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-We need to determine how many card number combinations can be made based on the given rules.
+Only the **four middle digits** can vary. The prefix and suffix are fixed, so they do not add any choices.
 
-The card number consists of <InlineMath math="12" /> digits with the following format:
-1.  **First <InlineMath math="4" /> digits (Prefix)**: Fixed, which is <InlineMath math="0844" />.
-2.  **Last <InlineMath math="4" /> digits (Suffix)**: Fixed, which is <InlineMath math="1221" />.
-3.  **Middle <InlineMath math="4" /> digits**: The part that needs to be arranged.
+| Part of the number | Content | Number of choices |
+| --- | --- | --- |
+| First four digits | 0844 | 1 |
+| First middle digit | One of 2, 3, 4, 5, 7, 8, 9 | 7 |
+| Second middle digit | One of the same seven digits | 7 |
+| Third middle digit | One of the same seven digits | 7 |
+| Fourth middle digit | One of the same seven digits | 7 |
+| Last four digits | 1221 | 1 |
 
-Since the first <InlineMath math="4" /> and last <InlineMath math="4" /> digits are already determined, we only need to fill the <InlineMath math="12 - 4 - 4 = 4" /> empty positions in the middle.
+Because **digits may repeat**, filling one position does not reduce the choices for the next. For example, both 2222 and 2345 are allowed in the middle.
 
-The available digits to fill these positions are <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />. The number of available digit choices is <InlineMath math="7" />.
+By the multiplication rule, the number of different card numbers is:
 
-Because repetition is allowed, each of the <InlineMath math="4" /> middle positions has all <InlineMath math="7" /> choices.
+<BlockMath math="\begin{aligned}N&amp;=1\times7\times7\times7\times7\times1\\&amp;=49\times49\\&amp;=2{,}401\end{aligned}" />
 
-Let <InlineMath math="N" /> be the number of possible card numbers. By the multiplication rule:
-
-<BlockMath math="\begin{aligned}N&=7\times7\times7\times7\\&=7^4\\&=2{,}401\end{aligned}" />
-
-Thus, the number of card numbers that can be created is <InlineMath math="2{,}401" />.
+There are <InlineMath math="2{,}401" /> different card numbers. Digit order matters, so the middle sequences 2345 and 5432 produce two different numbers.
