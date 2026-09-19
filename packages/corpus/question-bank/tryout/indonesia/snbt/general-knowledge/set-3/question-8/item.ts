@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen"; der folgende nutzt "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss" als Hauptbeleg.',
+            "Der erste Teil klärt die Handelszeit, der folgende erklärt die Veröffentlichung des gesicherten Ergebnisses.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen".',
+            "Der erste Teil vergleicht Digitalisierungspläne, der folgende wählt die am leichtesten zu bewahrende Quelle.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss" fest.',
+            "Der erste Teil sammelt Aussagen, der folgende ersetzt schriftliche Belege durch die Mehrheitsversion der Befragten.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen" aus dem Beleg "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen" ab.',
+            "Der erste Teil bewertet den Reiz der Erzählung, der folgende entwirft ein Schild mit weniger historischen Einzelheiten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The museum will display the exhibition label\'s revision history", and the later part uses "Written records are always correct, whereas all oral testimony must be rejected" as its main support.',
+            "The first part establishes the trading time, and the later part explains how to publicize the settled finding.",
         },
         {
           isCorrect: true,
           label:
-            "The initial conflict prompts source checking, and the result of that checking shapes the museum's transparent label.",
+            "The initial conflict prompts source checking, and the result of that checking shapes the museum’s transparent label.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "The museum should choose the most engaging story and remove details that disrupt the narrative" as a final conclusion; the later part only states the plan "The museum will accept corrections that include a verifiable source trail".',
+            "The first part compares digitization plans, and the later part selects the source that is easiest to preserve.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Written records are always correct, whereas all oral testimony must be rejected" from the same perspective without adding a test.',
+            "The first part gathers testimony, and the later part replaces written records with the account supported by most witnesses.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "The museum should choose the most engaging story and remove details that disrupt the narrative" from the evidence "The museum will display the exhibition label\'s revision history".',
+            "The first part evaluates storytelling appeal, and the later part designs a label with fewer historical details.",
         },
       ],
     },
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Museum akan menampilkan riwayat revisi label pameran", lalu bagian kedua memakai "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak" sebagai dukungan utama.',
+            "Bagian awal menetapkan waktu kegiatan pasar, lalu bagian berikutnya menjelaskan cara menyebarluaskan hasil yang sudah pasti.",
         },
         {
           isCorrect: true,
@@ -78,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa".',
+            "Bagian awal membandingkan rencana digitalisasi, lalu bagian berikutnya memilih sumber yang paling mudah disimpan.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal mengumpulkan kesaksian, lalu bagian berikutnya mengganti dokumen tertulis dengan versi mayoritas narasumber.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita" dari bukti "Museum akan menampilkan riwayat revisi label pameran".',
+            "Bagian awal menilai daya tarik cerita, lalu bagian berikutnya merancang label untuk mengurangi jumlah rincian sejarah.",
         },
       ],
     },

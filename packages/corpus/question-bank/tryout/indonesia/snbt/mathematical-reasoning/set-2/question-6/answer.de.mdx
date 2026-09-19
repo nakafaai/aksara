@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-01-31",
 };
 
@@ -10,17 +10,17 @@ export const metadata = {
   description={<>Würfelvisualisierung und der Abstand vom Punkt <InlineMath math="Q" /> zur Geraden <InlineMath math="BD" />.</>}
 />
 
-Um den Abstand vom Punkt <InlineMath math="Q" /> zur Geraden <InlineMath math="BD" /> zu ermitteln, bilden wir ein Dreieck <InlineMath math="BDQ" /> und berechnen seine Höhe vom Eckpunkt <InlineMath math="Q" />. Der erste Schritt besteht darin, die Längen aller drei Seiten dieses Dreiecks zu berechnen.
+Um den Abstand vom Punkt <InlineMath math="Q" /> zur Geraden <InlineMath math="BD" /> zu ermitteln, bilden wir ein Dreieck <InlineMath math="BDQ" /> und berechnen seine **senkrechte Höhe** vom Eckpunkt <InlineMath math="Q" />. Der erste Schritt besteht darin, die Längen aller drei Seiten dieses Dreiecks zu berechnen.
 
 #### Diagonale der Grundfläche
 
-Die Strecke <InlineMath math="BD" /> ist die Diagonale der Würfelbasis mit der Kantenlänge <InlineMath math="s = 4" />.
+Die Strecke <InlineMath math="BD" /> ist die **Diagonale der Würfelbasis** mit der Kantenlänge <InlineMath math="s = 4" />.
 
 <BlockMath math="\begin{aligned}BD&=\sqrt{AB^2+AD^2} \\ &=\sqrt{4^2+4^2} \\ &=\sqrt{32}=4\sqrt2\end{aligned}" />
 
 #### Seite vom hinteren Eckpunkt
 
-Punkt <InlineMath math="Q" /> liegt in der Mitte von <InlineMath math="FG" />. Wir können die Länge von <InlineMath math="DQ" /> ermitteln, indem wir das rechtwinklige Dreieck <InlineMath math="DHQ" /> betrachten. Zuerst berechnen wir die Länge von <InlineMath math="HQ" /> auf der Oberseite des Würfels:
+Punkt <InlineMath math="Q" /> liegt im **Mittelpunkt** von <InlineMath math="FG" />. Wir können die Länge von <InlineMath math="DQ" /> ermitteln, indem wir das rechtwinklige Dreieck <InlineMath math="DHQ" /> betrachten. Zuerst berechnen wir die Länge von <InlineMath math="HQ" /> auf der Oberseite des Würfels:
 
 <BlockMath math="\begin{aligned}HQ&=\sqrt{HG^2+GQ^2} \\ &=\sqrt{4^2+2^2} \\ &=\sqrt{20}=2\sqrt5\end{aligned}" />
 
@@ -30,13 +30,13 @@ Verwende nun den Satz des Pythagoras für das Dreieck <InlineMath math="DHQ" />:
 
 #### Seite vom vorderen Eckpunkt
 
-Die Länge von <InlineMath math="BQ" /> kann aus dem rechtwinkligen Dreieck <InlineMath math="BFQ" /> mit <InlineMath math="BF = 4" /> und <InlineMath math="FQ = 2" /> berechnet werden:
+Die Länge von <InlineMath math="BQ" /> kann aus dem **rechtwinkligen Dreieck** <InlineMath math="BFQ" /> mit <InlineMath math="BF = 4" /> und <InlineMath math="FQ = 2" /> berechnet werden:
 
 <BlockMath math="\begin{aligned}BQ&=\sqrt{BF^2+FQ^2} \\ &=\sqrt{4^2+2^2} \\ &=\sqrt{20}=2\sqrt5\end{aligned}" />
 
 #### Senkrechter Abstand
 
-Jetzt haben wir das Dreieck <InlineMath math="BDQ" /> mit den Seiten <InlineMath math="BD = 4\sqrt{2}" />, <InlineMath math="DQ = 6" /> und <InlineMath math="BQ = 2\sqrt{5}" />. Sei <InlineMath math="O" /> die senkrechte Projektion von <InlineMath math="Q" /> auf die Gerade <InlineMath math="BD" />, also den Fußpunkt des Lots.
+Jetzt haben wir das Dreieck <InlineMath math="BDQ" /> mit den Seiten <InlineMath math="BD = 4\sqrt{2}" />, <InlineMath math="DQ = 6" /> und <InlineMath math="BQ = 2\sqrt{5}" />. Sei <InlineMath math="O" /> die **senkrechte Projektion** von <InlineMath math="Q" /> auf die Gerade <InlineMath math="BD" />, also den Fußpunkt des Lots.
 
 Setze <InlineMath math="DO=x" />. Dann gilt <InlineMath math="OB=4\sqrt2-x" />. Die Länge der Höhe <InlineMath math="QO" /> sei <InlineMath math="y" />. Sie ist der gesuchte Abstand. Unter Verwendung der beiden gebildeten rechtwinkligen Dreiecke erhalten wir die Gleichung:
 
@@ -61,3 +61,5 @@ Nachdem wir <InlineMath math="x = 3\sqrt{2}" /> gefunden haben, setzen wir diese
 </MathContainer>
 
 Somit beträgt der Abstand vom Punkt <InlineMath math="Q" /> zur Geraden <InlineMath math="BD" /> <InlineMath math="3\sqrt{2}\text{ Einheiten}" />.
+
+Das Ergebnis <InlineMath math="0\lt DO=3\sqrt2\lt 4\sqrt2=BD" /> bestätigt, dass der Lotfuß auf der Strecke <InlineMath math="BD" /> liegt, wie in der Zeichnung.

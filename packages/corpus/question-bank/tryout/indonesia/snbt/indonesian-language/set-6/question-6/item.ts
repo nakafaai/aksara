@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Model baki menunjukkan penutup serat selalu menghilangkan erosi karena massa tanah terbawa menjadi nol pada kedua ulangan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan erosi sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Bacaan hanya mendefinisikan erosi tanpa membandingkan massa tanah dari baki terbuka dan berpenutup.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Bacaan menganggap volume air dan sudut baki tidak perlu dibuat sama karena perbedaan massa tanah sudah cukup membuktikan pengaruh penutup.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Model baki menentukan besar kehilangan tanah pada semua lereng karena dua ulangan telah mewakili seluruh kondisi lapangan.",
         },
       ],
     },

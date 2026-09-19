@@ -1,19 +1,19 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-08",
 };
 
-**Lieferzeitanalyse**
+#### Lieferzeitanalyse
 
 April <InlineMath math="2023" /> hat insgesamt <InlineMath math="30\text{ Tage}" />. Die erste Lieferung erfolgte am <InlineMath math="1" />. April, was dem Tag <InlineMath math="1" /> entspricht. Wir müssen berechnen, wie oft die Lieferanten <InlineMath math="A" /> und <InlineMath math="B" /> Waren innerhalb dieses Zeitraums von <InlineMath math="30" /> Tagen geliefert haben.
 
-Die Liefertage bilden eine arithmetische Folge. Das Anfangsglied <InlineMath math="a = 1" /> (erster Liefertermin) und die Differenz <InlineMath math="b" /> geben den ersten Liefertag und den Abstand zwischen zwei Lieferungen an. Die Bedingung für den Liefertermin ist <InlineMath math="U_n \le 30" />.
+Die Liefertage bilden eine **arithmetische Folge**. Das Anfangsglied <InlineMath math="a = 1" /> (erster Liefertermin) und die Differenz <InlineMath math="b" /> geben den ersten Liefertag und den Abstand zwischen zwei Lieferungen an. Die Bedingung für den Liefertermin ist <InlineMath math="U_n \le 30" />.
 
-**Speiseöl <InlineMath math="A" /> Volumen**
+#### Speiseöl A Volumen
 
-Der Lieferant <InlineMath math="A" /> liefert alle <InlineMath math="3\text{ Tage}" />.
+Der **Lieferant A** liefert alle <InlineMath math="3\text{ Tage}" />.
 
 <MathContainer>
   <BlockMath math="1 + (n_A - 1)3 \le 30" />
@@ -28,9 +28,9 @@ Gesamtvolumen <InlineMath math="A" />:
 
 <BlockMath math="10 \times 10 = 100 \text{ Liter}" />
 
-**Speiseöl <InlineMath math="B" /> Volumen**
+#### Speiseöl B Volumen
 
-Der Lieferant <InlineMath math="B" /> liefert alle <InlineMath math="4\text{ Tage}" />.
+Der **Lieferant B** liefert alle <InlineMath math="4\text{ Tage}" />.
 
 <MathContainer>
   <BlockMath math="1 + (n_B - 1)4 \le 30" />
@@ -45,9 +45,9 @@ Gesamtvolumen <InlineMath math="B" />:
 
 <BlockMath math="8 \times 15 = 120 \text{ Liter}" />
 
-**Kombiniertes Gesamtvolumen**
+#### Kombiniertes Gesamtvolumen
 
-<InlineMath math="V" /> bezeichnet die Gesamtmenge, <InlineMath math="V_A" /> und <InlineMath math="V_B" /> die Mengen der beiden Ölsorten.
+<InlineMath math="V" /> bezeichnet die **Gesamtmenge**, <InlineMath math="V_A" /> und <InlineMath math="V_B" /> die Mengen der beiden Ölsorten.
 
 <MathContainer>
   <BlockMath math="V = V_A + V_B" />
@@ -55,3 +55,10 @@ Gesamtvolumen <InlineMath math="B" />:
 </MathContainer>
 
 Daher beträgt die Gesamtmenge der erhaltenen Speiseölmarken <InlineMath math="A" /> und <InlineMath math="B" /> <InlineMath math="220\text{ Liter}" />.
+
+Die Anzahl der Lieferungen muss ganzzahlig sein. Prüfe die Monatsgrenze mit dem letzten und dem nächsten Liefertermin:
+
+| Lieferant | Letzter Termin im April | Nächster Termin |
+| --- | --- | --- |
+| A | 28. April | 1. Mai |
+| B | 29. April | 3. Mai |

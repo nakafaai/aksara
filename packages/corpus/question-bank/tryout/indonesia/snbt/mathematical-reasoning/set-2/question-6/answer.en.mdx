@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Solution to Question 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-01-31",
 };
 
@@ -10,17 +10,17 @@ export const metadata = {
   description={<>Cube visualization and the distance from point <InlineMath math="Q" /> to line <InlineMath math="BD" />.</>}
 />
 
-To find the distance from point <InlineMath math="Q" /> to line <InlineMath math="BD" />, we will form triangle <InlineMath math="BDQ" /> and calculate its height from the vertex <InlineMath math="Q" />. The first step is to calculate the lengths of all three sides of this triangle.
+To find the distance from point <InlineMath math="Q" /> to line <InlineMath math="BD" />, we will form triangle <InlineMath math="BDQ" /> and calculate its **perpendicular height** from the vertex <InlineMath math="Q" />. The first step is to calculate the lengths of all three sides of this triangle.
 
 #### Base diagonal
 
-Line <InlineMath math="BD" /> is the diagonal of the cube's base with edge length <InlineMath math="s = 4" />.
+Line <InlineMath math="BD" /> is the **diagonal of the cube's base** with edge length <InlineMath math="s = 4" />.
 
 <BlockMath math="\begin{aligned}BD&=\sqrt{AB^2+AD^2} \\ &=\sqrt{4^2+4^2} \\ &=\sqrt{32}=4\sqrt2\end{aligned}" />
 
 #### Side from the rear vertex
 
-Point <InlineMath math="Q" /> is at the midpoint of <InlineMath math="FG" />. We can find the length of <InlineMath math="DQ" /> by considering the right-angled triangle <InlineMath math="DHQ" />. First, we calculate the length of <InlineMath math="HQ" /> on the top face of the cube:
+Point <InlineMath math="Q" /> is at the **midpoint** of <InlineMath math="FG" />. We can find the length of <InlineMath math="DQ" /> by considering the right-angled triangle <InlineMath math="DHQ" />. First, we calculate the length of <InlineMath math="HQ" /> on the top face of the cube:
 
 <BlockMath math="\begin{aligned}HQ&=\sqrt{HG^2+GQ^2} \\ &=\sqrt{4^2+2^2} \\ &=\sqrt{20}=2\sqrt5\end{aligned}" />
 
@@ -30,13 +30,13 @@ Next, use the Pythagorean theorem on triangle <InlineMath math="DHQ" />:
 
 #### Side from the front vertex
 
-The length of <InlineMath math="BQ" /> can be calculated from the right-angled triangle <InlineMath math="BFQ" />, with <InlineMath math="BF = 4" /> and <InlineMath math="FQ = 2" />:
+The length of <InlineMath math="BQ" /> can be calculated from the **right-angled triangle** <InlineMath math="BFQ" />, with <InlineMath math="BF = 4" /> and <InlineMath math="FQ = 2" />:
 
 <BlockMath math="\begin{aligned}BQ&=\sqrt{BF^2+FQ^2} \\ &=\sqrt{4^2+2^2} \\ &=\sqrt{20}=2\sqrt5\end{aligned}" />
 
 #### Perpendicular distance
 
-Now we have triangle <InlineMath math="BDQ" /> with sides <InlineMath math="BD = 4\sqrt{2}" />, <InlineMath math="DQ = 6" />, and <InlineMath math="BQ = 2\sqrt{5}" />. Let <InlineMath math="O" /> be the perpendicular projection of <InlineMath math="Q" /> onto line <InlineMath math="BD" />, the foot of the perpendicular.
+Now we have triangle <InlineMath math="BDQ" /> with sides <InlineMath math="BD = 4\sqrt{2}" />, <InlineMath math="DQ = 6" />, and <InlineMath math="BQ = 2\sqrt{5}" />. Let <InlineMath math="O" /> be the **perpendicular projection** of <InlineMath math="Q" /> onto line <InlineMath math="BD" />, the foot of the perpendicular.
 
 Let the length <InlineMath math="DO = x" />, then the length <InlineMath math="OB = 4\sqrt{2} - x" />. The length <InlineMath math="y=QO" /> is the altitude of the triangle and the distance we need. Using the two formed right-angled triangles, we obtain the equation:
 
@@ -61,3 +61,5 @@ After finding <InlineMath math="x = 3\sqrt{2}" />, we substitute it back to find
 </MathContainer>
 
 Thus, the distance from point <InlineMath math="Q" /> to line <InlineMath math="BD" /> is <InlineMath math="3\sqrt{2}\text{ units}" />.
+
+The result <InlineMath math="0\lt DO=3\sqrt2\lt 4\sqrt2=BD" /> confirms that the perpendicular foot lies on segment <InlineMath math="BD" />, as shown.

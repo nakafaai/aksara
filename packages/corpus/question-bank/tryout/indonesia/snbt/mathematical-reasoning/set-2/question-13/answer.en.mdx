@@ -1,17 +1,20 @@
 export const metadata = {
   title: "Solution to Question 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-01-31",
 };
 
 #### Counting track segments
 
-The path from <InlineMath math="A" /> to <InlineMath math="C" /> covers <InlineMath math="2" /> segments, <InlineMath math="A \to B \to C" />. Each later arrival at <InlineMath math="C" /> requires another full lap of <InlineMath math="4" /> segments.
+The path from <InlineMath math="A" /> to <InlineMath math="C" /> covers <InlineMath math="2" /> segments, <InlineMath math="A \to B \to C" />. Each later arrival at <InlineMath math="C" /> requires another **full lap** of <InlineMath math="4" /> segments.
 
-- First arrival: <InlineMath math="2" /> segments.
-- From the first arrival to the second: another <InlineMath math="4" /> segments.
-- From the second arrival to the third: another <InlineMath math="4" /> segments.
+| Arrival at C | Segments since the start |
+| --- | --- |
+| 1 | 2 |
+| 2 | <InlineMath math="2+4=6" /> |
+| 3 | <InlineMath math="2+4+4=10" /> |
+| 4 | <InlineMath math="2+4+4+4=14" /> |
 
 The number of segments covered by the third arrival is:
 
@@ -19,7 +22,7 @@ The number of segments covered by the third arrival is:
 
 #### Calculating travel time
 
-The runner covers <InlineMath math="10" /> equal segments in <InlineMath math="12\text{ minutes}" />. At a constant speed, the time per segment is:
+The runner covers <InlineMath math="10" /> equal segments in <InlineMath math="12\text{ minutes}" />. At a **constant speed**, the time per segment is:
 
 <BlockMath math="\frac{12}{10}=1.2\text{ minutes}" />
 

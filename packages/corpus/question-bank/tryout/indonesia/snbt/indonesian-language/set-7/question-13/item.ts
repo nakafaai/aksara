@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Penanda baru menghasilkan tingkat keberhasilan sekitar $$133$$ persen dibandingkan penanda lama karena $$56$$ dibagi $$42$$ bernilai sekitar $$1{,}33$$.",
+            "Dari seluruh $$60$$ pasien pada kondisi penanda baru, sekitar $$133$$ persen berhasil tanpa kembali karena $$56$$ dibagi $$42$$ bernilai sekitar $$1{,}33$$.",
         },
         {
           isCorrect: true,
