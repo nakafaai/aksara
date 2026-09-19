@@ -3,7 +3,7 @@ export const metadata = {
    description: "Kenali kejadian saling lepas, bedakan dari kejadian saling bebas, dan gunakan aturan penjumlahan tanpa menghitung irisan dua kali.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -17,8 +17,7 @@ Sebagai ilustrasi sederhana, bayangkan kamu mengambil satu kartu dari satu deck.
 
 ## Cara Kejadian Saling Lepas Berperilaku
 
-Kejadian saling lepas tidak berbagi hasil, sehingga irisannya tidak menyumbang apa pun pada total. Tiga pemeriksaan berikut menjelaskan gagasan itu lewat hasil dan peluang. Setiap pemeriksaan memakai dua kejadian yang sama agar perbedaannya terlihat.
-
+Kejadian saling lepas **tidak berbagi hasil**, sehingga irisannya tidak menyumbang apa pun pada total. Tiga pemeriksaan berikut menjelaskan gagasan itu lewat hasil dan peluang. Setiap pemeriksaan memakai dua kejadian yang sama agar perbedaannya terlihat.
 ### Tidak Ada Irisan
 
 Ciri utama kejadian saling lepas adalah **tidak memiliki irisan atau elemen yang sama**. Dalam notasi matematika, jika <InlineMath math="A" /> dan <InlineMath math="B" /> adalah kejadian saling lepas, maka:
@@ -29,16 +28,14 @@ Simbol <InlineMath math="\emptyset" /> menunjukkan himpunan kosong, artinya tida
 
 ### Hasil yang Tidak Dapat Terjadi Bersamaan
 
-Pasangan kejadian berikut tidak dapat terjadi dalam percobaan yang sama:
+Pasangan kejadian berikut tidak dapat terjadi dalam **percobaan yang sama**:
 
 - Dalam pelemparan dadu: munculnya angka genap dan munculnya angka ganjil
 - Dalam pengambilan kartu: mengambil kartu As dan mengambil kartu King dalam satu pengambilan
 - Dalam lomba lari: menempati juara pertama dan menempati juara kedua secara bersamaan
-
 ### Identifikasi Kejadian Saling Lepas
 
-Untuk mengidentifikasi apakah dua kejadian saling lepas, tanyakan pada diri sendiri: "Bisakah kedua kejadian ini terjadi bersamaan dalam satu percobaan?" Jika jawabannya tidak, maka kedua kejadian tersebut saling lepas.
-
+Untuk mengidentifikasi apakah dua kejadian saling lepas, tanyakan pada diri sendiri: "Bisakah **kedua kejadian ini** terjadi bersamaan dalam satu percobaan?" Jika jawabannya tidak, maka kedua kejadian tersebut saling lepas.
 ## Rumus Peluang Kejadian Saling Lepas
 
 Rumus penjumlahan umum mengurangi irisan <InlineMath math="P(A \cap B)" />. Pada kejadian saling lepas, <InlineMath math="P(A \cap B)=0" />, sehingga suku tersebut hilang:
@@ -51,21 +48,20 @@ Saling lepas **bukan** berarti saling bebas. Jika <InlineMath math="P(A) > 0" />
 
 ### Irisan Nol pada Rumus Penjumlahan
 
-Berbeda dengan kejadian yang tidak saling lepas, pada kejadian saling lepas tidak perlu mengurangi irisan karena <InlineMath math="P(A \cap B) = 0" />. Oleh karena itu, rumus umum:
+Berbeda dengan kejadian yang tidak saling lepas, pada kejadian saling lepas **tidak perlu mengurangi irisan** karena <InlineMath math="P(A \cap B) = 0" />. Oleh karena itu, rumus umum:
 
 <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
 
 Menjadi:
 
 <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) - 0 \\ &amp;= P(A) + P(B) \end{aligned}" />
-
 ## Perhitungan dengan Aturan Penjumlahan
 
-Setiap perhitungan di bawah menjumlahkan peluang dua kejadian yang tidak dapat terjadi bersamaan. Contohnya mulai dari satu dadu, lalu memperluas aturan penjumlahan ke dua dadu.
+Contoh pertama menunjukkan **irisan yang harus dikurangkan**. Contoh pembanding kemudian memakai kejadian saling lepas, mulai dari satu dadu hingga jumlah dua dadu. Periksa himpunan hasil sebelum memilih bentuk aturan penjumlahan.
 
 ### Pelemparan Dadu
 
-Sebuah dadu dilempar satu kali. Tentukan peluang munculnya angka prima atau angka yang lebih besar dari <InlineMath math="4" />.
+Sebuah dadu adil dilempar satu kali. Tentukan peluang munculnya angka prima atau angka yang lebih besar dari <InlineMath math="4" />.
 
 **Penyelesaian:**
 
@@ -104,7 +100,7 @@ Hasil ganjil dan genap bersama-sama mencakup keenam sisi dadu, sehingga peluang 
 
 ### Pelemparan Dua Dadu
 
-Dua dadu dilempar bersamaan. Tentukan peluang mendapatkan jumlah mata dadu <InlineMath math="5" /> atau jumlah mata dadu <InlineMath math="7" />.
+Dua dadu adil dilempar secara independen. Tentukan peluang mendapatkan jumlah mata dadu <InlineMath math="5" /> atau jumlah mata dadu <InlineMath math="7" />.
 
 **Penyelesaian:**
 
@@ -186,9 +182,8 @@ Untuk menyelesaikan soal peluang kejadian saling lepas, ikuti langkah berikut:
 Periksa tiga hal sebelum menerima hasil:
 
 - Gambarkan himpunan kejadian dengan diagram atau tabel jika irisannya belum jelas.
-- Pastikan peluang akhir berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.
+- Pastikan **peluang akhir** berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.
 - Baca kata "atau" sebagai gabungan, kecuali soal menyatakan hal lain.
-
 ### Kejadian dengan Irisan Tidak Kosong
 
 Dua kejadian tidak saling lepas jika irisannya memuat setidaknya satu hasil. Contoh berikut memiliki irisan yang tidak kosong:
@@ -212,7 +207,7 @@ Dua kejadian tidak saling lepas jika irisannya memuat setidaknya satu hasil. Con
 - Kejadian <InlineMath math="B" />: Siswa dengan nilai di atas <InlineMath math="80" />
 
 **Kesalahan umum**: “Tinggi badan dan nilai ujian adalah ciri yang berbeda, jadi kejadiannya saling lepas”
-**Kenyataan**: Seorang siswa dapat memenuhi kedua kriteria, jadi kejadiannya **tidak saling lepas**
+**Kenyataan**: Misalkan ada siswa setinggi <InlineMath math="170\text{ cm}" /> dengan nilai <InlineMath math="90" />. Siswa tersebut masuk kedua himpunan, jadi kejadian pada kelompok itu **tidak saling lepas**
 
 **Strategi Mengidentifikasi:**
 1. **Tanyakan**: "Bisakah satu elemen memenuhi kedua kriteria sekaligus?"
@@ -222,91 +217,90 @@ Dua kejadian tidak saling lepas jika irisannya memuat setidaknya satu hasil. Con
 
 ## Latihan
 
-Coba kerjakan setiap latihan sebelum membaca pembahasannya. Tulis kedua himpunan secara eksplisit dan periksa irisannya sebelum memilih aturan penjumlahan.
+Coba kerjakan setiap latihan sebelum membaca pembahasannya. Tulis kedua himpunan secara eksplisit dan **periksa irisannya** sebelum memilih aturan penjumlahan.
 
-1. Sebuah dadu dilempar satu kali. Tentukan peluang munculnya angka kurang dari <InlineMath math="3" /> atau angka lebih dari <InlineMath math="5" />.
+1. Sebuah dadu adil dilempar satu kali. Tentukan peluang munculnya angka kurang dari <InlineMath math="3" /> atau angka lebih dari <InlineMath math="5" />.
 
 2. Dari sekotak kartu bridge standar, satu kartu diambil secara acak. Hitunglah peluang terambilnya kartu As atau kartu King.
 
-3. Dua koin dilempar bersamaan. Tentukan peluang mendapatkan tepat <InlineMath math="1" /> gambar atau tepat <InlineMath math="2" /> angka.
+3. Dua koin adil dilempar secara independen. Tentukan peluang mendapatkan tepat <InlineMath math="1" /> gambar atau tepat <InlineMath math="2" /> angka.
 
 4. Dalam sebuah kotak terdapat <InlineMath math="10 \text{ bola}" /> bernomor <InlineMath math="1" /> sampai <InlineMath math="10" />. Sebuah bola diambil secara acak. Hitunglah peluang terambilnya bola bernomor genap atau bola bernomor prima ganjil.
-
 ### Pembahasan
 
-1. **Penyelesaian:**
+**Soal 1**
 
-   Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, sehingga <InlineMath math="n(S) = 6" />
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, sehingga <InlineMath math="n(S) = 6" />
 
-   - Kejadian <InlineMath math="A" /> (<InlineMath math="\text{angka} < 3" />): <InlineMath math="A = \{1, 2\}" />, sehingga <InlineMath math="n(A) = 2" />
-   - Kejadian <InlineMath math="B" /> (<InlineMath math="\text{angka} > 5" />): <InlineMath math="B = \{6\}" />, sehingga <InlineMath math="n(B) = 1" />
+- Kejadian <InlineMath math="A" /> (<InlineMath math="\text{angka} < 3" />): <InlineMath math="A = \{1, 2\}" />, sehingga <InlineMath math="n(A) = 2" />
+- Kejadian <InlineMath math="B" /> (<InlineMath math="\text{angka} > 5" />): <InlineMath math="B = \{6\}" />, sehingga <InlineMath math="n(B) = 1" />
 
-   Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak ada angka yang sekaligus memenuhi <InlineMath math="x < 3" /> dan <InlineMath math="x > 5" />)
+Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak ada angka yang sekaligus memenuhi <InlineMath math="x < 3" /> dan <InlineMath math="x > 5" />)
 
-   Karena saling lepas, gunakan rumus:
+Karena saling lepas, gunakan rumus:
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{2}{6} = \frac{1}{3}" />
-   <BlockMath math="P(B) = \frac{1}{6}" />
-   <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{3} + \frac{1}{6} \\ &amp;= \frac{2}{6} + \frac{1}{6} \\ &amp;= \frac{3}{6} \\ &amp;= \frac{1}{2} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{2}{6} = \frac{1}{3}" />
+<BlockMath math="P(B) = \frac{1}{6}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{3} + \frac{1}{6} \\ &amp;= \frac{2}{6} + \frac{1}{6} \\ &amp;= \frac{3}{6} \\ &amp;= \frac{1}{2} \end{aligned}" />
+</MathContainer>
 
-2. **Penyelesaian:**
+**Soal 2**
 
-   Total kartu adalah <InlineMath math="52" />
+Total kartu adalah <InlineMath math="52" />
 
-   - Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu As}" />
-   - Kejadian <InlineMath math="B" /> (kartu King): <InlineMath math="4 \text{ kartu King}" />
+- Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu As}" />
+- Kejadian <InlineMath math="B" /> (kartu King): <InlineMath math="4 \text{ kartu King}" />
 
-   Periksa irisan: Tidak ada kartu yang sekaligus As dan King, sehingga <InlineMath math="A \cap B = \emptyset" />
+Periksa irisan: Tidak ada kartu yang sekaligus As dan King, sehingga <InlineMath math="A \cap B = \emptyset" />
 
-   Kedua kejadian saling lepas.
+Kedua kejadian saling lepas.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="P(B) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{13} + \frac{1}{13} \\ &amp;= \frac{2}{13} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(B) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{13} + \frac{1}{13} \\ &amp;= \frac{2}{13} \end{aligned}" />
+</MathContainer>
 
-3. **Penyelesaian:**
+**Soal 3**
 
-   Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampelnya <InlineMath math="\{(0,0), (0,1), (1,0), (1,1)\}" />, dengan <InlineMath math="4" /> hasil.
+Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampelnya <InlineMath math="\{(0,0), (0,1), (1,0), (1,1)\}" />, dengan <InlineMath math="4" /> hasil.
 
-   - Kejadian <InlineMath math="A" /> (tepat satu gambar): <InlineMath math="\{(0,1), (1,0)\}" />, sehingga <InlineMath math="n(A) = 2" />
-   - Kejadian <InlineMath math="B" /> (tepat dua angka): <InlineMath math="\{(0,0)\}" />, sehingga <InlineMath math="n(B) = 1" />
+- Kejadian <InlineMath math="A" /> (tepat satu gambar): <InlineMath math="\{(0,1), (1,0)\}" />, sehingga <InlineMath math="n(A) = 2" />
+- Kejadian <InlineMath math="B" /> (tepat dua angka): <InlineMath math="\{(0,0)\}" />, sehingga <InlineMath math="n(B) = 1" />
 
-   Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak mungkin tepat satu gambar dan tepat dua angka bersamaan)
+Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak mungkin tepat satu gambar dan tepat dua angka bersamaan)
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{2}{4} = \frac{1}{2}" />
-   <BlockMath math="P(B) = \frac{1}{4}" />
-   <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{1}{4} \\ &amp;= \frac{2}{4} + \frac{1}{4} \\ &amp;= \frac{3}{4} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{2}{4} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{1}{4}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{1}{4} \\ &amp;= \frac{2}{4} + \frac{1}{4} \\ &amp;= \frac{3}{4} \end{aligned}" />
+</MathContainer>
 
-4. **Penyelesaian:**
+**Soal 4**
 
-   Prima ganjil adalah bilangan prima yang sekaligus ganjil. Bilangan prima dari <InlineMath math="1\text{-}10" /> adalah <InlineMath math="\{2, 3, 5, 7\}" />, sehingga prima ganjil adalah <InlineMath math="\{3, 5, 7\}" />.
+Prima ganjil adalah bilangan prima yang sekaligus ganjil. Bilangan prima dari <InlineMath math="1\text{-}10" /> adalah <InlineMath math="\{2, 3, 5, 7\}" />, sehingga prima ganjil adalah <InlineMath math="\{3, 5, 7\}" />.
 
-   Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}" />, sehingga <InlineMath math="n(S) = 10" />
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}" />, sehingga <InlineMath math="n(S) = 10" />
 
-   - Kejadian <InlineMath math="A" /> (nomor genap): <InlineMath math="A = \{2, 4, 6, 8, 10\}" />, sehingga <InlineMath math="n(A) = 5" />
-   - Kejadian <InlineMath math="B" /> (nomor prima ganjil): <InlineMath math="B = \{3, 5, 7\}" />, sehingga <InlineMath math="n(B) = 3" />
+- Kejadian <InlineMath math="A" /> (nomor genap): <InlineMath math="A = \{2, 4, 6, 8, 10\}" />, sehingga <InlineMath math="n(A) = 5" />
+- Kejadian <InlineMath math="B" /> (nomor prima ganjil): <InlineMath math="B = \{3, 5, 7\}" />, sehingga <InlineMath math="n(B) = 3" />
 
-   Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak ada nomor yang sekaligus genap dan prima ganjil)
+Periksa irisan: <InlineMath math="A \cap B = \emptyset" /> (tidak ada nomor yang sekaligus genap dan prima ganjil)
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{5}{10} = \frac{1}{2}" />
-   <BlockMath math="P(B) = \frac{3}{10}" />
-   <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{3}{10} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{5}{10} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{3}{10}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{3}{10} \end{aligned}" />
+</MathContainer>
 
-   **Penyelesaian penjumlahan pecahan:**
+**Penyelesaian penjumlahan pecahan:**
 
-   Untuk menjumlahkan <InlineMath math="\frac{1}{2} + \frac{3}{10}" />, kita perlu menyamakan penyebut.
+Untuk menjumlahkan <InlineMath math="\frac{1}{2} + \frac{3}{10}" />, kita perlu menyamakan penyebut.
 
-   <InlineMath math="\operatorname{lcm}(2, 10) = 10" />, sehingga:
+<InlineMath math="\operatorname{lcm}(2, 10) = 10" />, sehingga:
 
-   <MathContainer>
-   <BlockMath math="\frac{1}{2} = \frac{1 \times 5}{2 \times 5} = \frac{5}{10}" />
-   <BlockMath math="P(A \cup B) = \frac{5}{10} + \frac{3}{10} = \frac{8}{10} = \frac{4}{5}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\frac{1}{2} = \frac{1 \times 5}{2 \times 5} = \frac{5}{10}" />
+<BlockMath math="P(A \cup B) = \frac{5}{10} + \frac{3}{10} = \frac{8}{10} = \frac{4}{5}" />
+</MathContainer>

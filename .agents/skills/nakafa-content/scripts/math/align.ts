@@ -124,10 +124,39 @@ function rowBody(row: string): string {
   return row.startsWith("&") ? row.slice(1).trimStart() : row;
 }
 
+/** Finds a relation aligned inside an unfinished argument or grouped value. */
+function hasNestedRelation(row: string): boolean {
+  let environmentDepth = 0;
+  let groupDepth = 0;
+  const tokens = row.matchAll(
+    /\\(begin|end)\{[^}]*\}|\\[A-Za-z]+|\\[^A-Za-z]|[()[\]{}]|&\s*(?:=|\\approx|\\equiv|\\leq|\\geq)/gu
+  );
+  for (const [token, boundary] of tokens) {
+    if (boundary) {
+      environmentDepth += boundary === "begin" ? 1 : -1;
+      continue;
+    }
+    if (environmentDepth !== 0) {
+      continue;
+    }
+    if (token === "(" || token === "[" || token === "{") {
+      groupDepth += 1;
+    } else if (token === ")" || token === "]" || token === "}") {
+      groupDepth -= 1;
+    } else if (token.startsWith("&") && groupDepth > 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /** Finds alignment blocks and chains that split one equation across rows. */
 export function findAlignedFindings(value: string): MathFinding[] {
   const findings: MathFinding[] = [];
   for (const { rows, start } of alignedBlocks(value)) {
+    if (rows.some(hasNestedRelation)) {
+      findings.push({ offset: start, rule: "nested-relation-alignment" });
+    }
     const head = rowBody(rows[0] ?? "").trim();
     const next = rowBody(rows[1] ?? "");
     if (

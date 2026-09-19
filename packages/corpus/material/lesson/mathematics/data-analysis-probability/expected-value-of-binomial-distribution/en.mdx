@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate the expected number of successes in repeated binomial trials.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Data Analysis and Probability",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Suppose each free throw goes in independently with probability <InlineMath math="p=0.8" />, and let <InlineMath math="X" /> count the baskets in <InlineMath math="n=10" /> attempts. Then <InlineMath math="E(X)=8" />: across many sets of ten attempts, the average number of baskets approaches <InlineMath math="8" />.
 
-<Highlight>Expected value is the probability-weighted average of a random variable.</Highlight> It describes the mean over many repetitions. One set can give a different result. An expected value can also be noninteger even when the random variable itself only takes integer values.
+Expected value is the **probability-weighted average** of a random variable. It describes the mean over many repetitions. One set can give a different result. An expected value can also be noninteger even when the random variable itself only takes integer values.
 
 ## Expected Value Formula for Binomial
 
@@ -23,15 +23,18 @@ Binomial distribution <InlineMath math="b_{n,p}(x)" /> has an expected value:
 
 In this formula, <InlineMath math="n" /> is the number of trials and <InlineMath math="p" /> is the probability of success in each trial.
 
-If the success probability in each trial is <InlineMath math="p" />, then the expected number of successes in <InlineMath math="n" /> trials is:
-
-<BlockMath math="E(X) = n \times p" />
-
 ## Deriving the Expected Value
 
 The formula follows by representing each trial with an indicator variable.
 
 Let <InlineMath math="I_k" /> represent the <InlineMath math="k" />-th trial. It equals <InlineMath math="1" /> for **success** and <InlineMath math="0" /> for **failure**.
+
+The failure probability is <InlineMath math="q=1-p" />. To form the weighted mean, **multiply each indicator value by its probability**, then add the two contributions.
+
+| Outcome | Indicator | Probability | Contribution |
+| --- | --- | --- | --- |
+| Success | 1 | <InlineMath math="p" /> | <InlineMath math="1p=p" /> |
+| Failure | 0 | <InlineMath math="q=1-p" /> | <InlineMath math="0q=0" /> |
 
 The expected value for a single trial is:
 
@@ -77,8 +80,8 @@ Apply the expected-value formula:
 
 <BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1.167" />
 
-**So, what does this number <InlineMath math="1.167" /> mean?**
+So, what does this number <InlineMath math="1.167" /> mean?
 
 Expected value <InlineMath math="1.167" /> doesn't mean you will get the number <InlineMath math="5" /> exactly <InlineMath math="1.167" /> times in one experiment (because that's impossible). It means that if you repeat the experiment with <InlineMath math="7" /> rolls **hundreds or thousands of times**, the number <InlineMath math="5" /> will appear about <InlineMath math="1.167" /> times per set on average.
 
-In practice, in one set of <InlineMath math="7" /> rolls, you might get the number <InlineMath math="5" /> as many as <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, or even <InlineMath math="3" /> times. But when averaged over the long term, the result will approach <InlineMath math="1.167" />.
+In one set, the number of fives is an integer **from zero to seven**. The expected value describes the average across many sets, not a result that must occur in any single set.

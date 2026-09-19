@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate grouped data quartiles by locating their cumulative frequencies and interpolating within the class boundaries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
@@ -23,8 +23,7 @@ Where <InlineMath math="n" /> is the total number of data points.
 
 ## Steps to Find the Value of Quartiles for Grouped Data
 
-Consider the grouped shoe-sales data from Store A. The frequency table below gives each class interval and how many pairs fall in it, and the quartiles are estimated by interpolating inside the class that contains the position you want. Work through the steps with the table open, because every value you substitute comes from it.
-
+Consider the grouped shoe-sales data from Store A. The frequency table below gives each class interval and how many pairs fall in it, and the quartiles are estimated by **interpolating** inside the class that contains the position you want. Work through the steps with the table open, because every value you substitute comes from it.
 ### Create a Cumulative Frequency Table
 
 First, we need a frequency table with a cumulative frequency column (<InlineMath math="F_k" />). Cumulative frequency is the sum of frequencies from the first class up to that class. This is important to know which class the quartile falls into.
@@ -86,56 +85,58 @@ This interpolation assumes that observations are <Highlight>distributed uniforml
 
 Calculate <InlineMath math="Q_1" /> from the table above.
 
-1.  **Position of <InlineMath math="Q_1" />:** <InlineMath math="7.5" />th data point.
-2.  **Class of <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
-3.  **Record the formula values:**
-    - Lower boundary of <InlineMath math="Q_1" /> class (<InlineMath math="T_b" />) is <InlineMath math="39.5" />
-    - Total data (<InlineMath math="n" />) is <InlineMath math="30" />
-    - Cumulative frequency before <InlineMath math="Q_1" /> class (<InlineMath math="F_{\text{cum}}" />) is <InlineMath math="2" /> (see <InlineMath math="F_k" /> for class <InlineMath math="37\text{-}39" />)
-    - Frequency of <InlineMath math="Q_1" /> class (<InlineMath math="f_1" />) is <InlineMath math="11" />
-    - Class width (<InlineMath math="p" />) is <InlineMath math="3" />
-4.  **Plug into the formula:**
+**Position of <InlineMath math="Q_1" />:** <InlineMath math="7.5" />th data point.
+**Class of <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Values to substitute**
 
-    <MathContainer>
-      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{cum}}}{f_1} \right) p" />
-      <BlockMath math="Q_1 = 39.5 + \left( \frac{7.5 - 2}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39.5 + \left( \frac{5.5}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39.5 + (0.5) \times 3" />
-      <BlockMath math="Q_1 = 39.5 + 1.5" />
-      <BlockMath math="Q_1 = 41" />
-    </MathContainer>
+| Quantity | Value |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="39.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="2" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="11" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Plug into the formula:
+
+<MathContainer>
+  <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{cum}}}{f_1} \right) p" />
+  <BlockMath math="Q_1 = 39.5 + \left( \frac{7.5 - 2}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39.5 + \left( \frac{5.5}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39.5 + (0.5) \times 3" />
+  <BlockMath math="Q_1 = 39.5 + 1.5" />
+  <BlockMath math="Q_1 = 41" />
+</MathContainer>
 
 So, the value of <InlineMath math="Q_1" /> is <InlineMath math="41" />. This means about <InlineMath math="25\%" /> of the shoes sold are size <InlineMath math="41" /> or smaller.
 
 ## Exercise
 
-Calculate <InlineMath math="Q_3" /> from the shoe sales data in the table above.
+Calculate <InlineMath math="Q_3" /> from the **shoe sales data** in the table above.
 
 Then compare grouped-data interpolation with the calculation of quartiles from ungrouped data. Why does the grouped table provide only an estimate?
-
 ### Answer Key
 
-1.  **Position of <InlineMath math="Q_3" />:** <InlineMath math="22.5" />th data point.
-2.  **Class of <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
-3.  **Gather the ingredients:**
+**Position of <InlineMath math="Q_3" />:** <InlineMath math="22.5" />th data point.
+**Class of <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Values to substitute**
 
-    - <InlineMath math="T_b = 42.5" /> (lower boundary of <InlineMath math="Q_3" /> class)
-    - <InlineMath math="n = 30" /> (total data)
-    - <InlineMath math="F_{\text{cum}} = 13" /> (see <InlineMath math="F_k" /> for class
-      <InlineMath math="40\text{-}42" />)
-    - <InlineMath math="f_3 = 10" /> (frequency of <InlineMath math="Q_3" /> class)
-    - <InlineMath math="p = 3" /> (class width)
+| Quantity | Value |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="42.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Plug into the formula:
 
-4.  **Plug into the formula:**
-
-    <MathContainer>
-      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{cum}}}{f_3} \right) p" />
-      <BlockMath math="Q_3 = 42.5 + \left( \frac{22.5 - 13}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42.5 + \left( \frac{9.5}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42.5 + (0.95) \times 3" />
-      <BlockMath math="Q_3 = 42.5 + 2.85" />
-      <BlockMath math="Q_3 = 45.35" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{cum}}}{f_3} \right) p" />
+  <BlockMath math="Q_3 = 42.5 + \left( \frac{22.5 - 13}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42.5 + \left( \frac{9.5}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42.5 + (0.95) \times 3" />
+  <BlockMath math="Q_3 = 42.5 + 2.85" />
+  <BlockMath math="Q_3 = 45.35" />
+</MathContainer>
 
 The estimated value of <InlineMath math="Q_3" /> is <InlineMath math="45.35" />. In this grouped model, about <InlineMath math="75\%" /> of the shoes sold have size <InlineMath math="45.35" /> or below. The remaining <InlineMath math="25\%" /> have a shoe size above <InlineMath math="45.35" />.
 

@@ -6,7 +6,7 @@ export const metadata = {
     "Menguraikan vektor miring menjadi komponen horizontal dan vertikal menggunakan sinus dan cosinus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -14,32 +14,33 @@ export const metadata = {
 
 Ketika sebuah vektor membentuk sudut terhadap sumbu, komponen-komponennya dapat dicari dengan trigonometri. Ide dasarnya sederhana: vektor miring menjadi <Highlight>sisi miring segitiga siku-siku</Highlight>, sedangkan komponennya menjadi sisi datar dan sisi tegak.
 
-Jika sudut <InlineMath math="\theta" /> diukur dari sumbu <InlineMath math="x" /> positif, komponen horizontal berdekatan dengan sudut, sedangkan komponen vertikal berhadapan dengan sudut.
+Untuk vektor di kuadran I, sudut <InlineMath math="\theta" /> diukur dari sumbu <InlineMath math="x" /> positif. Komponen horizontal menjadi sisi di dekat sudut dan komponen vertikal menjadi sisi di hadapannya. Dengan besar vektor <InlineMath math="F>0" />, bagi panjang setiap sisi dengan sisi miring, lalu kalikan kembali dengan <InlineMath math="F" />.
 
 <MathContainer>
-  <BlockMath math="F_x=F\cos\theta" />
-  <BlockMath math="F_y=F\sin\theta" />
+  <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
+  <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
 > Tentukan sisi yang berdekatan dengan sudut acuan sebelum memakai <InlineMath math="\cos" />, lalu tentukan sisi di hadapannya sebelum memakai <InlineMath math="\sin" />.
 
 ## Gaya Miring pada Sumbu Koordinat
 
-Bayangkan tali menarik kotak dengan gaya <InlineMath math="\vec{F}" /> miring ke kanan atas. Tarikan itu sekaligus punya bagian horizontal yang menarik kotak ke kanan dan bagian vertikal yang mengangkat sedikit ke atas.
+Bayangkan tali menarik kotak dengan gaya <InlineMath math="\vec{F}" /> miring ke kanan atas. Tarikan itu memiliki **komponen gaya ke kanan dan ke atas**. Komponen ke atas belum tentu mengangkat kotak: gerak kotak juga bergantung pada berat dan gaya normal lantai.
 
 <Vector3d
   title={<>Mengurai Gaya Miring</>}
   description={
     <>
-      Gaya <InlineMath math="\vec{F}=50\text{ N}" /> membentuk sudut{" "}
+      Gaya <InlineMath math="F=50\text{ N}" /> membentuk sudut{" "}
       <InlineMath math="37^\circ" /> terhadap horizontal, sehingga komponennya
       dapat diperkirakan dari <InlineMath math="\cos37^\circ" /> dan{" "}
       <InlineMath math="\sin37^\circ" />.
     </>
   }
   vectors={(() => {
-    const fx = [4, 0, 0];
-    const fy = [0, 3, 0];
+    const angle = (37 * Math.PI) / 180;
+    const fx = [5 * Math.cos(angle), 0, 0];
+    const fy = [0, 5 * Math.sin(angle), 0];
     const resultant = fx.map((component, index) => component + fy.at(index));
 
     return [
@@ -76,33 +77,33 @@ Bayangkan tali menarik kotak dengan gaya <InlineMath math="\vec{F}" /> miring ke
   cameraTarget={[2, -0.8, 0]}
 />
 
-Pada ilustrasi, ujung komponen <InlineMath math="F_x" /> lalu <InlineMath math="F_y" /> berakhir di titik yang sama dengan ujung vektor <InlineMath math="\vec{F}" />. Kedua komponen itu menyatakan gaya yang sama dalam dua arah.
+Pada model, setiap satuan koordinat mewakili <InlineMath math="10\text{ N}" />. Ujung komponen <InlineMath math="F_x" /> lalu <InlineMath math="F_y" /> berakhir di titik yang sama dengan ujung vektor <InlineMath math="\vec{F}" />. Kedua komponen itu menyatakan gaya yang sama dalam dua arah.
 
-## Mengubah Gaya Miring Menjadi Komponen
+### Menghitung Komponen Gaya Tarik
 
-Sebuah gaya <InlineMath math="50\text{ N}" /> bekerja <InlineMath math="37^\circ" /> di atas arah horizontal. Gunakan pendekatan <InlineMath math="\cos37^\circ\approx0{,}8" /> dan <InlineMath math="\sin37^\circ\approx0{,}6" />.
+Sebuah gaya <InlineMath math="50\text{ N}" /> bekerja <InlineMath math="37^\circ" /> di atas arah horizontal. Gunakan **pendekatan trigonometri** <InlineMath math="\cos37^\circ\approx0{,}8" /> dan <InlineMath math="\sin37^\circ\approx0{,}6" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
   F_x&=F\cos\theta \\
-  &=50(0{,}8) \\
+  &\approx50(0{,}8) \\
   &=40\text{ N}
   \end{aligned}" />
 
   <BlockMath math="\begin{aligned}
   F_y&=F\sin\theta \\
-  &=50(0{,}6) \\
+  &\approx50(0{,}6) \\
   &=30\text{ N}
   \end{aligned}" />
 </MathContainer>
 
-Artinya, gaya miring <InlineMath math="50\text{ N}" /> itu setara dengan tarikan <InlineMath math="40\text{ N}" /> ke kanan dan <InlineMath math="30\text{ N}" /> ke atas.
+Dengan pembulatan tersebut, komponen gaya <InlineMath math="50\text{ N}" /> mendekati <InlineMath math="40\text{ N}" /> ke kanan dan <InlineMath math="30\text{ N}" /> ke atas.
 
-Dua komponen itu menyatakan gaya yang sama dalam arah horizontal dan vertikal.
+Nilai yang dihitung tanpa pembulatan awal adalah sekitar <InlineMath math="39{,}93\text{ N}" /> dan <InlineMath math="30{,}09\text{ N}" />. Model memakai sudut <InlineMath math="37^\circ" /> secara langsung, sehingga angka koordinat tidak persis <InlineMath math="4" /> dan <InlineMath math="3" />.
 
 ## Jika Sudut Diukur dari Sumbu Vertikal
 
-Rumus berubah jika sudut acuannya berubah. Jika sudut <InlineMath math="\theta" /> diukur dari sumbu <InlineMath math="y" />, maka komponen yang berdekatan dengan sudut adalah <InlineMath math="F_y" />.
+Sekarang pertahankan gaya di kuadran I, tetapi ukur **sudut dari sumbu vertikal positif** ke arah gaya. Komponen yang berdekatan dengan sudut <InlineMath math="\theta" /> sekarang adalah <InlineMath math="F_y" />, sedangkan <InlineMath math="F_x" /> berada di hadapannya.
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
@@ -113,7 +114,7 @@ Jadi, sebelum memakai rumus, selalu tanyakan: sudutnya diukur dari sumbu mana? P
 
 ## Tanda Komponen Mengikuti Kuadran
 
-Jika <InlineMath math="\theta" /> adalah sudut posisi standar yang diukur berlawanan arah jarum jam dari sumbu <InlineMath math="x" /> positif, <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> langsung menghasilkan tanda komponennya. Jika yang dipakai adalah sudut acuan lancip, hitung besar komponennya terlebih dahulu, lalu tentukan tanda dari kuadran.
+Jika <InlineMath math="\theta" /> adalah **sudut posisi standar** yang diukur berlawanan arah jarum jam dari sumbu <InlineMath math="x" /> positif, <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> langsung menghasilkan tanda komponennya. Jika yang dipakai adalah sudut acuan lancip, hitung besar komponennya terlebih dahulu, lalu tentukan tanda dari kuadran.
 
 | Arah vektor | Tanda <InlineMath math="F_x" /> | Tanda <InlineMath math="F_y" /> |
 | :---------- | :----------------------------- | :----------------------------- |

@@ -4,7 +4,7 @@ export const metadata = {
     "Use a time-ordered sequence of positions to identify motion, then use two endpoints to determine displacement in one reference frame.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   subject: "Kinematics",
 };
 
@@ -22,13 +22,23 @@ The symbol <InlineMath math="\Delta x" /> is read as "delta x" and means displac
 
 ## Position Difference on a Straight Track
 
-On a straight track with a fixed zero point, position change depends only on final position minus initial position. For example, if an object starts at <InlineMath math="20 \text{ m}" /> and ends at <InlineMath math="50 \text{ m}" />, the change in position is <InlineMath math="+30 \text{ m}" />.
+On a straight track with a fixed zero point, position change depends only on **final position minus initial position**. For example, if an object starts at <InlineMath math="20 \text{ m}" /> and ends at <InlineMath math="50 \text{ m}" />, the change in position is <InlineMath math="+30 \text{ m}" />.
 
 If the initial and final positions are the same, the displacement is zero. Those two endpoints alone do not tell us whether the object stayed still or moved away and returned. Intermediate positions or the traveled path are needed to distinguish those cases.
 
+Compare these two cases. Object A stays still throughout the observation. Object B moves straight from <InlineMath math="20\text{ m}" /> to <InlineMath math="50\text{ m}" />, then returns directly.
+
+| Time | Position of A | Position of B |
+| --- | --- | --- |
+| <InlineMath math="0\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+| <InlineMath math="3\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="50\text{ m}" /> |
+| <InlineMath math="6\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+
+Both have displacement <InlineMath math="20-20=0\text{ m}" />. A travels no distance, while B travels <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. The intermediate position distinguishes the two cases.
+
 ## Keep the Reference Consistent
 
-When calculating a change in position, the initial and final positions must be read from the same reference point. Do not take the initial position from the store and the final position from another house, because that no longer describes the same motion in one reference frame.
+When calculating a change in position, the initial and final positions must be read from the **same reference point**. Do not take the initial position from the store and the final position from another house, because that no longer describes the same motion in one reference frame.
 
 | Reference | Initial position | Final position | Change in position |
 | :-------- | :--------------- | :------------- | :----------------- |
@@ -40,7 +50,7 @@ The three rows have different initial and final position numbers, but the same c
 
 ## Reading the Sign of Position Change
 
-On a straight line, we may choose one direction as positive. In this example, east is positive.
+On a straight line, we may choose one direction as positive. In this example, **east is positive**.
 
 - <InlineMath math="\Delta x>0" /> means the final position is east of the initial position.
 - <InlineMath math="\Delta x<0" /> means the final position is west of the initial position.
@@ -59,6 +69,6 @@ A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few second
 &=+30 \text{ m}
 \end{aligned}" />
 
-So, the student moves <InlineMath math="30 \text{ m}" /> to the east. We know motion happened because the final position is different from the initial position.
+The student's **displacement** is therefore <InlineMath math="30 \text{ m}" /> east. These two positions do not determine the distance traveled. If the student reversed direction during the trip, the distance exceeds <InlineMath math="30 \text{ m}" />.
 
 Notice the order of subtraction. We always read final position minus initial position, then use <Highlight>the sign of the result</Highlight> to decide the direction of the position change.

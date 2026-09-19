@@ -90,6 +90,7 @@ export const lessonPhysicsKinematicsMaterial = defineLessonMaterial({
     {
       evidenceUrls: [
         "https://highways.fhwa.dot.gov/safety/speed-management/guidelines-use-variable-speed-limit-systems-wet-weather/chapter-2-driver",
+        "https://www.fhwa.dot.gov/publications/research/safety/04091/03.cfm",
       ],
       routeSlugs: {
         de: "anhalteweg",

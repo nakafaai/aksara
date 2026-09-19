@@ -3,13 +3,13 @@ export const metadata = {
     description: "Gunakan peluang bersyarat dengan tepat, bedakan kebergantungan dari kebebasan, dan selesaikan soal pemilihan bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Kombinatorik",
 };
 
 ## Peluang Bersyarat dan Kebergantungan
 
-Kamu mengambil satu kartu, lalu temanmu mengambil kartu berikutnya. Apakah kartu pertama mengubah peluang kartu kedua? Jika kartu pertama tidak dikembalikan, peluang pengambilan kedua berubah. **Peluang bersyarat** menghitung peluang kedua setelah hasil pertama diketahui.
+Kamu mengambil satu kartu, lalu temanmu mengambil kartu berikutnya. Apakah kartu pertama mengubah peluang kartu kedua? Jika kartu pertama tidak dikembalikan, komposisi kartu yang tersisa berubah. **Peluang bersyarat** menghitung peluang kedua setelah hasil pertama diketahui.
 
 Dalam ruang sampel berhingga yang setiap hasilnya memiliki peluang sama, **peluang bersyarat** kejadian <InlineMath math="B" /> jika kejadian <InlineMath math="A" /> sudah terjadi adalah proporsi hasil di dalam <InlineMath math="A" /> yang juga termasuk <InlineMath math="B" />. Jika kondisi <InlineMath math="A" /> mengubah peluang <InlineMath math="B" />, kedua kejadian saling bergantung. Jika peluang <InlineMath math="B" /> tetap sama, kedua kejadian saling bebas.
 
@@ -17,7 +17,7 @@ Sebelum menghitung peluang berikutnya, batasi semua hasil yang mungkin berdasark
 
 ## Rumus dan Notasi Matematis
 
-Untuk kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> dengan <InlineMath math="P(A) > 0" />, peluang bersyarat didefinisikan sebagai:
+Untuk kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> dengan <InlineMath math="P(A) > 0" />, **peluang bersyarat** didefinisikan sebagai:
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
@@ -33,11 +33,9 @@ Dengan menyusun ulang definisi tersebut, kita memperoleh aturan perkalian umum:
 Jika kedua kejadian saling bebas, informasi tentang <InlineMath math="A" /> tidak mengubah peluang <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
-
 ## Penerapan pada Pengambilan Kartu
 
-Mengambil kartu tanpa mengembalikan kartu pertama mengubah ruang sampel setelah setiap pengambilan. Kedua contoh di bawah memperbarui peluang pada pengambilan kedua. Karena kartu pertama tidak dikembalikan, penyebut peluang kedua berkurang satu.
-
+Mengambil kartu tanpa mengembalikan kartu pertama mengubah ruang sampel setelah setiap pengambilan. Kedua contoh di bawah memperbarui peluang pada pengambilan kedua. Karena kartu pertama tidak dikembalikan, **penyebut peluang kedua** berkurang satu.
 ### Skenario Kartu As dan King
 
 Satu set kartu standar berisi <InlineMath math="52 \text{ kartu}" />. Di dalamnya terdapat <InlineMath math="4 \text{ kartu As}" /> dan <InlineMath math="4 \text{ kartu King}" />. Dua kartu diambil tanpa pengembalian. Berapa peluang mendapat As terlebih dahulu dan King pada pengambilan kedua?
@@ -60,7 +58,7 @@ Setelah satu As diambil, tersisa <InlineMath math="51 \text{ kartu}" />. Seluruh
 
 ### Peluang Mengambil Dua Kartu Hati Secara Berurutan
 
-Untuk melihat perubahan jumlah hasil yang diinginkan, perhatikan pengambilan dua kartu Hati berturut-turut:
+Untuk melihat perubahan **jumlah hasil yang diinginkan**, perhatikan pengambilan dua kartu Hati berturut-turut:
 
 - Pengambilan pertama: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
 - Pengambilan kedua setelah mendapat hati: <InlineMath math="P(B|A) = \frac{12}{51}" />
@@ -68,10 +66,9 @@ Untuk melihat perubahan jumlah hasil yang diinginkan, perhatikan pengambilan dua
 Jadi, peluang kedua kartu yang terambil sama-sama Hati adalah:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
-
 ## Aplikasi dalam Seleksi Manajemen
 
-Sebuah perusahaan meninjau distribusi manajer berdasarkan gender dan tingkat jabatan. Datanya memiliki komposisi berikut:
+Misalkan sebuah perusahaan mempunyai data manajer berikut. Tabel membedakan gender dan tingkat jabatan, sehingga kita dapat membatasi perhitungan pada kelompok yang sesuai.
 
 | Posisi Manajemen | Laki-laki | Perempuan | Total |
 |------------------|---------------|---------------|-------|
@@ -81,6 +78,12 @@ Sebuah perusahaan meninjau distribusi manajer berdasarkan gender dan tingkat jab
 | **Total**        | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
 
 Misalkan <InlineMath math="L" /> menyatakan kejadian bahwa manajer yang terpilih adalah laki-laki.
+
+Jika kita sudah mengetahui bahwa manajer yang dipilih berada pada posisi senior, ruang sampelnya hanya **baris senior**, bukan semua manajer. Dari <InlineMath math="200" /> manajer senior, <InlineMath math="78" /> adalah laki-laki.
+
+<BlockMath math="P(L|S)=\frac{78}{200}=0{,}39\ne\frac{200}{600}=P(L)" />
+
+Informasi tentang jabatan mengubah peluang gender dalam data ini. Peluang bersyarat **tidak harus melibatkan urutan waktu**.
 
 Perusahaan memilih dua manajer secara acak tanpa pengembalian untuk sebuah komite. Peluang keduanya laki-laki adalah:
 
@@ -104,7 +107,7 @@ Untuk menyelesaikan soal peluang bersyarat:
 2. **Tentukan kondisi** setelah kejadian pertama terjadi
 3. **Hitung peluang** kejadian pertama dari kondisi awal
 4. **Hitung peluang bersyarat** kejadian kedua setelah kejadian pertama
-5. **Kalikan kedua peluang** untuk mendapat peluang gabungan
+5. **Kalikan kedua peluang** untuk mendapat peluang irisan
 
 ### Perbedaan dengan Peluang Biasa
 
@@ -135,8 +138,8 @@ Contoh berikut menghitung peluang mendapat dua kartu As berturut-turut dari deck
     </MathContainer>
 
 **Perbandingan Hasil:**
-- Peluang independen: <InlineMath math="\frac{1}{169} = 0{,}00592" />
-- Peluang bersyarat: <InlineMath math="\frac{1}{221} = 0{,}00452" />
+- Dengan pengembalian: <InlineMath math="\frac{1}{169} \approx 0{,}00592" />
+- Tanpa pengembalian: <InlineMath math="\frac{1}{221} \approx 0{,}00452" />
 
 Pada contoh ini, pengambilan tanpa pengembalian memberi hasil yang **lebih kecil** karena jumlah As yang tersisa berkurang dari <InlineMath math="4" /> menjadi <InlineMath math="3" />, sementara total kartu berkurang dari <InlineMath math="52" /> menjadi <InlineMath math="51" />.
 
@@ -146,35 +149,34 @@ Pada contoh ini, pengambilan tanpa pengembalian memberi hasil yang **lebih kecil
 
 2. Sebuah deck kartu dikocok acak. Tiga kartu diambil berturut-turut tanpa pengembalian. Berapa peluang mendapat kartu As pada pengambilan pertama, kartu King pada pengambilan kedua, dan kartu Queen pada pengambilan ketiga?
 
-Coba kerjakan setiap latihan sebelum membaca pembahasannya. Pada setiap pengambilan, tulis jumlah hasil yang diinginkan dan jumlah seluruh hasil yang baru sebelum mengalikan peluang.
-
+Coba kerjakan setiap latihan sebelum membaca pembahasannya. Pada setiap pengambilan, tulis jumlah hasil yang diinginkan dan **jumlah seluruh hasil yang baru** sebelum mengalikan peluang.
 ### Pembahasan
 
-1. **Penyelesaian:**
+**Soal 1**
 
-   Misalkan <InlineMath math="A" /> adalah mendapat bola merah pertama, dan <InlineMath math="B" /> adalah mendapat bola biru kedua
+Misalkan <InlineMath math="A" /> adalah mendapat bola merah pertama, dan <InlineMath math="B" /> adalah mendapat bola biru kedua
 
-   Total bola awal adalah <InlineMath math="8 + 12 = 20 \text{ bola}" />
+Total bola awal adalah <InlineMath math="8 + 12 = 20 \text{ bola}" />
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
-   <BlockMath math="P(B|A) = \frac{12}{19}" />
-   <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
+<BlockMath math="P(B|A) = \frac{12}{19}" />
+<BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
+</MathContainer>
 
-   Setelah mengambil satu bola merah, tersisa <InlineMath math="19 \text{ bola}" /> total (<InlineMath math="8 - 1 = 7" /> merah, <InlineMath math="12" /> biru). Jumlah bola biru tidak berubah (tetap <InlineMath math="12" />), sehingga peluang mengambil bola biru kedua adalah <InlineMath math="\frac{12}{19}" />.
+Setelah mengambil satu bola merah, tersisa <InlineMath math="19 \text{ bola}" /> total (<InlineMath math="8 - 1 = 7" /> merah, <InlineMath math="12" /> biru). Jumlah bola biru tidak berubah (tetap <InlineMath math="12" />), sehingga peluang mengambil bola biru kedua adalah <InlineMath math="\frac{12}{19}" />.
 
-2. **Penyelesaian:**
+**Soal 2**
 
-   Misalkan <InlineMath math="A" /> adalah mendapat As pertama, <InlineMath math="K" /> adalah mendapat King kedua, dan <InlineMath math="Q" /> adalah mendapat Queen ketiga
+Misalkan <InlineMath math="A" /> adalah mendapat As pertama, <InlineMath math="K" /> adalah mendapat King kedua, dan <InlineMath math="Q" /> adalah mendapat Queen ketiga
 
-   Satu set kartu standar memiliki <InlineMath math="52 \text{ kartu}" />, termasuk <InlineMath math="4" /> As, <InlineMath math="4" /> King, dan <InlineMath math="4" /> Queen.
+Satu set kartu standar memiliki <InlineMath math="52 \text{ kartu}" />, termasuk <InlineMath math="4" /> As, <InlineMath math="4" /> King, dan <InlineMath math="4" /> Queen.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="P(K|A) = \frac{4}{51}" />
-   <BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
-   <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(K|A) = \frac{4}{51}" />
+<BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
+<BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
+</MathContainer>
 
-   Setiap pengambilan mengurangi jumlah total kartu (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Peringkat kartu yang dibutuhkan berikutnya masih tersedia lengkap sebanyak <InlineMath math="4" /> kartu: mengambil As tidak mengurangi King, dan mengambil King tidak mengurangi Queen.
+Setiap pengambilan mengurangi jumlah total kartu (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Peringkat kartu yang dibutuhkan berikutnya masih tersedia lengkap sebanyak <InlineMath math="4" /> kartu: mengambil As tidak mengurangi King, dan mengambil King tidak mengurangi Queen.

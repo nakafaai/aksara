@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate work from variable forces, spring energy, distributed mass, and center of mass with integrals.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Integrals",
 };
 
@@ -19,7 +19,7 @@ Start with work. A constant force parallel to a displacement does work <InlineMa
 
 Imagine a particle at coordinate <InlineMath math="x" />, measured in meters from the origin. A force <InlineMath math="F(x) = x^2 + 2x" /> Newtons acts along the positive <InlineMath math="x" />-direction. How much work does this force do as the particle moves from <InlineMath math="x = 1 \text{ meter}" /> to <InlineMath math="x = 3 \text{ meters}" />?
 
-Because the force changes with position, one constant value of <InlineMath math="F" /> cannot be multiplied by the whole displacement. Instead, we accumulate the work over the path:
+Because the **force changes with position**, one constant value of <InlineMath math="F" /> cannot be multiplied by the whole displacement. Instead, we accumulate the work over the path:
 
 <BlockMath math="\begin{aligned} W &amp;= \int_{1}^{3} F(x) \, dx \\ &amp;= \int_{1}^{3} (x^2 + 2x) \, dx \end{aligned}" />
 
@@ -36,7 +36,7 @@ So, the force does <InlineMath math="\frac{50}{3}" /> Joules of work, approximat
 
 ## Law of Hooke and Spring Energy
 
-The further a spring is compressed or stretched, the greater the force required to hold it.
+This model uses an **ideal spring in its linear elastic range**. Under Hooke's law, a greater extension or compression requires a greater holding force.
 
 Hooke's law says that the spring's restoring force points opposite the displacement. If the spring is stretched or compressed slowly, the external force needed to hold it at displacement <InlineMath math="x" /> has the same magnitude and the opposite direction:
 
@@ -44,7 +44,7 @@ Hooke's law says that the spring's restoring force points opposite the displacem
 
 Here <InlineMath math="k" /> is the spring constant and <InlineMath math="x" /> is the signed displacement from equilibrium. Integrating <InlineMath math="F_{\mathrm{ext}}" /> gives the external work done on the spring and therefore the increase in elastic potential energy.
 
-Look at a real example. Suppose a force of <InlineMath math="40 \text{ N}" /> is required to hold a spring that has been stretched from its original length of <InlineMath math="10 \text{ cm}" /> to <InlineMath math="15 \text{ cm}" />. Now, what is the work required to stretch the spring from <InlineMath math="15 \text{ cm}" /> to <InlineMath math="18 \text{ cm}" />?
+Suppose a force of <InlineMath math="40 \text{ N}" /> is required to hold a spring that has been stretched from its original length of <InlineMath math="10 \text{ cm}" /> to <InlineMath math="15 \text{ cm}" />. Now, what is the work required to stretch the spring from <InlineMath math="15 \text{ cm}" /> to <InlineMath math="18 \text{ cm}" />?
 
 First, we determine the spring constant. The displacement from equilibrium is <InlineMath math="15 - 10 = 5 \text{ cm} = 0.05 \text{ m}" />. Since the holding force has magnitude <InlineMath math="F_{\mathrm{ext}} = kx" />:
 
@@ -53,8 +53,11 @@ First, we determine the spring constant. The displacement from equilibrium is <I
 So <InlineMath math="k = \frac{40}{0.05} = 800 \text{ N/m}" />.
 
 To calculate the external work required to stretch the spring from <InlineMath math="15 \text{ cm}" /> to <InlineMath math="18 \text{ cm}" />, measure both positions from the equilibrium length:
-- Position <InlineMath math="15 \text{ cm} = 0.05 \text{ m}" /> from natural position
-- Position <InlineMath math="18 \text{ cm} = 0.08 \text{ m}" /> from natural position
+
+| Total length | Extension from natural length | Integration limit |
+| --- | --- | --- |
+| <InlineMath math="15\text{ cm}" /> | <InlineMath math="(15-10)\text{ cm}=5\text{ cm}" /> | <InlineMath math="0.05\text{ m}" /> |
+| <InlineMath math="18\text{ cm}" /> | <InlineMath math="(18-10)\text{ cm}=8\text{ cm}" /> | <InlineMath math="0.08\text{ m}" /> |
 
 We can calculate the work with integrals:
 
@@ -95,6 +98,20 @@ For the rod with density <InlineMath math="\rho(x) = 3x + 2" /> above:
 
 > The center of mass is the coordinate at which the total mass would produce the same first moment as the actual distribution. It is the natural balance point in a uniform gravitational field and describes the translational motion of the system, while rotational behavior still depends on how the mass is distributed.
 
+Density increases from <InlineMath math="2 \text{ kg/m}" /> at the left end to <InlineMath math="8 \text{ kg/m}" /> at the right end. Since the **right side is denser**, the center of mass at <InlineMath math="1.2 \text{ m}" /> lies to the right of the midpoint at <InlineMath math="1 \text{ m}" />.
+
+<LineEquation
+  title="Increasing Rod Density"
+  description="The horizontal axis is position in meters and the vertical axis is linear density in kilograms per meter. The orange line marks the center of mass position."
+  showZAxis={false}
+  cameraTarget={[1, 4, 0]}
+  cameraPosition={[1, 4, 17]}
+  data={[
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 2, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ at: 0, text: "(0, 2)", offset: [0.5, -0.4, 0] }, { at: 1, text: "(2, 8)", offset: [0.5, 0.4, 0] }] },
+    { points: [{ x: 1.2, y: 0, z: 0 }, { x: 1.2, y: 5.6, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 0, text: "1.2", offset: [0, -0.5, 0] }] },
+  ]}
+/>
+
 ## Calculating Moment of Inertia
 
 The **moment of inertia** measures how mass is distributed relative to a specified rotation axis. For rotation about a fixed axis, it determines the angular acceleration produced by a given torque through <InlineMath math="\tau=I\alpha" />. For a continuous object, it is calculated with:
@@ -103,13 +120,13 @@ The **moment of inertia** measures how mass is distributed relative to a specifi
 
 In this formula, <InlineMath math="r" /> is the distance from the rotation axis and <InlineMath math="dm" /> is the mass element.
 
-For a homogeneous rod with mass <InlineMath math="M" /> and length <InlineMath math="L" /> rotating about one of its ends:
+For a **thin uniform rod** of mass <InlineMath math="M" /> and length <InlineMath math="L" />, choose an axis through one end **perpendicular to the rod**. Each mass element is distance <InlineMath math="x" /> from this axis, so:
 
 <BlockMath math="\begin{aligned} I &amp;= \int_{0}^{L} x^2 \frac{M}{L} \, dx \\ &amp;= \frac{M}{L} \int_{0}^{L} x^2 \, dx \\ &amp;= \frac{M}{L} \left[\frac{x^3}{3}\right]_{0}^{L} \\ &amp;= \frac{ML^2}{3} \end{aligned}" />
 
 ## Exercises
 
-Each problem gives a rate such as velocity or power and asks for the accumulated quantity, so integrate the rate over the time interval stated in the problem.
+For work and spring energy, integrate force with respect to displacement. For mass, integrate linear density with respect to length. **Check the units**: newtons times meters give joules, while kilograms per meter times meters give kilograms.
 
 1. A particle moves along the <InlineMath math="x" />-axis with force <InlineMath math="F(x) = 4x - x^2" /> Newtons. Calculate the work done to move the particle from <InlineMath math="x = 0" /> to <InlineMath math="x = 3 \text{ meters}" />!
 
@@ -117,44 +134,46 @@ Each problem gives a rate such as velocity or power and asks for the accumulated
 
 3. A wire of length <InlineMath math="4 \text{ meters}" /> has linear density <InlineMath math="\rho(x) = (2 + x)\,\text{kg/m}" />, where <InlineMath math="x" /> is measured in meters. Determine the total mass of the wire and the position of its center of mass.
 
-### Worked Solutions
+### Calculating work with variable force
 
-1. **Calculating work with variable force**
+The force depends on position. Add the contributions <InlineMath math="F(x)\,dx" /> from <InlineMath math="0" /> to <InlineMath math="3" />, then **subtract the antiderivative values** at the two limits.
 
-   <MathContainer>
-   <BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
-   <BlockMath math="W = \left[2x^2 - \frac{x^3}{3}\right]_{0}^{3}" />
-   <BlockMath math="\begin{aligned} W &amp;= \left(2(3)^2 - \frac{(3)^3}{3}\right) \\ &amp;\quad{}- \left(2(0)^2 - \frac{(0)^3}{3}\right) \end{aligned}" />
-   <BlockMath math="W = \left(18 - 9\right) - 0 = 9 \text{ Joule}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
+<BlockMath math="W = \left[2x^2 - \frac{x^3}{3}\right]_{0}^{3}" />
+<BlockMath math="\begin{aligned} W &amp;= \left(2(3)^2 - \frac{(3)^3}{3}\right) \\ &amp;\quad{}- \left(2(0)^2 - \frac{(0)^3}{3}\right) \end{aligned}" />
+<BlockMath math="W = \left(18 - 9\right) - 0 = 9 \text{ Joule}" />
+</MathContainer>
 
-   The work done is <InlineMath math="9" /> Joules.
+The work done is <InlineMath math="9" /> Joules.
 
-2. **Calculating spring energy**
+### Calculating spring energy
 
-   The potential energy stored in the spring is:
+When the spring is stretched slowly, the required external force increases as <InlineMath math="F(x)=kx" />. The stored **potential energy** equals the work of this force from zero extension to <InlineMath math="0.1" /> metre.
 
-   <MathContainer>
-   <BlockMath math="E = \int_{0}^{0.1} kx \, dx = \int_{0}^{0.1} 200x \, dx" />
-   <BlockMath math="E = 200 \left[\frac{x^2}{2}\right]_{0}^{0.1}" />
-   <BlockMath math="\begin{aligned} E &amp;= 200 \times \frac{(0.1)^2 - 0^2}{2} \\ &amp;= 200 \times \frac{0.01}{2} \\ &amp;= 100 \times 0.01 \\ &amp;= 1 \text{ Joule} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="E = \int_{0}^{0.1} kx \, dx = \int_{0}^{0.1} 200x \, dx" />
+<BlockMath math="E = 200 \left[\frac{x^2}{2}\right]_{0}^{0.1}" />
+<BlockMath math="\begin{aligned} E &amp;= 200 \times \frac{(0.1)^2 - 0^2}{2} \\ &amp;= 200 \times \frac{0.01}{2} \\ &amp;= 100 \times 0.01 \\ &amp;= 1 \text{ Joule} \end{aligned}" />
+</MathContainer>
 
-   The potential energy stored is <InlineMath math="1" /> Joule.
+The potential energy stored is <InlineMath math="1" /> Joule.
 
-3. **Calculating wire mass and center of mass**
+### Calculating wire mass and center of mass
 
-   Total mass:
+Add the mass of each short piece of wire, found by multiplying its linear density by its length:
 
-   <BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
+<BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
 
-   Center of mass:
+For the center of mass, weight each piece’s mass by its position, then divide the total mass moment by the total mass:
 
-   <MathContainer>
-   <BlockMath math="\bar{x} = \frac{\int_{0}^{4} x(2 + x) \, dx}{16}" />
-   <BlockMath math="\bar{x} = \frac{\int_{0}^{4} (2x + x^2) \, dx}{16}" />
-   <BlockMath math="\bar{x} = \frac{[x^2 + \frac{x^3}{3}]_{0}^{4}}{16} = \frac{16 + \frac{64}{3}}{16}" />
-   <BlockMath math="\bar{x} = \frac{\frac{48 + 64}{3}}{16} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac{7}{3} \text{ meter}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} x(2 + x) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} (2x + x^2) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{[x^2 + \frac{x^3}{3}]_{0}^{4}}{16} = \frac{16 + \frac{64}{3}}{16}" />
+<BlockMath math="\bar{x} = \frac{\frac{48 + 64}{3}}{16} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac{7}{3} \text{ meter}" />
+</MathContainer>
 
-   The total mass of the wire is <InlineMath math="16 \text{ kg}" /> and its center of mass is located at position <InlineMath math="\frac{7}{3} \text{ meters}" /> from the end.
+The total mass of the wire is <InlineMath math="16 \text{ kg}" /> and its center of mass is located at position <InlineMath math="\frac{7}{3} \text{ meters}" /> from the end.
+
+The center of mass is measured from the end where <InlineMath math="x=0" />. It lies to the right of the midpoint because **density increases toward the other end**.

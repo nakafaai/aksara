@@ -6,11 +6,11 @@ export const metadata = {
     "Menentukan resultan vektor dengan metode segitiga, jajargenjang, poligon, dan pengurangan melalui vektor negatif.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
-## Resultan sebagai Panah Pengganti
+## Menjumlahkan Vektor secara Grafis
 
 Ketika beberapa perpindahan terjadi berurutan, atau beberapa vektor bekerja pada satu titik, jumlah vektornya dapat diwakili oleh satu panah yang disebut **resultan**. Untuk gaya yang bekerja pada titik berbeda, gaya resultan menjelaskan efek translasi bersih, tetapi efek putarnya harus diperiksa terpisah melalui momen gaya.
 
@@ -18,7 +18,7 @@ Metode grafis mencari resultan dengan sketsa berskala. Panjang panah dibuat seba
 
 > Dalam metode grafis, ketelitian hasil bergantung pada skala sketsa, penggaris, dan pengukuran sudut.
 
-## Metode Segitiga Kepala ke Ekor
+### Metode Segitiga Kepala ke Ekor
 
 Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama, lalu letakkan pangkal vektor kedua di ujung vektor pertama. Resultan ditarik dari pangkal vektor pertama ke ujung vektor kedua.
 
@@ -70,19 +70,29 @@ Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama
   cameraTarget={[3, -0.7, 0]}
 />
 
-Jika seseorang berjalan <InlineMath math="4\text{ m}" /> ke timur lalu <InlineMath math="3\text{ m}" /> ke utara, resultannya bukan <InlineMath math="7\text{ m}" /> ke satu arah yang sama. Resultannya adalah panah miring dari titik awal ke titik akhir.
+Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan koordinat adalah meter: perpindahan pertama <InlineMath math="(4,1)" />, lalu perpindahan kedua <InlineMath math="(2,3)" />. Titik akhir berada di <InlineMath math="(6,4)" />. Kamu menambahkan perubahan posisi pada setiap sumbu.
 
-## Metode Jajargenjang untuk Dua Vektor Satu Pangkal
+<BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-Metode ini cocok untuk gaya yang bekerja pada satu benda dari titik yang sama, misalnya dua orang menarik cincin dengan tali pada arah berbeda. Pada ilustrasi, kedua gaya berangkat dari titik yang sama, sehingga diagonalnya menunjukkan gabungan kedua tarikan.
+### Metode Jajargenjang untuk Dua Vektor Satu Pangkal
 
-Langkahnya:
+Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**. Contohnya, dua tali menarik sebuah cincin. Pada model, salinan vektor mempertahankan panjang dan arah panah asli. Ikuti sisi bawah lalu sisi kanan, atau sisi kiri lalu sisi atas: kedua jalur berakhir pada titik yang sama.
 
-- Buat kedua vektor dari pangkal yang sama.
-- Salin vektor pertama di ujung vektor kedua dan salin vektor kedua di ujung vektor pertama.
-- Tarik diagonal dari pangkal bersama ke sudut jauh jajargenjang.
+<Vector3d
+  title={<>Diagonal Jajargenjang</>}
+  description={<>Panah ungu menghubungkan pangkal bersama ke titik akhir kedua jalur. Vektor a dan b tetap sama meskipun digeser sejajar.</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,-0.4,0]},
+    {from: [0,0,0], to: [2,3,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [-0.5,0,0]},
+    {from: [2,3,0], to: [6,4,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
+  ]}
+  cameraPosition={[3,2,13]}
+  cameraTarget={[3,2,0]}
+/>
 
-## Metode Poligon untuk Banyak Vektor
+### Metode Poligon untuk Banyak Vektor
 
 Urutan menggambar boleh diatur ulang selama <Highlight>besar dan arah tiap vektor tidak berubah</Highlight>. Resultan selalu ditarik dari pangkal vektor pertama yang dipilih ke ujung vektor terakhir.
 
@@ -90,12 +100,24 @@ Urutan menggambar boleh diatur ulang selama <Highlight>besar dan arah tiap vekto
 
 Jika poligon vektor kembali ke titik awal, jumlah vektornya nol. Untuk gaya, resultan gaya nol berarti percepatan translasi nol. Agar benda juga tidak mengalami percepatan sudut, resultan momen gaya harus nol.
 
+Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> setelah dua perpindahan pada model. Panah ketiga mengikuti diagonal kembali ke titik awal. Perjalanan tetap memiliki panjang, tetapi perpindahan total nol.
+
+<BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
 ## Pengurangan Vektor secara Grafis
 
-Pengurangan vektor tidak perlu aturan baru. Ubah pengurangan menjadi penjumlahan dengan vektor negatif.
+Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sama, komponen <InlineMath math="\vec{b}=(2,3)" /> berubah menjadi <InlineMath math="-\vec{b}=(-2,-3)" />.
 
-<BlockMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />
+<BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-Untuk membuat <InlineMath math="\vec{a}-\vec{b}" />, buat <InlineMath math="\vec{a}" /> terlebih dahulu. Setelah itu, buat <InlineMath math="-\vec{b}" /> dari ujung <InlineMath math="\vec{a}" />. Vektor <InlineMath math="-\vec{b}" /> sama panjang dengan <InlineMath math="\vec{b}" />, tetapi arahnya dibalik.
-
-Hasil akhirnya tetap ditarik dari pangkal vektor pertama ke ujung vektor terakhir. Dengan cara ini, pengurangan vektor tetap mengikuti aturan kepala-ke-ekor yang sama.
+<Vector3d
+  title={<>Menambahkan Vektor Negatif</>}
+  description={<>Dari ujung a di (4,1), bergerak dua satuan ke kiri dan tiga satuan ke bawah. Resultan berakhir di (2,-2).</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
+  ]}
+  cameraPosition={[2,0,10]}
+  cameraTarget={[2,0,0]}
+/>

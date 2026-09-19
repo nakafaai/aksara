@@ -2,21 +2,79 @@ export const metadata = {
   title: "Solution to Question 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Divide the numerator by the denominator to separate the constant part.
+#### Domain and Asymptotes
 
-<BlockMath math="f(x)=2+\frac5{x-1}" />
+Write the numerator as <InlineMath math="2(x-1)+5" />. This form exposes the **nonzero denominator condition** and the lines approached by the graph.
 
-The denominator excludes <InlineMath math="x=1" />. The fraction is never zero, so <InlineMath math="y=2" /> is outside the range. The asymptotes <InlineMath math="x=1" /> and <InlineMath math="y=2" /> intersect at <InlineMath math="(1,2)" />. When <InlineMath math="x>1" />, the fraction is positive, giving <InlineMath math="f(x)>2" />.
+<BlockMath math="f(x)=\frac{2(x-1)+5}{x-1}=2+\frac5{x-1}" />
 
-On each interval <InlineMath math="(-\infty,1)" /> and <InlineMath math="(1,\infty)" />, the reciprocal <InlineMath math="\frac1{x-1}" /> decreases as <InlineMath math="x" /> increases. Multiplying by positive <InlineMath math="5" /> and adding <InlineMath math="2" /> preserves this behavior. For the inverse, solve <InlineMath math="y=f(x)" /> for <InlineMath math="x" />.
+The domain is <InlineMath math="\mathbb R\setminus\{1\}" />. As <InlineMath math="x" /> approaches one, the denominator approaches zero while the numerator of the fraction stays five. Thus <InlineMath math="x=1" /> is a vertical asymptote. As <InlineMath math="|x|" /> grows, the fraction approaches zero, so <InlineMath math="y=2" /> is a horizontal asymptote. The two lines intersect at <InlineMath math="(1,2)" />.
+
+<LineEquation
+  title="Two branches of the rational function"
+  description="The gray lines are asymptotes. The branch to the right of x=1 lies above y=2, while the left branch lies below it."
+  cameraPosition={[1, 2, 16]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-5, 0.25], [1.75, 7]].map(([start, end]) => ({
+      points: Array.from({ length: 121 }, (_, i) => {
+        const x = start + (end - start) * i / 120;
+        return { x, y: 2 + 5 / (x - 1), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+    })),
+    {
+      points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.4, 0] }],
+    },
+    {
+      points: [{ x: -5, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="y=2" />, at: 1, offset: [-0.5, 0.5, 0] }],
+    },
+  ]}
+/>
+
+#### Decreasing on Each Interval
+
+When <InlineMath math="x>1" />, the fraction <InlineMath math="5/(x-1)" /> is positive, giving <InlineMath math="f(x)>2" />. The graph has **two separate intervals**: <InlineMath math="(-\infty,1)" /> and <InlineMath math="(1,\infty)" />. Choose <InlineMath math="a<b" /> within the same interval. The difference between the outputs is:
 
 <BlockMath math="\begin{aligned}
+f(b)-f(a)&=\frac5{b-1}-\frac5{a-1} \\
+&=\frac{5(a-1)-5(b-1)}{(a-1)(b-1)} \\
+&=\frac{5(a-b)}{(a-1)(b-1)}<0
+\end{aligned}" />
+
+The two denominator factors have the same sign, so their product is positive. The numerator is negative because <InlineMath math="a-b<0" />. Therefore <InlineMath math="f(b)-f(a)<0" />, proving strict decrease on each interval. This statement does not combine the two branches into one interval.
+
+#### Finding the Inverse
+
+To find the **inverse function**, write <InlineMath math="y=f(x)" /> and solve for <InlineMath math="x" />. The fraction <InlineMath math="5/(x-1)" /> is never zero, so <InlineMath math="y\ne2" />.
+
+<BlockMath math="\begin{aligned}
+y&=\frac{2x+3}{x-1} \\
 y(x-1)&=2x+3 \\
+xy-y&=2x+3 \\
+xy-2x&=y+3 \\
 x(y-2)&=y+3 \\
 x&=\frac{y+3}{y-2}
 \end{aligned}" />
 
-Thus <InlineMath math="f^{-1}(x)=\frac{x+3}{x-2}" /> for <InlineMath math="x\ne2" />. The claims about the asymptote intersection, decreasing behavior, values to the right of the asymptote, and the inverse are all true. The value <InlineMath math="f(1)" /> is undefined.
+Every <InlineMath math="y\ne2" /> gives <InlineMath math="x=1+5/(y-2)\ne1" />. Thus every real value except two belongs to the range. Rename the variables to write the inverse:
+
+<BlockMath math="f^{-1}(x)=\frac{x+3}{x-2},\qquad x\ne2" />
+
+The claims about the asymptote intersection, decreasing behavior, values to the right of the asymptote, and the inverse are true. The claim <InlineMath math="f(1)=0" /> is false because division by zero makes <InlineMath math="f(1)" /> undefined.

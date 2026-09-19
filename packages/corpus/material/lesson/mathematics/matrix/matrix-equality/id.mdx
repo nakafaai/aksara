@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan kesamaan dua matriks dengan membandingkan ordo dan elemen seletak, lalu selesaikan nilai entri yang belum diketahui.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Matriks",
 };
 
@@ -31,28 +31,25 @@ Diberikan dua matriks:
 Matriks <InlineMath math="P" /> dan <InlineMath math="Q" /> adalah sama (<InlineMath math="P=Q" />) karena:
 
 - Keduanya berordo <InlineMath math="2 \times 2" />.
-- Elemen-elemen yang seletak bernilai sama:
+- **Elemen-elemen yang seletak** bernilai sama:
 
   <InlineMath math="p_{11} = q_{11} = 1" />, <InlineMath math="p_{12} = q_{12} = 2" />
   , <InlineMath math="p_{21} = q_{21} = 3" />, <InlineMath math="p_{22} = q_{22} = 4" />
   .
-
 ### Matriks dengan Ordo yang Berbeda
 
 Diberikan dua matriks:
 
 <BlockMath math="\begin{aligned} &amp;R = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \end{bmatrix} \\ &amp;\text{dan} \\ &amp;C = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} \end{aligned}" />
 
-Matriks <InlineMath math="R" /> tidak sama dengan matriks <InlineMath math="C" /> (<InlineMath math="R \neq C" />) karena ordo matriks <InlineMath math="R" /> adalah <InlineMath math="2 \times 2" />, sedangkan ordo matriks <InlineMath math="C" /> adalah <InlineMath math="3 \times 2" />.
-
+Matriks <InlineMath math="R" /> tidak sama dengan matriks <InlineMath math="C" /> (<InlineMath math="R \neq C" />) karena **ordo** matriks <InlineMath math="R" /> adalah <InlineMath math="2 \times 2" />, sedangkan ordo matriks <InlineMath math="C" /> adalah <InlineMath math="3 \times 2" />.
 ### Matriks dengan Elemen Seletak yang Berbeda
 
 Diberikan dua matriks:
 
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{dan} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
-Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> sama-sama berordo <InlineMath math="2 \times 2" />, keduanya tidak sama (<InlineMath math="S \neq T" />). Elemen seletak pada baris ke-<InlineMath math="2" />, kolom ke-<InlineMath math="1" /> berbeda: <InlineMath math="s_{21} = -2" />, sedangkan <InlineMath math="t_{21} = 2" />.
-
+Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> sama-sama berordo <InlineMath math="2 \times 2" />, keduanya tidak sama (<InlineMath math="S \neq T" />). **Elemen seletak** pada baris ke-<InlineMath math="2" />, kolom ke-<InlineMath math="1" /> berbeda: <InlineMath math="s_{21} = -2" />, sedangkan <InlineMath math="t_{21} = 2" />.
 ### Menentukan Nilai Variabel dari Kesamaan Matriks
 
 Diketahui kedua matriks berikut:
@@ -66,12 +63,14 @@ Jika matriks <InlineMath math="A" /> sama dengan matriks <InlineMath math="B" />
 
 **Penyelesaian:**
 
-Karena <InlineMath math="A=B" />, maka elemen-elemen yang seletak harus sama:
+Karena <InlineMath math="A=B" />, maka **elemen-elemen yang seletak harus sama**:
 
-1.  <InlineMath math="a_{11} = b_{11} \implies -x = -1 \implies x = 1" />
-2.  <InlineMath math="a_{12} = b_{12} \implies 2 = 2" /> (sudah sama)
-3.  <InlineMath math="a_{21} = b_{21} \implies -3y = 6 \implies y = \frac{6}{-3} \implies y = -2" />
-4.  <InlineMath math="a_{22} = b_{22} \implies z^2 = 9 \implies z = \pm\sqrt{9} \implies z = 3 \text{ atau } z = -3" />
+| Posisi | Persamaan dan penyelesaian |
+| --- | --- |
+| (1, 1) | <InlineMath math="a_{11} = b_{11} \implies -x = -1 \implies x = 1" /> |
+| (1, 2) | <InlineMath math="a_{12} = b_{12} \implies 2 = 2" /> (sudah sama) |
+| (2, 1) | <InlineMath math="a_{21} = b_{21} \implies -3y = 6 \implies y = \frac{6}{-3} \implies y = -2" /> |
+| (2, 2) | <InlineMath math="a_{22} = b_{22} \implies z^2 = 9 \implies z = \pm\sqrt{9} \implies z = 3 \text{ atau } z = -3" /> |
 
 Jadi, nilai <InlineMath math="x=1" />, <InlineMath math="y=-2" />, dan <InlineMath math="z = \pm 3" />.
 
@@ -108,140 +107,146 @@ Tentukan apakah tiga pernyataan pertama **Benar** atau **Salah**.
 1.  **Benar**. Dua matriks yang sama harus memiliki ordo yang sama, walaupun syarat ini saja belum cukup.
 2.  **Salah**. Dua matriks yang tidak sama dapat memiliki ordo yang sama, tetapi berbeda pada satu atau beberapa elemen seletak, seperti pada Contoh 3.
 3.  **Salah**. Matriks <InlineMath math="K" /> berordo <InlineMath math="2 \times 2" />, sedangkan matriks <InlineMath math="L" /> berordo <InlineMath math="3 \times 2" />. Matriks dengan ordo berbeda tidak mungkin sama.
-4.  Diketahui <InlineMath math="P=Q" />:
+**Soal 4**
 
-    <BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
+Diketahui <InlineMath math="P=Q" />:
 
-    Dari kesamaan elemen seletak:
+<BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
 
-    - <InlineMath math="2x = -10 \implies x = -5" />
-    - <InlineMath math="y+3 = 2 \implies y = 2-3 \implies y = -1" />
+Dari kesamaan elemen seletak:
 
-      Jadi, <InlineMath math="x=-5" /> dan <InlineMath math="y=-1" />.
+- <InlineMath math="2x = -10 \implies x = -5" />
+- <InlineMath math="y+3 = 2 \implies y = 2-3 \implies y = -1" />
 
-5.  Matriks identitas berordo <InlineMath math="2 \times 2" /> adalah:
+  Jadi, <InlineMath math="x=-5" /> dan <InlineMath math="y=-1" />.
 
-    <BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+**Soal 5**
 
-    Diketahui <InlineMath math="A=I" />:
+Matriks identitas berordo <InlineMath math="2 \times 2" /> adalah:
 
-    <BlockMath math="\begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+<BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
-    Dari kesamaan elemen seletak, kita peroleh sistem persamaan:
+Diketahui <InlineMath math="A=I" />:
 
-    1.  <InlineMath math="-x-3y = 1" /> (Persamaan 1)
-    2.  <InlineMath math="(x-2y)^2 = 0" /> (Persamaan 2)
+<BlockMath math="\begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
-    Selesaikan Persamaan 2 terlebih dahulu:
+Dari kesamaan elemen seletak, kita peroleh sistem persamaan:
 
-    <MathContainer>
-      <BlockMath math="(x-2y)^2 = 0" />
-      <BlockMath math="x-2y = \sqrt{0}" />
-      <BlockMath math="x-2y = 0" />
-      <BlockMath math="x = 2y \quad \text{(Persamaan 2')}" />
-    </MathContainer>
+1.  <InlineMath math="-x-3y = 1" /> (Persamaan 1)
+2.  <InlineMath math="(x-2y)^2 = 0" /> (Persamaan 2)
 
-    Substitusikan Persamaan 2' ke Persamaan 1:
+Selesaikan Persamaan 2 terlebih dahulu:
 
-    <MathContainer>
-      <BlockMath math="-(2y)-3y = 1" />
-      <BlockMath math="-2y-3y = 1" />
-      <BlockMath math="-5y = 1" />
-      <BlockMath math="y = -\frac{1}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(x-2y)^2 = 0" />
+  <BlockMath math="x-2y = \sqrt{0}" />
+  <BlockMath math="x-2y = 0" />
+  <BlockMath math="x = 2y \quad \text{(Persamaan 2')}" />
+</MathContainer>
 
-    Substitusikan nilai <InlineMath math="y = -\frac{1}{5}" /> ke Persamaan 2':
+Substitusikan Persamaan 2' ke Persamaan 1:
 
-    <MathContainer>
-      <BlockMath math="x = 2\left(-\frac{1}{5}\right)" />
-      <BlockMath math="x = -\frac{2}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="-(2y)-3y = 1" />
+  <BlockMath math="-2y-3y = 1" />
+  <BlockMath math="-5y = 1" />
+  <BlockMath math="y = -\frac{1}{5}" />
+</MathContainer>
 
-    Maka, nilai <InlineMath math="x+y" /> adalah:
+Substitusikan nilai <InlineMath math="y = -\frac{1}{5}" /> ke Persamaan 2':
 
-    <MathContainer>
-      <BlockMath math="x+y = \left(-\frac{2}{5}\right) + \left(-\frac{1}{5}\right)" />
-      <BlockMath math="= -\frac{2}{5} - \frac{1}{5}" />
-      <BlockMath math="= \frac{-2-1}{5}" />
-      <BlockMath math="= -\frac{3}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x = 2\left(-\frac{1}{5}\right)" />
+  <BlockMath math="x = -\frac{2}{5}" />
+</MathContainer>
 
-6.  Diketahui kesamaan matriks:
+Maka, nilai <InlineMath math="x+y" /> adalah:
 
-    <BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
+<MathContainer>
+  <BlockMath math="x+y = \left(-\frac{2}{5}\right) + \left(-\frac{1}{5}\right)" />
+  <BlockMath math="= -\frac{2}{5} - \frac{1}{5}" />
+  <BlockMath math="= \frac{-2-1}{5}" />
+  <BlockMath math="= -\frac{3}{5}" />
+</MathContainer>
 
-    Dari kesamaan elemen seletak, kita peroleh sistem persamaan:
+**Soal 6**
 
-    1.  <InlineMath math="a+2b = 3" />
-    2.  <InlineMath math="2a+b = -3" />
-    3.  <InlineMath math="c+d = 7" />
-    4.  <InlineMath math="2c+d = 1" />
+Diketahui kesamaan matriks:
 
-    Selesaikan sistem persamaan untuk <InlineMath math="a" /> dan <InlineMath math="b" /> (persamaan 1 dan 2):
+<BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
 
-    Persamaan awal:
+Dari kesamaan elemen seletak, kita peroleh sistem persamaan:
 
-    <MathContainer>
-      <BlockMath math="a+2b = 3 \quad \text{(1)}" />
-      <BlockMath math="2a+b = -3 \quad \text{(2)}" />
-    </MathContainer>
+1.  <InlineMath math="a+2b = 3" />
+2.  <InlineMath math="2a+b = -3" />
+3.  <InlineMath math="c+d = 7" />
+4.  <InlineMath math="2c+d = 1" />
 
-    Untuk mengeliminasi <InlineMath math="b" />, kalikan persamaan (2) dengan <InlineMath math="2" />:
+Selesaikan sistem persamaan untuk <InlineMath math="a" /> dan <InlineMath math="b" /> (persamaan 1 dan 2):
 
-    <MathContainer>
-      <BlockMath math="2(2a+b) = 2(-3)" />
-      <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
-    </MathContainer>
+Persamaan awal:
 
-    Kurangkan persamaan (1) dari persamaan (2'):
+<MathContainer>
+  <BlockMath math="a+2b = 3 \quad \text{(1)}" />
+  <BlockMath math="2a+b = -3 \quad \text{(2)}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />
-      <BlockMath math="4a - a + 2b - 2b = -9" />
-      <BlockMath math="3a = -9" />
-      <BlockMath math="a = \frac{-9}{3}" />
-      <BlockMath math="a = -3" />
-    </MathContainer>
+Untuk mengeliminasi <InlineMath math="b" />, kalikan persamaan (2) dengan <InlineMath math="2" />:
 
-    Substitusikan nilai <InlineMath math="a=-3" /> ke persamaan (1):
+<MathContainer>
+  <BlockMath math="2(2a+b) = 2(-3)" />
+  <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="-3+2b=3" />
-      <BlockMath math="2b=3+3" />
-      <BlockMath math="2b=6" />
-      <BlockMath math="b = \frac{6}{2}" />
-      <BlockMath math="b = 3" />
-    </MathContainer>
+Kurangkan persamaan (1) dari persamaan (2'):
 
-    Selesaikan sistem persamaan untuk <InlineMath math="c" /> dan <InlineMath math="d" /> (persamaan 3 dan 4):
+<MathContainer>
+  <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />
+  <BlockMath math="4a - a + 2b - 2b = -9" />
+  <BlockMath math="3a = -9" />
+  <BlockMath math="a = \frac{-9}{3}" />
+  <BlockMath math="a = -3" />
+</MathContainer>
 
-    Persamaan awal:
+Substitusikan nilai <InlineMath math="a=-3" /> ke persamaan (1):
 
-    <MathContainer>
-      <BlockMath math="c+d = 7 \quad \text{(3)}" />
-      <BlockMath math="2c+d = 1 \quad \text{(4)}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="-3+2b=3" />
+  <BlockMath math="2b=3+3" />
+  <BlockMath math="2b=6" />
+  <BlockMath math="b = \frac{6}{2}" />
+  <BlockMath math="b = 3" />
+</MathContainer>
 
-    Kurangkan persamaan (3) dari persamaan (4) untuk mengeliminasi <InlineMath math="d" />:
+Selesaikan sistem persamaan untuk <InlineMath math="c" /> dan <InlineMath math="d" /> (persamaan 3 dan 4):
 
-    <MathContainer>
-      <BlockMath math="(2c+d) - (c+d) = 1 - 7" />
-      <BlockMath math="2c - c + d - d = -6" />
-      <BlockMath math="c = -6" />
-    </MathContainer>
+Persamaan awal:
 
-    Substitusikan nilai <InlineMath math="c=-6" /> ke persamaan (3):
+<MathContainer>
+  <BlockMath math="c+d = 7 \quad \text{(3)}" />
+  <BlockMath math="2c+d = 1 \quad \text{(4)}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="-6+d=7" />
-      <BlockMath math="d=7+6" />
-      <BlockMath math="d=13" />
-    </MathContainer>
+Kurangkan persamaan (3) dari persamaan (4) untuk mengeliminasi <InlineMath math="d" />:
 
-    Maka, nilai <InlineMath math="a+b+c+d" /> adalah:
+<MathContainer>
+  <BlockMath math="(2c+d) - (c+d) = 1 - 7" />
+  <BlockMath math="2c - c + d - d = -6" />
+  <BlockMath math="c = -6" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;a+b+c +d \\ &amp;= (-3) + 3 + (-6) + 13 \end{aligned}" />
-      <BlockMath math="= 0 - 6 + 13" />
-      <BlockMath math="= 7" />
-    </MathContainer>
+Substitusikan nilai <InlineMath math="c=-6" /> ke persamaan (3):
+
+<MathContainer>
+  <BlockMath math="-6+d=7" />
+  <BlockMath math="d=7+6" />
+  <BlockMath math="d=13" />
+</MathContainer>
+
+Maka, nilai <InlineMath math="a+b+c+d" /> adalah:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;a+b+c +d \\ &amp;= (-3) + 3 + (-6) + 13 \end{aligned}" />
+  <BlockMath math="= 0 - 6 + 13" />
+  <BlockMath math="= 7" />
+</MathContainer>

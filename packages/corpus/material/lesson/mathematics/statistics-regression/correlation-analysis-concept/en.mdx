@@ -4,7 +4,7 @@ export const metadata = {
     "Use correlation to describe the direction and strength of a linear relationship, interpret Pearson's r, and explain why correlation does not imply causation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
@@ -16,7 +16,7 @@ Correlation answers a descriptive question: how do the two variables vary togeth
 
 ## The Correlation Coefficient
 
-Pearson's correlation coefficient is denoted by <InlineMath math="r" />. <Highlight>The sign of r describes direction</Highlight>, while its distance from zero describes the strength of the linear pattern.
+Pearson's correlation coefficient is denoted by <InlineMath math="r" />. The **sign of the coefficient** describes direction, while its distance from zero describes the strength of the linear pattern.
 
 | Value | Interpretation |
 | --- | --- |
@@ -35,13 +35,29 @@ Whenever both variables have nonzero variation and <InlineMath math="r" /> is de
 
 A value near zero does not rule out every relationship. Points may follow a clear curve while their linear correlation remains small. The scatter plot and the context must therefore be read together with <InlineMath math="r" />.
 
+### A Curved Pattern with Zero Correlation
+
+Suppose the data satisfy <InlineMath math="y=x^2" /> for <InlineMath math="x=-2,-1,0,1,2" />. You can follow a **U-shaped pattern** in the plot even though the linear correlation is zero.
+
+<ScatterDiagram
+  title="A Curved Relationship in Five Data Pairs"
+  description="The values fall toward the middle and rise again, so one straight line does not describe the pattern."
+  datasets={[{ name: "Data pairs", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
+/>
+
+The coordinate means are <InlineMath math="\bar x=0" /> and <InlineMath math="\bar y=2" />. Products of deviations on the left and right cancel:
+
+<BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
+
+Both variables still vary. The sum of squared horizontal deviations is <InlineMath math="10" />, and the sum of squared vertical deviations is <InlineMath math="14" />. Thus <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. **Zero correlation** here accompanies an exact quadratic relationship.
+
 ## Swapping Variables and Changing Units
 
 Correlation treats the two variables symmetrically. Swapping the horizontal and vertical variables does not change its value:
 
 <BlockMath math="r_{xy}=r_{yx}" />
 
-Changing a positive unit scale also leaves <InlineMath math="r" /> unchanged. Measuring height in centimeters or meters produces the same coefficient. This differs from regression, where one variable is deliberately used to predict the other.
+Changing a **positive unit scale** also leaves <InlineMath math="r" /> unchanged. Measuring height in centimeters or meters produces the same coefficient. This differs from regression, where one variable is deliberately used to predict the other.
 
 ## The Coefficient of Determination
 
@@ -59,7 +75,7 @@ The coefficient of determination satisfies:
 
 ## Correlation and Causal Relationships
 
-A strong correlation does not establish that one variable causes the other. Several explanations can produce the same pattern:
+A **strong correlation** does not establish that one variable causes the other. Several explanations can produce the same pattern:
 
 - the first variable may influence the second.
 - the second may influence the first.
@@ -72,4 +88,4 @@ Use correlation to describe a linear pattern. A causal conclusion needs addition
 
 ## Check Your Interpretation
 
-Suppose a data set has <InlineMath math="r=-0.9" />. This indicates a strong negative linear relationship: larger values of one variable tend to accompany smaller values of the other. It does not, by itself, identify a cause or guarantee that every point lies on the same line.
+Suppose a data set has <InlineMath math="r=-0.9" />. This indicates a **strong negative linear relationship**: larger values of one variable tend to accompany smaller values of the other. It does not, by itself, identify a cause or guarantee that every point lies on the same line.

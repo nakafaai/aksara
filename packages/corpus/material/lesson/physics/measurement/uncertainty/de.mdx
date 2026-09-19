@@ -4,7 +4,7 @@ export const metadata = {
     "Wiederholte Messungen lassen sich mit einem Mittelwert und einer Unsicherheit zusammenfassen, damit das Ergebnis nicht genauer erscheint als die vorhandenen Daten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Messen in der Naturwissenschaft",
 };
 
@@ -30,7 +30,7 @@ Der Durchmesser eines Flaschendeckels wird mit einem Messschieber <InlineMath ma
 | <InlineMath math="d_4" /> | <InlineMath math="3{,}11 \text{ cm}" /> |
 | <InlineMath math="d_5" /> | <InlineMath math="3{,}14 \text{ cm}" /> |
 
-Bei annähernd symmetrisch streuenden Messwerten ohne deutlichen Ausreißer ist der Mittelwert ein geeigneter Wert zur Beschreibung der Messreihe.
+Bei annähernd symmetrisch streuenden Messwerten **ohne deutlichen Ausreißer** ist der Mittelwert ein geeigneter Wert zur Beschreibung der Messreihe.
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
@@ -90,6 +90,10 @@ In der Metrologie beschreiben NIST und JCGM GUM die Standardunsicherheit des Mit
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
+Bei unabhängigen Ablesungen mit derselben Streuung ist die **Standardunsicherheit des mittleren Durchmessers** kleiner als die Standardabweichung der einzelnen Ablesungen:
+
+<BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
+
 Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)=s_x/\sqrt N" /> verwechselt werden.
 
 ## Fläche aus Durchmesserdaten berechnen
@@ -98,7 +102,7 @@ Manchmal wird der Durchmesser gemessen, während die Aufgabe nach der Fläche de
 
 <BlockMath math="A=\frac{1}{4}\pi d^2" />
 
-Da die Fläche vom Durchmesser abhängt, liefert jede Durchmesserablesung einen etwas anderen Flächenwert. Verwende den Rechnerwert von <InlineMath math="\pi" /> und behalte die ungerundeten Flächenwerte während der Rechnung. Die Tabelle zeigt zur Lesbarkeit nur <InlineMath math="4" /> Nachkommastellen.
+Da die Fläche vom Durchmesser abhängt, liefert jede Durchmesserablesung einen etwas anderen Flächenwert. Verwende den Rechnerwert von <InlineMath math="\pi" /> und behalte die **ungerundeten Flächenwerte** während der Rechnung. Die Tabelle zeigt zur Lesbarkeit nur <InlineMath math="4" /> Nachkommastellen.
 
 | Messung | Durchmesser | Daraus berechnete Fläche |
 | :--- | :------- | :--------------------- |
@@ -110,11 +114,11 @@ Da die Fläche vom Durchmesser abhängt, liefert jede Durchmesserablesung einen 
 
 Die mittlere Fläche beträgt:
 
-<BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7{,}7045 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} \bar A&=\frac{1}{5}\sum_{i=1}^{5}A_i \\ &=\frac{38{,}5223661979\ldots}{5}\text{ cm}^2 \\ &\approx7{,}7045\text{ cm}^2 \end{aligned}" />
 
 Die Streuung der Flächenwerte beträgt:
 
-<BlockMath math="s_A=0{,}0808 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} s_A&=\sqrt{\frac{\sum_{i=1}^{5}(A_i-\bar A)^2}{5-1}} \\ &=\sqrt{\frac{0{,}0260975114\ldots}{4}}\text{ cm}^2 \\ &\approx0{,}0808\text{ cm}^2 \end{aligned}" />
 
 Wenn die Stichprobenstreuung in dieser Aufgabe als Unsicherheitskonvention dient, lässt sich die Fläche des Flaschendeckels so angeben.
 
@@ -124,7 +128,7 @@ Die angezeigten Tabellenwerte sind nicht die Recheneingabe. Eine Zwischenrundung
 
 ## Relative Streuung in Prozent
 
-Die relative Streuung setzt die Stichprobenstandardabweichung ins Verhältnis zum Betrag des Mittelwerts.
+Die relative Streuung setzt die **Stichprobenstandardabweichung** ins Verhältnis zum Betrag des Mittelwerts.
 
 <BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
 

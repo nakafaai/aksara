@@ -6,11 +6,11 @@ export const metadata = {
     "Find vector resultants using triangle, parallelogram, polygon, and negative-vector graphical methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vector",
 };
 
-## A Resultant as a Replacement Arrow
+## Adding Vectors Graphically
 
 When several displacements occur in sequence, or several vectors act at one point, their vector sum can be represented by one arrow called the **resultant**. For forces applied at different points, the resultant force describes the net translational effect, but the turning effect must be checked separately through torque.
 
@@ -18,7 +18,7 @@ The graphical method finds the resultant using a scaled drawing. Arrow lengths a
 
 > In the graphical method, the accuracy depends on drawing scale, ruler work, and angle measurement.
 
-## Head to Tail Triangle Method
+### Head to Tail Triangle Method
 
 The triangle method is used to add two vectors. Draw the first vector, then place the tail of the second vector at the tip of the first. The resultant is drawn from the tail of the first vector to the tip of the second.
 
@@ -70,19 +70,29 @@ The triangle method is used to add two vectors. Draw the first vector, then plac
   cameraTarget={[3, -0.7, 0]}
 />
 
-If someone walks <InlineMath math="4\text{ m}" /> east and then <InlineMath math="3\text{ m}" /> north, the resultant is not <InlineMath math="7\text{ m}" /> in one straight direction. It is the slanted arrow from the starting point to the final point.
+Place the **tail of the second vector at the tip of the first**. Coordinate units in the model are metres: the first displacement is <InlineMath math="(4,1)" />, followed by <InlineMath math="(2,3)" />. The endpoint is <InlineMath math="(6,4)" /> because you add the position changes along each axis.
 
-## Parallelogram Method for Two Vectors with One Tail
+<BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-This method fits forces acting on one object from the same point, such as two people pulling a ring with ropes in different directions. In the drawing, both forces start from the same point, so the diagonal shows the combined pull.
+### Parallelogram Method for Two Vectors with One Tail
 
-Steps:
+Two forces acting at one point can be drawn from a **shared tail**. For example, two ropes pull a ring. The copied vectors in the model keep the original arrow lengths and directions. Follow the lower side then the right side, or the left side then the upper side: both paths end at the same point.
 
-- Draw both vectors from the same tail.
-- Copy the first vector at the tip of the second and copy the second vector at the tip of the first.
-- Draw the diagonal from the shared tail to the far corner of the parallelogram.
+<Vector3d
+  title={<>The Parallelogram Diagonal</>}
+  description={<>The purple arrow connects the shared tail to the endpoint of both paths. Vectors a and b remain equal to their parallel copies.</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,-0.4,0]},
+    {from: [0,0,0], to: [2,3,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [-0.5,0,0]},
+    {from: [2,3,0], to: [6,4,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
+  ]}
+  cameraPosition={[3,2,13]}
+  cameraTarget={[3,2,0]}
+/>
 
-## Polygon Method for Many Vectors
+### Polygon Method for Many Vectors
 
 The drawing order may be rearranged as long as <Highlight>each vector keeps its magnitude and direction</Highlight>. The resultant is drawn from the tail of the first chosen vector to the tip of the last vector.
 
@@ -90,12 +100,24 @@ The drawing order may be rearranged as long as <Highlight>each vector keeps its 
 
 If the polygon returns to the starting point, the vector sum is zero. For forces, zero net force means translational balance. Rotational balance additionally requires zero net torque.
 
+For example, add <InlineMath math="\vec{c}=(-6,-4)" /> after the two displacements in the model. The third arrow follows the diagonal back to the starting point. The journey still has a length, but the total displacement is zero.
+
+<BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
 ## Graphical Vector Subtraction
 
-Vector subtraction does not need a new rule. Change subtraction into addition with a negative vector.
+For subtraction, **reverse the vector being subtracted**. With the same pair, the components <InlineMath math="\vec{b}=(2,3)" /> become <InlineMath math="-\vec{b}=(-2,-3)" />.
 
-<BlockMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />
+<BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-To draw <InlineMath math="\vec{a}-\vec{b}" />, draw <InlineMath math="\vec{a}" /> first. Then draw <InlineMath math="-\vec{b}" /> from the tip of <InlineMath math="\vec{a}" />. Vector <InlineMath math="-\vec{b}" /> has the same length as <InlineMath math="\vec{b}" /> but points in the opposite direction.
-
-The final result is still drawn from the tail of the first vector to the tip of the last vector. In this way, vector subtraction follows the same head-to-tail rule.
+<Vector3d
+  title={<>Adding the Negative Vector</>}
+  description={<>From the tip of a at (4,1), move two units left and three units down. The resultant ends at (2,-2).</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
+  ]}
+  cameraPosition={[2,0,10]}
+  cameraTarget={[2,0,0]}
+/>

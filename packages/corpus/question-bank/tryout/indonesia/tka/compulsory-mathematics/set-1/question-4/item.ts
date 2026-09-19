@@ -12,7 +12,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-\\frac35$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,
@@ -37,7 +37,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-\\frac35$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,
@@ -62,7 +62,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$-\\frac35$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,

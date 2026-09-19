@@ -4,13 +4,13 @@ export const metadata = {
     "Den Betrag der Resultierenden zweier Vektoren mit bekanntem Zwischenwinkel mithilfe des Kosinussatzes bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
 ## Wenn zwei Vektoren einen Winkel bilden
 
-Zeigen zwei Vektoren in dieselbe Richtung, werden ihre Beträge einfach addiert. Zeigen sie in entgegengesetzte Richtungen, ergibt sich die Differenz ihrer Beträge. Viele Kräfte und Verschiebungen <Highlight>schließen jedoch einen anderen Winkel ein</Highlight>. Dann lässt sich der Betrag der Resultierenden mit dem **Kosinussatz** bestimmen.
+Bei zwei gleichgerichteten Vektoren addierst du die Beträge. Bei entgegengesetzten Richtungen nimmst du den Betrag ihrer Differenz. Viele Kräfte und Verschiebungen <Highlight>schließen jedoch einen anderen Winkel ein</Highlight>. Dann lässt sich der Betrag der Resultierenden mit dem **Kosinussatz** bestimmen.
 
 Der Kosinussatz eignet sich, wenn die Beträge der beiden Vektoren <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> sowie ihr Zwischenwinkel <InlineMath math="\theta" /> bekannt sind.
 
@@ -21,6 +21,10 @@ Der Kosinussatz eignet sich, wenn die Beträge der beiden Vektoren <InlineMath m
 ## Der Kosinus in der Dreiecksformel
 
 Der Kosinussatz kommt ins Spiel, weil die beiden Vektoren und ihre Resultierende ein Dreieck mit zwei bekannten Seiten bilden. Bei einem kleinen Zwischenwinkel verstärken sich die Vektoren stark. Nähert sich der Winkel <InlineMath math="180^\circ" />, heben sich ihre Wirkungen zunehmend auf.
+
+Legst du die Vektoren **Spitze an Fußpunkt**, ist der Innenwinkel des Dreiecks der Ergänzungswinkel des Zwischenwinkels. Deshalb wird aus dem Minuszeichen im Kosinussatz des Dreiecks ein Pluszeichen in der Formel für die Resultierende.
+
+<BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
 Die folgende Tabelle zeigt, wie sich <InlineMath math="\cos\theta" /> mit dem Winkel <InlineMath math="\theta" /> ändert:
 
@@ -36,7 +40,18 @@ Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des 
 
 An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
 
-Einsetzen in den Kosinussatz ergibt:
+<Vector3d
+  title="Resultierendendreieck zweier Kräfte"
+  description="Der violette Pfeil ist die Resultierende. Der orange Pfeil beginnt an der Spitze des türkisfarbenen Pfeils. Der Innenwinkel ergänzt deshalb den Zwischenwinkel der Kräfte."
+  vectors={[
+    {from: [0, 0, 0], to: [10, 0, 0], color: "#0d9488", label: <InlineMath math="\vec{A}" />, labelProgress: 0.5, labelOffset: [0, -1, 0]},
+    {from: [10, 0, 0], to: [14, 4 * Math.sqrt(3), 0], color: "#d97706", label: <InlineMath math="\vec{B}" />, labelProgress: 0.5, labelOffset: [1, 0, 0]},
+    {from: [0, 0, 0], to: [14, 4 * Math.sqrt(3), 0], color: "#7c3aed", label: <InlineMath math="\vec{R}" />, labelProgress: 0.5, labelOffset: [-1, 1, 0]}
+  ]}
+  cameraPosition={[7, 3, 24]}
+/>
+
+Setze **beide Kraftbeträge und den Zwischenwinkel** ein. Die Kraftwerte werden in Newton eingesetzt:
 
 <BlockMath math="\begin{aligned}
 R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
@@ -50,7 +65,7 @@ Die Resultierende ist kleiner als <InlineMath math="18\text{ N}" />, weil die be
 
 ## Überprüfung mit Grenzfällen
 
-Grenzfälle zeigen, ob ein Ergebnis plausibel ist. Für <InlineMath math="0^\circ" /> muss die Formel <InlineMath math="A+B" /> liefern.
+**Grenzfälle** zeigen, ob ein Ergebnis plausibel ist. Für <InlineMath math="0^\circ" /> muss die Formel <InlineMath math="A+B" /> liefern.
 
 <BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2+2AB} \\ &amp;=\sqrt{(A+B)^2} \\ &amp;=A+B \end{aligned}" />
 
@@ -66,7 +81,7 @@ Der Kosinussatz ist geeignet, wenn:
 
 - genau zwei Vektoren vorliegen.
 - die Beträge beider Vektoren bekannt sind.
-- der Zwischenwinkel bekannt ist.
+- der **Zwischenwinkel** bekannt ist.
 - der Betrag der Resultierenden gesucht ist.
 
 Bei mehr als zwei Vektoren werden alle Vektoren in Koordinatenkomponenten zerlegt und die <InlineMath math="x" />- sowie <InlineMath math="y" />-Komponenten jeweils addiert. Der Kosinussatz lässt sich direkt anwenden, wenn genau zwei Vektorbeträge und ihr Zwischenwinkel bekannt sind.

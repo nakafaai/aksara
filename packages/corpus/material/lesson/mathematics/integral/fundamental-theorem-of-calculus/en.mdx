@@ -3,7 +3,7 @@ export const metadata = {
     description: "Connect derivatives, accumulation functions, and definite integrals through both parts of the Fundamental Theorem of Calculus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integrals",
 };
 
@@ -17,7 +17,7 @@ Assume <InlineMath math="f" /> is continuous on the interval being considered. P
 
 Part One states that accumulating a continuous rate and then <Highlight>differentiating returns the original rate</Highlight>:
 
-<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ &amp;\implies F'(x) \\ &amp;= f(x) \end{aligned}" />
+<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ F'(x)&amp;= f(x) \end{aligned}" />
 
 This means that the derivative of a function defined as an integral is the function inside the integral itself.
 
@@ -33,7 +33,15 @@ By FTC Part One, the derivative is obtained by evaluating the integrand at the v
 
 <BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
 
-The result is the original integrand evaluated at the upper limit.
+The square-root integrand is defined for <InlineMath math="t\ge-2" /> and continuous there. The derivative formula applies in the **interior of the domain**, where <InlineMath math="x>-2" />.
+
+### When the Upper Limit Is a Function
+
+If the upper limit is <InlineMath math="x^2" />, the rate at which this limit changes also affects the derivative. Apply the **chain rule** after evaluating the integrand at the upper limit:
+
+<BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
+
+The factor <InlineMath math="2x" /> is the derivative of the upper limit <InlineMath math="x^2" />. At <InlineMath math="x=0" />, that upper limit has zero rate of change, so the accumulation function also has zero derivative despite a positive integrand.
 
 ## Evaluating Integrals with Antiderivatives
 

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Bedakan gabungan, irisan, kejadian saling bebas, dan kejadian tidak saling bebas, lalu pilih aturan peluang yang tepat.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -11,13 +11,13 @@ export const metadata = {
 
 Banyak soal peluang menggabungkan **dua atau lebih kejadian**. Sebuah dadu dan koin dapat dilempar bersama, atau dua kartu dapat diambil dari satu set kartu. Situasi seperti ini melibatkan kejadian majemuk.
 
-**Kejadian majemuk** menggabungkan dua atau lebih kejadian sederhana dalam satu model peluang. Misalnya, kita dapat mempelajari satu syarat yang melibatkan hasil dadu dan hasil koin sekaligus.
+**Kejadian majemuk** menggabungkan dua atau lebih kejadian dalam satu model peluang. Misalnya, kita dapat mempelajari satu syarat yang melibatkan hasil dadu dan hasil koin sekaligus.
 
-Bayangkan kamu melempar sebuah dadu dan sebuah koin. Kejadian sederhana dapat berfokus pada dadu saja atau koin saja. Kejadian majemuk mempertimbangkan keduanya, misalnya “dadu menunjukkan <InlineMath math="3" /> DAN koin menunjukkan sisi gambar.”
+Bayangkan kamu melempar sebuah dadu dan sebuah koin. Satu kejadian dapat berfokus pada dadu saja atau koin saja. Kejadian majemuk mempertimbangkan keduanya, misalnya “dadu menunjukkan <InlineMath math="3" /> DAN koin menunjukkan sisi gambar.”
 
 ## Jenis Kejadian Majemuk
 
-Dua kejadian bisa berbagi hasil atau saling meniadakan, dan perbedaan itu menentukan rumus yang dipakai. Memeriksa satu hasil yang termasuk kedua kejadian biasanya cukup untuk membedakan kedua kasus itu sebelum kamu menghitung.
+Dua kejadian bisa berbagi hasil atau saling meniadakan, dan perbedaan itu menentukan rumus yang dipakai. Satu hasil bersama membuktikan adanya irisan. Untuk membuktikan kejadian saling lepas, kamu harus menunjukkan bahwa **tidak ada hasil bersama**. Kebebasan kejadian menjawab pertanyaan berbeda, yaitu apakah informasi tentang satu kejadian mengubah peluang kejadian lain.
 
 ### Kejadian Saling Lepas
 
@@ -31,7 +31,7 @@ Untuk kejadian saling lepas, rumus peluangnya adalah:
 
 **Contoh Perhitungan:**
 
-Sebuah dadu dilempar sekali. Tentukan peluang hasilnya genap atau hasilnya <InlineMath math="1" /> atau <InlineMath math="3" />.
+Sebuah dadu adil dilempar sekali. Tentukan peluang hasilnya genap atau hasilnya <InlineMath math="1" /> atau <InlineMath math="3" />.
 
 **Penyelesaian:**
 
@@ -75,6 +75,13 @@ Total kartu <InlineMath math="= 52" />
 
 Irisan (kartu merah dan bergambar): <InlineMath math="6 \text{ kartu}" /> (Jack, Queen, King dari Hati dan Wajik)
 
+| Warna | Bergambar | Bukan bergambar | Total |
+| --- | --- | --- | --- |
+| Merah | 6 | 20 | 26 |
+| Hitam | 6 | 20 | 26 |
+| Total | 12 | 40 | 52 |
+
+
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
@@ -94,7 +101,7 @@ Rumus untuk kejadian saling bebas:
 
 **Contoh Perhitungan:**
 
-Dua dadu adil dilempar. Tentukan peluang dadu pertama menunjukkan <InlineMath math="3" /> dan dadu kedua menunjukkan bilangan genap.
+Dua dadu adil dilempar secara independen. Tentukan peluang dadu pertama menunjukkan <InlineMath math="3" /> dan dadu kedua menunjukkan bilangan genap.
 
 **Penyelesaian:**
 
@@ -111,11 +118,11 @@ Karena hasil dadu pertama tidak memengaruhi hasil dadu kedua, kedua kejadian ter
 
 ### Kejadian Tidak Saling Bebas
 
-Dua kejadian **tidak saling bebas** jika hasil kejadian pertama mengubah peluang kejadian berikutnya. Kondisi pada tahap kedua tidak lagi sama dengan kondisi awal.
+Dua kejadian **tidak saling bebas** jika mengetahui bahwa satu kejadian terjadi mengubah peluang kejadian lain. Perubahan informasi ini tidak harus mengikuti urutan waktu dan tidak dengan sendirinya membuktikan hubungan sebab-akibat.
 
 Salah satu penyebab yang umum adalah pengambilan **tanpa pengembalian**. Benda yang terambil tidak dikembalikan, sehingga jumlah seluruh benda dan mungkin juga jumlah hasil yang diinginkan berubah.
 
-Rumus untuk kejadian tidak saling bebas:
+Aturan perkalian berikut berlaku ketika <InlineMath math="P(A)>0" />, baik untuk kejadian saling bebas maupun tidak saling bebas:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
 
@@ -130,7 +137,7 @@ Dalam sebuah kotak terdapat <InlineMath math="8 \text{ bola}" /> biru dan <Inlin
 Total bola awal adalah <InlineMath math="8 + 4 = 12 \text{ bola}" />
 
 - Kejadian <InlineMath math="A" /> (bola pertama biru): <InlineMath math="8 \text{ bola}" /> biru dari <InlineMath math="12 \text{ bola}" /> total
-- Kejadian <InlineMath math="B" /> (bola kedua biru setelah <InlineMath math="A" />): Karena <InlineMath math="1 \text{ bola}" /> biru sudah diambil, tersisa <InlineMath math="7 \text{ bola}" /> biru dari <InlineMath math="11 \text{ bola}" /> total
+- Kejadian <InlineMath math="B" /> adalah bola kedua biru. Dengan syarat <InlineMath math="A" />: Karena <InlineMath math="1 \text{ bola}" /> biru sudah diambil, tersisa <InlineMath math="7 \text{ bola}" /> biru dari <InlineMath math="11 \text{ bola}" /> total
 
 Karena pengambilan tanpa pengembalian, kondisi berubah setelah pengambilan pertama, sehingga ini adalah kejadian tidak saling bebas.
 
@@ -142,19 +149,22 @@ Karena pengambilan tanpa pengembalian, kondisi berubah setelah pengambilan perta
 
 ## Perhitungan Gabungan dan Irisan
 
-Gabungan dan irisan menjawab pertanyaan berbeda tentang dua kejadian yang sama. Pada gabungan, hasil yang termasuk salah satu kejadian ikut dihitung, sedangkan irisan hanya menyimpan hasil yang termasuk keduanya.
-
+Gabungan dan irisan menjawab pertanyaan berbeda tentang dua kejadian yang sama. Pada gabungan, hasil yang termasuk salah satu kejadian ikut dihitung, sedangkan irisan hanya menyimpan **hasil yang termasuk keduanya**.
 ### Operasi Gabungan
 
 Untuk mencari peluang “kejadian <InlineMath math="A" /> **ATAU** kejadian <InlineMath math="B" />,” gunakan gabungan. Kata “atau” bersifat inklusif: sedikitnya satu kejadian terjadi, dan hasil pada irisan juga termasuk.
 
-Dalam pelemparan dadu, jika kita ingin mencari peluang munculnya angka ganjil atau angka prima, kita perlu mempertimbangkan apakah kedua kejadian saling lepas atau tidak.
+Pada satu lemparan dadu adil, bilangan ganjil adalah <InlineMath math="\{1,3,5\}" /> dan bilangan prima adalah <InlineMath math="\{2,3,5\}" />. Gabungannya memuat empat hasil berbeda.
+
+<BlockMath math="A\cup B=\{1,2,3,5\},\qquad P(A\cup B)=\frac{4}{6}=\frac{2}{3}" />
 
 ### Operasi Irisan
 
 Untuk mencari peluang “kejadian <InlineMath math="A" /> **DAN** kejadian <InlineMath math="B" />,” gunakan irisan. Setiap hasil yang dihitung harus memenuhi kedua syarat.
 
-Dalam konteks pengambilan kartu, jika kita mencari peluang "mengambil kartu merah DAN kartu bernomor genap", kita harus menghitung kartu yang memenuhi kedua kriteria tersebut.
+Dalam set kartu standar, kartu merah bernomor genap memiliki nilai <InlineMath math="2,4,6,8,10" /> pada dua jenis merah, Hati dan Wajik. Ada <InlineMath math="5\times2=10" /> kartu yang memenuhi **kedua syarat sekaligus**.
+
+<BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
 
 ## Strategi Penyelesaian Masalah
 
@@ -162,14 +172,14 @@ Awali soal peluang majemuk dengan **mengidentifikasi hubungan antarkejadian**. K
 
 1. **"atau"** menunjukkan operasi gabungan
 2. **"dan"** menunjukkan operasi irisan
-3. **"tanpa pengembalian"** menunjukkan kejadian tidak saling bebas
+3. **"tanpa pengembalian"** mengharuskan kita menghitung ulang peluang bersyarat
 4. **"dengan pengembalian"** sering mempertahankan kebebasan, tetapi pastikan bahwa satu hasil benar-benar tidak mengubah peluang kejadian lainnya
 
 Kemudian periksa <Highlight>apakah kedua kejadian dapat terjadi bersama</Highlight>. Pilih rumus setelah dua pertanyaan itu terjawab, lalu pastikan tidak ada irisan yang terhitung dua kali.
 
 ## Latihan
 
-Coba kerjakan setiap soal sebelum membuka pembahasannya. Namai kejadiannya, tentukan apakah soal meminta gabungan atau irisan, lalu jelaskan apakah kejadiannya saling lepas, saling bebas, atau tidak saling bebas.
+Coba kerjakan setiap soal sebelum membuka pembahasannya. Namai kejadiannya, tentukan apakah soal meminta **gabungan atau irisan**, lalu jelaskan apakah kejadiannya saling lepas, saling bebas, atau tidak saling bebas.
 
 1. Dalam pelemparan sebuah dadu, tentukan peluang munculnya mata dadu bilangan prima atau mata dadu bilangan ganjil.
 
@@ -178,70 +188,69 @@ Coba kerjakan setiap soal sebelum membuka pembahasannya. Namai kejadiannya, tent
 3. Dua dadu dilempar secara bersamaan. Tentukan peluang jumlah mata dadu yang muncul adalah <InlineMath math="7" /> atau <InlineMath math="11" />.
 
 4. Dari sekotak kartu bridge standar, satu kartu diambil secara acak. Hitunglah peluang terambilnya kartu As atau kartu berwarna hitam.
-
 ### Pembahasan
 
-1. **Penyelesaian:**
+**Soal 1**
 
-   Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, sehingga <InlineMath math="n(S) = 6" />
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, sehingga <InlineMath math="n(S) = 6" />
 
-   - Kejadian <InlineMath math="A" /> (bilangan prima): <InlineMath math="A = \{2, 3, 5\}" />, sehingga <InlineMath math="n(A) = 3" />
-   - Kejadian <InlineMath math="B" /> (bilangan ganjil): <InlineMath math="B = \{1, 3, 5\}" />, sehingga <InlineMath math="n(B) = 3" />
+- Kejadian <InlineMath math="A" /> (bilangan prima): <InlineMath math="A = \{2, 3, 5\}" />, sehingga <InlineMath math="n(A) = 3" />
+- Kejadian <InlineMath math="B" /> (bilangan ganjil): <InlineMath math="B = \{1, 3, 5\}" />, sehingga <InlineMath math="n(B) = 3" />
 
-   Irisan <InlineMath math="A" /> dan <InlineMath math="B" />: <InlineMath math="A \cap B = \{3, 5\}" />, sehingga <InlineMath math="n(A \cap B) = 2" />
+Irisan <InlineMath math="A" /> dan <InlineMath math="B" />: <InlineMath math="A \cap B = \{3, 5\}" />, sehingga <InlineMath math="n(A \cap B) = 2" />
 
-   Karena ada irisan, maka kejadian tidak saling lepas. Menggunakan rumus:
+Karena ada irisan, maka kejadian tidak saling lepas. Menggunakan rumus:
 
-   <MathContainer>
-   <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
-   <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
-   <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
-   <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
-   <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} = \frac{2}{3}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+<BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} = \frac{2}{3}" />
+</MathContainer>
 
-2. **Penyelesaian:**
+**Soal 2**
 
-   Total bola adalah <InlineMath math="6 + 4 = 10 \text{ bola}" />
+Total bola adalah <InlineMath math="6 + 4 = 10 \text{ bola}" />
 
-   - Kejadian <InlineMath math="A" /> (bola pertama merah): <InlineMath math="6 \text{ bola}" /> merah dari <InlineMath math="10 \text{ bola}" /> total
-   - Kejadian <InlineMath math="B" /> (bola kedua merah setelah <InlineMath math="A" />): Setelah <InlineMath math="1 \text{ bola}" /> merah diambil, tersisa <InlineMath math="5 \text{ bola}" /> merah dari <InlineMath math="9 \text{ bola}" /> total
+- Kejadian <InlineMath math="A" /> (bola pertama merah): <InlineMath math="6 \text{ bola}" /> merah dari <InlineMath math="10 \text{ bola}" /> total
+- Kejadian <InlineMath math="B" /> adalah bola kedua merah. Dengan syarat <InlineMath math="A" />: Setelah <InlineMath math="1 \text{ bola}" /> merah diambil, tersisa <InlineMath math="5 \text{ bola}" /> merah dari <InlineMath math="9 \text{ bola}" /> total
 
-   Karena pengambilan **tanpa pengembalian**, kondisi berubah setelah pengambilan pertama, sehingga ini adalah kejadian tidak saling bebas.
+Karena pengambilan **tanpa pengembalian**, kondisi berubah setelah pengambilan pertama, sehingga ini adalah kejadian tidak saling bebas.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{6}{10} = \frac{3}{5}" />
-   <BlockMath math="P(B|A) = \frac{5}{9}" />
-   <BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{3}{5} \times \frac{5}{9} = \frac{15}{45} = \frac{1}{3}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{6}{10} = \frac{3}{5}" />
+<BlockMath math="P(B|A) = \frac{5}{9}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{3}{5} \times \frac{5}{9} = \frac{15}{45} = \frac{1}{3}" />
+</MathContainer>
 
-3. **Penyelesaian:**
+**Soal 3**
 
-   Total kemungkinan adalah <InlineMath math="6 \times 6 = 36" />
+Total kemungkinan adalah <InlineMath math="6 \times 6 = 36" />
 
-   - Kejadian <InlineMath math="A" /> (jumlah adalah <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ cara}" />
-   - Kejadian <InlineMath math="B" /> (jumlah adalah <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ cara}" />
+- Kejadian <InlineMath math="A" /> (jumlah adalah <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ cara}" />
+- Kejadian <InlineMath math="B" /> (jumlah adalah <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ cara}" />
 
-   Kedua kejadian saling lepas karena tidak mungkin jumlah dadu sekaligus <InlineMath math="7" /> dan <InlineMath math="11" />.
+Kedua kejadian saling lepas karena tidak mungkin jumlah dadu sekaligus <InlineMath math="7" /> dan <InlineMath math="11" />.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{6}{36} = \frac{1}{6}" />
-   <BlockMath math="P(B) = \frac{2}{36} = \frac{1}{18}" />
-   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{1}{18} = \frac{3}{18} + \frac{1}{18} = \frac{4}{18} = \frac{2}{9}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{6}{36} = \frac{1}{6}" />
+<BlockMath math="P(B) = \frac{2}{36} = \frac{1}{18}" />
+<BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{1}{18} = \frac{3}{18} + \frac{1}{18} = \frac{4}{18} = \frac{2}{9}" />
+</MathContainer>
 
-4. **Penyelesaian:**
+**Soal 4**
 
-   Total kartu <InlineMath math="= 52" />
+Total kartu <InlineMath math="= 52" />
 
-   - Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu As}" />
-   - Kejadian <InlineMath math="B" /> (kartu hitam): <InlineMath math="26 \text{ kartu}" /> (Spade dan Club)
+- Kejadian <InlineMath math="A" /> (kartu As): <InlineMath math="4 \text{ kartu As}" />
+- Kejadian <InlineMath math="B" /> (kartu hitam): <InlineMath math="26 \text{ kartu}" /> (Spade dan Club)
 
-   Irisan (As hitam): As Spade dan As Club adalah <InlineMath math="2 \text{ kartu}" />
+Irisan (As hitam): As Spade dan As Club adalah <InlineMath math="2 \text{ kartu}" />
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
-   <BlockMath math="P(A \cap B) = \frac{2}{52} = \frac{1}{26}" />
-   <BlockMath math="P(A \cup B) = \frac{1}{13} + \frac{1}{2} - \frac{1}{26} = \frac{2}{26} + \frac{13}{26} - \frac{1}{26} = \frac{14}{26} = \frac{7}{13}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = \frac{2}{52} = \frac{1}{26}" />
+<BlockMath math="P(A \cup B) = \frac{1}{13} + \frac{1}{2} - \frac{1}{26} = \frac{2}{26} + \frac{13}{26} - \frac{1}{26} = \frac{14}{26} = \frac{7}{13}" />
+</MathContainer>

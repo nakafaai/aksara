@@ -3,7 +3,7 @@ export const metadata = {
   description: "Erstelle Wahrscheinlichkeitsverteilungen für einen und zwei Würfel und berechne Ereigniswahrscheinlichkeiten aus den Ergebnismengen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Wahrscheinlichkeit",
 };
 
@@ -13,17 +13,16 @@ Eine Wahrscheinlichkeitsverteilung nennt die möglichen Werte einer Zufallsgrö�
 
 ## Die Ergebnismenge aller möglichen Ergebnisse
 
-Die Ergebnismenge enthält alle Elementarereignisse, die in einem Zufallsversuch _auftreten können_. Sie wird mit dem Symbol <InlineMath math="\Omega" /> (Omega) bezeichnet.
+Die Ergebnismenge enthält **alle Elementarereignisse**, die in einem Zufallsversuch _auftreten können_. Sie wird mit dem Symbol <InlineMath math="\Omega" /> (Omega) bezeichnet.
 
 Bei einem Wurf mit einem gewöhnlichen <InlineMath math="6" />-seitigen Würfel sind <InlineMath math="1, 2, 3, 4, 5," /> und <InlineMath math="6" /> möglich. Zusammen bilden diese Ergebnisse die Ergebnismenge:
 
 <BlockMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />
 
 Hier gibt es insgesamt <InlineMath math="6" /> mögliche Ergebnisse.
-
 ## Ereignisse und ihre Wahrscheinlichkeiten
 
-Ein Ereignis wählt einen Teil der Ergebnismenge aus. Dieser Ausschnitt kann ein einzelnes Ergebnis oder mehrere Ergebnisse enthalten, und seine Wahrscheinlichkeit misst, wie groß der ausgewählte Teil im Vergleich zur gesamten Ergebnismenge ist.
+Ein Ereignis ist eine **Menge von Ergebnissen, die eine Bedingung erfüllen**. Seine Wahrscheinlichkeit ist die Summe der Wahrscheinlichkeiten dieser Ergebnisse. Sind alle Elementarereignisse gleich wahrscheinlich, kannst du die Anzahl der günstigen Ergebnisse durch die Gesamtzahl der Ergebnisse teilen.
 
 ### Ereignis
 
@@ -39,7 +38,7 @@ Das Ereignis <InlineMath math="A" /> enthält <InlineMath math="3" /> Ergebnisse
 
 ### Berechnung der Wahrscheinlichkeit eines Ereignisses
 
-Die Wahrscheinlichkeit misst, wie wahrscheinlich ein Ereignis eintritt.
+Die Wahrscheinlichkeit misst, **wie wahrscheinlich ein Ereignis eintritt**.
 
 Sind alle Elementarereignisse gleich wahrscheinlich, wird die Anzahl der günstigen Ergebnisse durch die Anzahl aller Ergebnisse geteilt:
 
@@ -60,10 +59,9 @@ Damit beträgt die Wahrscheinlichkeit des Ereignisses „gerade Zahl“ (Ereigni
 <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
 
 Das Ereignis hat also die Wahrscheinlichkeit <InlineMath math="1/2" />, also <InlineMath math="50\%" />.
-
 ## Regeln für Wahrscheinlichkeitsverteilungen
 
-Eine gültige Wahrscheinlichkeitsverteilung erfüllt zwei Regeln:
+Eine gültige Wahrscheinlichkeitsverteilung erfüllt **zwei Regeln**:
 
 1.  Die Wahrscheinlichkeit jedes Wertes (<InlineMath math="P(x)" />) liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />.
 
@@ -72,10 +70,9 @@ Eine gültige Wahrscheinlichkeitsverteilung erfüllt zwei Regeln:
 2.  Die Wahrscheinlichkeiten aller möglichen Werte ergeben zusammen genau <InlineMath math="1" />.
 
     <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
-
 ## Einen Würfel werfen
 
-Bei einem fairen Würfel hat jede Seite dieselbe Wahrscheinlichkeit. Die Verteilung lautet:
+Bei einem fairen Würfel hat jede Seite **dieselbe Wahrscheinlichkeit**. Die Verteilung lautet:
 
 | Ergebnis <InlineMath math="x" /> | Wahrscheinlichkeit <InlineMath math="P(x)" /> |
 | :--------------- | :------------------------------------- |
@@ -86,15 +83,14 @@ Bei einem fairen Würfel hat jede Seite dieselbe Wahrscheinlichkeit. Die Verteil
 | <InlineMath math="5" /> | <InlineMath math="1/6" /> |
 | <InlineMath math="6" /> | <InlineMath math="1/6" /> |
 
-**Warum sind sie alle <InlineMath math="1/6" />?**
+Warum sind sie alle <InlineMath math="1/6" />?
 
 Der Würfel hat <InlineMath math="6" /> gleich wahrscheinliche Seiten, daher besitzt jede Seite die Wahrscheinlichkeit <InlineMath math="1/6" />. Ihre Summe ist <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" /> und erfüllt damit die zweite Regel.
-
 ## Zwei Würfel werfen
 
 Nun werfen wir **einen roten und einen weißen Würfel**. Wird das Ergebnis als geordnetes Paar notiert, gibt es <InlineMath math="36" /> mögliche Ergebnisse.
 
-**Warum <InlineMath math="36" />?**
+Warum <InlineMath math="36" />?
 
 Der rote Würfel hat <InlineMath math="6" /> Möglichkeiten und der weiße ebenfalls <InlineMath math="6" />. Daraus entstehen <InlineMath math="6 \times 6 = 36" /> geordnete Paare.
 
@@ -113,7 +109,7 @@ Da die Würfel verschiedene Farben haben, unterscheidet sich eine rote <InlineMa
 
 ### Wahrscheinlichkeitsverteilung für die Summe zweier Würfel
 
-Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <InlineMath math="1+1=2" /> und ihr größter Wert <InlineMath math="6+6=12" />. Die Summen entstehen aus unterschiedlich vielen geordneten Paaren und haben daher verschiedene Wahrscheinlichkeiten:
+Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <InlineMath math="1+1=2" /> und ihr größter Wert <InlineMath math="6+6=12" />. Die Summen entstehen aus **unterschiedlich vielen geordneten Paaren** und haben daher verschiedene Wahrscheinlichkeiten:
 
 | Summe der Zahlen <InlineMath math="j" /> | Mögliche Paare | Anzahl der Paare | Wahrscheinlichkeit <InlineMath math="P(j)" /> |
 | :------------------------------------- | :---------------------------------------------- | :-------- | :------------------------------------- |
@@ -131,6 +127,13 @@ Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <
 
 Die Summe <InlineMath math="7" /> ist am wahrscheinlichsten, weil <InlineMath math="6" /> geordnete Paare zu ihr führen. Die Summen <InlineMath math="2" /> und <InlineMath math="12" /> entstehen dagegen jeweils nur aus einem Paar. Dieser Unterschied ist entscheidend, wenn ein Spiel oder Modell die Summe beider Würfel verwendet.
 
+<BarChart
+  title="Ergebnisanzahl für jede Würfelsumme"
+  description="Der mittlere Balken ist am höchsten, weil mehr geordnete Paare diese Summe ergeben."
+  data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
+  chartConfig={{ value: { label: "Anzahl der Paare", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Anzahl der Paare"
+/>
 ## Ergebnisse und Risiken vergleichen
 
 Eine Wahrscheinlichkeitsverteilung ordnet jedem möglichen Ergebnis eine Wahrscheinlichkeit zu. Diese Zahlen erlauben mehrere konkrete Vergleiche:
@@ -144,11 +147,10 @@ Jede Verwendung beruht auf derselben Struktur: einer festgelegten Ergebnismenge 
 
 ## Übung
 
-Drei faire Münzen werden geworfen. Die Zufallsgröße <InlineMath math="X" /> gibt die Anzahl der geworfenen Köpfe an. Stelle die Wahrscheinlichkeitsverteilung von <InlineMath math="X" /> auf, prüfe ihre Gültigkeit und bestimme <InlineMath math="P(X \geq 2)" />.
-
+Drei faire Münzen werden geworfen. Die Zufallsgröße <InlineMath math="X" /> gibt die **Anzahl der geworfenen Köpfe** an. Stelle die Wahrscheinlichkeitsverteilung von <InlineMath math="X" /> auf, prüfe ihre Gültigkeit und bestimme <InlineMath math="P(X \geq 2)" />.
 ### Ausführliche Lösung
 
-Wir codieren Kopf mit <InlineMath math="1" /> und Zahl mit <InlineMath math="0" />. Die drei Würfe erzeugen dann <InlineMath math="2^3=8" /> gleich wahrscheinliche geordnete Tripel:
+Wir codieren Kopf mit <InlineMath math="1" /> und Zahl mit <InlineMath math="0" />. Die drei Würfe erzeugen dann <InlineMath math="2^3=8" /> **gleich wahrscheinliche geordnete Tripel**:
 
 <BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
 

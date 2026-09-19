@@ -3,7 +3,7 @@ export const metadata = {
    description: "Berechne relative Häufigkeiten, vergleiche Gruppen unterschiedlicher Größe und interpretiere Anteile als Brüche, Dezimalzahlen und Prozentsätze.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
    subject: "Statistik",
 };
 
@@ -22,11 +22,17 @@ Relative Häufigkeiten ermöglichen zwei Arten von Vergleichen:
 1. **Anteile innerhalb einer Gruppe vergleichen**: So lässt sich erkennen, ob Apple oder Samsung in derselben Befragung den größeren Anteil hat.
 2. **Unterschiedlich große Gruppen fair vergleichen**: Der Anteil der Mathematikinteressierten in einer Gruppe mit <InlineMath math="30 \text{ Personen}" /> kann direkt mit dem Anteil in einer Gruppe mit <InlineMath math="40 \text{ Personen}" /> verglichen werden. Absolute Zahlen allein wären dabei irreführend.
 
+Wenn in einer Gruppe <InlineMath math="12" /> von <InlineMath math="30" /> Personen und in einer anderen <InlineMath math="16" /> von <InlineMath math="40" /> Mathematik mögen, sind die Anteile trotz unterschiedlicher Anzahlen gleich:
+
+<BlockMath math="\frac{12}{30}=\frac{16}{40}=\frac25=0{,}4=40\%" />
+
 ## Relative Häufigkeitsformel
 
 Die relative Häufigkeit ist der Quotient aus Gruppenhäufigkeit und Gesamthäufigkeit:
 
-<BlockMath math="\begin{aligned} &amp;\text{Relative Häufigkeit} \\ &amp;=\frac{\text{Gruppenhäufigkeit}}{\text{Gesamthäufigkeit}} \end{aligned}" />
+Sei <InlineMath math="f" /> die Gruppenhäufigkeit, <InlineMath math="n" /> die Gesamtzahl der Beobachtungen und <InlineMath math="h" /> die relative Häufigkeit. Der **Nenner zählt alle Beobachtungen**:
+
+<BlockMath math="h=\frac{f}{n}" />
 
 Dabei bedeuten:
 
@@ -52,31 +58,13 @@ Betrachten wir die Smartphone-Marken von <InlineMath math="30 \text{ Schülerinn
 
 Die Gesamthäufigkeit beträgt <InlineMath math="12 + 10 + 8 = 30" />.
 
-Berechnen wir nun die relative Häufigkeit für jede Marke:
+Berechne jeden Prozentsatz direkt aus dem Bruch, damit eine vorher gerundete Dezimalzahl das Ergebnis nicht verändert. **Runde erst im letzten Schritt** auf die gewünschte Genauigkeit. Dabei bezeichnet <InlineMath math="p" /> den Prozentsatz.
 
-1. **Apple**:
-
-   <BlockMath math="\text{Relative Häufigkeit Apple} = \frac{12}{30}" />
-
-   Die relative Häufigkeit von Apple beträgt <InlineMath math="0{,}4" />.
-
-   In Prozent: <InlineMath math="0{,}4 \times 100\% = 40\%" />.
-
-2. **Samsung**:
-
-   <BlockMath math="\text{Relative Häufigkeit Samsung} = \frac{10}{30}" />
-
-   Die relative Häufigkeit von Samsung beträgt <InlineMath math="0{,}333\ldots" />. Auf zwei Dezimalstellen gerundet ist das <InlineMath math="0{,}33" />.
-
-   In Prozent: <InlineMath math="0{,}33 \times 100\% = 33\%" />.
-
-3. **Xiaomi**:
-
-   <BlockMath math="\text{Relative Häufigkeit Xiaomi} = \frac{8}{30}" />
-
-   Die relative Häufigkeit von Xiaomi beträgt <InlineMath math="0{,}266\ldots" />. Auf zwei Dezimalstellen gerundet ist das <InlineMath math="0{,}27" />.
-
-   In Prozent: <InlineMath math="0{,}27 \times 100\% = 27\%" />.
+<MathContainer>
+  <BlockMath math="h_{\text{Apple}}=\frac{12}{30}=0{,}4,\quad p_{\text{Apple}}=\frac{12}{30}\cdot100\%=40\%" />
+  <BlockMath math="h_{\text{Samsung}}=\frac{10}{30}=\frac13,\quad p_{\text{Samsung}}=\frac13\cdot100\%\approx33\%" />
+  <BlockMath math="h_{\text{Xiaomi}}=\frac8{30}=\frac4{15},\quad p_{\text{Xiaomi}}=\frac4{15}\cdot100\%\approx27\%" />
+</MathContainer>
 
 **Relative Häufigkeitstabelle:**
 

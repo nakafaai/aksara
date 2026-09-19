@@ -3,7 +3,7 @@ export const metadata = {
    description: "Hitung banyak susunan dengan mengalikan pilihan yang sah pada setiap langkah, lalu periksa jumlah susunan melalui tabel atau diagram pohon.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -15,7 +15,7 @@ Formulir dengan beberapa kolom mengikuti pola yang sama. Setiap kolom menjadi sa
 
 ## Mendaftar Pilihan dalam Tabel
 
-Metode tabel mencantumkan setiap kombinasi. Baris mewakili pilihan dari satu kategori dan kolom mewakili pilihan dari kategori lain.
+Metode tabel mencantumkan **setiap kombinasi**. Baris mewakili pilihan dari satu kategori dan kolom mewakili pilihan dari kategori lain.
 
 Seorang siswa ingin memilih paket pembelajaran daring. Tersedia tiga platform (Platform A, Platform B, Platform C) dan empat mata pelajaran (Matematika, Fisika, Kimia, Biologi).
 
@@ -30,28 +30,34 @@ Tabel berikut memuat semua kombinasi yang mungkin:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Total kombinasi} &amp;= 3 \times 4 \\ &amp;= 12 \text{ cara} \end{aligned}" />
 </MathContainer>
-
 ## Metode Diagram Cabang
 
 Pada **diagram cabang**, setiap cabang mewakili satu pilihan. Satu lintasan lengkap dari titik awal sampai ujung cabang mewakili satu hasil.
 
 Untuk pilihan paket yang sama, cabang pertama menentukan platform dan cabang berikutnya menentukan mata pelajaran.
 
-1. Tingkat 1:
+<Mermaid title="Dua tingkat pilihan paket" description="Tiga pilihan platform masing-masing bercabang menjadi empat pilihan mata pelajaran." chart={`flowchart LR
+  S["Mulai"]
+  S --> A["Platform A"]
+  A --> A0["Matematika"]
+  A --> A1["Fisika"]
+  A --> A2["Kimia"]
+  A --> A3["Biologi"]
+  S --> B["Platform B"]
+  B --> B0["Matematika"]
+  B --> B1["Fisika"]
+  B --> B2["Kimia"]
+  B --> B3["Biologi"]
+  S --> C["Platform C"]
+  C --> C0["Matematika"]
+  C --> C1["Fisika"]
+  C --> C2["Kimia"]
+  C --> C3["Biologi"]
+`} />
 
-   Dari <InlineMath math="1" /> titik awal, buat cabang untuk <InlineMath math="3" /> pilihan platform.
+Setiap platform membuka empat cabang mata pelajaran. Jadi, **setiap lintasan lengkap** memilih tepat satu platform dan satu mata pelajaran. Misalnya, lintasan Mulai → Platform A → Fisika berarti Platform A untuk Fisika.
 
-2. Tingkat 2:
-
-   <BlockMath math="\begin{aligned} &amp;3 \text{ platform} \times 4 \text{ mata pelajaran} \\ &amp;= 12 \text{ ujung cabang} \end{aligned}" />
-
-3. Struktur cabang:
-
-   Dari titik awal, pilih platform, lalu pilih mata pelajaran.
-
-4. Jumlah lintasan lengkap:
-
-   <BlockMath math="3 \times 4 = 12 \text{ kombinasi}" />
+<BlockMath math="3 \times 4 = 12" />
 
 ## Metode Aturan Perkalian
 
@@ -61,9 +67,11 @@ Untuk pilihan paket yang sama, cabang pertama menentukan platform dan cabang ber
 <BlockMath math="\begin{aligned} &amp;\text{Total cara} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
+Tempat pertama selalu mempunyai jumlah pilihan yang sama. Untuk setiap tempat berikutnya, jumlah pilihan harus tetap sama **untuk semua isian sebelumnya yang sah**, meskipun pilihan yang tersedia dapat berbeda. Jika jumlah cabang berbeda-beda, hitung setiap kelompok cabang lalu jumlahkan.
+
 ### Menghitung Kode Akses
 
-Sebuah sekolah ingin membuat kode akses untuk sistem pembelajaran digital. Kode tersebut terdiri dari:
+Sebuah sekolah ingin membuat kode akses untuk sistem pembelajaran digital. Kode tersebut memiliki **tiga tempat berurutan**:
 - Tempat pertama: <InlineMath math="3 \text{ huruf}" /> (<InlineMath math="A, B, C" />)
 - Tempat kedua: <InlineMath math="5 \text{ angka}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
 - Tempat ketiga: <InlineMath math="2 \text{ simbol}" /> (<InlineMath math="@, \#" />)
@@ -76,11 +84,9 @@ Kalikan jumlah pilihan pada ketiga tempat:
 <BlockMath math="k_3 = 2 \text{ (pilihan simbol)}" />
 <BlockMath math="\begin{aligned} &amp;\text{Total kode berbeda} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ kode} \end{aligned}" />
 </MathContainer>
-
 ## Kasus Dengan Pembatasan
 
-Pembatasan dapat mengubah jumlah pilihan dari satu tempat ke tempat berikutnya. Tentukan untuk setiap tempat apakah pilihan sebelumnya menghilangkan satu opsi, karena itulah yang menentukan apakah faktornya tetap sama. Contoh di bawah mengerjakan kedua kasus itu.
-
+Pembatasan dapat mengubah jumlah pilihan dari satu tempat ke tempat berikutnya. Tentukan untuk setiap tempat apakah **pilihan sebelumnya** menghilangkan satu opsi, karena itulah yang menentukan apakah faktornya tetap sama. Contoh di bawah mengerjakan kedua kasus itu.
 ### Pengulangan Tidak Diperbolehkan
 
 Jika objek yang sama **tidak boleh digunakan berulang**, maka setiap tempat yang terisi akan mengurangi pilihan untuk tempat berikutnya.
@@ -104,7 +110,7 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 
 ## Latihan
 
-Setiap soal mengisi beberapa tempat secara berurutan. Hitung pilihan untuk satu tempat, kalikan hasilnya, lalu perhatikan soal yang melarang pengulangan.
+Setiap soal mengisi beberapa tempat secara berurutan. Hitung pilihan untuk satu tempat, kalikan hasilnya, lalu perhatikan soal yang **melarang pengulangan**.
 
 1. Sebuah toko elektronik menjual ponsel dari <InlineMath math="4" /> merek. Setiap merek tersedia dalam <InlineMath math="3" /> kapasitas memori dan <InlineMath math="5" /> warna. Berapa banyak pilihan ponsel yang berbeda?
 
@@ -113,35 +119,39 @@ Setiap soal mengisi beberapa tempat secara berurutan. Hitung pilihan untuk satu 
 3. Dari kota <InlineMath math="P" /> ke kota <InlineMath math="R" /> melalui kota <InlineMath math="Q" />, terdapat <InlineMath math="3" /> jalan dari <InlineMath math="P" /> ke <InlineMath math="Q" /> dan <InlineMath math="4" /> jalan dari <InlineMath math="Q" /> ke <InlineMath math="R" />. Berapa banyak rute berbeda yang dapat dipilih untuk perjalanan dari <InlineMath math="P" /> ke <InlineMath math="R" />?
 
 4. Nomor pelat kendaraan terdiri dari <InlineMath math="2" /> huruf yang diikuti <InlineMath math="3" /> digit. Jika tersedia <InlineMath math="26" /> huruf dan <InlineMath math="10" /> digit <InlineMath math="0\text{-}9" />, serta pengulangan diperbolehkan, berapa banyak nomor pelat yang dapat dibuat?
-
 ### Kunci Jawaban
 
-1. Diketahui: <InlineMath math="4 \text{ merek}" />, <InlineMath math="3 \text{ kapasitas memori}" />, <InlineMath math="5 \text{ pilihan warna}" />
+**Soal 1**
 
-   Jumlah pilihan ponsel adalah:
+Diketahui: <InlineMath math="4 \text{ merek}" />, <InlineMath math="3 \text{ kapasitas memori}" />, <InlineMath math="5 \text{ pilihan warna}" />
 
-   <BlockMath math="4\times3\times5=60" />
+Jumlah pilihan ponsel adalah:
 
-2. Diketahui: <InlineMath math="1 \text{ huruf}" /> dari <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digit}" /> dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
+<BlockMath math="4\times3\times5=60" />
 
-   Tersedia <InlineMath math="4" /> pilihan huruf dan <InlineMath math="5" /> pilihan digit pertama. Karena digit tidak boleh berulang, tersisa <InlineMath math="4" /> pilihan untuk digit kedua.
+**Soal 2**
 
-   <BlockMath math="\begin{aligned} &amp;\text{Jumlah kata sandi} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ kata sandi} \end{aligned}" />
+Diketahui: <InlineMath math="1 \text{ huruf}" /> dari <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digit}" /> dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
 
-3. Diketahui: <InlineMath math="3 \text{ jalan}" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" />, <InlineMath math="4 \text{ jalan}" /> dari <InlineMath math="Q" /> ke <InlineMath math="R" />
+Tersedia <InlineMath math="4" /> pilihan huruf dan <InlineMath math="5" /> pilihan digit pertama. Karena digit tidak boleh berulang, tersisa <InlineMath math="4" /> pilihan untuk digit kedua.
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Total rute} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ rute berbeda} \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah kata sandi} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ kata sandi} \end{aligned}" />
 
-4. Diketahui: <InlineMath math="2 \text{ huruf}" /> dari <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ digit}" /> dari <InlineMath math="10 \text{ digit}" />, pengulangan diperbolehkan
+**Soal 3**
 
-   <BlockMath math="\begin{aligned} &amp;\text{Pilihan huruf pertama} = 26 \end{aligned}" />
-      Huruf kedua memiliki <InlineMath math="26" /> pilihan.
-   <BlockMath math="\text{Pilihan setiap digit} = 10" />
-      Jumlah seluruh pelat nomor adalah:
+Diketahui: <InlineMath math="3 \text{ jalan}" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" />, <InlineMath math="4 \text{ jalan}" /> dari <InlineMath math="Q" /> ke <InlineMath math="R" />
 
-   <MathContainer>
-     <BlockMath math="26\times26\times10\times10\times10" />
-     <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{ nomor pelat} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Total rute} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ rute berbeda} \end{aligned}" />
+</MathContainer>
+
+**Soal 4**
+
+Diketahui: <InlineMath math="2 \text{ huruf}" /> dari <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ digit}" /> dari <InlineMath math="10 \text{ digit}" />, pengulangan diperbolehkan
+
+<BlockMath math="\begin{aligned} &amp;\text{Pilihan huruf pertama} = 26 \end{aligned}" />
+Huruf kedua memiliki <InlineMath math="26" /> pilihan.
+<BlockMath math="\text{Pilihan setiap digit} = 10" />
+Jumlah seluruh pelat nomor adalah:
+
+<BlockMath math="\begin{aligned}26\times26\times10\times10\times10 &amp;=676\times1000\\ &amp;=676000\text{  nomor pelat}\end{aligned}" />

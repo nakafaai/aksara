@@ -5,6 +5,7 @@ import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 /** Validated standalone checker options. */
 const CliOptionsSchema = Schema.Struct({
   format: Schema.Literals(["json", "text"]),
+  pedagogyReview: Schema.Boolean,
   root: Schema.String,
   strictReview: Schema.Boolean,
 });
@@ -17,6 +18,7 @@ export const parseArguments = Effect.fn("LessonVoiceCheck.parseArguments")(
     let format = "text";
     let root = "packages/corpus/material/lesson";
     let strictReview = false;
+    let pedagogyReview = false;
 
     for (let index = 0; index < arguments_.length; index += 1) {
       const argument = arguments_[index];
@@ -42,6 +44,8 @@ export const parseArguments = Effect.fn("LessonVoiceCheck.parseArguments")(
         index += 1;
       } else if (argument === "--strict-review") {
         strictReview = true;
+      } else if (argument === "--pedagogy-review") {
+        pedagogyReview = true;
       } else {
         return yield* new LessonVoiceCheckError({
           detail: `Unknown argument: ${argument}`,
@@ -52,6 +56,7 @@ export const parseArguments = Effect.fn("LessonVoiceCheck.parseArguments")(
 
     return yield* Schema.decodeUnknownEffect(CliOptionsSchema)({
       format,
+      pedagogyReview,
       root,
       strictReview,
     }).pipe(

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Die sechs grundlegenden trigonometrischen Funktionen im Bogenmaß ableiten und Summen-, Produkt- sowie Quotientenregel in Beispielen anwenden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Ableitungsfunktionen",
 };
 
@@ -11,47 +11,50 @@ export const metadata = {
 
 Für trigonometrische Funktionen gelten dieselben [Summen-, Produkt-, Quotienten- und Kettenregeln](/de/faecher/mathematik/ableitungen/ableitungsregeln) wie für algebraische Funktionen. Neu sind lediglich die grundlegenden Ableitungen, von denen wir ausgehen.
 
-Alle folgenden Formeln setzen voraus, dass Winkel im **Bogenmaß** angegeben sind. Im Gradmaß käme ein zusätzlicher konstanter Faktor hinzu.
+Alle folgenden Formeln setzen voraus, dass Winkel im **Bogenmaß** angegeben sind. Im Gradmaß liefert die Kettenregel den zusätzlichen Faktor <InlineMath math="\pi/180" />.
 
 ## Grundlegende trigonometrische Ableitungen
 
 Die Formeln für Sinus und Kosinus <Highlight>folgen direkt aus [der Grenzwertdefinition der Ableitung](/de/faecher/mathematik/ableitungen/begriff-der-ableitungsfunktion)</Highlight>. Die übrigen vier lassen sich anschließend mit trigonometrischen Identitäten sowie der Produkt- oder Quotientenregel herleiten.
 
-Dies sind die Ableitungen der sechs grundlegenden trigonometrischen Funktionen:
+Die Tabelle ordnet jeder Funktion ihre Ableitung und die Bedingung für ihren Definitionsbereich zu. Alle Winkel stehen im **Bogenmaß**. Einschränkungen für einen Nenner gelten auch nach dem Ableiten.
 
-1.  **Ableitung des Sinus**:
+| Funktion | Ableitung | Bedingung |
+| --- | --- | --- |
+| <InlineMath math="\sin x" /> | <InlineMath math="\cos x" /> | Alle reellen Zahlen |
+| <InlineMath math="\cos x" /> | <InlineMath math="-\sin x" /> | Alle reellen Zahlen |
+| <InlineMath math="\tan x" /> | <InlineMath math="\sec^2 x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\cot x" /> | <InlineMath math="-\csc^2 x" /> | <InlineMath math="\sin x\ne0" /> |
+| <InlineMath math="\sec x" /> | <InlineMath math="\sec x\tan x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\csc x" /> | <InlineMath math="-\csc x\cot x" /> | <InlineMath math="\sin x\ne0" /> |
 
-    <BlockMath math="f(x) = \sin x \implies f'(x) = \cos x" />
+## Sinus und seine Steigung verbinden
 
-2.  **Ableitung des Kosinus**:
+Für <InlineMath math="f(x)=\sin x" /> beschreibt die Ableitung <InlineMath math="f'(x)=\cos x" /> die **Steigung der Sinuskurve**. Bei <InlineMath math="x=0" /> beträgt die Sinussteigung <InlineMath math="1" />. Am Hochpunkt bei <InlineMath math="x=\pi/2" /> wird die Steigung <InlineMath math="0" />.
 
-    <BlockMath math="f(x) = \cos x \implies f'(x) = -\sin x" />
+<LineEquation
+  title="Sinus und seine Ableitungsfunktion"
+  description="Die violette Kurve zeigt den Sinus, die orange Kurve den Kosinus. Die waagerechte Achse misst Winkel im Bogenmaß. Vergleiche das Vorzeichen des Kosinus damit, ob die Sinuskurve steigt oder fällt."
+  data={[
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 10]}
+/>
 
-3.  **Ableitung des Tangens**:
-
-    <BlockMath math="f(x) = \tan x \implies f'(x) = \sec^2 x" />
-
-4.  **Ableitung des Kotangens**:
-
-    <BlockMath math="f(x) = \cot x \implies f'(x) = -\csc^2 x" />
-
-5.  **Ableitung des Sekans**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \sec x \\ &amp;\implies f'(x) \\ &amp;= \sec x \tan x \end{aligned}" />
-
-6.  **Ableitung des Kosekans**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \csc x \\ &amp;\implies f'(x) \\ &amp;= -\csc x \cot x \end{aligned}" />
+Auf <InlineMath math="-\pi/2<x<\pi/2" /> ist der Kosinus positiv, also steigt der Sinus. Auf <InlineMath math="\pi/2<x<\pi" /> ist der Kosinus negativ, also fällt der Sinus. Eine **Ableitung von null** am Hochpunkt bedeutet eine waagerechte Tangente.
 
 ## Anwenden der Regeln auf trigonometrische Funktionen
 
-Die folgenden Beispiele verbinden diese Formeln mit den bekannten Ableitungsregeln. Bestimme zuerst die äußere Regel, leite dann den Winkel ab und multipliziere, denn die Ableitung von <InlineMath math="\sin u" /> ist gleich <InlineMath math="\cos u" /> mal der Ableitung von <InlineMath math="u" />.
+Die folgenden Beispiele verbinden diese Formeln mit den bekannten Ableitungsregeln. Bestimme zuerst die äußere Regel, **leite dann den Winkel ab** und multipliziere, denn die Ableitung von <InlineMath math="\sin u" /> ist gleich <InlineMath math="\cos u" /> mal der Ableitung von <InlineMath math="u" />.
 
 ### Kombination aus Algebra und Trigonometrie
 
 Bestimme die Ableitung von <InlineMath math="y = 2 \sin x + 5x" />.
 
-**Lösung:**
+**Lösung**:
 
 Mithilfe der Summenregel können wir diese Funktion Term für Term differenzieren.
 
@@ -65,7 +68,7 @@ Mithilfe der Summenregel können wir diese Funktion Term für Term differenziere
 
 Bestimme die Ableitung von <InlineMath math="y = 2 \sin x \tan x" />.
 
-**Lösung:**
+**Lösung**:
 
 Verwende die Produktregel <InlineMath math="y' = u'v + uv'" />.
 
@@ -83,7 +86,7 @@ Dann <InlineMath math="u' = 2 \cos x" /> und <InlineMath math="v' = \sec^2 x" />
 
 Bestimme auf dem Definitionsbereich <InlineMath math="\sin x \ne 0" /> die Ableitung von <InlineMath math="y = \frac{1 + \cos x}{\sin x}" />.
 
-**Lösung:**
+**Lösung**:
 
 Verwende die Quotientenregel <InlineMath math="y' = \frac{u'v - uv'}{v^2}" />.
 
@@ -114,14 +117,14 @@ Die vereinfachte Formel gilt weiterhin nur auf dem ursprünglichen Definitionsbe
 
 ## Übungen
 
-Jede Aufgabe verlangt die erste Ableitung eines trigonometrischen Terms, die zweite ist ein Produkt. Wähle die Regel, die zur Struktur passt.
+Jede Aufgabe verlangt die erste Ableitung eines trigonometrischen Terms, **die zweite ist ein Produkt**. Wähle die Regel, die zur Struktur passt.
 
 1. Bestimme die erste Ableitung von <InlineMath math="f(x) = 4x^3 - 5 \cos x" />.
 2. Bestimme die erste Ableitung von <InlineMath math="f(x) = \sin x \cos x" />.
 
 ### Ausführliche Lösungen
 
-1.  **Lösung:**
+1.  **Lösung**:
 
     Verwende die Differenzregel und leite beide Terme einzeln ab.
 
@@ -139,7 +142,7 @@ Jede Aufgabe verlangt die erste Ableitung eines trigonometrischen Terms, die zwe
 
     Die Ableitung der Funktion ist also <InlineMath math="12x^2 + 5 \sin x" />.
 
-2.  **Lösung:**
+2.  **Lösung**:
 
     Verwende die Produktregel <InlineMath math="f'(x) = u'v + uv'" />.
 

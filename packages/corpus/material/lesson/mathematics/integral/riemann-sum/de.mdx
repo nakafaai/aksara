@@ -1,11 +1,9 @@
-
-
 export const metadata = {
     title: "Riemannsumme",
     description: "Riemannsummen zerlegen ein Intervall in Teilintervalle und addieren vorzeichenbehaftete Rechteckbeiträge. Bei nicht negativen Funktionen nähert das Ergebnis die Fläche unter dem Graphen an.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Integrale",
 };
 
@@ -17,7 +15,7 @@ Eine **Riemannsumme** zerlegt ein Intervall in Teilintervalle, wählt in jedem T
 
 ## Intervallzerlegung und Breite
 
-Vier Größen bestimmen eine Riemannsumme mit gleich breiten Teilintervallen:
+Vier Größen bestimmen eine Riemannsumme mit **gleich breiten Teilintervallen**:
 
 | Symbol | Bedeutung |
 | :----- | :-------- |
@@ -34,13 +32,14 @@ Wenn wir alle diese Komponenten kombinieren, erhalten wir die allgemeine Formel 
 
 <BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
-Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Flächen der Rechtecke zusammenfassen“, wobei die Fläche jedes Rechtecks seiner **Höhe** (<InlineMath math="f(x_i^*)" />) mal seiner **Breite** (<InlineMath math="\Delta x" />) entspricht.
+Die Sigma-Notation addiert **vorzeichenbehaftete Beiträge**: jeden Funktionswert an einer Stützstelle mal Teilintervallbreite. Ein negativer Funktionswert ergibt einen negativen Summanden, obwohl der geometrische Rechteckinhalt nicht negativ ist.
 
 ## Linke Riemannsumme einer linearen Funktion
 
-**Aufgabe:** Bestimme die Riemann-Summe für die Funktion <InlineMath math="f(x) = x" /> im Intervall <InlineMath math="[0, 7]" />. Zerlege das Intervall dazu in <InlineMath math="7" /> gleich lange Teilintervalle und verwende jeweils den **linken Randpunkt** als Stützstelle.
+**Aufgabe**: Bestimme die Riemann-Summe für die Funktion <InlineMath math="f(x) = x" /> im Intervall <InlineMath math="[0, 7]" />. Zerlege das Intervall dazu in <InlineMath math="7" /> gleich lange Teilintervalle und verwende jeweils den **linken Randpunkt** als Stützstelle.
 
 <LineEquation
+  showZAxis={false}
   title="Visualisierung der Riemann-Summe"
   description={<>Graph der Funktion <InlineMath math="f(x)=x" /> mit <InlineMath math="7" /> Rechtecken, deren Höhen am linken Randpunkt bestimmt werden.</>}
   data={[
@@ -73,59 +72,31 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
   cameraPosition={[3.5, 3.5, 10]}
 />
 
-**Lösung:**
+**Schritt 1**: Breite und Stützstellen bestimmen.
 
-1.  **Komponenten identifizieren:**
-    -   Funktion: <InlineMath math="f(x) = x" />
-    -   Intervall: <InlineMath math="a=0, b=7" />
-    -   Anzahl der Partitionen: <InlineMath math="n=7" />
+Auf <InlineMath math="[0,7]" /> mit <InlineMath math="n=7" /> hat jedes Teilintervall die Breite:
 
-2.  **Teilintervallbreite berechnen (<InlineMath math="\Delta x" />):**
+<BlockMath math="\Delta x=\frac{7-0}{7}=1" />
 
-    <BlockMath math="\Delta x = \frac{7 - 0}{7} = 1" />
+Mit **linken Randpunkten** erhalten wir die Stützstellen <InlineMath math="0,1,2,3,4,5,6" />. Wegen <InlineMath math="f(x)=x" /> entspricht jede Rechteckhöhe der gewählten Koordinate.
 
-    Jedes Rechteck hat eine Breite von <InlineMath math="1" />.
+| Teilintervall | Stützstelle | Höhe | Beitrag |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="0" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="0\cdot1=0" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="1" /> | <InlineMath math="f(1)=1" /> | <InlineMath math="1\cdot1=1" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="2" /> | <InlineMath math="f(2)=2" /> | <InlineMath math="2\cdot1=2" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="3" /> | <InlineMath math="f(3)=3" /> | <InlineMath math="3\cdot1=3" /> |
+| <InlineMath math="[4,5]" /> | <InlineMath math="4" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="4\cdot1=4" /> |
+| <InlineMath math="[5,6]" /> | <InlineMath math="5" /> | <InlineMath math="f(5)=5" /> | <InlineMath math="5\cdot1=5" /> |
+| <InlineMath math="[6,7]" /> | <InlineMath math="6" /> | <InlineMath math="f(6)=6" /> | <InlineMath math="6\cdot1=6" /> |
 
-3.  **Stützstellen bestimmen (linker Randpunkt):**
+**Schritt 2**: Die sieben Beiträge addieren.
 
-    Unsere Teilintervalle sind:
+Multipliziere jede Höhe mit der Breite <InlineMath math="1" /> und addiere die Beiträge. Das erste Rechteck trägt null bei, weil seine Höhe bei <InlineMath math="x=0" /> null ist.
 
-    <BlockMath math="\begin{aligned} &amp;[0,1], [1,2], [2,3], [3,4], [4,5], \\ &amp;[5,6], [6,7] \end{aligned}" />
+<BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
 
-    Bei der Methode mit linken Randpunkten wählen wir den Wert von <InlineMath math="x" /> an der linken Grenze jedes Teilintervalls als Stützstelle:
-
-    <BlockMath math="\begin{aligned} &amp;x_1=0, x_2=1, x_3=2, x_4=3, \\ &amp;x_5=4, x_6=5, x_7=6 \end{aligned}" />
-
-4.  **Höhe jedes Rechtecks berechnen:**
-
-    Die Höhe jedes Rechtecks ist der Funktionswert von <InlineMath math="f(x) = x" /> an der gewählten Stützstelle:
-
-    <MathContainer>
-    <BlockMath math="f(x_1) = f(0) = 0" />
-    <BlockMath math="f(x_2) = f(1) = 1" />
-    <BlockMath math="f(x_3) = f(2) = 2" />
-    <BlockMath math="f(x_4) = f(3) = 3" />
-    <BlockMath math="f(x_5) = f(4) = 4" />
-    <BlockMath math="f(x_6) = f(5) = 5" />
-    <BlockMath math="f(x_7) = f(6) = 6" />
-    </MathContainer>
-
-5.  **Riemann-Summe berechnen:**
-
-    Nun addieren wir die Flächen aller Rechtecke. Jeder Beitrag ist Höhe mal Breite:
-
-    <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />
-        Bezeichne die Summe der sieben Funktionswerte mit <InlineMath math="S" />:
-
-    <MathContainer>
-      <BlockMath math="\begin{aligned} S &amp;=f(0)+f(1)+f(2)+f(3) \\ &amp;\quad{}+f(4)+f(5)+f(6) \end{aligned}" />
-
-      <BlockMath math="=S\cdot1" />
-      <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
-      <BlockMath math="= 21" />
-    </MathContainer>
-
-    Somit beträgt die geschätzte Fläche unter der Kurve <InlineMath math="f(x)=x" /> von <InlineMath math="0" /> bis <InlineMath math="7" /> <InlineMath math="21" />.
+Die linke Riemannsumme schätzt die Fläche somit auf <InlineMath math="21" /> Flächeneinheiten.
 
 > Auf <InlineMath math="[0,7]" /> ist <InlineMath math="f(x)=x" /> nicht negativ und streng monoton steigend. Deshalb liegen die Rechtecke mit linken Randpunkten unter dem Graphen und unterschätzen die tatsächliche Fläche. Rechtecke mit rechten Randpunkten überschätzen sie dagegen.
 
@@ -137,85 +108,83 @@ In jeder Aufgabe ist eine Fläche durch Rechtecke anzunähern, deshalb legst du 
 
 ### Ausführliche Lösung
 
-1.  Wir berechnen die Riemann-Summe für <InlineMath math="f(x) = x^2+1" /> auf <InlineMath math="[0,4]" /> mit <InlineMath math="n=4" />.
+Wir berechnen die Riemann-Summe für <InlineMath math="f(x) = x^2+1" /> auf <InlineMath math="[0,4]" /> mit <InlineMath math="n=4" />.
 
-    <LineEquation
-    title="Visualisierung der Riemann-Summenübung"
-    description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
-    cameraPosition={[2, 8.5, 21.5]}
-    cameraTarget={[2, 8.5, 0]}
-    data={[
-        {
-        smooth: false,
-        points: Array.from({ length: 41 }).map((_, i) => {
-            const x = i * 0.1;
-            const y = x * x + 1;
-            return { x, y, z: 0 };
-        }),
-        color: "#d97706",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
-        },
-        ...Array.from({ length: 4 }).map((_, i) => {
-            const x_left = i;
-            const x_right = i + 1;
-            const y_height = x_right * x_right + 1; // f(x) = x² + 1, rechter Randpunkt
-            return {
-                points: [
-                    {x: x_left, y: 0, z: 0},
-                    {x: x_right, y: 0, z: 0},
-                    {x: x_right, y: y_height, z: 0},
-                    {x: x_left, y: y_height, z: 0},
-                    {x: x_left, y: 0, z: 0},
-                ],
-                color: "#0891b2",
-                smooth: false,
-                showPoints: false,
-            }
-        })
-    ]}
-    />
+<LineEquation
+  showZAxis={false}
+title="Visualisierung der Riemann-Summenübung"
+description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
+cameraPosition={[2, 8.5, 21.5]}
+cameraTarget={[2, 8.5, 0]}
+data={[
+    {
+    smooth: false,
+    points: Array.from({ length: 41 }).map((_, i) => {
+        const x = i * 0.1;
+        const y = x * x + 1;
+        return { x, y, z: 0 };
+    }),
+    color: "#d97706",
+    showPoints: false,
+    labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
+    },
+    ...Array.from({ length: 4 }).map((_, i) => {
+        const x_left = i;
+        const x_right = i + 1;
+        const y_height = x_right * x_right + 1; // f(x) = x² + 1, rechter Randpunkt
+        return {
+            points: [
+                {x: x_left, y: 0, z: 0},
+                {x: x_right, y: 0, z: 0},
+                {x: x_right, y: y_height, z: 0},
+                {x: x_left, y: y_height, z: 0},
+                {x: x_left, y: 0, z: 0},
+            ],
+            color: "#0891b2",
+            smooth: false,
+            showPoints: false,
+        }
+    })
+]}
+/>
 
-    **Schritt 1**: Hauptkomponenten bestimmen.
-    -   Funktion: <InlineMath math="f(x) = x^2 + 1" />
-    -   Intervall: <InlineMath math="a=0, b=4" />
-    -   Anzahl der Partitionen: <InlineMath math="n=4" />
-    -   Stützstelle: Rechter Randpunkt
+**Schritt 1**: Hauptkomponenten bestimmen.
+Die Funktion ist <InlineMath math="f(x)=x^2+1" />, das Intervall <InlineMath math="[0,4]" /> und die Anzahl der Teilintervalle <InlineMath math="n=4" />. Die Höhe folgt jeweils aus dem **rechten Randpunkt**.
 
-    **Schritt 2**: Teilintervallbreite berechnen.
+**Schritt 2**: Teilintervallbreite berechnen.
 
-    <BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
+<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
 
-    **Schritt 3**: Rechte Randpunkte als Stützstellen bestimmen.
+**Schritt 3**: Rechte Randpunkte als Stützstellen bestimmen.
 
-    Die Teilintervalle sind:
+Die Teilintervalle sind:
 
-    <BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
+<BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
 
-    Für die Methode des rechten Endpunkts nehmen wir den Wert von <InlineMath math="x" /> von der rechten Seite jedes Teilintervalls:
+Für die Methode des rechten Endpunkts nehmen wir den Wert von <InlineMath math="x" /> von der rechten Seite jedes Teilintervalls:
 
-    <BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
+<BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
 
-    **Schritt 4**: Höhe jedes Rechtecks berechnen.
+**Schritt 4**: Höhe jedes Rechtecks berechnen.
 
-    Die Höhe jedes Rechtecks ist der Funktionswert von <InlineMath math="f(x) = x^2 + 1" /> am rechten Randpunkt:
+Die Höhe jedes Rechtecks ist der Funktionswert von <InlineMath math="f(x) = x^2 + 1" /> am rechten Randpunkt:
 
-    <MathContainer>
-    <BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
-    <BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
-    <BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
-    <BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
+<BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
+<BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
+<BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
+</MathContainer>
 
-    **Schritt 5**: Gesamte Riemann-Summe berechnen.
+**Schritt 5**: Gesamte Riemann-Summe berechnen.
 
-    Jetzt summieren wir die Flächen aller Rechtecke (<InlineMath math="\text{Höhe} \times \text{Breite}" />):
+Jetzt summieren wir die Flächen aller Rechtecke (<InlineMath math="\text{Höhe} \times \text{Breite}" />):
 
-    <MathContainer>
-    <BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
-    <BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
-    <BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
-    <BlockMath math="= 34" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
+<BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
+<BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
+<BlockMath math="= 34" />
+</MathContainer>
 
-    Somit ist die Riemann-Summe für die Funktion <InlineMath math="34" />.
+Somit ist die Riemann-Summe für die Funktion <InlineMath math="34" />.

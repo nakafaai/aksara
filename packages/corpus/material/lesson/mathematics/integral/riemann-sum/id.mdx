@@ -1,11 +1,9 @@
-
-
 export const metadata = {
     title: "Jumlahan Riemann",
     description: "Jumlahan Riemann membagi interval menjadi subinterval, memilih titik sampel, lalu menjumlahkan kontribusi persegi panjang bertanda. Jika fungsi tidak negatif, hasilnya mendekati luas di bawah kurva.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Integral",
 };
 
@@ -17,7 +15,7 @@ Bayangkan sebidang tanah dengan salah satu sisi yang melengkung tidak beraturan.
 
 ## Partisi Interval dan Lebar Subinterval
 
-Empat besaran menentukan Jumlahan Riemann dengan partisi sama lebar:
+Empat besaran menentukan Jumlahan Riemann dengan **partisi sama lebar**:
 
 | Simbol | Arti |
 | :----- | :--- |
@@ -34,13 +32,14 @@ Jika kita menggabungkan semua komponen tersebut, kita mendapatkan formula umum u
 
 <BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
-Notasi sigma (<InlineMath math="\sum" />) berarti "jumlahkan semua luas persegi panjang". Luas setiap persegi panjang adalah **tinggi** (<InlineMath math="f(x_i^*)" />) dikali **lebar** (<InlineMath math="\Delta x" />).
+Notasi sigma menjumlahkan **kontribusi bertanda**: nilai fungsi di titik sampel dikalikan lebar subinterval. Jika nilai fungsi negatif, suku tersebut negatif. Luas geometris persegi panjang tetap tidak negatif.
 
 ## Jumlahan Titik Ujung Kiri pada Fungsi Linear
 
-**Soal:** Tentukan Jumlahan Riemann dari fungsi <InlineMath math="f(x) = x" /> pada interval <InlineMath math="[0, 7]" /> dengan membaginya menjadi <InlineMath math="7" /> subinterval sama panjang dan menggunakan **titik ujung kiri** sebagai titik sampel.
+**Soal**: Tentukan Jumlahan Riemann dari fungsi <InlineMath math="f(x) = x" /> pada interval <InlineMath math="[0, 7]" /> dengan membaginya menjadi <InlineMath math="7" /> subinterval sama panjang dan menggunakan **titik ujung kiri** sebagai titik sampel.
 
 <LineEquation
+  showZAxis={false}
   title="Visualisasi Jumlahan Riemann"
   description={<>Grafik fungsi <InlineMath math="f(x)=x" /> dengan <InlineMath math="7" /> partisi persegi panjang menggunakan titik ujung kiri.</>}
   data={[
@@ -73,59 +72,31 @@ Notasi sigma (<InlineMath math="\sum" />) berarti "jumlahkan semua luas persegi 
   cameraPosition={[3.5, 3.5, 10]}
 />
 
-**Penyelesaian:**
+**Langkah 1**: Tentukan lebar dan titik sampel.
 
-1.  **Identifikasi Komponen:**
-    -   Fungsi: <InlineMath math="f(x) = x" />
-    -   Interval: <InlineMath math="a=0, b=7" />
-    -   Jumlah partisi: <InlineMath math="n=7" />
+Pada interval <InlineMath math="[0,7]" /> dengan <InlineMath math="n=7" />, setiap bagian memiliki lebar:
 
-2.  **Hitung Lebar Subinterval (<InlineMath math="\Delta x" />):**
+<BlockMath math="\Delta x=\frac{7-0}{7}=1" />
 
-    <BlockMath math="\Delta x = \frac{7 - 0}{7} = 1" />
+Karena memakai **ujung kiri**, titik sampelnya adalah <InlineMath math="0,1,2,3,4,5,6" />. Tinggi setiap persegi panjang sama dengan nilai sampel karena <InlineMath math="f(x)=x" />.
 
-    Setiap persegi panjang akan memiliki lebar <InlineMath math="1" />.
+| Subinterval | Titik sampel | Tinggi | Kontribusi |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="0" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="0\cdot1=0" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="1" /> | <InlineMath math="f(1)=1" /> | <InlineMath math="1\cdot1=1" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="2" /> | <InlineMath math="f(2)=2" /> | <InlineMath math="2\cdot1=2" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="3" /> | <InlineMath math="f(3)=3" /> | <InlineMath math="3\cdot1=3" /> |
+| <InlineMath math="[4,5]" /> | <InlineMath math="4" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="4\cdot1=4" /> |
+| <InlineMath math="[5,6]" /> | <InlineMath math="5" /> | <InlineMath math="f(5)=5" /> | <InlineMath math="5\cdot1=5" /> |
+| <InlineMath math="[6,7]" /> | <InlineMath math="6" /> | <InlineMath math="f(6)=6" /> | <InlineMath math="6\cdot1=6" /> |
 
-3.  **Tentukan Titik Sampel (Ujung Kiri):**
+**Langkah 2**: Jumlahkan ketujuh kontribusi.
 
-    Subinterval kita adalah:
+Kalikan setiap tinggi dengan lebar <InlineMath math="1" />, kemudian jumlahkan. Persegi panjang pertama berkontribusi nol karena tinggi pada <InlineMath math="x=0" /> adalah nol.
 
-    <BlockMath math="\begin{aligned} &amp;[0,1], [1,2], [2,3], [3,4], [4,5], \\ &amp;[5,6], [6,7] \end{aligned}" />
+<BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
 
-    Untuk metode ujung kiri, kita mengambil nilai <InlineMath math="x" /> di sisi kiri setiap subinterval sebagai titik sampel:
-
-    <BlockMath math="\begin{aligned} &amp;x_1=0, x_2=1, x_3=2, x_4=3, \\ &amp;x_5=4, x_6=5, x_7=6 \end{aligned}" />
-
-4.  **Hitung Tinggi Setiap Persegi Panjang:**
-
-    Tinggi setiap persegi panjang ditentukan oleh nilai fungsi <InlineMath math="f(x) = x" /> di titik sampel yang telah dipilih:
-
-    <MathContainer>
-    <BlockMath math="f(x_1) = f(0) = 0" />
-    <BlockMath math="f(x_2) = f(1) = 1" />
-    <BlockMath math="f(x_3) = f(2) = 2" />
-    <BlockMath math="f(x_4) = f(3) = 3" />
-    <BlockMath math="f(x_5) = f(4) = 4" />
-    <BlockMath math="f(x_6) = f(5) = 5" />
-    <BlockMath math="f(x_7) = f(6) = 6" />
-    </MathContainer>
-
-5.  **Hitung Jumlahan Riemann:**
-
-    Sekarang kita dapat menghitung total luas dengan menjumlahkan luas semua persegi panjang. Luas setiap persegi panjang adalah tinggi dikali lebar:
-
-    <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />
-        Nyatakan jumlah ketujuh nilai sampel sebagai <InlineMath math="S" />:
-
-    <MathContainer>
-      <BlockMath math="\begin{aligned} S &amp;=f(0)+f(1)+f(2)+f(3) \\ &amp;\quad{}+f(4)+f(5)+f(6) \end{aligned}" />
-
-      <BlockMath math="=S\cdot1" />
-      <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
-      <BlockMath math="= 21" />
-    </MathContainer>
-
-    Jadi, perkiraan luas daerah di bawah kurva <InlineMath math="f(x)=x" /> dari <InlineMath math="0" /> sampai <InlineMath math="7" /> adalah <InlineMath math="21" />.
+Jadi, hampiran luas dari ujung kiri adalah <InlineMath math="21" /> satuan luas.
 
 > Pada <InlineMath math="[0,7]" />, fungsi <InlineMath math="f(x)=x" /> tidak negatif dan monoton naik secara ketat. Karena itu, persegi panjang dengan titik ujung kiri berada di bawah grafik dan menghasilkan taksiran luas yang terlalu kecil, sedangkan titik ujung kanan menghasilkan taksiran yang terlalu besar.
 
@@ -137,85 +108,83 @@ Setiap soal meminta luas yang dihampiri persegi panjang, jadi tetapkan banyak su
 
 ### Pembahasan Terperinci
 
-1.  Kita akan menghitung Jumlahan Riemann untuk <InlineMath math="f(x) = x^2+1" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />.
+Kita akan menghitung Jumlahan Riemann untuk <InlineMath math="f(x) = x^2+1" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />.
 
-    <LineEquation
-    title="Visualisasi Latihan Jumlahan Riemann"
-    description={<>Grafik fungsi <InlineMath math="f(x)=x^2+1" /> dengan <InlineMath math="4" /> partisi persegi panjang menggunakan titik ujung kanan.</>}
-    cameraPosition={[2, 8.5, 21.5]}
-    cameraTarget={[2, 8.5, 0]}
-    data={[
-        {
-        smooth: false,
-        points: Array.from({ length: 41 }).map((_, i) => {
-            const x = i * 0.1;
-            const y = x * x + 1;
-            return { x, y, z: 0 };
-        }),
-        color: "#d97706",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
-        },
-        ...Array.from({ length: 4 }).map((_, i) => {
-            const x_left = i;
-            const x_right = i + 1;
-            const y_height = x_right * x_right + 1; // f(x) = x² + 1, ujung kanan
-            return {
-                points: [
-                    {x: x_left, y: 0, z: 0},
-                    {x: x_right, y: 0, z: 0},
-                    {x: x_right, y: y_height, z: 0},
-                    {x: x_left, y: y_height, z: 0},
-                    {x: x_left, y: 0, z: 0},
-                ],
-                color: "#0891b2",
-                smooth: false,
-                showPoints: false,
-            }
-        })
-    ]}
-    />
+<LineEquation
+  showZAxis={false}
+title="Visualisasi Latihan Jumlahan Riemann"
+description={<>Grafik fungsi <InlineMath math="f(x)=x^2+1" /> dengan <InlineMath math="4" /> partisi persegi panjang menggunakan titik ujung kanan.</>}
+cameraPosition={[2, 8.5, 21.5]}
+cameraTarget={[2, 8.5, 0]}
+data={[
+    {
+    smooth: false,
+    points: Array.from({ length: 41 }).map((_, i) => {
+        const x = i * 0.1;
+        const y = x * x + 1;
+        return { x, y, z: 0 };
+    }),
+    color: "#d97706",
+    showPoints: false,
+    labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
+    },
+    ...Array.from({ length: 4 }).map((_, i) => {
+        const x_left = i;
+        const x_right = i + 1;
+        const y_height = x_right * x_right + 1; // f(x) = x² + 1, ujung kanan
+        return {
+            points: [
+                {x: x_left, y: 0, z: 0},
+                {x: x_right, y: 0, z: 0},
+                {x: x_right, y: y_height, z: 0},
+                {x: x_left, y: y_height, z: 0},
+                {x: x_left, y: 0, z: 0},
+            ],
+            color: "#0891b2",
+            smooth: false,
+            showPoints: false,
+        }
+    })
+]}
+/>
 
-    **Langkah 1**: Tentukan komponen utama.
-    -   Fungsi: <InlineMath math="f(x) = x^2 + 1" />
-    -   Interval: <InlineMath math="a=0, b=4" />
-    -   Jumlah partisi: <InlineMath math="n=4" />
-    -   Titik sampel: Ujung kanan
+**Langkah 1**: Tentukan komponen utama.
+Fungsi yang digunakan adalah <InlineMath math="f(x)=x^2+1" />, intervalnya <InlineMath math="[0,4]" />, dan jumlah partisinya <InlineMath math="n=4" />. Kita memilih **ujung kanan** untuk menentukan tinggi.
 
-    **Langkah 2**: Hitung lebar subinterval.
+**Langkah 2**: Hitung lebar subinterval.
 
-    <BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
+<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
 
-    **Langkah 3**: Tentukan titik sampel ujung kanan.
+**Langkah 3**: Tentukan titik sampel ujung kanan.
 
-    Subintervalnya adalah:
+Subintervalnya adalah:
 
-    <BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
+<BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
 
-    Untuk metode ujung kanan, kita mengambil nilai <InlineMath math="x" /> di sisi kanan setiap subinterval:
+Untuk metode ujung kanan, kita mengambil nilai <InlineMath math="x" /> di sisi kanan setiap subinterval:
 
-    <BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
+<BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
 
-    **Langkah 4**: Hitung tinggi setiap persegi panjang.
+**Langkah 4**: Hitung tinggi setiap persegi panjang.
 
-    Tinggi setiap persegi panjang ditentukan oleh nilai fungsi <InlineMath math="f(x) = x^2 + 1" /> di titik sampel ujung kanan:
+Tinggi setiap persegi panjang ditentukan oleh nilai fungsi <InlineMath math="f(x) = x^2 + 1" /> di titik sampel ujung kanan:
 
-    <MathContainer>
-    <BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
-    <BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
-    <BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
-    <BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
+<BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
+<BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
+<BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
+</MathContainer>
 
-    **Langkah 5**: Hitung total Jumlahan Riemann.
+**Langkah 5**: Hitung total Jumlahan Riemann.
 
-    Sekarang kita jumlahkan luas semua persegi panjang (<InlineMath math="\text{tinggi} \times \text{lebar}" />):
+Sekarang kita jumlahkan luas semua persegi panjang (<InlineMath math="\text{tinggi} \times \text{lebar}" />):
 
-    <MathContainer>
-    <BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
-    <BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
-    <BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
-    <BlockMath math="= 34" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
+<BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
+<BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
+<BlockMath math="= 34" />
+</MathContainer>
 
-    Jadi, Jumlahan Riemann untuk fungsi tersebut adalah <InlineMath math="34" />.
+Jadi, Jumlahan Riemann untuk fungsi tersebut adalah <InlineMath math="34" />.

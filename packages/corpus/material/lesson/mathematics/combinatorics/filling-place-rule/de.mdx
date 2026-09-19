@@ -3,7 +3,7 @@ export const metadata = {
    description: "Zähle vollständige Ergebnisse, indem du die gültigen Möglichkeiten jedes Schritts multiplizierst, und prüfe die Anzahl mit einer Tabelle oder einem Baumdiagramm.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -15,7 +15,7 @@ Ein Formular mit mehreren Feldern folgt demselben Muster. Jedes Feld ist eine St
 
 ## Auswahlmöglichkeiten in einer Tabelle auflisten
 
-Die Tabellenmethode listet jede Kombination auf. Die Zeilen stehen für Möglichkeiten aus einer Kategorie und die Spalten für Möglichkeiten aus einer anderen.
+Die Tabellenmethode listet **jede Kombination** auf. Die Zeilen stehen für Möglichkeiten aus einer Kategorie und die Spalten für Möglichkeiten aus einer anderen.
 
 Ein Schüler möchte ein Online-Lernpaket auswählen. Es gibt drei Plattformen (Plattform A, Plattform B, Plattform C) und vier Fächer (Mathematik, Physik, Chemie, Biologie).
 
@@ -30,28 +30,34 @@ Die Tabelle enthält alle möglichen Kombinationen:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Gesamtkombinationen} &amp;= 3 \times 4 \\ &amp;= 12 \text{ Wege} \end{aligned}" />
 </MathContainer>
-
 ## Auswahl in einem Baumdiagramm
 
 In einem **Baumdiagramm** steht jeder Zweig für eine Auswahl. Ein vollständiger Pfad vom Startpunkt bis zu einem Endpunkt entspricht einem vollständigen Ergebnis.
 
 Für dasselbe Lernpaket wählen die ersten Zweige die Plattform und die nächsten Zweige das Fach.
 
-1. Ebene 1:
+<Mermaid title="Zwei Auswahlstufen für das Lernpaket" description="Jede der drei Plattformen verzweigt sich in vier Fächer." chart={`flowchart LR
+  S["Start"]
+  S --> A["Plattform A"]
+  A --> A0["Mathematik"]
+  A --> A1["Physik"]
+  A --> A2["Chemie"]
+  A --> A3["Biologie"]
+  S --> B["Plattform B"]
+  B --> B0["Mathematik"]
+  B --> B1["Physik"]
+  B --> B2["Chemie"]
+  B --> B3["Biologie"]
+  S --> C["Plattform C"]
+  C --> C0["Mathematik"]
+  C --> C1["Physik"]
+  C --> C2["Chemie"]
+  C --> C3["Biologie"]
+`} />
 
-   Der Baum hat <InlineMath math="1" /> Startpunkt und <InlineMath math="3" /> Plattformzweige.
+Von jeder Plattform gehen vier Fachzweige aus. Damit wählt **jeder vollständige Pfad** genau eine Plattform und ein Fach. Der Pfad Start → Plattform A → Physik bedeutet zum Beispiel Plattform A für Physik.
 
-2. Ebene 2:
-
-   <BlockMath math="\begin{aligned} &amp;3 \text{ Plattformen} \times 4 \text{ Fächer} \\ &amp;= 12 \text{ Endpunkte} \end{aligned}" />
-
-3. Pfadstruktur:
-
-   Wähle vom Start aus zuerst eine Plattform und danach ein Fach.
-
-4. Anzahl vollständiger Pfade:
-
-   <BlockMath math="3 \times 4 = 12 \text{ Kombinationen}" />
+<BlockMath math="3 \times 4 = 12" />
 
 ## Zählen mit der Produktregel
 
@@ -61,9 +67,11 @@ Die **Produktregel** liefert dieselbe Anzahl, ohne jedes Ergebnis einzeln aufzul
 <BlockMath math="\begin{aligned} &amp;\text{Anzahl der Ergebnisse} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
+Für die erste Stelle ist die Anzahl der Möglichkeiten fest. Für jede weitere Stelle muss diese Anzahl **bei jeder zulässigen bisherigen Auswahl gleich sein**, auch wenn andere Möglichkeiten übrig bleiben. Unterscheiden sich die Anzahlen der Zweige, zählst du die Zweiggruppen getrennt und addierst sie.
+
 ### Zugangscodes zählen
 
-Eine Schule möchte Zugangscodes für digitale Lernsysteme erstellen. Der Code besteht aus:
+Eine Schule möchte Zugangscodes für digitale Lernsysteme erstellen. Der Code hat **drei aufeinanderfolgende Stellen**:
 - Erste Stelle: <InlineMath math="3 \text{ Buchstaben}" /> (<InlineMath math="A, B, C" />)
 - Zweite Stelle: <InlineMath math="5 \text{ Ziffern}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
 - Dritte Stelle: <InlineMath math="2 \text{ Symbole}" /> (<InlineMath math="@, \#" />)
@@ -76,11 +84,9 @@ Wir multiplizieren die Möglichkeiten der drei Stellen:
 <BlockMath math="k_3 = 2 \text{(Symbolauswahl)}" />
 <BlockMath math="\begin{aligned} &amp;\text{Insgesamt unterschiedliche Codes} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ Codes} \end{aligned}" />
 </MathContainer>
-
 ## Fälle mit Einschränkungen
 
-Einschränkungen können die Zahl der Möglichkeiten von einer Stelle zur nächsten verändern. Prüfe für jede Stelle, ob eine frühere Wahl eine Option entfernt, denn davon hängt ab, ob die Faktoren gleich bleiben. Die Beispiele unten rechnen beide Fälle durch.
-
+Einschränkungen können die Zahl der Möglichkeiten von einer Stelle zur nächsten verändern. Prüfe für jede Stelle, ob eine **frühere Wahl** eine Option entfernt, denn davon hängt ab, ob die Faktoren gleich bleiben. Die Beispiele unten rechnen beide Fälle durch.
 ### Wiederholung nicht erlaubt
 
 Wenn dasselbe Objekt **nicht wiederholt verwendet werden darf**, verringert jede besetzte Stelle die Auswahl für die nächste Stelle.
@@ -104,7 +110,7 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 
 ## Übungen
 
-Jede Aufgabe besetzt mehrere Plätze nacheinander. Zähle die Möglichkeiten für einen Platz, multipliziere sie und achte auf die Aufgabe ohne Wiederholung.
+Jede Aufgabe besetzt mehrere Plätze nacheinander. Zähle die Möglichkeiten für einen Platz, multipliziere sie und achte auf die Aufgabe **ohne Wiederholung**.
 
 1. Ein Elektronikgeschäft verkauft Smartphones von <InlineMath math="4" /> Marken. Jede Marke ist mit <InlineMath math="3" /> Speicherkapazitäten und in <InlineMath math="5" /> Farben erhältlich. Wie viele verschiedene Ausführungen gibt es?
 
@@ -113,35 +119,39 @@ Jede Aufgabe besetzt mehrere Plätze nacheinander. Zähle die Möglichkeiten fü
 3. Eine Fahrt von Stadt <InlineMath math="P" /> nach Stadt <InlineMath math="R" /> führt über Stadt <InlineMath math="Q" />. Von <InlineMath math="P" /> nach <InlineMath math="Q" /> gibt es <InlineMath math="3" /> Straßen und von <InlineMath math="Q" /> nach <InlineMath math="R" /> gibt es <InlineMath math="4" /> Straßen. Wie viele verschiedene Routen sind möglich?
 
 4. Ein Kennzeichen besteht aus <InlineMath math="2" /> Buchstaben und danach <InlineMath math="3" /> Ziffern. Es stehen <InlineMath math="26" /> Buchstaben und die <InlineMath math="10" /> Ziffern <InlineMath math="0\text{-}9" /> zur Verfügung. Wiederholungen sind erlaubt. Wie viele Kennzeichen sind möglich?
-
 ### Lösungen
 
-1. Gegeben: <InlineMath math="4 \text{ Marken}" />, <InlineMath math="3 \text{ Speicherkapazitäten}" />, <InlineMath math="5 \text{ Farbauswahl}" />
+**Aufgabe 1**
 
-   Die Anzahl der Smartphone-Kombinationen beträgt:
+Gegeben: <InlineMath math="4 \text{ Marken}" />, <InlineMath math="3 \text{ Speicherkapazitäten}" />, <InlineMath math="5 \text{ Farbauswahl}" />
 
-   <BlockMath math="4\times3\times5=60" />
+Die Anzahl der Smartphone-Kombinationen beträgt:
 
-2. Gegeben: <InlineMath math="1 \text{ Buchstabe}" /> aus <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ Ziffern}" /> aus <InlineMath math="\{1, 2, 3, 4, 5\}" /> ohne Wiederholung
+<BlockMath math="4\times3\times5=60" />
 
-   Für den Buchstaben gibt es <InlineMath math="4" /> Möglichkeiten und für die erste Ziffer <InlineMath math="5" />. Da sich die Ziffern nicht wiederholen dürfen, bleiben für die zweite Ziffer <InlineMath math="4" /> Möglichkeiten.
+**Aufgabe 2**
 
-   <BlockMath math="\begin{aligned} &amp;\text{Gesamtzahl der Passwörter} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ Passwörter} \end{aligned}" />
+Gegeben: <InlineMath math="1 \text{ Buchstabe}" /> aus <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ Ziffern}" /> aus <InlineMath math="\{1, 2, 3, 4, 5\}" /> ohne Wiederholung
 
-3. Gegeben: <InlineMath math="3 \text{ Straßen}" /> von <InlineMath math="P" /> bis <InlineMath math="Q" />, <InlineMath math="4 \text{ Straßen}" /> von <InlineMath math="Q" /> bis <InlineMath math="R" />
+Für den Buchstaben gibt es <InlineMath math="4" /> Möglichkeiten und für die erste Ziffer <InlineMath math="5" />. Da sich die Ziffern nicht wiederholen dürfen, bleiben für die zweite Ziffer <InlineMath math="4" /> Möglichkeiten.
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Gesamtrouten} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ verschiedene Routen} \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Gesamtzahl der Passwörter} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ Passwörter} \end{aligned}" />
 
-4. Gegeben: <InlineMath math="2 \text{ Buchstaben}" /> aus <InlineMath math="26 \text{ Buchstaben}" />, <InlineMath math="3 \text{ Ziffern}" /> aus <InlineMath math="10 \text{ Ziffern}" />, Wiederholung erlaubt
+**Aufgabe 3**
 
-   <BlockMath math="\begin{aligned} &amp;\text{Auswahl des ersten Buchstabens} \\ &amp;= 26 \end{aligned}" />
-      Für den zweiten Buchstaben gibt es <InlineMath math="26" /> Möglichkeiten.
-   <BlockMath math="\text{Möglichkeiten für jede Ziffer} = 10" />
-      Damit ergibt sich folgende Gesamtzahl an Nummernschildern:
+Gegeben: <InlineMath math="3 \text{ Straßen}" /> von <InlineMath math="P" /> bis <InlineMath math="Q" />, <InlineMath math="4 \text{ Straßen}" /> von <InlineMath math="Q" /> bis <InlineMath math="R" />
 
-   <MathContainer>
-     <BlockMath math="26\times26\times10\times10\times10" />
-     <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{ Nummernschilder} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Gesamtrouten} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ verschiedene Routen} \end{aligned}" />
+</MathContainer>
+
+**Aufgabe 4**
+
+Gegeben: <InlineMath math="2 \text{ Buchstaben}" /> aus <InlineMath math="26 \text{ Buchstaben}" />, <InlineMath math="3 \text{ Ziffern}" /> aus <InlineMath math="10 \text{ Ziffern}" />, Wiederholung erlaubt
+
+<BlockMath math="\begin{aligned} &amp;\text{Auswahl des ersten Buchstabens} \\ &amp;= 26 \end{aligned}" />
+Für den zweiten Buchstaben gibt es <InlineMath math="26" /> Möglichkeiten.
+<BlockMath math="\text{Möglichkeiten für jede Ziffer} = 10" />
+Damit ergibt sich folgende Gesamtzahl an Nummernschildern:
+
+<BlockMath math="\begin{aligned}26\times26\times10\times10\times10 &amp;=676\times1000\\ &amp;=676000\text{  Nummernschilder}\end{aligned}" />

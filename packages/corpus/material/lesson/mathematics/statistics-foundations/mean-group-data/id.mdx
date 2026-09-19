@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan mean data kelompok dari nilai tengah dan frekuensi kelas melalui satu contoh dengan pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Statistika",
 };
 
@@ -21,17 +21,15 @@ Setelah data dikelompokkan, kita **tidak lagi mengetahui setiap nilai secara tep
 
 Karena nilai tepatnya tidak tersedia, kita menggunakan **pendekatan**: nilai tengah kelas **mewakili semua nilai** dalam interval tersebut.
 
-Nilai tengah kelas, yang dilambangkan dengan <InlineMath math="x_i" />, dihitung menggunakan:
-
 Misalkan <InlineMath math="L_i" /> dan <InlineMath math="U_i" /> adalah batas bawah dan batas atas kelas ke-<InlineMath math="i" />:
 
 <BlockMath math="x_i=\frac{L_i+U_i}{2}" />
 
 ## Rumus Mean Data Kelompok
 
-Setelah memperoleh nilai tengah setiap kelas, hitung perkiraan mean dengan:
+Setelah memperoleh nilai tengah setiap kelas, hitung **perkiraan mean** dengan:
 
-<BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i}" />
+<BlockMath math="\bar{x} \approx \frac{\sum (f_i \times x_i)}{\sum f_i}" />
 
 Pada rumus ini:
 
@@ -40,7 +38,6 @@ Pada rumus ini:
 - <InlineMath math="x_i" /> adalah nilai tengah kelas ke-<InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> adalah jumlah hasil kali frekuensi dan nilai tengah setiap kelas.
 - <InlineMath math="\sum f_i" /> adalah jumlah seluruh frekuensi, sama dengan banyaknya data <InlineMath math="n" />.
-
 ## Rata-rata Ukuran Sepatu
 
 Perhatikan data penjualan sepatu di Toko A yang sudah dikelompokkan berikut:
@@ -51,36 +48,23 @@ Perhatikan data penjualan sepatu di Toko A yang sudah dikelompokkan berikut:
 | <InlineMath math="40\text{-}42" /> | <InlineMath math="11" />              |
 | <InlineMath math="43\text{-}45" /> | <InlineMath math="16" />              |
 | <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
-| **Total**                      | **<InlineMath math="n=30" />**        |
+| **Total**                      | <InlineMath math="n=30" />        |
 
-**Perhitungan:**
+Untuk setiap kelas, hitung **nilai tengah** dari kedua batas kelas. Kalikan nilai tengah dengan frekuensi untuk memperhitungkan banyak pengamatan yang diwakili kelas itu.
 
-1.  **Cari nilai tengah (<InlineMath math="x_i" />) setiap kelas:**
+| Kelas | Nilai tengah | Hasil kali frekuensi dan nilai tengah |
+| --- | --- | --- |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="(37+39)/2=38" /> | <InlineMath math="2\times38=76" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="(40+42)/2=41" /> | <InlineMath math="11\times41=451" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="(43+45)/2=44" /> | <InlineMath math="16\times44=704" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="(46+48)/2=47" /> | <InlineMath math="1\times47=47" /> |
 
-    - Kelas <InlineMath math="37\text{-}39" />: <InlineMath math="x_1 = (37+39)/2 = 38" />
-    - Kelas <InlineMath math="40\text{-}42" />: <InlineMath math="x_2 = (40+42)/2 = 41" />
-    - Kelas <InlineMath math="43\text{-}45" />: <InlineMath math="x_3 = (43+45)/2 = 44" />
-    - Kelas <InlineMath math="46\text{-}48" />: <InlineMath math="x_4 = (46+48)/2 = 47" />
+Jumlah hasil kali memperkirakan jumlah seluruh ukuran sepatu. Bagi jumlah tersebut dengan **total frekuensi** untuk mendapat perkiraan rata-rata.
 
-2.  **Kalikan setiap frekuensi dengan nilai tengahnya (<InlineMath math="f_i \times x_i" />):**
-
-    - Kelas <InlineMath math="37\text{-}39" />: <InlineMath math="2 \times 38 = 76" />
-    - Kelas <InlineMath math="40\text{-}42" />: <InlineMath math="11 \times 41 = 451" />
-    - Kelas <InlineMath math="43\text{-}45" />: <InlineMath math="16 \times 44 = 704" />
-    - Kelas <InlineMath math="46\text{-}48" />: <InlineMath math="1 \times 47 = 47" />
-
-3.  **Jumlahkan semua hasil (<InlineMath math="\sum (f_i \times x_i)" />):**
-
-    <BlockMath math="\begin{aligned} &amp;\sum (f_i \times x_i) \\ &amp;= 76 + 451 + 704 + 47 \\ &amp;= 1278 \end{aligned}" />
-
-4.  **Jumlahkan semua frekuensi (<InlineMath math="\sum f_i" />):**
-
-    <BlockMath math="\sum f_i = 2 + 11 + 16 + 1 = 30" />
-
-5.  **Hitung mean (<InlineMath math="\bar{x}" />):**
-
-    <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42{,}6" />
-
-**Jadi, perkiraan rata-rata ukuran sepatu yang terjual di Toko A adalah <InlineMath math="42{,}6" />.**
+<MathContainer>
+  <BlockMath math="\sum f_ix_i=76+451+704+47=1278" />
+  <BlockMath math="\sum f_i=2+11+16+1=30" />
+  <BlockMath math="\bar x\approx\frac{1278}{30}=42{,}6" />
+</MathContainer>
 
 Hasil ini merupakan **perkiraan** karena <Highlight>nilai tengah mewakili semua nilai</Highlight> dalam satu kelas. Pendekatan tersebut menjadi standar ketika data yang tersedia hanya berupa frekuensi kelompok.

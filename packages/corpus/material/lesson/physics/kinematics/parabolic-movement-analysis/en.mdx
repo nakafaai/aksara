@@ -4,12 +4,14 @@ export const metadata = {
     "The horizontal and vertical velocity components determine the time to the highest point, the range, and the instantaneous velocity of projectile motion.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kinematics",
 };
 
 
 ## Start by Splitting the Initial Velocity
+
+Measure the angle from the horizontal. Choose rightward and upward as positive.
 
 Projectile analysis almost always starts with one simple question: how much of the velocity is horizontal, and how much is vertical? If the initial speed is <InlineMath math="v_0" /> and the launch angle is <InlineMath math="\theta" />, the initial components are:
 
@@ -51,15 +53,13 @@ After that, the horizontal and vertical directions are calculated with different
 
 The arc and faded balls show one motion at equal time intervals. The values below split that motion into components: <InlineMath math="v_{0x}" /> stays constant, while <InlineMath math="v_y=v_{0y}-gt" /> changes because gravity acts downward.
 
-The scenes launch and land at the same height. Under that condition, time of flight, maximum height, and range can be calculated in one sequence:
+The scenes launch and land at the same height. Under that condition, time of flight, range, and velocity can be calculated in one sequence:
 
 <BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{peak}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{peak}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
 
-The selected launch determines every value below the scene. The formulas calculate the components, time, range, and instantaneous velocity.
-
 ## The Peak Happens When Vertical Velocity Is Zero
 
-At the peak, the object is still moving horizontally, but its up-and-down motion pauses for an instant. So the peak condition is <InlineMath math="v_y=0" />.
+At the peak, the object is **still moving horizontally**, but its up-and-down motion pauses for an instant. So the peak condition is <InlineMath math="v_y=0" />.
 
 <BlockMath math="v_y=v_{0y}-gt" />
 
@@ -71,7 +71,7 @@ For an initial speed of <InlineMath math="40\text{ m/s}" /> at an angle of <Inli
 
 ## Range Uses Total Flight Time
 
-If the object launches from the ground and returns to the ground at the same height, the total time is twice the time to the peak.
+If the object launches from the ground and returns to the ground at the **same height**, the total time is twice the time to the peak.
 
 <MathContainer>
   <BlockMath math="t_{\text{total}}=2t_{\text{peak}}" />
@@ -90,7 +90,7 @@ To find velocity at a specific time, calculate <InlineMath math="v_x" /> and <In
   <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
 </MathContainer>
 
-The direction of velocity must use both components and the correct quadrant:
+The direction of velocity must use **both components and the correct quadrant**:
 
 <BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
 
@@ -100,13 +100,13 @@ If <InlineMath math="v_x>0" />, this is equivalent to <InlineMath math="\tan\alp
 
 A ball is launched with an initial speed of <InlineMath math="40\text{ m/s}" /> and an angle of <InlineMath math="60^\circ" />. Use <InlineMath math="g=10\text{ m/s}^2" />.
 
-At <InlineMath math="60^\circ" />, the sine and cosine have exact values. We can therefore split the initial velocity exactly, find the time from the vertical motion, and use that same time to calculate the range and instantaneous velocity.
+At <InlineMath math="60^\circ" />, the **sine and cosine have exact values**. We can therefore split the initial velocity exactly, find the time from the vertical motion, and use that same time to calculate the range and instantaneous velocity.
 
 The initial components are:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
+  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
 </MathContainer>
 
 The time to the peak is:
@@ -128,6 +128,7 @@ Meanwhile, <InlineMath math="v_x=20\text{ m/s}" /> stays constant. The speed is:
 
 <BlockMath math="\begin{aligned}
 v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
+&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
 &=\sqrt{2000-800\sqrt{3}}\\
 &\approx 24.8\text{ m/s}
 \end{aligned}" />

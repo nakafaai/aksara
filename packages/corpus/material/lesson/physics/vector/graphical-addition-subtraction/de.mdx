@@ -6,11 +6,11 @@ export const metadata = {
     "Addiere und subtrahiere Vektoren zeichnerisch mit Dreiecks-, Parallelogramm- und Polygonmethode sowie Gegenvektoren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
-## Eine Resultierende ersetzt mehrere Pfeile
+## Vektoren zeichnerisch addieren
 
 Folgen mehrere Verschiebungen aufeinander oder greifen mehrere Vektoren an einem Punkt an, lässt sich ihre Vektorsumme durch einen einzigen Pfeil darstellen. Dieser Pfeil heißt **Resultierende**. Greifen Kräfte an verschiedenen Punkten an, beschreibt die resultierende Kraft nur die gesamte Translationswirkung. Die Drehwirkung muss zusätzlich über das Drehmoment geprüft werden.
 
@@ -18,7 +18,7 @@ Bei der grafischen Methode entsteht die Resultierende in einer maßstäblichen Z
 
 > Die Genauigkeit der grafischen Methode hängt vom Maßstab sowie vom sorgfältigen Zeichnen mit Lineal und Winkelmesser ab.
 
-## Dreiecksmethode mit Pfeilspitze und Fußpunkt
+### Dreiecksmethode mit Pfeilspitze und Fußpunkt
 
 Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor und setze den Fußpunkt des zweiten an seine Spitze. Die Resultierende führt vom ursprünglichen Fußpunkt direkt zur letzten Pfeilspitze.
 
@@ -70,21 +70,29 @@ Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor 
   cameraTarget={[3, -0.7, 0]}
 />
 
-Geht jemand <InlineMath math="4\text{ m}" /> nach Osten und anschließend <InlineMath math="3\text{ m}" /> nach Norden, ist die Resultierende kein gerader Weg von <InlineMath math="7\text{ m}" />. Sie ist der diagonale Pfeil vom Start- zum Endpunkt.
+Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordinateneinheit im Modell ist Meter: Auf die Verschiebung <InlineMath math="(4,1)" /> folgt <InlineMath math="(2,3)" />. Der Endpunkt liegt bei <InlineMath math="(6,4)" />, weil du die Ortsänderungen entlang jeder Achse addierst.
 
-## Parallelogrammmethode bei gemeinsamem Anfangspunkt
+<BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-Beginnen zwei Vektoren am selben Punkt, eignet sich die Parallelogrammmethode. Die Vektoren bilden benachbarte Seiten. Die Diagonale vom gemeinsamen Anfangspunkt zur gegenüberliegenden Ecke ist die Resultierende.
+### Parallelogrammmethode bei gemeinsamem Anfangspunkt
 
-Die Methode passt zu Kräften, die am selben Punkt angreifen, etwa wenn zwei Personen einen Ring mit Seilen in verschiedene Richtungen ziehen. Beide Kraftpfeile beginnen am Ring, und die Diagonale zeigt ihre gemeinsame Wirkung.
+Zwei Kräfte, die an einem Punkt angreifen, lassen sich mit einem **gemeinsamen Fußpunkt** zeichnen. Zum Beispiel ziehen zwei Seile an einem Ring. Die verschobenen Vektoren im Modell behalten Länge und Richtung der ursprünglichen Pfeile. Ob du erst der unteren und dann der rechten Seite folgst oder erst der linken und dann der oberen: Beide Wege enden am selben Punkt.
 
-Schritte:
+<Vector3d
+  title={<>Die Diagonale des Parallelogramms</>}
+  description={<>Der violette Pfeil verbindet den gemeinsamen Fußpunkt mit dem Endpunkt beider Wege. Die Vektoren a und b stimmen mit ihren parallel verschobenen Kopien überein.</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,-0.4,0]},
+    {from: [0,0,0], to: [2,3,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [-0.5,0,0]},
+    {from: [2,3,0], to: [6,4,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
+  ]}
+  cameraPosition={[3,2,13]}
+  cameraTarget={[3,2,0]}
+/>
 
-- Zeichne beide Vektoren vom selben Anfangspunkt.
-- Verschiebe eine Kopie jedes Vektors parallel an die Spitze des anderen.
-- Zeichne die Diagonale vom gemeinsamen Anfangspunkt zur gegenüberliegenden Ecke.
-
-## Polygonverfahren für viele Vektoren
+### Polygonverfahren für viele Vektoren
 
 Für mehr als zwei Vektoren wird die Polygonmethode verwendet. Setze auch hier <Highlight>den Fußpunkt jedes neuen Vektors</Highlight> an die Spitze des vorherigen.
 
@@ -94,12 +102,24 @@ Die Reihenfolge darf sich ändern, solange jeder Vektor Betrag und Richtung beh�
 
 Wenn das Polygon zum Startpunkt zurückkehrt, ist die Vektorsumme null. Bei Kräften bedeutet eine verschwindende Gesamtkraft ein Translationsgleichgewicht. Für ein Rotationsgleichgewicht muss zusätzlich das gesamte Drehmoment null sein.
 
+Füge zum Beispiel nach den beiden Verschiebungen im Modell <InlineMath math="\vec{c}=(-6,-4)" /> hinzu. Der dritte Pfeil führt entlang der Diagonale zum Startpunkt zurück. Der Weg hat weiterhin eine Länge, aber die gesamte Verschiebung ist null.
+
+<BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
 ## Grafische Vektorsubtraktion
 
-Für die Subtraktion braucht es keine neue Zeichenregel. Ersetze den abzuziehenden Vektor durch seinen Gegenvektor und addiere anschließend.
+Für die Subtraktion **kehrst du den abzuziehenden Vektor um**. Beim selben Vektorpaar wird aus <InlineMath math="\vec{b}=(2,3)" /> der Gegenvektor <InlineMath math="-\vec{b}=(-2,-3)" />.
 
-<BlockMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />
+<BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-Um <InlineMath math="\vec{a}-\vec{b}" /> zu zeichnen, beginne mit <InlineMath math="\vec{a}" />. Setze dann <InlineMath math="-\vec{b}" /> an die Spitze von <InlineMath math="\vec{a}" />. Der Vektor <InlineMath math="-\vec{b}" /> ist genauso lang wie <InlineMath math="\vec{b}" />, zeigt aber in die entgegengesetzte Richtung.
-
-Die Resultierende führt weiterhin vom ersten Anfangspunkt zur letzten Pfeilspitze. Damit folgt auch die Subtraktion derselben Spitze-Fußpunkt-Regel.
+<Vector3d
+  title={<>Den Gegenvektor addieren</>}
+  description={<>Gehe von der Spitze von a bei (4,1) zwei Einheiten nach links und drei nach unten. Die Resultierende endet bei (2,-2).</>}
+  vectors={[
+    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
+    {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
+    {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
+  ]}
+  cameraPosition={[2,0,10]}
+  cameraTarget={[2,0,0]}
+/>

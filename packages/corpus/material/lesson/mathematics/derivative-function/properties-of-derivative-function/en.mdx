@@ -3,27 +3,27 @@ export const metadata = {
   description: "Combine the constant, power, sum, product, quotient, and chain rules in worked derivatives.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Derivative Functions",
 };
 
 ## From the Limit Definition to Practical Rules
 
-<Highlight>The limit definition explains what a derivative means.</Highlight> Repeating the full limit calculation for several functions produces the same algebraic steps. Derivative rules record the results of those repeated calculations without changing the underlying idea of instantaneous rate of change.
+The limit definition explains <Highlight>the meaning of a derivative</Highlight>. Repeating the full limit calculation for several functions produces the same algebraic steps. Derivative rules record the results of those repeated calculations without changing the underlying idea of instantaneous rate of change.
 
 For each function, first identify how it is built. Then choose the matching derivative rule and write each algebraic step clearly.
 
 ## Constant Power and Linear Combination Rules
 
-The definition of the derivative leads to a small set of rules that are faster to apply. A constant function, a power, and a sum of terms each get their own rule, and every rule reproduces the result the limit would have produced.
+The **definition of the derivative** leads to a small set of rules that are faster to apply. A constant function, a power, and a sum of terms each get their own rule, and every rule reproduces the result the limit would have produced.
 
 ### Constant and Power Functions
 
-1. **Constant rule:** A constant function has a horizontal graph, so its slope is zero everywhere.
+1. **Constant rule**: A constant function has a horizontal graph, so its slope is zero everywhere.
 
    <BlockMath math="f(x)=k \implies f'(x)=0" />
 
-2. **Power rule:** For a constant <InlineMath math="a" />, multiply by the exponent, then reduce the exponent by one.
+2. **Power rule**: For a constant <InlineMath math="a" />, multiply by the exponent, then reduce the exponent by one.
 
    <BlockMath math="f(x)=ax^n \implies f'(x)=anx^{n-1}" />
 
@@ -33,44 +33,56 @@ The definition of the derivative leads to a small set of rules that are faster t
 
 Let <InlineMath math="u(x)" /> and <InlineMath math="v(x)" /> be differentiable functions.
 
-1. **Constant multiple:** A constant factor stays in front of the derivative.
+1. **Constant multiple**: A constant factor stays in front of the derivative.
 
    <BlockMath math="f(x)=k\,u(x) \implies f'(x)=k\,u'(x)" />
 
-2. **Sum and difference:** Differentiate each term separately and keep the operation between them.
+2. **Sum and difference**: Differentiate each term separately and keep the operation between them.
 
-   <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ &amp;\implies f'(x) \\ &amp;=u'(x)\pm v'(x) \end{aligned}" />
+   <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ f'(x)&amp;=u'(x)\pm v'(x) \end{aligned}" />
 
 ## Product Quotient and Chain Rules
 
-Some expressions cannot be differentiated term by term. Each rule exists because the derivative of a combination is not the combination of the derivatives. In a product you differentiate one factor while the other stays fixed and add the two results, a quotient introduces a denominator, and a composition multiplies the outer derivative by the inner one.
+Some expressions cannot be differentiated term by term. Each rule exists because the derivative of a combination is not the combination of the derivatives. In a product you **differentiate one factor** while the other stays fixed and add the two results, a quotient introduces a denominator, and a composition multiplies the outer derivative by the inner one.
 
 ### Product Rule
 
 For a product, differentiating both factors and multiplying the results is not enough. Differentiate one factor at a time while leaving the other unchanged, then add the two terms.
 
-<BlockMath math="\begin{aligned} f(x) &amp;=u(x)v(x) \\ &amp;\implies f'(x) \\ &amp;=u'(x)v(x)+u(x)v'(x) \end{aligned}" />
+<BlockMath math="\begin{aligned} f(x) &amp;=u(x)v(x) \\ f'(x)&amp;=u'(x)v(x)+u(x)v'(x) \end{aligned}" />
+
+Let <InlineMath math="u(x)=x^2" /> and <InlineMath math="v(x)=x+1" />. We need **two product terms** because both factors change as <InlineMath math="x" /> changes:
+
+<BlockMath math="\begin{aligned}f'(x)&=(2x)(x+1)+x^2(1)\\&=2x^2+2x+x^2\\&=3x^2+2x\end{aligned}" />
+
+You can check the result by expanding the original function to <InlineMath math="x^3+x^2" />. Differentiating these two terms gives <InlineMath math="3x^2+2x" /> again.
 
 ### Quotient Rule
 
 For a quotient, <Highlight>the order in the numerator matters</Highlight>. The denominator <InlineMath math="v(x)" /> must also be nonzero wherever the original function is defined.
 
-<BlockMath math="\begin{aligned}f(x) &= \frac{u(x)}{v(x)} \implies f'(x) \\ &= \frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}\end{aligned}" />
+<BlockMath math="\begin{aligned}f(x) &= \frac{u(x)}{v(x)} \\ f'(x)&= \frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}\end{aligned}" />
+
+For <InlineMath math="f(x)=\frac{x+1}{x-1}" />, choose <InlineMath math="u=x+1" /> and <InlineMath math="v=x-1" />. Both derivatives equal <InlineMath math="1" />. Preserve the **order of subtraction** in the numerator:
+
+<BlockMath math="\begin{aligned}f'(x)&=\frac{1(x-1)-(x+1)1}{(x-1)^2}\\&=\frac{x-1-x-1}{(x-1)^2}\\&=\frac{-2}{(x-1)^2}\end{aligned}" />
+
+The restriction <InlineMath math="x\ne1" /> applies to both the function and its derivative. Reversing the two numerator terms would give the wrong sign.
 
 ### Chain Rule
 
-A [composite function](/en/subjects/mathematics/function-composition-inverse-function/function-composition) applies one function inside another. Differentiate the outer function at the unchanged inner input, then multiply by the derivative of that inner function.
+A [composite function](/en/subjects/mathematics/function-composition-inverse-function/function-composition) applies one function inside another. Differentiate the outer function at the **unchanged inner input**, then multiply by the derivative of that inner function.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} f(x) &amp;=g(u(x)) \\ &amp;\implies f'(x) \\ &amp;=g'(u(x))\,u'(x) \end{aligned}" />
-  <BlockMath math="\begin{aligned} f(x) &amp;=[u(x)]^n \\ &amp;\implies f'(x) \\ &amp;=n[u(x)]^{n-1}u'(x) \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(x) &amp;=g(u(x)) \\ f'(x)&amp;=g'(u(x))\,u'(x) \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(x) &amp;=[u(x)]^n \\ f'(x)&amp;=n[u(x)]^{n-1}u'(x) \end{aligned}" />
 </MathContainer>
 
 ## Applying the Chain Rule to a Composite Function
 
 Differentiate <InlineMath math="f(x)=(x^2+1)^3" />.
 
-The outer function raises its input to the third power. The inner function is <InlineMath math="u(x)=x^2+1" />. Apply the power rule to the outer function, then multiply by the derivative of the inner function.
+The outer function raises its input to the third power. The inner function is <InlineMath math="u(x)=x^2+1" />. Apply the power rule to the outer function, then multiply by the **derivative of the inner function**.
 
 <MathContainer>
   <BlockMath math="u'(x)=2x" />
@@ -82,17 +94,17 @@ The factor <InlineMath math="2x" /> is essential. Leaving it out would mean diff
 
 ## Practice
 
-Each problem needs one or more derivative rules combined. Decide on the rule before writing the derivative. Write the rule you chose next to the first line, so a wrong rule shows up before the algebra grows long.
+Each problem needs one or more **derivative rules combined**. Decide on the rule before writing the derivative. Write the rule you chose next to the first line, so a wrong rule shows up before the algebra grows long.
 
 1. Differentiate <InlineMath math="h(x)=(2x-1)^4" />.
 
 ### Worked Solution
 
-1. The outer function is a fourth power, while the inner function is <InlineMath math="u(x)=2x-1" /> with derivative <InlineMath math="u'(x)=2" />.
+The **outer function** is a fourth power, while the inner function is <InlineMath math="u(x)=2x-1" /> with derivative <InlineMath math="u'(x)=2" />.
 
-   <MathContainer>
-     <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
-     <BlockMath math="h'(x)=8(2x-1)^3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
+  <BlockMath math="h'(x)=8(2x-1)^3" />
+</MathContainer>
 
-   The result includes both parts of the composition: the derivative of the fourth power and the derivative of its inner linear function.
+The result includes both parts of the composition: the derivative of the fourth power and the derivative of its inner linear function.

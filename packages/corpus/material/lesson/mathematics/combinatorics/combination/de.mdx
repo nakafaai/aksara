@@ -3,7 +3,7 @@ export const metadata = {
    description: "Nutze Kombinationen, um Auswahlen ohne Beachtung der Reihenfolge zu zählen, auch unter zusätzlichen Bedingungen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -23,7 +23,7 @@ Bei einer Permutation sind <InlineMath math="ABC" /> und <InlineMath math="BAC" 
 
 ## Kombinationsformel
 
-Für die Anzahl der Möglichkeiten, <InlineMath math="k" /> Objekte aus <InlineMath math="n" /> verfügbaren Objekten auszuwählen, gilt:
+Für die Anzahl der Möglichkeiten, <InlineMath math="k" /> Objekte aus <InlineMath math="n" /> verschiedenen verfügbaren Objekten auszuwählen, gilt:
 
 <BlockMath math="C(n,k) = \binom{n}{k} = \frac{n!}{(n-k)! \times k!}" />
 
@@ -33,7 +33,7 @@ Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="k" /> ist die Anzahl der auszuwählenden Objekte
 - <InlineMath math="n!" /> ist die Fakultät von <InlineMath math="n" />
 
-**Warum unterscheidet sich diese Formel von der Permutation?**
+Warum unterscheidet sich diese Formel von der Permutation?
 
 Die Kombinationsformel entsteht, wenn die Anzahl der Permutationen durch <InlineMath math="k!" /> geteilt wird:
 
@@ -41,27 +41,37 @@ Die Kombinationsformel entsteht, wenn die Anzahl der Permutationen durch <Inline
 
 Wir teilen durch <InlineMath math="k!" />, weil sich dieselben <InlineMath math="k" /> Objekte in <InlineMath math="k!" /> Reihenfolgen anordnen lassen. Eine Kombination fasst all diese Anordnungen zu **einer Auswahl** zusammen.
 
+Die Auswahl von zwei der drei Personen A, B und C zeigt die Division durch <InlineMath math="2!" />. Jedes Paar hat zwei Reihenfolgen, aber nur eine Mitgliedermenge.
+
+| Auswahl | Von Permutationen gezählte Reihenfolgen |
+| --- | --- |
+| A, B | AB, BA |
+| A, C | AC, CA |
+| B, C | BC, CB |
+
+<BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
 ## Auswahlen mit und ohne Bedingungen zählen
 
-**Bildung einer Sportmannschaft:**
+Ohne Zusatzbedingung zählt eine Formel die Auswahlen direkt. Bei einer Mindestanforderung zerlegst du die Auswahlen in **überschneidungsfreie Fälle**, damit jede Auswahl genau einmal gezählt wird.
 
-Auf wie viele Arten lassen sich aus <InlineMath math="10 \text{ Lernenden}" /> <InlineMath math="5 \text{ Lernende}" /> für eine Basketballmannschaft auswählen?
+### Bildung einer Sportmannschaft
+
+Auf wie viele Arten lassen sich aus <InlineMath math="10 \text{ Lernenden}" /> **<InlineMath math="5 \text{ Lernende}" /> für eine Basketballmannschaft** auswählen?
 
 <MathContainer>
 <BlockMath math="C(10,5) = \frac{10!}{5! \times 5!}" />
 <BlockMath math="\begin{aligned}C(10,5) &= \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} \\ &= \frac{30\,240}{120} \\ &= 252 \text{ Möglichkeiten}\end{aligned}" />
 </MathContainer>
+### Auswahl von Gerichten
 
-**Auswahl von Gerichten:**
-
-Ein Restaurant bietet <InlineMath math="8" /> Gerichte an. Wie viele Möglichkeiten gibt es, davon <InlineMath math="3" /> auszuwählen?
+Ein Restaurant bietet <InlineMath math="8" /> Gerichte an. Wie viele Möglichkeiten gibt es, davon **<InlineMath math="3" /> Gerichte auszuwählen**?
 
 <MathContainer>
 <BlockMath math="C(8,3) = \frac{8!}{5! \times 3!}" />
 <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \text{ Kombinationen} \end{aligned}" />
 </MathContainer>
-
-**Situationen mit besonderen Bedingungen:**
+### Mindestens zwei Schülerinnen auswählen
 
 Manche Auswahlen müssen **zusätzliche Bedingungen** erfüllen. Aus <InlineMath math="12 \text{ Lernenden}" /> (<InlineMath math="7 \text{ Schüler}" /> und <InlineMath math="5 \text{ Schülerinnen}" />) sollen beispielsweise <InlineMath math="4 \text{ Lernende}" /> ausgewählt werden, darunter mindestens <InlineMath math="2 \text{ Schülerinnen}" />.
 
@@ -72,21 +82,21 @@ Manche Auswahlen müssen **zusätzliche Bedingungen** erfüllen. Aus <InlineMath
 
 **Detaillierte Berechnungen:**
 
-**Fall** 1: <InlineMath math="2 \text{ Schülerinnen} + 2 \text{ Schüler}" />
+**Fall 1**: <InlineMath math="2 \text{ Schülerinnen} + 2 \text{ Schüler}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,2) \times C(7,2) \\ &amp;= \frac{5!}{3! \times 2!} \times \frac{7!}{5! \times 2!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times \frac{7 \times 6}{2 \times 1} = 10 \times 21 = 210" />
 </MathContainer>
 
-**Fall** 2: <InlineMath math="3 \text{ Schülerinnen} + 1 \text{ Schüler}" />
+**Fall 2**: <InlineMath math="3 \text{ Schülerinnen} + 1 \text{ Schüler}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,3) \times C(7,1) \\ &amp;= \frac{5!}{2! \times 3!} \times \frac{7!}{6! \times 1!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times 7 = 10 \times 7 = 70" />
 </MathContainer>
 
-**Fall** 3: <InlineMath math="4 \text{ Schülerinnen} + 0 \text{ Schüler}" />
+**Fall 3**: <InlineMath math="4 \text{ Schülerinnen} + 0 \text{ Schüler}" />
 
 <MathContainer>
 <BlockMath math="C(5,4) = \frac{5!}{1! \times 4!} = \frac{5}{1} = 5" />
@@ -96,114 +106,121 @@ Manche Auswahlen müssen **zusätzliche Bedingungen** erfüllen. Aus <InlineMath
 
 ## Übungsaufgaben
 
-Bearbeite jede Aufgabe zunächst selbst. Entscheide zuerst, ob die Reihenfolge eine Rolle spielt, und notiere danach alle gültigen Fälle ohne Überschneidungen.
+Bearbeite jede Aufgabe zunächst selbst. Entscheide zuerst, ob die Reihenfolge eine Rolle spielt, und notiere danach alle gültigen Fälle **ohne Überschneidungen**.
 
 1. Auf wie viele Arten kannst du aus <InlineMath math="8 \text{ verschiedenen Büchern}" /> <InlineMath math="3 \text{ Bücher}" /> für die Ferien auswählen?
 
 2. Eine Futsalmannschaft hat <InlineMath math="12 \text{ Spieler}" />. Auf wie viele Arten kann sie <InlineMath math="5 \text{ Spieler}" /> für das Spielfeld auswählen?
 
-3. In einer Schachtel liegen <InlineMath math="6 \text{ rote Kugeln}" /> und <InlineMath math="4 \text{ blaue Kugeln}" />. Auf wie viele Arten lassen sich <InlineMath math="5 \text{ Kugeln}" /> auswählen, wenn mindestens <InlineMath math="3 \text{ rote Kugeln}" /> dabei sein müssen?
+3. In einer Schachtel liegen <InlineMath math="6 \text{ rote Kugeln}" /> und <InlineMath math="4 \text{ blaue Kugeln}" />. Jede Kugel trägt eine andere Nummer, sodass auch gleichfarbige Kugeln unterscheidbar sind. Auf wie viele Arten lassen sich <InlineMath math="5 \text{ Kugeln}" /> auswählen, wenn mindestens <InlineMath math="3 \text{ rote Kugeln}" /> dabei sein müssen?
 
 4. Ein Schüler wählt <InlineMath math="4 \text{ Fächer}" /> aus <InlineMath math="10 \text{ verfügbaren Fächern}" />. Davon sind <InlineMath math="6 \text{ Fächer}" /> naturwissenschaftlich und <InlineMath math="4 \text{ Fächer}" /> geisteswissenschaftlich. Wie viele Auswahlen enthalten mindestens <InlineMath math="2 \text{ naturwissenschaftliche Fächer}" />?
-
 ### Ausführliche Lösungen
 
-1. **Antwort: <InlineMath math="56 \text{ Möglichkeiten}" />**
+**Aufgabe 1**
 
-   Lösungsschritte:
+<InlineMath math="56 \text{ Möglichkeiten}" />
 
-   Gegeben: <InlineMath math="n = 8" /> Bücher, davon werden <InlineMath math="k = 3" /> ausgewählt
+Lösungsschritte:
 
-   Kombinationsformel:
+Gegeben: <InlineMath math="n = 8" /> Bücher, davon werden <InlineMath math="k = 3" /> ausgewählt
 
-   <MathContainer>
-      <BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
-      <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
-   </MathContainer>
+Kombinationsformel:
 
-   Es gibt also <InlineMath math="56 \text{ Möglichkeiten}" />, <InlineMath math="3 \text{ Bücher}" /> aus <InlineMath math="8 \text{ verfügbaren Büchern}" /> auszuwählen.
+<MathContainer>
+<BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
+<BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
+</MathContainer>
 
-2. **Antwort: <InlineMath math="792 \text{ Möglichkeiten}" />**
+Es gibt also <InlineMath math="56 \text{ Möglichkeiten}" />, <InlineMath math="3 \text{ Bücher}" /> aus <InlineMath math="8 \text{ verfügbaren Büchern}" /> auszuwählen.
 
-   Lösungsschritte:
+**Aufgabe 2**
 
-   Gegeben: <InlineMath math="n = 12" /> Spieler, davon werden <InlineMath math="k = 5" /> ausgewählt
+<InlineMath math="792 \text{ Möglichkeiten}" />
 
-   Kombinationsformel:
+Lösungsschritte:
 
-   <MathContainer>
-      <BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
-      <BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
-   </MathContainer>
+Gegeben: <InlineMath math="n = 12" /> Spieler, davon werden <InlineMath math="k = 5" /> ausgewählt
 
-   Die Futsalmannschaft kann <InlineMath math="5 \text{ Spieler}" /> aus <InlineMath math="12 \text{ Spielern}" /> auf <InlineMath math="792 \text{ verschiedene Arten}" /> auswählen.
+Kombinationsformel:
 
-3. **Antwort: <InlineMath math="186 \text{ Möglichkeiten}" />**
+<MathContainer>
+<BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
+<BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
+</MathContainer>
 
-   Lösungsschritte (**Fallunterscheidung**):
+Die Futsalmannschaft kann <InlineMath math="5 \text{ Spieler}" /> aus <InlineMath math="12 \text{ Spielern}" /> auf <InlineMath math="792 \text{ verschiedene Arten}" /> auswählen.
 
-   Insgesamt liegen <InlineMath math="6 \text{ rote} + 4 \text{ blaue}" />, also <InlineMath math="10 \text{ Kugeln}" />, in der Schachtel.
+**Aufgabe 3**
 
-   Gesucht sind <InlineMath math="5 \text{ Kugeln}" /> mit mindestens <InlineMath math="3" /> roten Kugeln.
+<InlineMath math="186 \text{ Möglichkeiten}" />
 
-   **Detaillierte Berechnung für jeden Fall:**
+Lösungsschritte (**Fallunterscheidung**):
 
-   **Fall** 1: <InlineMath math="3 \text{ rote} + 2 \text{ blaue}" />
+Insgesamt liegen <InlineMath math="6 \text{ rote} + 4 \text{ blaue}" />, also <InlineMath math="10 \text{ Kugeln}" />, in der Schachtel.
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
-   </MathContainer>
+Gesucht sind <InlineMath math="5 \text{ Kugeln}" /> mit mindestens <InlineMath math="3" /> roten Kugeln.
 
-   **Fall** 2: <InlineMath math="4 \text{ rote} + 1 \text{ blaue}" />
+**Detaillierte Berechnung für jeden Fall:**
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
-   </MathContainer>
+**Fall 1**: <InlineMath math="3 \text{ rote} + 2 \text{ blaue}" />
 
-   **Fall** 3: <InlineMath math="5 \text{ rote} + 0 \text{ blaue}" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= 6 \times 1 = 6" />
-   </MathContainer>
+**Fall 2**: <InlineMath math="4 \text{ rote} + 1 \text{ blaue}" />
 
-   **Gesamt:** <InlineMath math="120 + 60 + 6 = 186" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
+</MathContainer>
 
-   Es gibt <InlineMath math="186 \text{ Möglichkeiten}" />, <InlineMath math="5 \text{ Kugeln}" /> mit mindestens <InlineMath math="3" /> roten Kugeln auszuwählen.
+**Fall 3**: <InlineMath math="5 \text{ rote} + 0 \text{ blaue}" />
 
-4. **Antwort: <InlineMath math="185 \text{ Möglichkeiten}" />**
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= 6 \times 1 = 6" />
+</MathContainer>
 
-   Lösungsschritte (**Fallunterscheidung**):
+**Gesamt:** <InlineMath math="120 + 60 + 6 = 186" />
 
-   Naturwissenschaftliche Fächer: <InlineMath math="6" />, geisteswissenschaftliche Fächer: <InlineMath math="4" />
+Es gibt <InlineMath math="186 \text{ Möglichkeiten}" />, <InlineMath math="5 \text{ Kugeln}" /> mit mindestens <InlineMath math="3" /> roten Kugeln auszuwählen.
 
-   Ausgewählt werden <InlineMath math="4 \text{ Fächer}" /> mit mindestens <InlineMath math="2 \text{ naturwissenschaftlichen}" />.
+**Aufgabe 4**
 
-   **Detaillierte Berechnung für jeden Fall:**
+<InlineMath math="185 \text{ Möglichkeiten}" />
 
-   **Fall** 1: <InlineMath math="2 \text{ naturwissenschaftliche} + 2 \text{ geisteswissenschaftliche}" />
+Lösungsschritte (**Fallunterscheidung**):
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
-   </MathContainer>
+Naturwissenschaftliche Fächer: <InlineMath math="6" />, geisteswissenschaftliche Fächer: <InlineMath math="4" />
 
-   **Fall** 2: <InlineMath math="3 \text{ naturwissenschaftliche} + 1 \text{ geisteswissenschaftliches}" />
+Ausgewählt werden <InlineMath math="4 \text{ Fächer}" /> mit mindestens <InlineMath math="2 \text{ naturwissenschaftlichen}" />.
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
-   </MathContainer>
+**Detaillierte Berechnung für jeden Fall:**
 
-   **Fall** 3: <InlineMath math="4 \text{ naturwissenschaftliche} + 0 \text{ geisteswissenschaftliche}" />
+**Fall 1**: <InlineMath math="2 \text{ naturwissenschaftliche} + 2 \text{ geisteswissenschaftliche}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
+</MathContainer>
 
-   **Gesamt:** <InlineMath math="90 + 80 + 15 = 185" />
+**Fall 2**: <InlineMath math="3 \text{ naturwissenschaftliche} + 1 \text{ geisteswissenschaftliches}" />
 
-   Unter dieser Bedingung gibt es <InlineMath math="185 \text{ Möglichkeiten}" />, die Fächer auszuwählen.
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
+</MathContainer>
+
+**Fall 3**: <InlineMath math="4 \text{ naturwissenschaftliche} + 0 \text{ geisteswissenschaftliche}" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
+</MathContainer>
+
+**Gesamt:** <InlineMath math="90 + 80 + 15 = 185" />
+
+Unter dieser Bedingung gibt es <InlineMath math="185 \text{ Möglichkeiten}" />, die Fächer auszuwählen.

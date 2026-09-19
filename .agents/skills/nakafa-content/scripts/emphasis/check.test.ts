@@ -1,7 +1,40 @@
 import { assert, it } from "@effect/vitest";
 
-import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
+import {
+  findEmphasisArtifactIssues,
+  findPhraseEmphasisIssues,
+} from "#nakafa-content/emphasis/check";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+
+it("finds whole sentence emphasis with either rendered marker", () => {
+  for (const source of [
+    "<Highlight>Vektor biasanya ditampilkan sebagai anak panah.</Highlight>",
+    "**A vector is commonly drawn as an arrow.**",
+    "<Highlight>Ein Vektor wird gewöhnlich als Pfeil gezeichnet.</Highlight>",
+    "**The *same* magnitude and direction.**",
+  ]) {
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ rule }) => rule),
+      ["sentence-punctuation-emphasis"]
+    );
+  }
+});
+
+it("preserves phrase emphasis, abbreviations, code, and exact quotations", () => {
+  for (const source of [
+    "A vector has **magnitude and direction**.",
+    "**Dr.** Example",
+    "<Highlight>For example, **etc.**</Highlight>",
+    '**<InlineMath math="x = 2." />**',
+    "**`A whole code sentence here.`**",
+    "> **A quoted sentence stays exactly as supplied.**",
+    '"**A quoted sentence stays exactly as supplied.**"',
+    "<Highlight>„Ein Zitat bleibt im Original.“</Highlight>",
+    "```md\n**A code example stays exactly as supplied.**\n```",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(source), []);
+  }
+});
 
 it.each(["Langkah", "Step", "Schritt"])(
   "keeps the number inside the marked %s label",

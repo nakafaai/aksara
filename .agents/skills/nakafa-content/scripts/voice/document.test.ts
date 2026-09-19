@@ -34,7 +34,7 @@ it("preserves assessed language while checking broken question math and emphasis
 });
 
 it("checks authored answer voice without treating passage analysis as lesson narration", () => {
-  const valid = `${METADATA}#### Membandingkan gagasan\n\nGagasan utama paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.`;
+  const valid = `${METADATA}#### Membandingkan gagasan\n\n**Gagasan utama** paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.`;
   assert.deepEqual(
     findDocumentIssues("answer.id.mdx", "id", valid, parseLessonMdx(valid)),
     []
@@ -50,6 +50,7 @@ it("checks authored answer voice without treating passage analysis as lesson nar
     [
       "indonesian-formal-learner-address",
       "indonesian-nonstandard-affix",
+      "section-body-highlight",
       "heading-order",
     ]
   );
@@ -61,7 +62,7 @@ it("checks authored answer voice without treating passage analysis as lesson nar
       german,
       parseLessonMdx(german)
     ).map(({ rule }) => rule),
-    ["german-formal-address"]
+    ["german-formal-address", "section-body-highlight"]
   );
 });
 
@@ -81,7 +82,7 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
 });
 
 it("does not join teacher narration to modal verbs in an assessed quotation", () => {
-  const source = `${METADATA}Hal yang membuat Uwet penasaran adalah “Mengapa siput bisa berjalan di atas duri?”`;
+  const source = `${METADATA}Hal yang membuat Uwet **penasaran** adalah “Mengapa siput bisa berjalan di atas duri?”`;
   assert.deepEqual(
     findDocumentIssues("answer.id.mdx", "id", source, parseLessonMdx(source)),
     []
@@ -89,7 +90,7 @@ it("does not join teacher narration to modal verbs in an assessed quotation", ()
 });
 
 it("does not invent adjacent duplicate words by removing an inline formula", () => {
-  const source = `${METADATA}Susun <InlineMath math="A" /> sebelum <InlineMath math="B" /> sebelum <InlineMath math="C" />.\n\nPeriksa periksa urutan.`;
+  const source = `${METADATA}**Susun** <InlineMath math="A" /> sebelum <InlineMath math="B" /> sebelum <InlineMath math="C" />.\n\nPeriksa periksa urutan.`;
   assert.deepEqual(
     findDocumentIssues(
       "answer.id.mdx",

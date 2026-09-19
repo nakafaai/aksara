@@ -3,13 +3,13 @@ export const metadata = {
    description: "Unabhängigkeit prüfen und gemeinsame Wahrscheinlichkeiten berechnen, ohne sich von oberflächlichen Schlüsselwörtern täuschen zu lassen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
 ## Ein Ergebnis verändert die Wahrscheinlichkeit des anderen nicht
 
-In manchen Wahrscheinlichkeitsmodellen gilt: **Die Kenntnis eines Ergebnisses verändert die Wahrscheinlichkeit eines anderen nicht**. Wirf eine faire Münze und einen fairen Würfel. Das Ergebnis der Münze liefert keine Information über das Würfelergebnis. Die beiden Ereignisse sind unabhängig.
+In manchen Wahrscheinlichkeitsmodellen gilt: Die Kenntnis eines Ergebnisses lässt die **Wahrscheinlichkeit des anderen unverändert**. Wirf eine faire Münze und einen fairen Würfel. Das Ergebnis der Münze liefert keine Information über das Würfelergebnis. Die beiden Ereignisse sind unabhängig.
 
 Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unabhängig**, wenn <Highlight>die Wahrscheinlichkeit des jeweils anderen unverändert bleibt</Highlight>, sobald wir eines als Bedingung voraussetzen. Unabhängigkeit ist eine Eigenschaft des Wahrscheinlichkeitsmodells. Gleichzeitig stattfindende Ereignisse sind nicht automatisch unabhängig.
 
@@ -17,28 +17,41 @@ Zwei Ereignisse können eine gemeinsame Ursache haben, obwohl keines das andere 
 
 ## Wie sich Unabhängigkeit in den Wahrscheinlichkeiten zeigt
 
-Unabhängigkeit lässt die zweite Wahrscheinlichkeit unverändert, sobald das erste Ergebnis bekannt ist, und sie verlangt getrennte Versuche. Die drei Prüfungen unten formulieren diesen Gedanken unterschiedlich.
+Bei unabhängigen Ereignissen **ändert die Information über ein Ereignis die Wahrscheinlichkeit nicht**, mit der das andere eintritt. Die Ereignisse können aus demselben oder aus getrennten Versuchen stammen. Entscheidend sind ihre Wahrscheinlichkeiten, nicht die Anzahl der Versuche.
 
 ### Unveränderte bedingte Wahrscheinlichkeit
 
-Das Hauptmerkmal unabhängiger Ereignisse lautet: Das Ergebnis eines Ereignisses verändert die Wahrscheinlichkeit des anderen nicht. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
+Das Hauptmerkmal unabhängiger Ereignisse lautet: Das Ergebnis eines Ereignisses **verändert die Wahrscheinlichkeit des anderen nicht**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
 
 <BlockMath math="P(A|B) = P(A)" />
 
 Dies bedeutet, dass die Wahrscheinlichkeit, dass <InlineMath math="A" /> auftritt, wenn <InlineMath math="B" /> bereits aufgetreten ist, genauso groß ist wie die Wahrscheinlichkeit, dass <InlineMath math="A" /> im Allgemeinen auftritt.
-
 ### Getrennte Zufallsversuche
 
-Beispiele mit einem klar unabhängigen Mechanismus sind:
+Beispiele mit einem klar **unabhängigen Mechanismus** sind:
 
 - zwei getrennte faire Münzwürfe
 - je eine Karte aus zwei unabhängig gemischten Stapeln
 - zwei getrennte faire Würfel
 - zwei Zufallszahlen aus unabhängigen Versuchen
-
 ### Identifizieren unabhängiger Ereignisse
 
 Frage zur Prüfung: „Verändert die Kenntnis des ersten Ergebnisses die Wahrscheinlichkeitsverteilung des zweiten?“ Eine vermutete Ursache-Wirkungs-Beziehung allein reicht nicht aus. Nutze das angegebene Modell oder vergleiche die bedingte mit der gewöhnlichen Wahrscheinlichkeit.
+
+Als Beispiel aus **einem einzigen fairen Würfelwurf** betrachten wir <InlineMath math="A=\{2,4,6\}" /> und <InlineMath math="B=\{3,6\}" />. Die Tabelle zeigt die Zugehörigkeit aller sechs Ergebnisse.
+
+| Ergebnis | Gehört zu A | Gehört zu B |
+| --- | --- | --- |
+| 1 | Nein | Nein |
+| 2 | Ja | Nein |
+| 3 | Nein | Ja |
+| 4 | Ja | Nein |
+| 5 | Nein | Nein |
+| 6 | Ja | Ja |
+
+<BlockMath math="P(A)=\frac36=\frac12,\quad P(B)=\frac26=\frac13,\quad P(A\cap B)=\frac16=\frac12\times\frac13" />
+
+Die Ereignisse sind unabhängig, obwohl sie aus einem Wurf stammen und die Schnittmenge <InlineMath math="\{6\}" /> haben.
 
 ## Formel für die Wahrscheinlichkeit unabhängiger Ereignisse
 
@@ -50,19 +63,17 @@ Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math
 
 ### Warum die beiden Wahrscheinlichkeiten multipliziert werden
 
-Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gewöhnlichen Wahrscheinlichkeit überein. Wegen <InlineMath math="P(A|B) = P(A)" /> lautet die Multiplikationsregel:
+Bei unabhängigen Ereignissen stimmt die **bedingte Wahrscheinlichkeit** mit der gewöhnlichen Wahrscheinlichkeit überein. Wegen <InlineMath math="P(A|B) = P(A)" /> lautet die Multiplikationsregel:
 
 <BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
 
 Setzen wir <InlineMath math="P(A|B)=P(A)" /> in die Multiplikationsregel ein, erhalten wir <InlineMath math="P(A\cap B)=P(A)P(B)" />.
-
 ## Berechnungen mit unabhängigen Ereignissen
 
-Jede Rechnung unten multipliziert die Wahrscheinlichkeiten zweier unabhängiger Ereignisse. Die Beispiele gehen von zwei Würfeln über einen Würfel und eine Münze bis zu zwei Sensortests.
-
+Jede Rechnung unten **multipliziert die Wahrscheinlichkeiten** zweier unabhängiger Ereignisse. Die Beispiele gehen von zwei Würfeln über einen Würfel und eine Münze bis zu zwei Sensortests.
 ### Zwei Würfel werfen
 
-Ein roter und ein weißer Würfel werden geworfen. Gesucht ist die Wahrscheinlichkeit dafür, dass der rote Würfel <InlineMath math="2" /> und der weiße <InlineMath math="5" /> zeigt.
+Ein roter und ein weißer fairer Würfel werden unabhängig voneinander geworfen. Gesucht ist die Wahrscheinlichkeit dafür, dass der rote Würfel <InlineMath math="2" /> und der weiße <InlineMath math="5" /> zeigt.
 
 **Lösung:**
 
@@ -81,7 +92,7 @@ Die Wahrscheinlichkeit, die Zahl <InlineMath math="2" /> auf dem roten Würfel u
 
 ### Werfen eines Würfels und einer Münze
 
-Ein Würfel und eine Münze werden geworfen. Gesucht ist die Wahrscheinlichkeit für eine gerade Würfelzahl und die Zahlseite der Münze.
+Ein fairer Würfel und eine faire Münze werden unabhängig voneinander geworfen. Gesucht ist die Wahrscheinlichkeit für eine gerade Würfelzahl und die Zahlseite der Münze.
 
 **Lösung:**
 
@@ -125,7 +136,7 @@ Die Wahrscheinlichkeit, dass beide Sensoren bestehen, beträgt somit <InlineMath
 
 ## So gehst du eine Unabhängigkeitsaufgabe an
 
-Die meisten Fehler entstehen hier, wenn vor der Prüfung der Unabhängigkeit multipliziert wird. Die Schritte unten stellen diese Prüfung an den Anfang und kontrollieren am Ende das Ergebnis.
+Die Multiplikation kann ein falsches Ergebnis liefern, wenn **die Unabhängigkeit ungeprüft bleibt**. Die Schritte unten stellen diese Prüfung an den Anfang und kontrollieren am Ende das Ergebnis.
 
 ### Unabhängigkeit vor dem Multiplizieren prüfen
 
@@ -139,12 +150,11 @@ Bei Aufgaben mit unabhängigen Ereignissen gehst du so vor:
 
 ### Kontrollen für das Endergebnis
 
-Nutze diese Kontrollen:
+Die Wahrscheinlichkeit, dass **beide Ereignisse eintreten**, darf keine der beiden Einzelwahrscheinlichkeiten übersteigen. Die Schnittmenge enthält nur Ergebnisse, die bereits zu jedem Ereignis gehören.
 
-- **Visualisiere** Ereignisse bei Bedarf mit einem Baumdiagramm
-- **Prüfe die Unabhängigkeit** am Modell oder an bedingten Wahrscheinlichkeiten. Der Zeitpunkt reicht dafür nicht aus
-- **Kontrolliere das Ergebnis** mit einem zweiten Ansatz, wenn einer verfügbar ist
-- **Deute das Ergebnis** im Kontext der Aufgabe
+<BlockMath math="0\le P(A\cap B)\le\min\{P(A),P(B)\}" />
+
+Beim Sensorbeispiel gilt <InlineMath math="0{,}9016\le0{,}92" />, die Schranke ist also erfüllt. Sie **beweist keine Unabhängigkeit**. Diese muss weiterhin aus dem Modell oder der Gleichheit bedingter Wahrscheinlichkeiten folgen.
 
 ### Unabhängige Ereignisse erkennen
 
@@ -172,71 +182,70 @@ Prüfe die folgenden Merkmale, um unabhängige Ereignisse zu erkennen:
 
 4. Drei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit für genau zweimal Zahl.
 
-Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Begründe die Unabhängigkeit, bevor du Wahrscheinlichkeiten multiplizierst.
-
+Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. **Begründe die Unabhängigkeit**, bevor du Wahrscheinlichkeiten multiplizierst.
 ### Ausführliche Lösungen
 
-1. **Lösung:**
+**Aufgabe 1**
 
-   - Ereignis <InlineMath math="A" />: Kopf bei der ersten Münze, <InlineMath math="P(A) = \frac{1}{2}" />
-   - Ereignis <InlineMath math="B" />: Zahl bei der zweiten Münze, <InlineMath math="P(B) = \frac{1}{2}" />
+- Ereignis <InlineMath math="A" />: Kopf bei der ersten Münze, <InlineMath math="P(A) = \frac{1}{2}" />
+- Ereignis <InlineMath math="B" />: Zahl bei der zweiten Münze, <InlineMath math="P(B) = \frac{1}{2}" />
 
-   Beide Ereignisse sind unabhängig, da das Ergebnis der ersten Münze keinen Einfluss auf die zweite Münze hat.
+Beide Ereignisse sind unabhängig, da das Ergebnis der ersten Münze keinen Einfluss auf die zweite Münze hat.
 
-   <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 
-2. **Lösung:**
+**Aufgabe 2**
 
-   - Ereignis <InlineMath math="A" />: Primzahl auf dem Würfel ist <InlineMath math="\{2, 3, 5\}" />, also <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
-   - Ereignis <InlineMath math="B" />: Rote Karte (Herzen und Karo), also <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+- Ereignis <InlineMath math="A" />: Primzahl auf dem Würfel ist <InlineMath math="\{2, 3, 5\}" />, also <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+- Ereignis <InlineMath math="B" />: Rote Karte (Herzen und Karo), also <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
 
-   Beide Ereignisse sind unabhängig.
+Beide Ereignisse sind unabhängig.
 
-   <BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+<BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 
-3. **Lösung:**
+**Aufgabe 3**
 
-   - Ereignis <InlineMath math="A" />: Mathematik bestanden, <InlineMath math="P(A) = 0{,}85" />
-   - Ereignis <InlineMath math="B" />: Physik bestanden, <InlineMath math="P(B) = 0{,}78" />
+- Ereignis <InlineMath math="A" />: Mathematik bestanden, <InlineMath math="P(A) = 0{,}85" />
+- Ereignis <InlineMath math="B" />: Physik bestanden, <InlineMath math="P(B) = 0{,}78" />
 
-   Da beide Fächer unabhängig sind:
+Da beide Fächer unabhängig sind:
 
-   <BlockMath math="P(A \cap B) = 0{,}85 \times 0{,}78 = 0{,}663" />
+<BlockMath math="P(A \cap B) = 0{,}85 \times 0{,}78 = 0{,}663" />
 
-   Die Wahrscheinlichkeit, beide Fächer zu bestehen, beträgt <InlineMath math="0{,}663" /> oder <InlineMath math="66{,}3\%" />.
+Die Wahrscheinlichkeit, beide Fächer zu bestehen, beträgt <InlineMath math="0{,}663" /> oder <InlineMath math="66{,}3\%" />.
 
-4. **Lösung:**
+**Aufgabe 4**
 
-   **Methode 1: Direkte Aufzählung**
+**Methode 1: Direkte Aufzählung**
 
-   Verwende <InlineMath math="0" /> für Kopf und <InlineMath math="1" /> für Zahl. Der Ergebnisraum für <InlineMath math="3" /> Münzen enthält <InlineMath math="8" /> Ergebnisse:
+Verwende <InlineMath math="0" /> für Kopf und <InlineMath math="1" /> für Zahl. Der Ergebnisraum für <InlineMath math="3" /> Münzen enthält <InlineMath math="8" /> Ergebnisse:
 
-   <BlockMath math="\left\{\begin{gathered}
-   000, 001, 010, 011, \\
-   100, 101, 110, 111
-   \end{gathered}\right\}" />
+<BlockMath math="\left\{\begin{gathered}
+000, 001, 010, 011, \\
+100, 101, 110, 111
+\end{gathered}\right\}" />
 
-   Genau zweimal Zahl tritt in <InlineMath math="\{011, 101, 110\}" /> auf. Es gibt also <InlineMath math="3" /> günstige Ergebnisse.
+Genau zweimal Zahl tritt in <InlineMath math="\{011, 101, 110\}" /> auf. Es gibt also <InlineMath math="3" /> günstige Ergebnisse.
 
-   <BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8}" />
+<BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8}" />
 
-   **Methode 2: Binomialverteilung verwenden**
+**Methode 2: Binomialverteilung verwenden**
 
-   Für <InlineMath math="n = 3" /> Würfe mit der Erfolgswahrscheinlichkeit <InlineMath math="p = \frac{1}{2}" /> für Zahl berechnen wir genau <InlineMath math="k = 2" /> Erfolge:
+Für <InlineMath math="n = 3" /> Würfe mit der Erfolgswahrscheinlichkeit <InlineMath math="p = \frac{1}{2}" /> für Zahl berechnen wir genau <InlineMath math="k = 2" /> Erfolge:
 
-   <BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
+<BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
 
-   Werte ersetzen:
+Werte ersetzen:
 
-   <BlockMath math="P(\text{genau 2-mal Zahl}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
+<BlockMath math="P(\text{genau 2-mal Zahl}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
 
-   **Schritt-für-Schritt-Erklärung:**
-   - <InlineMath math="\binom{3}{2} = 3" /> (Auswahl der <InlineMath math="2" /> Positionen für Zahl unter <InlineMath math="3" /> Würfen)
-   - <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (Wahrscheinlichkeit für <InlineMath math="2" /> Zahlseiten)
-   - <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (Wahrscheinlichkeit für <InlineMath math="1" /> Kopfseite)
+**Schritt-für-Schritt-Erklärung:**
+- <InlineMath math="\binom{3}{2} = 3" /> (Auswahl der <InlineMath math="2" /> Positionen für Zahl unter <InlineMath math="3" /> Würfen)
+- <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (Wahrscheinlichkeit für <InlineMath math="2" /> Zahlseiten)
+- <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (Wahrscheinlichkeit für <InlineMath math="1" /> Kopfseite)
 
-   Die Berechnung lautet also:
+Die Berechnung lautet also:
 
-   <BlockMath math="P(\text{genau 2-mal Zahl}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
+<BlockMath math="P(\text{genau 2-mal Zahl}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
 
-   Die Wahrscheinlichkeit für genau zweimal Zahl beträgt somit <InlineMath math="\frac{3}{8}" />.
+Die Wahrscheinlichkeit für genau zweimal Zahl beträgt somit <InlineMath math="\frac{3}{8}" />.

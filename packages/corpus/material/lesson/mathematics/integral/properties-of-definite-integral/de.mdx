@@ -3,17 +3,21 @@ export const metadata = {
     description: "Nutze die Regeln für Nullintervalle, vertauschte Grenzen, Linearität und Intervalladdition bei bestimmten Integralen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Integrale",
 };
 
 ## Identische Integrationsgrenzen
 
-<Highlight>Wenn die Ober- und Untergrenze eines bestimmten Integrals gleich sind, ist das Ergebnis Null.</Highlight>
+Ein bestimmtes Integral ist null, wenn **Obergrenze und Untergrenze übereinstimmen**. Die Regel gilt für eine Funktion, die auf dem betrachteten Intervall integrierbar ist.
 
 <BlockMath math="\int_{a}^{a} f(x) \, dx = 0" />
 
 Ein bestimmtes Integral akkumuliert eine Größe über ein orientiertes Intervall. Von <InlineMath math="a" /> zurück zum selben Punkt <InlineMath math="a" /> hat das Intervall keine Breite. Deshalb ist die Akkumulation unabhängig vom Integranden null.
+
+Zum Beispiel hat <InlineMath math="f(x)=x" /> an der Stelle <InlineMath math="x=3" /> den Wert <InlineMath math="3" />. Das Intervall von <InlineMath math="3" /> bis <InlineMath math="3" /> hat jedoch die **Breite null**. Deshalb ist das Integral trotzdem null:
+
+<BlockMath math="\int_3^3 x\,dx=\left[\frac{x^2}{2}\right]_3^3=\frac92-\frac92=0" />
 
 ## Umkehren der Integrationsgrenzen
 
@@ -23,13 +27,21 @@ Wenn wir die untere und obere Grenze eines Integrals vertauschen, ist das Ergebn
 
 Die untere und obere Grenze bestimmen die Orientierung des Integrationsintervalls. Werden die Grenzen vertauscht, kehrt sich die Orientierung um und <Highlight>jeder Beitrag zur Akkumulation wechselt das Vorzeichen</Highlight>. Deshalb ist der neue Integralwert das Negative des ursprünglichen Werts.
 
+Eine Stammfunktion von <InlineMath math="f(x)=x" /> ist <InlineMath math="x^2/2" />. In beiden Richtungen ergibt sich der **gleiche Betrag mit umgekehrtem Vorzeichen**:
+
+<BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
+
 ## Regel für konstante Vielfache
 
 Genau wie bei unbestimmten Integralen kann eine Konstante aus dem Integral herausgerechnet werden, um die Berechnung zu vereinfachen.
 
 <BlockMath math="\int_{a}^{b} kf(x) \, dx = k \int_{a}^{b} f(x) \, dx" />
 
-Werden alle Funktionswerte mit einer Konstanten <InlineMath math="k" /> multipliziert, wird auch das Integral mit diesem Faktor multipliziert. Deshalb können wir zuerst <InlineMath math="\int f(x)dx" /> bestimmen und das Ergebnis anschließend mit <InlineMath math="k" /> multiplizieren.
+Werden alle Funktionswerte mit einer Konstanten <InlineMath math="k" /> multipliziert, wird auch das Integral mit diesem Faktor multipliziert. Deshalb können wir zuerst <InlineMath math="\int_a^b f(x)\,dx" /> bestimmen und das Ergebnis anschließend mit <InlineMath math="k" /> multiplizieren.
+
+Für <InlineMath math="k=3" /> wird jeder Beitrag **dreimal so groß**. Die Integrationsgrenzen bleiben unverändert, wenn du die Konstante vor das Integral ziehst:
+
+<BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
 
 ## Summenregel und Differenzenregel
 
@@ -42,6 +54,10 @@ Das Integral einer Summe oder Differenz zweier Funktionen ist gleich der Summe o
 
 Mit dieser Linearität lässt sich ein komplizierter Integrand in einfachere Teile zerlegen. Wir integrieren <InlineMath math="f(x)" /> und <InlineMath math="g(x)" /> getrennt und verbinden die vorzeichenbehafteten Akkumulationen mit derselben Rechenoperation.
 
+Beim Integranden <InlineMath math="x+1" /> berechnest du die Beiträge von <InlineMath math="x" /> und der Konstanten <InlineMath math="1" /> getrennt. Beim Zusammenführen bleibt die **Addition erhalten**:
+
+<BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
+
 ## Intervalladditionseigenschaft
 
 Ein Integrationsintervall kann an einem Zwischenpunkt geteilt werden. Die vorzeichenbehaftete Akkumulation über das gesamte Intervall ist die Summe der beiden Teilintegrale.
@@ -49,3 +65,12 @@ Ein Integrationsintervall kann an einem Zwischenpunkt geteilt werden. Die vorzei
 <BlockMath math="\begin{aligned} \int_{a}^{c} f(x) \, dx &amp;= \int_{a}^{b} f(x) \, dx \\ &amp;\quad{}+ \int_{b}^{c} f(x) \, dx \end{aligned}" />
 
 Die Identität gilt für jede Reihenfolge von <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />, sofern die Funktion auf dem benötigten Intervall integrierbar ist. In Worten: Die Akkumulation von <InlineMath math="a" /> bis <InlineMath math="c" /> ist gleich der Akkumulation von <InlineMath math="a" /> bis <InlineMath math="b" /> plus der Akkumulation von <InlineMath math="b" /> bis <InlineMath math="c" />. Bei abschnittsweise definierten Funktionen kann dadurch jede Formel genau dort integriert werden, wo sie gilt.
+
+Teile das Intervall <InlineMath math="[0,2]" /> an der Stelle <InlineMath math="x=1" />. Die Tabelle vergleicht beide Teilintegrale:
+
+| Intervall | Rechnung | Wert |
+| --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="\frac{1^2}{2}-\frac{0^2}{2}" /> | <InlineMath math="\frac12" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
+
+Beide Teile ergeben zusammen <InlineMath math="\frac12+\frac32=2" />, genau wie <InlineMath math="\int_0^2 x\,dx" />. **Derselbe Teilungspunkt** ist die Obergrenze des ersten und die Untergrenze des zweiten Integrals. So wird kein Teil des Intervalls ausgelassen.

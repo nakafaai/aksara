@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne Wahrscheinlichkeiten überlappender Ereignisse und vermeide Doppelzählungen anhand von Schnittmengen und ausgearbeiteten Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Wahrscheinlichkeit",
 };
 
@@ -13,18 +13,12 @@ Zwei Ereignisse sind **vereinbar**, wenn sie in demselben Zufallsexperiment geme
 
 Ihre Ergebnismengen haben daher eine nicht leere Schnittmenge.
 
-**Einfache Beispiele:**
+Bei einem Kartenzug und einem Würfelwurf findest du die Schnittmenge, indem du die **Ergebnisse mit beiden Eigenschaften** auflistest.
 
-1.  **Eine Karte ziehen:** Du ziehst eine Karte aus einem Standardstapel.
-
-    - Ereignis <InlineMath math="A" />: Ein **Herz** bekommen (<InlineMath math="\heartsuit" />).
-    - Ereignis <InlineMath math="B" />: Einen **König** bekommen.
-      Können die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> zusammen auftreten? Ja. Eine Karte ist zugleich Herz und König: der **Herzkönig** (<InlineMath math="K\heartsuit" />). Da Ereignis <InlineMath math="A" /> und Ereignis <InlineMath math="B" /> gemeinsam eintreten können, schließen sie sich **nicht gegenseitig aus**.
-
-2.  **Einen Würfel werfen (einmal):**
-    - Ereignis <InlineMath math="A" />: eine **gerade** Zahl würfeln (<InlineMath math="\{2, 4, 6\}" />).
-    - Ereignis <InlineMath math="B" />: eine Zahl **größer als** <InlineMath math="3" /> würfeln (<InlineMath math="\{4, 5, 6\}" />).
-      Können beide Ereignisse gemeinsam eintreten? Ja. Die Zahlen <InlineMath math="4" /> und <InlineMath math="6" /> sind gerade und größer als <InlineMath math="3" />. Daher schließen sich <InlineMath math="A" /> und <InlineMath math="B" /> **nicht gegenseitig aus**.
+| Versuch | Ereignis <InlineMath math="A" /> | Ereignis <InlineMath math="B" /> | Schnittmenge |
+| --- | --- | --- | --- |
+| Eine Karte ziehen | Herzkarten | Könige | Herzkönig <InlineMath math="K\heartsuit" /> |
+| Einmal würfeln | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
 
 ## Schnittmenge überlappender Ereignisse
 
@@ -41,8 +35,6 @@ In einer endlichen Ergebnismenge, in der jedes Elementarereignis eine positive W
 Bei unvereinbaren Ereignissen hat die Schnittmenge die Wahrscheinlichkeit <InlineMath math="P(A \cap B) = 0" />.
 
 ## Wahrscheinlichkeit einer Vereinigung berechnen
-
-Da <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten können, würde <InlineMath math="P(A) + P(B)" /> <Highlight>die Überschneidung doppelt zählen</Highlight>.
 
 Bei einer einfachen Addition würde die Schnittmenge <InlineMath math="A \cap B" /> **doppelt gezählt**, einmal in <InlineMath math="P(A)" /> und einmal in <InlineMath math="P(B)" />.
 
@@ -66,22 +58,17 @@ Nehmen wir das Kartenbeispiel:
 
 Die Wahrscheinlichkeit, ein Herz ODER einen König zu bekommen, beträgt also:
 
-<MathContainer>
-  <BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
-  <BlockMath math="= \frac{13}{52} + \frac{4}{52} - \frac{1}{52}" />
-  <BlockMath math="= \frac{16}{52} = \frac{4}{13}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(A \cup B) &= P(A) + P(B) \\ &\quad{}- P(A \cap B)  \\ &= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} \\ &= \frac{16}{52} = \frac{4}{13}\end{aligned}" />
 
 Durch den Abzug von <InlineMath math="1/52" /> wird der Herzkönig genau einmal gezählt.
 
 ## Übung
 
-Ein fairer sechsseitiger Würfel wird einmal geworfen. Es sei <InlineMath math="A=\{2,4,6\}" /> das Ereignis „Das Ergebnis ist gerade“ und <InlineMath math="B=\{5,6\}" /> das Ereignis „Das Ergebnis ist größer als <InlineMath math="4" />“.
+Ein **fairer sechsseitiger Würfel** wird einmal geworfen. Es sei <InlineMath math="A=\{2,4,6\}" /> das Ereignis „Das Ergebnis ist gerade“ und <InlineMath math="B=\{5,6\}" /> das Ereignis „Das Ergebnis ist größer als <InlineMath math="4" />“.
 
 1.  Begründe, warum <InlineMath math="A" /> und <InlineMath math="B" /> sich nicht gegenseitig ausschließen.
 2.  Bestimme <InlineMath math="P(A \cup B)" /> mit der allgemeinen Additionsregel.
 3.  Prüfe den Wert von <InlineMath math="P(A \cup B)" />, indem du die Elemente der Vereinigung auflistest.
-
 ### Ausführliche Lösung
 
 Die Schnittmenge enthält **ein gemeinsames Ergebnis**, nämlich <InlineMath math="6" />:
@@ -94,9 +81,6 @@ Die Ereignisse schließen sich daher **nicht gegenseitig aus**. Die Wahrscheinli
 
 Nun wenden wir die allgemeine Additionsregel an:
 
-<MathContainer>
-  <BlockMath math="\begin{aligned} P(A \cup B) &amp;=P(A)+P(B) \\ &amp;\quad{}-P(A \cap B) \end{aligned}" />
-  <BlockMath math="=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(A \cup B) &=P(A)+P(B) \\ &\quad{}-P(A \cap B)  \\ &=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
 
 Direktes Auflisten ergibt <InlineMath math="A \cup B=\{2,4,5,6\}" />. Die Vereinigung enthält <InlineMath math="4" /> der <InlineMath math="6" /> möglichen Ergebnisse. Beide Wege liefern somit <InlineMath math="2/3" />.

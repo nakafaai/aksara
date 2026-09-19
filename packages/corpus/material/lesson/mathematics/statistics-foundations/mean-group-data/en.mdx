@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate the mean of grouped data from class midpoints and frequencies through a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
@@ -21,17 +21,15 @@ Once data is grouped, we **no longer know each exact value**. If <InlineMath mat
 
 Because the exact values are unavailable, we make an **approximation**: the midpoint of each class **represents every value** in that interval.
 
-The class midpoint, denoted by <InlineMath math="x_i" />, is:
-
 Let <InlineMath math="L_i" /> and <InlineMath math="U_i" /> be the lower and upper limits of class <InlineMath math="i" />:
 
 <BlockMath math="x_i=\frac{L_i+U_i}{2}" />
 
 ## Formula for Mean of Grouped Data
 
-After finding each midpoint, calculate the estimated mean with:
+After finding each midpoint, calculate the **estimated mean** with:
 
-<BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i}" />
+<BlockMath math="\bar{x} \approx \frac{\sum (f_i \times x_i)}{\sum f_i}" />
 
 The quantities in this formula are:
 
@@ -40,7 +38,6 @@ The quantities in this formula are:
 - <InlineMath math="x_i" /> is the midpoint of class <InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> is the sum of each class frequency multiplied by its midpoint.
 - <InlineMath math="\sum f_i" /> is the sum of all frequencies, equal to the total number of values <InlineMath math="n" />.
-
 ## Average Shoe Size from Grouped Data
 
 Consider the grouped data for shoe sales at Store A:
@@ -51,36 +48,23 @@ Consider the grouped data for shoe sales at Store A:
 | <InlineMath math="40\text{-}42" /> | <InlineMath math="11" />              |
 | <InlineMath math="43\text{-}45" /> | <InlineMath math="16" />              |
 | <InlineMath math="46\text{-}48" /> | <InlineMath math="1" />               |
-| **Total**                  | **<InlineMath math="n=30" />**        |
+| **Total**                  | <InlineMath math="n=30" />        |
 
-**Calculation:**
+For each class, calculate the **midpoint** from its two class limits. Multiply the midpoint by the frequency to account for the number of observations that the class represents.
 
-1.  **Find the midpoint (<InlineMath math="x_i" />) of each class:**
+| Class | Midpoint | Frequency times midpoint |
+| --- | --- | --- |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="(37+39)/2=38" /> | <InlineMath math="2\times38=76" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="(40+42)/2=41" /> | <InlineMath math="11\times41=451" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="(43+45)/2=44" /> | <InlineMath math="16\times44=704" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="(46+48)/2=47" /> | <InlineMath math="1\times47=47" /> |
 
-    - Class <InlineMath math="37\text{-}39" />: <InlineMath math="x_1 = (37+39)/2 = 38" />
-    - Class <InlineMath math="40\text{-}42" />: <InlineMath math="x_2 = (40+42)/2 = 41" />
-    - Class <InlineMath math="43\text{-}45" />: <InlineMath math="x_3 = (43+45)/2 = 44" />
-    - Class <InlineMath math="46\text{-}48" />: <InlineMath math="x_4 = (46+48)/2 = 47" />
+The sum of the products estimates the sum of all shoe sizes. Divide it by the **total frequency** to obtain the estimated mean.
 
-2.  **Multiply each frequency by its midpoint (<InlineMath math="f_i \times x_i" />):**
-
-    - Class <InlineMath math="37\text{-}39" />: <InlineMath math="2 \times 38 = 76" />
-    - Class <InlineMath math="40\text{-}42" />: <InlineMath math="11 \times 41 = 451" />
-    - Class <InlineMath math="43\text{-}45" />: <InlineMath math="16 \times 44 = 704" />
-    - Class <InlineMath math="46\text{-}48" />: <InlineMath math="1 \times 47 = 47" />
-
-3.  **Sum all the products (<InlineMath math="\sum (f_i \times x_i)" />):**
-
-    <BlockMath math="\begin{aligned} &amp;\sum (f_i \times x_i) \\ &amp;= 76 + 451 + 704 + 47 \\ &amp;= 1278 \end{aligned}" />
-
-4.  **Sum all frequencies (<InlineMath math="\sum f_i" />):**
-
-    <BlockMath math="\sum f_i = 2 + 11 + 16 + 1 = 30" />
-
-5.  **Calculate the mean (<InlineMath math="\bar{x}" />):**
-
-    <BlockMath math="\bar{x} = \frac{\sum (f_i \times x_i)}{\sum f_i} = \frac{1278}{30} = 42.6" />
-
-**The estimated average shoe size sold at Store A is therefore <InlineMath math="42.6" />.**
+<MathContainer>
+  <BlockMath math="\sum f_ix_i=76+451+704+47=1278" />
+  <BlockMath math="\sum f_i=2+11+16+1=30" />
+  <BlockMath math="\bar x\approx\frac{1278}{30}=42.6" />
+</MathContainer>
 
 This result is an **estimate** because <Highlight>the midpoint stands in for every value</Highlight> within its class. It is the standard estimate when only grouped frequencies are available.

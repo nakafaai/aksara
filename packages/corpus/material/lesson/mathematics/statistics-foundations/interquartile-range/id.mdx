@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung jangkauan interkuartil, bandingkan dengan jangkauan penuh, lalu jelaskan sebaran separuh tengah suatu kumpulan data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Statistika",
 };
 
@@ -26,7 +26,7 @@ Jadi, <InlineMath math="\mathrm{IQR}" /> itu selisih antara kuartil atas dan kua
 
 ## Membandingkan Sebaran Umur
 
-Perhatikan dua kelompok yang memiliki mean sama, tetapi sebaran sangat berbeda.
+Perhatikan dua kelompok yang memiliki **mean sama**, tetapi sebaran sangat berbeda.
 
 Ada dua kelompok, masing-masing <InlineMath math="12 \text{ orang}" />. Kita lihat data umurnya dalam tabel berikut:
 
@@ -46,75 +46,61 @@ Ada dua kelompok, masing-masing <InlineMath math="12 \text{ orang}" />. Kita lih
 | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
 
 Kita akan membandingkan mean, kuartil, jangkauan, dan jangkauan interkuartilnya.
+### Menghitung Mean
 
-### Menghitung Mean dan Kuartil
+Kalau kamu hitung rata-rata umur kedua kelompok, hasilnya **sama persis**, yaitu <InlineMath math="16 \text{ tahun}" />.
 
-1.  **Mean (Rata-rata):**
+Kelompok 1:
 
-    Kalau kamu hitung rata-rata umur kedua kelompok, hasilnya **sama persis**, yaitu <InlineMath math="16 \text{ tahun}" />.
+Jumlahkan kedua belas nilai dahulu, lalu bagi dengan dua belas:
 
-    Kelompok 1:
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
 
-    Jumlahkan kedua belas nilai dahulu, lalu bagi dengan dua belas:
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
+Kelompok 2:
 
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+Jumlahkan kedua belas nilai terlebih dahulu, lalu bagi jumlahnya dengan dua belas.
 
-    Kelompok 2:
+<MathContainer>
+  <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    Jumlahkan kedua belas nilai terlebih dahulu, lalu bagi jumlahnya dengan dua belas.
+### Menentukan Kuartil
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+Kita menggunakan **konvensi interpolasi** <InlineMath math="p(n+1)" />. Di sini <InlineMath math="n=12" />, sehingga posisi kuartil bawah dan atas adalah 3,25 dan 9,75.
 
-2.  **Kuartil (<InlineMath math="Q_1" /> dan <InlineMath math="Q_3" />):**
+Setelah data diurutkan (seperti dalam tabel di atas), kita cari posisi kuartil.
 
-    Setelah data diurutkan (seperti dalam tabel di atas), kita cari posisi kuartil.
+**Kelompok Pertama (<InlineMath math="n=12" />):**
+Letak <InlineMath math="Q_1" /> ada di data ke-<InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Ini berarti <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="3" /> (<InlineMath math="15" />) dan data ke-<InlineMath math="4" /> (<InlineMath math="15" />). Karena kedua data sama, maka
 
-    **Kelompok Pertama (<InlineMath math="n=12" />):**
-    Letak <InlineMath math="Q_1" /> ada di data ke-<InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Ini berarti <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="3" /> (<InlineMath math="15" />) dan data ke-<InlineMath math="4" /> (<InlineMath math="15" />). Karena kedua data sama, maka
+<BlockMath math="Q_1 = 15" />
 
-    <BlockMath math="Q_1 = 15" />
+Letak <InlineMath math="Q_3" /> ada di data ke-<InlineMath math="\frac{3}{4}(12+1) = 9{,}75" />. Ini berarti <InlineMath math="Q_3" /> ada di antara data ke-<InlineMath math="9" /> (<InlineMath math="17" />) dan data ke-<InlineMath math="10" /> (<InlineMath math="17" />). Karena kedua data sama, maka
 
-    Letak <InlineMath math="Q_3" /> ada di data ke-<InlineMath math="\frac{3}{4}(12+1) = 9{,}75" />. Ini berarti <InlineMath math="Q_3" /> ada di antara data ke-<InlineMath math="9" /> (<InlineMath math="17" />) dan data ke-<InlineMath math="10" /> (<InlineMath math="17" />). Karena kedua data sama, maka
+<BlockMath math="Q_3 = 17" />
 
-    <BlockMath math="Q_3 = 17" />
+**Kelompok Kedua (<InlineMath math="n=12" />):**
+Posisi <InlineMath math="Q_1" /> adalah <InlineMath math="3{,}25" />. Posisi ini berada seperempat jarak dari nilai ke-<InlineMath math="3" /> (<InlineMath math="4" />) menuju nilai ke-<InlineMath math="4" /> (<InlineMath math="5" />), sehingga bobot interpolasinya <InlineMath math="0{,}25" />:
 
-    **Kelompok Kedua (<InlineMath math="n=12" />):**
-    Posisi <InlineMath math="Q_1" /> adalah <InlineMath math="3{,}25" />. Posisi ini berada seperempat jarak dari nilai ke-<InlineMath math="3" /> (<InlineMath math="4" />) menuju nilai ke-<InlineMath math="4" /> (<InlineMath math="5" />), sehingga bobot interpolasinya <InlineMath math="0{,}25" />:
+<BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
 
-    <BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
+Posisi <InlineMath math="Q_3" /> adalah <InlineMath math="9{,}75" />. Posisi ini berada tiga perempat jarak dari nilai ke-<InlineMath math="9" /> (<InlineMath math="28" />) menuju nilai ke-<InlineMath math="10" /> (<InlineMath math="29" />), sehingga bobot interpolasinya <InlineMath math="0{,}75" />:
 
-    Posisi <InlineMath math="Q_3" /> adalah <InlineMath math="9{,}75" />. Posisi ini berada tiga perempat jarak dari nilai ke-<InlineMath math="9" /> (<InlineMath math="28" />) menuju nilai ke-<InlineMath math="10" /> (<InlineMath math="29" />), sehingga bobot interpolasinya <InlineMath math="0{,}75" />:
-
-    <BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
+<BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
 
 ### Menghitung Jangkauan dan Simpangan Antarkuartil
 
-Berikutnya, hitung ukuran penyebarannya.
+**Jangkauan penuh** menggunakan nilai maksimum dan minimum. **Jangkauan interkuartil** menggunakan dua batas kuartil. Bandingkan kedua perhitungan berikut dalam tahun.
 
-1.  **Jangkauan (Range):**
-
-    <InlineMath math="\text{Range} = \text{Nilai maksimum} - \text{Nilai minimum}" />
-
-    - Range Kelompok Pertama adalah <InlineMath math="18 - 13 = 5" />
-    - Range Kelompok Kedua adalah <InlineMath math="36 - 1 = 35" />
-
-      Jangkauan penuh sudah menunjukkan bahwa nilai ekstrem Kelompok Kedua tersebar jauh lebih lebar.
-
-2.  **Jangkauan Interkuartil** (<InlineMath math="\mathrm{IQR}" />):
-
-    <InlineMath math="\mathrm{IQR} = Q_3 - Q_1" />
-
-    - <InlineMath math="\mathrm{IQR}" /> Kelompok Pertama adalah <InlineMath math="17 - 15 = 2" />
-    - <InlineMath math="\mathrm{IQR}" /> Kelompok Kedua adalah <InlineMath math="28{,}75 - 4{,}25 = 24{,}5" />
-
-      Sebaran separuh tengah kedua kelompok juga sangat berbeda.
+| Kelompok | Jangkauan | Jangkauan interkuartil |
+| --- | --- | --- |
+| 1 | <InlineMath math="18-13=5" /> | <InlineMath math="17-15=2" /> |
+| 2 | <InlineMath math="36-1=35" /> | <InlineMath math="28{,}75-4{,}25=24{,}5" /> |
 
 ### Arti Hasil
 

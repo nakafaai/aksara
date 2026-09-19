@@ -3,7 +3,7 @@ export const metadata = {
   description: "Transpose a matrix by swapping its rows and columns, then verify the transpose properties in worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-06",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Matrix",
 };
 
@@ -17,10 +17,9 @@ The transpose of <InlineMath math="A" /> is written as <InlineMath math="A^T" />
 
 To obtain the matrix transpose, follow these steps:
 
-1.  Write the first row of the original matrix as the first column of the transpose matrix.
+1.  Write the **first row** of the original matrix as the first column of the transpose matrix.
 2.  Write the second row of the original matrix as the second column of the transpose matrix.
 3.  Continue this process for all rows in the original matrix.
-
 ### General Matrix
 
 Suppose we have matrix <InlineMath math="A" />:
@@ -31,17 +30,16 @@ Then, the transpose of matrix <InlineMath math="A" /> is:
 
 <BlockMath math="A^T = \begin{bmatrix} a & c \\ b & d \end{bmatrix}" />
 
-The first row <InlineMath math="\begin{bmatrix} a & b \end{bmatrix}" /> becomes the first column:
+The first row <InlineMath math="\begin{bmatrix} a & b \end{bmatrix}" /> becomes the **first column**:
 
 <BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix}" />
 
 The second row <InlineMath math="\begin{bmatrix} c & d \end{bmatrix}" /> becomes the second column:
 
 <BlockMath math="\begin{bmatrix} c \\ d \end{bmatrix}" />
-
 ### Matrix with Different Order
 
-Given matrix <InlineMath math="B" /> with order <InlineMath math="2 \times 3" />:
+Given matrix <InlineMath math="B" /> with **order** <InlineMath math="2 \times 3" />:
 
 <BlockMath math="B = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}" />
 
@@ -51,44 +49,50 @@ The transpose of matrix <InlineMath math="B" />, denoted <InlineMath math="B^T" 
 
 - The first row of <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) becomes the first column of <InlineMath math="B^T" />.
 - The second row of <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) becomes the second column of <InlineMath math="B^T" />.
-
 ### Column Matrix to Row Matrix
 
 If <InlineMath math="C" /> is a column matrix:
 
 <BlockMath math="C = \begin{bmatrix} 2 \\ 3 \end{bmatrix}" />
 
-Then its transpose, <InlineMath math="C^T" />, is a row matrix:
+Then its transpose, <InlineMath math="C^T" />, is a **row matrix**:
 
 <BlockMath math="C^T = \begin{bmatrix} 2 & 3 \end{bmatrix}" />
-
 ### Transpose of a Square Matrix
 
-Given a square matrix <InlineMath math="D" />:
+Given a **square matrix** <InlineMath math="D" />:
 
 <BlockMath math="D = \begin{bmatrix} -7 & 8 & 1 & 3 \\ 5 & 9 & 7 & 2 \\ 2 & 2 & 1 & 3 \\ 1 & -6 & 0 & 1 \end{bmatrix}" />
 
 Then its transpose, <InlineMath math="D^T" />, is also a square matrix:
 
 <BlockMath math="D^T = \begin{bmatrix} -7 & 5 & 2 & 1 \\ 8 & 9 & 2 & -6 \\ 1 & 7 & 1 & 0 \\ 3 & 2 & 3 & 1 \end{bmatrix}" />
-
 ## Properties of Matrix Transpose
 
-The transpose satisfies the following identities:
+Each identity assumes compatible dimensions for the stated operations. For a product, the **order of the factors reverses** after transposing.
 
-1.  <InlineMath math="(A^T)^T = A" /> (The transpose of a transpose matrix is the
-    matrix itself)
-2.  <InlineMath math="(A + B)^T = A^T + B^T" /> (Transpose of the sum of two matrices)
-3.  <InlineMath math="(A - B)^T = A^T - B^T" /> (Transpose of the subtraction of
-    two matrices)
-4.  <InlineMath math="(kA)^T = kA^T" />, where <InlineMath math="k" /> is a
-    scalar
-5.  <InlineMath math="(AB)^T = B^T A^T" /> (Transpose of the product of two matrices,
-    note the reversed order)
+| Identity | Meaning |
+| --- | --- |
+| <InlineMath math="(A^T)^T = A" /> | The transpose of a transpose matrix is the matrix itself |
+| <InlineMath math="(A + B)^T = A^T + B^T" /> | Transpose of the sum of two matrices |
+| <InlineMath math="(A - B)^T = A^T - B^T" /> | Transpose of the subtraction of two matrices |
+| <InlineMath math="(kA)^T = kA^T" /> | , where <InlineMath math="k" /> is a scalar |
+| <InlineMath math="(AB)^T = B^T A^T" /> | Transpose of the product of two matrices, note the reversed order |
 
+### Why the Factor Order Reverses
+
+Take the row matrix <InlineMath math="E=[1\;2]" /> and column matrix <InlineMath math="F=[3\;4]^T" />. The product <InlineMath math="EF" /> has **only one entry**. Its transpose must still have one entry.
+
+<MathContainer>
+  <BlockMath math="EF=[1(3)+2(4)]=[11]" />
+  <BlockMath math="F^TE^T=\begin{bmatrix}3&amp;4\end{bmatrix}\begin{bmatrix}1\\2\end{bmatrix}=[3(1)+4(2)]=[11]" />
+  <BlockMath math="E^TF^T=\begin{bmatrix}1\\2\end{bmatrix}\begin{bmatrix}3&amp;4\end{bmatrix}=\begin{bmatrix}3&amp;4\\6&amp;8\end{bmatrix}" />
+</MathContainer>
+
+Without reversing the order, we obtain a <InlineMath math="2\times2" /> matrix, rather than the <InlineMath math="1\times1" /> transpose of the product.
 ## Exercises
 
-Determine the transpose of the following matrices and state the type of the resulting matrix (e.g., row matrix, column matrix, square matrix).
+Determine the transpose of the following matrices and state the **type of the resulting matrix** (e.g., row matrix, column matrix, square matrix).
 
 1.  Matrix <InlineMath math="A" />:
 
@@ -101,14 +105,13 @@ Determine the transpose of the following matrices and state the type of the resu
 3.  Matrix <InlineMath math="C" />:
 
     <BlockMath math="C = \begin{bmatrix} 2 & 3 & 1 \\ 1 & 6 & -2 \\ 4 & 5 & -7 \end{bmatrix}" />
-
 ### Worked Solutions
 
 1.  The transpose of <InlineMath math="A" /> is:
 
     <BlockMath math="A^T = \begin{bmatrix} 1 \\ 3 \\ -5 \end{bmatrix}" />
 
-    The single row of <InlineMath math="A" /> becomes a single column. Thus, <InlineMath math="A^T" /> has order <InlineMath math="3 \times 1" /> and is a column matrix.
+    The single row of <InlineMath math="A" /> becomes a **single column**. Thus, <InlineMath math="A^T" /> has order <InlineMath math="3 \times 1" /> and is a column matrix.
 
 2.  The transpose of <InlineMath math="B" /> is:
 

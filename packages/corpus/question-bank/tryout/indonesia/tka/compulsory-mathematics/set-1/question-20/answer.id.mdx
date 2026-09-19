@@ -2,10 +2,10 @@ export const metadata = {
   title: "Pembahasan Soal 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Jarak kaki tangga dari dinding setelah digeser adalah <InlineMath math="5+3=8\,\mathrm{m}" />. Tangga merupakan sisi miring segitiga siku-siku. Gunakan Pythagoras untuk tinggi baru <InlineMath math="h" />.
+Jarak kaki tangga dari dinding setelah digeser adalah <InlineMath math="5+3=8\,\mathrm{m}" />. Tangga merupakan **sisi miring** segitiga siku-siku. Gunakan Pythagoras untuk tinggi baru <InlineMath math="h" />.
 
 <BlockMath math="\begin{aligned}
 h^2+8^2&=13^2 \\
@@ -15,3 +15,34 @@ h&=\sqrt{169-64}=\sqrt{105}
 Sinus sudut terhadap lantai adalah tinggi dibagi panjang tangga.
 
 <BlockMath math="\sin\theta=\frac{h}{13}=\frac{\sqrt{105}}{13}" />
+
+<LineEquation
+  title="Tangga sebelum dan sesudah digeser"
+  description="Tangga abu-abu mula-mula mencapai tinggi 12 meter. Tangga ungu tetap sepanjang 13 meter, tetapi kakinya sekarang berjarak 8 meter dari dinding."
+  cameraPosition={[4, 6, 18]}
+  cameraTarget={[4, 6, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: 0, y: 12, z: 0 }, { x: 5, y: 0, z: 0 }],
+      color: "#94a3b8", smooth: false, showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: Math.sqrt(105), z: 0 }, { x: 8, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#9333ea", smooth: false,
+      labels: [
+        { text: <InlineMath math="h=\sqrt{105}" />, at: 0, offset: [-0.7, 5, 0] },
+        { text: <InlineMath math="13\text{ m}" />, at: 1, offset: [4.6, -4.6, 0] },
+        { text: <InlineMath math="8\text{ m}" />, at: 2, offset: [-4, -0.6, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 25 }, (_, i) => {
+        const angle = Math.PI - Math.atan(Math.sqrt(105) / 8) * i / 24;
+        return { x: 8 + 1.5 * Math.cos(angle), y: 1.5 * Math.sin(angle), z: 0 };
+      }),
+      color: "#d97706", smooth: false, showPoints: false,
+      labels: [{ text: <InlineMath math="\theta" />, at: 12, offset: [-0.5, 0.3, 0] }],
+    },
+  ]}
+/>

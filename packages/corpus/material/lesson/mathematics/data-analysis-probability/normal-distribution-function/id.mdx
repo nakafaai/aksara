@@ -3,7 +3,7 @@ export const metadata = {
   description: "Baca kurva kepadatan normal, bakukan nilai dengan skor z, lalu hitung peluang suatu interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Analisis Data dan Peluang",
 };
 
@@ -28,18 +28,15 @@ Fungsi kepadatan normal berbentuk lonceng yang simetris. Visualisasi berikut men
       Kepadatan normal standar berpusat di <InlineMath math="\mu=0" />. Ruas vertikal menandai titik beloknya pada <InlineMath math="\mu\pm\sigma" />.
     </>
   }
+  showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: (() => {
-        const points = [];
-        const step = 0.1;
-        for (let x = -3.5; x <= 3.5; x += step) {
-          const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x);
-          points.push({ x: x, y: y, z: 0 });
-        }
-        return points;
-      })(),
+      points: Array.from({ length: 71 }, (_, index) => {
+        const x = (index - 35) / 10;
+        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+        return { x, y, z: 0 };
+      }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
@@ -94,7 +91,7 @@ Kurva ini memiliki empat ciri utama:
 
 ## Fungsi Kepadatan Peluang
 
-Rumus berikut memberikan kepadatan peluang pada setiap nilai <InlineMath math="x" />.
+Rumus berikut memberikan **kepadatan peluang** pada setiap nilai <InlineMath math="x" />.
 
 Jika <InlineMath math="X" /> terdistribusi normal dengan rata-rata <InlineMath math="\mu" />, varians <InlineMath math="\sigma^2" />, dan <InlineMath math="\sigma>0" />, fungsi kepadatannya adalah:
 
@@ -110,18 +107,26 @@ Arti setiap konstanta dan parameter adalah:
 - <InlineMath math="\sigma>0" /> adalah simpangan baku
 
 > Parameter <InlineMath math="\mu" /> menggeser pusat kurva, sedangkan <InlineMath math="\sigma" /> menentukan sebarannya. Peluang diperoleh dari luas di bawah kurva kepadatan. Tinggi <InlineMath math="f(x)" /> pada satu titik merupakan nilai kepadatan.
-
 ## Transformasi ke Normal Standar
 
 Dalam praktik, kita sering menggunakan **distribusi normal standar** dengan rata-rata <InlineMath math="\mu = 0" /> dan simpangan baku <InlineMath math="\sigma = 1" />. Untuk mengubah distribusi normal biasa menjadi normal standar, kita menggunakan transformasi:
 
-<BlockMath math="Z = \frac{x - \mu}{\sigma}" />
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
 
 Variabel <InlineMath math="Z" /> disebut **skor baku** atau **skor-z**. Nilainya menunjukkan <Highlight>berapa simpangan baku</Highlight> posisi <InlineMath math="x" /> di atas atau di bawah rata-rata dan memungkinkan satu tabel normal standar digunakan untuk semua distribusi normal.
 
-**Mengapa menggunakan z-score?**
+Mengapa menggunakan z-score?
 
 Dengan transformasi ini, kita bisa membandingkan data dari distribusi yang berbeda. Misalnya, kamu bisa membandingkan nilai matematika dengan nilai fisika, meskipun rata-rata dan standar deviasinya berbeda.
+
+Untuk nilai pengamatan <InlineMath math="x" />, kita tulis skor bakunya sebagai <InlineMath math="z" />. Misalkan nilai matematika 80 berasal dari distribusi dengan mean 70 dan simpangan baku 5, sedangkan nilai fisika 90 berasal dari distribusi dengan mean 80 dan simpangan baku 10.
+
+| Mata pelajaran | Skor baku |
+| --- | --- |
+| Matematika | <InlineMath math="z=\frac{80-70}{5}=2" /> |
+| Fisika | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+
+Nilai matematika memiliki **posisi lebih tinggi relatif terhadap kelompoknya**, meskipun skor mentah 80 lebih kecil daripada 90. Perbandingan ini mengukur posisi dalam distribusi, bukan menyamakan kesulitan kedua ujian.
 
 ## Menghitung Peluang Normal di Antara Dua Batas
 
@@ -142,11 +147,11 @@ Interval yang telah dibakukan adalah <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />
 
 Dari tabel distribusi normal standar:
 
-- <InlineMath math="P(Z < -0{,}5) = 0{,}3085" />
-- <InlineMath math="P(Z < 1{,}2) = 0{,}8849" />
+- <InlineMath math="P(Z < -0{,}5) \approx 0{,}3085" />
+- <InlineMath math="P(Z < 1{,}2) \approx 0{,}8849" />
 
 **Langkah 3**: Hitung peluang akhir
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;= 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;\approx 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
 
 Jadi, peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" /> adalah <InlineMath math="0{,}5764" /> atau sekitar <InlineMath math="57{,}64\%" />.

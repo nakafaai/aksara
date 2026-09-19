@@ -3,7 +3,7 @@ export const metadata = {
   description: "Susun distribusi peluang untuk satu dadu dan dua dadu, lalu hitung peluang kejadian dari ruang sampelnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Peluang",
 };
 
@@ -13,7 +13,7 @@ Distribusi peluang mencantumkan nilai-nilai yang mungkin dari suatu besaran acak
 
 ## Mengenal Ruang Sampel dari Semua Kemungkinan Hasil
 
-Ruang sampel adalah himpunan seluruh hasil dasar yang _dapat_ terjadi dalam suatu percobaan. Ruang sampel ditulis dengan simbol <InlineMath math="\Omega" /> (Omega).
+Ruang sampel adalah **himpunan seluruh hasil dasar** yang _dapat_ terjadi dalam suatu percobaan. Ruang sampel ditulis dengan simbol <InlineMath math="\Omega" /> (Omega).
 
 Pada satu lemparan dadu biasa bersisi <InlineMath math="6" />, hasil yang mungkin adalah <InlineMath math="1, 2, 3, 4, 5," /> dan <InlineMath math="6" />. Semua hasil tersebut membentuk ruang sampel:
 
@@ -23,7 +23,7 @@ Total ada <InlineMath math="6" /> kemungkinan hasil di sini.
 
 ## Kejadian dan Peluangnya
 
-Kejadian memilih sebagian dari ruang sampel, sedangkan peluang mengukur seberapa besar bagian itu dibandingkan seluruh ruang sampel. Sebuah kejadian bisa berisi satu hasil saja atau beberapa hasil sekaligus.
+Kejadian adalah **himpunan hasil yang memenuhi suatu syarat**. Peluang kejadian diperoleh dengan menjumlahkan peluang hasil-hasil tersebut. Jika semua hasil dasar sama mungkin, kamu dapat membandingkan banyak hasil yang memenuhi syarat dengan banyak seluruh hasil.
 
 ### Kejadian
 
@@ -41,7 +41,7 @@ Ada <InlineMath math="3" /> hasil di kejadian <InlineMath math="A" /> ini.
 
 Peluang mengukur seberapa mungkin suatu kejadian terjadi.
 
-Jika seluruh hasil dasar memiliki peluang yang sama, peluang kejadian diperoleh dengan membagi banyak hasil yang memenuhi kejadian dengan banyak seluruh hasil:
+Jika seluruh hasil dasar **memiliki peluang yang sama**, peluang kejadian diperoleh dengan membagi banyak hasil yang memenuhi kejadian dengan banyak seluruh hasil:
 
 <BlockMath math="P(\text{Kejadian}) = \frac{\text{Banyaknya hasil di kejadian itu}}{\text{Total semua hasil di ruang sampel}}" />
 
@@ -63,7 +63,7 @@ Jadi, kejadian tersebut memiliki peluang <InlineMath math="1/2" />, atau <Inline
 
 ## Aturan Distribusi Peluang
 
-Distribusi peluang sah jika kedua aturan berikut berlaku untuk setiap nilai yang mungkin dari variabel acaknya. Kedua syarat itu membuat seluruh peluang yang terdaftar menjumlahkan satu dan menggambarkan semua hasil percobaan.
+Distribusi peluang sah jika kedua aturan berikut berlaku untuk setiap nilai yang mungkin dari variabel acaknya. Kedua syarat itu membuat seluruh peluang yang terdaftar **menjumlahkan satu** dan menggambarkan semua hasil percobaan.
 
 1.  Peluang setiap nilai (<InlineMath math="P(x)" />) berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.
 
@@ -72,10 +72,9 @@ Distribusi peluang sah jika kedua aturan berikut berlaku untuk setiap nilai yang
 2.  Jumlah peluang seluruh nilai yang mungkin harus tepat <InlineMath math="1" />.
 
     <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
-
 ## Lempar Satu Dadu
 
-Pada satu dadu yang adil, setiap sisi memiliki peluang yang sama. Distribusinya adalah:
+Pada satu dadu yang adil, setiap sisi memiliki **peluang yang sama**. Distribusinya adalah:
 
 | Hasil Muncul <InlineMath math="x" /> | Peluang <InlineMath math="P(x)" /> |
 | :----------------------------------- | :--------------------------------- |
@@ -86,15 +85,14 @@ Pada satu dadu yang adil, setiap sisi memiliki peluang yang sama. Distribusinya 
 | <InlineMath math="5" />              | <InlineMath math="1/6" />          |
 | <InlineMath math="6" />              | <InlineMath math="1/6" />          |
 
-**Kenapa semua <InlineMath math="1/6" />?**
+Kenapa semua <InlineMath math="1/6" />?
 
 Dadu memiliki <InlineMath math="6" /> sisi yang sama mungkin, sehingga setiap sisi berpeluang <InlineMath math="1/6" />. Jumlahnya adalah <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" />, sesuai aturan kedua.
-
 ## Lempar Dua Dadu
 
 Sekarang lempar **satu dadu merah dan satu dadu putih**. Jika hasil dicatat sebagai pasangan berurutan, terdapat <InlineMath math="36" /> kemungkinan.
 
-**Kenapa <InlineMath math="36" />?**
+Kenapa <InlineMath math="36" />?
 
 Dadu merah memiliki <InlineMath math="6" /> kemungkinan dan dadu putih juga memiliki <InlineMath math="6" /> kemungkinan, sehingga terbentuk <InlineMath math="6 \times 6 = 36" /> pasangan berurutan.
 
@@ -113,7 +111,7 @@ Karena warna dadu berbeda, hasil <InlineMath math="3" /> pada dadu merah dan <In
 
 ### Distribusi Peluang untuk Jumlah Angka Dua Dadu
 
-Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath math="1+1=2" /> dan nilai terbesarnya <InlineMath math="6+6=12" />. Setiap jumlah memiliki banyak pasangan berurutan yang berbeda, sehingga peluangnya juga berbeda:
+Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath math="1+1=2" /> dan nilai terbesarnya <InlineMath math="6+6=12" />. Setiap jumlah memiliki **banyak pasangan berurutan yang berbeda**, sehingga peluangnya juga berbeda:
 
 | Jumlah Angka <InlineMath math="j" /> | Pasangan yang Mungkin                                          | Banyaknya Pasangan      | Peluang <InlineMath math="P(j)" /> |
 | :----------------------------------- | :------------------------------------------------------------- | :---------------------- | :--------------------------------- |
@@ -131,6 +129,13 @@ Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath 
 
 Jumlah <InlineMath math="7" /> paling mungkin karena dihasilkan oleh <InlineMath math="6" /> pasangan berurutan. Sebaliknya, jumlah <InlineMath math="2" /> dan <InlineMath math="12" /> masing-masing hanya berasal dari satu pasangan. Perbedaan ini penting saat sebuah permainan atau model memakai jumlah dari kedua dadu.
 
+<BarChart
+  title="Banyak Pasangan untuk Setiap Jumlah Dadu"
+  description="Batang tengah paling tinggi karena lebih banyak pasangan menghasilkan jumlah tersebut."
+  data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
+  chartConfig={{ value: { label: "Banyak pasangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Banyak pasangan"
+/>
 ## Membandingkan Hasil dan Risiko
 
 Distribusi peluang memasangkan setiap hasil yang mungkin dengan nilai peluangnya. Angka-angka tersebut dapat dipakai untuk beberapa tugas berikut:
@@ -144,11 +149,10 @@ Semua penggunaan itu memakai struktur yang sama: himpunan hasil yang terdefinisi
 
 ## Latihan
 
-Tiga koin adil dilempar, dan <InlineMath math="X" /> menyatakan banyak sisi gambar yang muncul. Tuliskan dulu semua hasil yang mungkin, lalu kelompokkan berdasarkan banyaknya sisi gambar supaya setiap nilai <InlineMath math="X" /> punya peluang yang jelas. Susun distribusi peluang <InlineMath math="X" />, periksa bahwa distribusinya valid, lalu tentukan <InlineMath math="P(X \geq 2)" />.
-
+Tiga koin adil dilempar, dan <InlineMath math="X" /> menyatakan banyak sisi gambar yang muncul. Tuliskan dulu semua hasil yang mungkin, lalu **kelompokkan berdasarkan banyaknya sisi gambar** supaya setiap nilai <InlineMath math="X" /> punya peluang yang jelas. Susun distribusi peluang <InlineMath math="X" />, periksa bahwa distribusinya valid, lalu tentukan <InlineMath math="P(X \geq 2)" />.
 ### Pembahasan
 
-Gunakan <InlineMath math="1" /> untuk sisi gambar dan <InlineMath math="0" /> untuk sisi angka. Tiga lemparan menghasilkan <InlineMath math="2^3=8" /> tripel terurut yang sama mungkin:
+Gunakan <InlineMath math="1" /> untuk sisi gambar dan <InlineMath math="0" /> untuk sisi angka. Tiga lemparan menghasilkan <InlineMath math="2^3=8" /> **tripel terurut yang sama mungkin**:
 
 <BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
 

@@ -3,27 +3,26 @@ export const metadata = {
   description: "Hitung determinan matriks dengan ekspansi kofaktor melalui minor dan perhitungan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Matriks",
 };
 
 ## Menghitung Determinan melalui Kofaktor Elemen
 
-<Highlight>Ekspansi kofaktor memecah perhitungan determinan matriks persegi menjadi beberapa determinan yang lebih kecil.</Highlight> Pilih satu baris atau kolom, kalikan setiap elemen pada baris atau kolom itu dengan kofaktor yang sesuai, lalu jumlahkan hasilnya. Metode ini dapat digunakan untuk matriks yang lebih besar dari <InlineMath math="2 \times 2" />.
+Ekspansi kofaktor memecah perhitungan determinan matriks persegi menjadi **determinan yang lebih kecil**. Pilih satu baris atau kolom, kalikan setiap elemen pada baris atau kolom itu dengan kofaktor yang sesuai, lalu jumlahkan hasilnya. Metode ini dapat digunakan untuk matriks yang lebih besar dari <InlineMath math="2 \times 2" />.
 
 ## Minor Elemen Matriks
 
-Setiap elemen <InlineMath math="a_{ij}" /> pada matriks persegi memiliki minor <InlineMath math="M_{ij}" />. Ukuran submatriksnya selalu satu tingkat lebih kecil, sehingga minor sebuah matriks <InlineMath math="3 \times 3" /> berupa determinan matriks <InlineMath math="2 \times 2" />.
+Setiap elemen <InlineMath math="a_{ij}" /> pada **matriks persegi** memiliki minor <InlineMath math="M_{ij}" />. Ukuran submatriksnya selalu satu tingkat lebih kecil, sehingga minor sebuah matriks <InlineMath math="3 \times 3" /> berupa determinan matriks <InlineMath math="2 \times 2" />.
 
 Untuk menghitung <InlineMath math="M_{ij}" />, coret baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />, lalu hitung determinan submatriks yang tersisa.
-
 ### Mencari Minor
 
 Misalkan kita memiliki matriks <InlineMath math="A" /> berordo <InlineMath math="3 \times 3" /> sebagai berikut:
 
 <BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}" />
 
-Jika kita ingin mencari minor dari elemen <InlineMath math="a_{22}" /> (yaitu <InlineMath math="M_{22}" />), kita hilangkan baris kedua dan kolom kedua dari matriks <InlineMath math="A" />:
+Jika kita ingin mencari minor dari elemen <InlineMath math="a_{22}" /> (yaitu <InlineMath math="M_{22}" />), kita hilangkan **baris kedua dan kolom kedua** dari matriks <InlineMath math="A" />:
 
 Coret baris kedua dan kolom kedua seperti berikut:
 
@@ -36,14 +35,13 @@ Matriks yang tersisa setelah pencoretan adalah:
 Maka, minor <InlineMath math="M_{22}" /> adalah determinan dari matriks sisa ini:
 
 <BlockMath math="\begin{aligned} M_{22} &amp;= \det \begin{pmatrix} a_{11} &amp; a_{13} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{11} \times a_{33}) - (a_{13} \times a_{31}) \end{aligned}" />
-
 ## Kofaktor Elemen Matriks
 
 Kofaktor elemen <InlineMath math="a_{ij}" /> ditulis sebagai <InlineMath math="k_{ij}" /> atau <InlineMath math="C_{ij}" /> dan dihitung dari minor <InlineMath math="M_{ij}" />:
 
 <BlockMath math="k_{ij} = (-1)^{i+j} M_{ij}" />
 
-Paritas <InlineMath math="i+j" /> menentukan tanda kofaktor:
+Paritas <InlineMath math="i+j" /> menentukan **tanda pengali minor**:
 
 - Jika hasil penjumlahan <InlineMath math="i+j" /> adalah bilangan genap, maka <InlineMath math="(-1)^{i+j} = 1" />. Ini berarti <InlineMath math="k_{ij} = M_{ij}" /> (kofaktor sama dengan minornya).
 - Jika hasil penjumlahan <InlineMath math="i+j" /> adalah bilangan ganjil, maka <InlineMath math="(-1)^{i+j} = -1" />. Ini berarti <InlineMath math="k_{ij} = -M_{ij}" /> (kofaktor adalah negatif dari minornya).
@@ -56,7 +54,7 @@ Tanda ini menunjukkan apakah kofaktor akan sama dengan minornya (tanda <InlineMa
 
 ### Mencari Kofaktor
 
-Contoh berikut melanjutkan perhitungan minor <InlineMath math="M_{22}" /> pada matriks <InlineMath math="A" />.
+Contoh berikut melanjutkan perhitungan **minor** <InlineMath math="M_{22}" /> pada matriks <InlineMath math="A" />.
 
 Kofaktor untuk elemen <InlineMath math="a_{22}" /> adalah <InlineMath math="k_{22}" />.
 
@@ -73,7 +71,6 @@ Pertama, kita cari minornya, <InlineMath math="M_{12}" />, dengan menghilangkan 
 Kemudian, kita hitung kofaktornya. Untuk <InlineMath math="a_{12}" />, <InlineMath math="i=1" /> dan <InlineMath math="j=2" />, jadi <InlineMath math="i+j = 1+2 = 3" /> (ganjil).
 
 <BlockMath math="\begin{aligned} k_{12} &amp;= (-1)^{1+2} M_{12} \\ &amp;= (-1) M_{12} \\ &amp;= -M_{12} \end{aligned}" />
-
 ## Menghitung Determinan dengan Ekspansi Kofaktor
 
 Untuk menghitung determinan matriks <InlineMath math="A" /> dengan ekspansi kofaktor, pilih satu baris atau kolom. Kalikan setiap elemen yang dipilih dengan kofaktor yang sesuai, lalu jumlahkan hasilnya. Determinan <InlineMath math="A" /> ditulis sebagai <InlineMath math="\det(A)" /> atau <InlineMath math="|A|" />.
@@ -114,26 +111,26 @@ Dari matriks <InlineMath math="P" />, elemen-elemen baris pertama adalah:
 
 Sekarang, kita perlu menghitung kofaktor <InlineMath math="k_{11}" />, <InlineMath math="k_{12}" />, dan <InlineMath math="k_{13}" />.
 
-1.  **Menghitung <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, maka <InlineMath math="i+j=2" />, genap):
+**Menghitung <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, maka <InlineMath math="i+j=2" />, genap):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
-      <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
+  <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
+</MathContainer>
 
-2.  **Menghitung <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, maka <InlineMath math="i+j=3" />, ganjil):
+**Menghitung <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, maka <InlineMath math="i+j=3" />, ganjil):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
-      <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
+  <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
+</MathContainer>
 
-3.  **Menghitung <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, maka <InlineMath math="i+j=4" />, genap):
+**Menghitung <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, maka <InlineMath math="i+j=4" />, genap):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
-      <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
+  <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
+</MathContainer>
 
 Setelah semua kofaktor didapatkan, kita masukkan kembali ke rumus determinan:
 
@@ -146,3 +143,5 @@ Setelah semua kofaktor didapatkan, kita masukkan kembali ke rumus determinan:
 </MathContainer>
 
 Jadi, determinan dari matriks <InlineMath math="P" /> adalah <InlineMath math="-12" />.
+
+Perhatikan <InlineMath math="k_{12}=(-1)(-2)=2" />. Posisi dengan tanda minus dapat menghasilkan **kofaktor positif** jika minornya negatif. Jangan memberi tanda minus dua kali ketika memasukkan kofaktor ke jumlah akhir.

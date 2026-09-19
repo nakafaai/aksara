@@ -3,7 +3,7 @@ export const metadata = {
    description: "Distinguish unions, intersections, independent events, and dependent events, then choose the right probability rule.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
@@ -11,13 +11,13 @@ export const metadata = {
 
 Many probability questions combine **two or more events**. A die and a coin may be tossed together, or two cards may be drawn from one deck. These are compound-event situations.
 
-A **compound event** combines two or more simple events within one probability model. For example, we can study one condition that includes both a die result and a coin result.
+A **compound event** combines two or more events within one probability model. For example, we can study one condition that includes both a die result and a coin result.
 
-Suppose you toss a die and a coin. A simple event might focus only on the die or only on the coin. A compound event considers both, such as “the die shows <InlineMath math="3" /> AND the coin shows tails.”
+Suppose you toss a die and a coin. One event might focus only on the die or only on the coin. A compound event considers both, such as “the die shows <InlineMath math="3" /> AND the coin shows tails.”
 
 ## Types of Compound Events
 
-Two events either share outcomes or exclude each other, and that difference decides which formula applies. Checking one outcome that belongs to both events is usually enough to tell the two cases apart before you calculate anything.
+Two events either share outcomes or exclude each other, and that difference decides which formula applies. One shared outcome proves that an overlap exists. To prove mutual exclusivity, you must show there are **no shared outcomes**. Independence answers a different question: whether information about one event changes the probability of the other.
 
 ### Mutually Exclusive Events
 
@@ -31,7 +31,7 @@ For mutually exclusive events, the probability formula is:
 
 **Calculation Example:**
 
-A die is rolled once. Find the probability of rolling an even number or rolling <InlineMath math="1" /> or <InlineMath math="3" />.
+A fair die is rolled once. Find the probability of rolling an even number or rolling <InlineMath math="1" /> or <InlineMath math="3" />.
 
 **Solution:**
 
@@ -75,6 +75,13 @@ Total cards <InlineMath math="= 52" />
 
 Intersection (red and face cards): <InlineMath math="6 \text{ cards}" /> (Jack, Queen, King from Hearts and Diamonds)
 
+| Color | Face card | Not a face card | Total |
+| --- | --- | --- | --- |
+| Red | 6 | 20 | 26 |
+| Black | 6 | 20 | 26 |
+| Total | 12 | 40 | 52 |
+
+
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
@@ -94,7 +101,7 @@ Formula for independent events:
 
 **Calculation Example:**
 
-Two fair dice are rolled. Find the probability that the first die shows <InlineMath math="3" /> and the second die shows an even number.
+Two fair dice are rolled independently. Find the probability that the first die shows <InlineMath math="3" /> and the second die shows an even number.
 
 **Solution:**
 
@@ -111,11 +118,11 @@ Since the result of the first die does not affect the second die, both events ar
 
 ### Dependent Events
 
-Events are **dependent** when the outcome of one changes the probability of the next. The conditions for the second stage are no longer the same as they were at the start.
+Events are **dependent** when learning that one occurred changes the probability of the other. This information need not follow a time sequence and does not by itself establish causation.
 
 One common cause is drawing **without replacement**. The selected object is not returned, so both the total number of objects and possibly the number of favorable objects change.
 
-Formula for dependent events:
+The following multiplication rule applies whenever <InlineMath math="P(A)>0" />, for both independent and dependent events:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
 
@@ -130,7 +137,7 @@ In a box there are <InlineMath math="8 \text{ blue balls}" /> and <InlineMath ma
 Initial total balls is <InlineMath math="8 + 4 = 12 \text{ balls}" />
 
 - Event <InlineMath math="A" /> (first ball blue): <InlineMath math="8 \text{ blue balls}" /> out of <InlineMath math="12 \text{ total balls}" />
-- Event <InlineMath math="B" /> (second ball blue after <InlineMath math="A" />): Since <InlineMath math="1 \text{ blue ball}" /> has been drawn, <InlineMath math="7 \text{ blue balls}" /> remain out of <InlineMath math="11 \text{ total balls}" />
+- Event <InlineMath math="B" /> is a blue second ball. Given <InlineMath math="A" />: Since <InlineMath math="1 \text{ blue ball}" /> has been drawn, <InlineMath math="7 \text{ blue balls}" /> remain out of <InlineMath math="11 \text{ total balls}" />
 
 Since drawing is without replacement, conditions change after the first draw, so this is a dependent event.
 
@@ -142,19 +149,22 @@ Since drawing is without replacement, conditions change after the first draw, so
 
 ## Union and Intersection Calculations
 
-Union and intersection answer different questions about the same two events. For a union, an outcome in either event counts, while an intersection keeps only outcomes that lie in both.
-
+Union and intersection answer different questions about the same two events. For a union, an outcome in either event counts, while an intersection keeps only **outcomes that lie in both**.
 ### Union Operation
 
 To find the probability of “event <InlineMath math="A" /> **OR** event <InlineMath math="B" />,” use the union. Here “or” is inclusive: at least one event occurs, and an overlap belongs to the union too.
 
-In dice throwing, if we want to find the probability of getting an odd number or a prime number, we need to consider whether both events are mutually exclusive or not.
+On one fair die roll, the odd numbers are <InlineMath math="\{1,3,5\}" /> and the primes are <InlineMath math="\{2,3,5\}" />. Their union contains four distinct outcomes.
+
+<BlockMath math="A\cup B=\{1,2,3,5\},\qquad P(A\cup B)=\frac{4}{6}=\frac{2}{3}" />
 
 ### Intersection Operation
 
 To find the probability of “event <InlineMath math="A" /> **AND** event <InlineMath math="B" />,” use the intersection. Every counted outcome must satisfy both conditions.
 
-In the context of card drawing, if we look for the probability of "drawing a red card AND an even-numbered card", we must count cards that meet both criteria.
+In a standard deck, red even-numbered cards have values <InlineMath math="2,4,6,8,10" /> in the two red suits, Hearts and Diamonds. There are <InlineMath math="5\times2=10" /> cards meeting **both conditions together**.
+
+<BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
 
 ## Problem Solving Strategy
 
@@ -162,14 +172,14 @@ Start a compound-event problem by **identifying the relationship between the eve
 
 1. **"or"** indicates union operation
 2. **"and"** indicates intersection operation
-3. **"without replacement"** indicates dependent events
+3. **"without replacement"** requires recalculating conditional probabilities
 4. **"with replacement"** often preserves independence, but verify that one outcome truly does not change the other event's probability
 
 Then check <Highlight>whether both events can occur together</Highlight>. Choose the formula only after those two questions are settled, and verify that no overlap is counted twice.
 
 ## Exercises
 
-Try each problem before opening its worked solution. Name the events, decide whether the problem asks for a union or intersection, and justify whether the events are mutually exclusive, independent, or dependent.
+Try each problem before opening its worked solution. Name the events, decide whether the problem asks for a **union or intersection**, and justify whether the events are mutually exclusive, independent, or dependent.
 
 1. In throwing a dice, determine the probability of getting a prime number or an odd number on the dice.
 
@@ -178,70 +188,69 @@ Try each problem before opening its worked solution. Name the events, decide whe
 3. Two dice are thrown simultaneously. Determine the probability that the sum of the dice is <InlineMath math="7" /> or <InlineMath math="11" />.
 
 4. From a standard bridge card deck, one card is drawn randomly. Calculate the probability of drawing an Ace or a black card.
-
 ### Worked Solutions
 
-1. **Solution:**
+**Problem 1**
 
-   Sample space: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, so <InlineMath math="n(S) = 6" />
+Sample space: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, so <InlineMath math="n(S) = 6" />
 
-   - Event <InlineMath math="A" /> (prime numbers): <InlineMath math="A = \{2, 3, 5\}" />, so <InlineMath math="n(A) = 3" />
-   - Event <InlineMath math="B" /> (odd numbers): <InlineMath math="B = \{1, 3, 5\}" />, so <InlineMath math="n(B) = 3" />
+- Event <InlineMath math="A" /> (prime numbers): <InlineMath math="A = \{2, 3, 5\}" />, so <InlineMath math="n(A) = 3" />
+- Event <InlineMath math="B" /> (odd numbers): <InlineMath math="B = \{1, 3, 5\}" />, so <InlineMath math="n(B) = 3" />
 
-   Intersection <InlineMath math="A" /> and <InlineMath math="B" />: <InlineMath math="A \cap B = \{3, 5\}" />, so <InlineMath math="n(A \cap B) = 2" />
+Intersection <InlineMath math="A" /> and <InlineMath math="B" />: <InlineMath math="A \cap B = \{3, 5\}" />, so <InlineMath math="n(A \cap B) = 2" />
 
-   Since there is an intersection, the events are not mutually exclusive. Using the formula:
+Since there is an intersection, the events are not mutually exclusive. Using the formula:
 
-   <MathContainer>
-   <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
-   <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
-   <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
-   <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
-   <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} = \frac{2}{3}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+<BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} = \frac{2}{3}" />
+</MathContainer>
 
-2. **Solution:**
+**Problem 2**
 
-   Total balls is <InlineMath math="6 + 4 = 10 \text{ balls}" />
+Total balls is <InlineMath math="6 + 4 = 10 \text{ balls}" />
 
-   - Event <InlineMath math="A" /> (first ball red): <InlineMath math="6 \text{ red balls}" /> out of <InlineMath math="10 \text{ total balls}" />
-   - Event <InlineMath math="B" /> (second ball red after <InlineMath math="A" />): After <InlineMath math="1 \text{ red ball}" /> is drawn, <InlineMath math="5 \text{ red balls}" /> remain out of <InlineMath math="9 \text{ total balls}" />
+- Event <InlineMath math="A" /> (first ball red): <InlineMath math="6 \text{ red balls}" /> out of <InlineMath math="10 \text{ total balls}" />
+- Event <InlineMath math="B" /> is a red second ball. Given <InlineMath math="A" />: After <InlineMath math="1 \text{ red ball}" /> is drawn, <InlineMath math="5 \text{ red balls}" /> remain out of <InlineMath math="9 \text{ total balls}" />
 
-   Since drawing is **without replacement**, conditions change after the first draw, so this is a dependent event.
+Since drawing is **without replacement**, conditions change after the first draw, so this is a dependent event.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{6}{10} = \frac{3}{5}" />
-   <BlockMath math="P(B|A) = \frac{5}{9}" />
-   <BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{3}{5} \times \frac{5}{9} = \frac{15}{45} = \frac{1}{3}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{6}{10} = \frac{3}{5}" />
+<BlockMath math="P(B|A) = \frac{5}{9}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A) = \frac{3}{5} \times \frac{5}{9} = \frac{15}{45} = \frac{1}{3}" />
+</MathContainer>
 
-3. **Solution:**
+**Problem 3**
 
-   Total possibilities is <InlineMath math="6 \times 6 = 36" />
+Total possibilities is <InlineMath math="6 \times 6 = 36" />
 
-   - Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ ways}" />
-   - Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ ways}" />
+- Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ ways}" />
+- Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ ways}" />
 
-   Both events are mutually exclusive because it's impossible for the dice sum to be both <InlineMath math="7" /> and <InlineMath math="11" />.
+Both events are mutually exclusive because it's impossible for the dice sum to be both <InlineMath math="7" /> and <InlineMath math="11" />.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{6}{36} = \frac{1}{6}" />
-   <BlockMath math="P(B) = \frac{2}{36} = \frac{1}{18}" />
-   <BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{1}{18} = \frac{3}{18} + \frac{1}{18} = \frac{4}{18} = \frac{2}{9}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{6}{36} = \frac{1}{6}" />
+<BlockMath math="P(B) = \frac{2}{36} = \frac{1}{18}" />
+<BlockMath math="P(A \cup B) = P(A) + P(B) = \frac{1}{6} + \frac{1}{18} = \frac{3}{18} + \frac{1}{18} = \frac{4}{18} = \frac{2}{9}" />
+</MathContainer>
 
-4. **Solution:**
+**Problem 4**
 
-   Total cards <InlineMath math="= 52" />
+Total cards <InlineMath math="= 52" />
 
-   - Event <InlineMath math="A" /> (Ace cards): <InlineMath math="4 \text{ Aces}" />
-   - Event <InlineMath math="B" /> (black cards): <InlineMath math="26 \text{ cards}" /> (Spades and Clubs)
+- Event <InlineMath math="A" /> (Ace cards): <InlineMath math="4 \text{ Aces}" />
+- Event <InlineMath math="B" /> (black cards): <InlineMath math="26 \text{ cards}" /> (Spades and Clubs)
 
-   Intersection (black Aces): Ace of Spades and Ace of Clubs is <InlineMath math="2 \text{ cards}" />
+Intersection (black Aces): Ace of Spades and Ace of Clubs is <InlineMath math="2 \text{ cards}" />
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
-   <BlockMath math="P(A \cap B) = \frac{2}{52} = \frac{1}{26}" />
-   <BlockMath math="P(A \cup B) = \frac{1}{13} + \frac{1}{2} - \frac{1}{26} = \frac{2}{26} + \frac{13}{26} - \frac{1}{26} = \frac{14}{26} = \frac{7}{13}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+<BlockMath math="P(A \cap B) = \frac{2}{52} = \frac{1}{26}" />
+<BlockMath math="P(A \cup B) = \frac{1}{13} + \frac{1}{2} - \frac{1}{26} = \frac{2}{26} + \frac{13}{26} - \frac{1}{26} = \frac{14}{26} = \frac{7}{13}" />
+</MathContainer>

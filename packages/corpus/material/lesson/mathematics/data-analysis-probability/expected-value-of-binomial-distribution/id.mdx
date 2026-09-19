@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung nilai harapan banyaknya keberhasilan dalam percobaan binomial berulang.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Analisis Data dan Peluang",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Misalkan setiap lemparan bebas masuk secara independen dengan peluang <InlineMath math="p=0{,}8" />, dan <InlineMath math="X" /> menyatakan banyaknya bola yang masuk dalam <InlineMath math="n=10" /> percobaan. Maka <InlineMath math="E(X)=8" />: jika set berisi sepuluh lemparan diulang berkali-kali, rata-rata banyaknya bola yang masuk mendekati <InlineMath math="8" />.
 
-<Highlight>Nilai harapan adalah rata-rata berbobot peluang dari suatu variabel acak.</Highlight> Nilai ini menggambarkan rata-rata setelah percobaan diulang berkali-kali. Satu set percobaan dapat memberi hasil yang berbeda. Nilai harapan juga dapat berupa bilangan nonbulat meskipun variabel acaknya hanya bernilai bilangan bulat.
+Nilai harapan adalah **rata-rata berbobot peluang** dari suatu variabel acak. Nilai ini menggambarkan rata-rata setelah percobaan diulang berkali-kali. Satu set percobaan dapat memberi hasil yang berbeda. Nilai harapan juga dapat berupa bilangan nonbulat meskipun variabel acaknya hanya bernilai bilangan bulat.
 
 ## Rumus Harapan untuk Binomial
 
@@ -23,15 +23,18 @@ Distribusi binomial <InlineMath math="b_{n,p}(x)" /> memiliki nilai harapan:
 
 Pada rumus ini, <InlineMath math="n" /> adalah banyaknya percobaan dan <InlineMath math="p" /> adalah peluang keberhasilan pada setiap percobaan.
 
-Jika peluang keberhasilan pada setiap percobaan adalah <InlineMath math="p" />, maka nilai harapan banyaknya keberhasilan dalam <InlineMath math="n" /> percobaan adalah:
-
-<BlockMath math="E(X) = n \times p" />
-
 ## Penurunan Rumus Nilai Harapan
 
 Rumus tersebut diperoleh dengan menyatakan setiap percobaan sebagai variabel indikator.
 
 Misalkan <InlineMath math="I_k" /> menyatakan percobaan ke-<InlineMath math="k" />. Variabel ini bernilai <InlineMath math="1" /> jika percobaan tersebut **berhasil** dan <InlineMath math="0" /> jika **gagal**.
+
+Peluang gagal adalah <InlineMath math="q=1-p" />. Untuk membentuk rata-rata berbobot, **kalikan nilai indikator dengan peluangnya**, lalu jumlahkan kedua kontribusi.
+
+| Hasil | Indikator | Peluang | Kontribusi |
+| --- | --- | --- | --- |
+| Berhasil | 1 | <InlineMath math="p" /> | <InlineMath math="1p=p" /> |
+| Gagal | 0 | <InlineMath math="q=1-p" /> | <InlineMath math="0q=0" /> |
 
 Nilai harapan untuk satu percobaan tunggal adalah:
 
@@ -77,8 +80,8 @@ Gunakan rumus nilai harapan:
 
 <BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1{,}167" />
 
-**Jadi, apa arti angka <InlineMath math="1{,}167" /> ini?**
+Jadi, apa arti angka <InlineMath math="1{,}167" /> ini?
 
 Nilai harapan <InlineMath math="1{,}167" /> bukan berarti angka <InlineMath math="5" /> dapat muncul tepat <InlineMath math="1{,}167" /> kali dalam satu percobaan. Artinya, jika percobaan yang terdiri atas <InlineMath math="7" /> lemparan ini diulang **ratusan atau ribuan kali**, angka <InlineMath math="5" /> akan muncul rata-rata sekitar <InlineMath math="1{,}167" /> kali per set.
 
-Dalam satu set <InlineMath math="7" /> lemparan, angka <InlineMath math="5" /> bisa muncul <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, atau bahkan <InlineMath math="3" /> kali. Namun, rata-rata jangka panjangnya akan mendekati <InlineMath math="1{,}167" />.
+Dalam satu set, banyaknya angka 5 yang muncul adalah salah satu bilangan bulat **dari nol sampai tujuh**. Nilai harapan menggambarkan rata-rata lintas banyak set, bukan hasil yang wajib terjadi pada satu set.

@@ -149,9 +149,9 @@ export const FLOW_VOICE_RULES = [
   {
     id: "vague-visibility-endpoint",
     patterns: {
-      de: /\bbis\b[^.!?\n]{0,120}\b(?:sichtbar|erkennbar|klar)\s+(?:ist|sind|werden)\b/iu,
-      en: /\buntil\b[^.!?\n]{0,120}\b(?:visible|clear|recognizable)\b/iu,
-      id: /\b(?:sampai|hingga)\b[^.!?\n]{0,120}\b(?:terlihat|tampak|jelas|dapat dikenali)\b/iu,
+      de: /\bbis\b[^.!?\n]{0,35}\b(?:Idee|Konzept|Muster|Beziehung|Zusammenhang)\b[^.!?\n]{0,35}\b(?:sichtbar|erkennbar|klar)\s+(?:ist|sind|werden)\b/iu,
+      en: /\buntil\b[^.!?\n]{0,35}\b(?:idea|concept|pattern|relationship)\b[^.!?\n]{0,35}\b(?:visible|clear|recognizable)\b/iu,
+      id: /\b(?:sampai|hingga)\b[^.!?\n]{0,35}\b(?:ide|konsep|pola|hubungan)(?:nya)?\b[^.!?\n]{0,35}\b(?:terlihat|tampak|jelas|dapat dikenali)\b/iu,
     },
   },
   {

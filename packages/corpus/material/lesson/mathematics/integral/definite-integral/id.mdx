@@ -3,7 +3,7 @@ export const metadata = {
     description: "Definisikan integral tentu sebagai limit jumlahan Riemann dan evaluasi satu contoh langsung dari limit tersebut.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integral",
 };
 
@@ -20,9 +20,9 @@ Integral tentu mencatat akumulasi pada limit tersebut. Secara matematis, integra
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 Notasi ini memiliki arti spesifik:
-- **<InlineMath math="\int_{a}^{b}" />**: Simbol ini memiliki batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" />. Kedua batas menentukan interval perhitungan integral.
-- **<InlineMath math="f(x)" />**: Ini adalah **integran**. Nilai <InlineMath math="f(x)" /> pada seluruh interval <InlineMath math="[a,b]" /> menentukan akumulasi bertanda.
-- **<InlineMath math="dx" />**: Sama seperti pada integral tak tentu, ini menandakan bahwa kita mengintegrasikan terhadap variabel <InlineMath math="x" />.
+- <InlineMath math="\int_{a}^{b}" />: Simbol ini memiliki batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" />. Kedua batas menentukan interval perhitungan integral.
+- <InlineMath math="f(x)" />: Ini adalah **integran**. Nilai <InlineMath math="f(x)" /> pada seluruh interval <InlineMath math="[a,b]" /> menentukan akumulasi bertanda.
+- <InlineMath math="dx" />: Sama seperti pada integral tak tentu, ini menandakan bahwa kita mengintegrasikan terhadap variabel <InlineMath math="x" />.
 
 Integral tak tentu memuat semua fungsi berbentuk <InlineMath math="F(x) + C" />. Integral tentu menghasilkan sebuah **angka tunggal** yang menyatakan akumulasi bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nilai tersebut sama dengan luas geometris jika fungsi yang diintegralkan tidak negatif pada seluruh interval.
 
@@ -62,16 +62,11 @@ Sekarang, kita masukkan ke dalam formula Jumlahan Riemann:
 
 Kita bisa mengeluarkan konstanta dari sigma, karena <InlineMath math="n" /> dianggap konstan dalam penjumlahan dari <InlineMath math="i=1" /> sampai <InlineMath math="n" />.
 
-<BlockMath math="\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
 
 Selanjutnya, ganti <InlineMath math="\sum_{i=1}^{n} i" /> dengan <InlineMath math="\frac{n(n+1)}{2}" />, lalu sederhanakan sampai suku yang bergantung pada <InlineMath math="n" /> terpisah.
 
-<MathContainer>
-<BlockMath math="\frac{49}{n^2} \cdot \frac{n(n+1)}{2}" />
-<BlockMath math="= \frac{49n(n+1)}{2n^2}" />
-<BlockMath math="= \frac{49(n+1)}{2n}" />
-<BlockMath math="= \frac{49}{2} \left( \frac{n+1}{n} \right) = \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
-</MathContainer>
+<BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
 Penyederhanaan tersebut menghasilkan faktor konstan yang dikalikan dengan <InlineMath math="1+\frac{1}{n}" />. Limit sisanya dapat dihitung dari <InlineMath math="\frac{1}{n}\to0" />.
 
@@ -91,3 +86,19 @@ Terakhir, kita ambil limit saat <InlineMath math="n \to \infty" />. Pada limit i
 </MathContainer>
 
 Karena <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" /> sampai <InlineMath math="x=7" />, integral tentu ini juga merupakan luas geometris: <InlineMath math="\frac{49}{2}" /> atau <InlineMath math="24{,}5" /> satuan luas. Limit tersebut mengubah hampiran persegi panjang menjadi nilai eksak.
+
+## Membandingkan Banyak Persegi Panjang
+
+Tuliskan jumlahan ujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Kita dapat memeriksa beberapa nilai <InlineMath math="n" /> sebelum mengambil limit. Karena grafik naik, setiap persegi panjang ujung kanan memberi **hampiran dari atas**.
+
+| Jumlah persegi panjang | Hampiran ujung kanan |
+| --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="49" /> |
+| <InlineMath math="2" /> | <InlineMath math="36{,}75" /> |
+| <InlineMath math="7" /> | <InlineMath math="28" /> |
+| <InlineMath math="10" /> | <InlineMath math="26{,}95" /> |
+| <InlineMath math="100" /> | <InlineMath math="24{,}745" /> |
+
+Selisih hampiran dari nilai eksak adalah <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Jadi, menggandakan banyak persegi panjang membagi dua galat pada contoh linear ini. Kamu juga dapat memeriksa luas eksaknya sebagai segitiga dengan alas dan tinggi <InlineMath math="7" />:
+
+<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />

@@ -4,12 +4,14 @@ export const metadata = {
     "Die horizontalen und vertikalen Geschwindigkeitskomponenten bestimmen die Zeit bis zum höchsten Punkt, die Wurfweite und die momentane Geschwindigkeit.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kinematik",
 };
 
 
 ## Zuerst wird die Anfangsgeschwindigkeit zerlegt
+
+Der Winkel wird zur Horizontalen gemessen. Nach rechts und nach oben zählen positiv.
 
 Die Analyse einer Wurfbewegung beginnt fast immer mit einer einfachen Frage: Welcher Anteil der Geschwindigkeit ist horizontal und welcher vertikal? Für den Anfangsgeschwindigkeitsbetrag <InlineMath math="v_0" /> und den Abwurfwinkel <InlineMath math="\theta" /> lauten die beiden Komponenten:
 
@@ -23,6 +25,7 @@ Anschließend werden die horizontale und die vertikale Bewegung getrennt berechn
 > Die Gleichungen für die horizontale und vertikale Richtung verwenden dieselbe Zeitvariable.
 
 <ParabolicMovementAnalysisLab
+  decimalSeparator="comma"
   title={<>Komponentenanalyse einer Kanonenkugel</>}
   description={
     <>
@@ -55,11 +58,9 @@ Alle dargestellten Würfe starten und landen auf derselben Höhe. Unter dieser B
 
 <BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{Höhepunkt}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{Höhepunkt}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
 
-Die Werte unter der Szene sind also keine frei gewählten Zahlen. Sie werden aus dem ausgewählten Start berechnet und als Komponenten, Flugzeit, Wurfweite und Momentangeschwindigkeit angezeigt.
-
 ## Am höchsten Punkt ist die Vertikalgeschwindigkeit null
 
-Am höchsten Punkt bewegt sich das Objekt weiterhin horizontal, doch seine vertikale Bewegung hält für einen Moment inne. Deshalb gilt dort <InlineMath math="v_y=0" />.
+Am höchsten Punkt bewegt sich das Objekt **weiterhin horizontal**, doch seine vertikale Bewegung hält für einen Moment inne. Deshalb gilt dort <InlineMath math="v_y=0" />.
 
 <BlockMath math="v_y=v_{0y}-gt" />
 
@@ -71,7 +72,7 @@ Bei einem Anfangsgeschwindigkeitsbetrag von <InlineMath math="40\text{ m/s}" /> 
 
 ## Die Wurfweite nutzt die gesamte Flugzeit
 
-Wenn das Objekt vom Boden startet und auf derselben Höhe zum Boden zurückkehrt, beträgt die Gesamtzeit das Doppelte der Zeit bis zum Höhepunkt.
+Wenn das Objekt vom Boden startet und auf **derselben Höhe** zum Boden zurückkehrt, beträgt die Gesamtzeit das Doppelte der Zeit bis zum Höhepunkt.
 
 <MathContainer>
   <BlockMath math="t_{\text{gesamt}}=2t_{\text{Höhepunkt}}" />
@@ -90,7 +91,7 @@ Um die Geschwindigkeit zu einem bestimmten Zeitpunkt zu bestimmen, werden zuerst
   <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
 </MathContainer>
 
-Die Geschwindigkeitsrichtung muss beide Komponenten und den richtigen Quadranten berücksichtigen:
+Die Geschwindigkeitsrichtung muss **beide Komponenten und den richtigen Quadranten** berücksichtigen:
 
 <BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
 
@@ -100,13 +101,13 @@ Für <InlineMath math="v_x>0" /> ist das gleichbedeutend mit <InlineMath math="\
 
 Ein Ball wird mit dem Anfangsgeschwindigkeitsbetrag <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> geworfen. Für die Rechnung gilt <InlineMath math="g=10\text{ m/s}^2" />.
 
-Für <InlineMath math="60^\circ" /> lassen sich Sinus und Kosinus exakt angeben. Deshalb können wir die Anfangsgeschwindigkeit exakt zerlegen, die Zeit aus der vertikalen Bewegung bestimmen und mit derselben Zeit Wurfweite und momentane Geschwindigkeit berechnen.
+Für <InlineMath math="60^\circ" /> lassen sich **Sinus und Kosinus exakt angeben**. Deshalb können wir die Anfangsgeschwindigkeit exakt zerlegen, die Zeit aus der vertikalen Bewegung bestimmen und mit derselben Zeit Wurfweite und momentane Geschwindigkeit berechnen.
 
 Die Anfangskomponenten sind:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
+  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
 </MathContainer>
 
 Die Zeit bis zum höchsten Punkt beträgt:
@@ -128,6 +129,7 @@ Währenddessen bleibt <InlineMath math="v_x=20\text{ m/s}" /> konstant. Der Gesc
 
 <BlockMath math="\begin{aligned}
 v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
+&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
 &=\sqrt{2000-800\sqrt{3}}\\
 &\approx 24{,}8\text{ m/s}
 \end{aligned}" />

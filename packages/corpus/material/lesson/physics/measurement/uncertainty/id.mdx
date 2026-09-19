@@ -4,7 +4,7 @@ export const metadata = {
     "Data pengukuran berulang dapat diringkas dengan nilai rata-rata dan ketidakpastian agar hasilnya tidak terkesan lebih pasti daripada data yang tersedia.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Pengukuran dalam Kerja Ilmiah",
 };
 
@@ -48,7 +48,7 @@ Nilai rata-rata menunjukkan pusat data, tetapi belum menunjukkan <Highlight>sebe
 
 ## Sebaran Data di Sekitar Rata-rata
 
-Untuk data berulang, sebaran sampel dapat dihitung dari jarak setiap data terhadap nilai rata-rata.
+Untuk data berulang, sebaran sampel dapat dihitung dari **jarak setiap data terhadap nilai rata-rata**.
 
 <BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
 
@@ -90,6 +90,10 @@ Dalam metrologi formal, NIST dan JCGM GUM menyebut ketidakpastian baku nilai rat
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
+Untuk pembacaan yang independen dengan sebaran yang sama, **ketidakpastian baku rata-rata** diameter menjadi lebih kecil daripada simpangan baku tiap pembacaan:
+
+<BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
+
 Ikuti notasi yang ditetapkan pada soal pengukuran. Jika <InlineMath math="\Delta x" /> menyatakan rumus ringkas di atas, maka <InlineMath math="\Delta x" /> adalah simpangan baku sampel dari setiap hasil ukur. Jangan samakan sebaran ini dengan ketidakpastian baku nilai rata-rata <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
 
 ## Luas dari Data Diameter
@@ -98,7 +102,7 @@ Kadang data yang diukur adalah diameter, tetapi yang diminta adalah luas permuka
 
 <BlockMath math="A=\frac{1}{4}\pi d^2" />
 
-Karena luas bergantung pada diameter, setiap pembacaan diameter menghasilkan luas yang sedikit berbeda. Pakai nilai <InlineMath math="\pi" /> dari kalkulator dan pertahankan nilai luas yang belum dibulatkan selama menghitung. Tabel hanya menampilkan <InlineMath math="4" /> tempat desimal agar mudah dibaca.
+Karena luas bergantung pada diameter, setiap pembacaan diameter menghasilkan luas yang sedikit berbeda. Pakai nilai <InlineMath math="\pi" /> dari kalkulator dan pertahankan **nilai luas yang belum dibulatkan** selama menghitung. Tabel hanya menampilkan <InlineMath math="4" /> tempat desimal agar mudah dibaca.
 
 | Data | Diameter | Luas dari diameter |
 | :--- | :------- | :----------------- |
@@ -110,11 +114,11 @@ Karena luas bergantung pada diameter, setiap pembacaan diameter menghasilkan lua
 
 Rata-rata dari kelima nilai luas adalah:
 
-<BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7{,}7045 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} \bar A&=\frac{1}{5}\sum_{i=1}^{5}A_i \\ &=\frac{38{,}5223661979\ldots}{5}\text{ cm}^2 \\ &\approx7{,}7045\text{ cm}^2 \end{aligned}" />
 
 Simpangan baku dari kelima nilai luas adalah:
 
-<BlockMath math="s_A=0{,}0808 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} s_A&=\sqrt{\frac{\sum_{i=1}^{5}(A_i-\bar A)^2}{5-1}} \\ &=\sqrt{\frac{0{,}0260975114\ldots}{4}}\text{ cm}^2 \\ &\approx0{,}0808\text{ cm}^2 \end{aligned}" />
 
 Dengan memakai sebaran sampel sebagai konvensi ketidakpastian dalam soal ini, luas tutup botol dapat ditulis dalam bentuk berikut.
 
@@ -124,7 +128,7 @@ Perhitungan rata-rata dan simpangan baku memakai nilai luas yang belum dibulatka
 
 ## Persentase Menunjukkan Besar Relatif
 
-Sebaran relatif membandingkan simpangan baku sampel dengan besar nilai rata-rata.
+Sebaran relatif membandingkan **simpangan baku sampel** dengan besar nilai rata-rata.
 
 <BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
 

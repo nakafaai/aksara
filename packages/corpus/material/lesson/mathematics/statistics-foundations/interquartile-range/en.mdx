@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate the interquartile range, compare it with the full range, and interpret how the middle half of a data set is distributed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
@@ -28,7 +28,7 @@ So, the <InlineMath math="\mathrm{IQR}" /> is the difference between the upper a
 
 ## Comparing Age Spreads
 
-Consider two groups with the same mean but very different spreads.
+Consider two groups with the **same mean** but very different spreads.
 
 The table lists <InlineMath math="12 \text{ people}" /> in each group:
 
@@ -48,75 +48,61 @@ The table lists <InlineMath math="12 \text{ people}" /> in each group:
 | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
 
 We will compare their means, quartiles, ranges, and interquartile ranges.
+### Calculating the Mean
 
-### Calculating the Mean and Quartiles
+If you calculate the average age for both groups, the result is **exactly the same**, <InlineMath math="16 \text{ years}" /> old.
 
-1.  **Mean (Average):**
+Group 1:
 
-    If you calculate the average age for both groups, the result is **exactly the same**, <InlineMath math="16 \text{ years}" /> old.
+Add all twelve values first, then divide by twelve:
 
-    Group 1:
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
 
-    Add all twelve values first, then divide by twelve:
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
+Group 2:
 
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+Add all twelve values first, then divide their total by twelve.
 
-    Group 2:
+<MathContainer>
+  <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    Add all twelve values first, then divide their total by twelve.
+### Finding the Quartiles
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+We use the **interpolation convention** <InlineMath math="p(n+1)" />. Here <InlineMath math="n=12" />, so the lower and upper quartile positions are 3.25 and 9.75.
 
-2.  **Quartiles (<InlineMath math="Q_1" /> and <InlineMath math="Q_3" />):**
+After sorting the data (as in the table above), we find the positions of the quartiles.
 
-    After sorting the data (as in the table above), we find the positions of the quartiles.
+**Group One (<InlineMath math="n=12" />):**
+The position of <InlineMath math="Q_1" /> is at data point <InlineMath math="\frac{1}{4}(12+1) = 3.25" />. This means <InlineMath math="Q_1" /> is between data points <InlineMath math="3" /> (<InlineMath math="15" />) and <InlineMath math="4" /> (<InlineMath math="15" />). Since both values are the same, then
 
-    **Group One (<InlineMath math="n=12" />):**
-    The position of <InlineMath math="Q_1" /> is at data point <InlineMath math="\frac{1}{4}(12+1) = 3.25" />. This means <InlineMath math="Q_1" /> is between data points <InlineMath math="3" /> (<InlineMath math="15" />) and <InlineMath math="4" /> (<InlineMath math="15" />). Since both values are the same, then
+<BlockMath math="Q_1 = 15" />
 
-    <BlockMath math="Q_1 = 15" />
+The position of <InlineMath math="Q_3" /> is at data point <InlineMath math="\frac{3}{4}(12+1) = 9.75" />. This means <InlineMath math="Q_3" /> is between data points <InlineMath math="9" /> (<InlineMath math="17" />) and <InlineMath math="10" /> (<InlineMath math="17" />). Since both values are the same, then
 
-    The position of <InlineMath math="Q_3" /> is at data point <InlineMath math="\frac{3}{4}(12+1) = 9.75" />. This means <InlineMath math="Q_3" /> is between data points <InlineMath math="9" /> (<InlineMath math="17" />) and <InlineMath math="10" /> (<InlineMath math="17" />). Since both values are the same, then
+<BlockMath math="Q_3 = 17" />
 
-    <BlockMath math="Q_3 = 17" />
+**Group Two (<InlineMath math="n=12" />):**
+The position of <InlineMath math="Q_1" /> is <InlineMath math="3.25" />. It lies one quarter of the way from value <InlineMath math="3" /> (<InlineMath math="4" />) to value <InlineMath math="4" /> (<InlineMath math="5" />), so we interpolate with weight <InlineMath math="0.25" />:
 
-    **Group Two (<InlineMath math="n=12" />):**
-    The position of <InlineMath math="Q_1" /> is <InlineMath math="3.25" />. It lies one quarter of the way from value <InlineMath math="3" /> (<InlineMath math="4" />) to value <InlineMath math="4" /> (<InlineMath math="5" />), so we interpolate with weight <InlineMath math="0.25" />:
+<BlockMath math="Q_1 = 4 + 0.25(5-4) = 4.25" />
 
-    <BlockMath math="Q_1 = 4 + 0.25(5-4) = 4.25" />
+The position of <InlineMath math="Q_3" /> is <InlineMath math="9.75" />. It lies three quarters of the way from value <InlineMath math="9" /> (<InlineMath math="28" />) to value <InlineMath math="10" /> (<InlineMath math="29" />), so the interpolation weight is <InlineMath math="0.75" />:
 
-    The position of <InlineMath math="Q_3" /> is <InlineMath math="9.75" />. It lies three quarters of the way from value <InlineMath math="9" /> (<InlineMath math="28" />) to value <InlineMath math="10" /> (<InlineMath math="29" />), so the interpolation weight is <InlineMath math="0.75" />:
-
-    <BlockMath math="Q_3 = 28 + 0.75(29-28) = 28.75" />
+<BlockMath math="Q_3 = 28 + 0.75(29-28) = 28.75" />
 
 ### Calculating the Range and Interquartile Range
 
-Next, calculate the measures of spread.
+The **full range** uses the maximum and minimum. The **interquartile range** uses the two quartile boundaries. Compare the following calculations in years.
 
-1.  **Range:**
-
-    <InlineMath math="\text{Range} = \text{maximum value} - \text{minimum value}" />
-
-    - Range Group One is <InlineMath math="18 - 13 = 5" />
-    - Range Group Two is <InlineMath math="36 - 1 = 35" />
-
-      The full ranges already show that Group Two is much more spread out at the extremes.
-
-2.  **Interquartile Range** (<InlineMath math="\mathrm{IQR}" />):
-
-    <InlineMath math="\mathrm{IQR} = Q_3 - Q_1" />
-
-    - <InlineMath math="\mathrm{IQR}" /> Group One is <InlineMath math="17 - 15 = 2" />
-    - <InlineMath math="\mathrm{IQR}" /> Group Two is <InlineMath math="28.75 - 4.25 = 24.5" />
-
-      The middle halves of the two groups also have very different spreads.
+| Group | Range | Interquartile range |
+| --- | --- | --- |
+| 1 | <InlineMath math="18-13=5" /> | <InlineMath math="17-15=2" /> |
+| 2 | <InlineMath math="36-1=35" /> | <InlineMath math="28.75-4.25=24.5" /> |
 
 ### Interpreting the Results
 

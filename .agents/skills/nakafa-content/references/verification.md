@@ -241,3 +241,23 @@ passage being reviewed and validate their findings in context.
    Remove only resources proven obsolete and safe to remove; record anything
    retained for active review or recovery. Repository verification is not
    publication approval.
+
+## Pedagogy inventory
+
+```sh
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/material/lesson --pedagogy-review --format json
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/question-bank --pedagogy-review --format json
+```
+
+The optional `pedagogy` array lists heading locations, prose word counts,
+component names, and review signals. It excludes assessed prompts and includes
+authored worked answers. Signals do not change the deterministic exit status.
+Review them using [structure](structure.md#review-each-teaching-section), with the
+complete question and response key beside each answer. A missing signal is not
+acceptance, and adding a component never clears the obligation to explain it.
+
+`nested-relation-alignment` rejects an alignment relation inserted inside an
+unfinished parenthesis, bracket, or group, as in `P(S &= 7)` instead of
+`P(S=7) &= ...`. Preserve complete event arguments, radicals, and conditions.
+Nested matrices and cases retain their own alignment. Recompute the displayed
+steps after repairing their layout.

@@ -1,12 +1,10 @@
-
-
 export const metadata = {
   title: "Vektorkomponenten",
   description:
     "Einen Vektor mithilfe von Einheitsvektoren in Komponenten entlang der x-, y- und z-Achse zerlegen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -24,13 +22,15 @@ In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe se
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
-Dabei ist <InlineMath math="\hat{i}" /> der Einheitsvektor in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+Dabei ist <InlineMath math="\hat{i}" /> der **Einheitsvektor** in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+
+### Den Betrag aus zwei Komponenten berechnen
 
 Beispielsweise bedeutet <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" />, dass der Vektor <InlineMath math="6" /> Einheiten in positive <InlineMath math="x" />-Richtung und <InlineMath math="8" /> Einheiten in positive <InlineMath math="y" />-Richtung zeigt.
 
-<BlockMath math="\lvert\vec{A}\rvert=\sqrt{6^2+8^2}=10" />
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
 
-Der Betrag des Vektors folgt aus dem Satz des Pythagoras, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
+Der Betrag des Vektors folgt aus dem **Satz des Pythagoras**, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
 
 ## Komponenten im dreidimensionalen Raum
 
@@ -38,7 +38,7 @@ Im dreidimensionalen Raum benötigt ein Vektor drei Komponenten. Die allgemeine 
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
 
-Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
+Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koordinatenachse**, der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
 
 <Vector3d
   title={<>Komponenten von <InlineMath math="\vec{A}" /></>}
@@ -112,6 +112,14 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath m
 
 Die Darstellung setzt die Komponenten nacheinander zusammen: zuerst entlang der <InlineMath math="x" />-Achse, dann entlang der <InlineMath math="y" />-Achse und schließlich entlang der <InlineMath math="z" />-Achse. Der so erreichte Endpunkt stimmt mit dem Endpunkt des Vektors <InlineMath math="\vec{A}" /> überein.
 
+
+### Den Betrag im Raum berechnen
+
+Drehe das Modell, bis du die senkrechte Komponente von der Grundebene unterscheiden kannst. Die ersten beiden Komponenten bestimmen die Länge in dieser Ebene. Für den räumlichen Vektorbetrag kommt die **dritte Komponente** hinzu.
+
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
+
+
 ## Positive und negative Vorzeichen
 
 Komponenten können positiv oder negativ sein. Das Vorzeichen zeigt <Highlight>die Richtung relativ zur Referenzachse</Highlight> an, keinen negativen Vektorbetrag.
@@ -129,10 +137,16 @@ Für <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" /> zeigt die Komponente mit d
 Ein Schüler geht <InlineMath math="3\text{ m}" /> nach Osten und anschließend <InlineMath math="4\text{ m}" /> nach Norden. Wird Osten als positive <InlineMath math="x" />-Richtung und Norden als positive <InlineMath math="y" />-Richtung festgelegt, lautet der Verschiebungsvektor:
 
 <MathContainer>
-  <BlockMath math="\vec{s}=3\hat{i}+4\hat{j}" />
-  <BlockMath math="\lvert\vec{s}\rvert=\sqrt{3^2+4^2}=5\text{ m}" />
+  <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
+  <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
 </MathContainer>
 
-Mit Komponenten werden die horizontale und die vertikale Richtung auf ihren jeweiligen Achsen berechnet.
+Die Komponenten einer Verschiebung haben die **Einheit Meter**. Einheitsvektoren geben nur die Richtung an. Deshalb muss die physikalische Einheit auch in der Vektorgleichung stehen.
 
 Aus der Komponentenform ist sofort erkennbar, dass die resultierende Verschiebung zugleich nach Osten und nach Norden zeigt. Ihr Betrag von <InlineMath math="5\text{ m}" /> ergibt sich aus einem rechtwinkligen Dreieck mit den Kathetenlängen <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.
+
+Miss die Richtung der Verschiebung von Osten nach Norden. Beide Komponenten sind positiv, deshalb liegt der Winkel im ersten Quadranten.
+
+<BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53{,}1^\circ\end{aligned}" />
+
+Die Verschiebung zeigt also etwa <InlineMath math="53{,}1^\circ" /> nördlich von Osten.

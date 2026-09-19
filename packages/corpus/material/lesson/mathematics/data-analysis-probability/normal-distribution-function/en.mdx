@@ -3,7 +3,7 @@ export const metadata = {
   description: "Read a normal density curve, standardize values with z-scores, and calculate an interval probability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Data Analysis and Probability",
 };
 
@@ -28,18 +28,15 @@ The normal density has a symmetric bell shape. The visualization below shows the
       The standard normal density is centered at <InlineMath math="\mu=0" />. The vertical segments mark its inflection points <InlineMath math="\mu\pm\sigma" />.
     </>
   }
+  showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: (() => {
-        const points = [];
-        const step = 0.1;
-        for (let x = -3.5; x <= 3.5; x += step) {
-          const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x);
-          points.push({ x: x, y: y, z: 0 });
-        }
-        return points;
-      })(),
+      points: Array.from({ length: 71 }, (_, index) => {
+        const x = (index - 35) / 10;
+        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+        return { x, y, z: 0 };
+      }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
@@ -94,7 +91,7 @@ The curve has four defining characteristics:
 
 ## Probability Density Function
 
-The formula below gives the probability density at each value of <InlineMath math="x" />.
+The formula below gives the **probability density** at each value of <InlineMath math="x" />.
 
 If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" />, variance <InlineMath math="\sigma^2" />, and <InlineMath math="\sigma>0" />, its density function is:
 
@@ -110,18 +107,26 @@ The constants and parameters are:
 - <InlineMath math="\sigma>0" /> is the standard deviation
 
 > The parameter <InlineMath math="\mu" /> shifts the center of the curve, while <InlineMath math="\sigma" /> controls its spread. Find probabilities from areas under the density curve. The height <InlineMath math="f(x)" /> at one point is a density value.
-
 ## Transformation to Standard Normal
 
 In practice, we often use the **standard normal distribution** with mean <InlineMath math="\mu = 0" /> and standard deviation <InlineMath math="\sigma = 1" />. To convert a regular normal distribution to standard normal, we use the transformation:
 
-<BlockMath math="Z = \frac{x - \mu}{\sigma}" />
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
 
 The variable <InlineMath math="Z" /> is the **standard score**, or **z-score**. It measures <Highlight>how many standard deviations</Highlight> <InlineMath math="x" /> lies above or below the mean. Standardization maps every normal distribution to the same <InlineMath math="Z" /> scale, so one standard normal table works for all of them.
 
-**Why use z-score?**
+Why use z-score?
 
 With this transformation, we can compare data from different distributions. For example, you can compare math scores with physics scores, even though their means and standard deviations are different.
+
+For an observed value <InlineMath math="x" />, write its standardized score as <InlineMath math="z" />. Suppose a math score of 80 comes from a distribution with mean 70 and standard deviation 5, while a physics score of 90 comes from a distribution with mean 80 and standard deviation 10.
+
+| Subject | Standardized score |
+| --- | --- |
+| Math | <InlineMath math="z=\frac{80-70}{5}=2" /> |
+| Physics | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+
+The math score is **higher relative to its own group**, even though the raw score 80 is smaller than 90. This comparison measures position within each distribution, rather than equating the difficulty of the two tests.
 
 ## Finding a Normal Probability Between Two Bounds
 
@@ -142,11 +147,11 @@ The transformed interval is <InlineMath math="P(-0.5 < Z < 1.2)" />. Subtract th
 
 From the standard normal distribution table:
 
-- <InlineMath math="P(Z < -0.5) = 0.3085" />
-- <InlineMath math="P(Z < 1.2) = 0.8849" />
+- <InlineMath math="P(Z < -0.5) \approx 0.3085" />
+- <InlineMath math="P(Z < 1.2) \approx 0.8849" />
 
 **Step 3**: Calculate the final probability
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0.5 &lt; Z &lt; 1.2) \\ &amp;= 0.8849 - 0.3085 \\ &amp;= 0.5764 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0.5 &lt; Z &lt; 1.2) \\ &amp;\approx 0.8849 - 0.3085 \\ &amp;= 0.5764 \end{aligned}" />
 
 So, the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" /> is <InlineMath math="0.5764" /> or approximately <InlineMath math="57.64\%" />.

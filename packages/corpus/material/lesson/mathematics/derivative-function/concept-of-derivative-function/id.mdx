@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunan adalah laju perubahan lokal dan gradien garis singgung yang diperoleh dari limit gradien garis sekan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Turunan Fungsi",
 };
 
@@ -95,13 +95,29 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
 
 ## Dari Garis Sekan ke Garis Singgung
 
-Selanjutnya, geser <InlineMath math="Q" /> semakin dekat ke <InlineMath math="P" />. Jarak mendatar <InlineMath math="\Delta x" /> semakin kecil dan mendekati nol.
+Bayangkan titik <InlineMath math="Q" /> pada parabola dipilih semakin dekat ke <InlineMath math="P" />. Jarak mendatar <InlineMath math="\Delta x" /> kemudian mendekati nol. Perubahan pemilihan titik itu dapat kita hitung tanpa mengubah rumus parabola.
 
 Ketika <InlineMath math="\Delta x \to 0" /> (dibaca "delta x mendekati nol"), garis-garis sekan tersebut mendekati **garis singgung** di <InlineMath math="P" />. Garis singgung menunjukkan arah lokal kurva pada titik itu. Garis ini tidak harus hanya berpotongan satu kali dengan seluruh kurva. Yang penting adalah perilakunya di sekitar <InlineMath math="P" />.
 
 Gradien garis singgung merupakan **laju perubahan sesaat** kurva di <InlineMath math="P" />. Nilainya diperoleh dengan **limit**:
 
 <BlockMath math="\begin{aligned} &amp;m_{\text{singgung}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
+
+Untuk parabola pada grafik, tetapkan <InlineMath math="P=(1,1)" /> dan tulis <InlineMath math="h=\Delta x" />. Titik kedua menjadi <InlineMath math="Q=(1+h,(1+h)^2)" />. Selama <InlineMath math="h\ne0" />, gradien sekan dapat disederhanakan:
+
+<BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
+
+Faktor <InlineMath math="h" /> dapat dicoret karena kedua titik masih berbeda. Tabel membandingkan gradien ketika <InlineMath math="Q" /> berada di sebelah kiri dan kanan <InlineMath math="P" />.
+
+| <InlineMath math="h" /> | Gradien sekan <InlineMath math="2+h" /> |
+| --- | --- |
+| <InlineMath math="-0{,}5" /> | <InlineMath math="1{,}5" /> |
+| <InlineMath math="-0{,}1" /> | <InlineMath math="1{,}9" /> |
+| <InlineMath math="0{,}1" /> | <InlineMath math="2{,}1" /> |
+| <InlineMath math="0{,}5" /> | <InlineMath math="2{,}5" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> |
+
+Ketika **jarak mendatar mendekati nol dari kedua sisi**, gradien mendekati <InlineMath math="2" />. Jadi, gradien garis singgung pada <InlineMath math="P" /> adalah <InlineMath math="2" />. Kita mengambil limit setelah menyederhanakan pecahan, sehingga tidak pernah membagi dengan nol.
 
 ## Definisi Turunan
 

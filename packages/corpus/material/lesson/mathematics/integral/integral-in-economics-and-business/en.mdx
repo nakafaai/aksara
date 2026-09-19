@@ -3,7 +3,7 @@ export const metadata = {
    description: "Apply integrals to example business models to calculate total sales, cost changes, revenue growth, and consumer surplus.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Integrals",
 };
 
@@ -13,7 +13,13 @@ Economic data often describe a rate, such as units sold per month or additional 
 
 For example, integrating a sales rate over three months gives the total number of units sold during those three months.
 
-This concept is similar to calculating the area under a curve, where the horizontal axis represents time and the vertical axis represents the rate of change of an economic quantity.
+The horizontal axis follows the integration variable: time for sales rate, or production quantity for marginal cost. The **unit of the integral** is the product of the units on the two axes.
+
+| Quantity integrated | Integration variable | Result |
+| --- | --- | --- |
+| Units per month | Months | Units sold |
+| Thousand rupiah per unit | Units produced | Thousand rupiah |
+| Thousand rupiah per month | Months | Thousand rupiah |
 
 ## Sales Analysis Using Integrals
 
@@ -42,22 +48,24 @@ The continuous model predicts <InlineMath math="S = \frac{35200}{3} \approx 1173
 
 ## Revenue Growth Analysis
 
-A second model gives a technology startup's revenue growth rate as <InlineMath math="R'(t) = 5000e^{0.1t}" /> thousand dollars per month, where <InlineMath math="t" /> is measured in months.
+A second model gives a technology startup's revenue growth rate as <InlineMath math="R'(t) = 5000e^{0.1t}" /> thousand rupiah per month, where <InlineMath math="t" /> is measured in months.
 
 To calculate the **total revenue increase** in the first <InlineMath math="6 \text{ months}" />, we integrate the growth rate function:
 
+Write the increase as <InlineMath math="\Delta R=R(6)-R(0)" />. The initial revenue is not needed to calculate **its change**.
+
 <MathContainer>
-<BlockMath math="R = \int_{0}^{6} 5000e^{0.1t} \, dt" />
-<BlockMath math="R = 5000 \int_{0}^{6} e^{0.1t} \, dt" />
-<BlockMath math="R = 5000 \left[\frac{e^{0.1t}}{0.1}\right]_{0}^{6}" />
-<BlockMath math="R = 50000(e^{0.6} - 1)" />
+<BlockMath math="\Delta R = \int_{0}^{6} 5000e^{0.1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \int_{0}^{6} e^{0.1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \left[\frac{e^{0.1t}}{0.1}\right]_{0}^{6}" />
+<BlockMath math="\Delta R = 50000(e^{0.6} - 1)" />
 </MathContainer>
 
-With <InlineMath math="e^{0.6} \approx 1.822" />, the total revenue increase is approximately <InlineMath math="50000 \times 0.822 = 41100" /> thousand dollars or <InlineMath math="41.1 \text{ million}" /> dollars.
+With <InlineMath math="e^{0.6} \approx 1.822" />, the total revenue increase is approximately <InlineMath math="50000 \times 0.822 = 41100" /> thousand rupiah or <InlineMath math="41.1 \text{ million}" /> rupiah.
 
 ## Total Production Cost
 
-In business, companies often need to estimate production costs. Suppose the marginal cost to produce a good is <InlineMath math="MC(x) = 0.3x^2 - 12x + 200" /> thousand dollars per unit, where <InlineMath math="x" /> is the number of units produced.
+In business, companies often need to estimate production costs. Suppose the marginal cost to produce a good is <InlineMath math="MC(x) = 0.3x^2 - 12x + 200" /> thousand rupiah per unit, where <InlineMath math="x" /> is the number of units produced.
 
 Now, if the company wants to know the **total variable cost** to produce the first <InlineMath math="20 \text{ units}" />, they simply integrate the marginal cost function:
 
@@ -70,13 +78,13 @@ After we integrate and evaluate, we obtain:
 <BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
 </MathContainer>
 
-Assuming <InlineMath math="VC(0)=0" />, the total variable cost to produce <InlineMath math="20 \text{ units}" /> is <InlineMath math="2.4 \text{ million}" /> dollars. Any fixed cost is separate and is not included in this integral.
+Assuming <InlineMath math="VC(0)=0" />, the total variable cost to produce <InlineMath math="20 \text{ units}" /> is <InlineMath math="2.4 \text{ million}" /> rupiah. Any fixed cost is separate and is not included in this integral.
 
 > In economic applications, an integral converts a marginal quantity or rate of change into an accumulated total. Integrating marginal cost, for example, gives the change in total cost.
 
 ## Consumer Surplus Analysis
 
-Consumer surplus can also be calculated with an integral. Consider a market with demand function <InlineMath math="P = 100 - 0.5Q" /> and equilibrium price <InlineMath math="60 \text{ dollars per unit}" />. The equilibrium quantity on this demand curve follows from:
+Consumer surplus can also be calculated with an integral. Consider a market with demand function <InlineMath math="P = 100 - 0.5Q" /> and equilibrium price <InlineMath math="60 \text{ rupiah per unit}" />. The equilibrium quantity on this demand curve follows from:
 
 <BlockMath math="\begin{aligned} &amp;60=100-0.5Q \\ &amp;\Longrightarrow \\ &amp;Q=80 \end{aligned}" />
 
@@ -91,61 +99,65 @@ After evaluation:
 <BlockMath math="CS = 3200 - 1600 = 1600" />
 </MathContainer>
 
-A consumer surplus of <InlineMath math="1600 \text{ dollars}" /> measures the total monetary benefit consumers receive above the equilibrium price.
+A consumer surplus of <InlineMath math="1600 \text{ rupiah}" /> measures the total monetary benefit consumers receive above the equilibrium price.
+
+The price difference forms a **triangle**: its height is <InlineMath math="40" /> rupiah per unit at <InlineMath math="Q=0" /> and falls to zero at <InlineMath math="Q=80" />. Check the integral using the triangle area:
+
+<BlockMath math="CS=\frac12(80)(100-60)=1600" />
 
 ## Exercises
 
-Each problem gives a rate such as marginal cost or marginal revenue and asks for the accumulated total, so integrate the rate over the stated interval and then read the result in the original units.
+Each problem gives a rate such as marginal cost or marginal revenue and asks for the accumulated total, so **integrate the rate** over the stated interval and then read the result in the original units.
 
 1. A company has a sales rate of <InlineMath math="f(t) = 1000 + 500t \text{ units}" /> per month. Calculate the total sales in the first <InlineMath math="6 \text{ months}" />!
 
-2. If the marginal cost of a product is <InlineMath math="MC(x) = 2x + 50" /> thousand dollars per unit, what is the total variable cost to produce <InlineMath math="25 \text{ units}" />?
+2. If the marginal cost of a product is <InlineMath math="MC(x) = 2x + 50" /> thousand rupiah per unit, what is the total variable cost to produce <InlineMath math="25 \text{ units}" />?
 
-3. The investment growth rate function is <InlineMath math="I'(t) = 2000e^{0.05t}\text{ million}" /> dollars per year. Calculate the total investment growth in <InlineMath math="4 \text{ years}" />!
+3. The investment growth rate function is <InlineMath math="I'(t) = 2000e^{0.05t}\text{ million}" /> rupiah per year. Calculate the total investment growth in <InlineMath math="4 \text{ years}" />!
 
-### Worked Solutions
+### Calculating total sales
 
-1. **Calculating total sales**
+Integrate the **sales rate function** from month zero to month six. Multiplying a rate in units per month by a time interval in months gives the number of units sold.
 
-   Since we have the sales rate function, just integrate it:
+<BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
 
-   <BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
+The result is:
 
-   The result is:
+<MathContainer>
+<BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
+<BlockMath math="S = 6000 + 9000 = 15000" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
-   <BlockMath math="S = 6000 + 9000 = 15000" />
-   </MathContainer>
+Total sales in <InlineMath math="6 \text{ months}" /> is <InlineMath math="15{,}000 \text{ units}" />.
 
-   Total sales in <InlineMath math="6 \text{ months}" /> is <InlineMath math="15{,}000 \text{ units}" />.
+### Calculating variable cost
 
-2. **Calculating variable cost**
+Integrate the **marginal cost function** from zero to 25 units of output. Since marginal cost is in thousand rupiah per unit, the integral is in thousand rupiah.
 
-   Integrate the marginal cost function:
+<BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
 
-   <BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
+After evaluation:
 
-   After evaluation:
+<MathContainer>
+<BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
+<BlockMath math="VC = 625 + 1250 = 1875" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
-   <BlockMath math="VC = 625 + 1250 = 1875" />
-   </MathContainer>
+Total variable cost is <InlineMath math="1{,}875" /> thousand rupiah or <InlineMath math="1.875 \text{ million}" /> rupiah.
 
-   Total variable cost is <InlineMath math="1{,}875" /> thousand dollars or <InlineMath math="1.875 \text{ million}" /> dollars.
+With <InlineMath math="VC(0)=0" />, this result is the variable cost. Add any fixed cost separately.
 
-3. **Calculating investment growth**
+### Calculating investment growth
 
-   For exponential functions, we integrate:
+Accumulate the investment rate over four years. The exponential antiderivative requires division by the coefficient of time, <InlineMath math="0.05" />.
 
-   <BlockMath math="I = \int_{0}^{4} 2000e^{0.05t} \, dt" />
+<BlockMath math="\Delta I = \int_{0}^{4} 2000e^{0.05t} \, dt" />
 
-   The result is:
+The result is:
 
-   <MathContainer>
-   <BlockMath math="I = 2000 \left[\frac{e^{0.05t}}{0.05}\right]_{0}^{4}" />
-   <BlockMath math="\begin{aligned} I &amp;= 40000(e^{0.2} - 1) \\ &amp;\approx 40000(0.2214) \\ &amp;\approx 8856 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\Delta I = 2000 \left[\frac{e^{0.05t}}{0.05}\right]_{0}^{4}" />
+<BlockMath math="\begin{aligned} \Delta I &amp;= 40000(e^{0.2} - 1) \\ &amp;\approx 40000(0.2214) \\ &amp;\approx 8856 \end{aligned}" />
+</MathContainer>
 
-   Total investment growth in <InlineMath math="4 \text{ years}" /> is approximately <InlineMath math="8.86 \text{ billion dollars}" />.
+Total **investment growth** in <InlineMath math="4 \text{ years}" /> is approximately <InlineMath math="8.86 \text{ billion rupiah}" />.

@@ -3,13 +3,13 @@ export const metadata = {
   description: "Subtract corresponding matrix entries, check the required dimensions, and apply the operation in examples and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Matrix",
 };
 
 ## Subtracting Entries in Matching Positions
 
-<Highlight>Matrix subtraction is an operation to find the difference between two matrices.</Highlight> Just like [matrix addition](/en/subjects/mathematics/matrix/matrix-addition), the subtraction operation can only be performed if both matrices involved have the same size or order.
+Matrix subtraction finds **differences between corresponding entries** of two matrices. Just like [matrix addition](/en/subjects/mathematics/matrix/matrix-addition), the subtraction operation can only be performed if both matrices involved have the same size or order.
 
 The result of matrix subtraction is a new matrix that also has the same order, where each element is the result of subtracting the corresponding elements from the two initial matrices.
 
@@ -56,7 +56,7 @@ Suppose we have two matrices, <InlineMath math="P" /> and <InlineMath math="Q" /
 
 Both matrices are of order <InlineMath math="2 \times 2" />, so they can be subtracted.
 
-Using the method of subtracting corresponding elements:
+Using the method of **subtracting corresponding elements**:
 
 <MathContainer>
   <BlockMath math="P - Q = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} - \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
@@ -80,10 +80,9 @@ Then, add <InlineMath math="P" /> to <InlineMath math="-Q" />:
 </MathContainer>
 
 Both methods yield the same matrix.
-
 ### Example of Matrices That Cannot Be Subtracted
 
-These two matrices do not have the same order:
+These two matrices do not have the **same order**:
 
 <MathContainer>
   <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
@@ -91,46 +90,49 @@ These two matrices do not have the same order:
 </MathContainer>
 
 Matrix <InlineMath math="K" /> is of order <InlineMath math="3 \times 2" />, while matrix <InlineMath math="L" /> is of order <InlineMath math="2 \times 2" />. Since the orders of these two matrices are different, the subtraction <InlineMath math="K-L" /> (or <InlineMath math="L-K" />) cannot be performed or is undefined.
-
 ## Properties of Matrix Subtraction
 
 Matrix addition is commutative and associative, but <Highlight>matrix subtraction generally has neither property</Highlight>.
 
-1.  **Not Commutative**: In general, the order of matrix subtraction significantly affects the result. This means <InlineMath math="A - B" /> is not equal to <InlineMath math="B - A" />, except in special cases (e.g., if <InlineMath math="A=B" />).
+Track the **minus sign before a matrix**. It applies to every entry. Reversing the order or removing parentheses can change which entries are subtracted.
 
-    In general:
+### Not Commutative
 
-    <BlockMath math="A - B \neq B - A" />
+In general, the **order of matrix subtraction** significantly affects the result. This means <InlineMath math="A - B" /> is not equal to <InlineMath math="B - A" />, except in special cases (e.g., if <InlineMath math="A=B" />).
 
-    For example, from matrices <InlineMath math="P" /> and <InlineMath math="Q" /> above:
+In general:
 
-    <BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+<BlockMath math="A - B \neq B - A" />
 
-    Whereas,
+For example, from matrices <InlineMath math="P" /> and <InlineMath math="Q" /> above:
 
-    <MathContainer>
-      <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
 
-    Therefore, <InlineMath math="P-Q \neq Q-P" />.
+Whereas,
 
-2.  **Not Associative**: The grouping in the subtraction of three or more matrices also affects the final result. In general, <InlineMath math="(A - B) - C" /> is not equal to <InlineMath math="A - (B - C)" />.
+<MathContainer>
+  <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
+</MathContainer>
 
-    In general:
+Therefore, <InlineMath math="P-Q \neq Q-P" />.
+### Not Associative
 
-    <BlockMath math="(A - B) - C \neq A - (B - C)" />
+The **grouping** in the subtraction of three or more matrices also affects the final result. In general, <InlineMath math="(A - B) - C" /> is not equal to <InlineMath math="A - (B - C)" />.
 
-    This is because <InlineMath math="(A - B) - C = A - B - C" />, whereas <InlineMath math="A - (B - C) = A - B + C" />.
+In general:
+
+<BlockMath math="(A - B) - C \neq A - (B - C)" />
+
+This is because <InlineMath math="(A - B) - C = A - B - C" />, whereas <InlineMath math="A - (B - C) = A - B + C" />.
 
 Matrix subtraction can be written as addition of the opposite matrix: <InlineMath math="A - B = A + (-B)" />.
 
 By converting subtraction into addition with the opposite matrix, we can use addition properties when needed.
-
 ## Exercises
 
-**Problem** 1
+**Problem 1**
 
 Given the following matrices:
 
@@ -141,13 +143,13 @@ Given the following matrices:
 
 Determine the result of <InlineMath math="M-N" />.
 
-**Problem** 2
+**Problem 2**
 
 Determine the values of <InlineMath math="x, y," /> and <InlineMath math="z" /> from the following matrix equation:
 
 <BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
 
-**Problem** 3
+**Problem 3**
 
 Given three matrices:
 
@@ -161,7 +163,7 @@ Calculate <InlineMath math="(A-B)-C" /> and <InlineMath math="A-(B-C)" />. Are t
 
 ### Worked Solutions
 
-**Problem** 1
+**Problem 1**
 
 Given:
 
@@ -179,7 +181,7 @@ Then, <InlineMath math="M-N" /> is:
   <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
 </MathContainer>
 
-**Problem** 2
+**Problem 2**
 
 Given the matrix equation:
 
@@ -227,7 +229,7 @@ The solution is <InlineMath math="x=4" />, <InlineMath math="y=2" />, and <Inlin
 
 Substituting these values into the original equation verifies all four corresponding entries.
 
-**Problem** 3
+**Problem 3**
 
 Given:
 

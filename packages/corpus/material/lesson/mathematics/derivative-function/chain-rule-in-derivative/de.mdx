@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite zusammengesetzte Potenz- und trigonometrische Funktionen mit der Kettenregel ab.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Ableitungsfunktionen",
 };
 
@@ -27,13 +27,13 @@ Das ist die **Kettenregel**: <Highlight>Wir arbeiten von außen nach innen</High
 
 ## Anwenden der Kettenregel
 
-Die folgenden Beispiele zeigen den Ablauf bei einer und bei mehreren Verschachtelungen. Benenne in jedem Beispiel zuerst die äußere und die innere Funktion, denn die Kettenregel multipliziert die äußere Ableitung mit der inneren Ableitung.
+Die folgenden Beispiele zeigen den Ablauf bei einer und bei mehreren Verschachtelungen. Benenne in jedem Beispiel zuerst die **äußere und die innere Funktion**, denn die Kettenregel multipliziert die äußere Ableitung mit der inneren Ableitung.
 
 ### Potenzfunktionen mit innerer Funktion
 
 Bestimme die erste Ableitung von <InlineMath math="y = (x^2 - 4x - 2)^8" />.
 
-**Lösung:**
+**Lösung**:
 
 Zuerst müssen wir diese Funktion in zwei Teile zerlegen: eine äußere Funktion und eine innere Funktion.
 
@@ -61,9 +61,11 @@ Zum Schluss setzen wir <InlineMath math="u" /> wieder ein und vereinfachen den A
 
 ### Trigonometrische Funktionen
 
+Die Winkel der trigonometrischen Funktionen werden im **Bogenmaß** angegeben. Deshalb gelten die Ableitungsregeln für Sinus und Kosinus ohne einen zusätzlichen Umrechnungsfaktor.
+
 Bestimme die erste Ableitung von <InlineMath math="y = \cos^4(3 - 4x)" />.
 
-**Lösung:**
+**Lösung**:
 
 Wir können diese Funktion als <InlineMath math="y = (\cos(3 - 4x))^4" /> umschreiben. In diesem Fall müssen wir die Kettenregel mehr als einmal anwenden, da es drei Funktionsebenen gibt.
 
@@ -94,59 +96,59 @@ Setze nun schrittweise wieder die Ausdrücke für <InlineMath math="u" /> und <I
 
 ## Übungen
 
-Jede Aufgabe schachtelt eine Funktion in eine andere, sodass die Kettenregel nötig ist. Bestimme zuerst die äußere und die innere Funktion.
+Jede Aufgabe schachtelt eine Funktion in eine andere, sodass die Kettenregel nötig ist. Bestimme zuerst die **äußere und die innere Funktion**.
 
 1.  Bestimme die erste Ableitung von <InlineMath math="y = (3x^2 - 1)^3" />.
 2.  Bestimme die erste Ableitung von <InlineMath math="y = \sin^3(2x)" />.
 
-### Ausführliche Lösungen
+### Die Potenz einer quadratischen Funktion ableiten
 
-1.  **Lösung für <InlineMath math="y = (3x^2 - 1)^3" />**
+Bei <InlineMath math="y=(3x^2-1)^3" /> ist die dritte Potenz die äußere und der quadratische Ausdruck die innere Funktion. Lass den quadratischen Ausdruck beim Ableiten der dritten Potenz stehen.
 
-    **Schritt 1**: Identifiziere die Funktionen
-    -   Innere Funktion: <InlineMath math="u = 3x^2 - 1" />
-    -   Äußere Funktion: <InlineMath math="y = u^3" />
+**Schritt 1**: Identifiziere die Funktionen
+-   Innere Funktion: <InlineMath math="u = 3x^2 - 1" />
+-   Äußere Funktion: <InlineMath math="y = u^3" />
 
-    **Schritt 2**: Bestimme beide Ableitungen
-    -   <InlineMath math="\frac{du}{dx} = 6x" />
-    -   <InlineMath math="\frac{dy}{du} = 3u^2" />
+**Schritt 2**: Bestimme beide Ableitungen
+-   <InlineMath math="\frac{du}{dx} = 6x" />
+-   <InlineMath math="\frac{dy}{du} = 3u^2" />
 
-    **Schritt 3**: Mit der Kettenregel kombinieren
+**Schritt 3**: Mit der Kettenregel kombinieren
 
-    <MathContainer>
-        <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
-        <BlockMath math="\frac{dy}{dx} = 3u^2 \cdot 6x = 18x \cdot u^2" />
-    </MathContainer>
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = 3u^2 \cdot 6x = 18x \cdot u^2" />
+</MathContainer>
 
-    **Schritt 4**: Setze den inneren Ausdruck wieder ein
+**Schritt 4**: Setze den inneren Ausdruck wieder ein
 
-    <BlockMath math="\frac{dy}{dx} = 18x(3x^2 - 1)^2" />
+<BlockMath math="\frac{dy}{dx} = 18x(3x^2 - 1)^2" />
 
-2.  **Lösung für <InlineMath math="y = \sin^3(2x)" />**
+### Die Potenz einer Sinusfunktion ableiten
 
-    Die Funktion lässt sich als <InlineMath math="y = (\sin(2x))^3" /> schreiben. Deshalb wird die Kettenregel über drei Schichten angewendet.
+Bei <InlineMath math="y=\sin^3(2x)" /> liefern drei Funktionsebenen drei Ableitungsfaktoren. Schreibe die lineare Funktion, den Sinus und die dritte Potenz getrennt auf, damit der Faktor der linearen Funktion erhalten bleibt.
 
-    **Schritt 1**: Identifiziere die Funktionen
-    -   Innerste Funktion: <InlineMath math="v = 2x" />
-    -   Mittlere Funktion: <InlineMath math="u = \sin(v)" />
-    -   Äußerste Funktion: <InlineMath math="y = u^3" />
+**Schritt 1**: Identifiziere die Funktionen
+-   Innerste Funktion: <InlineMath math="v = 2x" />
+-   Mittlere Funktion: <InlineMath math="u = \sin(v)" />
+-   Äußerste Funktion: <InlineMath math="y = u^3" />
 
-    **Schritt 2**: Bestimme die drei Ableitungen
-    -   <InlineMath math="\frac{dv}{dx} = 2" />
-    -   <InlineMath math="\frac{du}{dv} = \cos(v)" />
-    -   <InlineMath math="\frac{dy}{du} = 3u^2" />
+**Schritt 2**: Bestimme die drei Ableitungen
+-   <InlineMath math="\frac{dv}{dx} = 2" />
+-   <InlineMath math="\frac{du}{dv} = \cos(v)" />
+-   <InlineMath math="\frac{dy}{du} = 3u^2" />
 
-    **Schritt 3**: Mit der Kettenregel kombinieren
+**Schritt 3**: Mit der Kettenregel kombinieren
 
-    <MathContainer>
-        <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
-        <BlockMath math="\frac{dy}{dx} = (3u^2) \cdot (\cos(v)) \cdot (2)" />
-    </MathContainer>
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx}" />
+    <BlockMath math="\frac{dy}{dx} = (3u^2) \cdot (\cos(v)) \cdot (2)" />
+</MathContainer>
 
-    **Schritt 4**: Rücksubstituieren und vereinfachen
+**Schritt 4**: Rücksubstituieren und vereinfachen
 
-    <MathContainer>
-        <BlockMath math="\frac{dy}{dx} = 6u^2 \cos(v)" />
-        <BlockMath math="\frac{dy}{dx} = 6\sin^2(v) \cos(v)" />
-        <BlockMath math="\frac{dy}{dx} = 6\sin^2(2x) \cos(2x)" />
-    </MathContainer>
+<MathContainer>
+    <BlockMath math="\frac{dy}{dx} = 6u^2 \cos(v)" />
+    <BlockMath math="\frac{dy}{dx} = 6\sin^2(v) \cos(v)" />
+    <BlockMath math="\frac{dy}{dx} = 6\sin^2(2x) \cos(2x)" />
+</MathContainer>

@@ -4,7 +4,7 @@ export const metadata = {
     "Repeated measurements can be summarized with a mean and an uncertainty so the reported result does not appear more precise than the available data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Measurement in Scientific Work",
 };
 
@@ -48,7 +48,7 @@ The mean is not enough. We also need to know <Highlight>whether the data cluster
 
 ## Data Spread Around the Mean
 
-For repeated data, sample spread can be calculated from the distance between each reading and the mean.
+For repeated data, sample spread can be calculated from the **distance between each reading and the mean**.
 
 <BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
 
@@ -90,6 +90,10 @@ In formal metrology, NIST and the JCGM GUM describe the standard uncertainty of 
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
+For independent readings with the same spread, the **standard uncertainty of the mean** diameter is smaller than the standard deviation of individual readings:
+
+<BlockMath math="u(\bar d)=\frac{\sqrt{0.00027}}{\sqrt 5}\text{ cm}\approx0.00735\text{ cm}" />
+
 For a measurement problem, follow the notation defined in its statement. If <InlineMath math="\Delta x" /> denotes the compact formula above, then <InlineMath math="\Delta x" /> is the sample standard deviation of the individual measurements. Do not confuse this spread with the standard uncertainty of the mean <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
 
 ## Area Calculated from Diameter Data
@@ -98,7 +102,7 @@ Sometimes the measured data is diameter, but the required result is the area of 
 
 <BlockMath math="A=\frac{1}{4}\pi d^2" />
 
-Because area depends on diameter, each diameter reading gives a slightly different area. Use the calculator value of <InlineMath math="\pi" /> and keep the unrounded area values during the calculation. The table displays only <InlineMath math="4" /> decimal places for readability.
+Because area depends on diameter, each diameter reading gives a slightly different area. Use the calculator value of <InlineMath math="\pi" /> and keep the **unrounded area values** during the calculation. The table displays only <InlineMath math="4" /> decimal places for readability.
 
 | Data | Diameter | Area from the diameter |
 | :--- | :------- | :--------------------- |
@@ -110,11 +114,11 @@ Because area depends on diameter, each diameter reading gives a slightly differe
 
 The mean area is:
 
-<BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7.7045 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} \bar A&=\frac{1}{5}\sum_{i=1}^{5}A_i \\ &=\frac{38.5223661979\ldots}{5}\text{ cm}^2 \\ &\approx7.7045\text{ cm}^2 \end{aligned}" />
 
 The area spread is:
 
-<BlockMath math="s_A=0.0808 \text{ cm}^2" />
+<BlockMath math="\begin{aligned} s_A&=\sqrt{\frac{\sum_{i=1}^{5}(A_i-\bar A)^2}{5-1}} \\ &=\sqrt{\frac{0.0260975114\ldots}{4}}\text{ cm}^2 \\ &\approx0.0808\text{ cm}^2 \end{aligned}" />
 
 Using sample spread as the uncertainty convention for this exercise, the bottle-cap area can be written as follows.
 
@@ -124,7 +128,7 @@ The displayed table is not the calculation input. Rounding intermediate area val
 
 ## Relative Spread as a Percentage of the Mean
 
-Relative spread compares the sample standard deviation with the magnitude of the mean.
+Relative spread compares the **sample standard deviation** with the magnitude of the mean.
 
 <BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
 

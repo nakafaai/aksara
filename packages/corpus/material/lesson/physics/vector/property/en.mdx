@@ -6,15 +6,13 @@ export const metadata = {
     "Equal, negative, and zero vectors have distinct component rules, while scalar multiplication changes vector magnitude and possibly its direction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vector",
 };
 
 ## Equal Vectors Do Not Depend on Location
 
-<Highlight>Two vectors are equal if they have the same magnitude and the same direction.</Highlight> Their positions in a diagram may be different. This equality compares the vectors themselves. For a force, its point of application can still change the physical turning effect even when the force vector is unchanged.
-
-> Two vectors are equal when their lengths and directions match. Their starting points may differ.
+Two vectors are equal if they have the <Highlight>same magnitude and direction</Highlight>. Their positions in a diagram may be different. This equality compares the vectors themselves. For a force, its point of application can still change the physical turning effect even when the force vector is unchanged.
 
 <Vector3d
   title={<>Equal and Opposite Vectors</>}
@@ -74,14 +72,14 @@ This freedom to slide an abstract vector in a diagram does not mean every physic
 
 ## A Negative Vector Reverses Direction
 
-The negative of <InlineMath math="\vec{a}" /> is written as <InlineMath math="-\vec{a}" />. It has the same magnitude as <InlineMath math="\vec{a}" />, but points in the opposite direction.
+The <Highlight>negative vector</Highlight> of <InlineMath math="\vec{a}" /> is written as <InlineMath math="-\vec{a}" />. It has the same magnitude as <InlineMath math="\vec{a}" />, but points in the opposite direction.
 
 <MathContainer>
   <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
   <BlockMath math="\vec{a}+(-\vec{a})=\vec{0}" />
 </MathContainer>
 
-For example, a <InlineMath math="12\text{ N}" /> force to the right and a <InlineMath math="12\text{ N}" /> force to the left form an opposite-vector pair. If both act on the same object along the same line, their resultant can be the zero vector.
+For example, a <InlineMath math="12\text{ N}" /> force to the right and a <InlineMath math="12\text{ N}" /> force to the left form an opposite-vector pair. If both act on the same object along the same line, their resultant is the zero vector.
 
 ## Scalar Multiplication Changes Magnitude and Direction
 
@@ -89,16 +87,28 @@ A scalar is an ordinary number with no direction. When a vector is multiplied by
 
 | Form | Result magnitude | Result direction |
 | :--- | :--------------- | :--------------- |
-| <InlineMath math="2\vec{a}" /> | twice <InlineMath math="\vec{a}" /> | same as <InlineMath math="\vec{a}" /> |
-| <InlineMath math="\frac{1}{2}\vec{a}" /> | half of <InlineMath math="\vec{a}" /> | same as <InlineMath math="\vec{a}" /> |
-| <InlineMath math="-3\vec{a}" /> | three times <InlineMath math="\vec{a}" /> | opposite to <InlineMath math="\vec{a}" /> |
+| <InlineMath math="2\vec{a}" /> | <InlineMath math="2\lvert\vec{a}\rvert" /> | same as <InlineMath math="\vec{a}" /> |
+| <InlineMath math="\frac{1}{2}\vec{a}" /> | <InlineMath math="\frac{1}{2}\lvert\vec{a}\rvert" /> | same as <InlineMath math="\vec{a}" /> |
+| <InlineMath math="-3\vec{a}" /> | <InlineMath math="3\lvert\vec{a}\rvert" /> | opposite to <InlineMath math="\vec{a}" /> |
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | becomes the zero vector |
 
 A negative scalar <Highlight>does not make the magnitude negative</Highlight>. It reverses the vector direction.
 
+### Multiplying Every Component
+
+For the vector in the model, take <InlineMath math="\vec{a}=(4,2,0)" />. Multiply **every component** by the same scalar. A negative scalar reverses the component signs, while the resulting magnitude remains nonnegative.
+
+<MathContainer>
+  <BlockMath math="-3\vec{a}=(-3\cdot4,-3\cdot2,-3\cdot0)=(-12,-6,0)" />
+  <BlockMath math="\lvert-3\vec{a}\rvert=\sqrt{(-12)^2+(-6)^2}=\sqrt{180}=6\sqrt{5}" />
+</MathContainer>
+
+The original magnitude is <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. The new magnitude <InlineMath math="6\sqrt{5}" /> is exactly three times the original, matching the factor <InlineMath math="\lvert-3\rvert=3" />.
+
+
 ## The Zero Vector as Cancellation
 
-The zero vector is written as <InlineMath math="\vec{0}" />. Its magnitude is <InlineMath math="0" />, and its direction is undefined because the tail and tip coincide.
+The zero vector is written as <InlineMath math="\vec{0}" />. Its magnitude is <InlineMath math="0" />, and its <Highlight>direction is undefined</Highlight> because the tail and tip coincide.
 
 The zero vector often appears when vectors cancel each other. For example, two students may pull a box with equal forces in opposite directions. If the forces are exactly along the same line, their combination does not produce a net push to the right or to the left.
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use the probability addition rule for mutually exclusive and overlapping events through clear examples, formulas, and worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Probability",
 };
 
@@ -30,10 +30,15 @@ If event <InlineMath math="A" /> occurs, event <InlineMath math="B" /> does not 
 
 1.  One coin toss produces either "Heads" or "Tails," never both at once.
 2.  Zain traveled to school by motorcycle **OR** by bicycle, assuming each student used one mode of transport.
-3.  Rolling two dice: The event "the sum is <InlineMath math="7" />" **OR** the event "getting doubles (same number on both dice)".
-    - Sum is <InlineMath math="7" />: <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" />
-    - Doubles: <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" />
-    - No ordered pair belongs to both groups, so the events are mutually exclusive.
+
+Rolling two dice: The event "the sum is <InlineMath math="7" />" **OR** the event "getting doubles (same number on both dice)".
+
+| Event | Outcome pairs |
+| --- | --- |
+| Sum is <InlineMath math="7" /> | <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> |
+| Doubles | <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" /> |
+
+No ordered pair belongs to both groups, so the events are mutually exclusive.
 
 ### Formula for Mutually Exclusive Events
 
@@ -50,7 +55,7 @@ For the two-dice experiment above:
 
 The probability of obtaining a sum of <InlineMath math="7" /> OR doubles is:
 
-<BlockMath math="\begin{aligned}P(S &= 7 \text{ or Doubles}) \\ &= P(S \\ &= 7) + P(\text{Doubles}) \\ &= \frac{6}{36} + \frac{6}{36} \\ &= \frac{12}{36} \\ &= \frac{1}{3}\end{aligned}" />
+<BlockMath math="\begin{aligned}P(S=7\text{ or Doubles}) &= P(S=7)+P(\text{Doubles}) \\ &= \frac{6}{36}+\frac{6}{36} \\ &= \frac{12}{36}=\frac{1}{3}\end{aligned}" />
 
 ## Not Mutually Exclusive Events
 
@@ -59,10 +64,15 @@ Events that are not mutually exclusive **can occur together** in one trial, so t
 **Examples:**
 
 1.  Draw one card from a standard deck. The events "drawing an Ace" and "drawing a Heart (<InlineMath math="\heartsuit" />)" overlap at the Ace of Hearts (<InlineMath math="A\heartsuit" />).
-2.  Rolling two dice: The event "the sum is <InlineMath math="8" />" **OR** the event "getting doubles".
-    - Sum is <InlineMath math="8" />: <InlineMath math="(2,6)" />, <InlineMath math="(3,5)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,3)" />, <InlineMath math="(6,2)" />
-    - Doubles: <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" />
-    - The pair <InlineMath math="(4,4)" /> belongs to both groups. The events are therefore **not mutually exclusive**.
+
+Rolling two dice: The event "the sum is <InlineMath math="8" />" **OR** the event "getting doubles".
+
+| Event | Outcome pairs |
+| --- | --- |
+| Sum is <InlineMath math="8" /> | <InlineMath math="(2,6)" />, <InlineMath math="(3,5)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,3)" />, <InlineMath math="(6,2)" /> |
+| Doubles | <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" /> |
+
+The pair <InlineMath math="(4,4)" /> belongs to both groups. The events are therefore **not mutually exclusive**.
 
 **Why simple addition is not enough**
 
@@ -93,10 +103,7 @@ Continue with the "sum is <InlineMath math="8" /> OR doubles" example:
 
 The probability of getting a sum of <InlineMath math="8" /> OR doubles is:
 
-<MathContainer>
-  <BlockMath math="\begin{aligned}P(S &= 8 \text{ or Doubles}) \\ &= P(S \\ &= 8) + P(\text{Doubles}) - P(S \\ &= 8 \text{ and Doubles})\end{aligned}" />
-  <BlockMath math="= \frac{5}{36} + \frac{6}{36} - \frac{1}{36} = \frac{10}{36} = \frac{5}{18}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(S=8\text{ or Doubles}) &= P(S=8)+P(\text{Doubles}) \\ &\quad-P(S=8\text{ and Doubles}) \\ &= \frac{5}{36}+\frac{6}{36}-\frac{1}{36} \\ &= \frac{10}{36}=\frac{5}{18}\end{aligned}" />
 
 **How mathematics uses "OR"**
 
@@ -104,7 +111,7 @@ In mathematics, "<InlineMath math="A" /> or <InlineMath math="B" />" includes th
 
 ## When to Use Which Formula
 
-The two formulas differ in one question, whether the events can happen in the same trial. The table matches each answer to the formula it selects.
+The two formulas differ in one question, whether the events can happen in the **same trial**. The table matches each answer to the formula it selects.
 
 | Can the events happen in the same trial? | Formula |
 | --- | --- |
@@ -112,7 +119,6 @@ The two formulas differ in one question, whether the events can happen in the sa
 | Yes, the events overlap | <InlineMath math="P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)" /> |
 
 The second formula subtracts the overlap because the outcomes that belong to both events were counted twice, once for <InlineMath math="A" /> and once for <InlineMath math="B" />.
-
 ## Exercise
 
 In a class of <InlineMath math="30" /> students, <InlineMath math="18" /> belong to the mathematics club, <InlineMath math="14" /> belong to the science club, and <InlineMath math="8" /> belong to both clubs. One student is selected at random.

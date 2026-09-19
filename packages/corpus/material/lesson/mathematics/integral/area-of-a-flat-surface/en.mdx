@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use definite integrals to calculate areas bounded by curves, with complete examples for quadratic and radical functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Integrals",
 };
 
@@ -17,6 +17,8 @@ The familiar formulas for rectangles and triangles do not apply directly to a re
 
 Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. We divide <InlineMath math="[a, b]" /> into <InlineMath math="n" /> subintervals of width <InlineMath math="\Delta x" />.
 
+For a continuous **nonnegative** function on <InlineMath math="[a,b]" /> with <InlineMath math="a<b" />, the area formula is:
+
 <MathContainer>
 <BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
@@ -24,29 +26,26 @@ Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath m
 
 ## Determining Area Using Definite Integrals
 
-Use these three steps to calculate the area. Each step removes one source of error: the limits fix the interval, the integrand fixes the height, and the evaluation turns the antiderivative into a number.
+To find an area, identify the **bounds and strip height** before finding an antiderivative. The example <InlineMath math="f(x)=x" /> on <InlineMath math="[0,2]" /> shows all three decisions.
 
-### Identify Integration Limits
+| Decision | Example | Reason |
+| --- | --- | --- |
+| Bounds | <InlineMath math="a=0,\ b=2" /> | Given by the interval in the problem. |
+| Height | <InlineMath math="x-0=x" /> | The curve lies above the axis on this interval. |
+| Antiderivative | <InlineMath math="F(x)=x^2/2" /> | Differentiating returns <InlineMath math="x" />. |
 
-The first step is to determine the lower and upper limits of integration. These limits indicate the range of <InlineMath math="x" /> values that bound the region whose area we want to calculate.
+The function <InlineMath math="F" /> is [an antiderivative](/en/subjects/mathematics/integral/definition-of-indefinite-integral) of <InlineMath math="f" />.
 
-### Determine the Integrand Function
+<BlockMath math="A=F(2)-F(0)=\frac{2^2}{2}-\frac{0^2}{2}=2" />
 
-The integrand describes the vertical height of the region. If <InlineMath math="f(x) \ge 0" /> throughout <InlineMath math="[a,b]" />, the area is <InlineMath math="\int_{a}^{b} f(x) \, dx" />. If the graph crosses the axis, split the interval at its zeros or integrate <InlineMath math="|f(x)|" /> so that every part contributes positive area.
-
-### Evaluate the Integral
-
-After determining the limits and function, we can evaluate the integral using the fundamental theorem of calculus:
-
-<BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
-
-In this formula, <InlineMath math="F(x)" /> is [an antiderivative](/en/subjects/mathematics/integral/definition-of-indefinite-integral) of <InlineMath math="f(x)" />.
+If the curve lies below the axis, use the **absolute value** as the height. If it changes sign, split the interval at its zeros so that areas do not cancel.
 
 ## Application to Quadratic Functions
 
 Consider the region bounded by <InlineMath math="f(x) = x^2 - 4x" />, the <InlineMath math="x" />-axis, <InlineMath math="x = 1" />, and <InlineMath math="x = 3" />.
 
 <LineEquation
+  showZAxis={false}
   title={<>Graph of Function <InlineMath math="f(x) = x^2 - 4x" /></>}
   description="The curve and the two vertical boundaries of the integration interval."
   cameraPosition={[2, -1.5, 9]}
@@ -130,6 +129,7 @@ The area of that region is <InlineMath math="\frac{22}{3}" /> square units.
 For a second example, calculate the area under <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> from <InlineMath math="x = 0" /> to <InlineMath math="x = 2" />.
 
 <LineEquation
+  showZAxis={false}
   title={<>Graph of Function <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
   description="Region under the curve whose area will be calculated with interval helper lines."
   data={[
@@ -208,7 +208,7 @@ Here, <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath mat
 
 ## Exercises
 
-Each problem describes a region bounded by curves and asks for its area, so the first step is to write down the bounds where the curves meet before you evaluate the integral.
+Bounds may be given directly or found from intersections. Check the sign of the function over the interval so that the integral produces **geometric area**.
 
 1. Calculate the area of the region bounded by the curve <InlineMath math="y = x^2 + 1" />, the <InlineMath math="x" />-axis, and the lines <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />!
 
@@ -216,47 +216,45 @@ Each problem describes a region bounded by curves and asks for its area, so the 
 
 3. Calculate the area of the region bounded by the curve <InlineMath math="y = 2x - x^2" /> and the <InlineMath math="x" />-axis!
 
-### Worked Solutions
+### Area Under a Positive Quadratic
 
-1. **First problem with function <InlineMath math="y = x^2 + 1" />**
+Since this function is **always positive**, we can directly set up the integral:
 
-   Since this function is always positive, we can directly set up the integral:
+<BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
 
-   <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
+After we integrate and evaluate, we obtain:
 
-   After we integrate and evaluate, we obtain:
+<MathContainer>
+<BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
+<BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
-   <BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
-   </MathContainer>
+Therefore, the area of that region is <InlineMath math="\frac{14}{3}" /> square units.
 
-   Therefore, the area of that region is <InlineMath math="\frac{14}{3}" /> square units.
+### Area Using an Arctangent Antiderivative
 
-2. **Second problem with rational function**
+The **antiderivative** used in this integral is <InlineMath math="\arctan(x)" /> because its derivative is <InlineMath math="\frac{1}{x^2 + 1}" />.
 
-   The antiderivative used in this integral is <InlineMath math="\arctan(x)" /> because its derivative is <InlineMath math="\frac{1}{x^2 + 1}" />.
+<MathContainer>
+<BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
+<BlockMath math="A = [\arctan(x)]_{0}^{1}" />
+<BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
-   <BlockMath math="A = [\arctan(x)]_{0}^{1}" />
-   <BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
-   </MathContainer>
+The area of that region is <InlineMath math="\frac{\pi}{4}" /> square units.
 
-   The area of that region is <InlineMath math="\frac{\pi}{4}" /> square units.
+### Parabola Area Between Two Zeros
 
-3. **Third problem with parabola**
+First, find where the curve intersects the <InlineMath math="x" />-axis:
 
-   First, find where the curve intersects the <InlineMath math="x" />-axis:
+<BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
 
-   <BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
+So the intersection points are at <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />. Since this function is **positive between these two points**, we can directly integrate:
 
-   So the intersection points are at <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />. Since this function is positive between these two points, we can directly integrate:
+<MathContainer>
+<BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
+<BlockMath math="A = \left[x^2 - \frac{x^3}{3}\right]_{0}^{2}" />
+<BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
-   <BlockMath math="A = \left[x^2 - \frac{x^3}{3}\right]_{0}^{2}" />
-   <BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
-   </MathContainer>
-
-   The area of that region is <InlineMath math="\frac{4}{3}" /> square units.
+The area of that region is <InlineMath math="\frac{4}{3}" /> square units.

@@ -4,7 +4,7 @@ export const metadata = {
     "Setelah besar resultan diketahui, rumus sinus menentukan arah resultan terhadap kedua vektor awal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -18,11 +18,14 @@ Untuk dua vektor, arah resultan dapat ditentukan dengan **rumus sinus**. Rumus i
 
 Pada bentuk ini, <InlineMath math="\theta" /> adalah sudut apit antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" />, <InlineMath math="R" /> adalah besar resultan, dan <InlineMath math="\phi" /> adalah sudut antara <InlineMath math="\vec{A}" /> dan resultan <InlineMath math="\vec{R}" />.
 
+
+Gunakan segitiga ini untuk **dua vektor tak nol yang tidak segaris**. Sudut apit memenuhi <InlineMath math="0^\circ<\theta<180^\circ" />. Jika resultan nol, resultan tidak memiliki arah yang dapat dihitung.
+
 > Rumus sinus biasanya dipakai setelah besar resultan sudah diketahui.
 
 ## Membaca Sudut yang Dicari
 
-Sebelum menghitung, tentukan dulu arah acuan. Jika ditanya arah resultan terhadap <InlineMath math="\vec{A}" />, maka sudut yang dicari adalah sudut dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{R}" />.
+Sebelum menghitung, tentukan dulu **arah acuan**. Jika ditanya arah resultan terhadap <InlineMath math="\vec{A}" />, maka sudut yang dicari adalah sudut dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{R}" />.
 
 Jika ditanya arah terhadap <InlineMath math="\vec{B}" />, sudutnya berbeda. Jangan menukar sudut tanpa melihat segitiga vektornya.
 
@@ -30,8 +33,10 @@ Hubungan yang sering dipakai:
 
 <MathContainer>
   <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
-  <BlockMath math="\phi=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
+  <BlockMath math="\phi_0=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
 </MathContainer>
+
+Nilai <InlineMath math="\phi_0" /> adalah **calon sudut lancip atau siku-siku**. Untuk memilih <InlineMath math="\phi=\phi_0" /> atau <InlineMath math="\phi=180^\circ-\phi_0" />, periksa arah komponen resultan. Jangan langsung menganggap hasil invers sinus sebagai sudut final.
 
 Rumus ini mencari sudut resultan terhadap vektor <InlineMath math="\vec{A}" />. Karena sisi yang berhadapan dengan sudut <InlineMath math="\phi" /> adalah besar vektor <InlineMath math="B" />, maka <InlineMath math="B" /> muncul di pembilang.
 
@@ -39,24 +44,24 @@ Rumus ini mencari sudut resultan terhadap vektor <InlineMath math="\vec{A}" />. 
 
 Dua gaya bekerja pada satu titik. <InlineMath math="A=10\text{ N}" />, <InlineMath math="B=8\text{ N}" />, dan sudut apitnya <InlineMath math="60^\circ" />. Dari rumus kosinus, besar resultannya adalah <InlineMath math="R\approx15{,}6\text{ N}" />.
 
-Sekarang cari sudut <InlineMath math="\phi" /> antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{R}" />.
+Gunakan **nilai resultan yang belum dibulatkan** untuk mencari sudut <InlineMath math="\phi" /> antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{R}" />.
 
 <BlockMath math="\begin{aligned}
 \sin\phi&=\frac{B\sin\theta}{R} \\
-&=\frac{8\sin60^\circ}{15{,}6} \\
-&=\frac{8(0{,}866)}{15{,}6} \\
-&\approx0{,}444
+&=\frac{8\sin60^\circ}{\sqrt{244}} \\
+&=\frac{4\sqrt3}{\sqrt{244}} \\
+&\approx0{,}4435
 \end{aligned}" />
 
 Maka:
 
-<BlockMath math="\phi=\sin^{-1}(0{,}444)\approx26{,}4^\circ" />
+<BlockMath math="\phi=\sin^{-1}(0{,}4435)\approx26{,}3^\circ" />
 
-Jadi, resultan gaya besarnya sekitar <InlineMath math="15{,}6\text{ N}" /> dengan arah <InlineMath math="26{,}4^\circ" /> dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{B}" />.
+Jadi, resultan gaya besarnya sekitar <InlineMath math="15{,}6\text{ N}" /> dengan arah <InlineMath math="26{,}3^\circ" /> dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{B}" />.
 
 ## Mengecek dengan Metode Komponen
 
-Arah yang sama dapat dicek memakai komponen. Jika <InlineMath math="\vec{A}" /> diletakkan pada sumbu <InlineMath math="x" /> positif, maka:
+Arah yang sama dapat dicek memakai **komponen resultan**. Jika <InlineMath math="\vec{A}" /> diletakkan pada sumbu <InlineMath math="x" /> positif, maka:
 
 <MathContainer>
   <BlockMath math="R_x=A+B\cos\theta" />
@@ -66,14 +71,44 @@ Arah yang sama dapat dicek memakai komponen. Jika <InlineMath math="\vec{A}" /> 
 
 Untuk contoh yang sama:
 
-<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{6{,}928}{14} \\ &amp;\approx0{,}495 \end{aligned}" />
+<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{4\sqrt3}{14} \\ &amp;\approx0{,}495 \end{aligned}" />
 
-Menghitung <InlineMath math="\arctan(0{,}495)" /> memberi <InlineMath math="\phi\approx26{,}4^\circ" />. Hasil ini cocok dengan hasil dari rumus sinus dan menunjukkan bahwa sudut yang dihitung adalah <InlineMath math="\phi" />.
+Menghitung <InlineMath math="\arctan(0{,}495)" /> memberi <InlineMath math="\phi\approx26{,}3^\circ" />. Hasil ini cocok dengan hasil dari rumus sinus dan menunjukkan bahwa sudut yang dihitung adalah <InlineMath math="\phi" />.
 
 Karena <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" />, invers sinus saja dapat memberi sudut lancip padahal segitiga memerlukan sudut pelurus yang tumpul. Gunakan geometri vektor atau bentuk komponen <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> untuk memilih kuadran yang benar.
 
+### Memilih Sudut Tumpul
+
+Misalkan <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" />, dan <InlineMath math="\theta=150^\circ" />. Letakkan gaya pertama sepanjang sumbu horizontal positif. Hitung komponen sebelum memilih sudut:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R_x &= A+B\cos150^\circ \\ &= 1+\sqrt3\left(-\frac{\sqrt3}{2}\right) \\ &= -\frac12\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}R_y &= B\sin150^\circ \\ &= \sqrt3\cdot\frac12 \\ &= \frac{\sqrt3}{2}\text{ N}\end{aligned}" />
+</MathContainer>
+
+Komponen horizontal **negatif**, sedangkan komponen vertikal **positif**. Resultan berada di kuadran kedua.
+
+<Vector3d
+  title="Resultan di Kuadran Kedua"
+  description="Panah resultan ungu mengarah ke kiri atas. Bandingkan arah itu dengan sudut lancip yang dikembalikan invers sinus."
+  vectors={[
+    {from: [0, 0, 0], to: [1, 0, 0], color: "#0d9488", label: <InlineMath math="\vec{A}" />, labelProgress: 0.5, labelOffset: [0, -0.3, 0]},
+    {from: [1, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#d97706", label: <InlineMath math="\vec{B}" />, labelProgress: 0.5, labelOffset: [0.2, 0.3, 0]},
+    {from: [0, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#7c3aed", label: <InlineMath math="\vec{R}" />, labelProgress: 0.5, labelOffset: [-0.4, 0, 0]}
+  ]}
+  cameraPosition={[0, 0, 5]}
+/>
+
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
+</MathContainer>
+
+Invers sinus memberi <InlineMath math="60^\circ" />, tetapi arah resultan adalah <InlineMath math="180^\circ-60^\circ=120^\circ" />. Tanda komponenlah yang membedakan kedua calon sudut.
+
 ## Metode Komponen untuk Lebih dari Dua Vektor
 
-Jika vektornya lebih dari dua, metode komponen menempatkan semua vektor pada sumbu <InlineMath math="x" /> dan <InlineMath math="y" /> yang sama, lalu menjumlahkan komponennya. Kita tidak perlu membuat beberapa segitiga dan menentukan sudut mana yang masuk ke setiap persamaan rumus sinus. Metode komponen juga langsung cocok saat arah vektor sudah diukur dari sumbu koordinat.
+Jika vektornya lebih dari dua, **metode komponen** menempatkan semua vektor pada sumbu <InlineMath math="x" /> dan <InlineMath math="y" /> yang sama, lalu menjumlahkan komponennya. Kita tidak perlu membuat beberapa segitiga dan menentukan sudut mana yang masuk ke setiap persamaan rumus sinus. Metode komponen juga langsung cocok saat arah vektor sudah diukur dari sumbu koordinat.
 
 Rumus sinus dapat dipakai ketika ada dua vektor, sudut apit dan besar resultan sudah diketahui, lalu arah resultan terhadap salah satu vektor perlu dicari. Sebelum menuliskan arah, periksa geometri atau gunakan <InlineMath math="\operatorname{atan2}" /> agar kuadran sudutnya benar.

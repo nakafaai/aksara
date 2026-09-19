@@ -3,13 +3,13 @@ export const metadata = {
   description: "Multiply matrices with the row by column rule, check compatible dimensions, and use the operation's main properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Matrix",
 };
 
 ## Combining Rows and Columns to Form a Product
 
-Matrix multiplication <Highlight>combines each row of the first matrix</Highlight> with each column of the second by multiplying each paired entry and summing the products. Unlike [matrix addition](/en/subjects/mathematics/matrix/matrix-addition), it does not operate on entries in matching positions.
+Matrix multiplication <Highlight>combines each row of the first matrix</Highlight> with each column of the second by multiplying **each paired entry** and summing the products. Unlike [matrix addition](/en/subjects/mathematics/matrix/matrix-addition), it does not operate on entries in matching positions.
 
 ### Condition for Matrix Multiplication
 
@@ -25,7 +25,7 @@ The dimension check fits in one line: <InlineMath math="A\in\mathbb{R}^{m\times 
 
 ### How to Calculate the Elements of the Resultant Matrix
 
-The element <InlineMath math="c_{ij}" /> in matrix <InlineMath math="C" /> (i.e., the element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column) is calculated by multiplying each element in the <InlineMath math="i" />-th row of matrix <InlineMath math="A" /> by the corresponding element in the <InlineMath math="j" />-th column of matrix <InlineMath math="B" />, and then summing all these products.
+The element <InlineMath math="c_{ij}" /> in matrix <InlineMath math="C" /> (i.e., the element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column) is calculated by multiplying each element in the <InlineMath math="i" />-th row of matrix <InlineMath math="A" /> by the corresponding element in the <InlineMath math="j" />-th column of matrix <InlineMath math="B" />, and then **summing all these products**.
 
 Mathematically, if <InlineMath math="A = [a_{ik}]" /> and <InlineMath math="B = [b_{kj}]" />, then the element <InlineMath math="c_{ij}" /> of matrix <InlineMath math="C = AB" /> is:
 
@@ -34,10 +34,9 @@ Mathematically, if <InlineMath math="A = [a_{ik}]" /> and <InlineMath math="B = 
 The notation <InlineMath math="\sum" /> (sigma) means summation.
 
 In the formula above, we sum the products <InlineMath math="a_{ik}b_{kj}" /> for all values of <InlineMath math="k" /> from <InlineMath math="1" /> to <InlineMath math="n" />.
-
 ## Steps to Multiply Matrices
 
-In the following example, each entry of matrix <InlineMath math="R" /> is the dot product of one row of matrix <InlineMath math="P" /> and one column of matrix <InlineMath math="Q" />.
+In the following example, each entry of matrix <InlineMath math="R" /> is the **dot product** of one row of matrix <InlineMath math="P" /> and one column of matrix <InlineMath math="Q" />.
 
 The two matrices are:
 
@@ -58,7 +57,6 @@ The elements of matrix <InlineMath math="R" /> are calculated as follows:
   <BlockMath math="\begin{aligned} r_{21} &amp;= (\text{row 2 of } P) \\ &amp;\quad\cdot (\text{column 1 of } Q) \\ &amp;= p_{21}q_{11} + p_{22}q_{21} \end{aligned}" />
   <BlockMath math="\begin{aligned} r_{22} &amp;= (\text{row 2 of } P) \\ &amp;\quad\cdot (\text{column 2 of } Q) \\ &amp;= p_{21}q_{12} + p_{22}q_{22} \end{aligned}" />
 </MathContainer>
-
 ## Example of Multiplying Two Matrices
 
 Given two matrices:
@@ -137,7 +135,7 @@ Matrix multiplication satisfies the following rules:
 
 ## Calculating Revenue
 
-Matrix multiplication can combine a table of quantities with a compatible table of prices. The row and column labels determine which quantities are multiplied and added, so matching dimensions alone is not enough.
+Matrix multiplication can combine a table of quantities with a compatible table of prices. **The row and column labels** determine which quantities are multiplied and added, so matching dimensions alone is not enough.
 
 Suppose a home business sells tempeh chips, banana chips, and potato chips at Place A, Place B, and Place C.
 
@@ -157,7 +155,9 @@ From top to bottom, the entries give the prices of tempeh chips, banana chips, a
 
 The product <InlineMath math="PQ" /> is numerically defined because both inner dimensions are <InlineMath math="3" />, but it is not meaningful here. The columns of <InlineMath math="P" /> represent places, while the rows of <InlineMath math="Q" /> represent products. Those labels do not match.
 
-To calculate revenue by place, transpose the price vector and multiply <InlineMath math="Q^T" /> by <InlineMath math="P" />. The product <InlineMath math="S = Q^T P" /> pairs each product price with the sales of that same product.
+### Revenue by Place
+
+To calculate revenue by place, transpose the price vector and multiply <InlineMath math="Q^T" /> by <InlineMath math="P" />. The product <InlineMath math="S = Q^T P" /> pairs each product price with the sales of **that same product**.
 
 Matrix <InlineMath math="Q^T" /> has dimensions <InlineMath math="1 \times 3" />, and <InlineMath math="P" /> has dimensions <InlineMath math="3 \times 3" />. Therefore <InlineMath math="S" /> has dimensions <InlineMath math="1 \times 3" />, with one entry for each place.
 
@@ -171,6 +171,7 @@ Matrix <InlineMath math="Q^T" /> has dimensions <InlineMath math="1 \times 3" />
 <InlineMath math="S = \begin{bmatrix} 1{,}125{,}000 & 840{,}000 & 1{,}225{,}000 \end{bmatrix}" />.
 
 This means the total revenue from Place A is <InlineMath math="\text{Rp}1{,}125{,}000" />, from Place B is <InlineMath math="\text{Rp}840{,}000" />, and from Place C is <InlineMath math="\text{Rp}1{,}225{,}000" />.
+### Revenue by Product
 
 Revenue by product requires a different multiplication. First use a vector of ones <InlineMath math="U" /> to total each row of <InlineMath math="P" />, then multiply those totals by the diagonal price matrix derived from <InlineMath math="Q" />.
 
@@ -184,7 +185,7 @@ Revenue by product requires a different multiplication. First use a vector of on
 
 Matrix <InlineMath math="R" /> therefore gives product revenue: <InlineMath math="\text{Rp}940{,}000" /> for tempeh chips, <InlineMath math="\text{Rp}750{,}000" /> for banana chips, and <InlineMath math="\text{Rp}1{,}500{,}000" /> for potato chips.
 
-A meaningful matrix product needs matching dimensions and must pair quantities that describe the same category in the same order.
+A meaningful matrix product needs matching dimensions and must pair quantities that describe **the same category in the same order**.
 
 Here, <InlineMath math="Q^T" /> and <InlineMath math="P" /> produce revenue by place in <InlineMath math="S" />, while the diagonal price matrix and product totals produce revenue by product in <InlineMath math="R" />. Those are different questions, so they require different products.
 
@@ -197,40 +198,43 @@ Given the following matrices:
   <BlockMath math="D = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
 </MathContainer>
 
-Determine the matrices <InlineMath math="CD" /> and <InlineMath math="DC" />.
+**Determine the matrices** <InlineMath math="CD" /> and <InlineMath math="DC" />.
 
 Is <InlineMath math="CD = DC" />?
-
 ### Worked Solutions
 
-1.  Calculating <InlineMath math="CD" />:
+**Product 1**
 
-    Matrix <InlineMath math="C" /> has an order of <InlineMath math="2 \times 2" /> and <InlineMath math="D" /> has an order of <InlineMath math="2 \times 2" />. The result will have an order of <InlineMath math="2 \times 2" />.
+Calculating <InlineMath math="CD" />:
 
-    <BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
-          Compute each entry by multiplying a row by a column:
+Matrix <InlineMath math="C" /> has an order of <InlineMath math="2 \times 2" /> and <InlineMath math="D" /> has an order of <InlineMath math="2 \times 2" />. The result will have an order of <InlineMath math="2 \times 2" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
+<BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+Compute each entry by multiplying a row by a column:
 
-      <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
 
-2.  Calculating <InlineMath math="DC" />:
+  <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
+  <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
+</MathContainer>
 
-    Matrix <InlineMath math="D" /> has an order of <InlineMath math="2 \times 2" /> and <InlineMath math="C" /> has an order of <InlineMath math="2 \times 2" />. The result will have an order of <InlineMath math="2 \times 2" />.
+**Product 2**
 
-    <BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
-          Compute each entry by multiplying a row by a column:
+Calculating <InlineMath math="DC" />:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+Matrix <InlineMath math="D" /> has an order of <InlineMath math="2 \times 2" /> and <InlineMath math="C" /> has an order of <InlineMath math="2 \times 2" />. The result will have an order of <InlineMath math="2 \times 2" />.
 
-      <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+Compute each entry by multiplying a row by a column:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
+  <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
+</MathContainer>
 
 The two products differ, so <InlineMath math="CD \neq DC" />. Matrix multiplication is not commutative in this example.

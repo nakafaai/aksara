@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne die erwartete Anzahl der Erfolge bei wiederholten Binomialversuchen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Angenommen, jeder Freiwurf trifft unabhängig mit der Wahrscheinlichkeit <InlineMath math="p=0{,}8" />, und <InlineMath math="X" /> zählt die Treffer bei <InlineMath math="n=10" /> Versuchen. Dann gilt <InlineMath math="E(X)=8" />: Über viele Serien mit je zehn Würfen nähert sich die mittlere Trefferzahl dem Wert <InlineMath math="8" />.
 
-<Highlight>Der Erwartungswert ist der mit Wahrscheinlichkeiten gewichtete Mittelwert einer Zufallsvariablen.</Highlight> Er beschreibt einen langfristigen Durchschnitt, und eine einzelne Serie kann davon abweichen. Ein Erwartungswert kann außerdem nicht ganzzahlig sein, obwohl die Zufallsvariable selbst nur ganzzahlige Werte annimmt.
+Der Erwartungswert ist der **mit Wahrscheinlichkeiten gewichtete Mittelwert** einer Zufallsvariablen. Er beschreibt einen langfristigen Durchschnitt, und eine einzelne Serie kann davon abweichen. Ein Erwartungswert kann außerdem nicht ganzzahlig sein, obwohl die Zufallsvariable selbst nur ganzzahlige Werte annimmt.
 
 ## Erwartungswert einer Binomialverteilung
 
@@ -23,15 +23,18 @@ Für die Binomialverteilung <InlineMath math="b_{n,p}(x)" /> gilt:
 
 Dabei ist <InlineMath math="n" /> die Zahl der Versuche und <InlineMath math="p" /> die Erfolgswahrscheinlichkeit eines einzelnen Versuchs.
 
-Ist die Erfolgswahrscheinlichkeit in jedem Versuch <InlineMath math="p" />, dann beträgt die erwartete Zahl der Erfolge in <InlineMath math="n" /> Versuchen:
-
-<BlockMath math="E(X) = n \times p" />
-
 ## Den Erwartungswert herleiten
 
 Die Formel folgt direkt daraus, dass jeder einzelne Versuch entweder null oder einen Erfolg beiträgt.
 
 Wir beschreiben den <InlineMath math="k" />-ten Versuch durch die Zufallsvariable <InlineMath math="I_k" />. Sie hat den Wert <InlineMath math="1" /> bei **Erfolg** und <InlineMath math="0" /> bei **Misserfolg**.
+
+Die Misserfolgswahrscheinlichkeit ist <InlineMath math="q=1-p" />. Für den gewichteten Mittelwert **multiplizierst du jeden Indikatorwert mit seiner Wahrscheinlichkeit** und addierst beide Beiträge.
+
+| Ergebnis | Indikator | Wahrscheinlichkeit | Beitrag |
+| --- | --- | --- | --- |
+| Erfolg | 1 | <InlineMath math="p" /> | <InlineMath math="1p=p" /> |
+| Misserfolg | 0 | <InlineMath math="q=1-p" /> | <InlineMath math="0q=0" /> |
 
 Der erwartete Wert für einen einzelnen Versuch ist:
 
@@ -60,7 +63,7 @@ Ein fairer Würfel wird <InlineMath math="7" />-mal geworfen. Wie oft ist dabei 
 
 Wir prüfen die Voraussetzungen:
 
-- Es gibt nur zwei Möglichkeiten: **Erfolg** (Würfeln eines <InlineMath math="5" />) oder **Misserfolg** (Würfeln einer anderen Zahl als <InlineMath math="5" />)
+- Es gibt nur zwei Möglichkeiten: **Erfolg** (Würfeln einer <InlineMath math="5" />) oder **Misserfolg** (Würfeln einer anderen Zahl als <InlineMath math="5" />)
 - Feste Anzahl von Versuchen: <InlineMath math="7" /> Würfe
 - Jeder Wurf ist unabhängig: Das Ergebnis vorheriger Würfe hat keinen Einfluss auf nachfolgende Würfe
 - Gleiche Erfolgswahrscheinlichkeit: <InlineMath math="p = \frac{1}{6}" /> bei jedem Wurf
@@ -77,8 +80,8 @@ Jetzt können wir den Erwartungswert direkt mit der Formel berechnen:
 
 <BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1{,}167" />
 
-**Was bedeutet die Zahl <InlineMath math="1{,}167" />?**
+Was bedeutet die Zahl <InlineMath math="1{,}167" />?
 
 Der Erwartungswert <InlineMath math="1{,}167" /> bedeutet nicht, dass die Augenzahl <InlineMath math="5" /> in einer einzelnen Serie genau <InlineMath math="1{,}167" />-mal fallen kann. Wiederholt man jedoch sehr viele Serien mit jeweils <InlineMath math="7" /> Würfen, erscheint die <InlineMath math="5" /> langfristig im Mittel etwa <InlineMath math="1{,}167" />-mal pro Serie.
 
-In einer konkreten Serie von <InlineMath math="7" /> Würfen kann die <InlineMath math="5" /> <InlineMath math="0" />-, <InlineMath math="1" />-, <InlineMath math="2" />- oder auch <InlineMath math="3" />-mal fallen. Erst der Durchschnitt über viele Serien nähert sich <InlineMath math="1{,}167" />.
+In einer Serie ist die Anzahl der Fünfen eine ganze Zahl **zwischen null und sieben**. Der Erwartungswert beschreibt den Durchschnitt über viele Serien, kein vorgeschriebenes Ergebnis einer einzelnen Serie.

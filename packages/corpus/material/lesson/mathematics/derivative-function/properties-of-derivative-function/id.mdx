@@ -3,27 +3,27 @@ export const metadata = {
   description: "Gabungkan aturan konstanta, pangkat, jumlah, hasil kali, hasil bagi, dan rantai dalam perhitungan turunan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Turunan Fungsi",
 };
 
 ## Dari Definisi Limit ke Aturan Praktis
 
-<Highlight>Definisi limit menjelaskan makna turunan.</Highlight> Jika perhitungan limit diterapkan pada beberapa fungsi, sebagian langkah aljabarnya akan berulang. Aturan turunan merangkum hasil perhitungan berulang tersebut tanpa mengubah gagasan dasarnya sebagai laju perubahan sesaat.
+Definisi limit menjelaskan <Highlight>makna turunan</Highlight>. Jika perhitungan limit diterapkan pada beberapa fungsi, sebagian langkah aljabarnya akan berulang. Aturan turunan merangkum hasil perhitungan berulang tersebut tanpa mengubah gagasan dasarnya sebagai laju perubahan sesaat.
 
 Untuk setiap fungsi, kenali dulu susunannya. Setelah itu, pilih aturan turunan yang sesuai dan tuliskan setiap langkah aljabarnya dengan jelas.
 
 ## Aturan Dasar Turunan untuk Satu atau Beberapa Suku
 
-Definisi turunan menghasilkan sedikit aturan yang lebih cepat dipakai. Ketiga aturan itu berlaku selama turunannya ada di titik yang sedang ditinjau, dan aturan untuk konstanta, pangkat, serta kombinasi linear diturunkan langsung dari definisi tersebut.
+Definisi turunan menghasilkan sedikit aturan yang lebih cepat dipakai. Ketiga aturan itu berlaku selama **turunannya ada di titik yang sedang ditinjau**, dan aturan untuk konstanta, pangkat, serta kombinasi linear diturunkan langsung dari definisi tersebut.
 
 ### Fungsi Konstanta dan Pangkat
 
-1. **Aturan konstanta:** Grafik fungsi konstanta berupa garis horizontal, sehingga gradiennya nol di setiap titik.
+1. **Aturan konstanta**: Grafik fungsi konstanta berupa garis horizontal, sehingga gradiennya nol di setiap titik.
 
    <BlockMath math="f(x)=k \implies f'(x)=0" />
 
-2. **Aturan pangkat:** Untuk konstanta <InlineMath math="a" />, kalikan dengan pangkatnya, lalu kurangi pangkat tersebut dengan satu.
+2. **Aturan pangkat**: Untuk konstanta <InlineMath math="a" />, kalikan dengan pangkatnya, lalu kurangi pangkat tersebut dengan satu.
 
    <BlockMath math="f(x)=ax^n \implies f'(x)=anx^{n-1}" />
 
@@ -33,44 +33,56 @@ Definisi turunan menghasilkan sedikit aturan yang lebih cepat dipakai. Ketiga at
 
 Misalkan <InlineMath math="u(x)" /> dan <InlineMath math="v(x)" /> merupakan fungsi yang dapat diturunkan.
 
-1. **Pengali konstanta:** Faktor konstanta tetap berada di depan turunan.
+1. **Pengali konstanta**: Faktor konstanta tetap berada di depan turunan.
 
    <BlockMath math="f(x)=k\,u(x) \implies f'(x)=k\,u'(x)" />
 
-2. **Penjumlahan dan pengurangan:** Turunkan setiap suku secara terpisah dan pertahankan operasi di antara keduanya.
+2. **Penjumlahan dan pengurangan**: Turunkan setiap suku secara terpisah dan pertahankan operasi di antara keduanya.
 
-   <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ &amp;\implies f'(x) \\ &amp;=u'(x)\pm v'(x) \end{aligned}" />
+   <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ f'(x)&amp;=u'(x)\pm v'(x) \end{aligned}" />
 
 ## Aturan Turunan untuk Operasi Antarfungsi
 
-Sebagian bentuk tidak dapat diturunkan suku demi suku. Aturan-aturan itu ada karena turunan sebuah gabungan bukan gabungan dari turunannya. Pada hasil kali, kamu menurunkan satu faktor sementara faktor lain tetap, lalu menjumlahkan kedua hasilnya. Pada hasil bagi muncul penyebut, dan pada komposisi turunan fungsi dalam mengalikan turunan fungsi luar.
+Sebagian bentuk tidak dapat diturunkan suku demi suku. Aturan-aturan itu ada karena turunan sebuah gabungan bukan gabungan dari turunannya. Pada hasil kali, kamu **menurunkan satu faktor** sementara faktor lain tetap, lalu menjumlahkan kedua hasilnya. Pada hasil bagi muncul penyebut, dan pada komposisi turunan fungsi dalam mengalikan turunan fungsi luar.
 
 ### Aturan Hasil Kali
 
 Untuk hasil kali, kita tidak cukup menurunkan kedua faktor lalu mengalikan hasilnya. Turunkan satu faktor sambil mempertahankan faktor lainnya, kemudian jumlahkan kedua suku yang diperoleh.
 
-<BlockMath math="\begin{aligned} f(x) &amp;=u(x)v(x) \\ &amp;\implies f'(x) \\ &amp;=u'(x)v(x)+u(x)v'(x) \end{aligned}" />
+<BlockMath math="\begin{aligned} f(x) &amp;=u(x)v(x) \\ f'(x)&amp;=u'(x)v(x)+u(x)v'(x) \end{aligned}" />
+
+Misalkan <InlineMath math="u(x)=x^2" /> dan <InlineMath math="v(x)=x+1" />. Ada **dua suku hasil kali** karena setiap faktor ikut berubah ketika <InlineMath math="x" /> berubah:
+
+<BlockMath math="\begin{aligned}f'(x)&=(2x)(x+1)+x^2(1)\\&=2x^2+2x+x^2\\&=3x^2+2x\end{aligned}" />
+
+Kamu dapat memeriksa hasil dengan mengembangkan fungsi asal menjadi <InlineMath math="x^3+x^2" />. Turunkan kedua suku itu untuk memperoleh kembali <InlineMath math="3x^2+2x" />.
 
 ### Aturan Hasil Bagi
 
 Pada hasil bagi, <Highlight>urutan suku di pembilang perlu dijaga</Highlight>. Penyebut <InlineMath math="v(x)" /> juga harus tidak nol pada setiap titik tempat fungsi awal terdefinisi.
 
-<BlockMath math="\begin{aligned}f(x) &= \frac{u(x)}{v(x)} \implies f'(x) \\ &= \frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}\end{aligned}" />
+<BlockMath math="\begin{aligned}f(x) &= \frac{u(x)}{v(x)} \\ f'(x)&= \frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}\end{aligned}" />
+
+Untuk <InlineMath math="f(x)=\frac{x+1}{x-1}" />, pilih <InlineMath math="u=x+1" /> dan <InlineMath math="v=x-1" />. Keduanya memiliki turunan <InlineMath math="1" />. Pertahankan **urutan pengurangan** pada pembilang:
+
+<BlockMath math="\begin{aligned}f'(x)&=\frac{1(x-1)-(x+1)1}{(x-1)^2}\\&=\frac{x-1-x-1}{(x-1)^2}\\&=\frac{-2}{(x-1)^2}\end{aligned}" />
+
+Syarat <InlineMath math="x\ne1" /> tetap berlaku pada fungsi dan turunannya. Menukar urutan kedua suku pembilang akan menghasilkan tanda yang salah.
 
 ### Aturan Rantai
 
-[Fungsi komposisi](/id/materi/matematika/fungsi-komposisi-dan-fungsi-invers/komposisi-fungsi) menerapkan satu fungsi di dalam fungsi lain. Turunkan fungsi luar dengan masukan dalam tetap utuh, lalu kalikan dengan turunan fungsi dalam tersebut.
+[Fungsi komposisi](/id/materi/matematika/fungsi-komposisi-dan-fungsi-invers/komposisi-fungsi) menerapkan satu fungsi di dalam fungsi lain. Turunkan fungsi luar dengan **masukan dalam tetap utuh**, lalu kalikan dengan turunan fungsi dalam tersebut.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} f(x) &amp;=g(u(x)) \\ &amp;\implies f'(x) \\ &amp;=g'(u(x))\,u'(x) \end{aligned}" />
-  <BlockMath math="\begin{aligned} f(x) &amp;=[u(x)]^n \\ &amp;\implies f'(x) \\ &amp;=n[u(x)]^{n-1}u'(x) \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(x) &amp;=g(u(x)) \\ f'(x)&amp;=g'(u(x))\,u'(x) \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(x) &amp;=[u(x)]^n \\ f'(x)&amp;=n[u(x)]^{n-1}u'(x) \end{aligned}" />
 </MathContainer>
 
 ## Menerapkan Aturan Rantai pada Fungsi Komposisi
 
 Tentukan turunan <InlineMath math="f(x)=(x^2+1)^3" />.
 
-Fungsi luarnya memangkatkan masukan dengan tiga. Fungsi dalamnya adalah <InlineMath math="u(x)=x^2+1" />. Terapkan aturan pangkat pada fungsi luar, lalu kalikan dengan turunan fungsi dalam.
+Fungsi luarnya memangkatkan masukan dengan tiga. Fungsi dalamnya adalah <InlineMath math="u(x)=x^2+1" />. Terapkan aturan pangkat pada fungsi luar, lalu kalikan dengan **turunan fungsi dalam**.
 
 <MathContainer>
   <BlockMath math="u'(x)=2x" />
@@ -82,17 +94,17 @@ Faktor <InlineMath math="2x" /> tidak boleh hilang. Tanpa faktor itu, kita baru 
 
 ## Latihan
 
-Setiap soal memerlukan satu atau beberapa aturan turunan yang digabungkan. Tentukan aturannya sebelum menulis turunan. Tuliskan aturan yang kamu pilih di baris pertama, supaya kesalahan memilih aturan terlihat sebelum aljabarnya memanjang.
+Setiap soal memerlukan satu atau beberapa **aturan turunan yang digabungkan**. Tentukan aturannya sebelum menulis turunan. Tuliskan aturan yang kamu pilih di baris pertama, supaya kesalahan memilih aturan terlihat sebelum aljabarnya memanjang.
 
 1. Tentukan turunan <InlineMath math="h(x)=(2x-1)^4" />.
 
 ### Pembahasan
 
-1. Fungsi luarnya adalah pangkat empat, sedangkan fungsi dalamnya <InlineMath math="u(x)=2x-1" /> dengan turunan <InlineMath math="u'(x)=2" />.
+**Fungsi luarnya** adalah pangkat empat, sedangkan fungsi dalamnya <InlineMath math="u(x)=2x-1" /> dengan turunan <InlineMath math="u'(x)=2" />.
 
-   <MathContainer>
-     <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
-     <BlockMath math="h'(x)=8(2x-1)^3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
+  <BlockMath math="h'(x)=8(2x-1)^3" />
+</MathContainer>
 
-   Hasil tersebut memuat kedua bagian komposisi: turunan pangkat empat dan turunan fungsi linear di dalamnya.
+Hasil tersebut memuat kedua bagian komposisi: turunan pangkat empat dan turunan fungsi linear di dalamnya.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate population variance and standard deviation from grouped frequency data and class midpoints.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
@@ -17,25 +17,25 @@ To estimate the spread, we **represent** every observation in a class by that cl
 
 ## Formulas for Variance and Standard Deviation of Grouped Data
 
-We weight each midpoint <InlineMath math="x_i" /> by its class frequency <InlineMath math="f" />. The formulas below treat the table as the complete population. A sample requires the corresponding sample-variance formula.
+We weight each midpoint <InlineMath math="x_i" /> by its class frequency <InlineMath math="f" />. A sample requires the corresponding sample-variance formula.
 
-1.  **Variance (<InlineMath math="\sigma^2" />)**
+We treat these observations as the **complete population**. Variance uses squared units, whereas taking the square root restores the original unit. Standard deviation can therefore be compared directly with an observed value.
 
-    For grouped data, use the following computational formula:
+### Variance
 
-    <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
+For **grouped data**, use the following computational formula:
 
-    The first term is the frequency-weighted mean of the squared midpoints. The second is the square of the frequency-weighted mean. Their difference is the estimated population variance.
+<BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
 
-2.  **Standard Deviation (<InlineMath math="\sigma" />)**
+The first term is the frequency-weighted mean of the squared midpoints. The second is the square of the frequency-weighted mean. Their difference is the estimated population variance.
+### Standard Deviation
 
-    Just like with ungrouped data, the standard deviation is the square root of the variance:
+Just like with ungrouped data, the standard deviation is the **square root of the variance**:
 
-    <BlockMath math="\sigma = \sqrt{\sigma^2}" />
-
+<BlockMath math="\sigma = \sqrt{\sigma^2}" />
 ## Calculating Variance and Standard Deviation of Phone Battery Duration
 
-Suppose a study records phone-battery duration in the following intervals:
+Suppose battery durations are recorded to the **nearest hour**, then grouped into the following intervals. The first class therefore contains recorded values of 6, 7, 8, 9, and 10 hours.
 
 | Battery duration (hours) | Frequency (<InlineMath math="f" />) |
 | :----------------------: | :---------------------------------: |
@@ -58,11 +58,11 @@ For each class, calculate the midpoint <InlineMath math="x_i" />, then calculate
 | <InlineMath math="16\text{-}20" /> | <InlineMath math="\frac{16+20}{2}=18" /> | <InlineMath math="18" /> |  <InlineMath math="18 \times 18 = 324" />  |  <InlineMath math="18 \times 18^2 = 5832" />  |
 | <InlineMath math="21\text{-}25" /> | <InlineMath math="\frac{21+25}{2}=23" /> | <InlineMath math="45" /> | <InlineMath math="45 \times 23 = 1035" />  | <InlineMath math="45 \times 23^2 = 23805" />  |
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="\frac{26+30}{2}=28" /> | <InlineMath math="5" />  |  <InlineMath math="5 \times 28 = 140" />   |  <InlineMath math="5 \times 28^2 = 3920" />   |
-|        **Total**         |                                          | **<InlineMath math="\sum f = 80" />** | **<InlineMath math="\sum fx_i = 1645" />** | **<InlineMath math="\sum fx_i^2 = 35375" />** |
+|        **Total**         |                                          | <InlineMath math="\sum f = 80" /> | <InlineMath math="\sum fx_i = 1645" /> | <InlineMath math="\sum fx_i^2 = 35375" /> |
 
 ### Calculate Variance
 
-Plug the total values from the table into the variance formula:
+Plug the **total values** from the table into the variance formula:
 
 <MathContainer>
   <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
@@ -73,12 +73,11 @@ Plug the total values from the table into the variance formula:
 </MathContainer>
 
 The estimated variance is <InlineMath math="19.37" /> square hours. Variance uses squared units because every distance from the mean is squared before averaging.
-
 ### Calculate Standard Deviation
 
 Take the square root of the variance:
 
-<BlockMath math="\sigma = \sqrt{19.37} \approx 4.4" />
+<BlockMath math="\sigma = \sqrt{19.37109375} \approx 4.4" />
 
 The estimated standard deviation is <InlineMath math="4.4 \text{ hours}" />. Around the estimated mean of <InlineMath math="\frac{1645}{80} \approx 20.56 \text{ hours}" />, durations differ by about <InlineMath math="4.4 \text{ hours}" /> in the root-mean-square sense.
 

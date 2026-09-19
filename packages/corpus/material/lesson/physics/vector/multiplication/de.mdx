@@ -6,7 +6,7 @@ export const metadata = {
     "Skalarprodukt und Kreuzprodukt unterscheiden und ihren Zusammenhang mit Arbeit und Drehmoment verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -14,7 +14,7 @@ export const metadata = {
 
 Bei der Multiplikation von Vektoren entsteht nicht immer wieder ein Vektor. In der Physik sind zwei Arten wichtig: das **Skalarprodukt** und das **Kreuzprodukt**.
 
-Das Skalarprodukt ergibt einen Skalar. Das Kreuzprodukt erzeugt einen neuen Vektor, dessen Richtung <Highlight>senkrecht zu den beiden ursprünglichen Vektoren</Highlight> ist.
+Das Skalarprodukt ergibt einen Skalar. Das Kreuzprodukt erzeugt einen Vektor senkrecht auf beiden ursprünglichen Vektoren. Ist das Ergebnis nicht der Nullvektor, folgt seine Richtung der **Rechte-Hand-Regel**.
 
 | Art der Multiplikation | Symbol | Ergebnis | Physikbeispiel |
 | :--------------------- | :----- | :----- | :-------------- |
@@ -29,17 +29,17 @@ Das Skalarprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-Der Winkel <InlineMath math="\theta" /> liegt zwischen den beiden Vektoren. Das Ergebnis ist ein Skalar, weil es nur einen Wert und keine Richtung besitzt.
+Für zwei Vektoren ungleich null ist <InlineMath math="\theta" /> der Zwischenwinkel. <InlineMath math="A" /> und <InlineMath math="B" /> sind ihre Beträge. Das Ergebnis ist ein Skalar, weil es nur einen Wert und keine Richtung besitzt.
 
-Die von einer Kraft verrichtete Arbeit lässt sich damit schreiben als:
+Für eine während der Verschiebung **konstante Kraft** lautet die von dieser Kraft verrichtete Arbeit:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-Damit trägt nur die Kraftkomponente zur Arbeit bei, die in Richtung der Verschiebung zeigt.
+Die Kraftkomponente **entlang der Verschiebungsachse** bestimmt die Arbeit. Sie ist positiv in Bewegungsrichtung und negativ entgegen der Bewegungsrichtung.
 
-## Arbeit mit dem Skalarprodukt
+### Arbeit mit dem Skalarprodukt
 
-Eine Person zieht eine Kiste mit einer Kraft von <InlineMath math="40\text{ N}" /> über eine Strecke von <InlineMath math="5\text{ m}" />. Die Kraft schließt mit der Verschiebungsrichtung einen Winkel von <InlineMath math="60^\circ" /> ein. Für die Arbeit gilt:
+Eine Person zieht eine Kiste mit einer konstanten Kraft von <InlineMath math="40\text{ N}" /> über eine Strecke von <InlineMath math="5\text{ m}" />. Die Kraft schließt mit der Verschiebungsrichtung einen Winkel von <InlineMath math="60^\circ" /> ein. Für die Arbeit gilt:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -50,7 +50,9 @@ W&=Fs\cos\theta \\
 
 Steht die Kraft senkrecht auf der Verschiebung, dann gelten <InlineMath math="\theta=90^\circ" /> und <InlineMath math="\cos90^\circ=0" />. In diesem Fall verrichtet die Kraft keine Arbeit in Verschiebungsrichtung.
 
-Anders gesagt: Das Skalarprodukt erfasst genau den Kraftanteil, der entlang der Verschiebung wirkt. Eine rein nach oben oder unten gerichtete Komponente trägt bei einer horizontalen Verschiebung nicht zur Arbeit bei.
+Wirkt dieselbe konstante Kraft entgegen der Verschiebung, beträgt der Winkel <InlineMath math="180^\circ" />. **Negative Arbeit** bedeutet, dass die Kraft der Bewegung Energie entzieht:
+
+<BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
 ## Das Kreuzprodukt misst die Drehwirkung
 
@@ -58,7 +60,7 @@ Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-Das Ergebnis ist ein Vektor, der senkrecht auf der von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> aufgespannten Ebene steht. Seine Richtung wird mit der Rechte-Hand-Regel bestimmt.
+Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis senkrecht auf der von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> aufgespannten Ebene. Seine Richtung folgt der **Rechte-Hand-Regel**: Krümme die Finger vom ersten zum zweiten Vektor über den kleineren Winkel. Der Daumen zeigt die Ergebnisrichtung. Bei parallelen Vektoren oder einem Nullvektor als Eingabe entsteht der Nullvektor ohne bestimmte Richtung.
 
 <Vector3d
   title={<>Richtung <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -68,8 +70,8 @@ Das Ergebnis ist ein Vektor, der senkrecht auf der von <InlineMath math="\vec{A}
       liegen in einer Ebene. Ihr Kreuzprodukt steht senkrecht auf dieser Ebene.
     </>
   }
-  cameraPosition={[8, 7, 9]}
-  cameraTarget={[1.6, 1.4, 1.2]}
+  cameraPosition={[14, 10, 18]}
+  cameraTarget={[1.6, 1.4, 4]}
   vectors={(() => {
     const a = [4, 0, 0];
     const b = [0, 3, 0];
@@ -78,8 +80,6 @@ Das Ergebnis ist ein Vektor, der senkrecht auf der von <InlineMath math="\vec{A}
       a[2] * b[0] - a[0] * b[2],
       a[0] * b[1] - a[1] * b[0],
     ];
-    const displayScale = 4;
-    const crossDirection = cross.map((component) => component / displayScale);
 
     return [
       {
@@ -105,26 +105,33 @@ Das Ergebnis ist ein Vektor, der senkrecht auf der von <InlineMath math="\vec{A}
         from: [0, 0, 0],
         label: <InlineMath math="A\times B" />,
         labelAnchorX: "center",
-        labelOffset: [0.45, 0.35, 0.2],
+        labelOffset: [0, 1.2, 0],
         labelProgress: 1 / 2,
         lineWidth: 4,
-        to: crossDirection,
+        to: cross,
       },
     ];
   })()}
 />
 
-In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Der Pfeil für <InlineMath math="\vec{A}\times\vec{B}" /> ist lediglich verkürzt, damit er in die Szene passt. Seine Richtung bleibt durch das Kreuzprodukt festgelegt.
+In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Beide Modellvektoren sind dimensionslos. Berechne die Komponenten: Die ersten beiden sind null und die dritte ist <InlineMath math="4\cdot3" />. Der Ergebnispfeil ist 12 Einheiten lang. Drehe das Modell und vergleiche diesen Pfeil mit der Ebene der ursprünglichen Vektoren.
+
+<BlockMath math="\begin{aligned}
+C_x&=0\cdot0-0\cdot3=0 \\
+C_y&=0\cdot0-4\cdot0=0 \\
+C_z&=4\cdot3-0\cdot0=12 \\
+\vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
+\end{aligned}" />
 
 Für das Drehmoment lautet das Kreuzprodukt:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Der Vektor <InlineMath math="\vec{r}" /> ist der Ortsvektor von der Drehachse bis zum Angriffspunkt der Kraft. Der senkrechte Hebelarm hat die Länge <InlineMath math="r\sin\theta" />. Bei gleichem Winkel erzeugt dieselbe Kraft ein größeres Drehmoment, wenn sie weiter vom Türscharnier entfernt angreift.
+Der Vektor <InlineMath math="\vec{r}" /> ist der Ortsvektor von einem Bezugspunkt am Scharnier bis zum Angriffspunkt der Kraft. Der senkrechte Hebelarm hat die Länge <InlineMath math="r\sin\theta" />. Bei gleichem Winkel erzeugt dieselbe Kraft ein größeres Drehmoment, wenn sie weiter vom Türscharnier entfernt angreift.
 
-## Drehmoment einer senkrechten Kraft
+### Drehmoment einer senkrechten Kraft
 
-Eine Tür wird im Abstand <InlineMath math="0{,}8\text{ m}" /> vom Scharnier mit einer Kraft von <InlineMath math="30\text{ N}" /> gedrückt. Die Kraft wirkt senkrecht zur Tür, also gilt <InlineMath math="\theta=90^\circ" />.
+Wähle am Scharnier einen Bezugspunkt auf der Höhe des Kraftangriffspunkts. Eine Tür wird horizontal im Abstand <InlineMath math="0{,}8\text{ m}" /> vom Scharnier mit einer Kraft von <InlineMath math="30\text{ N}" /> gedrückt. Die Kraft wirkt **senkrecht zur Tür**, also gilt <InlineMath math="\theta=90^\circ" />.
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
@@ -132,11 +139,11 @@ Eine Tür wird im Abstand <InlineMath math="0{,}8\text{ m}" /> vom Scharnier mit
 &=24\text{ N m}
 \end{aligned}" />
 
-Bei festen Werten von <InlineMath math="r" /> und <InlineMath math="F" /> erzeugt eine senkrechte Kraft das maximale Drehmoment, weil <InlineMath math="\sin90^\circ=1" /> gilt. Eine fast parallel zur Tür wirkende Kraft erzeugt nur ein kleines Drehmoment, weil ihr Sinusfaktor nahe null liegt.
+Bei festen Werten von <InlineMath math="r" /> und <InlineMath math="F" /> erzeugt eine senkrechte Kraft das maximale Drehmoment, weil <InlineMath math="\sin90^\circ=1" /> gilt. Eine fast parallel zum Ortsvektor <InlineMath math="\vec{r}" /> wirkende Kraft erzeugt nur ein kleines Drehmoment, weil ihr Sinusfaktor nahe null liegt.
 
 ## Skalarprodukt und Kreuzprodukt vergleichen
 
-Der entscheidende Unterschied zeigt sich am Zwischenwinkel. Das Skalarprodukt ist am größten, wenn zwei Vektoren gleichgerichtet sind, denn <InlineMath math="\cos0^\circ=1" />. Das Kreuzprodukt ist in diesem Fall null, denn <InlineMath math="\sin0^\circ=0" />.
+Vergleiche die Operationen bei **festen Vektorbeträgen ungleich null**. Das Skalarprodukt ist am größten, wenn zwei Vektoren gleichgerichtet sind, denn <InlineMath math="\cos0^\circ=1" />. Das Kreuzprodukt ist in diesem Fall null, denn <InlineMath math="\sin0^\circ=0" />.
 
 | Winkelbedingung | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :-------------- | :------------------------- | :---------------------------------------- |

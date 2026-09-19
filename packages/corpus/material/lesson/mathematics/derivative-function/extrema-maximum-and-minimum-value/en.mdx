@@ -5,7 +5,7 @@ export const metadata = {
   description: "Use first and second derivatives to locate and classify stationary points, then calculate local maximum and minimum values from worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Derivative Functions",
 };
 
@@ -19,11 +19,11 @@ In everyday life, we often look for the "best" value, like the biggest profit, t
 
 This method focuses on the change in the function's behavior, i.e., whether it's increasing or decreasing, around a stationary point. By observing the sign of <InlineMath math="f'(x)" />, we can identify the type of stationary point.
 
--   **Maximum Turning Point:** Occurs if the function changes from **increasing to decreasing**. This means the sign of <InlineMath math="f'(x)" /> changes from **positive (+) to negative (-)**, as on the slope toward a hilltop.
+-   **Maximum Turning Point**: Occurs if the function changes from **increasing to decreasing**. This means the sign of <InlineMath math="f'(x)" /> changes from **positive (+) to negative (-)**, as on the slope toward a hilltop.
 
--   **Minimum Turning Point:** Occurs if the function changes from **decreasing to increasing**. The sign of <InlineMath math="f'(x)" /> changes from **negative (-) to positive (+)**, as at the bottom of a valley.
+-   **Minimum Turning Point**: Occurs if the function changes from **decreasing to increasing**. The sign of <InlineMath math="f'(x)" /> changes from **negative (-) to positive (+)**, as at the bottom of a valley.
 
--   **No Local Extremum:** If the sign of <InlineMath math="f'(x)" /> does not change, the stationary point is neither a local maximum nor a local minimum. It may be a horizontal inflection point, but that requires a separate check that the concavity changes.
+-   **No Local Extremum**: If the sign of <InlineMath math="f'(x)" /> does not change, the stationary point is neither a local maximum nor a local minimum. It may be a horizontal inflection point, but that requires a separate check that the concavity changes.
 
 The visualization below shows the horizontal tangents at a local maximum and a local minimum.
 
@@ -88,9 +88,11 @@ The visualization below shows the horizontal tangents at a local maximum and a l
   ]}
 />
 
+### Cubic extrema from derivative signs
+
 Determine the stationary values of <InlineMath math="f(x) = x(x-3)^2" /> with the first derivative test.
 
-**Solution:**
+**Solution**:
 
 **Step 1**: Find the first derivative
 
@@ -114,9 +116,9 @@ The stationary points occur at <InlineMath math="x = 1" /> and <InlineMath math=
 
 **Step 3**: Test the sign around the stationary points
 
--   **Around <InlineMath math="x = 1" />:** For <InlineMath math="x < 1" /> (e.g., <InlineMath math="x=0" />), <InlineMath math="f'(0) = 9" /> (positive). For <InlineMath math="x > 1" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). Since the sign changes from (+) to (-), <InlineMath math="x=1" /> is a maximum turning point.
+-   **Around <InlineMath math="x = 1" />**: For <InlineMath math="x < 1" /> (e.g., <InlineMath math="x=0" />), <InlineMath math="f'(0) = 9" /> (positive). For <InlineMath math="1 < x < 3" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). Since the sign changes from (+) to (-), <InlineMath math="x=1" /> is a maximum turning point.
 
--   **Around <InlineMath math="x = 3" />:** For <InlineMath math="x < 3" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). For <InlineMath math="x > 3" /> (e.g., <InlineMath math="x=4" />), <InlineMath math="f'(4) = 9" /> (positive). Since the sign changes from (-) to (+), <InlineMath math="x=3" /> is a minimum turning point.
+-   **Around <InlineMath math="x = 3" />**: For <InlineMath math="1 < x < 3" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). For <InlineMath math="x > 3" /> (e.g., <InlineMath math="x=4" />), <InlineMath math="f'(4) = 9" /> (positive). Since the sign changes from (-) to (+), <InlineMath math="x=3" /> is a minimum turning point.
 
 **Step 4**: Determine the stationary values
 
@@ -184,7 +186,7 @@ So, the local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4
 
 ## Second Derivative Test
 
-This method is often faster because it doesn't require testing intervals. It uses the second derivative, <InlineMath math="f''(x)" />, to determine the concavity of the curve at a stationary point.
+This method uses the second derivative at the stationary point without testing signs in neighboring intervals. It uses the second derivative, <InlineMath math="f''(x)" />, to determine the concavity of the curve at a stationary point.
 
 Suppose <InlineMath math="f'(c) = 0" /> and <InlineMath math="f''" /> is continuous on an interval containing <InlineMath math="c" />.
 
@@ -194,9 +196,11 @@ Suppose <InlineMath math="f'(c) = 0" /> and <InlineMath math="f''" /> is continu
 
 -   If <InlineMath math="f''(c) = 0" />, the test is **inconclusive**. Use the First Derivative Test or another argument. The point could be a maximum, a minimum, an inflection point, or none of these.
 
+### Cubic extrema from concavity
+
 Determine the extreme values of <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> using the second derivative test.
 
-**Solution:**
+**Solution**:
 
 **Step 1**: Find the first and second derivatives
 
@@ -287,13 +291,13 @@ The curve is concave down at the point <InlineMath math="x=-1" /> and concave up
 
 ## Exercises
 
-Each problem asks for a stationary point or an extreme value. Set the first derivative to zero, then decide whether the point is a maximum or a minimum.
+To classify the stationary point, use the **first or second derivative test**. A horizontal tangent alone does not determine whether the function reaches a maximum or a minimum.
 
 1. Determine the stationary point for the function <InlineMath math="y = x^2 + 2x - 3" />.
 
 ### Worked Solution
 
-1.  **Solution:**
+1.  **Solution**:
 
     **Step 1**: Find the first derivative
 

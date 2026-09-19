@@ -21,7 +21,7 @@ import {
 } from "#nakafa-content/voice/check";
 import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
-const PASSING_REPORT_PATTERN = /passed for 1 files/u;
+const PASSING_REPORT_PATTERN = /passed for 3 files/u;
 
 type TestServices = FileSystem.FileSystem | Scope.Scope;
 
@@ -30,22 +30,12 @@ const checkTest = (
   name: string,
   self: Effect.Effect<void, LessonVoiceCheckError, TestServices>,
   timeout?: number
-): void => {
+): void =>
   it.effect(
     name,
     () => Effect.scoped(Effect.provide(self, NodeFileSystem.layer)),
     timeout
   );
-};
-
-/** Flips an expected checker failure into the typed error, dying on success. */
-const flipFailure = <A>(
-  self: Effect.Effect<A, LessonVoiceCheckError, FileSystem.FileSystem>
-): Effect.Effect<LessonVoiceCheckError, never, FileSystem.FileSystem> =>
-  Effect.matchEffect(self, {
-    onFailure: (error) => Effect.succeed(error),
-    onSuccess: () => Effect.die("Expected the checker to fail"),
-  });
 
 /** Creates a temporary lesson root and removes it afterwards. */
 const temporaryRoot = (
@@ -172,33 +162,32 @@ checkTest(
 checkTest(
   "typed checker failures carry machine-readable reasons",
   Effect.gen(function* () {
-    const empty = yield* flipFailure(checkLessonRoot(yield* temporaryRoot({})));
-    assert.equal(empty.reason, "empty-root");
-    assert.ok(empty.detail.includes("No lesson locale files found"));
-    assert.equal(
-      (yield* flipFailure(
-        checkLessonRoot(yield* temporaryRoot({ "en.mdx": "<Highlight>oops\n" }))
-      )).reason,
-      "unparseable-document"
-    );
     const unreadable = yield* temporaryRoot(
       { "en.mdx": "The value follows from the equation.\n" },
       (root) => chmodSync(join(root, "en.mdx"), 0o000)
     );
-    assert.equal(
-      (yield* flipFailure(checkLessonRoot(unreadable))).reason,
-      "unreadable-entry"
-    );
-    assert.equal(
-      (yield* flipFailure(runCli(["--format", "xml"]))).reason,
-      "invalid-arguments"
-    );
-    assert.equal(
-      (yield* flipFailure(
-        runCli(["--root", join(tmpdir(), "missing-nakafa-lessons")])
-      )).reason,
-      "unreadable-entry"
-    );
+    const cases: [
+      string,
+      Effect.Effect<unknown, LessonVoiceCheckError, TestServices>,
+    ][] = [
+      ["empty-root", checkLessonRoot(yield* temporaryRoot({}))],
+      [
+        "unparseable-document",
+        checkLessonRoot(
+          yield* temporaryRoot({ "en.mdx": "<Highlight>oops\n" })
+        ),
+      ],
+      ["unreadable-entry", checkLessonRoot(unreadable)],
+      ["invalid-arguments", runCli(["--format", "xml"])],
+      [
+        "unreadable-entry",
+        runCli(["--root", join(tmpdir(), "missing-nakafa-lessons")]),
+      ],
+    ];
+    for (const [reason, operation] of cases) {
+      const failure = yield* operation.pipe(Effect.flip, Effect.orDie);
+      assert.equal(failure.reason, reason);
+    }
     assert.equal(yield* runMain(["--unknown"]), 2);
   })
 );
@@ -206,7 +195,7 @@ checkTest(
 checkTest(
   "checker exit tiers follow blocking and strict review",
   Effect.gen(function* () {
-    /** Runs one fixture through the CLI with silenced output. */
+    /** Runs one fixture through the CLI with silenced logs. */
     const run = (entries: Record<string, string>, arguments_: string[]) =>
       Effect.flatMap(temporaryRoot(entries), (root) =>
         runCli(["--root", root, ...arguments_])
@@ -249,19 +238,29 @@ checkTest(
           console.log = originalLog;
         })
     );
-    const output = logs;
     const root = yield* temporaryRoot({
-      "en.mdx": "The value follows from the equation.\n",
+      "answer.en.mdx": "A vector has magnitude and direction.",
+      "en.mdx": '**Magnitude** is the length.\n\n<BlockMath math="A=3" />',
+      "question.en.mdx": "**A quoted question remains exactly as written.**",
     });
     assert.equal(yield* runCli(["--format", "text", "--root", root]), 0);
-    assert.match(output.at(-1) ?? "", PASSING_REPORT_PATTERN);
+    assert.match(logs.at(-1) ?? "", PASSING_REPORT_PATTERN);
     assert.equal(yield* runCli(["--format", "json", "--root", root]), 0);
-    assert.deepEqual(JSON.parse(output.at(-1) ?? "{}"), {
+    assert.deepEqual(JSON.parse(logs.at(-1) ?? "{}"), {
       blockingIssueCount: 0,
-      fileCount: 1,
+      fileCount: 3,
       issues: [],
       reviewIssueCount: 0,
     });
+    const report = yield* checkLessonRoot(root, true);
+    assert.equal(report.pedagogy?.length, 2);
+    assert.equal(
+      report.pedagogy?.some(({ file }) => file === "question.en.mdx"),
+      false
+    );
+    assert.equal(yield* runCli(["--root", root, "--pedagogy-review"]), 0);
+    assert.ok(logs.some((line) => line.includes("[manual] unmarked-body")));
+    assert.ok(logs.at(-1)?.includes("contextual review"));
   })
 );
 

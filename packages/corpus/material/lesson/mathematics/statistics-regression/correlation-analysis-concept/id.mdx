@@ -4,7 +4,7 @@ export const metadata = {
     "Korelasi menggambarkan arah dan kekuatan hubungan linear, cara membaca arti koefisien korelasi Pearson r, dan alasan korelasi tidak membuktikan hubungan sebab akibat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Statistika",
 };
 
@@ -16,7 +16,7 @@ Korelasi menjawab pertanyaan deskriptif: bagaimana kedua variabel berubah bersam
 
 ## Koefisien Korelasi
 
-Koefisien korelasi Pearson dilambangkan dengan <InlineMath math="r" />. <Highlight>Tanda r menunjukkan arah</Highlight>, sedangkan jaraknya dari nol menunjukkan kekuatan pola linear.
+Koefisien korelasi Pearson dilambangkan dengan <InlineMath math="r" />. **Tanda koefisien** menunjukkan arah, sedangkan jaraknya dari nol menunjukkan kekuatan pola linear.
 
 | Nilai | Artinya |
 | --- | --- |
@@ -35,13 +35,29 @@ Jika kedua variabel memiliki variasi bukan nol sehingga <InlineMath math="r" /> 
 
 Nilai yang mendekati nol tidak meniadakan semua jenis hubungan. Titik-titik dapat mengikuti kurva yang jelas walaupun korelasi linearnya kecil. Karena itu, diagram pencar dan konteks harus dibaca bersama dengan <InlineMath math="r" />.
 
+### Pola Melengkung dengan Korelasi Nol
+
+Misalkan pasangan data memenuhi <InlineMath math="y=x^2" /> untuk <InlineMath math="x=-2,-1,0,1,2" />. Kamu dapat mengikuti **pola berbentuk huruf U** pada diagram, meskipun korelasi linearnya nol.
+
+<ScatterDiagram
+  title="Hubungan Melengkung pada Lima Pasangan Data"
+  description="Nilai turun menuju tengah lalu naik lagi, sehingga satu garis lurus tidak merangkum pola."
+  datasets={[{ name: "Pasangan data", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
+/>
+
+Rata-rata koordinatnya adalah <InlineMath math="\bar x=0" /> dan <InlineMath math="\bar y=2" />. Hasil kali simpangan di kiri dan kanan saling meniadakan:
+
+<BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
+
+Kedua variabel tetap bervariasi. Jumlah kuadrat simpangan horizontal adalah <InlineMath math="10" />, sedangkan jumlah kuadrat simpangan vertikal adalah <InlineMath math="14" />. Maka <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. **Korelasi nol** di sini tetap disertai hubungan kuadrat yang pasti.
+
 ## Menukar Variabel dan Mengubah Satuan
 
 Korelasi memperlakukan kedua variabel secara simetris. Menukar variabel pada sumbu horizontal dan vertikal tidak mengubah nilainya:
 
 <BlockMath math="r_{xy}=r_{yx}" />
 
-Perubahan skala satuan yang positif juga tidak mengubah <InlineMath math="r" />. Mengukur tinggi badan dalam sentimeter alih-alih meter menghasilkan koefisien yang sama. Korelasi berbeda dari regresi karena regresi sengaja memakai satu variabel untuk memprediksi variabel lain.
+Perubahan **skala satuan yang positif** juga tidak mengubah <InlineMath math="r" />. Mengukur tinggi badan dalam sentimeter alih-alih meter menghasilkan koefisien yang sama. Korelasi berbeda dari regresi karena regresi sengaja memakai satu variabel untuk memprediksi variabel lain.
 
 ## Koefisien Determinasi
 
@@ -59,7 +75,7 @@ Koefisien determinasi memenuhi:
 
 ## Korelasi dan Hubungan Sebab Akibat
 
-Korelasi yang kuat tidak membuktikan bahwa satu variabel menyebabkan variabel lain. Beberapa penjelasan dapat menghasilkan pola yang sama:
+**Korelasi yang kuat** tidak membuktikan bahwa satu variabel menyebabkan variabel lain. Beberapa penjelasan dapat menghasilkan pola yang sama:
 
 - Variabel pertama mungkin memengaruhi variabel kedua.
 - Variabel kedua mungkin memengaruhi variabel pertama.
@@ -72,4 +88,4 @@ Gunakan korelasi untuk menggambarkan pola linear. Kesimpulan sebab-akibat memerl
 
 ## Periksa Kesimpulanmu
 
-Misalkan suatu kumpulan data memiliki <InlineMath math="r=-0{,}9" />. Nilai ini menunjukkan hubungan linear negatif yang kuat: nilai yang lebih besar pada satu variabel cenderung muncul bersama nilai yang lebih kecil pada variabel lain. Nilai tersebut tidak dengan sendirinya menunjukkan penyebab atau menjamin bahwa setiap titik berada tepat pada garis yang sama.
+Misalkan suatu kumpulan data memiliki <InlineMath math="r=-0{,}9" />. Nilai ini menunjukkan **hubungan linear negatif yang kuat**: nilai yang lebih besar pada satu variabel cenderung muncul bersama nilai yang lebih kecil pada variabel lain. Nilai tersebut tidak dengan sendirinya menunjukkan penyebab atau menjamin bahwa setiap titik berada tepat pada garis yang sama.

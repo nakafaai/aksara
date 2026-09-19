@@ -6,7 +6,7 @@ export const metadata = {
     "The vector dot product produces a scalar and models work, while the cross product produces a vector and models torque.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vector",
 };
 
@@ -14,7 +14,7 @@ export const metadata = {
 
 Vector multiplication does not always produce another vector. Two kinds of multiplication are common in physics: the **dot product** and the **cross product**.
 
-The dot product produces a scalar. The cross product <Highlight>produces a new vector whose direction is perpendicular</Highlight> to the two original vectors.
+The dot product produces a scalar. The cross product produces a vector perpendicular to both original vectors. When the result is nonzero, its direction follows the **right-hand rule**.
 
 | Type of multiplication | Symbol | Result | Physics example |
 | :--------------------- | :----- | :----- | :-------------- |
@@ -29,17 +29,17 @@ The dot product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" 
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-Angle <InlineMath math="\theta" /> is the angle between the two vectors. The result is a scalar, so it has a value without a direction.
+For two nonzero vectors, <InlineMath math="\theta" /> is the angle between them, while <InlineMath math="A" /> and <InlineMath math="B" /> are their magnitudes. The result is a scalar, so it has a value without a direction.
 
-In physics, work done by a force can be written as:
+For a **constant force** throughout the displacement, the work done by that force is:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-This means only the component of force along the displacement actually does work.
+The force component **along the displacement axis** determines the work. This component is positive with the motion and negative against the motion.
 
-## Work from Dot Product
+### Work from Dot Product
 
-A person pulls a box with a <InlineMath math="40\text{ N}" /> force while the box moves <InlineMath math="5\text{ m}" />. The force makes a <InlineMath math="60^\circ" /> angle with the displacement direction. The work is:
+A person pulls a box with a constant <InlineMath math="40\text{ N}" /> force while the box moves <InlineMath math="5\text{ m}" />. The force makes a <InlineMath math="60^\circ" /> angle with the displacement direction. The work is:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -50,7 +50,9 @@ W&=Fs\cos\theta \\
 
 If the force is perpendicular to the displacement, <InlineMath math="\theta=90^\circ" /> and <InlineMath math="\cos90^\circ=0" />. In that case, the force does no work in the displacement direction.
 
-In other words, the dot product selects the part of the force that actually points along the displacement. A component that only presses upward or downward does not add work along the horizontal displacement.
+If the same constant force opposes the displacement, the angle is <InlineMath math="180^\circ" />. **Negative work** means the force removes energy from the motion:
+
+<BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
 ## Cross Product Measures Turning Effect
 
@@ -58,7 +60,7 @@ The cross product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-The result is a vector perpendicular to the plane containing <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />. Its direction is determined by the right-hand rule.
+For two nonzero, nonparallel vectors, the result is a vector perpendicular to the plane containing <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />. Its direction follows the **right-hand rule**: curl your fingers from the first vector toward the second through the smaller angle. Your thumb gives the resulting direction. Parallel vectors or a zero input vector give the zero vector, which has no defined direction.
 
 <Vector3d
   title={<>Direction of <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -68,8 +70,8 @@ The result is a vector perpendicular to the plane containing <InlineMath math="\
       one plane. Their cross product points perpendicular to that plane.
     </>
   }
-  cameraPosition={[8, 7, 9]}
-  cameraTarget={[1.6, 1.4, 1.2]}
+  cameraPosition={[14, 10, 18]}
+  cameraTarget={[1.6, 1.4, 4]}
   vectors={(() => {
     const a = [4, 0, 0];
     const b = [0, 3, 0];
@@ -78,8 +80,6 @@ The result is a vector perpendicular to the plane containing <InlineMath math="\
       a[2] * b[0] - a[0] * b[2],
       a[0] * b[1] - a[1] * b[0],
     ];
-    const displayScale = 4;
-    const crossDirection = cross.map((component) => component / displayScale);
 
     return [
       {
@@ -105,26 +105,33 @@ The result is a vector perpendicular to the plane containing <InlineMath math="\
         from: [0, 0, 0],
         label: <InlineMath math="A\times B" />,
         labelAnchorX: "center",
-        labelOffset: [0.45, 0.35, 0.2],
+        labelOffset: [0, 1.2, 0],
         labelProgress: 1 / 2,
         lineWidth: 4,
-        to: crossDirection,
+        to: cross,
       },
     ];
   })()}
 />
 
-In this visual, <InlineMath math="\vec{A}" /> points along the positive <InlineMath math="x" /> axis and <InlineMath math="\vec{B}" /> points along the positive <InlineMath math="y" /> axis. The cross-product formula gives the positive <InlineMath math="z" /> direction for <InlineMath math="\vec{A}\times\vec{B}" />. The arrow for <InlineMath math="\vec{A}\times\vec{B}" /> is scaled down to fit the scene, but its direction still comes from the calculation.
+In this visual, <InlineMath math="\vec{A}" /> points along the positive <InlineMath math="x" /> axis and <InlineMath math="\vec{B}" /> points along the positive <InlineMath math="y" /> axis. The cross-product formula gives the positive <InlineMath math="z" /> direction for <InlineMath math="\vec{A}\times\vec{B}" />. Both model vectors are dimensionless. Calculate the components: the first two are zero and the third is <InlineMath math="4\cdot3" />. The result arrow has a length of 12 units. Rotate the model to compare this arrow with the plane of the original vectors.
+
+<BlockMath math="\begin{aligned}
+C_x&=0\cdot0-0\cdot3=0 \\
+C_y&=0\cdot0-4\cdot0=0 \\
+C_z&=4\cdot3-0\cdot0=12 \\
+\vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
+\end{aligned}" />
 
 For torque, the cross product is written:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Vector <InlineMath math="\vec{r}" /> is the position vector from the rotation axis to the point where the force acts. The perpendicular lever arm has length <InlineMath math="r\sin\theta" />. At the same angle, the same force produces a larger torque when applied farther from a door hinge.
+Vector <InlineMath math="\vec{r}" /> is the position vector from a reference point on the hinge to the point where the force acts. The perpendicular lever arm has length <InlineMath math="r\sin\theta" />. At the same angle, the same force produces a larger torque when applied farther from a door hinge.
 
-## Torque from Perpendicular Force
+### Torque from Perpendicular Force
 
-A door is pushed with a <InlineMath math="30\text{ N}" /> force at a distance of <InlineMath math="0.8\text{ m}" /> from the hinge. The force is perpendicular to the door, so <InlineMath math="\theta=90^\circ" />.
+Choose a reference point on the hinge at the height of the push. A door is pushed horizontally with a <InlineMath math="30\text{ N}" /> force at a distance of <InlineMath math="0.8\text{ m}" /> from the hinge. The force is **perpendicular to the door**, so <InlineMath math="\theta=90^\circ" />.
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
@@ -132,11 +139,11 @@ A door is pushed with a <InlineMath math="30\text{ N}" /> force at a distance of
 &=24\text{ N m}
 \end{aligned}" />
 
-For fixed <InlineMath math="r" /> and <InlineMath math="F" />, a perpendicular force gives the maximum torque because <InlineMath math="\sin90^\circ=1" />. A force almost parallel to the door gives little torque because its sine factor is close to zero.
+For fixed <InlineMath math="r" /> and <InlineMath math="F" />, a perpendicular force gives the maximum torque because <InlineMath math="\sin90^\circ=1" />. A force almost parallel to the position vector <InlineMath math="\vec{r}" /> gives little torque because its sine factor is close to zero.
 
 ## Comparing Dot and Cross Products
 
-The main difference can be seen from the angle. The dot product is largest when two vectors point the same way because <InlineMath math="\cos0^\circ=1" />. The cross product is zero in that same condition because <InlineMath math="\sin0^\circ=0" />.
+Compare the operations with **both vector magnitudes fixed and nonzero**. The dot product is largest when two vectors point the same way because <InlineMath math="\cos0^\circ=1" />. The cross product is zero in that same condition because <InlineMath math="\sin0^\circ=0" />.
 
 | Angle condition | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :-------------- | :---------------------------------------- | :------------------------------------------------------ |

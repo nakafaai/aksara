@@ -3,19 +3,19 @@ export const metadata = {
   description: "Choose the mean, median, or mode based on the data and the effect of unusually large or small values.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   subject: "Statistics",
 };
 
 ## Different Measures Answer Different Questions about the Same Data
 
-<Highlight>The mean, median, and mode describe the center of a dataset in different ways.</Highlight> The mean uses every value, the median uses the middle position, and the mode uses the highest frequency. They can therefore answer different questions about the same data.
+The **mean, median, and mode** describe the center of a dataset in different ways. The mean uses every value, the median uses the middle position, and the mode uses the highest frequency. They can therefore answer different questions about the same data.
 
 Choose the measure from the data type, the distribution's shape, and the question being asked. The mean changes when extreme values change, the median uses rank without measuring the gaps between values, and the mode identifies only the most frequent value or category.
 
 ## How Mean Median and Mode Respond to Data
 
-The table collects that comparison in one place. Every row uses the scores <InlineMath math="7, 8, 9, 8, 10" /> and then the same scores with an extra <InlineMath math="1" />.
+The table collects that comparison in one place. Every row uses the scores <InlineMath math="7, 8, 9, 8, 10" /> and then the **same scores with an extra** <InlineMath math="1" />.
 
 | Measure | What it uses | Value after adding the score <InlineMath math="1" /> |
 | --- | --- | --- |
@@ -23,17 +23,19 @@ The table collects that comparison in one place. Every row uses the scores <Inli
 | Median | The middle position of the sorted data | Stays at <InlineMath math="8" /> |
 | Mode | The value with the highest frequency | Stays at <InlineMath math="8" /> |
 
-> A frequent mix-up is to expect every measure to shift when one value changes. Here the mean carries the news of the low score, and the median and mode keep their value.
-
-
-
+> Adding one value does not always change every measure of center. For these data, the mean changes while the median and mode stay the same.
 ### Mean or Average
 
-Add every value and divide the sum by how many values there are. Because every value enters the sum, the mean is <Highlight>very sensitive to extreme values</Highlight>, and one unusually large or small value can shift it a long way. For the scores <InlineMath math="7, 8, 9, 8, 10" /> the mean is <InlineMath math="8.4" />. Adding the low score <InlineMath math="1" /> gives <InlineMath math="(7+8+9+8+10+1)/6 = 7.17" />, so the mean drops by more than one point.
+Add every value and divide the sum by how many values there are. Because every value enters the sum, the mean is <Highlight>very sensitive to extreme values</Highlight>, and one unusually large or small value can shift it a long way. For the scores <InlineMath math="7, 8, 9, 8, 10" /> the mean is <InlineMath math="8.4" />. Adding the low score <InlineMath math="1" /> gives <InlineMath math="(7+8+9+8+10+1)/6 \approx 7.17" />, so the mean drops by more than one point.
+
+<MathContainer>
+  <BlockMath math="\bar x_{\text{before}}=\frac{7+8+9+8+10}{5}=\frac{42}{5}=8.4" />
+  <BlockMath math="\bar x_{\text{after}}=\frac{42+1}{6}=\frac{43}{6}\approx7.17" />
+</MathContainer>
 
 ### Median as the Middle Value
 
-Sort the data and take the value in the middle position. The median depends on the order of the values, so it <Highlight>barely moves when one extreme value appears</Highlight>. For <InlineMath math="7, 8, 9, 8, 10" />, the sorted data is <InlineMath math="7, 8, 8, 9, 10" /> with median <InlineMath math="8" />. Adding the score <InlineMath math="1" /> gives <InlineMath math="1, 7, 8, 8, 9, 10" />, and the two middle values are both <InlineMath math="8" />, so the median stays at <InlineMath math="8" />.
+Sort the data and take the value in the middle position. The median depends on the **middle position in the ordered data**. Changing an endpoint without changing the order or middle values leaves the median unchanged. Adding a new observation can change the middle positions, so recalculate the median. For <InlineMath math="7, 8, 9, 8, 10" />, the sorted data is <InlineMath math="7, 8, 8, 9, 10" /> with median <InlineMath math="8" />. Adding the score <InlineMath math="1" /> gives <InlineMath math="1, 7, 8, 8, 9, 10" />, and the two middle values are both <InlineMath math="8" />, so the median stays at <InlineMath math="8" />.
 
 ### Mode as the Most Frequent Value
 

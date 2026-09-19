@@ -5,7 +5,7 @@ export const metadata = {
     "Stopping distance is the sum of reaction distance and braking distance under the stated motion conditions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Kinematics",
 };
 
@@ -47,7 +47,7 @@ So stopping distance has two stages. The first stage happens when the driver not
 
 ## Braking Distance Uses Constant Deceleration
 
-While the brakes act, the vehicle slows down. If the deceleration is treated as constant and the final velocity is zero, a uniformly accelerated motion equation can be used to find the braking distance.
+While the brakes act, the vehicle slows down. If deceleration is **treated as constant** and the final velocity is zero, a uniformly accelerated motion equation can be used to find the braking distance.
 
 <MathContainer>
   <BlockMath math="v_t^2=v_0^2+2a\Delta x" />
@@ -63,7 +63,7 @@ This formula uses a simple assumption: the path is straight, braking deceleratio
 
 Reaction distance is directly proportional to speed. If the speed doubles, the reaction distance also doubles for the same reaction time.
 
-Braking distance is more sensitive because it contains <InlineMath math="v^2" />. For a fixed vehicle mass, kinetic energy <InlineMath math="K=\frac{1}{2}mv^2" /> also scales with the square of speed. The brakes and tire-road forces must remove that energy while bringing the vehicle to rest.
+Braking distance is more sensitive because it contains <InlineMath math="v^2" />. For a fixed vehicle mass, kinetic energy <InlineMath math="K=\frac{1}{2}mv^2" /> also scales with the **square of speed**. The brakes and tire-road forces must remove that energy while bringing the vehicle to rest.
 
 Suppose the reaction time is <InlineMath math="1\text{ s}" /> and the braking deceleration magnitude is <InlineMath math="5\text{ m/s}^2" />.
 
@@ -81,12 +81,12 @@ A vehicle moves at <InlineMath math="20\text{ m/s}" />. The driver's reaction ti
 
 <MathContainer>
   <BlockMath math="d_{\text{reaction}}=20(1)=20\text{ m}" />
-  <BlockMath math="d_{\text{brake}}=\frac{20^2}{2(5)}=40\text{ m}" />
+  <BlockMath math="d_{\text{brake}}=\frac{(20\text{ m/s})^2}{2(5\text{ m/s}^2)}=\frac{400}{10}\text{ m}=40\text{ m}" />
   <BlockMath math="d_{\text{stop}}=20+40=60\text{ m}" />
 </MathContainer>
 
 Under those conditions, the model gives a stopping distance of <InlineMath math="60\text{ m}" />.
 
-That <InlineMath math="60\text{ m}" /> includes two parts. The first <InlineMath math="20\text{ m}" /> happens before braking starts, and the next <InlineMath math="40\text{ m}" /> happens while the vehicle is braking.
+That <InlineMath math="60\text{ m}" /> includes **reaction distance and braking distance**. The first <InlineMath math="20\text{ m}" /> happens before braking starts, and the next <InlineMath math="40\text{ m}" /> happens while the vehicle is braking.
 
-> This calculation shows how the formula works. A real stopping distance changes with perception-reaction time, road surface, tires, weather, grade, and braking performance. One [design example](https://highways.fhwa.dot.gov/safety/speed-management/guidelines-use-variable-speed-limit-systems-wet-weather/chapter-2-driver) uses a <InlineMath math="2.5\text{ s}" /> perception-reaction time and <InlineMath math="3.4\text{ m/s}^2" /> deceleration.
+> This calculation shows how the formula works. A real stopping distance changes with perception-reaction time, road surface, tires, weather, grade, and braking performance. A [2004 FHWA stopping sight distance example](https://www.fhwa.dot.gov/publications/research/safety/04091/03.cfm) uses a <InlineMath math="2.5\text{ s}" /> perception-reaction time and <InlineMath math="3.4\text{ m/s}^2" /> deceleration.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Die Gleichheit zweier Matrizen über ihr Format und ihre entsprechenden Elemente prüfen und unbekannte Einträge bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Matrix",
 };
 
@@ -31,28 +31,25 @@ Gegeben sind zwei Matrizen:
 Matrix <InlineMath math="P" /> und Matrix <InlineMath math="Q" /> sind gleich (<InlineMath math="P=Q" />), weil:
 
 - Beide haben das Format <InlineMath math="2 \times 2" />.
-- Entsprechende Elemente haben den gleichen Wert:
+- **Entsprechende Elemente** haben den gleichen Wert:
 
   <InlineMath math="p_{11} = q_{11} = 1" />, <InlineMath math="p_{12} = q_{12} = 2" />
   , <InlineMath math="p_{21} = q_{21} = 3" />, <InlineMath math="p_{22} = q_{22} = 4" />
   .
-
 ### Ungleiche Matrizen mit unterschiedlichem Format
 
 Gegeben sind zwei Matrizen:
 
 <BlockMath math="\begin{aligned} &amp;R = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \end{bmatrix} \\ &amp;\text{und} \\ &amp;C = \begin{bmatrix} 4 &amp; -9 \\ 7 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} \end{aligned}" />
 
-Matrix <InlineMath math="R" /> ist nicht gleich Matrix <InlineMath math="C" /> (<InlineMath math="R \neq C" />), weil <InlineMath math="R" /> das Format <InlineMath math="2 \times 2" /> und <InlineMath math="C" /> das Format <InlineMath math="3 \times 2" /> hat.
-
+Matrix <InlineMath math="R" /> ist nicht gleich Matrix <InlineMath math="C" /> (<InlineMath math="R \neq C" />), weil <InlineMath math="R" /> das **Format** <InlineMath math="2 \times 2" /> und <InlineMath math="C" /> das Format <InlineMath math="3 \times 2" /> hat.
 ### Ungleiche Matrizen durch verschiedene korrespondierende Elemente
 
 Gegeben sind zwei Matrizen:
 
 <BlockMath math="S = \begin{bmatrix} 5 &amp; 0 \\ -2 &amp; 8 \end{bmatrix} \quad \text{und} \quad T = \begin{bmatrix} 5 &amp; 0 \\ 2 &amp; 8 \end{bmatrix}" />
 
-Obwohl <InlineMath math="S" /> und <InlineMath math="T" /> dasselbe Format <InlineMath math="2 \times 2" /> haben, sind sie nicht gleich (<InlineMath math="S \neq T" />). In Zeile <InlineMath math="2" />, Spalte <InlineMath math="1" /> gilt <InlineMath math="s_{21} = -2" />, aber <InlineMath math="t_{21} = 2" />.
-
+Obwohl <InlineMath math="S" /> und <InlineMath math="T" /> dasselbe Format <InlineMath math="2 \times 2" /> haben, sind sie nicht gleich (<InlineMath math="S \neq T" />). **In Zeile** <InlineMath math="2" />, Spalte <InlineMath math="1" /> gilt <InlineMath math="s_{21} = -2" />, aber <InlineMath math="t_{21} = 2" />.
 ### Variablenwerte aus Matrixgleichheit ermitteln
 
 Gegeben sind die folgenden Matrizen:
@@ -66,12 +63,14 @@ Wenn die Matrix <InlineMath math="A" /> gleich der Matrix <InlineMath math="B" /
 
 **Lösung:**
 
-Da <InlineMath math="A=B" /> müssen die entsprechenden Elemente gleich sein:
+Da <InlineMath math="A=B" /> müssen **die entsprechenden Elemente gleich sein**:
 
-1.  <InlineMath math="a_{11} = b_{11} \implies -x = -1 \implies x = 1" />
-2.  <InlineMath math="a_{12} = b_{12} \implies 2 = 2" /> (bereits gleich)
-3.  <InlineMath math="a_{21} = b_{21} \implies -3y = 6 \implies y = \frac{6}{-3} \implies y = -2" />
-4.  <InlineMath math="a_{22} = b_{22} \implies z^2 = 9 \implies z = \pm\sqrt{9} \implies z = 3 \text{ oder } z = -3" />
+| Position | Gleichung und Lösung |
+| --- | --- |
+| (1, 1) | <InlineMath math="a_{11} = b_{11} \implies -x = -1 \implies x = 1" /> |
+| (1, 2) | <InlineMath math="a_{12} = b_{12} \implies 2 = 2" /> (bereits gleich) |
+| (2, 1) | <InlineMath math="a_{21} = b_{21} \implies -3y = 6 \implies y = \frac{6}{-3} \implies y = -2" /> |
+| (2, 2) | <InlineMath math="a_{22} = b_{22} \implies z^2 = 9 \implies z = \pm\sqrt{9} \implies z = 3 \text{ oder } z = -3" /> |
 
 Daher lauten die Werte <InlineMath math="x=1" />, <InlineMath math="y=-2" /> und <InlineMath math="z = \pm 3" />.
 
@@ -108,140 +107,146 @@ Entscheide bei den ersten drei Aussagen, ob sie **wahr** oder **falsch** sind.
 1.  **Wahr**. Gleiche Matrizen müssen dasselbe Format haben, auch wenn diese Bedingung allein noch nicht ausreicht.
 2.  **Falsch**. Zwei ungleiche Matrizen können dasselbe Format haben, sich aber in einem oder mehreren entsprechenden Einträgen unterscheiden, wie in Beispiel 3.
 3.  **Falsch**. Matrix <InlineMath math="K" /> hat das Format <InlineMath math="2 \times 2" />, Matrix <InlineMath math="L" /> dagegen das Format <InlineMath math="3 \times 2" />. Matrizen mit unterschiedlichen Formaten können nicht gleich sein.
-4.  Gegeben <InlineMath math="P=Q" />:
+**Aufgabe 4**
 
-    <BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
+Gegeben <InlineMath math="P=Q" />:
 
-    Aus der Gleichheit entsprechender Elemente:
+<BlockMath math="\begin{bmatrix} 2x & 4 \\ -1 & y+3 \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ -1 & 2 \end{bmatrix}" />
 
-    - <InlineMath math="2x = -10 \implies x = -5" />
-    - <InlineMath math="y+3 = 2 \implies y = 2-3 \implies y = -1" />
+Aus der Gleichheit entsprechender Elemente:
 
-      Also <InlineMath math="x=-5" /> und <InlineMath math="y=-1" />.
+- <InlineMath math="2x = -10 \implies x = -5" />
+- <InlineMath math="y+3 = 2 \implies y = 2-3 \implies y = -1" />
 
-5.  Die Identitätsmatrix im Format <InlineMath math="2 \times 2" /> lautet:
+  Also <InlineMath math="x=-5" /> und <InlineMath math="y=-1" />.
 
-    <BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+**Aufgabe 5**
 
-    Gegeben <InlineMath math="A=I" />:
+Die Identitätsmatrix im Format <InlineMath math="2 \times 2" /> lautet:
 
-    <BlockMath math="\begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+<BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
-    Aus der Gleichheit entsprechender Elemente erhalten wir ein Gleichungssystem:
+Gegeben <InlineMath math="A=I" />:
 
-    1.  <InlineMath math="-x-3y = 1" /> (Gleichung 1)
-    2.  <InlineMath math="(x-2y)^2 = 0" /> (Gleichung 2)
+<BlockMath math="\begin{bmatrix} -x-3y & 0 \\ (x-2y)^2 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
-    Löse zuerst Gleichung 2:
+Aus der Gleichheit entsprechender Elemente erhalten wir ein Gleichungssystem:
 
-    <MathContainer>
-      <BlockMath math="(x-2y)^2 = 0" />
-      <BlockMath math="x-2y = \sqrt{0}" />
-      <BlockMath math="x-2y = 0" />
-      <BlockMath math="x = 2y \quad \text{(Gleichung 2')}" />
-    </MathContainer>
+1.  <InlineMath math="-x-3y = 1" /> (Gleichung 1)
+2.  <InlineMath math="(x-2y)^2 = 0" /> (Gleichung 2)
 
-    Setze Gleichung 2' in Gleichung 1 ein:
+Löse zuerst Gleichung 2:
 
-    <MathContainer>
-      <BlockMath math="-(2y)-3y = 1" />
-      <BlockMath math="-2y-3y = 1" />
-      <BlockMath math="-5y = 1" />
-      <BlockMath math="y = -\frac{1}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(x-2y)^2 = 0" />
+  <BlockMath math="x-2y = \sqrt{0}" />
+  <BlockMath math="x-2y = 0" />
+  <BlockMath math="x = 2y \quad \text{(Gleichung 2')}" />
+</MathContainer>
 
-    Setze <InlineMath math="y = -\frac{1}{5}" /> in Gleichung 2' ein:
+Setze Gleichung 2' in Gleichung 1 ein:
 
-    <MathContainer>
-      <BlockMath math="x = 2\left(-\frac{1}{5}\right)" />
-      <BlockMath math="x = -\frac{2}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="-(2y)-3y = 1" />
+  <BlockMath math="-2y-3y = 1" />
+  <BlockMath math="-5y = 1" />
+  <BlockMath math="y = -\frac{1}{5}" />
+</MathContainer>
 
-    Dann ist der Wert von <InlineMath math="x+y" />:
+Setze <InlineMath math="y = -\frac{1}{5}" /> in Gleichung 2' ein:
 
-    <MathContainer>
-      <BlockMath math="x+y = \left(-\frac{2}{5}\right) + \left(-\frac{1}{5}\right)" />
-      <BlockMath math="= -\frac{2}{5} - \frac{1}{5}" />
-      <BlockMath math="= \frac{-2-1}{5}" />
-      <BlockMath math="= -\frac{3}{5}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x = 2\left(-\frac{1}{5}\right)" />
+  <BlockMath math="x = -\frac{2}{5}" />
+</MathContainer>
 
-6.  Für die Matrixgleichung:
+Dann ist der Wert von <InlineMath math="x+y" />:
 
-    <BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
+<MathContainer>
+  <BlockMath math="x+y = \left(-\frac{2}{5}\right) + \left(-\frac{1}{5}\right)" />
+  <BlockMath math="= -\frac{2}{5} - \frac{1}{5}" />
+  <BlockMath math="= \frac{-2-1}{5}" />
+  <BlockMath math="= -\frac{3}{5}" />
+</MathContainer>
 
-    Aus der Gleichheit entsprechender Elemente erhalten wir ein Gleichungssystem:
+**Aufgabe 6**
 
-    1.  <InlineMath math="a+2b = 3" />
-    2.  <InlineMath math="2a+b = -3" />
-    3.  <InlineMath math="c+d = 7" />
-    4.  <InlineMath math="2c+d = 1" />
+Für die Matrixgleichung:
 
-    Löse zunächst Gleichungen 1 und 2 nach <InlineMath math="a" /> und <InlineMath math="b" /> auf:
+<BlockMath math="\begin{bmatrix} a+2b & 2a+b \\ c+d & 2c+d \end{bmatrix} = \begin{bmatrix} 3 & -3 \\ 7 & 1 \end{bmatrix}" />
 
-    Ausgangsgleichungen:
+Aus der Gleichheit entsprechender Elemente erhalten wir ein Gleichungssystem:
 
-    <MathContainer>
-      <BlockMath math="a+2b = 3 \quad \text{(1)}" />
-      <BlockMath math="2a+b = -3 \quad \text{(2)}" />
-    </MathContainer>
+1.  <InlineMath math="a+2b = 3" />
+2.  <InlineMath math="2a+b = -3" />
+3.  <InlineMath math="c+d = 7" />
+4.  <InlineMath math="2c+d = 1" />
 
-    Multipliziere Gleichung 2 mit <InlineMath math="2" />, damit sich <InlineMath math="b" /> beim Subtrahieren aufhebt:
+Löse zunächst Gleichungen 1 und 2 nach <InlineMath math="a" /> und <InlineMath math="b" /> auf:
 
-    <MathContainer>
-      <BlockMath math="2(2a+b) = 2(-3)" />
-      <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
-    </MathContainer>
+Ausgangsgleichungen:
 
-    Subtrahiere Gleichung 1 von Gleichung 2':
+<MathContainer>
+  <BlockMath math="a+2b = 3 \quad \text{(1)}" />
+  <BlockMath math="2a+b = -3 \quad \text{(2)}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />
-      <BlockMath math="4a - a + 2b - 2b = -9" />
-      <BlockMath math="3a = -9" />
-      <BlockMath math="a = \frac{-9}{3}" />
-      <BlockMath math="a = -3" />
-    </MathContainer>
+Multipliziere Gleichung 2 mit <InlineMath math="2" />, damit sich <InlineMath math="b" /> beim Subtrahieren aufhebt:
 
-    Setze <InlineMath math="a=-3" /> in Gleichung 1 ein:
+<MathContainer>
+  <BlockMath math="2(2a+b) = 2(-3)" />
+  <BlockMath math="4a+2b = -6 \quad \text{(2')}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="-3+2b=3" />
-      <BlockMath math="2b=3+3" />
-      <BlockMath math="2b=6" />
-      <BlockMath math="b = \frac{6}{2}" />
-      <BlockMath math="b = 3" />
-    </MathContainer>
+Subtrahiere Gleichung 1 von Gleichung 2':
 
-    Löse nun Gleichungen 3 und 4 nach <InlineMath math="c" /> und <InlineMath math="d" /> auf:
+<MathContainer>
+  <BlockMath math="(4a+2b) - (a+2b) = -6 - 3" />
+  <BlockMath math="4a - a + 2b - 2b = -9" />
+  <BlockMath math="3a = -9" />
+  <BlockMath math="a = \frac{-9}{3}" />
+  <BlockMath math="a = -3" />
+</MathContainer>
 
-    Ausgangsgleichungen:
+Setze <InlineMath math="a=-3" /> in Gleichung 1 ein:
 
-    <MathContainer>
-      <BlockMath math="c+d = 7 \quad \text{(3)}" />
-      <BlockMath math="2c+d = 1 \quad \text{(4)}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="-3+2b=3" />
+  <BlockMath math="2b=3+3" />
+  <BlockMath math="2b=6" />
+  <BlockMath math="b = \frac{6}{2}" />
+  <BlockMath math="b = 3" />
+</MathContainer>
 
-    Subtrahiere Gleichung 3 von Gleichung 4, damit <InlineMath math="d" /> wegfällt:
+Löse nun Gleichungen 3 und 4 nach <InlineMath math="c" /> und <InlineMath math="d" /> auf:
 
-    <MathContainer>
-      <BlockMath math="(2c+d) - (c+d) = 1 - 7" />
-      <BlockMath math="2c - c + d - d = -6" />
-      <BlockMath math="c = -6" />
-    </MathContainer>
+Ausgangsgleichungen:
 
-    Setze <InlineMath math="c=-6" /> in Gleichung 3 ein:
+<MathContainer>
+  <BlockMath math="c+d = 7 \quad \text{(3)}" />
+  <BlockMath math="2c+d = 1 \quad \text{(4)}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="-6+d=7" />
-      <BlockMath math="d=7+6" />
-      <BlockMath math="d=13" />
-    </MathContainer>
+Subtrahiere Gleichung 3 von Gleichung 4, damit <InlineMath math="d" /> wegfällt:
 
-    Dann ist der Wert von <InlineMath math="a+b+c+d" />:
+<MathContainer>
+  <BlockMath math="(2c+d) - (c+d) = 1 - 7" />
+  <BlockMath math="2c - c + d - d = -6" />
+  <BlockMath math="c = -6" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;a+b+c +d \\ &amp;= (-3) + 3 + (-6) + 13 \end{aligned}" />
-      <BlockMath math="= 0 - 6 + 13" />
-      <BlockMath math="= 7" />
-    </MathContainer>
+Setze <InlineMath math="c=-6" /> in Gleichung 3 ein:
+
+<MathContainer>
+  <BlockMath math="-6+d=7" />
+  <BlockMath math="d=7+6" />
+  <BlockMath math="d=13" />
+</MathContainer>
+
+Dann ist der Wert von <InlineMath math="a+b+c+d" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;a+b+c +d \\ &amp;= (-3) + 3 + (-6) + 13 \end{aligned}" />
+  <BlockMath math="= 0 - 6 + 13" />
+  <BlockMath math="= 7" />
+</MathContainer>

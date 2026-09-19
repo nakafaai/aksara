@@ -2,10 +2,10 @@ export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-A face area depends on its two edge lengths, while volume depends on all three. Multiply the corresponding scale factors.
+A face area depends on its **two edge lengths**, while volume depends on all three. Multiply the corresponding scale factors.
 
 <BlockMath math="\begin{aligned}
 k_{pl}&=2\cdot3=6 \\
@@ -25,3 +25,24 @@ A'&\ne3A
 \end{aligned}" />
 
 The three claims about face-area and volume factors are true. The claims that the diagonal always doubles and the total surface area always triples are false.
+
+<MathVisual
+  title="The cuboid after nonuniform scaling"
+  description="A cube with unit edges becomes a cuboid of length 2, width 3, and height one half. Different scale factors change its shape."
+  labels={{
+    length: <InlineMath math="p'=2" />,
+    width: <InlineMath math="l'=3" />,
+    height: <InlineMath math="t'=\frac12" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1, max: 1 }, z: { min: -2, max: 2 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [{ id: "scaled", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 3, height: 0.5 } }],
+    labels: [
+      { key: "length", objectId: "scaled", at: { x: 0, y: -0.25, z: 1.5 }, placement: "below" },
+      { key: "width", objectId: "scaled", at: { x: 1, y: -0.25, z: 0 }, placement: "right" },
+      { key: "height", objectId: "scaled", at: { x: -1, y: 0, z: 1.5 }, placement: "left" },
+    ],
+  }}
+/>

@@ -6,7 +6,7 @@ export const metadata = {
     "Einen schrägen Vektor mithilfe von Sinus und Kosinus in horizontale und vertikale Komponenten zerlegen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -14,32 +14,33 @@ export const metadata = {
 
 Bildet ein Vektor mit einer Achse einen Winkel, lassen sich seine Komponenten trigonometrisch bestimmen. Dabei ist der schräge Vektor <Highlight>die Hypotenuse eines rechtwinkligen Dreiecks</Highlight>. Seine horizontale und vertikale Komponente bilden die beiden Katheten.
 
-Wird der Winkel <InlineMath math="\theta" /> von der positiven <InlineMath math="x" />-Achse aus gemessen, ist die horizontale Komponente die Ankathete. Die vertikale Komponente ist die Gegenkathete.
+Für einen Vektor im ersten Quadranten messen wir <InlineMath math="\theta" /> von der positiven <InlineMath math="x" />-Achse aus. Die horizontale Komponente ist die Ankathete, die vertikale die Gegenkathete. Teile für den Vektorbetrag <InlineMath math="F>0" /> jede Kathete durch die Hypotenuse und multipliziere anschließend wieder mit <InlineMath math="F" />.
 
 <MathContainer>
-  <BlockMath math="F_x=F\cos\theta" />
-  <BlockMath math="F_y=F\sin\theta" />
+  <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
+  <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
 > Bestimme zuerst die Ankathete zum Bezugswinkel für <InlineMath math="\cos" /> und anschließend die Gegenkathete für <InlineMath math="\sin" />.
 
 ## Eine schräge Kraft im Koordinatensystem
 
-Ein Seil zieht eine Kiste mit der schräg nach rechts oben gerichteten Kraft <InlineMath math="\vec{F}" />. Die Kraft besitzt einen horizontalen Anteil, der die Kiste nach rechts zieht, und einen vertikalen Anteil, der sie leicht anhebt.
+Ein Seil zieht eine Kiste mit der schräg nach rechts oben gerichteten Kraft <InlineMath math="\vec{F}" />. Die Kraft besitzt **Komponenten nach rechts und nach oben**. Die Komponente nach oben hebt die Kiste nicht zwingend an: Ihre Bewegung hängt auch von der Gewichtskraft und der Normalkraft des Bodens ab.
 
 <Vector3d
   title={<>Eine schräge Kraft auflösen</>}
   description={
     <>
-      Die Kraft <InlineMath math="\vec{F}=50\text{ N}" /> bildet einen Winkel von{" "}
+      Die Kraft <InlineMath math="F=50\text{ N}" /> bildet einen Winkel von{" "}
       <InlineMath math="37^\circ" /> mit der Horizontalen. Ihre Komponenten lassen
       sich daher mit <InlineMath math="\cos37^\circ" /> und{" "}
       <InlineMath math="\sin37^\circ" /> abschätzen.
     </>
   }
   vectors={(() => {
-    const fx = [4, 0, 0];
-    const fy = [0, 3, 0];
+    const angle = (37 * Math.PI) / 180;
+    const fx = [5 * Math.cos(angle), 0, 0];
+    const fy = [0, 5 * Math.sin(angle), 0];
     const resultant = fx.map((component, index) => component + fy.at(index));
 
     return [
@@ -76,33 +77,33 @@ Ein Seil zieht eine Kiste mit der schräg nach rechts oben gerichteten Kraft <In
   cameraTarget={[2, -0.8, 0]}
 />
 
-Werden <InlineMath math="F_x" /> und anschließend <InlineMath math="F_y" /> aneinandergefügt, wird derselbe Endpunkt wie mit dem Vektor <InlineMath math="\vec{F}" /> erreicht. Die Komponenten stellen also dieselbe Kraft in zwei Richtungen dar.
+Jede Koordinateneinheit im Modell entspricht <InlineMath math="10\text{ N}" />. Werden <InlineMath math="F_x" /> und anschließend <InlineMath math="F_y" /> aneinandergefügt, wird derselbe Endpunkt wie mit dem Vektor <InlineMath math="\vec{F}" /> erreicht. Die Komponenten stellen also dieselbe Kraft in zwei Richtungen dar.
 
-## Eine schräge Kraft in Komponenten umwandeln
+### Komponenten der Zugkraft berechnen
 
-Eine Kraft von <InlineMath math="50\text{ N}" /> wirkt unter einem Winkel von <InlineMath math="37^\circ" /> über der Horizontalen. Näherungsweise gelten <InlineMath math="\cos37^\circ\approx0{,}8" /> und <InlineMath math="\sin37^\circ\approx0{,}6" />.
+Eine Kraft von <InlineMath math="50\text{ N}" /> wirkt unter einem Winkel von <InlineMath math="37^\circ" /> über der Horizontalen. Als **trigonometrische Näherungen** gelten <InlineMath math="\cos37^\circ\approx0{,}8" /> und <InlineMath math="\sin37^\circ\approx0{,}6" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
   F_x&=F\cos\theta \\
-  &=50(0{,}8) \\
+  &\approx50(0{,}8) \\
   &=40\text{ N}
   \end{aligned}" />
 
   <BlockMath math="\begin{aligned}
   F_y&=F\sin\theta \\
-  &=50(0{,}6) \\
+  &\approx50(0{,}6) \\
   &=30\text{ N}
   \end{aligned}" />
 </MathContainer>
 
-Die schräge Kraft von <InlineMath math="50\text{ N}" /> entspricht damit einer horizontalen Komponente von <InlineMath math="40\text{ N}" /> nach rechts und einer vertikalen Komponente von <InlineMath math="30\text{ N}" /> nach oben.
+Die schräge Kraft von <InlineMath math="50\text{ N}" /> hat mit dieser Rundung näherungsweise eine horizontale Komponente von <InlineMath math="40\text{ N}" /> nach rechts und eine vertikale Komponente von <InlineMath math="30\text{ N}" /> nach oben.
 
-Diese beiden Komponenten beschreiben dieselbe Kraft getrennt nach horizontaler und vertikaler Richtung.
+Ohne vorzeitiges Runden erhältst du etwa <InlineMath math="39{,}93\text{ N}" /> und <InlineMath math="30{,}09\text{ N}" />. Das Modell verwendet den Winkel <InlineMath math="37^\circ" /> direkt. Seine Koordinaten sind daher nicht genau <InlineMath math="4" /> und <InlineMath math="3" />.
 
 ## Wenn der Winkel von der vertikalen Achse gemessen wird
 
-Mit dem Bezugswinkel ändert sich auch die Zuordnung. Wird <InlineMath math="\theta" /> von der <InlineMath math="y" />-Achse aus gemessen, ist <InlineMath math="F_y" /> die anliegende Komponente.
+Die Kraft bleibt im ersten Quadranten, aber wir messen den **Winkel von der positiven vertikalen Achse** zur Kraft. Jetzt ist <InlineMath math="F_y" /> die Ankathete zum Winkel <InlineMath math="\theta" />, während <InlineMath math="F_x" /> die Gegenkathete ist.
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
@@ -113,7 +114,7 @@ Vor dem Einsetzen sollte deshalb immer geklärt werden: Von welcher Achse aus wi
 
 ## Die Vorzeichen der Komponenten folgen dem Quadranten
 
-Ist <InlineMath math="\theta" /> der vollständige Standardwinkel, der von der positiven <InlineMath math="x" />-Achse gegen den Uhrzeigersinn gemessen wird, liefern <InlineMath math="\cos\theta" /> und <InlineMath math="\sin\theta" /> bereits die Vorzeichen der Komponenten. Bei einem spitzen Bezugswinkel berechnest du zuerst die Komponentenbeträge und bestimmst ihre Vorzeichen anschließend aus dem Quadranten.
+Ist <InlineMath math="\theta" /> der **vollständige Standardwinkel**, der von der positiven <InlineMath math="x" />-Achse gegen den Uhrzeigersinn gemessen wird, liefern <InlineMath math="\cos\theta" /> und <InlineMath math="\sin\theta" /> bereits die Vorzeichen der Komponenten. Bei einem spitzen Bezugswinkel berechnest du zuerst die Komponentenbeträge und bestimmst ihre Vorzeichen anschließend aus dem Quadranten.
 
 | Vektorrichtung | Vorzeichen von <InlineMath math="F_x" /> | Vorzeichen von <InlineMath math="F_y" /> |
 | :-------------- | :----------------------------------- | :----------------------------------- |

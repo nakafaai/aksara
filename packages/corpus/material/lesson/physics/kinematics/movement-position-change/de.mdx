@@ -4,7 +4,7 @@ export const metadata = {
     "Eine zeitlich geordnete Folge von Positionen beschreibt Bewegung, während zwei Endpunkte die Verschiebung im selben Bezugssystem bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
   subject: "Kinematik",
 };
 
@@ -22,13 +22,23 @@ Das Symbol <InlineMath math="\Delta x" /> wird als „Delta x“ gelesen und bez
 
 ## Positionsunterschied auf einer geraden Strecke
 
-Auf einer geraden Strecke mit festem Nullpunkt hängt die Positionsänderung nur von der Endposition minus der Anfangsposition ab. Wenn ein Objekt beispielsweise bei <InlineMath math="20 \text{ m}" /> beginnt und bei <InlineMath math="50 \text{ m}" /> endet, beträgt die Positionsänderung <InlineMath math="+30 \text{ m}" />.
+Auf einer geraden Strecke mit festem Nullpunkt hängt die Positionsänderung nur von der **Endposition minus der Anfangsposition** ab. Wenn ein Objekt beispielsweise bei <InlineMath math="20 \text{ m}" /> beginnt und bei <InlineMath math="50 \text{ m}" /> endet, beträgt die Positionsänderung <InlineMath math="+30 \text{ m}" />.
 
 Sind Anfangs- und Endposition gleich, beträgt die Verschiebung null. Aus diesen beiden Endpunkten allein lässt sich nicht erkennen, ob das Objekt stillstand oder sich entfernte und zurückkehrte. Dafür benötigen wir Zwischenpositionen oder den zurückgelegten Weg.
 
+Vergleiche diese beiden Fälle. Objekt A bleibt während der gesamten Beobachtung stehen. Objekt B bewegt sich geradlinig von <InlineMath math="20\text{ m}" /> zu <InlineMath math="50\text{ m}" /> und kehrt anschließend direkt zurück.
+
+| Zeit | Position von A | Position von B |
+| --- | --- | --- |
+| <InlineMath math="0\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+| <InlineMath math="3\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="50\text{ m}" /> |
+| <InlineMath math="6\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+
+Beide haben die Verschiebung <InlineMath math="20-20=0\text{ m}" />. A legt keinen Weg zurück, B dagegen <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Die Zwischenposition zeigt den Unterschied zwischen den beiden Fällen.
+
 ## Der Bezugspunkt muss derselbe bleiben
 
-Für eine Positionsänderung müssen Anfangs- und Endposition vom selben Bezugspunkt aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
+Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezugspunkt** aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
 
 | Bezugspunkt | Anfangsposition | Endposition | Verschiebung |
 | :-------- | :--------------- | :------------- | :----------------- |
@@ -40,7 +50,7 @@ Die drei Zeilen enthalten unterschiedliche Koordinaten für Anfang und Ende, abe
 
 ## Lesen des Vorzeichens einer Positionsänderung
 
-Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beispiel ist Osten positiv.
+Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beispiel ist **Osten positiv**.
 
 - <InlineMath math="\Delta x>0" /> bedeutet, dass die Endposition östlich der Anfangsposition liegt.
 - <InlineMath math="\Delta x<0" /> bedeutet, dass die Endposition westlich der Anfangsposition liegt.
@@ -59,6 +69,6 @@ Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Ein
 &=+30 \text{ m}
 \end{aligned}" />
 
-Die Person hat ihre Position also um <InlineMath math="30 \text{ m}" /> nach Osten verändert. Eine Bewegung hat stattgefunden, weil sich End- und Anfangsposition unterscheiden.
+Die **Verschiebung der Person** beträgt also <InlineMath math="30 \text{ m}" /> nach Osten. Diese zwei Positionen bestimmen die zurückgelegte Wegstrecke noch nicht. Hat die Person unterwegs die Richtung gewechselt, ist die Wegstrecke länger als <InlineMath math="30 \text{ m}" />.
 
 Die Reihenfolge der Subtraktion ist entscheidend: Immer wird <Highlight>die Anfangsposition von der Endposition abgezogen</Highlight>. Das Vorzeichen des Ergebnisses zeigt anschließend die Richtung der Positionsänderung.

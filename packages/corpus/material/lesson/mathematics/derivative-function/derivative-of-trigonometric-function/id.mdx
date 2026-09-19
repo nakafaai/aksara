@@ -3,7 +3,7 @@ export const metadata = {
     description: "Turunkan enam fungsi trigonometri dasar dalam radian dan terapkan aturan jumlah, hasil kali, serta hasil bagi melalui contoh bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Turunan Fungsi",
 };
 
@@ -17,41 +17,44 @@ Semua rumus berikut menganggap sudut diukur dalam **radian**. Jika sudut diukur 
 
 Rumus turunan sinus dan kosinus dapat <Highlight>dibuktikan langsung dari [definisi limit turunan](/id/materi/matematika/turunan-fungsi/konsep-turunan-fungsi)</Highlight>. Empat rumus lainnya kemudian dapat diturunkan dari identitas trigonometri bersama aturan hasil kali atau hasil bagi.
 
-Berikut turunan dasar keenam fungsi trigonometri:
+Tabel memasangkan setiap fungsi dengan turunannya dan syarat agar fungsi tersebut terdefinisi. Semua sudut memakai **radian**. Syarat pada penyebut juga tetap berlaku setelah fungsi diturunkan.
 
-1.  **Turunan Sinus**:
+| Fungsi | Turunan | Syarat |
+| --- | --- | --- |
+| <InlineMath math="\sin x" /> | <InlineMath math="\cos x" /> | Semua bilangan real |
+| <InlineMath math="\cos x" /> | <InlineMath math="-\sin x" /> | Semua bilangan real |
+| <InlineMath math="\tan x" /> | <InlineMath math="\sec^2 x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\cot x" /> | <InlineMath math="-\csc^2 x" /> | <InlineMath math="\sin x\ne0" /> |
+| <InlineMath math="\sec x" /> | <InlineMath math="\sec x\tan x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\csc x" /> | <InlineMath math="-\csc x\cot x" /> | <InlineMath math="\sin x\ne0" /> |
 
-    <BlockMath math="f(x) = \sin x \implies f'(x) = \cos x" />
+## Menghubungkan Sinus dengan Kemiringannya
 
-2.  **Turunan Kosinus**:
+Untuk <InlineMath math="f(x)=\sin x" />, turunan <InlineMath math="f'(x)=\cos x" /> menentukan **kemiringan kurva sinus**. Pada <InlineMath math="x=0" />, gradien sinus adalah <InlineMath math="1" />. Pada puncak sinus di <InlineMath math="x=\pi/2" />, gradiennya menjadi <InlineMath math="0" />.
 
-    <BlockMath math="f(x) = \cos x \implies f'(x) = -\sin x" />
+<LineEquation
+  title="Sinus dan Fungsi Turunannya"
+  description="Kurva ungu adalah sinus dan kurva jingga adalah kosinus. Sumbu mendatar mengukur sudut dalam radian. Bandingkan tanda kosinus dengan arah naik atau turun kurva sinus."
+  data={[
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 10]}
+/>
 
-3.  **Turunan Tangen**:
-
-    <BlockMath math="f(x) = \tan x \implies f'(x) = \sec^2 x" />
-
-4.  **Turunan Kotangen**:
-
-    <BlockMath math="f(x) = \cot x \implies f'(x) = -\csc^2 x" />
-
-5.  **Turunan Sekan**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \sec x \\ &amp;\implies f'(x) \\ &amp;= \sec x \tan x \end{aligned}" />
-
-6.  **Turunan Kosekan**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \csc x \\ &amp;\implies f'(x) \\ &amp;= -\csc x \cot x \end{aligned}" />
+Pada <InlineMath math="-\pi/2<x<\pi/2" />, kosinus positif sehingga sinus naik. Pada <InlineMath math="\pi/2<x<\pi" />, kosinus negatif sehingga sinus turun. **Turunan nol** pada puncak berarti garis singgung mendatar.
 
 ## Menerapkan Aturan pada Fungsi Trigonometri
 
-Contoh berikut menggabungkan rumus dasar tersebut dengan aturan turunan yang sudah dikenal. Tentukan aturan luarnya lebih dulu, lalu turunkan sudutnya dan kalikan, karena turunan <InlineMath math="\sin u" /> sama dengan <InlineMath math="\cos u" /> dikalikan turunan <InlineMath math="u" />.
+Contoh berikut menggabungkan rumus dasar tersebut dengan aturan turunan yang sudah dikenal. Tentukan aturan luarnya lebih dulu, lalu **turunkan sudutnya** dan kalikan, karena turunan <InlineMath math="\sin u" /> sama dengan <InlineMath math="\cos u" /> dikalikan turunan <InlineMath math="u" />.
 
 ### Kombinasi Aljabar dan Trigonometri
 
 Tentukan turunan dari <InlineMath math="y = 2 \sin x + 5x" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Kita bisa menurunkan fungsi ini suku per suku menggunakan aturan penjumlahan.
 
@@ -65,7 +68,7 @@ Kita bisa menurunkan fungsi ini suku per suku menggunakan aturan penjumlahan.
 
 Tentukan turunan dari <InlineMath math="y = 2 \sin x \tan x" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Gunakan aturan hasil kali <InlineMath math="y' = u'v + uv'" />.
 
@@ -83,7 +86,7 @@ Maka <InlineMath math="u' = 2 \cos x" /> dan <InlineMath math="v' = \sec^2 x" />
 
 Pada domain <InlineMath math="\sin x \ne 0" />, tentukan turunan dari <InlineMath math="y = \frac{1 + \cos x}{\sin x}" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Gunakan aturan hasil bagi <InlineMath math="y' = \frac{u'v - uv'}{v^2}" />.
 
@@ -114,14 +117,14 @@ Rumus yang telah disederhanakan tetap mengikuti domain fungsi semula. Jadi, nila
 
 ## Latihan
 
-Setiap soal meminta turunan pertama suatu bentuk trigonometri, dan soal kedua berbentuk hasil kali. Pilih aturan yang sesuai dengan bentuknya.
+Setiap soal meminta turunan pertama suatu bentuk trigonometri, dan soal kedua berbentuk **hasil kali**. Pilih aturan yang sesuai dengan bentuknya.
 
 1. Tentukan turunan pertama dari <InlineMath math="f(x) = 4x^3 - 5 \cos x" />.
 2. Tentukan turunan pertama dari <InlineMath math="f(x) = \sin x \cos x" />.
 
 ### Kunci Jawaban
 
-1.  **Penyelesaian:**
+1.  **Penyelesaian**:
 
     Gunakan aturan pengurangan untuk menurunkan setiap suku secara terpisah.
 
@@ -139,7 +142,7 @@ Setiap soal meminta turunan pertama suatu bentuk trigonometri, dan soal kedua be
 
     Jadi, turunan dari fungsi tersebut adalah <InlineMath math="12x^2 + 5 \sin x" />.
 
-2.  **Penyelesaian:**
+2.  **Penyelesaian**:
 
     Gunakan aturan hasil kali, <InlineMath math="f'(x) = u'v + uv'" />.
 

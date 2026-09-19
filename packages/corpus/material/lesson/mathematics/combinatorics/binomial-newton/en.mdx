@@ -3,7 +3,7 @@ export const metadata = {
   description: "Expand powers of a sum with the binomial theorem, then use its coefficients to find particular and constant terms.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Combinatorics",
 };
 
@@ -43,6 +43,16 @@ The complete expansion form can be written as:
 
 Each term in the expansion has the structure <InlineMath math="\binom{n}{k}x^{n-k}y^k" /> where the powers of <InlineMath math="x" /> and <InlineMath math="y" /> always sum to <InlineMath math="n" />.
 
+In the product <InlineMath math="(x+y)(x+y)(x+y)(x+y)" />, each term selects one item from every bracket. To form <InlineMath math="x^2y^2" />, choose **two brackets that contribute a y factor**. Six pairs of brackets produce the same term, so its coefficient is six.
+
+| Number of y choices | Coefficient | Term |
+| --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="x^4" /> |
+| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="4x^3y" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="6x^2y^2" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4xy^3" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="y^4" /> |
+
 ## Finding Specific Coefficients
 
 Newton's binomial theorem can find the coefficient of a selected term <Highlight>without expanding the entire expression</Highlight>.
@@ -72,7 +82,7 @@ The constant term is a term that does not contain any variables. To find it, we 
 
 **Example:** Determine the constant term of <InlineMath math="\left(3x^3 - \frac{2}{x}\right)^8" />.
 
-We write it in binomial form with <InlineMath math="a = 3x^3" /> and <InlineMath math="b = -\frac{2}{x}" />:
+Because the expression divides by <InlineMath math="x" />, we require <InlineMath math="x\ne0" />. We write it in binomial form with <InlineMath math="a = 3x^3" /> and <InlineMath math="b = -\frac{2}{x}" />:
 
 <BlockMath math="\begin{aligned} &amp;\left(3x^3 - \frac{2}{x}\right)^8 \\ &amp;= \sum_{k=0}^{8} \binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \end{aligned}" />
 
@@ -116,53 +126,52 @@ When facing binomial Newton problems, follow these systematic steps:
 
 Determine the coefficient of <InlineMath math="x^5" /> in the expansion of <InlineMath math="(2x + 3)^8" />.
 
-1. **Identify components**
+**Step 1**: Identify components
 
-    From <InlineMath math="(2x + 3)^8" />, we get:
-    - <InlineMath math="a = 2x" />
-    - <InlineMath math="b = 3" />
-    - <InlineMath math="n = 8" />
+From <InlineMath math="(2x + 3)^8" />, we get:
+- <InlineMath math="a = 2x" />
+- <InlineMath math="b = 3" />
+- <InlineMath math="n = 8" />
 
-2. **Determine the type of term**
+**Step 2**: Determine the type of term
 
-    We are looking for the coefficient of the term containing <InlineMath math="x^5" />.
+We are looking for the coefficient of the term containing <InlineMath math="x^5" />.
 
-3. **Use the general term formula**
+**Step 3**: Use the general term formula
 
-    General term: <InlineMath math="\binom{8}{k} (2x)^{8-k} (3)^k" />
+General term: <InlineMath math="\binom{8}{k} (2x)^{8-k} (3)^k" />
 
-    Expanding the general term:
+Expanding the general term:
 
-    <BlockMath math="\begin{aligned} &amp;\binom{8}{k} (2x)^{8-k} (3)^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (2x)^{8-k} (3)^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k} \end{aligned}" />
 
-    To get <InlineMath math="x^5" />, we need <InlineMath math="8-k = 5" />, so <InlineMath math="k = 3" />.
+To get <InlineMath math="x^5" />, we need <InlineMath math="8-k = 5" />, so <InlineMath math="k = 3" />.
 
-4. **Calculate carefully**
+**Step 4**: Calculate carefully
 
-    Substituting <InlineMath math="k = 3" />:
+Substituting <InlineMath math="k = 3" />:
 
-    <MathContainer>
-    <BlockMath math="\begin{aligned} &amp;\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 \\ &amp;= \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5 \end{aligned}" />
-    <BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
-    <BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
-    <BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
-    <BlockMath math="= 1{,}792 \cdot 27 \cdot x^5 = 48{,}384x^5" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 \\ &amp;= \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5 \end{aligned}" />
+<BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= 1{,}792 \cdot 27 \cdot x^5 = 48{,}384x^5" />
+</MathContainer>
 
-    Therefore, the coefficient of <InlineMath math="x^5" /> is <InlineMath math="48{,}384" />.
+Therefore, the coefficient of <InlineMath math="x^5" /> is <InlineMath math="48{,}384" />.
 
-Two checks help catch mistakes: **every term in the expansion** has total degree <InlineMath math="n" />, and the binomial coefficients are symmetric: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
+In the expansion of <InlineMath math="(a+b)^n" />, the powers of the factors <InlineMath math="a" /> and <InlineMath math="b" /> sum to <InlineMath math="n" />. After replacing these factors with expressions in <InlineMath math="x" />, recalculate the power of <InlineMath math="x" />. Another check uses **binomial coefficient symmetry**: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
 
 ## Exercises
 
-Each problem asks for a single term of one expansion. Use the general term formula and match the exponent that the question names.
+Each problem asks for a single term of one expansion. Use the general term formula and **match the exponent** that the question names.
 
 1. Determine the coefficient of <InlineMath math="x^4" /> in the expansion of <InlineMath math="(2x - 3)^7" />.
 
 2. Calculate the constant term of <InlineMath math="\left(x^2 + \frac{1}{x}\right)^9" />.
 
 3. In the expansion of <InlineMath math="(1 + 2x)^{10}" />, determine the term containing <InlineMath math="x^3" />.
-
 ### Answer Key
 
 1. **Solution:**

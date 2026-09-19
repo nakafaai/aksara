@@ -3,7 +3,7 @@ export const metadata = {
     description: "Verbinde Ableitungen, Akkumulationsfunktionen und bestimmte Integrale mithilfe beider Teile des Hauptsatzes.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integrale",
 };
 
@@ -17,7 +17,7 @@ Sei <InlineMath math="f" /> auf dem betrachteten Intervall stetig. Teil Eins dif
 
 Teil Eins besagt: Wird eine stetige Rate akkumuliert und die Akkumulation anschließend differenziert, <Highlight>erhält man wieder die ursprüngliche Rate</Highlight>.
 
-<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ &amp;\implies F'(x) \\ &amp;= f(x) \end{aligned}" />
+<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ F'(x)&amp;= f(x) \end{aligned}" />
 
 Dies bedeutet, dass die Ableitung einer als Integral definierten Funktion die Funktion innerhalb des Integrals selbst ist.
 
@@ -33,7 +33,15 @@ Nach Teil Eins erhalten wir die Ableitung, indem wir den Integranden an der ver�
 
 <BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
 
-Das Ergebnis ist der ursprüngliche Integrand, ausgewertet an der Obergrenze.
+Der Wurzelintegrand ist für <InlineMath math="t\ge-2" /> definiert und dort stetig. Die Ableitungsformel gilt im **Inneren des Definitionsbereichs**, also für <InlineMath math="x>-2" />.
+
+### Eine Funktion als obere Grenze
+
+Ist die obere Grenze <InlineMath math="x^2" />, beeinflusst auch ihre Änderung bezüglich <InlineMath math="x" /> die Ableitung. Wende nach dem Einsetzen der oberen Grenze in den Integranden die **Kettenregel** an:
+
+<BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
+
+Der Faktor <InlineMath math="2x" /> entsteht durch Ableiten der oberen Grenze <InlineMath math="x^2" />. Bei <InlineMath math="x=0" /> ändert sich diese Grenze momentan nicht. Daher ist auch die Ableitung der Akkumulationsfunktion null, obwohl der Integrand positiv ist.
 
 ## Auswerten von Integralen mit Stammfunktionen
 

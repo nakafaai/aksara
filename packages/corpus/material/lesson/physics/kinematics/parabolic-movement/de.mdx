@@ -4,7 +4,7 @@ export const metadata = {
     "Die Wurfbewegung verbindet eine gleichförmige horizontale Bewegung mit einer durch die Schwerkraft beschleunigten vertikalen Bewegung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Kinematik",
 };
 
@@ -14,6 +14,8 @@ export const metadata = {
 Bei einer Wurfbewegung folgt ein Objekt <Highlight>einer gekrümmten Bahn</Highlight>, weil es sich gleichzeitig horizontal und vertikal bewegt. Dieses Modell vernachlässigt den Luftwiderstand. Die einzige Beschleunigung ist daher die nach unten gerichtete Erdbeschleunigung.
 
 Wir untersuchen die Bewegung getrennt in horizontaler und vertikaler Richtung. Horizontal liegt eine gleichförmige geradlinige Bewegung vor, weil die Geschwindigkeit dort konstant bleibt. Vertikal handelt es sich um eine gleichmäßig beschleunigte Bewegung, weil die Schwerkraft die vertikale Geschwindigkeit fortlaufend verändert.
+
+Wir wählen die horizontale Abwurfrichtung als positive <InlineMath math="x" />-Richtung und **nach oben** als positive <InlineMath math="y" />-Richtung.
 
 <MathContainer>
   <BlockMath math="x(t)=x_0+v_0\cos\theta\ t" />
@@ -26,6 +28,7 @@ Dabei ist <InlineMath math="v_0" /> der Anfangsgeschwindigkeitsbetrag, <InlineMa
 In der Abbildung bleiben Ball und Anfangsgeschwindigkeit gleich. So lässt sich vergleichen, wie der Abwurfwinkel den Scheitelpunkt und die Wurfweite verändert.
 
 <ParabolicMovementLab
+  decimalSeparator="comma"
   title={<>Flugbahn eines geworfenen Balls</>}
   description={
     <>
@@ -51,13 +54,7 @@ Stelle dir einen Ball vor, der eine Rampe schräg verlässt. Seine horizontale B
 
 > Bei einer Projektilbewegung ohne Luftwiderstand bleibt <InlineMath math="v_x" /> konstant, aber <InlineMath math="v_y" /> ändert sich jeden Moment.
 
-Dieser Satz verhindert einen häufigen Fehler. Das Objekt verliert oben nicht seine horizontale Bewegung. Nur <Highlight>die Vertikalgeschwindigkeit wird dort Null</Highlight>.
-
-## Am Scheitelpunkt bewegt sich der Ball waagerecht weiter
-
-Am Scheitelpunkt gilt <InlineMath math="v_y=0" />, weil die vertikale Bewegung des Balls dort für einen Moment stoppt. <InlineMath math="v_x" /> bleibt jedoch erhalten, sodass sich der Ball weiterhin vorwärts bewegt.
-
-Deshalb endet die Flugbahn nicht am Scheitelpunkt. Danach wird <InlineMath math="v_y" /> durch die Gravitation negativ und der Ball bewegt sich nach unten. Gleichzeitig trägt <InlineMath math="v_x" /> ihn weiter nach vorn.
+Das Objekt verliert oben nicht seine horizontale Bewegung. Nur <Highlight>die Vertikalgeschwindigkeit wird dort Null</Highlight>.
 
 | Bewegungsanteil | Was geschieht? | Bewegungsart |
 | --- | --- | --- |
@@ -67,7 +64,7 @@ Deshalb endet die Flugbahn nicht am Scheitelpunkt. Danach wird <InlineMath math=
 
 ## Die Wurfweite folgt aus der Flugzeit
 
-Die horizontale Wurfweite, meist mit <InlineMath math="R" /> bezeichnet, ist die horizontale Entfernung vom Start- bis zum Landepunkt. Weil die horizontale Geschwindigkeit konstant ist, ergibt sich die Wurfweite aus horizontaler Geschwindigkeit mal Flugzeit.
+Die horizontale Wurfweite, meist mit <InlineMath math="R" /> bezeichnet, ist die horizontale Entfernung vom Start- bis zum Landepunkt. Weil die horizontale Geschwindigkeit konstant ist, ergibt sich die Wurfweite aus **horizontaler Geschwindigkeit mal Flugzeit**.
 
 <BlockMath math="R=v_x t_{\text{Luft}}" />
 
@@ -75,7 +72,7 @@ Haben zwei Bälle dasselbe <InlineMath math="v_x" />, landet der Ball mit der l�
 
 ## Ein Ball verlässt einen Tisch waagerecht
 
-Ein Ball verlässt eine Tischkante waagerecht mit <InlineMath math="v_x=4\text{ m/s}" />. Der Tisch ist <InlineMath math="1{,}25\text{ m}" /> hoch. Mit <InlineMath math="g=10\text{ m/s}^2" /> folgt die Fallzeit aus der vertikalen Bewegung:
+Ein Ball verlässt eine Tischkante waagerecht mit <InlineMath math="v_x=4\text{ m/s}" />. Der Tisch ist <InlineMath math="1{,}25\text{ m}" /> hoch. Mit <InlineMath math="g=10\text{ m/s}^2" /> folgt die **Fallzeit aus der vertikalen Bewegung**:
 
 <BlockMath math="\begin{aligned}
 h&=\frac{1}{2}gt^2\\

@@ -4,7 +4,7 @@ export const metadata = {
     "Sobald der Betrag der Resultierenden bekannt ist, bestimmt der Sinussatz ihre Richtung relativ zu den ursprünglichen Vektoren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
@@ -18,11 +18,14 @@ Bei zwei Vektoren lässt sich die Richtung der Resultierenden mit dem **Sinussat
 
 Dabei ist <InlineMath math="\theta" /> der Zwischenwinkel von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" />, <InlineMath math="R" /> der Betrag der Resultierenden und <InlineMath math="\phi" /> der Winkel zwischen <InlineMath math="\vec{A}" /> und der Resultierenden <InlineMath math="\vec{R}" />.
 
+
+Dieses Dreieck setzt **zwei von null verschiedene, nicht kollineare Vektoren** voraus, mit <InlineMath math="0^\circ<\theta<180^\circ" />. Ein Nullvektor als Resultierende hat keine bestimmbare Richtung.
+
 > Der Sinussatz wird gewöhnlich erst angewendet, wenn der Betrag der Resultierenden bekannt ist.
 
 ## Den gesuchten Winkel richtig ablesen
 
-Vor der Rechnung muss die Bezugsrichtung feststehen. Ist die Richtung der Resultierenden relativ zu <InlineMath math="\vec{A}" /> gesucht, wird der Winkel von <InlineMath math="\vec{A}" /> zu <InlineMath math="\vec{R}" /> gemessen.
+Vor der Rechnung muss die **Bezugsrichtung** feststehen. Ist die Richtung der Resultierenden relativ zu <InlineMath math="\vec{A}" /> gesucht, wird der Winkel von <InlineMath math="\vec{A}" /> zu <InlineMath math="\vec{R}" /> gemessen.
 
 Wird dagegen die Richtung relativ zu <InlineMath math="\vec{B}" /> verlangt, ist ein anderer Winkel gemeint. Die Winkel dürfen deshalb nicht vertauscht werden, ohne zuvor das Vektordreieck zu prüfen.
 
@@ -30,8 +33,10 @@ Häufig wird folgende Beziehung verwendet:
 
 <MathContainer>
   <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
-  <BlockMath math="\phi=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
+  <BlockMath math="\phi_0=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
 </MathContainer>
+
+Der Wert <InlineMath math="\phi_0" /> ist zunächst ein **spitzer oder rechter Winkel als Kandidat**. Prüfe die Komponenten der Resultierenden, um zwischen <InlineMath math="\phi=\phi_0" /> und <InlineMath math="\phi=180^\circ-\phi_0" /> zu entscheiden.
 
 Diese Formel liefert den Winkel der Resultierenden relativ zu <InlineMath math="\vec{A}" />. Der Seite gegenüber dem Winkel <InlineMath math="\phi" /> entspricht der Vektorbetrag <InlineMath math="B" />. Deshalb steht <InlineMath math="B" /> im Zähler.
 
@@ -39,24 +44,24 @@ Diese Formel liefert den Winkel der Resultierenden relativ zu <InlineMath math="
 
 An einem Punkt wirken zwei Kräfte mit <InlineMath math="A=10\text{ N}" /> und <InlineMath math="B=8\text{ N}" />. Ihr Zwischenwinkel beträgt <InlineMath math="60^\circ" />. Aus dem Kosinussatz ist bereits der Betrag <InlineMath math="R\approx15{,}6\text{ N}" /> bekannt.
 
-Gesucht ist nun der Winkel <InlineMath math="\phi" /> zwischen <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{R}" />.
+Verwende den **ungerundeten Betrag der Resultierenden** für den Winkel <InlineMath math="\phi" /> zwischen <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{R}" />.
 
 <BlockMath math="\begin{aligned}
 \sin\phi&=\frac{B\sin\theta}{R} \\
-&=\frac{8\sin60^\circ}{15{,}6} \\
-&=\frac{8(0{,}866)}{15{,}6} \\
-&\approx0{,}444
+&=\frac{8\sin60^\circ}{\sqrt{244}} \\
+&=\frac{4\sqrt3}{\sqrt{244}} \\
+&\approx0{,}4435
 \end{aligned}" />
 
 Damit folgt:
 
-<BlockMath math="\phi=\sin^{-1}(0{,}444)\approx26{,}4^\circ" />
+<BlockMath math="\phi=\sin^{-1}(0{,}4435)\approx26{,}3^\circ" />
 
-Die resultierende Kraft hat also einen Betrag von etwa <InlineMath math="15{,}6\text{ N}" /> und liegt um <InlineMath math="26{,}4^\circ" /> von <InlineMath math="\vec{A}" /> in Richtung <InlineMath math="\vec{B}" /> gedreht.
+Die resultierende Kraft hat also einen Betrag von etwa <InlineMath math="15{,}6\text{ N}" /> und liegt um <InlineMath math="26{,}3^\circ" /> von <InlineMath math="\vec{A}" /> in Richtung <InlineMath math="\vec{B}" /> gedreht.
 
 ## Überprüfung mit Komponenten
 
-Dasselbe Ergebnis lässt sich mit Komponenten prüfen. Liegt <InlineMath math="\vec{A}" /> auf der positiven <InlineMath math="x" />-Achse, gilt:
+Dasselbe Ergebnis lässt sich mit den **Komponenten der Resultierenden** prüfen. Liegt <InlineMath math="\vec{A}" /> auf der positiven <InlineMath math="x" />-Achse, gilt:
 
 <MathContainer>
   <BlockMath math="R_x=A+B\cos\theta" />
@@ -66,11 +71,41 @@ Dasselbe Ergebnis lässt sich mit Komponenten prüfen. Liegt <InlineMath math="\
 
 Für dasselbe Beispiel ergibt sich:
 
-<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{6{,}928}{14} \\ &amp;\approx0{,}495 \end{aligned}" />
+<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{4\sqrt3}{14} \\ &amp;\approx0{,}495 \end{aligned}" />
 
-Auch hier folgt <InlineMath math="\phi\approx26{,}4^\circ" />, also dasselbe Ergebnis wie mit dem Sinussatz. Diese Kontrolle hilft besonders, wenn unklar ist, auf welchen Vektor sich der gesuchte Winkel bezieht.
+Auch hier folgt <InlineMath math="\phi\approx26{,}3^\circ" />, also dasselbe Ergebnis wie mit dem Sinussatz. Diese Kontrolle hilft besonders, wenn unklar ist, auf welchen Vektor sich der gesuchte Winkel bezieht.
 
 Da <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" /> gilt, kann die Umkehrfunktion des Sinus einen spitzen Winkel liefern, obwohl das Dreieck den stumpfen Ergänzungswinkel erfordert. Die Vektorgeometrie oder die Komponentenform <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> bestimmt den richtigen Quadranten.
+
+### Einen stumpfen Winkel auswählen
+
+Seien <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" /> und <InlineMath math="\theta=150^\circ" />. Lege die erste Kraft auf die positive horizontale Achse. Berechne vor der Winkelwahl die Komponenten:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R_x &= A+B\cos150^\circ \\ &= 1+\sqrt3\left(-\frac{\sqrt3}{2}\right) \\ &= -\frac12\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}R_y &= B\sin150^\circ \\ &= \sqrt3\cdot\frac12 \\ &= \frac{\sqrt3}{2}\text{ N}\end{aligned}" />
+</MathContainer>
+
+Die horizontale Komponente ist **negativ**, die vertikale **positiv**. Die Resultierende liegt im zweiten Quadranten.
+
+<Vector3d
+  title="Eine Resultierende im zweiten Quadranten"
+  description="Die violette Resultierende zeigt nach links oben. Vergleiche diese Richtung mit dem spitzen Winkel aus der Sinusumkehrung."
+  vectors={[
+    {from: [0, 0, 0], to: [1, 0, 0], color: "#0d9488", label: <InlineMath math="\vec{A}" />, labelProgress: 0.5, labelOffset: [0, -0.3, 0]},
+    {from: [1, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#d97706", label: <InlineMath math="\vec{B}" />, labelProgress: 0.5, labelOffset: [0.2, 0.3, 0]},
+    {from: [0, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#7c3aed", label: <InlineMath math="\vec{R}" />, labelProgress: 0.5, labelOffset: [-0.4, 0, 0]}
+  ]}
+  cameraPosition={[0, 0, 5]}
+/>
+
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
+</MathContainer>
+
+Die Sinusumkehrung liefert <InlineMath math="60^\circ" />. Die Resultierende zeigt jedoch in die Richtung <InlineMath math="180^\circ-60^\circ=120^\circ" />. Die Vorzeichen der Komponenten unterscheiden die beiden möglichen Winkel.
 
 ## Komponentenverfahren für mehr als zwei Vektoren
 

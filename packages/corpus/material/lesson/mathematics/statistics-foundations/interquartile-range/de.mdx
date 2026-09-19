@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne den Interquartilsabstand, vergleiche ihn mit der Spannweite und deute die Streuung der mittleren Hälfte eines Datensatzes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Statistik",
 };
 
@@ -26,7 +26,7 @@ Der <InlineMath math="\mathrm{IQR}" /> ist somit die Differenz zwischen oberem u
 
 ## Altersverteilungen vergleichen
 
-Betrachten wir zwei Gruppen mit gleichem Mittelwert, aber sehr unterschiedlicher Streuung.
+Betrachten wir zwei Gruppen mit **gleichem Mittelwert**, aber sehr unterschiedlicher Streuung.
 
 Jede Gruppe besteht aus <InlineMath math="12 \text{ Personen}" />. Die Alterswerte sind bereits sortiert:
 
@@ -46,75 +46,61 @@ Jede Gruppe besteht aus <InlineMath math="12 \text{ Personen}" />. Die Alterswer
 | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
 
 Wir vergleichen Mittelwert, Quartile, Spannweite und Interquartilsabstand.
+### Mittelwert berechnen
 
-### Mittelwert und Quartile berechnen
+In beiden Gruppen ist das Durchschnittsalter **genau gleich** und beträgt <InlineMath math="16 \text{ Jahre}" />.
 
-1.  **Mittelwert (Durchschnitt):**
+Gruppe 1:
 
-    In beiden Gruppen ist das Durchschnittsalter **genau gleich** und beträgt <InlineMath math="16 \text{ Jahre}" />.
+Addiere zuerst alle zwölf Werte und teile dann durch zwölf:
 
-    Gruppe 1:
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
 
-    Addiere zuerst alle zwölf Werte und teile dann durch zwölf:
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;13+14+15+15 \\ &amp;\quad{}+16+16+17+17 \\ &amp;\quad{}+17+17+17+18 \\ &amp;=192 \end{aligned}" />
+Gruppe 2:
 
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+Addiere zuerst alle zwölf Werte und teile die Summe anschließend durch zwölf.
 
-    Gruppe 2:
+<MathContainer>
+  <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
+  <BlockMath math="\frac{192}{12}=16" />
+</MathContainer>
 
-    Addiere zuerst alle zwölf Werte und teile die Summe anschließend durch zwölf.
+### Quartile bestimmen
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned}&amp;1+3+4+5\\&amp;{}+7+8+12+27\\&amp;{}+28+29+32+36=192\end{aligned}" />
-      <BlockMath math="\frac{192}{12}=16" />
-    </MathContainer>
+Wir verwenden die **Interpolationskonvention** <InlineMath math="p(n+1)" />. Hier ist <InlineMath math="n=12" />. Die Positionen des unteren und oberen Quartils sind daher 3,25 und 9,75.
 
-2.  **Quartile (<InlineMath math="Q_1" /> und <InlineMath math="Q_3" />):**
+Da die Werte bereits sortiert sind, können wir die Quartilpositionen direkt bestimmen.
 
-    Da die Werte bereits sortiert sind, können wir die Quartilpositionen direkt bestimmen.
+**Gruppe Eins (<InlineMath math="n=12" />):**
+Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="3" /> mit dem Wert <InlineMath math="15" /> und Position <InlineMath math="4" /> mit dem Wert <InlineMath math="15" />. Weil beide Werte gleich sind, gilt
 
-    **Gruppe Eins (<InlineMath math="n=12" />):**
-    Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="\frac{1}{4}(12+1) = 3{,}25" />. Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="3" /> mit dem Wert <InlineMath math="15" /> und Position <InlineMath math="4" /> mit dem Wert <InlineMath math="15" />. Weil beide Werte gleich sind, gilt
+<BlockMath math="Q_1 = 15" />
 
-    <BlockMath math="Q_1 = 15" />
+Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="\frac{3}{4}(12+1) = 9{,}75" />. Damit liegt <InlineMath math="Q_3" /> zwischen Position <InlineMath math="9" /> mit dem Wert <InlineMath math="17" /> und Position <InlineMath math="10" /> mit dem Wert <InlineMath math="17" />. Weil beide Werte gleich sind, gilt
 
-    Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="\frac{3}{4}(12+1) = 9{,}75" />. Damit liegt <InlineMath math="Q_3" /> zwischen Position <InlineMath math="9" /> mit dem Wert <InlineMath math="17" /> und Position <InlineMath math="10" /> mit dem Wert <InlineMath math="17" />. Weil beide Werte gleich sind, gilt
+<BlockMath math="Q_3 = 17" />
 
-    <BlockMath math="Q_3 = 17" />
+**Gruppe Zwei (<InlineMath math="n=12" />):**
+Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="3{,}25" />. Sie liegt ein Viertel des Weges von Position <InlineMath math="3" /> mit dem Wert <InlineMath math="4" /> zu Position <InlineMath math="4" /> mit dem Wert <InlineMath math="5" />. Deshalb interpolieren wir mit dem Gewicht <InlineMath math="0{,}25" />:
 
-    **Gruppe Zwei (<InlineMath math="n=12" />):**
-    Die Position von <InlineMath math="Q_1" /> ist <InlineMath math="3{,}25" />. Sie liegt ein Viertel des Weges von Position <InlineMath math="3" /> mit dem Wert <InlineMath math="4" /> zu Position <InlineMath math="4" /> mit dem Wert <InlineMath math="5" />. Deshalb interpolieren wir mit dem Gewicht <InlineMath math="0{,}25" />:
+<BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
 
-    <BlockMath math="Q_1 = 4 + 0{,}25(5-4) = 4{,}25" />
+Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="9{,}75" />. Sie liegt drei Viertel des Weges von Position <InlineMath math="9" /> mit dem Wert <InlineMath math="28" /> zu Position <InlineMath math="10" /> mit dem Wert <InlineMath math="29" />. Das Interpolationsgewicht beträgt daher <InlineMath math="0{,}75" />:
 
-    Die Position von <InlineMath math="Q_3" /> ist <InlineMath math="9{,}75" />. Sie liegt drei Viertel des Weges von Position <InlineMath math="9" /> mit dem Wert <InlineMath math="28" /> zu Position <InlineMath math="10" /> mit dem Wert <InlineMath math="29" />. Das Interpolationsgewicht beträgt daher <InlineMath math="0{,}75" />:
-
-    <BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
+<BlockMath math="Q_3 = 28 + 0{,}75(29-28) = 28{,}75" />
 
 ### Spannweite und Interquartilsabstand berechnen
 
-Nun berechnen wir die beiden Streuungsmaße.
+Die **Spannweite** verwendet Maximum und Minimum, der **Interquartilsabstand** die beiden Quartilgrenzen. Vergleiche die folgenden Rechnungen in Jahren.
 
-1.  **Spannweite:**
-
-    <InlineMath math="\text{Spannweite} = \text{Maximum} - \text{Minimum}" />
-
-    - Die Spannweite von Gruppe Eins ist <InlineMath math="18 - 13 = 5" />.
-    - Die Spannweite von Gruppe Zwei ist <InlineMath math="36 - 1 = 35" />.
-
-      Die vollständigen Bereiche zeigen bereits, dass Gruppe Zwei in den Extremen viel stärker gestreut ist.
-
-2.  **Interquartilsabstand** (<InlineMath math="\mathrm{IQR}" />):
-
-    <InlineMath math="\mathrm{IQR} = Q_3 - Q_1" />
-
-    - Der <InlineMath math="\mathrm{IQR}" /> von Gruppe Eins ist <InlineMath math="17 - 15 = 2" />.
-    - Der <InlineMath math="\mathrm{IQR}" /> von Gruppe Zwei ist <InlineMath math="28{,}75 - 4{,}25 = 24{,}5" />.
-
-      Auch die mittleren Hälften der beiden Gruppen sind sehr unterschiedlich breit gestreut.
+| Gruppe | Spannweite | Interquartilsabstand |
+| --- | --- | --- |
+| 1 | <InlineMath math="18-13=5" /> | <InlineMath math="17-15=2" /> |
+| 2 | <InlineMath math="36-1=35" /> | <InlineMath math="28{,}75-4{,}25=24{,}5" /> |
 
 ### Interpretation der Ergebnisse
 

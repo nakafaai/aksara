@@ -3,7 +3,7 @@ export const metadata = {
    description: "Beschreibe ein Ereignis im Ergebnisraum, berechne seine Wahrscheinlichkeit und erkläre die Bedeutung des Ergebnisses im Sachzusammenhang.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Wird es heute regnen? Gewinnt eine Mannschaft ihr nächstes Spiel? Beides ist ungewiss. Mit einer **Wahrscheinlichkeit** können wir diese Unsicherheit trotzdem genau beschreiben.
 
-Die **Wahrscheinlichkeit** eines Ereignisses liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />:
+In einem **endlichen Ergebnisraum mit gleich wahrscheinlichen Ergebnissen** bedeuten die Wahrscheinlichkeitswerte:
 - Wahrscheinlichkeit <InlineMath math="0" /> bedeutet, dass das Ereignis **unmöglich** ist
 - Wahrscheinlichkeit <InlineMath math="1" /> bedeutet, dass das Ereignis **sicher** ist
 - Wahrscheinlichkeit <InlineMath math="0{,}5" /> bedeutet, dass das Ereignis und sein Komplement **gleich wahrscheinlich** sind
@@ -51,121 +51,127 @@ Die Größen in dieser Formel bedeuten:
 
 **Zwei Würfel untersuchen:**
 
-Zwei faire Würfel liefern <InlineMath math="6 \times 6 = 36" /> gleich wahrscheinliche geordnete Paare. Gesucht ist die Wahrscheinlichkeit für die Summe <InlineMath math="9" />.
+Zwei unabhängig geworfene faire Würfel liefern <InlineMath math="6 \times 6 = 36" /> gleich wahrscheinliche geordnete Paare. Gesucht ist die Wahrscheinlichkeit für die Summe <InlineMath math="9" />.
 
-**Systematische Lösung:**
+Liste die **geordneten Paare** mit Summe neun auf. Werden die Augenzahlen des ersten und zweiten Würfels vertauscht, entsteht ein anderes Versuchsergebnis.
 
-1. Wir sammeln alle Möglichkeiten für die Summe <InlineMath math="9" />:
-   - Erster Würfel <InlineMath math="3" />, zweiter Würfel <InlineMath math="6" />: <InlineMath math="(3,6)" />
-   - Erster Würfel <InlineMath math="4" />, zweiter Würfel <InlineMath math="5" />: <InlineMath math="(4,5)" />
-   - Erster Würfel <InlineMath math="5" />, zweiter Würfel <InlineMath math="4" />: <InlineMath math="(5,4)" />
-   - Erster Würfel <InlineMath math="6" />, zweiter Würfel <InlineMath math="3" />: <InlineMath math="(6,3)" />
+| Erster Würfel | Zweiter Würfel | Summe |
+| --- | --- | --- |
+| 3 | 6 | 9 |
+| 4 | 5 | 9 |
+| 5 | 4 | 9 |
+| 6 | 3 | 9 |
 
-2. Damit gibt es <InlineMath math="n(A) = 4" /> günstige Ergebnisse.
+Vier Paare erfüllen die Bedingung, also gilt <InlineMath math="n(A)=4" />.
 
-3. Nun setzen wir die beiden Anzahlen in die Formel ein:
+<BlockMath math="P(\text{Summe}=9)=\frac{4}{36}=\frac{1}{9}\approx 0{,}111" />
 
-    <BlockMath math="P(\text{Summe} = 9) = \frac{4}{36} = \frac{1}{9} \approx 0{,}111" />
+### Die Anzahl der Gewinncoupons schätzen
 
-**Wahrscheinlichkeitsbasierte Marketingstrategie:**
+Angenommen, ein Getränkeunternehmen legt manchen Getränkekartons Gewinncoupons bei. In diesem Werbemodell beträgt die Wahrscheinlichkeit für einen Gewinn in einem gekauften Karton <InlineMath math="\frac{3}{32}" />.
 
-Ein Getränkeunternehmen legt manchen Getränkekartons Gewinncoupons bei. Aus bisherigen Daten wird die Wahrscheinlichkeit, in einem gekauften Karton einen Gewinn zu finden, auf <InlineMath math="\frac{3}{32}" /> geschätzt.
+Bei vielen Käufen wird ein Anteil von ungefähr <InlineMath math="3/32" /> Gewinnkartons erwartet. Bei <InlineMath math="320" /> Käufen beträgt die erwartete Couponanzahl
 
-**Praktische Interpretation:** Bei sehr vielen Käufen ist im Mittel in etwa <InlineMath math="3" /> von <InlineMath math="32" /> Kartons ein Gewinn zu erwarten. Diese Schätzung kann dem Unternehmen helfen:
-- das Werbebudget zu planen
-- die Reaktion der Kundschaft abzuschätzen
-- realistische Verkaufsziele festzulegen
+<BlockMath math="320\times\frac{3}{32}=10\times3=30" />
 
-**Würfelsummen vergleichen:**
+Dieser Erwartungswert hilft beim Schätzen der Gewinnkosten. Er ist **keine garantierte Couponanzahl** für eine einzelne Gruppe von Käufen.
 
-Bei zwei fairen Würfeln hat die Summe <InlineMath math="7" /> mehr günstige geordnete Paare als jede andere Summe:
+### Würfelsummen vergleichen
+
+Bei zwei fairen Würfeln hat die Summe <InlineMath math="7" /> **mehr günstige geordnete Paare** als jede andere Summe:
 
 Es gibt <InlineMath math="6" /> Möglichkeiten für die Summe <InlineMath math="7" />: <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" />.
 
 <BlockMath math="P(\text{Summe} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
 
 Das ist die größte Wahrscheinlichkeit unter allen möglichen Summen. Trotzdem muss der nächste Wurf nicht <InlineMath math="7" /> ergeben. Die Rechnung beschreibt, wie sich die Ergebnisse über viele Würfe verteilen. Sie legt den nächsten einzelnen Wurf nicht fest.
-
 ## Übungsaufgaben
 
-Versuche jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Notiere zuerst den Ergebnisraum und das Ereignis. Setze erst danach Zahlen in die Formel ein.
+Versuche jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Notiere zuerst den **Ergebnisraum und das Ereignis**. Setze erst danach Zahlen in die Formel ein.
 
-1. Bestimme beim Werfen zweier Würfel die Wahrscheinlichkeit für eine gerade Summe.
+1. Bestimme beim unabhängigen Werfen zweier fairer Würfel die Wahrscheinlichkeit für eine gerade Summe.
 
 2. Eine Schachtel enthält <InlineMath math="5 \text{ rote Kugeln}" />, <InlineMath math="3 \text{ blaue Kugeln}" /> und <InlineMath math="2 \text{ grüne Kugeln}" />. Eine Kugel wird zufällig gezogen. Bestimme die Wahrscheinlichkeit dafür, dass sie nicht rot ist.
 
 3. Drei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit dafür, genau zweimal Zahl zu erhalten.
 
 4. Eine Qualitätskontrolle findet genau <InlineMath math="50" /> fehlerhafte Produkte in einer Charge von <InlineMath math="1000 \text{ Einheiten}" />. Wie groß ist bei einer gleichverteilten Zufallsauswahl die Wahrscheinlichkeit für ein fehlerfreies Produkt?
-
 ### Ausführliche Lösungen
 
-1. **Antwort: <InlineMath math="\frac{1}{2}" />**
+**Aufgabe 1**
 
-   **Schrittweise Lösung:**
+<InlineMath math="\frac{1}{2}" />
 
-   Der Ergebnisraum beim Werfen zweier Würfel hat <InlineMath math="n(S) = 36" /> Ergebnisse.
+**Schrittweise Lösung:**
 
-   **Identifiziere alle geraden Summen und Möglichkeiten, sie zu erhalten:**
-   - Summe <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> Weg
-   - Summe <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ Wege}" />
-   - Summe <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ Wege}" />
-   - Summe <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ Wege}" />
-   - Summe <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ Wege}" />
-   - Summe <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> Weg
+Der Ergebnisraum beim Werfen zweier Würfel hat <InlineMath math="n(S) = 36" /> Ergebnisse.
 
-   **Günstige Ergebnisse insgesamt:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
+**Identifiziere alle geraden Summen und Möglichkeiten, sie zu erhalten:**
+- Summe <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> Weg
+- Summe <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ Wege}" />
+- Summe <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ Wege}" />
+- Summe <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ Wege}" />
+- Summe <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ Wege}" />
+- Summe <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> Weg
 
-   **Wahrscheinlichkeitsberechnung:**
+**Günstige Ergebnisse insgesamt:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
 
-   <BlockMath math="P(\text{gerade Summe}) = \frac{18}{36} = \frac{1}{2} = 0{,}5" />
+**Wahrscheinlichkeitsberechnung:**
 
-2. **Antwort: <InlineMath math="\frac{1}{2}" />**
+<BlockMath math="P(\text{gerade Summe}) = \frac{18}{36} = \frac{1}{2} = 0{,}5" />
 
-   **Lösungsschritte:**
+**Aufgabe 2**
 
-   **Gesamtzahl der Kugeln:** <InlineMath math="5 + 3 + 2 = 10" /> Kugeln
+<InlineMath math="\frac{1}{2}" />
 
-   **Nicht rote Kugeln:** <InlineMath math="3 \text{ blau} + 2 \text{ grün} = 5" /> Kugeln
+**Lösungsschritte:**
 
-   **Wahrscheinlichkeitsberechnung:**
+**Gesamtzahl der Kugeln:** <InlineMath math="5 + 3 + 2 = 10" /> Kugeln
 
-   <BlockMath math="P(\text{nicht rot}) = \frac{5}{10} = \frac{1}{2} = 0{,}5" />
+**Nicht rote Kugeln:** <InlineMath math="3 \text{ blau} + 2 \text{ grün} = 5" /> Kugeln
 
-3. **Antwort: <InlineMath math="\frac{3}{8}" />**
+**Wahrscheinlichkeitsberechnung:**
 
-   **Lösungsschritte:**
+<BlockMath math="P(\text{nicht rot}) = \frac{5}{10} = \frac{1}{2} = 0{,}5" />
 
-   **Ergebnisraum für drei Münzwürfe:**
+**Aufgabe 3**
 
-   <BlockMath math="\left\{\begin{gathered}
-   HHH, HHT, HTH, \\
-   HTT, THH, THT, \\
-   TTH, TTT
-   \end{gathered}\right\}" />
+<InlineMath math="\frac{3}{8}" />
 
-   **Gesamtmöglichkeiten:** <InlineMath math="n(S) = 2^3 = 8" />
+**Lösungsschritte:**
 
-   **Ereignis „genau zweimal Zahl“:** <InlineMath math="\{HTT, THT, TTH\}" />
+**Ergebnisraum für drei Münzwürfe:**
 
-   **Anzahl der günstigen Ergebnisse:** <InlineMath math="n(A) = 3" />
+<BlockMath math="\left\{\begin{gathered}
+HHH, HHT, HTH, \\
+HTT, THH, THT, \\
+TTH, TTT
+\end{gathered}\right\}" />
 
-   **Wahrscheinlichkeitsberechnung:**
+**Gesamtmöglichkeiten:** <InlineMath math="n(S) = 2^3 = 8" />
 
-   <BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8} = 0{,}375" />
+**Ereignis „genau zweimal Zahl“:** <InlineMath math="\{HTT, THT, TTH\}" />
 
-4. **Antwort: <InlineMath math="\frac{19}{20}" /> oder <InlineMath math="95\%" />**
+**Anzahl der günstigen Ergebnisse:** <InlineMath math="n(A) = 3" />
 
-   **Lösungsschritte:**
+**Wahrscheinlichkeitsberechnung:**
 
-   **Gesamtmenge:** <InlineMath math="1000 \text{ Einheiten}" />
+<BlockMath math="P(\text{genau 2-mal Zahl}) = \frac{3}{8} = 0{,}375" />
 
-   **Fehlerhafte Produkte:** <InlineMath math="5\% \times 1000 = 50 \text{ Einheiten}" />
+**Aufgabe 4**
 
-   **Fehlerfreie Produkte:** <InlineMath math="1000 - 50 = 950 \text{ Einheiten}" />
+<InlineMath math="\frac{19}{20}" /> oder <InlineMath math="95\%" />
 
-   **Wahrscheinlichkeitsberechnung:**
+**Lösungsschritte:**
 
-   <BlockMath math="P(\text{nicht defekt}) = \frac{950}{1000} = \frac{19}{20} = 0{,}95 = 95\%" />
+**Gesamtmenge:** <InlineMath math="1000 \text{ Einheiten}" />
 
-   **Interpretation:** Bei einer gleichverteilten Zufallsauswahl aus dieser Charge beträgt die Wahrscheinlichkeit für ein fehlerfreies Produkt <InlineMath math="95\%" />. Diese Aussage gilt für das Zufallsmodell und für die gesamte Charge, während ein einzelnes Produkt davon abweichen kann.
+**Fehlerhafte Produkte:** <InlineMath math="50 \text{ Einheiten}" />
+
+**Fehlerfreie Produkte:** <InlineMath math="1000 - 50 = 950 \text{ Einheiten}" />
+
+**Wahrscheinlichkeitsberechnung:**
+
+<BlockMath math="P(\text{nicht defekt}) = \frac{950}{1000} = \frac{19}{20} = 0{,}95 = 95\%" />
+
+**Interpretation:** Bei einer gleichverteilten Zufallsauswahl aus dieser Charge beträgt die Wahrscheinlichkeit für ein fehlerfreies Produkt <InlineMath math="95\%" />. Diese Aussage gilt für das Zufallsmodell und für die gesamte Charge, während ein einzelnes Produkt davon abweichen kann.

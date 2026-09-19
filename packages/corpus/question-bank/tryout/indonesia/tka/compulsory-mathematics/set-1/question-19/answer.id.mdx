@@ -2,10 +2,10 @@ export const metadata = {
   title: "Pembahasan Soal 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Luas sisi bergantung pada dua rusuk pembentuknya, sedangkan volume bergantung pada ketiganya. Kalikan faktor-faktor yang sesuai.
+Luas sisi bergantung pada **dua rusuk pembentuk sisi**, sedangkan volume bergantung pada tiga rusuk yang saling tegak lurus. Kalikan faktor-faktor yang sesuai.
 
 <BlockMath math="\begin{aligned}
 k_{pl}&=2\cdot3=6 \\
@@ -25,3 +25,24 @@ A'&\ne3A
 \end{aligned}" />
 
 Ketiga pernyataan faktor luas sisi dan volume benar. Pernyataan bahwa diagonal selalu menjadi dua kali dan luas permukaan selalu menjadi tiga kali salah.
+
+<MathVisual
+  title="Balok setelah penskalaan tak seragam"
+  description="Kubus dengan rusuk satu satuan berubah menjadi balok dengan panjang 2, lebar 3, dan tinggi setengah satuan. Bentuk balok berubah karena faktor skalanya berbeda."
+  labels={{
+    length: <InlineMath math="p'=2" />,
+    width: <InlineMath math="l'=3" />,
+    height: <InlineMath math="t'=\frac12" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1, max: 1 }, z: { min: -2, max: 2 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [{ id: "scaled", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 3, height: 0.5 } }],
+    labels: [
+      { key: "length", objectId: "scaled", at: { x: 0, y: -0.25, z: 1.5 }, placement: "below" },
+      { key: "width", objectId: "scaled", at: { x: 1, y: -0.25, z: 0 }, placement: "right" },
+      { key: "height", objectId: "scaled", at: { x: -1, y: 0, z: 1.5 }, placement: "left" },
+    ],
+  }}
+/>

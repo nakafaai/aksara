@@ -6,15 +6,13 @@ export const metadata = {
     "Vektor yang sama, vektor negatif, dan vektor nol memiliki aturan komponen berbeda, sedangkan perkalian skalar mengubah besar dan dapat membalik arah vektor.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vektor",
 };
 
 ## Vektor Sama Tidak Bergantung pada Tempat
 
-<Highlight>Dua vektor dikatakan sama jika besar dan arahnya sama.</Highlight> Letak panahnya boleh berbeda. Kesamaan ini membandingkan vektornya. Untuk gaya, titik kerjanya tetap dapat mengubah efek putar walaupun vektor gayanya tidak berubah.
-
-> Dua vektor sama ketika panjang dan arahnya sama. Letak pangkal panah dapat berbeda.
+Dua vektor dikatakan sama jika <Highlight>besar dan arahnya sama</Highlight>. Letak panahnya boleh berbeda. Kesamaan ini membandingkan vektornya. Untuk gaya, titik kerjanya tetap dapat mengubah efek putar walaupun vektor gayanya tidak berubah.
 
 <Vector3d
   title={<>Vektor Sama dan Vektor Berlawanan</>}
@@ -74,14 +72,14 @@ Kebebasan menggeser vektor abstrak pada diagram tidak berarti setiap titik kerja
 
 ## Vektor Negatif Membalik Arah
 
-Vektor negatif dari <InlineMath math="\vec{a}" /> ditulis sebagai <InlineMath math="-\vec{a}" />. Besarnya sama dengan <InlineMath math="\vec{a}" />, tetapi arahnya berlawanan.
+<Highlight>Vektor negatif</Highlight> dari <InlineMath math="\vec{a}" /> ditulis sebagai <InlineMath math="-\vec{a}" />. Besarnya sama dengan <InlineMath math="\vec{a}" />, tetapi arahnya berlawanan.
 
 <MathContainer>
   <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
   <BlockMath math="\vec{a}+(-\vec{a})=\vec{0}" />
 </MathContainer>
 
-Contohnya, gaya <InlineMath math="12\text{ N}" /> ke kanan dan gaya <InlineMath math="12\text{ N}" /> ke kiri adalah pasangan vektor yang saling berlawanan. Jika keduanya bekerja pada benda yang sama sepanjang garis yang sama, resultannya dapat menjadi vektor nol.
+Contohnya, gaya <InlineMath math="12\text{ N}" /> ke kanan dan gaya <InlineMath math="12\text{ N}" /> ke kiri adalah pasangan vektor yang saling berlawanan. Jika keduanya bekerja pada benda yang sama sepanjang garis yang sama, resultan kedua gaya adalah vektor nol.
 
 ## Perkalian Skalar Mengubah Besar dan Arah
 
@@ -89,16 +87,28 @@ Skalar adalah bilangan biasa yang tidak memiliki arah. Ketika vektor dikalikan d
 
 | Bentuk | Besar hasil | Arah hasil |
 | :----- | :---------- | :--------- |
-| <InlineMath math="2\vec{a}" /> | dua kali <InlineMath math="\vec{a}" /> | searah <InlineMath math="\vec{a}" /> |
-| <InlineMath math="\frac{1}{2}\vec{a}" /> | setengah dari <InlineMath math="\vec{a}" /> | searah <InlineMath math="\vec{a}" /> |
-| <InlineMath math="-3\vec{a}" /> | tiga kali <InlineMath math="\vec{a}" /> | berlawanan arah dengan <InlineMath math="\vec{a}" /> |
+| <InlineMath math="2\vec{a}" /> | <InlineMath math="2\lvert\vec{a}\rvert" /> | searah <InlineMath math="\vec{a}" /> |
+| <InlineMath math="\frac{1}{2}\vec{a}" /> | <InlineMath math="\frac{1}{2}\lvert\vec{a}\rvert" /> | searah <InlineMath math="\vec{a}" /> |
+| <InlineMath math="-3\vec{a}" /> | <InlineMath math="3\lvert\vec{a}\rvert" /> | berlawanan arah dengan <InlineMath math="\vec{a}" /> |
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | menjadi vektor nol |
 
 Tanda negatif pada skalar <Highlight>tidak membuat besar vektor menjadi negatif</Highlight>. Tanda itu membalik arah vektor.
 
+### Mengalikan Setiap Komponen
+
+Untuk vektor pada model, ambil <InlineMath math="\vec{a}=(4,2,0)" />. Kalikan **setiap komponen** dengan skalar yang sama. Skalar negatif mengubah tanda komponen, sedangkan besar hasil tetap tidak negatif.
+
+<MathContainer>
+  <BlockMath math="-3\vec{a}=(-3\cdot4,-3\cdot2,-3\cdot0)=(-12,-6,0)" />
+  <BlockMath math="\lvert-3\vec{a}\rvert=\sqrt{(-12)^2+(-6)^2}=\sqrt{180}=6\sqrt{5}" />
+</MathContainer>
+
+Besar awal adalah <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. Besar hasil <InlineMath math="6\sqrt{5}" /> tepat tiga kali besar awal, sesuai faktor <InlineMath math="\lvert-3\rvert=3" />.
+
+
 ## Vektor Nol sebagai Hasil Saling Meniadakan
 
-Vektor nol ditulis sebagai <InlineMath math="\vec{0}" />. Besarnya <InlineMath math="0" /> dan arahnya tidak tertentu karena pangkal dan ujungnya berhimpit.
+Vektor nol ditulis sebagai <InlineMath math="\vec{0}" />. Besarnya <InlineMath math="0" /> dan <Highlight>tidak memiliki arah tertentu</Highlight> karena pangkal dan ujungnya berhimpit.
 
 Vektor nol sering muncul dari penjumlahan vektor yang saling meniadakan. Misalnya dua siswa menarik kotak dengan gaya sama besar pada arah berlawanan. Jika gaya-gaya itu tepat segaris, gabungannya tidak menghasilkan percepatan ke kanan atau ke kiri.
 

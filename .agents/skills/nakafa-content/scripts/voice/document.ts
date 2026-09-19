@@ -1,7 +1,11 @@
 import { basename } from "node:path";
 import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import { Schema } from "effect";
-import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
+import { findBodyHighlightIssues } from "#nakafa-content/body/review";
+import {
+  findEmphasisArtifactIssues,
+  findPhraseEmphasisIssues,
+} from "#nakafa-content/emphasis/check";
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
 import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
 import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
@@ -57,6 +61,8 @@ export function findDocumentIssues(
   return [
     ...structural,
     ...findLessonVoiceIssues(locale, source, tree, kind),
+    ...findPhraseEmphasisIssues(source, tree),
+    ...findBodyHighlightIssues(tree, kind === "answer"),
     ...findMathBlockFragmentIssues(source, tree),
     ...findLearnerFacingSemicolonIssues(source, tree),
     ...findHeadingOrderIssues(source, tree, kind === "answer" ? 4 : 2),

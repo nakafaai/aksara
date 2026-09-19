@@ -6,7 +6,7 @@ export const metadata = {
     "Resolve a slanted vector into horizontal and vertical components using sine and cosine.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-19",
   subject: "Vector",
 };
 
@@ -14,32 +14,33 @@ export const metadata = {
 
 When a vector forms an angle with an axis, its components can be found using trigonometry. The idea is simple: the slanted vector becomes <Highlight>the hypotenuse of a right triangle</Highlight>, while its components become the horizontal and vertical sides.
 
-If angle <InlineMath math="\theta" /> is measured from the positive <InlineMath math="x" /> axis, the horizontal component is adjacent to the angle, while the vertical component is opposite the angle.
+For a vector in quadrant I, measure <InlineMath math="\theta" /> from the positive <InlineMath math="x" /> axis. The horizontal component is adjacent to the angle and the vertical component is opposite it. For vector magnitude <InlineMath math="F>0" />, divide each side by the hypotenuse, then multiply by <InlineMath math="F" /> again.
 
 <MathContainer>
-  <BlockMath math="F_x=F\cos\theta" />
-  <BlockMath math="F_y=F\sin\theta" />
+  <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
+  <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
 > Identify the side adjacent to the reference angle before assigning <InlineMath math="\cos" /> and the opposite side before assigning <InlineMath math="\sin" />.
 
 ## A Slanted Force on Coordinate Axes
 
-Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to the right. The pull has a horizontal part that pulls the box rightward and a vertical part that lifts slightly upward.
+Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to the right. The pull has **rightward and upward force components**. An upward component does not necessarily lift the box: its motion also depends on its weight and the normal force from the floor.
 
 <Vector3d
   title={<>Resolving a Slanted Force</>}
   description={
     <>
-      Force <InlineMath math="\vec{F}=50\text{ N}" /> forms a{" "}
+      Force <InlineMath math="F=50\text{ N}" /> forms a{" "}
       <InlineMath math="37^\circ" /> angle above the horizontal, so its
       components can be estimated from <InlineMath math="\cos37^\circ" /> and{" "}
       <InlineMath math="\sin37^\circ" />.
     </>
   }
   vectors={(() => {
-    const fx = [4, 0, 0];
-    const fy = [0, 3, 0];
+    const angle = (37 * Math.PI) / 180;
+    const fx = [5 * Math.cos(angle), 0, 0];
+    const fy = [0, 5 * Math.sin(angle), 0];
     const resultant = fx.map((component, index) => component + fy.at(index));
 
     return [
@@ -76,33 +77,33 @@ Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to 
   cameraTarget={[2, -0.8, 0]}
 />
 
-The endpoint of <InlineMath math="F_x" /> followed by <InlineMath math="F_y" /> matches the endpoint of vector <InlineMath math="\vec{F}" />. The components describe the same force in two directions.
+Each coordinate unit in the model represents <InlineMath math="10\text{ N}" />. The endpoint of <InlineMath math="F_x" /> followed by <InlineMath math="F_y" /> matches the endpoint of vector <InlineMath math="\vec{F}" />. The components describe the same force in two directions.
 
-## Turning a Slanted Force into Components
+### Calculating the Pulling Force Components
 
-A <InlineMath math="50\text{ N}" /> force acts <InlineMath math="37^\circ" /> above the horizontal. Use <InlineMath math="\cos37^\circ\approx0.8" /> and <InlineMath math="\sin37^\circ\approx0.6" />.
+A <InlineMath math="50\text{ N}" /> force acts <InlineMath math="37^\circ" /> above the horizontal. Use the **trigonometric approximations** <InlineMath math="\cos37^\circ\approx0.8" /> and <InlineMath math="\sin37^\circ\approx0.6" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
   F_x&=F\cos\theta \\
-  &=50(0.8) \\
+  &\approx50(0.8) \\
   &=40\text{ N}
   \end{aligned}" />
 
   <BlockMath math="\begin{aligned}
   F_y&=F\sin\theta \\
-  &=50(0.6) \\
+  &\approx50(0.6) \\
   &=30\text{ N}
   \end{aligned}" />
 </MathContainer>
 
-So the slanted <InlineMath math="50\text{ N}" /> force is equivalent to a <InlineMath math="40\text{ N}" /> pull to the right and a <InlineMath math="30\text{ N}" /> pull upward.
+With this rounding, the components of the <InlineMath math="50\text{ N}" /> force are approximately a <InlineMath math="40\text{ N}" /> pull to the right and a <InlineMath math="30\text{ N}" /> pull upward.
 
-The two components describe that same force along the horizontal and vertical directions.
+Without early rounding, the values are about <InlineMath math="39.93\text{ N}" /> and <InlineMath math="30.09\text{ N}" />. The model uses the angle <InlineMath math="37^\circ" /> directly, so its coordinates are not exactly <InlineMath math="4" /> and <InlineMath math="3" />.
 
 ## Angle from Vertical Axis
 
-The formulas change when the reference angle changes. If angle <InlineMath math="\theta" /> is measured from the <InlineMath math="y" /> axis, the component adjacent to the angle is <InlineMath math="F_y" />.
+Keep the force in quadrant I, but measure the **angle from the positive vertical axis** toward the force. The component adjacent to <InlineMath math="\theta" /> is now <InlineMath math="F_y" />, while <InlineMath math="F_x" /> is opposite the angle.
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
@@ -113,7 +114,7 @@ Before using a formula, always ask: from which axis is the angle measured? This 
 
 ## Component Signs Follow the Quadrant
 
-If <InlineMath math="\theta" /> is the full standard-position angle measured counterclockwise from positive <InlineMath math="x" />, <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> already produce the component signs. If an acute reference angle is used instead, first calculate the component magnitudes and then assign signs from the quadrant.
+If <InlineMath math="\theta" /> is the **full standard-position angle** measured counterclockwise from positive <InlineMath math="x" />, <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> already produce the component signs. If an acute reference angle is used instead, first calculate the component magnitudes and then assign signs from the quadrant.
 
 | Vector direction | Sign of <InlineMath math="F_x" /> | Sign of <InlineMath math="F_y" /> |
 | :--------------- | :------------------------------- | :------------------------------- |

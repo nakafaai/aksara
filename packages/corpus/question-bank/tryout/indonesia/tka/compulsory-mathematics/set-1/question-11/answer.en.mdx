@@ -2,16 +2,42 @@ export const metadata = {
   title: "Solution to Question 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Sunlight makes the same angle for both shadows. The ratio of height to shadow length is therefore the same. Let <InlineMath math="H" /> be the combined height of the tree and platform.
+The height-shadow triangles each have a right angle and the same sunlight angle. They are **similar triangles**, so their height-to-shadow ratios are equal. Let <InlineMath math="H" /> be the combined height of the tree and platform.
 
 <BlockMath math="\begin{aligned}
 \frac{H}{8}&=\frac{1.8}{1.2} \\
-H&=8(1.5)=12
+H&=8\left(\frac{18}{12}\right) \\
+&=8\left(\frac32\right)=12
 \end{aligned}" />
 
 Subtract the platform height to find the tree height.
 
 <BlockMath math="h=12-2=10\,\mathrm{m}" />
+
+<LineEquation
+  title="The tree height and platform height"
+  description="Purple marks the tree height and orange the platform height. The large triangle uses the total height of 12 metres and an 8-metre shadow."
+  cameraPosition={[3.8, 6, 18]}
+  cameraTarget={[3.8, 6, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: 0, y: 12, z: 0 }, { x: 8, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#64748b", smooth: false, showPoints: false,
+      labels: [{ text: <InlineMath math="8\text{ m}" />, at: 1, offset: [-4, -0.6, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 2, z: 0 }, { x: 0, y: 12, z: 0 }],
+      color: "#9333ea", smooth: false,
+      labels: [{ text: <InlineMath math="10\text{ m}" />, at: 0, offset: [-0.8, 5, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
+      color: "#d97706", smooth: false,
+      labels: [{ text: <InlineMath math="2\text{ m}" />, at: 0, offset: [-0.8, 1, 0] }],
+    },
+  ]}
+/>

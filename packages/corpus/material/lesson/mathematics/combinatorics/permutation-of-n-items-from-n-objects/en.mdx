@@ -3,13 +3,13 @@ export const metadata = {
    description: "Count arrangements that use every object with the factorial formula, then apply it in worked examples and exercises.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
 ## Assigning Every Object a Place in the Order
 
-**Permutation of all objects** arranges all <InlineMath math="n" /> available objects, <Highlight>uses each object exactly once</Highlight>, and treats different orders as different arrangements.
+**Permutation of all objects** arranges all <InlineMath math="n" /> distinct available objects, <Highlight>uses each object exactly once</Highlight>, and treats different orders as different arrangements.
 
 Five students are lining up for a photo. All five receive one position, and every different order counts as a different arrangement.
 
@@ -32,6 +32,16 @@ Because <InlineMath math="0!=1" />, a complete permutation has the formula:
 <BlockMath math="nP_n = n!" />
 </MathContainer>
 
+For three distinct objects A, B, and C, the first position determines two orders for the remaining objects. The table lists **each order exactly once**.
+
+| First object | Complete arrangements |
+| --- | --- |
+| A | ABC, ACB |
+| B | BAC, BCA |
+| C | CAB, CBA |
+
+<BlockMath math="3!=3\times2\times1=6" />
+
 ## Factorial Definition
 
 The factorial <InlineMath math="n!" /> is the product of the positive integers from <InlineMath math="n" /> down to <InlineMath math="1" />:
@@ -46,26 +56,23 @@ The factorial <InlineMath math="n!" /> is the product of the positive integers f
 
 ## Assigning All Objects to Distinct Positions
 
-Each arrangement below gives every object its own position, so no object is left out and none repeats. Counting starts with the number of objects and multiplies one choice fewer at every step.
-
+Each arrangement below gives every object **its own position**, so no object is left out and none repeats. Counting starts with the number of objects and multiplies one choice fewer at every step.
 ### School Organization
 
-Suppose there are <InlineMath math="4 \text{ students}" /> who will fill <InlineMath math="4" /> positions in a student committee: president, vice president, secretary, and treasurer. Each student can only hold one position.
+Suppose there are <InlineMath math="4 \text{ students}" /> who will fill <InlineMath math="4" /> positions in a student committee: president, vice president, secretary, and treasurer. Each student can only hold **one position**.
 
 The number of ways to arrange the leadership is:
 
 <MathContainer>
 <BlockMath math="4P_4 = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{ ways}" />
 </MathContainer>
-
 ### Seating Arrangement
 
-A family consisting of <InlineMath math="6" /> members will sit in a row on a sofa for a family photo. The number of ways they can be arranged is:
+A family consisting of <InlineMath math="6" /> members will **sit in a row** on a sofa for a family photo. The number of ways they can be arranged is:
 
 <MathContainer>
 <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ ways}" />
 </MathContainer>
-
 ## Calculating Complete Permutations
 
 For a complete permutation of <InlineMath math="n" /> objects:
@@ -77,15 +84,9 @@ For a complete permutation of <InlineMath math="n" /> objects:
 
 ### Expanding Five Factorial
 
-Expand <InlineMath math="5!" /> one factor at a time:
+Expand <InlineMath math="5!" /> **one factor at a time**:
 
-<MathContainer>
-<BlockMath math="5! = 5 \times 4 \times 3 \times 2 \times 1" />
-<BlockMath math="= 20 \times 3 \times 2 \times 1" />
-<BlockMath math="= 60 \times 2 \times 1" />
-<BlockMath math="= 120 \times 1 = 120" />
-</MathContainer>
-
+<BlockMath math="\begin{aligned}5! &amp;=5\times4\times3\times2\times1\\ &amp;=20\times3\times2\times1\\ &amp;=60\times2\times1\\ &amp;=120\times1=120\end{aligned}" />
 ## Complete and Partial Permutations
 
 **Complete permutation (<InlineMath math="n" /> from <InlineMath math="n" /> objects)**: Uses all available objects.
@@ -97,29 +98,24 @@ Expand <InlineMath math="5!" /> one factor at a time:
 
 **Detailed calculation for partial permutation**:
 
-<MathContainer>
-<BlockMath math="5P_3 = \frac{5!}{(5-3)!} = \frac{5!}{2!}" />
-<BlockMath math="= \frac{5 \times 4 \times 3 \times 2 \times 1}{2 \times 1}" />
-<BlockMath math="= \frac{120}{2} = 60 \text{ ways}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ ways}\end{aligned}" />
 
 In permutation of <InlineMath math="n" /> items from <InlineMath math="n" /> objects, **no objects are left over** and **all positions must be filled**.
 
 ## Exercises
 
-All three problems arrange every object in a line and ask for the number of orders, so each one uses the same factorial count.
+All four problems arrange **every object** in a line and ask for the number of orders, so each one uses the same factorial count.
 
 1. A photography team wants to arrange <InlineMath math="7 \text{ models}" /> for a photo session in one line. How many different ways can they arrange the seven models?
 
-2. In a running competition, there are <InlineMath math="5 \text{ participants}" /> who must all finish. How many different finishing order possibilities are there?
+2. In a running competition, there are <InlineMath math="5 \text{ participants}" /> who all finish without ties. How many different finishing order possibilities are there?
 
 3. A chef wants to arrange <InlineMath math="6" /> different types of food on a table in one straight line. How many different ways can he arrange the food?
 
 4. A library has <InlineMath math="8 \text{ different books}" /> that will be arranged on one shelf. If all books must be placed on that shelf, how many possible arrangements are there?
-
 ### Answer Key
 
-1. Given: <InlineMath math="7 \text{ models}" /> will be arranged in one line (all models used)
+1. Given: <InlineMath math="7 \text{ models}" /> will be arranged in one line (**all models used**)
 
    <MathContainer>
    <BlockMath math="7P_7 = 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040 \text{ ways}" />

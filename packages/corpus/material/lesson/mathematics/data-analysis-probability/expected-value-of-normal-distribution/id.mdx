@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hubungkan rata-rata distribusi normal dengan nilai harapannya dalam soal statistika.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Analisis Data dan Peluang",
 };
 
@@ -55,6 +55,31 @@ Perhatikan bahwa:
 
 - **Integral kedua** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> adalah integral Gaussian. Setelah dikalikan faktor normalisasi <InlineMath math="1/\sqrt{2\pi}" />, hasilnya menjadi peluang total <InlineMath math="1" /> pada kepadatan normal standar.
 
+Kedua bagian integral pertama **konvergen secara terpisah**. Antiturunan <InlineMath math="-e^{-t^2/2}" /> menunjukkan besarnya tiap kontribusi, sehingga penjumlahannya sah dan tidak melibatkan pengurangan dua nilai tak berhingga.
+
+<MathContainer>
+  <BlockMath math="\int_0^\infty te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_0^\infty=0-(-1)=1" />
+  <BlockMath math="\int_{-\infty}^0 te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_{-\infty}^0=-1-0=-1" />
+</MathContainer>
+
+<LineEquation
+  title="Kontribusi di Kiri dan Kanan Saling Meniadakan"
+  description="Grafik g(t) = t exp(-t²/2) pada -3 sampai 3. Untuk t dan -t, tingginya sama besar dengan tanda berlawanan. Ekor di luar tampilan juga simetris."
+  cameraPosition={[0, 0, 8]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, index) => {
+        const t = (index - 30) / 10;
+        return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    },
+  ]}
+/>
+
 Maka:
 
 <MathContainer>
@@ -62,7 +87,7 @@ Maka:
 <BlockMath math="E(X) = 0 + \mu = \mu" />
 </MathContainer>
 
-Jadi, **nilai harapan variabel acak normal sama dengan parameter rata-ratanya**.
+Jadi, nilai harapan variabel acak normal sama dengan **parameter rata-ratanya**.
 
 > Untuk setiap distribusi normal <InlineMath math="X \sim N(\mu, \sigma^2)" />, berlaku <InlineMath math="E(X) = \mu" />. Ini berarti kita tidak perlu melakukan integrasi setiap kali menghitung nilai harapan distribusi normal, cukup menggunakan nilai parameter <InlineMath math="\mu" />.
 
@@ -78,7 +103,7 @@ Jika tinggi badan sekelompok siswa terdistribusi normal dengan rata-rata <Inline
 
 ## Nilai Harapan Skor Ujian dan Berat Bayi
 
-**Contoh** 1
+**Contoh 1**
 
 Misalkan hasil ujian matematika di suatu kelas terdistribusi normal dengan rata-rata <InlineMath math="\mu = 75" /> dan standar deviasi <InlineMath math="\sigma = 10" />. Berapakah nilai harapan skor ujian seorang siswa?
 
@@ -90,7 +115,7 @@ Karena distribusi normal memiliki sifat <InlineMath math="E(X) = \mu" />, maka n
 
 Jadi, nilai harapan skor ujian seorang siswa adalah <InlineMath math="75" />.
 
-**Contoh** 2
+**Contoh 2**
 
 Misalkan berat bayi baru lahir di suatu rumah sakit dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="3{.}200 \text{ gram}" /> dan simpangan baku <InlineMath math="400 \text{ gram}" />. Tentukan berat harapan satu bayi yang dipilih secara acak.
 
@@ -104,17 +129,16 @@ Berat harapannya sama dengan parameter rata-rata:
 
 ## Latihan
 
-Kedua soal memberikan rata-rata dan simpangan baku suatu distribusi normal, lalu meminta nilai harapannya. Bacalah rata-rata langsung dari deskripsinya, karena nilai harapan distribusi normal sama dengan titik pusatnya.
+Ketiga soal memberikan **rata-rata dan simpangan baku** suatu distribusi normal, lalu meminta nilai harapannya. Bacalah rata-rata langsung dari deskripsinya, karena nilai harapan distribusi normal sama dengan titik pusatnya.
 
 1. Waktu tempuh dari rumah ke sekolah dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="25 \text{ menit}" /> dan simpangan baku <InlineMath math="5 \text{ menit}" />. Tentukan waktu tempuh harapannya.
 
 2. Suhu udara harian di Jakarta selama Juni dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="28^\circ\text{C}" /> dan simpangan baku <InlineMath math="3^\circ\text{C}" />. Berapa suhu harapan pada hari yang dipilih secara acak?
 
 3. Nilai ujian fisika siswa kelas <InlineMath math="12" /> dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="78" /> dan simpangan baku <InlineMath math="12" />. Berapa nilai harapan siswa yang dipilih secara acak?
-
 ### Kunci Jawaban
 
-1. **Penyelesaian Soal** 1:
+1. **Penyelesaian Soal 1**:
 
    Diketahui: <InlineMath math="\mu = 25 \text{ menit}" />, <InlineMath math="\sigma = 5 \text{ menit}" />
 
@@ -124,7 +148,7 @@ Kedua soal memberikan rata-rata dan simpangan baku suatu distribusi normal, lalu
 
    **Jawaban:** Nilai harapan waktu tempuh perjalanan adalah <InlineMath math="25 \text{ menit}" />.
 
-2. **Penyelesaian Soal** 2:
+2. **Penyelesaian Soal 2**:
 
    Diketahui: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
 
@@ -134,7 +158,7 @@ Kedua soal memberikan rata-rata dan simpangan baku suatu distribusi normal, lalu
 
    **Jawaban:** Nilai harapan suhu udara adalah <InlineMath math="28^\circ\text{C}" />.
 
-3. **Penyelesaian Soal** 3:
+3. **Penyelesaian Soal 3**:
 
    Diketahui: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
 

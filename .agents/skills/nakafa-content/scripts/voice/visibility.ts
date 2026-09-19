@@ -13,9 +13,9 @@ export const VISIBILITY_VOICE_RULES = [
   {
     id: "formulaic-visible-claim",
     patterns: {
-      de: /(?:\b(?:macht|machen|machte|machten)\b[^.!?\n]{0,100}\bsichtbar\b|\bsichtbar\b[^.!?\n]{0,100}\b(?:macht|machen|machte|machten)\b)/iu,
-      en: /\b(?:make|makes|made|making)\b[^.!?\n]{0,100}\bvisible\b/iu,
-      id: /\b(?:membuat|menjadikan)\b[^.!?\n]{0,100}\b(?:terlihat|tampak)\b/iu,
+      de: /(?:\b(?:macht|machen|machte|machten)\b[^.!?\n]{0,35}\b(?:Idee|Konzept|Muster|Grundform|Zusammenhang)\b[^.!?\n]{0,35}\bsichtbar\b|\b(?:Idee|Konzept|Muster|Grundform|Zusammenhang)\b[^.!?\n]{0,35}\bsichtbar\b[^.!?\n]{0,35}\b(?:macht|machen|machte|machten)\b)/iu,
+      en: /\b(?:make|makes|made|making)\b[^.!?\n]{0,35}\b(?:idea|concept|pattern|form|relationship)\b[^.!?\n]{0,35}\bvisible\b/iu,
+      id: /\b(?:membuat|menjadikan)\b[^.!?\n]{0,35}\b(?:ide|konsep|pola|bentuk|hubungan)(?:nya)?\b[^.!?\n]{0,35}\b(?:terlihat|tampak)\b/iu,
     },
   },
   {

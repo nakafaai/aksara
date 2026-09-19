@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Q1, Q2 und Q3 ungruppierter Daten mit einer klar benannten Interpolationskonvention und einem vollständig gelösten Beispiel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-19",
   subject: "Statistik",
 };
 
@@ -23,12 +23,11 @@ Zusammen beschreiben <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <I
 
 ## Position der Quartile bestimmen
 
-Wie finden wir nun die Rangpositionen von <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> im sortierten Datensatz?
+Wie finden wir nun die Rangpositionen von <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> im **sortierten Datensatz**?
 
 Wir bezeichnen die Anzahl der aufsteigend sortierten Datenwerte mit <InlineMath math="n" />.
 
 Für Quartile gibt es mehrere gültige Rangkonventionen. Daher können verschiedene Programme bei kleinen Datensätzen leicht unterschiedliche Werte liefern. Die folgenden Rechnungen verwenden durchgehend die interpolierte Position <InlineMath math="p(n+1)" /> mit <InlineMath math="p" /> gleich <InlineMath math="\frac14" />, <InlineMath math="\frac12" /> oder <InlineMath math="\frac34" />. Eine Position unter <InlineMath math="1" /> wird auf das Minimum und eine Position über <InlineMath math="n" /> auf das Maximum begrenzt. Für einen sinnvollen Vergleich müssen die Ergebnisse mit derselben Konvention berechnet worden sein.
-
 ### Unteres Quartil
 
 Für das untere Quartil gilt:
@@ -36,7 +35,7 @@ Für das untere Quartil gilt:
 <BlockMath math="\text{Position von } Q_1 = \frac{1}{4}(n+1)" />
 
 - **Ist das Ergebnis ganzzahlig**, zum Beispiel <InlineMath math="5" />, entspricht <InlineMath math="Q_1" /> dem Wert an Position <InlineMath math="5" />.
-- **Liegt das Ergebnis zwischen zwei Positionen**, zum Beispiel bei <InlineMath math="5{,}25" />, befindet sich <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />. Wie der genaue Wert interpoliert wird, folgt später. Hier bestimmen wir zunächst nur die Lage.
+- **Liegt das Ergebnis zwischen zwei Positionen**, zum Beispiel bei <InlineMath math="5{,}25" />, befindet sich <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />. Der Nachkommateil gibt an, wie weit wir vom Wert an der unteren Position zum nächsten Wert gehen.
 
 **Beispiel:**
 
@@ -45,6 +44,10 @@ Nehmen wir <InlineMath math="20" /> Datenwerte an (<InlineMath math="n=20" />).
 Die Position von <InlineMath math="Q_1" /> ergibt sich aus <InlineMath math="\frac{1}{4}(20+1)" />. Das entspricht <InlineMath math="\frac{21}{4}" />, also Position <InlineMath math="5{,}25" />.
 
 Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />.
+
+Angenommen, bei diesen 20 sortierten Beobachtungen ist der fünfte Wert 8 und der sechste 12. Das **Interpolationsgewicht** 0,25 nimmt ein Viertel der Differenz zwischen beiden Werten, nicht einfach deren Mittelwert.
+
+<BlockMath math="Q_1=8+0{,}25(12-8)=8+1=9" />
 
 ### Mittleres Quartil
 
@@ -90,7 +93,9 @@ Versuche die Aufgabe zunächst selbst. Vergleiche deinen Lösungsweg danach mit 
 
 **Schritt 1**: Sortiere zuerst die Daten.
 
-Sortierte Daten: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
+| Position | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Wert | 5 | 6 | 7 | 7 | 8 | 9 | 10 |
 
 Anzahl der Datenpunkte: <InlineMath math="n = 7" />
 

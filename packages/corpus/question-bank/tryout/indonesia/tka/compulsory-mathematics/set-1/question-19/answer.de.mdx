@@ -2,10 +2,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-19",
 };
 
-Eine Seitenfläche hängt von ihren beiden Kantenlängen ab, das Volumen von allen drei. Multipliziere die jeweiligen Skalierungsfaktoren.
+Eine Seitenfläche hängt von ihren **beiden Kantenlängen** ab, das Volumen von allen drei. Multipliziere die jeweiligen Skalierungsfaktoren.
 
 <BlockMath math="\begin{aligned}
 k_{pl}&=2\cdot3=6 \\
@@ -25,3 +25,24 @@ A'&\ne3A
 \end{aligned}" />
 
 Die drei Aussagen zu Seitenflächen und Volumen stimmen. Die Behauptungen, die Diagonale verdopple sich immer und die gesamte Oberfläche verdreifache sich immer, sind falsch.
+
+<MathVisual
+  title="Der Quader nach ungleichmäßiger Skalierung"
+  description="Ein Würfel mit Kantenlänge eins wird zu einem Quader mit Länge 2, Breite 3 und Höhe ein halb. Unterschiedliche Skalierungsfaktoren verändern seine Form."
+  labels={{
+    length: <InlineMath math="p'=2" />,
+    width: <InlineMath math="l'=3" />,
+    height: <InlineMath math="t'=\frac12" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1, max: 1 }, z: { min: -2, max: 2 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [{ id: "scaled", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 3, height: 0.5 } }],
+    labels: [
+      { key: "length", objectId: "scaled", at: { x: 0, y: -0.25, z: 1.5 }, placement: "below" },
+      { key: "width", objectId: "scaled", at: { x: 1, y: -0.25, z: 0 }, placement: "right" },
+      { key: "height", objectId: "scaled", at: { x: -1, y: 0, z: 1.5 }, placement: "left" },
+    ],
+  }}
+/>

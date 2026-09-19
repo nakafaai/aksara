@@ -146,6 +146,10 @@ know, so it is not the full id list.
   skips one. The corpus nests answer-key headings to `####` and `#####` under a
   `###` heading, which stays valid because no level is skipped, so the gate
   enforces order rather than a maximum depth.
+- `section-body-highlight` requires a selective phrase in every authored
+  heading body, including the body below the app-owned answer heading. A
+  marked title or earlier section does not satisfy it. Exact block quotations,
+  code, and pure notation are excluded so protected source text stays intact.
 - `lesson-without-highlight` and `lesson-opening-highlight` recognize both
   Markdown strong emphasis and `<Highlight>` through the parsed tree, including
   rendered JSX labels. Marker text inside code does not count. There is no
@@ -249,3 +253,23 @@ same tier.
 Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
 clean gate as evidence that the corpus is human.
+
+## Section review and emphasis regressions
+
+The physics vector report showed that a document can satisfy the opening
+highlight and twenty-five-word checks while its other explanations stay
+unmarked or unsupported. `--pedagogy-review` therefore inventories every
+section and reports structural signals separately from deterministic findings.
+These signals require a contextual decision; they do not impose visual quotas,
+paragraph lengths, or a highlight in every bridge paragraph.
+
+`sentence-punctuation-emphasis` catches a long marked phrase that includes its
+sentence-ending punctuation, including the shipped vector-notation opening.
+Both emphasis syntaxes use the same rule. Assessed questions, exact quotations,
+code, and short abbreviations stay protected. The rule cannot prove that every
+unreported mark is a useful phrase, so the manual emphasis review remains.
+
+`nested-relation-alignment` covers the probability regression that aligned an
+equality inside an event argument. Nearby valid event relations remain inside
+the complete argument, and nested cases and matrix environments keep their own
+alignment. This rule checks layout, not the truth of an equation.
