@@ -1,13 +1,13 @@
 export const metadata = {
   title: "Solution to Question 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-09",
 };
 
-We need to find the number of days in April <InlineMath math="2024" /> on which Pak Saiful does **not** receive shipments from either Supplier B or C.
+We need to find the number of days in April <InlineMath math="2024" /> on which Pak Saiful does receive **no shipments** from either Supplier B or C.
 
-First, identify the time parameters. April has a total of <InlineMath math="30\text{ days}" />.
+April has a total of <InlineMath math="30\text{ days}" />.
 
 Next, we determine the delivery dates for each supplier, starting from April <InlineMath math="1" />:
 
@@ -16,11 +16,15 @@ Next, we determine the delivery dates for each supplier, starting from April <In
 | <InlineMath math="B" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="25" />, <InlineMath math="29" /> |
 | <InlineMath math="C" /> | <InlineMath math="1" />, <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="22" />, <InlineMath math="29" /> |
 
-The days on which Pak Saiful receives a shipment from one or both suppliers are the union of sets <InlineMath math="B" /> and <InlineMath math="C" />:
+The days on which Pak Saiful receives a shipment from one or both suppliers are the **union of sets** <InlineMath math="B" /> and <InlineMath math="C" />:
 
 | Set | Delivery dates |
 | :--- | :--- |
 | <InlineMath math="B\cup C" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="8" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="15" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="22" />, <InlineMath math="25" />, <InlineMath math="29" /> |
+
+April 1 and April 29 appear in both lists. Count each of these overlapping dates only once.
+
+<BlockMath math="|B\cup C|=8+5-2=11" />
 
 The number of days with shipments is <InlineMath math="11\text{ days}" />.
 

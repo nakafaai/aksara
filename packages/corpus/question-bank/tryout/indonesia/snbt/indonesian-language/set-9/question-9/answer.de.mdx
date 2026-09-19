@@ -2,9 +2,22 @@ export const metadata = {
   title: "Lösung 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-**Menjelaskan mengapa arus yang sama dapat dihitung sebagai perpindahan keluar atau sebagai perpindahan internal, bergantung pada komponen yang dimasukkan ke dalam perhitungan.**
+Die Systemgrenze bestimmt **eingehende, ausgehende und interne Flüsse**. Mit allen angegebenen Flüssen ergeben sich zwei Bilanzen.
 
-Die Definition zeigt, warum alle Ströme über eine Grenze geprüft werden müssen. Beim Pflanzenwert von <InlineMath math="11" /> fehlen sechs Einheiten abgehender Streu, sodass die vollständige Pflanzenbilanz fünf Einheiten beträgt. Wird der Boden einbezogen, ist Streu ein interner Strom. Zersetzung und Abfluss ins Wasser verlassen dagegen das gemeinsame System. Dessen Bilanz beträgt vier Einheiten, nicht elf. Die Systemgrenze bestimmt somit, welche Ströme in die Rechnung eingehen.
+| System | Eingang | Ausgang | Intern |
+| --- | --- | --- | --- |
+| Pflanzen | Fotosynthese 18 | Atmung 7 und Streu 6 | Kein interner Fluss dargestellt |
+| Pflanzen und Boden | Fotosynthese 18 | Atmung 7, Zersetzung 4, Transport ins Wasser 3 | Streu 6 |
+
+Für Pflanzen allein:
+
+<BlockMath math="\Delta C=18-(7+6)=18-13=+5" />
+
+Für Pflanzen und Boden zusammen:
+
+<BlockMath math="\Delta C=18-(7+4+3)=18-14=+4" />
+
+Beide Ergebnisse nennen zusätzliche Kohlenstoffeinheiten über ein hypothetisches Jahr. Der Wert 11 lässt bei Pflanzen die Streu weg, beim gemeinsamen System Zersetzung und Wassertransport. Auch die korrekte Rechnung beschreibt eine Simulation, keine Messung realer Mangroven.

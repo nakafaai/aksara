@@ -1,37 +1,29 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Rundbahn in Abschnitte teilen
+#### Zuerst die Streckenabschnitte zählen
 
-Die Rundbahn hat <InlineMath math="4" /> Kontrollpunkte: <InlineMath math="A, B, C, D" />. Eine Runde besteht aus <InlineMath math="4\text{ Abschnitten}" />: <InlineMath math="A \to B" />, <InlineMath math="B \to C" />, <InlineMath math="C \to D" /> und <InlineMath math="D \to A" />. Der Lauf beginnt bei <InlineMath math="A" />.
+Der erste Weg von <InlineMath math="A" /> nach <InlineMath math="C" /> umfasst **eine halbe Runde**, also zwei gleich lange Abschnitte. Bei jedem weiteren Eintreffen in <InlineMath math="C" /> kommt eine volle Runde mit vier Abschnitten hinzu:
 
-#### Strecke bis zum dritten Eintreffen bestimmen
+| Eintreffen in C | Abschnitte seit dem Start |
+| --- | ---: |
+| Erstes Mal | <InlineMath math="2" /> |
+| Zweites Mal | <InlineMath math="2+4=6" /> |
+| Drittes Mal | <InlineMath math="6+4=10" /> |
+| Viertes Mal | <InlineMath math="10+4=14" /> |
 
-Der Läufer erreicht den Kontrollpunkt <InlineMath math="C" /> insgesamt <InlineMath math="3\text{-mal}" />.
+#### Abschnitte in Zeit umrechnen
 
-- **Beim <InlineMath math="1" />. Mal:** <InlineMath math="A \to B \to C" /> umfasst <InlineMath math="2\text{ Abschnitte}" />.
-- **Beim <InlineMath math="2" />. Mal:** Es kommt <InlineMath math="1" /> volle Runde mit <InlineMath math="4\text{ Abschnitten}" /> hinzu. Insgesamt sind es <InlineMath math="2 + 4 = 6\text{ Abschnitte}" />.
-- **Beim <InlineMath math="3" />. Mal:** Erneut kommt <InlineMath math="1" /> volle Runde mit <InlineMath math="4\text{ Abschnitten}" /> hinzu. Insgesamt sind es <InlineMath math="6 + 4 = 10\text{ Abschnitte}" />.
+Bei **konstanter Geschwindigkeit** benötigen gleich lange Abschnitte gleich viel Zeit. Bis zum dritten Eintreffen vergehen zwölf Minuten für zehn Abschnitte. Die Zeit je Abschnitt beträgt:
 
-Für <InlineMath math="10\text{ Abschnitte}" /> braucht der Läufer <InlineMath math="12\text{ Minuten}" />. Die Zeit je Abschnitt <InlineMath math="t_s" /> beträgt daher:
+<BlockMath math="t_s=\frac{12}{10}=1{,}2\text{ Minuten}" />
 
-<BlockMath math="t_s = \frac{12}{10} = 1{,}2 \text{ Minuten}" />
+Das vierte Eintreffen erfolgt deshalb nach:
 
-#### Gesamtzeit bis zum vierten Eintreffen
+<BlockMath math="T=14\times1{,}2=16{,}8\text{ Minuten}" />
 
-Bis zum <InlineMath math="4" />. Eintreffen bei <InlineMath math="C" /> kommt <InlineMath math="1" /> weitere Runde mit <InlineMath math="4\text{ Abschnitten}" /> hinzu. Insgesamt sind es:
-
-<BlockMath math="10 + 4 = 14 \text{ Abschnitte}" />
-
-Bei konstanter Geschwindigkeit ergibt sich damit:
-
-<MathContainer>
-  <BlockMath math="T = 14 \times 1{,}2 \text{ Minuten}" />
-  <BlockMath math="= 16{,}8 \text{ Minuten}" />
-</MathContainer>
-
-Die Gesamtzeit beträgt somit <InlineMath math="16{,}8 \text{ Minuten}" />.
+Diese Zeit gilt ab dem Start. Zur Kontrolle dauert eine zusätzliche Runde <InlineMath math="4\times1{,}2=4{,}8" /> Minuten, also insgesamt <InlineMath math="12+4{,}8=16{,}8" /> Minuten.

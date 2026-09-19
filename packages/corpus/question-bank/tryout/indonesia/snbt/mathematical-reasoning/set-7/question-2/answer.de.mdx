@@ -1,42 +1,20 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Kreditzinsen berechnen
+#### Zinsen berechnen
 
-Gegeben:
+Der feste einfache Zins wird jeden Monat aus dem **ursprünglichen Kreditbetrag** berechnet. Sei <InlineMath math="I" /> der Monatszins und <InlineMath math="B" /> der gesamte Zinsbetrag, jeweils in Rupiah.
 
-- Der Kreditbetrag (<InlineMath math="M" />) beträgt <InlineMath math="\text{Rp}3{.}000{.}000{,}00" />
-- Der monatliche Zinssatz (<InlineMath math="i" />) beträgt <InlineMath math="2\%" />
-- Die Kreditlaufzeit (<InlineMath math="n" />) beträgt <InlineMath math="10\text{ Monate}" />
+<BlockMath math="\begin{aligned}I&=3{.}000{.}000\times\frac{2}{100} \\ &=60{.}000 \\ B&=60{.}000\times10=600{.}000\end{aligned}" />
 
-Mit <InlineMath math="B" /> bezeichnen wir die gesamten Zinsen, mit <InlineMath math="T" /> den Rückzahlungsbetrag und mit <InlineMath math="A" /> die Monatsrate, jeweils in Rupiah. Die Zinsen werden jeden Monat aus dem ursprünglichen Kreditbetrag berechnet:
+#### Rückzahlungsbetrag aufteilen
 
-<MathContainer>
-  <BlockMath math="B = M \times i \times n" />
-  <BlockMath math="\begin{aligned}B&=3{.}000{.}000\times2\% \\ &\quad\times10\end{aligned}" />
-  <BlockMath math="\begin{aligned}B&=3{.}000{.}000\times\frac{2}{100} \\ &\quad\times10\end{aligned}" />
-  <BlockMath math="B = 600{.}000" />
-</MathContainer>
+Die Raten müssen **Kreditbetrag und sämtliche Zinsen** abdecken. Sei <InlineMath math="T" /> die gesamte Rückzahlung und <InlineMath math="A" /> die Monatsrate, jeweils in Rupiah.
 
-#### Monatsrate berechnen
+<BlockMath math="\begin{aligned}T&=3{.}000{.}000+600{.}000 \\ &=3{.}600{.}000 \\ A&=\frac{3{.}600{.}000}{10}=360{.}000\end{aligned}" />
 
-Der Gesamtbetrag setzt sich aus Kreditbetrag und Zinsen zusammen:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}T&=3{.}000{.}000+600{.}000\end{aligned}" />
-  <BlockMath math="T = 3{.}600{.}000" />
-</MathContainer>
-
-Dieser Betrag wird auf <InlineMath math="10\text{ Monate}" /> gleichmäßig verteilt:
-
-<MathContainer>
-  <BlockMath math="A = \frac{T}{n}" />
-  <BlockMath math="A = \frac{3{.}600{.}000}{10}" />
-  <BlockMath math="A = 360{.}000" />
-</MathContainer>
-
-Panjul zahlt somit jeden Monat <InlineMath math="\text{Rp}360{.}000{,}00" />.
+Jede Monatsrate beträgt <InlineMath math="\text{Rp}360{.}000{,}00" />. Zur Kontrolle setzt sie sich aus <InlineMath math="\text{Rp}300{.}000{,}00" /> Tilgung und <InlineMath math="\text{Rp}60{.}000{,}00" /> Zinsen zusammen.

@@ -5,16 +5,45 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Convert the dimensions to decimetres. The height is <InlineMath math="h=42\text{ dm}" /> and the radius is <InlineMath math="r=15\text{ dm}" />. Using the given approximation, the water volume is:
+A cylinder’s volume uses its **radius**, but the question gives its diameter. Match the length units to the flow rate, which is measured in cubic decimetres per minute.
 
-<MathContainer>
-  <BlockMath math="V=\pi r^2h" />
+#### Calculating the cylinder volume
 
-  <BlockMath math="\begin{aligned}V&\approx\frac{22}{7}\times15^2\times42\\&=29{,}700\text{ dm}^3\end{aligned}" />
-</MathContainer>
+One metre equals ten decimetres, so the height is <InlineMath math="4.2\times10=42\text{ dm}" />. The diameter is <InlineMath math="3\times10=30\text{ dm}" />, and the **radius is half the diameter**, giving <InlineMath math="30/2=15\text{ dm}" />.
 
-Divide the volume by the constant flow rate. The time in minutes is:
+<MathVisual
+  title="The cylinder base viewed from above"
+  description="The diameter crosses the centre from one edge to the opposite edge. A radius runs only from the centre to one edge, so it is half as long."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -18, max: 18 }, y: { min: -18, max: 18 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 15, appearance: "primary" },
+      { id: "diameter", kind: "segment", from: { x: -15, y: 0 }, to: { x: 15, y: 0 }, appearance: "secondary" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 15 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "diameter", objectId: "diameter", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "radius", objectId: "radius", at: { x: 0, y: 7.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    diameter: <InlineMath math="d=30\text{ dm}" />,
+    radius: <InlineMath math="r=15\text{ dm}" />,
+  }}
+/>
 
-<BlockMath math="t\approx\frac{29{,}700}{12}=2{,}475" />
+<BlockMath math="\begin{aligned}V&amp;=\pi r^2h\\&amp;\approx\frac{22}{7}\times15^2\times42\\&amp;=22\times225\times6\\&amp;=29{,}700\text{ dm}^3\end{aligned}" />
 
-Since <InlineMath math="2{,}475=41\times60+15" />, emptying takes approximately <InlineMath math="41" /> hours <InlineMath math="15" /> minutes.
+#### Converting volume to time
+
+At a **constant flow rate**, the same volume leaves the tank each minute. Divide the full volume by the leakage rate to obtain the time in minutes:
+
+<BlockMath math="t\approx\frac{29{,}700}{12}=2{,}475\text{ min}" />
+
+Separate the minutes into complete hours and a remainder:
+
+<BlockMath math="2{,}475=41\times60+15" />
+
+The approximate emptying time is <InlineMath math="41\text{ hours }15\text{ minutes}" />.

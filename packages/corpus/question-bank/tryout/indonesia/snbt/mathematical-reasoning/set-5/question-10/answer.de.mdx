@@ -1,32 +1,19 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-09",
 };
 
-Wir betrachten die beiden Stellen der Hausnummer getrennt und verwenden anschließend die Multiplikationsregel.
+Für die erste und zweite Stelle gelten **unterschiedliche Bedingungen**. Ordnen wir die zulässigen Ziffern den beiden Stellen zu.
 
-**Schritt 1**: Ziffern ordnen
+| Stelle | Zulässige Ziffern | Anzahl |
+| --- | --- | --- |
+| Erste Stelle mit ungerader Ziffer | <InlineMath math="\{1,3,5,7,9\}" /> | <InlineMath math="5" /> |
+| Zweite Stelle mit gerader Ziffer | <InlineMath math="\{0,2,4,6,8\}" /> | <InlineMath math="5" /> |
 
-Zur Verfügung stehen die Ziffern von <InlineMath math="0" /> bis <InlineMath math="9" />: <InlineMath math="\{0,1,\ldots,9\}" />.
+Die **Null ist an der zweiten Stelle erlaubt**, zum Beispiel in der Hausnummer 10. Jede der fünf ersten Ziffern lässt sich mit jeder der fünf zweiten Ziffern verbinden.
 
-Wir teilen sie in ungerade und gerade Ziffern ein:
+<BlockMath math="5\times5=25" />
 
-*   **Ungerade Ziffern**: <InlineMath math="\{1, 3, 5, 7, 9\}" /> (es gibt <InlineMath math="5" /> Ziffern).
-*   **Gerade Ziffern**: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (es gibt <InlineMath math="5" /> Ziffern).
-
-**Schritt 2**: Möglichkeiten je Stelle
-
-Für die beiden Stellen gelten unterschiedliche Bedingungen:
-
-1.  **Erste Ziffer (ungerade)**: Es gibt <InlineMath math="5" /> Möglichkeiten.
-2.  **Zweite Ziffer (gerade)**: Auch hier gibt es <InlineMath math="5" /> Möglichkeiten.
-
-**Schritt 3**: Gesamtzahl berechnen
-
-Da jede ungerade erste Ziffer mit jeder geraden zweiten Ziffer kombiniert werden kann, multiplizieren wir:
-
-<BlockMath math="\text{Gesamt} = 5 \times 5 = 25" />
-
-Es können also <InlineMath math="25" /> verschiedene Hausnummern gebildet werden.
+Es gibt also 25 mögliche Hausnummern.

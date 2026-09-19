@@ -1,64 +1,29 @@
 export const metadata = {
   title: "Pembahasan Soal 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Analisis Data Awal
+#### Menghitung Dua Jumlah Nilai
 
-Diketahui:
-- Jumlah nilai awal: <InlineMath math="n_1 = 22" />
-- Rata-rata awal: <InlineMath math="\bar{x}_1 = 5" />
-- Jangkauan: <InlineMath math="J = 4" />
+Gunakan hubungan **jumlah nilai sama dengan banyak data dikali rata-rata** sebelum membandingkan kedua kelompok data:
 
-Misalkan nilai diurutkan dari yang terkecil hingga terbesar sebagai <InlineMath math="x_1, x_2, \dots, x_{22}" />.
+| Kelompok data | Banyak data | Rata-rata | Jumlah nilai |
+| --- | ---: | ---: | ---: |
+| Semula | <InlineMath math="22" /> | <InlineMath math="5" /> | <InlineMath math="22\times5=110" /> |
+| Setelah dua nilai dikeluarkan | <InlineMath math="22-2=20" /> | <InlineMath math="4{,}9" /> | <InlineMath math="20\times4{,}9=98" /> |
 
-Jumlah seluruh nilai awal adalah:
+Jadi, jumlah kedua nilai yang dikeluarkan adalah <InlineMath math="110-98=12" />.
 
-<MathContainer>
-  <BlockMath math="\sum_{i=1}^{22} x_i = n_1 \cdot \bar{x}_1" />
-  <BlockMath math="\begin{aligned}\sum_{i=1}^{22}x_i&=22\cdot5 \\ &=110\quad(1)\end{aligned}" />
-</MathContainer>
+#### Menggabungkan Jumlah dan Jangkauan
 
-Jangkauan didefinisikan sebagai selisih nilai terbesar dan terkecil:
+Misalkan <InlineMath math="m" /> adalah nilai minimum dan <InlineMath math="M" /> nilai maksimum. **Jangkauan adalah maksimum dikurangi minimum**, sehingga:
 
-<MathContainer>
-  <BlockMath math="x_{22} - x_1 = 4" />
-  <BlockMath math="x_{22} = x_1 + 4 \quad \dots(2)" />
-</MathContainer>
+<BlockMath math="\begin{aligned}m+M&=12 \\ M-m&=4\quad\Rightarrow\quad M=m+4\end{aligned}" />
 
-#### Analisis Data Setelah Pengurangan
+Substitusikan hubungan jangkauan ke persamaan jumlah:
 
-Jika nilai terendah (<InlineMath math="x_1" />) dan tertinggi (<InlineMath math="x_{22}" />) tidak disertakan:
-- Jumlah nilai yang tersisa: <InlineMath math="n_2 = 22 - 2 = 20" />
-- Rata-rata baru: <InlineMath math="\bar{x}_2 = 4{,}9" />
+<BlockMath math="\begin{aligned}m+(m+4)&=12 \\ 2m&=12-4=8 \\ m&=4\end{aligned}" />
 
-Jumlah nilai yang tersisa adalah:
-
-<MathContainer>
-  <BlockMath math="\sum_{i=2}^{21} x_i = n_2 \cdot \bar{x}_2" />
-  <BlockMath math="\sum_{i=2}^{21} x_i = 20 \cdot 4{,}9 = 98" />
-</MathContainer>
-
-#### Menghitung Nilai Terendah
-
-Hubungan antara jumlah nilai awal dan jumlah nilai sisa adalah:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}&\sum_{i=1}^{22}x_i \\ &\quad=x_1+\sum_{i=2}^{21}x_i+x_{22}\end{aligned}" />
-  <BlockMath math="110 = x_1 + 98 + x_{22}" />
-  <BlockMath math="x_1 + x_{22} = 110 - 98" />
-  <BlockMath math="x_1 + x_{22} = 12 \quad \dots(3)" />
-</MathContainer>
-
-Substitusi persamaan (2) ke dalam persamaan (3):
-
-<MathContainer>
-  <BlockMath math="x_1 + (x_1 + 4) = 12" />
-  <BlockMath math="2x_1 + 4 = 12" />
-  <BlockMath math="2x_1 = 8" />
-  <BlockMath math="x_1 = 4" />
-</MathContainer>
-
-Jadi, nilai yang paling rendah adalah <InlineMath math="4" />.
+Nilai terendah adalah <InlineMath math="4" />. Periksa: nilai tertinggi <InlineMath math="8" />, sehingga jangkauan <InlineMath math="8-4=4" /> dan jumlah nilai semula <InlineMath math="98+4+8=110" />.

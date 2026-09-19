@@ -2,17 +2,17 @@ export const metadata = {
   title: "Solution to Question 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-To determine the last two digits, use the cycles of powers modulo <InlineMath math="100" />. We have
+To determine the last two digits, use the **cycles of powers** modulo <InlineMath math="100" />. We have
 
 <MathContainer>
-  <BlockMath math="3^{20}\equiv1\pmod{100}" />
-  <BlockMath math="2^{22}\equiv2^2\pmod{100}" />
+  <BlockMath math="\begin{aligned}3^{10}=59049&\equiv49\pmod{100}\\3^{20}&\equiv49^2=2401\equiv1\pmod{100}\end{aligned}" />
+  <BlockMath math="\begin{aligned}2^{10}=1024&\equiv24\pmod{100}\\2^{20}&\equiv24^2=576\equiv76\pmod{100}\\2^{22}&\equiv4\cdot76=304\equiv4=2^2\pmod{100}\end{aligned}" />
 </MathContainer>
 
-Therefore, the residues of powers of <InlineMath math="3" /> repeat every <InlineMath math="20" /> exponents. The same holds for powers of <InlineMath math="2" /> from the second power onward: multiplying both sides of the second congruence by a power of <InlineMath math="2" /> preserves the pattern.
+Therefore, the residues of powers of <InlineMath math="3" /> repeat every <InlineMath math="20" /> exponents. The same holds for powers of <InlineMath math="2" /> **from the second power onward**: multiplying both sides of the second congruence by a power of <InlineMath math="2" /> preserves the pattern.
 
 The exponents satisfy <InlineMath math="2026\equiv6\pmod{20}" /> and <InlineMath math="2025\equiv5\pmod{20}" />. Therefore,
 

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang"; der folgende nutzt "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen" als Hauptbeleg.',
+            "Der erste Teil vergleicht Zahlungsarten bei gleichartigen Nutzergruppen, der folgende überträgt das Ergebnis auf den gesamten Markt.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Im nächsten Test wird das Netz verbessert und werden Einkäufe mit ähnlicher Artikelzahl verglichen".',
+            "Der erste Teil beschließt die Abschaffung der digitalen Spur, der folgende plant nur noch die Netzverbesserung.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen" fest.',
+            "Der erste Teil findet einen Vorteil bei großen Einkäufen, der folgende erweitert digitale Zahlungen für diese Gruppe.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden" aus dem Beleg "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang" ab.',
+            "Der erste Teil nennt Einwände der Nutzer, der folgende begegnet ihnen durch eine Pflicht zum Besitz geeigneter Geräte.",
         },
         {
           isCorrect: true,
           label:
-            "Erste Daten führen zu einem Vorschlag; aufgeteilte Daten zeigen seine Grenzen und führen zu einer gemischten Lösung.",
+            "Erste Daten führen zu einem Vorschlag, aufgeteilte Daten zeigen seine Grenzen und führen zu einer gemischten Lösung.",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "Signal complaints were concentrated in one market aisle", and the later part uses "Digital payment is proven always faster and should replace cash in every market" as its main support.',
+            "The first part compares payment methods among equivalent users, and the later part extends the result to the whole market.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "Because some users face barriers, the digital lane should be removed despite benefiting other groups" as a final conclusion; the later part only states the plan "The next test will improve the network and compare purchases with similar item counts".',
+            "The first part decides to remove the digital lane, and the later part only schedules network improvements.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Digital payment is proven always faster and should replace cash in every market" from the same perspective without adding a test.',
+            "The first part finds an advantage for large purchases, and the later part expands digital payment for that group.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "Because some users face barriers, the digital lane should be removed despite benefiting other groups" from the evidence "Signal complaints were concentrated in one market aisle".',
+            "The first part presents user objections, and the later part addresses them by requiring everyone to own a suitable device.",
         },
         {
           isCorrect: true,
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar", lalu bagian kedua memakai "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar" sebagai dukungan utama.',
+            "Bagian awal membandingkan dua cara pembayaran pada pengguna yang setara, lalu bagian berikutnya memperluas hasil itu ke seluruh pasar.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding".',
+            "Bagian awal memutuskan penghapusan jalur digital, lalu bagian berikutnya hanya merinci jadwal perbaikan jaringan.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal menemukan keunggulan pada belanja besar, lalu bagian berikutnya menjelaskan perluasan digital untuk kelompok tersebut.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain" dari bukti "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar".',
+            "Bagian awal menyajikan keberatan pengguna, lalu bagian berikutnya mengatasinya dengan mewajibkan kepemilikan perangkat digital.",
         },
         {
           isCorrect: true,

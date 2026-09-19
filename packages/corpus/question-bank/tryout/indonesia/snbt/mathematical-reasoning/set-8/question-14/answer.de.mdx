@@ -2,11 +2,35 @@ export const metadata = {
   title: "Lösung zu Aufgabe 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Vom Drehzentrum aus hat der Punkt den Vektor <InlineMath math="(4,1)" />. Die Drehung um <InlineMath math="90^\circ" /> bildet ihn auf <InlineMath math="(-1,4)" /> ab. Damit entsteht der Punkt <InlineMath math="(1,5)" />. Die Spiegelung an <InlineMath math="y=x" /> ergibt anschließend <InlineMath math="(5,1)" />.
+**Vom Drehzentrum aus** hat der Punkt den Vektor <InlineMath math="(6-2,2-1)=(4,1)" />. Die Drehung um <InlineMath math="90^\circ" /> bildet ihn auf <InlineMath math="(u,v)\mapsto(-v,u):\ (4,1)\mapsto(-1,4)" /> ab. Damit entsteht der Punkt <InlineMath math="(2-1,1+4)=(1,5)" />. Die **Spiegelung an <InlineMath math="y=x" />** ergibt anschließend <InlineMath math="(5,1)" />.
 
 Sein Abstand von <InlineMath math="2x-y=0" /> ist
 
 <BlockMath math="\begin{aligned}d&=\frac{|2(5)-1|}{\sqrt{2^2+(-1)^2}} \\ &=\frac{9}{\sqrt5} \\ &=\frac{9\sqrt5}{5}\end{aligned}" />
+
+<MathVisual
+  title="Lot vom Bildpunkt auf die Gerade"
+  description="Die markierte Strecke verbindet den Bildpunkt im rechten Winkel mit der Geraden."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "line", kind: "line", appearance: "primary", through: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "distance", kind: "segment", appearance: "highlight", from: { x: 5, y: 1 }, to: { x: 1.4, y: 2.8 } },
+      { id: "image", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "foot", kind: "point", appearance: "highlight", at: { x: 1.4, y: 2.8 } }
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 5, y: 1 }, placement: "below" },
+      { key: "foot", objectId: "foot", at: { x: 1.4, y: 2.8 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 2.5, y: 5 }, placement: "right" }
+    ]
+  }}
+  labels={{ image: <InlineMath math="P''=(5,1)" />, foot: <InlineMath math="H" />, line: <InlineMath math="y=2x" /> }}
+/>
+
+Die Skizze zeigt den **senkrechten Abstand**, keine waagerechte oder senkrechte Koordinatendifferenz. Der Lotfuß <InlineMath math="H=(7/5,14/5)" /> erfüllt <InlineMath math="y=2x" />. Der Vektor von <InlineMath math="H" /> zu <InlineMath math="P''" /> lautet <InlineMath math="(18/5,-9/5)" />. Sein Skalarprodukt mit dem Richtungsvektor <InlineMath math="(1,2)" /> ist <InlineMath math="18/5-18/5=0" />, was den rechten Winkel bestätigt.

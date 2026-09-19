@@ -5,15 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-First count participants using at least two services. Subtract users of all three from each pairwise intersection to count those using exactly two:
+The group using **at most one service** includes people using zero or one service. First count its complement: participants using at least two services. Subtract users of all three from each pairwise intersection to count those using exactly two:
 
-<MathContainer>
-  <BlockMath math="28-9=19" />
-
-  <BlockMath math="22-9=13" />
-
-  <BlockMath math="19-9=10" />
-</MathContainer>
+| Disjoint group | Participants |
+| :--- | :--- |
+| <InlineMath math="A,B" /> only | <InlineMath math="28-9=19" /> |
+| <InlineMath math="A,C" /> only | <InlineMath math="22-9=13" /> |
+| <InlineMath math="B,C" /> only | <InlineMath math="19-9=10" /> |
 
 Add the group using all three, exactly once.
 

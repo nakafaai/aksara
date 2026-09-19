@@ -1,44 +1,27 @@
 export const metadata = {
   title: "Solution to Question 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Determining Meeting Interval
+#### Count the Meeting Intervals
 
-It is known that the three vans meet for the <InlineMath math="4" />-th time <InlineMath math="18\text{ hours}" /> after the initial meeting.
+The initial arrival counts as the first meeting. The fourth meeting therefore follows **three equal intervals**, not four. Let <InlineMath math="T" /> be the time between simultaneous arrivals, in hours.
 
-Meeting for the <InlineMath math="4" />-th time means that <InlineMath math="3" /> meeting intervals (LCM) have passed.
+<BlockMath math="3T=18\quad\Rightarrow\quad T=\frac{18}{3}=6" />
 
-Let <InlineMath math="T" /> be the joint meeting interval (LCM of periods <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />).
+| Meeting | Elapsed time in hours |
+| --- | ---: |
+| First | <InlineMath math="0" /> |
+| Second | <InlineMath math="6" /> |
+| Third | <InlineMath math="12" /> |
+| Fourth | <InlineMath math="18" /> |
 
-<MathContainer>
-  <BlockMath math="3 \times T = 18 \text{ hours}" />
-  <BlockMath math="T = \frac{18}{3} = 6 \text{ hours}" />
-</MathContainer>
+#### Check the Possible Period
 
-So, the three vans meet together every <InlineMath math="6\text{ hours}" />.
+A joint arrival occurs when the elapsed time is a **common multiple of all three periods**. The smallest positive such time is their least common multiple:
 
-#### Determining the Unknown Value
+<BlockMath math="\begin{aligned}\operatorname{LCM}(2,3,x)&=6 \\ \operatorname{LCM}(6,x)&=6\end{aligned}" />
 
-The joint meeting interval (<InlineMath math="T" />) is the Least Common Multiple (LCM) of the periods of each van.
-
-Known periods:
-- Van <InlineMath math="A" />: <InlineMath math="2\text{ hours}" />
-- Van <InlineMath math="B" />: <InlineMath math="3\text{ hours}" />
-- Van <InlineMath math="C" />: <InlineMath math="x\text{ hours}" />
-
-Thus:
-
-<BlockMath math="\text{LCM}(2, 3, x) = 6" />
-
-We know that <InlineMath math="\text{LCM}(2, 3) = 6" />. Therefore, we must find the value of <InlineMath math="x" /> such that <InlineMath math="\text{LCM}(6, x) = 6" />. For <InlineMath math="\text{LCM}(6, x) = 6" />, <InlineMath math="x" /> must be a factor of <InlineMath math="6" />.
-
-From the available options, we are looking for a value of <InlineMath math="x" /> that is a factor of <InlineMath math="6" />.
-
-The values <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="8" />, and <InlineMath math="9" /> are not factors of <InlineMath math="6" />, so they do not satisfy the condition <InlineMath math="\text{LCM}(6, x) = 6" />.
-
-For <InlineMath math="x = 6" />, we get <InlineMath math="\text{LCM}(6, 6) = 6" />, which satisfies the condition.
-
-Among the listed options, only <InlineMath math="x=6" /> satisfies the condition.
+Every listed value of <InlineMath math="x" /> is a positive integer. It must divide <InlineMath math="6" /> for the joint interval to remain <InlineMath math="6\text{ hours}" />. The divisors are <InlineMath math="1,2,3,6" />. Of the listed values <InlineMath math="5,7,6,8,9" />, only <InlineMath math="x=6" /> works. With that period, all vans return at the elapsed times in the table.

@@ -5,10 +5,23 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-<InlineMath math="D" />-<InlineMath math="E" /> wird als ein Block behandelt. Zusammen mit <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="F" /> und <InlineMath math="G" /> sind damit sechs Einheiten anzuordnen. Der Block <InlineMath math="D" />-<InlineMath math="E" /> hat zwei innere Reihenfolgen. Von den <InlineMath math="3!" /> relativen Reihenfolgen von <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> erfüllt nur eine die Bedingung <InlineMath math="A" /> vor <InlineMath math="B" /> vor <InlineMath math="C" />. Ohne die Einschränkung für <InlineMath math="F" /> gibt es <InlineMath math="2\cdot6!/3!=240" /> Anordnungen.
+#### Benachbarte Berichte zusammenfassen
 
-Liegt <InlineMath math="F" /> am linken Ende, lassen sich die übrigen fünf Einheiten auf <InlineMath math="2\cdot5!/3!=40" /> Arten anordnen. Für das rechte Ende gilt derselbe Wert. Beide Fälle überschneiden sich nicht. Daher sind <InlineMath math="2\cdot40=80" /> Anordnungen auszuschließen.
+Fasse <InlineMath math="D" /> und <InlineMath math="E" /> als **einen Block** mit zwei inneren Reihenfolgen auf: <InlineMath math="DE" /> oder <InlineMath math="ED" />. Damit ordnest du sechs Einheiten an, nämlich den Block und <InlineMath math="A,B,C,F,G" />.
 
-Somit bleiben <InlineMath math="240-80=160" /> gültige Anordnungen von insgesamt <InlineMath math="7!=5{.}040" />.
+Für diese Einheiten gibt es <InlineMath math="6!" /> Anordnungen. Von den sechs relativen Reihenfolgen <InlineMath math="ABC,ACB,BAC,BCA,CAB,CBA" /> erfüllt nur <InlineMath math="ABC" /> die Bedingung. Jede relative Reihenfolge kommt gleich oft vor, da ein Austausch der Bezeichnungen <InlineMath math="A,B,C" /> die anderen Bedingungen unverändert lässt. Ohne Einschränkung für <InlineMath math="F" /> ergibt sich:
 
-Damit ist der gesuchte Wert <InlineMath math="\frac2{63}" />.
+<BlockMath math="N=\frac{2\times6!}{3!}=\frac{2\times720}{6}=240" />
+
+#### Endpositionen ausschließen
+
+Steht <InlineMath math="F" /> am linken Ende, bleiben fünf Einheiten mit denselben Block- und Reihenfolgebedingungen. Für das rechte Ende gilt dieselbe Anzahl. Die beiden Fälle **überschneiden sich nicht**, da ein Bericht nicht gleichzeitig beide Enden belegen kann.
+
+| Verbotene Position | Anzahl der Anordnungen |
+| :--- | :--- |
+| <InlineMath math="F" /> am linken Ende | <InlineMath math="2\times5!/3!=2\times120/6=40" /> |
+| <InlineMath math="F" /> am rechten Ende | <InlineMath math="40" /> |
+
+Ziehe beide Gruppen von der Ausgangszahl ab. Teile anschließend durch alle gleich wahrscheinlichen Anordnungen der sieben Berichte:
+
+<BlockMath math="\begin{aligned}N_{\text{gültig}}&amp;=240-40-40=160\\P&amp;=\frac{160}{7!}=\frac{160}{5040}=\frac2{63}\end{aligned}" />

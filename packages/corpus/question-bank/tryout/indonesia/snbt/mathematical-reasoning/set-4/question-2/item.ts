@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$1$$ snack bouquet dan $$2$$ money bouquet",
+          label: "$$1$$ buket camilan dan $$2$$ buket uang",
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga besar dan $$2$$ money bouquet",
+          label: "$$1$$ bunga besar dan $$2$$ buket uang",
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga besar dan $$2$$ snack bouquet",
+          label: "$$1$$ bunga besar dan $$2$$ buket camilan",
         },
         {
           isCorrect: false,
-          label: "$$1$$ bunga kecil dan $$2$$ snack bouquet",
+          label: "$$1$$ bunga kecil dan $$2$$ buket camilan",
         },
         {
           isCorrect: true,
-          label: "$$2$$ snack bouquet dan $$2$$ money bouquet",
+          label: "$$2$$ buket camilan dan $$2$$ buket uang",
         },
       ],
     },

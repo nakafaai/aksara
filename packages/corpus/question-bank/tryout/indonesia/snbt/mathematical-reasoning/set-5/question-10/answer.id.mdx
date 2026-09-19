@@ -1,32 +1,19 @@
 export const metadata = {
   title: "Pembahasan Soal 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-09",
 };
 
-Untuk menentukan banyaknya kemungkinan nomor rumah, kita dapat menggunakan aturan pengisian tempat (*filling slots*) atau perkalian.
+Kedua posisi digit memiliki **syarat yang berbeda**. Kita susun pilihan digit untuk setiap posisi.
 
-**Langkah 1**: Identifikasi Angka yang Tersedia
+| Posisi | Digit yang diperbolehkan | Banyak pilihan |
+| --- | --- | --- |
+| Pertama dengan digit ganjil | <InlineMath math="\{1,3,5,7,9\}" /> | <InlineMath math="5" /> |
+| Kedua dengan digit genap | <InlineMath math="\{0,2,4,6,8\}" /> | <InlineMath math="5" /> |
 
-Angka yang tersedia adalah <InlineMath math="0" /> sampai <InlineMath math="9" />, yaitu <InlineMath math="\{0,1,\ldots,9\}" />.
+**Nol boleh berada di posisi kedua**, seperti pada nomor rumah 10. Setiap pilihan digit pertama dapat dipasangkan dengan kelima pilihan digit kedua.
 
-Dari himpunan tersebut, kita kelompokkan menjadi:
+<BlockMath math="5\times5=25" />
 
-*   **Angka Ganjil**: <InlineMath math="\{1, 3, 5, 7, 9\}" /> (ada <InlineMath math="5" /> angka).
-*   **Angka Genap**: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (ada <InlineMath math="5" /> angka).
-
-**Langkah 2**: Mengisi Posisi Digit
-
-Nomor rumah terdiri dari dua digit dengan ketentuan:
-
-1.  **Digit Pertama (Ganjil)**: Kita harus memilih salah satu dari <InlineMath math="5" /> angka ganjil yang tersedia.
-2.  **Digit Kedua (Genap)**: Kita harus memilih salah satu dari <InlineMath math="5" /> angka genap yang tersedia.
-
-**Langkah 3**: Perhitungan Total Kemungkinan
-
-Banyaknya cara menyusun nomor rumah adalah hasil kali dari banyaknya pilihan untuk setiap posisi:
-
-<BlockMath math="\text{Total} = 5 \times 5 = 25" />
-
-Jadi, terdapat <InlineMath math="25" /> kemungkinan nomor rumah yang dapat dibuat.
+Jadi, terdapat 25 kemungkinan nomor rumah.

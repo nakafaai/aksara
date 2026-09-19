@@ -2,14 +2,62 @@ export const metadata = {
   title: "Solution to Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Let <InlineMath math="x" /> be the distance from the pole's base to the anchor of the <InlineMath math="25" />-metre cable. The other distance is <InlineMath math="17-x" />. If the pole height is <InlineMath math="h" />, then
+Let <InlineMath math="x" /> be the distance from the pole's base to the anchor of the <InlineMath math="25" />-metre cable. The **other distance** is <InlineMath math="17-x" />. If the pole height is <InlineMath math="h" />, then
 
 <MathContainer>
   <BlockMath math="x^2+h^2=25^2" />
   <BlockMath math="(17-x)^2+h^2=26^2" />
 </MathContainer>
 
-Subtracting the first equation from the second gives <InlineMath math="289-34x=51" />, so <InlineMath math="x=7" />. Thus <InlineMath math="h^2=625-49=576" />, and <InlineMath math="h=24" /> metres.
+Subtracting the first equation from the second gives <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, so <InlineMath math="x=\frac{289-51}{34}=7" />. Thus <InlineMath math="h^2=625-49=576" />, and <InlineMath math="h=24" /> metres.
+
+<MathVisual
+  title="Pole and support cables"
+  description="A vertical pole with two support cables and anchors on opposite sides on level ground."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 11 },
+      y: { min: -1, max: 25 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "ground",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -7, y: 0 },
+        to: { x: 10, y: 0 },
+      },
+      {
+        id: "pole",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "left-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -7, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "right-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 24 },
+        to: { x: 10, y: 0 },
+      },
+      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
+      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
+      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+  }}
+/>

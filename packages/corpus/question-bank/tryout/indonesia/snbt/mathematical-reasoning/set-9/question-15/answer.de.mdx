@@ -2,14 +2,62 @@ export const metadata = {
   title: "Lösung zu Aufgabe 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Sei <InlineMath math="x" /> der Abstand vom Mastfuß zum Anker des <InlineMath math="25" />-Meter-Seils. Der andere Abstand ist <InlineMath math="17-x" />. Mit der Masthöhe <InlineMath math="h" /> gilt
+Sei <InlineMath math="x" /> der Abstand vom Mastfuß zum Anker des <InlineMath math="25" />-Meter-Seils. Der **andere Abstand** ist <InlineMath math="17-x" />. Mit der Masthöhe <InlineMath math="h" /> gilt
 
 <MathContainer>
   <BlockMath math="x^2+h^2=25^2" />
   <BlockMath math="(17-x)^2+h^2=26^2" />
 </MathContainer>
 
-Subtraktion der ersten Gleichung von der zweiten ergibt <InlineMath math="289-34x=51" />, also <InlineMath math="x=7" />. Damit gilt <InlineMath math="h^2=625-49=576" /> und <InlineMath math="h=24" /> Meter.
+Subtraktion der ersten Gleichung von der zweiten ergibt <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, also <InlineMath math="x=\frac{289-51}{34}=7" />. Damit gilt <InlineMath math="h^2=625-49=576" /> und <InlineMath math="h=24" /> Meter.
+
+<MathVisual
+  title="Mast und Halteseile"
+  description="Ein senkrechter Mast mit zwei Halteseilen und Bodenankern auf gegenüberliegenden Seiten des ebenen Bodens."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 11 },
+      y: { min: -1, max: 25 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "ground",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -7, y: 0 },
+        to: { x: 10, y: 0 },
+      },
+      {
+        id: "pole",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "left-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -7, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "right-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 24 },
+        to: { x: 10, y: 0 },
+      },
+      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
+      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
+      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+  }}
+/>

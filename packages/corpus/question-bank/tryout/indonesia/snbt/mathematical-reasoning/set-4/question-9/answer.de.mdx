@@ -1,11 +1,11 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-26",
 };
 
-Die gesamte Drahtlänge von <InlineMath math="20\text{ m}" /> ist der Umfang des rechteckigen Stalls. Bezeichnen wir seine Länge mit <InlineMath math="p" /> und seine Breite mit <InlineMath math="l" />, gilt:
+Die gesamte Drahtlänge von <InlineMath math="20\text{ m}" /> ist der **Umfang des rechteckigen Stalls**. Bezeichnen wir seine Länge mit <InlineMath math="p" /> und seine Breite mit <InlineMath math="l" />, gilt:
 
 <MathContainer>
   <BlockMath math="2(p + l) = 20" />
@@ -19,7 +19,7 @@ Wir möchten die Fläche <InlineMath math="L" /> maximieren. Für das Rechteck g
   <BlockMath math="L(p) = 10p - p^2" />
 </MathContainer>
 
-Die Funktion ist eine nach unten geöffnete Parabel, weil der Koeffizient von <InlineMath math="p^2" /> negativ ist. Ihr größter Wert liegt daher am Scheitelpunkt. Dessen Koordinate <InlineMath math="p_{\max}" /> berechnen wir mit <InlineMath math="-\frac{b}{2a}" />:
+Die Funktion ist eine nach unten geöffnete Parabel, weil der Koeffizient von <InlineMath math="p^2" /> negativ ist. Ihr größter Wert liegt daher am **Scheitelpunkt**. Dessen Koordinate <InlineMath math="p_{\max}" /> berechnen wir mit <InlineMath math="-\frac{b}{2a}" />:
 
 <BlockMath math="\begin{aligned}p_{\max} &=-\frac{10}{2(-1)} \\ &=-\frac{10}{-2} \\ &=5\text{ m}\end{aligned}" />
 
@@ -27,4 +27,18 @@ Mit <InlineMath math="p = 5\text{ m}" /> folgt für die Breite <InlineMath math=
 
 <BlockMath math="l = 10 - 5 = 5\text{ m}" />
 
-Die größte Fläche entsteht also bei einem quadratischen Grundriss mit **<InlineMath math="5\text{ m}" /> Länge und <InlineMath math="5\text{ m}" /> Breite**.
+Die größte Fläche entsteht also bei einem quadratischen Grundriss mit <InlineMath math="5\text{ m}" /> Länge und <InlineMath math="5\text{ m}" /> Breite.
+
+Die Kurve zeigt die Fläche <InlineMath math="L" /> für verschiedene Längen <InlineMath math="p" />. Beide Maße müssen positiv sein, also <InlineMath math="0\lt p\lt 10" />. Die Endpunkte zeigen die Grenzen, an denen ein Maß null wird.
+
+<LineEquation
+  title="Maximale Fläche bei festem Umfang"
+  description="Die waagerechte Achse zeigt die Länge p in Metern, die senkrechte die Fläche L in Quadratmetern. Der Scheitelpunkt ist (5, 25)."
+  cameraPosition={[5,12.5,38]}
+  cameraTarget={[5,12.5,0]}
+  showZAxis={false}
+  data={[
+    {points:Array.from({length:101},(_,i)=>({x:i/10,y:10*(i/10)-(i/10)**2,z:0})),color:"#6366f1",smooth:false,showPoints:false},
+    {points:[{x:5,y:0,z:0},{x:5,y:25,z:0}],color:"#f97316",smooth:false,pointIndices:[1],labels:[{at:1,text:<InlineMath math="(5,25)" />,offset:[0,1,0]}]}
+  ]}
+/>

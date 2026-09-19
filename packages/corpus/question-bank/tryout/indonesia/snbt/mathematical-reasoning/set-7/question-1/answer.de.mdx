@@ -1,44 +1,27 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Gemeinsames Ankunftsintervall bestimmen
+#### Abstände zwischen den Treffen zählen
 
-Vom ersten bis zum <InlineMath math="4" />. gemeinsamen Eintreffen vergehen <InlineMath math="18\text{ Stunden}" />.
+Die anfängliche Ankunft zählt als erstes Treffen. Bis zum vierten Treffen vergehen deshalb **drei gleich lange Zeitabstände**, nicht vier. Sei <InlineMath math="T" /> der Abstand zwischen zwei gemeinsamen Ankünften in Stunden.
 
-Zwischen dem ersten und dem <InlineMath math="4" />. Eintreffen liegen <InlineMath math="3" /> gleich lange Intervalle.
+<BlockMath math="3T=18\quad\Rightarrow\quad T=\frac{18}{3}=6" />
 
-Sei <InlineMath math="T" /> das gemeinsame Ankunftsintervall, also das kgV der Umlaufzeiten von <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+| Treffen | Vergangene Zeit in Stunden |
+| --- | ---: |
+| Erstes | <InlineMath math="0" /> |
+| Zweites | <InlineMath math="6" /> |
+| Drittes | <InlineMath math="12" /> |
+| Viertes | <InlineMath math="18" /> |
 
-<MathContainer>
-  <BlockMath math="3 \times T = 18 \text{ Stunden}" />
-  <BlockMath math="T = \frac{18}{3} = 6 \text{ Stunden}" />
-</MathContainer>
+#### Mögliche Umlaufzeit prüfen
 
-Die drei Busse treffen demnach alle <InlineMath math="6\text{ Stunden}" /> gleichzeitig ein.
+Eine gemeinsame Ankunft findet statt, wenn die vergangene Zeit ein **gemeinsames Vielfaches aller drei Umlaufzeiten** ist. Die kleinste positive Zeit ist ihr kleinstes gemeinsames Vielfaches:
 
-#### Unbekannte Umlaufzeit bestimmen
+<BlockMath math="\begin{aligned}\operatorname{kgV}(2,3,x)&=6 \\ \operatorname{kgV}(6,x)&=6\end{aligned}" />
 
-Das gemeinsame Ankunftsintervall <InlineMath math="T" /> ist das kleinste gemeinsame Vielfache der drei Umlaufzeiten.
-
-Die Umlaufzeiten lauten:
-- Bus <InlineMath math="A" />: <InlineMath math="2\text{ Stunden}" />
-- Bus <InlineMath math="B" />: <InlineMath math="3\text{ Stunden}" />
-- Bus <InlineMath math="C" />: <InlineMath math="x\text{ Stunden}" />
-
-Also:
-
-<BlockMath math="\text{kgV}(2, 3, x) = 6" />
-
-Wir wissen, dass <InlineMath math="\text{kgV}(2, 3) = 6" />. Daher müssen wir den Wert von <InlineMath math="x" /> finden, sodass <InlineMath math="\text{kgV}(6, x) = 6" />. Für <InlineMath math="\text{kgV}(6, x) = 6" /> muss <InlineMath math="x" /> ein Teiler von <InlineMath math="6" /> sein.
-
-Unter den Antwortmöglichkeiten suchen wir daher einen Wert für <InlineMath math="x" />, der ein Teiler von <InlineMath math="6" /> ist.
-
-Die Werte <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="9" /> sind keine Teiler von <InlineMath math="6" />. Sie erfüllen die Bedingung <InlineMath math="\text{kgV}(6, x) = 6" /> daher nicht.
-
-Für <InlineMath math="x = 6" /> gilt dagegen <InlineMath math="\text{kgV}(6, 6) = 6" />.
-
-Von den angebotenen Werten erfüllt nur <InlineMath math="x=6" /> die Bedingung.
+Alle angebotenen Werte für <InlineMath math="x" /> sind positive ganze Zahlen. Der Wert muss <InlineMath math="6" /> teilen, damit der gemeinsame Abstand <InlineMath math="6\text{ Stunden}" /> bleibt. Die Teiler sind <InlineMath math="1,2,3,6" />. Von den angebotenen Werten <InlineMath math="5,7,6,8,9" /> erfüllt nur <InlineMath math="x=6" /> diese Bedingung. Mit dieser Umlaufzeit kehren alle Busse zu den Zeiten in der Tabelle zurück.

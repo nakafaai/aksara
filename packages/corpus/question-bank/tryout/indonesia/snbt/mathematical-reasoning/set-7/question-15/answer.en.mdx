@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Solution to Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
@@ -11,16 +11,16 @@ Let:
 - <InlineMath math="x" /> = price of meat per kg
 - <InlineMath math="y" /> = price of fish per kg
 
-Both prices are measured in thousand rupiah, matching the sales figures in the table. We can form a system of two linear equations.
+Both prices are measured in **thousand rupiah**, matching the sales figures in the table. We can form a system of two linear equations.
 
-For Store A:
+For Store A, divide the revenue equation by <InlineMath math="20" />:
 
 <MathContainer>
   <BlockMath math="80x + 20y = 2960" />
   <BlockMath math="4x + y = 148 \quad ...(1)" />
 </MathContainer>
 
-For Store B:
+For Store B, divide by <InlineMath math="10" />:
 
 <MathContainer>
   <BlockMath math="70x + 40y = 3040" />
@@ -31,21 +31,16 @@ For Store B:
 
 We will find the value of <InlineMath math="y" /> (price of fish). Eliminate variable <InlineMath math="x" /> from equations (1) and (2).
 
-Multiply equation (1) by <InlineMath math="7" /> and equation (2) by <InlineMath math="4" /> so that the coefficients of <InlineMath math="x" /> are the same:
+Multiply equation (1) by <InlineMath math="7" /> and equation (2) by <InlineMath math="4" /> so that the **coefficients of <InlineMath math="x" /> are the same**:
 
 <BlockMath math="\begin{aligned}7(4x+y)&=7(148) \\ 28x+7y&=1036 \\ 4(7x+4y)&=4(304) \\ 28x+16y&=1216\end{aligned}" />
 
 Subtract the two equations:
 
-<BlockMath math="\begin{array}{rcl}28x+16y&=&1216\\28x+7y&=&1036\\\hline9y&=&180\end{array}" />
-
-Therefore:
-
-<MathContainer>
-  <BlockMath math="y = \frac{180}{9}" />
-  <BlockMath math="y = 20" />
-</MathContainer>
+<BlockMath math="\begin{aligned}(28x+16y)-(28x+7y)&=1216-1036\\9y&=180\\y&=\frac{180}{9}=20\end{aligned}" />
 
 Since the unit in the table is "thousand rupiah", the price of fish is <InlineMath math="20" /> thousand rupiah or <InlineMath math="\text{Rp}20{,}000.00" />.
 
 Thus, the price of fish per kilogram is <InlineMath math="\text{Rp}20{,}000.00" />.
+
+Check the other price: <InlineMath math="x=(148-20)/4=32" /> thousand rupiah per kilogram. Substitution gives <InlineMath math="80(32)+20(20)=2960" /> and <InlineMath math="70(32)+40(20)=3040" />, matching both stores.

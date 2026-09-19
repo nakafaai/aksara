@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Count the valid choices for each independent position.
+Because **digits may repeat**, choosing a digit for one position does not reduce the choices at another. Count the choices allowed by each position’s rule.
 
 | Position | Valid choices | Count |
 | :---: | :--- | :---: |
@@ -19,3 +19,5 @@ By the multiplication principle,
 <BlockMath math="4\times3\times3\times3=108." />
 
 Therefore, <InlineMath math="108" /> different passwords satisfy the rules.
+
+For example, `Z333` is valid: <InlineMath math="3" /> divides <InlineMath math="9" />, is an odd prime, and is allowed in the last position. The digit <InlineMath math="9" /> is allowed in the second position but not the third because it is not prime.

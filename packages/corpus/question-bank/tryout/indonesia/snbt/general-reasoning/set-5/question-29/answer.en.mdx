@@ -5,18 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-There are <InlineMath math="\binom{12}{2}=66" /> equally likely pairs. Group them by colour.
+There are <InlineMath math="\binom{12}{2}=\frac{12\times11}{2}=66" /> **equally likely** pairs. Group them by colour.
 
 | Pair | Pair count | Payout |
 | :--- | :---: | :---: |
-| Red-red | <InlineMath math="\binom72=21" /> | <InlineMath math="60" /> |
+| Red-red | <InlineMath math="\binom72=\frac{7\times6}{2}=21" /> | <InlineMath math="60" /> |
 | Mixed | <InlineMath math="7\times5=35" /> | <InlineMath math="30" /> |
-| Blue-blue | <InlineMath math="\binom52=10" /> | <InlineMath math="0" /> |
+| Blue-blue | <InlineMath math="\binom52=\frac{5\times4}{2}=10" /> | <InlineMath math="0" /> |
 
 Payouts are in thousand rupiah. The expected payout is:
 
-<BlockMath math="\begin{aligned}E&=\frac{60\times21+30\times35}{66}\\&=35\end{aligned}" />
+<BlockMath math="\begin{aligned}E&amp;=\frac{60\times21+30\times35}{66}\\&amp;=\frac{1260+1050}{66}\\&amp;=\frac{2310}{66}=35\end{aligned}" />
 
 Subtract the entry fee to find the expected net gain, in thousand rupiah:
 
 <BlockMath math="35-30=5" />
+
+An expected value is a **long-run average**, not a guaranteed payment in one game. A single game has a net gain of <InlineMath math="30" />, <InlineMath math="0" />, or <InlineMath math="-30" /> thousand rupiah, depending on the pair drawn.

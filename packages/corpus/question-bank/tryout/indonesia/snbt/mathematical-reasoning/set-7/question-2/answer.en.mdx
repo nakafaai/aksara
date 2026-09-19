@@ -1,42 +1,20 @@
 export const metadata = {
   title: "Solution to Question 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Calculating Loan Interest
+#### Calculate the Interest
 
-Given:
+Flat simple interest uses the **original principal every month**. Let <InlineMath math="I" /> be one month's interest and <InlineMath math="B" /> the total interest, in rupiah.
 
-- Principal loan (<InlineMath math="M" />) is <InlineMath math="\text{Rp}3{,}000{,}000.00" />
-- Monthly interest (<InlineMath math="i" />) is <InlineMath math="2\%" />
-- Loan duration (<InlineMath math="n" />) is <InlineMath math="10\text{ months}" />
+<BlockMath math="\begin{aligned}I&=3{,}000{,}000\times\frac{2}{100} \\ &=60{,}000 \\ B&=60{,}000\times10=600{,}000\end{aligned}" />
 
-Let <InlineMath math="B" /> be the total interest owed, <InlineMath math="T" /> the total repayment, and <InlineMath math="A" /> the monthly installment, all in rupiah. Interest is calculated from the original principal each month:
+#### Divide the Total Repayment
 
-<MathContainer>
-  <BlockMath math="B = M \times i \times n" />
-  <BlockMath math="\begin{aligned}B&=3{,}000{,}000\times2\% \\ &\quad\times10\end{aligned}" />
-  <BlockMath math="\begin{aligned}B&=3{,}000{,}000\times\frac{2}{100} \\ &\quad\times10\end{aligned}" />
-  <BlockMath math="B = 600{,}000" />
-</MathContainer>
+The installments must cover **principal plus total interest**. Let <InlineMath math="T" /> be the total repayment and <InlineMath math="A" /> the monthly installment, in rupiah.
 
-#### Calculating Monthly Installment
+<BlockMath math="\begin{aligned}T&=3{,}000{,}000+600{,}000 \\ &=3{,}600{,}000 \\ A&=\frac{3{,}600{,}000}{10}=360{,}000\end{aligned}" />
 
-The total amount to be paid is the principal plus total interest:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}T&=3{,}000{,}000+600{,}000\end{aligned}" />
-  <BlockMath math="T = 3{,}600{,}000" />
-</MathContainer>
-
-Since the repayment period is <InlineMath math="10\text{ months}" />, the monthly installment is:
-
-<MathContainer>
-  <BlockMath math="A = \frac{T}{n}" />
-  <BlockMath math="A = \frac{3{,}600{,}000}{10}" />
-  <BlockMath math="A = 360{,}000" />
-</MathContainer>
-
-So, the money Panjul must deposit per month is <InlineMath math="\text{Rp}360{,}000.00" />.
+Each monthly installment is <InlineMath math="\text{Rp}360{,}000.00" />. As a check, it consists of <InlineMath math="\text{Rp}300{,}000.00" /> toward the principal and <InlineMath math="\text{Rp}60{,}000.00" /> in interest.

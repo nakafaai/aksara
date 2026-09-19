@@ -1,37 +1,29 @@
 export const metadata = {
   title: "Pembahasan Soal 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2026-02-17",
 };
 
-#### Analisis Lintasan
+#### Menghitung Ruas Sebelum Menghitung Waktu
 
-Lintasan berbentuk lingkaran dengan <InlineMath math="4" /> pos pemeriksaan: <InlineMath math="A, B, C, D" />. Satu putaran penuh terdiri dari <InlineMath math="4\text{ segmen}" />: <InlineMath math="A \to B" />, <InlineMath math="B \to C" />, <InlineMath math="C \to D" />, dan <InlineMath math="D \to A" />. Perjalanan dimulai dari <InlineMath math="A" />.
+Perjalanan pertama dari <InlineMath math="A" /> ke <InlineMath math="C" /> menempuh **setengah putaran**, yaitu dua ruas yang sama panjang. Setiap kedatangan berikutnya di <InlineMath math="C" /> menambah satu putaran penuh atau empat ruas:
 
-#### Menghitung Jarak Tempuh Awal
+| Kedatangan di C | Jumlah ruas sejak berangkat |
+| --- | ---: |
+| Pertama | <InlineMath math="2" /> |
+| Kedua | <InlineMath math="2+4=6" /> |
+| Ketiga | <InlineMath math="6+4=10" /> |
+| Keempat | <InlineMath math="10+4=14" /> |
 
-Pelari melewati pos pemeriksaan <InlineMath math="C" /> sebanyak <InlineMath math="3\text{ kali}" />.
+#### Mengubah Jumlah Ruas Menjadi Waktu
 
-- **Kali ke-<InlineMath math="1" />:** <InlineMath math="A \to B \to C" /> (<InlineMath math="2\text{ segmen}" />).
-- **Kali ke-<InlineMath math="2" />:** Tambah <InlineMath math="1 \text{ putaran }" /> penuh (<InlineMath math="4\text{ segmen}" />). Total: <InlineMath math="2 + 4 = 6\text{ segmen}" />.
-- **Kali ke-<InlineMath math="3" />:** Tambah <InlineMath math="1 \text{ putaran }" /> penuh (<InlineMath math="4\text{ segmen}" />). Total: <InlineMath math="6 + 4 = 10\text{ segmen}" />.
+Dengan **kecepatan tetap**, ruas yang sama panjang memerlukan waktu yang sama. Kedatangan ketiga membutuhkan dua belas menit untuk sepuluh ruas, sehingga waktu per ruas adalah:
 
-Diketahui waktu tempuh untuk <InlineMath math="10\text{ segmen}" /> adalah <InlineMath math="12\text{ menit}" />. Waktu per segmen (<InlineMath math="t_s" />) adalah:
+<BlockMath math="t_s=\frac{12}{10}=1{,}2\text{ menit}" />
 
-<BlockMath math="t_s = \frac{12}{10} = 1{,}2 \text{ menit}" />
+Jadi, kedatangan keempat terjadi pada:
 
-#### Menghitung Waktu Total
+<BlockMath math="T=14\times1{,}2=16{,}8\text{ menit}" />
 
-Untuk mencapai pos pemeriksaan <InlineMath math="C" /> ke-<InlineMath math="4" /> kalinya, pelari harus menempuh <InlineMath math="1 \text{ putaran }" /> lagi (<InlineMath math="4\text{ segmen}" />). Total segmen yang ditempuh adalah:
-
-<BlockMath math="10 + 4 = 14 \text{ segmen}" />
-
-Maka waktu total yang dibutuhkan adalah:
-
-<MathContainer>
-  <BlockMath math="T = 14 \times 1{,}2 \text{ menit}" />
-  <BlockMath math="= 16{,}8 \text{ menit}" />
-</MathContainer>
-
-Jadi, waktu yang dibutuhkan pelari adalah <InlineMath math="16{,}8 \text{ menit}" />.
+Waktu ini dihitung sejak berangkat. Sebagai pemeriksaan, satu putaran tambahan membutuhkan <InlineMath math="4\times1{,}2=4{,}8" /> menit, sehingga <InlineMath math="12+4{,}8=16{,}8" /> menit.

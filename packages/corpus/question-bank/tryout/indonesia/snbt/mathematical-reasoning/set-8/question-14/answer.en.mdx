@@ -2,11 +2,35 @@ export const metadata = {
   title: "Solution to Question 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-Relative to the centre, the point has vector <InlineMath math="(4,1)" />. A <InlineMath math="90^\circ" /> rotation maps it to <InlineMath math="(-1,4)" />, giving <InlineMath math="(1,5)" />. Reflection across <InlineMath math="y=x" /> then gives <InlineMath math="(5,1)" />.
+**Relative to the centre**, the point has vector <InlineMath math="(6-2,2-1)=(4,1)" />. A <InlineMath math="90^\circ" /> rotation maps it to <InlineMath math="(u,v)\mapsto(-v,u):\ (4,1)\mapsto(-1,4)" />, giving <InlineMath math="(2-1,1+4)=(1,5)" />. **Reflection across <InlineMath math="y=x" />** then gives <InlineMath math="(5,1)" />.
 
 The distance from <InlineMath math="(5,1)" /> to <InlineMath math="2x-y=0" /> is
 
 <BlockMath math="\begin{aligned}d&=\frac{|2(5)-1|}{\sqrt{2^2+(-1)^2}} \\ &=\frac{9}{\sqrt5} \\ &=\frac{9\sqrt5}{5}\end{aligned}" />
+
+<MathVisual
+  title="Perpendicular from the Final Image"
+  description="The highlighted segment runs from the final image to the line at a right angle."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "line", kind: "line", appearance: "primary", through: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "distance", kind: "segment", appearance: "highlight", from: { x: 5, y: 1 }, to: { x: 1.4, y: 2.8 } },
+      { id: "image", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "foot", kind: "point", appearance: "highlight", at: { x: 1.4, y: 2.8 } }
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 5, y: 1 }, placement: "below" },
+      { key: "foot", objectId: "foot", at: { x: 1.4, y: 2.8 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 2.5, y: 5 }, placement: "right" }
+    ]
+  }}
+  labels={{ image: <InlineMath math="P''=(5,1)" />, foot: <InlineMath math="H" />, line: <InlineMath math="y=2x" /> }}
+/>
+
+The diagram shows **perpendicular distance**, not a horizontal or vertical gap. The foot <InlineMath math="H=(7/5,14/5)" /> satisfies <InlineMath math="y=2x" />. The vector from <InlineMath math="H" /> to <InlineMath math="P''" /> is <InlineMath math="(18/5,-9/5)" />. Its dot product with the line direction <InlineMath math="(1,2)" /> is <InlineMath math="18/5-18/5=0" />, confirming the right angle.

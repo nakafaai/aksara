@@ -1,11 +1,11 @@
 export const metadata = {
   title: "Solution Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
   datePublished: "2025-11-26",
 };
 
-The total length of the wire is <InlineMath math="20\text{ m}" />. This length represents the perimeter of the rectangular chicken coop. Let the length be <InlineMath math="p" /> and the width be <InlineMath math="l" />. We can write the perimeter equation:
+The total length of the wire is <InlineMath math="20\text{ m}" />. This length represents the **perimeter of the rectangular chicken coop**. Let the length be <InlineMath math="p" /> and the width be <InlineMath math="l" />. We can write the perimeter equation:
 
 <MathContainer>
   <BlockMath math="2(p + l) = 20" />
@@ -19,7 +19,7 @@ Next, we want to maximize the area of the coop (<InlineMath math="L" />). The ar
   <BlockMath math="L(p) = 10p - p^2" />
 </MathContainer>
 
-This equation is a quadratic function whose curve is a downward-opening parabola (since the coefficient of <InlineMath math="p^2" /> is negative), meaning it has a maximum value at its vertex. The coordinate of the vertex (<InlineMath math="p_{\max}" />) can be found using the formula <InlineMath math="-\frac{b}{2a}" />:
+This equation is a quadratic function whose curve is a downward-opening parabola (since the coefficient of <InlineMath math="p^2" /> is negative), meaning it has a maximum value at its **vertex**. The coordinate of the vertex (<InlineMath math="p_{\max}" />) can be found using the formula <InlineMath math="-\frac{b}{2a}" />:
 
 <BlockMath math="\begin{aligned}p_{\max} &=-\frac{10}{2(-1)} \\ &=-\frac{10}{-2} \\ &=5\text{ m}\end{aligned}" />
 
@@ -27,4 +27,18 @@ After finding the length <InlineMath math="p = 5\text{ m}" />, we can determine 
 
 <BlockMath math="l = 10 - 5 = 5\text{ m}" />
 
-Thus, for the area to be maximum, the length and width of the coop must be **<InlineMath math="5\text{ m}" /> and <InlineMath math="5\text{ m}" />** respectively.
+Thus, for the area to be maximum, the length and width of the coop must be <InlineMath math="5\text{ m}" /> and <InlineMath math="5\text{ m}" /> respectively.
+
+The graph shows area <InlineMath math="L" /> for different lengths <InlineMath math="p" />. Both dimensions must be positive, so <InlineMath math="0\lt p\lt 10" />. The graph endpoints show the limits where one dimension becomes zero.
+
+<LineEquation
+  title="Maximum area with a fixed perimeter"
+  description="The horizontal axis is length p in metres, and the vertical axis is area L in square metres. The vertex is (5, 25)."
+  cameraPosition={[5,12.5,38]}
+  cameraTarget={[5,12.5,0]}
+  showZAxis={false}
+  data={[
+    {points:Array.from({length:101},(_,i)=>({x:i/10,y:10*(i/10)-(i/10)**2,z:0})),color:"#6366f1",smooth:false,showPoints:false},
+    {points:[{x:5,y:0,z:0},{x:5,y:25,z:0}],color:"#f97316",smooth:false,pointIndices:[1],labels:[{at:1,text:<InlineMath math="(5,25)" />,offset:[0,1,0]}]}
+  ]}
+/>

@@ -5,20 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Break down the logic premises into a document ownership table:
+Find a group that **must have both documents**. Use the rules in the problem to separate guaranteed ownership from what remains unknown.
 
-| Citizen Group | Has Birth Certificate? | Has ID Card (KTP)? |
+| WNI group | Birth certificate | ID card (KTP) |
 | :--- | :--- | :--- |
-| **WNI (General)** | **Yes** (All) | Depends on Age |
-| **WNI <InlineMath math="> 17" /> Years** | **Yes** | **Yes** |
-| **WNI <InlineMath math="\le 17" /> Years** | **Yes** | Not determined by the premises |
+| All ages | Guaranteed | Not guaranteed for everyone |
+| Over <InlineMath math="17" /> | Guaranteed | Guaranteed |
+| At most <InlineMath math="17" /> | Guaranteed | Not determined by the premises |
 
-**Analysis of Jakarta Residents:**
-1.  **Jakarta Residents are WNI**: Therefore, *all* Jakarta residents must have a **Birth Certificate**.
-2.  **Age of Jakarta Residents**: Some are **<InlineMath math="> 17\text{ years}" /> old**, so they have a Birth Certificate **and** an ID Card.
+The premises explicitly say that **some Jakarta residents exceed that age limit**. Choose one such resident. They have a birth certificate because they are WNI, and they also have an ID card because they are over <InlineMath math="17" />. Thus some Jakarta residents must have both documents.
 
-The existence of Jakarta residents over <InlineMath math="17\text{ years}" /> old is stated directly in the premises. Because they are WNI, this group must possess both documents.
-
-Therefore, the valid conclusion is that **some Jakarta residents have a birth certificate and ID card (KTP)**.
-
-The claim that every resident has exactly one document also fails. The residents over the stated age have both documents.
+The rules do not guarantee an ID card for every Jakarta resident. For example, a <InlineMath math="10" />-year-old resident who has a birth certificate but no ID card would satisfy every premise. In contrast, any option asserting a resident without a birth certificate contradicts the rule for all WNI. The "exactly one document" claim also fails because the older group has both.

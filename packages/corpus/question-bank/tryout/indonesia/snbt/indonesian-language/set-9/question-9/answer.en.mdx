@@ -2,9 +2,22 @@ export const metadata = {
   title: "Answer 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-20",
 };
 
-**Menjelaskan mengapa arus yang sama dapat dihitung sebagai perpindahan keluar atau sebagai perpindahan internal, bergantung pada komponen yang dimasukkan ke dalam perhitungan.**
+The system boundary determines **incoming, outgoing, and internal flows**. Including every listed flow gives these two balances.
 
-The definition shows why every flow crossing a boundary must be checked. The plant value of <InlineMath math="11" /> omits six units of outgoing litter, so the complete plant balance is five units. If soil is included, litter becomes an internal transfer, but decomposition and flow to water become outgoing flows of the combined system. That combined balance is four units, not eleven. The system boundary therefore determines which flows enter the calculation.
+| System | Incoming | Outgoing | Internal |
+| --- | --- | --- | --- |
+| Plants | Photosynthesis 18 | Respiration 7 and litter 6 | No internal flow is shown |
+| Plants and soil | Photosynthesis 18 | Respiration 7, decomposition 4, flow to water 3 | Litter 6 |
+
+For plants alone:
+
+<BlockMath math="\Delta C=18-(7+6)=18-13=+5" />
+
+For plants and soil together:
+
+<BlockMath math="\Delta C=18-(7+4+3)=18-14=+4" />
+
+Both results give additional carbon units over one hypothetical year. The value 11 omits litter for plants, or decomposition and flow to water for the combined system. Correct arithmetic still describes a simulation, not measurements of real mangroves.
