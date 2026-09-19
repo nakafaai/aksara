@@ -7,6 +7,21 @@ import {
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
 
+it("checks forbidden control bytes without rewriting assessed language", () => {
+  const source = `${METADATA}Anda menghitung\u000B luas; sebutkan hasilnya.`;
+  assert.deepEqual(
+    findDocumentIssues("question.id.mdx", "id", source, parseLessonMdx(source)),
+    [
+      {
+        column: 16,
+        excerpt: "Anda menghitung\u000B luas; sebutkan hasilnya.",
+        line: 3,
+        rule: "forbidden-control-character",
+      },
+    ]
+  );
+});
+
 it("preserves assessed language while checking broken question math and emphasis", () => {
   const source = `${METADATA}Saya membaca bagian berikutnya; Anda menyebut gagasan utama.\n\n**Teks tanpa penutup\n\n<InlineMath math="2 \\text{kg}" />`;
   const rules = findDocumentIssues(

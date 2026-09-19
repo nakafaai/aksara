@@ -172,7 +172,7 @@ function isForbiddenControlCharacter(code: number): boolean {
 }
 
 /** Rejects invisible control bytes that can silently corrupt prose or math. */
-function findForbiddenControlCharacterIssue(
+export function findForbiddenControlCharacterIssue(
   line: string
 ): SourceIssue | undefined {
   for (let index = 0; index < line.length; index += 1) {

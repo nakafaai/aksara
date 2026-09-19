@@ -14,6 +14,7 @@ import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
+import { findForbiddenControlCharacterIssue } from "#nakafa-content/voice/heading";
 import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
@@ -43,6 +44,10 @@ export function findDocumentIssues(
   if (kind === "question") {
     return [
       ...structural,
+      ...source.split("\n").flatMap((line, index) => {
+        const issue = findForbiddenControlCharacterIssue(line);
+        return issue ? [{ ...issue, line: index + 1 }] : [];
+      }),
       ...findEmphasisArtifactIssues(source, tree),
       ...findPlainMathLabelIssues(source, tree),
       ...findMalformedLatexCommandIssues(source, tree),

@@ -2,11 +2,14 @@ import { Predicate } from "effect";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
 import {
   attributeEstree,
+  type EstreeNode,
+  estreeChildren,
   jsxComponentName,
   type MdxNode,
   visitMdxNodes,
   walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";
+import { staticStringCandidates } from "#nakafa-content/mdx/static";
 
 /** One heading-delimited part of a lesson document and the node that opens it. */
 export interface HighlightSection {
@@ -55,10 +58,11 @@ export function hasMarkedPhrase(node: MdxNode): boolean {
   let marked = false;
   visitMdxNodes(node, (current) => {
     if (
-      current.type === "strong" ||
-      ((current.type === "mdxJsxFlowElement" ||
-        current.type === "mdxJsxTextElement") &&
-        isHighlightComponentName(current.name))
+      (current.type === "strong" ||
+        ((current.type === "mdxJsxFlowElement" ||
+          current.type === "mdxJsxTextElement") &&
+          isHighlightComponentName(current.name))) &&
+      hasPhraseText(current)
     ) {
       marked = true;
     }
@@ -80,7 +84,8 @@ export function hasMarkedPhrase(node: MdxNode): boolean {
       walkEstreeDeep(expression, (child) => {
         if (
           child.type === "JSXElement" &&
-          isHighlightComponentName(jsxComponentName(child))
+          isHighlightComponentName(jsxComponentName(child)) &&
+          estreeChildren(child.children).some(hasExpressionText)
         ) {
           marked = true;
         }
@@ -88,4 +93,35 @@ export function hasMarkedPhrase(node: MdxNode): boolean {
     }
   });
   return marked;
+}
+
+/** Reads actual child text, excluding element attributes and empty markers. */
+function hasPhraseText(node: MdxNode): boolean {
+  if (
+    (node.type === "text" || node.type === "inlineCode") &&
+    Predicate.isString(node.value) &&
+    node.value.trim().length > 0
+  ) {
+    return true;
+  }
+  if (node.data?.estree && hasExpressionText(node.data.estree)) {
+    return true;
+  }
+  return (node.children ?? []).some(hasPhraseText);
+}
+
+/** Reads static rendered JSX children without counting invisible attributes. */
+function hasExpressionText(node: EstreeNode): boolean {
+  if (node.type === "JSXText" || node.type === "Literal") {
+    return (
+      Predicate.isNumber(node.value) ||
+      (Predicate.isString(node.value) && node.value.trim().length > 0)
+    );
+  }
+  if (staticStringCandidates(node).some(({ text }) => text.trim().length > 0)) {
+    return true;
+  }
+  return [node.children, node.expression, node.body].some((field) =>
+    estreeChildren(field).some(hasExpressionText)
+  );
 }
