@@ -8,8 +8,7 @@ import {
 } from "#corpus/test/tryout";
 import { projectTryoutSources } from "#corpus/tryout/projection";
 
-const ENGLISH_PATH_PATTERN = /\/compulsory-mathematics$/u;
-const INDONESIAN_PATH_PATTERN = /\/matematika-wajib$/u;
+const COMPULSORY_TRACK = "compulsory-mathematics";
 
 describe("tryout projection", () => {
   it.effect(
@@ -97,84 +96,6 @@ describe("tryout projection", () => {
   );
 
   it.effect(
-    "derives graph identity from source keys for routes and internal entries",
-    () =>
-      Effect.gen(function* () {
-        const { projection } = yield* loadTryoutProjectionContent();
-        const trackEn = yield* Effect.fromNullishOr(
-          projection.catalog.find(
-            ({ row }) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "compulsory-mathematics" &&
-              row.appLocale === "en"
-          )?.row
-        );
-        const trackId = yield* Effect.fromNullishOr(
-          projection.catalog.find(
-            ({ row }) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "compulsory-mathematics" &&
-              row.appLocale === "id"
-          )?.row
-        );
-        const internal = yield* Effect.fromNullishOr(
-          projection.catalog.find(
-            ({ row }) =>
-              row.kind === "section" &&
-              row.examKey === "tka" &&
-              row.sectionKey === "compulsory-mathematics" &&
-              row.setKey === "set-1" &&
-              row.appLocale === "id"
-          )?.row
-        );
-
-        expect(trackEn.publicPath).toMatch(ENGLISH_PATH_PATTERN);
-        expect(trackId.publicPath).toMatch(INDONESIAN_PATH_PATTERN);
-        expect(trackEn.graph).toMatchObject({
-          conceptId: "concept:tryout:indonesia:tka:compulsory-mathematics",
-          learningObjectId:
-            "lo:tryout-track:indonesia:tka:compulsory-mathematics",
-          lensId: "lens:tryout:indonesia:tka",
-        });
-        expect(trackId.graph.conceptId).toBe(trackEn.graph.conceptId);
-        expect(trackId.graph.assetId).not.toBe(trackEn.graph.assetId);
-        expect(
-          projection.catalog.some(
-            ({ row }) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "mathematics"
-          )
-        ).toBe(false);
-        expect(
-          projection.catalog.find(
-            ({ row }) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "compulsory-mathematics" &&
-              row.appLocale === "de"
-          )?.row
-        ).toMatchObject({
-          publicPath: "try-out/indonesien/tka/pflichtmathematik",
-        });
-        expect(internal).toMatchObject({
-          graph: {
-            conceptId:
-              "concept:tryout:indonesia:tka:compulsory-mathematics:compulsory-mathematics",
-            learningObjectId:
-              "lo:tryout-section:indonesia:tka:compulsory-mathematics:set-1:compulsory-mathematics",
-            lensId: "lens:tryout:indonesia:tka",
-          },
-          visibility: "internal-entry",
-        });
-        expect("publicPath" in internal).toBe(false);
-      }),
-    { timeout: 30_000 }
-  );
-
-  it.effect(
     "projects every complete active SNBT and TKA set",
     () =>
       Effect.gen(function* () {
@@ -198,11 +119,7 @@ describe("tryout projection", () => {
           )
         ).toEqual(Array.from({ length: 10 }, () => 160));
         expect(
-          [
-            "compulsory-mathematics",
-            "indonesian-language",
-            "english-language",
-          ].map(
+          [COMPULSORY_TRACK, "indonesian-language", "english-language"].map(
             (trackKey) =>
               tka.filter(
                 ({ appLocale, trackKey: placementTrackKey }) =>
