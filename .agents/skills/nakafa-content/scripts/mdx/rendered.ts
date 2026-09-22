@@ -36,6 +36,13 @@ function decodeEntity(entity: string): string {
   return value;
 }
 
+/** Reads the continuation prefix that the rendered output inferred itself. */
+function inferredContinuationPrefix(authored: string, index: number): string {
+  const match: RegExpExecArray | null =
+    MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(authored.slice(index));
+  return match?.[0] ?? "";
+}
+
 /** Aligns parser-rendered text with authored escapes and HTML entities. */
 function renderedOffsets(
   authored: string,
@@ -50,10 +57,7 @@ function renderedOffsets(
   for (let sourceIndex = 0; sourceIndex < authored.length; ) {
     if (followsNewline && continuationPrefixLength > 0) {
       const prefix = inferContinuationPrefix
-        ? // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
-          (MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(
-            authored.slice(sourceIndex)
-          )?.[0] ?? "")
+        ? inferredContinuationPrefix(authored, sourceIndex)
         : authored.slice(sourceIndex, sourceIndex + continuationPrefixLength);
       if (MARKDOWN_CONTINUATION_PREFIX_PATTERN.test(prefix)) {
         sourceIndex += prefix.length;
@@ -61,8 +65,7 @@ function renderedOffsets(
     }
     followsNewline = false;
     ENTITY_PATTERN.lastIndex = sourceIndex;
-    const entity = ENTITY_PATTERN.exec(authored);
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+    const entity: RegExpExecArray | null = ENTITY_PATTERN.exec(authored);
     if (entity?.index === sourceIndex) {
       const entityValue = decodeEntity(entity[0]);
       decoded += entityValue;

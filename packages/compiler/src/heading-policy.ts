@@ -45,8 +45,9 @@ export class AuthoredListHeadingError extends Schema.TaggedError<AuthoredListHea
 function listHeadingOccurrence(
   node: Heading
 ): AuthoredListHeadingOccurrence | undefined {
-  const match = LIST_HEADING_MARKER.exec(mdastToString(node).trim());
-  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+  const match: RegExpExecArray | null = LIST_HEADING_MARKER.exec(
+    mdastToString(node).trim()
+  );
   if (!match) {
     return;
   }

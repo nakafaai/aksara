@@ -9,8 +9,8 @@ function mutateJob(workflow: string, job: string, from: string, to: string) {
   const start = workflow.indexOf(`\n  ${job}:`);
   const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
   nextJob.lastIndex = start + 1;
-  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
-  const end = nextJob.exec(workflow)?.index ?? workflow.length;
+  const match: RegExpExecArray | null = nextJob.exec(workflow);
+  const end = match?.index ?? workflow.length;
   return `${workflow.slice(0, start)}${workflow.slice(start, end).replace(from, to)}${workflow.slice(end)}`;
 }
 

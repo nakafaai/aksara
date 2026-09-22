@@ -81,11 +81,9 @@ const readHeader = Effect.fn("AksaraPublisher.readGitBatchHeader")(function* (
         output.subarray(offset, end)
       ),
   });
-  const match = BLOB_HEADER_PATTERN.exec(header);
+  const match: RegExpExecArray | null = BLOB_HEADER_PATTERN.exec(header);
   const blob = yield* Schema.decodeUnknownEffect(GitBlobMetadataSchema)({
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
     byteLength: Number(match?.[2]),
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
     objectId: match?.[1],
     sourcePath,
   }).pipe(

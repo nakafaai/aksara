@@ -91,8 +91,9 @@ function alignEntityOffsets(
       return undefined;
     }
     if (authored[cursor] === "&") {
-      const entity = ENTITY_PATTERN.exec(authored.slice(cursor));
-      // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+      const entity: RegExpExecArray | null = ENTITY_PATTERN.exec(
+        authored.slice(cursor)
+      );
       if (entity === null || entity.index !== 0) {
         return undefined;
       }

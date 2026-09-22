@@ -80,8 +80,9 @@ export function readExitSignal(error: unknown): Option.Option<NodeSignal> {
   ) {
     return Option.none();
   }
-  const match = signalMessage.exec(reason.cause.message);
-  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+  const match: RegExpExecArray | null = signalMessage.exec(
+    reason.cause.message
+  );
   return Schema.decodeUnknownOption(NodeSignalSchema)(match?.[1]);
 }
 

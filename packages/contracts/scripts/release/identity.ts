@@ -65,8 +65,7 @@ export function releaseError(
 /** Parses one stable semantic version without evaluating tag-controlled text. */
 export const parseVersion = Effect.fn("AksaraContracts.parseVersion")(
   function* (version: string, releaseTag = `${CONTRACT_NAME}@${version}`) {
-    const match = VERSION_PATTERN.exec(version);
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+    const match: RegExpExecArray | null = VERSION_PATTERN.exec(version);
     if (!match) {
       return yield* releaseError(
         "identity",
@@ -137,8 +136,8 @@ export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
           "Contract release metadata must pair one tag with one stable archive"
         );
       }
-      // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
-      const version = ARCHIVE_PATTERN.exec(assetName)?.[1];
+      const match: RegExpExecArray | null = ARCHIVE_PATTERN.exec(assetName);
+      const version = match?.[1];
       if (!version) {
         return yield* releaseError(
           "identity",
