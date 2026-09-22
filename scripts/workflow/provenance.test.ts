@@ -166,12 +166,23 @@ describe("contract provenance policy", () => {
     const changed = mutateJob(
       workflowSource(),
       "publish",
-      "    timeout-minutes: 10",
-      "    timeout-minutes: 11"
+      "    timeout-minutes: 15",
+      "    timeout-minutes: 16"
     );
     expect(() => verifyProvenanceWorkflow(changed)).toThrow(
       "npm publication must match the exact trusted job"
     );
+  });
+
+  it("keeps npm publication checks inside the registry processing window", () => {
+    expect(() =>
+      verifyProvenanceWorkflow(
+        workflowSource().replaceAll(
+          "PUBLICATION_WINDOW_SECONDS=300",
+          "PUBLICATION_WINDOW_SECONDS=30"
+        )
+      )
+    ).toThrow("npm publication must allow npm metadata propagation");
   });
 
   it("rejects malformed or incomplete workflow jobs", () => {

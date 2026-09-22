@@ -38,11 +38,11 @@ const RELEASE_JOB_PATTERN =
 const IMMUTABLE_SETTING_PATTERN =
   /repos\/\$GITHUB_REPOSITORY\/immutable-releases/u;
 const IDEMPOTENT_RELEASE_PATTERN =
-  /Resolve release state[\s\S]*isDraft,isImmutable,isPrerelease,targetCommitish[\s\S]*tag exists without a GitHub Release[\s\S]*\.isDraft == true or \.isImmutable == false[\s\S]*target" != "\$GITHUB_SHA"[\s\S]*\.isPrerelease[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*published contract release already owns/u;
+  /Resolve release state[\s\S]*isDraft,isImmutable,isPrerelease,targetCommitish[\s\S]*tag exists without a GitHub Release[\s\S]*\.isDraft == true or \.isImmutable == false[\s\S]*target" != "\$GITHUB_SHA"[\s\S]*\.isPrerelease[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--yes[\s\S]*if \[\[ -n "\$tag" \]\][\s\S]*git\/refs\/tags\/\$RELEASE_TAG[\s\S]*published contract release already owns/u;
 const PUBLISHED_RELEASE_PATTERN =
   /Publish immutable release[\s\S]*gh release edit "\$RELEASE_TAG"[\s\S]*--draft=false[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*git\/ref\/tags\/\$RELEASE_TAG[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify "\$RELEASE_TAG"[\s\S]*gh release verify-asset "\$RELEASE_TAG" "\$TARBALL"[\s\S]*gh attestation verify "\$TARBALL"/u;
 const MUTABLE_RECOVERY_PATTERN =
-  /if: failure\(\)(?: && steps\.state\.outputs\.mode == 'create')?[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--cleanup-tag/u;
+  /if: failure\(\)(?: && steps\.state\.outputs\.mode == 'create')?[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--yes[\s\S]*if \[\[ -n "\$tag" \]\][\s\S]*gh api --method DELETE[\s\S]*git\/refs\/tags\/\$RELEASE_TAG/u;
 const ISOLATED_OPERATION_PATTERN =
   /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
 const TERMINAL_GATE_PATTERN =
