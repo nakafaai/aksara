@@ -121,6 +121,25 @@ describe("workflow policy", () => {
     );
   });
 
+  it("removes mutable releases without requiring a draft tag", () => {
+    const cases = [
+      [
+        '          if [[ -n "$tag" ]]; then\n            gh api --method DELETE',
+        "          if true; then\n            gh api --method DELETE",
+        "Failed publication must remove only its same-SHA mutable release",
+      ],
+      [
+        '            if [[ -n "$tag" ]]; then\n              gh api --method DELETE',
+        "            if true; then\n              gh api --method DELETE",
+        "Contract reruns may recover only their same-SHA mutable release",
+      ],
+    ] as const;
+    for (const [guard, replacement, message] of cases) {
+      const contracts = sources.contracts.replaceAll(guard, replacement);
+      expect(() => verifyWorkflows({ ...sources, contracts })).toThrow(message);
+    }
+  });
+
   it("rejects an impossible repository-setting preflight", () => {
     expect(() =>
       verifyWorkflows({

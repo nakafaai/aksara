@@ -189,7 +189,7 @@ jobs:
     if: needs.build.outputs.mode == 'create'
     environment: npm-production
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       attestations: read
       contents: write
@@ -275,8 +275,12 @@ jobs:
               echo "The mutable contract tag belongs to a different source commit." >&2
               exit 1
             fi
-            gh release delete "$RELEASE_TAG" --cleanup-tag \
+            gh release delete "$RELEASE_TAG" \
               --repo "$GITHUB_REPOSITORY" --yes
+            if [[ -n "$tag" ]]; then
+              gh api --method DELETE \
+                "repos/$GITHUB_REPOSITORY/git/refs/tags/$RELEASE_TAG" >/dev/null
+            fi
             echo "mode=create" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -399,18 +403,25 @@ jobs:
             --ignore-scripts \
             --provenance
 
-          for attempt in {1..10}; do
+          PUBLICATION_WINDOW_SECONDS=300
+          publication_deadline=$((SECONDS + PUBLICATION_WINDOW_SECONDS))
+          publication_delay=3
+          while true; do
             if metadata=$(read_metadata) \
               && is_exact_package <<< "$metadata" >/dev/null; then
               echo "Published $package_specifier with exact archive bytes."
               exit 0
             fi
-            if [[ "$attempt" -lt 10 ]]; then
-              sleep 3
+            if [[ "$SECONDS" -ge "$publication_deadline" ]]; then
+              break
+            fi
+            sleep "$publication_delay"
+            if [[ "$publication_delay" -lt 15 ]]; then
+              publication_delay=$((publication_delay + 3))
             fi
           done
 
-          echo "The published package did not reach its exact registry bytes." >&2
+          echo "The published package did not reach its exact registry bytes within ${PUBLICATION_WINDOW_SECONDS}s." >&2
           exit 1
 
       - name: Remove failed mutable release
@@ -444,14 +455,18 @@ jobs:
             <<< "$tag" >/dev/null; then
             exit 0
           fi
-          gh release delete "$RELEASE_TAG" --cleanup-tag \
+          gh release delete "$RELEASE_TAG" \
             --repo "$GITHUB_REPOSITORY" --yes
+          if [[ -n "$tag" ]]; then
+            gh api --method DELETE \
+              "repos/$GITHUB_REPOSITORY/git/refs/tags/$RELEASE_TAG" >/dev/null
+          fi
 
   verify:
     needs: [build, publish]
     if: needs.build.outputs.mode == 'create'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions: {}
     steps:
       - name: Download verified package
@@ -591,17 +606,24 @@ jobs:
             fi
           }
 
-          for attempt in {1..10}; do
+          PUBLICATION_WINDOW_SECONDS=300
+          publication_deadline=$((SECONDS + PUBLICATION_WINDOW_SECONDS))
+          publication_delay=3
+          while true; do
             if is_exact_publication; then
               echo "Verified $package_specifier with exact npm provenance."
               exit 0
             fi
-            if [[ "$attempt" -lt 10 ]]; then
-              sleep 3
+            if [[ "$SECONDS" -ge "$publication_deadline" ]]; then
+              break
+            fi
+            sleep "$publication_delay"
+            if [[ "$publication_delay" -lt 15 ]]; then
+              publication_delay=$((publication_delay + 3))
             fi
           done
 
-          echo "The contract publication did not reach its exact verified state." >&2
+          echo "The contract publication did not reach its exact verified state within ${PUBLICATION_WINDOW_SECONDS}s." >&2
           exit 1
 
   finalize:
@@ -729,5 +751,9 @@ jobs:
             <<< "$tag" >/dev/null; then
             exit 0
           fi
-          gh release delete "$RELEASE_TAG" --cleanup-tag \
+          gh release delete "$RELEASE_TAG" \
             --repo "$GITHUB_REPOSITORY" --yes
+          if [[ -n "$tag" ]]; then
+            gh api --method DELETE \
+              "repos/$GITHUB_REPOSITORY/git/refs/tags/$RELEASE_TAG" >/dev/null
+          fi

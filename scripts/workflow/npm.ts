@@ -26,6 +26,10 @@ const UPLOAD_ACTION =
 const FORBIDDEN_CREDENTIAL = /NODE_AUTH_TOKEN|NPM_TOKEN|_authToken/u;
 const FORBIDDEN_SOURCE =
   /@base64d|bundle\.dsseEnvelope\.payload|is_exact_provenance\(\)/u;
+const PUBLICATION_WINDOW_PATTERN =
+  /PUBLICATION_WINDOW_SECONDS=([3-9][0-9]{2}|[1-9][0-9]{3,})/gu;
+const PUBLICATION_DEADLINE_PATTERN =
+  /publication_deadline=\$\(\(SECONDS \+ PUBLICATION_WINDOW_SECONDS\)\)[\s\S]{0,400}?"\$SECONDS" -ge "\$publication_deadline"/gu;
 /** Reports whether both immutable artifacts are replaceable on a rerun. */
 function hasRerunnableArtifacts(
   build: WorkflowJob,
@@ -53,6 +57,20 @@ function requireSource(
       `${owner} must include exact source fragment: ${fragment}`
     );
   }
+}
+
+/** Requires one deadline-bounded registry wait inside one publication job. */
+function requirePublicationWindow(owner: string, source: string) {
+  assert.equal(
+    [...source.matchAll(PUBLICATION_WINDOW_PATTERN)].length,
+    1,
+    `${owner} must allow npm metadata propagation`
+  );
+  assert.equal(
+    [...source.matchAll(PUBLICATION_DEADLINE_PATTERN)].length,
+    1,
+    `${owner} must bound its npm metadata wait by deadline`
+  );
 }
 
 /** Verifies the shared trusted npm publication and provenance boundary. */
@@ -184,8 +202,10 @@ export function verifyNpmWorkflow(
     `"${contract.workflowPath}"`,
     '"refs/heads/main"',
     '"npm-production"',
-    "for attempt in {1..10}",
+    "is_exact_publication",
   ]);
+  requirePublicationWindow("npm publication", publishSource);
+  requirePublicationWindow("npm verification", verifySource);
   assert.doesNotMatch(
     source,
     FORBIDDEN_SOURCE,
