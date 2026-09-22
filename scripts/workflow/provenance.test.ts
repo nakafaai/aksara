@@ -12,6 +12,7 @@ function mutateJob(source: string, job: string, from: string, to: string) {
   const start = source.indexOf(`\n  ${job}:`);
   const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
   nextJob.lastIndex = start + 1;
+  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
   const end = nextJob.exec(source)?.index ?? source.length;
   return `${source.slice(0, start)}${source.slice(start, end).replace(from, to)}${source.slice(end)}`;
 }

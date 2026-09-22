@@ -50,7 +50,8 @@ function renderedOffsets(
   for (let sourceIndex = 0; sourceIndex < authored.length; ) {
     if (followsNewline && continuationPrefixLength > 0) {
       const prefix = inferContinuationPrefix
-        ? (MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(
+        ? // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
+          (MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(
             authored.slice(sourceIndex)
           )?.[0] ?? "")
         : authored.slice(sourceIndex, sourceIndex + continuationPrefixLength);
@@ -61,6 +62,7 @@ function renderedOffsets(
     followsNewline = false;
     ENTITY_PATTERN.lastIndex = sourceIndex;
     const entity = ENTITY_PATTERN.exec(authored);
+    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
     if (entity?.index === sourceIndex) {
       const entityValue = decodeEntity(entity[0]);
       decoded += entityValue;

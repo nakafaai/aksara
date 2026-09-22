@@ -83,7 +83,9 @@ export function createWorkspaceIdentityResolver(
   const identities = new Map<string, WorkspaceIdentity>();
   return (file) => {
     const match = WORKSPACE_SOURCE_PATTERN.exec(file);
+    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
     const workspaceRoot = match?.[1];
+    // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
     const workspace = match?.[2];
     if (!workspace || workspace === "typescript-config") {
       return;

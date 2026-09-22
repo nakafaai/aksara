@@ -236,6 +236,7 @@ function atomEnding(value: string, end: number): MathAtom | undefined {
 function operandBefore(value: string, end: number): MathAtom | undefined {
   let cursor = end;
   let suffix = SCRIPT_SUFFIX_PATTERN.exec(value.slice(0, cursor));
+  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
   while (suffix) {
     cursor -= suffix[0].length;
     suffix = SCRIPT_SUFFIX_PATTERN.exec(value.slice(0, cursor));

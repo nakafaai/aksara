@@ -59,6 +59,7 @@ export function establishedGermanFormalSentenceOffset(
   text: string
 ): number | undefined {
   const match = GERMAN_ESTABLISHED_FORMAL_SENTENCE_PATTERN.exec(text);
+  // biome-ignore lint/suspicious/noUnnecessaryConditions: RegExp.exec returns null on no match; Biome 2.5.14 false positive (biomejs/biome#11278).
   if (match?.index === undefined) {
     return;
   }
