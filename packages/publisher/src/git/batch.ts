@@ -81,7 +81,7 @@ const readHeader = Effect.fn("AksaraPublisher.readGitBatchHeader")(function* (
         output.subarray(offset, end)
       ),
   });
-  const match = BLOB_HEADER_PATTERN.exec(header);
+  const match: RegExpExecArray | null = BLOB_HEADER_PATTERN.exec(header);
   const blob = yield* Schema.decodeUnknownEffect(GitBlobMetadataSchema)({
     byteLength: Number(match?.[2]),
     objectId: match?.[1],

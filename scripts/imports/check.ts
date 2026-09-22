@@ -82,7 +82,7 @@ export function createWorkspaceIdentityResolver(
 ): WorkspaceIdentityResolver {
   const identities = new Map<string, WorkspaceIdentity>();
   return (file) => {
-    const match = WORKSPACE_SOURCE_PATTERN.exec(file);
+    const match: RegExpExecArray | null = WORKSPACE_SOURCE_PATTERN.exec(file);
     const workspaceRoot = match?.[1];
     const workspace = match?.[2];
     if (!workspace || workspace === "typescript-config") {

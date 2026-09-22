@@ -91,7 +91,9 @@ function alignEntityOffsets(
       return undefined;
     }
     if (authored[cursor] === "&") {
-      const entity = ENTITY_PATTERN.exec(authored.slice(cursor));
+      const entity: RegExpExecArray | null = ENTITY_PATTERN.exec(
+        authored.slice(cursor)
+      );
       if (entity === null || entity.index !== 0) {
         return undefined;
       }

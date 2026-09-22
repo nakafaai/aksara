@@ -58,7 +58,8 @@ export function unanchoredGermanFormalAddressOffset(
 export function establishedGermanFormalSentenceOffset(
   text: string
 ): number | undefined {
-  const match = GERMAN_ESTABLISHED_FORMAL_SENTENCE_PATTERN.exec(text);
+  const match: RegExpExecArray | null =
+    GERMAN_ESTABLISHED_FORMAL_SENTENCE_PATTERN.exec(text);
   if (match?.index === undefined) {
     return;
   }

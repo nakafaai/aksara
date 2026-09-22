@@ -12,7 +12,8 @@ function mutateJob(source: string, job: string, from: string, to: string) {
   const start = source.indexOf(`\n  ${job}:`);
   const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
   nextJob.lastIndex = start + 1;
-  const end = nextJob.exec(source)?.index ?? source.length;
+  const match: RegExpExecArray | null = nextJob.exec(source);
+  const end = match?.index ?? source.length;
   return `${source.slice(0, start)}${source.slice(start, end).replace(from, to)}${source.slice(end)}`;
 }
 
