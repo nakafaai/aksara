@@ -93,6 +93,12 @@ it("keeps factual negation, definitional exclusion, and real comparison", () => 
     ["id", "Fungsi ini bukan bijektif."],
     ["id", "Nilai itu tidak sama dengan nol."],
     ["id", "Sifatnya bukan sifat yang mudah diperiksa."],
+    ["en", "A vector has not only magnitude but also direction."],
+    [
+      "de",
+      "Ein Vektor hat nicht nur einen Betrag, sondern auch eine Richtung.",
+    ],
+    ["id", "Vektor tidak hanya memiliki besar, tetapi juga arah."],
   ] as const;
 
   for (const [locale, source] of samples) {
