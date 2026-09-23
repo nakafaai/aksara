@@ -31,21 +31,23 @@ By equating <Highlight>the corresponding coefficients</Highlight>, we get:
 
 ### Reflection Matrix over the Origin
 
-<Highlight>Reflection over the origin</Highlight> <InlineMath math="O(0,0)" /> negates both coordinates:
+This matrix is the **negative identity matrix**. Reflecting twice reverses both signs twice and restores the original point:
 
-<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
 
 ## Applying the Reflection Matrix over the Origin
 
-The matrix below turns a reflection over the origin into one multiplication. The examples apply it to single points and then to a whole triangle.
+One matrix multiplication can act on **several columns at once**. Each column stores a point, so the column order determines the order of the vertices in the figure.
+
+<BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
 
 ### Reflecting Two Points
 
 Determine the images of points <InlineMath math="A(-1,1)" /> and <InlineMath math="B(3,-2)" /> when reflected over the origin!
 
-**Solution:**
+**Solution**:
 
-Using the transformation matrix:
+Use the **first row for the horizontal coordinate** and the second row for the vertical coordinate:
 
 <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -131,35 +133,39 @@ The image of point <InlineMath math="B" /> is <InlineMath math="B'(-3,2)" />.
 
 ## Exercises
 
-Both problems reflect over the origin. The second applies the reflection matrix to each vertex of a triangle.
+Both problems reflect over the origin. The second applies the reflection matrix to **each vertex of a triangle**.
 
 1.  Determine the images of points <InlineMath math="A(1,-7)" /> and <InlineMath math="B(-7,-2)" /> when reflected over the origin!
 2.  A triangle <InlineMath math="PQR" /> has vertices <InlineMath math="P(2,2)" />, <InlineMath math="Q(5,2)" />, and <InlineMath math="R(3,5)" />. Determine the coordinates of the image triangle <InlineMath math="P'Q'R'" /> after reflection over the origin using matrix multiplication.
 
 ### Solutions
 
-Each solution below multiplies the reflection matrix by the coordinates of one point. Write the matrix first, then apply it to each vertex of the triangle so the image is built from its corners.
+Keep the **point columns in the same order** during multiplication. This diagonal matrix changes the sign of every entry without exchanging horizontal and vertical positions.
 
-1.  The reflection matrix over the origin is:
+**Solution 1**
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+The reflection matrix over the origin is:
 
-    For <InlineMath math="A(1,-7)" />:
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
+For <InlineMath math="A(1,-7)" />:
 
-    Image <InlineMath math="A'(-1,7)" />. For <InlineMath math="B(-7,-2)" />:
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
+Image <InlineMath math="A'(-1,7)" />. For <InlineMath math="B(-7,-2)" />:
 
-    Image <InlineMath math="B'(7,2)" />.
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
 
-2.  Matrix of <InlineMath math="PQR" /> vertices:
+Image <InlineMath math="B'(7,2)" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+**Solution 2**
 
-      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+Matrix of <InlineMath math="PQR" /> vertices:
 
-    Image: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Image: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.

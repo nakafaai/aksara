@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Quadratic Forms with Symmetric Matrices
 
-<Highlight>A quadratic equation with a cross term does not state its principal directions directly.</Highlight> Its quadratic form collects the coefficients in a symmetric matrix, and the eigenvectors of that matrix give the principal directions. In two dimensions, let
+A quadratic equation with a <Highlight>cross term</Highlight> does not state its principal directions directly. Its quadratic form collects the coefficients in a symmetric matrix, and the eigenvectors of that matrix give the principal directions. In two dimensions, let
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
@@ -27,7 +27,7 @@ For the equation <InlineMath math="x^TAx+p^Tx+f=0" />, use the rotated coordinat
 
 For both variables with <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, the completing the square process is performed separately:
 
-Name the completed-square brackets to keep both added and subtracted terms visible:
+Name the completed-square brackets to keep both **added and subtracted terms** visible:
 
 <MathContainer>
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
@@ -40,7 +40,7 @@ Name the completed-square brackets to keep both added and subtracted terms visib
 Collecting the completed squares gives
 
 <MathContainer>
-<BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Define the center in rotated coordinates and the translated constant by
@@ -60,7 +60,7 @@ The signs of <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" />, a
 
 ## Curve Classification
 
-The signs of the two eigenvalues decide which conic section appears, so the cases below take one sign combination at a time and name the curve it produces.
+With **positive translated constant** <InlineMath math="\gamma" />, two nonzero eigenvalues of the same positive sign give an ellipse, while opposite signs give a hyperbola. A zero eigenvalue requires checking the remaining linear term: it yields a parabola only when that term is nonzero.
 
 ### Two Positive Eigenvalues
 
@@ -142,6 +142,7 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -161,7 +162,7 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
   data={[
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2; // λ₁ > 0
         const lambda2 = -1; // λ₂ < 0
         const gamma = 3; // γ > 0
@@ -177,7 +178,7 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
     },
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2;
         const lambda2 = -1;
         const gamma = 3;
@@ -270,6 +271,7 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -283,11 +285,15 @@ Keep the same completed-square brackets visible, because the added and subtracte
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
 
   <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\epsilon\xi_2+f" />
-  <BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
   <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
+Here the zero eigenvalue means we use only the first completed square, so define:
+
+<BlockMath math="m_1=-\frac{\delta}{2\lambda_1},\qquad \gamma=\frac{\delta^2}{4\lambda_1}-f" />
+
+Solving for <InlineMath math="\xi_2" /> shows the **parabola directly**:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -299,8 +305,7 @@ Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
   data={[
     {
       points: Array.from({ length: 155 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 14;
-        const t = (i / 49 - 0.5) * 6;
+        const t = (pointIndex / 154 - 0.5) * 6;
         const lambda1 = 1; // λ₁ ≠ 0
         const epsilon = -2; // ε ≠ 0
         const gamma = 2; // γ
@@ -346,7 +351,9 @@ Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
       ]
     }
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Rotating and Translating a Two Dimensional Conic
@@ -365,7 +372,7 @@ The eigenpairs are
 <BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
 </MathContainer>
 
-The center in the original coordinates is <InlineMath math="h=(1,-1)^T" /> because <InlineMath math="2Ah+p=0" />. In rotated coordinates, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. With <InlineMath math="\eta=\xi-m" />, the equation becomes
+The **center in the original coordinates** is <InlineMath math="h=(1,-1)^T" /> because <InlineMath math="2Ah+p=0" />. In rotated coordinates, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. With <InlineMath math="\eta=\xi-m" />, the equation becomes
 
 <MathContainer>
 <BlockMath math="6\eta_1^2+\eta_2^2=12" />

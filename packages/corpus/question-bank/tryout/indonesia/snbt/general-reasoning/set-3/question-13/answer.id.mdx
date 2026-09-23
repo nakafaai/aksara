@@ -5,43 +5,24 @@ export const metadata = {
   dateModified: "2026-09-19",
 };
 
-Gunakan aturan kelanjutan pola pada soal untuk memperpanjang setiap baris satu
-minggu.
+Aturan soal berlaku pada **kenaikan mingguan**, bukan langsung pada jumlah penjualan. Hitung selisih setiap dua minggu berurutan sebelum meneruskan pola.
 
-#### Pola Penjualan Segiempat
+#### Hitung kenaikan berikutnya
 
-Barisan penjualan kerudung segiempat adalah <InlineMath math="12,15,21,30" />. Selisih penjualan setiap dua minggu berurutan
-adalah
+| Jenis | Kenaikan yang diketahui | Kenaikan berikutnya |
+| --- | --- | --- |
+| Segiempat | <InlineMath math="15-12=3" />, <InlineMath math="21-15=6" />, <InlineMath math="30-21=9" /> | Bertambah tiga, jadi <InlineMath math="9+3=12" /> |
+| Bergo | <InlineMath math="16-14=2" />, <InlineMath math="18-16=2" />, <InlineMath math="20-18=2" /> | Tetap <InlineMath math="2" /> |
+| Pasmina | <InlineMath math="14-9=5" />, <InlineMath math="20-14=6" />, <InlineMath math="27-20=7" /> | Bertambah satu, jadi <InlineMath math="7+1=8" /> |
 
-<MathContainer>
-  <BlockMath math="15-12=3" />
-  <BlockMath math="21-15=6" />
-  <BlockMath math="30-21=9" />
-</MathContainer>
+Ketiga deret kenaikan membentuk **barisan aritmetika** dengan beda masing-masing tiga, nol, dan satu. Beda nol pada bergo berarti kenaikan penjualan tetap sama.
 
-Kenaikan penjualan bertambah <InlineMath math="3" />, sehingga kenaikan
-berikutnya <InlineMath math="12" />. Nilai minggu ke-<InlineMath math="5" />
-adalah <InlineMath math="30+12=42" />.
+#### Tambahkan ke penjualan minggu keempat
 
-#### Pola Penjualan Bergo
+Tambahkan kenaikan yang baru dihitung ke jumlah terakhir, bukan ke jumlah awal:
 
-Barisan <InlineMath math="14,16,18,20" /> memiliki **kenaikan tetap**
-<InlineMath math="2" />. Nilai berikutnya adalah
-<InlineMath math="20+2=22" />.
+<BlockMath math="\begin{aligned}S_5&amp;=30+12=42\\B_5&amp;=20+2=22\\P_5&amp;=27+8=35\end{aligned}" />
 
-#### Pola Penjualan Pasmina
+Huruf <InlineMath math="S" />, <InlineMath math="B" />, dan <InlineMath math="P" /> berturut-turut menyatakan segiempat, bergo, dan pasmina. Urutan prediksi penjualannya adalah <InlineMath math="42>35>22" />. Jadi, **segiempat paling banyak terjual**, sedangkan bergo paling sedikit.
 
-Barisan <InlineMath math="9,14,20,27" /> memiliki kenaikan berturut-turut
-<InlineMath math="5,6,7" />. Kenaikan berikutnya <InlineMath math="8" />,
-sehingga penjualan pasmina pada minggu kelima menjadi <InlineMath math="27+8=35" />.
-
-#### Bandingkan hasil prediksi
-
-Periksa setiap pernyataan berdasarkan hasil prediksi:
-
-- Bergo mencapai <InlineMath math="22" />. Nilai <InlineMath math="24" /> tidak sesuai dengan pola pada tabel.
-- Segiempat mencapai <InlineMath math="42" />, lebih banyak daripada pasmina
-  sebanyak <InlineMath math="35" /> dan bergo sebanyak <InlineMath math="22" />.
-- Dengan demikian, penjualan pasmina tidak lebih sedikit daripada bergo.
-
-Jadi, prediksi yang tepat adalah penjualan **<InlineMath math="42" /> kerudung segiempat**.
+Pilihan yang benar menyebut penjualan segiempat sebanyak <InlineMath math="42" /> buah. Prediksi bergo bukan <InlineMath math="24" />, pasmina bukan yang terbanyak, dan pasmina tetap lebih banyak daripada bergo.

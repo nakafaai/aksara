@@ -5,42 +5,15 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Define the sample space and events:
-- <InlineMath math="S" /> = Sample space (total eggs)
-- <InlineMath math="D" /> = Event of picking a duck egg
-- <InlineMath math="C" /> = Event of picking a chicken egg
-- <InlineMath math="B" /> = Event of picking a broken egg
+A broken duck egg meets **both conditions at once**, so count it only once in the event “duck or broken”. Separate the eggs by type and condition:
 
-First, we calculate the total number of eggs in the basket:
+| Type | Broken | Intact | Total |
+| --- | --- | --- | --- |
+| Duck | <InlineMath math="\frac12\cdot10=5" /> | <InlineMath math="10-5=5" /> | <InlineMath math="10" /> |
+| Chicken | <InlineMath math="\frac14\cdot20=5" /> | <InlineMath math="20-5=15" /> | <InlineMath math="20" /> |
 
-<BlockMath math="\begin{aligned}n(S)&=n(D) + n(C)\\&=10 + 20\\&=30\end{aligned}" />
+All ten duck eggs qualify, whether broken or intact. Add the five broken chicken eggs. These two groups are disjoint, so:
 
-Next, we calculate the number of broken eggs:
-- Broken duck eggs: <InlineMath math="\frac{1}{2} \times 10 = 5" />
-- Broken chicken eggs: <InlineMath math="\frac{1}{4} \times 20 = 5" />
+<BlockMath math="P=\frac{10+5}{10+20}=\frac{15}{30}=\frac12" />
 
-The total number of broken eggs (<InlineMath math="n(B)" />) is:
-
-<BlockMath math="\begin{aligned}n(B)&=5 + 5\\&=10\end{aligned}" />
-
-The event "duck egg or broken egg" is the union <InlineMath math="D \cup B" />:
-
-<BlockMath math="P(D \cup B) = \frac{n(D \cup B)}{n(S)}" />
-
-Use inclusion-exclusion to avoid counting the broken duck eggs twice:
-
-<BlockMath math="\begin{aligned}n(D \cup B)&=n(D) + n(B)\\&\quad-n(D \cap B)\end{aligned}" />
-
-- <InlineMath math="n(D) = 10" /> (number of duck eggs)
-- <InlineMath math="n(B) = 10" /> (total number of broken eggs)
-- <InlineMath math="n(D \cap B)" /> counts eggs that are both duck eggs and broken. There are <InlineMath math="5" /> such eggs.
-
-Thus:
-
-<BlockMath math="\begin{aligned}n(D \cup B)&=10 + 10 - 5\\&=15\end{aligned}" />
-
-So the probability is:
-
-<BlockMath math="\begin{aligned}P(D \cup B)&=\frac{15}{30}\\&=\frac{1}{2}\\&=0.5\end{aligned}" />
-
-Therefore, the probability of picking a duck egg or a broken egg is <InlineMath math="0.5" />.
+The required probability is <InlineMath math="0.5" />. Inclusion-exclusion gives the same favorable count: <InlineMath math="10+(5+5)-5=15" />.

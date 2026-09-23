@@ -27,14 +27,14 @@ The fitted line is determined from the vertical **residual** at each observed po
 
 3.  **Minimize the residual sum of squares:** The least-squares line makes <InlineMath math="\sum e_i^2" /> as small as possible among all candidate lines.
 
-**Why square the residuals?**
+Why square the residuals?
 
 - Squaring prevents positive and negative residuals from canceling one another.
 - A residual with twice the magnitude contributes four times as much to the sum, so large departures receive more weight.
 
 ## Fitting Advertising and Sales Data
 
-For example, a company wants to see the relationship between the advertising costs they incur (in millions of rupiah) and the number of products sold (in thousands of units). The data they collected is as follows:
+For example, a company wants to see the relationship between the **advertising costs** they incur (in millions of rupiah) and the number of products sold (in thousands of units). The data they collected is as follows:
 
 <ScatterDiagram
   title="Line Resulting from Least Squares Method (Ads vs Sales)"
@@ -69,18 +69,17 @@ For example, a company wants to see the relationship between the advertising cos
 />
 
 The straight line in the diagram is the _best-fit_ line for the advertising and sales data. The dashed lines show the residual for each point. The least-squares method selects the line with the smallest sum of squared residuals.
-
 ## Finding the Line by Minimizing Squared Residuals
 
 Mathematically, we are looking for the line with the equation:
 
 <BlockMath math="\hat{y} = a + bx" />
 
-The intercept <InlineMath math="a" /> and slope <InlineMath math="b" /> are chosen to minimize the following sum of squared residuals:
+The intercept <InlineMath math="a" /> and slope <InlineMath math="b" /> are chosen to minimize the following **sum of squared residuals**:
 
 <BlockMath math="\begin{aligned} \sum e_i^2 &amp;= \sum (y_i - \hat{y}_i)^2 \\ &amp;= \sum (y_i - (a + bx_i))^2 \end{aligned}" />
 
-Through calculus (which we don't need to derive here), formulas are found to obtain the values of <InlineMath math="a" /> and <InlineMath math="b" /> that satisfy this condition:
+The coefficients that minimize the residual sum of squares are calculated from sums, products, and squares of the observations:
 
 <MathContainer>
   <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
@@ -102,3 +101,32 @@ Formula key:
 The least-squares method provides a systematic criterion for the line that represents the linear trend: its residual sum of squares is minimal.
 
 If every <InlineMath math="x" /> value is the same, then <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> and the slope formula has a zero denominator. In that case, the data cannot determine a unique linear regression slope.
+
+### Calculating the Coefficients from the Data
+
+Use every pair in the plot. The product and square columns keep each observation in the calculation exactly once. The **sum of each column** then enters the slope formula.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="65" /> | <InlineMath math="195" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="42" /> | <InlineMath math="168" /> | <InlineMath math="16" /> |
+| <InlineMath math="4.5" /> | <InlineMath math="75" /> | <InlineMath math="337.5" /> | <InlineMath math="20.25" /> |
+| <InlineMath math="5" /> | <InlineMath math="70" /> | <InlineMath math="350" /> | <InlineMath math="25" /> |
+| <InlineMath math="6" /> | <InlineMath math="90" /> | <InlineMath math="540" /> | <InlineMath math="36" /> |
+| <InlineMath math="7" /> | <InlineMath math="85" /> | <InlineMath math="595" /> | <InlineMath math="49" /> |
+| <InlineMath math="7.5" /> | <InlineMath math="65" /> | <InlineMath math="487.5" /> | <InlineMath math="56.25" /> |
+| <InlineMath math="8" /> | <InlineMath math="112" /> | <InlineMath math="896" /> | <InlineMath math="64" /> |
+| <InlineMath math="9" /> | <InlineMath math="115" /> | <InlineMath math="1035" /> | <InlineMath math="81" /> |
+| <InlineMath math="10" /> | <InlineMath math="105" /> | <InlineMath math="1050" /> | <InlineMath math="100" /> |
+| <InlineMath math="11" /> | <InlineMath math="125" /> | <InlineMath math="1375" /> | <InlineMath math="121" /> |
+| <InlineMath math="\sum x=77" /> | <InlineMath math="\sum y=999" /> | <InlineMath math="\sum xy=7129" /> | <InlineMath math="\sum x^2=581.5" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(7129)-(77)(999)}{12(581.5)-(77)^2} \\ &=\frac{8625}{1049} \\ &=\frac{8625}{1049}\approx8.222\end{aligned}" />
+  <BlockMath math="a=\frac{999}{12}-\frac{8625}{1049}\cdot\frac{77}{12}=\frac{63971}{2098}\approx30.491" />
+</MathContainer>
+
+Use the unrounded coefficients when calculating predictions. Rounding only the displayed coefficients gives:
+
+<BlockMath math="\hat y\approx30.491+8.222x" />

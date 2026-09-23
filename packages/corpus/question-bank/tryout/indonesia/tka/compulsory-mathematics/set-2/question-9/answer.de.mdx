@@ -5,16 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Das erste Glied ist <InlineMath math="u_1=S_1=5" />. Für <InlineMath math="n\ge2" /> bleibt beim Subtrahieren aufeinanderfolgender Teilsummen nur das <InlineMath math="n" />-te Glied übrig.
+Das erste Glied ist <InlineMath math="u_1=S_1=5" />. Für <InlineMath math="n\ge2" /> bleibt beim **Subtrahieren aufeinanderfolgender Teilsummen** nur das <InlineMath math="n" />-te Glied übrig.
 
 <BlockMath math="\begin{aligned}
 u_n&=S_n-S_{n-1} \\
-&=3n^2+2n \\
-&\quad-\bigl(3(n-1)^2+2(n-1)\bigr) \\
+&=3n^2+2n-\bigl(3(n^2-2n+1)+2n-2\bigr) \\
+&=3n^2+2n-(3n^2-4n+1) \\
+&=3n^2+2n-3n^2+4n-1 \\
 &=6n-1
 \end{aligned}" />
 
 Die Formel liefert auch <InlineMath math="u_1=5" />. Die Differenz <InlineMath math="u_{n+1}-u_n=6" /> ist konstant, also ist die Folge arithmetisch. Berechne die Werte aus den Aussagen.
+
+<BlockMath math="u_{n+1}-u_n=[6(n+1)-1]-(6n-1)=6" />
 
 <BlockMath math="\begin{aligned}
 u_{10}&=6(10)-1=59 \\

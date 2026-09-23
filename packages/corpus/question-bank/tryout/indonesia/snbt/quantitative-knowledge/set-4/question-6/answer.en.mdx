@@ -5,11 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-To determine the equation of the tangent line, we need to find the gradient (<InlineMath math="m" />) and the tangent point first.
+To determine the equation of the tangent line, we need to find the **gradient and tangent point** first.
 
 #### Determining the Gradient
 
-The gradient is the first derivative of the curve function (<InlineMath math="y'" />).
+The gradient is the **first derivative** of the curve function (<InlineMath math="y'" />).
 
 <MathContainer>
   <BlockMath math="y = x^2 - x + 2" />
@@ -22,7 +22,7 @@ Substitute the abscissa <InlineMath math="x = 1" /> into <InlineMath math="y'" /
 
 #### Determining the Tangent Point
 
-We find the ordinate value (<InlineMath math="y" />) when the abscissa <InlineMath math="x = 1" />.
+We find the **vertical coordinate of the tangent point** (<InlineMath math="y" />) when the abscissa <InlineMath math="x = 1" />.
 
 <MathContainer>
   <BlockMath math="y = (1)^2 - 1 + 2" />
@@ -33,7 +33,7 @@ So, the tangent point is <InlineMath math="(1, 2)" />.
 
 #### Determining the Equation of the Tangent Line
 
-Use the formula for the equation of a tangent line <InlineMath math="y - y_1 = m(x - x_1)" /> with <InlineMath math="m = 1" /> and point <InlineMath math="(1, 2)" />.
+Use the **point and slope formula** <InlineMath math="y - y_1 = m(x - x_1)" /> with <InlineMath math="m = 1" /> and point <InlineMath math="(1, 2)" />.
 
 <MathContainer>
   <BlockMath math="y - 2 = 1(x - 1)" />
@@ -43,3 +43,15 @@ Use the formula for the equation of a tangent line <InlineMath math="y - y_1 = m
 </MathContainer>
 
 So, the equation of the tangent line is <InlineMath math="y = x + 1" />.
+
+<LineEquation
+ title="Curve and tangent line"
+ description="The purple curve and orange line share the point (1,2) and slope 1 there."
+ cameraPosition={[1,2.5,7]}
+ cameraTarget={[1,2.5,0]}
+ showZAxis={false}
+ data={[
+  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
+  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
+ ]}
+/>

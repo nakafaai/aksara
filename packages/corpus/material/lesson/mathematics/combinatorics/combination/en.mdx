@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use combinations to count selections in which order does not matter, including constrained cases.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
@@ -23,7 +23,7 @@ For a permutation, <InlineMath math="ABC" /> and <InlineMath math="BAC" /> are d
 
 ## Combination Formula
 
-To determine the number of ways to select <InlineMath math="k" /> objects from <InlineMath math="n" /> available objects, we use the combination formula:
+To determine the number of ways to select <InlineMath math="k" /> objects from <InlineMath math="n" /> distinct available objects, we use the combination formula:
 
 <BlockMath math="C(n,k) = \binom{n}{k} = \frac{n!}{(n-k)! \times k!}" />
 
@@ -33,7 +33,7 @@ The variables in this formula are:
 - <InlineMath math="k" /> is the number of objects to be selected
 - <InlineMath math="n!" /> is the factorial of <InlineMath math="n" />
 
-**Why is this formula different from permutation?**
+Why is this formula different from permutation?
 
 The combination formula follows by dividing the permutation count by <InlineMath math="k!" />:
 
@@ -41,27 +41,37 @@ The combination formula follows by dividing the permutation count by <InlineMath
 
 We divide by <InlineMath math="k!" /> because a selection of <InlineMath math="k" /> objects can be arranged in <InlineMath math="k!" /> orders. A combination counts all of those orders as **one selection**.
 
+Choosing two of three students A, B, and C shows why we divide by <InlineMath math="2!" />. Each pair has two orders but only one set of members.
+
+| Selection | Orders counted by permutations |
+| --- | --- |
+| A, B | AB, BA |
+| A, C | AC, CA |
+| B, C | BC, CB |
+
+<BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
 ## Counting Selections With and Without Conditions
 
-**Sports Team Formation:**
+Without an extra condition, one formula counts the selections directly. For a minimum requirement, split the selections into **nonoverlapping cases** so that each selection is counted exactly once.
 
-From <InlineMath math="10 \text{ available students}" />, how many ways can we select <InlineMath math="5 \text{ students}" /> for a basketball team?
+### Sports Team Formation
+
+From <InlineMath math="10 \text{ available students}" />, how many ways can we select **<InlineMath math="5 \text{ students}" /> for a basketball team**?
 
 <MathContainer>
 <BlockMath math="C(10,5) = \frac{10!}{5! \times 5!}" />
 <BlockMath math="\begin{aligned}C(10,5) &= \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} \\ &= \frac{30\,240}{120} \\ &= 252 \text{ ways}\end{aligned}" />
 </MathContainer>
+### Food Menu Selection
 
-**Food Menu Selection:**
-
-A restaurant offers <InlineMath math="8" /> dishes and you can choose <InlineMath math="3" />. How many selections are possible?
+A restaurant offers <InlineMath math="8" /> dishes and you can **choose <InlineMath math="3" /> dishes**. How many selections are possible?
 
 <MathContainer>
 <BlockMath math="C(8,3) = \frac{8!}{5! \times 3!}" />
 <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \text{ combinations} \end{aligned}" />
 </MathContainer>
-
-**Situations with Special Conditions:**
+### Selecting at Least Two Female Students
 
 Some selections include **additional conditions**. For example, from <InlineMath math="12 \text{ students}" /> (<InlineMath math="7 \text{ males}" /> and <InlineMath math="5 \text{ females}" />), select <InlineMath math="4 \text{ students}" /> with at least <InlineMath math="2 \text{ females}" />.
 
@@ -72,21 +82,21 @@ Some selections include **additional conditions**. For example, from <InlineMath
 
 **Detailed calculations:**
 
-**Case** 1: <InlineMath math="2 \text{ females} + 2 \text{ males}" />
+**Case 1**: <InlineMath math="2 \text{ females} + 2 \text{ males}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,2) \times C(7,2) \\ &amp;= \frac{5!}{3! \times 2!} \times \frac{7!}{5! \times 2!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times \frac{7 \times 6}{2 \times 1} = 10 \times 21 = 210" />
 </MathContainer>
 
-**Case** 2: <InlineMath math="3 \text{ females} + 1 \text{ male}" />
+**Case 2**: <InlineMath math="3 \text{ females} + 1 \text{ male}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,3) \times C(7,1) \\ &amp;= \frac{5!}{2! \times 3!} \times \frac{7!}{6! \times 1!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times 7 = 10 \times 7 = 70" />
 </MathContainer>
 
-**Case** 3: <InlineMath math="4 \text{ females} + 0 \text{ males}" />
+**Case 3**: <InlineMath math="4 \text{ females} + 0 \text{ males}" />
 
 <MathContainer>
 <BlockMath math="C(5,4) = \frac{5!}{1! \times 4!} = \frac{5}{1} = 5" />
@@ -96,114 +106,121 @@ Some selections include **additional conditions**. For example, from <InlineMath
 
 ## Practice Problems
 
-Try each problem before opening the worked solution. First decide whether order matters, then list every valid case without overlap.
+Try each problem before opening the worked solution. First decide whether order matters, then list every valid case **without overlap**.
 
 1. From <InlineMath math="8 \text{ different books}" />, how many ways can you choose <InlineMath math="3 \text{ books}" /> to read during vacation?
 
 2. A futsal team has <InlineMath math="12 \text{ players}" />. How many ways can they select <InlineMath math="5 \text{ players}" /> to play on the field?
 
-3. In a box there are <InlineMath math="6 \text{ red balls}" /> and <InlineMath math="4 \text{ blue balls}" />. How many ways can you take <InlineMath math="5 \text{ balls}" /> with the condition of at least <InlineMath math="3 \text{ red balls}" />?
+3. In a box there are <InlineMath math="6 \text{ red balls}" /> and <InlineMath math="4 \text{ blue balls}" />. Every ball has a different number, so balls of the same color are distinguishable. How many ways can you take <InlineMath math="5 \text{ balls}" /> with the condition of at least <InlineMath math="3 \text{ red balls}" />?
 
 4. A student chooses <InlineMath math="4 \text{ subjects}" /> from <InlineMath math="10 \text{ available subjects}" />. If <InlineMath math="6 \text{ subjects}" /> are sciences and <InlineMath math="4 \text{ subjects}" /> are humanities, how many selections contain at least <InlineMath math="2 \text{ science subjects}" />?
-
 ### Worked Solutions
 
-1. **Answer: <InlineMath math="56 \text{ ways}" />**
+**Problem 1**
 
-   Solution steps:
+<InlineMath math="56 \text{ ways}" />
 
-   Given: <InlineMath math="n = 8" /> books, select <InlineMath math="k = 3" /> books
+Solution steps:
 
-   Combination formula:
+Given: <InlineMath math="n = 8" /> books, select <InlineMath math="k = 3" /> books
 
-   <MathContainer>
-      <BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
-      <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
-   </MathContainer>
+Combination formula:
 
-   Therefore, there are <InlineMath math="56 \text{ ways}" /> to choose <InlineMath math="3 \text{ books}" /> from <InlineMath math="8 \text{ available books}" />.
+<MathContainer>
+<BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
+<BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
+</MathContainer>
 
-2. **Answer: <InlineMath math="792 \text{ ways}" />**
+Therefore, there are <InlineMath math="56 \text{ ways}" /> to choose <InlineMath math="3 \text{ books}" /> from <InlineMath math="8 \text{ available books}" />.
 
-   Solution steps:
+**Problem 2**
 
-   Given: <InlineMath math="n = 12" /> players, select <InlineMath math="k = 5" /> players
+<InlineMath math="792 \text{ ways}" />
 
-   Combination formula:
+Solution steps:
 
-   <MathContainer>
-      <BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
-      <BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
-   </MathContainer>
+Given: <InlineMath math="n = 12" /> players, select <InlineMath math="k = 5" /> players
 
-   The futsal team can select <InlineMath math="5 \text{ players}" /> from <InlineMath math="12 \text{ players}" /> in <InlineMath math="792 \text{ different ways}" />.
+Combination formula:
 
-3. **Answer: <InlineMath math="186 \text{ ways}" />**
+<MathContainer>
+<BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
+<BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
+</MathContainer>
 
-   Solution steps (**case method**):
+The futsal team can select <InlineMath math="5 \text{ players}" /> from <InlineMath math="12 \text{ players}" /> in <InlineMath math="792 \text{ different ways}" />.
 
-   Total balls: <InlineMath math="6 \text{ red} + 4 \text{ blue}" /> is <InlineMath math="10 \text{ balls}" />
+**Problem 3**
 
-   Take <InlineMath math="5 \text{ balls}" /> with at least <InlineMath math="3" /> red balls
+<InlineMath math="186 \text{ ways}" />
 
-   **Detailed calculation for each case:**
+Solution steps (**case method**):
 
-   **Case** 1: <InlineMath math="3 \text{ red} + 2 \text{ blue}" />
+Total balls: <InlineMath math="6 \text{ red} + 4 \text{ blue}" /> is <InlineMath math="10 \text{ balls}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
-   </MathContainer>
+Take <InlineMath math="5 \text{ balls}" /> with at least <InlineMath math="3" /> red balls
 
-   **Case** 2: <InlineMath math="4 \text{ red} + 1 \text{ blue}" />
+**Detailed calculation for each case:**
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
-   </MathContainer>
+**Case 1**: <InlineMath math="3 \text{ red} + 2 \text{ blue}" />
 
-   **Case** 3: <InlineMath math="5 \text{ red} + 0 \text{ blue}" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= 6 \times 1 = 6" />
-   </MathContainer>
+**Case 2**: <InlineMath math="4 \text{ red} + 1 \text{ blue}" />
 
-   **Total:** <InlineMath math="120 + 60 + 6 = 186" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
+</MathContainer>
 
-   There are <InlineMath math="186 \text{ ways}" /> to take <InlineMath math="5 \text{ balls}" /> with at least <InlineMath math="3" /> red balls.
+**Case 3**: <InlineMath math="5 \text{ red} + 0 \text{ blue}" />
 
-4. **Answer: <InlineMath math="185 \text{ ways}" />**
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= 6 \times 1 = 6" />
+</MathContainer>
 
-   Solution steps (**case method**):
+**Total:** <InlineMath math="120 + 60 + 6 = 186" />
 
-   Science subjects: <InlineMath math="6" />, humanities subjects: <InlineMath math="4" />
+There are <InlineMath math="186 \text{ ways}" /> to take <InlineMath math="5 \text{ balls}" /> with at least <InlineMath math="3" /> red balls.
 
-   Choose <InlineMath math="4 \text{ subjects}" /> with at least <InlineMath math="2 \text{ sciences}" />
+**Problem 4**
 
-   **Detailed calculation for each case:**
+<InlineMath math="185 \text{ ways}" />
 
-   **Case** 1: <InlineMath math="2 \text{ sciences} + 2 \text{ humanities}" />
+Solution steps (**case method**):
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
-   </MathContainer>
+Science subjects: <InlineMath math="6" />, humanities subjects: <InlineMath math="4" />
 
-   **Case** 2: <InlineMath math="3 \text{ sciences} + 1 \text{ humanity}" />
+Choose <InlineMath math="4 \text{ subjects}" /> with at least <InlineMath math="2 \text{ sciences}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
-   </MathContainer>
+**Detailed calculation for each case:**
 
-   **Case** 3: <InlineMath math="4 \text{ sciences} + 0 \text{ humanities}" />
+**Case 1**: <InlineMath math="2 \text{ sciences} + 2 \text{ humanities}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
+</MathContainer>
 
-   **Total:** <InlineMath math="90 + 80 + 15 = 185" />
+**Case 2**: <InlineMath math="3 \text{ sciences} + 1 \text{ humanity}" />
 
-   There are <InlineMath math="185 \text{ ways}" /> to choose subjects with the given conditions.
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
+</MathContainer>
+
+**Case 3**: <InlineMath math="4 \text{ sciences} + 0 \text{ humanities}" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
+</MathContainer>
+
+**Total:** <InlineMath math="90 + 80 + 15 = 185" />
+
+There are <InlineMath math="185 \text{ ways}" /> to choose subjects with the given conditions.

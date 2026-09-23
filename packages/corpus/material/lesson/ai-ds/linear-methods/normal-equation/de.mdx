@@ -3,7 +3,7 @@ export const metadata = {
     description: "Leite Normalgleichungen für kleinste Quadrate aus der Orthogonalität her, löse sie in geschlossener Form, wenn das möglich ist, und erkenne Fälle ohne eindeutige Lösung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -23,11 +23,11 @@ Diese Gleichung heißt **Normalgleichung**, weil das Residuum am Minimum <Highli
 
 ## Kleinste Quadrate und die Normalgleichung
 
-Ein Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimiert <InlineMath math="\|A \cdot x - b\|_2^2" /> genau dann, wenn er <InlineMath math="A^T A \cdot \hat{x} = A^T b" /> erfüllt. Das Optimierungsproblem und die Normalgleichung haben daher dieselbe Lösungsmenge. Genau diese Äquivalenz macht aus einem Minimierungsproblem ein lineares Gleichungssystem, das du mit Elimination oder einer Faktorisierung lösen kannst.
+Ein Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimiert <InlineMath math="\|A \cdot x - b\|_2^2" /> genau dann, wenn er <InlineMath math="A^T A \cdot \hat{x} = A^T b" /> erfüllt. Das Optimierungsproblem und die Normalgleichung haben daher **dieselbe Lösungsmenge**. Genau diese Äquivalenz macht aus einem Minimierungsproblem ein lineares Gleichungssystem, das du mit Elimination oder einer Faktorisierung lösen kannst.
 
 ## Das Residuum steht senkrecht zum Spaltenraum
 
-Wenn <InlineMath math="\hat{x}" /> den Ausdruck <InlineMath math="\|A\hat{x} - b\|_2^2" /> minimiert, steht der Residualvektor <InlineMath math="A\hat{x} - b" /> senkrecht auf jedem Vektor im Spaltenraum von <InlineMath math="A" />.
+Wenn <InlineMath math="\hat{x}" /> den Ausdruck <InlineMath math="\|A\hat{x} - b\|_2^2" /> minimiert, steht der Residualvektor <InlineMath math="A\hat{x} - b" /> **senkrecht auf jedem Vektor** im Spaltenraum von <InlineMath math="A" />.
 
 Dieser Spaltenraum besteht aus allen Vektoren, die als <InlineMath math="Ax" /> für <InlineMath math="x \in \mathbb{R}^n" /> geschrieben werden können. Die Orthogonalitätsbedingung bedeutet
 
@@ -57,7 +57,7 @@ Mit dem Satz des Pythagoras können wir schreiben
   <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
-Da <InlineMath math="\hat{x}" /> die Normalgleichung erfüllt, verschwindet der Kreuzterm. Es bleibt:
+Da <InlineMath math="\hat{x}" /> die Normalgleichung erfüllt, **verschwindet der Kreuzterm**. Es bleibt:
 
 <BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
 
@@ -69,7 +69,7 @@ Diese Ungleichung beweist, dass <InlineMath math="\hat{x}" /> tatsächlich den M
 
 ## Existenz und Eindeutigkeit
 
-Die Normalgleichung ist für jede Matrix <InlineMath math="A \in \mathbb{R}^{m\times n}" /> und jeden Vektor <InlineMath math="b \in \mathbb{R}^m" /> lösbar, weil in endlichdimensionalen Räumen stets ein Ausgleichsvektor existiert. Der Minimierer ist genau dann eindeutig, wenn <InlineMath math="A" /> vollen Spaltenrang besitzt:
+Die Normalgleichung ist für jede Matrix <InlineMath math="A \in \mathbb{R}^{m\times n}" /> und jeden Vektor <InlineMath math="b \in \mathbb{R}^m" /> lösbar, weil in endlichdimensionalen Räumen stets ein Ausgleichsvektor existiert. Der Minimierer ist genau dann eindeutig, wenn <InlineMath math="A" /> **vollen Spaltenrang besitzt**:
 
 <BlockMath math="\operatorname{rank}(A)=n" />
 
@@ -97,12 +97,37 @@ Daher ist
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-Die Gleichheit der Nullräume zeigt, dass <InlineMath math="A^{\mathsf T}A" /> genau dann positiv definit ist, wenn <InlineMath math="A" /> vollen Spaltenrang hat.
+Die **Gleichheit der Nullräume** zeigt, dass <InlineMath math="A^{\mathsf T}A" /> genau dann positiv definit ist, wenn <InlineMath math="A" /> vollen Spaltenrang hat.
 
 ## Numerischer Hinweis
 
-Positive Definitheit liefert Eindeutigkeit und erlaubt ein Cholesky-Verfahren, garantiert aber keine gute Kondition. Für eine Matrix mit vollem Spaltenrang gilt
+Positive Definitheit liefert Eindeutigkeit und erlaubt ein Cholesky-Verfahren, **garantiert aber keine gute Kondition**. Für eine Matrix mit vollem Spaltenrang gilt
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
 Das explizite Bilden von <InlineMath math="A^{\mathsf T}A" /> kann daher Empfindlichkeit und Rundungseffekte verstärken. Die Inversenformel ist eine algebraische Identität und keine Anweisung, in Software eine Inverse zu bilden. Für ein gut bestimmtes Ausgleichsproblem mit vollem Rang verwendet man <InlineMath math="\mathrm{QR}" />, bei Rangmangel oder starker Fehlkonditionierung eine <InlineMath math="\mathrm{SVD}" />.
+
+## Ein Beispiel mit zwei Beobachtungen
+
+Seien <InlineMath math="A=(1,2)^T" /> und <InlineMath math="b=(2,1)^T" />. Ein skalarer Parameter kann nicht beide Beobachtungen erfüllen. Die erste Gleichung verlangt <InlineMath math="x=2" />, die zweite <InlineMath math="x=1/2" />. Die Ausgleichslösung minimiert die Summe der **quadrierten Residuen**.
+
+<MathContainer>
+<BlockMath math="A^TA=1^2+2^2=5,\qquad A^Tb=1\cdot2+2\cdot1=4" />
+<BlockMath math="5\hat x=4\Rightarrow\hat x=\frac45" />
+<BlockMath math="A\hat x=\begin{pmatrix}4/5\\8/5\end{pmatrix},\qquad r=A\hat x-b=\begin{pmatrix}-6/5\\3/5\end{pmatrix}" />
+<BlockMath math="A^Tr=1\cdot(-6/5)+2\cdot(3/5)=0" />
+</MathContainer>
+
+Das Residuum steht senkrecht auf der Geraden aller möglichen Vorhersagen. Eine Verschiebung entlang dieser Geraden addiert einen nichtnegativen quadratischen Abstand, wie im Pythagorasbeweis.
+
+<LineEquation
+  title="Vorhersage und senkrechtes Residuum"
+  description={<>Die grüne Gerade enthält alle Vorhersagen <InlineMath math="Ax" />. Die orange Strecke verbindet <InlineMath math="(\frac{4}{5},\frac{8}{5})" /> mit der Beobachtung <InlineMath math="(2,1)" />.</>}
+  cameraPosition={[1, 1, 6]}
+  cameraTarget={[1, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0.8, y: 1.6, z: 0 }, { x: 1.5, y: 3, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#0d9488", labels: [{ text: <InlineMath math="Ax" />, at: 1 }] },
+    { points: [{ x: 0.8, y: 1.6, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#f97316", labels: [{ text: <InlineMath math="b" />, at: 1 }] },
+  ]}
+/>

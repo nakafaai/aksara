@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *kondensasi* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Definisi *kondensasi* membuktikan bahwa hasil model selalu sama dengan kondisi atmosfer di alam.",
         },
         {
           isCorrect: false,

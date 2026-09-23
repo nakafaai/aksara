@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Sequence
 
-An ordered list of numbers that follows a rule is a <Highlight>sequence</Highlight>, and each number in that list is a <Highlight>term</Highlight>. The order carries meaning, because swapping two neighbouring terms changes what the rule produces next.
+An ordered list of numbers that follows a rule is a <Highlight>sequence</Highlight>, and each number in that list is a <Highlight>term</Highlight>. The **position of each term** determines the order. Swapping two unequal terms produces a different sequence.
 
 ### Terms and Order in a Sequence
 
-The rule decides which numbers appear and how the list continues, so two different rules produce two different sequences, as in the two lists below.
+A sequence rule determines the **value at each position**. For the even numbers, multiply the position by two. For the square numbers, square the position. These two examples already have different values at the first position.
 
 - Sequence of even numbers: <InlineMath math="2, 4, 6, 8, \dots" />
 - Sequence of squares: <InlineMath math="1, 4, 9, 16, \dots" />
@@ -22,11 +22,11 @@ In both examples the sequence records each separate term and the rule that produ
 
 ## Series
 
-Adding the terms of a sequence produces a series, and the series is written as a sum expression. The partial sum <InlineMath math="S_n" /> is the sum of the first <InlineMath math="n" /> terms, so it changes as <InlineMath math="n" /> grows. Keeping the two ideas apart is exactly what the comparison below tests.
+A series is written as a **sum of sequence terms**. The partial sum <InlineMath math="S_n" /> adds the first <InlineMath math="n" /> terms. Adding one more term changes the partial sum by the value of that new term. If the new term is zero, the partial sum stays unchanged.
 
 ### A Series as a Sum
 
-A series adds the terms of a sequence, and the plus signs between the terms show that addition. The two sums below add the even numbers and the square numbers one term at a time.
+A series **adds the terms** of a sequence, and the plus signs between the terms show that addition. The two sums below add the even numbers and the square numbers one term at a time.
 
 - Series of even numbers: <InlineMath math="2 + 4 + 6 + 8 + \dots" />
 - Series of squares: <InlineMath math="1 + 4 + 9 + 16 + \dots" />
@@ -35,7 +35,7 @@ When the terms stop after the <InlineMath math="n" />-th term, the value of the 
 
 ## Difference between a Sequence and a Series
 
-The table puts the two side by side. A sequence keeps the terms in order, and a series <Highlight>adds those terms into one value</Highlight>.
+The table puts the two side by side. A sequence keeps the terms in order, and a series represents **addition of those terms**.
 
 | Aspect      | Sequence                                                                                | Series                                                                           |
 | ----------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
@@ -44,7 +44,7 @@ The table puts the two side by side. A sequence keeps the terms in order, and a 
 
 ## Partial Sums of Sequence Terms
 
-The sum of the first <InlineMath math="n" /> terms of a sequence is its <InlineMath math="n" />th partial sum:
+The sum of the first <InlineMath math="n" /> terms of a sequence is its <InlineMath math="n" />th **partial sum**:
 
 <BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
 
@@ -61,20 +61,22 @@ Adding the terms of <InlineMath math="a_n=n" /> produces a second sequence, <Inl
 
 <InlineMath math="S_{20}" /> is a finite sum of twenty terms. For an infinite series, we instead ask whether <InlineMath math="S_n" /> approaches a limit as <InlineMath math="n\to\infty" />.
 
-An infinite series is defined through the limit of its partial sums. When those partial sums approach one fixed value, the series converges. The topic [convergent and divergent series](/en/subjects/mathematics/sequence-series/convergence-divergence) uses this limit to separate series that settle from those that do not.
+An infinite series is defined through the **limit of its partial sums**. When those partial sums approach one fixed value, the series converges. The topic [convergent and divergent series](/en/subjects/mathematics/sequence-series/convergence-divergence) uses this limit to separate series that settle from those that do not.
 
 ## Exercise
 
-Given the sequence <InlineMath math="a_n=2n" />. Write its first four terms, then determine its first four partial sums. Keep the two lists apart, because a term describes one position while a partial sum totals every term up to that position.
+Given the sequence <InlineMath math="a_n=2n" />. Write its first four terms, then determine its first four partial sums. Keep the two lists apart, because a **term describes one position** while a partial sum totals every term up to that position.
 
 1. Write its first four terms.
 2. Determine its first four partial sums.
 
 ### Solution
 
-Substituting <InlineMath math="n=1,2,3,4" /> into <InlineMath math="a_n=2n" /> gives the first four terms, and adding those terms one by one gives the partial sums.
+Substituting <InlineMath math="n=1,2,3,4" /> into <InlineMath math="a_n=2n" /> gives the first four terms, and **adding those terms one by one** gives the partial sums.
 
-<MathContainer>
-  <BlockMath math="a_1,a_2,a_3,a_4=2,4,6,8" />
-  <BlockMath math="S_1,S_2,S_3,S_4=2,6,12,20" />
-</MathContainer>
+| Position | Term | Partial sum |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="a_1=2\cdot1=2" /> | <InlineMath math="S_1=2" /> |
+| <InlineMath math="2" /> | <InlineMath math="a_2=2\cdot2=4" /> | <InlineMath math="S_2=2+4=6" /> |
+| <InlineMath math="3" /> | <InlineMath math="a_3=2\cdot3=6" /> | <InlineMath math="S_3=2+4+6=12" /> |
+| <InlineMath math="4" /> | <InlineMath math="a_4=2\cdot4=8" /> | <InlineMath math="S_4=2+4+6+8=20" /> |

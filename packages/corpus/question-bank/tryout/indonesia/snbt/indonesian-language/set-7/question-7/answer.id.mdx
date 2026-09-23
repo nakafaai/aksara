@@ -5,6 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-**Perbedaan titik henti konsisten dengan gagasan daya dukung, tetapi karena batas itu dimasukkan melalui jumlah keping makanan, model tidak dapat menjadi bukti mandiri bahwa populasi nyata akan berhenti dengan pola yang sama.**
+Titik henti muncul karena **aturan mengeluarkan individu yang melebihi makanan**. Ikuti dua putaran ketika populasi A dan B mulai berbeda.
 
-Di dalam simulasi, keping yang melampaui persediaan makanan selalu dikeluarkan. Dengan aturan itu, populasi memang harus berhenti pada <InlineMath math="16" /> atau <InlineMath math="24" />. Pola tersebut mewakili daya dukung di dalam model, tetapi belum menguji apa yang sungguh terjadi di alam. Pengujian lapangan masih memerlukan data tentang populasi, sumber daya, dan faktor lain yang berubah dari waktu ke waktu.
+| Putaran | Perhitungan A, batas 16 | Perhitungan B, batas 24 |
+| --- | --- | --- |
+| 2, setelah sama-sama berjumlah 12 | <InlineMath math="12+12/2=18" />, keluarkan 2, tersisa 16 | <InlineMath math="12+12/2=18" />, seluruh 18 bertahan |
+| 3 | <InlineMath math="16+16/2=24" />, keluarkan 8, tersisa 16 | <InlineMath math="18+18/2=27" />, keluarkan 3, tersisa 24 |
+
+Batas 16 dan 24 sudah dimasukkan melalui keping makanan. Simulasi memperlihatkan mekanisme daya dukung, tetapi hasilnya bukan bukti mandiri tentang alam. Populasi nyata perlu diamati bersama sumber daya, migrasi, penyakit, dan perubahan lingkungan.

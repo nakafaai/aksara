@@ -5,9 +5,9 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Given <InlineMath math="\sin A = \frac{5}{13}" /> and <InlineMath math="\cos B = \frac{8}{17}" /> where <InlineMath math="A" /> and <InlineMath math="B" /> are acute angles.
+Given <InlineMath math="\sin A = \frac{5}{13}" /> and <InlineMath math="\cos B = \frac{8}{17}" /> where <InlineMath math="A" /> and <InlineMath math="B" /> are **acute angles**.
 
-From <InlineMath math="\sin A = \frac{5}{13}" />, the opposite side is <InlineMath math="5" /> and the hypotenuse is <InlineMath math="13" />. Then the adjacent side is
+From <InlineMath math="\sin A = \frac{5}{13}" />, choose a right triangle with opposite side <InlineMath math="5" /> and the hypotenuse is <InlineMath math="13" />. Then the adjacent side is
 
 <BlockMath math="\begin{aligned}&\sqrt{13^2 - 5^2}\\&=\sqrt{169 - 25}\\&=\sqrt{144}\\&=12\end{aligned}" />
 
@@ -18,7 +18,7 @@ So for angle <InlineMath math="A" />
 <UnitCircle
   title={<>Angle <InlineMath math="A" /></>}
   description={<>Visualization of angle <InlineMath math="A" /> with <InlineMath math="\sin A = \frac{5}{13}" />, <InlineMath math="\cos A = \frac{12}{13}" />, and <InlineMath math="\tan A = \frac{5}{12}" />.</>}
-  angle={22.62}
+  angle={Math.asin(5 / 13) * 180 / Math.PI}
   trigValues={{
     sin: "5/13",
     cos: "12/13",
@@ -26,7 +26,7 @@ So for angle <InlineMath math="A" />
   }}
 />
 
-From <InlineMath math="\cos B = \frac{8}{17}" />, the adjacent side is <InlineMath math="8" /> and the hypotenuse is <InlineMath math="17" />. Then the opposite side is
+From <InlineMath math="\cos B = \frac{8}{17}" />, choose a right triangle with adjacent side <InlineMath math="8" /> and the hypotenuse is <InlineMath math="17" />. Then the opposite side is
 
 <BlockMath math="\begin{aligned}&\sqrt{17^2 - 8^2}\\&=\sqrt{289 - 64}\\&=\sqrt{225}\\&=15\end{aligned}" />
 
@@ -37,7 +37,7 @@ So for angle <InlineMath math="B" />
 <UnitCircle
   title={<>Angle <InlineMath math="B" /></>}
   description={<>Visualization of angle <InlineMath math="B" /> with <InlineMath math="\sin B = \frac{15}{17}" />, <InlineMath math="\cos B = \frac{8}{17}" />, and <InlineMath math="\tan B = \frac{15}{8}" />.</>}
-  angle={61.93}
+  angle={Math.acos(8 / 17) * 180 / Math.PI}
   trigValues={{
     sin: "15/17",
     cos: "8/17",
@@ -45,7 +45,7 @@ So for angle <InlineMath math="B" />
   }}
 />
 
-**Statement (1): <InlineMath math="\tan A + \tan B = \frac{19}{20}" />**
+**Statement (1)**: <InlineMath math="\tan A + \tan B = \frac{19}{20}" />
 
 <MathContainer>
 <BlockMath math="\tan A + \tan B = \frac{5}{12} + \frac{15}{8}" />
@@ -55,7 +55,7 @@ So for angle <InlineMath math="B" />
 
 The calculation gives <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. Statement (1) gives <InlineMath math="\frac{19}{20}" />, so it is false.
 
-**Statement (2): <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />**
+**Statement (2)**: <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned}&\cos A\sin B+\cos B\sin A\\&=\frac{12}{13}\cdot\frac{15}{17}\\&\quad+\frac8{17}\cdot\frac5{13}\end{aligned}" />
@@ -65,7 +65,7 @@ The calculation gives <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. Sta
 
 Statement (2) is true.
 
-**Statement (3): <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />**
+**Statement (3)**: <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />
 
 <MathContainer>
 <BlockMath math="\frac{\tan A}{\tan B} = \frac{\frac{5}{12}}{\frac{15}{8}}" />
@@ -76,7 +76,7 @@ Statement (2) is true.
 
 The calculation gives <InlineMath math="\frac{\tan A}{\tan B} = \frac{2}{9}" />. Statement (3) gives <InlineMath math="\frac{25}{32}" />, so it is false.
 
-**Statement (4): <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />**
+**Statement (4)**: <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />
 
 <MathContainer>
 <BlockMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{\sin A}{\cos A} \cdot \frac{\cos B}{\sin B}" />

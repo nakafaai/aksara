@@ -28,7 +28,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Auf $$[2,\\infty)$$ gilt $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
+          label:
+            "Bei Einschränkung des Definitionsbereichs von $$f$$ auf $$[2,\\infty)$$ gilt $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },
@@ -53,7 +54,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "On $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
+          label:
+            "Restricting the domain of $$f$$ to $$[2,\\infty)$$ gives $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },
@@ -78,7 +80,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Pada $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
+          label:
+            "Jika domain $$f$$ dibatasi menjadi $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },

@@ -5,18 +5,27 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Untuk kejadian yang tidak membedakan urutan, ada <InlineMath math="\binom92=36" /> pasangan yang sama mungkin. Pasangan sewarna diperoleh dengan memilih dua bola dari warna yang sama.
+Untuk kejadian yang **tidak membedakan urutan**, ada <InlineMath math="\binom92=\frac{9\cdot8}{2}=36" /> pasangan yang sama mungkin. Pasangan sewarna diperoleh dengan memilih dua bola dari warna yang sama.
 
 <BlockMath math="\begin{aligned}
 N&=\binom42+\binom32+\binom22 \\
+&=\frac{4\cdot3}{2}+\frac{3\cdot2}{2}+\frac{2\cdot1}{2} \\
 &=6+3+1=10 \\
 P&=\frac{10}{36}=\frac5{18}
 \end{aligned}" />
 
 Tepat satu merah berarti memilih satu dari empat bola merah dan satu dari lima bola lainnya.
 
-<BlockMath math="P=\frac{4\cdot5}{36}=\frac59" />
+<BlockMath math="P=\frac{4\cdot5}{36}=\frac{20}{36}=\frac59" />
 
 Jika bola pertama hijau, tersisa delapan bola, tiga di antaranya biru. Peluang bola kedua biru adalah <InlineMath math="\frac38" />. Pengambilan pertama memengaruhi peluang pengambilan kedua. Misalnya, setelah bola biru terambil, peluang biru berikutnya menjadi <InlineMath math="\frac28" />, sedangkan peluang biru sebelum pengambilan adalah <InlineMath math="\frac39" />.
 
 Jadi, ketiga pernyataan peluang benar dan pernyataan bahwa warna kedua pengambilan saling bebas salah.
+
+Perubahan isi kantong berikut menunjukkan mengapa warna pengambilan kedua bergantung pada hasil pertama.
+
+| Kondisi sebelum mengambil bola berikutnya | Merah | Biru | Hijau | Total | Peluang biru |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Sebelum pengambilan pertama | 4 | 3 | 2 | 9 | <InlineMath math="\frac39" /> |
+| Setelah satu bola hijau diambil | 4 | 3 | 1 | 8 | <InlineMath math="\frac38" /> |
+| Setelah satu bola biru diambil | 4 | 2 | 2 | 8 | <InlineMath math="\frac28" /> |

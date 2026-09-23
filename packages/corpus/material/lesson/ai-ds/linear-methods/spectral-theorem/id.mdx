@@ -3,7 +3,7 @@ export const metadata = {
    description: "Tentukan kapan matriks dapat didiagonalisasi dengan vektor eigen ortonormal dan hubungkan matriks normal, Hermitian, serta uniter.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -27,7 +27,7 @@ Kondisi aljabar ini membuat ruang eigen untuk nilai eigen yang berbeda saling or
 
 Pada matriks normal, ruang nol matriks sama dengan ruang nol konjugat transposnya.
 
-Ruang nol (kernel) adalah himpunan semua vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=0" />. Normalitas memberikan identitas norma berikut untuk setiap <InlineMath math="x" />:
+Ruang nol (kernel) adalah himpunan semua vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=0" />. Normalitas memberikan **identitas norma** berikut untuk setiap <InlineMath math="x" />:
 
 <MathContainer>
 <BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
@@ -53,13 +53,13 @@ Identitas ini juga membuktikan ortogonalitas. Jika <InlineMath math="Av=\lambda 
 
 ## Matriks Hermitian dan Uniter sebagai Contoh Normal
 
-Dua jenis matriks penting yang selalu normal adalah matriks Hermitian dan matriks uniter. Matriks Hermitian sama dengan adjointnya sendiri, sedangkan invers matriks uniter sama dengan adjointnya, sehingga kedua sisi syarat normalitas menjadi hasil kali yang sama.
+Dua jenis matriks penting yang selalu normal adalah matriks Hermitian dan matriks uniter. Matriks Hermitian sama dengan adjointnya sendiri, sedangkan invers matriks uniter sama dengan adjointnya, sehingga kedua sisi syarat normalitas menjadi **hasil kali yang sama**.
 
 ### Matriks Hermitian dan Nilai Eigen Riil
 
 Matriks Hermitian memiliki sifat <InlineMath math="A^H=A" />. Karena <InlineMath math="A^H=A" />, kedua sisi syarat normalitas sama dengan <InlineMath math="A^2" />.
 
-<Highlight>Nilai eigen matriks Hermitian selalu real</Highlight>. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat Hermitian memberikan:
+Nilai eigen matriks Hermitian <Highlight>selalu real</Highlight>. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat Hermitian memberikan:
 
 <BlockMath math="\begin{aligned} \lambda v^H v &amp;= v^HAv \\ &amp;= v^HA^Hv \\ &amp;= (Av)^Hv \\ &amp;= \overline{\lambda}v^Hv \\ &amp;\Rightarrow \lambda \\ &amp;=\overline{\lambda} \end{aligned}" />
 
@@ -78,13 +78,15 @@ Konjugat transposnya menghasilkan matriks yang sama, jadi <InlineMath math="H^H=
 <BlockMath math="\begin{aligned} &amp;U=(u_1\quad u_3), \\ &amp;U^HHU=\operatorname{diag}(1,3) \end{aligned}" />
 </MathContainer>
 
-Kedua vektor itu ortonormal karena <InlineMath math="u_1^Hu_3=0" /> dan norma keduanya <InlineMath math="1" />. Matriks <InlineMath math="U" /> memberi diagonalisasi uniter bagi <InlineMath math="H" /> pada contoh berukuran <InlineMath math="2\times2" /> ini.
+Kedua vektor itu **ortonormal karena** <InlineMath math="u_1^Hu_3=0" /> dan norma keduanya <InlineMath math="1" />. Matriks <InlineMath math="U" /> memberi diagonalisasi uniter bagi <InlineMath math="H" /> pada contoh berukuran <InlineMath math="2\times2" /> ini.
+
+<BlockMath math="u_1^Hu_3=\frac{(i)(i)+1}{2}=0,\qquad Hu_1=\frac1{\sqrt2}\begin{pmatrix}-2i+i\\(-i)(-i)+2\end{pmatrix}=u_1" />
 
 ### Matriks Uniter dan Nilai Eigen pada Lingkaran Satuan
 
 Matriks uniter memiliki sifat <InlineMath math="A^H = A^{-1}" />. Substitusi ke definisi normal menghasilkan <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
 
-Nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />, sehingga terletak pada lingkaran satuan di bidang kompleks. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat uniter mempertahankan norma:
+Nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />, sehingga terletak pada **lingkaran satuan** di bidang kompleks. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, sifat uniter mempertahankan norma:
 
 <MathContainer>
 <BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />

@@ -5,17 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Diketahui:
-
-- Jumlah seluruh siswa: <InlineMath math="n(S) = 800" />
-- Siswa yang menyukai Matematika: <InlineMath math="n(M) = 400" />
-- Siswa yang menyukai Fisika: <InlineMath math="n(F) = 500" />
-
-Kita akan mencari nilai maksimum (<InlineMath math="x" />) dan minimum (<InlineMath math="y" />) dari irisan kedua himpunan tersebut (siswa yang menyukai keduanya).
+Kita cari **batas jumlah siswa yang menyukai kedua pelajaran** dari total 800 siswa, dengan 400 menyukai Matematika dan 500 menyukai Fisika.
 
 #### Mencari Irisan Maksimum
 
-Jumlah siswa yang menyukai keduanya akan maksimum jika himpunan yang lebih kecil merupakan bagian dari himpunan yang lebih besar.
+Jumlah siswa yang menyukai keduanya akan maksimum jika **himpunan kecil berada seluruhnya di dalam himpunan besar**.
 Di sini, jumlah siswa yang suka Matematika (<InlineMath math="400" />) lebih sedikit daripada Fisika (<InlineMath math="500" />).
 Maka, nilai maksimum irisannya adalah jumlah siswa pada grup terkecil.
 
@@ -23,7 +17,7 @@ Maka, nilai maksimum irisannya adalah jumlah siswa pada grup terkecil.
 
 #### Mencari Irisan Minimum
 
-Irisan menjadi paling kecil ketika gabungan kedua himpunan sebesar mungkin. Karena sekolah hanya memiliki <InlineMath math="800" /> siswa, nilai <InlineMath math="n(M \cup F)" /> tidak mungkin melebihi <InlineMath math="800" />.
+Irisan menjadi paling kecil ketika **gabungan kedua himpunan sebesar mungkin**. Karena sekolah hanya memiliki <InlineMath math="800" /> siswa, nilai <InlineMath math="n(M \cup F)" /> tidak mungkin melebihi <InlineMath math="800" />.
 
 Rumus banyak anggota gabungan dua himpunan adalah:
 
@@ -43,7 +37,12 @@ Irisan minimum terjadi saat gabungan mencapai batas tersebut. Susunan ini mungki
 
 #### Menghitung Selisih
 
-Terakhir, kita hitung selisih antara nilai maksimum dan minimum.
+Kedua batas dapat dicapai melalui **pembagian siswa ke kelompok yang terpisah** berikut. Tidak ada siswa yang dihitung dua kali dalam satu baris.
+
+| Irisan | Hanya Matematika | Kedua pelajaran | Hanya Fisika | Tidak keduanya |
+| --- | --- | --- | --- | --- |
+| Maksimum | 0 | 400 | 100 | 300 |
+| Minimum | 300 | 100 | 400 | 0 |
 
 <BlockMath math="x - y = 400 - 100 = 300" />
 

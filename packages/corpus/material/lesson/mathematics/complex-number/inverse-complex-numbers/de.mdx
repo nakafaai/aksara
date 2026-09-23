@@ -20,6 +20,10 @@ Multipliziert man <InlineMath math="z" /> mit ihrem Kehrwert <InlineMath math="z
 
 Aus den [Eigenschaften der Multiplikation komplexer Zahlen](/de/faecher/mathematik/komplexe-zahlen/eigenschaften-der-multiplikation#multiplikatives-inverses) folgt für <InlineMath math="z = x + iy" />:
 
+Multipliziere Zähler und Nenner mit der **konjugierten Zahl des Nenners**. Das Produkt konjugierter Zahlen ist das Quadrat des Betrags. Für eine komplexe Zahl ungleich null wird der Nenner dadurch reell und positiv:
+
+<BlockMath math="\frac1z=\frac1{x+iy}\cdot\frac{x-iy}{x-iy}=\frac{x-iy}{x^2+y^2},\quad z\ne0" />
+
 <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
 
 Als geordnetes Paar lässt sich derselbe Kehrwert so schreiben:
@@ -43,11 +47,10 @@ Mit der ersten Formel:
 <MathContainer>
   <BlockMath math="\begin{aligned} x^2+y^2 &amp;= (1)^2 + (-1)^2 \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
   <BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
-  <BlockMath math="= \frac{1}{2} - i\frac{-1}{2}" />
-  <BlockMath math="= \frac{1}{2} + \frac{1}{2}i" />
+  <BlockMath math="z^{-1}=\frac12-i\frac{-1}{2}=\frac12+\frac12i" />
 </MathContainer>
 
-Mit dem Konjugierten und dem Betrag ergibt sich derselbe Wert:
+Mit dem **Konjugierten und dem Betrag** ergibt sich derselbe Wert:
 
 <MathContainer>
   <BlockMath math="\bar{z} = 1 - (-1)i = 1+i" />
@@ -82,6 +85,7 @@ Beide Wege liefern:
     }
     cameraPosition={[0.4, -0.1, 4]}
     cameraTarget={[0.4, -0.1, 0]}
+    showZAxis={false}
     data={[
       {
         points: [
@@ -113,17 +117,23 @@ Beide Wege liefern:
   />
 </ContentStack>
 
+### Mit dem Kehrwert dividieren
+
+Um **zwei komplexe Zahlen zu dividieren**, multiplizierst du den Zähler mit dem Kehrwert des Nenners. Der Nenner darf nicht null sein. Berechne im folgenden Beispiel Real- und Imaginärteil durch Ausmultiplizieren:
+
+<BlockMath math="\begin{aligned}\frac{1-i}{2+3i}&amp;=(1-i)\frac{2-3i}{2^2+3^2} \\ &amp;=\frac{2-3i-2i+3i^2}{13} \\ &amp;=\frac{-1-5i}{13}=-\frac1{13}-\frac5{13}i\end{aligned}" />
+
 ## Übung
 
-Gegeben sind <InlineMath math="z_1 = 1-i" /> und <InlineMath math="z_2 = 2+3i" />. Bestimme den Kehrwert von <InlineMath math="z_1 + z_2" />. Das Ergebnis muss <InlineMath math="(z_1 + z_2) \cdot w = 1" /> erfüllen, und damit kannst du deine Antwort selbst prüfen. Addiere die beiden komplexen Zahlen zuerst komponentenweise und bilde erst danach den Kehrwert der Summe.
+Gegeben sind <InlineMath math="z_1 = 1-i" /> und <InlineMath math="z_2 = 2+3i" />. Bestimme den **Kehrwert der Summe** <InlineMath math="z_1 + z_2" />. Das Ergebnis muss <InlineMath math="(z_1 + z_2) \cdot w = 1" /> erfüllen, und damit kannst du deine Antwort selbst prüfen. Addiere die beiden komplexen Zahlen zuerst komponentenweise und bilde erst danach den Kehrwert der Summe.
 
 ### Ausführliche Lösungen
 
-Schritt 1: Berechne zuerst <InlineMath math="z_1 + z_2" />.
+**Schritt 1**: Berechne zuerst <InlineMath math="z_1 + z_2" />.
 
 <BlockMath math="\begin{aligned} z &amp;= z_1 + z_2 \\ &amp;= (1-i) + (2+3i) \\ &amp;= (1+2) + (-1+3)i \\ &amp;= 3+2i \end{aligned}" />
 
-Schritt 2: Bestimme den Kehrwert von <InlineMath math="z = 3+2i" />.
+**Schritt 2**: Bestimme den **Kehrwert der Summe** <InlineMath math="z = 3+2i" />.
 Dabei sind <InlineMath math="x=3" /> und <InlineMath math="y=2" />.
 Mit <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" /> erhält man:
 
@@ -134,3 +144,7 @@ Mit <InlineMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" /> erhält man:
 </MathContainer>
 
 Der Kehrwert von <InlineMath math="z_1 + z_2" /> ist damit <InlineMath math="\frac{3}{13} - \frac{2}{13}i" />.
+
+Prüfe das Ergebnis durch Multiplikation der ursprünglichen Summe mit dem gefundenen Kehrwert:
+
+<BlockMath math="(3+2i)\frac{3-2i}{13}=\frac{9-6i+6i-4i^2}{13}=\frac{13}{13}=1" />

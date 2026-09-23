@@ -15,7 +15,9 @@ Dieser lesbare Quelltext ist der wichtigste Vorteil von Markdown. Du kannst Änd
 
 ### Grundlegende Syntax von Markdown
 
-Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine Raute leitet eine Überschrift ein, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken:
+Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine **Raute leitet eine Überschrift ein**, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken:
+
+Das Beispiel nutzt Markdown-Funktionen aus Pandoc und GitHub Flavored Markdown. Tabellen und `~~durchgestrichener Text~~` sind Erweiterungen, die nicht jeder Markdown-Renderer unterstützt. Die Shell-Beispiele verwenden Bash unter macOS oder Linux. Passe Beispielpfade an deinen Übungsordner an.
 
 <CodeBlock
   data={[{
@@ -61,9 +63,9 @@ def hello_world():
 
 ### Arbeitsablauf mit Markdown
 
-Behalte die Quelldatei als geprüften Inhalt und behandle gerenderte Dateien als reproduzierbare Ausgabe. Ein kurzer Ablauf genügt: erstellen, bearbeiten, validieren, umwandeln und ansehen.
+Behalte die **Quelldatei als geprüften Inhalt** und behandle gerenderte Dateien als reproduzierbare Ausgabe. Ein kurzer Ablauf genügt: erstellen, bearbeiten, validieren, umwandeln und ansehen.
 
-Erstelle eine Datei mit der Endung `.md`, schreibe ihren Inhalt und wandle sie mit einem installierten Werkzeug wie Pandoc um. HTML ist mit `--standalone` eigenständig. Für PDF-Ausgabe braucht dein Rechner zusätzlich eine kompatible PDF-Engine.
+Erstelle eine Datei mit der Endung `.md`, schreibe ihren Inhalt und wandle sie mit einem installierten Werkzeug wie Pandoc um. Mit `--standalone` enthält HTML den vollständigen Dokumentkopf und -rumpf. Verknüpfte Bilder und Stylesheets bleiben ohne ausdrückliches Einbetten getrennt. Für PDF-Ausgabe braucht dein Rechner zusätzlich eine kompatible PDF-Engine.
 
 <CodeBlock
   data={[{
@@ -76,7 +78,7 @@ touch document.md
 nano document.md
 
 # Mit Pandoc in HTML konvertieren
-pandoc document.md -o document.html
+pandoc document.md --standalone -o document.html
 
 # In PDF konvertieren, wenn eine unterstützte PDF-Engine installiert ist
 pandoc document.md -o document.pdf
@@ -88,13 +90,13 @@ open document.html`
 
 ## Grundlagen der Befehlszeilenschnittstelle
 
-Eine Befehlszeilenschnittstelle oder CLI nimmt Textbefehle über eine Shell entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
+Eine Befehlszeilenschnittstelle oder CLI nimmt **Textbefehle über eine Shell** entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
 
 CLI-Befehle lassen sich prüfen, wiederholen, skripten und begutachten. Die Shell befolgt den angegebenen Pfad und jeden Schalter genau. Ermittle deshalb zuerst das Ziel und prüfe destruktive Schalter vor dem Ausführen.
 
 ### Navigation und Erkundung von Verzeichnissen
 
-Bevor du Dateien änderst, bestätige das aktuelle Verzeichnis, untersuche seinen Inhalt und wechsle mit einem ausdrücklichen Pfad:
+Bevor du Dateien änderst, bestätige das **aktuelle Verzeichnis**, untersuche seinen Inhalt und wechsle mit einem ausdrücklichen Pfad:
 
 <CodeBlock
   data={[{
@@ -109,7 +111,8 @@ ls -l    # detailliertes Format
 ls -la   # einschließlich versteckter Dateien
 
 # Verzeichnis wechseln
-cd "$HOME/documents"
+mkdir -p "$HOME/markdown-practice"
+cd "$HOME/markdown-practice"
 cd ..    # eine Ebene höher gehen
 cd ~     # Zum Home-Verzeichnis wechseln
 cd -     # Zum vorherigen Verzeichnis zurückkehren
@@ -122,7 +125,7 @@ mkdir -p project/src/components  # Verzeichnishierarchie erstellen`
 
 ### Operationen mit Dateien und Verzeichnissen
 
-Dateibefehle wirken sofort auf reale Pfade. Prüfe ein Ziel vor dem Löschen, setze Pfade mit möglichen Leerzeichen in Anführungszeichen und vermeide rekursive Force-Schalter, solange das genaue Verzeichnis nicht nachweislich entbehrlich ist.
+Dateibefehle wirken sofort auf reale Pfade. **Prüfe ein Ziel vor dem Löschen**, setze Pfade mit möglichen Leerzeichen in Anführungszeichen und vermeide rekursive Force-Schalter, solange das genaue Verzeichnis nicht nachweislich entbehrlich ist.
 
 <CodeBlock
   data={[{
@@ -152,7 +155,7 @@ less file.txt       # Ansicht mit Navigation`
 
 ### Integration von Markdown mit CLI
 
-Ein kleines Build-Skript macht die Umwandlung wiederholbar. Es sollte bei einem fehlgeschlagenen Befehl abbrechen, sein Ausgabeverzeichnis selbst anlegen, jeden Pfad zitieren und den Fall ohne Quelldatei behandeln:
+Ein kleines Build-Skript macht die Umwandlung wiederholbar. Es sollte **bei einem fehlgeschlagenen Befehl abbrechen**, sein Ausgabeverzeichnis selbst anlegen, jeden Pfad zitieren und den Fall ohne Quelldatei behandeln:
 
 <CodeBlock
   data={[{
@@ -197,7 +200,7 @@ chmod +x build.sh
 
 ### Werkzeuge für die CLI für Markdown
 
-Nutze die offiziellen Installationswege der Werkzeuge und prüfe anschließend die installierten Befehle, bevor ein Skript von ihnen abhängt. Pandoc wandelt Dokumente um, ein Markdown-Linter prüft die Konventionen des Quelltexts:
+Nutze die offiziellen Installationswege der Werkzeuge und **prüfe anschließend die installierten Befehle**, bevor ein Skript von ihnen abhängt. Pandoc wandelt Dokumente um, ein Markdown-Linter prüft die Konventionen des Quelltexts:
 
 <CodeBlock
   data={[{
@@ -224,6 +227,8 @@ pandoc input.md -o output.html --template=custom.html`
 
 <Highlight>Speichere verfasstes Markdown in der Versionsverwaltung</Highlight>, validiere es vor der Umwandlung, baue in ein ersetzbares Ausgabeverzeichnis und prüfe den Diff vor dem Commit:
 
+Das Verzeichnis `site` enthält in diesem Beispiel ausschließlich erzeugte Ausgaben und wird beim Build ersetzt. Speichere selbst geschriebene Dateien in `docs`, nicht in `site`.
+
 <CodeBlock
   data={[{
     language: "bash",
@@ -235,10 +240,13 @@ set -eu
 
 SOURCE_DIR="docs"
 OUTPUT_DIR="site"
-STAGING_DIR=$(mktemp -d)
+STAGING_DIR=$(mktemp -d "./.site-build.XXXXXX")
 trap 'rm -rf "$STAGING_DIR"' EXIT
 
-mapfile -d '' source_files < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+source_files=()
+while IFS= read -r -d '' file; do
+    source_files+=("$file")
+done < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
 if [ "\${#source_files[@]}" -eq 0 ]; then
     echo "Keine Markdown-Quellen gefunden" >&2
     exit 1
@@ -269,7 +277,7 @@ git diff -- docs`
 
 ### Echtes Projektbeispiel
 
-Das letzte Beispiel erstellt vier Quelldateien und verbindet sie zu einem eigenständigen HTML-Dokument. Jeder Eingabepfad ist ausdrücklich genannt. Fehlt eine Datei, schlägt der Build mit einer Fehlermeldung fehl:
+Das letzte Beispiel erstellt vier Quelldateien und verbindet sie zu einem **eigenständigen HTML-Dokument**. Jeder Eingabepfad ist ausdrücklich genannt. Fehlt eine Datei, schlägt der Build mit einer Fehlermeldung fehl:
 
 <CodeBlock
   data={[{
@@ -290,26 +298,26 @@ cat << 'EOF' > docs/README.md
 Vollständige Dokumentation für ein KI-Programmierprojekt.
 
 ## Wie ein Dokument aufgebaut ist
-- [API-Referenz](api/README.md)
-- [Tutorials](tutorials/README.md)
-- [Benutzerhandbücher](guides/README.md)
+- [API-Referenz](#api)
+- [Tutorials](#tutorials)
+- [Benutzerhandbücher](#guides)
 EOF
 
 # Verknüpfte Seiten erstellen
 cat << 'EOF' > docs/api/README.md
-# API-Referenz
+# API-Referenz {#api}
 
 Beschreibe jede öffentliche Schnittstelle und ergänze ein geprüftes Beispiel.
 EOF
 
 cat << 'EOF' > docs/tutorials/README.md
-# Tutorials
+# Tutorials {#tutorials}
 
 Führe den Leser durch eine vollständige Aufgabe.
 EOF
 
 cat << 'EOF' > docs/guides/README.md
-# Benutzerleitfäden
+# Benutzerleitfäden {#guides}
 
 Erkläre wiederkehrende Abläufe und ihre Sicherheitsgrenzen.
 EOF

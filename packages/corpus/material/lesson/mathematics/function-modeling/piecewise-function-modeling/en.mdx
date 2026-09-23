@@ -20,7 +20,7 @@ A piecewise function can be written in the form:
 
 <BlockMath math="f(x) = \begin{cases} f_1(x), & \text{if } x \in D_1 \\ f_2(x), & \text{if } x \in D_2 \\ f_3(x), & \text{if } x \in D_3 \\ \vdots \\ f_n(x), & \text{if } x \in D_n \end{cases}" />
 
-In this definition, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> are non-overlapping intervals that partition the function's domain.
+In this definition, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> are **non-overlapping intervals** that partition the function's domain.
 
 When reading or building a piecewise function, pay attention to three things:
 
@@ -30,11 +30,11 @@ When reading or building a piecewise function, pay attention to three things:
 
 ## Common Piece Shapes
 
-A piecewise function is built from simple pieces, and each piece keeps its own rule on its own interval. A linear piece and a quadratic piece are the two shapes that appear most often, because each one is easy to read from the conditions and easy to draw.
+The formula determines the shape of each piece. A **linear formula** produces a line segment or ray, while a quadratic formula produces part of a parabola. The interval condition selects which part to use.
 
 ### Linear Pieces
 
-A linear piecewise function uses a linear function on each interval. This form often appears when the rate of change is constant for a while, then changes after a certain point.
+A linear piecewise function uses a linear function on each interval. This form often appears when the **rate of change is constant** for a while, then changes after a certain point.
 
 <LineEquation
   title="Linear Piecewise Function"
@@ -69,7 +69,6 @@ A linear piecewise function uses a linear function on each interval. This form o
           const x = 2 + i * 0.1;
           return { x, y: 0.5 * x, z: 0 };
         }),
-        { x: 100, y: 50, z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -77,7 +76,9 @@ A linear piecewise function uses a linear function on each interval. This form o
       labels: [{ text: <InlineMath math="y=0.5x" />, at: 10, offset: [1, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 The function above can be written as:
@@ -88,7 +89,7 @@ The three rows are not three separate functions. They work together as one funct
 
 ### Quadratic Pieces
 
-Piecewise functions can also use quadratic pieces. A quadratic piece can describe a part of the model that curves.
+Piecewise functions can also use quadratic pieces. A quadratic piece can describe a **part of the model that curves**.
 
 <LineEquation
   title="Combined Piecewise Function"
@@ -97,13 +98,13 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
     {
       smooth: false,
       endpoints: { end: "open" },
-      points: Array.from({ length: 751 }, (_, sampleIndex) => {
-        const x = (sampleIndex - 750) / 50;
+      points: Array.from({ length: 151 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 150) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 75, offset: [-1, -1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -112,7 +113,6 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
           const x = 0 + i * 0.1;
           return { x, y: 2 * x, z: 0 };
         }),
-        { x: 100, y: 200, z: 0 },
       ],
       smooth: false,
       color: "#0d9488",
@@ -120,18 +120,22 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
+
+The graph combines the following **two rules**. At the boundary <InlineMath math="x=0" />, the second rule gives the function value. The open circle on the first rule does not add another value.
+
+<BlockMath math="f(x)=\begin{cases}x^2,&amp;x&lt;0\\2x,&amp;x\geq0\end{cases}" />
 
 ## Connection Points and Continuity
 
-At every boundary you meet two rules, and the graph may have a gap or a jump there.
-
-The pieces meet at the interval boundaries, and what happens there decides whether the function is continuous.
+At a **connection point**, compare the outputs approached from the left and right with the function value at the boundary itself. All three can agree, but their differences can reveal a hole or a jump.
 
 ### Connections Without Jumps
 
-A piecewise function is continuous if the graph does not jump at a connection point. The value from the left, the value from the right, and the function value at that point must match.
+A piecewise function is continuous if the graph does not jump at a connection point. The value from the left, the value from the right, and the function value at that point **must match**.
 
 Condition for continuity at point <InlineMath math="x = c" />:
 
@@ -151,7 +155,7 @@ For continuity at <InlineMath math="x = 2" />:
 
 Discontinuous piecewise functions have "jumps" or "holes" at certain points.
 
-For example, the two rules below meet at <InlineMath math="x=1" /> but approach different output values:
+For example, the two rules below meet at <InlineMath math="x=1" /> but approach **different output values**:
 
 <BlockMath math="f(x)=\begin{cases}x+2,&\text{if }x<1\\2x-3,&\text{if }x\geq1\end{cases}" />
 
@@ -167,7 +171,6 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
     {
       endpoints: { end: "open" },
       points: [
-        { x: -100, y: -98, z: 0 },
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -1 + i * 0.1;
           return { x, y: x + 2, z: 0 };
@@ -176,7 +179,7 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -185,7 +188,6 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
           const x = 1 + i * 0.1;
           return { x, y: 2 * x - 3, z: 0 };
         }),
-        { x: 100, y: 197, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
@@ -193,12 +195,14 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Modeling with Piecewise Functions
 
-A situation whose rule changes at a threshold fits a piecewise model. Progressive rates and staged speeds both switch the rule at a point you can name, and that point becomes the boundary between two pieces.
+A situation whose rule changes at a threshold fits a piecewise model. Progressive rates and staged speeds both switch the rule at a point you can name, and that point becomes the **boundary between two pieces**.
 
 ### Progressive Rates
 
@@ -206,7 +210,7 @@ Piecewise functions model rules that change at specified thresholds. Progressive
 
 **Example: Electricity Rates**
 
-An electricity company applies tiered rates:
+In this hypothetical example, the **new rate applies only to additional usage** within that tier. Usage in earlier tiers keeps its earlier rate:
 
 - <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp }1{,}000/\text{kWh}" />
 - <InlineMath math="50<x\leq100" /> kWh: <InlineMath math="\text{Rp }1{,}500/\text{kWh}" />
@@ -218,7 +222,11 @@ The mathematical model:
 
 The number <InlineMath math="50{,}000" /> in the second row comes from the first <InlineMath math="50 \text{ kWh}" />. The number <InlineMath math="125{,}000" /> in the third row comes from the cost up to the first <InlineMath math="100 \text{ kWh}" />. This keeps the cost from restarting at <InlineMath math="0" /> when the usage enters a new interval.
 
-**Electricity cost table:**
+The cost in a new interval does not replace the earlier cost. For example, at <InlineMath math="75\text{ kWh}" />:
+
+<BlockMath math="C(75)=1000(50)+1500(75-50)=50000+37500=87500" />
+
+**Electricity cost table**:
 
 | Usage (kWh) | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="75" /> | <InlineMath math="100" /> | <InlineMath math="150" /> |
 | ----------- | ------ | ------ | ------ | ------- | ------- |
@@ -238,18 +246,18 @@ Distance function with respect to time:
 
 <BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{if } 0 \leq t \leq 0.5\end{gathered}\\[4pt]\begin{gathered}2.5 + 15(t-0.5)\\\text{if } 0.5 &lt; t \leq 1.5\end{gathered}\\[4pt]\begin{gathered}17.5 + 60(t-1.5)\\\text{if } 1.5 &lt; t \leq 2\end{gathered}\end{cases}" />
 
-The constants <InlineMath math="2.5" /> and <InlineMath math="17.5" /> equal the distance already traveled at the start of each new interval. They keep <InlineMath math="s(t)" /> continuous when the transportation mode changes.
+The constants <InlineMath math="2.5" /> and <InlineMath math="17.5" /> equal the **distance already traveled** at the start of each new interval. They keep <InlineMath math="s(t)" /> continuous when the transportation mode changes.
 
 ## Determining Piecewise Function Equations
 
 To determine piecewise function equations from graphs or situations:
 
-- Split the domain at every boundary where the rule changes.
+- Split the domain at every **boundary where the rule changes**.
 - Determine the formula for each interval.
 - Check the connection points so the interval signs and function values do not conflict.
 - Write all pieces in piecewise notation.
 
-**Example:**
+**Example**:
 
 From a graph showing:
 
@@ -271,9 +279,11 @@ Piecewise function:
 
 ## Practice Problems
 
+Choose the **interval containing the input** before substituting. In cost and wage models, carry the amount accumulated in earlier intervals into the next interval.
+
 1. Determine the values of <InlineMath math="f(1)" />, <InlineMath math="f(3)" />, and <InlineMath math="f(5)" /> for the function:
 
-   <BlockMath math="f(x) = \begin{cases} x^2, & \text{if } x < 2 \\ 2x + 1, & \text{if } 2 \leq x < 4 \\ 9, & \text{if } x \geq 4 \end{cases}" />
+<BlockMath math="f(x) = \begin{cases} x^2, & \text{if } x < 2 \\ 2x + 1, & \text{if } 2 \leq x < 4 \\ 9, & \text{if } x \geq 4 \end{cases}" />
 
 2. An online taxi company applies the following rates:
 
@@ -283,11 +293,11 @@ Piecewise function:
 
 3. Determine whether the following function is continuous at <InlineMath math="x = 1" />:
 
-   <BlockMath math="g(x) = \begin{cases} 3x - 1, & \text{if } x < 1 \\ 2, & \text{if } x = 1 \\ x + 1, & \text{if } x > 1 \end{cases}" />
+<BlockMath math="g(x) = \begin{cases} 3x - 1, & \text{if } x < 1 \\ 2, & \text{if } x = 1 \\ x + 1, & \text{if } x > 1 \end{cases}" />
 
 4. Sketch the graph of the function:
 
-   <BlockMath math="h(x) = \begin{cases} -x + 2, & \text{if } x < 0 \\ x^2, & \text{if } 0 \leq x < 2 \\ 4, & \text{if } x \geq 2 \end{cases}" />
+<BlockMath math="h(x) = \begin{cases} -x + 2, & \text{if } x < 0 \\ x^2, & \text{if } 0 \leq x < 2 \\ 4, & \text{if } x \geq 2 \end{cases}" />
 
 5. A worker is paid with the following system:
 
@@ -295,109 +305,122 @@ Piecewise function:
 
    If the employee may work at most <InlineMath math="12 \text{ hours/day}" />, create a daily wage function.
 
-### Answer Key
+### Function Values
 
-1. **Calculating function values:**
+Identify the **applicable row** for each input, then evaluate it.
 
-   For <InlineMath math="f(1)" />: since <InlineMath math="1 < 2" />, use <InlineMath math="f(x) = x^2" />
+For <InlineMath math="f(1)" />: since <InlineMath math="1 < 2" />, use <InlineMath math="f(x) = x^2" />
 
-   <BlockMath math="f(1) = 1^2 = 1" />
+<BlockMath math="f(1) = 1^2 = 1" />
 
-   For <InlineMath math="f(3)" />: since <InlineMath math="2 \leq 3 < 4" />, use <InlineMath math="f(x) = 2x + 1" />
+For <InlineMath math="f(3)" />: since <InlineMath math="2 \leq 3 < 4" />, use <InlineMath math="f(x) = 2x + 1" />
 
-   <BlockMath math="f(3) = 2(3) + 1 = 7" />
+<BlockMath math="f(3) = 2(3) + 1 = 7" />
 
-   For <InlineMath math="f(5)" />: since <InlineMath math="5 \geq 4" />, use <InlineMath math="f(x) = 9" />
+For <InlineMath math="f(5)" />: since <InlineMath math="5 \geq 4" />, use <InlineMath math="f(x) = 9" />
 
-   <BlockMath math="f(5) = 9" />
+<BlockMath math="f(5) = 9" />
 
-2. **Taxi fare model:**
+### Taxi Fare
 
-   Let <InlineMath math="x" /> be the distance in km, then:
+The cost at the first boundary becomes the **starting cost** of the next interval. Through <InlineMath math="10\text{ km}" />, the accumulated cost is:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{if } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="10000+4000(10-2)=10000+32000=42000" />
 
-   Or simplified:
+Let <InlineMath math="x" /> be the distance in km, then:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{if } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{if } x > 10\end{gathered}\end{cases}" />
 
-3. **Checking continuity:**
+Or simplified:
 
-   At <InlineMath math="x = 1" />:
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{if } x > 10\end{gathered}\end{cases}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="g(1) = 2" />
-   </MathContainer>
+### Continuity at the Boundary
 
-   Since <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" />, the function is **continuous** at <InlineMath math="x = 1" />.
+At <InlineMath math="x = 1" />:
 
-4. **Sketch of graph <InlineMath math="h(x)" />:**
+<MathContainer>
 
-   <LineEquation
-     title={
-       <>
-         Graph of Function <InlineMath math="h(x)" />
-       </>
-     }
-     description={
-       <>
-         Piecewise function with three parts: decreasing linear, quadratic, and
-         constant
-       </>
-     }
-     data={[
-       {
-         endpoints: { end: "open" },
-         points: [
-           { x: -100, y: 102, z: 0 },
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = -2 + i * 0.1;
-             return { x, y: -x + 2, z: 0 };
-           }),
-         ],
-         smooth: false,
-         color: "#9333ea",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
-       },
-       {
-         smooth: false,
-         endpoints: { start: "closed", end: "open" },
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = 0 + i * 0.1;
-           return { x, y: x * x, z: 0 };
-         }),
-         color: "#ea580c",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
-       },
-       {
-         endpoints: { start: "closed" },
-         points: [
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = 2 + i * 0.1;
-             return { x, y: 4, z: 0 };
-           }),
-           { x: 100, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+<BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
 
-5. **Daily wage function:**
+<BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
 
-   Let <InlineMath math="t" /> be the working hours, then:
+<BlockMath math="g(1) = 2" />
+</MathContainer>
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Since <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" />, the function is **continuous** at <InlineMath math="x = 1" />.
 
-   Or simplified:
+### Sketching Three Pieces
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Notice the **open and closed endpoints**: at <InlineMath math="x=0" /> the function value is <InlineMath math="0" />, not <InlineMath math="2" />. At <InlineMath math="x=2" /> it is <InlineMath math="4" />.
+
+<LineEquation
+  title={
+    <>
+      Graph of Function <InlineMath math="h(x)" />
+    </>
+  }
+  description={
+    <>
+      Piecewise function with three parts: decreasing linear, quadratic, and
+      constant
+    </>
+  }
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -2 + i * 0.1;
+          return { x, y: -x + 2, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+    {
+      smooth: false,
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = 0 + i * 0.1;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 4, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
+/>
+
+### Daily Wages
+
+Pay after eight hours includes the **wages already earned**, followed by the extra pay for overtime.
+
+<BlockMath math="50000(8)=400000" />
+
+Let <InlineMath math="t" /> be the working hours, then:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+
+Or simplified:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />

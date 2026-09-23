@@ -7,7 +7,7 @@ export const metadata = {
 
 #### Die Amplitude bestimmen
 
-Die Amplitude (<InlineMath math="A" />) ist die Hälfte des senkrechten Abstands zwischen Wellenberg und Wellental. Dieser Abstand beträgt <InlineMath math="16\text{ m}" />:
+Die Amplitude (<InlineMath math="A" />) ist die **Hälfte des senkrechten Abstands** zwischen Wellenberg und Wellental. Dieser Abstand beträgt <InlineMath math="16\text{ m}" />:
 
 <MathContainer>
   <BlockMath math="A = \frac{16}{2}" />
@@ -16,7 +16,7 @@ Die Amplitude (<InlineMath math="A" />) ist die Hälfte des senkrechten Abstands
 
 #### Die Periodendauer bestimmen
 
-Die Periodendauer (<InlineMath math="T" />) ist die Zeit für eine vollständige Schwingung. Wir rechnen <InlineMath math="12\text{ Stunden }24\text{ Minuten}" /> in Dezimalstunden um:
+Die Periodendauer (<InlineMath math="T" />) ist die Zeit für **eine vollständige Schwingung**. Wir rechnen <InlineMath math="12\text{ Stunden }24\text{ Minuten}" /> in Dezimalstunden um:
 
 <MathContainer>
   <BlockMath math="T=\left(12+\frac{24}{60}\right)\text{ h}" />
@@ -26,7 +26,7 @@ Die Periodendauer (<InlineMath math="T" />) ist die Zeit für eine vollständige
 
 #### Die Phase wählen und die Funktion aufstellen
 
-Bei <InlineMath math="t=0" /> durchläuft das Wasser die Mittellage in aufsteigender Richtung. Eine Sinusfunktion ohne Phasenverschiebung hat genau dieses Verhalten, denn <InlineMath math="\sin 0=0" /> und ihre Anfangssteigung ist positiv. Daher können wir ansetzen:
+Bei <InlineMath math="t=0" /> durchläuft das Wasser die **Mittellage in aufsteigender Richtung**. Eine Sinusfunktion ohne Phasenverschiebung hat genau dieses Verhalten, denn <InlineMath math="\sin 0=0" /> und ihre Anfangssteigung ist positiv. Daher können wir ansetzen:
 
 <BlockMath math="h(t) = A \sin\left(\frac{2\pi}{T} t\right)" />
 
@@ -35,3 +35,25 @@ Wir setzen <InlineMath math="A = 8" /> und <InlineMath math="T = 12{,}4" /> ein:
 <BlockMath math="h(t) = 8 \sin\left(\frac{2\pi}{12{,}4} t\right)" />
 
 Ein mögliches Modell lautet somit <InlineMath math="h(t) = 8 \sin\left(\frac{2\pi}{12{,}4} t\right)" />.
+
+<LineEquation
+  title="Eine Schwingung des Wasserstands"
+  description="Die waagerechte Achse zeigt die Zeit in Stunden, die senkrechte Achse die Auslenkung in Metern. Zwischen Wellenberg und Wellental liegt eine halbe Periode."
+  cameraPosition={[6.2, 0, 28]}
+  cameraTarget={[6.2, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => ({ x: 12.4 * i / 100, y: 8 * Math.sin(2 * Math.PI * i / 100), z: 0 })),
+      color: "#0284c7",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { at: 25, text: <InlineMath math="(3{,}1;8)" />, offset: [0, 0.8, 0] },
+        { at: 75, text: <InlineMath math="(9{,}3;-8)" />, offset: [0, -0.8, 0] }
+      ]
+    }
+  ]}
+/>
+
+Die Kurve beginnt in der Mittellage und steigt an. Wellenberg bei <InlineMath math="t=3{,}1" /> und Wellental bei <InlineMath math="t=9{,}3" /> liegen <InlineMath math="9{,}3-3{,}1=6{,}2" /> Stunden auseinander. Ihr Höhenunterschied beträgt <InlineMath math="8-(-8)=16\text{ m}" />.

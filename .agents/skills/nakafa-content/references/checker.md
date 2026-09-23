@@ -63,14 +63,86 @@ authorship detector. Admit a new rule only when all of these conditions hold:
 5. Every match is reviewed in its complete paragraph and against both locale
    siblings before any rewrite.
 
+## Genre contracts
+
+- A lesson is teacher-led pedagogy. It explains a concept to a learner, uses
+  concrete examples and checks, and may add a representation when that object
+  makes the reasoning easier to inspect.
+- An article is professional scientific-journal writing for professional
+  readers. Keep the author's argument, claim-matched sources, citations, data,
+  charts, tables, and diagrams. Do not turn it into a lesson, remove useful
+  evidence during humanization, or replace sourced analysis with generic
+  teaching copy.
+- An assessed question is a real-exam prompt. Preserve its delivery language,
+  source meaning, stimulus, response format, and difficulty. Do not teach the
+  answer inside the prompt or rewrite assessed wording to satisfy voice rules.
+- A worked answer is authored post-attempt pedagogy. It may explain and teach,
+  but it must resolve the exact problem with complete reasoning and without
+  changing the assessed stimulus.
+
+## Slop Meter rule decisions
+
+[Slop Meter's Rulebook](https://slop-meter.com/rules) is descriptive evidence
+about writing habits. Its own introduction says that no rule decides authorship
+alone. Nakafa therefore maps each tell to a proven blocker, a review candidate,
+a manual read, or an excluded detector. Statistical measures and authorship
+scores never become source gates.
+
+| Tell | Nakafa decision | Boundary |
+| --- | --- | --- |
+| `r-001 stock vocabulary` | Manual review | Technical words such as `robust` and `nuanced` can be exact in science and code. |
+| `r-002 copula avoidance` | Manual review | `serves as` can name a real API, theorem, or institutional role. |
+| `r-003 filler phrases` | Existing review candidate `formulaic-attention-filler` | Only recorded announcement prefaces match; a real comparison such as `when it comes to object identity` stays valid. |
+| `r-004 chatbot artifacts` | Blocker `chatbot-artifact` | Assistant sign-offs are invalid authored prose; protected quotations stay unchanged. |
+| `r-005 promotional adjectives` | Manual review | Assessed text, quotations, and factual place descriptions may use these words. |
+| `r-006 abstract metaphor nouns` | Manual review with existing metaphor blockers | Literal realms, journeys, fabrics, and beacons remain valid when named objects are being taught. |
+| `r-007 stacked transitions` | Manual review plus existing repeated-opener review candidates | Scientific comparison and contrast often need formal connectives. |
+| `r-008 knowledge-cutoff disclaimers` | Blocker `knowledge-cutoff-disclaimer` | A data cutoff date is a factual method boundary and stays valid. |
+| `r-009 em-dash density` | Existing blocker `dash-character` | The repository bans U+2014 entirely; valid punctuation replaces it. |
+| `r-010 colon as connector` | Manual review | A colon is valid for definitions, labels, ratios, and source excerpts. |
+| `r-011 bold-label lists` | Excluded from deterministic gate | Named data groups and criteria lists use this form in the mathematics corpus. |
+| `r-012 title-case headings` | Manual review | Indonesian and German capitalization rules differ from English. |
+| `r-013 decorative emoji` | Manual review | Emoji can be the actual object of a Unicode or communication lesson. |
+| `r-014 negative parallelism` | Existing blocker `rhetorical-not-only` | A factual negation or assessed misconception remains valid. |
+| `r-015 quote style` | Excluded from deterministic gate | Slop Meter calls this a provenance signal, not a meaning error. |
+| `r-016 list density` | Excluded from deterministic gate | Representation rules prohibit a visual or list quota. |
+| `r-017 uniform sentence length` | Manual review | Sentence rhythm is contextual and language-specific. |
+| `r-018 adverb density` | Manual review | Scientific uncertainty and method scope can require adverbs. |
+| `r-019 passive ratio` | Manual review | Passive voice is valid when the actor is unknown, generic, or already explicit. |
+| `r-020 hedging stacks` | Review candidate `stacked-hedge` | Ability and frequency such as `can generally` or `mungkin dapat` are not hedge stacks. |
+| `r-021 groups of three` | Manual review | Three criteria, states, or coordinates can be mathematically complete. |
+| `r-022 lexical diversity` | Manual review | Synonym cycling is contextual; technical terminology should remain stable. |
+| `r-023 long-word share` | Manual review | Correct scientific and programming terms can be long. |
+| `r-024 recap openers` | Manual review | A scientific article can have a real conclusion, while a lesson conclusion needs a concrete result. |
+| `r-025 stop-start fragments` | Manual review | Short fragments can be valid labels, examples, or assessed source text. |
+| `r-026 false ranges` | Manual review | A real interval, scale, or transition remains valid. |
+| `r-027 openers with no antecedent` | Existing review candidates and manual read | The gate owns three narrow shapes; grammatical antecedents still require context. |
+| `r-028 participle tail clauses` | Review candidate `vague-significance-tail` | A tail with a measured change or named mechanism stays valid. |
+| `r-029 staged reveal questions` | Manual review | Teacher questions and assessed prompts are legitimate; concept personification already has blockers. |
+| `r-030 repeated sentence openers` | Existing repeated-opener review candidates plus manual read | A repeated technical subject can preserve exact reference. |
+| `r-031 significance inflation` | Review candidates `inflated-utility-claim` and `significance-inflation` | The existing rule covers role inflation; the new rule covers only testimonial, shift, and legacy claims. Measured operations and mechanisms stay valid. |
+| `r-032 vague attribution` | Manual evidence review | Read the complete claim with its in-text citations and reference list. A phrase such as `studies show` alone cannot establish whether attribution is missing. |
+| `r-033 challenges-and-prospects arc` | Review candidate `cliche-challenges-outcome` | A specific challenge and specific outcome remain valid. |
+| `r-034 absence of voice` | Excluded from deterministic gate | Professional scientific articles may correctly use impersonal analysis. |
+| `r-035 generic upbeat conclusion` | Review candidate `generic-upbeat-conclusion` | A dated release, result, or next action remains valid. |
+| `r-036 synonym cycling` | Manual review | Different terms may denote different statistical units or mathematical objects. |
+| `r-037 uniform register` | Excluded from deterministic gate | Professional articles should remain consistent and evidence-led. |
+| `r-038 both-sides wrap-up` | Review candidate `cliche-balanced-conclusion` | A real conditional result that names what it depends on remains valid. |
+
 ## Deterministic gate scope
 
 The checker discovers locale-qualified files across lessons, articles, and the
 question bank. Its document role comes from the contract-owned question body
 kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
-- Lessons and articles receive the full authored teaching profile, including
-  opening emphasis and section-body checks.
+- Lessons and worked answers receive teaching emphasis checks. Articles receive
+  scientific-register, evidence, source, math, and phrase-emphasis checks.
+  Article emphasis is optional and contextual, so the lesson opening and
+  section-body requirements do not apply.
+  Scientific section names, numbered headings, formal address, and reference
+  lists are valid. Lesson heading style, body-length, abbreviation, and repeated
+  opener rules do not apply. Source support is reviewed against the complete
+  claim and its cited evidence, never inferred from an attribution phrase alone.
 - Assessed questions receive forbidden-control-character, link, component,
   emphasis-syntax, and math checks.
   The checker preserves their language register, punctuation, titles, and quoted
@@ -93,9 +165,9 @@ those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
 `--strict-review` fails it while the repository suite still rejects it. A
-**manual review item** is a class with no rule at all, so no checker output can
-report it and the closing read owns it alone. Read the two terms exactly: only
-the first appears in checker output.
+**manual review item** has no deterministic rule. The optional pedagogy
+inventory can locate structural signals, but the complete contextual read owns
+the decision. Only a review candidate appears in the gate's issue list.
 
 Several blocking rules encode one proven regression rather than a general
 class. Each stays narrow on purpose, and each names the report or corpus
@@ -146,6 +218,14 @@ know, so it is not the full id list.
   skips one. The corpus nests answer-key headings to `####` and `#####` under a
   `###` heading, which stays valid because no level is skipped, so the gate
   enforces order rather than a maximum depth.
+- `section-body-highlight` requires a selective phrase in every lesson and
+  worked-answer heading body, including the body below the app-owned answer heading. A
+  marked title or earlier section does not satisfy it. Exact balanced inline
+  and block quotations, code, and pure notation are excluded so protected source
+  text stays intact. If the only marker lies inside an inline quotation beside
+  authored prose, `quoted-emphasis-only` requests contextual review. The AST
+  cannot distinguish source evidence from an author's quoted term or question,
+  so that inventory signal does not block or authorize rewriting the quotation.
 - `lesson-without-highlight` and `lesson-opening-highlight` recognize both
   Markdown strong emphasis and `<Highlight>` through the parsed tree, including
   rendered JSX labels. Marker text inside code does not count. There is no
@@ -249,3 +329,26 @@ same tier.
 Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
 clean gate as evidence that the corpus is human.
+
+## Section review and emphasis regressions
+
+The physics vector report showed that a document can satisfy the opening
+highlight and twenty-five-word checks while its other explanations stay
+unmarked or unsupported. `--pedagogy-review` therefore inventories every
+section and reports structural signals separately from deterministic findings.
+These signals require a contextual decision; they do not impose visual quotas
+or fixed paragraph lengths. For lessons and worked answers, the separate
+`section-body-highlight` rule still requires emphasis in each heading body,
+including a bridge paragraph. Article emphasis follows the scientific
+argument instead of a per-section quota.
+
+`sentence-punctuation-emphasis` catches a long marked phrase that includes its
+sentence-ending punctuation, including the shipped vector-notation opening.
+Both emphasis syntaxes use the same rule. Assessed questions, exact quotations,
+code, and short abbreviations stay protected. The rule cannot prove that every
+unreported mark is a useful phrase, so the manual emphasis review remains.
+
+`nested-relation-alignment` covers the probability regression that aligned an
+equality inside an event argument. Nearby valid event relations remain inside
+the complete argument, and nested cases and matrix environments keep their own
+alignment. This rule checks layout, not the truth of an equation.

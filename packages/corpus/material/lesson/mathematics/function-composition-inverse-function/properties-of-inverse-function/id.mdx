@@ -9,26 +9,26 @@ export const metadata = {
 
 ## Sifat Komposisi dengan Invers
 
-<Highlight>Suatu fungsi dan invers saling membatalkan</Highlight>. Urutan komposisi menentukan himpunan tempat identitas berlaku: <InlineMath math="f\circ f^{-1}" /> menjadi fungsi identitas pada daerah hasil <InlineMath math="f" />, sedangkan <InlineMath math="f^{-1}\circ f" /> menjadi fungsi identitas pada domain <InlineMath math="f" />.
+Suatu fungsi dan invers <Highlight>saling membatalkan</Highlight>. Urutan komposisi menentukan himpunan tempat identitas berlaku: <InlineMath math="f\circ f^{-1}" /> menjadi fungsi identitas pada daerah hasil <InlineMath math="f" />, sedangkan <InlineMath math="f^{-1}\circ f" /> menjadi fungsi identitas pada domain <InlineMath math="f" />.
 
-1.  **Komposisi <InlineMath math="f" /> dengan <InlineMath math="f^{-1}" />:**
+**Langkah 1**. Komposisi <InlineMath math="f" /> dengan <InlineMath math="f^{-1}" />.
 
-    <BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
+<BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
 
-    Ini berlaku untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f^{-1}" />, yaitu daerah hasil <InlineMath math="f" />.
+Ini berlaku untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f^{-1}" />, yaitu daerah hasil <InlineMath math="f" />.
 
-2.  **Komposisi <InlineMath math="f^{-1}" /> dengan <InlineMath math="f" />:**
+**Langkah 2**. Komposisi <InlineMath math="f^{-1}" /> dengan <InlineMath math="f" />.
 
-    <BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
+<BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
 
-    Ini berlaku untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f" />.
+Ini berlaku untuk semua <InlineMath math="x" /> dalam domain <InlineMath math="f" />.
 
-**Contoh:**
+**Contoh**:
 
 Kita tahu bahwa jika <InlineMath math="f(x) = 2x + 3" />, maka inversnya adalah <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />. Verifikasi sifat komposisi:
 
-- <BlockMath math="\begin{aligned}f(f^{-1}(x)) &= f\left(\frac{x - 3}{2}\right) \\ &= 2\left(\frac{x - 3}{2}\right) + 3 \\ &= (x - 3) + 3 \\ &= x\end{aligned}" />
-- <BlockMath math="\begin{aligned}f^{-1}(f(x)) &= f^{-1}(2x + 3) \\ &= \frac{(2x + 3) - 3}{2} \\ &= \frac{2x}{2} \\ &= x\end{aligned}" />
+<BlockMath math="\begin{aligned}f(f^{-1}(x)) &= f\left(\frac{x - 3}{2}\right) \\ &= 2\left(\frac{x - 3}{2}\right) + 3 \\ &= (x - 3) + 3 \\ &= x\end{aligned}" />
+<BlockMath math="\begin{aligned}f^{-1}(f(x)) &= f^{-1}(2x + 3) \\ &= \frac{(2x + 3) - 3}{2} \\ &= \frac{2x}{2} \\ &= x\end{aligned}" />
 
 Kedua komposisi membawa kita kembali ke nilai awal <InlineMath math="x" />.
 
@@ -40,6 +40,13 @@ Jika kita mencari invers dari suatu fungsi invers, kita akan kembali ke fungsi a
 
 Mencari invers menukar masukan dan keluaran pada setiap pasangan. Pertukaran yang dilakukan sekali lagi mengembalikan fungsi asal.
 
+Pasangan masukan dan keluaran mengalami **dua kali pertukaran**. Untuk fungsi tadi, kamu dapat menelusuri pertukaran itu dalam tabel.
+
+| Fungsi awal | Invers | Invers dari invers |
+| --- | --- | --- |
+| <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
 ## Sifat Invers dari Komposisi Fungsi
 
 Jika kita memiliki komposisi dua fungsi invertibel dengan domain dan kodomain yang saling sesuai, invers dari komposisi tersebut adalah komposisi dari invers-inversnya, tetapi dalam **urutan terbalik**.
@@ -50,32 +57,39 @@ Misalkan <InlineMath math="f" /> dan <InlineMath math="g" /> adalah dua fungsi y
 
 Baca komposisi dari kanan ke kiri: <InlineMath math="f^{-1}" /> diterapkan terlebih dahulu, lalu <InlineMath math="g^{-1}" />.
 
-Jika <InlineMath math="g" /> dijalankan lebih dahulu dan <InlineMath math="f" /> dijalankan sesudahnya, proses pembatalan dimulai dari langkah terakhir. Terapkan <InlineMath math="f^{-1}" /> lebih dahulu, lalu terapkan <InlineMath math="g^{-1}" />.
-
-**Contoh:**
+**Contoh**:
 
 Misalkan <InlineMath math="f(x) = x + 1" /> (inversnya <InlineMath math="f^{-1}(x) = x - 1" />) dan <InlineMath math="g(x) = 3x" /> (inversnya <InlineMath math="g^{-1}(x) = \frac{x}{3}" />).
 
-1.  **Cari <InlineMath math="(f \circ g)(x)" />:**
+**Langkah 1**. Cari <InlineMath math="(f \circ g)(x)" />.
 
-    <BlockMath math="\begin{aligned} (f \circ g)(x) &amp;= f(g(x)) \\ &amp;= f(3x) \\ &amp;= 3x + 1 \end{aligned}" />
+<BlockMath math="\begin{aligned} (f \circ g)(x) &amp;= f(g(x)) \\ &amp;= f(3x) \\ &amp;= 3x + 1 \end{aligned}" />
 
-2.  **Cari invers dari <InlineMath math="(f \circ g)(x)" />:**
+**Langkah 2**. Cari invers dari <InlineMath math="(f \circ g)(x)" />.
 
-    Misalkan <InlineMath math="y = 3x + 1" />. Tukar <InlineMath math="x" /> dan <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
+Misalkan <InlineMath math="y = 3x + 1" />. Tukar <InlineMath math="x" /> dan <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
 
-    Selesaikan untuk <InlineMath math="y" />: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
+Selesaikan untuk <InlineMath math="y" />: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
 
-    Jadi, <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
+Jadi, <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
 
-3.  **Cari <InlineMath math="(g^{-1} \circ f^{-1})(x)" />:**
+**Langkah 3**. Cari <InlineMath math="(g^{-1} \circ f^{-1})(x)" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} (g^{-1} \circ f^{-1})(x) &amp;= g^{-1}(f^{-1}(x)) \\ &amp;= g^{-1}(x - 1) \end{aligned}" />
-      <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} (g^{-1} \circ f^{-1})(x) &amp;= g^{-1}(f^{-1}(x)) \\ &amp;= g^{-1}(x - 1) \end{aligned}" />
+  <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
+</MathContainer>
 
 Karena hasil dari langkah 2 dan 3 sama, terbukti bahwa <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
+
+<Mermaid
+  title="Membalik urutan operasi"
+  description="Perkalian tiga dilakukan sebelum penambahan satu. Saat kembali, kurangi satu sebelum membagi tiga."
+  chart={`flowchart LR
+    A["2"] -->|"kali 3"| B["6"] -->|"tambah 1"| C["7"]
+    D["7"] -->|"kurangi 1"| E["6"] -->|"bagi 3"| F["2"]
+  `}
+/>
 
 ## Hubungan Domain dan Range
 
@@ -84,4 +98,23 @@ Domain dari fungsi asli <InlineMath math="f" /> menjadi range dari fungsi invers
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\text{Domain}(f) = \text{Range}(f^{-1}) \end{aligned}" />
   <BlockMath math="\begin{aligned} &amp;\text{Range}(f) = \text{Domain}(f^{-1}) \end{aligned}" />
+</MathContainer>
+
+**Domain ikut ditukar** saat kita menentukan invers. Ambil fungsi kuadrat yang dibatasi berikut.
+
+<MathContainer>
+  <BlockMath math="q:[0,\infty)\to[1,\infty),\quad q(x)=x^2+1" />
+  <BlockMath math="q^{-1}:[1,\infty)\to[0,\infty),\quad q^{-1}(x)=\sqrt{x-1}" />
+</MathContainer>
+
+| Fungsi | Domain | Daerah hasil |
+| --- | --- | --- |
+| <InlineMath math="q" /> | <InlineMath math="[0,\infty)" /> | <InlineMath math="[1,\infty)" /> |
+| <InlineMath math="q^{-1}" /> | <InlineMath math="[1,\infty)" /> | <InlineMath math="[0,\infty)" /> |
+
+Akar kuadrat mengembalikan masukan awal karena domain fungsi kuadrat dibatasi pada bilangan nonnegatif. Tanpa batasan itu, akar kuadrat dari kuadrat bilangan negatif menghasilkan nilai mutlak.
+
+<MathContainer>
+  <BlockMath math="q^{-1}(q(x))=\sqrt{x^2}=x,\quad x\geq0" />
+  <BlockMath math="q(q^{-1}(y))=(\sqrt{y-1})^2+1=y,\quad y\geq1" />
 </MathContainer>

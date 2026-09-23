@@ -5,39 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analyze the project conditions before and after workers get sick.
+Because every worker has the same constant rate, measure the work in **worker-days**: one worker working for one day completes one unit.
 
-**Initial Plan:**
+| Stage | Calculation | Work in worker-days |
+| --- | --- | --- |
+| Entire project | <InlineMath math="12\cdot16" /> | 192 |
+| First four days | <InlineMath math="12\cdot4" /> | 48 |
+| Remaining work | <InlineMath math="192-48" /> | 144 |
 
-The work is planned to be completed by <InlineMath math="12\text{ people}" /> in <InlineMath math="16\text{ days}" />.
-Total workload is <InlineMath math="12 \times 16 = 192" /> work units.
+After four workers stop, <InlineMath math="12-4=8" /> workers remain. They must complete 144 worker-days. If <InlineMath math="w" /> is the number of days still needed, then:
 
-**After <InlineMath math="4 \text{ Days }" />:**
+<BlockMath math="\begin{aligned}8w&=144\\w&=144/8\\w&=18\end{aligned}" />
 
-The work has been done for <InlineMath math="4\text{ days}" /> by <InlineMath math="12\text{ people}" />.
-Completed work is <InlineMath math="12 \times 4 = 48\text{ units}" />.
-Remaining workload is <InlineMath math="192 - 48 = 144\text{ units}" />.
-
-Also, the remaining normal time is <InlineMath math="16 - 4 = 12\text{ days}" /> if done by <InlineMath math="12\text{ people}" />.
-
-**Changed Condition:**
-
-There are <InlineMath math="4" /> sick people, so the remaining workers are <InlineMath math="12 - 4 = 8\text{ people}" />.
-We use inverse proportion to find the additional time (<InlineMath math="w" />) needed by <InlineMath math="8\text{ people}" /> to complete the remaining work.
-
-With <InlineMath math="w" /> denoting the number of days still needed:
-
-<BlockMath math="\begin{aligned}
-12\cdot12&=8w \\
-144&=8w \\
-w&=\frac{144}{8} \\
-w&=18
-\end{aligned}" />
-
-So, <InlineMath math="8\text{ workers}" /> need <InlineMath math="18" /> more days to complete the remaining project.
-
-The total project completion time is the time already elapsed plus the remaining time needed.
+The question asks for **time from the first day**, so include the four days already worked.
 
 <BlockMath math="4+18=22" />
-
-So, the project can be completed in <InlineMath math="22\text{ days}" />.

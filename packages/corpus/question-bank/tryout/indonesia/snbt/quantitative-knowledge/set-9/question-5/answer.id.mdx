@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Misalkan <InlineMath math="A" /> adalah kejadian banyak bola hijau yang terambil sama dengan dua kali banyak bola putih.
+Misalkan <InlineMath math="A" /> adalah kejadian banyak bola hijau yang terambil sama dengan **dua kali banyak bola putih**.
 
 Di dalam kotak terdapat <InlineMath math="9" /> bola:
 
@@ -16,30 +16,20 @@ Di dalam kotak terdapat <InlineMath math="9" /> bola:
 Pengambilan dilakukan secara acak tanpa pengembalian, sehingga setiap pilihan <InlineMath math="7" /> bola tanpa memperhatikan urutan memiliki peluang yang sama. Banyak seluruh pilihan adalah:
 
 <MathContainer>
-  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = 36" />
+  <BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = \frac{9\cdot8}{2\cdot1}=36" />
 </MathContainer>
 
 Misalkan <InlineMath math="w" />, <InlineMath math="g" />, dan <InlineMath math="r" /> berturut-turut menyatakan banyak bola putih, hijau, dan merah yang terambil. Syaratnya adalah <InlineMath math="g=2w" />, sedangkan <InlineMath math="r+g+w=7" />. Karena bola putih yang tersedia paling banyak dua, kita periksa <InlineMath math="w=0" />, <InlineMath math="w=1" />, dan <InlineMath math="w=2" />.
 
-#### Tanpa bola putih
-
-Pada kasus ini, <InlineMath math="w=0" />.
-
-Kita memperoleh <InlineMath math="g=0" /> dan <InlineMath math="r=7" />. Kasus ini tidak mungkin karena hanya tersedia <InlineMath math="1" /> bola merah.
-
-#### Satu bola putih
-
-Pada kasus ini, <InlineMath math="w=1" />.
-
-Kita memperoleh <InlineMath math="g=2" /> dan <InlineMath math="r=7-1-2=4" />. Kasus ini juga tidak mungkin karena hanya tersedia <InlineMath math="1" /> bola merah.
-
-#### Dua bola putih
-
-Pada kasus ini, <InlineMath math="w=2" />.
-
-Kita memperoleh <InlineMath math="g=4" /> dan <InlineMath math="r=7-2-4=1" />. Kasus ini mungkin terjadi karena tidak melebihi persediaan setiap warna.
+| Putih | Hijau | Merah yang diperlukan | Memenuhi persediaan? |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="7-0-0=7" /> | Tidak, hanya ada satu bola merah |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="7-1-2=4" /> | Tidak, hanya ada satu bola merah |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="7-2-4=1" /> | Ya |
 
 Banyak pilihan yang memenuhi syarat adalah:
+
+Untuk empat bola hijau, <InlineMath math="C^6_4=\frac{6\cdot5}{2\cdot1}=15" />. Kedua bola putih dan satu bola merah harus diambil seluruhnya, sehingga masing-masing hanya punya satu pilihan.
 
 <MathContainer>
   <BlockMath math="n(A) = C^2_2 \cdot C^6_4 \cdot C^1_1" />

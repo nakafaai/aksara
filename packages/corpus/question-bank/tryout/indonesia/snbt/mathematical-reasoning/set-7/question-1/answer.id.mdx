@@ -5,40 +5,23 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Menentukan Interval Pertemuan
+#### Menghitung Selang Pertemuan
 
-Diketahui ketiga angkot bertemu untuk ke-<InlineMath math="4" /> kalinya setelah <InlineMath math="18\text{ jam}" /> dari pertemuan awal.
+Kedatangan awal dihitung sebagai pertemuan pertama. Jadi, pertemuan keempat terjadi setelah **tiga selang waktu yang sama**, bukan empat. Misalkan <InlineMath math="T" /> adalah selang antara dua kedatangan bersama, dalam jam.
 
-Bertemu untuk ke-<InlineMath math="4\text{ kali}" /> berarti telah melewati <InlineMath math="3\text{ kali}" /> interval pertemuan (KPK).
+<BlockMath math="3T=18\quad\Rightarrow\quad T=\frac{18}{3}=6" />
 
-Misalkan <InlineMath math="T" /> adalah interval waktu pertemuan bersama (KPK dari periode <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />).
+| Pertemuan | Waktu berlalu dalam jam |
+| --- | ---: |
+| Pertama | <InlineMath math="0" /> |
+| Kedua | <InlineMath math="6" /> |
+| Ketiga | <InlineMath math="12" /> |
+| Keempat | <InlineMath math="18" /> |
 
-<MathContainer>
-  <BlockMath math="3 \times T = 18 \text{ jam}" />
-  <BlockMath math="T = \frac{18}{3} = 6 \text{ jam}" />
-</MathContainer>
+#### Memeriksa Periode yang Mungkin
 
-Jadi, ketiga angkot bertemu bersama setiap <InlineMath math="6\text{ jam}" /> sekali.
+Ketiga angkot tiba bersama ketika waktu yang berlalu merupakan **kelipatan bersama dari ketiga periode**. Waktu positif terkecil tersebut adalah KPK:
 
-#### Menentukan Nilai yang Dicari
+<BlockMath math="\begin{aligned}\operatorname{KPK}(2,3,x)&=6 \\ \operatorname{KPK}(6,x)&=6\end{aligned}" />
 
-Interval pertemuan bersama (<InlineMath math="T" />) adalah Kelipatan Persekutuan Terkecil (KPK) dari periode masing-masing angkot.
-
-Diketahui periode:
-- Angkot <InlineMath math="A" />: <InlineMath math="2\text{ jam}" />
-- Angkot <InlineMath math="B" />: <InlineMath math="3\text{ jam}" />
-- Angkot <InlineMath math="C" />: <InlineMath math="x\text{ jam}" />
-
-Maka:
-
-<BlockMath math="\text{KPK}(2, 3, x) = 6" />
-
-Kita tahu bahwa <InlineMath math="\text{KPK}(2, 3) = 6" />. Oleh karena itu, kita harus mencari nilai <InlineMath math="x" /> sehingga <InlineMath math="\text{KPK}(6, x) = 6" />. Agar <InlineMath math="\text{KPK}(6, x) = 6" />, maka <InlineMath math="x" /> haruslah faktor dari <InlineMath math="6" />.
-
-Dari pilihan jawaban yang tersedia, kita mencari nilai <InlineMath math="x" /> yang merupakan faktor dari <InlineMath math="6" />.
-
-Nilai <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="8" />, dan <InlineMath math="9" /> bukan merupakan faktor dari <InlineMath math="6" /> sehingga tidak memenuhi syarat <InlineMath math="\text{KPK}(6, x) = 6" />.
-
-Sedangkan untuk <InlineMath math="x = 6" />, kita dapatkan <InlineMath math="\text{KPK}(6, 6) = 6" /> yang memenuhi syarat.
-
-Dari pilihan yang tersedia, hanya <InlineMath math="x=6" /> yang memenuhi.
+Semua pilihan nilai <InlineMath math="x" /> berupa bilangan bulat positif. Nilai itu harus membagi <InlineMath math="6" /> agar selang pertemuan tetap <InlineMath math="6\text{ jam}" />. Faktor-faktornya adalah <InlineMath math="1,2,3,6" />. Dari pilihan <InlineMath math="5,7,6,8,9" />, hanya <InlineMath math="x=6" /> yang memenuhi. Dengan periode itu, ketiga angkot kembali pada waktu dalam tabel.

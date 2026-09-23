@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Konsep Fungsi Logaritma",
     description: "Fungsi logaritma adalah invers dari fungsi eksponensial. Grafik, sifat, dan soal bertahap menunjukkan hubungan keduanya.",
@@ -30,21 +29,15 @@ Fungsi logaritma dengan basis <InlineMath math="b" /> (dengan syarat <InlineMath
 
 <BlockMath math="f(x) = \log_b x \quad \text{untuk setiap } x > 0" />
 
-Tiga basis berikut sangat sering digunakan:
-
-1. **Logaritma Umum** (basis <InlineMath math="10" />): <InlineMath math="f(x) = \log x" />
-
-   Contoh: <InlineMath math="\log 100 = 2" /> karena <InlineMath math="10^2 = 100" />
-
-2. **Logaritma Natural** (basis <InlineMath math="e \approx 2{,}7183" />): <InlineMath math="f(x) = \ln x" />
-
-   Contoh: <InlineMath math="\ln e = 1" /> karena <InlineMath math="e^1 = e" />
-
-3. **Logaritma Biner** (basis <InlineMath math="2" />): <InlineMath math="f(x) = \log_2 x" />
-
-   Contoh: <InlineMath math="\log_2 8 = 3" /> karena <InlineMath math="2^3 = 8" />
+| Nama | Basis | Notasi dan contoh | Alasan |
+| --- | --- | --- | --- |
+| **Logaritma umum** | <InlineMath math="10" /> | <InlineMath math="\log100=2" /> | <InlineMath math="10^2=100" /> |
+| **Logaritma natural** | <InlineMath math="e\approx2{,}7183" /> | <InlineMath math="\ln e=1" /> | <InlineMath math="e^1=e" /> |
+| **Logaritma biner** | <InlineMath math="2" /> | <InlineMath math="\log_2 8=3" /> | <InlineMath math="2^3=8" /> |
 
 ## Grafik Fungsi Logaritma
+
+**Pertukaran koordinat** menjelaskan pencerminan pada grafik. Titik <InlineMath math="(3,8)" /> pada fungsi eksponensial menjadi titik <InlineMath math="(8,3)" /> pada fungsi logaritma. Semua masukan logaritma tetap positif.
 
 <LineEquation
   title="Perbandingan Fungsi Eksponensial dan Logaritma"
@@ -59,8 +52,8 @@ Tiga basis berikut sangat sering digunakan:
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 881 },
-          (_, i) => -16 + (i / 880) * 22
+          { length: 281 },
+          (_, i) => -4 + i / 40
         );
         return parameters
           .sort((a, b) => a - b)
@@ -69,16 +62,16 @@ Tiga basis berikut sangat sering digunakan:
             return { x, y: Math.pow(2, x), z: 0 };
           });
       })(),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=2^x" />, at: 720, offset: [-0.7, 3, 0] }],
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=2^x" />, at: 240, offset: [-0.7, 3, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 881 },
-          (_, i) => -16 + (i / 880) * 22
+          { length: 281 },
+          (_, i) => -4 + i / 40
         );
         return parameters
           .sort((a, b) => a - b)
@@ -88,25 +81,23 @@ Tiga basis berikut sangat sering digunakan:
           });
       })(),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 720, offset: [1.2, -1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 240, offset: [1.2, -1.2, 0] }],
       showPoints: false,
     },
     {
       points: [
-      { x: -160, y: -160, z: 0 },
-      { x: -3, y: -3, z: 0 },
+            { x: -3, y: -3, z: 0 },
       { x: 8, y: 8, z: 0 },
-      { x: 160, y: 160, z: 0 },
-      ],
+            ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 2, offset: [-0.8, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.8, -2.5, 0] }],
       showPoints: false,
     },
   ]}
   cameraPosition={[2.5, 2.5, 14]}
   cameraTarget={[2.5, 2.5, 0]}
-  showZAxis
+  showZAxis={false}
 />
 
 **Karakteristik grafik** <InlineMath math="f(x) = \log_b x" /> dengan <InlineMath math="b > 1" />:
@@ -119,33 +110,45 @@ Tiga basis berikut sangat sering digunakan:
 
 ## Sifat Logaritma
 
-Sifat-sifat berikut mengikuti definisi logaritma sebagai kebalikan fungsi eksponensial. Sebagian identitas langsung terbaca dari definisi itu, sedangkan identitas lain dipakai untuk menulis ulang satu bentuk menjadi bentuk yang lebih mudah dihitung. Mengetahui asal setiap identitas membantumu memilih yang tepat tanpa menghafal daftarnya.
+Sifat-sifat berikut mengikuti definisi logaritma sebagai **kebalikan fungsi eksponensial**. Sebagian identitas langsung terbaca dari definisi itu, sedangkan identitas lain dipakai untuk menulis ulang satu bentuk menjadi bentuk yang lebih mudah dihitung. Mengetahui asal setiap identitas membantumu memilih yang tepat tanpa menghafal daftarnya.
 
 ### Membaca Satu Logaritma
 
-Identitas berikut langsung mengikuti definisinya, dan setiap identitas punya pasangan pada sifat perpangkatan.
+Dua identitas pertama membaca **eksponen nol dan satu**. Dua identitas berikutnya membatalkan operasi logaritma dan eksponensial yang basisnya sama.
 
 <MathContainer>
-  <BlockMath math="\log_b 1 = 0" />
-  <BlockMath math="\log_b b = 1" />
-  <BlockMath math="\log_b b^n = n" />
-  <BlockMath math="b^{\log_b x} = x" />
+
+<BlockMath math="\log_b 1 = 0" />
+
+<BlockMath math="\log_b b = 1" />
+
+<BlockMath math="\log_b b^n = n" />
+
+<BlockMath math="b^{\log_b x} = x" />
 </MathContainer>
 
 ### Sifat Operasi
 
-Aturan berikut menulis ulang logaritma dari perkalian, pembagian, atau pangkat menjadi suku-suku terpisah.
+Aturan operasi berikut memerlukan **argumen positif**: <InlineMath math="x,y>0" />. Kedua basis memenuhi <InlineMath math="a,b>0" /> serta <InlineMath math="a,b\neq1" />, dan <InlineMath math="n" /> boleh berupa bilangan real.
 
 <MathContainer>
-  <BlockMath math="\log_b (xy) = \log_b x + \log_b y" />
-  <BlockMath math="\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y" />
-  <BlockMath math="\log_b x^n = n \cdot \log_b x" />
-  <BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(perubahan basis)}" />
+
+<BlockMath math="\log_b (xy) = \log_b x + \log_b y" />
+
+<BlockMath math="\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y" />
+
+<BlockMath math="\log_b x^n = n \cdot \log_b x" />
+
+<BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(perubahan basis)}" />
 </MathContainer>
+
+Sebagai contoh, **perkalian di dalam logaritma** berubah menjadi penjumlahan dua nilai logaritma.
+
+<BlockMath math="\log_2(8\cdot4)=\log_2 8+\log_2 4=3+2=5" />
 
 ## Model Eksponensial dari Dua Titik Data
 
-[Kementerian Kesehatan RI](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang) melaporkan dua kasus terkonfirmasi COVID-19 pada <InlineMath math="2" /> Maret <InlineMath math="2020" />.
+[Kementerian Kesehatan RI](https://kemkes.go.id/id/positif-covid-19-usai-kontak-wn-jepang) melaporkan dua kasus terkonfirmasi COVID-19 pada <InlineMath math="2" /> Maret <InlineMath math="2020" />.
 
 Pada <InlineMath math="30" /> April <InlineMath math="2020" />, [kementerian tersebut melaporkan](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu) bahwa jumlah kumulatif kasus terkonfirmasi mencapai <InlineMath math="10{.}118" />.
 
@@ -153,9 +156,20 @@ Kedua tanggal tersebut berjarak <InlineMath math="59\ \text{hari}" />.
 
 Untuk berlatih menggunakan logaritma, kita dapat mencocokkan kurva eksponensial sederhana dengan dua nilai laporan tersebut. Misalkan <InlineMath math="t" /> menyatakan banyak hari yang telah berlalu sejak 2 Maret dan <InlineMath math="P(t)" /> menyatakan jumlah kasus pada kurva. Karena <InlineMath math="P(0)=2" /> dan <InlineMath math="P(59)=10{.}118" />, modelnya adalah:
 
+Untuk memperoleh **laju yang cocok dengan dua data**, mulai dari model berikut. Data awal menentukan konstanta pengali, lalu data hari ke-59 menentukan laju.
+
+<MathContainer>
+
+<BlockMath math="P(t)=Ce^{kt},\quad P(0)=C=2" />
+
+<BlockMath math="10118=2e^{59k}\quad\Longrightarrow\quad5059=e^{59k}" />
+
+<BlockMath math="\ln5059=59k\quad\Longrightarrow\quad k=\frac{\ln5059}{59}" />
+</MathContainer>
+
 <ContentStack>
 
-  <BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
+<BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
 
   <LineEquation
     title="Pencocokan Eksponensial dari Dua Titik"
@@ -164,7 +178,7 @@ Untuk berlatih menggunakan logaritma, kita dapat mencocokkan kurva eksponensial 
         Satu satuan pada sumbu horizontal <InlineMath math="X=t/10" /> mewakili{" "}
         <InlineMath math="10" /> hari. Satu satuan pada sumbu vertikal{" "}
         <InlineMath math="Y=P(t)/10000" /> mewakili <InlineMath math="10{.}000" /> kasus.
-        Dua titik oranye menunjukkan nilai laporan. Kurva biru menunjukkan ekstrapolasi dari{" "}
+        Dua titik oranye menunjukkan nilai laporan. Kurva hijau kebiruan menunjukkan ekstrapolasi dari{" "}
         <InlineMath math="t=59" /> sampai <InlineMath math="t=71" />.
       </>
     }
@@ -191,28 +205,32 @@ Untuk berlatih menggunakan logaritma, kita dapat mencocokkan kurva eksponensial 
           const P = 2 * Math.pow(5059, t / 59);
           return { x: t / 10, y: P / 10000, z: 0 };
         }),
-        color: "#0284c7",
+        color: "#0d9488",
         showPoints: false,
       },
     ]}
     cameraPosition={[3.3, 2.5, 10]}
     cameraTarget={[3.3, 2.5, 0]}
-    showZAxis
+    showZAxis={false}
   />
 </ContentStack>
 
 Jika laju pada kurva tersebut diteruskan, logaritma menempatkan ambang <InlineMath math="50{.}000" /> pada:
 
 <MathContainer>
-  <BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
-  <BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70{,}1 \text{ hari}" />
+
+<BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
+
+<BlockMath math="25000=e^{\frac{\ln5059}{59}t}\quad\Longrightarrow\quad\ln25000=\frac{\ln5059}{59}t" />
+
+<BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70{,}1 \text{ hari}" />
 </MathContainer>
 
 Perhitungan ini menggunakan logaritma untuk menyelesaikan model eksponensial. Jumlah kasus terkonfirmasi di dunia nyata juga dipengaruhi oleh pengujian, pelaporan, perilaku masyarakat, dan kebijakan kesehatan. Laju eksponensial tetap hanya berguna selama asumsinya masih sesuai dengan keadaan.
 
 ## Latihan
 
-Empat soal ini bergerak dari membaca satu logaritma sampai menyelesaikan model eksponensial. Kerjakan setiap soal sebelum membaca penyelesaian, lalu bandingkan jawabanmu dengan langkah yang menyusul.
+Empat soal ini bergerak dari membaca satu logaritma sampai menyelesaikan **model eksponensial**. Kerjakan setiap soal sebelum membaca penyelesaian, lalu bandingkan jawabanmu dengan langkah yang menyusul.
 
 1. Tentukan nilai <InlineMath math="\log_3 27" />, <InlineMath math="\log_5 \frac{1}{125}" />, dan <InlineMath math="\ln e^3" />.
 
@@ -222,32 +240,44 @@ Empat soal ini bergerak dari membaca satu logaritma sampai menyelesaikan model e
 
 4. Sebuah investasi tumbuh mengikuti rumus <InlineMath math="A = 1000 \cdot 2^t" /> (dalam juta rupiah). Berapa tahun yang dibutuhkan agar investasi menjadi <InlineMath math="8 \text{ miliar}" /> rupiah?
 
-### Pembahasan
+### Membaca pangkat
 
-1. Baca setiap logaritma sebagai pertanyaan tentang pangkat. Pangkat yang diperlukan adalah:
+Baca setiap logaritma sebagai **pertanyaan tentang pangkat**. Pangkat yang diperlukan adalah:
 
-   <MathContainer>
-     <BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
-     <BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
-     <BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
-   </MathContainer>
+<MathContainer>
 
-2. Ubah persamaan logaritma ke bentuk eksponensial:
+<BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
 
-   <BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
+<BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
 
-   Substitusi <InlineMath math="x=16" /> menghasilkan <InlineMath math="\log_2 16=4" />, sehingga hasilnya benar.
+<BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
+</MathContainer>
 
-3. Hitung dahulu tiga pangkat berbasis <InlineMath math="2" />, kemudian gabungkan hasilnya:
+### Mengubah bentuk logaritma
 
-   <BlockMath math="\begin{aligned} &amp;\log_2 8+\log_2 4-\log_2 2 \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+Ubah persamaan logaritma ke **bentuk eksponensial**:
 
-4. Rumus menyatakan <InlineMath math="A" /> dalam juta rupiah, sehingga <InlineMath math="8 \text{ miliar rupiah}=8000 \text{ juta rupiah}" />. Substitusikan target tersebut, lalu pisahkan suku eksponensialnya:
+<BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
 
-   <MathContainer>
-     <BlockMath math="8000=1000\cdot2^t" />
-     <BlockMath math="8=2^t" />
-     <BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
-   </MathContainer>
+Substitusi <InlineMath math="x=16" /> menghasilkan <InlineMath math="\log_2 16=4" />, sehingga hasilnya benar.
 
-   Investasi mencapai target setelah <InlineMath math="3 \text{ tahun}" />.
+### Menggabungkan nilai logaritma
+
+Hitung dahulu **tiga pangkat** berbasis <InlineMath math="2" />, kemudian gabungkan hasilnya:
+
+<BlockMath math="\begin{aligned} &amp;\log_2 8+\log_2 4-\log_2 2 \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+### Menyamakan satuan investasi
+
+Rumus menyatakan <InlineMath math="A" /> dalam **juta rupiah**, sehingga <InlineMath math="8 \text{ miliar rupiah}=8000 \text{ juta rupiah}" />. Substitusikan target tersebut, lalu pisahkan suku eksponensialnya:
+
+<MathContainer>
+
+<BlockMath math="8000=1000\cdot2^t" />
+
+<BlockMath math="8=2^t" />
+
+<BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
+</MathContainer>
+
+Investasi mencapai target setelah <InlineMath math="3 \text{ tahun}" />.

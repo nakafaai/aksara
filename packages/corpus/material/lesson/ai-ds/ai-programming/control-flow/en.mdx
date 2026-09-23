@@ -3,7 +3,7 @@ export const metadata = {
   description: "Control Python execution with conditions, loops, break, continue, pass, enumerate, zip, and range.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -96,7 +96,7 @@ else:
 
 ## Enumerate Function
 
-Use `enumerate()` when an iteration needs both a counter and each value. It returns an iterator that yields `(index, value)` tuples.
+Use `enumerate()` when an iteration needs **both a counter and each value**. It returns an iterator that yields `(index, value)` tuples.
 
 <CodeBlock
   data={[
@@ -142,7 +142,7 @@ In `for i, fruit in enumerate(fruits)`, tuple unpacking binds the index to `i` a
 
 ## While Loop
 
-The `while` loop executes a block as long as its condition is truthy. A `for` loop consumes an iterable, while a `while` loop repeats from a condition that the body usually updates.
+The `while` loop executes a block **as long as its condition is truthy**. A `for` loop consumes an iterable, while a `while` loop repeats from a condition that the body usually updates.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ A `while` loop fits condition-driven repetition, but its body must eventually ch
 
 ## Zip Function
 
-The `zip()` function pairs items at the same position in several iterables. Iteration stops when the shortest iterable runs out of items, so the number of pairs equals the length of the shortest input.
+The `zip()` function **pairs items at the same position** in several iterables. Iteration stops when the shortest iterable runs out of items, so the number of pairs equals the length of the shortest input.
 
 ### Basic Zip Usage
 
@@ -201,11 +201,11 @@ for pair in zip(p, q):
   ]}
 />
 
-The `zip()` function returns an iterator of tuples. Each tuple contains corresponding elements from the inputs. By default, iteration stops when the shortest iterable ends, so remaining elements in longer inputs are omitted. Use `zip(..., strict=True)` to raise an error when the input lengths differ.
+The `zip()` function returns an **iterator of tuples**. Each tuple contains corresponding elements from the inputs. By default, iteration stops when the shortest iterable ends, so remaining elements in longer inputs are omitted. Use `zip(..., strict=True)` to raise an error when the input lengths differ.
 
 ### Converting Zip Results
 
-`zip()` hands back an iterator, so you often need a concrete collection before you can read the pairs. The example converts the result into a list and a dictionary.
+You can read pairs from a `zip()` iterator directly in a loop. Convert it to a **list or tuple** when you need to retain those pairs for reuse.
 
 <CodeBlock
   data={[
@@ -230,7 +230,7 @@ print(tuple(zipped_new))  # Convert to tuple
 
 ### Unzipping with the Asterisk Operator
 
-The unpacking operator `*` can separate a nonempty collection of zipped tuples by position.
+The unpacking operator `*` can separate a **nonempty collection of zipped tuples** by position.
 
 <CodeBlock
   data={[
@@ -250,7 +250,7 @@ This process is called "unzipping" because it separates data that has been combi
 
 ## Range and For Loop
 
-The `range()` function produces a sequence of integers for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions. Because `range` yields each value on demand instead of storing the whole sequence, its memory use stays small even when the loop runs millions of times.
+The `range()` function produces a **sequence of integers** for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions. Because `range` yields each value on demand instead of storing the whole sequence, its memory use stays small even when the loop runs millions of times.
 
 ### Range Syntax
 
@@ -263,30 +263,42 @@ The `range()` function produces a sequence of integers for iteration. Use it whe
 # range(stop) - from 0 to stop-1
 for i in range(4):
     print(i)
-# Output: 0, 1, 2, 3
+# Output:
+# 0
+# 1
+# 2
+# 3
 
 print()
 
 # range(start, stop) - from start to stop-1
 for i in range(2, 6):
     print(i)
-# Output: 2, 3, 4, 5
+# Output:
+# 2
+# 3
+# 4
+# 5
 
 print()
 
 # range(start, stop, step) - with specific step
 for i in range(8, 4, -1):
     print(i)
-# Output: 8, 7, 6, 5`
+# Output:
+# 8
+# 7
+# 6
+# 5`
     }
   ]}
 />
 
-Range follows an arithmetic formula where each i-th element is `start + i * step` for all `i` from <InlineMath math="0" /> to `n-1`.
+Range follows an **arithmetic formula** where each i-th element is `start + i * step` for all `i` from <InlineMath math="0" /> to `n-1`.
 
 ### Range vs List Efficiency
 
-A `range` stores only its start, stop, and step. It computes each integer when requested, so its memory use does not grow with the number of represented integers.
+A `range` stores **only its start, stop, and step**. It computes each integer when requested, so its memory use does not grow with the number of represented integers.
 
 <CodeBlock
   data={[
@@ -317,7 +329,7 @@ for i in range(n):  # Doesn't store all numbers in memory
 
 ## Conditional Statements
 
-Conditional statements let a program choose a branch from evaluated conditions. Indentation is part of Python's syntax. Use four spaces per level and never mix tabs and spaces in one block.
+Conditional statements let a program **choose a branch** from evaluated conditions. Indentation is part of Python's syntax. Use four spaces per level and never mix tabs and spaces in one block.
 
 ### If Elif and Else Syntax
 
@@ -342,7 +354,7 @@ else:
   ]}
 />
 
-Conditions do not need surrounding parentheses, and the colon after each branch header is required. Every statement in one block must use a consistent indentation level.
+Conditions do not need surrounding parentheses, and the colon after each branch header is required. Every statement in one block must use a **consistent indentation level**.
 
 ### Nested If Statement
 
@@ -354,12 +366,14 @@ Conditions do not need surrounding parentheses, and the colon after each branch 
       code: `# Determining quadrant from coordinate point
 x = (-1, -3)
 
-if x[0] >= 0:
-    if x[1] >= 0:
+if x[0] == 0 or x[1] == 0:
+    print('on a coordinate axis')
+elif x[0] > 0:
+    if x[1] > 0:
         print('first quadrant')
     else:
         print('fourth quadrant')
-elif x[1] >= 0:
+elif x[1] > 0:
     print('second quadrant')
 else:
     print('third quadrant')
@@ -368,11 +382,11 @@ else:
   ]}
 />
 
-Nest an `if` statement when a later decision should be evaluated only after an earlier condition passes.
+Use **nested decisions** when the selected branch determines which condition to check next. Checking for zero coordinates first prevents points on an axis from being assigned to a quadrant.
 
 ## For Loop Syntax
 
-A `for` loop visits the elements of an iterable such as a list, tuple, string, or range.
+A `for` loop visits the **elements of an iterable** such as a list, tuple, string, or range.
 
 <CodeBlock
   data={[
@@ -399,4 +413,4 @@ for char in text:
   ]}
 />
 
-An iterable supplies values one at a time, but it is not necessarily ordered, indexable, reusable, or finite. A `for` loop asks its iterator for successive values. The `in` operator performs type-specific membership testing, while colons and consistent indentation define statement blocks.
+An iterable supplies values one at a time, but it is not necessarily ordered, indexable, reusable, or finite. A `for` loop asks its iterator for successive values. In a `for` header, `in` connects the iteration target to the iterable. In an expression such as `3 in [1, 3]`, `in` tests membership.

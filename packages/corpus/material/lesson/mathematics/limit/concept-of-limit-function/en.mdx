@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate limits from value tables and one-sided behavior, then interpret the epsilon-delta definition.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Limits",
 };
 
@@ -17,9 +17,14 @@ Continuity, [derivatives](/en/subjects/mathematics/derivative-function/concept-o
 
 The table below records how <InlineMath math="f(x) = x + 2" /> changes as <InlineMath math="x" /> approaches <InlineMath math="3" /> from both sides.
 
-| <InlineMath math="x" /> | <InlineMath math="2.9" /> | <InlineMath math="2.99" /> | <InlineMath math="2.999" /> | ... | <InlineMath math="3.001" /> | <InlineMath math="3.01" /> | <InlineMath math="3.1" /> |
-|-------------|-----|------|-------|-----|-------|------|-----|
-| <InlineMath math="f(x)" /> | <InlineMath math="4.9" /> | <InlineMath math="4.99" /> | <InlineMath math="4.999" /> | ... | <InlineMath math="5.001" /> | <InlineMath math="5.01" /> | <InlineMath math="5.1" /> |
+| Approach direction | Input | Output |
+| --- | --- | --- |
+| From the left | <InlineMath math="2.9" /> | <InlineMath math="4.9" /> |
+| From the left | <InlineMath math="2.99" /> | <InlineMath math="4.99" /> |
+| From the left | <InlineMath math="2.999" /> | <InlineMath math="4.999" /> |
+| From the right | <InlineMath math="3.001" /> | <InlineMath math="5.001" /> |
+| From the right | <InlineMath math="3.01" /> | <InlineMath math="5.01" /> |
+| From the right | <InlineMath math="3.1" /> | <InlineMath math="5.1" /> |
 
 As <InlineMath math="x" /> approaches <InlineMath math="3" /> from either side, the table values of <InlineMath math="f(x)" /> approach <InlineMath math="5" />. <Highlight>That approaching value is the limit</Highlight>.
 
@@ -29,7 +34,7 @@ The standard notation is:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
-This is read as "**the limit of <InlineMath math="f(x)" /> as <InlineMath math="x" /> approaches <InlineMath math="c" /> equals <InlineMath math="L" />**".
+Read this as the limit of <InlineMath math="f(x)" /> as <InlineMath math="x" /> approaches <InlineMath math="c" /> equals <InlineMath math="L" />. **Approaching** does not mean substituting the function value at that point.
 
 When <InlineMath math="c" /> is an interior point and the function is defined on both sides near <InlineMath math="c" />, the two-sided limit exists exactly when:
 - **Left limit** and **right limit** must exist
@@ -54,15 +59,23 @@ The precise epsilon-delta definition gives mathematical meaning to "approaches":
 
 In words, for every requested output tolerance <InlineMath math="\varepsilon>0" />, however small, we can choose an input tolerance <InlineMath math="\delta>0" /> that keeps <InlineMath math="f(x)" /> within <InlineMath math="\varepsilon" /> of <InlineMath math="L" /> whenever <InlineMath math="x" /> is within <InlineMath math="\delta" /> of <InlineMath math="c" /> but not equal to it. The condition <InlineMath math="0<|x-c|" /> is why the value <InlineMath math="f(c)" /> **does not determine the limit by itself**.
 
+### Choosing an Input Tolerance
+
+For <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, and <InlineMath math="L=5" />, the output distance equals the input distance:
+
+<BlockMath math="|f(x)-5|=|(x+2)-5|=|x-3|" />
+
+Choose **the same input and output tolerance**, so <InlineMath math="\delta=\varepsilon" />. For example, an output error below <InlineMath math="0.01" /> follows whenever <InlineMath math="0<|x-3|<0.01" />. This calculation works for every positive tolerance.
+
 ## Application of Limits
 
-Limits answer questions about how a quantity behaves near a point. A limit value can differ from the function value at that point, and the two examples show one case where substitution is enough and one where the expression must be simplified first.
+Limits answer questions about how a quantity behaves near a point. A **limit value** can differ from the function value at that point, and the two examples show one case where substitution is enough and one where the expression must be simplified first.
 
 ### Evaluating a Limit by Direct Substitution
 
 Find <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
 
-**Solution:**
+**Solution**:
 
 Since the function <InlineMath math="f(x) = 2x - 1" /> is continuous at <InlineMath math="x = 4" />, we can directly substitute:
 
@@ -72,7 +85,7 @@ Since the function <InlineMath math="f(x) = 2x - 1" /> is continuous at <InlineM
 
 Find <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
 
-**Solution:**
+**Solution**:
 
 If we substitute <InlineMath math="x = 2" /> directly, we get the indeterminate form <InlineMath math="\frac{0}{0}" />. We need to simplify first by factoring:
 
@@ -83,27 +96,21 @@ If we substitute <InlineMath math="x = 2" /> directly, we get the indeterminate 
 
 Since a limit concerns nearby values with <InlineMath math="x \neq 2" />, we may cancel <InlineMath math="(x - 2)" /> before evaluating the simplified expression:
 
-<BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
+<BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
 ## Basic Properties of Limits
 
-Each rule moves the limit operation onto the separate pieces of an expression. Linearity covers sums and constant multiples, the product rule covers multiplication, and the division rule works only while the denominator keeps a nonzero limit.
+The following rules require both limits <InlineMath math="L=\lim_{x\to c}f(x)" /> and <InlineMath math="M=\lim_{x\to c}g(x)" /> to **exist and be finite**, with constant coefficients <InlineMath math="a,b" />.
 
-1. **Linearity Property:**
-
-    <InlineMath math="\lim_{x \to c} [af(x) + bg(x)] = a\lim_{x \to c} f(x) + b\lim_{x \to c} g(x)" />
-
-2. **Multiplication Property:**
-
-    <InlineMath math="\lim_{x \to c} [f(x) \cdot g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x)" />
-
-3. **Division Property:**
-
-    <InlineMath math="\lim_{x \to c} \frac{f(x)}{g(x)} = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)}" /> provided <InlineMath math="\lim_{x \to c} g(x) \neq 0" />
+| Operation | Limit | Extra condition |
+| --- | --- | --- |
+| Linear combination | <InlineMath math="aL+bM" /> | None |
+| Product | <InlineMath math="LM" /> | None |
+| Quotient | <InlineMath math="\frac{L}{M}" /> | <InlineMath math="M\ne0" /> |
 
 ## Exercises
 
-The four problems below cover direct substitution, a case that needs factoring, a basic trigonometric limit, and a piecewise function. Solve each one on paper first, then compare your steps with the solutions.
+The four problems below cover **direct substitution**, a case that needs factoring, a basic trigonometric limit, and a piecewise function. Solve each one on paper first, then compare your steps with the solutions.
 
 1. Find <InlineMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
 
@@ -117,45 +124,57 @@ The four problems below cover direct substitution, a case that needs factoring, 
 
    Find <InlineMath math="\lim_{x \to 2} f(x)" />.
 
-### Worked Solutions
+### Substitution in a Polynomial
 
-1. **Solution:**
+Since polynomial functions are **continuous at all points**, we can substitute directly:
 
-   Since polynomial functions are continuous at all points, we can substitute directly:
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
+### Factoring Before Taking the Limit
 
-2. **Solution:**
+**Direct substitution** yields the form <InlineMath math="\frac{0}{0}" />. We factor first:
 
-   Direct substitution yields the form <InlineMath math="\frac{0}{0}" />. We factor first:
+<MathContainer>
+<BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
+<BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
-   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
-   </MathContainer>
+Since the limit uses nearby values with <InlineMath math="x \neq 1" />, we may cancel <InlineMath math="(x - 1)" /> before evaluating the simplified expression:
 
-   Since the limit uses nearby values with <InlineMath math="x \neq 1" />, we may cancel <InlineMath math="(x - 1)" /> before evaluating the simplified expression:
+<BlockMath math="\lim_{x\to1}\frac{x^2-1}{x-1}= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
-   <BlockMath math="= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
+### A Sine Limit in Radians
 
-3. **Solution:**
+This **fundamental trigonometric limit** is used to derive the derivatives of sine and cosine. Direct substitution gives the indeterminate form <InlineMath math="\frac{0}{0}" />, so we use the trigonometric limit theorem:
 
-   This **fundamental trigonometric limit** is used to derive the derivatives of sine and cosine. Direct substitution gives the indeterminate form <InlineMath math="\frac{0}{0}" />, so we use the trigonometric limit theorem:
+<BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-   <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
+**Note**: Measure <InlineMath math="x" /> in radians. Degrees give a different result.
 
-   **Note:** Measure <InlineMath math="x" /> in radians. Degrees give a different result.
+### Different Left and Right Limits
 
-4. **Solution:**
+For piecewise functions (defined with different rules), we must check left and right limits separately:
 
-   For piecewise functions (defined with different rules), we must check left and right limits separately:
+**Left limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the left, so <InlineMath math="x < 2" />):
 
-   **Left limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the left, so <InlineMath math="x < 2" />):
+<BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
+**Right limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the right, so nearby inputs satisfy <InlineMath math="x > 2" />):
 
-   **Right limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the right, so nearby inputs satisfy <InlineMath math="x > 2" />):
+<BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
+Since <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" />, then <InlineMath math="\lim_{x \to 2} f(x)" /> **does not exist**.
 
-   Since <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" />, then <InlineMath math="\lim_{x \to 2} f(x)" /> **does not exist**.
+The graph shows **two different approach heights**. The point on the right branch gives <InlineMath math="f(2)=4" />, but defining that value does not change the left limit of <InlineMath math="3" />.
+
+<LineEquation
+  title="A Jump in a Piecewise Function"
+  description="The left branch approaches height three, but the right branch begins at height four. The orange point marks the function value at x equal to two."
+  showZAxis={false}
+  cameraTarget={[1.5, 3.5, 0]}
+  cameraPosition={[1.5, 3.5, 14]}
+  data={[
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 1.99, y: 2.99, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="3" />, offset: [0.4, -0.3, 0] }] },
+    { points: [{ x: 2, y: 4, z: 0 }, { x: 3, y: 7, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [0], labels: [{ at: 0, text: <InlineMath math="(2,4)" />, offset: [0.8, 0.2, 0] }] },
+  ]}
+/>

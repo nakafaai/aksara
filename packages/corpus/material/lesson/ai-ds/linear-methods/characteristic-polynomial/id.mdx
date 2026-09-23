@@ -3,7 +3,7 @@ export const metadata = {
    description: "Polinomial karakteristik digunakan untuk mencari nilai eigen, menentukan multiplisitas aljabar, serta menghubungkan koefisien polinomial dengan jejak matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -41,13 +41,13 @@ Dalam polinomial karakteristik <InlineMath math="\chi_A(t)" /> dari <InlineMath 
 Ini berarti:
 - Koefisien tertinggi selalu <InlineMath math="(-1)^n" />
 - Koefisien kedua tertinggi terkait dengan jejak matriks
-- Suku konstanta adalah determinan matriks
+- **Suku konstanta** adalah determinan matriks
 
 ## Nilai Eigen sebagai Akar Polinomial
 
 Nilai <InlineMath math="\lambda \in \mathbb{K}" /> merupakan nilai eigen dari <InlineMath math="A" /> jika dan hanya jika <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-Jadi, **nilai eigen merupakan akar dari polinomial karakteristik**.
+Jadi, nilai eigen merupakan **akar dari polinomial karakteristik**.
 
 Untuk <InlineMath math="t \in \mathbb{K}" />, perhatikan persamaan berikut.
 
@@ -61,7 +61,7 @@ Sekarang, bagaimana jika sebuah nilai eigen muncul beberapa kali sebagai akar po
 
 ### Batasan Multiplisitas
 
-Untuk setiap nilai eigen <InlineMath math="\lambda" />, multiplisitas aljabarnya memenuhi
+Untuk setiap nilai eigen <InlineMath math="\lambda" />, **multiplisitas aljabarnya memenuhi**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
@@ -75,15 +75,15 @@ Untuk nilai eigen <InlineMath math="\lambda" /> dari <InlineMath math="A \in \ma
 
 > Multiplisitas geometrik setiap nilai eigen selalu lebih kecil atau sama dengan multiplisitas aljabarnya.
 
-Multiplisitas geometrik menghitung banyaknya vektor eigen bebas dalam ruang eigen, sedangkan multiplisitas aljabar menghitung berapa kali akar tersebut muncul dalam polinom karakteristik. Bentuk Jordan menunjukkan bahwa setiap vektor eigen bebas memerlukan setidaknya satu blok Jordan, sehingga jumlah geometrik tidak dapat melebihi jumlah aljabar.
+Multiplisitas geometrik **menghitung banyaknya vektor eigen bebas** dalam ruang eigen, sedangkan multiplisitas aljabar menghitung berapa kali akar tersebut muncul dalam polinom karakteristik. Bentuk Jordan menunjukkan bahwa setiap vektor eigen bebas memerlukan setidaknya satu blok Jordan, sehingga jumlah geometrik tidak dapat melebihi jumlah aljabar.
 
 ## Menghitung Polinomial Karakteristik
 
-Definisi polinomial karakteristik sekarang dipakai pada matriks konkret, dan hubungan antarkoefisien berfungsi sebagai pemeriksa hasil. Ikuti setiap langkah determinan, lalu bandingkan akar yang diperoleh dengan trace dan determinan untuk memastikan polinomialnya benar.
+Definisi polinomial karakteristik sekarang dipakai pada matriks konkret, dan **hubungan antarkoefisien** berfungsi sebagai pemeriksa hasil. Ikuti setiap langkah determinan, lalu bandingkan akar yang diperoleh dengan trace dan determinan untuk memastikan polinomialnya benar.
 
 ### Matriks Orde Tiga
 
-Matriks orde tiga ini menghasilkan polinomial karakteristik berderajat tiga:
+Matriks orde tiga ini menghasilkan polinomial karakteristik **berderajat tiga**:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
 
@@ -109,7 +109,7 @@ Akar tersebut lolos dua pemeriksaan berguna: jumlahnya sama dengan jejak matriks
 
 ### Nilai Eigen Berulang pada Matriks Segitiga Atas
 
-Matriks ini punya dua entri diagonal yang sama, yaitu <InlineMath math="1" />:
+Matriks ini punya **dua entri diagonal yang sama**, yaitu <InlineMath math="1" />:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
@@ -121,11 +121,15 @@ Polinomial karakteristiknya adalah:
 <BlockMath math="= t^2 - 2 \cdot t + 1" />
 </MathContainer>
 
-Matriks ini memiliki akar <InlineMath math="\lambda = 1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> adalah satu-satunya nilai eigen dari <InlineMath math="A" />. Kita telah menghitung bahwa <InlineMath math="\dim \text{ Eig}_A(1) = 1" />.
+Matriks ini memiliki akar <InlineMath math="\lambda = 1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> adalah satu-satunya nilai eigen dari <InlineMath math="A" />.
+
+<BlockMath math="(A-I)\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2y\\0\end{pmatrix}=0\iff y=0,\qquad E_A(1)=\operatorname{span}\left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}" />
+
+Ruang eigen berdimensi **satu**, meskipun akar polinomial muncul dua kali.
 
 ## Polinomial Karakteristik Transformasi Geometrik
 
-Perhitungan yang sama kini diterapkan pada pemetaan yang umum di <InlineMath math="\mathbb{R}^2" />, sehingga hasil aljabar dan makna geometrisnya muncul bersamaan. Rotasi, refleksi, peregangan, dan geseran masing-masing menghasilkan polinomial yang akarnya menjelaskan pengaruh pemetaan itu terhadap arah.
+Perhitungan yang sama kini diterapkan pada pemetaan yang umum di <InlineMath math="\mathbb{R}^2" />, sehingga hasil aljabar dan **makna geometrisnya** muncul bersamaan. Rotasi, refleksi, peregangan, dan geseran masing-masing menghasilkan polinomial yang akarnya menjelaskan pengaruh pemetaan itu terhadap arah.
 
 ### Rotasi
 
@@ -137,11 +141,11 @@ Polinomial karakteristiknya adalah:
 
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
-Diskriminannya adalah <InlineMath math="-4\sin^2(\alpha)" />. Akarnya real tepat ketika <InlineMath math="\sin(\alpha)=0" />, sehingga, dalam satu putaran penuh, <InlineMath math="\alpha\equiv0" /> atau <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
+**Diskriminannya** adalah <InlineMath math="-4\sin^2(\alpha)" />. Akarnya real tepat ketika <InlineMath math="\sin(\alpha)=0" />, sehingga, dalam satu putaran penuh, <InlineMath math="\alpha\equiv0" /> atau <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
 ### Refleksi
 
-Matriks refleksi terhadap sumbu <InlineMath math="x" /> adalah:
+Matriks **refleksi terhadap** sumbu <InlineMath math="x" /> adalah:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -153,7 +157,7 @@ Nilai eigen adalah <InlineMath math="\lambda_1 = 1" /> dan <InlineMath math="\la
 
 ### Peregangan
 
-Matriks peregangan adalah:
+**Matriks peregangan** adalah:
 
 <BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
 
@@ -165,7 +169,7 @@ Nilai eigen adalah <InlineMath math="\lambda = s" /> dengan <InlineMath math="\m
 
 ### Geseran
 
-Untuk geseran dengan <InlineMath math="s \neq 0" />, matriksnya adalah:
+**Untuk geseran** dengan <InlineMath math="s \neq 0" />, matriksnya adalah:
 
 <BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
 
@@ -177,7 +181,7 @@ Nilai eigen adalah <InlineMath math="\lambda = 1" /> dengan <InlineMath math="\m
 
 ## Sifat Matriks Serupa
 
-Matriks serupa menggambarkan transformasi linear yang sama dalam basis berbeda. Karena itu, keduanya memiliki polinom karakteristik, nilai eigen, jejak, dan determinan yang sama.
+Matriks serupa menggambarkan **transformasi linear yang sama** dalam basis berbeda. Karena itu, keduanya memiliki polinom karakteristik, nilai eigen, jejak, dan determinan yang sama.
 
 Misalkan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> dapat diinversi dan <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Maka:
 
@@ -198,4 +202,4 @@ Dengan menggunakan <InlineMath math="Av=\lambda v" /> dan <InlineMath math="w=S^
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 
-Jadi, keserupaan mempertahankan nilai eigen, sedangkan invers perubahan basis mengubah vektor eigen yang bersesuaian.
+Jadi, keserupaan mempertahankan nilai eigen, sedangkan **invers perubahan basis** mengubah vektor eigen yang bersesuaian.

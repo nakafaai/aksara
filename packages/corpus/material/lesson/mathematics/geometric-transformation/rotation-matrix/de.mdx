@@ -38,13 +38,13 @@ Wir vergleichen die Koeffizienten in den entsprechenden Komponenten:
 
 ### Drehmatrix für den Ursprung
 
-Bei einheitlicher Winkeleinheit lautet die Drehmatrix um den Ursprung <InlineMath math="O(0,0)" />:
+Jede **Matrixspalte** ist das Bild eines Einheitsvektors. Der waagerechte Einheitsvektor wird auf <InlineMath math="(\cos\theta,\sin\theta)" /> gedreht. Der senkrechte startet eine Vierteldrehung weiter, weshalb sein Bild <InlineMath math="(-\sin\theta,\cos\theta)" /> lautet. Verwende für Sinus und Kosinus dieselbe Winkeleinheit:
 
 <BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
 
 ## Drehung um ein beliebiges Zentrum
 
-Um einen Punkt <InlineMath math="(x,y)" /> um einen beliebigen Punkt <InlineMath math="P(a,b)" /> um einen Winkel <InlineMath math="\theta" /> zu drehen, führen wir drei Schritte aus:
+Um einen Punkt <InlineMath math="(x,y)" /> um einen beliebigen Punkt <InlineMath math="P(a,b)" /> um einen Winkel <InlineMath math="\theta" /> zu drehen, **verschieben wir, drehen und verschieben zurück**:
 
 1. Verschiebe den Punkt <InlineMath math="(x,y)" /> so, dass <InlineMath math="P(a,b)" /> im Ursprung liegt. Dadurch entsteht <InlineMath math="(x-a, y-b)" />.
 2. Drehe den verschobenen Punkt mit der Matrix <InlineMath math="R_\theta" /> um <InlineMath math="\theta" /> um den Ursprung.
@@ -52,17 +52,25 @@ Um einen Punkt <InlineMath math="(x,y)" /> um einen beliebigen Punkt <InlineMath
 
 ### Zentrierte Matrixformel
 
-Die mit der Drehung um einen Winkel <InlineMath math="\theta" /> im Bogenmaß um den Punkt <InlineMath math="(a,b)" /> verbundene Operation ist:
+Diese Operation wirkt auf den **Vektor relativ zum Zentrum**, nicht direkt auf den Ortsvektor vom Ursprung aus:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
+Wird das Zentrum selbst gedreht, ist der relative Vektor null. Das Zentrum bleibt deshalb fest:
+
+<BlockMath math="R_\theta\left(\begin{pmatrix}a\\b\end{pmatrix}-\begin{pmatrix}a\\b\end{pmatrix}\right)+\begin{pmatrix}a\\b\end{pmatrix}=R_\theta\begin{pmatrix}0\\0\end{pmatrix}+\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}a\\b\end{pmatrix}" />
+
 ## Drehmatrix für einen bestimmten Winkel bestimmen
 
-Für <InlineMath math="\theta = \frac{1}{4}\pi" /> im Bogenmaß, also <InlineMath math="45^\circ" />, sind Sinus und Kosinus gleich <InlineMath math="\frac{1}{\sqrt{2}}" />:
+Für <InlineMath math="\theta = \frac{1}{4}\pi" /> im Bogenmaß, also <InlineMath math="45^\circ" />, sind **Sinus und Kosinus** gleich <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
 <BlockMath math="\begin{aligned} R_{\frac{\pi}{4}} &amp;= \begin{pmatrix} \cos(\frac{\pi}{4}) &amp; -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) &amp; \cos(\frac{\pi}{4}) \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{pmatrix} \end{aligned}" />
 
 Diese Matrix dreht jeden Ortsvektor um <InlineMath math="45^\circ" /> gegen den Uhrzeigersinn.
+
+Für den Punkt im Diagramm ergibt die Matrixmultiplikation:
+
+<BlockMath math="\begin{pmatrix}1/\sqrt2&-1/\sqrt2\\1/\sqrt2&1/\sqrt2\end{pmatrix}\begin{pmatrix}2\\0\end{pmatrix}=\begin{pmatrix}2/\sqrt2\\2/\sqrt2\end{pmatrix}=\begin{pmatrix}\sqrt2\\\sqrt2\end{pmatrix}" />
 
 <LineEquation
   title={
@@ -115,12 +123,13 @@ Diese Matrix dreht jeden Ortsvektor um <InlineMath math="45^\circ" /> gegen den 
       color: "#4f46e5",
     },
   ]}
-  cameraPosition={[0, 0, 8]}
+  cameraPosition={[1, 0.7, 6]}
+  cameraTarget={[1, 0.7, 0]}
 />
 
 ## Übungen
 
-Die Aufgaben führen vom Aufstellen der Drehmatrix bis zum Anwenden. Die letzte dreht um ein Zentrum, das nicht der Ursprung ist.
+Die Aufgaben führen vom Aufstellen der Drehmatrix bis zum Anwenden. Die letzte dreht um **ein Zentrum außerhalb des Ursprungs**.
 
 1.  Bestimme die Matrix für eine Drehung um den Ursprung <InlineMath math="O(0,0)" /> mit dem Winkel <InlineMath math="\frac{1}{6}\pi" /> im Bogenmaß.
 2.  Bestimme das Bild des Punktes <InlineMath math="P(4,2)" /> bei einer Drehung um <InlineMath math="60^\circ" /> um den Ursprung <InlineMath math="O(0,0)" />.
@@ -128,30 +137,47 @@ Die Aufgaben führen vom Aufstellen der Drehmatrix bis zum Anwenden. Die letzte 
 
 ### Lösungen
 
-1.  Für <InlineMath math="\theta = \frac{\pi}{6}" />, also <InlineMath math="30^\circ" />, sind Sinus und Kosinus:
+Beachte das **Minuszeichen im Eintrag rechts oben** der Drehmatrix. Bei einem beliebigen Zentrum erfolgen Subtraktion und Addition der Zentrumskoordinaten außerhalb der Drehmultiplikation.
 
-    <MathContainer>
-      <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
-      <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
-    </MathContainer>
+**Lösung 1**
 
-    Einsetzen dieser Werte ergibt:
+Für <InlineMath math="\theta = \frac{\pi}{6}" />, also <InlineMath math="30^\circ" />, sind Sinus und Kosinus:
 
-    <BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
+<MathContainer>
+  <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
+  <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
+</MathContainer>
 
-2.  Für den Punkt <InlineMath math="P(4,2)" /> und <InlineMath math="\theta = 60^\circ" /> gelten <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> und <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+Einsetzen dieser Werte ergibt:
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
 
-    Der Bildpunkt ist <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+**Lösung 2**
 
-3.  Gegeben sind der Punkt <InlineMath math="Q(3,1)" />, das Drehzentrum <InlineMath math="C(1,-2)" /> und <InlineMath math="\theta = 90^\circ" />. Damit gilt <InlineMath math="(a,b)=(1,-2)" />.
+Für den Punkt <InlineMath math="P(4,2)" /> und <InlineMath math="\theta = 60^\circ" /> gelten <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> und <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 90^\circ = 0" />
-      <BlockMath math="\sin 90^\circ = 1" />
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
-      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
 
-    Der Bildpunkt ist <InlineMath math="Q'(-2,0)" />.
+Der Bildpunkt ist <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+
+**Lösung 3**
+
+Gegeben sind der Punkt <InlineMath math="Q(3,1)" />, das Drehzentrum <InlineMath math="C(1,-2)" /> und <InlineMath math="\theta = 90^\circ" />. Damit gilt <InlineMath math="(a,b)=(1,-2)" />.
+
+<MathContainer>
+  <BlockMath math="\cos 90^\circ = 0" />
+  <BlockMath math="\sin 90^\circ = 1" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Der Bildpunkt ist <InlineMath math="Q'(-2,0)" />.
+
+<LineEquation title="Eine Vierteldrehung um ein verschobenes Zentrum" description="Q dreht sich neunzig Grad gegen den Uhrzeigersinn um C. Beide Radien bleiben gleich lang."
+  data={[
+    { points: [{ x: 3, y: 1, z: 0 }, { x: 1, y: -2, z: 0 }, { x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#4f46e5", labels: [{ text: <InlineMath math="Q(3,1)" />, at: 0, offset: [0.3, 0.3, 0] }, { text: <InlineMath math="C(1,-2)" />, at: 1, offset: [0.3, -0.3, 0] }, { text: <InlineMath math="Q'(-2,0)" />, at: 2, offset: [-0.5, -0.3, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(3, 2) + i * Math.PI / 64; return { x: 1 + Math.sqrt(13) * Math.cos(angle), y: -2 + Math.sqrt(13) * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [0, 0.4, 0] }] },
+  ]}
+  cameraTarget={[0.5, -0.2, 0]}
+  cameraPosition={[0.5, -0.2, 9]}
+/>

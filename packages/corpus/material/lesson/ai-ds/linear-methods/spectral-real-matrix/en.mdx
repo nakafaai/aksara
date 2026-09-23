@@ -3,7 +3,7 @@ export const metadata = {
    description: "Determine exactly when a real normal matrix has a real orthonormal eigenbasis, and distinguish ordinary from orthogonal diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -44,7 +44,11 @@ Its discriminant is
 
 <BlockMath math="\Delta=4\cos^2\alpha-4=-4\sin^2\alpha<0" />
 
-Because <InlineMath math="\alpha" /> is not an integer multiple of <InlineMath math="\pi" />, <InlineMath math="\sin\alpha\neq0" />. Thus the characteristic polynomial has no real root, and <InlineMath math="R_\alpha" /> has no real eigenvector basis. Over <InlineMath math="\mathbb{C}" />, the eigenvalues are <InlineMath math="e^{i\alpha}" /> and <InlineMath math="e^{-i\alpha}" />.
+Because <InlineMath math="\alpha" /> is not an integer multiple of <InlineMath math="\pi" />, <InlineMath math="\sin\alpha\neq0" />. Thus the characteristic polynomial has **no real root**, and <InlineMath math="R_\alpha" /> has no real eigenvector basis. Over <InlineMath math="\mathbb{C}" />, the eigenvalues are <InlineMath math="e^{i\alpha}" /> and <InlineMath math="e^{-i\alpha}" />.
+
+At <InlineMath math="\alpha=\pi/2" />, the blue vector <InlineMath math="v=(1,1)^T" /> becomes the orange vector <InlineMath math="Rv=(-1,1)^T" />. Their dot product is zero. More generally, <InlineMath math="(x,y)\cdot(-y,x)=0" />, so every nonzero real vector turns by 90°, rather than staying on its original line.
+
+<LineEquation description="The blue vector and its orange image are perpendicular. A quarter-turn preserves no direction line of a nonzero real vector." title="A quarter-turn changes every real direction" cameraPosition={[0, 0.5, 5]} cameraTarget={[0, 0.5, 0]} showZAxis={false} data={[{"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 1, "z": 0}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": 1, "z": 0}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Rv" />, "at": 1}]}]} />
 
 ## A Diagonalizable Matrix That Is Not Normal
 

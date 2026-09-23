@@ -3,13 +3,13 @@ export const metadata = {
     description: "Connect parameter identifiability with matrix rank, singular values, conditioning, and stable rank-revealing factorizations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## Identifiability in a Linear Model
 
-<Highlight>A parameter is identifiable when the available data determine it uniquely.</Highlight> Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, and <InlineMath math="m \geq n" />. The linear least-squares problem is
+A parameter is identifiable when the available data **determine it uniquely**. Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, and <InlineMath math="m \geq n" />. The linear least-squares problem is
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,9 +30,21 @@ These statements are equivalent. If <InlineMath math="z \in \ker(A)" /> is nonze
 
 This equality shows that the data cannot distinguish <InlineMath math="x" /> from <InlineMath math="x+z" />. If <InlineMath math="\ker(A)=\{0\}" />, then <InlineMath math="A^TA" /> is positive definite and the least-squares problem has one minimizer.
 
+For a concrete example, the two columns of the following matrix are identical. Only the sum of the parameters affects the prediction.
+
+<BlockMath math="A=\begin{pmatrix}1&amp;1\\2&amp;2\end{pmatrix},\qquad Ax=\begin{pmatrix}x_1+x_2\\2(x_1+x_2)\end{pmatrix}" />
+
+| Parameter vector | Prediction |
+| --- | --- |
+| <InlineMath math="(1,0)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(0,1)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(1/2,1/2)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
+
 ## Solution Uniqueness and Numerical Stability
 
-<Highlight>Full column rank guarantees a unique exact solution</Highlight>, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
+<Highlight>Full column rank guarantees a unique least-squares minimizer</Highlight>, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
 
 | Question | Diagnostic | Meaning |
 | --- | --- | --- |
@@ -44,7 +56,7 @@ Structural identifiability is an exact algebraic property. Practical identifiabi
 
 ## Factorizations for Determining Rank
 
-Two common factorizations can determine rank without relying on determinant calculations that are sensitive to numerical error:
+Two common **factorizations can determine rank** without relying on determinant calculations that are sensitive to numerical error:
 
 | Method | Strength | Typical use |
 | --- | --- | --- |
@@ -63,7 +75,7 @@ In this decomposition, <InlineMath math="U \in \mathbb{R}^{m \times m}" /> and <
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
-The exact rank is the number of positive singular values:
+The exact rank is the **number of positive singular values**:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
@@ -75,7 +87,7 @@ If the exact rank is <InlineMath math="r" /> with <InlineMath math="0<r<q" />, t
 
 <BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
 
-Floating-point data rarely contain exact zeros. A numerical rank instead counts singular values above a scale-aware threshold <InlineMath math="\tau" />:
+Floating-point data rarely contain exact zeros. A numerical rank instead counts singular values above a **scale-aware threshold** <InlineMath math="\tau" />:
 
 <MathContainer>
 <BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
@@ -90,9 +102,9 @@ The factor <InlineMath math="c" /> reflects the application and noise model, so 
 
 The identity
 
-<BlockMath math="A^TA=V\Sigma^2V^T" />
+<BlockMath math="A^TA=V(\Sigma^T\Sigma)V^T" />
 
-This identity shows why squared singular values are eigenvalues of <InlineMath math="A^TA" />. For numerical computation, explicitly forming <InlineMath math="A^TA" /> squares the condition number:
+This identity shows why squared singular values are eigenvalues of <InlineMath math="A^TA" />. For a full-column-rank matrix in numerical computation, explicitly forming <InlineMath math="A^TA" /> **squares the condition number**:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 

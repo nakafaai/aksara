@@ -13,11 +13,11 @@ export const metadata = {
 
 Die momentane Schnelligkeit beschreibt, wie schnell sich ein Objekt zu einem bestimmten Zeitpunkt oder an einem bestimmten Punkt seiner Bahn bewegt. Ein vertrautes Beispiel ist die Zahl, die ein Tachometer genau beim Ablesen anzeigt.
 
-Auch die momentane Geschwindigkeit wird für einen bestimmten Zeitpunkt angegeben, enthält aber zusätzlich die Richtung. Bewegt sich das Fahrzeug nach rechts, ist die Geschwindigkeit positiv. Bewegt es sich nach links, ist sie negativ.
+Auch die momentane Geschwindigkeit wird für einen bestimmten Zeitpunkt angegeben, enthält aber zusätzlich die Richtung. Wenn **rechts als positive Richtung gewählt ist**, ergibt eine Bewegung nach rechts eine positive Geschwindigkeit und eine Bewegung nach links eine negative Geschwindigkeit.
 
 > Ein Momentanwert antwortet mit „Wie schnell gerade?“ Ein Mittelwert beschreibt einen längeren Abschnitt der Fahrt.
 
-<BlockMath math="\begin{aligned} &amp;\text{momentane Schnelligkeit} \\ &amp;=\lvert\vec{v}_{\text{momentan}}\rvert \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{momentane Schnelligkeit}&amp;=\lvert\vec{v}_{\text{momentan}}\rvert \end{aligned}" />
 
 Die momentane Schnelligkeit ist der Betrag der momentanen Geschwindigkeit.
 
@@ -49,7 +49,7 @@ Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtasti
 
 ## Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
 
-Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die Fahrtrichtung beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
+Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die **Fahrtrichtung** beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
 
 Bei <InlineMath math="t=6 \text{ s}" /> fährt das Auto mit einer momentanen Schnelligkeit von <InlineMath math="20 \text{ m/s}" /> nach rechts. Da rechts als positive Richtung gewählt ist, beträgt die momentane Geschwindigkeit <InlineMath math="+20 \text{ m/s}" />.
 
@@ -64,7 +64,7 @@ Die momentane Schnelligkeit hat kein Richtungszeichen. Die momentane Geschwindig
 
 ## Unterschied zur mittleren Schnelligkeit
 
-Die momentane Schnelligkeit unterscheidet sich von der mittleren Schnelligkeit. Die mittlere Schnelligkeit nutzt die gesamte Wegstrecke und die gesamte Zeit, während die momentane Schnelligkeit den Zustand zu einem einzigen Zeitpunkt beschreibt.
+Die momentane Schnelligkeit unterscheidet sich von der mittleren Schnelligkeit. Die mittlere Schnelligkeit nutzt die gesamte Wegstrecke und die gesamte Zeit, während die momentane Schnelligkeit den Zustand zu **einem einzigen Zeitpunkt** beschreibt.
 
 Wenn ein Tacho gerade <InlineMath math="15 \text{ m/s}" /> anzeigt, bedeutet das nicht, dass sich das Fahrzeug während der gesamten Fahrt mit <InlineMath math="15 \text{ m/s}" /> bewegt hat.
 
@@ -72,8 +72,6 @@ Ein Fahrzeug kann etwa an einer roten Ampel stehen und danach schnell weiterfahr
 
 ## Ein Tachometer misst die aktuelle Schnelligkeit
 
-Eine ausgeschilderte Grenze von <InlineMath math="80 \text{ km/h}" /> gilt für das Fahrzeug zu jedem Zeitpunkt. Ein Messgerät am Straßenrand erfasst deshalb die momentane Schnelligkeit beim Vorbeifahren.
+Eine ausgeschilderte Grenze von <InlineMath math="80 \text{ km/h}" /> gilt für das Fahrzeug **zu jedem Zeitpunkt**. Ein Messgerät am Straßenrand erfasst deshalb die momentane Schnelligkeit beim Vorbeifahren.
 
-Ein Messgerät erfasst die Schnelligkeit in dem Augenblick, in dem das Fahrzeug den Messpunkt passiert, und muss deshalb nicht auf das Ziel warten.
-
-Das Wort „momentan“ bedeutet also, dass der Bewegungswert zu einem bestimmten Zeitpunkt gemessen wird.
+Ein Fahrzeug mit <InlineMath math="90 \text{ km/h}" /> beim Vorbeifahren überschreitet diese Grenze auch dann, wenn seine mittlere Schnelligkeit auf der gesamten Fahrt nur <InlineMath math="60 \text{ km/h}" /> beträgt. Wartezeit an einer roten Ampel senkt den Mittelwert, verändert aber nicht den Messwert beim Vorbeifahren.

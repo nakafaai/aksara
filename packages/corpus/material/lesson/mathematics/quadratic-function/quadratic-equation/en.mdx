@@ -9,28 +9,27 @@ export const metadata = {
 
 ## Equations of Degree Two
 
-<Highlight>A quadratic equation is a polynomial equation in one variable</Highlight>: it contains <InlineMath math="x^2" /> but no higher power of <InlineMath math="x" />. The general form of a quadratic equation is:
+A quadratic equation is a **polynomial equation in one variable**: it contains <InlineMath math="x^2" /> but no higher power of <InlineMath math="x" />. The general form of a quadratic equation is:
 
 <BlockMath math="ax^2 + bx + c = 0" />
 
 In this form, <InlineMath math="a, b, c" /> are real numbers and <InlineMath math="a \neq 0" />.
 
-### Origins of the Term Quadratic
+### Squares and Areas
 
-The term "quadratic" comes from the Latin word _quadratus_, which means "to make a square." This relates to the geometric interpretation of the form <InlineMath math="x^2" /> which can be viewed as the area of a square with side length <InlineMath math="x" />.
+A square with side length <InlineMath math="x" /> has area <InlineMath math="x\cdot x=x^2" />. Doubling the side makes the area **four times as large**, not twice as large. For example, a side of 2 meters gives an area of 4 square meters, while a side of 4 meters gives 16 square meters.
 
 ## How to Solve Quadratic Equations
 
-No single method fits every quadratic equation, so the choice depends on the form of the equation. Factorisation is quickest when the factors are whole numbers, the formula always works, and [completing the square](/en/subjects/mathematics/quadratic-function/quadratic-equation-perfect-square) also reveals the vertex.
+The form of the equation determines the **most convenient method**. Each method below works when its calculation conditions are met. Factorisation is quickest when the factors are whole numbers, the formula always works, and [completing the square](/en/subjects/mathematics/quadratic-function/quadratic-equation-perfect-square) also reveals the vertex.
 
 ### Factorization
 
 The factorization method involves breaking down the quadratic equation into a product of two linear factors. For example:
 
-<MathContainer>
-  <BlockMath math="2x^2 - 3x - 2 = 0" />
-  <BlockMath math="(2x + 1)(x - 2) = 0" />
-</MathContainer>
+Split the middle term into <InlineMath math="-4x+x" /> so both groups have **a common factor**. Once the product equals zero, at least one factor must be zero:
+
+<BlockMath math="\begin{aligned}2x^2-3x-2&amp;=2x^2-4x+x-2\\&amp;=2x(x-2)+(x-2)\\&amp;=(2x+1)(x-2)\end{aligned}" />
 
 From the factored form above, we can get the solutions:
 
@@ -41,7 +40,7 @@ The roots of the quadratic equation are <InlineMath math="x = -\frac{1}{2}" /> o
 
 ### Completing the Square
 
-Completing the square rewrites the quadratic expression as a squared binomial plus a constant.
+Completing the square rewrites the quadratic expression as a **squared binomial** plus a constant.
 
 Example:
 
@@ -73,7 +72,7 @@ The calculation gives:
 
 ### Using the Quadratic Formula
 
-For the equation <InlineMath math="ax^2 + bx + c = 0" />, the roots can be determined using the formula:
+For the equation <InlineMath math="ax^2 + bx + c = 0" />, the roots can be determined using the **quadratic formula**:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
@@ -98,7 +97,7 @@ The calculation gives:
 
 Word problems hide the equation inside a description, so translate each sentence into a quantity first. Only once the equation stands on its own do you choose a solving method.
 
-Quadratic equations model quantities whose relationships contain products or squares. The following examples turn those relationships into equations.
+Quadratic equations model quantities whose relationships contain **products or squares**. The following examples turn those relationships into equations.
 
 ### Reading Room Problem
 
@@ -112,9 +111,15 @@ Subtract the area of the four corners from the total area.
   widthLabel={<InlineMath math="6 \text{ m}" />}
 />
 
+If the remaining area must be **20 square meters**, the area model becomes an equation. The four drawn squares show the arrangement schematically. Calculate their side length from the area requirement:
+
+<BlockMath math="\begin{aligned}24-4x^2&amp;=20\\4x^2&amp;=4\\x^2&amp;=1\\x&amp;=\pm1\end{aligned}" />
+
+A side length must be positive, so <InlineMath math="x=1" /> meter. The two squares along the 4-meter wall must not overlap, requiring <InlineMath math="2x\le4" />. One meter satisfies this restriction.
+
 ### Problem of Multiplying Two Numbers
 
-The product of two numbers is <InlineMath math="63" /> and their sum is <InlineMath math="16" />. We can solve this using a quadratic equation.
+The **product of two numbers** is <InlineMath math="63" /> and their sum is <InlineMath math="16" />. We can solve this using a quadratic equation.
 
 Say the two numbers are <InlineMath math="p" /> and <InlineMath math="q" />, then:
 
@@ -142,7 +147,7 @@ The two numbers are <InlineMath math="7" /> and <InlineMath math="9" />.
 
 ### Vehicle Speed Problem
 
-A vehicle travels a distance of <InlineMath math="320 \text{ km}" /> at a certain speed. If the vehicle travels <InlineMath math="24 \text{ km/h}" /> faster, its travel time is reduced by <InlineMath math="3 \text{ hours}" />. We can find the initial speed using a quadratic equation.
+A vehicle travels a distance of <InlineMath math="320 \text{ km}" /> at a certain speed. If the vehicle travels <InlineMath math="24 \text{ km/h}" /> faster, its **travel time is reduced** by <InlineMath math="3 \text{ hours}" />. We can find the initial speed using a quadratic equation.
 
 Say the initial speed is <InlineMath math="v \text{ km/h}" /> and the initial travel time is <InlineMath math="t \text{ hours}" />, then:
 
@@ -159,6 +164,8 @@ Multiply by <InlineMath math="v" /> and simplify:
 
 <MathContainer>
   <BlockMath math="(v + 24)(320 - 3v) = 320v" />
+  <BlockMath math="320v-3v^2+7680-72v=320v" />
+  <BlockMath math="-3v^2-72v+7680=0" />
   <BlockMath math="v^2 + 24v - 2560 = 0" />
   <BlockMath math="(v - 40)(v + 64) = 0" />
 </MathContainer>
@@ -179,23 +186,14 @@ Some common misconceptions include:
 
 ## Forms of Quadratic Equations
 
-Consider the following forms, which ones are quadratic equations?
+Distinguish an equation **as written** from the form obtained after clearing denominators. Multiplying by a denominator must preserve the restriction that the denominator cannot be zero.
 
-1. <InlineMath math="\frac{1}{x} + 2x + 4 = 0" />
-
-   This is not a quadratic equation because it contains the term <InlineMath math="\frac{1}{x}" />.
-
-2. <InlineMath math="\frac{1}{x-5} + \frac{1}{x-3} = x^2 - 4" />
-
-   This is not a quadratic equation in standard form, because it has a fractional form with variables in the denominator.
-
-3. <InlineMath math="3x^2 + 2x - 1 = 0" />
-
-   This is a quadratic equation because it is in the form <InlineMath math="ax^2 + bx + c = 0" /> with <InlineMath math="a = 3 \neq 0" />.
-
-4. <InlineMath math="x^2 + \frac{1}{x} + 3 = 0" />
-
-   This is not a quadratic equation because it contains the term <InlineMath math="\frac{1}{x}" />.
+| Original equation | After clearing denominators | Classification |
+| --- | --- | --- |
+| <InlineMath math="\frac1x+2x+4=0" /> | <InlineMath math="2x^2+4x+1=0,\ x\ne0" /> | Rational, reducible to a quadratic for permitted x values |
+| <InlineMath math="\frac1{x-5}+\frac1{x-3}=x^2-4" /> | <InlineMath math="2x-8=(x^2-4)(x-5)(x-3),\ x\ne3,5" /> | Rational, leads to a degree-four equation |
+| <InlineMath math="3x^2+2x-1=0" /> | <InlineMath math="a=3,\ b=2,\ c=-1" /> | Already a quadratic equation |
+| <InlineMath math="x^2+\frac1x+3=0" /> | <InlineMath math="x^3+3x+1=0,\ x\ne0" /> | Rational, leads to a cubic equation |
 
 ## Practice Problems
 
@@ -210,7 +208,7 @@ Determine whether the following mathematical equations are quadratic equations:
 3. <InlineMath math="\frac{1}{x} + 5x = 0" />
 4. <InlineMath math="x^2 + \frac{1}{x} + 3 = 0" />
 
-**Factorization**
+**Expanding Products**
 
 Expand the following equations:
 
@@ -220,142 +218,144 @@ Expand the following equations:
 
 ### Answer Key
 
-**Identifying Quadratic Equations**
+For classification, inspect the **highest power and any denominators**. To expand, multiply each term in the first factor by each term in the second. To find roots, use a product equal to zero.
 
-1. <InlineMath math="x^3 + x^2 + x = 0" />
+#### Identifying Quadratic Equations
 
-   **Answer**: Not a quadratic equation, because it has the highest power of <InlineMath math="3" /> (<InlineMath math="x^3" />). This is a cubic equation.
+**Problem 1**: <InlineMath math="x^3 + x^2 + x = 0" />
 
-2. <InlineMath math="3x^2 + 2x - 1 = 0" />
+**Answer**: Not a quadratic equation, because it has the highest power of <InlineMath math="3" /> (<InlineMath math="x^3" />). This is a cubic equation.
 
-   **Answer**: Quadratic equation, because it is in the form <InlineMath math="ax^2 + bx + c = 0" /> with <InlineMath math="a = 3" />, <InlineMath math="b = 2" />, and <InlineMath math="c = -1" />.
+**Problem 2**: <InlineMath math="3x^2 + 2x - 1 = 0" />
 
-3. <InlineMath math="\frac{1}{x} + 5x = 0" />
+**Answer**: Quadratic equation, because it is in the form <InlineMath math="ax^2 + bx + c = 0" /> with <InlineMath math="a = 3" />, <InlineMath math="b = 2" />, and <InlineMath math="c = -1" />.
 
-   **Answer**: Not a quadratic equation, because it contains the term <InlineMath math="\frac{1}{x}" />. This is a fractional equation.
+**Problem 3**: <InlineMath math="\frac{1}{x} + 5x = 0" />
 
-4. <InlineMath math="x^2 + \frac{1}{x} + 3 = 0" />
+**Answer**: Not a quadratic equation, because it contains the term <InlineMath math="\frac{1}{x}" />. As written, it is rational. For <InlineMath math="x\ne0" />, multiplying by x gives <InlineMath math="1+5x^2=0" />.
 
-   **Answer**: Not a quadratic equation, because it contains the term <InlineMath math="\frac{1}{x}" />. This is a mixed equation.
+**Problem 4**: <InlineMath math="x^2 + \frac{1}{x} + 3 = 0" />
 
-**Factorization**
+**Answer**: Not a quadratic equation, because it contains the term <InlineMath math="\frac{1}{x}" />. This is a rational equation.
 
-1. <InlineMath math="(x + 2)(x + 3) = 0" />
+#### Expanding Products
 
-   **Answer**:
+**Problem 1**: <InlineMath math="(x + 2)(x + 3) = 0" />
 
-   <MathContainer>
-     <BlockMath math="(x + 2)(x + 3) = 0" />
-     <BlockMath math="x^2 + 3x + 2x + 6 = 0" />
-     <BlockMath math="x^2 + 5x + 6 = 0" />
-   </MathContainer>
+**Answer**:
 
-   So, the product of the two factors is <InlineMath math="x^2 + 5x + 6 = 0" />
+<MathContainer>
+  <BlockMath math="(x + 2)(x + 3) = 0" />
+  <BlockMath math="x^2 + 3x + 2x + 6 = 0" />
+  <BlockMath math="x^2 + 5x + 6 = 0" />
+</MathContainer>
 
-2. <InlineMath math="\left(\frac{1}{3}x - 4\right)(x + 9) = 0" />
+So, the product of the two factors is <InlineMath math="x^2 + 5x + 6 = 0" />
 
-   **Answer**:
+**Problem 2**: <InlineMath math="\left(\frac{1}{3}x - 4\right)(x + 9) = 0" />
 
-   <MathContainer>
-     <BlockMath math="\left(\frac{1}{3}x - 4\right)(x + 9) = 0" />
-     <BlockMath math="\frac{1}{3}x \cdot x + \frac{1}{3}x \cdot 9 - 4 \cdot x - 4 \cdot 9 = 0" />
-     <BlockMath math="\frac{1}{3}x^2 + 3x - 4x - 36 = 0" />
-     <BlockMath math="\frac{1}{3}x^2 - x - 36 = 0" />
-   </MathContainer>
+**Answer**:
 
-   Multiply all terms by <InlineMath math="3" /> to simplify:
+<MathContainer>
+  <BlockMath math="\left(\frac{1}{3}x - 4\right)(x + 9) = 0" />
+  <BlockMath math="\frac{1}{3}x \cdot x + \frac{1}{3}x \cdot 9 - 4 \cdot x - 4 \cdot 9 = 0" />
+  <BlockMath math="\frac{1}{3}x^2 + 3x - 4x - 36 = 0" />
+  <BlockMath math="\frac{1}{3}x^2 - x - 36 = 0" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x^2 - 3x - 108 = 0" />
-   </MathContainer>
+Multiply all terms by <InlineMath math="3" /> to simplify:
 
-   So, the product of the two factors is <InlineMath math="x^2 - 3x - 108 = 0" /> or <InlineMath math="\frac{1}{3}x^2 - x - 36 = 0" />
+<MathContainer>
+  <BlockMath math="x^2 - 3x - 108 = 0" />
+</MathContainer>
 
-3. <InlineMath math="(2x - 8)(x + 5) = 0" />
+So, the product of the two factors is <InlineMath math="x^2 - 3x - 108 = 0" /> or <InlineMath math="\frac{1}{3}x^2 - x - 36 = 0" />
 
-   **Answer**:
+**Problem 3**: <InlineMath math="(2x - 8)(x + 5) = 0" />
 
-   <MathContainer>
-     <BlockMath math="(2x - 8)(x + 5) = 0" />
-     <BlockMath math="2x \cdot x + 2x \cdot 5 - 8 \cdot x - 8 \cdot 5 = 0" />
-     <BlockMath math="2x^2 + 10x - 8x - 40 = 0" />
-     <BlockMath math="2x^2 + 2x - 40 = 0" />
-   </MathContainer>
+**Answer**:
 
-   Factoring <InlineMath math="2x - 8" /> as <InlineMath math="2(x - 4)" />:
+<MathContainer>
+  <BlockMath math="(2x - 8)(x + 5) = 0" />
+  <BlockMath math="2x \cdot x + 2x \cdot 5 - 8 \cdot x - 8 \cdot 5 = 0" />
+  <BlockMath math="2x^2 + 10x - 8x - 40 = 0" />
+  <BlockMath math="2x^2 + 2x - 40 = 0" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="2(x - 4)(x + 5) = 0" />
-   </MathContainer>
+Factoring <InlineMath math="2x - 8" /> as <InlineMath math="2(x - 4)" />:
 
-   So, the product of the two factors is <InlineMath math="2x^2 + 2x - 40 = 0" />
+<MathContainer>
+  <BlockMath math="2(x - 4)(x + 5) = 0" />
+</MathContainer>
 
-**Solving Quadratic Equations**
+So, the product of the two factors is <InlineMath math="2x^2 + 2x - 40 = 0" />
+
+#### Solving Quadratic Equations
 
 Solve some equations from the factorization results above:
 
-1. <InlineMath math="x^2 + 5x + 6 = 0" />
+**Problem 1**: <InlineMath math="x^2 + 5x + 6 = 0" />
 
-   **Answer**:
-   Factorization:
+**Answer**:
+Factorization:
 
-   <MathContainer>
-     <BlockMath math="x^2 + 5x + 6 = 0" />
-     <BlockMath math="(x + 2)(x + 3) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + 5x + 6 = 0" />
+  <BlockMath math="(x + 2)(x + 3) = 0" />
+</MathContainer>
 
-   Set each factor equal to zero:
+Set each factor equal to zero:
 
-   - If <InlineMath math="x + 2 = 0" />, then <InlineMath math="x = -2" />
-   - If <InlineMath math="x + 3 = 0" />, then <InlineMath math="x = -3" />
+- If <InlineMath math="x + 2 = 0" />, then <InlineMath math="x = -2" />
+- If <InlineMath math="x + 3 = 0" />, then <InlineMath math="x = -3" />
 
-   The roots of the equation are: <InlineMath math="x = -2" /> or <InlineMath math="x = -3" />
+The roots of the equation are: <InlineMath math="x = -2" /> or <InlineMath math="x = -3" />
 
-2. <InlineMath math="x^2 - 3x - 108 = 0" />
+**Problem 2**: <InlineMath math="x^2 - 3x - 108 = 0" />
 
-   **Answer**:
-   Using the quadratic formula:
+**Answer**:
+Using the quadratic formula:
 
-   <MathContainer>
-     <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
-     <BlockMath math="x = \frac{3 \pm \sqrt{9 + 432}}{2}" />
-     <BlockMath math="x = \frac{3 \pm \sqrt{441}}{2}" />
-     <BlockMath math="x = \frac{3 \pm 21}{2}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+  <BlockMath math="x = \frac{3 \pm \sqrt{9 + 432}}{2}" />
+  <BlockMath math="x = \frac{3 \pm \sqrt{441}}{2}" />
+  <BlockMath math="x = \frac{3 \pm 21}{2}" />
+</MathContainer>
 
-   The two signs in the quadratic formula give:
+The two signs in the quadratic formula give:
 
-   - <InlineMath math="x = \frac{3 + 21}{2} = 12" />
-   - <InlineMath math="x = \frac{3 - 21}{2} = -9" />
+- <InlineMath math="x = \frac{3 + 21}{2} = 12" />
+- <InlineMath math="x = \frac{3 - 21}{2} = -9" />
 
-   The roots of the equation are: <InlineMath math="x = 12" /> or <InlineMath math="x = -9" />
+The roots of the equation are: <InlineMath math="x = 12" /> or <InlineMath math="x = -9" />
 
-   Verification by factorization:
+Verification by factorization:
 
-   <MathContainer>
-     <BlockMath math="x^2 - 3x - 108 = 0" />
-     <BlockMath math="(x - 12)(x + 9) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 - 3x - 108 = 0" />
+  <BlockMath math="(x - 12)(x + 9) = 0" />
+</MathContainer>
 
-3. <InlineMath math="2x^2 + 2x - 40 = 0" />
+**Problem 3**: <InlineMath math="2x^2 + 2x - 40 = 0" />
 
-   **Answer**:
-   Simplify the equation by dividing all terms by <InlineMath math="2" />:
+**Answer**:
+Simplify the equation by dividing all terms by <InlineMath math="2" />:
 
-   <MathContainer>
-     <BlockMath math="x^2 + x - 20 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + x - 20 = 0" />
+</MathContainer>
 
-   Factorization:
+Factorization:
 
-   <MathContainer>
-     <BlockMath math="x^2 + x - 20 = 0" />
-     <BlockMath math="(x + 5)(x - 4) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + x - 20 = 0" />
+  <BlockMath math="(x + 5)(x - 4) = 0" />
+</MathContainer>
 
-   Set each factor equal to zero:
+Set each factor equal to zero:
 
-   - If <InlineMath math="x + 5 = 0" />, then <InlineMath math="x = -5" />
-   - If <InlineMath math="x - 4 = 0" />, then <InlineMath math="x = 4" />
+- If <InlineMath math="x + 5 = 0" />, then <InlineMath math="x = -5" />
+- If <InlineMath math="x - 4 = 0" />, then <InlineMath math="x = 4" />
 
-   The roots of the equation are: <InlineMath math="x = -5" /> or <InlineMath math="x = 4" />
+The roots of the equation are: <InlineMath math="x = -5" /> or <InlineMath math="x = 4" />

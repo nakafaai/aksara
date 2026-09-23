@@ -5,10 +5,24 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Unroll the cylinder’s lateral surface into a rectangle. Diametrically opposite points are half a circumference apart horizontally, giving <InlineMath math="\pi r=3\pi\,\mathrm{cm}" />. Their vertical separation remains <InlineMath math="8\,\mathrm{cm}" />.
+Unroll the cylinder’s **lateral surface** into a rectangle. Diametrically opposite points are half a circumference apart horizontally, giving <InlineMath math="\pi r=3\pi\,\mathrm{cm}" />. Their vertical separation remains <InlineMath math="8\,\mathrm{cm}" />.
 
 The shortest path becomes a straight segment on the unrolled surface. Pythagoras gives its squared length.
 
 <BlockMath math="L^2=8^2+(3\pi)^2=64+9\pi^2" />
 
 Either direction around the cylinder gives the same distance. Extra turns increase the horizontal travel. The minimum squared length is therefore <InlineMath math="(64+9\pi^2)\,\mathrm{cm}^2" />.
+
+<LineEquation
+  title="Half of the cylinder unrolled"
+  description="This rectangle is only half the lateral surface. Its width is half the circumference and its height is the cylinder height."
+  cameraPosition={[4.7, 4, 16]}
+  cameraTarget={[4.7, 4, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }, { x: 0, y: 8, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ text: "P", at: 0, offset: [-0.4, -0.4, 0] }, { text: "Q", at: 1, offset: [0.4, 0.4, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: <InlineMath math="3\pi\,\mathrm{cm}" />, at: 0, offset: [4.7, -0.6, 0] }] },
+    { points: [{ x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: "8 cm", at: 0, offset: [0.8, 4, 0] }] },
+  ]}
+/>

@@ -5,17 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gegeben:
-
-- Gesamtzahl der Schüler: <InlineMath math="n(S) = 800" />
-- Schüler, die Mathematik mögen: <InlineMath math="n(M) = 400" />
-- Schüler, die Physik mögen: <InlineMath math="n(F) = 500" />
-
-Gesucht sind der größte Wert <InlineMath math="x" /> und der kleinste Wert <InlineMath math="y" /> für die Schnittmenge, also für die Schüler, die beide Fächer mögen.
+Wir suchen die **Grenzen der Schülerzahl, die beide Fächer mag**: Insgesamt gibt es 800 Schüler, davon mögen 400 Mathematik und 500 Physik.
 
 #### Größtmögliche Schnittmenge
 
-Die Zahl der Schüler, die beide Fächer mögen, ist am größten, wenn die kleinere Menge vollständig in der größeren liegt.
+Die Zahl der Schüler, die beide Fächer mögen, ist am größten, wenn die **kleinere Menge vollständig in der größeren liegt**.
 Da <InlineMath math="400" /> Schüler Mathematik mögen und <InlineMath math="500" /> Physik, ist die Mathematikgruppe die kleinere Menge.
 Die größte mögliche Schnittmenge entspricht daher der Größe dieser kleineren Gruppe.
 
@@ -23,7 +17,7 @@ Die größte mögliche Schnittmenge entspricht daher der Größe dieser kleinere
 
 #### Kleinstmögliche Schnittmenge
 
-Die Schnittmenge ist am kleinsten, wenn die Vereinigung beider Mengen möglichst groß ist. Da die Schule nur <InlineMath math="800" /> Schüler hat, kann <InlineMath math="n(M \cup F)" /> den Wert <InlineMath math="800" /> nicht überschreiten.
+Die Schnittmenge ist am kleinsten, wenn die **Vereinigung beider Mengen möglichst groß ist**. Da die Schule nur <InlineMath math="800" /> Schüler hat, kann <InlineMath math="n(M \cup F)" /> den Wert <InlineMath math="800" /> nicht überschreiten.
 
 Für die Anzahl der Elemente der Vereinigungsmenge gilt:
 
@@ -43,7 +37,12 @@ Die kleinste mögliche Schnittmenge liegt vor, wenn die Vereinigung diese Obergr
 
 #### Berechnung der Differenz
 
-Die Differenz zwischen Maximal- und Minimalwert beträgt:
+Beide Grenzen lassen sich mit diesen **überschneidungsfreien Schülergruppen** erreichen. Jede Zeile zählt jeden Schüler genau einmal.
+
+| Schnittmenge | Nur Mathematik | Beide Fächer | Nur Physik | Keines von beiden |
+| --- | --- | --- | --- | --- |
+| Maximum | 0 | 400 | 100 | 300 |
+| Minimum | 300 | 100 | 400 | 0 |
 
 <BlockMath math="x - y = 400 - 100 = 300" />
 

@@ -29,7 +29,7 @@ A Jordan block of size <InlineMath math="s" /> for the eigenvalue <InlineMath ma
 <BlockMath math="J_s(\lambda)=\lambda I_s+N_s,\qquad N_s^s=0" />
 </MathContainer>
 
-The nilpotent matrix <InlineMath math="N_s" /> has ones on the superdiagonal and zeros elsewhere. A block of size <InlineMath math="1" /> is simply <InlineMath math="(\lambda)" />. A larger block signals that one eigenvector must be extended by generalized eigenvectors.
+The **nilpotent matrix** <InlineMath math="N_s" /> has ones on the superdiagonal and zeros elsewhere. A block of size <InlineMath math="1" /> is simply <InlineMath math="(\lambda)" />. A larger block signals that one eigenvector must be extended by generalized eigenvectors.
 
 ## Generalized eigenvector chains
 
@@ -40,17 +40,15 @@ Vectors <InlineMath math="v_1,\ldots,v_s" /> form a Jordan chain for <InlineMath
 <BlockMath math="\begin{aligned} &amp;(A-\lambda I)v_{j+1}=v_j, \\ &amp;j=1,\ldots,s-1 \end{aligned}" />
 </MathContainer>
 
-The first vector is an ordinary eigenvector. Each following vector maps to the previous one after applying <InlineMath math="A-\lambda I" />. In the ordered basis <InlineMath math="(v_1,\ldots,v_s)" />, the restriction of <InlineMath math="A" /> to this chain is represented by <InlineMath math="J_s(\lambda)" />.
+The **first vector** is an ordinary eigenvector. We require <InlineMath math="v_1\neq0" />. The recurrence then forces the chain vectors to be linearly independent. Each following vector maps to the previous one after applying <InlineMath math="A-\lambda I" />. In the ordered basis <InlineMath math="(v_1,\ldots,v_s)" />, the restriction of <InlineMath math="A" /> to this chain is represented by <InlineMath math="J_s(\lambda)" />.
 
 ## The complete Jordan form
 
 Suppose the characteristic polynomial of <InlineMath math="A" /> has the following form.
 
-<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
+<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(\lambda_i-t)^{a_i}" />
 
-If this polynomial splits over <InlineMath math="\mathbb{K}" /> with distinct eigenvalues <InlineMath math="\lambda_1,\ldots,\lambda_k" />, then there is an invertible matrix <InlineMath math="S" /> such that
-
-Group the Jordan blocks by eigenvalue, preserving their order:
+If this polynomial splits over <InlineMath math="\mathbb{K}" /> with distinct eigenvalues <InlineMath math="\lambda_1,\ldots,\lambda_k" />, there is an invertible matrix <InlineMath math="S" /> giving the following block-diagonal form. Group blocks associated with the same eigenvalue:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;D_i=\operatorname{diag}\bigl(J_{s_{i1}}(\lambda_i), \\ &amp;\ldots,J_{s_{iq_i}}(\lambda_i)\bigr) \\ &amp;i=1,\ldots,k \end{aligned}" />
@@ -62,7 +60,7 @@ For each eigenvalue, the block sizes satisfy
 
 <BlockMath math="s_{i1}+\cdots+s_{iq_i}=a_i" />
 
-The number of blocks for <InlineMath math="\lambda_i" /> equals the geometric multiplicity <InlineMath math="\dim\ker(A-\lambda_iI)" />. The block sizes are uniquely determined by <InlineMath math="A" />, although their order along the diagonal is not.
+The **number of blocks** for <InlineMath math="\lambda_i" /> equals the geometric multiplicity <InlineMath math="\dim\ker(A-\lambda_iI)" />. The block sizes are uniquely determined by <InlineMath math="A" />, although their order along the diagonal is not.
 
 | Question | What the Jordan blocks show |
 | --- | --- |
@@ -78,7 +76,7 @@ Consider
 
 Its characteristic polynomial is
 
-<BlockMath math="\chi_A(t)=(t-1)^2(t-2)" />
+<BlockMath math="\chi_A(t)=(1-t)^2(2-t)" />
 
 For <InlineMath math="\lambda=1" />,
 
@@ -87,7 +85,7 @@ For <InlineMath math="\lambda=1" />,
 <BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath math="2" /> but only one independent eigenvector. Therefore <InlineMath math="A" /> is not diagonalizable. Consider the following two vectors.
+The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath math="2" /> but **only one independent eigenvector**. Therefore <InlineMath math="A" /> is not diagonalizable. Consider the following two vectors.
 
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
@@ -97,8 +95,14 @@ The two vectors form a Jordan chain because <InlineMath math="(A-I)v_1=0" /> and
 
 Writing <InlineMath math="J_s(\lambda)=\lambda I+N" /> with <InlineMath math="N^s=0" /> makes powers explicit:
 
-<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
+For integers <InlineMath math="m\ge0" /> and <InlineMath math="\lambda\neq0" />:
 
-This formula explains why powers of a non-diagonalizable matrix contain polynomial factors in <InlineMath math="m" /> in addition to powers of the eigenvalues. It gives the exact matrix powers used to analyze recurrences and differential equations.
+<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{\min(m,s-1)}\binom{m}{j}\lambda^{m-j}N^j" />
+
+When <InlineMath math="\lambda=0" />, use <InlineMath math="J_s(0)^m=N^m" /> directly, with <InlineMath math="N^0=I" />. For example, the nonzero superdiagonal accumulates with each multiplication:
+
+<BlockMath math="\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix},\qquad \begin{pmatrix}1&1\\0&1\end{pmatrix}^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}" />
+
+This formula explains why powers of a non-diagonalizable matrix contain **polynomial factors** in <InlineMath math="m" /> in addition to powers of the eigenvalues. It gives the exact matrix powers used to analyze recurrences and differential equations.
 
 Jordan form is primarily an exact algebraic classification. It is highly sensitive to small numerical perturbations, so numerical software usually computes a Schur decomposition for stable calculations.

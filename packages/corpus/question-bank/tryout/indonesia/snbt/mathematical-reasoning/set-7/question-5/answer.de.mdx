@@ -5,39 +5,20 @@ export const metadata = {
   datePublished: "2025-06-11",
 };
 
-#### Volumenanalyse
+#### Wasservolumen und Kugelvolumen verknüpfen
 
-Da jede Kugel vollständig eingetaucht wird, verdrängt sie ihr gesamtes Volumen. Das verbleibende Wasservolumen ist daher das Zylindervolumen abzüglich des Gesamtvolumens aller Kugeln. Mit <InlineMath math="V_w" /> bezeichnen wir das verbleibende Wasservolumen, mit <InlineMath math="V_c" /> das Zylindervolumen und mit <InlineMath math="V_b" /> das Volumen einer Kugel, jeweils in Kubikzentimetern.
+Ein **vollständig eingetauchter massiver Körper** verdrängt Wasser in Höhe seines eigenen Volumens. Da der Behälter anfangs voll war, entspricht das übergelaufene Wasser dem Gesamtvolumen der Kugeln. Sei <InlineMath math="V_c" /> das Zylindervolumen und <InlineMath math="V_b" /> das Volumen einer Kugel, jeweils in Kubikzentimetern.
 
-<MathContainer>
-  <BlockMath math="V_w = V_c - n \cdot V_b" />
-  <BlockMath math="\begin{aligned}11{.}388\pi&=\pi r_1^2h \\ &\quad-n\left(\frac43\pi r_2^3\right)\end{aligned}" />
-  <BlockMath math="\begin{aligned}&11{.}388\pi \\ &\quad=\pi\left(r_1^2h-n\cdot\frac43r_2^3\right)\end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}V_c&=\pi(20)^2(30)=12{.}000\pi \\ V_b&=\frac43\pi(3)^3=\frac43\pi(27)=36\pi\end{aligned}" />
 
-Für den Zylinder setzen wir <InlineMath math="r_1 = 20 \text{ cm}" /> und <InlineMath math="h = 30 \text{ cm}" /> ein, für jede Kugel <InlineMath math="r_2 = 3 \text{ cm}" />.
+#### Kugelzahl bestimmen und prüfen
 
-<MathContainer>
-  <BlockMath math="\begin{aligned}11{.}388&=(20)^2(30) \\ &\quad-n\left(\frac43(3)^3\right)\end{aligned}" />
-  <BlockMath math="\begin{aligned}11{.}388&=12{.}000 \\ &\quad-n\left(\frac43(27)\right)\end{aligned}" />
-  <BlockMath math="11{.}388 = 12{.}000 - 36n" />
-</MathContainer>
+Ziehe das **verbleibende Wasser vom Anfangsvolumen** ab und teile durch das Volumen einer Kugel. Der gemeinsame Faktor <InlineMath math="\pi" /> lässt sich kürzen:
 
-Nun stellen wir nach <InlineMath math="n" /> um:
+<BlockMath math="\begin{aligned}n(36\pi)&=12{.}000\pi-11{.}388\pi \\ 36n&=612 \\ n&=\frac{612}{36}=17\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="36n = 12{.}000 - 11{.}388" />
-  <BlockMath math="36n = 612" />
-  <BlockMath math="n = \frac{612}{36}" />
-  <BlockMath math="n = 17" />
-</MathContainer>
+Das Ergebnis ist eine positive ganze Zahl. Prüfe das verbleibende Wasservolumen:
 
-Das Ergebnis ist eine positive ganze Zahl. Zur Kontrolle beträgt das Gesamtvolumen der Kugeln:
+<BlockMath math="12{.}000\pi-17(36\pi)=11{.}388\pi\text{ cm}^3" />
 
-<BlockMath math="17\cdot36\pi=612\pi\text{ cm}^3" />
-
-Für das verbleibende Wasservolumen in Kubikzentimetern ergibt sich:
-
-<BlockMath math="12{.}000\pi-612\pi=11{.}388\pi" />
-
-Somit wurden <InlineMath math="17" /> Kugeln eingetaucht.
+Der Wert stimmt mit der Aufgabe überein. Somit wurden <InlineMath math="17" /> Kugeln eingetaucht.

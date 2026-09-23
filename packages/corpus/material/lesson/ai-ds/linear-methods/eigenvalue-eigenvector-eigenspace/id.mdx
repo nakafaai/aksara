@@ -3,19 +3,19 @@ export const metadata = {
    description: "Jelaskan cara matriks mentransformasi vektor eigennya, hitung vektor tersebut, lalu tentukan ruang eigennya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Nilai Eigen dan Vektor Eigen
 
-Sebagian besar vektor berubah panjang sekaligus arah ketika ditransformasikan oleh matriks. Pada vektor eigen, hasil transformasi tetap berada pada garis yang sama. Nilai eigen positif mempertahankan orientasi, nilai negatif membalikkannya, dan nilai nol memetakannya ke vektor nol.
+Sebagian besar vektor berubah panjang sekaligus arah ketika ditransformasikan oleh matriks. Pada vektor eigen, hasil transformasi tetap berada pada garis yang sama. Untuk nilai eigen real, nilai positif mempertahankan orientasi, nilai negatif membalikkannya, dan nilai nol memetakannya ke vektor nol.
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> adalah matriks persegi. Sebuah **vektor eigen** <InlineMath math="v \in \mathbb{K}^n" /> untuk **nilai eigen** <InlineMath math="\lambda \in \mathbb{K}" /> adalah vektor tak nol <InlineMath math="v \neq 0" /> yang memenuhi:
 
 <BlockMath math="A \cdot v = \lambda \cdot v" />
 
-Perkalian vektor <InlineMath math="v" /> oleh matriks <InlineMath math="A" /> hanya mengubah skala atau orientasinya. Garis tempat vektor itu berada tetap sama.
+Untuk nilai eigen real, perkalian <InlineMath math="Av" /> mengubah skala atau orientasi vektor pada garis real yang sama. Nilai eigen kompleks menyatakan perkalian dengan skalar kompleks pada subruang kompleks berdimensi satu.
 
 > Menurut definisi, nilai eigen dapat sama dengan <InlineMath math="0" />, tetapi <Highlight>vektor eigen selalu tak nol</Highlight>.
 
@@ -31,7 +31,7 @@ Karena <InlineMath math="t\neq0" />, vektor <InlineMath math="tv" /> tetap tak n
 
 ## Contoh Perhitungan Vektor Eigen
 
-Kedua contoh di sini memeriksa persamaan <InlineMath math="Av=\lambda v" /> secara langsung, satu dengan matriks diagonal dan satu dengan matriks simetris. Keduanya menunjukkan dari mana nilai eigen berasal dan bagaimana vektor eigennya ditemukan, yaitu langkah yang sama untuk matriks yang bukan keduanya.
+Kedua contoh di sini **memeriksa persamaan** <InlineMath math="Av=\lambda v" /> secara langsung, satu dengan matriks diagonal dan satu dengan matriks simetris. Keduanya menunjukkan dari mana nilai eigen berasal dan bagaimana vektor eigennya ditemukan, yaitu langkah yang sama untuk matriks yang bukan keduanya.
 
 ### Matriks Diagonal
 
@@ -39,19 +39,23 @@ Perhatikan matriks:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}" />
 
-Vektor <InlineMath math="v_1" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_1 = 1" />. Perkalian dengan <InlineMath math="A" /> membuktikannya:
+Vektor <InlineMath math="v_1" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_1 = 1" />. **Perkalian dengan** <InlineMath math="A" /> membuktikannya:
 
 <MathContainer>
 <BlockMath math="v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}" />
 <BlockMath math="A \cdot v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} = 1 \cdot v_1" />
 </MathContainer>
 
-Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_2 = 2" />. Perkalian dengan <InlineMath math="A" /> membuktikannya:
+Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_2 = 2" />. **Perkalian dengan** <InlineMath math="A" /> membuktikannya:
 
 <MathContainer>
 <BlockMath math="v_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} = 2 \cdot v_2" />
 </MathContainer>
+
+Vektor di luar kedua sumbu koordinat tersebut umumnya **berubah arah**. Untuk matriks diagonal tadi:
+
+<BlockMath math="A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\2\end{pmatrix}\neq\lambda\begin{pmatrix}1\\1\end{pmatrix}\quad\text{untuk setiap }\lambda" />
 
 ### Matriks Simetris
 
@@ -59,7 +63,7 @@ Perhatikan matriks:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" />
 
-Vektor <InlineMath math="v_1" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_1 = 2" />. Perkalian dengan <InlineMath math="A" /> membuktikannya:
+Vektor <InlineMath math="v_1" /> berikut adalah vektor eigen untuk <InlineMath math="\lambda_1 = 2" />. **Perkalian** dengan <InlineMath math="A" /> membuktikannya:
 
 <MathContainer>
 <BlockMath math="v_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
@@ -75,7 +79,7 @@ Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath m
 
 ## Kebebasan Linear Vektor Eigen
 
-Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> adalah nilai eigen <InlineMath math="A" /> yang berbeda secara berpasangan, sehingga <InlineMath math="\lambda_i \neq \lambda_j" /> setiap kali <InlineMath math="i \neq j" />. Vektor eigen yang bersesuaian <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> bersifat bebas linear.
+Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> adalah nilai eigen <InlineMath math="A" /> yang **berbeda secara berpasangan**, sehingga <InlineMath math="\lambda_i \neq \lambda_j" /> setiap kali <InlineMath math="i \neq j" />. Vektor eigen yang bersesuaian <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> bersifat bebas linear.
 
 Dengan induksi matematika, teorema ini menunjukkan bahwa matriks <InlineMath math="n \times n" /> memiliki paling banyak <InlineMath math="n" /> nilai eigen yang berbeda.
 
@@ -113,15 +117,15 @@ Ketujuh sifat berikut semuanya mengikuti definisi <InlineMath math="E_A(\lambda)
 
 ## Hubungan dengan Invertibilitas
 
-Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dapat diinversi jika dan hanya jika nol bukan salah satu nilai eigennya.
+Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dapat diinversi jika dan hanya jika **nol bukan salah satu** nilai eigennya.
 
-Memang, <InlineMath math="A" /> dapat diinversi jika dan hanya jika <InlineMath math="\operatorname{rank} A = n" />, yang ekuivalen dengan <InlineMath math="E_A(0) = \ker A = \{0\}" />.
+Memang, <InlineMath math="A" /> dapat diinversi jika dan hanya jika <InlineMath math="\operatorname{rank} A = n" />, yang ekuivalen dengan <InlineMath math="E_A(0) = \ker A = \{0\}" />. Nilai eigen nol berarti ada vektor tak nol yang dipetakan ke nol, sehingga transformasi tidak dapat dibalik.
 
 ### Nilai Eigen Matriks Invers
 
 Jika matriks <InlineMath math="A" /> dapat diinversi dan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, maka <InlineMath math="v" /> juga merupakan vektor eigen dari <InlineMath math="A^{-1}" /> untuk nilai eigen <InlineMath math="\frac{1}{\lambda}" />.
 
-Menerapkan <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" /> menghasilkan:
+**Menerapkan** <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" /> menghasilkan:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
@@ -137,4 +141,4 @@ Untuk matriks persegi <InlineMath math="A \in \mathbb{K}^{n \times n}" />, perny
 6. <InlineMath math="\det A \neq 0" />
 7. <InlineMath math="0" /> bukan nilai eigen dari <InlineMath math="A" />
 
-Salah satu kondisi tersebut sudah cukup untuk membuktikan bahwa matriks dapat diinversi.
+**Salah satu kondisi tersebut** sudah cukup untuk membuktikan bahwa matriks dapat diinversi.

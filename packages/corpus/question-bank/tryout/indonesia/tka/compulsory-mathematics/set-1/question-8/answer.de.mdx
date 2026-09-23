@@ -5,18 +5,76 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Teile den Zähler durch den Nenner, um den konstanten Anteil zu erkennen.
+#### Definitionsbereich und Asymptoten
 
-<BlockMath math="f(x)=2+\frac5{x-1}" />
+Schreibe den Zähler als <InlineMath math="2(x-1)+5" />. Diese Form zeigt die **Bedingung an den Nenner** und die Geraden, denen sich der Graph nähert.
 
-Der Nenner schließt <InlineMath math="x=1" /> aus. Der Bruch wird nie null, daher gehört <InlineMath math="y=2" /> nicht zum Wertebereich. Die Asymptoten <InlineMath math="x=1" /> und <InlineMath math="y=2" /> schneiden sich in <InlineMath math="(1,2)" />. Für <InlineMath math="x>1" /> ist der Bruch positiv, also gilt <InlineMath math="f(x)>2" />.
+<BlockMath math="f(x)=\frac{2(x-1)+5}{x-1}=2+\frac5{x-1}" />
 
-Auf jedem der Intervalle <InlineMath math="(-\infty,1)" /> und <InlineMath math="(1,\infty)" /> wird <InlineMath math="\frac1{x-1}" /> mit wachsendem <InlineMath math="x" /> kleiner. Der positive Faktor <InlineMath math="5" /> und die Addition von <InlineMath math="2" /> erhalten diese Monotonie. Löse für die Umkehrfunktion <InlineMath math="y=f(x)" /> nach <InlineMath math="x" /> auf.
+Der Definitionsbereich ist <InlineMath math="\mathbb R\setminus\{1\}" />. Nähert sich <InlineMath math="x" /> der Zahl eins, geht der Nenner gegen null, während der Zähler des Bruchs fünf bleibt. Daher ist <InlineMath math="x=1" /> eine senkrechte Asymptote. Mit wachsendem <InlineMath math="|x|" /> nähert sich der Bruch null. Deshalb ist <InlineMath math="y=2" /> eine waagerechte Asymptote. Die beiden Geraden schneiden sich in <InlineMath math="(1,2)" />.
+
+<LineEquation
+  title="Zwei Äste der gebrochenrationalen Funktion"
+  description="Die grauen Geraden sind Asymptoten. Rechts von x=1 liegt der Graph oberhalb von y=2, links davon unterhalb."
+  cameraPosition={[1, 2, 16]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-5, 0.25], [1.75, 7]].map(([start, end]) => ({
+      points: Array.from({ length: 121 }, (_, i) => {
+        const x = start + (end - start) * i / 120;
+        return { x, y: 2 + 5 / (x - 1), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+    })),
+    {
+      points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.4, 0] }],
+    },
+    {
+      points: [{ x: -5, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="y=2" />, at: 1, offset: [-0.5, 0.5, 0] }],
+    },
+  ]}
+/>
+
+#### Fallend auf jedem Intervall
+
+Für <InlineMath math="x>1" /> ist der Bruch <InlineMath math="5/(x-1)" /> positiv, also gilt <InlineMath math="f(x)>2" />. Der Graph besitzt **zwei getrennte Intervalle**: <InlineMath math="(-\infty,1)" /> und <InlineMath math="(1,\infty)" />. Wähle <InlineMath math="a<b" /> innerhalb desselben Intervalls. Die Differenz der Funktionswerte lautet:
 
 <BlockMath math="\begin{aligned}
+f(b)-f(a)&=\frac5{b-1}-\frac5{a-1} \\
+&=\frac{5(a-1)-5(b-1)}{(a-1)(b-1)} \\
+&=\frac{5(a-b)}{(a-1)(b-1)}<0
+\end{aligned}" />
+
+Die beiden Faktoren im Nenner haben dasselbe Vorzeichen. Ihr Produkt ist daher positiv. Wegen <InlineMath math="a-b<0" /> ist der Zähler negativ. Somit gilt <InlineMath math="f(b)-f(a)<0" />: Die Funktion fällt auf jedem Intervall streng. Dabei werden die beiden Äste nicht zu einem einzigen Intervall zusammengefasst.
+
+#### Umkehrfunktion bestimmen
+
+Für die **Umkehrfunktion** setzt du <InlineMath math="y=f(x)" /> und löst nach <InlineMath math="x" /> auf. Der Bruch <InlineMath math="5/(x-1)" /> wird nie null, also gilt <InlineMath math="y\ne2" />.
+
+<BlockMath math="\begin{aligned}
+y&=\frac{2x+3}{x-1} \\
 y(x-1)&=2x+3 \\
+xy-y&=2x+3 \\
+xy-2x&=y+3 \\
 x(y-2)&=y+3 \\
 x&=\frac{y+3}{y-2}
 \end{aligned}" />
 
-Damit gilt <InlineMath math="f^{-1}(x)=\frac{x+3}{x-2}" /> für <InlineMath math="x\ne2" />. Die Aussagen über den Asymptotenschnittpunkt, die Monotonie, die Werte rechts der Asymptote und die Umkehrfunktion sind richtig. Der Wert <InlineMath math="f(1)" /> ist nicht definiert.
+Jedes <InlineMath math="y\ne2" /> liefert <InlineMath math="x=1+5/(y-2)\ne1" />. Zum Wertebereich gehören daher alle reellen Zahlen außer zwei. Benenne die Variablen um, um die Umkehrfunktion anzugeben:
+
+<BlockMath math="f^{-1}(x)=\frac{x+3}{x-2},\qquad x\ne2" />
+
+Die Aussagen über den Asymptotenschnittpunkt, die Monotonie, die Werte rechts der Asymptote und die Umkehrfunktion stimmen. Die Aussage <InlineMath math="f(1)=0" /> ist falsch: Die Division durch null macht <InlineMath math="f(1)" /> undefiniert.

@@ -10,35 +10,43 @@ export const metadata = {
 
 ## Repeating Motion and Angle Measurement
 
-<Highlight>Ocean waves rise and fall in a repeating pattern.</Highlight> Trigonometric functions can model this kind of periodic motion.
+Motion that **repeats regularly** can be modeled with sine or cosine. Such a model describes an ideal wave, rather than every change in ocean water.
 
 Before studying trigonometric function graphs, we need to understand angle measurement in radians. In daily life, we are accustomed to using degrees. However, in advanced mathematics, radians are more frequently used.
 
 ## Converting Degrees and Radians
 
-One complete rotation of a circle is <InlineMath math="360^\circ" /> or <InlineMath math="2\pi" /> radians. This relationship gives us conversion formulas:
+**One complete rotation** of a circle is <InlineMath math="360^\circ" /> or <InlineMath math="2\pi" /> radians. This relationship gives us conversion formulas:
 
 <MathContainer>
-  <BlockMath math="180^\circ = \pi \text{ radians}" />
-  <BlockMath math="1^\circ = \frac{\pi}{180} \text{ radians}" />
-  <BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57.3^\circ" />
+
+<BlockMath math="180^\circ = \pi \text{ radians}" />
+
+<BlockMath math="1^\circ = \frac{\pi}{180} \text{ radians}" />
+
+<BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57.3^\circ" />
 </MathContainer>
 
 ### Conversion Examples
 
-Converting degrees to radians:
+Converting **degrees to radians**:
 
 <MathContainer>
-  <BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radians}" />
-  <BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ radians}" />
-  <BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ radians}" />
+
+<BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radians}" />
+
+<BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ radians}" />
+
+<BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ radians}" />
 </MathContainer>
 
 Converting radians to degrees:
 
 <MathContainer>
-  <BlockMath math="\frac{\pi}{6} \text{ radians} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
-  <BlockMath math="\frac{3\pi}{4} \text{ radians} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
+
+<BlockMath math="\frac{\pi}{6} \text{ radians} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
+
+<BlockMath math="\frac{3\pi}{4} \text{ radians} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
 </MathContainer>
 
 ## Amplitude and Period of a Sine Graph
@@ -59,7 +67,7 @@ Amplitude is <Highlight>the maximum vertical distance from a sinusoid's midline<
         const x = (i / 99) * 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <>Amplitude = <InlineMath math="2" /></>, at: 25, offset: [0, 0.5, 0] }],
       showPoints: false,
     },
@@ -73,12 +81,14 @@ Amplitude is <Highlight>the maximum vertical distance from a sinusoid's midline<
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  cameraPosition={[Math.PI, 0, 10]}
+  cameraTarget={[Math.PI, 0, 0]}
 />
 
 ### Period
 
-Period is the length of interval needed for one complete cycle. For functions <InlineMath math="y = \sin(Bx)" /> or <InlineMath math="y = \cos(Bx)" />, the period is <InlineMath math="\frac{2\pi}{|B|}" />.
+**Period** is the length of interval needed for one complete cycle. For functions <InlineMath math="y = \sin(Bx)" /> or <InlineMath math="y = \cos(Bx)" />, the period is <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Period Concept"
@@ -114,27 +124,20 @@ Period is the length of interval needed for one complete cycle. For functions <I
       ],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  showZAxis={false}
+  cameraPosition={[2*Math.PI, 0, 16]}
+  cameraTarget={[2*Math.PI, 0, 0]}
 />
 
 ### Amplitude and Period from the Coefficients
 
-In the form <InlineMath math="y = A \sin(Bx)" />, the factor <InlineMath math="A" /> sets the amplitude and the factor <InlineMath math="B" /> sets the period. The formulas below give both quantities from those two coefficients. Sine and cosine keep a defined amplitude, while tangent has none because its values are unbounded.
+For the formulas below, take <InlineMath math="A\neq0" /> and <InlineMath math="B\neq0" />. Amplitude uses the **absolute value**, while the fundamental period is the smallest positive repeat distance. If either coefficient is zero in sine or cosine, the function is constant and has no smallest positive period.
 
-- <InlineMath math="y = A \sin(Bx)" /> and <InlineMath math="y = A \cos(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \sin(Bx)" />
-    <BlockMath math="y = A \cos(Bx)" />
-  </MathContainer>
-
-- <InlineMath math="y = A \tan(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \tan(Bx)" />
-    <BlockMath math="\text{Amplitude} = \text{undefined}" />
-    <BlockMath math="\text{Period} = \frac{\pi}{|B|}" />
-  </MathContainer>
+| Function | Amplitude | Period |
+| --- | --- | --- |
+| <InlineMath math="A\sin(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\cos(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\tan(Bx)" /> | Undefined | <InlineMath math="\pi/\lvert B\rvert" /> |
 
 ## Sine Function Graph
 
@@ -151,25 +154,25 @@ The function <InlineMath math="y = \sin x" /> is periodic with period <InlineMat
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Graph characteristics:** <InlineMath math="y = \sin x" />
+**Graph characteristics**: <InlineMath math="y = \sin x" />
 
 - **Period**: <InlineMath math="2\pi" /> (graph repeats every <InlineMath math="2\pi \text{ units}" />)
 - **Amplitude**: <InlineMath math="1" /> (maximum value minus minimum value, then divided by <InlineMath math="2" />)
 - **Domain**: All real numbers
 - **Range**: <InlineMath math="[-1, 1]" />
-- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = n\pi" /> where <InlineMath math="n" /> is an integer
+- Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="x = n\pi" /> where <InlineMath math="n" /> is an integer
 - **Maximum value**: <InlineMath math="1" /> at <InlineMath math="x = \frac{\pi}{2} + 2n\pi" />
 - **Minimum value**: <InlineMath math="-1" /> at <InlineMath math="x = \frac{3\pi}{2} + 2n\pi" />
 
@@ -188,8 +191,7 @@ The function <InlineMath math="y = \cos x" /> has a shape similar to sine, but s
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -197,22 +199,23 @@ The function <InlineMath math="y = \cos x" /> has a shape similar to sine, but s
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Graph characteristics:** <InlineMath math="y = \cos x" />
+**Graph characteristics**: <InlineMath math="y = \cos x" />
 
 - **Period**: <InlineMath math="2\pi" />
 - **Amplitude**: <InlineMath math="1" />
 - **Domain**: All real numbers
 - **Range**: <InlineMath math="[-1, 1]" />
-- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
 - **Maximum value**: <InlineMath math="1" /> at <InlineMath math="x = 2n\pi" />
 - **Minimum value**: <InlineMath math="-1" /> at <InlineMath math="x = \pi + 2n\pi" />
 
 ### Comparison of Sin and Cos
 
-Both curves repeat after a full turn and differ by a horizontal shift. Compare the peaks and the zero crossings of the two curves in the same view.
+Both curves repeat after a full turn and differ by a **horizontal shift**. Compare the peaks and the zero crossings of the two curves in the same view.
 
 <LineEquation
   title={<>Comparison of <InlineMath math="\sin" /> and <InlineMath math="\cos" /> Graphs</>}
@@ -225,19 +228,17 @@ Both curves repeat after a full turn and differ by a horizontal shift. Compare t
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -245,6 +246,7 @@ Both curves repeat after a full turn and differ by a horizontal shift. Compare t
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
@@ -261,12 +263,12 @@ The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\si
   description="The red vertical lines mark the asymptotes."
   data={[
     // Tangent function
-    ...Array.from({ length: 11 }, (_, periodIndex) => {
-      const offset = (periodIndex - 5) * Math.PI;
+    ...Array.from({ length: 3 }, (_, periodIndex) => {
+      const offset = (periodIndex - 1) * Math.PI;
       return {
         smooth: false,
         points: (() => {
-          const parameters = Array.from({ length: 641 }, (_, i) => (i - 320) / 64);
+          const parameters = Array.from({ length: 321 }, (_, i) => (i - 160) / 64);
           parameters.push(0.02885536458803665);
           return parameters
             .sort((a, b) => a - b)
@@ -278,46 +280,45 @@ The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\si
         })(),
         color: "#059669",
         labels:
-          periodIndex === 5
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 322, offset: [2, 0.5, 0] }]
+          periodIndex === 1
+            ? [{ text: <InlineMath math="y=\tan x" />, at: 162, offset: [2, 0.5, 0] }]
             : [],
         showPoints: false,
       };
     }),
     // Vertical asymptotes
-    ...Array.from({ length: 12 }, (_, i) => {
-      const x = (i - 5) * Math.PI - Math.PI / 2;
+    ...Array.from({ length: 4 }, (_, i) => {
+      const x = (i - 1) * Math.PI - Math.PI / 2;
       return {
-        points: [{ x, y: -80, z: 0 }, { x, y: 5, z: 0 }, { x, y: 80, z: 0 }],
+        points: [{ x, y: -6, z: 0 }, { x, y: 5, z: 0 }, { x, y: 6, z: 0 }],
         smooth: false,
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 6 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 2 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Graph characteristics:** <InlineMath math="y = \tan x" />
+**Graph characteristics**: <InlineMath math="y = \tan x" />
 
 - **Period**: <InlineMath math="\pi" /> (shorter than <InlineMath math="\sin" /> and <InlineMath math="\cos" />)
 - **Amplitude**: Undefined
 - **Domain**: <InlineMath math="x \neq \frac{\pi}{2} + n\pi" />
 - **Range**: All real numbers
 - **Vertical asymptotes**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
-- **Intercepts on the <InlineMath math="x" />-axis**: <InlineMath math="x = n\pi" />
+- Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="x = n\pi" />
 
 ## Transformations of Trigonometric Functions
 
-Each parameter acts at a different place in the equation, so one feature of the curve changes at a time. The examples show that effect on a graph.
-
-Amplitude, period, and phase shift each change the curve in its own way.
+Changes in **amplitude, period, and midline position** can be read from the coefficients. When changing one coefficient, compare the peaks and zeros to see the effect on the curve.
 
 ### Amplitude Changes
 
-The function <InlineMath math="y = A \sin x" /> changes the amplitude to <InlineMath math="|A|" />.
+The function <InlineMath math="y = A \sin x" /> changes the **amplitude** to <InlineMath math="|A|" />.
 
 <LineEquation
   title="Effect of Amplitude"
@@ -330,19 +331,17 @@ The function <InlineMath math="y = A \sin x" /> changes the amplitude to <Inline
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
@@ -352,8 +351,7 @@ The function <InlineMath math="y = A \sin x" /> changes the amplitude to <Inline
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
@@ -361,12 +359,13 @@ The function <InlineMath math="y = A \sin x" /> changes the amplitude to <Inline
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Period Changes
 
-The function <InlineMath math="y = \sin(Bx)" /> changes the period to <InlineMath math="\frac{2\pi}{|B|}" />.
+The function <InlineMath math="y = \sin(Bx)" /> changes the **period** to <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Effect of Period"
@@ -379,19 +378,17 @@ The function <InlineMath math="y = \sin(Bx)" /> changes the period to <InlineMat
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 1109 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 1108) * 4 * Math.PI;
         return { x, y: Math.sin(2 * x), z: 0 };
       }),
       color: "#e11d48",
@@ -401,8 +398,7 @@ The function <InlineMath math="y = \sin(Bx)" /> changes the period to <InlineMat
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: Math.sin(0.5 * x), z: 0 };
       }),
       color: "#059669",
@@ -410,16 +406,19 @@ The function <InlineMath math="y = \sin(Bx)" /> changes the period to <InlineMat
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Vertical and Horizontal Shifts
 
+This form separates **shifts inside and outside the function**. Its midline is <InlineMath math="y=D" />, which need not be the horizontal axis.
+
 General form:
 
 <BlockMath math="y = A \sin(B(x - C)) + D" />
 
-- <InlineMath math="A" />: Amplitude
+- <InlineMath math="|A|" />: Amplitude
 - <InlineMath math="B" />: Affects period (
   <InlineMath math="\text{period} = \frac{2\pi}{|B|}" />)
 - <InlineMath math="C" />: Horizontal shift (phase)
@@ -439,19 +438,17 @@ Notice the horizontal and vertical shifts of the graph:
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x - Math.PI / 4) + 1, z: 0 };
       }),
       color: "#e11d48",
@@ -461,12 +458,13 @@ Notice the horizontal and vertical shifts of the graph:
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ## Exercises
 
-The five problems below apply the period, amplitude, and shift rules to graphs you sketch yourself. Work each one before the answer key, then check how your sketches and equations compare with the recorded answers.
+The five problems below apply the **period**, amplitude, and shift rules to graphs you sketch yourself. Work each one before the answer key, then check how your sketches and equations compare with the recorded answers.
 
 1. Convert the following angles:
 
@@ -497,35 +495,71 @@ The five problems below apply the period, amplitude, and shift rules to graphs y
    - Shifted <InlineMath math="\frac{\pi}{4}" /> to the right
    - Shifted <InlineMath math="2 \text{ units}" /> up
 
-### Answer Key
+### Angle Conversion
 
-1. Angle conversion:
+Convert units using the appropriate **conversion factor**.
 
-   - <InlineMath math="120^\circ = 120 \times \frac{\pi}{180} = \frac{2\pi}{3}" /> radians
-   - <InlineMath math="\frac{5\pi}{6} = \frac{5\pi}{6} \times \frac{180}{\pi} = 150^\circ" />
+- <InlineMath math="120^\circ\cdot\frac{\pi\,\mathrm{rad}}{180^\circ}=\frac{2\pi}{3}\,\mathrm{rad}" />
+- <InlineMath math="\frac{5\pi}{6}\,\mathrm{rad}\cdot\frac{180^\circ}{\pi\,\mathrm{rad}}=150^\circ" />
 
-2. Period and amplitude:
+One full turn is three hundred sixty degrees or two pi radians. Their ratio equals one, so multiplying by the conversion factor changes the unit while preserving the angle.
 
-   - <InlineMath math="y = 3 \sin(2x)" />: amplitude <InlineMath math="3" />, period <InlineMath math="\frac{2\pi}{2} = \pi" />
-   - <InlineMath math="y = -2 \cos(\frac{x}{3})" />: amplitude <InlineMath math="2" />, period <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
+### Amplitude and Period
 
-3. For <InlineMath math="y = 2 \sin(x + \frac{\pi}{3}) - 1" />:
+Use the **absolute value of the coefficient** for amplitude. The negative sign reflects the cosine curve. It does not make its amplitude negative.
 
-   - Amplitude: <InlineMath math="2" />
-   - Period: <InlineMath math="2\pi" />
-   - Phase shift: <InlineMath math="\frac{\pi}{3}" /> to the left
-   - Vertical shift: <InlineMath math="1 \text{ unit}" /> down
+- <InlineMath math="y = 3 \sin(2x)" />: amplitude <InlineMath math="3" />, period <InlineMath math="\frac{2\pi}{2} = \pi" />
+- <InlineMath math="y = -2 \cos(\frac{x}{3})" />: amplitude <InlineMath math="2" />, period <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
 
-4. For <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5" />:
+For the second curve, the input coefficient is one third. The cosine argument needs an input increase of six pi to advance by two pi, so its period is three times the basic cosine period.
 
-   - Maximum height: <InlineMath math="5 + 2 = 7 \text{ meters}" />
-   - Minimum height: <InlineMath math="5 - 2 = 3 \text{ meters}" />
-   - Period: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ hours}" />
+<BlockMath math="\frac{T}{3}=2\pi \quad\Rightarrow\quad T=6\pi" />
 
-5. Equation that satisfies the requirements:
+### Sketching a Shifted Curve
 
-   <BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+Writing <InlineMath math="x+\pi/3=x-(-\pi/3)" /> shows the **shift to the left**. These five points define one complete cycle:
 
-   or
+- Amplitude: <InlineMath math="2" />
+- Period: <InlineMath math="2\pi" />
+- Phase shift: <InlineMath math="\frac{\pi}{3}" /> to the left
+- Vertical shift: <InlineMath math="1 \text{ unit}" /> down
 
-   <BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />
+| <InlineMath math="x" /> | <InlineMath math="-\pi/3" /> | <InlineMath math="\pi/6" /> | <InlineMath math="2\pi/3" /> | <InlineMath math="7\pi/6" /> | <InlineMath math="5\pi/3" /> |
+| --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+
+<LineEquation
+  title="Sketching One Cycle"
+  description="The marked points show the midline, peak, and trough after the shifts."
+  data={[
+    { points: Array.from({length: 161}, (_, i) => { const x = -Math.PI / 3 + i * 2 * Math.PI / 160; return {x, y: 2 * Math.sin(x + Math.PI / 3) - 1, z: 0}; }), smooth: false, showPoints: false, color: "#9333ea" },
+    ...[{x: -Math.PI/3,y:-1,z:0},{x:Math.PI/6,y:1,z:0},{x:2*Math.PI/3,y:-1,z:0},{x:7*Math.PI/6,y:-3,z:0},{x:5*Math.PI/3,y:-1,z:0}].map((point) => ({points:[point],showPoints:true,color:"#ea580c"}))
+  ]}
+  showZAxis={false}
+  cameraPosition={[2,-1,11]}
+  cameraTarget={[2,-1,0]}
+/>
+
+### A Tidal Model
+
+The water level oscillates about a **midline** of five meters, with a maximum displacement of two meters.
+
+- Maximum height: <InlineMath math="5 + 2 = 7 \text{ meters}" />
+- Minimum height: <InlineMath math="5 - 2 = 3 \text{ meters}" />
+- Period: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ hours}" />
+
+Sine lies between negative one and one, so this model always gives heights between three and seven meters. A period is the time required for the sine argument to increase by two pi.
+
+<BlockMath math="\frac{\pi}{6}T=2\pi \quad\Rightarrow\quad T=12" />
+
+### Building the Equation
+
+Find the frequency coefficient from the **given period**, then place the horizontal shift inside the parentheses.
+
+<BlockMath math="2\pi/B=\pi\;\Rightarrow\;B=2" />
+
+<BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+
+Expanding the argument gives the equivalent form:
+
+<BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />

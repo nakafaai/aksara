@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Linear Equation Systems",
   description: "Solve linear equation systems with substitution and elimination, then interpret worked examples and visual models.",
@@ -15,7 +13,7 @@ A total price can be produced by many different item combinations. Additional in
 
 ### Linear Equation System
 
-A linear equation system is a collection of two or more linear equations that must be satisfied simultaneously. Each linear equation has the form:
+A linear equation system is a collection of two or more linear equations that must be **satisfied simultaneously**. Each linear equation has the form:
 
 <BlockMath math="a_1x_1 + a_2x_2 + \ldots + a_nx_n = b" />
 
@@ -23,7 +21,7 @@ Here <InlineMath math="a_1, a_2, \ldots, a_n" /> are coefficients, <InlineMath m
 
 ### Two Variable Linear Equation Systems
 
-A two-variable linear equation system consists of two equations with two variables (usually <InlineMath math="x" /> and <InlineMath math="y" />). The general form is:
+A system with two variables, usually <InlineMath math="x" /> and <InlineMath math="y" />, can contain any number of equations. A system with two equations has the form:
 
 <BlockMath math="\begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases}" />
 
@@ -45,7 +43,7 @@ A system may contain any number of equations. To determine unique values for <In
 
 ## Solving Linear Equation Systems
 
-A linear equation system is solved by removing one variable at a time until a single value remains. Substitution and elimination each remove one variable, and both routes work on the same kind of system. Compare at the end when each one is the shorter route.
+A linear equation system is solved by **removing one variable** at a time until a single value remains. Substitution and elimination each remove one variable, and both routes work on the same kind of system. Compare at the end when each one is the shorter route.
 
 ### Substitution Method
 
@@ -120,13 +118,13 @@ Verify:
 
 ## Check Your Understanding
 
-Solve the system:
+Find the **pair that satisfies both equations**:
 
 <BlockMath math="\begin{cases} 3x+2y=16 \\ x-y=2 \end{cases}" />
 
 ### Worked Solution
 
-The second equation gives <InlineMath math="x=y+2" />. Substitute this expression into the first equation:
+The second equation gives <InlineMath math="x=y+2" />. **Substitute this expression** into the first equation:
 
 <MathContainer>
   <BlockMath math="3(y+2)+2y=16" />
@@ -150,31 +148,15 @@ The solution is <InlineMath math="(x,y)=(4,2)" />.
 
 ## Linear Equation Systems in Context
 
-Applied systems start from a word problem. The description has to be translated into equations before any method is applied, and the solution has to be checked against the original question.
-
-### Turning a Word Problem into a Linear System
-
-To turn the quantities and relationships in a word problem into a linear equation system:
-
-1. Identify the variables to use
-2. Create a mathematical model based on the available information
-3. Check if the model is a linear equation system
-4. Solve the model using an appropriate method
-5. Interpret the solution in the context of the original problem
+Applied systems start from a word problem. The description has to be **translated into equations** before any method is applied, and the solution has to be checked against the original question.
 
 ### Basketball Scoring
 
-In basketball, there are three types of shots with different point values: free throws (<InlineMath math="1" /> point), two-point shots (<InlineMath math="2" /> points), and three-point shots (<InlineMath math="3" /> points).
+In five-on-five basketball, a successful free throw scores one point. A successful shot from the two-point area scores two points, and one from the three-point area scores three.
 
-Define:
+Wijaya scores 27 points from **16 successful shots**, including six free throws. Missed shots are not counted in this problem. Let <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> be the numbers of successful one-, two-, and three-point shots respectively. Each variable is a nonnegative integer.
 
-- <InlineMath math="a" /> = number of <InlineMath math="1" />-point shots
-- <InlineMath math="b" /> = number of <InlineMath math="2" />-point shots
-- <InlineMath math="c" /> = number of <InlineMath math="3" />-point shots
-
-If Wijaya scored <InlineMath math="27" /> points, made <InlineMath math="16" /> shots total with <InlineMath math="6" /> of them being free throws, then:
-
-The equations represent total points, total shots, and free throws, respectively:
+Translate the **total points**, **successful shots**, and **successful free throws** into three equations:
 
 <BlockMath math="\begin{cases}a+2b+3c=27\\a+b+c=16\\a=6\end{cases}" />
 
@@ -196,26 +178,27 @@ From these two equations:
 
 <BlockMath math="\begin{cases} 2b + 3c = 21 \\ b + c = 10 \end{cases}" />
 
-Using elimination or substitution, we get <InlineMath math="b = 9" /> and <InlineMath math="c = 1" />.
+Multiply the second equation by two, then subtract it from the first to **eliminate the two-point shot count**:
+
+<BlockMath math="\begin{aligned}(2b+3c)-2(b+c)&amp;=21-20\\c&amp;=1\\b&amp;=10-1=9\end{aligned}" />
 
 Wijaya made <InlineMath math="6" /> free throws, <InlineMath math="9" /> <InlineMath math="2" />-point shots, and <InlineMath math="1" /> <InlineMath math="3" />-point shot.
 
 ## Interpreting Solutions
 
-Linear equation systems have three possible solution types:
+For two equations that each represent a line, there are three possibilities. Intersecting lines have **one solution**, distinct parallel lines have no solution, and coincident lines have **infinitely many solutions**.
 
-1. **Exactly one solution**: When the lines intersect at a single point (or planes intersect at a single point)
-2. **No solution**: When the lines are parallel (or planes do not intersect)
-3. **Infinitely many solutions**: When the lines coincide (or planes intersect along a line or plane)
+In three dimensions, a linear equation with at least one nonzero variable coefficient represents a plane. The solution set is the **common intersection of all planes**. An intersection of two planes need not satisfy a third plane. For example, <InlineMath math="x=0" /> and <InlineMath math="y=0" /> intersect along the z-axis, but no point on that axis satisfies <InlineMath math="x+y=1" />.
 
-In three dimensions, one linear equation represents a plane. Two distinct nonparallel planes intersect in a line. For three or more planes, the common solution set may be a point, a line, a plane, or empty.
+For three or more planes, the common intersection can be a point, a line, a plane, or empty.
 
 ### Visualizing Linear Equation Systems
 
-The scenes below show two line configurations and how the number of common points decides the number of solutions.
+The scenes below show three line configurations and how the number of **common points** decides the number of solutions.
 
 <ContentStack>
   <LineEquation
+    showZAxis={false}
     title="Linear Equation System with One Solution"
     description="Two lines intersecting at a single point."
     data={[
@@ -244,6 +227,7 @@ The scenes below show two line configurations and how the number of common point
     cameraPosition={[7, 2.5, 13]}
   />
   <LineEquation
+    showZAxis={false}
     title="Linear Equation System with No Solution"
     description="Two parallel lines (no intersection)."
     data={[
@@ -270,6 +254,7 @@ The scenes below show two line configurations and how the number of common point
     ]}
   />
   <LineEquation
+    showZAxis={false}
     title="Linear Equation System with Infinitely Many Solutions"
     description={
       <>

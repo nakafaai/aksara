@@ -5,26 +5,47 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Waktu pengosongan bak ditentukan oleh dua hal: volume air dalam bak penuh dan debit gabungan ketiga keran.
+Waktu pengosongan bak ditentukan oleh dua hal: **volume air** dalam bak penuh dan **debit gabungan** ketiga keran.
 
 #### Menentukan volume air
 
-Bak berbentuk kubus dengan panjang rusuk <InlineMath math="4\text{ dm}" />:
+Bak berbentuk kubus dengan **panjang rusuk** <InlineMath math="4\text{ dm}" />:
 
-<BlockMath math="\begin{aligned} V &= s^3 \\ &= 4 \times 4 \times 4 \\ &= 64\text{ dm}^3 \end{aligned}" />
+<BlockMath math="\begin{aligned} V &amp;= s^3 \\ &amp;= 4 \times 4 \times 4 \\ &amp;= 64\text{ dm}^3 \end{aligned}" />
 
 Karena <InlineMath math="1\text{ dm}^3 = 1\text{ liter}" />, bak penuh tersebut berisi <InlineMath math="64\text{ liter}" /> air.
 
+<MathVisual
+  title="Bak kubus sebelum dikosongkan"
+  description="Ketiga rusuk tegak lurus sama-sama 4 dm. Kalikan panjang, lebar, dan tinggi untuk mendapatkan 64 dm kubik, sama dengan 64 liter."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 2, y: 2, z: 2 } },
+    objects: [{ id: "tank", kind: "cuboid", center: { x: 2, y: 2, z: 2 }, size: { length: 4, width: 4, height: 4 }, appearance: "primary" }],
+    labels: [
+      { key: "length", objectId: "tank", at: { x: 2, y: 0, z: 4 }, placement: "below-left" },
+      { key: "height", objectId: "tank", at: { x: 4, y: 2, z: 4 }, placement: "right" },
+      { key: "width", objectId: "tank", at: { x: 4, y: 0, z: 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    length: <InlineMath math="4\text{ dm}" />,
+    height: <InlineMath math="4\text{ dm}" />,
+    width: <InlineMath math="4\text{ dm}" />,
+  }}
+/>
+
 #### Menjumlahkan debit keran
 
-Ketiga keran mengalirkan air pada saat yang sama, sehingga debitnya dijumlahkan:
+Ketiga keran mengalirkan air **pada saat yang sama**, sehingga debitnya dijumlahkan:
 
-<BlockMath math="\begin{aligned} Q &= Q_1 + Q_2 + Q_3 \\ Q &= 4 + 3 + 1 \\ Q &= 8 \text{ liter/menit} \end{aligned}" />
+<BlockMath math="\begin{aligned} Q &amp;= Q_1 + Q_2 + Q_3 \\ Q &amp;= 4 + 3 + 1 \\ Q &amp;= 8 \text{ liter/menit} \end{aligned}" />
 
 #### Menentukan waktu pengosongan
 
-Bagilah volume air dengan debit gabungan:
+Bagilah **volume air dengan debit gabungan**:
 
-<BlockMath math="\begin{aligned} t &= \frac{V}{Q} \\ &= \frac{64}{8} \\ &= 8\text{ menit} \end{aligned}" />
+<BlockMath math="\begin{aligned} t &amp;= \frac{V}{Q} \\ &amp;= \frac{64}{8} \\ &amp;= 8\text{ menit} \end{aligned}" />
 
 Jadi, bak akan kosong setelah <InlineMath math="8\text{ menit}" />.

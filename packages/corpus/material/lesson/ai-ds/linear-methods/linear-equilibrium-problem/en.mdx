@@ -13,7 +13,7 @@ Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in
 
 <BlockMath math="Ax=b" />
 
-If <InlineMath math="b" /> does not belong to the column space of <InlineMath math="A" />, this system has no exact solution. This commonly happens when a model is fitted to <Highlight>noisy measurements</Highlight> or when <Highlight>an overdetermined system has more independent equations than unknowns</Highlight>.
+If <InlineMath math="b" /> does not belong to the column space of <InlineMath math="A" />, this system has no exact solution. This commonly happens when a model is fitted to <Highlight>noisy measurements</Highlight> or when an overdetermined system contains more equations than unknowns and those equations are inconsistent.
 
 If no vector <InlineMath math="x" /> satisfies <InlineMath math="Ax=b" /> exactly, define the residual
 
@@ -38,11 +38,13 @@ The vector <InlineMath math="A\hat{x}" /> is the point in <InlineMath math="\ope
 <BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
 </MathContainer>
 
-The second equation is called the **normal equation**.
+The second equation is called the **[normal equation](/en/subjects/ai-ds/linear-methods/normal-equation)**.
 
 <LineEquation
   title="Orthogonal projection in a least-squares problem"
   description={<>The blue vector ends at <InlineMath math="A\hat{x}" />, the orange vector ends at <InlineMath math="b" />, and the purple vector is the residual <InlineMath math="A\hat{x}-b" />.</>}
+  cameraPosition={[9, 8, 12]}
+  cameraTarget={[1.5, 1.5, 3]}
   data={[
     {
       points: [
@@ -104,7 +106,7 @@ The objective function for this example is
 <BlockMath math="\begin{aligned} F'(x) &amp;=2(x-1)+2(x-2) \\ &amp;\quad+2(x-6) \\ &amp;=6x-18 \end{aligned}" />
 </MathContainer>
 
-Setting the derivative to zero gives <InlineMath math="\hat{x}=3" />. The fitted vector and residual are
+Setting the **derivative to zero** gives <InlineMath math="\hat{x}=3" />. The fitted vector and residual are
 
 <MathContainer>
 <BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
@@ -119,7 +121,7 @@ The zero result satisfies the normal equation.
 
 ## Other residual norms
 
-The norm determines what kind of error the fit prioritizes.
+The norm determines what **kind of error** the fit prioritizes.
 
 | Objective | What it controls |
 | --- | --- |
@@ -129,9 +131,17 @@ The norm determines what kind of error the fit prioritizes.
 
 The <InlineMath math="\ell_1" /> and <InlineMath math="\ell_\infty" /> formulations can be rewritten as linear programs. Their suitability still depends on the data-generating process and the error criterion that matters for the application.
 
+For the same observations 1, 2, and 6, the norm changes the fitted constant. Least squares chooses the mean, absolute loss chooses the median, and the smallest maximum error balances distances to the two extremes.
+
+| Criterion | Optimal constant | Minimum objective |
+|---|---|---|
+| <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
+| <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
+| <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
 ## Choosing a Stable Numerical Method
 
-If <InlineMath math="A" /> has full column rank, the least-squares minimizer is unique. The normal equation then implies
+If <InlineMath math="A" /> has **full column rank**, the least-squares minimizer is unique. The normal equation then implies
 
 <BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
@@ -143,6 +153,6 @@ This identity characterizes the unique minimizer when <InlineMath math="A" /> ha
 
 There is also a precise statistical interpretation. Consider the following model.
 
-<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I),\quad \sigma^2>0" />
 
 If <InlineMath math="A" /> is fixed and the Gaussian errors are independent with common variance, least squares gives the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated errors or errors with unequal variance require weights that reflect the error covariance.

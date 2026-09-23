@@ -15,118 +15,146 @@ To specify the position of an object, such as an aircraft in flight, we first ne
 
 The Cartesian Coordinate System uses perpendicular axes to determine the location of a point.
 
-- In **two dimensions**, we use the <InlineMath math="x" /> axis (horizontal) and <InlineMath math="y" /> axis (vertical). A point's position is expressed as an ordered pair <InlineMath math="(x, y)" />, for example, point <InlineMath math="P(3, 4)" />.
+### A two dimensional plane
 
-  This means that point <InlineMath math="P" /> is located <InlineMath math="3 \text{ units}" /> to the right (positive <InlineMath math="x" /> axis) and <InlineMath math="4 \text{ units}" /> upward (positive <InlineMath math="y" /> axis) from the origin <InlineMath math="O(0, 0)" />.
+In **two dimensions**, we use the <InlineMath math="x" /> axis (horizontal) and <InlineMath math="y" /> axis (vertical). A point's position is expressed as an ordered pair <InlineMath math="(x, y)" />, for example, point <InlineMath math="P(3, 4)" />.
 
-  <VectorChart
-    title={
-      <>
-        Position Vector <InlineMath math="P(3, 4)" />
-      </>
-    }
-    description={
-      <>
-        Origin <InlineMath math="O(0, 0)" /> to point{" "}
-        <InlineMath math="P(3, 4)" />.
-      </>
-    }
-    vectors={[
-      {
-        id: "OP",
-        name: <InlineMath math="OP" />,
-        points: [
-          { x: 0, y: 0 },
-          { x: 3, y: 4 },
-        ],
-      },
-    ]}
-  />
+This means that point <InlineMath math="P" /> is located <InlineMath math="3 \text{ units}" /> to the right (positive <InlineMath math="x" /> axis) and <InlineMath math="4 \text{ units}" /> upward (positive <InlineMath math="y" /> axis) from the origin <InlineMath math="O(0, 0)" />.
 
-- In **three dimensions**, we add a <InlineMath math="z" /> axis that is perpendicular to the <InlineMath math="xy" /> plane. The coordinates <InlineMath math="(x, y, z)" /> give a point's position along all three axes. For example, they can specify an aircraft's position in three-dimensional space.
+<VectorChart
+  title={
+    <>
+      Position Vector <InlineMath math="P(3, 4)" />
+    </>
+  }
+  description={
+    <>
+      Origin <InlineMath math="O(0, 0)" /> to point{" "}
+      <InlineMath math="P(3, 4)" />.
+    </>
+  }
+  vectors={[
+    {
+      id: "OP",
+      name: <InlineMath math="OP" />,
+      points: [
+        { x: 0, y: 0 },
+        { x: 3, y: 4 },
+      ],
+    },
+  ]}
+/>
 
-  In one common spatial model, <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> can represent length, width, and height. The chosen model gives each axis its meaning.
+### Three dimensional space
 
-  <Vector3d
-    title={
-      <>
-        Position Vector <InlineMath math="P(3, 4, 5)" />
-      </>
-    }
-    description={
-      <>
-        Origin <InlineMath math="O(0, 0, 0)" /> to point{" "}
-        <InlineMath math="P(3, 4, 5)" />.
-      </>
-    }
-    vectors={[
-      {
-        from: [0, 0, 0],
-        to: [3, 4, 5],
-        color: "#9333ea",
-        label: <InlineMath math="P(3, 4, 5)" />,
-      },
-    ]}
-  />
+In **three dimensions**, we add a <InlineMath math="z" /> axis that is perpendicular to the <InlineMath math="xy" /> plane. The coordinates <InlineMath math="(x, y, z)" /> give a point's position along all three axes. For example, they can specify an aircraft's position in three-dimensional space.
+
+In one common spatial model, <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> can represent length, width, and height. The chosen model gives each axis its meaning.
+
+<LineEquation
+  cameraPosition={[7, 5, -5]}
+  cameraTarget={[1.5, 2, 2.5]}
+  title={
+    <>
+      Position Vector <InlineMath math="P(3, 4, 5)" />
+    </>
+  }
+  description={
+    <>
+      Origin <InlineMath math="O(0, 0, 0)" /> to point{" "}
+      <InlineMath math="P(3, 4, 5)" />.
+    </>
+  }
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 5 }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="P(3, 4, 5)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+  ]}
+/>
 
 ## Difference Between Vectors and Coordinates
 
-Coordinates identify the _position_ of a point relative to a coordinate system. A **vector**, by contrast, has both **magnitude** and **direction**. Imagine a fly traveling from point <InlineMath math="P(3, 4)" /> to point <InlineMath math="Q(-2, -8)" />. Its displacement can be represented by a vector.
+Coordinates identify the _position_ of a point relative to a coordinate system. A **nonzero vector**, by contrast, has both **magnitude** and **direction**. Imagine a fly traveling from point <InlineMath math="P(3, 4)" /> to point <InlineMath math="Q(-2, -8)" />. Its displacement can be represented by a vector.
 
-- **Position Vector:** A vector starting from the origin <InlineMath math="O(0, 0)" /> to a point <InlineMath math="P(x, y)" />. The position vector of <InlineMath math="P" /> is written as <InlineMath math="\overrightarrow{OP}" />.
+### Position Vector
 
-  Example: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+A vector **starting from the origin** <InlineMath math="O(0, 0)" /> to a point <InlineMath math="P(x, y)" />. The position vector of <InlineMath math="P" /> is written as <InlineMath math="\overrightarrow{OP}" />.
 
-- **Displacement Vector:** A vector connecting any two points, for example, from point <InlineMath math="P(x_P, y_P)" /> to point <InlineMath math="Q(x_Q, y_Q)" />. This vector is written as <InlineMath math="\overrightarrow{PQ}" /> and does not have to start at the origin.
+Example: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
 
-  Example: displacement vectors from <InlineMath math="P(3, 4)" /> to <InlineMath math="Q(-2, -8)" /> or from <InlineMath math="Q(-2, -8)" /> to <InlineMath math="R(1, 3)" />.
+<BlockMath math="\overrightarrow{OP}=P-O=(3-0,4-0)=(3,4)" />
 
-  <VectorChart
-    title="Displacement Vectors"
-    description={
-      <>
-        Displacement vectors from <InlineMath math="P" /> to{" "}
-        <InlineMath math="Q" /> or from <InlineMath math="Q" /> to{" "}
-        <InlineMath math="R" />
-      </>
-    }
-    vectors={[
-      {
-        id: "QR",
-        name: <InlineMath math="QR" />,
-        points: [
-          { x: -2, y: -8 },
-          { x: 1, y: 3 },
-        ],
-      },
-      {
-        id: "PQ",
-        name: <InlineMath math="PQ" />,
-        points: [
-          { x: 3, y: 4 },
-          { x: -2, y: -8 },
-        ],
-      },
-    ]}
-  />
+### Displacement Vector
+
+A vector connecting any two points, for example, from point <InlineMath math="P(x_P, y_P)" /> to point <InlineMath math="Q(x_Q, y_Q)" />. This vector is written as <InlineMath math="\overrightarrow{PQ}" /> and does not have to start at the origin.
+
+Example: displacement vectors from <InlineMath math="P(3, 4)" /> to <InlineMath math="Q(-2, -8)" /> or from <InlineMath math="Q(-2, -8)" /> to <InlineMath math="R(1, 3)" />.
+
+<VectorChart
+  title="Displacement Vectors"
+  description={
+    <>
+      Displacement vectors from <InlineMath math="P" /> to{" "}
+      <InlineMath math="Q" /> or from <InlineMath math="Q" /> to{" "}
+      <InlineMath math="R" />
+    </>
+  }
+  vectors={[
+    {
+      id: "QR",
+      name: <InlineMath math="QR" />,
+      points: [
+        { x: -2, y: -8 },
+        { x: 1, y: 3 },
+      ],
+    },
+    {
+      id: "PQ",
+      name: <InlineMath math="PQ" />,
+      points: [
+        { x: 3, y: 4 },
+        { x: -2, y: -8 },
+      ],
+    },
+  ]}
+/>
+
+Calculate displacement as **final coordinates minus initial coordinates**. For the two arrows in the diagram:
+
+<MathContainer>
+  <BlockMath math="\overrightarrow{PQ}=(-2-3,-8-4)=(-5,-12)" />
+  <BlockMath math="\overrightarrow{QR}=(1-(-2),3-(-8))=(3,11)" />
+</MathContainer>
+
+The first arrow moves <InlineMath math="5" /> units left and <InlineMath math="12" /> down. The second moves <InlineMath math="3" /> units right and <InlineMath math="11" /> up. The component signs describe the direction along each axis.
 
 ## Vector Notation
 
-Vectors can be written in several ways:
+The **horizontal or vertical arrangement** distinguishes row and column vectors. Bracket shape does not determine the difference. We can also write components as multiples of unit vectors.
 
-- **Row Vector:** Using regular parentheses.
+**Row Vector**: Components are arranged in one row.
 
-  Example: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+Example: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
 
-- **Column Vector:** Using square brackets or large parentheses.
+**Column Vector**: Components are arranged in one column.
 
-  For example:
+For example:
 
-  <BlockMath math="\overrightarrow{OP} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
+<BlockMath math="\overrightarrow{OP} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
 
-- **Unit Vector Notation for Three Dimensions:** Using a combination of unit vectors <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" />, and <InlineMath math="\mathbf{k}" /> which are aligned with the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes.
+**Unit Vector Notation for Three Dimensions**: Using a combination of unit vectors <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" />, and <InlineMath math="\mathbf{k}" /> which are aligned with the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes.
 
-  Example: a vector <InlineMath math="\overrightarrow{AB}" /> can be written as <InlineMath math="\mathbf{i} - 3\mathbf{j} - 4\mathbf{k}" />, meaning vector <InlineMath math="\overrightarrow{AB}" /> has a component of <InlineMath math="1" /> in the <InlineMath math="x" /> direction, <InlineMath math="-3" /> in the <InlineMath math="y" /> direction, and <InlineMath math="-4" /> in the <InlineMath math="z" /> direction.
+Example: a vector <InlineMath math="\overrightarrow{AB}" /> can be written as <InlineMath math="\mathbf{i} - 3\mathbf{j} - 4\mathbf{k}" />, meaning vector <InlineMath math="\overrightarrow{AB}" /> has a component of <InlineMath math="1" /> in the <InlineMath math="x" /> direction, <InlineMath math="-3" /> in the <InlineMath math="y" /> direction, and <InlineMath math="-4" /> in the <InlineMath math="z" /> direction.
 
 ## Coordinate Systems in Navigation
 

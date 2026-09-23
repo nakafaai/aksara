@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Am Berührpunkt senkrecht zum Radius
 
-Stell dir vor, du fährst mit dem Fahrrad auf einer kreisförmigen Bahn. Verlässt du die Bahn, ohne den Lenker zu drehen, folgt deine Richtung in diesem Moment der **Tangente**. Diese einzige Gerade verläuft durch den Berührpunkt.
+Stell dir vor, du bewegst dich auf einer kreisförmigen Bahn. Deine **momentane Bewegungsrichtung** verläuft entlang der Tangente am jeweiligen Punkt. Durch einen Punkt gehen viele Geraden, aber nur eine berührt den Kreis an dieser Stelle.
 
 Mathematisch trifft eine Tangente den Kreis in genau einem Punkt, dem **Berührpunkt**. Die Tangente steht immer **senkrecht** <Highlight>auf dem Radius zu diesem Punkt</Highlight>.
 
@@ -85,8 +85,8 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -148,7 +148,7 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
   cameraPosition={[0, 0, 12]}
 />
 
-Für den Kreis <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> und den Berührpunkt <InlineMath math="T(x_1,y_1)" /> gehen wir so vor.
+Für den Kreis <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> mit Mittelpunkt <InlineMath math="C(a,b)" /> und den Berührpunkt <InlineMath math="T(x_1,y_1)" /> gehen wir so vor.
 
 **Schritt 1**: Prüfe, ob <InlineMath math="T" /> auf dem Kreis liegt.
 
@@ -156,7 +156,7 @@ Für den Kreis <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> und den Berührpunkt <I
 
 **Schritt 2**: Der Radiusvektor ist ein Normalenvektor der Tangente.
 
-<BlockMath math="\vec{OT}=(x_1-a,\,y_1-b)" />
+<BlockMath math="\overrightarrow{CT}=(x_1-a,\,y_1-b)" />
 
 **Schritt 3**: Setze diesen Normalenvektor in die Geradengleichung durch <InlineMath math="T" /> ein.
 
@@ -216,8 +216,8 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -244,8 +244,8 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -415,8 +415,8 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -448,8 +448,8 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 4,
-          y: (points[1].y - points[0].y) * 4,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -557,7 +557,7 @@ Beide Geraden verlaufen durch <InlineMath math="B(2,6)" /> und berühren den Kre
 
 ## Übungen
 
-In jeder Aufgabe ist zu prüfen, ob eine gegebene Gerade den Kreis berührt und wo das geschieht. Nutze die Tangentialbedingung, um die Gerade zu prüfen, bevor du den Berührpunkt bestimmst.
+Prüfe, **welche Angaben die Tangenten bestimmen**. Ein Punkt auf dem Kreis legt eine Tangente fest. Eine Steigung bestimmt zwei parallele Tangenten, ein äußerer Punkt zwei Tangenten durch diesen Punkt. Bei Bedarf bestimmst du die Steigung aus der Parallelität oder dem rechten Winkel.
 
 1. Bestimme die Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> im Punkt <InlineMath math="(3, 4)" />.
 
@@ -569,92 +569,102 @@ In jeder Aufgabe ist zu prüfen, ob eine gegebene Gerade den Kreis berührt und 
 
 ### Ausführliche Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Der Kreis <InlineMath math="x^2 + y^2 = 25" /> hat den Mittelpunkt <InlineMath math="O(0,0)" /> und den Radius <InlineMath math="r=5" />. Der Berührpunkt ist <InlineMath math="T(3,4)" />.
+Der Kreis <InlineMath math="x^2 + y^2 = 25" /> hat den Mittelpunkt <InlineMath math="O(0,0)" /> und den Radius <InlineMath math="r=5" />. Der Berührpunkt ist <InlineMath math="T(3,4)" />.
 
-   Setze diese Werte in die Berührpunktform <InlineMath math="(x-a)(x_1-a)+(y-b)(y_1-b)=r^2" /> ein.
+Setze diese Werte in die Berührpunktform <InlineMath math="(x-a)(x_1-a)+(y-b)(y_1-b)=r^2" /> ein.
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(x-0)(3-0) + (y-0)(4-0) \\ &amp;= 25 \end{aligned}" />
-     <BlockMath math="3x + 4y = 25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-0)(3-0) + (y-0)(4-0) \\ &amp;= 25 \end{aligned}" />
+  <BlockMath math="3x + 4y = 25" />
+</MathContainer>
 
-   Daher lautet die Tangentengleichung <InlineMath math="3x + 4y = 25" />.
+Daher lautet die Tangentengleichung <InlineMath math="3x + 4y = 25" />.
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Eine Gerade parallel zu <InlineMath math="y = 2x + 5" /> hat die Steigung <InlineMath math="m = 2" />.
+Eine Gerade parallel zu <InlineMath math="y = 2x + 5" /> hat die Steigung <InlineMath math="m = 2" />.
 
-   Für den Kreis <InlineMath math="x^2 + y^2 = 16" /> mit <InlineMath math="r=4" /> verwenden wir:
+Für den Kreis <InlineMath math="x^2 + y^2 = 16" /> mit <InlineMath math="r=4" /> verwenden wir:
 
-   <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-   <MathContainer>
-     <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
-     <BlockMath math="y = 2x \pm 4\sqrt{5}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y = 2x \pm 4\sqrt{5}" />
+</MathContainer>
 
-   Daher gibt es zwei Tangenten: <InlineMath math="y = 2x + 4\sqrt{5}" /> und <InlineMath math="y = 2x - 4\sqrt{5}" />.
+Daher gibt es zwei Tangenten: <InlineMath math="y = 2x + 4\sqrt{5}" /> und <InlineMath math="y = 2x - 4\sqrt{5}" />.
 
-3. **Lösung**:
+**Lösung 3**:
 
-   Kreis <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> hat Mittelpunkt <InlineMath math="(1,-2)" /> und <InlineMath math="r^2 = 8" />.
+Kreis <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> hat Mittelpunkt <InlineMath math="(1,-2)" /> und <InlineMath math="r^2 = 8" />.
 
-   Die Polare des Punkts <InlineMath math="(4,2)" /> lautet:
+Die Polare des Punkts <InlineMath math="(4,2)" /> lautet:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(x-1)(4-1) \\ &amp;\quad{}+ (y-(-2))(2-(-2)) = 8 \end{aligned}" />
-     <BlockMath math="3(x-1) + 4(y+2) = 8" />
-     <BlockMath math="3x - 3 + 4y + 8 = 8" />
-     <BlockMath math="3x + 4y = 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-1)(4-1) \\ &amp;\quad{}+ (y-(-2))(2-(-2)) = 8 \end{aligned}" />
+  <BlockMath math="3(x-1) + 4(y+2) = 8" />
+  <BlockMath math="3x - 3 + 4y + 8 = 8" />
+  <BlockMath math="3x + 4y = 3" />
+</MathContainer>
 
-   Verschiebe den Mittelpunkt mit <InlineMath math="u=x-1" /> und <InlineMath math="v=y+2" /> in den Ursprung. Kreis und Polare werden zu:
+Verschiebe den Mittelpunkt mit <InlineMath math="u=x-1" /> und <InlineMath math="v=y+2" /> in den Ursprung. Kreis und Polare werden zu:
 
-   <MathContainer>
-     <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
-     <BlockMath math="u=\frac{8-4v}{3}" />
-     <BlockMath math="25v^2-64v-8=0" />
-     <BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
+  <BlockMath math="u=\frac{8-4v}{3}" />
+  <BlockMath math="\left(\frac{8-4v}{3}\right)^2+v^2=8" />
+<BlockMath math="64-64v+16v^2+9v^2=72" />
+<BlockMath math="25v^2-64v-8=0" />
+  <BlockMath math="v=\frac{64\pm\sqrt{(-64)^2-4(25)(-8)}}{50}=\frac{64\pm12\sqrt{34}}{50}" />
+<BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
+</MathContainer>
 
-   Durch Rücksubstitution erhalten wir die beiden Berührpunkte:
+Durch Rücksubstitution erhalten wir die beiden Berührpunkte:
 
-   <MathContainer>
-     <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
-     <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
+  <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
+</MathContainer>
 
-   Die Steigungen von <InlineMath math="(4,2)" /> zu diesen Punkten sind <InlineMath math="12-2\sqrt{34}" /> und <InlineMath math="12+2\sqrt{34}" />. Damit lauten die gesuchten Tangenten:
+Die Steigungen von <InlineMath math="(4,2)" /> zu diesen Punkten sind <InlineMath math="12-2\sqrt{34}" /> und <InlineMath math="12+2\sqrt{34}" />. Damit lauten die gesuchten Tangenten:
 
-   <MathContainer>
-     <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
-     <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
-   </MathContainer>
+Berechne für jeden Berührpunkt die **Höhendifferenz geteilt durch die waagerechte Differenz** zum äußeren Punkt <InlineMath math="(4,2)" />:
 
-4. **Lösung**:
+<MathContainer>
+  <BlockMath math="m_1=\frac{y_{T_1}-2}{x_{T_1}-4}=\frac{-68+6\sqrt{34}}{-51-8\sqrt{34}}=12-2\sqrt{34}" />
+  <BlockMath math="m_2=\frac{y_{T_2}-2}{x_{T_2}-4}=\frac{-68-6\sqrt{34}}{-51+8\sqrt{34}}=12+2\sqrt{34}" />
+</MathContainer>
 
-   Wandle die Kreisgleichung in die Standardform um, indem du das Quadrat vervollständigst:
+<MathContainer>
+  <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
+  <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
-     <BlockMath math="\begin{aligned} &amp;(x^2 - 4x + 4) + (y^2 + 6y + 9) \\ &amp;= 3 + 4 + 9 \end{aligned}" />
-     <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
-   </MathContainer>
+**Lösung 4**:
 
-   Mittelpunkt <InlineMath math="(2,-3)" />, Radius <InlineMath math="r = 4" />.
+Wandle die Kreisgleichung in die Standardform um, indem du das Quadrat vervollständigst:
 
-   Die Gerade <InlineMath math="x+2y=7" /> lässt sich als <InlineMath math="y=-\frac{1}{2}x+\frac{7}{2}" /> schreiben. Ihre Steigung ist daher <InlineMath math="m_1=-\frac{1}{2}" />.
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 4x + 4) + (y^2 + 6y + 9) \\ &amp;= 3 + 4 + 9 \end{aligned}" />
+  <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
+</MathContainer>
 
-   Eine dazu senkrechte Gerade hat die Steigung <InlineMath math="m = 2" />.
+Mittelpunkt <InlineMath math="(2,-3)" />, Radius <InlineMath math="r = 4" />.
 
-   Für den Kreis mit Mittelpunkt <InlineMath math="(2,-3)" /> gilt die Tangentengleichung mit Steigung <InlineMath math="2" />:
+Die Gerade <InlineMath math="x+2y=7" /> lässt sich als <InlineMath math="y=-\frac{1}{2}x+\frac{7}{2}" /> schreiben. Ihre Steigung ist daher <InlineMath math="m_1=-\frac{1}{2}" />.
 
-   <MathContainer>
-     <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
-     <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
-     <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
-   </MathContainer>
+Eine dazu senkrechte Gerade hat die Steigung <InlineMath math="m = 2" />.
+
+Für den Kreis mit Mittelpunkt <InlineMath math="(2,-3)" /> gilt die Tangentengleichung mit Steigung <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
+  <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
+</MathContainer>
 
 Die beiden Tangenten sind <InlineMath math="y = 2x - 7 + 4\sqrt{5}" /> und <InlineMath math="y = 2x - 7 - 4\sqrt{5}" />.

@@ -13,7 +13,7 @@ export const metadata = {
 
 Jeder Kreisbogen gehört zu einer Sehne, die seine beiden Endpunkte verbindet. Die Sehne ist die gerade Strecke zwischen den Endpunkten, der Bogen der gekrümmte Weg entlang des Kreisumfangs. Als Modell dient ein gespannter Bogen: Die Schnur entspricht der Sehne, das gebogene Holz dem Kreisbogen.
 
-Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel sowohl einen längeren Bogen als auch eine längere Sehne. <Highlight>Der Zusammenhang ist jedoch nicht linear</Highlight>. Oberhalb von <InlineMath math="180^\circ" /> wird der große Bogen länger, während seine Sehne kürzer wird, denn dieselbe Sehne gehört auch zum ergänzenden kleinen Bogen.
+Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel sowohl einen längeren Bogen als auch eine längere Sehne. Die <Highlight>Sehnenlänge ist nicht proportional zur Bogenlänge</Highlight>. Oberhalb von <InlineMath math="180^\circ" /> wird der große Bogen länger, während seine Sehne kürzer wird, denn dieselbe Sehne gehört auch zum ergänzenden kleinen Bogen.
 
 <LineEquation
   title="Beziehung zwischen Kreisbogen und Sehne"
@@ -134,9 +134,11 @@ Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel s
 
 ## Formel für die Sehnenlänge
 
-Radius und Mittelpunktswinkel bestimmen die Sehnenlänge:
+Verbinde den Kreismittelpunkt mit dem **Mittelpunkt der Sehne**. Diese Strecke teilt das gleichschenklige Dreieck in zwei rechtwinklige Dreiecke. In jedem Teildreieck liegt dem halben Mittelpunktswinkel die halbe Sehne gegenüber:
 
-<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right)=\frac{c/2}{r}\quad\Longrightarrow\quad c=2r\sin\left(\frac{\theta}{2}\right)" />
+
+
 
 Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="c" /> = Sehnenlänge
@@ -147,7 +149,9 @@ Die Formel bestimmt die Sehnenlänge aus Radius und Mittelpunktswinkel eines Kre
 
 ## Bogenhöhe und Sagitta
 
-Die Bogenhöhe, auch Sagitta genannt, ist der Abstand vom Mittelpunkt der Sehne zum zugehörigen kleinen Kreisbogen, gemessen senkrecht zur Sehne. Zusammen mit der Sehne legt sie die Form eines idealisierten Kreisbogens fest.
+Die Bogenhöhe, auch Sagitta genannt, ist der Abstand vom Mittelpunkt der Sehne zum zugehörigen kleinen Kreisbogen, gemessen **senkrecht zur Sehne**. Zusammen mit der Sehne legt sie die Form eines idealisierten Kreisbogens fest.
+
+Die Zeichnung verwendet einen kleinen Bogen mit <InlineMath math="0&lt;\theta\leq180^\circ" />. Der Abstand vom Kreismittelpunkt zur Sehnenmitte beträgt <InlineMath math="r\cos(\theta/2)" />. Ziehe diesen Abstand vom Radius ab, um die Sagitta zu erhalten.
 
 <BlockMath math="\begin{aligned} h &amp;= r - r\cos\left(\frac{\theta}{2}\right) \\ &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \end{aligned}" />
 
@@ -159,8 +163,8 @@ Die Variablen in dieser Formel bedeuten:
 Die Abbildung markiert die Sehne, ihren Mittelpunkt und die senkrechte Strecke, deren Länge der Sagitta entspricht.
 
 <LineEquation
-  title="Bogenhöhe bei verschiedenen Mittelpunktswinkeln"
-  description="Bogenhöhe (Sagitta) bei verschiedenen Mittelpunktswinkeln."
+  title="Sagitta eines Bogens mit 60 Grad"
+  description={<><InlineMath math="M" /> halbiert die Sehne <InlineMath math="PQ" />. Der Radius abzüglich der Strecke <InlineMath math="OM" /> ergibt die Sagitta.</>}
   data={[
     {
       smooth: false,
@@ -275,14 +279,20 @@ Die Abbildung markiert die Sehne, ihren Mittelpunkt und die senkrechte Strecke, 
 
 ## Bogen im Koordinatensystem
 
-Im kartesischen Koordinatensystem kann ein Bogen durch parametrische Gleichungen dargestellt werden:
+Bei einem Kreis **mit Mittelpunkt im Ursprung** beschreiben die folgenden parametrischen Gleichungen die Punkte eines Bogens. Der Parameter <InlineMath math="t" /> misst den Winkel von der positiven horizontalen Achse gegen den Uhrzeigersinn.
 
 <MathContainer>
 <BlockMath math="x = r\cos(t)" />
 <BlockMath math="y = r\sin(t)" />
 </MathContainer>
 
-Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum Endwinkel des Bogens variiert.
+Der Parameter <InlineMath math="t" /> läuft vom Anfangs- zum Endwinkel. Im dargestellten Kreis mit Radius 3 ergeben sich beispielsweise die folgenden Punkte auf dem Bogen:
+
+| Parameter | Punkt auf dem Bogen |
+| --- | --- |
+| <InlineMath math="\pi/4" /> | <InlineMath math="(3\sqrt2/2,3\sqrt2/2)" /> |
+| <InlineMath math="\pi/2" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="3\pi/4" /> | <InlineMath math="(-3\sqrt2/2,3\sqrt2/2)" /> |
 
 <LineEquation
   title="Bogen in kartesischen Koordinaten"
@@ -371,9 +381,9 @@ Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum E
 
 ## Beispiel eines idealisierten Kreisbogens
 
-Ein idealisierter Kreisbogen hat den Radius <InlineMath math="25 \text{ Meter}" /> und den Mittelpunktswinkel <InlineMath math="120^\circ" />. Die Sehne gibt seine Spannweite an, die Sagitta seine Höhe.
+Ein idealisierter Kreisbogen hat den Radius <InlineMath math="25 \text{ Meter}" /> und den Mittelpunktswinkel <InlineMath math="120^\circ" />. Die **Sehne gibt die Spannweite** des Bogens an, die Sagitta seine Höhe.
 
-**Berechnung der Sehnenlänge:**
+**Berechnung der Sehnenlänge**:
 
 <MathContainer>
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
@@ -382,7 +392,7 @@ Ein idealisierter Kreisbogen hat den Radius <InlineMath math="25 \text{ Meter}" 
 <BlockMath math="c = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3} \text{ Meter}" />
 </MathContainer>
 
-**Bogenhöhe berechnen:**
+**Bogenhöhe berechnen**:
 
 <MathContainer>
 <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
@@ -392,7 +402,7 @@ Ein idealisierter Kreisbogen hat den Radius <InlineMath math="25 \text{ Meter}" 
 
 ## Übungen
 
-In jeder Aufgabe treten eine Kreisgröße und eine Bogenlänge gemeinsam auf, deshalb markierst du zuerst die gegebene Größe, bevor du die Formel wählst.
+Markiere die **gegebenen Größen**, bevor du eine Formel auswählst. Die ersten drei Aufgaben verwenden Sehnenlänge oder Sagitta. Die letzte Aufgabe fragt nach Koordinaten entlang eines Bogens.
 
 1. Ein idealisierter Kreisbogen hat einen Radius von <InlineMath math="30 \text{ m}" /> und einen Mittelpunktswinkel von <InlineMath math="90^\circ" />. Berechne seine Sehnenlänge und Bogenhöhe.
 
@@ -404,78 +414,80 @@ In jeder Aufgabe treten eine Kreisgröße und eine Bogenlänge gemeinsam auf, de
 
 ### Ausführliche Lösungen
 
-1. **Lösung:**
+Setze bei Sinus und Kosinus den **halben Mittelpunktswinkel** ein. Bei Aufgabe drei liefert das rechtwinklige Dreieck die exakte Höhe, ohne dass du zuerst den Winkel rundest.
 
-   Gegeben: <InlineMath math="r = 30 \text{ m}" /> und <InlineMath math="\theta = 90^\circ" />
+**Lösung 1**
 
-   **Sehnenlänge:**
+Gegeben: <InlineMath math="r = 30 \text{ m}" /> und <InlineMath math="\theta = 90^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
-   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
-   </MathContainer>
+**Sehnenlänge**:
 
-   **Bogenhöhe:**
+<MathContainer>
+<BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
+<BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
-   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
-   </MathContainer>
+**Bogenhöhe**:
 
-2. **Lösung:**
+<MathContainer>
+<BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
+<BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
+</MathContainer>
 
-   Gegeben: <InlineMath math="h = 8 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
+**Lösung 2**
 
-   **Schritt 1**: Verwende die Bogenhöhenformel
+Gegeben: <InlineMath math="h = 8 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
 
-   <BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+**Schritt 1**: Verwende die Bogenhöhenformel
 
-   **Schritt 2**: Stelle nach <InlineMath math="\cos" /> um
+<BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-   <MathContainer>
-   <BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
-   </MathContainer>
+**Schritt 2**: Stelle nach <InlineMath math="\cos" /> um
 
-   **Schritt 3**: Winkel berechnen
+<MathContainer>
+<BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
-   <BlockMath math="\theta \approx 124{,}36^\circ" />
-   </MathContainer>
+**Schritt 3**: Winkel berechnen
 
-3. **Lösung:**
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
+<BlockMath math="\theta \approx 124{,}36^\circ" />
+</MathContainer>
 
-   Gegeben: <InlineMath math="c = 24 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
+**Lösung 3**
 
-   **Schritt 1**: Verwende die Sehnenformel
+Gegeben: <InlineMath math="c = 24 \text{ m}" /> und <InlineMath math="r = 15 \text{ m}" />
 
-   <MathContainer>
-   <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
-   </MathContainer>
+**Schritt 1**: Verwende die Sehnenformel
 
-   **Schritt 2**: Berechne den kleinen Mittelpunktswinkel
+<MathContainer>
+<BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
-   <BlockMath math="\theta \approx 106{,}26^\circ" />
-   </MathContainer>
+**Schritt 2**: Berechne den kleinen Mittelpunktswinkel
 
-   **Schritt 3**: Berechne die Bogenhöhe
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
+<BlockMath math="\theta \approx 106{,}26^\circ" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} h &amp;= 15\left(1 - \cos(53{,}13^\circ)\right) \\ &amp;= 15(1 - 0{,}6) \\ &amp;= 6 \text{ m} \end{aligned}" />
+**Schritt 3**: Berechne die Bogenhöhe
 
-4. **Lösung:**
+<BlockMath math="OM=\sqrt{15^2-12^2}=\sqrt{81}=9\text{ m},\qquad h=15-9=6\text{ m}" />
 
-   - Ausgangspunkt: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
-   - Endpunkt: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
-   - Radius: <InlineMath math="r = 4" />
+**Lösung 4**
 
-   **Parametrische Gleichungen:**
+- Ausgangspunkt: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+- Endpunkt: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
+- Radius: <InlineMath math="r = 4" />
 
-   <MathContainer>
-   <BlockMath math="x = 4\cos(t)" />
-   <BlockMath math="y = 4\sin(t)" />
-   <BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
-   </MathContainer>
+**Parametrische Gleichungen**:
+
+<MathContainer>
+<BlockMath math="x = 4\cos(t)" />
+<BlockMath math="y = 4\sin(t)" />
+<BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
+</MathContainer>

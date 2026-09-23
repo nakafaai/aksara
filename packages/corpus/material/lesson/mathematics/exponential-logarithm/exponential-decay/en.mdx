@@ -24,7 +24,7 @@ The factor <Highlight>describes the part that remains</Highlight>. For example, 
 
 ## Reading an Exponential Decay Graph
 
-As <InlineMath math="x" /> increases, <InlineMath math="a^x" /> becomes smaller. The graph falls quickly at first and then flattens because each decrease is the same proportion of a progressively smaller amount.
+As <InlineMath math="x" /> increases, <InlineMath math="a^x" /> becomes smaller. The graph falls quickly at first and then flattens because each decrease is the **same proportion** of a progressively smaller amount.
 
 For <InlineMath math="f(x)=50\left(\frac12\right)^x" />, the initial value is <InlineMath math="50" /> and every interval leaves half of the previous value:
 
@@ -47,11 +47,11 @@ The graph approaches the horizontal asymptote <InlineMath math="y=0" /> but neve
 
 ## Decay Models for Medicine Radioactivity and Bounces
 
-A decay model multiplies by a factor between zero and one at every interval. That factor removes a fixed share of what is left, so each step keeps the same proportion of the current value and the value approaches zero without reaching it.
+A decay model multiplies by a **factor between zero and one** at every interval. That factor removes a fixed share of what is left, so each step keeps the same proportion of the current value and the value approaches zero without reaching it.
 
 ### A Half Life Model
 
-In this simplified model, the body initially contains <InlineMath math="50\,\mu\text{g}" /> of a medicine and eliminates half of the remaining amount every hour. If <InlineMath math="x" /> is measured in hours, then:
+In this simplified model, the body initially contains <InlineMath math="50\,\mu\text{g}" /> of a medicine and eliminates **half of the remaining amount** every hour. If <InlineMath math="x" /> is measured in hours, then:
 
 <BlockMath math="f(x)=50\left(\frac12\right)^x" />
 
@@ -66,15 +66,15 @@ After <InlineMath math="9" /> hours, <InlineMath math="f(9)=50\left(\frac12\righ
 
 ### Radioactive Decay
 
-If a sample loses the same fraction <InlineMath math="r" /> during each time interval, then the fraction remaining is <InlineMath math="1-r" />. For <InlineMath math="0<r<1" />:
+If a fraction <InlineMath math="r" /> of the radioactive nuclei decays in each time interval, the **fraction of undecayed nuclei** is <InlineMath math="1-r" />. For <InlineMath math="0<r<1" />:
 
 <BlockMath math="M(t)=M_0(1-r)^t" />
 
-Here, <InlineMath math="M_0" /> is the initial mass and <InlineMath math="t" /> counts equal time intervals. This model assumes the stated proportional rate remains constant over the interval being studied.
+Here, <InlineMath math="M_0" /> is the initial mass of the radioactive isotope and <InlineMath math="M(t)" /> is the mass of that isotope that has not decayed. Decay products are excluded from <InlineMath math="M(t)" />. The variable <InlineMath math="t" /> counts equal time intervals. This model assumes the stated proportional rate remains constant over the interval being studied.
 
 ### Bounce Height
 
-Suppose a ball is dropped from height <InlineMath math="h_0" /> and each rebound reaches the fixed proportion <InlineMath math="0<p<1" /> of the previous height. The height after rebound <InlineMath math="n" /> is:
+Suppose a ball is dropped from height <InlineMath math="h_0" /> and each rebound reaches the **fixed proportion** <InlineMath math="0<p<1" /> of the previous height. The height after rebound <InlineMath math="n" /> is:
 
 <BlockMath math="h_n=h_0p^n" />
 
@@ -93,16 +93,15 @@ Each problem gives an initial amount and the fraction that remains after one int
 
 1. A substance starts at <InlineMath math="200\text{ mg}" /> and half of the remaining amount is eliminated every hour. How much remains after <InlineMath math="5" /> hours?
 
-2. A radioactive sample has mass <InlineMath math="0.3\text{ kg}" /> at the start of an observation. It loses <InlineMath math="15\%" /> of its mass each hour. How much remains after <InlineMath math="8" /> hours?
+2. A radioactive sample has mass <InlineMath math="0.3\text{ kg}" /> at the start of an observation. Each hour, <InlineMath math="15\%" /> of the isotope’s nuclei decay. What mass of the undecayed isotope remains after <InlineMath math="8" /> hours?
 
 3. A ball is dropped from <InlineMath math="3\text{ m}" /> and each rebound reaches <InlineMath math="\frac35" /> of the previous height.
 
-   1. Draw the discrete rebound-height graph.
-   2. If the ball is treated as stopped once its rebound is below <InlineMath math="1\text{ cm}" />, find the first rebound that meets the threshold.
+   Draw the discrete rebound-height graph. Treat the ball as stopped once its rebound is **below one centimetre**. Find the first rebound that meets this threshold.
 
 ### Worked Solutions
 
-1. The decay factor is <InlineMath math="\frac12" />. After five hourly intervals:
+1. The **decay factor** is <InlineMath math="\frac12" />. After five hourly intervals:
 
    <MathContainer>
      <BlockMath math="f(x)=200\left(\frac12\right)^x" />
@@ -128,6 +127,7 @@ Each problem gives an initial amount and the fraction that remains after one int
        a={3 / 5}
        p={300}
        mode="discrete"
+       n={13}
        title="Rebound Height"
        description={
          <>
@@ -150,4 +150,4 @@ Each problem gives an initial amount and the fraction that remains after one int
 
 ## Model Boundaries
 
-Exponential decay is used for phenomena such as radioactive decay, depreciation, cooling approximations, and elimination models. In every application, identify the interval, the factor that remains, and the conditions under which that factor can be treated as constant. The model works while those conditions hold. If the conditions change, the pattern may also change.
+Exponential decay is used for phenomena such as radioactive decay, depreciation, cooling approximations, and elimination models. In every application, identify the interval, the factor that remains, and the conditions under which that factor can be **treated as constant**. The model works while those conditions hold. If the conditions change, the pattern may also change.

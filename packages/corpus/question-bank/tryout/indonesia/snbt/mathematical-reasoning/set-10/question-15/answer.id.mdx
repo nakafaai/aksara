@@ -5,4 +5,31 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Dari B, garis pandang membentuk sudut <InlineMath math="30^\circ" /> ke barat dari arah utara. Komponen arah baratnya sampai A adalah <InlineMath math="30" /> km. Jika <InlineMath math="d" /> adalah jarak B ke mercusuar, maka <InlineMath math="d\sin30^\circ=30" />. Jadi, <InlineMath math="d=60" /> km.
+Sudut arah diukur **dari utara menuju barat**. Di B, arah mercusuar membentuk sudut <InlineMath math="30^\circ" /> terhadap garis acuan utara. Jarak mendatar <InlineMath math="AB=30\text{ km}" /> berada di depan sudut tersebut, sedangkan jarak pandang <InlineMath math="d" /> menjadi sisi miring:
+
+<BlockMath math="\begin{aligned}\sin30^\circ&=\frac{30}{d}\\\frac12&=\frac{30}{d}\\d&=\frac{30}{1/2}=60\text{ km}\end{aligned}" />
+
+Periksa komponen ke barat: <InlineMath math="60\sin30^\circ=30\text{ km}" />. Pada gambar, <InlineMath math="L" /> menandai mercusuar dan <InlineMath math="N" /> arah acuan utara. Koordinat dinyatakan dalam kilometer.
+
+<MathVisual
+  title="Mengukur Sudut dari Utara"
+  description="Sudut yang ditandai terletak antara sinar ke utara dari B dan garis pandang BL."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 35 }, y: { min: -5, max: 58 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 0, y: 51.96152422706631 }] },
+      { id: "north", kind: "ray", appearance: "reference", from: { x: 30, y: 0 }, through: { x: 30, y: 20 } },
+      { id: "bearing", kind: "arc", appearance: "highlight", center: { x: 30, y: 0 }, radius: 8, startDegrees: 90, sweepDegrees: 30 }
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 30, y: 0 }, placement: "below-right" },
+      { key: "l", objectId: "triangle", at: { x: 0, y: 51.96152422706631 }, placement: "above" },
+      { key: "north", objectId: "north", at: { x: 30, y: 28 }, placement: "right" },
+      { key: "angle", objectId: "bearing", at: { x: 25, y: 11 }, placement: "above-left" }
+    ]
+  }}
+  labels={{ a: <InlineMath math="A" />, b: <InlineMath math="B" />, l: <InlineMath math="L" />, north: <InlineMath math="N" />, angle: <InlineMath math="30^\circ" /> }}
+/>

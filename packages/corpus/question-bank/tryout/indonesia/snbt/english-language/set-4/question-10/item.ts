@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "plain language as the main measure in a service trial",
+          label: "Plain language as the main measure in a service trial",
         },
         {
           isCorrect: true,

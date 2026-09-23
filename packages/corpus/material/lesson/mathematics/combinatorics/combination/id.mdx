@@ -3,7 +3,7 @@ export const metadata = {
    description: "Gunakan kombinasi untuk menghitung pemilihan tanpa memperhatikan urutan, termasuk kasus bersyarat.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -23,7 +23,7 @@ Dalam permutasi, <InlineMath math="ABC" /> dan <InlineMath math="BAC" /> merupak
 
 ## Rumus Kombinasi
 
-Untuk menentukan banyaknya cara memilih <InlineMath math="k" /> objek dari <InlineMath math="n" /> objek yang tersedia, kita menggunakan rumus kombinasi:
+Untuk menentukan banyaknya cara memilih <InlineMath math="k" /> objek dari <InlineMath math="n" /> objek berbeda yang tersedia, kita menggunakan rumus kombinasi:
 
 <BlockMath math="C(n,k) = \binom{n}{k} = \frac{n!}{(n-k)! \times k!}" />
 
@@ -33,7 +33,7 @@ Pada rumus ini:
 - <InlineMath math="k" /> adalah banyaknya objek yang dipilih
 - <InlineMath math="n!" /> adalah faktorial dari <InlineMath math="n" />
 
-**Mengapa rumus ini berbeda dari permutasi?**
+Mengapa rumus ini berbeda dari permutasi?
 
 Rumus kombinasi diperoleh dengan membagi banyak permutasi dengan <InlineMath math="k!" />:
 
@@ -41,27 +41,37 @@ Rumus kombinasi diperoleh dengan membagi banyak permutasi dengan <InlineMath mat
 
 Kita membagi dengan <InlineMath math="k!" /> karena pilihan berisi <InlineMath math="k" /> objek dapat disusun dalam <InlineMath math="k!" /> urutan. Kombinasi menghitung semua urutan itu sebagai **satu pilihan**.
 
+Pemilihan dua dari tiga siswa A, B, dan C memperlihatkan pembagian dengan <InlineMath math="2!" />. Setiap pasangan memiliki dua urutan, tetapi hanya satu kelompok anggota.
+
+| Pilihan | Urutan yang dihitung permutasi |
+| --- | --- |
+| A, B | AB, BA |
+| A, C | AC, CA |
+| B, C | BC, CB |
+
+<BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
 ## Menghitung Pilihan Dengan dan Tanpa Syarat
 
-**Pembentukan Tim Olahraga:**
+Pada contoh tanpa syarat tambahan, satu rumus langsung menghitung pilihan. Untuk syarat minimal, pisahkan pilihan menjadi **kasus yang tidak tumpang tindih** agar setiap pilihan dihitung tepat sekali.
 
-Dari <InlineMath math="10 \text{ siswa}" /> yang tersedia, berapa cara memilih <InlineMath math="5 \text{ siswa}" /> untuk tim basket?
+### Pembentukan Tim Olahraga
+
+Dari <InlineMath math="10 \text{ siswa}" /> yang tersedia, berapa cara memilih **<InlineMath math="5 \text{ siswa}" /> untuk tim basket**?
 
 <MathContainer>
 <BlockMath math="C(10,5) = \frac{10!}{5! \times 5!}" />
 <BlockMath math="\begin{aligned}C(10,5) &= \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} \\ &= \frac{30\,240}{120} \\ &= 252 \text{ cara}\end{aligned}" />
 </MathContainer>
+### Pemilihan Menu Makanan
 
-**Pemilihan Menu Makanan:**
-
-Sebuah restoran menawarkan <InlineMath math="8" /> jenis makanan dan kamu boleh memilih <InlineMath math="3" /> jenis. Berapa banyak kombinasi pilihan yang mungkin?
+Sebuah restoran menawarkan <InlineMath math="8" /> jenis makanan dan kamu boleh **memilih <InlineMath math="3" /> jenis**. Berapa banyak kombinasi pilihan yang mungkin?
 
 <MathContainer>
 <BlockMath math="C(8,3) = \frac{8!}{5! \times 3!}" />
 <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \text{ kombinasi} \end{aligned}" />
 </MathContainer>
-
-**Situasi dengan Syarat Khusus:**
+### Memilih Minimal Dua Siswa Perempuan
 
 Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math="12 \text{ siswa}" /> (<InlineMath math="7 \text{ laki-laki}" /> dan <InlineMath math="5 \text{ perempuan}" />), pilih <InlineMath math="4 \text{ siswa}" /> dengan minimal <InlineMath math="2 \text{ perempuan}" />.
 
@@ -72,21 +82,21 @@ Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math
 
 **Perhitungan detail:**
 
-**Kasus** 1: <InlineMath math="2 \text{ perempuan} + 2 \text{ laki-laki}" />
+**Kasus 1**: <InlineMath math="2 \text{ perempuan} + 2 \text{ laki-laki}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,2) \times C(7,2) \\ &amp;= \frac{5!}{3! \times 2!} \times \frac{7!}{5! \times 2!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times \frac{7 \times 6}{2 \times 1} = 10 \times 21 = 210" />
 </MathContainer>
 
-**Kasus** 2: <InlineMath math="3 \text{ perempuan} + 1 \text{ laki-laki}" />
+**Kasus 2**: <InlineMath math="3 \text{ perempuan} + 1 \text{ laki-laki}" />
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;C(5,3) \times C(7,1) \\ &amp;= \frac{5!}{2! \times 3!} \times \frac{7!}{6! \times 1!} \end{aligned}" />
 <BlockMath math="= \frac{5 \times 4}{2 \times 1} \times 7 = 10 \times 7 = 70" />
 </MathContainer>
 
-**Kasus** 3: <InlineMath math="4 \text{ perempuan} + 0 \text{ laki-laki}" />
+**Kasus 3**: <InlineMath math="4 \text{ perempuan} + 0 \text{ laki-laki}" />
 
 <MathContainer>
 <BlockMath math="C(5,4) = \frac{5!}{1! \times 4!} = \frac{5}{1} = 5" />
@@ -96,114 +106,121 @@ Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math
 
 ## Latihan
 
-Kerjakan setiap soal sebelum membuka pembahasannya. Tentukan lebih dahulu apakah urutan berpengaruh, lalu daftarkan semua kasus yang memenuhi syarat tanpa tumpang tindih.
+Kerjakan setiap soal sebelum membuka pembahasannya. Tentukan lebih dahulu apakah urutan berpengaruh, lalu daftarkan semua kasus yang memenuhi syarat **tanpa tumpang tindih**.
 
 1. Dari <InlineMath math="8 \text{ buku}" /> yang berbeda, berapa cara memilih <InlineMath math="3 \text{ buku}" /> untuk dibaca selama liburan?
 
 2. Sebuah tim futsal memiliki <InlineMath math="12 \text{ pemain}" />. Berapa cara memilih <InlineMath math="5 \text{ pemain}" /> untuk bermain di lapangan?
 
-3. Dalam sebuah kotak terdapat <InlineMath math="6 \text{ bola}" /> merah dan <InlineMath math="4 \text{ bola}" /> biru. Berapa cara mengambil <InlineMath math="5 \text{ bola}" /> dengan syarat minimal <InlineMath math="3 \text{ bola}" /> merah?
+3. Dalam sebuah kotak terdapat <InlineMath math="6 \text{ bola}" /> merah dan <InlineMath math="4 \text{ bola}" /> biru. Setiap bola diberi nomor berbeda, sehingga bola sewarna tetap dapat dibedakan. Berapa cara mengambil <InlineMath math="5 \text{ bola}" /> dengan syarat minimal <InlineMath math="3 \text{ bola}" /> merah?
 
 4. Seorang siswa memilih <InlineMath math="4 \text{ mata pelajaran}" /> dari <InlineMath math="10 \text{ mata pelajaran}" /> yang tersedia. Jika <InlineMath math="6 \text{ mata pelajaran}" /> adalah sains dan <InlineMath math="4 \text{ mata pelajaran}" /> adalah humaniora, berapa pilihan yang memuat minimal <InlineMath math="2 \text{ mata pelajaran sains}" />?
-
 ### Pembahasan
 
-1. **Jawaban: <InlineMath math="56 \text{ cara}" />**
+**Soal 1**
 
-   Langkah penyelesaian:
+<InlineMath math="56 \text{ cara}" />
 
-   Diketahui: <InlineMath math="n = 8" /> buku, dipilih <InlineMath math="k = 3" /> buku
+Langkah penyelesaian:
 
-   Rumus kombinasi:
+Diketahui: <InlineMath math="n = 8" /> buku, dipilih <InlineMath math="k = 3" /> buku
 
-   <MathContainer>
-      <BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
-      <BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
-   </MathContainer>
+Rumus kombinasi:
 
-   Jadi, ada <InlineMath math="56 \text{ cara}" /> memilih <InlineMath math="3 \text{ buku}" /> dari <InlineMath math="8 \text{ buku}" /> yang tersedia.
+<MathContainer>
+<BlockMath math="C(n,k) = \frac{n!}{(n-k)! \times k!}" />
+<BlockMath math="\begin{aligned} C(8,3) &amp;= \frac{8!}{5! \times 3!} \\ &amp;= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \\ &amp;= \frac{336}{6} \\ &amp;= 56 \end{aligned}" />
+</MathContainer>
 
-2. **Jawaban: <InlineMath math="792 \text{ cara}" />**
+Jadi, ada <InlineMath math="56 \text{ cara}" /> memilih <InlineMath math="3 \text{ buku}" /> dari <InlineMath math="8 \text{ buku}" /> yang tersedia.
 
-   Langkah penyelesaian:
+**Soal 2**
 
-   Diketahui: <InlineMath math="n = 12" /> pemain, dipilih <InlineMath math="k = 5" /> pemain
+<InlineMath math="792 \text{ cara}" />
 
-   Rumus kombinasi:
+Langkah penyelesaian:
 
-   <MathContainer>
-      <BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
-      <BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
-   </MathContainer>
+Diketahui: <InlineMath math="n = 12" /> pemain, dipilih <InlineMath math="k = 5" /> pemain
 
-   Tim futsal dapat memilih <InlineMath math="5 \text{ pemain}" /> dari <InlineMath math="12 \text{ pemain}" /> dengan <InlineMath math="792 \text{ cara}" /> berbeda.
+Rumus kombinasi:
 
-3. **Jawaban: <InlineMath math="186 \text{ cara}" />**
+<MathContainer>
+<BlockMath math="C(12,5) = \frac{12!}{7! \times 5!}" />
+<BlockMath math="\begin{aligned} C(12,5) &amp;= \frac{12 \times 11 \times 10 \times 9 \times 8}{5 \times 4 \times 3 \times 2 \times 1} \\ &amp;= \frac{95\,040}{120} \\ &amp;= 792 \end{aligned}" />
+</MathContainer>
 
-   Langkah penyelesaian (**metode kasus**):
+Tim futsal dapat memilih <InlineMath math="5 \text{ pemain}" /> dari <InlineMath math="12 \text{ pemain}" /> dengan <InlineMath math="792 \text{ cara}" /> berbeda.
 
-   Total bola: <InlineMath math="6 \text{ merah} + 4 \text{ biru}" /> adalah <InlineMath math="10 \text{ bola}" />
+**Soal 3**
 
-   Ambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah
+<InlineMath math="186 \text{ cara}" />
 
-   **Rincian perhitungan setiap kasus:**
+Langkah penyelesaian (**metode kasus**):
 
-   **Kasus** 1: <InlineMath math="3 \text{ merah} + 2 \text{ biru}" />
+Total bola: <InlineMath math="6 \text{ merah} + 4 \text{ biru}" /> adalah <InlineMath math="10 \text{ bola}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
-   </MathContainer>
+Ambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah
 
-   **Kasus** 2: <InlineMath math="4 \text{ merah} + 1 \text{ biru}" />
+**Rincian perhitungan setiap kasus:**
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
-   </MathContainer>
+**Kasus 1**: <InlineMath math="3 \text{ merah} + 2 \text{ biru}" />
 
-   **Kasus** 3: <InlineMath math="5 \text{ merah} + 0 \text{ biru}" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,2) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times \frac{4 \times 3}{2 \times 1} \\ &amp;= 20 \times 6 \\ &amp;= 120 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= 6 \times 1 = 6" />
-   </MathContainer>
+**Kasus 2**: <InlineMath math="4 \text{ merah} + 1 \text{ biru}" />
 
-   **Total:** <InlineMath math="120 + 60 + 6 = 186" />
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,1) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 4 = 15 \times 4 = 60" />
+</MathContainer>
 
-   Ada <InlineMath math="186 \text{ cara}" /> mengambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah.
+**Kasus 3**: <InlineMath math="5 \text{ merah} + 0 \text{ biru}" />
 
-4. **Jawaban: <InlineMath math="185 \text{ cara}" />**
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,5) \times C(4,0) \\ &amp;= \frac{6!}{1! \times 5!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= 6 \times 1 = 6" />
+</MathContainer>
 
-   Langkah penyelesaian (**metode kasus**):
+**Total:** <InlineMath math="120 + 60 + 6 = 186" />
 
-   Mata pelajaran sains: <InlineMath math="6" />, mata pelajaran humaniora: <InlineMath math="4" />
+Ada <InlineMath math="186 \text{ cara}" /> mengambil <InlineMath math="5 \text{ bola}" /> dengan minimal <InlineMath math="3" /> bola merah.
 
-   Pilih <InlineMath math="4 \text{ mata pelajaran}" /> dengan minimal <InlineMath math="2 \text{ sains}" />
+**Soal 4**
 
-   **Rincian perhitungan setiap kasus:**
+<InlineMath math="185 \text{ cara}" />
 
-   **Kasus** 1: <InlineMath math="2 \text{ sains} + 2 \text{ humaniora}" />
+Langkah penyelesaian (**metode kasus**):
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
-   </MathContainer>
+Mata pelajaran sains: <InlineMath math="6" />, mata pelajaran humaniora: <InlineMath math="4" />
 
-   **Kasus** 2: <InlineMath math="3 \text{ sains} + 1 \text{ humaniora}" />
+Pilih <InlineMath math="4 \text{ mata pelajaran}" /> dengan minimal <InlineMath math="2 \text{ sains}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
-   </MathContainer>
+**Rincian perhitungan setiap kasus:**
 
-   **Kasus** 3: <InlineMath math="4 \text{ sains} + 0 \text{ humaniora}" />
+**Kasus 1**: <InlineMath math="2 \text{ sains} + 2 \text{ humaniora}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
-   <BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,2) \times C(4,2) \\ &amp;= \frac{6!}{4! \times 2!} \times \frac{4!}{2! \times 2!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times \frac{4 \times 3}{2 \times 1} = 15 \times 6 = 90" />
+</MathContainer>
 
-   **Total:** <InlineMath math="90 + 80 + 15 = 185" />
+**Kasus 2**: <InlineMath math="3 \text{ sains} + 1 \text{ humaniora}" />
 
-   Ada <InlineMath math="185 \text{ cara}" /> memilih mata pelajaran dengan syarat yang diberikan.
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,3) \times C(4,1) \\ &amp;= \frac{6!}{3! \times 3!} \times \frac{4!}{3! \times 1!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5 \times 4}{3 \times 2 \times 1} \times 4 = 20 \times 4 = 80" />
+</MathContainer>
+
+**Kasus 3**: <InlineMath math="4 \text{ sains} + 0 \text{ humaniora}" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(6,4) \times C(4,0) \\ &amp;= \frac{6!}{2! \times 4!} \times \frac{4!}{4! \times 0!} \end{aligned}" />
+<BlockMath math="= \frac{6 \times 5}{2 \times 1} \times 1 = 15 \times 1 = 15" />
+</MathContainer>
+
+**Total:** <InlineMath math="90 + 80 + 15 = 185" />
+
+Ada <InlineMath math="185 \text{ cara}" /> memilih mata pelajaran dengan syarat yang diberikan.

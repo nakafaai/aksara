@@ -21,13 +21,14 @@ The ratio does not depend on the circle's size. If every length doubles, the cir
 
 ## Early Approximations
 
-Surviving ancient sources record several approximations. A Mesopotamian approximation was <InlineMath math="\pi \approx \frac{25}{8}=3.125" />.
+Surviving ancient sources record several **approximations**. A Mesopotamian approximation was <InlineMath math="\pi \approx \frac{25}{8}=3.125" />.
 
 The Egyptian Rhind Mathematical Papyrus, dated to about <InlineMath math="1650 \text{ BC}" />, gives a rule equivalent to <InlineMath math="\pi \approx \frac{256}{81}" />. This is about <InlineMath math="3.16049" />. Neither fraction equals <InlineMath math="\pi" /> exactly, and the Mesopotamian value <InlineMath math="3.125" /> is actually the closer of these two approximations.
 
-<MathContainer>
-<BlockMath math="\frac{256}{81} = 3.16049\ldots" />
-</MathContainer>
+In the Egyptian area rule, a circle of diameter <InlineMath math="9" /> receives the approximate area <InlineMath math="8^2=64" />. Comparing this with <InlineMath math="\pi r^2" /> shows where the fraction comes from:
+
+<BlockMath math="\pi\approx\frac{64}{(9/2)^2}=\frac{64}{81/4}=\frac{256}{81}" />
+
 
 ## Method of Archimedes and Polygons
 
@@ -41,8 +42,8 @@ The perimeter of an inscribed regular polygon is less than the circle's circumfe
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 37 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 36;
+      points: Array.from({ length: 181 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
@@ -52,7 +53,7 @@ The perimeter of an inscribed regular polygon is less than the circle's circumfe
       color: "#0891b2",
       smooth: false,
       showPoints: false,
-      labels: [{ text: "Circle", at: 9, offset: [0.5, 0.5, 0] }]
+      labels: [{ text: "Circle", at: 45, offset: [0.5, 0.5, 0] }]
     },
     {
       points: Array.from({ length: 7 }, (_, i) => {
@@ -72,10 +73,10 @@ The perimeter of an inscribed regular polygon is less than the circle's circumfe
       points: Array.from({ length: 7 }, (_, i) => {
         const angle = (i * 2 * Math.PI) / 6;
         const radius = 3;
-        const apothem = radius / Math.cos(Math.PI / 6);
+        const outerRadius = radius / Math.cos(Math.PI / 6);
         return {
-          x: apothem * Math.cos(angle),
-          y: apothem * Math.sin(angle),
+          x: outerRadius * Math.cos(angle),
+          y: outerRadius * Math.sin(angle),
           z: 0
         };
       }),
@@ -87,6 +88,15 @@ The perimeter of an inscribed regular polygon is less than the circle's circumfe
   ]}
 />
 
+For the hexagons shown, the radius is <InlineMath math="3" /> and the diameter is <InlineMath math="6" />. Each inner-hexagon side equals the radius. The outer-hexagon side follows from a right triangle with angle <InlineMath math="30^\circ" />:
+
+<BlockMath math="P_{\mathrm{in}}=6(3)=18,\qquad P_{\mathrm{out}}=6\left(2(3)\tan30^\circ\right)=12\sqrt3" />
+
+Dividing both polygon perimeters by the same diameter gives **lower and upper bounds**:
+
+<BlockMath math="\frac{18}{6}<\pi<\frac{12\sqrt3}{6}\quad\Longrightarrow\quad3<\pi<2\sqrt3" />
+
+
 Using <InlineMath math="96" />-sided polygons, Archimedes proved that <InlineMath math="\pi" /> lies between <InlineMath math="\frac{223}{71}" /> and <InlineMath math="\frac{22}{7}" />. In particular, <InlineMath math="\frac{22}{7}" /> is the upper end of this bound. Its value is slightly larger than <InlineMath math="\pi" />:
 
 <MathContainer>
@@ -95,9 +105,9 @@ Using <InlineMath math="96" />-sided polygons, Archimedes proved that <InlineMat
 
 ## Contributions of Chinese Mathematicians
 
-In the <InlineMath math="5" />th century AD, the Chinese mathematician and astronomer Zu Chongzhi refined the polygon method and established the bound <InlineMath math="3.1415926 < \pi < 3.1415927" />, an interval only <InlineMath math="10^{-7}" /> wide.
+In the <InlineMath math="5" />th century AD, the Chinese mathematician and astronomer Zu Chongzhi established the recorded bound <InlineMath math="3.1415926 < \pi < 3.1415927" />, an interval only <InlineMath math="10^{-7}" /> wide.
 
-Zu Chongzhi also gave <InlineMath math="\pi \approx \frac{355}{113}" />, which equals <InlineMath math="3.1415929" />. The fraction agrees with <InlineMath math="\pi" /> through the first six digits after the decimal point. His seven-decimal bound was not surpassed until al-Kashi's work in the <InlineMath math="15" />th century, almost a millennium later.
+Zu Chongzhi also gave the **fractional approximation** <InlineMath math="\pi \approx \frac{355}{113}" />, whose decimal expansion begins <InlineMath math="3.1415929" />. The fraction agrees with <InlineMath math="\pi" /> through the first six digits after the decimal point. His seven-decimal bound was not surpassed until al-Kashi's work in the <InlineMath math="15" />th century, almost a millennium later.
 
 <MathContainer>
 <BlockMath math="\frac{355}{113} = 3.1415929\ldots" />
@@ -105,17 +115,17 @@ Zu Chongzhi also gave <InlineMath math="\pi \approx \frac{355}{113}" />, which e
 
 ## Modern Era and Pi Symbol
 
-The Welsh mathematician William Jones used <InlineMath math="\pi" /> with its present meaning in his <InlineMath math="1706" /> work "Synopsis Palmariorum Matheseos". The notation was not immediately universal.
+The Welsh mathematician William Jones used <InlineMath math="\pi" /> with its **present meaning** in his <InlineMath math="1706" /> work "Synopsis Palmariorum Matheseos". The notation was not immediately universal.
 
 Leonhard Euler later adopted the symbol in his influential work, helping <InlineMath math="\pi" /> become the standard notation still used today.
 
 ## Special Properties of Pi
 
-The number <InlineMath math="\pi" /> is irrational, so it cannot be written as a ratio of two integers. Johann Heinrich Lambert supplied the first rigorous proof of its irrationality in the <InlineMath math="18" />th century. Ferdinand von Lindemann proved in <InlineMath math="1882" /> that <InlineMath math="\pi" /> is also transcendental, meaning it is not a root of any nonzero polynomial with rational coefficients.
+The number <InlineMath math="\pi" /> is **irrational**, so it cannot be written as a ratio of two integers. Johann Heinrich Lambert supplied the first rigorous proof of its irrationality in the <InlineMath math="18" />th century. Ferdinand von Lindemann proved in <InlineMath math="1882" /> that <InlineMath math="\pi" /> is also **transcendental**, meaning it is not a root of any nonzero polynomial with rational coefficients.
 
-For many basic calculations, <InlineMath math="\pi \approx 3.14" /> or <InlineMath math="\pi \approx \frac{22}{7}" /> is sufficient. Scientific and engineering work uses as many digits as the required precision demands.
+For a circle of diameter <InlineMath math="10\text{ cm}" />, using <InlineMath math="3.14" /> gives a circumference of <InlineMath math="31.4\text{ cm}" />. A more precise pi value gives about <InlineMath math="31.41593\text{ cm}" />. The difference is about <InlineMath math="0.01593\text{ cm}" />, so the approximation should match the required precision.
 
-The ratio that defines <InlineMath math="\pi" /> in circle geometry is:
+The circumference and area formulas use the same constant:
 
 <MathContainer>
 <BlockMath math="C = \pi \cdot d" />

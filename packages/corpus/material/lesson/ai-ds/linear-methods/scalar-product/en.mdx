@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Using Inner Products to Describe Geometry
 
-<Highlight>A vector space has operations for addition and scalar multiplication.</Highlight> An inner product determines vector lengths, angles between vectors, and whether two vectors are orthogonal. For complex vectors, the inner product used below is conjugate-linear in its first argument and linear in its second.
+A vector space has operations for addition and scalar multiplication. An inner product determines vector lengths, angles between vectors, and whether two vectors are orthogonal. For complex vectors, the inner product used below is **conjugate-linear in its first argument** and linear in its second.
 
 For <InlineMath math="x,y,z\in\mathbb{C}^n" /> and <InlineMath math="\lambda,\mu\in\mathbb{C}" />, an inner product satisfies
 
@@ -28,7 +28,7 @@ For real vectors, a matrix weighted inner product is written as:
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-This formula defines an inner product exactly when <InlineMath math="A" /> is symmetric positive definite. Symmetry of <InlineMath math="A" /> makes the result symmetric in <InlineMath math="x" /> and <InlineMath math="y" />, while <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
+This formula defines an inner product exactly when <InlineMath math="A" /> is **symmetric positive definite**. Symmetry of <InlineMath math="A" /> makes the result symmetric in <InlineMath math="x" /> and <InlineMath math="y" />, while <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
 
 For complex vectors, the corresponding formula is
 
@@ -68,7 +68,7 @@ Let
 <BlockMath math="\lambda(A)=\{1,3\}" />
 </MathContainer>
 
-The positive eigenvalues confirm that <InlineMath math="A" /> is symmetric positive definite. Although <InlineMath math="x^Ty=0" />, the weighted geometry gives
+The positive eigenvalues confirm that <InlineMath math="A" /> is symmetric positive definite. Although <InlineMath math="x^Ty=0" />, the **weighted geometry gives**
 
 <MathContainer>
 <BlockMath math="\langle x,y\rangle_A=x^TAy=1" />
@@ -88,7 +88,7 @@ Then
 
 <BlockMath math="\begin{aligned} \langle x,y\rangle &amp;=x^Hy \\ &amp;=\begin{pmatrix}1&amp;-i\end{pmatrix}\begin{pmatrix}i\\1\end{pmatrix} \\ &amp;=i-i \\ &amp;=0 \end{aligned}" />
 
-The conjugate in <InlineMath math="x^H" /> is essential. Using <InlineMath math="x^Ty" /> instead would not define the standard complex inner product because <InlineMath math="x^Tx" /> need not be a nonnegative real number.
+The **conjugate in** <InlineMath math="x^H" /> is essential. Using <InlineMath math="x^Ty" /> instead would not define the standard complex inner product because <InlineMath math="x^Tx" /> need not be a nonnegative real number.
 
 ## Projection in a Weighted Geometry
 
@@ -96,11 +96,15 @@ The projection of <InlineMath math="x" /> onto the one-dimensional subspace span
 
 <BlockMath math="\operatorname{proj}^{A}_{u}(x)=u\frac{\langle u,x\rangle_A}{\langle u,u\rangle_A}" />
 
-Its residual is <InlineMath math="A" />-orthogonal to <InlineMath math="u" />:
+Its **residual is** <InlineMath math="A" />-orthogonal to <InlineMath math="u" />:
 
 <BlockMath math="\left\langle u,x-\operatorname{proj}^{A}_{u}(x)\right\rangle_A=0" />
 
 This is the same geometric principle behind weighted least squares: the fitted residual is orthogonal to the model space under the chosen inner product.
+
+Using the same <InlineMath math="A" /> as above, project <InlineMath math="x=e_2" /> onto <InlineMath math="u=e_1" />. The weighted coefficient is <InlineMath math="1/2" />, not the Euclidean coefficient zero:
+
+<BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
 
 ## Writing an Inner Product as a Matrix
 
@@ -114,4 +118,4 @@ For vectors <InlineMath math="v_1,\ldots,v_k" />, their Gram matrix is
 
 <BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
 
-The Gram matrix is Hermitian positive semidefinite. It is positive definite exactly when the vectors are linearly independent. Its entries record every pairwise inner product, so they can be used to check angles and linear independence.
+The Gram matrix is Hermitian positive semidefinite. It is positive definite exactly when the vectors are **linearly independent**. Its entries record every pairwise inner product, so they can be used to check angles and linear independence.

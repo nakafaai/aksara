@@ -5,9 +5,9 @@ export const FLOW_STYLE_RULES = [
   {
     id: "formulaic-attention-filler",
     patterns: {
-      de: /\b(?:es ist wichtig(?:,\s*sich daran zu erinnern)?|es ist zu beachten|beachte,\s*dass|man sollte beachten|wichtiger,?\s+darauf zu achten)\b/iu,
+      de: /\b(?:es ist wichtig(?:,\s*sich daran zu erinnern)?|es ist zu beachten|beachte,\s*dass|man sollte beachten|wichtiger,?\s+darauf zu achten|wichtig zu erwähnen ist,?\s+dass|es ist erwähnenswert,?\s+dass)\b/iu,
       en: /\b(?:(?:it is|it's) important to|important to remember|more important to (?:consider|notice|watch)|note that|remember that)\b/iu,
-      id: /(?:\b(?:meng)?ingat bahwa|\bperlu (?:dipahami|diketahui|diingat|dicatat)(?: bahwa)?|\blebih penting untuk diperhatikan\b|^\s*(?:(?:sebelum|untuk memahami)[^.!?\n]{0,100},?\s+)?penting untuk (?:memahami|membedakan|menentukan|mengetahui|dipahami|diketahui|diingat)\b)/iu,
+      id: /(?:\b(?:meng)?ingat bahwa|\bperlu (?:dipahami|diketahui|diingat|dicatat)(?: bahwa)?|\bpenting untuk dicatat bahwa\b|\blebih penting untuk diperhatikan\b|^\s*(?:(?:sebelum|untuk memahami)[^.!?\n]{0,100},?\s+)?penting untuk (?:memahami|membedakan|menentukan|mengetahui|dipahami|diketahui|diingat)\b)/iu,
     },
   },
   {

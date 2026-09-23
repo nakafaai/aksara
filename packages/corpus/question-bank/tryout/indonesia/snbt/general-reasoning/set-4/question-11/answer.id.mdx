@@ -5,22 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-#### Nyatakan premisnya
+Dito adalah siswa dalam sistem tersebut, sehingga **kedua aturan berlaku untuk Dito**. Kita dapat menelusuri akibat yang tidak terjadi secara bertahap.
 
-Misalkan:
+| Langkah | Aturan dan fakta | Kesimpulan |
+| --- | --- | --- |
+| Periksa tes latihan | Jika mengikuti tes, Dito menerima laporan. Faktanya, Dito tidak menerima laporan | Dito tidak mengikuti tes |
+| Periksa latihan prasyarat | Jika menyelesaikan latihan, Dito mengikuti tes. Langkah pertama menunjukkan Dito tidak mengikuti tes | Dito tidak menyelesaikan latihan |
 
-- <InlineMath math="p" />: Dito menyelesaikan latihan prasyarat.
-- <InlineMath math="q" />: Dito mengikuti tes latihan.
-- <InlineMath math="r" />: Dito menerima laporan evaluasi.
+Penalaran ini disebut **modus tollens**: jika suatu syarat memastikan akibat, tidak terjadinya akibat meniadakan syarat itu. Dengan <InlineMath math="p" /> untuk menyelesaikan latihan, <InlineMath math="q" /> untuk mengikuti tes, dan <InlineMath math="r" /> untuk menerima laporan, kedua langkahnya adalah
 
-Ketiga premisnya adalah <InlineMath math="p \rightarrow q" />, <InlineMath math="q \rightarrow r" />, dan <InlineMath math="\lnot r" />.
+<MathContainer>
+  <BlockMath math="q\rightarrow r,\quad\neg r\quad\Longrightarrow\quad\neg q" />
+  <BlockMath math="p\rightarrow q,\quad\neg q\quad\Longrightarrow\quad\neg p" />
+</MathContainer>
 
-#### Telusuri dari laporan yang tidak diterima
-
-Dari <InlineMath math="q \rightarrow r" /> dan <InlineMath math="\lnot r" />, modus tollens menghasilkan <InlineMath math="\lnot q" />. Jadi, Dito tidak mengikuti tes latihan.
-
-Gabungkan <InlineMath math="p \rightarrow q" /> dengan <InlineMath math="\lnot q" />. Penerapan modus tollens sekali lagi menghasilkan:
-
-<BlockMath math="\begin{aligned}p &\rightarrow q\\ \lnot q&\\ \therefore\ \lnot p&\end{aligned}" />
-
-Jadi, Dito **tidak menyelesaikan latihan prasyarat**. Premis tidak menyatakan bahwa Dito bukan seorang siswa. Premis hanya menentukan hal yang tidak ia selesaikan.
+Jadi, Dito **tidak menyelesaikan latihan prasyarat**. Status Dito sebagai siswa tetap benar. Tidak menyelesaikan kegiatan bukan berarti bukan siswa.

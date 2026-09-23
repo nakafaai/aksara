@@ -5,15 +5,37 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Jarak yang sama juga memiliki kuadrat yang sama. Gunakan koordinat <InlineMath math="P=(t,0)" /> pada rumus jarak.
+Karena jarak tidak negatif, **kuadrat jarak yang sama** menyatakan panjang yang sama. Gunakan koordinat <InlineMath math="P=(t,0)" /> pada rumus jarak.
 
 <BlockMath math="\begin{aligned}
+(t-(-2))^2+(0-3)^2&=(t-4)^2+(0-5)^2 \\
 (t+2)^2+3^2&=(t-4)^2+5^2 \\
 t^2+4t+13&=t^2-8t+41 \\
+4t+8t&=41-13 \\
 12t&=28 \\
-t&=\frac73
+t&=\frac{28}{12}=\frac73
 \end{aligned}" />
 
 Maka <InlineMath math="P=(\frac73,0)" />. Nilai yang diminta adalah:
 
 <BlockMath math="3t=3\left(\frac73\right)=7" />
+
+<LineEquation
+  title="Dua jarak yang sama"
+  description="Kedua ruas ungu bertemu di P pada sumbu x. Panjang PA dan PB sama, walaupun arah kedua ruas berbeda."
+  cameraPosition={[1, 2.5, 9]}
+  cameraTarget={[1, 2.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: -2, y: 3, z: 0 }, { x: 7 / 3, y: 0, z: 0 }, { x: 4, y: 5, z: 0 }],
+      color: "#9333ea",
+      smooth: false,
+      labels: [
+        { text: <InlineMath math="A(-2,3)" />, at: 0, offset: [-0.4, 0.5, 0] },
+        { text: <InlineMath math="P(7/3,0)" />, at: 1, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="B(4,5)" />, at: 2, offset: [0, 0.5, 0] },
+      ],
+    },
+  ]}
+/>

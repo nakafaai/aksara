@@ -3,7 +3,7 @@ export const metadata = {
     description: "Read and choose between Leibniz notation and Lagrange prime notation for derivatives, with their meanings and practical uses.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Derivative Functions",
 };
 
@@ -15,7 +15,7 @@ The names matter. The prime symbol in <InlineMath math="f'(x)" /> is associated 
 
 ## Two Common Derivative Notations
 
-<Highlight>Both notations describe the same derivative</Highlight>. Leibniz notation names the changing quantity and the variable of differentiation. Lagrange notation attaches prime symbols to the function name, which keeps repeated derivatives compact.
+Both notations describe <Highlight>the same derivative</Highlight>. Leibniz notation names the changing quantity and the variable of differentiation. Lagrange notation attaches prime symbols to the function name, which keeps repeated derivatives compact.
 
 ### Leibniz Notation
 
@@ -23,7 +23,7 @@ Gottfried Wilhelm Leibniz introduced a notation that shows the variables explici
 
 <BlockMath math="\frac{dy}{dx} \quad \text{or} \quad \frac{df}{dx}" />
 
-We read <InlineMath math="\frac{dy}{dx}" /> as "the derivative of <InlineMath math="y" /> with respect to <InlineMath math="x" />." The numerator names the quantity that changes, while the denominator names its reference variable. This distinction identifies the variable of differentiation when a problem contains several related variables.
+We read <InlineMath math="\frac{dy}{dx}" /> as "the derivative of <InlineMath math="y" /> with respect to <InlineMath math="x" />." The numerator names the quantity that changes, while the denominator names its reference variable. This distinction identifies the **variable of differentiation** when a problem contains several related variables.
 
 ### Lagrange Prime Notation
 
@@ -31,7 +31,7 @@ Lagrange prime notation marks a derivative with a prime symbol. If <InlineMath m
 
 <BlockMath math="y' \quad \text{or} \quad f'(x)" />
 
-We read these as "<InlineMath math="y" /> prime" and "<InlineMath math="f" /> prime of <InlineMath math="x" />." Prime notation is compact and convenient when the independent variable is already clear. A second derivative then becomes <InlineMath math="f''(x)" />, so repeated differentiation is easy to recognize.
+We read these as "<InlineMath math="y" /> prime" and "<InlineMath math="f" /> prime of <InlineMath math="x" />." Prime notation is compact and convenient when the **independent variable** is already clear. A second derivative then becomes <InlineMath math="f''(x)" />, so repeated differentiation is easy to recognize.
 
 ## Choosing the Right Notation
 
@@ -39,4 +39,22 @@ Use **Lagrange prime notation**, such as <InlineMath math="f'(x)" />, when the f
 
 Use **Leibniz notation**, such as <InlineMath math="\frac{dy}{dx}" />, when the relationship between variables matters. The denominator identifies the variable of differentiation, which is useful in chain-rule, related-rate, and multivariable problems.
 
-Neither notation changes the mathematics. Lagrange notation keeps routine calculations short, while Leibniz notation names the variable of differentiation explicitly.
+## Calculating with Both Notations
+
+Take <InlineMath math="y=f(x)=x^3-2x" />. By the power rule, the derivative of <InlineMath math="x^3" /> is <InlineMath math="3x^2" />, and the derivative of <InlineMath math="-2x" /> is <InlineMath math="-2" />. Both notations record the same calculation:
+
+<BlockMath math="f'(x)=\frac{dy}{dx}=3x^2-2" />
+
+Distinguish the **derivative function** from the **derivative at one point**. To find the slope at <InlineMath math="x=2" />, substitute that value into the derivative function.
+
+<BlockMath math="f'(2)=\left.\frac{dy}{dx}\right\rvert_{x=2}=3(2)^2-2=10" />
+
+The vertical bar in Leibniz notation means that the derivative is evaluated at <InlineMath math="x=2" />. Both <InlineMath math="f'(2)" /> and <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}" /> therefore represent the number <InlineMath math="10" />.
+
+| Quantity | Lagrange notation | Leibniz notation |
+| --- | --- | --- |
+| Derivative function | <InlineMath math="f'(x)=3x^2-2" /> | <InlineMath math="\frac{dy}{dx}=3x^2-2" /> |
+| Derivative at one point | <InlineMath math="f'(2)=10" /> | <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}=10" /> |
+| Second derivative | <InlineMath math="f''(x)=6x" /> | <InlineMath math="\frac{d^2y}{dx^2}=6x" /> |
+
+For the last row, we differentiate <InlineMath math="3x^2-2" /> once more. The superscripts in Leibniz notation indicate **differentiating twice**. They do not mean squaring the first derivative.

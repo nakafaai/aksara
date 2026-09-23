@@ -3,7 +3,7 @@ export const metadata = {
     description: "Ruang vektor kompleks memakai bilangan kompleks sebagai skalar. Pilihan medan skalar menentukan dimensi dan pemetaan yang bersifat linear.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -25,6 +25,26 @@ Untuk <InlineMath math="z=x+iy" />, **konjugat kompleksnya** adalah <InlineMath 
 
 Modulus ini memberikan "jarak" bilangan kompleks dari titik asal dalam bidang kompleks.
 
+
+Untuk <InlineMath math="z=3+4i" />, konjugasi mengubah tanda koordinat imajiner tanpa mengubah jarak dari nol. Ikuti dua ruas garis pada diagram.
+
+<MathContainer>
+<BlockMath math="\overline z=3-4i" />
+<BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
+</MathContainer>
+
+<LineEquation
+  title="Konjugasi Mencerminkan terhadap Sumbu Real"
+  description={<>Koordinat horizontal adalah bagian real. Koordinat vertikal adalah bagian imajiner. Titik <InlineMath math="3+4i" /> dan <InlineMath math="3-4i" /> memiliki jarak yang sama dari nol.</>}
+  cameraPosition={[1.5, 0, 12]}
+  cameraTarget={[1.5, 0, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#0d9488", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3+4i" />, at: 1 }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }], color: "#f97316", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3-4i" />, at: 1 }] },
+  ]}
+/>
+
 ## Teorema Fundamental Aljabar
 
 Teorema fundamental aljabar menyatakan bahwa setiap polinom tidak konstan dengan koefisien kompleks memiliki akar kompleks.
@@ -39,7 +59,7 @@ Penerapan teorema secara berulang menunjukkan bahwa polinom berderajat <InlineMa
 
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
-Jadi, polinom tersebut memiliki tepat <InlineMath math="n" /> akar kompleks jika multiplisitas dihitung. Syarat "tidak konstan" penting: polinom konstanta tak nol tidak memiliki akar.
+Jadi, polinom tersebut memiliki tepat <InlineMath math="n" /> akar kompleks jika **multiplisitas dihitung**. Syarat "tidak konstan" penting: polinom konstanta tak nol tidak memiliki akar.
 
 ## Definisi dan Aksioma Ruang Vektor Kompleks
 
@@ -89,7 +109,7 @@ Elemen-elemen <InlineMath math="x \in V" /> disebut **vektor**, sementara elemen
 
 Himpunan <InlineMath math="V=\mathbb C^2" /> adalah ruang vektor kompleks dengan operasi per komponen. Sebagai contoh,
 
-<BlockMath math="(1+i)\begin{pmatrix}1\\-i\end{pmatrix}=\begin{pmatrix}1+i\\1-i\end{pmatrix}" />
+<BlockMath math="\begin{aligned} (1+i)\begin{pmatrix}1\\-i\end{pmatrix} &amp;= \begin{pmatrix}(1+i)\cdot1\\(1+i)(-i)\end{pmatrix} \\ &amp;= \begin{pmatrix}1+i\\-i-i^2\end{pmatrix} = \begin{pmatrix}1+i\\1-i\end{pmatrix} \end{aligned}" />
 
 <Highlight>Medan skalar mengubah cara kita menghitung dimensi</Highlight>. Himpunan <InlineMath math="\mathbb C" /> memiliki basis <InlineMath math="\{1\}" /> sebagai ruang vektor kompleks, tetapi basis <InlineMath math="\{1,i\}" /> sebagai ruang vektor real:
 
@@ -102,4 +122,4 @@ Himpunan <InlineMath math="V=\mathbb C^2" /> adalah ruang vektor kompleks dengan
 
 Hasil aljabar yang hanya memakai aksioma ruang vektor berlaku pada <InlineMath math="\mathbb R" /> maupun <InlineMath math="\mathbb C" />. Hasil yang memakai urutan bilangan atau hasil kali dalam pada bilangan real perlu menyesuaikan asumsinya. Sebagai contoh, hasil kali dalam pada bilangan kompleks memerlukan konjugasi. Bilangan kompleks juga tidak memiliki urutan medan yang cocok dengan aritmetikanya.
 
-Medan skalar juga menentukan apakah suatu pemetaan bersifat linear. Konjugasi kompleks bersifat linear terhadap <InlineMath math="\mathbb R" />. Namun, terhadap <InlineMath math="\mathbb C" />, persamaan <InlineMath math="\overline{iz}=-i\overline z" /> menunjukkan bahwa konjugasi kompleks tidak bersifat linear. Karena itu, pembahasan basis, dimensi, atau pemetaan linear perlu menyebut medan skalar yang dipakai.
+**Medan skalar** juga menentukan apakah suatu pemetaan bersifat linear. Konjugasi kompleks bersifat linear terhadap <InlineMath math="\mathbb R" />. Namun, terhadap <InlineMath math="\mathbb C" />, persamaan <InlineMath math="\overline{iz}=-i\overline z" /> menunjukkan bahwa konjugasi kompleks tidak bersifat linear. Karena itu, pembahasan basis, dimensi, atau pemetaan linear perlu menyebut medan skalar yang dipakai.

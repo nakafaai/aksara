@@ -3,7 +3,7 @@ export const metadata = {
     description: "Read eigenvalues from diagonal entries of diagonal and triangular matrices, including determinant-trace relationships.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -31,11 +31,17 @@ No full determinant expansion or root-finding procedure is needed for a triangul
 
 Triangular matrices have the same property as diagonal matrices. For both upper and lower triangular matrices, the eigenvalues are still the main diagonal entries.
 
-This happens because when we calculate <InlineMath math="\det(A - tI)" />, the entries above or below the main diagonal don't affect the determinant calculation. The triangular structure allows the determinant to be computed as the product of diagonal entries.
+This happens because when we calculate <InlineMath math="\det(A - tI)" />, the entries above or below the main diagonal don't affect the determinant calculation. The triangular structure allows the determinant to be computed as the **product of diagonal entries**.
+
+For example, off-diagonal entries can change while the **same eigenvalues** remain:
+
+<BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
+
+Thus 2 occurs twice and −1 once. This gives the eigenvalues, but does not by itself prove diagonalizability.
 
 ## Computing Eigenvalues of Nontriangular Matrices
 
-The diagonal rule is special to triangular matrices. Once a matrix is no longer triangular, the eigenvalues stay hidden in the characteristic polynomial, so the work moves from reading diagonal entries to solving for roots.
+The diagonal rule is special to triangular matrices. Once a matrix is no longer triangular, the eigenvalues stay hidden in the characteristic polynomial, so the work moves from reading diagonal entries to **solving for roots**.
 
 ### Complex Eigenvalues
 
@@ -50,7 +56,9 @@ Its characteristic polynomial is:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
 </MathContainer>
 
-The roots of this characteristic polynomial are <InlineMath math="\lambda_1 = 1 + i" /> and <InlineMath math="\lambda_2 = 1 - i" />.
+<BlockMath math="t^2-2t+2=0\iff(t-1)^2=-1\iff t=1\pm i" />
+
+**The roots of this characteristic polynomial** are <InlineMath math="\lambda_1 = 1 + i" /> and <InlineMath math="\lambda_2 = 1 - i" />.
 
 ### Zero Eigenvalues
 
@@ -65,11 +73,11 @@ Its characteristic polynomial is:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
 </MathContainer>
 
-The roots of this characteristic polynomial are <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />.
+**The roots of this characteristic polynomial** are <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />.
 
 ## Characteristic Polynomial Factorization
 
-When <InlineMath math="A \in \mathbb{C}^{n \times n}" /> has eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n" /> counted with algebraic multiplicity, its characteristic polynomial factors as:
+When <InlineMath math="A \in \mathbb{C}^{n \times n}" /> has eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n" /> **counted with algebraic multiplicity**, its characteristic polynomial factors as:
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 

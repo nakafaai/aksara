@@ -13,16 +13,11 @@ export const metadata = {
 
 A circle sector is the <Highlight>region of a disk bounded by two radii</Highlight> and the arc between them. A slice cut radially from a round cake or an orange wedge has roughly the same shape.
 
-A sector consists of three main components:
-
-- Two radii that meet at the center of the circle
-- One arc that connects the ends of both radii
-
 The two radii form a central angle at the center of the circle. For a fixed radius, this angle determines what fraction of the disk the sector occupies.
 
 ## Relationship Between Central Angle and Sector Area
 
-For a fixed radius, sector area is proportional to the central angle. Doubling the angle doubles the area of the corresponding sector.
+For a **fixed radius**, sector area is proportional to the central angle. Dividing a full turn into equal angles also divides the circle area into equal parts. Doubling the angle doubles the area of the corresponding sector.
 
 The relationship between central angle and sector area can be expressed as a ratio. If the central angle is <InlineMath math="\alpha" /> degrees, then the sector area is <InlineMath math="\frac{\alpha}{360^\circ}" /> part of the total circle area.
 
@@ -34,7 +29,7 @@ For a fixed radius, sector area is proportional to the central angle. An angle o
 
 ## Calculating Sector Area
 
-The area of a sector is determined by the circle radius and the central angle. The angle specifies what fraction of the full circle belongs to the sector.
+A 60-degree angle takes **one sixth of the circle area**. Calculate the full area from the radius, then multiply by this angle fraction. Keep pi symbolic until the final rounding step.
 
 Consider a circle with radius <InlineMath math="14 \text{ cm}" /> and a sector with central angle <InlineMath math="60^\circ" />. Substitution gives:
 
@@ -50,7 +45,7 @@ The exact sector area is <InlineMath math="\frac{98\pi}{3} \text{ cm}^2" />, app
 
 ## Comparison of Central Angle with Sector Area
 
-To understand the proportional relationship between central angle and sector area, look at various comparison examples:
+All diagrams use the **same radius**, so you can compare areas through their central angles. The 120-degree sector has twice the area of the 60-degree sector. The 270-degree sector covers three quarters of the circle and leaves one quarter.
 
 <ContentStack>
 
@@ -371,7 +366,7 @@ To understand the proportional relationship between central angle and sector are
 
 ## Practice Problems
 
-Each problem asks for the area of a sector, so express the central angle in radians and then apply the sector area formula.
+Problems one and three ask for **sector area**, while problem two asks for the central angle. The angles are already in degrees, so use their fraction of 360 degrees without converting to radians.
 
 1. A circle has a radius of <InlineMath math="21 \text{ cm}" />. Determine the sector area formed by a central angle of <InlineMath math="120^\circ" />.
 
@@ -381,42 +376,44 @@ Each problem asks for the area of a sector, so express the central angle in radi
 
 ### Worked Solutions
 
-1. **Solution Steps:**
+Compare the **area fraction and angle fraction**. In problem two, divide the sector area by the full circle area first. In problem three, convert the diameter to a radius before squaring.
 
-   Given: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+**Solution 1**
 
-   <MathContainer>
-   <BlockMath math="\text{Sector Area} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-   <BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
-   <BlockMath math="= \frac{1}{3} \times \pi \times 441" />
-   <BlockMath math="= \frac{441\pi}{3}" />
-   <BlockMath math="= 147\pi \text{ cm}^2" />
-   <BlockMath math="\approx 461.81 \text{ cm}^2" />
-   </MathContainer>
+Given: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
 
-2. **Solution Steps:**
+<MathContainer>
+<BlockMath math="\text{Sector Area} = \frac{\alpha}{360^\circ} \times \pi r^2" />
+<BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
+<BlockMath math="= \frac{1}{3} \times \pi \times 441" />
+<BlockMath math="= \frac{441\pi}{3}" />
+<BlockMath math="= 147\pi \text{ cm}^2" />
+<BlockMath math="\approx 461.81 \text{ cm}^2" />
+</MathContainer>
 
-   Given: sector area = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+**Solution 2**
 
-   <MathContainer>
-   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
-   <BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
-   <BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
-   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
-   <BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
-   <BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
-   <BlockMath math="\alpha = 90^\circ" />
-   </MathContainer>
+Given: sector area = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
 
-3. **Solution Steps:**
+<MathContainer>
+<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
+<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
+<BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
+<BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
+<BlockMath math="\alpha = 90^\circ" />
+</MathContainer>
 
-   Given: diameter = <InlineMath math="28 \text{ cm}" />, so <InlineMath math="r = 14 \text{ cm}" />
-   The flatbread is cut radially into <InlineMath math="8" /> equal sectors, so the central angle of each piece is <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />
+**Solution 3**
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Area of each piece} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
-   <BlockMath math="= \frac{1}{8} \times \pi \times 196" />
-   <BlockMath math="= \frac{196\pi}{8}" />
-   <BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
-   <BlockMath math="\approx 76.97 \text{ cm}^2" />
-   </MathContainer>
+Given: diameter = <InlineMath math="28 \text{ cm}" />, so <InlineMath math="r = 14 \text{ cm}" />
+The flatbread is cut radially into <InlineMath math="8" /> equal sectors, so the central angle of each piece is <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Area of each piece} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
+<BlockMath math="= \frac{1}{8} \times \pi \times 196" />
+<BlockMath math="= \frac{196\pi}{8}" />
+<BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
+<BlockMath math="\approx 76.97 \text{ cm}^2" />
+</MathContainer>

@@ -1,10 +1,10 @@
 export const metadata = {
-   title: "Teorema Spektral untuk Matriks Kompleks",
-   description: "Buktikan bahwa matriks normal memiliki basis vektor eigen ortonormal, lalu gunakan basis itu untuk diagonalisasi uniter.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-16",
-   dateModified: "2026-09-13",
-   subject: "Metode Linear AI",
+title: "Teorema Spektral untuk Matriks Kompleks",
+description: "Buktikan bahwa matriks normal memiliki basis vektor eigen ortonormal, lalu gunakan basis itu untuk diagonalisasi uniter.",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2025-07-16",
+dateModified: "2026-09-19",
+subject: "Metode Linear AI",
 };
 
 ## Karakterisasi Diagonalisasi Uniter
@@ -39,26 +39,26 @@ Ini berarti <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, sehingga:
 <BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
-Karena ini berlaku untuk semua vektor basis, maka <InlineMath math="AA^H = A^H A" />, yang berarti <InlineMath math="A" /> normal.
+Karena ini berlaku untuk **semua vektor basis**, maka <InlineMath math="AA^H = A^H A" />, yang berarti <InlineMath math="A" /> normal.
 
 ## Pembuktian Normalitas ke Diagonalisasi
 
-Arah sebaliknya dibuktikan dengan induksi pada ukuran matriks <InlineMath math="n" />. Kasus dasar menangani ukuran terkecil yang memenuhi syarat, lalu langkah induksi mereduksi matriks <InlineMath math="n \times n" /> menjadi blok normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
+Arah sebaliknya dibuktikan dengan **induksi pada ukuran matriks** <InlineMath math="n" />. Kasus dasar menangani ukuran terkecil yang memenuhi syarat, lalu langkah induksi mereduksi matriks <InlineMath math="n \times n" /> menjadi blok normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
 
 ### Struktur Induksi Matematis
 
-Buktinya disusun dengan induksi, jadi langkah berikut menetapkan kasus dasar, menyatakan asumsi induksi, lalu mengambil langkah dari <InlineMath math="n" /> ke <InlineMath math="n+1" />.
+Buktinya disusun dengan induksi, jadi langkah berikut menetapkan kasus dasar, menyatakan asumsi induksi, lalu mengambil langkah dari <InlineMath math="n-1" /> ke <InlineMath math="n" />.
 
-1. **Langkah Basis**
-   Untuk <InlineMath math="n = 0" />, matriks kosong memenuhi pernyataan.
+**Langkah Basis**
+Untuk <InlineMath math="n = 0" />, matriks kosong memenuhi pernyataan.
 
-2. **Hipotesis Induksi**
-   Asumsikan pernyataan benar untuk semua matriks normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
+**Hipotesis Induksi**
+Asumsikan pernyataan benar untuk semua matriks normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
 
-3. **Langkah Induksi**
-   Misalkan <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Berdasarkan teorema fundamental aljabar, terdapat nilai eigen <InlineMath math="\lambda_1 \in \mathbb{C}" /> dari <InlineMath math="A" />. Misalkan <InlineMath math="v_1 \in \mathbb{C}^n" /> adalah vektor eigen yang bersesuaian dengan <InlineMath math="v_1^H v_1 = 1" />.
+**Langkah Induksi**
+Misalkan <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Berdasarkan teorema fundamental aljabar, terdapat nilai eigen <InlineMath math="\lambda_1 \in \mathbb{C}" /> dari <InlineMath math="A" />. Misalkan <InlineMath math="v_1 \in \mathbb{C}^n" /> adalah vektor eigen yang bersesuaian dengan <InlineMath math="v_1^H v_1 = 1" />.
 
-   Kita punya <InlineMath math="Av_1 = \lambda_1 v_1" />. Lemma berikut menunjukkan bahwa <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> juga berlaku.
+Kita punya <InlineMath math="Av_1 = \lambda_1 v_1" />. Lemma berikut menunjukkan bahwa <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> juga berlaku.
 
 ### Mengapa Adjoin Memiliki Vektor Eigen yang Sama
 
@@ -69,7 +69,7 @@ Misalkan <InlineMath math="B=A-\lambda_1I" />. Karena <InlineMath math="A" /> no
 <BlockMath math="=v_1^HB^HBv_1=\|Bv_1\|_2^2=0" />
 </MathContainer>
 
-Maka <InlineMath math="B^Hv_1=0" />, yang tepat berarti <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. Langkah inilah yang membuat komplemen ortogonal dari <InlineMath math="v_1" /> bersifat invarian.
+Maka <InlineMath math="B^Hv_1=0" />, yang tepat berarti <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. Langkah inilah yang membuat **komplemen ortogonal** dari <InlineMath math="v_1" /> bersifat invarian.
 
 ### Pembentukan Subruang Invarian
 
@@ -90,7 +90,7 @@ Jadi <InlineMath math="Aw \in W" />, yang berarti:
 
 <BlockMath math="A(W) = \{Aw \mid w \in W\} \subset W" />
 
-Dengan kata lain, <InlineMath math="W" /> invarian terhadap <InlineMath math="A" />: menerapkan <InlineMath math="A" /> pada sebarang vektor di <InlineMath math="W" /> menghasilkan vektor lain yang tetap berada di <InlineMath math="W" />.
+Dengan kata lain, <InlineMath math="W" /> **invarian terhadap** <InlineMath math="A" />: menerapkan <InlineMath math="A" /> pada sebarang vektor di <InlineMath math="W" /> menghasilkan vektor lain yang tetap berada di <InlineMath math="W" />.
 
 ### Transformasi Uniter dan Pemeliharaan Normalitas
 
@@ -107,7 +107,7 @@ Blok kanan bawah <InlineMath math="A'" /> memiliki ukuran
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-Karena transformasi kesebangunan uniter mempertahankan normalitas, kita dapat menunjukkan bahwa:
+Karena transformasi kesebangunan uniter **mempertahankan normalitas**, kita dapat menunjukkan bahwa:
 
 <MathContainer>
 <BlockMath math="(T^H \cdot A \cdot T) \cdot (T^H \cdot A \cdot T)^H" />
@@ -121,7 +121,7 @@ Oleh karena itu matriks blok diagonal juga normal, yang berarti <InlineMath math
 
 ## Konstruksi Basis Ortonormal Lengkap
 
-Berdasarkan hipotesis induksi, terdapat basis ortonormal <InlineMath math="v'_2, \ldots, v'_n" /> yang terdiri atas vektor-vektor eigen <InlineMath math="A'" />. Misalkan <InlineMath math="S'" /> adalah matriks uniter dengan kolom tersebut.
+Berdasarkan **hipotesis induksi**, terdapat basis ortonormal <InlineMath math="v'_2, \ldots, v'_n" /> yang terdiri atas vektor-vektor eigen <InlineMath math="A'" />. Misalkan <InlineMath math="S'" /> adalah matriks uniter dengan kolom tersebut.
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -159,7 +159,7 @@ Matriks normal real tetap dapat didiagonalkan secara uniter pada <InlineMath mat
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-Setiap blok berukuran <InlineMath math="2\times2" /> ini mewakili pasangan nilai eigen konjugat <InlineMath math="a\pm bi" />. Matriks normal real dapat didiagonalkan secara ortogonal pada <InlineMath math="\mathbb{R}" /> tepat ketika semua nilai eigennya real.
+Setiap blok berukuran <InlineMath math="2\times2" /> ini mewakili pasangan nilai eigen konjugat <InlineMath math="a\pm bi" />. Matriks normal real dapat didiagonalkan secara ortogonal pada <InlineMath math="\mathbb{R}" /> tepat ketika **semua nilai eigennya real**.
 
 Matriks simetris dan matriks ortogonal selalu normal. Untuk matriks simetris dengan <InlineMath math="A^T = A" />, berlaku
 
@@ -174,7 +174,7 @@ Untuk matriks ortogonal <InlineMath math="A^T = A^{-1}" />, kita punya:
 
 ### Contoh Rotasi
 
-Rotasi seperempat putaran dapat ditulis dengan matriks berikut:
+**Rotasi seperempat putaran** dapat ditulis dengan matriks berikut:
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 

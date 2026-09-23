@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Die Reichweite mit einem Kreismodell prüfen
 
-Für einen Kreis und einen Punkt gibt es genau drei Möglichkeiten: <Highlight>Der Punkt liegt innerhalb des Kreises, auf seiner Kreislinie oder außerhalb des Kreises.</Highlight>
+Für einen Kreis und einen Punkt gibt es genau drei Möglichkeiten: Der Punkt liegt **innerhalb**, **auf der Kreislinie** oder **außerhalb** des Kreises.
 
 Der gleiche Vergleich tritt in vereinfachten Reichweitenmodellen auf, etwa wenn geprüft wird, ob ein Ort innerhalb eines kreisförmig modellierten Funk- oder Radarbereichs liegt. Kreisgleichung und Punktkoordinaten ordnen den Ort dann eindeutig ein.
 
@@ -25,17 +25,17 @@ Für den Punkt <InlineMath math="A(x_0, y_0)" /> und den allgemeinen Kreis <Inli
 
 <BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
-Einmaliges Einsetzen der Koordinaten liefert den Wert <InlineMath math="K_A" />. <Highlight>Das Vorzeichen von K_A bestimmt die Lage</Highlight>:
+Durch Einsetzen der Koordinaten erhältst du <InlineMath math="K_A" />. Das **Vorzeichen der Punktpotenz** bestimmt die Lage relativ zum Kreis.
 
 ## Drei mögliche Lagen
 
 Der Wert der Punktpotenz unterscheidet drei mögliche Lagen:
 
-1. **Der Punkt liegt innerhalb des Kreises**, wenn <InlineMath math="K_A < 0" />.
-
-2. **Der Punkt liegt auf dem Kreis**, wenn <InlineMath math="K_A = 0" />.
-
-3. **Der Punkt liegt außerhalb des Kreises**, wenn <InlineMath math="K_A > 0" />.
+| Punktpotenz | Lage |
+| --- | --- |
+| <InlineMath math="K_A<0" /> | **Innerhalb** |
+| <InlineMath math="K_A=0" /> | **Auf dem Kreis** |
+| <InlineMath math="K_A>0" /> | **Außerhalb** |
 
 Die drei Fälle sind in der folgenden Grafik dargestellt:
 
@@ -148,13 +148,19 @@ Die drei Fälle sind in der folgenden Grafik dargestellt:
   cameraTarget={[0.7, 0, 0]}
 />
 
+Im Diagramm liegt der Mittelpunkt bei <InlineMath math="(0,0)" /> und der Radius beträgt <InlineMath math="3" />. Prüfe die drei Punkte, indem du **neun vom Abstandsquadrat abziehst**:
+
+| Punkt | Punktpotenz | Lage |
+| --- | --- | --- |
+| <InlineMath math="A(\frac32,1)" /> | <InlineMath math="K_A=\frac94+1-9=-\frac{23}{4}" /> | Innerhalb |
+| <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | Auf dem Kreis |
+| <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Außerhalb |
+
 ## So wird die Lage bestimmt
 
 Wir bestimmen Kreisgleichung und Punktkoordinaten und setzen die Koordinaten dann in die Formel für die Punktpotenz ein.
 
-Das Vorzeichen von <InlineMath math="K_A" /> bestimmt die Lage des Punktes. Für <InlineMath math="K_A<0" /> liegt der Punkt innerhalb, für <InlineMath math="K_A=0" /> auf und für <InlineMath math="K_A>0" /> außerhalb des Kreises.
-
-Für den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" /> berechnen wir zuerst das Abstandsquadrat zum Mittelpunkt. Anschließend ziehen wir <InlineMath math="r^2" /> ab:
+Für den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" /> berechnen wir zuerst das **Abstandsquadrat zum Mittelpunkt**. Anschließend ziehen wir <InlineMath math="r^2" /> ab:
 
 <MathContainer>
   <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
@@ -167,7 +173,7 @@ Wegen <InlineMath math="K_A = -20 < 0" /> liegt <InlineMath math="A(1, -2)" /> i
 
 ## Anwendung auf die allgemeine Form
 
-Für einen Kreis in der allgemeinen Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> berechnen wir <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. Das Vorzeichen von <InlineMath math="K_A" /> bestimmt, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt.
+Für einen Kreis in der allgemeinen Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> berechnen wir <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. Das **Vorzeichen** von <InlineMath math="K_A" /> bestimmt, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt.
 
 Zum Beispiel für Punkt <InlineMath math="A(1, -2)" /> und Kreis <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 
@@ -180,7 +186,7 @@ Da <InlineMath math="K_A = -7 < 0" />, liegt der Punkt <InlineMath math="A(1, -2
 
 ## Übungsaufgaben
 
-In jeder Aufgabe sind ein Punkt und ein Kreis gegeben, und die Antwort ist, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt. Vergleiche den Abstand zum Mittelpunkt mit dem Radius.
+In jeder Aufgabe sind ein Punkt und ein Kreis gegeben, und die Antwort ist, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt. **Vergleiche den Abstand zum Mittelpunkt** mit dem Radius.
 
 1. Bestimme die Lage des Punktes <InlineMath math="A(3, 4)" /> relativ zum Kreis <InlineMath math="x^2 + y^2 = 16" />.
 
@@ -192,49 +198,49 @@ In jeder Aufgabe sind ein Punkt und ein Kreis gegeben, und die Antwort ist, ob d
 
 ### Ausführliche Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Setze die Koordinaten des Punktes <InlineMath math="A(3, 4)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 16" /> ein:
+Setze die Koordinaten des Punktes <InlineMath math="A(3, 4)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 16" /> ein:
 
-   <MathContainer>
-     <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
-     <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
+  <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
+</MathContainer>
 
-   Da <InlineMath math="K_A = 9 > 0" />, liegt <InlineMath math="A(3, 4)" /> außerhalb des Kreises.
+Da <InlineMath math="K_A = 9 > 0" />, liegt <InlineMath math="A(3, 4)" /> außerhalb des Kreises.
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Setze die Koordinaten des Punktes <InlineMath math="B(6, -8)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 100" /> ein:
+Setze die Koordinaten des Punktes <InlineMath math="B(6, -8)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 100" /> ein:
 
-   <MathContainer>
-     <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
-     <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
+  <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
+</MathContainer>
 
-   Da <InlineMath math="K_B = 0" />, liegt <InlineMath math="B(6, -8)" /> genau auf dem Kreis.
+Da <InlineMath math="K_B = 0" />, liegt <InlineMath math="B(6, -8)" /> genau auf dem Kreis.
 
-3. **Lösung**:
+**Lösung 3**:
 
-   Setze die Koordinaten des Punktes <InlineMath math="C(2, 1)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" /> ein:
+Setze die Koordinaten des Punktes <InlineMath math="C(2, 1)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" /> ein:
 
-   <MathContainer>
-     <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
-     <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
+  <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
+</MathContainer>
 
-   Da <InlineMath math="K_C = -9 < 0" />, liegt der Punkt <InlineMath math="C(2, 1)" /> innerhalb des Kreises.
+Da <InlineMath math="K_C = -9 < 0" />, liegt der Punkt <InlineMath math="C(2, 1)" /> innerhalb des Kreises.
 
-4. **Lösung**:
+**Lösung 4**:
 
-   Der Kreis <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3, -2)" /> und den Radius <InlineMath math="r = 5" />.
+Der Kreis <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3, -2)" /> und den Radius <InlineMath math="r = 5" />.
 
-   Wir setzen <InlineMath math="D(7, 2)" /> ein:
+Wir setzen <InlineMath math="D(7, 2)" /> ein:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
-     <BlockMath math="d_D^2 = 16 + 16 = 32" />
-     <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
+  <BlockMath math="d_D^2 = 16 + 16 = 32" />
+  <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+</MathContainer>
 
-   Da <InlineMath math="K_D = 7 > 0" />, liegt <InlineMath math="D(7, 2)" /> außerhalb des Kreises.
+Da <InlineMath math="K_D = 7 > 0" />, liegt <InlineMath math="D(7, 2)" /> außerhalb des Kreises.

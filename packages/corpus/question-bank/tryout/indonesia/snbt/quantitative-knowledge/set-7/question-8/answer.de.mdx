@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir betrachten zwei Gruppen:
+Wir betrachten **zwei Gruppen von Tierhaltenden**:
 - Menschen, die Ziegen halten: <InlineMath math="K = 450" />
 - Menschen, die Hühner halten: <InlineMath math="A = 300" />
 - Gesamtbevölkerung: <InlineMath math="S = 600" />
@@ -14,13 +14,13 @@ Mit <InlineMath math="M" /> und <InlineMath math="m" /> bezeichnen wir die grö�
 
 #### Größtmögliche Schnittmenge
 
-Die Schnittmenge ist am größten, wenn die kleinere Gruppe vollständig in der größeren enthalten ist. Ihr Maximum entspricht daher der Größe der kleineren Gruppe.
+Die Schnittmenge ist am größten, wenn die **kleinere Gruppe vollständig** in der größeren enthalten ist. Ihr Maximum entspricht daher der Größe der kleineren Gruppe.
 
 <BlockMath math="\begin{aligned}M&=\min(K,A)\\&=\min(450,300)\\&=300\end{aligned}" />
 
 #### Kleinstmögliche Schnittmenge
 
-Die Schnittmenge ist am kleinsten, wenn sich die beiden Gruppen so wenig wie möglich überschneiden. Ihre Untergrenze berechnet sich mit der Gesamtbevölkerung:
+Die Schnittmenge ist am kleinsten, wenn die **Vereinigung möglichst groß** ist, also 600 Menschen umfasst. Die Summe der Gruppengrößen beträgt <InlineMath math="450+300=750" />. Die Differenz <InlineMath math="750-600" /> zählt die doppelt erfassten Personen:
 
 <BlockMath math="m=\max(0,K+A-S)" />
 
@@ -28,9 +28,16 @@ Einsetzen der bekannten Werte ergibt:
 
 <BlockMath math="\begin{aligned}m&=\max(0,750-600)\\&=\max(0,150)\\&=150\end{aligned}" />
 
+Beide Grenzen sind mit den folgenden Verteilungen erreichbar.
+
+| Grenze | Nur Ziegen | Beides | Nur Hühner | Keines |
+| --- | --- | --- | --- | --- |
+| M | 150 | 300 | 0 | 150 |
+| m | 300 | 150 | 150 | 0 |
+
 #### Summe aus Maximum und Minimum
 
-Gesucht ist die Summe der beiden Grenzwerte.
+Gesucht ist die **Summe der beiden Grenzwerte**.
 
 <BlockMath math="\begin{aligned}M+m&=300+150\\&=450\end{aligned}" />
 

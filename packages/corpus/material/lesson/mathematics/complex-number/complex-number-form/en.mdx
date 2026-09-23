@@ -1,8 +1,6 @@
-
-
 export const metadata = {
   title: "Complex Number Form",
-    description: "Convert complex numbers among Cartesian, polar, and exponential forms with Euler's formula.",
+  description: "Convert complex numbers among Cartesian, polar, and exponential forms with Euler's formula.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
   dateModified: "2026-09-12",
@@ -25,49 +23,50 @@ We can also view the complex number <InlineMath math="z = x + iy" /> as an order
 
 ### Visualization on the Complex Plane
 
-Each complex number <InlineMath math="z = x + iy" /> can be placed at the point <InlineMath math="(x, y)" /> in the complex plane. The position vector from the origin <InlineMath math="(0, 0)" /> to that point represents the same number geometrically.
+Each complex number <InlineMath math="z = x + iy" /> can be placed at the point <InlineMath math="(x, y)" /> in the complex plane. The **position vector** from the origin <InlineMath math="(0, 0)" /> to that point represents the same number geometrically.
 
 <LineEquation
   title="Complex Numbers on the Complex Plane"
   description="Visualization of several complex numbers as points and vectors on the complex plane."
   cameraPosition={[0.7, 0.5, 8.5]}
   cameraTarget={[0.7, 0.5, 0]}
+  showZAxis={false}
   data={[
     {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0, 0.6, 0] }],
+    points: [
+      { x: 0, y: 0, z: 0 },
+      { x: 3, y: 2, z: 0 },
+    ],
+    smooth: false,
+    color: "#e11d48",
+    labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0, 0.6, 0] }],
     },
     {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -1, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-0.5, -0.5, 0] }],
+    points: [
+      { x: 0, y: 0, z: 0 },
+      { x: -1, y: -1, z: 0 },
+    ],
+    smooth: false,
+    color: "#059669",
+    labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-0.5, -0.5, 0] }],
     },
     {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="z_3=2" />, at: 1, offset: [0.5, 0.5, 0] }],
+    points: [
+      { x: 0, y: 0, z: 0 },
+      { x: 2, y: 0, z: 0 },
+    ],
+    smooth: false,
+    color: "#7c3aed",
+    labels: [{ text: <InlineMath math="z_3=2" />, at: 1, offset: [0.5, 0.5, 0] }],
     },
     {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 1, z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="z_4=i" />, at: 1, offset: [-1, 0.5, 0] }],
+    points: [
+      { x: 0, y: 0, z: 0 },
+      { x: 0, y: 1, z: 0 },
+    ],
+    smooth: false,
+    color: "#d97706",
+    labels: [{ text: <InlineMath math="z_4=i" />, at: 1, offset: [-1, 0.5, 0] }],
     },
   ]}
 />
@@ -110,6 +109,8 @@ Sometimes, the form <InlineMath math="(\cos \theta + i \sin \theta)" /> is abbre
 
 ### Conversion to Polar Form
 
+Use the **modulus for length** and the quadrant to determine direction. This ensures that the chosen angle points to the actual complex number.
+
 Suppose we have <InlineMath math="z = 1 + i" />.
 
 - Real part <InlineMath math="x = 1" />.
@@ -131,6 +132,8 @@ So, the polar form is:
 
 ### Polar Form Exercise
 
+Find the **modulus and argument** of each number. For a point on an axis, read the direction directly instead of dividing by a zero real component.
+
 Express the following complex numbers in polar form:
 
 1.  <InlineMath math="z = 1 + i\sqrt{3}" />
@@ -140,43 +143,50 @@ Express the following complex numbers in polar form:
 
 1.  For <InlineMath math="z = 1 + i\sqrt{3}" />:
 
-    - Identify <InlineMath math="x = 1" /> and <InlineMath math="y = \sqrt{3}" />.
-    - Calculate the modulus <InlineMath math="r" />:
+    Identify <InlineMath math="x = 1" /> and <InlineMath math="y = \sqrt{3}" />.
 
-      <BlockMath math="\begin{aligned} r &amp;= \sqrt{1^2 + (\sqrt{3})^2} \\ &amp;= \sqrt{1 + 3} \\ &amp;= \sqrt{4} \\ &amp;= 2 \end{aligned}" />
+    Calculate the modulus <InlineMath math="r" />:
 
-    - Calculate the argument <InlineMath math="\theta" />:
+    <BlockMath math="\begin{aligned} r &amp;= \sqrt{1^2 + (\sqrt{3})^2} \\ &amp;= \sqrt{1 + 3} \\ &amp;= \sqrt{4} \\ &amp;= 2 \end{aligned}" />
 
-      <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
+    Calculate the argument <InlineMath math="\theta" />:
 
-      Since <InlineMath math="x" /> and <InlineMath math="y" /> are positive, the
-      point <InlineMath math="(1, \sqrt{3})" /> is in quadrant <InlineMath math="I" />
-      , so <InlineMath math="\theta = 60^\circ" />.
-    - Polar Form:
+    <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
 
-      <BlockMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
+    Since <InlineMath math="x" /> and <InlineMath math="y" /> are positive, the
+    point <InlineMath math="(1, \sqrt{3})" /> is in quadrant <InlineMath math="I" />
+    , so <InlineMath math="\theta = 60^\circ" />.
+
+    Polar Form:
+
+    <BlockMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />
 
 2.  For <InlineMath math="z = -i" />:
-    - Identify <InlineMath math="x = 0" /> and <InlineMath math="y = -1" />.
-    - Calculate the modulus <InlineMath math="r" />:
 
-      <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
+    Identify <InlineMath math="x = 0" /> and <InlineMath math="y = -1" />.
 
-    - Determine the argument <InlineMath math="\theta" />:
-      The point <InlineMath math="(0, -1)" /> lies on the negative imaginary axis, so its Principal Argument is <InlineMath math="\theta = -90^\circ" />.
-    - Polar form using the Principal Argument:
+    Calculate the modulus <InlineMath math="r" />:
 
-      <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
+    <BlockMath math="r = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
 
-      The coterminal angle <InlineMath math="270^\circ" /> gives the equivalent form
+    Determine the argument <InlineMath math="\theta" />:
+    The point <InlineMath math="(0, -1)" /> lies on the negative imaginary axis, so its Principal Argument is <InlineMath math="\theta = -90^\circ" />.
 
-      <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+    Polar form using the Principal Argument:
+
+    <BlockMath math="z = 1(\cos (-90^\circ) + i \sin (-90^\circ))" />
+
+    The coterminal angle <InlineMath math="270^\circ" /> gives the equivalent form
+
+    <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
 
 ## Exponential Form
 
 The **exponential form** follows from **Euler's formula**:
 
 <BlockMath math="e^{i\theta} = \cos \theta + i \sin \theta" />
+
+In Euler’s formula, the angle must be expressed in **radians**. Adding two pi to the angle makes one full turn and leaves the complex number unchanged.
 
 Here, <InlineMath math="e \approx 2.71828\ldots" /> is Euler's number, the base of the natural logarithm.
 
@@ -188,32 +198,41 @@ For nonzero factors, this form turns multiplication into multiplying moduli and 
 
 ### Conversion to Exponential Form
 
+Use **radians in the exponent**. The modulus stays unchanged because the new form only changes how we write the direction.
+
 Take the previous examples:
 
 1.  For <InlineMath math="z = 1 + i" />, we already have the polar form <InlineMath math="\sqrt{2}(\cos 45^\circ + i \sin 45^\circ)" />.
 
-    - Modulus <InlineMath math="r = \sqrt{2}" />.
-    - Argument <InlineMath math="\theta = 45^\circ = \pi/4" /> radians.
-    - Exponential Form:
+    Modulus <InlineMath math="r = \sqrt{2}" />.
 
-      <BlockMath math="z = r e^{i\theta} = \sqrt{2} e^{i \pi/4}" />
+    Argument <InlineMath math="\theta = 45^\circ = \pi/4" /> radians.
+
+    Exponential Form:
+
+    <BlockMath math="z = r e^{i\theta} = \sqrt{2} e^{i \pi/4}" />
 
 2.  For <InlineMath math="z = \sqrt{2}(\cos 315^\circ + i \sin 315^\circ)" />:
-    - Modulus <InlineMath math="r = \sqrt{2}" />.
-    - Argument <InlineMath math="\theta = 315^\circ" />. Convert to radians:
 
-      <BlockMath math="\begin{aligned} 315^\circ &amp;= 315 \times \frac{\pi}{180} \\ &amp;= \frac{7 \times 45 \times \pi}{4 \times 45} \\ &amp;= \frac{7\pi}{4} \end{aligned}" />
+    Modulus <InlineMath math="r = \sqrt{2}" />.
 
-      Or use the negative angle <InlineMath math="315^\circ - 360^\circ = -45^\circ = -\pi/4" /> radians.
-    - Exponential Form (choose one angle):
+    Argument <InlineMath math="\theta = 315^\circ" />. Convert to radians:
 
-      <BlockMath math="z = \sqrt{2} e^{i 7\pi/4}" />
+    <BlockMath math="\begin{aligned} 315^\circ &amp;= 315 \times \frac{\pi}{180} \\ &amp;= \frac{7 \times 45 \times \pi}{4 \times 45} \\ &amp;= \frac{7\pi}{4} \end{aligned}" />
 
-      or
+    Or use the negative angle <InlineMath math="315^\circ - 360^\circ = -45^\circ = -\pi/4" /> radians.
 
-      <BlockMath math="z = \sqrt{2} e^{-i \pi/4}" />
+    Exponential Form (choose one angle):
+
+    <BlockMath math="z = \sqrt{2} e^{i 7\pi/4}" />
+
+    or
+
+    <BlockMath math="z = \sqrt{2} e^{-i \pi/4}" />
 
 ### Exponential Form Exercise
+
+Convert the angle from **degrees to radians**, then keep the modulus in front of the exponential factor.
 
 Express the following complex numbers in exponential form (use radian angles):
 
@@ -223,24 +242,28 @@ Express the following complex numbers in exponential form (use radian angles):
 **Worked solutions:**
 
 1.  For <InlineMath math="z = 2(\cos 60^\circ + i \sin 60^\circ)" />:
-    - Modulus <InlineMath math="r = 2" />.
-    - Argument <InlineMath math="\theta = 60^\circ" />. Convert to radians:
 
-      <BlockMath math="\theta = 60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3}" />
+    Modulus <InlineMath math="r = 2" />.
 
-    - Exponential Form:
+    Argument <InlineMath math="\theta = 60^\circ" />. Convert to radians:
 
-      <BlockMath math="z = 2 e^{i \pi/3}" />
+    <BlockMath math="\theta = 60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3}" />
+
+    Exponential Form:
+
+    <BlockMath math="z = 2 e^{i \pi/3}" />
 
 2.  For <InlineMath math="z = \cos 15^\circ + i \sin 15^\circ" />:
-    - Modulus <InlineMath math="r = 1" /> (because there is no coefficient in front of <InlineMath math="\cos" /> and <InlineMath math="\sin" />).
-    - Argument <InlineMath math="\theta = 15^\circ" />. Convert to radians:
 
-      <BlockMath math="\theta = 15^\circ = 15 \times \frac{\pi}{180} = \frac{\pi}{12}" />
+    Modulus <InlineMath math="r = 1" /> (because there is no coefficient in front of <InlineMath math="\cos" /> and <InlineMath math="\sin" />).
 
-    - Exponential Form:
+    Argument <InlineMath math="\theta = 15^\circ" />. Convert to radians:
 
-      <BlockMath math="z = e^{i \pi/12}" />
+    <BlockMath math="\theta = 15^\circ = 15 \times \frac{\pi}{180} = \frac{\pi}{12}" />
+
+    Exponential Form:
+
+    <BlockMath math="z = e^{i \pi/12}" />
 
 ## Choosing a Suitable Form
 
@@ -248,7 +271,7 @@ Express the following complex numbers in exponential form (use radian angles):
 
 To return from polar form to Cartesian form, evaluate the sine and cosine. For example:
 
-<BlockMath math="\begin{aligned} w &amp;=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right) \\ &amp;=-2\sqrt{3}+2i \end{aligned}" />
+<BlockMath math="\begin{aligned} w &amp;=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right) \\ &amp;=4\left(-\frac{\sqrt3}{2}+i\frac12\right) \\ &amp;=-2\sqrt{3}+2i \end{aligned}" />
 
 Changing form is a problem-solving choice. The complex number itself stays the same.
 
@@ -260,15 +283,12 @@ Two complex numbers <InlineMath math="z_1 = x_1 + iy_1" /> and <InlineMath math=
 
 ### Equality Example
 
-The example below compares two numbers with different real parts but equally large imaginary parts, so the sign of the imaginary part decides the answer.
+Compare **corresponding components**. A difference in just one component is enough to make the numbers unequal. Changing the order of the terms does not change the number.
 
-- <InlineMath math="z_1 = 3 - 2i" /> and <InlineMath math="z_2 = 4 + 2i" /> are **different**.
-
-  because <InlineMath math="\text{Re}(z_1) = 3 \neq \text{Re}(z_2) = 4" /> (even though <InlineMath math="|\text{Im}(z_1)| = |-2| = 2 = |\text{Im}(z_2)| = |2|" />, their imaginary signs differ).
-
-- <InlineMath math="z_1 = -1 + i" /> and <InlineMath math="z_2 = i - 1" /> are **equal**.
-
-  because <InlineMath math="\text{Re}(z_1) = -1 = \text{Re}(z_2) = -1" /> and <InlineMath math="\text{Im}(z_1) = 1 = \text{Im}(z_2) = 1" />.
+| Pair | Real components | Imaginary components | Conclusion |
+| --- | --- | --- | --- |
+| <InlineMath math="3-2i" />, <InlineMath math="4+2i" /> | <InlineMath math="3\ne4" /> | <InlineMath math="-2\ne2" /> | Different |
+| <InlineMath math="-1+i" />, <InlineMath math="i-1" /> | <InlineMath math="-1=-1" /> | <InlineMath math="1=1" /> | Equal |
 
 ### Equality Exercise
 
@@ -298,13 +318,13 @@ Determine if the following pairs of complex numbers are equal or different:
 
 ## Exercises
 
-Each item asks you to accept or reject a statement about the three standard forms, so name the form before you decide.
+Check the **components, quadrant, and representation** required by each question. The first three items are true or false. Next, convert representations and use component equations or the quadratic formula to solve the remaining problems.
 
 1.  **True or False.** Every real number is a complex number.
 2.  **True or False.** The three standard forms used here are Cartesian, exponential, and logarithmic.
 3.  **True or False.** If the complex number <InlineMath math="z = 1 - 3i" /> is plotted on the complex plane, it lies in quadrant III.
 4.  Express the complex number <InlineMath math="2+2i" /> in polar and exponential forms.
-5.  Find the numbers <InlineMath math="x" /> and <InlineMath math="y" /> such that <InlineMath math="z_1 = x + 3i" /> and <InlineMath math="z_2 = 3 - yi" /> satisfy <InlineMath math="z_1 = z_2" />.
+5.  Find the real numbers <InlineMath math="x" /> and <InlineMath math="y" /> such that <InlineMath math="z_1 = x + 3i" /> and <InlineMath math="z_2 = 3 - yi" /> satisfy <InlineMath math="z_1 = z_2" />.
 6.  Find the solutions to the quadratic equation <InlineMath math="x^2 - 2x + 6 = 0" />.
 7.  Find the quadratic equation whose solutions are <InlineMath math="x_1 = 1 + i" /> and <InlineMath math="x_2 = 1 - i" />.
 
@@ -314,28 +334,32 @@ Each item asks you to accept or reject a statement about the three standard form
 2.  **False.** The three standard forms used here are Cartesian, polar, and exponential. A logarithm is an operation applied to a complex number. It is not one of these three forms.
 3.  **False.** <InlineMath math="z = 1 - 3i" /> has a positive real part (<InlineMath math="x=1" />) and a negative imaginary part (<InlineMath math="y=-3" />). The point <InlineMath math="(1, -3)" /> lies in **Quadrant IV**.
 4.  For <InlineMath math="z = 2 + 2i" />:
-    - Calculate the modulus <InlineMath math="r" />:
 
-      <BlockMath math="\begin{aligned} r &amp;= \sqrt{x^2+y^2} \\ &amp;= \sqrt{2^2+2^2} \\ &amp;= \sqrt{4+4} \\ &amp;= \sqrt{8} \\ &amp;= 2\sqrt{2} \end{aligned}" />
+    Calculate the modulus <InlineMath math="r" />:
 
-    - Calculate the argument <InlineMath math="\theta" />:
+    <BlockMath math="\begin{aligned} r &amp;= \sqrt{x^2+y^2} \\ &amp;= \sqrt{2^2+2^2} \\ &amp;= \sqrt{4+4} \\ &amp;= \sqrt{8} \\ &amp;= 2\sqrt{2} \end{aligned}" />
 
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{2}{2} = 1" />
+    Calculate the argument <InlineMath math="\theta" />:
 
-      Since <InlineMath math="x=2" /> and <InlineMath math="y=2" /> (both positive),
-      the point is in Quadrant I. Thus, <InlineMath math="\theta = 45^\circ" /> or <InlineMath math="\pi/4" /> radians.
-    - Polar Form:
+    <BlockMath math="\tan \theta = \frac{y}{x} = \frac{2}{2} = 1" />
 
-      <BlockMath math="\begin{aligned} z &amp;= r(\cos \theta + i \sin \theta) \\ &amp;= 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ) \end{aligned}" />
+    Since <InlineMath math="x=2" /> and <InlineMath math="y=2" /> (both positive),
+    the point is in Quadrant I. Thus, <InlineMath math="\theta = 45^\circ" /> or <InlineMath math="\pi/4" /> radians.
 
-    - Exponential Form:
+    Polar Form:
 
-      <BlockMath math="z = r e^{i\theta} = 2\sqrt{2} e^{i \pi/4}" />
+    <BlockMath math="\begin{aligned} z &amp;= r(\cos \theta + i \sin \theta) \\ &amp;= 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ) \end{aligned}" />
+
+    Exponential Form:
+
+    <BlockMath math="z = r e^{i\theta} = 2\sqrt{2} e^{i \pi/4}" />
 
 5.  For <InlineMath math="z_1 = x + 3i" /> to equal <InlineMath math="z_2 = 3 - yi" />, the real parts must be equal and the imaginary parts must be equal:
-    - Real Part: <InlineMath math="x = 3" />
-    - Imaginary Part: <InlineMath math="3 = -y \implies y = -3" />
-      So, <InlineMath math="x=3" /> and <InlineMath math="y=-3" />.
+
+    Real Part: <InlineMath math="x = 3" />
+
+    Imaginary Part: <InlineMath math="3 = -y \implies y = -3" />
+    So, <InlineMath math="x=3" /> and <InlineMath math="y=-3" />.
 6.  To solve <InlineMath math="x^2 - 2x + 6 = 0" />, use the quadratic formula:
 
     <BlockMath math="x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}" />
@@ -343,28 +367,29 @@ Each item asks you to accept or reject a statement about the three standard form
     with <InlineMath math="a=1, b=-2, c=6" />:
 
     <MathContainer>
-      <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
-      <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
-      <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
-      <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
-      <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
-      <BlockMath math="x = 1 \pm i\sqrt{5}" />
+    <BlockMath math="x = \frac{-(-2) \pm \sqrt{(-2)^2 - 4(1)(6)}}{2(1)}" />
+    <BlockMath math="x = \frac{2 \pm \sqrt{4 - 24}}{2}" />
+    <BlockMath math="x = \frac{2 \pm \sqrt{-20}}{2}" />
+    <BlockMath math="x = \frac{2 \pm i\sqrt{20}}{2}" />
+    <BlockMath math="x = \frac{2 \pm 2\sqrt{5}i}{2}" />
+    <BlockMath math="x = 1 \pm i\sqrt{5}" />
     </MathContainer>
 
     The solutions are <InlineMath math="x_1 = 1 + i\sqrt{5}" /> and <InlineMath math="x_2 = 1 - i\sqrt{5}" />
     .
 7.  If the roots of a quadratic equation are <InlineMath math="x_1 = 1 + i" /> and <InlineMath math="x_2 = 1 - i" />, the equation can be formed from <InlineMath math="(x - x_1)(x - x_2) = 0" /> or <InlineMath math="x^2 - (x_1 + x_2)x + (x_1 x_2) = 0" />.
-    - Calculate the sum of the roots:
 
-      <BlockMath math="\begin{aligned} x_1 + x_2 &amp;= (1+i) + (1-i) \\ &amp;= 1 + i + 1 - i \\ &amp;= 2 \end{aligned}" />
+    Calculate the sum of the roots:
 
-    - Calculate the product of the roots:
+    <BlockMath math="\begin{aligned} x_1 + x_2 &amp;= (1+i) + (1-i) \\ &amp;= 1 + i + 1 - i \\ &amp;= 2 \end{aligned}" />
 
-      <BlockMath math="\begin{aligned} x_1 x_2 &amp;= (1+i)(1-i) \\ &amp;= 1^2 - i^2 \\ &amp;= 1 - (-1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
+    Calculate the product of the roots:
 
-    - Construct the quadratic equation:
+    <BlockMath math="\begin{aligned} x_1 x_2 &amp;= (1+i)(1-i) \\ &amp;= 1^2 - i^2 \\ &amp;= 1 - (-1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
 
-      <MathContainer>
-        <BlockMath math="x^2 - (2)x + (2) = 0" />
-        <BlockMath math="x^2 - 2x + 2 = 0" />
-      </MathContainer>
+    Construct the quadratic equation:
+
+    <MathContainer>
+      <BlockMath math="x^2 - (2)x + (2) = 0" />
+      <BlockMath math="x^2 - 2x + 2 = 0" />
+    </MathContainer>

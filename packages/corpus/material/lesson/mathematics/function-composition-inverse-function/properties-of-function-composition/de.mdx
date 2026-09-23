@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Reihenfolge und Klammerung bei verketteten Funktionen
 
-<Highlight>Bei der Funktionszusammensetzung werden Funktionen nacheinander angewendet.</Highlight> Die folgenden Beispiele zeigen, warum eine andere Reihenfolge das Ergebnis ändern kann, während eine andere Klammerung allein nichts ändert:
+Bei der Komposition werden Funktionen in einer **festgelegten Reihenfolge** angewendet. Mit diesen drei Regeln vergleichen wir eine geänderte Reihenfolge mit einer geänderten Klammerung:
 
 <MathContainer>
   <BlockMath math="f(x) = 2x + 1" />
@@ -27,23 +27,23 @@ Die Reihenfolge legt fest, welche Funktion die Ausgabe der anderen erhält. Vert
 
 Im Allgemeinen ist <InlineMath math="(f \circ g)(x)" /> **ungleich** <InlineMath math="(g \circ f)(x)" />.
 
-**Beispiel:**
+**Beispiel**:
 
 Vergleichen wir <InlineMath math="(g \circ f)(x)" /> und <InlineMath math="(f \circ g)(x)" />.
 
-1.  **Berechnung von <InlineMath math="(g \circ f)(x)" />:**
+**Berechnung von <InlineMath math="(g \circ f)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
-      <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
+  <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
+</MathContainer>
 
-2.  **Berechnung von <InlineMath math="(f \circ g)(x)" />:**
+**Berechnung von <InlineMath math="(f \circ g)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
-      <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
+  <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
+</MathContainer>
 
 Die beiden Polynomterme haben unterschiedliche Koeffizienten und beschreiben daher nicht dieselbe Funktion. Eine einzige Eingabe liefert außerdem ein direktes Gegenbeispiel:
 
@@ -61,38 +61,49 @@ Mathematisch gesehen gilt für die Funktionen <InlineMath math="f" />, <InlineMa
 
 Man kann zuerst <InlineMath math="f\circ g" /> bilden und diese Funktion dann mit <InlineMath math="h" /> zusammensetzen oder zuerst <InlineMath math="g\circ h" /> bilden und anschließend <InlineMath math="f" /> mit dem Ergebnis zusammensetzen. Für jede Eingabe, auf der beide Seiten definiert sind, wird zuerst <InlineMath math="h" />, dann <InlineMath math="g" /> und zuletzt <InlineMath math="f" /> angewendet.
 
-**Beispiel:**
+**Beispiel**:
 
 Wir wollen prüfen, ob <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
-1.  **Berechnung von <InlineMath math="((f \circ g) \circ h)(x)" />:**
+**Berechnung von <InlineMath math="((f \circ g) \circ h)(x)" />**:
 
-    Wir kennen bereits <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
+Wir kennen bereits <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
-2.  **Berechnung von <InlineMath math="(f \circ (g \circ h))(x)" />:**
+**Berechnung von <InlineMath math="(f \circ (g \circ h))(x)" />**:
 
-    Finde zunächst <InlineMath math="(g \circ h)(x)" />:
+Finde zunächst <InlineMath math="(g \circ h)(x)" />:
 
-    <MathContainer>
-      <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
-      <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
+  <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
+</MathContainer>
 
-    Setze nun <InlineMath math="f" /> mit diesem Ergebnis zusammen:
+Setze nun <InlineMath math="f" /> mit diesem Ergebnis zusammen:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
 Da beide Ergebnisse für <InlineMath math="x\neq-1" /> gleich <InlineMath math="\frac{2}{(x+1)^2} + 9" /> sind, gilt die assoziative Eigenschaft auf dem gemeinsamen Definitionsbereich: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
 Diese assoziative Eigenschaft gilt auch für andere Kombinationen der Funktionsreihenfolge, wie z. B. <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> und <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
+
+Für <InlineMath math="x=0" /> folgen beide Klammerungen **demselben Rechenweg**. Die Zusammenfassung zweier Regeln verändert ihre Anwendungsreihenfolge nicht:
+
+<Mermaid
+  title="Feste Reihenfolge bei assoziativer Komposition"
+  description="Die Eingabe null wird von h, dann g und dann f verarbeitet. Das Ergebnis ist elf."
+  chart={`flowchart LR
+    X["0"] -->|"h"| H["1"]
+    H -->|"g"| G["5"]
+    G -->|"f"| F["11"]`}
+/>
 
 ### Identitätselement
 
@@ -105,7 +116,7 @@ Die Zusammensetzung mit der Identität der passenden Menge lässt <InlineMath ma
   <BlockMath math="(I_B \circ f)(x)=I_B(f(x))=f(x)" />
 </MathContainer>
 
-**Beispiel:**
+**Beispiel**:
 
 Mit <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> und <InlineMath math="f(x) = 2x + 1" />:
 

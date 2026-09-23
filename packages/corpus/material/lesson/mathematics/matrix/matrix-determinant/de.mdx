@@ -17,14 +17,13 @@ Eine <InlineMath math="2 \times 2" />-Matrix besitzt zwei Zeilen und zwei Spalte
 
 <BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
 
-Die Determinante der Matrix <InlineMath math="A" />, geschrieben als <InlineMath math="\det(A)" /> oder <InlineMath math="|A|" />, ist das Produkt auf der Hauptdiagonalen minus das Produkt auf der anderen Diagonalen.
+Die Determinante der Matrix <InlineMath math="A" />, geschrieben als <InlineMath math="\det(A)" /> oder <InlineMath math="|A|" />, ist das **Produkt** auf der Hauptdiagonalen minus das Produkt auf der anderen Diagonalen.
 
 Die Formel lautet:
 
 <BlockMath math="\det(A) = |A| = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc" />
 
 Die senkrechten Striche in der Formel bezeichnen die Determinante <InlineMath math="\det(A)" />. Die eckigen Klammern in der Definition von <InlineMath math="A" /> umschließen die Matrixeinträge.
-
 ### Beispiel mit zwei Zeilen und zwei Spalten
 
 Gegeben ist die Matrix <InlineMath math="B" />:
@@ -33,7 +32,7 @@ Gegeben ist die Matrix <InlineMath math="B" />:
 
 Für die Formel setzen wir <InlineMath math="a = -1" />, <InlineMath math="b = 3" />, <InlineMath math="c = -7" /> und <InlineMath math="d = -5" /> ein.
 
-Dann ist die Determinante der Matrix <InlineMath math="B" />:
+Dann ist die **Determinante** der Matrix <InlineMath math="B" />:
 
 <MathContainer>
   <BlockMath math="\det(B) = (-1 \times -5) - (3 \times -7)" />
@@ -43,7 +42,6 @@ Dann ist die Determinante der Matrix <InlineMath math="B" />:
 </MathContainer>
 
 Die Determinante der Matrix <InlineMath math="B" /> ist also <InlineMath math="26" />.
-
 ## Lineare Gleichungssysteme mit Determinanten lösen
 
 Mit der Cramerschen Regel lassen sich lineare Gleichungssysteme mithilfe von Determinanten lösen.
@@ -88,7 +86,7 @@ Nachdem wir die Werte von <InlineMath math="D" />, <InlineMath math="D_x" /> und
   <BlockMath math="y = \frac{D_y}{D}" />
 </MathContainer>
 
-Diese Formeln sind nur gültig, wenn <InlineMath math="D \neq 0" />.
+**Diese Formeln sind nur gültig, wenn** <InlineMath math="D \neq 0" />.
 
 Für <InlineMath math="D=0" /> sind die Brüche der Cramerschen Regel nicht definiert. Daraus allein folgt noch nicht, ob das System keine oder unendlich viele Lösungen hat. Diese Fälle müssen durch Elimination oder Zeilenreduktion unterschieden werden.
 
@@ -130,9 +128,41 @@ Da <InlineMath math="D = -7 \neq 0" /> gilt, besitzt das System genau eine Lösu
 
 Die Lösungsmenge des linearen Gleichungssystems ist also <InlineMath math="x=2" /> und <InlineMath math="y=-3" /> oder kann als geordnetes Paar <InlineMath math="(2, -3)" /> geschrieben werden.
 
+### Zwei Geraden mit einem Schnittpunkt
+
+Du kannst die Cramer-Lösung auch als **Schnittpunkt zweier Geraden** lesen. Schreibe die Gleichungen als <InlineMath math="y=2x-7" /> und <InlineMath math="y=\frac14x-\frac72" />. Ihre Steigungen unterscheiden sich, daher haben sie genau einen Schnittpunkt.
+
+<LineEquation
+  title="Zwei Geraden mit einem Schnittpunkt"
+  description={<>Grüne Gerade: <InlineMath math="2x-y=7" />. Orange Gerade: <InlineMath math="x-4y=14" />. Ihr Schnittpunkt ist <InlineMath math="(2,-3)" />.</>}
+  cameraPosition={[2, -2, 18]}
+  cameraTarget={[2, -2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: -1, y: -9, z: 0 }, { x: 2, y: -3, z: 0 }, { x: 6, y: 5, z: 0 }],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="(2,-3)" />, at: 1, offset: [0.6, 0.6, 0] }],
+    },
+    {
+      points: [{ x: -2, y: -4, z: 0 }, { x: 6, y: -2, z: 0 }],
+      smooth: false,
+      color: "#f97316",
+      showPoints: false,
+    },
+  ]}
+/>
+
+Durch Einsetzen der Schnittpunktkoordinaten überprüfst du beide Gleichungen.
+
+<BlockMath math="\begin{aligned}2(2)-(-3)&=4+3=7\\2-4(-3)&=2+12=14\end{aligned}" />
+
 ## Übungen
 
-Jede Aufgabe unten nutzt die Determinante auf eine andere Weise. Die erste verlangt einen unbekannten Eintrag in einer Matrix mit gegebener Determinante, die zweite verlangt die Lösung eines linearen Gleichungssystems.
+Jede Aufgabe unten nutzt die Determinante auf eine andere Weise. Die erste verlangt einen **unbekannten Eintrag** in einer Matrix mit gegebener Determinante, die zweite verlangt die Lösung eines linearen Gleichungssystems.
 
 1.  Für die folgende Matrix gilt <InlineMath math="\det(M) = 9" />. Bestimme <InlineMath math="x" />.
 
@@ -141,14 +171,13 @@ Jede Aufgabe unten nutzt die Determinante auf eine andere Weise. Die erste verla
 2.  Löse das folgende lineare Gleichungssystem:
 
     <BlockMath math="\begin{cases} 2x - y = 8 \\ x + 3y = -10 \end{cases}" />
-
 ### Ausführliche Lösungen
 
 1.  Die Matrix der ersten Aufgabe lautet:
 
     <BlockMath math="M = \begin{bmatrix} 9 & x \\ 8 & -7 \end{bmatrix}" />
 
-    Ihre Determinante ist:
+    Ihre **Determinante** ist:
 
     <BlockMath math="\begin{aligned} \det(M) &amp;= (9 \times -7) - (x \times 8) \\ &amp;= -63 - 8x \end{aligned}" />
 

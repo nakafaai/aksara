@@ -57,13 +57,23 @@ Eine Wechselwirkung zweier Eingaben:
 
 Terme wie <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" /> und <InlineMath math="ts" /> dürfen in den Eingaben nichtlinear sein. Nach der Beobachtung der Eingaben sind sie bekannte Koeffizienten. Das Modell bleibt daher <Highlight>in seinen unbekannten Parametern linear</Highlight>.
 
+Betrachte die Beobachtungen <InlineMath math="(t,y)=(0,1),(1,3),(2,5)" /> und die Basis <InlineMath math="1,t" />. Jede beobachtete Eingabe liefert eine Zeile der Designmatrix.
+
+<MathContainer>
+<BlockMath math="\begin{pmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}1\\3\\5\end{pmatrix}" />
+<BlockMath math="a=1,\qquad a+b=3\Rightarrow b=2" />
+<BlockMath math="a+2b=1+2(2)=5" />
+</MathContainer>
+
+Die dritte Beobachtung stimmt mit den ersten beiden überein. Ein Parametervektor <InlineMath math="(a,b)=(1,2)" /> erklärt alle drei Werte.
+
 ## Mehrere Antworten
 
 Liefert jede Eingabe mehrere Antworten, ordnet man ihre Parametervektoren in einer Matrix <InlineMath math="B" /> an. Für eine Zeile von Basiswerten <InlineMath math="\phi(t)^{\mathsf T}" /> gilt
 
 <BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
 
-Jede Spalte von <InlineMath math="B" /> beschreibt eine Antwort. Auch dies ist ein lineares Modell, weil jede Ausgabe eine lineare Kombination derselben bekannten Basiswerte ist.
+**Jede Spalte** von <InlineMath math="B" /> beschreibt eine Antwort. Auch dies ist ein lineares Modell, weil jede Ausgabe eine lineare Kombination derselben bekannten Basiswerte ist.
 
 ## Das ideale Gasgesetz
 
@@ -75,7 +85,7 @@ Bei bekannter Temperatur <InlineMath math="T" /> und bekanntem Volumen <InlineMa
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
-Der Druck <InlineMath math="p" /> hängt linear von der unbekannten Stoffmenge <InlineMath math="n" /> ab, die in Mol gemessen wird. Die Größe <InlineMath math="n" /> ist nicht selbst die Anzahl der Moleküle. Die Anzahl der angegebenen Teilchen ist <InlineMath math="N=nN_A" />.
+Der Druck <InlineMath math="p" /> hängt linear von der **unbekannten Stoffmenge** <InlineMath math="n" /> ab, die in Mol gemessen wird. Die Größe <InlineMath math="n" /> ist nicht selbst die Anzahl der Moleküle. Die Anzahl der angegebenen Teilchen ist <InlineMath math="N=nN_A" />.
 
 Wiederholte Druckmessungen bei mehreren bekannten Werten <InlineMath math="(T_i,V_i)" /> liefern für jede Beobachtung eine Designmatrixzeile <InlineMath math="RT_i/V_i" />.
 
@@ -85,7 +95,7 @@ Ein tatsächlich nichtlineares Parametermodell hat die Form
 
 <BlockMath math="y=g(t,x)" />
 
-In diesem Modell können Parameter in Exponentialfunktionen, Potenzen oder Produkten miteinander auftreten. In der Nähe eines aktuellen Parameterwerts <InlineMath math="x_0" /> liefert eine Taylor-Näherung erster Ordnung
+In diesem Modell können Parameter in Exponentialfunktionen, Potenzen oder Produkten miteinander auftreten. In der Nähe eines aktuellen Parameterwerts <InlineMath math="x_0" /> liefert eine **Taylor-Näherung erster Ordnung**
 
 <BlockMath math="g(t,x) \approx g(t,x_0) +J_xg(t,x_0)(x-x_0)" />
 
@@ -96,7 +106,7 @@ Die Jacobi-Matrix <InlineMath math="J_xg(t,x_0)" /> ist nach der Wahl von <Inlin
 Vor der Interpretation angepasster Parameter sollte man prüfen, dass:
 
 - die Spalten der Designmatrix die vorgesehenen Basisfunktionen und Einheiten darstellen
-- die Daten genügend unabhängige Information für die Parameter enthalten, typischerweise <InlineMath math="\operatorname{rank}(A)=n" />
+- die Daten genügend **unabhängige Information** für die Parameter enthalten, typischerweise <InlineMath math="\operatorname{rank}(A)=n" />
 - Merkmalsskalen und Konditionszahl die Lösung nicht numerisch empfindlich machen
 - die gewählte Residualfunktion zu den Annahmen über Rauschen und Ausreißer passt
 - eine lokale Linearisierung anschließend am ursprünglichen nichtlinearen Modell geprüft wird

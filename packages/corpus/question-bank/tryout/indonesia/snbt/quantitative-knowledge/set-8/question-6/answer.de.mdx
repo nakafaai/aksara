@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Bei einer Teilmenge spielt die Reihenfolge der Elemente keine Rolle. Deshalb zählen wir mit Kombinationen.
+Bei einer Teilmenge spielt die **Reihenfolge der Elemente keine Rolle**. Deshalb zählen wir mit Kombinationen.
 
 Eine Menge mit <InlineMath math="n" /> Elementen besitzt insgesamt <InlineMath math="2^n" /> Teilmengen. Für <InlineMath math="n = 10" /> sind das:
 
@@ -19,23 +19,14 @@ Die Kombinationsformel lautet:
 
 <BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
 
-Diese vier Anzahlen berechnen wir einzeln.
+| Ausgewählte Elemente | Rechnung | Anzahl der Teilmengen |
+| --- | --- | --- |
+| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
+| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
+| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
+| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
 
-#### Teilmengen mit null Elementen
-
-<BlockMath math="\begin{aligned}C(10, 0)&=\frac{10!}{0!10!}\\&=1\end{aligned}" />
-
-#### Teilmengen mit einem Element
-
-<BlockMath math="\begin{aligned}C(10, 1)&=\frac{10!}{1!9!}\\&=10\end{aligned}" />
-
-#### Teilmengen mit zwei Elementen
-
-<BlockMath math="\begin{aligned}C(10, 2)&=\frac{10!}{2!8!}\\&=\frac{10 \times 9}{2 \times 1}\\&=45\end{aligned}" />
-
-#### Teilmengen mit drei Elementen
-
-<BlockMath math="\begin{aligned}C(10, 3)&=\frac{10!}{3!7!}\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
+Die einzige Teilmenge mit null Elementen ist die **leere Menge**. Sie wird mitgezählt.
 
 Zusammen gibt es so viele Teilmengen mit <InlineMath math="\leq 3" /> Elementen:
 

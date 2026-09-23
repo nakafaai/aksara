@@ -61,20 +61,22 @@ Imagine Andi walks <InlineMath math="100 \text{ m}" /> at an angle of <InlineMat
       name: <InlineMath math="A" />,
       points: [
         { x: 0, y: 0 },
-        { x: 5, y: 2 },
+        { x: 50 * Math.sqrt(3), y: 50 },
       ],
     },
     {
       id: "-A",
       name: <InlineMath math="-A" />,
       points: [
-        { x: 0, y: 0.5 },
-        { x: 5, y: 2.5 },
+        { x: 0, y: 10 },
+        { x: 50 * Math.sqrt(3), y: 60 },
       ],
       direction: "backward",
     },
   ]}
 />
+
+The arrow starting points are separated to keep the arrows visible. Translating an arrow does not change its magnitude or direction. The outward displacement has components <InlineMath math="(50\sqrt3,50)\,\text{m}" />, and the return displacement has their negatives.
 
 - Vectors <InlineMath math="\vec{A}" /> and <InlineMath math="-\vec{A}" /> have the same magnitude (<InlineMath math="|\vec{A}| = |-\vec{A}|" />).
 - The direction of vector <InlineMath math="-\vec{A}" /> is exactly opposite to the direction of vector <InlineMath math="\vec{A}" />. If <InlineMath math="\vec{A}" /> points in one direction, <InlineMath math="-\vec{A}" /> points in the opposite direction (<InlineMath math="180^\circ" /> difference).
@@ -88,6 +90,8 @@ The zero vector can be visualized as a single point, where the initial point and
 **Example**:
 
 If Andi walks <InlineMath math="100 \text{ m}" /> east, then walks back <InlineMath math="100 \text{ m}" /> west, Andi's total displacement is zero. This total displacement can be represented as the zero vector (<InlineMath math="\vec{0}" />).
+
+<BlockMath math="\Delta x=100\,\text{m}+(-100\,\text{m})=0\,\text{m}" />
 
 ## Equivalent or Equal Vectors
 
@@ -179,7 +183,7 @@ Vector <InlineMath math="\vec{A}" /> is **not** the opposite vector of <InlineMa
 
 Because the second condition fails, <InlineMath math="\vec{A}" /> is not the opposite vector of <InlineMath math="\vec{B}" />.
 
-**How to make vectors <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> opposite?**
+How to make vectors <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> opposite?
 
 Keeping <InlineMath math="\vec{A}" /> fixed, we can make <InlineMath math="\vec{B}" /> its opposite by changing the endpoint of <InlineMath math="\vec{B}" />:
 
@@ -211,3 +215,7 @@ Keeping <InlineMath math="\vec{A}" /> fixed, we can make <InlineMath math="\vec{
     },
   ]}
 />
+
+With the tail fixed at <InlineMath math="(1,4)" /> and the required components <InlineMath math="-\vec A=(1,4)" />, calculate the new endpoint as:
+
+<BlockMath math="(1,4)+(1,4)=(2,8)" />

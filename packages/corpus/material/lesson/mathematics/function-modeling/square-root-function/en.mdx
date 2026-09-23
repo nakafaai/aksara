@@ -25,15 +25,17 @@ Square root functions share three traits. Check each one against <InlineMath mat
 
 ## Domain and Range of Square Root Functions
 
-The expression under the root may not become negative, and that restriction produces the domain. The range contains only non negative values, because a square root never comes out negative.
-
-The domain and range determine which inputs and outputs a square root function can have.
+The **domain restricts inputs**, while the range records outputs actually attained. A principal square root without an outside multiplier or shift always has nonnegative outputs. A bounded radicand can also give the range an upper bound.
 
 ### Determining Domain
 
+Check this condition only where the **radicand is defined**. If it is a fraction, any zero-denominator exclusion still applies.
+
+<BlockMath math="D_f=\{x\in D_g\mid g(x)\geq0\}" />
+
 The domain of a square root function <InlineMath math="f(x) = \sqrt{g(x)}" /> is all values of <InlineMath math="x" /> that make <InlineMath math="g(x) \geq 0" />.
 
-**Steps to determine domain:**
+**Steps to determine domain**:
 
 | Step | Explanation                                             | Example: <InlineMath math="f(x) = \sqrt{x-2}" />                  |
 | ---- | ------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -46,13 +48,24 @@ The domain of a square root function <InlineMath math="f(x) = \sqrt{g(x)}" /> is
 
 The range of a square root function is all possible output values that the function can produce.
 
-For <InlineMath math="f(x) = \sqrt{x-2}" />, the radicand can produce every value from zero upward. Its principal square root therefore has range
+For <InlineMath math="f(x) = \sqrt{x-2}" />, the radicand can produce every value from zero **upward**. Its principal square root therefore has range
 
 <BlockMath math="R_f = \{y \mid y \geq 0, y \in \mathbb{R}\}" />
 
+The range also depends on the **maximum radicand value**. For comparison, the following radicand never exceeds four.
+
+<MathContainer>
+
+<BlockMath math="r(x)=\sqrt{4-x^2},\quad -2\leq x\leq2" />
+
+<BlockMath math="0\leq4-x^2\leq4\quad\Longrightarrow\quad0\leq r(x)\leq2" />
+
+<BlockMath math="r(-2)=0,\quad r(0)=2,\quad r(2)=0" />
+</MathContainer>
+
 ## Graph of Basic Square Root Function
 
-The parent graph exists only for <InlineMath math="x \geq 0" /> and passes through <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" />, and <InlineMath math="(4,2)" />. To raise the output by one more unit, the input must grow by a larger amount than before.
+The parent graph exists only for <InlineMath math="x \geq 0" /> and passes through <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" />, and <InlineMath math="(4,2)" />. **To raise the output** by one more unit, the input must grow by a larger amount than before.
 
 <LineEquation
   title={
@@ -69,7 +82,7 @@ The parent graph exists only for <InlineMath math="x \geq 0" /> and passes throu
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -89,18 +102,18 @@ The parent graph exists only for <InlineMath math="x \geq 0" /> and passes throu
       ],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## Transformations of Square Root Functions
 
-Shifting, stretching, and reflecting move the starting point of the graph and the position of the curve.
-
-Square root functions can undergo various transformations that change the shape and position of their graphs.
+Translation changes the **starting-point position**. Vertical scaling changes the height of each point relative to the horizontal axis, while reflection can reverse the curve direction. Scaling the parent function alone leaves its starting point at the origin.
 
 ### Horizontal Translation
 
-The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the basic square root function by <InlineMath math="h \text{ units}" /> to the right (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />).
+The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the basic square root function by <InlineMath math="h \text{ units}" /> **to the right** (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />).
 
 <LineEquation
   title="Horizontal Translation of Square Root Functions"
@@ -115,7 +128,7 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -137,7 +150,7 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -159,7 +172,7 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -179,13 +192,14 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
       ],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[3, 1, 13]}
   cameraTarget={[3, 1, 0]}
 />
 
 ### Vertical Translation
 
-The function <InlineMath math="f(x) = \sqrt{x} + k" /> shifts the graph of the basic square root function by <InlineMath math="k \text{ units}" /> upward (if <InlineMath math="k > 0" />) or downward (if <InlineMath math="k < 0" />).
+The function <InlineMath math="f(x) = \sqrt{x} + k" /> shifts the graph of the basic square root function by <InlineMath math="k \text{ units}" /> **upward** (if <InlineMath math="k > 0" />) or downward (if <InlineMath math="k < 0" />).
 
 | Function                                  | Transformation         | Domain                         | Range                           |
 | ----------------------------------------- | ---------------------- | ------------------------------ | ------------------------------- |
@@ -195,7 +209,7 @@ The function <InlineMath math="f(x) = \sqrt{x} + k" /> shifts the graph of the b
 
 ### Dilation
 
-For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> stretches the graph vertically, while <InlineMath math="0<|a|<1" /> compresses it. A negative <InlineMath math="a" /> also reflects the graph across the <InlineMath math="x" />-axis.
+For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> **stretches the graph vertically**, while <InlineMath math="0<|a|<1" /> compresses it. A negative <InlineMath math="a" /> also reflects the graph across the <InlineMath math="x" />-axis.
 
 <LineEquation
   title="Vertical Dilation of Square Root Functions"
@@ -210,7 +224,7 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
           .sort((a, b) => a - b)
@@ -232,7 +246,7 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -254,7 +268,7 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
           .sort((a, b) => a - b)
@@ -274,7 +288,9 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
       ],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## General Form of Square Root Functions
@@ -292,7 +308,7 @@ Here:
 
 The real domain is determined by <InlineMath math="b(x-h)\geq 0" />. The sign of <InlineMath math="a" /> then determines whether the range extends upward or downward from <InlineMath math="y=k" />.
 
-**Steps to draw the graph:**
+**Steps to draw the graph**:
 
 | Step | Action                    | Example: <InlineMath math="f(x) = 2\sqrt{x-1} + 3" />                                          |
 | ---- | ------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -305,7 +321,7 @@ The real domain is determined by <InlineMath math="b(x-h)\geq 0" />. The sign of
 
 ## Square Root Function Equations
 
-To solve an equation containing a square root, isolate the radical, square both sides, solve, and check every candidate in the original equation. Squaring is not reversible for arbitrary real expressions, so it can introduce an extraneous solution.
+To solve an equation containing a square root, **isolate the radical**, square both sides, solve, and check every candidate in the original equation. Squaring is not reversible for arbitrary real expressions, so it can introduce an extraneous solution.
 
 | Step | Explanation             | Example: <InlineMath math="\sqrt{2x+3} = 5" />         |
 | ---- | ----------------------- | ------------------------------------------------------ |
@@ -315,24 +331,37 @@ To solve an equation containing a square root, isolate the radical, square both 
 | <InlineMath math="4" /> | Solve                   | <InlineMath math="2x = 22 \Rightarrow x = 11" />       |
 | <InlineMath math="5" /> | Verify                  | <InlineMath math="\sqrt{2(11)+3} = \sqrt{25} = 5" /> ✓ |
 
-## Square Root Function Inequalities
-
-For a square root inequality, first enforce the domain. Before squaring, also check the sign of the side without the radical so the comparison remains equivalent.
-
-**Example:** Solve <InlineMath math="\sqrt{x-1} < 3" />
+**Check the original equation** to reject extraneous solutions. For example, squaring a square root set equal to minus two produces candidate four, but that candidate fails substitution.
 
 <MathContainer>
-  <BlockMath math="\text{Condition: } x-1 \geq 0 \Rightarrow x \geq 1" />
-  <BlockMath math="\sqrt{x-1} < 3" />
-  <BlockMath math="x-1 < 9" />
-  <BlockMath math="x < 10" />
+
+<BlockMath math="\sqrt{x}=-2\quad\Longrightarrow\quad x=4" />
+
+<BlockMath math="\sqrt4=2\neq-2" />
+</MathContainer>
+
+## Square Root Function Inequalities
+
+For a square root inequality, **first enforce the domain**. Before squaring, also check the sign of the side without the radical so the comparison remains equivalent.
+
+**Example**: Solve <InlineMath math="\sqrt{x-1} < 3" />
+
+<MathContainer>
+
+<BlockMath math="\text{Condition: } x-1 \geq 0 \Rightarrow x \geq 1" />
+
+<BlockMath math="\sqrt{x-1} < 3" />
+
+<BlockMath math="x-1 < 9" />
+
+<BlockMath math="x < 10" />
 </MathContainer>
 
 Because both sides are non-negative on the domain, squaring preserves the inequality. Combining <InlineMath math="x\geq 1" /> with <InlineMath math="x<10" /> gives <InlineMath math="1 \leq x < 10" />.
 
 ## Practice Problems
 
-The problems ask for the domain, the range, or the graph of a root function. Start from the condition inside the square root.
+The problems ask for the domain, the range, or the graph of a root function. Start from the **condition inside the square root**.
 
 1. Determine the domain and range of the function <InlineMath math="f(x) = \sqrt{3x-6}" />
 
@@ -340,110 +369,130 @@ The problems ask for the domain, the range, or the graph of a root function. Sta
 
 3. Solve the equation <InlineMath math="\sqrt{x+5} + \sqrt{x} = 5" />
 
-4. A rocket is launched vertically. Its height after <InlineMath math="t \text{ seconds}" /> is given by <InlineMath math="h(t) = 100\sqrt{t} \text{ meters}" />. What is the height of the rocket after <InlineMath math="9 \text{ seconds}" />?
+4. In a practice model, a rocket launches vertically. Its modeled height after <InlineMath math="t \text{ seconds}" /> is given by <InlineMath math="h(t) = 100\sqrt{t} \text{ meters}" />. What is the height of the rocket after <InlineMath math="9 \text{ seconds}" />?
 
 5. Determine the value of <InlineMath math="x" /> that satisfies <InlineMath math="2\sqrt{x-3} \geq 6" />
 
-### Worked Solutions
+### Domain and range
 
-1. The radicand must be non-negative:
+The **radicand must be non-negative**:
 
-   <MathContainer>
-     <BlockMath math="3x-6\geq 0" />
-     <BlockMath math="x\geq 2." />
-   </MathContainer>
+<MathContainer>
 
-   Therefore, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. As <InlineMath math="x" /> runs through this domain, <InlineMath math="3x-6" /> takes every non-negative value, so <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
+<BlockMath math="3x-6\geq 0" />
 
-2. **Drawing the graph** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+<BlockMath math="x\geq 2." />
+</MathContainer>
 
-   **Steps to draw:**
+Therefore, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. As <InlineMath math="x" /> runs through this domain, <InlineMath math="3x-6" /> takes every non-negative value, so <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
 
-   | Step | Explanation              | Details for <InlineMath math="g(x) = -\sqrt{x+4} + 2" />                                                                                                   |
-   | ---- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | <InlineMath math="1" /> | Identify transformations | <InlineMath math="a = -1" /> (reflection across the <InlineMath math="x" />-axis), <InlineMath math="h = -4" /> (shift <InlineMath math="4 \text{ units}" /> left), <InlineMath math="k = 2" /> (shift <InlineMath math="2 \text{ units}" /> up) |
-   | <InlineMath math="2" /> | Determine starting point | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Starting point: <InlineMath math="(-4, 2)" /> |
-   | <InlineMath math="3" /> | Determine domain         | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" />                                                                                                     |
-   | <InlineMath math="4" /> | Determine range          | Since <InlineMath math="a = -1 < 0" />, the graph decreases from the starting point, so <InlineMath math="y \leq 2" />                                     |
-   | <InlineMath math="5" /> | Create value table       | Choose values <InlineMath math="x \geq -4" />                                                                                                              |
+### Drawing a reflected function
 
-   **Value table:**
+**Drawing the graph** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
 
-   | <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
-   | ----------------------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
-   | <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
-   | <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
-   | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
-   | <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
-   | <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
+**Steps to draw**:
 
-   <LineEquation
-     title={
-       <>
-         Graph of <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
-       </>
-     }
-     description={<>Graph of a square root function that undergoes reflection across the <InlineMath math="x" />-axis and translation.</>}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(2.5298221281347035);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t + -4;
-               return { x, y: -1 * t + 2, z: 0 };
-             });
-         })(),
-         color: "#7c3aed",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-             at: 102,
-             offset: [0, -1, 0],
-           },
-           {
-             text: <InlineMath math="(-4,2)" />,
-             at: 0,
-             offset: [0.5, 0.5, 0],
-           },
-         ],
-       },
-     ]}
-     cameraPosition={[1, 0.4, 14]}
-     cameraTarget={[1, 0.4, 0]}
-   />
+| Step | Explanation              | Details for <InlineMath math="g(x) = -\sqrt{x+4} + 2" />                                                                                                   |
+| ---- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <InlineMath math="1" /> | Identify transformations | <InlineMath math="a = -1" /> (reflection across the <InlineMath math="x" />-axis), <InlineMath math="h = -4" /> (shift <InlineMath math="4 \text{ units}" /> left), <InlineMath math="k = 2" /> (shift <InlineMath math="2 \text{ units}" /> up) |
+| <InlineMath math="2" /> | Determine starting point | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Starting point: <InlineMath math="(-4, 2)" /> |
+| <InlineMath math="3" /> | Determine domain         | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" />                                                                                                     |
+| <InlineMath math="4" /> | Determine range          | Since <InlineMath math="a = -1 < 0" />, the graph decreases from the starting point, so <InlineMath math="y \leq 2" />                                     |
+| <InlineMath math="5" /> | Create value table       | Choose values <InlineMath math="x \geq -4" />                                                                                                              |
 
-   The graph begins at <InlineMath math="(-4,2)" />. The negative sign reflects the parent graph across the <InlineMath math="x" />-axis, so the curve falls to the right and its outputs stay at or below <InlineMath math="2" />.
+**Value table**:
 
-3. The domain requires <InlineMath math="x\geq 0" />. Isolate one radical:
+| <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
+| ----------------------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
+| <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
+| <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
+| <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+| <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
 
-   <MathContainer>
-     <BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
-     <BlockMath math="x+5=25-10\sqrt{x}+x" />
-     <BlockMath math="10\sqrt{x}=20" />
-     <BlockMath math="\sqrt{x}=2" />
-     <BlockMath math="x=4." />
-   </MathContainer>
+<LineEquation
+  title={
+    <>
+      Graph of <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+    </>
+  }
+  description={<>Graph of a square root function that undergoes reflection across the <InlineMath math="x" />-axis and translation.</>}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(2.5298221281347035);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -4;
+            return { x, y: -1 * t + 2, z: 0 };
+          });
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
+          at: 102,
+          offset: [0, -1, 0],
+        },
+        {
+          text: <InlineMath math="(-4,2)" />,
+          at: 0,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 0.4, 14]}
+  cameraTarget={[1, 0.4, 0]}
+/>
 
-   Check the original equation: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Thus, <InlineMath math="x=4" /> is valid.
+The graph begins at <InlineMath math="(-4,2)" />. The negative sign reflects the parent graph across the <InlineMath math="x" />-axis, so the curve falls to the right and its outputs stay at or below <InlineMath math="2" />.
 
-4. Substitute <InlineMath math="t=9" /> into the model:
+### Solving two radicals
 
-   <BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+The domain requires <InlineMath math="x\geq 0" />. **Isolate one radical**:
 
-   The model uses <InlineMath math="t\geq 0" />, and <InlineMath math="9" /> lies in that domain. The modeled height is <InlineMath math="300\text{ m}" />.
+<MathContainer>
 
-5. Record the domain <InlineMath math="x-3\geq 0" />, so <InlineMath math="x\geq 3" />. Divide by the positive number <InlineMath math="2" />, then square the non-negative sides:
+<BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
 
-   <MathContainer>
-     <BlockMath math="2\sqrt{x-3}\geq 6" />
-     <BlockMath math="\sqrt{x-3}\geq 3" />
-     <BlockMath math="x-3\geq 9" />
-     <BlockMath math="x\geq 12." />
-   </MathContainer>
+<BlockMath math="x+5=25-10\sqrt{x}+x" />
 
-   Intersecting this result with the domain still gives <InlineMath math="x\geq 12" />.
+<BlockMath math="10\sqrt{x}=20" />
+
+<BlockMath math="\sqrt{x}=2" />
+
+<BlockMath math="x=4." />
+</MathContainer>
+
+Check the original equation: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Thus, <InlineMath math="x=4" /> is valid.
+
+### Evaluating a height model
+
+**Substitute** <InlineMath math="t=9" /> into the model:
+
+<BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+
+The model uses <InlineMath math="t\geq 0" />, and <InlineMath math="9" /> lies in that domain. The modeled height is <InlineMath math="300\text{ m}" />.
+
+### Solving the inequality
+
+Record the domain <InlineMath math="x-3\geq 0" />, so <InlineMath math="x\geq 3" />. **Divide by the positive number** <InlineMath math="2" />, then square the non-negative sides:
+
+<MathContainer>
+
+<BlockMath math="2\sqrt{x-3}\geq 6" />
+
+<BlockMath math="\sqrt{x-3}\geq 3" />
+
+<BlockMath math="x-3\geq 9" />
+
+<BlockMath math="x\geq 12." />
+</MathContainer>
+
+Intersecting this result with the domain still gives <InlineMath math="x\geq 12" />.

@@ -7,7 +7,7 @@ export const metadata = {
 
 #### Menentukan Amplitudo
 
-Amplitudo (<InlineMath math="A" />) adalah setengah dari jarak vertikal antara puncak dan lembah gelombang. Pada soal, jarak tersebut adalah <InlineMath math="16\text{ m}" />:
+Amplitudo (<InlineMath math="A" />) adalah **setengah dari jarak vertikal** antara puncak dan lembah gelombang. Pada soal, jarak tersebut adalah <InlineMath math="16\text{ m}" />:
 
 <MathContainer>
   <BlockMath math="A = \frac{16}{2}" />
@@ -16,7 +16,7 @@ Amplitudo (<InlineMath math="A" />) adalah setengah dari jarak vertikal antara p
 
 #### Menentukan Periode
 
-Periode (<InlineMath math="T" />) adalah waktu yang diperlukan untuk menempuh satu siklus penuh. Ubah <InlineMath math="12\text{ jam }24\text{ menit}" /> menjadi jam desimal:
+Periode (<InlineMath math="T" />) adalah waktu yang diperlukan untuk menempuh **satu siklus penuh**. Ubah <InlineMath math="12\text{ jam }24\text{ menit}" /> menjadi jam desimal:
 
 <MathContainer>
   <BlockMath math="T=\left(12+\frac{24}{60}\right)\text{ h}" />
@@ -26,7 +26,7 @@ Periode (<InlineMath math="T" />) adalah waktu yang diperlukan untuk menempuh sa
 
 #### Menentukan Fase dan Menulis Fungsi
 
-Saat <InlineMath math="t=0" />, permukaan air melintasi posisi rata-rata sambil bergerak naik. Fungsi sinus tanpa pergeseran fase memiliki perilaku tersebut karena <InlineMath math="\sin 0=0" /> dan kemiringan awalnya positif. Jadi, kita dapat menggunakan:
+Saat <InlineMath math="t=0" />, permukaan air melintasi **posisi rata-rata sambil bergerak naik**. Fungsi sinus tanpa pergeseran fase memiliki perilaku tersebut karena <InlineMath math="\sin 0=0" /> dan kemiringan awalnya positif. Jadi, kita dapat menggunakan:
 
 <BlockMath math="h(t) = A \sin\left(\frac{2\pi}{T} t\right)" />
 
@@ -35,3 +35,25 @@ Substitusikan nilai <InlineMath math="A = 8" /> dan <InlineMath math="T = 12{,}4
 <BlockMath math="h(t) = 8 \sin\left(\frac{2\pi}{12{,}4} t\right)" />
 
 Jadi, salah satu model yang mungkin adalah <InlineMath math="h(t) = 8 \sin\left(\frac{2\pi}{12{,}4} t\right)" />.
+
+<LineEquation
+  title="Satu Siklus Ketinggian Air"
+  description="Sumbu mendatar menunjukkan waktu dalam jam. Sumbu vertikal menunjukkan simpangan dalam meter. Puncak dan lembah terpisah setengah periode."
+  cameraPosition={[6.2, 0, 28]}
+  cameraTarget={[6.2, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => ({ x: 12.4 * i / 100, y: 8 * Math.sin(2 * Math.PI * i / 100), z: 0 })),
+      color: "#0284c7",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { at: 25, text: <InlineMath math="(3{,}1;8)" />, offset: [0, 0.8, 0] },
+        { at: 75, text: <InlineMath math="(9{,}3;-8)" />, offset: [0, -0.8, 0] }
+      ]
+    }
+  ]}
+/>
+
+Kurva dimulai dari posisi rata-rata lalu naik. Puncak pada <InlineMath math="t=3{,}1" /> dan lembah pada <InlineMath math="t=9{,}3" /> terpisah <InlineMath math="9{,}3-3{,}1=6{,}2" /> jam, dengan selisih vertikal <InlineMath math="8-(-8)=16\text{ m}" />.

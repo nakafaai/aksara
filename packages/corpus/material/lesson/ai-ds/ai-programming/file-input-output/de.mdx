@@ -3,7 +3,7 @@ export const metadata = {
     description: "Lies und schreibe Text- und Binärdateien sicher in Python, wähle passende Öffnungsmodi und verwalte Streampositionen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -11,9 +11,11 @@ export const metadata = {
 
 Python <Highlight>liest und schreibt Dateien über Dateiobjekte</Highlight>. Im Textmodus dekodiert das Objekt die gespeicherten Bytes mit einer gewählten Zeichenkodierung zu Strings. Im Binärmodus stellt es die Bytes unverändert bereit.
 
+Lege im Übungsordner vier UTF-8-Textdateien an: `file.txt`, `data.txt`, `sample.txt` und `input.txt`, jeweils mit `Halo Python` ohne abschließenden Zeilenumbruch. Führe die Lesebeispiele vor den Schreibbeispielen aus, denn `w` ersetzt den Dateiinhalt. Im Positionsbeispiel liefert der erste Lesevorgang `Halo `, der zweite `Pyt` und der wiederholte ebenfalls `Pyt`.
+
 ### Gesamten Dateiinhalt lesen
 
-Die Methode `read()` lädt den gesamten Dateiinhalt auf einmal in den Speicher:
+Die Methode `read()` lädt **den gesamten verbleibenden Dateiinhalt** auf einmal in den Speicher:
 
 <CodeBlock
   data={[
@@ -25,7 +27,8 @@ with open('file.txt', 'r', encoding='utf-8') as f:
     txt = f.read()
 
 print(txt)
-# Ausgabe: [Der vollständige Dateiinhalt wird angezeigt]`
+# Ausgabe:
+# Halo Python`
     }
   ]}
 />
@@ -34,7 +37,7 @@ print(txt)
 
 ### Datei Zeile für Zeile lesen
 
-Bei großen Dateien ist das zeilenweise Lesen effizienter, da nicht die gesamte Datei auf einmal in den Speicher geladen wird.
+Bei großen Dateien ist das **zeilenweise Lesen** effizienter, da nicht die gesamte Datei auf einmal in den Speicher geladen wird.
 
 <CodeBlock
   data={[
@@ -56,11 +59,11 @@ Jede Zeile behält ihren abschließenden Zeilenumbruch, sofern einer vorhanden i
 
 ## Schreiben in Dateien
 
-Beim Schreiben in eine Datei bleiben Daten oder Berechnungsergebnisse erhalten, nachdem das Programm beendet wurde. Python öffnet die Datei in einem Modus, der festlegt, ob vorhandener Inhalt ersetzt oder ergänzt wird, und schreibt anschließend über das zurückgegebene Dateiobjekt.
+Beim Schreiben in eine Datei bleiben Daten oder Berechnungsergebnisse erhalten, nachdem das Programm beendet wurde. Python öffnet die Datei in einem Modus, der festlegt, ob **vorhandener Inhalt ersetzt oder ergänzt** wird, und schreibt anschließend über das zurückgegebene Dateiobjekt.
 
 ### Strings in Dateien schreiben
 
-Das Beispiel öffnet eine Datei zum Schreiben, schreibt ihre Zeilen und schließt sie wieder. Diese Reihenfolge gilt für jede Schreiboperation.
+Dieses Beispiel verwendet `w`, um **den gesamten Dateiinhalt zu ersetzen**. Zehn Aufrufe von `write()` laufen innerhalb eines einzigen `with`-Blocks, bevor die Datei geschlossen wird.
 
 <CodeBlock
   data={[
@@ -83,7 +86,7 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 ### Druckausgabe in eine Datei umleiten
 
-Mit dem Parameter `file` kannst du die Ausgabe von `print()` direkt in eine Datei umleiten.
+Mit dem **Parameter `file`** kannst du die Ausgabe von `print()` direkt in eine Datei umleiten.
 
 <CodeBlock
   data={[
@@ -107,7 +110,7 @@ Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den 
 
 ## Dateiöffnungsmodi
 
-Python bietet verschiedene Modi zum Öffnen von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
+Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
 
 <Mermaid
   title="Wähle den Modus vor dem Öffnen"
@@ -155,15 +158,15 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
   ]}
 />
 
-Der Modus bestimmt, ob die Datei bereits existieren muss, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
+Der Modus bestimmt, **ob die Datei bereits existieren muss**, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
 
 ## Methoden zum Lesen von Dateien
 
-Python bietet mehr als einen Weg, eine Datei zu lesen. Die Wahl hängt davon ab, wie viel Inhalt du auf einmal brauchst und ob die Leseposition danach noch eine Rolle spielt. `read()` liest den gesamten Rest oder eine feste Anzahl von Zeichen, während `readline()` und `readlines()` Zeile für Zeile arbeiten.
+Python bietet mehr als einen Weg, eine Datei zu lesen. Die Wahl hängt davon ab, **wie viel Inhalt** du auf einmal brauchst und ob die Leseposition danach noch eine Rolle spielt. `read()` liest den gesamten Rest oder höchstens die angeforderte Zeichenzahl. `readline()` liest eine Zeile, während `readlines()` ohne Argument alle verbleibenden Zeilen in eine Liste lädt.
 
 ### Methode Read mit Parametern
 
-`read()` nimmt ein Größenargument entgegen, deshalb kannst du jeweils eine feste Anzahl Zeichen lesen. Das Beispiel liest eine Datei in kleinen Stücken und gibt jedes davon aus.
+`read()` nimmt ein **Größenargument** entgegen, deshalb kannst du jeweils eine feste Anzahl Zeichen lesen. Das Beispiel vergleicht höchstens zehn Zeichen, den gesamten Inhalt und eine Zeile.
 
 <CodeBlock
   data={[
@@ -191,7 +194,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### Dateiposition und Lesen
 
-Eine neu geöffnete Datei beginnt an ihrer ersten Streamposition. Durch das Lesen bewegt sich diese Position weiter. Im Textmodus kann `tell()` eine besondere Positionsmarke zurückgeben. Speichere diese Marke und übergib sie wieder an Python, wenn du dieselbe Position benötigst.
+Eine im Modus `r` geöffnete Datei beginnt an ihrer ersten Streamposition. Durch das Lesen bewegt sich diese Position weiter. Im Textmodus kann `tell()` eine **besondere Positionsmarke** zurückgeben. Speichere diese Marke und übergib sie wieder an Python, wenn du dieselbe Position benötigst.
 
 <CodeBlock
   data={[

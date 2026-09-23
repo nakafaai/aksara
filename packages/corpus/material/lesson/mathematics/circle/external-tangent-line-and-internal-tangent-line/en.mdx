@@ -17,7 +17,7 @@ A common tangent line is a line that <Highlight>touches two circles simultaneous
 
 ## Concept of External Common Tangent Line
 
-An external common tangent line touches both circles without crossing the segment between their centers.
+An external common tangent line touches both circles **without crossing the segment between their centers**.
 
 <LineEquation
   title="External Common Tangent Line"
@@ -107,8 +107,8 @@ An external common tangent line touches both circles without crossing the segmen
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -166,8 +166,8 @@ An external common tangent line touches both circles without crossing the segmen
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -181,6 +181,7 @@ An external common tangent line touches both circles without crossing the segmen
       labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
     },
 
+    { points: [{ x: -4, y: 0, z: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8, z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
 ]}
 cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
@@ -188,19 +189,11 @@ cameraPosition={[0.5, 0, 16.5]}
 
 ### Formula for External Common Tangent Line Length
 
-For two circles with:
+In the first diagram, draw auxiliary segment <InlineMath math="AH" /> parallel to the tangent. Taking <InlineMath math="r_2\ge r_1" />, perpendicular side <InlineMath math="BH" /> is the **difference of the radii**, while <InlineMath math="AB=d" /> and <InlineMath math="AH=l" />. The angle at <InlineMath math="H" /> is a right angle, so:
 
-- First circle center: <InlineMath math="O_1" />
-- Second circle center: <InlineMath math="O_2" />
-- First circle radius: <InlineMath math="r_1" />
-- Second circle radius: <InlineMath math="r_2" />
-- Distance between centers: <InlineMath math="d" />
+<BlockMath math="l^2+(r_2-r_1)^2=d^2\quad\Longrightarrow\quad l=\sqrt{d^2-(r_2-r_1)^2}" />
 
-Length of external common tangent line:
-
-<BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
-
-This positive-length segment exists when <InlineMath math="d > |r_2-r_1|" />. At equality, the circles are internally tangent and share only the tangent line through the contact point.
+If <InlineMath math="r_1>r_2" />, exchange the circle names. A positive segment requires <InlineMath math="d>|r_2-r_1|" />. If <InlineMath math="d=|r_2-r_1|>0" />, the circles touch internally. If <InlineMath math="d=0" /> and the radii are equal, the circles coincide.
 
 ### Finding the Length of External Common Tangent Line
 
@@ -352,7 +345,7 @@ cameraPosition={[0.5, 0, 13]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-(-3))^2 + (0-0)^2} \\ &amp;= \sqrt{36} \\ &amp;= 6 \end{aligned}" />
@@ -366,7 +359,7 @@ The length of the external common tangent line is <InlineMath math="\sqrt{35} \t
 
 ## Concept of Internal Common Tangent Line
 
-An internal common tangent line is a line that touches both circles from opposite sides and intersects the line connecting the two circle centers.
+An internal common tangent line is a line that touches both circles from opposite sides and crosses the **segment connecting the two centers**.
 
 <LineEquation
   title="Internal Common Tangent Line"
@@ -439,8 +432,8 @@ An internal common tangent line is a line that touches both circles from opposit
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -481,8 +474,8 @@ An internal common tangent line is a line that touches both circles from opposit
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -496,15 +489,20 @@ An internal common tangent line is a line that touches both circles from opposit
       labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
     },
 
+    { points: [{ x: -4, y: 0, z: 0 }, { x: 2, y: -2 * Math.sqrt(3), z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
 ]}
 cameraPosition={[0, 0, 15]}
 />
 
 ### Formula for Internal Common Tangent Line Length
 
+For an internal tangent, extend the radius from <InlineMath math="B" /> to auxiliary point <InlineMath math="H" />. Triangle <InlineMath math="AHB" /> in the diagram has a perpendicular side equal to the **sum of the radii**. With <InlineMath math="AH=l" /> and <InlineMath math="AB=d" />:
+
+<BlockMath math="l^2+(r_1+r_2)^2=d^2" />
+
 <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
 
-**Condition:** A positive-length internal tangent segment exists when <InlineMath math="d > r_1 + r_2" />. At equality, the circles are externally tangent: the two points of tangency coincide, the segment length is zero, and only one internal common tangent remains.
+**Condition**: A positive-length internal tangent segment exists when <InlineMath math="d > r_1 + r_2" />. At equality, the circles are externally tangent: the two points of tangency coincide, the segment length is zero, and only one internal common tangent remains.
 
 ### Finding the Length of Internal Common Tangent Line
 
@@ -623,7 +621,7 @@ Two circles are centered at <InlineMath math="P(-5, 0)" /> with radius <InlineMa
 cameraPosition={[0, 0, 18]}
 />
 
-**Solution:**
+**Solution**:
 
 First, check if internal common tangent lines exist:
 
@@ -647,7 +645,7 @@ The length of the internal common tangent line is <InlineMath math="5\sqrt{3} \t
 
 ## Circles with Equal Radii
 
-When two circles have equal radii (<InlineMath math="r_1 = r_2 = r" />), the common tangents simplify. The external tangent runs parallel to the line joining the centres, and the internal tangent is perpendicular to that line and passes through its midpoint.
+For two distinct circles with <InlineMath math="r_1=r_2=r" />, the external tangents are **parallel to the center line**. If <InlineMath math="d>2r" />, the two internal tangents meet at the **midpoint between the centers**, but are generally oblique to the center line. Only when <InlineMath math="d=2r" /> is the single remaining internal tangent perpendicular to the center line.
 
 ### External Common Tangent Line
 
@@ -803,8 +801,8 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -860,8 +858,8 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -901,8 +899,8 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -942,8 +940,8 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -961,7 +959,7 @@ cameraPosition={[0.5, 0, 19]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
   <BlockMath math="d = \sqrt{(6-(-6))^2 + (0-0)^2} = 12" />
@@ -975,7 +973,7 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
 
 <LineEquation
   title="Case: Close Circles with Equal Radii"
-  description="External common tangent lines are parallel, internal ones intersect at the center."
+  description="External common tangent lines are parallel, internal ones intersect at the midpoint between the centers."
   data={[
     {
       smooth: false,
@@ -1010,8 +1008,8 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
           { x: 5, y: 1.5, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1030,8 +1028,8 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
           { x: 5, y: -1.5, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1071,8 +1069,8 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1112,8 +1110,8 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1130,7 +1128,7 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
 cameraPosition={[0, 0, 10]}
 />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
   <BlockMath math="d = \sqrt{(2-(-2))^2 + (0-0)^2} = 4" />
@@ -1141,76 +1139,70 @@ cameraPosition={[0, 0, 10]}
 
 ## Practice Problems
 
-The problems give two circles and ask for the lengths of their common tangent lines. Separate the external and internal cases before using each formula.
+The first two problems ask for segment lengths, the third for center distance, the fourth for a radius, and the last for tangent counts. Choose the **difference or sum of radii** according to the tangent type before building an equation.
 
-1. Two circles are centered at <InlineMath math="A(-4, 0)" /> with radius <InlineMath math="2" /> and <InlineMath math="B(4, 0)" /> with radius <InlineMath math="3" />. Determine:
+1. Two circles are centered at <InlineMath math="A(-4, 0)" /> with radius <InlineMath math="2" /> and <InlineMath math="B(4, 0)" /> with radius <InlineMath math="3" />. Determine the lengths of the external and internal common tangent segments.
 
-   - Length of external common tangent line
-   - Length of internal common tangent line
+2. The first circle has center <InlineMath math="(0, 0)" /> with radius <InlineMath math="4" />, the second circle has center <InlineMath math="(10, 0)" /> with radius <InlineMath math="2" />. Calculate the lengths of both types of common tangent segments!
 
-2. The first circle has center <InlineMath math="(0, 0)" /> with radius <InlineMath math="4" />, the second circle has center <InlineMath math="(10, 0)" /> with radius <InlineMath math="2" />. Calculate the length of both types of common tangent lines!
+3. Two circles with equal radii each have radius <InlineMath math="3 \text{ cm}" />. If the length of the internal common tangent segment is <InlineMath math="8 \text{ cm}" />, determine the distance between the two circle centers!
 
-3. Two identical circles each have radius <InlineMath math="3 \text{ cm}" />. If the length of the internal common tangent line is <InlineMath math="8 \text{ cm}" />, determine the distance between the two circle centers!
+4. Circle <InlineMath math="A" /> is centered at <InlineMath math="(-5, 0)" /> with radius <InlineMath math="r" />, and circle <InlineMath math="B" /> is centered at <InlineMath math="(7, 0)" /> with radius <InlineMath math="2r" />. If the length of the external common tangent segment is <InlineMath math="4\sqrt{8}" />, determine the value of <InlineMath math="r" />!
 
-4. Circle <InlineMath math="A" /> is centered at <InlineMath math="(-5, 0)" /> with radius <InlineMath math="r" />, and circle <InlineMath math="B" /> is centered at <InlineMath math="(7, 0)" /> with radius <InlineMath math="2r" />. If the length of the external common tangent line is <InlineMath math="4\sqrt{8}" />, determine the value of <InlineMath math="r" />!
-
-5. Determine the conditions for two circles to have:
-   - Exactly two common tangent lines
-   - Exactly three common tangent lines
-   - Exactly four common tangent lines
+5. Determine the conditions for two circles to have exactly two, three, or four common tangent lines. Explain each case separately.
 
 ### Worked Solutions
 
-1. **Calculating common tangent line lengths**
+**Solution 1**: Calculating common tangent line lengths
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
+</MathContainer>
 
-2. **Circles with different centers**
+**Solution 2**: Circles with different centers
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
+</MathContainer>
 
-3. **Finding center distance from internal tangent length**
+**Solution 3**: Finding center distance from internal tangent length
 
-   Given: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
+Given: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
 
-   <MathContainer>
-     <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
-     <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
-     <BlockMath math="64 = d^2 - 36" />
-     <BlockMath math="d^2 = 100" />
-     <BlockMath math="d = 10 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+  <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
+  <BlockMath math="64 = d^2 - 36" />
+  <BlockMath math="d^2 = 100" />
+  <BlockMath math="d = 10 \text{ cm}" />
+</MathContainer>
 
 4. **Finding the value of** <InlineMath math="r" />
 
-   Given: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
+Given: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
 
-   <MathContainer>
-     <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
-     <BlockMath math="16 \cdot 8 = 144 - r^2" />
-     <BlockMath math="128 = 144 - r^2" />
-     <BlockMath math="r^2 = 16" />
-     <BlockMath math="r = 4" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
+  <BlockMath math="16 \cdot 8 = 144 - r^2" />
+  <BlockMath math="128 = 144 - r^2" />
+  <BlockMath math="r^2 = 16" />
+  <BlockMath math="r = 4" />
+</MathContainer>
 
-5. **Conditions for number of common tangent lines**
+**Solution 5**: Conditions for number of common tangent lines
 
-   Let <InlineMath math="d" /> be the distance between centers. The complete classification for two distinct, noncoincident circles is:
+Let <InlineMath math="d" /> be the distance between centers. The complete classification for two distinct, noncoincident circles is:
 
-   | Center-distance condition | Common tangents | Circle position |
-   | --- | ---: | --- |
-   | <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | externally disjoint |
-   | <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | externally tangent |
-   | <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | intersecting at two points |
-   | <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | internally tangent |
-   | <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | one circle strictly inside the other |
+| Center-distance condition | Common tangents | Circle position |
+| --- | ---: | --- |
+| <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | externally disjoint |
+| <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | externally tangent |
+| <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | intersecting at two points |
+| <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | internally tangent |
+| <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | one circle strictly inside the other |
 
-   Therefore, the requested conditions are the first three rows. Coincident circles, with <InlineMath math="d=0" /> and <InlineMath math="r_1=r_2" />, are a separate case with infinitely many common tangents.
+Therefore, the requested conditions are the first three rows. Coincident circles, with <InlineMath math="d=0" /> and <InlineMath math="r_1=r_2" />, are a separate case with infinitely many common tangents.

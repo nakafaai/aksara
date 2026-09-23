@@ -9,9 +9,9 @@ export const metadata = {
 
 ## Dividing Data Ranks into One Hundred Parts
 
-You already know that [quartiles](/en/subjects/mathematics/statistics-foundations/quartile-data-group) divide ordered data into <InlineMath math="4" /> equally populated parts. **Percentiles** extend the same idea.
+You already know that [quartiles](/en/subjects/mathematics/statistics-foundations/quartile-data-group) divide ordered data into four parts by rank. **Percentiles** extend the same idea.
 
-Percentiles divide positions in ordered data into <InlineMath math="100" /> equally populated parts. Each part contains the same proportion of observations, although the ranges of values can have different widths.
+Percentiles mark **ranks in hundredths** of ordered data. Finite datasets or repeated values need not produce 100 distinct groups containing equal numbers of observations. The value ranges between ranks need not have equal widths either.
 
 The <InlineMath math="99" /> interior cut points are commonly written <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., through <InlineMath math="P_{99}" />. Exact numerical values can vary with the percentile convention, especially for small samples.
 
@@ -31,7 +31,7 @@ As with quartiles, grouped data require **interpolation** to estimate a percenti
 
 ### Find the Percentile Class Position
 
-First, locate the position associated with the <InlineMath math="i" />th percentile:
+First, locate the **position** associated with the <InlineMath math="i" />th percentile:
 
 <BlockMath math="\text{Position of } P_i = \frac{i}{100} \times n" />
 
@@ -39,7 +39,6 @@ First, locate the position associated with the <InlineMath math="i" />th percent
 - <InlineMath math="n" /> = total frequency
 
 Then use the cumulative-frequency column <InlineMath math="F_k" /> to find the class interval containing that position.
-
 ### Calculate the Percentile Value using the Interpolation Formula
 
 Once the percentile class is known, interpolate within it:
@@ -75,67 +74,65 @@ The following table groups the mathematics test scores of <InlineMath math="40 \
 
 We will estimate the <InlineMath math="85" />th percentile, <InlineMath math="P_{85}" />.
 
-1.  **Find the Position of <InlineMath math="P_{85}" />:**
+**Find the Position of <InlineMath math="P_{85}" />:**
 
-    The position of <InlineMath math="P_{85}" /> is the <InlineMath math="\frac{85}{100} \times 40 = \frac{3400}{100} = 34" />-th data point.
+The position of <InlineMath math="P_{85}" /> is the <InlineMath math="\frac{85}{100} \times 40 = \frac{3400}{100} = 34" />-th data point.
 
-2.  **Determine the Class of <InlineMath math="P_{85}" />:**
+**Determine the Class of <InlineMath math="P_{85}" />:**
 
-    The cumulative frequency is <InlineMath math="F_k = 30" /> through the <InlineMath math="81\text{-}90" /> class and <InlineMath math="F_k = 40" /> through <InlineMath math="91\text{-}100" />. Positions <InlineMath math="31" /> through <InlineMath math="40" /> therefore lie in the final class, so the <InlineMath math="P_{85}" /> class is <InlineMath math="91\text{-}100" />.
+The cumulative frequency is <InlineMath math="F_k = 30" /> through the <InlineMath math="81\text{-}90" /> class and <InlineMath math="F_k = 40" /> through <InlineMath math="91\text{-}100" />. Positions <InlineMath math="31" /> through <InlineMath math="40" /> therefore lie in the final class, so the <InlineMath math="P_{85}" /> class is <InlineMath math="91\text{-}100" />.
 
-3.  **Record the formula values:**
+**Values to substitute**
 
-    - <InlineMath math="T_b" /> (Lower boundary of class <InlineMath math="91\text{-}100" />) is <InlineMath math="90.5" />
-    - <InlineMath math="i = 85" />
-    - <InlineMath math="n = 40" />
-    - <InlineMath math="F_{\text{cum}}" /> (Cumulative frequency before class <InlineMath math="91\text{-}100" />) =
-      <InlineMath math="30" />
-    - <InlineMath math="f_{85}" /> (Frequency of class <InlineMath math="91\text{-}100" />) is <InlineMath math="10" />
-    - <InlineMath math="p" /> (Class width) is <InlineMath math="10" />
+| Quantity | Value |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="90.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="40" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="30" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="10" /> |
+Calculate <InlineMath math="P_{85}" />:
 
-4.  **Calculate <InlineMath math="P_{85}" />:**
-
-    <MathContainer>
-      <BlockMath math="P_{85} = T_b + \left( \frac{\frac{85}{100}n - F_{\text{cum}}}{f_{85}} \right) p" />
-      <BlockMath math="P_{85} = 90.5 + \left( \frac{34 - 30}{10} \right) 10" />
-      <BlockMath math="P_{85} = 90.5 + \left( \frac{4}{10} \right) 10" />
-      <BlockMath math="P_{85} = 90.5 + 4" />
-      <BlockMath math="P_{85} = 94.5" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="P_{85} = T_b + \left( \frac{\frac{85}{100}n - F_{\text{cum}}}{f_{85}} \right) p" />
+  <BlockMath math="P_{85} = 90.5 + \left( \frac{34 - 30}{10} \right) 10" />
+  <BlockMath math="P_{85} = 90.5 + \left( \frac{4}{10} \right) 10" />
+  <BlockMath math="P_{85} = 90.5 + 4" />
+  <BlockMath math="P_{85} = 94.5" />
+</MathContainer>
 
 The estimated <InlineMath math="85" />th percentile is <InlineMath math="94.5" />. In the interpolated grouped-data model, approximately <InlineMath math="85\%" /> of scores are at or below <InlineMath math="94.5" />, while approximately <InlineMath math="15\%" /> are above it.
 
 ## Exercise
 
-Before reading the solution, estimate the <InlineMath math="20" />th percentile <InlineMath math="P_{20}" /> from the same table. Write down the class you chose and the two boundaries you interpolate between, because those two values are where most mistakes happen.
-
+Before reading the solution, estimate the <InlineMath math="20" />th percentile <InlineMath math="P_{20}" /> from the same table. Write down the class you chose and the two boundaries you **interpolate** between, so you can locate the percentile within its class using cumulative frequencies.
 ### Worked solution
 
-1.  **Position of <InlineMath math="P_{20}" />:**
+**Position of <InlineMath math="P_{20}" />:**
 
-    The position of <InlineMath math="P_{20}" /> is the <InlineMath math="\frac{20}{100} \times 40 = \frac{800}{100} = 8" />-th data point.
+The position of <InlineMath math="P_{20}" /> is the <InlineMath math="\frac{20}{100} \times 40 = \frac{800}{100} = 8" />-th data point.
 
-2.  **Class of <InlineMath math="P_{20}" />:**
+**Class of <InlineMath math="P_{20}" />:**
 
-    Look at <InlineMath math="F_k" />. The <InlineMath math="8" />th data point is in the <InlineMath math="71\text{-}80" /> class (because the previous class's <InlineMath math="F_k" /> is <InlineMath math="4" />, and this class's <InlineMath math="F_k" /> is <InlineMath math="14" />).
+Look at <InlineMath math="F_k" />. The <InlineMath math="8" />th data point is in the <InlineMath math="71\text{-}80" /> class (because the previous class's <InlineMath math="F_k" /> is <InlineMath math="4" />, and this class's <InlineMath math="F_k" /> is <InlineMath math="14" />).
 
-3.  **Formula values:**
+**Values to substitute**
 
-    - <InlineMath math="T_b = 70.5" />
-    - <InlineMath math="i = 20" />
-    - <InlineMath math="n = 40" />
-    - <InlineMath math="F_{\text{cum}} = 4" />
-    - <InlineMath math="f_{20} = 10" />
-    - <InlineMath math="p = 10" />
+| Quantity | Value |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="70.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="40" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="4" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="10" /> |
+Calculate <InlineMath math="P_{20}" />:
 
-4.  **Calculate <InlineMath math="P_{20}" />:**
-
-    <MathContainer>
-      <BlockMath math="P_{20} = T_b + \left( \frac{\frac{20}{100}n - F_{\text{cum}}}{f_{20}} \right) p" />
-      <BlockMath math="P_{20} = 70.5 + \left( \frac{8 - 4}{10} \right) 10" />
-      <BlockMath math="P_{20} = 70.5 + \left( \frac{4}{10} \right) 10" />
-      <BlockMath math="P_{20} = 70.5 + 4" />
-      <BlockMath math="P_{20} = 74.5" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="P_{20} = T_b + \left( \frac{\frac{20}{100}n - F_{\text{cum}}}{f_{20}} \right) p" />
+  <BlockMath math="P_{20} = 70.5 + \left( \frac{8 - 4}{10} \right) 10" />
+  <BlockMath math="P_{20} = 70.5 + \left( \frac{4}{10} \right) 10" />
+  <BlockMath math="P_{20} = 70.5 + 4" />
+  <BlockMath math="P_{20} = 74.5" />
+</MathContainer>
 
 The estimated <InlineMath math="20" />th percentile is <InlineMath math="74.5" />. It lies in the class <InlineMath math="71\text{-}80" />, as expected.

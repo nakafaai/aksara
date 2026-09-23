@@ -9,43 +9,45 @@ export const metadata = {
 
 ## Ein Polynom ordnet Eingaben Funktionswerte zu
 
-<Highlight>Jeder zulässige Eingabewert liefert genau einen Funktionswert.</Highlight> Mit dem Polynomausdruck <InlineMath math="2x^2 - 3x + 1" /> als Rechenvorschrift lautet die Funktion <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Setzt du den Eingabewert <InlineMath math="x = 2" /> ein und berechnest zuerst die Potenzen, erhältst du <InlineMath math="P(2) = 3" />.
+Jede Eingabe liefert <Highlight>genau einen Funktionswert</Highlight>. Für <InlineMath math="P(x)=2x^2-3x+1" /> und <InlineMath math="x=2" /> berechnest du zuerst die Potenzen, dann die Produkte und schließlich die Summe:
+
+<BlockMath math="P(2)=2(2)^2-3(2)+1=8-6+1=3" />
+
+<MathVisual
+  title="Von der Eingabe zum Punkt im Graphen"
+  description="Der Graph von P(x) = 2x² - 3x + 1. Der Punkt (2,3) zeigt: Zur Eingabe 2 gehört die Ausgabe 3."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 1 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [{ key: "value", objectId: "value", at: { x: 2, y: 3 }, placement: "above-left" }],
+  }}
+  labels={{ value: <InlineMath math="(2,3)" /> }}
+/>
+
+Reelle Koeffizienten und nichtnegative ganzzahlige Exponenten ergeben eine Polynomfunktion, die für **jede reelle Eingabe** definiert ist. Es gibt weder eine Variable im Nenner noch unter einer Wurzel, die Eingaben ausschließen würde.
 
 ## Allgemeine Form einer Polynomfunktion
 
-Eine Polynomfunktion in der Variablen <InlineMath math="x" /> wird im Allgemeinen in der Form geschrieben:
+Für ein Polynom ungleich null ordnet die allgemeine Form **Potenzen und Koeffizienten**. Der Leitkoeffizient ist ungleich null, und der höchste Exponent bestimmt den Grad:
 
-<BlockMath math="\begin{aligned} P(x) &amp;= a_n x^n + a_{n-1} x^{n-1} \\ &amp;\quad{}+ a_{n-2} x^{n-2} + \dots + a_1 x + a_0 \end{aligned}" />
+<BlockMath math="P(x)=\sum_{k=0}^{n}a_kx^k,\qquad a_n\ne0,\quad n\in\{0,1,2,\ldots\}" />
 
-Die Bestandteile dieser allgemeinen Form haben jeweils eine feste Bedeutung:
+| Notation | Bedeutung |
+| --- | --- |
+| <InlineMath math="P(x)" /> | Funktionswert bei der Eingabe x. |
+| <InlineMath math="x" /> | Die Eingabevariable. |
+| <InlineMath math="n" /> | Der Grad, eine nichtnegative ganze Zahl. |
+| <InlineMath math="a_0,a_1,\ldots,a_n" /> | Reelle Koeffizienten der einzelnen Potenzen. |
+| <InlineMath math="a_nx^n" /> | Der Leitterm mit der höchsten Potenz. |
+| <InlineMath math="a_n" /> | Der Leitkoeffizient, der ungleich null sein muss. |
+| <InlineMath math="a_0" /> | Die Konstante, also der Funktionswert bei Eingabe null. |
 
-- **<InlineMath math="P(x)" />**:
-
-  Funktionsnotation: „P von x“ bedeutet, dass der Wert der Funktion vom Wert von <InlineMath math="x" /> abhängt.
-
-- **<InlineMath math="x" />**:
-
-  Die Variable der Polynomfunktion.
-
-- **<InlineMath math="n" />**:
-
-  Der höchste Exponent der Variablen <InlineMath math="x" />. Der Wert <InlineMath math="n" /> muss eine **nichtnegative ganze Zahl** aus <InlineMath math="0, 1, 2, 3, \dots" /> sein. Zugleich ist <InlineMath math="n" /> der **Grad** der Polynomfunktion.
-
-- **<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />**:
-
-  Die Koeffizienten der Polynomfunktion. Eine **reelle Polynomfunktion** besitzt reelle Koeffizienten.
-
-- **<InlineMath math="a_n x^n" />**:
-
-  Der Term mit der höchsten Potenz. Er heißt **Leitterm**.
-
-- **<InlineMath math="a_n" />**:
-
-  Der **Leitkoeffizient** <InlineMath math="a_n" /> muss **ungleich null** sein, also <InlineMath math="a_n \neq 0" />, damit die Funktion den Grad <InlineMath math="n" /> hat.
-
-- **<InlineMath math="a_0" />**:
-
-  Das Glied ohne die Variable <InlineMath math="x" />. Man kann es auch als <InlineMath math="a_0 x^0" /> schreiben. Es heißt **konstantes Glied** oder **Konstante**.
+Auch <InlineMath math="P(x)=0" /> ist eine Polynomfunktion. Das **Nullpolynom hat jedoch keinen Leitterm ungleich null**. Die dargestellte Form eines von null verschiedenen Polynoms legt daher seinen Grad nicht fest.
 
 ## Beispiel einer Polynomfunktion
 
@@ -58,17 +60,17 @@ Betrachten wir die Funktion <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />.
 - Weitere Koeffizienten sind <InlineMath math="a_2 = -2" /> und <InlineMath math="a_1 = 7" />.
 - Ihr konstantes Glied ist <InlineMath math="-1" />, also <InlineMath math="a_0 = -1" />.
 
-Eine Polynomfunktion besitzt nichtnegative ganzzahlige Exponenten und <Highlight>einen Leitkoeffizienten ungleich null</Highlight>.
+Ein Polynom ungleich null besitzt einen <Highlight>Leitkoeffizienten ungleich null</Highlight>. Andere Koeffizienten dürfen null sein, wie der Koeffizient der dritten Potenz in der folgenden Aufgabe.
 
 ## Übung
 
 <BlockMath math="p(t)=-2t^4+3t^2-t+8" />
 
-Bestimme den Grad, den Leitterm, den Leitkoeffizienten, den Koeffizienten von <InlineMath math="t^3" /> und das konstante Glied. Berechne anschließend <InlineMath math="p(2)" />.
+Bestimme den Grad, den Leitterm, den **Leitkoeffizienten**, den Koeffizienten von <InlineMath math="t^3" /> und das konstante Glied. Berechne anschließend <InlineMath math="p(2)" />.
 
 ### Ausführliche Lösung
 
-Zuerst schreiben wir die fehlende Potenz mit einem Nullkoeffizienten:
+Zuerst schreiben wir die **fehlende Potenz** mit einem Nullkoeffizienten:
 
 <BlockMath math="p(t)=-2t^4+0t^3+3t^2-t+8" />
 
@@ -80,8 +82,4 @@ Zuerst schreiben wir die fehlende Potenz mit einem Nullkoeffizienten:
 
 Nun setzen wir <InlineMath math="t=2" /> ein:
 
-<MathContainer>
-  <BlockMath math="p(2)=-2(2)^4+3(2)^2-2+8" />
-  <BlockMath math="=-32+12-2+8" />
-  <BlockMath math="=-14" />
-</MathContainer>
+<BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />

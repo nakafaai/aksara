@@ -104,138 +104,35 @@ Jika <InlineMath math="\angle AOB = 60^\circ" />, besar busur <InlineMath math="
 
 ## Jenis Busur Berdasarkan Sudut Pusat
 
-Berdasarkan besar sudut pusatnya, busur dapat dibedakan menjadi tiga jenis. Sudut pusat menentukan bagian keliling lingkaran yang dicakup busur. Busur di bawah 180 derajat disebut minor, di atas 180 derajat mayor, dan tepat 180 derajat membentuk setengah lingkaran.
+Sudut pusat menentukan **bagian keliling** yang dipilih. Bandingkan sudut itu dengan setengah putaran untuk membedakan tiga jenis busur. Dua busur dengan ujung yang sama bersama-sama membentuk satu putaran.
 
 ### Busur Minor
 
-Busur kecil dibentang oleh sudut pusat kurang dari <InlineMath math="180^\circ" />. Panjang busur kecil selalu kurang dari setengah keliling lingkaran. Pada sudut <InlineMath math="90^\circ" /> busur itu mencakup seperempat keliling, karena perbandingan <InlineMath math="90/360" /> tepat seperempat.
+Busur kecil dibentang oleh sudut pusat kurang dari <InlineMath math="180^\circ" />. Panjang busur kecil selalu **kurang dari setengah keliling** lingkaran. Pada sudut <InlineMath math="90^\circ" /> busur itu mencakup seperempat keliling, karena perbandingan <InlineMath math="90/360" /> tepat seperempat.
 
 ### Busur Setengah Lingkaran
 
-Busur setengah lingkaran dibentang oleh sudut pusat tepat <InlineMath math="180^\circ" />. Kedua ujungnya terletak pada satu diameter sehingga panjang busurnya setengah keliling lingkaran. Juring yang bersesuaian adalah setengah lingkaran itu sendiri.
+Busur setengah lingkaran dibentang oleh sudut pusat tepat <InlineMath math="180^\circ" />. Kedua ujungnya terletak pada **satu diameter** sehingga panjang busurnya setengah keliling lingkaran. Juring yang bersesuaian adalah setengah lingkaran itu sendiri.
 
 ### Busur Mayor
 
-Busur besar dibentang oleh sudut pusat refleks yang lebih dari <InlineMath math="180^\circ" />. Panjangnya lebih dari setengah keliling. Besar busur dalam derajat merupakan sisa satu putaran penuh setelah besar busur kecil yang bersesuaian dikurangkan:
+Busur besar dibentang oleh **sudut pusat refleks** yang lebih dari <InlineMath math="180^\circ" />. Panjangnya lebih dari setengah keliling. Besar busur dalam derajat merupakan sisa satu putaran penuh setelah besar busur kecil yang bersesuaian dikurangkan:
 
-<ContentStack>
-
-Besar busur mayor dalam derajat adalah <InlineMath math="360^\circ" /> dikurangi besar busur minor.
+<BlockMath math="\theta_{\mathrm{major}}=360^\circ-60^\circ=300^\circ" />
 
 <LineEquation
-  title="Perbandingan Jenis Busur"
-  description="Visualisasi busur minor, setengah lingkaran, dan busur mayor."
+  title="Busur Kecil dan Besar dengan Ujung yang Sama"
+  description="Busur kecil 60 derajat dan busur besar 300 derajat melengkapi satu keliling."
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = i * (Math.PI / 3) / 20;
-        return {
-          x: 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 50, offset: [1, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = i * (Math.PI / 3) / 30;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#65a30d",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Busur Minor <InlineMath math="(60^\circ)" /></>, at: 15, offset: [0, 1.4, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 2,
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = Math.PI + (i * Math.PI / 20);
-        return {
-          x: 2.5 * Math.cos(angle),
-          y: 2.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 50, offset: [0, -0.8, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 51 }, (_, i) => {
-        const angle = Math.PI + (i * Math.PI / 50);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: "Setengah lingkaran", at: 25, offset: [0, -1, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
+    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 0, color: "#ea580c", showPoints: false },
+    { kind: "circle-radius", radius: 4, degrees: 60, color: "#ea580c", showPoints: false },
+    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.3, 0.4, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 300, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="300^\circ" />, offset: [-0.3, -0.4, 0] } },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 12]}
 />
-</ContentStack>
+
 
 ## Perhitungan Panjang Busur
 
@@ -248,7 +145,7 @@ Pada rumus ini:
 - <InlineMath math="\theta" /> = besar sudut pusat dalam derajat
 - <InlineMath math="r" /> = jari-jari lingkaran
 
-Satu radian menyatakan perbandingan panjang busur dengan jari-jari. Karena itu, sudut dalam radian langsung menghasilkan rumus:
+Sudut dalam radian adalah **panjang busur dibagi jari-jari**. Karena itu, sudut dalam radian langsung menghasilkan rumus:
 
 <BlockMath math="s = \theta \times r" />
 
@@ -258,7 +155,7 @@ Di sini <InlineMath math="\theta" /> harus dinyatakan dalam radian.
 
 Perhatikan sebuah lingkaran dengan jari-jari <InlineMath math="r = 6 \text{ cm}" /> dan sudut pusat <InlineMath math="\theta = 120^\circ" />.
 
-Masukkan jari-jari dan sudut pusat ke rumus panjang busur:
+Sudut tersebut mencakup **sepertiga putaran**, jadi ambil sepertiga keliling:
 
 <MathContainer>
 <BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
@@ -344,13 +241,13 @@ Jadi, busur yang bersesuaian dengan sudut pusat <InlineMath math="120^\circ" /> 
 
 ## Contoh Penggunaan Sudut Pusat
 
-Pada roda gigi atau cakram, bagian yang dipisahkan oleh sudut pusat sama akan tersusun merata. Untuk menghitung jarak antarbagian di sepanjang tepi, kita juga perlu mengetahui jari-jari. Pada jam analog, jarum menyapu sudut pusat seiring waktu. Geometri busur juga dapat digunakan untuk memodelkan bentuk lengkungan atau kubah, tetapi rancangan struktur memerlukan informasi tambahan.
+Pada jam, **jarum menit** bergerak satu putaran dalam satu jam. Dalam lima menit, jarum menyapu <InlineMath math="30^\circ" />. Jika panjang jarum <InlineMath math="10\text{ cm}" />, ujungnya menempuh busur:
 
-Jika Bumi dimodelkan sebagai bola, panjang rute pada lingkaran besar memenuhi <InlineMath math="s=r\theta" /> untuk sudut pusat <InlineMath math="\theta" /> dalam radian. Model bola ini cukup untuk contoh matematika, tetapi navigasi presisi memerlukan model Bumi dan data rute dengan tingkat ketelitian yang sesuai.
+<BlockMath math="s=\frac{30^\circ}{360^\circ}\times2\pi(10)=\frac{5\pi}{3}\text{ cm}" />
 
 ## Latihan
 
-Setiap soal menghubungkan sudut pusat dengan busur yang dipotongnya, jadi pilih satuan derajat atau radian dan gunakan satu satuan itu sampai selesai.
+Setiap soal menghubungkan sudut pusat dengan busur yang dipotongnya, jadi pilih **satuan derajat atau radian** dan gunakan satu satuan itu sampai selesai.
 
 1. Sebuah lingkaran memiliki jari-jari <InlineMath math="8 \text{ cm}" />. Jika sudut pusat yang menghadap suatu busur adalah <InlineMath math="45^\circ" />, hitunglah panjang busur tersebut.
 
@@ -362,102 +259,104 @@ Setiap soal menghubungkan sudut pusat dengan busur yang dipotongnya, jadi pilih 
 
 ### Pembahasan
 
-1. **Penyelesaian:**
+Perhatikan **bagian dari satu putaran** pada soal pertama, ketiga, dan keempat. Pada soal kedua, sudut menjadi besaran yang dicari sehingga persamaan perlu disusun ulang.
 
-   Diketahui: <InlineMath math="r = 8 \text{ cm}" /> dan <InlineMath math="\theta = 45^\circ" />
+**Pembahasan 1**
 
-   Ditanya: Panjang busur <InlineMath math="s" />
+Diketahui: <InlineMath math="r = 8 \text{ cm}" /> dan <InlineMath math="\theta = 45^\circ" />
 
-   **Langkah 1**: Gunakan rumus panjang busur
+Ditanya: Panjang busur <InlineMath math="s" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Langkah 1**: Gunakan rumus panjang busur
 
-   **Langkah 2**: Substitusi nilai yang diketahui
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
+**Langkah 2**: Substitusi nilai yang diketahui
 
-   **Langkah 3**: Sederhanakan pecahan
+<BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
 
-   <BlockMath math="s = \frac{1}{8} \times 16\pi" />
+**Langkah 3**: Sederhanakan pecahan
 
-   **Langkah 4**: Hitung hasil akhir
+<BlockMath math="s = \frac{1}{8} \times 16\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Langkah 4**: Hitung hasil akhir
 
-   Jadi, panjang busur tersebut adalah <InlineMath math="2\pi \text{ cm}" /> atau sekitar <InlineMath math="6{,}28 \text{ cm}" />.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-2. **Penyelesaian:**
+Jadi, panjang busur tersebut adalah <InlineMath math="2\pi \text{ cm}" /> atau sekitar <InlineMath math="6{,}28 \text{ cm}" />.
 
-   Diketahui: <InlineMath math="s = 10\pi \text{ cm}" /> dan <InlineMath math="r = 15 \text{ cm}" />
+**Pembahasan 2**
 
-   Ditanya: Besar sudut pusat <InlineMath math="\theta" />
+Diketahui: <InlineMath math="s = 10\pi \text{ cm}" /> dan <InlineMath math="r = 15 \text{ cm}" />
 
-   **Langkah 1**: Gunakan rumus panjang busur
+Ditanya: Besar sudut pusat <InlineMath math="\theta" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Langkah 1**: Gunakan rumus panjang busur
 
-   **Langkah 2**: Substitusi nilai yang diketahui
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
+**Langkah 2**: Substitusi nilai yang diketahui
 
-   **Langkah 3**: Sederhanakan persamaan
+<BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
 
-   <BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
+**Langkah 3**: Sederhanakan persamaan
 
-   **Langkah 4**: Isolasi <InlineMath math="\theta" />
+<BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
 
-   <BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
+**Langkah 4**: Isolasi <InlineMath math="\theta" />
 
-   **Langkah 5**: Hitung hasil akhir
+<BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
 
-   <BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
+**Langkah 5**: Hitung hasil akhir
 
-   Jadi, besar sudut pusat yang menghadap busur tersebut adalah <InlineMath math="120^\circ" />.
+<BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
 
-3. **Penyelesaian:**
+Jadi, besar sudut pusat yang menghadap busur tersebut adalah <InlineMath math="120^\circ" />.
 
-   Diketahui: <InlineMath math="\angle AOB = 72^\circ" /> dan <InlineMath math="r = 5 \text{ cm}" />
+**Pembahasan 3**
 
-   Ditanya: Panjang busur <InlineMath math="AB" />
+Diketahui: <InlineMath math="\angle AOB = 72^\circ" /> dan <InlineMath math="r = 5 \text{ cm}" />
 
-   **Langkah 1**: Gunakan rumus panjang busur
+Ditanya: Panjang busur <InlineMath math="AB" />
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Langkah 1**: Gunakan rumus panjang busur
 
-   **Langkah 2**: Substitusi nilai yang diketahui
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
+**Langkah 2**: Substitusi nilai yang diketahui
 
-   **Langkah 3**: Sederhanakan pecahan
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
 
-   <BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
+**Langkah 3**: Sederhanakan pecahan
 
-   **Langkah 4**: Hitung hasil akhir
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
 
-   <BlockMath math="s = 2\pi \text{ cm}" />
+**Langkah 4**: Hitung hasil akhir
 
-   Jadi, panjang busur <InlineMath math="AB" /> adalah <InlineMath math="2\pi \text{ cm}" />.
+<BlockMath math="s = 2\pi \text{ cm}" />
 
-4. **Penyelesaian:**
+Jadi, panjang busur <InlineMath math="AB" /> adalah <InlineMath math="2\pi \text{ cm}" />.
 
-   Diketahui: <InlineMath math="r = 30 \text{ cm}" /> dan <InlineMath math="\theta = 150^\circ" />
+**Pembahasan 4**
 
-   Ditanya: Jarak yang ditempuh (panjang busur)
+Diketahui: <InlineMath math="r = 30 \text{ cm}" /> dan <InlineMath math="\theta = 150^\circ" />
 
-   **Langkah 1**: Gunakan rumus panjang busur
+Ditanya: Jarak yang ditempuh (panjang busur)
 
-   <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+**Langkah 1**: Gunakan rumus panjang busur
 
-   **Langkah 2**: Substitusi nilai yang diketahui
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
+**Langkah 2**: Substitusi nilai yang diketahui
 
-   **Langkah 3**: Sederhanakan pecahan
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
 
-   <BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
+**Langkah 3**: Sederhanakan pecahan
 
-   **Langkah 4**: Hitung hasil akhir
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
 
-   <BlockMath math="s = 25\pi \text{ cm}" />
+**Langkah 4**: Hitung hasil akhir
 
-   Jadi, titik tersebut bergerak sejauh <InlineMath math="25\pi \text{ cm}" /> sepanjang lintasan melingkarnya, atau sekitar <InlineMath math="78{,}54 \text{ cm}" />.
+<BlockMath math="s = 25\pi \text{ cm}" />
+
+Jadi, titik tersebut bergerak sejauh <InlineMath math="25\pi \text{ cm}" /> sepanjang lintasan melingkarnya, atau sekitar <InlineMath math="78{,}54 \text{ cm}" />.

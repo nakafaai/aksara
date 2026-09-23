@@ -19,15 +19,12 @@ Let <InlineMath math="P(x)" /> be a polynomial and <InlineMath math="c" /> be a 
 
 <InlineMath math="(x - c)" /> is a **factor** of <InlineMath math="P(x)" /> **if and only if** <InlineMath math="P(c) = 0" />.
 
-This is a two-way statement:
+The statement works in **both directions**. A known factor makes the product zero when you substitute its root. Conversely, a zero polynomial value means the division has no remainder.
 
-1.  **If <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" />, then <InlineMath math="P(c) = 0" />.**
-
-    (If a number is perfectly divisible by another number, the remainder must be zero).
-
-2.  **If <InlineMath math="P(c) = 0" />, then <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" />.**
-
-    (If the value of the polynomial at <InlineMath math="x=c" /> is zero, it means <InlineMath math="(x-c)" /> divides the polynomial exactly).
+| Known information | Conclusion |
+| --- | --- |
+| <InlineMath math="P(x)=(x-c)H(x)" /> | <InlineMath math="P(c)=(c-c)H(c)=0" /> |
+| <InlineMath math="P(c)=0" /> | <InlineMath math="P(x)=(x-c)H(x)+0" /> |
 
 ### Connection to the Remainder Theorem
 
@@ -44,112 +41,109 @@ And from the Remainder Theorem, we know <InlineMath math="S = P(c)" />.
 
 ## Using the Factor Theorem to Factor Polynomials
 
-The Factor Theorem turns a verified zero into a linear factor. Repeating that process reduces the degree until the remaining polynomial can be factored in the chosen number system.
+Each **verified root** gives one linear factor. Divide the polynomial by that factor, then factor the quotient. Division by a linear factor reduces the degree by one, making the next calculation simpler.
 
-**General Steps:**
+Factorization depends on the number system. Over the reals, <InlineMath math="x^2+1" /> cannot be split into linear factors because <InlineMath math="x^2+1>0" />. Retain such factors and any required leading coefficient. For example:
 
-1.  **Find a Zero:** Try guessing or using clues (like the sum of coefficients) to find a value <InlineMath math="c" /> such that <InlineMath math="P(c) = 0" />.
-2.  **Confirm Factor:** If <InlineMath math="P(c) = 0" />, then according to the Factor Theorem, <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" />.
-3.  **Divide the Polynomial:** Use Horner's method or long division to divide <InlineMath math="P(x)" /> by the factor <InlineMath math="(x - c)" /> found. The quotient is <InlineMath math="H(x)" />.
-
-    <BlockMath math="P(x) = (x - c) \cdot H(x)" />
-
-4.  **Factor the Quotient:** If <InlineMath math="H(x)" /> can still be factored (e.g., if <InlineMath math="H(x)" /> is a quadratic or cubic polynomial whose roots can be found), repeat the process starting from step 1 on <InlineMath math="H(x)" />.
-5.  **Complete Factorization:** Write <InlineMath math="P(x)" /> as the product of all the linear factors found.
+<BlockMath math="2x^3-2x^2+2x-2=2(x-1)(x^2+1)" />
 
 ### Factoring a Polynomial
 
 Let <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" />. When <InlineMath math="x=1" />, the value of <InlineMath math="P(1)" /> equals the sum of all coefficients and the constant, <InlineMath math="1 + 2 - 13 + 10=0" />. Therefore, <InlineMath math="P(1)=0" />.
 
-1.  **Confirm Zero:**
+**Step 1**. Confirm Zero
 
-    Calculate <InlineMath math="P(1)" />.
+Calculate <InlineMath math="P(1)" />.
 
-    <MathContainer>
-      <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
-      <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
-      <BlockMath math="P(1) = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
+  <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
+  <BlockMath math="P(1) = 0" />
+</MathContainer>
 
-2.  **Confirm Factor:**
+**Step 2**. Confirm Factor
 
-    Since <InlineMath math="P(1) = 0" />, <InlineMath math="(x - 1)" /> is a factor of <InlineMath math="P(x)" />.
+Since <InlineMath math="P(1) = 0" />, <InlineMath math="(x - 1)" /> is a factor of <InlineMath math="P(x)" />.
 
-3.  **Divide Polynomial:**
+**Step 3**. Divide Polynomial
 
-    We use Horner's method to divide <InlineMath math="P(x)" /> by <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />).
+We use Horner's method to divide <InlineMath math="P(x)" /> by <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />).
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    1 & 1 & 2 & -13 & 10 \\
-      &   & 1 & 3 & -10 \\
-    \hline
-      & 1 & 3 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+1 & 1 & 2 & -13 & 10 \\
+  &   & 1 & 3 & -10 \\
+\hline
+  & 1 & 3 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    The quotient is <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. The remainder is <InlineMath math="0" />, as expected.
+The quotient is <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. The remainder is <InlineMath math="0" />, as expected.
 
-    So, <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
+So, <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
 
-4.  **Factor the Quotient:**
+**Step 4**. Factor the Quotient
 
-    Factor the quadratic polynomial <InlineMath math="H(x) = x^2 + 3x - 10" />.
+Factor the quadratic polynomial <InlineMath math="H(x) = x^2 + 3x - 10" />.
 
-    <BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
+Choose <InlineMath math="-2" /> and <InlineMath math="5" /> because their sum is <InlineMath math="3" /> and their product is <InlineMath math="-10" />.
 
-5.  **Complete Factorization:**
+<BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
 
-    Combine all factors.
+**Step 5**. Complete Factorization
 
-    <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
+Combine all factors.
+
+<BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 ## Exercise
 
-Let <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Show that <InlineMath math="P(-1) = 0" />, then use <InlineMath math="P(-1) = 0" /> to factor <InlineMath math="P(x)" /> completely. After Horner's method gives the first factor, divide again until the quotient is quadratic, then factor that quotient.
+Let <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Show that <InlineMath math="P(-1) = 0" />, then use <InlineMath math="P(-1) = 0" /> to **factor** <InlineMath math="P(x)" /> completely. Dividing this cubic by the first linear factor already gives a quadratic quotient. Find two numbers whose sum and product match the relevant quadratic coefficients.
 
 ### Answer Key
 
-1.  **Show <InlineMath math="P(-1) = 0" />:**
+**Step 1**. Show <InlineMath math="P(-1) = 0" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
-      <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
-      <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
-      <BlockMath math="P(-1) = -3 + 3 = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
+  <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
+  <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
+  <BlockMath math="P(-1) = -3 + 3 = 0" />
+</MathContainer>
 
-    Proven <InlineMath math="P(-1) = 0" />.
+Proven <InlineMath math="P(-1) = 0" />.
 
-2.  **Confirm Factor:**
+**Step 2**. Confirm Factor
 
-    Since <InlineMath math="P(-1) = 0" />, <InlineMath math="(x - (-1)) = (x + 1)" /> is a factor of <InlineMath math="P(x)" />.
+Since <InlineMath math="P(-1) = 0" />, <InlineMath math="(x - (-1)) = (x + 1)" /> is a factor of <InlineMath math="P(x)" />.
 
-3.  **Divide Polynomial (Horner's Method with <InlineMath math="c = -1" />):**
+**Step 3**. Divide Polynomial (Horner's Method with <InlineMath math="c = -1" />)
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -1 & 1 & -2 & -21 & -18 \\
-       &   & -1 & 3 & 18 \\
-    \hline
-       & 1 & -3 & -18 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-1 & 1 & -2 & -21 & -18 \\
+   &   & -1 & 3 & 18 \\
+\hline
+   & 1 & -3 & -18 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    The quotient is <InlineMath math="H(x) = x^2 - 3x - 18" />.
+The quotient is <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    So, <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
+So, <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
 
-4.  **Factor the Quotient:**
+**Step 4**. Factor the Quotient
 
-    Factor <InlineMath math="H(x) = x^2 - 3x - 18" />.
+Factor <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    <BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
+For this quotient, <InlineMath math="-6+3=-3" /> and <InlineMath math="(-6)(3)=-18" />.
 
-5.  **Complete Factorization:**
+<BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
 
-    <BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />
+**Step 5**. Complete Factorization
+
+<BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />

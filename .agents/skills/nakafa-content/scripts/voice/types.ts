@@ -3,8 +3,11 @@ import {
   AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Schema } from "effect";
+import type { TeachingSectionReview } from "#nakafa-content/body/review";
 
 export type LessonVoiceLocale = AppLocaleCode;
+
+export type LessonVoiceGenre = "article" | "lesson";
 
 export interface LessonVoiceRule {
   id: string;
@@ -31,6 +34,10 @@ export interface LessonVoiceFileIssue extends LessonVoiceIssue {
 export interface LessonVoiceReport {
   fileCount: number;
   issues: LessonVoiceFileIssue[];
+  pedagogy?: (TeachingSectionReview & {
+    file: string;
+    locale: LessonVoiceLocale;
+  })[];
 }
 
 export interface LineState {

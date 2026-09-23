@@ -5,18 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Es gibt <InlineMath math="\binom{10}{2}=45" /> gleich wahrscheinliche Paare.
+Es gibt <InlineMath math="\binom{10}{2}=\frac{10\times9}{2}=45" /> **gleich wahrscheinliche Paare**.
 
 | Ergebnis | Paarzahl | Auszahlung (Tausend Rupiah) |
 | --- | ---: | ---: |
-| Zwei rote | <InlineMath math="\binom32=3" /> | <InlineMath math="30" /> |
+| Zwei rote | <InlineMath math="\binom32=\frac{3\times2}{2}=3" /> | <InlineMath math="30" /> |
 | Verschiedene Farben | <InlineMath math="3\times7=21" /> | <InlineMath math="15" /> |
-| Zwei blaue | <InlineMath math="\binom72=21" /> | <InlineMath math="0" /> |
+| Zwei blaue | <InlineMath math="\binom72=\frac{7\times6}{2}=21" /> | <InlineMath math="0" /> |
 
 Der Erwartungswert einer Auszahlung für einen Versuch beträgt in Tausend Rupiah:
 
-<BlockMath math="E=\frac{30(3)+15(21)}{45}=9" />
+<BlockMath math="E=\frac{30(3)+15(21)+0(21)}{45}=\frac{90+315}{45}=\frac{405}{45}=9" />
 
-Der Wiederholungsversuch tritt mit Wahrscheinlichkeit <InlineMath math="\frac{21}{45}=\frac7{15}" /> ein. Durch die Wiederherstellung des Inhalts hat er denselben Erwartungswert <InlineMath math="9" />. Insgesamt ergibt sich:
+Ein Wiederholungsversuch folgt nur auf **zwei blaue Kugeln**, mit Wahrscheinlichkeit <InlineMath math="\frac{21}{45}=\frac7{15}" />. Durch die Wiederherstellung des Inhalts hat er denselben Erwartungswert <InlineMath math="9" />. Insgesamt ergibt sich:
 
-<BlockMath math="9+\frac7{15}\times9=\frac{66}{5}" />
+<BlockMath math="9+\frac7{15}\times9=9+\frac{21}{5}=\frac{45+21}{5}=\frac{66}{5}" />
+
+Gewichte den zusätzlichen Erwartungswert mit der Wahrscheinlichkeit eines Wiederholungsversuchs. Verdopple nicht einfach den Erwartungswert eines Versuchs, denn nicht jede Person erhält einen zweiten. Der zweite Versuch kann auch keinen dritten auslösen.

@@ -10,20 +10,13 @@ export const metadata = {
 
 ## Kesamaan Jarak Titik dan Bayangannya dari Garis Vertikal
 
-Pencerminan terhadap garis vertikal <InlineMath math="x = k" /> memindahkan setiap titik objek ke posisi bayangannya. Garis <InlineMath math="x = k" /> menjadi garis cermin.
-
-Jarak horizontal dari titik asli ke garis cermin <Highlight>sama dengan jarak horizontal dari titik bayangan</Highlight> ke garis cermin. Koordinat <InlineMath math="y" /> dari titik tidak berubah.
+Titik pada garis cermin tetap di tempat. Untuk titik di luar garis, titik asal dan bayangan berada di sisi berlawanan dengan <Highlight>jarak tegak lurus yang sama</Highlight>.
 
 ### Aturan Pencerminan terhadap Garis Vertikal
 
-Jika sebuah titik <InlineMath math="P(x, y)" /> dicerminkan terhadap garis <InlineMath math="x = k" />, maka koordinat bayangannya, <InlineMath math="P'(x', y')" />, ditentukan oleh aturan:
+**Titik tengah** ruas yang menghubungkan titik asal dan bayangan berada pada garis cermin. Kedua titik memiliki koordinat yang sama sepanjang arah garis. Dari koordinat titik tengah, kita memperoleh:
 
-<MathContainer>
-  <BlockMath math="x' = 2k - x" />
-  <BlockMath math="y' = y" />
-</MathContainer>
-
-Jadi, bayangan titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(2k - x, y)" />. Perhatikan bahwa koordinat <InlineMath math="y" /> tetap, sementara koordinat <InlineMath math="x" /> berubah berdasarkan jaraknya dari garis <InlineMath math="x=k" />.
+<BlockMath math="\frac{x+x'}{2}=k\quad\Longrightarrow\quad x+x'=2k\quad\Longrightarrow\quad x'=2k-x,\qquad y'=y" />
 
 ## Mencerminkan Titik terhadap Garis Vertikal
 
@@ -66,8 +59,8 @@ Jadi, bayangan titik <InlineMath math="A(1,4)" /> adalah <InlineMath math="A'(5,
   data={[
     {
       points: [
-        { x: 3, y: -5, z: 0 },
-        { x: 3, y: 5, z: 0 },
+        { x: 3, y: 1, z: 0 },
+        { x: 3, y: 6, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
@@ -94,13 +87,13 @@ Jadi, bayangan titik <InlineMath math="A(1,4)" /> adalah <InlineMath math="A'(5,
       color: "#db2777",
     }, // Garis bantu horizontal
   ]}
-  cameraTarget={[3, 3, 0]}
-  cameraPosition={[3, 3, 10]}
+  cameraTarget={[3, 4, 0]}
+  cameraPosition={[3, 4, 8]}
 />
 
 ## Latihan
 
-Setiap soal mencerminkan terhadap garis vertikal <InlineMath math="x=k" />. Soal terakhir memberi bayangan dan meminta titik asal, sehingga rumus yang sama diselesaikan terbalik untuk mencari nilai yang belum diketahui.
+Gunakan **koordinat garis cermin** saat mengganti nilai pada rumus. Pada soal terakhir, koordinat bayangan sudah diketahui dan kamu mencari koordinat titik asal.
 
 1.  Tentukan bayangan titik <InlineMath math="P(3,2)" /> oleh pencerminan terhadap garis <InlineMath math="x=5" />.
 2.  Sebuah titik <InlineMath math="B(-2, 5)" /> dicerminkan terhadap garis <InlineMath math="x=1" />. Tentukan koordinat bayangannya!
@@ -108,35 +101,43 @@ Setiap soal mencerminkan terhadap garis vertikal <InlineMath math="x=k" />. Soal
 
 ### Pembahasan
 
-1.  Diberikan <InlineMath math="P(3,2)" /> dan garis cermin <InlineMath math="x=5" />. Maka <InlineMath math="x=3, y=2, k=5" />.
+Kamu dapat memeriksa hasil dengan **koordinat titik tengah**. Rata-rata koordinat yang berubah harus sama dengan koordinat garis cermin. Koordinat lainnya tetap.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
-      <BlockMath math="y' = y = 2" />
-    </MathContainer>
+**Pembahasan 1**
 
-    Jadi, bayangan titik <InlineMath math="P" /> adalah <InlineMath math="P'(7,2)" />.
+Diberikan <InlineMath math="P(3,2)" /> dan garis cermin <InlineMath math="x=5" />. Maka <InlineMath math="x=3, y=2, k=5" />.
 
-2.  Diberikan <InlineMath math="B(-2, 5)" /> dan garis cermin <InlineMath math="x=1" />. Maka <InlineMath math="x=-2, y=5, k=1" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
+  <BlockMath math="y' = y = 2" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
-      <BlockMath math="y' = y = 5" />
-    </MathContainer>
+Jadi, bayangan titik <InlineMath math="P" /> adalah <InlineMath math="P'(7,2)" />.
 
-    Jadi, bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(4,5)" />.
+**Pembahasan 2**
 
-3.  Diberikan bayangan <InlineMath math="C'(0,3)" /> dan garis cermin <InlineMath math="x=-2" />. Maka <InlineMath math="x'=0, y'=3, k=-2" />.
+Diberikan <InlineMath math="B(-2, 5)" /> dan garis cermin <InlineMath math="x=1" />. Maka <InlineMath math="x=-2, y=5, k=1" />.
 
-    Kita tahu <InlineMath math="x' = 2k - x" /> dan <InlineMath math="y' = y" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
+  <BlockMath math="y' = y = 5" />
+</MathContainer>
 
-    Dari <InlineMath math="y' = y" />, maka <InlineMath math="y = 3" />.
+Jadi, bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(4,5)" />.
 
-    Dari <InlineMath math="x' = 2k - x" />, maka <InlineMath math="0 = 2(-2) - x" />.
+**Pembahasan 3**
 
-    <MathContainer>
-      <BlockMath math="0 = -4 - x" />
-      <BlockMath math="x = -4" />
-    </MathContainer>
+Diberikan bayangan <InlineMath math="C'(0,3)" /> dan garis cermin <InlineMath math="x=-2" />. Maka <InlineMath math="x'=0, y'=3, k=-2" />.
 
-    Jadi, koordinat titik <InlineMath math="C" /> adalah <InlineMath math="C(-4,3)" />.
+Kita tahu <InlineMath math="x' = 2k - x" /> dan <InlineMath math="y' = y" />.
+
+Dari <InlineMath math="y' = y" />, maka <InlineMath math="y = 3" />.
+
+Dari <InlineMath math="x' = 2k - x" />, maka <InlineMath math="0 = 2(-2) - x" />.
+
+<MathContainer>
+  <BlockMath math="0 = -4 - x" />
+  <BlockMath math="x = -4" />
+</MathContainer>
+
+Jadi, koordinat titik <InlineMath math="C" /> adalah <InlineMath math="C(-4,3)" />.

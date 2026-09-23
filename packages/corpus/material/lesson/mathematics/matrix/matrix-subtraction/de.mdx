@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Einträge an derselben Position subtrahieren
 
-<Highlight>Bei der Matrixsubtraktion werden die Einträge zweier Matrizen voneinander abgezogen.</Highlight> Wie bei der [Addition](/de/faecher/mathematik/matrizen/matrixaddition) müssen beide Matrizen gleich viele Zeilen und Spalten haben.
+Bei der Matrixsubtraktion berechnen wir die **Differenzen entsprechender Einträge** zweier Matrizen. Wie bei der [Addition](/de/faecher/mathematik/matrizen/matrixaddition) müssen beide Matrizen gleich viele Zeilen und Spalten haben.
 
 Das Ergebnis ist eine Matrix desselben Formats. Jeder ihrer Einträge entsteht aus der Differenz der Einträge an derselben Position.
 
@@ -56,7 +56,7 @@ Betrachten wir die beiden Matrizen <InlineMath math="P" /> und <InlineMath math=
 
 Beide haben das Format <InlineMath math="2 \times 2" /> und können daher subtrahiert werden.
 
-Zuerst subtrahieren wir die zugehörigen Einträge:
+Zuerst subtrahieren wir die **zugehörigen Einträge**:
 
 <MathContainer>
   <BlockMath math="P - Q = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} - \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
@@ -80,10 +80,9 @@ Anschließend addieren wir <InlineMath math="P" /> und <InlineMath math="-Q" />:
 </MathContainer>
 
 Beide Methoden ergeben die gleiche Matrix.
-
 ### Beispiel für nicht subtrahierbare Matrizen
 
-Diese beiden Matrizen haben nicht dasselbe Format:
+Diese beiden Matrizen haben nicht **dasselbe Format**:
 
 <MathContainer>
   <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
@@ -91,46 +90,49 @@ Diese beiden Matrizen haben nicht dasselbe Format:
 </MathContainer>
 
 Die Matrix <InlineMath math="K" /> hat das Format <InlineMath math="3 \times 2" />, die Matrix <InlineMath math="L" /> dagegen <InlineMath math="2 \times 2" />. Wegen der unterschiedlichen Formate sind sowohl <InlineMath math="K-L" /> als auch <InlineMath math="L-K" /> nicht definiert.
-
 ## Eigenschaften der Matrixsubtraktion
 
 Die Matrixaddition ist kommutativ und assoziativ, die Matrixsubtraktion <Highlight>besitzt dagegen im Allgemeinen keine dieser beiden Eigenschaften</Highlight>.
 
-1.  **Nicht kommutativ**: Die Reihenfolge der Matrizen beeinflusst das Ergebnis. Im Allgemeinen ist <InlineMath math="A - B" /> nicht gleich <InlineMath math="B - A" />, außer in Sonderfällen wie <InlineMath math="A=B" />.
+Achte auf das **Minuszeichen vor einer Matrix**. Es gilt für jeden Eintrag. Durch Vertauschen der Reihenfolge oder Auflösen der Klammern können andere Einträge subtrahiert werden.
 
-    Im Allgemeinen:
+### Nicht kommutativ
 
-    <BlockMath math="A - B \neq B - A" />
+Die **Reihenfolge** der Matrizen beeinflusst das Ergebnis. Im Allgemeinen ist <InlineMath math="A - B" /> nicht gleich <InlineMath math="B - A" />, außer in Sonderfällen wie <InlineMath math="A=B" />.
 
-    Für die Matrizen <InlineMath math="P" /> und <InlineMath math="Q" /> aus dem Beispiel gilt:
+Im Allgemeinen:
 
-    <BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+<BlockMath math="A - B \neq B - A" />
 
-    In umgekehrter Reihenfolge ergibt sich:
+Für die Matrizen <InlineMath math="P" /> und <InlineMath math="Q" /> aus dem Beispiel gilt:
 
-    <MathContainer>
-      <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
 
-    Daher gilt <InlineMath math="P-Q \neq Q-P" />.
+In umgekehrter Reihenfolge ergibt sich:
 
-2.  **Nicht assoziativ**: Auch die Klammerung verändert das Ergebnis. Im Allgemeinen ist <InlineMath math="(A - B) - C" /> nicht gleich <InlineMath math="A - (B - C)" />.
+<MathContainer>
+  <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
+</MathContainer>
 
-    Im Allgemeinen:
+Daher gilt <InlineMath math="P-Q \neq Q-P" />.
+### Nicht assoziativ
 
-    <BlockMath math="(A - B) - C \neq A - (B - C)" />
+Auch die **Klammerung** verändert das Ergebnis. Im Allgemeinen ist <InlineMath math="(A - B) - C" /> nicht gleich <InlineMath math="A - (B - C)" />.
 
-    Dies liegt daran, dass <InlineMath math="(A - B) - C = A - B - C" />, wohingegen <InlineMath math="A - (B - C) = A - B + C" />.
+Im Allgemeinen:
+
+<BlockMath math="(A - B) - C \neq A - (B - C)" />
+
+Dies liegt daran, dass <InlineMath math="(A - B) - C = A - B - C" />, wohingegen <InlineMath math="A - (B - C) = A - B + C" />.
 
 Entscheidend ist deshalb die Beziehung zur Addition: <InlineMath math="A - B = A + (-B)" />.
 
 Schreibt man die Subtraktion als Addition der Gegenmatrix, lassen sich die bekannten Additionsregeln anwenden.
-
 ## Übungen
 
-**Problem** 1
+**Problem 1**
 
 Gegeben sind die folgenden Matrizen:
 
@@ -141,13 +143,13 @@ Gegeben sind die folgenden Matrizen:
 
 Bestimme <InlineMath math="M-N" />.
 
-**Problem** 2
+**Problem 2**
 
 Bestimme <InlineMath math="x, y," /> und <InlineMath math="z" /> aus der folgenden Matrixgleichung:
 
 <BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
 
-**Problem** 3
+**Problem 3**
 
 Gegeben sind drei Matrizen:
 
@@ -161,7 +163,7 @@ Berechne <InlineMath math="(A-B)-C" /> und <InlineMath math="A-(B-C)" />. Sind d
 
 ### Ausführliche Lösungen
 
-**Problem** 1
+**Problem 1**
 
 Gegeben:
 
@@ -179,7 +181,7 @@ Dann ist <InlineMath math="M-N" />:
   <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
 </MathContainer>
 
-**Problem** 2
+**Problem 2**
 
 Gegeben sei die Matrixgleichung:
 
@@ -227,7 +229,7 @@ Die Lösung lautet also <InlineMath math="x=4" />, <InlineMath math="y=2" /> und
 
 Durch Einsetzen in die ursprüngliche Gleichung lassen sich alle vier zugehörigen Einträge überprüfen.
 
-**Problem** 3
+**Problem 3**
 
 Gegeben:
 

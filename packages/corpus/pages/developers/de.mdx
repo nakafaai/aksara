@@ -7,7 +7,7 @@ export const metadata = {
 
 # Entwicklerressourcen
 
-Zuletzt aktualisiert: 31. August 2026
+Zuletzt aktualisiert: 20. September 2026
 
 Nakafa bietet öffentlichen, maschinenlesbaren Zugriff auf mehrsprachige Lernmaterialien und klar begrenzte Quran-Referenzen. Die Schnittstellen eignen sich für Agents und Anwendungen, die typisierte Eingaben, vorhersehbare Fehler und kanonische Inhaltsreferenzen benötigen. Sie sind schreibgeschützt, benötigen kein Nakafa Konto und geben keine privaten Lerndaten, Käufe oder Kontofunktionen frei.
 
@@ -28,7 +28,7 @@ Die kanonische API Basis ist [https://api.nakafa.com/v1](https://api.nakafa.com/
 - `GET /v1/taxonomy`: veröffentlichte Taxonomie
 - `GET /v1/quran/{surah}`: Abruf eines typisierten Versbereichs
 
-Die Suche liefert standardmäßig 10 Ergebnisse und akzeptiert höchstens 50 Ergebnisse pro Anfrage. Verwende `offset`, `has_more` und `next_offset`, um eine Ergebnismenge ohne Annahmen fortzusetzen. Clients sollten höchstens 120 Anfragen pro 60 Sekunden von einer IP einplanen und HTTP-429-Antworten mit einem Backoff behandeln.
+Die Suche liefert standardmäßig 10 Ergebnisse und akzeptiert höchstens 10 Ergebnisse pro Anfrage. Das Suchfenster enthält höchstens 10 Ergebnisse, mit `offset` von 0 bis 9. Bei einem kleineren `limit` zeigen `has_more` und `next_offset` die nächste Seite innerhalb dieses Fensters an. Clients sollten höchstens 120 Anfragen pro 60 Sekunden von einer IP einplanen und HTTP-429-Antworten mit einem Backoff behandeln.
 
 <CodeBlock
   data={[{

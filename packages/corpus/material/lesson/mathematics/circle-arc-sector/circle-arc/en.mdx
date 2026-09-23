@@ -11,9 +11,9 @@ export const metadata = {
 
 ## Arc and Chord Relationship
 
-Every circle arc has a close relationship with the chord that connects its two endpoints. A chord is a straight line connecting two endpoints of an arc, while an arc is a curved path along the circle's circumference. Imagine it like a bow and arrow, where the string is the straight line and the bow is the curved wood.
+Every circle arc has a close relationship with the chord that connects its two endpoints. A chord is a line segment connecting two endpoints of an arc, while an arc is a curved path along the circle's circumference. Imagine it like a bow and arrow, where the string is the straight line and the bow is the curved wood.
 
-For minor arcs in the same circle, a larger central angle produces both a longer arc and a longer chord, but <Highlight>the relationship is not linear</Highlight>. Beyond <InlineMath math="180^\circ" />, the major arc keeps getting longer while its chord becomes shorter, because the chord is shared with the complementary minor arc.
+For minor arcs in the same circle, a larger central angle produces both a longer arc and a longer chord, but <Highlight>chord length is not directly proportional to arc length</Highlight>. Beyond <InlineMath math="180^\circ" />, the major arc keeps getting longer while its chord becomes shorter, because the chord is shared with the complementary minor arc.
 
 <LineEquation
   title="Arc and Chord Relationship"
@@ -134,9 +134,11 @@ For minor arcs in the same circle, a larger central angle produces both a longer
 
 ## Chord Length Formula
 
-The radius and central angle determine the chord length:
+Draw a line from the center to the **midpoint of the chord**. It divides the isosceles triangle into two right triangles. In either triangle, the side opposite half the central angle is half the chord:
 
-<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right)=\frac{c/2}{r}\quad\Longrightarrow\quad c=2r\sin\left(\frac{\theta}{2}\right)" />
+
+
 
 The variables in this formula are:
 - <InlineMath math="c" /> = chord length
@@ -147,7 +149,9 @@ The formula determines a chord from a circular arc's radius and central angle. I
 
 ## Arc Height and Sagitta
 
-Arc height, or sagitta, is the distance from the chord's midpoint to the corresponding minor arc, measured perpendicular to the chord. Together with the chord, it specifies the shape of an idealized circular arc.
+Arc height, or sagitta, is the distance from the chord's midpoint to the corresponding minor arc, measured **perpendicular to the chord**. Together with the chord, it specifies the shape of an idealized circular arc.
+
+The diagram uses a minor arc with <InlineMath math="0&lt;\theta\leq180^\circ" />. The distance from the center to the chord midpoint is <InlineMath math="r\cos(\theta/2)" />. Subtract this distance from the radius to obtain the sagitta.
 
 <BlockMath math="\begin{aligned} h &amp;= r - r\cos\left(\frac{\theta}{2}\right) \\ &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \end{aligned}" />
 
@@ -159,8 +163,8 @@ The variables in this formula are:
 The diagram marks the chord, its midpoint, and the perpendicular segment whose length is the sagitta.
 
 <LineEquation
-  title="Arc Height at Different Central Angles"
-  description="Arc height (sagitta) at various central angles."
+  title="Sagitta of a 60-Degree Arc"
+  description={<>Midpoint <InlineMath math="M" /> bisects chord <InlineMath math="PQ" />. The radius minus distance <InlineMath math="OM" /> equals the sagitta.</>}
   data={[
     {
       smooth: false,
@@ -275,14 +279,20 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
 
 ## Arc in Coordinate System
 
-In the Cartesian coordinate system, an arc can be represented using parametric equations:
+For a circle **centered at the origin**, points on an arc follow these parametric equations. The parameter <InlineMath math="t" /> measures the angle counterclockwise from the positive horizontal axis.
 
 <MathContainer>
 <BlockMath math="x = r\cos(t)" />
 <BlockMath math="y = r\sin(t)" />
 </MathContainer>
 
-Where <InlineMath math="t" /> is a parameter that varies from the initial angle to the final angle of the arc.
+The parameter <InlineMath math="t" /> runs from the initial angle to the final angle. For the radius-3 circle in the diagram, these values locate points along the arc:
+
+| Parameter | Point on arc |
+| --- | --- |
+| <InlineMath math="\pi/4" /> | <InlineMath math="(3\sqrt2/2,3\sqrt2/2)" /> |
+| <InlineMath math="\pi/2" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="3\pi/4" /> | <InlineMath math="(-3\sqrt2/2,3\sqrt2/2)" /> |
 
 <LineEquation
   title="Arc in Cartesian Coordinates"
@@ -371,9 +381,9 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
 
 ## Idealized Circular Arch Example
 
-An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> and central angle <InlineMath math="120^\circ" />. The chord gives its span, and the sagitta gives its rise.
+An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> and central angle <InlineMath math="120^\circ" />. The **chord gives the span** of the arch, and the sagitta gives its rise.
 
-**Calculating chord length:**
+**Calculating chord length**:
 
 <MathContainer>
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
@@ -382,7 +392,7 @@ An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> an
 <BlockMath math="c = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3} \text{ meters}" />
 </MathContainer>
 
-**Calculating arc height:**
+**Calculating arc height**:
 
 <MathContainer>
 <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
@@ -392,7 +402,7 @@ An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> an
 
 ## Exercises
 
-Each problem mixes a circle measurement with an arc measurement, so mark which quantity is given before you choose the formula.
+Mark the **given quantities** before choosing a formula. The first three problems use chord length or sagitta, while the last asks for coordinates along an arc.
 
 1. An idealized circular arch has a radius of <InlineMath math="30 \text{ m}" /> and a central angle of <InlineMath math="90^\circ" />. Calculate its chord length and arc height.
 
@@ -404,78 +414,80 @@ Each problem mixes a circle measurement with an arc measurement, so mark which q
 
 ### Worked Solutions
 
-1. **Solution:**
+Use **half the central angle** in the sine and cosine. In problem three, the right triangle gives an exact height without rounding the angle first.
 
-   Given: <InlineMath math="r = 30 \text{ m}" /> and <InlineMath math="\theta = 90^\circ" />
+**Solution 1**
 
-   **Chord length:**
+Given: <InlineMath math="r = 30 \text{ m}" /> and <InlineMath math="\theta = 90^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
-   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42.43 \text{ m}" />
-   </MathContainer>
+**Chord length**:
 
-   **Arc height:**
+<MathContainer>
+<BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
+<BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42.43 \text{ m}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
-   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8.79 \text{ m}" />
-   </MathContainer>
+**Arc height**:
 
-2. **Solution:**
+<MathContainer>
+<BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
+<BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8.79 \text{ m}" />
+</MathContainer>
 
-   Given: <InlineMath math="h = 8 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
+**Solution 2**
 
-   **Step 1**: Use the arc height formula
+Given: <InlineMath math="h = 8 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
 
-   <BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+**Step 1**: Use the arc height formula
 
-   **Step 2**: Isolate <InlineMath math="\cos" />
+<BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-   <MathContainer>
-   <BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
-   </MathContainer>
+**Step 2**: Isolate <InlineMath math="\cos" />
 
-   **Step 3**: Calculate angle
+<MathContainer>
+<BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62.18^\circ" />
-   <BlockMath math="\theta \approx 124.36^\circ" />
-   </MathContainer>
+**Step 3**: Calculate angle
 
-3. **Solution:**
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62.18^\circ" />
+<BlockMath math="\theta \approx 124.36^\circ" />
+</MathContainer>
 
-   Given: <InlineMath math="c = 24 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
+**Solution 3**
 
-   **Step 1**: Use the chord formula
+Given: <InlineMath math="c = 24 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
 
-   <MathContainer>
-   <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0.8" />
-   </MathContainer>
+**Step 1**: Use the chord formula
 
-   **Step 2**: Calculate the minor central angle
+<MathContainer>
+<BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0.8" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arcsin(0.8) \approx 53.13^\circ" />
-   <BlockMath math="\theta \approx 106.26^\circ" />
-   </MathContainer>
+**Step 2**: Calculate the minor central angle
 
-   **Step 3**: Calculate arc height
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arcsin(0.8) \approx 53.13^\circ" />
+<BlockMath math="\theta \approx 106.26^\circ" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} h &amp;= 15\left(1 - \cos(53.13^\circ)\right) \\ &amp;= 15(1 - 0.6) \\ &amp;= 6 \text{ m} \end{aligned}" />
+**Step 3**: Calculate arc height
 
-4. **Solution:**
+<BlockMath math="OM=\sqrt{15^2-12^2}=\sqrt{81}=9\text{ m},\qquad h=15-9=6\text{ m}" />
 
-   - Starting point: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
-   - Ending point: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
-   - Radius: <InlineMath math="r = 4" />
+**Solution 4**
 
-   **Parametric equations:**
+- Starting point: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+- Ending point: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
+- Radius: <InlineMath math="r = 4" />
 
-   <MathContainer>
-   <BlockMath math="x = 4\cos(t)" />
-   <BlockMath math="y = 4\sin(t)" />
-   <BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
-   </MathContainer>
+**Parametric equations**:
+
+<MathContainer>
+<BlockMath math="x = 4\cos(t)" />
+<BlockMath math="y = 4\sin(t)" />
+<BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
+</MathContainer>

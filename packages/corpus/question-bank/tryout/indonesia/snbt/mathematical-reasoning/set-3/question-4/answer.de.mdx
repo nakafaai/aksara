@@ -5,13 +5,13 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Geometrische Beziehungen identifizieren**
+#### Geometrische Beziehungen identifizieren
 
-Vorausgesetzt, dass der Radius (<InlineMath math="r" />) des Behälters die Hälfte seiner Höhe (<InlineMath math="t" />) beträgt, können wir <InlineMath math="r = \frac{1}{2}t" /> schreiben. Das Volumen des zylindrischen Behälters wird mit <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" /> angegeben.
+Vorausgesetzt, dass der Radius (<InlineMath math="r" />) des Behälters **die Hälfte seiner Höhe** (<InlineMath math="t" />) beträgt, können wir <InlineMath math="r = \frac{1}{2}t" /> schreiben. Das Volumen des zylindrischen Behälters wird mit <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" /> angegeben.
 
-**Berechnung der Höhe**
+#### Berechnung der Höhe
 
-Wir setzen den Ausdruck für <InlineMath math="r" /> in die Volumenformel ein und lösen nach <InlineMath math="t" /> auf.
+Wir setzen den Ausdruck für <InlineMath math="r" /> in die **Volumenformel** ein und lösen nach <InlineMath math="t" /> auf.
 
 <MathContainer>
   <BlockMath math="V = \pi r^2 t" />
@@ -22,3 +22,19 @@ Wir setzen den Ausdruck für <InlineMath math="r" /> in die Volumenformel ein un
 </MathContainer>
 
 Somit beträgt die Höhe des Behälters <InlineMath math="9 \text{ cm}" />.
+
+In der Zeichnung entspricht eine Einheit 1 cm. Drehe den Zylinder und vergleiche seinen Grundkreisradius mit seiner Höhe.
+
+<LineEquation
+  title="Radius und Höhe des Zylinders"
+  description="Radius 4,5 cm und Höhe 9 cm. Die grüne Strecke zeigt den Radius, die orange Strecke die Höhe."
+  cameraPosition={[16, -20, 14]}
+  cameraTarget={[0, 0, 4.5]}
+  data={[
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:0})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:9})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:-4.5,y:0,z:0},{x:-4.5,y:0,z:9}],color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:4.5,y:0,z:0},{x:4.5,y:0,z:4.5},{x:4.5,y:0,z:9}],color:"#f97316",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="t=9" />,offset:[0.5,0,0]}]},
+    {points:[{x:0,y:0,z:0},{x:2.25,y:0,z:0},{x:4.5,y:0,z:0}],color:"#10b981",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="r=9/2" />,offset:[0,-0.5,0]}]}
+  ]}
+/>

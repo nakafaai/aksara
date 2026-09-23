@@ -9,26 +9,26 @@ export const metadata = {
 
 ## Zusammensetzung mit der Umkehrfunktion
 
-<Highlight>Eine Funktion und ihre Umkehrfunktion heben einander auf</Highlight>. Die Reihenfolge bestimmt, auf welcher Menge die Identität gilt: <InlineMath math="f\circ f^{-1}" /> ist die Identität auf der Bildmenge von <InlineMath math="f" />, während <InlineMath math="f^{-1}\circ f" /> die Identität auf dem Definitionsbereich von <InlineMath math="f" /> ist.
+Eine Funktion und ihre Umkehrfunktion <Highlight>heben einander auf</Highlight>. Die Reihenfolge bestimmt, auf welcher Menge die Identität gilt: <InlineMath math="f\circ f^{-1}" /> ist die Identität auf der Bildmenge von <InlineMath math="f" />, während <InlineMath math="f^{-1}\circ f" /> die Identität auf dem Definitionsbereich von <InlineMath math="f" /> ist.
 
-1.  **Zusammensetzung von <InlineMath math="f" /> mit <InlineMath math="f^{-1}" />:**
+**Schritt 1**. Zusammensetzung von <InlineMath math="f" /> mit <InlineMath math="f^{-1}" />.
 
-    <BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
+<BlockMath math="(f \circ f^{-1})(x) = f(f^{-1}(x)) = x" />
 
-    Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f^{-1}" />. Dieser entspricht der Bildmenge von <InlineMath math="f" />.
+Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f^{-1}" />. Dieser entspricht der Bildmenge von <InlineMath math="f" />.
 
-2.  **Zusammensetzung von <InlineMath math="f^{-1}" /> mit <InlineMath math="f" />:**
+**Schritt 2**. Zusammensetzung von <InlineMath math="f^{-1}" /> mit <InlineMath math="f" />.
 
-    <BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
+<BlockMath math="(f^{-1} \circ f)(x) = f^{-1}(f(x)) = x" />
 
-    Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f" />.
+Dies gilt für alle <InlineMath math="x" /> im Definitionsbereich von <InlineMath math="f" />.
 
-**Beispiel:**
+**Beispiel**:
 
 Für <InlineMath math="f(x) = 2x + 3" /> lautet die Umkehrfunktion <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />. Wir prüfen beide Zusammensetzungen:
 
-- <BlockMath math="\begin{aligned}f(f^{-1}(x)) &= f\left(\frac{x - 3}{2}\right) \\ &= 2\left(\frac{x - 3}{2}\right) + 3 \\ &= (x - 3) + 3 \\ &= x\end{aligned}" />
-- <BlockMath math="\begin{aligned}f^{-1}(f(x)) &= f^{-1}(2x + 3) \\ &= \frac{(2x + 3) - 3}{2} \\ &= \frac{2x}{2} \\ &= x\end{aligned}" />
+<BlockMath math="\begin{aligned}f(f^{-1}(x)) &= f\left(\frac{x - 3}{2}\right) \\ &= 2\left(\frac{x - 3}{2}\right) + 3 \\ &= (x - 3) + 3 \\ &= x\end{aligned}" />
+<BlockMath math="\begin{aligned}f^{-1}(f(x)) &= f^{-1}(2x + 3) \\ &= \frac{(2x + 3) - 3}{2} \\ &= \frac{2x}{2} \\ &= x\end{aligned}" />
 
 Beide Zusammensetzungen geben die ursprüngliche Eingabe <InlineMath math="x" /> zurück.
 
@@ -40,6 +40,13 @@ Kehrt man eine Umkehrfunktion erneut um, erhält man die ursprüngliche Funktion
 
 Zweimaliges Umkehren stellt also die ursprüngliche Zuordnung wieder her.
 
+Eingabe und Ausgabe werden **zweimal vertauscht**. Für die Funktion von oben kannst du die Zahlenpaare in der Tabelle verfolgen.
+
+| Ursprüngliche Funktion | Umkehrfunktion | Erneute Umkehrung |
+| --- | --- | --- |
+| <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
 ## Umkehrfunktion einer Zusammensetzung
 
 Sind beide Funktionen umkehrbar und passen ihre Definitions- und Zielmengen zueinander, entsteht die Umkehrfunktion ihrer Zusammensetzung aus den beiden Umkehrfunktionen in **umgekehrter Reihenfolge**.
@@ -50,32 +57,39 @@ Seien <InlineMath math="f" /> und <InlineMath math="g" /> zwei Funktionen mit de
 
 Lies die Zusammensetzung von rechts nach links: Zuerst wird <InlineMath math="f^{-1}" /> und danach <InlineMath math="g^{-1}" /> angewendet.
 
-Das ist wie beim Anziehen: Erst kommen die Socken (<InlineMath math="g" />), dann die Schuhe (<InlineMath math="f" />). Beim Ausziehen muss man zuerst die Schuhe (<InlineMath math="f^{-1}" />) und danach die Socken (<InlineMath math="g^{-1}" />) ablegen.
-
-**Beispiel:**
+**Beispiel**:
 
 Sei <InlineMath math="f(x) = x + 1" /> mit <InlineMath math="f^{-1}(x) = x - 1" /> und <InlineMath math="g(x) = 3x" /> mit <InlineMath math="g^{-1}(x) = \frac{x}{3}" />.
 
-1.  **Finde <InlineMath math="(f \circ g)(x)" />:**
+**Schritt 1**. Finde <InlineMath math="(f \circ g)(x)" />.
 
-    <BlockMath math="\begin{aligned} (f \circ g)(x) &amp;= f(g(x)) \\ &amp;= f(3x) \\ &amp;= 3x + 1 \end{aligned}" />
+<BlockMath math="\begin{aligned} (f \circ g)(x) &amp;= f(g(x)) \\ &amp;= f(3x) \\ &amp;= 3x + 1 \end{aligned}" />
 
-2.  **Finde die Umkehrung von <InlineMath math="(f \circ g)(x)" />:**
+**Schritt 2**. Finde die Umkehrung von <InlineMath math="(f \circ g)(x)" />.
 
-    Sei <InlineMath math="y = 3x + 1" />. Tausche <InlineMath math="x" /> und <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
+Sei <InlineMath math="y = 3x + 1" />. Tausche <InlineMath math="x" /> und <InlineMath math="y" />: <InlineMath math="x = 3y + 1" />.
 
-    Löse nach <InlineMath math="y" /> auf: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
+Löse nach <InlineMath math="y" /> auf: <InlineMath math="x - 1 = 3y \implies y = \frac{x - 1}{3}" />.
 
-    Also <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
+Also <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
 
-3.  **Finde <InlineMath math="(g^{-1} \circ f^{-1})(x)" />:**
+**Schritt 3**. Finde <InlineMath math="(g^{-1} \circ f^{-1})(x)" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} (g^{-1} \circ f^{-1})(x) &amp;= g^{-1}(f^{-1}(x)) \\ &amp;= g^{-1}(x - 1) \end{aligned}" />
-      <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} (g^{-1} \circ f^{-1})(x) &amp;= g^{-1}(f^{-1}(x)) \\ &amp;= g^{-1}(x - 1) \end{aligned}" />
+  <BlockMath math="g^{-1}(x - 1) = \frac{x - 1}{3}" />
+</MathContainer>
 
 Da die Ergebnisse aus den Schritten 2 und 3 gleich sind, ist bewiesen, dass <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
+
+<Mermaid
+  title="Die Rechenschritte umkehren"
+  description="Zuerst wird mit drei multipliziert, dann eins addiert. Auf dem Rückweg ziehst du zuerst eins ab und teilst danach durch drei."
+  chart={`flowchart LR
+    A["2"] -->|"mal 3"| B["6"] -->|"plus 1"| C["7"]
+    D["7"] -->|"minus 1"| E["6"] -->|"geteilt durch 3"| F["2"]
+  `}
+/>
 
 ## Zusammenhang zwischen Definitionsmenge und Bildmenge
 
@@ -84,4 +98,23 @@ Die Definitionsmenge von <InlineMath math="f" /> wird zur Bildmenge von <InlineM
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\text{Definitionsmenge}(f) \\ &amp;= \text{Bildmenge}(f^{-1}) \end{aligned}" />
   <BlockMath math="\begin{aligned} &amp;\text{Bildmenge}(f) \\ &amp;= \text{Definitionsmenge}(f^{-1}) \end{aligned}" />
+</MathContainer>
+
+Bei der Umkehrung **tauschen Definitionsmenge und Bildmenge ihre Rollen**. Betrachte diese eingeschränkte quadratische Funktion.
+
+<MathContainer>
+  <BlockMath math="q:[0,\infty)\to[1,\infty),\quad q(x)=x^2+1" />
+  <BlockMath math="q^{-1}:[1,\infty)\to[0,\infty),\quad q^{-1}(x)=\sqrt{x-1}" />
+</MathContainer>
+
+| Funktion | Definitionsmenge | Bildmenge |
+| --- | --- | --- |
+| <InlineMath math="q" /> | <InlineMath math="[0,\infty)" /> | <InlineMath math="[1,\infty)" /> |
+| <InlineMath math="q^{-1}" /> | <InlineMath math="[1,\infty)" /> | <InlineMath math="[0,\infty)" /> |
+
+Die Quadratwurzel liefert die ursprüngliche Eingabe, weil die quadratische Funktion nur nichtnegative Eingaben zulässt. Ohne diese Einschränkung ergibt die Quadratwurzel aus dem Quadrat einer negativen Zahl deren Betrag.
+
+<MathContainer>
+  <BlockMath math="q^{-1}(q(x))=\sqrt{x^2}=x,\quad x\geq0" />
+  <BlockMath math="q(q^{-1}(y))=(\sqrt{y-1})^2+1=y,\quad y\geq1" />
 </MathContainer>

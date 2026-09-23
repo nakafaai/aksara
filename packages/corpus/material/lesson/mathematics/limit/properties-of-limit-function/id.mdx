@@ -3,7 +3,7 @@ export const metadata = {
    description: "Uraikan perhitungan limit yang kompleks menjadi langkah teratur dengan aturan jumlah, hasil kali, hasil bagi, pangkat, dan akar.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Limit",
 };
 
@@ -13,11 +13,11 @@ export const metadata = {
 
 ## Sifat Dasar Limit
 
-Dua aturan mencakup kasus paling sederhana, yaitu limit fungsi konstanta dan limit fungsi identitas. Keduanya dibaca langsung dari grafiknya, dan setiap aturan lain dibangun di atas keduanya.
+Dua aturan mencakup kasus paling sederhana, yaitu limit fungsi konstanta dan limit **fungsi identitas**. Keduanya dibaca langsung dari grafiknya, dan setiap aturan lain dibangun di atas keduanya.
 
 ### Sifat Konstanta
 
-Sifat paling sederhana adalah limit dari fungsi konstanta. Jika <InlineMath math="k" /> adalah konstanta, maka:
+Sifat paling sederhana adalah limit dari **fungsi konstanta**. Jika <InlineMath math="k" /> adalah konstanta, maka:
 
 <BlockMath math="\lim_{x \to c} k = k" />
 
@@ -31,9 +31,18 @@ Untuk fungsi identitas, berlaku:
 
 Ketika <InlineMath math="x" /> mendekati <InlineMath math="c" />, nilai fungsi <InlineMath math="f(x) = x" /> juga mendekati <InlineMath math="c" />.
 
+Bandingkan fungsi konstan <InlineMath math="y=3" /> dengan identitas <InlineMath math="y=x" /> saat <InlineMath math="x" /> mendekati <InlineMath math="2" />. Pada fungsi konstan, **nilai keluaran tetap**. Pada fungsi identitas, **keluaran mengikuti masukan**.
+
+| Masukan | Fungsi konstan | Fungsi identitas |
+| --- | --- | --- |
+| <InlineMath math="1{,}9" /> | <InlineMath math="3" /> | <InlineMath math="1{,}9" /> |
+| <InlineMath math="1{,}99" /> | <InlineMath math="3" /> | <InlineMath math="1{,}99" /> |
+| <InlineMath math="2{,}01" /> | <InlineMath math="3" /> | <InlineMath math="2{,}01" /> |
+| <InlineMath math="2{,}1" /> | <InlineMath math="3" /> | <InlineMath math="2{,}1" /> |
+
 ## Sifat Operasi Aritmatika
 
-Misalkan <InlineMath math="\lim_{x \to c} f(x) = L" /> dan <InlineMath math="\lim_{x \to c} g(x) = M" /> dengan <InlineMath math="L" /> dan <InlineMath math="M" /> adalah bilangan real. Sifat-sifat itu memindahkan limit melalui penjumlahan, perkalian, faktor konstanta, dan pembagian, asalkan penyebutnya tidak menuju nol dan limit kedua fungsinya ada.
+Misalkan <InlineMath math="\lim_{x \to c} f(x) = L" /> dan <InlineMath math="\lim_{x \to c} g(x) = M" /> dengan <InlineMath math="L" /> dan <InlineMath math="M" /> adalah bilangan real. Sifat-sifat itu memindahkan limit melalui penjumlahan, perkalian, **faktor konstanta**, dan pembagian, asalkan penyebutnya tidak menuju nol dan limit kedua fungsinya ada.
 
 ### Sifat Penjumlahan dan Pengurangan
 
@@ -46,17 +55,29 @@ Limit dari **jumlah** atau **selisih** dua fungsi sama dengan jumlah atau selisi
 
 > Sifat limit dapat memecah limit gabungan menjadi beberapa limit yang lebih sederhana dan dapat dihitung secara terpisah.
 
+Misalnya, ketika <InlineMath math="x\to2" />, limit <InlineMath math="x" /> adalah <InlineMath math="2" /> dan limit <InlineMath math="x+1" /> adalah <InlineMath math="3" />. Aturan ini memberikan:
+
+<BlockMath math="\begin{aligned}\lim_{x\to2}[x+(x+1)]&=2+3=5\\\lim_{x\to2}[x-(x+1)]&=2-3=-1\end{aligned}" />
+
 ### Sifat Perkalian
 
 Limit dari **hasil kali** dua fungsi sama dengan hasil kali **limit masing-masing fungsi**:
 
 <BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) \cdot g(x)] \\ &amp;= \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) \\ &amp;= L \cdot M \end{aligned}" />
 
+Misalnya, ketika <InlineMath math="x\to2" />, limit <InlineMath math="x" /> adalah <InlineMath math="2" /> dan limit <InlineMath math="x+1" /> adalah <InlineMath math="3" />. Aturan ini memberikan:
+
+<BlockMath math="\lim_{x\to2}x(x+1)=2\cdot3=6" />
+
 ### Sifat Perkalian dengan Konstanta
 
 **Konstanta** dapat dikeluarkan dari tanda limit:
 
 <BlockMath math="\lim_{x \to c} [k \cdot f(x)] = k \cdot \lim_{x \to c} f(x) = k \cdot L" />
+
+Dengan faktor konstan <InlineMath math="5" /> dan <InlineMath math="x\to2" />, kita memperoleh:
+
+<BlockMath math="\lim_{x\to2}5x=5\lim_{x\to2}x=5\cdot2=10" />
 
 ### Sifat Pembagian
 
@@ -66,9 +87,13 @@ Limit dari **hasil bagi** dua fungsi sama dengan hasil bagi **limit masing-masin
 
 Aturan pembagian ini berlaku jika <InlineMath math="M \neq 0" />.
 
+Misalnya, ketika <InlineMath math="x\to2" />, limit <InlineMath math="x" /> adalah <InlineMath math="2" /> dan limit <InlineMath math="x+1" /> adalah <InlineMath math="3" />. Aturan ini memberikan:
+
+<BlockMath math="\lim_{x\to2}\frac{x}{x+1}=\frac23" />
+
 ## Sifat Perpangkatan dan Akar
 
-Pangkat atau akar dapat melewati limit selama hasilnya tetap di dalam domain. Syarat domain itulah yang membuat akarnya terdefinisi, sehingga nilai negatif di bawah akar berpangkat genap membuat aturan ini tidak berlaku.
+Pangkat atau akar dapat melewati limit selama hasilnya tetap di dalam domain. **Syarat domain** itulah yang membuat akarnya terdefinisi, sehingga nilai negatif di bawah akar berpangkat genap membuat aturan ini tidak berlaku.
 
 ### Sifat Perpangkatan
 
@@ -78,25 +103,33 @@ Limit dari **fungsi berpangkat** sama dengan **pangkat** dari limit fungsi:
 
 Pada aturan ini, <InlineMath math="n" /> adalah bilangan bulat positif.
 
+Untuk pangkat bulat positif <InlineMath math="3" />, nilai limitnya dapat dihitung dari limit bagian dalam:
+
+<BlockMath math="\lim_{x\to2}(x+1)^3=(2+1)^3=27" />
+
 ### Sifat Akar
 
 Limit dari **akar fungsi** sama dengan **akar** dari limit fungsi:
 
 <BlockMath math="\lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to c} f(x)} = \sqrt[n]{L}" />
 
-**Syarat domain:** Fungsi akar harus terdefinisi untuk input di sekitar titik yang didekati.
+**Syarat domain**: Fungsi akar harus terdefinisi untuk input di sekitar titik yang didekati.
 - Jika <InlineMath math="n" /> ganjil: akar real terdefinisi untuk setiap nilai real <InlineMath math="L" />
 - Jika <InlineMath math="n" /> genap: fungsi di dalam akar harus tetap tak negatif di sekitar titik tersebut dan <InlineMath math="L \geq 0" />
 
+Sebagai pembanding, akar pangkat tiga menerima masukan negatif, sedangkan akar kuadrat real tidak:
+
+<BlockMath math="\lim_{x\to-8}\sqrt[3]{x}=\sqrt[3]{-8}=-2" />
+
 ## Contoh Penerapan Sifat Limit
 
-Setiap contoh menerapkan satu sifat dan menyebutkannya, sehingga kamu dapat memakai urutan yang sama pada bentuk serupa. Contoh terakhir menunjukkan apa yang berubah ketika ada bentuk akar.
+Setiap contoh menerapkan **satu sifat** dan menyebutkannya, sehingga kamu dapat memakai urutan yang sama pada bentuk serupa. Contoh terakhir menunjukkan apa yang berubah ketika ada bentuk akar.
 
 ### Limit Fungsi Polinomial
 
 Hitung <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Menggunakan sifat-sifat limit:
 
@@ -110,7 +143,7 @@ Menggunakan sifat-sifat limit:
 
 Hitung <InlineMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3}" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Menggunakan sifat pembagian dan perkalian:
 
@@ -122,7 +155,7 @@ Menggunakan sifat pembagian dan perkalian:
 Sekarang kita substitusi nilai <InlineMath math="x = 4" />:
 
 <MathContainer>
-<BlockMath math="= \frac{4 \cdot \sqrt{4}}{4^2 + 3} = \frac{4 \cdot 2}{16 + 3} = \frac{8}{19}" />
+<BlockMath math="\lim_{x\to4}\frac{x\sqrt{x}}{x^2+3}= \frac{4 \cdot \sqrt{4}}{4^2 + 3} = \frac{4 \cdot 2}{16 + 3} = \frac{8}{19}" />
 </MathContainer>
 
 Dalam bentuk **desimal**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
@@ -131,7 +164,7 @@ Dalam bentuk **desimal**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
 
 Hitung <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Menggunakan sifat akar (karena <InlineMath math="n = 2" /> genap, kita perlu memastikan hasil di dalam akar tidak negatif):
 
@@ -147,11 +180,11 @@ Hitung limit di dalam akar terlebih dahulu:
 
 Karena <InlineMath math="2 > 0" />, kita dapat menggunakan sifat akar:
 
-<BlockMath math="= \sqrt{2} \approx 1{,}414" />
+<BlockMath math="\lim_{x\to0}\sqrt{x^2-3x+2}= \sqrt{2} \approx 1{,}414" />
 
 ## Latihan
 
-Setiap soal meminta limit yang memakai satu atau beberapa sifat limit. Tuliskan sifat yang dipakai pada setiap langkah, lalu periksa hasilnya dengan substitusi langsung setelah bentuknya disederhanakan.
+Setiap soal meminta limit yang memakai satu atau beberapa sifat limit. Tuliskan sifat yang dipakai pada setiap langkah, lalu periksa hasilnya dengan **substitusi langsung** setelah bentuknya disederhanakan.
 
 1. Hitung <InlineMath math="\lim_{x \to 3} (2x^2 - 4x + 1)" />
 
@@ -163,56 +196,54 @@ Setiap soal meminta limit yang memakai satu atau beberapa sifat limit. Tuliskan 
 
 5. Hitung <InlineMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1}" />
 
-### Pembahasan
+### Jumlah dan Faktor Konstan
 
-1. **Penyelesaian:**
+Menggunakan **sifat penjumlahan** dan perkalian dengan konstanta:
 
-   Menggunakan sifat penjumlahan dan perkalian dengan konstanta:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) \\ &amp;= 2\lim_{x \to 3} x^2 \\ &amp;\quad{}- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) \\ &amp;= 2\lim_{x \to 3} x^2 \\ &amp;\quad{}- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
-   </MathContainer>
+Substitusi <InlineMath math="x = 3" />:
 
-   Substitusi <InlineMath math="x = 3" />:
+<MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
-   </MathContainer>
+### Pembagian dengan Penyebut Tak Nol
 
-2. **Penyelesaian:**
+Menggunakan sifat pembagian:
 
-   Menggunakan sifat pembagian:
+<MathContainer>
+<BlockMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1} = \frac{\lim_{x \to 1} (3x + 2)}{\lim_{x \to 1} (x^2 + 1)}" />
+<BlockMath math="= \frac{3(1) + 2}{1^2 + 1} = \frac{5}{2}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1} = \frac{\lim_{x \to 1} (3x + 2)}{\lim_{x \to 1} (x^2 + 1)}" />
-   <BlockMath math="= \frac{3(1) + 2}{1^2 + 1} = \frac{5}{2}" />
-   </MathContainer>
+Dalam bentuk **desimal**: <InlineMath math="\frac{5}{2} = 2{,}5" />
 
-   Dalam bentuk **desimal**: <InlineMath math="\frac{5}{2} = 2{,}5" />
+### Akar Kuadrat pada Domain Positif
 
-3. **Penyelesaian:**
+Menggunakan **sifat akar**:
 
-   Menggunakan sifat akar:
+<MathContainer>
+<BlockMath math="\lim_{x \to 4} \sqrt{x + 5} = \sqrt{\lim_{x \to 4} (x + 5)}" />
+<BlockMath math="= \sqrt{4 + 5} = \sqrt{9} = 3" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 4} \sqrt{x + 5} = \sqrt{\lim_{x \to 4} (x + 5)}" />
-   <BlockMath math="= \sqrt{4 + 5} = \sqrt{9} = 3" />
-   </MathContainer>
+### Pangkat dari Limit Bagian Dalam
 
-4. **Penyelesaian:**
+Menggunakan **sifat perpangkatan**:
 
-   Menggunakan sifat perpangkatan:
+<MathContainer>
+<BlockMath math="\lim_{x \to 2} (x + 1)^3 = \left[\lim_{x \to 2} (x + 1)\right]^3" />
+<BlockMath math="= (2 + 1)^3 = 3^3 = 27" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 2} (x + 1)^3 = \left[\lim_{x \to 2} (x + 1)\right]^3" />
-   <BlockMath math="= (2 + 1)^3 = 3^3 = 27" />
-   </MathContainer>
+### Pembilang Nol dengan Penyebut Tak Nol
 
-5. **Penyelesaian:**
+Menggunakan **sifat pembagian**:
 
-   Menggunakan sifat pembagian:
-
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1} = \frac{\lim_{x \to 0} (5x^2 + 3x)}{\lim_{x \to 0} (2x + 1)}" />
-   <BlockMath math="= \frac{5(0)^2 + 3(0)}{2(0) + 1} = \frac{0}{1} = 0" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1} = \frac{\lim_{x \to 0} (5x^2 + 3x)}{\lim_{x \to 0} (2x + 1)}" />
+<BlockMath math="= \frac{5(0)^2 + 3(0)}{2(0) + 1} = \frac{0}{1} = 0" />
+</MathContainer>

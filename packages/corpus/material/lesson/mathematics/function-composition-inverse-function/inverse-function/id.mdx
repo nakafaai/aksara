@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Fungsi Invers",
     description: "Cari rumus fungsi invers, periksa syarat fungsi bijektif, lalu hubungkan grafik fungsi dan invers melalui pencerminan terhadap garis y sama dengan x.",
@@ -27,7 +26,7 @@ Pemetaan sebaliknya mengubah "Matematika" kembali menjadi "Mathematics". Pemetaa
 
 ## Definisi Fungsi Invers
 
-Fungsi invers, atau fungsi kebalikan, adalah fungsi yang "membalikkan" operasi dari suatu fungsi awal. Jika fungsi <InlineMath math="f" /> memetakan elemen <InlineMath math="x" /> dari domain <InlineMath math="A" /> ke elemen <InlineMath math="y" /> di kodomain <InlineMath math="B" />, maka fungsi inversnya, yang dinotasikan sebagai <InlineMath math="f^{-1}" /> (dibaca "f invers"), akan memetakan elemen <InlineMath math="y" /> dari <InlineMath math="B" /> kembali ke elemen <InlineMath math="x" /> di <InlineMath math="A" />.
+Fungsi invers **menukar masukan dan keluaran**. Jika fungsi <InlineMath math="f" /> memetakan elemen <InlineMath math="x" /> dari domain <InlineMath math="A" /> ke elemen <InlineMath math="y" /> di kodomain <InlineMath math="B" />, maka fungsi inversnya, yang dinotasikan sebagai <InlineMath math="f^{-1}" /> (dibaca "f invers"), akan memetakan elemen <InlineMath math="y" /> dari <InlineMath math="B" /> kembali ke elemen <InlineMath math="x" /> di <InlineMath math="A" />.
 
 Secara matematis:
 
@@ -37,12 +36,19 @@ Dengan kata lain, jika <InlineMath math="f" /> mengubah <InlineMath math="x" /> 
 
 Notasi <InlineMath math="f^{-1}(x)" /> menyatakan fungsi invers. Kebalikan perkalian atau resiprokal ditulis sebagai <InlineMath math="\frac{1}{f(x)}" />.
 
+Untuk membedakan kedua notasi, ambil fungsi <InlineMath math="f(x)=2x+3" />. Invers mencari masukan asal, sedangkan resiprokal membagi satu dengan nilai fungsi.
+
+| Masukan | Fungsi invers | Resiprokal |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="f^{-1}(3)=0" /> | <InlineMath math="1/f(3)=1/9" /> |
+| <InlineMath math="5" /> | <InlineMath math="f^{-1}(5)=1" /> | <InlineMath math="1/f(5)=1/13" /> |
+
 ## Syarat Fungsi Memiliki Invers
 
 Agar fungsi <InlineMath math="f:A\to B" /> <Highlight>memiliki invers dua arah</Highlight> <InlineMath math="f^{-1}:B\to A" />, fungsi <InlineMath math="f" /> harus **bijektif**. Fungsi bijektif bersifat **injektif** (satu-ke-satu) dan **surjektif** (pada) sekaligus.
 
-- **Injektif (Satu-ke-satu):** Setiap elemen berbeda di domain dipetakan ke elemen yang berbeda di kodomain. Tidak ada dua input berbeda yang menghasilkan output yang sama.
-- **Surjektif (Pada):** Setiap elemen di kodomain merupakan hasil pemetaan dari setidaknya satu elemen di domain. Semua output mungkin terjadi.
+- **Injektif (Satu-ke-satu)**: Setiap elemen berbeda di domain dipetakan ke elemen yang berbeda di kodomain. Tidak ada dua input berbeda yang menghasilkan output yang sama.
+- **Surjektif (Pada)**: Setiap elemen di kodomain merupakan hasil pemetaan dari setidaknya satu elemen di domain. Semua output mungkin terjadi.
 
 Domain dan kodomain yang dipilih ikut menentukan. Jika <InlineMath math="f" /> injektif tetapi tidak menjangkau seluruh <InlineMath math="B" />, kita dapat mengganti kodomainnya dengan daerah hasil yang sebenarnya. Dengan menulis daerah hasil itu sebagai <InlineMath math="\operatorname{Im}(f)" />, fungsi <InlineMath math="f:A\to \operatorname{Im}(f)" /> menjadi bijektif dan memiliki invers <InlineMath math="f^{-1}:\operatorname{Im}(f)\to A" />. Jika <InlineMath math="f" /> tidak injektif, pembalikan pasangan akan mengirim satu output ke lebih dari satu input. Relasi balik itu bukan fungsi, kecuali domain fungsi semula dibatasi.
 
@@ -61,31 +67,30 @@ Untuk mencari rumus fungsi invers <InlineMath math="f^{-1}(x)" /> dari suatu fun
 3.  Selesaikan persamaan tersebut untuk mendapatkan <InlineMath math="y" /> dalam bentuk <InlineMath math="x" />.
 4.  Ganti <InlineMath math="y" /> dengan <InlineMath math="f^{-1}(x)" /> untuk mendapatkan rumus fungsi invers.
 
-**Contoh:**
+**Contoh**:
 
 Misalkan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> didefinisikan oleh <InlineMath math="f(x) = 2x + 3" />. Tentukan fungsi inversnya.
 
-1.  Ganti <InlineMath math="f(x)" /> dengan <InlineMath math="y" />:
+**Langkah 1**. Ganti <InlineMath math="f(x)" /> dengan <InlineMath math="y" />:
 
-    <BlockMath math="y = 2x + 3" />
+<BlockMath math="y = 2x + 3" />
 
-2.  Tukar <InlineMath math="x" /> dan <InlineMath math="y" />:
+**Langkah 2**. Tukar <InlineMath math="x" /> dan <InlineMath math="y" />:
 
-    <BlockMath math="x = 2y + 3" />
+<BlockMath math="x = 2y + 3" />
 
-3.  Selesaikan untuk <InlineMath math="y" />:
+**Langkah 3**. Selesaikan untuk <InlineMath math="y" />:
 
-    <MathContainer>
-      <BlockMath math="x - 3 = 2y" />
-      <BlockMath math="\frac{x - 3}{2} = y" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x - 3 = 2y" />
+  <BlockMath math="\frac{x - 3}{2} = y" />
+</MathContainer>
 
-4.  Ganti <InlineMath math="y" /> dengan <InlineMath math="f^{-1}(x)" />:
+**Langkah 4**. Ganti <InlineMath math="y" /> dengan <InlineMath math="f^{-1}(x)" />:
 
-    <BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
+<BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
 
 Jadi, fungsi invers dari <InlineMath math="f(x) = 2x + 3" /> adalah <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />.
-
 ## Grafik Fungsi dan Inversnya
 
 Grafik fungsi invers <InlineMath math="f^{-1}(x)" /> merupakan pencerminan (refleksi) dari grafik fungsi aslinya <InlineMath math="f(x)" /> terhadap garis <InlineMath math="y = x" />.
@@ -161,13 +166,16 @@ Sebagai contoh, lihat grafik dari <InlineMath math="f(x) = 2x + 3" />, inversnya
       ],
     },
   ]}
+  showZAxis={false}
   cameraTarget={[0, 0, 0]}
   cameraPosition={[0, 0, 13]}
 />
 
+**Pasangan koordinat ditukar** saat dicerminkan. Titik <InlineMath math="(1,5)" /> pada grafik fungsi menjadi <InlineMath math="(5,1)" /> pada grafik invers. Keduanya berada pada sisi berlawanan dari garis cermin dan memiliki titik tengah <InlineMath math="(3,3)" />.
+
 ## Cek Pemahaman
 
-Misalkan <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> didefinisikan oleh <InlineMath math="r(x)=3x-5" />. Kerjakan tiga langkah berikut untuk fungsi tersebut. Periksa kedua komposisi di akhir, karena invers yang benar membatalkan fungsi asalnya pada kedua urutan.
+Misalkan <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> didefinisikan oleh <InlineMath math="r(x)=3x-5" />. Kerjakan tiga langkah berikut untuk fungsi tersebut. Periksa **kedua komposisi** di akhir, karena invers yang benar membatalkan fungsi asalnya pada kedua urutan.
 
 1. Tentukan <InlineMath math="r^{-1}(x)" />.
 2. Verifikasi kedua komposisi <InlineMath math="r^{-1}(r(x))" /> dan <InlineMath math="r(r^{-1}(x))" />.
@@ -183,7 +191,7 @@ Mulai dari <InlineMath math="y=3x-5" />, tukar kedua variabel, lalu selesaikan u
   <BlockMath math="r^{-1}(x)=\frac{x+5}{3}" />
 </MathContainer>
 
-Sekarang verifikasi kedua arah:
+Sekarang verifikasi **kedua arah**:
 
 <MathContainer>
   <BlockMath math="r^{-1}(r(x))=\frac{(3x-5)+5}{3}=x" />

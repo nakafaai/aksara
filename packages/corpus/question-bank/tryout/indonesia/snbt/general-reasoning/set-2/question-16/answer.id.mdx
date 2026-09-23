@@ -5,21 +5,20 @@ export const metadata = {
   datePublished: "2025-12-30",
 };
 
-Kedua premis membentuk rantai implikasi.
+Kedua aturan berlaku **pada pemeriksaan akhir**. Misalkan pernyataan berikut digunakan untuk satu kegiatan yang sama.
 
-Misalkan:
-- <InlineMath math="p" /> = Kegiatan telah dilaksanakan.
-- <InlineMath math="q" /> = Laporan kegiatan diserahkan.
-- <InlineMath math="r" /> = Honor karyawan dibayarkan.
+| Simbol | Pernyataan |
+| --- | --- |
+| <InlineMath math="p" /> | Kegiatan sudah dilaksanakan |
+| <InlineMath math="q" /> | Laporan sudah diserahkan |
+| <InlineMath math="r" /> | Honor karyawan sudah dibayarkan |
 
-Premis 1: Jika kegiatan telah dilaksanakan, maka laporan kegiatan diserahkan (<InlineMath math="p \rightarrow q" />).
+Dari kegiatan yang sudah dilaksanakan, aturan pertama menjamin laporan sudah diserahkan. Aturan kedua kemudian menjamin honor sudah dibayarkan. Ini membentuk **rantai implikasi**:
 
-Premis 2: Jika laporan kegiatan diserahkan, maka honor karyawan dibayarkan (<InlineMath math="q \rightarrow r" />).
+<BlockMath math="p\Rightarrow q,\qquad q\Rightarrow r\quad\Longrightarrow\quad p\Rightarrow r" />
 
-Simpulan dari kedua premis tersebut adalah <InlineMath math="p \rightarrow r" />. Pernyataan <InlineMath math="p \rightarrow r" /> ekuivalen dengan kontraposisinya, yaitu <InlineMath math="\sim r \rightarrow \sim p" />.
+Jika honor belum dibayarkan, kegiatan tidak mungkin sudah dilaksanakan menurut kedua aturan tersebut: kegiatan yang selesai akan menjamin pembayaran. Ini adalah **kontraposisi**, bukan pembalikan arah implikasi.
 
-<BlockMath math="\begin{aligned}p&\Rightarrow q\\q&\Rightarrow r\\p&\Rightarrow r\\\neg r&\Rightarrow\neg p\end{aligned}" />
+<BlockMath math="\neg r\Rightarrow\neg p" />
 
-Artinya: "Jika honor karyawan tidak dibayarkan, berarti kegiatan belum dilaksanakan."
-
-Oleh karena itu, simpulan yang paling tepat adalah **honor karyawan tidak dibayarkan berarti kegiatan belum dilaksanakan**.
+Pilihan kelima menyatakan simpulan ini. Premis tidak mengatakan bahwa honor harus tersedia sebelum kegiatan dapat dilakukan, dan tidak memberikan aturan tentang honor pimpinan.

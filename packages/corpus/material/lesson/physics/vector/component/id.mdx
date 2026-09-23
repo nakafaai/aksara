@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Komponen Vektor",
   description:
@@ -24,13 +22,15 @@ Pada bidang datar, vektor <InlineMath math="\vec{A}" /> dapat ditulis sebagai ga
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
-Notasi <InlineMath math="\hat{i}" /> adalah vektor satuan arah sumbu <InlineMath math="x" />, sedangkan <InlineMath math="\hat{j}" /> adalah vektor satuan arah sumbu <InlineMath math="y" />. Skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberi komponen pada kedua sumbu. Tanda <InlineMath math="A_x" /> menunjukkan arah komponen pada sumbu <InlineMath math="x" />, sedangkan tanda <InlineMath math="A_y" /> menunjukkan arah komponen pada sumbu <InlineMath math="y" />.
+Notasi <InlineMath math="\hat{i}" /> adalah **vektor satuan** arah sumbu <InlineMath math="x" />, sedangkan <InlineMath math="\hat{j}" /> adalah vektor satuan arah sumbu <InlineMath math="y" />. Skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberi komponen pada kedua sumbu. Tanda <InlineMath math="A_x" /> menunjukkan arah komponen pada sumbu <InlineMath math="x" />, sedangkan tanda <InlineMath math="A_y" /> menunjukkan arah komponen pada sumbu <InlineMath math="y" />.
+
+### Menghitung Panjang dari Dua Komponen
 
 Misalnya, <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" /> berarti vektor memiliki komponen <InlineMath math="6" /> satuan ke arah <InlineMath math="x" /> positif dan komponen <InlineMath math="8" /> satuan ke arah <InlineMath math="y" /> positif.
 
-<BlockMath math="\lvert\vec{A}\rvert=\sqrt{6^2+8^2}=10" />
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
 
-Panjang vektor didapat dari teorema Pythagoras karena komponen <InlineMath math="x" /> dan <InlineMath math="y" /> saling tegak lurus.
+Panjang vektor didapat dari **teorema Pythagoras** karena komponen <InlineMath math="x" /> dan <InlineMath math="y" /> saling tegak lurus.
 
 ## Komponen pada Ruang Tiga Dimensi
 
@@ -38,9 +38,11 @@ Dalam ruang tiga dimensi, vektor memerlukan tiga komponen. Bentuk umumnya adalah
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
 
-Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan arah sumbu <InlineMath math="z" />. Komponen ini diperlukan saat gerak atau gaya keluar dari bidang datar, misalnya ketika drone bergerak ke timur, ke utara, sekaligus naik.
+Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan **arah sumbu ketiga**, yaitu sumbu <InlineMath math="z" />. Komponen ini diperlukan saat gerak atau gaya keluar dari bidang datar, misalnya ketika drone bergerak ke timur, ke utara, sekaligus naik.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[8, 6, -6]}
+  cameraTarget={[2, 1.5, 1]}
   title={<>Komponen Vektor <InlineMath math="\vec{A}" /></>}
   description={
     <>
@@ -48,7 +50,7 @@ Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan arah sumbu <InlineMath m
       menjadi tiga komponen yang saling tegak lurus.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const components = [
       [4, 0, 0],
       [0, 3, 0],
@@ -69,52 +71,74 @@ Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan arah sumbu <InlineMath m
 
     return [
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.35, 0.55, 0.3],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        at: 1,
+        offset: [0.35, 0.55, 0.3],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[0],
-        to: points[1],
-        color: "#0d9488",
-        label: <InlineMath math="A_x" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: (points[0])[0], y: (points[0])[1], z: (points[0])[2] }, { x: ((points[0])[0]) + 0.5 * (((points[1])[0]) - ((points[0])[0])), y: ((points[0])[1]) + 0.5 * (((points[1])[1]) - ((points[0])[1])), z: ((points[0])[2]) + 0.5 * (((points[1])[2]) - ((points[0])[2])) }, { x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_x" />,
+        at: 1,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[1],
-        to: points[2],
-        color: "#d97706",
-        label: <InlineMath math="A_y" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.55, 0, 0.15],
-      },
+      points: [{ x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }, { x: ((points[1])[0]) + 0.5 * (((points[2])[0]) - ((points[1])[0])), y: ((points[1])[1]) + 0.5 * (((points[2])[1]) - ((points[1])[1])), z: ((points[1])[2]) + 0.5 * (((points[2])[2]) - ((points[1])[2])) }, { x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_y" />,
+        at: 1,
+        offset: [0.55, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[2],
-        to: points[3],
-        color: "#0891b2",
-        label: <InlineMath math="A_z" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.65, -0.25, 0.15],
-      },
+      points: [{ x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }, { x: ((points[2])[0]) + 0.5 * (((points[3])[0]) - ((points[2])[0])), y: ((points[2])[1]) + 0.5 * (((points[3])[1]) - ((points[2])[1])), z: ((points[2])[2]) + 0.5 * (((points[3])[2]) - ((points[2])[2])) }, { x: (points[3])[0], y: (points[3])[1], z: (points[3])[2] }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_z" />,
+        at: 1,
+        offset: [0.65, -0.25, 0.15],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
-  cameraPosition={[8, 6, 9]}
-  cameraTarget={[2, -0.5, 1]}
 />
 
 Visual ini memakai langkah komponen yang berurutan: bergerak pada sumbu <InlineMath math="x" />, lalu sumbu <InlineMath math="y" />, lalu sumbu <InlineMath math="z" />. Ujung akhirnya tetap sama dengan ujung vektor <InlineMath math="\vec{A}" />.
 
+
+### Menghitung Panjang dalam Ruang
+
+Putar model untuk melihat bahwa komponen <InlineMath math="z" /> **tegak lurus terhadap bidang <InlineMath math="xy" />**. Komponen <InlineMath math="x" /> dan <InlineMath math="y" /> membentuk vektor pada bidang itu. Panjang vektor ruang juga memperhitungkan komponen <InlineMath math="z" />.
+
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
+
+
 ## Tanda Positif dan Negatif pada Komponen
 
-Besar vektornya tetap nol atau positif. Tanda komponen menunjukkan <Highlight>arah pada sumbunya</Highlight>.
+Besar vektor selalu nol atau positif. Tanda suatu komponen menunjukkan <Highlight>arah pada sumbu komponen itu</Highlight>.
 
 | Komponen | Makna tanda positif | Makna tanda negatif |
 | :------- | :------------------ | :------------------ |
@@ -129,10 +153,16 @@ Jika <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, vektor itu memiliki kompo
 Seorang siswa berjalan <InlineMath math="3\text{ m}" /> ke timur, lalu <InlineMath math="4\text{ m}" /> ke utara. Jika timur dianggap sumbu <InlineMath math="x" /> positif dan utara dianggap sumbu <InlineMath math="y" /> positif, perpindahannya dapat ditulis:
 
 <MathContainer>
-  <BlockMath math="\vec{s}=3\hat{i}+4\hat{j}" />
-  <BlockMath math="\lvert\vec{s}\rvert=\sqrt{3^2+4^2}=5\text{ m}" />
+  <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
+  <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
 </MathContainer>
 
-Dengan komponen, arah horizontal dan vertikal dihitung pada sumbunya masing-masing.
+Komponen perpindahan memiliki **satuan meter**. Vektor satuan hanya menentukan arah, sehingga satuan harus tetap ditulis pada persamaan vektor.
 
 Dari bentuk komponen, kita langsung tahu bahwa perpindahan bersihnya mengarah ke timur dan utara sekaligus. Besarnya <InlineMath math="5\text{ m}" /> berasal dari segitiga siku-siku dengan sisi <InlineMath math="3\text{ m}" /> dan <InlineMath math="4\text{ m}" />.
+
+Arah perpindahan diukur dari timur menuju utara. Karena kedua komponen positif, sudut berada di kuadran pertama.
+
+<BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53{,}1^\circ\end{aligned}" />
+
+Jadi, perpindahan berarah sekitar <InlineMath math="53{,}1^\circ" /> ke utara dari timur.

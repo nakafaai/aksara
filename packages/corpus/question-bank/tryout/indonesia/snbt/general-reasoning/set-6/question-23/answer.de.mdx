@@ -5,11 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Mit dem Inklusions-Exklusions-Prinzip zählen wir die Personen, die mindestens einen Dienst nutzen. Die Summe der Nutzerzahlen von A, B und C zählt Personen mit zwei Diensten doppelt. Deshalb ziehen wir die drei paarweisen Schnittmengen ab. Anschließend addieren wir die Personen mit allen drei Diensten einmal: Sie wurden zuerst dreimal gezählt und gerade dreimal abgezogen.
+Wir müssen **jede Person genau einmal** zählen, auch wenn sie mehrere Dienste nutzt. Das Inklusions-Exklusions-Prinzip korrigiert die Mehrfachzählung so:
+
+| Genutzte Dienste einer Person | Erste Zählung durch A + B + C | Korrektur der paarweisen Schnittmengen | Korrektur der Dreifachschnittmenge | Endgültige Zählung |
+| --- | --- | --- | --- | --- |
+| Genau einer | 1 | 0 | 0 | 1 |
+| Genau zwei | 2 | −1 | 0 | 1 |
+| Alle drei | 3 | −3 | +1 | 1 |
+
+Eine Person mit allen drei Diensten wird zuerst dreimal gezählt. Danach wird sie dreimal abgezogen, weil sie zu jeder paarweisen Schnittmenge gehört. Deshalb müssen wir diese Personen **einmal wieder hinzuzählen**.
 
 Mit <InlineMath math="U" /> bezeichnen wir die Anzahl der Personen, die mindestens einen Dienst nutzen:
 
-<BlockMath math="\begin{aligned}U&=64+58+49\\&\quad-24-19-17+8\\&=171-60+8\\&=119\end{aligned}" />
+<BlockMath math="\begin{aligned}U&amp;=64+58+49\\&amp;\quad-24-19-17+8\\&amp;=171-60+8\\&amp;=119\end{aligned}" />
 
 Die Personen ohne einen dieser Dienste sind der Rest der <InlineMath math="140" /> Befragten:
 

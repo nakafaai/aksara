@@ -27,50 +27,27 @@ Data ukuran sepatu Toko A:
 
 Frekuensi tertinggi adalah <InlineMath math="16" />, sehingga kelas modusnya adalah <InlineMath math="43\text{-}45" />.
 
-Artinya, ukuran sepatu yang paling banyak terjual berada dalam interval tersebut. Karena datanya sudah dikelompokkan, tabel ini tidak menunjukkan ukuran tunggal yang paling sering muncul.
+Kelompok ukuran tersebut memuat **penjualan terbanyak sebagai satu kelas**. Ukuran tunggal yang paling sering dibeli belum tentu berada di kelas itu. Misalnya, frekuensi <InlineMath math="16" /> dapat terbagi ke tiga ukuran, sedangkan frekuensi <InlineMath math="11" /> pada kelas lain dapat terkumpul pada satu ukuran. Tabel kelompok tidak memberikan rincian tersebut.
 
 ## Median Data Kelompok
 
-Median membagi data yang telah diurutkan menjadi dua bagian sama banyak. Tabel data kelompok memuat interval beserta frekuensinya. Karena itu, kita menentukan kelas median lalu memperkirakan posisi median di dalam kelas tersebut.
+Median membagi data yang telah diurutkan menjadi dua bagian sama banyak. Tabel data kelompok memuat interval beserta frekuensinya. Karena itu, kita menentukan kelas median lalu **memperkirakan posisi median** di dalam kelas tersebut.
+### Menentukan Kelas dan Posisi Median
 
-### Cara Mencari Median Data Kelompok
+Hitung **frekuensi kumulatif** dengan menjumlahkan frekuensi kelas dari yang pertama sampai kelas yang sedang diperiksa. Cari kelas pertama yang frekuensi kumulatifnya mencapai <InlineMath math="n/2" />. Di dalam kelas itu, median diperkirakan dengan interpolasi:
 
-1.  **Hitung posisi median:**
+<BlockMath math="\operatorname{Me}=L+\frac{n/2-F}{f_{\mathrm{Me}}}\,c" />
 
-    Tentukan posisi tengah dengan <InlineMath math="n/2" />, dengan <InlineMath math="n" /> sebagai frekuensi total.
+| Simbol | Makna |
+| --- | --- |
+| <InlineMath math="\operatorname{Me}" /> | Perkiraan median |
+| <InlineMath math="L" /> | Tepi bawah kelas median |
+| <InlineMath math="n" /> | Frekuensi total |
+| <InlineMath math="F" /> | Frekuensi kumulatif sebelum kelas median |
+| <InlineMath math="f_{\mathrm{Me}}" /> | Frekuensi kelas median |
+| <InlineMath math="c" /> | Lebar kelas |
 
-2.  **Buat frekuensi kumulatif:**
-
-    Tambahkan kolom frekuensi kumulatif (<InlineMath math="F_k" />). Setiap nilainya merupakan jumlah frekuensi dari kelas pertama hingga kelas yang sedang dihitung.
-
-3.  **Tentukan kelas median:**
-
-    Kelas median adalah kelas pertama dengan frekuensi kumulatif yang **sama dengan atau lebih besar dari** <InlineMath math="n/2" />.
-
-4.  **Gunakan rumus median:**
-
-    Setelah kelas median ditemukan, perkirakan median dengan:
-
-    <BlockMath math="\operatorname{Me} = L + \left( \frac{\frac{n}{2} - F}{f_{\mathrm{Me}}} \right) \times c" />
-
-    dengan:
-
-    - <InlineMath math="\operatorname{Me}" /> = perkiraan median data kelompok
-    - <InlineMath math="L" /> = **tepi bawah kelas median**. Untuk kelas berurutan
-      yang dinyatakan dengan bilangan bulat, nilainya dihitung dengan:
-
-      <InlineMath math="L" /> adalah batas bawah kelas median dikurangi <InlineMath math="0{,}5" />.
-
-    - <InlineMath math="n" /> = frekuensi total
-    - <InlineMath math="F" /> = frekuensi kumulatif **sebelum** kelas median
-    - <InlineMath math="f_{\mathrm{Me}}" /> = frekuensi kelas median
-    - <InlineMath math="c" /> = panjang kelas, yang dihitung dengan:
-
-      <InlineMath math="c" /> adalah tepi atas kelas dikurangi tepi bawah kelas.
-
-      Koreksi <InlineMath math="0{,}5" /> digunakan karena ukuran sepatu dicatat sebagai bilangan bulat yang berurutan.
-
-    Interpolasi ini juga menganggap data tersebar merata di dalam kelas median. Karena itu, nilai median yang diperoleh merupakan perkiraan dari interval kelompok. Tabel kelompok tidak memuat nilai setiap pengamatan asli.
+Untuk ukuran yang dicatat sebagai bilangan bulat berurutan, tepi kelas terletak setengah satuan di luar batas kelas. Jadi kelas <InlineMath math="43\text{-}45" /> memakai tepi <InlineMath math="42{,}5" /> dan <InlineMath math="45{,}5" />. **Interpolasi mengasumsikan sebaran merata** di antara kedua tepi tersebut. Karena nilai asli tidak diketahui, hasilnya berupa perkiraan.
 
 **Contoh dengan pembahasan:**
 
@@ -78,37 +55,36 @@ Kita gunakan data ukuran sepatu Toko A.
 
 | Ukuran Sepatu | Frekuensi (<InlineMath math="f_i" />) | Frekuensi Kumulatif (<InlineMath math="F_k" />) |
 | :------------ | :------------------------------------ | :---------------------------------------------- |
-| <InlineMath math="37 - 39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| <InlineMath math="40 - 42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
-| <InlineMath math="43 - 45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
-| <InlineMath math="46 - 48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
 | Total         | <InlineMath math="n = 30" />          |                                                 |
 
-1.  **Posisi median:** <InlineMath math="n/2 = 30/2 = 15" />. Kita mencari data pada posisi <InlineMath math="15" />.
-2.  **Frekuensi kumulatif:** Nilainya sudah tersedia di tabel.
-3.  **Kelas median:** Frekuensi kumulatif mencapai <InlineMath math="13" /> setelah kelas kedua dan <InlineMath math="29" /> setelah kelas ketiga. Jadi, posisi <InlineMath math="15" /> berada dalam kelas <InlineMath math="43\text{-}45" />.
-4.  **Komponen rumus:**
+Posisi median adalah <InlineMath math="n/2=30/2=15" />. Frekuensi kumulatif mencapai <InlineMath math="13" /> setelah kelas kedua dan <InlineMath math="29" /> setelah kelas ketiga. Jadi, **kelas median** adalah <InlineMath math="43\text{-}45" />. Dari tabel, kita peroleh:
 
-    - Kelas median: <InlineMath math="43\text{-}45" />
-    - Tepi bawah: <InlineMath math="L = 43 - 0{,}5 = 42{,}5" />
-    - <InlineMath math="n/2 = 30/2 = 15" />
-    - Frekuensi kumulatif sebelum kelas median: <InlineMath math="F = 13" />
-    - Frekuensi kelas median: <InlineMath math="f_{\mathrm{Me}} = 16" />
-    - Panjang kelas: <InlineMath math="c = \text{Tepi Atas} - \text{Tepi Bawah}" />
+| Besaran | Nilai |
+| --- | --- |
+| <InlineMath math="L" /> | <InlineMath math="43-0{,}5=42{,}5" /> |
+| <InlineMath math="n/2" /> | <InlineMath math="30/2=15" /> |
+| <InlineMath math="F" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_{\mathrm{Me}}" /> | <InlineMath math="16" /> |
 
-      <BlockMath math="\begin{aligned} c &amp;= (45 + 0{,}5) - (43 - 0{,}5) \\ &amp;= 45{,}5 - 42{,}5 \\ &amp;= 3 \end{aligned}" />
+Lebar kelas adalah selisih kedua tepi kelas:
 
-5.  **Substitusikan ke rumus median:**
+<BlockMath math="\begin{aligned} c &amp;= (45 + 0{,}5) - (43 - 0{,}5) \\ &amp;= 45{,}5 - 42{,}5 \\ &amp;= 3 \end{aligned}" />
 
-    <MathContainer>
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{15 - 13}{16} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{2}{16} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{1}{8} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \frac{3}{8}" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + 0{,}375" />
-      <BlockMath math="\operatorname{Me} = 42{,}875" />
-    </MathContainer>
+**Substitusikan ke rumus median:**
 
-**Perkiraan median ukuran sepatu adalah <InlineMath math="42{,}875" />.** Nilai ini berada dalam kelas median <InlineMath math="43\text{-}45" /> setelah kita menggunakan tepi kelas kontinu.
+<MathContainer>
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{15 - 13}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{2}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{1}{8} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \frac{3}{8}" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + 0{,}375" />
+  <BlockMath math="\operatorname{Me} = 42{,}875" />
+</MathContainer>
+
+Perkiraan median ukuran sepatu adalah <InlineMath math="42{,}875" />. Nilai ini berada di antara tepi kelas <InlineMath math="42{,}5" /> dan <InlineMath math="45{,}5" /> yang dipakai untuk interpolasi.
 
 Hasil ini merupakan **perkiraan**. Pengelompokan membuat nilai tepat di dalam setiap interval tidak lagi diketahui, sehingga nilai mentahnya tidak dapat ditemukan kembali. [Mean data kelompok](/id/materi/matematika/statistika-dasar/mean-rata-rata-data-kelompok) memiliki keterbatasan yang sama.

@@ -20,7 +20,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "psychological safety as a definition without a reviewable action",
+            "Psychological safety as a definition without a reviewable action",
         },
         {
           isCorrect: false,

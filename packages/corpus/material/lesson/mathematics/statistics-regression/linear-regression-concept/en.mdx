@@ -18,6 +18,10 @@ When the point cloud follows an approximately increasing or decreasing straight-
 
 The linear regression line is often called the _best-fit_ line. Under the least squares criterion, it is selected because it has the smallest possible sum of squared vertical residuals. Data points may lie above or below the line. The regression line summarizes the linear trend in the data.
 
+For each observation, the **residual** is the observed value minus the predicted value. A point above the line has a positive residual, while a point below has a negative residual.
+
+<BlockMath math="e_i=y_i-\hat y_i" />
+
 ## Example of a Regression Line
 
 Compare the study time and exam score in each pair below. As study time increases, the points tend to rise. That pattern gives the point cloud a positive linear trend.
@@ -54,10 +58,6 @@ Compare the study time and exam score in each pair below. As study time increase
 />
 
 The plotted regression line shows the **general trend**: as study time increases, the predicted exam score tends to increase. Individual scores can still lie above or below the line.
-
-## Predictions from the Regression Line
-
-One of its main uses is **prediction**. For example, we could use the line to estimate the exam score of a student who studies for <InlineMath math="7 \text{ hours}" />. However, the observed study times only run from <InlineMath math="1" /> to <InlineMath math="6" /> hours. A prediction at <InlineMath math="7 \text{ hours}" /> is therefore an **extrapolation** and is less reliable than a prediction inside the observed range.
 
 ## Least Squares Method
 
@@ -96,3 +96,45 @@ Formula key:
   ).
 
 These formulas determine the unique least-squares line when the observed <InlineMath math="x" /> values are not all equal. If every <InlineMath math="x" /> value is identical, the slope denominator is zero and the data do not determine a unique regression slope.
+
+
+### Calculating the Coefficients from the Data
+
+Use every pair in the plot. The product and square columns keep each observation in the calculation exactly once. The **sum of each column** then enters the slope formula.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="60" /> | <InlineMath math="60" /> | <InlineMath math="1" /> |
+| <InlineMath math="1.5" /> | <InlineMath math="68" /> | <InlineMath math="102" /> | <InlineMath math="2.25" /> |
+| <InlineMath math="2" /> | <InlineMath math="65" /> | <InlineMath math="130" /> | <InlineMath math="4" /> |
+| <InlineMath math="2.5" /> | <InlineMath math="75" /> | <InlineMath math="187.5" /> | <InlineMath math="6.25" /> |
+| <InlineMath math="3" /> | <InlineMath math="72" /> | <InlineMath math="216" /> | <InlineMath math="9" /> |
+| <InlineMath math="3.5" /> | <InlineMath math="80" /> | <InlineMath math="280" /> | <InlineMath math="12.25" /> |
+| <InlineMath math="4" /> | <InlineMath math="85" /> | <InlineMath math="340" /> | <InlineMath math="16" /> |
+| <InlineMath math="4" /> | <InlineMath math="82" /> | <InlineMath math="328" /> | <InlineMath math="16" /> |
+| <InlineMath math="4.5" /> | <InlineMath math="90" /> | <InlineMath math="405" /> | <InlineMath math="20.25" /> |
+| <InlineMath math="5" /> | <InlineMath math="88" /> | <InlineMath math="440" /> | <InlineMath math="25" /> |
+| <InlineMath math="5.5" /> | <InlineMath math="95" /> | <InlineMath math="522.5" /> | <InlineMath math="30.25" /> |
+| <InlineMath math="6" /> | <InlineMath math="92" /> | <InlineMath math="552" /> | <InlineMath math="36" /> |
+| <InlineMath math="\sum x=42.5" /> | <InlineMath math="\sum y=952" /> | <InlineMath math="\sum xy=3563" /> | <InlineMath math="\sum x^2=178.25" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(3563)-(42.5)(952)}{12(178.25)-(42.5)^2} \\ &=\frac{2296}{332.75} \\ &=\frac{9184}{1331}\approx6.900\end{aligned}" />
+  <BlockMath math="a=\frac{952}{12}-\frac{9184}{1331}\cdot\frac{42.5}{12}=\frac{73066}{1331}\approx54.896" />
+</MathContainer>
+
+Use the unrounded coefficients when calculating predictions. Rounding only the displayed coefficients gives:
+
+<BlockMath math="\hat y\approx54.896+6.900x" />
+
+## Predictions Inside and Outside the Observed Range
+
+For a study time of <InlineMath math="4\text{ hours}" />, substitute <InlineMath math="x=4" /> into the fitted line. This value is inside the observed range, so the prediction is an **interpolation**.
+
+<BlockMath math="\hat y(4)=\frac{73066+9184(4)}{1331}=\frac{109802}{1331}\approx82.50" />
+
+For <InlineMath math="7\text{ hours}" />, the same calculation gives:
+
+<BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103.20" />
+
+The observed study times run only from <InlineMath math="1" /> to <InlineMath math="6\text{ hours}" />. The second prediction is an **extrapolation**. The available data do not check whether the linear trend continues beyond that range. If exam scores are capped at <InlineMath math="100" />, the second prediction even exceeds the score limit. Check a regression line against both the observed range and the limits of the predicted quantity.

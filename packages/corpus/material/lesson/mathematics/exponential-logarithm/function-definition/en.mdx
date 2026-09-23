@@ -24,13 +24,13 @@ A scaled exponential function has the form:
 
 <BlockMath math="g(x)=k\,a^x" />
 
-In this form, <InlineMath math="k\neq0" /> is a vertical scale factor. <Highlight>The base controls growth or decay</Highlight>, while <InlineMath math="k" /> controls the initial value and the side of the <InlineMath math="x" />-axis on which the graph lies.
+In this form, <InlineMath math="k\neq0" /> is a vertical scale factor. The base sets the **multiplicative factor per unit of input**, while <InlineMath math="k" /> controls the initial value and the side of the <InlineMath math="x" />-axis on which the graph lies.
 
 ## Domain Range and Intercept
 
 For the standard function <InlineMath math="f(x)=a^x" />:
 
-1. The domain is <InlineMath math="\mathbb{R}" />.
+1. The **domain** is <InlineMath math="\mathbb{R}" />.
 2. The range is <InlineMath math="(0,\infty)" />.
 3. The graph crosses the <InlineMath math="y" />-axis at <InlineMath math="(0,1)" /> because <InlineMath math="a^0=1" />.
 4. The graph never crosses the <InlineMath math="x" />-axis because <InlineMath math="a^x>0" />.
@@ -41,7 +41,7 @@ For <InlineMath math="g(x)=k\,a^x" />, the <InlineMath math="y" />-intercept is 
 
 ## Why Two Bases Are Excluded
 
-Two values of the base break the exponential function, and each fails for its own reason. A base of one returns the same value for every input, so the function stops changing, and a base of zero loses the growth entirely because every positive power of zero is zero.
+We exclude base one because it produces a **constant function**. We exclude base zero because its **negative powers are undefined**. These are different reasons: the constant function still has a value at every real input, whereas base zero does not.
 
 ### Base One
 
@@ -49,7 +49,7 @@ If <InlineMath math="a=1" />, then:
 
 <BlockMath math="g(x)=k\cdot1^x=k" />
 
-The output never changes, so this is a constant function. Exponential growth and decay require a repeated change by the same factor.
+The output never changes, so this is a **constant function**. Exponential growth and decay require a repeated change by the same factor.
 
 <FunctionChart
   a={1}
@@ -64,7 +64,7 @@ The output never changes, so this is a constant function. Exponential growth and
 
 ### Base Zero
 
-The expression <InlineMath math="0^x" /> does not define a real-valued function on all real inputs:
+The expression <InlineMath math="0^x" /> cannot have **all real numbers as its domain**:
 
 <MathContainer>
   <BlockMath math="0^x=0\qquad\text{for }x>0" />
@@ -75,7 +75,7 @@ At <InlineMath math="x=0" />, the expression <InlineMath math="0^0" /> is not as
 
 ## Form and Behavior of Exponential Functions
 
-1. <InlineMath math="f(x)=4^x" /> has <InlineMath math="a=4>1" />, so it is increasing. Its first values include <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" />, and <InlineMath math="f(2)=16" />.
+1. <InlineMath math="f(x)=4^x" /> has <InlineMath math="a=4>1" />, so **it is increasing**. Its first values include <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" />, and <InlineMath math="f(2)=16" />.
 
 2. <InlineMath math="f(x)=3^{x+1}" /> can be rewritten as <InlineMath math="f(x)=3\cdot3^x" />. The factor <InlineMath math="3" /> changes the <InlineMath math="y" />-intercept from <InlineMath math="1" /> to <InlineMath math="3" />.
 
@@ -101,4 +101,10 @@ At <InlineMath math="x=0" />, the expression <InlineMath math="0^0" /> is not as
 3. **Half-life**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, where <InlineMath math="h" /> is the half-life.
 4. **Early transmission**: <InlineMath math="C(n)=C_0R^n" />, where <InlineMath math="R" /> is an assumed average factor per cycle.
 
-Each formula is meaningful only after its variables, units, interval, and assumptions have been stated. The same exponential shape can describe different contexts, but the symbols do not acquire real-world meaning by themselves.
+In the doubling model, <InlineMath math="P_0" /> is the initial amount, and <InlineMath math="t" /> and <InlineMath math="d" /> use the same time unit. In the half-life model, <InlineMath math="A_0" /> is the initial amount, and <InlineMath math="t" /> and <InlineMath math="h" /> also share a time unit. In the transmission model, <InlineMath math="C_0" /> is the initial count and <InlineMath math="n" /> counts cycles. Each model assumes a constant multiplicative factor over the intervals being considered.
+
+For compound growth, <InlineMath math="P" /> is the initial value and <InlineMath math="t" /> counts intervals. Suppose an initial value of <InlineMath math="100" /> grows by <InlineMath math="10\%" /> per interval, so <InlineMath math="r=0.1" />. After two intervals:
+
+<BlockMath math="A(2)=100(1+0.1)^2=100(1.21)=121" />
+
+The second increase is calculated from <InlineMath math="110" />, so the **amount added also grows** even though the percentage stays constant.

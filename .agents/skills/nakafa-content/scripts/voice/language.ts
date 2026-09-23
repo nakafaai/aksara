@@ -1,7 +1,7 @@
 import type { LessonVoiceRule } from "#nakafa-content/voice/types";
 
-/** Checks Indonesian grammar, calques, vague modifiers, and energy claims. */
-export const LANGUAGE_VOICE_RULES = [
+/** Checks objective Indonesian spelling and grammar across prose genres. */
+export const LANGUAGE_COPY_RULES = [
   {
     id: "indonesian-attached-dimana",
     patterns: { id: /\bdimana\b/iu },
@@ -34,6 +34,11 @@ export const LANGUAGE_VOICE_RULES = [
     id: "indonesian-informal-slang",
     patterns: { id: /\b(?:enggak|gak|nggak|barengan|kayak)\b/iu },
   },
+] satisfies readonly LessonVoiceRule[];
+
+/** Checks lesson wording, calques, vague modifiers, and energy claims. */
+export const LANGUAGE_VOICE_RULES = [
+  ...LANGUAGE_COPY_RULES,
   {
     id: "indonesian-formal-filler",
     patterns: { id: /\bsecara fundamental\b/iu },

@@ -5,18 +5,26 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The two clocks begin with the same reading. Because the slow clock loses <InlineMath math="5\text{ minutes}" /> every real hour, its delay grows by <InlineMath math="5\text{ minutes}" /> per hour.
+The two clocks begin with the same reading. Because the slow clock loses <InlineMath math="5\text{ minutes}" /> every real hour, its **delay grows** by <InlineMath math="5\text{ minutes}" /> per hour.
 
 #### Find the delay needed for matching dials
 
-A <InlineMath math="12\text{-hour}" /> dial repeats after <InlineMath math="12\text{ hours}" />. The first time the hands can display the same reading again is therefore when the slow clock is exactly <InlineMath math="12\text{ hours}" /> behind:
+A <InlineMath math="12\text{-hour}" /> dial **repeats after** <InlineMath math="12\text{ hours}" />. The first time the hands can display the same reading again is therefore when the slow clock is exactly <InlineMath math="12\text{ hours}" /> behind:
 
-<BlockMath math="\begin{aligned} 12\text{ hours} &= 12 \times 60\text{ minutes} \\ &= 720\text{ minutes} \end{aligned}" />
+<BlockMath math="\begin{aligned} 12\text{ hours} &amp;= 12 \times 60\text{ minutes} \\ &amp;= 720\text{ minutes} \end{aligned}" />
 
 #### Find how long the delay takes to accumulate
 
-Let <InlineMath math="t" /> be the elapsed real time in hours. The accumulated delay is <InlineMath math="5t\text{ minutes}" />:
+Let <InlineMath math="t" /> be the elapsed real time in hours. The **accumulated delay** is <InlineMath math="5t\text{ minutes}" />:
 
-<BlockMath math="\begin{aligned} 5t &= 720 \\ t &= \frac{720}{5} \\ t &= 144\text{ hours} \end{aligned}" />
+<BlockMath math="\begin{aligned} 5t &amp;= 720 \\ t &amp;= \frac{720}{5} \\ t &amp;= 144\text{ hours} \end{aligned}" />
 
 Thus, the clocks first show the same reading again after <InlineMath math="144\text{ hours}" />, or <InlineMath math="6\text{ days}" />.
+
+Check the elapsed time on both clocks. A **twelve-hour difference** produces matching readings on twelve-hour dials. A six-hour difference does not.
+
+| Real elapsed time | Elapsed time on slow clock | Delay |
+| --- | --- | --- |
+| <InlineMath math="12\text{ hours}" /> | <InlineMath math="12\times\frac{55}{60}=11\text{ hours}" /> | <InlineMath math="12-11=1\text{ hours}" /> |
+| <InlineMath math="72\text{ hours}" /> | <InlineMath math="72\times\frac{55}{60}=66\text{ hours}" /> | <InlineMath math="72-66=6\text{ hours}" /> |
+| <InlineMath math="144\text{ hours}" /> | <InlineMath math="144\times\frac{55}{60}=132\text{ hours}" /> | <InlineMath math="144-132=12\text{ hours}" /> |

@@ -7,6 +7,7 @@ it.effect("parses documented defaults without arguments", () =>
   Effect.gen(function* () {
     assert.deepEqual(yield* parseArguments([]), {
       format: "text",
+      pedagogyReview: false,
       root: "packages/corpus/material/lesson",
       strictReview: false,
     });
@@ -22,9 +23,11 @@ it.effect("parses every documented option", () =>
         "--root",
         "packages/corpus/articles",
         "--strict-review",
+        "--pedagogy-review",
       ]),
       {
         format: "json",
+        pedagogyReview: true,
         root: "packages/corpus/articles",
         strictReview: true,
       }

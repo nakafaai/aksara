@@ -29,7 +29,7 @@ Ein Jordan-Block der Größe <InlineMath math="s" /> zum Eigenwert <InlineMath m
 <BlockMath math="J_s(\lambda)=\lambda I_s+N_s,\qquad N_s^s=0" />
 </MathContainer>
 
-Die nilpotente Matrix <InlineMath math="N_s" /> besitzt Einsen auf der Superdiagonalen und sonst nur Nullen. Ein Block der Größe <InlineMath math="1" /> ist einfach <InlineMath math="(\lambda)" />. Ein größerer Block zeigt, dass ein Eigenvektor durch verallgemeinerte Eigenvektoren ergänzt werden muss.
+Die **nilpotente Matrix** <InlineMath math="N_s" /> besitzt Einsen auf der Superdiagonalen und sonst nur Nullen. Ein Block der Größe <InlineMath math="1" /> ist einfach <InlineMath math="(\lambda)" />. Ein größerer Block zeigt, dass ein Eigenvektor durch verallgemeinerte Eigenvektoren ergänzt werden muss.
 
 ## Verallgemeinerte Eigenvektorketten
 
@@ -40,17 +40,15 @@ Die Vektoren <InlineMath math="v_1,\ldots,v_s" /> bilden eine Jordan-Kette zu <I
 <BlockMath math="\begin{aligned} &amp;(A-\lambda I)v_{j+1}=v_j, \\ &amp;j=1,\ldots,s-1 \end{aligned}" />
 </MathContainer>
 
-Der erste Vektor ist ein gewöhnlicher Eigenvektor. Jeder folgende Vektor wird durch <InlineMath math="A-\lambda I" /> auf seinen Vorgänger abgebildet. In der geordneten Basis <InlineMath math="(v_1,\ldots,v_s)" /> wird die Einschränkung von <InlineMath math="A" /> auf diese Kette durch <InlineMath math="J_s(\lambda)" /> dargestellt.
+Der **erste Vektor** ist ein gewöhnlicher Eigenvektor. Dabei gilt <InlineMath math="v_1\neq0" />. Die Rekursion garantiert dann die lineare Unabhängigkeit der Kettenvektoren. Jeder folgende Vektor wird durch <InlineMath math="A-\lambda I" /> auf seinen Vorgänger abgebildet. In der geordneten Basis <InlineMath math="(v_1,\ldots,v_s)" /> wird die Einschränkung von <InlineMath math="A" /> auf diese Kette durch <InlineMath math="J_s(\lambda)" /> dargestellt.
 
 ## Die vollständige Jordanform
 
 Das charakteristische Polynom von <InlineMath math="A" /> habe die folgende Form.
 
-<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
+<BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(\lambda_i-t)^{a_i}" />
 
-Zerfällt dieses Polynom über <InlineMath math="\mathbb{K}" /> mit den verschiedenen Eigenwerten <InlineMath math="\lambda_1,\ldots,\lambda_k" />, dann existiert eine invertierbare Matrix <InlineMath math="S" /> mit
-
-Fasse die Jordanblöcke nach Eigenwert zusammen, ohne ihre Reihenfolge zu ändern:
+Zerfällt dieses Polynom über <InlineMath math="\mathbb{K}" /> mit den verschiedenen Eigenwerten <InlineMath math="\lambda_1,\ldots,\lambda_k" />, existiert eine invertierbare Matrix <InlineMath math="S" /> mit der folgenden Blockdiagonalform. Fasse Blöcke zum selben Eigenwert zusammen:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;D_i=\operatorname{diag}\bigl(J_{s_{i1}}(\lambda_i), \\ &amp;\ldots,J_{s_{iq_i}}(\lambda_i)\bigr) \\ &amp;i=1,\ldots,k \end{aligned}" />
@@ -62,7 +60,7 @@ Für jeden Eigenwert erfüllen die Blockgrößen
 
 <BlockMath math="s_{i1}+\cdots+s_{iq_i}=a_i" />
 
-Die Anzahl der Blöcke zu <InlineMath math="\lambda_i" /> entspricht der geometrischen Vielfachheit <InlineMath math="\dim\ker(A-\lambda_iI)" />. Die Blockgrößen werden durch <InlineMath math="A" /> eindeutig bestimmt, ihre Reihenfolge auf der Diagonalen jedoch nicht.
+Die **Anzahl der Blöcke** zu <InlineMath math="\lambda_i" /> entspricht der geometrischen Vielfachheit <InlineMath math="\dim\ker(A-\lambda_iI)" />. Die Blockgrößen werden durch <InlineMath math="A" /> eindeutig bestimmt, ihre Reihenfolge auf der Diagonalen jedoch nicht.
 
 | Frage | Aussage der Jordan-Blöcke |
 | --- | --- |
@@ -78,7 +76,7 @@ Betrachten wir
 
 Das charakteristische Polynom ist
 
-<BlockMath math="\chi_A(t)=(t-1)^2(t-2)" />
+<BlockMath math="\chi_A(t)=(1-t)^2(2-t)" />
 
 Für <InlineMath math="\lambda=1" /> gilt
 
@@ -87,7 +85,7 @@ Für <InlineMath math="\lambda=1" /> gilt
 <BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-Der Eigenwert <InlineMath math="1" /> hat die algebraische Vielfachheit <InlineMath math="2" />, aber nur einen linear unabhängigen Eigenvektor. Deshalb ist <InlineMath math="A" /> nicht diagonalisierbar. Wir betrachten die beiden folgenden Vektoren.
+Der Eigenwert <InlineMath math="1" /> hat die algebraische Vielfachheit <InlineMath math="2" />, aber **nur einen linear unabhängigen Eigenvektor**. Deshalb ist <InlineMath math="A" /> nicht diagonalisierbar. Wir betrachten die beiden folgenden Vektoren.
 
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
@@ -97,8 +95,14 @@ Die beiden Vektoren bilden eine Jordankette, denn <InlineMath math="(A-I)v_1=0" 
 
 Die Darstellung <InlineMath math="J_s(\lambda)=\lambda I+N" /> mit <InlineMath math="N^s=0" /> macht Potenzen explizit berechenbar:
 
-<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
+Für ganze Zahlen <InlineMath math="m\ge0" /> und <InlineMath math="\lambda\neq0" />:
 
-Die Formel erklärt, warum Potenzen einer nicht diagonalisierbaren Matrix neben Eigenwertpotenzen auch Polynomfaktoren in <InlineMath math="m" /> enthalten. Sie liefert die exakten Matrixpotenzen, die zur Analyse von Rekursionen und Differentialgleichungen benötigt werden.
+<BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{\min(m,s-1)}\binom{m}{j}\lambda^{m-j}N^j" />
+
+Für <InlineMath math="\lambda=0" /> verwendest du direkt <InlineMath math="J_s(0)^m=N^m" /> mit <InlineMath math="N^0=I" />. Zum Beispiel wächst der Superdiagonaleintrag mit jeder Multiplikation:
+
+<BlockMath math="\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix},\qquad \begin{pmatrix}1&1\\0&1\end{pmatrix}^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}" />
+
+Die Formel erklärt, warum Potenzen einer nicht diagonalisierbaren Matrix neben Eigenwertpotenzen auch **Polynomfaktoren** in <InlineMath math="m" /> enthalten. Sie liefert die exakten Matrixpotenzen, die zur Analyse von Rekursionen und Differentialgleichungen benötigt werden.
 
 Die Jordan-Form dient vor allem der exakten algebraischen Klassifikation. Sie reagiert sehr empfindlich auf kleine numerische Störungen. Numerische Software berechnet deshalb gewöhnlich eine Schur-Zerlegung, weil sie auf diese Störungen stabiler reagiert.

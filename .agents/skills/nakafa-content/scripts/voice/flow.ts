@@ -117,9 +117,9 @@ export const FLOW_VOICE_RULES = [
   {
     id: "rhetorical-not-only",
     patterns: {
-      de: /\bnicht (?:bloß|lediglich|nur)(?=\s|[.,!?]|$)/iu,
-      en: /\b(?:more than just|not (?:just|merely|only))(?=\s|[.,!?]|$)/iu,
-      id: /\b(?:bukan|tidak) (?:cuma|hanya|sekadar)(?!\s+(?:dekorasi|formalitas|hiasan|notasi\b))(?=\s|[.,!?]|$)/iu,
+      de: /\b(?:das )?Ergebnis ist nicht (?:bloß|lediglich|nur) eine Zahl,?\s+sondern ein (?:vollständiges )?Modell\b/iu,
+      en: /\b(?:the )?result is not (?:just|merely|only) a number,?\s+but (?:also )?a (?:complete )?model\b/iu,
+      id: /\bhasilnya (?:bukan|tidak) (?:cuma|hanya|sekadar) angka,?\s+tetapi (?:juga )?(?:sebuah )?model\b/iu,
     },
   },
   {
@@ -149,9 +149,9 @@ export const FLOW_VOICE_RULES = [
   {
     id: "vague-visibility-endpoint",
     patterns: {
-      de: /\bbis\b[^.!?\n]{0,120}\b(?:sichtbar|erkennbar|klar)\s+(?:ist|sind|werden)\b/iu,
-      en: /\buntil\b[^.!?\n]{0,120}\b(?:visible|clear|recognizable)\b/iu,
-      id: /\b(?:sampai|hingga)\b[^.!?\n]{0,120}\b(?:terlihat|tampak|jelas|dapat dikenali)\b/iu,
+      de: /\bbis\b[^.!?\n]{0,35}\b(?:Idee|Konzept|Muster|Beziehung|Zusammenhang)\b[^.!?\n]{0,35}\b(?:sichtbar|erkennbar|klar)\s+(?:ist|sind|werden)\b/iu,
+      en: /\buntil\b[^.!?\n]{0,35}\b(?:idea|concept|pattern|relationship)\b[^.!?\n]{0,35}\b(?:visible|clear|recognizable)\b/iu,
+      id: /\b(?:sampai|hingga)\b[^.!?\n]{0,35}\b(?:ide|konsep|pola|hubungan)(?:nya)?\b[^.!?\n]{0,35}\b(?:terlihat|tampak|jelas|dapat dikenali)\b/iu,
     },
   },
   {

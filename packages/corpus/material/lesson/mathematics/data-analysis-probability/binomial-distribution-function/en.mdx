@@ -3,7 +3,7 @@ export const metadata = {
   description: "Check the assumptions of a binomial model and calculate exact probabilities with its probability mass function.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Data Analysis and Probability",
 };
 
@@ -13,7 +13,7 @@ Jacob Bernoulli's *Ars Conjectandi* was published posthumously in <InlineMath ma
 
 ## Combination and Basic Probability
 
-Before diving into binomial distribution, there are some basic formulas we need to learn first.
+A binomial calculation combines **choosing the success positions** with finding the probability of one outcome sequence. Combinations count the possible positions, while probability rules assign a weight to each sequence.
 
 First, the combination formula for selecting objects:
 
@@ -30,7 +30,6 @@ And third, the relationship between event probability and its complement:
 <BlockMath math="P(A) + P(A^c) = 1" />
 
 In this equation, <InlineMath math="P(A)" /> is the probability of an event occurring and <InlineMath math="P(A^c)" /> is the probability of the event not occurring.
-
 ## Binomial Distribution Concept
 
 A binomial random variable <Highlight>counts successes in repeated trials</Highlight>. Each trial has two mutually exclusive outcomes, such as heads or tails, and the label **success** identifies the outcome being counted.
@@ -49,7 +48,7 @@ The model applies only when the number of trials is fixed, the trials are indepe
 
 ## Binomial Probability Mass Function
 
-For a binomial experiment with success probability <InlineMath math="p" /> and failure probability <InlineMath math="q = 1-p" />, the probability mass function gives the probability of exactly <InlineMath math="x" /> successes in <InlineMath math="n" /> independent trials:
+For a binomial experiment with success probability <InlineMath math="p" /> and failure probability <InlineMath math="q = 1-p" />, the probability mass function gives the probability of exactly <InlineMath math="x" /> successes in <InlineMath math="n" /> **independent trials**:
 
 <BlockMath math="\begin{aligned} &amp;P(X=x) = \binom{n}{x}p^xq^{n-x}, \\ &amp;x=0{,}1{,}2{,}\ldots{,}n \end{aligned}" />
 
@@ -64,7 +63,6 @@ Where:
 - <InlineMath math="q = 1-p" /> = failure probability in one trial
 
 Before applying the formula, verify all four binomial conditions. Otherwise, this probability model may not describe the experiment.
-
 ## Coin Experiment
 
 Look at a simple example. Suppose we have a fair coin. Its sample space contains heads and tails:
@@ -106,7 +104,28 @@ So the complete calculation is:
 
 The probability of getting <InlineMath math="5" /> tails in <InlineMath math="7" /> flips is <InlineMath math="\frac{21}{128}" /> or approximately <InlineMath math="16.4\%" />.
 
+<BarChart
+  title="Tails Count Probabilities in Seven Flips"
+  description="The horizontal axis counts tails, rather than the position of a flip. Each bar gives the probability of exactly that count."
+  yAxisLabel="Probability"
+  data={[
+    { name: "0", value: 0.0078125 },
+    { name: "1", value: 0.0546875 },
+    { name: "2", value: 0.1640625 },
+    { name: "3", value: 0.2734375 },
+    { name: "4", value: 0.2734375 },
+    { name: "5", value: 0.1640625 },
+    { name: "6", value: 0.0546875 },
+    { name: "7", value: 0.0078125 },
+  ]}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+The bars for two and five tails have the same height. For a fair coin, **exchanging heads and tails** does not change the probability. Both events contain 21 matching sequences out of 128 equally likely sequences.
+
 ## Practice Problems
+
+Assume the trials are **independent** and the success probability stays fixed. For the ball problem, choose each ball randomly after mixing the bag again. On the exam, each question has exactly one correct answer and every option is equally likely to be guessed.
 
 Each problem repeats one trial a fixed number of times and asks for an exact number of successes, so the binomial probability mass function applies directly. Identify the number of trials, the success probability, and the required number of successes before you compute.
 
@@ -118,86 +137,86 @@ Each problem repeats one trial a fixed number of times and asks for an exact num
 
 ### Answer Key
 
-1. **Red Ball Problem Answer**
+**Red Ball Problem Answer**
 
-    **Step 1**: Identify parameters.
+**Step 1**: Identify parameters.
 
-    - <InlineMath math="n = 5" /> (number of draws)
-    - <InlineMath math="x = 3" /> (number of red balls desired)
-    - <InlineMath math="p = \frac{6}{10} = 0.6" /> (probability of drawing a red ball)
-    - <InlineMath math="q = 1 - 0.6 = 0.4" /> (probability of drawing a blue ball)
+- <InlineMath math="n = 5" /> (number of draws)
+- <InlineMath math="x = 3" /> (number of red balls desired)
+- <InlineMath math="p = \frac{6}{10} = 0.6" /> (probability of drawing a red ball)
+- <InlineMath math="q = 1 - 0.6 = 0.4" /> (probability of drawing a blue ball)
 
-    **Step 2**: Calculate using the binomial probability mass function.
+**Step 2**: Calculate using the binomial probability mass function.
 
-    <MathContainer>
-    <BlockMath math="P(X=3) = \binom{5}{3} (0.6)^3 (0.4)^2" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=3) = \binom{5}{3} (0.6)^3 (0.4)^2" />
+</MathContainer>
 
-    Calculate <InlineMath math="\binom{5}{3}" /> first:
+Calculate <InlineMath math="\binom{5}{3}" /> first:
 
-    <BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
+<BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
 
-    Then:
+Then:
 
-    <MathContainer>
-    <BlockMath math="= 10 \times (0.6)^3 \times (0.4)^2" />
-    <BlockMath math="= 10 \times 0.216 \times 0.16 = 0.3456" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 10 \times (0.6)^3 \times (0.4)^2" />
+<BlockMath math="= 10 \times 0.216 \times 0.16 = 0.3456" />
+</MathContainer>
 
-    Therefore, the probability of drawing exactly <InlineMath math="3" /> red balls is <InlineMath math="0.3456" /> or approximately <InlineMath math="34.6\%" />.
+Therefore, the probability of drawing exactly <InlineMath math="3" /> red balls is <InlineMath math="0.3456" /> or approximately <InlineMath math="34.6\%" />.
 
-2. **Archer Problem Answer**
+**Archer Problem Answer**
 
-    **Step 1**: Identify parameters.
+**Step 1**: Identify parameters.
 
-    - <InlineMath math="n = 6" /> (number of shots)
-    - <InlineMath math="x = 4" /> (number of targets desired)
-    - <InlineMath math="p = 0.8" /> (probability of hitting target)
-    - <InlineMath math="q = 0.2" /> (probability of missing)
+- <InlineMath math="n = 6" /> (number of shots)
+- <InlineMath math="x = 4" /> (number of targets desired)
+- <InlineMath math="p = 0.8" /> (probability of hitting target)
+- <InlineMath math="q = 0.2" /> (probability of missing)
 
-    **Step 2**: Calculate using the binomial probability mass function.
+**Step 2**: Calculate using the binomial probability mass function.
 
-    <MathContainer>
-    <BlockMath math="P(X=4) = \binom{6}{4} (0.8)^4 (0.2)^2" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=4) = \binom{6}{4} (0.8)^4 (0.2)^2" />
+</MathContainer>
 
-    Calculate <InlineMath math="\binom{6}{4}" /> first:
+Calculate <InlineMath math="\binom{6}{4}" /> first:
 
-    <BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
+<BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
 
-    Then:
+Then:
 
-    <MathContainer>
-    <BlockMath math="= 15 \times (0.8)^4 \times (0.2)^2" />
-    <BlockMath math="\begin{aligned}  &amp;= 15 \times 0.4096 \times 0.04 \\ &amp;= 0.24576 \\ &amp;\approx 0.2458 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 15 \times (0.8)^4 \times (0.2)^2" />
+<BlockMath math="\begin{aligned}  &amp;= 15 \times 0.4096 \times 0.04 \\ &amp;= 0.24576 \\ &amp;\approx 0.2458 \end{aligned}" />
+</MathContainer>
 
-    Therefore, the probability of the archer hitting the target exactly <InlineMath math="4" /> times is <InlineMath math="0.2458" /> or approximately <InlineMath math="24.6\%" />.
+Therefore, the probability of the archer hitting the target exactly <InlineMath math="4" /> times is <InlineMath math="0.2458" /> or approximately <InlineMath math="24.6\%" />.
 
-3. **Multiple Choice Exam Problem Answer**
+**Multiple Choice Exam Problem Answer**
 
-    **Step 1**: Identify parameters.
+**Step 1**: Identify parameters.
 
-    - <InlineMath math="n = 8" /> (number of questions)
-    - <InlineMath math="x = 2" /> (number of correct answers desired)
-    - <InlineMath math="p = \frac{1}{4} = 0.25" /> (probability of answering correctly by guessing)
-    - <InlineMath math="q = \frac{3}{4} = 0.75" /> (probability of answering incorrectly)
+- <InlineMath math="n = 8" /> (number of questions)
+- <InlineMath math="x = 2" /> (number of correct answers desired)
+- <InlineMath math="p = \frac{1}{4} = 0.25" /> (probability of answering correctly by guessing)
+- <InlineMath math="q = \frac{3}{4} = 0.75" /> (probability of answering incorrectly)
 
-    **Step 2**: Calculate using the binomial probability mass function.
+**Step 2**: Calculate using the binomial probability mass function.
 
-    <MathContainer>
-    <BlockMath math="P(X=2) = \binom{8}{2} (0.25)^2 (0.75)^6" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=2) = \binom{8}{2} (0.25)^2 (0.75)^6" />
+</MathContainer>
 
-    Calculate <InlineMath math="\binom{8}{2}" /> first:
+Calculate <InlineMath math="\binom{8}{2}" /> first:
 
-    <BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
+<BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
 
-    Then:
+Then:
 
-    <MathContainer>
-    <BlockMath math="= 28 \times (0.25)^2 \times (0.75)^6" />
-    <BlockMath math="\begin{aligned} &= 28 \times 0.0625 \times 0.177978515625 \\ &= 0.31146240234375 \approx 0.3115\end{aligned}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 28 \times (0.25)^2 \times (0.75)^6" />
+<BlockMath math="\begin{aligned} &= 28 \times 0.0625 \times 0.177978515625 \\ &= 0.31146240234375 \approx 0.3115\end{aligned}" />
+</MathContainer>
 
-    The probability of the student answering exactly <InlineMath math="2" /> questions correctly is approximately <InlineMath math="0.3115" />, or <InlineMath math="31.15\%" />.
+The probability of the student answering exactly <InlineMath math="2" /> questions correctly is approximately <InlineMath math="0.3115" />, or <InlineMath math="31.15\%" />.

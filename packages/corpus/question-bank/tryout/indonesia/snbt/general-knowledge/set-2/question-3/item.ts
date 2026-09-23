@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
+            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, damit Gebäude sicherer und Menschen besser vorbereitet sind.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
+            "Disaster-risk reduction should guide development investment so buildings are safer and residents are better prepared.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
+            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan agar bangunan lebih aman dan warga lebih siap menghadapi bencana.",
         },
       ],
     },

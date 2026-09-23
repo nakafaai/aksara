@@ -5,33 +5,25 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-We will calculate the increase in sales based on the price reduction, then add it to the initial sales.
+We need **the number of cups sold**, rather than revenue in rupiah. Use the price-to-sales relationship specified in the question’s model.
 
-#### Price Reduction Analysis
+#### Counting Price Reductions
 
-Initial price per cup: <InlineMath math="\text{Rp}12{,}000.00" />.
-New price per cup: <InlineMath math="\text{Rp}9{,}000.00" />.
+The price falls from Rp12,000 to Rp9,000 per cup. Each reduction of Rp1,000 counts as **one price-reduction step**.
 
-Price reduction that occurred:
+<BlockMath math="\begin{aligned}\Delta p&=12{,}000-9{,}000=3{,}000\\k&=\frac{3{,}000}{1{,}000}=3\end{aligned}" />
 
-<BlockMath math="\begin{aligned}&12{,}000 - 9{,}000 \\ &=\text{Rp}3{,}000.00\end{aligned}" />
+#### Finding Sales at the Lower Price
 
-#### Calculating Sales Increase
+Three steps add <InlineMath math="3\times20=60" /> cups per day. Add that increase to **the original 200 daily cups**.
 
-It is known that for every <InlineMath math="\text{Rp}1{,}000.00" /> decrease, sales increase by <InlineMath math="20" /> cups.
-Number of price reduction multiples:
+<BlockMath math="J=200+20k=200+20(3)=200+60=260" />
 
-<BlockMath math="k = \frac{3{,}000}{1{,}000} = 3 \text{ times}" />
+| Step | Price per cup (Rp) | Sales (cups per day) |
+| --- | --- | --- |
+| 0 | 12,000 | 200 |
+| 1 | 11,000 | 220 |
+| 2 | 10,000 | 240 |
+| 3 | 9,000 | 260 |
 
-So, the additional sales are:
-
-<BlockMath math="\begin{aligned}&3 \times 20 \\ &=60 \text{ cups}\end{aligned}" />
-
-#### Calculating Total Sales
-
-Initial sales were <InlineMath math="200" /> cups.
-Total sales after price reduction:
-
-<BlockMath math="\begin{aligned}&200 + 60 \\ &=260 \text{ cups}\end{aligned}" />
-
-So, the number of iced coffees sold per day is <InlineMath math="260" /> cups.
+The model therefore gives **260 cups per day**. The operating-cost threshold is not needed to find the sales quantity at this specified price.

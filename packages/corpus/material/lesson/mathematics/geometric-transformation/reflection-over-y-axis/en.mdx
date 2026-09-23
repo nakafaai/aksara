@@ -10,7 +10,7 @@ export const metadata = {
 
 ## How Reflection Changes the Horizontal Coordinate
 
-Reflection over the <InlineMath math="y" />-axis <Highlight>is a type of geometric transformation that moves every point on an object to a new position</Highlight>. Imagine the <InlineMath math="y" />-axis as a mirror. Every point will have an image on the opposite side of the <InlineMath math="y" />-axis at the same distance from the <InlineMath math="y" />-axis.
+Imagine the vertical axis as a mirror. A point and its image have <Highlight>equal distances from the axis</Highlight>. Points outside the axis move to the opposite side, while points on the axis remain fixed.
 
 ### Rule for Reflection over the Vertical Axis
 
@@ -23,7 +23,7 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the <InlineMath math=
 
 The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(-x, y)" />.
 
-The <InlineMath math="y" />-coordinate stays the same, while the <InlineMath math="x" />-coordinate changes sign.
+The <InlineMath math="y" />-coordinate **stays the same**, while the <InlineMath math="x" />-coordinate changes sign.
 
 ## Reflecting a Point
 
@@ -35,7 +35,7 @@ The original <InlineMath math="y" />-coordinate is <InlineMath math="4" />, so <
 
 The image of point <InlineMath math="A" /> is <InlineMath math="A'(-3, 4)" />.
 
-The diagram shows this symmetry:
+Both points are **three units from the axis** at the same height. The horizontal joining segment shows the equal distances on either side:
 
 <LineEquation
   title={
@@ -51,6 +51,7 @@ The diagram shows this symmetry:
     </>
   }
   data={[
+    { points: [{ x: -3, y: 4, z: 0 }, { x: 0, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
     {
       points: [{ x: 3, y: 4, z: 0 }],
       color: "#059669",
@@ -64,7 +65,8 @@ The diagram shows this symmetry:
       labels: [{ text: <InlineMath math="A'(-3,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 3, 10]}
+  cameraTarget={[0, 3, 0]}
 />
 
 ## Reflecting a Triangle
@@ -146,7 +148,7 @@ By connecting the image points <InlineMath math="P'Q'R'" />, we obtain the refle
 
 ## Reflecting a Line Equation
 
-Suppose we have a line with the equation <InlineMath math="y = x + 2" />. To find the equation of its image after reflection over the <InlineMath math="y" />-axis, we substitute <InlineMath math="x" /> with <InlineMath math="-x" /> (because <InlineMath math="x' = -x" />) and <InlineMath math="y" /> with <InlineMath math="y" /> (because <InlineMath math="y' = y" />) into the original equation.
+Suppose we have a line with the equation <InlineMath math="y = x + 2" />. To find the equation of its image after reflection over the <InlineMath math="y" />-axis, we substitute <InlineMath math="x" /> with <InlineMath math="-x" /> (because <InlineMath math="x' = -x" />) and <InlineMath math="y" /> with <InlineMath math="y" /> (because <InlineMath math="y' = y" />) into the **original equation**.
 
 Original equation:
 
@@ -173,35 +175,34 @@ The graph compares the original line and its reflection:
   data={[
     {
       // Original Line y = x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = (i - 5) * 0.8; // x from -4 to 4 for better fit
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: x + 2, z: 0 };
       }),
-      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      showPoints: false,
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 21, offset: [0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
       // Reflected Line y = -x + 2
-      points: Array.from({ length: 31 }, (_, pointIndex) => {
-        const i = pointIndex - 8;
-        const x = (i - 5) * 0.8; // x from -4 to 4
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
+        const x = (pointIndex - 5) * 0.8;
         return { x, y: -x + 2, z: 0 };
       }),
-      pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+      showPoints: false,
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-x+2" />, at: 9, offset: [-0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 2, 12]}
+  cameraTarget={[0, 2, 0]}
 />
 
 ## Exercises
 
-The problems reflect a point, a triangle, and a line over the <InlineMath math="y" />-axis. Reflecting the line means replacing <InlineMath math="x" /> with its negative in the equation, while each point keeps its <InlineMath math="y" /> coordinate and only changes the sign of <InlineMath math="x" />.
+The problems reflect a point, a triangle, and a line over the <InlineMath math="y" />-axis. Reflecting the line means replacing <InlineMath math="x" /> with its negative in the equation, while each point keeps its <InlineMath math="y" /> coordinate and only **changes the sign** of <InlineMath math="x" />.
 
 1.  Determine the coordinates of the image of point <InlineMath math="K(-5, 8)" /> if it is reflected over the <InlineMath math="y" />-axis!
 2.  A triangle <InlineMath math="ABC" /> has vertices <InlineMath math="A(2, 1)" />, <InlineMath math="B(5, 3)" />, and <InlineMath math="C(3, 6)" />. Determine the coordinates of the image triangle <InlineMath math="A'B'C'" /> after reflection over the <InlineMath math="y" />-axis!
@@ -210,30 +211,38 @@ The problems reflect a point, a triangle, and a line over the <InlineMath math="
 
 ### Solutions
 
-1.  The image of point <InlineMath math="K(-5, 8)" /> is <InlineMath math="K'(5, 8)" />.
+For a point, **reverse the horizontal coordinate sign** and keep the vertical coordinate. For a line, replace the horizontal coordinate in the original equation by its negative, then simplify the products of negative signs.
 
-    **Explanation:** <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
+**Solution 1**
 
-2.  The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
+The image of point <InlineMath math="K(-5, 8)" /> is <InlineMath math="K'(5, 8)" />.
 
-    - <InlineMath math="A'(-2, 1)" />
-    - <InlineMath math="B'(-5, 3)" />
-    - <InlineMath math="C'(-3, 6)" />
+**Explanation**: <InlineMath math="x' = -(-5) = 5" />, <InlineMath math="y' = 8" />.
 
-3.  The equation of the image of the line <InlineMath math="3x - 2y + 6 = 0" /> is <InlineMath math="-3x - 2y + 6 = 0" />.
+**Solution 2**
 
-    **Explanation:** Substitute <InlineMath math="x" /> with <InlineMath math="-x" /> into the original equation:
+The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
 
-    <MathContainer>
-      <BlockMath math="3(-x) - 2y + 6 = 0" />
-      <BlockMath math="-3x - 2y + 6 = 0" />
-    </MathContainer>
+<BlockMath math="A(2,1)\mapsto A'(-2,1),\quad B(5,3)\mapsto B'(-5,3),\quad C(3,6)\mapsto C'(-3,6)" />
 
-4.  The equation of the image of the line <InlineMath math="y = -3x - 4" /> is <InlineMath math="y = 3x - 4" />.
+**Solution 3**
 
-    **Explanation:** Substitute <InlineMath math="x" /> with <InlineMath math="-x" />:
+The equation of the image of the line <InlineMath math="3x - 2y + 6 = 0" /> is <InlineMath math="-3x - 2y + 6 = 0" />.
 
-    <MathContainer>
-      <BlockMath math="y = -3(-x) - 4" />
-      <BlockMath math="y = 3x - 4" />
-    </MathContainer>
+**Explanation**: Substitute <InlineMath math="x" /> with <InlineMath math="-x" /> into the original equation:
+
+<MathContainer>
+  <BlockMath math="3(-x) - 2y + 6 = 0" />
+  <BlockMath math="-3x - 2y + 6 = 0" />
+</MathContainer>
+
+**Solution 4**
+
+The equation of the image of the line <InlineMath math="y = -3x - 4" /> is <InlineMath math="y = 3x - 4" />.
+
+**Explanation**: Substitute <InlineMath math="x" /> with <InlineMath math="-x" />:
+
+<MathContainer>
+  <BlockMath math="y = -3(-x) - 4" />
+  <BlockMath math="y = 3x - 4" />
+</MathContainer>

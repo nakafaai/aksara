@@ -5,18 +5,76 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Bagi pembilang dengan penyebut untuk memisahkan bagian konstan fungsi.
+#### Domain dan Asimtot
 
-<BlockMath math="f(x)=2+\frac5{x-1}" />
+Tulis pembilang sebagai <InlineMath math="2(x-1)+5" />. Pemisahan ini memperlihatkan **penyebut yang tidak boleh nol** dan garis yang didekati grafik.
 
-Penyebut mengecualikan <InlineMath math="x=1" />. Pecahan tidak pernah nol, sehingga <InlineMath math="y=2" /> tidak termasuk range. Kedua asimtot, <InlineMath math="x=1" /> dan <InlineMath math="y=2" />, berpotongan di <InlineMath math="(1,2)" />. Pada <InlineMath math="x>1" />, pecahan positif sehingga <InlineMath math="f(x)>2" />.
+<BlockMath math="f(x)=\frac{2(x-1)+5}{x-1}=2+\frac5{x-1}" />
 
-Pada masing-masing interval <InlineMath math="(-\infty,1)" /> dan <InlineMath math="(1,\infty)" />, nilai <InlineMath math="\frac1{x-1}" /> turun ketika <InlineMath math="x" /> bertambah. Faktor positif <InlineMath math="5" /> dan penambahan <InlineMath math="2" /> mempertahankan sifat menurun itu. Untuk invers, selesaikan <InlineMath math="y=f(x)" /> terhadap <InlineMath math="x" />.
+Domainnya adalah <InlineMath math="\mathbb R\setminus\{1\}" />. Saat <InlineMath math="x" /> mendekati satu, penyebut mendekati nol sedangkan pembilang pecahan tetap lima. Jadi, <InlineMath math="x=1" /> adalah asimtot tegak. Saat <InlineMath math="|x|" /> membesar, pecahan mendekati nol, sehingga <InlineMath math="y=2" /> adalah asimtot mendatar. Kedua garis berpotongan di <InlineMath math="(1,2)" />.
+
+<LineEquation
+  title="Dua cabang fungsi rasional"
+  description="Garis abu-abu adalah asimtot. Cabang di kanan garis x=1 berada di atas y=2, sedangkan cabang kiri berada di bawahnya."
+  cameraPosition={[1, 2, 16]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-5, 0.25], [1.75, 7]].map(([start, end]) => ({
+      points: Array.from({ length: 121 }, (_, i) => {
+        const x = start + (end - start) * i / 120;
+        return { x, y: 2 + 5 / (x - 1), z: 0 };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+      smooth: false,
+    })),
+    {
+      points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.4, 0] }],
+    },
+    {
+      points: [{ x: -5, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      lineWidth: 1,
+      labels: [{ text: <InlineMath math="y=2" />, at: 1, offset: [-0.5, 0.5, 0] }],
+    },
+  ]}
+/>
+
+#### Menurun pada Masing-Masing Interval
+
+Untuk <InlineMath math="x>1" />, pecahan <InlineMath math="5/(x-1)" /> positif, jadi <InlineMath math="f(x)>2" />. Grafik memiliki **dua interval terpisah**: <InlineMath math="(-\infty,1)" /> dan <InlineMath math="(1,\infty)" />. Ambil <InlineMath math="a<b" /> dalam satu interval yang sama. Selisih nilainya adalah:
 
 <BlockMath math="\begin{aligned}
+f(b)-f(a)&=\frac5{b-1}-\frac5{a-1} \\
+&=\frac{5(a-1)-5(b-1)}{(a-1)(b-1)} \\
+&=\frac{5(a-b)}{(a-1)(b-1)}<0
+\end{aligned}" />
+
+Kedua faktor penyebut memiliki tanda yang sama, sehingga hasil kalinya positif. Pembilang negatif karena <InlineMath math="a-b<0" />. Maka <InlineMath math="f(b)-f(a)<0" />, yang membuktikan fungsi menurun ketat pada setiap interval. Pernyataan ini tidak menggabungkan dua cabang menjadi satu interval.
+
+#### Menentukan Invers
+
+Untuk mencari **fungsi invers**, tulis <InlineMath math="y=f(x)" /> lalu selesaikan terhadap <InlineMath math="x" />. Pecahan <InlineMath math="5/(x-1)" /> tidak pernah nol, sehingga <InlineMath math="y\ne2" />.
+
+<BlockMath math="\begin{aligned}
+y&=\frac{2x+3}{x-1} \\
 y(x-1)&=2x+3 \\
+xy-y&=2x+3 \\
+xy-2x&=y+3 \\
 x(y-2)&=y+3 \\
 x&=\frac{y+3}{y-2}
 \end{aligned}" />
 
-Jadi, <InlineMath math="f^{-1}(x)=\frac{x+3}{x-2}" /> dengan <InlineMath math="x\ne2" />. Pernyataan tentang perpotongan asimtot, sifat menurun, nilai di kanan asimtot, dan invers semuanya benar. Nilai <InlineMath math="f(1)" /> tidak terdefinisi.
+Setiap <InlineMath math="y\ne2" /> menghasilkan <InlineMath math="x=1+5/(y-2)\ne1" />. Jadi, semua nilai real kecuali dua memang masuk range. Tukar nama variabel untuk menulis invers:
+
+<BlockMath math="f^{-1}(x)=\frac{x+3}{x-2},\qquad x\ne2" />
+
+Pernyataan tentang titik potong asimtot, sifat menurun, nilai di kanan asimtot, dan invers benar. Pernyataan <InlineMath math="f(1)=0" /> salah karena pembagian dengan nol membuat <InlineMath math="f(1)" /> tidak terdefinisi.

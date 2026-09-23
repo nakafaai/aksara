@@ -3,7 +3,7 @@ export const metadata = {
   description: "Integral tak tentu memuat semua antiturunan yang hanya berbeda pada nilai konstanta integrasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integral",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 ## Peran Konstanta Integrasi
 
-Bandingkan fungsi-fungsi berikut beserta turunannya.
+Kita mencari fungsi yang turunannya sama dengan <InlineMath math="4x" />. Tabel ini membandingkan empat kandidat. Perhatikan bahwa **konstanta yang berbeda** tetap menghasilkan turunan yang sama.
 
 | Fungsi <InlineMath math="F(x)" /> | Turunan <InlineMath math="f(x) = F'(x)" /> |
 | :--- | :--- |
@@ -24,7 +24,28 @@ Bandingkan fungsi-fungsi berikut beserta turunannya.
 
 Keempat fungsi <InlineMath math="F(x)" /> memiliki turunan yang sama, yaitu <InlineMath math="f(x) = 4x" />. Penyebabnya, turunan konstanta seperti <InlineMath math="1" />, <InlineMath math="5" />, atau <InlineMath math="-10" /> selalu nol.
 
-<Highlight>Turunan tidak memuat nilai konstanta dari fungsi asal</Highlight>. Karena itu, turunan saja tidak dapat menunjukkan apakah fungsi asal memiliki konstanta <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, atau nilai lain. Simbol <InlineMath math="C" /> mewakili semua nilai konstanta yang mungkin. Hasil integral tak tentu pun mencakup semua antiturunan yang hanya berbeda pada nilai konstanta.
+Turunan tidak memuat <Highlight>nilai konstanta dari fungsi asal</Highlight>. Karena itu, turunan saja tidak dapat menunjukkan apakah fungsi asal memiliki konstanta <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, atau nilai lain. Simbol <InlineMath math="C" /> mewakili semua nilai konstanta yang mungkin. Hasil integral tak tentu pun mencakup semua antiturunan yang hanya berbeda pada nilai konstanta.
+
+Kesimpulan tentang selisih konstanta berlaku pada **satu interval** tempat antiturunan terdefinisi. Untuk contoh polinomial ini, interval tersebut dapat mencakup seluruh bilangan real.
+
+## Membandingkan Grafik Antiturunan
+
+Ketiga parabola mewakili <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" />, dan <InlineMath math="2x^2+5" />. Pada nilai <InlineMath math="x" /> yang sama, ketinggian kurva berbeda, tetapi kemiringan garis singgung sama. Geser atau putar tampilan untuk membandingkan bentuk ketiga kurva.
+
+<LineEquation
+  title="Antiturunan yang Berbeda Konstanta"
+  description="Kurva ungu memiliki konstanta nol, kurva jingga konstanta satu, dan kurva hijau kebiruan konstanta lima."
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 4.5, 0]}
+  cameraPosition={[0, 4.5, 17]}
+/>
+
+Perubahan konstanta menghasilkan **pergeseran vertikal**. Misalnya, pada <InlineMath math="x=1" />, ketiga nilai fungsi berturut-turut adalah <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="7" />, sedangkan semua turunannya bernilai <InlineMath math="4" />.
 
 ## Notasi Integral Tak Tentu
 
@@ -33,13 +54,21 @@ Notasi berikut menunjukkan integran, variabel integrasi, antiturunan, dan konsta
 <BlockMath math="\int f(x) \, dx = F(x) + C" />
 
 Setiap bagian memiliki peran khusus:
-- **<InlineMath math="\int" />** adalah **simbol integral**. Bentuk simbol berasal dari huruf S yang memanjang untuk kata Latin *summa*, yang berarti jumlah.
-- **<InlineMath math="f(x)" />** adalah fungsi yang akan kita integralkan, disebut **integran**.
-- **<InlineMath math="dx" />** disebut **diferensial** dari <InlineMath math="x" />. Tanda ini menunjukkan bahwa integrasi dilakukan terhadap variabel <InlineMath math="x" />. Tanpanya, ekspresi integral belum lengkap.
-- **<InlineMath math="F(x) + C" />** adalah **integral tak tentu** dari <InlineMath math="f(x)" />. Pada bentuk ini, <InlineMath math="F(x)" /> adalah antiturunan dan <InlineMath math="C" /> adalah **konstanta integrasi**.
+- <InlineMath math="\int" /> adalah **simbol integral**. Bentuk simbol berasal dari huruf S yang memanjang untuk kata Latin *summa*, yang berarti jumlah.
+- <InlineMath math="f(x)" /> adalah fungsi yang akan kita integralkan, disebut **integran**.
+- <InlineMath math="dx" /> disebut **diferensial** dari <InlineMath math="x" />. Tanda ini menunjukkan bahwa integrasi dilakukan terhadap variabel <InlineMath math="x" />. Tanpanya, ekspresi integral belum lengkap.
+- <InlineMath math="F(x) + C" /> adalah **integral tak tentu** dari <InlineMath math="f(x)" />. Pada bentuk ini, <InlineMath math="F(x)" /> adalah antiturunan dan <InlineMath math="C" /> adalah **konstanta integrasi**.
 
 Hubungan dasarnya adalah:
 
 <BlockMath math="\begin{aligned} &amp;\frac{d}{dx} [F(x)] = f(x) \\ &amp;\iff \\ &amp;\int f(x) \, dx = F(x) + C \end{aligned}" />
 
 > Jika turunan <InlineMath math="F(x)" /> adalah <InlineMath math="f(x)" />, maka integral tak tentu dari <InlineMath math="f(x)" /> memuat semua fungsi yang berbentuk <InlineMath math="F(x) + C" />.
+
+## Menentukan Konstanta dari Satu Nilai Fungsi
+
+Misalkan <InlineMath math="F'(x)=4x" /> dan <InlineMath math="F(1)=7" />. Antiturunan umumnya adalah <InlineMath math="F(x)=2x^2+C" />. **Nilai fungsi yang diketahui** menentukan konstanta yang sesuai:
+
+<BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
+
+Jadi, <InlineMath math="F(x)=2x^2+5" />. Periksa kedua syarat: turunan <InlineMath math="2x^2+5" /> adalah <InlineMath math="4x" />, dan <InlineMath math="F(1)=2+5=7" />. Satu nilai fungsi memilih satu kurva dari semua antiturunan pada interval yang sama.

@@ -5,21 +5,21 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kita perlu menentukan berapa banyak kombinasi nomor kartu yang mungkin dibuat berdasarkan aturan yang diberikan.
+Hanya **empat digit tengah** yang dapat berubah. Awalan dan akhiran sudah tetap, sehingga tidak menambah pilihan.
 
-Nomor kartu terdiri dari <InlineMath math="12" /> digit dengan format sebagai berikut:
-1.  **<InlineMath math="4" /> digit pertama (Prefix)**: Tetap, yaitu <InlineMath math="0844" />.
-2.  **<InlineMath math="4" /> digit terakhir (Suffix)**: Tetap, yaitu <InlineMath math="1221" />.
-3.  **<InlineMath math="4" /> digit tengah**: Bagian yang harus disusun.
+| Bagian nomor | Isi | Banyak pilihan |
+| --- | --- | --- |
+| Empat digit awal | 0844 | 1 |
+| Digit tengah pertama | Salah satu dari 2, 3, 4, 5, 7, 8, 9 | 7 |
+| Digit tengah kedua | Salah satu dari tujuh digit yang sama | 7 |
+| Digit tengah ketiga | Salah satu dari tujuh digit yang sama | 7 |
+| Digit tengah keempat | Salah satu dari tujuh digit yang sama | 7 |
+| Empat digit akhir | 1221 | 1 |
 
-Karena <InlineMath math="4" /> digit awal dan <InlineMath math="4" /> digit akhir sudah ditentukan, kita hanya perlu mengisi <InlineMath math="12 - 4 - 4 = 4" /> posisi kosong di tengah.
+Karena **digit boleh berulang**, memilih digit untuk satu posisi tidak mengurangi pilihan pada posisi berikutnya. Misalnya, 2222 dan 2345 sama-sama boleh mengisi bagian tengah.
 
-Angka yang tersedia untuk mengisi posisi tersebut adalah <InlineMath math="\{2, 3, 4, 5, 7, 8, 9\}" />. Jumlah pilihan angka yang tersedia adalah <InlineMath math="7" /> angka.
+Dengan aturan perkalian, banyak nomor kartu berbeda adalah:
 
-Karena pengulangan digit diperbolehkan, setiap posisi dari <InlineMath math="4" /> digit tengah tetap memiliki <InlineMath math="7" /> pilihan.
+<BlockMath math="\begin{aligned}N&amp;=1\times7\times7\times7\times7\times1\\&amp;=49\times49\\&amp;=2{.}401\end{aligned}" />
 
-Misalkan <InlineMath math="N" /> menyatakan banyak nomor kartu yang mungkin. Aturan perkalian memberikan:
-
-<BlockMath math="\begin{aligned}N&=7\times7\times7\times7\\&=7^4\\&=2{.}401\end{aligned}" />
-
-Jadi, banyak nomor kartu yang dapat dibuat adalah <InlineMath math="2{.}401" />.
+Jadi, ada <InlineMath math="2{.}401" /> nomor kartu berbeda. Urutan digit tetap diperhatikan, sehingga bagian tengah 2345 dan 5432 menghasilkan dua nomor berbeda.

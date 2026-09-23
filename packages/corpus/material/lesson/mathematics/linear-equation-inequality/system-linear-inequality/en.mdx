@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Linear Inequality Systems",
   description: "Solve linear inequality systems using graphical methods. Explore constraint modeling, optimization problems, and interactive visualizations.",
@@ -15,7 +13,7 @@ A plan may need to stay within a budget and meet a minimum attendance target at 
 
 ### Linear Inequality System
 
-A linear inequality system is a collection of two or more linear inequalities that must be satisfied simultaneously. For example, an upper bound has the form:
+A linear inequality system is a collection of two or more linear inequalities that must be **satisfied simultaneously**. For example, an upper bound has the form:
 
 <BlockMath math="a_1x_1+a_2x_2+\cdots+a_nx_n\leq b" />
 
@@ -32,7 +30,7 @@ The main difference between linear equations and linear inequalities is the rela
 
 ### Linear Inequality Systems with Two Variables
 
-o or more inequalities with two variables (usually <InlineMath math="x" /> and <InlineMath math="y" />):
+A system contains two or more inequalities with two variables (usually <InlineMath math="x" /> and <InlineMath math="y" />):
 
 <BlockMath math="\begin{cases} a_1x + b_1y \leq c_1 \\ a_2x + b_2y \leq c_2 \end{cases}" />
 
@@ -89,23 +87,34 @@ The solution region is the area not containing point <InlineMath math="(0, 0)" /
 
 ### Determine the Intersection of Solution Regions
 
-The solution to the linear inequality system is the intersection of all the solution regions, that is, the area satisfied by every constraint at once. A point belongs to the solution only if it satisfies all inequalities together, so testing one corner point is a quick check.
+The **intersection** contains points satisfying both conditions together. The point <InlineMath math="(2,1)" /> lies below the first line and above the second. Check by substituting both coordinates:
+
+<MathContainer>
+  <BlockMath math="2(2)+5(1)=9<10" />
+  <BlockMath math="6(2)+2(1)=14>10" />
+</MathContainer>
+
+The point <InlineMath math="(0,0)" /> satisfies only the first condition, so it is not a solution of the system. With strict inequalities, **boundary points are excluded**, including the intersection of the two boundary lines.
 
 ### Graphical Representation
 
 When drawing inequality graphs:
 
 - For <InlineMath math="\leq" /> or <InlineMath math="\geq" />: use a solid line (the solution region includes points on the line)
-- For <InlineMath math="<" /> or <InlineMath math=">" />: use a dashed line (the solution region does not include points on the line)
+- For <InlineMath math="<" /> or <InlineMath math=">" />: use a **dashed** line (the solution region does not include points on the line)
 - The solution region is shaded to show the solution
 
 ## Check Your Understanding
 
 <BlockMath math="\begin{cases} x+y\leq6 \\ 2x-y\geq0 \end{cases}" />
 
-Determine whether <InlineMath math="(2,3)" /> and <InlineMath math="(1,5)" /> belong to the solution set.
+Determine whether <InlineMath math="(2,3)" /> and <InlineMath math="(1,5)" /> belong to the **solution set**.
 
 ### Worked Solution
+
+When multiplying or dividing an inequality by a **negative number**, reverse the comparison sign. To graph the second constraint, use:
+
+<BlockMath math="2x-y\ge0\quad\Longleftrightarrow\quad-y\ge-2x\quad\Longleftrightarrow\quad y\le2x" />
 
 Substitute <InlineMath math="(2,3)" /> into both inequalities:
 
@@ -123,15 +132,15 @@ Now test <InlineMath math="(1,5)" />:
   <BlockMath math="2(1)-5=-3\not\geq0" />
 </MathContainer>
 
-The second statement is false, so <InlineMath math="(1,5)" /> is not a solution. The boundary lines meet at <InlineMath math="(2,4)" />, but that point is only one part of the solution. The full solution is the entire overlapping region, including both solid boundaries.
+The second statement is false, so <InlineMath math="(1,5)" /> is not a solution. The boundary lines meet at <InlineMath math="(2,4)" />, but that point is only one part of the solution. The full solution is the entire overlapping region, including only the parts of each solid boundary that satisfy the other inequality.
 
 ## Modeling Feasible Choices
 
-A linear inequality system describes the set of combinations that are allowed together. A word problem has to be turned into such a system before it can be solved, and the solution is the whole region of allowed combinations.
+A linear inequality system describes the set of combinations that are **allowed together**. A word problem has to be turned into such a system before it can be solved, and the solution is the whole region of allowed combinations.
 
 ### Modeling Feasible Choices with Inequalities
 
-Linear inequality systems describe the feasible choices in optimization problems, such as:
+Linear inequality systems describe the **feasible choices** in optimization problems, such as:
 
 - Production problems with resource constraints
 - Budget planning with cost constraints
@@ -141,7 +150,7 @@ An optimization model also needs an objective, such as minimizing cost or maximi
 
 ### Activity Planning
 
-Kiki is organizing an independence day celebration in her neighborhood. From the community fund, there is <InlineMath math="\text{Rp}500{,}000.00" /> available. For organizing competitions, it costs <InlineMath math="\text{Rp}20{,}000.00" /> per child. Prizes for winners are budgeted at <InlineMath math="\text{Rp}40{,}000.00" /> for each type of competition. It's expected that more than <InlineMath math="13" /> children will participate.
+Kiki is organizing an independence day celebration in her neighborhood. From the community fund, there is <InlineMath math="\text{Rp}500{,}000.00" /> available. For organizing competitions, it costs <InlineMath math="\text{Rp}20{,}000.00" /> per child. Prizes for winners are budgeted at <InlineMath math="\text{Rp}40{,}000.00" /> for **each type of competition**. It's expected that more than <InlineMath math="13" /> children will participate.
 
 Define:
 
@@ -156,16 +165,20 @@ If we simplify:
 
 <BlockMath math="\begin{cases} 20x + 40y \leq 500 \\ x > 13 \\ x,y \in \mathbb{Z}_{>0} \end{cases}" />
 
-The graph shows the continuous feasible region. Because participants and competitions are counted in whole numbers, valid plans are the positive integer points inside that region.
+Without the integer restriction, the cost and attendance constraints define a continuous feasible region. Because participants and competitions are counted in whole numbers, valid plans are the positive integer points inside that region.
 
-## Problem Solving Strategy
+### Maximizing the Number of Competitions
 
-To solve linear inequality system problems:
+If Kiki wants **as many competitions as possible**, the objective is to maximize <InlineMath math="y" />. The participant count is an integer greater than 13, so its smallest value is <InlineMath math="x=14" />. Divide the budget constraint by 20,000 to obtain:
 
-1. Identify the variables to use
-2. Create a mathematical model based on the given constraints
-3. Solve the system using the graphical method
-4. Interpret the solution in the context of the original problem
+<BlockMath math="\begin{aligned}x+2y&amp;\le25\\14+2y&amp;\le25\\2y&amp;\le11\\y&amp;\le\frac{11}{2}\end{aligned}" />
+
+The competition count must be an integer, so there can be at most **five competitions**. Six would require at least <InlineMath math="14+2(6)=26" /> cost units, above the limit 25. Both plans below achieve five competitions:
+
+| Participants | Competitions | Total cost |
+| --- | --- | --- |
+| 14 | 5 | Rp480,000 |
+| 15 | 5 | Rp500,000 |
 
 ## Differences Between Linear Equation Systems and Linear Inequality Systems
 
@@ -182,13 +195,13 @@ The two system types differ in what counts as an answer. The table sets the oper
 
 ## Interactive Visualization of Linear Inequality Systems
 
-Each inequality defines an allowed half-plane. With several inequalities, only the overlap of those half-planes satisfies every condition.
+Each inequality defines an allowed half-plane. With several inequalities, only the **overlap of those half-planes** satisfies every condition.
 
 The interactive visualization shows that overlap directly.
 
 ### Example of an Inequality System
 
-This system contains two inequalities, and each inequality produces its own region:
+This system contains two inequalities, and **each inequality produces its own region**:
 
 <BlockMath math="\begin{cases} x + y \leq 10 \\ 15x + 9y \geq 120 \end{cases}" />
 
@@ -247,6 +260,6 @@ In this interactive visualization:
 2. **Colored regions** show the solution to each inequality
 3. **Intersection region** (the area satisfying all inequalities) is the solution to the inequality system
 
-The two boundary lines meet at <InlineMath math="(5,5)" />. This point forms one corner of the feasible set. The shaded region contains the full set of solutions.
+The two boundary lines meet at <InlineMath math="(5,5)" />. This point forms one corner of the feasible set. The overlapping shading shows the part of the solution set visible in the graph window. The solution set does not end at the display edges.
 
 The same reading order applies to a word problem: graph each condition, keep the permitted side, and then take the common region.

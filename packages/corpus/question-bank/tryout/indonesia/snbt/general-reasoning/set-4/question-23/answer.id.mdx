@@ -5,8 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Dari pengguna layanan <InlineMath math="A" />, kurangi pengguna <InlineMath math="A\cap B" /> dan <InlineMath math="A\cap C" />. Pengguna ketiga layanan telah terkurangi dua kali, sehingga harus ditambahkan kembali satu kali.
+Kita mencari **pengguna A saja**, sehingga pengguna A yang juga memakai B atau C harus dikeluarkan. Pisahkan dahulu kelompok yang bertumpang tindih:
 
-<BlockMath math="90-35-28+15=42" />
+| Kelompok pengguna A | Banyak orang |
+| --- | --- |
+| A dan B, tanpa C | <InlineMath math="35-15=20" /> |
+| A dan C, tanpa B | <InlineMath math="28-15=13" /> |
+| A, B, dan C | <InlineMath math="15" /> |
 
-Jadi, <InlineMath math="42" /> peserta hanya menggunakan layanan <InlineMath math="A" />.
+Ketiga baris tidak bertumpang tindih. Jadi, pengguna A yang juga memakai layanan lain berjumlah <InlineMath math="20+13+15=48" />. Sisanya adalah
+
+<BlockMath math="90-48=42." />
+
+Cara yang sama dapat diringkas dengan prinsip inklusi dan eksklusi:
+
+<BlockMath math="90-35-28+15=55-28+15=27+15=42." />
+
+Mengapa ditambah <InlineMath math="15" />? Pengguna ketiga layanan sudah **dikurangi dua kali** melalui dua irisan, padahal harus dikeluarkan satu kali saja. Menambah kembali satu kali memperbaiki hitungan ganda tersebut.

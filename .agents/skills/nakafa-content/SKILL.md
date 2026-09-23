@@ -89,6 +89,12 @@ Read only what the task needs. Each reference owns one concern.
   Name objects, actions, conditions, and results. Preserve technical meaning and
   necessary reasoning. Follow the locale's voice and terminology rules without
   imposing one lesson template or inventing anecdotes, settings, or metaphors.
+- Keep genre boundaries explicit. Lessons use teacher-led pedagogy. Articles
+  use a professional scientific-journal register for professional readers,
+  preserve claim-matched sources and author-written charts, tables, and other
+  evidence, and never receive lesson choreography. Assessed questions keep the
+  source-owned real-exam language and difficulty. Worked answers use complete
+  post-attempt pedagogy without rewriting the assessed prompt.
 - Keep facts and source attribution verified. Preserve claim-matched provenance
   when changing the page outline or removing a resource. A learner-visible
   external resource must satisfy the [link policy](references/links.md).
@@ -117,6 +123,14 @@ Read only what the task needs. Each reference owns one concern.
   [verification](references/verification.md#lesson-voice-gate). Scope and rule
   admission live in
   [checker limits and gate scope](references/checker.md#deterministic-gate-scope).
+- For a corpus or family audit, run the optional `--pedagogy-review` inventory
+  and read every complete document in every owned locale. Review each section,
+  including sections without signals, for an explained mechanism, a worked
+  example where needed, selective emphasis, and a representation that serves
+  the concept. A passing gate, a component count, or a sample of documents is
+  not evidence of complete editorial review. Keep per-document audit evidence
+  outside the publication source; distinguish source review, calculation
+  verification, compilation, and rendered acceptance.
 - Treat checker output as evidence to investigate. Default blockers need proven
   regressions; strict-review candidates still need contextual judgment. Never
   invent a global word ban or optimize prose for an authorship score. Group

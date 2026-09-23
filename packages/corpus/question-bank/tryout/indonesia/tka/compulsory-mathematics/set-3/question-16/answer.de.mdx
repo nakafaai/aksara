@@ -12,7 +12,7 @@ A_o&=20(12)+\pi(6)^2 \\
 &=240+36\pi
 \end{aligned}" />
 
-Die Innenbegrenzung liegt <InlineMath math="2\,\mathrm{m}" /> weiter innen. Ihr Radius beträgt <InlineMath math="4\,\mathrm{m}" />, ihre Breite <InlineMath math="8\,\mathrm{m}" />. Die Mittelpunkte der Halbkreise bleiben gleich. Daher bleiben die geraden Abschnitte <InlineMath math="20\,\mathrm{m}" /> lang.
+Die Innenbegrenzung liegt <InlineMath math="2\,\mathrm{m}" /> weiter innen. Ihr Radius beträgt <InlineMath math="4\,\mathrm{m}" />, ihre Breite <InlineMath math="8\,\mathrm{m}" />. Die Mittelpunkte der Halbkreise bleiben gleich. Daher bleiben die **geraden Abschnitte** <InlineMath math="20\,\mathrm{m}" /> lang.
 
 <BlockMath math="\begin{aligned}
 A_i&=20(8)+\pi(4)^2 \\
@@ -29,3 +29,21 @@ A&=A_o-A_i \\
 \end{aligned}" />
 
 Die Bahnfläche beträgt <InlineMath math="(80+20\pi)\,\mathrm{m}^2" />.
+
+<LineEquation
+  title="Die beiden Begrenzungen der Stadionbahn"
+  description="Die Bogenmittelpunkte bleiben 20 m voneinander entfernt. Der Außenradius beträgt 6 m, der Innenradius 4 m."
+  cameraPosition={[10,0,43]}
+  cameraTarget={[10,0,0]}
+  showZAxis={false}
+  data={[
+    ...[6,4].flatMap((r) => [
+      { points: Array.from({ length: 81 }, (_, i) => { const t = Math.PI/2 + Math.PI*i/80; return { x: r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
+      { points: Array.from({ length: 81 }, (_, i) => { const t = -Math.PI/2 + Math.PI*i/80; return { x: 20+r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
+      ...[-r,r].map((y) => ({ points: [{ x: 0, y, z: 0 }, { x: 20, y, z: 0 }], color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false })),
+    ]),
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 20, y: 0, z: 0 }], color: "#64748b", smooth: false, labels: [{ text: "20 m", at: 0, offset: [10, -0.8, 0] }] },
+    { points: [{ x: 10, y: 4, z: 0 }, { x: 10, y: 6, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "2 m", at: 0, offset: [1.2, 1, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 6, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "6 m", at: 0, offset: [-1.3, 3, 0] }] },
+  ]}
+/>

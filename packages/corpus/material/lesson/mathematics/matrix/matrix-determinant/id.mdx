@@ -17,21 +17,20 @@ Matriks ordo <InlineMath math="2 \times 2" /> adalah matriks yang memiliki dua b
 
 <BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
 
-Determinan matriks <InlineMath math="A" />, yang biasa ditulis sebagai <InlineMath math="\det(A)" /> atau <InlineMath math="|A|" />, adalah hasil kali pada diagonal utama dikurangi hasil kali pada diagonal lainnya.
+Determinan matriks <InlineMath math="A" />, yang biasa ditulis sebagai <InlineMath math="\det(A)" /> atau <InlineMath math="|A|" />, adalah **hasil kali** pada diagonal utama dikurangi hasil kali pada diagonal lainnya.
 
 Rumusnya adalah:
 
 <BlockMath math="\det(A) = |A| = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc" />
 
 Garis tegak pada rumus di atas menyatakan determinan <InlineMath math="\det(A)" />. Kurung siku pada <InlineMath math="A" /> mengapit elemen matriksnya.
-
 ### Perhitungan Determinan Matriks Ordo Dua
 
 Misalkan kita memiliki matriks <InlineMath math="B" />:
 
 <BlockMath math="B = \begin{bmatrix} -1 & 3 \\ -7 & -5 \end{bmatrix}" />
 
-Untuk menghitung determinannya, kita identifikasi <InlineMath math="a = -1" />, <InlineMath math="b = 3" />, <InlineMath math="c = -7" />, dan <InlineMath math="d = -5" />.
+Untuk menghitung **determinan**nya, kita identifikasi <InlineMath math="a = -1" />, <InlineMath math="b = 3" />, <InlineMath math="c = -7" />, dan <InlineMath math="d = -5" />.
 
 Maka, determinan matriks <InlineMath math="B" /> adalah:
 
@@ -43,7 +42,6 @@ Maka, determinan matriks <InlineMath math="B" /> adalah:
 </MathContainer>
 
 Jadi, nilai determinan dari matriks <InlineMath math="B" /> adalah <InlineMath math="26" />.
-
 ## Menyelesaikan SPLDV dengan Determinan
 
 Aturan Cramer memakai determinan untuk mencari nilai variabel dalam sistem persamaan linear.
@@ -88,7 +86,7 @@ Setelah mendapatkan nilai <InlineMath math="D" />, <InlineMath math="D_x" />, da
   <BlockMath math="y = \frac{D_y}{D}" />
 </MathContainer>
 
-Rumus ini hanya berlaku jika <InlineMath math="D \neq 0" />.
+**Rumus ini hanya berlaku jika** <InlineMath math="D \neq 0" />.
 
 Jika <InlineMath math="D=0" />, pecahan pada aturan Cramer tidak terdefinisi. Nilai tersebut belum membedakan antara sistem tanpa solusi dan sistem dengan tak hingga banyak solusi, sehingga sistem harus diperiksa dengan eliminasi atau reduksi baris.
 
@@ -130,9 +128,41 @@ Karena <InlineMath math="D = -7 \neq 0" />, sistem ini memiliki solusi unik.
 
 Jadi, himpunan penyelesaian dari sistem persamaan linear tersebut adalah <InlineMath math="x=2" /> dan <InlineMath math="y=-3" />, atau dapat ditulis sebagai pasangan berurutan <InlineMath math="(2, -3)" />.
 
+### Dua Garis dengan Satu Titik Potong
+
+Hasil Cramer juga dapat kamu baca sebagai **titik potong dua garis**. Ubah persamaan menjadi <InlineMath math="y=2x-7" /> dan <InlineMath math="y=\frac14x-\frac72" />. Kemiringannya berbeda, jadi kedua garis hanya berpotongan sekali.
+
+<LineEquation
+  title="Dua Garis dengan Satu Titik Potong"
+  description={<>Garis hijau: <InlineMath math="2x-y=7" />. Garis jingga: <InlineMath math="x-4y=14" />. Keduanya berpotongan di <InlineMath math="(2,-3)" />.</>}
+  cameraPosition={[2, -2, 18]}
+  cameraTarget={[2, -2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: -1, y: -9, z: 0 }, { x: 2, y: -3, z: 0 }, { x: 6, y: 5, z: 0 }],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="(2,-3)" />, at: 1, offset: [0.6, 0.6, 0] }],
+    },
+    {
+      points: [{ x: -2, y: -4, z: 0 }, { x: 6, y: -2, z: 0 }],
+      smooth: false,
+      color: "#f97316",
+      showPoints: false,
+    },
+  ]}
+/>
+
+Substitusi koordinat titik potong memeriksa kedua persamaan sekaligus.
+
+<BlockMath math="\begin{aligned}2(2)-(-3)&=4+3=7\\2-4(-3)&=2+12=14\end{aligned}" />
+
 ## Latihan
 
-Setiap soal di bawah memakai determinan untuk tujuan yang berbeda. Soal pertama meminta satu entri yang belum diketahui pada matriks dengan determinan tertentu, soal kedua meminta penyelesaian sebuah sistem persamaan linear.
+Setiap soal di bawah memakai determinan untuk tujuan yang berbeda. Soal pertama meminta satu **entri yang belum diketahui** pada matriks dengan determinan tertentu, soal kedua meminta penyelesaian sebuah sistem persamaan linear.
 
 1.  Matriks berikut memenuhi <InlineMath math="\det(M) = 9" />. Tentukan nilai <InlineMath math="x" />.
 
@@ -141,7 +171,6 @@ Setiap soal di bawah memakai determinan untuk tujuan yang berbeda. Soal pertama 
 2.  Tentukan penyelesaian dari sistem persamaan linear berikut:
 
     <BlockMath math="\begin{cases} 2x - y = 8 \\ x + 3y = -10 \end{cases}" />
-
 ### Pembahasan Lengkap
 
 1.  Matriks pada soal pertama adalah:
@@ -164,7 +193,7 @@ Setiap soal di bawah memakai determinan untuk tujuan yang berbeda. Soal pertama 
 
     Jadi, nilai <InlineMath math="x" /> adalah <InlineMath math="-9" />.
 
-2.  Sistem persamaan linear:
+2.  **Sistem persamaan linear**:
 
     <MathContainer>
       <BlockMath math="2x - y = 8" />

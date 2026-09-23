@@ -5,13 +5,13 @@ export const metadata = {
   dateModified: "2026-09-19",
 };
 
-To find the domain of the function, we need to ensure that all components of the function are defined (values inside square roots must be non-negative, and the denominator cannot be zero).
+To find the domain of the function, we need to ensure that all components of the function are defined (values inside square roots must be non-negative, and the **denominator cannot be zero**).
 
 There are two conditions to satisfy:
 
 #### Condition on the Numerator
 
-The value inside the square root in the numerator must be non-negative:
+The value inside the square root in the numerator must be **non-negative**:
 
 <MathContainer>
   <BlockMath math="5 - x \geq 0" />
@@ -21,7 +21,7 @@ The value inside the square root in the numerator must be non-negative:
 
 #### Denominator Must Be Positive
 
-The value inside the square root in the denominator must be positive because the denominator cannot equal <InlineMath math="0" />:
+The value inside the square root in the denominator must be **positive** because the denominator cannot equal <InlineMath math="0" />:
 
 <MathContainer>
   <BlockMath math="x^2 + x - 6 > 0" />
@@ -30,18 +30,16 @@ The value inside the square root in the denominator must be positive because the
 
 The zeros of this inequality are <InlineMath math="x = -3" /> and <InlineMath math="x = 2" />.
 
-Using test points, we find the solution region for the denominator: <InlineMath math="x < -3" /> or <InlineMath math="x > 2" />.
+The factor signs show when their product is positive:
+
+| <InlineMath math="x" /> | <InlineMath math="x+3" /> | <InlineMath math="x-2" /> | <InlineMath math="(x+3)(x-2)" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="x<-3" /> | − | − | + |
+| <InlineMath math="-3<x<2" /> | + | − | − |
+| <InlineMath math="x>2" /> | + | + | + |
 
 #### Domain Intersection
 
-The domain of function <InlineMath math="f" /> is the intersection of the two conditions above:
-1.  <InlineMath math="x \leq 5" />
-2.  <InlineMath math="x < -3" /> or <InlineMath math="x > 2" />
-
-The intersection is:
--   For <InlineMath math="x < -3" />, it satisfies <InlineMath math="x \leq 5" />.
--   For <InlineMath math="x > 2" />, it is bounded by <InlineMath math="x \leq 5" />, becoming <InlineMath math="2 < x \leq 5" />.
-
-Therefore, the domain of function <InlineMath math="f" /> is:
+Take the **intersection of both conditions**: every value <InlineMath math="x<-3" /> already satisfies <InlineMath math="x\le5" />. The part <InlineMath math="x>2" /> is restricted to <InlineMath math="2<x\le5" />. Exclude <InlineMath math="-3" /> and <InlineMath math="2" /> because the denominator is zero. Include <InlineMath math="5" /> because only the numerator is zero.
 
 <BlockMath math="D_f=(-\infty,-3)\cup(2,5]" />

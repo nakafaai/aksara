@@ -79,8 +79,13 @@ strings with their own [math syntax](question-bank.md#response-items).
   comparison in `<MathContainer>`. Blank MDX lines do not space adjacent JSX
   blocks. Keep intervening prose outside the wrapper; use `ContentStack` for
   math grouped with a graph, diagram, simulation, or other non-math component.
-- MDX math props use a single LaTeX backslash. TypeScript strings escape the
-  backslash.
+- Direct MDX attributes keep one LaTeX backslash, as in `math="8\text{ kg}"`.
+  JavaScript expression strings and ordinary template literals escape it, as
+  in `math={"8\\text{ kg}"}`. A single `\t` inside such a string becomes a
+  tab, so `\text` or `\times` can silently render as ordinary letters.
+  Inspect decoded math values as well as parser success. The gate rejects the
+  proven tab-plus-`ext{` and tab-plus-`imes` corruption patterns while allowing
+  ordinary tab spacing and indentation.
 - Write a percentage sign as `\%` inside LaTeX. A bare `%` begins a comment
   and can silently remove the sign or the rest of the formula. Inspect the
   rendered value as well as checking for parser errors.

@@ -5,33 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Kita diminta mencari interval nilai <InlineMath math="x" /> di mana nilai fungsi <InlineMath math="f(x)" /> lebih besar atau sama dengan <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
+Kita diminta mencari interval nilai <InlineMath math="x" /> di mana nilai fungsi <InlineMath math="f(x)" /> **lebih besar atau sama dengan** <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
 
 Cek setiap bagian dari fungsi tersebut satu per satu:
 
-1. **Interval <InlineMath math="0 \leq x < 2" />**
-
-   Pada interval ini, <InlineMath math="f(x) = 3" />.
-   Apakah <InlineMath math="3 \geq 5" />? **Tidak**.
-   Jadi, interval ini **tidak memenuhi**.
-
-2. **Interval <InlineMath math="2 \leq x < 5" />**
-
-   Pada interval ini, <InlineMath math="f(x) = 5" />.
-   Apakah <InlineMath math="5 \geq 5" />? **Ya**.
-   Jadi, interval <InlineMath math="[2, 5)" /> **memenuhi**.
-
-3. **Interval <InlineMath math="5 \leq x < 8" />**
-
-   Pada interval ini, <InlineMath math="f(x) = 7" />.
-   Apakah <InlineMath math="7 \geq 5" />? **Ya**.
-   Jadi, interval <InlineMath math="[5, 8)" /> **memenuhi**.
-
-4. **Interval <InlineMath math="8 \leq x < 10" />**
-
-   Pada interval ini, <InlineMath math="f(x) = 9" />.
-   Apakah <InlineMath math="9 \geq 5" />? **Ya**.
-   Jadi, interval <InlineMath math="[8, 10)" /> **memenuhi**.
+| Interval | Nilai fungsi | Pemeriksaan | Memenuhi |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | Tidak |
+| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Ya |
+| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Ya |
+| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Ya |
 
 #### Gabungan Interval
 
@@ -39,8 +22,16 @@ Kita gabungkan semua interval yang memenuhi syarat:
 
 <BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
 
-Ketiga interval bertemu di <InlineMath math="5" /> dan <InlineMath math="8" />. Setiap titik sambung termasuk dalam interval berikutnya, sehingga tidak ada celah. Karena itu, ketiganya membentuk satu interval.
+Ketiga interval bertemu di <InlineMath math="5" /> dan <InlineMath math="8" />. Setiap titik sambung termasuk dalam interval berikutnya, sehingga **tidak ada celah**. Karena itu, ketiganya membentuk satu interval.
 
 <BlockMath math="[2, 10)" />
 
 Jadi, interval nilai <InlineMath math="x" /> yang memenuhi adalah <InlineMath math="x \in [2, 10)" />.
+
+<NumberLine
+ title="Gabungan Interval yang Memenuhi"
+ description="Titik 2 disertakan karena f(2)=5. Titik 10 tidak disertakan karena fungsi tidak didefinisikan di sana."
+ min={0}
+ max={11}
+ segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+/>

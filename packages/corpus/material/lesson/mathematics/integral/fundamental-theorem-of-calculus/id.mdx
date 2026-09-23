@@ -3,7 +3,7 @@ export const metadata = {
     description: "Hubungkan turunan, fungsi akumulasi, dan integral tentu melalui kedua bagian Teorema Dasar Kalkulus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integral",
 };
 
@@ -17,7 +17,7 @@ Anggap <InlineMath math="f" /> kontinu pada interval yang dibahas. Bagian Pertam
 
 Bagian Pertama menyatakan bahwa mengakumulasi suatu laju kontinu lalu <Highlight>menurunkannya akan mengembalikan laju semula</Highlight>:
 
-<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ &amp;\implies F'(x) \\ &amp;= f(x) \end{aligned}" />
+<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ F'(x)&amp;= f(x) \end{aligned}" />
 
 Ini berarti turunan dari suatu fungsi yang didefinisikan sebagai integral adalah fungsi di dalam integral itu sendiri.
 
@@ -33,7 +33,15 @@ Menurut TDK Bagian Pertama, turunan diperoleh dengan mengevaluasi integran pada 
 
 <BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
 
-Hasilnya adalah integran semula yang dievaluasi pada batas atas.
+Integran akar terdefinisi untuk <InlineMath math="t\ge-2" /> dan kontinu pada domain tersebut. Rumus turunan di atas berlaku pada **bagian dalam domain**, yaitu <InlineMath math="x>-2" />.
+
+### Batas Atas yang Berupa Fungsi
+
+Jika batas atasnya <InlineMath math="x^2" />, perubahan batas terhadap <InlineMath math="x" /> juga memengaruhi turunan. Terapkan **aturan rantai** setelah mengevaluasi integran pada batas atas:
+
+<BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
+
+Faktor <InlineMath math="2x" /> berasal dari turunan batas atas <InlineMath math="x^2" />. Pada <InlineMath math="x=0" />, laju perubahan batas atas nol, sehingga turunan fungsi akumulasi ini juga nol meskipun integrannya positif.
 
 ## Evaluasi Integral dengan Antiturunan
 

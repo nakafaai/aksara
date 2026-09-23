@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Teorema Aproksimasi Terbaik
 
-Misalkan <InlineMath math="V" /> adalah ruang hasil kali dalam dan <InlineMath math="S\subseteq V" /> adalah subruang berdimensi hingga. Untuk setiap <InlineMath math="f\in V" />, terdapat tepat satu vektor <InlineMath math="g\in S" /> sehingga
+Misalkan <InlineMath math="V" /> adalah ruang hasil kali dalam real dan <InlineMath math="S\subseteq V" /> adalah subruang berdimensi hingga. Untuk setiap <InlineMath math="f\in V" />, terdapat tepat satu vektor <InlineMath math="g\in S" /> sehingga
 
 <BlockMath math="\|f-g\|=\min_{\varphi\in S}\|f-\varphi\|" />
 
@@ -24,11 +24,11 @@ Secara ekuivalen,
 
 <BlockMath math="\begin{aligned} &amp;\langle f-g,\varphi\rangle=0 \\ &amp;\text{untuk setiap }\varphi\in S \end{aligned}" />
 
-<Highlight>Dalam ruang Hilbert, teorema yang sama berlaku untuk setiap subruang tertutup.</Highlight> Subruang berdimensi hingga selalu tertutup.
+Dalam ruang Hilbert, teorema yang sama berlaku untuk <Highlight>setiap subruang tertutup</Highlight>. Subruang berdimensi hingga selalu tertutup.
 
 ## Mengapa Ortogonalitas Memberikan Minimum
 
-Misalkan <InlineMath math="g=P_Sf" /> dan pilih sembarang <InlineMath math="\varphi\in S" />. Karena <InlineMath math="g-\varphi\in S" /> dan <InlineMath math="f-g\perp S" />, identitas Pythagoras memberikan
+Misalkan <InlineMath math="g=P_Sf" /> dan pilih sembarang <InlineMath math="\varphi\in S" />. Karena <InlineMath math="g-\varphi\in S" /> dan <InlineMath math="f-g\perp S" />, **identitas Pythagoras** memberikan
 
 <MathContainer>
 <BlockMath math="f-\varphi=(f-g)+(g-\varphi)" />
@@ -47,7 +47,7 @@ Jika <InlineMath math="\varphi_1,\ldots,\varphi_n" /> adalah basis ortonormal da
 <BlockMath math="\|f-P_Sf\|^2=\|f\|^2-\sum_{i=1}^n|\langle f,\varphi_i\rangle|^2" />
 </MathContainer>
 
-Baris kedua diperoleh dengan menguraikan <InlineMath math="f" /> menjadi komponen tegak lurus <InlineMath math="P_Sf" /> dan <InlineMath math="f-P_Sf" />.
+Baris kedua diperoleh dengan menguraikan <InlineMath math="f" /> menjadi **komponen tegak lurus** <InlineMath math="P_Sf" /> dan <InlineMath math="f-P_Sf" />.
 
 Untuk matriks real <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> dengan kolom ortonormal,
 
@@ -64,7 +64,7 @@ Dua vektor yang akan dipakai adalah
 <BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
 </MathContainer>
 
-Proyeksikan vektor <InlineMath math="f" /> pada <InlineMath math="S=\operatorname{span}\{u\}" />. Koefisien proyeksinya adalah
+Proyeksikan vektor <InlineMath math="f" /> pada <InlineMath math="S=\operatorname{span}\{u\}" />. **Koefisien proyeksinya** adalah
 
 <BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
 
@@ -80,7 +80,9 @@ Karena itu,
 <LineEquation
   title={<>Proyeksi <InlineMath math="f" /> pada <InlineMath math="\operatorname{span}\{u\}" /></>}
   description={<>Vektor sian adalah <InlineMath math="f" />, vektor jingga adalah <InlineMath math="g=P_Sf" />, dan ruas ungu adalah residual tegak lurus <InlineMath math="r=f-g" />.</>}
-  cameraPosition={[5, 5, 7]}
+  cameraPosition={[1, 1.5, 7]}
+  cameraTarget={[1, 1.5, 0]}
+  showZAxis={false}
   data={[
     {
       points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
@@ -109,14 +111,14 @@ Misalkan <InlineMath math="\psi_1,\ldots,\psi_n" /> adalah sembarang basis dari 
 
 <BlockMath math="g=\sum_{i=1}^n\alpha_i\psi_i" />
 
-Syarat ortogonalitas memberikan sistem Gram
+Syarat ortogonalitas memberikan **sistem Gram**
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle, \\ &amp;k=1,\ldots,n \end{aligned}" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
-Dalam sistem ini, <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,psi_k\rangle" />. Karena vektor basis saling bebas linear,
+Dalam sistem ini, <InlineMath math="G_{ki}=\langle\psi_i,\psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,\psi_k\rangle" />. Karena vektor basis saling bebas linear,
 
 <BlockMath math="\begin{aligned} &amp;z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0 \\ &amp;\text{untuk }z\ne0 \end{aligned}" />
 
@@ -145,10 +147,10 @@ Dengan demikian,
 
 <MathContainer>
 <BlockMath math="P_Sf(x)=\frac13" />
-<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\frac{8}{45} \end{aligned}" />
+<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\int_{-1}^1\left(x^4-\frac23x^2+\frac19\right)dx\\&amp;=\frac25-\frac49+\frac29=\frac{8}{45} \end{aligned}" />
 </MathContainer>
 
-Suku linear hilang karena <InlineMath math="x^3" /> merupakan fungsi ganjil pada interval simetris.
+Suku linear hilang karena <InlineMath math="x^3" /> merupakan **fungsi ganjil pada interval simetris**.
 
 ## Sifat Proyektor Ortogonal
 

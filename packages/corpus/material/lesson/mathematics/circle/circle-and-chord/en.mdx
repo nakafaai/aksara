@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Joining Two Points on a Circle with a Segment
 
-<Highlight>A chord is a line segment whose two endpoints lie on a circle.</Highlight> A diameter is the special chord that passes through the center. Other chords do not need to pass through it.
+A chord is a <Highlight>line segment with both endpoints on a circle</Highlight>. A diameter is the special chord that passes through the center. Other chords do not need to pass through it.
 
 <LineEquation
   title="Chords on a Circle"
@@ -94,7 +94,7 @@ Chords <InlineMath math="AB" /> and <InlineMath math="CD" /> subtend equal centr
 
 ## How Chord Length and Centre Distance Relate
 
-A chord's length and its distance from the centre move together. A smaller distance produces a longer chord, and the two quantities convert into each other through the Pythagorean theorem.
+Within the **same circle**, chord length and perpendicular distance from the center determine each other. A smaller distance produces a longer chord, and the two quantities convert into each other through the Pythagorean theorem.
 
 ### Equal Length Chords
 
@@ -185,7 +185,7 @@ If <InlineMath math="PQ = RS" />, then the distance from center <InlineMath math
 
 ### Line from Center Perpendicular to Chord
 
-A line drawn from the center of a circle perpendicular to a chord divides the chord into two equal parts.
+A line drawn from the center of a circle perpendicular to a chord divides the chord into **two equal parts**.
 
 <LineEquation
   title="Perpendicular Line from Center"
@@ -251,8 +251,8 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
           (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
         return [
           { x: chordMidX - 0.3, y: chordMidY, z: 0 },
-          { x: chordMidX - 0.3, y: chordMidY + 0.3, z: 0 },
-          { x: chordMidX, y: chordMidY + 0.3, z: 0 },
+          { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
+          { x: chordMidX, y: chordMidY - 0.3, z: 0 },
         ];
       })(),
       color: "#d97706",
@@ -267,7 +267,7 @@ In the diagram above, <InlineMath math="OM \perp AB" /> and <InlineMath math="M"
 
 ## Chord Length
 
-A chord and its central angle form an isosceles triangle with two radii. The formula below comes from splitting that triangle in half. The half-triangle gives half the chord length as <InlineMath math="r\sin(\theta/2)" />.
+A chord and its central angle form an isosceles triangle with two radii. The formula below comes from **splitting that triangle in half**. The half-triangle gives half the chord length as <InlineMath math="r\sin(\theta/2)" />.
 
 ### Chord Length Formula
 
@@ -276,7 +276,7 @@ A chord and its central angle form an isosceles triangle with two radii. The for
 Here:
 
 - <InlineMath math="r" /> = radius of the circle
-- <InlineMath math="\theta" /> = the smaller central angle subtending the chord. Use the calculator mode that matches the angle unit
+- <InlineMath math="\theta" /> = the **smaller central angle** subtending the chord. Use the calculator mode that matches the angle unit
 
 As the smaller central angle <InlineMath math="\theta" /> increases from <InlineMath math="0" /> to <InlineMath math="180^\circ" />, the factor <InlineMath math="\sin(\theta/2)" /> increases from <InlineMath math="0" /> to <InlineMath math="1" />. The chord length therefore increases from <InlineMath math="0" /> to the diameter <InlineMath math="2r" />.
 
@@ -369,13 +369,13 @@ As the smaller central angle <InlineMath math="\theta" /> increases from <Inline
 
 ### Distance of Chord from Center
 
-The distance of a chord from the center of the circle can be calculated using the formula:
+In the right triangle, the center distance is adjacent to half the central angle, while the radius is the hypotenuse. The **cosine of the half-angle** therefore gives:
 
 <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right)" />
 
-Or if the chord length <InlineMath math="l" /> is known:
+If the chord length <InlineMath math="l" /> is known, use **half the chord length** as one leg of the right triangle:
 
-<BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+<BlockMath math="d^2+\left(\frac{l}{2}\right)^2=r^2\quad\Longrightarrow\quad d=\sqrt{r^2-\left(\frac{l}{2}\right)^2}" />
 
 ## Intersecting Chords Theorem
 
@@ -383,108 +383,34 @@ If two chords intersect inside a circle, then the product of the segments of one
 
 <LineEquation
   title="Intersection of Two Chords"
-  description={
-    <>
-      Intersecting chords theorem: <InlineMath math="PA \times PB = PC \times PD" />.
-    </>
-  }
+  description="Two chords intersecting away from the center of the circle."
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 3;
-        const angle2 = (4 * Math.PI) / 3;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = (5 * Math.PI) / 6;
-        const angle2 = (11 * Math.PI) / 6;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        // Calculate intersection point P
-        const A = {
-          x: 5 * Math.cos(Math.PI / 3),
-          y: 5 * Math.sin(Math.PI / 3),
-        };
-        const B = {
-          x: 5 * Math.cos((4 * Math.PI) / 3),
-          y: 5 * Math.sin((4 * Math.PI) / 3),
-        };
-        const C = {
-          x: 5 * Math.cos((5 * Math.PI) / 6),
-          y: 5 * Math.sin((5 * Math.PI) / 6),
-        };
-        const D = {
-          x: 5 * Math.cos((11 * Math.PI) / 6),
-          y: 5 * Math.sin((11 * Math.PI) / 6),
-        };
-
-        // Line AB: parametric form
-        // Line CD: parametric form
-        // Solve for intersection
-        const denominator =
-          (A.x - B.x) * (C.y - D.y) - (A.y - B.y) * (C.x - D.x);
-        const t =
-          ((A.x - C.x) * (C.y - D.y) - (A.y - C.y) * (C.x - D.x)) / denominator;
-
-        const P = {
-          x: A.x + t * (B.x - A.x),
-          y: A.y + t * (B.y - A.y),
-        };
-
-        return [{ x: P.x, y: P.y, z: 0 }];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.3, 0, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 15]}
+    { kind: "circle-outline", radius: 5, color: "#9333ea" },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
+      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
+      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
+  ]}
 />
 
-In the diagram above, the following holds: <InlineMath math="PA \times PB = PC \times PD" />
+In the diagram, the circle has radius <InlineMath math="5" /> and intersection point <InlineMath math="P(1,0)" />. The horizontal pieces differ in length, but their **product** equals the product of the vertical pieces.
+
+<MathContainer>
+  <BlockMath math="PA=5-1=4,\quad PB=1-(-5)=6" />
+  <BlockMath math="PC=PD=\sqrt{5^2-1^2}=\sqrt{24}" />
+  <BlockMath math="PA\cdot PB=4\cdot6=24=\sqrt{24}\cdot\sqrt{24}=PC\cdot PD" />
+</MathContainer>
 
 ## Inscribed Angles in the Same Segment
 
-Inscribed angles that subtend the same chord have equal measures when their vertices lie on the same side of that chord.
+Inscribed angles that subtend the same chord have equal measures when their vertices lie on the **same side** of that chord.
 
 <LineEquation
   title="Inscribed Angles in the Same Segment"
@@ -567,7 +493,7 @@ In the diagram above, <InlineMath math="\angle ACB = \angle ADB" /> because both
 
 ## Apothem
 
-The apothem of a chord is the perpendicular segment from the center of the circle to the chord. Its length is the shortest distance between the center and the chord.
+The apothem of a chord is the perpendicular segment from the center of the circle to the chord. Its length is the **shortest distance** between the center and the chord.
 
 <LineEquation
   title="Apothem of a Chord"
@@ -649,7 +575,7 @@ Here:
 
 ## Parallel Chords
 
-Two parallel chords in a circle have special properties.
+Two parallel chords cut off **equal connecting arcs** on opposite sides of the circle. Compare the minor arcs on the left and right, not the longer arc passing around the other side.
 
 <LineEquation
   title="Parallel Chords"
@@ -710,7 +636,7 @@ Two parallel chords in a circle have special properties.
         const angle1 = Math.atan2(y1, -x1);
         const y2 = -2;
         const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, -x2);
+        const angle2 = Math.atan2(y2, -x2) + 2 * Math.PI;
         const numPoints = 20;
         return Array.from({ length: numPoints + 1 }, (_, i) => {
           const angle = angle1 + (angle2 - angle1) * (i / numPoints);
@@ -754,12 +680,9 @@ If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equa
 
 ## Practice Problems
 
-Each problem gives one chord measurement and asks for another. Identify which relation applies, then compute the missing value.
+The first four problems use angles, center distances, or chord segments to find missing measurements. In the last problem, use the **bound on the sine function** to prove the maximum chord length.
 
-1. A circle has a radius of <InlineMath math="10 \text{ cm}" />. If the central angle subtending a chord is <InlineMath math="60^\circ" />, determine:
-
-   - The length of the chord
-   - The distance of the chord from the center of the circle
+1. A circle has a radius of <InlineMath math="10 \text{ cm}" />. If the central angle subtending a chord is <InlineMath math="60^\circ" />, determine the chord length and its distance from the center of the circle.
 
 2. Two chords <InlineMath math="AB" /> and <InlineMath math="CD" /> intersect at point <InlineMath math="P" /> inside a circle. If <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, and <InlineMath math="PC = 3 \text{ cm}" />, find the length of <InlineMath math="PD" />.
 
@@ -771,69 +694,69 @@ Each problem gives one chord measurement and asks for another. Identify which re
 
 ### Worked Solutions
 
-1. **Calculating chord length and its distance from center**
+**Solution 1**: Calculating chord length and its distance from center
 
-   Given: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
+Given: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
-     <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0.5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
-     <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
-     <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0.5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
+  <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
+  <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
+</MathContainer>
 
-2. **Intersecting chords theorem**
+**Solution 2**: Intersecting chords theorem
 
-   Given: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
+Given: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="PA \times PB = PC \times PD" />
-     <BlockMath math="4 \times 6 = 3 \times PD" />
-     <BlockMath math="24 = 3 \times PD" />
-     <BlockMath math="PD = 8 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="PA \times PB = PC \times PD" />
+  <BlockMath math="4 \times 6 = 3 \times PD" />
+  <BlockMath math="24 = 3 \times PD" />
+  <BlockMath math="PD = 8 \text{ cm}" />
+</MathContainer>
 
-3. **Calculating distance of chord from center**
+**Solution 3**: Calculating distance of chord from center
 
-   Given: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
+Given: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
-     <BlockMath math="d = \sqrt{13^2 - 12^2}" />
-     <BlockMath math="d = \sqrt{169 - 144}" />
-     <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+  <BlockMath math="d = \sqrt{13^2 - 12^2}" />
+  <BlockMath math="d = \sqrt{169 - 144}" />
+  <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
+</MathContainer>
 
-4. **Parallel chords**
+**Solution 4**: Parallel chords
 
-   Given: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
+Given: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
 
-   For the first chord:
+For the first chord:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-   For the second chord:
+For the second chord:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-5. **Proof that diameter is the longest chord**
+**Solution 5**: Proof that diameter is the longest chord
 
-   For any chord, take <InlineMath math="\theta" /> to be the smaller central angle, so <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
+For any chord, take <InlineMath math="\theta" /> to be the smaller central angle, so <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
 
-   <MathContainer>
-     <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
+</MathContainer>
 
-   The maximum value of <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> is achieved when <InlineMath math="\frac{\theta}{2} = 90^\circ" />, that is <InlineMath math="\theta = 180^\circ" />.
+The maximum value of <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> is achieved when <InlineMath math="\frac{\theta}{2} = 90^\circ" />, that is <InlineMath math="\theta = 180^\circ" />.
 
-   When <InlineMath math="\theta = 180^\circ" />, the chord passes through the center of the circle (diameter) with length:
+When <InlineMath math="\theta = 180^\circ" />, the chord passes through the center of the circle (diameter) with length:
 
-   <MathContainer>
-     <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
+</MathContainer>
 
-   Therefore, the diameter is the longest chord.
+Therefore, the diameter is the longest chord.

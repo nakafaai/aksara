@@ -15,17 +15,15 @@ Logarithmen machen Potenzierungen rückgängig. Aus <InlineMath math="b^x = a" /
 
 ## Grundlegende Logarithmusregeln
 
-Wenn ein Term ein Produkt, einen Quotienten oder eine Potenz enthält, zerlegst du ihn mit einer dieser Regeln zuerst in getrennte Logarithmen. Danach lässt sich der Ausdruck oft im Kopf ausrechnen.
-
-Die folgenden Identitäten sind die, nach denen du zuerst greifst. Jede Regel lässt sich an einem Zahlenbeispiel nachrechnen, sodass du die Umformung nicht auswendig lernen musst.
+Verwende bei allen Regeln **positive Argumente**. Bei der Potenzregel bleibt die Basis der Potenz positiv, auch wenn die Potenz selbst für eine negative Zahl berechnet werden könnte.
 
 ### Produktregel
 
 <BlockMath math="\log_b(MN) = {\log_b M} + {\log_b N}" />
 
-Der Logarithmus eines Produkts ist die Summe der Logarithmen seiner Faktoren.
+Der Logarithmus eines Produkts ist die **Summe der Logarithmen** seiner Faktoren.
 
-**Beispiel:**
+**Beispiel**:
 
 <BlockMath math="\begin{aligned} \log_2(8 \times 4) &amp;= {\log_2 8} + {\log_2 4} \\ &amp;= 3 + 2 \\ &amp;= 5 \end{aligned}" />
 
@@ -33,9 +31,9 @@ Der Logarithmus eines Produkts ist die Summe der Logarithmen seiner Faktoren.
 
 <BlockMath math="\log_b\left(\frac{M}{N}\right) = {\log_b M} - {\log_b N}" />
 
-Der Logarithmus eines Quotienten ist die Differenz aus dem Logarithmus des Zählers und dem Logarithmus des Nenners.
+Der Logarithmus eines Quotienten ist die **Differenz aus dem Logarithmus** des Zählers und dem Logarithmus des Nenners.
 
-**Beispiel:**
+**Beispiel**:
 
 <BlockMath math="\begin{aligned} \log_3\left(\frac{81}{9}\right) &amp;= {\log_3 81} - {\log_3 9} \\ &amp;= 4 - 2 \\ &amp;= 2 \end{aligned}" />
 
@@ -43,17 +41,19 @@ Der Logarithmus eines Quotienten ist die Differenz aus dem Logarithmus des Zähl
 
 <BlockMath math="\log_b(M^p) = p \cdot {\log_b M}" />
 
-Ein Exponent im Argument kann als Faktor vor den Logarithmus gezogen werden.
+Ein Exponent im Argument kann **als Faktor vor den Logarithmus** gezogen werden.
 
-**Beispiel:**
+**Beispiel**:
 
 <BlockMath math="\log_2(4^3) = 3 \cdot {\log_2 4} = 3 \times 2 = 6" />
 
 ## Weitere Logarithmusregeln
 
-Jede Regel unten nennt zuerst den Fall, für den sie gilt, und danach die Umformung. Prüfe immer Basis und Argument, bevor du eine der Regeln anwendest.
+Prüfe die **Bedingungen für die Basen**: Sowohl die bisherige als auch die neue Basis muss positiv und ungleich eins sein.
 
-Manche Identitäten gelten nur für eine bestimmte Basis oder ein bestimmtes Argument.
+Beim Wechsel von der Basis zwei zur Basis zehn bleibt etwa der Wert unverändert. Der Nenner ist ungleich null, weil die ursprüngliche Basis nicht eins ist.
+
+<BlockMath math="\log_2 8=\frac{\log_{10}8}{\log_{10}2}=\frac{3\log_{10}2}{\log_{10}2}=3" />
 
 ### Wechsel der Basis
 
@@ -61,7 +61,7 @@ Manche Identitäten gelten nur für eine bestimmte Basis oder ein bestimmtes Arg
 
 Mit dieser Regel lässt sich ein Logarithmus in eine andere Basis umrechnen.
 
-**Beispiel:**
+**Beispiel**:
 
 Da <InlineMath math="9=3^2" /> gilt, ist der Zähler genau doppelt so groß wie der Nenner:
 
@@ -71,55 +71,100 @@ Da <InlineMath math="9=3^2" /> gilt, ist der Zähler genau doppelt so groß wie 
 
 Wenn <InlineMath math="\log_b M = {\log_b N}" />, dann gilt <InlineMath math="M = N" />.
 
-Zwei Zahlen mit demselben logarithmischen Wert (mit derselben Basis) müssen dieselbe Zahl sein. Zum Beispiel ist <InlineMath math="\log_2 8 = \log_2 2^3" />, beide Seiten ergeben <InlineMath math="3" />, und die Argumente <InlineMath math="8" /> und <InlineMath math="2^3" /> sind gleich. Die Regel gilt, weil zu jedem Wert eines Logarithmus mit fester Basis genau ein Argument gehört.
+Zwei Zahlen mit demselben logarithmischen Wert (mit **derselben Basis**) müssen dieselbe Zahl sein. Zum Beispiel ist <InlineMath math="\log_2 8 = \log_2 2^3" />, beide Seiten ergeben <InlineMath math="3" />, und die Argumente <InlineMath math="8" /> und <InlineMath math="2^3" /> sind gleich. Die Regel gilt, weil zu jedem Wert eines Logarithmus mit fester Basis genau ein Argument gehört.
 
 ### Zwei Logarithmen vergleichen
 
-Diese Identität verbindet das Vorzeichen eines Logarithmus mit der Lage seines Arguments zur Basis, und genau das brauchst du, wenn ein Logarithmus in einer Ungleichung steht.
+Der Vergleich hängt von der **Richtung des Graphen** ab. Eine Basis über eins erhält die Reihenfolge der Argumente. Eine Basis zwischen null und eins kehrt sie um.
 
 - Wenn <InlineMath math="b > 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M < N" />
 - Wenn <InlineMath math="0 < b < 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M > N" />
 
+<LineEquation
+  title="Reihenfolge bei zwei Basen"
+  description="Bei den Eingaben 2 und 4 liefert die Basis zwei die Werte 1 und 2. Die Basis ein halb liefert minus 1 und minus 2."
+  data={[
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="\log_2 x" />, at: 100, offset: [1, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 121 }, (_, i) => {
+        const t = -3 + i / 20;
+        return { x: 2 ** t, y: -t, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="\log_{1/2} x" />, at: 100, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraTarget={[3, 0, 0]}
+  cameraPosition={[3, 0, 14]}
+/>
+
 ## Logarithmische Rechenregeln anwenden
 
-Hier trifft eine Identität auf einen algebraischen Ausdruck, deshalb muss der Ausdruck zuerst in eine geeignete Form gebracht werden. Arbeite Schritt für Schritt und notiere bei jedem Schritt, welche Identität du benutzt.
+Hier trifft eine Identität auf einen algebraischen Ausdruck, deshalb muss der Ausdruck zuerst in eine **geeignete Form** gebracht werden. Arbeite Schritt für Schritt und notiere bei jedem Schritt, welche Identität du benutzt.
 
 Die Identitäten helfen, sobald ein Term vor dem Lösen vereinfacht werden muss.
 
 ### Ausdrücke vereinfachen
 
+Verbinde die drei Terme mit der **Produktregel und anschließend der Quotientenregel**.
+
 Vereinfache <InlineMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />.
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
-  <BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
-  <BlockMath math="= {\log_2(32 \times 8)} - {\log_2 4}" />
-  <BlockMath math="= {\log_2 256} - {\log_2 4}" />
-  <BlockMath math="= {\log_2\left(\frac{256}{4}\right)}" />
-  <BlockMath math="= {\log_2 64} = 6" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2(32 \times 8)} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 256} - {\log_2 4}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2\left(\frac{256}{4}\right)}" />
+
+<BlockMath math="\log_2 32 + {\log_2 8} - {\log_2 4} = {\log_2 64} = 6" />
 </MathContainer>
 
 ### Gleichungen lösen
 
+Am Anfang steht die Bedingung **positiver Argumente**. Die Eingabe muss deshalb größer als null sein. Die Lösung neun erfüllt diese Bedingung.
+
 Bestimme <InlineMath math="x" />, wenn <InlineMath math="\log_3 x + {\log_3 9} = {\log_3 81}" /> gilt.
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
-  <BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
-  <BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
-  <BlockMath math="x \times 9 = 81" />
-  <BlockMath math="x = \frac{81}{9} = 9" />
+
+<BlockMath math="\log_3 x + {\log_3 9} = {\log_3 81}" />
+
+<BlockMath math="\log_3(x \times 9) = {\log_3 81}" />
+
+<BlockMath math="x \times 9 = 81" />
+
+<BlockMath math="x = \frac{81}{9} = 9" />
 </MathContainer>
 
 ## Anwendungen in Modellen
 
-In einem Modell steht die gesuchte Größe im Exponenten, und der Logarithmus holt sie von dort herunter. Die Beispiele unten zeigen, welche Identität dafür jeweils nötig ist.
+In einem Modell steht die **gesuchte Größe im Exponenten**, und der Logarithmus holt sie von dort herunter. Die Beispiele unten zeigen, welche Identität dafür jeweils nötig ist.
 
 Logarithmische Identitäten treten auch auf, wenn ein Modell exponentielles Wachstum oder Abklingen enthält.
 
 ### Eine logarithmische Magnitudenskala
+
+Dieses Modell vergleicht ein **Amplitudenverhältnis** mit Logarithmen zur Basis zehn.
 
 In einem vereinfachten Magnitudenmodell wird eine gemessene Amplitude <InlineMath math="A" /> mit einer Referenzamplitude <InlineMath math="A_0" /> verglichen:
 
@@ -131,15 +176,19 @@ Dabei gilt:
 - <InlineMath math="A" /> ist die gemessene Amplitude
 - <InlineMath math="A_0" /> ist die Referenzamplitude
 
-**Beispiel:** Eine gemessene Amplitude sei <InlineMath math="10^7" />-mal so groß wie die Referenzamplitude. Welche Magnitude ergibt das vereinfachte Modell?
+**Beispiel**: Eine gemessene Amplitude sei <InlineMath math="10^7" />-mal so groß wie die Referenzamplitude. Welche Magnitude ergibt das vereinfachte Modell?
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
-  <BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
-  <BlockMath math="= \log\left(\frac{10^7 A_0}{A_0}\right)" />
-  <BlockMath math="= \log(10^7)" />
-  <BlockMath math="= 7" />
+
+<BlockMath math="M = \log\left(\frac{A}{A_0}\right)" />
+
+<BlockMath math="M = \log\left(\frac{10^7 A_0}{A_0}\right)" />
+
+<BlockMath math="M = \log(10^7)" />
+
+<BlockMath math="M = 7" />
 </MathContainer>
 
 Das Amplitudenverhältnis entspricht in diesem vereinfachten Modell der Magnitude <InlineMath math="7" />. Bei tatsächlichen Erdbebenberechnungen werden außerdem Messgerät, Wellentyp und Entfernung zur Quelle berücksichtigt.
@@ -157,21 +206,40 @@ Dabei gilt:
 - <InlineMath math="C" /> = gewünschte Kapazität
 - <InlineMath math="C_0" /> = maximale Kapazität
 
-**Beispiel:** Wie lange dauert es in diesem Modell, einen leeren Akku auf <InlineMath math="90\%" /> seiner maximalen Kapazität zu laden? Es gilt <InlineMath math="k = 0{,}02" />.
+**Beispiel**: Wie lange dauert es in diesem Modell, einen leeren Akku auf <InlineMath math="90\%" /> seiner maximalen Kapazität zu laden? Es gilt <InlineMath math="k = 0{,}02\ \text{min}^{-1}" />.
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
-  <BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
-  <BlockMath math="= -\frac{1}{0{,}02}\ln\left(1 - \frac{0{,}9C_0}{C_0}\right)" />
-  <BlockMath math="= -50\ln(1 - 0{,}9)" />
-  <BlockMath math="= -50\ln(0{,}1)" />
-  <BlockMath math="\approx 115{,}13" />
+
+<BlockMath math="t = -\frac{1}{k}\ln\left(1 - \frac{C}{C_0}\right)" />
+
+<BlockMath math="t = -\frac{1}{0{,}02}\ln\left(1 - \frac{0{,}9C_0}{C_0}\right)" />
+
+<BlockMath math="t = -50\ln(1 - 0{,}9)" />
+
+<BlockMath math="t = -50\ln(0{,}1)" />
+
+<BlockMath math="t \approx 115{,}13" />
 </MathContainer>
 
 In diesem vereinfachten Modell dauert das Laden auf <InlineMath math="90\%" /> ungefähr <InlineMath math="115 \text{ Minuten}" />. Reale Ladesysteme können ihre Rate bei hohem Ladestand ändern.
 
+Der **Definitionsbereich des Lademodells** reicht von null bis zu einer Ladung unterhalb des Maximums.
+
+<BlockMath math="C_0>0,\quad k>0,\quad0\leq C<C_0" />
+
+In diesem Modell wird **die volle Ladung nur angenähert**, in endlicher Zeit aber nicht erreicht. Der Vergleich mehrerer Zielwerte zeigt, warum ein weiteres Prozent nahe der vollen Ladung länger dauern kann.
+
+| Ladeziel | Zeit (Minuten) |
+| --- | --- |
+| <InlineMath math="50\%" /> | <InlineMath math="-50\ln(0{,}5)\approx34{,}66" /> |
+| <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0{,}1)\approx115{,}13" /> |
+| <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0{,}01)\approx230{,}26" /> |
+
 ### Abwertung des Autopreises
+
+Die konstante Rate ist eine **Annahme für den betrachteten Zeitraum**. Der Fahrzeugwert halbiert sich alle fünf Jahre.
 
 Ist die momentane Wertminderung proportional zum aktuellen Fahrzeugwert, hat ein exponentielles Modell die Form:
 
@@ -179,17 +247,21 @@ Ist die momentane Wertminderung proportional zum aktuellen Fahrzeugwert, hat ein
 
 Dabei ist <InlineMath math="H(t)" /> der Wert zum Zeitpunkt <InlineMath math="t" />.
 
-**Beispiel:** Ein Neuwagen kostet <InlineMath math="200 \text{ Millionen Rupiah}" />. Sein modellierter Wert beträgt nach <InlineMath math="5 \text{ Jahren}" /> noch <InlineMath math="100 \text{ Millionen Rupiah}" />. Bestimme den modellierten Wert nach <InlineMath math="10 \text{ Jahren}" />, wenn dieselbe exponentielle Wertminderung anhält.
+**Beispiel**: Ein Neuwagen kostet <InlineMath math="200 \text{ Millionen Rupiah}" />. Sein modellierter Wert beträgt nach <InlineMath math="5 \text{ Jahren}" /> noch <InlineMath math="100 \text{ Millionen Rupiah}" />. Bestimme den modellierten Wert nach <InlineMath math="10 \text{ Jahren}" />, wenn dieselbe exponentielle Wertminderung anhält.
 
-**Lösung:**
+**Lösung**:
 
 Miss <InlineMath math="H(t)" /> in Millionen Rupiah und <InlineMath math="t" /> in Jahren. Beim Kauf gilt:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
-  <BlockMath math="e^{5k} = \frac{1}{2} \text{, also } 5k = \ln\left(\frac{1}{2}\right)" />
-  <BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
+
+<BlockMath math="\begin{aligned} &amp;H(0)=200 \\ &amp;200=ce^0=c \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;H(5)=100 \\ &amp;100=200e^{5k} \end{aligned}" />
+
+<BlockMath math="e^{5k} = \frac{1}{2} \text{, also } 5k = \ln\left(\frac{1}{2}\right)" />
+
+<BlockMath math="k = \frac{1}{5}\ln\left(\frac{1}{2}\right) \approx -0{,}1386" />
 </MathContainer>
 
 Aus diesen Ergebnissen ergibt sich für den Autopreis zu jedem Zeitpunkt <InlineMath math="t" />:
@@ -204,52 +276,61 @@ Der modellierte Fahrzeugwert nach <InlineMath math="10 \text{ Jahren}" /> beträ
 
 Die drei Aufgaben verlangen jeweils eine andere Umformung, deshalb hilft es, vor dem Rechnen aufzuschreiben, welche Regel gebraucht wird. Vergleiche danach deinen Rechenweg mit dem Weg in der Lösung.
 
-**Aufgabe** 1
+**Aufgabe 1**
 
 Vereinfache: <InlineMath math="\log_5 125 + {\log_5 25} - {\log_5 5}" />
 
-**Aufgabe** 2
+**Aufgabe 2**
 
 Für <InlineMath math="\log_2 x = 3" /> und <InlineMath math="\log_2 y = 5" /> ist <InlineMath math="\log_2(xy)" /> zu bestimmen.
 
-**Aufgabe** 3
+**Aufgabe 3**
 
 Bestimme <InlineMath math="x" />, wenn <InlineMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" /> gilt.
 
 ### Ausführliche Lösungen
 
-**Antwort** <InlineMath math="1" />
+**Antwort 1**
 
 Alle drei Zahlen sind Potenzen von <InlineMath math="5" />. Zuerst werden die einzelnen Logarithmen bestimmt:
 
 <MathContainer>
-  <BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
-  <BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+<BlockMath math="125=5^3,\quad25=5^2,\quad5=5^1" />
+
+<BlockMath math="\begin{aligned} &amp;\log_5 125 + {\log_5 25} - {\log_5 5} \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
 </MathContainer>
 
 Der vereinfachte Term hat den Wert <InlineMath math="4" />.
 
-**Antwort** <InlineMath math="2" />
+**Antwort 2**
 
 Da im gesuchten Term das Produkt <InlineMath math="xy" /> steht, passt die Produktregel:
 
 <MathContainer>
-  <BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
-  <BlockMath math="= 3 + 5 = 8" />
+
+<BlockMath math="\log_2(xy) = {\log_2 x} + {\log_2 y}" />
+
+<BlockMath math="\log_2(xy) = 3 + 5 = 8" />
 </MathContainer>
 
 Somit gilt <InlineMath math="\log_2(xy)=8" />.
 
-**Antwort** <InlineMath math="3" />
+**Antwort 3**
 
 Auf der rechten Seite wird zuerst die Quotientenregel angewendet. Danach können die Argumente der Logarithmen mit derselben Basis gleichgesetzt werden:
 
 <MathContainer>
-  <BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
-  <BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
-  <BlockMath math="\log_4(x-1) = {\log_4 8}" />
-  <BlockMath math="x - 1 = 8" />
-  <BlockMath math="x = 9" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 16} - {\log_4 2}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4\left(\frac{16}{2}\right)}" />
+
+<BlockMath math="\log_4(x-1) = {\log_4 8}" />
+
+<BlockMath math="x - 1 = 8" />
+
+<BlockMath math="x = 9" />
 </MathContainer>
 
 Für den Logarithmus muss <InlineMath math="x-1>0" /> gelten. Da <InlineMath math="9-1=8>0" /> gilt, ist die Lösung zulässig.

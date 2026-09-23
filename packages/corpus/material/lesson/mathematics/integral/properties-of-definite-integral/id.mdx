@@ -3,17 +3,21 @@ export const metadata = {
     description: "Gunakan sifat interval nol, pembalikan batas, linearitas, dan penambahan interval pada integral tentu.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Integral",
 };
 
 ## Batas Integrasi yang Sama
 
-<Highlight>Jika batas atas dan bawah dari suatu integral tentu sama, maka hasilnya adalah nol.</Highlight>
+Jika **batas atas dan batas bawah sama**, integral tentu bernilai nol. Aturan ini berlaku untuk fungsi yang dapat diintegralkan pada interval yang dibahas.
 
 <BlockMath math="\int_{a}^{a} f(x) \, dx = 0" />
 
 Integral tentu mengakumulasi suatu besaran pada interval berarah. Dari <InlineMath math="a" /> kembali ke titik <InlineMath math="a" /> yang sama, intervalnya tidak memiliki lebar. Karena itu, hasil akumulasinya nol berapa pun nilai integrannya.
+
+Sebagai contoh, fungsi <InlineMath math="f(x)=x" /> bernilai <InlineMath math="3" /> pada <InlineMath math="x=3" />. Namun, interval dari <InlineMath math="3" /> ke <InlineMath math="3" /> memiliki **lebar nol**, sehingga integralnya tetap nol:
+
+<BlockMath math="\int_3^3 x\,dx=\left[\frac{x^2}{2}\right]_3^3=\frac92-\frac92=0" />
 
 ## Penukaran Batas Integrasi
 
@@ -23,13 +27,21 @@ Ketika kita menukar batas bawah dan batas atas dari suatu integral, hasilnya aka
 
 Batas bawah dan batas atas menentukan arah interval integrasi. Saat urutan kedua batas ditukar, arah interval berbalik dan <Highlight>tanda setiap kontribusi terhadap akumulasi ikut berubah</Highlight>. Karena itu, nilai integral menjadi negatif dari nilai semula.
 
+Untuk <InlineMath math="f(x)=x" />, antiturunannya adalah <InlineMath math="x^2/2" />. Menghitung kedua arah menghasilkan **besar yang sama dengan tanda berlawanan**:
+
+<BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
+
 ## Aturan Kelipatan Konstanta
 
 Sama seperti pada integral tak tentu, konstanta dapat dikeluarkan dari integral untuk menyederhanakan perhitungan.
 
 <BlockMath math="\int_{a}^{b} kf(x) \, dx = k \int_{a}^{b} f(x) \, dx" />
 
-Jika setiap nilai fungsi dikalikan konstanta <InlineMath math="k" />, nilai integralnya juga dikalikan faktor yang sama. Karena itu, kita dapat menghitung <InlineMath math="\int f(x)dx" /> terlebih dahulu, lalu mengalikan hasilnya dengan <InlineMath math="k" />.
+Jika setiap nilai fungsi dikalikan konstanta <InlineMath math="k" />, nilai integralnya juga dikalikan faktor yang sama. Karena itu, kita dapat menghitung <InlineMath math="\int_a^b f(x)\,dx" /> terlebih dahulu, lalu mengalikan hasilnya dengan <InlineMath math="k" />.
+
+Pada <InlineMath math="k=3" />, semua kontribusi integral menjadi **tiga kali semula**. Batas integrasi harus tetap sama saat faktor konstanta dikeluarkan:
+
+<BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
 
 ## Aturan Penjumlahan dan Pengurangan
 
@@ -42,6 +54,10 @@ Integral dari penjumlahan atau pengurangan dua fungsi adalah sama dengan jumlah 
 
 Sifat linearitas ini memungkinkan integran yang rumit dipecah menjadi bagian lebih sederhana. Kita mengintegralkan <InlineMath math="f(x)" /> dan <InlineMath math="g(x)" /> secara terpisah, lalu menggabungkan akumulasi bertandanya dengan operasi yang sama.
 
+Untuk integran <InlineMath math="x+1" />, kita menghitung kontribusi <InlineMath math="x" /> dan konstanta <InlineMath math="1" /> secara terpisah. **Operasi penjumlahan tetap dipertahankan**:
+
+<BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
+
 ## Sifat Penambahan Interval
 
 Interval integrasi dapat dipecah pada sebuah titik antara. Akumulasi bertanda pada seluruh interval sama dengan jumlah akumulasi pada kedua bagiannya.
@@ -49,3 +65,12 @@ Interval integrasi dapat dipecah pada sebuah titik antara. Akumulasi bertanda pa
 <BlockMath math="\begin{aligned} \int_{a}^{c} f(x) \, dx &amp;= \int_{a}^{b} f(x) \, dx \\ &amp;\quad{}+ \int_{b}^{c} f(x) \, dx \end{aligned}" />
 
 Identitas ini berlaku untuk urutan <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> apa pun, selama fungsi dapat diintegralkan pada interval yang diperlukan. Artinya, akumulasi dari <InlineMath math="a" /> ke <InlineMath math="c" /> sama dengan akumulasi dari <InlineMath math="a" /> ke <InlineMath math="b" /> ditambah akumulasi dari <InlineMath math="b" /> ke <InlineMath math="c" />. Pada fungsi bagian demi bagian, pisahkan integral di titik pergantian rumus, lalu integralkan setiap rumus pada intervalnya.
+
+Pisahkan interval <InlineMath math="[0,2]" /> pada <InlineMath math="x=1" />. Nilai kedua integral parsial dapat dibandingkan dalam tabel:
+
+| Interval | Perhitungan | Nilai |
+| --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="\frac{1^2}{2}-\frac{0^2}{2}" /> | <InlineMath math="\frac12" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
+
+Jumlah kedua bagian adalah <InlineMath math="\frac12+\frac32=2" />, sama dengan <InlineMath math="\int_0^2 x\,dx" />. **Titik pembagi yang sama** menjadi batas atas integral pertama dan batas bawah integral kedua, sehingga tidak ada interval yang terlewat.

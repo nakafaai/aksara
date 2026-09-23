@@ -13,7 +13,7 @@ Wir beginnen mit der Gleichung:
 
 <BlockMath math="x^2+1=0" />
 
-Damit diese Gleichung erfüllt ist, müsste <InlineMath math="x^2" /> gleich <InlineMath math="-1" /> sein. <Highlight>Keine reelle Zahl hat ein negatives Quadrat.</Highlight> Deshalb besitzt die Gleichung keine reelle Lösung. Wir erweitern den Zahlbereich um die imaginäre Einheit <InlineMath math="i" /> mit der folgenden Definition:
+Damit diese Gleichung erfüllt ist, müsste <InlineMath math="x^2" /> gleich <InlineMath math="-1" /> sein. Das Quadrat einer reellen Zahl ist **niemals negativ**. Deshalb besitzt die Gleichung keine reelle Lösung. Wir erweitern den Zahlbereich um die imaginäre Einheit <InlineMath math="i" /> mit der folgenden Definition:
 
 <BlockMath math="i^2=-1" />
 
@@ -44,9 +44,7 @@ Wegen <InlineMath math="D<0" /> schreiben wir <InlineMath math="D=-|D|" />. Dann
 
 ## Nichtreelle Nullstellen bestimmen und einordnen
 
-Sobald die Diskriminante negativ wird, verlässt du die reellen Zahlen und arbeitest mit <InlineMath math="i" />. Zwei konjugierte Nullstellen gehören dann zur Gleichung, und ihre Summe und ihr Produkt bleiben reell.
-
-Eine negative Diskriminante bestimmt die Form der beiden nichtreellen Nullstellen und zeigt, dass sie ein konjugiertes Paar bilden.
+Bei einer negativen Diskriminante ziehst du zuerst die Quadratwurzel aus ihrem Betrag und ergänzt den Faktor <InlineMath math="i" />. Das Plus- und Minuszeichen liefern konjugierte Lösungen mit **demselben Realteil** und entgegengesetzten Imaginärteilen.
 
 ### Zwei nichtreelle Nullstellen bestimmen
 
@@ -54,7 +52,7 @@ Löse
 
 <BlockMath math="x^2+4x+5=0" />
 
-Die Koeffizienten sind <InlineMath math="a=1" />, <InlineMath math="b=4" /> und <InlineMath math="c=5" />. Zuerst berechnen wir die Diskriminante:
+Die Koeffizienten sind <InlineMath math="a=1" />, <InlineMath math="b=4" /> und <InlineMath math="c=5" />. Zuerst berechnen wir die **Diskriminante**:
 
 <BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
 
@@ -71,10 +69,7 @@ Damit erhalten wir
 
 Eine Nullstelle lässt sich direkt prüfen:
 
-<MathContainer>
-  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
-  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
 
 Die zweite Nullstelle entsteht durch den Vorzeichenwechsel im Imaginärteil.
 
@@ -84,7 +79,7 @@ Betrachten wir
 
 <BlockMath math="2x^2+x+3=0" />
 
-Hier sind <InlineMath math="a=2" />, <InlineMath math="b=1" /> und <InlineMath math="c=3" />. Die Diskriminante beträgt
+Hier sind <InlineMath math="a=2" />, <InlineMath math="b=1" /> und <InlineMath math="c=3" />. Die **Diskriminante** beträgt
 
 <BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
 
@@ -105,7 +100,24 @@ Die Gleichung aus dem ersten Beispiel lässt sich umformen zu
 
 <BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
 
-Für jedes reelle <InlineMath math="x" /> ist <InlineMath math="(x+2)^2" /> nichtnegativ, also gilt <InlineMath math="f(x)\ge1" />. Der Graph liegt vollständig oberhalb der <InlineMath math="x" />-Achse und hat keine reellen Schnittpunkte mit ihr. Die komplexen Nullstellen sind keine zusätzlichen Punkte in diesem reellen Graphen. Sie gehören zum erweiterten Zahlbereich.
+Für jedes reelle <InlineMath math="x" /> ist <InlineMath math="(x+2)^2" /> **nichtnegativ**, also gilt <InlineMath math="f(x)\ge1" />. Der Graph liegt vollständig oberhalb der <InlineMath math="x" />-Achse und hat keine reellen Schnittpunkte mit ihr. Die komplexen Nullstellen sind keine zusätzlichen Punkte in diesem reellen Graphen. Sie gehören zum erweiterten Zahlbereich.
+
+
+<MathVisual
+  title="Eine Parabel ohne Schnitt mit der x Achse"
+  description="Der Scheitelpunkt liegt bei (-2,1). Verschiebe oder vergrößere die Ansicht. Der kleinste Funktionswert beträgt eins, nicht null."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -2, y: 1 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: -2, y: 1 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="(-2,1)" /> }}
+/>
 
 ## Warum die Nullstellen konjugiert auftreten
 
@@ -113,11 +125,11 @@ Bei reellen Koeffizienten enthält die Lösungsformel den Ausdruck
 
 <BlockMath math="-b\pm i\sqrt{|D|}" />
 
-Die beiden Vorzeichen ändern nur den Imaginärteil. So entstehen <InlineMath math="u+vi" /> und <InlineMath math="u-vi" />, die komplex konjugiert heißen. Ist eine Zahl Nullstelle eines Polynoms mit reellen Koeffizienten, dann ist auch ihre konjugierte Zahl eine Nullstelle.
+Die beiden Vorzeichen ändern nur den **Imaginärteil**. So entstehen <InlineMath math="u+vi" /> und <InlineMath math="u-vi" />, die komplex konjugiert heißen. Ist eine Zahl Nullstelle eines Polynoms mit reellen Koeffizienten, dann ist auch ihre konjugierte Zahl eine Nullstelle.
 
 ## Übungsaufgabe
 
-Die Aufgabe verlangt die Lösungen über den komplexen Zahlen, deshalb darfst du die Wurzel aus einer negativen Zahl ziehen. Schreibe <InlineMath math="i" /> ausdrücklich hin und fasse am Ende Real- und Imaginärteil zusammen.
+Die Aufgabe verlangt die Lösungen über den **komplexen Zahlen**, deshalb darfst du die Wurzel aus einer negativen Zahl ziehen. Schreibe <InlineMath math="i" /> ausdrücklich hin und fasse am Ende Real- und Imaginärteil zusammen.
 
 Löse <InlineMath math="2x^2+2x+5=0" /> über den komplexen Zahlen.
 
@@ -139,3 +151,10 @@ Das konjugierte Nullstellenpaar lautet somit
 <BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{und} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
 
 Ihre Summe ist <InlineMath math="-1=-\frac ba" /> und ihr Produkt <InlineMath math="\frac52=\frac ca" />. Beides stimmt mit den Formeln von Vieta überein und bestätigt das Ergebnis.
+
+Beim Addieren konjugierter Zahlen **heben sich die Imaginärteile auf**. Für das Produkt verwendest du die Differenz zweier Quadrate und <InlineMath math="i^2=-1" />:
+
+<MathContainer>
+  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
+  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+</MathContainer>

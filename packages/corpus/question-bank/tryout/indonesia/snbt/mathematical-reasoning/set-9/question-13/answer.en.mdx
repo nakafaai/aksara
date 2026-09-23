@@ -5,8 +5,10 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Let <InlineMath math="c" /> be the current speed in kilometres per hour. The boat can return upstream, so <InlineMath math="0<c<12" />. Excluding the one-hour stop, the boat travels for <InlineMath math="8" /> hours. Therefore,
+Let <InlineMath math="c" /> be the current speed in kilometres per hour. The boat can return upstream, so <InlineMath math="0<c<12" />. **Excluding the one-hour stop**, the boat travels for <InlineMath math="8" /> hours. Therefore,
 
-<BlockMath math="\frac{45}{12+c}+\frac{45}{12-c}=8" />
+<BlockMath math="\begin{aligned}\frac{45}{12+c}+\frac{45}{12-c}&=8\\\frac{45(12-c)+45(12+c)}{144-c^2}&=8\\1080&=8(144-c^2)\\8c^2&=1152-1080=72\\c^2&=9\end{aligned}" />
 
 Combining the fractions gives <InlineMath math="1080=8(144-c^2)" />, so <InlineMath math="c^2=9" />. Since <InlineMath math="c>0" />, <InlineMath math="c=3\text{ km/h}" />.
+
+Check the times: downstream takes <InlineMath math="45/(12+3)=3" /> hours and upstream takes <InlineMath math="45/(12-3)=5" /> hours. Including the stop gives <InlineMath math="3+1+5=9" /> hours.

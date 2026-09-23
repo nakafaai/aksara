@@ -5,16 +5,16 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Subtract the <InlineMath math="12" /> participants in all three programs from each pairwise intersection. Each resulting group then contains participants in exactly two programs:
+Each pairwise intersection still contains the <InlineMath math="12" /> people in all three programs. To count people in **exactly two programs**, remove that group from each intersection.
 
-<MathContainer>
-  <BlockMath math="28-12=16" />
+| Group counted | Calculation |
+| --- | --- |
+| A and B, without C | <InlineMath math="28-12=16" /> |
+| A and C, without B | <InlineMath math="21-12=9" /> |
+| B and C, without A | <InlineMath math="19-12=7" /> |
 
-  <BlockMath math="21-12=9" />
-
-  <BlockMath math="19-12=7" />
-</MathContainer>
-
-These three groups do not overlap. Their total is:
+The remaining groups do not overlap. We can therefore add their sizes without counting anyone twice.
 
 <BlockMath math="16+9+7=32" />
+
+Exactly <InlineMath math="32" /> people join two programs.

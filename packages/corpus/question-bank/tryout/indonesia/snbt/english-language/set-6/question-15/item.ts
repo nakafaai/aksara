@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "metadata as a definition without a reviewable action",
+          label: "Metadata as a definition without a reviewable action",
         },
         {
           isCorrect: true,

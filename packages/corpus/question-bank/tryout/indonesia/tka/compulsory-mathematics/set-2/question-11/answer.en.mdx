@@ -7,9 +7,9 @@ export const metadata = {
 
 The altitude of the isosceles triangle bisects its <InlineMath math="6\,\mathrm{m}" /> base into two <InlineMath math="3\,\mathrm{m}" /> parts. Use the <InlineMath math="5\,\mathrm{m}" /> sloping side to find the cross-section height.
 
-<BlockMath math="h=\sqrt{5^2-3^2}=4\,\mathrm{m}" />
+<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{25-9}=\sqrt{16}=4\,\mathrm{m}" />
 
-The fabric covers two sloping rectangles and two triangular ends. The floor is excluded.
+The fabric covers two sloping rectangles and two triangular ends. The **floor is excluded**.
 
 <BlockMath math="\begin{aligned}
 A&=2(5\cdot10)+2\left(\frac12\cdot6\cdot4\right) \\
@@ -17,3 +17,19 @@ A&=2(5\cdot10)+2\left(\frac12\cdot6\cdot4\right) \\
 \end{aligned}" />
 
 The required fabric area is <InlineMath math="124\,\mathrm{m}^2" />.
+
+<LineEquation
+  title="The four fabric faces of the tent"
+  description="The two triangular ends and two sloping rectangles use fabric. The 6 m × 10 m floor is excluded."
+  cameraPosition={[14, 10, 20]}
+  cameraTarget={[0, 2, 5]}
+  showZAxis={false}
+  data={[
+    ...[0, 10].map((z) => ({ points: [{ x: -3, y: 0, z }, { x: 0, y: 4, z }, { x: 3, y: 0, z }, { x: -3, y: 0, z }], color: "#9333ea", smooth: false, showPoints: false })),
+    ...[{ x: -3, y: 0 }, { x: 0, y: 4 }, { x: 3, y: 0 }].map((p) => ({ points: [{ ...p, z: 0 }, { ...p, z: 10 }], color: "#d97706", smooth: false, showPoints: false })),
+    { points: [{ x: 0, y: 0, z: 10 }, { x: 0, y: 4, z: 10 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "4 m", at: 0, offset: [0.6, 1.8, 0] }] },
+    { points: [{ x: -3, y: 0, z: 10 }, { x: 3, y: 0, z: 10 }], smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "6 m", at: 0, offset: [3, -0.7, 0] }] },
+    { points: [{ x: -3, y: 0, z: 10 }, { x: 0, y: 4, z: 10 }], smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "5 m", at: 0, offset: [0.7, 2.5, 0] }] },
+    { points: [{ x: 3, y: 0, z: 0 }, { x: 3, y: 0, z: 10 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: "10 m", at: 0, offset: [0.7, 0, 5] }] },
+  ]}
+/>

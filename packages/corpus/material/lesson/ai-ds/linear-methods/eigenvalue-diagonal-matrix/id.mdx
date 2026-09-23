@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baca nilai eigen langsung dari diagonal utama matriks diagonal dan segitiga, lalu gunakan determinan dan jejak matriks untuk memeriksa hasilnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -31,11 +31,17 @@ Dengan demikian, kita tidak memerlukan ekspansi determinan lengkap atau prosedur
 
 Matriks segitiga memiliki sifat yang sama dengan matriks diagonal. Baik matriks segitiga atas maupun segitiga bawah, nilai eigennya tetap merupakan entri diagonal utama.
 
-Saat menghitung <InlineMath math="\det(A - tI)" />, entri di atas atau di bawah diagonal utama tidak mengubah hasil determinan. Karena matriksnya berbentuk segitiga, determinannya sama dengan perkalian semua entri diagonal.
+Saat menghitung <InlineMath math="\det(A - tI)" />, entri di atas atau di bawah diagonal utama tidak mengubah hasil determinan. Karena matriksnya berbentuk segitiga, determinannya sama dengan **perkalian semua entri diagonal**.
+
+Sebagai contoh, entri di luar diagonal dapat berubah sementara **nilai eigen tetap sama**:
+
+<BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
+
+Jadi, 2 muncul dua kali dan −1 sekali. Hasil ini menentukan nilai eigen, tetapi belum membuktikan bahwa matriks dapat didiagonalisasi.
 
 ## Menghitung Nilai Eigen Matriks yang Bukan Segitiga
 
-Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Begitu matriksnya tidak lagi segitiga, nilai eigennya tersembunyi di dalam polinomial karakteristik, sehingga pekerjaannya berpindah dari membaca entri diagonal menjadi mencari akar.
+Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Begitu matriksnya tidak lagi segitiga, nilai eigennya tersembunyi di dalam polinomial karakteristik, sehingga pekerjaannya berpindah dari membaca entri diagonal menjadi **mencari akar**.
 
 ### Nilai Eigen Kompleks
 
@@ -50,7 +56,9 @@ Polinomial karakteristiknya adalah:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
 </MathContainer>
 
-Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
+<BlockMath math="t^2-2t+2=0\iff(t-1)^2=-1\iff t=1\pm i" />
+
+**Akar polinomial karakteristik ini** adalah <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
 
 ### Nilai Eigen Nol
 
@@ -65,11 +73,11 @@ Polinomial karakteristiknya adalah:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
 </MathContainer>
 
-Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
+**Akar polinomial karakteristik ini** adalah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
 
 ## Faktorisasi Polinomial Karakteristik
 
-Ketika <InlineMath math="A \in \mathbb{C}^{n \times n}" /> memiliki nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> yang dihitung menurut multiplisitas aljabar, polinomial karakteristiknya dapat difaktorkan sebagai:
+Ketika <InlineMath math="A \in \mathbb{C}^{n \times n}" /> memiliki nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> yang **dihitung menurut multiplisitas aljabar**, polinomial karakteristiknya dapat difaktorkan sebagai:
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 

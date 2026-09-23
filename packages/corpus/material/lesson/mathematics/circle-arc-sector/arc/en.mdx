@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Following the Circumference Between Two Points
 
-A circle arc is <Highlight>the part of a circle's circumference</Highlight> between two points. You can picture it as a piece of string laid exactly along the circle's edge. Any two points on a circle determine two arcs between them.
+A circle arc is <Highlight>the part of a circle's circumference</Highlight> between two points. You can picture it as a piece of string laid exactly along the circle's edge. Any two distinct points on a circle determine two arcs between them.
 
 Each arc has two endpoints on the circle. On a fixed circle, its length depends on the measure of the central angle that subtends it: a larger central angle gives a longer arc.
 
@@ -31,6 +31,7 @@ Each arc has two endpoints on the circle. On a fixed circle, its length depends 
       segments: 12,
       color: "#ea580c",
       label: { text: <>Arc <InlineMath math="AB" /></>, offset: [1.5, 0.5, 0] } },
+    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 240, color: "#db2777", label: { text: "Major arc", offset: [0, -0.5, 0] } },
     {
       kind: "circle-radius", radius: 4, degrees: 30,
       color: "#9333ea",
@@ -48,17 +49,17 @@ Each arc has two endpoints on the circle. On a fixed circle, its length depends 
 
 ## Types of Arcs Based on Size
 
-Based on the measure of the central angle that subtends them, circle arcs can be distinguished into three types:
+For two distinct endpoints, compare the arc angle with **half a turn**. The two arcs sharing these endpoints complete a full turn.
 
-1. **Minor Arc** is an arc whose central angle is less than <InlineMath math="180^\circ" />. This arc is the shorter part of the two possible arcs connecting two points on the circle.
-
-2. **Major Arc** is an arc whose central angle is more than <InlineMath math="180^\circ" />. This arc is the longer part of the two possible arcs connecting two points on the circle.
-
-3. **Semicircular Arc** is an arc whose central angle is exactly <InlineMath math="180^\circ" />. Its endpoints divide the circumference into two arcs of equal length.
+| Central angle | Fraction of circumference |
+| --- | --- |
+| Minor arc: <InlineMath math="0^\circ<\alpha<180^\circ" /> | <InlineMath math="0<l/(2\pi r)<1/2" /> |
+| Major arc: <InlineMath math="180^\circ<\alpha<360^\circ" /> | <InlineMath math="1/2<l/(2\pi r)<1" /> |
+| Semicircle: <InlineMath math="\alpha=180^\circ" /> | <InlineMath math="l/(2\pi r)=1/2" /> |
 
 ## Arc Length Formula
 
-Arc length can be calculated using the ratio between the central angle and the full angle of the circle. Since the full circumference of a circle is <InlineMath math="2\pi r" />, the arc length can be expressed as:
+Arc length can be calculated using the **ratio of the central angle to a full turn**. Since the full circumference of a circle is <InlineMath math="2\pi r" />, the arc length can be expressed as:
 
 <BlockMath math="\text{Arc length} = \frac{\alpha}{360^\circ} \times 2\pi r" />
 
@@ -66,7 +67,7 @@ The variables in this formula are:
 - <InlineMath math="\alpha" /> is the central angle in degrees
 - <InlineMath math="r" /> is the radius of the circle
 
-A radian measures arc length divided by radius, so an angle in radians gives the formula directly:
+An angle in radians is **arc length divided by radius**, so an angle in radians gives the formula directly:
 
 <BlockMath math="\text{Arc length} = \alpha \times r" />
 
@@ -99,7 +100,7 @@ In the second formula, <InlineMath math="\alpha" /> is the central angle in radi
 
 ## Relationship Between Arc and Central Angle
 
-On the same circle, arc length is proportional to the central angle that subtends it:
+On the **same circle**, arc length is proportional to the central angle that subtends it:
 
 <BlockMath math="\frac{\text{Arc length}_1}{\text{Arc length}_2} = \frac{\alpha_1}{\alpha_2}" />
 
@@ -109,7 +110,7 @@ This ratio compares arc lengths even when the radius is not given directly.
 
 ## Practice Problems
 
-Each problem asks for the length of an arc, so identify the radius and the central angle in radians before you multiply.
+The problems ask for arc length, radius, a length ratio, or an angle. Identify the **unknown quantity** and the angle unit before rearranging a formula.
 
 1. A circle arc has a radius of <InlineMath math="14 \text{ cm}" /> and a central angle of <InlineMath math="90^\circ" />. Determine the length of the arc.
 
@@ -123,63 +124,65 @@ Each problem asks for the length of an arc, so identify the radius and the centr
 
 ### Worked Solutions
 
-1. **Answer:** <InlineMath math="7\pi \text{ cm} \approx 21.99 \text{ cm}" />
+The first central angle is **one quarter of a turn**, so take one quarter of the circumference.
 
-   Given: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
+**Solution 1**: <InlineMath math="7\pi \text{ cm} \approx 21.99 \text{ cm}" />
 
-   Using the arc length formula:
+Given: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\text{Arc length} = \frac{\alpha}{360^\circ} \times 2\pi r" />
-   <BlockMath math="= \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
-   <BlockMath math="= \frac{1}{4} \times 28\pi" />
-   <BlockMath math="= 7\pi \text{ cm} \approx 21.99 \text{ cm}" />
-   </MathContainer>
+Using the arc length formula:
 
-2. **Answer:** <InlineMath math="\frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
+<MathContainer>
+<BlockMath math="\text{Arc length} = \frac{\alpha}{360^\circ} \times 2\pi r" />
+<BlockMath math="= \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
+<BlockMath math="= \frac{1}{4} \times 28\pi" />
+<BlockMath math="= 7\pi \text{ cm} \approx 21.99 \text{ cm}" />
+</MathContainer>
 
-   Given: Arc length <InlineMath math="AB = 22 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+**Solution 2**: <InlineMath math="\frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
 
-   Using the arc length formula:
+Given: Arc length <InlineMath math="AB = 22 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
 
-   <MathContainer>
-   <BlockMath math="22 = \frac{120^\circ}{360^\circ} \times 2\pi r" />
-   <BlockMath math="22 = \frac{2\pi r}{3}" />
-   <BlockMath math="66 = 2\pi r" />
-   <BlockMath math="r = \frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
-   </MathContainer>
+Using the arc length formula:
 
-3. **Answer:** <InlineMath math="2:5" />
+<MathContainer>
+<BlockMath math="22 = \frac{120^\circ}{360^\circ} \times 2\pi r" />
+<BlockMath math="22 = \frac{2\pi r}{3}" />
+<BlockMath math="66 = 2\pi r" />
+<BlockMath math="r = \frac{33}{\pi} \text{ cm} \approx 10.50 \text{ cm}" />
+</MathContainer>
 
-   Given: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha_1 = 60^\circ" />, <InlineMath math="\alpha_2 = 150^\circ" />
+**Solution 3**: <InlineMath math="2:5" />
 
-   Since on the same circle, the ratio of arc lengths equals the ratio of their central angles:
+Given: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha_1 = 60^\circ" />, <InlineMath math="\alpha_2 = 150^\circ" />
 
-   <BlockMath math="\frac{\text{Arc length}_1}{\text{Arc length}_2} = \frac{\alpha_1}{\alpha_2} = \frac{60^\circ}{150^\circ} = \frac{2}{5}" />
+Since on the same circle, the ratio of arc lengths equals the ratio of their central angles:
 
-   Therefore, the ratio of the lengths of the two arcs is <InlineMath math="2:5" />.
+<BlockMath math="\frac{\text{Arc length}_1}{\text{Arc length}_2} = \frac{\alpha_1}{\alpha_2} = \frac{60^\circ}{150^\circ} = \frac{2}{5}" />
 
-4. **Answer:** <InlineMath math="\alpha \approx 90^\circ" />
+Therefore, the ratio of the lengths of the two arcs is <InlineMath math="2:5" />.
 
-   Given: arc length = <InlineMath math="15.7 \text{ cm}" />, <InlineMath math="r = 10 \text{ cm}" />
+**Solution 4**: <InlineMath math="\alpha \approx 89.95^\circ" />
 
-   Using the arc length formula:
+Given: arc length = <InlineMath math="15.7 \text{ cm}" />, <InlineMath math="r = 10 \text{ cm}" />
 
-   <MathContainer>
-   <BlockMath math="15.7 = \frac{\alpha}{360^\circ} \times 2\pi \times 10" />
-   <BlockMath math="15.7 = \frac{\alpha\pi}{18}" />
-   <BlockMath math="\alpha = \frac{15.7 \times 18^\circ}{\pi}" />
-   <BlockMath math="\alpha = \frac{282.6^\circ}{\pi} \approx 89.95^\circ" />
-   </MathContainer>
+Using the arc length formula:
 
-5. **Answer: <InlineMath math="11 \text{ cm}" />**
+<MathContainer>
+<BlockMath math="15.7 = \frac{\alpha}{360^\circ} \times 2\pi \times 10" />
+<BlockMath math="15.7 = \frac{\alpha\pi}{18}" />
+<BlockMath math="\alpha = \frac{15.7 \times 18^\circ}{\pi}" />
+<BlockMath math="\alpha = \frac{282.6^\circ}{\pi} \approx 89.95^\circ" />
+</MathContainer>
 
-   Given: Circumference = <InlineMath math="88 \text{ cm}" />, <InlineMath math="\alpha = 45^\circ" />
+**Solution 5**: <InlineMath math="11 \text{ cm}" />
 
-   Using the ratio concept:
+Given: Circumference = <InlineMath math="88 \text{ cm}" />, <InlineMath math="\alpha = 45^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Arc length} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Circumference} \end{aligned}" />
-   <BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
-   <BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
-   </MathContainer>
+Using the ratio concept:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Arc length} \\ &amp;= \frac{\alpha}{360^\circ} \times \text{Circumference} \end{aligned}" />
+<BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
+<BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
+</MathContainer>

@@ -15,7 +15,9 @@ Every vector in the coordinate plane <Highlight>can be decomposed along the two 
 
 The scalar components tell us how far and in which signed direction the vector extends along the <InlineMath math="x" />- and <InlineMath math="y" />-axes. Every vector in the plane is a linear combination of the unit vectors <InlineMath math="\mathbf{i}" /> and <InlineMath math="\mathbf{j}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1.8, 4, 12.5]}
+  cameraTarget={[1.8, 4, 0]}
   title="Vector Visualization and Its Components"
   description={
     <>
@@ -24,24 +26,45 @@ The scalar components tell us how far and in which signed direction the vector e
       <InlineMath math="z" />-component.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.75 * ((6) - (0)), y: (0) + 0.75 * ((8) - (0)), z: (0) + 0.75 * ((0) - (0)) }, { x: 6, y: 8, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [-0.3, 0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [6, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-component</>,
+        at: 1,
+        offset: [0, -0.6, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((8) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 8, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-component</>,
+        at: 1,
+        offset: [-0.4, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -63,11 +86,11 @@ Consider the vector <InlineMath math="\overrightarrow{AB}" /> in the diagram. Th
 
 <BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
 
-This means that <InlineMath math="\overrightarrow{AB}" /> has scalar components <InlineMath math="6" /> and <InlineMath math="8" />, with vector projections <InlineMath math="6\mathbf{i}" /> to the right and <InlineMath math="8\mathbf{j}" /> upward.
+This means that <InlineMath math="\overrightarrow{AB}" /> has scalar components <InlineMath math="6" /> and <InlineMath math="8" />, with **vector projections** <InlineMath math="6\mathbf{i}" /> to the right and <InlineMath math="8\mathbf{j}" /> upward.
 
 ## Vector Magnitude from Its Components
 
-When we know the components of a vector, we can calculate the length or magnitude of the vector using the Pythagorean theorem.
+When we know the components of a vector, we can calculate the length or magnitude of the vector using the **Pythagorean theorem**.
 
 The magnitude of vector <InlineMath math="\overrightarrow{AB}" /> is denoted by <InlineMath math="|\overrightarrow{AB}|" /> and calculated using the formula:
 
@@ -77,6 +100,8 @@ In this formula, <InlineMath math="a" /> and <InlineMath math="b" /> are the com
 
 ### Example of Vector Magnitude Calculation
 
+Use the **sum of the squared components**, then take the positive square root to obtain the magnitude.
+
 For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />, its magnitude is:
 
 <BlockMath math="\begin{aligned} |\overrightarrow{AB}| &amp;= \sqrt{6^2 + 8^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
@@ -85,39 +110,68 @@ For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}
 
 Vectors can be used on a two-dimensional plane and in three-dimensional space.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[11, 10, -11]}
+  cameraTarget={[1.5, 3.5, 2]}
   title="Vectors in 3D Space"
   description="Visualization of a vector and its components in three-dimensional space."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [5, 7, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.85 * ((5) - (0)), y: (0) + 0.85 * ((7) - (0)), z: (0) + 0.85 * ((4) - (0)) }, { x: 5, y: 7, z: 4 }],
       color: "#ea580c",
-      label: "3D Vector",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: "3D Vector",
+        at: 1,
+        offset: [0, 0.8, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [5, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-component</>,
+        at: 1,
+        offset: [0, -0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 7, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((7) - (0)), z: (0) + 0.6 * ((0) - (0)) }, { x: 0, y: 7, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-component</>,
+        at: 1,
+        offset: [-0.8, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((0) - (0)), z: (0) + 0.6 * ((4) - (0)) }, { x: 0, y: 0, z: 4 }],
       color: "#ca8a04",
-      label: <><InlineMath math="z" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="z" />-component</>,
+        at: 1,
+        offset: [0.5, -0.3, 0],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
-In three-dimensional space, a vector has three components: the x-component, y-component, and z-component. A vector in three-dimensional space can be expressed as:
+In three-dimensional space, a vector has **three components**: the <InlineMath math="x" />-, <InlineMath math="y" />-, and <InlineMath math="z" />-components. A vector in three-dimensional space can be expressed as:
 
 <BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
 
@@ -135,7 +189,7 @@ The magnitude of a vector in three-dimensional space is calculated using the for
 
 ## Unit Direction Vector
 
-To represent the direction of a nonzero vector, we can use a unit vector. A unit vector has magnitude <InlineMath math="1 \text{ unit}" />. We obtain it by dividing the nonzero vector by its magnitude.
+To represent the direction of a nonzero vector, we can use a unit vector. A unit vector has magnitude <InlineMath math="1 \text{ unit}" />. We obtain it by **dividing the nonzero vector by its magnitude**.
 
 Denote the unit direction vector of <InlineMath math="\overrightarrow{AB}" /> by <InlineMath math="\mathbf{u}_{AB}" />. It is calculated using:
 
@@ -147,7 +201,7 @@ For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}
 
 <BlockMath math="\begin{aligned} \mathbf{u}_{AB} &amp;= \frac{6\mathbf{i} + 8\mathbf{j}}{10} \\ &amp;= \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} \\ &amp;= 0.6\mathbf{i} + 0.8\mathbf{j} \end{aligned}" />
 
-This unit vector indicates the direction of vector <InlineMath math="\overrightarrow{AB}" /> without regard to its magnitude.
+This unit vector **indicates the direction** of vector <InlineMath math="\overrightarrow{AB}" /> without regard to its magnitude.
 
 ## Applications of Vector Components
 
@@ -158,4 +212,4 @@ Resolving a vector along chosen axes supports these calculations:
 - Determining the direction and magnitude of resultants in object movement
 - Navigation and position determination in coordinate systems
 
-Vector components separate magnitude and direction along chosen axes, so each axis can be calculated independently before the results are combined.
+Vector components separate magnitude and direction along chosen axes, so **each axis** can be calculated independently before the results are combined.

@@ -79,7 +79,7 @@ In der Abbildung oben:
 
 ## Definition des Umfangswinkels
 
-Ein Umfangswinkel, auch Peripheriewinkel genannt, wird von zwei Sehnen gebildet und hat seinen Scheitelpunkt auf dem Kreis. Seine Schenkel verbinden den Scheitelpunkt mit zwei weiteren Punkten auf dem Kreis.
+Ein Umfangswinkel, auch Peripheriewinkel genannt, wird von zwei Sehnen gebildet und hat seinen Scheitelpunkt **auf dem Kreis**. Seine Schenkel verbinden den Scheitelpunkt mit zwei weiteren Punkten auf dem Kreis.
 
 <LineEquation
   title="Umfangswinkel"
@@ -140,7 +140,7 @@ In der Abbildung oben:
 
 ## Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel
 
-Stehen beide Winkel über demselben Bogen, ist <Highlight>der Mittelpunktswinkel doppelt so groß wie der Umfangswinkel</Highlight>. Das folgende Diagramm zeigt diesen Zusammenhang.
+Stehen beide Winkel über **demselben Bogen**, ist der Mittelpunktswinkel <Highlight>doppelt so groß wie der Umfangswinkel</Highlight>. Das folgende Diagramm zeigt diesen Zusammenhang.
 
 <LineEquation
   title="Mittelpunktswinkel und Umfangswinkel"
@@ -233,14 +233,10 @@ Stehen beide Winkel über demselben Bogen, ist <Highlight>der Mittelpunktswinkel
   cameraPosition={[0, 0, 12]}
 />
 
-### Satz über Mittelpunktswinkel und Umfangswinkel
 
-<BlockMath math="\begin{aligned} &amp;\text{Umfangswinkel} \\ &amp;= \frac{1}{2} \times \text{Mittelpunktswinkel} \end{aligned}" />
+Im Diagramm zum Zusammenhang beträgt der Mittelpunktswinkel <InlineMath math="45^\circ" />. Für den Umfangswinkel über demselben kleinen Bogen folgt:
 
-Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen stehen, dann gilt:
-
-- <InlineMath math="\text{Maß des Umfangswinkels} = \frac{1}{2} \times \text{Maß des Mittelpunktswinkels}" />
-- <InlineMath math="\text{Maß des Mittelpunktswinkels} = 2 \times \text{Maß des Umfangswinkels}" />
+<BlockMath math="\angle ACB=\frac12\angle AOB=\frac12(45^\circ)=22{,}5^\circ" />
 
 ## Beweis des Zusammenhangs
 
@@ -324,7 +320,7 @@ Zeichne den Durchmesser durch <InlineMath math="C" /> und den Mittelpunkt <Inlin
   cameraPosition={[0, 0, 12]}
 />
 
-**Beweisschritte:**
+**Beweisschritte**:
 
 1. Zeichne die Gerade <InlineMath math="CD" /> durch den Kreismittelpunkt <InlineMath math="O" />.
 2. Alle vier Strecken <InlineMath math="OA = OB = OC = OD" /> sind Radien und daher gleich lang.
@@ -338,184 +334,195 @@ Diese Konstruktion beweist die dargestellte Lage, in der <InlineMath math="C" />
 
 ## Eigenschaften beider Winkelarten
 
-1. **Umfangswinkel über einem Durchmesser**
+Aus dem Zusammenhang ergeben sich zwei nützliche Folgerungen. Ein **Durchmesser** bestimmt einen gestreckten Mittelpunktswinkel. Bleibt der zugehörige Bogen gleich, bleibt auch sein Mittelpunktswinkel gleich, selbst wenn du den Scheitelpunkt des Umfangswinkels auf dem Kreis verschiebst.
 
-   Jeder Umfangswinkel über einem Durchmesser misst <InlineMath math="90^\circ" /> und ist damit ein rechter Winkel.
+### Umfangswinkel über einem Durchmesser
 
-   <LineEquation
-     title="Umfangswinkel über einem Durchmesser"
-     description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 361 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: -4, y: 0, z: 0 },
-           { x: 4, y: 0, z: 0 },
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: true,
-         labels: [
-           { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
-           { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
-         ],
-       },
-       {
-         points: [
-           { x: -4, y: 0, z: 0 },
-           { x: 0, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 0, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-       },
-       {
-         points: [{ x: 0, y: 0, z: 0 }],
-         color: "#d97706",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const C = { x: 0, y: 4 };
-           const A = { x: -4, y: 0 };
-           const B = { x: 4, y: 0 };
+Jeder Umfangswinkel über einem Durchmesser misst <InlineMath math="90^\circ" /> und ist damit ein rechter Winkel.
 
-           // Winkel ACB am Punkt C berechnen (should be 90°)
-           const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
-           const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
+<LineEquation
+  title="Umfangswinkel über einem Durchmesser"
+  description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const C = { x: 0, y: 4 };
+        const A = { x: -4, y: 0 };
+        const B = { x: 4, y: 0 };
 
-           return Array.from({ length: 16 }, (_, i) => {
-             const t = i / 15;
-             const angle = angleCA + t * (angleCB - angleCA);
-             return {
-               x: C.x + 0.8 * Math.cos(angle),
-               y: C.y + 0.8 * Math.sin(angle),
-               z: 0,
-             };
-           });
-         })(),
-         color: "#db2777",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+        // Winkel ACB am Punkt C berechnen (should be 90°)
+        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
+        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
-2. **Umfangswinkel über demselben Bogen**
+        return Array.from({ length: 16 }, (_, i) => {
+          const t = i / 15;
+          const angle = angleCA + t * (angleCB - angleCA);
+          return {
+            x: C.x + 0.8 * Math.cos(angle),
+            y: C.y + 0.8 * Math.sin(angle),
+            z: 0,
+          };
+        });
+      })(),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
 
-   <InlineMath math="\angle ACB = \angle ADB" />, denn beide Winkel stehen über
-   demselben Bogen <InlineMath math="AB" />. Mit anderen Worten: Verschiebst du <InlineMath math="C" /> nach <InlineMath math="D" /> entlang desselben Bogens, bleibt das Maß gleich.
+Ein Halbkreis bestimmt einen **gestreckten Mittelpunktswinkel**, also:
 
-   <LineEquation
-     title="Umfangswinkel über demselben Bogen"
-     description="Umfangswinkel über demselben Bogen sind gleich groß."
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 361 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: true,
-         labels: [
-           { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-           { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-         ],
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-       },
-       {
-         points: [
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-           { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0d9488",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
-       },
-       {
-         points: [
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-           { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0d9488",
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 46 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#d97706",
-         showPoints: false,
-         labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+<BlockMath math="\angle ACB=\frac12(180^\circ)=90^\circ" />
+
+
+### Umfangswinkel über demselben Bogen
+
+<InlineMath math="\angle ACB = \angle ADB" />, denn beide Winkel stehen über
+demselben Bogen <InlineMath math="AB" />. Mit anderen Worten: Verschiebst du <InlineMath math="C" /> nach <InlineMath math="D" /> entlang desselben Bogens, bleibt das Maß gleich.
+
+<LineEquation
+  title="Umfangswinkel über demselben Bogen"
+  description="Umfangswinkel über demselben Bogen sind gleich groß."
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
+
+Hier liegen beide Scheitelpunkte auf **demselben großen Bogen**. Beide Winkel stehen über dem kleinen Bogen mit Mittelpunktswinkel <InlineMath math="45^\circ" />.
+
+<BlockMath math="\angle ACB=\angle ADB=\frac12(45^\circ)=22{,}5^\circ" />
 
 ## Umfangswinkel berechnen
 
@@ -599,7 +606,7 @@ Gegeben ist der Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" />. 
   cameraPosition={[0, 0, 12]}
 />
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
@@ -611,7 +618,7 @@ Gegeben ist der Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" />. 
 
 Gegeben ist der Umfangswinkel <InlineMath math="\angle ACB = 35^\circ" />. Gesucht ist der Mittelpunktswinkel <InlineMath math="\angle AOB" /> über demselben Bogen.
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
   <BlockMath math="\angle AOB = 2 \times \angle ACB" />
@@ -621,7 +628,7 @@ Gegeben ist der Umfangswinkel <InlineMath math="\angle ACB = 35^\circ" />. Gesuc
 
 ## Übungsaufgaben
 
-Jede Aufgabe gibt entweder den Mittelpunktswinkel oder den Umfangswinkel und verlangt den anderen. Beide liegen über demselben Bogen.
+Bestimme zuerst **Scheitelpunkt und zugehörigen Bogen**. Halbiere oder verdopple bei einem Paar aus Mittelpunktswinkel und Umfangswinkel. Nutze in den letzten beiden Aufgaben die Eigenschaften des Durchmessers und gleicher Bögen.
 
 1. Wenn der Mittelpunktswinkel eines Kreises <InlineMath math="120^\circ" /> beträgt, wie groß ist der Umfangswinkel über demselben Bogen?
 
@@ -633,12 +640,20 @@ Jede Aufgabe gibt entweder den Mittelpunktswinkel oder den Umfangswinkel und ver
 
 ### Ausführliche Lösungen
 
-1. Der Umfangswinkel steht über demselben Bogen wie der Mittelpunktswinkel. Deshalb ist er halb so groß: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
+**Lösung 1**
 
-2. Der Mittelpunktswinkel und <InlineMath math="\angle ACB" /> liegen über dem Bogen <InlineMath math="AB" />. Der Mittelpunktswinkel ist doppelt so groß:
+Der Umfangswinkel steht über demselben Bogen wie der Mittelpunktswinkel. Deshalb ist er **halb so groß**: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
 
-   <BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+**Lösung 2**
 
-3. Ein Durchmesser begrenzt einen Halbkreis mit dem Mittelpunktswinkel <InlineMath math="180^\circ" />. Der Umfangswinkel ist halb so groß, daher gilt <InlineMath math="\angle PQR = 90^\circ" />.
+Der Mittelpunktswinkel und <InlineMath math="\angle ACB" /> liegen über dem Bogen <InlineMath math="AB" />. Der Mittelpunktswinkel ist doppelt so groß:
 
-4. Umfangswinkel über demselben Bogen sind gleich groß. Der andere Winkel misst ebenfalls <InlineMath math="25^\circ" />.
+<BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+
+**Lösung 3**
+
+Ein Durchmesser begrenzt einen Halbkreis mit dem Mittelpunktswinkel <InlineMath math="180^\circ" />. Der Umfangswinkel ist halb so groß, daher gilt <InlineMath math="\angle PQR = 90^\circ" />.
+
+**Lösung 4**
+
+Umfangswinkel über demselben Bogen sind gleich groß. Der andere Winkel misst ebenfalls <InlineMath math="25^\circ" />.

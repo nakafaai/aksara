@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use power iteration, shifted inverse iteration, Rayleigh quotients, and residual checks to compute selected eigenpairs reliably.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -12,6 +12,8 @@ export const metadata = {
 Shifted inverse iteration <Highlight>targets the eigenvalue nearest a chosen shift</Highlight> <InlineMath math="\mu" />. We first study a real symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />. All its eigenvalues are real, and its eigenvectors can be chosen as an orthonormal basis.
 
 Choose <InlineMath math="\mu" /> that is not itself an eigenvalue and a unit starting vector <InlineMath math="q_0" /> with a nonzero component in the desired eigenvector direction. Factor <InlineMath math="A-\mu I" /> once, then reuse that factorization.
+
+Assume the targeted eigenvalue is **uniquely closest to the shift**. Equally close eigenvalues do not produce a unique dominant transformed magnitude. Convergence means convergence of the eigendirection. A negative transformed eigenvalue can alternate the vector sign.
 
 ### One Iteration
 
@@ -24,7 +26,7 @@ For <InlineMath math="k=0,1,2,\ldots" />, perform:
 <BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-The Rayleigh quotient <InlineMath math="\rho_{k+1}" /> estimates the eigenvalue. A reliable stopping rule checks the residual and accounts for the scale of the problem:
+The Rayleigh quotient <InlineMath math="\rho_{k+1}" /> estimates the eigenvalue. A reliable stopping rule **checks the residual** and accounts for the scale of the problem:
 
 <BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
 
@@ -36,7 +38,7 @@ This relation shows that the eigenvalue closest to <InlineMath math="\mu" /> pro
 
 ## Power Iteration
 
-Power iteration targets the eigenvalue of largest magnitude. Starting from a unit vector <InlineMath math="q_0" />, repeat:
+Power iteration targets the eigenvalue of **largest magnitude**. Starting from a unit vector <InlineMath math="q_0" />, repeat:
 
 <MathContainer>
 <BlockMath math="y_{k+1}=Aq_k" />
@@ -58,11 +60,11 @@ The word “smallest” is ambiguous, so the target should always be stated prec
 | Method | Target |
 | --- | --- |
 | Power iteration on <InlineMath math="A" /> | Eigenvalue with largest absolute value |
-| Inverse iteration with <InlineMath math="\mu=0" /> | Nonzero eigenvalue with smallest absolute value |
+| Inverse iteration with <InlineMath math="\mu=0" /> and invertible <InlineMath math="A" /> | Nonzero eigenvalue with smallest absolute value |
 | Shifted inverse iteration | Eigenvalue closest to <InlineMath math="\mu" /> |
 | Inverse iteration on a positive-definite matrix | Smallest algebraic eigenvalue, which is also smallest in absolute value |
 
-For an indefinite matrix, the eigenvalue with smallest absolute value need not be the most negative eigenvalue. This distinction prevents a common interpretation error.
+For an indefinite matrix, the eigenvalue with **smallest absolute value need not** be the most negative eigenvalue. This distinction prevents a common interpretation error.
 
 ## Worked Shifted Inverse Example
 
@@ -81,13 +83,17 @@ The shifted system for the first iteration gives
 <BlockMath math="\rho_1=q_1^TAq_1=\frac{37}{17}\approx2.176" />
 </MathContainer>
 
-Because <InlineMath math="2" /> is closer to the shift <InlineMath math="1" /> than <InlineMath math="5" />, further iterations drive the second component toward zero and <InlineMath math="\rho_k" /> toward <InlineMath math="2" />.
+Because <InlineMath math="2" /> is closer to the shift <InlineMath math="1" /> than <InlineMath math="5" />, further iterations drive the **second component toward zero** and <InlineMath math="\rho_k" /> toward <InlineMath math="2" />.
+
+Check the first residual as well. The estimate is improving but has not converged:
+
+<BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
 ## Practical Checks
 
 These checks decide whether a computed eigenvalue and eigenvector pair is correct without repeating the whole determinant. Work through them in order for the pair you obtained.
 
 1. Factor the shifted matrix with a stable method and pivoting where appropriate. If the shift lands exactly on an eigenvalue, the shifted matrix is singular and the solve must be handled or the shift adjusted.
-2. Stop using a residual norm. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
+2. Stop using a **residual norm**. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
 3. Eigenvector sign is arbitrary: <InlineMath math="q" /> and <InlineMath math="-q" /> represent the same eigendirection.
-4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, such as Lanczos, Arnoldi, or <InlineMath math="\mathrm{QR}" />-based eigensolvers.
+4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, using Lanczos for symmetric problems and Arnoldi or <InlineMath math="\mathrm{QR}" />-based eigensolvers.

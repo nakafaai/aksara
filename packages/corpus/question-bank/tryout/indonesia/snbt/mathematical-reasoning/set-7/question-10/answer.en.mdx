@@ -4,27 +4,14 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Identify Information
+#### Find the Undamaged Share
 
-Given:
-- Total inventory items: <InlineMath math="n(S) = 80" />
-- Damaged items: <InlineMath math="20" />
+Let <InlineMath math="A" /> mean selecting an undamaged item. The **undamaged items are the complement** of the damaged items:
 
-Thus, the number of undamaged items <InlineMath math="n(A)" /> is:
+<BlockMath math="n(A)=80-20=60" />
 
-<MathContainer>
-  <BlockMath math="n(A) = 80 - 20" />
-  <BlockMath math="n(A) = 60" />
-</MathContainer>
+All <InlineMath math="80" /> items are equally likely to be selected, so divide the favorable count by the total count:
 
-#### Probability Calculation
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{60}{80}=\frac34" />
 
-The probability of picking an undamaged item is:
-
-<MathContainer>
-  <BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
-  <BlockMath math="P(A) = \frac{60}{80}" />
-  <BlockMath math="P(A) = \frac{3}{4}" />
-</MathContainer>
-
-So, the probability that the item taken is not damaged is <InlineMath math="\frac{3}{4}" />.
+Thus, the probability is <InlineMath math="\frac34" />. This also equals <InlineMath math="1-\frac{20}{80}" />, which checks the result using the damaged share.

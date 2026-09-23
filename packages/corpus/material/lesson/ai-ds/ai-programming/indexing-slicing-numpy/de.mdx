@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Indexierung und Slicing
 
-Indexing wählt Werte an bestimmten Positionen aus, Slicing dagegen einen Bereich entlang einer oder mehrerer Achsen. Ein Slice einer Python-Liste erzeugt eine neue Liste. Basic Slicing in NumPy <Highlight>liefert meistens eine View, die ihre Daten mit dem ursprünglichen Array teilt</Highlight>. Advanced Indexing mit Integer- oder Boolean-Arrays erzeugt hingegen eine Kopie.
+Indexing wählt Werte an bestimmten Positionen aus, Slicing dagegen einen Bereich entlang einer oder mehrerer Achsen. Ein Slice einer Python-Liste erzeugt eine neue Liste. Basic Slicing eines `ndarray` liefert eine **View mit gemeinsam genutzten Daten**. Das Lesen durch Advanced Indexing mit Integer- oder Boolean-Arrays erzeugt dagegen eine Kopie.
 
 Eine [View](https://numpy.org/doc/stable/user/basics.indexing.html) vermeidet das Kopieren der Daten. Schreibst du jedoch über die View, ändern sich auch die entsprechenden Werte im ursprünglichen Array.
 
 ## Eindimensionale Operationen mit Arrays
 
-Eindimensionale Arrays verwenden die vertraute Indexing-Syntax von Python. Ein Basic Slice wie `a[1:4]` liefert eine View. Änderungen an dieser View betreffen daher dieselben Elemente in `a`.
+Eindimensionale Arrays verwenden die vertraute Indexing-Syntax von Python. Ein Basic Slice wie `a[1:4]` liefert eine View. Änderungen an dieser View betreffen daher **dieselben Elemente** in `a`.
 
 <CodeBlock
   data={[
@@ -29,7 +29,7 @@ a = np.linspace(0, 7, 8)
 print("Ursprüngliches Array:", a)  # Ausgabe: Ursprüngliches Array: [0. 1. 2. 3. 4. 5. 6. 7.]
 
 # Indizierung einzelner Elemente
-print("3. Element:", a[3])  # Ausgabe: 3. Element: 3.0
+print("Element am Index 3:", a[3])  # Ausgabe: Element am Index 3: 3.0
 print("Letztes Element:", a[-1])  # Ausgabe: Letztes Element: 7.0
 
 # Grundlegendes Slicing
@@ -78,7 +78,7 @@ print("Kopie:", copy_array)  # Ausgabe: Kopie: [777   3   4]`
 
 ## Multidimensionale Operationen mit Arrays
 
-In einer mehrdimensionalen Auswahl spricht jeder durch Komma getrennte Eintrag eine Dimension des Arrays an, beginnend mit der ersten Dimension. <Highlight>Ein ganzzahliger Index entfernt diese Dimension aus dem Ergebnisarray</Highlight>, ein Schnitt wie `:` behält sie bei. Zum Beispiel liefert `a[1, :]` für das zweidimensionale Array `a` ein eindimensionales Array mit der zweiten Zeile, während `a[1:2, :]` weiterhin ein zweidimensionales Array mit einer Zeile liefert.
+In einer mehrdimensionalen Auswahl spricht jeder durch Komma getrennte Eintrag eine Dimension des Arrays an, beginnend mit der ersten Dimension. Ein ganzzahliger Index **entfernt diese Dimension** aus dem Ergebnisarray, ein Schnitt wie `:` behält sie bei. Zum Beispiel liefert `a[1, :]` für das zweidimensionale Array `a` ein eindimensionales Array mit der zweiten Zeile, während `a[1:2, :]` weiterhin ein zweidimensionales Array mit einer Zeile liefert.
 
 <CodeBlock
   data={[
@@ -138,8 +138,8 @@ print(a[1:3, 0:2])
 print("a[::2, :]:")
 print(a[::2, :])
 # Ausgabe:
-# [[ 1.  2.  3.]
-#  [ 7.  8.  9.]]
+# [[1. 2. 3.]
+#  [7. 8. 9.]]
 
 # Spaltenschneiden mit Schritt
 print("a[:, ::2]:")
@@ -155,7 +155,7 @@ print(a[:, ::2])
 
 ### Zweidimensionale Operationen im Überblick
 
-Die Tabelle sammelt die Index- und Slice-Formen für ein zweidimensionales Array an einer Stelle, zusammen mit der Form jedes Ergebnisses.
+Die Tabelle sammelt die Index- und Slice-Formen für ein zweidimensionales Array an einer Stelle, zusammen mit der **Form jedes Ergebnisses**.
 
 | Operation | Beschreibung | Beispielergebnis |
 |-----------|-------------|----------------|
@@ -168,7 +168,7 @@ Die Tabelle sammelt die Index- und Slice-Formen für ein zweidimensionales Array
 
 ## Erweiterte Indizierung
 
-Advanced Indexing wählt mit Integer- oder Boolean-Arrays beliebige Elemente aus und liefert immer eine Kopie. Bei einer eindimensionalen Quelle bestimmt das Indexarray die Form des Ergebnisses. Bei mehrdimensionalen Quellen broadcastet NumPy die Indexarrays und kombiniert ihre Form mit den Dimensionen, die durch Basic Slices übrig bleiben.
+Advanced Indexing wählt mit Integer- oder Boolean-Arrays beliebige Elemente aus und liefert immer eine Kopie. Bei einer eindimensionalen Quelle bestimmt das Indexarray die **Form des Ergebnisses**. Bei mehrdimensionalen Quellen broadcastet NumPy die Indexarrays und kombiniert ihre Form mit den Dimensionen, die durch Basic Slices übrig bleiben.
 
 <CodeBlock
   data={[
@@ -272,7 +272,7 @@ print(a[row_mask, 2:5])
 
 ## Fortgeschrittene Techniken
 
-Das dritte Feld eines Slice ist die Schrittweite. Damit wählst du regelmäßige Abstände aus, durchläufst mit negativen Werten eine Achse rückwärts und legst den Schritt für jede Achse getrennt fest.
+Das dritte Feld eines Slice ist die Schrittweite. Damit wählst du **regelmäßige Abstände** aus, durchläufst mit negativen Werten eine Achse rückwärts und legst den Schritt für jede Achse getrennt fest.
 
 <CodeBlock
   data={[
@@ -347,7 +347,7 @@ print(a[1, ..., ::2])
 
 ## Boolesche Indizierung
 
-Bei der booleschen Indizierung filtert ein boolesches Array die Elemente nach einer Bedingung. Ein `True` übernimmt das entsprechende Element, ein `False` lässt es aus.
+Bei der booleschen Indizierung filtert ein boolesches Array die Elemente **nach einer Bedingung**. Ein `True` übernimmt das entsprechende Element, ein `False` lässt es aus.
 
 <CodeBlock
   data={[
@@ -413,15 +413,17 @@ print("Nach a[a < 5] = 0:")
 print(a)
 # Ausgabe:
 # [[ 0  0  0  0]
-#  [ 0  0  6  7]
+#  [ 0  5  6  7]
 #  [ 8  9 10 11]]`
     }
   ]}
 />
 
+Unterscheide **das Lesen einer Auswahl von einer Zuweisung**. `selected = a[mask]` erzeugt eine Kopie, doch `a[a < 5] = 0` schreibt direkt an die ausgewählten Positionen in `a`. Der Wert `5` bleibt erhalten, weil die Bedingung `< 5` und nicht `<= 5` lautet.
+
 ## Fancy Indexing
 
-Fancy Indexing ist eine gebräuchliche Bezeichnung für Advanced Indexing mit Integern. Damit kannst du Positionen neu anordnen, wiederholen oder das Ergebnis entsprechend der Form eines Indexarrays aufbauen.
+Fancy Indexing ist eine gebräuchliche Bezeichnung für Advanced Indexing mit Integern. Damit kannst du **Positionen neu anordnen, wiederholen** oder das Ergebnis entsprechend der Form eines Indexarrays aufbauen.
 
 <CodeBlock
   data={[
@@ -505,7 +507,7 @@ print(a[[0, 2], 1:4])
 
 ## Daten in Arrays auswählen und neu anordnen
 
-Mit denselben Auswahlregeln kannst du Daten ohne selbst geschriebene Schleifen filtern, Stichproben ziehen und neu anordnen.
+Mit denselben Auswahlregeln kannst du Daten ohne selbst geschriebene Schleifen **filtern, Stichproben ziehen** und neu anordnen.
 
 Das folgende Beispiel zeigt Masken und Zuweisungen. In einer echten Analyse muss der Messkontext die Temperaturgrenzen und die Ersetzungsregel bestimmen:
 
@@ -534,12 +536,12 @@ print("Extreme Temperaturen:", extreme_temps)  # Ausgabe: Extreme Temperaturen: 
 mean_temp = temperatures[normal_temp_mask].mean()
 temperatures_cleaned = temperatures.copy()
 temperatures_cleaned[extreme_temp_mask] = mean_temp
-print("Daten nach der Reinigung:", temperatures_cleaned)  # Ausgabe: Daten nach der Bereinigung: [22.5   25.1   24.925 24.925 24.925 27.3   24.925 24.8  ]`
+print("Daten nach der Reinigung:", temperatures_cleaned)  # Ausgabe: Daten nach der Reinigung: [22.5   25.1   24.925 24.925 24.925 27.3   24.925 24.8  ]`
     }
   ]}
 />
 
-Für eine reproduzierbare Stichprobe erstellst du einen lokalen Zufallsgenerator mit einem festen Seed, statt NumPys alten globalen Zufallszustand zu verändern:
+Um eine Stichprobe mit demselben Generator und derselben NumPy-Version zu wiederholen, gibst du einem lokalen Generator einen festen Seed:
 
 <CodeBlock
   data={[

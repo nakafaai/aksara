@@ -30,13 +30,13 @@ Die mathematische Reihe besitzt keinen letzten Sprung. Ihre Teilsummen können s
 
 <BlockMath math="|r| &lt; 1 \quad \text{oder} \quad -1 &lt; r &lt; 1" />
 
-Eine solche Reihe heißt **konvergent**: <Highlight>Ihre Teilsummen nähern sich einem bestimmten endlichen Wert</Highlight>. Im Ballbeispiel gilt <InlineMath math="r = \frac{1}{4}" />. Wegen <InlineMath math="-1 < \frac{1}{4} < 1" /> ist die Reihe konvergent.
+Eine solche Reihe heißt **konvergent**: Ihre Teilsummen nähern sich **einem endlichen Wert**. Im Ballbeispiel gilt <InlineMath math="r = \frac{1}{4}" />. Wegen <InlineMath math="-1 < \frac{1}{4} < 1" /> ist die Reihe konvergent.
 
 Wenn <InlineMath math="|r| \ge 1" /> und <InlineMath math="a\ne0" />, nähern sich die Glieder nicht null. Die Reihe ist dann **divergent**. Ihre Teilsummen können unbegrenzt wachsen, unbegrenzt abnehmen oder oszillieren. Divergenz bedeutet, dass kein endlicher Grenzwert existiert. Das Ergebnis muss nicht <InlineMath math="+\infty" /> oder <InlineMath math="-\infty" /> sein.
 
 ## Berechnen der Summe einer unendlichen Reihe
 
-Für eine konvergente unendliche Reihe beginnen wir mit der Formel für die Summe der ersten <InlineMath math="n" /> Glieder einer geometrischen Reihe:
+Für eine **konvergente unendliche Reihe** beginnen wir mit der Formel für die Summe der ersten <InlineMath math="n" /> Glieder einer geometrischen Reihe:
 
 <BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
 
@@ -68,22 +68,33 @@ Hier <InlineMath math="a=1" /> und <InlineMath math="r=\frac12" />, also:
 
 Keine endliche Teilsumme ist gleich <InlineMath math="2" />, aber die Teilsummen können beliebig nahe an <InlineMath math="2" /> herankommen. Die unendliche Summe ist die Grenze dieser endlichen Teilsummen.
 
+
+<LineEquation
+  title="Partialsummen nähern sich zwei"
+  description="Die Punkte zeigen die Summe nach 1 bis 6 Gliedern. Verbindungslinien verdeutlichen nur ihre Reihenfolge. Die waagerechte Linie markiert den Grenzwert 2. Drehe oder vergrößere die Ansicht und vergleiche die Punkte mit dieser Linie."
+  cameraPosition={[3, 1, 9]}
+  cameraTarget={[3, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 1.5, z: 0 }, { x: 3, y: 1.75, z: 0 }, { x: 4, y: 1.875, z: 0 }, { x: 5, y: 1.9375, z: 0 }, { x: 6, y: 1.96875, z: 0 }], smooth: false, showPoints: true, color: "blue", labels: [{ text: <InlineMath math="S(n)" />, at: 3, offset: [0, -0.25, 0] }] },
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0, 0.2, 0] }] }
+  ]}
+/>
+
+Auch den Abstand zum Grenzwert kannst du berechnen. Nach sechs Gliedern beträgt die Summe <InlineMath math="1{,}96875" /> und der Abstand <InlineMath math="0{,}03125" />. Mit jedem weiteren Glied halbiert sich **der verbleibende Abstand zum Grenzwert**.
+
+<BlockMath math="S_n=2-2^{1-n},\qquad 2-S_n=2^{1-n}" />
+
 ## Berechnung der Gesamtstrecke
 
 Mit der Formel <InlineMath math="S_\infty" /> können wir die vom Ball zurückgelegte Gesamtstrecke berechnen. Der Weg besteht aus zwei Teilen:
 
-1.  **Abwärtsstrecke:** Der Ball fällt aus der Höhe <InlineMath math="a" />, nach dem ersten Sprung erneut um <InlineMath math="ar" />, nach dem zweiten Sprung um <InlineMath math="ar^2" /> und so weiter.
+**Zähle den ersten Fall einmal**. Jede Rücksprunghöhe durchläuft der Ball danach zweimal, einmal aufwärts und einmal abwärts. Trenne die beiden Richtungen, damit kein Teil des Weges fehlt.
 
-    - Abwärtsreihe: <InlineMath math="a + ar + ar^2 + ar^3 + \dots" />
-    - Das erste Glied (<InlineMath math="a_{\downarrow}" />) ist <InlineMath math="a" />
-    - Der Faktor (<InlineMath math="r_{\downarrow}" />) ist <InlineMath math="r" />
-    - Summe der Abwärtsstrecken: <InlineMath math="S_{\downarrow}=\frac{a_{\downarrow}}{1-r_{\downarrow}}=\frac{a}{1-r}" />
-
-2.  **Aufwärtsstrecke:** Nach dem ersten Aufprall steigt der Ball um <InlineMath math="ar" />, nach dem zweiten um <InlineMath math="ar^2" /> und so weiter.
-    - Aufwärtsreihe: <InlineMath math="ar + ar^2 + ar^3 + \dots" />
-    - Das erste Glied (<InlineMath math="a_{\uparrow}" />) ist <InlineMath math="ar" />
-    - Der Faktor (<InlineMath math="r_{\uparrow}" />) ist <InlineMath math="r" />
-    - Summe der Aufwärtsstrecken: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
+| Richtung | Durchlaufene Höhen | Erstes Glied | Streckensumme |
+| --- | --- | --- | --- |
+| Abwärts | <InlineMath math="a,ar,ar^2,\ldots" /> | <InlineMath math="a" /> | <InlineMath math="S_{\downarrow}=\frac{a}{1-r}" /> |
+| Aufwärts | <InlineMath math="ar,ar^2,ar^3,\ldots" /> | <InlineMath math="ar" /> | <InlineMath math="S_{\uparrow}=\frac{ar}{1-r}" /> |
 
 Die Gesamtstrecke ist die Summe aller Abwärtsstrecken und aller Aufwärtsstrecken.
 
@@ -116,8 +127,8 @@ Berechne die Summe:
 
 <BlockMath math="12-6+3-\frac32+\cdots" />
 
-Hier <InlineMath math="a=12" /> und <InlineMath math="r=-\frac12" />. Da <InlineMath math="|r|<1" /> konvergiert die Reihe:
+Hier <InlineMath math="a=12" /> und <InlineMath math="r=-\frac12" />. Da <InlineMath math="|r|<1" /> **konvergiert** die Reihe:
 
-<BlockMath math="S_\infty=\frac{12}{1-(-1/2)}=8" />
+<BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 Durch den negativen Faktor wechseln sich die Vorzeichen der Glieder ab. Ihre Beträge werden jedoch schnell genug kleiner, sodass sich die Teilsummen dem Wert <InlineMath math="8" /> nähern.

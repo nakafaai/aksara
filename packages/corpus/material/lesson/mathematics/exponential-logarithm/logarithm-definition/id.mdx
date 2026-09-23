@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Logaritma Menentukan Pangkat yang Belum Diketahui
 
-<Highlight>Logaritma membalik proses pemangkatan</Highlight>. Jika <InlineMath math="a^c=b" />, maka <InlineMath math="\log_a b" /> menghasilkan pangkat <InlineMath math="c" />.
+Logaritma mencari **pangkat yang belum diketahui**. Jika <InlineMath math="a^c=b" />, maka <InlineMath math="\log_a b" /> menghasilkan pangkat <InlineMath math="c" />.
 
 <BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
 
@@ -35,7 +35,7 @@ Setiap baris menyatakan hubungan yang sama dengan dua cara:
 | <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
 | <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
 
-Saat mengubah bentuk, pertahankan bilangan pokoknya. Hasil pemangkatan menjadi argumen logaritma, sedangkan pangkat menjadi nilai logaritma.
+Saat mengubah bentuk, pertahankan **bilangan pokok yang sama**. Hasil pemangkatan menjadi argumen logaritma, sedangkan pangkat menjadi nilai logaritma. Pada baris ketiga, hasil pemangkatan berupa pecahan karena pangkatnya negatif.
 
 ## Logaritma Umum dan Alami
 
@@ -43,7 +43,7 @@ Logaritma dengan bilangan pokok <InlineMath math="10" /> disebut **logaritma umu
 
 <BlockMath math="\log_{10}x=\log x" />
 
-Logaritma dengan bilangan pokok <InlineMath math="e" /> disebut **logaritma alami** dan ditulis <InlineMath math="\ln x" />. Kedua notasi tersebut merupakan kasus khusus dari <InlineMath math="\log_a x" />.
+Logaritma dengan bilangan pokok <InlineMath math="e" /> disebut **logaritma alami** dan ditulis <InlineMath math="\ln x" />. Bilangan <InlineMath math="e\approx2{,}71828" /> disebut bilangan Euler. Kedua notasi tersebut merupakan kasus khusus dari <InlineMath math="\log_a x" />.
 
 ## Menentukan Pangkat yang Belum Diketahui
 
@@ -51,7 +51,7 @@ Anggap suatu kultur ideal dimulai dengan <InlineMath math="2{.}000" /> bakteri d
 
 <BlockMath math="P(x)=2{.}000\cdot2^x" />
 
-Untuk menentukan kapan model kontinu mencapai <InlineMath math="100{.}000" />, samakan keluarannya dengan target:
+Untuk menentukan kapan model kontinu mencapai <InlineMath math="100{.}000" />, samakan jumlah bakteri dengan target. Bagi kedua ruas dengan **jumlah awal** sebelum mencari pangkat:
 
 <MathContainer>
   <BlockMath math="100{.}000=2{.}000\cdot2^x" />
@@ -71,3 +71,13 @@ Kurva kontinu mencapai <InlineMath math="100{.}000" /> pada sekitar <InlineMath 
 </MathContainer>
 
 Jadi, interval satu jam pertama yang mencapai atau melampaui target adalah <InlineMath math="6\text{ jam}" />. Logaritma menyelesaikan persamaannya, sedangkan konteks menentukan cara menafsirkan jawaban bernilai real tersebut.
+
+Pada grafik, target terletak **di antara dua pengamatan per jam**. Titik setelah lima jam masih di bawah target, sedangkan titik setelah enam jam sudah di atas target.
+
+<FunctionChart
+  a={2}
+  p={2000}
+  n={7}
+  title="Waktu untuk Mencapai Target"
+  description="Sumbu mendatar menyatakan waktu dalam jam. Bandingkan jumlah bakteri setelah lima dan enam jam."
+/>

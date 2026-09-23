@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Given the function <InlineMath math="y = -x^2 - 2x + 8" />. We want to find the equation of the tangent line at the point with abscissa <InlineMath math="x = -2" />.
+Given the function <InlineMath math="y = -x^2 - 2x + 8" />. We want to find the **equation of the tangent line** at the point with abscissa <InlineMath math="x = -2" />.
 
 #### Finding the Ordinate
 
@@ -17,11 +17,11 @@ Substitute <InlineMath math="x = -2" /> into the curve equation:
   <BlockMath math="y = 8" />
 </MathContainer>
 
-So, the point of tangency is <InlineMath math="(-2, 8)" />.
+So, the **point of tangency** is <InlineMath math="(-2, 8)" />.
 
 #### Finding the Gradient of the Tangent Line
 
-The gradient of the tangent line <InlineMath math="m" /> is the value of the first derivative <InlineMath math="y'" /> at the abscissa of the point of tangency.
+The gradient of the tangent line <InlineMath math="m" /> is the value of the **first derivative** <InlineMath math="y'" /> at the abscissa of the point of tangency.
 
 <BlockMath math="y' = -2x - 2" />
 
@@ -35,7 +35,7 @@ Substitute <InlineMath math="x = -2" />:
 
 #### Determining the Equation of the Tangent Line
 
-Use the point-slope form for the equation of a line passing through <InlineMath math="(x_1, y_1)" /> with gradient <InlineMath math="m" />:
+Use the **point-slope form** for the equation of a line passing through <InlineMath math="(x_1, y_1)" /> with gradient <InlineMath math="m" />:
 
 <BlockMath math="y - y_1 = m(x - x_1)" />
 
@@ -50,3 +50,12 @@ Substitute <InlineMath math="x_1 = -2" />, <InlineMath math="y_1 = 8" />, and <I
 </MathContainer>
 
 Thus, the equation of the tangent line is <InlineMath math="y = 2x + 12" />.
+
+<LineEquation
+ title="The curve and tangent share the contact point"
+ description="The curve y=-x²-2x+8 and line y=2x+12 are tangent at (-2,8), with slope 2."
+ cameraPosition={[-2,6,16]}
+ cameraTarget={[-2,6,0]}
+ showZAxis={false}
+ data={[{color:"#4f46e5",points:Array.from({length:81},(_,i)=>{const x=-4+i/20;return {x,y:-x*x-2*x+8,z:0};}),showPoints:false,smooth:false},{color:"#ea580c",points:[{x:-4,y:4,z:0},{x:-2,y:8,z:0},{x:0,y:12,z:0}],showPoints:true,pointIndices:[1],smooth:false}]}
+/>

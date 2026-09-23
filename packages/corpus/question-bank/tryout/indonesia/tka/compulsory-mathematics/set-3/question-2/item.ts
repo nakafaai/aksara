@@ -37,15 +37,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5{,}5$$",
+          label: "$$5.5$$",
         },
         {
           isCorrect: false,
-          label: "$$9{,}9$$",
+          label: "$$9.9$$",
         },
         {
           isCorrect: true,
-          label: "$$11{,}1$$",
+          label: "$$11.1$$",
         },
         {
           isCorrect: false,
@@ -53,7 +53,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$16{,}6$$",
+          label: "$$16.6$$",
         },
       ],
     },

@@ -11,33 +11,48 @@ export const metadata = {
 
 ## Gleiche Komponenten trotz verschiedener Anfangspunkte
 
-<Highlight>Zwei Vektoren sind gleich, oder werden durch äquivalente gerichtete Strecken dargestellt, wenn ihre Komponenten übereinstimmen.</Highlight> Für Vektoren ungleich null bedeutet das zugleich: gleicher Betrag und gleiche Richtung. Für <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> schreiben wir <InlineMath math="\vec{a} = \vec{b}" />.
+Zwei Vektoren sind gleich, oder werden durch äquivalente gerichtete Strecken dargestellt, **wenn ihre Komponenten übereinstimmen**. Für Vektoren ungleich null bedeutet das zugleich: gleicher Betrag und gleiche Richtung. Für <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> schreiben wir <InlineMath math="\vec{a} = \vec{b}" />.
 
 Gleiche Vektoren dürfen an verschiedenen Stellen einer Ebene oder des Raums eingezeichnet sein. Betrag und Richtung bleiben dabei unverändert.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[7, 5, -6]}
+  cameraTarget={[2, 1.5, 1]}
   title="Beispiel für gleiche Vektoren"
   description="Der violette und der orangefarbene Vektor haben denselben Betrag und dieselbe Richtung. Deshalb sind sie trotz ihrer unterschiedlichen Positionen gleich."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 5, 8]}
 />
 
 ## Bedingungen für gleiche Vektoren
 
-Zwei Vektoren sind gleich, wenn zwei Bedingungen gleichzeitig erfüllt sind, also prüfe beide, bevor du sie als gleich bezeichnest. Ein Paar, das nur eine der beiden Bedingungen erfüllt, ist nicht gleich.
+Zwei Vektoren sind gleich, wenn **zwei Bedingungen gleichzeitig** erfüllt sind, also prüfe beide, bevor du sie als gleich bezeichnest. Ein Paar, das nur eine der beiden Bedingungen erfüllt, ist nicht gleich.
 
 Zwei Vektoren ungleich null, <InlineMath math="\overrightarrow{CD}" /> und <InlineMath math="\overrightarrow{PQ}" />, sind gleich, wenn:
 
@@ -46,9 +61,11 @@ Zwei Vektoren ungleich null, <InlineMath math="\overrightarrow{CD}" /> und <Inli
 
 ## Gleiche Vektoren darstellen
 
-Zwei gleiche Vektoren haben dieselbe Länge und dieselbe Richtung, sodass einer den anderen vertreten kann. Diese Vertretung setzt einen Vektor an einen günstigeren Anfangspunkt, ohne den Vektor selbst zu ändern.
+Zwei gleiche Vektoren haben **dieselbe Länge und dieselbe Richtung**, sodass einer den anderen vertreten kann. Diese Vertretung setzt einen Vektor an einen günstigeren Anfangspunkt, ohne den Vektor selbst zu ändern.
 
 ### In Komponentenform
+
+Gleiche Vektoren haben **übereinstimmende Komponenten auf jeder Achse**. Es genügt nicht, nur ihre Beträge zu vergleichen.
 
 In der zweidimensionalen kartesischen Ebene sind <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> genau dann gleich, wenn ihre Komponenten übereinstimmen:
 
@@ -62,28 +79,44 @@ Im dreidimensionalen Raum sind die Vektoren <InlineMath math="\vec{a}" /> und <I
 
 Diese Gleichheit gilt genau dann, wenn <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" /> und <InlineMath math="a_3 = b_3" /> gelten.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[8, 5, -6]}
+  cameraTarget={[2.5, 1.5, 1.5]}
   title="Gleiche Vektoren in Komponentenform"
   description="Zwei Vektoren mit denselben Komponenten sind gleich, auch wenn sie an unterschiedlichen Stellen im Raum eingezeichnet sind."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
 
 ### Mit Anfangspunkten und Endpunkten
 
-Hat <InlineMath math="\overrightarrow{AB}" /> den Anfangspunkt <InlineMath math="A(x_1, y_1)" /> und den Endpunkt <InlineMath math="B(x_2, y_2)" />, ergeben sich seine Komponenten aus Endpunkt minus Anfangspunkt:
+Hat <InlineMath math="\overrightarrow{AB}" /> den Anfangspunkt <InlineMath math="A(x_1, y_1)" /> und den Endpunkt <InlineMath math="B(x_2, y_2)" />, ergeben sich seine Komponenten aus **Endpunkt minus Anfangspunkt**:
 
 <BlockMath math="\overrightarrow{AB} = (x_2 - x_1, y_2 - y_1)" />
 
@@ -95,17 +128,17 @@ In dieser Gleichung ist <InlineMath math="C(x_3, y_3)" /> der Anfangspunkt und <
 
 ## Regeln aus der Vektorgleichheit
 
-Jede der drei Regeln behält die Endpunkte einer Kette und entfernt einen wiederholten Vektor, sodass aus einer langen Liste eine einzige Beziehung wird. Damit kannst du viele Zwischenschritte überspringen, ohne die Aussage zu verändern.
-
-Gleichheit von Vektoren verhält sich wie Gleichheit von Zahlen. Die drei Regeln unten verkürzen eine Kette gleicher Vektoren.
+Vektorgleichheit folgt aus der **Gleichheit aller Komponenten**. Reflexivität vergleicht einen Vektor mit sich selbst. Symmetrie vertauscht die Reihenfolge zweier gleicher Vektoren. Transitivität verbindet zwei Gleichheiten über einen gemeinsamen Zwischenvektor.
 
 ### Reflexive Eigenschaft
 
-Jeder Vektor ist sich selbst gleich.
+Jeder Vektor ist **sich selbst** gleich.
 
 <BlockMath math="\vec{a} = \vec{a}" />
 
 ### Symmetrische Eigenschaft
+
+Du darfst die **linke und rechte Seite vertauschen**, wenn zwei Vektoren gleich sind.
 
 Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math="\vec{b}" />, dann ist auch der Vektor <InlineMath math="\vec{b}" /> gleich dem Vektor <InlineMath math="\vec{a}" />.
 
@@ -113,13 +146,17 @@ Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math=
 
 ### Transitive Eigenschaft
 
+Zwei Gleichheiten lassen sich über **denselben Zwischenvektor** verbinden.
+
 Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math="\vec{b}" /> und der Vektor <InlineMath math="\vec{b}" /> gleich dem Vektor <InlineMath math="\vec{c}" />, dann ist auch der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math="\vec{c}" />.
 
 <ContentStack>
 
   <BlockMath math="\text{Wenn } \vec{a} = \vec{b} \text{ und } \vec{b} = \vec{c} \text{, dann } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
+    cameraPosition={[7, 5, -6]}
+    cameraTarget={[2, 1.5, 1]}
     title="Transitive Eigenschaft gleicher Vektoren"
     description={
       <>
@@ -127,41 +164,60 @@ Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math=
         <InlineMath math="b = c" /> folgt <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[7, 5, 7]}
   />
 </ContentStack>
 
 ## Gleiche Vektoren anhand ihrer Komponenten prüfen
 
-Beide Koordinatendifferenzen müssen übereinstimmen, denn schon eine abweichende Koordinate macht die beiden Vektoren ungleich. Die Rechnung unten vergleicht die Differenzen deshalb Zeile für Zeile.
+**Beide Koordinatendifferenzen müssen übereinstimmen**, denn schon eine abweichende Koordinate macht die beiden Vektoren ungleich. Wir vergleichen dazu die Verschiebung entlang jeder Achse getrennt, unabhängig davon, wo die beiden Pfeile beginnen.
 
-Zwei Vektoren sind gleich, wenn sich die erste Koordinate gleich ändert und die zweite Koordinate gleich ändert. Die Beispiele unten vergleichen diese Änderungen direkt.
 
 ### Gleichheit durch übereinstimmende Komponentenänderungen
 
 Der Vektor <InlineMath math="\overrightarrow{AB}" /> mit <InlineMath math="A(2, 3)" /> und <InlineMath math="B(5, 7)" /> ist gleich dem Vektor <InlineMath math="\overrightarrow{CD}" /> mit <InlineMath math="C(1, 1)" /> und <InlineMath math="D(4, 5)" />.
 
-Beweis:
+Berechne für beide Pfeile **Endpunkt minus Anfangspunkt**:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{AB} = (5-2, 7-3) = (3, 4)" />
@@ -170,7 +226,9 @@ Beweis:
 
 Da <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" /> gilt, ist der Vektor <InlineMath math="\overrightarrow{AB}" /> gleich dem Vektor <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[3, 4, 10]}
+  cameraTarget={[3, 4, 0]}
   title={
     <>
       Vektoren <InlineMath math="AB" /> und <InlineMath math="CD" />
@@ -182,28 +240,41 @@ Da <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" /> gilt
       <InlineMath math="AB(3,4,0)" /> und <InlineMath math="CD(3,4,0)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[10, 10, 10]}
 />
 
 ### Äquivalente Vektoren mit verschiedenen Anfangspunkten
 
 Der Vektor <InlineMath math="\overrightarrow{PQ}" /> mit <InlineMath math="P(0, 0)" /> und <InlineMath math="Q(2, 2)" /> ist gleich dem Vektor <InlineMath math="\overrightarrow{RS}" /> mit <InlineMath math="R(3, 1)" /> und <InlineMath math="S(5, 3)" />.
 
-Beweis:
+Berechne für beide Pfeile **Endpunkt minus Anfangspunkt**:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{PQ} = (2-0, 2-0) = (2, 2)" />
@@ -212,7 +283,9 @@ Beweis:
 
 Da <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" /> gilt, ist der Vektor <InlineMath math="\overrightarrow{PQ}" /> gleich dem Vektor <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[2.5, 1.5, 8]}
+  cameraTarget={[2.5, 1.5, 0]}
   title={
     <>
       Vektoren <InlineMath math="PQ" /> und <InlineMath math="RS" />
@@ -224,21 +297,34 @@ Da <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" /> gilt
       <InlineMath math="PQ(2,2,0)" /> und <InlineMath math="RS(2,2,0)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 6, 8]}
 />
 
 ## Warum die Startpunkte verschieden sein können

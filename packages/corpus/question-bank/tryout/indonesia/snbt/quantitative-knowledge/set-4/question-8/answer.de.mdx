@@ -5,41 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analysieren wir jede ebene Figur anhand der Anzahl ihrer Spiegelungs- und Rotationssymmetrien.
+Eine Figur muss **beide Mindestzahlen** erreichen: mindestens zwei Rotationssymmetrien und drei Spiegelachsen. Die Ausgangslage zählt als eine Rotationssymmetrie.
 
-Die erforderlichen Bedingungen sind:
+| Figur | Rotationssymmetrien | Spiegelachsen | Beide Bedingungen? |
+| --- | --- | --- | --- |
+| Ungleichseitiges Dreieck | 1: Ausgangslage | 0: keine Spiegelachse | Nein |
+| Parallelogramm, weder Rechteck noch Raute | 2: Drehungen um 0° und 180° | 0: keine Spiegelachse | Nein |
+| Ellipse, die kein Kreis ist | 2: Drehungen um 0° und 180° | 2: Haupt- und Nebenachse | Nein |
+| Regelmäßiges Sechseck | 6: Vielfache von 60° zwischen 0° und 300° | 6: drei durch gegenüberliegende Eckpunkte und drei durch gegenüberliegende Seitenmittelpunkte | Ja |
 
-1.  Rotationssymmetrie <InlineMath math="\ge 2" />
-2.  Reflexionssymmetrie <InlineMath math="\ge 3" />
+Die Zeichnung zeigt die **sechs Spiegelachsen** des regelmäßigen Sechsecks. Die Ellipse hat nur zwei Achsen und erreicht die geforderten drei nicht. Daher erfüllt nur eine Figur beide Bedingungen.
 
-#### Ungleichseitiges Dreieck
-
-*   **Reflexionssymmetrie:** <InlineMath math="0" /> (hat keine Symmetrieachse).
-*   **Rotationssymmetrie:** <InlineMath math="1" /> (kehrt erst nach einer Drehung um <InlineMath math="360^\circ" /> zur ursprünglichen Position zurück).
-
-**Schlussfolgerung:** Erfüllt nicht beide Bedingungen.
-
-#### Allgemeines Parallelogramm
-
-*   **Reflexionssymmetrie:** <InlineMath math="0" /> (hat keine Symmetrieachse).
-*   **Rotationssymmetrie:** <InlineMath math="2" /> (Rotationssymmetrie der Ordnung <InlineMath math="2" />).
-
-**Schlussfolgerung:** Erfüllt die Rotationssymmetriebedingung, **erfüllt jedoch nicht** die Reflexionssymmetriebedingung.
-
-#### Ellipse
-
-*   **Reflexionssymmetrie:** <InlineMath math="2" /> (Haupt- und Nebenachse).
-*   **Rotationssymmetrie:** <InlineMath math="2" /> (Rotationssymmetrie der Ordnung <InlineMath math="2" />).
-
-**Schlussfolgerung:** Erfüllt die Rotationssymmetriebedingung, aber **erfüllt nicht** die Reflexionssymmetriebedingung (hat nur <InlineMath math="2" />, erfordert mindestens <InlineMath math="3" />).
-
-#### Regelmäßiges Sechseck
-
-*   **Reflexionssymmetrie:** <InlineMath math="6" /> (hat <InlineMath math="6" /> Symmetrieachsen).
-*   **Rotationssymmetrie:** <InlineMath math="6" /> (Rotationssymmetrie der Ordnung <InlineMath math="6" />).
-
-**Schlussfolgerung:** Erfüllt beide Bedingungen (Rotationssymmetrie <InlineMath math="6 \ge 2" /> und Reflexionssymmetrie <InlineMath math="6 \ge 3" />).
-
-#### Figur mit beiden geforderten Symmetrien
-
-Von den vier Figuren erfüllt nur **<InlineMath math="1" /> Figur** beide Bedingungen: das regelmäßige Sechseck.
+<MathVisual
+ title="Sechs Spiegelachsen des Sechsecks"
+ description="Drei Geraden verlaufen durch gegenüberliegende Eckpunkte. Die anderen drei verlaufen durch die Mittelpunkte gegenüberliegender Seiten."
+ scene={{"space":"plane","frame":{"kind":"cartesian","x":{"min":-3,"max":3},"y":{"min":-3,"max":3}},"view":{"kind":"fit","padding":0.1},"objects":[{"id":"hexagon","kind":"polygon","appearance":"primary","vertices":[{"x":2.0,"y":0},{"x":1.0,"y":1.732050807569},{"x":-1.0,"y":1.732050807569},{"x":-2.0,"y":0},{"x":-1.0,"y":-1.732050807569},{"x":1.0,"y":-1.732050807569}]},{"id":"axis-0","kind":"segment","appearance":"highlight","from":{"x":-2.3,"y":0},"to":{"x":2.3,"y":0}},{"id":"axis-1","kind":"segment","appearance":"secondary","from":{"x":-1.991858428704,"y":-1.15},"to":{"x":1.991858428704,"y":1.15}},{"id":"axis-2","kind":"segment","appearance":"highlight","from":{"x":-1.15,"y":-1.991858428704},"to":{"x":1.15,"y":1.991858428704}},{"id":"axis-3","kind":"segment","appearance":"secondary","from":{"x":0,"y":-2.3},"to":{"x":0,"y":2.3}},{"id":"axis-4","kind":"segment","appearance":"highlight","from":{"x":1.15,"y":-1.991858428704},"to":{"x":-1.15,"y":1.991858428704}},{"id":"axis-5","kind":"segment","appearance":"secondary","from":{"x":1.991858428704,"y":-1.15},"to":{"x":-1.991858428704,"y":1.15}}],"labels":[]}}
+ labels={{}}
+/>

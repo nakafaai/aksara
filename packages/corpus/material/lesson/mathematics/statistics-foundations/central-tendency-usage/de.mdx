@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Datenart und Verteilung bestimmen das geeignete Lagemaß
 
-<Highlight>Mittelwert, Median und Modus beschreiben jeweils die Mitte eines Datensatzes.</Highlight> Der Mittelwert bezieht alle Werte ein, der Median richtet sich nach der mittleren Position und der Modus nach der größten Häufigkeit. Deshalb beantworten die drei Maße nicht immer dieselbe Frage.
+**Mittelwert, Median und Modus** beschreiben jeweils die Mitte eines Datensatzes. Der Mittelwert bezieht alle Werte ein, der Median richtet sich nach der mittleren Position und der Modus nach der größten Häufigkeit. Deshalb beantworten die drei Maße nicht immer dieselbe Frage.
 
 Wähle das Lagemaß nach Datenart, Verteilungsform und Fragestellung. Der Mittelwert ändert sich mit Extremwerten, der Median verwendet die Rangfolge ohne die Abstände zwischen den Werten zu messen und der Modus nennt nur den häufigsten Wert oder die häufigste Kategorie.
 
 ## Verhalten von Mittelwert Median und Modus
 
-Die Tabelle bündelt diesen Vergleich an einer Stelle. Jede Zeile verwendet die Werte <InlineMath math="7, 8, 9, 8, 10" /> und danach dieselben Werte mit einer zusätzlichen <InlineMath math="1" />.
+Die Tabelle bündelt diesen Vergleich an einer Stelle. Jede Zeile verwendet die Werte <InlineMath math="7, 8, 9, 8, 10" /> und danach **dieselben Werte mit einer zusätzlichen** <InlineMath math="1" />.
 
 | Maß | Was es verwendet | Wert nach dem zusätzlichen Wert <InlineMath math="1" /> |
 | --- | --- | --- |
@@ -23,17 +23,19 @@ Die Tabelle bündelt diesen Vergleich an einer Stelle. Jede Zeile verwendet die 
 | Median | Die mittlere Position der sortierten Daten | Bleibt bei <InlineMath math="8" /> |
 | Modus | Den Wert mit der höchsten Häufigkeit | Bleibt bei <InlineMath math="8" /> |
 
-> Ein häufiges Missverständnis ist die Erwartung, dass sich jedes Maß mit einem einzigen Wert ändert. Hier trägt der Mittelwert die Nachricht des niedrigen Werts, während Median und Modus ihren Wert behalten.
-
-
-
+> Ein zusätzlicher Wert verändert nicht immer jedes Lagemaß. Bei diesen Daten ändert sich der Mittelwert, während Median und Modus gleich bleiben.
 ### Mittelwert
 
-Addiere alle Datenwerte und teile die Summe durch ihre Anzahl. Weil jeder Wert in die Summe eingeht, ist der Mittelwert <Highlight>sehr empfindlich gegenüber Extremwerten</Highlight>, und ein einzelner sehr großer oder kleiner Wert verschiebt ihn deutlich. Die Testergebnisse <InlineMath math="7, 8, 9, 8, 10" /> haben den Mittelwert <InlineMath math="8{,}4" />. Kommt der niedrige Wert <InlineMath math="1" /> hinzu, ergibt sich <InlineMath math="(7+8+9+8+10+1)/6 = 7{,}17" />, der Mittelwert sinkt also um mehr als einen Punkt.
+Addiere alle Datenwerte und teile die Summe durch ihre Anzahl. Weil jeder Wert in die Summe eingeht, ist der Mittelwert <Highlight>sehr empfindlich gegenüber Extremwerten</Highlight>, und ein einzelner sehr großer oder kleiner Wert verschiebt ihn deutlich. Die Testergebnisse <InlineMath math="7, 8, 9, 8, 10" /> haben den Mittelwert <InlineMath math="8{,}4" />. Kommt der niedrige Wert <InlineMath math="1" /> hinzu, ergibt sich <InlineMath math="(7+8+9+8+10+1)/6 \approx 7{,}17" />, der Mittelwert sinkt also um mehr als einen Punkt.
+
+<MathContainer>
+  <BlockMath math="\bar x_{\text{vorher}}=\frac{7+8+9+8+10}{5}=\frac{42}{5}=8{,}4" />
+  <BlockMath math="\bar x_{\text{nachher}}=\frac{42+1}{6}=\frac{43}{6}\approx7{,}17" />
+</MathContainer>
 
 ### Median
 
-Sortiere die Daten und bestimme den Wert in der Mitte. Bei einer geraden Anzahl verwendest du den Mittelwert der beiden mittleren Werte. Der Median hängt von der Position in der geordneten Reihe ab, deshalb <Highlight>verschiebt er sich bei einem Extremwert kaum</Highlight>. Sortiert lautet der Datensatz <InlineMath math="7, 8, 9, 8, 10" /> als <InlineMath math="7, 8, 8, 9, 10" /> mit dem Median <InlineMath math="8" />. Nach dem Ergänzen von <InlineMath math="1" /> entsteht <InlineMath math="1, 7, 8, 8, 9, 10" />, die beiden mittleren Werte sind beide <InlineMath math="8" />, deshalb bleibt der Median <InlineMath math="8" />.
+Sortiere die Daten und bestimme den Wert in der Mitte. Bei einer geraden Anzahl verwendest du den Mittelwert der beiden mittleren Werte. Der Median hängt von der **mittleren Position der geordneten Daten** ab. Ändert sich ein Randwert ohne Änderung der Reihenfolge oder der mittleren Werte, bleibt der Median gleich. Ein zusätzlicher Datenwert kann die mittleren Positionen verschieben. Berechne den Median deshalb erneut. Sortiert lautet der Datensatz <InlineMath math="7, 8, 9, 8, 10" /> als <InlineMath math="7, 8, 8, 9, 10" /> mit dem Median <InlineMath math="8" />. Nach dem Ergänzen von <InlineMath math="1" /> entsteht <InlineMath math="1, 7, 8, 8, 9, 10" />, die beiden mittleren Werte sind beide <InlineMath math="8" />, deshalb bleibt der Median <InlineMath math="8" />.
 
 ### Modus
 

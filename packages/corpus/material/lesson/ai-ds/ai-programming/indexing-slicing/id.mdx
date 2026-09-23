@@ -9,13 +9,20 @@ export const metadata = {
 
 ## Mengakses Elemen dengan Indeks
 
-Indexing <Highlight>mengambil satu elemen dari string atau list berdasarkan posisinya</Highlight>. Misalnya, jika `huruf = ["a", "b", "c"]`, maka `huruf[1]` menghasilkan `"b"`.
+Indexing mengambil **satu elemen berdasarkan posisinya** dari string atau list. Misalnya, jika `huruf = ["a", "b", "c"]`, maka `huruf[1]` menghasilkan `"b"`.
 
-Python memulai nomor indeks dari <InlineMath math="0" />. Elemen pertama memiliki indeks <InlineMath math="0" />, elemen kedua memiliki indeks <InlineMath math="1" />, dan seterusnya. Python juga mendukung indeks negatif yang menghitung mundur dari akhir.
+Python memulai nomor indeks dari <InlineMath math="0" />. Elemen pertama memiliki indeks <InlineMath math="0" />, elemen kedua memiliki indeks <InlineMath math="1" />, dan seterusnya. Python juga mendukung **indeks negatif** yang menghitung mundur dari akhir.
 
 ### Indeks Positif dan Negatif
 
 Dalam string atau list, setiap karakter atau elemen memiliki dua jenis indeks. Indeks positif dimulai dari <InlineMath math="0" /> di awal, sedangkan indeks negatif dimulai dari <InlineMath math="-1" /> di akhir.
+
+Tabel ini menempatkan **dua indeks pada elemen yang sama**. Indeks `1` dan `-4` sama-sama memilih `e`. Contoh kode memakai `repr()` agar tanda kutip dan string kosong terlihat pada keluaran.
+
+| Karakter | `H` | `e` | `l` | `l` | `o` |
+| --- | --- | --- | --- | --- | --- |
+| Indeks dari awal | `0` | `1` | `2` | `3` | `4` |
+| Indeks dari akhir | `-5` | `-4` | `-3` | `-2` | `-1` |
 
 <CodeBlock
   data={[
@@ -26,16 +33,16 @@ Dalam string atau list, setiap karakter atau elemen memiliki dua jenis indeks. I
 s = "Hello"
 
 # Mengakses karakter dengan indeks positif
-print(s[0])    # Output: 'H'
-print(s[4])    # Output: 'o'
+print(repr(s[0]))    # Output: 'H'
+print(repr(s[4]))    # Output: 'o'
 
 # Mengakses karakter dengan indeks negatif
-print(s[-1])   # Output: 'o' (karakter terakhir)
-print(s[-5])   # Output: 'H' (karakter pertama)
+print(repr(s[-1]))   # Output: 'o'
+print(repr(s[-5]))   # Output: 'H'
 
 # Mencoba mengakses indeks yang tidak ada
 try:
-    print(s[5])
+    print(repr(s[5]))
 except IndexError:
     print("IndexError: indeks di luar jangkauan")`
     }
@@ -46,11 +53,11 @@ Indeks di luar rentang yang valid menghasilkan `IndexError`. Python memeriksa ba
 
 ## Mengambil Beberapa Elemen
 
-Slicing mengambil beberapa elemen dari string atau list. Kamu menentukan indeks awal, indeks akhir, dan bila perlu jarak antarelemen yang dipilih. Indeks awal ikut diambil sedangkan indeks akhir tidak, sehingga lebar hasilnya adalah selisih keduanya.
+Slicing memilih **sebagian elemen** dari string atau list melalui batas awal, batas akhir, dan step. Indeks akhir tidak disertakan. Panjang hasil bergantung pada batas yang sudah disesuaikan dengan panjang data dan pada step.
 
 ### Slicing dengan Dua Batas
 
-Sintaks `[i:j]` memakai `i` sebagai indeks awal dan `j` sebagai indeks akhir. Elemen pada indeks `i` masuk ke hasil, sedangkan elemen pada indeks `j` tidak.
+Sintaks `[i:j]` memakai `i` sebagai indeks awal dan `j` sebagai indeks akhir. Elemen pada indeks `i` masuk ke hasil, sedangkan elemen pada **indeks `j` tidak**.
 
 <CodeBlock
   data={[
@@ -61,17 +68,17 @@ Sintaks `[i:j]` memakai `i` sebagai indeks awal dan `j` sebagai indeks akhir. El
 s = "Hello"
 
 # Mengambil indeks 1 sampai sebelum indeks 3
-print(s[1:3])    # Output: 'el'
+print(repr(s[1:3]))    # Output: 'el'
 
 # Mengambil indeks 3 sampai akhir
-print(s[3:])     # Output: 'lo'
+print(repr(s[3:]))     # Output: 'lo'
 
 # Mengambil awal string sampai sebelum indeks 3
-print(s[:3])     # Output: 'Hel'
+print(repr(s[:3]))     # Output: 'Hel'
 
 # Menggunakan indeks negatif
-print(s[-4:-2])  # Output: 'el'
-print(s[-2:-4])  # Output: '' (string kosong)`
+print(repr(s[-4:-2]))  # Output: 'el'
+print(repr(s[-2:-4]))  # Output: ''`
     }
   ]}
 />
@@ -80,7 +87,7 @@ Jika indeks awal lebih besar daripada indeks akhir dan `step` bernilai positif, 
 
 ### Mengatur Jarak Antar Elemen
 
-Parameter ketiga dalam `[start:stop:step]` menentukan jarak antarelemen yang dipilih. Nilai `step` sebesar `2`, misalnya, mengambil satu elemen lalu melewati satu elemen berikutnya.
+Parameter ketiga dalam `[start:stop:step]` menentukan **jarak antarelemen yang dipilih**. Nilai `step` sebesar `2`, misalnya, mengambil satu elemen lalu melewati satu elemen berikutnya.
 
 <CodeBlock
   data={[
@@ -91,29 +98,29 @@ Parameter ketiga dalam `[start:stop:step]` menentukan jarak antarelemen yang dip
 s = "Hello World!"
 
 # Mengambil setiap karakter kedua
-print(s[::2])      # Output: 'HloWrd'
+print(repr(s[::2]))      # Output: 'HloWrd'
 
 # Mengambil setiap karakter kedua dari indeks 1
-print(s[1::2])     # Output: 'el ol!'
+print(repr(s[1::2]))     # Output: 'el ol!'
 
 # Membalik string dengan step negatif
-print(s[::-1])     # Output: '!dlroW olleH'
+print(repr(s[::-1]))     # Output: '!dlroW olleH'
 
 # Memilih mundur dari indeks tertentu
-print(s[-1:4:-1])  # Output: '!dlroW'`
+print(repr(s[-1:4:-1]))  # Output: '!dlroW '`
     }
   ]}
 />
 
-`Step` negatif membalik arah pemilihan elemen. Jika `step` bernilai <InlineMath math="-1" />, Python mengambil semua elemen dari akhir ke awal.
+`Step` negatif membalik arah pemilihan. Bentuk `s[::-1]` mengosongkan kedua batas dan memilih semua elemen dari akhir ke awal. `step` tidak boleh nol karena Python tidak dapat maju ke indeks berikutnya.
 
 ## Aturan Slicing
 
-Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, indeks akhir tidak, dan `step` negatif membalik arah pembacaan dari kanan ke kiri.
+Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, **indeks akhir tidak**, dan `step` negatif membalik arah pembacaan dari kanan ke kiri.
 
 ### Menghitung Panjang Hasil
 
-Untuk kasus <InlineMath math="0 \le i \le j \le n" /> dengan `step` positif bawaan, panjang `s[i:j]` adalah <InlineMath math="j-i" />. Bentuk lain dapat mengosongkan batas, memakai indeks negatif, melewati rentang, atau menentukan `step` berbeda. Python menyesuaikan batas tersebut terhadap panjang data. Jumlah elemen hasil slicing dapat dihitung dengan `len(range(*slice(i, j, step).indices(len(s))))`.
+Misalkan <InlineMath math="n" /> adalah panjang `s`. Untuk kasus <InlineMath math="0 \le i \le j \le n" /> dengan `step` positif bawaan, panjang `s[i:j]` adalah <InlineMath math="j-i" />. Bentuk lain dapat mengosongkan batas, memakai indeks negatif, melewati rentang, atau menentukan `step` berbeda. **Python menyesuaikan batas tersebut** terhadap panjang data. Jumlah elemen hasil slicing dapat dihitung dengan `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -125,7 +132,7 @@ s = "Hello"
 
 # Mengiris s[1:4]
 result = s[1:4]
-print(f"Hasil: '{result}', Panjang: {len(result)}")  # Output: 'ell', 3
+print(f"Hasil: '{result}', Panjang: {len(result)}")  # Output: Hasil: 'ell', Panjang: 3
 
 # Membuktikan bahwa s[:i] + s[i:] == s
 i = 2
@@ -134,8 +141,8 @@ right_part = s[i:]
 print(f"'{left_part}' + '{right_part}' = '{left_part + right_part}'")
 
 # Batas di luar rentang akan disesuaikan
-print(s[3:10])   # Output: 'lo'
-print(s[10:])    # Output: '' (string kosong)`
+print(repr(s[3:10]))   # Output: 'lo'
+print(repr(s[10:]))    # Output: ''`
     }
   ]}
 />
@@ -144,7 +151,7 @@ Saat melakukan slicing, Python menyesuaikan batas yang berada di luar rentang de
 
 ## Indeks yang Dipilih
 
-Fungsi `range()` dapat menunjukkan indeks mana saja yang dipilih oleh slicing. Perbandingan ini menjelaskan indeks hasil slicing pada contoh ini.
+Fungsi `range()` dapat menunjukkan **indeks mana saja yang dipilih** oleh slicing. Perbandingan ini menjelaskan indeks hasil slicing pada contoh ini.
 
 <CodeBlock
   data={[
@@ -182,11 +189,11 @@ Perbandingan dengan `range()` menunjukkan bagaimana batas awal, batas akhir, dan
 
 ## Bentuk Singkat Slicing
 
-Python mengizinkan sebagian batas slice dikosongkan. Batas awal yang kosong berarti slice dimulai dari indeks `0`, sedangkan batas akhir yang kosong berarti slice berjalan sampai elemen terakhir.
+Batas yang dikosongkan mengikuti **arah step**. Untuk step positif, awal bawaan adalah awal data dan akhir bawaan melewati elemen terakhir. Untuk step negatif, awal bawaan adalah elemen terakhir dan akhir bawaan melewati elemen pertama.
 
 ### Mengambil dari Awal atau Sampai Akhir
 
-Kamu dapat mengosongkan parameter awal atau akhir untuk mengambil elemen dari awal atau sampai akhir string/list.
+Dengan **step positif bawaan**, `s[:3]` mengambil bagian awal dan `s[3:]` mengambil bagian akhir. Pada `s[::-1]`, kedua batas mengikuti arah negatif sehingga urutannya terbalik.
 
 <CodeBlock
   data={[
@@ -197,13 +204,13 @@ Kamu dapat mengosongkan parameter awal atau akhir untuk mengambil elemen dari aw
 s = "Hello"
 
 # Mengambil 3 karakter pertama
-print(s[:3])     # Output: 'Hel'
+print(repr(s[:3]))     # Output: 'Hel'
 
 # Mengambil karakter dari indeks 3 sampai akhir
-print(s[3:])     # Output: 'lo'
+print(repr(s[3:]))     # Output: 'lo'
 
 # Mengambil semua karakter
-print(s[:])      # Output: 'Hello'
+print(repr(s[:]))      # Output: 'Hello'
 
 # Contoh praktis dengan list
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

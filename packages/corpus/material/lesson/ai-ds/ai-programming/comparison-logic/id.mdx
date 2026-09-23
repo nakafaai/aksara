@@ -3,17 +3,17 @@ export const metadata = {
     description: "Bandingkan operator Python, tentukan operator precedence, lalu uji nilai Boolean dan kesetaraan bilangan bertipe float.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## Urutan Prioritas Operator
 
-Prioritas operator <Highlight>menentukan cara Python mengelompokkan ekspresi ketika tanda kurung tidak menyatakannya secara langsung</Highlight>. Aturan ini menjelaskan pengelompokan ekspresi. Urutan evaluasi operand dapat berbeda dari urutan yang terlihat di layar.
+Prioritas operator <Highlight>menentukan cara Python mengelompokkan ekspresi ketika tanda kurung tidak menyatakannya secara langsung</Highlight>. Aturan ini menjelaskan pengelompokan ekspresi. Python mengevaluasi operand dari kiri ke kanan. Prioritas menentukan bagaimana operasi atas operand itu dikelompokkan.
 
 <Mermaid
-  title="Operator Mana yang Dieksekusi Dulu"
-  description="Baca urutan evaluasi dari tanda kurung sampai operator logika agar hasil ekspresi tidak ditebak."
+  title="Prioritas Operator yang Dibahas"
+  description="Diagram merangkum prioritas operator yang dibahas, bukan waktu evaluasi setiap operand."
   chart={`
     flowchart LR
         A["tanda kurung, pemanggilan, indexing"] --> B["** pangkat"]
@@ -26,6 +26,8 @@ Prioritas operator <Highlight>menentukan cara Python mengelompokkan ekspresi ket
         H --> I["or"]
   `}
 />
+
+Pada perpangkatan, operator unary di kanan diperlakukan khusus: `2 ** -1` berarti `2 ** (-1)` dan bernilai `0.5`. Sebaliknya, `-2 ** 2` berarti `-(2 ** 2)` dan bernilai `-4`.
 
 Operator dengan prioritas lebih tinggi mengikat operand lebih kuat. Sebagian besar operator biner pada level yang sama mengelompok dari kiri ke kanan, tetapi perpangkatan mengelompok dari kanan ke kiri dan perbandingan membentuk rantai. Gunakan tanda kurung jika pengelompokan yang dimaksud mungkin tidak langsung terbaca.
 
@@ -40,7 +42,7 @@ Operator perbandingan digunakan untuk membandingkan dua nilai dan menghasilkan n
 - `>` lebih dari
 - `>=` lebih dari atau sama dengan
 
-Operator ini menghasilkan `bool`. Kesetaraan dapat membandingkan objek dari tipe berbeda, tetapi perbandingan urutan seperti `<` membutuhkan tipe yang mendefinisikan urutan kompatibel dan dapat menghasilkan `TypeError` jika tidak. Operator perbandingan berbagi satu level prioritas dan dapat dirangkai.
+Perbandingan nilai bawaan seperti angka dan string menghasilkan **nilai boolean**. Objek buatan sendiri dapat mendefinisikan hasil perbandingan lain. Kesetaraan dapat membandingkan objek dari tipe berbeda, tetapi perbandingan urutan seperti `<` membutuhkan tipe yang mendefinisikan urutan kompatibel dan dapat menghasilkan `TypeError` jika tidak. Operator perbandingan berbagi satu level prioritas dan dapat dirangkai.
 
 <CodeBlock
   data={[
@@ -93,7 +95,7 @@ Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Pyt
       language: "python",
       filename: "boolean_operators.py",
       code: `# Contoh operator boolean
->>> 4.0 and 5.0  # mengevaluasi 4.0 sebagai true, mengevaluasi 5.0 sebagai true, mengembalikan 5.0
+>>> 4.0 and 5.0  # 4.0 truthy, lalu mengembalikan 5.0 tanpa perlu menguji kebenaran 5.0
 5.0
 
 >>> 0 and 5  # mengevaluasi 0 sebagai false, mengembalikan 0 (short-circuit)
@@ -102,7 +104,7 @@ Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Pyt
 >>> 4.0 or 5.0  # mengevaluasi 4.0 sebagai true, mengembalikan 4.0 (short-circuit)
 4.0
 
->>> 0 or 5  # mengevaluasi 0 sebagai false, mengevaluasi 5 sebagai true, mengembalikan 5
+>>> 0 or 5  # 0 falsy, lalu mengembalikan 5 tanpa perlu menguji kebenaran 5
 5
 
 >>> not 4.0  # mengevaluasi 4.0 sebagai true, mengembalikan False
@@ -118,7 +120,7 @@ Operator `and` dan `or` menggunakan <Highlight>evaluasi short-circuit</Highlight
 
 ## Nilai dalam Konteks Boolean
 
-Semua objek Python bisa muncul di posisi yang mengharapkan kondisi, termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dianggap salah. Dengan aturan tersebut, list kosong, bilangan nol, dan string kosong semuanya bersikap seperti `False` di dalam `if`, sedangkan wadah yang tidak kosong bersikap seperti `True`.
+Semua objek Python bisa menjalani **pengujian kebenaran**, termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dianggap salah. Dengan aturan tersebut, list kosong, bilangan nol, dan string kosong semuanya bersikap seperti `False` di dalam `if`, sedangkan wadah yang tidak kosong bersikap seperti `True`.
 
 ### Nilai Falsy dan Truthy
 
@@ -131,32 +133,29 @@ Semua objek Python bisa muncul di posisi yang mengharapkan kondisi, termasuk obj
         B -->|Falsy| C[False]
         B -->|Falsy| D[None]
         B -->|Falsy| E["Nol dan container kosong"]
-        B -->|Truthy| F["Semua nilai lainnya"]
+        B -->|Truthy| F["Contoh nilai bawaan truthy"]
         F --> G["Angka bukan nol"]
         F --> H["Container berisi"]
   `}
 />
 
-**Nilai yang dianggap `False` (Falsy):**
+Nilai bawaan berikut memiliki **aturan truthiness** yang dapat kamu uji dengan `bool()`.
 
-1. `False` itu sendiri
-2. `None` (dari tipe NoneType)
-3. Angka nol dari semua tipe data numerik:
-   - `0` (integer nol)
-   - `0.0` (float nol)
-   - `0j` (bilangan kompleks nol, j adalah unit imajiner)
-4. String kosong `""`
-5. Kontainer kosong: `[]`, `{}`, `()`, `set()`
+| Kelompok | Contoh falsy | Contoh truthy |
+| --- | --- | --- |
+| Boolean | `False` | `True` |
+| Nilai kosong | `None` | Tidak berlaku |
+| Bilangan | `0`, `0.0`, `0j` | `-1`, `0.5`, `2j` |
+| String | `""` | `"0"` |
+| Container | `[]`, `{}`, `()`, `set()` | `[0]`, `{"a": 0}` |
 
-**Nilai yang dianggap `True` (Truthy):**
-
-1. Nilai lain bersifat truthy, seperti bilangan selain nol atau collection yang berisi item
+String `"0"` dan list `[0]` tetap truthy karena tidak kosong. Nilai elemen di dalam container tidak menentukan truthiness container bawaan.
 
 Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, objek tersebut dianggap benar.
 
 ### Tipe Data Boolean
 
-Tipe `bool` dalam Python merepresentasikan nilai kebenaran `False` dan `True`, merupakan subtipe dari integer (`int`), dan boolean berperilaku seperti <InlineMath math="0" /> dan <InlineMath math="1" /> dalam operasi matematika.
+Tipe `bool` dalam Python merepresentasikan **nilai kebenaran** `False` dan `True`, merupakan subtipe dari integer (`int`), dan boolean berperilaku seperti <InlineMath math="0" /> dan <InlineMath math="1" /> dalam operasi matematika.
 
 <CodeBlock
   data={[
@@ -181,7 +180,7 @@ False
 
 ## Menggabungkan Operator
 
-Kamu dapat menggabungkan operator perbandingan dengan operator boolean untuk membuat kondisi yang lebih kompleks. Python juga mendukung rantai perbandingan yang ringkas seperti `1 < 2 < 3`.
+Kamu dapat menggabungkan operator perbandingan dengan operator boolean untuk membuat **kondisi gabungan**. Python juga mendukung rantai perbandingan yang ringkas seperti `1 < 2 < 3`.
 
 <CodeBlock
   data={[
@@ -210,11 +209,11 @@ True`
 
 ## Membandingkan Nilai Float
 
-Banyak pecahan desimal tidak dapat direpresentasikan secara persis sebagai bilangan biner dengan jumlah digit terbatas. Karena hasil antara dibulatkan, dua perhitungan yang setara secara matematis dapat menghasilkan nilai `float` yang sangat dekat tetapi tidak sama.
+Banyak pecahan desimal tidak dapat direpresentasikan secara persis sebagai bilangan biner dengan jumlah digit terbatas. Karena hasil antara dibulatkan, dua perhitungan yang setara secara matematis dapat menghasilkan nilai `float` yang **sangat dekat tetapi tidak sama**.
 
 ### Masalah Presisi Float
 
-Diagram berikut melacak perjalanan nilai desimal ke dalam bilangan floating-point biner, dan di situlah kejutan perbandingan itu muncul.
+Pecahan desimal dapat memerlukan **pembulatan dalam biner**. Diagram berikut membedakan nilai yang dapat disimpan tepat dari nilai yang perlu dibulatkan.
 
 <Mermaid
   title="Desimal Bisa Dibandingkan Berbeda dari Tampilannya"
@@ -223,15 +222,15 @@ Diagram berikut melacak perjalanan nilai desimal ke dalam bilangan floating-poin
     flowchart TD
         A[Bilangan Desimal] --> B[Konversi ke Biner]
         B --> C[Representasi Float]
-        C --> D{Presisi Terbatas?}
-        D -->|Ya| E[Kesalahan Pembulatan]
-        D -->|Tidak| F[Representasi Tepat]
-        E --> G[Perbandingan Gagal]
-        F --> H[Perbandingan Berhasil]
+        C --> D{Dapat disimpan tepat?}
+        D -->|Tidak| E[Pembulatan]
+        D -->|Ya| F[Representasi Tepat]
+        E --> G[Kesetaraan dapat berbeda]
+        F --> H[Nilai ini disimpan tepat]
 
         I[Solusi math.isclose] --> J[Toleransi Relatif]
         I --> K[Toleransi Absolut]
-        J --> L[Perbandingan Aman]
+        J --> L[Perbandingan dengan toleransi]
         K --> L
   `}
 />
@@ -263,6 +262,14 @@ True`
 
 ### Solusi dengan Fungsi Isclose
 
-Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesetaraan aproksimasi. Fungsi ini menggunakan toleransi relatif (rel_tol) dan toleransi absolut (abs_tol) untuk menentukan apakah dua nilai cukup dekat.
+Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesetaraan aproksimasi. Fungsi ini menggunakan **toleransi relatif dan absolut** melalui `rel_tol` dan `abs_tol` untuk menentukan apakah dua nilai cukup dekat.
+
+
+Untuk contoh `math.isclose(100, 95, rel_tol=0.05)`, selisih absolut adalah 5. Toleransi relatif memakai nilai absolut yang lebih besar, yaitu 100.
+
+<BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0{,}05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
+
+Karena selisih tidak melebihi toleransi, hasilnya `True`. Pada `abs_tol=5`, batas absolut 5 juga cukup untuk menerima selisih tersebut.
+
 
 > Gunakan kesetaraan persis hanya jika nilai `float` memang harus identik. Untuk hasil pengukuran atau perhitungan, tentukan toleransi yang sesuai dengan jenis perhitungan lalu gunakan `math.isclose()`. Saat nilai yang dibandingkan mendekati nol, tentukan `abs_tol` karena toleransi relatif juga mengecil.

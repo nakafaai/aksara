@@ -5,11 +5,59 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Misalkan <InlineMath math="x" /> adalah jarak kaki tiang ke jangkar kabel <InlineMath math="25" /> meter. Jarak ke jangkar lainnya adalah <InlineMath math="17-x" />. Jika tinggi tiang <InlineMath math="h" />, maka
+Misalkan <InlineMath math="x" /> adalah jarak kaki tiang ke jangkar kabel <InlineMath math="25" /> meter. **Jarak ke jangkar lainnya** adalah <InlineMath math="17-x" />. Jika tinggi tiang <InlineMath math="h" />, maka
 
 <MathContainer>
   <BlockMath math="x^2+h^2=25^2" />
   <BlockMath math="(17-x)^2+h^2=26^2" />
 </MathContainer>
 
-Mengurangi persamaan kedua dengan persamaan pertama menghasilkan <InlineMath math="289-34x=51" />, sehingga <InlineMath math="x=7" />. Jadi, <InlineMath math="h^2=625-49=576" /> dan <InlineMath math="h=24" /> meter.
+Mengurangi persamaan kedua dengan persamaan pertama menghasilkan <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, sehingga <InlineMath math="x=\frac{289-51}{34}=7" />. Jadi, <InlineMath math="h^2=625-49=576" /> dan <InlineMath math="h=24" /> meter.
+
+<MathVisual
+  title="Tiang dan kabel penopang"
+  description="Tiang tegak dengan dua kabel penopang dan jangkar di kedua sisinya pada tanah mendatar."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 11 },
+      y: { min: -1, max: 25 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "ground",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -7, y: 0 },
+        to: { x: 10, y: 0 },
+      },
+      {
+        id: "pole",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "left-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -7, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "right-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 24 },
+        to: { x: 10, y: 0 },
+      },
+      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
+      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
+      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+  }}
+/>

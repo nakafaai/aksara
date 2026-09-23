@@ -5,11 +5,11 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-We will calculate the normal income first, then determine the new price and new sales quantity so that the income remains the same but sales increase.
+We will calculate the normal revenue first, then determine the new price and new sales quantity so that **revenue stays the same** but sales increase.
 
-#### Calculating Normal Income
+#### Calculating Normal Revenue
 
-Normal income (<InlineMath math="I_{\text{normal}}" />) is:
+Daily revenue is **price per cup times cups sold**. This is sales revenue before costs are subtracted, rather than profit.
 
 <MathContainer>
   <BlockMath math="I_{\text{normal}} = 12{,}000 \times 200" />
@@ -22,14 +22,14 @@ Let <InlineMath math="x" /> be the number of price reductions of <InlineMath mat
 - New Price: <InlineMath math="H = 12{,}000 - 1{,}000x" />
 - New Quantity Sold: <InlineMath math="J = 200 + 20x" />
 
-We want the income to remain the same (<InlineMath math="\text{Rp}2{,}400{,}000.00" />):
+We want the revenue to remain the same (<InlineMath math="\text{Rp}2{,}400{,}000.00" />):
 
 <MathContainer>
   <BlockMath math="H \times J = 2{,}400{,}000" />
   <BlockMath math="\begin{aligned}&(12{,}000-1{,}000x) \\ &\quad\times(200+20x) \\ &=2{,}400{,}000\end{aligned}" />
 </MathContainer>
 
-We simplify by dividing the factors (e.g., divide by <InlineMath math="1{,}000" /> on price and by <InlineMath math="20" /> on quantity):
+Factor <InlineMath math="1{,}000" /> out of the price and <InlineMath math="20" /> out of the quantity. Then **divide both sides by <InlineMath math="20{,}000" />** to simplify the equation.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}&(12-x)(10+x) \\ &=\frac{2{,}400{,}000}{1{,}000\times20}\end{aligned}" />
@@ -47,7 +47,7 @@ Since the shop owner wants to **increase** sales, we choose <InlineMath math="x 
 
 #### Calculating Number of Iced Coffees Sold
 
-Substitute <InlineMath math="x = 2" /> into the new quantity formula:
+Substitute **two price-reduction steps** (<InlineMath math="x=2" />) into the new quantity formula:
 
 <MathContainer>
   <BlockMath math="J = 200 + 20(2)" />
@@ -56,3 +56,12 @@ Substitute <InlineMath math="x = 2" /> into the new quantity formula:
 </MathContainer>
 
 So, the number of iced coffees sold is <InlineMath math="240" /> cups.
+
+| Reductions | Price (Rp) | Cups per day | Revenue (Rp) |
+| --- | --- | --- | --- |
+| 0 | 12,000 | 200 | 2,400,000 |
+| 1 | 11,000 | 220 | 2,420,000 |
+| 2 | 10,000 | 240 | 2,400,000 |
+| 3 | 9,000 | 260 | 2,340,000 |
+
+The new price of Rp10,000 and sales of 240 cups give <InlineMath math="10{,}000\times240=2{,}400{,}000" /> rupiah, equal to normal revenue. This differs from the Rp2,100,000 cost threshold in the question.

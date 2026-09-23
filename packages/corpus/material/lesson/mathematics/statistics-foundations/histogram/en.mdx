@@ -10,9 +10,13 @@ export const metadata = {
 
 ## Showing Numerical Data in Adjacent Intervals
 
-<Highlight>A histogram looks like a bar chart at first glance.</Highlight> Both use rectangular bars, but they answer different questions. A bar chart compares categories, whereas a histogram shows how numerical observations are distributed across adjoining intervals.
+A histogram shows the **distribution of numerical data across intervals**. Both use rectangular bars, but they answer different questions. A bar chart compares categories, whereas a histogram shows how numerical observations are distributed across adjoining intervals.
 
 ## Bar Chart vs Histogram
+
+First decide whether the horizontal axis contains **separate categories** or intervals of one numerical quantity. That choice determines what each bar represents and whether bar width contributes to the frequency information.
+
+### Comparing Categories
 
 Bar charts are used for categorical data (such as phone brands or favorite sports):
 
@@ -47,7 +51,11 @@ In the bar chart above:
 
 Notice that each bar is **separated** from the others because they represent different categories.
 
+### Grouping Time into Intervals
+
 Histograms, on the other hand, are used for numerical data grouped into intervals, such as time duration or height. The bars touch each other because <Highlight>the intervals of values are continuous</Highlight>.
+
+These duration data contain <InlineMath math="90" /> observations. To avoid counting a class boundary twice, **include the left endpoint and exclude the right endpoint**, for example <InlineMath math="0\le t<2" /> and <InlineMath math="2\le t<4" />. The final class includes <InlineMath math="8\le t\le10" />. The variable <InlineMath math="t" /> is duration in hours.
 
 <HistogramChart
   title="Histogram of Mobile Phone Usage by High School Students"
@@ -83,17 +91,16 @@ Together, <InlineMath math="32+28=60" /> of the <InlineMath math="90" /> observa
 
 ## Differences in Data Type and Bar Shape
 
-A histogram and a bar chart both use bars, but they answer different questions. The table compares what each chart requires from the data and how the bars are drawn.
+A histogram and a bar chart both use bars, but they answer different questions. The table compares **what each chart requires from the data** and how the bars are drawn.
 
 | Difference   | Histogram                            | Bar Chart                                   |
 | ------------ | ------------------------------------ | ------------------------------------------- |
 | Type of data | Quantitative, grouped into intervals | Categorical, each bar for a single category |
 | Bar shape    | Bars touch each other, no gaps       | Spaces between bars                         |
 | Frequency display | For equal-width classes, height shows frequency. For unequal widths, area must represent frequency | Bar height shows quantity or proportion |
-
 ## When to Use a Histogram
 
-Use a histogram when:
+Use a **histogram** when:
 
 1. The data consists of measurable numbers
 2. The question compares how observations are distributed across value intervals

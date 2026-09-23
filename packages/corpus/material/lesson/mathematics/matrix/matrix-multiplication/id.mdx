@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Memasangkan Baris Matriks Pertama dengan Kolom Matriks Kedua
 
-Perkalian matriks <Highlight>memasangkan setiap baris matriks pertama</Highlight> dengan setiap kolom matriks kedua, mengalikan setiap pasangan elemennya, lalu menjumlahkan hasilnya. Berbeda dengan [penjumlahan matriks](/id/materi/matematika/matriks/penjumlahan-matriks), perkalian tidak dilakukan pada elemen yang menempati posisi sama.
+Perkalian matriks <Highlight>memasangkan setiap baris matriks pertama</Highlight> dengan setiap kolom matriks kedua, mengalikan setiap **pasangan elemennya**, lalu menjumlahkan hasilnya. Berbeda dengan [penjumlahan matriks](/id/materi/matematika/matriks/penjumlahan-matriks), perkalian tidak dilakukan pada elemen yang menempati posisi sama.
 
 ### Syarat Perkalian Matriks
 
@@ -25,7 +25,7 @@ Pemeriksaan ordo dapat diringkas dalam satu baris: <InlineMath math="A\in\mathbb
 
 ### Cara Menghitung Elemen Hasil Perkalian
 
-Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />) dihitung dengan mengalikan setiap elemen pada baris ke-<InlineMath math="i" /> dari matriks <InlineMath math="A" /> dengan elemen yang bersesuaian pada kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="B" />, kemudian menjumlahkan semua hasil perkalian tersebut.
+Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />) dihitung dengan mengalikan setiap elemen pada baris ke-<InlineMath math="i" /> dari matriks <InlineMath math="A" /> dengan elemen yang bersesuaian pada kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="B" />, kemudian **menjumlahkan semua hasil perkalian** tersebut.
 
 Secara matematis, jika <InlineMath math="A = [a_{ik}]" /> dan <InlineMath math="B = [b_{kj}]" />, maka elemen <InlineMath math="c_{ij}" /> dari matriks <InlineMath math="C = AB" /> adalah:
 
@@ -34,10 +34,9 @@ Secara matematis, jika <InlineMath math="A = [a_{ik}]" /> dan <InlineMath math="
 Notasi <InlineMath math="\sum" /> (sigma) berarti penjumlahan.
 
 Dalam rumus di atas, kita menjumlahkan hasil perkalian <InlineMath math="a_{ik}b_{kj}" /> untuk semua nilai <InlineMath math="k" /> dari <InlineMath math="1" /> sampai <InlineMath math="n" />.
-
 ## Langkah Mengalikan Matriks
 
-Pada contoh berikut, setiap elemen matriks <InlineMath math="R" /> dihitung dari hasil kali titik antara satu baris matriks <InlineMath math="P" /> dan satu kolom matriks <InlineMath math="Q" />.
+Pada contoh berikut, setiap elemen matriks <InlineMath math="R" /> dihitung dari **hasil kali titik** antara satu baris matriks <InlineMath math="P" /> dan satu kolom matriks <InlineMath math="Q" />.
 
 Kedua matriks tersebut adalah:
 
@@ -58,7 +57,6 @@ Elemen-elemen matriks <InlineMath math="R" /> dihitung sebagai berikut:
   <BlockMath math="\begin{aligned} r_{21} &amp;= (\text{baris 2 dari } P) \\ &amp;\quad\cdot (\text{kolom 1 dari } Q) \\ &amp;= p_{21}q_{11} + p_{22}q_{21} \end{aligned}" />
   <BlockMath math="\begin{aligned} r_{22} &amp;= (\text{baris 2 dari } P) \\ &amp;\quad\cdot (\text{kolom 2 dari } Q) \\ &amp;= p_{21}q_{12} + p_{22}q_{22} \end{aligned}" />
 </MathContainer>
-
 ## Contoh Perkalian Dua Matriks
 
 Diberikan dua matriks:
@@ -137,7 +135,7 @@ Dari contoh <InlineMath math="AB" /> dan <InlineMath math="BA" /> tadi, lima atu
 
 ## Menghitung Pendapatan
 
-Perkalian matriks dapat menggabungkan tabel jumlah barang dengan tabel harga yang sesuai. Label baris dan kolom menentukan besaran mana yang dikalikan dan dijumlahkan, sehingga kesesuaian ordo saja belum cukup.
+Perkalian matriks dapat menggabungkan tabel jumlah barang dengan tabel harga yang sesuai. **Label baris dan kolom** menentukan besaran mana yang dikalikan dan dijumlahkan, sehingga kesesuaian ordo saja belum cukup.
 
 Misalkan sebuah industri rumahan menjual keripik tempe, keripik pisang, dan keripik kentang di Tempat A, Tempat B, dan Tempat C.
 
@@ -157,7 +155,9 @@ Dari atas ke bawah, entri tersebut menyatakan harga keripik tempe, keripik pisan
 
 Secara numerik, <InlineMath math="PQ" /> dapat dihitung karena kedua ordo dalamnya sama-sama <InlineMath math="3" />. Namun, perkalian itu tidak bermakna untuk model ini. Kolom <InlineMath math="P" /> menyatakan tempat, sedangkan baris <InlineMath math="Q" /> menyatakan produk. Label keduanya tidak cocok.
 
-Untuk menghitung pendapatan per tempat, transpos matriks harga lalu kalikan <InlineMath math="Q^T" /> dengan <InlineMath math="P" />. Perkalian <InlineMath math="S = Q^T P" /> memasangkan harga setiap produk dengan penjualan produk yang sama.
+### Pendapatan per Tempat
+
+Untuk menghitung pendapatan per tempat, transpos matriks harga lalu kalikan <InlineMath math="Q^T" /> dengan <InlineMath math="P" />. Perkalian <InlineMath math="S = Q^T P" /> memasangkan harga setiap produk dengan penjualan **produk yang sama**.
 
 Matriks <InlineMath math="Q^T" /> berordo <InlineMath math="1 \times 3" />, sedangkan <InlineMath math="P" /> berordo <InlineMath math="3 \times 3" />. Karena itu, <InlineMath math="S" /> berordo <InlineMath math="1 \times 3" /> dengan satu elemen untuk setiap tempat.
 
@@ -171,6 +171,7 @@ Matriks <InlineMath math="Q^T" /> berordo <InlineMath math="1 \times 3" />, seda
 Maka, <InlineMath math="S = \begin{bmatrix} 1{.}125{.}000 & 840{.}000 & 1{.}225{.}000 \end{bmatrix}" />.
 
 Ini berarti total pendapatan dari Tempat A adalah <InlineMath math="\text{Rp}1{.}125{.}000" />, dari Tempat B adalah <InlineMath math="\text{Rp}840{.}000" />, dan dari Tempat C adalah <InlineMath math="\text{Rp}1{.}225{.}000" />.
+### Pendapatan per Produk
 
 Pendapatan per produk memerlukan perkalian yang berbeda. Pertama, gunakan vektor satu <InlineMath math="U" /> untuk menjumlahkan setiap baris <InlineMath math="P" />, lalu kalikan hasilnya dengan matriks harga diagonal yang diturunkan dari <InlineMath math="Q" />.
 
@@ -184,13 +185,13 @@ Pendapatan per produk memerlukan perkalian yang berbeda. Pertama, gunakan vektor
 
 Matriks <InlineMath math="R" /> menyatakan pendapatan per produk: <InlineMath math="\text{Rp}940{.}000" /> untuk keripik tempe, <InlineMath math="\text{Rp}750{.}000" /> untuk keripik pisang, dan <InlineMath math="\text{Rp}1{.}500{.}000" /> untuk keripik kentang.
 
-Jadi, syarat ordo saja belum cukup. Perkalian matriks yang bermakna juga harus memasangkan besaran dengan kategori yang sama dalam urutan yang sama.
+Jadi, syarat ordo saja belum cukup. Perkalian matriks yang bermakna juga harus memasangkan besaran dengan **kategori yang sama dalam urutan yang sama**.
 
 Pada contoh ini, <InlineMath math="Q^T" /> dan <InlineMath math="P" /> menghasilkan pendapatan per tempat dalam <InlineMath math="S" />, sedangkan matriks harga diagonal dan total produk menghasilkan pendapatan per produk dalam <InlineMath math="R" />. Keduanya menjawab pertanyaan yang berbeda sehingga memerlukan perkalian yang berbeda.
 
 ## Latihan
 
-Diberikan matriks-matriks berikut:
+Diberikan **matriks**-matriks berikut:
 
 <MathContainer>
   <BlockMath math="C = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
@@ -200,37 +201,40 @@ Diberikan matriks-matriks berikut:
 Tentukan matriks <InlineMath math="CD" /> dan matriks <InlineMath math="DC" />.
 
 Apakah <InlineMath math="CD = DC" />?
-
 ### Pembahasan Lengkap
 
-1.  Menghitung <InlineMath math="CD" />:
+**Perkalian 1**
 
-    Matriks <InlineMath math="C" /> berordo <InlineMath math="2 \times 2" /> dan <InlineMath math="D" /> berordo <InlineMath math="2 \times 2" />. Hasilnya akan berordo <InlineMath math="2 \times 2" />.
+Menghitung <InlineMath math="CD" />:
 
-    <BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
-          Hitung setiap entri dengan mengalikan baris dan kolom:
+Matriks <InlineMath math="C" /> berordo <InlineMath math="2 \times 2" /> dan <InlineMath math="D" /> berordo <InlineMath math="2 \times 2" />. Hasilnya akan berordo <InlineMath math="2 \times 2" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
+<BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+Hitung setiap entri dengan mengalikan baris dan kolom:
 
-      <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
 
-2.  Menghitung <InlineMath math="DC" />:
+  <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
+  <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
+</MathContainer>
 
-    Matriks <InlineMath math="D" /> berordo <InlineMath math="2 \times 2" /> dan <InlineMath math="C" /> berordo <InlineMath math="2 \times 2" />. Hasilnya akan berordo <InlineMath math="2 \times 2" />.
+**Perkalian 2**
 
-    <BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
-          Hitung setiap entri dengan mengalikan baris dan kolom:
+Menghitung <InlineMath math="DC" />:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+Matriks <InlineMath math="D" /> berordo <InlineMath math="2 \times 2" /> dan <InlineMath math="C" /> berordo <InlineMath math="2 \times 2" />. Hasilnya akan berordo <InlineMath math="2 \times 2" />.
 
-      <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+Hitung setiap entri dengan mengalikan baris dan kolom:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
+  <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
+</MathContainer>
 
 Kedua hasil perkalian berbeda, sehingga <InlineMath math="CD \neq DC" />. Perkalian matriks pada contoh ini tidak komutatif.

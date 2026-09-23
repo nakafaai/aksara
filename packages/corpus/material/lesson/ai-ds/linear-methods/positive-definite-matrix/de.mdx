@@ -15,7 +15,7 @@ Für eine reelle symmetrische Matrix <InlineMath math="A\in\mathbb{R}^{n\times n
 
 Die komplexe Variante verwendet eine hermitesche Matrix und <InlineMath math="q(x)=x^HAx" />. Das Vorzeichen dieses Skalars klassifiziert die Matrix:
 
-| Klasse | Bedingung für jedes <InlineMath math="x" /> ungleich null |
+| Klasse | Vorzeichenbedingung |
 | --- | --- |
 | Positiv definit | <InlineMath math="x^TAx>0" /> |
 | Positiv semidefinit | <InlineMath math="x^TAx\ge0" /> |
@@ -23,7 +23,9 @@ Die komplexe Variante verwendet eine hermitesche Matrix und <InlineMath math="q(
 | Negativ semidefinit | <InlineMath math="x^TAx\le0" /> |
 | Indefinit | die quadratische Form nimmt positive und negative Werte an |
 
-<Highlight>Symmetrie gehört zur üblichen Definition.</Highlight> Für eine nicht symmetrische reelle Matrix gilt
+Bei den vier definiten oder semidefiniten Klassen muss die Ungleichung für **jeden Vektor ungleich null** gelten. Indefinit bedeutet, dass ein Vektor einen positiven und ein anderer einen negativen Wert ergibt.
+
+**Symmetrie** gehört zur üblichen Definition. Für eine nicht symmetrische reelle Matrix gilt
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
@@ -49,7 +51,7 @@ Jeder Diagonaleintrag einer positiv definiten Matrix ist positiv, denn
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-Eine Matrix kann positive Diagonaleinträge besitzen und trotzdem nicht positiv definit sein, weil auch die gemischten Terme <InlineMath math="x^TAx" /> beeinflussen.
+Eine Matrix kann positive Diagonaleinträge besitzen und trotzdem nicht positiv definit sein, weil auch die **gemischten Terme** <InlineMath math="x^TAx" /> beeinflussen.
 
 ## Ellipsoidgeometrie
 
@@ -61,7 +63,36 @@ Die Menge <InlineMath math="E" /> ist ein Ellipsoid mit Mittelpunkt im Ursprung.
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-Diese Gleichung zeigt, dass die Hauptachsen des Ellipsoids den Eigenvektoren von <InlineMath math="A" /> folgen. Die Halbachse mit dem Index <InlineMath math="i" /> hat die Länge <InlineMath math="1/\sqrt{\lambda_i}" />. Kleine Eigenwerte ergeben längere Halbachsen, große Eigenwerte kürzere Halbachsen.
+Diese Gleichung zeigt, dass die **Hauptachsen des Ellipsoids** den Eigenvektoren von <InlineMath math="A" /> folgen. Die Halbachse mit dem Index <InlineMath math="i" /> hat die Länge <InlineMath math="1/\sqrt{\lambda_i}" />. Kleine Eigenwerte ergeben längere Halbachsen, große Eigenwerte kürzere Halbachsen.
+
+
+Für <InlineMath math="A=\operatorname{diag}(1,1/4,1/9)" /> ergeben sich die Halbachsenlängen <InlineMath math="1,2,3" />. Drehe das Modell und vergleiche die drei Richtungen. Die Kurven sind Schnitte desselben Ellipsoids.
+
+<BlockMath math="x^2+\frac{y^2}{4}+\frac{z^2}{9}=1" />
+
+<LineEquation
+  title="Eigenwerte bestimmen die Halbachsenlängen"
+  description={<>Schnitte von <InlineMath math="x^2 + \frac{y^2}{4} + \frac{z^2}{9} = 1" />. Die Halbachsen in x-, y- und z-Richtung haben die Längen 1, 2 und 3.</>}
+  cameraPosition={[6, 5, 7]}
+  data={[
+    ...Array.from({ length: 4 }, (_, meridian) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const turn = meridian * Math.PI / 4;
+        return { x: Math.cos(turn) * Math.sin(angle), y: 2 * Math.sin(turn) * Math.sin(angle), z: 3 * Math.cos(angle) };
+      }),
+      smooth: false, showPoints: false, color: "#0d9488",
+    })),
+    ...Array.from({ length: 5 }, (_, latitude) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const tilt = (latitude + 1) * Math.PI / 6;
+        return { x: Math.sin(tilt) * Math.cos(angle), y: 2 * Math.sin(tilt) * Math.sin(angle), z: 3 * Math.cos(tilt) };
+      }),
+      smooth: false, showPoints: false, color: "#f97316",
+    })),
+  ]}
+/>
 
 ## Hauptminorentests
 
@@ -71,7 +102,7 @@ Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Bl
 
 <BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
-Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen alle Hauptminoren nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
+Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen **alle Hauptminoren** nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
 
 ## Prüfungen für Matrizen der Größe zwei mal zwei
 
@@ -86,7 +117,7 @@ Die führenden Hauptminoren sind
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-Beide führenden Hauptminoren sind positiv, daher ist <InlineMath math="A" /> positiv definit. Beide Eigenwerte sind ebenfalls positiv:
+**Beide führenden Hauptminoren sind positiv**, daher ist <InlineMath math="A" /> positiv definit. Beide Eigenwerte sind ebenfalls positiv:
 
 <BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197 \end{aligned}" />
 
@@ -124,7 +155,7 @@ Diese Gleichung zeigt, dass <InlineMath math="M^TM" /> immer positiv semidefinit
 
 Voller Spaltenrang impliziert automatisch <InlineMath math="m\ge n" />. Dies muss für die Aussage über Semidefinitheit nicht vorab angenommen werden.
 
-Allgemeiner ist eine Gram-Matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positiv semidefinit. Sie ist genau dann positiv definit, wenn die Vektoren <InlineMath math="v_i" /> linear unabhängig sind.
+Allgemeiner ist eine Gram-Matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positiv semidefinit. Sie ist genau dann positiv definit, wenn die Vektoren <InlineMath math="v_i" /> **linear unabhängig** sind.
 
 ## Eindeutiger Minimierer einer quadratischen Zielfunktion
 
@@ -139,7 +170,7 @@ Ihr Gradient und ihre Hesse-Matrix sind
 <BlockMath math="\nabla^2F(x)=A" />
 </MathContainer>
 
-Ist <InlineMath math="A" /> positiv definit, dann ist <InlineMath math="F" /> streng konvex und besitzt den eindeutigen Minimierer
+Ist <InlineMath math="A" /> positiv definit, dann ist <InlineMath math="F" /> **streng konvex** und besitzt den eindeutigen Minimierer
 
 <BlockMath math="x_*=A^{-1}b" />
 
@@ -155,4 +186,4 @@ Für eine hermitesche Matrix <InlineMath math="A" /> sind die Eigenwerte von <In
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-Aus <InlineMath math="A\succ0" /> folgt außerdem <InlineMath math="A^{-1}\succ0" /> mit Eigenwerten <InlineMath math="1/\lambda_i(A)" />. In numerischen Algorithmen werden lineare Gleichungssysteme direkt gelöst, weil die explizite Bildung einer Inversen mehr Operationen erfordert und Rundungsfehler verstärken kann.
+Aus <InlineMath math="A\succ0" /> folgt außerdem <InlineMath math="A^{-1}\succ0" /> mit Eigenwerten <InlineMath math="1/\lambda_i(A)" />. In numerischen Algorithmen werden **lineare Gleichungssysteme direkt gelöst**, weil die explizite Bildung einer Inversen mehr Operationen erfordert und Rundungsfehler verstärken kann.

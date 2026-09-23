@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Objek yang Dapat Diiterasi
 
-Dalam Python, iterable adalah <Highlight>objek yang menghasilkan item satu per satu saat diiterasi atau digunakan oleh operasi lain</Highlight>. String, list, tuple, set, dictionary, file, dan generator semuanya iterable meskipun cara menyusun serta menghasilkan itemnya berbeda.
+Dalam Python, iterable adalah objek yang menghasilkan **item satu per satu** saat diiterasi atau digunakan oleh operasi lain. String, list, tuple, set, dictionary, file, dan generator semuanya iterable meskipun cara menyusun serta menghasilkan itemnya berbeda.
 
-Iterable tidak harus berurutan, memiliki indeks, dapat dipakai ulang, atau berhingga. Syarat utamanya hanya satu. Pemanggilan `iter()` harus menghasilkan iterator yang mengeluarkan item satu per satu sampai habis.
+Iterable tidak harus berurutan, memiliki indeks, dapat dipakai ulang, atau berhingga. Syarat utamanya hanya satu. Pemanggilan `iter()` harus menghasilkan iterator yang mengeluarkan item satu per satu. Iterator yang berhingga akan berhenti ketika habis.
 
 ### Berbagai Jenis Iterable
 
-Beberapa tipe bawaan Python dapat menghasilkan item satu per satu ketika diulang.
+Beberapa tipe bawaan Python dapat **menghasilkan item satu per satu** ketika diulang.
 
 <CodeBlock
   data={[
@@ -68,13 +68,29 @@ for coord in coordinates:
 
 String menghasilkan karakter sesuai urutan teks. List dan tuple menghasilkan elemen tersimpan sesuai urutan posisi. Jenis iterable lain dapat memiliki aturan urutan yang berbeda.
 
+List bisa dibaca ulang, tetapi satu objek generator **mengingat kemajuan iterasinya**. `list(iterator)` pertama menghabiskan generator di bawah. Pemanggilan kedua tidak memulai ulang perhitungan, sehingga menghasilkan list kosong.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterator_consumption.py",
+      code: `numbers = [1, 2, 3]
+iterator = (number * 2 for number in numbers)
+print(list(iterator))  # Output: [2, 4, 6]
+print(list(iterator))  # Output: []
+print(list(numbers))   # Output: [1, 2, 3]`
+    }
+  ]}
+/>
+
 ## Operator Keanggotaan
 
-Operator `in` dan `not in` memeriksa apakah suatu objek memuat nilai tertentu. Cara pemeriksaannya bergantung pada tipe objek tersebut: list menelusuri elemennya, dictionary mencari pada daftar kunci, dan string mencari potongan teks.
+Operator `in` dan `not in` memeriksa apakah suatu objek **memuat nilai tertentu**. Cara pemeriksaannya bergantung pada tipe objek tersebut: list menelusuri elemennya, dictionary mencari pada daftar kunci, dan string mencari potongan teks.
 
 ### Penggunaan Operator in dan not in
 
-String, list, dan tuple bawaan memeriksa item hingga menemukan kecocokan atau mencapai akhir. `set` dan `dict` memakai mekanisme pencarian sendiri. Pada `dict`, pemeriksaan keanggotaan mencari kunci.
+List dan tuple membandingkan elemen sampai menemukan kecocokan atau mencapai akhir. String mencari substring, sedangkan `set` dan `dict` memakai mekanisme pencarian sendiri. Pada dictionary, `in` memeriksa **kunci, bukan nilai**.
 
 <CodeBlock
   data={[
@@ -113,7 +129,7 @@ if "Java" not in message:
 
 ### Kasus Khusus pada String
 
-Untuk string, operand kiri dapat berupa satu karakter atau substring yang lebih panjang. Pemeriksaannya peka huruf besar-kecil dan mencari satu kemunculan yang berurutan.
+Untuk string, operand kiri dapat berupa satu karakter atau substring yang lebih panjang. Pemeriksaannya **peka huruf besar-kecil** dan mencari satu kemunculan yang berurutan.
 
 <CodeBlock
   data={[
@@ -151,7 +167,7 @@ Built-in `any()` dan `all()` menerima iterable lalu menguji truthiness setiap it
 
 ### Fungsi Any
 
-`any()` mengembalikan `True` setelah menemukan item pertama yang dianggap benar. Return value menjadi `False` jika semua item dianggap salah atau iterable tersebut kosong.
+`any()` mengembalikan `True` setelah menemukan **item pertama yang dianggap benar**. Return value menjadi `False` jika semua item dianggap salah atau iterable tersebut kosong.
 
 <CodeBlock
   data={[
@@ -186,7 +202,7 @@ if any(numbers):
 
 ### Fungsi All
 
-`all()` mengembalikan `False` setelah menemukan item pertama yang dianggap salah. Jika iterasi selesai tanpa item tersebut, return value menjadi `True`. Pada iterable kosong, tidak ada item yang melanggar kondisi sehingga `all()` juga mengembalikan `True`.
+`all()` mengembalikan `False` setelah menemukan **item pertama yang dianggap salah**. Jika iterasi selesai tanpa item tersebut, return value menjadi `True`. Pada iterable kosong, tidak ada item yang melanggar kondisi sehingga `all()` juga mengembalikan `True`.
 
 <CodeBlock
   data={[
@@ -214,18 +230,20 @@ print("Semua kondisi benar:", all(mixed_conditions))
 ages = [18, 21, 25, 30]
 if all(age >= 18 for age in ages):
     print("Semua peserta sudah dewasa")
-# Output: Semua peserta sudah dewasa`
+# Output: Semua peserta sudah dewasa
+
+print(all([]))  # Output: True`
     }
   ]}
 />
 
 ## Positional Unpacking
 
-Dalam pemanggilan fungsi, asterisk di depan iterable (`*`) mengembangkannya menjadi argumen posisi. Jumlah argumen yang dihasilkan tetap harus sesuai dengan yang diterima fungsi.
+Dalam pemanggilan fungsi, asterisk di depan iterable (`*`) mengembangkannya menjadi **argumen posisi**. Jumlah argumen yang dihasilkan tetap harus sesuai dengan yang diterima fungsi.
 
 ### Pemanggilan Tanpa Unpacking
 
-Jika `coordinates` diberikan langsung kepada fungsi, seluruh list diterima sebagai satu argumen. Padahal, `math.hypot()` mengharapkan setiap koordinat sebagai argumen tersendiri. Mengakses setiap indeks secara manual dapat bekerja untuk jumlah koordinat yang tetap, tetapi pemanggil harus mengulang cara data tersebut disusun.
+Jika `coordinates` diberikan langsung kepada fungsi, **seluruh list diterima sebagai satu argumen**. Padahal, `math.hypot()` mengharapkan setiap koordinat sebagai argumen tersendiri. Mengakses setiap indeks secara manual dapat bekerja untuk jumlah koordinat yang tetap, tetapi pemanggil harus mengulang cara data tersebut disusun.
 
 <CodeBlock
   data={[
@@ -243,7 +261,7 @@ try:
     print(result)
 except TypeError as e:
     print("Error:", e)
-# Output: Error: must be real number rather than list
+# Output: Error: must be real number, not list
 
 # Cara manual yang merepotkan untuk banyak argumen
 result = math.hypot(coordinates[0], coordinates[1])
@@ -262,7 +280,7 @@ print("Hasil dengan 4 argumen:", result)
 
 ### Unpacking dengan Asterisk
 
-Menempatkan `*` sebelum iterable di dalam pemanggilan akan meneruskan setiap item yang dihasilkan sebagai argumen posisi tersendiri.
+Menempatkan `*` sebelum iterable di dalam pemanggilan akan meneruskan setiap item yang dihasilkan sebagai **argumen posisi tersendiri**.
 
 <CodeBlock
   data={[
@@ -303,7 +321,7 @@ print("Rata-rata nilai:", average)
 
 ### Pemakaian Unpacking
 
-Sintaks unpacking yang sama dapat dipakai saat memanggil fungsi atau membuat list baru. Gunakan asterisk jika fungsi mengharapkan beberapa argumen terpisah. Berikan iterable secara langsung jika fungsi memang menerima satu iterable.
+Sintaks unpacking yang sama dapat dipakai saat memanggil fungsi atau membuat list baru. Gunakan asterisk jika fungsi mengharapkan **beberapa argumen terpisah**. Berikan iterable secara langsung jika fungsi memang menerima satu iterable.
 
 <CodeBlock
   data={[

@@ -5,41 +5,23 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wir zählen die Möglichkeiten mit der Produktregel. Zur Verfügung stehen die Ziffern <InlineMath math="1, 2, 3, 4, 5, 6" />, und jede Ziffer darf dabei höchstens einmal vorkommen.
+Wir bilden vierstellige Zahlen aus <InlineMath math="1,2,3,4,5,6" /> **ohne Ziffernwiederholung**. Ob eine Zahl ungerade ist, hängt nur von der Einerziffer ab. Deshalb wählen wir diese zuerst.
 
-Es gibt <InlineMath math="4" /> Ziffernpositionen: Tausender, Hunderter, Zehner und Einer.
+#### Möglichkeiten für jede Stelle
 
-#### Einerstelle
+An der Einerstelle muss eine **ungerade Ziffer** stehen, also <InlineMath math="1,3,5" />. Eine bereits verwendete Ziffer darf nicht erneut gewählt werden. Da keine verfügbare Ziffer null ist, gibt es für die Tausenderstelle keine zusätzliche Einschränkung.
 
-Damit die Zahl ungerade ist, muss die Einerstelle eine ungerade Zahl sein. Von den verfügbaren Ziffern (<InlineMath math="1, 2, 3, 4, 5, 6" />) sind die ungeraden Zahlen <InlineMath math="1, 3, 5" />.
+| Reihenfolge der Auswahl | Stelle | Möglichkeiten | Begründung |
+| --- | --- | --- | --- |
+| 1 | Einer | <InlineMath math="3" /> | Wähle 1, 3 oder 5 |
+| 2 | Tausender | <InlineMath math="6-1=5" /> | Eine Ziffer ist verwendet |
+| 3 | Hunderter | <InlineMath math="6-2=4" /> | Zwei Ziffern sind verwendet |
+| 4 | Zehner | <InlineMath math="6-3=3" /> | Drei Ziffern sind verwendet |
 
-Für die Einerstelle gibt es also **<InlineMath math="3" />** Möglichkeiten.
+#### Die Möglichkeiten multiplizieren
 
-#### Tausenderstelle
+Wir nutzen die **Produktregel**, weil auf jede Auswahl alle noch verfügbaren Möglichkeiten des nächsten Schritts folgen können. Dass wir die Einerziffer zuerst wählen, ändert ihre Stelle in der fertigen Zahl nicht.
 
-Nachdem die Einerstelle feststeht, bleiben <InlineMath math="6 - 1 = 5" /> Ziffern für die Tausenderstelle übrig.
+<BlockMath math="N=3\times5\times4\times3=180" />
 
-Es gibt also **<InlineMath math="5" />** Auswahlmöglichkeiten für die Tausenderstelle.
-
-#### Hunderterstelle
-
-Nach der Einer- und der Tausenderstelle sind noch <InlineMath math="6 - 2 = 4" /> Ziffern übrig.
-
-Es gibt also **<InlineMath math="4" />** Auswahlmöglichkeiten für die Hunderterstelle.
-
-#### Zehnerstelle
-
-Nachdem drei Ziffern verwendet wurden, sind noch <InlineMath math="6 - 3 = 3" /> Ziffern übrig.
-
-Für die Zehnerstelle gibt es also **<InlineMath math="3" />** Möglichkeiten.
-
-#### Gesamtberechnung
-
-Nach der Produktregel multiplizieren wir die Möglichkeiten der vier Stellen:
-
-<MathContainer>
-  <BlockMath math="\text{Gesamt} = 5 \times 4 \times 3 \times 3" />
-  <BlockMath math="\text{Gesamt} = 180" />
-</MathContainer>
-
-Es gibt also <InlineMath math="180" /> Zahlen, die gebildet werden können.
+Wählen wir beispielsweise zuerst 5 für die Einerstelle, danach 1 für die Tausender-, 2 für die Hunderter- und 3 für die Zehnerstelle, entsteht <InlineMath math="1235" />. Diese Zahl ist ungerade und hat vier verschiedene Ziffern. Insgesamt erfüllen <InlineMath math="180" /> Zahlen die Bedingungen.

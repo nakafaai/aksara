@@ -13,7 +13,7 @@ Penjumlahan suku-suku suatu barisan tak hingga membentuk **deret tak hingga**. P
 
 ## Konvergensi Barisan
 
-Suatu barisan <InlineMath math="(a_n)" /> konvergen menuju <InlineMath math="L" /> jika suku-sukunya dapat dibuat sedekat mungkin dengan <InlineMath math="L" /> dengan mengambil <InlineMath math="n" /> yang cukup besar. Kita menulis:
+Suatu barisan <InlineMath math="(a_n)" /> konvergen menuju <InlineMath math="L" /> jika suku-sukunya dapat dibuat **sedekat mungkin** dengan <InlineMath math="L" /> dengan mengambil <InlineMath math="n" /> yang cukup besar. Kita menulis:
 
 <BlockMath math="\lim_{n\to\infty}a_n=L" />
 
@@ -41,10 +41,11 @@ Sebuah deret disebut **konvergen** jika jumlah parsialnya mendekati nilai _berhi
 
 ### Jumlah Parsial Menuju Satu Limit
 
-Deret konvergen memiliki dua sifat yang mengikuti perilaku jumlah parsial. Jumlah parsial menuju satu bilangan real, dan suku-sukunya harus mengecil menuju nol.
+Jika jumlah parsial <InlineMath math="S_n" /> menuju <InlineMath math="L" />, jumlah parsial sebelumnya juga menuju nilai yang sama. Selisih kedua jumlah parsial adalah suku yang baru ditambahkan:
 
-- Jumlah parsialnya (jumlah <InlineMath math="n" /> suku pertama, <InlineMath math="S_n" />) mendekati suatu nilai <InlineMath math="L" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} S_n = L" />, dengan <InlineMath math="L" /> sebagai bilangan real).
-- Syarat perlu (tetapi tidak cukup): suku ke-<InlineMath math="n" /> (<InlineMath math="u_n" />) harus mendekati <InlineMath math="0" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
+<BlockMath math="a_n=S_n-S_{n-1}\longrightarrow L-L=0" />
+
+Jadi, suku yang menuju nol adalah **syarat perlu**, bukan jaminan konvergensi. Kita masih harus memeriksa jumlah parsialnya.
 
 ### Contoh Deret Konvergen
 
@@ -52,7 +53,7 @@ Deret geometri konvergen jika nilai mutlak rasionya kurang dari <InlineMath math
 
 <BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
 
-Rasio yang sama dengan atau lebih besar dari <InlineMath math="1" /> membuat deretnya tidak punya jumlah berhingga.
+Jika suku pertama tidak nol dan **nilai mutlak rasio sekurang-kurangnya satu**, deret geometri tidak memiliki jumlah berhingga. Deret dengan semua suku nol tetap konvergen menuju nol.
 
 ## Deret Divergen
 
@@ -64,30 +65,26 @@ Sebuah deret disebut **divergen** jika jumlah parsialnya tidak mendekati nilai b
 
 ### Jumlah Parsial Tidak Menetap
 
-Deret divergen tidak memiliki satu limit atau bergerak tanpa batas. Dua kondisi berikut memisahkan kedua kasus itu.
+Deret divergen **tidak memiliki satu limit** atau bergerak tanpa batas. Dua kondisi berikut memisahkan kedua kasus itu.
 
 - Jumlah parsialnya (<InlineMath math="S_n" />) tidak mendekati satu nilai <InlineMath math="L" /> tertentu saat <InlineMath math="n" /> mendekati tak hingga.
 - Jika <InlineMath math="u_n\not\to 0" />, deretnya _pasti_ divergen. Kondisi ini mencakup limit suku yang bukan nol maupun barisan suku yang tidak memiliki limit.
 
 ### Deret yang Divergen
 
-Ketiga keluarga deret di bawah divergen karena alasan yang berbeda. Deret harmonik menunjukkan bahwa suku yang mengecil saja tidak cukup memaksa konvergensi.
+Bandingkan suku-suku dengan jumlah parsialnya. Pada tiga contoh pertama, suku-suku bahkan tidak menuju nol. Deret harmonik memerlukan alasan tambahan karena sukunya justru menuju nol.
 
-- **Deret Aritmetika (selain <InlineMath math="0 + 0 + \dots" />)**: Jumlah parsialnya bertambah menuju <InlineMath math="\infty" /> atau berkurang menuju <InlineMath math="-\infty" />.
+| Deret | Jumlah parsial awal | Perilaku |
+| --- | --- | --- |
+| <InlineMath math="1+2+3+4+\cdots" /> | <InlineMath math="1,3,6,10" /> | Naik tanpa batas |
+| <InlineMath math="2+4+8+16+\cdots" /> | <InlineMath math="2,6,14,30" /> | Naik tanpa batas |
+| <InlineMath math="1-2+4-8+\cdots" /> | <InlineMath math="1,-1,3,-5" /> | Berganti tanda dengan nilai mutlak yang membesar |
 
-  Misalnya: <InlineMath math="1 + 2 + 3 + 4 + \dots" /> (menuju <InlineMath math="\infty" />)
+Pada **deret harmonik**, kelompokkan suku setelah <InlineMath math="1+1/2" /> menjadi kelompok berisi dua, empat, delapan, dan seterusnya. Setiap kelompok menyumbang sekurang-kurangnya setengah:
 
-- **Deret Geometri dengan <InlineMath math="|r| \ge 1" />**:
+<BlockMath math="\begin{aligned}\frac13+\frac14&amp;\ge2\cdot\frac14=\frac12\\\frac15+\frac16+\frac17+\frac18&amp;\ge4\cdot\frac18=\frac12\\\sum_{k=2^{m-1}+1}^{2^m}\frac1k&amp;\ge2^{m-1}\cdot\frac1{2^m}=\frac12\end{aligned}" />
 
-  - Jika <InlineMath math="r \ge 1" />, jumlah parsialnya menuju <InlineMath math="\pm \infty" />, bergantung pada tanda suku pertama.
-
-    Contoh: <InlineMath math="2 + 4 + 8 + 16 + \dots" /> (menuju <InlineMath math="\infty" />)
-
-  - Jika <InlineMath math="r \le -1" />, jumlah parsialnya berosilasi.
-
-    Contoh: <InlineMath math="1 - 2 + 4 - 8 + \dots" /> (Jumlah parsialnya: <InlineMath math="1, -1, 3, -5, \dots" /> tidak menuju satu nilai)
-
-- **Deret Harmonik**: Pada <InlineMath math="1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \dots" />, suku ke-<InlineMath math="n" />, yaitu <InlineMath math="u_n = \frac{1}{n}" />, mendekati <InlineMath math="0" />, tetapi jumlah parsialnya tetap bertambah menuju tak hingga <InlineMath math="\infty" />. Jadi, <InlineMath math="u_n \to 0" /> harus terpenuhi agar deret dapat konvergen, tetapi syarat tersebut belum cukup untuk menjamin konvergensi.
+Ada tak hingga banyak kelompok dengan sumbangan sedikitnya <InlineMath math="1/2" />. Karena itu, jumlah parsial melewati batas berapa pun, meskipun <InlineMath math="1/n\to0" />. Inilah contoh mengapa **suku menuju nol belum cukup**.
 
 ## Klasifikasi Lengkap Deret Geometri
 
@@ -95,7 +92,7 @@ Perhatikan deret:
 
 <BlockMath math="a+ar+ar^2+\dots" />
 
-Untuk <InlineMath math="a\ne0" />, setiap kemungkinan rasio masuk ke salah satu kasus berikut:
+Untuk <InlineMath math="a\ne0" />, **setiap kemungkinan rasio** masuk ke salah satu kasus berikut:
 
 - Jika <InlineMath math="|r|<1" />, deret konvergen menuju <InlineMath math="a/(1-r)" />.
 - Jika <InlineMath math="r=1" />, jumlah parsialnya adalah <InlineMath math="na" /> dan deret divergen.
@@ -108,7 +105,9 @@ Jadi, deret divergen tidak selalu mempunyai nilai <InlineMath math="\infty" />. 
 
 Setiap barisan yang monoton dan terbatas pasti konvergen. Kriteria ini berguna ketika limit sulit dibaca langsung dari suatu rumus.
 
-Jumlah parsial dari deret dengan suku-suku tak negatif selalu naik. Jika jumlah parsial tersebut juga memiliki batas atas, deretnya konvergen.
+Jumlah parsial dari deret dengan suku-suku tak negatif tidak pernah menurun. Jika jumlah parsial tersebut juga memiliki batas atas, deretnya konvergen.
+
+Misalnya, untuk <InlineMath math="1+1/2+1/4+\cdots" />, kita memperoleh <InlineMath math="S_n=2-2^{1-n}<2" />. Setiap suku yang ditambahkan positif, sehingga jumlah parsial naik. Angka dua adalah **batas atas** untuk semua jumlah parsial, jadi deret tersebut konvergen.
 
 ## Perbandingan Deret Konvergen dan Divergen
 
@@ -117,12 +116,12 @@ Tabel mengumpulkan ketiga uji yang sudah dibahas, sehingga perilaku jumlah parsi
 | Fitur                               | Deret Konvergen                                                                                | Deret Divergen                                                                                                       |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **Jumlah**                          | Menuju nilai _terbatas_ tertentu (<InlineMath math="L" />). <InlineMath math="S_\infty = L" /> | Tidak menuju nilai terbatas. <InlineMath math="\pm \infty" /> atau berosilasi                                        |
-| **Suku ke-<InlineMath math="n" />** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen. Meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
-| **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika, geometri <InlineMath math="\lvert r\rvert \geq 1" />, harmonik                                              |
+| **Suku umum** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen. Meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
+| **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika selain deret nol, geometri dengan suku pertama tidak nol dan <InlineMath math="\lvert r\rvert \geq 1" />, serta harmonik                                              |
 
 ## Latihan
 
-Tentukan apakah setiap deret berikut konvergen atau divergen. Periksa dulu perilaku sukunya, karena suku yang tidak menuju nol sudah cukup menjawab pertanyaannya. Tulis kesimpulanmu untuk tiap deret sebelum membaca pembahasan.
+Tentukan apakah setiap deret berikut konvergen atau divergen. Periksa dulu perilaku sukunya, karena **suku yang tidak menuju nol** sudah cukup menjawab pertanyaannya. Tulis kesimpulanmu untuk tiap deret sebelum membaca pembahasan.
 
 1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
 2. <InlineMath math="\sum_{k=1}^{\infty}1" />
@@ -132,8 +131,10 @@ Tentukan apakah setiap deret berikut konvergen atau divergen. Periksa dulu peril
 
 1. Deret pertama merupakan deret geometri dengan <InlineMath math="|r|=1/4<1" />, sehingga deretnya konvergen:
 
-   <BlockMath math="\frac{3}{1-1/4}=4" />
+   <BlockMath math="\frac{3}{1-1/4}=\frac{3}{3/4}=3\cdot\frac43=4" />
 
 2. Suku-suku deret kedua tidak mendekati nol, sehingga deretnya divergen.
 
 3. Jumlah parsial deret ketiga bergantian di antara dua nilai. Osilasi ini membuatnya gagal mendekati satu limit.
+
+Untuk deret kedua, <InlineMath math="S_n=n" /> sehingga jumlah parsial tidak terbatas. Untuk deret ketiga, <InlineMath math="S_1=1" />, <InlineMath math="S_2=0" />, <InlineMath math="S_3=1" />, dan <InlineMath math="S_4=0" />. Dua barisan bagiannya memiliki limit berbeda, jadi seluruh barisan jumlah parsial **tidak memiliki satu limit**.

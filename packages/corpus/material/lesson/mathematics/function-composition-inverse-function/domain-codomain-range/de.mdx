@@ -9,17 +9,19 @@ export const metadata = {
 
 ## Definitionsmenge
 
-Die **Definitionsmenge** enthält alle Werte, die als Eingabe einer Funktion zulässig sind. Ein Wert außerhalb dieser Menge darf nicht eingesetzt werden. Bei einem Bruch schließt das jede Nullstelle des Nenners aus, bei einer Wurzel jeden Wert, der den Radikanden negativ werden lässt.
+Die **Definitionsmenge** enthält die für eine Funktion festgelegten Eingaben. Die Zuordnung muss für jedes ihrer Elemente definiert sein. Ohne weitere Vorgabe suchen wir meist die größte reelle Definitionsmenge: Nenner dürfen nicht null sein, und Wurzeln gerader Ordnung benötigen nicht negative Radikanden.
+
+Die Definitionsmenge darf auch **bewusst eingeschränkt** werden. Zum Beispiel ist die Regel <InlineMath math="x^2" /> für alle reellen Zahlen definiert, eine Funktion kann aber nur für <InlineMath math="x\ge0" /> festgelegt werden.
 
 ### Beispiel zur Definitionsmenge
 
-Diese Funktion teilt durch die eingesetzte Zahl, und eine Division ist nur definiert, wenn der Nenner nicht null ist:
+Diese Funktion teilt durch die eingesetzte Zahl, und eine Division ist nur definiert, wenn der **Nenner nicht null** ist:
 
 <BlockMath math="f(x) = \frac{1}{x}" />
 
 Sie teilt <InlineMath math="1" /> durch die eingesetzte Zahl. Bei der Eingabe <InlineMath math="0" /> wird der Nenner null:
 
-<BlockMath math="f(0) = \frac{1}{0}" />
+<BlockMath math="\frac10" />
 
 Durch Null darf nicht dividiert werden. Deshalb gehört die Zahl <InlineMath math="0" /> nicht zur Definitionsmenge dieser Funktion. Alle anderen reellen Zahlen sind zulässig.
 
@@ -31,7 +33,7 @@ Ein zweites Beispiel ist
 
 Hier wird die Quadratwurzel der Eingabe gebildet. Für <InlineMath math="-4" /> ergäbe sich
 
-<BlockMath math="g(-4) = \sqrt{-4}" />
+<BlockMath math="\sqrt{-4}" />
 
 Im Bereich der reellen Zahlen ist die Quadratwurzel einer negativen Zahl nicht definiert. Zulässig sind deshalb nur <InlineMath math="0" /> und positive Zahlen.
 
@@ -61,9 +63,9 @@ Die Zielmenge beschreibt also den vorgesehenen Ausgaberaum. Nicht jeder ihrer We
 
 ## Bildmenge
 
-Die **Bildmenge** enthält alle Ausgabewerte, die bei den zulässigen Eingaben tatsächlich entstehen. Sie ist eine Teilmenge der Zielmenge und kann mit ihr übereinstimmen.
+Die **Bildmenge** enthält alle Ausgaben, die aus den Elementen der Definitionsmenge tatsächlich entstehen. Sie ist eine Teilmenge der Zielmenge.
 
-**Beispiel:**
+**Beispiel**:
 
 Für dieses Beispiel sind Definitionsmenge und Zielmenge von <InlineMath math="f(x) = x^2" /> die ganzen Zahlen.
 
@@ -71,12 +73,13 @@ Für dieses Beispiel sind Definitionsmenge und Zielmenge von <InlineMath math="f
 
 Setzen wir einige Werte aus der Definitionsmenge ein:
 
-- <InlineMath math="f(-2) = 4" />
-- <InlineMath math="f(-1) = 1" />
-- <InlineMath math="f(0) = 0" />
-- <InlineMath math="f(1) = 1" />
-- <InlineMath math="f(2) = 4" />
-- und so weiter...
+| Eingabe | Quadrat als Ausgabe |
+| --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="(-2)^2=4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="(-1)^2=1" /> |
+| <InlineMath math="0" /> | <InlineMath math="0^2=0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1^2=1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2^2=4" /> |
 
 Tatsächlich entstehen <InlineMath math="0, 1, 4, 9, 16" /> und weitere nicht negative Quadratzahlen.
 
@@ -93,6 +96,37 @@ Nicht jedes Element der Zielmenge gehört zur Bildmenge.
 ## Aufgaben von Definitionsmenge Zielmenge und Bildmenge
 
 Die Definitionsmenge schließt ungültige Eingaben wie eine Division durch null aus. Die Zielmenge legt den Ausgaberaum fest, und die Bildmenge zeigt, welche Werte darin tatsächlich erreicht werden.
+
+Beschränken wir das Quadratbeispiel auf <InlineMath math="D=\{-2,-1,0,1,2\}" /> und wählen <InlineMath math="K=\{0,1,2,3,4\}" />. **Von jeder Eingabe geht ein Pfeil aus**, aber manche Elemente der Zielmenge werden nicht erreicht.
+
+<Mermaid
+  title="Definitionsmenge Zielmenge und erreichte Ausgaben"
+  description="Pfeile ordnen fünf Eingaben ihre Quadrate zu. Die Bildmenge liegt innerhalb der Zielmenge. Zwei Elemente der Zielmenge werden nicht erreicht."
+  chart={`flowchart LR
+  subgraph D["Definitionsmenge D"]
+    d1["-2"]
+    d2["-1"]
+    d3["0"]
+    d4["1"]
+    d5["2"]
+  end
+  subgraph K["Zielmenge K"]
+    subgraph R["Bildmenge R"]
+      r0["0"]
+      r1["1"]
+      r4["4"]
+    end
+    k2["2"]
+    k3["3"]
+  end
+  d1 --> r4
+  d2 --> r1
+  d3 --> r0
+  d4 --> r1
+  d5 --> r4`}
+/>
+
+Die Pfeile erreichen <InlineMath math="0,1,4" />, also gilt <InlineMath math="R=\{0,1,4\}" />. Die Werte <InlineMath math="2" /> und <InlineMath math="3" /> bleiben in der Zielmenge, gehören jedoch nicht zur Bildmenge dieses eingeschränkten Beispiels.
 
 ## Mathematische Beziehung
 
@@ -114,15 +148,15 @@ Jeder tatsächlich erreichte Funktionswert muss also in der Zielmenge liegen. Um
 
 Es sei <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> mit <InlineMath math="h(x)=\frac1{x-2}" />. Beantworte die drei Fragen unten zu dieser Funktion. Beginne bei dem Wert, den der Nenner verbietet, und prüfe dann, welche Ausgabewerte der Bruch erreichen kann.
 
-1. Warum ist <InlineMath math="2" /> aus der Definitionsmenge ausgeschlossen?
+1. Warum ist <InlineMath math="2" /> aus der Definitionsmenge **ausgeschlossen**?
 2. Kann <InlineMath math="0" /> zur Bildmenge gehören?
 3. Gib die Bildmenge von <InlineMath math="h" /> an.
 
 ### Ausführliche Lösungen
 
-1. Für <InlineMath math="x=2" /> wird der Nenner null:
+1. Für <InlineMath math="x=2" /> wird der **Nenner null**:
 
-   <BlockMath math="h(2)=\frac1{2-2}=\frac10" />
+   <BlockMath math="2-2=0" />
 
    Der Ausdruck ist nicht definiert. Daher kann <InlineMath math="2" /> nicht zur Definitionsmenge gehören.
 2. Nein. Ein Bruch mit dem Zähler <InlineMath math="1" /> kann nicht den Wert <InlineMath math="0" /> annehmen.

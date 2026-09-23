@@ -3,7 +3,7 @@ export const metadata = {
    description: "Wende Integrale auf wirtschaftliche Situationen an und berechne Absatz, Umsatzänderungen, Produktionskosten und Konsumentenrente.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Integrale",
 };
 
@@ -13,7 +13,13 @@ Viele wirtschaftliche Größen werden als Änderungsrate angegeben, etwa verkauf
 
 Ist beispielsweise eine Absatzrate als Funktion der Zeit bekannt, liefert ihr Integral die insgesamt verkaufte Stückzahl im betrachteten Zeitraum.
 
-Dieses Konzept ähnelt der Berechnung der Fläche unter einer Kurve, wobei die horizontale Achse die Zeit und die vertikale Achse die Änderungsrate einer Wirtschaftsgröße darstellt.
+Die waagerechte Achse zeigt die Integrationsvariable: Zeit bei einer Absatzrate oder Produktionsmenge bei Grenzkosten. Die **Einheit des Integrals** ergibt sich aus dem Produkt der Einheiten beider Achsen.
+
+| Integrierte Größe | Integrationsvariable | Ergebnis |
+| --- | --- | --- |
+| Stück pro Monat | Monate | Verkaufte Stückzahl |
+| Tausend Rupiah pro Stück | Produzierte Stückzahl | Tausend Rupiah |
+| Tausend Rupiah pro Monat | Monate | Tausend Rupiah |
 
 ## Verkaufsanalyse mit Integralen
 
@@ -42,24 +48,26 @@ Das kontinuierliche Modell liefert für die ersten <InlineMath math="3 \text{ Mo
 
 ## Analyse des Umsatzwachstums
 
-Ein zweites Modell beschreibt die Umsatzwachstumsrate eines Technologie-Startups durch <InlineMath math="R'(t) = 5000e^{0{,}1t}" /> Tausend Dollar pro Monat. Dabei wird <InlineMath math="t" /> in Monaten gemessen.
+Ein zweites Modell beschreibt die Umsatzwachstumsrate eines Technologie-Startups durch <InlineMath math="R'(t) = 5000e^{0{,}1t}" /> Tausend Rupiah pro Monat. Dabei wird <InlineMath math="t" /> in Monaten gemessen.
 
 Um die **gesamte Umsatzsteigerung** in den ersten <InlineMath math="6 \text{ Monaten}" /> zu berechnen, integrieren wir die Wachstumsrate:
 
+Schreibe die Zunahme als <InlineMath math="\Delta R=R(6)-R(0)" />. Den Anfangsumsatz brauchst du nicht, um **seine Änderung** zu berechnen.
+
 <MathContainer>
-<BlockMath math="R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
-<BlockMath math="R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
-<BlockMath math="R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
-<BlockMath math="R = 50000(e^{0{,}6} - 1)" />
+<BlockMath math="\Delta R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
+<BlockMath math="\Delta R = 50000(e^{0{,}6} - 1)" />
 </MathContainer>
 
-Mit <InlineMath math="e^{0{,}6} \approx 1{,}822" /> beträgt die gesamte Umsatzsteigerung ungefähr <InlineMath math="50000 \times 0{,}822 = 41100" /> Tausend Dollar, also <InlineMath math="41{,}1 \text{ Millionen}" /> Dollar.
+Mit <InlineMath math="e^{0{,}6} \approx 1{,}822" /> beträgt die gesamte Umsatzsteigerung ungefähr <InlineMath math="50000 \times 0{,}822 = 41100" /> Tausend Rupiah, also <InlineMath math="41{,}1 \text{ Millionen}" /> Rupiah.
 
 ## Gesamtproduktionskosten
 
-In der Wirtschaft müssen Unternehmen häufig die Produktionskosten schätzen. Angenommen, die Grenzkosten für die Herstellung eines Gutes betragen <InlineMath math="MC(x) = 0{,}3x^2 - 12x + 200" /> Tausend Dollar pro Einheit, wobei <InlineMath math="x" /> die Anzahl der produzierten Einheiten ist.
+In der Wirtschaft müssen Unternehmen häufig die Produktionskosten schätzen. Angenommen, die Grenzkosten für die Herstellung eines Gutes betragen <InlineMath math="MC(x) = 0{,}3x^2 - 12x + 200" /> Tausend Rupiah pro Einheit, wobei <InlineMath math="x" /> die Anzahl der produzierten Einheiten ist.
 
-Wenn das Unternehmen nun die **variablen Gesamtkosten** für die Produktion des ersten <InlineMath math="20 \text{ Einheiten}" /> wissen möchte, integriert es einfach die Grenzkostenfunktion:
+Wenn das Unternehmen nun die **variablen Gesamtkosten** für die Produktion der ersten <InlineMath math="20 \text{ Einheiten}" /> wissen möchte, integriert es einfach die Grenzkostenfunktion:
 
 <BlockMath math="VC = \int_{0}^{20} (0{,}3x^2 - 12x + 200) \, dx" />
 
@@ -70,13 +78,13 @@ Nach der Integration und Auswertung erhalten wir:
 <BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
 </MathContainer>
 
-Unter der Annahme <InlineMath math="VC(0)=0" /> betragen die variablen Gesamtkosten für <InlineMath math="20 \text{ Einheiten}" /> somit <InlineMath math="2{,}4 \text{ Millionen}" /> Dollar. Fixkosten sind davon getrennt und in diesem Integral nicht enthalten.
+Unter der Annahme <InlineMath math="VC(0)=0" /> betragen die variablen Gesamtkosten für <InlineMath math="20 \text{ Einheiten}" /> somit <InlineMath math="2{,}4 \text{ Millionen}" /> Rupiah. Fixkosten sind davon getrennt und in diesem Integral nicht enthalten.
 
 > In wirtschaftlichen Anwendungen wandeln Integrale Grenzgrößen oder Änderungsraten in Gesamtgrößen um. So wird aus Grenzkosten beispielsweise die Änderung der Gesamtkosten.
 
 ## Analyse der Konsumentenrente
 
-Auch die Konsumentenrente lässt sich mit einem Integral bestimmen. Gegeben sind die Nachfragefunktion <InlineMath math="P = 100 - 0{,}5Q" /> und der Gleichgewichtspreis <InlineMath math="60 \text{ Dollar pro Einheit}" />. Die zugehörige Gleichgewichtsmenge auf dieser Nachfragekurve folgt aus:
+Auch die Konsumentenrente lässt sich mit einem Integral bestimmen. Gegeben sind die Nachfragefunktion <InlineMath math="P = 100 - 0{,}5Q" /> und der Gleichgewichtspreis <InlineMath math="60 \text{ Rupiah pro Einheit}" />. Die zugehörige Gleichgewichtsmenge auf dieser Nachfragekurve folgt aus:
 
 <BlockMath math="\begin{aligned} &amp;60=100-0{,}5Q \\ &amp;\Longrightarrow \\ &amp;Q=80 \end{aligned}" />
 
@@ -91,61 +99,65 @@ Nach der Auswertung:
 <BlockMath math="CS = 3200 - 1600 = 1600" />
 </MathContainer>
 
-Die Konsumentenrente von <InlineMath math="1600 \text{ Dollar}" /> misst den gesamten monetären Vorteil der Käufer gegenüber dem Gleichgewichtspreis.
+Die Konsumentenrente von <InlineMath math="1600 \text{ Rupiah}" /> misst den gesamten monetären Vorteil der Käufer gegenüber dem Gleichgewichtspreis.
+
+Die Preisdifferenz bildet ein **Dreieck**: Bei <InlineMath math="Q=0" /> beträgt seine Höhe <InlineMath math="40" /> Rupiah pro Stück, bei <InlineMath math="Q=80" /> ist sie null. Prüfe das Integral mit der Dreiecksfläche:
+
+<BlockMath math="CS=\frac12(80)(100-60)=1600" />
 
 ## Übungen
 
-In jeder Aufgabe ist eine Rate wie Grenzkosten oder Grenzerlös gegeben und die kumulierte Größe gesucht, deshalb integrierst du die Rate über das angegebene Intervall und liest das Ergebnis in den ursprünglichen Einheiten.
+In jeder Aufgabe ist eine Rate wie Grenzkosten oder Grenzerlös gegeben und die kumulierte Größe gesucht, deshalb **integrierst du die Rate** über das angegebene Intervall und liest das Ergebnis in den ursprünglichen Einheiten.
 
-1. Ein Unternehmen hat die Absatzrate <InlineMath math="f(t) = 1000 + 500t \text{ Einheiten}" /> pro Monat. Berechne den Gesamtabsatz in den ersten <InlineMath math="6 \text{ Monate}" />.
+1. Ein Unternehmen hat die Absatzrate <InlineMath math="f(t) = 1000 + 500t \text{ Einheiten}" /> pro Monat. Berechne den Gesamtabsatz in den ersten <InlineMath math="6 \text{ Monaten}" />.
 
-2. Die Grenzkosten eines Produkts betragen <InlineMath math="MC(x) = 2x + 50" /> Tausend Dollar pro Einheit. Bestimme die variablen Gesamtkosten für <InlineMath math="25 \text{ Einheiten}" />.
+2. Die Grenzkosten eines Produkts betragen <InlineMath math="MC(x) = 2x + 50" /> Tausend Rupiah pro Einheit. Bestimme die variablen Gesamtkosten für <InlineMath math="25 \text{ Einheiten}" />.
 
-3. Die Investitionswachstumsrate lautet <InlineMath math="I'(t) = 2000e^{0{,}05t}\text{ Millionen}" /> Dollar pro Jahr. Berechne das gesamte Investitionswachstum in <InlineMath math="4 \text{ Jahren}" />.
+3. Die Investitionswachstumsrate lautet <InlineMath math="I'(t) = 2000e^{0{,}05t}\text{ Millionen}" /> Rupiah pro Jahr. Berechne das gesamte Investitionswachstum in <InlineMath math="4 \text{ Jahren}" />.
 
-### Ausführliche Lösungen
+### Berechnung des Gesamtabsatzes
 
-1. **Berechnung des Gesamtabsatzes**
+Integriere die **Absatzrate** vom Zeitpunkt null bis zum Ende des sechsten Monats. Einheiten pro Monat mal Monate ergeben die Anzahl der verkauften Einheiten.
 
-   Da die Absatzrate gegeben ist, integrieren wir sie über die ersten sechs Monate:
+<BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
 
-   <BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
+Das Ergebnis ist:
 
-   Das Ergebnis ist:
+<MathContainer>
+<BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
+<BlockMath math="S = 6000 + 9000 = 15000" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
-   <BlockMath math="S = 6000 + 9000 = 15000" />
-   </MathContainer>
+Der Gesamtabsatz in <InlineMath math="6 \text{ Monaten}" /> beträgt <InlineMath math="15{.}000 \text{ Einheiten}" />.
 
-   Der Gesamtabsatz in <InlineMath math="6 \text{ Monaten}" /> beträgt <InlineMath math="15{.}000 \text{ Einheiten}" />.
+### Variable Kosten berechnen
 
-2. **Variable Kosten berechnen**
+Integriere die **Grenzkostenfunktion** von null bis 25 produzierten Einheiten. Da die Grenzkosten in Tausend Rupiah pro Einheit angegeben sind, erhältst du das Integral in Tausend Rupiah.
 
-   Die variablen Gesamtkosten sind das Integral der Grenzkostenfunktion:
+<BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
 
-   <BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
+Nach der Auswertung:
 
-   Nach der Auswertung:
+<MathContainer>
+<BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
+<BlockMath math="VC = 625 + 1250 = 1875" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
-   <BlockMath math="VC = 625 + 1250 = 1875" />
-   </MathContainer>
+Die gesamten variablen Kosten betragen <InlineMath math="1{.}875" /> Tausend Rupiah oder <InlineMath math="1{,}875 \text{ Millionen}" /> Rupiah.
 
-   Die gesamten variablen Kosten betragen <InlineMath math="1{,}875" /> Tausend Dollar oder <InlineMath math="1{,}875 \text{ Millionen}" /> Dollar.
+Mit <InlineMath math="VC(0)=0" /> entspricht das Ergebnis den variablen Kosten. Eventuelle Fixkosten werden getrennt addiert.
 
-3. **Berechnung des Investitionswachstums**
+### Berechnung des Investitionswachstums
 
-   Für Exponentialfunktionen integrieren wir:
+Summiere die Investitionsrate über vier Jahre. Bei der Stammfunktion der Exponentialfunktion teilst du durch den Zeitkoeffizienten <InlineMath math="0{,}05" />.
 
-   <BlockMath math="I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
+<BlockMath math="\Delta I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
 
-   Das Ergebnis ist:
+Das Ergebnis ist:
 
-   <MathContainer>
-   <BlockMath math="I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
-   <BlockMath math="\begin{aligned} I &amp;= 40000(e^{0{,}2} - 1) \\ &amp;\approx 40000(0{,}2214) \\ &amp;\approx 8856 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\Delta I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
+<BlockMath math="\begin{aligned} \Delta I &amp;= 40000(e^{0{,}2} - 1) \\ &amp;\approx 40000(0{,}2214) \\ &amp;\approx 8856 \end{aligned}" />
+</MathContainer>
 
-   Das gesamte Investitionswachstum in <InlineMath math="4 \text{ Jahren}" /> beträgt ungefähr <InlineMath math="8{,}86 \text{ Milliarden Dollar}" />.
+Das gesamte **Investitionswachstum** in <InlineMath math="4 \text{ Jahren}" /> beträgt ungefähr <InlineMath math="8{,}86 \text{ Milliarden Rupiah}" />.

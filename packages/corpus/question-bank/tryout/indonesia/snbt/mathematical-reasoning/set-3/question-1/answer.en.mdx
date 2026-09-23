@@ -5,15 +5,15 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Delivery Period Analysis**
+#### Delivery Period Analysis
 
 April <InlineMath math="2023" /> has a total of <InlineMath math="30\text{ days}" />. The first delivery was made on April <InlineMath math="1" />, which corresponds to day <InlineMath math="1" />. We need to calculate how many times suppliers <InlineMath math="A" /> and <InlineMath math="B" /> delivered goods within that <InlineMath math="30" />-day period.
 
-The delivery schedule follows an arithmetic progression pattern with the first term <InlineMath math="a = 1" /> (first delivery date) and common difference <InlineMath math="b" /> corresponding to each supplier's interval. The condition for the delivery date is <InlineMath math="U_n \le 30" />.
+The delivery schedule follows an **arithmetic progression** with the first term <InlineMath math="a = 1" /> (first delivery date) and common difference <InlineMath math="b" /> corresponding to each supplier's interval. The condition for the delivery date is <InlineMath math="U_n \le 30" />.
 
-**Cooking Oil <InlineMath math="A" /> Volume**
+#### Cooking Oil A Volume
 
-Supplier <InlineMath math="A" /> delivers every <InlineMath math="3\text{ days}" />.
+**Supplier A** delivers every <InlineMath math="3\text{ days}" />.
 
 <MathContainer>
   <BlockMath math="1 + (n_A - 1)3 \le 30" />
@@ -28,9 +28,9 @@ Total volume <InlineMath math="A" />:
 
 <BlockMath math="10 \times 10 = 100 \text{ liters}" />
 
-**Cooking Oil <InlineMath math="B" /> Volume**
+#### Cooking Oil B Volume
 
-Supplier <InlineMath math="B" /> delivers every <InlineMath math="4\text{ days}" />.
+**Supplier B** delivers every <InlineMath math="4\text{ days}" />.
 
 <MathContainer>
   <BlockMath math="1 + (n_B - 1)4 \le 30" />
@@ -45,9 +45,9 @@ Total volume <InlineMath math="B" />:
 
 <BlockMath math="8 \times 15 = 120 \text{ liters}" />
 
-**Combined Total Volume**
+#### Combined Total Volume
 
-Let <InlineMath math="V" /> be the combined volume and <InlineMath math="V_A" /> and <InlineMath math="V_B" /> the volumes of the two brands.
+Let <InlineMath math="V" /> be the **combined volume** and <InlineMath math="V_A" /> and <InlineMath math="V_B" /> the volumes of the two brands.
 
 <MathContainer>
   <BlockMath math="V = V_A + V_B" />
@@ -55,3 +55,10 @@ Let <InlineMath math="V" /> be the combined volume and <InlineMath math="V_A" />
 </MathContainer>
 
 Therefore, the total volume of cooking oil brands <InlineMath math="A" /> and <InlineMath math="B" /> received is <InlineMath math="220\text{ liters}" />.
+
+The delivery count must be a whole number. Check the month boundary using the last and next delivery dates:
+
+| Supplier | Last delivery in April | Next delivery |
+| --- | --- | --- |
+| A | 28 April | 1 May |
+| B | 29 April | 3 May |

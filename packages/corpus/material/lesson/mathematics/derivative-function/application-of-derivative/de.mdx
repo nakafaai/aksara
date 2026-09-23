@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Bewegung mithilfe von Ableitungen
 
-<Highlight>Ableitungen beschreiben, wie sich eine Größe verändert.</Highlight> Eine besonders anschauliche Anwendung ist die Bewegung eines Körpers: Aus seiner Ortsfunktion lassen sich die momentane Geschwindigkeit und anschließend die Beschleunigung bestimmen.
+Eine Ableitung beschreibt die <Highlight>Änderungsrate einer Größe</Highlight> bezüglich ihrer Bezugsvariablen. Aus dem Ort als Funktion der Zeit ergeben sich durch aufeinanderfolgendes Ableiten die Momentangeschwindigkeit und die Beschleunigung. Die Geschwindigkeit misst die Ortsänderung pro Zeiteinheit. Die Beschleunigung misst die Geschwindigkeitsänderung pro Zeiteinheit.
 
 ## Momentangeschwindigkeit aus der Ortsfunktion
 
@@ -34,6 +34,28 @@ Für <InlineMath math="t = 1 \text{ Sekunde}" /> gilt <InlineMath math="v(1) = 3
 
 Für <InlineMath math="0<t<1" /> sind beide Faktoren negativ, also gilt <InlineMath math="v(t)>0" />. Für <InlineMath math="1<t<3" /> haben die Faktoren verschiedene Vorzeichen, also gilt <InlineMath math="v(t)<0" />. Damit wechselt die Geschwindigkeit bei <InlineMath math="t=1" /> ihr Vorzeichen. Das Teilchen kehrt dort nachweislich seine Bewegungsrichtung um.
 
+Der Geschwindigkeitsgraph zeigt einen **Richtungswechsel**, wenn er die Zeitachse schneidet. Im dargestellten Intervall liegen die Schnittstellen bei <InlineMath math="t=1" /> und <InlineMath math="t=3" />. Vergleiche die Vorzeichen der Geschwindigkeit vor und nach jedem Schnittpunkt.
+
+<LineEquation
+  title="Vorzeichen der Geschwindigkeit und Bewegungsrichtung"
+  description="Die waagerechte Achse zeigt die Zeit in Sekunden, die senkrechte Achse die Geschwindigkeit in Metern pro Sekunde. Unterhalb der Zeitachse nimmt die Ortskoordinate ab."
+  data={[{
+    points: Array.from({ length: 81 }, (_, i) => { const t = i / 20; return { x: t, y: 3 * t * t - 12 * t + 9, z: 0 }; }),
+    smooth: false,
+    color: "#9333ea",
+    showPoints: true,
+    pointIndices: [20, 60],
+    labels: [
+      { at: 20, text: <InlineMath math="t=1" />, offset: [-0.7, 0.5, 0] },
+      { at: 60, text: <InlineMath math="t=3" />, offset: [0.7, 0.5, 0] },
+      { at: 40, text: <InlineMath math="v(2)=-3" />, offset: [0, -0.8, 0] },
+    ],
+  }]}
+  showZAxis={false}
+  cameraTarget={[2, 2.5, 0]}
+  cameraPosition={[2, 2.5, 20]}
+/>
+
 ## Beschleunigung aus der Geschwindigkeit
 
 Auch die Geschwindigkeit kann sich ändern, etwa beim Beschleunigen oder Bremsen eines Autos. Diese Änderung heißt **Beschleunigung**. Die Funktion <InlineMath math="a(t)" /> <Highlight>ist die erste Ableitung der Geschwindigkeit</Highlight> und damit zugleich die zweite Ableitung des Ortes.
@@ -42,7 +64,7 @@ Auch die Geschwindigkeit kann sich ändern, etwa beim Beschleunigen oder Bremsen
 
 ### Bestimmung der Beschleunigungsfunktion
 
-Im vorherigen Beispiel lautet die Geschwindigkeitsfunktion <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Durch erneutes Ableiten von <InlineMath math="v(t)" /> erhalten wir die Beschleunigungsfunktion.
+Im vorherigen Beispiel lautet die Geschwindigkeitsfunktion <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Durch **erneutes Ableiten** von <InlineMath math="v(t)" /> erhalten wir die Beschleunigungsfunktion.
 
 <MathContainer>
   <BlockMath math="a(t) = \frac{d}{dt}(3t^2 - 12t + 9)" />
@@ -84,4 +106,4 @@ Der Ball erreicht seinen höchsten Punkt nach <InlineMath math="5 \text{ Sekunde
 
 <BlockMath math="\begin{aligned} h(5) &amp;= 50(5) - 5(5)^2 \\ &amp;= 250 - 125 \\ &amp;= 125 \end{aligned}" />
 
-Die maximale Höhe beträgt somit **<InlineMath math="125 \text{ Meter}" />**. Um eine maximale Höhe zu bestimmen, leiten wir die Ortsfunktion ab, suchen während der Bewegung nach dem Zeitpunkt mit der Geschwindigkeit null und setzen diesen Zeitpunkt in die ursprüngliche Höhenfunktion ein.
+Die **maximale Höhe** beträgt <InlineMath math="125 \text{ Meter}" />. Im Intervall <InlineMath math="0<t<10" /> ist die Geschwindigkeit vor <InlineMath math="t=5" /> positiv und danach negativ. Die Höhe nimmt deshalb bis zum höchsten Punkt zu und anschließend ab. Dieser Vorzeichenwechsel bestätigt das Maximum.

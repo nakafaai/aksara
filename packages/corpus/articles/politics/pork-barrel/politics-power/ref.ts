@@ -69,14 +69,14 @@ export const references: ArticleReference[] = [
     authors: "Kemenkeu RI",
     citation: "2024a",
     title: "Laporan APBN",
-    url: "https://www.kemenkeu.go.id/apbnkita",
+    url: "https://anggaran.kemenkeu.go.id/api/Medias/454fb34d-dd52-4edf-a6cc-e443f06fe44f",
     year: 2024,
   },
   {
     authors: "Kemenkeu RI",
     citation: "2024b",
     title: "Laporan Bulanan Realisasi APBN",
-    url: "https://www.djppr.kemenkeu.go.id/apbnkita",
+    url: "https://media.kemenkeu.go.id/getmedia/a702c054-d931-4aec-8fa2-0c36545bf287/resv6-Publikasi-APBN-KiTa-Edisi-Februari-2024?ext=.pdf",
     year: 2024,
   },
   {

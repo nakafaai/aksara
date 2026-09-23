@@ -5,9 +5,9 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Complete the square to reveal the vertex and minimum value.
+**Complete the square** to reveal the vertex and minimum value.
 
-<BlockMath math="f(x)=(x-2)^2-1" />
+<BlockMath math="\begin{aligned} f(x)&=x^2-4x+3 \\ &=x^2-4x+4-4+3 \\ &=(x-2)^2-1 \end{aligned}" />
 
 A square is nonnegative, so the vertex is <InlineMath math="(2,-1)" /> and the range is <InlineMath math="[-1,\infty)" />. As <InlineMath math="x" /> approaches <InlineMath math="2" /> from the left, <InlineMath math="(x-2)^2" /> decreases. The function therefore decreases on <InlineMath math="(-\infty,2]" />.
 
@@ -20,3 +20,19 @@ f^{-1}(y)&=2+\sqrt{y+1}
 \end{aligned}" />
 
 The inverse has domain <InlineMath math="y\ge-1" />. All statements are true except the claim of being one-to-one on all of <InlineMath math="\mathbb R" />.
+
+The orange branch shows the restriction <InlineMath math="x\ge2" />. On this branch, each output comes from exactly one input, so the restricted function has an inverse.
+
+<LineEquation
+  title="Parabola branches and the inverse domain"
+  description="The vertex is (2,−1). The points (1,0) and (3,0) share the same output, so the function is not one-to-one on all real numbers."
+  cameraPosition={[2, 2, 12]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -0.5 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = 2 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true, labels: [{ text: "(1,0)", at: 0, offset: [-0.3, -0.4, 0] }, { text: "(3,0)", at: 1, offset: [0.3, -0.4, 0] }] },
+    { points: [{ x: 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: true, labels: [{ text: "(2,−1)", at: 0, offset: [0, -0.5, 0] }] },
+  ]}
+/>

@@ -9,13 +9,13 @@ export const metadata = {
 
 ## NumPy Data Type System
 
-Every element stored in a NumPy array <Highlight>has a type that determines its memory representation and the operations NumPy can perform on it</Highlight>. A NumPy boolean occupies one byte, while a complex number stores separate real and imaginary components.
+A data type determines a value’s **representation in memory** and the operations NumPy can perform on it. A NumPy boolean occupies one byte, while a complex number stores separate real and imaginary components.
 
 Every element in a regular NumPy array uses [the same data type](https://numpy.org/doc/stable/user/basics.types.html). This layout lets loops implemented by NumPy in C process elements without checking each value's type one by one.
 
 ### Basic Data Types
 
-NumPy accepts Python's built-in scalar types and also provides fixed-width scalar types when the exact representation matters:
+NumPy accepts Python's built-in scalar types and also provides **fixed-width scalar types** when the exact representation matters:
 
 1. **Boolean** (`bool` or `np.bool_`) for `True` and `False`, stored as one byte per element
 2. **Integer** (`np.int8` through `np.int64`) for signed whole numbers with explicit widths
@@ -47,7 +47,7 @@ print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
 
 ### Specific Numeric Data Types
 
-NumPy provides detailed precision control with various sizes of numeric data types:
+NumPy provides detailed precision control with **various sizes of numeric data types**:
 
 | Category | Data Type | Description | Value Range |
 |----------|-----------|-------------|-------------|
@@ -67,7 +67,7 @@ NumPy provides detailed precision control with various sizes of numeric data typ
 
 ### Specifying Data Types
 
-You can specify a data type when creating an array or convert the values into a new array with another dtype:
+You can specify a data type **when creating an array** or convert the values into a new array with another dtype:
 
 <CodeBlock
   data={[
@@ -100,7 +100,7 @@ print(a)
 
 ### Automatic Data Type Detection
 
-NumPy automatically detects data types based on provided elements:
+NumPy automatically detects data types based on **provided elements**:
 
 <CodeBlock
   data={[
@@ -127,11 +127,11 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## NumPy Array Attributes
 
-Every NumPy array exposes attributes that describe its shape, element count, data type, and memory use. Reading them costs almost nothing because the values are stored with the array rather than computed by scanning the elements. The three groups below cover the geometry of the array, the individual attribute names, and what happens when the data types inside one array disagree.
+Attributes describe the **array structure** without reading every value: its shape, element count, dtype, and bytes occupied by elements. `nbytes` measures element storage, not all Python process memory or the array object’s metadata.
 
 ### Dimension and Shape Attributes
 
-The following example reads the core structural attributes from one two-dimensional array.
+The following example reads the **core structural attributes** from one two-dimensional array.
 
 <CodeBlock
   data={[
@@ -159,7 +159,7 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
 
 ### Array Attributes
 
-An array reports its own structure through attributes. The table lists the ones you read most often and the value each one returns for a <InlineMath math="2 \times 3" /> array.
+An array reports its own structure through attributes. The table lists the ones you read most often and the **value each one returns** for a <InlineMath math="2 \times 3" /> array.
 
 | Attribute | Function | Example Result |
 |-----------|----------|----------------|
@@ -198,11 +198,11 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 
 ## Data Type Conversion and Manipulation
 
-The data type an array starts with is rarely the one a calculation should end with. Converting shrinks memory use, satisfies a function that expects a particular type, and keeps integer arithmetic from turning into floating point.
+Convert when the **required type differs** from the current dtype, for example to satisfy a function’s input contract or reduce memory use. Conversion can lose precision or fractional values. Storing integers also does not guarantee that every later operation returns integers.
 
 ### Data Type Conversion Methods
 
-Data type conversion changes the representation used in later analysis. The `astype()` method returns a converted array. It does not change the original array in place. When converting a floating-point value to an integer, NumPy cuts off the fractional part toward zero.
+Data type conversion changes the representation used in later analysis. The `astype()` method returns a converted array. It does not change the original array in place. When converting a floating-point value to an integer, NumPy **cuts off the fractional part toward zero**.
 
 <CodeBlock
   data={[
@@ -236,7 +236,7 @@ print("String to int dtype:", int_from_string.dtype)  # Output: String to int dt
 
 ### Memory Optimization with Data Types
 
-Choosing the narrowest data type that still covers the required values and precision can reduce memory use substantially. Before narrowing a dtype, check its range so values do not overflow or lose needed precision.
+Choosing the narrowest data type that still covers the **required values and precision** can reduce memory use substantially. Before narrowing a dtype, check its range so values do not overflow or lose needed precision.
 
 <CodeBlock
   data={[
@@ -248,12 +248,12 @@ Choosing the narrowest data type that still covers the required values and preci
 # Array with an explicit 64-bit integer data type
 large_array_int64 = np.arange(1000000, dtype=np.int64)
 print("Int64 itemsize:", large_array_int64.itemsize, "bytes")  # Output: Int64 itemsize: 8 bytes
-print("Int64 total memory:", large_array_int64.nbytes, "bytes")  # Output: Int64 total memory: 8000000 bytes
+print("Int64 element memory:", large_array_int64.nbytes, "bytes")  # Output: Int64 element memory: 8000000 bytes
 
 # Array with smaller data type (int32)
 large_array_int32 = np.arange(1000000, dtype=np.int32)
 print("Int32 itemsize:", large_array_int32.itemsize, "bytes")  # Output: Int32 itemsize: 4 bytes
-print("Int32 total memory:", large_array_int32.nbytes, "bytes")  # Output: Int32 total memory: 4000000 bytes
+print("Int32 element memory:", large_array_int32.nbytes, "bytes")  # Output: Int32 element memory: 4000000 bytes
 
 # Memory savings
 memory_saved = large_array_int64.nbytes - large_array_int32.nbytes
@@ -265,7 +265,7 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
 
 ### Detailed Data Type Information
 
-The `itemsize` attribute reports the number of bytes used by each element, so we can compare the precision and memory cost of different data types.
+The `itemsize` attribute reports the **number of bytes used by each element**, so we can compare the precision and memory cost of different data types.
 
 <CodeBlock
   data={[
@@ -302,11 +302,11 @@ for name, arr in arrays.items():
 
 ## Practical Array Attribute Usage
 
-Array attributes report the array's structure and memory layout. Inspect them when a shape, type, or memory assumption causes an incorrect result or poor performance.
+Array attributes report the array's **structure and memory layout**. Inspect them when a shape, type, or memory assumption causes an incorrect result or poor performance.
 
 ### Data Structure Analysis
 
-Analysis functions report array properties such as dimensions, finite values, and memory use. These checks can expose unexpected data before later calculations use it.
+The following function reports **shape, dimensions, dtype, and element memory** together. The three arrays differ in their dimensions and element counts, while each uses `int64`.
 
 <CodeBlock
   data={[
@@ -323,7 +323,7 @@ def analyze_array(arr, name="Array"):
     print(f"Size: {arr.size}")
     print(f"Data type: {arr.dtype}")
     print(f"Item size: {arr.itemsize} bytes")
-    print(f"Total memory: {arr.nbytes} bytes")
+    print(f"Element memory: {arr.nbytes} bytes")
 
     if arr.ndim <= 2:
         print(f"Array content:\\n{arr}")
@@ -344,7 +344,7 @@ analyze_array(array_3d, "3D")
 # Size: 5
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 40 bytes
+# Element memory: 40 bytes
 # Array content:
 # [1 2 3 4 5]
 #
@@ -354,7 +354,7 @@ analyze_array(array_3d, "3D")
 # Size: 6
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 48 bytes
+# Element memory: 48 bytes
 # Array content:
 # [[1 2 3]
 #  [4 5 6]]
@@ -365,14 +365,14 @@ analyze_array(array_3d, "3D")
 # Size: 8
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 64 bytes`
+# Element memory: 64 bytes`
     }
   ]}
 />
 
 ### Data Validation and Debugging
 
-Before passing an array to a model, check the shape, dtype, missing values, and memory footprint that the model actually expects.
+Before passing an array to a model, check the **shape, dtype, missing values**, and memory footprint that the model actually expects.
 
 <CodeBlock
   data={[
@@ -406,8 +406,8 @@ def validate_feature_matrix(arr):
         print("✓ No NaN values")
 
     # Memory information
-    memory_mb = arr.nbytes / (1024 * 1024)
-    print(f"Memory usage: {memory_mb:.2f} MB")
+    memory_mib = arr.nbytes / (1024 * 1024)
+    print(f"Memory usage: {memory_mib:.2f} MiB")
 
 # Test with various arrays
 test_arrays = [
@@ -426,21 +426,21 @@ for i, arr in enumerate(test_arrays):
 # ✓ 2D Array with shape: (2, 3)
 # ✓ Numeric data type: float64
 # ✓ No NaN values
-# Memory usage: 0.00 MB
+# Memory usage: 0.00 MiB
 #
 # --- Test Array 2 ---
 # === ML Array Validation ===
 # WARNING: Array is not 2D (current: 1D)
 # ✓ Numeric data type: int64
 # ✓ No NaN values
-# Memory usage: 0.00 MB
+# Memory usage: 0.00 MiB
 #
 # --- Test Array 3 ---
 # === ML Array Validation ===
 # ✓ 2D Array with shape: (2, 3)
 # ✓ Numeric data type: float64
 # WARNING: Found 1 NaN values
-# Memory usage: 0.00 MB`
+# Memory usage: 0.00 MiB`
     }
   ]}
 />

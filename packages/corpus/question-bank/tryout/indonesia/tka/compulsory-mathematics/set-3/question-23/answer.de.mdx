@@ -5,12 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Da für jeden Messwert dieselbe lineare Kalibrierung gilt, folgt auch der Mittelwert derselben Regel.
+Bei der Kalibrierung gilt **dieselbe lineare Regel für jeden Messwert**. Addierst du alle 40 kalibrierten Werte, bleibt der Faktor 1,5 vor der Rohwertsumme stehen. Die 8 wird dagegen 40-mal abgezogen. Durch Division durch 40 erhältst du die Beziehung zwischen den Mittelwerten.
+
+<BlockMath math="\begin{aligned}
+\bar y&=\frac{1}{40}\sum_{i=1}^{40}(1{,}5x_i-8) \\
+&=1{,}5\frac{\sum_{i=1}^{40}x_i}{40}-\frac{40\cdot8}{40} \\
+&=1{,}5\bar x-8
+\end{aligned}" />
+
+Setze den kalibrierten Mittelwert 70 ein und berechne den Rohwertmittelwert.
 
 <BlockMath math="\begin{aligned}
 70&=1{,}5\bar x-8 \\
 1{,}5\bar x&=78 \\
-\bar x&=52
+\bar x&=\frac{78}{1{,}5}=52
 \end{aligned}" />
 
 Die ursprüngliche Rohwertsumme beträgt <InlineMath math="40(52)=2{.}080" />. Die Korrektur verringert sie um <InlineMath math="64-56=8" />, während die Anzahl gleich bleibt.
@@ -22,3 +30,12 @@ S'&=2{.}080-8=2{.}072 \\
 \end{aligned}" />
 
 Der korrigierte Mittelwert der kalibrierten Daten ist <InlineMath math="69{,}7" />.
+
+| Eintrag | Rohwert | Kalibrierter Wert |
+| --- | ---: | ---: |
+| Ursprünglich | 64 | 88 |
+| Korrigiert | 56 | 76 |
+
+Du kannst das Ergebnis direkt an der kalibrierten Summe prüfen. Ein Wert sinkt von 88 auf 76. Damit **sinkt die kalibrierte Summe um 12**, während die Anzahl der Messwerte bei 40 bleibt.
+
+<BlockMath math="70-\frac{12}{40}=70-0{,}3=69{,}7" />

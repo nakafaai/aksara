@@ -11,21 +11,31 @@ export const metadata = {
 
 Ein Lineal kann so an eine glatte Kurve gelegt werden, dass es sie in der Nähe der Berührstelle nicht schneidet. Die Gerade entlang des Lineals beschreibt dort eine **Tangente**.
 
-Setzt man die Geradengleichung einer Tangente in die Gleichung einer Parabel, Ellipse oder Hyperbel ein, <Highlight>hat die entstehende Gleichung eine doppelte Lösung</Highlight>. Bei einer Sekante hat sie zwei verschiedene Lösungen. Für die Parabel <InlineMath math="y = x^2" /> kennzeichnet die doppelte Lösung den einzelnen Berührpunkt der Tangente.
+Wenn das Einsetzen einer Geraden in einen Kegelschnitt eine quadratische Gleichung ergibt, kennzeichnet eine <Highlight>doppelte Lösung</Highlight> die Tangente. Zwei verschiedene Lösungen bedeuten zwei Schnittpunkte. Prüfe vor dem Einsatz der Diskriminante den quadratischen Koeffizienten. Eine Gerade parallel zu einer Hyperbelasymptote kann zum Beispiel eine lineare Gleichung ergeben.
 
 Die gegebenen Informationen bestimmen das Verfahren: Ein bekannter Berührpunkt führt zur Punktform, eine bekannte Steigung zu einer Geraden mit unbekanntem Achsenabschnitt und ein äußerer Punkt zu einer Geradenschar durch diesen Punkt.
 
 ## Punkt auf der Kurve
 
-Ist der Berührpunkt bekannt, liefert die implizite Differentiation dort die Steigung. Zusammen mit der Punkt-Steigungs-Form ergibt sich daraus unmittelbar eine Punktform der Tangente. Fehlt der Berührpunkt, brauchst du einen anderen Weg, weil dann sowohl der Punkt als auch die Steigung unbekannt sind.
+Ist der **Berührpunkt bekannt**, liefert die implizite Differentiation dort die Steigung. Zusammen mit der Punkt-Steigungs-Form ergibt sich daraus unmittelbar eine Punktform der Tangente. Fehlt der Berührpunkt, brauchst du einen anderen Weg, weil dann sowohl der Punkt als auch die Steigung unbekannt sind.
 
 ### Punktform aus impliziter Differentiation
 
-Für einen Punkt <InlineMath math="T(x_1, y_1)" /> auf einem Kegelschnitt ersetzt die entstehende Punktform jede quadrierte Koordinate durch ein Produkt mit der entsprechenden Koordinate des Berührpunkts. Lineare Terme werden symmetrisch auf den allgemeinen Punkt und den Berührpunkt verteilt. Diese Form fasst die Ableitungsrechnung zusammen, ersetzt aber nicht die Prüfung, ob <InlineMath math="T" /> tatsächlich auf der Kurve liegt.
+Für einen Punkt <InlineMath math="T(x_1, y_1)" /> auf einem Kegelschnitt ersetzt die entstehende Punktform jede quadrierte Koordinate durch ein Produkt mit der entsprechenden Koordinate des Berührpunkts. Lineare Terme werden symmetrisch auf den allgemeinen Punkt und den Berührpunkt verteilt. Diese Form fasst die Ableitungsrechnung zusammen, ersetzt aber nicht die Prüfung, ob <InlineMath math="T" /> **tatsächlich auf der Kurve liegt**.
 
 Für die Parabel <InlineMath math="y^2 = 4px" /> am Berührpunkt <InlineMath math="T(x_1, y_1)" /> lautet die Tangentengleichung:
 
 <BlockMath math="yy_1 = 2p(x + x_1)" />
+
+Für die Herleitung setzen wir <InlineMath math="p \ne 0" /> und <InlineMath math="y_1 \ne 0" /> voraus. Leite die Parabelgleichung nach <InlineMath math="x" /> ab.
+
+<BlockMath math="2y\frac{dy}{dx}=4p\quad\Longrightarrow\quad m=\frac{2p}{y_1}" />
+
+Multipliziere die Punkt-Steigungs-Form mit <InlineMath math="y_1" />. Nutze dann <InlineMath math="y_1^2=4px_1" />, denn der Berührpunkt liegt auf der Parabel.
+
+<BlockMath math="\begin{aligned}y-y_1&amp;=\frac{2p}{y_1}(x-x_1)\\yy_1-y_1^2&amp;=2px-2px_1\\yy_1-4px_1&amp;=2px-2px_1\\yy_1&amp;=2p(x+x_1)\end{aligned}" />
+
+Im Scheitelpunkt <InlineMath math="(0,0)" /> ist die Steigung bezüglich der horizontalen Achse nicht definiert. Die Punktform liefert trotzdem die vertikale Tangente <InlineMath math="x=0" />. Für das Beispiel <InlineMath math="(2,4)" /> ergibt die Punktprobe <InlineMath math="4^2=8(2)=16" />.
 
 Wir wenden die Formel auf die Parabel <InlineMath math="y^2 = 8x" /> im Punkt <InlineMath math="(2, 4)" /> an.
 
@@ -96,9 +106,29 @@ Jetzt setzen wir in die Parabelgleichung ein, um die Tangentenpunkte zu finden:
 
 Mit [der quadratischen Formel](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen) erhalten wir <InlineMath math="x_1 = \frac{1}{2}" /> und <InlineMath math="x_2 = 8" />. Die Berührpunkte sind <InlineMath math="(\frac{1}{2}, 2)" /> und <InlineMath math="(8, 8)" />. Die Geraden von diesen Punkten zu <InlineMath math="A(2,5)" /> sind die beiden Tangenten <InlineMath math="y = 2x + 1" /> und <InlineMath math="y = \frac{1}{2}x + 4" />.
 
+<LineEquation
+  title="Zwei Tangenten und die Berührsehne"
+  description="Eine Parabel, zwei Berührpunkte und ihre Verbindungsgerade."
+  showZAxis={false}
+  cameraPosition={[5, 4, 18]}
+  cameraTarget={[5, 4, 0]}
+  data={[
+    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
+    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
+    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
+      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
+    ] },
+    { points: [{ x: 2, y: 5, z: 0 }], color: "#0284c7", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
+  ]}
+/>
+
+Vergleiche die **zwei Geraden durch den äußeren Punkt** mit der rosa Berührsehne. Beide Tangenten verlaufen durch <InlineMath math="A" />. Die Sehne verbindet dagegen <InlineMath math="T_1" /> mit <InlineMath math="T_2" /> und schneidet die Parabel in diesen beiden Punkten.
+
 ## Tangentengleichungen für jeden Kegelschnitt
 
-Die Tabelle fasst Tangentengleichungen in Punktform zusammen.
+Die Tabelle fasst Tangentengleichungen in **Punktform** zusammen.
 
 | Kegelschnitt | Tangentengleichung |
 |---|---|
@@ -117,7 +147,7 @@ Die Tabelle fasst Tangentengleichungen in Punktform zusammen.
 
 ## Übungen
 
-In jeder Aufgabe sind ein Kegelschnitt und ein Punkt darauf gegeben, und die Tangente in diesem Punkt ist gesucht. Schreibe den Kegelschnitt zuerst in Normalform, bevor du die Tangentenformel verwendest.
+Wähle das Verfahren anhand der Angaben: **Berührpunkt, Steigung oder äußerer Punkt**. Prüfe die Berührpunkte auf der Kurve und kontrolliere, ob jede berechnete Gerade die Bedingung der Aufgabe erfüllt.
 
 1. Bestimme die Tangentengleichung der Parabel <InlineMath math="y^2 = 12x" /> im Punkt <InlineMath math="(3, 6)" />.
 
@@ -129,132 +159,137 @@ In jeder Aufgabe sind ein Kegelschnitt und ein Punkt darauf gegeben, und die Tan
 
 ### Ausführliche Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Gegeben: Parabel <InlineMath math="y^2 = 12x" /> mit Tangentenpunkt <InlineMath math="(3, 6)" />.
+Gegeben: Parabel <InlineMath math="y^2 = 12x" /> mit Tangentenpunkt <InlineMath math="(3, 6)" />.
 
-   Aus Gleichung <InlineMath math="y^2 = 12x" /> erhalten wir <InlineMath math="4p = 12" />, also <InlineMath math="p = 3" />.
+Aus Gleichung <InlineMath math="y^2 = 12x" /> erhalten wir <InlineMath math="4p = 12" />, also <InlineMath math="p = 3" />.
 
-   Wir verwenden die Tangentenform der Parabel:
+Wir verwenden die Tangentenform der Parabel:
 
-   <MathContainer>
-     <BlockMath math="yy_1 = 2p(x + x_1)" />
-     <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
-     <BlockMath math="6y = 6(x + 3)" />
-     <BlockMath math="6y = 6x + 18" />
-     <BlockMath math="y = x + 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="yy_1 = 2p(x + x_1)" />
+  <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
+  <BlockMath math="6y = 6(x + 3)" />
+  <BlockMath math="6y = 6x + 18" />
+  <BlockMath math="y = x + 3" />
+</MathContainer>
 
-   Die Tangentengleichung lautet also <InlineMath math="y = x + 3" />.
+Die Tangentengleichung lautet also <InlineMath math="y = x + 3" />.
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Gegeben: Hyperbel <InlineMath math="4x^2 - 9y^2 = 36" /> oder <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
+Gegeben: Hyperbel <InlineMath math="4x^2 - 9y^2 = 36" /> oder <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
 
-   Die Linie <InlineMath math="x + 4y + 10 = 0" /> hat die Steigung <InlineMath math="m = -\frac{1}{4}" />.
+Die Linie <InlineMath math="x + 4y + 10 = 0" /> hat die Steigung <InlineMath math="m = -\frac{1}{4}" />.
 
-   Da die Tangente senkrecht zu dieser Linie verläuft, beträgt der Tangentengradient:
+Da die Tangente senkrecht zu dieser Linie verläuft, beträgt der Tangentengradient:
 
-   <BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
+<BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
 
-   Hyperbel-Tangentenlinienformel mit Steigung <InlineMath math="m" />:
+Hyperbel-Tangentenlinienformel mit Steigung <InlineMath math="m" />:
 
-   <BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
+<BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
 
-   Mit <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" /> und <InlineMath math="m = 4" />:
+Diese Formel setzt <InlineMath math="a^2m^2-b^2>0" /> voraus. Ist der Ausdruck null, entsteht eine Asymptote und keine Tangente.
 
-   <MathContainer>
-     <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{140}" />
-     <BlockMath math="y = 4x \pm 2\sqrt{35}" />
-   </MathContainer>
+Mit <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" /> und <InlineMath math="m = 4" />:
 
-   Die Tangentengleichungen lauten also <InlineMath math="y = 4x + 2\sqrt{35}" /> oder <InlineMath math="y = 4x - 2\sqrt{35}" />.
+<MathContainer>
+  <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{140}" />
+  <BlockMath math="y = 4x \pm 2\sqrt{35}" />
+</MathContainer>
 
-3. **Lösung**:
+Die Tangentengleichungen lauten also <InlineMath math="y = 4x + 2\sqrt{35}" /> oder <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
-   Gegeben: Ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> und Punkt <InlineMath math="A(1, 3)" />.
+**Lösung 3**:
 
-   Zuerst prüfen wir, ob <InlineMath math="A(1, 3)" /> auf der Ellipse liegt:
+Gegeben: Ellipse <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> und Punkt <InlineMath math="A(1, 3)" />.
 
-   <BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
+Zuerst prüfen wir, ob <InlineMath math="A(1, 3)" /> auf der Ellipse liegt:
 
-   Da <InlineMath math="\frac{85}{36} > 1" /> liegt der Punkt <InlineMath math="A" /> außerhalb der Ellipse.
+<BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
 
-   Wir schreiben eine Gerade durch <InlineMath math="A(1,3)" /> mit der Steigung <InlineMath math="m" />:
+Da <InlineMath math="\frac{85}{36} > 1" /> liegt der Punkt <InlineMath math="A" /> außerhalb der Ellipse.
 
-   <BlockMath math="y-3=m(x-1)" />
+Wir schreiben eine Gerade durch <InlineMath math="A(1,3)" /> mit der Steigung <InlineMath math="m" />:
 
-   Einsetzen in die Ellipse und die Bedingung einer verschwindenden Diskriminante ergeben:
+<BlockMath math="y-3=m(x-1)" />
 
-   <MathContainer>
-     <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
-     <BlockMath math="8m^2 + 6m - 5 = 0" />
-     <BlockMath math="(4m+5)(2m-1)=0" />
-     <BlockMath math="m=-\frac{5}{4} \quad \text{oder} \quad m=\frac{1}{2}" />
-   </MathContainer>
+Einsetzen in die Ellipse und die Bedingung einer verschwindenden Diskriminante ergeben:
 
-   Wir setzen beide Steigungen in die Punkt-Steigungs-Form ein:
+<MathContainer>
+  <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
+  <BlockMath math="(4+9m^2)x^2+18m(3-m)x+9(3-m)^2-36=0" />
+  <BlockMath math="D=[18m(3-m)]^2-4(4+9m^2)[9(3-m)^2-36]=0" />
+  <BlockMath math="D=144[9m^2-(3-m)^2+4]=144(8m^2+6m-5)=0" />
+  <BlockMath math="8m^2 + 6m - 5 = 0" />
+  <BlockMath math="(4m+5)(2m-1)=0" />
+  <BlockMath math="m=-\frac{5}{4} \quad \text{oder} \quad m=\frac{1}{2}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
-   </MathContainer>
+Wir setzen beide Steigungen in die Punkt-Steigungs-Form ein:
 
-   Die beiden Tangenten sind also <InlineMath math="5x+4y-17=0" /> und <InlineMath math="x-2y+5=0" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
+</MathContainer>
 
-4. **Lösung**:
+Die beiden Tangenten sind also <InlineMath math="5x+4y-17=0" /> und <InlineMath math="x-2y+5=0" />.
 
-   Gegeben: Parabel <InlineMath math="y^2 = 8x" /> und Punkt <InlineMath math="A(2, 5)" />.
+**Lösung 4**:
 
-   Zuerst prüfen wir, ob <InlineMath math="A(2, 5)" /> auf der Parabel liegt:
+Gegeben: Parabel <InlineMath math="y^2 = 8x" /> und Punkt <InlineMath math="A(2, 5)" />.
 
-   <BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
+Zuerst prüfen wir, ob <InlineMath math="A(2, 5)" /> auf der Parabel liegt:
 
-   Der Punkt <InlineMath math="A" /> liegt außerhalb der Parabel.
+<BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
 
-   Wir verwenden die Polare der Parabel mit <InlineMath math="p = 2" />:
+Der Punkt <InlineMath math="A" /> liegt außerhalb der Parabel.
 
-   <BlockMath math="yy_1 = 4(x + x_1)" />
+Wir verwenden die Polare der Parabel mit <InlineMath math="p = 2" />:
 
-   Wir setzen <InlineMath math="x_1 = 2" /> und <InlineMath math="y_1 = 5" /> ein:
+<BlockMath math="yy_1 = 4(x + x_1)" />
 
-   <MathContainer>
-     <BlockMath math="5y = 4(x + 2)" />
-     <BlockMath math="5y = 4x + 8" />
-     <BlockMath math="y = \frac{4x + 8}{5}" />
-   </MathContainer>
+Wir setzen <InlineMath math="x_1 = 2" /> und <InlineMath math="y_1 = 5" /> ein:
 
-   Einsetzen in die Parabelgleichung ergibt:
+<MathContainer>
+  <BlockMath math="5y = 4(x + 2)" />
+  <BlockMath math="5y = 4x + 8" />
+  <BlockMath math="y = \frac{4x + 8}{5}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
-     <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
-     <BlockMath math="(4x + 8)^2 = 200x" />
-     <BlockMath math="16x^2 + 64x + 64 = 200x" />
-     <BlockMath math="16x^2 - 136x + 64 = 0" />
-     <BlockMath math="2x^2 - 17x + 8 = 0" />
-   </MathContainer>
+Einsetzen in die Parabelgleichung ergibt:
 
-   Mit der quadratischen Formel folgt:
+<MathContainer>
+  <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
+  <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
+  <BlockMath math="(4x + 8)^2 = 200x" />
+  <BlockMath math="16x^2 + 64x + 64 = 200x" />
+  <BlockMath math="16x^2 - 136x + 64 = 0" />
+  <BlockMath math="2x^2 - 17x + 8 = 0" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
+Mit der quadratischen Formel folgt:
 
-   Also <InlineMath math="x_1 = \frac{1}{2}" /> und <InlineMath math="x_2 = 8" />.
+<BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
 
-   Die Tangentenpunkte liegen bei <InlineMath math="(\frac{1}{2}, 2)" /> und <InlineMath math="(8, 8)" />.
+Also <InlineMath math="x_1 = \frac{1}{2}" /> und <InlineMath math="x_2 = 8" />.
 
-   Tangentengleichung durch <InlineMath math="(\frac{1}{2}, 2)" />:
+Die Tangentenpunkte liegen bei <InlineMath math="(\frac{1}{2}, 2)" /> und <InlineMath math="(8, 8)" />.
 
-   <BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
+Tangentengleichung durch <InlineMath math="(\frac{1}{2}, 2)" />:
 
-   Also <InlineMath math="y = 2x + 1" />.
+<BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
 
-   Tangentengleichung durch <InlineMath math="(8, 8)" />:
+Also <InlineMath math="y = 2x + 1" />.
 
-   <BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
+Tangentengleichung durch <InlineMath math="(8, 8)" />:
 
-   Also <InlineMath math="y = \frac{1}{2}x + 4" />.
+<BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
 
-   Die Tangentengleichungen lauten <InlineMath math="y = 2x + 1" /> und <InlineMath math="y = \frac{1}{2}x + 4" />.
+Also <InlineMath math="y = \frac{1}{2}x + 4" />.
+
+Die Tangentengleichungen lauten <InlineMath math="y = 2x + 1" /> und <InlineMath math="y = \frac{1}{2}x + 4" />.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Definiere Python-Funktionen mit Parametern, Rückgabewerten, Gültigkeitsbereichen, Closures und expliziter Fehlerbehandlung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -11,11 +11,9 @@ export const metadata = {
 
 Eine Funktion <Highlight>gibt einer wiederverwendbaren Operation einen Namen</Highlight>. Parameter beschreiben ihre Eingaben, der Funktionsrumpf erledigt die Arbeit und eine `return`-Anweisung kann dem aufrufenden Code ein Ergebnis liefern.
 
-Beim Programmieren helfen uns Funktionen dabei, das wiederholte Schreiben desselben Codes zu vermeiden. Funktionen haben Namen, können Parameter (Eingabedaten) akzeptieren und Werte zurückgeben.
-
 ## Funktionsstruktur und Syntax
 
-Jede Python-Funktion folgt derselben Grundstruktur:
+Jede Python-Funktion folgt derselben **Grundstruktur**:
 
 <CodeBlock
   data={[
@@ -43,7 +41,7 @@ Funktionskomponenten bestehen aus:
 
 ## Wie Funktionsaufrufe funktionieren
 
-Ein Funktionsaufruf wertet den Callable-Ausdruck aus, bindet die übergebenen Argumente an Parameter und führt den Funktionsrumpf in einem neuen lokalen Frame aus.
+Ein Funktionsaufruf wertet den Callable-Ausdruck aus, **bindet die übergebenen Argumente an Parameter** und führt den Funktionsrumpf in einem neuen lokalen Frame aus.
 
 <CodeBlock
   data={[
@@ -59,7 +57,7 @@ def greet(name):
 result = greet("Alice")
 print(result)  # Ausgabe: Hallo, Alice!
 
-# Direkter Anruf in gedruckter Form
+# Direkter Aufruf innerhalb von print
 print(greet("Bob"))  # Ausgabe: Hallo, Bob!`
     }
   ]}
@@ -74,7 +72,7 @@ Prozess, der während des Funktionsaufrufs auftritt:
 
 ## Parameter und Argumente
 
-Parameter sind in Funktionen definierte Variablen, während Argumente tatsächliche Werte sind, die beim Aufrufen von Funktionen gesendet werden. Python bietet verschiedene Arten von Parametern für mehr Flexibilität.
+Parameter sind in Funktionen definierte Variablen, während Argumente **tatsächliche Werte** sind, die beim Aufrufen von Funktionen gesendet werden. Python bietet verschiedene Arten von Parametern für mehr Flexibilität.
 
 ### Positionsparameter und Schlüsselwortparameter
 
@@ -103,14 +101,14 @@ print(introduction("Andi", age=28, city="Surabaya"))
 
 Regeln für Parameter:
 
-1. Positionsparameter müssen der Reihe nach angegeben werden
-2. Schlüsselwortparameter können in beliebiger Reihenfolge angegeben werden
-3. Positionsparameter müssen vor Schlüsselwortparametern geschrieben werden
+1. **Positionsargumente folgen der Parameterreihenfolge**
+2. Schlüsselwortargumente können in beliebiger Reihenfolge angegeben werden
+3. Gewöhnliche Positionsargumente stehen vor Schlüsselwortargumenten
 4. Parameter mit Standardwerten sind optional
 
 ### Variable Anzahl von Parametern
 
-Mit `*args` und `**kwargs` kann eine Funktion zusätzliche Argumente sammeln. Die Funktion muss Anzahl, Typen und Werte weiterhin nach den Anforderungen des Programms prüfen.
+Mit `*args` und `**kwargs` kann eine Funktion **zusätzliche Argumente sammeln**. Die Funktion muss Anzahl, Typen und Werte weiterhin nach den Anforderungen des Programms prüfen.
 
 <CodeBlock
   data={[
@@ -138,8 +136,8 @@ def student_info(name, **details):
 student_info("Maya", age=20, major="Informatik", gpa=3.8)
 # Ausgabe:
 # Name: Maya
-# Alter: 20
-# Studiengang: Informatik
+# Age: 20
+# Major: Informatik
 # Gpa: 3.8`
     }
   ]}
@@ -149,7 +147,7 @@ Parameter `*args` sammelt zusätzliche Positionsargumente in einem Tupel, währe
 
 ## Funktionsrückgabewerte
 
-Funktionen können Werte mithilfe der `return`-Anweisung zurückgeben. Wenn es kein `return` oder `return` ohne Wert gibt, gibt die Funktion `None` zurück.
+Funktionen können **Werte mithilfe** der `return`-Anweisung zurückgeben. Wenn es kein `return` oder `return` ohne Wert gibt, gibt die Funktion `None` zurück.
 
 <CodeBlock
   data={[
@@ -180,27 +178,23 @@ min_val, max_val = find_min_max([3, 1, 4, 1, 5, 9])
 print(f"Min.: {min_val}, Max: {max_val}")  # Ausgabe: Min.: 1, Max: 9
 
 result = print_message("Hallo Welt")  # Ausgabe: Nachricht: Hallo Welt
-print(f"Ergebnis der print_message-Funktion: {result}")  # Ausgabe: print_message Funktionsergebnis: None`
+print(f"Ergebnis der print_message-Funktion: {result}")  # Ausgabe: Ergebnis der print_message-Funktion: None`
     }
   ]}
 />
 
 ## Variablenumfang in Funktionen
 
-Variablen in Python haben einen Gültigkeitsbereich, der bestimmt, wo auf Variablen zugegriffen werden kann. Das Verständnis des Variablenbereichs ist wichtig, um Fehler in Programmen zu vermeiden.
+Variablen in Python haben einen Gültigkeitsbereich, der bestimmt, **wo auf Variablen zugegriffen werden kann**. Das Verständnis des Variablenbereichs ist wichtig, um Fehler in Programmen zu vermeiden.
 
 <Mermaid
   title="Wo Funktionsvariablen gelesen werden können"
   description="Verfolge die Namenssuche vom lokalen Bereich nach außen, um die LEGB-Regel sicher anzuwenden."
   chart={`
     flowchart TD
-        A[Built-in Scope] --> B[Global Scope]
-        B --> C[Enclosing Scope]
-        C --> D[Local Scope]
-        A1[Built-in functions] --> A
-        B1[Global variables] --> B
-        C1[Enclosing variables] --> C
-        D1[Local variables] --> D
+        L[Local Scope] --> E[Enclosing Scope]
+        E --> G[Global Scope]
+        G --> B[Built-in Scope]
   `}
 />
 
@@ -229,12 +223,12 @@ print(f"Anfangszähler: {counter}")       # Ausgabe: Anfangszähler: 0
 add_counter()                        # Ausgabe: Lokaler Zähler: 10
 print(f"Zähler nach Funktion: {counter}")  # Ausgabe: Zähler nach Funktion: 0
 add_global_counter()                 # Ausgabe: Globaler Zähler: 1
-print(f"Endgültiger Zähler: {counter}")      # Ausgabe: Endzähler: 1`
+print(f"Endgültiger Zähler: {counter}")      # Ausgabe: Endgültiger Zähler: 1`
     }
   ]}
 />
 
-<Highlight>Variablensuchregeln folgen der LEGB-Reihenfolge</Highlight>:
+Die Namenssuche folgt der **LEGB-Reihenfolge**:
 
 1. **Lokal**: innerhalb der aktuellen Funktion
 2. **Umschließend**: in einer umschließenden Funktion (bei verschachtelten Funktionen)
@@ -243,7 +237,7 @@ print(f"Endgültiger Zähler: {counter}")      # Ausgabe: Endzähler: 1`
 
 ## Funktionen als Objekte erster Klasse
 
-In Python lassen sich Funktionen wie andere Daten behandeln. Du kannst sie an Namen binden, in Collections speichern, als Argument übergeben und aus anderen Funktionen zurückgeben.
+In Python lassen sich Funktionen **wie andere Daten behandeln**. Du kannst sie an Namen binden, in Collections speichern, als Argument übergeben und aus anderen Funktionen zurückgeben.
 
 <CodeBlock
   data={[
@@ -267,7 +261,10 @@ print(operation(5))  # Ausgabe: 10
 # Funktionen in Liste speichern
 operation_list = [multiply_two, multiply_three]
 for op in operation_list:
-    print(op(4))  # Ausgabe: 8, dann 12
+    print(op(4))
+# Ausgabe:
+# 8
+# 12
 
 # Funktion als Argument übergeben
 result1 = apply_operation(multiply_two, 7)
@@ -279,7 +276,7 @@ print(f"Ergebnisse: {result1}, {result2}")  # Ausgabe: Ergebnisse: 14, 21`
 
 ## Funktionsdokumentation mit Docstring
 
-Ein Docstring ist ein String-Literal an der ersten Stelle einer Funktionsdefinition. Er erklärt, was die Funktion tut und wie sie verwendet wird.
+Ein Docstring ist ein String-Literal an der **ersten Stelle** einer Funktionsdefinition. Er erklärt, was die Funktion tut und wie sie verwendet wird.
 
 <CodeBlock
   data={[
@@ -288,13 +285,13 @@ Ein Docstring ist ein String-Literal an der ersten Stelle einer Funktionsdefinit
       filename: "docstring_example.py",
       code: `def calculate_factorial(n):
     """
-    Berechnet die Fakultät einer positiven ganzen Zahl.
+    Berechnet die Fakultät einer nichtnegativen ganzen Zahl.
 
     Parameter:
         n (int): Nichtnegative ganze Zahl
 
     Returns:
-        int: Faktorwert von n
+        int: Fakultät von n
 
     Raises:
         ValueError: Wenn n negativ ist
@@ -334,7 +331,7 @@ Gute Konventionen zum Schreiben von Dokumentzeichenfolgen:
 
 ## Verschachtelte Funktionen und Closures
 
-Python erlaubt eine Funktionsdefinition innerhalb einer anderen Funktion. Behält die zurückgegebene innere Funktion eine freie Variable aus dem umschließenden Gültigkeitsbereich, bilden Funktion und gespeicherte Umgebung eine Closure.
+Python erlaubt eine Funktionsdefinition innerhalb einer anderen Funktion. Behält die zurückgegebene innere Funktion eine **freie Variable aus dem umschließenden Gültigkeitsbereich**, bilden Funktion und gespeicherte Umgebung eine Closure.
 
 <CodeBlock
   data={[
@@ -387,7 +384,7 @@ print(calc['multiplizieren'](6, 7))    # Ausgabe: 42`
 
 ## Fehlerbehandlung in Funktionen
 
-Eine Funktion sollte ihren Eingabevertrag deutlich machen und bei einer Verletzung ausdrücklich fehlschlagen. Fange eine Exception nur dort ab, wo der Code sich erholen, hilfreichen Kontext ergänzen oder den Fehler einem Menschen präsentieren kann.
+Eine Funktion sollte ihren **Eingabevertrag** deutlich machen und bei einer Verletzung ausdrücklich fehlschlagen. Fange eine Exception nur dort ab, wo der Code sich erholen, hilfreichen Kontext ergänzen oder den Fehler einem Menschen präsentieren kann.
 
 <CodeBlock
   data={[

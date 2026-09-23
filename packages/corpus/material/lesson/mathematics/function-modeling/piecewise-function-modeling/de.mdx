@@ -20,7 +20,7 @@ Eine stückweise Funktion kann in der Form geschrieben werden:
 
 <BlockMath math="f(x) = \begin{cases} f_1(x), &amp; \text{wenn } x \in D_1 \\ f_2(x), &amp; \text{wenn } x \in D_2 \\ f_3(x), &amp; \text{wenn } x \in D_3 \\ \vdots \\ f_n(x), &amp; \text{wenn } x \in D_n \end{cases}" />
 
-Dabei sind <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> Intervalle, die den Definitionsbereich der Funktion in disjunkte Teile zerlegen.
+Dabei sind <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> Intervalle, die den Definitionsbereich der Funktion in **disjunkte Teile** zerlegen.
 
 Prüfe beim Lesen oder Aufstellen einer stückweisen Funktion drei Dinge:
 
@@ -28,13 +28,13 @@ Prüfe beim Lesen oder Aufstellen einer stückweisen Funktion drei Dinge:
 - Die Intervallbedingung, die entscheidet, wann diese Formel verwendet wird.
 - Der Funktionswert an Verbindungspunkten, insbesondere wenn eine Intervallgrenze <InlineMath math="\lt" />, <InlineMath math="\leq" />, <InlineMath math="\gt" /> oder <InlineMath math="\geq" /> verwendet.
 
-## Gemeinsame Stückformen
+## Formen der Teilstücke
 
-Eine stückweise Funktion besteht aus einfachen Stücken, und jedes Stück behält seine eigene Regel auf seinem Intervall. Lineare und quadratische Stücke treten am häufigsten auf, weil sich beide leicht aus den Bedingungen ablesen und leicht zeichnen lassen.
+Die Formel bestimmt die Form jedes Teilstücks. Eine **lineare Formel** ergibt eine Strecke oder einen Strahl, eine quadratische Formel einen Teil einer Parabel. Die Intervallbedingung legt fest, welcher Teil zum Graphen gehört.
 
 ### Lineare Stücke
 
-Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funktion. Diese Form tritt häufig auf, wenn die Änderungsrate eine Zeit lang konstant bleibt und sich dann ab einem bestimmten Punkt ändert.
+Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funktion. Diese Form tritt häufig auf, wenn die **Änderungsrate eine Zeit lang konstant** bleibt und sich dann ab einem bestimmten Punkt ändert.
 
 <LineEquation
   title="Lineare stückweise Funktion"
@@ -69,7 +69,6 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
           const x = 2 + i * 0.1;
           return { x, y: 0.5 * x, z: 0 };
         }),
-        { x: 100, y: 50, z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -77,7 +76,9 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
       labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Die obige Funktion kann wie folgt geschrieben werden:
@@ -88,7 +89,7 @@ Die drei Reihen sind keine drei separaten Funktionen. Sie arbeiten als eine Funk
 
 ### Quadratische Stücke
 
-Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisches Teilstück kann einen gekrümmten Abschnitt des Modells beschreiben.
+Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisches Teilstück kann einen **gekrümmten Abschnitt** des Modells beschreiben.
 
 <LineEquation
   title="Kombinierte stückweise Funktion"
@@ -97,13 +98,13 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisc
     {
       smooth: false,
       endpoints: { end: "open" },
-      points: Array.from({ length: 751 }, (_, sampleIndex) => {
-        const x = (sampleIndex - 750) / 50;
+      points: Array.from({ length: 151 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 150) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 75, offset: [-1, -1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -112,7 +113,6 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisc
           const x = 0 + i * 0.1;
           return { x, y: 2 * x, z: 0 };
         }),
-        { x: 100, y: 200, z: 0 },
       ],
       smooth: false,
       color: "#0d9488",
@@ -120,18 +120,22 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisc
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
+
+Der Graph verbindet die folgenden **zwei Vorschriften**. An der Grenze <InlineMath math="x=0" /> legt die zweite Vorschrift den Funktionswert fest. Der offene Punkt der ersten Vorschrift ergibt keinen weiteren Wert.
+
+<BlockMath math="f(x)=\begin{cases}x^2,&amp;x&lt;0\\2x,&amp;x\geq0\end{cases}" />
 
 ## Verbindungspunkte und Kontinuität
 
-An jeder Intervallgrenze triffst du auf zwei Vorschriften, und der Graph kann dort eine Lücke oder einen Sprung haben.
-
-Die Stücke treffen an den Intervallgrenzen aufeinander, und was dort geschieht, entscheidet über die Stetigkeit.
+Vergleiche an einer **Verbindungsstelle** die Grenzwerte von links und rechts mit dem Funktionswert genau an dieser Stelle. Die drei Werte können übereinstimmen. Unterschiede können dagegen eine Lücke oder einen Sprung zeigen.
 
 ### Verbindungen ohne Sprünge
 
-Eine stückweise Funktion ist stetig, wenn der Graph an einem Verbindungspunkt keinen Sprung macht. Der Wert von links, der Wert von rechts und der Funktionswert an diesem Punkt müssen übereinstimmen.
+Eine stückweise Funktion ist stetig, wenn der Graph an einem Verbindungspunkt keinen Sprung macht. Der Wert von links, der Wert von rechts und der Funktionswert an diesem Punkt **müssen übereinstimmen**.
 
 Bedingung für Kontinuität am Punkt <InlineMath math="x = c" />:
 
@@ -151,7 +155,7 @@ Für Kontinuität bei <InlineMath math="x = 2" />:
 
 Diskontinuierliche stückweise Funktionen weisen an bestimmten Stellen „Sprünge“ oder „Löcher“ auf.
 
-Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" /> aufeinander, nähern sich dort aber unterschiedlichen Ausgabewerten:
+Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" /> aufeinander, nähern sich dort aber **unterschiedlichen Ausgabewerten**:
 
 <BlockMath math="f(x)=\begin{cases}x+2,&amp;\text{wenn }x&lt;1\\2x-3,&amp;\text{wenn }x\geq1\end{cases}" />
 
@@ -167,7 +171,6 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
     {
       endpoints: { end: "open" },
       points: [
-        { x: -100, y: -98, z: 0 },
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -1 + i * 0.1;
           return { x, y: x + 2, z: 0 };
@@ -176,7 +179,7 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
     },
     {
       endpoints: { start: "closed" },
@@ -185,7 +188,6 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
           const x = 1 + i * 0.1;
           return { x, y: 2 * x - 3, z: 0 };
         }),
-        { x: 100, y: 197, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
@@ -193,12 +195,14 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Modellierung mit stückweisen Funktionen
 
-Eine Situation, deren Regel an einer Schwelle wechselt, passt zu einem stückweisen Modell. Progressive Tarife und gestufte Geschwindigkeiten wechseln die Regel an einer Stelle, die du benennen kannst, und diese Stelle wird zur Grenze zwischen zwei Stücken.
+Eine Situation, deren Regel an einer Schwelle wechselt, passt zu einem stückweisen Modell. Progressive Tarife und gestufte Geschwindigkeiten wechseln die Regel an einer Stelle, die du benennen kannst, und diese Stelle wird zur **Grenze zwischen zwei Stücken**.
 
 ### Progressive Tarife
 
@@ -206,7 +210,7 @@ Stückweise Funktionen modellieren Regeln, die sich an festgelegten Schwellen ä
 
 **Beispiel: Stromtarife**
 
-Ein Elektrizitätsunternehmen wendet gestaffelte Tarife an:
+In diesem hypothetischen Beispiel gilt der **neue Tarif nur für den zusätzlichen Verbrauch** in der jeweiligen Stufe. Der Verbrauch früherer Stufen wird weiterhin zum bisherigen Tarif berechnet:
 
 - <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp}1{.}000/\text{kWh}" />
 - <InlineMath math="50&lt;x\leq100" /> kWh: <InlineMath math="\text{Rp}1{.}500/\text{kWh}" />
@@ -216,9 +220,13 @@ Das mathematische Modell:
 
 <BlockMath math="C(x) = \begin{cases}\begin{gathered}1000x\\\text{wenn } 0 \leq x \leq 50\end{gathered}\\[4pt]\begin{gathered}50000 + 1500(x-50)\\\text{wenn } 50 &lt; x \leq 100\end{gathered}\\[4pt]\begin{gathered}125000 + 2000(x-100)\\\text{wenn } x > 100\end{gathered}\end{cases}" />
 
-Die Zahl <InlineMath math="50{.}000" /> in der zweiten Zeile stammt aus dem ersten <InlineMath math="50 \text{ kWh}" />. Die Zahl <InlineMath math="125{.}000" /> in der dritten Zeile ergibt sich aus den Kosten bis zum ersten <InlineMath math="100 \text{ kWh}" />. Dadurch wird verhindert, dass die Kosten bei <InlineMath math="0" /> neu starten, wenn die Nutzung in ein neues Intervall eintritt.
+Die Zahl <InlineMath math="50{.}000" /> in der zweiten Zeile stammt aus den Kosten für die ersten <InlineMath math="50 \text{ kWh}" />. Die Zahl <InlineMath math="125{.}000" /> in der dritten Zeile ergibt sich aus den Kosten für die ersten <InlineMath math="100 \text{ kWh}" />. Dadurch wird verhindert, dass die Kosten bei <InlineMath math="0" /> neu starten, wenn die Nutzung in ein neues Intervall eintritt.
 
-**Stromkostentabelle:**
+Die Kosten eines neuen Intervalls ersetzen die bisherigen Kosten nicht. Beispielsweise gilt bei <InlineMath math="75\text{ kWh}" />:
+
+<BlockMath math="C(75)=1000(50)+1500(75-50)=50000+37500=87500" />
+
+**Stromkostentabelle**:
 
 | Verbrauch (kWh) | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="75" /> | <InlineMath math="100" /> | <InlineMath math="150" /> |
 | ----------- | ------ | ------ | ------ | ------- | ------- |
@@ -234,22 +242,22 @@ Jemand unternimmt eine Reise mit:
 - Radfahren: <InlineMath math="15 \text{ km/h}" /> für <InlineMath math="1 \text{ Stunde}" />
 - Autofahrt: <InlineMath math="60 \text{ km/h}" /> für <InlineMath math="0{,}5 \text{ Stunden}" />
 
-Abstandsfunktion über der Zeit:
+Zurückgelegte Strecke in Abhängigkeit von der Zeit:
 
 <BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{wenn } 0 \leq t \leq 0{,}5\end{gathered}\\[4pt]\begin{gathered}2{,}5 + 15(t-0{,}5)\\\text{wenn } 0{,}5 &lt; t \leq 1{,}5\end{gathered}\\[4pt]\begin{gathered}17{,}5 + 60(t-1{,}5)\\\text{wenn } 1{,}5 &lt; t \leq 2\end{gathered}\end{cases}" />
 
-Die Konstanten <InlineMath math="2{,}5" /> und <InlineMath math="17{,}5" /> entsprechen der Strecke, die zu Beginn jedes neuen Intervalls bereits zurückgelegt ist. Dadurch bleibt <InlineMath math="s(t)" /> beim Wechsel des Verkehrsmittels stetig.
+Die Konstanten <InlineMath math="2{,}5" /> und <InlineMath math="17{,}5" /> entsprechen der Strecke, die zu Beginn jedes neuen Intervalls **bereits zurückgelegt** ist. Dadurch bleibt <InlineMath math="s(t)" /> beim Wechsel des Verkehrsmittels stetig.
 
 ## Stückweise Funktionsgleichungen bestimmen
 
 So bestimmst du stückweise Funktionsgleichungen aus Graphen oder Situationen:
 
-- Teile den Definitionsbereich an jeder Grenze auf, an der sich die Regel ändert.
+- Teile den Definitionsbereich an jeder **Grenze auf, an der sich die Regel ändert**.
 - Bestimme die Formel für jedes Intervall.
 - Prüfe die Verbindungsstellen, damit Intervallgrenzen und Funktionswerte zusammenpassen.
 - Schreibe alle Stücke in stückweiser Notation.
 
-**Beispiel:**
+**Beispiel**:
 
 Ein Graph zeigt:
 
@@ -271,9 +279,11 @@ Stückweise Funktion:
 
 ## Übungsaufgaben
 
+Wähle vor dem Einsetzen das **Intervall, das die Eingabe enthält**. Bei Kosten- und Lohnmodellen übernimmst du den bisher angesammelten Betrag in das nächste Intervall.
+
 1. Bestimme die Werte von <InlineMath math="f(1)" />, <InlineMath math="f(3)" /> und <InlineMath math="f(5)" /> für die Funktion:
 
-   <BlockMath math="f(x) = \begin{cases} x^2, &amp; \text{wenn } x &lt; 2 \\ 2x + 1, &amp; \text{wenn } 2 \leq x &lt; 4 \\ 9, &amp; \text{wenn } x \geq 4 \end{cases}" />
+<BlockMath math="f(x) = \begin{cases} x^2, &amp; \text{wenn } x &lt; 2 \\ 2x + 1, &amp; \text{wenn } 2 \leq x &lt; 4 \\ 9, &amp; \text{wenn } x \geq 4 \end{cases}" />
 
 2. Ein Online-Taxiunternehmen wendet die folgenden Tarife an:
 
@@ -283,11 +293,11 @@ Stückweise Funktion:
 
 3. Bestimme, ob die folgende Funktion bei <InlineMath math="x = 1" /> stetig ist:
 
-   <BlockMath math="g(x) = \begin{cases} 3x - 1, &amp; \text{wenn } x &lt; 1 \\ 2, &amp; \text{wenn } x = 1 \\ x + 1, &amp; \text{wenn } x &gt; 1 \end{cases}" />
+<BlockMath math="g(x) = \begin{cases} 3x - 1, &amp; \text{wenn } x &lt; 1 \\ 2, &amp; \text{wenn } x = 1 \\ x + 1, &amp; \text{wenn } x &gt; 1 \end{cases}" />
 
 4. Skizziere den Graphen der Funktion:
 
-   <BlockMath math="h(x) = \begin{cases} -x + 2, &amp; \text{wenn } x &lt; 0 \\ x^2, &amp; \text{wenn } 0 \leq x &lt; 2 \\ 4, &amp; \text{wenn } x \geq 2 \end{cases}" />
+<BlockMath math="h(x) = \begin{cases} -x + 2, &amp; \text{wenn } x &lt; 0 \\ x^2, &amp; \text{wenn } 0 \leq x &lt; 2 \\ 4, &amp; \text{wenn } x \geq 2 \end{cases}" />
 
 5. Ein Arbeiter wird nach folgendem System bezahlt:
 
@@ -295,109 +305,122 @@ Stückweise Funktion:
 
    Der Arbeitnehmer darf höchstens <InlineMath math="12 \text{ Stunden/Tag}" /> arbeiten. Erstelle eine Funktion für seinen Tageslohn.
 
-### Lösungen
+### Funktionswerte
 
-1. **Funktionswerte berechnen:**
+Bestimme für jede Eingabe die **zutreffende Zeile** und berechne dann den Wert.
 
-   Für <InlineMath math="f(1)" /> verwenden wir <InlineMath math="f(x) = x^2" />, da <InlineMath math="1 < 2" /> gilt.
+Für <InlineMath math="f(1)" /> verwenden wir <InlineMath math="f(x) = x^2" />, da <InlineMath math="1 < 2" /> gilt.
 
-   <BlockMath math="f(1) = 1^2 = 1" />
+<BlockMath math="f(1) = 1^2 = 1" />
 
-   Für <InlineMath math="f(3)" /> verwenden wir <InlineMath math="f(x) = 2x + 1" />, da <InlineMath math="2 \leq 3 < 4" /> gilt.
+Für <InlineMath math="f(3)" /> verwenden wir <InlineMath math="f(x) = 2x + 1" />, da <InlineMath math="2 \leq 3 < 4" /> gilt.
 
-   <BlockMath math="f(3) = 2(3) + 1 = 7" />
+<BlockMath math="f(3) = 2(3) + 1 = 7" />
 
-   Für <InlineMath math="f(5)" /> verwenden wir <InlineMath math="f(x) = 9" />, da <InlineMath math="5 \geq 4" /> gilt.
+Für <InlineMath math="f(5)" /> verwenden wir <InlineMath math="f(x) = 9" />, da <InlineMath math="5 \geq 4" /> gilt.
 
-   <BlockMath math="f(5) = 9" />
+<BlockMath math="f(5) = 9" />
 
-2. **Taxi-Tarifmodell:**
+### Taxitarif
 
-   Sei <InlineMath math="x" /> die Entfernung in km, dann gilt:
+Die Kosten an der ersten Grenze bilden den **Anfangsbetrag** des nächsten Intervalls. Bis <InlineMath math="10\text{ km}" /> fallen folgende Kosten an:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{wenn } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{wenn } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="10000+4000(10-2)=10000+32000=42000" />
 
-   Oder vereinfacht:
+Sei <InlineMath math="x" /> die Entfernung in km, dann gilt:
 
-   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{wenn } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{wenn } x > 10\end{gathered}\end{cases}" />
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{wenn } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{wenn } x > 10\end{gathered}\end{cases}" />
 
-3. **Kontinuität prüfen:**
+Oder vereinfacht:
 
-   Bei <InlineMath math="x = 1" />:
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{wenn } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{wenn } x > 10\end{gathered}\end{cases}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
-     <BlockMath math="g(1) = 2" />
-   </MathContainer>
+### Stetigkeit an der Grenze
 
-   Da <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" /> gilt, ist die Funktion **stetig** bei <InlineMath math="x = 1" />.
+Bei <InlineMath math="x = 1" />:
 
-4. **Skizze des Graphen <InlineMath math="h(x)" />:**
+<MathContainer>
 
-   <LineEquation
-     title={
-       <>
-    Funktionsgraph <InlineMath math="h(x)" />
-       </>
-     }
-     description={
-       <>
-    Stückweise Funktion mit drei Teilen: abnehmend linear, quadratisch und
-    konstant
-       </>
-     }
-     data={[
-       {
-         endpoints: { end: "open" },
-         points: [
-           { x: -100, y: 102, z: 0 },
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = -2 + i * 0.1;
-             return { x, y: -x + 2, z: 0 };
-           }),
-         ],
-         smooth: false,
-         color: "#9333ea",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
-       },
-       {
-         smooth: false,
-         endpoints: { start: "closed", end: "open" },
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = 0 + i * 0.1;
-           return { x, y: x * x, z: 0 };
-         }),
-         color: "#ea580c",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
-       },
-       {
-         endpoints: { start: "closed" },
-         points: [
-           ...Array.from({ length: 21 }, (_, i) => {
-             const x = 2 + i * 0.1;
-             return { x, y: 4, z: 0 };
-           }),
-           { x: 100, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+<BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
 
-5. **Tageslohnfunktion:**
+<BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
 
-   Sei <InlineMath math="t" /> die Arbeitszeit in Stunden. Dann gilt:
+<BlockMath math="g(1) = 2" />
+</MathContainer>
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{wenn } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Da <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" /> gilt, ist die Funktion **stetig** bei <InlineMath math="x = 1" />.
 
-   Oder vereinfacht:
+### Skizze der Drei Teilstücke
 
-   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{wenn } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+Beachte die **offenen und geschlossenen Punkte**: Bei <InlineMath math="x=0" /> beträgt der Funktionswert <InlineMath math="0" /> und nicht <InlineMath math="2" />. Bei <InlineMath math="x=2" /> beträgt er <InlineMath math="4" />.
+
+<LineEquation
+  title={
+    <>
+ Funktionsgraph <InlineMath math="h(x)" />
+    </>
+  }
+  description={
+    <>
+ Stückweise Funktion mit drei Teilen: abnehmend linear, quadratisch und
+ konstant
+    </>
+  }
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -2 + i * 0.1;
+          return { x, y: -x + 2, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+    {
+      smooth: false,
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const x = 0 + i * 0.1;
+        return { x, y: x * x, z: 0 };
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 4, z: 0 };
+        }),
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
+/>
+
+### Tageslohn
+
+Der Lohn nach acht Stunden enthält den **bereits verdienten Betrag** und zusätzlich die Vergütung für Überstunden.
+
+<BlockMath math="50000(8)=400000" />
+
+Sei <InlineMath math="t" /> die Arbeitszeit in Stunden. Dann gilt:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{wenn } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+
+Oder vereinfacht:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{wenn } 8 &lt; t \leq 12\end{gathered}\end{cases}" />

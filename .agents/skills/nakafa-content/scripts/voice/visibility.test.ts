@@ -196,3 +196,15 @@ it("rejects stock visual handoffs and preserves named graph evidence", () => {
     []
   );
 });
+
+it("preserves physical visibility and perspective in model instructions", () => {
+  const samples = {
+    de: "Drehe das Modell, bis die senkrechte Komponente getrennt von der Grundfläche sichtbar ist. Die Perspektive kann die sichtbare Länge kürzer machen.",
+    en: "Rotate the model until the vertical component is visible above the base plane. Lighting makes the red line visible on the screen.",
+    id: "Putar model sampai komponen vertikal tampak terpisah dari bidang alas. Perspektif dapat membuat panjang yang terlihat berbeda.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(findLessonVoiceIssues(locale, source), []);
+  }
+});

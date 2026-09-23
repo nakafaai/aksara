@@ -5,6 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The opening identifies unequal retrieval and traces errors from text recognition into metadata. The later section exposes limits, provides alternative search routes, and reviews results.
+The first two paragraphs explain how unequal retrieval can arise: errors in text recognition can enter the suggested metadata, while popular collections receive more corrections. The later paragraphs provide ways to inspect those weaknesses.
 
-The relationship is **an error chain motivating interface changes and inspectable audits**. Automation remains in use. Zero results are not treated as conclusive proof that documents are absent.
+<Mermaid
+  title="From text recognition to checking"
+  description="Recognition errors can reach metadata and search results. Original images and alternative collection searches support human checking."
+  chart={`flowchart TD
+  A["Scanned letter"] --> B["Text recognition"]
+  B --> C["Suggested names, places and topics"]
+  C --> D["Search results"]
+  A --> E["Original image and collection record"]
+  E --> F["Human checking and correction"]
+  D --> G["Sample of empty searches"]
+  G --> F
+  F --> C`}
+/>
+
+Follow the **error path from recognition to metadata and search results**. An empty search may reflect that path rather than a missing document. Original images, collection numbers, date ranges, and spelling variants provide other ways to investigate. Reviewing a sample of empty searches and auditing document groups test where failures occur.
+
+The relationship is a diagnosed error chain followed by inspection and correction measures. Automation remains in use, and no search result is treated as a final description of the archive.

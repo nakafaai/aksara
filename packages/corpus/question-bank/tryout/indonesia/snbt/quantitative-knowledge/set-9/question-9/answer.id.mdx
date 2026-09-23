@@ -5,13 +5,13 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Untuk menentukan daerah asal fungsi, kita perlu memastikan bahwa semua komponen fungsi terdefinisi (bilangan di dalam akar tidak boleh negatif dan penyebut tidak boleh nol).
+Untuk menentukan daerah asal fungsi, kita perlu memastikan bahwa semua komponen fungsi terdefinisi (bilangan di dalam akar tidak boleh negatif dan **penyebut tidak boleh nol**).
 
 Ada dua syarat yang harus dipenuhi:
 
 #### Pembilang Harus Tidak Negatif
 
-Bilangan di dalam akar pada pembilang harus non-negatif:
+Bilangan di dalam akar pada pembilang harus **tidak negatif**:
 
 <MathContainer>
   <BlockMath math="5 - x \geq 0" />
@@ -21,7 +21,7 @@ Bilangan di dalam akar pada pembilang harus non-negatif:
 
 #### Penyebut Harus Positif
 
-Bilangan di dalam akar pada penyebut harus positif karena penyebut tidak boleh sama dengan <InlineMath math="0" />:
+Bilangan di dalam akar pada penyebut harus **positif** karena penyebut tidak boleh sama dengan <InlineMath math="0" />:
 
 <MathContainer>
   <BlockMath math="x^2 + x - 6 > 0" />
@@ -30,18 +30,16 @@ Bilangan di dalam akar pada penyebut harus positif karena penyebut tidak boleh s
 
 Pembuat nol dari pertidaksamaan ini adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = 2" />.
 
-Dengan uji titik, kita mendapatkan daerah penyelesaian untuk penyebut: <InlineMath math="x < -3" /> atau <InlineMath math="x > 2" />.
+Tanda kedua faktor menunjukkan kapan hasil kali positif:
+
+| <InlineMath math="x" /> | <InlineMath math="x+3" /> | <InlineMath math="x-2" /> | <InlineMath math="(x+3)(x-2)" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="x<-3" /> | − | − | + |
+| <InlineMath math="-3<x<2" /> | + | − | − |
+| <InlineMath math="x>2" /> | + | + | + |
 
 #### Irisan Daerah Asal
 
-Daerah asal fungsi <InlineMath math="f" /> adalah irisan dari kedua syarat di atas:
-1.  <InlineMath math="x \leq 5" />
-2.  <InlineMath math="x < -3" /> atau <InlineMath math="x > 2" />
-
-Irisannya adalah:
--   Untuk <InlineMath math="x < -3" />, memenuhi <InlineMath math="x \leq 5" />.
--   Untuk <InlineMath math="x > 2" />, dibatasi oleh <InlineMath math="x \leq 5" />, sehingga menjadi <InlineMath math="2 < x \leq 5" />.
-
-Jadi, daerah asal fungsi <InlineMath math="f" /> adalah:
+Ambil **irisan kedua syarat**: semua nilai <InlineMath math="x<-3" /> sudah memenuhi <InlineMath math="x\le5" />. Bagian <InlineMath math="x>2" /> dibatasi menjadi <InlineMath math="2<x\le5" />. Titik <InlineMath math="-3" /> dan <InlineMath math="2" /> dikeluarkan karena penyebut nol, sedangkan <InlineMath math="5" /> diperbolehkan karena hanya pembilang yang nol.
 
 <BlockMath math="D_f=(-\infty,-3)\cup(2,5]" />

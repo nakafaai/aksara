@@ -3,19 +3,19 @@ export const metadata = {
     description: "Build an overdetermined linear system from data and understand why least squares gives the best-fitting polynomial when no exact solution exists.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
 ## More Equations Than Unknowns
 
-Suppose we want to fit a curve to measured data. We often have more observations than model parameters. Writing one equation for each observation then produces an **overdetermined linear system**.
+Suppose we want to fit a curve to measured data. We often have more observations than model parameters. Writing **one equation** for each observation then produces an **overdetermined linear system**.
 
 A system is overdetermined when the number <InlineMath math="m" /> of equations is greater than the number <InlineMath math="n" /> of unknowns, so <InlineMath math="m > n" />. Such a system can have an exact solution. Measurement data usually contain points that do not lie exactly on the chosen model.
 
 ## Quadratic Fit for Seven Observations
 
-Consider <InlineMath math="7" /> data points that we want to fit with a quadratic polynomial.
+Consider <InlineMath math="7" /> data points that we want to fit with a **quadratic polynomial**.
 
 The observations are:
 
@@ -32,7 +32,7 @@ The unknowns are the <InlineMath math="3" /> parameters <InlineMath math="a_2" /
 
 ## Setting Up the System of Equations
 
-Substituting each pair <InlineMath math="(t_i,y_i)" /> into the polynomial gives one equation. The <InlineMath math="7" /> observations therefore give <InlineMath math="7" /> equations for only <InlineMath math="3" /> unknown coefficients.
+Substituting each pair <InlineMath math="(t_i,y_i)" /> into the polynomial gives one equation. The <InlineMath math="7" /> observations therefore give <InlineMath math="7" /> equations for only <InlineMath math="3" /> **unknown coefficients**.
 
 <MathContainer>
 <BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2.2" />
@@ -58,7 +58,7 @@ Evaluating the powers of each <InlineMath math="t_i" /> turns the system into:
 
 ## Matrix Form
 
-The system of equations above can be written in matrix form <InlineMath math="A \cdot x = b" />.
+The system of equations above can be written in **matrix form** <InlineMath math="A \cdot x = b" />.
 
 <BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2.2 \\ -4.2 \\ -4.2 \\ -1.8 \\ 1.8 \\ 8.2 \\ 15.8 \end{pmatrix}" />
 
@@ -97,6 +97,15 @@ This criterion penalizes large misses more strongly and produces one best-fittin
 <BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
 </MathContainer>
 
+The middle equation directly gives the linear coefficient. Use the last equation to express the constant through the quadratic coefficient, then substitute into the first equation.
+
+<MathContainer>
+<BlockMath math="28a_1=\frac{424}{5}\quad\Rightarrow\quad a_1=\frac{106}{35}" />
+<BlockMath math="28a_2+7a_0=\frac{67}{5}\quad\Rightarrow\quad a_0=\frac{67}{35}-4a_2" />
+<BlockMath math="196a_2+28\left(\frac{67}{35}-4a_2\right)=136" />
+<BlockMath math="84a_2=\frac{412}{5}\quad\Rightarrow\quad a_2=\frac{103}{105},\quad a_0=-\frac{211}{105}" />
+</MathContainer>
+
 Solving them gives
 
 <MathContainer>
@@ -118,3 +127,49 @@ The residual vector <InlineMath math="r" /> satisfies
 The equation <InlineMath math="A^Tr=0" /> says that the remaining error is orthogonal to every column of <InlineMath math="A" />. Geometrically, <InlineMath math="A\hat x" /> is the orthogonal projection of <InlineMath math="b" /> onto the column space of <InlineMath math="A" />.
 
 Overdetermined systems are common in engineering and science because experiments often provide many measurements for a model with relatively few parameters. Least squares uses all of those measurements without pretending that noisy data fit the model exactly.
+
+The curve shows the fitted model, while the points mark observations. Rotate or zoom to compare each point with the curve. Its vertical difference is the residual at the same time value.
+
+<LineEquation
+  title={<>Least-squares fit <InlineMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" /></>}
+  description={<>The cyan curve is the fitted polynomial, while the orange points are the seven observations in <InlineMath math="b" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 6, 26]}
+  cameraTarget={[0, 6, 0]}
+  data={(() => {
+    // Observations encoded by A and b
+    const originalData = [
+      [-3, -2.2],
+      [-2, -4.2],
+      [-1, -4.2],
+      [0, -1.8],
+      [1, 1.8],
+      [2, 8.2],
+      [3, 15.8]
+    ];
+
+    // Coefficients obtained from the QR solve
+    const a = 0.98095;
+    const b = 3.02857;
+    const c = -2.00952;
+
+    return [
+      {
+        points: Array.from({ length: 50 }, (_, i) => {
+          const t = -3 + (i * 6) / 49;
+          const y = a * t * t + b * t + c;
+          return { x: t, y: y, z: 0 };
+        }),
+        color: "#0891b2",
+        smooth: false,
+        showPoints: false
+      },
+      ...originalData.map(([t, y]) => ({
+        points: [{ x: t, y, z: 0 }],
+        color: "#ea580c",
+        smooth: false,
+        showPoints: true
+      }))
+    ];
+  })()}
+/>

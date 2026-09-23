@@ -5,55 +5,52 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Wir ermitteln die Abmessungen des Stalls und die Anzahl der benötigten Sperrholzplatten.
+Die Platten bedecken **alle vier Stallwände**. Jede Platte ist so hoch wie eine Wand und nimmt entlang des Umfangs 0,8 m ein. Zuerst bestimmen wir Grundmaße, die mit ganzen Platten auskommen. Danach berechnen wir den Preis.
 
-#### Abmessungen des Hühnerstalls
+#### Maße der Grundfläche bestimmen
 
-Gegeben:
-- Stallhöhe <InlineMath math="= 3 \text{ m}" />.
-- Grundfläche <InlineMath math="= 256 \text{ m}^2" />.
-- Größe einer Sperrholzplatte <InlineMath math="80 \text{ cm} \times 300 \text{ cm}" /> (<InlineMath math="0{,}8 \text{ m} \times 3 \text{ m}" />).
+Schreibe die Breite als <InlineMath math="w=0{,}8m" /> und die Länge als <InlineMath math="l=0{,}8n" />. Die positiven ganzen Zahlen <InlineMath math="m" /> und <InlineMath math="n" /> zählen die Platten an einer kurzen und einer langen Wand. Die Grundfläche beträgt 256 m², also gilt:
 
-Da die Plattenhöhe der Stallhöhe von <InlineMath math="3 \text{ m}" /> entspricht, werden die Platten senkrecht eingebaut. Damit keine Platte zugeschnitten werden muss, müssen Länge und Breite des Stalls Vielfache der Plattenbreite <InlineMath math="0{,}8 \text{ m}" /> sein.
+<BlockMath math="\begin{aligned}
+lw&=256 \\
+(0{,}8n)(0{,}8m)&=256 \\
+0{,}64mn&=256 \\
+mn&=\frac{256}{0{,}64}=400
+\end{aligned}" />
 
-Breitenbeschränkung (<InlineMath math="w" />):
+Die Breite muss zwischen 5 m und 7,5 m liegen. Das begrenzt die Plattenzahl an der kurzen Wand.
 
-<BlockMath math="5 \leq w \leq 7{,}5" />
+<BlockMath math="\begin{aligned}
+5\le0{,}8m&\le7{,}5 \\
+6{,}25\le m&\le9{,}375
+\end{aligned}" />
 
-Wir suchen nach Vielfachen von <InlineMath math="0{,}8" /> innerhalb dieses Bereichs:
-- <InlineMath math="0{,}8 \times 7 = 5{,}6" />
-- <InlineMath math="0{,}8 \times 8 = 6{,}4" />
-- <InlineMath math="0{,}8 \times 9 = 7{,}2" />
+Für <InlineMath math="m" /> kommen somit nur 7, 8 oder 9 infrage. Entscheidend sind **ganzzahlige Plattenzahlen an beiden Seiten**.
 
-Prüfe die entsprechende Länge (<InlineMath math="l" />), sodass die Fläche <InlineMath math="256" /> beträgt und <InlineMath math="l" /> ebenfalls ein Vielfaches von <InlineMath math="0{,}8" /> ist:
+| Platten an der kurzen Wand <InlineMath math="m" /> | Breite (m) | Platten an der langen Wand <InlineMath math="n=400/m" /> | Ganze Platten? |
+| ---: | ---: | --- | --- |
+| 7 | 5,6 | <InlineMath math="400/7=57+1/7" /> | Nein |
+| 8 | 6,4 | <InlineMath math="400/8=50" /> | Ja |
+| 9 | 7,2 | <InlineMath math="400/9=44+4/9" /> | Nein |
 
-1. Für <InlineMath math="w = 5{,}6" /> ergibt sich <InlineMath math="l = \frac{256}{5{,}6} \approx 45{,}71" />. Das ist kein Vielfaches von <InlineMath math="0{,}8" />.
-2. Für <InlineMath math="w = 6{,}4" /> ergibt sich <InlineMath math="l = \frac{256}{6{,}4} = 40" />. Die Kontrolle <InlineMath math="\frac{40}{0{,}8} = 50" /> zeigt, dass auch die Länge aus ganzen Platten gebildet werden kann.
-3. Für <InlineMath math="w = 7{,}2" /> ergibt sich <InlineMath math="l = \frac{256}{7{,}2} \approx 35{,}56" />. Das ist kein Vielfaches von <InlineMath math="0{,}8" />.
+Der Stall ist daher 6,4 m breit und <InlineMath math="0{,}8(50)=40\,\mathrm{m}" /> lang. Die Flächenprobe stimmt: <InlineMath math="6{,}4\times40=256\,\mathrm{m}^2" />.
 
-Der Hühnerstall muss daher **<InlineMath math="6{,}4 \text{ m}" /> breit** und **<InlineMath math="40 \text{ m}" /> lang** sein.
+#### Plattenzahl und Preis berechnen
 
-#### Anzahl der Sperrholzplatten
+Der Stall hat **zwei Paare gleich langer Wände**. Jede kurze Wand benötigt 8 Platten, jede lange Wand 50.
 
-Eine Breitenseite benötigt folgende Anzahl Platten:
+<BlockMath math="\begin{aligned}
+N&=2(8)+2(50) \\
+&=16+100=116
+\end{aligned}" />
 
-<BlockMath math="\frac{6{,}4}{0{,}8} = 8 \text{ Paneele}" />
+Multipliziere die 116 Platten mit dem Stückpreis von Rp40.000,00.
 
-Eine Längsseite benötigt folgende Anzahl Platten:
+<BlockMath math="\begin{aligned}
+C&=116\times40{.}000 \\
+&=(100+16)\times40{.}000 \\
+&=4{.}000{.}000+640{.}000 \\
+&=4{.}640{.}000
+\end{aligned}" />
 
-<BlockMath math="\frac{40}{0{,}8} = 50 \text{ Paneele}" />
-
-Anzahl der Platten für alle vier Wände (<InlineMath math="2" /> Breitseiten und <InlineMath math="2" /> Längsseiten):
-
-<BlockMath math="\begin{aligned}2(8+50)&=2\times58 \\ &=116\end{aligned}" />
-
-#### Kosten berechnen
-
-Eine Sperrholzplatte kostet <InlineMath math="\text{Rp}40{.}000{,}00" />.
-
-<MathContainer>
-  <BlockMath math="116 \times 40{.}000" />
-  <BlockMath math="=4{.}640{.}000" />
-</MathContainer>
-
-Damit betragen die Gesamtkosten <InlineMath math="\text{Rp}4{.}640{.}000{,}00" />.
+Die Platten kosten **Rp4.640.000,00**.

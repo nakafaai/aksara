@@ -1,10 +1,10 @@
 export const metadata = {
-   title: "Spectral Theorem for Complex Matrices",
-   description: "Prove that a normal matrix has an orthonormal eigenvector basis and use that basis for unitary diagonalization.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-16",
-   dateModified: "2026-09-13",
-   subject: "Linear Methods of AI",
+title: "Spectral Theorem for Complex Matrices",
+description: "Prove that a normal matrix has an orthonormal eigenvector basis and use that basis for unitary diagonalization.",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2025-07-16",
+dateModified: "2026-09-19",
+subject: "Linear Methods of AI",
 };
 
 ## Unitary Diagonalization Characterization
@@ -39,26 +39,26 @@ This means <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, so that:
 <BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
-Since this holds for all basis vectors, then <InlineMath math="AA^H = A^H A" />, which means <InlineMath math="A" /> is normal.
+Since this holds for **all basis vectors**, then <InlineMath math="AA^H = A^H A" />, which means <InlineMath math="A" /> is normal.
 
 ## Proof from Normality to Diagonalization
 
-Now we prove the converse by mathematical induction. The base case starts the argument, and the induction step reduces an <InlineMath math="n \times n" /> matrix to a normal <InlineMath math="(n-1) \times (n-1)" /> block.
+Now we prove the converse by **mathematical induction**. The base case starts the argument, and the induction step reduces an <InlineMath math="n \times n" /> matrix to a normal <InlineMath math="(n-1) \times (n-1)" /> block.
 
 ### Mathematical Induction Structure
 
-The proof is built by induction, so the steps below fix the base case, state the induction assumption, and then take the step from <InlineMath math="n" /> to <InlineMath math="n+1" />.
+The proof is built by induction, so the steps below fix the base case, state the induction assumption, and then take the step from <InlineMath math="n-1" /> to <InlineMath math="n" />.
 
-1. **Base Step**
-   For <InlineMath math="n = 0" />, the empty matrix satisfies the statement.
+**Base Step**
+For <InlineMath math="n = 0" />, the empty matrix satisfies the statement.
 
-2. **Induction Hypothesis**
-   Assume the statement is true for all normal matrices of size <InlineMath math="(n-1) \times (n-1)" />.
+**Induction Hypothesis**
+Assume the statement is true for all normal matrices of size <InlineMath math="(n-1) \times (n-1)" />.
 
-3. **Induction Step**
-   Let <InlineMath math="A \in \mathbb{C}^{n \times n}" /> be normal. Based on the fundamental theorem of algebra, there exists an eigenvalue <InlineMath math="\lambda_1 \in \mathbb{C}" /> of <InlineMath math="A" />. Let <InlineMath math="v_1 \in \mathbb{C}^n" /> be a corresponding eigenvector with <InlineMath math="v_1^H v_1 = 1" />.
+**Induction Step**
+Let <InlineMath math="A \in \mathbb{C}^{n \times n}" /> be normal. Based on the fundamental theorem of algebra, there exists an eigenvalue <InlineMath math="\lambda_1 \in \mathbb{C}" /> of <InlineMath math="A" />. Let <InlineMath math="v_1 \in \mathbb{C}^n" /> be a corresponding eigenvector with <InlineMath math="v_1^H v_1 = 1" />.
 
-   We have <InlineMath math="Av_1 = \lambda_1 v_1" />. The following lemma shows that <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> as well.
+We have <InlineMath math="Av_1 = \lambda_1 v_1" />. The following lemma shows that <InlineMath math="A^H v_1 = \overline{\lambda_1} v_1" /> as well.
 
 ### Why the Adjoint Has the Same Eigenvector
 
@@ -69,7 +69,7 @@ Let <InlineMath math="B=A-\lambda_1I" />. Since <InlineMath math="A" /> is norma
 <BlockMath math="=v_1^HB^HBv_1=\|Bv_1\|_2^2=0" />
 </MathContainer>
 
-Hence <InlineMath math="B^Hv_1=0" />, which is exactly <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. This missing step is what makes the orthogonal complement of <InlineMath math="v_1" /> invariant.
+Hence <InlineMath math="B^Hv_1=0" />, which is exactly <InlineMath math="A^Hv_1=\overline{\lambda_1}v_1" />. This identity makes the **orthogonal complement** of <InlineMath math="v_1" /> invariant.
 
 ### Formation of Invariant Subspace
 
@@ -90,7 +90,7 @@ So <InlineMath math="Aw \in W" />, which means:
 
 <BlockMath math="A(W) = \{Aw \mid w \in W\} \subset W" />
 
-In other words, <InlineMath math="W" /> is invariant under <InlineMath math="A" />: applying <InlineMath math="A" /> to any vector in <InlineMath math="W" /> produces another vector in <InlineMath math="W" />.
+In other words, <InlineMath math="W" /> is **invariant under** <InlineMath math="A" />: applying <InlineMath math="A" /> to any vector in <InlineMath math="W" /> produces another vector in <InlineMath math="W" />.
 
 ### Unitary Transformation and Preservation of Normality
 
@@ -107,7 +107,7 @@ The lower-right block <InlineMath math="A'" /> has size
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-Since unitary similarity transformations preserve normality, we can show that:
+Since unitary similarity transformations **preserve normality**, we can show that:
 
 <MathContainer>
 <BlockMath math="(T^H \cdot A \cdot T) \cdot (T^H \cdot A \cdot T)^H" />
@@ -121,7 +121,7 @@ The block diagonal matrix is also normal, which means <InlineMath math="A'" /> i
 
 ## Construction of Complete Orthonormal Basis
 
-By the induction hypothesis, there exists an orthonormal basis <InlineMath math="v'_2, \ldots, v'_n" /> of eigenvectors for <InlineMath math="A'" />. Let <InlineMath math="S'" /> be a unitary matrix with those columns, where:
+By the **induction hypothesis**, there exists an orthonormal basis <InlineMath math="v'_2, \ldots, v'_n" /> of eigenvectors for <InlineMath math="A'" />. Let <InlineMath math="S'" /> be a unitary matrix with those columns, where:
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -159,7 +159,7 @@ Real normal matrices are still unitarily diagonalizable over <InlineMath math="\
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-Each <InlineMath math="2\times2" /> block represents a conjugate eigenvalue pair <InlineMath math="a\pm bi" />. A real normal matrix is orthogonally diagonalizable over <InlineMath math="\mathbb{R}" /> exactly when all its eigenvalues are real.
+Each <InlineMath math="2\times2" /> block represents a conjugate eigenvalue pair <InlineMath math="a\pm bi" />. A real normal matrix is orthogonally diagonalizable over <InlineMath math="\mathbb{R}" /> exactly when **all its eigenvalues are real**.
 
 Symmetric matrices and orthogonal matrices are always normal. For a symmetric matrix <InlineMath math="A^T = A" />:
 
@@ -174,7 +174,7 @@ For an orthogonal matrix <InlineMath math="A^T = A^{-1}" />, we have:
 
 ### Rotation Example
 
-A quarter turn is represented by the matrix:
+A **quarter turn** is represented by the matrix:
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tulis vektor kolom dan baris, transposkan keduanya, lalu gunakan vektor satuan Kartesius dalam perhitungan aljabar linear.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-12",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Vektor dan Operasinya",
 };
 
@@ -17,18 +17,13 @@ Vektor kolom adalah vektor yang komponen-komponennya <Highlight>ditulis secara v
 
 Vektor kolom dan vektor baris memuat komponen yang sama dengan urutan yang sama, jadi keduanya hanya berbeda pada cara komponennya ditata. Tanda kurung biasa maupun kurung siku sama-sama dipakai.
 
-1. Untuk vektor berdimensi dua:
+Dalam dua dimensi, komponen ditulis berurutan sebagai baris <InlineMath math="(3 \; 4)" /> atau <InlineMath math="[3 \; 4]" />. Jika ditulis sebagai kolom, urutan komponennya tetap:
 
-   - Vektor baris: <InlineMath math="(3 \; 4)" /> atau <InlineMath math="[3 \; 4]" />
-   - Vektor kolom:
+<BlockMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}" />
 
-     <BlockMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}" />
+Dalam tiga dimensi, baris <InlineMath math="(2 \; 1 \; 3)" /> atau <InlineMath math="[2 \; 1 \; 3]" /> berubah menjadi kolom berikut. **Urutan komponen tetap sama** meskipun susunannya berubah.
 
-2. Untuk vektor berdimensi tiga:
-   - Vektor baris: <InlineMath math="(2 \; 1 \; 3)" /> atau <InlineMath math="[2 \; 1 \; 3]" />
-   - Vektor kolom:
-
-     <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+<BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
 
 ## Representasi Komponen yang Ekuivalen
 
@@ -46,11 +41,11 @@ Vektor dengan komponen yang sama dapat dinyatakan dalam beberapa bentuk yang ber
 
    <BlockMath math="2\mathbf{i} + \mathbf{j} + 3\mathbf{k}" />
 
-Ketiga bentuk tersebut menyatakan vektor yang sama. Dua bentuk pertama menampilkan komponennya sebagai kolom, sedangkan bentuk ketiga menyatakan komponen-komponen itu terhadap vektor satuan Kartesius. Arti garis tegak harus dibaca dari konteks: <InlineMath math="\det A" /> atau <InlineMath math="|A|" /> dapat menyatakan determinan matriks persegi, <InlineMath math="|x|" /> menyatakan nilai mutlak skalar, dan <InlineMath math="\lVert \vec{v} \rVert" /> menyatakan besar, atau norma, suatu vektor.
+Ketiga bentuk tersebut menyatakan **vektor yang sama**. Dua bentuk pertama menampilkan komponennya sebagai kolom, sedangkan bentuk ketiga menyatakan komponen-komponen itu terhadap vektor satuan Kartesius. Arti garis tegak harus dibaca dari konteks: <InlineMath math="\det A" /> atau <InlineMath math="|A|" /> dapat menyatakan determinan matriks persegi, <InlineMath math="|x|" /> menyatakan nilai mutlak skalar, dan <InlineMath math="\lVert \vec{v} \rVert" /> menyatakan besar, atau norma, suatu vektor.
 
 ## Vektor Satuan dalam Sistem Koordinat Kartesius
 
-Setiap sumbu koordinat punya tepat satu vektor satuan, dan vektor satuan itulah yang memuat koordinat vektor lainnya.
+Untuk basis Kartesius standar, kita memilih satu vektor satuan pada **arah positif setiap sumbu**. Vektor satuan dengan arah negatif juga ada, tetapi merupakan lawan dari vektor basis yang dipilih.
 
 Vektor satuan adalah vektor yang memiliki panjang <InlineMath math="1 \text{ satuan}" /> dengan arah tertentu. Dalam sistem koordinat Kartesius, kita mengenal beberapa vektor satuan:
 
@@ -63,7 +58,7 @@ Bidang datar punya dua arah dasar, dan panjang setiap vektor satuan satu. Tabel 
 | horizontal, sepanjang sumbu <InlineMath math="x" /> | <InlineMath math="(1 \; 0)" /> |
 | vertikal, sepanjang sumbu <InlineMath math="y" /> | <InlineMath math="(0 \; 1)" /> |
 
-Kedua vektor satuan yang sama, jika ditulis sebagai vektor kolom, menempatkan komponennya pada urutan yang sama:
+Kedua vektor satuan yang sama, jika ditulis sebagai vektor kolom, menempatkan komponennya pada **urutan yang sama**:
 
 <BlockMath math="\begin{pmatrix} 1 \\ 0 \end{pmatrix} \qquad \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
 
@@ -71,7 +66,7 @@ Matriks pertama adalah vektor satuan horizontal, dan matriks kedua adalah vektor
 
 ### Vektor Satuan dalam Sistem Koordinat Kartesius Dimensi Tiga
 
-Ruang menambahkan arah dasar ketiga. Ketiga vektor satuan mengarah sepanjang tiga sumbu, dan setiap vektor satuan panjangnya satu. Tabel berikut menuliskannya sebagai vektor baris.
+Ruang menambahkan **arah dasar ketiga**. Ketiga vektor satuan mengarah sepanjang tiga sumbu, dan setiap vektor satuan panjangnya satu. Tabel berikut menuliskannya sebagai vektor baris.
 
 | Arah | Vektor baris |
 | --- | --- |
@@ -106,3 +101,18 @@ Transposnya adalah vektor baris:
 Vektor kolom dan vektor baris memiliki bentuk yang berbeda dalam operasi seperti perkalian matriks. Gunakan bentuk yang konsisten agar dimensi matriksnya cocok.
 
 Dalam komputasi, vektor kolom dan vektor baris digunakan untuk merepresentasikan data dan variabel dalam pemrograman numerik, pemrosesan gambar, kecerdasan buatan, dan banyak bidang lainnya.
+
+
+Bentuk baris dan kolom menentukan **bentuk hasil kali**. Ambil dua komponen yang sudah kita gunakan:
+
+<BlockMath math="r=\begin{pmatrix}3&amp;4\end{pmatrix},\qquad c=\begin{pmatrix}3\\4\end{pmatrix}" />
+
+Baris dikalikan kolom menghasilkan satu nilai, karena ukuran hasilnya <InlineMath math="1\times1" />:
+
+<BlockMath math="rc=3\cdot3+4\cdot4=9+16=25" />
+
+Kolom dikalikan baris menghasilkan matriks <InlineMath math="2\times2" />. Setiap komponen kolom dikalikan dengan kedua komponen baris:
+
+<BlockMath math="cr=\begin{pmatrix}3\cdot3&amp;3\cdot4\\4\cdot3&amp;4\cdot4\end{pmatrix}=\begin{pmatrix}9&amp;12\\12&amp;16\end{pmatrix}" />
+
+Komponen kedua vektor sama, tetapi urutan perkalian menghasilkan objek dengan ukuran berbeda.

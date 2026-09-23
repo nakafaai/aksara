@@ -5,8 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Subtract defective output from total output for each machine:
+Check the **defect-free output requirement** before comparing indices. Defective units must be subtracted from total output, because the threshold of <InlineMath math="650" /> applies to good units.
 
-<BlockMath math="\begin{aligned} 620-20&=600 \\ 540-18&=522 \\ 700-28&=672 \end{aligned}" />
+| Machine | Defect-free output | Meets the threshold? |
+| --- | --- | --- |
+| <InlineMath math="A" /> | <InlineMath math="620-20=600" /> | No, <InlineMath math="600<650" /> |
+| <InlineMath math="B" /> | <InlineMath math="540-18=522" /> | No, <InlineMath math="522<650" /> |
+| <InlineMath math="C" /> | <InlineMath math="700-28=672" /> | Yes, <InlineMath math="672\geq650" /> |
 
-Only machine <InlineMath math="C" /> reaches the threshold of <InlineMath math="650" /> units. It is therefore selected without comparing its index with ineligible machines.
+Only machine <InlineMath math="C" /> is eligible, so it is selected. The indices of machines <InlineMath math="A" /> and <InlineMath math="B" /> cannot make those machines meet the output requirement. An index comparison is only needed when more than one machine passes the threshold.

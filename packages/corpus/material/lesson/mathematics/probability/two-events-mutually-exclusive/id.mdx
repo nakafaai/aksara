@@ -15,8 +15,7 @@ Kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" /> disebut **
 
 ## Ciri Khas Kejadian Saling Lepas
 
-Ciri utamanya adalah irisan yang kosong: tidak ada hasil percobaan yang termasuk dalam kejadian <InlineMath math="A" /> sekaligus kejadian <InlineMath math="B" />. Sifat itu yang membuat kedua peluangnya boleh langsung dijumlahkan, karena tidak ada hasil yang terhitung dua kali.
-
+Ciri utamanya adalah **irisan yang kosong**: tidak ada hasil percobaan yang termasuk dalam kejadian <InlineMath math="A" /> sekaligus kejadian <InlineMath math="B" />. Sifat itu yang membuat kedua peluangnya boleh langsung dijumlahkan, karena tidak ada hasil yang terhitung dua kali.
 ### Peluang Dua Kejadian Terjadi Bersamaan
 
 Karena kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> tidak dapat terjadi bersama, peluang irisannya adalah **nol**.
@@ -49,38 +48,25 @@ Atau pakai simbol gabungan (union):
 
 ## Contoh Kejadian Saling Lepas
 
-Contoh berikut menunjukkan kapan aturan penjumlahan khusus berlaku:
+Pada koin dan dadu adil serta pengambilan acak satu kartu dari tumpukan standar, semua hasil dasar **sama mungkin**. Tabel ini mencatat banyak hasil tiap kejadian. Setiap pasangan kejadian memiliki irisan kosong.
 
-1.  **Lempar Koin:**
+| Percobaan | Dua kejadian | Peluang gabungan |
+| --- | --- | --- |
+| Koin adil | Angka atau Gambar | <InlineMath math="\frac12+\frac12=1" /> |
+| Dadu adil | Angka tiga atau lima | <InlineMath math="\frac16+\frac16=\frac13" /> |
+| Dadu adil | Genap atau ganjil | <InlineMath math="\frac36+\frac36=1" /> |
+| Kartu standar | King atau Queen | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
+| Kartu standar | Merah atau keriting | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
 
-    Satu lemparan koin menghasilkan "Angka" atau "Gambar," tetapi tidak keduanya sekaligus.
-
-    - <InlineMath math="P(\text{Angka}) = 1/2" />
-    - <InlineMath math="P(\text{Gambar}) = 1/2" />
-    - Peluang muncul Angka ATAU Gambar adalah <InlineMath math="P(\text{Angka}) + P(\text{Gambar}) = 1/2 + 1/2 = 1" /> (Pasti salah satu muncul).
-
-2.  **Lempar Dadu (satu kali):**
-
-    Perhatikan dua pasangan kejadian berikut:
-
-    - Dapat angka <InlineMath math="3" /> dan dapat angka <InlineMath math="5" /> tidak bisa terjadi sekaligus. Masing-masing peluangnya <InlineMath math="1/6" />, jadi peluang dapat <InlineMath math="3" /> atau <InlineMath math="5" /> adalah <InlineMath math="1/6 + 1/6 = 2/6 = 1/3" />.
-    - Dapat angka genap <InlineMath math="\{2, 4, 6\}" /> dan dapat angka ganjil <InlineMath math="\{1, 3, 5\}" /> juga tidak bisa terjadi sekaligus. Masing-masing peluangnya <InlineMath math="3/6 = 1/2" />, jadi peluang dapat genap atau ganjil adalah <InlineMath math="1/2 + 1/2 = 1" />.
-
-3.  **Ambil Kartu (satu kali):**
-
-    Gunakan ide yang sama untuk kejadian pada kartu:
-
-    - Dapat King dan dapat Queen adalah kejadian saling lepas. Ada <InlineMath math="4" /> King dan <InlineMath math="4" /> Queen dalam <InlineMath math="52 \text{ kartu}" />, jadi peluang dapat King atau Queen adalah <InlineMath math="4/52 + 4/52 = 8/52 = 2/13" />.
-    - Dapat kartu merah dan dapat kartu keriting <InlineMath math="\clubsuit" /> adalah kejadian saling lepas karena kartu keriting berwarna hitam. Ada <InlineMath math="26" /> kartu merah dan <InlineMath math="13" /> kartu keriting, jadi peluang dapat merah atau keriting adalah <InlineMath math="26/52 + 13/52 = 39/52 = 3/4" />.
+Pada dadu, hasil genap adalah <InlineMath math="\{2,4,6\}" /> dan hasil ganjil adalah <InlineMath math="\{1,3,5\}" />. Kedua kelompok mencakup semua sisi dadu. Pada kartu, semua keriting berwarna hitam sehingga tidak ada keriting yang masuk kelompok merah. Tumpukan standar memuat <InlineMath math="52" /> kartu, termasuk <InlineMath math="4" /> King, <InlineMath math="4" /> Queen, <InlineMath math="26" /> kartu merah, dan <InlineMath math="13" /> keriting.
 
 ## Latihan
 
-Sebuah dadu adil bersisi enam dilempar satu kali. Misalkan <InlineMath math="A=\{1,2\}" /> dan <InlineMath math="B=\{5,6\}" />.
+Sebuah **dadu adil** bersisi enam dilempar satu kali. Misalkan <InlineMath math="A=\{1,2\}" /> dan <InlineMath math="B=\{5,6\}" />.
 
 1.  Tunjukkan bahwa <InlineMath math="A" /> dan <InlineMath math="B" /> saling lepas.
 2.  Tentukan <InlineMath math="P(A \cup B)" />.
 3.  Tentukan peluang bahwa kedua kejadian tidak terjadi.
-
 ### Pembahasan
 
 Kedua kejadian memiliki **irisan kosong**, sehingga tidak ada hasil yang sama:
@@ -89,10 +75,7 @@ Kedua kejadian memiliki **irisan kosong**, sehingga tidak ada hasil yang sama:
 
 Jadi, keduanya **saling lepas**. Setiap kejadian memuat <InlineMath math="2" /> dari <InlineMath math="6" /> hasil dadu yang sama mungkin. Aturan penjumlahan khusus memberikan
 
-<MathContainer>
-  <BlockMath math="P(A \cup B)=P(A)+P(B)" />
-  <BlockMath math="=\frac{2}{6}+\frac{2}{6}=\frac{4}{6}=\frac{2}{3}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(A \cup B)&=P(A)+P(B) \\ &=\frac{2}{6}+\frac{2}{6} \\ &=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
 
 Hasil di luar <InlineMath math="A \cup B=\{1,2,5,6\}" /> adalah <InlineMath math="\{3,4\}" />. Dengan demikian,
 

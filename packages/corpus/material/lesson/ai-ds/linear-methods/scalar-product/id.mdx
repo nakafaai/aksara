@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Menjelaskan Geometri dengan Produk Dalam
 
-<Highlight>Ruang vektor memiliki operasi penjumlahan dan perkalian skalar.</Highlight> Produk dalam menentukan panjang vektor, sudut antara dua vektor, dan apakah kedua vektor ortogonal. Untuk bilangan kompleks, produk dalam yang dipakai bersifat linear-konjugat pada argumen pertama dan linear pada argumen kedua.
+Ruang vektor memiliki operasi penjumlahan dan perkalian skalar. Produk dalam menentukan panjang vektor, sudut antara dua vektor, dan apakah kedua vektor ortogonal. Untuk bilangan kompleks, produk dalam yang dipakai bersifat **linear-konjugat pada argumen pertama** dan linear pada argumen kedua.
 
 Untuk <InlineMath math="x,y,z\in\mathbb{C}^n" /> dan <InlineMath math="\lambda,\mu\in\mathbb{C}" />, produk dalam memenuhi
 
@@ -28,7 +28,7 @@ Untuk vektor real, produk dalam berbobot matriks ditulis sebagai:
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-Rumus ini mendefinisikan produk dalam tepat ketika <InlineMath math="A" /> simetris definit positif. Karena <InlineMath math="A" /> simetris, menukar <InlineMath math="x" /> dan <InlineMath math="y" /> tidak mengubah nilai produk dalam. Syarat <InlineMath math="x^TAx>0" /> untuk setiap <InlineMath math="x" /> tak nol menjamin nilainya selalu positif.
+Rumus ini mendefinisikan produk dalam tepat ketika <InlineMath math="A" /> **simetris definit positif**. Karena <InlineMath math="A" /> simetris, menukar <InlineMath math="x" /> dan <InlineMath math="y" /> tidak mengubah nilai produk dalam. Syarat <InlineMath math="x^TAx>0" /> untuk setiap <InlineMath math="x" /> tak nol menjamin nilainya selalu positif.
 
 Untuk vektor kompleks, rumus yang sesuai adalah
 
@@ -68,7 +68,7 @@ Misalkan
 <BlockMath math="\lambda(A)=\{1,3\}" />
 </MathContainer>
 
-Nilai eigen positif memastikan bahwa <InlineMath math="A" /> simetris definit positif. Meskipun <InlineMath math="x^Ty=0" />, geometri berbobot memberikan
+Nilai eigen positif memastikan bahwa <InlineMath math="A" /> simetris definit positif. Meskipun <InlineMath math="x^Ty=0" />, **geometri berbobot** memberikan
 
 <MathContainer>
 <BlockMath math="\langle x,y\rangle_A=x^TAy=1" />
@@ -88,7 +88,7 @@ Maka
 
 <BlockMath math="\begin{aligned} \langle x,y\rangle &amp;=x^Hy \\ &amp;=\begin{pmatrix}1&amp;-i\end{pmatrix}\begin{pmatrix}i\\1\end{pmatrix} \\ &amp;=i-i \\ &amp;=0 \end{aligned}" />
 
-Konjugasi dalam <InlineMath math="x^H" /> diperlukan. Jika memakai <InlineMath math="x^Ty" />, kita tidak memperoleh produk dalam kompleks standar karena <InlineMath math="x^Tx" /> belum tentu berupa bilangan real nonnegatif.
+**Konjugasi dalam** <InlineMath math="x^H" /> diperlukan. Jika memakai <InlineMath math="x^Ty" />, kita tidak memperoleh produk dalam kompleks standar karena <InlineMath math="x^Tx" /> belum tentu berupa bilangan real nonnegatif.
 
 ## Proyeksi dalam Geometri Berbobot
 
@@ -96,11 +96,15 @@ Proyeksi <InlineMath math="x" /> ke subruang satu dimensi yang direntang oleh <I
 
 <BlockMath math="\operatorname{proj}^{A}_{u}(x)=u\frac{\langle u,x\rangle_A}{\langle u,u\rangle_A}" />
 
-Residual proyeksi tersebut ortogonal terhadap <InlineMath math="u" /> dalam geometri <InlineMath math="A" />:
+**Residual proyeksi** tersebut ortogonal terhadap <InlineMath math="u" /> dalam geometri <InlineMath math="A" />:
 
 <BlockMath math="\left\langle u,x-\operatorname{proj}^{A}_{u}(x)\right\rangle_A=0" />
 
 Prinsip yang sama digunakan dalam kuadrat terkecil berbobot. Residual hasil pencocokan ortogonal terhadap ruang model menurut produk dalam yang dipilih.
+
+Dengan <InlineMath math="A" /> yang sama, proyeksikan <InlineMath math="x=e_2" /> pada <InlineMath math="u=e_1" />. Koefisien berbobotnya <InlineMath math="1/2" />, sedangkan koefisien Euklidesnya nol:
+
+<BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
 
 ## Menuliskan Hasil Kali Dalam sebagai Matriks
 
@@ -114,4 +118,4 @@ Untuk vektor <InlineMath math="v_1,\ldots,v_k" />, matriks Gram memiliki entri
 
 <BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
 
-Matriks Gram bersifat Hermitian semidefinit positif. Matriks ini menjadi definit positif tepat ketika semua vektor bebas linear. Setiap entrinya mencatat produk dalam dari sepasang vektor, sehingga kita dapat memeriksa sudut dan kebebasan linear.
+Matriks Gram bersifat Hermitian semidefinit positif. Matriks ini menjadi definit positif tepat ketika semua vektor **bebas linear**. Setiap entrinya mencatat produk dalam dari sepasang vektor, sehingga kita dapat memeriksa sudut dan kebebasan linear.

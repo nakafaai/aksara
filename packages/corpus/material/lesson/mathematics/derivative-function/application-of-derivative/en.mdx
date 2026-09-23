@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Using Derivatives to Analyze Motion
 
-Derivatives describe how a quantity **changes**. Motion gives a concrete example: from an object's position function, we can determine its instantaneous velocity and then its acceleration.
+A derivative gives the <Highlight>rate of change of a quantity</Highlight> with respect to its reference variable. From position as a function of time, successive differentiation gives instantaneous velocity and acceleration. Velocity measures position change per unit time, while acceleration measures velocity change per unit time.
 
 ## Instantaneous Velocity from Position
 
@@ -34,6 +34,28 @@ At <InlineMath math="t = 1 \text{ second}" />, the velocity is <InlineMath math=
 
 For <InlineMath math="0<t<1" />, both factors are negative, so <InlineMath math="v(t)>0" />. For <InlineMath math="1<t<3" />, the factors have opposite signs, so <InlineMath math="v(t)<0" />. The velocity therefore changes sign at <InlineMath math="t=1" />, which proves that the particle reverses direction there.
 
+The velocity graph shows a **change of direction** where it crosses the time axis. On the displayed interval, the curve crosses at <InlineMath math="t=1" /> and <InlineMath math="t=3" />. Compare the velocity signs before and after each crossing.
+
+<LineEquation
+  title="Velocity Signs and Direction of Motion"
+  description="The horizontal axis gives time in seconds and the vertical axis gives velocity in meters per second. Below the time axis, the position is decreasing."
+  data={[{
+    points: Array.from({ length: 81 }, (_, i) => { const t = i / 20; return { x: t, y: 3 * t * t - 12 * t + 9, z: 0 }; }),
+    smooth: false,
+    color: "#9333ea",
+    showPoints: true,
+    pointIndices: [20, 60],
+    labels: [
+      { at: 20, text: <InlineMath math="t=1" />, offset: [-0.7, 0.5, 0] },
+      { at: 60, text: <InlineMath math="t=3" />, offset: [0.7, 0.5, 0] },
+      { at: 40, text: <InlineMath math="v(2)=-3" />, offset: [0, -0.8, 0] },
+    ],
+  }]}
+  showZAxis={false}
+  cameraTarget={[2, 2.5, 0]}
+  cameraPosition={[2, 2.5, 20]}
+/>
+
 ## Acceleration from Velocity
 
 Velocity can itself change, as when a car speeds up or brakes. Its rate of change is called **acceleration**. The acceleration <InlineMath math="a(t)" /> is <Highlight>the first derivative of velocity</Highlight> and therefore the second derivative of position.
@@ -42,7 +64,7 @@ Velocity can itself change, as when a car speeds up or brakes. Its rate of chang
 
 ### Determining the Acceleration Function
 
-Continuing with the previous particle example, we already have the velocity function <InlineMath math="v(t) = 3t^2 - 12t + 9" />. We can find its acceleration function by differentiating the function <InlineMath math="v(t)" />.
+Continuing with the previous particle example, we already have the velocity function <InlineMath math="v(t) = 3t^2 - 12t + 9" />. We can find its acceleration function by **differentiating the function** <InlineMath math="v(t)" />.
 
 <MathContainer>
   <BlockMath math="a(t) = \frac{d}{dt}(3t^2 - 12t + 9)" />
@@ -84,4 +106,4 @@ So, the ball reaches its peak at <InlineMath math="5 \text{ seconds}" />. To fin
 
 <BlockMath math="\begin{aligned} h(5) &amp;= 50(5) - 5(5)^2 \\ &amp;= 250 - 125 \\ &amp;= 125 \end{aligned}" />
 
-The maximum height is **<InlineMath math="125 \text{ meters}" />**. To find a maximum height, differentiate the position function, find when the velocity is zero while the object is moving, and substitute that time into the original height function.
+The ball’s **maximum height** is <InlineMath math="125 \text{ meters}" />. Velocity is positive before <InlineMath math="t=5" /> and negative afterward within <InlineMath math="0<t<10" />. Height therefore increases up to the peak and then decreases. This sign change verifies that the stationary point is a maximum.

@@ -5,6 +5,11 @@ export const metadata = {
   dateModified: "2026-09-01",
 };
 
-**Serasah merupakan arus keluar jika hanya tumbuhan yang dihitung, tetapi menjadi perpindahan internal jika tumbuhan dan tanah ditempatkan dalam satu batas sistem.**
+Serasah memindahkan karbon **dari tumbuhan ke tanah**. Arah alirannya tetap sama, tetapi klasifikasinya berubah ketika komponen sistem berubah.
 
-Bayangkan kita menggambar kotak hanya mengelilingi tumbuhan. Enam unit serasah menyeberangi kotak itu, jadi nilainya keluar dari cadangan tumbuhan. Jika kotaknya diperluas hingga mencakup tanah, arus yang sama berpindah di dalam kotak dan tidak mengurangi total gabungan. Angkanya tidak berubah, tetapi cara menghitungnya berubah karena pertanyaan yang diajukan juga berubah.
+| Sistem yang dihitung | Posisi tumbuhan | Posisi tanah | Kedudukan serasah |
+| --- | --- | --- | --- |
+| Tumbuhan saja | Di dalam | Di luar | Arus keluar sebesar enam unit |
+| Tumbuhan dan tanah | Di dalam | Di dalam | Perpindahan internal sebesar enam unit |
+
+Pada sistem gabungan, enam unit tidak hilang dari gabungan ketika pindah ke tanah. Itu tidak berarti semua aliran tanah boleh diabaikan. Penguraian ke atmosfer dan aliran ke perairan tetap keluar dari gabungan.

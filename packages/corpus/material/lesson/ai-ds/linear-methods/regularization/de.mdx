@@ -15,11 +15,11 @@ Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> und <InlineMath math="b\in
 
 Ein Minimierer existiert immer, auch wenn die Gleichungen <InlineMath math="Ax=b" /> nicht konsistent sind. Bei einer rangdefizienten Matrix <InlineMath math="A" /> muss dieser Minimierer nicht eindeutig sein. Ist <InlineMath math="A" /> nahezu rangdefizient, können kleine Störungen in <InlineMath math="b" /> große Änderungen der angepassten Parameter verursachen.
 
-<Highlight>Die Singulärwertzerlegung erklärt diese Verstärkung.</Highlight> Für <InlineMath math="A=U\Sigma V^T" /> enthält die Ausgleichslösung Faktoren <InlineMath math="1/\sigma_i" />. Eine Datenkomponente in Richtung eines sehr kleinen Singulärwerts <InlineMath math="\sigma_i" /> wird daher stark vergrößert.
+Die **Singulärwertzerlegung** erklärt die Verstärkung. In der Ausgleichslösung kleinster Norm wird jede Datenkomponente durch den zugehörigen **positiven Singulärwert** geteilt. Singulärwerte null tragen über die Pseudoinverse null bei. Ein sehr kleiner positiver Singulärwert verstärkt deshalb Fehler in seiner Datenrichtung.
 
 ## Problem nach Tikhonov
 
-Die Tikhonov-Regularisierung wägt Datentreue gegen eine gewählte Vorstellung plausibler Parameter ab:
+Die Tikhonov-Regularisierung wägt **Datentreue** gegen eine gewählte Vorstellung plausibler Parameter ab:
 
 Minimiere für <InlineMath math="\alpha>0" />:
 
@@ -43,7 +43,7 @@ Die Ableitung dieser Zielfunktion nach <InlineMath math="x" /> liefert die Norma
 
 <BlockMath math="(A^TA+\alpha^2L^TL)x =A^Tb +\alpha^2L^TLx_0" />
 
-Diese Normalgleichung hat genau dann eine eindeutige Lösung, wenn die folgende Bedingung erfüllt ist:
+Diese Normalgleichung hat genau dann eine **eindeutige Lösung**, wenn die folgende Bedingung erfüllt ist:
 
 <BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
 
@@ -58,7 +58,7 @@ Für <InlineMath math="L=I" /> und <InlineMath math="x_0=0" /> sei <InlineMath m
 <BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
 </MathContainer>
 
-Ist <InlineMath math="\sigma_i" /> deutlich größer als <InlineMath math="\alpha" />, liegt der Faktor <InlineMath math="\phi_i(\alpha)" /> nahe bei <InlineMath math="1" />. Die Regularisierung verändert den zugehörigen Anteil der Lösung daher kaum. Ist <InlineMath math="\sigma_i" /> deutlich kleiner als <InlineMath math="\alpha" />, liegt der Faktor nahe bei <InlineMath math="0" /> und der zugehörige Anteil wird kleiner. So führt ein kleiner Messfehler nicht zu einer großen Änderung der angepassten Lösung.
+Ist <InlineMath math="\sigma_i" /> deutlich größer als <InlineMath math="\alpha" />, liegt der Faktor <InlineMath math="\phi_i(\alpha)" /> nahe bei <InlineMath math="1" />. Die Regularisierung verändert den **zugehörigen Anteil** der Lösung daher kaum. Ist <InlineMath math="\sigma_i" /> deutlich kleiner als <InlineMath math="\alpha" />, liegt der Faktor nahe bei <InlineMath math="0" /> und der zugehörige Anteil wird kleiner. So führt ein kleiner Messfehler nicht zu einer großen Änderung der angepassten Lösung.
 
 ## Gerechnetes Sensitivitätsbeispiel
 
@@ -78,11 +78,20 @@ Mit <InlineMath math="L=I" />, <InlineMath math="x_0=0" /> und <InlineMath math=
 <BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
 </MathContainer>
 
-Dieselbe Störung um <InlineMath math="0{,}01" /> verändert den zweiten Parameter nun nur um <InlineMath math="0{,}02" />. Die Schätzung ist <Highlight>stabiler, aber auch verzerrt</Highlight>, weil <InlineMath math="0{,}4" /> weiter vom unregularisierten Wert <InlineMath math="2" /> entfernt liegt.
+Dieselbe Störung um <InlineMath math="0{,}01" /> verändert den zweiten Parameter nun nur um <InlineMath math="0{,}02" />. Die Schätzung ist <Highlight>weniger empfindlich gegenüber dieser Störung</Highlight>. Zugleich zieht der Strafterm den zweiten Parameter zum Referenzwert null. Der Unterschied zur unregularisierten Schätzung allein verrät nicht, welcher Wert näher am unbekannten wahren Parameter liegt.
+
+Vergleiche den zweiten Parameter vor und nach derselben Datenänderung. Der erste Parameter bleibt bei dieser Störung unverändert.
+
+| Verfahren | Vorher | Nachher | Änderung |
+| --- | --- | --- | --- |
+| Unregularisiert | <InlineMath math="2" /> | <InlineMath math="21/10" /> | <InlineMath math="1/10" /> |
+| <InlineMath math="\alpha=1/5" /> | <InlineMath math="2/5" /> | <InlineMath math="21/50" /> | <InlineMath math="1/50" /> |
+
+<BlockMath math="\Delta x_2=\frac{(1/10)(1/100)}{(1/10)^2+(1/5)^2}=\frac{1/1000}{1/20}=\frac1{50}" />
 
 ## Wahl des Regularisierungsparameters
 
-Es gibt keinen universell besten Wert für <InlineMath math="\alpha" />. Er hängt vom Rauschniveau, von der Parameterskalierung, von der Strafe und vom Zweck des Modells ab.
+Es gibt **keinen universell besten Wert** für <InlineMath math="\alpha" />. Er hängt vom Rauschniveau, von der Parameterskalierung, von der Strafe und vom Zweck des Modells ab.
 
 | Methode | Geeignete Evidenz | Entscheidung |
 | --- | --- | --- |
@@ -101,8 +110,8 @@ Eine Diagonalmatrix <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\ome
 
 Ein größeres <InlineMath math="\omega_i" /> bedeutet eine stärkere Schrumpfung in Richtung <InlineMath math="x_{0i}" />. Wähle die Gewichte anhand der Einheiten und konkreter Vorinformationen, etwa der plausiblen Skala jedes Parameters oder einer erwarteten glatten Änderung zwischen benachbarten Parametern. Die Schwierigkeit einer Schätzung reicht als Begründung nicht aus.
 
-Eine Gleichung wie <InlineMath math="x_i=c" /> sollte als ausdrückliche Gleichungsnebenbedingung modelliert werden, wenn sie exakt gelten muss. Schranken wie <InlineMath math="l_i\le x_i\le u_i" /> erfordern ein beschränktes Ausgleichsproblem. Eine extrem große Strafe kann eine Gleichung annähern, ersetzt aber keine exakte Nebenbedingung und kann die numerische Skalierung verschlechtern.
+Eine Gleichung wie <InlineMath math="x_i=c" /> sollte als **ausdrückliche Gleichungsnebenbedingung** modelliert werden, wenn sie exakt gelten muss. Schranken wie <InlineMath math="l_i\le x_i\le u_i" /> erfordern ein beschränktes Ausgleichsproblem. Eine extrem große Strafe kann eine Gleichung annähern, ersetzt aber keine exakte Nebenbedingung und kann die numerische Skalierung verschlechtern.
 
 ## Das erweiterte System stabil lösen
 
-Verwende die Normalgleichung, um den regularisierten Schätzer herzuleiten und den Einfluss von <InlineMath math="\alpha" /> und <InlineMath math="L" /> zu untersuchen. Bilde <InlineMath math="A^TA" /> für die numerische Berechnung nicht ausdrücklich, weil dieser Schritt die Konditionszahl quadriert. Löse stattdessen das erweiterte Ausgleichssystem mit <InlineMath math="\mathrm{QR}" /> oder <InlineMath math="\mathrm{SVD}" />. Dokumentiere <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm, damit andere die Rechnung wiederholen und die Abwägung zwischen Datentreue und Strafe prüfen können.
+Verwende die Normalgleichung, um den regularisierten Schätzer herzuleiten und den Einfluss von <InlineMath math="\alpha" /> und <InlineMath math="L" /> zu untersuchen. Bilde <InlineMath math="A^TA" /> für die numerische Berechnung nicht ausdrücklich, weil dieser Schritt die Konditionszahl quadriert. Löse stattdessen das **erweiterte Ausgleichssystem** mit <InlineMath math="\mathrm{QR}" /> oder <InlineMath math="\mathrm{SVD}" />. Dokumentiere <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm, damit andere die Rechnung wiederholen und die Abwägung zwischen Datentreue und Strafe prüfen können.

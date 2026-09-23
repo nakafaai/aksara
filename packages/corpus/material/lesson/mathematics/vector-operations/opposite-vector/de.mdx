@@ -15,7 +15,7 @@ Beschreibt <InlineMath math="\vec{v}" /> eine Verschiebung von links nach rechts
 
 ## Formel für einen Gegenvektor
 
-Die Multiplikation mit dem Skalar <InlineMath math="-1" /> kehrt das Vorzeichen jeder Komponente um:
+Die Multiplikation mit dem Skalar <InlineMath math="-1" /> kehrt **das Vorzeichen jeder Komponente** um:
 
 <BlockMath math="-\vec{v}=(-1)\vec{v}" />
 
@@ -37,32 +37,45 @@ Sein Betrag ist:
 
 <BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
 
-Für den Gegenvektor multiplizieren wir jede Komponente mit <InlineMath math="-1" />:
+Für den Gegenvektor multiplizieren wir **jede Komponente** mit <InlineMath math="-1" />:
 
 <BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
 
 Beide Vektoren haben den Betrag <InlineMath math="10" />, ihre Richtungen unterscheiden sich jedoch um <InlineMath math="180^\circ" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[0.5, 0.3, 23]}
+  cameraTarget={[0.5, 0.3, 0]}
   title="Ein Vektor und sein Gegenvektor"
   description={<>Die Vektoren <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="-\overrightarrow{AB}" /> sind gleich lang und zeigen in entgegengesetzte Richtungen.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#ea580c",
-      label: <InlineMath math="\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [-6, -8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="-\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 10, 12]}
 />
 
 ## Eigenschaften von Gegenvektoren
@@ -73,7 +86,7 @@ Beide Vektoren haben den Betrag <InlineMath math="10" />, ihre Richtungen unters
 
 2. Bei einem Vektor ungleich null unterscheiden sich ihre Richtungen um <InlineMath math="180^\circ" />.
 
-3. Ihre Summe ist der Nullvektor:
+3. Ihre Summe ist der **Nullvektor**:
 
    <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
 
@@ -95,37 +108,50 @@ Gegenvektoren treten immer dann auf, wenn eine Richtung umgekehrt wird:
 
 ## Einheitsvektoren und Gegenrichtung
 
-Ein Einheitsvektor entsteht aus einem Vektor ungleich null, indem du ihn durch seine Länge teilst. Eine Multiplikation mit <InlineMath math="-1" /> kehrt seine Richtung um, während die Gerade dieselbe bleibt.
+Ein Einheitsvektor entsteht aus einem Vektor ungleich null, indem du ihn **durch seine Länge** teilst. Eine Multiplikation mit <InlineMath math="-1" /> kehrt seine Richtung um, während die Gerade dieselbe bleibt.
 
 ### Einheitsvektor
 
-Für einen Vektor <InlineMath math="\vec{v}" /> ungleich null ist der zugehörige Einheitsvektor:
+Für einen Vektor <InlineMath math="\vec{v}" /> **ungleich null** ist der zugehörige Einheitsvektor:
 
 <BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
 
 Er hat den Betrag <InlineMath math="1" /> und zeigt in dieselbe Richtung wie <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[0.1, 0.1, 3.2]}
+    cameraTarget={[0.1, 0.1, 0]}
     title="Entgegengesetzte Einheitsrichtungen"
     description="Die beiden Einheitsvektoren sind gleich lang und zeigen in entgegengesetzte Richtungen."
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
-        color: "#d97706",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [-0.6, -0.8, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="-\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[12, 10, 12]}
   />
 </ContentBlock>
 
@@ -135,4 +161,4 @@ Der Einheitsvektor in Gegenrichtung ist <InlineMath math="-\hat{v}" />. Multipli
 
 <BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
 
-Damit sind die Rollen klar getrennt: <InlineMath math="|\vec{v}|" /> bestimmt die Länge, während <InlineMath math="-\hat{v}" /> die entgegengesetzte Richtung festlegt.
+Damit sind die Rollen klar getrennt: <InlineMath math="|\vec{v}|" /> bestimmt die Länge, während <InlineMath math="-\hat{v}" /> die **entgegengesetzte Richtung** festlegt.

@@ -13,7 +13,7 @@ Kita mulai dari persamaan berikut:
 
 <BlockMath math="x^2+1=0" />
 
-Agar persamaan ini terpenuhi, <InlineMath math="x^2" /> harus sama dengan <InlineMath math="-1" />. <Highlight>Tidak ada bilangan real yang kuadratnya negatif, sehingga persamaan tersebut tidak mempunyai solusi real.</Highlight> Kita memperluas sistem bilangan dengan satuan imajiner <InlineMath math="i" /> yang memenuhi definisi berikut:
+Agar persamaan ini terpenuhi, <InlineMath math="x^2" /> harus sama dengan <InlineMath math="-1" />. Kuadrat bilangan real **tidak pernah negatif**, sehingga persamaan tersebut tidak mempunyai solusi real. Kita memperluas sistem bilangan dengan satuan imajiner <InlineMath math="i" /> yang memenuhi definisi berikut:
 
 <BlockMath math="i^2=-1" />
 
@@ -44,9 +44,7 @@ Karena <InlineMath math="D<0" />, tulis <InlineMath math="D=-|D|" />. Dengan dem
 
 ## Menentukan dan Mengelompokkan Akar Tak Real
 
-Begitu diskriminannya negatif, kamu meninggalkan bilangan real dan memakai <InlineMath math="i" />. Kedua akarnya menjadi pasangan konjugat yang jumlah dan hasil kalinya tetap real.
-
-Diskriminan negatif menentukan bentuk kedua akar tak real dan menunjukkan bahwa keduanya membentuk pasangan konjugat.
+Untuk menghitung akar saat diskriminan negatif, ambil akar kuadrat nilai mutlak diskriminan terlebih dahulu, lalu sertakan faktor <InlineMath math="i" />. Tanda tambah dan kurang menghasilkan dua akar konjugat, dengan **bagian real yang sama** dan bagian imajiner berlawanan.
 
 ### Menentukan Dua Akar Tak Real
 
@@ -54,7 +52,7 @@ Selesaikan
 
 <BlockMath math="x^2+4x+5=0" />
 
-Koefisiennya adalah <InlineMath math="a=1" />, <InlineMath math="b=4" />, dan <InlineMath math="c=5" />. Hitung diskriminannya terlebih dahulu:
+Koefisiennya adalah <InlineMath math="a=1" />, <InlineMath math="b=4" />, dan <InlineMath math="c=5" />. Hitung **diskriminannya** terlebih dahulu:
 
 <BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
 
@@ -71,10 +69,7 @@ Jadi,
 
 Kita dapat memeriksa salah satu akar secara langsung:
 
-<MathContainer>
-  <BlockMath math="(-2+i)^2+4(-2+i)+5" />
-  <BlockMath math="=4-4i+i^2-8+4i+5=0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
 
 Akar lainnya diperoleh dengan mengubah tanda bagian imajinernya.
 
@@ -84,7 +79,7 @@ Perhatikan persamaan
 
 <BlockMath math="2x^2+x+3=0" />
 
-Di sini <InlineMath math="a=2" />, <InlineMath math="b=1" />, dan <InlineMath math="c=3" />. Diskriminannya adalah
+Di sini <InlineMath math="a=2" />, <InlineMath math="b=1" />, dan <InlineMath math="c=3" />. **Diskriminannya** adalah
 
 <BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
 
@@ -105,7 +100,24 @@ Persamaan pada contoh pertama dapat ditulis ulang sebagai
 
 <BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
 
-Untuk setiap <InlineMath math="x" /> real, nilai <InlineMath math="(x+2)^2" /> tidak negatif, sehingga <InlineMath math="f(x)\ge1" />. Grafik selalu berada di atas sumbu <InlineMath math="x" /> dan tidak memotongnya. Akar kompleks bukan titik potong tambahan pada grafik real ini. Akar tersebut berada dalam sistem bilangan yang lebih luas.
+Untuk setiap <InlineMath math="x" /> real, nilai <InlineMath math="(x+2)^2" /> **tidak negatif**, sehingga <InlineMath math="f(x)\ge1" />. Grafik selalu berada di atas sumbu <InlineMath math="x" /> dan tidak memotongnya. Akar kompleks bukan titik potong tambahan pada grafik real ini. Akar tersebut berada dalam sistem bilangan yang lebih luas.
+
+
+<MathVisual
+  title="Parabola Tanpa Titik Potong Sumbu x"
+  description="Puncak parabola berada di titik (-2,1). Geser atau perbesar grafik untuk memeriksa bahwa nilai terendahnya satu, bukan nol."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -2, y: 1 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: -2, y: 1 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="(-2,1)" /> }}
+/>
 
 ## Mengapa Akar Membentuk Pasangan Konjugat
 
@@ -113,11 +125,11 @@ Untuk koefisien real, rumus kuadrat memuat
 
 <BlockMath math="-b\pm i\sqrt{|D|}" />
 
-Kedua pilihan tanda hanya mengubah bagian imajiner. Hasilnya berbentuk <InlineMath math="u+vi" /> dan <InlineMath math="u-vi" /> yang disebut konjugat kompleks. Jika salah satunya merupakan akar polinom berkoefisien real, konjugatnya juga merupakan akar.
+Kedua pilihan tanda hanya mengubah **bagian imajiner**. Hasilnya berbentuk <InlineMath math="u+vi" /> dan <InlineMath math="u-vi" /> yang disebut konjugat kompleks. Jika salah satunya merupakan akar polinom berkoefisien real, konjugatnya juga merupakan akar.
 
 ## Latihan
 
-Soal ini meminta penyelesaian dalam bilangan kompleks, sehingga akar dari bilangan negatif boleh dihitung. Tuliskan <InlineMath math="i" /> secara eksplisit lalu kumpulkan bagian real dan imajiner di akhir.
+Soal ini meminta penyelesaian dalam **bilangan kompleks**, sehingga akar dari bilangan negatif boleh dihitung. Tuliskan <InlineMath math="i" /> secara eksplisit lalu kumpulkan bagian real dan imajiner di akhir.
 
 Selesaikan <InlineMath math="2x^2+2x+5=0" /> dalam bilangan kompleks.
 
@@ -139,3 +151,10 @@ Jadi, pasangan akar konjugatnya adalah
 <BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{dan} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
 
 Jumlah kedua akar adalah <InlineMath math="-1=-\frac ba" /> dan hasil kalinya <InlineMath math="\frac52=\frac ca" />. Keduanya sesuai dengan rumus Vieta sehingga hasilnya terkonfirmasi.
+
+Saat menjumlahkan konjugat, **bagian imajiner saling menghapus**. Saat mengalikannya, gunakan selisih dua kuadrat dan <InlineMath math="i^2=-1" />:
+
+<MathContainer>
+  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
+  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+</MathContainer>

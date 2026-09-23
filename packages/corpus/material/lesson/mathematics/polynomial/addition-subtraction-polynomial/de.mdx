@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Addition und Subtraktion von Polynomen",
   description: "Addiere und subtrahiere Polynome mit gleichartigen Termen, übersichtlichen Rechenschemata und einer grafischen Deutung.",
@@ -46,19 +44,7 @@ Bei der Addition zweier Polynome werden <Highlight>die Koeffizienten gleichartig
 
 Bestimme die Summe <InlineMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />.
 
-<BlockMath math="\begin{aligned} &amp;(2x^3 + 7x^2 + 3x + 5) \\ &amp;\quad{}+ (6x^3 + 2x^2 + 4x + 1) \end{aligned}" />
-  Löse die Klammern auf:
-
-<BlockMath math="\begin{aligned}  &amp;=2x^3+7x^2+3x+5 \\ &amp;\quad{}+6x^3+2x^2+4x+1 \end{aligned}" />
-  Ordne die gleichartigen Terme zusammen:
-
-<BlockMath math="\begin{aligned}  &amp;=(2x^3+6x^3)+(7x^2+2x^2) \\ &amp;\quad{}+(3x+4x)+(5+1) \end{aligned}" />
-  Wende das Distributivgesetz an:
-
-<BlockMath math="\begin{aligned}  &amp;=(2+6)x^3+(7+2)x^2 \\ &amp;\quad{}+(3+4)x+(5+1) \end{aligned}" />
-  Das Ergebnis lautet:
-
-<BlockMath math="= 8x^3 + 9x^2 + 7x + 6" />
+<BlockMath math="\begin{aligned}(2x^3+7x^2+3x+5)+(6x^3+2x^2+4x+1)&amp;=(2+6)x^3+(7+2)x^2+(3+4)x+(5+1) \\ &amp;=8x^3+9x^2+7x+6\end{aligned}" />
 
 ## Polynomsubtraktion
 
@@ -75,24 +61,7 @@ Bei der Subtraktion **wechseln zuerst alle Terme des zweiten Polynoms ihr Vorzei
 
 Bestimme die Differenz <InlineMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />.
 
-<BlockMath math="\begin{aligned} &amp;(9x^3 + 4x^2 + 6x + 5) \\ &amp;\quad{}- (2x^3 + 3x^2 + 3x + 4) \end{aligned}" />
-  Ändere die Vorzeichen und löse die Klammern auf:
-
-<BlockMath math="\begin{aligned}  &amp;=9x^3+4x^2+6x+5 \\ &amp;\quad{}-2x^3-3x^2-3x-4 \end{aligned}" />
-  Ordne die gleichartigen Terme zusammen:
-
-<BlockMath math="\begin{aligned}  &amp;=(9x^3-2x^3)+(4x^2-3x^2) \\ &amp;\quad{}+(6x-3x)+(5-4) \end{aligned}" />
-  Wende das Distributivgesetz an:
-
-<BlockMath math="\begin{aligned}  &amp;=(9-2)x^3+(4-3)x^2 \\ &amp;\quad{}+(6-3)x+(5-4) \end{aligned}" />
-  Das Ergebnis lautet:
-
-<MathContainer>
-  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1" />
-  <BlockMath math="= 7x^3 + x^2 + 3x + 1" />
-</MathContainer>
-
-Merke: Beim Subtrahieren ändert das Minus vor der Klammer das Vorzeichen _jedes_ Terms in dieser Klammer.
+<BlockMath math="\begin{aligned}(9x^3+4x^2+6x+5)-(2x^3+3x^2+3x+4)&amp;=9x^3+4x^2+6x+5-2x^3-3x^2-3x-4 \\ &amp;=(9-2)x^3+(4-3)x^2+(6-3)x+(5-4) \\ &amp;=7x^3+x^2+3x+1\end{aligned}" />
 
 ## Vertikale Methode
 
@@ -101,7 +70,7 @@ Polynome lassen sich auch untereinander schreiben, ähnlich wie bei der schriftl
 **Schritte:**
 
 1.  Schreibe beide Polynome untereinander.
-2.  Ordne gleichartige Terme in derselben Spalte an.
+2.  Ordne **gleichartige Terme in derselben Spalte** an.
 3.  Fehlt ein Term, lasse die Stelle frei oder ergänze den Koeffizienten <InlineMath math="0" />.
 4.  Addiere oder subtrahiere die Koeffizienten spaltenweise.
 
@@ -131,9 +100,7 @@ Die horizontale Methode gruppiert gleichartige Terme zunächst innerhalb jedes P
 
 ## Grafische Addition und Subtraktion von Polynomfunktionen
 
-Addition und Subtraktion von Polynomfunktionen lassen sich algebraisch und an ihren Graphen verstehen.
-
-Angenommen, wir haben drei Graphen von Polynomfunktionen:
+Beim Zusammenfassen von Graphen bleibt **die Eingabe gleich**. Addiere oder subtrahiere nur die Funktionswerte an dieser waagerechten Position. Die waagerechten Koordinaten werden nicht addiert. Die folgenden drei Funktionen zeigen ein lineares, ein quartisches und ein kubisches Beispiel.
 
 <ContentStack>
   <LineEquation
@@ -143,17 +110,15 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
       </>
     }
     description={<>Lineare Funktion vom Grad <InlineMath math="1" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
-        points: [
-          { x: -12, y: -11, z: 0 },
-          ...Array.from({ length: 51 }, (_, i) => {
-            const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
             return { x, y: x + 1, z: 0 };
           }),
-          { x: 10, y: 11, z: 0 },
-        ],
         smooth: false,
         color: "#0284c7",
         showPoints: false,
@@ -167,12 +132,14 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
       </>
     }
     description={<>Funktion vom Grad <InlineMath math="4" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
         }),
         color: "#65a30d",
@@ -187,12 +154,14 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
       </>
     }
     description={<>Funktion vom Grad <InlineMath math="3" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 261 }, (_, i) => {
-          const x = (i - 130) / 40;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
         }),
         color: "#d97706",
@@ -204,23 +173,21 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
 
 ### Skizzierung des Summendiagramms und Differenzdiagramms
 
-Auch ohne die exakten Gleichungen der Funktionen <InlineMath math="f" />, <InlineMath math="g" /> und <InlineMath math="h" /> lässt sich der Graph ihrer Summe, etwa <InlineMath math="f(x) + g(x)" />, oder ihrer Differenz, etwa <InlineMath math="f(x) - g(x)" />, punktweise skizzieren:
+Lies **beide Graphenhöhen bei derselben Eingabe** ab. Bei <InlineMath math="x=1" /> gilt zum Beispiel <InlineMath math="f(1)=2" /> und <InlineMath math="g(1)=-1/2" />. Die Höhe des Summengraphen beträgt daher <InlineMath math="2-1/2=3/2" />, die Höhe des Differenzgraphen <InlineMath math="2-(-1/2)=5/2" />.
 
-1.  Wähle in beiden Graphen dieselben <InlineMath math="x" />-Werte.
-2.  Lies zu jedem <InlineMath math="x" /> die beiden <InlineMath math="y" />-Werte ab. Nenne sie <InlineMath math="y_f = f(x)" /> und <InlineMath math="y_g = g(x)" />.
-3.  **Für die Summe <InlineMath math="f(x) + g(x)" />:** Berechne <InlineMath math="y_{\text{neu}} = y_f + y_g" />.
-4.  **Für die Differenz <InlineMath math="f(x) - g(x)" />:** Berechne <InlineMath math="y_{\text{neu}} = y_f - y_g" />.
-5.  Trage den neuen Punkt <InlineMath math="(x, y_{\text{neu}})" /> ein.
-6.  Wiederhole das Verfahren für weitere <InlineMath math="x" />-Werte.
-7.  Verbinde die neuen Punkte mit einer glatten Kurve.
+| Eingabe | Erster Wert | Zweiter Wert | Summe | Differenz |
+| --- | --- | --- | --- | --- |
+| -2 | -1 | 1 | 0 | -2 |
+| -1 | 0 | -0.5 | -0.5 | 0.5 |
+| 0 | 1 | 1 | 2 | 0 |
+| 1 | 2 | -0.5 | 1.5 | 2.5 |
+| 2 | 3 | 1 | 4 | 2 |
 
-**Warum funktioniert das?**
-
-Bei der Addition oder Subtraktion von Funktionen werden für jeden gemeinsamen Eingabewert <InlineMath math="x" /> genau die zugehörigen Ausgabewerte <InlineMath math="y" /> addiert oder subtrahiert.
+Jeder neue Punkt behält dieselbe Eingabe. Verbinde die Punkte zu einer Skizze. Da die Tabelle nur wenige Eingaben enthält, bleibt der Verlauf dazwischen eine Näherung, bis du weitere Punkte oder die Funktionsgleichung geprüft hast.
 
 ### Beispielskizzen
 
-Hier sind Beispielskizzen der Diagramme, die sich aus der Summe <InlineMath math="f(x) + g(x)" /> und der Differenz <InlineMath math="f(x) - g(x)" /> ergeben, die durch vertikales Addieren oder Subtrahieren der <InlineMath math="y" />-Werte für jedes <InlineMath math="x" /> erhalten werden.
+Die folgenden Graphen zeigen **Ausgangsfunktionen und Ergebnis im selben Koordinatensystem**. Vergleiche die drei Höhen bei der Eingabe eins. Addition und Subtraktion ergeben unterschiedliche Kurven, obwohl die Ausgangsfunktionen gleich bleiben.
 
 <ContentStack>
   <LineEquation
@@ -237,12 +204,16 @@ Hier sind Beispielskizzen der Diagramme, die sich aus der Summe <InlineMath math
         <InlineMath math="x + 1 + 0{,}5x^4 - 2x^2 + 1" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 140) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#7c3aed",
@@ -264,12 +235,16 @@ Hier sind Beispielskizzen der Diagramme, die sich aus der Summe <InlineMath math
         <InlineMath math="x + 1 - (0{,}5x^4 - 2x^2 + 1)" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 130) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#db2777",
@@ -290,23 +265,14 @@ Gegeben sind
   <BlockMath math="B(x)=-x^3+6x^2-3x+7" />
 </MathContainer>
 
-Bestimme <InlineMath math="A(x)+B(x)" /> und <InlineMath math="A(x)-B(x)" />.
+Bestimme **Summe und Differenz** <InlineMath math="A(x)+B(x)" /> und <InlineMath math="A(x)-B(x)" />.
 
 ### Ausführliche Lösung
 
-Bei der Addition fassen wir die Koeffizienten gleicher Potenzen zusammen:
+Bei der Addition fassen wir die **Koeffizienten gleicher Potenzen** zusammen:
 
-<MathContainer>
-  <BlockMath math="A(x)+B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=(3-1)x^3+(-2+6)x^2 \\ &amp;\quad{}+(5-3)x+(-4+7) \end{aligned}" />
-  <BlockMath math="=2x^3+4x^2+2x+3" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)+B(x)&amp;=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7) \\ &amp;=2x^3+4x^2+2x+3\end{aligned}" />
 
 Bei der Subtraktion verteilen wir zuerst das Minuszeichen auf jeden Term von <InlineMath math="B(x)" /> und fassen danach gleichartige Terme zusammen:
 
-<MathContainer>
-  <BlockMath math="A(x)-B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=3x^3-2x^2+5x \\ &amp;\quad{}-4-(-x^3+6x^2-3x+7) \end{aligned}" />
-  <BlockMath math="\begin{aligned}  &amp;=(3+1)x^3+(-2-6)x^2 \\ &amp;\quad{}+(5+3)x+(-4-7) \end{aligned}" />
-  <BlockMath math="=4x^3-8x^2+8x-11" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)-B(x)&amp;=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7) \\ &amp;=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7) \\ &amp;=4x^3-8x^2+8x-11\end{aligned}" />

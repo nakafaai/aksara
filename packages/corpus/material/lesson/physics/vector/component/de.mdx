@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vektorkomponenten",
   description:
@@ -24,13 +22,15 @@ In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe se
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
-Dabei ist <InlineMath math="\hat{i}" /> der Einheitsvektor in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+Dabei ist <InlineMath math="\hat{i}" /> der **Einheitsvektor** in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+
+### Den Betrag aus zwei Komponenten berechnen
 
 Beispielsweise bedeutet <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" />, dass der Vektor <InlineMath math="6" /> Einheiten in positive <InlineMath math="x" />-Richtung und <InlineMath math="8" /> Einheiten in positive <InlineMath math="y" />-Richtung zeigt.
 
-<BlockMath math="\lvert\vec{A}\rvert=\sqrt{6^2+8^2}=10" />
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
 
-Der Betrag des Vektors folgt aus dem Satz des Pythagoras, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
+Der Betrag des Vektors folgt aus dem **Satz des Pythagoras**, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
 
 ## Komponenten im dreidimensionalen Raum
 
@@ -38,9 +38,11 @@ Im dreidimensionalen Raum benötigt ein Vektor drei Komponenten. Die allgemeine 
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
 
-Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
+Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koordinatenachse**, der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[8, 6, -6]}
+  cameraTarget={[2, 1.5, 1]}
   title={<>Komponenten von <InlineMath math="\vec{A}" /></>}
   description={
     <>
@@ -48,7 +50,7 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath m
       drei zueinander senkrechte Komponenten zerlegt.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const components = [
       [4, 0, 0],
       [0, 3, 0],
@@ -69,48 +71,70 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der <InlineMath m
 
     return [
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.35, 0.55, 0.3],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        at: 1,
+        offset: [0.35, 0.55, 0.3],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[0],
-        to: points[1],
-        color: "#0d9488",
-        label: <InlineMath math="A_x" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: (points[0])[0], y: (points[0])[1], z: (points[0])[2] }, { x: ((points[0])[0]) + 0.5 * (((points[1])[0]) - ((points[0])[0])), y: ((points[0])[1]) + 0.5 * (((points[1])[1]) - ((points[0])[1])), z: ((points[0])[2]) + 0.5 * (((points[1])[2]) - ((points[0])[2])) }, { x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_x" />,
+        at: 1,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[1],
-        to: points[2],
-        color: "#d97706",
-        label: <InlineMath math="A_y" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.55, 0, 0.15],
-      },
+      points: [{ x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }, { x: ((points[1])[0]) + 0.5 * (((points[2])[0]) - ((points[1])[0])), y: ((points[1])[1]) + 0.5 * (((points[2])[1]) - ((points[1])[1])), z: ((points[1])[2]) + 0.5 * (((points[2])[2]) - ((points[1])[2])) }, { x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_y" />,
+        at: 1,
+        offset: [0.55, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[2],
-        to: points[3],
-        color: "#0891b2",
-        label: <InlineMath math="A_z" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.65, -0.25, 0.15],
-      },
+      points: [{ x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }, { x: ((points[2])[0]) + 0.5 * (((points[3])[0]) - ((points[2])[0])), y: ((points[2])[1]) + 0.5 * (((points[3])[1]) - ((points[2])[1])), z: ((points[2])[2]) + 0.5 * (((points[3])[2]) - ((points[2])[2])) }, { x: (points[3])[0], y: (points[3])[1], z: (points[3])[2] }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_z" />,
+        at: 1,
+        offset: [0.65, -0.25, 0.15],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
-  cameraPosition={[8, 6, 9]}
-  cameraTarget={[2, -0.5, 1]}
 />
 
 Die Darstellung setzt die Komponenten nacheinander zusammen: zuerst entlang der <InlineMath math="x" />-Achse, dann entlang der <InlineMath math="y" />-Achse und schließlich entlang der <InlineMath math="z" />-Achse. Der so erreichte Endpunkt stimmt mit dem Endpunkt des Vektors <InlineMath math="\vec{A}" /> überein.
+
+
+### Den Betrag im Raum berechnen
+
+Drehe das Modell, um zu sehen, dass die <InlineMath math="z" />-Komponente **senkrecht auf der <InlineMath math="xy" />-Ebene** steht. Die <InlineMath math="x" />- und <InlineMath math="y" />-Komponenten bilden einen Vektor in dieser Ebene. Für den räumlichen Vektorbetrag kommt die <InlineMath math="z" />-Komponente hinzu.
+
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
+
 
 ## Positive und negative Vorzeichen
 
@@ -129,10 +153,16 @@ Für <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" /> zeigt die Komponente mit d
 Ein Schüler geht <InlineMath math="3\text{ m}" /> nach Osten und anschließend <InlineMath math="4\text{ m}" /> nach Norden. Wird Osten als positive <InlineMath math="x" />-Richtung und Norden als positive <InlineMath math="y" />-Richtung festgelegt, lautet der Verschiebungsvektor:
 
 <MathContainer>
-  <BlockMath math="\vec{s}=3\hat{i}+4\hat{j}" />
-  <BlockMath math="\lvert\vec{s}\rvert=\sqrt{3^2+4^2}=5\text{ m}" />
+  <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
+  <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
 </MathContainer>
 
-Mit Komponenten werden die horizontale und die vertikale Richtung auf ihren jeweiligen Achsen berechnet.
+Die Komponenten einer Verschiebung haben die **Einheit Meter**. Einheitsvektoren geben nur die Richtung an. Deshalb muss die physikalische Einheit auch in der Vektorgleichung stehen.
 
 Aus der Komponentenform ist sofort erkennbar, dass die resultierende Verschiebung zugleich nach Osten und nach Norden zeigt. Ihr Betrag von <InlineMath math="5\text{ m}" /> ergibt sich aus einem rechtwinkligen Dreieck mit den Kathetenlängen <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.
+
+Miss die Richtung der Verschiebung von Osten nach Norden. Beide Komponenten sind positiv, deshalb liegt der Winkel im ersten Quadranten.
+
+<BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53{,}1^\circ\end{aligned}" />
+
+Die Verschiebung zeigt also etwa <InlineMath math="53{,}1^\circ" /> nördlich von Osten.

@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Choosing How to Store Several Values
 
-Choose a collection according to how the program will access and change its data.
+Choose a collection according to how the program will **access and change its data**.
 
 Some collections can contain objects of different types, but each type has its own rules. Dictionary keys and set members, for example, must remain hashable while they are in the collection. The collection type also determines whether its contents can change after creation.
 
@@ -19,19 +19,19 @@ Python provides five common built-in collections:
 - A **string** stores an immutable sequence of characters
 - A **list** stores an ordered sequence whose elements can change
 - A **tuple** stores an ordered sequence whose positions cannot change
-- A **dictionary** stores key-value pairs
+- A **dictionary** stores **key-value pairs**
 - A **set** stores unique members without indices
 
 ## Python Lists
 
-A list preserves element order and allows its contents to change. One list may contain values of different types, although a consistent element shape is usually easier to process.
+A list **preserves element order** and allows its contents to change. One list may contain values of different types, although a consistent element shape is usually easier to process.
 
 Unlike a fixed-size low-level array, a Python list can grow and shrink. It stores references to Python objects, so mutating a nested object can be visible through every reference to that object.
 
 
 ### List Properties
 
-A list has three properties that decide how you work with it. The table names each one and gives a short example.
+Compare **order, mixed types, and mutability** when choosing a list. Ordered means that every element has a position. It does not mean that values are automatically sorted.
 
 | Characteristic | Explanation | Example |
 |---------------|-------------|---------|
@@ -41,7 +41,7 @@ A list has three properties that decide how you work with it. The table names ea
 
 ### Writing a List
 
-A list literal uses square brackets and separates its elements with commas. A list can contain values of different types or other lists.
+A list literal uses **square brackets** and separates its elements with commas. A list can contain values of different types or other lists.
 
 <CodeBlock
   data={[
@@ -49,20 +49,20 @@ A list literal uses square brackets and separates its elements with commas. A li
       language: "python",
       filename: "list_creation.py",
       code: `# Various list types based on data types
-a = [True, False, True]              # Output: [True, False, True] # list of bools
-b = [1, 2, 3]                        # Output: [1, 2, 3] # list of ints
-c = [1.5, 2.5, 3.5]                  # Output: [1.5, 2.5, 3.5] # list of floats
-d = ['red', 'green', 'blue']         # Output: ['red', 'green', 'blue'] # list of strings
+a = [True, False, True]              # Value: [True, False, True]
+b = [1, 2, 3]                        # Value: [1, 2, 3]
+c = [1.5, 2.5, 3.5]                  # Value: [1.5, 2.5, 3.5]
+d = ['red', 'green', 'blue']         # Value: ['red', 'green', 'blue']
 
 # Empty lists
-empty1 = []                          # Output: []
-empty2 = list()                      # Output: []
+empty1 = []                          # Value: []
+empty2 = list()                      # Value: []
 
 # Heterogeneous list (mixed data types)
-mixed = [False, 2, 3.5, 'blue']      # Output: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']      # Value: [False, 2, 3.5, 'blue']
 
 # Nested list
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Output: [1, [2.5, False, 'red'], 3.5, 'blue']`
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Value: [1, [2.5, False, 'red'], 3.5, 'blue']`
     }
   ]}
 />
@@ -104,7 +104,7 @@ print('nested[1][2][1] =', nested[1][2][1])  # Output: nested[1][2][1] = e`
 
 ## Slicing with Stride
 
-Slicing takes part of a list. The step sets the distance between selected elements.
+Slicing takes part of a list. The step sets the **distance between selected elements**.
 
 
 The complete syntax is `list[start:stop:step]`, where:
@@ -141,7 +141,7 @@ Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1,
 
 ## Lists and Strings
 
-Lists provide operations for reading and changing data. Their indexing and slicing syntax matches the syntax used for strings.
+Lists provide operations for reading and changing data. Their **indexing and slicing syntax** matches the syntax used for strings.
 
 <CodeBlock
   data={[
@@ -192,7 +192,10 @@ The main difference is mutability. A string cannot change after creation, while 
         C --> I[remove]
         D --> J[sort]
         D --> K[reverse]
-        D --> L[copy]
+        A --> L[copy]
+        A --> M[Searching]
+        M --> N[index]
+        M --> O[count]
   `}
 />
 
@@ -257,6 +260,25 @@ print('Copied list:', copied)               # Output: Copied list: [0, 1, 2, 4, 
   ]}
 />
 
+The `copy()` method creates a **new outer list**, while nested objects remain shared. Changing `salinan[0][0]` appears in both lists, but appending a row changes only the outer list `salinan`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "shallow_copy.py",
+      code: `original = [[1, 2], [3, 4]]
+salinan = original.copy()
+salinan[0][0] = 99
+print(original)  # Output: [[99, 2], [3, 4]]
+print(salinan)   # Output: [[99, 2], [3, 4]]
+
+salinan.append([5, 6])
+print(len(original), len(salinan))  # Output: 2 3`
+    }
+  ]}
+/>
+
 ## Common List Forms
 
 A list can be empty, contain mixed types, or contain other lists:
@@ -279,14 +301,14 @@ A list can be empty, contain mixed types, or contain other lists:
       language: "python",
       filename: "special_lists.py",
       code: `# Empty lists - two creation methods
-a = []                                       # Output: []
-b = list()                                   # Output: []
+a = []                                       # Value: []
+b = list()                                   # Value: []
 
 # Heterogeneous list - various data types
-mixed = [False, 2, 3.5, 'blue']             # Output: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']             # Value: [False, 2, 3.5, 'blue']
 
 # Nested list - list within list
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Output: [1, [2.5, False, 'red'], 3.5, 'blue']
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Value: [1, [2.5, False, 'red'], 3.5, 'blue']
 
 print('Empty list 1:', a)
 print('Empty list 2:', b)
@@ -300,11 +322,11 @@ Nested lists can represent rows, trees, or small table-like structures. They do 
 
 ## Other Containers
 
-Python gives you three more built-in containers, and each one keeps a different promise about order, duplicates, and whether you may change it after creation. A tuple fixes its positions, a dictionary maps each unique key to one value, and a set keeps <Highlight>only unique items</Highlight> without promising an order.
+Three other common containers have different rules about order, duplicates, and changes after creation. A tuple fixes its positions, a dictionary maps each unique key to one value, and a set keeps <Highlight>only unique items</Highlight> without promising an order.
 
 ### Tuple
 
-A tuple resembles a list, but its positions cannot be replaced after creation. Several values can be packed into one tuple and later unpacked into separate variables.
+A tuple resembles a list, but its **positions cannot be replaced** after creation. Several values can be packed into one tuple and later unpacked into separate variables.
 
 A tuple cannot replace its own elements, but an element may refer to a mutable object whose contents can still change.
 
@@ -320,8 +342,8 @@ A tuple cannot replace its own elements, but an element may refer to a mutable o
       language: "python",
       filename: "tuple_operations.py",
       code: `# Tuple syntax - two creation methods
-t1 = (0, 1, 2)                               # Output: t1 = (0, 1, 2)
-t2 = 3, 4, 5                                 # Output: t2 = (3, 4, 5)
+t1 = (0, 1, 2)                               # Value: t1 = (0, 1, 2)
+t2 = 3, 4, 5                                 # Value: t2 = (3, 4, 5)
 print('t1 =', t1)
 print('t2 =', t2)
 
@@ -355,7 +377,7 @@ print('After modifying inner list:', t)     # Output: After modifying inner list
 
 ### Dictionary
 
-A dictionary stores key-value pairs. Each key must be unique and remain hashable while it is in the dictionary. Values may repeat and may refer to mutable objects. A dictionary literal uses `{}` with a colon between each key and value.
+A dictionary stores key-value pairs. Each key must be **unique and remain hashable** while it is in the dictionary. Values may repeat and may refer to mutable objects. A dictionary literal uses `{}` with a colon between each key and value.
 
 <CodeBlock
   data={[
@@ -380,7 +402,7 @@ print('After adding David:', kontak)
 
 ### Set
 
-A set stores unique, hashable elements and supports mathematical set operations. It provides no element indices and makes no iteration-order guarantee. Nonempty set literals use `{}`, while an empty set must be created with `set()` because `{}` creates an empty dictionary.
+A set stores unique, hashable elements and supports mathematical set operations. It provides no element indices and makes **no iteration-order guarantee**. Nonempty set literals use `{}`, while an empty set must be created with `set()` because `{}` creates an empty dictionary.
 
 <CodeBlock
   data={[
@@ -411,7 +433,7 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
 
 ### Collection Type Comparison
 
-The four built-in collections differ in order, mutability, and duplicate handling. The table compares them so you can pick one from the task at hand.
+The four built-in collections differ in **order, mutability, and duplicate handling**. The table compares them so you can pick one from the task at hand.
 
 | Container | Syntax | Ordered | Mutable | Duplicates | Main Usage |
 |-----------|---------|---------|---------|------------|------------|

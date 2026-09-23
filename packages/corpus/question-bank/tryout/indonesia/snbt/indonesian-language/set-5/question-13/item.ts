@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Selisih satu poin antara nilai dasar dan pembanding membuat hasil uji $$43$$ tidak relevan bagi keputusan logistik.",
+            "Selisih satu kotak per hari antara nilai dasar dan pembanding membuat hasil uji $$43$$ tidak relevan bagi keputusan logistik.",
         },
         {
           isCorrect: false,

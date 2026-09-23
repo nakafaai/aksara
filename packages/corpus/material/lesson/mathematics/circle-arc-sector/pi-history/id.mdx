@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Definisi Pi
 
-Pada setiap lingkaran, <Highlight>perbandingan keliling terhadap diameternya selalu sama</Highlight>. Konstanta itu disebut <InlineMath math="\pi" /> (pi), dan nilainya diawali oleh <InlineMath math="3{,}14159" />.
+Pada setiap lingkaran, <Highlight>perbandingan keliling terhadap diameter</Highlight> selalu sama. Konstanta itu disebut <InlineMath math="\pi" /> (pi), dan nilainya diawali oleh <InlineMath math="3{,}14159" />.
 
 Secara matematis, <InlineMath math="\pi" /> dapat didefinisikan sebagai:
 
@@ -21,13 +21,14 @@ Perbandingan ini tidak bergantung pada ukuran lingkaran. Jika semua panjang dipe
 
 ## Pendekatan Awal
 
-Sumber kuno yang masih bertahan mencatat beberapa nilai pendekatan. Salah satu pendekatan Mesopotamia adalah <InlineMath math="\pi \approx \frac{25}{8}=3{,}125" />.
+Sumber kuno yang masih bertahan mencatat beberapa **nilai pendekatan**. Salah satu pendekatan Mesopotamia adalah <InlineMath math="\pi \approx \frac{25}{8}=3{,}125" />.
 
 Papirus Matematika Rhind dari Mesir, yang diperkirakan berasal dari sekitar <InlineMath math="1650 \text{ SM}" />, memuat aturan yang setara dengan <InlineMath math="\pi \approx \frac{256}{81}" />. Nilainya sekitar <InlineMath math="3{,}16049" />. Kedua pecahan tersebut bukan nilai eksak <InlineMath math="\pi" />, dan pendekatan Mesopotamia <InlineMath math="3{,}125" /> justru lebih dekat di antara keduanya.
 
-<MathContainer>
-<BlockMath math="\frac{256}{81} = 3{,}16049\ldots" />
-</MathContainer>
+Dalam aturan luas Mesir tersebut, lingkaran berdiameter <InlineMath math="9" /> diberi luas pendekatan <InlineMath math="8^2=64" />. Membandingkannya dengan <InlineMath math="\pi r^2" /> menunjukkan asal pecahan itu:
+
+<BlockMath math="\pi\approx\frac{64}{(9/2)^2}=\frac{64}{81/4}=\frac{256}{81}" />
+
 
 ## Metode Archimedes dan Poligon
 
@@ -41,8 +42,8 @@ Keliling poligon beraturan di dalam lingkaran lebih kecil daripada keliling ling
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 37 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 36;
+      points: Array.from({ length: 181 }, (_, i) => {
+        const angle = (i * 2 * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
@@ -52,7 +53,7 @@ Keliling poligon beraturan di dalam lingkaran lebih kecil daripada keliling ling
       color: "#0891b2",
       smooth: false,
       showPoints: false,
-      labels: [{ text: "Lingkaran", at: 9, offset: [0.5, 0.5, 0] }]
+      labels: [{ text: "Lingkaran", at: 45, offset: [0.5, 0.5, 0] }]
     },
     {
       points: Array.from({ length: 7 }, (_, i) => {
@@ -72,10 +73,10 @@ Keliling poligon beraturan di dalam lingkaran lebih kecil daripada keliling ling
       points: Array.from({ length: 7 }, (_, i) => {
         const angle = (i * 2 * Math.PI) / 6;
         const radius = 3;
-        const apothem = radius / Math.cos(Math.PI / 6);
+        const outerRadius = radius / Math.cos(Math.PI / 6);
         return {
-          x: apothem * Math.cos(angle),
-          y: apothem * Math.sin(angle),
+          x: outerRadius * Math.cos(angle),
+          y: outerRadius * Math.sin(angle),
           z: 0
         };
       }),
@@ -87,6 +88,15 @@ Keliling poligon beraturan di dalam lingkaran lebih kecil daripada keliling ling
   ]}
 />
 
+Untuk segienam pada gambar, jari-jari <InlineMath math="3" /> dan diameter <InlineMath math="6" />. Setiap sisi segienam dalam sama dengan jari-jari. Sisi segienam luar diperoleh dari segitiga siku-siku dengan sudut <InlineMath math="30^\circ" />:
+
+<BlockMath math="P_{\mathrm{in}}=6(3)=18,\qquad P_{\mathrm{out}}=6\left(2(3)\tan30^\circ\right)=12\sqrt3" />
+
+Dengan membagi kedua keliling poligon dengan diameter yang sama, kamu mendapat **batas bawah dan batas atas**:
+
+<BlockMath math="\frac{18}{6}<\pi<\frac{12\sqrt3}{6}\quad\Longrightarrow\quad3<\pi<2\sqrt3" />
+
+
 Dengan poligon bersisi <InlineMath math="96" />, Archimedes membuktikan bahwa <InlineMath math="\pi" /> berada di antara <InlineMath math="\frac{223}{71}" /> dan <InlineMath math="\frac{22}{7}" />. Jadi, <InlineMath math="\frac{22}{7}" /> menjadi batas atas dalam perhitungan ini. Nilainya sedikit lebih besar daripada <InlineMath math="\pi" />:
 
 <MathContainer>
@@ -95,9 +105,9 @@ Dengan poligon bersisi <InlineMath math="96" />, Archimedes membuktikan bahwa <I
 
 ## Kontribusi Matematikawan Tiongkok
 
-Pada abad ke-<InlineMath math="5" /> Masehi, matematikawan dan astronom Tiongkok Zu Chongzhi menyempurnakan metode poligon dan memperoleh batas <InlineMath math="3{,}1415926 < \pi < 3{,}1415927" />. Lebar selang ini hanya <InlineMath math="10^{-7}" />.
+Pada abad ke-<InlineMath math="5" /> Masehi, matematikawan dan astronom Tiongkok Zu Chongzhi memperoleh batas yang tercatat sebagai <InlineMath math="3{,}1415926 < \pi < 3{,}1415927" />. Lebar selang ini hanya <InlineMath math="10^{-7}" />.
 
-Zu Chongzhi juga memberikan pendekatan <InlineMath math="\pi \approx \frac{355}{113}" />, yaitu <InlineMath math="3{,}1415929" />. Pecahan ini sama dengan <InlineMath math="\pi" /> pada enam angka pertama di belakang koma. Batas tujuh desimalnya baru dilampaui oleh karya al-Kashi pada abad ke-<InlineMath math="15" />, hampir seribu tahun kemudian.
+Zu Chongzhi juga memberikan **pendekatan pecahan** <InlineMath math="\pi \approx \frac{355}{113}" />, yang diawali oleh <InlineMath math="3{,}1415929" />. Pecahan ini sama dengan <InlineMath math="\pi" /> pada enam angka pertama di belakang koma. Batas tujuh desimalnya baru dilampaui oleh karya al-Kashi pada abad ke-<InlineMath math="15" />, hampir seribu tahun kemudian.
 
 <MathContainer>
 <BlockMath math="\frac{355}{113} = 3{,}1415929\ldots" />
@@ -105,17 +115,17 @@ Zu Chongzhi juga memberikan pendekatan <InlineMath math="\pi \approx \frac{355}{
 
 ## Era Modern dan Simbol Pi
 
-Matematikawan Wales William Jones menggunakan <InlineMath math="\pi" /> dengan maknanya yang sekarang dalam karya "Synopsis Palmariorum Matheseos" pada tahun <InlineMath math="1706" />. Notasi ini belum langsung digunakan secara universal.
+Matematikawan Wales William Jones menggunakan <InlineMath math="\pi" /> dengan **maknanya yang sekarang** dalam karya "Synopsis Palmariorum Matheseos" pada tahun <InlineMath math="1706" />. Notasi ini belum langsung digunakan secara universal.
 
 Leonhard Euler kemudian memakai simbol tersebut dalam karya-karyanya yang berpengaruh, sehingga <InlineMath math="\pi" /> berkembang menjadi notasi baku yang masih digunakan sampai sekarang.
 
 ## Sifat Istimewa Pi
 
-Bilangan <InlineMath math="\pi" /> bersifat irasional sehingga tidak dapat ditulis sebagai perbandingan dua bilangan bulat. Johann Heinrich Lambert memberikan bukti ketat pertama bahwa <InlineMath math="\pi" /> irasional pada abad ke-<InlineMath math="18" />. Pada <InlineMath math="1882" />, Ferdinand von Lindemann membuktikan bahwa <InlineMath math="\pi" /> juga transenden, artinya bukan akar dari polinom tak nol dengan koefisien rasional.
+Bilangan <InlineMath math="\pi" /> bersifat **irasional** sehingga tidak dapat ditulis sebagai perbandingan dua bilangan bulat. Johann Heinrich Lambert memberikan bukti ketat pertama bahwa <InlineMath math="\pi" /> irasional pada abad ke-<InlineMath math="18" />. Pada <InlineMath math="1882" />, Ferdinand von Lindemann membuktikan bahwa <InlineMath math="\pi" /> juga **transenden**, artinya bukan akar dari polinom tak nol dengan koefisien rasional.
 
-Dalam kehidupan sehari-hari, kita sering menggunakan pendekatan <InlineMath math="\pi \approx 3{,}14" /> atau <InlineMath math="\pi \approx \frac{22}{7}" /> untuk perhitungan praktis. Namun, untuk aplikasi yang memerlukan presisi tinggi seperti teknologi satelit atau penelitian fisika, diperlukan lebih banyak angka desimal.
+Untuk lingkaran berdiameter <InlineMath math="10\text{ cm}" />, memakai <InlineMath math="3{,}14" /> memberi keliling <InlineMath math="31{,}4\text{ cm}" />. Dengan nilai pi yang lebih teliti, kelilingnya sekitar <InlineMath math="31{,}41593\text{ cm}" />. Selisihnya sekitar <InlineMath math="0{,}01593\text{ cm}" />, sehingga pilihan pendekatan bergantung pada ketelitian yang dibutuhkan.
 
-Perbandingan yang mendefinisikan <InlineMath math="\pi" /> pada lingkaran adalah:
+Rumus keliling dan luas lingkaran memakai konstanta yang sama:
 
 <MathContainer>
 <BlockMath math="C = \pi \cdot d" />

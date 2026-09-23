@@ -3,7 +3,7 @@ export const metadata = {
     description: "Hubungkan matriks simetris dan Hermitian dengan nilai eigen real, vektor eigen ortogonal, bentuk kuadrat, dan diagonalisasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-13",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -37,7 +37,7 @@ Transpos dan konjugat transpos tidak boleh tertukar. Untuk <InlineMath math="x\i
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-Untuk <InlineMath math="x\in\mathbb{C}^n" />, gunakan konjugat transpos:
+Untuk <InlineMath math="x\in\mathbb{C}^n" />, **gunakan konjugat transpos**:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -74,7 +74,7 @@ Bagian antisimetris tidak berkontribusi karena <InlineMath math="x^T(B-B^T)x=0" 
 
 ## Mengapa Nilai Eigen Hermitian Selalu Real
 
-Misalkan <InlineMath math="Hv=\lambda v" /> dengan <InlineMath math="v\neq0" />. Sifat Hermitian memberikan
+Misalkan <InlineMath math="Hv=\lambda v" /> dengan <InlineMath math="v\neq0" />. **Sifat Hermitian** memberikan
 
 <MathContainer>
 <BlockMath math="\lambda v^Hv=v^HHv" />
@@ -85,7 +85,7 @@ Karena <InlineMath math="v^Hv>0" />, kita memperoleh <InlineMath math="\lambda=\
 
 ## Mengapa Ruang Eigen yang Berbeda Saling Ortogonal
 
-Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />. Karena kedua nilai eigen itu real,
+Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />. Karena **kedua nilai eigen itu real**,
 
 <MathContainer>
 <BlockMath math="\lambda w^Hv=w^HHv" />
@@ -105,7 +105,7 @@ Teorema spektral merangkum semua fakta tadi menjadi dekomposisi lengkap:
   <BlockMath math="H=U\Lambda U^H" />
 </MathContainer>
 
-Kolom-kolom <InlineMath math="Q" /> atau <InlineMath math="U" /> membentuk basis eigen ortonormal, dan setiap elemen diagonal <InlineMath math="\Lambda" /> bernilai real. Jika <InlineMath math="u_1,\ldots,u_n" /> merupakan kolom <InlineMath math="U" />, maka
+Kolom-kolom <InlineMath math="Q" /> atau <InlineMath math="U" /> membentuk **basis eigen ortonormal**, dan setiap elemen diagonal <InlineMath math="\Lambda" /> bernilai real. Jika <InlineMath math="u_1,\ldots,u_n" /> merupakan kolom <InlineMath math="U" />, maka
 
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
@@ -121,7 +121,7 @@ Untuk matriks <InlineMath math="H" />, polinomial karakteristiknya adalah
 
 <BlockMath math="\begin{aligned} \det(H-\lambda I) &amp;=(2-\lambda)(3-\lambda)-2 \\ &amp;=(\lambda-1)(\lambda-4) \end{aligned}" />
 
-Vektor eigen ternormalisasi untuk <InlineMath math="\lambda_1=1" /> dan <InlineMath math="\lambda_2=4" /> ialah
+**Vektor eigen ternormalisasi** untuk <InlineMath math="\lambda_1=1" /> dan <InlineMath math="\lambda_2=4" /> ialah
 
 <MathContainer>
 <BlockMath math="u_1=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}" />
@@ -132,4 +132,9 @@ Keduanya memenuhi <InlineMath math="u_1^Hu_2=0" />. Dengan <InlineMath math="U=(
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-Persamaan ini memberikan diagonalisasi uniter yang dapat diperiksa langsung.
+Periksa ortogonalitas dan vektor eigen pertama secara langsung. Faktor normalisasi tetap berada di luar hasil kali.
+
+<MathContainer>
+<BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
+<BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
+</MathContainer>

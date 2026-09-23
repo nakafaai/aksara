@@ -5,8 +5,47 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Der Abstand des Mittelpunkts <InlineMath math="(0,0)" /> von der Geraden <InlineMath math="x+2y-5=0" /> ist <InlineMath math="5/\sqrt5=\sqrt5" />. Das Lot vom Mittelpunkt auf die Sehne halbiert die Sehne. Ist <InlineMath math="a" /> die halbe Sehnenlänge, dann gilt im rechtwinkligen Dreieck
+Der Abstand des Mittelpunkts <InlineMath math="(0,0)" /> von der Geraden <InlineMath math="x+2y-5=0" /> ist <InlineMath math="\frac{|0+2(0)-5|}{\sqrt{1^2+2^2}}=\frac5{\sqrt5}=\sqrt5" />. Das **Lot vom Mittelpunkt auf die Sehne halbiert die Sehne**. Ist <InlineMath math="a" /> die halbe Sehnenlänge, dann gilt im rechtwinkligen Dreieck
 
-<BlockMath math="a^2+(\sqrt5)^2=5^2" />
+<BlockMath math="\begin{aligned}a^2+(\sqrt5)^2&=5^2\\a^2&=25-5=20\\a&=\sqrt{20}=2\sqrt5\end{aligned}" />
 
 Daher gilt <InlineMath math="a=2\sqrt5" /> und die ganze Sehne hat Länge <InlineMath math="4\sqrt5" />.
+
+<MathVisual
+  title="Radius und halbe Sehne"
+  description="OM steht senkrecht auf der Sehne und trifft ihren Mittelpunkt M. Der Radius OA ist die Hypotenuse des Dreiecks OMA."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "normal", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "radius", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "midpoint", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+      {
+        id: "circle",
+        kind: "circle",
+        appearance: "reference",
+        center: { x: 0, y: 0 },
+        radius: 5,
+      },
+      {
+        id: "chord",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 5, y: 0 },
+        to: { x: -3, y: 4 },
+      },
+    ],
+    labels: [
+      { key: "midpoint", objectId: "midpoint", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "origin", objectId: "normal", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "end", objectId: "radius", at: { x: 5, y: 0 }, placement: "below-right" }
+    ]
+  }}
+  labels={{ midpoint: <InlineMath math="M" />, origin: <InlineMath math="O" />, end: <InlineMath math="A" /> }}
+/>

@@ -19,13 +19,13 @@ Die Kreisgleichung enthält die Koordinaten des **Mittelpunkts** und den **Radiu
 
 Wir beginnen mit dem einfachsten Fall, einem Kreis mit Mittelpunkt im Ursprung <InlineMath math="O(0,0)" />.
 
-Wenn wir einen Kreis mit Mittelpunkt bei <InlineMath math="O(0,0)" /> und Radius <InlineMath math="r" /> haben, dann hat jeder Punkt <InlineMath math="(x,y)" /> auf diesem Kreis den gleichen Abstand vom Mittelpunkt, nämlich <InlineMath math="r" />.
+Wenn wir einen Kreis mit Mittelpunkt bei <InlineMath math="O(0,0)" /> und Radius <InlineMath math="r>0" /> haben, dann hat jeder Punkt <InlineMath math="(x,y)" /> auf diesem Kreis den gleichen Abstand vom Mittelpunkt, nämlich <InlineMath math="r" />.
 
 Mit der Abstandsformel erhalten wir:
 
 <BlockMath math="\sqrt{x^2 + y^2} = r" />
 
-Wenn wir beide Seiten quadrieren, erhalten wir die Kreisgleichung mit Mittelpunkt im Ursprung:
+Wenn wir **beide Seiten quadrieren**, erhalten wir die Kreisgleichung mit Mittelpunkt im Ursprung:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
@@ -105,7 +105,7 @@ Für den obigen Kreis lautet die Gleichung <InlineMath math="x^2 + y^2 = 9" />, 
 
 ## Kreis mit beliebigem Mittelpunkt
 
-Für einen Kreis mit Mittelpunkt <InlineMath math="P(a,b)" /> außerhalb des Ursprungs sei der Radius <InlineMath math="r" />.
+Für einen Kreis mit Mittelpunkt <InlineMath math="P(a,b)" /> sei der Radius <InlineMath math="r" />.
 
 Jeder Punkt <InlineMath math="(x,y)" /> auf diesem Kreis muss den gleichen Abstand <InlineMath math="r" /> vom Mittelpunkt <InlineMath math="P(a,b)" /> haben. Mit der Abstandsformel:
 
@@ -219,7 +219,7 @@ Die Quadratvervollständigung zeigt, woher die Formeln für Mittelpunkt und Radi
 
 ## Bestimmung von Mittelpunkt und Radius
 
-Aus der Standardform <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" /> können wir direkt erkennen:
+Aus der **Standardform** <InlineMath math="(x-a)^2 + (y-b)^2 = r^2" /> können wir direkt erkennen:
 
 Der Mittelpunkt liegt bei <InlineMath math="(a,b)" /> und der Radius beträgt <InlineMath math="r" /> (erhalten aus <InlineMath math="r = \sqrt{r^2}" />).
 
@@ -232,7 +232,7 @@ Aus der allgemeinen Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> könn
 
 ## Übungsaufgaben
 
-In jeder Aufgabe sind Mittelpunkt und Radius, drei Punkte oder eine allgemeine Gleichung gegeben und die Kreisgleichung gesucht, deshalb wählst du die Form, die zu den Angaben passt.
+Wähle die Gleichungsform anhand der **gegebenen Informationen**. Einen bekannten Mittelpunkt und Radius setzt du direkt in die Standardform ein. Bei gegebenen Durchmesserendpunkten berechnest du zuerst den Streckenmittelpunkt und die halbe Durchmesserlänge.
 
 1. Bestimme die Gleichung eines Kreises mit Mittelpunkt <InlineMath math="(3,-2)" /> und Radius <InlineMath math="5" />.
 
@@ -244,54 +244,53 @@ In jeder Aufgabe sind Mittelpunkt und Radius, drei Punkte oder eine allgemeine G
 
 ### Ausführliche Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Gegeben sind der Mittelpunkt <InlineMath math="(a,b) = (3,-2)" /> und der Radius <InlineMath math="r = 5" />.
+Gegeben sind der Mittelpunkt <InlineMath math="(a,b) = (3,-2)" /> und der Radius <InlineMath math="r = 5" />.
 
-   Wir setzen beide Werte in die Standardform ein:
+Wir setzen beide Werte in die Standardform ein:
 
-   <MathContainer>
-     <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
-     <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
-     <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+  <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
+  <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
+</MathContainer>
 
-   Die Kreisgleichung lautet also <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+Die Kreisgleichung lautet also <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Aus der Gleichung <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" /> ermitteln wir die Koeffizienten:
+Aus der Gleichung <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" /> ermitteln wir die Koeffizienten:
 
-   <InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
+<InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;\text{Mittelpunkt:} \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
-     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
-     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\text{Mittelpunkt:} \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
 
-   Der Kreismittelpunkt liegt also bei <InlineMath math="(3,-2)" /> mit dem Radius <InlineMath math="5" />.
+Der Kreismittelpunkt liegt also bei <InlineMath math="(3,-2)" /> mit dem Radius <InlineMath math="5" />.
 
-3. **Lösung**:
+**Lösung 3**:
 
-   Da der Mittelpunkt des Kreises bei <InlineMath math="O(0,0)" /> liegt und durch den Punkt <InlineMath math="(6,-8)" /> verläuft, ist der Radius der Abstand vom Mittelpunkt zu diesem Punkt.
+Da der Kreis seinen Mittelpunkt bei <InlineMath math="O(0,0)" /> hat und durch den Punkt <InlineMath math="(6,-8)" /> verläuft, ist der Radius der Abstand vom Mittelpunkt zu diesem Punkt.
 
-   <BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
+<BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
 
-   Die Kreisgleichung: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
+Die Kreisgleichung: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
 
-4. **Lösung**:
+**Lösung 4**:
 
-   Der Kreismittelpunkt ist der Mittelpunkt des Durchmessers <InlineMath math="AB" />:
+Der Kreismittelpunkt ist der Mittelpunkt des Durchmessers <InlineMath math="AB" />:
 
-   <BlockMath math="\begin{aligned} &amp;\text{Mittelpunkt} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Mittelpunkt} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
 
-   Der Radius ist die halbe Durchmesserlänge:
+Der Radius ist die halbe Durchmesserlänge:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;\text{Länge } AB \\ &amp;= \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2} \\ &amp;= \sqrt{(7-1)^2 + (-1-3)^2} \end{aligned}" />
-     <BlockMath math="\begin{aligned}  &amp;= \sqrt{6^2 + (-4)^2} \\ &amp;= \sqrt{36 + 16} \\ &amp;= \sqrt{52} \\ &amp;= \sqrt{4 \times 13} \\ &amp;= 2\sqrt{13} \end{aligned}" />
-     <BlockMath math="r = \frac{\text{Durchmesser}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned}AB&amp;=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}\\&amp;=\sqrt{(7-1)^2+(-1-3)^2}\\&amp;=\sqrt{6^2+(-4)^2}\\&amp;=\sqrt{36+16}\\&amp;=\sqrt{52}\\&amp;=2\sqrt{13}\end{aligned}" />
+  <BlockMath math="r = \frac{\text{Durchmesser}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
+</MathContainer>
 
-   Die Kreisgleichung: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />
+Die Kreisgleichung: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />

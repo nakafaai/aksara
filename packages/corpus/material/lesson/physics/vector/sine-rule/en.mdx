@@ -18,11 +18,14 @@ For two vectors, the resultant direction can be found using the **sine rule**. T
 
 Here, <InlineMath math="\theta" /> is the included angle between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />, <InlineMath math="R" /> is the resultant magnitude, and <InlineMath math="\phi" /> is the angle between <InlineMath math="\vec{A}" /> and resultant <InlineMath math="\vec{R}" />.
 
+
+Use this triangle for **two nonzero vectors that are not collinear**, with <InlineMath math="0^\circ<\theta<180^\circ" />. A zero resultant has no direction to calculate.
+
 > The sine rule is usually used after the resultant magnitude is known.
 
 ## Reading the Angle Being Asked For
 
-Before calculating, decide the reference direction. If the question asks for the resultant direction relative to <InlineMath math="\vec{A}" />, the required angle is from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{R}" />.
+Before calculating, decide the **reference direction**. If the question asks for the resultant direction relative to <InlineMath math="\vec{A}" />, the required angle is from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{R}" />.
 
 If the question asks for direction relative to <InlineMath math="\vec{B}" />, the angle is different. Do not swap angles without checking the vector triangle.
 
@@ -30,8 +33,10 @@ A common relationship is:
 
 <MathContainer>
   <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
-  <BlockMath math="\phi=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
+  <BlockMath math="\phi_0=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
 </MathContainer>
+
+The value <InlineMath math="\phi_0" /> is an **acute or right-angle candidate**. Check the resultant components to choose between <InlineMath math="\phi=\phi_0" /> and <InlineMath math="\phi=180^\circ-\phi_0" />.
 
 This formula finds the resultant angle relative to vector <InlineMath math="\vec{A}" />. Because the side opposite angle <InlineMath math="\phi" /> has magnitude <InlineMath math="B" />, <InlineMath math="B" /> appears in the numerator.
 
@@ -39,24 +44,24 @@ This formula finds the resultant angle relative to vector <InlineMath math="\vec
 
 Two forces act at one point. <InlineMath math="A=10\text{ N}" />, <InlineMath math="B=8\text{ N}" />, and the included angle is <InlineMath math="60^\circ" />. From the cosine rule, the resultant magnitude is <InlineMath math="R\approx15.6\text{ N}" />.
 
-Now find angle <InlineMath math="\phi" /> between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{R}" />.
+Use the **unrounded resultant magnitude** to find angle <InlineMath math="\phi" /> between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{R}" />.
 
 <BlockMath math="\begin{aligned}
 \sin\phi&=\frac{B\sin\theta}{R} \\
-&=\frac{8\sin60^\circ}{15.6} \\
-&=\frac{8(0.866)}{15.6} \\
-&\approx0.444
+&=\frac{8\sin60^\circ}{\sqrt{244}} \\
+&=\frac{4\sqrt3}{\sqrt{244}} \\
+&\approx0.4435
 \end{aligned}" />
 
 The calculation gives:
 
-<BlockMath math="\phi=\sin^{-1}(0.444)\approx26.4^\circ" />
+<BlockMath math="\phi=\sin^{-1}(0.4435)\approx26.3^\circ" />
 
-So the resultant force is about <InlineMath math="15.6\text{ N}" /> at <InlineMath math="26.4^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
+So the resultant force is about <InlineMath math="15.6\text{ N}" /> at <InlineMath math="26.3^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
 
 ## Checking with Components
 
-The same direction can be checked using components. If <InlineMath math="\vec{A}" /> is placed on the positive <InlineMath math="x" /> axis, then:
+The same direction can be checked using **resultant components**. If <InlineMath math="\vec{A}" /> is placed on the positive <InlineMath math="x" /> axis, then:
 
 <MathContainer>
   <BlockMath math="R_x=A+B\cos\theta" />
@@ -66,11 +71,80 @@ The same direction can be checked using components. If <InlineMath math="\vec{A}
 
 For the same example:
 
-<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{6.928}{14} \\ &amp;\approx0.495 \end{aligned}" />
+<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{4\sqrt3}{14} \\ &amp;\approx0.495 \end{aligned}" />
 
-This gives <InlineMath math="\phi\approx26.4^\circ" />, matching the sine rule. This check is useful when you are unsure which angle is being found.
+This gives <InlineMath math="\phi\approx26.3^\circ" />, matching the sine rule. This check is useful when you are unsure which angle is being found.
 
 Because <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" />, inverse sine alone can return an acute angle even when the triangle requires its obtuse supplement. Use the vector geometry or the component form <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> to choose the correct quadrant.
+
+### Choosing an Obtuse Angle
+
+Let <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" />, and <InlineMath math="\theta=150^\circ" />. Place the first force along the positive horizontal axis. Calculate the components before choosing an angle:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R_x &= A+B\cos150^\circ \\ &= 1+\sqrt3\left(-\frac{\sqrt3}{2}\right) \\ &= -\frac12\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}R_y &= B\sin150^\circ \\ &= \sqrt3\cdot\frac12 \\ &= \frac{\sqrt3}{2}\text{ N}\end{aligned}" />
+</MathContainer>
+
+The horizontal component is **negative** and the vertical component is **positive**. The resultant lies in the second quadrant.
+
+<ContentStack>
+  <LineEquation
+    cameraPosition={[0.15, 0.35, 3]}
+    cameraTarget={[0.15, 0.35, 0]}
+    title="A Resultant in the Second Quadrant"
+    description="The purple resultant points up and left. Compare that direction with the acute angle returned by inverse sine."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((1) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 1, y: 0, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{A}" />,
+        at: 1,
+        offset: [0, -0.3, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 1, y: 0, z: 0 }, { x: (1) + 0.5 * ((-0.5) - (1)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{B}" />,
+        at: 1,
+        offset: [0.2, 0.3, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((-0.5) - (0)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{R}" />,
+        at: 1,
+        offset: [-0.4, 0, 0],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+
+
+  <MathContainer>
+    <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
+    <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
+  </MathContainer>
+</ContentStack>
+
+Inverse sine returns <InlineMath math="60^\circ" />, but the resultant direction is <InlineMath math="180^\circ-60^\circ=120^\circ" />. The component signs distinguish the two candidate angles.
 
 ## Component Methods for More than Two Vectors
 

@@ -27,7 +27,7 @@ Vektorisasi berarti <Highlight>menyatakan operasi untuk seluruh array</Highlight
     {
       language: "python",
       filename: "vectorization_comparison.py",
-      code: `# Perkalian elemen menggunakan list Python (lambat)
+      code: `# Perkalian elemen menggunakan list Python
 x = [1, 2, 3, 4, 5]
 y = [2, 3, 4, 5, 6]
 z = []
@@ -35,7 +35,7 @@ for i in range(len(x)):
     z.append(x[i] * y[i])
 print("Hasil list:", z)  # Output: Hasil list: [2, 6, 12, 20, 30]
 
-# Perkalian elemen menggunakan NumPy (cepat)
+# Perkalian elemen menggunakan NumPy
 import numpy as np
 x_np = np.array([1, 2, 3, 4, 5])
 y_np = np.array([2, 3, 4, 5, 6])
@@ -47,7 +47,7 @@ print("Hasil NumPy:", z_np)  # Output: Hasil NumPy: [ 2  6 12 20 30]`
 
 ## Pembuatan Array Manual
 
-Gunakan `np.array()` untuk mengonversi struktur data Python menjadi array NumPy.
+Gunakan `np.array()` untuk mengonversi **struktur data Python** menjadi array NumPy.
 
 Array satu dimensi seperti barisan angka dalam satu baris. Kamu dapat membuatnya dari list Python menggunakan fungsi `np.array()`.
 
@@ -127,7 +127,7 @@ print("Axis 2 (columns):", a.shape[2])  # Output: Axis 2 (columns): 3`
 | **Dua dimensi** | `(2, 2)` | Tabel dengan baris dan kolom | `[[0, 1], [2, 3]]` | Axis <InlineMath math="0" /> untuk baris, Axis <InlineMath math="1" /> untuk kolom |
 | **Tiga dimensi** | `(2, 2, 3)` | Tumpukan tabel (planes) | <InlineMath math="2" /> planes, setiap plane <InlineMath math="2 \times 3" /> | Axis <InlineMath math="0" /> kedalaman, Axis <InlineMath math="1" /> tinggi, Axis <InlineMath math="2" /> lebar |
 
-Semakin tinggi dimensi array, semakin kompleks struktur datanya, tetapi prinsip dasarnya tetap sama. Setiap axis mewakili satu dimensi pengorganisasian data.
+Semakin tinggi dimensi array, semakin kompleks struktur datanya, tetapi prinsip dasarnya tetap sama. **Setiap axis** mewakili satu dimensi pengorganisasian data.
 
 NumPy dapat membuat array dari berbagai struktur data Python, termasuk list, tuple, dan campuran keduanya.
 
@@ -156,11 +156,11 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
 
 ## Fungsi Pembuat Array
 
-Menuliskan setiap elemen satu per satu hanya praktis untuk contoh yang sangat kecil. NumPy menyediakan fungsi khusus yang membangun array dari sebuah aturan, bukan dari daftar literal, sehingga kode tetap singkat dan bentuk array tetap eksplisit. Fungsi-fungsi di bawah ini terbagi menjadi tiga kelompok: array berisi nilai konstan, array berisi bilangan acak, dan array yang mengikuti pola matematis.
+Menuliskan setiap elemen satu per satu hanya praktis untuk contoh yang sangat kecil. NumPy menyediakan fungsi khusus yang membangun **array dari sebuah aturan**, bukan dari daftar literal, sehingga kode tetap singkat dan bentuk array tetap eksplisit. Fungsi-fungsi di bawah ini terbagi menjadi tiga kelompok: array berisi nilai konstan, array berisi bilangan acak, dan array yang mengikuti pola matematis.
 
 ### Fungsi Nilai Konstan
 
-Fungsi `np.ones()` membuat array yang seluruh elemennya bernilai <InlineMath math="1" />. Fungsi ini berguna ketika setiap elemen memerlukan nilai awal yang sama.
+Fungsi `np.ones()` membuat array yang seluruh elemennya bernilai <InlineMath math="1" />. Fungsi ini berguna ketika setiap elemen memerlukan **nilai awal yang sama**.
 
 <CodeBlock
   data={[
@@ -235,7 +235,7 @@ print(a)
 
 ### Fungsi Random
 
-Fungsi random berguna untuk membuat data simulasi atau inisialisasi dengan nilai acak.
+Gunakan **generator bilangan acak** `np.random.default_rng()` untuk membuat data simulasi. Seed yang sama menghasilkan urutan yang dapat diulang dengan generator dan versi NumPy yang sama. Nilai uniform berikut berada dalam interval `[0, 1)`: nol boleh muncul, sedangkan satu tidak termasuk.
 
 <CodeBlock
   data={[
@@ -245,34 +245,34 @@ Fungsi random berguna untuk membuat data simulasi atau inisialisasi dengan nilai
       code: `import numpy as np
 
 # Set seed untuk hasil yang konsisten
-np.random.seed(10)
+rng = np.random.default_rng(10)
 
 # Array dengan nilai acak uniform antara 0 dan 1
-a = np.random.rand(2, 3)
-print("Random uniform [0,1]:")
+a = rng.random((2, 3))
+print("Random uniform [0,1):")
 print(a)
 # Output:
-# [[0.77132064 0.02075195 0.63364823]
-#  [0.74880388 0.49850701 0.22479665]]
+# [[0.95600171 0.20768181 0.82844489]
+#  [0.14928212 0.51280462 0.1359196 ]]
 
 # Array dengan distribusi normal (mean=0, std=1)
-a = np.random.randn(3)
-print("Random normal:", a)  # Output: Random normal: [ 0.62133597 -0.72008556  0.26551159]
+a = rng.standard_normal(3)
+print("Random normal:", a)  # Output: Random normal: [0.84304257 0.85793655 0.47518364]
 
 # Array dengan integer acak dalam rentang tertentu
-a = np.random.randint(1, 10, size=(2, 3))
+a = rng.integers(1, 10, size=(2, 3))
 print("Random integers [1,10):")
 print(a)
 # Output:
-# [[7 9 2]
-#  [9 5 2]]`
+# [[5 9 3]
+#  [8 1 4]]`
     }
   ]}
 />
 
 ### Fungsi Matematika
 
-Fungsi `np.fromfunction` membuat array dengan memanggil suatu fungsi untuk indeks setiap posisi. Nilai yang dikembalikan menjadi elemen pada posisi tersebut.
+Fungsi `np.fromfunction` memberikan **array koordinat indeks** kepada fungsi yang kamu tulis. Fungsi `f(i, j)` di bawah menerima dua array: indeks baris dalam `i` dan indeks kolom dalam `j`. Penjumlahan `i + j` bekerja per elemen. Misalnya, posisi `[1, 2]` menghasilkan `3`.
 
 <CodeBlock
   data={[
@@ -319,10 +319,10 @@ Fungsi `np.empty` mengalokasikan array tanpa menentukan nilai awal elemennya. Ni
 
 # Membuat array kosong (nilai tidak terdefinisi)
 a = np.empty((3, 2))
-print("Empty array (nilai acak dari memori):")
+a.fill(0)  # Isi semua elemen sebelum membaca nilainya
+print("Array setelah diisi:")
 print(a)
-# Output akan bervariasi karena nilai tidak diinisialisasi
-# Contoh output:
+# Output:
 # [[0. 0.]
 #  [0. 0.]
 #  [0. 0.]]
@@ -335,11 +335,11 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 
 ## Membuat Array Berpola
 
-Sebagian array lebih mudah dijelaskan sebagai urutan daripada sebagai aturan untuk tiap elemen: semua nilai di antara dua batas, atau sejumlah titik yang jaraknya sama. `np.arange` dan `np.linspace` membangun array semacam itu, dan perbedaannya terletak pada cara batas akhir urutan ditentukan.
+Sebagian array lebih mudah dijelaskan sebagai urutan daripada sebagai aturan untuk tiap elemen: semua nilai di antara dua batas, atau **sejumlah titik yang jaraknya sama**. `np.arange` dan `np.linspace` membangun array semacam itu, dan perbedaannya terletak pada cara batas akhir urutan ditentukan.
 
 ### Fungsi Arange pada NumPy
 
-Fungsi `np.arange` menyerupai `range()` milik Python, tetapi mengembalikan array dan menerima argumen bertipe `float`. Jika nilai `step` bukan bilangan bulat, pembulatan pada `float` dapat membuat batas akhir sulit dipastikan. Gunakan `np.linspace` jika kamu sudah mengetahui jumlah titik yang dibutuhkan.
+Fungsi `np.arange` menyerupai `range()` milik Python, tetapi mengembalikan array dan menerima argumen bertipe `float`. Jika nilai `step` bukan bilangan bulat, **pembulatan pada `float`** dapat membuat batas akhir sulit dipastikan. Gunakan `np.linspace` jika kamu sudah mengetahui jumlah titik yang dibutuhkan.
 
 <CodeBlock
   data={[
@@ -372,7 +372,7 @@ print("- start default adalah 0")`
 
 ### Fungsi Linspace pada NumPy
 
-Berbeda dengan `np.arange` yang menggunakan step tetap, `np.linspace` membagi rentang menjadi sejumlah titik yang sama rata.
+Berbeda dengan `np.arange` yang menggunakan step tetap, `np.linspace` membagi rentang menjadi **sejumlah titik yang sama rata**.
 
 <CodeBlock
   data={[
@@ -400,7 +400,7 @@ print("arange: step ditentukan, jumlah elemen mengikuti batas")`
 
 ### Membandingkan arange dan linspace
 
-Kedua fungsi menyusun array dari sebuah rentang, dan parameter yang kamu berikan menentukan perbedaannya. `arange` menetapkan jarak antar elemen, sedangkan `linspace` menetapkan banyak elemen yang kamu inginkan.
+Kedua fungsi menyusun array dari sebuah rentang, dan parameter yang kamu berikan menentukan perbedaannya. `arange` menetapkan **jarak antar elemen**, sedangkan `linspace` menetapkan banyak elemen yang kamu inginkan.
 
 | Aspek | `np.arange` | `np.linspace` |
 |-------|-------------|---------------|
@@ -412,7 +412,7 @@ Kedua fungsi menyusun array dari sebuah rentang, dan parameter yang kamu berikan
 
 ## Operasi Dasar
 
-Setelah membuat array, kamu dapat melakukan berbagai operasi untuk memanipulasi dan menganalisis data.
+Sebelum mengubah bentuk array, periksa **jumlah elemen dan shape**. Array di bawah memiliki dua baris dan tiga kolom, sehingga `size` bernilai `6`. Tipe `int64` memakai delapan byte per elemen.
 
 <CodeBlock
   data={[
@@ -422,7 +422,7 @@ Setelah membuat array, kamu dapat melakukan berbagai operasi untuk memanipulasi 
       code: `import numpy as np
 
 # Membuat array contoh
-a = np.array([[1, 2, 3], [4, 5, 6]])
+a = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
 print("Array:")
 print(a)
 # Output:
@@ -438,7 +438,7 @@ print("Itemsize (bytes per elemen):", a.itemsize)  # Output: Itemsize (bytes per
   ]}
 />
 
-Array dapat diubah bentuknya menggunakan fungsi `reshape()` untuk mengatur ulang dimensi tanpa mengubah data:
+Dengan `reshape()`, jumlah elemen **harus tetap sama**: `3 * 4`, `2 * 6`, dan `4 * 3` semuanya bernilai `12`. Argumen `-1` meminta NumPy menghitung satu dimensi yang belum diketahui. Operasi ini dapat menghasilkan view atau salinan, bergantung pada tata letak array.
 
 <CodeBlock
   data={[

@@ -23,12 +23,11 @@ Secara bersama, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <Inlin
 
 ## Cara Mencari Letak Kuartil
 
-Bagaimana cara menentukan posisi peringkat <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> pada data terurut?
+Bagaimana cara menentukan posisi peringkat <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> pada **data terurut**?
 
 Anggap kita punya <InlineMath math="n" /> data yang sudah diurutkan dari nilai terkecil sampai nilai terbesar.
 
 Kuartil dapat ditentukan dengan beberapa konvensi peringkat yang sama-sama sah. Karena itu, perangkat lunak yang berbeda bisa menghasilkan nilai yang sedikit berbeda untuk satu kumpulan data kecil. Perhitungan berikut menggunakan posisi interpolasi <InlineMath math="p(n+1)" /> secara konsisten, dengan <InlineMath math="p" /> bernilai <InlineMath math="\frac14" />, <InlineMath math="\frac12" />, atau <InlineMath math="\frac34" />. Posisi di bawah <InlineMath math="1" /> dibatasi pada nilai minimum, sedangkan posisi di atas <InlineMath math="n" /> dibatasi pada nilai maksimum. Agar hasil dapat dibandingkan, hitung semua kuartil dengan konvensi yang sama.
-
 ### Kuartil Bawah
 
 Untuk kuartil bawah:
@@ -36,7 +35,7 @@ Untuk kuartil bawah:
 <BlockMath math="\text{Letak } Q_1 = \frac{1}{4}(n+1)" />
 
 - **Kalau hasilnya angka bulat**, misalnya <InlineMath math="5" />, berarti <InlineMath math="Q_1" /> itu nilai data di urutan ke-<InlineMath math="5" />.
-- **Kalau hasilnya berupa desimal**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> berada di antara posisi <InlineMath math="5" /> dan <InlineMath math="6" />. Nilai interpolasinya akan kita hitung nanti. Untuk sekarang, kita tentukan letaknya terlebih dahulu.
+- **Kalau hasilnya berupa desimal**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> berada di antara posisi <InlineMath math="5" /> dan <InlineMath math="6" />. Bagian desimal menunjukkan berapa jauh kita bergerak dari nilai pada posisi bawah ke nilai berikutnya.
 
 **Contoh:**
 
@@ -45,6 +44,10 @@ Misalnya kita punya <InlineMath math="20" /> data (<InlineMath math="n=20" />).
 Letak <InlineMath math="Q_1" /> adalah data ke-<InlineMath math="\frac{1}{4}(20+1)" />, yaitu data ke-<InlineMath math="\frac{21}{4}" /> atau data ke-<InlineMath math="5{,}25" />.
 
 Artinya, <InlineMath math="Q_1" /> ada di antara data ke-<InlineMath math="5" /> dan data ke-<InlineMath math="6" />.
+
+Misalkan pada 20 data terurut tersebut, nilai ke-5 adalah 8 dan nilai ke-6 adalah 12. **Bobot interpolasi** 0,25 berarti mengambil seperempat selisih kedua nilai, bukan merata-ratakan kedua nilai begitu saja.
+
+<BlockMath math="Q_1=8+0{,}25(12-8)=8+1=9" />
 
 ### Kuartil Tengah
 
@@ -90,7 +93,9 @@ Coba kerjakan sendiri terlebih dahulu. Setelah itu, bandingkan alur berpikirmu d
 
 **Langkah 1**: Urutkan data dulu!
 
-Data terurut: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
+| Posisi | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Nilai | 5 | 6 | 7 | 7 | 8 | 9 | 10 |
 
 Banyak data: <InlineMath math="n = 7" />
 

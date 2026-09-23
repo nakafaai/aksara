@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "self-efficacy as a definition without a reviewable action",
+          label: "Self-efficacy as a definition without a reviewable action",
         },
         {
           isCorrect: true,

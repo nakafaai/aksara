@@ -11,11 +11,13 @@ export const metadata = {
 
 Markdown adalah bahasa markup ringan <Highlight>untuk menyatakan struktur dokumen dalam teks biasa</Highlight>. Judul, daftar, tautan, blok kode, dan tabel tetap mudah dibaca di sumber serta dapat dirender menjadi HTML atau format lain.
 
-Source file yang mudah dibaca adalah keunggulan utama Markdown. Kamu dapat meninjau perubahan baris demi baris, menyimpannya di Git, dan membiarkan renderer menentukan tipografi akhir. Struktur dokumen tetap terlihat langsung di source file.
+Source file yang mudah dibaca adalah keunggulan utama Markdown. Kamu dapat meninjau perubahan baris demi baris, menyimpan source file Markdown di Git, dan membiarkan renderer menentukan tipografi akhir. Struktur dokumen tetap terlihat langsung di source file.
 
 ### Sintaks Dasar Markdown
 
-Contoh berikut mengumpulkan sintaks umum dalam satu file. Tanda pagar di awal baris membuat heading. Penanda di sekeliling teks dapat membuat penekanan, tautan, atau kode.
+Contoh berikut mengumpulkan sintaks umum dalam satu file. **Tanda pagar di awal baris** membuat heading. Penanda di sekeliling teks dapat membuat penekanan, tautan, atau kode.
+
+Contoh memakai fitur Markdown yang didukung Pandoc dan GitHub Flavored Markdown. Tabel dan coretan `~~teks~~` merupakan ekstensi, jadi tidak semua renderer Markdown menampilkannya. Perintah shell berikut memakai Bash di macOS atau Linux. Contoh path perlu disesuaikan dengan folder latihanmu.
 
 <CodeBlock
   data={[{
@@ -61,9 +63,9 @@ def hello_world():
 
 ### Alur Kerja Markdown
 
-Simpan source file sebagai berkas utama yang ditinjau. Hasil render dapat dibuat ulang dari berkas ini. Alurnya terdiri atas membuat, mengedit, memvalidasi, mengonversi, lalu melihat preview.
+Simpan source file sebagai **berkas utama yang ditinjau**. Hasil render dapat dibuat ulang dari berkas ini. Alurnya terdiri atas membuat, mengedit, memvalidasi, mengonversi, lalu melihat preview.
 
-Buat file berekstensi `.md`, tulis isinya, lalu konversi dengan tool seperti Pandoc. Output HTML dapat berdiri sendiri ketika memakai `--standalone`. Output PDF juga memerlukan PDF engine yang kompatibel di perangkatmu.
+Buat file berekstensi `.md`, tulis isinya, lalu konversi dengan tool seperti Pandoc. Dengan `--standalone`, HTML memuat header dan body dokumen lengkap. Gambar dan stylesheet yang ditautkan tetap terpisah kecuali sengaja disematkan. Output PDF juga memerlukan PDF engine yang kompatibel di perangkatmu.
 
 <CodeBlock
   data={[{
@@ -76,7 +78,7 @@ touch document.md
 nano document.md
 
 # Konversi ke HTML menggunakan pandoc
-pandoc document.md -o document.html
+pandoc document.md --standalone -o document.html
 
 # Konversi ke PDF jika mesin PDF yang didukung telah terpasang
 pandoc document.md -o document.pdf
@@ -88,13 +90,13 @@ open document.html`
 
 ## Dasar Antarmuka Baris Perintah
 
-Antarmuka baris perintah atau CLI menerima perintah teks melalui shell. Setiap perintah memiliki nama program, flag opsional, dan argumen seperti path.
+Antarmuka baris perintah atau CLI menerima **perintah teks melalui shell**. Setiap perintah memiliki nama program, flag opsional, dan argumen seperti path.
 
 CLI berguna karena perintah dapat diperiksa, diulang, dijadikan skrip, dan ditinjau. Path dan flag destruktif harus ditulis dengan tepat karena shell mengikuti perintah tersebut apa adanya. Periksa perintah sebelum menjalankannya.
 
 ### Navigasi dan Eksplorasi Direktori
 
-Sebelum mengubah file, pastikan direktori aktif, periksa isinya, lalu berpindahlah dengan path yang eksplisit:
+Sebelum mengubah file, pastikan **direktori aktif**, periksa isinya, lalu berpindahlah dengan path yang eksplisit:
 
 <CodeBlock
   data={[{
@@ -109,7 +111,8 @@ ls -l    # format detail
 ls -la   # termasuk file tersembunyi
 
 # Berpindah direktori
-cd "$HOME/documents"
+mkdir -p "$HOME/markdown-practice"
+cd "$HOME/markdown-practice"
 cd ..    # naik satu level
 cd ~     # ke home directory
 cd -     # kembali ke direktori sebelumnya
@@ -122,7 +125,7 @@ mkdir -p project/src/components  # buat hierarki direktori`
 
 ### Operasi File dan Direktori
 
-Perintah file langsung bekerja pada path nyata. Periksa target sebelum menghapus, kutip path yang mungkin memuat spasi, dan hindari flag force rekursif kecuali direktori tepatnya sudah terbukti boleh dibuang.
+Perintah file langsung bekerja pada path nyata. **Periksa target sebelum menghapus**, kutip path yang mungkin memuat spasi, dan hindari flag force rekursif kecuali direktori tepatnya sudah terbukti boleh dibuang.
 
 <CodeBlock
   data={[{
@@ -152,7 +155,7 @@ less file.txt       # view dengan navigasi`
 
 ### Integrasi Markdown dengan CLI
 
-Skrip build kecil menjalankan langkah konversi yang sama setiap kali. Skrip harus gagal ketika sebuah perintah gagal, membuat direktori output sendiri, mengutip setiap path, dan menangani keadaan tanpa file sumber:
+Skrip build kecil menjalankan langkah konversi yang sama setiap kali. Skrip harus **gagal ketika sebuah perintah gagal**, membuat direktori output sendiri, mengutip setiap path, dan menangani keadaan tanpa file sumber:
 
 <CodeBlock
   data={[{
@@ -197,7 +200,7 @@ chmod +x build.sh
 
 ### Alat CLI untuk Markdown
 
-Gunakan kanal pemasangan resmi setiap alat, lalu verifikasi perintah yang terpasang sebelum mengandalkannya di dalam skrip. Pandoc mengonversi dokumen, sedangkan linter Markdown memeriksa konvensi sumber:
+Gunakan kanal pemasangan resmi setiap alat, lalu **verifikasi perintah yang terpasang** sebelum mengandalkannya di dalam skrip. Pandoc mengonversi dokumen, sedangkan linter Markdown memeriksa konvensi sumber:
 
 <CodeBlock
   data={[{
@@ -224,6 +227,8 @@ pandoc input.md -o output.html --template=custom.html`
 
 Simpan source file Markdown di version control. <Highlight>Validasi file sebelum konversi</Highlight>, simpan hasil konversi di direktori output yang dapat dibuat ulang, lalu tinjau diff sebelum commit:
 
+Direktori `site` di contoh ini khusus untuk output hasil konversi dan akan diganti. Simpan file yang kamu tulis di `docs`, bukan di `site`.
+
 <CodeBlock
   data={[{
     language: "bash",
@@ -235,10 +240,13 @@ set -eu
 
 SOURCE_DIR="docs"
 OUTPUT_DIR="site"
-STAGING_DIR=$(mktemp -d)
+STAGING_DIR=$(mktemp -d "./.site-build.XXXXXX")
 trap 'rm -rf "$STAGING_DIR"' EXIT
 
-mapfile -d '' source_files < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
+source_files=()
+while IFS= read -r -d '' file; do
+    source_files+=("$file")
+done < <(find "$SOURCE_DIR" -type f -name "*.md" -print0)
 if [ "\${#source_files[@]}" -eq 0 ]; then
     echo "Tidak ada sumber Markdown" >&2
     exit 1
@@ -269,7 +277,7 @@ git diff -- docs`
 
 ### Contoh Proyek Nyata
 
-Contoh terakhir membuat empat source file dan menggabungkannya menjadi satu dokumen HTML mandiri. Setiap input path ditulis secara eksplisit. Build langsung gagal jika salah satu input file tidak ditemukan:
+Contoh terakhir membuat empat source file dan menggabungkannya menjadi **satu dokumen HTML mandiri**. Setiap input path ditulis secara eksplisit. Build langsung gagal jika salah satu input file tidak ditemukan:
 
 <CodeBlock
   data={[{
@@ -290,26 +298,26 @@ cat << 'EOF' > docs/README.md
 Dokumentasi lengkap untuk proyek AI programming.
 
 ## Bagaimana Dokumen Disusun
-- [API Reference](api/README.md)
-- [Tutorials](tutorials/README.md)
-- [User Guides](guides/README.md)
+- [API Reference](#api)
+- [Tutorials](#tutorials)
+- [User Guides](#guides)
 EOF
 
 # Membuat halaman yang dirujuk
 cat << 'EOF' > docs/api/README.md
-# Referensi API
+# Referensi API {#api}
 
 Jelaskan setiap antarmuka publik dan sertakan satu contoh yang telah diverifikasi.
 EOF
 
 cat << 'EOF' > docs/tutorials/README.md
-# Tutorial
+# Tutorial {#tutorials}
 
 Pandu pembaca menyelesaikan satu tugas secara utuh.
 EOF
 
 cat << 'EOF' > docs/guides/README.md
-# Panduan Pengguna
+# Panduan Pengguna {#guides}
 
 Jelaskan alur kerja berulang beserta batas keamanannya.
 EOF

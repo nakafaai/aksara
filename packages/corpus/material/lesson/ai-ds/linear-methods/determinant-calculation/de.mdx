@@ -3,13 +3,13 @@ export const metadata = {
     description: "Determinanten mit Kofaktorentwicklung, Gauß-Elimination und Dreiecksmatrizen berechnen. Dazu kommen effiziente Verfahren für die lineare Algebra in der KI.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
 ## Das Rechenverfahren an die Matrixgröße anpassen
 
-Aus der [Definition der Determinante](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/determinante) folgen mehrere Rechenverfahren. <Highlight>Direkte Formeln genügen für kleine Matrizen.</Highlight> Bei großen dichten Matrizen führen die Elimination oder eine <InlineMath math="\mathrm{LU}" />-Zerlegung zur Dreiecksform und vermeiden das faktorielle Wachstum einer rekursiven Kofaktorentwicklung.
+Aus der [Definition der Determinante](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/determinante) folgen mehrere Rechenverfahren. <Highlight>Direkte Formeln</Highlight> genügen für kleine Matrizen. Bei großen dichten Matrizen führen die Elimination oder eine <InlineMath math="\mathrm{LU}" />-Zerlegung zur Dreiecksform und vermeiden das faktorielle Wachstum einer rekursiven Kofaktorentwicklung.
 
 ## Grundlegender Fall einer Matrix erster Ordnung
 
@@ -17,7 +17,7 @@ Für Matrizen der Größe <InlineMath math="1 \times 1" /> ist die Determinante 
 
 <BlockMath math="\det A = a_{11}" />
 
-Bei einer <InlineMath math="1\times1" />-Matrix ist die Determinante gleich ihrem einzigen Eintrag. Größere Matrizen werden durch Entwicklung oder Elimination auf kleinere Fälle zurückgeführt.
+Bei einer <InlineMath math="1\times1" />-Matrix ist die Determinante gleich ihrem **einzigen Eintrag**. Größere Matrizen werden durch Entwicklung oder Elimination auf kleinere Fälle zurückgeführt.
 
 ## Konzept der Submatrix
 
@@ -61,7 +61,7 @@ Für eine <InlineMath math="3 \times 3" />-Matrix sieht die Kofaktorentwicklung 
 
 <BlockMath math="A = \begin{pmatrix} 2 & 1 & 3 \\ 0 & 4 & 1 \\ 1 & 2 & 0 \end{pmatrix}" />
 
-Wir wählen die erste Zeile zur Erweiterung:
+Wir wählen die **erste Zeile** zur Erweiterung:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \det A &amp;= 2 \cdot (-1)^{1+1} \det A_{11} \\ &amp;\quad{}+ 1 \cdot (-1)^{1+2} \det A_{12} \\ &amp;\quad{}+ 3 \cdot (-1)^{1+3} \det A_{13} \end{aligned}" />
@@ -74,23 +74,19 @@ Die Entwicklung kann nach jeder Zeile oder Spalte erfolgen. Jeder Nulleintrag se
 
 ## Dreieckige und diagonale Matrizen
 
-Für einige spezielle Matrizentypen wird die Determinantenberechnung sehr einfach. Die Form der Matrix entfernt die meisten Terme, bevor du überhaupt entwickelst, sodass nur ein einziges Produkt übrig bleibt. Wer die Form zuerst erkennt, spart sich den größten Teil der Rechnung.
+Für einige spezielle Matrizentypen wird die Determinantenberechnung sehr einfach. Die Form der Matrix entfernt die meisten Terme, bevor du überhaupt entwickelst, sodass nur **ein einziges Produkt** übrig bleibt. Wer die Form zuerst erkennt, spart sich den größten Teil der Rechnung.
 
-### Obere Dreiecksmatrix
-
-Für obere Dreiecksmatrix <InlineMath math="R" />:
+Für eine obere Dreiecksmatrix <InlineMath math="R" />:
 
 <MathContainer>
 <BlockMath math="R = \begin{pmatrix} r_{11} & * & \cdots & * \\ 0 & r_{22} & \cdots & * \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & r_{nn} \end{pmatrix}" />
 </MathContainer>
 
-Seine Determinante ist:
+Ihre Determinante ist:
 
 <MathContainer>
 <BlockMath math="\det R = r_{11} \cdot r_{22} \cdot \ldots \cdot r_{nn}" />
 </MathContainer>
-
-### Untere Dreiecksmatrix
 
 Für die untere Dreiecksmatrix <InlineMath math="L" />:
 
@@ -98,21 +94,19 @@ Für die untere Dreiecksmatrix <InlineMath math="L" />:
 <BlockMath math="L = \begin{pmatrix} l_{11} & 0 & \cdots & 0 \\ * & l_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ * & * & \cdots & l_{nn} \end{pmatrix}" />
 </MathContainer>
 
-Seine Determinante ist:
+Ihre Determinante ist:
 
 <MathContainer>
 <BlockMath math="\det L = l_{11} \cdot l_{22} \cdot \ldots \cdot l_{nn}" />
 </MathContainer>
 
-### Diagonale Matrix
-
-Für Diagonalmatrix <InlineMath math="D" />:
+Für eine Diagonalmatrix <InlineMath math="D" />:
 
 <MathContainer>
 <BlockMath math="D = \begin{pmatrix} d_{11} & 0 & \cdots & 0 \\ 0 & d_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & d_{nn} \end{pmatrix}" />
 </MathContainer>
 
-Seine Determinante ist:
+Ihre Determinante ist:
 
 <MathContainer>
 <BlockMath math="\det D = d_{11} \cdot d_{22} \cdot \ldots \cdot d_{nn}" />
@@ -136,11 +130,11 @@ Elementarmatrizen sind Matrizen, die aus der Identitätsmatrix mit einer element
 
     <BlockMath math="\det P_i^j(\lambda) = 1" />
 
-Eine einzelne Zeilenvertauschung wechselt das Vorzeichen der Determinante. Das Addieren eines Vielfachen einer Zeile zu einer anderen lässt die Determinante dagegen unverändert.
+Bei Vertauschungen und Transvektionen bezeichnen die Indizes **zwei verschiedene Zeilen**, also <InlineMath math="i\neq j" />. Eine einzelne Zeilenvertauschung wechselt das Vorzeichen der Determinante. Das Addieren eines Vielfachen einer Zeile zu einer anderen lässt die Determinante dagegen unverändert.
 
 ## Gaußsche Eliminierung zur Determinantenberechnung
 
-Die Gauß-Elimination, beziehungsweise eine äquivalente <InlineMath math="\mathrm{LU}" />-Zerlegung, überführt eine dichte Matrix in obere Dreiecksform. Die Determinante folgt dann aus den Diagonaleinträgen und den erfassten Zeilenoperationen.
+Die Gauß-Elimination, beziehungsweise eine äquivalente <InlineMath math="\mathrm{LU}" />-Zerlegung, überführt eine dichte Matrix in **obere Dreiecksform**. Die Determinante folgt dann aus den Diagonaleinträgen und den erfassten Zeilenoperationen.
 
 Angenommen, wir verwenden nur Zeilenadditionen und Zeilenvertauschungen, um <InlineMath math="A" /> in eine obere Dreiecksmatrix <InlineMath math="R" /> zu überführen. Bei <InlineMath math="p" /> Zeilenvertauschungen gilt:
 
@@ -162,7 +156,7 @@ Falls ein Algorithmus während der Elimination eine Zeile skaliert, muss dieser 
 
 Für eine dichte <InlineMath math="n \times n" />-Matrix benötigt die Elimination oder <InlineMath math="\mathrm{LU}" />-Zerlegung ungefähr <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> Gleitkommaoperationen. Das anschließende Multiplizieren der Diagonaleinträge erfordert nur <InlineMath math="O(n)" /> zusätzliche Arbeit. Eine naive rekursive Kofaktorentwicklung kann dagegen wie <InlineMath math="O(n!)" /> wachsen.
 
-Bei großen unstrukturierten Matrizen wächst die Operationszahl der Elimination kubisch und damit langsamer als die faktorielle Operationszahl der rekursiven Kofaktorentwicklung.
+Bei großen unstrukturierten Matrizen wächst die Operationszahl der Elimination **kubisch** und damit langsamer als die faktorielle Operationszahl der rekursiven Kofaktorentwicklung.
 
 ## Eine Determinante dritter Ordnung durch Elimination berechnen
 

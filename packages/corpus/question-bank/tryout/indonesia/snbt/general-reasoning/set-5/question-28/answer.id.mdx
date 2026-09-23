@@ -5,10 +5,23 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Perlakukan <InlineMath math="D" />-<InlineMath math="E" /> sebagai satu blok. Bersama <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="F" />, dan <InlineMath math="G" />, terdapat enam unit yang dapat disusun. Blok <InlineMath math="D" />-<InlineMath math="E" /> mempunyai dua urutan internal, sedangkan hanya satu dari <InlineMath math="3!" /> urutan relatif <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> yang memenuhi <InlineMath math="A" /> sebelum <InlineMath math="B" /> sebelum <InlineMath math="C" />. Tanpa larangan posisi <InlineMath math="F" />, banyak susunan adalah <InlineMath math="2\cdot6!/3!=240" />.
+#### Menggabungkan laporan yang bersebelahan
 
-Jika <InlineMath math="F" /> ditempatkan di ujung kiri, lima unit lain dapat disusun dengan hitungan <InlineMath math="2\cdot5!/3!=40" />. Hitungan yang sama berlaku untuk ujung kanan, dan kedua kasus tidak beririsan. Jadi, jumlah yang harus dikeluarkan adalah <InlineMath math="2\cdot40=80" />.
+Anggap <InlineMath math="D" /> dan <InlineMath math="E" /> sebagai **satu blok**, dengan dua urutan internal: <InlineMath math="DE" /> atau <InlineMath math="ED" />. Kamu menyusun enam unit, yaitu blok tersebut serta <InlineMath math="A,B,C,F,G" />.
 
-Dengan demikian, ada <InlineMath math="240-80=160" /> susunan valid dari <InlineMath math="7!=5{.}040" /> susunan.
+Enam unit mempunyai <InlineMath math="6!" /> susunan. Namun, dari enam urutan relatif <InlineMath math="ABC,ACB,BAC,BCA,CAB,CBA" />, hanya <InlineMath math="ABC" /> memenuhi syarat. Setiap urutan relatif muncul sama banyak karena label <InlineMath math="A,B,C" /> bisa dipertukarkan tanpa mengubah syarat lain. Banyak susunan sebelum membatasi posisi <InlineMath math="F" /> adalah:
 
-Peluangnya adalah <InlineMath math="160/5040=\frac2{63}" />.
+<BlockMath math="N=\frac{2\times6!}{3!}=\frac{2\times720}{6}=240" />
+
+#### Mengeluarkan posisi ujung
+
+Jika <InlineMath math="F" /> berada di ujung kiri, tersisa lima unit dengan aturan blok dan urutan relatif yang sama. Hitungan untuk ujung kanan identik. Kedua kasus **tidak beririsan**, sebab satu laporan tidak dapat menempati kedua ujung sekaligus.
+
+| Posisi yang dilarang | Banyak susunan |
+| :--- | :--- |
+| <InlineMath math="F" /> di ujung kiri | <InlineMath math="2\times5!/3!=2\times120/6=40" /> |
+| <InlineMath math="F" /> di ujung kanan | <InlineMath math="40" /> |
+
+Kurangi kedua kelompok dari hitungan awal, lalu bagi dengan seluruh susunan tujuh laporan yang sama mungkin:
+
+<BlockMath math="\begin{aligned}N_{\text{valid}}&amp;=240-40-40=160\\P&amp;=\frac{160}{7!}=\frac{160}{5040}=\frac2{63}\end{aligned}" />

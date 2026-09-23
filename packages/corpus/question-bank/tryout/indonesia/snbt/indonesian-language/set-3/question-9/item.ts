@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *jaring-jaring makanan* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Definisi *jaring-jaring makanan* membuktikan bahwa hasil model selalu sama dengan keadaan ekosistem di lapangan.",
         },
         {
           isCorrect: true,

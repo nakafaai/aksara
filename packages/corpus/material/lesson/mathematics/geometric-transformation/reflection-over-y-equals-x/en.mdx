@@ -10,9 +10,7 @@ export const metadata = {
 
 ## Swapping the Horizontal and Vertical Coordinates
 
-Reflection over the line <InlineMath math="y = x" /> <Highlight>is a geometric transformation that maps every point of an object to a new position</Highlight> with the line <InlineMath math="y = x" /> acting as a mirror.
-
-The distance from the original point to the mirror line is equal to the distance from the image point to the mirror line, and the line connecting the original point to its image will be perpendicular to the line <InlineMath math="y = x" />.
+The line <InlineMath math="y=x" /> acts as the <Highlight>mirror line</Highlight>. A point and its image have equal distances from it. For a point outside the line, the joining segment is perpendicular to the mirror. Points on the mirror line remain fixed.
 
 ### Rule for Reflection over the Main Diagonal Line
 
@@ -23,7 +21,7 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the line <InlineMath 
   <BlockMath math="y' = x" />
 </MathContainer>
 
-The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(y, x)" />. Notice that the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates swap positions.
+The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(y, x)" />. Notice that the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates **swap positions**.
 
 ## Reflecting a Point
 
@@ -36,6 +34,10 @@ The original <InlineMath math="y" />-coordinate is <InlineMath math="4" />, beco
 The image of point <InlineMath math="A" /> is <InlineMath math="A'(4, 1)" />.
 
 In the following point pairs, <Highlight>the coordinates exchange places</Highlight>:
+
+Check the **midpoint of the pair**: it must lie on the mirror line. The joining segment must also be perpendicular to that line, giving the two points equal distances from it.
+
+<BlockMath math="M=\left(\frac{1+4}2,\frac{4+1}2\right)=\left(\frac52,\frac52\right)" />
 
 <LineEquation
   title={
@@ -50,6 +52,7 @@ In the following point pairs, <Highlight>the coordinates exchange places</Highli
     </>
   }
   data={[
+    { points: [{ x: 1, y: 4, z: 0 }, { x: 2.5, y: 2.5, z: 0 }, { x: 4, y: 1, z: 0 }], smooth: false, color: "#65a30d", showPoints: false, labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0.3, -0.3, 0] }] },
     {
       points: [
         { x: -6, y: -6, z: 0 },
@@ -68,7 +71,7 @@ In the following point pairs, <Highlight>the coordinates exchange places</Highli
     },
     {
       points: [{ x: 4, y: 1, z: 0 }],
-      color: "#059669", // Keeping color consistent for original and image as per user's id.mdx edit pattern
+      color: "#059669",
       showPoints: true,
       labels: [{ text: <InlineMath math="A'(4,1)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
@@ -107,7 +110,7 @@ In the following point pairs, <Highlight>the coordinates exchange places</Highli
 
 Determine the image of triangle <InlineMath math="ABC" /> with vertices <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, and <InlineMath math="C(-3,-1)" /> reflected over the line <InlineMath math="y=x" />.
 
-To reflect the triangle, we reflect each of its vertices over the line <InlineMath math="y=x" />:
+To reflect the triangle, we reflect **each of its vertices** over the line <InlineMath math="y=x" />:
 
 1.  Point <InlineMath math="A(-2, 4)" />: Its image is <InlineMath math="A'(4, -2)" />.
 2.  Point <InlineMath math="B(3, 1)" />: Its image is <InlineMath math="B'(1, 3)" />.
@@ -131,12 +134,12 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
   data={[
     {
       points: [
-        { x: -7, y: -7, z: 0 },
-        { x: 7, y: 7, z: 0 },
+        { x: -5, y: -5, z: 0 },
+        { x: 5, y: 5, z: 0 },
       ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-3.4, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Reflection line
     // Triangle ABC (Original)
     ...[
@@ -189,7 +192,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
 
 The line <InlineMath math="y = 2x + 3" /> is reflected across <InlineMath math="y=x" />. Determine the equation of its image.
 
-To find the equation of the image, we use the rule <InlineMath math="x' = y" /> and <InlineMath math="y' = x" />. This means we replace every <InlineMath math="x" /> in the original equation with <InlineMath math="y" /> (or <InlineMath math="y'" />) and every <InlineMath math="y" /> with <InlineMath math="x" /> (or <InlineMath math="x'" />).
+To find the equation of the image, we use the rule <InlineMath math="x' = y" /> and <InlineMath math="y' = x" />. This means we replace every <InlineMath math="x" /> in the **original equation** with <InlineMath math="y" /> (or <InlineMath math="y'" />) and every <InlineMath math="y" /> with <InlineMath math="x" /> (or <InlineMath math="x'" />).
 
 Original equation:
 
@@ -224,36 +227,36 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
   data={[
     {
       points: [
-        { x: -7, y: -7, z: 0 },
-        { x: 7, y: 7, z: 0 },
+        { x: -5, y: -5, z: 0 },
+        { x: 5, y: 5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-4.2, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Reflection line
     {
       // Original Line y = 2x + 3
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
+      points: Array.from({ length: 7 }, (_, pointIndex) => {
         const i = pointIndex - 2;
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
-      pointIndices: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      showPoints: false,
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=2x+3" />, at: 6, offset: [-2, 2, 0] }],
+      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
     },
     {
       // Image Line y = (1/2)x - 3/2
-      points: Array.from({ length: 35 }, (_, pointIndex) => {
+      points: Array.from({ length: 11 }, (_, pointIndex) => {
         const i = pointIndex - 12;
         const xVal = i - 5;
         return { x: xVal, y: (1 / 2) * xVal - 3 / 2, z: 0 };
       }),
-      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+      showPoints: false,
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 21, offset: [-1, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 8, offset: [0, -0.7, 0] }],
     },
   ]}
   cameraPosition={[0, 1, 14]}
@@ -262,7 +265,7 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
 
 ## Exercises
 
-All three problems reflect over the line <InlineMath math="y=x" />. The last one reflects a whole line, so its equation is transformed.
+Apply the **same coordinate rule** to the single point and to every triangle vertex. In the final problem, apply the rule to the line equation to obtain its entire set of image points.
 
 1.  Determine the coordinates of the image of point <InlineMath math="M(-4, 7)" /> if it is reflected over the line <InlineMath math="y = x" />!
 2.  Determine the image of triangle <InlineMath math="ABC" /> with vertices <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, and <InlineMath math="C(-2, 0)" /> reflected over the line <InlineMath math="y = x" />.
@@ -270,25 +273,33 @@ All three problems reflect over the line <InlineMath math="y=x" />. The last one
 
 ### Solutions
 
-1.  The image of point <InlineMath math="M(-4, 7)" /> is <InlineMath math="M'(7, -4)" />.
+Check the coordinate order when **swapping coordinates**. Each sign must follow the chosen reflection rule. For a line, simplify the equation after completing every substitution.
 
-    **Explanation:** The <InlineMath math="x" /> and <InlineMath math="y" /> coordinates are swapped: <InlineMath math="x' = 7" />, <InlineMath math="y' = -4" />.
+**Solution 1**
 
-2.  The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
+The image of point <InlineMath math="M(-4, 7)" /> is <InlineMath math="M'(7, -4)" />.
 
-    - <InlineMath math="A'(-2, 1)" /> (from <InlineMath math="A(1, -2)" />)
-    - <InlineMath math="B'(3, 2)" /> (from <InlineMath math="B(2, 3)" />)
-    - <InlineMath math="C'(0, -2)" /> (from <InlineMath math="C(-2, 0)" />)
+**Explanation**: The <InlineMath math="x" /> and <InlineMath math="y" /> coordinates are swapped: <InlineMath math="x' = 7" />, <InlineMath math="y' = -4" />.
 
-3.  The equation of the image of the line <InlineMath math="y = -3x + 5" /> is <InlineMath math="x = -3y + 5" />.
+**Solution 2**
 
-    **Explanation:** Substitute <InlineMath math="x \rightarrow y" /> and <InlineMath math="y \rightarrow x" /> into the original equation:
+The coordinates of the image triangle <InlineMath math="A'B'C'" /> are:
 
-    <BlockMath math="x = -3y + 5" />
+- <InlineMath math="A'(-2, 1)" /> (from <InlineMath math="A(1, -2)" />)
+- <InlineMath math="B'(3, 2)" /> (from <InlineMath math="B(2, 3)" />)
+- <InlineMath math="C'(0, -2)" /> (from <InlineMath math="C(-2, 0)" />)
 
-    If converted to the form <InlineMath math="y = mx+c" />:
+**Solution 3**
 
-    <MathContainer>
-      <BlockMath math="3y = -x + 5" />
-      <BlockMath math="y = -\frac{1}{3}x + \frac{5}{3}" />
-    </MathContainer>
+The equation of the image of the line <InlineMath math="y = -3x + 5" /> is <InlineMath math="x = -3y + 5" />.
+
+**Explanation**: Substitute <InlineMath math="x \rightarrow y" /> and <InlineMath math="y \rightarrow x" /> into the original equation:
+
+<BlockMath math="x = -3y + 5" />
+
+If converted to the form <InlineMath math="y = mx+c" />:
+
+<MathContainer>
+  <BlockMath math="3y = -x + 5" />
+  <BlockMath math="y = -\frac{1}{3}x + \frac{5}{3}" />
+</MathContainer>

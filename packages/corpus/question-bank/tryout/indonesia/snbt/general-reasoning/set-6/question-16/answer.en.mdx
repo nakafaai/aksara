@@ -5,22 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-There are <InlineMath math="5" /> children <InlineMath math="\{\mathrm{A}, \mathrm{B}, \mathrm{C}, \mathrm{D}, \mathrm{E}\}" /> and <InlineMath math="5" /> destinations. The one-to-one condition assigns each child one destination and uses every destination exactly once.
+A wants only Yogyakarta or Lombok. E already has Lombok, and **each destination is used exactly once**, so A must receive **Yogyakarta**.
 
-First, identify children with "exclusive" or unique choices:
-1.  **Bali**: Only appears in **B**'s wish list. Thus, **B must go to Bali**.
-2.  **Manado**: Only appears in **C**'s wish list. Thus, **C must go to Manado**.
+We can check that this choice still allows all tickets to be assigned under the rules:
 
-Now we are left with <InlineMath math="3" /> children <InlineMath math="\{\mathrm{A}, \mathrm{D}, \mathrm{E}\}" /> and <InlineMath math="3" /> destinations (Yogyakarta, Lombok, Padang).
--   A wants: Yogyakarta or Lombok.
--   D wants: Yogyakarta or Padang.
--   E wants: Padang, Lombok, or Yogyakarta.
+| Child | Destination | Reason |
+| --- | --- | --- |
+| E | Lombok | Given in the question |
+| A | Yogyakarta | Lombok is already assigned to E |
+| B | Bali | Bali must be used and appears only on B's list |
+| C | Manado | Manado must be used and appears only on C's list |
+| D | Padang | Yogyakarta is assigned to A, leaving Padang as D's only available choice |
 
-Based on the additional information in the question, we know that **E goes to Lombok**.
-
-Since **Lombok** is taken by E, look at A's options:
--   A originally wanted Yogyakarta or Lombok.
--   The Lombok option is closed (since E is there).
--   Therefore, the only remaining choice for A is **Yogyakarta**.
-
-Thus, the father gives the **Yogyakarta** ticket to A. The remaining destination for D is Padang.
+All five destinations are used exactly once, and each child receives a destination on their wish list. This assignment satisfies every condition.

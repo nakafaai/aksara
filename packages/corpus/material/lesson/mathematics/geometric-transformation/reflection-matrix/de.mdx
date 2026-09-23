@@ -36,6 +36,8 @@ Somit ist die Spiegelungsmatrix für die <InlineMath math="x" />-Achse:
 
 Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> an der <InlineMath math="y" />-Achse ergibt <InlineMath math="(-x,y)" />.
 
+Nur die **waagerechte Koordinate wechselt das Vorzeichen**. Die erste Zeile wählt ihr Negatives aus. Die zweite Zeile behält die senkrechte Koordinate bei.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ y \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} -1x + 0y \\ 0x + 1y \end{pmatrix}" />
@@ -50,6 +52,8 @@ Die Matrix ist:
 ## Spiegelungsmatrix für die erste Winkelhalbierende
 
 Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> an der Geraden <InlineMath math="y=x" /> ergibt <InlineMath math="(y,x)" />.
+
+Diese Matrix **vertauscht die Koordinaten**. Die Einsen liegen außerhalb der Hauptdiagonalen, weil die erste Zeile die senkrechte und die zweite die waagerechte Koordinate auswählt.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} y \\ x \end{pmatrix}" />
@@ -66,6 +70,8 @@ Die Matrix ist:
 
 Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> an der Geraden <InlineMath math="y=-x" /> ergibt <InlineMath math="(-y,-x)" />.
 
+Diese Matrix **vertauscht und negiert beide Koordinaten**. Die negativen Einsen außerhalb der Hauptdiagonalen führen beide Operationen in einer Multiplikation aus.
+
 <MathContainer>
   <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
   <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} 0x - 1y \\ -1x + 0y \end{pmatrix}" />
@@ -79,28 +85,22 @@ Die Matrix ist:
 
 ## Grundlegende Spiegelungsmatrizen
 
-Jede Matrix unten wirkt auf einen Spaltenvektor mit den Koordinaten eines Punktes. Lies eine Zeile <Highlight>als Vorschrift für eine Ausgabekoordinate</Highlight>, die erste Zeile erzeugt also das neue <InlineMath math="x" /> und die zweite das neue <InlineMath math="y" />. Es folgen die Matrizen für die beiden Koordinatenachsen und für den Ursprung.
+Vergleiche die vier Matrizen mit **demselben Ausgangspunkt** <InlineMath math="P(3,-4)" />. Unterscheide dabei zwischen dem Wechsel der Vorzeichen und dem Vertauschen der Koordinaten:
 
-- Spiegelungsmatrix für die <InlineMath math="x" />-Achse:
-
-  <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-- Spiegelungsmatrix für die <InlineMath math="y" />-Achse:
-
-  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
-- Spiegelungsmatrix für Gerade <InlineMath math="y=x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
-- Spiegelungsmatrix für Gerade <InlineMath math="y=-x" />:
-
-  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+| Spiegelgerade | Koordinatenregel | Bildpunkt |
+| --- | --- | --- |
+| <InlineMath math="y=0" /> | <InlineMath math="(x,y)\mapsto(x,-y)" /> | <InlineMath math="(3,4)" /> |
+| <InlineMath math="x=0" /> | <InlineMath math="(x,y)\mapsto(-x,y)" /> | <InlineMath math="(-3,-4)" /> |
+| <InlineMath math="y=x" /> | <InlineMath math="(x,y)\mapsto(y,x)" /> | <InlineMath math="(-4,3)" /> |
+| <InlineMath math="y=-x" /> | <InlineMath math="(x,y)\mapsto(-y,-x)" /> | <InlineMath math="(4,-3)" /> |
 
 ## Das Bild eines Punktes mit einer Matrix bestimmen
 
 Bestimme das Bild von <InlineMath math="(3,-4)" /> bei der Spiegelung an der <InlineMath math="x" />-Achse.
 
-**Lösung:**
+**Lösung**:
 
-Wir setzen den Punkt als Spaltenvektor in die Spiegelungsmatrix der <InlineMath math="x" />-Achse ein:
+Wir setzen den Punkt als **Spaltenvektor** in die Spiegelungsmatrix der <InlineMath math="x" />-Achse ein:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
@@ -110,7 +110,7 @@ Somit ist das Bild <InlineMath math="(3,4)" />.
 
 Bestimme das Bild des Dreiecks <InlineMath math="ABC" /> mit den Eckpunkten <InlineMath math="A(3,1)" />, <InlineMath math="B(-2,3)" /> und <InlineMath math="C(2,-1)" /> bei der Spiegelung an der <InlineMath math="y" />-Achse.
 
-**Lösung:**
+**Lösung**:
 
 Die Spiegelungsmatrix für die <InlineMath math="y" />-Achse ist:
 
@@ -120,7 +120,7 @@ Wir schreiben die Eckpunkte des Dreiecks <InlineMath math="ABC" /> spaltenweise 
 
 <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-Die Spalten stehen von links nach rechts für <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />. Multipliziere jede Spalte mit der Spiegelungsmatrix, um beide Koordinaten des Bildpunktes zu berechnen.
+Die Spalten stehen von links nach rechts für <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />. Multipliziere **jede Punktspalte** mit der Spiegelungsmatrix, um beide Koordinaten des Bildpunktes zu berechnen.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
@@ -186,10 +186,13 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Übungen
+
+Wähle die **Matrix zur Spiegelgeraden** und multipliziere sie mit dem Koordinatenvektor. Behalte beim Dreieck die Reihenfolge der drei Eckpunktspalten bei.
 
 1.  Bestimme das Bild des Punktes <InlineMath math="(3,5)" /> bei der Spiegelung an der <InlineMath math="x" />-Achse mit der Matrix:
 
@@ -198,30 +201,36 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath
 
 ### Lösungen
 
-1.  Multipliziere den Ortsvektor von <InlineMath math="(3,5)" /> mit der Spiegelungsmatrix für die <InlineMath math="x" />-Achse:
+Die erste Zeile ergibt die waagerechte, die zweite die senkrechte Koordinate. Bei der zweiten Winkelhalbierenden werden **die Koordinaten vertauscht und ihre Vorzeichen umgekehrt**.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
+**Lösung 1**
 
-    Der Bildpunkt ist <InlineMath math="(3,-5)" />.
+Multipliziere den Ortsvektor von <InlineMath math="(3,5)" /> mit der Spiegelungsmatrix für die <InlineMath math="x" />-Achse:
 
-2.  Die Spiegelungsmatrix für <InlineMath math="y=-x" /> ist:
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 5 \end{pmatrix} = \begin{pmatrix} 3 \\ -5 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
+Der Bildpunkt ist <InlineMath math="(3,-5)" />.
 
-    Die Koordinatenmatrix der Eckpunkte von <InlineMath math="ABC" /> ist:
+**Lösung 2**
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+Die Spiegelungsmatrix für <InlineMath math="y=-x" /> ist:
 
-      <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-    </MathContainer>
-          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+Die Koordinatenmatrix der Eckpunkte von <InlineMath math="ABC" /> ist:
 
-      <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
 
-    Damit erhalten wir die Bildpunkte <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" /> und <InlineMath math="C'(1,-2)" />.
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+</MathContainer>
+Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+
+  <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
+</MathContainer>
+
+Damit erhalten wir die Bildpunkte <InlineMath math="A'(-1,-3)" />, <InlineMath math="B'(-3,2)" /> und <InlineMath math="C'(1,-2)" />.

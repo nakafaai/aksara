@@ -3,7 +3,7 @@ export const metadata = {
    description: "Nutze Integrale, um Arbeit bei veränderlichen Kräften, Federenergie, Massenverteilungen, Schwerpunkte und Trägheitsmomente zu berechnen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Integrale",
 };
 
@@ -19,7 +19,7 @@ Beginnen wir mit der Arbeit. Eine konstante Kraft parallel zur Verschiebung verr
 
 Ein Teilchen befindet sich an der Koordinate <InlineMath math="x" />, gemessen in Metern vom Ursprung. Die Kraft <InlineMath math="F(x) = x^2 + 2x" /> Newton wirkt in positive <InlineMath math="x" />-Richtung. Welche Arbeit verrichtet diese Kraft, während sich das Teilchen von <InlineMath math="x = 1 \text{ Meter}" /> nach <InlineMath math="x = 3 \text{ Meter}" /> bewegt?
 
-Da die Kraft von der Position abhängt, lässt sich nicht ein einziger Wert von <InlineMath math="F" /> mit der gesamten Verschiebung multiplizieren. Wir summieren deshalb die kleinen Arbeitsbeiträge entlang des Weges:
+Da die **Kraft von der Position abhängt**, lässt sich nicht ein einziger Wert von <InlineMath math="F" /> mit der gesamten Verschiebung multiplizieren. Wir summieren deshalb die kleinen Arbeitsbeiträge entlang des Weges:
 
 <BlockMath math="\begin{aligned} W &amp;= \int_{1}^{3} F(x) \, dx \\ &amp;= \int_{1}^{3} (x^2 + 2x) \, dx \end{aligned}" />
 
@@ -36,7 +36,7 @@ Die Kraft verrichtet also <InlineMath math="\frac{50}{3}" /> Joule Arbeit, ungef
 
 ## Hookes Gesetz und Federenergie
 
-Je weiter eine Feder zusammengedrückt oder gedehnt wird, desto größer ist die nötige Haltekraft.
+Das Modell setzt eine **ideale Feder im linear-elastischen Bereich** voraus. Nach dem Hookeschen Gesetz erfordert eine größere Dehnung oder Stauchung eine größere Haltekraft.
 
 Nach dem Hookeschen Gesetz wirkt die Rückstellkraft der Feder der Auslenkung entgegen. Wird die Feder langsam gedehnt oder gestaucht, hat die zum Halten bei der Auslenkung <InlineMath math="x" /> nötige äußere Kraft denselben Betrag und die entgegengesetzte Richtung:
 
@@ -44,7 +44,7 @@ Nach dem Hookeschen Gesetz wirkt die Rückstellkraft der Feder der Auslenkung en
 
 Dabei ist <InlineMath math="k" /> die Federkonstante und <InlineMath math="x" /> die vorzeichenbehaftete Auslenkung aus der Gleichgewichtslage. Das Integral von <InlineMath math="F_{\mathrm{ext}}" /> liefert die an der Feder verrichtete äußere Arbeit und damit die Zunahme ihrer elastischen potenziellen Energie.
 
-Betrachten wir ein reales Beispiel. Angenommen, eine Kraft von <InlineMath math="40 \text{ N}" /> ist erforderlich, um eine Feder zu halten, die von ihrer ursprünglichen Länge von <InlineMath math="10 \text{ cm}" /> auf <InlineMath math="15 \text{ cm}" /> gedehnt wurde. Welche Arbeit ist nun erforderlich, um die Feder von <InlineMath math="15 \text{ cm}" /> auf <InlineMath math="18 \text{ cm}" /> zu dehnen?
+Angenommen, eine Kraft von <InlineMath math="40 \text{ N}" /> ist erforderlich, um eine Feder zu halten, die von ihrer ursprünglichen Länge von <InlineMath math="10 \text{ cm}" /> auf <InlineMath math="15 \text{ cm}" /> gedehnt wurde. Welche Arbeit ist nun erforderlich, um die Feder von <InlineMath math="15 \text{ cm}" /> auf <InlineMath math="18 \text{ cm}" /> zu dehnen?
 
 Zuerst bestimmen wir die Federkonstante. Die Auslenkung aus der Gleichgewichtslage beträgt <InlineMath math="15 - 10 = 5 \text{ cm} = 0{,}05 \text{ m}" />. Für den Betrag der Haltekraft gilt <InlineMath math="F_{\mathrm{ext}} = kx" />:
 
@@ -53,8 +53,11 @@ Zuerst bestimmen wir die Federkonstante. Die Auslenkung aus der Gleichgewichtsla
 Also <InlineMath math="k = \frac{40}{0{,}05} = 800 \text{ N/m}" />.
 
 Für die äußere Arbeit beim Dehnen von <InlineMath math="15 \text{ cm}" /> auf <InlineMath math="18 \text{ cm}" /> messen wir beide Positionen von der Gleichgewichtslänge aus:
-- Position <InlineMath math="15 \text{ cm} = 0{,}05 \text{ m}" /> aus der natürlichen Position
-- Position <InlineMath math="18 \text{ cm} = 0{,}08 \text{ m}" /> aus der natürlichen Position
+
+| Gesamtlänge | Verlängerung gegenüber der Ruhelänge | Integrationsgrenze |
+| --- | --- | --- |
+| <InlineMath math="15\text{ cm}" /> | <InlineMath math="(15-10)\text{ cm}=5\text{ cm}" /> | <InlineMath math="0{,}05\text{ m}" /> |
+| <InlineMath math="18\text{ cm}" /> | <InlineMath math="(18-10)\text{ cm}=8\text{ cm}" /> | <InlineMath math="0{,}08\text{ m}" /> |
 
 Wir können die Arbeit mit Integralen berechnen:
 
@@ -95,6 +98,20 @@ Für den Stab mit der Dichte <InlineMath math="\rho(x) = 3x + 2" /> oben:
 
 > Der Massenschwerpunkt ist die Koordinate, an der die Gesamtmasse dasselbe erste Moment wie die tatsächliche Massenverteilung erzeugt. In einem gleichförmigen Schwerefeld ist das der natürliche Gleichgewichtspunkt. Die Rotationsbewegung hängt weiterhin davon ab, wie die Masse verteilt ist.
 
+Die Dichte wächst von <InlineMath math="2 \text{ kg/m}" /> am linken Ende auf <InlineMath math="8 \text{ kg/m}" /> am rechten Ende. Weil die **rechte Seite dichter** ist, liegt der Schwerpunkt bei <InlineMath math="1{,}2 \text{ m}" /> rechts vom Mittelpunkt bei <InlineMath math="1 \text{ m}" />.
+
+<LineEquation
+  title="Zunehmende Dichte des Stabes"
+  description="Die waagerechte Achse zeigt die Position in Metern, die senkrechte Achse die lineare Dichte in Kilogramm pro Meter. Die orange Linie markiert die Schwerpunktposition."
+  showZAxis={false}
+  cameraTarget={[1, 4, 0]}
+  cameraPosition={[1, 4, 17]}
+  data={[
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 2, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ at: 0, text: <InlineMath math="(0,2)" />, offset: [0.5, -0.4, 0] }, { at: 1, text: <InlineMath math="(2,8)" />, offset: [0.5, 0.4, 0] }] },
+    { points: [{ x: 1.2, y: 0, z: 0 }, { x: 1.2, y: 5.6, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="1{,}2" />, offset: [0, -0.5, 0] }] },
+  ]}
+/>
+
 ## Berechnung des Trägheitsmoments
 
 Das **Trägheitsmoment** beschreibt, wie die Masse relativ zu einer festgelegten Drehachse verteilt ist. Bei einer festen Achse bestimmt es über <InlineMath math="\tau=I\alpha" />, welche Winkelbeschleunigung ein Drehmoment hervorruft. Für einen kontinuierlichen Körper gilt:
@@ -103,13 +120,13 @@ Das **Trägheitsmoment** beschreibt, wie die Masse relativ zu einer festgelegten
 
 In dieser Formel ist <InlineMath math="r" /> der Abstand von der Rotationsachse und <InlineMath math="dm" /> das Massenelement.
 
-Für einen homogenen Stab mit der Masse <InlineMath math="M" /> und der Länge <InlineMath math="L" />, der sich um eines seiner Enden dreht:
+Für einen **dünnen homogenen Stab** der Masse <InlineMath math="M" /> und Länge <InlineMath math="L" /> wählen wir eine Achse durch ein Ende **senkrecht zum Stab**. Jedes Massenelement hat den Abstand <InlineMath math="x" /> von dieser Achse. Damit gilt:
 
 <BlockMath math="\begin{aligned} I &amp;= \int_{0}^{L} x^2 \frac{M}{L} \, dx \\ &amp;= \frac{M}{L} \int_{0}^{L} x^2 \, dx \\ &amp;= \frac{M}{L} \left[\frac{x^3}{3}\right]_{0}^{L} \\ &amp;= \frac{ML^2}{3} \end{aligned}" />
 
 ## Übungen
 
-In jeder Aufgabe ist eine Rate wie Geschwindigkeit oder Leistung gegeben und die angesammelte Größe gesucht, deshalb integrierst du die Rate über das angegebene Zeitintervall.
+Für Arbeit und Federenergie integrierst du die Kraft über die Verschiebung. Für die Masse integrierst du die lineare Dichte über die Länge. **Prüfe die Einheiten**: Newton mal Meter ergibt Joule. Kilogramm pro Meter mal Meter ergibt Kilogramm.
 
 1. Ein Teilchen bewegt sich entlang der <InlineMath math="x" />-Achse. Die Kraft <InlineMath math="F(x) = 4x - x^2" /> Newton wirkt in Bewegungsrichtung. Berechne die Arbeit dieser Kraft von <InlineMath math="x = 0" /> bis <InlineMath math="x = 3 \text{ Meter}" />.
 
@@ -117,44 +134,46 @@ In jeder Aufgabe ist eine Rate wie Geschwindigkeit oder Leistung gegeben und die
 
 3. Ein <InlineMath math="4 \text{ Meter}" /> langer Draht hat die lineare Dichte <InlineMath math="\rho(x) = (2 + x)\,\text{kg/m}" />, wobei <InlineMath math="x" /> in Metern gemessen wird. Bestimme die Gesamtmasse und die Lage des Massenschwerpunkts.
 
-### Ausführliche Lösungen
+### Berechnung der Arbeit mit variabler Kraft
 
-1. **Berechnung der Arbeit mit variabler Kraft**
+Die Kraft hängt vom Ort ab. Wir summieren die Beiträge <InlineMath math="F(x)\,dx" /> von <InlineMath math="0" /> bis <InlineMath math="3" /> und bilden dann die **Differenz der Stammfunktionswerte** an den Grenzen.
 
-   <MathContainer>
-   <BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
-   <BlockMath math="W = \left[2x^2 - \frac{x^3}{3}\right]_{0}^{3}" />
-   <BlockMath math="\begin{aligned} W &amp;= \left(2(3)^2 - \frac{(3)^3}{3}\right) \\ &amp;\quad{}- \left(2(0)^2 - \frac{(0)^3}{3}\right) \end{aligned}" />
-   <BlockMath math="W = \left(18 - 9\right) - 0 = 9 \text{ Joule}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
+<BlockMath math="W = \left[2x^2 - \frac{x^3}{3}\right]_{0}^{3}" />
+<BlockMath math="\begin{aligned} W &amp;= \left(2(3)^2 - \frac{(3)^3}{3}\right) \\ &amp;\quad{}- \left(2(0)^2 - \frac{(0)^3}{3}\right) \end{aligned}" />
+<BlockMath math="W = \left(18 - 9\right) - 0 = 9 \text{ Joule}" />
+</MathContainer>
 
-   Die geleistete Arbeit beträgt <InlineMath math="9" /> Joule.
+Die geleistete Arbeit beträgt <InlineMath math="9" /> Joule.
 
-2. **Berechnung der Federenergie**
+### Berechnung der Federenergie
 
-   Die in der Feder gespeicherte potenzielle Energie beträgt:
+Beim langsamen Dehnen der Feder wächst die benötigte äußere Kraft gemäß <InlineMath math="F(x)=kx" />. Die gespeicherte **potenzielle Energie** entspricht der Arbeit dieser Kraft von null bis <InlineMath math="0{,}1" /> Meter Dehnung.
 
-   <MathContainer>
-   <BlockMath math="E = \int_{0}^{0{,}1} kx \, dx = \int_{0}^{0{,}1} 200x \, dx" />
-   <BlockMath math="E = 200 \left[\frac{x^2}{2}\right]_{0}^{0{,}1}" />
-   <BlockMath math="\begin{aligned} E &amp;= 200 \times \frac{(0{,}1)^2 - 0^2}{2} \\ &amp;= 200 \times \frac{0{,}01}{2} \\ &amp;= 100 \times 0{,}01 \\ &amp;= 1 \text{ Joule} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="E = \int_{0}^{0{,}1} kx \, dx = \int_{0}^{0{,}1} 200x \, dx" />
+<BlockMath math="E = 200 \left[\frac{x^2}{2}\right]_{0}^{0{,}1}" />
+<BlockMath math="\begin{aligned} E &amp;= 200 \times \frac{(0{,}1)^2 - 0^2}{2} \\ &amp;= 200 \times \frac{0{,}01}{2} \\ &amp;= 100 \times 0{,}01 \\ &amp;= 1 \text{ Joule} \end{aligned}" />
+</MathContainer>
 
-   Die gespeicherte potentielle Energie beträgt <InlineMath math="1" /> Joule.
+Die gespeicherte potentielle Energie beträgt <InlineMath math="1" /> Joule.
 
-3. **Berechnung der Drahtmasse und des Massenschwerpunktes**
+### Berechnung der Drahtmasse und des Massenschwerpunktes
 
-   Gesamtmasse:
+Addiere die Masse jedes kurzen Drahtstücks. Sie ergibt sich aus der linearen Dichte mal der Stücklänge:
 
-   <BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
+<BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
 
-   Schwerpunkt:
+Für den Schwerpunkt gewichtest du die Masse jedes Stücks mit seiner Position. Teile anschließend das gesamte Massenmoment durch die Gesamtmasse:
 
-   <MathContainer>
-   <BlockMath math="\bar{x} = \frac{\int_{0}^{4} x(2 + x) \, dx}{16}" />
-   <BlockMath math="\bar{x} = \frac{\int_{0}^{4} (2x + x^2) \, dx}{16}" />
-   <BlockMath math="\bar{x} = \frac{[x^2 + \frac{x^3}{3}]_{0}^{4}}{16} = \frac{16 + \frac{64}{3}}{16}" />
-   <BlockMath math="\bar{x} = \frac{\frac{48 + 64}{3}}{16} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac{7}{3} \text{ Meter}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} x(2 + x) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} (2x + x^2) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{[x^2 + \frac{x^3}{3}]_{0}^{4}}{16} = \frac{16 + \frac{64}{3}}{16}" />
+<BlockMath math="\bar{x} = \frac{\frac{48 + 64}{3}}{16} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac{7}{3} \text{ Meter}" />
+</MathContainer>
 
-   Die Gesamtmasse des Drahtes beträgt <InlineMath math="16 \text{ kg}" /> und sein Massenschwerpunkt liegt an der Position <InlineMath math="\frac{7}{3} \text{ Meter}" /> vom Ende entfernt.
+Die Gesamtmasse des Drahtes beträgt <InlineMath math="16 \text{ kg}" /> und sein Massenschwerpunkt liegt an der Position <InlineMath math="\frac{7}{3} \text{ Meter}" /> vom Ende entfernt.
+
+Die Schwerpunktposition wird vom Ende mit <InlineMath math="x=0" /> gemessen. Sie liegt rechts vom Mittelpunkt, weil die **Dichte zum anderen Ende hin zunimmt**.

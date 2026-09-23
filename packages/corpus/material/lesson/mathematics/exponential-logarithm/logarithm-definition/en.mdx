@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Logarithms Determine an Unknown Exponent
 
-<Highlight>A logarithm reverses exponentiation</Highlight>. If <InlineMath math="a^c=b" />, then <InlineMath math="\log_a b" /> gives the exponent <InlineMath math="c" />.
+A logarithm finds an **unknown exponent**. If <InlineMath math="a^c=b" />, then <InlineMath math="\log_a b" /> gives the exponent <InlineMath math="c" />.
 
 <BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
 
@@ -35,7 +35,7 @@ Each row states the same relationship twice:
 | <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
 | <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
 
-When converting, keep the base unchanged. The exponential output becomes the logarithm's argument, and the exponent becomes the logarithm's value.
+When converting, keep **the same base**. The exponential output becomes the logarithm's argument, and the exponent becomes the logarithm's value. In the third row, a negative exponent produces a fractional output.
 
 ## Common and Natural Logarithms
 
@@ -43,7 +43,7 @@ A logarithm with base <InlineMath math="10" /> is called the **common logarithm*
 
 <BlockMath math="\log_{10}x=\log x" />
 
-A logarithm with base <InlineMath math="e" /> is called the **natural logarithm** and is written <InlineMath math="\ln x" />. Both notations are special cases of <InlineMath math="\log_a x" />.
+A logarithm with base <InlineMath math="e" /> is called the **natural logarithm** and is written <InlineMath math="\ln x" />. The constant <InlineMath math="e\approx2.71828" /> is Euler's number. Both notations are special cases of <InlineMath math="\log_a x" />.
 
 ## Solving for an Unknown Exponent
 
@@ -51,7 +51,7 @@ Suppose an idealized culture starts with <InlineMath math="2{,}000" /> bacteria 
 
 <BlockMath math="P(x)=2{,}000\cdot2^x" />
 
-To find when the continuous model reaches <InlineMath math="100{,}000" />, set the output equal to the target:
+To find when the continuous model reaches <InlineMath math="100{,}000" />, set the population equal to the target. Divide both sides by the **initial population** before finding the exponent:
 
 <MathContainer>
   <BlockMath math="100{,}000=2{,}000\cdot2^x" />
@@ -71,3 +71,13 @@ The continuous curve crosses <InlineMath math="100{,}000" /> at about <InlineMat
 </MathContainer>
 
 So the first completed hourly interval at or above the target is <InlineMath math="6\text{ hours}" />. The logarithm solves the equation. The context determines how that real-valued answer should be interpreted.
+
+On the graph, the target lies **between two hourly observations**. The point after five hours is below the target, while the point after six hours is above it.
+
+<FunctionChart
+  a={2}
+  p={2000}
+  n={7}
+  title="Time to Reach the Target"
+  description="The horizontal axis measures time in hours. Compare the populations after five and six hours."
+/>

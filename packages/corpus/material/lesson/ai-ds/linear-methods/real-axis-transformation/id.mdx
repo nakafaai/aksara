@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Bentuk Kuadrat dengan Matriks Simetris
 
-Ketika persamaan kuadrat memuat suku silang, arah sumbu utama tidak dapat ditentukan hanya dari koefisien setiap suku kuadrat. Bentuk kuadrat menempatkan semua koefisien tersebut dalam matriks simetris. <Highlight>Vektor eigen matriks itu menentukan arah sumbu utama.</Highlight> Dalam dua dimensi, misalkan
+Ketika persamaan kuadrat memuat suku silang, arah sumbu utama tidak dapat ditentukan hanya dari koefisien setiap suku kuadrat. Bentuk kuadrat menempatkan semua koefisien tersebut dalam matriks simetris. Vektor eigen matriks itu menentukan <Highlight>arah sumbu utama</Highlight>. Dalam dua dimensi, misalkan
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
@@ -27,7 +27,7 @@ Untuk persamaan <InlineMath math="x^TAx+p^Tx+f=0" />, gunakan koordinat hasil ro
 
 Untuk kedua variabel dengan <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, proses melengkapkan kuadrat dilakukan secara terpisah:
 
-Beri nama pada isi kurung pelengkapan kuadrat agar suku yang ditambah dan dikurangi tetap terlihat:
+Beri nama pada isi kurung pelengkapan kuadrat agar **suku yang ditambah dan dikurangi** tetap terlihat:
 
 <MathContainer>
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
@@ -40,7 +40,7 @@ Beri nama pada isi kurung pelengkapan kuadrat agar suku yang ditambah dan dikura
 Setelah suku-sukunya dikumpulkan, kita memperoleh
 
 <MathContainer>
-<BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Definisikan pusat dalam koordinat hasil rotasi dan konstanta setelah translasi sebagai
@@ -60,7 +60,7 @@ Tanda <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" />, dan <Inl
 
 ## Klasifikasi Kurva
 
-Tanda kedua nilai eigen menentukan irisan kerucut yang muncul, jadi setiap kasus berikut membahas satu kombinasi tanda dan menyebut kurva yang dihasilkannya. Besarnya nilai eigen hanya menentukan seberapa jauh kurva itu terentang, bukan jenis kurvanya.
+Dengan **konstanta setelah translasi positif** <InlineMath math="\gamma" />, dua nilai eigen positif memberikan elips, sedangkan nilai eigen berlawanan tanda memberikan hiperbola. Jika salah satu nilai eigen nol, periksa suku linear yang tersisa: parabola terbentuk hanya ketika koefisien suku linear itu tidak nol.
 
 ### Kedua Nilai Eigen Positif
 
@@ -142,6 +142,7 @@ Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -161,7 +162,7 @@ Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_
   data={[
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2; // λ₁ > 0
         const lambda2 = -1; // λ₂ < 0
         const gamma = 3; // γ > 0
@@ -177,7 +178,7 @@ Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_
     },
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2;
         const lambda2 = -1;
         const gamma = 3;
@@ -270,6 +271,7 @@ Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -283,11 +285,15 @@ Beri nama isi kurung pelengkapan kuadrat yang sama agar suku yang ditambah dan d
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
 
   <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\epsilon\xi_2+f" />
-  <BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
   <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-Menyelesaikan persamaan terhadap <InlineMath math="\xi_2" /> menghasilkan bentuk baku parabola:
+Karena nilai eigen kedua nol, kita hanya melengkapkan kuadrat pertama. Definisikan:
+
+<BlockMath math="m_1=-\frac{\delta}{2\lambda_1},\qquad \gamma=\frac{\delta^2}{4\lambda_1}-f" />
+
+Menyelesaikan persamaan terhadap <InlineMath math="\xi_2" /> menghasilkan **bentuk baku parabola**:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -299,8 +305,7 @@ Menyelesaikan persamaan terhadap <InlineMath math="\xi_2" /> menghasilkan bentuk
   data={[
     {
       points: Array.from({ length: 155 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 14;
-        const t = (i / 49 - 0.5) * 6;
+        const t = (pointIndex / 154 - 0.5) * 6;
         const lambda1 = 1; // λ₁ ≠ 0
         const epsilon = -2; // ε ≠ 0
         const gamma = 2; // γ
@@ -346,7 +351,9 @@ Menyelesaikan persamaan terhadap <InlineMath math="\xi_2" /> menghasilkan bentuk
       ]
     }
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Merotasi dan Mentranslasi Irisan Kerucut Dua Dimensi
@@ -365,7 +372,7 @@ Pasangan eigennya adalah
 <BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
 </MathContainer>
 
-Pusat dalam koordinat semula adalah <InlineMath math="h=(1,-1)^T" /> karena <InlineMath math="2Ah+p=0" />. Dalam koordinat hasil rotasi, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Dengan <InlineMath math="\eta=\xi-m" />, persamaannya menjadi
+**Pusat dalam koordinat semula** adalah <InlineMath math="h=(1,-1)^T" /> karena <InlineMath math="2Ah+p=0" />. Dalam koordinat hasil rotasi, <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Dengan <InlineMath math="\eta=\xi-m" />, persamaannya menjadi
 
 <MathContainer>
 <BlockMath math="6\eta_1^2+\eta_2^2=12" />

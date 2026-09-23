@@ -5,62 +5,29 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Kita akan menggabungkan semua data massa apel dari Ferdian dan Belle, mengurutkannya, dan kemudian mengevaluasi setiap pernyataan.
+Kita menilai **kelompok apel berdasarkan urutan massa**, bukan hanya rata-ratanya. Nilai <InlineMath math="x=180" /> sudah diberikan, sehingga dua apel bermassa 180 gram tetap dihitung sebagai dua buah.
 
-#### Menggabungkan dan Mengurutkan Data
+#### Mengurutkan Semua Apel
 
-Data massa apel Ferdian (dengan <InlineMath math="x = 180" />):
+Gabungkan kedua kolom, lalu urutkan **dua belas massa dari yang terkecil**. Tabel berikut memakai gram dan mempertahankan setiap apel, termasuk massa yang sama.
 
-<BlockMath math="\begin{gathered}157, 163, 182, \\ 171, 167, 180\end{gathered}" />
+| Urutan | Massa (gram) |
+| --- | --- |
+| 1 sampai 3 | 154, 157, 161 |
+| 4 sampai 6 | 162, 163, 167 |
+| 7 sampai 9 | 170, 171, 175 |
+| 10 sampai 12 | 180, 180, 182 |
 
-Data massa apel Belle:
+#### Memeriksa Batas Setiap Kelompok
 
-<BlockMath math="\begin{gathered}180, 175, 162, \\ 154, 161, 170\end{gathered}" />
+Seperempat dari dua belas apel berisi tiga buah, sedangkan setengahnya berisi enam buah. Tanda **lebih kecil dan lebih besar bersifat ketat**: nilai yang sama dengan batas tidak memenuhi tanda tersebut.
 
-Gabungan data (total <InlineMath math="12" /> apel):
+<BlockMath math="\begin{aligned}25\%\times12&=\frac{25}{100}\times12=3\\50\%\times12&=\frac{50}{100}\times12=6\end{aligned}" />
 
-<BlockMath math="\begin{gathered}157, 163, 182, \\ 171, 167, 180, \\ 180, 175, 162, \\ 154, 161, 170\end{gathered}" />
+| Pernyataan | Apel yang dipilih (gram) | Pemeriksaan | Hasil |
+| --- | --- | --- | --- |
+| Pertama, tiga teringan | 154, 157, 161 | Massa terbesar 161 kurang dari 162 | Benar |
+| Kedua, tiga terberat | 180, 180, 182 | Dua apel tepat 180, bukan lebih dari 180 | Salah |
+| Ketiga, enam teringan | 154, 157, 161, 162, 163, 167 | Massa terbesar 167 kurang dari 170 | Benar |
 
-Data terurut dari terkecil ke terbesar:
-
-<BlockMath math="\begin{gathered}154, 157, 161, \\ 162, 163, 167, \\ 170, 171, 175, \\ 180, 180, 182\end{gathered}" />
-
-Total data (<InlineMath math="n" />) adalah <InlineMath math="12" />.
-
-#### Evaluasi Pernyataan Pertama
-
-**Pernyataan:** <InlineMath math="25\%" /> apel dengan massa paling kecil dalam gabungan kedua kelompok semuanya memiliki massa <InlineMath math="< 162 \text{ gram}" />.
-
-Kita hitung <InlineMath math="25\%" /> dari total data:
-
-<BlockMath math="25\% \times 12 = 3 \text{ data}" />
-
-<InlineMath math="3" /> data terkecil adalah <InlineMath math="154" />, <InlineMath math="157" />, <InlineMath math="161" />. Semua nilai ini kurang dari <InlineMath math="162\text{ gram}" />.
-
-**Kesimpulan:** Pernyataan pertama **BENAR**.
-
-#### Evaluasi Pernyataan Kedua
-
-**Pernyataan:** <InlineMath math="25\%" /> apel dengan massa paling besar dalam gabungan kedua kelompok semuanya memiliki massa <InlineMath math="> 180 \text{ gram}" />.
-
-Kita hitung <InlineMath math="25\%" /> dari total data:
-
-<BlockMath math="25\% \times 12 = 3 \text{ data}" />
-
-<InlineMath math="3" /> data terbesar adalah <InlineMath math="182" />, <InlineMath math="180" />, <InlineMath math="180" />. Tidak semua data ini lebih besar dari <InlineMath math="180" /> (karena ada dua nilai yang tepat <InlineMath math="180" />).
-
-**Kesimpulan:** Pernyataan kedua **SALAH**.
-
-#### Evaluasi Pernyataan Ketiga
-
-**Pernyataan:** <InlineMath math="50\%" /> apel dengan massa paling kecil dalam gabungan kedua kelompok semuanya memiliki massa <InlineMath math="< 170 \text{ gram}" />.
-
-Kita hitung <InlineMath math="50\%" /> dari total data:
-
-<BlockMath math="50\% \times 12 = 6 \text{ data}" />
-
-<InlineMath math="6" /> data terkecil adalah <InlineMath math="154" />, <InlineMath math="157" />, <InlineMath math="161" />, <InlineMath math="162" />, <InlineMath math="163" />, <InlineMath math="167" />. Data terbesar dalam kelompok ini adalah <InlineMath math="167" />, yang kurang dari <InlineMath math="170" />.
-
-**Kesimpulan:** Pernyataan ketiga **BENAR**.
-
-Jadi, urutan kebenarannya adalah **BENAR - SALAH - BENAR**.
+Pernyataan kedua gagal meskipun apel 182 gram memenuhi batas. Kata “semuanya” mengharuskan ketiga apel memenuhi batas itu. Urutannya adalah **benar, salah, benar**, yaitu BSB.

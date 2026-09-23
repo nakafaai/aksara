@@ -5,13 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Die Funktion <InlineMath math="f(x)=2+\frac7{x-1}" /> hat die Asymptoten <InlineMath math="x=1" /> und <InlineMath math="y=2" /> mit Schnittpunkt <InlineMath math="(1,2)" />. Für <InlineMath math="x>1" /> ist der Bruch positiv, also gilt <InlineMath math="f(x)>2" />.
+Die Funktion <InlineMath math="f(x)=2+\frac7{x-1}" /> hat die **Asymptoten** <InlineMath math="x=1" /> und <InlineMath math="y=2" /> mit Schnittpunkt <InlineMath math="(1,2)" />. Für <InlineMath math="x>1" /> ist der Bruch positiv, also gilt <InlineMath math="f(x)>2" />.
 
 Auf jedem Intervall <InlineMath math="(-\infty,1)" /> und <InlineMath math="(1,\infty)" /> nimmt <InlineMath math="\frac1{x-1}" /> mit wachsendem <InlineMath math="x" /> ab. Der positive Faktor <InlineMath math="7" /> und die Addition von <InlineMath math="2" /> erhalten diese Monotonie. Löse für die Fixpunkte <InlineMath math="f(x)=x" />.
 
 <BlockMath math="\begin{aligned}
 x&=2+\frac7{x-1} \\
 x(x-1)&=2(x-1)+7 \\
+x^2-x&=2x-2+7 \\
 x^2-3x-5&=0
 \end{aligned}" />
 
@@ -19,8 +20,29 @@ Die Diskriminante <InlineMath math="9+20=29>0" /> liefert zwei reelle Lösungen.
 
 <BlockMath math="\begin{aligned}
 y-2&=\frac7{x-1} \\
+(y-2)(x-1)&=7 \\
+x-1&=\frac7{y-2} \\
 x&=1+\frac7{y-2} \\
 f^{-1}(y)&=\frac{y+5}{y-2}
 \end{aligned}" />
 
 Funktion und Umkehrfunktion haben verschiedene Definitionsbereiche. Sie schließen <InlineMath math="1" /> beziehungsweise <InlineMath math="2" /> aus. Deshalb ist <InlineMath math="f^{-1}=f" /> falsch. Die übrigen vier Aussagen stimmen.
+
+Fixpunkte sind die Schnittpunkte mit der Geraden <InlineMath math="y=x" />. Die Lösungen der quadratischen Gleichung lauten <InlineMath math="x=\frac{3\pm\sqrt{29}}2" />. Wähle für die Monotonieprüfung <InlineMath math="a<b" /> auf derselben Seite von 1. Im folgenden Ausdruck ist der Nenner positiv und der Zähler negativ.
+
+<BlockMath math="f(b)-f(a)=\frac{7(a-b)}{(b-1)(a-1)}<0" />
+
+<LineEquation
+  title="Zwei Äste und zwei Fixpunkte"
+  description="Violett zeigt die Funktion, Orange die Gerade y = x. Die grauen Geraden sind die beiden Asymptoten."
+  cameraPosition={[1, 2, 20]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-6, 0], [2, 8]].map(([a,b]) => ({ points: Array.from({ length: 81 }, (_, i) => { const x = a + (b-a)*i/80; return { x, y: 2 + 7/(x-1), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false })),
+    { points: [{ x: -5, y: -5, z: 0 }, { x: 7, y: 7, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -6, y: 2, z: 0 }, { x: 8, y: 2, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [-1, 1].map((sign) => { const x = (3 + sign*Math.sqrt(29))/2; return { x, y: x, z: 0 }; }), color: "#d97706", lineWidth: 0, smooth: false, showPoints: true },
+  ]}
+/>

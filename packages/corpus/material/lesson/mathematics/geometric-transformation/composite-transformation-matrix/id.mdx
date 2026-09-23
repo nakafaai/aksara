@@ -9,76 +9,29 @@ export const metadata = {
 
 ## Menggabungkan Transformasi melalui Perkalian Matriks
 
-<Highlight>Dalam geometri, transformasi memetakan setiap titik suatu bangun ke titik bayangannya.</Highlight> Bergantung pada jenis transformasinya, posisi, orientasi, ukuran, atau bentuk bangun dapat berubah. Penerapan beberapa transformasi secara berurutan membentuk komposisi transformasi.
+Ketika beberapa transformasi diterapkan berurutan, kita memperoleh **komposisi transformasi**. Titik hasil transformasi pertama menjadi masukan transformasi berikutnya. Di sini kita menggunakan matriks dua kali dua yang mempertahankan titik asal. Translasi bukan nol memerlukan penjumlahan vektor atau koordinat homogen.
 
-Kita dapat menggunakan matriks untuk merepresentasikan banyak transformasi geometri dan juga untuk mencari hasil dari komposisi transformasi tersebut.
+Matriks berikut merangkum operasi yang dipakai. Rotasi dan dilatasi pada tabel selalu berpusat di <InlineMath math="O(0,0)" />.
 
-Kita akan membahas transformasi yang dinyatakan dengan matriks berordo <InlineMath math="2 \times 2" />. Misalnya, pencerminan terhadap sumbu <InlineMath math="x" /> menggunakan matriks berikut:
-
-<BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-
-Untuk mencari bayangan titik <InlineMath math="(x,y)" /> pada pencerminan ini, kalikan matriks tersebut dengan vektor posisi titik:
-
-<BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
-
-Berikut adalah beberapa transformasi dasar beserta matriksnya yang sering digunakan dalam komposisi transformasi:
-
-1.  Pencerminan terhadap sumbu <InlineMath math="x" />:
-
-    <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-2.  Pencerminan terhadap sumbu <InlineMath math="y" />:
-
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
-3.  Pencerminan terhadap garis <InlineMath math="y=x" />:
-
-    <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
-4.  Pencerminan terhadap garis <InlineMath math="y=-x" />:
-
-    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
-5.  Pencerminan terhadap titik pusat <InlineMath math="O(0,0)" /> (setara dengan rotasi <InlineMath math="180^\circ" />):
-
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
-6.  Rotasi terhadap titik asal <InlineMath math="(0,0)" /> sebesar sudut <InlineMath math="\theta" />:
-
-    <BlockMath math="\begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
-7.  Dilatasi terhadap titik asal <InlineMath math="(0,0)" /> dengan faktor skala <InlineMath math="k" />:
-
-    <BlockMath math="\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}" />
+| Transformasi | Matriks |
+| --- | --- |
+| Cermin sumbu horizontal | <InlineMath math="\begin{pmatrix}1&0\\0&-1\end{pmatrix}" /> |
+| Cermin sumbu vertikal | <InlineMath math="\begin{pmatrix}-1&0\\0&1\end{pmatrix}" /> |
+| Cermin diagonal positif | <InlineMath math="\begin{pmatrix}0&1\\1&0\end{pmatrix}" /> |
+| Cermin diagonal negatif | <InlineMath math="\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> |
+| Cermin titik asal atau setengah putaran | <InlineMath math="\begin{pmatrix}-1&0\\0&-1\end{pmatrix}" /> |
+| Rotasi bersudut <InlineMath math="\theta" /> | <InlineMath math="\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" /> |
+| Dilatasi dengan <InlineMath math="k\ne0" /> | <InlineMath math="\begin{pmatrix}k&0\\0&k\end{pmatrix}" /> |
 
 ### Menerapkan Komposisi Transformasi dengan Matriks
 
-Komposisi transformasi berarti melakukan beberapa transformasi secara berurutan. Jika transformasi <InlineMath math="T_1" /> diikuti oleh transformasi <InlineMath math="T_2" />, kita menotasikannya sebagai <InlineMath math="T_2 \circ T_1" />. Artinya, <InlineMath math="T_1" /> diterapkan terlebih dahulu, kemudian hasilnya ditransformasikan oleh <InlineMath math="T_2" />.
+Pada <InlineMath math="T_2\circ T_1" />, **transformasi paling kanan bekerja lebih dahulu**. Dengan vektor kolom <InlineMath math="P" />, hitung bayangan pertama, lalu gunakan hasilnya sebagai masukan kedua:
 
-Misalkan matriks yang bersesuaian dengan <InlineMath math="T_1" /> adalah <InlineMath math="M_1" />, dan matriks yang bersesuaian dengan <InlineMath math="T_2" /> adalah <InlineMath math="M_2" />. Untuk mencari bayangan titik <InlineMath math="P(x,y)" /> oleh komposisi <InlineMath math="T_2 \circ T_1" />, ada dua cara yang ekuivalen:
+<BlockMath math="P'=M_1P,\qquad P''=M_2P'=M_2(M_1P)=(M_2M_1)P" />
 
-1.  **Menerapkan Transformasi secara Berurutan pada Titik:**
+Sifat asosiatif mengubah pengelompokan perkalian tanpa mengubah urutan faktor. Untuk banyak titik, hitung <InlineMath math="M_2M_1" /> sekali. Untuk melacak satu titik, bentuk berurutan memperlihatkan hasil antaranya.
 
-    - Hitung bayangan <InlineMath math="P'(x',y')" /> dari <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />:
-
-      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix}" />
-    - Kemudian, hitung bayangan <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P'(x',y')" /> oleh <InlineMath math="T_2" />:
-
-      <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix}" />
-
-    Dengan memasukkan bayangan pertama ke perhitungan kedua, kita memperoleh:
-
-    <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \left( M_1 \begin{pmatrix} x \\ y \end{pmatrix} \right)" />
-
-2.  **Mencari Matriks Komposisi:**
-
-    - Tentukan matriks <InlineMath math="M" /> yang merepresentasikan komposisi transformasi <InlineMath math="T_2 \circ T_1" />. Matriks ini adalah hasil perkalian <InlineMath math="M_2 M_1" />.
-
-      **Perhatikan urutannya:** matriks transformasi kedua (<InlineMath math="M_2" />) berada di sebelah kiri matriks transformasi pertama (<InlineMath math="M_1" />).
-
-    - Hitung bayangan <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P(x,y)" /> menggunakan matriks komposisi <InlineMath math="M" />:
-
-      <BlockMath math="\begin{aligned} &\begin{pmatrix} x'' \\ y'' \end{pmatrix} \\ & = M \begin{pmatrix} x \\ y \end{pmatrix} \\ & = (M_2 M_1) \begin{pmatrix} x \\ y \end{pmatrix} \end{aligned}" />
-
-Kedua cara menghasilkan bayangan akhir yang sama karena perkalian matriks bersifat asosiatif: <InlineMath math="M_2 (M_1 P) = (M_2 M_1) P" />. Pada persamaan ini, <InlineMath math="P" /> adalah vektor kolom berikut:
-
-<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
-
-**Contoh Ilustratif:**
+**Contoh Ilustratif**:
 
 Misalkan <InlineMath math="T_1" /> adalah pencerminan terhadap sumbu <InlineMath math="y" />, dan <InlineMath math="T_2" /> adalah rotasi terhadap titik asal <InlineMath math="O" /> sebesar <InlineMath math="\frac{1}{2}\pi" /> radian (<InlineMath math="90^\circ" />). Kita ingin mencari bayangan titik <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_2 \circ T_1" />.
 
@@ -92,52 +45,65 @@ Matriks untuk <InlineMath math="T_2" /> (rotasi <InlineMath math="90^\circ" />) 
 
 **Cara 1: Transformasi Berurutan pada Titik**
 
-- Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />:
+Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M_1 \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -x \\ y \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M_1 \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -x \\ y \end{pmatrix} \end{aligned}" />
 
-  Jadi <InlineMath math="P'(-x,y)" />.
+Jadi <InlineMath math="P'(-x,y)" />.
 
-- Bayangan <InlineMath math="P'(-x,y)" /> oleh <InlineMath math="T_2" />:
+Bayangan <InlineMath math="P'(-x,y)" /> oleh <InlineMath math="T_2" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
 
-- Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
+Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
 
 **Cara 2: Matriks Komposisi Terlebih Dahulu**
 
-- Matriks komposisi <InlineMath math="M = M_2 M_1" />:
+Matriks komposisi <InlineMath math="M = M_2 M_1" />:
 
-  Tuliskan <InlineMath math="M=(m_{ij})" />. Indeksnya menunjukkan baris dan kolom setiap elemen. Misalnya, untuk mencari <InlineMath math="m_{12}" />, pasangkan elemen baris pertama matriks kiri dengan elemen kolom kedua matriks kanan, lalu jumlahkan hasil kalinya.
+Tuliskan <InlineMath math="M=(m_{ij})" />. Indeksnya menunjukkan baris dan kolom setiap elemen. Misalnya, untuk mencari <InlineMath math="m_{12}" />, pasangkan elemen baris pertama matriks kiri dengan elemen kolom kedua matriks kanan, lalu jumlahkan hasil kalinya.
 
-  <MathContainer>
-    <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-    <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{12}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{21}&amp;=(1)(-1)+(0)(0)=-1 \\ m_{22}&amp;=(1)(0)+(0)(1)=0 \end{aligned}" />
-    <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
-  </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{12}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{21}&amp;=(1)(-1)+(0)(0)=-1 \\ m_{22}&amp;=(1)(0)+(0)(1)=0 \end{aligned}" />
+  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+</MathContainer>
 
-- Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="M" />:
+Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="M" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
 
-- Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
+Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
 
 Kedua cara memberikan hasil yang sama. Jika banyak titik memakai komposisi yang sama, hitung matriks komposisi <InlineMath math="M_2 M_1" /> sekali lalu terapkan matriks tersebut ke setiap titik.
 
 ## Aturan Matriks Komposisi
 
-Misalkan <InlineMath math="M_1" /> dan <InlineMath math="M_2" /> berturut-turut adalah matriks untuk transformasi <InlineMath math="T_1" /> dan <InlineMath math="T_2" />:
+Jika <InlineMath math="M_1" /> dikerjakan lebih dahulu dan <InlineMath math="M_2" /> setelahnya, **baris matriks kedua dipasangkan dengan kolom matriks pertama**. Setiap entri hasil adalah jumlah dua hasil kali:
 
-<MathContainer>
-  <BlockMath math="M_1 = \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />
-  <BlockMath math="M_2 = \begin{pmatrix} t & u \\ v & w \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="M_2M_1=\begin{pmatrix}t&u\\v&w\end{pmatrix}\begin{pmatrix}p&q\\r&s\end{pmatrix}=\begin{pmatrix}tp+ur&tq+us\\vp+wr&vq+ws\end{pmatrix}" />
 
-Pada komposisi <InlineMath math="T_2 \circ T_1" />, kita melakukan <InlineMath math="T_1" /> terlebih dahulu, lalu <InlineMath math="T_2" />. Matriks komposisinya adalah:
+### Mengapa Urutan Tidak Boleh Ditukar
 
-<BlockMath math="M_2 M_1 = \begin{pmatrix} t & u \\ v & w \end{pmatrix} \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />
+Bandingkan cermin sumbu vertikal <InlineMath math="F" /> dan rotasi positif seperempat putaran <InlineMath math="R" /> pada <InlineMath math="P(2,1)" />. **Membalik urutan menghasilkan dua titik akhir berbeda**:
 
-Urutan perkalian matriks menentukan urutan transformasi. Matriks untuk transformasi yang dilakukan lebih dulu (<InlineMath math="M_1" />) ditulis di sebelah kanan.
+<BlockMath math="RF=\begin{pmatrix}0&-1\\-1&0\end{pmatrix},\qquad FR=\begin{pmatrix}0&1\\1&0\end{pmatrix}" />
+
+| Urutan | Titik awal | Hasil pertama | Hasil akhir |
+| --- | --- | --- | --- |
+| Cermin lalu rotasi | <InlineMath math="(2,1)" /> | <InlineMath math="(-2,1)" /> | <InlineMath math="(-1,-2)" /> |
+| Rotasi lalu cermin | <InlineMath math="(2,1)" /> | <InlineMath math="(-1,2)" /> | <InlineMath math="(1,2)" /> |
+
+<LineEquation title="Urutan cermin dan rotasi mengubah titik akhir" description="Jalur hijau mencerminkan dahulu, lalu berotasi. Jalur jingga berotasi dahulu, lalu mencerminkan. Busur menunjukkan putaran, ruas lurus menghubungkan pasangan cermin."
+  data={[
+    { points: [{ x: 2, y: 1, z: 0 }, { x: -2, y: 1, z: 0 }], smooth: false, color: "#059669", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="P(2,1)" />, at: 0, offset: [0.4, -0.3, 0] }, { text: <InlineMath math="F(P)" />, at: 1, offset: [-0.4, 0, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,-2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#059669", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="RF(P)=(-1,-2)" />, at: 32, offset: [0.5, -0.4, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="R(P)" />, at: 32, offset: [-0.2, 0.4, 0] }] },
+    { points: [{ x: -1, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="FR(P)=(1,2)" />, at: 1, offset: [0.3, 0.5, 0] }] },
+  ]}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 8]}
+/>
 
 ## Menggabungkan Pencerminan dan Rotasi dengan Matriks
 
@@ -145,9 +111,9 @@ Menggabungkan dua transformasi berarti mengalikan matriksnya, dan <Highlight>uru
 
 ### Komposisi Dua Pencerminan
 
-Tentukan bayangan titik <InlineMath math="(2,5)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" /> dan kemudian dicerminkan terhadap sumbu <InlineMath math="y" />.
+Tentukan bayangan titik <InlineMath math="(2,5)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" /> dan **kemudian dicerminkan** terhadap sumbu <InlineMath math="y" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Misalkan <InlineMath math="T_1" /> adalah pencerminan terhadap sumbu <InlineMath math="x" />, dan <InlineMath math="T_2" /> adalah pencerminan terhadap sumbu <InlineMath math="y" />.
 
@@ -162,9 +128,9 @@ Matriks <InlineMath math="T_2" /> (<InlineMath math="M_2" />) adalah:
 Komposisi transformasi <InlineMath math="T_2 \circ T_1" /> memiliki matriks <InlineMath math="M = M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{12}&amp;=(-1)(0)+(0)(-1)=0 \\ m_{21}&amp;=(0)(1)+(1)(0)=0 \\ m_{22}&amp;=(0)(0)+(1)(-1)=-1 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{12}&amp;=(-1)(0)+(0)(-1)=0 \\ m_{21}&amp;=(0)(1)+(1)(0)=0 \\ m_{22}&amp;=(0)(0)+(1)(-1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 Bayangan titik <InlineMath math="(2,5)" /> adalah:
@@ -175,9 +141,9 @@ Jadi, bayangan titik <InlineMath math="(2,5)" /> adalah <InlineMath math="(-2,-5
 
 ### Komposisi Refleksi dan Rotasi
 
-Tentukan bayangan titik <InlineMath math="(-2,3)" /> yang ditransformasikan oleh komposisi dari refleksi sumbu <InlineMath math="y" /> yang dilanjutkan dengan rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
+Tentukan bayangan titik <InlineMath math="(-2,3)" /> yang ditransformasikan oleh komposisi dari refleksi sumbu <InlineMath math="y" /> yang **dilanjutkan dengan rotasi** <InlineMath math="180^\circ" /> terhadap titik asal.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Misalkan <InlineMath math="T_1" /> adalah refleksi sumbu <InlineMath math="y" />, dan <InlineMath math="T_2" /> adalah rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
 
@@ -192,9 +158,9 @@ Matriks <InlineMath math="T_2" /> (<InlineMath math="M_2" />) adalah:
 Komposisi transformasi <InlineMath math="T_2 \circ T_1" /> memiliki matriks <InlineMath math="M = M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ m_{12}&amp;=(-1)(0)+(0)(1)=0 \\ m_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ m_{12}&amp;=(-1)(0)+(0)(1)=0 \\ m_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 Bayangan titik <InlineMath math="(-2,3)" /> adalah:
@@ -205,41 +171,41 @@ Jadi, bayangan titik <InlineMath math="(-2,3)" /> adalah <InlineMath math="(-2,-
 
 ### Komposisi Tiga Transformasi
 
-Lakukan tiga transformasi pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="x" />, rotasi <InlineMath math="90^\circ" /> terhadap titik asal, lalu rotasi <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan bayangannya.
+Lakukan **tiga transformasi** pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="x" />, rotasi <InlineMath math="90^\circ" /> terhadap titik asal, lalu rotasi <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan bayangannya.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Misalkan:
 
-- <InlineMath math="T_1" />: Refleksi terhadap sumbu <InlineMath math="x" />.
+<InlineMath math="T_1" />: Refleksi terhadap sumbu <InlineMath math="x" />.
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-- <InlineMath math="T_2" />: Rotasi <InlineMath math="90^\circ" /> terhadap
-  titik asal.
+<InlineMath math="T_2" />: Rotasi <InlineMath math="90^\circ" /> terhadap
+titik asal.
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
 
-- <InlineMath math="T_3" />: Setengah putar (<InlineMath math="180^\circ" /> rotasi
-  terhadap titik asal).
+<InlineMath math="T_3" />: Setengah putar (<InlineMath math="180^\circ" /> rotasi
+terhadap titik asal).
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="\begin{aligned} M_3 &= \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} M_3 &= \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
 
 Komposisi transformasi adalah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Matriksnya adalah <InlineMath math="M = M_3 M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} n_{11}&amp;=(0)(1)+(-1)(0)=0 \\ n_{12}&amp;=(0)(0)+(-1)(-1)=1 \\ n_{21}&amp;=(1)(1)+(0)(0)=1 \\ n_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
-  <BlockMath math="M_2 M_1=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}" />
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=M_3(M_2 M_1) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(0)+(0)(1)=0 \\ m_{12}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{21}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{22}&amp;=(0)(1)+(-1)(0)=0 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(0)(1)+(-1)(0)=0 \\ n_{12}&amp;=(0)(0)+(-1)(-1)=1 \\ n_{21}&amp;=(1)(1)+(0)(0)=1 \\ n_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=M_3(M_2 M_1) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(0)+(0)(1)=0 \\ m_{12}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{21}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{22}&amp;=(0)(1)+(-1)(0)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
 </MathContainer>
 
 Bayangan <InlineMath math="P(2,5)" /> adalah:
@@ -250,48 +216,47 @@ Jadi, bayangan titik <InlineMath math="P(2,5)" /> adalah <InlineMath math="P'(-5
 
 ## Latihan
 
-Lakukan tiga transformasi pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="y" />, rotasi <InlineMath math="180^\circ" /> terhadap titik asal, lalu pencerminan terhadap garis <InlineMath math="y=x" />. Kerjakan berurutan dari transformasi pertama, dan tuliskan hasil antara setiap langkah supaya kesalahan urutan mudah ditemukan. Tentukan bayangan akhirnya.
+Lakukan tiga transformasi pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="y" />, rotasi <InlineMath math="180^\circ" /> terhadap titik asal, lalu pencerminan terhadap garis <InlineMath math="y=x" />. Kerjakan **berurutan dari transformasi pertama**, dan tuliskan hasil antara setiap langkah supaya kesalahan urutan mudah ditemukan. Tentukan bayangan akhirnya.
 
 ### Pembahasan
 
 Misalkan:
 
-- <InlineMath math="T_1" />: Refleksi terhadap sumbu <InlineMath math="y" />.
+<InlineMath math="T_1" />: Refleksi terhadap sumbu <InlineMath math="y" />.
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+<BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
 
-- <InlineMath math="T_2" />: Rotasi <InlineMath math="180^\circ" /> terhadap
-  titik asal.
+<InlineMath math="T_2" />: Rotasi <InlineMath math="180^\circ" /> terhadap
+titik asal.
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-- <InlineMath math="T_3" />: Pencerminan terhadap garis <InlineMath math="y=x" />
-  .
+<InlineMath math="T_3" />: Pencerminan terhadap garis <InlineMath math="y=x" />.
 
-  Matriksnya adalah:
+Matriksnya adalah:
 
-  <BlockMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+<BlockMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
 
 Komposisi transformasi adalah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Matriksnya adalah <InlineMath math="M = M_3 M_2 M_1" />.
 
 **Langkah 1**: Hitung <InlineMath math="M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} n_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ n_{12}&amp;=(-1)(0)+(0)(1)=0 \\ n_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ n_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
-  <BlockMath math="M_2 M_1=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ n_{12}&amp;=(-1)(0)+(0)(1)=0 \\ n_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ n_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 **Langkah 2**: Hitung <InlineMath math="M = M_3 (M_2 M_1)" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(1)+(1)(0)=0 \\ m_{12}&amp;=(0)(0)+(1)(-1)=-1 \\ m_{21}&amp;=(1)(1)+(0)(0)=1 \\ m_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(0)(1)+(1)(0)=0 \\ m_{12}&amp;=(0)(0)+(1)(-1)=-1 \\ m_{21}&amp;=(1)(1)+(0)(0)=1 \\ m_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}" />
 </MathContainer>
 
 Bayangan <InlineMath math="P(2,5)" /> adalah:
@@ -299,3 +264,7 @@ Bayangan <InlineMath math="P(2,5)" /> adalah:
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(2)+(-1)(5) \\ (1)(2)+(0)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 2 \end{pmatrix} \end{aligned}" />
 
 Jadi, bayangan titik <InlineMath math="P(2,5)" /> adalah <InlineMath math="P'(-5,2)" />.
+
+Periksa perkalian matriks dengan **koordinat antara**. Hasil setelah setiap operasi adalah:
+
+<BlockMath math="(2,5)\xrightarrow{T_1}(-2,5)\xrightarrow{T_2}(2,-5)\xrightarrow{T_3}(-5,2)" />

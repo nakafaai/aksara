@@ -5,11 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Lengkapi kuadrat untuk menunjukkan letak puncak dan nilai minimum.
+**Lengkapi kuadrat** untuk menunjukkan letak puncak dan nilai minimum.
 
-<BlockMath math="f(x)=(x-2)^2-1" />
+<BlockMath math="\begin{aligned} f(x)&=x^2-4x+3 \\ &=x^2-4x+4-4+3 \\ &=(x-2)^2-1 \end{aligned}" />
 
-Kuadrat selalu tidak negatif, sehingga titik puncaknya <InlineMath math="(2,-1)" /> dan range-nya <InlineMath math="[-1,\infty)" />. Saat <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kiri, nilai <InlineMath math="(x-2)^2" /> menurun. Jadi, fungsi menurun pada <InlineMath math="(-\infty,2]" />.
+Kuadrat selalu tidak negatif, sehingga titik puncak fungsi <InlineMath math="(2,-1)" /> dan range fungsi <InlineMath math="[-1,\infty)" />. Saat <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kiri, nilai <InlineMath math="(x-2)^2" /> menurun. Jadi, fungsi menurun pada <InlineMath math="(-\infty,2]" />.
 
 Fungsi tidak satu-satu pada seluruh bilangan real karena <InlineMath math="f(1)=f(3)=0" />. Pada domain terbatas <InlineMath math="x\ge2" />, penyelesaian persamaan invers memakai akar positif.
 
@@ -20,3 +20,19 @@ f^{-1}(y)&=2+\sqrt{y+1}
 \end{aligned}" />
 
 Domain invers adalah <InlineMath math="y\ge-1" />. Semua pernyataan benar kecuali sifat satu-satu pada seluruh <InlineMath math="\mathbb R" />.
+
+Cabang jingga menunjukkan pembatasan domain <InlineMath math="x\ge2" />. Pada cabang ini, satu nilai keluaran berasal dari tepat satu masukan. Karena itu fungsi memiliki invers.
+
+<LineEquation
+  title="Cabang parabola dan domain invers"
+  description="Puncak berada di (2,−1). Titik (1,0) dan (3,0) memiliki hasil yang sama, jadi fungsi tidak satu-satu pada seluruh bilangan real."
+  cameraPosition={[2, 2, 12]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -0.5 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = 2 + 2.5 * i / 60; return { x, y: (x - 2) ** 2 - 1, z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true, labels: [{ text: "(1,0)", at: 0, offset: [-0.3, -0.4, 0] }, { text: "(3,0)", at: 1, offset: [0.3, -0.4, 0] }] },
+    { points: [{ x: 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: true, labels: [{ text: "(2,−1)", at: 0, offset: [0, -0.5, 0] }] },
+  ]}
+/>

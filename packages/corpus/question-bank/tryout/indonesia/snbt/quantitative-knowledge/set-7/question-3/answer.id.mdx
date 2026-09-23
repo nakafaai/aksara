@@ -5,46 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Kita akan memeriksa setiap bilangan apakah memenuhi dua syarat berikut:
-1. Jika dibagi <InlineMath math="5" /> bersisa <InlineMath math="4" /> (<InlineMath math="n \equiv 4 \pmod 5" />).
-2. Jika dibagi <InlineMath math="4" /> bersisa <InlineMath math="3" /> (<InlineMath math="n \equiv 3 \pmod 4" />).
+Bilangan yang dipilih harus memenuhi **kedua syarat sisa pembagian**. Kita hitung pembagian oleh 5 dan 4 untuk setiap kandidat.
 
-#### Cek Bilangan Sembilan Belas
+| Bilangan | Pembagian oleh 5 | Pembagian oleh 4 | Memenuhi keduanya |
+| --- | --- | --- | --- |
+| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Ya |
+| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | Tidak |
+| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Ya |
+| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | Tidak |
 
-<MathContainer>
-  <BlockMath math="19 = 3 \times 5 + 4" />
-  <BlockMath math="19 = 4 \times 4 + 3" />
-</MathContainer>
-
-Bilangan <InlineMath math="19" /> memenuhi kedua syarat. (Benar)
-
-#### Cek Bilangan Dua Puluh Sembilan
-
-<MathContainer>
-  <BlockMath math="29 = 5 \times 5 + 4" />
-  <BlockMath math="29 = 7 \times 4 + 1" />
-</MathContainer>
-
-Bilangan <InlineMath math="29" /> tidak memenuhi syarat kedua karena bersisa <InlineMath math="1" /> saat dibagi <InlineMath math="4" />. (Salah)
-
-#### Cek Bilangan Tiga Puluh Sembilan
-
-<MathContainer>
-  <BlockMath math="39 = 7 \times 5 + 4" />
-  <BlockMath math="39 = 9 \times 4 + 3" />
-</MathContainer>
-
-Bilangan <InlineMath math="39" /> memenuhi kedua syarat. (Benar)
-
-#### Cek Bilangan Empat Puluh Sembilan
-
-<MathContainer>
-  <BlockMath math="49 = 9 \times 5 + 4" />
-  <BlockMath math="49 = 12 \times 4 + 1" />
-</MathContainer>
-
-Bilangan <InlineMath math="49" /> tidak memenuhi syarat kedua karena bersisa <InlineMath math="1" /> saat dibagi <InlineMath math="4" />. (Salah)
-
-#### Bilangan yang Memenuhi Kedua Syarat
-
-Bilangan yang memenuhi syarat adalah <InlineMath math="19" /> dan <InlineMath math="39" /> (pernyataan (1) dan (3)).
+Hanya 19 dan 39 yang memenuhi kedua syarat, yaitu **pilihan 1 dan 3**.

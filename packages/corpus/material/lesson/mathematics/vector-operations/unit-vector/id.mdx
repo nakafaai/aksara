@@ -19,35 +19,48 @@ Perhatikan vektor <InlineMath math="\overrightarrow{PQ}" /> yang berada pada sis
 
 <BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
 
-Pada rumus ini, <InlineMath math="|\overrightarrow{PQ}|" /> adalah panjang vektor <InlineMath math="\overrightarrow{PQ}" />.
+Penyebut <InlineMath math="|\overrightarrow{PQ}|" /> adalah panjang vektor <InlineMath math="\overrightarrow{PQ}" /> dan harus **lebih besar dari nol**. Vektor nol tidak memiliki vektor satuan karena pembagian dengan nol tidak terdefinisi.
 
 Vektor satuan searah dengan vektor asal, tetapi panjangnya selalu <InlineMath math="1 \text{ satuan}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1.5, 2, 7]}
+  cameraTarget={[1.5, 2, 0]}
   title="Vektor dan Vektor Satuan"
   description="Visualisasi vektor asli dan vektor satuan yang memiliki arah sama namun panjang berbeda."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="v" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0.6, 0.8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
       color: "#d97706",
-      label: <InlineMath math="\hat{v}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[6, 6, 8]}
 />
 
 ## Menghitung Vektor Satuan
 
-Membagi sebuah vektor dengan panjangnya sendiri mempertahankan arahnya dan mengecilkan panjangnya menjadi satu. Kerjakan tiga langkah berikut secara berurutan untuk vektor apa pun yang bukan vektor nol.
+Membagi vektor tak nol dengan panjangnya mempertahankan **arah vektor** dan menghasilkan panjang satu. Vektor yang semula lebih panjang dari satu menjadi lebih pendek. Vektor yang panjangnya kurang dari satu justru diperbesar.
 
 1. Tentukan vektor asal
 2. Hitung panjang vektor tersebut
@@ -61,7 +74,7 @@ Pertama, hitung panjangnya:
 
 <BlockMath math="\begin{aligned} |\vec{v}| &amp;= \sqrt{3^2 + 6^2 + 4^2} \\ &amp;= \sqrt{9 + 36 + 16} \\ &amp;= \sqrt{61} \end{aligned}" />
 
-Kemudian, bagi vektor dengan panjang tersebut:
+Kemudian, **bagi vektor dengan panjang tersebut**:
 
 <BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
 
@@ -70,7 +83,9 @@ Vektor satuannya adalah:
 <BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[7.5, 6.5, -7]}
+    cameraTarget={[1.5, 2.9, 1.8]}
     title="Contoh Vektor Satuan dalam Ruang 3D"
     description={
       <>
@@ -78,33 +93,44 @@ Vektor satuannya adalah:
         <InlineMath math="\hat{v}" /> yang searah.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [3, 6, 4],
-        color: "#db2777",
-        label: <InlineMath math="v" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 6, z: 4 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3 / Math.sqrt(61), 6 / Math.sqrt(61), 4 / Math.sqrt(61)],
-        color: "#0d9488",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3 / Math.sqrt(61), y: 6 / Math.sqrt(61), z: 4 / Math.sqrt(61) }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[4, 8, 8]}
   />
 </ContentBlock>
 
 ## Panjang dan Komponen Vektor Satuan
 
-Ciri utama vektor satuan adalah panjangnya satu, dan panjang itu mengikat nilai komponen-komponennya. Jumlah kuadrat semua komponennya sama dengan satu, dan persamaan itulah yang dipakai saat mengubah vektor menjadi vektor satuannya.
+Ciri utama vektor satuan adalah panjangnya satu, dan panjang itu mengikat nilai komponen-komponennya. **Jumlah kuadrat semua komponennya** sama dengan satu, dan persamaan itulah yang dipakai saat mengubah vektor menjadi vektor satuannya.
 
 ### Panjang Vektor Satuan
 
-Vektor satuan memiliki panjang <InlineMath math="1" />. Untuk contoh ini, jumlahkan dahulu kuadrat ketiga koordinatnya. Panjang tidak negatif, jadi ambil akar kuadrat positif pada langkah terakhir.
+Vektor satuan memiliki panjang <InlineMath math="1" />. Untuk contoh ini, jumlahkan dahulu kuadrat ketiga koordinatnya. Panjang tidak negatif, jadi ambil **akar kuadrat positif** pada langkah terakhir.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;|\hat{v}|^2 \\ &amp;=\left(\frac{3}{\sqrt{61}}\right)^2+\left(\frac{6}{\sqrt{61}}\right)^2 \\ &amp;\quad+\left(\frac{4}{\sqrt{61}}\right)^2 \\ &amp;=\frac{9+36+16}{61} \\ &amp;=\frac{61}{61} \\ &amp;=1 \end{aligned}" />
@@ -113,7 +139,7 @@ Vektor satuan memiliki panjang <InlineMath math="1" />. Untuk contoh ini, jumlah
 
 ### Vektor Satuan pada Sumbu Koordinat
 
-Dalam sistem koordinat tiga dimensi, terdapat tiga vektor satuan standar yang menunjuk ke arah positif setiap sumbu koordinat:
+Dalam sistem koordinat tiga dimensi, terdapat tiga vektor satuan standar yang menunjuk ke **arah positif setiap sumbu** koordinat:
 
 - <InlineMath math="\hat{\imath}" /> adalah vektor satuan pada arah positif sumbu <InlineMath math="x" />
 - <InlineMath math="\hat{\jmath}" /> adalah vektor satuan pada arah positif sumbu <InlineMath math="y" />
@@ -121,43 +147,72 @@ Dalam sistem koordinat tiga dimensi, terdapat tiga vektor satuan standar yang me
 
 Setiap vektor di <InlineMath math="\mathbb{R}^3" /> dapat dinyatakan sebagai kombinasi linear dari ketiga vektor satuan ini.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[2, 1.5, 2.2]}
+  cameraTarget={[0.3, 0.35, 0.3]}
   title="Vektor Satuan Standar"
   description="Vektor satuan standar pada sumbu koordinat."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [1, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="\hat{\imath}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{\imath}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 1, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="\hat{\jmath}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{\jmath}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
       color: "#ea580c",
-      label: <InlineMath math="\hat{k}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{k}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[3, 3, 3]}
 />
 
 ## Menyatakan Arah dengan Vektor Satuan
 
-Vektor satuan memisahkan arah dari besar, sehingga arah bisa dinyatakan sendiri. Dengan cara itu, dua gaya yang arahnya sama tetap bisa dibedakan dari besar masing-masing.
+Vektor satuan **memisahkan arah dari besar**, sehingga arah bisa dinyatakan sendiri. Dengan cara itu, dua gaya yang arahnya sama tetap bisa dibedakan dari besar masing-masing.
 
 ### Menunjukkan Arah
 
-Vektor satuan menyatakan arah dengan besar <InlineMath math="1" />. Dalam fisika, vektor ini dapat menyatakan arah gaya, kecepatan, atau percepatan secara terpisah dari besarnya. Besar aslinya tetap ditulis sebagai faktor tersendiri, sehingga arah dan panjang vektor bisa kamu olah satu per satu.
+Vektor satuan menyatakan arah dengan besar <InlineMath math="1" />. Dalam fisika, vektor ini dapat menyatakan arah gaya, kecepatan, atau percepatan secara terpisah dari besarnya. Besar aslinya tetap ditulis sebagai **faktor tersendiri**, sehingga arah dan panjang vektor bisa kamu olah satu per satu.
 
 ### Perhitungan Fisika
 
-Vektor satuan menyatakan gaya sebagai komponen pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Setiap koefisien menyatakan besar bertanda pada satu sumbu. Gaya yang ditulis <InlineMath math="3\mathbf{i} - 4\mathbf{j}" /> berarti mengarah <InlineMath math="3 \text{ satuan}" /> pada sumbu <InlineMath math="x" /> dan <InlineMath math="-4 \text{ satuan}" /> pada sumbu <InlineMath math="y" />.
+Misalkan gaya memiliki komponen <InlineMath math="3\text{ N}" /> pada arah positif sumbu <InlineMath math="x" /> dan <InlineMath math="-4\text{ N}" /> pada sumbu <InlineMath math="y" />. Tanda negatif menyatakan arah berlawanan dengan sumbu positif. **Besar gaya** diperoleh dari kedua komponen:
+
+<MathContainer>
+  <BlockMath math="\vec F=(3\hat\imath-4\hat\jmath)\text{ N}" />
+  <BlockMath math="|\vec F|=\sqrt{3^2+(-4)^2}\text{ N}=5\text{ N}" />
+  <BlockMath math="\hat F=\frac{\vec F}{|\vec F|}=\frac35\hat\imath-\frac45\hat\jmath" />
+</MathContainer>
+
+Vektor satuan tidak memiliki satuan newton karena satuan pembilang dan penyebut saling membatalkan. Mengalikan arah dengan besar gaya mengembalikan kedua komponen semula:
+
+<BlockMath math="5\text{ N}\left(\frac35\hat\imath-\frac45\hat\jmath\right)=(3\hat\imath-4\hat\jmath)\text{ N}" />

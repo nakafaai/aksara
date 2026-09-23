@@ -7,7 +7,7 @@ export const metadata = {
 
 # Panduan Developer
 
-Terakhir diperbarui: 31 Agustus 2026
+Terakhir diperbarui: 20 September 2026
 
 Nakafa menyediakan akses publik yang dapat dibaca mesin ke materi belajar multibahasa dan referensi Quran dengan rentang terbatas. Antarmuka ini cocok untuk agen dan aplikasi yang memerlukan input bertipe, kegagalan yang dapat diprediksi, dan referensi konten kanonis. Semua akses bersifat baca-saja, tidak memerlukan akun Nakafa, serta tidak membuka data pelajar privat, pembelian, atau tindakan akun.
 
@@ -28,7 +28,7 @@ Alamat dasar API kanonis adalah [https://api.nakafa.com/v1](https://api.nakafa.c
 - `GET /v1/taxonomy`: taksonomi terbitan
 - `GET /v1/quran/{surah}`: pengambilan rentang ayat bertipe
 
-Pencarian mengembalikan 10 hasil secara bawaan dan menerima maksimum 50 hasil per permintaan. Gunakan `offset`, `has_more`, dan `next_offset` untuk melanjutkan kumpulan hasil tanpa menebak. Klien sebaiknya membatasi anggaran hingga 120 permintaan per 60 detik dari satu IP dan menangani respons HTTP 429 dengan jeda bertahap.
+Pencarian mengembalikan 10 hasil secara bawaan dan menerima maksimum 10 hasil per permintaan. Jendela pencarian memuat paling banyak 10 hasil, dengan `offset` dari 0 sampai 9. Jika memakai `limit` yang lebih kecil, ikuti `has_more` dan `next_offset` untuk membaca halaman berikutnya dalam jendela tersebut. Klien sebaiknya membatasi anggaran hingga 120 permintaan per 60 detik dari satu IP dan menangani respons HTTP 429 dengan jeda bertahap.
 
 <CodeBlock
   data={[{

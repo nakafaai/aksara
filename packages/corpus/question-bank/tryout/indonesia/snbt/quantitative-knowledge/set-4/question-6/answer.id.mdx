@@ -5,11 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Untuk menentukan persamaan garis singgung, kita perlu mencari gradien (<InlineMath math="m" />) dan titik singgungnya terlebih dahulu.
+Untuk menentukan persamaan garis singgung, kita perlu mencari **gradien dan titik singgung** terlebih dahulu.
 
 #### Menentukan Gradien
 
-Gradien adalah turunan pertama dari fungsi kurva (<InlineMath math="y'" />).
+Gradien adalah **turunan pertama** dari fungsi kurva (<InlineMath math="y'" />).
 
 <MathContainer>
   <BlockMath math="y = x^2 - x + 2" />
@@ -22,7 +22,7 @@ Substitusikan absis <InlineMath math="x = 1" /> ke dalam <InlineMath math="y'" /
 
 #### Menentukan Titik Singgung
 
-Kita cari nilai ordinat (<InlineMath math="y" />) saat absis <InlineMath math="x = 1" />.
+Kita cari **koordinat vertikal titik singgung** (<InlineMath math="y" />) saat absis <InlineMath math="x = 1" />.
 
 <MathContainer>
   <BlockMath math="y = (1)^2 - 1 + 2" />
@@ -33,7 +33,7 @@ Jadi, titik singgungnya adalah <InlineMath math="(1, 2)" />.
 
 #### Menentukan Persamaan Garis Singgung
 
-Gunakan rumus persamaan garis singgung <InlineMath math="y - y_1 = m(x - x_1)" /> dengan <InlineMath math="m = 1" /> dan titik <InlineMath math="(1, 2)" />.
+Gunakan **bentuk titik dan gradien** <InlineMath math="y - y_1 = m(x - x_1)" /> dengan <InlineMath math="m = 1" /> dan titik <InlineMath math="(1, 2)" />.
 
 <MathContainer>
   <BlockMath math="y - 2 = 1(x - 1)" />
@@ -43,3 +43,15 @@ Gunakan rumus persamaan garis singgung <InlineMath math="y - y_1 = m(x - x_1)" /
 </MathContainer>
 
 Jadi, persamaan garis singgungnya adalah <InlineMath math="y = x + 1" />.
+
+<LineEquation
+ title="Kurva dan garis singgung"
+ description="Kurva ungu dan garis oranye melalui titik (1,2) dengan gradien yang sama, yaitu 1."
+ cameraPosition={[1,2.5,7]}
+ cameraTarget={[1,2.5,0]}
+ showZAxis={false}
+ data={[
+  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
+  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
+ ]}
+/>

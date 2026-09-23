@@ -3,7 +3,7 @@ export const metadata = {
     description: "Binde Namen an Python-Objekte und prüfe Objektidentität, dynamische Typisierung, Bezeichner und reservierte Schlüsselwörter in Codebeispielen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -15,7 +15,7 @@ Wenn Python `x = 2` ausführt, wertet es den Ausdruck <InlineMath math="2" /> au
 
 ## Wie Variablen und Speicher funktionieren
 
-Das Built-in `id()` liefert eine ganze Zahl, die ein Objekt während seiner Lebensdauer eindeutig identifiziert. CPython leitet sie häufig aus einer Speicheradresse ab, doch Python garantiert diese Deutung nicht für jede Implementierung.
+Das Built-in `id()` liefert eine ganze Zahl, die ein Objekt während seiner Lebensdauer **eindeutig identifiziert**. CPython leitet sie häufig aus einer Speicheradresse ab, doch Python garantiert diese Deutung nicht für jede Implementierung.
 
 <Mermaid
   title="Ein Name verweist auf ein Objekt"
@@ -30,14 +30,12 @@ Das Built-in `id()` liefert eine ganze Zahl, die ein Objekt während seiner Lebe
     subgraph "Variables"
         V1["x"]
         V2["y"]
-        V3["z"]
         V4["text"]
         V5["numbers"]
     end
 
     V1 --> M1
     V2 --> M1
-    V3 --> M1
     V4 --> M2
     V5 --> M3`}
 />
@@ -60,7 +58,7 @@ print(y is x)   # Ausgabe: True
 # Variable z mit demselben Wert erstellen
 z = 2
 print(z)        # Ausgabe: 2
-print(z == x)   # Ausgabe: True (gleicher Wert)
+print(z == x)   # Ausgabe: True
 # Verlasse dich nie auf z is x. Die Wiederverwendung von Objekten hängt von der Implementierung ab`
     }
   ]}
@@ -70,11 +68,11 @@ Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe
 
 ## Eigenschaften von Variablen in Python
 
-Wenn du einem Namen einen Wert zuweist, merke dir zwei Dinge. Python bindet den Namen ohne separate Deklaration an ein Objekt. Später kannst du denselben Namen an ein Objekt eines anderen Typs binden.
+Wenn du einem Namen einen Wert zuweist, merke dir zwei Dinge. Python bindet den Namen **ohne separate Deklaration** an ein Objekt. Später kannst du denselben Namen an ein Objekt eines anderen Typs binden.
 
 ### Keine Variablendeklaration
 
-Anders als Sprachen mit separater Variablendeklaration bindet Python einen Namen, sobald eine Zuweisung ausgeführt wird. Objekte besitzen Typen, und `type(value)` meldet den Typ des Objekts, das gerade an einen Namen gebunden ist.
+Anders als Sprachen mit separater Variablendeklaration bindet Python einen Namen, sobald eine Zuweisung ausgeführt wird. **Objekte besitzen Typen**, und `type(value)` meldet den Typ des Objekts, das gerade an einen Namen gebunden ist.
 
 <CodeBlock
   data={[
@@ -98,7 +96,7 @@ print(type(aktif))      # Ausgabe: <class 'bool'>`
 
 ### Dynamische Datentypen
 
-Python ist dynamisch typisiert: Jedes Objekt besitzt einen Typ, während derselbe Name im Programmverlauf an Objekte verschiedener Typen neu gebunden werden kann.
+Python ist dynamisch typisiert: Jedes Objekt besitzt einen Typ, während derselbe Name im Programmverlauf an **Objekte verschiedener Typen** neu gebunden werden kann.
 
 <CodeBlock
   data={[
@@ -123,11 +121,11 @@ print(f"Wert: {data}, Typ: {type(data)}")`
 
 ## Variablenbenennungsregeln
 
-Python hat feste Syntaxregeln für Identifier. Ein Name darf Buchstaben, Ziffern und Unterstriche enthalten, aber nicht mit einer Ziffer beginnen und nicht mit einem reservierten Schlüsselwort übereinstimmen.
+Python hat feste Syntaxregeln für Identifier. Ein Name darf Buchstaben, Ziffern und Unterstriche enthalten, aber **nicht mit einer Ziffer beginnen** und nicht mit einem reservierten Schlüsselwort übereinstimmen.
 
 ### Variablennamenskomponenten
 
-Ein Identifier beginnt mit einem Unterstrich oder einem Unicode-Buchstaben. Danach dürfen Identifier-Buchstaben, Unterstriche und Ziffern wie <InlineMath math="0,1,2,\dots,9" /> folgen. Python akzeptiert viele Nicht-ASCII-Identifier, doch aussagekräftige ASCII-Namen in `snake_case` lassen sich meist leichter tippen, suchen und werkzeugübergreifend teilen.
+Ein Identifier beginnt mit einem **Unterstrich oder einem Unicode-Buchstaben**. Danach dürfen Identifier-Buchstaben, Unterstriche und Ziffern wie <InlineMath math="0,1,2,\dots,9" /> folgen. Python akzeptiert viele Nicht-ASCII-Identifier, doch aussagekräftige ASCII-Namen in `snake_case` lassen sich meist leichter tippen, suchen und werkzeugübergreifend teilen.
 
 <CodeBlock
   data={[
@@ -149,7 +147,7 @@ print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
 
 ### Pflichtregeln
 
-Ein Variablenname darf nicht mit einer Ziffer beginnen und kein reserviertes Schlüsselwort sein. Ein ungültiger Identifier führt bereits beim Parsen zu einem `SyntaxError`.
+Ein Variablenname darf nicht mit einer Ziffer beginnen und kein reserviertes Schlüsselwort sein. Ein **ungültiger Identifier** führt bereits beim Parsen zu einem `SyntaxError`.
 
 <CodeBlock
   data={[
@@ -173,7 +171,7 @@ print(data1, data_2, _data3)`
 
 ### Großschreibung und Kleinschreibung
 
-Python unterscheidet bei Variablennamen zwischen Groß- und Kleinbuchstaben. Das bedeutet, dass `nama`, `Nama` und `NAMA` drei verschiedene Variablen sind.
+Python unterscheidet bei Variablennamen zwischen **Groß- und Kleinbuchstaben**. Das bedeutet, dass `nama`, `Nama` und `NAMA` drei verschiedene Variablen sind.
 
 <CodeBlock
   data={[
@@ -198,11 +196,22 @@ print(Nama == NAMA)         # Ausgabe: False`
 
 ## Für Python reservierte Schlüsselwörter
 
-Python reserviert bestimmte Wörter für seine Syntax. Deshalb können sie nicht als Variablennamen verwendet werden. Eine Zuweisung an eines dieser Wörter löst einen `SyntaxError` aus, noch bevor das Programm startet.
+Python reserviert bestimmte Wörter für seine Syntax. Deshalb können sie **nicht als Variablennamen** verwendet werden. Eine Zuweisung an eines dieser Wörter löst einen `SyntaxError` aus, noch bevor das Programm startet.
 
 ### Liste der Schlüsselwörter in Python
 
-Hier sind die Schlüsselwörter, die nicht als Variablennamen verwendet werden können. Die erste Gruppe umfasst `and`, `as`, `assert`, `async`, `await`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`. Die zweite Gruppe umfasst `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`. Die dritte Gruppe besteht aus `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`, `False`, `True`, `None`.
+Diese **reservierten Schlüsselwörter** können keine Identifier sein. Die Tabelle gruppiert sie nach ihrer Rolle in der Syntax.
+
+| Rolle | Schlüsselwörter |
+| --- | --- |
+| Logik und Werte | `and`, `or`, `not`, `True`, `False`, `None` |
+| Verzweigung und Iteration | `if`, `elif`, `else`, `for`, `while`, `break`, `continue`, `pass` |
+| Definitionen und Gültigkeit | `def`, `class`, `lambda`, `return`, `yield`, `global`, `nonlocal` |
+| Importe und Aliase | `import`, `from`, `as` |
+| Fehler und Kontext | `try`, `except`, `finally`, `raise`, `assert`, `with` |
+| Weitere Operationen | `async`, `await`, `del`, `in`, `is` |
+
+Soft Keywords wie `match`, `case`, `type` und `_` sind nur in bestimmten Syntaxkontexten speziell. `keyword.iskeyword("match")` ergibt `False`, `keyword.issoftkeyword("match")` dagegen `True`.
 
 <CodeBlock
   data={[
@@ -228,7 +237,7 @@ print(kondisi_if, loop_for, fungsi_def, kelas_class)`
 
 ### Überprüfen von Schlüsselwörtern
 
-Python stellt das Modul `keyword` zur Verfügung, um zu prüfen, ob ein Wort ein Schlüsselwort ist oder nicht.
+Python stellt das Modul `keyword` zur Verfügung, um zu **prüfen, ob ein Wort** ein Schlüsselwort ist oder nicht.
 
 <CodeBlock
   data={[
@@ -253,11 +262,11 @@ print(f"Ist „class“ ein Schlüsselwort? {keyword.iskeyword('class')}")`
 
 ## Bewährte Vorgehensweisen für Variablennamen
 
-Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, wofür ein Wert steht. Ein Name wie `gesamtpreis` sagt der nächsten Leserin mehr als `gp`, und dieselbe Gewohnheit hält ein längeres Programm auch Monate später lesbar.
+Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, **wofür ein Wert steht**. Ein Name wie `gesamtpreis` sagt der nächsten Leserin mehr als `gp`, und dieselbe Gewohnheit hält ein längeres Programm auch Monate später lesbar.
 
 ### Bedeutungsvolle Namen
 
-Wähle Variablennamen, die den gebundenen Wert oder seine Rolle im Programm erklären. Aussagekräftige Namen helfen dir und allen späteren Lesenden, den Code schneller zu verstehen.
+Wähle Variablennamen, die den gebundenen Wert oder **seine Rolle im Programm** erklären. Aussagekräftige Namen helfen dir und allen späteren Lesenden, den Code schneller zu verstehen.
 
 <CodeBlock
   data={[
@@ -288,7 +297,7 @@ print(f"Alter: {age} Jahre")`
 
 ### Angemessene Namenslänge
 
-Ein Name sollte so kurz wie möglich und so konkret wie nötig sein. Zu lange Namen verdecken den Ausdruck, während ein einzelner Buchstabe außerhalb eines kleinen lokalen Kontexts kaum Bedeutung trägt.
+Ein Name sollte so kurz wie möglich und **so konkret wie nötig** sein. Zu lange Namen verdecken den Ausdruck, während ein einzelner Buchstabe außerhalb eines kleinen lokalen Kontexts kaum Bedeutung trägt.
 
 <CodeBlock
   data={[
@@ -318,7 +327,7 @@ average_score = 85.5`
 
 ### Konsistenter Schreibstil
 
-Python verwendet den Snake_case-Stil für Variablennamen, wobei Wörter durch Unterstriche getrennt werden und alle Buchstaben Kleinbuchstaben verwenden.
+Die Python-Konvention empfiehlt den **snake_case-Stil** für Variablennamen, wobei Wörter durch Unterstriche getrennt werden und alle Buchstaben Kleinbuchstaben verwenden.
 
 <CodeBlock
   data={[
@@ -349,7 +358,7 @@ print(f"Durchschnittliche Punktzahl: {average_score:.2f}")`
 
 ### Verwechslungen vermeiden
 
-Vermeide Zeichen, die leicht mit Ziffern verwechselt werden, wenn der kurze Name keinen etablierten mathematischen Kontext hat.
+Vermeide Zeichen, die **leicht mit Ziffern verwechselt** werden, wenn der kurze Name keinen etablierten mathematischen Kontext hat.
 
 <CodeBlock
   data={[
@@ -381,19 +390,24 @@ can_edit = True`
 
 ## Beispiel für Variablen in einem Programm
 
-Das folgende Programm verwendet Variablen, um Fläche und Umfang eines Rechtecks zu berechnen.
+Das folgende Programm verwendet Variablen, um **Fläche und Umfang eines Rechtecks** zu berechnen.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "rectangle_calculator.py",
-      code: `# Programm zur Berechnung der Fläche und des Umfangs eines Rechtecks
+      code: `import math
+
+# Programm zur Berechnung der Fläche und des Umfangs eines Rechtecks
 print("=== Rechteckrechner ===")
 
 # Benutzereingabe
 length = float(input("Länge (cm) eingeben: "))
 width = float(input("Breite (cm) eingeben: "))
+
+if not (math.isfinite(length) and math.isfinite(width) and length > 0 and width > 0):
+    raise ValueError("Abmessungen müssen positiv und endlich sein")
 
 # Berechnungen
 area = length * width
@@ -404,17 +418,11 @@ print(f"\\nBerechnungsergebnisse:")
 print(f"Länge: {length} cm")
 print(f"Breite: {width} cm")
 print(f"Fläche: {area} cm²")
-print(f"Umfang: {perimeter} cm")
-
-# Eingabevalidierung
-if length <= 0 or width <= 0:
-    print("\\nWarnung: Länge und Breite müssen größer als 0 sein!")
-else:
-    print("\\nBerechnung ist gültig.")`
+print(f"Umfang: {perimeter} cm")`
     }
   ]}
 />
 
-In diesem Programm bezeichnen `length` und `width` die beiden Eingaben, während `area` und `perimeter` die berechneten Ergebnisse benennen. Die letzte Bedingung weist nicht positive Abmessungen zurück, bevor die Berechnung als gültig ausgegeben wird.
+In diesem Programm bezeichnen `length` und `width` die beiden Eingaben, während `area` und `perimeter` die berechneten Ergebnisse benennen. Die Prüfung weist nicht positive oder nicht endliche Abmessungen vor der Rechnung zurück. Länge `5` und Breite `3` ergeben die Fläche `15.0 cm²` und den Umfang `16.0 cm`. Nichtnumerischen Text lehnt `float()` ab.
 
 Namensbindung, Identifier-Regeln und einheitliche Konventionen machen Python-Code leichter lesbar. Wer Gleichheit, Identität und Neuzuweisung unterscheidet, kann später auch Mutability, Funktionsargumente und Objektmodelle besser einordnen.

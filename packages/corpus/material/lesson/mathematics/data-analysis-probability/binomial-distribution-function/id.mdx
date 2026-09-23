@@ -3,7 +3,7 @@ export const metadata = {
   description: "Periksa syarat model binomial dan hitung peluang eksak dengan fungsi massa peluangnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Analisis Data dan Peluang",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 ## Kombinasi dan Peluang Dasar
 
-Sebelum masuk ke distribusi binomial, ada beberapa rumus dasar yang perlu kita pahami dulu.
+Untuk menghitung peluang binomial, kita perlu **memilih posisi keberhasilan** dan menghitung peluang satu urutan hasil. Kombinasi menghitung pilihan posisi, sedangkan aturan peluang menentukan bobot setiap urutan.
 
 Pertama, rumus kombinasi untuk memilih objek:
 
@@ -30,7 +30,6 @@ Dan yang ketiga, hubungan peluang kejadian dan kebalikannya:
 <BlockMath math="P(A) + P(A^c) = 1" />
 
 Dalam persamaan ini, <InlineMath math="P(A)" /> adalah peluang suatu kejadian terjadi dan <InlineMath math="P(A^c)" /> adalah peluang kejadian tersebut tidak terjadi.
-
 ## Konsep Distribusi Binomial
 
 Variabel acak binomial <Highlight>menghitung banyaknya keberhasilan dalam percobaan berulang</Highlight>. Setiap percobaan memiliki dua hasil yang saling lepas, misalnya angka atau gambar pada koin, dan label **berhasil** menunjukkan hasil yang sedang dihitung.
@@ -49,7 +48,7 @@ Model ini hanya berlaku jika jumlah percobaan tetap, setiap percobaan independen
 
 ## Fungsi Massa Peluang Binomial
 
-Untuk percobaan binomial dengan peluang berhasil <InlineMath math="p" /> dan peluang gagal <InlineMath math="q = 1-p" />, fungsi massa peluang memberikan peluang tepat <InlineMath math="x" /> keberhasilan dalam <InlineMath math="n" /> percobaan independen:
+Untuk percobaan binomial dengan peluang berhasil <InlineMath math="p" /> dan peluang gagal <InlineMath math="q = 1-p" />, fungsi massa peluang memberikan peluang tepat <InlineMath math="x" /> keberhasilan dalam <InlineMath math="n" /> **percobaan independen**:
 
 <BlockMath math="\begin{aligned} &amp;P(X=x) = \binom{n}{x}p^xq^{n-x}, \\ &amp;x=0{,}1{,}2{,}\ldots{,}n \end{aligned}" />
 
@@ -64,7 +63,6 @@ Keterangan:
 - <InlineMath math="q = 1-p" /> = peluang gagal pada satu percobaan
 
 Sebelum memakai rumus, periksa keempat syarat binomial. Jika salah satunya tidak terpenuhi, model ini mungkin tidak menggambarkan percobaan dengan tepat.
-
 ## Percobaan Koin
 
 Lihat contoh sederhana. Misalkan kita punya koin yang seimbang. Ruang sampelnya memuat sisi angka dan gambar:
@@ -106,7 +104,28 @@ Jadi perhitungan lengkapnya:
 
 Jadi, peluang mendapatkan <InlineMath math="5" /> gambar dalam <InlineMath math="7" /> lemparan adalah <InlineMath math="\frac{21}{128}" /> atau sekitar <InlineMath math="16{,}4\%" />.
 
+<BarChart
+  title="Peluang Jumlah Gambar dalam Tujuh Lemparan"
+  description="Sumbu mendatar menyatakan banyaknya gambar, bukan urutan lemparan. Setiap batang menunjukkan peluang tepat jumlah tersebut."
+  yAxisLabel="Peluang"
+  data={[
+    { name: "0", value: 0.0078125 },
+    { name: "1", value: 0.0546875 },
+    { name: "2", value: 0.1640625 },
+    { name: "3", value: 0.2734375 },
+    { name: "4", value: 0.2734375 },
+    { name: "5", value: 0.1640625 },
+    { name: "6", value: 0.0546875 },
+    { name: "7", value: 0.0078125 },
+  ]}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Batang untuk dua dan lima gambar sama tinggi. Pada koin seimbang, **menukar gambar dan angka** tidak mengubah peluang. Kedua kejadian memiliki 21 urutan yang sesuai dari 128 urutan yang sama mungkin.
+
 ## Latihan
+
+Anggap setiap percobaan **independen** dan peluang berhasil tetap. Pada soal bola, setiap bola dipilih secara acak setelah kantong diacak kembali. Pada ujian, setiap soal memiliki tepat satu jawaban benar dan setiap pilihan ditebak dengan peluang sama.
 
 Setiap soal mengulang satu percobaan sebanyak jumlah tetap dan menanyakan banyak keberhasilan yang tepat, sehingga fungsi massa peluang binomial langsung dapat dipakai. Tentukan dulu banyak percobaan, peluang keberhasilan, dan banyak keberhasilan yang diminta sebelum menghitung.
 
@@ -118,86 +137,86 @@ Setiap soal mengulang satu percobaan sebanyak jumlah tetap dan menanyakan banyak
 
 ### Kunci Jawaban
 
-1. **Jawaban Soal Bola Merah**
+**Jawaban Soal Bola Merah**
 
-    **Langkah 1**: Identifikasi parameter.
+**Langkah 1**: Identifikasi parameter.
 
-    - <InlineMath math="n = 5" /> (jumlah pengambilan)
-    - <InlineMath math="x = 3" /> (jumlah bola merah yang diinginkan)
-    - <InlineMath math="p = \frac{6}{10} = 0{,}6" /> (peluang terambil bola merah)
-    - <InlineMath math="q = 1 - 0{,}6 = 0{,}4" /> (peluang terambil bola biru)
+- <InlineMath math="n = 5" /> (jumlah pengambilan)
+- <InlineMath math="x = 3" /> (jumlah bola merah yang diinginkan)
+- <InlineMath math="p = \frac{6}{10} = 0{,}6" /> (peluang terambil bola merah)
+- <InlineMath math="q = 1 - 0{,}6 = 0{,}4" /> (peluang terambil bola biru)
 
-    **Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
+**Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
 
-    <MathContainer>
-    <BlockMath math="P(X=3) = \binom{5}{3} (0{,}6)^3 (0{,}4)^2" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=3) = \binom{5}{3} (0{,}6)^3 (0{,}4)^2" />
+</MathContainer>
 
-    Mari hitung <InlineMath math="\binom{5}{3}" /> dulu:
+Mari hitung <InlineMath math="\binom{5}{3}" /> dulu:
 
-    <BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
+<BlockMath math="\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{5 \times 4}{2 \times 1} = 10" />
 
-    Kemudian:
+Kemudian:
 
-    <MathContainer>
-    <BlockMath math="= 10 \times (0{,}6)^3 \times (0{,}4)^2" />
-    <BlockMath math="= 10 \times 0{,}216 \times 0{,}16 = 0{,}3456" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 10 \times (0{,}6)^3 \times (0{,}4)^2" />
+<BlockMath math="= 10 \times 0{,}216 \times 0{,}16 = 0{,}3456" />
+</MathContainer>
 
-    Jadi, peluang terambilnya tepat <InlineMath math="3" /> bola merah adalah <InlineMath math="0{,}3456" /> atau sekitar <InlineMath math="34{,}6\%" />.
+Jadi, peluang terambilnya tepat <InlineMath math="3" /> bola merah adalah <InlineMath math="0{,}3456" /> atau sekitar <InlineMath math="34{,}6\%" />.
 
-2. **Jawaban Soal Pemanah**
+**Jawaban Soal Pemanah**
 
-    **Langkah 1**: Identifikasi parameter.
+**Langkah 1**: Identifikasi parameter.
 
-    - <InlineMath math="n = 6" /> (jumlah panahan)
-    - <InlineMath math="x = 4" /> (jumlah target yang diinginkan)
-    - <InlineMath math="p = 0{,}8" /> (peluang mengenai target)
-    - <InlineMath math="q = 0{,}2" /> (peluang meleset)
+- <InlineMath math="n = 6" /> (jumlah panahan)
+- <InlineMath math="x = 4" /> (jumlah target yang diinginkan)
+- <InlineMath math="p = 0{,}8" /> (peluang mengenai target)
+- <InlineMath math="q = 0{,}2" /> (peluang meleset)
 
-    **Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
+**Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
 
-    <MathContainer>
-    <BlockMath math="P(X=4) = \binom{6}{4} (0{,}8)^4 (0{,}2)^2" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=4) = \binom{6}{4} (0{,}8)^4 (0{,}2)^2" />
+</MathContainer>
 
-    Mari hitung <InlineMath math="\binom{6}{4}" /> dulu:
+Mari hitung <InlineMath math="\binom{6}{4}" /> dulu:
 
-    <BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
+<BlockMath math="\binom{6}{4} = \frac{6!}{4! \cdot 2!} = \frac{6 \times 5}{2 \times 1} = 15" />
 
-    Kemudian:
+Kemudian:
 
-    <MathContainer>
-    <BlockMath math="= 15 \times (0{,}8)^4 \times (0{,}2)^2" />
-    <BlockMath math="\begin{aligned}  &amp;= 15 \times 0{,}4096 \times 0{,}04 \\ &amp;= 0{,}24576 \\ &amp;\approx 0{,}2458 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 15 \times (0{,}8)^4 \times (0{,}2)^2" />
+<BlockMath math="\begin{aligned}  &amp;= 15 \times 0{,}4096 \times 0{,}04 \\ &amp;= 0{,}24576 \\ &amp;\approx 0{,}2458 \end{aligned}" />
+</MathContainer>
 
-    Jadi, peluang pemanah mengenai target tepat <InlineMath math="4" /> kali adalah <InlineMath math="0{,}2458" /> atau sekitar <InlineMath math="24{,}6\%" />.
+Jadi, peluang pemanah mengenai target tepat <InlineMath math="4" /> kali adalah <InlineMath math="0{,}2458" /> atau sekitar <InlineMath math="24{,}6\%" />.
 
-3. **Jawaban Soal Ujian Pilihan Ganda**
+**Jawaban Soal Ujian Pilihan Ganda**
 
-    **Langkah 1**: Identifikasi parameter.
+**Langkah 1**: Identifikasi parameter.
 
-    - <InlineMath math="n = 8" /> (jumlah soal)
-    - <InlineMath math="x = 2" /> (jumlah jawaban benar yang diinginkan)
-    - <InlineMath math="p = \frac{1}{4} = 0{,}25" /> (peluang menjawab benar dengan menebak)
-    - <InlineMath math="q = \frac{3}{4} = 0{,}75" /> (peluang menjawab salah)
+- <InlineMath math="n = 8" /> (jumlah soal)
+- <InlineMath math="x = 2" /> (jumlah jawaban benar yang diinginkan)
+- <InlineMath math="p = \frac{1}{4} = 0{,}25" /> (peluang menjawab benar dengan menebak)
+- <InlineMath math="q = \frac{3}{4} = 0{,}75" /> (peluang menjawab salah)
 
-    **Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
+**Langkah 2**: Hitung menggunakan fungsi massa peluang binomial.
 
-    <MathContainer>
-    <BlockMath math="P(X=2) = \binom{8}{2} (0{,}25)^2 (0{,}75)^6" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(X=2) = \binom{8}{2} (0{,}25)^2 (0{,}75)^6" />
+</MathContainer>
 
-    Mari hitung <InlineMath math="\binom{8}{2}" /> dulu:
+Mari hitung <InlineMath math="\binom{8}{2}" /> dulu:
 
-    <BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
+<BlockMath math="\binom{8}{2} = \frac{8!}{2! \cdot 6!} = \frac{8 \times 7}{2 \times 1} = 28" />
 
-    Kemudian:
+Kemudian:
 
-    <MathContainer>
-    <BlockMath math="= 28 \times (0{,}25)^2 \times (0{,}75)^6" />
-    <BlockMath math="\begin{aligned} &= 28 \times 0{,}0625 \times 0{,}177978515625 \\ &= 0{,}31146240234375 \approx 0{,}3115\end{aligned}" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="= 28 \times (0{,}25)^2 \times (0{,}75)^6" />
+<BlockMath math="\begin{aligned} &= 28 \times 0{,}0625 \times 0{,}177978515625 \\ &= 0{,}31146240234375 \approx 0{,}3115\end{aligned}" />
+</MathContainer>
 
-    Jadi, peluang siswa menjawab benar tepat <InlineMath math="2" /> soal adalah sekitar <InlineMath math="0{,}3115" />, atau <InlineMath math="31{,}15\%" />.
+Jadi, peluang siswa menjawab benar tepat <InlineMath math="2" /> soal adalah sekitar <InlineMath math="0{,}3115" />, atau <InlineMath math="31{,}15\%" />.

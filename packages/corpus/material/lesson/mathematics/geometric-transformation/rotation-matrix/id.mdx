@@ -38,13 +38,13 @@ Dengan menyamakan komponen-komponen yang bersesuaian:
 
 ### Matriks Rotasi terhadap Titik Asal
 
-Matriks yang terkait dengan rotasi sebesar <InlineMath math="\theta" /> radian terhadap titik pusat <InlineMath math="O(0,0)" /> adalah:
+Setiap **kolom matriks** adalah bayangan satu vektor satuan. Vektor mendatar berputar menjadi <InlineMath math="(\cos\theta,\sin\theta)" />. Vektor vertikal berada seperempat putaran di depannya, sehingga bayangannya <InlineMath math="(-\sin\theta,\cos\theta)" />. Gunakan satuan sudut yang sama untuk sinus dan kosinus:
 
 <BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
 
 ## Merotasi terhadap Pusat Sembarang
 
-Untuk merotasikan titik <InlineMath math="(x,y)" /> terhadap titik sebarang <InlineMath math="P(a,b)" /> sebesar sudut <InlineMath math="\theta" />, kita lakukan tiga langkah:
+Untuk merotasikan titik <InlineMath math="(x,y)" /> terhadap titik sebarang <InlineMath math="P(a,b)" /> sebesar sudut <InlineMath math="\theta" />, kita **geser, rotasi, lalu geser kembali** melalui tiga langkah:
 
 1. Translasikan titik <InlineMath math="(x,y)" /> sehingga <InlineMath math="P(a,b)" /> menjadi titik asal: <InlineMath math="(x-a, y-b)" />.
 2. Rotasikan titik hasil translasi terhadap titik asal sebesar <InlineMath math="\theta" /> menggunakan matriks <InlineMath math="R_\theta" />.
@@ -52,17 +52,25 @@ Untuk merotasikan titik <InlineMath math="(x,y)" /> terhadap titik sebarang <Inl
 
 ### Rumus Matriks Terpusat
 
-Matriks yang terkait dengan rotasi sebesar <InlineMath math="\theta" /> radian terhadap titik <InlineMath math="(a,b)" /> adalah:
+Operasi ini bekerja pada **vektor relatif terhadap pusat**, bukan langsung pada vektor posisi dari asal:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
+Jika titik yang diputar adalah pusat itu sendiri, vektor relatifnya nol. Jadi, pusat tetap di tempat:
+
+<BlockMath math="R_\theta\left(\begin{pmatrix}a\\b\end{pmatrix}-\begin{pmatrix}a\\b\end{pmatrix}\right)+\begin{pmatrix}a\\b\end{pmatrix}=R_\theta\begin{pmatrix}0\\0\end{pmatrix}+\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}a\\b\end{pmatrix}" />
+
 ## Mencari Matriks Rotasi Tertentu
 
-Untuk <InlineMath math="\theta = \frac{1}{4}\pi" /> radian, atau <InlineMath math="45^\circ" />, nilai sinus dan kosinusnya sama dengan <InlineMath math="\frac{1}{\sqrt{2}}" />:
+Untuk <InlineMath math="\theta = \frac{1}{4}\pi" /> radian, atau <InlineMath math="45^\circ" />, nilai **sinus dan kosinus** sama dengan <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
 <BlockMath math="\begin{aligned} R_{\frac{\pi}{4}} &amp;= \begin{pmatrix} \cos(\frac{\pi}{4}) &amp; -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) &amp; \cos(\frac{\pi}{4}) \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{pmatrix} \end{aligned}" />
 
 Matriks ini memutar setiap vektor posisi sebesar <InlineMath math="45^\circ" /> berlawanan arah jarum jam.
+
+Untuk titik pada diagram, perkalian matriks memberi:
+
+<BlockMath math="\begin{pmatrix}1/\sqrt2&-1/\sqrt2\\1/\sqrt2&1/\sqrt2\end{pmatrix}\begin{pmatrix}2\\0\end{pmatrix}=\begin{pmatrix}2/\sqrt2\\2/\sqrt2\end{pmatrix}=\begin{pmatrix}\sqrt2\\\sqrt2\end{pmatrix}" />
 
 <LineEquation
   title={
@@ -114,12 +122,13 @@ Matriks ini memutar setiap vektor posisi sebesar <InlineMath math="45^\circ" /> 
       color: "#4f46e5",
     },
   ]}
-  cameraPosition={[0, 0, 8]}
+  cameraPosition={[1, 0.7, 6]}
+  cameraTarget={[1, 0.7, 0]}
 />
 
 ## Latihan
 
-Soal-soal bergerak dari menyusun matriks rotasi sampai memakainya. Soal terakhir memutar terhadap pusat yang bukan titik asal.
+Soal-soal bergerak dari menyusun matriks rotasi sampai memakainya. Soal terakhir memutar terhadap **pusat yang bukan titik asal**.
 
 1.  Tentukan matriks yang berkaitan dengan rotasi terhadap titik pusat <InlineMath math="O(0,0)" /> sebesar <InlineMath math="\frac{1}{6}\pi" /> radian.
 2.  Tentukan bayangan titik <InlineMath math="P(4,2)" /> jika dirotasikan terhadap titik asal <InlineMath math="O(0,0)" /> sebesar <InlineMath math="60^\circ" />.
@@ -127,30 +136,47 @@ Soal-soal bergerak dari menyusun matriks rotasi sampai memakainya. Soal terakhir
 
 ### Pembahasan
 
-1.  Untuk <InlineMath math="\theta = \frac{\pi}{6}" />, atau <InlineMath math="30^\circ" />, nilai sinus dan kosinusnya adalah:
+Perhatikan **tanda negatif pada entri kanan atas** matriks rotasi. Pada pusat sembarang, pengurangan dan penambahan koordinat pusat harus dilakukan di luar perkalian rotasi.
 
-    <MathContainer>
-      <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
-      <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
-    </MathContainer>
+**Pembahasan 1**
 
-    Substitusi kedua nilai tersebut menghasilkan:
+Untuk <InlineMath math="\theta = \frac{\pi}{6}" />, atau <InlineMath math="30^\circ" />, nilai sinus dan kosinusnya adalah:
 
-    <BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
+<MathContainer>
+  <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
+  <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
+</MathContainer>
 
-2.  Untuk titik <InlineMath math="P(4,2)" /> dan <InlineMath math="\theta = 60^\circ" />, gunakan <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+Substitusi kedua nilai tersebut menghasilkan:
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
 
-    Bayangannya adalah <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+**Pembahasan 2**
 
-3. Titik yang akan diputar adalah <InlineMath math="Q(3,1)" />, pusat rotasinya <InlineMath math="C(1,-2)" />, dan <InlineMath math="\theta = 90^\circ" />. Jadi, <InlineMath math="(a,b)=(1,-2)" />.
+Untuk titik <InlineMath math="P(4,2)" /> dan <InlineMath math="\theta = 60^\circ" />, gunakan <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 90^\circ = 0" />
-      <BlockMath math="\sin 90^\circ = 1" />
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
-      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
 
-    Bayangannya adalah <InlineMath math="Q'(-2,0)" />.
+Bayangannya adalah <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+
+**Pembahasan 3**
+
+Titik yang akan diputar adalah <InlineMath math="Q(3,1)" />, pusat rotasinya <InlineMath math="C(1,-2)" />, dan <InlineMath math="\theta = 90^\circ" />. Jadi, <InlineMath math="(a,b)=(1,-2)" />.
+
+<MathContainer>
+  <BlockMath math="\cos 90^\circ = 0" />
+  <BlockMath math="\sin 90^\circ = 1" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Bayangannya adalah <InlineMath math="Q'(-2,0)" />.
+
+<LineEquation title="Seperempat putaran terhadap pusat yang bergeser" description="Q berputar sembilan puluh derajat berlawanan arah jarum jam terhadap C. Kedua jari-jari tetap sama panjang."
+  data={[
+    { points: [{ x: 3, y: 1, z: 0 }, { x: 1, y: -2, z: 0 }, { x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#4f46e5", labels: [{ text: <InlineMath math="Q(3,1)" />, at: 0, offset: [0.3, 0.3, 0] }, { text: <InlineMath math="C(1,-2)" />, at: 1, offset: [0.3, -0.3, 0] }, { text: <InlineMath math="Q'(-2,0)" />, at: 2, offset: [-0.5, -0.3, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(3, 2) + i * Math.PI / 64; return { x: 1 + Math.sqrt(13) * Math.cos(angle), y: -2 + Math.sqrt(13) * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [0, 0.4, 0] }] },
+  ]}
+  cameraTarget={[0.5, -0.2, 0]}
+  cameraPosition={[0.5, -0.2, 9]}
+/>

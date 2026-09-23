@@ -3,19 +3,19 @@ export const metadata = {
     description: "Sistem linear berlebih dari data dapat diselesaikan dengan kuadrat terkecil ketika tidak ada polinom yang memenuhi semua persamaan secara eksak.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Jumlah Persamaan Melebihi Jumlah Variabel
 
-Misalkan kita ingin mencocokkan kurva dengan data hasil pengukuran. Sering kali jumlah pengamatan lebih banyak daripada parameter model. Jika setiap pengamatan ditulis sebagai satu persamaan, terbentuklah **sistem linear berlebih**.
+Misalkan kita ingin mencocokkan kurva dengan data hasil pengukuran. Sering kali jumlah pengamatan lebih banyak daripada parameter model. Jika setiap pengamatan ditulis sebagai **satu persamaan**, terbentuklah **sistem linear berlebih**.
 
 Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Sistem seperti ini masih dapat memiliki solusi eksak. Pada data pengukuran, titik-titiknya biasanya tidak persis mengikuti model yang dipilih.
 
 ## Pencocokan Kuadrat untuk Tujuh Pengamatan
 
-Perhatikan <InlineMath math="7" /> titik data yang akan dicocokkan dengan sebuah polinom kuadrat.
+Perhatikan <InlineMath math="7" /> titik data yang akan dicocokkan dengan sebuah **polinom kuadrat**.
 
 Data pengamatannya adalah:
 
@@ -32,7 +32,7 @@ Parameter yang belum diketahui berjumlah <InlineMath math="3" />, yaitu <InlineM
 
 ## Menyusun Sistem Persamaan
 
-Substitusi setiap pasangan <InlineMath math="(t_i,y_i)" /> ke dalam polinom menghasilkan satu persamaan. Jadi, <InlineMath math="7" /> pengamatan memberikan <InlineMath math="7" /> persamaan untuk hanya <InlineMath math="3" /> koefisien yang belum diketahui.
+Substitusi setiap pasangan <InlineMath math="(t_i,y_i)" /> ke dalam polinom menghasilkan satu persamaan. Jadi, <InlineMath math="7" /> pengamatan memberikan <InlineMath math="7" /> persamaan untuk hanya <InlineMath math="3" /> **koefisien yang belum diketahui**.
 
 <MathContainer>
 <BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2{,}2" />
@@ -58,7 +58,7 @@ Setelah menghitung pangkat setiap <InlineMath math="t_i" />, sistemnya menjadi:
 
 ## Bentuk Matriks
 
-Sistem persamaan di atas bisa ditulis dalam bentuk matriks <InlineMath math="A \cdot x = b" />.
+Sistem persamaan di atas bisa ditulis dalam **bentuk matriks** <InlineMath math="A \cdot x = b" />.
 
 <BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2{,}2 \\ -4{,}2 \\ -4{,}2 \\ -1{,}8 \\ 1{,}8 \\ 8{,}2 \\ 15{,}8 \end{pmatrix}" />
 
@@ -97,6 +97,15 @@ Kriteria ini memberi penalti lebih besar pada selisih yang besar dan menghasilka
 <BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
 </MathContainer>
 
+Persamaan tengah langsung memberi koefisien linear. Dari persamaan terakhir, nyatakan konstanta melalui koefisien kuadrat, lalu substitusikan ke persamaan pertama.
+
+<MathContainer>
+<BlockMath math="28a_1=\frac{424}{5}\quad\Rightarrow\quad a_1=\frac{106}{35}" />
+<BlockMath math="28a_2+7a_0=\frac{67}{5}\quad\Rightarrow\quad a_0=\frac{67}{35}-4a_2" />
+<BlockMath math="196a_2+28\left(\frac{67}{35}-4a_2\right)=136" />
+<BlockMath math="84a_2=\frac{412}{5}\quad\Rightarrow\quad a_2=\frac{103}{105},\quad a_0=-\frac{211}{105}" />
+</MathContainer>
+
 Penyelesaiannya memberikan
 
 <MathContainer>
@@ -118,3 +127,49 @@ Vektor residual <InlineMath math="r" /> memenuhi
 Persamaan <InlineMath math="A^Tr=0" /> berarti galat yang tersisa ortogonal terhadap setiap kolom <InlineMath math="A" />. Secara geometri, <InlineMath math="A\hat x" /> merupakan proyeksi ortogonal <InlineMath math="b" /> ke ruang kolom <InlineMath math="A" />.
 
 Sistem berlebih banyak muncul dalam rekayasa dan sains karena eksperimen biasanya menghasilkan banyak pengukuran untuk model dengan sedikit parameter. Kuadrat terkecil memanfaatkan seluruh pengukuran tanpa menganggap data yang berisik cocok sempurna dengan model.
+
+Kurva memperlihatkan hasil pencocokan, sedangkan titik menandai pengamatan. Putar atau perbesar diagram untuk membandingkan titik dengan kurva. Selisih vertikal setiap titik merupakan residual pada nilai waktu yang sama.
+
+<LineEquation
+  title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
+  description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 6, 26]}
+  cameraTarget={[0, 6, 0]}
+  data={(() => {
+    // Pengamatan yang dikodekan oleh A dan b
+    const originalData = [
+      [-3, -2.2],
+      [-2, -4.2],
+      [-1, -4.2],
+      [0, -1.8],
+      [1, 1.8],
+      [2, 8.2],
+      [3, 15.8]
+    ];
+
+    // Koefisien dari penyelesaian QR
+    const a = 0.98095;
+    const b = 3.02857;
+    const c = -2.00952;
+
+    return [
+      {
+        points: Array.from({ length: 50 }, (_, i) => {
+          const t = -3 + (i * 6) / 49;
+          const y = a * t * t + b * t + c;
+          return { x: t, y: y, z: 0 };
+        }),
+        color: "#0891b2",
+        smooth: false,
+        showPoints: false
+      },
+      ...originalData.map(([t, y]) => ({
+        points: [{ x: t, y, z: 0 }],
+        color: "#ea580c",
+        smooth: false,
+        showPoints: true
+      }))
+    ];
+  })()}
+/>

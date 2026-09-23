@@ -3,7 +3,7 @@ export const metadata = {
    description: "Model an event with a sample space, calculate the event probability, and explain what that probability means in context.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Will it rain today? Will a team win its next match? These outcomes are uncertain. **Probability** expresses how likely each outcome is with a number from <InlineMath math="0" /> to <InlineMath math="1" />.
 
-**Probability** measures how likely an event is. Its value lies between <InlineMath math="0" /> and <InlineMath math="1" />:
+In a **finite sample space with equally likely outcomes**, probability values have the following meanings:
 - Probability <InlineMath math="0" /> means the event is **impossible**
 - Probability <InlineMath math="1" /> means the event is **certain**
 - Probability <InlineMath math="0.5" /> means the event and its complement are **equally likely**
@@ -51,121 +51,127 @@ The quantities in this formula are:
 
 **Analysis of Rolling Two Dice:**
 
-Two fair dice produce <InlineMath math="6 \times 6 = 36" /> equally likely ordered pairs. Find the probability that their sum is <InlineMath math="9" />.
+Two fair dice rolled independently produce <InlineMath math="6 \times 6 = 36" /> equally likely ordered pairs. Find the probability that their sum is <InlineMath math="9" />.
 
-**Systematic solution:**
+List the **ordered pairs** whose sum is nine. Swapping the first and second die values gives a different experimental outcome.
 
-1. Identify all ways to get sum <InlineMath math="9" />:
-   - First die <InlineMath math="3" />, second die <InlineMath math="6" />: <InlineMath math="(3,6)" />
-   - First die <InlineMath math="4" />, second die <InlineMath math="5" />: <InlineMath math="(4,5)" />
-   - First die <InlineMath math="5" />, second die <InlineMath math="4" />: <InlineMath math="(5,4)" />
-   - First die <InlineMath math="6" />, second die <InlineMath math="3" />: <InlineMath math="(6,3)" />
+| First die | Second die | Sum |
+| --- | --- | --- |
+| 3 | 6 | 9 |
+| 4 | 5 | 9 |
+| 5 | 4 | 9 |
+| 6 | 3 | 9 |
 
-2. Count the favorable outcomes: <InlineMath math="n(A) = 4" />
+Four pairs meet the condition, so <InlineMath math="n(A)=4" />.
 
-3. Determine probability:
+<BlockMath math="P(\text{sum}=9)=\frac{4}{36}=\frac{1}{9}\approx 0.111" />
 
-    <BlockMath math="P(\text{sum} = 9) = \frac{4}{36} = \frac{1}{9} \approx 0.111" />
+### Estimating the Number of Prize Coupons
 
-**Probability-Based Marketing Strategy:**
+Suppose a beverage company inserts prize coupons into some milk boxes. In this promotion model, the probability that a purchased box contains a prize is <InlineMath math="\frac{3}{32}" />.
 
-A beverage company inserts prize coupons into some milk boxes. Historical data estimate the probability that a purchased box contains a prize as <InlineMath math="\frac{3}{32}" />.
+Over many purchases, the proportion of boxes with prizes is expected to be close to <InlineMath math="3/32" />. For <InlineMath math="320" /> purchases, the expected coupon count is
 
-**Practical interpretation:** Over many purchases, about <InlineMath math="3" /> of every <InlineMath math="32" /> purchased boxes are expected to contain a prize. The estimate can help the company:
-- Plan promotional budgets
-- Estimate consumer response
-- Determine sales targets
+<BlockMath math="320\times\frac{3}{32}=10\times3=30" />
 
-**Comparing Dice Sums:**
+This expected count helps estimate prize costs. It is **not a guaranteed coupon count** for one batch of purchases.
 
-For two fair dice, a sum of <InlineMath math="7" /> has more favorable ordered pairs than any other sum:
+### Comparing Dice Sums
+
+For two fair dice, a sum of <InlineMath math="7" /> has **more favorable ordered pairs** than any other sum:
 
 There are <InlineMath math="6" /> ways to get a sum of <InlineMath math="7" />: <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" />.
 
 <BlockMath math="P(\text{sum} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0.167" />
 
 This is the largest probability among the possible sums. It does not guarantee that the next roll will be <InlineMath math="7" />. It describes the long-run model.
-
 ## Practice Problems
 
-Solve each problem before reading the worked solution. Define the sample space and event explicitly before substituting numbers into a formula. Both problems count equally likely outcomes, so write the counts first and divide them on the last step.
+Solve each problem before reading the worked solution. Define the sample space and event explicitly before substituting numbers into a formula. All four problems count **equally likely outcomes**, so write the counts first and divide them on the last step.
 
-1. In rolling two dice, determine the probability of getting a sum that is an even number.
+1. When two fair dice are rolled independently, determine the probability of getting a sum that is an even number.
 
 2. A box contains <InlineMath math="5 \text{ red balls}" />, <InlineMath math="3 \text{ blue balls}" />, and <InlineMath math="2 \text{ green balls}" />. If one ball is drawn randomly, determine the probability of getting a ball that is not red.
 
 3. Three fair coins are tossed independently. Determine the probability of getting exactly two tails.
 
 4. A quality inspection finds exactly <InlineMath math="50" /> defective items in a batch of <InlineMath math="1000 \text{ units}" />. If one item is selected uniformly at random, what is the probability that it is not defective?
-
 ### Worked Solutions
 
-1. **Answer: <InlineMath math="\frac{1}{2}" />**
+**Problem 1**
 
-   **Systematic solution steps:**
+<InlineMath math="\frac{1}{2}" />
 
-   Sample space for rolling two dice: <InlineMath math="n(S) = 36" />
+**Systematic solution steps:**
 
-   **Identify all even sums and ways to obtain them:**
-   - Sum <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> way
-   - Sum <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ ways}" />
-   - Sum <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ ways}" />
-   - Sum <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ ways}" />
-   - Sum <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ ways}" />
-   - Sum <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> way
+Sample space for rolling two dice: <InlineMath math="n(S) = 36" />
 
-   **Total favorable outcomes:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
+**Identify all even sums and ways to obtain them:**
+- Sum <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> way
+- Sum <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ ways}" />
+- Sum <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ ways}" />
+- Sum <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ ways}" />
+- Sum <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ ways}" />
+- Sum <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> way
 
-   **Probability calculation:**
+**Total favorable outcomes:** <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
 
-   <BlockMath math="P(\text{even}) = \frac{18}{36} = \frac{1}{2} = 0.5" />
+**Probability calculation:**
 
-2. **Answer: <InlineMath math="\frac{1}{2}" />**
+<BlockMath math="P(\text{even}) = \frac{18}{36} = \frac{1}{2} = 0.5" />
 
-   **Solution steps:**
+**Problem 2**
 
-   **Count total balls:** <InlineMath math="5 + 3 + 2 = 10" /> balls
+<InlineMath math="\frac{1}{2}" />
 
-   **Identify balls that are not red:** <InlineMath math="3 \text{ blue} + 2 \text{ green} = 5" /> balls
+**Solution steps:**
 
-   **Probability calculation:**
+**Count total balls:** <InlineMath math="5 + 3 + 2 = 10" /> balls
 
-   <BlockMath math="P(\text{not red}) = \frac{5}{10} = \frac{1}{2} = 0.5" />
+**Identify balls that are not red:** <InlineMath math="3 \text{ blue} + 2 \text{ green} = 5" /> balls
 
-3. **Answer: <InlineMath math="\frac{3}{8}" />**
+**Probability calculation:**
 
-   **Solution steps:**
+<BlockMath math="P(\text{not red}) = \frac{5}{10} = \frac{1}{2} = 0.5" />
 
-   **Sample space for three coin tosses:**
+**Problem 3**
 
-   <BlockMath math="\left\{\begin{gathered}
-   HHH, HHT, HTH, \\
-   HTT, THH, THT, \\
-   TTH, TTT
-   \end{gathered}\right\}" />
+<InlineMath math="\frac{3}{8}" />
 
-   **Total possibilities:** <InlineMath math="n(S) = 2^3 = 8" />
+**Solution steps:**
 
-   **Event exactly two tails:** <InlineMath math="\{HTT, THT, TTH\}" />
+**Sample space for three coin tosses:**
 
-   **Number of favorable outcomes:** <InlineMath math="n(A) = 3" />
+<BlockMath math="\left\{\begin{gathered}
+HHH, HHT, HTH, \\
+HTT, THH, THT, \\
+TTH, TTT
+\end{gathered}\right\}" />
 
-   **Probability calculation:**
+**Total possibilities:** <InlineMath math="n(S) = 2^3 = 8" />
 
-   <BlockMath math="P(\text{exactly 2 tails}) = \frac{3}{8} = 0.375" />
+**Event exactly two tails:** <InlineMath math="\{HTT, THT, TTH\}" />
 
-4. **Answer: <InlineMath math="\frac{19}{20}" /> or <InlineMath math="95\%" />**
+**Number of favorable outcomes:** <InlineMath math="n(A) = 3" />
 
-   **Solution steps:**
+**Probability calculation:**
 
-   **Total products:** <InlineMath math="1000 \text{ units}" />
+<BlockMath math="P(\text{exactly 2 tails}) = \frac{3}{8} = 0.375" />
 
-   **Defective products:** <InlineMath math="5\% \times 1000 = 50 \text{ units}" />
+**Problem 4**
 
-   **Non-defective products:** <InlineMath math="1000 - 50 = 950 \text{ units}" />
+<InlineMath math="\frac{19}{20}" /> or <InlineMath math="95\%" />
 
-   **Probability calculation:**
+**Solution steps:**
 
-   <BlockMath math="P(\text{not defective}) = \frac{950}{1000} = \frac{19}{20} = 0.95 = 95\%" />
+**Total products:** <InlineMath math="1000 \text{ units}" />
 
-   **Interpretation:** Under uniform random selection from this inspected batch, an item is non-defective with probability <InlineMath math="95\%" />. This does not guarantee the result of one selection.
+**Defective products:** <InlineMath math="50 \text{ units}" />
+
+**Non-defective products:** <InlineMath math="1000 - 50 = 950 \text{ units}" />
+
+**Probability calculation:**
+
+<BlockMath math="P(\text{not defective}) = \frac{950}{1000} = \frac{19}{20} = 0.95 = 95\%" />
+
+**Interpretation:** Under uniform random selection from this inspected batch, an item is non-defective with probability <InlineMath math="95\%" />. This does not guarantee the result of one selection.

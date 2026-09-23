@@ -5,11 +5,96 @@ export const metadata = {
   dateModified: "2026-09-01",
 };
 
-Verwende ein Koordinatensystem mit <InlineMath math="A=(-3,-2,-2)" />, <InlineMath math="B=(3,-2,2)" /> und <InlineMath math="C=(-3,2,2)" />. Dann sind
+#### Grundseite und Höhe bestimmen
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AB}=(6,0,4)" />
-  <BlockMath math="\overrightarrow{AC}=(0,4,4)" />
-</MathContainer>
+Verwende die Koordinaten <InlineMath math="A=(-3,-2,-2)" />, <InlineMath math="B=(3,-2,2)" /> und <InlineMath math="C=(-3,2,2)" /> aus der Zeichnung. Du kannst <InlineMath math="AC" /> als Grundseite wählen. Prüfe zuerst, dass **die beiden Seiten bei B gleich lang** sind:
 
-Das Kreuzprodukt ist <InlineMath math="(-16,-24,24)" /> und hat die Länge <InlineMath math="8\sqrt{22}\text{ cm}^2" />. Die Dreiecksfläche ist die Hälfte davon, also <InlineMath math="4\sqrt{22}\text{ cm}^2" />.
+<BlockMath math="\begin{aligned}AB^2&=6^2+0^2+4^2=52\\BC^2&=6^2+(-4)^2+0^2=52\end{aligned}" />
+
+Das Dreieck <InlineMath math="ABC" /> ist also gleichschenklig. Seine Höhe von <InlineMath math="B" /> trifft die Grundseite <InlineMath math="AC" /> im Mittelpunkt <InlineMath math="M" /> rechtwinklig:
+
+<BlockMath math="M=\left(\frac{-3+(-3)}2,\frac{-2+2}2,\frac{-2+2}2\right)=(-3,0,0)" />
+
+<MathVisual
+  title="Grundseite und Höhe im Quader"
+  description="Die hervorgehobene Strecke BM steht senkrecht auf der Grundseite AC. M ist der Mittelpunkt von AC. Alle Längen sind in Zentimetern angegeben."
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4 },
+      y: { min: -3, max: 3 },
+      z: { min: -3, max: 3 },
+    },
+    view: {
+      kind: "camera",
+      position: { x: 10, y: 8, z: 11 },
+      target: { x: 0, y: 0, z: 0 },
+    },
+    objects: [
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 3, y: -2, z: 2 }, to: { x: -3, y: 0, z: 0 } },
+      { id: "midpoint", kind: "point", appearance: "highlight", at: { x: -3, y: 0, z: 0 } },
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 0, y: 0, z: 0 },
+        size: { length: 6, width: 4, height: 4 },
+      },
+      {
+        id: "triangle-abc",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: -3, y: -2, z: -2 },
+          { x: 3, y: -2, z: 2 },
+          { x: -3, y: 2, z: 2 },
+        ],
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -3, y: -2, z: -2 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 3, y: -2, z: 2 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -3, y: 2, z: 2 },
+      },
+    ],
+    labels: [
+      { key: "midpoint", objectId: "midpoint", at: { x: -3, y: 0, z: 0 }, placement: "left" },
+      { key: "point-a", objectId: "point-a", at: { x: -3, y: -2, z: -2 }, placement: "below" },
+      { key: "point-b", objectId: "point-b", at: { x: 3, y: -2, z: 2 }, placement: "below-right" },
+      { key: "point-c", objectId: "point-c", at: { x: -3, y: 2, z: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "midpoint": <InlineMath math="M" />,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
+/>
+
+Mit der Abstandsformel berechnest du Grundseite und Höhe. Jede Koordinatendifferenz entspricht einer Länge in Zentimetern:
+
+<BlockMath math="\begin{aligned}AC&=\sqrt{0^2+4^2+4^2}=\sqrt{32}=4\sqrt2\text{ cm}\\BM&=\sqrt{6^2+(-2)^2+2^2}=\sqrt{44}=2\sqrt{11}\text{ cm}\end{aligned}" />
+
+Verwende jetzt **das halbe Produkt aus Grundseite und senkrechter Höhe**:
+
+<BlockMath math="\text{Fläche von }ABC=\frac12(4\sqrt2)(2\sqrt{11})=4\sqrt{22}\text{ cm}^2" />
+
+#### Mit dem Kreuzprodukt prüfen
+
+Die Vektoren von <InlineMath math="A" /> aus sind <InlineMath math="\overrightarrow{AB}=(6,0,4)" /> und <InlineMath math="\overrightarrow{AC}=(0,4,4)" />. Der Betrag ihres Kreuzprodukts ergibt den **Flächeninhalt des Parallelogramms**, das beide Vektoren aufspannen. Für die Dreiecksfläche teilst du diesen Wert durch zwei:
+
+<BlockMath math="\begin{aligned}\overrightarrow{AB}\times\overrightarrow{AC}&=(0\cdot4-4\cdot4,\;4\cdot0-6\cdot4,\;6\cdot4-0\cdot0)\\&=(-16,-24,24)\\\left\lVert\overrightarrow{AB}\times\overrightarrow{AC}\right\rVert&=\sqrt{(-16)^2+(-24)^2+24^2}\\&=\sqrt{256+576+576}=\sqrt{1408}=8\sqrt{22}\text{ cm}^2\\\text{Fläche von }ABC&=\frac12(8\sqrt{22})=4\sqrt{22}\text{ cm}^2\end{aligned}" />

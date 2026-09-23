@@ -41,7 +41,9 @@ Die **Länge** oder der **Betrag** von <InlineMath math="\overrightarrow{OQ}" />
 
 Die folgende Darstellung verbindet den Vektor mit seinen Komponenten und seinem Betrag in der kartesischen Ebene:
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1, 1.4, 9]}
+  cameraTarget={[1, 1.4, 0]}
   title="Vektor in der Koordinatenebene"
   description={
     <>
@@ -50,27 +52,45 @@ Die folgende Darstellung verbindet den Vektor mit seinen Komponenten und seinem 
       im kartesischen Koordinatensystem
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 3, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.7 * ((4) - (0)), y: (0) + 0.7 * ((3) - (0)), z: (0) + 0.7 * ((0) - (0)) }, { x: 4, y: 3, z: 0 }],
       color: "#65a30d",
-      label: <>Vektor <InlineMath math="OQ" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Vektor <InlineMath math="OQ" /></>,
+        at: 1,
+        offset: [-0.25, 0.65, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        at: 1,
+        offset: [0, -0.5, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 3, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 3, z: 0 }],
       color: "#ca8a04",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        at: 1,
+        offset: [-0.3, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -80,6 +100,19 @@ Die Darstellung zeigt alle drei Koordinatenachsen. Der Vektor liegt in der <Inli
 In der Darstellung gilt:
 
 - Der Vektor <InlineMath math="\overrightarrow{OQ}" /> (hellgrün) hat den Anfangspunkt <InlineMath math="O(0,0)" /> und den Endpunkt <InlineMath math="Q(4,3)" />
-- Die <InlineMath math="x" />-Komponente (hellblau) ist die Projektion des Vektors <InlineMath math="\overrightarrow{OQ}" /> auf die <InlineMath math="x" />-Achse, also <InlineMath math="4\mathbf{i}" />
+- Die <InlineMath math="x" />-Komponente (türkis) ist die Projektion des Vektors <InlineMath math="\overrightarrow{OQ}" /> auf die <InlineMath math="x" />-Achse, also <InlineMath math="4\mathbf{i}" />
 - Die <InlineMath math="y" />-Komponente (gelb) ist die Projektion des Vektors <InlineMath math="\overrightarrow{OQ}" /> auf die <InlineMath math="y" />-Achse, also <InlineMath math="3\mathbf{j}" />
-- Der Betrag des Vektors ist <InlineMath math="|\overrightarrow{OQ}| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5" />
+
+Berechne den **Betrag des Vektors** aus den beiden Komponenten im Diagramm:
+
+<BlockMath math="\begin{aligned}|\overrightarrow{OQ}|&amp;=\sqrt{4^2+3^2}\\&amp;=\sqrt{16+9}\\&amp;=5\end{aligned}" />
+
+### Ein Einheitsvektor mit derselben Richtung
+
+Für die **Länge eins** teilst du jede Komponente durch den Betrag des Vektors. Die Richtung bleibt erhalten, weil der Divisor positiv ist:
+
+<BlockMath math="\hat{u}=\frac{\overrightarrow{OQ}}{|\overrightarrow{OQ}|}=\frac{4\mathbf{i}+3\mathbf{j}}{5}=\frac45\mathbf{i}+\frac35\mathbf{j}" />
+
+Die neuen Komponenten stehen im selben Verhältnis wie die ursprünglichen Komponenten. Mit Pythagoras prüfen wir den Betrag des Einheitsvektors:
+
+<BlockMath math="|\hat{u}|=\sqrt{\left(\frac45\right)^2+\left(\frac35\right)^2}=\sqrt{\frac{16}{25}+\frac9{25}}=\sqrt1=1" />

@@ -28,18 +28,15 @@ Die Dichtefunktion der Normalverteilung bildet eine symmetrische Glockenkurve. D
       Die Standardnormaldichte ist bei <InlineMath math="\mu=0" /> zentriert. Die senkrechten Strecken markieren ihre Wendepunkte <InlineMath math="\mu\pm\sigma" />.
     </>
   }
+  showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: (() => {
-        const points = [];
-        const step = 0.1;
-        for (let x = -3.5; x <= 3.5; x += step) {
-          const y = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x);
-          points.push({ x: x, y: y, z: 0 });
-        }
-        return points;
-      })(),
+      points: Array.from({ length: 71 }, (_, index) => {
+        const x = (index - 35) / 10;
+        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+        return { x, y, z: 0 };
+      }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
@@ -94,7 +91,7 @@ Die Kurve besitzt vier kennzeichnende Eigenschaften:
 
 ## Wahrscheinlichkeitsdichtefunktion
 
-Die folgende Formel gibt die Wahrscheinlichkeitsdichte an jeder Stelle <InlineMath math="x" /> an.
+Die folgende Formel gibt die **Wahrscheinlichkeitsdichte** an jeder Stelle <InlineMath math="x" /> an.
 
 Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" />, Varianz <InlineMath math="\sigma^2" /> und <InlineMath math="\sigma>0" />, lautet die Dichtefunktion:
 
@@ -110,18 +107,26 @@ Die Konstanten und Parameter bedeuten:
 - <InlineMath math="\sigma>0" /> ist die Standardabweichung
 
 > Der Parameter <InlineMath math="\mu" /> verschiebt das Zentrum der Kurve, während <InlineMath math="\sigma" /> ihre Streuung bestimmt. Wahrscheinlichkeiten entsprechen Flächen unter der Dichtekurve. Die Höhe <InlineMath math="f(x)" /> an einem einzelnen Punkt ist ein Dichtewert.
-
 ## Transformation zur Standardnormalverteilung
 
 In der Praxis verwenden wir häufig die **Standardnormalverteilung** mit Mittelwert <InlineMath math="\mu = 0" /> und Standardabweichung <InlineMath math="\sigma = 1" />. Um eine reguläre Normalverteilung in eine Standardnormalverteilung umzuwandeln, verwenden wir die Transformation:
 
-<BlockMath math="Z = \frac{x - \mu}{\sigma}" />
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
 
 Die Variable <InlineMath math="Z" /> heißt **Standardwert** oder **z-Wert**. Sie gibt an, <Highlight>wie viele Standardabweichungen</Highlight> <InlineMath math="x" /> über oder unter dem Mittelwert liegt. Dadurch kann dieselbe Standardnormalverteilungstabelle für jede Normalverteilung verwendet werden.
 
-**Warum z-Werte verwenden?**
+Warum z-Werte verwenden?
 
 Mit dieser Transformation lassen sich Werte aus verschiedenen Verteilungen vergleichen. So können etwa Mathematik- und Physikergebnisse trotz unterschiedlicher Mittelwerte und Standardabweichungen auf derselben Skala eingeordnet werden.
+
+Für einen beobachteten Wert <InlineMath math="x" /> schreiben wir den standardisierten Wert als <InlineMath math="z" />. Angenommen, ein Mathematikergebnis von 80 gehört zu einer Verteilung mit Mittelwert 70 und Standardabweichung 5. Ein Physikergebnis von 90 gehört zu einer Verteilung mit Mittelwert 80 und Standardabweichung 10.
+
+| Fach | Standardisierter Wert |
+| --- | --- |
+| Mathematik | <InlineMath math="z=\frac{80-70}{5}=2" /> |
+| Physik | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+
+Das Mathematikergebnis liegt **höher relativ zur eigenen Gruppe**, obwohl 80 kleiner als 90 ist. Verglichen wird die Position innerhalb der jeweiligen Verteilung, nicht die Schwierigkeit beider Prüfungen.
 
 ## Eine Normalverteilungswahrscheinlichkeit zwischen zwei Grenzen berechnen
 
@@ -142,11 +147,11 @@ Das standardisierte Intervall lautet <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />
 
 Aus der Standardnormalverteilungstabelle:
 
-- <InlineMath math="P(Z < -0{,}5) = 0{,}3085" />
-- <InlineMath math="P(Z < 1{,}2) = 0{,}8849" />
+- <InlineMath math="P(Z < -0{,}5) \approx 0{,}3085" />
+- <InlineMath math="P(Z < 1{,}2) \approx 0{,}8849" />
 
 **Schritt 3**: Endgültige Wahrscheinlichkeit berechnen
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;= 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;\approx 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
 
 Die Wahrscheinlichkeit, dass <InlineMath math="X" /> zwischen <InlineMath math="45" /> und <InlineMath math="62" /> liegt, beträgt also <InlineMath math="0{,}5764" /> oder ungefähr <InlineMath math="57{,}64\%" />.

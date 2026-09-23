@@ -10,6 +10,33 @@ function rules(value: string): string[] {
 const SPLIT_HEAD = "split-aligned-head";
 const CONJUNCTION = "conjunction-in-aligned-chain";
 
+it("flags a relation moved inside the event or radical being evaluated", () => {
+  for (const value of [
+    String.raw`\begin{aligned} P(S &< 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} P(S &> 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} P(S &\ne 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} P(S &= 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} \sqrt{4 &= 2} \end{aligned}`,
+    String.raw`\begin{aligned} f[x &\approx 2] \end{aligned}`,
+    String.raw`\begin{aligned} P\left\{X &= 1\right\} \\ &= \frac16\end{aligned}`,
+  ]) {
+    assert.deepEqual(rules(value), ["nested-relation-alignment"]);
+  }
+});
+
+it("keeps event relations inside complete arguments and nested environments", () => {
+  for (const value of [
+    String.raw`\begin{aligned} P(S=7) &= \frac{6}{36} \\ &= \frac16\end{aligned}`,
+    String.raw`\begin{aligned} f(x) &= \begin{cases} x & x=1 \\ 0 & x\ne1 \end{cases}\end{aligned}`,
+    String.raw`\begin{aligned} f(x) &= \left(\begin{matrix} a &= b \\ c &= d \end{matrix}\right)\end{aligned}`,
+    String.raw`\begin{aligned} \text{A \& B} &= C\end{aligned}`,
+    String.raw`\begin{aligned} f(x) &= \left(a+b \right)\end{aligned}`,
+    String.raw`\begin{aligned} P\left\{X=1\right\} &= \frac16\end{aligned}`,
+  ]) {
+    assert.deepEqual(rules(value), []);
+  }
+});
+
 it("flags a bare aligned head whose relation starts the next row", () => {
   assert.deepEqual(
     rules(String.raw`\begin{aligned} &x \\ &= 3 \\ &= -1 \end{aligned}`),

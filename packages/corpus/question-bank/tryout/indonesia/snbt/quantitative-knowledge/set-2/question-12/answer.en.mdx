@@ -5,17 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-To calculate the area of region <InlineMath math="S" />, we need to determine the vertices of the solution region for the system of inequalities. This region is bounded by three lines:
+To calculate the area of region <InlineMath math="S" />, we need to determine the **vertices of the solution region** for the system of inequalities. This region is bounded by three lines:
 
 1. Line <InlineMath math="1" />: <InlineMath math="y = 2x + 4" />
 2. Line <InlineMath math="2" />: <InlineMath math="y = -x + 4" />
 3. Line <InlineMath math="3" />: <InlineMath math="x = 4" />
 
+The first two inequalities give <InlineMath math="-x+4\le y\le2x+4" />. The lower bound cannot exceed the upper bound, so <InlineMath math="-x+4\le2x+4" /> implies <InlineMath math="x\ge0" />. Together with <InlineMath math="x\le4" />, this places the region between the two lines for <InlineMath math="0\le x\le4" />.
+
 Find the intersection points between these lines.
 
-#### Intersection of Line One and Line Two
+#### Finding the Three Vertices
 
-Equate the <InlineMath math="y" /> values from both equations:
+Use **equal values of the vertical coordinate** at the intersection:
 
 <MathContainer>
   <BlockMath math="2x + 4 = -x + 4" />
@@ -29,8 +31,6 @@ Substitute <InlineMath math="x = 0" /> into one of the equations (e.g., Line <In
 
 So, the first intersection point is <InlineMath math="A(0, 4)" />.
 
-#### Intersection of Line One and Line Three
-
 Substitute <InlineMath math="x = 4" /> into the equation of Line <InlineMath math="1" />:
 
 <MathContainer>
@@ -39,8 +39,6 @@ Substitute <InlineMath math="x = 4" /> into the equation of Line <InlineMath mat
 </MathContainer>
 
 So, the second intersection point is <InlineMath math="B(4, 12)" />.
-
-#### Intersection of Line Two and Line Three
 
 Substitute <InlineMath math="x = 4" /> into the equation of Line <InlineMath math="2" />:
 
@@ -62,6 +60,13 @@ We can calculate the area using the base and height.
 
 - **Height**: The horizontal distance from point <InlineMath math="A" /> to the line <InlineMath math="x = 4" />.
   Height <InlineMath math="= x_{BC} - x_A = 4 - 0 = 4" />.
+
+<MathVisual
+ title="Triangular Region and Horizontal Height"
+ description="The vertical base BC has length 12. The horizontal height from A to BC has length 4, so the two measurements are perpendicular."
+ scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:5},y:{min:-1,max:13}},view:{kind:"fit",padding:0.1},objects:[{id:"region",kind:"polygon",appearance:"primary",vertices:[{x:0,y:4},{x:4,y:12},{x:4,y:0}]},{id:"height",kind:"segment",appearance:"highlight",from:{x:0,y:4},to:{x:4,y:4}}],labels:[{key:"a",objectId:"region",at:{x:0,y:4},placement:"left"},{key:"b",objectId:"region",at:{x:4,y:12},placement:"above"},{key:"c",objectId:"region",at:{x:4,y:0},placement:"below"},{key:"h",objectId:"height",at:{x:2,y:4},placement:"below"}]}}
+ labels={{a:<InlineMath math="A(0,4)" />,b:<InlineMath math="B(4,12)" />,c:<InlineMath math="C(4,0)" />,h:<InlineMath math="h=4" />}}
+/>
 
 Let <InlineMath math="A" /> be the area, <InlineMath math="b" /> the base length, and <InlineMath math="h" /> the height of the triangle.
 

@@ -5,42 +5,15 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Definisikan ruang sampel dan kejadiannya:
-- <InlineMath math="S" /> = Ruang sampel (total telur)
-- <InlineMath math="B" /> = Kejadian terambil telur bebek
-- <InlineMath math="A" /> = Kejadian terambil telur ayam
-- <InlineMath math="P" /> = Kejadian terambil telur pecah
+Telur bebek yang pecah memenuhi **kedua syarat sekaligus**, sehingga harus dihitung satu kali dalam kejadian “bebek atau pecah”. Pisahkan telur berdasarkan jenis dan kondisi:
 
-Pertama, kita hitung jumlah total telur dalam keranjang:
+| Jenis | Pecah | Utuh | Total |
+| --- | --- | --- | --- |
+| Bebek | <InlineMath math="\frac12\cdot10=5" /> | <InlineMath math="10-5=5" /> | <InlineMath math="10" /> |
+| Ayam | <InlineMath math="\frac14\cdot20=5" /> | <InlineMath math="20-5=15" /> | <InlineMath math="20" /> |
 
-<BlockMath math="\begin{aligned}n(S)&=n(B) + n(A)\\&=10 + 20\\&=30\end{aligned}" />
+Semua sepuluh telur bebek memenuhi syarat, baik pecah maupun utuh. Tambahkan lima telur ayam yang pecah. Dua kelompok ini saling lepas, sehingga:
 
-Selanjutnya, kita hitung jumlah telur yang pecah:
-- Telur bebek pecah: <InlineMath math="\frac{1}{2} \times 10 = 5" />
-- Telur ayam pecah: <InlineMath math="\frac{1}{4} \times 20 = 5" />
+<BlockMath math="P=\frac{10+5}{10+20}=\frac{15}{30}=\frac12" />
 
-Total telur pecah (<InlineMath math="n(P)" />) adalah:
-
-<BlockMath math="\begin{aligned}n(P)&=5 + 5\\&=10\end{aligned}" />
-
-Kejadian "telur bebek atau telur pecah" merupakan gabungan <InlineMath math="B \cup P" />:
-
-<BlockMath math="P(B \cup P) = \frac{n(B \cup P)}{n(S)}" />
-
-Gunakan prinsip inklusi-eksklusi agar telur bebek yang pecah tidak dihitung dua kali:
-
-<BlockMath math="\begin{aligned}n(B \cup P)&=n(B) + n(P)\\&\quad-n(B \cap P)\end{aligned}" />
-
-- <InlineMath math="n(B) = 10" /> (jumlah telur bebek)
-- <InlineMath math="n(P) = 10" /> (jumlah total telur pecah)
-- <InlineMath math="n(B \cap P)" /> adalah jumlah telur yang merupakan telur bebek **dan** pecah. Dari perhitungan di atas, telur bebek yang pecah ada <InlineMath math="5" /> butir.
-
-Maka:
-
-<BlockMath math="\begin{aligned}n(B \cup P)&=10 + 10 - 5\\&=15\end{aligned}" />
-
-Sehingga peluangnya adalah:
-
-<BlockMath math="\begin{aligned}P(B \cup P)&=\frac{15}{30}\\&=\frac{1}{2}\\&=0{,}5\end{aligned}" />
-
-Jadi, peluang terambil telur bebek atau telur pecah adalah <InlineMath math="0{,}5" />.
+Jadi, peluang yang dicari adalah <InlineMath math="0{,}5" />. Dengan prinsip inklusi-eksklusi, jumlah telur yang memenuhi juga sama: <InlineMath math="10+(5+5)-5=15" />.

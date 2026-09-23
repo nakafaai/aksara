@@ -11,9 +11,11 @@ export const metadata = {
 
 ## Vectors in a Space with Three Coordinate Axes
 
-<Highlight>A three-dimensional vector is a quantity that has both magnitude and direction in three-dimensional space.</Highlight> Unlike two-dimensional vectors that exist only on a plane (<InlineMath math="x" />- and <InlineMath math="y" />-axes), three-dimensional vectors exist in space with three coordinate axes (<InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes).
+A three-dimensional vector is described by <Highlight>three coordinate components</Highlight>. These components measure displacement along the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes. A nonzero vector has magnitude and direction, while the zero vector has no geometric direction.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[7, 5, -5]}
+  cameraTarget={[1.5, 2, 1]}
   title="Vector in Three-Dimensional Space"
   description={
     <>
@@ -22,24 +24,30 @@ export const metadata = {
       <InlineMath math="z" /> components.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 2 }],
       color: "#7c3aed",
-      label: <InlineMath math="v" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 6, 8]}
 />
 
 ## Representation of Three Dimensional Vectors
 
-A three-dimensional vector <Highlight>needs a third coordinate</Highlight>, and several notations record it. The third coordinate fixes the position along the vertical axis, and the three numbers together decide the length and the direction.
+The <InlineMath math="z" />-axis is perpendicular to the <InlineMath math="xy" />-plane. In this Cartesian system, the **component order** always follows the <InlineMath math="x" />-, then <InlineMath math="y" />-, then <InlineMath math="z" />-axis.
+
+For example, the third component of <InlineMath math="(3,4,2)" /> is <InlineMath math="2" />. It does not have to appear as vertical height on the screen.
 
 ### Notation of Three Dimensional Vectors
-
-A three-dimensional vector needs a third coordinate, and each notation writes the three coordinates in a fixed order. The list below shows the common notations.
 
 Three-dimensional vectors can be notated in various ways:
 
@@ -47,9 +55,13 @@ Three-dimensional vectors can be notated in various ways:
 2. Component notation: <InlineMath math="(a_x, a_y, a_z)" /> or <InlineMath math="(a_1, a_2, a_3)" />
 3. Basis notation: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
+For the vector in the first diagram, these three component notations describe the **same displacement**:
+
+<BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
+
 ### Components of Three Dimensional Vectors
 
-A vector in three-dimensional space has three scalar coordinate components. Multiplying each scalar by its axis unit vector gives the corresponding vector projection:
+A vector in three-dimensional space has **three scalar coordinate components**. Multiplying each scalar by its axis unit vector gives the corresponding vector projection:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
@@ -61,7 +73,9 @@ The components in this form are:
 - <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> are the unit vectors on the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[7, 5, -6]}
+    cameraTarget={[2, 1.5, 1]}
     title="Components of a Three-Dimensional Vector"
     description={
       <>
@@ -69,33 +83,60 @@ The components in this form are:
         <InlineMath math="y" />, and <InlineMath math="z" /> axes.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 0, 0],
-        color: "#9333ea",
-        label: <InlineMath math="a_x" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_x" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [0, 3, 0],
-        color: "#0d9488",
-        label: <InlineMath math="a_y" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_y" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [0, 0, 2],
-        color: "#d97706",
-        label: <InlineMath math="a_z" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 2 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_z" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 3, 2],
-        color: "#db2777",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 2 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[8, 6, 8]}
   />
 </ContentBlock>
 
@@ -113,13 +154,11 @@ If <InlineMath math="\vec{a} = (3, 4, 5)" />, then the magnitude of vector <Inli
 
 ## Operations on Three Dimensional Vectors
 
-Adding and subtracting vectors in space means handling each of the three coordinates with the same rule you used in the plane. One wrong coordinate makes the whole result wrong, so a tidy line-by-line computation pays off.
-
-Addition, subtraction, and scalar multiplication on three-dimensional vectors follow the same component rules as in two dimensions.
+For addition and subtraction, pair **components on the same axis**. Scalar multiplication multiplies every component by the same number. Also distinguish the result types: a dot product produces a scalar, while a cross product produces a vector.
 
 ### Addition and Subtraction of Vectors
 
-Addition and subtraction of three-dimensional vectors are performed by adding or subtracting the corresponding components.
+Addition and subtraction of three-dimensional vectors are performed by adding or subtracting the **corresponding components**.
 
 If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, then:
 
@@ -129,7 +168,9 @@ If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b}
 </MathContainer>
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[9, 6, -7]}
+    cameraTarget={[2.5, 2, 1.5]}
     title="Vector Addition in Three Dimensions"
     description={
       <>
@@ -138,39 +179,60 @@ If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b}
         <InlineMath math="c = a + b" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 3, 1],
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 3, 1],
-        to: [5, 4, 3],
-        color: "#ea580c",
-        label: <InlineMath math="b" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [5, 4, 3],
-        color: "#ca8a04",
-        label: <InlineMath math="c=a + b" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 4, z: 3 }],
+      color: "#ca8a04",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c=a + b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
 
 ### Scalar Multiplication of Vectors
 
-Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{a}" /> scales its magnitude by <InlineMath math="|k|" />. If <InlineMath math="\vec{a}" /> is nonzero, the direction stays the same when <InlineMath math="k > 0" /> and reverses when <InlineMath math="k < 0" />.
+Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{a}" /> scales its magnitude by <InlineMath math="|k|" />. If <InlineMath math="\vec{a}" /> is nonzero, the direction stays the same when <InlineMath math="k > 0" /> and **reverses** when <InlineMath math="k < 0" />.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[8, 4, -5]}
+    cameraTarget={[2, 1, 2]}
     title="Scalar Multiplication of a Vector"
     description={
       <>
@@ -178,31 +240,44 @@ Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{
         vector <InlineMath math="a" />, where <InlineMath math="k = 2" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 1, 2],
-        color: "#059669",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 2, 4],
-        color: "#c026d3",
-        label: <InlineMath math="2a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 2, z: 4 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="2a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[2, 4, 10]}
   />
 </ContentBlock>
 
 ### Dot Product
 
-The dot product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> produces a scalar defined as:
+The dot product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> **produces a scalar** defined as:
 
 <BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
 
-In this formula, <InlineMath math="\theta" /> is the angle between the two vectors.
+For this angle formula, both vectors must be nonzero. The symbol <InlineMath math="\theta" /> denotes the angle between their directions.
 
 The dot product has the following properties:
 
@@ -224,40 +299,78 @@ The magnitude of the cross product is:
 
 <BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
 
-In this formula, <InlineMath math="\theta" /> is the angle between the two vectors.
+For this angle formula, both vectors must be nonzero. The symbol <InlineMath math="\theta" /> denotes the angle between their directions.
 
 When <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, its direction is perpendicular to both factors and follows the right-hand rule from <InlineMath math="\vec{a}" /> toward <InlineMath math="\vec{b}" />. If either factor is zero or the factors are parallel, the cross product is <InlineMath math="\vec{0}" /> and therefore has no geometric direction.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[4.6, 3.6, -4.2]}
+  cameraTarget={[0.8, 0.8, 1.7]}
   title="Cross Product of Vectors"
   description={<>The right-hand-rule direction of <InlineMath math="\vec{a}\times\vec{b}" />, perpendicular to both nonparallel vectors.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="a" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#65a30d",
-      label: <InlineMath math="a \times b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a \times b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[2, 6, 8]}
 />
+
+
+In the diagram, take <InlineMath math="\vec a=(2,0,0)" /> and <InlineMath math="\vec b=(0,2,0)" />. The vectors are **perpendicular**, so their dot product is zero:
+
+<BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
+
+The cross product gives a different kind of result. Substitute the components of both vectors into the formula:
+
+<BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
+
+The result points along the positive <InlineMath math="z" />-axis, matching the green arrow. Its magnitude of <InlineMath math="4" /> equals the area of a rectangle with side lengths <InlineMath math="2" /> and <InlineMath math="2" />.
+
 
 ## Applications of Three Dimensional Vectors
 
-1. **Physics**: To represent force, velocity, acceleration, and momentum in three-dimensional space
-2. **Computer Graphics**: To represent position and movement of objects in three-dimensional space
-3. **Robotics**: To control robot movement in space
-4. **Navigation**: To determine direction and distance in three-dimensional space
-5. **Mechanical Engineering**: For structural analysis and fluid mechanics
+In robotics, a displacement vector tells a robot arm **how far to move along each axis**. Suppose the arm tip starts at <InlineMath math="P(1,2,0)" /> and must reach <InlineMath math="Q(3,4,2)" />:
+
+<BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
+
+The displacement along each axis is <InlineMath math="2" /> units. The straight-line displacement magnitude differs from the sum of the components:
+
+<BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
+
+Computer graphics and navigation use the same position and displacement calculations. In physics, components can represent force, velocity, acceleration, or momentum. In mechanical engineering, vectors help analyze structural forces and fluid flow. The meaning and units of the components follow the quantity being modeled.

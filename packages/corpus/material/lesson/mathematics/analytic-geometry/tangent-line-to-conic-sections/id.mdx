@@ -11,21 +11,31 @@ export const metadata = {
 
 Sebuah penggaris yang ditempelkan pada kurva halus dapat bertemu dengan kurva di satu titik tanpa memotongnya di sekitar titik tersebut. Garis sepanjang penggaris memodelkan **garis singgung** di titik itu.
 
-Setelah persamaan garis dimasukkan ke persamaan parabola, elips, atau hiperbola, <Highlight>garis singgung menghasilkan akar ganda</Highlight>. Garis sekan menghasilkan dua akar berbeda. Pada parabola <InlineMath math="y = x^2" />, akar ganda menunjukkan satu titik tempat garis singgung menyentuh kurva.
+Ketika substitusi garis ke persamaan irisan kerucut menghasilkan persamaan kuadrat, garis singgung ditandai oleh <Highlight>akar ganda</Highlight>. Dua akar berbeda berarti dua titik potong. Periksa koefisien kuadrat sebelum memakai diskriminan. Misalnya, garis yang sejajar asimtot hiperbola dapat menghasilkan persamaan linear.
 
 Untuk parabola, elips, dan hiperbola, cara menentukan persamaan garis singgung bergantung pada informasi yang tersedia.
 
 ## Titik pada Kurva
 
-Jika titik singgung sudah diketahui, diferensiasi implisit memberi gradien di titik tersebut. Gradien itu kemudian digabungkan dengan persamaan garis melalui satu titik untuk memperoleh bentuk titik secara langsung.
+Jika **titik singgung sudah diketahui**, diferensiasi implisit memberi gradien di titik tersebut. Gradien itu kemudian digabungkan dengan persamaan garis melalui satu titik untuk memperoleh bentuk titik secara langsung.
 
 ### Bentuk Titik dari Diferensiasi Implisit
 
-Untuk titik <InlineMath math="T(x_1, y_1)" /> pada irisan kerucut, bentuk titik yang dihasilkan mengganti setiap koordinat berpangkat dua dengan hasil kali terhadap koordinat titik singgung yang bersesuaian. Suku linear dibagi secara simetris antara titik umum dan titik singgung. Bentuk ini merangkum perhitungan turunan, tetapi tidak menggantikan pemeriksaan bahwa <InlineMath math="T" /> memang berada pada kurva.
+Untuk titik <InlineMath math="T(x_1, y_1)" /> pada irisan kerucut, bentuk titik yang dihasilkan mengganti setiap koordinat berpangkat dua dengan hasil kali terhadap koordinat titik singgung yang bersesuaian. Suku linear dibagi secara simetris antara titik umum dan titik singgung. Bentuk ini merangkum perhitungan turunan, tetapi tidak menggantikan pemeriksaan bahwa <InlineMath math="T" /> **memang berada pada kurva**.
 
 Misalnya, untuk parabola <InlineMath math="y^2 = 4px" /> dan titik singgung <InlineMath math="T(x_1, y_1)" />, persamaan garis singgungnya adalah:
 
 <BlockMath math="yy_1 = 2p(x + x_1)" />
+
+Untuk melihat asal rumus, ambil <InlineMath math="p \ne 0" /> dan <InlineMath math="y_1 \ne 0" />. Turunkan persamaan parabola terhadap <InlineMath math="x" />.
+
+<BlockMath math="2y\frac{dy}{dx}=4p\quad\Longrightarrow\quad m=\frac{2p}{y_1}" />
+
+Kalikan persamaan titik-gradien dengan <InlineMath math="y_1" />, lalu gunakan <InlineMath math="y_1^2=4px_1" /> karena titik singgung berada pada parabola.
+
+<BlockMath math="\begin{aligned}y-y_1&amp;=\frac{2p}{y_1}(x-x_1)\\yy_1-y_1^2&amp;=2px-2px_1\\yy_1-4px_1&amp;=2px-2px_1\\yy_1&amp;=2p(x+x_1)\end{aligned}" />
+
+Pada puncak <InlineMath math="(0,0)" />, gradien terhadap sumbu horizontal tidak terdefinisi. Bentuk titik tetap memberi garis singgung vertikal <InlineMath math="x=0" />. Untuk contoh <InlineMath math="(2,4)" />, pemeriksaan titik memberi <InlineMath math="4^2=8(2)=16" />.
 
 Gunakan parabola <InlineMath math="y^2 = 8x" /> dan titik <InlineMath math="(2, 4)" />.
 
@@ -96,9 +106,29 @@ Selanjutnya, substitusikan ke persamaan parabola untuk mencari titik singgung:
 
 Dengan [rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat), kita memperoleh <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />. Titik singgungnya adalah <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />. Garis dari masing-masing titik tersebut ke <InlineMath math="A(2,5)" /> memberi dua garis singgung <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.
 
+<LineEquation
+  title="Dua Garis Singgung dan Tali Busur Kontak"
+  description="Parabola, dua titik singgung, dan garis yang menghubungkan kedua titik singgung."
+  showZAxis={false}
+  cameraPosition={[5, 4, 18]}
+  cameraTarget={[5, 4, 0]}
+  data={[
+    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
+    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
+    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
+      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
+    ] },
+    { points: [{ x: 2, y: 5, z: 0 }], color: "#0284c7", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
+  ]}
+/>
+
+Bandingkan **dua garis melalui titik luar** dengan tali busur kontak berwarna merah muda. Kedua garis singgung melewati <InlineMath math="A" />, sedangkan tali busur menghubungkan <InlineMath math="T_1" /> dan <InlineMath math="T_2" /> serta memotong parabola di kedua titik itu.
+
 ## Persamaan Garis Singgung untuk Setiap Irisan Kerucut
 
-Tabel berikut merangkum persamaan garis singgung yang ditulis dalam bentuk titik.
+Tabel berikut merangkum persamaan garis singgung yang ditulis dalam **bentuk titik**.
 
 | Irisan Kerucut | Persamaan Garis Singgung |
 |---|---|
@@ -117,7 +147,7 @@ Tabel berikut merangkum persamaan garis singgung yang ditulis dalam bentuk titik
 
 ## Latihan
 
-Setiap soal memberikan irisan kerucut dan sebuah titik di atasnya, lalu meminta persamaan garis singgung di titik itu. Tulis dulu persamaan kerucutnya dalam bentuk baku sebelum memakai rumus garis singgung.
+Pilih metode dari data yang diberikan: **titik singgung, gradien, atau titik luar**. Verifikasi titik singgung pada kurva dan periksa bahwa setiap garis hasil perhitungan memenuhi syarat soal.
 
 1. Cari persamaan garis singgung parabola <InlineMath math="y^2 = 12x" /> di titik <InlineMath math="(3, 6)" />.
 
@@ -129,132 +159,137 @@ Setiap soal memberikan irisan kerucut dan sebuah titik di atasnya, lalu meminta 
 
 ### Pembahasan
 
-1. **Penyelesaian**:
+**Pembahasan 1**:
 
-   Yang diketahui: parabola <InlineMath math="y^2 = 12x" /> dengan titik singgung <InlineMath math="(3, 6)" />.
+Yang diketahui: parabola <InlineMath math="y^2 = 12x" /> dengan titik singgung <InlineMath math="(3, 6)" />.
 
-   Dari persamaan <InlineMath math="y^2 = 12x" />, kita dapat <InlineMath math="4p = 12" /> jadi <InlineMath math="p = 3" />.
+Dari persamaan <InlineMath math="y^2 = 12x" />, kita dapat <InlineMath math="4p = 12" /> jadi <InlineMath math="p = 3" />.
 
-   Pakai rumus garis singgung parabola:
+Pakai rumus garis singgung parabola:
 
-   <MathContainer>
-     <BlockMath math="yy_1 = 2p(x + x_1)" />
-     <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
-     <BlockMath math="6y = 6(x + 3)" />
-     <BlockMath math="6y = 6x + 18" />
-     <BlockMath math="y = x + 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="yy_1 = 2p(x + x_1)" />
+  <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
+  <BlockMath math="6y = 6(x + 3)" />
+  <BlockMath math="6y = 6x + 18" />
+  <BlockMath math="y = x + 3" />
+</MathContainer>
 
-   Jadi persamaan garis singgungnya <InlineMath math="y = x + 3" />.
+Jadi persamaan garis singgungnya <InlineMath math="y = x + 3" />.
 
-2. **Penyelesaian**:
+**Pembahasan 2**:
 
-   Yang diketahui: hiperbola <InlineMath math="4x^2 - 9y^2 = 36" /> atau <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
+Yang diketahui: hiperbola <InlineMath math="4x^2 - 9y^2 = 36" /> atau <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
 
-   Garis <InlineMath math="x + 4y + 10 = 0" /> memiliki gradien <InlineMath math="m = -\frac{1}{4}" />.
+Garis <InlineMath math="x + 4y + 10 = 0" /> memiliki gradien <InlineMath math="m = -\frac{1}{4}" />.
 
-   Karena garis singgung tegak lurus terhadap garis tersebut, gradiennya adalah:
+Karena garis singgung tegak lurus terhadap garis tersebut, gradiennya adalah:
 
-   <BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
+<BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
 
-   Rumus garis singgung hiperbola dengan gradien <InlineMath math="m" />:
+Rumus garis singgung hiperbola dengan gradien <InlineMath math="m" />:
 
-   <BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
+<BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
 
-   Dengan <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" />, dan <InlineMath math="m = 4" />:
+Rumus ini memerlukan <InlineMath math="a^2m^2-b^2>0" />. Jika nilainya nol, garis yang diperoleh adalah asimtot, bukan garis singgung.
 
-   <MathContainer>
-     <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
-     <BlockMath math="y = 4x \pm \sqrt{140}" />
-     <BlockMath math="y = 4x \pm 2\sqrt{35}" />
-   </MathContainer>
+Dengan <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" />, dan <InlineMath math="m = 4" />:
 
-   Jadi persamaan garis singgungnya <InlineMath math="y = 4x + 2\sqrt{35}" /> atau <InlineMath math="y = 4x - 2\sqrt{35}" />.
+<MathContainer>
+  <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{140}" />
+  <BlockMath math="y = 4x \pm 2\sqrt{35}" />
+</MathContainer>
 
-3. **Penyelesaian**:
+Jadi persamaan garis singgungnya <InlineMath math="y = 4x + 2\sqrt{35}" /> atau <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
-   Yang diketahui: elips <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> dan titik <InlineMath math="A(1, 3)" />.
+**Pembahasan 3**:
 
-   Pertama, periksa apakah titik <InlineMath math="A(1, 3)" /> berada pada elips:
+Yang diketahui: elips <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> dan titik <InlineMath math="A(1, 3)" />.
 
-   <BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
+Pertama, periksa apakah titik <InlineMath math="A(1, 3)" /> berada pada elips:
 
-   Karena <InlineMath math="\frac{85}{36} > 1" />, titik <InlineMath math="A" /> ada di luar elips.
+<BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
 
-   Tulis garis melalui <InlineMath math="A(1,3)" /> dengan gradien <InlineMath math="m" />:
+Karena <InlineMath math="\frac{85}{36} > 1" />, titik <InlineMath math="A" /> ada di luar elips.
 
-   <BlockMath math="y-3=m(x-1)" />
+Tulis garis melalui <InlineMath math="A(1,3)" /> dengan gradien <InlineMath math="m" />:
 
-   Substitusi garis ini ke persamaan elips dan syarat diskriminan nol memberi:
+<BlockMath math="y-3=m(x-1)" />
 
-   <MathContainer>
-     <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
-     <BlockMath math="8m^2 + 6m - 5 = 0" />
-     <BlockMath math="(4m+5)(2m-1)=0" />
-     <BlockMath math="m=-\frac{5}{4} \quad \text{atau} \quad m=\frac{1}{2}" />
-   </MathContainer>
+Substitusi garis ini ke persamaan elips dan syarat diskriminan nol memberi:
 
-   Masukkan masing-masing gradien ke persamaan titik-gradien:
+<MathContainer>
+  <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
+  <BlockMath math="(4+9m^2)x^2+18m(3-m)x+9(3-m)^2-36=0" />
+  <BlockMath math="D=[18m(3-m)]^2-4(4+9m^2)[9(3-m)^2-36]=0" />
+  <BlockMath math="D=144[9m^2-(3-m)^2+4]=144(8m^2+6m-5)=0" />
+  <BlockMath math="8m^2 + 6m - 5 = 0" />
+  <BlockMath math="(4m+5)(2m-1)=0" />
+  <BlockMath math="m=-\frac{5}{4} \quad \text{atau} \quad m=\frac{1}{2}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
-   </MathContainer>
+Masukkan masing-masing gradien ke persamaan titik-gradien:
 
-   Jadi, kedua garis singgungnya adalah <InlineMath math="5x+4y-17=0" /> dan <InlineMath math="x-2y+5=0" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
+</MathContainer>
 
-4. **Penyelesaian**:
+Jadi, kedua garis singgungnya adalah <InlineMath math="5x+4y-17=0" /> dan <InlineMath math="x-2y+5=0" />.
 
-   Yang diketahui: parabola <InlineMath math="y^2 = 8x" /> dan titik <InlineMath math="A(2, 5)" />.
+**Pembahasan 4**:
 
-   Pertama, periksa apakah titik <InlineMath math="A(2, 5)" /> berada pada parabola:
+Yang diketahui: parabola <InlineMath math="y^2 = 8x" /> dan titik <InlineMath math="A(2, 5)" />.
 
-   <BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
+Pertama, periksa apakah titik <InlineMath math="A(2, 5)" /> berada pada parabola:
 
-   Titik <InlineMath math="A" /> ada di luar parabola.
+<BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
 
-   Pakai persamaan kutub parabola dengan <InlineMath math="p = 2" />:
+Titik <InlineMath math="A" /> ada di luar parabola.
 
-   <BlockMath math="yy_1 = 4(x + x_1)" />
+Pakai persamaan kutub parabola dengan <InlineMath math="p = 2" />:
 
-   Substitusikan <InlineMath math="x_1 = 2" /> dan <InlineMath math="y_1 = 5" />:
+<BlockMath math="yy_1 = 4(x + x_1)" />
 
-   <MathContainer>
-     <BlockMath math="5y = 4(x + 2)" />
-     <BlockMath math="5y = 4x + 8" />
-     <BlockMath math="y = \frac{4x + 8}{5}" />
-   </MathContainer>
+Substitusikan <InlineMath math="x_1 = 2" /> dan <InlineMath math="y_1 = 5" />:
 
-   Substitusikan ke persamaan parabola:
+<MathContainer>
+  <BlockMath math="5y = 4(x + 2)" />
+  <BlockMath math="5y = 4x + 8" />
+  <BlockMath math="y = \frac{4x + 8}{5}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
-     <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
-     <BlockMath math="(4x + 8)^2 = 200x" />
-     <BlockMath math="16x^2 + 64x + 64 = 200x" />
-     <BlockMath math="16x^2 - 136x + 64 = 0" />
-     <BlockMath math="2x^2 - 17x + 8 = 0" />
-   </MathContainer>
+Substitusikan ke persamaan parabola:
 
-   Pakai rumus kuadrat:
+<MathContainer>
+  <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
+  <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
+  <BlockMath math="(4x + 8)^2 = 200x" />
+  <BlockMath math="16x^2 + 64x + 64 = 200x" />
+  <BlockMath math="16x^2 - 136x + 64 = 0" />
+  <BlockMath math="2x^2 - 17x + 8 = 0" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
+Pakai rumus kuadrat:
 
-   Jadi <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />.
+<BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
 
-   Titik singgungnya ada di <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />.
+Jadi <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />.
 
-   Persamaan garis singgung melalui <InlineMath math="(\frac{1}{2}, 2)" />:
+Titik singgungnya ada di <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />.
 
-   <BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
+Persamaan garis singgung melalui <InlineMath math="(\frac{1}{2}, 2)" />:
 
-   Jadi <InlineMath math="y = 2x + 1" />.
+<BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
 
-   Persamaan garis singgung melalui <InlineMath math="(8, 8)" />:
+Jadi <InlineMath math="y = 2x + 1" />.
 
-   <BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
+Persamaan garis singgung melalui <InlineMath math="(8, 8)" />:
 
-   Jadi <InlineMath math="y = \frac{1}{2}x + 4" />.
+<BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
 
-   Persamaan garis singgungnya adalah <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.
+Jadi <InlineMath math="y = \frac{1}{2}x + 4" />.
+
+Persamaan garis singgungnya adalah <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.

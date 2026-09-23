@@ -3,7 +3,7 @@ export const metadata = {
     description: "Ausgewählte Eigenpaare mit Potenziteration, verschobener inverser Iteration, Rayleigh-Quotienten und Residuen zuverlässig berechnen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -12,6 +12,8 @@ export const metadata = {
 Die verschobene inverse Iteration <Highlight>zielt auf den Eigenwert, der einer gewählten Verschiebung</Highlight> <InlineMath math="\mu" /> am nächsten liegt. Wir beginnen mit einer reellen symmetrischen Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Alle Eigenwerte sind reell, und die Eigenvektoren können als Orthonormalbasis gewählt werden.
 
 Wähle ein <InlineMath math="\mu" />, das selbst kein Eigenwert ist, und einen normierten Startvektor <InlineMath math="q_0" /> mit einer von null verschiedenen Komponente in der gesuchten Eigenvektorrichtung. Faktorisiere <InlineMath math="A-\mu I" /> einmal und verwende diese Faktorisierung wiederholt.
+
+Der gesuchte Eigenwert muss **eindeutig am nächsten an der Verschiebung liegen**. Bei gleichen Abständen entsteht kein eindeutig dominanter transformierter Betrag. Gemeint ist Konvergenz der Eigenrichtung. Ein negativer transformierter Eigenwert kann das Vorzeichen des Vektors wechseln.
 
 ### Ein Iterationsschritt
 
@@ -24,7 +26,7 @@ Führe für <InlineMath math="k=0,1,2,\ldots" /> die folgenden Schritte aus:
 <BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-Der Rayleigh-Quotient <InlineMath math="\rho_{k+1}" /> schätzt den Eigenwert. Eine skalenabhängige Abbruchregel prüft das Residuum, statt lediglich aufeinanderfolgende Schätzungen zu vergleichen:
+Der Rayleigh-Quotient <InlineMath math="\rho_{k+1}" /> schätzt den Eigenwert. Eine skalenabhängige Abbruchregel **prüft das Residuum**, statt lediglich aufeinanderfolgende Schätzungen zu vergleichen:
 
 <BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
 
@@ -36,7 +38,7 @@ Diese Beziehung zeigt, dass der Eigenwert nahe <InlineMath math="\mu" /> den gr�
 
 ## Potenziteration
 
-Die Potenziteration zielt auf den Eigenwert mit dem größten Betrag. Ausgehend von einem normierten Vektor <InlineMath math="q_0" /> wiederholen wir:
+Die Potenziteration zielt auf den Eigenwert mit dem **größten Betrag**. Ausgehend von einem normierten Vektor <InlineMath math="q_0" /> wiederholen wir:
 
 <MathContainer>
 <BlockMath math="y_{k+1}=Aq_k" />
@@ -58,11 +60,11 @@ Das Wort „kleinster“ ist mehrdeutig. Deshalb muss das Ziel immer genau benan
 | Methode | Ziel |
 | --- | --- |
 | Potenziteration auf <InlineMath math="A" /> | Eigenwert mit dem größten Betrag |
-| Inverse Iteration mit <InlineMath math="\mu=0" /> | Von null verschiedener Eigenwert mit dem kleinsten Betrag |
+| Inverse Iteration mit <InlineMath math="\mu=0" /> und invertierbarem <InlineMath math="A" /> | Von null verschiedener Eigenwert mit dem kleinsten Betrag |
 | Verschobene inverse Iteration | Eigenwert mit dem geringsten Abstand zu <InlineMath math="\mu" /> |
 | Inverse Iteration auf einer positiv definiten Matrix | Kleinster algebraischer Eigenwert, der zugleich den kleinsten Betrag hat |
 
-Bei einer indefiniten Matrix muss der Eigenwert mit dem kleinsten Betrag nicht der negativste Eigenwert sein. Diese Unterscheidung verhindert einen häufigen Interpretationsfehler.
+Bei einer indefiniten Matrix muss der Eigenwert mit dem **kleinsten Betrag nicht** der negativste Eigenwert sein. Diese Unterscheidung verhindert einen häufigen Interpretationsfehler.
 
 ## Beispiel zur verschobenen inversen Iteration
 
@@ -81,13 +83,17 @@ Das verschobene System liefert im ersten Schritt
 <BlockMath math="\rho_1=q_1^TAq_1=\frac{37}{17}\approx2{,}176" />
 </MathContainer>
 
-Da <InlineMath math="2" /> näher an der Verschiebung <InlineMath math="1" /> liegt als <InlineMath math="5" />, treiben weitere Iterationen die zweite Komponente gegen null und <InlineMath math="\rho_k" /> gegen <InlineMath math="2" />.
+Da <InlineMath math="2" /> näher an der Verschiebung <InlineMath math="1" /> liegt als <InlineMath math="5" />, treiben weitere Iterationen die **zweite Komponente gegen null** und <InlineMath math="\rho_k" /> gegen <InlineMath math="2" />.
+
+Prüfe auch das erste Residuum: Die Schätzung verbessert sich, ist aber noch nicht konvergiert:
+
+<BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
 ## Praktische Prüfungen
 
 Mit diesen Prüfungen entscheidest du, ob ein berechnetes Paar aus Eigenwert und Eigenvektor stimmt, ohne die ganze Determinante erneut zu rechnen. Arbeite sie der Reihe nach für dein Ergebnis ab.
 
 1. Faktorisiere die verschobene Matrix mit einem stabilen Verfahren und, falls nötig, mit Pivotisierung. Trifft die Verschiebung genau einen Eigenwert, ist die verschobene Matrix singulär. Dann muss der Lösevorgang gesondert behandelt oder die Verschiebung angepasst werden.
-2. Verwende die Residuumsnorm als Abbruchkriterium. Eine kleine Änderung zwischen zwei Eigenwertschätzungen beweist noch kein genaues Eigenpaar.
+2. Verwende die **Residuumsnorm** als Abbruchkriterium. Eine kleine Änderung zwischen zwei Eigenwertschätzungen beweist noch kein genaues Eigenpaar.
 3. Das Vorzeichen eines Eigenvektors ist frei: <InlineMath math="q" /> und <InlineMath math="-q" /> beschreiben dieselbe Eigenrichtung.
-4. Für Eigenwertcluster oder allgemeine nichtnormale Matrizen eignen sich Mehrvektorverfahren oder die Schur-Form, etwa Lanczos-, Arnoldi- oder <InlineMath math="\mathrm{QR}" />-basierte Eigenwertlöser.
+4. Für Eigenwertcluster oder allgemeine nichtnormale Matrizen eignen sich Mehrvektorverfahren oder die Schur-Form, mit Lanczos bei symmetrischen Problemen und Arnoldi- oder <InlineMath math="\mathrm{QR}" />-basierte Eigenwertlöser.

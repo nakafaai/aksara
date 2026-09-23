@@ -5,22 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Analisis pembagian buku berdasarkan preferensi siswa dan ketersediaan buku (hanya <InlineMath math="1" /> untuk setiap jenis):
+Mulai dari siswa dengan **satu pilihan saja**. Reni hanya menyukai buku agama, sehingga buku agama harus diberikan kepada Reni. Tita menyukai kamus dan buku agama. Setelah buku agama dialokasikan kepada Reni, Tita harus mendapat **kamus**.
 
-1. **Reni**: Hanya menyukai buku agama. Karena tidak ada pilihan lain untuk Reni, maka **Reni harus mendapatkan buku agama**.
+Periksa juga bahwa pembagian itu memungkinkan semua siswa menerima tepat satu buku yang disukai:
 
-2. **Tita**: Menyukai kamus dan buku agama.
-   - Karena buku agama sudah diambil oleh Reni, maka satu-satunya pilihan yang tersisa untuk Tita adalah kamus.
-   - Jadi, **Tita mendapatkan kamus**.
-
-Analisis untuk siswa lain (sebagai tambahan):
-
-- **Qila**: Menyukai buku agama dan sastra. Agama (Reni) sudah diambil. Maka Qila mendapat **sastra**.
-
-- **Putri**: Menyukai sains, sastra, dan sejarah. Sastra (Qila) sudah diambil. Tersisa sains dan sejarah.
-
-- **Sinta**: Menyukai sains, kamus, buku agama, dan sastra. Kamus (Tita), Agama (Reni), Sastra (Qila) sudah diambil. Sinta harus mendapat **sains**.
-
-- Maka **Putri** mendapat **sejarah**.
-
-Jadi, buku yang harus diberikan kepada Tita adalah **kamus**.
+| Siswa | Buku | Alasan setelah pilihan sebelumnya ditetapkan |
+| --- | --- | --- |
+| Reni | Agama | Satu-satunya pilihan Reni |
+| Tita | Kamus | Buku agama sudah untuk Reni |
+| Qila | Sastra | Buku agama sudah untuk Reni |
+| Sinta | Sains | Kamus, agama, dan sastra sudah dibagikan |
+| Putri | Sejarah | Sains dan sastra sudah dibagikan |

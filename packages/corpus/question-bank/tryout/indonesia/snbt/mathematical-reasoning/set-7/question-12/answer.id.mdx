@@ -5,69 +5,25 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Menghitung Jarak Sebenarnya
+#### Mengubah Skala Peta
 
-Skala <InlineMath math="1:2{.}000{.}000" /> berarti jarak sebenarnya <InlineMath math="J_s" /> adalah <InlineMath math="2{.}000{.}000" /> kali jarak pada peta <InlineMath math="J_p" />, jika keduanya memakai satuan yang sama:
+Skala berlaku untuk jarak dengan **satuan yang sama**. Karena <InlineMath math="1\text{ km}=100{.}000\text{ cm}" />:
 
-<BlockMath math="J_s=J_p\times2{.}000{.}000" />
+<BlockMath math="2{.}000{.}000\text{ cm}=\frac{2{.}000{.}000}{100{.}000}\text{ km}=20\text{ km}" />
 
-**Jarak Sebenarnya Kota <InlineMath math="A" /> ke Kota <InlineMath math="x" />:**
+Jadi, setiap <InlineMath math="1\text{ cm}" /> pada peta mewakili <InlineMath math="20\text{ km}" />. Ubah panjang setiap ruas:
 
-<MathContainer>
-  <BlockMath math="2{,}5\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 5{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 50 \text{ km}" />
-</MathContainer>
+| Ruas | Panjang pada peta dalam sentimeter | Jarak sebenarnya dalam kilometer |
+| --- | ---: | ---: |
+| <InlineMath math="A\to x" /> | <InlineMath math="2{,}5" /> | <InlineMath math="2{,}5\times20=50" /> |
+| <InlineMath math="x\to B" /> | <InlineMath math="3" /> | <InlineMath math="3\times20=60" /> |
+| <InlineMath math="A\to y" /> | <InlineMath math="4" /> | <InlineMath math="4\times20=80" /> |
+| <InlineMath math="y\to B" /> | <InlineMath math="4{,}5" /> | <InlineMath math="4{,}5\times20=90" /> |
 
-**Jarak Sebenarnya Kota <InlineMath math="x" /> ke Kota <InlineMath math="B" />:**
+#### Membandingkan Rute Lengkap
 
-<MathContainer>
-  <BlockMath math="3\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 6{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
+Setiap orang melewati **dua ruas**, jadi jumlahkan kedua ruas sebelum membandingkan. Misalkan <InlineMath math="J_B" /> adalah jarak Benu dan <InlineMath math="J_M" /> jarak Mamang, dalam kilometer.
 
-**Jarak Sebenarnya Kota <InlineMath math="A" /> ke Kota <InlineMath math="y" />:**
+<BlockMath math="\begin{aligned}J_B&=50+60=110 \\ J_M&=80+90=170 \\ J_M-J_B&=170-110=60\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="4\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 8{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 80 \text{ km}" />
-</MathContainer>
-
-**Jarak Sebenarnya Kota <InlineMath math="y" /> ke Kota <InlineMath math="B" />:**
-
-<MathContainer>
-  <BlockMath math="4{,}5\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 9{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 90 \text{ km}" />
-</MathContainer>
-
-#### Menghitung Jarak Tempuh
-
-**Perjalanan Benu (<InlineMath math="A \to x \to B" />):**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Benu}}&=J_s(A\to x) \\ &\quad+J_s(x\to B)\end{aligned}" />
-  <BlockMath math="= 50 \text{ km} + 60 \text{ km}" />
-  <BlockMath math="= 110 \text{ km}" />
-</MathContainer>
-
-**Perjalanan Mamang (<InlineMath math="A \to y \to B" />):**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Mamang}}&=J_s(A\to y) \\ &\quad+J_s(y\to B)\end{aligned}" />
-  <BlockMath math="= 80 \text{ km} + 90 \text{ km}" />
-  <BlockMath math="= 170 \text{ km}" />
-</MathContainer>
-
-#### Menghitung Selisih Jarak
-
-Selisih jarak tempuh Benu dan Mamang adalah:
-
-<MathContainer>
-  <BlockMath math="|170-110|\text{ km}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
-
-Jadi, selisih jarak tempuhnya adalah <InlineMath math="60 \text{ km}" />.
+Mamang menempuh jarak <InlineMath math="60\text{ km}" /> lebih jauh. Sebagai pemeriksaan, selisih rute pada peta adalah <InlineMath math="(4+4{,}5)-(2{,}5+3)=3\text{ cm}" />, setara dengan <InlineMath math="3\times20=60\text{ km}" />.

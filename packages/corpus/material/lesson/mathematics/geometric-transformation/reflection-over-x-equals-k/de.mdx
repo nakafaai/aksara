@@ -10,20 +10,13 @@ export const metadata = {
 
 ## Punkt und Spiegelbild haben dieselbe Höhe
 
-Bei der Spiegelung an der vertikalen Geraden <InlineMath math="x = k" /> wirkt die Gerade <InlineMath math="x = k" /> als Spiegel. Urbild und Bildpunkt liegen <Highlight>auf verschiedenen Seiten der Geraden</Highlight>, sofern der Punkt nicht selbst auf der Spiegelgeraden liegt.
-
-Der horizontale Abstand des Urbildes zur Spiegelgeraden ist genauso groß wie der horizontale Abstand des Bildpunktes. Deshalb bleibt die <InlineMath math="y" />-Koordinate unverändert.
+Ein Punkt auf der Spiegelgeraden bleibt fest. Liegt der Punkt außerhalb, befinden sich Urbild und Bild auf verschiedenen Seiten mit <Highlight>demselben senkrechten Abstand</Highlight> zur Geraden.
 
 ### Regel für die Spiegelung an einer vertikalen Geraden
 
-Wenn ein Punkt <InlineMath math="P(x, y)" /> an der Geraden <InlineMath math="x = k" /> gespiegelt wird, werden die Koordinaten seines Bildes, <InlineMath math="P'(x', y')" />, durch die Regel bestimmt:
+Der **Mittelpunkt** der Verbindung zwischen Urbild und Bild liegt auf der Spiegelgeraden. Die Koordinate entlang der Geraden bleibt gleich. Aus der Mittelpunktkoordinate folgt:
 
-<MathContainer>
-  <BlockMath math="x' = 2k - x" />
-  <BlockMath math="y' = y" />
-</MathContainer>
-
-Das Bild des Punktes <InlineMath math="P(x, y)" /> ist also <InlineMath math="P'(2k - x, y)" />. Die <InlineMath math="y" />-Koordinate bleibt gleich. Die <InlineMath math="x" />-Koordinate ändert sich entsprechend ihrem Abstand von der Geraden <InlineMath math="x=k" />.
+<BlockMath math="\frac{x+x'}{2}=k\quad\Longrightarrow\quad x+x'=2k\quad\Longrightarrow\quad x'=2k-x,\qquad y'=y" />
 
 ## Einen Punkt an einer vertikalen Geraden spiegeln
 
@@ -67,8 +60,8 @@ Somit ist das Bild des Punktes <InlineMath math="A(1,4)" /> <InlineMath math="A'
   data={[
     {
       points: [
-        { x: 3, y: -5, z: 0 },
-        { x: 3, y: 5, z: 0 },
+        { x: 3, y: 1, z: 0 },
+        { x: 3, y: 6, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
@@ -95,13 +88,13 @@ Somit ist das Bild des Punktes <InlineMath math="A(1,4)" /> <InlineMath math="A'
       color: "#db2777",
     }, // Horizontale Hilfslinie
   ]}
-  cameraTarget={[3, 3, 0]}
-  cameraPosition={[3, 3, 10]}
+  cameraTarget={[3, 4, 0]}
+  cameraPosition={[3, 4, 8]}
 />
 
 ## Übungen
 
-Jede Aufgabe spiegelt an der senkrechten Geraden <InlineMath math="x=k" />. Die letzte gibt das Bild und fragt nach dem Ausgangspunkt, sodass dieselbe Formel rückwärts gelöst wird, um die fehlende Koordinate zu bestimmen.
+Setze die **Koordinate der Spiegelgeraden** in die Formel ein. Bei der letzten Aufgabe kennst du den Bildpunkt und berechnest rückwärts die Koordinaten des Ausgangspunktes.
 
 1.  Bestimme das Bild des Punktes <InlineMath math="P(3,2)" /> bei der Spiegelung an der Geraden <InlineMath math="x=5" />.
 2.  Der Punkt <InlineMath math="B(-2, 5)" /> wird an der Geraden <InlineMath math="x=1" /> gespiegelt. Bestimme die Koordinaten seines Bildpunktes.
@@ -109,35 +102,43 @@ Jede Aufgabe spiegelt an der senkrechten Geraden <InlineMath math="x=k" />. Die 
 
 ### Lösungen
 
-1.  Gegeben seien <InlineMath math="P(3,2)" /> und die Spiegelgerade <InlineMath math="x=5" />. Also <InlineMath math="x=3, y=2, k=5" />.
+Prüfe das Ergebnis mit der **Mittelpunktkoordinate**. Der Mittelwert der veränderten Koordinaten muss der Koordinate der Spiegelgeraden entsprechen. Die andere Koordinate bleibt gleich.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
-      <BlockMath math="y' = y = 2" />
-    </MathContainer>
+**Lösung 1**
 
-    Somit ist das Bild des Punktes <InlineMath math="P" /> <InlineMath math="P'(7,2)" />.
+Gegeben seien <InlineMath math="P(3,2)" /> und die Spiegelgerade <InlineMath math="x=5" />. Also <InlineMath math="x=3, y=2, k=5" />.
 
-2.  Gegeben seien <InlineMath math="B(-2, 5)" /> und die Spiegelgerade <InlineMath math="x=1" />. Also <InlineMath math="x=-2, y=5, k=1" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
+  <BlockMath math="y' = y = 2" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
-      <BlockMath math="y' = y = 5" />
-    </MathContainer>
+Somit ist das Bild des Punktes <InlineMath math="P" /> <InlineMath math="P'(7,2)" />.
 
-    Somit ist das Bild des Punktes <InlineMath math="B" /> <InlineMath math="B'(4,5)" />.
+**Lösung 2**
 
-3.  Gegeben sei das Bild <InlineMath math="C'(0,3)" /> und die Spiegelgerade <InlineMath math="x=-2" />. Also <InlineMath math="x'=0, y'=3, k=-2" />.
+Gegeben seien <InlineMath math="B(-2, 5)" /> und die Spiegelgerade <InlineMath math="x=1" />. Also <InlineMath math="x=-2, y=5, k=1" />.
 
-    Wir kennen <InlineMath math="x' = 2k - x" /> und <InlineMath math="y' = y" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
+  <BlockMath math="y' = y = 5" />
+</MathContainer>
 
-    Aus <InlineMath math="y' = y" /> folgt <InlineMath math="y = 3" />.
+Somit ist das Bild des Punktes <InlineMath math="B" /> <InlineMath math="B'(4,5)" />.
 
-    Aus <InlineMath math="x' = 2k - x" /> folgt <InlineMath math="0 = 2(-2) - x" />.
+**Lösung 3**
 
-    <MathContainer>
-      <BlockMath math="0 = -4 - x" />
-      <BlockMath math="x = -4" />
-    </MathContainer>
+Gegeben sei das Bild <InlineMath math="C'(0,3)" /> und die Spiegelgerade <InlineMath math="x=-2" />. Also <InlineMath math="x'=0, y'=3, k=-2" />.
 
-    Somit sind die Koordinaten des Punktes <InlineMath math="C" /> <InlineMath math="C(-4,3)" />.
+Wir kennen <InlineMath math="x' = 2k - x" /> und <InlineMath math="y' = y" />.
+
+Aus <InlineMath math="y' = y" /> folgt <InlineMath math="y = 3" />.
+
+Aus <InlineMath math="x' = 2k - x" /> folgt <InlineMath math="0 = 2(-2) - x" />.
+
+<MathContainer>
+  <BlockMath math="0 = -4 - x" />
+  <BlockMath math="x = -4" />
+</MathContainer>
+
+Somit sind die Koordinaten des Punktes <InlineMath math="C" /> <InlineMath math="C(-4,3)" />.

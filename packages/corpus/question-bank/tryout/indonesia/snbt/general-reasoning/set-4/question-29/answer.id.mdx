@@ -5,18 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Terdapat <InlineMath math="\binom{10}{2}=45" /> pasangan yang sama mungkin.
+Terdapat <InlineMath math="\binom{10}{2}=\frac{10\times9}{2}=45" /> **pasangan yang sama mungkin**.
 
 | Hasil | Banyak pasangan | Pembayaran (ribu rupiah) |
 | --- | ---: | ---: |
-| Dua merah | <InlineMath math="\binom32=3" /> | <InlineMath math="30" /> |
+| Dua merah | <InlineMath math="\binom32=\frac{3\times2}{2}=3" /> | <InlineMath math="30" /> |
 | Warna berbeda | <InlineMath math="3\times7=21" /> | <InlineMath math="15" /> |
-| Dua biru | <InlineMath math="\binom72=21" /> | <InlineMath math="0" /> |
+| Dua biru | <InlineMath math="\binom72=\frac{7\times6}{2}=21" /> | <InlineMath math="0" /> |
 
 Nilai harapan pembayaran satu percobaan, dalam ribu rupiah:
 
-<BlockMath math="E=\frac{30(3)+15(21)}{45}=9" />
+<BlockMath math="E=\frac{30(3)+15(21)+0(21)}{45}=\frac{90+315}{45}=\frac{405}{45}=9" />
 
-Percobaan ulang terjadi dengan peluang <InlineMath math="\frac{21}{45}=\frac7{15}" />. Kotak dipulihkan, sehingga nilai harapan percobaan ulang tetap <InlineMath math="9" />. Totalnya:
+Percobaan ulang hanya diberikan setelah **dua bola biru**, dengan peluang <InlineMath math="\frac{21}{45}=\frac7{15}" />. Kotak dipulihkan, sehingga nilai harapan percobaan ulang tetap <InlineMath math="9" />. Totalnya:
 
-<BlockMath math="9+\frac7{15}\times9=\frac{66}{5}" />
+<BlockMath math="9+\frac7{15}\times9=9+\frac{21}{5}=\frac{45+21}{5}=\frac{66}{5}" />
+
+Tambahan nilai harapan dibobot dengan peluang mendapat percobaan ulang. Jangan langsung menggandakan nilai harapan satu percobaan, karena tidak semua pemain mendapat percobaan kedua. Percobaan kedua juga tidak dapat memicu percobaan ketiga.

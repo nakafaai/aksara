@@ -5,13 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Fungsi <InlineMath math="f(x)=2+\frac7{x-1}" /> memiliki asimtot <InlineMath math="x=1" /> dan <InlineMath math="y=2" />, yang berpotongan di <InlineMath math="(1,2)" />. Pada <InlineMath math="x>1" />, pecahannya positif sehingga <InlineMath math="f(x)>2" />.
+Fungsi <InlineMath math="f(x)=2+\frac7{x-1}" /> memiliki **asimtot** <InlineMath math="x=1" /> dan <InlineMath math="y=2" />, yang berpotongan di <InlineMath math="(1,2)" />. Pada <InlineMath math="x>1" />, pecahannya positif sehingga <InlineMath math="f(x)>2" />.
 
 Pada masing-masing interval <InlineMath math="(-\infty,1)" /> dan <InlineMath math="(1,\infty)" />, kebalikan <InlineMath math="\frac1{x-1}" /> turun ketika <InlineMath math="x" /> bertambah. Faktor positif <InlineMath math="7" /> dan penambahan <InlineMath math="2" /> mempertahankan sifat menurun itu. Untuk titik tetap, selesaikan <InlineMath math="f(x)=x" />.
 
 <BlockMath math="\begin{aligned}
 x&=2+\frac7{x-1} \\
 x(x-1)&=2(x-1)+7 \\
+x^2-x&=2x-2+7 \\
 x^2-3x-5&=0
 \end{aligned}" />
 
@@ -19,8 +20,29 @@ Diskriminan <InlineMath math="9+20=29>0" /> memberikan dua akar real. Nilai <Inl
 
 <BlockMath math="\begin{aligned}
 y-2&=\frac7{x-1} \\
+(y-2)(x-1)&=7 \\
+x-1&=\frac7{y-2} \\
 x&=1+\frac7{y-2} \\
 f^{-1}(y)&=\frac{y+5}{y-2}
 \end{aligned}" />
 
 Fungsi dan inversnya memiliki domain berbeda, masing-masing mengecualikan <InlineMath math="1" /> dan <InlineMath math="2" />. Jadi, pernyataan <InlineMath math="f^{-1}=f" /> salah. Empat pernyataan lainnya benar.
+
+Titik tetap merupakan perpotongan grafik dengan garis <InlineMath math="y=x" />. Akar persamaan kuadratnya adalah <InlineMath math="x=\frac{3\pm\sqrt{29}}2" />. Untuk melihat mengapa fungsi menurun pada masing-masing interval, ambil <InlineMath math="a<b" /> di sisi yang sama dari 1. Penyebut berikut positif, sedangkan pembilang negatif.
+
+<BlockMath math="f(b)-f(a)=\frac{7(a-b)}{(b-1)(a-1)}<0" />
+
+<LineEquation
+  title="Dua cabang dan dua titik tetap"
+  description="Ungu adalah grafik fungsi, jingga garis y = x. Garis abu-abu menunjukkan kedua asimtot."
+  cameraPosition={[1, 2, 20]}
+  cameraTarget={[1, 2, 0]}
+  showZAxis={false}
+  data={[
+    ...[[-6, 0], [2, 8]].map(([a,b]) => ({ points: Array.from({ length: 81 }, (_, i) => { const x = a + (b-a)*i/80; return { x, y: 2 + 7/(x-1), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false })),
+    { points: [{ x: -5, y: -5, z: 0 }, { x: 7, y: 7, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -6, y: 2, z: 0 }, { x: 8, y: 2, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [-1, 1].map((sign) => { const x = (3 + sign*Math.sqrt(29))/2; return { x, y: x, z: 0 }; }), color: "#d97706", lineWidth: 0, smooth: false, showPoints: true },
+  ]}
+/>

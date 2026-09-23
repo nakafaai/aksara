@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count circular arrangements by relative order, treat rotations as equivalent, distinguish reflections when needed, and solve constrained arrangements.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
@@ -26,11 +26,18 @@ Where:
 - <InlineMath math="n" /> = number of objects to be arranged
 - <InlineMath math="(n-1)!" /> = factorial of <InlineMath math="(n-1)" />
 
-**Why is the formula <InlineMath math="(n-1)!" /> and not <InlineMath math="n!" />?**
+Why is the formula <InlineMath math="(n-1)!" /> and not <InlineMath math="n!" />?
 
 Rotating everyone together does not create a new circular arrangement. The round-table example below shows why.
 
 Suppose <InlineMath math="3" /> children, <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, sit around a round table. The orders <InlineMath math="ABC" />, <InlineMath math="BCA" />, and <InlineMath math="CAB" /> are **the same arrangement** because each is a rotation of the others and the relative positions do not change.
+
+The table groups all six linear orders. Read each order clockwise. **Rotation stays within one row**, whereas reflection changes rows.
+
+| Circular arrangement | Equivalent linear orders |
+| --- | --- |
+| 1 | ABC, BCA, CAB |
+| 2 | ACB, CBA, BAC |
 
 Calculation steps:
 1. Fix one object as a **reference point** (for example, child A)
@@ -44,21 +51,19 @@ The formula <InlineMath math="(n-1)!" /> identifies rotations but still treats m
 
 ## Counting Circular Arrangements
 
-The same formula counts circular seating orders and other formations arranged around a center.
+The same formula counts **circular seating orders** and other formations arranged around a center. Keep one person fixed as a reference, then count the order of the others relative to that person. When people form pairs, the units being arranged become pairs.
 
-**Circular Seating:**
+### Circular Seating
 
-Five students will sit around a round table for discussion. The number of ways they can sit is:
+Five students will sit **around a round table** for discussion. The number of ways they can sit is:
 
 <BlockMath math="\begin{aligned} P_5 &amp;= (5-1)! \\ &amp;= 4! \\ &amp;= 4 \times 3 \times 2 \times 1 \\ &amp;= 24 \text{ ways} \end{aligned}" />
+### A Game in a Circle
 
-**Traditional Games:**
-
-Eight children play in a circle. The number of different formations they can form is:
+Eight children **play in a circle**. The number of different formations they can form is:
 
 <BlockMath math="\begin{aligned} P_8 &amp;= (8-1)! \\ &amp;= 7! \\ &amp;= 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 \\ &amp;= 5\,040 \text{ ways} \end{aligned}" />
-
-**Situations with Special Conditions:**
+### Adjacent Couples
 
 When there are **additional conditions** such as certain objects must be adjacent, we use **grouping technique**:
 
@@ -72,7 +77,7 @@ Example: <InlineMath math="4" /> married couples sit in a circle, each couple mu
 
 ## Practice Problems
 
-The problems differ in one condition each: a plain circle, a bracelet where mirror images match, and couples who must sit together. Pick the matching formula before calculating.
+The four problems compare a plain circle, a bracelet that **identifies mirror images**, couples who must sit together, and two people who must remain apart. Pick the matching formula before calculating.
 
 1. There are <InlineMath math="6" /> friends who will sit around a campfire. How many ways can they sit?
 
@@ -81,48 +86,64 @@ The problems differ in one condition each: a plain circle, a bracelet where mirr
 3. <InlineMath math="5" /> married couples will sit around a round table with the condition that each husband must sit next to his wife. How many possible seating arrangements are there?
 
 4. <InlineMath math="7" /> students will play a circular game, but two specific students must not sit adjacent to each other. How many ways can they form a circle?
-
 ### Answer Key
 
-1. **Answer: <InlineMath math="120 \text{ ways}" />**
+**Problem 1**
 
-   Solution steps:
-   - Given: <InlineMath math="n = 6 \text{ people}" />
-   - Circular permutation formula: <InlineMath math="P_n = (n-1)!" />
-   - <InlineMath math="P_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />
+<InlineMath math="120 \text{ ways}" />
 
-   Therefore, <InlineMath math="6 \text{ people}" /> can sit around a campfire in <InlineMath math="120" /> different ways.
+Solution steps:
 
-2. **Answer: <InlineMath math="2\,520 \text{ ways}" />**
+Given: <InlineMath math="n = 6 \text{ people}" />
+Circular permutation formula: <InlineMath math="P_n = (n-1)!" />
+<BlockMath math="P_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />
 
-   Solution steps:
-   - First count rotations as identical: <InlineMath math="P_8 = (8-1)! = 7!" />
-   - <InlineMath math="7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040" />
-   - Flipping the bracelet makes each clockwise order identical to its counterclockwise mirror image.
-   - Because all beads are different, these arrangements form pairs, so divide by <InlineMath math="2" />.
-   - <InlineMath math="\frac{5\,040}{2} = 2\,520" />
+Therefore, <InlineMath math="6 \text{ people}" /> can sit around a campfire in <InlineMath math="120" /> different ways.
 
-   The bracelet can be made in <InlineMath math="2\,520" /> different arrangements.
+**Problem 2**
 
-3. **Answer: <InlineMath math="768 \text{ ways}" />**
+<InlineMath math="2\,520 \text{ ways}" />
 
-   Solution steps:
-   - Given: <InlineMath math="5" /> married couples (<InlineMath math="10 \text{ people}" />), each couple must be adjacent
-   - **Grouping technique:** Consider each couple as one unit → <InlineMath math="5 \text{ units}" />
-   - Circular permutation of <InlineMath math="5 \text{ units}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
-   - Each couple can exchange positions: <InlineMath math="2! = 2 \text{ ways}" /> per couple
-   - Total: <InlineMath math="24 \times 2^5 = 24 \times 32 = 768" />
+Solution steps:
 
-   There are <InlineMath math="768" /> seating arrangements that meet the conditions.
+First count rotations as identical: <InlineMath math="P_8 = (8-1)! = 7!" />
+<BlockMath math="7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040" />
 
-4. **Answer: <InlineMath math="480 \text{ ways}" />**
+Flipping the bracelet makes each clockwise order identical to its counterclockwise mirror image.
+Because all beads are different, these arrangements form pairs, so divide by <InlineMath math="2" />.
+<BlockMath math="\frac{5\,040}{2} = 2\,520" />
 
-   Solution steps (**complement method**):
-   - Total ways without restrictions: <InlineMath math="(7-1)! = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
-   - To count the unwanted ways, make the <InlineMath math="2 \text{ students}" /> who sit adjacent into one unit.
-   - Now there are <InlineMath math="6" /> units around the circle, so the number of circular arrangements is <InlineMath math="(6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />.
-   - The <InlineMath math="2 \text{ students}" /> inside that unit can exchange positions, so there are <InlineMath math="2! = 2" /> internal arrangements.
-   - Total adjacent arrangements: <InlineMath math="120 \times 2 = 240" />
-   - **Desired ways:** <InlineMath math="720 - 240 = 480" />
+The bracelet can be made in <InlineMath math="2\,520" /> different arrangements.
 
-   Therefore, there are <InlineMath math="480 \text{ ways}" /> to form a circle where the two students are not adjacent.
+**Problem 3**
+
+<InlineMath math="768 \text{ ways}" />
+
+Solution steps:
+
+Given: <InlineMath math="5" /> married couples (<InlineMath math="10 \text{ people}" />), each couple must be adjacent
+**Grouping technique:** Consider each couple as one unit → <InlineMath math="5 \text{ units}" />
+
+Circular permutation of <InlineMath math="5 \text{ units}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
+Each couple can exchange positions: <InlineMath math="2! = 2 \text{ ways}" /> per couple
+
+Total: <InlineMath math="24 \times 2^5 = 24 \times 32 = 768" />
+
+There are <InlineMath math="768" /> seating arrangements that meet the conditions.
+
+**Problem 4**
+
+<InlineMath math="480 \text{ ways}" />
+
+Solution steps (**complement method**):
+
+Total ways without restrictions: <InlineMath math="(7-1)! = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
+To count the unwanted ways, make the <InlineMath math="2 \text{ students}" /> who sit adjacent into one unit.
+
+Now there are <InlineMath math="6" /> units around the circle, so the number of circular arrangements is <InlineMath math="(6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />.
+The <InlineMath math="2 \text{ students}" /> inside that unit can exchange positions, so there are <InlineMath math="2! = 2" /> internal arrangements.
+
+Total adjacent arrangements: <InlineMath math="120 \times 2 = 240" />
+**Desired ways:** <InlineMath math="720 - 240 = 480" />
+
+Therefore, there are <InlineMath math="480 \text{ ways}" /> to form a circle where the two students are not adjacent.

@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Der Verwaltungsname wurde als Hauptindex festgelegt"; der folgende nutzt "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten" als Hauptbeleg.',
+            "Der erste Teil findet drei verschiedene Quellen, der folgende gibt ihnen denselben Verwaltungsnamen.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen".',
+            "Der erste Teil vergleicht die Beliebtheit der Namen, der folgende wählt anhand der Zahl der Befürworter einen aus.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten" fest.',
+            "Der erste Teil stellt alle Namen für amtliche Dokumente gleich, der folgende entfernt widersprechende Belege.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden" aus dem Beleg "Der Verwaltungsname wurde als Hauptindex festgelegt" ab.',
+            "Der erste Teil schlägt die Bewahrung örtlicher Namen vor, der folgende lehnt sie zugunsten eines einzigen Suchnamens ab.",
         },
       ],
     },
@@ -43,22 +43,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The administrative name was selected as the primary index", and the later part uses "Every local name must have the same legal status as the administrative name" as its main support.',
+            "The first part identifies three different springs, and the later part gives all of them the same administrative name.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "For consistency, every non-official name should be removed from search and archives" as a final conclusion; the later part only states the plan "New evidence may revise the record without erasing earlier naming history".',
+            "The first part compares name popularity, and the later part selects one name by counting its supporters.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Every local name must have the same legal status as the administrative name" from the same perspective without adding a test.',
+            "The first part grants all names equal standing in official documents, and the later part removes conflicting evidence.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "For consistency, every non-official name should be removed from search and archives" from the evidence "The administrative name was selected as the primary index".',
+            "The first part proposes preserving local names, and the later part rejects this to allow searches under only one name.",
         },
       ],
     },
@@ -73,22 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Nama administrasi ditetapkan sebagai indeks utama", lalu bagian kedua memakai "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi" sebagai dukungan utama.',
+            "Bagian awal menemukan tiga mata air berbeda, lalu bagian berikutnya memberi nama administrasi yang sama kepada ketiganya.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya".',
+            "Bagian awal menimbang nama yang paling populer, lalu bagian berikutnya memilih satu nama berdasarkan jumlah pendukung.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal menetapkan semua nama setara untuk dokumen resmi, lalu bagian berikutnya menghapus bukti yang bertentangan.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip" dari bukti "Nama administrasi ditetapkan sebagai indeks utama".',
+            "Bagian awal mengusulkan pelestarian nama lokal, lalu bagian berikutnya menolaknya agar pencarian memakai satu nama saja.",
         },
       ],
     },

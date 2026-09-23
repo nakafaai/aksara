@@ -14,7 +14,7 @@ Eine Verschiebung bewegt jeden Punkt eines Objekts um dieselbe Strecke in diesel
 
 ### Definition einer Verschiebung
 
-Jede Verschiebung ist durch ihren Verschiebungsvektor festgelegt:
+Jede Verschiebung verwendet denselben **Verschiebungsvektor** für alle Punkte:
 
 <BlockMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />
 
@@ -39,7 +39,7 @@ Verschiebe den Punkt <InlineMath math="(3,2)" /> um den folgenden Vektor und bes
 
 Hier: <InlineMath math="x=3" />, <InlineMath math="y=2" />, <InlineMath math="a=-2" /> und <InlineMath math="b=3" />.
 
-Mit der Formel:
+Verschiebe den Punkt **zwei Einheiten nach links und drei nach oben**. Addiere horizontale und vertikale Komponenten getrennt:
 
 <MathContainer>
   <BlockMath math="x' = x + a = 3 + (-2) = 1" />
@@ -84,6 +84,8 @@ Somit ist das Bild des Punktes <InlineMath math="(3,2)" /> <InlineMath math="(1,
       labels: [{ text: <>Vektor <InlineMath math="(-2,3)" /></>, at: 0, offset: [-1, 1.5, 0] }],
     }, // Verschiebungsvektor von P nach P'
   ]}
+  cameraPosition={[2, 3.5, 8]}
+  cameraTarget={[2, 3.5, 0]}
 />
 
 ## Eine Gerade verschieben
@@ -95,11 +97,11 @@ Bestimme das Bild der Geraden <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> unt
 Sei <InlineMath math="P(x,y)" /> ein beliebiger Punkt auf der Geraden <InlineMath math="l" />. Unter dieser Verschiebung ist sein Bild <InlineMath math="P'(x',y')" />. Es gilt:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} x' &amp;= x + (-1) \\ &amp;= x - 1 \\ &amp;\implies x \\ &amp;= x' + 1 \end{aligned}" />
+  <BlockMath math="x'=x-1\quad\Longrightarrow\quad x=x'+1" />
   <BlockMath math="y' = y + 1 \implies y = y' - 1" />
 </MathContainer>
 
-Wir setzen diese Ausdrücke für <InlineMath math="x" /> und <InlineMath math="y" /> in die Gleichung der Geraden <InlineMath math="l" /> ein:
+Verwende die **ursprünglichen Koordinaten** in der Geradengleichung. Wir setzen diese Ausdrücke für <InlineMath math="x" /> und <InlineMath math="y" /> in die Gleichung der Geraden <InlineMath math="l" /> ein:
 
 <MathContainer>
   <BlockMath math="2(x' + 1) + 3(y' - 1) - 1 = 0" />
@@ -128,27 +130,25 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
     data={[
       {
         // Ursprüngliche Gerade: 2x + 3y - 1 = 0  => y = (-2/3)x + 1/3
-        points: Array.from({ length: 27 }, (_, pointIndex) => {
-          const i = pointIndex - 8;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 1 / 3, z: 0 };
         }),
-        pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+          showPoints: false,
         smooth: false,
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 10, offset: [0.7, -3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 3, offset: [-0.7, -1, 0] }],
       },
       {
         // Bildgerade: 2x + 3y - 2 = 0 => y = (-2/3)x + 2/3
-        points: Array.from({ length: 24 }, (_, pointIndex) => {
-          const i = pointIndex - 5;
-          const xVal = i - 5;
+        points: Array.from({ length: 9 }, (_, pointIndex) => {
+          const xVal = pointIndex - 4;
           return { x: xVal, y: (-2 / 3) * xVal + 2 / 3, z: 0 };
         }),
-        pointIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+          showPoints: false,
         smooth: false,
         color: "#db2777",
-        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 13, offset: [-0.7, 3.033333, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 5, offset: [0.7, 1, 0] }],
       },
     ]}
     cameraPosition={[0, 0, 10]}
@@ -156,6 +156,8 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 </ContentStack>
 
 ## Übungen
+
+Wende **denselben Vektor** auf jeden Punkt an. Drücke bei der Geradengleichung zuerst die ursprünglichen Koordinaten durch die Bildkoordinaten aus. Prüfe beim Dreieck alle drei Eckpunkte, damit die Form erhalten bleibt.
 
 1.  Verschiebe den Punkt <InlineMath math="(-4,4)" /> um den folgenden Vektor und bestimme seinen Bildpunkt:
 
@@ -171,38 +173,58 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
 ### Lösungen
 
-1.  Verwende für den Punkt <InlineMath math="(-4,4)" /> die Werte <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
+Ein negatives Vorzeichen bedeutet eine Verschiebung nach links oder unten. Verwende bei der Geraden die **Rücksubstitution**, denn die Ausgangsgleichung beschreibt die Koordinaten vor der Verschiebung.
 
-    <MathContainer>
-      <BlockMath math="x' = -4 + (-2) = -6" />
-      <BlockMath math="y' = 4 + (-3) = 1" />
-    </MathContainer>
+**Lösung 1**
 
-    Somit ist der Bildpunkt <InlineMath math="(-6,1)" />.
+Verwende für den Punkt <InlineMath math="(-4,4)" /> die Werte <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
 
-2.  Verwende für die Gerade <InlineMath math="5x - 2y + 3 = 0" /> die Werte <InlineMath math="a=2, b=-1" />.
+<MathContainer>
+<BlockMath math="x' = -4 + (-2) = -6" />
+<BlockMath math="y' = 4 + (-3) = 1" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = x + 2 \implies x = x' - 2" />
-      <BlockMath math="y' = y - 1 \implies y = y' + 1" />
-    </MathContainer>
+Somit ist der Bildpunkt <InlineMath math="(-6,1)" />.
 
-    Wir setzen die Ausdrücke in die Geradengleichung ein:
+**Lösung 2**
 
-    <MathContainer>
-      <BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
-      <BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
-      <BlockMath math="5x' - 2y' - 9 = 0" />
-    </MathContainer>
+Verwende für die Gerade <InlineMath math="5x - 2y + 3 = 0" /> die Werte <InlineMath math="a=2, b=-1" />.
 
-    Die Gleichung der Bildgeraden lautet <InlineMath math="5x - 2y - 9 = 0" />.
+<MathContainer>
+<BlockMath math="x' = x + 2 \implies x = x' - 2" />
+<BlockMath math="y' = y - 1 \implies y = y' + 1" />
+</MathContainer>
 
-3.  Verschiebe jeden Eckpunkt <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(1,5)" /> mit <InlineMath math="a=2, b=3" />.
+Wir setzen die Ausdrücke in die Geradengleichung ein:
 
-    <MathContainer>
-      <BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
-      <BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
-      <BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="5(x' - 2) - 2(y' + 1) + 3 = 0" />
+<BlockMath math="5x' - 10 - 2y' - 2 + 3 = 0" />
+<BlockMath math="5x' - 2y' - 9 = 0" />
+</MathContainer>
 
-    Die Koordinaten des Bilddreiecks sind <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" /> und <InlineMath math="C'(3,8)" />.
+Die Gleichung der Bildgeraden lautet <InlineMath math="5x - 2y - 9 = 0" />.
+
+**Lösung 3**
+
+Verschiebe jeden Eckpunkt <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(1,5)" /> mit <InlineMath math="a=2, b=3" />.
+
+<MathContainer>
+<BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
+<BlockMath math="B'(4+2, 1+3) = B'(6,4)" />
+<BlockMath math="C'(1+2, 5+3) = C'(3,8)" />
+</MathContainer>
+
+Die Koordinaten des Bilddreiecks sind <InlineMath math="A'(3,4)" />, <InlineMath math="B'(6,4)" /> und <InlineMath math="C'(3,8)" />.
+
+<LineEquation
+  title="Dreieck vor und nach der Verschiebung"
+  description="Alle drei Eckpunkte werden um denselben Vektor verschoben. Seitenlängen und Dreiecksfläche bleiben erhalten."
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 1, z: 0 }, { x: 1, y: 5, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, color: "#7c3aed", labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.3, -0.3, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0.3, -0.3, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 3, y: 4, z: 0 }, { x: 6, y: 4, z: 0 }, { x: 3, y: 8, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, color: "#059669", labels: [{ text: <InlineMath math="A'" />, at: 0, offset: [-0.3, -0.3, 0] }, { text: <InlineMath math="B'" />, at: 1, offset: [0.3, -0.3, 0] }, { text: <InlineMath math="C'" />, at: 2, offset: [-0.3, 0.3, 0] }] },
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", cone: { position: "end", size: 0.2 } },
+  ]}
+  cameraPosition={[3.5, 4.5, 12]}
+  cameraTarget={[3.5, 4.5, 0]}
+/>

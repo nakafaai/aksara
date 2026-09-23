@@ -5,8 +5,32 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Vektor titik terhadap pusat adalah <InlineMath math="(4,1)" />. Rotasi <InlineMath math="90^\circ" /> mengubahnya menjadi <InlineMath math="(-1,4)" />, sehingga titik hasil rotasi <InlineMath math="(1,5)" />. Pencerminan terhadap <InlineMath math="y=x" /> menghasilkan <InlineMath math="(5,1)" />.
+**Vektor titik terhadap pusat** adalah <InlineMath math="(6-2,2-1)=(4,1)" />. Rotasi <InlineMath math="90^\circ" /> mengubahnya menjadi <InlineMath math="(u,v)\mapsto(-v,u):\ (4,1)\mapsto(-1,4)" />, sehingga titik hasil rotasi <InlineMath math="(2-1,1+4)=(1,5)" />. **Pencerminan terhadap <InlineMath math="y=x" />** menghasilkan <InlineMath math="(5,1)" />.
 
 Jarak titik <InlineMath math="(5,1)" /> ke garis <InlineMath math="2x-y=0" /> adalah
 
 <BlockMath math="\begin{aligned}d&=\frac{|2(5)-1|}{\sqrt{2^2+(-1)^2}} \\ &=\frac{9}{\sqrt5} \\ &=\frac{9\sqrt5}{5}\end{aligned}" />
+
+<MathVisual
+  title="Ruas Tegak Lurus dari Bayangan Akhir"
+  description="Ruas yang ditandai menghubungkan bayangan akhir ke garis dengan sudut siku-siku."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "line", kind: "line", appearance: "primary", through: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "distance", kind: "segment", appearance: "highlight", from: { x: 5, y: 1 }, to: { x: 1.4, y: 2.8 } },
+      { id: "image", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "foot", kind: "point", appearance: "highlight", at: { x: 1.4, y: 2.8 } }
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 5, y: 1 }, placement: "below" },
+      { key: "foot", objectId: "foot", at: { x: 1.4, y: 2.8 }, placement: "above-left" },
+      { key: "line", objectId: "line", at: { x: 2.5, y: 5 }, placement: "right" }
+    ]
+  }}
+  labels={{ image: <InlineMath math="P''=(5,1)" />, foot: <InlineMath math="H" />, line: <InlineMath math="y=2x" /> }}
+/>
+
+Gambar menunjukkan **jarak tegak lurus**, bukan selisih mendatar atau vertikal. Kaki tegak lurus <InlineMath math="H=(7/5,14/5)" /> memenuhi <InlineMath math="y=2x" />. Vektor dari <InlineMath math="H" /> ke <InlineMath math="P''" /> adalah <InlineMath math="(18/5,-9/5)" />. Hasil kali titiknya dengan arah garis <InlineMath math="(1,2)" /> adalah <InlineMath math="18/5-18/5=0" />, sehingga sudutnya benar-benar siku-siku.

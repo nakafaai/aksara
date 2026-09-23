@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Welche Informationen ein Vektorpfeil zeigt
 
-<Highlight>Ein Vektor wird gewöhnlich als Pfeil gezeichnet.</Highlight> Der Fußpunkt zeigt den Anfang, die Spitze zeigt die Richtung, und die Pfeillänge stellt den Betrag des Vektors dar.
+Ein Vektor wird gewöhnlich als <Highlight>Pfeil</Highlight> gezeichnet. Der Fußpunkt zeigt den Anfang, die Spitze zeigt die Richtung, und die Pfeillänge stellt den Betrag des Vektors dar.
 
 Ist ein Kraftpfeil bei gleichem Maßstab länger, besitzt die Kraft einen größeren Betrag. Zeigt der Pfeil nach rechts oben, wirkt die Kraft ebenfalls nach rechts oben.
 
@@ -32,7 +32,7 @@ Die Reihenfolge der Buchstaben ist wichtig. <InlineMath math="\overrightarrow{AB
 
 ## Notation mit einem Buchstaben
 
-In Rechnungen werden Vektoren häufig mit einem einzelnen Buchstaben bezeichnet, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Der Buchstabe verweist auf die jeweilige physikalische Größe.
+In Rechnungen werden Vektoren häufig mit **einem Buchstaben mit Vektorpfeil** bezeichnet, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Der Buchstabe verweist auf die jeweilige physikalische Größe.
 
 So steht <InlineMath math="\vec{F}" /> häufig für eine Kraft, <InlineMath math="\vec{v}" /> für eine Geschwindigkeit und <InlineMath math="\vec{s}" /> für eine Verschiebung. Der Betrag wird ohne Vektorpfeil geschrieben, zum Beispiel als <InlineMath math="F" /> oder <InlineMath math="\lvert\vec{F}\rvert" />.
 
@@ -45,24 +45,84 @@ Die erste Zeile enthält Betrag und Richtung. Die zweite Zeile nennt nur den Bet
 
 ## Nullvektoren und Einheitsvektoren
 
-Bei Rechnungen mit Vektorkomponenten treten zwei besondere Arten von Vektoren häufig auf.
+Bei Komponentenrechnungen brauchst du zwei Sonderfälle: Der **Nullvektor** beschreibt keine Verschiebung. Ein **Einheitsvektor** legt dagegen eine Richtung fest und hat den Betrag eins, unabhängig von der gewählten Richtung.
+
+### Ein Vektor mit dem Betrag null
 
 Ein **Nullvektor** hat den Betrag <InlineMath math="0" />. Sein Fußpunkt und seine Spitze fallen zusammen, sodass seine Richtung nicht definiert ist. In der Physik entsteht ein Nullvektor zum Beispiel, wenn sich zwei gleich große, entgegengesetzt gerichtete Kräfte aufheben.
 
+Lege zum Beispiel rechts als positive Richtung fest. Zwei Kräfte von jeweils <InlineMath math="20\text{ N}" /> nach rechts und nach links ergeben zusammen:
+
+<BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+### Ein Vektor zur Angabe einer Richtung
+
 Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet eine Richtung. Er sagt weder aus, wie groß eine Kraft ist, noch wie weit eine Verschiebung reicht. In der dreidimensionalen kartesischen Standardbasis besitzt jeder Einheitsvektor genau eine Komponente mit dem Wert <InlineMath math="1" />:
 
-<MathContainer>
-  <BlockMath math="\hat{i}=(1,0,0)" />
-  <BlockMath math="\hat{j}=(0,1,0)" />
-  <BlockMath math="\hat{k}=(0,0,1)" />
-</MathContainer>
+<ContentStack>
+  <MathContainer>
+    <BlockMath math="\hat{i}=(1,0,0)" />
+    <BlockMath math="\hat{j}=(0,1,0)" />
+    <BlockMath math="\hat{k}=(0,0,1)" />
+  </MathContainer>
+
+  <LineEquation
+    cameraPosition={[2, 1.5, 2.2]}
+    cameraTarget={[0.3, 0.35, 0.3]}
+    title="Richtungen dreier Einheitsvektoren"
+    description="Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{i}" />,
+        at: 1,
+        offset: [0.3, 0.15, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{j}" />,
+        at: 1,
+        offset: [0, 0.3, 0.15],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{k}" />,
+        at: 1,
+        offset: [0.15, 0, 0.3],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+</ContentStack>
+
+Alle drei Pfeile haben **dieselbe tatsächliche Länge**. Beim Drehen ändert sich ihre Projektion auf den Bildschirm, aber nicht der Betrag der Einheitsvektoren.
 
 Wird ein Vektor als <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> geschrieben, geben <InlineMath math="\hat{i}" /> und <InlineMath math="\hat{j}" /> die positiven Achsenrichtungen an. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang dieser Achsen an.
 
 ## Häufige Lesefehler
 
-Der erste Fehler besteht darin, <InlineMath math="\overrightarrow{AB}" /> als denselben Vektor wie <InlineMath math="\overrightarrow{BA}" /> zu behandeln, weil sie dieselben zwei Punkte verwenden. Ihre Richtungen sind entgegengesetzt.
+Der erste Fehler ist, **die Reihenfolge der Punkte zu übersehen** und <InlineMath math="\overrightarrow{AB}" /> als denselben Vektor wie <InlineMath math="\overrightarrow{BA}" /> zu behandeln, weil sie dieselben zwei Punkte verwenden. Ihre Richtungen sind entgegengesetzt.
 
-Der zweite Fehler ist ein negativer Vektorbetrag. Ein Betrag ist immer <InlineMath math="0" /> oder positiv. Ein Minuszeichen vor einem Vektor richtet ihn gewöhnlich entgegen der gewählten Bezugsrichtung aus. Seine Länge bleibt dabei positiv.
+Der zweite Fehler ist ein **negativer Vektorbetrag**. Ein Betrag ist immer <InlineMath math="0" /> oder positiv. Ein Minuszeichen vor einem Vektor richtet ihn gewöhnlich entgegen der gewählten Bezugsrichtung aus. Sein Betrag bleibt dabei unverändert und ist niemals negativ.
 
 So hat <InlineMath math="-\vec{a}" /> keinen negativen Betrag. Der Vektor besitzt denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.

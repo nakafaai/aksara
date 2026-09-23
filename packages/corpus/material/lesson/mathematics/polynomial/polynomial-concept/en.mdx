@@ -9,104 +9,40 @@ export const metadata = {
 
 ## Structure of a Monomial
 
-A **monomial** is a coefficient multiplied by variables whose exponents are nonnegative integers. Compare the following algebraic expressions:
+A **monomial** is one term containing a coefficient and variables with nonnegative integer exponents: <InlineMath math="0,1,2,3,\ldots" />. A coefficient may be negative or fractional, but the variable exponents must satisfy that condition.
 
-<MathContainer>
-  <BlockMath math="\sqrt[3]{p} \quad \text{(not a monomial)}" />
-  <BlockMath math="2x^2y \quad \text{(monomial)}" />
-  <BlockMath math="-8 \quad \text{(monomial)}" />
-  <BlockMath math="\frac{2}{m} \quad \text{(not a monomial)}" />
-  <BlockMath math="1.24k^4 \quad \text{(monomial)}" />
-  <BlockMath math="5a^{-6} \quad \text{(not a monomial)}" />
-</MathContainer>
+In <InlineMath math="2x^2y" />, the **coefficient** is <InlineMath math="2" />. The exponent of <InlineMath math="x" /> is <InlineMath math="2" />, while the unwritten exponent of <InlineMath math="y" /> is <InlineMath math="1" />. A constant is also a monomial because it does not depend on a variable.
 
-From the expressions above, we can group them into two:
+| Expression | Variable exponents | Classification |
+| --- | --- | --- |
+| <InlineMath math="2x^2y" /> | <InlineMath math="2,1" /> | Monomial |
+| <InlineMath math="-8" /> | No variables | Monomial |
+| <InlineMath math="1.24k^4" /> | <InlineMath math="4" /> | Monomial |
+| <InlineMath math="\sqrt[3]{p}=p^{1/3}" /> | <InlineMath math="1/3" /> | Not a monomial |
+| <InlineMath math="\frac2m=2m^{-1}" /> | <InlineMath math="-1" /> | Not a monomial |
+| <InlineMath math="5a^{-6}" /> | <InlineMath math="-6" /> | Not a monomial |
 
-1.  **Group 1 (Monomials):** <InlineMath math="2x^2y" />, <InlineMath math="-8" />, <InlineMath math="1.24k^4" />
-2.  **Group 2 (Not Monomials):** <InlineMath math="\sqrt[3]{p}" />, <InlineMath math="\frac{2}{m}" />, <InlineMath math="5a^{-6}" />
+## Definition of a Polynomial
 
-The algebraic expressions in Group 1 are what we call **monomials**.
+A **polynomial** is a finite sum of monomials. A single monomial is also a polynomial. Check each term to see whether every variable exponent satisfies the condition.
 
-### Monomial
+| Expression | Term check | Classification |
+| --- | --- | --- |
+| <InlineMath math="4x^3y-3x^2" /> | Both terms have nonnegative integer exponents. | Polynomial |
+| <InlineMath math="x+2\sqrt{x}" /> | The radical term has exponent <InlineMath math="1/2" />. | Not a polynomial |
+| <InlineMath math="2x^3-5x^{-2}+1" /> | A negative exponent occurs in <InlineMath math="-5x^{-2}" />. | Not a polynomial |
 
-**A monomial** is a number, a variable raised to a non-negative integer power (<InlineMath math="0, 1, 2, 3, \dots" />), or the product of a number and one or more variables raised to non-negative integer powers.
+### Subtraction as Addition
 
-Break down why Group 1 consists of monomials and Group 2 does not:
+A minus sign does not stop an expression from being a polynomial. Subtraction means <Highlight>adding a term with a negative coefficient</Highlight>. Its variables and their exponents remain unchanged:
 
-- **Group 1 (Monomials):**
+<BlockMath math="4x^3y-3x^2=4x^3y+(-3x^2)" />
 
-  - <InlineMath math="2x^2y" />:
-
-    The product of a number (<InlineMath math="2" />) and variables (<InlineMath math="x" />, <InlineMath math="y" />) with non-negative integer powers (<InlineMath math="2" /> and <InlineMath math="1" />).
-
-  - <InlineMath math="-8" />:
-
-    A constant (just a number). Or this is the same as <InlineMath math="-8x^0" />.
-
-  - <InlineMath math="1.24k^4" />:
-
-    The product of a number (<InlineMath math="1.24" />) and a variable (<InlineMath math="k" />) with a non-negative integer power (<InlineMath math="4" />).
-
-- **Group 2 (Not Monomials):**
-
-  - <InlineMath math="\sqrt[3]{p} = p^{1/3}" />:
-
-    The power of the variable <InlineMath math="p" /> is not a non-negative integer (<InlineMath math="1/3" />).
-
-  - <InlineMath math="\frac{2}{m} = 2m^{-1}" />:
-
-    The power of the variable <InlineMath math="m" /> is not a non-negative integer (<InlineMath math="-1" />).
-
-  - <InlineMath math="5a^{-6}" />:
-
-    The power of the variable <InlineMath math="a" /> is not a non-negative integer (<InlineMath math="-6" />).
-
-A monomial has <Highlight>non-negative integer exponents on every variable</Highlight>. The number multiplying the variables, such as <InlineMath math="2" /> in <InlineMath math="2x^2y" />, is called the **coefficient**.
-
-## Definition of Polynomial
-
-**A polynomial** is a finite sum of monomials. A single monomial is also a polynomial.
-
-<MathContainer>
-  <BlockMath math="4x^3y - 3x^2" />
-  <BlockMath math="x + 2\sqrt{x}" />
-  <BlockMath math="2x^3 - 5x^{-2} + 1" />
-</MathContainer>
-
-Identify which are polynomials and which are not:
-
-1.  <InlineMath math="4x^3y - 3x^2" />
-
-    - The term <InlineMath math="4x^3y" /> is a monomial.
-    - The term <InlineMath math="-3x^2" /> is a monomial.
-    - Conclusion: **Polynomial** (subtraction of two monomials).
-
-2.  <InlineMath math="x + 2\sqrt{x}" />
-
-    - The term <InlineMath math="x" /> is a monomial.
-    - The term <InlineMath math="2\sqrt{x} = 2x^{1/2}" /> is not a monomial (exponent is not a non-negative integer).
-    - Conclusion: **Not a Polynomial**.
-
-3.  <InlineMath math="2x^3 - 5x^{-2} + 1" />
-
-    - The term <InlineMath math="2x^3" /> is a monomial.
-    - The term <InlineMath math="-5x^{-2}" /> is not a monomial (exponent is not a non-negative integer).
-    - The term <InlineMath math="1" /> is a monomial (constant).
-    - Conclusion: **Not a Polynomial**.
-
-### Addition and Subtraction in Polynomials
-
-The definition uses a _sum_ of monomials, while example 1 is written with _subtraction_ <InlineMath math="4x^3y - 3x^2" />. There is no conflict between those forms.
-
-Recall that subtraction can be viewed as adding the negative. So, <InlineMath math="4x^3y - 3x^2" /> is the same as <InlineMath math="4x^3y + (-3x^2)" />.
-
-Since both <InlineMath math="4x^3y" /> and <InlineMath math="-3x^2" /> are monomials, their sum is still a polynomial. This is why subtraction between monomials also results in a polynomial.
-
-So, an algebraic expression is called a polynomial if all its terms are monomials, meaning every variable has a non-negative integer exponent.
+Try <InlineMath math="x=1" /> and <InlineMath math="y=2" />. Both forms give <InlineMath math="8-3=8+(-3)=5" />. Only the notation for the operation changes, not its value or the variable exponents.
 
 ## Exercise
 
-Decide whether each expression is a polynomial in the stated variable. Explain which exponent rule determines your answer. Check the exponent of every variable in each term, including the terms written as a fraction or a root, before you decide.
+Decide whether each expression is a polynomial in the stated variable. Explain which exponent rule determines your answer. Check the **exponent of every variable** in each term, including the terms written as a fraction or a root, before you decide.
 
 1. <InlineMath math="7x^4-2x+9" /> in <InlineMath math="x" />
 2. <InlineMath math="\sqrt{x}+1" /> in <InlineMath math="x" />
@@ -117,7 +53,7 @@ Decide whether each expression is a polynomial in the stated variable. Explain w
 
 Each step below names the deciding condition, so the exponent rule that settles the answer appears next to every expression.
 
-1. **Polynomial.** The exponents of <InlineMath math="x" /> are <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="0" />.
-2. **Not a polynomial.** Since <InlineMath math="\sqrt{x}=x^{1/2}" />, the exponent <InlineMath math="1/2" /> is not a non-negative integer.
-3. **Not a polynomial.** Since <InlineMath math="\frac{3}{x^2}=3x^{-2}" />, the exponent <InlineMath math="-2" /> is negative.
-4. **Polynomial.** Every exponent of <InlineMath math="y" /> and <InlineMath math="z" /> is a non-negative integer. A term may omit a variable because that variable then has exponent <InlineMath math="0" />.
+1. **Polynomial**. The exponents of <InlineMath math="x" /> are <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="0" />.
+2. **Not a polynomial**. Since <InlineMath math="\sqrt{x}=x^{1/2}" />, the exponent <InlineMath math="1/2" /> is not a non-negative integer.
+3. **Not a polynomial**. Since <InlineMath math="\frac{3}{x^2}=3x^{-2}" />, the exponent <InlineMath math="-2" /> is negative.
+4. **Polynomial**. Every exponent of <InlineMath math="y" /> and <InlineMath math="z" /> is a non-negative integer. A term may omit a variable because that variable then has exponent <InlineMath math="0" />.

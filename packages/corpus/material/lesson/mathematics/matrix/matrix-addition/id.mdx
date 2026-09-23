@@ -15,7 +15,7 @@ Penjumlahan menghasilkan matriks baru dengan ordo yang sama. Setiap elemen diper
 
 ## Definisi Formal Penjumlahan Matriks
 
-Dua matriks, katakanlah matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dapat dijumlahkan jika dan hanya jika kedua matriks tersebut memiliki ordo yang sama.
+Dua matriks, katakanlah matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dapat dijumlahkan jika dan hanya jika kedua matriks tersebut memiliki **ordo yang sama**.
 
 Misalkan matriks <InlineMath math="A" /> berordo <InlineMath math="m \times n" /> dengan elemen-elemen <InlineMath math="a_{ij}" /> (elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />), dan matriks <InlineMath math="B" /> juga berordo <InlineMath math="m \times n" /> dengan elemen-elemen <InlineMath math="b_{ij}" />.
 
@@ -26,7 +26,6 @@ Sebut hasil penjumlahannya sebagai matriks <InlineMath math="C" /> dan tulis <In
 Untuk setiap posisi, rumus tersebut menjumlahkan elemen dari <InlineMath math="A" /> dengan elemen seletaknya dari <InlineMath math="B" />.
 
 Secara simbolis, <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{m\times n}" /> menghasilkan <InlineMath math="A+B\in\mathbb{R}^{m\times n}" />. Jadi, setiap elemen hasil <InlineMath math="c_{ij}" /> memiliki tepat satu elemen masukan yang seletak pada masing-masing matriks.
-
 ## Cara Melakukan Penjumlahan Matriks
 
 Untuk menjumlahkan dua matriks, ikuti langkah-langkah berikut:
@@ -44,7 +43,7 @@ Misalkan kita memiliki dua matriks, <InlineMath math="P" /> dan <InlineMath math
   <BlockMath math="Q = \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
 </MathContainer>
 
-Kedua matriks ini berordo <InlineMath math="3 \times 2" /> (<InlineMath math="3" /> baris dan <InlineMath math="2" /> kolom), sehingga dapat dijumlahkan.
+Kedua matriks ini berordo <InlineMath math="3 \times 2" /> (<InlineMath math="3" /> baris dan <InlineMath math="2" /> kolom), sehingga **dapat dijumlahkan**.
 
 Maka, <InlineMath math="P+Q" /> adalah:
 
@@ -55,10 +54,9 @@ Maka, <InlineMath math="P+Q" /> adalah:
 </MathContainer>
 
 Matriks di atas adalah hasil penjumlahan <InlineMath math="P+Q" />.
-
 ### Matriks yang Tidak Dapat Dijumlahkan
 
-Kedua matriks ini berordo berbeda:
+Kedua matriks ini **berordo berbeda**:
 
 <MathContainer>
   <BlockMath math="X = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" />
@@ -66,48 +64,53 @@ Kedua matriks ini berordo berbeda:
 </MathContainer>
 
 Matriks <InlineMath math="X" /> berordo <InlineMath math="2 \times 2" />, sedangkan matriks <InlineMath math="Y" /> berordo <InlineMath math="2 \times 3" />. Jumlah kolomnya berbeda, sehingga <InlineMath math="X+Y" /> tidak terdefinisi.
-
 ## Sifat Penjumlahan Matriks
 
 Penjumlahan matriks mengikuti sifat dasar yang sama dengan penjumlahan bilangan real. Misalkan <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> berordo sama, serta <InlineMath math="O" /> adalah matriks nol dengan ordo tersebut.
 
-1.  **Sifat Komutatif**: Urutan penjumlahan matriks tidak memengaruhi matriks hasil.
+Kita dapat memeriksa setiap aturan melalui **elemen yang seletak**, sebab penjumlahan matriks bekerja secara terpisah pada setiap posisi.
 
-    <BlockMath math="A + B = B + A" />
+### Sifat Komutatif
 
-    Artinya, menjumlahkan matriks <InlineMath math="A" /> dengan <InlineMath math="B" /> akan menghasilkan matriks yang sama dengan menjumlahkan matriks <InlineMath math="B" /> dengan <InlineMath math="A" />.
+**Urutan penjumlahan** matriks tidak memengaruhi matriks hasil.
 
-2.  **Sifat Asosiatif**: Pengelompokan dalam penjumlahan tiga matriks atau lebih tidak memengaruhi matriks hasil.
+<BlockMath math="A + B = B + A" />
 
-    <BlockMath math="(A + B) + C = A + (B + C)" />
+Artinya, menjumlahkan matriks <InlineMath math="A" /> dengan <InlineMath math="B" /> akan menghasilkan matriks yang sama dengan menjumlahkan matriks <InlineMath math="B" /> dengan <InlineMath math="A" />.
+### Sifat Asosiatif
 
-    Artinya, kita bisa menjumlahkan <InlineMath math="A" /> dan <InlineMath math="B" /> terlebih
-    dahulu, kemudian hasilnya dijumlahkan dengan <InlineMath math="C" />, atau
-    menjumlahkan <InlineMath math="B" /> dan <InlineMath math="C" /> terlebih
-    dahulu, kemudian <InlineMath math="A" /> dijumlahkan dengan hasilnya. Hasil
-    akhirnya akan sama.
+**Pengelompokan** dalam penjumlahan tiga matriks atau lebih tidak memengaruhi matriks hasil.
 
-3.  **Memiliki Elemen Identitas (Matriks Nol)**: Terdapat matriks nol <InlineMath math="O" /> yang bersifat sebagai elemen identitas dalam penjumlahan.
+<BlockMath math="(A + B) + C = A + (B + C)" />
 
-    <BlockMath math="A + O = O + A = A" />
+Artinya, kita bisa menjumlahkan <InlineMath math="A" /> dan <InlineMath math="B" /> terlebih
+dahulu, kemudian hasilnya dijumlahkan dengan <InlineMath math="C" />, atau
+menjumlahkan <InlineMath math="B" /> dan <InlineMath math="C" /> terlebih
+dahulu, kemudian <InlineMath math="A" /> dijumlahkan dengan hasilnya. Hasil
+akhirnya akan sama.
+### Memiliki Elemen Identitas
 
-    Artinya, jika suatu matriks dijumlahkan dengan matriks nol (yang seordo), hasilnya
-    adalah matriks itu sendiri.
+Terdapat **matriks nol** <InlineMath math="O" /> yang bersifat sebagai elemen identitas dalam penjumlahan.
 
-    Matriks nol ini berperan seperti angka <InlineMath math="0" /> dalam penjumlahan bilangan.
+<BlockMath math="A + O = O + A = A" />
 
-4.  **Memiliki Invers Aditif (Lawan Suatu Matriks)**: Setiap matriks <InlineMath math="A" /> memiliki invers aditif, yaitu matriks <InlineMath math="-A" />, yang jika dijumlahkan dengan <InlineMath math="A" /> akan menghasilkan matriks nol <InlineMath math="O" />.
+Artinya, jika suatu matriks dijumlahkan dengan matriks nol (yang seordo), hasilnya
+adalah matriks itu sendiri.
 
-    <BlockMath math="A + (-A) = O" />
+Matriks nol ini berperan seperti angka <InlineMath math="0" /> dalam penjumlahan bilangan.
+### Memiliki Invers Aditif
 
-    Matriks <InlineMath math="-A" /> adalah matriks yang setiap elemennya merupakan
-    lawan (negatif) dari elemen-elemen matriks <InlineMath math="A" /> yang seletak.
+Setiap matriks <InlineMath math="A" /> memiliki **invers aditif**, yaitu matriks <InlineMath math="-A" />, yang jika dijumlahkan dengan <InlineMath math="A" /> akan menghasilkan matriks nol <InlineMath math="O" />.
 
-    Misalnya, jika <InlineMath math="a_{ij}" /> adalah elemen dari <InlineMath math="A" /> , maka <InlineMath math="-a_{ij}" /> adalah elemen dari <InlineMath math="-A" />.
+<BlockMath math="A + (-A) = O" />
 
+Matriks <InlineMath math="-A" /> adalah matriks yang setiap elemennya merupakan
+lawan (negatif) dari elemen-elemen matriks <InlineMath math="A" /> yang seletak.
+
+Misalnya, jika <InlineMath math="a_{ij}" /> adalah elemen dari <InlineMath math="A" /> , maka <InlineMath math="-a_{ij}" /> adalah elemen dari <InlineMath math="-A" />.
 ## Latihan
 
-**Soal** 1
+**Soal 1**
 
 Diketahui matriks-matriks berikut:
 
@@ -119,13 +122,13 @@ Diketahui matriks-matriks berikut:
 
 Hitunglah <InlineMath math="A+B" /> dan <InlineMath math="B+A" />. Kemudian, tentukan apakah <InlineMath math="A+C" /> dapat dihitung dan berikan penjelasanmu.
 
-**Soal** 2
+**Soal 2**
 
 Tentukan nilai <InlineMath math="x, y," /> dan <InlineMath math="z" /> dari penjumlahan matriks berikut:
 
 <BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
 
-**Soal** 3
+**Soal 3**
 
 Untuk matriks berikut, tentukan <InlineMath math="-P" /> sebagai invers aditif dari <InlineMath math="P" />, lalu buktikan bahwa <InlineMath math="P + (-P) = O" />. Simbol <InlineMath math="O" /> menyatakan matriks nol yang seordo.
 
@@ -133,7 +136,7 @@ Untuk matriks berikut, tentukan <InlineMath math="-P" /> sebagai invers aditif d
 
 ### Pembahasan Lengkap
 
-**Soal** 1
+**Soal 1**
 
 Diketahui matriks-matriks:
 
@@ -161,13 +164,13 @@ Penjumlahan matriks <InlineMath math="B" /> dan <InlineMath math="A" /> (<Inline
   <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
 </MathContainer>
 
-(Terbukti sifat komutatif: <InlineMath math="A+B = B+A" />)
+Hasil ini **memverifikasi contoh** sifat komutatif: <InlineMath math="A+B = B+A" />. Secara umum, setiap entri memenuhi <InlineMath math="a_{ij}+b_{ij}=b_{ij}+a_{ij}" /> karena penjumlahan bilangan real komutatif.
 
 Penjumlahan matriks <InlineMath math="A" /> dan <InlineMath math="C" /> (<InlineMath math="A+C" />):
 
 Tidak dapat dihitung. Matriks <InlineMath math="A" /> berordo <InlineMath math="2 \times 3" />, sedangkan matriks <InlineMath math="C" /> berordo <InlineMath math="2 \times 2" />. Karena ordonya berbeda, penjumlahan <InlineMath math="A+C" /> tidak dapat dilakukan.
 
-**Soal** 2
+**Soal 2**
 
 Diketahui penjumlahan matriks:
 
@@ -209,7 +212,7 @@ Untuk elemen baris <InlineMath math="2" />, kolom <InlineMath math="2" />: <Inli
 
 Jadi, nilai <InlineMath math="x=3" />, <InlineMath math="y=-2" />, dan <InlineMath math="z=7" />.
 
-**Soal** 3
+**Soal 3**
 
 Matriks yang diberikan adalah:
 

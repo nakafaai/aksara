@@ -12,20 +12,20 @@ export const metadata = {
 
 ## Gleiche Vektoren sind nicht an einen Ort gebunden
 
-<Highlight>Zwei Vektoren sind gleich, wenn sie denselben Betrag und dieselbe Richtung besitzen.</Highlight> Im Diagramm dürfen ihre Pfeile an verschiedenen Stellen liegen. Diese Gleichheit vergleicht die Vektoren selbst. Bei einer Kraft kann der Angriffspunkt trotzdem die Drehwirkung verändern, obwohl der Kraftvektor gleich bleibt.
+Zwei Vektoren sind gleich, wenn sie <Highlight>denselben Betrag und dieselbe Richtung</Highlight> besitzen. Im Diagramm dürfen ihre Pfeile an verschiedenen Stellen liegen. Diese Gleichheit vergleicht die Vektoren selbst. Bei einer Kraft kann der Angriffspunkt trotzdem die Drehwirkung verändern, obwohl der Kraftvektor gleich bleibt.
 
-> Zwei Vektoren sind gleich, wenn Betrag und Richtung übereinstimmen. Ihre Fußpunkte dürfen verschieden sein.
-
-<Vector3d
+<LineEquation
+  cameraPosition={[3.5, 4.5, 8]}
+  cameraTarget={[1, 0, 0]}
   title={<>Gleiche und entgegengesetzte Vektoren</>}
   description={
     <>
-      Die Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />
-      sind gleich: Sie sind parallel, gleichgerichtet und gleich lang. Der Vektor
+      Die Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />{" "}
+      sind gleich: Sie sind parallel, gleichgerichtet und gleich lang. Der Vektor{" "}
       <InlineMath math="-\vec{a}" /> zeigt in die entgegengesetzte Richtung.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 2, 0];
     const bShift = [0, 0, 2];
     const negativeShift = [0, 0, -2];
@@ -36,36 +36,46 @@ export const metadata = {
 
     return [
       {
-        from: [0, 0, 0],
-        to: a,
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.15, 0.45, 0],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((a)[0]) - (0)), y: (0) + 0.6 * (((a)[1]) - (0)), z: (0) + 0.6 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.15, 0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: bShift,
-        to: b,
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.15, 0.45, 0.15],
-      },
+      points: [{ x: (bShift)[0], y: (bShift)[1], z: (bShift)[2] }, { x: ((bShift)[0]) + 0.6 * (((b)[0]) - ((bShift)[0])), y: ((bShift)[1]) + 0.6 * (((b)[1]) - ((bShift)[1])), z: ((bShift)[2]) + 0.6 * (((b)[2]) - ((bShift)[2])) }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.15, 0.45, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: negativeShift,
-        to: negativeA,
-        color: "#7c3aed",
-        label: <InlineMath math="-a" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.1, -0.55, 0],
-      },
+      points: [{ x: (negativeShift)[0], y: (negativeShift)[1], z: (negativeShift)[2] }, { x: ((negativeShift)[0]) + 0.5 * (((negativeA)[0]) - ((negativeShift)[0])), y: ((negativeShift)[1]) + 0.5 * (((negativeA)[1]) - ((negativeShift)[1])), z: ((negativeShift)[2]) + 0.5 * (((negativeA)[2]) - ((negativeShift)[2])) }, { x: (negativeA)[0], y: (negativeA)[1], z: (negativeA)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-a" />,
+        at: 1,
+        offset: [0.1, -0.55, 0],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
-  cameraPosition={[8, 6, 10]}
-  cameraTarget={[0, -1.8, 0]}
 />
 
 In der Darstellung liegen <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> auf verschiedenen Geraden. Als Vektoren sind sie gleich, weil Betrag und Richtung übereinstimmen. Das Verschieben eines Pfeils lässt beide Eigenschaften unverändert.
@@ -74,7 +84,7 @@ Die freie Verschiebung eines abstrakten Vektors in einer Zeichnung bedeutet nich
 
 ## Ein Gegenvektor kehrt die Richtung um
 
-Der Gegenvektor zu <InlineMath math="\vec{a}" /> wird als <InlineMath math="-\vec{a}" /> geschrieben. Er hat denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
+Der <Highlight>Gegenvektor</Highlight> zu <InlineMath math="\vec{a}" /> wird als <InlineMath math="-\vec{a}" /> geschrieben. Er hat denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
 
 <MathContainer>
   <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
@@ -89,16 +99,28 @@ Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Wird ein Vektor mit dem Ska
 
 | Form | Betrag des Ergebnisses | Richtung des Ergebnisses |
 | :--- | :--------------------- | :----------------------- |
-| <InlineMath math="2\vec{a}" /> | doppelt so groß wie <InlineMath math="\vec{a}" /> | wie <InlineMath math="\vec{a}" /> |
-| <InlineMath math="\frac{1}{2}\vec{a}" /> | halb so groß wie <InlineMath math="\vec{a}" /> | wie <InlineMath math="\vec{a}" /> |
-| <InlineMath math="-3\vec{a}" /> | dreimal so groß wie <InlineMath math="\vec{a}" /> | entgegengesetzt zu <InlineMath math="\vec{a}" /> |
+| <InlineMath math="2\vec{a}" /> | <InlineMath math="2\lvert\vec{a}\rvert" /> | wie <InlineMath math="\vec{a}" /> |
+| <InlineMath math="\frac{1}{2}\vec{a}" /> | <InlineMath math="\frac{1}{2}\lvert\vec{a}\rvert" /> | wie <InlineMath math="\vec{a}" /> |
+| <InlineMath math="-3\vec{a}" /> | <InlineMath math="3\lvert\vec{a}\rvert" /> | entgegengesetzt zu <InlineMath math="\vec{a}" /> |
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | wird zum Nullvektor |
 
 Ein negativer Skalar <Highlight>macht den Betrag nicht negativ</Highlight>. Sein Minuszeichen kehrt die Richtung des Vektors um.
 
+### Jede Komponente multiplizieren
+
+Für den Vektor im Modell nehmen wir <InlineMath math="\vec{a}=(4,2,0)" />. Multipliziere **jede Komponente** mit demselben Skalar. Ein negativer Skalar kehrt die Vorzeichen der Komponenten um. Der Betrag des Ergebnisses bleibt nicht negativ.
+
+<MathContainer>
+  <BlockMath math="-3\vec{a}=(-3\cdot4,-3\cdot2,-3\cdot0)=(-12,-6,0)" />
+  <BlockMath math="\lvert-3\vec{a}\rvert=\sqrt{(-12)^2+(-6)^2}=\sqrt{180}=6\sqrt{5}" />
+</MathContainer>
+
+Der ursprüngliche Betrag ist <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. Der neue Betrag <InlineMath math="6\sqrt{5}" /> ist genau dreimal so groß, passend zum Faktor <InlineMath math="\lvert-3\rvert=3" />.
+
+
 ## Der Nullvektor als Ergebnis einer Aufhebung
 
-Der Nullvektor wird als <InlineMath math="\vec{0}" /> geschrieben. Sein Betrag ist <InlineMath math="0" />, und seine Richtung ist nicht definiert, weil Fußpunkt und Spitze zusammenfallen.
+Der Nullvektor wird als <InlineMath math="\vec{0}" /> geschrieben. Sein Betrag ist <InlineMath math="0" />, und seine <Highlight>Richtung ist nicht definiert</Highlight>, weil Fußpunkt und Spitze zusammenfallen.
 
 Ein Nullvektor entsteht häufig, wenn sich Vektoren gegenseitig aufheben. Ziehen zum Beispiel zwei Schüler mit gleich großen Kräften in entgegengesetzte Richtungen an einer Kiste, ergibt sich bei exakt gleicher Wirkungslinie keine resultierende Kraft nach rechts oder links.
 

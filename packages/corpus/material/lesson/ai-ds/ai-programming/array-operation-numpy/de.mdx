@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Broadcasting in NumPy
 
-[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) ist <Highlight>NumPys Regel zum Verknüpfen von Arrays mit unterschiedlichen, aber kompatiblen Shapes</Highlight>. Eine Dimension der Größe eins wird so behandelt, als hätte sie dieselbe Größe wie die entsprechende Dimension des anderen Arrays, ohne die Daten in ein größeres Array zu kopieren.
+[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) ist NumPys Regel zum Verknüpfen von Arrays mit **unterschiedlichen, aber kompatiblen Shapes**. Eine Dimension der Größe eins wird so behandelt, als hätte sie dieselbe Größe wie die entsprechende Dimension des anderen Arrays, ohne die Daten in ein größeres Array zu kopieren.
 
 Bei der Vektorisierung wirkt ein Ausdruck auf ein ganzes Array. NumPy führt die Schleife im Hintergrund als optimierten, kompilierten Code aus. Das ist oft schneller als eine ausdrücklich geschriebene Python-Schleife.
 
@@ -43,12 +43,12 @@ Drei Regeln decken jeden Fall ab. Die Tabelle unten nennt für jede Regel die ge
 | Regel | Bedingung an die Shapes | Was NumPy tut |
 | --- | --- | --- |
 | Regel <InlineMath math="1" /> | Die beiden Shapes haben eine unterschiedliche Anzahl an Dimensionen | NumPy ergänzt links Dimensionen der Größe <InlineMath math="1" /> beim kürzeren Shape |
-| Regel <InlineMath math="2" /> | Ein ausgerichtetes Paar hat gleich große Seiten, oder eine Seite hat die Größe <InlineMath math="1" /> | NumPy wiederholt den einzelnen Eintrag entlang dieser Dimension, bis beide Größen passen |
+| Regel <InlineMath math="2" /> | Ein ausgerichtetes Paar hat gleich große Seiten, oder eine Seite hat die Größe <InlineMath math="1" /> | Gleiche Größen passen bereits. Eine Dimension der Größe eins wird gedanklich wiederverwendet, ohne wiederholte Kopien anzulegen |
 | Regel <InlineMath math="3" /> | Ein ausgerichtetes Paar hat unterschiedliche Größen und keine Seite hat die Größe <InlineMath math="1" /> | NumPy löst einen `ValueError` aus |
 
 ### Array mit Skalar
 
-Broadcasting gilt auch zwischen einem Array und einer einzelnen Zahl. NumPy dehnt den Skalar auf jedes Element aus, deshalb brauchst du keine Schleife.
+Broadcasting gilt auch zwischen einem **Array und einer einzelnen Zahl**. NumPy dehnt den Skalar auf jedes Element aus, deshalb brauchst du keine Schleife.
 
 <CodeBlock
   data={[
@@ -77,7 +77,7 @@ print(f"Ergebnis a + b: {result}")
 
 ### Zweidimensionales Array mit eindimensionalem Array
 
-Bei Arrays mit unterschiedlicher Dimensionszahl prüft NumPy die Shapes anhand dieser Regeln. So lässt sich beispielsweise dieselbe Operation auf jede Zeile oder jede Spalte einer Matrix anwenden.
+Bei Arrays mit **unterschiedlicher Dimensionszahl** prüft NumPy die Shapes anhand dieser Regeln. So lässt sich beispielsweise dieselbe Operation auf jede Zeile oder jede Spalte einer Matrix anwenden.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ print(result)
 
 ### Fall mit fehlgeschlagenem Broadcasting
 
-Nicht jedes Formpaar lässt sich ausrichten. Das folgende Beispiel zeigt ein Formpaar, das Regel <InlineMath math="3" /> verletzt, und die Fehlermeldung von NumPy.
+Bei den Shapes `(2, 3)` und `(2,)` **passen die letzten Dimensionen nicht**: Ihre Größen sind `3` und `2`, und keine ist `1`. NumPy löst vor der Addition einen `ValueError` aus.
 
 <CodeBlock
   data={[
@@ -135,7 +135,7 @@ except ValueError as e:
 
 ## Arithmetische Operationen mit Arrays
 
-Arithmetische NumPy-Operatoren arbeiten elementweise, sofern eine Operation nicht ausdrücklich eine andere Bedeutung besitzt, etwa die Matrixmultiplikation.
+Arithmetische NumPy-Operatoren arbeiten **elementweise**, sofern eine Operation nicht ausdrücklich eine andere Bedeutung besitzt, etwa die Matrixmultiplikation.
 
 Wird ein Array mit einem Skalar verknüpft, wendet Broadcasting den Skalar auf jedes Element an. Eine manuelle Indexschleife ist dafür nicht nötig.
 
@@ -192,16 +192,16 @@ print(f"a * b = {a * b}")
 # Matrixmultiplikation (Skalarprodukt)
 print("Matrixmultiplikation:")
 print(f"a @ b = {a @ b}")
-# Ausgabe: 10 (Skalarproduktergebnis)`
+# Ausgabe: 10`
     }
   ]}
 />
 
-Bei `*` werden Elemente an entsprechenden Positionen multipliziert. `@` führt dagegen eine Matrixmultiplikation nach den Regeln der linearen Algebra aus. `np.dot()` hat je nach Dimension der Operanden eigene, dokumentierte Regeln und sollte nicht pauschal mit `@` gleichgesetzt werden.
+Der Operator `*` multipliziert **Elemente an entsprechenden Positionen**. Für die beiden eindimensionalen Arrays oben liefert `@` das Skalarprodukt: `0 + 3 + 4 + 3 + 0` ergibt `10`. Bei zwei Matrizen gilt die Zeile-mal-Spalte-Regel. Setze `np.dot()` nicht für alle Array-Formen mit `@` gleich. Bei höheren Dimensionen unterscheiden sich ihre Regeln.
 
 ### Vergleich und Logik
 
-Vergleiche erzeugen boolesche Arrays. Sie können anschließend zum Filtern von Daten oder zum Verknüpfen mehrerer Bedingungen verwendet werden.
+Vergleiche erzeugen **boolesche Arrays**. Sie können anschließend zum Filtern von Daten oder zum Verknüpfen mehrerer Bedingungen verwendet werden.
 
 <CodeBlock
   data={[
@@ -234,7 +234,7 @@ Für elementweise boolesche Logik verwendest du `~` für NOT, `&` für AND und `
 
 ## Statistische Funktionen und Reduktionen
 
-Reduktionsfunktionen fassen viele Elemente zu weniger Werten zusammen. Ohne Angabe einer Achse können sie das gesamte Array auf einen Wert reduzieren. Mit einer Achse reduzieren sie nur diese Dimension. Bei einer Tabelle mit Prüfungsergebnissen kann so etwa ein Mittelwert pro Fach oder pro Person entstehen.
+Reduktionsfunktionen fassen **viele Elemente zu weniger Werten** zusammen. Ohne Angabe einer Achse können sie das gesamte Array auf einen Wert reduzieren. Mit einer Achse reduzieren sie nur diese Dimension. Bei einer Tabelle mit Prüfungsergebnissen kann so etwa ein Mittelwert pro Fach oder pro Person entstehen.
 
 NumPy stellt dafür statistische Funktionen bereit, die entweder auf dem gesamten Array oder entlang ausgewählter Achsen arbeiten.
 
@@ -271,7 +271,7 @@ print(f"Standardabweichung: {np.std(data):.2f}")
 
 ### Operationen mit Achsen
 
-Bei einem zweidimensionalen Array reduziert `axis=0` die Zeilendimension und liefert einen Wert pro Spalte. `axis=1` reduziert die Spaltendimension und liefert einen Wert pro Zeile.
+Bei einem zweidimensionalen Array reduziert `axis=0` die Zeilendimension und liefert **einen Wert pro Spalte**. `axis=1` reduziert die Spaltendimension und liefert einen Wert pro Zeile.
 
 Die Achse legt fest, über welche Richtung eine statistische Funktion rechnet. Bei monatlichen Verkaufsdaten für mehrere Produkte kannst du damit zum Beispiel den Gesamtumsatz pro Produkt oder pro Monat berechnen.
 
@@ -309,7 +309,7 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
 
 ## Bearbeitung der Form von Arrays
 
-Shape-Operationen verändern, wie dieselben Elemente indiziert werden. Ein Reshape behält die Anzahl der Elemente bei, ordnet sie aber anderen Dimensionen zu.
+Shape-Operationen verändern, wie dieselben Elemente indiziert werden. Ein Reshape behält die **Anzahl der Elemente** bei, ordnet sie aber anderen Dimensionen zu.
 
 Neu erzeugte NumPy-Arrays sind häufig C-kontiguierlich. Dann ändert sich der letzte Index im Speicher am schnellsten. Views aus Slices oder Transpositionen können jedoch andere Strides besitzen, sodass Arrays nicht immer in einem einzigen einfachen Zeilenlayout gespeichert sind. Beim Reshape oder Flatten spielen deshalb die Regeln für `order` und Strides eine Rolle.
 
@@ -328,14 +328,14 @@ print(f"Form: {a.shape}")
 
 # Sieh, wie es im Speicher gespeichert wird
 print(f"Im Speicher gespeichert als: {a.ravel()}")
-# Ausgabe: [0 1 2 3] (row-major order)`
+# Ausgabe: [0 1 2 3]`
     }
   ]}
 />
 
 ### Flatten und Ravel
 
-`flatten()` und `ravel()` liefern beide ein eindimensionales Array. `flatten()` erzeugt immer eine Kopie. `ravel()` liefert wenn möglich eine View und erstellt eine Kopie, wenn das Speicherlayout es erfordert.
+`flatten()` und `ravel()` liefern beide ein eindimensionales Array. `flatten()` erzeugt **immer eine Kopie**. `ravel()` liefert wenn möglich eine View und erstellt eine Kopie, wenn das Speicherlayout es erfordert.
 
 <CodeBlock
   data={[
@@ -376,7 +376,7 @@ print(a)`
 
 ### Umformen und Größe ändern
 
-`reshape()` ändert den Shape, solange die Anzahl der Elemente gleich bleibt, und liefert wenn möglich eine View. Die unten verwendete Methode `ndarray.resize()` verändert dagegen das ursprüngliche Array direkt.
+`reshape()` ändert den Shape, solange die Anzahl der Elemente gleich bleibt, und liefert wenn möglich eine View. Die unten verwendete Methode `ndarray.resize()` verändert dagegen **das ursprüngliche Array direkt**.
 
 <CodeBlock
   data={[
@@ -411,7 +411,7 @@ print(a_flat)  # Jetzt ist a_flat 2D`
 
 ### Transponieren
 
-Eine Transposition vertauscht die Reihenfolge der Array-Achsen. Bei einem zweidimensionalen Array werden Zeilen und Spalten getauscht. NumPy bietet dafür die Methode `transpose()` und das kürzere Attribut `.T`.
+Eine Transposition vertauscht die Reihenfolge der Array-Achsen. Bei einem zweidimensionalen Array werden **Zeilen und Spalten getauscht**. NumPy bietet dafür die Methode `transpose()` und das kürzere Attribut `.T`.
 
 <CodeBlock
   data={[
@@ -441,9 +441,9 @@ print("Ist die Transponierung eine Ansicht?", np.shares_memory(a, b))`
   ]}
 />
 
-## Datenstandardisierung mit Z Transformation
+## Datenstandardisierung mit Z Scores
 
-Die Z-Standardisierung zentriert jedes Merkmal auf den Mittelwert <InlineMath math="0" /> und skaliert es auf die Standardabweichung <InlineMath math="1" />. Sie ist nur für Merkmale mit einer von null verschiedenen Standardabweichung definiert und bringt Merkmale auf vergleichbare numerische Skalen.
+Die Z-Standardisierung zentriert jedes Merkmal auf den Mittelwert <InlineMath math="0" /> und skaliert es auf die Standardabweichung <InlineMath math="1" />. Sie ist nur für Merkmale mit einer **von null verschiedenen Standardabweichung** definiert und bringt Merkmale auf vergleichbare numerische Skalen.
 
 Die Formel lautet <InlineMath math="Z = \frac{X - \mu}{\sigma}" />. Dabei gilt:
 - <InlineMath math="X" /> ist die Merkmalsmatrix der Größe <InlineMath math="n \times k" />
@@ -456,12 +456,12 @@ Die Formel lautet <InlineMath math="Z = \frac{X - \mu}{\sigma}" />. Dabei gilt:
   data={[
     {
       language: "python",
-      filename: "z_transform.py",
+      filename: "z_score.py",
       code: `import numpy as np
 
 # Beispieldaten erstellen: fünf Beobachtungen mit je drei Merkmalen
-np.random.seed(42)
-X = np.random.randn(5, 3) * 10 + 50  # Daten mit Mittelwert~50, std~10
+rng = np.random.default_rng(42)
+X = rng.standard_normal((5, 3)) * 10 + 50  # Stichprobe aus einer Normalverteilung mit Mittelwert 50 und Standardabweichung 10
 
 print("Originaldaten:")
 print(X)
@@ -474,17 +474,16 @@ sigma = np.std(X, axis=0)  # Standardabweichung jeder Spalte
 print(f"Mittelwert jedes Merkmals: {mu}")
 print(f"Standardabweichung jedes Merkmals: {sigma}")
 
-# Z-Transformation durchführen
+# Z-Standardisierung durchführen
 Z = (X - mu) / sigma
 
-print("Daten nach Z-Transformation:")
+print("Daten nach Z-Standardisierung:")
 print(Z)
 
 # Ergebnis der Standardisierung prüfen
 print("Überprüfung der Standardisierung:")
 print(f"Neuer Mittelwert: {np.mean(Z, axis=0)}")  # Sollte in der Nähe von 0 liegen
 print(f"Neue Standardabweichung: {np.std(Z, axis=0)}")  # Sollte in der Nähe von 1 liegen
-# Neue Mittelwerte: [ 1.24344979e-15  8.88178420e-17 -1.77635684e-16] (nahe 0)
 # Neue Standardabweichungen: [1. 1. 1.]`
     }
   ]}

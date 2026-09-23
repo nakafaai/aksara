@@ -10,32 +10,36 @@ export const metadata = {
 
 ## Pusat dan Sudut yang Menentukan Rotasi
 
-Rotasi memutar setiap titik suatu bangun dengan <Highlight>sudut yang sama terhadap satu titik pusat tetap</Highlight>. Bangun berpindah dan berputar, sedangkan jarak, sudut, bentuk, ukuran, dan urutan titik sudutnya tetap.
+Rotasi memutar setiap titik suatu bangun dengan <Highlight>sudut yang sama</Highlight> terhadap satu pusat tetap. Bangun berpindah dan berputar, sedangkan jarak, sudut, bentuk, ukuran, dan urutan titik sudutnya tetap.
 
 Rotasi ditentukan oleh dua hal:
 
-- **Titik Pusat Rotasi (C):** Titik tetap yang menjadi pusat perputaran.
-- **Sudut Rotasi (<InlineMath math="\theta" />):** Sudut berarah yang menyatakan besar dan arah putaran. Sudut positif menghasilkan rotasi berlawanan arah jarum jam, sedangkan sudut negatif menghasilkan rotasi searah jarum jam.
+- **Titik Pusat Rotasi (C)**: Titik tetap yang menjadi pusat perputaran.
+- **Sudut Rotasi (<InlineMath math="\theta" />)**: Sudut berarah yang menyatakan besar dan arah putaran. Sudut positif menghasilkan rotasi berlawanan arah jarum jam, sedangkan sudut negatif menghasilkan rotasi searah jarum jam.
 
 ### Definisi Rotasi
 
-Diketahui titik pusat <InlineMath math="C" /> dan sudut berarah <InlineMath math="\theta" />. Rotasi dengan titik pusat <InlineMath math="C" /> sebesar <InlineMath math="\theta" />, dinotasikan dengan <InlineMath math="\rho_{C,\theta}" /> atau <InlineMath math="R(C,\theta)" />, didefinisikan sebagai transformasi yang memetakan:
+Pusat <InlineMath math="C" /> **tetap di tempat**. Untuk titik <InlineMath math="P\ne C" />, rotasi mempertahankan jarak <InlineMath math="CP=CP'" /> dan mengubah arah dari pusat sebesar sudut berarah <InlineMath math="\theta" />. Sudut diukur dari sinar <InlineMath math="CP" /> menuju <InlineMath math="CP'" />, dengan arah positif berlawanan jarum jam.
 
-1. Titik <InlineMath math="C" /> ke dirinya sendiri (<InlineMath math="C'=C" />).
-2. Sembarang titik <InlineMath math="P" /> ke titik <InlineMath math="P'" /> sedemikian sehingga <InlineMath math="CP = CP'" /> (jarak dari pusat ke titik sama dengan jarak dari pusat ke bayangan) dan sudut yang terbentuk oleh sinar <InlineMath math="\vec{CP}" /> dan <InlineMath math="\vec{CP'}" /> adalah <InlineMath math="\theta" />.
+Putaran yang berbeda sebesar satu putaran penuh memberikan bayangan yang sama. Misalnya, putaran <InlineMath math="90^\circ" /> berlawanan jarum jam sama hasilnya dengan <InlineMath math="270^\circ" /> searah jarum jam:
 
-Kedua syarat itu bersama-sama menetapkan hasil rotasi secara tunggal, karena setelah pusat dan sudutnya ditentukan, setiap titik punya tepat satu bayangan.
+<BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
 ## Rotasi terhadap Titik Asal
 
-Jika pusat rotasi berada di titik asal <InlineMath math="O(0,0)" />, rumus rotasinya menjadi lebih singkat.
-
-Jika titik <InlineMath math="P(x,y)" /> dirotasikan terhadap titik asal <InlineMath math="O(0,0)" /> sebesar sudut <InlineMath math="\theta" />, maka koordinat bayangannya <InlineMath math="P'(x',y')" /> dapat dihitung menggunakan rumus berikut:
+Untuk pusat asal, **sinus dan kosinus sudut putar** menentukan campuran koordinat horizontal dan vertikal. Substitusi nilai trigonometri sudut khusus memberi aturan yang lebih singkat:
 
 <MathContainer>
   <BlockMath math="x' = x \cos \theta - y \sin \theta" />
   <BlockMath math="y' = x \sin \theta + y \cos \theta" />
 </MathContainer>
+
+| Sudut | Bayangan | Arah |
+| --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(-y,x)" /> | Seperempat putaran berlawanan jarum jam |
+| <InlineMath math="-90^\circ" /> | <InlineMath math="(y,-x)" /> | Seperempat putaran searah jarum jam |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-x,-y)" /> | Setengah putaran |
+
 
 ## Merotasikan Sebuah Titik Seperempat Putaran
 
@@ -45,7 +49,7 @@ Di sini, <InlineMath math="x=0" />, <InlineMath math="y=4" />, dan <InlineMath m
 
 Kita tahu <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" />.
 
-Menggunakan rumus:
+Gunakan **sudut positif** karena putarannya berlawanan arah jarum jam:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= (0) \cos 90^\circ - (4) \sin 90^\circ \\ &amp;= 0 \cdot 0 - 4 \cdot 1 \\ &amp;= -4 \end{aligned}" />
@@ -70,6 +74,7 @@ Jadi, bayangan titik <InlineMath math="B(0,4)" /> adalah <InlineMath math="B'(-4
     </>
   }
   data={[
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.PI / 2 + i * Math.PI / 64; return { x: 4 * Math.cos(angle), y: 4 * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [-0.3, 0.3, 0] }] },
     {
       points: [{ x: 0, y: 0, z: 0 }],
       color: "#e11d48",
@@ -122,7 +127,7 @@ Ambil sembarang titik <InlineMath math="P(x,y)" /> pada garis <InlineMath math="
 
 Dari sini kita peroleh <InlineMath math="y = -x'" /> dan <InlineMath math="x = y'" />.
 
-Substitusikan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" /> ke dalam persamaan garis asli <InlineMath math="y=2x" />:
+Substitusikan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" /> ke dalam **persamaan garis asli** <InlineMath math="y=2x" />:
 
 <MathContainer>
   <BlockMath math="(-x') = 2(y')" />
@@ -154,9 +159,8 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
     }, // Titik Pusat Rotasi
     {
       // Garis Asli: y = 2x
-      points: Array.from({ length: 17 }, (_, pointIndex) => {
-        const i = pointIndex - 3;
-        const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.25;
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
       smooth: false,
@@ -166,15 +170,14 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
     },
     {
       // Garis Bayangan: y = -1/2 x
-      points: Array.from({ length: 47 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const xVal = (i - 5) * 0.5;
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 19, offset: [0.3, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 2, offset: [0.3, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -182,7 +185,7 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
 
 ## Latihan
 
-Soal-soal memutar sebuah titik, sebuah garis, dan titik lain terhadap titik asal. Garis diputar melalui persamaannya, sehingga seluruh titik pada garis itu bergerak bersama. Periksa arah putarannya, karena sudut berlawanan arah jarum jam dan searah jarum jam menghasilkan bayangan yang berbeda.
+Dua soal pertama memakai **seperempat putaran positif**. Soal terakhir memakai setengah putaran, sehingga kedua koordinat berubah tanda. Untuk garis, lakukan substitusi pada persamaan awal agar semua titik pada garis terpetakan.
 
 1.  Sebuah titik <InlineMath math="A(3,0)" /> dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />. Tentukan titik bayangannya.
 2.  Tentukan bayangan garis <InlineMath math="y=4x" /> yang dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />.
@@ -190,38 +193,46 @@ Soal-soal memutar sebuah titik, sebuah garis, dan titik lain terhadap titik asal
 
 ### Pembahasan
 
-1.  Titik <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
+Gunakan nilai sinus dan kosinus yang sesuai dengan sudut. Dalam soal garis, **nyatakan koordinat asal melalui koordinat bayangan** terlebih dahulu sebelum memasukkannya ke persamaan.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
-    </MathContainer>
+**Pembahasan 1**
 
-    Jadi, bayangan titiknya adalah <InlineMath math="A'(0,3)" />.
+Titik <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
 
-2.  Garis <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = -y" />
-      <BlockMath math="y' = x" />
-    </MathContainer>
+Jadi, bayangan titiknya adalah <InlineMath math="A'(0,3)" />.
 
-    Maka <InlineMath math="y = -x'" /> dan <InlineMath math="x = y'" />.
+**Pembahasan 2**
 
-    Substitusi ke persamaan garis: <InlineMath math="(-x') = 4(y')" />.
+Garis <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
 
-    Persamaan garis bayangan: <InlineMath math="-x = 4y" /> atau <InlineMath math="y = -\frac{1}{4}x" />.
+<MathContainer>
+  <BlockMath math="x' = -y" />
+  <BlockMath math="y' = x" />
+</MathContainer>
 
-3.  Titik <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+Maka <InlineMath math="y = -x'" /> dan <InlineMath math="x = y'" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 180^\circ = -1" />
-      <BlockMath math="\sin 180^\circ = 0" />
-    </MathContainer>
+Substitusi ke persamaan garis: <InlineMath math="(-x') = 4(y')" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
-    </MathContainer>
+Persamaan garis bayangan: <InlineMath math="-x = 4y" /> atau <InlineMath math="y = -\frac{1}{4}x" />.
 
-    Jadi, bayangan titik <InlineMath math="P" /> adalah <InlineMath math="P'(2,5)" />.
+**Pembahasan 3**
+
+Titik <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+
+<MathContainer>
+  <BlockMath math="\cos 180^\circ = -1" />
+  <BlockMath math="\sin 180^\circ = 0" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
+
+Jadi, bayangan titik <InlineMath math="P" /> adalah <InlineMath math="P'(2,5)" />.

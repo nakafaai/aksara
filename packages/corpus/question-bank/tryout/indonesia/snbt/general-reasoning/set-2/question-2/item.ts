@@ -17,7 +17,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Alle Bewohner des Dorfes Nelayan haben kein Zuchtfläche",
+          label: "Alle Bewohner des Dorfes Nelayan haben keine Zuchtfläche",
         },
         {
           isCorrect: false,

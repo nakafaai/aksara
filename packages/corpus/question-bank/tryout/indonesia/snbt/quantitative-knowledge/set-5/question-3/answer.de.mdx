@@ -5,42 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Die ganze Zahl <InlineMath math="n" /> muss zwei Bedingungen gleichzeitig erfüllen:
-1. <InlineMath math="n \equiv 2 \pmod{4}" /> (Rest ist <InlineMath math="2" /> bei Division durch <InlineMath math="4" />)
-2. <InlineMath math="n \equiv 2 \pmod{6}" /> (Rest ist <InlineMath math="2" /> bei Division durch <InlineMath math="6" />)
+Die Zahl muss bei **beiden Divisionen** den Rest 2 haben. Wir schreiben jede Zahl als Divisor mal ganzzahliger Quotient plus Rest.
 
-Wir prüfen jede Aussage, um zu sehen, ob der Wert von <InlineMath math="n" /> beide Bedingungen erfüllt.
+| Eintrag | Division durch 4 | Division durch 6 | Beide Reste 2? |
+| --- | --- | --- | --- |
+| 1 | <InlineMath math="18=4\cdot4+2" /> | <InlineMath math="18=6\cdot3+0" /> | Nein |
+| 2 | <InlineMath math="24=4\cdot6+0" /> | <InlineMath math="24=6\cdot4+0" /> | Nein |
+| 3 | <InlineMath math="36=4\cdot9+0" /> | <InlineMath math="36=6\cdot6+0" /> | Nein |
+| 4 | <InlineMath math="38=4\cdot9+2" /> | <InlineMath math="38=6\cdot6+2" /> | Ja |
 
-#### Überprüfung von Aussage Eins
-
-Wert <InlineMath math="n = 18" />.
-- Bei Division durch <InlineMath math="4" />: <InlineMath math="18=4\cdot4+2" /> Rest <InlineMath math="2" />. (erfüllt)
-- Bei Division durch <InlineMath math="6" />: <InlineMath math="18=6\cdot3+0" /> Rest <InlineMath math="0" />. (nicht erfüllt)
-
-Daher ist die Aussage (1) **falsch**.
-
-#### Überprüfung von Aussage zwei
-
-Wert <InlineMath math="n = 24" />.
-- Bei Division durch <InlineMath math="4" />: <InlineMath math="24=4\cdot6+0" /> Rest <InlineMath math="0" />. (nicht erfüllt)
-
-Daher ist die Aussage (2) **falsch**.
-
-#### Überprüfung von Aussage drei
-
-Wert <InlineMath math="n = 36" />.
-- Bei Division durch <InlineMath math="4" />: <InlineMath math="36=4\cdot9+0" /> Rest <InlineMath math="0" />. (nicht erfüllt)
-
-Daher ist die Aussage (3) **falsch**.
-
-#### Überprüfung von Aussage vier
-
-Wert <InlineMath math="n = 38" />.
-- Bei Division durch <InlineMath math="4" />: <InlineMath math="38=4\cdot9+2" /> Rest <InlineMath math="2" />. (erfüllt)
-- Bei Division durch <InlineMath math="6" />: <InlineMath math="38=6\cdot6+2" /> Rest <InlineMath math="2" />. (erfüllt)
-
-Daher ist die Aussage (4) **richtig**.
-
-#### Aussage mit beiden erfüllten Bedingungen
-
-Von den vier Optionen erfüllt nur die Aussage (4) beide Bedingungen.
+Nur 38 erfüllt beide Bedingungen. Daher ist nur Aussage (4) richtig.

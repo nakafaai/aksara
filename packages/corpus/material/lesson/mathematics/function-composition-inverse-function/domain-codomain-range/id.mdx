@@ -10,7 +10,9 @@ export const metadata = {
 
 ## Domain
 
-**Domain** adalah himpunan semua masukan yang membuat suatu fungsi terdefinisi. Masukan di luar himpunan ini tidak dapat dihitung oleh fungsi tersebut. Pada bentuk pecahan setiap nilai yang membuat penyebutnya nol harus dikeluarkan, dan pada bentuk akar setiap nilai yang membuat isinya negatif juga dikeluarkan.
+**Domain** adalah himpunan masukan yang ditetapkan untuk suatu fungsi. Aturan fungsi harus terdefinisi pada setiap anggota domain. Jika domain tidak dinyatakan, kita biasanya mencari domain real terbesar: penyebut harus tidak nol dan bilangan di dalam akar berpangkat genap harus tidak negatif.
+
+Domain juga boleh **dibatasi dengan sengaja**. Misalnya, aturan <InlineMath math="x^2" /> terdefinisi untuk semua bilangan real, tetapi fungsi dapat ditetapkan hanya untuk <InlineMath math="x\ge0" />.
 
 ### Contoh Mencari Domain
 
@@ -20,9 +22,9 @@ Fungsi ini memuat pembagian, dan pembagian hanya terdefinisi bila penyebutnya ti
 
 Aturannya membagi <InlineMath math="1" /> dengan masukan. Untuk masukan <InlineMath math="0" />, penyebutnya menjadi nol:
 
-<BlockMath math="f(0) = \frac{1}{0}" />
+<BlockMath math="\frac10" />
 
-Pembagian dengan nol tidak terdefinisi. Karena itu, <InlineMath math="0" /> dikeluarkan dari domain, sedangkan semua bilangan real lainnya diperbolehkan.
+Pembagian dengan nol tidak terdefinisi. Karena itu, <InlineMath math="0" /> dikeluarkan dari domain, sedangkan **semua bilangan real** lainnya diperbolehkan.
 
 Jadi, domain fungsi <InlineMath math="f(x) = \frac{1}{x}" /> adalah semua bilangan nyata kecuali <InlineMath math="0" />.
 
@@ -32,7 +34,7 @@ Contoh lain:
 
 Aturan ini mengambil akar kuadrat dari masukan. Pengujian <InlineMath math="-4" /> menghasilkan:
 
-<BlockMath math="g(-4) = \sqrt{-4}" />
+<BlockMath math="\sqrt{-4}" />
 
 Pada bilangan real, akar kuadrat memerlukan bilangan di dalam akar yang tidak negatif. Jadi, hanya <InlineMath math="0" /> dan masukan positif yang diperbolehkan.
 
@@ -62,9 +64,9 @@ Jadi, kodomain menjelaskan ruang sasaran yang diizinkan. Kodomain bukan daftar n
 
 ## Range
 
-Range (atau daerah hasil) adalah **kumpulan semua nilai output yang _benar-benar_ dihasilkan** oleh fungsi ketika kita memasukkan semua anggota domain. Range adalah bagian dari (atau kadang sama persis dengan) kodomain.
+**Range** atau daerah hasil adalah kumpulan keluaran yang benar-benar dihasilkan saat semua anggota domain dimasukkan. Range merupakan himpunan bagian dari kodomain.
 
-**Contoh:**
+**Contoh**:
 
 Untuk contoh ini, domain dan kodomain fungsi <InlineMath math="f(x) = x^2" /> adalah himpunan bilangan bulat.
 
@@ -72,12 +74,13 @@ Untuk contoh ini, domain dan kodomain fungsi <InlineMath math="f(x) = x^2" /> ad
 
 Saat kita masukkan nilai-nilai dari domain:
 
-- <InlineMath math="f(-2) = 4" />
-- <InlineMath math="f(-1) = 1" />
-- <InlineMath math="f(0) = 0" />
-- <InlineMath math="f(1) = 1" />
-- <InlineMath math="f(2) = 4" />
-- dan seterusnya...
+| Masukan | Keluaran kuadrat |
+| --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="(-2)^2=4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="(-1)^2=1" /> |
+| <InlineMath math="0" /> | <InlineMath math="0^2=0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1^2=1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2^2=4" /> |
 
 Nilai-nilai yang _benar-benar_ keluar sebagai output adalah <InlineMath math="0, 1, 4, 9, 16" />, dan seterusnya (bilangan kuadrat non-negatif).
 
@@ -94,6 +97,37 @@ Tidak semua anggota kodomain menjadi bagian dari range.
 ## Membedakan Domain Kodomain dan Range
 
 Domain mencegah masukan tidak sah seperti pembagian dengan nol. Kodomain menetapkan ruang sasaran, sedangkan range menunjukkan nilai yang benar-benar dicapai fungsi. Ketiga himpunan itu dipakai bersama saat membaca notasi fungsi.
+
+Untuk melihat perbedaannya, batasi contoh kuadrat pada <InlineMath math="D=\{-2,-1,0,1,2\}" /> dan pilih <InlineMath math="K=\{0,1,2,3,4\}" />. **Setiap masukan memiliki satu panah**, tetapi beberapa anggota kodomain tidak menerima panah.
+
+<Mermaid
+  title="Domain Kodomain dan Keluaran yang Tercapai"
+  description="Panah menunjukkan pemetaan kuadrat dari lima masukan. Range berada di dalam kodomain. Dua anggota kodomain tidak dicapai."
+  chart={`flowchart LR
+  subgraph D["Domain D"]
+    d1["-2"]
+    d2["-1"]
+    d3["0"]
+    d4["1"]
+    d5["2"]
+  end
+  subgraph K["Kodomain K"]
+    subgraph R["Range R"]
+      r0["0"]
+      r1["1"]
+      r4["4"]
+    end
+    k2["2"]
+    k3["3"]
+  end
+  d1 --> r4
+  d2 --> r1
+  d3 --> r0
+  d4 --> r1
+  d5 --> r4`}
+/>
+
+Panah mencapai <InlineMath math="0,1,4" />, sehingga <InlineMath math="R=\{0,1,4\}" />. Nilai <InlineMath math="2" /> dan <InlineMath math="3" /> tetap anggota kodomain, tetapi bukan anggota range contoh terbatas ini.
 
 ## Hubungan Matematis
 
@@ -113,7 +147,7 @@ Setiap nilai yang benar-benar dicapai fungsi harus termasuk dalam kodomain. Arah
 
 ## Periksa Pemahamanmu
 
-Diberikan <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> dengan <InlineMath math="h(x)=\frac1{x-2}" />. Jawab tiga pertanyaan berikut untuk fungsi tersebut. Mulailah dari nilai yang dilarang penyebutnya, lalu tentukan nilai keluaran mana yang dapat dicapai pecahan itu.
+Diberikan <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> dengan <InlineMath math="h(x)=\frac1{x-2}" />. Jawab tiga pertanyaan berikut untuk fungsi tersebut. Mulailah dari nilai yang dilarang penyebutnya, lalu tentukan nilai **keluaran** mana yang dapat dicapai pecahan itu.
 
 1. Mengapa <InlineMath math="2" /> dikeluarkan dari domain?
 2. Apakah <InlineMath math="0" /> dapat menjadi anggota range?
@@ -123,10 +157,10 @@ Diberikan <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> dengan <
 
 1. Pada <InlineMath math="x=2" />, penyebutnya bernilai nol:
 
-   <BlockMath math="h(2)=\frac1{2-2}=\frac10" />
+   <BlockMath math="2-2=0" />
 
    Ekspresi tersebut tidak terdefinisi. Jadi, <InlineMath math="2" /> tidak dapat menjadi anggota domain.
-2. Tidak. Pecahan dengan pembilang <InlineMath math="1" /> tidak mungkin bernilai <InlineMath math="0" />.
+2. Tidak. Pecahan dengan **pembilang** <InlineMath math="1" /> tidak mungkin bernilai <InlineMath math="0" />.
 3. Setiap nilai real selain nol dapat dicapai. Untuk <InlineMath math="y\neq0" />, pilih <InlineMath math="x=2+\frac1y" /> sehingga <InlineMath math="h(x)=y" />. Jadi:
 
    <BlockMath math="R_h=\mathbb{R}\setminus\{0\}" />

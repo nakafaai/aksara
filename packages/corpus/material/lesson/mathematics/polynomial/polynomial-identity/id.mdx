@@ -15,7 +15,7 @@ Berbeda dengan persamaan biasa yang hanya benar untuk nilai variabel tertentu (m
 
 ## Identitas Polinomial yang Sering Digunakan
 
-Berikut adalah beberapa contoh identitas polinomial yang penting dan sering muncul:
+Berikut adalah beberapa contoh **identitas polinomial** yang penting dan sering muncul:
 
 <MathContainer>
   <BlockMath math="a^2 - b^2 = (a + b)(a - b)" />
@@ -29,104 +29,83 @@ Berikut adalah beberapa contoh identitas polinomial yang penting dan sering munc
 
 Identitas-identitas ini dapat dibaca dalam dua arah: dari bentuk perkalian ke bentuk uraian, atau dari bentuk uraian ke bentuk faktor. Arah yang dipilih bergantung pada operasi yang dibutuhkan.
 
+### Melihat Selisih Kuadrat melalui Luas
+
+Ambil persegi bersisi <InlineMath math="4" />, lalu potong persegi bersisi <InlineMath math="1" /> dari sudut kanan atas. Dua bidang berwarna menyisakan **luas yang sama** ketika disusun ulang menjadi persegi panjang berukuran <InlineMath math="5\times3" />. Bidang besar diputar, bukan diperbesar.
+
+<MathVisual
+  title="Dua susunan dengan luas 15"
+  description="Persegi empat kali empat tanpa sudut satu kali satu disusun ulang menjadi persegi panjang lima kali tiga."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-large", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "left-small", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "right-large", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 3 }, { x: 6, y: 3 }], appearance: "primary" },
+      { id: "right-small", kind: "polygon", vertices: [{ x: 10, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 3 }, { x: 10, y: 3 }], appearance: "secondary" }
+    ],
+    labels: [
+      { key: "left-large", objectId: "left-large", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "left-small", objectId: "left-small", at: { x: 3.5, y: 1.5 }, placement: "above" },
+      { key: "right-large", objectId: "right-large", at: { x: 8, y: 1.5 }, placement: "above" },
+      { key: "right-small", objectId: "right-small", at: { x: 10.5, y: 1.5 }, placement: "above" }
+    ]
+  }}
+  labels={{ "left-large": "12", "left-small": "3", "right-large": "12", "right-small": "3" }}
+/>
+
+<BlockMath math="4^2-1^2=16-1=15=(4+1)(4-1)" />
+
+Gambar ini memperlihatkan kasus <InlineMath math="a=4" /> dan <InlineMath math="b=1" />. Konstruksi luas membutuhkan <InlineMath math="a>b>0" />, sedangkan identitas aljabarnya berlaku untuk semua bilangan real.
+
 ## Membuktikan Suatu Persamaan adalah Identitas
 
-Bagaimana cara kita tahu kalau suatu persamaan itu benar-benar identitas atau bukan?
-
-1.  **Cara Membuktikan (Jika BENAR identitas):**
-
-    Kita harus menunjukkan bahwa bentuk di ruas kiri persamaan **selalu sama** dengan bentuk di ruas kanan setelah disederhanakan. Caranya adalah dengan menguraikan salah satu ruas (biasanya yang lebih kompleks) menggunakan operasi aljabar sampai bentuknya sama persis dengan ruas lainnya.
-
-2.  **Cara Membuktikan (Jika BUKAN identitas):**
-
-    Temukan **satu nilai variabel** yang membuat kedua ruas berbeda. Satu contoh penyangkal sudah membuktikan bahwa persamaan tersebut bukan identitas.
+Untuk **membuktikan identitas**, ubah satu ruas dengan operasi aljabar yang sah hingga sama dengan ruas lainnya. Setiap langkah harus berlaku untuk semua nilai variabel. Untuk **menyangkal identitas**, cukup temukan satu nilai yang membuat kedua ruas berbeda.
 
 ### Pembuktian Identitas
 
-Buktikan apakah persamaan berikut merupakan identitas polinomial atau bukan.
+Gunakan **penguraian aljabar atau contoh penyangkal** untuk menentukan apakah persamaan berikut merupakan identitas.
 
-1. <InlineMath math="(2x^2 - y^2)^2 = 4x^4 - 4x^2y^2 + y^4" />
-2. <InlineMath math="(2a - 5)(2a + 5) = 4a^2 - 20a + 25" />
+1. <InlineMath math="(2x^2-y^2)^2=4x^4-4x^2y^2+y^4" />
+2. <InlineMath math="(2a-5)(2a+5)=4a^2-20a+25" />
 
-**Penyelesaian:**
+**Contoh 1**. Gunakan kuadrat selisih dengan <InlineMath math="A=2x^2" /> dan <InlineMath math="B=y^2" />:
 
-1. Kita akan uraikan ruas kiri menggunakan identitas <InlineMath math="(A - B)^2 = A^2 - 2AB + B^2" />, dengan <InlineMath math="A = 2x^2" /> dan <InlineMath math="B = y^2" />.
+<BlockMath math="\begin{aligned}(2x^2-y^2)^2 &amp;=(2x^2)^2-2(2x^2)(y^2)+(y^2)^2 \\ &amp;=4x^4-4x^2y^2+y^4\end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(2x^2-y^2)^2 \\ &amp;=(2x^2)^2-2(2x^2)(y^2)+(y^2)^2 \end{aligned}" />
-     <BlockMath math="= 4x^4 - 4x^2y^2 + y^4" />
-   </MathContainer>
+Hasilnya sama dengan ruas kanan untuk semua nilai variabel. Jadi, persamaan ini adalah **identitas polinomial**.
 
-   Karena hasil penguraian ruas kiri (<InlineMath math="4x^4 - 4x^2y^2 + y^4" />) sama persis dengan ruas kanan, maka persamaan ini **terbukti merupakan identitas polinomial**.
+**Contoh 2**. Uji <InlineMath math="a=0" /> pada kedua ruas:
 
-2. Kita coba masukkan satu nilai variabel, misalnya <InlineMath math="a = 0" />, ke kedua ruas.
+<BlockMath math="\begin{aligned}(2(0)-5)(2(0)+5)&amp;=(-5)(5)=-25 \\ 4(0)^2-20(0)+25&amp;=25\end{aligned}" />
 
-   - **Ruas Kiri:**
+Ruas kiri bernilai <InlineMath math="-25" />, sedangkan ruas kanan bernilai <InlineMath math="25" />. Satu perbedaan ini cukup untuk menyimpulkan bahwa persamaan tersebut **bukan identitas**. Bentuk yang benar adalah:
 
-     <MathContainer>
-       <BlockMath math="\begin{aligned} &amp;(2a - 5)(2a + 5) \\ &amp;= (2(0) - 5)(2(0) + 5) \end{aligned}" />
-       <BlockMath math="= (0 - 5)(0 + 5)" />
-       <BlockMath math="= (-5)(5)" />
-       <BlockMath math="= -25" />
-     </MathContainer>
-
-   - **Ruas Kanan:**
-
-     <MathContainer>
-       <BlockMath math="\begin{aligned} &amp;4a^2 - 20a + 25 \\ &amp;= 4(0)^2 - 20(0) + 25 \end{aligned}" />
-       <BlockMath math="= 4(0) - 0 + 25" />
-       <BlockMath math="= 0 - 0 + 25" />
-       <BlockMath math="= 25" />
-     </MathContainer>
-
-   Karena untuk <InlineMath math="a = 0" />, ruas kiri (<InlineMath math="-25" />) tidak sama dengan ruas kanan (<InlineMath math="25" />), maka persamaan ini **bukan merupakan identitas polinomial**.
-
-   Identitas yang benar untuk <InlineMath math="(2a-5)(2a+5)" /> adalah <InlineMath math="(2a)^2 - 5^2 = 4a^2 - 25" />, dengan menggunakan <InlineMath math="(A-B)(A+B)=A^2-B^2" />.
+<BlockMath math="(2a-5)(2a+5)=(2a)^2-5^2=4a^2-25" />
 
 ## Latihan
 
-Buktikan apakah setiap persamaan polinomial berikut merupakan identitas polinomial atau bukan. Satu nilai yang membuat persamaannya tidak berlaku sudah cukup untuk menunjukkan bahwa persamaan itu bukan identitas, sedangkan untuk identitas perlu menjabarkan kedua ruasnya.
+Tentukan apakah setiap persamaan merupakan identitas. Buktikan dengan **penguraian yang berlaku untuk semua nilai**, atau berikan satu contoh penyangkal.
 
-1. <InlineMath math="(2m - 3)^3 = 8m^3 - 27" />
-2. <InlineMath math="(2x - 3)^2 + 5 = 4x^2 - 12x + 14" />
+Jika kedua ruas kebetulan sama untuk satu nilai, kamu belum membuktikan identitas. Misalnya, kedua ruas pada soal pertama sama ketika variabel bernilai nol, tetapi masih mungkin berbeda untuk nilai lain.
+
+1. <InlineMath math="(2m-3)^3=8m^3-27" />
+2. <InlineMath math="(2x-3)^2+5=4x^2-12x+14" />
 
 ### Kunci Jawaban
 
-1. Kita uji dengan nilai <InlineMath math="m = 1" />.
+**Soal 1**. Pilih <InlineMath math="m=1" />:
 
-   - **Ruas Kiri:**
+<BlockMath math="\begin{aligned}(2(1)-3)^3&amp;=(-1)^3=-1 \\ 8(1)^3-27&amp;=8-27=-19\end{aligned}" />
 
-     <MathContainer>
-       <BlockMath math="(2m - 3)^3 = (2(1) - 3)^3" />
-       <BlockMath math="= (2 - 3)^3" />
-       <BlockMath math="= (-1)^3" />
-       <BlockMath math="= -1" />
-     </MathContainer>
+Karena kedua ruas berbeda, persamaan ini **bukan identitas**. Suku campuran dalam kubus selisih tidak boleh dihilangkan:
 
-   - **Ruas Kanan:**
+<BlockMath math="\begin{aligned}(2m-3)^3&amp;=(2m)^3-3(2m)^2(3)+3(2m)(3)^2-3^3 \\ &amp;=8m^3-36m^2+54m-27\end{aligned}" />
 
-     <MathContainer>
-       <BlockMath math="8m^3 - 27 = 8(1)^3 - 27" />
-       <BlockMath math="= 8(1) - 27" />
-       <BlockMath math="= 8 - 27" />
-       <BlockMath math="= -19" />
-     </MathContainer>
+**Soal 2**. Uraikan kuadrat selisih dan tetap tambahkan konstanta <InlineMath math="5" />:
 
-   Karena untuk <InlineMath math="m=1" />, ruas kiri (<InlineMath math="-1" />) <InlineMath math="\neq" /> ruas kanan (<InlineMath math="-19" />), maka persamaan ini **bukan identitas polinomial**.
+<BlockMath math="\begin{aligned}(2x-3)^2+5&amp;=(2x)^2-2(2x)(3)+3^2+5 \\ &amp;=4x^2-12x+9+5 \\ &amp;=4x^2-12x+14\end{aligned}" />
 
-   Identitas yang benar adalah <InlineMath math="(2m-3)^3 = (2m)^3 - 3(2m)^2(3) + 3(2m)(3)^2 - 3^3 = 8m^3 - 36m^2 + 54m - 27" />.
-
-2. Kita uraikan ruas kiri menggunakan identitas <InlineMath math="(A - B)^2 = A^2 - 2AB + B^2" />, dengan <InlineMath math="A = 2x" /> dan <InlineMath math="B = 3" />.
-
-   Namai hasil perluasan kuadrat sebagai <InlineMath math="B" />, lalu pertahankan konstanta tambahannya:
-
-   <MathContainer>
-     <BlockMath math="B=(2x)^2-2(2x)(3)+(3)^2" />
-
-     <BlockMath math="(2x-3)^2+5=B+5" />
-     <BlockMath math="= [4x^2 - 12x + 9] + 5" />
-     <BlockMath math="= 4x^2 - 12x + 9 + 5" />
-     <BlockMath math="= 4x^2 - 12x + 14" />
-   </MathContainer>
-
-   Karena hasil penguraian ruas kiri (<InlineMath math="4x^2 - 12x + 14" />) sama persis dengan ruas kanan, maka persamaan ini **terbukti merupakan identitas polinomial**.
+Hasilnya sama dengan ruas kanan untuk semua nilai variabel. Jadi, persamaan ini adalah **identitas polinomial**.

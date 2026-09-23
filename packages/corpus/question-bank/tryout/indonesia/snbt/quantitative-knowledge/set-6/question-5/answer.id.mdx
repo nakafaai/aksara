@@ -5,38 +5,23 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Diketahui persamaan <InlineMath math="x^2 + y^2 = 169" /> dengan <InlineMath math="x" /> dan <InlineMath math="y" /> bilangan bulat. Nilai <InlineMath math="169" /> adalah kuadrat dari <InlineMath math="13" /> (<InlineMath math="13^2 = 169" />). Pasangan bilangan bulat <InlineMath math="(x, y)" /> yang memenuhi persamaan lingkaran ini dapat dicari dengan menggunakan tripel Pythagoras atau sifat kuadrat sempurna.
+Kita perlu mencari **semua pasangan bilangan bulat**, bukan hanya satu tripel Pythagoras. Karena kuadrat tidak bergantung pada tanda, misalkan <InlineMath math="u=\min(|x|,|y|)" /> dan <InlineMath math="v=\max(|x|,|y|)" />. Maka <InlineMath math="2u^2\le169" />, sehingga cukup memeriksa <InlineMath math="u=0,1,\ldots,9" />. Nilai <InlineMath math="169-u^2" /> harus berupa **kuadrat sempurna**.
 
-Pasangan-pasangan yang mungkin adalah:
+| <InlineMath math="u" /> | <InlineMath math="169-u^2" /> | <InlineMath math="v" /> |
+| --- | --- | --- |
+| 0 | 169 | 13 |
+| 1 | 168 | Bukan bilangan bulat |
+| 2 | 165 | Bukan bilangan bulat |
+| 3 | 160 | Bukan bilangan bulat |
+| 4 | 153 | Bukan bilangan bulat |
+| 5 | 144 | 12 |
+| 6 | 133 | Bukan bilangan bulat |
+| 7 | 120 | Bukan bilangan bulat |
+| 8 | 105 | Bukan bilangan bulat |
+| 9 | 88 | Bukan bilangan bulat |
 
-1. Jika salah satu variabel bernilai <InlineMath math="0" />, maka variabel lainnya <InlineMath math="\pm 13" />. Pasangan: <InlineMath math="(13,0)" />, <InlineMath math="(-13,0)" />, <InlineMath math="(0,13)" />, <InlineMath math="(0,-13)" />. Nilai <InlineMath math="x + y" /> yang mungkin:
+Jadi, nilai mutlak pasangan tersebut hanya <InlineMath math="(0,13)" /> atau <InlineMath math="(5,12)" />, termasuk pertukaran posisi. Untuk pasangan pertama, jumlahnya <InlineMath math="\pm13" />. Untuk pasangan kedua, kita periksa kedua tanda:
 
-   <BlockMath math="\pm 13 + 0 = \pm 13" />
+<BlockMath math="\begin{aligned}5+12&=17\\5-12&=-7\\-5+12&=7\\-5-12&=-17\end{aligned}" />
 
-2. Jika kedua variabel bukan nol, kita mencari kombinasi kuadrat yang jumlahnya <InlineMath math="169" />. Pasangan tripel Pythagoras yang melibatkan <InlineMath math="13" /> sebagai sisi miring adalah <InlineMath math="(5, 12, 13)" /> karena <InlineMath math="5^2+12^2=169" />. Pasangan <InlineMath math="(x, y)" /> yang mungkin (termasuk nilai negatif): <InlineMath math="(\pm 5, \pm 12)" /> dan <InlineMath math="(\pm 12, \pm 5)" />. Nilai <InlineMath math="x + y" /> yang mungkin dari kombinasi ini:
-
-   <BlockMath math="\begin{aligned} 5 + 12 &= 17 \\ 5 + (-12) &= -7 \\ -5 + 12 &= 7 \\ -5 + (-12) &= -17 \end{aligned}" />
-
-   Jadi, nilai <InlineMath math="x + y" /> bisa bernilai <InlineMath math="\pm 17" /> atau <InlineMath math="\pm 7" />.
-
-Kumpulan semua nilai <InlineMath math="x + y" /> yang mungkin adalah <InlineMath math="\{\pm 13, \pm 17, \pm 7\}" />.
-
-#### Analisis Pernyataan Pertama
-
-Nilai <InlineMath math="\pm 7" /> termasuk dalam himpunan solusi. Pernyataan 1 **BENAR**.
-
-#### Analisis Pernyataan Kedua
-
-Nilai <InlineMath math="\pm 10" /> **TIDAK** termasuk dalam himpunan solusi. Pernyataan 2 **SALAH**.
-
-#### Analisis Pernyataan Ketiga
-
-Nilai <InlineMath math="\pm 13" /> termasuk dalam himpunan solusi. Pernyataan 3 **BENAR**.
-
-#### Analisis Pernyataan Keempat
-
-Nilai <InlineMath math="\pm 14" /> **TIDAK** termasuk dalam himpunan solusi. Pernyataan 4 **SALAH**.
-
-#### Pernyataan Persamaan yang Benar
-
-Pernyataan yang benar adalah **(1) dan (3)**.
+Semua jumlah yang mungkin adalah <InlineMath math="\{-17,-13,-7,7,13,17\}" />. Nilai <InlineMath math="\pm10" /> dan <InlineMath math="\pm14" /> tidak termasuk, sehingga hanya **pernyataan 1 dan 3** yang benar.

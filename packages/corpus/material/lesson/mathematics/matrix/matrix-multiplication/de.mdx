@@ -25,7 +25,7 @@ Die Formatprüfung passt in eine Zeile: Aus <InlineMath math="A\in\mathbb{R}^{m\
 
 ### Einträge der Ergebnismatrix berechnen
 
-Für den Eintrag <InlineMath math="c_{ij}" /> der Matrix <InlineMath math="C" />, also den Eintrag in Zeile <InlineMath math="i" /> und Spalte <InlineMath math="j" />, multipliziert man die Einträge der <InlineMath math="i" />-ten Zeile von <InlineMath math="A" /> mit den zugehörigen Einträgen der <InlineMath math="j" />-ten Spalte von <InlineMath math="B" /> und addiert die Produkte.
+Für den Eintrag <InlineMath math="c_{ij}" /> der Matrix <InlineMath math="C" />, also den Eintrag in Zeile <InlineMath math="i" /> und Spalte <InlineMath math="j" />, multipliziert man die Einträge der <InlineMath math="i" />-ten Zeile von <InlineMath math="A" /> mit den zugehörigen Einträgen der <InlineMath math="j" />-ten Spalte von <InlineMath math="B" /> und **addiert die Produkte**.
 
 Für <InlineMath math="A = [a_{ik}]" /> und <InlineMath math="B = [b_{kj}]" /> lautet der Eintrag <InlineMath math="c_{ij}" /> der Matrix <InlineMath math="C = AB" /> daher:
 
@@ -34,10 +34,9 @@ Für <InlineMath math="A = [a_{ik}]" /> und <InlineMath math="B = [b_{kj}]" /> l
 Das Zeichen <InlineMath math="\sum" /> steht für eine Summe.
 
 In der Formel werden die Produkte <InlineMath math="a_{ik}b_{kj}" /> für alle Werte von <InlineMath math="k" /> zwischen <InlineMath math="1" /> und <InlineMath math="n" /> addiert.
-
 ## Schritte zum Multiplizieren von Matrizen
 
-Im folgenden Beispiel ist jedes Element der Matrix <InlineMath math="R" /> das Skalarprodukt einer Zeile von <InlineMath math="P" /> mit einer Spalte von <InlineMath math="Q" />.
+Im folgenden Beispiel ist jedes Element der Matrix <InlineMath math="R" /> das **Skalarprodukt** einer Zeile von <InlineMath math="P" /> mit einer Spalte von <InlineMath math="Q" />.
 
 Die beiden Matrizen lauten:
 
@@ -58,7 +57,6 @@ Die Elemente der Matrix <InlineMath math="R" /> werden wie folgt berechnet:
   <BlockMath math="\begin{aligned} r_{21} &amp;= (\text{Zeile 2 von } P) \\ &amp;\quad\cdot (\text{Spalte 1 von } Q) \\ &amp;= p_{21}q_{11} + p_{22}q_{21} \end{aligned}" />
   <BlockMath math="\begin{aligned} r_{22} &amp;= (\text{Zeile 2 von } P) \\ &amp;\quad\cdot (\text{Spalte 2 von } Q) \\ &amp;= p_{21}q_{12} + p_{22}q_{22} \end{aligned}" />
 </MathContainer>
-
 ## Beispiel für die Multiplikation zweier Matrizen
 
 Gegeben sind zwei Matrizen:
@@ -137,7 +135,7 @@ Für die Matrixmultiplikation gelten die folgenden Regeln:
 
 ## Ertragsberechnung
 
-Mit einer Matrixmultiplikation lassen sich Mengentabellen und passende Preistabellen verbinden. Die Zeilen- und Spaltenbezeichnungen legen fest, welche Größen miteinander multipliziert und addiert werden. Passende Formate allein reichen daher nicht aus.
+Mit einer Matrixmultiplikation lassen sich Mengentabellen und passende Preistabellen verbinden. **Die Zeilen- und Spaltenbezeichnungen** legen fest, welche Größen miteinander multipliziert und addiert werden. Passende Formate allein reichen daher nicht aus.
 
 Ein kleiner Betrieb verkauft Tempeh-Chips, Bananenchips und Kartoffelchips an den Standorten A, B und C.
 
@@ -157,7 +155,9 @@ Von oben nach unten stehen die Einträge für die Preise von Tempeh-Chips, Banan
 
 Das Produkt <InlineMath math="PQ" /> ist zwar numerisch definiert, weil beide inneren Dimensionen <InlineMath math="3" /> sind, für dieses Modell ist es aber bedeutungslos. Die Spalten von <InlineMath math="P" /> stehen für Standorte, die Zeilen von <InlineMath math="Q" /> dagegen für Produkte. Diese Bezeichnungen passen nicht zusammen.
 
-Für den Umsatz je Standort transponieren wir den Preisvektor und multiplizieren <InlineMath math="Q^T" /> mit <InlineMath math="P" />. Das Produkt <InlineMath math="S = Q^T P" /> verbindet jeden Produktpreis mit den Verkaufszahlen desselben Produkts.
+### Umsatz je Standort
+
+Für den Umsatz je Standort transponieren wir den Preisvektor und multiplizieren <InlineMath math="Q^T" /> mit <InlineMath math="P" />. Das Produkt <InlineMath math="S = Q^T P" /> verbindet jeden Produktpreis mit den Verkaufszahlen **desselben Produkts**.
 
 Die Matrix <InlineMath math="Q^T" /> hat das Format <InlineMath math="1 \times 3" />, die Matrix <InlineMath math="P" /> das Format <InlineMath math="3 \times 3" />. Daher hat <InlineMath math="S" /> das Format <InlineMath math="1 \times 3" /> mit einem Eintrag für jeden Standort.
 
@@ -171,6 +171,7 @@ Die Matrix <InlineMath math="Q^T" /> hat das Format <InlineMath math="1 \times 3
 Damit ist <InlineMath math="S = \begin{bmatrix} 1{.}125{.}000 & 840{.}000 & 1{.}225{.}000 \end{bmatrix}" />.
 
 Der Gesamtumsatz beträgt somit <InlineMath math="\text{Rp }1{.}125{.}000" /> an Standort A, <InlineMath math="\text{Rp }840{.}000" /> an Standort B und <InlineMath math="\text{Rp }1{.}225{.}000" /> an Standort C.
+### Umsatz je Produkt
 
 Für den Umsatz je Produkt ist eine andere Multiplikation nötig. Zuerst summiert ein Einsvektor <InlineMath math="U" /> jede Zeile von <InlineMath math="P" />. Anschließend werden die Summen mit der aus <InlineMath math="Q" /> gebildeten diagonalen Preismatrix multipliziert.
 
@@ -184,7 +185,7 @@ Für den Umsatz je Produkt ist eine andere Multiplikation nötig. Zuerst summier
 
 Die Matrix <InlineMath math="R" /> enthält damit den Umsatz je Produkt: <InlineMath math="\text{Rp }940{.}000" /> für Tempeh-Chips, <InlineMath math="\text{Rp }750{.}000" /> für Bananenchips und <InlineMath math="\text{Rp }1{.}500{.}000" /> für Kartoffelchips.
 
-Es reicht also nicht, nur die Dimensionen abzugleichen. Bei einem sinnvollen Matrixprodukt müssen auch die Größen in den inneren Dimensionen dieselben Kategorien in derselben Reihenfolge beschreiben.
+Es reicht also nicht, nur die Dimensionen abzugleichen. Bei einem sinnvollen Matrixprodukt müssen auch die Größen in den inneren Dimensionen **dieselben Kategorien in derselben Reihenfolge** beschreiben.
 
 Hier liefern <InlineMath math="Q^T" /> und <InlineMath math="P" /> den Ertrag je Standort in <InlineMath math="S" />, während die diagonale Preismatrix und die Produktsummen den Ertrag je Produkt in <InlineMath math="R" /> ergeben. Das sind verschiedene Fragen und deshalb verschiedene Produkte.
 
@@ -197,40 +198,43 @@ Gegeben sind die folgenden Matrizen:
   <BlockMath math="D = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
 </MathContainer>
 
-Bestimme die Matrizen <InlineMath math="CD" /> und <InlineMath math="DC" />.
+**Bestimme** die Matrizen <InlineMath math="CD" /> und <InlineMath math="DC" />.
 
 Ist <InlineMath math="CD = DC" />?
-
 ### Ausführliche Lösungen
 
-1.  Berechnung von <InlineMath math="CD" />:
+**Produkt 1**
 
-    Die Matrix <InlineMath math="C" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="D" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
+Berechnung von <InlineMath math="CD" />:
 
-    <BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
-          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+Die Matrix <InlineMath math="C" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="D" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
+<BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
 
-      <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
 
-2.  Berechnung von <InlineMath math="DC" />:
+  <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
+  <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
+</MathContainer>
 
-    Die Matrix <InlineMath math="D" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="C" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
+**Produkt 2**
 
-    <BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
-          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+Berechnung von <InlineMath math="DC" />:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+Die Matrix <InlineMath math="D" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="C" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
 
-      <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
-      <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
+  <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
+</MathContainer>
 
 Die beiden Produkte unterscheiden sich. Daher gilt <InlineMath math="CD \neq DC" />, und die Matrixmultiplikation ist in diesem Beispiel nicht kommutativ.

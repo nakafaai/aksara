@@ -9,23 +9,22 @@ export const metadata = {
 
 ## Eine große Determinante in kleinere zerlegen
 
-<Highlight>Mit der Kofaktorentwicklung lässt sich die Determinante jeder quadratischen Matrix berechnen.</Highlight> Besonders nützlich ist sie bei Matrizen, die größer als <InlineMath math="2 \times 2" /> sind.
+Die Kofaktorentwicklung zerlegt die Determinante einer quadratischen Matrix in **kleinere Determinanten**. Besonders nützlich ist sie bei Matrizen, die größer als <InlineMath math="2 \times 2" /> sind.
 
 Die Idee dahinter: Wir zerlegen die große Determinante in kleinere Determinanten. Dazu multiplizieren wir ausgewählte Matrixelemente mit ihren Kofaktoren und addieren die Ergebnisse.
 
 ## Minor eines Matrixelements
 
-Zu jedem Element einer quadratischen Matrix gehört eine Unterdeterminante, der sogenannte Minor. Für das Element <InlineMath math="a_{ij}" /> in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte schreiben wir den Minor als <InlineMath math="M_{ij}" />.
+Zu jedem Element einer quadratischen Matrix gehört eine **Unterdeterminante**, der sogenannte Minor. Für das Element <InlineMath math="a_{ij}" /> in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte schreiben wir den Minor als <InlineMath math="M_{ij}" />.
 
 Um <InlineMath math="M_{ij}" /> zu bestimmen, streichen wir in der ursprünglichen Matrix die gesamte <InlineMath math="i" />-te Zeile und die gesamte <InlineMath math="j" />-te Spalte. Die Determinante der übrig gebliebenen Untermatrix ist der Minor <InlineMath math="M_{ij}" />.
-
 ### Einen Minor bestimmen
 
 Betrachten wir die folgende <InlineMath math="3 \times 3" />-Matrix <InlineMath math="A" />:
 
 <BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}" />
 
-Für den Minor des Elements <InlineMath math="a_{22}" />, also <InlineMath math="M_{22}" />, streichen wir die zweite Zeile und die zweite Spalte der Matrix <InlineMath math="A" />:
+Für den Minor des Elements <InlineMath math="a_{22}" />, also <InlineMath math="M_{22}" />, streichen wir die **zweite Zeile und die zweite Spalte** der Matrix <InlineMath math="A" />:
 
 Das sieht so aus:
 
@@ -38,14 +37,13 @@ Das sieht so aus:
 Der Minor <InlineMath math="M_{22}" /> ist die Determinante dieser Untermatrix:
 
 <BlockMath math="\begin{aligned} M_{22} &amp;= \det \begin{pmatrix} a_{11} &amp; a_{13} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{11} \times a_{33}) - (a_{13} \times a_{31}) \end{aligned}" />
-
 ## Kofaktor eines Matrixelements
 
 Aus dem Minor entsteht der Kofaktor. Den Kofaktor eines Elements <InlineMath math="a_{ij}" /> bezeichnen wir mit <InlineMath math="k_{ij}" /> oder <InlineMath math="C_{ij}" />. Er wird aus dem zugehörigen Minor berechnet:
 
 <BlockMath math="k_{ij} = (-1)^{i+j} M_{ij}" />
 
-Der Faktor <InlineMath math="(-1)^{i+j}" /> bestimmt das Vorzeichen des Kofaktors:
+Der Faktor <InlineMath math="(-1)^{i+j}" /> bestimmt das **Vorzeichen vor dem Minor**:
 
 - Ist <InlineMath math="i+j" /> gerade, gilt <InlineMath math="(-1)^{i+j} = 1" />. Dann ist <InlineMath math="k_{ij} = M_{ij}" />.
 - Ist <InlineMath math="i+j" /> ungerade, gilt <InlineMath math="(-1)^{i+j} = -1" />. Dann ist <InlineMath math="k_{ij} = -M_{ij}" />.
@@ -58,7 +56,7 @@ Das Vorzeichen zeigt, ob der Kofaktor dem Minor entspricht (Vorzeichen <InlineMa
 
 ### Einen Kofaktor bestimmen
 
-Wir setzen das Beispiel mit der Matrix <InlineMath math="A" /> und dem bereits bestimmten Minor <InlineMath math="M_{22}" /> fort.
+Wir setzen das Beispiel mit der Matrix <InlineMath math="A" /> und dem bereits bestimmten **Minor** <InlineMath math="M_{22}" /> fort.
 
 Der Kofaktor des Elements <InlineMath math="a_{22}" /> ist <InlineMath math="k_{22}" />.
 
@@ -75,7 +73,6 @@ Zuerst bestimmen wir den Minor <InlineMath math="M_{12}" />. Dazu streichen wir 
 Anschließend berücksichtigen wir das Vorzeichen. Für <InlineMath math="a_{12}" /> gelten <InlineMath math="i=1" /> und <InlineMath math="j=2" />, also ist <InlineMath math="i+j = 1+2 = 3" /> ungerade.
 
 <BlockMath math="\begin{aligned} k_{12} &amp;= (-1)^{1+2} M_{12} \\ &amp;= (-1) M_{12} \\ &amp;= -M_{12} \end{aligned}" />
-
 ## Die Determinante durch Kofaktorentwicklung berechnen
 
 Für die Kofaktorentwicklung wählen wir eine Zeile oder Spalte der Matrix <InlineMath math="A" />. Ihre Determinante schreiben wir als <InlineMath math="\det(A)" /> oder <InlineMath math="|A|" />.
@@ -118,26 +115,26 @@ Die Elemente der ersten Zeile von <InlineMath math="P" /> sind:
 
 Nun bestimmen wir die Kofaktoren <InlineMath math="k_{11}" />, <InlineMath math="k_{12}" /> und <InlineMath math="k_{13}" />.
 
-1.  **Berechnung von <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, also ist <InlineMath math="i+j=2" /> gerade):
+**Berechnung von <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, also ist <InlineMath math="i+j=2" /> gerade):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
-      <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
+  <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
+</MathContainer>
 
-2.  **Berechnung von <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, also ist <InlineMath math="i+j=3" /> ungerade):
+**Berechnung von <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, also ist <InlineMath math="i+j=3" /> ungerade):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
-      <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
+  <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
+</MathContainer>
 
-3.  **Berechnung von <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, also ist <InlineMath math="i+j=4" /> gerade):
+**Berechnung von <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, also ist <InlineMath math="i+j=4" /> gerade):
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
-      <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
+  <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
+</MathContainer>
 
 Zum Schluss setzen wir die drei Kofaktoren in die Determinantenformel ein:
 
@@ -150,3 +147,5 @@ Zum Schluss setzen wir die drei Kofaktoren in die Determinantenformel ein:
 </MathContainer>
 
 Die Determinante der Matrix <InlineMath math="P" /> ist also <InlineMath math="-12" />.
+
+Beachte <InlineMath math="k_{12}=(-1)(-2)=2" />. Eine Position mit Minuszeichen kann einen **positiven Kofaktor** ergeben, wenn der Minor negativ ist. Beim Einsetzen in die Summe darfst du das Minuszeichen nicht noch einmal anwenden.

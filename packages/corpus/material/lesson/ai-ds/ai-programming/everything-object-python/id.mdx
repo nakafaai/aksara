@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bandingkan procedural, functional, dan object oriented programming, lalu periksa atribut serta method pada objek Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-26",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -17,11 +17,11 @@ Tipe sebuah objek menentukan atribut dan method yang tersedia. Karena aturan ini
 
 ## Membandingkan Cara Menyusun Program
 
-Model objek yang sama mendukung beberapa cara menyusun program. Gaya procedural menyusun langkah dan aliran data secara berurutan, gaya fungsional menyusun komputasi dari fungsi yang dipanggil berlapis, dan gaya berorientasi objek menyimpan data bersama operasi yang mengolahnya. Mengenali ketiganya membantumu menebak arah alur program saat membaca kode orang lain.
+Model objek yang sama mendukung beberapa cara menyusun program. Gaya procedural menyusun langkah dan aliran data secara berurutan, gaya fungsional menyusun komputasi dari fungsi yang dipanggil berlapis, dan gaya berorientasi objek **menyimpan data bersama operasi** yang mengolahnya. Mengenali ketiganya membantumu menebak arah alur program saat membaca kode orang lain.
 
 ### Procedural Programming
 
-Dalam procedural programming, program disusun sebagai rangkaian operasi dengan aliran data yang jelas. Struktur data dan fungsi yang mengolahnya dapat ditulis secara terpisah, termasuk dalam bahasa yang mendukung class.
+Dalam procedural programming, program disusun sebagai **rangkaian operasi** dengan aliran data yang jelas. Struktur data dan fungsi yang mengolahnya dapat ditulis secara terpisah, termasuk dalam bahasa yang mendukung class.
 
 <CodeBlock
   data={[{
@@ -62,7 +62,7 @@ Di sini, `struct` C menyimpan state parkir. Setiap fungsi menerima pointer ke da
 
 ### Object Oriented Programming
 
-Dalam object-oriented programming, class mengelompokkan data dan operasi yang saling berkaitan. Atribut menyimpan state objek, sedangkan method membaca atau memperbarui state tersebut.
+Dalam object-oriented programming, class **mengelompokkan data dan operasi** yang saling berkaitan. Atribut menyimpan state objek, sedangkan method membaca atau memperbarui state tersebut.
 
 <CodeBlock
   data={[{
@@ -93,9 +93,19 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
 
 Versi Python menyimpan aturan dan operasi parkir dalam satu class. Method `occupy` memeriksa kapasitas saat dipanggil. Namun, kode dari luar masih dapat mengubah atribut `max` dan `occ` secara langsung. Jadi, contoh singkat ini belum sepenuhnya melindungi state objek.
 
+### Functional Programming
+
+Fungsi murni menghitung **hasil dari input tanpa mengubah state**. Pada versi ini, kapasitas dan jumlah kendaraan diberikan sebagai argumen, lalu fungsi mengembalikan jumlah tempat kosong.
+
+<CodeBlock data={[{ language: "python", filename: "functional_parking.py", code: `def available_spaces(capacity, occupied):
+    return capacity - occupied
+
+print(available_spaces(100, 1))
+# Output: 99` }]} />
+
 ## Sistem Parkir sebagai Contoh
 
-Pada contoh ini, state objek menyimpan kapasitas maksimum dan jumlah tempat yang terisi. Method `occupy` mencatat mobil yang masuk, sedangkan `leave` mencatat mobil yang keluar.
+Pada contoh ini, state objek menyimpan **kapasitas maksimum dan jumlah tempat yang terisi**. Method `occupy` mencatat mobil yang masuk, sedangkan `leave` mencatat mobil yang keluar.
 
 <CodeBlock
   data={[{
@@ -104,8 +114,8 @@ Pada contoh ini, state objek menyimpan kapasitas maksimum dan jumlah tempat yang
     code: `class ParkingSystem:
     def __init__(self, capacity):
         """Inisialisasi sistem parkir dengan kapasitas tertentu"""
-        if capacity <= 0:
-            raise ValueError("Kapasitas harus positif")
+        if type(capacity) is not int or capacity <= 0:
+            raise ValueError("Kapasitas harus berupa bilangan bulat positif")
         self.capacity = capacity
         self.vehicles = []  # List kendaraan yang parkir
 
@@ -157,7 +167,7 @@ print(parking.is_full())`
 
 ### Angka adalah Objek
 
-Bilangan bulat adalah objek yang punya method. Contoh berikut memanggil `bit_length()` pada `42` lalu mencetak hasilnya.
+Bilangan bulat adalah **objek yang punya method**. Contoh berikut memanggil `bit_length()` pada `42` lalu mencetak hasilnya.
 
 <CodeBlock
   data={[{
@@ -178,13 +188,13 @@ print(price.as_integer_ratio())  # Method untuk mengubah nilai menjadi rasio
 # Bahkan hasil operasi matematika adalah objek
 result = 10 + 5
 print(type(result))         # <class 'int'>
-print(dir(result))          # Melihat semua method yang tersedia`
+print(dir(result))          # Menampilkan nama atribut untuk eksplorasi`
   }]}
 />
 
 ### String adalah Objek
 
-String adalah objek dengan method yang menghasilkan nilai baru. Contoh berikut memanggil beberapa method string pada satu teks.
+String adalah objek dengan method yang **menghasilkan nilai baru**. Contoh berikut memanggil beberapa method string pada satu teks.
 
 <CodeBlock
   data={[{
@@ -222,7 +232,7 @@ print(rejoined)`
 
 ### List adalah Objek
 
-List adalah objek yang method-nya mengubah isinya. Contoh berikut berawal dari daftar buah lalu memanggil method list.
+List menyediakan **method yang mengubah isi** seperti `append()`, serta method pembacaan seperti `count()` yang tidak mengubah list. Contoh berikut berawal dari daftar buah lalu memanggil method list.
 
 <CodeBlock
   data={[{
@@ -267,7 +277,7 @@ print(f"Copy: {copy_list}")`
 
 ### Dictionary adalah Objek
 
-Dictionary adalah objek dengan method untuk membaca dan memperbarui pasangannya. Contoh berikut memakai data seorang mahasiswa untuk memanggil method tersebut.
+Dictionary adalah objek dengan method untuk **membaca dan memperbarui** pasangannya. Contoh berikut memakai data seorang mahasiswa untuk memanggil method tersebut.
 
 <CodeBlock
   data={[{
@@ -318,7 +328,7 @@ print(university["students"]["CS"])`
 
 ## Fungsi sebagai Objek
 
-Fungsi dapat diberikan sebagai argumen, disimpan di dalam collection, dan ditempatkan pada variabel seperti nilai lain.
+Fungsi dapat **diberikan sebagai argumen**, disimpan di dalam collection, dan ditempatkan pada variabel seperti nilai lain.
 
 <CodeBlock
   data={[{
@@ -378,7 +388,7 @@ print(square(5))                    # 25`
 
 ## Class dan Instance sebagai Objek
 
-Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga merupakan objek, sedangkan setiap instance menyimpan state masing-masing.
+Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga merupakan objek, sedangkan **setiap instance menyimpan state masing-masing**.
 
 <CodeBlock
   data={[{
@@ -407,7 +417,7 @@ class Student:
             'name': self.name,
             'major': self.major,
             'semester': self.semester,
-            'courses': self.courses,
+            'courses': tuple(self.courses),
             'university': self.university
         }
 
@@ -452,7 +462,7 @@ print(Student.university)           # Universitas Indonesia`
 
 ## Special Methods
 
-Nama special method dimulai dan diakhiri dengan double underscore, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi tersebut memang masuk akal untuk objek yang dibuat.
+Nama special method dimulai dan diakhiri dengan **double underscore**, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi tersebut memang masuk akal untuk objek yang dibuat.
 
 <CodeBlock
   data={[{
@@ -513,7 +523,15 @@ print(bool(nol))                       # False`
 
 ## Praktik Object Oriented Programming
 
-Contoh berikut menggabungkan beberapa class untuk memodelkan buku, anggota, dan proses peminjaman di perpustakaan.
+Contoh berikut menggabungkan beberapa class untuk memodelkan **buku, anggota, dan proses peminjaman** di perpustakaan.
+
+| Tahap | Buku pertama | Pinjaman Alice |
+| --- | --- | --- |
+| Sebelum peminjaman | Tersedia, tanpa peminjam | Kosong |
+| Setelah `borrow_book()` | Dipinjam oleh Alice | Memuat buku pertama |
+| Setelah `return_book()` | Tersedia kembali | Kosong |
+
+Judul, penulis, dan kode buku pada contoh ini adalah data latihan. Daftar buku dan anggota tetap berupa atribut publik. Contoh mengajarkan hubungan objek, bukan penyimpanan multiuser.
 
 <CodeBlock
   data={[{
@@ -565,7 +583,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Anggota tidak ditemukan"
 
         # Cari buku
@@ -575,7 +593,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Buku tidak tersedia"
 
         # Proses peminjaman
@@ -593,7 +611,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Anggota tidak ditemukan"
 
         book = None
@@ -602,7 +620,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Buku tidak ditemukan dalam daftar pinjaman"
 
         # Proses pengembalian
@@ -621,7 +639,7 @@ class Library:
         """Mendapatkan daftar buku yang dipinjam anggota"""
         for member in self.members:
             if member.member_id == member_id:
-                return member.borrowed_books
+                return list(member.borrowed_books)
         return []
 
 # Contoh penggunaan sistem perpustakaan

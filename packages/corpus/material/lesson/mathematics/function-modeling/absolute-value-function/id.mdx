@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Fungsi Nilai Mutlak",
     description: "Tentukan bentuk fungsi nilai mutlak, lacak perubahan grafik fungsi, lalu selesaikan persamaan dan soal terkait.",
@@ -18,34 +17,54 @@ Untuk sebarang bilangan real <InlineMath math="x" />, fungsi nilai mutlak didefi
 
 <BlockMath math="f(x) = |x| = \begin{cases} x, & \text{jika } x \geq 0 \\ -x, & \text{jika } x < 0 \end{cases}" />
 
-**Komponen fungsi nilai mutlak:**
+**Komponen fungsi nilai mutlak**:
 
 - Simbol <InlineMath math="|x|" /> dibaca nilai mutlak dari <InlineMath math="x" />.
 - Hasil fungsi selalu non-negatif (<InlineMath math="|x| \geq 0" />)
 - Fungsi ini bersifat genap: <InlineMath math="|-x| = |x|" />
 
+Definisi ini membagi masukan berdasarkan **tanda bilangan**. Untuk masukan negatif, tanda minus di depan masukan menghasilkan jarak positif.
+
+<BlockMath math="|-3|=-(-3)=3,\qquad|3|=3" />
+
 ## Sifat Fungsi Nilai Mutlak
 
-**Sifat dasar:**
+**Sifat dasar**:
 
 <MathContainer>
-  <BlockMath math="|x| \geq 0 \text{ untuk semua } x \in \mathbb{R}" />
-  <BlockMath math="|-x| = |x|" />
-  <BlockMath math="|x|^2 = x^2" />
-  <BlockMath math="|xy| = |x| \cdot |y|" />
-  <BlockMath math="\left|\frac{x}{y}\right| = \frac{|x|}{|y|}, \text{ dengan } y \neq 0" />
+
+<BlockMath math="|x| \geq 0 \text{ untuk semua } x \in \mathbb{R}" />
+
+<BlockMath math="|-x| = |x|" />
+
+<BlockMath math="|x|^2 = x^2" />
+
+<BlockMath math="|xy| = |x| \cdot |y|" />
+
+<BlockMath math="\left|\frac{x}{y}\right| = \frac{|x|}{|y|}, \text{ dengan } y \neq 0" />
 </MathContainer>
 
-**Sifat ketidaksamaan segitiga:**
+**Sifat ketidaksamaan segitiga**:
 
 <MathContainer>
-  <BlockMath math="|x + y| \leq |x| + |y|" />
-  <BlockMath math="||x| - |y|| \leq |x - y|" />
+
+<BlockMath math="|x + y| \leq |x| + |y|" />
+
+<BlockMath math="||x| - |y|| \leq |x - y|" />
+</MathContainer>
+
+Pada **ketidaksamaan segitiga**, jarak hasil penjumlahan paling besar sama dengan jumlah dua jarak. Ambil dua bilangan yang berlainan tanda.
+
+<MathContainer>
+
+<BlockMath math="|3+(-5)|=2\leq3+5=|3|+|-5|" />
+
+<BlockMath math="\bigl||3|-|-5|\bigr|=2\leq8=|3-(-5)|" />
 </MathContainer>
 
 ## Grafik Fungsi Nilai Mutlak
 
-Berikut adalah visualisasi fungsi nilai mutlak dasar:
+Berikut adalah visualisasi **fungsi nilai mutlak** dasar:
 
 <LineEquation
   title={
@@ -61,20 +80,21 @@ Berikut adalah visualisasi fungsi nilai mutlak dasar:
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x), z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 15, offset: [-0.8, -3.4, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 10, offset: [-0.8, -3.4, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Tabel nilai fungsi <InlineMath math="f(x) = |x|" />:**
+Tabel nilai fungsi <InlineMath math="f(x) = |x|" />:
 
 | <InlineMath math="x" /> | <InlineMath math="-4" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
@@ -82,11 +102,11 @@ Berikut adalah visualisasi fungsi nilai mutlak dasar:
 
 ## Transformasi Fungsi Nilai Mutlak
 
-Fungsi nilai mutlak dapat ditransformasi dengan berbagai cara. Peregangan atau pergeseran vertikal memindahkan seluruh bentuk V, sedangkan pencerminan atau pergeseran horizontal mengubah arah bukaannya. Setiap perubahan diterapkan pada fungsi dasar <InlineMath math="f(x) = |x|" />.
+**Pergeseran memindahkan titik puncak** tanpa mengubah arah bukaan. Peregangan mengubah kemiringan kedua lengan V. Pencerminan terhadap sumbu horizontal membalik bukaan ke bawah. Ketiga operasi ini dapat digabungkan pada fungsi dasar <InlineMath math="f(x)=|x|" />.
 
 ### Translasi Vertikal
 
-Fungsi <InlineMath math="f(x) = |x| + k" /> menggeser grafik ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+Fungsi <InlineMath math="f(x) = |x| + k" /> **menggeser grafik ke atas** (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
 
 <LineEquation
   title={<>Translasi Vertikal</>}
@@ -99,42 +119,43 @@ Fungsi <InlineMath math="f(x) = |x| + k" /> menggeser grafik ke atas (jika <Inli
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x), z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 8, offset: [1, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x) + 2, z: 0 };
       }),
       color: "#ea580c",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="g(x)=|x|+2" />, at: 12, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=|x|+2" />, at: 8, offset: [1, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x) - 2, z: 0 };
       }),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="h(x)=|x|-2" />, at: 12, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=|x|-2" />, at: 8, offset: [1, 0.5, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Translasi Horizontal
 
-Fungsi <InlineMath math="f(x) = |x - h|" /> menggeser grafik ke kanan (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
+Fungsi <InlineMath math="f(x) = |x - h|" /> **menggeser grafik ke kanan** (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
 
 <LineEquation
   title={<>Translasi Horizontal</>}
@@ -147,43 +168,44 @@ Fungsi <InlineMath math="f(x) = |x - h|" /> menggeser grafik ke kanan (jika <Inl
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x), z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [-2, -2.8, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 8, offset: [-2, -2.8, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x - 3), z: 0 };
       }),
       color: "#db2777",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="g(x)=|x-3|" />, at: 12, offset: [1, -3, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=|x-3|" />, at: 8, offset: [1, -3, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x + 3), z: 0 };
       }),
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="h(x)=|x+3|" />, at: 12, offset: [-5, -7, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=|x+3|" />, at: 8, offset: [-5, -2, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 1.5, 13]}
   cameraTarget={[0, 1.5, 0]}
 />
 
 ### Peregangan dan Penyusutan
 
-Fungsi <InlineMath math="f(x) = a|x|" /> mengubah kemiringan grafik:
+Fungsi <InlineMath math="f(x) = a|x|" /> **mengubah kemiringan grafik**:
 
 - Jika <InlineMath math="|a| > 1" />: grafik menjadi lebih curam
 - Jika <InlineMath math="0 < |a| < 1" />: grafik menjadi lebih landai
@@ -201,36 +223,37 @@ Perbandingan berikut memperlihatkan perubahan tersebut pada grafik:
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: Math.abs(x), z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 12, offset: [-4.5, -3.3, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=|x|" />, at: 8, offset: [-4.5, -1, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: 2 * Math.abs(x), z: 0 };
       }),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="g(x)=2|x|" />, at: 12, offset: [-2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2|x|" />, at: 8, offset: [-2, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = i - 10;
+      points: Array.from({ length: 13 }, (_, i) => {
+        const x = i - 6;
         return { x, y: 0.5 * Math.abs(x), z: 0 };
       }),
       color: "#e11d48",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="h(x)=0{,}5|x|" />, at: 12, offset: [1.2, -2.3, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0{,}5|x|" />, at: 8, offset: [1.2, -2.3, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
@@ -245,7 +268,7 @@ Pada bentuk umum ini:
 - <InlineMath math="k" />: translasi vertikal
 - Titik puncak (vertex) berada di <InlineMath math="(h, k)" />
 
-**Tabel transformasi:**
+**Tabel transformasi**:
 
 | Parameter                       | Nilai       | Efek pada Grafik    |
 | ------------------------------- | ----------- | ------------------- |
@@ -257,25 +280,31 @@ Pada bentuk umum ini:
 | <InlineMath math="k > 0" />     | Positif     | Geser ke atas       |
 | <InlineMath math="k < 0" />     | Negatif     | Geser ke bawah      |
 
+Untuk fungsi berbentuk V, faktor pengali memenuhi <InlineMath math="a\neq0" />. Jika faktor itu nol, grafik menjadi **garis mendatar** dan tidak memiliki satu titik puncak khusus.
+
 ## Persamaan dan Pertidaksamaan Nilai Mutlak
 
-**Menyelesaikan persamaan nilai mutlak:**
+**Menyelesaikan persamaan nilai mutlak**:
 
 Untuk menyelesaikan <InlineMath math="|x| = a" /> dengan <InlineMath math="a \geq 0" />:
 
 <MathContainer>
-  <BlockMath math="|x| = a \Rightarrow x = a \text{ atau } x = -a" />
+
+<BlockMath math="|x| = a \Rightarrow x = a \text{ atau } x = -a" />
 </MathContainer>
 
-**Contoh:** Selesaikan <InlineMath math="|x - 3| = 5" />
+**Contoh**: Selesaikan <InlineMath math="|x - 3| = 5" />
 
 <MathContainer>
-  <BlockMath math="|x - 3| = 5" />
-  <BlockMath math="x - 3 = 5 \text{ atau } x - 3 = -5" />
-  <BlockMath math="x = 8 \text{ atau } x = -2" />
+
+<BlockMath math="|x - 3| = 5" />
+
+<BlockMath math="x - 3 = 5 \text{ atau } x - 3 = -5" />
+
+<BlockMath math="x = 8 \text{ atau } x = -2" />
 </MathContainer>
 
-**Menyelesaikan pertidaksamaan nilai mutlak:**
+**Menyelesaikan pertidaksamaan nilai mutlak**:
 
 Untuk <InlineMath math="|x| < a" /> dengan <InlineMath math="a > 0" />:
 
@@ -287,7 +316,7 @@ Untuk <InlineMath math="|x| > a" /> dengan <InlineMath math="a > 0" />:
 
 ## Latihan
 
-Setiap soal memberikan persamaan atau pertidaksamaan nilai mutlak, jadi pisahkan dulu menjadi dua kasus yang diizinkan nilai mutlak sebelum menyelesaikannya.
+Kerjakan **nilai fungsi, dua kemungkinan tanda, dan perubahan titik puncak** sesuai informasi tiap soal. Pada soal jarak, kedua kota dimodelkan pada satu garis lurus.
 
 1. Tentukan nilai dari <InlineMath math="f(x) = |2x - 6|" /> untuk <InlineMath math="x = -1, 0, 3, 5" />
 
@@ -299,59 +328,74 @@ Setiap soal memberikan persamaan atau pertidaksamaan nilai mutlak, jadi pisahkan
 
 5. Jarak antara dua kota adalah <InlineMath math="150 \text{ km}" />. Jika kota <InlineMath math="A" /> berada di koordinat <InlineMath math="-50 \text{ km}" />, di mana letak kota <InlineMath math="B" />?
 
-### Pembahasan
+### Menghitung nilai fungsi untuk berbagai input
 
-1. **Menghitung nilai fungsi untuk berbagai input:**
+**Substitusi** setiap nilai <InlineMath math="x" /> ke dalam fungsi <InlineMath math="f(x) = |2x - 6|" />:
 
-   Substitusi setiap nilai <InlineMath math="x" /> ke dalam fungsi <InlineMath math="f(x) = |2x - 6|" />:
+<MathContainer>
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} f(-1) &amp;= |2(-1) - 6| \\ &amp;= |-2 - 6| \\ &amp;= |-8| \\ &amp;= 8 \end{aligned}" />
-     <BlockMath math="\begin{aligned} f(0) &amp;= |2(0) - 6| \\ &amp;= |0 - 6| \\ &amp;= |-6| \\ &amp;= 6 \end{aligned}" />
-     <BlockMath math="\begin{aligned} f(3) &amp;= |2(3) - 6| \\ &amp;= |6 - 6| \\ &amp;= |0| \\ &amp;= 0 \end{aligned}" />
-     <BlockMath math="\begin{aligned} f(5) &amp;= |2(5) - 6| \\ &amp;= |10 - 6| \\ &amp;= |4| \\ &amp;= 4 \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} f(-1) &amp;= |2(-1) - 6| \\ &amp;= |-2 - 6| \\ &amp;= |-8| \\ &amp;= 8 \end{aligned}" />
 
-2. **Menyelesaikan persamaan nilai mutlak:**
+<BlockMath math="\begin{aligned} f(0) &amp;= |2(0) - 6| \\ &amp;= |0 - 6| \\ &amp;= |-6| \\ &amp;= 6 \end{aligned}" />
 
-   Untuk persamaan <InlineMath math="|3x + 1| = 7" />, kita gunakan definisi nilai mutlak yang menghasilkan dua kemungkinan:
+<BlockMath math="\begin{aligned} f(3) &amp;= |2(3) - 6| \\ &amp;= |6 - 6| \\ &amp;= |0| \\ &amp;= 0 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="3x + 1 = 7 \quad \text{atau} \quad 3x + 1 = -7" />
-     <BlockMath math="3x = 6 \quad \text{atau} \quad 3x = -8" />
-     <BlockMath math="x = 2 \quad \text{atau} \quad x = -\frac{8}{3}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} f(5) &amp;= |2(5) - 6| \\ &amp;= |10 - 6| \\ &amp;= |4| \\ &amp;= 4 \end{aligned}" />
+</MathContainer>
 
-3. **Menyelesaikan pertidaksamaan nilai mutlak:**
+### Menyelesaikan persamaan nilai mutlak
 
-   Untuk <InlineMath math="|x - 2| < 4" />, kita gunakan sifat bahwa <InlineMath math="|a| < b" /> ekuivalen dengan <InlineMath math="-b < a < b" />:
+Untuk persamaan <InlineMath math="|3x + 1| = 7" />, kita gunakan definisi nilai mutlak yang menghasilkan **dua kemungkinan**:
 
-   <MathContainer>
-     <BlockMath math="-4 < x - 2 < 4" />
-     <BlockMath math="-4 + 2 < x < 4 + 2" />
-     <BlockMath math="-2 < x < 6" />
-   </MathContainer>
+<MathContainer>
 
-   Jadi himpunan penyelesaiannya adalah <InlineMath math="x \in (-2, 6)" />.
+<BlockMath math="3x + 1 = 7 \quad \text{atau} \quad 3x + 1 = -7" />
 
-4. **Menentukan titik puncak (vertex):**
+<BlockMath math="3x = 6 \quad \text{atau} \quad 3x = -8" />
 
-   Dari fungsi <InlineMath math="f(x) = 2|x - 3| + 1" />, kita dapat mengidentifikasi parameter:
+<BlockMath math="x = 2 \quad \text{atau} \quad x = -\frac{8}{3}" />
+</MathContainer>
 
-   - <InlineMath math="a = 2" /> (faktor peregangan)
-   - <InlineMath math="h = 3" /> (translasi horizontal)
-   - <InlineMath math="k = 1" /> (translasi vertikal)
+### Menyelesaikan pertidaksamaan nilai mutlak
 
-   Titik puncak berada di <InlineMath math="(h, k) = (3, 1)" />.
+Untuk <InlineMath math="|x - 2| < 4" />, kita gunakan sifat bahwa <InlineMath math="|a| < b" /> ekuivalen dengan <InlineMath math="-b < a < b" />:
 
-5. **Menghitung posisi berdasarkan jarak:**
+<MathContainer>
 
-   Diketahui jarak antara kota <InlineMath math="A" /> dan <InlineMath math="B" /> adalah <InlineMath math="150 \text{ km}" />, dengan kota <InlineMath math="A" /> di koordinat <InlineMath math="-50 \text{ km}" />. Misalkan kota <InlineMath math="B" /> berada di koordinat <InlineMath math="x_B" />:
+<BlockMath math="-4 < x - 2 < 4" />
 
-   <MathContainer>
-     <BlockMath math="|-50 - x_B| = 150" />
-     <BlockMath math="\begin{aligned} &amp;-50 - x_B = 150 \\ &amp;\text{atau} \\ &amp;-50 - x_B = -150 \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;x_B = -50 - 150 = -200 \\ &amp;\text{atau} \\ &amp;x_B = -50 + 150 = 100 \end{aligned}" />
-   </MathContainer>
+<BlockMath math="-4 + 2 < x < 4 + 2" />
 
-   Jadi kota <InlineMath math="B" /> dapat berada di koordinat <InlineMath math="100 \text{ km}" /> atau <InlineMath math="-200 \text{ km}" />.
+<BlockMath math="-2 < x < 6" />
+</MathContainer>
+
+Jadi **himpunan penyelesaiannya** adalah <InlineMath math="x \in (-2, 6)" />.
+
+### Menentukan titik puncak
+
+Dari fungsi <InlineMath math="f(x) = 2|x - 3| + 1" />, kita dapat **mengidentifikasi parameter**:
+
+- <InlineMath math="a = 2" /> (faktor peregangan)
+- <InlineMath math="h = 3" /> (translasi horizontal)
+- <InlineMath math="k = 1" /> (translasi vertikal)
+
+Titik puncak berada di <InlineMath math="(h, k) = (3, 1)" />.
+
+Nilai mutlak mencapai nilai minimum ketika ekspresi di dalamnya nol. Tentukan masukan itu, lalu hitung keluarannya untuk memperoleh kedua koordinat titik puncak.
+
+<BlockMath math="x-3=0 \Rightarrow x=3,\qquad f(3)=2|3-3|+1=1" />
+
+### Menghitung posisi berdasarkan jarak
+
+Diketahui **jarak antara kota** <InlineMath math="A" /> dan <InlineMath math="B" /> adalah <InlineMath math="150 \text{ km}" />, dengan kota <InlineMath math="A" /> di koordinat <InlineMath math="-50 \text{ km}" />. Misalkan kota <InlineMath math="B" /> berada di koordinat <InlineMath math="x_B" />:
+
+<MathContainer>
+
+<BlockMath math="|-50 - x_B| = 150" />
+
+<BlockMath math="\begin{aligned} &amp;-50 - x_B = 150 \\ &amp;\text{atau} \\ &amp;-50 - x_B = -150 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;x_B = -50 - 150 = -200 \\ &amp;\text{atau} \\ &amp;x_B = -50 + 150 = 100 \end{aligned}" />
+</MathContainer>
+
+Jadi kota <InlineMath math="B" /> dapat berada di koordinat <InlineMath math="100 \text{ km}" /> atau <InlineMath math="-200 \text{ km}" />.

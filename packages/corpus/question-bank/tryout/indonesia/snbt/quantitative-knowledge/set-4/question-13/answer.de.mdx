@@ -5,24 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Die Stellen folgen dem Muster Ziffer, Buchstabe, Ziffer, Buchstabe. Wir zählen die zulässigen Möglichkeiten an jeder Stelle und multiplizieren sie anschließend.
+Das Muster lautet Ziffer, Buchstabe, Ziffer, Buchstabe. Beachte beim Zählen das **Wiederholungsverbot**.
 
-#### Erste Ziffer
+| Position | Zulässige Zeichen | Anzahl |
+| --- | --- | --- |
+| Erste Ziffer | 1, 3, 5, 7, 9 | 5 |
+| Erster Buchstabe | E, I, U | 3 |
+| Zweite Ziffer | 2, 4, 6, 8 | 4 |
+| Zweiter Buchstabe | O | 1 |
 
-Für die erste Stelle kommen die ungeraden Ziffern <InlineMath math="1, 3, 5, 7, 9" /> infrage. Das sind <InlineMath math="5" /> Möglichkeiten.
+Der erste Buchstabe darf laut Aufgabe nicht A sein. Auch O entfällt, weil O bereits an letzter Stelle steht. Die zweite Ziffer ist gerade und unterscheidet sich daher immer von der ersten, ungeraden Ziffer.
 
-#### Erster Buchstabe
+Nach der **Multiplikationsregel** lässt sich jede Wahl mit allen zulässigen Wahlen an den anderen Stellen kombinieren:
 
-Der zweite Buchstabe steht bereits als <InlineMath math="O" /> fest. Da sich Buchstaben nicht wiederholen dürfen, kann der erste Buchstabe weder <InlineMath math="A" /> noch <InlineMath math="O" /> sein. Es bleiben <InlineMath math="E, I, U" />, also <InlineMath math="3" /> Möglichkeiten.
-
-#### Zweite Ziffer und zweiter Buchstabe
-
-Die zweite Ziffer stammt aus <InlineMath math="2, 4, 6, 8" /> und bietet damit <InlineMath math="4" /> Möglichkeiten. Sie kann nicht mit der ersten Ziffer übereinstimmen, weil die erste ungerade und die zweite gerade ist. Der letzte Buchstabe ist festgelegt und trägt daher <InlineMath math="1" /> Möglichkeit bei.
-
-#### Gesamtzahl
-
-Nach der Multiplikationsregel gilt:
-
-<BlockMath math="5 \times 3 \times 4 \times 1 = 60" />
-
-Damit erfüllen <InlineMath math="60" /> Passwörter alle Regeln.
+<BlockMath math="5\times3\times4\times1=60" />

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nach Einführung und Quellenangaben können Zuschauer künstlerische Entscheidungen von überlieferten Varianten unterscheiden.",
+            "Nach Einführung und Quellenangaben können Zuschauer künstlerische Entscheidungen von Varianten in den Aufnahmen unterscheiden.",
         },
         {
           isCorrect: false,

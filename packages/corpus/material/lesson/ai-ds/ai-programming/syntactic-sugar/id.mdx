@@ -3,19 +3,19 @@ export const metadata = {
   description: "Tulis ekspresi Python dengan list comprehension, lambda function, dan compound assignment.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## Penulisan Ringkas untuk Pola Kode yang Berulang
 
-<Highlight>Syntactic sugar adalah notasi ringkas untuk perilaku yang juga dapat ditulis secara lebih eksplisit.</Highlight> Notasi ini dapat mengurangi bagian yang berulang, tetapi sintaks yang lebih pendek hanya berguna jika pembaca tetap memahami maksud kode.
+Syntactic sugar adalah <Highlight>notasi ringkas</Highlight> untuk perilaku yang juga dapat ditulis secara lebih eksplisit. Notasi ini dapat mengurangi bagian yang berulang, tetapi sintaks yang lebih pendek hanya berguna jika pembaca tetap memahami maksud kode.
 
 Python menyediakan beberapa bentuk ringkas untuk pola yang umum. Bentuk tersebut tidak otomatis membuat program berjalan lebih cepat dan tidak selalu identik dalam setiap detail. Gunakan bentuk ringkas ketika maksud kode menjadi lebih jelas.
 
 ## List Comprehension
 
-List comprehension membuat list baru dari iterable apa pun. Bentuk ini dapat mentransformasi nilai, memfilternya, atau menggabungkan kedua operasi dalam satu ekspresi.
+List comprehension membuat **list baru dari iterable**. Bentuk ini dapat mentransformasi nilai, memfilternya, atau menggabungkan kedua operasi dalam satu ekspresi.
 
 List comprehension memiliki beberapa bentuk sintaks:
 
@@ -40,7 +40,7 @@ Pada bentuk ketiga, ekspresi if-else harus muncul sebelum loop `for`. Pada bentu
 
 ### Implementasi List Comprehension
 
-Contoh berikut memisahkan dua kasus: ekspresi kondisional dan filter.
+Contoh berikut memisahkan dua kasus: **ekspresi kondisional dan filter**.
 
 <CodeBlock
   data={[
@@ -94,17 +94,17 @@ print(y_standard)
 
 List comprehension dapat menyatakan transformasi atau filter sederhana secara ringkas. Bentuk ini sering efisien, tetapi <Highlight>keterbacaan lebih penting daripada menghemat baris</Highlight>. Gunakan loop biasa jika ekspresinya mulai sulit dipahami. Notasinya menyerupai notasi pembentuk himpunan, tetapi list Python mempertahankan urutan dan nilai duplikat, sedangkan himpunan matematika tidak.
 
-Sebagai contoh, `[i**2 for i in x]` dapat dibaca sebagai "kuadrat dari i untuk setiap i dalam x", yang sangat mirip dengan notasi matematika <InlineMath math="\{i^2 : i \in X\}" />.
+Sebagai contoh, `[i**2 for i in range(4)]` menghasilkan `[0, 1, 4, 9]`. Daftar kuadrat ini berhubungan dengan notasi matematika <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
 
 ## Lambda Functions
 
-Ekspresi lambda membuat objek fungsi tanpa statement `def`. Gunakan lambda untuk fungsi kecil yang langsung diberikan sebagai argumen.
+Ekspresi lambda membuat **objek fungsi** tanpa statement `def`. Gunakan lambda untuk fungsi kecil yang langsung diberikan sebagai argumen.
 
 Isi fungsi `lambda` hanya boleh berupa satu ekspresi, dan hasil ekspresi itu menjadi return value. Fungsi tersebut boleh memanggil fungsi lain seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Fungsi `lambda` dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsi akan digunakan kembali.
 
 ### Cara Menggunakan Lambda
 
-Lambda menuliskan fungsi kecil dalam satu ekspresi. Contoh berikut memperlihatkan sintaksisnya lalu menugaskannya ke sebuah nama.
+Lambda menuliskan fungsi kecil dalam **satu ekspresi**. Contoh berikut memperlihatkan sintaksisnya lalu menugaskannya ke sebuah nama.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ def add_normal(x, y):
 
 ### Lambda dengan Built In Functions
 
-Lambda pendek cocok digunakan sebagai callback, terutama sebagai fungsi `key` untuk `sorted()`. `map()` dan `filter()` juga menerimanya, walaupun comprehension yang setara kadang lebih mudah dibaca:
+Lambda pendek cocok digunakan sebagai callback, terutama sebagai **fungsi pengurutan** melalui `key` untuk `sorted()`. `map()` dan `filter()` juga menerimanya, walaupun comprehension yang setara kadang lebih mudah dibaca:
 
 <CodeBlock
   data={[
@@ -160,11 +160,11 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Fitur Syntactic Sugar Lainnya
 
-Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi tidak menjamin performa runtime yang lebih baik. Setiap bentuk menggantikan perintah yang lebih panjang tanpa mengubah hasil yang dihitung program.
+Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi **tidak menjamin performa runtime yang lebih baik**. Periksa kesetaraan perilaku sebelum mengganti bentuk panjang, terutama ketika operasi dapat mengubah objek.
 
 ### Assignment Operators
 
-Python menyediakan assignment operator yang lebih ringkas untuk operasi umum:
+Python menyediakan **assignment operator** yang lebih ringkas untuk operasi umum:
 
 <CodeBlock
   data={[
@@ -192,7 +192,7 @@ Untuk angka immutable, contoh ini menghasilkan nilai yang sama dengan bentuk pan
 
 ### Negative Indexing
 
-Python memungkinkan penggunaan indeks negatif untuk mengakses elemen dari belakang:
+Python memungkinkan penggunaan indeks negatif untuk **mengakses elemen dari belakang**:
 
 <CodeBlock
   data={[
@@ -218,7 +218,7 @@ print(data[:-2])   # Output: [10, 20, 30]`
 
 ### Multiple Assignment
 
-Python mendukung multiple assignment untuk menetapkan beberapa variabel dalam satu baris:
+Python mendukung multiple assignment untuk **menetapkan beberapa variabel** dalam satu baris:
 
 <CodeBlock
   data={[
@@ -252,4 +252,4 @@ print(f"After: a={a}, b={b}")  # Output: After: a=10, b=5`
 | Assignment | `a = a + 5` | `a += 5` |
 | Akses elemen terakhir | `data[len(data) - 1]` | `data[-1]` |
 
-Gunakan bentuk ringkas hanya jika pembaca dapat mengenali operasi yang dilakukan tanpa menelusuri alur kontrol atau efek samping yang tersembunyi. Jika tidak, gunakan bentuk eksplisit.
+Gunakan bentuk ringkas hanya jika pembaca dapat **mengenali operasi** yang dilakukan tanpa menelusuri alur kontrol atau efek samping yang tersembunyi. Jika tidak, gunakan bentuk eksplisit.

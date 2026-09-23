@@ -10,6 +10,8 @@ export const metadata = {
 
 ## Garis yang Menyentuh Lingkaran Tepat di Satu Titik
 
+Garis singgung memotong lingkaran di <Highlight>tepat satu titik</Highlight>. Titik pertemuan garis dan lingkaran disebut **titik singgung**.
+
 <LineEquation
   title="Garis Singgung Lingkaran"
   description="Titik singgung P dan jari-jari OP pada garis singgung lingkaran."
@@ -47,8 +49,8 @@ export const metadata = {
           { x: 3, y: 3, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -65,17 +67,21 @@ export const metadata = {
   cameraPosition={[0, 0, 10]}
 />
 
-<Highlight>Garis singgung selalu tegak lurus terhadap jari-jari lingkaran di titik singgung.</Highlight>
+Garis singgung selalu <Highlight>tegak lurus terhadap jari-jari</Highlight> di titik singgung.
 
 ## Persamaan Garis Singgung Lingkaran
 
-Garis singgung <Highlight>menyentuh lingkaran tepat di satu titik</Highlight>, dan jari-jari menuju titik itu tegak lurus terhadap garis singgung. Sifat tegak lurus itu memberikan gradien garis singgungnya, karena hasil kali kedua gradien sama dengan <InlineMath math="-1" />.
+Jika jari-jari dan garis singgung sama-sama memiliki gradien terdefinisi, hasil kali gradiennya adalah <InlineMath math="-1" />. Untuk garis vertikal, gunakan **persamaan titik** tanpa membagi koordinat. Semua rumus berikut memakai jari-jari <InlineMath math="r>0" />.
 
 ### Garis Singgung Melalui Titik pada Lingkaran
 
-Jika titik <InlineMath math="(x_1, y_1)" /> terletak pada lingkaran <InlineMath math="x^2 + y^2 = r^2" />, maka persamaan garis singgung di titik tersebut adalah:
+Jika titik <InlineMath math="(x_1, y_1)" /> **terletak pada lingkaran** <InlineMath math="x^2 + y^2 = r^2" />, maka persamaan garis singgung di titik tersebut adalah:
 
 <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+
+Dengan pusat di titik asal, vektor jari-jari <InlineMath math="(x_1,y_1)" /> tegak lurus vektor sepanjang garis <InlineMath math="(x-x_1,y-y_1)" />. Hasil kali titiknya nol. Gunakan juga <InlineMath math="x_1^2+y_1^2=r^2" />.
+
+<BlockMath math="\begin{aligned}x_1(x-x_1)+y_1(y-y_1)&amp;=0\\x_1x+y_1y&amp;=x_1^2+y_1^2=r^2\end{aligned}" />
 
 Lingkaran pada rumus ini memakai bentuk baku untuk lingkaran yang berpusat di titik asal.
 
@@ -87,6 +93,10 @@ Untuk lingkaran dengan pusat <InlineMath math="(a, b)" />:
 
 Persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = r^2" /> dengan gradien <InlineMath math="m" /> adalah:
 
+Tuliskan garis sebagai <InlineMath math="mx-y+c=0" />. Garis menyinggung lingkaran ketika **jarak pusat ke garis** sama dengan jari-jari.
+
+<BlockMath math="\frac{|c|}{\sqrt{m^2+1}}=r\quad\Longrightarrow\quad c=\pm r\sqrt{m^2+1}" />
+
 <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
 Untuk lingkaran dengan pusat <InlineMath math="(a, b)" />:
@@ -95,7 +105,7 @@ Untuk lingkaran dengan pusat <InlineMath math="(a, b)" />:
 
 ## Garis Singgung dari Titik di Luar Lingkaran
 
-Dari sebuah titik di luar lingkaran, dapat ditarik dua garis singgung ke lingkaran tersebut.
+Dari sebuah titik di luar lingkaran, dapat ditarik **dua garis singgung** ke lingkaran tersebut.
 
 <LineEquation
   title="Dua Garis Singgung dari Titik Luar"
@@ -186,6 +196,8 @@ Dari sebuah titik di luar lingkaran, dapat ditarik dua garis singgung ke lingkar
       labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
     },
 
+    { points: [{ x: 1.25, y: 1.25 * Math.sqrt(3), z: 0 }, { x: 0, y: 0, z: 0 }, { x: 1.25, y: -1.25 * Math.sqrt(3), z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false },
 ]}
 cameraPosition={[1.5, 0, 10.5]}
   cameraTarget={[1.5, 0, 0]}
@@ -195,15 +207,19 @@ cameraPosition={[1.5, 0, 10.5]}
 
 Jika <InlineMath math="P(x_1, y_1)" /> adalah titik di luar lingkaran dengan pusat <InlineMath math="O(a, b)" /> dan jari-jari <InlineMath math="r" />, maka panjang ruas garis singgung dari <InlineMath math="P" /> ke titik singgung adalah:
 
+Pada segitiga siku-siku <InlineMath math="OPT" />, ruas <InlineMath math="OP" /> adalah **sisi miring** dan <InlineMath math="OT=r" />. Maka teorema Pythagoras memberi:
+
+<BlockMath math="PT^2+OT^2=OP^2\quad\Longrightarrow\quad PT=\sqrt{OP^2-r^2}" />
+
 <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
 
 ## Garis Singgung Persekutuan Dua Lingkaran
 
-Dua lingkaran dapat memiliki garis singgung yang menyilang di antara keduanya atau melewati bagian luar. Selisih kedua jari-jari menentukan panjang garis singgung persekutuan luar, sedangkan jumlahnya menentukan panjang garis singgung persekutuan dalam.
+Dua lingkaran dapat memiliki garis singgung yang menyilang di antara keduanya atau melewati bagian luar. **Selisih kedua jari-jari** menentukan panjang garis singgung persekutuan luar, sedangkan jumlahnya menentukan panjang garis singgung persekutuan dalam.
 
 ### Garis Singgung Persekutuan Luar
 
-Garis singgung persekutuan luar menyinggung kedua lingkaran tanpa memotong ruas garis di antara kedua pusatnya.
+Garis singgung persekutuan luar menyinggung kedua lingkaran **tanpa memotong ruas garis** di antara kedua pusatnya.
 
 <LineEquation
   title="Garis Singgung Persekutuan Luar"
@@ -282,8 +298,8 @@ Garis singgung persekutuan luar menyinggung kedua lingkaran tanpa memotong ruas 
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -294,7 +310,7 @@ Garis singgung persekutuan luar menyinggung kedua lingkaran tanpa memotong ruas 
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 2, offset: [-5.8, 0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 2, offset: [-3, 0.6, 0] }],
     },
     {
       points: (() => {
@@ -330,8 +346,8 @@ Garis singgung persekutuan luar menyinggung kedua lingkaran tanpa memotong ruas 
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -342,7 +358,7 @@ Garis singgung persekutuan luar menyinggung kedua lingkaran tanpa memotong ruas 
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 2, offset: [-5.8, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 2, offset: [-3, -0.6, 0] }],
     },
 
 ]}
@@ -355,11 +371,11 @@ Panjang garis singgung persekutuan luar:
 
 Pada rumus ini, <InlineMath math="d" /> adalah jarak antara kedua pusat lingkaran.
 
-Ruas garis singgung luar dengan panjang positif hanya ada jika <InlineMath math="d>|r_1-r_2|" />. Pada saat sama dengan, kedua lingkaran bersinggungan dalam dan ruas antara kedua titik singgung menyusut menjadi nol.
+Ruas garis singgung luar dengan panjang positif hanya ada jika <InlineMath math="d>|r_1-r_2|" />. Jika <InlineMath math="d=|r_1-r_2|>0" />, kedua lingkaran bersinggungan dalam dan ruas antara titik singgung menyusut menjadi nol. Kasus <InlineMath math="d=0" /> dengan jari-jari sama adalah lingkaran berimpit.
 
 ### Garis Singgung Persekutuan Dalam
 
-Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran dan memotong garis yang menghubungkan kedua pusat lingkaran.
+Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran dan memotong **ruas garis penghubung kedua pusat**.
 
 <LineEquation
   title="Garis Singgung Persekutuan Dalam"
@@ -439,8 +455,8 @@ Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran d
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -488,8 +504,8 @@ Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran d
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -515,13 +531,13 @@ Ruas garis singgung dalam dengan panjang positif hanya ada jika <InlineMath math
 
 ## Menentukan Persamaan Garis Singgung
 
-Contoh-contoh berikut menyusun persamaan garis singgung dari informasi awal yang berbeda. Ikuti substitusi pada setiap kasus. Periksa di akhir setiap contoh bahwa titik singgungnya benar-benar terletak pada garis dan pada lingkaran.
+Contoh-contoh berikut menyusun persamaan garis singgung dari informasi awal yang berbeda. Ikuti substitusi pada setiap kasus. Periksa di akhir setiap contoh bahwa titik singgungnya benar-benar **terletak pada garis dan pada lingkaran**.
 
 ### Menentukan Garis Singgung Melalui Titik pada Lingkaran
 
 Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 25" /> di titik <InlineMath math="(3, 4)" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Karena titik <InlineMath math="(3, 4)" /> terletak pada lingkaran (dapat diverifikasi: <InlineMath math="3^2 + 4^2 = 9 + 16 = 25" />), maka persamaan garis singgungnya:
 
@@ -534,7 +550,7 @@ Karena titik <InlineMath math="(3, 4)" /> terletak pada lingkaran (dapat diverif
 
 Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 16" /> yang sejajar dengan garis <InlineMath math="3x - 4y + 5 = 0" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Gradien garis <InlineMath math="3x - 4y + 5 = 0" /> adalah <InlineMath math="m = \frac{3}{4}" />.
 
@@ -558,7 +574,7 @@ Jadi, persamaan garis singgungnya adalah:
 
 Tentukan panjang garis singgung dari titik <InlineMath math="P(7, 1)" /> ke lingkaran <InlineMath math="x^2 + y^2 = 25" />.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r = 5" />.
 
@@ -572,16 +588,13 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
 
 ## Latihan Soal
 
-Setiap soal memberi sebuah lingkaran dan syarat tambahan seperti titik atau garis sejajar. Pakai jari-jari yang tegak lurus untuk menyusun persamaan garis singgung.
+Bedakan soal yang meminta persamaan garis dari soal yang meminta panjang ruas. Untuk persamaan, gunakan **titik atau gradien** yang diketahui. Untuk panjang, tentukan segitiga siku-siku dan jarak antarpusat yang sesuai.
 
 1. Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 36" /> di titik <InlineMath math="(-3, 3\sqrt{3})" />!
 
-2. Tentukan persamaan garis singgung lingkaran <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" /> yang tegak lurus dengan garis <InlineMath math="2x + y - 5 = 0" />!
+2. Tentukan persamaan kedua garis singgung lingkaran <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" /> yang tegak lurus dengan garis <InlineMath math="2x + y - 5 = 0" />!
 
-3. Dari titik <InlineMath math="A(10, 0)" /> ditarik garis singgung ke lingkaran <InlineMath math="x^2 + y^2 = 36" />. Tentukan:
-
-   - Panjang garis singgung
-   - Koordinat titik-titik singgung
+3. Dari titik <InlineMath math="A(10, 0)" /> ditarik garis singgung ke lingkaran <InlineMath math="x^2 + y^2 = 36" />. Tentukan panjang ruas dari <InlineMath math="A" /> ke setiap titik singgung dan koordinat kedua titik singgung.
 
 4. Dua lingkaran masing-masing berpusat di <InlineMath math="O_1(-4, 0)" /> dengan jari-jari <InlineMath math="2" /> dan <InlineMath math="O_2(4, 0)" /> dengan jari-jari <InlineMath math="3" />. Tentukan panjang garis singgung persekutuan luar!
 
@@ -589,80 +602,82 @@ Setiap soal memberi sebuah lingkaran dan syarat tambahan seperti titik atau gari
 
 ### Pembahasan
 
-1. **Persamaan garis singgung di titik pada lingkaran**
+**Pembahasan 1**: Persamaan garis singgung di titik pada lingkaran
 
-   Verifikasi titik pada lingkaran:
+Verifikasi titik pada lingkaran:
 
-   <BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
+<BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
 
-   Persamaan garis singgung:
+Persamaan garis singgung:
 
-   <MathContainer>
-     <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
-     <BlockMath math="-3x + 3\sqrt{3}y = 36" />
-     <BlockMath math="-x + \sqrt{3}y = 12" />
-     <BlockMath math="x - \sqrt{3}y + 12 = 0" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+<BlockMath math="-3x + 3\sqrt{3}y = 36" />
+<BlockMath math="-x + \sqrt{3}y = 12" />
+<BlockMath math="x - \sqrt{3}y + 12 = 0" />
+</MathContainer>
 
-2. **Garis singgung tegak lurus dengan garis tertentu**
+**Pembahasan 2**: Garis singgung tegak lurus dengan garis tertentu
 
-   Gradien garis <InlineMath math="2x + y - 5 = 0" /> adalah <InlineMath math="m_1 = -2" />.
+Gradien garis <InlineMath math="2x + y - 5 = 0" /> adalah <InlineMath math="m_1 = -2" />.
 
-   Karena tegak lurus, maka <InlineMath math="m_2 = \frac{1}{2}" />.
+Karena tegak lurus, maka <InlineMath math="m_2 = \frac{1}{2}" />.
 
-   Persamaan garis singgung:
+Persamaan garis singgung:
 
-   <MathContainer>
-     <BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
-     <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
-     <BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
-     <BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
+<BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
+</MathContainer>
 
-   Jadi: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
+Jadi: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
 
-3. **Garis singgung dari titik luar**
+**Pembahasan 3**: Garis singgung dari titik luar
 
-   - Panjang garis singgung:
+Panjang garis singgung:
 
-     <MathContainer>
-       <BlockMath math="\begin{aligned} AT &amp;= \sqrt{10^2 + 0^2 - 36} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
-     </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} AT &amp;= \sqrt{10^2 + 0^2 - 36} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
+</MathContainer>
 
-   - Untuk mencari titik singgung, misalkan <InlineMath math="T(x,y)" /> salah satunya. Karena jari-jari <InlineMath math="OT" /> tegak lurus garis singgung <InlineMath math="AT" />, hasil kali titik kedua vektor arahnya sama dengan nol:
+Untuk mencari titik singgung, misalkan <InlineMath math="T(x,y)" /> salah satunya. Karena jari-jari <InlineMath math="OT" /> tegak lurus garis singgung <InlineMath math="AT" />, hasil kali titik kedua vektor arahnya sama dengan nol:
 
-     <MathContainer>
-       <BlockMath math="(A-T)\cdot T=0" />
-       <BlockMath math="(10-x)x-y^2=0" />
-       <BlockMath math="10x-(x^2+y^2)=0" />
-       <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
-       <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
-     </MathContainer>
+<MathContainer>
+  <BlockMath math="(A-T)\cdot T=0" />
+  <BlockMath math="(10-x)x-y^2=0" />
+  <BlockMath math="10x-(x^2+y^2)=0" />
+  <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+  <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+</MathContainer>
 
-     Jadi, titik singgungnya adalah <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> dan <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
+Jadi, titik singgungnya adalah <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> dan <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
 
-4. **Garis singgung persekutuan luar**
+**Pembahasan 4**: Garis singgung persekutuan luar
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-     <BlockMath math="\begin{aligned} l &amp;= \sqrt{d^2 - (r_2 - r_1)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+<BlockMath math="\begin{aligned} l &amp;= \sqrt{d^2 - (r_2 - r_1)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+</MathContainer>
 
-5. **Garis singgung melalui titik pada lingkaran**
+**Pembahasan 5**: Garis singgung melalui titik pada lingkaran
 
-   Lingkaran: <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />
+Lengkapkan kuadrat untuk membaca pusat dan jari-jari:
 
-   Pusat <InlineMath math="(3, -2)" />, jari-jari <InlineMath math="r = 5" />
+<BlockMath math="\begin{aligned}x^2-6x+y^2+4y&amp;=12\\(x-3)^2-9+(y+2)^2-4&amp;=12\\(x-3)^2+(y+2)^2&amp;=25\end{aligned}" />
 
-   Periksa bahwa titik <InlineMath math="(8, -2)" /> terletak pada lingkaran:
+Pusat <InlineMath math="(3, -2)" />, jari-jari <InlineMath math="r = 5" />
 
-   <BlockMath math="\begin{aligned} (8-3)^2 + (-2+2)^2 &amp;= 25 + 0 \\ &amp;= 25 \end{aligned}" />
+Periksa bahwa titik <InlineMath math="(8, -2)" /> terletak pada lingkaran:
 
-   Ruas kiri bernilai <InlineMath math="r^2=25" />, sehingga titik tersebut berada pada lingkaran. Maka persamaan garis singgungnya:
+<BlockMath math="\begin{aligned} (8-3)^2 + (-2+2)^2 &amp;= 25 + 0 \\ &amp;= 25 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(8-3)(x-3) \\ &amp;\quad{}+ (-2+2)(y+2) = 25 \end{aligned}" />
-     <BlockMath math="5(x-3) + 0 = 25" />
-     <BlockMath math="x - 3 = 5" />
-     <BlockMath math="x = 8" />
-   </MathContainer>
+Ruas kiri bernilai <InlineMath math="r^2=25" />, sehingga titik tersebut berada pada lingkaran. Maka persamaan garis singgungnya:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;(8-3)(x-3) \\ &amp;\quad{}+ (-2+2)(y+2) = 25 \end{aligned}" />
+<BlockMath math="5(x-3) + 0 = 25" />
+<BlockMath math="x - 3 = 5" />
+<BlockMath math="x = 8" />
+</MathContainer>

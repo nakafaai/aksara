@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Sudut antara Dua Jari-jari Pembatas Juring
 
-<Highlight>Sebuah juring dibatasi oleh dua jari-jari dan busur di antaranya.</Highlight> Kedua jari-jari membentuk sudut yang titik sudutnya berada di pusat lingkaran. Sudut inilah yang disebut sudut pusat. Kipas yang terbuka atau sepotong kue bundar menunjukkan bentuk dasarnya.
+Sebuah juring dibatasi oleh <Highlight>dua jari-jari dan busur</Highlight> di antaranya. Kedua jari-jari membentuk sudut yang titik sudutnya berada di pusat lingkaran. Sudut inilah yang disebut sudut pusat. Kipas yang terbuka atau sepotong kue bundar menunjukkan bentuk dasarnya.
 
 Sudut pusat menentukan bagian lingkaran yang ditempati juring. Pada jari-jari yang tetap, sudut yang lebih besar menghasilkan juring yang lebih luas, sedangkan sudut yang lebih kecil menghasilkan juring yang lebih sempit.
 
@@ -78,7 +78,7 @@ Sudut pusat menentukan bagian lingkaran yang ditempati juring. Pada jari-jari ya
       smooth: false,
       lineWidth: 4,
       labels: [
-        { text: "Juring", at: 20, offset: [-0.8, 0.6, 0] }
+        { text: "Busur", at: 20, offset: [-0.8, 0.6, 0] }
       ]
     },
     {
@@ -106,13 +106,9 @@ Sudut pusat menentukan bagian lingkaran yang ditempati juring. Pada jari-jari ya
 
 ## Sifat Sudut Pusat dalam Juring
 
-Sudut pusat pada juring memiliki karakteristik yang membedakannya dari sudut lainnya:
+Pada **lingkaran yang sama**, sudut pusat yang sama menghasilkan luas juring yang sama. Dua jari-jari menjadi kaki sudut dan pusat lingkaran menjadi titik sudut. Membagi satu putaran menjadi delapan sudut sama besar berarti setiap juring mengambil seperdelapan luas lingkaran.
 
-- **Kedua kaki sudut**: Selalu berupa jari-jari lingkaran yang memiliki panjang sama
-- **Titik puncak sudut**: Selalu berada tepat di pusat lingkaran
-- **Proporsi terhadap lingkaran**: Besar sudut pusat menentukan proporsi juring terhadap keseluruhan lingkaran
-
-Dalam lingkaran yang sama, sudut pusat yang sama menghasilkan luas juring yang sama. Karena itu, membagi satu putaran menjadi sudut-sudut yang sama juga membagi lingkaran menjadi bagian yang sama luas.
+<BlockMath math="\theta=\frac{360^\circ}{8}=45^\circ,\qquad A=\frac{1}{8}\pi r^2" />
 
 ## Hubungan Sudut Pusat dengan Luas Juring
 
@@ -131,149 +127,31 @@ Pada kedua rumus tersebut:
 - <InlineMath math="\theta" /> = sudut pusat, dinyatakan dalam derajat pada rumus pertama dan radian pada rumus kedua
 - <InlineMath math="r" /> = jari-jari lingkaran
 
-Kedua rumus tersebut menunjukkan bahwa <Highlight>luas juring sebanding dengan besar sudut pusat</Highlight>. Ketika sudut pusat digandakan, luas juring juga akan menjadi dua kali lipat. Begitu pula sebaliknya, jika sudut pusat dibagi dua, luas juring akan menjadi setengahnya.
+Kedua rumus tersebut menunjukkan bahwa <Highlight>luas juring sebanding dengan besar sudut pusat</Highlight>. Pada jari-jari tetap, ketika sudut pusat digandakan, luas juring juga akan menjadi dua kali lipat. Begitu pula sebaliknya, jika sudut pusat dibagi dua, luas juring akan menjadi setengahnya.
 
 <LineEquation
-  title={<>Perbandingan Sudut Pusat pada Juring Berbeda</>}
-  description={<>Visualisasi juring dengan sudut pusat <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, dan <InlineMath math="135^\circ" /> menunjukkan hubungan proporsional.</>}
+  title="Membandingkan Juring pada Satu Lingkaran"
+  description="Juring 45, 90, dan 135 derajat memakai jari-jari yang sama dan diletakkan bersebelahan."
   data={[
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5 * Math.cos(Math.PI / 4), y: 3.5 * Math.sin(Math.PI / 4), z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i / 15) * (Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="45^\circ" />, at: 49, offset: [0.4, 0.2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5, y: 0, z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 26 }, (_, i) => {
-        const angle = (i / 25) * (Math.PI / 2);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 2
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.2, 0.4, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5, y: 0, z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5 * Math.cos(3 * Math.PI / 4), y: 3.5 * Math.sin(3 * Math.PI / 4), z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 36 }, (_, i) => {
-        const angle = (i / 35) * (3 * Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 4
-        };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="135^\circ" />, at: 17, offset: [-0.2, 0.4, 0] }
-      ]
-    }
+    { kind: "circle-outline", radius: 3.5, color: "#0d9488", showPoints: false },
+    ...[0, 45, 135, 270].map((degrees) => ({ kind: "circle-radius", radius: 3.5, degrees, color: "#7c3aed", showPoints: false })),
+    { kind: "circle-arc", radius: 3.5, startDegrees: 0, sweepDegrees: 45, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="45^\circ" />, offset: [0.4, 0.2, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 45, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [0, 0.4, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 135, sweepDegrees: 135, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="135^\circ" />, offset: [-0.4, -0.2, 0] } },
   ]}
-  cameraPosition={[9.6, 7.2, 11.6]}
-  cameraTarget={[0, 0, 2]}
-  showZAxis={true}
+  cameraPosition={[0, 0, 11]}
 />
+
+| Sudut pusat | Bagian lingkaran | Luas juring |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{45}{360}=\frac{1}{8}" /> | <InlineMath math="\frac{1\pi r^2}{8}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{2}{8}" /> | <InlineMath math="\frac{2\pi r^2}{8}" /> |
+| <InlineMath math="135^\circ" /> | <InlineMath math="\frac{135}{360}=\frac{3}{8}" /> | <InlineMath math="\frac{3\pi r^2}{8}" /> |
+
 
 ## Pengukuran dan Identifikasi Sudut Pusat
 
-Periksa dahulu letak titik sudutnya. Pada sudut pusat, titik itu berada di pusat lingkaran dan kedua kakinya merupakan jari-jari. Sebaliknya, titik sudut dari sudut keliling berada pada keliling lingkaran.
+Periksa dahulu **letak titik sudut**. Pada sudut pusat, titik itu berada di pusat lingkaran dan kedua kakinya merupakan jari-jari. Sebaliknya, titik sudut dari sudut keliling berada pada keliling lingkaran.
 
 **Metode pengukuran sudut pusat:**
 
@@ -366,44 +244,36 @@ Setelah sudut pusat diukur, besar sudut dapat langsung digunakan untuk menghitun
 
 ## Teorema Sudut Pusat dan Busur
 
-Untuk sudut pusat dan busur yang dihadapinya, berlaku hubungan berikut:
+**Besar busur dalam derajat** sama dengan sudut pusat yang menghadap busur itu. Besar busur berbeda dari panjang busur: busur dengan sudut yang sama menjadi lebih panjang jika jari-jari bertambah. Dalam lingkaran yang sama, sudut sama menghasilkan busur dan juring kongruen. Juring sama luas juga memiliki sudut yang sama.
 
-**Teorema utama:**
-- Besar sudut pusat sama dengan besar busur yang dihadapinya
-- Jika sudut pusat berukuran <InlineMath math="\alpha" /> derajat, maka busur yang dibentuknya juga berukuran <InlineMath math="\alpha" /> derajat
+Untuk dua juring bersebelahan yang tidak bertumpang tindih, tambahkan sudut, panjang busur, dan luas masing-masing. Misalnya, juring 45 derajat dan 90 derajat pada gambar membentuk juring 135 derajat:
 
-**Sifat sudut pusat:**
-
-- Dalam lingkaran yang sama, sudut pusat yang kongruen menghasilkan busur dan juring yang kongruen pula
-- Jika dua juring pada lingkaran yang sama memiliki luas yang sama, sudut pusatnya juga sama besar
-- Ketika sudut-sudut pusat yang bersebelahan dijumlahkan, besar busur yang bersesuaian juga dijumlahkan
-
-Sifat-sifat ini menghubungkan sudut pusat, besar busur, dan luas juring dalam satu lingkaran. Bedakan selalu besar busur dalam derajat dari panjang fisik busur tersebut.
+<BlockMath math="\frac{45^\circ}{360^\circ}\pi r^2+\frac{90^\circ}{360^\circ}\pi r^2=\frac{135^\circ}{360^\circ}\pi r^2" />
 
 ## Perhitungan Sudut Pusat dari Informasi Juring
 
 Menentukan besar sudut pusat dapat dilakukan melalui berbagai informasi yang diketahui tentang juring:
 
-1. **Dari luas juring dan jari-jari:**
+**Dari luas juring dan jari-jari:**
 
-   <BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
+<BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
 
-2. **Dari panjang busur dan jari-jari:**
+**Dari panjang busur dan jari-jari:**
 
-   <BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
+<BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
 
-3. **Dari pembagian lingkaran sama rata:**
+**Dari pembagian lingkaran sama rata:**
 
-   <BlockMath math="\alpha = \frac{360^\circ}{n}" />
+<BlockMath math="\alpha = \frac{360^\circ}{n}" />
 
-dengan:
+Arti setiap variabel:
 - <InlineMath math="\alpha" /> = sudut pusat (dalam derajat)
 - <InlineMath math="A" /> = luas juring
 - <InlineMath math="s" /> = panjang busur
 - <InlineMath math="r" /> = jari-jari lingkaran
 - <InlineMath math="n" /> = jumlah bagian pembagian
 
-Pilih rumus sesuai data yang tersedia: luas juring, panjang busur, atau jumlah bagian yang sama besar.
+Pilih rumus sesuai **data yang tersedia**: luas juring, panjang busur, atau jumlah bagian yang sama besar.
 
 <LineEquation
   title={<>Parameter pada Perhitungan Sudut Pusat</>}
@@ -484,6 +354,14 @@ Pilih rumus sesuai data yang tersedia: luas juring, panjang busur, atau jumlah b
   ]}
   cameraPosition={[0, 0, 11]}
 />
+
+Pada gambar, ambil jari-jari 4 satuan. Jika luas juring diketahui sebesar <InlineMath math="16\pi/5" /> satuan persegi, susun ulang rumus luas untuk mencari sudut:
+
+<BlockMath math="\alpha=\frac{360^\circ\times A}{\pi r^2}=\frac{360^\circ\times(16\pi/5)}{\pi\times4^2}=\frac{360^\circ}{5}=72^\circ" />
+
+Panjang busur juring yang sama adalah <InlineMath math="8\pi/5" /> satuan. Rumus panjang busur memberikan sudut yang sama:
+
+<BlockMath math="\alpha=\frac{180^\circ\times s}{\pi r}=\frac{180^\circ\times(8\pi/5)}{4\pi}=72^\circ" />
 
 **Contoh aplikasi rumus:**
 

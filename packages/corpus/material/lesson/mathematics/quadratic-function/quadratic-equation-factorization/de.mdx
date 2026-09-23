@@ -11,7 +11,7 @@ export const metadata = {
 
 Beim Faktorisieren schreiben wir eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> als Produkt. Lässt sie sich in der Form <InlineMath math="a(x - p)(x - q) = 0" /> darstellen, dann sind <InlineMath math="p" /> und <InlineMath math="q" /> ihre Nullstellen.
 
-Nullstellen sind die Werte von <InlineMath math="x" />, für die die Gleichung null ergibt. <Highlight>In der Produktform bestimmst du sie, indem du jeden Faktor gleich null setzt.</Highlight>
+Nullstellen sind die Werte von <InlineMath math="x" />, für die die Gleichung null ergibt. In der Produktform bestimmst du die Nullstellen, indem du <Highlight>jeden Faktor gleich null setzt</Highlight>.
 
 ## Grundprinzipien der Faktorisierung
 
@@ -28,9 +28,40 @@ Das bedeutet, wenn <InlineMath math="(x - p)(x - q) = 0" />, dann:
 - <InlineMath math="x - p = 0" /> oder <InlineMath math="x - q = 0" />
 - Also <InlineMath math="x = p" /> oder <InlineMath math="x = q" />
 
+### Faktoren als Rechteckseiten
+
+Für <InlineMath math="x>0" /> bilden die Seiten <InlineMath math="x+3" /> und <InlineMath math="x+2" /> ein Rechteck. Die beiden mittleren Teilflächen ergeben zusammen <InlineMath math="3x+2x=5x" />. Deshalb ist die Summe aller vier Flächen gleich dem Produkt der Seitenlängen.
+
+<BlockMath math="x^2+3x+2x+6=(x+3)(x+2)" />
+
+<MathVisual
+  title="Vier Teile eines Rechtecks"
+  description="Die Zeichnung verwendet x = 2. Ein Rechteck mit den Seiten 5 und 4 besteht aus den Flächen x², 3x, 2x und 6."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "tall", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 4 }, { x: 2, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "wide", objectId: "wide", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "tall", objectId: "tall", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 3.5, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{ square: <InlineMath math="x^2" />, wide: <InlineMath math="3x" />, tall: <InlineMath math="2x" />, corner: <InlineMath math="6" /> }}
+/>
+
+Die Zeichnung verwendet <InlineMath math="x=2" />. Die Gesamtfläche ist also <InlineMath math="4+6+4+6=20=5\times4" />. Die algebraische Identität gilt für alle reellen Zahlen, doch <Highlight>das Seitenlängenmodell verwendet positive Werte</Highlight>. Negative Nullstellen sind keine negativen geometrischen Längen.
+
 ## Schritte zum Faktorisieren quadratischer Gleichungen
 
-Eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit ganzzahligen Koeffizienten lässt sich durch Gruppierung in vier Schritten faktorisieren:
+Suche bei ganzzahligen Koeffizienten **zwei ganze Zahlen** mit dem Produkt <InlineMath math="ac" /> und der Summe <InlineMath math="b" />. Falls du ein solches Paar findest, kannst du mit den folgenden vier Schritten durch Gruppierung faktorisieren.
 
 1. Bringe die Gleichung in die Standardform mit null auf der rechten Seite
 2. Suche zwei Zahlen mit dem Produkt <InlineMath math="ac" /> und der Summe <InlineMath math="b" />
@@ -39,121 +70,110 @@ Eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit ganzzahl
 
 ### Beispiele für die Faktorisierung quadratischer Gleichungen
 
-Die drei Beispiele unten steigen dieselben vier Schritte hinauf: zuerst mit <InlineMath math="a = 1" />, dann mit negativem konstantem Glied, dann mit <InlineMath math="a \neq 1" />. Achte du jeweils auf das Faktorpaar mit Produkt <InlineMath math="ac" /> und Summe <InlineMath math="b" />.
+Die drei Beispiele verwenden Zahlenpaare mit dem Produkt <InlineMath math="ac" /> und der Summe <InlineMath math="b" />. Der Leitkoeffizient und das Vorzeichen der Konstanten ändern sich, aber die Begründung für die Gruppierung bleibt gleich.
 
-1. Wir faktorisieren die Gleichung:
+**Beispiel 1**
 
-   <BlockMath math="x^2 + 5x + 6 = 0" />
+<BlockMath math="x^2 + 5x + 6 = 0" />
 
-   In dieser Gleichung sind <InlineMath math="a = 1" />, <InlineMath math="b = 5" /> und <InlineMath math="c = 6" />.
+In dieser Gleichung sind <InlineMath math="a = 1" />, <InlineMath math="b = 5" /> und <InlineMath math="c = 6" />.
 
-   **Schritt 1**: Die Gleichung liegt bereits in Standardform vor, wobei die rechte Seite gleich Null ist.
+**Schritt 1**: Die Gleichung liegt bereits in Standardform vor, wobei die rechte Seite gleich Null ist.
 
-   **Schritt 2**: Gesucht sind zwei Zahlen, für die gilt:
+**Schritt 2**: Gesucht sind zwei Zahlen, für die gilt:
 
-   - Ihr Produkt ist <InlineMath math="ac = 1 \times 6 = 6" />
-   - Ihre Summe ist <InlineMath math="b = 5" />
+- Ihr Produkt ist <InlineMath math="ac = 1 \times 6 = 6" />
+- Ihre Summe ist <InlineMath math="b = 5" />
 
-   Faktoren von <InlineMath math="6" /> sind <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="6" />.
-   Mögliche Faktorpaare sind <InlineMath math="(1, 6)" /> und <InlineMath math="(2, 3)" />.
-   Das Paar <InlineMath math="(2, 3)" /> ergibt eine Summe von <InlineMath math="5" />, was dem Wert von <InlineMath math="b" /> entspricht.
+Positive Faktoren von <InlineMath math="6" /> sind <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="6" />.
+Mögliche Faktorpaare sind <InlineMath math="(1, 6)" /> und <InlineMath math="(2, 3)" />.
+Das Paar <InlineMath math="(2, 3)" /> ergibt eine Summe von <InlineMath math="5" />, was dem Wert von <InlineMath math="b" /> entspricht.
 
-   **Schritt 3**: Wir können die Gleichung wie folgt schreiben:
+**Schritt 3**: Wir können die Gleichung wie folgt schreiben:
 
-   <MathContainer>
-     <BlockMath math="x^2 + 2x + 3x + 6 = 0" />
-     <BlockMath math="x(x + 2) + 3(x + 2) = 0" />
-     <BlockMath math="(x + 3)(x + 2) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + 2x + 3x + 6 = 0" />
+  <BlockMath math="x(x + 2) + 3(x + 2) = 0" />
+  <BlockMath math="(x + 3)(x + 2) = 0" />
+</MathContainer>
 
-   **Schritt 4**: Aus der faktorisierten Form oben erhalten wir:
+**Schritt 4**: Aus der faktorisierten Form oben erhalten wir:
 
-   - <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
-   - <InlineMath math="x + 2 = 0" /> → <InlineMath math="x = -2" />
+- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
+- <InlineMath math="x + 2 = 0" /> → <InlineMath math="x = -2" />
 
-   Die Nullstellen sind also <InlineMath math="x = -3" /> und <InlineMath math="x = -2" />.
+Die Nullstellen sind also <InlineMath math="x = -3" /> und <InlineMath math="x = -2" />.
 
-2. Nun faktorisieren wir:
+**Beispiel 2**
 
-   <BlockMath math="3x^2 + 13x - 10 = 0" />
+<BlockMath math="3x^2 + 13x - 10 = 0" />
 
-   In dieser Gleichung sind <InlineMath math="a = 3" />, <InlineMath math="b = 13" /> und <InlineMath math="c = -10" />.
+In dieser Gleichung sind <InlineMath math="a = 3" />, <InlineMath math="b = 13" /> und <InlineMath math="c = -10" />.
 
-   **Schritt 1**: Die Gleichung liegt bereits in Standardform vor, wobei die rechte Seite gleich Null ist.
+**Schritt 1**: Die Gleichung liegt bereits in Standardform vor, wobei die rechte Seite gleich Null ist.
 
-   **Schritt 2**: Gesucht sind zwei Zahlen, für die gilt:
+**Schritt 2**: Gesucht sind zwei Zahlen, für die gilt:
 
-   - Ihr Produkt ist <InlineMath math="ac = 3 \times (-10) = -30" />
-   - Ihre Summe ist <InlineMath math="b = 13" />
+- Ihr Produkt ist <InlineMath math="ac = 3 \times (-10) = -30" />
+- Ihre Summe ist <InlineMath math="b = 13" />
 
-   Faktoren von <InlineMath math="-30" /> sind Zahlenpaare mit entgegengesetzten Vorzeichen:
+Faktoren von <InlineMath math="-30" /> sind Zahlenpaare mit entgegengesetzten Vorzeichen:
 
-   <BlockMath math="\begin{aligned} &amp;(1, -30), \; (-1, 30), \; (2, -15), \\ &amp;\; (-2, 15), \\ &amp;(3, -10), \; (-3, 10), \; (5, -6), \\ &amp;\; (-5, 6) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(1, -30), \; (-1, 30), \; (2, -15), \\ &amp;\; (-2, 15), \\ &amp;(3, -10), \; (-3, 10), \; (5, -6), \\ &amp;\; (-5, 6) \end{aligned}" />
 
-   Das Paar <InlineMath math="(15, -2)" /> ergibt eine Summe von <InlineMath math="13" />, was dem Wert von <InlineMath math="b" /> entspricht.
+Das Paar <InlineMath math="(15, -2)" /> ergibt eine Summe von <InlineMath math="13" />, was dem Wert von <InlineMath math="b" /> entspricht.
 
-   **Schritt 3**: Wir können die Gleichung wie folgt schreiben:
+**Schritt 3**: Wir können die Gleichung wie folgt schreiben:
 
-   <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+<BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
 
-   Anschließend gruppieren wir die Terme:
+Anschließend gruppieren wir die Terme:
 
-   <MathContainer>
-     <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
-     <BlockMath math="3x(x + 5) - 2(x + 5) = 0" />
-     <BlockMath math="(3x - 2)(x + 5) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+  <BlockMath math="3x(x + 5) - 2(x + 5) = 0" />
+  <BlockMath math="(3x - 2)(x + 5) = 0" />
+</MathContainer>
 
-   **Schritt 4**: Aus der faktorisierten Form oben erhalten wir:
+**Schritt 4**: Aus der faktorisierten Form oben erhalten wir:
 
-   - <InlineMath math="3x - 2 = 0" /> → <InlineMath math="x = \frac{2}{3}" />
-   - <InlineMath math="x + 5 = 0" /> → <InlineMath math="x = -5" />
+- <InlineMath math="3x - 2 = 0" /> → <InlineMath math="x = \frac{2}{3}" />
+- <InlineMath math="x + 5 = 0" /> → <InlineMath math="x = -5" />
 
-   Die Nullstellen sind also <InlineMath math="x = \frac{2}{3}" /> und <InlineMath math="x = -5" />.
+Die Nullstellen sind also <InlineMath math="x = \frac{2}{3}" /> und <InlineMath math="x = -5" />.
 
-3. Faktorisierung bei Koeffizient <InlineMath math="a \neq 1" />
+**Beispiel 3**
 
-   Ist der Koeffizient <InlineMath math="a" /> nicht gleich <InlineMath math="1" />, zerlegen wir den mittleren Term und gruppieren anschließend:
+<BlockMath math="2x^2 + 5x - 3 = 0" />
 
-   **Methode mit Faktoren von <InlineMath math="ac" />**
+In dieser Gleichung sind <InlineMath math="a = 2" />, <InlineMath math="b = 5" /> und <InlineMath math="c = -3" />.
 
-   1. Bestimme den Wert von <InlineMath math="ac" />
-   2. Suche ein Faktorpaar von <InlineMath math="ac" /> mit der Summe <InlineMath math="b" />
-   3. Zerlege den Term <InlineMath math="bx" /> mithilfe dieses Faktorpaars
-   4. Faktorisiere durch Gruppierung
+**Schritt 1**: Wir berechnen <InlineMath math="ac = 2 \times (-3) = -6" />
 
-   **Beispiel für Faktorisierung**:
+**Schritt 2**: Wir suchen ein Faktorpaar von <InlineMath math="-6" /> mit der Summe <InlineMath math="5" />:
 
-   <BlockMath math="2x^2 + 5x - 3 = 0" />
+Faktoren von <InlineMath math="-6" />: <InlineMath math="(1, -6), (-1, 6), (2, -3), (-2, 3)" />
 
-   In dieser Gleichung sind <InlineMath math="a = 2" />, <InlineMath math="b = 5" /> und <InlineMath math="c = -3" />.
+Das Paar <InlineMath math="(6, -1)" /> ergibt eine Summe von <InlineMath math="5" />, was dem Wert von <InlineMath math="b" /> entspricht.
 
-   **Schritt 1**: Wir berechnen <InlineMath math="ac = 2 \times (-3) = -6" />
+**Schritt 3**: Wir zerlegen <InlineMath math="5x" /> in <InlineMath math="6x - x" />:
 
-   **Schritt 2**: Wir suchen ein Faktorpaar von <InlineMath math="-6" /> mit der Summe <InlineMath math="5" />:
+<BlockMath math="2x^2 + 6x - x - 3 = 0" />
 
-   Faktoren von <InlineMath math="-6" />: <InlineMath math="(1, -6), (-1, 6), (2, -3), (-2, 3)" />
+**Schritt 4**: Faktorisieren durch Gruppierung:
 
-   Das Paar <InlineMath math="(6, -1)" /> ergibt eine Summe von <InlineMath math="5" />, was dem Wert von <InlineMath math="b" /> entspricht.
+<MathContainer>
+  <BlockMath math="2x^2 + 6x - x - 3 = 0" />
+  <BlockMath math="2x(x + 3) - 1(x + 3) = 0" />
+  <BlockMath math="(2x - 1)(x + 3) = 0" />
+</MathContainer>
 
-   **Schritt 3**: Wir zerlegen <InlineMath math="5x" /> in <InlineMath math="6x - x" />:
+**Schritt 5**: Aus den Faktoren folgen die Nullstellen:
 
-   <BlockMath math="2x^2 + 6x - x - 3 = 0" />
+- <InlineMath math="2x - 1 = 0" /> → <InlineMath math="x = \frac{1}{2}" />
+- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
 
-   **Schritt 4**: Faktorisieren durch Gruppierung:
-
-   <MathContainer>
-     <BlockMath math="2x^2 + 6x - x - 3 = 0" />
-     <BlockMath math="2x(x + 3) - 1(x + 3) = 0" />
-     <BlockMath math="(2x - 1)(x + 3) = 0" />
-   </MathContainer>
-
-   **Schritt 5**: Aus den Faktoren folgen die Nullstellen:
-
-   - <InlineMath math="2x - 1 = 0" /> → <InlineMath math="x = \frac{1}{2}" />
-   - <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
-
-   Die Nullstellen sind also <InlineMath math="x = \frac{1}{2}" /> und <InlineMath math="x = -3" />.
+Die Nullstellen sind also <InlineMath math="x = \frac{1}{2}" /> und <InlineMath math="x = -3" />.
 
 ## Faktorisieren mit einer bekannten Nullstelle
 
@@ -188,61 +208,65 @@ Die Nullstellen sind <InlineMath math="x = -\frac{1}{2}" /> und <InlineMath math
 
 ## Sonderfälle der Faktorisierung
 
-1. Form <InlineMath math="ax^2 + bx = 0" />
+**Beispiel 1**
 
-   Fehlt der konstante Term, können wir <InlineMath math="x" /> direkt ausklammern:
+Form <InlineMath math="ax^2 + bx = 0" />
 
-   <MathContainer>
-     <BlockMath math="ax^2 + bx = 0" />
-     <BlockMath math="x(ax + b) = 0" />
-   </MathContainer>
+Fehlt der konstante Term, können wir <InlineMath math="x" /> direkt ausklammern:
 
-   Die Nullstellen sind <InlineMath math="x = 0" /> und <InlineMath math="x = -\frac{b}{a}" />.
+<MathContainer>
+  <BlockMath math="ax^2 + bx = 0" />
+  <BlockMath math="x(ax + b) = 0" />
+</MathContainer>
 
-   **Beispiel:** <InlineMath math="2x^2 - 18x = 0" />
+Die Nullstellen sind <InlineMath math="x = 0" /> und <InlineMath math="x = -\frac{b}{a}" />.
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 18x = 0" />
-     <BlockMath math="2x(x - 9) = 0" />
-   </MathContainer>
+**Beispiel:** <InlineMath math="2x^2 - 18x = 0" />
 
-   Die Nullstellen sind <InlineMath math="x = 0" /> und <InlineMath math="x = 9" />.
+<MathContainer>
+  <BlockMath math="2x^2 - 18x = 0" />
+  <BlockMath math="2x(x - 9) = 0" />
+</MathContainer>
 
-2. Form <InlineMath math="ax^2 - c = 0" />
+Die Nullstellen sind <InlineMath math="x = 0" /> und <InlineMath math="x = 9" />.
 
-   Für Gleichungen ohne einen <InlineMath math="x" />-Term wird zuerst <InlineMath math="x^2" /> isoliert. Über den reellen Zahlen setzt das Wurzelziehen <InlineMath math="\frac{c}{a}\ge0" /> voraus:
+**Beispiel 2**
 
-   <MathContainer>
-     <BlockMath math="ax^2 - c = 0" />
-     <BlockMath math="ax^2 = c" />
-     <BlockMath math="x^2 = \frac{c}{a}" />
-     <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
-   </MathContainer>
+Form <InlineMath math="ax^2 - c = 0" />
 
-   - Für <InlineMath math="\frac{c}{a}>0" /> gibt es zwei verschiedene reelle Nullstellen und eine Zerlegung in reelle Linearfaktoren.
-   - Für <InlineMath math="\frac{c}{a}=0" /> ist <InlineMath math="x=0" /> eine doppelte Nullstelle.
-   - Für <InlineMath math="\frac{c}{a}<0" /> gibt es weder reelle Nullstellen noch eine Zerlegung in reelle Linearfaktoren. Über den komplexen Zahlen lauten die Lösungen <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
+Für Gleichungen ohne einen <InlineMath math="x" />-Term wird zuerst <InlineMath math="x^2" /> isoliert. Über den reellen Zahlen setzt das Wurzelziehen <InlineMath math="\frac{c}{a}\ge0" /> voraus:
 
-   **Beispiel:** <InlineMath math="2x^2 - 18 = 0" />
+<MathContainer>
+  <BlockMath math="ax^2 - c = 0" />
+  <BlockMath math="ax^2 = c" />
+  <BlockMath math="x^2 = \frac{c}{a}" />
+  <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 18 = 0" />
-     <BlockMath math="2x^2 = 18" />
-     <BlockMath math="x^2 = 9" />
-     <BlockMath math="x = \pm 3" />
-   </MathContainer>
+- Für <InlineMath math="\frac{c}{a}>0" /> gibt es zwei verschiedene reelle Nullstellen und eine Zerlegung in reelle Linearfaktoren.
+- Für <InlineMath math="\frac{c}{a}=0" /> ist <InlineMath math="x=0" /> eine doppelte Nullstelle.
+- Für <InlineMath math="\frac{c}{a}<0" /> gibt es weder reelle Nullstellen noch eine Zerlegung in reelle Linearfaktoren. Über den komplexen Zahlen lauten die Lösungen <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
 
-    Die Nullstellen sind <InlineMath math="x = 3" /> und <InlineMath math="x = -3" />.
+**Beispiel:** <InlineMath math="2x^2 - 18 = 0" />
 
-    **Beispiel mit komplexen Lösungen:** <InlineMath math="2x^2 + 18 = 0" />
+<MathContainer>
+  <BlockMath math="2x^2 - 18 = 0" />
+  <BlockMath math="2x^2 = 18" />
+  <BlockMath math="x^2 = 9" />
+  <BlockMath math="x = \pm 3" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="2x^2 + 18 = 0" />
-      <BlockMath math="2x^2 = -18" />
-      <BlockMath math="x^2 = -9" />
-    </MathContainer>
+ Die Nullstellen sind <InlineMath math="x = 3" /> und <InlineMath math="x = -3" />.
 
-    Die Lösungen sind <InlineMath math="x = 3i" /> und <InlineMath math="x = -3i" />. Probe mit der Formel oben: <InlineMath math="c/a = -9" />, also <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
+ **Beispiel mit komplexen Lösungen:** <InlineMath math="2x^2 + 18 = 0" />
+
+ <MathContainer>
+   <BlockMath math="2x^2 + 18 = 0" />
+   <BlockMath math="2x^2 = -18" />
+   <BlockMath math="x^2 = -9" />
+ </MathContainer>
+
+ Die Lösungen sind <InlineMath math="x = 3i" /> und <InlineMath math="x = -3i" />. Probe mit der Formel oben: <InlineMath math="c/a = -9" />, also <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
 
 ## Wenn ganzzahlige Faktorpaare nicht funktionieren
 
@@ -250,11 +274,11 @@ Nicht jede quadratische Gleichung hat rationale Faktoren. Gibt es kein passendes
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-Bei ganzzahligen Koeffizienten hat die Gleichung genau dann rationale Nullstellen, wenn die Diskriminante <InlineMath math="b^2 - 4ac" /> eine nichtnegative Quadratzahl ist.
+Bei ganzzahligen Koeffizienten hat die Gleichung genau dann rationale Nullstellen, wenn die Diskriminante <InlineMath math="b^2 - 4ac" /> eine **nichtnegative Quadratzahl** ist.
 
 ## Übungsaufgaben
 
-Jede Gleichung muss zuerst in die Produktform gebracht werden, deshalb suchst du zwei Faktoren, deren Produkt den konstanten Term ergibt. Die Lösungen liest du danach direkt aus den beiden Faktoren ab.
+Suche zwei Zahlen mit dem <Highlight>Produkt ac und der Summe b</Highlight>. Das Produkt ist nicht einfach der konstante Term. Bei der fünften Aufgabe hilft die Differenz zweier Quadrate. Setze anschließend jeden Faktor gleich null.
 
 Faktorisiere die folgenden quadratischen Gleichungen:
 
@@ -266,142 +290,152 @@ Faktorisiere die folgenden quadratischen Gleichungen:
 
 ### Ausgearbeitete Lösungen
 
-1. <InlineMath math="x^2 + 6x + 5 = 0" />
+**Beispiel 1**
 
-   **Schritt 1**: Wir bestimmen die Koeffizienten
+<InlineMath math="x^2 + 6x + 5 = 0" />
 
-   <BlockMath math="a = 1, b = 6, c = 5" />
+**Schritt 1**: Wir bestimmen die Koeffizienten
 
-   **Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 5" /> und der Summe <InlineMath math="b = 6" />
+<BlockMath math="a = 1, b = 6, c = 5" />
 
-   Wähle Faktoren von <InlineMath math="5" /> mit der benötigten Summe:
+**Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 5" /> und der Summe <InlineMath math="b = 6" />
 
-   <BlockMath math="\begin{aligned} &amp;1\times5=5 \\ &amp;1+5=6 \end{aligned}" />
+Wähle Faktoren von <InlineMath math="5" /> mit der benötigten Summe:
 
-   **Schritt 3**: Faktorisierung
+<BlockMath math="\begin{aligned} &amp;1\times5=5 \\ &amp;1+5=6 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="x^2 + 6x + 5 = 0" />
-     <BlockMath math="x^2 + x + 5x + 5 = 0" />
-     <BlockMath math="x(x + 1) + 5(x + 1) = 0" />
-     <BlockMath math="(x + 5)(x + 1) = 0" />
-   </MathContainer>
+**Schritt 3**: Faktorisierung
 
-   **Schritt 4**: Aus den Faktoren folgen die Nullstellen
+<MathContainer>
+  <BlockMath math="x^2 + 6x + 5 = 0" />
+  <BlockMath math="x^2 + x + 5x + 5 = 0" />
+  <BlockMath math="x(x + 1) + 5(x + 1) = 0" />
+  <BlockMath math="(x + 5)(x + 1) = 0" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x + 5 = 0 \Rightarrow x = -5" />
-     <BlockMath math="x + 1 = 0 \Rightarrow x = -1" />
-   </MathContainer>
+**Schritt 4**: Aus den Faktoren folgen die Nullstellen
 
-   Die Nullstellen sind also <InlineMath math="x = -5" /> und <InlineMath math="x = -1" />.
+<MathContainer>
+  <BlockMath math="x + 5 = 0 \Rightarrow x = -5" />
+  <BlockMath math="x + 1 = 0 \Rightarrow x = -1" />
+</MathContainer>
 
-2. <InlineMath math="2x^2 + 5x + 2 = 0" />
+Die Nullstellen sind also <InlineMath math="x = -5" /> und <InlineMath math="x = -1" />.
 
-   **Schritt 1**: Wir bestimmen die Koeffizienten
+**Beispiel 2**
 
-   <BlockMath math="a = 2, b = 5, c = 2" />
+<InlineMath math="2x^2 + 5x + 2 = 0" />
 
-   **Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 2 \times 2 = 4" /> und der Summe <InlineMath math="b = 5" />
+**Schritt 1**: Wir bestimmen die Koeffizienten
 
-   Wähle Faktoren von <InlineMath math="4" /> mit der benötigten Summe:
+<BlockMath math="a = 2, b = 5, c = 2" />
 
-   <BlockMath math="\begin{aligned} &amp;1\times4=4 \\ &amp;1+4=5 \end{aligned}" />
+**Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 2 \times 2 = 4" /> und der Summe <InlineMath math="b = 5" />
 
-   **Schritt 3**: Faktorisierung
+Wähle Faktoren von <InlineMath math="4" /> mit der benötigten Summe:
 
-   <MathContainer>
-     <BlockMath math="2x^2 + 5x + 2 = 0" />
-     <BlockMath math="2x^2 + x + 4x + 2 = 0" />
-     <BlockMath math="x(2x + 1) + 2(2x + 1) = 0" />
-     <BlockMath math="(2x + 1)(x + 2) = 0" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;1\times4=4 \\ &amp;1+4=5 \end{aligned}" />
 
-   **Schritt 4**: Aus den Faktoren folgen die Nullstellen
+**Schritt 3**: Faktorisierung
 
-   <MathContainer>
-     <BlockMath math="2x + 1 = 0 \Rightarrow x = -\frac{1}{2}" />
-     <BlockMath math="x + 2 = 0 \Rightarrow x = -2" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="2x^2 + 5x + 2 = 0" />
+  <BlockMath math="2x^2 + x + 4x + 2 = 0" />
+  <BlockMath math="x(2x + 1) + 2(2x + 1) = 0" />
+  <BlockMath math="(2x + 1)(x + 2) = 0" />
+</MathContainer>
 
-   Die Nullstellen sind also <InlineMath math="x = -\frac{1}{2}" /> und <InlineMath math="x = -2" />.
+**Schritt 4**: Aus den Faktoren folgen die Nullstellen
 
-3. <InlineMath math="3x^2 - x - 2 = 0" />
+<MathContainer>
+  <BlockMath math="2x + 1 = 0 \Rightarrow x = -\frac{1}{2}" />
+  <BlockMath math="x + 2 = 0 \Rightarrow x = -2" />
+</MathContainer>
 
-   **Schritt 1**: Wir bestimmen die Koeffizienten
+Die Nullstellen sind also <InlineMath math="x = -\frac{1}{2}" /> und <InlineMath math="x = -2" />.
 
-   <BlockMath math="a = 3, b = -1, c = -2" />
+**Beispiel 3**
 
-   **Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 3 \times (-2) = -6" /> und der Summe <InlineMath math="b = -1" />
+<InlineMath math="3x^2 - x - 2 = 0" />
 
-   Wähle Faktoren von <InlineMath math="-6" /> mit der benötigten Summe:
+**Schritt 1**: Wir bestimmen die Koeffizienten
 
-   <BlockMath math="\begin{aligned} &amp;(-3)\times2=-6 \\ &amp;(-3)+2=-1 \end{aligned}" />
+<BlockMath math="a = 3, b = -1, c = -2" />
 
-   **Schritt 3**: Faktorisierung
+**Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 3 \times (-2) = -6" /> und der Summe <InlineMath math="b = -1" />
 
-   <MathContainer>
-     <BlockMath math="3x^2 - x - 2 = 0" />
-     <BlockMath math="3x^2 - 3x + 2x - 2 = 0" />
-     <BlockMath math="3x(x - 1) + 2(x - 1) = 0" />
-     <BlockMath math="(3x + 2)(x - 1) = 0" />
-   </MathContainer>
+Wähle Faktoren von <InlineMath math="-6" /> mit der benötigten Summe:
 
-   **Schritt 4**: Aus den Faktoren folgen die Nullstellen
+<BlockMath math="\begin{aligned} &amp;(-3)\times2=-6 \\ &amp;(-3)+2=-1 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="3x + 2 = 0 \Rightarrow x = -\frac{2}{3}" />
-     <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
-   </MathContainer>
+**Schritt 3**: Faktorisierung
 
-   Die Nullstellen sind also <InlineMath math="x = -\frac{2}{3}" /> und <InlineMath math="x = 1" />.
+<MathContainer>
+  <BlockMath math="3x^2 - x - 2 = 0" />
+  <BlockMath math="3x^2 - 3x + 2x - 2 = 0" />
+  <BlockMath math="3x(x - 1) + 2(x - 1) = 0" />
+  <BlockMath math="(3x + 2)(x - 1) = 0" />
+</MathContainer>
 
-4. <InlineMath math="2x^2 - 8x + 6 = 0" />
+**Schritt 4**: Aus den Faktoren folgen die Nullstellen
 
-   **Schritt 1**: Wir bestimmen die Koeffizienten
+<MathContainer>
+  <BlockMath math="3x + 2 = 0 \Rightarrow x = -\frac{2}{3}" />
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+</MathContainer>
 
-   <BlockMath math="a = 2, b = -8, c = 6" />
+Die Nullstellen sind also <InlineMath math="x = -\frac{2}{3}" /> und <InlineMath math="x = 1" />.
 
-   **Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 2 \times 6 = 12" /> und der Summe <InlineMath math="b = -8" />
+**Beispiel 4**
 
-   Wähle Faktoren von <InlineMath math="12" /> mit der benötigten Summe:
+<InlineMath math="2x^2 - 8x + 6 = 0" />
 
-   <BlockMath math="\begin{aligned} &amp;(-6)\times(-2)=12 \\ &amp;(-6)+(-2)=-8 \end{aligned}" />
+**Schritt 1**: Wir bestimmen die Koeffizienten
 
-   **Schritt 3**: Faktorisierung
+<BlockMath math="a = 2, b = -8, c = 6" />
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 8x + 6 = 0" />
-     <BlockMath math="2x^2 - 6x - 2x + 6 = 0" />
-     <BlockMath math="2x(x - 3) - 2(x - 3) = 0" />
-     <BlockMath math="(2x - 2)(x - 3) = 0" />
-     <BlockMath math="2(x - 1)(x - 3) = 0" />
-   </MathContainer>
+**Schritt 2**: Wir suchen zwei Zahlen mit dem Produkt <InlineMath math="ac = 2 \times 6 = 12" /> und der Summe <InlineMath math="b = -8" />
 
-   **Schritt 4**: Aus den Faktoren folgen die Nullstellen
+Wähle Faktoren von <InlineMath math="12" /> mit der benötigten Summe:
 
-   <MathContainer>
-     <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
-     <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;(-6)\times(-2)=12 \\ &amp;(-6)+(-2)=-8 \end{aligned}" />
 
-   Die Nullstellen sind also <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />.
+**Schritt 3**: Faktorisierung
 
-5. <InlineMath math="x^2 - 9 = 0" />
+<MathContainer>
+  <BlockMath math="2x^2 - 8x + 6 = 0" />
+  <BlockMath math="2x^2 - 6x - 2x + 6 = 0" />
+  <BlockMath math="2x(x - 3) - 2(x - 3) = 0" />
+  <BlockMath math="(2x - 2)(x - 3) = 0" />
+  <BlockMath math="2(x - 1)(x - 3) = 0" />
+</MathContainer>
 
-   **Schritt 1**: Als Differenz von Quadraten identifizieren
+**Schritt 4**: Aus den Faktoren folgen die Nullstellen
 
-   <BlockMath math="x^2 - 9 = x^2 - 3^2" />
+<MathContainer>
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
 
-   **Schritt 2**: Wir verwenden die Formel für die Differenz zweier Quadrate <InlineMath math="a^2 - b^2 = (a+b)(a-b)" />
+Die Nullstellen sind also <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />.
 
-   <BlockMath math="x^2 - 3^2 = (x + 3)(x - 3) = 0" />
+**Beispiel 5**
 
-   **Schritt 3**: Aus den Faktoren folgen die Nullstellen
+<InlineMath math="x^2 - 9 = 0" />
 
-   <MathContainer>
-     <BlockMath math="x + 3 = 0 \Rightarrow x = -3" />
-     <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
-   </MathContainer>
+**Schritt 1**: Als Differenz von Quadraten identifizieren
 
-   Die Nullstellen sind also <InlineMath math="x = -3" /> und <InlineMath math="x = 3" />.
+<BlockMath math="x^2 - 9 = x^2 - 3^2" />
+
+**Schritt 2**: Wir verwenden die Formel für die Differenz zweier Quadrate <InlineMath math="a^2 - b^2 = (a+b)(a-b)" />
+
+<BlockMath math="x^2 - 3^2 = (x + 3)(x - 3) = 0" />
+
+**Schritt 3**: Aus den Faktoren folgen die Nullstellen
+
+<MathContainer>
+  <BlockMath math="x + 3 = 0 \Rightarrow x = -3" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
+
+Die Nullstellen sind also <InlineMath math="x = -3" /> und <InlineMath math="x = 3" />.

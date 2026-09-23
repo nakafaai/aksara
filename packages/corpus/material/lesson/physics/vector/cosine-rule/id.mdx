@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Saat Dua Vektor Membentuk Sudut
 
-Jika dua vektor searah, resultannya tinggal dijumlahkan. Jika berlawanan arah, resultannya tinggal dikurangkan. Namun, banyak gaya atau perpindahan <Highlight>membentuk sudut di antara keduanya</Highlight>. Pada kondisi ini, besar resultan dapat dicari dengan **rumus kosinus**.
+Jika dua vektor searah, besar resultan adalah jumlah kedua besar vektor. Jika berlawanan arah, besar resultan adalah nilai mutlak selisih kedua besar vektor. Namun, banyak gaya atau perpindahan <Highlight>membentuk sudut di antara keduanya</Highlight>. Pada kondisi ini, besar resultan dapat dicari dengan **rumus kosinus**.
 
 Rumus ini dipakai ketika dua vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> diketahui besarnya, serta sudut apit <InlineMath math="\theta" /> di antara keduanya diketahui.
 
@@ -21,6 +21,10 @@ Rumus ini dipakai ketika dua vektor <InlineMath math="\vec{A}" /> dan <InlineMat
 ## Kosinus dalam Rumus Segitiga
 
 Rumus kosinus muncul karena resultan dua vektor membentuk segitiga dengan dua sisi yang diketahui. Jika sudut antara kedua vektor kecil, kedua vektor saling menguatkan lebih besar. Jika sudutnya mendekati <InlineMath math="180^\circ" />, keduanya makin saling meniadakan.
+
+Jika kedua vektor disusun **pangkal ke ujung**, sudut dalam segitiga adalah pelurus sudut apit. Karena itu, tanda minus pada rumus kosinus segitiga berubah menjadi tanda plus pada rumus resultan.
+
+<BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
 Tabel berikut menunjukkan hubungan antara sudut <InlineMath math="\theta" /> dan nilai <InlineMath math="\cos\theta" />:
 
@@ -36,7 +40,55 @@ Ketika <InlineMath math="\theta=90^\circ" />, rumus kosinus berubah menjadi bent
 
 Dua gaya bekerja pada satu titik. Gaya pertama sebesar <InlineMath math="10\text{ N}" />, gaya kedua sebesar <InlineMath math="8\text{ N}" />, dan sudut di antara keduanya <InlineMath math="60^\circ" />. Tentukan besar resultannya.
 
-Gunakan rumus:
+<LineEquation
+  cameraPosition={[7, 3, 20]}
+  cameraTarget={[7, 3, 0]}
+  title="Segitiga Resultan Dua Gaya"
+  description="Panah ungu adalah resultan. Panah jingga dimulai di ujung panah hijau kebiruan, sehingga sudut dalam segitiga merupakan pelurus sudut apit kedua gaya."
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((10) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 10, y: 0, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{A}" />,
+        at: 1,
+        offset: [0, -1, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 10, y: 0, z: 0 }, { x: (10) + 0.5 * ((14) - (10)), y: (0) + 0.5 * ((4 * Math.sqrt(3)) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{B}" />,
+        at: 1,
+        offset: [1, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((14) - (0)), y: (0) + 0.5 * ((4 * Math.sqrt(3)) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{R}" />,
+        at: 1,
+        offset: [-1, 1, 0],
+        anchorX: "left",
+      }],
+    }
+  ]}
+/>
+
+Substitusikan **besar kedua gaya dan sudut apit**. Satuan gaya yang dipakai adalah newton:
 
 <BlockMath math="\begin{aligned}
 R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
@@ -50,7 +102,7 @@ Resultannya lebih kecil dari <InlineMath math="18\text{ N}" /> karena kedua gaya
 
 ## Memeriksa Jawaban dengan Kasus Batas
 
-Kasus batas membantu mengecek apakah hasil masuk akal. Jika sudutnya <InlineMath math="0^\circ" />, rumus harus memberi <InlineMath math="A+B" />.
+**Kasus batas** membantu mengecek apakah hasil masuk akal. Jika sudutnya <InlineMath math="0^\circ" />, rumus harus memberi <InlineMath math="A+B" />.
 
 <BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2+2AB} \\ &amp;=\sqrt{(A+B)^2} \\ &amp;=A+B \end{aligned}" />
 
@@ -66,7 +118,7 @@ Pakai rumus kosinus ketika:
 
 - hanya ada dua vektor
 - besar kedua vektor diketahui
-- sudut apit kedua vektor diketahui
+- **sudut apit** kedua vektor diketahui
 - yang ditanya adalah besar resultan
 
 Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat, lalu jumlahkan semua komponen <InlineMath math="x" /> dan <InlineMath math="y" />. Rumus kosinus dapat langsung dipakai jika besar dua vektor dan sudut apitnya diketahui.

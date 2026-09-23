@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Pengaruh Operasi pada Modulus
 
-Misalkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> adalah bilangan kompleks. <Highlight>Modulus mengukur jarak sebuah bilangan dari titik asal</Highlight>, sehingga setiap aturan tentangnya menjawab satu pertanyaan: bagaimana jarak itu berubah ketika bilangan tersebut dinegatifkan, dikonjugatkan, dikurangkan, dikalikan, atau dibagi?
+Modulus mengukur **jarak dari titik asal**. Negasi dan konjugasi mempertahankan jarak, sedangkan perkalian, pembagian, dan penjumlahan mengikuti aturan berbeda. Kita bisa menurunkan aturan tersebut dari komponen dan panjang vektor.
 
 ### Modulus pada Negasi dan Konjugasi
 
-Negasi dan konjugasi tidak mengubah modulus suatu bilangan kompleks.
+Negasi dan konjugasi **tidak mengubah modulus** suatu bilangan kompleks.
 
 <BlockMath math="|z_1| = |-z_1| = |\bar{z_1}|" />
 
@@ -29,7 +29,7 @@ Ketiganya menghasilkan nilai yang sama.
 
 ### Modulus Selisih
 
-Modulus dari selisih dua bilangan kompleks sama urutannya dibalik.
+Modulus selisih menyatakan **jarak antara dua titik**, sehingga membalik urutan titik tidak mengubah jarak.
 
 <BlockMath math="|z_1 - z_2| = |z_2 - z_1|" />
 
@@ -41,7 +41,7 @@ Ini adalah akibat langsung dari sifat <InlineMath math="|-z| = |z|" />. Kita tah
 
 ### Kuadrat Modulus
 
-Kuadrat dari modulus suatu bilangan kompleks sama dengan bilangan kompleks tersebut dikalikan dengan konjugatnya.
+Kuadrat dari modulus suatu bilangan kompleks sama dengan bilangan kompleks tersebut dikalikan dengan **konjugatnya**.
 
 <BlockMath math="|z_1|^2 = z_1 \times \bar{z_1}" />
 
@@ -49,7 +49,7 @@ Kuadrat dari modulus suatu bilangan kompleks sama dengan bilangan kompleks terse
 
 Jika <InlineMath math="z_1 = x + iy" />, maka <InlineMath math="\bar{z_1} = x - iy" />.
 
-<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &= (x + iy)(x - iy) \\ &= x^2 - (iy)^2 \\ &= x^2 - i^2y^2 \\ &= x^2 - (-1)y^2 \\ &= x^2 + y^2\end{aligned}" />
+<BlockMath math="\begin{aligned}z_1 \times \bar{z_1} &amp;= (x + iy)(x - iy) \\ &amp;= x^2 - (iy)^2 \\ &amp;= x^2 - i^2y^2 \\ &amp;= x^2 - (-1)y^2 \\ &amp;= x^2 + y^2\end{aligned}" />
 
 Kita juga tahu bahwa <InlineMath math="|z_1| = \sqrt{x^2 + y^2}" />, sehingga <InlineMath math="|z_1|^2 = (\sqrt{x^2 + y^2})^2 = x^2 + y^2" />.
 
@@ -63,25 +63,23 @@ Modulus dari hasil kali dua bilangan kompleks sama dengan <Highlight>hasil kali 
 
 Sifat ini dapat dibuktikan dengan mengalikan setiap bilangan dengan konjugatnya:
 
-<MathContainer>
-  <BlockMath math="|z_1z_2|^2=(z_1z_2)\overline{(z_1z_2)}" />
-  <BlockMath math="=z_1\bar{z_1}\,z_2\bar{z_2}" />
-  <BlockMath math="=|z_1|^2|z_2|^2" />
-</MathContainer>
+<BlockMath math="\begin{aligned}|z_1z_2|^2&amp;=(z_1z_2)\overline{(z_1z_2)}\\&amp;=z_1\bar z_1z_2\bar z_2\\&amp;=|z_1|^2|z_2|^2\end{aligned}" />
 
 Kedua modulus bernilai tak negatif, sehingga pengambilan akar kuadrat menghasilkan sifat hasil kali.
 
 ### Modulus Hasil Bagi
 
-Modulus dari hasil bagi dua bilangan kompleks sama dengan hasil bagi modulus masing-masing bilangan kompleks (dengan penyebut tidak nol).
+Modulus dari hasil bagi dua bilangan kompleks sama dengan **hasil bagi modulus** masing-masing bilangan kompleks (dengan penyebut tidak nol).
 
 <BlockMath math="\left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|}, \quad \text{untuk } z_2 \neq 0" />
 
 Sifat hasil bagi mengikuti sifat hasil kali karena <InlineMath math="z_1=(z_1/z_2)z_2" /> ketika <InlineMath math="z_2\neq0" />.
 
+<BlockMath math="\begin{aligned}|z_1|&amp;=\left|\frac{z_1}{z_2}\right||z_2|\\\left|\frac{z_1}{z_2}\right|&amp;=\frac{|z_1|}{|z_2|}\end{aligned}" />
+
 ### Ketaksamaan Segitiga
 
-Modulus dari jumlah dua bilangan kompleks kurang dari atau sama dengan jumlah modulus masing-masing bilangan kompleks.
+Modulus dari jumlah dua bilangan kompleks **kurang dari atau sama dengan** jumlah modulus masing-masing bilangan kompleks.
 
 <BlockMath math="|z_1 + z_2| \leq |z_1| + |z_2|" />
 
@@ -89,13 +87,46 @@ Modulus dari jumlah dua bilangan kompleks kurang dari atau sama dengan jumlah mo
 
 Secara geometris, tempatkan vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> secara ujung ke pangkal. Vektor langsung dari titik awal ke titik akhir adalah <InlineMath math="z_1 + z_2" />, dan panjangnya tidak dapat melebihi jumlah dua sisi lainnya, yaitu <InlineMath math="|z_1| + |z_2|" />.
 
+Jarak langsung lebih pendek daripada lintasan melalui sudut siku-siku:
+
+<BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
+
+<MathVisual
+  title="Jarak langsung dan lintasan dua sisi"
+  description="Vektor mendatar panjang 3 dan vektor tegak panjang 4 menghasilkan vektor langsung panjang 5. Panjang 5 tidak melebihi lintasan 3 tambah 4."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "horizontal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "vertical", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "direct", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "horizontal", objectId: "horizontal", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "vertical", objectId: "vertical", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "direct", objectId: "direct", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{ horizontal: "3", vertical: "4", direct: "5" }}
+/>
+
 ### Ketaksamaan Segitiga Terbalik
 
-Selisih modulus dua bilangan kompleks tidak dapat melebihi jarak antara kedua bilangan tersebut.
+**Nilai mutlak selisih modulus** dua bilangan kompleks tidak dapat melebihi jarak antara kedua bilangan tersebut.
 
 <BlockMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1-z_2|" />
 
 Ketaksamaan ini memberi batas bawah bagi suatu jarak atau jumlah. Misalnya, dengan mengganti <InlineMath math="z_2" /> menjadi <InlineMath math="-z_2" />, kita memperoleh <InlineMath math="\bigl||z_1|-|z_2|\bigr| \leq |z_1+z_2|" />.
+
+Untuk menurunkan batas bawah, tuliskan bilangan pertama sebagai selisih ditambah bilangan kedua, lalu gunakan ketaksamaan segitiga:
+
+<BlockMath math="\begin{aligned}|z_1|&amp;=|(z_1-z_2)+z_2|\\&amp;\leq|z_1-z_2|+|z_2|\\|z_1|-|z_2|&amp;\leq|z_1-z_2|\end{aligned}" />
+
+Pertukarkan kedua bilangan untuk memperoleh batas pada selisih sebaliknya. Kedua batas bersama-sama menghasilkan nilai mutlak selisih modulus.
+
+<BlockMath math="\begin{aligned}|z_2|-|z_1|&amp;\leq|z_2-z_1|=|z_1-z_2|\\\bigl||z_1|-|z_2|\bigr|&amp;\leq|z_1-z_2|\end{aligned}" />
 
 ## Penggunaan Sifat Modulus
 
@@ -124,13 +155,15 @@ Sifat hasil bagi menghindari langkah memperluas pecahan dengan konjugat penyebut
 
 ## Latihan
 
-Setiap butir meminta modulus, jadi tuliskan dulu bagian real dan imajinernya lalu hitung akar kuadratnya.
+Gunakan **aturan modulus yang sesuai** dengan operasi. Butir pertama memerlukan hasil kali modulus, butir kedua membandingkan dua perhitungan, dan butir ketiga hanya memberi panjang sehingga jawabannya berupa interval.
 
 1.  Jika <InlineMath math="z_1 = 6 + 8i" /> dan <InlineMath math="z_2 = 3 - i" />, hitunglah <InlineMath math="|z_1 \times z_2|" /> menggunakan sifat modulus.
 2.  Jika <InlineMath math="z = 5 - 12i" />, buktikan bahwa <InlineMath math="|z|^2 = z \times \bar{z}" />.
 3.  Jika <InlineMath math="|z_1|=3" /> dan <InlineMath math="|z_2|=5" />, tentukan batas nilai yang mungkin untuk <InlineMath math="|z_1+z_2|" />.
 
 ### Pembahasan
+
+Hitung modulus sebelum mengalikan, gunakan konjugat untuk kuadrat modulus, lalu terapkan **batas atas dan bawah** pada jumlah.
 
 1.  Kita gunakan sifat <InlineMath math="|z_1 \times z_2| = |z_1| \times |z_2|" />.
 
@@ -158,7 +191,7 @@ Setiap butir meminta modulus, jadi tuliskan dulu bagian real dan imajinernya lal
 
     Konjugat dari <InlineMath math="z" /> adalah <InlineMath math="\bar{z} = 5 + 12i" />.
 
-    <BlockMath math="\begin{aligned}z \times \bar{z} &= (5 - 12i)(5 + 12i) \\ &= 5^2 - (12i)^2 \\ &= 25 - 144i^2 \\ &= 25 - 144(-1) \\ &= 25 + 144 \\ &= 169\end{aligned}" />
+    <BlockMath math="\begin{aligned}z \times \bar{z} &amp;= (5 - 12i)(5 + 12i) \\ &amp;= 5^2 - (12i)^2 \\ &amp;= 25 - 144i^2 \\ &amp;= 25 - 144(-1) \\ &amp;= 25 + 144 \\ &amp;= 169\end{aligned}" />
 
     Karena sisi kiri (<InlineMath math="169" />) sama dengan sisi kanan (<InlineMath math="169" />), maka terbukti <InlineMath math="|z|^2 = z \times \bar{z}" />.
 
@@ -167,3 +200,7 @@ Setiap butir meminta modulus, jadi tuliskan dulu bagian real dan imajinernya lal
     <BlockMath math="\bigl||z_1|-|z_2|\bigr|\leq|z_1+z_2|\leq|z_1|+|z_2|" />
 
     Substitusi kedua modulus menghasilkan <InlineMath math="2\leq|z_1+z_2|\leq8" />. Nilai tepatnya bergantung pada sudut antara kedua bilangan kompleks tersebut.
+
+Kedua batas dapat dicapai: vektor berlawanan arah memberi batas bawah, sedangkan vektor searah memberi batas atas.
+
+<BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />

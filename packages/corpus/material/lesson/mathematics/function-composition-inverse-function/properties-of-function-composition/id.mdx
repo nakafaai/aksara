@@ -1,15 +1,15 @@
 export const metadata = {
-    title: "Sifat Komposisi Fungsi",
+title: "Sifat Komposisi Fungsi",
   description: "Tunjukkan bahwa hasil komposisi fungsi umumnya bergantung pada urutan, lalu buktikan sifat asosiatif dan sifat identitasnya.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-04-27",
-    dateModified: "2026-09-12",
-    subject: "Fungsi Komposisi dan Fungsi Invers",
+authors: [{ name: "Nabil Akbarazzima Fatih" }],
+datePublished: "2025-04-27",
+dateModified: "2026-09-19",
+subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
 ## Urutan dan Pengelompokan dalam Komposisi Fungsi
 
-Gunakan fungsi berikut untuk memeriksa sifat komposisi:
+Komposisi menerapkan fungsi dalam **urutan tertentu**. Gunakan ketiga aturan berikut untuk membandingkan perubahan urutan dengan perubahan pengelompokan:
 
 <MathContainer>
   <BlockMath math="f(x) = 2x + 1" />
@@ -27,23 +27,23 @@ Domain ketiga fungsi adalah:
 
 Secara umum, <InlineMath math="(f \circ g)(x)" /> **tidak sama dengan** <InlineMath math="(g \circ f)(x)" />.
 
-**Contoh:**
+**Contoh**:
 
 Bandingkan <InlineMath math="(g \circ f)(x)" /> dan <InlineMath math="(f \circ g)(x)" />.
 
-1.  **Menghitung <InlineMath math="(g \circ f)(x)" />:**
+**Menghitung <InlineMath math="(g \circ f)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
-      <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
+  <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
+</MathContainer>
 
-2.  **Menghitung <InlineMath math="(f \circ g)(x)" />:**
+**Menghitung <InlineMath math="(f \circ g)(x)" />**:
 
-    <MathContainer>
-      <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
-      <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
+  <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
+</MathContainer>
 
 Kedua bentuk polinomial memiliki koefisien yang berbeda, sehingga keduanya bukan fungsi yang sama. Satu input juga memberi contoh penyangkal langsung:
 
@@ -61,38 +61,49 @@ Secara matematis, untuk fungsi <InlineMath math="f" />, <InlineMath math="g" />,
 
 Kita boleh membentuk <InlineMath math="f\circ g" /> lebih dahulu lalu menyusun fungsi tersebut dengan <InlineMath math="h" />, atau membentuk <InlineMath math="g\circ h" /> lebih dahulu lalu menyusun <InlineMath math="f" /> dengan fungsi tersebut. Untuk setiap input yang membuat kedua ruas terdefinisi, keduanya menerapkan <InlineMath math="h" />, kemudian <InlineMath math="g" />, lalu <InlineMath math="f" />.
 
-**Contoh:**
+**Contoh**:
 
 Cek apakah <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
-1.  **Menghitung <InlineMath math="((f \circ g) \circ h)(x)" />:**
+**Menghitung <InlineMath math="((f \circ g) \circ h)(x)" />**:
 
-    Kita sudah tahu <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
+Kita sudah tahu <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
-2.  **Menghitung <InlineMath math="(f \circ (g \circ h))(x)" />:**
+**Menghitung <InlineMath math="(f \circ (g \circ h))(x)" />**:
 
-    Pertama, cari <InlineMath math="(g \circ h)(x)" />:
+Pertama, cari <InlineMath math="(g \circ h)(x)" />:
 
-    <MathContainer>
-      <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
-      <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
+  <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
+</MathContainer>
 
-    Sekarang, komposisikan <InlineMath math="f" /> dengan hasil ini:
+Sekarang, komposisikan <InlineMath math="f" /> dengan hasil ini:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
-      <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
 
 Karena kedua hasilnya sama (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) untuk <InlineMath math="x\neq-1" />, sifat asosiatif berlaku pada domain bersama: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
 
 Sifat asosiatif ini berlaku untuk kombinasi urutan fungsi lainnya juga, seperti <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> dan <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
+
+Pada <InlineMath math="x=0" />, kedua pengelompokan mengikuti **jalur perhitungan yang sama**. Mengelompokkan dua aturan tidak menukar urutan penerapannya:
+
+<Mermaid
+  title="Urutan Tetap pada Sifat Asosiatif"
+  description="Masukan nol diproses oleh h, lalu g, lalu f dan menghasilkan sebelas."
+  chart={`flowchart LR
+    X["0"] -->|"h"| H["1"]
+    H -->|"g"| G["5"]
+    G -->|"f"| F["11"]`}
+/>
 
 ### Elemen Identitas
 
@@ -105,7 +116,7 @@ Komposisi dengan fungsi identitas pada himpunan yang sesuai tidak mengubah <Inli
   <BlockMath math="(I_B\circ f)(x)=I_B(f(x))=f(x)" />
 </MathContainer>
 
-**Contoh:**
+**Contoh**:
 
 Dengan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> dan <InlineMath math="f(x) = 2x + 1" />:
 

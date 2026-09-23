@@ -5,17 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Misalkan:
-- <InlineMath math="S" /> adalah himpunan seluruh siswa
-- <InlineMath math="P" /> adalah siswa yang mengikuti pramuka
-- <InlineMath math="F" /> adalah siswa yang mengikuti futsal
-
-Gunakan prinsip inklusi-eksklusi untuk menghitung siswa yang mengikuti setidaknya satu kegiatan:
+Siswa yang mengikuti **dua kegiatan terhitung dua kali** jika jumlah peserta pramuka dan futsal langsung dijumlahkan. Kurangi irisan satu kali. Dengan <InlineMath math="P" /> sebagai himpunan peserta pramuka dan <InlineMath math="F" /> sebagai himpunan peserta futsal, kita memperoleh:
 
 <BlockMath math="\begin{aligned}n(P\cup F)&=n(P)+n(F)\\&\quad{}-n(P\cap F)\\&=12+15-7\\&=20\end{aligned}" />
 
-Siswa lainnya tidak mengikuti kedua kegiatan:
+Siswa di luar gabungan tidak mengikuti satu pun dari kedua kegiatan:
 
 <BlockMath math="\begin{aligned}n\left((P\cup F)^c\right)&=30-20\\&=10\end{aligned}" />
 
-Jadi, <InlineMath math="10" /> siswa tidak mengikuti kedua kegiatan tersebut.
+Jadi, <InlineMath math="10" /> siswa tidak mengikuti satu pun dari kedua kegiatan tersebut.

@@ -24,13 +24,13 @@ Fungsi eksponensial yang diskalakan berbentuk:
 
 <BlockMath math="g(x)=k\,a^x" />
 
-Dalam bentuk ini, <InlineMath math="k\neq0" /> adalah faktor skala vertikal. <Highlight>Bilangan pokok mengatur pertumbuhan atau peluruhan</Highlight>, sedangkan <InlineMath math="k" /> mengatur nilai awal dan sisi sumbu <InlineMath math="x" /> tempat grafik berada.
+Dalam bentuk ini, <InlineMath math="k\neq0" /> adalah faktor skala vertikal. Bilangan pokok menentukan **faktor perubahan per satuan masukan**, sedangkan <InlineMath math="k" /> mengatur nilai awal dan sisi sumbu <InlineMath math="x" /> tempat grafik berada.
 
 ## Domain Range dan Titik Potong
 
 Untuk fungsi standar <InlineMath math="f(x)=a^x" />:
 
-1. Domainnya adalah <InlineMath math="\mathbb{R}" />.
+1. **Domainnya** adalah <InlineMath math="\mathbb{R}" />.
 2. Range-nya adalah <InlineMath math="(0,\infty)" />.
 3. Grafik memotong sumbu <InlineMath math="y" /> di <InlineMath math="(0,1)" /> karena <InlineMath math="a^0=1" />.
 4. Grafik tidak pernah memotong sumbu <InlineMath math="x" /> karena <InlineMath math="a^x>0" />.
@@ -41,7 +41,7 @@ Untuk <InlineMath math="g(x)=k\,a^x" />, titik potong sumbu <InlineMath math="y"
 
 ## Mengapa Dua Bilangan Pokok Dikecualikan
 
-Dua nilai bilangan pokok merusak fungsi eksponensial, dan masing-masing gagal karena alasan berbeda. Bilangan pokok satu memberi nilai yang sama untuk setiap input, sehingga fungsinya berhenti berubah, sedangkan bilangan pokok nol menghapus pertumbuhannya karena setiap pangkat positif dari nol tetap nol.
+Kita mengecualikan bilangan pokok satu karena menghasilkan **fungsi konstan**. Bilangan pokok nol dikecualikan karena **pangkat negatifnya tidak terdefinisi**. Kedua alasan itu berbeda: fungsi konstan tetap memiliki nilai untuk semua masukan real, sedangkan nol tidak.
 
 ### Bilangan Pokok Satu
 
@@ -49,7 +49,7 @@ Jika <InlineMath math="a=1" />, maka:
 
 <BlockMath math="g(x)=k\cdot1^x=k" />
 
-Keluarannya tidak pernah berubah, sehingga bentuk ini merupakan fungsi konstan. Pertumbuhan dan peluruhan eksponensial memerlukan perubahan berulang dengan faktor yang sama.
+Keluarannya tidak pernah berubah, sehingga bentuk ini merupakan **fungsi konstan**. Pertumbuhan dan peluruhan eksponensial memerlukan perubahan berulang dengan faktor yang sama.
 
 <FunctionChart
   a={1}
@@ -64,7 +64,7 @@ Keluarannya tidak pernah berubah, sehingga bentuk ini merupakan fungsi konstan. 
 
 ### Bilangan Pokok Nol
 
-Ekspresi <InlineMath math="0^x" /> tidak mendefinisikan fungsi bernilai real untuk semua masukan real:
+Ekspresi <InlineMath math="0^x" /> gagal memenuhi **domain semua bilangan real**:
 
 <MathContainer>
   <BlockMath math="0^x=0\qquad\text{untuk }x>0" />
@@ -75,7 +75,7 @@ Pada <InlineMath math="x=0" />, ekspresi <InlineMath math="0^0" /> tidak diberi 
 
 ## Bentuk dan Perilaku Fungsi Eksponensial
 
-1. <InlineMath math="f(x)=4^x" /> memiliki <InlineMath math="a=4>1" />, sehingga fungsinya naik. Beberapa nilainya adalah <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" />, dan <InlineMath math="f(2)=16" />.
+1. <InlineMath math="f(x)=4^x" /> memiliki <InlineMath math="a=4>1" />, sehingga **fungsinya naik**. Beberapa nilainya adalah <InlineMath math="f(0)=1" />, <InlineMath math="f(1)=4" />, dan <InlineMath math="f(2)=16" />.
 
 2. <InlineMath math="f(x)=3^{x+1}" /> dapat ditulis ulang sebagai <InlineMath math="f(x)=3\cdot3^x" />. Faktor <InlineMath math="3" /> mengubah titik potong sumbu <InlineMath math="y" /> dari <InlineMath math="1" /> menjadi <InlineMath math="3" />.
 
@@ -101,4 +101,10 @@ Pada <InlineMath math="x=0" />, ekspresi <InlineMath math="0^0" /> tidak diberi 
 3. **Waktu paruh**: <InlineMath math="A(t)=A_0\left(\frac12\right)^{t/h}" />, dengan <InlineMath math="h" /> sebagai waktu paruh.
 4. **Penularan awal**: <InlineMath math="C(n)=C_0R^n" />, dengan <InlineMath math="R" /> sebagai faktor rata-rata yang diasumsikan per siklus.
 
-Setiap rumus baru bermakna setelah variabel, satuan, interval, dan asumsinya dinyatakan. Bentuk eksponensial yang sama dapat menggambarkan konteks berbeda, tetapi simbolnya tidak memiliki makna dunia nyata dengan sendirinya.
+Pada model penggandaan, <InlineMath math="P_0" /> adalah jumlah awal, sedangkan <InlineMath math="t" /> dan <InlineMath math="d" /> memakai satuan waktu yang sama. Pada model waktu paruh, <InlineMath math="A_0" /> adalah jumlah awal, dengan <InlineMath math="t" /> dan <InlineMath math="h" /> juga dalam satuan yang sama. Pada model penularan, <InlineMath math="C_0" /> adalah jumlah awal dan <InlineMath math="n" /> menghitung siklus. Setiap model menganggap faktor perubahan tetap selama interval yang dihitung.
+
+Untuk pertumbuhan majemuk, <InlineMath math="P" /> adalah nilai awal dan <InlineMath math="t" /> menghitung interval. Misalnya, nilai awal <InlineMath math="100" /> bertambah <InlineMath math="10\%" /> setiap interval, sehingga <InlineMath math="r=0{,}1" />. Setelah dua interval:
+
+<BlockMath math="A(2)=100(1+0{,}1)^2=100(1{,}21)=121" />
+
+Kenaikan pada interval kedua dihitung dari <InlineMath math="110" />, sehingga **jumlah tambahannya ikut bertambah** meskipun persentasenya tetap.

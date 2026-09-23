@@ -1,7 +1,115 @@
 import { assert, it } from "@effect/vitest";
 
-import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
+import {
+  findEmphasisArtifactIssues,
+  findPhraseEmphasisIssues,
+} from "#nakafa-content/emphasis/check";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+
+it("finds whole sentence emphasis with either rendered marker", () => {
+  for (const source of [
+    "<Highlight>Vektor biasanya ditampilkan sebagai anak panah.</Highlight>",
+    "**A vector is commonly drawn as an arrow.**",
+    "<Highlight>Ein Vektor wird gewöhnlich als Pfeil gezeichnet.</Highlight>",
+    "**The *same* magnitude and direction.**",
+  ]) {
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ rule }) => rule),
+      ["sentence-punctuation-emphasis"]
+    );
+  }
+});
+
+it("preserves phrase emphasis, abbreviations, code, and exact quotations", () => {
+  for (const source of [
+    "A vector has **magnitude and direction**.",
+    "**Dr.** Example",
+    "<Highlight>For example, **etc.**</Highlight>",
+    '**<InlineMath math="x = 2." />**',
+    "**`A whole code sentence here.`**",
+    "**![A vector points toward the positive axis.](vector.svg)**",
+    "> **A quoted sentence stays exactly as supplied.**",
+    '"**A quoted sentence stays exactly as supplied.**"',
+    "<Highlight>„Ein Zitat bleibt im Original.“</Highlight>",
+    "```md\n**A code example stays exactly as supplied.**\n```",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(source), []);
+  }
+});
+
+it("protects entity-decoded quotations while still inspecting nearby authored sentences", () => {
+  for (const quoted of [
+    "&quot;**A quoted sentence stays exactly as supplied.**&quot;",
+    "&#34;<Highlight>A quoted sentence stays exactly as supplied.</Highlight>&#34;",
+    "&#x201E;**Ein Zitat bleibt im ursprünglichen Wortlaut.**&#x201C;",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(quoted), []);
+    const source = `${quoted}\n\n**The following sentence belongs to the author.**`;
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ line, rule }) => ({
+        line,
+        rule,
+      })),
+      [{ line: 3, rule: "sentence-punctuation-emphasis" }]
+    );
+  }
+});
+
+it("keeps empty components and punctuation-only marks outside sentence detection", () => {
+  for (const source of [
+    "<Highlight />",
+    "**<Highlight />**",
+    "<Highlight>...!</Highlight>",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(source), []);
+  }
+});
+
+it("does not let an unmatched quote borrow a later paragraph's quotation", () => {
+  for (const [open, close] of [
+    ['"', '"'],
+    ["“", "”"],
+    ["„", "“"],
+  ]) {
+    const source = `An unmatched ${open}opening starts here.\n\n**The author still needs selective emphasis.**\n\n${open}An exact quotation stays unchanged.${close}`;
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ line, rule }) => ({
+        line,
+        rule,
+      })),
+      [{ line: 3, rule: "sentence-punctuation-emphasis" }]
+    );
+  }
+});
+
+it("retains useful diagnostics when an upstream tree has incomplete positions", () => {
+  const source = "A sentence with several words.";
+  const tree: MdxNode = {
+    children: [
+      { children: [{ type: "text", value: source }], type: "strong" },
+      {
+        children: [{ type: "text", value: source }],
+        position: {},
+        type: "strong",
+      },
+    ],
+    type: "root",
+  };
+  assert.deepEqual(findPhraseEmphasisIssues(source, tree), [
+    {
+      column: 1,
+      excerpt: source,
+      line: 1,
+      rule: "sentence-punctuation-emphasis",
+    },
+    {
+      column: 1,
+      excerpt: source,
+      line: 1,
+      rule: "sentence-punctuation-emphasis",
+    },
+  ]);
+});
 
 it.each(["Langkah", "Step", "Schritt"])(
   "keeps the number inside the marked %s label",

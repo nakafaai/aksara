@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count complete outcomes by multiplying the valid choices at each step, then verify the count with a table or tree diagram.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
@@ -15,7 +15,7 @@ A form with several fields follows the same pattern. Each field is a slot and ea
 
 ## Listing Choices in a Table
 
-The table method lists every combination. Rows represent choices from one category and columns represent choices from another.
+The table method lists **every combination**. Rows represent choices from one category and columns represent choices from another.
 
 Suppose a student wants to choose an online learning package. There are three platforms (Platform A, Platform B, Platform C) and four subjects (Mathematics, Physics, Chemistry, Biology).
 
@@ -30,28 +30,34 @@ A table lists all possible combinations:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Total combinations} &amp;= 3 \times 4 \\ &amp;= 12 \text{ ways} \end{aligned}" />
 </MathContainer>
-
 ## Tree Diagram Method
 
 In a **tree diagram**, each branch records one choice. A complete path from the starting point to an endpoint represents one complete outcome.
 
 For the same package selection, the first branches choose a platform and the next branches choose a subject.
 
-1. Level 1:
+<Mermaid title="Two levels of package choices" description="Each of three platform choices branches into four subject choices." chart={`flowchart LR
+  S["Start"]
+  S --> A["Platform A"]
+  A --> A0["Mathematics"]
+  A --> A1["Physics"]
+  A --> A2["Chemistry"]
+  A --> A3["Biology"]
+  S --> B["Platform B"]
+  B --> B0["Mathematics"]
+  B --> B1["Physics"]
+  B --> B2["Chemistry"]
+  B --> B3["Biology"]
+  S --> C["Platform C"]
+  C --> C0["Mathematics"]
+  C --> C1["Physics"]
+  C --> C2["Chemistry"]
+  C --> C3["Biology"]
+`} />
 
-   From <InlineMath math="1" /> starting point, branch into <InlineMath math="3" /> platform choices.
+Each platform opens four subject branches. Thus **each complete path** chooses exactly one platform and one subject. For example, Start → Platform A → Physics means Platform A for Physics.
 
-2. Level 2:
-
-   <BlockMath math="\begin{aligned} &amp;3 \text{ platforms} \times 4 \text{ subjects} \\ &amp;= 12 \text{ endpoints} \end{aligned}" />
-
-3. Branch structure:
-
-   Start by choosing a platform, then choose a subject.
-
-4. Total complete paths:
-
-   <BlockMath math="3 \times 4 = 12 \text{ combinations}" />
+<BlockMath math="3 \times 4 = 12" />
 
 ## Multiplication Rule Method
 
@@ -61,9 +67,11 @@ The **multiplication rule** gives the same count without listing every outcome. 
 <BlockMath math="\begin{aligned} &amp;\text{Total ways} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
+The first slot has a fixed number of choices. For each later slot, the number must be the same **for every valid earlier selection**, although the available choices may differ. If branch counts differ, count the branch groups separately and add them.
+
 ### Counting Access Codes
 
-A school wants to create access codes for digital learning systems. The code consists of:
+A school wants to create access codes for digital learning systems. The code has **three ordered slots**:
 - First slot: <InlineMath math="3 \text{ letters}" /> (<InlineMath math="A, B, C" />)
 - Second slot: <InlineMath math="5 \text{ numbers}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
 - Third slot: <InlineMath math="2 \text{ symbols}" /> (<InlineMath math="@, \#" />)
@@ -76,11 +84,9 @@ Multiply the choices for the three slots:
 <BlockMath math="k_3 = 2 \text{ (symbol choices)}" />
 <BlockMath math="\begin{aligned} &amp;\text{Total different codes} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ codes} \end{aligned}" />
 </MathContainer>
-
 ## Cases with Restrictions
 
-Restrictions can change the number of choices from one slot to the next. Decide for each slot whether an earlier choice removes an option, because that is what decides whether the factors stay equal. The examples below work through both cases.
-
+Restrictions can change the number of choices from one slot to the next. Decide for each slot whether an **earlier choice** removes an option, because that is what decides whether the factors stay equal. The examples below work through both cases.
 ### Repetition Not Allowed
 
 If the same object **cannot be used repeatedly**, then each filled slot will reduce the choices for the next slot.
@@ -104,7 +110,7 @@ For the same case with repetition allowed:
 
 ## Exercises
 
-Each problem fills several places in order. Count the choices for one place at a time, multiply them, and watch for the problem that forbids repetition.
+Each problem fills several places in order. Count the choices for one place at a time, multiply them, and watch for the problem that **forbids repetition**.
 
 1. An electronics store sells smartphones with <InlineMath math="4" /> different brands, each available in <InlineMath math="3" /> memory capacities and <InlineMath math="5" /> color choices. How many different smartphone combinations are there?
 
@@ -113,35 +119,39 @@ Each problem fills several places in order. Count the choices for one place at a
 3. From city <InlineMath math="P" /> to city <InlineMath math="R" /> through city <InlineMath math="Q" />, there are <InlineMath math="3" /> roads from <InlineMath math="P" /> to <InlineMath math="Q" /> and <InlineMath math="4" /> roads from <InlineMath math="Q" /> to <InlineMath math="R" />. How many different routes can be chosen for the journey from <InlineMath math="P" /> to <InlineMath math="R" />?
 
 4. A license plate contains <InlineMath math="2" /> letters followed by <InlineMath math="3" /> digits. If all <InlineMath math="26" /> letters and the <InlineMath math="10" /> digits <InlineMath math="0\text{-}9" /> are available and repetition is allowed, how many plates are possible?
-
 ### Answer Key
 
-1. Given: <InlineMath math="4 \text{ brands}" />, <InlineMath math="3 \text{ memory capacities}" />, <InlineMath math="5 \text{ color choices}" />
+**Problem 1**
 
-   The number of smartphone combinations is:
+Given: <InlineMath math="4 \text{ brands}" />, <InlineMath math="3 \text{ memory capacities}" />, <InlineMath math="5 \text{ color choices}" />
 
-   <BlockMath math="4\times3\times5=60" />
+The number of smartphone combinations is:
 
-2. Given: <InlineMath math="1 \text{ letter}" /> from <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digits}" /> from <InlineMath math="\{1, 2, 3, 4, 5\}" /> without repetition
+<BlockMath math="4\times3\times5=60" />
 
-   There are <InlineMath math="4" /> choices for the letter and <InlineMath math="5" /> for the first digit. Repetition is forbidden, so only <InlineMath math="4" /> choices remain for the second digit.
+**Problem 2**
 
-   <BlockMath math="\begin{aligned} &amp;\text{Total passwords} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ passwords} \end{aligned}" />
+Given: <InlineMath math="1 \text{ letter}" /> from <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digits}" /> from <InlineMath math="\{1, 2, 3, 4, 5\}" /> without repetition
 
-3. Given: <InlineMath math="3 \text{ roads}" /> from <InlineMath math="P" /> to <InlineMath math="Q" />, <InlineMath math="4 \text{ roads}" /> from <InlineMath math="Q" /> to <InlineMath math="R" />
+There are <InlineMath math="4" /> choices for the letter and <InlineMath math="5" /> for the first digit. Repetition is forbidden, so only <InlineMath math="4" /> choices remain for the second digit.
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Total routes} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ different routes} \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Total passwords} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ passwords} \end{aligned}" />
 
-4. Given: <InlineMath math="2 \text{ letters}" /> from <InlineMath math="26 \text{ letters}" />, <InlineMath math="3 \text{ digits}" /> from <InlineMath math="10 \text{ digits}" />, repetition allowed
+**Problem 3**
 
-   <BlockMath math="\begin{aligned} &amp;\text{First letter choices} = 26 \end{aligned}" />
-      The second letter has <InlineMath math="26" /> choices.
-   <BlockMath math="\text{Choices for each digit} = 10" />
-      The total number of license plates is:
+Given: <InlineMath math="3 \text{ roads}" /> from <InlineMath math="P" /> to <InlineMath math="Q" />, <InlineMath math="4 \text{ roads}" /> from <InlineMath math="Q" /> to <InlineMath math="R" />
 
-   <MathContainer>
-     <BlockMath math="26\times26\times10\times10\times10" />
-     <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{ license plates} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Total routes} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ different routes} \end{aligned}" />
+</MathContainer>
+
+**Problem 4**
+
+Given: <InlineMath math="2 \text{ letters}" /> from <InlineMath math="26 \text{ letters}" />, <InlineMath math="3 \text{ digits}" /> from <InlineMath math="10 \text{ digits}" />, repetition allowed
+
+<BlockMath math="\begin{aligned} &amp;\text{First letter choices} = 26 \end{aligned}" />
+The second letter has <InlineMath math="26" /> choices.
+<BlockMath math="\text{Choices for each digit} = 10" />
+The total number of license plates is:
+
+<BlockMath math="\begin{aligned}26\times26\times10\times10\times10 &amp;=676\times1000\\ &amp;=676000\text{  license plates}\end{aligned}" />

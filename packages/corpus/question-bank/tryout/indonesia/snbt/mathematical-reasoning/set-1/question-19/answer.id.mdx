@@ -5,33 +5,25 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Kita akan menghitung jumlah kenaikan penjualan berdasarkan penurunan harga, lalu menambahkannya ke penjualan awal.
+Kita menghitung **jumlah gelas yang terjual**, bukan pendapatan dalam rupiah. Gunakan hubungan harga dan jumlah penjualan yang diberikan dalam model soal.
 
-#### Analisis Penurunan Harga
+#### Menghitung Banyak Penurunan Harga
 
-Harga awal per gelas: <InlineMath math="\text{Rp}12{.}000{,}00" />.
-Harga baru per gelas: <InlineMath math="\text{Rp}9{.}000{,}00" />.
+Harga turun dari Rp12.000 menjadi Rp9.000 per gelas. Setiap penurunan Rp1.000 dihitung sebagai **satu tahap penurunan**.
 
-Penurunan harga yang terjadi:
+<BlockMath math="\begin{aligned}\Delta p&=12{.}000-9{.}000=3{.}000\\k&=\frac{3{.}000}{1{.}000}=3\end{aligned}" />
 
-<BlockMath math="\begin{aligned}&12{.}000 - 9{.}000 \\ &=\text{Rp}3{.}000{,}00\end{aligned}" />
+#### Menghitung Penjualan setelah Harga Turun
 
-#### Menghitung Kenaikan Penjualan
+Tiga tahap penurunan memberi tambahan <InlineMath math="3\times20=60" /> gelas per hari. Tambahan tersebut harus dijumlahkan dengan **200 gelas penjualan awal**.
 
-Diketahui setiap penurunan <InlineMath math="\text{Rp}1{.}000{,}00" />, penjualan bertambah <InlineMath math="20" /> gelas.
-Jumlah kelipatan penurunan harga:
+<BlockMath math="J=200+20k=200+20(3)=200+60=260" />
 
-<BlockMath math="k = \frac{3{.}000}{1{.}000} = 3 \text{ kali}" />
+| Tahap | Harga per gelas (Rp) | Penjualan (gelas per hari) |
+| --- | --- | --- |
+| 0 | 12.000 | 200 |
+| 1 | 11.000 | 220 |
+| 2 | 10.000 | 240 |
+| 3 | 9.000 | 260 |
 
-Maka, tambahan penjualan adalah:
-
-<BlockMath math="\begin{aligned}&3 \times 20 \\ &=60 \text{ gelas}\end{aligned}" />
-
-#### Menghitung Total Penjualan
-
-Penjualan awal adalah <InlineMath math="200" /> gelas.
-Total penjualan setelah penurunan harga:
-
-<BlockMath math="\begin{aligned}&200 + 60 \\ &=260 \text{ gelas}\end{aligned}" />
-
-Jadi, banyak es kopi yang terjual per hari adalah <InlineMath math="260" /> gelas.
+Jadi, menurut model soal, terjual **260 gelas per hari**. Ambang biaya operasional tidak diperlukan untuk menentukan jumlah gelas pada harga yang sudah ditetapkan.

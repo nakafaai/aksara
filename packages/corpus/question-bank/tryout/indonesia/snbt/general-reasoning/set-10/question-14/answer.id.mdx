@@ -5,4 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Dari pilihan yang tersedia, hanya urutan <InlineMath math="F,A,D,E,B,C" /> yang memenuhi semua syarat: <InlineMath math="A" /> sebelum <InlineMath math="D" />, <InlineMath math="B" /> tepat setelah <InlineMath math="E" />, <InlineMath math="C" /> tidak bersebelahan dengan <InlineMath math="A" />, dan <InlineMath math="F" /> sebelum <InlineMath math="E" />.
+Sebuah urutan harus memenuhi **semua syarat sekaligus**. Perhatikan bahwa sebelum tidak berarti tepat sebelum, sedangkan pasangan sesi E dan B wajib berurutan tanpa sesi lain di antaranya.
+
+| Urutan | A sebelum D | B tepat setelah E | C tidak bersebelahan dengan A | F sebelum E |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A,F,B,E,D,C" /> | Ya | Tidak | Ya | Ya |
+| <InlineMath math="E,B,F,A,C,D" /> | Ya | Ya | Tidak | Tidak |
+| <InlineMath math="F,E,B,D,C,A" /> | Tidak | Ya | Tidak | Ya |
+| <InlineMath math="A,C,D,F,E,B" /> | Ya | Ya | Tidak | Ya |
+| <InlineMath math="F,A,D,E,B,C" /> | Ya | Ya | Ya | Ya |
+
+Hanya pilihan terakhir, <InlineMath math="F,A,D,E,B,C" />, lolos keempat pemeriksaan.

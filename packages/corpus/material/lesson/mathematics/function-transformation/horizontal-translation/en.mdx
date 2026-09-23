@@ -7,8 +7,6 @@ export const metadata = {
   subject: "Function Transformation",
 };
 
-
-
 ## Sliding a Graph Left or Right
 
 Horizontal translation slides a function graph left or right along the <InlineMath math="x" />-axis without changing its shape. <Highlight>Every point moves by the same horizontal distance</Highlight>, as if the graph were an object sliding across a table.
@@ -20,6 +18,10 @@ If you have a function <InlineMath math="f(x)" />, then horizontal translation p
 Look at where <InlineMath math="h" /> sits in the rule below. It is written inside the parentheses together with <InlineMath math="x" />, so it changes the input before the function runs.
 
 <BlockMath math="g(x) = f(x - h)" />
+
+To obtain the **same output** as the old input <InlineMath math="a" />, the new input must satisfy <InlineMath math="x-h=a" />. Thus <InlineMath math="x=a+h" />, explaining the shift without memorizing signs.
+
+<BlockMath math="g(a+h)=f((a+h)-h)=f(a)" />
 
 Because <InlineMath math="h" /> sits inside the parentheses, its sign works the <Highlight>opposite way from the direction you read</Highlight>. Subtracting a positive number from <InlineMath math="x" /> slides the graph right, while adding a positive number slides it left.
 
@@ -38,7 +40,8 @@ Picture three parabolas drawn on the same plane. They have exactly the same shap
 <LineEquation
   title={<>Horizontal Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
   description="Notice how the graph shifts horizontally without changing the parabola shape."
-  cameraPosition={[12, 8, 12]}
+  cameraPosition={[0.5, 3, 16]}
+  cameraTarget={[0.5, 3, 0]}
   data={[
     {
       smooth: false,
@@ -58,7 +61,7 @@ Picture three parabolas drawn on the same plane. They have exactly the same shap
         return { x, y: (x - 3) * (x - 3), z: 0 };
       }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(x-3)^2" />, offset: [4, -10.5, 0], at: 80 }],
+      labels: [{ text: <InlineMath math="g(x)=(x-3)^2" />, offset: [0.5, 1, 0], at: 80 }],
       showPoints: false,
     },
     {
@@ -73,20 +76,26 @@ Picture three parabolas drawn on the same plane. They have exactly the same shap
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
-In the graph above, the purple curve is the original function <InlineMath math="f(x) = x^2" /> with its vertex at <InlineMath math="(0,0)" />. The orange curve is <InlineMath math="g(x) = (x-3)^2" />. Because <InlineMath math="x" /> is reduced by <InlineMath math="3" />, the graph shifts right by <InlineMath math="3 \text{ units}" /> and its vertex moves to <InlineMath math="(3,0)" />. The green curve is <InlineMath math="h(x) = (x+2)^2" />. Here <InlineMath math="x" /> is increased by <InlineMath math="2" />, so the graph shifts left by <InlineMath math="2 \text{ units}" /> and its vertex moves to <InlineMath math="(-2,0)" />.
+The vertices have the **same height**, so compare their horizontal coordinates to see the displacement.
 
-Notice that all three parabolas keep the same width and the same shape. Only the horizontal position changes, so you can read the direction of the shift straight from the sign inside the parentheses.
+| Function | Vertex | Shift |
+| --- | --- | --- |
+| <InlineMath math="x^2" /> | <InlineMath math="(0,0)" /> | <InlineMath math="0" /> |
+| <InlineMath math="(x-3)^2" /> | <InlineMath math="(3,0)" /> | <InlineMath math="+3" /> |
+| <InlineMath math="(x+2)^2" /> | <InlineMath math="(-2,0)" /> | <InlineMath math="-2" /> |
 
 ## Checking the Rule on a Linear Graph
 
-The same rule applies to the linear function <InlineMath math="f(x) = 2x + 1" />. On a straight line, a horizontal shift does not change the slope, so checking the sign is easier than on a parabola.
+The **same rule** applies to the linear function <InlineMath math="f(x) = 2x + 1" />. On a straight line, a horizontal shift does not change the slope, so checking the sign is easier than on a parabola.
 
 <LineEquation
   title={<>Horizontal Translation of Linear Function <InlineMath math="f(x) = 2x + 1" /></>}
   description="The line maintains the same slope, only its horizontal position changes."
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[1, 1, 16]}
+  cameraTarget={[1, 1, 0]}
   data={[
     {
       points: Array.from({ length: 39 }, (_, pointIndex) => {
@@ -122,6 +131,7 @@ The same rule applies to the linear function <InlineMath math="f(x) = 2x + 1" />
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
 The purple line is the original line with slope <InlineMath math="2" />. The orange line is <InlineMath math="g(x) = 2(x-4)+1" />, which shifts right by <InlineMath math="4 \text{ units}" />, and the blue line is <InlineMath math="h(x) = 2(x+3)+1" />, which shifts left by <InlineMath math="3 \text{ units}" />. All three lines stay parallel because the slope does not change.
@@ -143,56 +153,57 @@ Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)
 
 The domain moves with the graph because it describes the allowed values of <InlineMath math="x" />, while the range stays the same because the height of the graph at each point is unchanged. A vertical translation swaps those roles, keeping the domain and moving the range.
 
+The **output height stays the same** at each moved point, not at each fixed input. For example, <InlineMath math="g(a+h)=f(a)" />, although <InlineMath math="g(a)" /> generally differs from <InlineMath math="f(a)" />.
+
 ## Checking the Rule on an Exponential Graph
 
-Exponential functions behave differently from lines and parabolas. Their shape and asymptote stay the same, but the point where the curve crosses the <InlineMath math="y" />-axis moves with the graph.
-
-The exponential function <InlineMath math="f(x) = 2^x" /> retains its shape and asymptote under a horizontal translation.
+For an exponential curve, the **horizontal asymptote stays fixed**, while the vertical intercept is recalculated at zero input.
 
 <LineEquation
   title={<>Horizontal Translation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
   description="The exponential curve maintains its characteristics after horizontal translation."
-  cameraPosition={[8, 5, 8]}
+  cameraPosition={[1, 3, 12]}
+  cameraTarget={[1, 3, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -4 + (pointIndex / 960) * 8;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 900 }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 480 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 969 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -4 + (pointIndex / 968) * 8;
         return { x, y: Math.pow(2, x - 2), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{x-2}" />, offset: [0.5, 1, 0], at: 900 }],
+      labels: [{ text: <InlineMath math="g(x)=2^{x-2}" />, offset: [0.5, 1, 0], at: 480 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -4 + (pointIndex / 480) * 8;
         return { x, y: Math.pow(2, x + 1), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^{x+1}" />, offset: [0.5, 1, 0], at: 450 }],
+      labels: [{ text: <InlineMath math="h(x)=2^{x+1}" />, offset: [0.5, 1, 0], at: 240 }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
 The horizontal asymptote stays at <InlineMath math="y = 0" />, because a horizontal shift does not change how the curve behaves when <InlineMath math="x" /> grows very large or very small. The function <InlineMath math="g(x) = 2^{x-2}" /> shifts right by <InlineMath math="2 \text{ units}" />, while <InlineMath math="h(x) = 2^{x+1}" /> shifts left by <InlineMath math="1 \text{ unit}" />.
 
-The <InlineMath math="y" />-intercept moves as well, because that point sits at <InlineMath math="x = 0" /> and no longer keeps its original height. This is where a horizontal shift differs from a vertical one, which moves the output values without changing the horizontal position of the intercept.
+Recalculate the vertical intercept using **zero input**. The old point <InlineMath math="(0,f(0))" /> moves to <InlineMath math="(h,f(0))" /> and generally ceases to be a vertical intercept. The new intercept is <InlineMath math="(0,f(-h))" />, provided <InlineMath math="-h" /> is in the domain.
+
+<BlockMath math="f(0)=1,\qquad g(0)=2^{-2}=\frac14,\qquad h(0)=2^1=2" />
 
 ## Telling Horizontal and Vertical Shifts Apart
 
@@ -201,14 +212,14 @@ Horizontal and [vertical translations](/en/subjects/mathematics/function-transfo
 | Property | Horizontal translation | Vertical translation |
 | --- | --- | --- |
 | Rule | <InlineMath math="g(x) = f(x - h)" /> | <InlineMath math="g(x) = f(x) + k" /> |
-| Part that changes | The function input | The function output |
+| Part that changes | The function input | The function **output** |
 | Direction of the shift | Along the <InlineMath math="x" /> coordinate | Along the <InlineMath math="y" /> coordinate |
 | Sign of the constant | Opposite to the direction you read | The same as the sign of <InlineMath math="k" /> |
 | Domain and range | Domain moves, range stays | Domain stays, range moves |
 
 The main difference is where the constant sits. A constant inside the parentheses changes the input, so the shift is horizontal and its sign works in reverse. A constant outside the parentheses changes the output, so the shift is vertical and its sign works as written.
 
-Changes that stretch or compress a graph are covered separately in [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) and [vertical dilation](/en/subjects/mathematics/function-transformation/vertical-dilation), while the order of steps for combining several transformations is covered in [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function).
+A [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) changes a graph’s width, while a [vertical dilation](/en/subjects/mathematics/function-transformation/vertical-dilation) changes the distance from the horizontal axis. Translation adds a fixed displacement. In [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function), shifting before scaling can give a different final position from shifting after scaling.
 
 ## Exercises
 
@@ -218,134 +229,143 @@ The three problems below use the sign rule you have just learned. Try them witho
 
 2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> is translated horizontally to the left by <InlineMath math="4 \text{ units}" />. Determine the equation of the resulting translated function, then determine the domain of the function after translation.
 
-3. Function <InlineMath math="h(x) = 3^x" /> undergoes horizontal translation such that point <InlineMath math="(0, 1)" /> becomes <InlineMath math="(2, 1)" />. Determine the translation constant value and the equation of the resulting translated function.
+3. Function <InlineMath math="h(x) = 3^x" /> undergoes horizontal translation such that point <InlineMath math="(0, 1)" /> becomes <InlineMath math="(2, 1)" />. Determine the translation **constant value** and the equation of the resulting translated function.
 
-### Answer Key
+### Shifting a Parabola
 
-Every worked answer starts by replacing <InlineMath math="x" /> correctly, because that is where the sign rule lives. The equation is then simplified and the new graph is checked to confirm the direction of the shift.
+Substitute into **every occurrence of the input**:
 
-1. Horizontal translation to the right by <InlineMath math="3 \text{ units}" />: <InlineMath math="f'(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
+Horizontal translation to the right by <InlineMath math="3 \text{ units}" />:
 
-   <LineEquation
-     title={<>Function <InlineMath math="f(x) = x^2 + 2x + 1" /> and Its Translation Result</>}
-     description={
-       <>
-         Original quadratic function and the result of horizontal translation to
-         the right by <InlineMath math="3 \text{ units}" />.
-       </>
-     }
-     cameraPosition={[12, 8, 12]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x + 2 * x + 1, z: 0 };
-         }),
-         color: "#9333ea",
-         labels: [{ text: <InlineMath math="f(x)=x^2+2x+1" />, offset: [1, 1, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x - 4 * x + 4, z: 0 };
-         }),
-         color: "#ea580c",
-         labels: [{ text: <InlineMath math="f'(x)=x^2-4x+4" />, offset: [1, 1, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+<BlockMath math="F(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
 
-2. Equation of the resulting translated function:
+<LineEquation
+  title={<>Function <InlineMath math="f(x) = x^2 + 2x + 1" /> and Its Translation Result</>}
+  description={
+    <>
+      Original quadratic function and the result of horizontal translation to
+      the right by <InlineMath math="3 \text{ units}" />.
+    </>
+  }
+  cameraPosition={[0.5, 3, 16]}
+  cameraTarget={[0.5, 3, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 2 * x + 1, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2+2x+1" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 41 }, (_, i) => {
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x - 4 * x + 4, z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="F(x)=x^2-4x+4" />, offset: [1, 1, 0] }],
+      showPoints: false,
+    },
+  ]}
+  showZAxis={false}
+/>
 
-   - Translation to the left by <InlineMath math="4 \text{ units}" />: <InlineMath math="g'(x) = g(x + 4) = \sqrt{x + 4}" />
-   - Domain after translation: <InlineMath math="x + 4 \geq 0" />, so <InlineMath math="x \geq -4" /> or <InlineMath math="[-4, \infty)" />
+### The Square Root Domain
 
-   Visualization:
+Equation of the resulting translated function:
 
-   <LineEquation
-     title={<>Function <InlineMath math="g(x) = \sqrt{x}" /> and Its Translation Result</>}
-     description={
-       <>
-         Original square root function and the result of horizontal translation
-         to the left by <InlineMath math="4 \text{ units}" />.
-       </>
-     }
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#7c3aed",
-         labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t + -4;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0], at: 64 }],
-         showPoints: false,
-       },
-     ]}
-   />
+- Translation to the left by <InlineMath math="4 \text{ units}" />: <InlineMath math="G(x) = g(x + 4) = \sqrt{x + 4}" />
+- **Domain** after translation: <InlineMath math="x + 4 \geq 0" />, so <InlineMath math="x \geq -4" /> or <InlineMath math="[-4, \infty)" />
 
-3. Point <InlineMath math="(0, 1)" /> on <InlineMath math="h(x) = 3^x" /> becomes <InlineMath math="(2, 1)" />, meaning horizontal translation by <InlineMath math="h = 2 \text{ units}" /> to the right.
-   Equation of the translation result: <InlineMath math="h'(x) = 3^{x-2}" />
+Visualization:
 
-   <LineEquation
-     title={<>Function <InlineMath math="h(x) = 3^x" /> and Its Translation Result</>}
-     description={
-       <>
-         Original exponential function and the result of horizontal translation
-         to the right by <InlineMath math="2 \text{ units}" />.
-       </>
-     }
-     cameraPosition={[1, 2, 10]}
-     cameraTarget={[1, 2, 0]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 285 }, (_, pointIndex) => {
-           const i = pointIndex / 4 - 41;
-           const x = (i - 15) * 0.2;
-           return { x, y: Math.pow(3, x), z: 0 };
-         }),
-         color: "#4f46e5",
-         labels: [{ text: <InlineMath math="h(x)=3^x" />, offset: [-1.3, 2, 0], at: 224 }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 317 }, (_, pointIndex) => {
-           const i = pointIndex / 4 - 41;
-           const x = (i - 15) * 0.2;
-           return { x, y: Math.pow(3, x - 2), z: 0 };
-         }),
-         color: "#059669",
-         labels: [{ text: <InlineMath math="h'(x)=3^{x-2}" />, offset: [3.2, 0.988889, 0], at: 224 }],
-         showPoints: false,
-       },
-     ]}
-   />
+<LineEquation
+  title={<>Function <InlineMath math="g(x) = \sqrt{x}" /> and Its Translation Result</>}
+  description={
+    <>
+      Original square root function and the result of horizontal translation
+      to the left by <InlineMath math="4 \text{ units}" />.
+    </>
+  }
+  cameraPosition={[3, 2, 14]}
+  cameraTarget={[3, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#7c3aed",
+      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -4;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="G(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0], at: 64 }],
+      showPoints: false,
+    },
+  ]}
+  showZAxis={false}
+/>
+
+### Moving an Exponential Point
+
+Point <InlineMath math="(0, 1)" /> on <InlineMath math="h(x) = 3^x" /> becomes <InlineMath math="(2, 1)" />, meaning **horizontal translation** by <InlineMath math="h = 2 \text{ units}" /> to the right.
+Equation of the translation result: <InlineMath math="H(x) = 3^{x-2}" />
+
+<LineEquation
+  title={<>Function <InlineMath math="h(x) = 3^x" /> and Its Translation Result</>}
+  description={
+    <>
+      Original exponential function and the result of horizontal translation
+      to the right by <InlineMath math="2 \text{ units}" />.
+    </>
+  }
+  cameraPosition={[1, 2, 10]}
+  cameraTarget={[1, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 285 }, (_, pointIndex) => {
+        const x = -4 + (pointIndex / 284) * 8;
+        return { x, y: Math.pow(3, x), z: 0 };
+      }),
+      color: "#4f46e5",
+      labels: [{ text: <InlineMath math="h(x)=3^x" />, offset: [-1.3, 2, 0], at: 142 }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 317 }, (_, pointIndex) => {
+        const x = -4 + (pointIndex / 316) * 8;
+        return { x, y: Math.pow(3, x - 2), z: 0 };
+      }),
+      color: "#059669",
+      labels: [{ text: <InlineMath math="H(x)=3^{x-2}" />, offset: [3.2, 0.988889, 0], at: 142 }],
+      showPoints: false,
+    },
+  ]}
+  showZAxis={false}
+/>

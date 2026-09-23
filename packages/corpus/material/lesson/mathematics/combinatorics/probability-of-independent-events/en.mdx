@@ -3,13 +3,13 @@ export const metadata = {
    description: "Test whether events are independent and calculate their joint probability without relying on misleading keywords.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Combinatorics",
 };
 
 ## Learning One Outcome Leaves the Other Probability Unchanged
 
-Some probability models contain events where **learning one result does not change the probability of another**. Toss a fair coin and roll a fair die. Knowing the coin result gives no information about the die result, so the two events are independent.
+Some probability models contain events where learning one result **does not change the probability** of another. Toss a fair coin and roll a fair die. Knowing the coin result gives no information about the die result, so the two events are independent.
 
 Events <InlineMath math="A" /> and <InlineMath math="B" /> are **independent** when conditioning on either event <Highlight>leaves the probability of the other unchanged</Highlight>. The probability model determines this property. Events that happen at the same time are not automatically independent.
 
@@ -17,28 +17,41 @@ Events can share a hidden cause even when neither event directly controls the ot
 
 ## How Independence Shows Up in Probabilities
 
-Independence leaves the second probability unchanged once the first outcome is known, and it also requires separate trials. The three checks below state that idea in different forms.
+For independent events, information about one event **does not change the probability** of the other. The events may come from the same trial or separate trials. We must check the probabilities, rather than just the source of the trials.
 
 ### Unchanged Conditional Probability
 
-The main characteristic of independent events is that the result of one event does not change the probability of another event. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
+The main characteristic of independent events is that the result of one event **does not change the probability** of another event. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
 
 <BlockMath math="P(A|B) = P(A)" />
 
 This means the probability of <InlineMath math="A" /> occurring when <InlineMath math="B" /> has already occurred is the same as the probability of <InlineMath math="A" /> occurring in general.
-
 ### Separate Random Trials
 
-Examples with a clear independent mechanism include:
+Examples with a clear **independent mechanism** include:
 
 - tossing two separate fair coins
 - drawing one card from each of two independently shuffled decks
 - rolling two separate fair dice
 - generating two random digits with independent trials
-
 ### Identifying Independent Events
 
 To test independence, ask: “Does knowing the first result change the probability distribution of the second?” A suspected causal link alone is not enough. Use the stated model or compare the conditional probability with the ordinary probability.
+
+For an example from **one fair die roll**, take <InlineMath math="A=\{2,4,6\}" /> and <InlineMath math="B=\{3,6\}" />. The table shows membership for all six outcomes.
+
+| Outcome | Belongs to A | Belongs to B |
+| --- | --- | --- |
+| 1 | No | No |
+| 2 | Yes | No |
+| 3 | No | Yes |
+| 4 | Yes | No |
+| 5 | No | No |
+| 6 | Yes | Yes |
+
+<BlockMath math="P(A)=\frac36=\frac12,\quad P(B)=\frac26=\frac13,\quad P(A\cap B)=\frac16=\frac12\times\frac13" />
+
+The events are independent even though they come from one roll and overlap at <InlineMath math="\{6\}" />.
 
 ## Formula for Probability of Independent Events
 
@@ -50,19 +63,17 @@ This formula shows that the probability of both events <InlineMath math="A" /> a
 
 ### Why Multiplying the Probabilities Works
 
-For independent events, the conditional probability equals the ordinary probability. Because <InlineMath math="P(A|B) = P(A)" />, the multiplication rule becomes:
+For independent events, the **conditional probability** equals the ordinary probability. Because <InlineMath math="P(A|B) = P(A)" />, the multiplication rule becomes:
 
 <BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
 
 Substituting <InlineMath math="P(A|B)=P(A)" /> into the multiplication rule gives <InlineMath math="P(A\cap B)=P(A)P(B)" />.
-
 ## Calculations with Independent Events
 
-Each calculation below multiplies the probabilities of two independent events. The examples move from two dice to a die and a coin, then to two sensor self tests.
-
+Each calculation below **multiplies the probabilities** of two independent events. The examples move from two dice to a die and a coin, then to two sensor self tests.
 ### Rolling Two Dice
 
-Two dice are rolled simultaneously, one red die and one white die. Find the probability of getting number <InlineMath math="2" /> on the red die and number <InlineMath math="5" /> on the white die.
+Two fair dice are rolled independently, one red die and one white die. Find the probability of getting number <InlineMath math="2" /> on the red die and number <InlineMath math="5" /> on the white die.
 
 **Solution:**
 
@@ -81,7 +92,7 @@ So the probability of getting number <InlineMath math="2" /> on the red die and 
 
 ### Rolling a Die and Coin
 
-A die and a coin are thrown simultaneously. Find the probability of getting an even number on the die and tails on the coin.
+A fair die and a fair coin are thrown independently. Find the probability of getting an even number on the die and tails on the coin.
 
 **Solution:**
 
@@ -125,7 +136,7 @@ So the probability that both sensors pass is <InlineMath math="0.9016" /> or <In
 
 ## How to Work Through an Independence Problem
 
-Most mistakes in these problems come from multiplying before checking independence. The steps below put that check first and end by verifying the answer. If the check fails, the multiplication rule for independent events does not apply at all.
+Multiplying probabilities can give the wrong answer if **independence has not been checked**. The steps below put that check first and end by verifying the answer. If the check fails, the multiplication rule for independent events does not apply at all.
 
 ### Check Independence Before Multiplying
 
@@ -139,12 +150,11 @@ To solve probability problems involving independent events, follow these steps:
 
 ### Checks for the Final Answer
 
-Use these checks:
+The probability that **both events occur** cannot exceed either event probability. The intersection contains only outcomes already included in each event.
 
-- **Visualize** events with tree diagrams if necessary
-- **Verify independence** from the model or conditional probabilities. Timing alone does not prove it
-- **Check consistency** of results using different approaches
-- **Use context** to validate whether the answer makes sense
+<BlockMath math="0\le P(A\cap B)\le\min\{P(A),P(B)\}" />
+
+In the sensor example, <InlineMath math="0.9016\le0.92" />, so the bound holds. This bound **does not prove independence**. Independence must still come from the model or equality of conditional probabilities.
 
 ### Recognizing Independent Events
 
@@ -172,71 +182,70 @@ Pay attention to the following characteristics to identify independent events:
 
 4. Three fair coins are tossed independently. Find the probability of getting exactly two tails.
 
-Try each exercise before reading its worked solution. State why the events are independent before multiplying their probabilities.
-
+Try each exercise before reading its worked solution. State **why the events are independent** before multiplying their probabilities.
 ### Worked Solutions
 
-1. **Solution:**
+**Problem 1**
 
-   - Event <InlineMath math="A" />: heads on the first coin, <InlineMath math="P(A) = \frac{1}{2}" />
-   - Event <InlineMath math="B" />: tails on the second coin, <InlineMath math="P(B) = \frac{1}{2}" />
+- Event <InlineMath math="A" />: heads on the first coin, <InlineMath math="P(A) = \frac{1}{2}" />
+- Event <InlineMath math="B" />: tails on the second coin, <InlineMath math="P(B) = \frac{1}{2}" />
 
-   Both events are independent because the result of the first coin does not affect the second coin.
+Both events are independent because the result of the first coin does not affect the second coin.
 
-   <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+<BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 
-2. **Solution:**
+**Problem 2**
 
-   - Event <InlineMath math="A" />: prime number on the die is <InlineMath math="\{2, 3, 5\}" />, so <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
-   - Event <InlineMath math="B" />: red card (hearts and diamonds), so <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
+- Event <InlineMath math="A" />: prime number on the die is <InlineMath math="\{2, 3, 5\}" />, so <InlineMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+- Event <InlineMath math="B" />: red card (hearts and diamonds), so <InlineMath math="P(B) = \frac{26}{52} = \frac{1}{2}" />
 
-   Both events are independent.
+Both events are independent.
 
-   <BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
+<BlockMath math="P(A \cap B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 
-3. **Solution:**
+**Problem 3**
 
-   - Event <InlineMath math="A" />: passing mathematics, <InlineMath math="P(A) = 0.85" />
-   - Event <InlineMath math="B" />: passing physics, <InlineMath math="P(B) = 0.78" />
+- Event <InlineMath math="A" />: passing mathematics, <InlineMath math="P(A) = 0.85" />
+- Event <InlineMath math="B" />: passing physics, <InlineMath math="P(B) = 0.78" />
 
-   Since both subjects are independent:
+Since both subjects are independent:
 
-   <BlockMath math="P(A \cap B) = 0.85 \times 0.78 = 0.663" />
+<BlockMath math="P(A \cap B) = 0.85 \times 0.78 = 0.663" />
 
-   So the probability of passing both subjects is <InlineMath math="0.663" /> or <InlineMath math="66.3\%" />.
+So the probability of passing both subjects is <InlineMath math="0.663" /> or <InlineMath math="66.3\%" />.
 
-4. **Solution:**
+**Problem 4**
 
-   **Method 1: Direct Enumeration**
+**Method 1: Direct Enumeration**
 
-   Use <InlineMath math="0" /> for heads and <InlineMath math="1" /> for tails. The sample space for <InlineMath math="3" /> coins contains <InlineMath math="8" /> outcomes:
+Use <InlineMath math="0" /> for heads and <InlineMath math="1" /> for tails. The sample space for <InlineMath math="3" /> coins contains <InlineMath math="8" /> outcomes:
 
-   <BlockMath math="\left\{\begin{gathered}
-   000, 001, 010, 011, \\
-   100, 101, 110, 111
-   \end{gathered}\right\}" />
+<BlockMath math="\left\{\begin{gathered}
+000, 001, 010, 011, \\
+100, 101, 110, 111
+\end{gathered}\right\}" />
 
-   Exactly two tails occurs in <InlineMath math="\{011, 101, 110\}" />, so there are <InlineMath math="3" /> favorable outcomes.
+Exactly two tails occurs in <InlineMath math="\{011, 101, 110\}" />, so there are <InlineMath math="3" /> favorable outcomes.
 
-   <BlockMath math="P(\text{exactly 2 tails}) = \frac{3}{8}" />
+<BlockMath math="P(\text{exactly 2 tails}) = \frac{3}{8}" />
 
-   **Method 2: Using Binomial Distribution**
+**Method 2: Using Binomial Distribution**
 
-   For <InlineMath math="n = 3" /> tosses with success probability (tails) <InlineMath math="p = \frac{1}{2}" />, the probability of exactly <InlineMath math="k = 2" /> successes is:
+For <InlineMath math="n = 3" /> tosses with success probability (tails) <InlineMath math="p = \frac{1}{2}" />, the probability of exactly <InlineMath math="k = 2" /> successes is:
 
-   <BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
+<BlockMath math="P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}" />
 
-   Substituting values:
+Substituting values:
 
-   <BlockMath math="P(\text{exactly 2 tails}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
+<BlockMath math="P(\text{exactly 2 tails}) = \binom{3}{2} \times \left(\frac{1}{2}\right)^2 \times \left(\frac{1}{2}\right)^1" />
 
-   **Step-by-step explanation:**
-   - <InlineMath math="\binom{3}{2} = 3" /> (ways to choose <InlineMath math="2" /> positions out of <InlineMath math="3" /> for tails)
-   - <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (probability of <InlineMath math="2" /> tails)
-   - <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (probability of <InlineMath math="1" /> head)
+**Step-by-step explanation:**
+- <InlineMath math="\binom{3}{2} = 3" /> (ways to choose <InlineMath math="2" /> positions out of <InlineMath math="3" /> for tails)
+- <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (probability of <InlineMath math="2" /> tails)
+- <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (probability of <InlineMath math="1" /> head)
 
-   So, the calculation is:
+So, the calculation is:
 
-   <BlockMath math="P(\text{exactly 2 tails}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
+<BlockMath math="P(\text{exactly 2 tails}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
 
-   So the probability of getting exactly two tails is <InlineMath math="\frac{3}{8}" />.
+So the probability of getting exactly two tails is <InlineMath math="\frac{3}{8}" />.

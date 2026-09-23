@@ -15,7 +15,7 @@ The result of the addition is a new matrix of the same order, where each element
 
 ## Formal Definition of Matrix Addition
 
-Two matrices, say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, can be added if and only if both matrices have the same order.
+Two matrices, say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, can be added if and only if both matrices have the **same order**.
 
 Suppose matrix <InlineMath math="A" /> is of order <InlineMath math="m \times n" /> with elements <InlineMath math="a_{ij}" /> (element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column), and matrix <InlineMath math="B" /> is also of order <InlineMath math="m \times n" /> with elements <InlineMath math="b_{ij}" />.
 
@@ -26,7 +26,6 @@ Call their sum matrix <InlineMath math="C" /> and write <InlineMath math="C = A 
 For each position, the formula adds the entry from <InlineMath math="A" /> to the corresponding entry from <InlineMath math="B" />.
 
 In symbols, <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="B\in\mathbb{R}^{m\times n}" /> imply <InlineMath math="A+B\in\mathbb{R}^{m\times n}" />. Every output entry <InlineMath math="c_{ij}" /> therefore has one corresponding input entry in each matrix.
-
 ## How to Perform Matrix Addition
 
 To add two matrices, follow these steps:
@@ -44,7 +43,7 @@ Suppose we have two matrices, <InlineMath math="P" /> and <InlineMath math="Q" /
   <BlockMath math="Q = \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
 </MathContainer>
 
-Both matrices are of order <InlineMath math="3 \times 2" /> (<InlineMath math="3" /> rows and <InlineMath math="2" /> columns), so they can be added.
+Both matrices are of order <InlineMath math="3 \times 2" /> (<InlineMath math="3" /> rows and <InlineMath math="2" /> columns), so they **can be added**.
 
 Then, <InlineMath math="P+Q" /> is:
 
@@ -55,10 +54,9 @@ Then, <InlineMath math="P+Q" /> is:
 </MathContainer>
 
 The matrix above is the sum <InlineMath math="P+Q" />.
-
 ### Matrices That Cannot Be Added
 
-These two matrices have different orders:
+These two matrices have **different orders**:
 
 <MathContainer>
   <BlockMath math="X = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" />
@@ -66,47 +64,52 @@ These two matrices have different orders:
 </MathContainer>
 
 Matrix <InlineMath math="X" /> has dimensions <InlineMath math="2 \times 2" />, while matrix <InlineMath math="Y" /> has dimensions <InlineMath math="2 \times 3" />. Their column counts differ, so <InlineMath math="X+Y" /> is not defined.
-
 ## Properties of Matrix Addition
 
 Matrix addition follows the same basic laws as addition of real numbers. Let <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> have the same dimensions, and let <InlineMath math="O" /> be the zero matrix of those dimensions.
 
-1.  **Commutative Property**: The order of matrix addition does not affect the result.
+Each rule can be checked through **corresponding entries**, because matrix addition operates separately at each position.
 
-    <BlockMath math="A + B = B + A" />
+### Commutative Property
 
-    Adding matrix <InlineMath math="A" /> to <InlineMath math="B" /> produces the same matrix as adding matrix <InlineMath math="B" /> to <InlineMath math="A" />.
+The **order of matrix addition** does not affect the result.
 
-2.  **Associative Property**: The grouping in the addition of three or more matrices does not affect the result.
+<BlockMath math="A + B = B + A" />
 
-    <BlockMath math="(A + B) + C = A + (B + C)" />
+Adding matrix <InlineMath math="A" /> to <InlineMath math="B" /> produces the same matrix as adding matrix <InlineMath math="B" /> to <InlineMath math="A" />.
+### Associative Property
 
-    You can add <InlineMath math="A" /> and <InlineMath math="B" /> first,
-    then add the result to <InlineMath math="C" />, or
-    add <InlineMath math="B" /> and <InlineMath math="C" /> first,
-    then add <InlineMath math="A" /> to the result. The final
-    outcome will be the same.
+The **grouping** in the addition of three or more matrices does not affect the result.
 
-3.  **Existence of an Identity Element (Zero Matrix)**: The zero matrix <InlineMath math="O" /> is the identity element for addition.
+<BlockMath math="(A + B) + C = A + (B + C)" />
 
-    <BlockMath math="A + O = O + A = A" />
+You can add <InlineMath math="A" /> and <InlineMath math="B" /> first,
+then add the result to <InlineMath math="C" />, or
+add <InlineMath math="B" /> and <InlineMath math="C" /> first,
+then add <InlineMath math="A" /> to the result. The final
+outcome will be the same.
+### Existence of an Identity Element
 
-    Adding the zero matrix leaves <InlineMath math="A" /> unchanged.
+The **zero matrix** <InlineMath math="O" /> is the identity element for addition.
 
-    This zero matrix plays a role similar to the number <InlineMath math="0" /> in the addition of numbers.
+<BlockMath math="A + O = O + A = A" />
 
-4.  **Existence of an Additive Inverse (Opposite of a Matrix)**: Every matrix <InlineMath math="A" /> has an additive inverse, denoted as <InlineMath math="-A" />, which when added to <InlineMath math="A" /> results in the zero matrix <InlineMath math="O" />.
+Adding the zero matrix leaves <InlineMath math="A" /> unchanged.
 
-    <BlockMath math="A + (-A) = O" />
+This zero matrix plays a role similar to the number <InlineMath math="0" /> in the addition of numbers.
+### Existence of an Additive Inverse
 
-    The matrix <InlineMath math="-A" /> is a matrix where each element is the
-    opposite (negative) of the corresponding elements of matrix <InlineMath math="A" />.
+Every matrix <InlineMath math="A" /> has an **additive inverse**, denoted as <InlineMath math="-A" />, which when added to <InlineMath math="A" /> results in the zero matrix <InlineMath math="O" />.
 
-    For example, if <InlineMath math="a_{ij}" /> is an element of <InlineMath math="A" />, then <InlineMath math="-a_{ij}" /> is an element of <InlineMath math="-A" />.
+<BlockMath math="A + (-A) = O" />
 
+The matrix <InlineMath math="-A" /> is a matrix where each element is the
+opposite (negative) of the corresponding elements of matrix <InlineMath math="A" />.
+
+For example, if <InlineMath math="a_{ij}" /> is an element of <InlineMath math="A" />, then <InlineMath math="-a_{ij}" /> is an element of <InlineMath math="-A" />.
 ## Exercises
 
-**Problem** 1
+**Problem 1**
 
 Given the following matrices:
 
@@ -118,13 +121,13 @@ Given the following matrices:
 
 Calculate <InlineMath math="A+B" /> and <InlineMath math="B+A" />. Then, determine if <InlineMath math="A+C" /> can be calculated and provide your explanation.
 
-**Problem** 2
+**Problem 2**
 
 Determine the values of <InlineMath math="x, y," /> and <InlineMath math="z" /> from the following matrix addition:
 
 <BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
 
-**Problem** 3
+**Problem 3**
 
 For the matrix below, determine <InlineMath math="-P" /> (the additive inverse of <InlineMath math="P" />) and prove that <InlineMath math="P + (-P) = O" />. Here, <InlineMath math="O" /> is the zero matrix of the same order.
 
@@ -132,7 +135,7 @@ For the matrix below, determine <InlineMath math="-P" /> (the additive inverse o
 
 ### Worked Solutions
 
-**Problem** 1
+**Problem 1**
 
 Given matrices:
 
@@ -160,13 +163,13 @@ Addition of matrix <InlineMath math="B" /> and <InlineMath math="A" /> (<InlineM
   <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
 </MathContainer>
 
-(Commutative property proven: <InlineMath math="A+B = B+A" />)
+This **verifies one example** of commutativity: <InlineMath math="A+B = B+A" />. In general, every entry satisfies <InlineMath math="a_{ij}+b_{ij}=b_{ij}+a_{ij}" /> because addition of real numbers is commutative.
 
 Addition of matrix <InlineMath math="A" /> and <InlineMath math="C" /> (<InlineMath math="A+C" />):
 
 Cannot be calculated. Matrix <InlineMath math="A" /> is of order <InlineMath math="2 \times 3" />, while matrix <InlineMath math="C" /> is of order <InlineMath math="2 \times 2" />. Since their orders are different, the addition <InlineMath math="A+C" /> cannot be performed.
 
-**Problem** 2
+**Problem 2**
 
 Given the matrix addition:
 
@@ -208,7 +211,7 @@ For the element in row <InlineMath math="2" />, column <InlineMath math="2" />: 
 
 The values are <InlineMath math="x=3" />, <InlineMath math="y=-2" />, and <InlineMath math="z=7" />.
 
-**Problem** 3
+**Problem 3**
 
 The given matrix is:
 

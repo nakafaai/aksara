@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Protokoll zeigt Hindernisse; anschließend sollen Verfahrensänderungen sie verringern und die Repräsentation prüfen.",
+            "Das Protokoll zeigt Hindernisse, anschließend sollen Verfahrensänderungen sie verringern und die Repräsentation prüfen.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln"; der folgende nutzt "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird" als Hauptbeleg.',
+            "Der erste Teil belegt die Vertretung aller Gruppen, der folgende beendet die Prüfung der Herkunft der Teilnehmenden.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten".',
+            "Der erste Teil vergleicht Fahrtkosten, der folgende wählt einen Termin anhand des günstigsten Fahrdienstes.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird" fest.',
+            "Der erste Teil nimmt alle Vorschläge an, der folgende plant die Umsetzung jedes Wunsches der Bewohner.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden" aus dem Beleg "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln" ab.',
+            "Der erste Teil kritisiert offene Einladungen, der folgende beschränkt die Entscheidung auf Bewohner aus der Nähe.",
         },
       ],
     },
@@ -43,22 +43,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "Nearly every initial speaker came from the three nearest neighbourhoods", and the later part uses "A consultation is valid only if every resident proposal is ultimately accepted" as its main support.',
+            "The first part proves that every group is represented, and the later part ends checks on participant origins.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "Because the invitation was open, participant origins and reasons for absence need not be examined" as a final conclusion; the later part only states the plan "The final decision will record the choice, objections, and the influence of contributions".',
+            "The first part compares transport costs, and the later part selects a schedule using the cheapest service.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "A consultation is valid only if every resident proposal is ultimately accepted" from the same perspective without adding a test.',
+            "The first part accepts all proposals, and the later part plans how to implement every resident’s wish.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "Because the invitation was open, participant origins and reasons for absence need not be examined" from the evidence "Nearly every initial speaker came from the three nearest neighbourhoods".',
+            "The first part criticises open invitations, and the later part limits decisions to residents from nearby areas.",
         },
       ],
     },
@@ -73,22 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat", lalu bagian kedua memakai "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima" sebagai dukungan utama.',
+            "Bagian awal membuktikan semua kelompok telah terwakili, lalu bagian berikutnya menghapus pemeriksaan asal peserta.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan".',
+            "Bagian awal membandingkan biaya angkutan, lalu bagian berikutnya memilih jadwal berdasarkan layanan termurah.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal menerima semua usulan, lalu bagian berikutnya menyusun cara menerapkan setiap keinginan warga.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa" dari bukti "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat".',
+            "Bagian awal mengkritik undangan terbuka, lalu bagian berikutnya membatasi keputusan kepada warga dari wilayah terdekat.",
         },
       ],
     },

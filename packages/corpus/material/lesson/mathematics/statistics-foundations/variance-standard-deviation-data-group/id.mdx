@@ -19,23 +19,23 @@ Untuk memperkirakan sebarannya, setiap pengamatan dalam satu kelas **diwakili** 
 
 Setiap nilai tengah <InlineMath math="x_i" /> diberi bobot sesuai frekuensi kelasnya <InlineMath math="f" />. Rumus berikut menganggap tabel sebagai populasi lengkap. Data sampel memerlukan rumus varian sampel yang sesuai.
 
-1.  **Varian (<InlineMath math="\sigma^2" />)**
+Kita memperlakukan data sebagai **populasi lengkap**. Perhitungan varian mempertahankan satuan yang dikuadratkan, sedangkan akar kuadrat mengembalikan satuan awal. Karena itu, simpangan baku dapat dibandingkan langsung dengan nilai pengamatan.
 
-    Rumus komputasi berikut disesuaikan untuk data kelompok:
+### Varian
 
-    <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
+Rumus komputasi berikut disesuaikan untuk **data kelompok**:
 
-    Suku pertama adalah mean kuadrat nilai tengah yang dibobot frekuensi. Suku kedua adalah kuadrat mean yang dibobot frekuensi. Selisih keduanya merupakan perkiraan varian populasi.
+<BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
 
-2.  **Simpangan Baku (<InlineMath math="\sigma" />)**
+Suku pertama adalah mean kuadrat nilai tengah yang dibobot frekuensi. Suku kedua adalah kuadrat mean yang dibobot frekuensi. Selisih keduanya merupakan perkiraan varian populasi.
+### Simpangan Baku
 
-    Seperti pada data tunggal, simpangan baku adalah akar kuadrat varian:
+Seperti pada data tunggal, simpangan baku adalah **akar kuadrat varian**:
 
-    <BlockMath math="\sigma = \sqrt{\sigma^2}" />
-
+<BlockMath math="\sigma = \sqrt{\sigma^2}" />
 ## Menghitung Varian dan Simpangan Baku Durasi Baterai Ponsel
 
-Misalkan sebuah penelitian mencatat durasi baterai ponsel dalam interval berikut:
+Misalkan durasi baterai dicatat setelah dibulatkan ke **jam terdekat**, lalu dikelompokkan dalam interval berikut. Jadi, kelas pertama memuat catatan 6, 7, 8, 9, dan 10 jam.
 
 | Durasi baterai (jam) | Frekuensi (<InlineMath math="f" />) |
 | :------------------: | :---------------------------------: |
@@ -58,11 +58,11 @@ Untuk setiap kelas, hitung nilai tengah <InlineMath math="x_i" />, lalu hitung <
 | <InlineMath math="16\text{-}20" /> | <InlineMath math="\frac{16+20}{2}=18" /> | <InlineMath math="18" /> |  <InlineMath math="18 \times 18 = 324" />  |  <InlineMath math="18 \times 18^2 = 5832" />  |
 | <InlineMath math="21\text{-}25" /> | <InlineMath math="\frac{21+25}{2}=23" /> | <InlineMath math="45" /> | <InlineMath math="45 \times 23 = 1035" />  | <InlineMath math="45 \times 23^2 = 23805" />  |
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="\frac{26+30}{2}=28" /> | <InlineMath math="5" />  |  <InlineMath math="5 \times 28 = 140" />   |  <InlineMath math="5 \times 28^2 = 3920" />   |
-|      **Jumlah**      |                                          | **<InlineMath math="\sum f = 80" />** | **<InlineMath math="\sum fx_i = 1645" />** | **<InlineMath math="\sum fx_i^2 = 35375" />** |
+|      **Jumlah**      |                                          | <InlineMath math="\sum f = 80" /> | <InlineMath math="\sum fx_i = 1645" /> | <InlineMath math="\sum fx_i^2 = 35375" /> |
 
 ### Hitung Varian
 
-Masukkan nilai-nilai total dari tabel ke dalam rumus varian:
+Masukkan **nilai-nilai total** dari tabel ke dalam rumus varian:
 
 <MathContainer>
   <BlockMath math="\sigma^2 = \frac{\sum (f \cdot x_i^2)}{\sum f} - \left( \frac{\sum (f \cdot x_i)}{\sum f} \right)^2" />
@@ -73,12 +73,11 @@ Masukkan nilai-nilai total dari tabel ke dalam rumus varian:
 </MathContainer>
 
 Perkiraan variannya adalah <InlineMath math="19{,}37" /> jam kuadrat. Satuan varian dikuadratkan karena setiap jarak dari mean dikuadratkan sebelum dirata-ratakan.
-
 ### Hitung Simpangan Baku
 
 Ambil akar kuadrat dari varian:
 
-<BlockMath math="\sigma = \sqrt{19{,}37} \approx 4{,}4" />
+<BlockMath math="\sigma = \sqrt{19{,}37109375} \approx 4{,}4" />
 
 Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Nilai tersebut adalah akar rata-rata kuadrat jarak setiap nilai tengah kelas dari perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />.
 

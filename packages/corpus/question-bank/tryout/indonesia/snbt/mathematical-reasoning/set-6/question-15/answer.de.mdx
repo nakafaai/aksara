@@ -5,27 +5,20 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Variablen definieren
+#### Anzahl und Ladung modellieren
 
-Wir setzen:
-- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{I}" /> ist <InlineMath math="x" />.
-- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{II}" /> ist <InlineMath math="y" />.
-- Die Anzahl der Lastwagen vom Typ <InlineMath math="\text{III}" /> ist <InlineMath math="z" />.
+Da alle Lastwagen **voll beladen** sind, entspricht die Summe ihrer Tragfähigkeiten der gesamten Fracht. Die Variablen zählen die Lastwagen jedes Typs.
 
-#### Bildung eines Gleichungssystems
+| Typ | Anzahl | Tragfähigkeit je LKW |
+| --- | --- | --- |
+| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
+| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
+| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
 
-Aus dem Problem wissen wir:
-1. Die Gesamtzahl der gemieteten LKW beträgt <InlineMath math="20" />.
-
-   <BlockMath math="x + y + z = 20 \quad (1)" />
-
-2. Die Gesamttragfähigkeit beträgt <InlineMath math="96\text{ t}" />. Die drei Typen tragen jeweils <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="6\text{ t}" />.
-
-   <BlockMath math="3x + 4y + 6z = 96 \quad (2)" />
-
-3. Das Unternehmen mietet <InlineMath math="4" /> Lastwagen vom Typ <InlineMath math="\text{I}" />.
-
-   <BlockMath math="x = 4" />
+<MathContainer>
+  <BlockMath math="x+y+z=20\quad(1)" />
+  <BlockMath math="3x+4y+6z=96\quad(2)" />
+</MathContainer>
 
 #### Das System lösen
 
@@ -60,3 +53,10 @@ Wir subtrahieren die zweite Gleichung von der ersten:
 </MathContainer>
 
 Das Unternehmen mietet somit <InlineMath math="6" /> Lastwagen vom Typ <InlineMath math="\text{II}" />.
+
+Zur Kontrolle folgt <InlineMath math="z=16-6=10" />.
+
+<MathContainer>
+  <BlockMath math="4+6+10=20" />
+  <BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+</MathContainer>

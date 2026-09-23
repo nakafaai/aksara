@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gegeben ist das Ungleichungssystem:
+Gesucht ist eine **erreichbare obere Schranke** für <InlineMath math="x+y" /> unter diesen Bedingungen:
 
 <BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
 
@@ -23,6 +23,10 @@ Es bleibt <InlineMath math="a=5" /> zu prüfen. Die obere Schranke lautet nun:
 
 <BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
 
+Bestimme den Schnittpunkt der Randgeraden durch Elimination:
+
+<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
+
 Der Schnittpunkt <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> erfüllt beide Randgleichungen:
 
 <MathContainer>
@@ -32,3 +36,20 @@ Der Schnittpunkt <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> erf
 </MathContainer>
 
 Damit ist <InlineMath math="5" /> sowohl eine obere Schranke als auch ein erreichbarer Wert. Folglich gilt <InlineMath math="a=5" />.
+
+<MathVisual
+ title="Zulässiger Bereich für a = 5"
+ description="Am Schnittpunkt der beiden Randgeraden ist die Koordinatensumme fünf."
+ scene={{
+ space: "plane",
+ frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
+ view: { kind: "fit", padding: 0.5 },
+ objects: [
+ { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
+ { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
+ { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
+ ],
+ labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
+ }}
+ labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
+/>

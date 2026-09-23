@@ -3,7 +3,7 @@ export const metadata = {
     description: "Python-Escape-Sequenzen mit Backslash-Notation für Anführungszeichen, Zeilenumbrüche, Tabulatoren und Sonderzeichen in Zeichenfolgen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -15,11 +15,11 @@ Der Backslash verändert also, wie Python die folgenden Zeichen liest. Er gehör
 
 ## Probleme beim Schreiben von Strings
 
-Anführungszeichen und Backslashes brauchen innerhalb eines Strings besondere Aufmerksamkeit, weil Python sie liest, bevor der String entsteht. Ein inneres Anführungszeichen, das dem Begrenzungszeichen entspricht, beendet das Literal zu früh, und ein Backslash beginnt immer eine Escape-Sequenz. Ein Escape hält das störende Zeichen im Text, und zwei Backslashes ergeben einen einzelnen Backslash im fertigen Wert.
+**Anführungszeichen und Backslashes** brauchen innerhalb eines Strings besondere Aufmerksamkeit, weil Python sie liest, bevor der String entsteht. Ein inneres Anführungszeichen, das dem Begrenzungszeichen entspricht, beendet das Literal zu früh, und ein Backslash leitet in einem gewöhnlichen String eine Escape-Schreibweise ein. Ein Escape hält das störende Zeichen im Text, und zwei Backslashes ergeben einen einzelnen Backslash im fertigen Wert.
 
 ### Zitatkonflikte
 
-Wird dasselbe Anführungszeichen als Begrenzung und innerhalb des Strings verwendet, beendet ein nicht maskiertes inneres Zeichen das Literal zu früh. Python liest den restlichen Text dann als ungültigen Code.
+Wird dasselbe Anführungszeichen als Begrenzung und innerhalb des Strings verwendet, beendet ein nicht maskiertes inneres Zeichen **das Literal zu früh**. Python liest den restlichen Text dann als ungültigen Code.
 
 <CodeBlock
   data={[
@@ -56,7 +56,7 @@ Ein Backslash (`\`) vor dem inneren Anführungszeichen maskiert es. <Highlight>P
 >>> 'He said: "I\\'m Bob."'
 'He said: "I\\'m Bob."'
 
-# Beim Drucken wird die Escape-Sequenz interpretiert
+# print zeigt den Stringwert nach der Escape-Verarbeitung
 >>> print('He said: "I\\'m Bob."')
 He said: "I'm Bob."`
     }
@@ -67,7 +67,7 @@ In diesem Beispiel teilt `\'` Python mit, dass das einfache Anführungszeichen i
 
 ### Anzeigen von Backslashzeichen
 
-Da der Backslash selbst die Escape-Sequenz einleitet, wird ein Backslash im fertigen String als `\\` geschrieben.
+Da der Backslash selbst die Escape-Sequenz einleitet, brauchst du **zwei Backslashes** im gewöhnlichen Stringliteral, um einen Backslash im fertigen String zu erhalten.
 
 <CodeBlock
   data={[
@@ -92,7 +92,7 @@ Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt 
 
 ## Übersicht der Escapesequenzen
 
-Hier sind Escape-Sequenzen, die häufig in der Programmierung verwendet werden:
+Diese **Escape-Sequenzen** stellen Zeichen in Python-Stringliteralen dar:
 
 | Escape-Sequenz | Bedeutung |
 |---|---|
@@ -101,7 +101,7 @@ Hier sind Escape-Sequenzen, die häufig in der Programmierung verwendet werden:
 | `\n` | Neue Zeile (newline) |
 | `\r` | Wagenrücklauf |
 | `\t` | Horizontaler Tabulator |
-| `\b` | Rücktaste |
+| `\b` | Rückschrittzeichen (Backspace) |
 | `\\` | Backslash-Zeichen (\) |
 | `\uxxxx` | Unicode-Zeichen mit vierstelliger hexadezimaler Codepoint-Angabe |
 | `\Uxxxxxxxx` | Unicode-Zeichen mit achtstelliger hexadezimaler Codepoint-Angabe |
@@ -112,7 +112,7 @@ Jede Escape-Sequenz hat eine bestimmte Funktion zur Steuerung der Anzeige oder d
 
 ### Geschweifte Klammern in Strings zur Formatierung maskieren
 
-In `str.format()` und f-Strings begrenzen geschweifte Klammern die Ersetzungsfelder. Doppelte Klammern maskieren sie für die Formatierungssyntax. Dieser Mechanismus ist von den Backslash-Escape-Sequenzen in Stringliteralen zu unterscheiden.
+In `str.format()` und f-Strings begrenzen geschweifte Klammern die **Ersetzungsfelder**. Doppelte Klammern maskieren sie für die Formatierungssyntax. Dieser Mechanismus ist von den Backslash-Escape-Sequenzen in Stringliteralen zu unterscheiden.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ In `str.format()` und f-Strings begrenzen geschweifte Klammern die Ersetzungsfel
 
 ## Mehrere Escapes in einer Ausgabe verwenden
 
-Im folgenden Beispiel steuern Escape-Sequenzen Tabulatoren, Zeilenumbrüche, Anführungszeichen und wörtliche Backslashes in einer Ausgabe.
+Im folgenden Beispiel steuern Escape-Sequenzen **Tabulatoren und Zeilenumbrüche** sowie Anführungszeichen und wörtliche Backslashes in einer Ausgabe.
 
 <CodeBlock
   data={[

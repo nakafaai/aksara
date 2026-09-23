@@ -5,18 +5,27 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Für Ereignisse ohne Berücksichtigung der Reihenfolge gibt es <InlineMath math="\binom92=36" /> gleich wahrscheinliche Paare. Für ein gleichfarbiges Paar werden zwei Kugeln derselben Farbe gewählt.
+Für Ereignisse **ohne Berücksichtigung der Reihenfolge** gibt es <InlineMath math="\binom92=\frac{9\cdot8}{2}=36" /> gleich wahrscheinliche Paare. Für ein gleichfarbiges Paar werden zwei Kugeln derselben Farbe gewählt.
 
 <BlockMath math="\begin{aligned}
 N&=\binom42+\binom32+\binom22 \\
+&=\frac{4\cdot3}{2}+\frac{3\cdot2}{2}+\frac{2\cdot1}{2} \\
 &=6+3+1=10 \\
 P&=\frac{10}{36}=\frac5{18}
 \end{aligned}" />
 
 Für genau eine rote Kugel wird eine der vier roten und eine der fünf anderen Kugeln gewählt.
 
-<BlockMath math="P=\frac{4\cdot5}{36}=\frac59" />
+<BlockMath math="P=\frac{4\cdot5}{36}=\frac{20}{36}=\frac59" />
 
 Nach einer grünen ersten Kugel bleiben acht Kugeln, darunter drei blaue. Die bedingte Wahrscheinlichkeit für eine blaue zweite Kugel beträgt <InlineMath math="\frac38" />. Die erste Ziehung verändert die Wahrscheinlichkeiten der zweiten. Nach einer blauen Kugel beträgt die Wahrscheinlichkeit für eine weitere blaue Kugel <InlineMath math="\frac28" />, vor der Ziehung dagegen <InlineMath math="\frac39" />.
 
 Die drei Wahrscheinlichkeitsaussagen stimmen. Die Behauptung, die Farben beider Ziehungen seien unabhängig, ist falsch.
+
+Der veränderte Beutelinhalt zeigt, warum die zweite Farbe von der ersten Ziehung abhängt.
+
+| Zustand vor der nächsten Ziehung | Rot | Blau | Grün | Gesamt | Wahrscheinlichkeit für Blau |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Vor der ersten Ziehung | 4 | 3 | 2 | 9 | <InlineMath math="\frac39" /> |
+| Nach einer grünen Kugel | 4 | 3 | 1 | 8 | <InlineMath math="\frac38" /> |
+| Nach einer blauen Kugel | 4 | 2 | 2 | 8 | <InlineMath math="\frac28" /> |

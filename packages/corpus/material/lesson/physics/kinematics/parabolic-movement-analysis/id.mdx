@@ -11,6 +11,8 @@ export const metadata = {
 
 ## Mulai dari Kecepatan Awal yang Dipecah
 
+Sudut diukur dari horizontal. Arah ke kanan dan ke atas dipilih positif.
+
 Analisis gerak parabola dimulai dengan membagi kecepatan awal menjadi komponen mendatar dan vertikal. Jika kelajuan awalnya <InlineMath math="v_0" /> dan sudutnya <InlineMath math="\theta" />, kedua komponennya adalah:
 
 <MathContainer>
@@ -56,11 +58,9 @@ Semua contoh memakai ketinggian awal dan akhir yang sama. Dengan syarat ini, set
 
 <BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{puncak}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{puncak}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
 
-Semua nilai pada visual dihitung dari kelajuan awal dan sudut yang dipilih. Visual menampilkan komponen kecepatan, waktu menuju puncak, waktu terbang, jangkauan, dan kecepatan sesaat.
-
 ## Puncak Ditemukan Saat Kecepatan Vertikal Nol
 
-Di puncak lintasan, benda masih bergerak mendatar, tetapi gerak naik-turunnya berhenti sesaat. Karena itu, syarat puncak adalah <InlineMath math="v_y=0" />.
+Di puncak lintasan, benda **masih bergerak mendatar**, tetapi gerak naik-turunnya berhenti sesaat. Karena itu, syarat puncak adalah <InlineMath math="v_y=0" />.
 
 <BlockMath math="v_y=v_{0y}-gt" />
 
@@ -72,7 +72,7 @@ Untuk kelajuan awal <InlineMath math="40\text{ m/s}" /> dengan sudut <InlineMath
 
 ## Jangkauan Dihitung dari Waktu Terbang Total
 
-Jika benda berangkat dari tanah dan kembali ke tanah pada ketinggian yang sama, waktu totalnya dua kali waktu menuju puncak.
+Jika benda berangkat dari tanah dan kembali ke tanah pada **ketinggian yang sama**, waktu totalnya dua kali waktu menuju puncak.
 
 <MathContainer>
   <BlockMath math="t_{\text{total}}=2t_{\text{puncak}}" />
@@ -91,7 +91,7 @@ Untuk mencari kecepatan pada waktu tertentu, hitung dulu <InlineMath math="v_x" 
   <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
 </MathContainer>
 
-Arah kecepatan harus memakai kedua komponen dan kuadran yang benar:
+Arah kecepatan harus memakai **kedua komponen dan kuadran yang benar**:
 
 <BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
 
@@ -101,13 +101,13 @@ Jika <InlineMath math="v_x>0" />, rumus ini setara dengan <InlineMath math="\tan
 
 Sebuah bola ditembakkan dengan kelajuan awal <InlineMath math="40\text{ m/s}" /> dan sudut <InlineMath math="60^\circ" />. Gunakan <InlineMath math="g=10\text{ m/s}^2" />.
 
-Pada sudut <InlineMath math="60^\circ" />, nilai sinus dan kosinus dapat ditulis secara eksak. Karena itu, kita dapat menguraikan kecepatan awal secara eksak, mencari waktu dari gerak vertikal, lalu memakai waktu yang sama untuk menghitung jangkauan dan kecepatan sesaat.
+Pada sudut <InlineMath math="60^\circ" />, **nilai sinus dan kosinus** dapat ditulis secara eksak. Karena itu, kita dapat menguraikan kecepatan awal secara eksak, mencari waktu dari gerak vertikal, lalu memakai waktu yang sama untuk menghitung jangkauan dan kecepatan sesaat.
 
 Komponen awalnya:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
+  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
 </MathContainer>
 
 Waktu menuju puncak:
@@ -129,6 +129,7 @@ Sementara itu, <InlineMath math="v_x=20\text{ m/s}" /> tetap. Kelajuannya:
 
 <BlockMath math="\begin{aligned}
 v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
+&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
 &=\sqrt{2000-800\sqrt{3}}\\
 &\approx 24{,}8\text{ m/s}
 \end{aligned}" />

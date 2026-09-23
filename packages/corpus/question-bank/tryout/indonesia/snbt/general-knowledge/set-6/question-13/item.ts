@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Zwei Vorschläge lösen eine Debatte über Authentizität aus; die Materialprüfung führt zum minimalen Eingriff.",
+            "Zwei Vorschläge lösen eine Debatte über Authentizität aus, und die Materialprüfung führt zum minimalen Eingriff.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Die älteste Farbe wurde nur in wenigen Räumen gefunden"; der folgende nutzt "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet" als Hauptbeleg.',
+            "Der erste Teil wählt ein Bezugsjahr, der folgende bestimmt eine Einheitsfarbe zur Wiederherstellung dieses Zustands.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält" als endgültigen Schluss fest; der folgende nennt nur den Plan "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben".',
+            "Der erste Teil entscheidet sich für vollständigen Ersatz, der folgende erstellt nur Unterlagen zur Rechtfertigung.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet" fest.',
+            "Der erste Teil behandelt Belege mehrerer Zeiten, der folgende lehnt Materialprüfungen ab, weil Fotos genügen.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält" aus dem Beleg "Die älteste Farbe wurde nur in wenigen Räumen gefunden" ab.',
+            "Der erste Teil bewertet die Attraktivität für Besucher, der folgende bestimmt die Reparaturen durch eine Abstimmung.",
         },
       ],
     },
@@ -43,22 +43,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The oldest paint was found in only a few rooms", and the later part uses "Every old material must be retained even when it endangers visitors" as its main support.',
+            "The first part selects a reference year, and the later part chooses one colour to restore that year’s appearance.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "The building can be authentic only if every surface is returned to one old colour" as a final conclusion; the later part only states the plan "Every new part will be recorded so changes remain legible".',
+            "The first part chooses total replacement, and the later part merely prepares records to justify that decision.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Every old material must be retained even when it endangers visitors" from the same perspective without adding a test.',
+            "The first part discusses evidence from several periods, and the later part rejects material testing as photographs suffice.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "The building can be authentic only if every surface is returned to one old colour" from the evidence "The oldest paint was found in only a few rooms".',
+            "The first part assesses visitor appeal, and the later part determines repairs through a public vote.",
         },
       ],
     },
@@ -73,22 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Cat tertua hanya ditemukan di beberapa ruang", lalu bagian kedua memakai "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung" sebagai dukungan utama.',
+            "Bagian awal menetapkan satu tahun acuan, lalu bagian berikutnya memilih warna seragam untuk mengembalikan keadaan tahun itu.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Setiap bagian baru akan dicatat agar perubahan tetap terbaca".',
+            "Bagian awal memilih penggantian menyeluruh, lalu bagian berikutnya hanya menyusun catatan untuk membenarkan keputusan tersebut.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal membahas bukti beberapa masa, lalu bagian berikutnya menolak pemeriksaan material karena foto dianggap sudah cukup.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama" dari bukti "Cat tertua hanya ditemukan di beberapa ruang".',
+            "Bagian awal menilai daya tarik bangunan bagi pengunjung, lalu bagian berikutnya menentukan perbaikan melalui pemungutan suara.",
         },
       ],
     },

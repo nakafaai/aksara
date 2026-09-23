@@ -5,12 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Keliling alas sebanding dengan radius, luas alas sebanding dengan kuadrat radius, dan volume sebanding dengan kuadrat radius kali tinggi.
+Keliling alas sebanding dengan radius, luas alas sebanding dengan kuadrat radius, dan volume sebanding dengan **kuadrat radius kali tinggi**.
 
 <BlockMath math="\begin{aligned}
-k_U&=3 \\
-k_A&=3^2=9 \\
-k_V&=3^2\cdot\frac12=\frac92
+k_U&=\frac{2\pi(3r)}{2\pi r}=3 \\
+k_A&=\frac{\pi(3r)^2}{\pi r^2}=3^2=9 \\
+k_V&=\frac{\frac13\pi(3r)^2(h/2)}{\frac13\pi r^2h}=3^2\cdot\frac12=\frac92
 \end{aligned}" />
 
 Garis pelukis memenuhi <InlineMath math="s^2=r^2+h^2" />. Untuk menguji klaim faktor tetap, ambil kerucut dengan <InlineMath math="r=h=1" />. Setelah penskalaan, radiusnya <InlineMath math="3" /> dan tingginya <InlineMath math="\frac12" />.
@@ -24,3 +24,17 @@ s^2&=2 \\
 Garis pelukis tidak selalu memiliki faktor <InlineMath math="\frac32" />. Karena luas selimut <InlineMath math="\pi rs" />, faktor luas selimut adalah <InlineMath math="3\frac{s'}{s}" />. Faktor itu menjadi <InlineMath math="\frac92" /> hanya jika garis pelukis berfaktor <InlineMath math="\frac32" />, yang sudah dibantah contoh tadi.
 
 Ketiga pernyataan tentang keliling alas, luas alas, dan volume benar. Kedua pernyataan terakhir salah.
+
+<LineEquation
+  title="Penskalaan kerucut tidak seragam"
+  description="Kedua kerucut memiliki pusat alas yang sama. Abu-abu: r = h = 1. Ungu: r = 3 dan h = 1/2. Kerucut menjadi lebih lebar dan lebih pipih."
+  cameraPosition={[5,3,6]}
+  cameraTarget={[0,0.4,0]}
+  showZAxis={false}
+  data={[
+    ...[{ r: 1, h: 1, color: "#64748b" }, { r: 3, h: 0.5, color: "#9333ea" }].flatMap(({r,h,color}) => [
+      { points: Array.from({ length: 101 }, (_, i) => { const t = 2*Math.PI*i/100; return { x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }; }), color, smooth: false, showPoints: false },
+      ...[0,Math.PI/2,Math.PI,3*Math.PI/2].map((t) => ({ points: [{ x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }, { x: 0, y: h, z: 0 }], color, smooth: false, showPoints: false })),
+    ]),
+  ]}
+/>

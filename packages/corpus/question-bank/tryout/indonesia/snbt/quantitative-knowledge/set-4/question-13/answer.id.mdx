@@ -5,24 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Posisi sandi mengikuti pola angka, huruf, angka, huruf. Hitung pilihan yang sah pada setiap posisi, lalu gunakan aturan perkalian.
+Pola sandi adalah angka, huruf, angka, huruf. Perhatikan **larangan pengulangan** ketika menghitung pilihan pada setiap posisi.
 
-#### Angka Pertama
+| Posisi | Pilihan yang sah | Banyak pilihan |
+| --- | --- | --- |
+| Angka pertama | 1, 3, 5, 7, 9 | 5 |
+| Huruf pertama | E, I, U | 3 |
+| Angka kedua | 2, 4, 6, 8 | 4 |
+| Huruf kedua | O | 1 |
 
-Angka pertama dapat dipilih dari angka ganjil <InlineMath math="1, 3, 5, 7, 9" />, sehingga ada <InlineMath math="5" /> pilihan.
+Huruf pertama tidak boleh A menurut soal dan tidak boleh O karena O sudah menempati posisi terakhir. Angka kedua genap, sehingga otomatis berbeda dari angka pertama yang ganjil.
 
-#### Huruf Pertama
+Dengan **aturan perkalian**, setiap pilihan pada satu posisi dapat dipasangkan dengan seluruh pilihan sah pada posisi lain:
 
-Huruf kedua sudah ditetapkan sebagai <InlineMath math="O" />. Karena huruf tidak boleh berulang, huruf pertama tidak boleh <InlineMath math="A" /> maupun <InlineMath math="O" />. Jadi, pilihan yang sah adalah <InlineMath math="E, I, U" />, sebanyak <InlineMath math="3" /> pilihan.
-
-#### Angka Kedua dan Huruf Kedua
-
-Angka kedua dipilih dari <InlineMath math="2, 4, 6, 8" />, sehingga ada <InlineMath math="4" /> pilihan. Angka ini tidak mungkin sama dengan angka pertama karena yang pertama ganjil dan yang kedua genap. Huruf terakhir sudah tetap, sehingga memberi <InlineMath math="1" /> pilihan.
-
-#### Total
-
-Dengan aturan perkalian:
-
-<BlockMath math="5 \times 3 \times 4 \times 1 = 60" />
-
-Jadi, ada <InlineMath math="60" /> sandi yang memenuhi seluruh aturan.
+<BlockMath math="5\times3\times4\times1=60" />

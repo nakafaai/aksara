@@ -13,7 +13,9 @@ export const metadata = {
 
 A position vector <Highlight>starts at the origin</Highlight> <InlineMath math="O" /> and ends at a point in the coordinate system. Its components are the coordinates of that endpoint, so it records the point's location relative to the origin.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[2, 2.5, 15]}
+  cameraTarget={[2, 2.5, 0]}
   title="Position Vector Visualization"
   description={
     <>
@@ -21,28 +23,39 @@ A position vector <Highlight>starts at the origin</Highlight> <InlineMath math="
       <InlineMath math="A" /> and <InlineMath math="B" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [-3, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
       color: "#db2777",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [7, 5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
 />
 
 ### Characteristics of Position Vectors
 
-All three properties come from the same fact: the tail is fixed at the origin <InlineMath math="O" />, so the endpoint alone determines the vector.
+All three properties come from the same fact: the tail is fixed at the origin <InlineMath math="O" />, so **the endpoint alone** determines the vector.
 
 - Always starts from the origin <InlineMath math="O" /> (center of coordinates)
 - Ends at a specific point in the coordinate system
@@ -50,51 +63,76 @@ All three properties come from the same fact: the tail is fixed at the origin <I
 
 ## Representation of Position Vectors
 
-In general, if we have a point <InlineMath math="P" /> with coordinates <InlineMath math="(x, y)" /> in a plane, then the position vector from point <InlineMath math="O" /> to point <InlineMath math="P" /> can be written as <InlineMath math="\overrightarrow{OP} = (x, y)" />.
+In general, if we have a point <InlineMath math="P" /> with coordinates <InlineMath math="(x, y)" /> in a plane, then the **position vector** from point <InlineMath math="O" /> to point <InlineMath math="P" /> can be written as <InlineMath math="\overrightarrow{OP} = (x, y)" />.
 
 In three-dimensional space, if point <InlineMath math="P" /> has coordinates <InlineMath math="(x, y, z)" />, then its position vector is <InlineMath math="\overrightarrow{OP} = (x, y, z)" />.
 
 In the visualization below, we use the notation <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" />, and <InlineMath math="OD" /> to indicate position vectors from point <InlineMath math="O" /> to specific points (<InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, or <InlineMath math="D" />).
 
-<Vector3d
+<LineEquation
+  cameraPosition={[7, 6, -7]}
+  cameraTarget={[1.5, 1.7, 1.5]}
   title="Position Vectors in Three-Dimensional Space"
   description="Examples of several position vectors in three-dimensional space."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#ea580c",
-      label: <InlineMath math="OC" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OC" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [3, 3, 3],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 3 }],
       color: "#ca8a04",
-      label: <InlineMath math="OD" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OD" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[6, 8, 8]}
 />
 
 ## Examples of Position Vectors
 
-Suppose there are two points <InlineMath math="A" /> and <InlineMath math="B" /> in the coordinate plane:
+The point coordinates become the **position-vector components** because the initial point is the origin. Read the horizontal and vertical components directly from the two coordinates.
 
 - Point <InlineMath math="A" /> with coordinates <InlineMath math="(-3, 2)" />
 - Point <InlineMath math="B" /> with coordinates <InlineMath math="(7, 5)" />
@@ -106,7 +144,7 @@ Then the position vectors of these two points are:
 
 ## Uses of Position Vectors
 
-The uses fall into two groups: reading a single location, and comparing two locations.
+The uses fall into two groups: reading a single location, and **comparing two locations**.
 
 1. Determine the location of a point in a coordinate system
 2. Calculate displacement from the difference between two positions
@@ -115,12 +153,14 @@ The uses fall into two groups: reading a single location, and comparing two loca
 
 ## Relationship with Displacement Vectors
 
-Displacement vectors can be obtained from the difference between two position vectors. If we have position vectors <InlineMath math="\overrightarrow{OA}" /> and <InlineMath math="\overrightarrow{OB}" />, then the displacement vector from <InlineMath math="A" /> to <InlineMath math="B" /> is:
+Displacement vectors can be obtained from the **difference between two position vectors**. If we have position vectors <InlineMath math="\overrightarrow{OA}" /> and <InlineMath math="\overrightarrow{OB}" />, then the displacement vector from <InlineMath math="A" /> to <InlineMath math="B" /> is:
 
 <BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[2, 2.5, 15]}
+    cameraTarget={[2, 2.5, 0]}
     title="Relationship Between Position Vectors and Displacement Vector"
     description={
       <>
@@ -129,30 +169,47 @@ Displacement vectors can be obtained from the difference between two position ve
         <InlineMath math="OA" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [-3, 2, 0],
-        color: "#db2777",
-        label: <InlineMath math="OA" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [7, 5, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="OB" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [-3, 2, 0],
-        to: [7, 5, 0],
-        color: "#0d9488",
-        label: <InlineMath math="AB" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: -3, y: 2, z: 0 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 5, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[10, 6, 10]}
   />
 </ContentBlock>
 

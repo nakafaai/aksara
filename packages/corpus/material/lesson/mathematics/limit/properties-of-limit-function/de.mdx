@@ -3,7 +3,7 @@ export const metadata = {
    description: "Komplizierte Grenzwerte mit Summen-, Produkt-, Quotienten-, Potenz- und Wurzelregeln in überschaubare Schritte zerlegen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Grenzwerte",
 };
 
@@ -13,7 +13,7 @@ Die **Grenzwertregeln** berechnen den Grenzwert einer Summe, Differenz, eines Pr
 
 ## Zwei grundlegende Regeln
 
-Zwei Regeln decken die einfachsten Fälle ab, den Grenzwert einer konstanten Funktion und den Grenzwert der Identitätsfunktion. Beide lassen sich direkt aus dem Graphen ablesen, und jede weitere Regel baut auf ihnen auf.
+Zwei Regeln decken die einfachsten Fälle ab, den **Grenzwert** einer konstanten Funktion und den Grenzwert der Identitätsfunktion. Beide lassen sich direkt aus dem Graphen ablesen, und jede weitere Regel baut auf ihnen auf.
 
 ### Konstantenregel
 
@@ -31,9 +31,18 @@ Für die Identitätsfunktion gilt:
 
 Nähert sich <InlineMath math="x" /> dem Wert <InlineMath math="c" />, dann nähert sich auch <InlineMath math="f(x) = x" /> dem Wert <InlineMath math="c" />.
 
+Vergleiche die konstante Funktion <InlineMath math="y=3" /> mit der Identitätsfunktion <InlineMath math="y=x" />, wenn <InlineMath math="x" /> gegen <InlineMath math="2" /> geht. Bei der konstanten Funktion bleibt die **Ausgabe unverändert**. Bei der Identitätsfunktion **folgt die Ausgabe der Eingabe**.
+
+| Eingabe | Konstante Funktion | Identitätsfunktion |
+| --- | --- | --- |
+| <InlineMath math="1{,}9" /> | <InlineMath math="3" /> | <InlineMath math="1{,}9" /> |
+| <InlineMath math="1{,}99" /> | <InlineMath math="3" /> | <InlineMath math="1{,}99" /> |
+| <InlineMath math="2{,}01" /> | <InlineMath math="3" /> | <InlineMath math="2{,}01" /> |
+| <InlineMath math="2{,}1" /> | <InlineMath math="3" /> | <InlineMath math="2{,}1" /> |
+
 ## Rechenregeln für Verknüpfungen
 
-Es gelte <InlineMath math="\lim_{x \to c} f(x) = L" /> und <InlineMath math="\lim_{x \to c} g(x) = M" />, wobei <InlineMath math="L" /> und <InlineMath math="M" /> reelle Zahlen sind. Die Regeln schieben den Grenzwert dann durch eine Summe, ein Produkt, einen konstanten Faktor und einen Quotienten, solange der Nenner nicht gegen null läuft.
+Es gelte <InlineMath math="\lim_{x \to c} f(x) = L" /> und <InlineMath math="\lim_{x \to c} g(x) = M" />, wobei <InlineMath math="L" /> und <InlineMath math="M" /> reelle Zahlen sind. Die Regeln schieben den **Grenzwert** dann durch eine Summe, ein Produkt, einen konstanten Faktor und einen Quotienten, solange der Nenner nicht gegen null läuft.
 
 ### Summenregel und Differenzregel
 
@@ -46,17 +55,29 @@ Bei einer **Summe** oder **Differenz** dürfen wir die Grenzwerte der einzelnen 
 
 > Genau darin liegt der Nutzen: Ein zusammengesetzter Grenzwert wird zu mehreren einfachen Teilaufgaben.
 
+Wenn <InlineMath math="x\to2" /> geht, haben <InlineMath math="x" /> und <InlineMath math="x+1" /> die Grenzwerte <InlineMath math="2" /> und <InlineMath math="3" />. Mit der Regel erhalten wir:
+
+<BlockMath math="\begin{aligned}\lim_{x\to2}[x+(x+1)]&=2+3=5\\\lim_{x\to2}[x-(x+1)]&=2-3=-1\end{aligned}" />
+
 ### Produktregel
 
 Beim **Produkt** zweier Funktionen werden die beiden Grenzwerte miteinander multipliziert:
 
 <BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) \cdot g(x)] \\ &amp;= \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) \\ &amp;= L \cdot M \end{aligned}" />
 
+Wenn <InlineMath math="x\to2" /> geht, haben <InlineMath math="x" /> und <InlineMath math="x+1" /> die Grenzwerte <InlineMath math="2" /> und <InlineMath math="3" />. Mit der Regel erhalten wir:
+
+<BlockMath math="\lim_{x\to2}x(x+1)=2\cdot3=6" />
+
 ### Konstanter Faktor
 
 Einen **konstanten Faktor** dürfen wir vor das Grenzwertzeichen ziehen:
 
 <BlockMath math="\lim_{x \to c} [k \cdot f(x)] = k \cdot \lim_{x \to c} f(x) = k \cdot L" />
+
+Mit dem konstanten Faktor <InlineMath math="5" /> und <InlineMath math="x\to2" /> ergibt sich:
+
+<BlockMath math="\lim_{x\to2}5x=5\lim_{x\to2}x=5\cdot2=10" />
 
 ### Quotientenregel
 
@@ -66,9 +87,13 @@ Beim **Quotienten** teilen wir die Grenzwerte, sofern der Grenzwert des Nenners 
 
 Die entscheidende Bedingung lautet <InlineMath math="M \neq 0" />.
 
+Wenn <InlineMath math="x\to2" /> geht, haben <InlineMath math="x" /> und <InlineMath math="x+1" /> die Grenzwerte <InlineMath math="2" /> und <InlineMath math="3" />. Mit der Regel erhalten wir:
+
+<BlockMath math="\lim_{x\to2}\frac{x}{x+1}=\frac23" />
+
 ## Potenzregeln und Wurzelregeln
 
-Eine Potenz oder Wurzel darf den Grenzwert durchlaufen, solange das Ergebnis im Definitionsbereich bleibt. Diese Bedingung hält die Wurzel definiert, sodass ein negativer Wert unter einer geraden Wurzel die Regel außer Kraft setzt.
+Eine Potenz oder Wurzel darf den **Grenzwert** durchlaufen, solange das Ergebnis im Definitionsbereich bleibt. Diese Bedingung hält die Wurzel definiert, sodass ein negativer Wert unter einer geraden Wurzel die Regel außer Kraft setzt.
 
 ### Potenzregel
 
@@ -78,25 +103,33 @@ Bei einer **Potenz** darf der Grenzwert zuerst gebildet und anschließend potenz
 
 In dieser Regel ist <InlineMath math="n" /> eine positive ganze Zahl.
 
+Für den positiven ganzzahligen Exponenten <InlineMath math="3" /> berechnen wir den Grenzwert aus dem inneren Grenzwert:
+
+<BlockMath math="\lim_{x\to2}(x+1)^3=(2+1)^3=27" />
+
 ### Wurzelregel
 
 Bei einer **Wurzel** darf der Grenzwert unter den Wurzelausdruck gezogen werden:
 
 <BlockMath math="\lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to c} f(x)} = \sqrt[n]{L}" />
 
-**Definitionsbedingung:** Die Wurzelfunktion muss für Eingaben in der Nähe der betrachteten Stelle definiert sein.
+**Definitionsbedingung**: Die Wurzelfunktion muss für Eingaben in der Nähe der betrachteten Stelle definiert sein.
 - Ist <InlineMath math="n" /> ungerade, ist die reelle Wurzel für jeden reellen Wert von <InlineMath math="L" /> definiert
 - Ist <InlineMath math="n" /> gerade, muss der Ausdruck unter der Wurzel in der Umgebung nichtnegativ bleiben und <InlineMath math="L \geq 0" /> gelten
 
+Zum Vergleich: Eine Kubikwurzel erlaubt negative reelle Eingaben, eine reelle Quadratwurzel dagegen nicht:
+
+<BlockMath math="\lim_{x\to-8}\sqrt[3]{x}=\sqrt[3]{-8}=-2" />
+
 ## Grenzwertregeln anwenden
 
-Jedes Beispiel wendet jeweils eine Regel an und nennt sie, sodass du bei einem ähnlichen Ausdruck dieselbe Reihenfolge verwenden kannst. Das letzte Beispiel zeigt, was sich ändert, wenn eine Wurzel im Spiel ist.
+Jedes Beispiel wendet jeweils **eine Regel** an und nennt sie, sodass du bei einem ähnlichen Ausdruck dieselbe Reihenfolge verwenden kannst. Das letzte Beispiel zeigt, was sich ändert, wenn eine Wurzel im Spiel ist.
 
 ### Grenzwert einer Polynomfunktion
 
 Berechne <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 
-**Lösung:**
+**Lösung**:
 
 Wir zerlegen den Ausdruck mithilfe der Grenzwertregeln:
 
@@ -110,7 +143,7 @@ Wir zerlegen den Ausdruck mithilfe der Grenzwertregeln:
 
 Berechne <InlineMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3}" />.
 
-**Lösung:**
+**Lösung**:
 
 Wir verwenden Produkt- und Quotientenregel:
 
@@ -122,7 +155,7 @@ Wir verwenden Produkt- und Quotientenregel:
 Nun setzen wir <InlineMath math="x = 4" /> ein:
 
 <MathContainer>
-<BlockMath math="= \frac{4 \cdot \sqrt{4}}{4^2 + 3} = \frac{4 \cdot 2}{16 + 3} = \frac{8}{19}" />
+<BlockMath math="\lim_{x\to4}\frac{x\sqrt{x}}{x^2+3}= \frac{4 \cdot \sqrt{4}}{4^2 + 3} = \frac{4 \cdot 2}{16 + 3} = \frac{8}{19}" />
 </MathContainer>
 
 In **Dezimalform**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
@@ -131,7 +164,7 @@ In **Dezimalform**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
 
 Berechne <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 
-**Lösung:**
+**Lösung**:
 
 Wir verwenden die Wurzelregel. Weil <InlineMath math="n = 2" /> gerade ist, muss der Ausdruck unter der Wurzel in der betrachteten Umgebung nichtnegativ sein:
 
@@ -147,11 +180,11 @@ Zuerst berechnen wir den Grenzwert unter der Wurzel:
 
 Da <InlineMath math="2 > 0" /> gilt, können wir die Wurzelregel verwenden:
 
-<BlockMath math="= \sqrt{2} \approx 1{,}414" />
+<BlockMath math="\lim_{x\to0}\sqrt{x^2-3x+2}= \sqrt{2} \approx 1{,}414" />
 
 ## Übungen
 
-Jede Aufgabe verlangt einen Grenzwert, der eine oder mehrere der Regeln oben nutzt. Notiere bei jedem Schritt die verwendete Regel.
+Jede Aufgabe verlangt einen **Grenzwert**, der eine oder mehrere der Regeln oben nutzt. Notiere bei jedem Schritt die verwendete Regel.
 
 1. Berechne <InlineMath math="\lim_{x \to 3} (2x^2 - 4x + 1)" />
 
@@ -163,56 +196,54 @@ Jede Aufgabe verlangt einen Grenzwert, der eine oder mehrere der Regeln oben nut
 
 5. Berechne <InlineMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1}" />
 
-### Ausführliche Lösungen
+### Summe mit konstanten Faktoren
 
-1. **Lösung:**
+Wir verwenden **Summenregel** und konstante Faktoren:
 
-   Wir verwenden Summenregel und konstante Faktoren:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) \\ &amp;= 2\lim_{x \to 3} x^2 \\ &amp;\quad{}- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) \\ &amp;= 2\lim_{x \to 3} x^2 \\ &amp;\quad{}- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
-   </MathContainer>
+Nun setzen wir <InlineMath math="x = 3" /> ein:
 
-   Nun setzen wir <InlineMath math="x = 3" /> ein:
+<MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
-   </MathContainer>
+### Quotient mit einem Nenner ungleich null
 
-2. **Lösung:**
+Wir verwenden die Quotientenregel:
 
-   Wir verwenden die Quotientenregel:
+<MathContainer>
+<BlockMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1} = \frac{\lim_{x \to 1} (3x + 2)}{\lim_{x \to 1} (x^2 + 1)}" />
+<BlockMath math="= \frac{3(1) + 2}{1^2 + 1} = \frac{5}{2}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 1} \frac{3x + 2}{x^2 + 1} = \frac{\lim_{x \to 1} (3x + 2)}{\lim_{x \to 1} (x^2 + 1)}" />
-   <BlockMath math="= \frac{3(1) + 2}{1^2 + 1} = \frac{5}{2}" />
-   </MathContainer>
+In **Dezimalform**: <InlineMath math="\frac{5}{2} = 2{,}5" />
 
-   In **Dezimalform**: <InlineMath math="\frac{5}{2} = 2{,}5" />
+### Quadratwurzel im positiven Definitionsbereich
 
-3. **Lösung:**
+Wir verwenden die **Wurzelregel**:
 
-   Wir verwenden die Wurzelregel:
+<MathContainer>
+<BlockMath math="\lim_{x \to 4} \sqrt{x + 5} = \sqrt{\lim_{x \to 4} (x + 5)}" />
+<BlockMath math="= \sqrt{4 + 5} = \sqrt{9} = 3" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 4} \sqrt{x + 5} = \sqrt{\lim_{x \to 4} (x + 5)}" />
-   <BlockMath math="= \sqrt{4 + 5} = \sqrt{9} = 3" />
-   </MathContainer>
+### Potenz des inneren Grenzwerts
 
-4. **Lösung:**
+Wir verwenden die **Potenzregel**:
 
-   Wir verwenden die Potenzregel:
+<MathContainer>
+<BlockMath math="\lim_{x \to 2} (x + 1)^3 = \left[\lim_{x \to 2} (x + 1)\right]^3" />
+<BlockMath math="= (2 + 1)^3 = 3^3 = 27" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 2} (x + 1)^3 = \left[\lim_{x \to 2} (x + 1)\right]^3" />
-   <BlockMath math="= (2 + 1)^3 = 3^3 = 27" />
-   </MathContainer>
+### Zähler null und Nenner ungleich null
 
-5. **Lösung:**
+Wir verwenden die **Quotientenregel**:
 
-   Wir verwenden die Quotientenregel:
-
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1} = \frac{\lim_{x \to 0} (5x^2 + 3x)}{\lim_{x \to 0} (2x + 1)}" />
-   <BlockMath math="= \frac{5(0)^2 + 3(0)}{2(0) + 1} = \frac{0}{1} = 0" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{5x^2 + 3x}{2x + 1} = \frac{\lim_{x \to 0} (5x^2 + 3x)}{\lim_{x \to 0} (2x + 1)}" />
+<BlockMath math="= \frac{5(0)^2 + 3(0)}{2(0) + 1} = \frac{0}{1} = 0" />
+</MathContainer>

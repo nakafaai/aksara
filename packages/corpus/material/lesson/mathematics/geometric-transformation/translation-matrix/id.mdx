@@ -18,6 +18,12 @@ Operasi ini dapat ditulis dalam bentuk penjumlahan vektor (matriks kolom):
 
 Rotasi berpusat di titik asal dan refleksi terhadap garis yang melalui titik asal dapat direpresentasikan oleh perkalian matriks <InlineMath math="2 \times 2" />. Translasi dengan vektor bukan nol menambahkan vektor sehingga <Highlight>tidak dapat direpresentasikan dengan cara ini</Highlight>.
 
+### Mengapa Memakai Koordinat Homogen
+
+Perkalian matriks biasa selalu membawa **titik asal ke titik asal**, sedangkan translasi bukan nol memindahkan titik asal. Itu sebabnya kita memerlukan satu koordinat tambahan:
+
+<BlockMath math="M\begin{pmatrix}0\\0\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix},\qquad T_{(a,b)}(0,0)=(a,b)" />
+
 Untuk menggabungkan translasi dengan transformasi linear melalui perkalian matriks, kita menggunakan **koordinat homogen**. Titik <InlineMath math="(x,y)" /> dinyatakan sebagai kolom:
 
 <BlockMath math="\begin{pmatrix} x \\ y \\ 1 \end{pmatrix}" />
@@ -30,11 +36,11 @@ Sehingga:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \\ 1 \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 &amp; a \\ 0 &amp; 1 &amp; b \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} x+a \\ y+b \\ 1 \end{pmatrix} \end{aligned}" />
 
-### Operasi Matriks
+### Memeriksa Koordinat Homogen
 
-Untuk titik <InlineMath math="(x,y)" />, jumlahkan setiap komponen dengan komponen vektor translasi yang bersesuaian:
+Koordinat terakhir tetap **sama dengan satu**. Pada contoh berikut, baris pertama menghitung posisi horizontal dan baris kedua menghitung posisi vertikal. Hasilnya sama dengan penjumlahan vektor:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+<BlockMath math="\begin{pmatrix}1&amp;0&amp;-3\\0&amp;1&amp;4\\0&amp;0&amp;1\end{pmatrix}\begin{pmatrix}-2\\3\\1\end{pmatrix}=\begin{pmatrix}1(-2)+0(3)-3(1)\\0(-2)+1(3)+4(1)\\1\end{pmatrix}=\begin{pmatrix}-5\\7\\1\end{pmatrix}" />
 
 ## Mencari Bayangan Titik dengan Operasi Matriks
 
@@ -42,9 +48,9 @@ Gunakan operasi matriks untuk mentranslasikan titik <InlineMath math="(-2,3)" />
 
 <BlockMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />
 
-**Penyelesaian:**
+**Penyelesaian**:
 
-Terapkan penjumlahan vektor secara langsung:
+Jumlahkan **komponen yang bersesuaian** secara langsung:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -2 \\ 3 \end{pmatrix} + \begin{pmatrix} -3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 + (-3) \\ 3 + 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 7 \end{pmatrix} \end{aligned}" />
 
@@ -94,6 +100,8 @@ Bayangannya adalah <InlineMath math="(-5,7)" />.
 
 ## Latihan
 
+Terapkan **vektor yang sama** pada setiap titik. Catat komponen horizontal di baris pertama dan komponen vertikal di baris kedua. Pada soal segitiga, ulangi penjumlahan untuk ketiga titik sudut.
+
 1.  Gunakan operasi matriks untuk mentranslasikan titik <InlineMath math="(4,-5)" /> dengan vektor berikut, lalu tentukan bayangannya:
 
     <BlockMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />
@@ -104,30 +112,36 @@ Bayangannya adalah <InlineMath math="(-5,7)" />.
 
 ### Pembahasan
 
-1.  Untuk titik <InlineMath math="(4,-5)" />, gunakan pergeseran <InlineMath math="a=-5" /> dan <InlineMath math="b=4" />.
+Jumlahkan **komponen yang bersesuaian**. Setelah mendapat setiap bayangan, kurangkan koordinat titik awal dari koordinat bayangan untuk memeriksa bahwa vektor pergeserannya sama dengan vektor pada soal.
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
+**Pembahasan 1**
 
-    Bayangan: <InlineMath math="(-1,-1)" />.
+Untuk titik <InlineMath math="(4,-5)" />, gunakan pergeseran <InlineMath math="a=-5" /> dan <InlineMath math="b=4" />.
 
-2.  Terapkan vektor translasi <InlineMath math="T" /> dari soal pada setiap titik sudut:
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
 
-    - Untuk <InlineMath math="K(1,0)" />:
+Bayangan: <InlineMath math="(-1,-1)" />.
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_K \\ y'_K \end{pmatrix} &amp;= \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ 1 \end{pmatrix} \end{aligned}" />
+**Pembahasan 2**
 
-      Jadi <InlineMath math="K'(-1,1)" />.
+Terapkan vektor translasi <InlineMath math="T" /> dari soal pada setiap titik sudut:
 
-    - Untuk <InlineMath math="L(4,2)" />:
+Untuk <InlineMath math="K(1,0)" />:
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_L \\ y'_L \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 3 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_K \\ y'_K \end{pmatrix} &amp;= \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ 1 \end{pmatrix} \end{aligned}" />
 
-      Jadi <InlineMath math="L'(2,3)" />.
+Jadi <InlineMath math="K'(-1,1)" />.
 
-    - Untuk <InlineMath math="M(2,5)" />:
+Untuk <InlineMath math="L(4,2)" />:
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_M \\ y'_M \end{pmatrix} &amp;= \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ 6 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_L \\ y'_L \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 3 \end{pmatrix} \end{aligned}" />
 
-      Jadi <InlineMath math="M'(0,6)" />.
+Jadi <InlineMath math="L'(2,3)" />.
 
-    Koordinat bayangan: <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" />, <InlineMath math="M'(0,6)" />.
+Untuk <InlineMath math="M(2,5)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_M \\ y'_M \end{pmatrix} &amp;= \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ 6 \end{pmatrix} \end{aligned}" />
+
+Jadi <InlineMath math="M'(0,6)" />.
+
+Koordinat bayangan: <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" />, <InlineMath math="M'(0,6)" />.

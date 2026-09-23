@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The order of members in a set does not matter, so we use the concept of combinations.
+The **order of members does not matter** in a set, so we use the concept of combinations.
 
 The total number of subsets of a set with <InlineMath math="n" /> members is <InlineMath math="2^n" />. Given <InlineMath math="n = 10" />, the total number of subsets is:
 
@@ -19,23 +19,14 @@ The combination formula is:
 
 <BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
 
-Calculate them one by one.
+| Members selected | Calculation | Number of subsets |
+| --- | --- | --- |
+| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
+| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
+| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
+| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
 
-#### Subsets with Zero Members
-
-<BlockMath math="\begin{aligned}C(10, 0)&=\frac{10!}{0!10!}\\&=1\end{aligned}" />
-
-#### Subsets with One member
-
-<BlockMath math="\begin{aligned}C(10, 1)&=\frac{10!}{1!9!}\\&=10\end{aligned}" />
-
-#### Subsets with Two Members
-
-<BlockMath math="\begin{aligned}C(10, 2)&=\frac{10!}{2!8!}\\&=\frac{10 \times 9}{2 \times 1}\\&=45\end{aligned}" />
-
-#### Subsets with Three Members
-
-<BlockMath math="\begin{aligned}C(10, 3)&=\frac{10!}{3!7!}\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
+The one subset with zero members is the **empty set**, which must still be counted.
 
 The number of subsets with <InlineMath math="\leq 3" /> members is:
 

@@ -5,26 +5,47 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The draining time depends on two quantities: the volume of water in the full tank and the combined flow rate of the taps.
+The draining time depends on two quantities: the **volume of water** in the full tank and the **combined flow rate** of the taps.
 
 #### Find the water volume
 
-The tank is a cube with side length <InlineMath math="4\text{ dm}" />:
+The tank is a cube with **side length** <InlineMath math="4\text{ dm}" />:
 
-<BlockMath math="\begin{aligned} V &= s^3 \\ &= 4 \times 4 \times 4 \\ &= 64\text{ dm}^3 \end{aligned}" />
+<BlockMath math="\begin{aligned} V &amp;= s^3 \\ &amp;= 4 \times 4 \times 4 \\ &amp;= 64\text{ dm}^3 \end{aligned}" />
 
 Because <InlineMath math="1\text{ dm}^3 = 1\text{ liter}" />, the full tank contains <InlineMath math="64\text{ liters}" /> of water.
 
+<MathVisual
+  title="The cubic tank before draining"
+  description="The three perpendicular edges are each 4 dm. Multiplying length, width, and height gives 64 cubic dm, equal to 64 liters."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 2, y: 2, z: 2 } },
+    objects: [{ id: "tank", kind: "cuboid", center: { x: 2, y: 2, z: 2 }, size: { length: 4, width: 4, height: 4 }, appearance: "primary" }],
+    labels: [
+      { key: "length", objectId: "tank", at: { x: 2, y: 0, z: 4 }, placement: "below-left" },
+      { key: "height", objectId: "tank", at: { x: 4, y: 2, z: 4 }, placement: "right" },
+      { key: "width", objectId: "tank", at: { x: 4, y: 0, z: 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    length: <InlineMath math="4\text{ dm}" />,
+    height: <InlineMath math="4\text{ dm}" />,
+    width: <InlineMath math="4\text{ dm}" />,
+  }}
+/>
+
 #### Add the flow rates
 
-All three taps drain the tank at the same time, so their rates add:
+All three taps drain the tank **at the same time**, so their rates add:
 
-<BlockMath math="\begin{aligned} Q &= Q_1 + Q_2 + Q_3 \\ Q &= 4 + 3 + 1 \\ Q &= 8 \text{ liters/minute} \end{aligned}" />
+<BlockMath math="\begin{aligned} Q &amp;= Q_1 + Q_2 + Q_3 \\ Q &amp;= 4 + 3 + 1 \\ Q &amp;= 8 \text{ liters/minute} \end{aligned}" />
 
 #### Find the draining time
 
-Divide the volume by the combined flow rate:
+Divide the **volume by the combined flow rate**:
 
-<BlockMath math="\begin{aligned} t &= \frac{V}{Q} \\ &= \frac{64}{8} \\ &= 8\text{ minutes} \end{aligned}" />
+<BlockMath math="\begin{aligned} t &amp;= \frac{V}{Q} \\ &amp;= \frac{64}{8} \\ &amp;= 8\text{ minutes} \end{aligned}" />
 
 The tank will be empty after <InlineMath math="8\text{ minutes}" />.

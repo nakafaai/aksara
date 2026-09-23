@@ -5,69 +5,25 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Tatsächliche Strecken berechnen
+#### Kartenmaßstab umrechnen
 
-Der Maßstab <InlineMath math="1:2{.}000{.}000" /> bedeutet, dass die tatsächliche Strecke <InlineMath math="J_s" /> das <InlineMath math="2{.}000{.}000" />-Fache der Kartenstrecke <InlineMath math="J_p" /> ist, wenn beide Strecken in derselben Einheit angegeben sind:
+Der Maßstab vergleicht Strecken in **derselben Einheit**. Wegen <InlineMath math="1\text{ km}=100{.}000\text{ cm}" /> gilt:
 
-<BlockMath math="J_s=J_p\times2{.}000{.}000" />
+<BlockMath math="2{.}000{.}000\text{ cm}=\frac{2{.}000{.}000}{100{.}000}\text{ km}=20\text{ km}" />
 
-**Von Stadt <InlineMath math="A" /> nach Stadt <InlineMath math="x" />:**
+Jeder <InlineMath math="1\text{ cm}" /> auf der Karte entspricht somit <InlineMath math="20\text{ km}" />. Rechne jeden Abschnitt um:
 
-<MathContainer>
-  <BlockMath math="2{,}5\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 5{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 50 \text{ km}" />
-</MathContainer>
+| Abschnitt | Kartenlänge in Zentimetern | Tatsächliche Länge in Kilometern |
+| --- | ---: | ---: |
+| <InlineMath math="A\to x" /> | <InlineMath math="2{,}5" /> | <InlineMath math="2{,}5\times20=50" /> |
+| <InlineMath math="x\to B" /> | <InlineMath math="3" /> | <InlineMath math="3\times20=60" /> |
+| <InlineMath math="A\to y" /> | <InlineMath math="4" /> | <InlineMath math="4\times20=80" /> |
+| <InlineMath math="y\to B" /> | <InlineMath math="4{,}5" /> | <InlineMath math="4{,}5\times20=90" /> |
 
-**Von Stadt <InlineMath math="x" /> nach Stadt <InlineMath math="B" />:**
+#### Vollständige Routen vergleichen
 
-<MathContainer>
-  <BlockMath math="3\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 6{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
+Jede Person fährt über **zwei Abschnitte**. Addiere beide vor dem Vergleich. Sei <InlineMath math="J_B" /> Benus Strecke und <InlineMath math="J_M" /> Mamangs Strecke, jeweils in Kilometern.
 
-**Von Stadt <InlineMath math="A" /> nach Stadt <InlineMath math="y" />:**
+<BlockMath math="\begin{aligned}J_B&=50+60=110 \\ J_M&=80+90=170 \\ J_M-J_B&=170-110=60\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="4\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 8{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 80 \text{ km}" />
-</MathContainer>
-
-**Von Stadt <InlineMath math="y" /> nach Stadt <InlineMath math="B" />:**
-
-<MathContainer>
-  <BlockMath math="4{,}5\text{ cm}\times2{.}000{.}000" />
-  <BlockMath math="= 9{.}000{.}000 \text{ cm}" />
-  <BlockMath math="= 90 \text{ km}" />
-</MathContainer>
-
-#### Beide Routen zusammenrechnen
-
-**Benus Route <InlineMath math="A \to x \to B" />:**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Benu}}&=J_s(A\to x) \\ &\quad+J_s(x\to B)\end{aligned}" />
-  <BlockMath math="= 50 \text{ km} + 60 \text{ km}" />
-  <BlockMath math="= 110 \text{ km}" />
-</MathContainer>
-
-**Mamangs Route <InlineMath math="A \to y \to B" />:**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Mamang}}&=J_s(A\to y) \\ &\quad+J_s(y\to B)\end{aligned}" />
-  <BlockMath math="= 80 \text{ km} + 90 \text{ km}" />
-  <BlockMath math="= 170 \text{ km}" />
-</MathContainer>
-
-#### Entfernungsdifferenz berechnen
-
-Die Differenz der beiden Strecken ist:
-
-<MathContainer>
-  <BlockMath math="|170-110|\text{ km}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
-
-Die Fahrstrecken unterscheiden sich somit um <InlineMath math="60 \text{ km}" />.
+Mamang fährt <InlineMath math="60\text{ km}" /> weiter. Zur Kontrolle unterscheiden sich die Kartenrouten um <InlineMath math="(4+4{,}5)-(2{,}5+3)=3\text{ cm}" />, entsprechend <InlineMath math="3\times20=60\text{ km}" />.

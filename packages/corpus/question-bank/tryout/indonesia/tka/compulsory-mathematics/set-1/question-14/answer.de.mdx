@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Bestimme zuerst die Koordinaten relativ zum Drehzentrum <InlineMath math="C=(1,2)" />.
+Bestimme zuerst die Koordinaten relativ zum **Drehzentrum** <InlineMath math="C=(1,2)" />.
 
 <BlockMath math="(4,6)-(1,2)=(3,4)" />
 
@@ -20,3 +20,27 @@ Q&=(-3,5)+(2,-1) \\
 \end{aligned}" />
 
 Der endgültige Bildpunkt ist <InlineMath math="(-1,4)" />.
+
+<LineEquation
+  title="Drehzentrum und Verschiebung"
+  description="Die beiden violetten Strecken ab C stehen senkrecht aufeinander und sind gleich lang. Die orange Strecke verschiebt den gedrehten Punkt R nach Q."
+  cameraPosition={[0.5, 4, 11]}
+  cameraTarget={[0.5, 4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: 4, y: 6, z: 0 }, { x: 1, y: 2, z: 0 }, { x: -3, y: 5, z: 0 }],
+      color: "#9333ea", smooth: false,
+      labels: [
+        { text: <InlineMath math="P(4,6)" />, at: 0, offset: [0, 0.5, 0] },
+        { text: <InlineMath math="C(1,2)" />, at: 1, offset: [0, -0.5, 0] },
+        { text: <InlineMath math="R(-3,5)" />, at: 2, offset: [0, 0.5, 0] },
+      ],
+    },
+    {
+      points: [{ x: -3, y: 5, z: 0 }, { x: -1, y: 4, z: 0 }],
+      color: "#d97706", smooth: false, cone: { position: "end" },
+      labels: [{ text: <InlineMath math="Q(-1,4)" />, at: 1, offset: [0, -0.5, 0] }],
+    },
+  ]}
+/>

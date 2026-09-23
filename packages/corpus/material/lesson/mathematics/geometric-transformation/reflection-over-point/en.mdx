@@ -16,18 +16,14 @@ Suppose the center of reflection is <InlineMath math="P(a,b)" />. If a point <In
 
 ### Rule for Reflection over a Point
 
-If a point <InlineMath math="Q(x, y)" /> is reflected over the point <InlineMath math="P(a, b)" />, its image's coordinates, <InlineMath math="Q'(x', y')" />, are determined by the formula:
+The center of reflection is the **midpoint** of the joining segment. The average of each pair of coordinates therefore equals the corresponding center coordinate:
 
 <MathContainer>
-  <BlockMath math="x' = 2a - x" />
-  <BlockMath math="y' = 2b - y" />
+  <BlockMath math="\frac{x+x'}{2}=a\quad\Longrightarrow\quad x'=2a-x" />
+  <BlockMath math="\frac{y+y'}{2}=b\quad\Longrightarrow\quad y'=2b-y" />
 </MathContainer>
 
-Alternatively, it can be written as:
-
-<BlockMath math="Q'(-x + 2a, -y + 2b)" />
-
-This means the <InlineMath math="x" />-coordinate of the image is twice the <InlineMath math="x" />-coordinate of the center minus the original <InlineMath math="x" />-coordinate, and the same applies to the <InlineMath math="y" />-coordinate.
+A point at the center remains fixed. For example, <InlineMath math="Q(a,b)" /> gives <InlineMath math="Q'(2a-a,2b-b)=(a,b)" />.
 
 ## Reflecting a Point over Another Point
 
@@ -37,7 +33,7 @@ This means we are reflecting point <InlineMath math="Q(5,4)" /> over the center 
 
 Here, <InlineMath math="x=5" />, <InlineMath math="y=4" />, <InlineMath math="a=2" />, and <InlineMath math="b=3" />.
 
-Using the formula:
+Calculate **twice each center coordinate**, then subtract the original point coordinate:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(2) - 5 \\ &amp;= 4 - 5 \\ &amp;= -1 \end{aligned}" />
@@ -88,6 +84,8 @@ The image of point <InlineMath math="(5,4)" /> is <InlineMath math="(-1,2)" />.
       color: "#db2777",
     }, // Line connecting Q to Q'
   ]}
+  cameraPosition={[2, 3, 10]}
+  cameraTarget={[2, 3, 0]}
 />
 
 ## Reflecting a Line over a Point
@@ -97,11 +95,11 @@ Determine the image of a half-turn <InlineMath math="\sigma_{(1,3)}" /> for the 
 Take an arbitrary point <InlineMath math="(x,y)" /> on line <InlineMath math="l" />. Its image, <InlineMath math="(x',y')" />, after reflection over point <InlineMath math="P(1,3)" /> is:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x \\ &amp;= 2 - x' \end{aligned}" />
-  <BlockMath math="\begin{aligned} y' &amp;= 2(3) - y \\ &amp;= 6 - y \\ &amp;\implies y \\ &amp;= 6 - y' \end{aligned}" />
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(3) - y \\ &amp;= 6 - y \\ &amp;\implies y = 6 - y' \end{aligned}" />
 </MathContainer>
 
-Substitute <InlineMath math="x = 2 - x'" /> and <InlineMath math="y = 6 - y'" /> into the equation of line <InlineMath math="l" />:
+Substitute <InlineMath math="x = 2 - x'" /> and <InlineMath math="y = 6 - y'" /> into the **original equation** of line <InlineMath math="l" />:
 
 <MathContainer>
   <BlockMath math="2(2 - x') - (6 - y') + 3 = 0" />
@@ -130,6 +128,7 @@ Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
     </>
   }
   data={[
+    { points: [{ x: 0, y: 3, z: 0 }, { x: 2, y: 3, z: 0 }], smooth: false, showPoints: true, color: "#db2777" },
     {
       points: [{ x: 1, y: 3, z: 0 }],
       color: "#e11d48",
@@ -138,23 +137,23 @@ Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
     },
     {
       // Original Line: 2x - y + 3 = 0  => y = 2x + 3
-      points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = i - 5;
+      points: Array.from({ length: 7 }, (_, i) => {
+        const xVal = i / 2 - 1;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
       smooth: false,
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 5, offset: [-2.5, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 4, offset: [-1.5, 0.3, 0] }],
     },
     {
       // Image Line: 2x - y - 1 = 0 => y = 2x - 1
-      points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = i - 5;
+      points: Array.from({ length: 7 }, (_, i) => {
+        const xVal = i / 2;
         return { x: xVal, y: 2 * xVal - 1, z: 0 };
       }),
       smooth: false,
       color: "#059669",
-      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 5, offset: [3, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 2, offset: [1.3, -0.5, 0] }],
     },
   ]}
   cameraPosition={[1, 3, 13]}
@@ -163,7 +162,7 @@ Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
 
 ## Exercises
 
-The problems use a half-turn about a given center. The third reflects a line, so its equation is transformed.
+The problems use a **half-turn** about a given center. The third reflects a line, so its equation is transformed.
 
 1.  Determine the image of a half-turn <InlineMath math="\sigma_{(-2,3)}" /> for the point <InlineMath math="(3, -4)" />.
 2.  Point <InlineMath math="K(-5, 1)" /> is reflected over the origin <InlineMath math="O(0,0)" />. Determine the coordinates of its image!
@@ -171,37 +170,45 @@ The problems use a half-turn about a given center. The third reflects a line, so
 
 ### Solutions
 
-1.  Center <InlineMath math="P(-2,3)" />, point <InlineMath math="Q(3,-4)" />. So <InlineMath math="a=-2, b=3, x=3, y=-4" />.
+For a point, check that **the center is the midpoint** of the original and image. For a line, express the original coordinates in terms of the image coordinates before substituting.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(-2) - 3 \\ &amp;= -4 - 3 \\ &amp;= -7 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 2b - y \\ &amp;= 2(3) - (-4) \\ &amp;= 6 + 4 \\ &amp;= 10 \end{aligned}" />
-    </MathContainer>
+**Solution 1**
 
-    Thus, the image of point <InlineMath math="Q(3,-4)" /> is <InlineMath math="(-7,10)" />.
+Center <InlineMath math="P(-2,3)" />, point <InlineMath math="Q(3,-4)" />. So <InlineMath math="a=-2, b=3, x=3, y=-4" />.
 
-2.  Center <InlineMath math="O(0,0)" />, point <InlineMath math="K(-5,1)" />. So <InlineMath math="a=0, b=0, x=-5, y=1" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(-2) - 3 \\ &amp;= -4 - 3 \\ &amp;= -7 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2b - y \\ &amp;= 2(3) - (-4) \\ &amp;= 6 + 4 \\ &amp;= 10 \end{aligned}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = 2(0) - (-5) = 0 + 5 = 5" />
-      <BlockMath math="y' = 2(0) - 1 = 0 - 1 = -1" />
-    </MathContainer>
+Thus, the image of point <InlineMath math="Q(3,-4)" /> is <InlineMath math="(-7,10)" />.
 
-    Thus, the image of point <InlineMath math="K(-5,1)" /> is <InlineMath math="K'(5,-1)" />.
+**Solution 2**
 
-3.  Center <InlineMath math="P(1,-3)" />. Line <InlineMath math="2x + 5y + 6 = 0" />.
+Center <InlineMath math="O(0,0)" />, point <InlineMath math="K(-5,1)" />. So <InlineMath math="a=0, b=0, x=-5, y=1" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x \\ &amp;= 2 - x' \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 2(-3) - y \\ &amp;= -6 - y \\ &amp;\implies y \\ &amp;= -6 - y' \end{aligned}" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x' = 2(0) - (-5) = 0 + 5 = 5" />
+  <BlockMath math="y' = 2(0) - 1 = 0 - 1 = -1" />
+</MathContainer>
 
-    Substitute into the line equation:
+Thus, the image of point <InlineMath math="K(-5,1)" /> is <InlineMath math="K'(5,-1)" />.
 
-    <MathContainer>
-      <BlockMath math="2(2 - x') + 5(-6 - y') + 6 = 0" />
-      <BlockMath math="4 - 2x' - 30 - 5y' + 6 = 0" />
-      <BlockMath math="-2x' - 5y' - 20 = 0" />
-    </MathContainer>
+**Solution 3**
 
-    Image line equation: <InlineMath math="-2x - 5y - 20 = 0" /> or <InlineMath math="2x + 5y + 20 = 0" />.
+Center <InlineMath math="P(1,-3)" />. Line <InlineMath math="2x + 5y + 6 = 0" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(-3) - y \\ &amp;= -6 - y \\ &amp;\implies y = -6 - y' \end{aligned}" />
+</MathContainer>
+
+Substitute into the line equation:
+
+<MathContainer>
+  <BlockMath math="2(2 - x') + 5(-6 - y') + 6 = 0" />
+  <BlockMath math="4 - 2x' - 30 - 5y' + 6 = 0" />
+  <BlockMath math="-2x' - 5y' - 20 = 0" />
+</MathContainer>
+
+Image line equation: <InlineMath math="-2x - 5y - 20 = 0" /> or <InlineMath math="2x + 5y + 20 = 0" />.

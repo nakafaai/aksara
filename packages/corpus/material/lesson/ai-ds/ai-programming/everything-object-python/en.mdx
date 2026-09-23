@@ -3,7 +3,7 @@ export const metadata = {
   description: "Numbers, strings, lists, and functions are Python objects with their own attributes and methods.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-26",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -17,11 +17,11 @@ An object's type determines the attributes and methods available on it. Since th
 
 ## Comparing Ways to Organize a Program
 
-The same object model supports several ways to organize a program. A procedural style sequences steps and passes data between them, a functional style composes a calculation from functions, and an object-oriented style keeps data together with the operations that use it. Knowing which style a file follows makes its flow easier to read.
+The same object model supports several ways to organize a program. A procedural style sequences steps and passes data between them, a functional style composes a calculation from functions, and an object-oriented style **keeps data together with the operations** that use it. Knowing which style a file follows makes its flow easier to read.
 
 ### Procedural Style
 
-In a procedural style, a program is organized around operations and explicit data flow. Data structures and the functions that receive them can remain separate, even in a language that also supports classes.
+In a procedural style, a program is organized around **operations and explicit data flow**. Data structures and the functions that receive them can remain separate, even in a language that also supports classes.
 
 <CodeBlock
   data={[{
@@ -62,7 +62,7 @@ Here, the C `struct` stores parking state and each function receives a pointer t
 
 ### Object Oriented Languages
 
-In an object-oriented style, a class can group related state and behavior behind one interface. Attributes represent object state, while methods define operations that use or update it.
+In an object-oriented style, a class can **group related state and behavior** behind one interface. Attributes represent object state, while methods define operations that use or update it.
 
 <CodeBlock
   data={[{
@@ -93,9 +93,19 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
 
 The Python version keeps the parking rules and operations in one class. The `occupy` method checks the remaining capacity whenever it is called, but outside code can still change the public `max` and `occ` attributes directly. This short example therefore does not fully protect the object's state.
 
+### Functional Style
+
+A pure function computes **a result from inputs without changing state**. Here, capacity and the vehicle count are arguments, and the function returns the number of free spaces.
+
+<CodeBlock data={[{ language: "python", filename: "functional_parking.py", code: `def available_spaces(capacity, occupied):
+    return capacity - occupied
+
+print(available_spaces(100, 1))
+# Output: 99` }]} />
+
 ## Parking System as an Example
 
-In this example, the parking system is an object with state and behavior. Its state records the maximum capacity and the number of occupied spaces. Its methods admit a car or record its departure.
+In this example, the parking system is an object with state and behavior. Its state records the **maximum capacity and the number of occupied spaces**. Its methods admit a car or record its departure.
 
 <CodeBlock
   data={[{
@@ -104,8 +114,8 @@ In this example, the parking system is an object with state and behavior. Its st
     code: `class ParkingSystem:
     def __init__(self, capacity):
         """Initialize parking system with certain capacity"""
-        if capacity <= 0:
-            raise ValueError("Capacity must be positive")
+        if type(capacity) is not int or capacity <= 0:
+            raise ValueError("Capacity must be a positive integer")
         self.capacity = capacity
         self.vehicles = []  # List of parked vehicles
 
@@ -157,7 +167,7 @@ The statement that everything is an object means Python treats every runtime val
 
 ### Numbers are Objects
 
-An integer is an object with methods. The example calls `bit_length()` on `42` and prints the result.
+An integer is an **object with methods**. The example calls `bit_length()` on `42` and prints the result.
 
 <CodeBlock
   data={[{
@@ -178,13 +188,13 @@ print(price.as_integer_ratio())  # Method to convert to ratio
 # Even mathematical operation results are objects
 result = 10 + 5
 print(type(result))         # <class 'int'>
-print(dir(result))          # View all available methods`
+print(dir(result))          # Explore attribute names`
   }]}
 />
 
 ### Strings are Objects
 
-A string is an object with methods that build new values. The example calls several string methods on one message.
+A string is an object with methods that **build new values**. The example calls several string methods on one message.
 
 <CodeBlock
   data={[{
@@ -222,7 +232,7 @@ print(rejoined)`
 
 ### Lists are Objects
 
-A list is an object whose methods change its contents. The example starts from a fruit list and calls the list methods.
+A list provides **methods that change its contents**, such as `append()`, alongside read-only methods such as `count()`. The example starts from a fruit list and calls the list methods.
 
 <CodeBlock
   data={[{
@@ -267,7 +277,7 @@ print(f"Copy: {copy_list}")`
 
 ### Dictionaries are Objects
 
-A dictionary is an object with methods for reading and updating its pairs. The example uses a student record to call those methods.
+A dictionary is an object with methods for **reading and updating** its pairs. The example uses a student record to call those methods.
 
 <CodeBlock
   data={[{
@@ -318,7 +328,7 @@ print(university["students"]["CS"])`
 
 ## Functions are Also Objects
 
-You can pass functions as arguments, store them in containers, and assign them to variables like other values.
+You can **pass functions as arguments**, store them in containers, and assign them to variables like other values.
 
 <CodeBlock
   data={[{
@@ -378,7 +388,7 @@ print(square(5))                    # 25`
 
 ## Classes and Instances as Objects
 
-A class defines how its instances are constructed and how their shared behavior is resolved. The class itself is also an object, and each instance carries its own instance state.
+A class defines how its instances are constructed and how their shared behavior is resolved. The class itself is also an object, and **each instance carries its own instance state**.
 
 <CodeBlock
   data={[{
@@ -407,7 +417,7 @@ class Student:
             'name': self.name,
             'major': self.major,
             'semester': self.semester,
-            'courses': self.courses,
+            'courses': tuple(self.courses),
             'university': self.university
         }
 
@@ -452,7 +462,7 @@ print(Student.university)           # University of Indonesia`
 
 ## Special Methods
 
-Special methods begin and end with double underscores. Python invokes them through syntax and built-ins such as `+`, `abs()`, `repr()`, and truth testing. Implement one only when its meaning is natural for the domain.
+Special methods begin and end with **double underscores**. Python invokes them through syntax and built-ins such as `+`, `abs()`, `repr()`, and truth testing. Implement one only when its meaning is natural for the domain.
 
 <CodeBlock
   data={[{
@@ -513,7 +523,15 @@ print(bool(zero))                    # False`
 
 ## Object Oriented Programming Practice
 
-The following example combines several classes to model books, members, and library loans.
+The following example combines several classes to model **books, members, and library loans**.
+
+| Stage | First book | Alice’s loans |
+| --- | --- | --- |
+| Before borrowing | Available, no borrower | Empty |
+| After `borrow_book()` | Borrowed by Alice | Contains the first book |
+| After `return_book()` | Available again | Empty |
+
+The book titles, authors, and identifiers are sample data. Book and member lists remain public attributes. The example teaches object relationships rather than multiuser storage.
 
 <CodeBlock
   data={[{
@@ -565,7 +583,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Member not found"
 
         # Find book
@@ -575,7 +593,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Book not available"
 
         # Process borrowing
@@ -593,7 +611,7 @@ class Library:
                 member = m
                 break
 
-        if not member:
+        if member is None:
             return "Member not found"
 
         book = None
@@ -602,7 +620,7 @@ class Library:
                 book = b
                 break
 
-        if not book:
+        if book is None:
             return "Book not found in borrowed list"
 
         # Process return
@@ -621,7 +639,7 @@ class Library:
         """Get list of books borrowed by member"""
         for member in self.members:
             if member.member_id == member_id:
-                return member.borrowed_books
+                return list(member.borrowed_books)
         return []
 
 # Example usage of library system

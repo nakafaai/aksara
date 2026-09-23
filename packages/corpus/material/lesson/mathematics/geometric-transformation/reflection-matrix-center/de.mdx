@@ -31,21 +31,23 @@ Durch Gleichsetzen <Highlight>der entsprechenden Koeffizienten</Highlight> erhal
 
 ### Spiegelungsmatrix für den Ursprung
 
-Die Spiegelungsmatrix für den Ursprung <InlineMath math="O(0,0)" /> lautet:
+Diese Matrix ist die **negative Einheitsmatrix**. Zweimaliges Spiegeln kehrt beide Vorzeichen zweimal um und ergibt wieder den Ausgangspunkt:
 
-<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
 
 ## Spiegelungsmatrix für den Ursprung anwenden
 
-Die Matrix unten macht aus der Spiegelung am Ursprung <Highlight>eine einzige Multiplikation</Highlight>. Die Beispiele wenden sie zuerst auf einzelne Punkte und dann auf ein ganzes Dreieck an.
+Eine Matrixmultiplikation kann auf **mehrere Spalten gleichzeitig** wirken. Jede Spalte enthält einen Punkt. Die Spaltenreihenfolge legt deshalb die Reihenfolge der Eckpunkte fest.
+
+<BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
 
 ### Zwei Punkte spiegeln
 
 Bestimme die Bilder der Punkte <InlineMath math="A(-1,1)" /> und <InlineMath math="B(3,-2)" /> bei einer Spiegelung am Ursprung.
 
-**Lösung:**
+**Lösung**:
 
-Wir verwenden die Transformationsmatrix:
+Verwende die **erste Zeile für die waagerechte Koordinate** und die zweite Zeile für die senkrechte Koordinate:
 
 <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
@@ -130,33 +132,40 @@ Das Bild des Punktes <InlineMath math="B" /> ist <InlineMath math="B'(-3,2)" />.
 
 ## Übungen
 
-Beide Aufgaben spiegeln am Ursprung. Die zweite wendet die Spiegelungsmatrix auf jeden Eckpunkt eines Dreiecks an.
+Beide Aufgaben spiegeln am Ursprung. Die zweite wendet die Spiegelungsmatrix auf **jeden Eckpunkt eines Dreiecks** an.
 
 1.  Bestimme die Bilder der Punkte <InlineMath math="A(1,-7)" /> und <InlineMath math="B(-7,-2)" /> bei einer Spiegelung am Ursprung.
 2.  Ein Dreieck <InlineMath math="PQR" /> hat die Eckpunkte <InlineMath math="P(2,2)" />, <InlineMath math="Q(5,2)" /> und <InlineMath math="R(3,5)" />. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="P'Q'R'" /> nach der Spiegelung am Ursprung mithilfe der Matrixmultiplikation.
 
 ### Lösungen
 
-1.  Die Spiegelungsmatrix für den Ursprung ist:
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+Behalte die **Reihenfolge der Punktspalten** bei. Diese Diagonalmatrix ändert das Vorzeichen jedes Eintrags, ohne die waagerechte und die senkrechte Position zu vertauschen.
 
-    Für <InlineMath math="A(1,-7)" />:
+**Lösung 1**
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
+Die Spiegelungsmatrix für den Ursprung ist:
 
-    Der erste Bildpunkt ist <InlineMath math="A'(-1,7)" />. Für <InlineMath math="B(-7,-2)" /> gilt:
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
+Für <InlineMath math="A(1,-7)" />:
 
-    Der zweite Bildpunkt ist <InlineMath math="B'(7,2)" />.
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 \\ -7 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}" />
 
-2.  Die Koordinatenmatrix der Eckpunkte von <InlineMath math="PQR" /> ist:
+Der erste Bildpunkt ist <InlineMath math="A'(-1,7)" />. Für <InlineMath math="B(-7,-2)" /> gilt:
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -7 \\ -2 \end{pmatrix} = \begin{pmatrix} 7 \\ 2 \end{pmatrix}" />
 
-      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+Der zweite Bildpunkt ist <InlineMath math="B'(7,2)" />.
 
-    Die Bildpunkte sind <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" /> und <InlineMath math="R'(-3,-5)" />.
+**Lösung 2**
+
+Die Koordinatenmatrix der Eckpunkte von <InlineMath math="PQR" /> ist:
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Die Bildpunkte sind <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" /> und <InlineMath math="R'(-3,-5)" />.

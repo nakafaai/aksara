@@ -9,19 +9,23 @@ export const metadata = {
 
 ## Finding the Remainder by Evaluating the Polynomial
 
-The remainder of a polynomial division can often be found without completing [long division](/en/subjects/mathematics/polynomial/division-polynomial) or [a Horner scheme](/en/subjects/mathematics/polynomial/horner-method). The **Remainder Theorem** connects that remainder directly to one value of the polynomial.
+The **Remainder Theorem** often finds the remainder of a polynomial division without completing [long division](/en/subjects/mathematics/polynomial/division-polynomial) or [a Horner scheme](/en/subjects/mathematics/polynomial/horner-method). It connects the remainder directly to one value of the polynomial.
+
+The theorem applies to a **linear divisor**. Substitute the input that makes that divisor zero.
 
 ### Statement of the Remainder Theorem
 
 If a polynomial <InlineMath math="P(x)" /> is divided by <InlineMath math="(x - c)" />, then the remainder is <InlineMath math="S = P(c)" />.
 
-To find the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="(x-c)" />, evaluate <InlineMath math="P(x)" /> at <InlineMath math="x=c" />.
+To find the **remainder** when <InlineMath math="P(x)" /> is divided by <InlineMath math="(x-c)" />, evaluate <InlineMath math="P(x)" /> at <InlineMath math="x=c" />.
 
 For <InlineMath math="P(x) = 2x^2 - 3x + 4" /> divided by <InlineMath math="x - 2" />, the remainder is <InlineMath math="P(2) = 6" />, so you can answer the question with one substitution.
 
+<BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
 ### Why the Remainder Theorem Holds
 
-This theorem stems directly from the polynomial division algorithm we already know:
+This theorem stems directly from the **polynomial division algorithm** we already know:
 
 <BlockMath math="P(x) = (x - c) \cdot H(x) + S" />
 
@@ -43,9 +47,21 @@ Now, substitute <InlineMath math="x = c" /> into the division algorithm equation
 
 This proves that the value of the polynomial <InlineMath math="P(x)" /> at <InlineMath math="x = c" /> <Highlight>is equal to the remainder</Highlight> <InlineMath math="S" /> when <InlineMath math="P(x)" /> is divided by <InlineMath math="(x - c)" />.
 
+For the earlier quadratic, the product of the divisor and quotient **vanishes when the input is two**. The remainder stays six throughout the division identity:
+
+<BlockMath math="2x^2-3x+4=(x-2)(2x+1)+6" />
+
+| Input | Polynomial value | Divisor times quotient | Remainder |
+| --- | --- | --- | --- |
+| 1 | 3 | -3 | 6 |
+| 2 | 6 | 0 | 6 |
+| 3 | 13 | 7 | 6 |
+
+For a divisor of degree two, the remainder may be linear. One polynomial value is therefore insufficient to determine the entire remainder in that case.
+
 ## Calculating with the Remainder Theorem
 
-The theorem determines the remainder directly and also explains why polynomial evaluation appears in division problems. Substituting the value that makes the divisor zero turns the division into a single evaluation, which is usually the faster route.
+The theorem **determines the remainder directly** and also explains why polynomial evaluation appears in division problems. Substituting the value that makes the divisor zero turns the division into a single evaluation, which is usually the faster route.
 
 Find the remainder if <InlineMath math="P(x) = 2x^5 + 5x^4 - 10x^3 + 9x^2 - 10" /> is divided by <InlineMath math="x + 4" />.
 
@@ -53,7 +69,7 @@ Find the remainder if <InlineMath math="P(x) = 2x^5 + 5x^4 - 10x^3 + 9x^2 - 10" 
 
 The divisor is <InlineMath math="x + 4" />, or <InlineMath math="x - (-4)" />, so <InlineMath math="c = -4" />.
 
-Coefficients of <InlineMath math="P(x)" /> (completing the <InlineMath math="x" /> term): <InlineMath math="2, 5, -10, 9, 0, -10" />.
+Coefficients of <InlineMath math="P(x)" /> (**use zero for the missing term**): <InlineMath math="2, 5, -10, 9, 0, -10" />.
 
 <BlockMath
   math="
@@ -73,7 +89,7 @@ From Horner's method, we get:
 
 ### Using the Remainder Theorem
 
-According to the Remainder Theorem, the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x - (-4)" /> is <InlineMath math="P(-4)" />.
+According to the **Remainder Theorem**, the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x - (-4)" /> is <InlineMath math="P(-4)" />.
 
 Calculate <InlineMath math="P(-4)" />:
 
@@ -93,11 +109,11 @@ Evaluating <InlineMath math="P(c)" /> therefore gives exactly the remainder afte
 
 ## Exercise
 
-If <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> is divided by <InlineMath math="x - 7" />, determine the remainder using the Remainder Theorem. The divisor <InlineMath math="x - 7" /> corresponds to the value <InlineMath math="x = 7" />, so one substitution is enough. Evaluate the polynomial at that value and report the resulting number as the remainder.
+If <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> is divided by <InlineMath math="x - 7" />, determine the **remainder using the Remainder Theorem**. The divisor <InlineMath math="x - 7" /> corresponds to the value <InlineMath math="x = 7" />, so one substitution is enough. Evaluate the polynomial at that value and report the resulting number as the remainder.
 
 ### Worked Solution
 
-According to the Remainder Theorem, the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x - 7" /> is <InlineMath math="P(7)" />.
+According to the **Remainder Theorem**, the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x - 7" /> is <InlineMath math="P(7)" />.
 
 <MathContainer>
   <BlockMath math="\begin{aligned} P(7) &amp;= 3(7)^5 - 20(7)^4 \\ &amp;\quad{}- 6(7)^3 - 48(7) - 8 \end{aligned}" />

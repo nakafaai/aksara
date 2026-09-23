@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Selisih Elemen Matriks yang Seletak
 
-<Highlight>Pengurangan matriks adalah operasi untuk menemukan selisih antara dua matriks.</Highlight> Sama seperti [penjumlahan matriks](/id/materi/matematika/matriks/penjumlahan-matriks), operasi pengurangan hanya dapat dilakukan jika kedua matriks yang terlibat memiliki ukuran atau ordo yang sama.
+Pengurangan matriks menghitung **selisih elemen yang seletak** dari dua matriks. Sama seperti [penjumlahan matriks](/id/materi/matematika/matriks/penjumlahan-matriks), operasi pengurangan hanya dapat dilakukan jika kedua matriks yang terlibat memiliki ukuran atau ordo yang sama.
 
 Hasil pengurangan memiliki ordo yang sama dengan kedua matriks awal. Setiap elemennya diperoleh dengan mengurangkan elemen-elemen yang letaknya sama.
 
@@ -56,7 +56,7 @@ Misalkan kita memiliki dua matriks, <InlineMath math="P" /> dan <InlineMath math
 
 Kedua matriks ini berordo <InlineMath math="2 \times 2" />, sehingga dapat dikurangkan.
 
-Menggunakan metode pengurangan elemen seletak:
+Menggunakan metode pengurangan **elemen seletak**:
 
 <MathContainer>
   <BlockMath math="P - Q = \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix} - \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix}" />
@@ -80,10 +80,9 @@ Kemudian, jumlahkan <InlineMath math="P" /> dengan <InlineMath math="-Q" />:
 </MathContainer>
 
 Kedua metode menghasilkan matriks yang sama.
-
 ### Contoh Matriks yang Tidak Dapat Dikurangkan
 
-Orde kedua matriks ini tidak sama:
+Orde kedua matriks ini **tidak sama**:
 
 <MathContainer>
   <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
@@ -91,46 +90,49 @@ Orde kedua matriks ini tidak sama:
 </MathContainer>
 
 Matriks <InlineMath math="K" /> berordo <InlineMath math="3 \times 2" />, sedangkan matriks <InlineMath math="L" /> berordo <InlineMath math="2 \times 2" />. Karena ordo kedua matriks ini berbeda, maka pengurangan <InlineMath math="K-L" /> (atau <InlineMath math="L-K" />) tidak dapat dilakukan atau tidak terdefinisi.
-
 ## Sifat Pengurangan Matriks
 
 Penjumlahan matriks bersifat komutatif dan asosiatif, sedangkan <Highlight>pengurangan matriks umumnya tidak memiliki kedua sifat tersebut</Highlight>.
 
-1.  **Tidak Komutatif**: Secara umum, urutan pengurangan matriks sangat berpengaruh. Artinya, <InlineMath math="A - B" /> tidak sama dengan <InlineMath math="B - A" />, kecuali dalam kasus-kasus khusus (misalnya jika <InlineMath math="A=B" />).
+Perhatikan **tanda negatif di depan matriks**. Tanda itu berlaku untuk setiap entri. Mengubah urutan atau membuka tanda kurung dapat mengubah entri mana yang dikurangkan.
 
-    Secara umum:
+### Tidak Komutatif
 
-    <BlockMath math="A - B \neq B - A" />
+Secara umum, **urutan pengurangan** matriks sangat berpengaruh. Artinya, <InlineMath math="A - B" /> tidak sama dengan <InlineMath math="B - A" />, kecuali dalam kasus-kasus khusus (misalnya jika <InlineMath math="A=B" />).
 
-    Sebagai contoh, dari matriks <InlineMath math="P" /> dan <InlineMath math="Q" /> di atas:
+Secara umum:
 
-    <BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+<BlockMath math="A - B \neq B - A" />
 
-    Sedangkan,
+Sebagai contoh, dari matriks <InlineMath math="P" /> dan <InlineMath math="Q" /> di atas:
 
-    <MathContainer>
-      <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
-      <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
-    </MathContainer>
+<BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
 
-    Jadi, <InlineMath math="P-Q \neq Q-P" />.
+Sedangkan,
 
-2.  **Tidak Asosiatif**: Pengelompokan dalam pengurangan tiga matriks atau lebih juga berpengaruh pada hasil akhir. Secara umum, <InlineMath math="(A - B) - C" /> tidak sama dengan <InlineMath math="A - (B - C)" />.
+<MathContainer>
+  <BlockMath math="Q-P = \begin{bmatrix} 2 & 1 \\ -1 & 4 \end{bmatrix} - \begin{bmatrix} 8 & 5 \\ 3 & 7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 2-8 & 1-5 \\ -1-3 & 4-7 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
+</MathContainer>
 
-    Secara umum:
+Jadi, <InlineMath math="P-Q \neq Q-P" />.
+### Tidak Asosiatif
 
-    <BlockMath math="(A - B) - C \neq A - (B - C)" />
+**Pengelompokan** dalam pengurangan tiga matriks atau lebih juga berpengaruh pada hasil akhir. Secara umum, <InlineMath math="(A - B) - C" /> tidak sama dengan <InlineMath math="A - (B - C)" />.
 
-    Ini karena <InlineMath math="(A - B) - C = A - B - C" />, sedangkan <InlineMath math="A - (B - C) = A - B + C" />.
+Secara umum:
+
+<BlockMath math="(A - B) - C \neq A - (B - C)" />
+
+Ini karena <InlineMath math="(A - B) - C = A - B - C" />, sedangkan <InlineMath math="A - (B - C) = A - B + C" />.
 
 Pengurangan matriks dapat ditulis sebagai penjumlahan dengan matriks lawannya: <InlineMath math="A - B = A + (-B)" />.
 
 Dengan mengubah operasi pengurangan menjadi penjumlahan dengan matriks lawan, kita dapat memanfaatkan sifat-sifat penjumlahan jika diperlukan.
-
 ## Latihan
 
-**Soal** 1
+**Soal 1**
 
 Diketahui matriks-matriks berikut:
 
@@ -141,13 +143,13 @@ Diketahui matriks-matriks berikut:
 
 Tentukan hasil dari <InlineMath math="M-N" />.
 
-**Soal** 2
+**Soal 2**
 
 Tentukan nilai <InlineMath math="x, y," /> dan <InlineMath math="z" /> dari persamaan matriks berikut:
 
 <BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
 
-**Soal** 3
+**Soal 3**
 
 Diberikan tiga matriks:
 
@@ -161,7 +163,7 @@ Hitunglah <InlineMath math="(A-B)-C" /> dan <InlineMath math="A-(B-C)" />. Apaka
 
 ### Pembahasan Lengkap
 
-**Soal** 1
+**Soal 1**
 
 Diketahui:
 
@@ -179,7 +181,7 @@ Maka, <InlineMath math="M-N" /> adalah:
   <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
 </MathContainer>
 
-**Soal** 2
+**Soal 2**
 
 Diketahui persamaan matriks:
 
@@ -227,7 +229,7 @@ Dengan demikian, penyelesaiannya adalah <InlineMath math="x=4" />, <InlineMath m
 
 Substitusi ketiga nilai tersebut ke persamaan awal memverifikasi keempat elemen yang bersesuaian.
 
-**Soal** 3
+**Soal 3**
 
 Diberikan:
 

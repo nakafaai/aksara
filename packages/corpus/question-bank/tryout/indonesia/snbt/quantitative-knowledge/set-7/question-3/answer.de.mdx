@@ -5,46 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Wir prüfen jede Zahl auf beide Bedingungen:
-1. Bei Division durch <InlineMath math="5" /> beträgt der Rest <InlineMath math="4" /> (<InlineMath math="n \equiv 4 \pmod 5" />).
-2. Bei Division durch <InlineMath math="4" /> beträgt der Rest <InlineMath math="3" /> (<InlineMath math="n \equiv 3 \pmod 4" />).
+Eine passende Zahl muss **beide Restbedingungen** erfüllen. Wir prüfen für jeden Kandidaten die Division durch 5 und durch 4.
 
-#### Prüfung der Zahl Neunzehn
+| Zahl | Division durch 5 | Division durch 4 | Erfüllt beide |
+| --- | --- | --- | --- |
+| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Ja |
+| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | Nein |
+| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Ja |
+| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | Nein |
 
-<MathContainer>
-  <BlockMath math="19 = 3 \times 5 + 4" />
-  <BlockMath math="19 = 4 \times 4 + 3" />
-</MathContainer>
-
-Die Zahl <InlineMath math="19" /> erfüllt beide Bedingungen. (Richtig)
-
-#### Prüfung der Zahl Neunundzwanzig
-
-<MathContainer>
-  <BlockMath math="29 = 5 \times 5 + 4" />
-  <BlockMath math="29 = 7 \times 4 + 1" />
-</MathContainer>
-
-Die Zahl <InlineMath math="29" /> erfüllt die zweite Bedingung nicht, da der Rest bei Division durch <InlineMath math="4" /> <InlineMath math="1" /> beträgt. (Falsch)
-
-#### Prüfung der Zahl Neununddreißig
-
-<MathContainer>
-  <BlockMath math="39 = 7 \times 5 + 4" />
-  <BlockMath math="39 = 9 \times 4 + 3" />
-</MathContainer>
-
-Die Zahl <InlineMath math="39" /> erfüllt beide Bedingungen. (Richtig)
-
-#### Prüfung der Zahl Neunundvierzig
-
-<MathContainer>
-  <BlockMath math="49 = 9 \times 5 + 4" />
-  <BlockMath math="49 = 12 \times 4 + 1" />
-</MathContainer>
-
-Die Zahl <InlineMath math="49" /> erfüllt die zweite Bedingung nicht, da der Rest bei Division durch <InlineMath math="4" /> <InlineMath math="1" /> beträgt. (Falsch)
-
-#### Zahlen mit beiden erfüllten Bedingungen
-
-Beide Bedingungen erfüllen nur <InlineMath math="19" /> und <InlineMath math="39" />, also die Zahlen (1) und (3).
+Nur 19 und 39 erfüllen beide Bedingungen, also **Auswahl 1 und 3**.

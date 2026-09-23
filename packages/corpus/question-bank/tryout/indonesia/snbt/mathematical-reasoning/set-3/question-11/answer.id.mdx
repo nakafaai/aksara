@@ -5,34 +5,21 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Metode Filling Slots (Pengisian Tempat)**
+#### Menentukan dua ujung barisan
 
-Kita memiliki <InlineMath math="7" /> bendera dengan syarat khusus: **Armenia** dan **Belgia** wajib berada di ujung barisan. Kita dapat memvisualisasikan penyusunannya menggunakan kotak-kotak (slot) berikut.
+Armenia dan Belgia harus mengisi **dua posisi ujung**. Kedua bendera bisa bertukar tempat, jadi ada dua kemungkinan berikut.
 
-**Langkah 1**: Tentukan Posisi Ujung
+| Ujung kiri | Lima posisi tengah | Ujung kanan |
+| --- | --- | --- |
+| Armenia | China, Denmark, Ekuador, Finlandia, Ghana dalam urutan bebas | Belgia |
+| Belgia | China, Denmark, Ekuador, Finlandia, Ghana dalam urutan bebas | Armenia |
 
-Hanya ada <InlineMath math="2" /> kemungkinan untuk posisi ujung: Armenia di kiri dan Belgia di kanan, atau sebaliknya. Maka, kita tulis angka <InlineMath math="2" /> pada kotak pertama sebagai faktor pengali untuk variasi ujung.
+#### Mengisi posisi tengah
 
-**Langkah 2**: Isi Posisi Tengah
+Untuk setiap pilihan ujung, lima bendera lainnya dapat menempati **lima posisi yang berbeda**. Ada 5 pilihan untuk posisi tengah pertama. Setelah satu bendera dipasang, tersisa 4 pilihan untuk posisi berikutnya, lalu 3, 2, dan 1.
 
-Tersisa <InlineMath math="5" /> bendera (China, Denmark, Ekuador, Finlandia, Ghana) untuk mengisi <InlineMath math="5" /> posisi di tengah. Kita isi slot sisanya secara menurun (<InlineMath math="5, 4, 3, 2, 1" />) sesuai prinsip permutasi.
+<BlockMath math="5!=5\times4\times3\times2\times1=120" />
 
-Visualisasi pengisian kotaknya adalah sebagai berikut:
+Kedua pilihan ujung masing-masing mempunyai 120 susunan tengah. Dengan aturan perkalian, banyak seluruh susunan adalah:
 
-<BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
-
-Angka <InlineMath math="2" /> mewakili cara menyusun posisi ujung.
-
-Angka <InlineMath math="5, 4, 3, 2, 1" /> mewakili cara menyusun <InlineMath math="5" /> bendera di tengah (<InlineMath math="5!" />).
-
-**Perhitungan Akhir**
-
-Misalkan <InlineMath math="N" /> adalah total susunan. Keenam kotak menunjukkan faktor pengali dalam perhitungan, bukan posisi ketujuh bendera. Kalikan semua faktor untuk memperoleh <InlineMath math="N" />.
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}N &= 2\,(5 \times 4 \\ &\quad \times 3 \times 2 \times 1)\end{aligned}" />
-  <BlockMath math="N = 2 \times 5!" />
-  <BlockMath math="N = 2(5!) = 240" />
-</MathContainer>
-
-Jadi, terdapat <InlineMath math="2(5!)" /> cara mengatur bendera tersebut.
+<BlockMath math="N=2\times5!=2\times120=240" />

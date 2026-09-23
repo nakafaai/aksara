@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mengulang model rangkaian seri dan paralel dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
+            "Mengulang rangkaian seri dan paralel dengan lebih banyak unit sambil hanya mencatat nyala lampu, tanpa mengukur arus atau tegangan.",
         },
         {
           isCorrect: true,

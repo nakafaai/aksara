@@ -10,7 +10,7 @@ export const metadata = {
 
 ## A Simple Transmission Story
 
-Imagine that one infected person passes the infection to exactly <InlineMath math="3" /> other people. <Highlight>In the next phase, each of those three people infects three more.</Highlight> For a clean calculation, suppose that no two people infect the same person, nobody recovers, and the factor of three never changes.
+The calculation starts with one infected person, who infects exactly <InlineMath math="3" /> other people. In the next phase, each newly infected person infects another <InlineMath math="3" /> people. This branching rule uses a **constant multiplier**. For a clean calculation, suppose that no two people infect the same person, nobody recovers, and the factor of three never changes.
 
 Now the pattern is easy to follow: every phase has three times as many newly infected people as the phase before it. Real outbreaks are messier. Contacts overlap, people recover, and transmission changes over time. The story isolates the exponential pattern. It does not predict an outbreak.
 
@@ -18,19 +18,21 @@ Now the pattern is easy to follow: every phase has three times as many newly inf
 
 Each number below tells us how many people become infected **during that phase**. It is not the running total:
 
-- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> people newly infected
-- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> people newly infected
-- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> people newly infected
-- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> people newly infected
-- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> people newly infected
+| Phase | New infections | Total since phase one |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="12" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="39" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="120" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="363" /> |
 
 If <InlineMath math="N(x)" /> is the number of people newly infected in phase <InlineMath math="x" />, then:
 
 <BlockMath math="N(x)=3^x" />
 
-If we add the new infections from phase <InlineMath math="1" /> through phase <InlineMath math="x" />, we get this geometric sum:
+Adding new infections from phase <InlineMath math="1" /> through phase <InlineMath math="x" /> gives a [geometric series](/en/subjects/mathematics/sequence-series/geometric-series) whose first term and common ratio are both <InlineMath math="3" />:
 
-<BlockMath math="\begin{aligned} S(x) &amp;=3+3^2+\cdots+3^x \\ &amp;=\frac{3^{x+1}-3}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} S(x) &=3+3^2+\cdots+3^x \\ &=3\frac{3^x-1}{3-1} \\ &=\frac{3^{x+1}-3}{2} \end{aligned}" />
 
 The two formulas answer different questions. <InlineMath math="N(x)" /> describes one phase, while <InlineMath math="S(x)" /> adds every completed phase.
 
@@ -85,6 +87,8 @@ For <InlineMath math="f(x)=a^x" /> with <InlineMath math="a>0" /> and <InlineMat
 3. If <InlineMath math="a>1" />, the function is increasing.
 4. If <InlineMath math="0<a<1" />, the function is decreasing.
 5. For <InlineMath math="a>1" />, a larger value of <InlineMath math="a" /> gives more growth per interval. For <InlineMath math="0<a<1" />, a smaller value of <InlineMath math="a" /> gives more decay per interval.
+
+These general function properties apply to **real inputs**. When counting transmission phases, we use only nonnegative integer inputs. The domain of the mathematical function therefore differs from the observation times in the model.
 
 ## Where Exponential Models Appear
 

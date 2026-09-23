@@ -7,8 +7,6 @@ export const metadata = {
   subject: "Transformasi Fungsi",
 };
 
-
-
 ## Memutar Titik pada Grafik Mengelilingi Pusat Rotasi
 
 Rotasi adalah transformasi geometri yang memutar suatu objek <Highlight>terhadap titik pusat tertentu dengan sudut rotasi yang ditentukan</Highlight>. Dalam konteks fungsi, rotasi mengubah posisi grafik fungsi dengan cara memutar setiap titik pada grafik tersebut.
@@ -26,7 +24,7 @@ Rotasikan koordinat relatif tersebut, lalu tambahkan kembali koordinat pusat. Pe
 <BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ y' &amp;= u\sin\theta+v\cos\theta+b \end{aligned}" />
 
 Setiap simbol pada rumus tersebut berarti:
-- <InlineMath math="(x, y)" /> adalah koordinat titik asal
+- <InlineMath math="(x, y)" /> adalah koordinat **titik asal**
 - <InlineMath math="(x', y')" /> adalah koordinat titik hasil rotasi
 - <InlineMath math="(a, b)" /> adalah titik pusat rotasi
 - <InlineMath math="\theta" /> adalah sudut rotasi (positif untuk arah berlawanan jarum jam)
@@ -35,34 +33,35 @@ Setiap simbol pada rumus tersebut berarti:
 
 Rotasi terhadap titik asal <InlineMath math="(0, 0)" /> adalah kasus yang paling sering kamu jumpai, karena mengganti <InlineMath math="a = 0" /> dan <InlineMath math="b = 0" /> menghapus suku translasi pada rumus umum. Yang tersisa hanyalah perubahan arah, dan tiga putaran seperempat berikut mencakup sebagian besar soal.
 
-Setiap langkah di bawah adalah putaran seperempat berlawanan arah jarum jam, sehingga menerapkan aturannya dua kali menghasilkan putaran setengah dan tiga kali menghasilkan putaran tiga perempat.
+Aturan pertama adalah **putaran seperempat berlawanan arah jarum jam**. Terapkan aturan pertama dua kali untuk memperoleh aturan putaran setengah, atau tiga kali untuk memperoleh aturan putaran tiga perempat.
 
 1. Rotasi <InlineMath math="90^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (-y, x)" />
+<BlockMath math="(x, y) \rightarrow (-y, x)" />
 
 2. Rotasi <InlineMath math="180^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (-x, -y)" />
+<BlockMath math="(x, y) \rightarrow (-x, -y)" />
 
 3. Rotasi <InlineMath math="270^\circ" />
 
-    <BlockMath math="(x, y) \rightarrow (y, -x)" />
+<BlockMath math="(x, y) \rightarrow (y, -x)" />
 
 ## Visualisasi Rotasi Fungsi Kuadrat
 
 Memutar kurva berarti memutar setiap titiknya. Fungsi kuadrat <InlineMath math="y = x^2" /> memperlihatkan hal itu dengan jelas karena titik-titiknya berpasangan pada nilai yang sama, sehingga hasil rotasinya bisa kamu periksa langsung. Tampilan berikut memperlihatkan parabola asli dan hasil rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.
 
 <LineEquation
+  showZAxis={false}
   title={<>Rotasi Fungsi <InlineMath math="y = x^2" /> Terhadap Titik Asal</>}
   description={<>Perbandingan fungsi asli dengan hasil rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 135 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 17;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.25;
+        const x = -2.5 + pointIndex / 134 * 5;
         const y = x * x;
         return { x, y, z: 0 };
       }),
@@ -79,9 +78,7 @@ Memutar kurva berarti memutar setiap titiknya. Fungsi kuadrat <InlineMath math="
     {
       smooth: false,
       points: Array.from({ length: 369 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 134;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.25;
+        const x = -2.5 + pointIndex / 368 * 5;
         const y = x * x;
         // Rotasi 90° terhadap titik asal: (x,y) → (-y,x)
         const xRotated = -y;
@@ -101,6 +98,12 @@ Memutar kurva berarti memutar setiap titiknya. Fungsi kuadrat <InlineMath math="
   ]}
 />
 
+Hasil rotasi memenuhi **relasi**, bukan fungsi tunggal terhadap koordinat horizontal:
+
+<BlockMath math="X=-y=-x^2=-Y^2" />
+
+Titik <InlineMath math="(1,1)" /> dan <InlineMath math="(-1,1)" /> berpindah menjadi <InlineMath math="(-1,1)" /> dan <InlineMath math="(-1,-1)" />. Satu nilai <InlineMath math="X=-1" /> memiliki dua nilai <InlineMath math="Y" />.
+
 ## Sifat Rotasi Fungsi
 
 Rotasi memindahkan grafik mengelilingi titik tetap tanpa mengubah ukurannya, jadi bentuk grafik tetap dan hanya orientasinya yang berubah. Tabel berikut merangkum apa yang tetap dan apa yang berubah.
@@ -110,22 +113,31 @@ Rotasi memindahkan grafik mengelilingi titik tetap tanpa mengubah ukurannya, jad
 | Bentuk | Bentuk grafik tidak berubah | Rotasi memindahkan setiap titik dengan sudut yang sama terhadap pusat yang sama |
 | Jarak | Jarak antara dua titik tetap sama | Memutar dua titik terhadap satu pusat mempertahankan ruas yang menghubungkan keduanya |
 | Sudut antar sisi | Sudut pada bangun tetap sama | Rotasi adalah gerak kaku, sehingga tidak pernah membengkokkan bangun |
-| Orientasi | Grafik berputar ke arah baru | Setiap titik berubah posisinya terhadap pusat rotasi |
+| Orientasi | Grafik berputar ke arah baru | Titik selain pusat bergerak pada busur lingkaran mengelilingi pusat |
 | Penggabungan | Dua rotasi terhadap pusat yang sama menjumlahkan sudutnya | Memutar sebesar <InlineMath math="\theta_1" /> lalu <InlineMath math="\theta_2" /> sama dengan satu putaran sebesar <InlineMath math="\theta_1 + \theta_2" /> |
 
 Karena jarak dan sudut tidak pernah berubah, rotasi disebut gerak kaku. Satu fakta itu menjelaskan mengapa bentuk dan ukuran tetap, sedangkan posisi dan arah adalah <Highlight>satu-satunya bagian yang berpindah</Highlight>.
 
 ## Penerapan Rotasi pada Berbagai Fungsi
 
-Rotasi tidak memperlakukan setiap kurva dengan cara yang sama. Garis lurus dan kurva eksponensial sama-sama mempertahankan bentuknya, tetapi garis yang dirotasi tetap berupa garis lurus, sedangkan kurva eksponensial yang dirotasi berubah sumbu yang didekatinya. Dua kasus berikut menunjukkan perbedaan itu.
+Rotasi tidak memperlakukan setiap kurva dengan cara yang sama. Garis lurus dan kurva eksponensial sama-sama **mempertahankan bentuknya**, tetapi garis yang dirotasi tetap berupa garis lurus, sedangkan kurva eksponensial yang dirotasi berubah sumbu yang didekatinya. Dua kasus berikut menunjukkan perbedaan itu.
 
 ### Rotasi Fungsi Linear
 
 Pada fungsi linear <InlineMath math="y = mx + c" />, setiap titik berpindah ke posisi baru, sehingga <Highlight>kemiringan dan posisi berubah bersamaan</Highlight>. Rotasi <InlineMath math="45^\circ" /> berlawanan arah jarum jam terhadap titik asal memperlihatkan bagaimana garis asli berubah menjadi garis kedua.
 
+Untuk contoh <InlineMath math="y=2x+1" />, aturan rotasi memberi dua koordinat baru berikut. Hilangkan variabel lama agar persamaan garis hasil rotasi terlihat langsung.
+
+<BlockMath math="X=\frac{x-(2x+1)}{\sqrt2}=-\frac{x+1}{\sqrt2},\qquad Y=\frac{x+(2x+1)}{\sqrt2}=\frac{3x+1}{\sqrt2}" />
+
+<BlockMath math="x=-\sqrt2X-1 \quad\Rightarrow\quad Y=-3X-\sqrt2" />
+
 <LineEquation
+  showZAxis={false}
   title={<>Rotasi Fungsi Linear <InlineMath math="y = 2x + 1" /></>}
   description={<>Rotasi <InlineMath math="45^\circ" /> terhadap titik asal.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       points: Array.from({ length: 23 }, (_, pointIndex) => {
@@ -175,17 +187,23 @@ Pada fungsi linear <InlineMath math="y = mx + c" />, setiap titik berpindah ke p
 
 Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva tersebut belum tentu tetap menjadi grafik fungsi terhadap koordinat horizontal.
 
+Pada putaran ini, hasilnya justru **tetap merupakan fungsi**. Dengan <InlineMath math="X=-2^x" /> dan <InlineMath math="Y=x" />, kamu memperoleh:
+
+<BlockMath math="Y=\log_2(-X),\qquad X<0" />
+
+Asimtot horizontal semula berubah menjadi asimtot vertikal <InlineMath math="X=0" />.
+
 <LineEquation
+  showZAxis={false}
   title={<>Rotasi Fungsi <InlineMath math="y = 2^x" /></>}
   description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam.</>}
-  cameraPosition={[8, 6, 8]}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 779 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 680;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.5;
+        const x = -4 + pointIndex / 778 * 7;
         const y = Math.pow(2, x);
         return { x, y, z: 0 };
       }),
@@ -194,7 +212,7 @@ Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva t
       labels: [
         {
           text: <InlineMath math="y=2^x" />,
-          at: 764,
+          at: 556,
           offset: [-0.2, -2, 0],
         },
       ],
@@ -202,9 +220,7 @@ Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva t
     {
       smooth: false,
       points: Array.from({ length: 326 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 201;
-        const i = sampleIndex / 7;
-        const x = (i - 7) * 0.5;
+        const x = -4 + pointIndex / 325 * 7;
         const y = Math.pow(2, x);
         // Rotasi 90° terhadap titik asal: (x,y) → (-y,x)
         const xRotated = -y;
@@ -216,7 +232,7 @@ Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva t
       labels: [
         {
           text: <>Rotasi <InlineMath math="90^\circ" /></>,
-          at: 222,
+          at: 186,
           offset: [-0.5, 0.5, 0],
         },
       ],
@@ -228,13 +244,13 @@ Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva t
 
 Ketika kamu memutar seluruh kurva, rumus rotasi bekerja pada titik, sehingga pengerjaannya berjalan titik demi titik. Mulailah dengan menetapkan pusat dan sudut rotasi, karena keduanya muncul di setiap perhitungan berikutnya.
 
-Setelah itu, pilih beberapa titik pada kurva asli, termasuk kedua ujungnya dan titik puncaknya, lalu terapkan rumus rotasi pada setiap titik. Gambar titik-titik hasil rotasi, hubungkan sesuai urutan aslinya, dan periksa beberapa titik tambahan di antara sampel. Hasilnya belum tentu tetap menjadi fungsi terhadap <InlineMath math="x" />, karena dua titik hasil rotasi dapat memiliki nilai <InlineMath math="x" /> yang sama.
+Setelah itu, pilih beberapa titik pada kurva asli, termasuk titik ujung dan titik puncak jika kurva tersebut memilikinya, lalu terapkan rumus rotasi pada setiap titik. Gambar titik-**titik hasil** rotasi, hubungkan sesuai urutan aslinya, dan periksa beberapa titik tambahan di antara sampel. Hasilnya belum tentu tetap menjadi fungsi terhadap <InlineMath math="x" />, karena dua titik hasil rotasi dapat memiliki nilai <InlineMath math="x" /> yang sama.
 
 ## Latihan
 
 Setiap soal berikut meminta satu rotasi, sehingga semuanya cukup diselesaikan dengan memasukkan pusat dan sudut ke rumus rotasi. Kerjakan titik demi titik dan perhatikan arah sudutnya, karena putaran berlawanan arah jarum jam dan searah jarum jam menghasilkan hasil yang berbeda. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
 
-1. Tentukan hasil rotasi titik <InlineMath math="(3, 4)" /> terhadap titik asal dengan sudut <InlineMath math="90^\circ" /> berlawanan arah jarum jam.
+1. Tentukan hasil rotasi titik <InlineMath math="(3, 4)" /> terhadap **titik asal** dengan sudut <InlineMath math="90^\circ" /> berlawanan arah jarum jam.
 
 2. Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dirotasi <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan koordinat titik puncak hasil rotasi jika titik puncak asli berada di <InlineMath math="(1, 0)" />.
 
@@ -244,295 +260,313 @@ Setiap soal berikut meminta satu rotasi, sehingga semuanya cukup diselesaikan de
 
 5. Fungsi <InlineMath math="y = \sqrt{x}" /> untuk <InlineMath math="x \geq 0" /> dirotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal. Jelaskan bentuk grafik hasil rotasi.
 
-### Kunci Jawaban
+### Memutar satu titik
 
-Rotasi memakai pusat dan sudut rotasi yang diberikan, lalu memasukkan keduanya ke rumus rotasi. Titik hasilnya diperiksa kembali terhadap titik asli untuk memastikan jaraknya ke pusat rotasi tidak berubah.
+Menggunakan **rumus rotasi** <InlineMath math="90^\circ" />:
 
-1. Menggunakan rumus rotasi <InlineMath math="90^\circ" />:
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (-y, x)" />
+<BlockMath math="(3, 4) \rightarrow (-4, 3)" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (-y, x)" />
-   <BlockMath math="(3, 4) \rightarrow (-4, 3)" />
-   </MathContainer>
+Jadi hasil rotasi adalah <InlineMath math="(-4, 3)" />.
 
-   Jadi hasil rotasi adalah <InlineMath math="(-4, 3)" />.
+<LineEquation
+  showZAxis={false}
+  title={<>Visualisasi Rotasi Titik <InlineMath math="(3, 4)" /></>}
+  description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3, y: 4, z: 0 }
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(3, 4)" />,
+          at: 1,
+          offset: [0.3, 0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -4, y: 3, z: 0 }
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(-4, 3)" />,
+          at: 1,
+          offset: [-0.5, 0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+  ]}
+/>
 
-   <LineEquation
-     title={<>Visualisasi Rotasi Titik <InlineMath math="(3, 4)" /></>}
-     description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: [
-           { x: 0, y: 0, z: 0 },
-           { x: 3, y: 4, z: 0 }
-         ],
-         smooth: false,
-         color: "#9333ea",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(3, 4)" />,
-             at: 1,
-             offset: [0.3, 0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-       {
-         points: [
-           { x: 0, y: 0, z: 0 },
-           { x: -4, y: 3, z: 0 }
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(-4, 3)" />,
-             at: 1,
-             offset: [-0.5, 0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-     ]}
-   />
+### Memutar titik puncak
 
-2. Titik puncak asli dirotasi <InlineMath math="180^\circ" />:
+**Titik puncak** asli dirotasi <InlineMath math="180^\circ" />:
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (-x, -y)" />
-   <BlockMath math="(1, 0) \rightarrow (-1, 0)" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (-x, -y)" />
+<BlockMath math="(1, 0) \rightarrow (-1, 0)" />
+</MathContainer>
 
-   Koordinat titik puncak hasil rotasi adalah <InlineMath math="(-1, 0)" />.
+Koordinat titik puncak hasil rotasi adalah <InlineMath math="(-1, 0)" />.
 
-   <LineEquation
-     title={<>Rotasi Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
-     description={<>Rotasi <InlineMath math="180^\circ" /> terhadap titik asal.</>}
-     cameraPosition={[10, 6, 10]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 127 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex + 0;
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x - 2 * x + 1;
-           return { x, y, z: 0 };
-         }),
-         color: "#0d9488",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
-             at: 90,
-             offset: [1, 0.5, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 160 }, (_, pointIndex) => {
-           const sampleIndex = pointIndex + 0;
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = x * x - 2 * x + 1;
-           // Rotasi 180°: (x,y) → (-x,-y)
-           const xRotated = -x;
-           const yRotated = -y;
-           return { x: xRotated, y: yRotated, z: 0 };
-         }),
-         color: "#7c3aed",
-         showPoints: false,
-         labels: [
-           {
-             text: <>Hasil Rotasi <InlineMath math="180^\circ" /></>,
-             at: 40,
-             offset: [-0.5, -0.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+<LineEquation
+  showZAxis={false}
+  title={<>Rotasi Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
+  description={<>Rotasi <InlineMath math="180^\circ" /> terhadap titik asal.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 127 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex + 0;
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x - 2 * x + 1;
+        return { x, y, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
+          at: 90,
+          offset: [1, 0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 160 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex + 0;
+        const i = sampleIndex / 5;
+        const x = (i - 10) * 0.3;
+        const y = x * x - 2 * x + 1;
+        // Rotasi 180°: (x,y) → (-x,-y)
+        const xRotated = -x;
+        const yRotated = -y;
+        return { x: xRotated, y: yRotated, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <>Hasil Rotasi <InlineMath math="180^\circ" /></>,
+          at: 40,
+          offset: [-0.5, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-3. Ambil dua titik pada garis dan rotasi <InlineMath math="270^\circ" />:
+### Menentukan persamaan garis
 
-   <MathContainer>
-   <BlockMath math="(x, y) \rightarrow (y, -x)" />
-   <BlockMath math="(0, -2) \rightarrow (-2, 0)" />
-   <BlockMath math="(1, 1) \rightarrow (1, -1)" />
-   <BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
-   <BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
-   </MathContainer>
+Ambil **dua titik** pada garis dan rotasi <InlineMath math="270^\circ" />:
 
-   Maka persamaan garis hasil rotasi adalah <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
+<MathContainer>
+<BlockMath math="(x, y) \rightarrow (y, -x)" />
+<BlockMath math="(0, -2) \rightarrow (-2, 0)" />
+<BlockMath math="(1, 1) \rightarrow (1, -1)" />
+<BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
+<BlockMath math="0=-\frac{1}{3}(-2)+b \quad\Rightarrow\quad b=-\frac{2}{3}" />
+<BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
+</MathContainer>
 
-   <LineEquation
-     title={<>Rotasi Garis <InlineMath math="y = 3x - 2" /></>}
-     description={<>Rotasi <InlineMath math="270^\circ" /> terhadap titik asal.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: Array.from({ length: 14 }, (_, pointIndex) => {
-           const i = pointIndex - 3;
-           const x = (i - 5) * 0.8;
-           const y = 3 * x - 2;
-           return { x, y, z: 0 };
-         }),
-         smooth: false,
-         color: "#059669",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=3x - 2" />,
-             at: 9,
-             offset: [2, 0.5, 0],
-           },
-         ],
-       },
-       {
-         points: Array.from({ length: 17 }, (_, pointIndex) => {
-           const i = pointIndex - 5;
-           const x = (i - 5) * 0.8;
-           const y = 3 * x - 2;
-           // Rotasi 270°: (x,y) → (y,-x)
-           const xRotated = y;
-           const yRotated = -x;
-           return { x: xRotated, y: yRotated, z: 0 };
-         }),
-         smooth: false,
-         color: "#d97706",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
-             at: 10,
-             offset: [-0.5, 1.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+Maka persamaan garis hasil rotasi adalah <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
 
-4. Hitung dahulu koordinat titik <InlineMath math="(2, 5)" /> relatif terhadap pusat <InlineMath math="(1, 1)" />:
+<LineEquation
+  showZAxis={false}
+  title={<>Rotasi Garis <InlineMath math="y = 3x - 2" /></>}
+  description={<>Rotasi <InlineMath math="270^\circ" /> terhadap titik asal.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 14 }, (_, pointIndex) => {
+        const i = pointIndex - 3;
+        const x = (i - 5) * 0.8;
+        const y = 3 * x - 2;
+        return { x, y, z: 0 };
+      }),
+      smooth: false,
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=3x - 2" />,
+          at: 9,
+          offset: [2, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: Array.from({ length: 17 }, (_, pointIndex) => {
+        const i = pointIndex - 5;
+        const x = (i - 5) * 0.8;
+        const y = 3 * x - 2;
+        // Rotasi 270°: (x,y) → (y,-x)
+        const xRotated = y;
+        const yRotated = -x;
+        return { x: xRotated, y: yRotated, z: 0 };
+      }),
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
+          at: 10,
+          offset: [-0.5, 1.5, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
-   <BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
+### Menggunakan pusat selain titik asal
 
-   Masukkan kedua nilai tersebut dan sudut <InlineMath math="60^\circ" /> ke rumus rotasi. Kedua koordinat pusat bernilai <InlineMath math="1" />, sehingga setiap rumus memuat penambahan <InlineMath math="1" />:
+Hitung dahulu koordinat titik <InlineMath math="(2, 5)" /> relatif terhadap pusat <InlineMath math="(1, 1)" />:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
-   <BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
 
-   Koordinat hasil rotasi: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />
+Masukkan kedua nilai tersebut dan sudut <InlineMath math="60^\circ" /> ke **rumus rotasi**. Kedua koordinat pusat bernilai <InlineMath math="1" />, sehingga setiap rumus memuat penambahan <InlineMath math="1" />:
 
-   <LineEquation
-     title={<>Rotasi Titik <InlineMath math="(2, 5)" /> Terhadap Titik <InlineMath math="(1, 1)" /></>}
-     description={<>Rotasi <InlineMath math="60^\circ" /> berlawanan arah jarum jam.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         points: [
-           { x: 1, y: 1, z: 0 },
-           { x: 2, y: 5, z: 0 }
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="(2, 5)" />,
-             at: 1,
-             offset: [0.7, -0.2, 0],
-           },
-           {
-             text: <>Pusat <InlineMath math="(1,1)" /></>,
-             at: 0,
-             offset: [0.3, -0.3, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-       {
-         points: [
-           { x: 1, y: 1, z: 0 },
-           { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
-         ],
-         smooth: false,
-         color: "#db2777",
-         showPoints: false,
-         labels: [
-           {
-             text: "Hasil Rotasi",
-             at: 1,
-             offset: [-0.5, 0.1, 0],
-           },
-         ],
-         cone: { position: "end", size: 0.3 }
-       },
-     ]}
-   />
+<MathContainer>
+<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
+<BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
+</MathContainer>
 
-5. Fungsi <InlineMath math="y = \sqrt{x}" /> dirotasi <InlineMath math="90^\circ" /> menjadi:
+Koordinat hasil rotasi: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />
 
-   <MathContainer>
-   <BlockMath math="x = -\sqrt{y}" />
-   <BlockMath math="y = x^2 \text{ untuk } x \leq 0" />
-   </MathContainer>
+<LineEquation
+  showZAxis={false}
+  title={<>Rotasi Titik <InlineMath math="(2, 5)" /> Terhadap Titik <InlineMath math="(1, 1)" /></>}
+  description={<>Rotasi <InlineMath math="60^\circ" /> berlawanan arah jarum jam.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      points: [
+        { x: 1, y: 1, z: 0 },
+        { x: 2, y: 5, z: 0 }
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(2, 5)" />,
+          at: 1,
+          offset: [0.7, -0.2, 0],
+        },
+        {
+          text: <>Pusat <InlineMath math="(1,1)" /></>,
+          at: 0,
+          offset: [0.3, -0.3, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+    {
+      points: [
+        { x: 1, y: 1, z: 0 },
+        { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
+      ],
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [
+        {
+          text: "Hasil Rotasi",
+          at: 1,
+          offset: [-0.5, 0.1, 0],
+        },
+      ],
+      cone: { position: "end", size: 0.3 }
+    },
+  ]}
+/>
 
-   Kurva hasil rotasi adalah bagian kiri parabola yang terbuka ke atas. Domainnya <InlineMath math="x \leq 0" /> dan rangenya <InlineMath math="y \geq 0" />. Kurva ini diperoleh dengan mencerminkan bagian kanan asli dari <InlineMath math="y = x^2" /> terhadap sumbu <InlineMath math="y" />.
+### Memutar kurva akar
 
-   <LineEquation
-     title={<>Rotasi Fungsi <InlineMath math="y = \sqrt{x}" /></>}
-     description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.9364916731037085);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#65a30d",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=\sqrt{x}" />,
-             at: 78,
-             offset: [0.5, 0.3, 0],
-           },
-         ],
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.9364916731037085);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = -t;
-               return { x, y: t * t, z: 0 };
-             });
-         })(),
-         color: "#e11d48",
-         showPoints: false,
-         labels: [
-           {
-             text: <InlineMath math="y=x^2 (x \le 0)" />,
-             at: 78,
-             offset: [-0.8, -0.5, 0],
-           },
-         ],
-       },
-     ]}
-   />
+Fungsi <InlineMath math="y = \sqrt{x}" /> dirotasi <InlineMath math="90^\circ" /> menjadi:
+
+<MathContainer>
+<BlockMath math="X=-y=-\sqrt{x},\quad Y=x" />
+<BlockMath math="X=-\sqrt{Y}\le0 \quad\Rightarrow\quad Y=X^2" />
+<BlockMath math="y = x^2 \text{ untuk } x \leq 0" />
+</MathContainer>
+
+Kurva hasil rotasi adalah bagian kiri parabola yang terbuka **ke atas**. Domainnya <InlineMath math="x \leq 0" /> dan rangenya <InlineMath math="y \geq 0" />. Kurva ini diperoleh dengan mencerminkan bagian kanan asli dari <InlineMath math="y = x^2" /> terhadap sumbu <InlineMath math="y" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Rotasi Fungsi <InlineMath math="y = \sqrt{x}" /></>}
+  description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
+  cameraPosition={[0, 2, 16]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.9364916731037085);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#65a30d",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=\sqrt{x}" />,
+          at: 78,
+          offset: [0.5, 0.3, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.9364916731037085);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = -t;
+            return { x, y: t * t, z: 0 };
+          });
+      })(),
+      color: "#e11d48",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="y=x^2 (x \le 0)" />,
+          at: 78,
+          offset: [-0.8, -0.5, 0],
+        },
+      ],
+    },
+  ]}
+/>

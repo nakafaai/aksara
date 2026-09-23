@@ -76,3 +76,31 @@
   or an immediate self-check.
 - Use hyphen bullets and avoid deeply nested lists.
 - Keep table cells compact and move extended explanation into prose.
+
+## Review each teaching section
+
+The twenty-five-word check catches a tiny body, not a complete explanation.
+Passing it does not establish depth. Read each heading and its full body with
+its locale siblings. Check the prerequisite, the reasoning, a concrete example
+where the concept needs one, and the conclusion the learner can verify.
+
+Run the `--pedagogy-review` inventory described in [verification](verification.md).
+It reports unmarked bodies, prose without a supporting block, list-only bodies,
+nested lists, and paragraphs of at least one hundred words. These are review
+signals, not defects or quotas. The inventory includes every section, including
+ones with no signal, because a diagram or a long paragraph may still teach
+nothing. Component names identify candidates for a visual review; their presence
+does not prove useful geometry, interaction, or explanation.
+
+For each candidate, enrich the explanation, reorganize related reasoning, or
+retain it with a specific teaching reason. Prefer a table for a comparison, a
+worked derivation for a calculation, a diagram for a relationship, and an
+interactive model when changing a parameter or viewpoint answers a learner's
+question. Do not force an h3 or 3D scene into a short complete explanation.
+A list with developed reasoning can remain a list. A bare list of claims needs
+explanation, not a generic introduction that repeats the heading.
+
+A whole-corpus audit must account for every requested document and locale.
+A machine scan, a representative sample, or zero findings is not a manual
+read-through. Keep audit evidence outside publication contracts and record actual
+coverage, source hashes, decisions, mathematical checks, and rendered checks.

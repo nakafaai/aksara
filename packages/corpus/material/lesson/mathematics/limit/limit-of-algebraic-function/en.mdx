@@ -3,7 +3,7 @@ export const metadata = {
    description: "Calculate limits of polynomial and rational functions. Learn factoring, rationalization techniques, and solve indeterminate forms with worked examples.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Limits",
 };
 
@@ -11,11 +11,11 @@ export const metadata = {
 
 For an **algebraic limit**, the form of the expression determines which operation is justified. <Highlight>A polynomial can be evaluated by direct substitution</Highlight>. A rational or radical expression may instead contain a removable factor, a domain boundary, or a vertical asymptote that must be analyzed first.
 
-Algebraic functions are built from operations such as addition, subtraction, multiplication, division, and powers with rational exponents. Examples include the polynomial <InlineMath math="f(x) = x^2 + 3x - 2" /> and the rational function <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. We will use substitution as a diagnostic step, then factor, rationalize, or check one-sided behavior when substitution does not settle the limit.
+Many examples of algebraic functions can be formed using addition, subtraction, multiplication, division, and powers with rational exponents. Examples include the polynomial <InlineMath math="f(x) = x^2 + 3x - 2" /> and the rational function <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. We will use substitution as a diagnostic step, then factor, rationalize, or check one-sided behavior when substitution does not settle the limit.
 
 ## Properties of Algebraic Limits
 
-An algebraic limit can be reduced to limits of simpler terms. Applying the same rules repeatedly means working term by term, and each step handles one simple part of the whole expression.
+An algebraic limit can be reduced to **limits of simpler terms**. Applying the same rules repeatedly means working term by term, and each step handles one simple part of the whole expression.
 
 ### Limits of Polynomial Functions
 
@@ -33,19 +33,19 @@ Since polynomial functions are continuous at all points, we can substitute direc
 
 Rational functions have the form <InlineMath math="\frac{P(x)}{Q(x)}" /> where <InlineMath math="P(x)" /> and <InlineMath math="Q(x)" /> are polynomials. Direct substitution tells us which method to try next:
 
-- **If the denominator is not zero:** Use direct substitution like polynomial functions.
+- **If the denominator is not zero**: Use direct substitution like polynomial functions.
 
-- **If the denominator is zero:** Check the numerator, signs, and one-sided behavior. Only <InlineMath math="\frac{0}{0}" /> is an indeterminate form that may be resolved by algebraic simplification. A nonzero numerator over zero is not indeterminate.
+- **If the denominator is zero**: Check the numerator, signs, and one-sided behavior. Only <InlineMath math="\frac{0}{0}" /> is an indeterminate form that may be resolved by algebraic simplification. A nonzero numerator over zero is not indeterminate.
 
 ## Handling Indeterminate Forms
 
-When direct substitution yields the form <InlineMath math="\frac{0}{0}" />, we need to use special techniques. Factoring and rationalizing both change the expression until the common factor that produces the zero in the denominator cancels, and then substitution works again.
+When **direct substitution** yields the form <InlineMath math="\frac{0}{0}" />, we need to use special techniques. Factoring and rationalizing both change the expression until the common factor that produces the zero in the denominator cancels, and then substitution works again.
 
 ### Factoring Technique
 
-Factor the numerator and denominator, then cancel a common factor when it is nonzero near the limit point.
+A **common factor** can be canceled only at inputs where that factor is nonzero. The simplified expression agrees with the original near the limit point, even if the original function is undefined at that point.
 
-**Example:** Calculate <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
+**Example**: Calculate <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
 Direct substitution gives <InlineMath math="\frac{0}{0}" />. Factor:
 
@@ -56,19 +56,17 @@ Direct substitution gives <InlineMath math="\frac{0}{0}" />. Factor:
 
 Since <InlineMath math="x" /> approaches <InlineMath math="2" /> (not equal to <InlineMath math="2" />), we can cancel the factor <InlineMath math="(x - 2)" />:
 
-<BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
+<BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
 ### Rationalization Technique
 
 For limits involving radical forms, we often need to rationalize. Direct substitution yields an indeterminate form.
 
-**Example:** Calculate <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
+**Example**: Calculate <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
 
 Direct substitution:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} \frac{\sqrt{1} - 1}{1 - 1} &amp;= \frac{1 - 1}{0} \\ &amp;= \frac{0}{0} \text{ (indeterminate form)} \end{aligned}" />
-</MathContainer>
+The numerator <InlineMath math="\sqrt1-1=0" /> and denominator <InlineMath math="1-1=0" /> both vanish. The indeterminate form <InlineMath math="0/0" /> does not yet give the limit.
 
 We rationalize by multiplying with the **conjugate** <InlineMath math="\sqrt{x} + 1" />. The purpose is to eliminate the radical form in the numerator using the formula <InlineMath math="(a-b)(a+b) = a^2 - b^2" />:
 
@@ -84,13 +82,11 @@ Since <InlineMath math="x \neq 1" /> (approaching <InlineMath math="1" />), we c
 
 ## Application of Limit Properties to Algebraic Functions
 
-The limit rules can be applied one after another until direct substitution produces a defined value. Each step uses one rule, and the expression becomes simpler at every stage.
+The limit rules can be applied one after another until **direct substitution** produces a defined value. Each step uses one rule, and the expression becomes simpler at every stage.
 
 ### Factoring the Numerator and Denominator
 
-**Example:** Calculate <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
-
-Direct substitution:
+**Example**: Calculate <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
 
 Direct substitution gives the indeterminate form <InlineMath math="\frac00" />: both numerator and denominator are zero.
 
@@ -124,6 +120,20 @@ Substitute <InlineMath math="x = 3" />: <InlineMath math="\frac{3 + 3}{3 + 5} = 
 
 Because the one-sided limits differ, <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> does not exist as a two-sided limit. By contrast, if substitution gives <InlineMath math="\frac{0}{0}" />, first factor, rationalize, or otherwise simplify the expression.
 
+Watch the **denominator sign**. To the left of <InlineMath math="2" />, the negative denominator approaches zero and the function tends to <InlineMath math="-\infty" />. To the right, the denominator is positive and the function tends to <InlineMath math="+\infty" />. Do not connect the branches across the asymptote.
+
+<LineEquation
+  title="Two Directions Near a Vertical Asymptote"
+  description="The graph of one divided by x minus two. The two branches remain separate because the function is undefined at x equal to two."
+  showZAxis={false}
+  cameraTarget={[2, 0, 0]}
+  cameraPosition={[2, 0, 20]}
+  data={[
+    { points: Array.from({ length: 91 }, (_, i) => { const x = i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: Array.from({ length: 91 }, (_, i) => { const x = 2.2 + i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#ea580c", smooth: false, showPoints: false },
+  ]}
+/>
+
 ## Continuity and Limits
 
 A function <InlineMath math="f" /> is said to be **continuous** at <InlineMath math="x = c" /> if:
@@ -136,7 +146,7 @@ Polynomial functions are continuous at every real number. A rational function is
 
 ## Exercises
 
-Each problem asks for a limit of an algebraic expression. Identify the form first, because a zero over zero result needs factoring or rationalising.
+Each problem asks for a limit of an algebraic expression. Identify the form first, because a zero over zero result needs **factoring or rationalising**.
 
 1. Calculate <InlineMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
 
@@ -148,56 +158,54 @@ Each problem asks for a limit of an algebraic expression. Identify the form firs
 
 5. Calculate <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
 
-### Worked Solutions
+### Substitution in a Polynomial
 
-1. **Solution:**
+Since this is a polynomial function that is **continuous at all points**, we can substitute directly:
 
-   Since this is a polynomial function that is continuous at all points, we can substitute directly:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
-   </MathContainer>
+### Zero Numerator and Nonzero Denominator
 
-2. **Solution:**
+Since this is a rational function with a non-zero denominator at <InlineMath math="x = 2" />, use **direct substitution**:
 
-   Since this is a rational function with a non-zero denominator at <InlineMath math="x = 2" />, use direct substitution:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
+<BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
-   <BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
-   </MathContainer>
+### Canceling a Factor in an Indeterminate Form
 
-3. **Solution:**
+**Direct substitution** gives <InlineMath math="\frac{0}{0}" />. Factor the numerator:
 
-   Direct substitution gives <InlineMath math="\frac{0}{0}" />. Factor the numerator:
+<MathContainer>
+<BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
+<BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
-   <BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
-   </MathContainer>
+### Checking All Three Continuity Conditions
 
-4. **Solution:**
+To check continuity at <InlineMath math="x = 1" />, check three conditions:
 
-   To check continuity at <InlineMath math="x = 1" />, check three conditions:
+| Condition | Check |
+| --- | --- |
+| The function value exists | <InlineMath math="f(1)=1^2-2(1)+1=0" /> |
+| The limit exists | <InlineMath math="\lim_{x\to1}(x^2-2x+1)=1-2+1=0" /> |
+| The limit equals the function value | <InlineMath math="\lim_{x\to1}f(x)=0=f(1)" /> |
 
-   - **Condition 1 (function is defined):** <InlineMath math="f(1) = 1^2 - 2(1) + 1 = 1 - 2 + 1 = 0" /> ✓ (exists)
+Since all three continuity conditions are satisfied, the function is **continuous** at <InlineMath math="x = 1" />.
 
-   - **Condition 2 (limit exists):** Since it's a polynomial function, <InlineMath math="\lim_{x \to 1} f(x) = f(1) = 0" /> ✓ (exists)
+### Using the Conjugate
 
-   - **Condition 3 (limit equals function value):** <InlineMath math="\lim_{x \to 1} f(x) = f(1) = 0" /> ✓ (equal)
+Direct substitution: <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" /> (indeterminate form).
 
-   Since all three continuity conditions are satisfied, the function is **continuous** at <InlineMath math="x = 1" />.
+Use rationalization by multiplying with the **conjugate** <InlineMath math="\sqrt{x + 4} + 2" />:
 
-5. **Solution:**
-
-   Direct substitution: <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" /> (indeterminate form).
-
-   Use rationalization by multiplying with the conjugate <InlineMath math="\sqrt{x + 4} + 2" />:
-
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
-   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
+</MathContainer>

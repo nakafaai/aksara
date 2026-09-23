@@ -3,7 +3,7 @@ export const metadata = {
     description: "Eigenwerte aus den Diagonaleinträgen von Diagonal- und Dreiecksmatrizen ablesen und mit Determinante und Spur prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -29,13 +29,19 @@ Damit sind für eine Dreiecksmatrix weder eine vollständige Determinantenentwic
 
 ## Obere und untere Dreiecksmatrizen
 
-Dreiecksmatrizen haben die gleichen Eigenschaften wie Diagonalmatrizen. Sowohl für obere als auch für untere Dreiecksmatrizen sind die Eigenwerte immer noch die wichtigsten Diagonaleinträge.
+Dreiecksmatrizen haben die gleichen Eigenschaften wie Diagonalmatrizen. Sowohl für obere als auch für untere Dreiecksmatrizen sind die Eigenwerte immer noch die Einträge der Hauptdiagonale.
 
-Dies liegt daran, dass bei der Berechnung von <InlineMath math="\det(A - tI)" /> die Einträge oberhalb oder unterhalb der Hauptdiagonale keinen Einfluss auf die Determinantenberechnung haben. Die Dreiecksstruktur ermöglicht die Berechnung der Determinante als Produkt diagonaler Einträge.
+Dies liegt daran, dass bei der Berechnung von <InlineMath math="\det(A - tI)" /> die Einträge oberhalb oder unterhalb der Hauptdiagonale keinen Einfluss auf die Determinantenberechnung haben. Die Dreiecksstruktur ermöglicht die Berechnung der Determinante als **Produkt diagonaler Einträge**.
+
+Zum Beispiel können sich Einträge außerhalb der Diagonale ändern, während die **Eigenwerte gleich bleiben**:
+
+<BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
+
+Damit tritt 2 zweimal und −1 einmal auf. Das bestimmt die Eigenwerte, beweist aber noch keine Diagonalisierbarkeit.
 
 ## Eigenwerte nicht dreieckiger Matrizen berechnen
 
-Die Diagonalregel gilt speziell für Dreiecksmatrizen. Sobald die Matrix nicht mehr dreieckig ist, verbergen sich die Eigenwerte im charakteristischen Polynom, sodass die Arbeit vom Ablesen der Diagonaleinträge zum Bestimmen der Wurzeln wechselt.
+Die Diagonalregel gilt speziell für Dreiecksmatrizen. Sobald die Matrix nicht mehr dreieckig ist, verbergen sich die Eigenwerte im charakteristischen Polynom, sodass die Arbeit vom Ablesen der Diagonaleinträge zum **Bestimmen der Wurzeln** wechselt.
 
 ### Komplexe Eigenwerte
 
@@ -50,7 +56,9 @@ Ihr charakteristisches Polynom lautet:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
 </MathContainer>
 
-Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" />.
+<BlockMath math="t^2-2t+2=0\iff(t-1)^2=-1\iff t=1\pm i" />
+
+**Die Nullstellen dieses charakteristischen Polynoms** sind <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" />.
 
 ### Eigenwerte gleich null
 
@@ -65,11 +73,11 @@ Ihr charakteristisches Polynom lautet:
 <BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
 </MathContainer>
 
-Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
+**Die Nullstellen dieses charakteristischen Polynoms** sind <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
 
 ## Charakteristische Polynomfaktorisierung
 
-Hat <InlineMath math="A \in \mathbb{C}^{n \times n}" /> die mit algebraischer Multiplizität gezählten Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n" />, dann faktorisiert das charakteristische Polynom als:
+Hat <InlineMath math="A \in \mathbb{C}^{n \times n}" /> die **mit algebraischer Multiplizität gezählten** Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n" />, dann faktorisiert das charakteristische Polynom als:
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 

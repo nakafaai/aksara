@@ -39,8 +39,7 @@ Die Grafik zeigt alle drei Fälle gleichzeitig:
       showPoints: false,
     },
     {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
           const y = 4.5; // Gerade ohne Schnittpunkt
@@ -49,25 +48,14 @@ Die Grafik zeigt alle drei Fälle gleichzeitig:
             y: y,
             z: 0,
           };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
+        }),
       color: "#ea580c",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Kein Schnittpunkt", at: 2, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Kein Schnittpunkt", at: 1, offset: [-2, 0.5, 0] }],
     },
     {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
           const y = 3; // Tangente
@@ -76,25 +64,14 @@ Die Grafik zeigt alle drei Fälle gleichzeitig:
             y: y,
             z: 0,
           };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
+        }),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tangente", at: 2, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Tangente", at: 1, offset: [-2, 0.5, 0] }],
     },
     {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
           const y = 1; // Sekante
@@ -103,21 +80,11 @@ Die Grafik zeigt alle drei Fälle gleichzeitig:
             y: y,
             z: 0,
           };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
+        }),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Zwei Schnittpunkte", at: 2, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Zwei Schnittpunkte", at: 1, offset: [-2, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 1 }, () => {
@@ -195,19 +162,21 @@ Nach der Substitution entsteht eine quadratische Gleichung der Form <InlineMath 
   <BlockMath math="C = c^2 + Ec + F" />
 </MathContainer>
 
-Anschließend berechnen wir die <Highlight>Diskriminante aus den Koeffizienten A, B und C</Highlight> von oben:
+Anschließend berechnen wir die **Diskriminante** aus den Koeffizienten <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />:
 
 <BlockMath math="\Delta = B^2 - 4AC" />
+
+> Für eine **senkrechte Gerade** gilt die Form <InlineMath math="y=mx+c" /> nicht. Setze <InlineMath math="x=k" /> direkt in die Kreisgleichung ein und löse die quadratische Gleichung in <InlineMath math="y" />. Beispielsweise ergibt <InlineMath math="x=3" /> im Kreis <InlineMath math="x^2+y^2=9" /> die Gleichung <InlineMath math="9+y^2=9" />, also <InlineMath math="y=0" />. Die Gerade berührt den Kreis in <InlineMath math="(3,0)" />.
 
 ## Das Vorzeichen geometrisch deuten
 
 Jede reelle Lösung für <InlineMath math="x" /> gehört zu einem Schnittpunkt. Deshalb ergeben sich drei Fälle:
 
-1. Bei **positiver Diskriminante** (<InlineMath math="\Delta > 0" />) hat die quadratische Gleichung zwei verschiedene reelle Lösungen. Die Gerade ist eine Sekante und **schneidet den Kreis in zwei Punkten**.
-
-2. Bei **Diskriminante null** (<InlineMath math="\Delta = 0" />) gibt es eine doppelte reelle Lösung. Die Gerade ist eine Tangente und **berührt den Kreis in einem Punkt**.
-
-3. Bei **negativer Diskriminante** (<InlineMath math="\Delta < 0" />) gibt es keine reelle Lösung. Die Gerade ist eine Passante und **schneidet den Kreis nicht**.
+| Diskriminante | Reelle Lösungen | Lage der Geraden |
+| --- | --- | --- |
+| <InlineMath math="\Delta>0" /> | Zwei verschiedene | **Zwei Schnittpunkte** |
+| <InlineMath math="\Delta=0" /> | Eine doppelte | **Tangente an einem Punkt** |
+| <InlineMath math="\Delta<0" /> | Keine | **Kein Schnittpunkt** |
 
 ## Eine Sekante mit der Diskriminante erkennen
 
@@ -232,11 +201,20 @@ Damit folgt für die Diskriminante:
 
 Weil <InlineMath math="\Delta = 116 > 0" /> gilt, schneidet die Gerade <InlineMath math="y = 2x - 1" /> **den Kreis in zwei Punkten**.
 
+Um die **Schnittpunkte zu bestimmen**, verwenden wir die Lösungsformel für quadratische Gleichungen. Danach setzen wir jede waagerechte Koordinate in die Geradengleichung ein:
+
+<MathContainer>
+  <BlockMath math="x=\frac{4\pm\sqrt{116}}{10}=\frac{4\pm2\sqrt{29}}{10}=\frac{2\pm\sqrt{29}}5" />
+  <BlockMath math="y=2x-1=\frac{4\pm2\sqrt{29}}5-1=\frac{-1\pm2\sqrt{29}}5" />
+</MathContainer>
+
+Kombiniere jeweils die oberen beziehungsweise die unteren Vorzeichen. Jedes Koordinatenpaar erfüllt sowohl die Geraden- als auch die Kreisgleichung.
+
 > Das Vorzeichen der Diskriminante bestimmt die Zahl der Schnittpunkte. Ihre Größe allein ist jedoch kein geometrischer Abstand der Geraden von der Tangente, denn sie hängt auch von der Skalierung der Gleichung ab.
 
 ## Kreis mit Mittelpunkt im Ursprung
 
-Beim Kreis mit Mittelpunkt im Ursprung, <InlineMath math="x^2 + y^2 = r^2" />, sind beide Mittelpunktkoordinaten null. Beim Einsetzen von <InlineMath math="y=mx+c" /> entstehen daher keine horizontalen oder vertikalen Verschiebungsterme.
+Beim Kreis mit Mittelpunkt im Ursprung, <InlineMath math="x^2 + y^2 = r^2" />, sind **beide Mittelpunktkoordinaten null**. Beim Einsetzen von <InlineMath math="y=mx+c" /> entstehen daher keine horizontalen oder vertikalen Verschiebungsterme.
 
 Wir setzen die Gerade in die Kreisgleichung ein:
 
@@ -258,7 +236,7 @@ Das Vorzeichen bestimmt die Anzahl der Schnittpunkte: positiv für zwei, null f�
 
 ## Übungen mit vollständigen Lösungen
 
-In jeder Aufgabe sind eine Gerade und ein Kreis gegeben, und du entscheidest, ob sie sich in zwei Punkten schneiden, berühren oder nicht treffen. Setze die Gerade in die Kreisgleichung ein und lies die Diskriminante ab.
+In jeder Aufgabe sind eine Gerade und ein Kreis gegeben, und du entscheidest, ob sie sich in zwei Punkten schneiden, berühren oder nicht treffen. Setze die Gerade in die Kreisgleichung ein und lies die **Diskriminante** ab.
 
 1. Bestimme die Lage der Geraden <InlineMath math="y = x + 3" /> zum Kreis <InlineMath math="x^2 + y^2 = 8" />.
 
@@ -270,71 +248,71 @@ In jeder Aufgabe sind eine Gerade und ein Kreis gegeben, und du entscheidest, ob
 
 ### Lösungen
 
-1. **Lösung**:
+**Lösung 1**:
 
-   Setze <InlineMath math="y = x + 3" /> in <InlineMath math="x^2 + y^2 = 8" /> ein:
+Setze <InlineMath math="y = x + 3" /> in <InlineMath math="x^2 + y^2 = 8" /> ein:
 
-   <MathContainer>
-     <BlockMath math="x^2 + (x + 3)^2 = 8" />
-     <BlockMath math="x^2 + x^2 + 6x + 9 = 8" />
-     <BlockMath math="2x^2 + 6x + 1 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + (x + 3)^2 = 8" />
+  <BlockMath math="x^2 + x^2 + 6x + 9 = 8" />
+  <BlockMath math="2x^2 + 6x + 1 = 0" />
+</MathContainer>
 
-   Diskriminante: <InlineMath math="\Delta = 6^2 - 4(2)(1) = 36 - 8 = 28" />
+Diskriminante: <InlineMath math="\Delta = 6^2 - 4(2)(1) = 36 - 8 = 28" />
 
-   Weil <InlineMath math="\Delta = 28 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+Weil <InlineMath math="\Delta = 28 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
 
-2. **Lösung**:
+**Lösung 2**:
 
-   Setze <InlineMath math="y = -2x + 5" /> in <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" /> ein:
+Setze <InlineMath math="y = -2x + 5" /> in <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" /> ein:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;x^2 + (-2x + 5)^2 \\ &amp;\quad{}- 6x + 4(-2x + 5) + 9 = 0 \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 20x + 25 \\ &amp;\quad{}- 6x - 8x + 20 + 9 = 0 \end{aligned}" />
-     <BlockMath math="5x^2 - 34x + 54 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x^2 + (-2x + 5)^2 \\ &amp;\quad{}- 6x + 4(-2x + 5) + 9 = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 20x + 25 \\ &amp;\quad{}- 6x - 8x + 20 + 9 = 0 \end{aligned}" />
+  <BlockMath math="5x^2 - 34x + 54 = 0" />
+</MathContainer>
 
-   Diskriminante: <InlineMath math="\Delta = (-34)^2 - 4(5)(54) = 1156 - 1080 = 76" />
+Diskriminante: <InlineMath math="\Delta = (-34)^2 - 4(5)(54) = 1156 - 1080 = 76" />
 
-   Weil <InlineMath math="\Delta = 76 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+Weil <InlineMath math="\Delta = 76 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
 
-3. **Lösung**:
+**Lösung 3**:
 
-   Stelle die Gerade <InlineMath math="2x + y - 4 = 0" /> nach <InlineMath math="y" /> um. Dadurch entsteht <InlineMath math="y = -2x + 4" />.
+Stelle die Gerade <InlineMath math="2x + y - 4 = 0" /> nach <InlineMath math="y" /> um. Dadurch entsteht <InlineMath math="y = -2x + 4" />.
 
-   Setze diese Form in <InlineMath math="x^2 + y^2 = 5" /> ein:
+Setze diese Form in <InlineMath math="x^2 + y^2 = 5" /> ein:
 
-   <MathContainer>
-     <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
-     <BlockMath math="x^2 + 4x^2 - 16x + 16 = 5" />
-     <BlockMath math="5x^2 - 16x + 11 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
+  <BlockMath math="x^2 + 4x^2 - 16x + 16 = 5" />
+  <BlockMath math="5x^2 - 16x + 11 = 0" />
+</MathContainer>
 
-   Diskriminante: <InlineMath math="\Delta = (-16)^2 - 4(5)(11) = 256 - 220 = 36" />
+Diskriminante: <InlineMath math="\Delta = (-16)^2 - 4(5)(11) = 256 - 220 = 36" />
 
-   Weil <InlineMath math="\Delta = 36 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
+Weil <InlineMath math="\Delta = 36 > 0" /> gilt, **schneidet die Gerade den Kreis in zwei Punkten**.
 
-4. **Lösung**:
+**Lösung 4**:
 
-   Damit die Gerade den Kreis tangiert, muss die Diskriminante gleich Null sein.
+Damit die Gerade den Kreis tangiert, muss die Diskriminante gleich Null sein.
 
-   Setze <InlineMath math="y = x + k" /> in <InlineMath math="x^2 + y^2 = 18" /> ein:
+Setze <InlineMath math="y = x + k" /> in <InlineMath math="x^2 + y^2 = 18" /> ein:
 
-   <MathContainer>
-     <BlockMath math="x^2 + (x + k)^2 = 18" />
-     <BlockMath math="x^2 + x^2 + 2kx + k^2 = 18" />
-     <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + (x + k)^2 = 18" />
+  <BlockMath math="x^2 + x^2 + 2kx + k^2 = 18" />
+  <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
+</MathContainer>
 
-   Diskriminante: <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = 4k^2 - 8k^2 + 144 = -4k^2 + 144" />
+Diskriminante: <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = 4k^2 - 8k^2 + 144 = -4k^2 + 144" />
 
-   Für <InlineMath math="\Delta = 0" />:
+Für <InlineMath math="\Delta = 0" />:
 
-   <MathContainer>
-     <BlockMath math="-4k^2 + 144 = 0" />
-     <BlockMath math="4k^2 = 144" />
-     <BlockMath math="k^2 = 36" />
-     <BlockMath math="k = \pm 6" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="-4k^2 + 144 = 0" />
+  <BlockMath math="4k^2 = 144" />
+  <BlockMath math="k^2 = 36" />
+  <BlockMath math="k = \pm 6" />
+</MathContainer>
 
-   Damit sind <InlineMath math="k = 6" /> und <InlineMath math="k = -6" /> die beiden möglichen Werte.
+Damit sind <InlineMath math="k = 6" /> und <InlineMath math="k = -6" /> die beiden möglichen Werte.

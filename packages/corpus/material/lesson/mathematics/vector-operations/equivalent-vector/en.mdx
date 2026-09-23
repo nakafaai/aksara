@@ -15,29 +15,44 @@ Two vectors are equal, or represented by equivalent directed segments, <Highligh
 
 Equivalent vectors can have different positions in a plane or space, but they maintain the same magnitude and direction.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[7, 5, -6]}
+  cameraTarget={[2, 1.5, 1]}
   title="Example of Equivalent Vectors"
   description="The purple and orange vectors have the same magnitude and direction, making them equivalent despite their different positions."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 5, 8]}
 />
 
 ## Conditions for Equivalent Vectors
 
-Two vectors are equal only when both conditions hold at the same time, so check both before you call them equal. A pair that satisfies only one of the two conditions is not equivalent.
+Two vectors are equal only when **both conditions hold at the same time**, so check both before you call them equal. A pair that satisfies only one of the two conditions is not equivalent.
 
 Two nonzero vectors <InlineMath math="\overrightarrow{CD}" /> and <InlineMath math="\overrightarrow{PQ}" /> are equal if:
 
@@ -46,9 +61,11 @@ Two nonzero vectors <InlineMath math="\overrightarrow{CD}" /> and <InlineMath ma
 
 ## Representation of Equivalent Vectors
 
-Two vectors are equivalent when they share the same length and the same direction, so either one can stand in for the other. That replacement moves a vector to a convenient starting point without changing the vector itself.
+Two vectors are equivalent when they share the **same length and the same direction**, so either one can stand in for the other. That replacement moves a vector to a convenient starting point without changing the vector itself.
 
 ### In Component Form
+
+Vector equality means **every corresponding component is equal**. Check each axis, rather than only comparing the two magnitudes.
 
 In a two-dimensional Cartesian plane, two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> are equivalent if:
 
@@ -62,28 +79,44 @@ In three-dimensional space, vectors <InlineMath math="\vec{a}" /> and <InlineMat
 
 This equality holds exactly when <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" />, and <InlineMath math="a_3 = b_3" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[8, 5, -6]}
+  cameraTarget={[2.5, 1.5, 1.5]}
   title="Equivalent Vectors in Component Form"
   description="Two vectors with the same components are always equivalent, even if they have different positions in space."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
 
 ### In Terms of Initial and Terminal Points
 
-If vector <InlineMath math="\overrightarrow{AB}" /> has initial point <InlineMath math="A(x_1, y_1)" /> and terminal point <InlineMath math="B(x_2, y_2)" />, then the vector can be expressed as:
+If vector <InlineMath math="\overrightarrow{AB}" /> has **initial point** <InlineMath math="A(x_1, y_1)" /> and terminal point <InlineMath math="B(x_2, y_2)" />, then the vector can be expressed as:
 
 <BlockMath math="\overrightarrow{AB} = (x_2 - x_1, y_2 - y_1)" />
 
@@ -95,17 +128,17 @@ In this equation, <InlineMath math="C(x_3, y_3)" /> is the initial point and <In
 
 ## Rules That Follow from Vector Equality
 
-Each of the three rules keeps the endpoints of a chain and removes one repeated vector, so a long list collapses into a single relation. Intermediate vectors can be left out without changing the statement.
-
-Equality of vectors behaves like equality of numbers. The three rules below let a chain of equivalent vectors be shortened.
+Vector equality follows from **equality of every component**. Reflexivity compares a vector with itself, symmetry swaps the order of two equal vectors, and transitivity connects two equalities through a shared intermediate vector.
 
 ### Reflexive Property
 
-Every vector is equivalent to itself.
+Every vector is equivalent to **itself**.
 
 <BlockMath math="\vec{a} = \vec{a}" />
 
 ### Symmetric Property
+
+You may **exchange the left and right sides** of a vector equality.
 
 If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{b}" />, then vector <InlineMath math="\vec{b}" /> is also equivalent to vector <InlineMath math="\vec{a}" />.
 
@@ -113,13 +146,17 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
 
 ### Transitive Property
 
+Two equalities can be connected through the **same intermediate vector**.
+
 If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{b}" /> and vector <InlineMath math="\vec{b}" /> is equivalent to vector <InlineMath math="\vec{c}" />, then vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math="\vec{c}" />.
 
 <ContentStack>
 
   <BlockMath math="\text{If } \vec{a} = \vec{b} \text{ and } \vec{b} = \vec{c} \text{, then } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
+    cameraPosition={[7, 5, -6]}
+    cameraTarget={[2, 1.5, 1]}
     title="Transitive Property of Equivalent Vectors"
     description={
       <>
@@ -127,39 +164,59 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
         <InlineMath math="b = c" />, then <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[7, 5, 7]}
   />
 </ContentStack>
 
 ## Checking Equivalent Vectors from Their Components
 
-Two vectors are equivalent when the change in the first coordinate matches and the change in the second coordinate matches. The examples below compare those changes directly.
+Two vectors are equivalent when the **change in the first coordinate matches** and the change in the second coordinate matches. The examples below compare those changes directly.
 
 ### Equality from Matching Component Changes
 
 Vector <InlineMath math="\overrightarrow{AB}" /> with <InlineMath math="A(2, 3)" /> and <InlineMath math="B(5, 7)" /> is equivalent to vector <InlineMath math="\overrightarrow{CD}" /> with <InlineMath math="C(1, 1)" /> and <InlineMath math="D(4, 5)" />.
 
-Proof:
+Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{AB} = (5-2, 7-3) = (3, 4)" />
@@ -168,7 +225,9 @@ Proof:
 
 Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, vector <InlineMath math="\overrightarrow{AB}" /> is equivalent to vector <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[3, 4, 10]}
+  cameraTarget={[3, 4, 0]}
   title={
     <>
       Vectors <InlineMath math="AB" /> and <InlineMath math="CD" />
@@ -180,28 +239,41 @@ Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, 
       <InlineMath math="CD(3,4,0)" /> which are equivalent in space.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[10, 10, 10]}
 />
 
 ### Equivalent Vectors with Different Starting Points
 
 Vector <InlineMath math="\overrightarrow{PQ}" /> with <InlineMath math="P(0, 0)" /> and <InlineMath math="Q(2, 2)" /> is equivalent to vector <InlineMath math="\overrightarrow{RS}" /> with <InlineMath math="R(3, 1)" /> and <InlineMath math="S(5, 3)" />.
 
-Proof:
+Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{PQ} = (2-0, 2-0) = (2, 2)" />
@@ -210,7 +282,9 @@ Proof:
 
 Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, vector <InlineMath math="\overrightarrow{PQ}" /> is equivalent to vector <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[2.5, 1.5, 8]}
+  cameraTarget={[2.5, 1.5, 0]}
   title={
     <>
       Vectors <InlineMath math="PQ" /> and <InlineMath math="RS" />
@@ -222,23 +296,36 @@ Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, 
       <InlineMath math="RS(2,2,0)" /> which are equivalent in space.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 6, 8]}
 />
 
 ## Why Starting Points Can Differ
 
-Equivalent vectors have the same magnitude and direction even when their starting points differ. The same displacement can therefore be drawn at different positions without changing the vector. This is useful when comparing translations or moving a vector within a geometric construction.
+Equivalent vectors have the same magnitude and direction even when their **starting points differ**. The same displacement can therefore be drawn at different positions without changing the vector. This is useful when comparing translations or moving a vector within a geometric construction.

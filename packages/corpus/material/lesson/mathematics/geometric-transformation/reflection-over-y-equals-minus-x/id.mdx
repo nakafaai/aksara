@@ -10,9 +10,7 @@ export const metadata = {
 
 ## Menukar Koordinat Titik dan Membalik Tandanya
 
-Pencerminan terhadap garis <InlineMath math="y = -x" /> <Highlight>memindahkan setiap titik objek ke posisi bayangannya</Highlight>. Garis <InlineMath math="y = -x" /> menjadi garis cermin.
-
-Garis yang menghubungkan titik asli ke bayangannya akan tegak lurus terhadap garis <InlineMath math="y = -x" />, dan jarak dari titik asli ke garis cermin sama dengan jarak dari bayangannya ke garis cermin.
+Garis <InlineMath math="y=-x" /> menjadi <Highlight>garis cermin</Highlight>. Titik dan bayangannya berjarak sama dari garis itu. Untuk titik di luar garis, ruas penghubung titik dan bayangan tegak lurus garis cermin. Titik tepat pada garis cermin tetap di tempat.
 
 ### Aturan Pencerminan terhadap Garis Diagonal Negatif
 
@@ -38,6 +36,10 @@ Jadi, bayangan titik <InlineMath math="D" /> adalah <InlineMath math="D'(-1, -2)
 
 Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <InlineMath math="y = -x" />:
 
+Periksa **titik tengah pasangan**: titik tengah harus terletak pada garis cermin. Ruas penghubung juga harus tegak lurus garis itu, sehingga kedua titik berada pada jarak yang sama.
+
+<BlockMath math="M=\left(\frac{2+(-1)}2,\frac{1+(-2)}2\right)=\left(\frac12,-\frac12\right)" />
+
 <LineEquation
   title={
     <>
@@ -51,6 +53,7 @@ Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <Inline
     </>
   }
   data={[
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 0.5, y: -0.5, z: 0 }, { x: -1, y: -2, z: 0 }], smooth: false, color: "#65a30d", showPoints: false, labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0.3, -0.3, 0] }] },
     {
       points: [
         { x: -6, y: 6, z: 0 },
@@ -94,7 +97,7 @@ Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <Inline
 
 Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(-3,-1)" /> yang dicerminkan terhadap garis <InlineMath math="y=-x" />.
 
-Untuk mencerminkan segitiga, kita cerminkan setiap titik sudutnya:
+Untuk mencerminkan segitiga, kita cerminkan **setiap titik sudut**:
 
 1.  Titik <InlineMath math="A(-2, 4)" />: Bayangannya <InlineMath math="A'(-4, 2)" />.
 2.  Titik <InlineMath math="B(3, 1)" />: Bayangannya <InlineMath math="B'(-1, -3)" />.
@@ -118,12 +121,12 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-4, 2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Garis refleksi
     // Segitiga ABC (Asli)
     ...[
@@ -176,7 +179,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
 
 Garis <InlineMath math="y = -4x - 2" /> dicerminkan terhadap <InlineMath math="y=-x" />. Tentukan persamaan garis bayangannya.
 
-Untuk mencari persamaan bayangan, kita gunakan aturan <InlineMath math="x' = -y" /> dan <InlineMath math="y' = -x" />. Ini berarti kita mengganti setiap <InlineMath math="x" /> dalam persamaan asli dengan <InlineMath math="-y" /> dan setiap <InlineMath math="y" /> dengan <InlineMath math="-x" />.
+Untuk mencari persamaan bayangan, kita gunakan aturan <InlineMath math="x' = -y" /> dan <InlineMath math="y' = -x" />. Ini berarti kita mengganti setiap <InlineMath math="x" /> dalam **persamaan asli** dengan <InlineMath math="-y" /> dan setiap <InlineMath math="y" /> dengan <InlineMath math="-x" />.
 
 Persamaan asli:
 
@@ -213,17 +216,18 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-3.7, 1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
       }, // Garis refleksi
     {
       // Garis Asli y = -4x - 2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 0.5; // Range x agar tidak terlalu curam
+        const xVal = -2 + i * 0.3;
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
       color: "#9333ea",
@@ -232,8 +236,9 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
     },
     {
       // Garis Bayangan y = (-1/4)x + 1/2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 2; // Range x agar tidak terlalu landai
+        const xVal = (i - 5) * 1.2;
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
       color: "#db2777",
@@ -247,7 +252,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
 
 ## Latihan
 
-Ketiga soal mencerminkan terhadap garis <InlineMath math="y = -x" />. Soal terakhir mencerminkan seluruh garis, sehingga persamaannya yang diubah.
+Gunakan **aturan koordinat yang sama** pada titik tunggal dan setiap titik sudut segitiga. Pada soal terakhir, terapkan aturan pada persamaan garis untuk memperoleh seluruh himpunan titik bayangan.
 
 1.  Tentukan koordinat bayangan dari titik <InlineMath math="S(5, -9)" /> jika dicerminkan terhadap garis <InlineMath math="y = -x" />!
 2.  Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, dan <InlineMath math="C(-2, 0)" /> yang dicerminkan terhadap garis <InlineMath math="y = -x" />.
@@ -255,27 +260,35 @@ Ketiga soal mencerminkan terhadap garis <InlineMath math="y = -x" />. Soal terak
 
 ### Pembahasan
 
-1.  Bayangan titik <InlineMath math="S(5, -9)" /> adalah <InlineMath math="S'(9, -5)" />.
+Periksa urutan koordinat saat melakukan **pertukaran koordinat**. Tanda setiap komponen harus mengikuti aturan cermin yang digunakan. Untuk garis, sederhanakan persamaan setelah semua substitusi selesai.
 
-    **Penjelasan:**
+**Pembahasan 1**
 
-    <MathContainer>
-      <BlockMath math="x' = -(-9) = 9" />
-      <BlockMath math="y' = -(5) = -5" />
-    </MathContainer>
+Bayangan titik <InlineMath math="S(5, -9)" /> adalah <InlineMath math="S'(9, -5)" />.
 
-2.  Koordinat bayangan segitiga <InlineMath math="A'B'C'" /> adalah:
+**Penjelasan**:
 
-    - <InlineMath math="A'(2, -1)" /> (dari <InlineMath math="A(1, -2)" />)
-    - <InlineMath math="B'(-3, -2)" /> (dari <InlineMath math="B(2, 3)" />)
-    - <InlineMath math="C'(0, 2)" /> (dari <InlineMath math="C(-2, 0)" />)
+<MathContainer>
+  <BlockMath math="x' = -(-9) = 9" />
+  <BlockMath math="y' = -(5) = -5" />
+</MathContainer>
 
-3.  Persamaan bayangan garis <InlineMath math="4x + 3y - 2 = 0" /> adalah <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+**Pembahasan 2**
 
-    **Penjelasan:** Substitusi <InlineMath math="x \rightarrow -y" /> dan <InlineMath math="y \rightarrow -x" /> ke dalam persamaan asli:
+Koordinat bayangan segitiga <InlineMath math="A'B'C'" /> adalah:
 
-    <MathContainer>
-      <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
-      <BlockMath math="-4y - 3x - 2 = 0" />
-      <BlockMath math="3x + 4y + 2 = 0" />
-    </MathContainer>
+- <InlineMath math="A'(2, -1)" /> (dari <InlineMath math="A(1, -2)" />)
+- <InlineMath math="B'(-3, -2)" /> (dari <InlineMath math="B(2, 3)" />)
+- <InlineMath math="C'(0, 2)" /> (dari <InlineMath math="C(-2, 0)" />)
+
+**Pembahasan 3**
+
+Persamaan bayangan garis <InlineMath math="4x + 3y - 2 = 0" /> adalah <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+
+**Penjelasan**: Substitusi <InlineMath math="x \rightarrow -y" /> dan <InlineMath math="y \rightarrow -x" /> ke dalam persamaan asli:
+
+<MathContainer>
+  <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
+  <BlockMath math="-4y - 3x - 2 = 0" />
+  <BlockMath math="3x + 4y + 2 = 0" />
+</MathContainer>

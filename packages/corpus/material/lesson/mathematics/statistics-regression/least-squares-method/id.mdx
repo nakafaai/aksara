@@ -27,14 +27,14 @@ Garis yang dipasang ditentukan dari **residu** vertikal pada setiap titik pengam
 
 3.  **Minimalkan jumlah kuadrat residu:** Garis kuadrat terkecil membuat <InlineMath math="\sum e_i^2" /> sekecil mungkin di antara semua garis kandidat.
 
-**Mengapa residu dikuadratkan?**
+Mengapa residu dikuadratkan?
 
 - Pengkuadratan mencegah residu positif dan negatif saling meniadakan.
 - Residu dengan besar dua kali lipat memberi kontribusi empat kali lebih besar, sehingga penyimpangan besar mendapat bobot lebih besar.
 
 ## Mencocokkan Data Biaya Iklan dan Penjualan
 
-Misalnya, sebuah perusahaan ingin melihat hubungan antara biaya iklan yang mereka keluarkan (dalam jutaan rupiah) dengan jumlah produk yang terjual (dalam ribuan unit). Data yang mereka kumpulkan adalah sebagai berikut:
+Misalnya, sebuah perusahaan ingin melihat hubungan antara **biaya iklan** yang mereka keluarkan (dalam jutaan rupiah) dengan jumlah produk yang terjual (dalam ribuan unit). Data yang mereka kumpulkan adalah sebagai berikut:
 
 <ScatterDiagram
   title="Garis Hasil Metode Kuadrat Terkecil (Iklan vs Penjualan)"
@@ -69,18 +69,17 @@ Misalnya, sebuah perusahaan ingin melihat hubungan antara biaya iklan yang merek
 />
 
 Garis lurus pada diagram adalah garis _best-fit_ untuk data biaya iklan dan penjualan. Garis putus-putus menunjukkan residu setiap titik. Metode kuadrat terkecil memilih garis dengan jumlah kuadrat residu paling kecil.
-
 ## Menentukan Garis dengan Meminimalkan Kuadrat Residu
 
 Secara matematis, kita mencari garis dengan persamaan:
 
 <BlockMath math="\hat{y} = a + bx" />
 
-Nilai <InlineMath math="a" /> sebagai intercept dan <InlineMath math="b" /> sebagai slope dipilih untuk meminimalkan jumlah kuadrat residu berikut:
+Nilai <InlineMath math="a" /> sebagai intercept dan <InlineMath math="b" /> sebagai slope dipilih untuk meminimalkan **jumlah kuadrat residu** berikut:
 
 <BlockMath math="\begin{aligned} \sum e_i^2 &amp;= \sum (y_i - \hat{y}_i)^2 \\ &amp;= \sum (y_i - (a + bx_i))^2 \end{aligned}" />
 
-Melalui proses kalkulus (yang tidak perlu kita turunkan di sini), ditemukan rumus untuk mendapatkan nilai <InlineMath math="a" /> dan <InlineMath math="b" /> yang memenuhi syarat tersebut:
+Koefisien garis yang meminimalkan jumlah kuadrat residu dihitung dari jumlah, hasil kali, dan kuadrat nilai pengamatan:
 
 <MathContainer>
   <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
@@ -102,3 +101,32 @@ Keterangan rumus:
 Dengan demikian, metode kuadrat terkecil memberi kriteria sistematis untuk garis yang mewakili tren linear: jumlah kuadrat residunya minimal.
 
 Jika semua nilai <InlineMath math="x" /> sama, maka <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> dan penyebut rumus kemiringan bernilai nol. Dalam keadaan ini, data tidak dapat menentukan satu kemiringan regresi linear yang unik.
+
+### Menghitung Koefisien dari Data
+
+Gunakan semua pasangan pada diagram. Kolom hasil kali dan kuadrat menjaga agar setiap nilai ikut dihitung tepat satu kali. Setelah itu, **jumlah setiap kolom** masuk ke rumus kemiringan.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="65" /> | <InlineMath math="195" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="42" /> | <InlineMath math="168" /> | <InlineMath math="16" /> |
+| <InlineMath math="4{,}5" /> | <InlineMath math="75" /> | <InlineMath math="337{,}5" /> | <InlineMath math="20{,}25" /> |
+| <InlineMath math="5" /> | <InlineMath math="70" /> | <InlineMath math="350" /> | <InlineMath math="25" /> |
+| <InlineMath math="6" /> | <InlineMath math="90" /> | <InlineMath math="540" /> | <InlineMath math="36" /> |
+| <InlineMath math="7" /> | <InlineMath math="85" /> | <InlineMath math="595" /> | <InlineMath math="49" /> |
+| <InlineMath math="7{,}5" /> | <InlineMath math="65" /> | <InlineMath math="487{,}5" /> | <InlineMath math="56{,}25" /> |
+| <InlineMath math="8" /> | <InlineMath math="112" /> | <InlineMath math="896" /> | <InlineMath math="64" /> |
+| <InlineMath math="9" /> | <InlineMath math="115" /> | <InlineMath math="1035" /> | <InlineMath math="81" /> |
+| <InlineMath math="10" /> | <InlineMath math="105" /> | <InlineMath math="1050" /> | <InlineMath math="100" /> |
+| <InlineMath math="11" /> | <InlineMath math="125" /> | <InlineMath math="1375" /> | <InlineMath math="121" /> |
+| <InlineMath math="\sum x=77" /> | <InlineMath math="\sum y=999" /> | <InlineMath math="\sum xy=7129" /> | <InlineMath math="\sum x^2=581{,}5" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(7129)-(77)(999)}{12(581{,}5)-(77)^2} \\ &=\frac{8625}{1049} \\ &=\frac{8625}{1049}\approx8{,}222\end{aligned}" />
+  <BlockMath math="a=\frac{999}{12}-\frac{8625}{1049}\cdot\frac{77}{12}=\frac{63971}{2098}\approx30{,}491" />
+</MathContainer>
+
+Gunakan koefisien yang belum dibulatkan ketika menghitung prediksi. Dengan membulatkan hanya angka yang ditampilkan, persamaan garis menjadi:
+
+<BlockMath math="\hat y\approx30{,}491+8{,}222x" />

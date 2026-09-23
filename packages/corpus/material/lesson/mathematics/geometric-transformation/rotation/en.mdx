@@ -10,30 +10,36 @@ export const metadata = {
 
 ## Center and Angle of a Rotation
 
-Rotation turns every point of a figure <Highlight>through the same angle around a fixed center</Highlight>. The figure changes position and turns, while distances, angles, shape, size, and the order of its vertices are preserved.
+Rotation turns every point of a figure <Highlight>through the same angle</Highlight> around a fixed center. The figure changes position and turns, while distances, angles, shape, size, and the order of its vertices are preserved.
 
 A rotation needs two pieces of information:
 
-- **Center of Rotation (C):** The fixed point around which the rotation occurs.
-- **Angle of Rotation (<InlineMath math="\theta" />):** A directed angle that gives both the amount and direction of the turn. A positive angle rotates counter-clockwise, while a negative angle rotates clockwise.
+- **Center of Rotation (C)**: The fixed point around which the rotation occurs.
+- **Angle of Rotation (<InlineMath math="\theta" />)**: A directed angle that gives both the amount and direction of the turn. A positive angle rotates counter-clockwise, while a negative angle rotates clockwise.
 
 ### Definition of Rotation
 
-Given a center point <InlineMath math="C" /> and a directed angle <InlineMath math="\theta" />. Rotation with center <InlineMath math="C" /> by an angle <InlineMath math="\theta" />, denoted by <InlineMath math="\rho_{C,\theta}" /> or <InlineMath math="R(C,\theta)" />, is defined as a transformation that maps:
+The center <InlineMath math="C" /> **remains fixed**. For a point <InlineMath math="P\ne C" />, rotation preserves <InlineMath math="CP=CP'" /> and turns the direction from the center through the directed angle <InlineMath math="\theta" />. Measure from ray <InlineMath math="CP" /> toward ray <InlineMath math="CP'" />, taking counterclockwise as positive.
 
-1. Point <InlineMath math="C" /> to itself (<InlineMath math="C'=C" />).
-2. Any point <InlineMath math="P" /> to a point <InlineMath math="P'" /> such that <InlineMath math="CP = CP'" /> (the distance from the center to the point is equal to the distance from the center to the image) and the angle formed by ray <InlineMath math="\vec{CP}" /> and ray <InlineMath math="\vec{CP'}" /> is <InlineMath math="\theta" />.
+Angles differing by a full turn give the same image. For example, a <InlineMath math="90^\circ" /> counterclockwise turn gives the same result as a <InlineMath math="270^\circ" /> clockwise turn:
+
+<BlockMath math="90^\circ-360^\circ=-270^\circ" />
 
 ## Rotation about the Origin
 
-A common special case is rotation about the origin <InlineMath math="O(0,0)" />.
-
-If a point <InlineMath math="P(x,y)" /> is rotated about the origin <InlineMath math="O(0,0)" /> by an angle <InlineMath math="\theta" />, its image coordinates <InlineMath math="P'(x',y')" /> can be calculated using the following formulas:
+For rotation about the origin, the **sine and cosine of the turn angle** determine how the coordinates combine. Substituting special-angle values gives shorter rules:
 
 <MathContainer>
   <BlockMath math="x' = x \cos \theta - y \sin \theta" />
   <BlockMath math="y' = x \sin \theta + y \cos \theta" />
 </MathContainer>
+
+| Angle | Image | Direction |
+| --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(-y,x)" /> | Quarter turn counterclockwise |
+| <InlineMath math="-90^\circ" /> | <InlineMath math="(y,-x)" /> | Quarter turn clockwise |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-x,-y)" /> | Half-turn |
+
 
 ## Rotating a Point by a Quarter Turn
 
@@ -43,7 +49,7 @@ Here, <InlineMath math="x=0" />, <InlineMath math="y=4" />, and <InlineMath math
 
 We know <InlineMath math="\cos 90^\circ = 0" /> and <InlineMath math="\sin 90^\circ = 1" />.
 
-Using the formulas:
+Use a **positive angle** for this counterclockwise turn:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= (0) \cos 90^\circ - (4) \sin 90^\circ \\ &amp;= 0 \cdot 0 - 4 \cdot 1 \\ &amp;= -4 \end{aligned}" />
@@ -67,6 +73,7 @@ The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" /
     </>
   }
   data={[
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.PI / 2 + i * Math.PI / 64; return { x: 4 * Math.cos(angle), y: 4 * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [-0.3, 0.3, 0] }] },
     {
       points: [{ x: 0, y: 0, z: 0 }],
       color: "#e11d48",
@@ -119,7 +126,7 @@ Let <InlineMath math="P(x,y)" /> be any point on the line <InlineMath math="y=2x
 
 From this, we get <InlineMath math="y = -x'" /> and <InlineMath math="x = y'" />.
 
-Substitute <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" /> into the original line equation <InlineMath math="y=2x" />:
+Substitute <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" /> into the **original line equation** <InlineMath math="y=2x" />:
 
 <MathContainer>
   <BlockMath math="(-x') = 2(y')" />
@@ -151,9 +158,8 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
     }, // Center of Rotation
     {
       // Original Line: y = 2x
-      points: Array.from({ length: 17 }, (_, pointIndex) => {
-        const i = pointIndex - 3;
-        const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.25;
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
       smooth: false,
@@ -163,15 +169,14 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
     },
     {
       // Image Line: y = -1/2 x
-      points: Array.from({ length: 47 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const xVal = (i - 5) * 0.5;
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const xVal = (pointIndex - 6) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 19, offset: [0.3, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 2, offset: [0.3, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -179,7 +184,7 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
 
 ## Exercises
 
-The problems rotate a point, a line, and a second point about the origin. The line is rotated through its equation, which moves every point of the line together.
+The first two problems use a **positive quarter turn**. The last uses a half-turn, which reverses both coordinate signs. For a line, substitute into the original equation to map every point on it.
 
 1.  A point <InlineMath math="A(3,0)" /> is rotated about the origin <InlineMath math="(0,0)" /> by <InlineMath math="90^\circ" />. Determine its image.
 2.  Determine the image of the line <InlineMath math="y=4x" /> rotated about the origin <InlineMath math="(0,0)" /> by <InlineMath math="90^\circ" />.
@@ -187,38 +192,46 @@ The problems rotate a point, a line, and a second point about the origin. The li
 
 ### Solutions
 
-1.  Point <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
+Use the sine and cosine values for the given angle. For a line, **express the original coordinates in terms of the image coordinates** before substituting into the equation.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
-    </MathContainer>
+**Solution 1**
 
-    Thus, its image is <InlineMath math="A'(0,3)" />.
+Point <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
 
-2.  Line <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="x' = -y" />
-      <BlockMath math="y' = x" />
-    </MathContainer>
+Thus, its image is <InlineMath math="A'(0,3)" />.
 
-    So <InlineMath math="y = -x'" /> and <InlineMath math="x = y'" />.
+**Solution 2**
 
-    Substitute into the line equation: <InlineMath math="(-x') = 4(y')" />.
+Line <InlineMath math="y=4x" />, <InlineMath math="\theta = 90^\circ" />.
 
-    Image line equation: <InlineMath math="-x = 4y" /> or <InlineMath math="y = -\frac{1}{4}x" />.
+<MathContainer>
+  <BlockMath math="x' = -y" />
+  <BlockMath math="y' = x" />
+</MathContainer>
 
-3.  Point <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+So <InlineMath math="y = -x'" /> and <InlineMath math="x = y'" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 180^\circ = -1" />
-      <BlockMath math="\sin 180^\circ = 0" />
-    </MathContainer>
+Substitute into the line equation: <InlineMath math="(-x') = 4(y')" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
-      <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
-    </MathContainer>
+Image line equation: <InlineMath math="-x = 4y" /> or <InlineMath math="y = -\frac{1}{4}x" />.
 
-    Thus, the image of point <InlineMath math="P" /> is <InlineMath math="P'(2,5)" />.
+**Solution 3**
+
+Point <InlineMath math="P(-2,-5)" />, <InlineMath math="\theta = 180^\circ" />. <InlineMath math="x=-2, y=-5" />.
+
+<MathContainer>
+  <BlockMath math="\cos 180^\circ = -1" />
+  <BlockMath math="\sin 180^\circ = 0" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
+</MathContainer>
+
+Thus, the image of point <InlineMath math="P" /> is <InlineMath math="P'(2,5)" />.

@@ -19,15 +19,12 @@ Misalkan <InlineMath math="P(x)" /> adalah suatu polinomial dan <InlineMath math
 
 <InlineMath math="(x - c)" /> merupakan **faktor** dari <InlineMath math="P(x)" /> **jika dan hanya jika** <InlineMath math="P(c) = 0" />.
 
-Ini adalah pernyataan dua arah:
+Pernyataan ini memiliki **dua arah**. Jika faktor sudah diketahui, substitusi akarnya membuat hasil kali nol. Sebaliknya, nilai polinomial nol berarti tidak ada sisa pembagian.
 
-1.  **Jika <InlineMath math="(x - c)" /> adalah faktor dari <InlineMath math="P(x)" />, maka <InlineMath math="P(c) = 0" />.**
-
-    (Jika suatu bilangan habis dibagi oleh bilangan lain, sisanya pasti nol).
-
-2.  **Jika <InlineMath math="P(c) = 0" />, maka <InlineMath math="(x - c)" /> adalah faktor dari <InlineMath math="P(x)" />.**
-
-    (Jika nilai polinomial di <InlineMath math="x=c" /> adalah nol, berarti <InlineMath math="(x-c)" /> membagi habis polinomial tersebut).
+| Yang diketahui | Yang disimpulkan |
+| --- | --- |
+| <InlineMath math="P(x)=(x-c)H(x)" /> | <InlineMath math="P(c)=(c-c)H(c)=0" /> |
+| <InlineMath math="P(c)=0" /> | <InlineMath math="P(x)=(x-c)H(x)+0" /> |
 
 ### Kaitan dengan Teorema Sisa
 
@@ -44,112 +41,109 @@ Dan dari Teorema Sisa, kita tahu <InlineMath math="S = P(c)" />.
 
 ## Menggunakan Teorema Faktor untuk Memfaktorkan Polinomial
 
-Teorema Faktor mengubah pembuat nol yang telah diverifikasi menjadi faktor linier. Dengan mengulangi proses ini, derajat polinomial berkurang sampai polinomial sisanya dapat difaktorkan dalam sistem bilangan yang sedang digunakan.
+Setiap **akar yang telah diverifikasi** memberi satu faktor linear. Bagi polinomial dengan faktor itu, lalu faktorkan hasil baginya. Derajat berkurang satu pada setiap pembagian oleh faktor linear, sehingga perhitungan berikutnya lebih sederhana.
 
-**Langkah-langkah Umum:**
+Faktorisasi bergantung pada sistem bilangan. Dalam bilangan real, <InlineMath math="x^2+1" /> tidak dapat dipecah menjadi faktor linear karena <InlineMath math="x^2+1>0" />. Simpan faktor seperti ini, beserta koefisien utama yang diperlukan. Contohnya:
 
-1.  **Cari Pembuat Nol:** Coba tebak atau gunakan petunjuk (seperti jumlah koefisien) untuk menemukan nilai <InlineMath math="c" /> sehingga <InlineMath math="P(c) = 0" />.
-2.  **Konfirmasi Faktor:** Jika <InlineMath math="P(c) = 0" />, maka berdasarkan Teorema Faktor, <InlineMath math="(x - c)" /> adalah salah satu faktor dari <InlineMath math="P(x)" />.
-3.  **Bagi Polinomial:** Gunakan metode Horner atau pembagian bersusun untuk membagi <InlineMath math="P(x)" /> dengan faktor <InlineMath math="(x - c)" /> yang sudah ditemukan. Hasil baginya adalah <InlineMath math="H(x)" />.
-
-    <BlockMath math="P(x) = (x - c) \cdot H(x)" />
-
-4.  **Faktorkan Hasil Bagi:** Jika <InlineMath math="H(x)" /> masih bisa difaktorkan (misalnya jika <InlineMath math="H(x)" /> adalah polinomial kuadrat atau kubik yang masih bisa dicari akarnya), ulangi proses dari langkah 1 pada <InlineMath math="H(x)" />.
-5.  **Faktorisasi Lengkap:** Tulis <InlineMath math="P(x)" /> sebagai perkalian dari semua faktor linier yang ditemukan.
+<BlockMath math="2x^3-2x^2+2x-2=2(x-1)(x^2+1)" />
 
 ### Memfaktorkan Polinomial
 
 Misalkan <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" />. Saat <InlineMath math="x=1" />, nilai <InlineMath math="P(1)" /> sama dengan jumlah semua koefisien dan konstanta, yaitu <InlineMath math="1 + 2 - 13 + 10=0" />. Karena itu, <InlineMath math="P(1)=0" />.
 
-1.  **Konfirmasi Pembuat Nol:**
+**Langkah 1**. Konfirmasi Pembuat Nol
 
-    Hitung <InlineMath math="P(1)" />.
+Hitung <InlineMath math="P(1)" />.
 
-    <MathContainer>
-      <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
-      <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
-      <BlockMath math="P(1) = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="P(1) = (1)^3 + 2(1)^2 - 13(1) + 10" />
+  <BlockMath math="P(1) = 1 + 2 - 13 + 10" />
+  <BlockMath math="P(1) = 0" />
+</MathContainer>
 
-2.  **Konfirmasi Faktor:**
+**Langkah 2**. Konfirmasi Faktor
 
-    Karena <InlineMath math="P(1) = 0" />, maka <InlineMath math="(x - 1)" /> adalah faktor dari <InlineMath math="P(x)" />.
+Karena <InlineMath math="P(1) = 0" />, maka <InlineMath math="(x - 1)" /> adalah faktor dari <InlineMath math="P(x)" />.
 
-3.  **Bagi Polinomial:**
+**Langkah 3**. Bagi Polinomial
 
-    Kita gunakan metode Horner untuk membagi <InlineMath math="P(x)" /> dengan <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />).
+Kita gunakan metode Horner untuk membagi <InlineMath math="P(x)" /> dengan <InlineMath math="(x - 1)" /> (<InlineMath math="c = 1" />).
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    1 & 1 & 2 & -13 & 10 \\
-      &   & 1 & 3 & -10 \\
-    \hline
-      & 1 & 3 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+1 & 1 & 2 & -13 & 10 \\
+  &   & 1 & 3 & -10 \\
+\hline
+  & 1 & 3 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    Hasil baginya adalah <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. Sisa pembagian adalah <InlineMath math="0" />, sesuai dugaan.
+Hasil baginya adalah <InlineMath math="H(x) = 1x^2 + 3x - 10 = x^2 + 3x - 10" />. Sisa pembagian adalah <InlineMath math="0" />, sesuai dugaan.
 
-    Jadi, <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
+Jadi, <InlineMath math="P(x) = (x - 1)(x^2 + 3x - 10)" />.
 
-4.  **Faktorkan Hasil Bagi:**
+**Langkah 4**. Faktorkan Hasil Bagi
 
-    Faktorkan polinomial kuadrat <InlineMath math="H(x) = x^2 + 3x - 10" />.
+Faktorkan polinomial kuadrat <InlineMath math="H(x) = x^2 + 3x - 10" />.
 
-    <BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
+Dua bilangan yang dicari adalah <InlineMath math="-2" /> dan <InlineMath math="5" /> karena jumlahnya <InlineMath math="3" /> dan hasil kalinya <InlineMath math="-10" />.
 
-5.  **Faktorisasi Lengkap:**
+<BlockMath math="x^2 + 3x - 10 = (x - 2)(x + 5)" />
 
-    Gabungkan semua faktor.
+**Langkah 5**. Faktorisasi Lengkap
 
-    <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
+Gabungkan semua faktor.
+
+<BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 ## Latihan
 
-Misalkan <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Tunjukkan bahwa <InlineMath math="P(-1) = 0" />, lalu gunakan hasil <InlineMath math="P(-1) = 0" /> untuk memfaktorkan <InlineMath math="P(x)" /> secara lengkap. Setelah metode Horner memberi faktor pertama, bagi lagi sampai hasil baginya berderajat dua, lalu faktorkan hasil bagi itu.
+Misalkan <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Tunjukkan bahwa <InlineMath math="P(-1) = 0" />, lalu gunakan hasil <InlineMath math="P(-1) = 0" /> untuk **memfaktorkan** <InlineMath math="P(x)" /> secara lengkap. Setelah pembagian oleh faktor linear pertama, polinomial kubik ini langsung menghasilkan hasil bagi kuadrat. Cari dua bilangan yang jumlah dan hasil kalinya cocok dengan koefisien kuadrat tersebut.
 
 ### Kunci Jawaban
 
-1.  **Tunjukkan <InlineMath math="P(-1) = 0" />:**
+**Langkah 1**. Tunjukkan <InlineMath math="P(-1) = 0" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
-      <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
-      <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
-      <BlockMath math="P(-1) = -3 + 3 = 0" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3 - 2(-1)^2 \\ &amp;\quad{}- 21(-1) - 18 \end{aligned}" />
+  <BlockMath math="P(-1) = -1 - 2(1) + 21 - 18" />
+  <BlockMath math="P(-1) = -1 - 2 + 21 - 18" />
+  <BlockMath math="P(-1) = -3 + 3 = 0" />
+</MathContainer>
 
-    Terbukti <InlineMath math="P(-1) = 0" />.
+Terbukti <InlineMath math="P(-1) = 0" />.
 
-2.  **Konfirmasi Faktor:**
+**Langkah 2**. Konfirmasi Faktor
 
-    Karena <InlineMath math="P(-1) = 0" />, maka <InlineMath math="(x - (-1)) = (x + 1)" /> adalah faktor dari <InlineMath math="P(x)" />.
+Karena <InlineMath math="P(-1) = 0" />, maka <InlineMath math="(x - (-1)) = (x + 1)" /> adalah faktor dari <InlineMath math="P(x)" />.
 
-3.  **Bagi Polinomial (Metode Horner dengan <InlineMath math="c = -1" />):**
+**Langkah 3**. Bagi Polinomial (Metode Horner dengan <InlineMath math="c = -1" />)
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -1 & 1 & -2 & -21 & -18 \\
-       &   & -1 & 3 & 18 \\
-    \hline
-       & 1 & -3 & -18 & \boxed{0} \\
-    \end{array}
-    "
-    />
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-1 & 1 & -2 & -21 & -18 \\
+   &   & -1 & 3 & 18 \\
+\hline
+   & 1 & -3 & -18 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    Hasil baginya adalah <InlineMath math="H(x) = x^2 - 3x - 18" />.
+Hasil baginya adalah <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    Jadi, <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
+Jadi, <InlineMath math="P(x) = (x + 1)(x^2 - 3x - 18)" />.
 
-4.  **Faktorkan Hasil Bagi:**
+**Langkah 4**. Faktorkan Hasil Bagi
 
-    Faktorkan <InlineMath math="H(x) = x^2 - 3x - 18" />.
+Faktorkan <InlineMath math="H(x) = x^2 - 3x - 18" />.
 
-    <BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
+Untuk hasil bagi ini, <InlineMath math="-6+3=-3" /> dan <InlineMath math="(-6)(3)=-18" />.
 
-5.  **Faktorisasi Lengkap:**
+<BlockMath math="x^2 - 3x - 18 = (x - 6)(x + 3)" />
 
-    <BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />
+**Langkah 5**. Faktorisasi Lengkap
+
+<BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />

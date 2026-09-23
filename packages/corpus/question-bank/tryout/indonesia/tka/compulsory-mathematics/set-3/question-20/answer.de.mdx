@@ -8,11 +8,11 @@ export const metadata = {
 Der Abstand des Leiterfußes zur Wand wächst von <InlineMath math="7\,\mathrm{m}" /> auf <InlineMath math="15\,\mathrm{m}" />. Bei unveränderter Leiterlänge ergeben sich nach Pythagoras die beiden Höhen:
 
 <BlockMath math="\begin{aligned}
-h_0&=\sqrt{25^2-7^2}=24 \\
-h_1&=\sqrt{25^2-15^2}=20
+h_0&=\sqrt{25^2-7^2}=\sqrt{625-49}=\sqrt{576}=24 \\
+h_1&=\sqrt{25^2-15^2}=\sqrt{625-225}=\sqrt{400}=20
 \end{aligned}" />
 
-Der Sinus des Winkels zum Boden ist die Höhe geteilt durch die Leiterlänge.
+Der Sinus des Winkels zum Boden ist die **Höhe geteilt durch die Leiterlänge**.
 
 <BlockMath math="\begin{aligned}
 \sin\alpha&=\frac{24}{25} \\
@@ -24,5 +24,18 @@ Teile die Abnahme durch den ursprünglichen Sinuswert.
 
 <BlockMath math="\begin{aligned}
 \frac{\sin\alpha-\sin\beta}{\sin\alpha}&=\frac4{25}\div\frac{24}{25} \\
-&=\frac4{24}=\frac16
+&=\frac4{25}\cdot\frac{25}{24}=\frac4{24}=\frac16
 \end{aligned}" />
+
+<LineEquation
+  title="Leiter vor und nach dem Verschieben"
+  description="Grau zeigt die Anfangshöhe von 24 m, Violett die Endhöhe von 20 m. Beide Leiterstrecken sind 25 m lang."
+  cameraPosition={[7.5,12,38]}
+  cameraTarget={[7.5,12,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 7, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "24 m", at: 1, offset: [-1.2,-0.5,0] }, { text: "7 m", at: 0, offset: [0,-1,0] }] },
+    { points: [{ x: 15, y: 0, z: 0 }, { x: 0, y: 20, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "20 m", at: 1, offset: [-1.2,0,0] }, { text: "15 m", at: 0, offset: [0.3,-1,0] }] },
+    ...[{x:7,y:24,text:"α",color:"#64748b"},{x:15,y:20,text:"β",color:"#9333ea"}].map(({x,y,text,color}) => { const angle = Math.atan2(y,x); return { points: Array.from({length:31},(_,i)=>{const t=Math.PI-angle*i/30;return {x:x+2*Math.cos(t),y:2*Math.sin(t),z:0};}), color, smooth: false, showPoints: false, labels:[{text,at:15,offset:[-0.6,0.7,0]}] }; }),
+  ]}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Terapkan integral pada contoh model bisnis untuk menghitung total penjualan, perubahan biaya, pertumbuhan pendapatan, dan surplus konsumen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Integral",
 };
 
@@ -13,7 +13,13 @@ Data ekonomi sering menyatakan suatu laju, misalnya jumlah barang yang terjual p
 
 Misalnya, integral dari laju penjualan selama tiga bulan memberikan jumlah barang yang terjual dalam tiga bulan tersebut.
 
-Konsep ini serupa dengan menghitung luas daerah di bawah kurva. Pada grafik besaran ekonomi, sumbu horizontal menyatakan waktu dan sumbu vertikal menyatakan laju perubahan.
+Sumbu horizontal mengikuti variabel integrasi: waktu untuk laju penjualan, atau jumlah produksi untuk biaya marginal. **Satuan integral** merupakan hasil kali satuan kedua sumbu.
+
+| Besaran yang diintegralkan | Variabel integrasi | Hasil |
+| --- | --- | --- |
+| Unit per bulan | Bulan | Unit terjual |
+| Ribu rupiah per unit | Unit produksi | Ribu rupiah |
+| Ribu rupiah per bulan | Bulan | Ribu rupiah |
 
 ## Analisis Penjualan Menggunakan Integral
 
@@ -46,11 +52,13 @@ Model kedua menyatakan laju pertumbuhan pendapatan sebuah perusahaan rintisan se
 
 Untuk menghitung **total peningkatan pendapatan** dalam <InlineMath math="6 \text{ bulan}" /> pertama, kita integralkan fungsi laju pertumbuhan:
 
+Tuliskan peningkatan itu sebagai <InlineMath math="\Delta R=R(6)-R(0)" />. Nilai pendapatan awal tidak diperlukan untuk menghitung **perubahannya**.
+
 <MathContainer>
-<BlockMath math="R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
-<BlockMath math="R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
-<BlockMath math="R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
-<BlockMath math="R = 50000(e^{0{,}6} - 1)" />
+<BlockMath math="\Delta R = \int_{0}^{6} 5000e^{0{,}1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \int_{0}^{6} e^{0{,}1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \left[\frac{e^{0{,}1t}}{0{,}1}\right]_{0}^{6}" />
+<BlockMath math="\Delta R = 50000(e^{0{,}6} - 1)" />
 </MathContainer>
 
 Dengan <InlineMath math="e^{0{,}6} \approx 1{,}822" />, maka total peningkatan pendapatan adalah sekitar <InlineMath math="50000 \times 0{,}822 = 41100" /> ribu rupiah atau <InlineMath math="41{,}1 \text{ juta rupiah}" />.
@@ -93,9 +101,13 @@ Setelah dievaluasi:
 
 Surplus konsumen sebesar <InlineMath math="1600 \text{ rupiah}" /> mengukur manfaat moneter total yang diperoleh konsumen di atas harga keseimbangan.
 
+Selisih harga membentuk **segitiga**: pada <InlineMath math="Q=0" /> tingginya <InlineMath math="40" /> rupiah per unit, lalu turun ke nol pada <InlineMath math="Q=80" />. Cek hasil integral dengan luas segitiga:
+
+<BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
 ## Latihan
 
-Setiap soal memberikan laju seperti biaya marginal atau pendapatan marginal dan meminta jumlah akumulasinya, jadi integralkan laju itu pada selang yang diberikan lalu baca hasilnya dalam satuan aslinya.
+Setiap soal memberikan laju seperti biaya marginal atau pendapatan marginal dan meminta jumlah akumulasinya, jadi **integralkan laju** itu pada selang yang diberikan lalu baca hasilnya dalam satuan aslinya.
 
 1. Sebuah perusahaan memiliki laju penjualan <InlineMath math="f(t) = 1000 + 500t \text{ unit}" /> per bulan. Hitunglah total penjualan dalam <InlineMath math="6 \text{ bulan}" /> pertama!
 
@@ -103,49 +115,49 @@ Setiap soal memberikan laju seperti biaya marginal atau pendapatan marginal dan 
 
 3. Fungsi laju pertumbuhan investasi adalah <InlineMath math="I'(t) = 2000e^{0{,}05t}\text{ juta}" /> rupiah per tahun. Hitunglah total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" />!
 
-### Pembahasan
+### Menghitung total penjualan
 
-1. **Menghitung total penjualan**
+Integralkan **fungsi laju penjualan** dari bulan ke-0 sampai bulan ke-6. Laju dalam unit per bulan dikalikan selang waktu dalam bulan menghasilkan jumlah unit yang terjual.
 
-   Karena kita punya fungsi laju penjualan, tinggal integralkan saja:
+<BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
 
-   <BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
+Hasilnya adalah:
 
-   Hasilnya adalah:
+<MathContainer>
+<BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
+<BlockMath math="S = 6000 + 9000 = 15000" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
-   <BlockMath math="S = 6000 + 9000 = 15000" />
-   </MathContainer>
+Total penjualan dalam <InlineMath math="6 \text{ bulan}" /> adalah <InlineMath math="15{.}000 \text{ unit}" />.
 
-   Total penjualan dalam <InlineMath math="6 \text{ bulan}" /> adalah <InlineMath math="15{.}000 \text{ unit}" />.
+### Menghitung biaya variabel
 
-2. **Menghitung biaya variabel**
+Integralkan **fungsi biaya marginal** dari produksi nol sampai 25 unit. Karena biaya marginal dinyatakan dalam ribu rupiah per unit, hasil integral dinyatakan dalam ribu rupiah.
 
-   Integralkan fungsi biaya marginal:
+<BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
 
-   <BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
+Setelah dievaluasi:
 
-   Setelah dievaluasi:
+<MathContainer>
+<BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
+<BlockMath math="VC = 625 + 1250 = 1875" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
-   <BlockMath math="VC = 625 + 1250 = 1875" />
-   </MathContainer>
+Total biaya variabel adalah <InlineMath math="1{.}875" /> ribu rupiah atau <InlineMath math="1{,}875 \text{ juta rupiah}" />.
 
-   Total biaya variabel adalah <InlineMath math="1{,}875" /> ribu rupiah atau <InlineMath math="1{,}875 \text{ juta rupiah}" />.
+Dengan <InlineMath math="VC(0)=0" />, hasil ini adalah biaya variabel. Jika ada biaya tetap, tambahkan secara terpisah.
 
-3. **Menghitung pertumbuhan investasi**
+### Menghitung pertumbuhan investasi
 
-   Untuk fungsi eksponensial, kita integralkan:
+Akumulasikan laju investasi selama empat tahun. Antiturunan eksponensial memerlukan pembagian dengan koefisien waktu, yaitu <InlineMath math="0{,}05" />.
 
-   <BlockMath math="I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
+<BlockMath math="\Delta I = \int_{0}^{4} 2000e^{0{,}05t} \, dt" />
 
-   Hasilnya adalah:
+Hasilnya adalah:
 
-   <MathContainer>
-   <BlockMath math="I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
-   <BlockMath math="\begin{aligned} I &amp;= 40000(e^{0{,}2} - 1) \\ &amp;\approx 40000(0{,}2214) \\ &amp;\approx 8856 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\Delta I = 2000 \left[\frac{e^{0{,}05t}}{0{,}05}\right]_{0}^{4}" />
+<BlockMath math="\begin{aligned} \Delta I &amp;= 40000(e^{0{,}2} - 1) \\ &amp;\approx 40000(0{,}2214) \\ &amp;\approx 8856 \end{aligned}" />
+</MathContainer>
 
-   Total pertumbuhan investasi dalam <InlineMath math="4 \text{ tahun}" /> adalah sekitar <InlineMath math="8{,}86 \text{ miliar}" /> rupiah.
+Total **pertumbuhan investasi** dalam <InlineMath math="4 \text{ tahun}" /> adalah sekitar <InlineMath math="8{,}86 \text{ miliar}" /> rupiah.

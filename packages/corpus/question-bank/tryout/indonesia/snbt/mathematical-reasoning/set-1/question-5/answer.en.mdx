@@ -5,7 +5,9 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Jojo buys a series <InlineMath math="A" /> laptop, so the original price receives the <InlineMath math="20\%" /> discount. The anniversary offer removes the down payment and uses the lowest annual interest rate, <InlineMath math="4\%" />.
+Jojo buys a series <InlineMath math="A" /> laptop, so the original price receives the <InlineMath math="20\%" /> discount. The anniversary offer **removes the down payment** and uses the lowest annual interest rate, <InlineMath math="4\%" />.
+
+The lowest annual rate is 6% minus the maximum reduction of two percentage points, giving 4%.
 
 #### Price and interest
 
@@ -13,7 +15,7 @@ The discounted price is <InlineMath math="100\%-20\%=80\%" /> of the original pr
 
 <BlockMath math="\begin{aligned}P&=80\%\times15{,}000{,}000\\&=12{,}000{,}000\end{aligned}" />
 
-Simple interest is calculated from the fixed principal. Divide the annual interest by <InlineMath math="12" /> to find the monthly interest <InlineMath math="B" />.
+Simple interest is calculated from the **fixed principal**. Divide the annual interest by <InlineMath math="12" /> to find the monthly interest <InlineMath math="B" />.
 
 <BlockMath math="\begin{aligned}B&=\frac{4\%}{12}P\\&=\frac{1}{300}P\\&=40{,}000\end{aligned}" />
 
@@ -24,3 +26,10 @@ With <InlineMath math="n" /> installments, each monthly payment consists of <Inl
 <BlockMath math="\begin{aligned}\frac{P}{n}+B&\le600{,}000\\\frac{12{,}000{,}000}{n}&\le560{,}000\\n&\ge\frac{12{,}000{,}000}{560{,}000}\\n&\ge\frac{150}{7}\end{aligned}" />
 
 This lower bound lies between <InlineMath math="21" /> and <InlineMath math="22" />. The number of installments must be an integer, so Jojo needs at least **<InlineMath math="22" /> installments**.
+
+Compare the two installment counts around the boundary. **Rounding down** would exceed Jojo's payment limit.
+
+| Installments | Monthly principal (Rp) | Monthly interest (Rp) | Monthly total (Rp) |
+| ---: | --- | ---: | --- |
+| 21 | <InlineMath math="12{,}000{,}000/21\approx571{,}428.57" /> | 40,000 | <InlineMath math="\approx611{,}428.57>600{,}000" /> |
+| 22 | <InlineMath math="12{,}000{,}000/22\approx545{,}454.55" /> | 40,000 | <InlineMath math="\approx585{,}454.55<600{,}000" /> |

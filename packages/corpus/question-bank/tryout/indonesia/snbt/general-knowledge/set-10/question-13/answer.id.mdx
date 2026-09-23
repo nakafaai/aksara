@@ -5,6 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Bagian awal menemukan pencarian yang tidak merata dan menelusuri kesalahan dari pengenalan teks ke metadata. Bagian berikutnya menampilkan batas sistem, menyediakan cara mencari lain, dan memeriksa hasil.
+Dua paragraf pertama menjelaskan bagaimana pencarian yang tidak merata dapat terjadi: kesalahan pengenalan teks bisa masuk ke usulan metadata, sedangkan koleksi populer menerima lebih banyak koreksi. Paragraf berikutnya menyediakan cara memeriksa kelemahan tersebut.
 
-Hubungannya adalah **rantai kesalahan mendorong perbaikan antarmuka serta audit yang dapat diperiksa**. Bacaan tetap memakai otomatisasi. Hasil nol juga tidak diperlakukan sebagai bukti pasti ketiadaan dokumen.
+<Mermaid
+  title="Dari pengenalan teks ke pemeriksaan"
+  description="Kesalahan pengenalan dapat masuk ke metadata dan hasil pencarian. Gambar asli serta pencarian melalui catatan koleksi membantu pemeriksaan manusia."
+  chart={`flowchart TD
+  A["Surat pindai"] --> B["Pengenalan teks"]
+  B --> C["Usulan nama, tempat, dan topik"]
+  C --> D["Hasil pencarian"]
+  A --> E["Gambar asli dan catatan koleksi"]
+  E --> F["Pemeriksaan dan koreksi manusia"]
+  D --> G["Sampel pencarian tanpa hasil"]
+  G --> F
+  F --> C`}
+/>
+
+Ikuti **jalur kesalahan dari pengenalan teks ke metadata dan hasil pencarian**. Hasil kosong dapat berasal dari jalur itu, bukan dari ketiadaan dokumen. Gambar asli, nomor koleksi, rentang tanggal, dan varian ejaan menyediakan cara lain untuk menyelidikinya. Pemeriksaan sampel hasil kosong serta audit kelompok dokumen menguji di mana kegagalan terjadi.
+
+Hubungannya adalah penelusuran rantai kesalahan yang diikuti langkah pemeriksaan dan koreksi. Otomatisasi tetap dipakai, dan hasil pencarian tidak dianggap sebagai deskripsi final tentang isi arsip.

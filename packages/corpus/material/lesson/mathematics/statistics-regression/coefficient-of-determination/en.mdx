@@ -10,7 +10,7 @@ export const metadata = {
 
 ## The Share of Observed Variation Accounted for by a Model
 
-After fitting a linear regression line, the next question is: **how much of the observed variation does the model account for?**
+After fitting a linear regression line, the next question is: how much of the **observed variation** does the model account for?
 
 The measure that answers this question is the **coefficient of determination**, usually denoted by <InlineMath math="R^2" />. In a simple linear regression model with one predictor and an intercept, <InlineMath math="R^2=r^2" />. The coefficient of determination can therefore be found by <Highlight>squaring Pearson's correlation coefficient</Highlight>.
 
@@ -20,74 +20,74 @@ The value <InlineMath math="r^2" /> gives the **proportion or percentage** of th
 
 The value of <InlineMath math="r^2" /> is closely related to how tightly the data points cluster around the regression line:
 
-1. **High <InlineMath math="r^2" /> (approaching <InlineMath math="1" /> or <InlineMath math="100\%" />)**
+The dashed segments show **vertical residuals**, the differences between observed and predicted values at the same horizontal position. Compare their lengths with the overall spread of the response values. The coefficient of determination expresses this comparison of variation in one number.
 
-   <ScatterDiagram
-     title={
-       <>
-         High <InlineMath math="r^2" />
-       </>
-     }
-     description="Data points are very close to the regression line."
-     xAxisLabel="Variable X"
-     yAxisLabel="Variable Y"
-     datasets={[
-       {
-         name: "Data",
-         color: "var(--chart-1)",
-         points: [
-           { x: 1, y: 2 },
-           { x: 2, y: 3.1 },
-           { x: 3, y: 3.9 },
-           { x: 4, y: 5.2 },
-           { x: 5, y: 6.1 },
-           { x: 6, y: 6.8 },
-           { x: 7, y: 8.1 },
-           { x: 8, y: 9.0 },
-         ],
-       },
-     ]}
-     calculateRegressionLine
-     showResiduals
-     regressionLineStyle={{ color: "var(--chart-4)" }}
-   />
+### A Model Accounting for Nearly All the Variation
 
-   The calculation for these points gives <InlineMath math="R^2\approx0.997" />, or <InlineMath math="99.7\%" />. Their tight clustering around the regression line is therefore consistent with the computed value: the model accounts for almost all of the observed variation in <InlineMath math="Y" />.
+<ScatterDiagram
+  title={
+    <>
+      High <InlineMath math="r^2" />
+    </>
+  }
+  description="Data points are very close to the regression line."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 3.1 },
+        { x: 3, y: 3.9 },
+        { x: 4, y: 5.2 },
+        { x: 5, y: 6.1 },
+        { x: 6, y: 6.8 },
+        { x: 7, y: 8.1 },
+        { x: 8, y: 9.0 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
 
-2. **Low <InlineMath math="r^2" /> (approaching <InlineMath math="0" /> or <InlineMath math="0\%" />)**
+The calculation for these points gives <InlineMath math="R^2\approx0.997" />, or <InlineMath math="99.7\%" />. Their **tight clustering around the regression line** is therefore consistent with the computed value: the model accounts for almost all of the observed variation in <InlineMath math="Y" />.
+### A Model Accounting for Little Variation
 
-   <ScatterDiagram
-     title={
-       <>
-         Low <InlineMath math="r^2" />
-       </>
-     }
-     description="Data points are scattered far from the regression line."
-     xAxisLabel="Variable X"
-     yAxisLabel="Variable Y"
-     datasets={[
-       {
-         name: "Data",
-         color: "var(--chart-2)",
-         points: [
-           { x: 1, y: 2 },
-           { x: 2, y: 8 },
-           { x: 3, y: 3 },
-           { x: 4, y: 6 },
-           { x: 5, y: 1 },
-           { x: 6, y: 9 },
-           { x: 7, y: 4 },
-           { x: 8, y: 7 },
-         ],
-       },
-     ]}
-     calculateRegressionLine
-     showResiduals
-     regressionLineStyle={{ color: "var(--chart-4)" }}
-   />
+<ScatterDiagram
+  title={
+    <>
+      Low <InlineMath math="r^2" />
+    </>
+  }
+  description="Data points are scattered far from the regression line."
+  xAxisLabel="Variable X"
+  yAxisLabel="Variable Y"
+  datasets={[
+    {
+      name: "Data",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 8 },
+        { x: 3, y: 3 },
+        { x: 4, y: 6 },
+        { x: 5, y: 1 },
+        { x: 6, y: 9 },
+        { x: 7, y: 4 },
+        { x: 8, y: 7 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  showResiduals
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
 
-   For the second data set, <InlineMath math="R^2\approx0.078" />, or <InlineMath math="7.8\%" />. The longer residuals match that low value: this linear model accounts for only a small part of the observed variation in <InlineMath math="Y" />.
-
+For the second data set, <InlineMath math="R^2\approx0.078" />, or <InlineMath math="7.8\%" />. The **longer residuals** match that low value: this linear model accounts for only a small part of the observed variation in <InlineMath math="Y" />.
 ## Calculating the Coefficient of Determination
 
 For a simple linear regression with one predictor and an intercept, <InlineMath math="R^2" /> equals the square of the correlation coefficient <InlineMath math="r" />.
@@ -106,13 +106,24 @@ The value of <InlineMath math="r^2" /> can also be calculated directly using the
 
 <BlockMath math="r^2 = \frac{(SS_{xy})^2}{SS_{xx} SS_{yy}}" />
 
+The <InlineMath math="SS" /> terms summarize deviations from the means. Calculate the **deviations of each data pair** before summing their squares or products:
+
+<BlockMath math="\begin{aligned}SS_{xx}&=\sum(x_i-\bar x)^2 \\ SS_{yy}&=\sum(y_i-\bar y)^2 \\ SS_{xy}&=\sum(x_i-\bar x)(y_i-\bar y)\end{aligned}" />
+
+For the second plotted data set, <InlineMath math="\bar x=4.5" /> and <InlineMath math="\bar y=5" />. For example, the first pair <InlineMath math="(1,2)" /> contributes <InlineMath math="(1-4.5)^2=12.25" /> to <InlineMath math="SS_{xx}" />, <InlineMath math="(2-5)^2=9" /> to <InlineMath math="SS_{yy}" />, and <InlineMath math="(1-4.5)(2-5)=10.5" /> to <InlineMath math="SS_{xy}" />. Summing all eight pairs gives:
+
+<MathContainer>
+  <BlockMath math="SS_{xx}=42,\quad SS_{yy}=60,\quad SS_{xy}=14" />
+  <BlockMath math="R^2=\frac{14^2}{42\cdot60}=\frac{196}{2520}=\frac7{90}\approx0.07778" />
+</MathContainer>
+
 This ratio requires variation in both variables, so <InlineMath math="SS_{xx}>0" /> and <InlineMath math="SS_{yy}>0" />. If every <InlineMath math="y" /> value is identical, the total variation is zero and the usual coefficient-of-determination ratio is undefined.
 
 ## Interpretation as a Percentage
 
 Multiply <InlineMath math="r^2" /> by <InlineMath math="100" /> to express the proportion of variation in <InlineMath math="Y" /> accounted for by the model as a percentage.
 
-- If <InlineMath math="r^2 = 0.81" />, the fitted linear model using <InlineMath math="X" /> accounts for **<InlineMath math="81\%" />** of the observed variation in <InlineMath math="Y" />.
+- If <InlineMath math="r^2 = 0.81" />, the fitted linear model using <InlineMath math="X" /> accounts for <InlineMath math="81\%" /> of the observed variation in <InlineMath math="Y" />.
 - The remaining variation (<InlineMath math="1 - r^2" /> or <InlineMath math="19\%" /> in this example) is **not explained by this linear model**. It may involve omitted variables, a nonlinear pattern, measurement error, or ordinary random variation, but <InlineMath math="r^2" /> alone cannot tell us which explanation is responsible.
 
 A higher <InlineMath math="r^2" /> means that this model accounts for more of the observed variation in <InlineMath math="Y" />. It does not by itself prove causation or guarantee reliable predictions. We must also inspect residuals, the data range, and whether a linear model makes sense in context.

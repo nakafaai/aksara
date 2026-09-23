@@ -4,13 +4,13 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Identifying Geometric Relationships**
+#### Identifying Geometric Relationships
 
-It is given that the radius (<InlineMath math="r" />) of the package is half of its height (<InlineMath math="t" />), so we can write <InlineMath math="r = \frac{1}{2}t" />. The volume of the cylindrical package is given as <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" />.
+It is given that the radius (<InlineMath math="r" />) of the package is **half of its height** (<InlineMath math="t" />), so we can write <InlineMath math="r = \frac{1}{2}t" />. The volume of the cylindrical package is given as <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" />.
 
-**Calculating the Height**
+#### Calculating the Height
 
-Using the cylinder volume formula, we substitute the value of <InlineMath math="r" /> to solve for <InlineMath math="t" />.
+Using the **cylinder volume formula**, we substitute the value of <InlineMath math="r" /> to solve for <InlineMath math="t" />.
 
 <MathContainer>
   <BlockMath math="V = \pi r^2 t" />
@@ -21,3 +21,19 @@ Using the cylinder volume formula, we substitute the value of <InlineMath math="
 </MathContainer>
 
 Thus, the height of the package is <InlineMath math="9 \text{ cm}" />.
+
+In the diagram, one unit represents 1 cm. Rotate the cylinder to compare its base radius with its height.
+
+<LineEquation
+  title="Cylinder radius and height"
+  description="Radius 4.5 cm and height 9 cm. The green segment marks the radius, and the orange segment marks the height."
+  cameraPosition={[16, -20, 14]}
+  cameraTarget={[0, 0, 4.5]}
+  data={[
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:0})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:9})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:-4.5,y:0,z:0},{x:-4.5,y:0,z:9}],color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:4.5,y:0,z:0},{x:4.5,y:0,z:4.5},{x:4.5,y:0,z:9}],color:"#f97316",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="t=9" />,offset:[0.5,0,0]}]},
+    {points:[{x:0,y:0,z:0},{x:2.25,y:0,z:0},{x:4.5,y:0,z:0}],color:"#10b981",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="r=9/2" />,offset:[0,-0.5,0]}]}
+  ]}
+/>

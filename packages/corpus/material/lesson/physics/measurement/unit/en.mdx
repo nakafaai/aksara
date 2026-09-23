@@ -32,7 +32,7 @@ In this FPS row, <InlineMath math="\text{lb}" /> denotes pound-mass. It must not
 
 These differences make measurements hard to compare when the unit system is unclear. That is why modern science uses the **International System of Units** or **SI**. SI comes from the French name *Système international d'unités* and is known in English as the *International System of Units*. BIPM, or the *Bureau International des Poids et Mesures*, is the international organization that maintains the SI standard.
 
-When you need to check the official definition of SI and its base units, open the [BIPM overview of the International System of Units](https://www.bipm.org/en/measurement-units).
+[BIPM defines SI](https://www.bipm.org/en/measurement-units) so the units share an international reference.
 
 > SI is an agreement that <InlineMath math="1 \text{ m}" />, <InlineMath math="1 \text{ kg}" />, and <InlineMath math="1 \text{ s}" /> mean the same thing in different schools, laboratories, factories, and countries.
 
@@ -41,7 +41,7 @@ When you need to check the official definition of SI and its base units, open th
 | Base quantity | Common symbol | SI unit | Unit symbol | Dimension |
 | :------------ | :------------ | :------ | :---------- | :-------- |
 | Length | <InlineMath math="\ell,\ x,\ r" /> | meter | <InlineMath math="\text{m}" /> | <InlineMath math="[\mathrm{L}]" /> |
-| Mass | <InlineMath math="m" /> | kilogram | <InlineMath math="\text{kg}" /> | <InlineMath math="[\mathrm{M}]" /> |
+| Mass | <InlineMath math="m" /> | **kilogram** | <InlineMath math="\text{kg}" /> | <InlineMath math="[\mathrm{M}]" /> |
 | Time | <InlineMath math="t" /> | second | <InlineMath math="\text{s}" /> | <InlineMath math="[\mathrm{T}]" /> |
 | Electric current | <InlineMath math="I" /> | ampere | <InlineMath math="\text{A}" /> | <InlineMath math="[\mathrm{I}]" /> |
 | Thermodynamic temperature | <InlineMath math="T" /> | kelvin | <InlineMath math="\text{K}" /> | <InlineMath math="[\Theta]" /> |
@@ -57,7 +57,7 @@ One detail often causes confusion: the SI base unit for mass is <InlineMath math
 
 ## Derived Units Come from Operations on Base Units
 
-A derived unit appears when a derived quantity is formed from base quantities. If the formula multiplies or divides quantities, the units are multiplied or divided too.
+A derived unit appears when a derived quantity is formed from base quantities. If the formula multiplies or divides quantities, the **units are multiplied or divided too**.
 
 | Derived quantity | Quantity formula | SI unit | Dimension |
 | :--------------- | :--------------- | :------ | :-------- |
@@ -69,6 +69,8 @@ A derived unit appears when a derived quantity is formed from base quantities. I
 | Force | <InlineMath math="F = m \times a" /> | <InlineMath math="\text{N}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}][\mathrm{T}]^{-2}" /> |
 | Work | <InlineMath math="W = F \times \Delta s" /> | <InlineMath math="\text{J}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-2}" /> |
 | Power | <InlineMath math="P = \frac{W}{t}" /> | <InlineMath math="\text{W}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}" /> |
+
+The work row assumes a constant force parallel to the displacement. The speed, acceleration, and power formulas in the table give averages over the chosen interval.
 
 A derived unit can be broken down into base units. For example, force uses the unit newton, and a newton is built from kilogram, meter, and second.
 
@@ -89,16 +91,14 @@ Once force is clear, work and power can be read step by step.
 
 ## Writing Large and Small Values Compactly
 
-When a measured value is very large or very small, SI prefixes can replace long rows of zeros with powers of <InlineMath math="10" />.
+When a measured value is very large or very small, **SI prefixes** can replace long rows of zeros with powers of <InlineMath math="10" />.
 
 <Mermaid
   title="Compact Notation with SI Prefixes"
   description="See how metric prefixes replace long strings of zeros with shorter unit names."
   chart={`flowchart LR
-    A["Read value"] --> B["Split prefix"]
-    B --> C["Use a power of 10"]
-    C --> D["Multiply the value"]
-    D --> E["Write the final unit"]`}/>
+    A["7.5 km"] --> B["7.5 × 1000 m"]
+    B --> C["7500 m"]`}/>
 
 Common prefixes include:
 
@@ -119,7 +119,7 @@ The table above covers prefixes from yocto through yotta. BIPM also lists ronna 
 
 ## Reading Prefixes in Calculations
 
-A prefix is attached to a base unit. For example, <InlineMath math="\text{km}" /> means one thousand meters, so it remains a unit of length based on the meter.
+An SI prefix can be attached to a **base unit or a derived unit**. For example, kilometer uses meter, while kilowatt uses watt. For example, <InlineMath math="\text{km}" /> means one thousand meters, so it remains a unit of length based on the meter.
 
 <BlockMath math="\begin{aligned}
 7.5 \text{ km}
@@ -127,11 +127,11 @@ A prefix is attached to a base unit. For example, <InlineMath math="\text{km}" /
 &= 7500 \text{ m}
 \end{aligned}" />
 
-For small sizes, a prefix replaces a string of decimal zeros with a named power of <InlineMath math="10" />. A diameter of <InlineMath math="0.1 \ \mu\text{m}" /> is equal to:
+For small sizes, a prefix replaces a string of decimal zeros with a named power of <InlineMath math="10" />. A diameter of <InlineMath math="0.10 \ \mu\text{m}" /> is equal to:
 
 <BlockMath math="\begin{aligned}
-0.1 \ \mu\text{m}
-&= 0.1 \times 10^{-6} \text{ m} \\
+0.10 \ \mu\text{m}
+&= 0.10 \times 10^{-6} \text{ m} \\
 &= 1.0 \times 10^{-7} \text{ m}
 \end{aligned}" />
 

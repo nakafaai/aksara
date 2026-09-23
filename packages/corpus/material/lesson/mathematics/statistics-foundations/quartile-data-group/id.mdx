@@ -23,8 +23,7 @@ Pada rumus ini, <InlineMath math="n" /> adalah banyaknya data.
 
 ## Langkah Mencari Nilai Kuartil Data Kelompok
 
-Anggap kita punya data penjualan sepatu di Toko A dalam bentuk tabel frekuensi berkelompok. Tabel itu mencantumkan setiap kelas interval dan banyak pasang sepatu di dalamnya, dan kuartilnya diperkirakan dengan interpolasi di kelas yang memuat posisi yang dicari. Kerjakan langkahnya sambil membuka tabel, karena semua nilai yang disubstitusi berasal dari sana.
-
+Anggap kita punya data penjualan sepatu di Toko A dalam bentuk tabel frekuensi berkelompok. Tabel itu mencantumkan setiap kelas interval dan banyak pasang sepatu di dalamnya, dan kuartilnya diperkirakan dengan **interpolasi** di kelas yang memuat posisi yang dicari. Kerjakan langkahnya sambil membuka tabel, karena semua nilai yang disubstitusi berasal dari sana.
 ### Buat Tabel Frekuensi Kumulatif
 
 Pertama, tambahkan kolom frekuensi kumulatif (<InlineMath math="F_k" />) pada tabel. Frekuensi kumulatif menjumlahkan frekuensi dari kelas pertama sampai kelas yang sedang dibaca. Kolom ini menentukan kelas yang memuat setiap kuartil.
@@ -85,56 +84,58 @@ Interpolasi ini mengasumsikan bahwa <Highlight>data tersebar merata di dalam kel
 
 Kita hitung <InlineMath math="Q_1" /> dari tabel di atas.
 
-1.  **Letak <InlineMath math="Q_1" />:** Data ke-<InlineMath math="7{,}5" />.
-2.  **Kelas <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
-3.  **Catat nilai dalam rumus:**
-    - Tepi bawah kelas <InlineMath math="Q_1" /> (<InlineMath math="T_b" />) adalah <InlineMath math="39{,}5" />
-    - Jumlah data (<InlineMath math="n" />) adalah <InlineMath math="30" />
-    - Frekuensi kumulatif sebelum kelas <InlineMath math="Q_1" /> (<InlineMath math="F_{\text{kum}}" />) adalah <InlineMath math="2" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="37\text{-}39" />)
-    - Frekuensi kelas <InlineMath math="Q_1" /> (<InlineMath math="f_1" />) adalah <InlineMath math="11" />
-    - Panjang kelas (<InlineMath math="p" />) adalah <InlineMath math="3" />
-4.  **Masukkan ke rumus:**
+**Letak <InlineMath math="Q_1" />:** Data ke-<InlineMath math="7{,}5" />.
+**Kelas <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Nilai yang digunakan**
 
-    <MathContainer>
-      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
-      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
-      <BlockMath math="Q_1 = 39{,}5 + 1{,}5" />
-      <BlockMath math="Q_1 = 41" />
-    </MathContainer>
+| Besaran | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="39{,}5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\text{kum}}" /> | <InlineMath math="2" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="11" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Masukkan ke rumus:
+
+<MathContainer>
+  <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
+  <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
+  <BlockMath math="Q_1 = 39{,}5 + 1{,}5" />
+  <BlockMath math="Q_1 = 41" />
+</MathContainer>
 
 Jadi, nilai <InlineMath math="Q_1" /> adalah <InlineMath math="41" />. Artinya, sekitar <InlineMath math="25\%" /> sepatu yang terjual ukurannya <InlineMath math="41" /> atau lebih kecil.
 
 ## Latihan
 
-Hitung <InlineMath math="Q_3" /> dari data penjualan sepatu Toko A pada tabel di atas.
+Hitung <InlineMath math="Q_3" /> dari **data penjualan sepatu** Toko A pada tabel di atas.
 
 Kemudian, bandingkan langkah interpolasi kuartil data kelompok dengan cara menentukan [kuartil data tunggal](/id/materi/matematika/statistika-dasar/kuartil-data-tunggal). Mengapa tabel kelompok hanya memberikan perkiraan?
-
 ### Kunci Jawaban
 
-1.  **Letak <InlineMath math="Q_3" />:** Data ke-<InlineMath math="22{,}5" />.
-2.  **Kelas <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
-3.  **Kumpulkan bahan:**
+**Letak <InlineMath math="Q_3" />:** Data ke-<InlineMath math="22{,}5" />.
+**Kelas <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Nilai yang digunakan**
 
-    - <InlineMath math="T_b = 42{,}5" /> (tepi bawah kelas <InlineMath math="Q_3" />
-      )
-    - <InlineMath math="n = 30" /> (jumlah data)
-    - <InlineMath math="F_{\text{kum}} = 13" /> (lihat <InlineMath math="F_k" /> kelas <InlineMath math="40\text{-}42" />)
-    - <InlineMath math="f_3 = 10" /> (frekuensi kelas <InlineMath math="Q_3" />)
-    - <InlineMath math="p = 3" /> (panjang kelas)
+| Besaran | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="42{,}5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\text{kum}}" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Masukkan ke rumus:
 
-4.  **Masukkan ke rumus:**
-
-    <MathContainer>
-      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
-      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
-      <BlockMath math="Q_3 = 42{,}5 + 2{,}85" />
-      <BlockMath math="Q_3 = 45{,}35" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
+  <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
+  <BlockMath math="Q_3 = 42{,}5 + 2{,}85" />
+  <BlockMath math="Q_3 = 45{,}35" />
+</MathContainer>
 
 Perkiraan nilai <InlineMath math="Q_3" /> adalah <InlineMath math="45{,}35" />. Dalam model data kelompok ini, sekitar <InlineMath math="75\%" /> sepatu yang terjual berukuran <InlineMath math="45{,}35" /> atau lebih kecil. Sisanya, sekitar <InlineMath math="25\%" />, berukuran lebih besar dari <InlineMath math="45{,}35" />.
 

@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Vorräte nicht erneuerbarer Energiequellen sind begrenzt
 
-[Nicht erneuerbare Energiequellen](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) stammen aus begrenzten Vorräten. <Highlight>Diese Vorräte bilden sich viel langsamer, als Menschen sie verbrauchen.</Highlight>
+[Nicht erneuerbare Energiequellen](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) stammen aus begrenzten Vorräten. Diese Vorräte bilden sich <Highlight>viel langsamer, als Menschen sie verbrauchen</Highlight>.
 
 <InlineMath math="r_{\mathrm{use}}" /> bezeichnet die menschliche Verbrauchsrate und <InlineMath math="r_{\mathrm{form}}" /> die natürliche Bildungsrate:
 
@@ -20,7 +20,7 @@ Das Symbol <InlineMath math="\gg" /> bedeutet „viel größer als“. Es reicht
 
 ## Fossile Brennstoffe und Kernbrennstoff
 
-Die zwei Hauptgruppen nicht erneuerbarer Quellen sind fossile Brennstoffe und Kernbrennstoffe. [**Fossile Brennstoffe**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) entstanden aus Überresten früherer Lebewesen, die begraben und über <InlineMath math="\text{Millionen von Jahren}" /> durch Druck und Wärme verändert wurden.
+Die zwei Hauptgruppen nicht erneuerbarer Quellen sind fossile Brennstoffe und Kernbrennstoffe. [**Fossile Brennstoffe**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) entstanden aus Überresten früherer Lebewesen, die begraben und über Millionen von Jahren durch Druck und Wärme verändert wurden.
 
 **Kernbrennstoff** unterscheidet sich grundlegend von fossilem Brennstoff. Ein Kernkraftwerk verbrennt keinen Kohlenstoff. Es nutzt die [Kernspaltung](https://www.eia.gov/energyexplained/nuclear/), bei der ein schwerer Atomkern geteilt und Energie freigesetzt wird. Kernkraftwerke verwenden Uran als Brennstoff.
 
@@ -37,13 +37,24 @@ Der Begriff „nicht erneuerbar“ <Highlight>umfasst fossile Brennstoffe und Ke
 
 Viele Kraftwerke mit nicht erneuerbaren Quellen erzeugen Strom über den Zwischenschritt Wärme. Der Unterschied liegt darin, wie diese Wärme entsteht.
 
-Bei fossilen Brennstoffen wird chemische Energie durch Verbrennung in Wärme umgewandelt. Bei Uran setzt Kernspaltung Kernenergie als Wärme frei. In beiden Fällen kann die Wärme Wasser verdampfen. Der Dampf treibt anschließend eine Turbine und einen Generator an.
+In Dampfkraftwerken erzeugen Verbrennung und Kernspaltung **Wärme durch unterschiedliche Vorgänge**. Danach treffen ihre Umwandlungsketten zusammen:
+
+<Mermaid
+  title="Von Wärme zu Strom"
+  description="Zwei Vorgänge liefern Wärme für ein Dampfsystem."
+  chart={`flowchart TD
+    A["Fossiler Brennstoff: Verbrennung"] --> C["Wärme erhitzt Wasser"]
+    B["Uran: Kernspaltung"] --> C
+    C --> D["Dampf dreht Turbine"]
+    D --> E["Turbine treibt Generator"]
+    E --> F["Elektrische Energie"]`}
+/>
 
 Fossile Brennstoffe und Uran erreichen am Ende dieselbe Energieform: elektrischen Strom. Der Anfang der Kette ist unterschiedlich, doch jede Quelle benötigt Anlagen, die ihre ursprüngliche Energie in Nutzenergie umwandeln.
 
 ## Unterschiedliche Aufgaben im Stromnetz
 
-Kraftwerkstypen speisen Strom auf unterschiedliche Weise ins Netz ein. Kernkraftwerke laufen meist durchgehend mit gleichmäßiger Leistung. Erdgasbetriebene GuD-Kraftwerke können ihre Leistung an einen wechselnden Bedarf anpassen. Bei Spitzenbedarf liefern Gasturbinen mit Erdgas oder Erdölprodukten für einige Stunden zusätzlichen Strom.
+Kraftwerkstypen speisen Strom auf unterschiedliche Weise ins Netz ein. Kernkraftwerke laufen meist durchgehend mit gleichmäßiger Leistung. Erdgasbetriebene GuD-Kraftwerke können ihre Leistung **an einen wechselnden Bedarf anpassen**. Bei Spitzenbedarf liefern Gasturbinen mit Erdgas oder Erdölprodukten für einige Stunden zusätzlichen Strom.
 
 Im US-amerikanischen Stromsystem heißen diese Aufgaben [Grundlast, Mittellast und Spitzenlast](https://www.eia.gov/energyexplained/electricity/electricity-in-the-us-generation-capacity-and-sales.php).
 
@@ -51,7 +62,7 @@ Dieses Betriebsmuster bestimmt, ob ein Kraftwerk eine gleichmäßige Grundlast l
 
 ## Risiken entlang der gesamten Energiekette
 
-Die Folgen einer nicht erneuerbaren Quelle beginnen vor dem Kraftwerk und reichen über die Energieerzeugung hinaus. Eine vollständige Bewertung umfasst deshalb die gesamte Kette.
+Die Folgen einer nicht erneuerbaren Quelle beginnen vor dem Kraftwerk und reichen über die Energieerzeugung hinaus. Eine vollständige Bewertung umfasst deshalb **die gesamte Kette**.
 
 | Risiko | Leitfrage |
 | :----- | :-------- |

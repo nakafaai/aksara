@@ -13,7 +13,7 @@ Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="
 
 <BlockMath math="Ax=b" />
 
-Jika <InlineMath math="b" /> tidak berada dalam ruang kolom <InlineMath math="A" />, sistem tersebut tidak memiliki solusi eksak. Keadaan ini sering terjadi ketika model dicocokkan dengan data pengukuran yang mengandung kesalahan acak atau ketika sistem memiliki lebih banyak persamaan bebas daripada variabel yang tidak diketahui.
+Jika <InlineMath math="b" /> tidak berada dalam ruang kolom <InlineMath math="A" />, sistem tersebut tidak memiliki solusi eksak. Keadaan ini sering terjadi ketika model dicocokkan dengan data pengukuran yang mengandung kesalahan acak atau ketika sistem memiliki lebih banyak persamaan daripada variabel dan persamaan-persamaan itu tidak konsisten.
 
 Jika tidak ada vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=b" /> secara eksak, definisikan residual
 
@@ -38,11 +38,13 @@ Vektor <InlineMath math="A\hat{x}" /> adalah titik di <InlineMath math="\operato
 <BlockMath math="A^{\mathsf T}A\hat{x}=A^{\mathsf T}b" />
 </MathContainer>
 
-Persamaan kedua disebut **persamaan normal**.
+Persamaan kedua disebut **[persamaan normal](/id/materi/ai-ds/metode-linear-ai/sistem-persamaan-normal)**.
 
 <LineEquation
   title="Proyeksi ortogonal pada masalah kuadrat terkecil"
   description={<>Vektor biru berujung di <InlineMath math="A\hat{x}" />, vektor jingga berujung di <InlineMath math="b" />, dan vektor ungu adalah residual <InlineMath math="A\hat{x}-b" />.</>}
+  cameraPosition={[9, 8, 12]}
+  cameraTarget={[1.5, 1.5, 3]}
   data={[
     {
       points: [
@@ -104,7 +106,7 @@ Fungsi objektif untuk contoh ini adalah
 <BlockMath math="\begin{aligned} F'(x) &amp;=2(x-1)+2(x-2) \\ &amp;\quad+2(x-6) \\ &amp;=6x-18 \end{aligned}" />
 </MathContainer>
 
-Dengan menetapkan turunannya sama dengan nol, kita memperoleh <InlineMath math="\hat{x}=3" />. Vektor hasil pencocokan dan residualnya adalah
+Dengan menetapkan **turunannya sama dengan nol**, kita memperoleh <InlineMath math="\hat{x}=3" />. Vektor hasil pencocokan dan residualnya adalah
 
 <MathContainer>
 <BlockMath math="A\hat{x}=\begin{pmatrix}3\\3\\3\end{pmatrix}" />
@@ -119,7 +121,7 @@ Hasil nol tersebut memenuhi persamaan normal.
 
 ## Norma residual lain
 
-Norma yang dipilih menentukan jenis galat yang diprioritaskan oleh pencocokan.
+Norma yang dipilih menentukan **jenis galat** yang diprioritaskan oleh pencocokan.
 
 | Fungsi objektif | Hal yang dikendalikan |
 | --- | --- |
@@ -129,9 +131,17 @@ Norma yang dipilih menentukan jenis galat yang diprioritaskan oleh pencocokan.
 
 Formulasi <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_\infty" /> dapat ditulis ulang sebagai program linear. Kecocokannya tetap bergantung pada proses pembentukan data dan kriteria galat yang penting bagi penerapan tersebut.
 
+Untuk data yang sama, yaitu 1, 2, dan 6, pilihan norma menghasilkan konstanta yang berbeda. Kuadrat terkecil memilih rata-rata, jumlah nilai mutlak memilih median, dan galat maksimum terkecil menyeimbangkan jarak ke kedua nilai ekstrem.
+
+| Kriteria | Konstanta optimal | Nilai objektif minimum |
+|---|---|---|
+| <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
+| <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
+| <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
 ## Memilih Metode Numerik yang Stabil
 
-Jika <InlineMath math="A" /> memiliki peringkat kolom penuh, peminimum kuadrat terkecil bersifat unik. Persamaan normal kemudian memberikan
+Jika <InlineMath math="A" /> memiliki **peringkat kolom penuh**, peminimum kuadrat terkecil bersifat unik. Persamaan normal kemudian memberikan
 
 <BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
@@ -143,6 +153,6 @@ Identitas ini menyatakan peminimum unik ketika <InlineMath math="A" /> memiliki 
 
 Kuadrat terkecil juga dapat dijelaskan melalui model statistik berikut.
 
-<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
+<BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I),\quad \sigma^2>0" />
 
 Jika <InlineMath math="A" /> tetap dan galat Gaussian saling bebas dengan varians yang sama, metode kuadrat terkecil menghasilkan estimator kemungkinan maksimum untuk <InlineMath math="x_*" />. Galat yang berkorelasi atau memiliki varians berbeda memerlukan bobot yang mengikuti kovarians galat.

@@ -16,7 +16,7 @@ Korrelation beantwortet eine beschreibende Frage: Wie verändern sich die beiden
 
 ## Der Korrelationskoeffizient
 
-Der Pearson-Korrelationskoeffizient wird mit <InlineMath math="r" /> bezeichnet. <Highlight>Das Vorzeichen von r gibt die Richtung an</Highlight>, sein Abstand von null die Stärke des linearen Musters.
+Der Pearson-Korrelationskoeffizient wird mit <InlineMath math="r" /> bezeichnet. Das **Vorzeichen des Koeffizienten** gibt die Richtung an, sein Abstand von null die Stärke des linearen Musters.
 
 | Wert | Deutung |
 | --- | --- |
@@ -35,13 +35,29 @@ Wenn beide Variablen eine von null verschiedene Streuung besitzen und <InlineMat
 
 Ein Wert nahe null schließt nicht jede Beziehung aus. Die Punkte können einer deutlichen Kurve folgen, obwohl ihre lineare Korrelation klein ist. Deshalb müssen das Streudiagramm und der Sachzusammenhang gemeinsam mit <InlineMath math="r" /> betrachtet werden.
 
+### Ein gekrümmtes Muster mit Korrelation null
+
+Die Datenpaare erfüllen <InlineMath math="y=x^2" /> für <InlineMath math="x=-2,-1,0,1,2" />. Im Diagramm erkennst du ein **U-förmiges Muster**, obwohl die lineare Korrelation null ist.
+
+<ScatterDiagram
+  title="Ein gekrümmter Zusammenhang in fünf Datenpaaren"
+  description="Die Werte fallen zur Mitte hin und steigen dann wieder, sodass eine Gerade das Muster nicht beschreibt."
+  datasets={[{ name: "Datenpaare", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
+/>
+
+Die Mittelwerte der Koordinaten sind <InlineMath math="\bar x=0" /> und <InlineMath math="\bar y=2" />. Die Produkte der Abweichungen links und rechts heben sich auf:
+
+<BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
+
+Beide Variablen streuen weiterhin. Die Summe der quadrierten horizontalen Abweichungen beträgt <InlineMath math="10" />, die der vertikalen Abweichungen <InlineMath math="14" />. Daher gilt <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. Die **Korrelation null** geht hier mit einem exakten quadratischen Zusammenhang einher.
+
 ## Variablen vertauschen und Einheiten ändern
 
 Die Korrelation behandelt beide Variablen symmetrisch. Werden die Variablen auf der horizontalen und vertikalen Achse vertauscht, bleibt der Wert gleich:
 
 <BlockMath math="r_{xy}=r_{yx}" />
 
-Auch eine positive Änderung der Maßeinheit verändert <InlineMath math="r" /> nicht. Ob eine Körpergröße in Zentimetern oder Metern gemessen wird, ergibt denselben Koeffizienten. Das unterscheidet Korrelation von Regression, bei der eine Variable gezielt zur Vorhersage der anderen verwendet wird.
+Auch eine **positive Änderung der Maßeinheit** verändert <InlineMath math="r" /> nicht. Ob eine Körpergröße in Zentimetern oder Metern gemessen wird, ergibt denselben Koeffizienten. Das unterscheidet Korrelation von Regression, bei der eine Variable gezielt zur Vorhersage der anderen verwendet wird.
 
 ## Der Determinationskoeffizient
 
@@ -59,7 +75,7 @@ Für den Determinationskoeffizienten gilt:
 
 ## Korrelation und kausale Zusammenhänge
 
-Eine starke Korrelation beweist nicht, dass eine Variable die andere verursacht. Mehrere Erklärungen können dasselbe Muster hervorbringen:
+Eine **starke Korrelation** beweist nicht, dass eine Variable die andere verursacht. Mehrere Erklärungen können dasselbe Muster hervorbringen:
 
 - Die erste Variable kann die zweite beeinflussen.
 - Die zweite Variable kann die erste beeinflussen.
@@ -72,4 +88,4 @@ Korrelation beschreibt ein lineares Muster. Eine kausale Schlussfolgerung benöt
 
 ## Prüfe deine Deutung
 
-Ein Wert von <InlineMath math="r=-0{,}9" /> bedeutet einen starken negativen linearen Zusammenhang: Größere Werte der einen Variablen treten tendenziell mit kleineren Werten der anderen auf. Der Wert nennt für sich allein weder eine Ursache noch garantiert er, dass jeder Punkt genau auf derselben Geraden liegt.
+Ein Wert von <InlineMath math="r=-0{,}9" /> bedeutet einen **starken negativen linearen Zusammenhang**: Größere Werte der einen Variablen treten tendenziell mit kleineren Werten der anderen auf. Der Wert nennt für sich allein weder eine Ursache noch garantiert er, dass jeder Punkt genau auf derselben Geraden liegt.

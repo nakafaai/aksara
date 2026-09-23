@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Misalkan panjang rusuk balok <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Teorema Pythagoras pada ketiga jenis sisi memberi:
+Misalkan panjang rusuk balok <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. **Teorema Pythagoras** pada ketiga jenis sisi memberi:
 
 <BlockMath math="\begin{aligned}
 a^2+b^2&=85 \\
@@ -14,6 +14,8 @@ b^2+c^2&=113
 \end{aligned}" />
 
 Jumlahkan dua persamaan yang memuat kuadrat rusuk yang dicari, lalu kurangi persamaan ketiga. Hasilnya dua kali kuadrat rusuk tersebut.
+
+<BlockMath math="(a^2+b^2)+(a^2+c^2)-(b^2+c^2)=2a^2=85+100-113" />
 
 <BlockMath math="\begin{aligned}
 a^2&=\frac{85+100-113}{2}=36 \\
@@ -24,3 +26,40 @@ c^2&=\frac{100+113-85}{2}=64
 Panjang rusuk positif, jadi <InlineMath math="a=6" />, <InlineMath math="b=7" />, dan <InlineMath math="c=8" />.
 
 <BlockMath math="V=abc=6\cdot7\cdot8=336" />
+
+<MathVisual
+  title="Tiga jenis diagonal sisi"
+  description="Setiap diagonal menghubungkan dua sudut pada satu sisi. Putar balok untuk mengikuti dua rusuk tegak lurus yang membentuk tiap diagonal."
+  labels={{
+    a: <InlineMath math="a=6" />,
+    b: <InlineMath math="b=7" />,
+    c: <InlineMath math="c=8" />,
+    ab: <InlineMath math="\sqrt{85}" />,
+    ac: <InlineMath math="\sqrt{100}" />,
+    bc: <InlineMath math="\sqrt{113}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4 },
+      y: { min: -5, max: 5 },
+      z: { min: -4.5, max: 4.5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "cuboid", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 6, width: 7, height: 8 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: -3, y: 4, z: -3.5 }, to: { x: 3, y: 4, z: 3.5 } },
+      { id: "ac", kind: "segment", appearance: "secondary", from: { x: -3, y: -4, z: 3.5 }, to: { x: 3, y: 4, z: 3.5 } },
+      { id: "bc", kind: "segment", appearance: "highlight", from: { x: 3, y: -4, z: -3.5 }, to: { x: 3, y: 4, z: 3.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "cuboid", at: { x: 0, y: -4, z: 3.5 }, placement: "below" },
+      { key: "b", objectId: "cuboid", at: { x: 3, y: -4, z: 0 }, placement: "right" },
+      { key: "c", objectId: "cuboid", at: { x: -3, y: 0, z: 3.5 }, placement: "left" },
+      { key: "ab", objectId: "ab", at: { x: 0, y: 4, z: 0 }, placement: "above" },
+      { key: "ac", objectId: "ac", at: { x: 0, y: 0, z: 3.5 }, placement: "left" },
+      { key: "bc", objectId: "bc", at: { x: 3, y: 0, z: 0 }, placement: "right" },
+    ],
+  }}
+/>

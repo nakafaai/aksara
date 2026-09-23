@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung"; der folgende nutzt "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden" als Hauptbeleg.',
+            "Der erste Teil prüft die überarbeitete Fassung, der folgende erklärt die Rückkehr zur wörtlichen Übersetzung.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Jede Fassung wird vor dem Einsatz erneut mit Bewohnern getestet".',
+            "Der erste Teil vergleicht drei Evakuierungsrouten, der folgende bestimmt eine gemeinsame Route für alle Dörfer.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden" fest.',
+            "Der erste Teil ändert Fachbegriffe, der folgende prüft das Erinnerungsvermögen derselben Teilnehmer erneut.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen" aus dem Beleg "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung" ab.',
+            "Der erste Teil entdeckt eine Signalstörung, der folgende repariert den Sender ohne Änderung der Nachricht.",
         },
         {
           isCorrect: true,
           label:
-            "Das Scheitern der wörtlichen Fassung führt zur gemeinsamen Überarbeitung; der zweite Test liefert Belege für deren Bewertung.",
+            "Das Scheitern der wörtlichen Fassung führt zur gemeinsamen Überarbeitung, deren Bewertung sich auf den zweiten Test stützt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The team placed the action before the reason in the revised message", and the later part uses "A translation that passes the second test can certainly be used unchanged in every region" as its main support.',
+            "The first part tests the revised version, and the later part explains why literal translation was chosen again.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "A translation must follow every source word even when residents misunderstand the required action" as a final conclusion; the later part only states the plan "Each version will be tested again with residents before use".',
+            "The first part compares three evacuation routes, and the later part chooses one route for every village.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "A translation that passes the second test can certainly be used unchanged in every region" from the same perspective without adding a test.',
+            "The first part changes technical terms, and the later part retests the same participants to measure their memory.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "A translation must follow every source word even when residents misunderstand the required action" from the evidence "The team placed the action before the reason in the revised message".',
+            "The first part detects a signal fault, and the later part repairs the transmitter without changing the message.",
         },
         {
           isCorrect: true,
           label:
-            "The literal version's failure motivates co-design, and the second test provides evidence for evaluating the revision.",
+            "The literal version’s failure motivates collaborative revision, and the second test provides evidence for evaluating the revision.",
         },
       ],
     },
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru", lalu bagian kedua memakai "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah" sebagai dukungan utama.',
+            "Bagian awal menguji versi revisi, lalu bagian berikutnya menjelaskan mengapa terjemahan harfiah dipilih kembali.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Setiap versi akan diuji lagi bersama warga sebelum digunakan".',
+            "Bagian awal membandingkan tiga rute evakuasi, lalu bagian berikutnya menetapkan rute yang berlaku untuk semua kampung.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal mengubah istilah teknis, lalu bagian berikutnya menguji hasil revisi pada peserta yang sama untuk menilai daya ingat.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta" dari bukti "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru".',
+            "Bagian awal menemukan gangguan sinyal, lalu bagian berikutnya memperbaiki pemancar tanpa mengubah isi pesan.",
         },
         {
           isCorrect: true,

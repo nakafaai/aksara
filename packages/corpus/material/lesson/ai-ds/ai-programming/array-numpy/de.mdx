@@ -27,7 +27,7 @@ Vektorisierung bedeutet, <Highlight>eine Operation für das gesamte Array auszud
     {
       language: "python",
       filename: "vectorization_comparison.py",
-      code: `# Elementmultiplikation mithilfe der Python-Liste (langsam)
+      code: `# Elementmultiplikation mithilfe der Python-Liste
 x = [1, 2, 3, 4, 5]
 y = [2, 3, 4, 5, 6]
 z = []
@@ -35,7 +35,7 @@ for i in range(len(x)):
     z.append(x[i] * y[i])
 print("Listenergebnis:", z)  # Ausgabe: Listenergebnis: [2, 6, 12, 20, 30]
 
-# Elementmultiplikation mit NumPy (schnell)
+# Elementmultiplikation mit NumPy
 import numpy as np
 x_np = np.array([1, 2, 3, 4, 5])
 y_np = np.array([2, 3, 4, 5, 6])
@@ -47,7 +47,7 @@ print("NumPy-Ergebnis:", z_np)  # Ausgabe: NumPy-Ergebnis: [ 2  6 12 20 30]`
 
 ## Manuelle Erstellung von Arrays
 
-Mit `np.array()` wird eine vorhandene Python-Datenstruktur in ein NumPy-Array umgewandelt.
+Mit `np.array()` wird eine **vorhandene Python-Datenstruktur** in ein NumPy-Array umgewandelt.
 
 Ein eindimensionales Array ist eine Folge von Werten entlang einer Achse. Wir können es mit `np.array()` aus einer Python-Liste erstellen.
 
@@ -127,7 +127,7 @@ print("Axis 2 (columns):", a.shape[2])  # Ausgabe: Axis 2 (columns): 3`
 | **Zweidimensional** | `(2, 2)` | Tabelle mit Zeilen und Spalten | `[[0, 1], [2, 3]]` | Achse <InlineMath math="0" /> für Zeilen, Achse <InlineMath math="1" /> für Spalten |
 | **Dreidimensional** | `(2, 2, 3)` | Stapel aus Tabellen (Ebenen) | <InlineMath math="2" /> Ebenen mit jeweils <InlineMath math="2 \times 3" /> Einträgen | Achse <InlineMath math="0" /> für die Tiefe, Achse <InlineMath math="1" /> für die Höhe, Achse <InlineMath math="2" /> für die Breite |
 
-Je höher die Array-Dimension, desto komplexer ist die Datenstruktur, das Grundprinzip bleibt jedoch dasselbe. Jede Achse repräsentiert eine Dimension der Datenorganisation.
+Je höher die Array-Dimension, desto komplexer ist die Datenstruktur, das Grundprinzip bleibt jedoch dasselbe. **Jede Achse** repräsentiert eine Dimension der Datenorganisation.
 
 NumPy kann Listen, Tupel und verschachtelte Kombinationen beider Strukturen in Arrays umwandeln.
 
@@ -156,11 +156,11 @@ print("Automatischer Datentyp:", arr_mixed.dtype)  # Ausgabe: Automatischer Date
 
 ## Funktionen zum Erstellen von Arrays
 
-Jedes Element von Hand zu schreiben lohnt sich nur für sehr kleine Beispiele. NumPy bringt deshalb eigene Erzeugungsfunktionen mit, die ein Array aus einer Regel statt aus einer literalen Liste aufbauen, wodurch der Code kurz bleibt und die Form ausdrücklich dasteht. Die folgenden Funktionen bilden drei Gruppen: Arrays mit einem konstanten Wert, Arrays mit Zufallszahlen und Arrays nach einem mathematischen Muster.
+Jedes Element von Hand zu schreiben lohnt sich nur für sehr kleine Beispiele. NumPy bringt deshalb eigene Erzeugungsfunktionen mit, die ein **Array aus einer Regel** statt aus einer literalen Liste aufbauen, wodurch der Code kurz bleibt und die Form ausdrücklich dasteht. Die folgenden Funktionen bilden drei Gruppen: Arrays mit einem konstanten Wert, Arrays mit Zufallszahlen und Arrays nach einem mathematischen Muster.
 
 ### Konstantwertfunktionen
 
-Die Funktion `np.ones()` erzeugt ein Array, dessen Elemente alle den Wert <InlineMath math="1" /> haben. Das ist praktisch, wenn jedes Element denselben Anfangswert benötigt.
+Die Funktion `np.ones()` erzeugt ein Array, dessen Elemente alle den Wert <InlineMath math="1" /> haben. Das ist praktisch, wenn jedes Element **denselben Anfangswert** benötigt.
 
 <CodeBlock
   data={[
@@ -235,7 +235,7 @@ print(a)
 
 ### Zufallsfunktionen
 
-Zufallsfunktionen sind nützlich zum Erstellen von Simulationsdaten oder zur Initialisierung mit Zufallswerten.
+Mit dem **Zufallszahlengenerator** `np.random.default_rng()` erzeugst du Simulationsdaten. Derselbe Seed liefert mit demselben Generator und derselben NumPy-Version eine wiederholbare Folge. Die gleichverteilten Werte unten liegen in `[0, 1)`: Null ist eingeschlossen, Eins ausgeschlossen.
 
 <CodeBlock
   data={[
@@ -245,34 +245,34 @@ Zufallsfunktionen sind nützlich zum Erstellen von Simulationsdaten oder zur Ini
       code: `import numpy as np
 
 # Seed für reproduzierbare Ergebnisse festlegen
-np.random.seed(10)
+rng = np.random.default_rng(10)
 
 # Array mit gleichverteilten Zufallswerten zwischen 0 und 1
-a = np.random.rand(2, 3)
-print("Random uniform [0,1]:")
+a = rng.random((2, 3))
+print("Random uniform [0,1):")
 print(a)
 # Ausgabe:
-# [[0.77132064 0.02075195 0.63364823]
-#  [0.74880388 0.49850701 0.22479665]]
+# [[0.95600171 0.20768181 0.82844489]
+#  [0.14928212 0.51280462 0.1359196 ]]
 
 # Array mit Normalverteilung (Mittelwert=0, std=1)
-a = np.random.randn(3)
-print("Random normal:", a)  # Ausgabe: Random normal: [ 0.62133597 -0.72008556  0.26551159]
+a = rng.standard_normal(3)
+print("Random normal:", a)  # Ausgabe: Random normal: [0.84304257 0.85793655 0.47518364]
 
 # Array mit zufälligen Ganzzahlen in einem bestimmten Bereich
-a = np.random.randint(1, 10, size=(2, 3))
+a = rng.integers(1, 10, size=(2, 3))
 print("Random integers [1,10):")
 print(a)
 # Ausgabe:
-# [[7 9 2]
-#  [9 5 2]]`
+# [[5 9 3]
+#  [8 1 4]]`
     }
   ]}
 />
 
 ### Mathematische Funktionen
 
-Mit `np.fromfunction` lässt sich ein Array aus einer mathematischen Funktion erzeugen. Die Funktion berechnet den Wert jedes Elements aus dessen Position.
+`np.fromfunction` übergibt **Arrays mit Indexkoordinaten** an deine Funktion. Hier erhält `f(i, j)` die Zeilenindizes in `i` und die Spaltenindizes in `j`. Die Addition `i + j` erfolgt elementweise: An Position `[1, 2]` steht deshalb `3`.
 
 <CodeBlock
   data={[
@@ -319,10 +319,10 @@ Die Funktion `np.empty` reserviert Speicher, ohne die Elemente zu initialisieren
 
 # Nicht initialisiertes Array erstellen
 a = np.empty((3, 2))
-print("Nicht initialisiertes Array (beliebige Speicherinhalte):")
+a.fill(0)  # Alle Elemente vor dem Lesen mit Werten belegen
+print("Array nach dem Befüllen:")
 print(a)
-# Die Ausgabe variiert, da die Werte nicht initialisiert werden
-# Beispielausgabe:
+# Ausgabe:
 # [[0. 0.]
 #  [0. 0.]
 #  [0. 0.]]
@@ -335,11 +335,11 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
 
 ## Arrays aus Sequenzen
 
-Manche Arrays lassen sich leichter als Sequenz beschreiben denn als Regel für jedes einzelne Element: alle Werte zwischen zwei Grenzen oder eine feste Anzahl gleichmäßig verteilter Punkte. `np.arange` und `np.linspace` erzeugen solche Arrays, und der Unterschied liegt darin, wie das Ende der Sequenz festgelegt wird.
+Manche Arrays lassen sich leichter als Sequenz beschreiben denn als Regel für jedes einzelne Element: alle Werte zwischen zwei Grenzen oder eine **feste Anzahl gleichmäßig verteilter Punkte**. `np.arange` und `np.linspace` erzeugen solche Arrays, und der Unterschied liegt darin, wie das Ende der Sequenz festgelegt wird.
 
 ### Funktion Arange in NumPy
 
-Die Funktion `np.arange` ähnelt Pythons `range()`, gibt aber ein Array zurück und akzeptiert Gleitkommaargumente. Bei nicht ganzzahligen Schritten kann die Gleitkommarundung den letzten Wert schwerer vorhersehbar machen. Wenn die Anzahl der Punkte feststeht, ist `np.linspace` oft eindeutiger.
+Die Funktion `np.arange` ähnelt Pythons `range()`, gibt aber ein Array zurück und akzeptiert Gleitkommaargumente. Bei nicht ganzzahligen Schritten kann die **Gleitkommarundung** den letzten Wert schwerer vorhersehbar machen. Wenn die Anzahl der Punkte feststeht, ist `np.linspace` oft eindeutiger.
 
 <CodeBlock
   data={[
@@ -372,7 +372,7 @@ print("- Der Standard-Startwert ist 0")`
 
 ### Funktion Linspace in NumPy
 
-Im Gegensatz zu `np.arange`, das feste Schritte verwendet, unterteilt `np.linspace` einen Bereich in eine Anzahl gleichmäßig verteilter Punkte.
+Im Gegensatz zu `np.arange`, das feste Schritte verwendet, unterteilt `np.linspace` einen Bereich in eine **Anzahl gleichmäßig verteilter Punkte**.
 
 <CodeBlock
   data={[
@@ -400,7 +400,7 @@ print("arange: Schrittweite vorgegeben, Anzahl der Elemente ergibt sich aus den 
 
 ### Vergleich von Arange und Linspace
 
-Beide Funktionen bauen ein Array aus einem Bereich, und der übergebene Parameter entscheidet über den Unterschied. `arange` legt den Abstand zwischen den Elementen fest, `linspace` dagegen die Anzahl der Elemente.
+Beide Funktionen bauen ein Array aus einem Bereich, und der übergebene Parameter entscheidet über den Unterschied. `arange` legt den **Abstand zwischen den Elementen** fest, `linspace` dagegen die Anzahl der Elemente.
 
 | Aspekt | `np.arange` | `np.linspace` |
 |--------|-------------|---------------|
@@ -412,7 +412,7 @@ Beide Funktionen bauen ein Array aus einem Bereich, und der übergebene Paramete
 
 ## Grundfunktionen
 
-Nach dem Erstellen lassen sich Form, Datentyp und Anzahl der Elemente eines Arrays untersuchen oder seine Dimensionen neu anordnen.
+Prüfe vor dem Umformen **Elementzahl und Form**. Das folgende Array hat zwei Zeilen und drei Spalten, also `size` gleich `6`. Der ausdrücklich angegebene Datentyp `int64` benötigt acht Byte pro Element.
 
 <CodeBlock
   data={[
@@ -422,7 +422,7 @@ Nach dem Erstellen lassen sich Form, Datentyp und Anzahl der Elemente eines Arra
       code: `import numpy as np
 
 # Beispielarray erstellen
-a = np.array([[1, 2, 3], [4, 5, 6]])
+a = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
 print("Array:")
 print(a)
 # Ausgabe:
@@ -433,12 +433,12 @@ print("Form:", a.shape)  # Ausgabe: Form: (2, 3)
 print("Größe (Elemente insgesamt):", a.size)  # Ausgabe: Größe (Elemente insgesamt): 6
 print("Ndim (Dimensionen):", a.ndim)  # Ausgabe: Ndim (Dimensionen): 2
 print("Dtype (Datentyp):", a.dtype)  # Ausgabe: Dtype (Datentyp): int64
-print("Elementgröße (Bytes pro Element):", a.itemsize)  # Ausgabe: Itemsize (Bytes pro Element): 8`
+print("Elementgröße (Bytes pro Element):", a.itemsize)  # Ausgabe: Elementgröße (Bytes pro Element): 8`
     }
   ]}
 />
 
-Arrays können mit der Funktion `reshape()` umgeformt werden, um Dimensionen neu anzuordnen, ohne die Daten zu ändern:
+Beim Umformen mit `reshape()` muss die **Elementzahl gleich bleiben**: `3 * 4`, `2 * 6` und `4 * 3` ergeben jeweils `12`. Mit `-1` lässt du eine fehlende Dimension berechnen. Je nach Speicheranordnung entsteht dabei eine View oder eine Kopie.
 
 <CodeBlock
   data={[

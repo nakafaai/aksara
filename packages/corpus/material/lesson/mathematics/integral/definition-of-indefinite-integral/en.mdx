@@ -3,7 +3,7 @@ export const metadata = {
   description: "An indefinite integral includes all antiderivatives that differ by a constant of integration.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integrals",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 ## Role of the Constant of Integration
 
-Compare these functions and their derivatives.
+We are looking for functions whose derivative is <InlineMath math="4x" />. The table compares four candidates. Notice that **different constants** still give the same derivative.
 
 | Function <InlineMath math="F(x)" /> | Derivative <InlineMath math="f(x) = F'(x)" /> |
 | :--- | :--- |
@@ -26,6 +26,27 @@ All four <InlineMath math="F(x)" /> functions have the same derivative, <InlineM
 
 A derivative does not retain the constant from the original function. It cannot tell us whether the original constant was <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, or another value. The symbol <InlineMath math="C" /> represents every possible constant. An indefinite integral therefore includes all antiderivatives that differ only in their constant.
 
+The conclusion about a constant difference applies on **one interval** where the antiderivatives are defined. For these polynomials, that interval can include all real numbers.
+
+## Comparing Antiderivative Graphs
+
+The three parabolas represent <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" />, and <InlineMath math="2x^2+5" />. At the same value of <InlineMath math="x" />, their heights differ but their tangent slopes agree. Pan or rotate the view to compare the shapes of the curves.
+
+<LineEquation
+  title="Antiderivatives Differing by a Constant"
+  description="The purple curve has constant zero, the orange curve constant one, and the teal curve constant five."
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 4.5, 0]}
+  cameraPosition={[0, 4.5, 17]}
+/>
+
+Changing the constant produces a **vertical translation**. At <InlineMath math="x=1" />, for example, the function values are <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="7" />, while all three derivatives have value <InlineMath math="4" />.
+
 ## Formal Notation of Integrals
 
 The following notation shows the integrand, the variable of integration, the antiderivative, and the constant of integration:
@@ -33,13 +54,21 @@ The following notation shows the integrand, the variable of integration, the ant
 <BlockMath math="\int f(x) \, dx = F(x) + C" />
 
 Each part has a specific role:
-- **<InlineMath math="\int" />** is the **integral symbol**. Its shape comes from an elongated letter S for the Latin word *summa*, meaning sum.
-- **<InlineMath math="f(x)" />** is the function we are going to integrate, called the **integrand**.
-- **<InlineMath math="dx" />** is called the **differential** of <InlineMath math="x" />. It shows that the integration is with respect to <InlineMath math="x" />. Without it, the integral expression is incomplete.
-- **<InlineMath math="F(x) + C" />** is the **indefinite integral** of <InlineMath math="f(x)" />. This is our answer, where <InlineMath math="F(x)" /> is the antiderivative and <InlineMath math="C" /> is the **constant of integration**.
+- <InlineMath math="\int" /> is the **integral symbol**. Its shape comes from an elongated letter S for the Latin word *summa*, meaning sum.
+- <InlineMath math="f(x)" /> is the function we are going to integrate, called the **integrand**.
+- <InlineMath math="dx" /> is called the **differential** of <InlineMath math="x" />. It shows that the integration is with respect to <InlineMath math="x" />. Without it, the integral expression is incomplete.
+- <InlineMath math="F(x) + C" /> is the **indefinite integral** of <InlineMath math="f(x)" />. This is our answer, where <InlineMath math="F(x)" /> is the antiderivative and <InlineMath math="C" /> is the **constant of integration**.
 
 The defining relationship is:
 
 <BlockMath math="\begin{aligned} &amp;\frac{d}{dx} [F(x)] = f(x) \\ &amp;\iff \\ &amp;\int f(x) \, dx = F(x) + C \end{aligned}" />
 
 > If the derivative of <InlineMath math="F(x)" /> is <InlineMath math="f(x)" />, then the indefinite integral of <InlineMath math="f(x)" /> includes every function of the form <InlineMath math="F(x) + C" />.
+
+## Finding the Constant from One Function Value
+
+Suppose <InlineMath math="F'(x)=4x" /> and <InlineMath math="F(1)=7" />. The general antiderivative is <InlineMath math="F(x)=2x^2+C" />. The **known function value** determines the required constant:
+
+<BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
+
+Thus <InlineMath math="F(x)=2x^2+5" />. Check both conditions: the derivative of <InlineMath math="2x^2+5" /> is <InlineMath math="4x" />, and <InlineMath math="F(1)=2+5=7" />. One function value selects one curve from all the antiderivatives on the same interval.

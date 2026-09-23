@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "narrative conflict as a term without a role in the story",
+          label: "Narrative conflict as a term without a role in the story",
         },
         {
           isCorrect: false,

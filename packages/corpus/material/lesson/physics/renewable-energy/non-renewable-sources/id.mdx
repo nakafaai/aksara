@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Persediaan Sumber Tak Terbarukan Terbatas
 
-[Sumber tak terbarukan](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) berasal dari persediaan yang terbatas. <Highlight>Proses alam membentuk persediaan baru jauh lebih lambat daripada laju pemakaian manusia.</Highlight>
+[Sumber tak terbarukan](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) berasal dari persediaan yang terbatas. Proses alam membentuk persediaan baru <Highlight>jauh lebih lambat daripada laju pemakaian manusia</Highlight>.
 
 Misalkan <InlineMath math="r_{\mathrm{use}}" /> adalah laju penggunaan manusia dan <InlineMath math="r_{\mathrm{form}}" /> adalah laju pembentukan alami:
 
@@ -20,7 +20,7 @@ Tanda <InlineMath math="\gg" /> dibaca "jauh lebih besar daripada". Untuk menila
 
 ## Bahan Bakar Fosil dan Bahan Bakar Nuklir
 
-Dua kelompok utama sumber tak terbarukan adalah bahan bakar fosil dan bahan bakar nuklir. [**Bahan bakar fosil**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) terbentuk dari sisa makhluk hidup purba yang tertimbun, lalu berubah akibat tekanan dan panas selama <InlineMath math="\text{jutaan tahun}" />.
+Dua kelompok utama sumber tak terbarukan adalah bahan bakar fosil dan bahan bakar nuklir. [**Bahan bakar fosil**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) terbentuk dari sisa makhluk hidup purba yang tertimbun, lalu berubah akibat tekanan dan panas selama jutaan tahun.
 
 **Bahan bakar nuklir** dipakai dalam [reaksi fisi](https://www.eia.gov/energyexplained/nuclear/), yaitu proses ketika inti atom berat dibelah dan melepaskan energi. Pembangkit nuklir tidak membakar bahan bakar fosil. Energi berasal dari fisi uranium.
 
@@ -35,15 +35,26 @@ Istilah "tak terbarukan" <Highlight>mencakup bahan bakar fosil dan bahan bakar n
 
 ## Berbagai Sumber Memakai Tahap Konversi Kalor
 
-Banyak pembangkit dari sumber tak terbarukan menghasilkan listrik lewat kalor. Perbedaannya terletak pada proses yang menghasilkan kalor.
+Banyak pembangkit dari sumber tak terbarukan menghasilkan listrik lewat kalor. Perbedaannya terletak pada **proses yang menghasilkan kalor**.
 
-Pada bahan bakar fosil, energi kimia berubah menjadi kalor lewat pembakaran. Pada uranium, energi inti berubah menjadi kalor lewat fisi inti. Setelah kalor tersedia, banyak pembangkit memakai uap untuk memutar turbin dan generator.
+Pada pembangkit uap, pembakaran dan fisi menghasilkan kalor melalui proses berbeda. Setelah itu, jalur konversinya bertemu:
+
+<Mermaid
+  title="Kalor menuju listrik"
+  description="Dua proses menghasilkan kalor untuk sistem uap."
+  chart={`flowchart TD
+    A["Bahan bakar fosil: pembakaran"] --> C["Kalor memanaskan air"]
+    B["Uranium: fisi inti"] --> C
+    C --> D["Uap memutar turbin"]
+    D --> E["Turbin memutar generator"]
+    E --> F["Energi listrik"]`}
+/>
 
 Hasil akhirnya sama-sama berupa listrik, sedangkan tahap awal konversinya berbeda. Setiap jalur memakai alat untuk mengubah energi awal menjadi energi yang dapat digunakan.
 
 ## Peran Berbeda dalam Jaringan Listrik
 
-Setiap jenis pembangkit memasok listrik dengan cara yang berbeda. Pembangkit nuklir biasanya beroperasi terus dengan daya yang stabil. Pembangkit gas alam siklus gabungan dapat menaikkan atau menurunkan daya ketika kebutuhan listrik berubah. Saat kebutuhan mencapai puncak, turbin berbahan bakar gas alam atau minyak dapat menambah pasokan selama beberapa jam.
+Setiap jenis pembangkit memasok listrik dengan cara yang berbeda. Pembangkit nuklir biasanya beroperasi terus dengan daya yang stabil. Pembangkit gas alam siklus gabungan dapat **menaikkan atau menurunkan daya** ketika kebutuhan listrik berubah. Saat kebutuhan mencapai puncak, turbin berbahan bakar gas alam atau minyak dapat menambah pasokan selama beberapa jam.
 
 Dalam sistem listrik Amerika Serikat, pembangkit dikelompokkan menurut perannya untuk melayani [beban dasar, beban menengah, dan beban puncak](https://www.eia.gov/energyexplained/electricity/electricity-in-the-us-generation-capacity-and-sales.php).
 
@@ -51,7 +62,7 @@ Pola operasi ini menentukan apakah pembangkit memasok beban dasar yang stabil, m
 
 ## Risiko di Sepanjang Rantai Energi
 
-Dampak sumber tak terbarukan dapat dimulai saat penambangan atau pengeboran, berlanjut selama pembangkitan listrik, dan tetap ada ketika limbah harus dikelola.
+Dampak sumber tak terbarukan dapat dimulai saat **penambangan atau pengeboran**, berlanjut selama pembangkitan listrik, dan tetap ada ketika limbah harus dikelola.
 
 | Risiko | Aspek yang diperiksa |
 | :----- | :------------------- |

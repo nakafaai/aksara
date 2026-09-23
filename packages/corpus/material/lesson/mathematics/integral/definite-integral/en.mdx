@@ -3,7 +3,7 @@ export const metadata = {
     description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integrals",
 };
 
@@ -20,9 +20,9 @@ The definite integral records this limiting accumulation. It is <Highlight>defin
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 This notation has a specific meaning:
-- **<InlineMath math="\int_{a}^{b}" />**: This is the integral symbol with a **lower** limit <InlineMath math="a" /> and an **upper** limit <InlineMath math="b" />. These numbers define the interval over which we are calculating the area.
-- **<InlineMath math="f(x)" />**: This is the **integrand**. Its values throughout <InlineMath math="[a,b]" /> determine the signed accumulation.
-- **<InlineMath math="dx" />**: Just as with indefinite integrals, this indicates that we are integrating with respect to the variable <InlineMath math="x" />.
+- <InlineMath math="\int_{a}^{b}" />: This is the integral symbol with a **lower** limit <InlineMath math="a" /> and an **upper** limit <InlineMath math="b" />. These numbers define the interval over which we are calculating the area.
+- <InlineMath math="f(x)" />: This is the **integrand**. Its values throughout <InlineMath math="[a,b]" /> determine the signed accumulation.
+- <InlineMath math="dx" />: Just as with indefinite integrals, this indicates that we are integrating with respect to the variable <InlineMath math="x" />.
 
 An indefinite integral includes every function of the form <InlineMath math="F(x) + C" />. A definite integral gives a **single number** that measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />. This number equals ordinary geometric area when the integrand is nonnegative throughout the interval.
 
@@ -62,16 +62,11 @@ Now, we plug this into the Riemann Sum formula:
 
 We can factor constants out of the sigma notation, as <InlineMath math="n" /> is treated as a constant in the sum from <InlineMath math="i=1" /> to <InlineMath math="n" />.
 
-<BlockMath math="\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
 
 Next, replace <InlineMath math="\sum_{i=1}^{n} i" /> with <InlineMath math="\frac{n(n+1)}{2}" /> and simplify until the term that depends on <InlineMath math="n" /> is isolated.
 
-<MathContainer>
-<BlockMath math="\frac{49}{n^2} \cdot \frac{n(n+1)}{2}" />
-<BlockMath math="= \frac{49n(n+1)}{2n^2}" />
-<BlockMath math="= \frac{49(n+1)}{2n}" />
-<BlockMath math="= \frac{49}{2} \left( \frac{n+1}{n} \right) = \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
-</MathContainer>
+<BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
 The algebra reduces the expression to a constant factor multiplied by <InlineMath math="1+\frac{1}{n}" />. The remaining limit follows from <InlineMath math="\frac{1}{n}\to0" />.
 
@@ -91,3 +86,19 @@ Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit,
 </MathContainer>
 
 Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x=0" /> to <InlineMath math="x=7" />, the definite integral is also the geometric area: <InlineMath math="\frac{49}{2}" />, or <InlineMath math="24.5" /> square units. The limit has turned the rectangle approximations into an exact value.
+
+## Comparing Different Rectangle Counts
+
+Write the right-endpoint sum as <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. We can check several values of <InlineMath math="n" /> before taking the limit. Since the graph increases, right-endpoint rectangles give an **overestimate**.
+
+| Number of rectangles | Right-endpoint approximation |
+| --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="49" /> |
+| <InlineMath math="2" /> | <InlineMath math="36.75" /> |
+| <InlineMath math="7" /> | <InlineMath math="28" /> |
+| <InlineMath math="10" /> | <InlineMath math="26.95" /> |
+| <InlineMath math="100" /> | <InlineMath math="24.745" /> |
+
+The difference from the exact value is <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Doubling the rectangle count therefore halves the error in this linear example. You can also check the exact area as a triangle whose base and height both equal <InlineMath math="7" />:
+
+<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />

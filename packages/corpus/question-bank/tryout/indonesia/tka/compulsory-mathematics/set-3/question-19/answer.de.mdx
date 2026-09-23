@@ -5,12 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Der Grundumfang ist proportional zum Radius, die Grundfläche zum Radiusquadrat und das Volumen zum Produkt aus Radiusquadrat und Höhe.
+Der Grundumfang ist proportional zum Radius, die Grundfläche zum Radiusquadrat und das Volumen zum **Produkt aus Radiusquadrat und Höhe**.
 
 <BlockMath math="\begin{aligned}
-k_U&=3 \\
-k_A&=3^2=9 \\
-k_V&=3^2\cdot\frac12=\frac92
+k_U&=\frac{2\pi(3r)}{2\pi r}=3 \\
+k_A&=\frac{\pi(3r)^2}{\pi r^2}=3^2=9 \\
+k_V&=\frac{\frac13\pi(3r)^2(h/2)}{\frac13\pi r^2h}=3^2\cdot\frac12=\frac92
 \end{aligned}" />
 
 Für die Mantellinie gilt <InlineMath math="s^2=r^2+h^2" />. Prüfe den behaupteten festen Faktor an einem Kegel mit <InlineMath math="r=h=1" />. Nach der Skalierung beträgt der Radius <InlineMath math="3" /> und die Höhe <InlineMath math="\frac12" />.
@@ -24,3 +24,17 @@ s^2&=2 \\
 Die Mantellinie hat nicht immer den Faktor <InlineMath math="\frac32" />. Wegen der Mantelfläche <InlineMath math="\pi rs" /> ist deren Flächenfaktor <InlineMath math="3\frac{s'}{s}" />. Er wäre nur dann <InlineMath math="\frac92" />, wenn die Mantellinie den Faktor <InlineMath math="\frac32" /> hätte. Das Gegenbeispiel widerlegt diese Behauptung.
 
 Die Aussagen zu Grundumfang, Grundfläche und Volumen stimmen. Die letzten beiden Aussagen sind falsch.
+
+<LineEquation
+  title="Ungleichmäßige Skalierung eines Kegels"
+  description="Beide Kegel haben denselben Grundkreismittelpunkt. Grau: r = h = 1. Violett: r = 3 und h = 1/2. Der Kegel wird breiter und flacher."
+  cameraPosition={[5,3,6]}
+  cameraTarget={[0,0.4,0]}
+  showZAxis={false}
+  data={[
+    ...[{ r: 1, h: 1, color: "#64748b" }, { r: 3, h: 0.5, color: "#9333ea" }].flatMap(({r,h,color}) => [
+      { points: Array.from({ length: 101 }, (_, i) => { const t = 2*Math.PI*i/100; return { x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }; }), color, smooth: false, showPoints: false },
+      ...[0,Math.PI/2,Math.PI,3*Math.PI/2].map((t) => ({ points: [{ x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }, { x: 0, y: h, z: 0 }], color, smooth: false, showPoints: false })),
+    ]),
+  ]}
+/>

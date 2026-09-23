@@ -3,7 +3,7 @@ export const metadata = {
     description: "Determine when normal, Hermitian, and unitary matrices have an orthonormal eigenbasis and apply the resulting diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -27,7 +27,7 @@ This algebraic condition makes eigenspaces for distinct eigenvalues orthogonal. 
 
 For a normal matrix, the null space of the matrix equals the null space of its conjugate transpose.
 
-The null space (kernel) is the set of all vectors <InlineMath math="x" /> satisfying <InlineMath math="Ax=0" />. Normality gives the following norm identity for every <InlineMath math="x" />:
+The null space (kernel) is the set of all vectors <InlineMath math="x" /> satisfying <InlineMath math="Ax=0" />. Normality gives the following **norm identity** for every <InlineMath math="x" />:
 
 <MathContainer>
 <BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
@@ -53,13 +53,13 @@ This identity also proves orthogonality. If <InlineMath math="Av=\lambda v" /> a
 
 ## Hermitian and Unitary Matrices as Examples of Normal Matrices
 
-A Hermitian matrix equals its own adjoint, and a unitary matrix has an inverse equal to its adjoint, so in both cases the two sides of the normality condition collapse into the same product.
+A Hermitian matrix equals its own adjoint, and a unitary matrix has an inverse equal to its adjoint, so in both cases the two sides of the normality condition collapse into the **same product**.
 
 ### Hermitian Matrices and Real Eigenvalues
 
 For a Hermitian matrix, <InlineMath math="A^H=A" />, so both sides of the normality condition equal <InlineMath math="A^2" />.
 
-<Highlight>Eigenvalues of Hermitian matrices are always real</Highlight>. If <InlineMath math="Av=\lambda v" /> with <InlineMath math="v\neq0" />, then Hermitian symmetry gives:
+Eigenvalues of Hermitian matrices are <Highlight>always real</Highlight>. If <InlineMath math="Av=\lambda v" /> with <InlineMath math="v\neq0" />, then Hermitian symmetry gives:
 
 <BlockMath math="\begin{aligned} \lambda v^H v &amp;= v^HAv \\ &amp;= v^HA^Hv \\ &amp;= (Av)^Hv \\ &amp;= \overline{\lambda}v^Hv \\ &amp;\Rightarrow \lambda \\ &amp;=\overline{\lambda} \end{aligned}" />
 
@@ -78,13 +78,15 @@ The conjugate transpose returns the same matrix, so <InlineMath math="H^H=H" />.
 <BlockMath math="\begin{aligned} &amp;U=(u_1\quad u_3), \\ &amp;U^HHU=\operatorname{diag}(1,3) \end{aligned}" />
 </MathContainer>
 
-The vectors are orthonormal because <InlineMath math="u_1^Hu_3=0" /> and both have norm <InlineMath math="1" />. This is the spectral theorem in a concrete <InlineMath math="2\times2" /> case.
+The vectors are **orthonormal because** <InlineMath math="u_1^Hu_3=0" /> and both have norm <InlineMath math="1" />. This is the spectral theorem in a concrete <InlineMath math="2\times2" /> case.
+
+<BlockMath math="u_1^Hu_3=\frac{(i)(i)+1}{2}=0,\qquad Hu_1=\frac1{\sqrt2}\begin{pmatrix}-2i+i\\(-i)(-i)+2\end{pmatrix}=u_1" />
 
 ### Unitary Matrices and Eigenvalues on the Unit Circle
 
 Unitary matrices have the property <InlineMath math="A^H = A^{-1}" />. To prove that unitary matrices are also normal, we substitute into the definition and get <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
 
-Eigenvalues of unitary matrices have magnitude <InlineMath math="1" />, so they lie on the unit circle in the complex plane. If <InlineMath math="Av=\lambda v" /> with <InlineMath math="v\neq0" />, unitarity preserves the norm:
+Eigenvalues of unitary matrices have magnitude <InlineMath math="1" />, so they lie on the **unit circle** in the complex plane. If <InlineMath math="Av=\lambda v" /> with <InlineMath math="v\neq0" />, unitarity preserves the norm:
 
 <MathContainer>
 <BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />

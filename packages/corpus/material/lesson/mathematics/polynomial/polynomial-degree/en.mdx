@@ -9,11 +9,15 @@ export const metadata = {
 
 ## Degree of a Monomial
 
+The monomial degree rules below assume a <Highlight>nonzero coefficient</Highlight>. The zero polynomial is treated separately because it has no nonzero term.
+
 Each monomial within a polynomial has a characteristic called **degree**. This degree is determined by the powers (exponents) of its variables. For one variable the degree is the exponent itself, and for several variables it is the sum of all the exponents in the term.
 
 ### Degree of a Single Variable Monomial
 
-If a monomial has only one variable, like <InlineMath math="ax^n" />, its degree is the exponent of that variable, which is <InlineMath math="n" />.
+If a monomial has only one variable, like <InlineMath math="ax^n" />, its degree is the **exponent of that variable**, which is <InlineMath math="n" />.
+
+<BlockMath math="\deg(ax^n)=n,\quad a\neq0" />
 
 **Examples:**
 
@@ -24,6 +28,8 @@ If a monomial has only one variable, like <InlineMath math="ax^n" />, its degree
 
 If a monomial has more than one variable, its degree is the **sum** of all the variable exponents.
 
+<BlockMath math="\deg(cx_1^{p_1}x_2^{p_2}\cdots x_k^{p_k})=p_1+p_2+\cdots+p_k,\quad c\neq0" />
+
 **Examples:**
 
 - The monomial <InlineMath math="\frac{3}{4}x^2y^7" /> has a degree of <InlineMath math="2 + 7 = 9" />.
@@ -31,7 +37,7 @@ If a monomial has more than one variable, its degree is the **sum** of all the v
 
 ### Degree of a Constant
 
-What about a constant (a number without variables), like <InlineMath math="5" />? A non-zero constant is considered to have a **degree of <InlineMath math="0" />**, because we can write it as <InlineMath math="5x^0" /> (since <InlineMath math="x^0 = 1" />).
+What about a constant (a number without variables), like <InlineMath math="5" />? A non-zero constant is considered to have a **degree** <InlineMath math="0" />, because we can write it as <InlineMath math="5x^0" /> (since <InlineMath math="x^0 = 1" />).
 
 Here is a summary of monomial degree examples in a table:
 
@@ -42,10 +48,6 @@ Here is a summary of monomial degree examples in a table:
 | <InlineMath math="0.12x" />             | <InlineMath math="1" /> | The exponent of <InlineMath math="x" /> is <InlineMath math="1" />.                     |
 | <InlineMath math="2.17x^3yz^3" />       | <InlineMath math="7" /> | Sum of exponents <InlineMath math="3+1+3=7" />.                   |
 | <InlineMath math="10" />                | <InlineMath math="0" /> | Non-zero constant. Can be written as <InlineMath math="10x^0" />. |
-
-### Definition of Monomial Degree
-
-The degree of a monomial (with a non-zero coefficient) is the sum of the exponents of all its variables. For a monomial <InlineMath math="ax^n" />, its degree is <InlineMath math="n" />.
 
 ## Determining the Degree of a Polynomial
 
@@ -59,7 +61,13 @@ The degree of a polynomial is determined from the degrees of its non-zero terms.
 2.  Determine the degree of each term.
 3.  Choose the highest degree among all the terms. That is the degree of the polynomial.
 
-**Example** 1:
+Combine <Highlight>like terms before finding the degree</Highlight>. High-power terms can cancel, so reading the largest exponent before simplifying can give the wrong degree. For example:
+
+<BlockMath math="x^4-x^4+3x^2+1=3x^2+1\quad\Rightarrow\quad\deg(3x^2+1)=2" />
+
+After simplification, the coefficient of the fourth power is zero. The highest remaining term has degree two.
+
+**Example 1**:
 
 Determine the degree of the following polynomial:
 
@@ -72,7 +80,7 @@ Determine the degree of the following polynomial:
 
 The highest degree among the terms is <InlineMath math="3" />. Therefore, the degree of this polynomial is <InlineMath math="3" />.
 
-**Example** 2:
+**Example 2**:
 
 Determine the degree of the following polynomial:
 
@@ -84,7 +92,7 @@ Determine the degree of the following polynomial:
 
 The highest degree among the terms is <InlineMath math="11" />. Therefore, the degree of this polynomial is <InlineMath math="11" />.
 
-**Example** 3:
+**Example 3**:
 
 Determine the degree of the following polynomial:
 
@@ -96,10 +104,6 @@ Determine the degree of the following polynomial:
 - The term <InlineMath math="1.72" /> has degree <InlineMath math="0" />.
 
 The highest degree is <InlineMath math="3" />. Therefore, the degree of this polynomial is <InlineMath math="3" />.
-
-### Definition of Polynomial Degree
-
-The degree of a polynomial is <Highlight>the highest degree of its terms</Highlight>. In <InlineMath math="4x^3 - 2x + 7" /> the three terms have degrees <InlineMath math="3" />, <InlineMath math="1" />, and <InlineMath math="0" />, so the highest one fixes the degree of the whole polynomial.
 
 ### Degree of the Zero Polynomial
 
@@ -118,11 +122,11 @@ Determine the degree of
 
 <BlockMath math="P(x,y)=4x^3y^2-7x^2y^5+6" />
 
-Then explain why the same rule cannot assign degree <InlineMath math="0" /> to the zero polynomial.
+Then explain why the same **degree rule** cannot assign degree <InlineMath math="0" /> to the zero polynomial.
 
 ### Worked Solution
 
-Find the total degree of each non-zero term:
+Find the **total degree of each non-zero term**:
 
 - <InlineMath math="4x^3y^2" /> has degree <InlineMath math="3+2=5" />.
 - <InlineMath math="-7x^2y^5" /> has degree <InlineMath math="2+5=7" />.
@@ -131,3 +135,7 @@ Find the total degree of each non-zero term:
 The largest term degree is <InlineMath math="7" />, so <InlineMath math="\deg P=7" />.
 
 The zero polynomial has no non-zero term whose degree could be chosen as the largest. Its degree is therefore undefined. Assigning it degree <InlineMath math="0" /> would make some polynomial-degree rules fail.
+
+For example, take <InlineMath math="P(x)=x" /> and <InlineMath math="Q(x)=0" />. Assigning degree zero to the zero polynomial would make the two sides of the product rule unequal:
+
+<BlockMath math="\underbrace{\deg(x\cdot0)}_{0}\ne\underbrace{\deg x+\deg0}_{1+0=1}" />

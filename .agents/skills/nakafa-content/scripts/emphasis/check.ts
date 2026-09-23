@@ -5,6 +5,8 @@ import {
   parseLessonMdx,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
+import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const LITERAL_CODE_TYPES = new Set(["code", "inlineCode"]);
@@ -12,6 +14,55 @@ const EMPHASIS_ARTIFACT_PATTERN = /\*\*/u;
 const EXCERPT_CHARACTER_LIMIT = 200;
 const STEP_LABEL_PATTERN = /^(?:Langkah|Step|Schritt)$/iu;
 const STEP_NUMBER_PATTERN = /^[\t ]*\d+(?:[\s.:)]|$)/u;
+const SENTENCE_PUNCTUATION_PATTERN = /[.!?]$/u;
+const WORD_PATTERN = /[\p{L}\p{N}]+/gu;
+
+/** Reads emphasis prose while leaving mathematics and code outside the test. */
+function phraseText(node: MdxNode): string {
+  if (node.type === "text" && Predicate.isString(node.value)) {
+    return node.value;
+  }
+  if (
+    LITERAL_CODE_TYPES.has(node.type) ||
+    node.name === "InlineMath" ||
+    node.name === "BlockMath"
+  ) {
+    return "";
+  }
+  return (node.children ?? []).map(phraseText).join("");
+}
+
+/** Locates unquoted rendered characters, including entity-decoded quotation marks. */
+function authoredTextOffsets(
+  source: string,
+  tree: MdxNode
+): number[] | undefined {
+  if (!tree.position) {
+    return undefined;
+  }
+  const rendered = renderedNodeRange(tree, source)?.rendered;
+  if (!rendered) {
+    return undefined;
+  }
+  const characters: string[] = [];
+  const offsets: number[] = [];
+  for (const [index, offset] of rendered.offsets.entries()) {
+    const previous = rendered.offsets[index - 1];
+    if (
+      previous !== undefined &&
+      source.slice(previous + 1, offset).includes("\n")
+    ) {
+      characters.push("\n");
+      offsets.push(offset);
+    }
+    characters.push(rendered.text.slice(index, index + 1));
+    offsets.push(offset);
+  }
+  const unquoted = maskBalancedQuotations(characters.join(""));
+  return offsets.filter(
+    (_, index) => unquoted.slice(index, index + 1).trim() !== ""
+  );
+}
 
 /**
  * Finds broken markers and numbered step labels split across an emphasis boundary.
@@ -68,5 +119,52 @@ export function findEmphasisArtifactIssues(
       });
     }
   });
+  return issues;
+}
+
+/** Finds authored sentence punctuation included in a long marked phrase. */
+export function findPhraseEmphasisIssues(
+  source: string,
+  tree: MdxNode = parseLessonMdx(source)
+): LessonVoiceIssue[] {
+  const issues: LessonVoiceIssue[] = [];
+  const unquoted = maskBalancedQuotations(source);
+  const authored = authoredTextOffsets(source, tree);
+
+  /** Reads authored body markers without changing assessed or quoted wording. */
+  function visit(node: MdxNode): void {
+    if (
+      node.type === "blockquote" ||
+      node.type === "mdxjsEsm" ||
+      LITERAL_CODE_TYPES.has(node.type)
+    ) {
+      return;
+    }
+    const marked =
+      node.type === "strong" || isHighlightComponentName(node.name);
+    const phrase = marked ? phraseText(node).trim() : "";
+    const start = node.position?.start?.offset ?? 0;
+    const end = node.position?.end?.offset ?? source.length;
+    if (
+      marked &&
+      (authored
+        ? authored.some((offset) => offset >= start && offset < end)
+        : unquoted.slice(start, end).trim() !== "") &&
+      SENTENCE_PUNCTUATION_PATTERN.test(phrase) &&
+      (phrase.match(WORD_PATTERN)?.length ?? 0) >= 4
+    ) {
+      issues.push({
+        column: node.position?.start?.column ?? 1,
+        excerpt: phrase.slice(0, EXCERPT_CHARACTER_LIMIT),
+        line: node.position?.start?.line ?? 1,
+        rule: "sentence-punctuation-emphasis",
+      });
+    }
+    for (const child of node.children ?? []) {
+      visit(child);
+    }
+  }
+
+  visit(tree);
   return issues;
 }

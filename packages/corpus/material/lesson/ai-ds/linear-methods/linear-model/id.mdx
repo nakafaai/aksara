@@ -57,13 +57,23 @@ Interaksi antara dua masukan:
 
 Suku seperti <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, dan <InlineMath math="ts" /> boleh bersifat nonlinear terhadap masukan. Setelah masukannya diamati, suku-suku tersebut menjadi koefisien yang diketahui, sehingga <Highlight>model tetap linear terhadap parameter yang belum diketahui</Highlight>.
 
+Ambil pengamatan <InlineMath math="(t,y)=(0,1),(1,3),(2,5)" /> dengan basis <InlineMath math="1,t" />. Setiap masukan yang diamati memberikan satu baris matriks desain.
+
+<MathContainer>
+<BlockMath math="\begin{pmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}1\\3\\5\end{pmatrix}" />
+<BlockMath math="a=1,\qquad a+b=3\Rightarrow b=2" />
+<BlockMath math="a+2b=1+2(2)=5" />
+</MathContainer>
+
+Pengamatan ketiga sesuai dengan dua pengamatan pertama. Satu vektor parameter <InlineMath math="(a,b)=(1,2)" /> menjelaskan ketiga nilai.
+
 ## Respons berganda
 
 Jika setiap masukan menghasilkan beberapa respons, letakkan vektor-vektor parameternya dalam matriks <InlineMath math="B" />. Untuk baris nilai basis <InlineMath math="\phi(t)^{\mathsf T}" />,
 
 <BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
 
-Setiap kolom <InlineMath math="B" /> menjelaskan satu respons. Bentuk ini tetap merupakan model linear karena setiap keluaran adalah kombinasi linear dari nilai basis yang sama dan telah diketahui.
+**Setiap kolom** <InlineMath math="B" /> menjelaskan satu respons. Bentuk ini tetap merupakan model linear karena setiap keluaran adalah kombinasi linear dari nilai basis yang sama dan telah diketahui.
 
 ## Hukum Gas Ideal
 
@@ -73,7 +83,7 @@ Pada suhu <InlineMath math="T" /> dan volume <InlineMath math="V" /> yang diketa
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
-Tekanan <InlineMath math="p" /> bersifat linear terhadap jumlah zat yang belum diketahui <InlineMath math="n" />. Besaran <InlineMath math="n" /> menyatakan jumlah zat dalam mol, sedangkan jumlah molekul atau partikel dihitung dengan <InlineMath math="N=nN_A" />.
+Tekanan <InlineMath math="p" /> bersifat linear terhadap **jumlah zat yang belum diketahui** <InlineMath math="n" />. Besaran <InlineMath math="n" /> menyatakan jumlah zat dalam mol, sedangkan jumlah molekul atau partikel dihitung dengan <InlineMath math="N=nN_A" />.
 
 Pengukuran tekanan berulang pada beberapa nilai <InlineMath math="(T_i,V_i)" /> yang diketahui menghasilkan satu baris matriks desain <InlineMath math="RT_i/V_i" /> untuk setiap pengamatan.
 
@@ -83,7 +93,7 @@ Model parameter yang benar-benar nonlinear berbentuk
 
 <BlockMath math="y=g(t,x)" />
 
-Dalam model ini, parameter dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter <InlineMath math="x_0" />, aproksimasi Taylor orde pertama memberikan
+Dalam model ini, parameter dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter <InlineMath math="x_0" />, **aproksimasi Taylor orde pertama** memberikan
 
 <BlockMath math="g(t,x) \approx g(t,x_0) +J_xg(t,x_0)(x-x_0)" />
 
@@ -94,7 +104,7 @@ Jacobian <InlineMath math="J_xg(t,x_0)" /> diketahui setelah <InlineMath math="x
 Sebelum menjelaskan arti setiap parameter hasil pencocokan, periksa hal-hal berikut:
 
 - kolom matriks desain merepresentasikan fungsi basis dan satuan yang dimaksud
-- data memuat cukup informasi bebas untuk menentukan parameter, biasanya <InlineMath math="\operatorname{rank}(A)=n" />
+- data memuat **cukup informasi bebas** untuk menentukan parameter, biasanya <InlineMath math="\operatorname{rank}(A)=n" />
 - skala fitur dan bilangan kondisi masih memungkinkan hasil hitung yang stabil
 - cara mengukur residual sesuai dengan asumsi tentang kesalahan pengukuran dan pencilan
 - linearisasi lokal diperiksa kembali terhadap model nonlinear aslinya

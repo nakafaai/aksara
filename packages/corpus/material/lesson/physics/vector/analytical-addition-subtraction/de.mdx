@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Die Resultierende aus Komponenten berechnen
 
-Mit der grafischen Methode lässt sich die Richtung der Resultierenden gut erkennen. Wie genau das Ergebnis ist, hängt jedoch von der Zeichnung ab. Die analytische Methode <Highlight>liefert ein präziseres Ergebnis</Highlight>, weil sie mit den Vektorkomponenten rechnet.
+Mit der grafischen Methode lässt sich die Richtung der Resultierenden gut erkennen. Wie genau das Ergebnis ist, hängt jedoch von der Zeichnung ab. Die analytische Methode <Highlight>liefert ein nachprüfbares numerisches Ergebnis</Highlight>, weil sie mit den Vektorkomponenten rechnet.
 
 Dazu wird jeder Vektor in seine [Vektorkomponenten](/de/faecher/physik/vektoren/komponenten) entlang der <InlineMath math="x" />- und <InlineMath math="y" />-Achse zerlegt. Anschließend werden die Komponenten achsenweise addiert und wieder zur Resultierenden zusammengesetzt.
 
@@ -23,7 +23,7 @@ Dazu wird jeder Vektor in seine [Vektorkomponenten](/de/faecher/physik/vektoren/
 
 ## Schritte für die Vektoraddition
 
-Angenommen, auf einen Körper wirken die Kräfte <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" /> und <InlineMath math="\vec{F}_3" />. Zunächst wird jede Kraft in eine horizontale und eine vertikale Komponente zerlegt.
+Angenommen, auf einen Körper wirken die Kräfte <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" /> und <InlineMath math="\vec{F}_3" />. Zunächst wird jede Kraft in **horizontale und vertikale Komponenten** zerlegt.
 
 Sind alle Komponenten bekannt, ergeben sich die Komponenten der Resultierenden zu:
 
@@ -42,7 +42,9 @@ Verwende den zweistelligen Arkustangens für den Winkel der Resultierenden gegen
 
 Anders als <InlineMath math="\tan^{-1}(R_y/R_x)" /> verwendet <InlineMath math="\operatorname{atan2}" /> die Vorzeichen beider Komponenten und ordnet die Richtung dadurch dem richtigen Quadranten zu.
 
-## Verschiebung in zwei Etappen
+Sind beide Komponenten null, ist die Resultierende der Nullvektor und ihre **Richtung ist nicht definiert**. Weise einem Rechner- oder Programmausgabewert für <InlineMath math="\operatorname{atan2}(0,0)" /> keine physikalische Richtung zu.
+
+### Verschiebung in zwei Etappen
 
 Eine Person legt einen Weg in zwei Etappen zurück. Die erste Etappe entspricht <InlineMath math="80\text{ m}" /> nach Osten und <InlineMath math="60\text{ m}" /> nach Norden. Die zweite Etappe entspricht <InlineMath math="120\text{ m}" /> nach Osten und <InlineMath math="90\text{ m}" /> nach Norden.
 
@@ -52,7 +54,7 @@ Eine Person legt einen Weg in zwei Etappen zurück. Die erste Etappe entspricht 
 | <InlineMath math="\vec{s}_2" /> | <InlineMath math="120\text{ m}" /> | <InlineMath math="90\text{ m}" /> |
 | <InlineMath math="\vec{R}" /> | <InlineMath math="200\text{ m}" /> | <InlineMath math="150\text{ m}" /> |
 
-Die Komponenten der Resultierenden sind:
+Addiere **Komponenten entlang derselben Achse**, um die Komponenten der Resultierenden zu erhalten:
 
 <MathContainer>
   <BlockMath math="R_x=80+120=200\text{ m}" />
@@ -63,19 +65,20 @@ Der Betrag der gesamten Verschiebung ist:
 
 <BlockMath math="\begin{aligned}
 R&=\sqrt{200^2+150^2} \\
-&=\sqrt{40000+22500} \\
+&=\sqrt{40\,000+22\,500} \\
+&=\sqrt{62\,500} \\
 &=250\text{ m}
 \end{aligned}" />
 
 Für ihre Richtung gilt:
 
-<BlockMath math="\tan\theta=\frac{150}{200}=0{,}75" />
+<BlockMath math="\tan\theta=\frac{150}{200}=0{,}75\quad\Rightarrow\quad\theta=\tan^{-1}(0{,}75)\approx36{,}9^\circ" />
 
-Damit liegt die Richtung bei <InlineMath math="\theta\approx36{,}9^\circ" /> nördlich von Osten. Die gesamte Verschiebung beträgt also <InlineMath math="250\text{ m}" /> unter einem Winkel von <InlineMath math="36{,}9^\circ" /> nördlich der Ostrichtung.
+Die gesamte Verschiebung beträgt <InlineMath math="250\text{ m}" /> unter einem Winkel von <InlineMath math="36{,}9^\circ" /> nördlich der Ostrichtung.
 
 ## Subtraktion mit Komponenten
 
-Die Vektorsubtraktion erfolgt ebenfalls Komponente für Komponente. Wenn <InlineMath math="\vec{C}=\vec{A}-\vec{B}" />, dann:
+Subtrahiere Vektoren **komponentenweise entlang derselben Achsen**. Wenn <InlineMath math="\vec{C}=\vec{A}-\vec{B}" />, dann:
 
 <MathContainer>
   <BlockMath math="C_x=A_x-B_x" />
@@ -90,5 +93,71 @@ Betrachten wir zum Beispiel <InlineMath math="\vec{A}=7\hat{i}+4\hat{j}" /> und 
 \end{aligned}" />
 
 Das negative Vorzeichen in <InlineMath math="-2\hat{j}" /> bedeutet, dass die resultierende <InlineMath math="y" />-Komponente nach unten zeigt.
+
+<LineEquation
+  cameraPosition={[3.5, 1.8, 12]}
+  cameraTarget={[3.5, 1.8, 0]}
+  title={<>Die Differenz zweier Vektoren</>}
+  description={<>Der Pfeil <InlineMath math="\vec{C}" /> von der Spitze von <InlineMath math="\vec{B}" /> zur Spitze von <InlineMath math="\vec{A}" /> hat die Komponenten <InlineMath math="(5,-2)" />. Der violette Pfeil am Ursprung ist derselbe Vektor, nur parallel verschoben.</>}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.55 * ((7) - (0)), y: (0) + 0.55 * ((4) - (0)), z: (0) + 0.55 * ((0) - (0)) }, { x: 7, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        at: 1,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: 6, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B" />,
+        at: 1,
+        offset: [-0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 2, y: 6, z: 0 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        at: 1,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: -2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        at: 1,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    }
+  ]}
+/>
+
+Die Vorzeichen ergeben eine Richtung nach rechts und unten. Für die Pfeillänge addierst du die quadrierten Komponenten. Beim Quadrieren verschwindet das Minuszeichen.
+
+<BlockMath math="\lvert\vec{C}\rvert=\sqrt{5^2+(-2)^2}=\sqrt{25+4}=\sqrt{29}" />
+
 
 Für die Subtraktion ist also keine neue Regel nötig. Die Achsen bleiben gleich, gleichartige Komponenten werden voneinander abgezogen, und die Vorzeichen zeigen anschließend die Richtung der resultierenden Komponenten an.

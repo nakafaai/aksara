@@ -1,5 +1,9 @@
 # Voice and scope
 
+- Use this teacher voice for lessons and pedagogical worked answers. An article
+  uses a professional scientific-journal register and keeps its argument,
+  evidence, and measured uncertainty. An assessed question keeps the exam's
+  source-owned language and must not be rewritten into either register.
 - Write like a teacher guiding students, not like a formal textbook, marketing
   page, or internal content note.
 - German learner-facing author voice uses `du`, the matching verb forms, and

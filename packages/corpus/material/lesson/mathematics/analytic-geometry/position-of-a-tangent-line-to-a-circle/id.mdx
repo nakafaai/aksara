@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Garis Singgung Tegak Lurus dengan Jari-jari di Titik Singgung
 
-Bayangkan kamu mengendarai sepeda mengitari trek berbentuk lingkaran. Jika kamu keluar dari trek tanpa membelokkan setang, arah gerakmu pada saat itu mengikuti **garis singgung** trek. Garis singgung adalah satu-satunya garis yang melalui titik tersebut.
+Bayangkan kamu bergerak mengitari trek berbentuk lingkaran. Pada setiap posisi, **arah gerak sesaat** searah dengan garis singgung di posisi itu. Banyak garis dapat melalui satu titik, tetapi hanya satu yang menyinggung lingkaran pada titik tersebut.
 
 Secara matematis, garis singgung bertemu lingkaran tepat di satu titik yang disebut **titik singgung**. Garis tersebut selalu **tegak lurus** <Highlight>terhadap jari-jari yang menuju titik singgung</Highlight>.
 
@@ -85,8 +85,8 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -148,7 +148,7 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
   cameraPosition={[0, 0, 12]}
 />
 
-Untuk lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> dan titik singgung <InlineMath math="T(x_1,y_1)" />, ikuti langkah berikut.
+Untuk lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> berpusat di <InlineMath math="C(a,b)" /> dan titik singgung <InlineMath math="T(x_1,y_1)" />, ikuti langkah berikut.
 
 **Langkah 1**: Pastikan <InlineMath math="T" /> berada pada lingkaran.
 
@@ -156,7 +156,7 @@ Untuk lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> dan titik singgung <In
 
 **Langkah 2**: Vektor jari-jari menjadi vektor normal garis singgung.
 
-<BlockMath math="\vec{OT}=(x_1-a,\,y_1-b)" />
+<BlockMath math="\overrightarrow{CT}=(x_1-a,\,y_1-b)" />
 
 **Langkah 3**: Gunakan vektor normal tersebut pada persamaan garis yang melalui <InlineMath math="T" />.
 
@@ -216,8 +216,8 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -244,8 +244,8 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -415,8 +415,8 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 3,
-          y: (points[1].y - points[0].y) * 3,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -448,8 +448,8 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           };
         });
         const extension = {
-          x: (points[1].x - points[0].x) * 4,
-          y: (points[1].y - points[0].y) * 4,
+          x: (points[1].x - points[0].x) * 0.35,
+          y: (points[1].y - points[0].y) * 0.35,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -557,7 +557,7 @@ Kedua garis melalui <InlineMath math="B(2,6)" /> dan menyentuh lingkaran tepat s
 
 ## Latihan
 
-Setiap soal menanyakan apakah garis yang diberikan menyinggung lingkaran dan, jika iya, di titik mana. Pakai syarat singgung untuk memeriksa garisnya sebelum menentukan titik singgungnya.
+Perhatikan **informasi penentu garis singgung** pada setiap soal. Titik pada lingkaran menentukan satu garis singgung. Gradien menentukan dua garis sejajar, sedangkan titik luar menentukan dua garis melalui titik itu. Gunakan hubungan sejajar atau tegak lurus untuk mendapatkan gradien bila perlu.
 
 1. Tentukan persamaan garis singgung lingkaran <InlineMath math="x^2 + y^2 = 25" /> di titik <InlineMath math="(3, 4)" />.
 
@@ -569,92 +569,102 @@ Setiap soal menanyakan apakah garis yang diberikan menyinggung lingkaran dan, ji
 
 ### Pembahasan Lengkap
 
-1. **Penyelesaian**:
+**Pembahasan 1**:
 
-   Untuk lingkaran <InlineMath math="x^2 + y^2 = 25" /> dengan pusat <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="r = 5" />, serta titik singgung <InlineMath math="T(3,4)" />.
+Untuk lingkaran <InlineMath math="x^2 + y^2 = 25" /> dengan pusat <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="r = 5" />, serta titik singgung <InlineMath math="T(3,4)" />.
 
-   Menggunakan rumus garis singgung: <InlineMath math="(x-a)(x_1-a) + (y-b)(y_1-b) = r^2" />
+Menggunakan rumus garis singgung: <InlineMath math="(x-a)(x_1-a) + (y-b)(y_1-b) = r^2" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(x-0)(3-0) + (y-0)(4-0) \\ &amp;= 25 \end{aligned}" />
-     <BlockMath math="3x + 4y = 25" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-0)(3-0) + (y-0)(4-0) \\ &amp;= 25 \end{aligned}" />
+  <BlockMath math="3x + 4y = 25" />
+</MathContainer>
 
-   Jadi persamaan garis singgungnya adalah <InlineMath math="3x + 4y = 25" />.
+Jadi persamaan garis singgungnya adalah <InlineMath math="3x + 4y = 25" />.
 
-2. **Penyelesaian**:
+**Pembahasan 2**:
 
-   Garis yang sejajar dengan <InlineMath math="y = 2x + 5" /> memiliki gradien <InlineMath math="m = 2" />.
+Garis yang sejajar dengan <InlineMath math="y = 2x + 5" /> memiliki gradien <InlineMath math="m = 2" />.
 
-   Untuk lingkaran <InlineMath math="x^2 + y^2 = 16" /> dengan <InlineMath math="r = 4" />, menggunakan rumus:
+Untuk lingkaran <InlineMath math="x^2 + y^2 = 16" /> dengan <InlineMath math="r = 4" />, menggunakan rumus:
 
-   <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-   <MathContainer>
-     <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
-     <BlockMath math="y = 2x \pm 4\sqrt{5}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y = 2x \pm 4\sqrt{5}" />
+</MathContainer>
 
-   Jadi ada dua garis singgung: <InlineMath math="y = 2x + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 4\sqrt{5}" />.
+Jadi ada dua garis singgung: <InlineMath math="y = 2x + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 4\sqrt{5}" />.
 
-3. **Penyelesaian**:
+**Pembahasan 3**:
 
-   Lingkaran <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> memiliki pusat <InlineMath math="(1,-2)" /> dan <InlineMath math="r^2 = 8" />.
+Lingkaran <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> memiliki pusat <InlineMath math="(1,-2)" /> dan <InlineMath math="r^2 = 8" />.
 
-   Persamaan garis kutub titik <InlineMath math="(4,2)" />:
+Persamaan garis kutub titik <InlineMath math="(4,2)" />:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;(x-1)(4-1) \\ &amp;\quad{}+ (y-(-2))(2-(-2)) = 8 \end{aligned}" />
-     <BlockMath math="3(x-1) + 4(y+2) = 8" />
-     <BlockMath math="3x - 3 + 4y + 8 = 8" />
-     <BlockMath math="3x + 4y = 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-1)(4-1) \\ &amp;\quad{}+ (y-(-2))(2-(-2)) = 8 \end{aligned}" />
+  <BlockMath math="3(x-1) + 4(y+2) = 8" />
+  <BlockMath math="3x - 3 + 4y + 8 = 8" />
+  <BlockMath math="3x + 4y = 3" />
+</MathContainer>
 
-   Geser pusat ke titik asal dengan <InlineMath math="u=x-1" /> dan <InlineMath math="v=y+2" />. Persamaan lingkaran dan garis kutub berubah menjadi:
+Geser pusat ke titik asal dengan <InlineMath math="u=x-1" /> dan <InlineMath math="v=y+2" />. Persamaan lingkaran dan garis kutub berubah menjadi:
 
-   <MathContainer>
-     <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
-     <BlockMath math="u=\frac{8-4v}{3}" />
-     <BlockMath math="25v^2-64v-8=0" />
-     <BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
+  <BlockMath math="u=\frac{8-4v}{3}" />
+  <BlockMath math="\left(\frac{8-4v}{3}\right)^2+v^2=8" />
+<BlockMath math="64-64v+16v^2+9v^2=72" />
+<BlockMath math="25v^2-64v-8=0" />
+  <BlockMath math="v=\frac{64\pm\sqrt{(-64)^2-4(25)(-8)}}{50}=\frac{64\pm12\sqrt{34}}{50}" />
+<BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
+</MathContainer>
 
-   Substitusi balik menghasilkan dua titik singgung:
+Substitusi balik menghasilkan dua titik singgung:
 
-   <MathContainer>
-     <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
-     <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
+  <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
+</MathContainer>
 
-   Gradien dari <InlineMath math="(4,2)" /> menuju kedua titik tersebut adalah <InlineMath math="12-2\sqrt{34}" /> dan <InlineMath math="12+2\sqrt{34}" />. Jadi, persamaan garis singgungnya:
+Gradien dari <InlineMath math="(4,2)" /> menuju kedua titik tersebut adalah <InlineMath math="12-2\sqrt{34}" /> dan <InlineMath math="12+2\sqrt{34}" />. Jadi, persamaan garis singgungnya:
 
-   <MathContainer>
-     <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
-     <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
-   </MathContainer>
+Untuk setiap titik singgung, gunakan **selisih ordinat dibagi selisih absis** terhadap titik luar <InlineMath math="(4,2)" />:
 
-4. **Penyelesaian**:
+<MathContainer>
+  <BlockMath math="m_1=\frac{y_{T_1}-2}{x_{T_1}-4}=\frac{-68+6\sqrt{34}}{-51-8\sqrt{34}}=12-2\sqrt{34}" />
+  <BlockMath math="m_2=\frac{y_{T_2}-2}{x_{T_2}-4}=\frac{-68-6\sqrt{34}}{-51+8\sqrt{34}}=12+2\sqrt{34}" />
+</MathContainer>
 
-   Ubah persamaan lingkaran ke bentuk standar dengan melengkapkan kuadrat:
+<MathContainer>
+  <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
+  <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
-     <BlockMath math="\begin{aligned} &amp;(x^2 - 4x + 4) + (y^2 + 6y + 9) \\ &amp;= 3 + 4 + 9 \end{aligned}" />
-     <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
-   </MathContainer>
+**Pembahasan 4**:
 
-   Pusat <InlineMath math="(2,-3)" />, jari-jari <InlineMath math="r = 4" />.
+Ubah persamaan lingkaran ke bentuk standar dengan melengkapkan kuadrat:
 
-   Garis <InlineMath math="x + 2y = 7" /> dapat ditulis <InlineMath math="y = -\frac{1}{2}x + \frac{7}{2}" />, sehingga gradiennya <InlineMath math="m_1 = -\frac{1}{2}" />.
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 4x + 4) + (y^2 + 6y + 9) \\ &amp;= 3 + 4 + 9 \end{aligned}" />
+  <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
+</MathContainer>
 
-   Garis yang tegak lurus memiliki gradien <InlineMath math="m = 2" />.
+Pusat <InlineMath math="(2,-3)" />, jari-jari <InlineMath math="r = 4" />.
 
-   Untuk lingkaran dengan pusat <InlineMath math="(2,-3)" />, persamaan garis singgung dengan gradien <InlineMath math="2" />:
+Garis <InlineMath math="x + 2y = 7" /> dapat ditulis <InlineMath math="y = -\frac{1}{2}x + \frac{7}{2}" />, sehingga gradiennya <InlineMath math="m_1 = -\frac{1}{2}" />.
 
-   <MathContainer>
-     <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
-     <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
-     <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
-   </MathContainer>
+Garis yang tegak lurus memiliki gradien <InlineMath math="m = 2" />.
 
-   Jadi dua garis singgung: <InlineMath math="y = 2x - 7 + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 7 - 4\sqrt{5}" />.
+Untuk lingkaran dengan pusat <InlineMath math="(2,-3)" />, persamaan garis singgung dengan gradien <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
+  <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
+</MathContainer>
+
+Jadi dua garis singgung: <InlineMath math="y = 2x - 7 + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 7 - 4\sqrt{5}" />.

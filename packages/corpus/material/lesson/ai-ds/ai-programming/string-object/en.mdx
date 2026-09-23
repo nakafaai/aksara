@@ -3,7 +3,7 @@ export const metadata = {
     description: "Represent text with Python strings, write long string literals across several source lines, and combine literals or variables.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -16,6 +16,8 @@ Strings have three main characteristics you need to understand:
 1. **Ordered sequence:** Each character has a fixed position.
 2. **Written as a literal:** Single or double quotes delimit the text in source code.
 3. **Type `str`:** Python stores the resulting value as a string.
+
+Python counts positions by **Unicode code point**, which need not match one visible symbol. For example, `len("é")` is `1`, but `len("e\u0301")` is `2`: the second form contains `e` and a separate combining accent.
 
 <CodeBlock
   data={[
@@ -46,11 +48,11 @@ The interactive prompt shows the string's representation, so Python may choose s
 
 ## Empty Strings and the Str Function
 
-Python supports empty strings and conversion from other data types to strings. An empty string contains no characters and has length zero, while `str()` builds a text representation of any value.
+Python supports empty strings and **conversion from other data types** to strings. An empty string contains no characters and has **length zero**, while `str()` builds a text representation of any value.
 
 ### Empty Strings
 
-An empty string contains no characters and has length zero. You can write one with a pair of quotes containing nothing.
+An empty string contains no characters and has **length zero**. You can write one with a pair of quotes containing nothing.
 
 <CodeBlock
   data={[
@@ -67,7 +69,7 @@ An empty string contains no characters and has length zero. You can write one wi
 
 ### The Str Function
 
-The `str()` function returns a readable string representation of a value. Use it when text must include a number or another non-string value.
+The `str()` function returns a **readable string representation** of a value. Use it when text must include a number or another non-string value.
 
 <CodeBlock
   data={[
@@ -88,11 +90,11 @@ The `str()` function returns a readable string representation of a value. Use it
 
 ## Multiline Strings
 
-Python distinguishes between splitting source code across lines and storing actual newline characters inside a string. A line can wrap in the source without adding a newline to the value, while a triple-quoted string keeps every line break.
+Python distinguishes between splitting source code across lines and storing **actual newline characters** inside a string. A line can wrap in the source without adding a newline to the value, while a triple-quoted string keeps every line break.
 
 ### Line Continuation Character
 
-A backslash at the end of a physical source line explicitly continues the statement. In this example, the continued statement contains two adjacent literals, which Python concatenates without adding a newline to the value.
+A backslash at the end of a physical source line **explicitly continues the statement**. In this example, the continued statement contains two adjacent literals, which Python concatenates without adding a newline to the value.
 
 <CodeBlock
   data={[
@@ -114,7 +116,7 @@ xxxyyy`
 
 ### Line Continuation with Parentheses
 
-Inside parentheses, Python continues a statement across line breaks without a backslash. Comments or spaces at the end of a line do not break this continuation, and moving a line does not require moving a continuation character with it.
+Inside parentheses, Python continues a statement across line breaks **without a backslash**. Comments or spaces at the end of a line do not break this continuation, and moving a line does not require moving a continuation character with it.
 
 <CodeBlock
   data={[
@@ -138,7 +140,7 @@ xxxyyy`
 
 ### Triple Quotes
 
-Triple-quoted literals can store actual line breaks. Those line breaks become `\n` characters in the string value.
+Triple-quoted literals can store **actual line breaks**. Those line breaks become `\n` characters in the string value.
 
 <CodeBlock
   data={[
@@ -165,11 +167,11 @@ Triple double quotes behave the same way. Choose the delimiter that makes the te
 
 ## String Literal Concatenation
 
-Python can combine string literals while reading the source or combine string values while the program runs. Adjacent literals join with no operator between them, while values held in variables need an operator.
+Python can combine string literals while reading the source or combine string values while the program runs. **Adjacent literals join** with **no operator** between them, while values held in variables need an operator.
 
 ### Adjacent Literal Concatenation
 
-Python joins adjacent string literals while it reads the source code. This shortcut works only for text written directly as literals.
+Python **joins adjacent string literals** while it reads the source code. This shortcut works only for text written directly as literals.
 
 <CodeBlock
   data={[
@@ -189,7 +191,7 @@ Python joins adjacent string literals while it reads the source code. This short
 
 ### Plus Operator
 
-The `+` operator concatenates two string values at runtime.
+The `+` operator concatenates **two string values** at runtime.
 
 <CodeBlock
   data={[
@@ -205,7 +207,7 @@ The `+` operator concatenates two string values at runtime.
 
 ### Multiplication Operator
 
-The `*` operator repeats a string an integer number of times.
+The `*` operator **repeats a string** an integer number of times.
 
 <CodeBlock
   data={[
@@ -221,11 +223,11 @@ The `*` operator repeats a string an integer number of times.
 
 ## String Variable Concatenation
 
-Variables hold values. Use an operator such as `+` when you combine those values. Adjacent literals are joined while the source is read, which is why `"a" "b"` works but `name other` does not.
+Variables hold values. Use an operator such as `+` when you **combine those values**. Adjacent literals are joined while the source is read, which is why `"a" "b"` works but `name other` does not.
 
 ### Using Operators
 
-Use `+` to concatenate string values and `*` with an integer to repeat one. Simply placing variable names next to each other is invalid syntax.
+Use `+` to concatenate string values and `*` with an integer to repeat one. Simply placing variable names next to each other is **invalid syntax**.
 
 <CodeBlock
   data={[
@@ -260,7 +262,7 @@ Use `+` to concatenate string values and `*` with an integer to repeat one. Simp
 
 ### Common Errors
 
-The following forms fail while Python parses the code because there is no operator between a variable and the next expression.
+The following forms fail while Python parses the code because there is **no operator between a variable** and the next expression.
 
 <CodeBlock
   data={[

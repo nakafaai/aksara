@@ -5,16 +5,16 @@ export const metadata = {
   datePublished: "2026-01-31",
 };
 
-**Collision Condition**
+#### Collision condition
 
-A collision between the rocket and the aircraft carrier occurs when both are at the same position at the same time. Therefore, we must equate the rocket's position function with the aircraft carrier's position function.
+A collision between the rocket and the aircraft carrier occurs when both are at the **same position at the same time**. Therefore, we must equate the rocket's position function with the aircraft carrier's position function.
 
 <MathContainer>
   <BlockMath math="s_R(t) = s_K(t)" />
   <BlockMath math="4000 - t^2 = 60t" />
 </MathContainer>
 
-**Determining the Collision Time**
+#### Determining the collision time
 
 We rearrange the quadratic equation into standard form to solve for <InlineMath math="t" />.
 
@@ -28,4 +28,8 @@ From this factorization, we obtain two possible values for <InlineMath math="t" 
 
 <BlockMath math="t = -100 \quad \text{or} \quad t = 40" />
 
-Since time (<InlineMath math="t" />) cannot be negative, the valid value is <InlineMath math="40\text{ seconds}" />. Thus, the collision occurs exactly at <InlineMath math="40\text{ seconds}" />.
+Since time (<InlineMath math="t" />) **cannot be negative**, the valid value is <InlineMath math="40\text{ seconds}" />. Thus, the collision occurs exactly at <InlineMath math="40\text{ seconds}" />.
+
+Check both positions at the same time:
+
+<BlockMath math="\begin{aligned}s_R(40)&=4000-40^2=2400\text{ m}\\s_K(40)&=60(40)=2400\text{ m}\end{aligned}" />

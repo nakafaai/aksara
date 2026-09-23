@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Mehrere Werte in einem Objekt speichern
 
-Wähle die Sammlung danach aus, wie das Programm auf die Daten zugreifen und sie verändern soll.
+Wähle die Sammlung danach aus, wie das Programm **auf die Daten zugreifen und sie verändern** soll.
 
 Einige Sammlungen können Objekte verschiedener Typen enthalten. Für jeden Sammlungstyp gelten jedoch eigene Regeln. Schlüssel eines Dictionaries und Elemente eines Sets müssen zum Beispiel unverändert hashbar bleiben, solange sie in der Sammlung liegen. Der Sammlungstyp bestimmt außerdem, ob sich sein Inhalt nach der Erstellung ändern lässt.
 
@@ -24,14 +24,14 @@ Python stellt fünf häufig verwendete eingebaute Sammlungen bereit:
 
 ## Listen in Python
 
-Eine Liste bewahrt die Reihenfolge ihrer Elemente und ihr Inhalt lässt sich verändern. Eine Liste darf Werte verschiedener Typen enthalten, eine einheitliche Elementform ist jedoch meist leichter zu verarbeiten.
+Eine Liste bewahrt die **Reihenfolge ihrer Elemente** und ihr Inhalt lässt sich verändern. Eine Liste darf Werte verschiedener Typen enthalten, eine einheitliche Elementform ist jedoch meist leichter zu verarbeiten.
 
 Anders als ein niedrigstufiges Array fester Größe kann eine Python-Liste wachsen und schrumpfen. Sie speichert Verweise auf Python-Objekte. Eine Änderung an einem verschachtelten Objekt kann deshalb über jeden Verweis auf dieses Objekt sichtbar sein.
 
 
 ### Eigenschaften von Listen
 
-Eine Liste hat drei Eigenschaften, die den Umgang mit ihr bestimmen. Die Tabelle nennt jede davon und gibt ein kurzes Beispiel.
+Achte auf **Reihenfolge, gemischte Typen und Veränderlichkeit**. Geordnet bedeutet, dass jedes Element eine Position hat. Die Werte sind deshalb nicht automatisch der Größe nach sortiert.
 
 | Eigenschaft | Erklärung | Beispiel |
 |---------------|-------------|---------|
@@ -41,7 +41,7 @@ Eine Liste hat drei Eigenschaften, die den Umgang mit ihr bestimmen. Die Tabelle
 
 ### Listen schreiben
 
-Ein Listenliteral verwendet eckige Klammern und trennt die Elemente durch Kommas. Eine Liste kann Werte unterschiedlicher Typen oder weitere Listen enthalten.
+Ein Listenliteral verwendet **eckige Klammern** und trennt die Elemente durch Kommas. Eine Liste kann Werte unterschiedlicher Typen oder weitere Listen enthalten.
 
 <CodeBlock
   data={[
@@ -49,20 +49,20 @@ Ein Listenliteral verwendet eckige Klammern und trennt die Elemente durch Kommas
       language: "python",
       filename: "list_creation.py",
       code: `# Verschiedene Listen nach Datentyp
-a = [True, False, True]              # Ausgabe: [True, False, True] # list of bools
-b = [1, 2, 3]                        # Ausgabe: [1, 2, 3] # list of ints
-c = [1.5, 2.5, 3.5]                  # Ausgabe: [1.5, 2.5, 3.5] # list of floats
-d = ['red', 'green', 'blue']         # Ausgabe: ['red', 'green', 'blue'] # list of strings
+a = [True, False, True]              # Wert: [True, False, True]
+b = [1, 2, 3]                        # Wert: [1, 2, 3]
+c = [1.5, 2.5, 3.5]                  # Wert: [1.5, 2.5, 3.5]
+d = ['red', 'green', 'blue']         # Wert: ['red', 'green', 'blue']
 
 # Leere Listen
-empty1 = []                          # Ausgabe: []
-empty2 = list()                      # Ausgabe: []
+empty1 = []                          # Wert: []
+empty2 = list()                      # Wert: []
 
 # Heterogene Liste (gemischte Datentypen)
-mixed = [False, 2, 3.5, 'blue']      # Ausgabe: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']      # Wert: [False, 2, 3.5, 'blue']
 
 # Verschachtelte Liste
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Ausgabe: [1, [2.5, False, 'red'], 3.5, 'blue']`
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Wert: [1, [2.5, False, 'red'], 3.5, 'blue']`
     }
   ]}
 />
@@ -104,7 +104,7 @@ print('nested[1][2][1] =', nested[1][2][1])  # Ausgabe: nested[1][2][1] = e`
 
 ## Slicing mit Schrittweite
 
-Mit Slicing wird ein Teil einer Liste ausgewählt. Die Schrittweite legt den Abstand zwischen den ausgewählten Elementen fest.
+Mit Slicing wird ein Teil einer Liste ausgewählt. Die Schrittweite legt den **Abstand zwischen den ausgewählten Elementen** fest.
 
 
 Die vollständige Syntax lautet `list[start:stop:step]`:
@@ -141,7 +141,7 @@ Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungen
 
 ## Listen und Strings
 
-Listen stellen Operationen zum Lesen und Verändern von Daten bereit. Für den Elementzugriff verwenden sie dieselbe Indizierungs- und Slicing-Syntax wie Strings.
+Listen stellen Operationen zum Lesen und Verändern von Daten bereit. Für den Elementzugriff verwenden sie **dieselbe Indizierungs- und Slicing-Syntax** wie Strings.
 
 <CodeBlock
   data={[
@@ -192,7 +192,10 @@ Der Hauptunterschied liegt in der Veränderlichkeit. Ein String kann nach seiner
         C --> I[remove]
         D --> J[sort]
         D --> K[reverse]
-        D --> L[copy]
+        A --> L[copy]
+        A --> M[Suchen]
+        M --> N[index]
+        M --> O[count]
   `}
 />
 
@@ -257,6 +260,25 @@ print('Copied list:', copied)               # Ausgabe: Copied list: [0, 1, 2, 4,
   ]}
 />
 
+Die Methode `copy()` erzeugt eine **neue äußere Liste**, während verschachtelte Objekte gemeinsam genutzt werden. Eine Änderung an `salinan[0][0]` erscheint in beiden Listen. Eine angehängte Zeile verändert dagegen nur die äußere Liste `salinan`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "shallow_copy.py",
+      code: `original = [[1, 2], [3, 4]]
+salinan = original.copy()
+salinan[0][0] = 99
+print(original)  # Output: [[99, 2], [3, 4]]
+print(salinan)   # Output: [[99, 2], [3, 4]]
+
+salinan.append([5, 6])
+print(len(original), len(salinan))  # Output: 2 3`
+    }
+  ]}
+/>
+
 ## Häufige Listenformen
 
 Eine Liste kann leer sein, gemischte Typen enthalten oder weitere Listen enthalten:
@@ -279,14 +301,14 @@ Eine Liste kann leer sein, gemischte Typen enthalten oder weitere Listen enthalt
       language: "python",
       filename: "special_lists.py",
       code: `# Leere Listen - zwei Erstellungsmethoden
-a = []                                       # Ausgabe: []
-b = list()                                   # Ausgabe: []
+a = []                                       # Wert: []
+b = list()                                   # Wert: []
 
 # Heterogene Liste - verschiedene Datentypen
-mixed = [False, 2, 3.5, 'blue']             # Ausgabe: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']             # Wert: [False, 2, 3.5, 'blue']
 
 # Verschachtelte Liste - Liste innerhalb der Liste
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Ausgabe: [1, [2.5, False, 'red'], 3.5, 'blue']
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Wert: [1, [2.5, False, 'red'], 3.5, 'blue']
 
 print('Empty list 1:', a)
 print('Empty list 2:', b)
@@ -300,11 +322,11 @@ Verschachtelte Listen können Zeilen, Bäume oder kleine tabellenartige Struktur
 
 ## Weitere Sammlungen
 
-Neben Listen stellt Python drei weitere eingebaute Sammlungen bereit, und jede davon gibt ein anderes Versprechen zu Reihenfolge, Duplikaten und nachträglicher Änderbarkeit. Ein Tupel legt seine Positionen fest, ein Dictionary ordnet jedem eindeutigen Schlüssel genau einen Wert zu, und ein Set speichert <Highlight>nur eindeutige Elemente</Highlight>, ohne eine Reihenfolge zuzusichern.
+Drei weitere häufig verwendete Sammlungen haben unterschiedliche Regeln für Reihenfolge, Duplikate und nachträgliche Änderungen. Ein Tupel legt seine Positionen fest, ein Dictionary ordnet jedem eindeutigen Schlüssel genau einen Wert zu, und ein Set speichert <Highlight>nur eindeutige Elemente</Highlight>, ohne eine Reihenfolge zuzusichern.
 
 ### Tupel
 
-Ein Tupel ähnelt einer Liste, aber seine Positionen können nach der Erstellung nicht ersetzt werden. Mehrere Werte lassen sich in einem Tupel zusammenfassen und später wieder auf einzelne Variablen verteilen.
+Ein Tupel ähnelt einer Liste, aber seine **Positionen können nach der Erstellung nicht ersetzt werden**. Mehrere Werte lassen sich in einem Tupel zusammenfassen und später wieder auf einzelne Variablen verteilen.
 
 Ein Tupel kann seine eigenen Elemente nicht ersetzen. Ein Element darf jedoch auf ein veränderliches Objekt verweisen, dessen Inhalt sich weiterhin ändern lässt.
 
@@ -320,8 +342,8 @@ Ein Tupel kann seine eigenen Elemente nicht ersetzen. Ein Element darf jedoch au
       language: "python",
       filename: "tuple_operations.py",
       code: `# Tupelsyntax - zwei Erstellungsmethoden
-t1 = (0, 1, 2)                               # Ausgabe: t1 = (0, 1, 2)
-t2 = 3, 4, 5                                 # Ausgabe: t2 = (3, 4, 5)
+t1 = (0, 1, 2)                               # Wert: t1 = (0, 1, 2)
+t2 = 3, 4, 5                                 # Wert: t2 = (3, 4, 5)
 print('t1 =', t1)
 print('t2 =', t2)
 
@@ -355,7 +377,7 @@ print('Nach dem Ändern der inneren Liste:', t) # Ausgabe: Nach dem Ändern der 
 
 ### Dictionary
 
-Ein Dictionary speichert Schlüssel-Wert-Paare. Jeder Schlüssel muss eindeutig sein und unverändert hashbar bleiben, solange er im Dictionary liegt. Werte dürfen mehrfach vorkommen und auf veränderliche Objekte verweisen. Ein Dictionary-Literal verwendet `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
+Ein Dictionary speichert **Schlüssel-Wert-Paare**. Jeder Schlüssel muss eindeutig sein und unverändert hashbar bleiben, solange er im Dictionary liegt. Werte dürfen mehrfach vorkommen und auf veränderliche Objekte verweisen. Ein Dictionary-Literal verwendet `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
 
 <CodeBlock
   data={[
@@ -380,7 +402,7 @@ print('Nach dem Hinzufügen von David:', kontakte)
 
 ### Mengen in Python
 
-Ein Set speichert eindeutige, hashbare Elemente und unterstützt mathematische Mengenoperationen. Es bietet keine Elementindizes und garantiert keine Iterationsreihenfolge. Nichtleere Set-Literale verwenden `{}`. Ein leeres Set entsteht mit `set()`, weil `{}` ein leeres Dictionary erzeugt.
+Ein Set speichert eindeutige, hashbare Elemente und unterstützt mathematische Mengenoperationen. Es bietet keine Elementindizes und **garantiert keine Iterationsreihenfolge**. Nichtleere Set-Literale verwenden `{}`. Ein leeres Set entsteht mit `set()`, weil `{}` ein leeres Dictionary erzeugt.
 
 <CodeBlock
   data={[
@@ -412,7 +434,7 @@ print('gerade & ungerade =', gerade & ungerade) # Ausgabe: gerade & ungerade = s
 
 ### Vergleich der Sammlungstypen
 
-Die vier eingebauten Sammlungstypen unterscheiden sich in Reihenfolge, Veränderbarkeit und Umgang mit doppelten Werten. Die Tabelle stellt sie gegenüber, damit du den passenden Typ aus der Aufgabe auswählst.
+Die vier eingebauten Sammlungstypen unterscheiden sich in **Reihenfolge, Veränderbarkeit und Umgang mit doppelten Werten**. Die Tabelle stellt sie gegenüber, damit du den passenden Typ aus der Aufgabe auswählst.
 
 | Sammlung | Syntax | Geordnet | Veränderlich | Duplikate | Hauptverwendung |
 |-----------|---------|---------|---------|------------|------------|

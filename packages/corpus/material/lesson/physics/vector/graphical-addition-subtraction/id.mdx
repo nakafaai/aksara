@@ -10,7 +10,7 @@ export const metadata = {
   subject: "Vektor",
 };
 
-## Resultan sebagai Panah Pengganti
+## Menjumlahkan Vektor secara Grafis
 
 Ketika beberapa perpindahan terjadi berurutan, atau beberapa vektor bekerja pada satu titik, jumlah vektornya dapat diwakili oleh satu panah yang disebut **resultan**. Untuk gaya yang bekerja pada titik berbeda, gaya resultan menjelaskan efek translasi bersih, tetapi efek putarnya harus diperiksa terpisah melalui momen gaya.
 
@@ -18,11 +18,13 @@ Metode grafis mencari resultan dengan sketsa berskala. Panjang panah dibuat seba
 
 > Dalam metode grafis, ketelitian hasil bergantung pada skala sketsa, penggaris, dan pengukuran sudut.
 
-## Metode Segitiga Kepala ke Ekor
+### Metode Segitiga Kepala ke Ekor
 
 Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama, lalu letakkan pangkal vektor kedua di ujung vektor pertama. Resultan ditarik dari pangkal vektor pertama ke ujung vektor kedua.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
   title={<>Penjumlahan Kepala-ke-Ekor</>}
   description={
     <>
@@ -31,58 +33,138 @@ Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama
       menghubungkan titik awal ke titik akhir.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 1, 0];
     const b = [2, 3, 0];
     const resultant = a.map((component, index) => component + b.at(index));
 
     return [
       {
-        from: [0, 0, 0],
-        to: a,
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((a)[0]) - (0)), y: (0) + 0.5 * (((a)[1]) - (0)), z: (0) + 0.5 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: a,
-        to: resultant,
-        color: "#d97706",
-        label: <InlineMath math="b" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.35, 0.45, 0.2],
-      },
+      points: [{ x: (a)[0], y: (a)[1], z: (a)[2] }, { x: ((a)[0]) + 0.5 * (((resultant)[0]) - ((a)[0])), y: ((a)[1]) + 0.5 * (((resultant)[1]) - ((a)[1])), z: ((a)[2]) + 0.5 * (((resultant)[2]) - ((a)[2])) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.35, 0.45, 0.2],
+        anchorX: "center",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="R" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.25, 0.75, 0.35],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="R" />,
+        at: 1,
+        offset: [0.25, 0.75, 0.35],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
-  cameraPosition={[8, 6, 10]}
-  cameraTarget={[3, -0.7, 0]}
 />
 
-Jika seseorang berjalan <InlineMath math="4\text{ m}" /> ke timur lalu <InlineMath math="3\text{ m}" /> ke utara, resultannya bukan <InlineMath math="7\text{ m}" /> ke satu arah yang sama. Resultannya adalah panah miring dari titik awal ke titik akhir.
+Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan koordinat adalah meter: perpindahan pertama <InlineMath math="(4,1)" />, lalu perpindahan kedua <InlineMath math="(2,3)" />. Titik akhir berada di <InlineMath math="(6,4)" />. Kamu menambahkan perubahan posisi pada setiap sumbu.
 
-## Metode Jajargenjang untuk Dua Vektor Satu Pangkal
+<BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-Metode ini cocok untuk gaya yang bekerja pada satu benda dari titik yang sama, misalnya dua orang menarik cincin dengan tali pada arah berbeda. Pada ilustrasi, kedua gaya berangkat dari titik yang sama, sehingga diagonalnya menunjukkan gabungan kedua tarikan.
+### Metode Jajargenjang untuk Dua Vektor Satu Pangkal
 
-Langkahnya:
+Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**. Contohnya, dua tali menarik sebuah cincin. Pada model, salinan vektor mempertahankan panjang dan arah panah asli. Ikuti sisi bawah lalu sisi kanan, atau sisi kiri lalu sisi atas: kedua jalur berakhir pada titik yang sama.
 
-- Buat kedua vektor dari pangkal yang sama.
-- Salin vektor pertama di ujung vektor kedua dan salin vektor kedua di ujung vektor pertama.
-- Tarik diagonal dari pangkal bersama ke sudut jauh jajargenjang.
+<LineEquation
+  cameraPosition={[3, 2, 9]}
+  cameraTarget={[3, 2, 0]}
+  title={<>Diagonal Jajargenjang</>}
+  description={<>Panah ungu menghubungkan pangkal bersama ke titik akhir kedua jalur. Vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> tetap sama meskipun digeser sejajar.</>}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: 3, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [-0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 2, y: 3, z: 0 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 4, y: 1, z: 0 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="R" />,
+        at: 1,
+        offset: [-0.4, 0.35, 0],
+        anchorX: "left",
+      }],
+    }
+  ]}
+/>
 
-## Metode Poligon untuk Banyak Vektor
+### Metode Poligon untuk Banyak Vektor
 
 Urutan menggambar boleh diatur ulang selama <Highlight>besar dan arah tiap vektor tidak berubah</Highlight>. Resultan selalu ditarik dari pangkal vektor pertama yang dipilih ke ujung vektor terakhir.
 
@@ -90,12 +172,62 @@ Urutan menggambar boleh diatur ulang selama <Highlight>besar dan arah tiap vekto
 
 Jika poligon vektor kembali ke titik awal, jumlah vektornya nol. Untuk gaya, resultan gaya nol berarti percepatan translasi nol. Agar benda juga tidak mengalami percepatan sudut, resultan momen gaya harus nol.
 
+Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> setelah dua perpindahan pada model. Panah ketiga mengikuti diagonal kembali ke titik awal. Perjalanan tetap memiliki panjang, tetapi perpindahan total nol.
+
+<BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
 ## Pengurangan Vektor secara Grafis
 
-Pengurangan vektor tidak perlu aturan baru. Ubah pengurangan menjadi penjumlahan dengan vektor negatif.
+Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sama, komponen <InlineMath math="\vec{b}=(2,3)" /> berubah menjadi <InlineMath math="-\vec{b}=(-2,-3)" />.
 
-<BlockMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />
+<ContentStack>
+  <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-Untuk membuat <InlineMath math="\vec{a}-\vec{b}" />, buat <InlineMath math="\vec{a}" /> terlebih dahulu. Setelah itu, buat <InlineMath math="-\vec{b}" /> dari ujung <InlineMath math="\vec{a}" />. Vektor <InlineMath math="-\vec{b}" /> sama panjang dengan <InlineMath math="\vec{b}" />, tetapi arahnya dibalik.
-
-Hasil akhirnya tetap ditarik dari pangkal vektor pertama ke ujung vektor terakhir. Dengan cara ini, pengurangan vektor tetap mengikuti aturan kepala-ke-ekor yang sama.
+  <LineEquation
+    cameraPosition={[2, -0.5, 7]}
+    cameraTarget={[2, -0.5, 0]}
+    title={<>Menambahkan Vektor Negatif</>}
+    description={<>Dari ujung <InlineMath math="\vec{a}" /> di <InlineMath math="(4,1)" />, bergerak dua satuan ke kiri dan tiga satuan ke bawah. Resultan berakhir di <InlineMath math="(2,-2)" />.</>}
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 4, y: 1, z: 0 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: -2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-b" />,
+        at: 1,
+        offset: [0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: -2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a-b" />,
+        at: 1,
+        offset: [-0.5, -0.2, 0],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+</ContentStack>

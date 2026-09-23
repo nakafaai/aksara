@@ -3,7 +3,7 @@ export const metadata = {
     description: "Nutze Pythons math-Modul, numerische Built-ins, Importstile, Definitionsbereiche und Konstanten in überprüften Berechnungen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "KI-Programmierung",
 };
 
@@ -15,15 +15,15 @@ Ein `import` lädt ein Modul bei Bedarf und bindet einen Namen, über den dein C
 
 ## Das Modul Math
 
-Das Modul `math` stellt reellwertige Funktionen und Konstanten bereit. Es akzeptiert kompatible reelle Zahlen wie `int` und `float`, nimmt bei Operationen wie `sqrt()` aber keine komplexen Werte an. Verwende `cmath`, wenn der Definitionsbereich oder das Ergebnis komplex sein kann.
+Das Modul `math` stellt **reellwertige Funktionen und Konstanten** bereit. Es akzeptiert kompatible reelle Zahlen wie `int` und `float`, nimmt bei Operationen wie `sqrt()` aber keine komplexen Werte an. Verwende `cmath`, wenn der Definitionsbereich oder das Ergebnis komplex sein kann.
 
 ## Das Modul Math importieren
 
-Python bietet mehrere Möglichkeiten, ein Modul zu importieren, und die Wahl prägt das Aussehen jedes späteren Aufrufs. Du kannst das ganze Modul importieren, einzelne Namen daraus oder das Modul beim Import umbenennen.
+Python bietet mehrere Möglichkeiten, ein Modul zu importieren, und die Wahl prägt das **Aussehen jedes späteren Aufrufs**. Du kannst das ganze Modul importieren, einzelne Namen daraus oder das Modul beim Import umbenennen.
 
 ### Basisimport mit Namespace
 
-Die Anweisung `import math` importiert das Modul unter dem Namensraum `math`. Funktionen und Konstanten werden anschließend über Namen wie `math.sqrt` und `math.pi` aufgerufen.
+Die Anweisung `import math` importiert das Modul unter dem **Namensraum `math`**. Funktionen und Konstanten werden anschließend über Namen wie `math.sqrt` und `math.pi` aufgerufen.
 
 <CodeBlock
   data={[
@@ -46,7 +46,7 @@ print(math.pi)  # Ausgabe: 3.141592653589793
 
 ### Importieren mit Alias
 
-Ein Alias bindet das Modul an einen anderen lokalen Namen. Nutze ihn nur, wenn er einer etablierten Konvention folgt oder einen echten Namenskonflikt löst. `math` selbst ist bereits kurz und eindeutig.
+Ein Alias bindet das Modul an einen **anderen lokalen Namen**. Nutze ihn nur, wenn er einer etablierten Konvention folgt oder einen echten Namenskonflikt löst. `math` selbst ist bereits kurz und eindeutig.
 
 <CodeBlock
   data={[
@@ -59,7 +59,7 @@ Ein Alias bindet das Modul an einen anderen lokalen Namen. Nutze ihn nur, wenn e
 print(m.sqrt(9))  # Ausgabe: 3.0
 print(m.pi)       # Ausgabe: 3.141592653589793
 
-# Der ursprüngliche Name „math“ ist nicht mehr verfügbar
+# Dieser Import bindet m, nicht math
 # math.sqrt(9)  # NameError: name 'math' is not defined`
     }
   ]}
@@ -90,7 +90,7 @@ print(pi)       # Ausgabe: 3.141592653589793
 
 ### Spezifische Funktionen importieren
 
-Importiere nur die Funktionen, die das Programm verwendet. Der Funktionsname bleibt ohne Modulpräfix verfügbar, während die Importzeile weiterhin seine Herkunft nennt.
+Importiere **nur die Funktionen**, die das Programm verwendet. Der Funktionsname bleibt ohne Modulpräfix verfügbar, während die Importzeile weiterhin seine Herkunft nennt.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ print(sqrt(9))  # Ausgabe: 3.0
 
 ### Importieren mit Funktionsalias
 
-Eine importierte Funktion kann einen Alias erhalten, um einen Namenskonflikt aufzulösen oder einer etablierten lokalen Konvention zu folgen.
+Eine importierte Funktion kann einen Alias erhalten, um einen **Namenskonflikt aufzulösen** oder einer etablierten lokalen Konvention zu folgen.
 
 <CodeBlock
   data={[
@@ -136,11 +136,11 @@ print(fac(5))  # Ausgabe: 120
 
 ## Eingebaute Funktionen und Modulfunktionen
 
-Python stellt numerische Built-ins wie `abs()` und `round()` ohne Import bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
+Python stellt numerische Built-ins wie `abs()` und `round()` **ohne Import** bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
 
 ### Absolutwertfunktion
 
-Für reelle Zahlen liefert `abs()` einen nichtnegativen Betrag. Für eine komplexe Zahl liefert die Funktion den Abstand zum Ursprung.
+Für reelle Zahlen liefert `abs()` einen nichtnegativen Betrag. Für eine komplexe Zahl liefert die Funktion den **Abstand zum Ursprung**.
 
 <CodeBlock
   data={[
@@ -163,7 +163,7 @@ Für `4 + 3j` ergibt sich <InlineMath math="5.0" />, denn <InlineMath math="|4+3
 
 ### Rundungsfunktion
 
-Für Pythons eingebaute Zahlentypen rundet `round()` auf den nächsten Wert und wählt bei einem exakten Gleichstand die gerade Möglichkeit. Ein Aufruf ohne `ndigits` liefert für einen Float einen Integer. Das zweite Argument bestimmt die Dezimalstelle.
+Für Pythons eingebaute Zahlentypen rundet `round()` auf den nächsten Wert und wählt bei einem exakten Gleichstand **die gerade Möglichkeit**. Ein Aufruf ohne `ndigits` liefert für einen Float einen Integer. Das zweite Argument bestimmt die Dezimalstelle.
 
 <CodeBlock
   data={[
@@ -173,7 +173,7 @@ Für Pythons eingebaute Zahlentypen rundet `round()` auf den nächsten Wert und 
       code: `# Standardrundung
 print(round(-3.8))  # Ausgabe: -4
 print(round(3.5))   # Ausgabe: 4
-print(round(4.5))   # Ausgabe: 4 (nicht 5!)
+print(round(4.5))   # Ausgabe: 4
 
 # Runden mit spezifischer Präzision
 print(round(3.141592653589793, 3))  # Ausgabe: 3.142
@@ -186,11 +186,11 @@ Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `rou
 
 ## Funktionen und Konstanten im Mathematikmodul
 
-Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben. Ein Wert außerhalb dieses Bereichs löst einen `ValueError` aus, statt eine Zahl zurückzugeben.
+Jede `math`-Funktion hat **einen Definitionsbereich**. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben. Ein Wert außerhalb dieses Bereichs löst einen `ValueError` aus, statt eine Zahl zurückzugeben.
 
 ### Funktionen für Quadratwurzeln und Logarithmen
 
-Das Beispiel ruft die Wurzel- und die Logarithmusfunktion auf und zeigt, wie Python eine Eingabe außerhalb des Definitionsbereichs meldet.
+Das Beispiel ruft die Wurzel- und die Logarithmusfunktion auf und zeigt, wie Python eine **Eingabe außerhalb des Definitionsbereichs** meldet.
 
 <CodeBlock
   data={[
@@ -200,26 +200,32 @@ Das Beispiel ruft die Wurzel- und die Logarithmusfunktion auf und zeigt, wie Pyt
       code: `import math
 
 # Quadratwurzelfunktion
-print(f"Quadratwurzel von 16: {math.sqrt(16)}")  # Ausgabe: 4.0
+print(f"Quadratwurzel von 16: {math.sqrt(16)}")  # Ausgabe: Quadratwurzel von 16: 4.0
 
 # Exponentialfunktion (e^x)
-print(f"e hoch 2: {math.exp(2)}")  # Ausgabe: 7.38905609893065
+print(f"e hoch 2: {math.exp(2)}")  # Ausgabe: e hoch 2: 7.38905609893065
 
 # Natürliche Logarithmusfunktion
-print(f"ln(10): {math.log(10)}")  # Ausgabe: 2.302585092994046
+print(f"ln(10): {math.log(10)}")  # Ausgabe: ln(10): 2.302585092994046
 
 # Basis der Logarithmusfunktion 10
-print(f"log10(100): {math.log10(100)}")  # Ausgabe: 2.0
+print(f"log10(100): {math.log10(100)}")  # Ausgabe: log10(100): 2.0
 
 # Logarithmus mit spezifischer Basis
-print(f"log2(8): {math.log(8, 2)}")  # Ausgabe: 3.0`
+print(f"log2(8): {math.log(8, 2)}")  # Ausgabe: log2(8): 3.0
+
+try:
+    math.sqrt(-1)
+except ValueError as error:
+    print(type(error).__name__)
+# Ausgabe: ValueError`
     }
   ]}
 />
 
 ### Trigonometriefunktionen
 
-Die Trigonometriefunktionen arbeiten im Bogenmaß. Das Beispiel rechnet einen Winkel um und ruft die drei Hauptfunktionen auf.
+Die Trigonometriefunktionen arbeiten **im Bogenmaß**. Das Beispiel rechnet einen Winkel um und ruft die drei Hauptfunktionen auf.
 
 <CodeBlock
   data={[
@@ -231,21 +237,21 @@ Die Trigonometriefunktionen arbeiten im Bogenmaß. Das Beispiel rechnet einen Wi
 # Trigonometriefunktionen (Eingabe im Bogenmaß)
 angle_rad = math.pi / 4  # 45 Grad im Bogenmaß
 
-print(f"sin(π/4): {math.sin(angle_rad)}")  # Ausgabe: 0.7071067811865475
-print(f"cos(π/4): {math.cos(angle_rad)}")  # Ausgabe: 0.7071067811865476
-print(f"tan(π/4): {math.tan(angle_rad)}")  # Ausgabe: 0.9999999999999999
+print(f"sin(π/4): {math.sin(angle_rad)}")  # Ausgabe: sin(π/4): 0.7071067811865475
+print(f"cos(π/4): {math.cos(angle_rad)}")  # Ausgabe: cos(π/4): 0.7071067811865476
+print(f"tan(π/4): {math.tan(angle_rad)}")  # Ausgabe: tan(π/4): 0.9999999999999999
 
 # Grad in Bogenmaß umrechnen
 angle_deg = 45
 angle_rad = math.radians(angle_deg)
-print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 0.7853981633974483`
+print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 45 Grad = 0.7853981633974483 Bogenmaß`
     }
   ]}
 />
 
 ### Aufrunden Abrunden und Fakultät
 
-Aufrunden, Abrunden und Fakultät beantworten verschiedene Fragen. Das Beispiel wendet jede Funktion an und gibt das Ergebnis aus.
+Aufrunden, Abrunden und Fakultät beantworten **verschiedene Fragen**. Das Beispiel wendet jede Funktion an und gibt das Ergebnis aus.
 
 <CodeBlock
   data={[
@@ -257,20 +263,20 @@ Aufrunden, Abrunden und Fakultät beantworten verschiedene Fragen. Das Beispiel 
 number = 4.7
 
 # ceil: kleinste ganze Zahl >= x
-print(f"ceil(4.7): {math.ceil(number)}")    # Ausgabe: 5
+print(f"ceil(4.7): {math.ceil(number)}")    # Ausgabe: ceil(4.7): 5
 
 # floor: größte ganze Zahl <= x
-print(f"floor(4.7): {math.floor(number)}")  # Ausgabe: 4
+print(f"floor(4.7): {math.floor(number)}")  # Ausgabe: floor(4.7): 4
 
 # Fakultät
-print(f"5!: {math.factorial(5)}")  # Ausgabe: 120`
+print(f"5!: {math.factorial(5)}")  # Ausgabe: 5!: 120`
     }
   ]}
 />
 
 ### Mathematische Konstanten
 
-Das Modul stellt außerdem Konstanten bereit, darunter endliche mathematische Konstanten und besondere Gleitkommawerte.
+Das Modul stellt außerdem Konstanten bereit, darunter endliche mathematische Konstanten und **besondere Gleitkommawerte**.
 
 <CodeBlock
   data={[
@@ -301,11 +307,11 @@ print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
 
 ## Auswahl der richtigen Importmethode
 
-Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist, und importiere nur Namen, die das Programm tatsächlich verwendet. Eine einzelne Funktion, die einmal gebraucht wird, liest sich als `from math import sqrt` gut, während mehrere Aufrufe mit `import math` klarer bleiben.
+Wähle einen Importstil, der den **Modulnamen bei jedem Aufruf** nennt, wenn dieser Kontext nötig ist, und importiere nur Namen, die das Programm tatsächlich verwendet. Eine einzelne Funktion, die einmal gebraucht wird, liest sich als `from math import sqrt` gut, während mehrere Aufrufe mit `import math` klarer bleiben.
 
 ### Leitfaden zur Auswahl von Importmethoden
 
-Wähle den Importstil danach, wie viele Namen du brauchst und wie lesbar der Aufruf bleibt. Die Liste unten ordnet die Möglichkeiten von der ausdrücklichsten zur knappsten.
+Wähle den Importstil danach, wie viele Namen du brauchst und **wie lesbar der Aufruf bleibt**. Die Liste unten ordnet die Möglichkeiten von der ausdrücklichsten zur knappsten.
 
 1. **Bevorzuge `import math`**, wenn das Programm mehrere Elemente nutzt. Aufrufe wie `math.sqrt()` nennen das Modul direkt neben der Funktion.
 2. **Verwende `import math as m` bewusst** und nur, wenn der Alias eine dokumentierte lokale Konvention ist.
@@ -313,6 +319,10 @@ Wähle den Importstil danach, wie viele Namen du brauchst und wie lesbar der Auf
 4. **Vermeide `from math import *`**, weil die importierten Namen kein Modulpräfix tragen und bereits verwendete Namen ersetzen können.
 
 ### Abstände und Flächen berechnen
+
+Für die Punkte `(0, 0)` und `(3, 4)` ist der **euklidische Abstand** die Wurzel aus der Summe der quadrierten Koordinatendifferenzen. Bei den Seiten `3`, `4` und `5` stimmt Herons Formel mit der Flächenformel für rechtwinklige Dreiecke überein.
+
+<BlockMath math="\begin{aligned}d&=\sqrt{(3-0)^2+(4-0)^2}=5\\s&=\frac{3+4+5}{2}=6\\A&=\sqrt{6(6-3)(6-4)(6-5)}=\sqrt{36}=6\end{aligned}" />
 
 <CodeBlock
   data={[
@@ -327,6 +337,8 @@ def calculate_euclidean_distance(x1, y1, x2, y2):
 
 def calculate_triangle_area(a, b, c):
     """Berechnet die Dreiecksfläche mit der heronischen Formel."""
+    if not all(math.isfinite(side) for side in (a, b, c)):
+        raise ValueError("Seitenlängen müssen endlich sein")
     if min(a, b, c) <= 0:
         raise ValueError("Seitenlängen müssen positiv sein")
 
@@ -353,4 +365,4 @@ print(f"Dreiecksfläche bei Seitenlängen 3, 4 und 5: {area}")`
   ]}
 />
 
-In klarem numerischem Code lassen sich drei Entscheidungen direkt erkennen: Welcher Namensraum besitzt eine Operation, welchen Eingabebereich akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.
+In klarem numerischem Code lassen sich drei Entscheidungen direkt erkennen: Welcher Namensraum besitzt eine Operation, **welchen Eingabebereich** akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.

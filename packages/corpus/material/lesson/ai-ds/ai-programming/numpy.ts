@@ -1,6 +1,10 @@
 export const aiProgrammingNumpy = {
   arrayNumpy: {
-    evidenceUrls: ["https://numpy.org/doc/stable/"],
+    evidenceUrls: [
+      "https://numpy.org/doc/stable/reference/generated/numpy.empty.html",
+      "https://numpy.org/doc/stable/reference/generated/numpy.fromfunction.html",
+      "https://numpy.org/doc/stable/reference/random/generator.html",
+    ],
     routeSlugs: {
       de: "numpy-arrays",
       en: "array-numpy",
@@ -11,6 +15,7 @@ export const aiProgrammingNumpy = {
   arrayOperationNumpy: {
     evidenceUrls: [
       "https://numpy.org/doc/stable/user/basics.broadcasting.html",
+      "https://numpy.org/doc/stable/reference/generated/numpy.dot.html",
     ],
     routeSlugs: {
       de: "array-operationen-mit-numpy",
@@ -20,7 +25,10 @@ export const aiProgrammingNumpy = {
     slug: "array-operation-numpy",
   },
   attributeDataTypeNumpy: {
-    evidenceUrls: ["https://numpy.org/doc/stable/user/basics.types.html"],
+    evidenceUrls: [
+      "https://numpy.org/doc/stable/user/basics.types.html",
+      "https://numpy.org/doc/stable/reference/generated/numpy.ndarray.nbytes.html",
+    ],
     routeSlugs: {
       de: "attribute-und-datentypen-in-numpy",
       en: "attribute-data-type-numpy",

@@ -5,38 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Es gibt <InlineMath math="3" /> Kästchen.
-Wir wählen zwei davon aus, denn jedes Kästchen darf höchstens eine Murmel enthalten.
+Wir nummerieren die Kästchen von links nach rechts mit 1, 2 und 3. Jedes **Kästchenpaar ist gleich wahrscheinlich**. Deshalb zählen wir Paare und nicht die Reihenfolge, in der die Murmeln hineingelegt werden.
 
-Von links nach rechts nummerieren wir sie mit <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />.
+| Belegte Kästchen | Kästchen 1 | Kästchen 2 | Kästchen 3 | Benachbart? |
+| --- | --- | --- | --- | --- |
+| 1, 2 | Belegt | Belegt | Leer | Ja |
+| 2, 3 | Leer | Belegt | Belegt | Ja |
+| 1, 3 | Belegt | Leer | Belegt | Nein |
 
-**Ergebnisraum**
+Es gibt drei Paare. Nur bei den Kästchen 1 und 3 bleibt ein **leeres Kästchen dazwischen**. Nur dieses Paar erfüllt die Bedingung.
 
-Jedes Kästchenpaar ist gleich wahrscheinlich. Deshalb ist die gesuchte Wahrscheinlichkeit die Anzahl der günstigen Paare geteilt durch die Anzahl aller Paare.
-
-So viele Möglichkeiten gibt es, <InlineMath math="2" /> aus <InlineMath math="3" /> Kästchen auszuwählen:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}n(S)&=C(3,2)\\&=\frac{3!}{2!(3-2)!}\\&=\frac{3\times2!}{2!\times1!}\\&=3\end{aligned}" />
-</MathContainer>
-
-Die möglichen belegten Paare sind:
--   Kästchen <InlineMath math="\{1, 2\}" />: benachbart
--   Kästchen <InlineMath math="\{2, 3\}" />: benachbart
--   Kästchen <InlineMath math="\{1, 3\}" />: nicht benachbart
-
-**Gewünschtes Ereignis**
-
-Das gesuchte Ereignis <InlineMath math="A" /> tritt nur beim Paar <InlineMath math="\{1, 3\}" /> ein.
-
-<BlockMath math="n(A) = 1" />
-
-**Wahrscheinlichkeit**
-
-Damit ergibt sich die gesuchte Wahrscheinlichkeit:
-
-<MathContainer>
-  <BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{1}{3}" />
-</MathContainer>
-
-Die Wahrscheinlichkeit für zwei nicht benachbarte belegte Kästchen beträgt also <InlineMath math="\frac{1}{3}" />.
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac13" />

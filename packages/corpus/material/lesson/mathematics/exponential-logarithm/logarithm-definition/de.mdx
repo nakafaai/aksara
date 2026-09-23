@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Logarithmen bestimmen einen unbekannten Exponenten
 
-<Highlight>Ein Logarithmus kehrt das Potenzieren um</Highlight>. Wenn <InlineMath math="a^c=b" /> gilt, liefert <InlineMath math="\log_a b" /> den Exponenten <InlineMath math="c" />.
+Ein Logarithmus bestimmt einen **unbekannten Exponenten**. Wenn <InlineMath math="a^c=b" /> gilt, liefert <InlineMath math="\log_a b" /> den Exponenten <InlineMath math="c" />.
 
 <BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
 
@@ -35,7 +35,7 @@ Jede Zeile beschreibt denselben Zusammenhang auf zwei Arten:
 | <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
 | <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
 
-Beim Umwandeln bleibt die Basis unverändert. Das Ergebnis der Potenzierung wird zum Argument des Logarithmus, und der Exponent wird zum Wert des Logarithmus.
+Beim Umwandeln bleibt **die Basis unverändert**. Das Ergebnis der Potenzierung wird zum Argument des Logarithmus, und der Exponent wird zum Wert des Logarithmus. In der dritten Zeile ergibt der negative Exponent einen Bruch.
 
 ## Zehnerlogarithmus und natürlicher Logarithmus
 
@@ -43,7 +43,7 @@ Ein Logarithmus zur Basis <InlineMath math="10" /> heißt **Zehnerlogarithmus**.
 
 <BlockMath math="\log_{10}x=\log x" />
 
-Ein Logarithmus zur Basis <InlineMath math="e" /> heißt **natürlicher Logarithmus** und wird als <InlineMath math="\ln x" /> geschrieben. Beide Schreibweisen sind Sonderfälle von <InlineMath math="\log_a x" />.
+Ein Logarithmus zur Basis <InlineMath math="e" /> heißt **natürlicher Logarithmus** und wird als <InlineMath math="\ln x" /> geschrieben. Die Konstante <InlineMath math="e\approx2{,}71828" /> heißt Eulersche Zahl. Beide Schreibweisen sind Sonderfälle von <InlineMath math="\log_a x" />.
 
 ## Einen unbekannten Exponenten bestimmen
 
@@ -51,7 +51,7 @@ Eine idealisierte Kultur beginnt mit <InlineMath math="2{.}000" /> Bakterien und
 
 <BlockMath math="P(x)=2{.}000\cdot2^x" />
 
-Um zu bestimmen, wann das kontinuierliche Modell <InlineMath math="100{.}000" /> erreicht, setzen wir den Funktionswert gleich dem Zielwert:
+Um zu bestimmen, wann das kontinuierliche Modell <InlineMath math="100{.}000" /> erreicht, setzen wir die Bakterienzahl gleich dem Zielwert. Vor dem Bestimmen des Exponenten teilen wir beide Seiten durch die **Anfangsmenge**:
 
 <MathContainer>
   <BlockMath math="100{.}000=2{.}000\cdot2^x" />
@@ -71,3 +71,13 @@ Die kontinuierliche Kurve erreicht <InlineMath math="100{.}000" /> nach ungefäh
 </MathContainer>
 
 Das Ziel wird also erstmals nach <InlineMath math="6\text{ Stunden}" /> erreicht oder überschritten. Der Logarithmus löst die Gleichung. Der Kontext entscheidet, wie das reelle Ergebnis interpretiert werden muss.
+
+Im Graphen liegt der Zielwert **zwischen zwei stündlichen Beobachtungen**. Der Punkt nach fünf Stunden liegt unter dem Zielwert, der Punkt nach sechs Stunden darüber.
+
+<FunctionChart
+  a={2}
+  p={2000}
+  n={7}
+  title="Zeit bis zum Zielwert"
+  description="Die waagerechte Achse zeigt die Zeit in Stunden. Vergleiche die Bakterienzahlen nach fünf und sechs Stunden."
+/>

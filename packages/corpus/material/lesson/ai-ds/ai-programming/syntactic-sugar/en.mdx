@@ -3,19 +3,19 @@ export const metadata = {
   description: "Write Python expressions with list comprehensions, lambda functions, and augmented assignment operators.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
 ## Shorter Notation for Common Code Patterns
 
-<Highlight>Syntactic sugar is a concise notation for behavior that could also be expressed more explicitly.</Highlight> It can remove repetitive ceremony, but shorter syntax is useful only when the reader can still see what the code does.
+Syntactic sugar is <Highlight>concise notation</Highlight> for behavior that could also be expressed more explicitly. It can remove repetitive ceremony, but shorter syntax is useful only when the reader can still see what the code does.
 
 Python offers several compact forms for common patterns. They do not automatically make a program run faster, and they are not interchangeable in every detail. Choose the form that makes your intent easiest to understand.
 
 ## List Comprehension
 
-A list comprehension creates a new list from any iterable. It can transform values, filter them, or combine both operations in one expression.
+A list comprehension creates a **new list from an iterable**. It can transform values, filter them, or combine both operations in one expression.
 
 List comprehension has several syntax forms:
 
@@ -40,7 +40,7 @@ In the third form, the if-else expression appears before the `for` loop. In the 
 
 ### List Comprehension Implementation
 
-The following examples separate two cases: a conditional expression and a filter.
+The following examples separate two cases: **a conditional expression and a filter**.
 
 <CodeBlock
   data={[
@@ -94,17 +94,17 @@ print(y_standard)
 
 List comprehensions can express a simple transformation or filter compactly. They are often efficient, but <Highlight>clarity matters more than saving lines</Highlight>: use an ordinary loop when the expression becomes difficult to read. Their notation resembles mathematical set-builder notation, although a Python list preserves order and duplicate values while a mathematical set does not.
 
-For example, `[i**2 for i in x]` can be read as "square of i for each i in x", which is very similar to mathematical notation <InlineMath math="\{i^2 : i \in X\}" />.
+For example, `[i**2 for i in range(4)]` produces `[0, 1, 4, 9]`. This list of squares relates to the mathematical notation <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
 
 ## Lambda Functions
 
-A lambda expression creates a function object without a `def` statement. It is most useful for a small function passed directly as an argument.
+A lambda expression creates a **function object** without a `def` statement. It is most useful for a small function passed directly as an argument.
 
 The body contains exactly one expression, and that expression becomes the return value. It may call a function such as `print()`, but it cannot contain statement forms such as `return`, a regular assignment, `for`, or `while`. A lambda can be assigned to a variable, but a named `def` is usually clearer when the function will be reused.
 
 ### How to Use Lambda
 
-A lambda writes a small function in one expression. The example shows the syntax and assigns one to a name.
+A lambda writes a small function in **one expression**. The example shows the syntax and assigns one to a name.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ def add_normal(x, y):
 
 ### Lambda with Built In Functions
 
-Short lambdas work well as callbacks, especially a `key` function passed to `sorted()`. `map()` and `filter()` also accept them, although an equivalent comprehension may be easier to read:
+Short lambdas work well as callbacks, especially a **sorting key** passed to `sorted()`. `map()` and `filter()` also accept them, although an equivalent comprehension may be easier to read:
 
 <CodeBlock
   data={[
@@ -160,11 +160,11 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Other Syntactic Sugar Features
 
-Python has other compact syntax for common operations. These forms can improve readability, but they do not guarantee better runtime performance. Each form replaces a longer statement without changing the result the program computes.
+Python has other compact syntax for common operations. These forms can improve readability, but they **do not guarantee better runtime performance**. Check behavioral equivalence before replacing an expanded form, especially when an operation can mutate an object.
 
 ### Assignment Operators
 
-Python provides more concise assignment operators for common operations:
+Python provides more concise **assignment operators** for common operations:
 
 <CodeBlock
   data={[
@@ -192,7 +192,7 @@ For immutable numbers, these examples produce the same values as their expanded 
 
 ### Negative Indexing
 
-Python allows the use of negative indices to access elements from the back:
+Python allows the use of negative indices to **access elements from the back**:
 
 <CodeBlock
   data={[
@@ -218,7 +218,7 @@ print(data[:-2])   # Output: [10, 20, 30]`
 
 ### Multiple Assignment
 
-Python allows assignment of multiple variables in a single line:
+Python allows **assignment of multiple variables** in a single line:
 
 <CodeBlock
   data={[
@@ -252,4 +252,4 @@ print(f"After: a={a}, b={b}")  # Output: After: a=10, b=5`
 | Assignment | `a = a + 5` | `a += 5` |
 | Access last element | `data[len(data) - 1]` | `data[-1]` |
 
-Use the compact form only when a reader can identify the operation without tracing hidden control flow or side effects. Otherwise, use the explicit form.
+Use the compact form only when a reader can **identify the operation** without tracing hidden control flow or side effects. Otherwise, use the explicit form.

@@ -14,15 +14,13 @@ Bayangan titik <InlineMath math="(x,y)" /> yang dicerminkan terhadap titik <Inli
 
 Jika pusat pencerminan bukan titik asal, kita memerlukan translasi selain perkalian dengan matriks <InlineMath math="2 \times 2" />.
 
-Gunakan tiga operasi berikut:
+**Geser ke pusat, balik tanda, lalu geser kembali**. Tabel ini melacak koordinat pada masing-masing operasi:
 
-1. Kurangi koordinat titik <InlineMath math="(x,y)" /> dengan koordinat pusat agar diperoleh <InlineMath math="(x-a, y-b)" />.
-2. <Highlight>Cerminkan titik yang sudah ditranslasikan terhadap titik asal</Highlight> menggunakan matriks berikut:
-
-   <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
-3. Translasikan kembali hasilnya dengan menambahkan koordinat pusat pencerminan <InlineMath math="(a,b)" />.
-
-Secara matematis, jika <InlineMath math="(x', y')" /> adalah bayangan dari <InlineMath math="(x,y)" />:
+| Operasi | Koordinat |
+| --- | --- |
+| Kurangi pusat | <InlineMath math="(x-a,y-b)" /> |
+| Cerminkan terhadap asal | <InlineMath math="(-x+a,-y+b)" /> |
+| Tambahkan pusat | <InlineMath math="(-x+2a,-y+2b)" /> |
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
@@ -33,19 +31,9 @@ Vektor terakhir menghasilkan aturan koordinat <InlineMath math="(x,y)\mapsto(2a-
 
 ### Operasi Matriks Pencerminan terhadap Titik
 
-Operasi matriks yang terkait dengan pencerminan terhadap titik <InlineMath math="P(a,b)" /> untuk sembarang titik <InlineMath math="(x,y)" /> adalah:
+Perkalian matriks <InlineMath math="2 \times 2" /> saja selalu memetakan <InlineMath math="(0,0)" /> ke <InlineMath math="(0,0)" />. Pencerminan terhadap pusat bukan nol memetakan asal ke <InlineMath math="(2a,2b)" />, sehingga kita memerlukan **tambahan vektor translasi**:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix}" />
-
-Bentuk terpusat yang setara menunjukkan ketiga operasi secara langsung:
-
-<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
-
-Jika bentuk matriks tersebut dijabarkan, hasilnya adalah:
-
-<BlockMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
-
-Hasil ini sama dengan aturan koordinat <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. Dalam bentuk vektor, hubungan yang sama ditulis <InlineMath math="Q'=2P-Q" />: titik pusat merupakan <Highlight>titik tengah antara titik asal dan bayangannya</Highlight>.
+<BlockMath math="\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}+2\begin{pmatrix}a\\b\end{pmatrix}" />
 
 ## Menentukan Bayangan Titik
 
@@ -59,7 +47,7 @@ Titik yang akan dicerminkan adalah <InlineMath math="(x,y) = (2,3)" /> dan pusat
   <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
-Diagram berikut menempatkan pusat tepat di tengah titik asal dan bayangannya.
+Diagram berikut menempatkan **pusat tepat di tengah** titik asal dan bayangannya.
 
 <LineEquation
   title={
@@ -102,63 +90,72 @@ Diagram berikut menempatkan pusat tepat di tengah titik asal dan bayangannya.
       color: "#4f46e5",
     }, // Garis QQ'
   ]}
-  cameraPosition={[1, 1, 10]}
+  cameraPosition={[1, 1, 8]}
+  cameraTarget={[1, 1, 0]}
 />
 
 ## Latihan
 
-Kedua soal memakai pusat yang bukan titik asal, jadi rumus terhadap titik asal belum bisa dipakai langsung. Soal kedua mencerminkan sebuah garis, sehingga bayangannya harus ditulis sebagai persamaan.
+Kedua soal memakai **pusat yang bukan titik asal**, jadi rumus terhadap titik asal belum bisa dipakai langsung. Soal kedua mencerminkan sebuah garis, sehingga bayangannya harus ditulis sebagai persamaan.
 
 1.  Tentukan bayangan titik <InlineMath math="(3,1)" /> oleh pencerminan terhadap titik <InlineMath math="(-2,-1)" />.
 2.  Sebuah garis melalui titik <InlineMath math="A(1,2)" /> dan <InlineMath math="B(3,4)" />. Tentukan persamaan bayangan garis tersebut setelah dicerminkan terhadap titik <InlineMath math="C(0,1)" />.
 
 ### Pembahasan
 
-1.  Titik <InlineMath math="(x,y) = (3,1)" />. Pusat <InlineMath math="(a,b) = (-2,-1)" />.
+Hitung **dua kali vektor pusat** sebelum mengurangkan koordinat titik. Pada soal garis, dua titik bayangan menentukan persamaan, lalu periksa apakah garis bayangan memang berbeda dari garis awal.
 
-    Menggunakan rumus <InlineMath math="x' = 2a-x" /> dan <InlineMath math="y' = 2b-y" />:
+**Pembahasan 1**
 
-    <MathContainer>
-      <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
-      <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
-    </MathContainer>
+Titik <InlineMath math="(x,y) = (3,1)" />. Pusat <InlineMath math="(a,b) = (-2,-1)" />.
 
-    Bayangannya adalah <InlineMath math="(-7,-3)" />. Atau menggunakan operasi matriks:
+Menggunakan rumus <InlineMath math="x' = 2a-x" /> dan <InlineMath math="y' = 2b-y" />:
 
-    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
+<MathContainer>
+  <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
+  <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
+</MathContainer>
 
-2.  Pusat pencerminan <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
+Bayangannya adalah <InlineMath math="(-7,-3)" />. Atau menggunakan operasi matriks:
 
-    Bayangan titik <InlineMath math="A(1,2)" />:
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
 
-    <MathContainer>
-      <BlockMath math="x'_A = 2(0)-1 = -1" />
-      <BlockMath math="y'_A = 2(1)-2 = 0" />
-    </MathContainer>
+**Pembahasan 2**
 
-    Jadi <InlineMath math="A'(-1,0)" />.
+Pusat pencerminan <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
 
-    Bayangan titik <InlineMath math="B(3,4)" />:
+Bayangan titik <InlineMath math="A(1,2)" />:
 
-    <MathContainer>
-      <BlockMath math="x'_B = 2(0)-3 = -3" />
-      <BlockMath math="y'_B = 2(1)-4 = -2" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="x'_A = 2(0)-1 = -1" />
+  <BlockMath math="y'_A = 2(1)-2 = 0" />
+</MathContainer>
 
-    Jadi <InlineMath math="B'(-3,-2)" />.
+Jadi <InlineMath math="A'(-1,0)" />.
 
-    Garis bayangan melalui <InlineMath math="A'(-1,0)" /> dan <InlineMath math="B'(-3,-2)" />.
+Bayangan titik <InlineMath math="B(3,4)" />:
 
-    Gradien <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
+<MathContainer>
+  <BlockMath math="x'_B = 2(0)-3 = -3" />
+  <BlockMath math="y'_B = 2(1)-4 = -2" />
+</MathContainer>
 
-    Persamaan garis:
+Jadi <InlineMath math="B'(-3,-2)" />.
 
-    <MathContainer>
-      <BlockMath math="y - y'_A = m'(x - x'_A)" />
-      <BlockMath math="y - 0 = 1(x - (-1))" />
-      <BlockMath math="y = x + 1" />
-    </MathContainer>
+Garis bayangan melalui <InlineMath math="A'(-1,0)" /> dan <InlineMath math="B'(-3,-2)" />.
 
-    atau
+Gradien <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
 
-    <BlockMath math="x - y + 1 = 0" />
+Persamaan garis:
+
+<MathContainer>
+  <BlockMath math="y - y'_A = m'(x - x'_A)" />
+  <BlockMath math="y - 0 = 1(x - (-1))" />
+  <BlockMath math="y = x + 1" />
+</MathContainer>
+
+Bentuk umum persamaan garis yang sama adalah:
+
+<BlockMath math="x - y + 1 = 0" />
+
+Hasil ini sama dengan garis awal <InlineMath math="y=x+1" />. Pusat <InlineMath math="C(0,1)" /> berada pada garis karena <InlineMath math="1=0+1" />. Setengah putaran menukar titik-titik pada garis yang melalui pusat, sehingga **garis sebagai himpunan tetap sama**.

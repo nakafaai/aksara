@@ -26,141 +26,130 @@ Teorema ini hanya memberikan daftar **kemungkinan** akar rasional. Belum tentu s
 
 ## Langkah Teorema Pembuat Nol Rasional
 
-Berikut langkah-langkah untuk menemukan akar rasional dengan teorema ini. Setelah kandidat diperoleh, Teorema Faktor dapat digunakan untuk memeriksanya:
+**Kandidat belum tentu akar**. Untuk menyusun kandidat, ambil faktor positif dan negatif dari konstanta sebagai pembilang, lalu faktor positif koefisien utama sebagai penyebut. Sederhanakan pecahan agar nilai yang sama tidak diuji berulang kali. Uji setiap kandidat dengan substitusi atau [metode Horner](/id/materi/matematika/polinomial/metode-horner).
 
-1.  **Identifikasi Koefisien:** Pastikan semua koefisien (<InlineMath math="a_n, \dots, a_0" />) adalah bilangan bulat. Identifikasi konstanta <InlineMath math="a_0" /> dan koefisien utama <InlineMath math="a_n" />.
-2.  **Daftar Faktor <InlineMath math="p" />:** Buat daftar semua faktor bilangan bulat (positif dan negatif) dari konstanta <InlineMath math="a_0" />.
-3.  **Daftar Faktor <InlineMath math="q" />:** Buat daftar semua faktor bilangan bulat (positif dan negatif) dari koefisien utama <InlineMath math="a_n" />.
-4.  **Daftar Kemungkinan Akar <InlineMath math="\frac{p}{q}" />:** Buat daftar semua kemungkinan nilai <InlineMath math="\frac{p}{q}" /> dengan membagi setiap faktor <InlineMath math="p" /> dengan setiap faktor <InlineMath math="q" />. Sederhanakan pecahan dan hilangkan duplikat.
-5.  **Uji Kemungkinan Akar:** Substitusikan setiap nilai <InlineMath math="\frac{p}{q}" /> ke <InlineMath math="P(x)" />, atau uji dengan [metode Horner](/id/materi/matematika/polinomial/metode-horner). Jika <InlineMath math="P(\frac{p}{q}) = 0" />, maka <InlineMath math="\frac{p}{q}" /> adalah akar rasional dan <InlineMath math="(x - \frac{p}{q})" /> atau <InlineMath math="(qx - p)" /> adalah faktor dari <InlineMath math="P(x)" />.
-6.  **Faktorkan Lebih Lanjut:** Setelah menemukan satu akar rasional <InlineMath math="c" />, gunakan hasil bagi dari metode Horner untuk mencari akar-akar lainnya dari polinomial yang derajatnya sudah lebih rendah.
+Jika konstanta nol, keluarkan faktor <InlineMath math="x" /> terlebih dahulu. Contohnya <InlineMath math="x^3-2x^2=x^2(x-2)" /> memiliki akar nol, lalu akar dua diperoleh dari faktor sisanya.
+
+Tidak menemukan kandidat yang cocok hanya berarti **tidak ada akar rasional**. Polinomial <InlineMath math="x^2-2" /> memiliki kandidat <InlineMath math="\pm1,\pm2" />, tetapi tidak satu pun bernilai nol. Akarnya tetap ada dalam bilangan real, yaitu <InlineMath math="\pm\sqrt2" />.
 
 ### Penggunaan Teorema Faktor dan Pembuat Nol Rasional
 
 Faktorkan polinomial <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> secara komplet.
 
-1.  **Identifikasi Koefisien:**
+**Langkah 1**. Identifikasi Koefisien
 
-    Koefisien adalah bilangan bulat. <InlineMath math="a_0 = -18" /> dan <InlineMath math="a_n = 1" />.
+Koefisien adalah bilangan bulat. <InlineMath math="a_0 = -18" /> dan <InlineMath math="a_n = 1" />.
 
-2.  **Faktor <InlineMath math="p" /> (dari <InlineMath math="a_0 = -18" />):**
+**Langkah 2**. Faktor <InlineMath math="p" /> (dari <InlineMath math="a_0 = -18" />)
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-3.  **Faktor <InlineMath math="q" /> (dari <InlineMath math="a_n = 1" />):**
+**Langkah 3**. Faktor <InlineMath math="q" /> (dari <InlineMath math="a_n = 1" />)
 
-    <BlockMath math="\pm 1" />
+<BlockMath math="\pm 1" />
 
-4.  **Kemungkinan Akar <InlineMath math="\frac{p}{q}" />:**
+**Langkah 4**. Kemungkinan Akar <InlineMath math="\frac{p}{q}" />
 
-    Membagi semua <InlineMath math="p" /> dengan <InlineMath math="q = \pm 1" /> menghasilkan:
+Membagi semua <InlineMath math="p" /> dengan <InlineMath math="q = \pm 1" /> menghasilkan:
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-5.  **Uji Kemungkinan Akar:** Kita coba beberapa nilai dari daftar ini.
+**Langkah 5**
 
-    - Coba <InlineMath math="x = 1" />:
+| Kandidat | Hasil substitusi | Keputusan |
+| --- | --- | --- |
+| 1 | <InlineMath math="1+2-9-18=-24" /> | Bukan akar |
+| -1 | <InlineMath math="-1+2+9-18=-8" /> | Bukan akar |
+| 2 | <InlineMath math="8+8-18-18=-20" /> | Bukan akar |
+| -2 | <InlineMath math="-8+8+18-18=0" /> | Akar |
+| 3 | <InlineMath math="27+18-27-18=0" /> | Akar |
 
-      <BlockMath math="P(1) = 1 + 2 - 9 - 18 = -24 \neq 0" />
+Gunakan akar <InlineMath math="3" /> untuk melanjutkan pembagian. Akar <InlineMath math="-2" /> juga sah, dan akan muncul kembali saat hasil bagi difaktorkan.
 
-    - Coba <InlineMath math="x = -1" />:
+**Langkah 6**. Faktorkan Lebih Lanjut (menggunakan akar <InlineMath math="x = 3" />)
 
-      <BlockMath math="P(-1) = -1 + 2 + 9 - 18 = -8 \neq 0" />
+Bagi <InlineMath math="P(x)" /> dengan <InlineMath math="(x-3)" /> menggunakan Horner (<InlineMath math="c = 3" />).
 
-    - Coba <InlineMath math="x = 2" />:
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+3 & 1 & 2 & -9 & -18 \\
+  &   & 3 & 15 & 18 \\
+\hline
+  & 1 & 5 & 6 & \boxed{0} \\
+\end{array}
+"
+/>
 
-      <BlockMath math="P(2) = 8 + 8 - 18 - 18 = -20 \neq 0" />
+Hasil baginya <InlineMath math="H(x) = x^2 + 5x + 6" />.
 
-    - Coba <InlineMath math="x = -2" />:
+Maka, <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
 
-      <BlockMath math="P(-2) = -8 + 8 + 18 - 18 = 0" />
+**Langkah 7**. Faktorkan Hasil Bagi
 
-      Berhasil! Jadi, <InlineMath math="x = -2" /> adalah akar, dan <InlineMath math="(x+2)" /> adalah faktor.
+Faktorkan <InlineMath math="x^2 + 5x + 6" />.
 
-    - Atau dicoba <InlineMath math="x = 3" />:
+<BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
 
-      <BlockMath math="P(3) = (3)^3 + 2(3)^2 - 9(3) - 18 = 27 + 18 - 27 - 18 = 0" />
+**Langkah 8**. Faktorisasi Lengkap
 
-      Berhasil! Jadi, <InlineMath math="x = 3" /> adalah akar, dan <InlineMath math="(x-3)" /> adalah faktor.
-
-6.  **Faktorkan Lebih Lanjut (menggunakan akar <InlineMath math="x = 3" />):**
-
-    Bagi <InlineMath math="P(x)" /> dengan <InlineMath math="(x-3)" /> menggunakan Horner (<InlineMath math="c = 3" />).
-
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    3 & 1 & 2 & -9 & -18 \\
-      &   & 3 & 15 & 18 \\
-    \hline
-      & 1 & 5 & 6 & \boxed{0} \\
-    \end{array}
-    "
-    />
-
-    Hasil baginya <InlineMath math="H(x) = x^2 + 5x + 6" />.
-
-    Maka, <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
-
-7.  **Faktorkan Hasil Bagi:**
-
-    Faktorkan <InlineMath math="x^2 + 5x + 6" />.
-
-    <BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
-
-8.  **Faktorisasi Lengkap:**
-
-    <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+<BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
 
 ## Latihan
 
-Faktorkan <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> secara komplet menggunakan Teorema Pembuat Nol Rasional dan Teorema Faktor. Daftarkan kemungkinan akarnya dari faktor konstanta dan koefisien utamanya, lalu uji satu per satu dan bagi polinomialnya untuk setiap akar yang terbukti.
+Faktorkan <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> secara komplet menggunakan **Teorema Pembuat Nol Rasional** dan Teorema Faktor. Daftarkan kemungkinan akarnya dari faktor konstanta dan koefisien utamanya, lalu uji satu per satu dan bagi polinomialnya untuk setiap akar yang terbukti.
 
 ### Kunci Jawaban
 
-1.  **Identifikasi Koefisien:** <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
-2.  **Faktor <InlineMath math="p" /> (dari <InlineMath math="20" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
-3.  **Faktor <InlineMath math="q" /> (dari <InlineMath math="2" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
-4.  **Kemungkinan Akar <InlineMath math="\frac{p}{q}" />:** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
-5.  **Uji Akar:**
+**Langkah 1**. Identifikasi Koefisien <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
 
-    Coba <InlineMath math="x = 2" />.
+**Langkah 2**. Faktor <InlineMath math="p" /> (dari <InlineMath math="20" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
 
-    <MathContainer>
-      <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
-      <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
-      <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
-      <BlockMath math="P(2) = 4 - 4 = 0" />
-    </MathContainer>
+**Langkah 3**. Faktor <InlineMath math="q" /> (dari <InlineMath math="2" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
 
-    Karena <InlineMath math="P(2)=0" />, maka <InlineMath math="x=2" /> adalah akar dan <InlineMath math="(x-2)" /> adalah faktor.
+**Langkah 4**. Kemungkinan Akar <InlineMath math="\frac{p}{q}" /> <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
 
-6.  **Bagi dengan Horner (<InlineMath math="c = 2" />):**
+**Langkah 5**. Uji Akar
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    2 & 2 & -3 & -12 & 20 \\
-      &   & 4 & 2 & -20 \\
-    \hline
-      & 2 & 1 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+Coba <InlineMath math="x = 2" />.
 
-    Hasil bagi <InlineMath math="H(x) = 2x^2 + x - 10" />.
+<MathContainer>
+  <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
+  <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
+  <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
+  <BlockMath math="P(2) = 4 - 4 = 0" />
+</MathContainer>
 
-    <InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
+Karena <InlineMath math="P(2)=0" />, maka <InlineMath math="x=2" /> adalah akar dan <InlineMath math="(x-2)" /> adalah faktor.
 
-7.  **Faktorkan Hasil Bagi:**
+**Langkah 6**. Bagi dengan Horner (<InlineMath math="c = 2" />)
 
-    Faktorkan <InlineMath math="2x^2 + x - 10" />.
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & -12 & 20 \\
+  &   & 4 & 2 & -20 \\
+\hline
+  & 2 & 1 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    <BlockMath math="2x^2 + x - 10 = (2x+5)(x-2)" />
+Hasil bagi <InlineMath math="H(x) = 2x^2 + x - 10" />.
 
-8.  **Faktorisasi Lengkap:**
+<InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
 
-    <MathContainer>
-      <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
-      <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
-    </MathContainer>
+**Langkah 7**. Faktorkan Hasil Bagi
+
+Faktorkan <InlineMath math="2x^2 + x - 10" />.
+
+<BlockMath math="\begin{aligned}2x^2+x-10&amp;=2x^2-4x+5x-10 \\ &amp;=2x(x-2)+5(x-2) \\ &amp;=(2x+5)(x-2)\end{aligned}" />
+
+**Langkah 8**. Faktorisasi Lengkap
+
+<MathContainer>
+  <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
+  <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
+</MathContainer>
+
+Akar <InlineMath math="2" /> muncul dua kali karena faktor <InlineMath math="x-2" /> berpangkat dua. Akar lainnya adalah <InlineMath math="-5/2" />, dari <InlineMath math="2x+5=0" />.

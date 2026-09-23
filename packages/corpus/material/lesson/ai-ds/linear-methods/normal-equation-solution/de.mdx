@@ -17,7 +17,7 @@ Jeder Minimierer erfüllt die Normalgleichung
 
 <BlockMath math="A^T A\hat{x}=A^T b" />
 
-<Highlight>Diese Gleichung ist immer lösbar.</Highlight> Der Minimierer ist genau dann eindeutig, wenn <InlineMath math="\operatorname{rank}(A)=n" /> gilt. Das setzt <InlineMath math="m\ge n" /> voraus. Bei vollem Spaltenrang gilt
+Diese Gleichung ist <Highlight>immer lösbar</Highlight>. Der Minimierer ist genau dann eindeutig, wenn <InlineMath math="\operatorname{rank}(A)=n" /> gilt. Das setzt <InlineMath math="m\ge n" /> voraus. Bei vollem Spaltenrang gilt
 
 <BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
 
@@ -27,7 +27,7 @@ Hat <InlineMath math="A" /> keinen vollen Spaltenrang, bleibt der angepasste Vek
 
 ### Die Existenz der Lösung
 
-Der Spaltenraum von <InlineMath math="A" /> ist ein endlichdimensionaler abgeschlossener Unterraum von <InlineMath math="\mathbb{R}^m" />. Deshalb besitzt <InlineMath math="b" /> eine eindeutige orthogonale Projektion auf diesen Raum. Jedes <InlineMath math="\hat{x}" /> mit <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> ist eine Ausgleichslösung.
+Der Spaltenraum von <InlineMath math="A" /> ist ein endlichdimensionaler abgeschlossener Unterraum von <InlineMath math="\mathbb{R}^m" />. Deshalb besitzt <InlineMath math="b" /> eine **eindeutige orthogonale Projektion** auf diesen Raum. Jedes <InlineMath math="\hat{x}" /> mit <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> ist eine Ausgleichslösung.
 
 Die Normalgleichung beschreibt dieselbe Geometrie, denn
 
@@ -37,7 +37,7 @@ Diese Gleichung bedeutet, dass das Residuum <InlineMath math="A\hat{x}-b" /> zu 
 
 ## Pseudoinverse nach Moore und Penrose
 
-Die Moore-Penrose-Pseudoinverse ist für jede reelle Matrix definiert, auch für rechteckige Matrizen und Matrizen ohne vollen Rang. Ist
+Die Moore-Penrose-Pseudoinverse ist für jede reelle Matrix definiert, auch für rechteckige Matrizen und Matrizen ohne vollen Rang. Schreibe ihre Singulärwertzerlegung als
 
 <BlockMath math="A=U\Sigma V^T" />
 
@@ -72,13 +72,15 @@ Die Zielfunktion des Ausgleichsproblems zerfällt in
 
 <BlockMath math="\begin{aligned} \|Ax-b\|_2^2 &amp;=\|R_1x-Q_1^Tb\|_2^2 \\ &amp;\quad{}+\|(I-Q_1Q_1^T)b\|_2^2 \end{aligned}" />
 
-Der zweite Term hängt nicht von <InlineMath math="x" /> ab. Daher erhält man den Minimierer durch Lösen des oberen Dreieckssystems
+Der zweite Term hängt nicht von <InlineMath math="x" /> ab. Daher erhält man den Minimierer durch Lösen des **oberen Dreieckssystems**
 
 <BlockMath math="R_1\hat{x}=Q_1^Tb" />
 
 Dieser Weg löst das ursprüngliche Ausgleichsproblem direkt. Man bildet nicht zuerst <InlineMath math="A^TA" />, um anschließend die Normalgleichung zu lösen.
 
 ## Beispiel einer Polynomanpassung
+
+Die folgenden numerischen Faktoren und Koeffizienten sind **auf fünf Nachkommastellen gerundet**. Die exakten Matrixgleichungen gelten vor dem Runden.
 
 Wir passen <InlineMath math="y=at^2+bt+c" /> an sieben Messwerte an. Die Designmatrix und der Beobachtungsvektor lauten
 
@@ -100,7 +102,7 @@ Zuerst berechnen wir
 
 <BlockMath math="Q_1^Tb=\begin{pmatrix}-9{,}71429\\16{,}02569\\3{,}48060\end{pmatrix}" />
 
-Danach folgt die Rückwärtssubstitution:
+Danach folgt die **Rückwärtssubstitution**:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;-1{,}73205x_3=3{,}48060 \\ &amp;\Longrightarrow \\ &amp;x_3=-2{,}00952 \end{aligned}" />
@@ -119,6 +121,7 @@ Damit gilt
 <LineEquation
   title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
   description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
+  showZAxis={false}
   cameraPosition={[0, 6, 26]}
   cameraTarget={[0, 6, 0]}
   data={(() => {
@@ -165,6 +168,6 @@ Damit gilt
 | --- | --- | --- | --- |
 | Normalgleichungen und Cholesky | <InlineMath math="A^TA" /> in <InlineMath math="O(mn^2)" /> bilden, dann in etwa <InlineMath math="\frac{1}{3}n^3" /> Flops faktorisieren | schnell bei gut konditioniertem Problem und vollem Rang | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
 | Householder-<InlineMath math="\mathrm{QR}" /> | etwa <InlineMath math="2mn^2-\frac{2}{3}n^3" /> Flops | bildet <InlineMath math="A^TA" /> nicht und ist meist stabiler | bei abhängigen Spalten ist eine rangoffenbarende Variante nötig |
-| <InlineMath math="\mathrm{SVD}" /> | aufwendiger als <InlineMath math="\mathrm{QR}" /> | gibt den Rang an und liefert die Lösung kleinster Norm | höchste Kosten der drei Verfahren |
+| <InlineMath math="\mathrm{SVD}" /> | aufwendiger als <InlineMath math="\mathrm{QR}" /> | gibt den Rang an und liefert die **Lösung kleinster Norm** | höchste Kosten der drei Verfahren |
 
 Verwende <InlineMath math="\mathrm{QR}" /> als übliche Wahl für dichte Probleme mit vollem Rang. Verwende die <InlineMath math="\mathrm{SVD}" />, wenn die Matrix rangdefizient oder stark fehlkonditioniert ist oder eine Lösung kleinster Norm benötigt wird. Bilde die Normalmatrix nur, wenn der Geschwindigkeitsgewinn den Verlust an numerischer Stabilität rechtfertigt. Berechne in Produktionscode keine Inverse explizit.

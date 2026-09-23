@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Model daur air dalam kotak transparan membuktikan bahwa pengulangan yang sama sudah mencakup seluruh kondisi atmosfer nyata.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan kondensasi sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Model daur air dalam kotak transparan hanya berguna untuk menghafal istilah kondensasi tanpa mengamati perubahan wujud air.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Model daur air dalam kotak transparan menggantikan pengamatan lapangan karena lampu dan es meniru atmosfer secara lengkap.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Model daur air dalam kotak transparan tidak dapat membantu memeriksa proses apa pun karena tidak sama persis dengan alam.",
         },
       ],
     },

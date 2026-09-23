@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0{,}88$$",
+          label: "$$0.88$$",
         },
         {
           isCorrect: true,
-          label: "$$0{,}96$$",
+          label: "$$0.96$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}92$$",
+          label: "$$0.92$$",
         },
         {
           isCorrect: false,
-          label: "$$1{,}00$$",
+          label: "$$1.00$$",
         },
         {
           isCorrect: false,
-          label: "$$1{,}04$$",
+          label: "$$1.04$$",
         },
       ],
     },
@@ -83,7 +83,7 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "park-and-pond",
+  stimulusKey: "water-tank",
 };
 
 export default item;

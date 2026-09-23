@@ -3,13 +3,13 @@ export const metadata = {
     description: "Method string Python untuk transformasi teks, pencarian, validasi karakter, dan operasi string lanjutan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## String Bersifat Immutable
 
-<Highlight>String Python bersifat immutable</Highlight>, sehingga isi objek string tidak dapat diedit langsung. Operasi pada string menghasilkan string baru. Variabel dapat diarahkan ke objek baru tersebut, sedangkan objek string asal tetap tidak berubah.
+<Highlight>String Python bersifat immutable</Highlight>, sehingga isi objek string tidak dapat diedit langsung. Transformasi isi string dapat menghasilkan nilai string baru. Variabel dapat diarahkan ke objek baru tersebut, sedangkan objek string asal tetap tidak berubah.
 
 Karena itu, assignment ke posisi karakter menghasilkan `TypeError`. List berbeda karena elemennya dapat diganti langsung.
 
@@ -42,7 +42,7 @@ Slicing dan concatenation dapat membentuk string baru dari string lama. Operator
 
 ## Mengukur Panjang String
 
-Pada string Python, `len()` menghitung jumlah Unicode code point. Huruf Latin biasa, spasi, atau tanda baca umumnya menyumbang satu, tetapi satu grafem yang terlihat dapat terdiri dari beberapa code point, seperti pada sebagian emoji dan tanda gabung.
+Pada string Python, `len()` menghitung **jumlah Unicode code point**. Huruf Latin biasa, spasi, atau tanda baca umumnya menyumbang satu, tetapi satu grafem yang terlihat dapat terdiri dari beberapa code point, seperti pada sebagian emoji dan tanda gabung.
 
 <CodeBlock
   data={[
@@ -68,7 +68,7 @@ print(f"String dengan escape sequence: {len(special)} karakter")
 print(f"Tampilan string: {repr(special)}")
 
 raw_newline = r"\\n"
-print(f"Penulisan raw \\n: {len(raw_newline)} code point")`
+print(f"Penulisan raw {raw_newline!r}: {len(raw_newline)} code point")`
     }
   ]}
 />
@@ -77,11 +77,11 @@ Dalam string literal biasa, penulisan `\n` dan `\t` pada kode sumber masing-masi
 
 ## Method Transformasi String
 
-Method berikut mengembalikan string baru dan membiarkan string aslinya tetap. Hal itu terjadi karena string bersifat immutable, sehingga setiap perubahan menghasilkan nilai baru, bukan mengubah nilai lama.
+Method berikut mengembalikan string baru dan **membiarkan string aslinya tetap**. Hal itu terjadi karena string bersifat immutable, sehingga setiap perubahan menghasilkan nilai baru, bukan mengubah nilai lama.
 
 ### Mengubah Case Huruf
 
-Python menyediakan beberapa method konversi huruf. Setiap method mengembalikan string baru dan mengikuti aturan casing Unicode.
+Python menyediakan beberapa method konversi huruf. Setiap method mengembalikan string baru dan mengikuti **aturan casing Unicode**.
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ Method `title()` mengikuti aturan kapitalisasi mekanis. Method ini cocok untuk l
 
 ### Menghapus Karakter di Awal dan Akhir
 
-Tanpa argumen, `strip()`, `lstrip()`, dan `rstrip()` menghapus whitespace di tepi string. Argumen `chars` memberi Python sekumpulan karakter. Python akan terus menghapus karakter yang cocok dari tepi terkait.
+Tanpa argumen, `strip()`, `lstrip()`, dan `rstrip()` menghapus whitespace di tepi string. Argumen `chars` memberi Python **sekumpulan karakter**. Python akan terus menghapus karakter yang cocok dari tepi terkait.
 
 <CodeBlock
   data={[
@@ -163,11 +163,11 @@ Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu to
 
 ## Method Pencarian dan Validasi
 
-Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari mengembalikan posisi, sedangkan method pemeriksa mengembalikan `True` atau `False`.
+Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari **mengembalikan posisi**, sedangkan method pemeriksa mengembalikan `True` atau `False`.
 
 ### Mencari Posisi Substring
 
-Method `index()` dan `find()` digunakan untuk mencari posisi substring dalam string. Perbedaannya terletak pada cara menangani kasus ketika substring tidak ditemukan.
+Method `index()` dan `find()` digunakan untuk mencari posisi substring dalam string. Perbedaannya terletak pada cara menangani kasus ketika **substring tidak ditemukan**.
 
 <CodeBlock
   data={[
@@ -213,7 +213,7 @@ Pilih method berdasarkan perilaku saat substring tidak ditemukan: `find()` menge
 
 ### Validasi Karakter String
 
-Method seperti `isalpha()` dan `isdigit()` mengembalikan Boolean setelah memeriksa apakah code point dalam string memenuhi aturan kategori tertentu. Method ini hanya memeriksa kategori karakter. Username, alamat email, atau nomor akun tetap memerlukan aturan terpisah untuk memeriksa format lengkapnya.
+Method seperti `isalpha()` dan `isdigit()` mengembalikan Boolean setelah memeriksa apakah code point dalam string memenuhi aturan kategori tertentu. Method ini **hanya memeriksa kategori karakter**. Username, alamat email, atau nomor akun tetap memerlukan aturan terpisah untuk memeriksa format lengkapnya.
 
 <CodeBlock
   data={[
@@ -268,7 +268,7 @@ Method seperti `isdigit()` dan `isalnum()` mengikuti Unicode, sedangkan string k
 
 ## Method Pencarian Prefix dan Suffix
 
-Method `startswith()` dan `endswith()` memeriksa apakah string diawali atau diakhiri dengan substring tertentu.
+Method `startswith()` dan `endswith()` memeriksa apakah string **diawali atau diakhiri** dengan substring tertentu.
 
 <CodeBlock
   data={[
@@ -306,7 +306,7 @@ urls = [
 print("\\nAnalisis URL:")
 for url in urls:
     if url.startswith("https://"):
-        print(f"Secure web: {url}")
+        print(f"HTTPS: {url}")
     elif url.startswith("http://"):
         print(f"Web: {url}")
     elif url.startswith("ftp://"):
@@ -323,13 +323,15 @@ print(f"\\nStarts with greeting: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
 
 Kedua method ini menerima tuple, sehingga satu pemanggilan dapat memeriksa beberapa prefix atau suffix sekaligus.
 
+Awalan `https://` hanya mengelompokkan teks berdasarkan skema URL. Awalan itu tidak membuktikan bahwa situs dapat dipercaya atau alamatnya valid.
+
 ## Method Replace dan Split
 
-Kedua method ini mengubah cara string dibagi menjadi bagian. `replace` menukar satu potongan teks dengan potongan lain, sedangkan `split` memecah string menjadi list pada pemisah tertentu.
+Kedua method ini mengubah cara string dibagi menjadi bagian. `replace` **menukar satu potongan teks** dengan potongan lain, sedangkan `split` memecah string menjadi list pada pemisah tertentu.
 
 ### Mengganti Substring
 
-Method `replace()` digunakan untuk mengganti semua kemunculan substring dengan string baru.
+Method `replace()` digunakan untuk mengganti **semua kemunculan substring** dengan string baru.
 
 <CodeBlock
   data={[
@@ -374,7 +376,7 @@ Method `replace()` bersifat case-sensitive dan mengganti semua kemunculan kecual
 
 ### Memisahkan String
 
-Method `split()` memecah string menjadi list di sekitar delimiter tertentu. Tanpa delimiter, method ini memperlakukan whitespace berurutan sebagai satu pemisah dan membuang field kosong di awal atau akhir.
+Method `split()` memecah string menjadi list di sekitar delimiter tertentu. Tanpa delimiter, method ini memperlakukan **whitespace berurutan sebagai satu pemisah** dan membuang field kosong di awal atau akhir.
 
 <CodeBlock
   data={[
@@ -425,7 +427,9 @@ Gunakan `split()` hanya jika aturan delimiter memang sederhana. Method ini tidak
 
 ## Method Chaining
 
-Karena string method mengembalikan string baru, beberapa transformasi dapat dirangkai dalam satu ekspresi. Pertahankan chain cukup pendek agar setiap langkah tetap jelas. Beri nama pada nilai antara jika ada validasi atau penjelasan di tengah proses.
+Method transformasi yang **mengembalikan string** dapat dirangkai. Method seperti `split()` menghasilkan list, sehingga langkah berikutnya harus sesuai dengan tipe hasil tersebut. Pertahankan chain cukup pendek agar setiap langkah tetap jelas. Beri nama pada nilai antara jika ada validasi atau penjelasan di tengah proses.
+
+Setelah `.strip()` pertama, masih ada spasi di antara tanda `+++` dan kata `Python`. Karena itu, `.strip("+- ")` menghapus **plus, minus, dan spasi** dari kedua tepi sebelum konversi huruf.
 
 <CodeBlock
   data={[
@@ -439,7 +443,7 @@ print(f"Input: '{messy_input}'")
 # Merangkai beberapa method
 clean_result = (messy_input
                 .strip()  # hapus spasi di awal/akhir
-                .strip("+-")  # hapus karakter + dan -
+                .strip("+- ")  # hapus karakter + dan -
                 .lower()  # ubah ke lowercase
                 .replace("beginners", "experts"))  # ganti kata
 
@@ -491,7 +495,9 @@ Method chaining cocok untuk pembersihan teks yang singkat dan berurutan. Jika ch
 
 ## Contoh Penggunaan String Methods
 
-Setiap contoh kecil berikut menunjukkan perilaku string method dengan asumsi yang dinyatakan secara jelas. Validator dan parser produksi memerlukan aturan yang sesuai dengan data sebenarnya.
+Setiap contoh kecil berikut menunjukkan perilaku string method dengan **asumsi yang dinyatakan secara jelas**. Validator dan parser produksi memerlukan aturan yang sesuai dengan data sebenarnya.
+
+Fungsi telepon di bawah hanya memformat dua pola contoh. Panjang nomor Indonesia tidak terbatas pada dua pola itu. Nama file diasumsikan berupa nama sederhana tanpa direktori. Normalisasi email di atas hanya menunjukkan pengolahan string, bukan pemeriksaan lengkap alamat email.
 
 <CodeBlock
   data={[
@@ -509,7 +515,7 @@ def format_phone_number(phone):
 
     digits_only = "".join(char for char in phone if char in "0123456789")
 
-    # Format sesuai standar Indonesia
+    # Dua pola nomor contoh, bukan seluruh penomoran Indonesia
     if len(digits_only) == 13 and digits_only.startswith("62"):
         return f"+{digits_only[:2]}-{digits_only[2:5]}-{digits_only[5:9]}-{digits_only[9:]}"
     elif len(digits_only) == 12 and digits_only.startswith("08"):

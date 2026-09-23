@@ -1,9 +1,7 @@
 import { assert, it } from "@effect/vitest";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import {
-  findDocumentIssues,
-  questionBodyKind,
-} from "#nakafa-content/voice/document";
+import { findDocumentIssues } from "#nakafa-content/voice/document";
+import { documentProfile } from "#nakafa-content/voice/profile";
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
 
@@ -34,7 +32,7 @@ it("preserves assessed language while checking broken question math and emphasis
 });
 
 it("checks authored answer voice without treating passage analysis as lesson narration", () => {
-  const valid = `${METADATA}#### Membandingkan gagasan\n\nGagasan utama paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.`;
+  const valid = `${METADATA}#### Membandingkan gagasan\n\n**Gagasan utama** paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.`;
   assert.deepEqual(
     findDocumentIssues("answer.id.mdx", "id", valid, parseLessonMdx(valid)),
     []
@@ -50,6 +48,7 @@ it("checks authored answer voice without treating passage analysis as lesson nar
     [
       "indonesian-formal-learner-address",
       "indonesian-nonstandard-affix",
+      "section-body-highlight",
       "heading-order",
     ]
   );
@@ -61,7 +60,7 @@ it("checks authored answer voice without treating passage analysis as lesson nar
       german,
       parseLessonMdx(german)
     ).map(({ rule }) => rule),
-    ["german-formal-address"]
+    ["german-formal-address", "section-body-highlight"]
   );
 });
 
@@ -74,14 +73,69 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
     ),
     ["lesson-opening-highlight"]
   );
-  assert.equal(questionBodyKind("/corpus/question.en.mdx"), "question");
-  assert.equal(questionBodyKind("/corpus/answer.de.mdx"), "answer");
-  assert.equal(questionBodyKind("/corpus/en.mdx"), undefined);
-  assert.equal(questionBodyKind("/corpus/notes.en.mdx"), undefined);
+  assert.equal(documentProfile("/corpus/question.en.mdx"), "question");
+  assert.equal(documentProfile("/corpus/answer.de.mdx"), "answer");
+  assert.equal(documentProfile("/corpus/en.mdx"), "lesson");
+  assert.equal(documentProfile("/corpus/notes.en.mdx"), "lesson");
+  assert.equal(documentProfile("/corpus/articles/topic/en.mdx"), "article");
+});
+
+it("keeps article evidence and journal style outside lesson pedagogy", () => {
+  const source = `${METADATA}## Method\n\nThe study reports **the measured effect**.\n\n| Evidence | Finding |\n| --- | --- |\n| Source | Stable result |\n\nStudies show that the measured effect remains stable.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/articles/topic/article/en.mdx",
+      "en",
+      source,
+      parseLessonMdx(source)
+    ).map(({ rule }) => rule),
+    []
+  );
+});
+
+it("allows scientific sections, citations, formal address and unmarked prose", () => {
+  const sources = [
+    [
+      "en",
+      `${METADATA}## Introduction\n\nStudies show a four percent increase (Lee et al., 2025).\n\n## Methods 2025\n\nThe observations use a fixed measurement interval.\n\n## References\n\nLee et al. (2025).`,
+    ],
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
+    ],
+    [
+      "de",
+      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
+    ],
+  ] as const;
+  for (const [locale, source] of sources) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/articles/topic/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ),
+      []
+    );
+  }
+});
+
+it("preserves scientific interpretation and established theorem names", () => {
+  const source = `${METADATA}## Interpretasi Hasil\n\nTeorema fundamental kalkulus menghubungkan turunan dan integral.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/articles/topic/id.mdx",
+      "id",
+      source,
+      parseLessonMdx(source)
+    ),
+    []
+  );
 });
 
 it("does not join teacher narration to modal verbs in an assessed quotation", () => {
-  const source = `${METADATA}Hal yang membuat Uwet penasaran adalah “Mengapa siput bisa berjalan di atas duri?”`;
+  const source = `${METADATA}Hal yang membuat Uwet **penasaran** adalah “Mengapa siput bisa berjalan di atas duri?”`;
   assert.deepEqual(
     findDocumentIssues("answer.id.mdx", "id", source, parseLessonMdx(source)),
     []
@@ -89,7 +143,7 @@ it("does not join teacher narration to modal verbs in an assessed quotation", ()
 });
 
 it("does not invent adjacent duplicate words by removing an inline formula", () => {
-  const source = `${METADATA}Susun <InlineMath math="A" /> sebelum <InlineMath math="B" /> sebelum <InlineMath math="C" />.\n\nPeriksa periksa urutan.`;
+  const source = `${METADATA}**Susun** <InlineMath math="A" /> sebelum <InlineMath math="B" /> sebelum <InlineMath math="C" />.\n\nPeriksa periksa urutan.`;
   assert.deepEqual(
     findDocumentIssues(
       "answer.id.mdx",

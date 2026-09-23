@@ -5,16 +5,45 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Ubah ukuran menjadi desimeter. Tinggi <InlineMath math="h=42\text{ dm}" /> dan jari-jari <InlineMath math="r=15\text{ dm}" />. Dengan pendekatan yang diberikan, volume airnya:
+Volume tabung memakai **jari-jari**, sedangkan soal memberi diameter. Samakan juga satuan panjang dengan debit yang dinyatakan dalam desimeter kubik per menit.
 
-<MathContainer>
-  <BlockMath math="V=\pi r^2h" />
+#### Menghitung volume tabung
 
-  <BlockMath math="\begin{aligned}V&\approx\frac{22}{7}\times15^2\times42\\&=29{.}700\text{ dm}^3\end{aligned}" />
-</MathContainer>
+Karena satu meter sama dengan sepuluh desimeter, tinggi tabung adalah <InlineMath math="4{,}2\times10=42\text{ dm}" />. Diameternya <InlineMath math="3\times10=30\text{ dm}" />, sehingga **jari-jari setengah diameter** adalah <InlineMath math="30/2=15\text{ dm}" />.
 
-Bagi volume dengan debit tetap. Waktu dalam menit adalah:
+<MathVisual
+  title="Alas tabung dilihat dari atas"
+  description="Diameter melintasi pusat dari satu tepi ke tepi seberang. Jari-jari hanya dari pusat ke satu tepi, sehingga panjangnya setengah diameter."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -18, max: 18 }, y: { min: -18, max: 18 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 15, appearance: "primary" },
+      { id: "diameter", kind: "segment", from: { x: -15, y: 0 }, to: { x: 15, y: 0 }, appearance: "secondary" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 15 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "diameter", objectId: "diameter", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "radius", objectId: "radius", at: { x: 0, y: 7.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    diameter: <InlineMath math="d=30\text{ dm}" />,
+    radius: <InlineMath math="r=15\text{ dm}" />,
+  }}
+/>
 
-<BlockMath math="t\approx\frac{29{.}700}{12}=2{.}475" />
+<BlockMath math="\begin{aligned}V&amp;=\pi r^2h\\&amp;\approx\frac{22}{7}\times15^2\times42\\&amp;=22\times225\times6\\&amp;=29{.}700\text{ dm}^3\end{aligned}" />
 
-Karena <InlineMath math="2{.}475=41\times60+15" />, waktu pengosongan sekitar <InlineMath math="41" /> jam <InlineMath math="15" /> menit.
+#### Mengubah volume menjadi waktu
+
+Pada **debit tetap**, setiap menit mengurangi volume air dengan jumlah yang sama. Bagilah volume penuh dengan debit kebocoran untuk mendapatkan waktu dalam menit:
+
+<BlockMath math="t\approx\frac{29{.}700}{12}=2{.}475\text{ min}" />
+
+Pisahkan menit menjadi kelipatan enam puluh dan sisanya:
+
+<BlockMath math="2{.}475=41\times60+15" />
+
+Jadi, waktu pengosongan sekitar <InlineMath math="41\text{ jam }15\text{ menit}" />.

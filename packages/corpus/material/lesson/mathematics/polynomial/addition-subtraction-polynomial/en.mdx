@@ -1,8 +1,6 @@
-
-
 export const metadata = {
   title: "Addition and Subtraction of Polynomials",
-    description: "Add and subtract polynomials by combining like terms with horizontal, vertical, and graphical methods.",
+  description: "Add and subtract polynomials by combining like terms with horizontal, vertical, and graphical methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
   dateModified: "2026-09-13",
@@ -55,19 +53,7 @@ To add two polynomials, <Highlight>add the coefficients of like terms</Highlight
 
 Find the result of <InlineMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />.
 
-<BlockMath math="\begin{aligned} &amp;(2x^3 + 7x^2 + 3x + 5) \\ &amp;\quad{}+ (6x^3 + 2x^2 + 4x + 1) \end{aligned}" />
-  Remove the parentheses:
-
-<BlockMath math="\begin{aligned}  &amp;=2x^3+7x^2+3x+5 \\ &amp;\quad{}+6x^3+2x^2+4x+1 \end{aligned}" />
-  Group like terms:
-
-<BlockMath math="\begin{aligned}  &amp;=(2x^3+6x^3)+(7x^2+2x^2) \\ &amp;\quad{}+(3x+4x)+(5+1) \end{aligned}" />
-  Apply the distributive property:
-
-<BlockMath math="\begin{aligned}  &amp;=(2+6)x^3+(7+2)x^2 \\ &amp;\quad{}+(3+4)x+(5+1) \end{aligned}" />
-  The result is:
-
-<BlockMath math="= 8x^3 + 9x^2 + 7x + 6" />
+<BlockMath math="\begin{aligned}(2x^3+7x^2+3x+5)+(6x^3+2x^2+4x+1)&amp;=(2+6)x^3+(7+2)x^2+(3+4)x+(5+1) \\ &amp;=8x^3+9x^2+7x+6\end{aligned}" />
 
 ## Polynomial Subtraction
 
@@ -84,24 +70,7 @@ To subtract two polynomials, we **change the sign of each term in the polynomial
 
 Find the result of <InlineMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />.
 
-<BlockMath math="\begin{aligned} &amp;(9x^3 + 4x^2 + 6x + 5) \\ &amp;\quad{}- (2x^3 + 3x^2 + 3x + 4) \end{aligned}" />
-  Change the signs and remove the parentheses:
-
-<BlockMath math="\begin{aligned}  &amp;=9x^3+4x^2+6x+5 \\ &amp;\quad{}-2x^3-3x^2-3x-4 \end{aligned}" />
-  Group like terms:
-
-<BlockMath math="\begin{aligned}  &amp;=(9x^3-2x^3)+(4x^2-3x^2) \\ &amp;\quad{}+(6x-3x)+(5-4) \end{aligned}" />
-  Apply the distributive property:
-
-<BlockMath math="\begin{aligned}  &amp;=(9-2)x^3+(4-3)x^2 \\ &amp;\quad{}+(6-3)x+(5-4) \end{aligned}" />
-  The result is:
-
-<MathContainer>
-  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1" />
-  <BlockMath math="= 7x^3 + x^2 + 3x + 1" />
-</MathContainer>
-
-Note: When subtracting, the negative sign in front of the parenthesis changes the sign of _every_ term inside that parenthesis.
+<BlockMath math="\begin{aligned}(9x^3+4x^2+6x+5)-(2x^3+3x^2+3x+4)&amp;=9x^3+4x^2+6x+5-2x^3-3x^2-3x-4 \\ &amp;=(9-2)x^3+(4-3)x^2+(6-3)x+(5-4) \\ &amp;=7x^3+x^2+3x+1\end{aligned}" />
 
 ## Vertical Method
 
@@ -110,7 +79,7 @@ Besides the horizontal method, polynomial addition and subtraction can also be d
 **Steps:**
 
 1.  Arrange both polynomials vertically.
-2.  Ensure like terms are aligned in the same column.
+2.  Ensure **like terms align in the same column**.
 3.  If a term is missing in one of the polynomials, leave a blank space or write a coefficient of <InlineMath math="0" />.
 4.  Add or subtract the coefficients in each column.
 
@@ -140,9 +109,7 @@ The horizontal method groups like terms inside each polynomial before combining 
 
 ## Graphical Addition and Subtraction of Polynomial Functions
 
-Besides performing operations algebraically, we can also understand polynomial addition and subtraction visually through their graphs.
-
-Suppose we have three graphs of polynomial functions:
+When combining graphs, keep **the same input**. Add or subtract only the output values at that horizontal position. Do not add the horizontal coordinates of the two points. The following three functions provide linear, quartic, and cubic examples.
 
 <ContentStack>
   <LineEquation
@@ -152,17 +119,15 @@ Suppose we have three graphs of polynomial functions:
       </>
     }
     description={<>Linear function of degree <InlineMath math="1" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
-        points: [
-          { x: -12, y: -11, z: 0 },
-          ...Array.from({ length: 51 }, (_, i) => {
-            const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
             return { x, y: x + 1, z: 0 };
           }),
-          { x: 10, y: 11, z: 0 },
-        ],
         smooth: false,
         color: "#0284c7",
         showPoints: false,
@@ -176,12 +141,14 @@ Suppose we have three graphs of polynomial functions:
       </>
     }
     description={<>Function of degree <InlineMath math="4" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
         }),
         color: "#65a30d",
@@ -196,12 +163,14 @@ Suppose we have three graphs of polynomial functions:
       </>
     }
     description={<>Function of degree <InlineMath math="3" /></>}
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 261 }, (_, i) => {
-          const x = (i - 130) / 40;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
         }),
         color: "#d97706",
@@ -213,23 +182,21 @@ Suppose we have three graphs of polynomial functions:
 
 ### Sketching the Graph of the Sum and Difference
 
-Without needing the exact equations of functions <InlineMath math="f" />, <InlineMath math="g" />, or <InlineMath math="h" />, we can sketch the graph of their sum (e.g., <InlineMath math="f(x) + g(x)" />) or difference (e.g., <InlineMath math="f(x) - g(x)" />) as follows:
+Read **both graph heights at the same input**. At <InlineMath math="x=1" />, for example, <InlineMath math="f(1)=2" /> and <InlineMath math="g(1)=-1/2" />. The sum graph therefore has height <InlineMath math="2-1/2=3/2" />, while the difference graph has height <InlineMath math="2-(-1/2)=5/2" />.
 
-1.  Choose several identical <InlineMath math="x" /> values on both graphs.
-2.  For each <InlineMath math="x" /> value, read the <InlineMath math="y" /> value from each graph. Let <InlineMath math="y_f = f(x)" /> and <InlineMath math="y_g = g(x)" />.
-3.  **For addition (<InlineMath math="f(x) + g(x)" />):** Calculate the value <InlineMath math="y_{\text{new}} = y_f + y_g" />.
-4.  **For subtraction (<InlineMath math="f(x) - g(x)" />):** Calculate the value <InlineMath math="y_{\text{new}} = y_f - y_g" />.
-5.  Plot the point <InlineMath math="(x, y_{\text{new}})" />.
-6.  Repeat for several other <InlineMath math="x" /> values.
-7.  Connect the new points with a smooth curve.
+| Input | First value | Second value | Sum | Difference |
+| --- | --- | --- | --- | --- |
+| -2 | -1 | 1 | 0 | -2 |
+| -1 | 0 | -0.5 | -0.5 | 0.5 |
+| 0 | 1 | 1 | 2 | 0 |
+| 1 | 2 | -0.5 | 1.5 | 2.5 |
+| 2 | 3 | 1 | 4 | 2 |
 
-**Why does this work?**
-
-Because the definition of function addition or subtraction is to add or subtract their output values (<InlineMath math="y" />) for each corresponding input value (<InlineMath math="x" />).
+Each resulting point keeps the original input. Connect the points to make a sketch. Since the table contains only a few inputs, the curve between them remains an approximation until you check more points or the function equation.
 
 ### Example Sketches
 
-Here are example sketches of the graphs resulting from the sum <InlineMath math="f(x) + g(x)" /> and difference <InlineMath math="f(x) - g(x)" />, obtained by vertically adding or subtracting the <InlineMath math="y" />-values for each <InlineMath math="x" />.
+The following graphs show **the original functions and the result on shared axes**. Compare the three heights at input one. Addition and subtraction produce different curves even though the original functions are unchanged.
 
 <ContentStack>
   <LineEquation
@@ -246,12 +213,16 @@ Here are example sketches of the graphs resulting from the sum <InlineMath math=
         <InlineMath math="x + 1 + 0.5x^4 - 2x^2 + 1" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 140) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#7c3aed",
@@ -273,12 +244,16 @@ Here are example sketches of the graphs resulting from the sum <InlineMath math=
         <InlineMath math="x + 1 - (0.5x^4 - 2x^2 + 1)" />
       </>
     }
-    cameraPosition={[0, 0, 15]}
+    cameraPosition={[0, 1, 8]}
+    cameraTarget={[0, 1, 0]}
+    showZAxis={false}
     data={[
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
+      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
       {
         smooth: false,
-        points: Array.from({ length: 271 }, (_, i) => {
-          const x = (i - 130) / 50;
+        points: Array.from({ length: 201 }, (_, i) => {
+          const x = -2 + i * 0.02;
           return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#db2777",
@@ -299,23 +274,14 @@ Let
   <BlockMath math="B(x)=-x^3+6x^2-3x+7" />
 </MathContainer>
 
-Find <InlineMath math="A(x)+B(x)" /> and <InlineMath math="A(x)-B(x)" />.
+Find the **sum and difference** <InlineMath math="A(x)+B(x)" /> and <InlineMath math="A(x)-B(x)" />.
 
 ### Worked Solution
 
-For addition, combine coefficients of like powers:
+For addition, combine **coefficients of like powers**:
 
-<MathContainer>
-  <BlockMath math="A(x)+B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=(3-1)x^3+(-2+6)x^2 \\ &amp;\quad{}+(5-3)x+(-4+7) \end{aligned}" />
-  <BlockMath math="=2x^3+4x^2+2x+3" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)+B(x)&amp;=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7) \\ &amp;=2x^3+4x^2+2x+3\end{aligned}" />
 
 For subtraction, distribute the negative sign to every term of <InlineMath math="B(x)" /> before combining like terms:
 
-<MathContainer>
-  <BlockMath math="A(x)-B(x)" />
-  <BlockMath math="\begin{aligned}  &amp;=3x^3-2x^2+5x \\ &amp;\quad{}-4-(-x^3+6x^2-3x+7) \end{aligned}" />
-  <BlockMath math="\begin{aligned}  &amp;=(3+1)x^3+(-2-6)x^2 \\ &amp;\quad{}+(5+3)x+(-4-7) \end{aligned}" />
-  <BlockMath math="=4x^3-8x^2+8x-11" />
-</MathContainer>
+<BlockMath math="\begin{aligned}A(x)-B(x)&amp;=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7) \\ &amp;=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7) \\ &amp;=4x^3-8x^2+8x-11\end{aligned}" />

@@ -1,21 +1,19 @@
 export const metadata = {
     title: "Functions",
-  description: "Define Python functions with parameters, return values, variable scopes, closures, and explicit error handling.",
+  description: "Define Python functions with parameters, **return values**, variable scopes, closures, and explicit error handling.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
 ## Reusable Code with Inputs and Results
 
-A function <Highlight>names a reusable operation</Highlight>. Its parameters describe the inputs it accepts, its body performs the work, and a `return` statement can provide a result to the caller.
-
-A function gives a reusable name to a block of behavior, so the same logic does not need to be copied. It can accept parameters and return a value.
+A function <Highlight>names a reusable operation</Highlight>. Its parameters describe the **inputs it accepts**, its body performs the work, and a `return` statement can provide a result to the caller.
 
 ## Function Structure and Syntax
 
-Every Python function follows the same basic structure:
+Every Python function follows the same **basic structure**:
 
 <CodeBlock
   data={[
@@ -43,7 +41,7 @@ Function components consist of:
 
 ## How Function Calls Work
 
-Calling a function evaluates the callable expression, binds the supplied arguments to parameters, and executes the function body in a new local frame.
+Calling a function evaluates the callable expression, **binds the supplied arguments to parameters**, and executes the function body in a new local frame.
 
 <CodeBlock
   data={[
@@ -74,7 +72,7 @@ Process that occurs during function call:
 
 ## Parameters and Arguments
 
-Parameters are the variables written in a function definition, while arguments are the actual values you pass when you call that function. Python offers several kinds of parameters, and the kind a definition uses tells you whether a caller must supply that value by position, by name, or not at all.
+Parameters are the variables written in a function definition, while arguments are the **actual values you pass** when you call that function. Python offers several kinds of parameters, and the kind a definition uses tells you whether a caller must supply that value by position, by name, or not at all.
 
 ### Positional and Keyword Parameters
 
@@ -103,14 +101,14 @@ print(introduction("Andi", age=28, city="Surabaya"))
 
 Parameter rules:
 
-1. Positional parameters must be given in order
-2. Keyword parameters can be given in any order
-3. Positional parameters must be written before keyword parameters
+1. **Positional arguments follow the parameter order**
+2. Keyword arguments can be given in any order
+3. Ordinary positional arguments precede keyword arguments
 4. Parameters with default values are optional
 
 ### Variable Number of Parameters
 
-Python can collect extra arguments through `*args` and `**kwargs`. The function still needs to check their number, types, and values against the program's requirements.
+Python can **collect extra arguments** through `*args` and `**kwargs`. The function still needs to check their number, types, and values against the program's requirements.
 
 <CodeBlock
   data={[
@@ -149,7 +147,7 @@ Parameter `*args` collects additional positional arguments into a tuple, while `
 
 ## Function Return Values
 
-Functions can return values using the `return` statement. If there's no `return` or `return` without a value, the function will return `None`.
+Functions can **return values** using the `return` statement. If there's no `return` or `return` without a value, the function will return `None`.
 
 <CodeBlock
   data={[
@@ -187,20 +185,16 @@ print(f"print_message function result: {result}")  # Output: print_message funct
 
 ## Variable Scope in Functions
 
-Variables in Python have scope that determines where variables can be accessed. Understanding variable scope is important to avoid errors in programs.
+Variables in Python have scope that determines **where variables can be accessed**. Understanding variable scope is important to avoid errors in programs.
 
 <Mermaid
   title="Where Function Variables Can Be Read"
   description="Follow name lookup from local scope outward so function scope rules are easier to trace."
   chart={`
     flowchart TD
-        A[Built-in Scope] --> B[Global Scope]
-        B --> C[Enclosing Scope]
-        C --> D[Local Scope]
-        A1[Built-in functions] --> A
-        B1[Global variables] --> B
-        C1[Enclosing variables] --> C
-        D1[Local variables] --> D
+        L[Local Scope] --> E[Enclosing Scope]
+        E --> G[Global Scope]
+        G --> B[Built-in Scope]
   `}
 />
 
@@ -234,7 +228,7 @@ print(f"Final counter: {counter}")      # Output: Final counter: 1`
   ]}
 />
 
-<Highlight>Variable lookup rules follow LEGB order</Highlight>:
+Name lookup follows **LEGB order**:
 
 1. **Local** - inside current function
 2. **Enclosing** - in enclosing function (for nested functions)
@@ -243,7 +237,7 @@ print(f"Final counter: {counter}")      # Output: Final counter: 1`
 
 ## Functions as First Class Objects
 
-In Python, functions are first-class objects, which means you can treat them like other data. You can store them in variables, pass them as arguments, or return them from other functions.
+In Python, functions are **first-class objects**, which means you can treat them like other data. You can store them in variables, pass them as arguments, or return them from other functions.
 
 <CodeBlock
   data={[
@@ -267,7 +261,10 @@ print(operation(5))  # Output: 10
 # Store functions in list
 operation_list = [multiply_two, multiply_three]
 for op in operation_list:
-    print(op(4))  # Output: 8 then 12
+    print(op(4))
+# Output:
+# 8
+# 12
 
 # Pass function as argument
 result1 = apply_operation(multiply_two, 7)
@@ -279,7 +276,7 @@ print(f"Results: {result1}, {result2}")  # Output: Results: 14, 21`
 
 ## Function Documentation with Docstring
 
-A docstring is a string literal placed as the first statement in a function definition. It documents what the function does and how to use it.
+A docstring is a string literal placed as the **first statement** in a function definition. It documents what the function does and how to use it.
 
 <CodeBlock
   data={[
@@ -288,7 +285,7 @@ A docstring is a string literal placed as the first statement in a function defi
       filename: "docstring_example.py",
       code: `def calculate_factorial(n):
     """
-    Calculate factorial of a positive integer.
+    Calculate factorial of a nonnegative integer.
 
     Parameters:
         n (int): Nonnegative integer
@@ -334,7 +331,7 @@ Good docstring writing conventions:
 
 ## Nested Functions and Closures
 
-Python allows a function definition inside another function. When the returned inner function retains a free variable from an enclosing scope, the function and that retained environment form a closure.
+Python allows a function definition inside another function. When the returned inner function retains a **free variable from an enclosing scope**, the function and that retained environment form a closure.
 
 <CodeBlock
   data={[
@@ -387,7 +384,7 @@ print(calc['multiply'](6, 7))    # Output: 42`
 
 ## Error Handling in Functions
 
-A function should state which inputs it accepts and fail explicitly when that contract is violated. Catch an exception only where code can recover, add useful context, or present the failure to a user.
+A function should state **which inputs it accepts** and fail explicitly when that contract is violated. Catch an exception only where code can recover, add useful context, or present the failure to a user.
 
 <CodeBlock
   data={[

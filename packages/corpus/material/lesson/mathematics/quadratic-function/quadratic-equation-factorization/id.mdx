@@ -11,7 +11,7 @@ export const metadata = {
 
 Faktorisasi menulis ulang persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> sebagai suatu perkalian. Jika persamaan dapat ditulis sebagai <InlineMath math="a(x - p)(x - q) = 0" />, bilangan <InlineMath math="p" /> dan <InlineMath math="q" /> adalah akar-akarnya.
 
-Akar persamaan adalah nilai <InlineMath math="x" /> yang membuat persamaan bernilai nol. <Highlight>Pada bentuk perkalian, tentukan akar dengan menyamakan setiap faktor dengan nol.</Highlight>
+Akar persamaan adalah nilai <InlineMath math="x" /> yang membuat persamaan bernilai nol. Pada bentuk perkalian, tentukan akar dengan <Highlight>menyamakan setiap faktor dengan nol</Highlight>.
 
 ## Prinsip Dasar Faktorisasi
 
@@ -28,9 +28,40 @@ Ini berarti jika <InlineMath math="(x - p)(x - q) = 0" />, maka:
 - <InlineMath math="x - p = 0" /> atau <InlineMath math="x - q = 0" />
 - Sehingga <InlineMath math="x = p" /> atau <InlineMath math="x = q" />
 
+### Melihat faktor sebagai luas
+
+Untuk <InlineMath math="x>0" />, panjang sisi <InlineMath math="x+3" /> dan <InlineMath math="x+2" /> dapat digambar sebagai persegi panjang. Dua potongan tengah mempunyai luas <InlineMath math="3x+2x=5x" />. Karena itu jumlah keempat luas sama dengan hasil kali kedua sisi.
+
+<BlockMath math="x^2+3x+2x+6=(x+3)(x+2)" />
+
+<MathVisual
+  title="Empat bagian satu persegi panjang"
+  description="Diagram memakai x = 2. Persegi panjang berukuran 5 kali 4 dibagi menjadi bagian x², 3x, 2x, dan 6."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "tall", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 4 }, { x: 2, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "wide", objectId: "wide", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "tall", objectId: "tall", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 3.5, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{ square: <InlineMath math="x^2" />, wide: <InlineMath math="3x" />, tall: <InlineMath math="2x" />, corner: <InlineMath math="6" /> }}
+/>
+
+Diagram memakai <InlineMath math="x=2" />, sehingga luas total <InlineMath math="4+6+4+6=20=5\times4" />. Identitas aljabarnya berlaku untuk semua bilangan real, tetapi <Highlight>gambar panjang sisi memakai nilai positif</Highlight>. Akar negatif persamaan tidak dimaknai sebagai panjang sisi.
+
 ## Langkah Faktorisasi Persamaan Kuadrat
 
-Untuk persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien bulat, faktorisasi melalui pengelompokan mengikuti langkah berikut:
+Untuk persamaan dengan koefisien bulat, cari **dua bilangan bulat** yang hasil kalinya <InlineMath math="ac" /> dan jumlahnya <InlineMath math="b" />. Jika pasangan tersebut ditemukan, pengelompokan dapat dilakukan dengan empat langkah berikut.
 
 1. Pastikan persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol
 2. Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac" /> dan jika dijumlahkan menghasilkan <InlineMath math="b" />
@@ -39,121 +70,110 @@ Untuk persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien
 
 ### Contoh memfaktorkan persamaan kuadrat
 
-Tiga contoh di bawah menaiki empat langkah yang sama: pertama dengan <InlineMath math="a = 1" />, lalu dengan konstanta negatif, lalu dengan <InlineMath math="a \neq 1" />. Perhatikan pasangan faktor yang hasil kalinya <InlineMath math="ac" /> dan jumlahnya <InlineMath math="b" /> pada masing-masing contoh.
+Tiga contoh berikut memakai pasangan bilangan dengan hasil kali <InlineMath math="ac" /> dan jumlah <InlineMath math="b" />. Koefisien utama dan tanda konstanta berubah, tetapi alasan pengelompokannya tetap sama.
 
-1. Memfaktorkan persamaan:
+**Contoh 1**
 
-   <BlockMath math="x^2 + 5x + 6 = 0" />
+<BlockMath math="x^2 + 5x + 6 = 0" />
 
-   Pada persamaan ini, <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = 6" />.
+Pada persamaan ini, <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = 6" />.
 
-   **Langkah 1**: Persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol.
+**Langkah 1**: Persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol.
 
-   **Langkah 2**: Kita perlu mencari dua bilangan yang:
+**Langkah 2**: Kita perlu mencari dua bilangan yang:
 
-   - Jika dikalikan menghasilkan <InlineMath math="ac = 1 \times 6 = 6" />
-   - Jika dijumlahkan menghasilkan <InlineMath math="b = 5" />
+- Jika dikalikan menghasilkan <InlineMath math="ac = 1 \times 6 = 6" />
+- Jika dijumlahkan menghasilkan <InlineMath math="b = 5" />
 
-   Faktor-faktor dari <InlineMath math="6" /> adalah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="6" />.
-   Pasangan faktor yang mungkin adalah <InlineMath math="(1, 6)" /> dan <InlineMath math="(2, 3)" />.
-   Pasangan <InlineMath math="(2, 3)" /> memberikan jumlah <InlineMath math="5" />, sesuai dengan nilai <InlineMath math="b" />.
+Faktor positif dari <InlineMath math="6" /> adalah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="6" />.
+Pasangan faktor yang mungkin adalah <InlineMath math="(1, 6)" /> dan <InlineMath math="(2, 3)" />.
+Pasangan <InlineMath math="(2, 3)" /> memberikan jumlah <InlineMath math="5" />, sesuai dengan nilai <InlineMath math="b" />.
 
-   **Langkah 3**: Kita dapat menulis persamaan sebagai:
+**Langkah 3**: Kita dapat menulis persamaan sebagai:
 
-   <MathContainer>
-     <BlockMath math="x^2 + 2x + 3x + 6 = 0" />
-     <BlockMath math="x(x + 2) + 3(x + 2) = 0" />
-     <BlockMath math="(x + 3)(x + 2) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 + 2x + 3x + 6 = 0" />
+  <BlockMath math="x(x + 2) + 3(x + 2) = 0" />
+  <BlockMath math="(x + 3)(x + 2) = 0" />
+</MathContainer>
 
-   **Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
+**Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
 
-   - <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
-   - <InlineMath math="x + 2 = 0" /> → <InlineMath math="x = -2" />
+- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
+- <InlineMath math="x + 2 = 0" /> → <InlineMath math="x = -2" />
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = -2" />.
+Jadi, akar-akar persamaan adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = -2" />.
 
-2. Memfaktorkan persamaan:
+**Contoh 2**
 
-   <BlockMath math="3x^2 + 13x - 10 = 0" />
+<BlockMath math="3x^2 + 13x - 10 = 0" />
 
-   Pada persamaan ini, <InlineMath math="a = 3" />, <InlineMath math="b = 13" />, dan <InlineMath math="c = -10" />.
+Pada persamaan ini, <InlineMath math="a = 3" />, <InlineMath math="b = 13" />, dan <InlineMath math="c = -10" />.
 
-   **Langkah 1**: Persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol.
+**Langkah 1**: Persamaan sudah dalam bentuk standar dengan ruas kanan bernilai nol.
 
-   **Langkah 2**: Kita perlu mencari dua bilangan yang:
+**Langkah 2**: Kita perlu mencari dua bilangan yang:
 
-   - Jika dikalikan menghasilkan <InlineMath math="ac = 3 \times (-10) = -30" />
-   - Jika dijumlahkan menghasilkan <InlineMath math="b = 13" />
+- Jika dikalikan menghasilkan <InlineMath math="ac = 3 \times (-10) = -30" />
+- Jika dijumlahkan menghasilkan <InlineMath math="b = 13" />
 
-   Faktor-faktor dari <InlineMath math="-30" /> adalah pasangan bilangan yang berlawanan tanda:
+Faktor-faktor dari <InlineMath math="-30" /> adalah pasangan bilangan yang berlawanan tanda:
 
-   <BlockMath math="\begin{aligned} &amp;(1, -30), \; (-1, 30), \; (2, -15), \\ &amp;\; (-2, 15), \\ &amp;(3, -10), \; (-3, 10), \; (5, -6), \\ &amp;\; (-5, 6) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(1, -30), \; (-1, 30), \; (2, -15), \\ &amp;\; (-2, 15), \\ &amp;(3, -10), \; (-3, 10), \; (5, -6), \\ &amp;\; (-5, 6) \end{aligned}" />
 
-   Pasangan <InlineMath math="(15, -2)" /> memberikan jumlah <InlineMath math="13" />, sesuai dengan nilai <InlineMath math="b" />.
+Pasangan <InlineMath math="(15, -2)" /> memberikan jumlah <InlineMath math="13" />, sesuai dengan nilai <InlineMath math="b" />.
 
-   **Langkah 3**: Kita dapat menulis persamaan sebagai:
+**Langkah 3**: Kita dapat menulis persamaan sebagai:
 
-   <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+<BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
 
-   Kita dapat mengelompokkan keempat suku persamaan itu menjadi dua pasangan:
+Kita dapat mengelompokkan keempat suku persamaan itu menjadi dua pasangan:
 
-   <MathContainer>
-     <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
-     <BlockMath math="3x(x + 5) - 2(x + 5) = 0" />
-     <BlockMath math="(3x - 2)(x + 5) = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+  <BlockMath math="3x(x + 5) - 2(x + 5) = 0" />
+  <BlockMath math="(3x - 2)(x + 5) = 0" />
+</MathContainer>
 
-   **Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
+**Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
 
-   - <InlineMath math="3x - 2 = 0" /> → <InlineMath math="x = \frac{2}{3}" />
-   - <InlineMath math="x + 5 = 0" /> → <InlineMath math="x = -5" />
+- <InlineMath math="3x - 2 = 0" /> → <InlineMath math="x = \frac{2}{3}" />
+- <InlineMath math="x + 5 = 0" /> → <InlineMath math="x = -5" />
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{2}{3}" /> dan <InlineMath math="x = -5" />.
+Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{2}{3}" /> dan <InlineMath math="x = -5" />.
 
-3. Faktorisasi Ketika Koefisien <InlineMath math="a \neq 1" />
+**Contoh 3**
 
-   Ketika koefisien <InlineMath math="a" /> tidak sama dengan <InlineMath math="1" />, kita perlu sedikit modifikasi dalam langkah-langkah faktorisasi. Ada beberapa pendekatan:
+<BlockMath math="2x^2 + 5x - 3 = 0" />
 
-   **Metode Faktor dari <InlineMath math="ac" />**
+Pada persamaan ini, <InlineMath math="a = 2" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = -3" />.
 
-   1. Tentukan nilai <InlineMath math="ac" />
-   2. Cari pasangan faktor dari <InlineMath math="ac" /> yang jika dijumlahkan menghasilkan <InlineMath math="b" />
-   3. Gunakan pasangan faktor untuk memisahkan suku <InlineMath math="bx" /> menjadi dua suku
-   4. Faktorkan dengan pengelompokan
+**Langkah 1**: Hitung <InlineMath math="ac = 2 \times (-3) = -6" />
 
-   **Contoh Faktorisasi**:
+**Langkah 2**: Cari pasangan faktor dari <InlineMath math="-6" /> yang jika dijumlahkan menghasilkan <InlineMath math="5" />:
 
-   <BlockMath math="2x^2 + 5x - 3 = 0" />
+Faktor-faktor dari <InlineMath math="-6" />: <InlineMath math="(1, -6), (-1, 6), (2, -3), (-2, 3)" />
 
-   Pada persamaan ini, <InlineMath math="a = 2" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = -3" />.
+Pasangan <InlineMath math="(6, -1)" /> memberikan jumlah <InlineMath math="5" />, sesuai dengan nilai <InlineMath math="b" />.
 
-   **Langkah 1**: Hitung <InlineMath math="ac = 2 \times (-3) = -6" />
+**Langkah 3**: Pisahkan suku <InlineMath math="5x" /> menjadi <InlineMath math="6x - x" />:
 
-   **Langkah 2**: Cari pasangan faktor dari <InlineMath math="-6" /> yang jika dijumlahkan menghasilkan <InlineMath math="5" />:
+<BlockMath math="2x^2 + 6x - x - 3 = 0" />
 
-   Faktor-faktor dari <InlineMath math="-6" />: <InlineMath math="(1, -6), (-1, 6), (2, -3), (-2, 3)" />
+**Langkah 4**: Faktorkan dengan pengelompokan:
 
-   Pasangan <InlineMath math="(6, -1)" /> memberikan jumlah <InlineMath math="5" />, sesuai dengan nilai <InlineMath math="b" />.
+<MathContainer>
+  <BlockMath math="2x^2 + 6x - x - 3 = 0" />
+  <BlockMath math="2x(x + 3) - 1(x + 3) = 0" />
+  <BlockMath math="(2x - 1)(x + 3) = 0" />
+</MathContainer>
 
-   **Langkah 3**: Pisahkan suku <InlineMath math="5x" /> menjadi <InlineMath math="6x - x" />:
+**Langkah 5**: Tentukan akar-akar persamaan:
 
-   <BlockMath math="2x^2 + 6x - x - 3 = 0" />
+- <InlineMath math="2x - 1 = 0" /> → <InlineMath math="x = \frac{1}{2}" />
+- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
 
-   **Langkah 4**: Faktorkan dengan pengelompokan:
-
-   <MathContainer>
-     <BlockMath math="2x^2 + 6x - x - 3 = 0" />
-     <BlockMath math="2x(x + 3) - 1(x + 3) = 0" />
-     <BlockMath math="(2x - 1)(x + 3) = 0" />
-   </MathContainer>
-
-   **Langkah 5**: Tentukan akar-akar persamaan:
-
-   - <InlineMath math="2x - 1 = 0" /> → <InlineMath math="x = \frac{1}{2}" />
-   - <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
-
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{1}{2}" /> dan <InlineMath math="x = -3" />.
+Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{1}{2}" /> dan <InlineMath math="x = -3" />.
 
 ## Cara Cepat Saat Salah Satu Akar Diketahui
 
@@ -188,61 +208,65 @@ Akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMat
 
 ## Kasus Khusus Faktorisasi
 
-1. Bentuk <InlineMath math="ax^2 + bx = 0" />
+**Contoh 1**
 
-   Untuk persamaan tanpa konstanta, kita dapat memfaktorkan <InlineMath math="x" /> langsung:
+Bentuk <InlineMath math="ax^2 + bx = 0" />
 
-   <MathContainer>
-     <BlockMath math="ax^2 + bx = 0" />
-     <BlockMath math="x(ax + b) = 0" />
-   </MathContainer>
+Untuk persamaan tanpa konstanta, kita dapat memfaktorkan <InlineMath math="x" /> langsung:
 
-   Akar-akarnya adalah <InlineMath math="x = 0" /> dan <InlineMath math="x = -\frac{b}{a}" />.
+<MathContainer>
+  <BlockMath math="ax^2 + bx = 0" />
+  <BlockMath math="x(ax + b) = 0" />
+</MathContainer>
 
-   **Contoh:** <InlineMath math="2x^2 - 18x = 0" />
+Akar-akarnya adalah <InlineMath math="x = 0" /> dan <InlineMath math="x = -\frac{b}{a}" />.
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 18x = 0" />
-     <BlockMath math="2x(x - 9) = 0" />
-   </MathContainer>
+**Contoh:** <InlineMath math="2x^2 - 18x = 0" />
 
-   Akar-akarnya adalah <InlineMath math="x = 0" /> dan <InlineMath math="x = 9" />.
+<MathContainer>
+  <BlockMath math="2x^2 - 18x = 0" />
+  <BlockMath math="2x(x - 9) = 0" />
+</MathContainer>
 
-2. Bentuk <InlineMath math="ax^2 - c = 0" />
+Akar-akarnya adalah <InlineMath math="x = 0" /> dan <InlineMath math="x = 9" />.
 
-   Untuk persamaan tanpa suku <InlineMath math="x" />, pisahkan dahulu <InlineMath math="x^2" />. Di dalam bilangan real, langkah penarikan akar mensyaratkan <InlineMath math="\frac{c}{a}\ge0" />:
+**Contoh 2**
 
-   <MathContainer>
-     <BlockMath math="ax^2 - c = 0" />
-     <BlockMath math="ax^2 = c" />
-     <BlockMath math="x^2 = \frac{c}{a}" />
-     <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
-   </MathContainer>
+Bentuk <InlineMath math="ax^2 - c = 0" />
 
-   - Jika <InlineMath math="\frac{c}{a}>0" />, terdapat dua akar real berbeda dan bentuk tersebut dapat difaktorkan menjadi faktor-faktor linear real.
-   - Jika <InlineMath math="\frac{c}{a}=0" />, <InlineMath math="x=0" /> merupakan akar kembar.
-   - Jika <InlineMath math="\frac{c}{a}<0" />, tidak ada akar real maupun faktorisasi menjadi faktor-faktor linear real. Di dalam bilangan kompleks, akar-akarnya adalah <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
+Untuk persamaan tanpa suku <InlineMath math="x" />, pisahkan dahulu <InlineMath math="x^2" />. Di dalam bilangan real, langkah penarikan akar mensyaratkan <InlineMath math="\frac{c}{a}\ge0" />:
 
-   **Contoh:** <InlineMath math="2x^2 - 18 = 0" />
+<MathContainer>
+  <BlockMath math="ax^2 - c = 0" />
+  <BlockMath math="ax^2 = c" />
+  <BlockMath math="x^2 = \frac{c}{a}" />
+  <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 18 = 0" />
-     <BlockMath math="2x^2 = 18" />
-     <BlockMath math="x^2 = 9" />
-     <BlockMath math="x = \pm 3" />
-   </MathContainer>
+- Jika <InlineMath math="\frac{c}{a}>0" />, terdapat dua akar real berbeda dan bentuk tersebut dapat difaktorkan menjadi faktor-faktor linear real.
+- Jika <InlineMath math="\frac{c}{a}=0" />, <InlineMath math="x=0" /> merupakan akar kembar.
+- Jika <InlineMath math="\frac{c}{a}<0" />, tidak ada akar real maupun faktorisasi menjadi faktor-faktor linear real. Di dalam bilangan kompleks, akar-akarnya adalah <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
 
-    Akar-akarnya adalah <InlineMath math="x = 3" /> dan <InlineMath math="x = -3" />.
+**Contoh:** <InlineMath math="2x^2 - 18 = 0" />
 
-    **Contoh akar kompleks:** <InlineMath math="2x^2 + 18 = 0" />
+<MathContainer>
+  <BlockMath math="2x^2 - 18 = 0" />
+  <BlockMath math="2x^2 = 18" />
+  <BlockMath math="x^2 = 9" />
+  <BlockMath math="x = \pm 3" />
+</MathContainer>
 
-    <MathContainer>
-      <BlockMath math="2x^2 + 18 = 0" />
-      <BlockMath math="2x^2 = -18" />
-      <BlockMath math="x^2 = -9" />
-    </MathContainer>
+ Akar-akarnya adalah <InlineMath math="x = 3" /> dan <InlineMath math="x = -3" />.
 
-    Akar-akarnya adalah <InlineMath math="x = 3i" /> dan <InlineMath math="x = -3i" />. Cek dengan rumus di atas: <InlineMath math="c/a = -9" /> sehingga <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
+ **Contoh akar kompleks:** <InlineMath math="2x^2 + 18 = 0" />
+
+ <MathContainer>
+   <BlockMath math="2x^2 + 18 = 0" />
+   <BlockMath math="2x^2 = -18" />
+   <BlockMath math="x^2 = -9" />
+ </MathContainer>
+
+ Akar-akarnya adalah <InlineMath math="x = 3i" /> dan <InlineMath math="x = -3i" />. Cek dengan rumus di atas: <InlineMath math="c/a = -9" /> sehingga <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
 
 ## Ketika Pasangan Faktor Bulat Tidak Ditemukan
 
@@ -250,11 +274,11 @@ Tidak semua persamaan kuadrat mempunyai faktor rasional. Jika tidak ada pasangan
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-Untuk koefisien bulat, persamaan kuadrat mempunyai akar rasional tepat ketika diskriminan <InlineMath math="b^2 - 4ac" /> merupakan bilangan kuadrat sempurna yang tidak negatif.
+Untuk koefisien bulat, persamaan kuadrat mempunyai akar rasional tepat ketika diskriminan <InlineMath math="b^2 - 4ac" /> merupakan **bilangan kuadrat sempurna yang tidak negatif**.
 
 ## Latihan Soal
 
-Setiap persamaan harus diubah ke bentuk faktor lebih dahulu, jadi carilah dua faktor yang hasil kalinya sama dengan suku konstanta. Setelah itu akar-akarnya bisa dibaca langsung dari kedua faktor tersebut.
+Carilah pasangan bilangan dengan <Highlight>hasil kali ac dan jumlah b</Highlight>. Kalikan koefisien utama dengan konstanta untuk memperoleh hasil kali yang dicari. Pada soal kelima, pola selisih kuadrat memberi faktor secara langsung. Sesudah mendapatkan bentuk perkalian, samakan setiap faktor dengan nol.
 
 Faktorkan persamaan-persamaan kuadrat berikut:
 
@@ -266,142 +290,152 @@ Faktorkan persamaan-persamaan kuadrat berikut:
 
 ### Pembahasan Lengkap
 
-1. <InlineMath math="x^2 + 6x + 5 = 0" />
+**Contoh 1**
 
-   **Langkah 1**: Identifikasi koefisien
+<InlineMath math="x^2 + 6x + 5 = 0" />
 
-   <BlockMath math="a = 1, b = 6, c = 5" />
+**Langkah 1**: Identifikasi koefisien
 
-   **Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 5" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = 6" />
+<BlockMath math="a = 1, b = 6, c = 5" />
 
-   Pilih faktor dari <InlineMath math="5" /> dengan jumlah yang diperlukan:
+**Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 5" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = 6" />
 
-   <BlockMath math="\begin{aligned} &amp;1\times5=5 \\ &amp;1+5=6 \end{aligned}" />
+Pilih faktor dari <InlineMath math="5" /> dengan jumlah yang diperlukan:
 
-   **Langkah 3**: Faktorisasi
+<BlockMath math="\begin{aligned} &amp;1\times5=5 \\ &amp;1+5=6 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="x^2 + 6x + 5 = 0" />
-     <BlockMath math="x^2 + x + 5x + 5 = 0" />
-     <BlockMath math="x(x + 1) + 5(x + 1) = 0" />
-     <BlockMath math="(x + 5)(x + 1) = 0" />
-   </MathContainer>
+**Langkah 3**: Faktorisasi
 
-   **Langkah 4**: Tentukan akar-akar persamaan
+<MathContainer>
+  <BlockMath math="x^2 + 6x + 5 = 0" />
+  <BlockMath math="x^2 + x + 5x + 5 = 0" />
+  <BlockMath math="x(x + 1) + 5(x + 1) = 0" />
+  <BlockMath math="(x + 5)(x + 1) = 0" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x + 5 = 0 \Rightarrow x = -5" />
-     <BlockMath math="x + 1 = 0 \Rightarrow x = -1" />
-   </MathContainer>
+**Langkah 4**: Tentukan akar-akar persamaan
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = -5" /> dan <InlineMath math="x = -1" />.
+<MathContainer>
+  <BlockMath math="x + 5 = 0 \Rightarrow x = -5" />
+  <BlockMath math="x + 1 = 0 \Rightarrow x = -1" />
+</MathContainer>
 
-2. <InlineMath math="2x^2 + 5x + 2 = 0" />
+Jadi, akar-akar persamaan adalah <InlineMath math="x = -5" /> dan <InlineMath math="x = -1" />.
 
-   **Langkah 1**: Identifikasi koefisien
+**Contoh 2**
 
-   <BlockMath math="a = 2, b = 5, c = 2" />
+<InlineMath math="2x^2 + 5x + 2 = 0" />
 
-   **Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 2 \times 2 = 4" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = 5" />
+**Langkah 1**: Identifikasi koefisien
 
-   Pilih faktor dari <InlineMath math="4" /> dengan jumlah yang diperlukan:
+<BlockMath math="a = 2, b = 5, c = 2" />
 
-   <BlockMath math="\begin{aligned} &amp;1\times4=4 \\ &amp;1+4=5 \end{aligned}" />
+**Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 2 \times 2 = 4" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = 5" />
 
-   **Langkah 3**: Faktorisasi
+Pilih faktor dari <InlineMath math="4" /> dengan jumlah yang diperlukan:
 
-   <MathContainer>
-     <BlockMath math="2x^2 + 5x + 2 = 0" />
-     <BlockMath math="2x^2 + x + 4x + 2 = 0" />
-     <BlockMath math="x(2x + 1) + 2(2x + 1) = 0" />
-     <BlockMath math="(2x + 1)(x + 2) = 0" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;1\times4=4 \\ &amp;1+4=5 \end{aligned}" />
 
-   **Langkah 4**: Tentukan akar-akar persamaan
+**Langkah 3**: Faktorisasi
 
-   <MathContainer>
-     <BlockMath math="2x + 1 = 0 \Rightarrow x = -\frac{1}{2}" />
-     <BlockMath math="x + 2 = 0 \Rightarrow x = -2" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="2x^2 + 5x + 2 = 0" />
+  <BlockMath math="2x^2 + x + 4x + 2 = 0" />
+  <BlockMath math="x(2x + 1) + 2(2x + 1) = 0" />
+  <BlockMath math="(2x + 1)(x + 2) = 0" />
+</MathContainer>
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMath math="x = -2" />.
+**Langkah 4**: Tentukan akar-akar persamaan
 
-3. <InlineMath math="3x^2 - x - 2 = 0" />
+<MathContainer>
+  <BlockMath math="2x + 1 = 0 \Rightarrow x = -\frac{1}{2}" />
+  <BlockMath math="x + 2 = 0 \Rightarrow x = -2" />
+</MathContainer>
 
-   **Langkah 1**: Identifikasi koefisien
+Jadi, akar-akar persamaan adalah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMath math="x = -2" />.
 
-   <BlockMath math="a = 3, b = -1, c = -2" />
+**Contoh 3**
 
-   **Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 3 \times (-2) = -6" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = -1" />
+<InlineMath math="3x^2 - x - 2 = 0" />
 
-   Pilih faktor dari <InlineMath math="-6" /> dengan jumlah yang diperlukan:
+**Langkah 1**: Identifikasi koefisien
 
-   <BlockMath math="\begin{aligned} &amp;(-3)\times2=-6 \\ &amp;(-3)+2=-1 \end{aligned}" />
+<BlockMath math="a = 3, b = -1, c = -2" />
 
-   **Langkah 3**: Faktorisasi
+**Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 3 \times (-2) = -6" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = -1" />
 
-   <MathContainer>
-     <BlockMath math="3x^2 - x - 2 = 0" />
-     <BlockMath math="3x^2 - 3x + 2x - 2 = 0" />
-     <BlockMath math="3x(x - 1) + 2(x - 1) = 0" />
-     <BlockMath math="(3x + 2)(x - 1) = 0" />
-   </MathContainer>
+Pilih faktor dari <InlineMath math="-6" /> dengan jumlah yang diperlukan:
 
-   **Langkah 4**: Tentukan akar-akar persamaan
+<BlockMath math="\begin{aligned} &amp;(-3)\times2=-6 \\ &amp;(-3)+2=-1 \end{aligned}" />
 
-   <MathContainer>
-     <BlockMath math="3x + 2 = 0 \Rightarrow x = -\frac{2}{3}" />
-     <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
-   </MathContainer>
+**Langkah 3**: Faktorisasi
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = -\frac{2}{3}" /> dan <InlineMath math="x = 1" />.
+<MathContainer>
+  <BlockMath math="3x^2 - x - 2 = 0" />
+  <BlockMath math="3x^2 - 3x + 2x - 2 = 0" />
+  <BlockMath math="3x(x - 1) + 2(x - 1) = 0" />
+  <BlockMath math="(3x + 2)(x - 1) = 0" />
+</MathContainer>
 
-4. <InlineMath math="2x^2 - 8x + 6 = 0" />
+**Langkah 4**: Tentukan akar-akar persamaan
 
-   **Langkah 1**: Identifikasi koefisien
+<MathContainer>
+  <BlockMath math="3x + 2 = 0 \Rightarrow x = -\frac{2}{3}" />
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+</MathContainer>
 
-   <BlockMath math="a = 2, b = -8, c = 6" />
+Jadi, akar-akar persamaan adalah <InlineMath math="x = -\frac{2}{3}" /> dan <InlineMath math="x = 1" />.
 
-   **Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 2 \times 6 = 12" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = -8" />
+**Contoh 4**
 
-   Pilih faktor dari <InlineMath math="12" /> dengan jumlah yang diperlukan:
+<InlineMath math="2x^2 - 8x + 6 = 0" />
 
-   <BlockMath math="\begin{aligned} &amp;(-6)\times(-2)=12 \\ &amp;(-6)+(-2)=-8 \end{aligned}" />
+**Langkah 1**: Identifikasi koefisien
 
-   **Langkah 3**: Faktorisasi
+<BlockMath math="a = 2, b = -8, c = 6" />
 
-   <MathContainer>
-     <BlockMath math="2x^2 - 8x + 6 = 0" />
-     <BlockMath math="2x^2 - 6x - 2x + 6 = 0" />
-     <BlockMath math="2x(x - 3) - 2(x - 3) = 0" />
-     <BlockMath math="(2x - 2)(x - 3) = 0" />
-     <BlockMath math="2(x - 1)(x - 3) = 0" />
-   </MathContainer>
+**Langkah 2**: Cari dua bilangan yang jika dikalikan menghasilkan <InlineMath math="ac = 2 \times 6 = 12" /> dan jika dijumlahkan menghasilkan <InlineMath math="b = -8" />
 
-   **Langkah 4**: Tentukan akar-akar persamaan
+Pilih faktor dari <InlineMath math="12" /> dengan jumlah yang diperlukan:
 
-   <MathContainer>
-     <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
-     <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
-   </MathContainer>
+<BlockMath math="\begin{aligned} &amp;(-6)\times(-2)=12 \\ &amp;(-6)+(-2)=-8 \end{aligned}" />
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
+**Langkah 3**: Faktorisasi
 
-5. <InlineMath math="x^2 - 9 = 0" />
+<MathContainer>
+  <BlockMath math="2x^2 - 8x + 6 = 0" />
+  <BlockMath math="2x^2 - 6x - 2x + 6 = 0" />
+  <BlockMath math="2x(x - 3) - 2(x - 3) = 0" />
+  <BlockMath math="(2x - 2)(x - 3) = 0" />
+  <BlockMath math="2(x - 1)(x - 3) = 0" />
+</MathContainer>
 
-   **Langkah 1**: Identifikasi sebagai bentuk selisih kuadrat
+**Langkah 4**: Tentukan akar-akar persamaan
 
-   <BlockMath math="x^2 - 9 = x^2 - 3^2" />
+<MathContainer>
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
 
-   **Langkah 2**: Gunakan rumus selisih kuadrat <InlineMath math="a^2 - b^2 = (a+b)(a-b)" />
+Jadi, akar-akar persamaan adalah <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
 
-   <BlockMath math="x^2 - 3^2 = (x + 3)(x - 3) = 0" />
+**Contoh 5**
 
-   **Langkah 3**: Tentukan akar-akar persamaan
+<InlineMath math="x^2 - 9 = 0" />
 
-   <MathContainer>
-     <BlockMath math="x + 3 = 0 \Rightarrow x = -3" />
-     <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
-   </MathContainer>
+**Langkah 1**: Identifikasi sebagai bentuk selisih kuadrat
 
-   Jadi, akar-akar persamaan adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />.
+<BlockMath math="x^2 - 9 = x^2 - 3^2" />
+
+**Langkah 2**: Gunakan rumus selisih kuadrat <InlineMath math="a^2 - b^2 = (a+b)(a-b)" />
+
+<BlockMath math="x^2 - 3^2 = (x + 3)(x - 3) = 0" />
+
+**Langkah 3**: Tentukan akar-akar persamaan
+
+<MathContainer>
+  <BlockMath math="x + 3 = 0 \Rightarrow x = -3" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
+
+Jadi, akar-akar persamaan adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />.

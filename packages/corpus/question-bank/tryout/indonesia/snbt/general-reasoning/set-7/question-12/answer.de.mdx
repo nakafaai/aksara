@@ -5,7 +5,33 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Da der Boden eben ist und beide Schatten zur gleichen Zeit entstehen, ist der Einfallswinkel des Sonnenlichts gleich. Jede Person bildet mit ihrem Schatten ein ähnliches rechtwinkliges Dreieck. Das Verhältnis von Körpergröße zu Schattenlänge ist daher gleich. <InlineMath math="h_N" /> und <InlineMath math="s_N" /> bezeichnen Nafis’ Körpergröße und Schattenlänge, <InlineMath math="h_M" /> und <InlineMath math="s_M" /> die entsprechenden Längen von Mirza. Alle Längen sind in Metern angegeben.
+Da der Boden eben ist und beide Schatten zur gleichen Zeit entstehen, ist der Einfallswinkel des Sonnenlichts gleich. Jede Person bildet mit ihrem Schatten ein rechtwinkliges Dreieck. Diese beiden Dreiecke sind **ähnlich**. Das Verhältnis von Körpergröße zu Schattenlänge ist daher gleich. <InlineMath math="h_N" /> und <InlineMath math="s_N" /> bezeichnen Nafis’ Körpergröße und Schattenlänge, <InlineMath math="h_M" /> und <InlineMath math="s_M" /> die entsprechenden Längen von Mirza. Alle Längen sind in Metern angegeben.
+
+<MathVisual
+  title="Körpergrößen und Schatten bilden ähnliche Dreiecke"
+  description="Die Dreiecke sind getrennt dargestellt. Die senkrechte Seite zeigt die Körpergröße, die waagerechte den Schatten und die schräge den Sonnenstrahl. Beide schrägen Seiten haben dieselbe Steigung."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "nafis", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }, { x: 0, y: 1.5 }], appearance: "primary" },
+      { id: "mirza", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 6, y: 3 }, { x: 0, y: 5 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "nafis-height", objectId: "nafis", at: { x: 0, y: 0.75 }, placement: "left" },
+      { key: "nafis-shadow", objectId: "nafis", at: { x: 2.25, y: 0 }, placement: "below" },
+      { key: "mirza-height", objectId: "mirza", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "mirza-shadow", objectId: "mirza", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "nafis-height": <InlineMath math="h_N=1{,}5\text{ m}" />,
+    "nafis-shadow": <InlineMath math="s_N=4{,}5\text{ m}" />,
+    "mirza-height": <InlineMath math="h_M" />,
+    "mirza-shadow": <InlineMath math="s_M=6\text{ m}" />,
+  }}
+/>
 
 Gegeben:
 - Nafis' Größe = <InlineMath math="1{,}5\text{ Meter}" />

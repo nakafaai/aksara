@@ -10,24 +10,31 @@ Diketahui:
 - <InlineMath math="350" /> mahasiswa memilih olahraga.
 - <InlineMath math="450" /> mahasiswa memilih kesenian.
 
-Kita akan mencari nilai <InlineMath math="P" /> (maksimum irisan) dan <InlineMath math="Q" /> (minimum irisan).
+Kita akan mencari nilai <InlineMath math="P" /> (**maksimum irisan**) dan <InlineMath math="Q" /> (minimum irisan).
 
-1. **Mencari <InlineMath math="P" /> (Maksimum Irisan)**
-   Jumlah maksimum mahasiswa yang mengikuti keduanya terjadi jika salah satu himpunan merupakan himpunan bagian dari himpunan lainnya (atau sebanyak mungkin anggota himpunan yang lebih kecil masuk ke dalam himpunan yang lebih besar).
+#### Irisan maksimum
+Jumlah maksimum mahasiswa yang mengikuti keduanya terjadi jika salah satu himpunan merupakan himpunan bagian dari himpunan lainnya (atau sebanyak mungkin anggota **himpunan yang lebih kecil** masuk ke dalam himpunan yang lebih besar).
 
-   <BlockMath math="P = \min(350, 450) = 350 " />
+<BlockMath math="P = \min(350, 450) = 350 " />
 
-2. **Mencari <InlineMath math="Q" /> (Minimum Irisan)**
-   Jumlah minimum mahasiswa yang mengikuti keduanya terjadi jika penyebaran mahasiswa semerata mungkin sehingga gabungan kedua himpunan tersebut maksimal (sama dengan total semesta, yaitu <InlineMath math="700" />).
-   Menggunakan prinsip Inklusi-Eksklusi:
+#### Irisan minimum
+Jumlah minimum mahasiswa yang mengikuti keduanya terjadi jika **gabungan kedua himpunan sebesar mungkin** (sama dengan total semesta, yaitu <InlineMath math="700" />).
+Menggunakan prinsip Inklusi-Eksklusi:
 
-   <MathContainer>
-     <BlockMath math="Q = (350 + 450) - 700" />
-     <BlockMath math="Q = 800 - 700 = 100 " />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="Q = (350 + 450) - 700" />
+  <BlockMath math="Q = 800 - 700 = 100 " />
+</MathContainer>
 
-3. **Mencari Selisih**
+#### Selisih kedua batas
 
-   <BlockMath math="P - Q = 350 - 100 = 250 " />
+Kedua batas bisa dicapai. Tabel **kelompok tanpa tumpang tindih** berikut menunjukkan semua 700 mahasiswa pada tiap keadaan.
+
+| Irisan | Hanya olahraga | Keduanya | Hanya seni | Tidak keduanya |
+| --- | --- | --- | --- | --- |
+| P | 0 | 350 | 100 | 250 |
+| Q | 250 | 100 | 350 | 0 |
+
+<BlockMath math="P - Q = 350 - 100 = 250 " />
 
 Jadi, selisih <InlineMath math="P" /> dan <InlineMath math="Q" /> adalah <InlineMath math="250\text{ orang}" />.

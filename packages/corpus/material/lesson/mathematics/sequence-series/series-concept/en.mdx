@@ -11,13 +11,13 @@ export const metadata = {
 
 How can the terms of a number sequence be accumulated? An expression such as <InlineMath math="1+2+3+\cdots" /> is called a **series**.
 
-A number series is formed by <Highlight>adding the terms of [a number sequence](/en/subjects/mathematics/sequence-series/sequence-concept)</Highlight> in their given order. Two common examples are an arithmetic series, whose terms come from an arithmetic sequence, and a **geometric series**, whose terms come from a geometric sequence.
+A number series is formed by **adding the terms** of [a number sequence](/en/subjects/mathematics/sequence-series/sequence-concept) in their given order. Two common examples are an arithmetic series, whose terms come from an arithmetic sequence, and a **geometric series**, whose terms come from a geometric sequence.
 
 In the handshake example below, each new person adds another term to the sum.
 
 ## Partial Sums Connect a Sequence to Its Series
 
-For a sequence <InlineMath math="(U_n)" />, the sum of its first <InlineMath math="n" /> terms is the <InlineMath math="n" />th partial sum:
+For a sequence <InlineMath math="(U_n)" />, the sum of its first <InlineMath math="n" /> terms is the <InlineMath math="n" />th **partial sum**:
 
 <BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
 
@@ -27,14 +27,25 @@ Finite problems ask for a particular partial sum. For an infinite series, we stu
 
 Imagine there are several people in a group. If each person shakes hands exactly once with every other person in the group, how many total handshakes occur?
 
-Count the handshakes step by step:
+With three people, the first person shakes hands with the other two. One pair remains between the second and third people, so the total is <InlineMath math="2+1=3" />. For four people, the diagram contains **one line for each pair**. A crossing of lines does not add another person or handshake.
 
-- **If there are <InlineMath math="2 \text{ people}" />:** There is only <InlineMath math="1 \text{ handshake}" />.
-- **If there are <InlineMath math="3 \text{ people}" />:** The first person shakes hands with <InlineMath math="2 \text{ people}" />. The second person has already shaken hands with the first, so they only need to shake hands with the third person. The total is <InlineMath math="2 + 1 = 3 \text{ handshakes}" />.
-- **If there are <InlineMath math="4 \text{ people}" />:** Following the same pattern, we get <InlineMath math="3 + 2 + 1 = 6 \text{ handshakes}" />.
-- **If there are <InlineMath math="5 \text{ people}" />:** The total is <InlineMath math="4 + 3 + 2 + 1 = 10 \text{ handshakes}" />.
+<Mermaid
+  title="Handshake Pairs"
+  description="Each line connects one pair. Count each line once even though it has two ends."
+  chart={`flowchart LR
+  A["First person"]
+  B["Second person"]
+  C["Third person"]
+  D["Fourth person"]
+  A --- B
+  A --- C
+  A --- D
+  B --- C
+  B --- D
+  C --- D`}
+/>
 
-The number of handshakes forms a sequential sum of natural numbers.
+The table counts handshakes as one new person joins. Each newcomer shakes hands with everyone already present, so the numbers of additional handshakes are <InlineMath math="1,2,3,4" />.
 
 | Number of people present | Number of handshakes | Breakdown of handshakes       |
 | :----------------------- | :------------------- | :---------------------------- |
@@ -49,7 +60,7 @@ Each pair must be counted exactly once. Counting every person's handshakes indep
 
 ### A Second Counting Method
 
-A handshake is an unordered pair of people. The number of pairs chosen from <InlineMath math="n" /> people is:
+A handshake is an **unordered pair** of people. The number of pairs chosen from <InlineMath math="n" /> people is:
 
 <BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
 
@@ -63,7 +74,7 @@ Each expression <InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath 
 
 ## Practice
 
-How many handshakes occur among <InlineMath math="12 \text{ people}" /> if every pair shakes hands exactly once?
+How many handshakes occur among <InlineMath math="12 \text{ people}" /> if every pair shakes hands **exactly once**?
 
 The sequential-sum method gives:
 

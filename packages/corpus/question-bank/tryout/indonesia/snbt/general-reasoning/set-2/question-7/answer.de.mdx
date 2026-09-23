@@ -5,21 +5,17 @@ export const metadata = {
   datePublished: "2026-01-01",
 };
 
-Zunächst halten wir die Anzahl der Möglichkeiten für jede Position fest:
+Jede Position hat eine **feste Anzahl an Möglichkeiten**, weil Wiederholungen erlaubt sind. Die Wahl eines Zeichens verringert die Auswahl an einer anderen Position nicht.
 
-| Ziffer aus <InlineMath math="\{2, 4, 6, 8\}" /> | Erster Buchstabe (nicht <InlineMath math="\mathrm{E}" />) | Ziffer aus <InlineMath math="\{5, 6, 7\}" /> | Zweiter Buchstabe (<InlineMath math="\mathrm{U}" />) |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="2, 4, 6, 8" /> | <InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" /> | <InlineMath math="5, 6, 7" /> | <InlineMath math="\mathrm{U}" /> |
-| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> |
+| Position | Erlaubte Zeichen | Anzahl der Möglichkeiten |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="\{2,4,6,8\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="\{\mathrm{A},\mathrm{I},\mathrm{O},\mathrm{U}\}" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="\{5,6,7\}" /> | <InlineMath math="3" /> |
+| <InlineMath math="4" /> | <InlineMath math="\{\mathrm{U}\}" /> | <InlineMath math="1" /> |
 
-Aus der obigen Tabelle erhalten wir die Anzahl der Auswahlmöglichkeiten für jede Position:
-- **Position** <InlineMath math="1" />: Die Menge <InlineMath math="\{2, 4, 6, 8\}" /> liefert <InlineMath math="4" /> Möglichkeiten. Da die Menge ausdrücklich vorgegeben ist, wird <InlineMath math="0" /> nicht mitgezählt.
-- **Position** <InlineMath math="2" />: Vokale außer <InlineMath math="\mathrm{E}" /> (<InlineMath math="\{\mathrm{A}, \mathrm{I}, \mathrm{U}, \mathrm{O}\}" />) haben <InlineMath math="4" /> Auswahlmöglichkeiten.
-- **Position** <InlineMath math="3" />: Ziffern aus der Menge <InlineMath math="\{5, 6, 7\}" /> haben <InlineMath math="3" /> Auswahlmöglichkeiten.
-- **Position** <InlineMath math="4" />: Der Buchstabe <InlineMath math="\mathrm{U}" /> hat nur <InlineMath math="1" /> Auswahl.
+An der ersten Position ist <InlineMath math="0" /> nicht erlaubt, weil diese Ziffer nicht zur vorgegebenen Menge gehört. Jede erste Wahl lässt sich mit allen vier ersten Buchstaben, allen drei zweiten Ziffern und dem festgelegten letzten Buchstaben kombinieren. Verwende die **Produktregel**:
 
-Da die Entscheidungen für die vier Positionen unabhängig miteinander kombiniert werden, verwenden wir die Produktregel:
+<BlockMath math="4\times4\times3\times1=16\times3=48" />
 
-<BlockMath math="4 \times 4 \times 3 \times 1 = 48" />
-
-Somit gibt es <InlineMath math="48" /> mögliche Passwörter.
+Somit sind <InlineMath math="48" /> Passwörter möglich.

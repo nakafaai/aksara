@@ -3,7 +3,7 @@ export const metadata = {
     description: "Relate symmetric and Hermitian matrices to real eigenvalues, orthogonal eigenvectors, quadratic forms, and diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-13",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Linear Methods of AI",
 };
 
@@ -37,7 +37,7 @@ The transpose and conjugate transpose must not be mixed. For <InlineMath math="x
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-For <InlineMath math="x\in\mathbb{C}^n" />, use the conjugate transpose:
+For <InlineMath math="x\in\mathbb{C}^n" />, **use the conjugate transpose**:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -74,7 +74,7 @@ The skew-symmetric part contributes nothing because <InlineMath math="x^T(B-B^T)
 
 ## Why Hermitian Eigenvalues Are Real
 
-Suppose <InlineMath math="Hv=\lambda v" /> with <InlineMath math="v\neq0" />. Hermitian symmetry gives
+Suppose <InlineMath math="Hv=\lambda v" /> with <InlineMath math="v\neq0" />. **Hermitian symmetry** gives
 
 <MathContainer>
 <BlockMath math="\lambda v^Hv=v^HHv" />
@@ -85,7 +85,7 @@ Since <InlineMath math="v^Hv>0" />, it follows that <InlineMath math="\lambda=\o
 
 ## Why Distinct Eigenspaces Are Orthogonal
 
-Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <InlineMath math="\lambda\neq\mu" />. Because both eigenvalues are real,
+Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <InlineMath math="\lambda\neq\mu" />. Because **both eigenvalues are real**,
 
 <MathContainer>
 <BlockMath math="\lambda w^Hv=w^HHv" />
@@ -105,7 +105,7 @@ The spectral theorem collects these facts into a complete decomposition:
   <BlockMath math="H=U\Lambda U^H" />
 </MathContainer>
 
-The columns of <InlineMath math="Q" /> or <InlineMath math="U" /> form an orthonormal eigenbasis, and every diagonal entry of <InlineMath math="\Lambda" /> is real. If <InlineMath math="u_1,\ldots,u_n" /> are the columns of <InlineMath math="U" />, then
+The columns of <InlineMath math="Q" /> or <InlineMath math="U" /> form an **orthonormal eigenbasis**, and every diagonal entry of <InlineMath math="\Lambda" /> is real. If <InlineMath math="u_1,\ldots,u_n" /> are the columns of <InlineMath math="U" />, then
 
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
@@ -121,7 +121,7 @@ For the matrix <InlineMath math="H" />, the characteristic polynomial is
 
 <BlockMath math="\begin{aligned} \det(H-\lambda I) &amp;=(2-\lambda)(3-\lambda)-2 \\ &amp;=(\lambda-1)(\lambda-4) \end{aligned}" />
 
-Normalized eigenvectors for <InlineMath math="\lambda_1=1" /> and <InlineMath math="\lambda_2=4" /> are
+**Normalized eigenvectors** for <InlineMath math="\lambda_1=1" /> and <InlineMath math="\lambda_2=4" /> are
 
 <MathContainer>
 <BlockMath math="u_1=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}" />
@@ -132,4 +132,9 @@ They satisfy <InlineMath math="u_1^Hu_2=0" />. With <InlineMath math="U=(u_1\qua
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-This equation gives a unitary diagonalization that can be checked directly.
+Check the orthogonality and the first eigenvector directly. The normalizing factor stays outside each product.
+
+<MathContainer>
+<BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
+<BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
+</MathContainer>

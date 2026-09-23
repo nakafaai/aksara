@@ -25,23 +25,23 @@ For point <InlineMath math="A(x_0, y_0)" /> and the general circle <InlineMath m
 
 <BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
-Substituting the coordinates once gives the value <InlineMath math="K_A" />. <Highlight>The sign of K_A determines the point's location</Highlight>:
+Substituting the coordinates gives <InlineMath math="K_A" />. The **sign of the point power** determines the position relative to the circle.
 
 ## Three Possible Point Positions
 
 Based on the power of a point value, there are three possible positions:
 
-1. **The point is inside the circle** when <InlineMath math="K_A < 0" />.
-
-2. **The point is on the circle** when <InlineMath math="K_A = 0" />.
-
-3. **The point is outside the circle** when <InlineMath math="K_A > 0" />.
+| Point power | Position |
+| --- | --- |
+| <InlineMath math="K_A<0" /> | **Inside** |
+| <InlineMath math="K_A=0" /> | **On the circle** |
+| <InlineMath math="K_A>0" /> | **Outside** |
 
 The three cases are shown in the graph below:
 
 <LineEquation
   title="Point Position Relative to Circle"
-  description={<>Visualization of three possible positions of point <InlineMath math="A" /> relative to the circle.</>}
+  description="Visualization of three possible positions of point A relative to the circle."
   data={[
     {
       smooth: false,
@@ -148,13 +148,19 @@ The three cases are shown in the graph below:
   cameraTarget={[0.7, 0, 0]}
 />
 
+In the diagram, the center is <InlineMath math="(0,0)" /> and the radius is <InlineMath math="3" />. Check the three points by **subtracting nine from the squared distance**:
+
+| Point | Point power | Position |
+| --- | --- | --- |
+| <InlineMath math="A(\frac32,1)" /> | <InlineMath math="K_A=\frac94+1-9=-\frac{23}{4}" /> | Inside |
+| <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | On the circle |
+| <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Outside |
+
 ## How to Determine Point Position
 
 Identify the circle equation and the point coordinates, then substitute the coordinates into the power-of-a-point formula to obtain <InlineMath math="K_A" />.
 
-The sign of <InlineMath math="K_A" /> determines the point's position. If <InlineMath math="K_A<0" />, the point is inside the circle. If <InlineMath math="K_A=0" />, the point is on the circle. If <InlineMath math="K_A>0" />, the point is outside the circle.
-
-For point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 = 25" />, first compute the squared distance to the center.
+For point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 = 25" />, first compute the **squared distance to the center**.
 Then subtract <InlineMath math="r^2" />:
 
 <MathContainer>
@@ -168,7 +174,7 @@ Because <InlineMath math="K_A = -20 < 0" />, point <InlineMath math="A(1, -2)" /
 
 ## Application for General Form
 
-For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, calculate <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. The sign of <InlineMath math="K_A" /> determines whether the point is inside, on, or outside the circle.
+For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, calculate <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. The **sign** of <InlineMath math="K_A" /> determines whether the point is inside, on, or outside the circle.
 
 For example, for point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 
@@ -181,7 +187,7 @@ Since <InlineMath math="K_A = -7 < 0" />, then point <InlineMath math="A(1, -2)"
 
 ## Practice Problems
 
-Each problem gives a point and a circle, and the answer is whether the point lies inside, on, or outside the circle. Compare the distance from the centre with the radius.
+Each problem gives a point and a circle, and the answer is whether the point lies inside, on, or outside the circle. **Compare the distance from the centre** with the radius.
 
 1. Determine the position of point <InlineMath math="A(3, 4)" /> relative to circle <InlineMath math="x^2 + y^2 = 16" />.
 
@@ -193,49 +199,49 @@ Each problem gives a point and a circle, and the answer is whether the point lie
 
 ### Worked Solutions
 
-1. **Solution**:
+**Solution 1**:
 
-   Substitute coordinates of point <InlineMath math="A(3, 4)" /> into circle equation <InlineMath math="x^2 + y^2 = 16" />:
+Substitute coordinates of point <InlineMath math="A(3, 4)" /> into circle equation <InlineMath math="x^2 + y^2 = 16" />:
 
-   <MathContainer>
-     <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
-     <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
+  <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
+</MathContainer>
 
-   Since <InlineMath math="K_A = 9 > 0" />, point <InlineMath math="A(3, 4)" /> lies outside the circle.
+Since <InlineMath math="K_A = 9 > 0" />, point <InlineMath math="A(3, 4)" /> lies outside the circle.
 
-2. **Solution**:
+**Solution 2**:
 
-   Substitute coordinates of point <InlineMath math="B(6, -8)" /> into circle equation <InlineMath math="x^2 + y^2 = 100" />:
+Substitute coordinates of point <InlineMath math="B(6, -8)" /> into circle equation <InlineMath math="x^2 + y^2 = 100" />:
 
-   <MathContainer>
-     <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
-     <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
+  <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
+</MathContainer>
 
-   Since <InlineMath math="K_B = 0" />, point <InlineMath math="B(6, -8)" /> lies exactly on the circle.
+Since <InlineMath math="K_B = 0" />, point <InlineMath math="B(6, -8)" /> lies exactly on the circle.
 
-3. **Solution**:
+**Solution 3**:
 
-   Substitute coordinates of point <InlineMath math="C(2, 1)" /> into circle equation <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />:
+Substitute coordinates of point <InlineMath math="C(2, 1)" /> into circle equation <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />:
 
-   <MathContainer>
-     <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
-     <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
+  <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
+</MathContainer>
 
-   Since <InlineMath math="K_C = -9 < 0" />, then point <InlineMath math="C(2, 1)" /> is located inside the circle.
+Since <InlineMath math="K_C = -9 < 0" />, then point <InlineMath math="C(2, 1)" /> is located inside the circle.
 
-4. **Solution**:
+**Solution 4**:
 
-   For circle <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> with center <InlineMath math="(3, -2)" /> and radius <InlineMath math="r = 5" />.
+For circle <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> with center <InlineMath math="(3, -2)" /> and radius <InlineMath math="r = 5" />.
 
-   Substitute point <InlineMath math="D(7, 2)" />:
+Substitute point <InlineMath math="D(7, 2)" />:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
-     <BlockMath math="d_D^2 = 16 + 16 = 32" />
-     <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
+  <BlockMath math="d_D^2 = 16 + 16 = 32" />
+  <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+</MathContainer>
 
-   Since <InlineMath math="K_D = 7 > 0" />, point <InlineMath math="D(7, 2)" /> lies outside the circle.
+Since <InlineMath math="K_D = 7 > 0" />, point <InlineMath math="D(7, 2)" /> lies outside the circle.

@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Arah dan Kekuatan Hubungan Linear Dua Variabel
 
-Korelasi product moment, yang juga disebut **korelasi Pearson** dan dilambangkan dengan **<InlineMath math="r" />**, adalah ukuran statistik yang umum digunakan untuk menunjukkan arah dan kekuatan **hubungan linear** antara dua variabel kuantitatif.
+Korelasi product moment, yang juga disebut **korelasi Pearson** dan dilambangkan dengan <InlineMath math="r" />, adalah ukuran statistik yang umum digunakan untuk menunjukkan arah dan kekuatan **hubungan linear** antara dua variabel kuantitatif.
 
 Nilai <InlineMath math="r" /> ini akan memberi tahu kita apakah kedua variabel bergerak searah (positif), berlawanan arah (negatif), atau tidak ada hubungan linear sama sekali.
 
 ## Korelasi dari Diagram Pencar
 
-Diagram pencar menunjukkan arah dan kekuatan hubungan yang dinyatakan oleh <InlineMath math="r" />. Titik yang naik bersamaan menandakan korelasi positif, titik yang turun bersamaan menandakan korelasi negatif, dan sebaran yang tidak berpola menandakan tidak ada korelasi. Koefisien korelasi mengubah kesan itu menjadi satu bilangan.
+Diagram pencar menunjukkan arah dan kekuatan hubungan yang dinyatakan oleh <InlineMath math="r" />. Titik yang **naik dari kiri ke kanan** menandakan korelasi positif, titik yang **turun dari kiri ke kanan** menandakan korelasi negatif, dan sebaran yang tidak berpola menandakan tidak ada korelasi. Koefisien korelasi mengubah kesan itu menjadi satu bilangan.
 
 ### Korelasi Positif Kuat
 
@@ -49,8 +49,7 @@ arah yang sama.
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-Jika titik-titik data kamu terlihat seperti ini (naik dari kiri bawah ke kanan atas dan sangat rapat membentuk garis), nilai <InlineMath math="r" />-nya akan mendekati <InlineMath math="+1" />.
-
+Jika titik-titik data kamu terlihat seperti ini (**naik dari kiri bawah ke kanan atas** dan sangat rapat membentuk garis), nilai koefisien korelasi akan mendekati <InlineMath math="+1" />.
 ### Korelasi Positif Lemah
 
 <InlineMath math="r" /> positif tapi mendekati <InlineMath math="0" /> berarti kedua variabel cenderung
@@ -82,8 +81,7 @@ bergerak ke arah yang sama, tapi tidak terlalu kuat.
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-Untuk delapan titik ini, perhitungan koefisien korelasi menghasilkan <InlineMath math="r\approx0{,}279" />. Kecenderungan linearnya positif tetapi lemah karena titik-titiknya tersebar cukup jauh dari garis yang menanjak.
-
+Untuk delapan titik ini, perhitungan koefisien korelasi menghasilkan <InlineMath math="r\approx0{,}279" />. Kecenderungan linearnya **positif tetapi lemah** karena titik-titiknya tersebar cukup jauh dari garis yang menanjak.
 ### Korelasi Negatif Kuat
 
 <InlineMath math="r" /> mendekati <InlineMath math="-1" /> berarti kedua variabel cenderung bergerak ke
@@ -115,14 +113,13 @@ arah yang berlawanan.
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-Jika titik-titiknya turun dari kiri atas ke kanan bawah dan sangat rapat, nilai <InlineMath math="r" />-nya akan mendekati <InlineMath math="-1" />.
-
-### Tidak Ada Korelasi Linear
+Jika titik-titiknya **turun dari kiri atas ke kanan bawah** dan sangat rapat, nilai koefisien korelasi akan mendekati <InlineMath math="-1" />.
+### Korelasi Linear Mendekati Nol
 
 <InlineMath math="r" /> mendekati <InlineMath math="0" /> berarti kedua variabel hanya menunjukkan sedikit atau tidak menunjukkan hubungan linear.
 
 <ScatterDiagram
-  title="Contoh Tidak Ada Korelasi Linear"
+  title="Korelasi Linear yang Sangat Lemah"
   description="Titik-titik data tersebar acak tanpa membentuk pola garis lurus."
   xAxisLabel="Variabel X"
   yAxisLabel="Variabel Y"
@@ -147,35 +144,34 @@ Jika titik-titiknya turun dari kiri atas ke kanan bawah dan sangat rapat, nilai 
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-Ketika titik-titik menyebar acak tanpa pola lurus yang jelas, nilai <InlineMath math="r" />-nya akan mendekati <InlineMath math="0" />.
+Untuk titik-titik pada diagram, <InlineMath math="r\approx-0{,}050" />. Hubungan linearnya **sangat lemah**, bukan tepat nol. Pola nonlinier tetap perlu diperiksa meskipun korelasi Pearson mendekati nol.
 
 ## Menghitung Koefisien Korelasi Langkah demi Langkah
 
-Koefisien korelasi Pearson (<InlineMath math="r" />) membandingkan simpangan berpasangan dua variabel, <InlineMath math="X" /> dan <InlineMath math="Y" />, dengan variasi masing-masing variabel.
+Koefisien korelasi Pearson (<InlineMath math="r" />) membandingkan **simpangan berpasangan** dua variabel, <InlineMath math="X" /> dan <InlineMath math="Y" />, dengan variasi masing-masing variabel.
 
 Perhitungan koefisien korelasi terdiri dari tiga bagian:
 
-1.  **Variasi Setiap Variabel:**
+Kita pisahkan sebaran setiap variabel dari kecenderungan pasangan datanya. Pemisahan itu membuat satuan kedua variabel tidak menentukan besar koefisien korelasi.
+### Sebaran Setiap Variabel
 
-    Nilai <InlineMath math="X" /> dan <InlineMath math="Y" /> dapat memiliki tingkat penyebaran yang berbeda. <InlineMath math="SS_{xx}" /> mengukur jumlah kuadrat simpangan nilai <InlineMath math="X" /> dari rata-rata <InlineMath math="X" />, sedangkan <InlineMath math="SS_{yy}" /> mengukur jumlah kuadrat simpangan nilai <InlineMath math="Y" /> dari rata-rata <InlineMath math="Y" />. Kedua rumus dituliskan di bawah.
+Nilai <InlineMath math="X" /> dan <InlineMath math="Y" /> dapat memiliki tingkat penyebaran yang berbeda. <InlineMath math="SS_{xx}" /> mengukur **jumlah kuadrat simpangan** nilai <InlineMath math="X" /> dari rata-rata <InlineMath math="X" />, sedangkan <InlineMath math="SS_{yy}" /> mengukur jumlah kuadrat simpangan nilai <InlineMath math="Y" /> dari rata-rata <InlineMath math="Y" />. Kedua rumus dituliskan di bawah.
+### Simpangan yang Berpasangan
 
-2.  **Variasi Bersama (Simpangan Silang):**
+Kita juga perlu tahu bagaimana <InlineMath math="X" /> dan <InlineMath math="Y" /> bervariasi _bersama-sama_. Apakah saat <InlineMath math="X" /> naik, <InlineMath math="Y" /> cenderung naik atau justru turun? Jumlah <InlineMath math="SS_{xy}" /> mengukur **simpangan silang** dari pasangan data dan menjadi pembilang kovarians. Untuk menghitung kovarians, bagi <InlineMath math="SS_{xy}" /> dengan <InlineMath math="n" /> atau <InlineMath math="n-1" />, sesuai konvensi yang digunakan.
 
-    Kita juga perlu tahu bagaimana <InlineMath math="X" /> dan <InlineMath math="Y" /> bervariasi _bersama-sama_. Apakah saat <InlineMath math="X" /> naik, <InlineMath math="Y" /> cenderung naik atau justru turun? Jumlah <InlineMath math="SS_{xy}" /> mengukur simpangan silang dari pasangan data dan menjadi pembilang kovarians. Untuk menghitung kovarians, bagi <InlineMath math="SS_{xy}" /> dengan <InlineMath math="n" /> atau <InlineMath math="n-1" />, sesuai konvensi yang digunakan.
+- Jika <InlineMath math="SS_{xy}" /> positif, simpangan berpasangan cenderung memiliki tanda yang sama.
+- Jika <InlineMath math="SS_{xy}" /> negatif, simpangan berpasangan cenderung memiliki tanda yang berlawanan.
+- Jika <InlineMath math="SS_{xy}" /> dekat nol, hanya ada sedikit kovariasi linear bersih.
+### Menyesuaikan dengan Sebaran Kedua Variabel
 
-    - Jika <InlineMath math="SS_{xy}" /> positif, simpangan berpasangan cenderung memiliki tanda yang sama.
-    - Jika <InlineMath math="SS_{xy}" /> negatif, simpangan berpasangan cenderung memiliki tanda yang berlawanan.
-    - Jika <InlineMath math="SS_{xy}" /> dekat nol, hanya ada sedikit kovariasi linear bersih.
+Nilai <InlineMath math="SS_{xy}" /> sangat dipengaruhi oleh satuan data. Misalnya, jumlah simpangan silang tinggi dan berat berubah ketika tinggi diukur dalam meter alih-alih sentimeter, walaupun hubungan dasarnya tetap sama.
 
-3.  **Menstandarkan Ukuran:**
+Untuk mengatasinya, kita **menstandarkan** jumlah simpangan silang dengan membagi <InlineMath math="SS_{xy}" /> menggunakan gabungan geometris dari ukuran variasi kedua variabel, yaitu <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
 
-    Nilai <InlineMath math="SS_{xy}" /> sangat dipengaruhi oleh satuan data. Misalnya, jumlah simpangan silang tinggi dan berat berubah ketika tinggi diukur dalam meter alih-alih sentimeter, walaupun hubungan dasarnya tetap sama.
+<BlockMath math="r=\frac{SS_{xy}}{\sqrt{SS_{xx}SS_{yy}}}" />
 
-    Untuk mengatasinya, kita **menstandarkan** jumlah simpangan silang dengan membagi <InlineMath math="SS_{xy}" /> menggunakan gabungan geometris dari ukuran variasi kedua variabel, yaitu <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
-
-    <BlockMath math="r=\frac{SS_{xy}}{\sqrt{SS_{xx}SS_{yy}}}" />
-
-Hasil pembagian inilah yang menjadi **<InlineMath math="r" />**, koefisien korelasi Pearson. Jika kedua variabel memiliki variasi bukan nol, standardisasi membatasi nilainya dari <InlineMath math="-1" /> sampai <InlineMath math="+1" />, <Highlight>apa pun satuan asli datanya</Highlight>. Karena itu, kita dapat membandingkan hubungan linear pada pasangan variabel yang berbeda.
+Hasil pembagian inilah yang menjadi <InlineMath math="r" />, koefisien korelasi Pearson. Jika kedua variabel memiliki variasi bukan nol, standardisasi membatasi nilainya dari <InlineMath math="-1" /> sampai <InlineMath math="+1" />, <Highlight>apa pun satuan asli datanya</Highlight>. Karena itu, kita dapat membandingkan hubungan linear pada pasangan variabel yang berbeda.
 
 ## Rumus Korelasi Product Moment
 
@@ -183,7 +179,7 @@ Untuk menghitung nilai <InlineMath math="r" /> secara pasti, kita gunakan rumus 
 
 <BlockMath math="r = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
 
-**Apa itu <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" />, dan <InlineMath math="SS_{yy}" />?**
+Apa itu <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" />, dan <InlineMath math="SS_{yy}" />?
 
 Ketiga besaran tersebut memiliki tugas yang berbeda. <InlineMath math="SS_{xx}" /> dan <InlineMath math="SS_{yy}" /> mengukur sebaran setiap variabel, sedangkan <InlineMath math="SS_{xy}" /> mengukur variasi berpasangan:
 
@@ -214,9 +210,34 @@ Dengan menghitung ketiga nilai <InlineMath math="SS" /> ini dan memasukkannya ke
 
 Rumus tersebut memerlukan <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Jika salah satu variabel konstan, penyebutnya bernilai nol dan koefisien Pearson <InlineMath math="r" /> tidak terdefinisi.
 
+### Menghitung Korelasi Delapan Pasangan
+
+Gunakan data pada diagram korelasi positif lemah. Kita hitung **hasil kali pasangan yang sama** dan kuadrat setiap nilai, lalu jumlahkan tiap kolom.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="x^2" /> | <InlineMath math="y^2" /> | <InlineMath math="xy" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="4" /> | <InlineMath math="64" /> | <InlineMath math="16" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="9" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="16" /> | <InlineMath math="36" /> | <InlineMath math="24" /> |
+| <InlineMath math="5" /> | <InlineMath math="1" /> | <InlineMath math="25" /> | <InlineMath math="1" /> | <InlineMath math="5" /> |
+| <InlineMath math="6" /> | <InlineMath math="9" /> | <InlineMath math="36" /> | <InlineMath math="81" /> | <InlineMath math="54" /> |
+| <InlineMath math="7" /> | <InlineMath math="4" /> | <InlineMath math="49" /> | <InlineMath math="16" /> | <InlineMath math="28" /> |
+| <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="64" /> | <InlineMath math="49" /> | <InlineMath math="56" /> |
+| <InlineMath math="36" /> | <InlineMath math="40" /> | <InlineMath math="204" /> | <InlineMath math="260" /> | <InlineMath math="194" /> |
+
+Baris terakhir memuat **jumlah setiap kolom**. Dengan <InlineMath math="n=8" />, ketiga jumlah simpangan diperoleh sebagai berikut:
+
+<MathContainer>
+  <BlockMath math="SS_{xx}=204-\frac{36^2}{8}=204-162=42" />
+  <BlockMath math="SS_{yy}=260-\frac{40^2}{8}=260-200=60" />
+  <BlockMath math="SS_{xy}=194-\frac{36\cdot40}{8}=194-180=14" />
+  <BlockMath math="r=\frac{14}{\sqrt{42\cdot60}}=\frac{14}{\sqrt{2520}}\approx0{,}279" />
+</MathContainer>
+
 ## Membaca Koefisien Korelasi
 
-Setelah mendapatkan nilai <InlineMath math="r" />, kita dapat memakai panduan deskriptif berikut sebagai perkiraan awal. Batas-batas ini merupakan kesepakatan praktis, dan bidang lain dapat memakai batas yang berbeda. Maknanya bergantung pada bidang kajian, kualitas pengukuran, ukuran sampel, dan konteks, sehingga diagram pencar tetap harus diperiksa.
+Setelah mendapatkan nilai <InlineMath math="r" />, kita dapat memakai panduan deskriptif berikut sebagai perkiraan awal. Batas-batas ini merupakan **kesepakatan praktis**, dan bidang lain dapat memakai batas yang berbeda. Maknanya bergantung pada bidang kajian, kualitas pengukuran, ukuran sampel, dan konteks, sehingga diagram pencar tetap harus diperiksa.
 
 | Nilai <InlineMath math="r" />         | Tingkat Korelasi          | Keterangan                                |
 | :------------------------------------ | :------------------------ | :---------------------------------------- |

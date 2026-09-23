@@ -5,16 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Let <InlineMath math="H" /> be the release height in metres and <InlineMath math="r" /> the constant rebound ratio. The height after the second impact gives <InlineMath math="Hr^2=9" />.
+Let <InlineMath math="H" /> be the release height in metres and <InlineMath math="r" /> the constant rebound ratio. The height after the **second impact** gives <InlineMath math="Hr^2=9" />.
 
-Through its third ground impact, the ball travels the following distance in metres:
+Through its **third ground impact**, the ball travels the following distance in metres:
 
 <BlockMath math="H+2Hr+2Hr^2=58" />
 
 Substituting <InlineMath math="H=9/r^2" /> gives
 
 <MathContainer>
-  <BlockMath math="40r^2-18r-9=0" />
+  <BlockMath math="\begin{aligned}\frac9{r^2}+\frac{18}{r}+18&=58\\9+18r+18r^2&=58r^2\\40r^2-18r-9&=0\end{aligned}" />
   <BlockMath math="(4r-3)(10r+3)=0" />
 </MathContainer>
 
@@ -22,4 +22,6 @@ The root <InlineMath math="r=-3/10" /> is outside <InlineMath math="0<r<1" />, s
 
 The release height in metres is
 
-<BlockMath math="H=9/(9/16)=16" />
+<BlockMath math="H=\frac9{(3/4)^2}=\frac9{9/16}=9\cdot\frac{16}{9}=16" />
+
+Each rebound is counted twice because the ball rises and then falls through the same height. Check the result: the rebound heights are <InlineMath math="16(3/4)=12" /> and <InlineMath math="12(3/4)=9" /> meters. The full distance is <InlineMath math="16+2(12)+2(9)=58" /> meters.

@@ -17,7 +17,7 @@ Setiap peminimum memenuhi persamaan normal
 
 <BlockMath math="A^T A\hat{x}=A^T b" />
 
-<Highlight>Persamaan ini selalu konsisten.</Highlight> Peminimumnya unik tepat ketika <InlineMath math="\operatorname{rank}(A)=n" />, yang mensyaratkan <InlineMath math="m\ge n" />. Dalam kasus rank kolom penuh ini,
+Persamaan ini <Highlight>selalu konsisten</Highlight>. Peminimumnya unik tepat ketika <InlineMath math="\operatorname{rank}(A)=n" />, yang mensyaratkan <InlineMath math="m\ge n" />. Dalam kasus rank kolom penuh ini,
 
 <BlockMath math="\hat{x}=(A^T A)^{-1}A^T b" />
 
@@ -27,7 +27,7 @@ Ketika <InlineMath math="A" /> kekurangan rank, vektor hasil fitting <InlineMath
 
 ### Mengapa Solusi Selalu Ada
 
-Ruang kolom <InlineMath math="A" /> adalah subruang tertutup berdimensi hingga dari <InlineMath math="\mathbb{R}^m" />. Karena itu, <InlineMath math="b" /> memiliki proyeksi ortogonal yang unik ke ruang tersebut. Setiap <InlineMath math="\hat{x}" /> yang memenuhi <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> merupakan solusi kuadrat terkecil.
+Ruang kolom <InlineMath math="A" /> adalah subruang tertutup berdimensi hingga dari <InlineMath math="\mathbb{R}^m" />. Karena itu, <InlineMath math="b" /> memiliki **proyeksi ortogonal yang unik** ke ruang tersebut. Setiap <InlineMath math="\hat{x}" /> yang memenuhi <InlineMath math="A\hat{x}=\operatorname{proj}_{\operatorname{col}(A)}b" /> merupakan solusi kuadrat terkecil.
 
 Persamaan normal menyatakan geometri yang sama karena
 
@@ -37,7 +37,7 @@ Persamaan ini berarti residual <InlineMath math="A\hat{x}-b" /> tegak lurus terh
 
 ## Pseudoinvers Moore Penrose
 
-Pseudoinvers Moore-Penrose didefinisikan untuk setiap matriks real, termasuk matriks persegi panjang dan matriks yang kekurangan rank. Jika
+Pseudoinvers Moore-Penrose didefinisikan untuk setiap matriks real, termasuk matriks persegi panjang dan matriks yang kekurangan rank. Tuliskan dekomposisi nilai singular sebagai
 
 <BlockMath math="A=U\Sigma V^T" />
 
@@ -72,13 +72,15 @@ Objektif kuadrat terkecil terpisah menjadi
 
 <BlockMath math="\begin{aligned} \|Ax-b\|_2^2 &amp;=\|R_1x-Q_1^Tb\|_2^2 \\ &amp;\quad{}+\|(I-Q_1Q_1^T)b\|_2^2 \end{aligned}" />
 
-Suku kedua tidak bergantung pada <InlineMath math="x" />. Karena itu, peminimum diperoleh dengan menyelesaikan sistem segitiga atas
+Suku kedua tidak bergantung pada <InlineMath math="x" />. Karena itu, peminimum diperoleh dengan menyelesaikan **sistem segitiga atas**
 
 <BlockMath math="R_1\hat{x}=Q_1^Tb" />
 
 Jalur ini menyelesaikan masalah kuadrat terkecil semula secara langsung. Kita tidak membentuk <InlineMath math="A^TA" /> lalu menyelesaikan persamaan normal.
 
 ## Contoh Fitting Polinomial
+
+Faktor numerik dan koefisien berikut **dibulatkan menjadi lima angka di belakang koma**. Kesamaan matriks eksak berlaku sebelum pembulatan.
 
 Cocokkan <InlineMath math="y=at^2+bt+c" /> ke tujuh pengamatan. Matriks desain dan vektor pengamatannya adalah
 
@@ -100,7 +102,7 @@ Pertama, hitung
 
 <BlockMath math="Q_1^Tb=\begin{pmatrix}-9{,}71429\\16{,}02569\\3{,}48060\end{pmatrix}" />
 
-Kemudian gunakan substitusi mundur:
+Kemudian gunakan **substitusi mundur**:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;-1{,}73205x_3=3{,}48060 \\ &amp;\Longrightarrow \\ &amp;x_3=-2{,}00952 \end{aligned}" />
@@ -119,6 +121,7 @@ Dengan demikian,
 <LineEquation
   title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
   description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
+  showZAxis={false}
   cameraPosition={[0, 6, 26]}
   cameraTarget={[0, 6, 0]}
   data={(() => {
@@ -165,6 +168,6 @@ Dengan demikian,
 | --- | --- | --- | --- |
 | Persamaan normal dan Cholesky | bentuk <InlineMath math="A^TA" /> dalam <InlineMath math="O(mn^2)" />, lalu faktorkan dalam sekitar <InlineMath math="\frac{1}{3}n^3" /> flop | cepat ketika masalah terkondisi baik dan ber-rank penuh | <InlineMath math="\kappa_2(A^TA)=\kappa_2(A)^2" /> |
 | <InlineMath math="\mathrm{QR}" /> Householder | sekitar <InlineMath math="2mn^2-\frac{2}{3}n^3" /> flop | tidak membentuk <InlineMath math="A^TA" /> dan biasanya lebih stabil | memerlukan varian yang peka terhadap rank ketika kolom saling bergantung |
-| <InlineMath math="\mathrm{SVD}" /> | lebih mahal daripada <InlineMath math="\mathrm{QR}" /> | memperlihatkan rank dan memberikan solusi bernorma minimum | biaya tertinggi di antara ketiganya |
+| <InlineMath math="\mathrm{SVD}" /> | lebih mahal daripada <InlineMath math="\mathrm{QR}" /> | memperlihatkan rank dan memberikan **solusi bernorma minimum** | biaya tertinggi di antara ketiganya |
 
 Gunakan <InlineMath math="\mathrm{QR}" /> sebagai pilihan umum untuk masalah padat ber-rank penuh. Gunakan <InlineMath math="\mathrm{SVD}" /> ketika matriks kekurangan rank, kondisinya sangat buruk, atau solusi bernorma minimum dibutuhkan. Bentuk matriks normal hanya jika peningkatan kecepatannya sepadan dengan penurunan stabilitas numerik. Jangan menghitung invers secara eksplisit dalam kode produksi.

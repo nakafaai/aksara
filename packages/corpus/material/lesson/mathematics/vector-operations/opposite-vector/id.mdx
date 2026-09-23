@@ -15,7 +15,7 @@ Jika <InlineMath math="\vec{v}" /> menyatakan perpindahan dari kiri ke kanan, ma
 
 ## Rumus Vektor Lawan
 
-Mengalikan vektor dengan skalar <InlineMath math="-1" /> membalik tanda setiap komponennya:
+Mengalikan vektor dengan skalar <InlineMath math="-1" /> **membalik tanda setiap komponen**:
 
 <BlockMath math="-\vec{v}=(-1)\vec{v}" />
 
@@ -37,32 +37,45 @@ Panjangnya adalah:
 
 <BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
 
-Kalikan setiap komponen dengan <InlineMath math="-1" /> untuk mencari vektor lawannya:
+Kalikan **setiap komponen** dengan <InlineMath math="-1" /> untuk mencari vektor lawannya:
 
 <BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
 
 Kedua vektor memiliki panjang <InlineMath math="10" />, tetapi arahnya berbeda sebesar <InlineMath math="180^\circ" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[0.5, 0.3, 23]}
+  cameraTarget={[0.5, 0.3, 0]}
   title="Vektor dan Vektor Lawannya"
   description={<>Vektor <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="-\overrightarrow{AB}" /> memiliki panjang yang sama serta menunjuk ke arah berlawanan.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#ea580c",
-      label: <InlineMath math="\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [-6, -8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="-\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 10, 12]}
 />
 
 ## Sifat Vektor Lawan
@@ -73,7 +86,7 @@ Kedua vektor memiliki panjang <InlineMath math="10" />, tetapi arahnya berbeda s
 
 2. Untuk vektor tak nol, arah keduanya berbeda sebesar <InlineMath math="180^\circ" />.
 
-3. Jumlah keduanya adalah vektor nol:
+3. Jumlah keduanya adalah **vektor nol**:
 
    <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
 
@@ -95,39 +108,52 @@ Vektor lawan muncul setiap kali suatu arah dibalik:
 
 ## Vektor Satuan dan Arah Berlawanan
 
-Vektor satuan dibuat dari vektor bukan nol dengan membagi vektor itu dengan panjangnya, lalu arahnya bisa dibalik dengan mengalikannya dengan <InlineMath math="-1" />.
+Vektor satuan dibuat dari vektor bukan nol dengan **membagi vektor itu dengan panjangnya**, lalu arahnya bisa dibalik dengan mengalikannya dengan <InlineMath math="-1" />.
 
 Vektor satuan hanya menyimpan arah, dan faktor negatif membalik arah itu.
 
 ### Vektor Satuan
 
-Untuk vektor tak nol <InlineMath math="\vec{v}" />, vektor satuannya adalah:
+Untuk **vektor tak nol** <InlineMath math="\vec{v}" />, vektor satuannya adalah:
 
 <BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
 
 Vektor tersebut memiliki panjang <InlineMath math="1" /> dan menunjuk searah dengan <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[0.1, 0.1, 3.2]}
+    cameraTarget={[0.1, 0.1, 0]}
     title="Arah Satuan yang Berlawanan"
     description="Kedua vektor satuan memiliki panjang yang sama dan arah yang berlawanan."
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
-        color: "#d97706",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [-0.6, -0.8, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="-\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[12, 10, 12]}
   />
 </ContentBlock>
 
@@ -137,4 +163,4 @@ Vektor satuan yang arahnya berlawanan adalah <InlineMath math="-\hat{v}" />. Men
 
 <BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
 
-Pemisahan ini memperjelas dua peran: <InlineMath math="|\vec{v}|" /> menentukan panjang, sedangkan <InlineMath math="-\hat{v}" /> menentukan arah yang berlawanan.
+Pemisahan ini memperjelas dua peran: <InlineMath math="|\vec{v}|" /> menentukan panjang, sedangkan <InlineMath math="-\hat{v}" /> menentukan **arah yang berlawanan**.

@@ -10,9 +10,7 @@ export const metadata = {
 
 ## Koordinaten vertauschen und beide Vorzeichen wechseln
 
-Bei der Spiegelung an der Geraden <InlineMath math="y = -x" /> wirkt <InlineMath math="y = -x" /> als Spiegel. <Highlight>Weil sie die zweite Winkelhalbierende ist, werden die Koordinaten vertauscht und ihre Vorzeichen wechseln.</Highlight>
-
-Urbild und Bildpunkt haben denselben Abstand zur Spiegelgeraden. Außerdem steht ihre Verbindungsstrecke senkrecht auf der Geraden <InlineMath math="y = -x" />.
+Die Gerade <InlineMath math="y=-x" /> ist die <Highlight>Spiegelgerade</Highlight>. Urbild und Bildpunkt haben denselben Abstand zu ihr. Bei einem Punkt außerhalb der Geraden steht die Verbindungsstrecke senkrecht auf dem Spiegel. Punkte auf der Spiegelgeraden bleiben fest.
 
 ### Regel für die Spiegelung an der zweiten Winkelhalbierenden
 
@@ -38,6 +36,10 @@ Somit ist das Bild des Punktes <InlineMath math="D" /> <InlineMath math="D'(-1, 
 
 Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze und ihre Vorzeichen:
 
+Prüfe den **Mittelpunkt des Punktepaares**: Er muss auf der Spiegelgeraden liegen. Die Verbindungsstrecke steht außerdem senkrecht auf dieser Geraden. Dadurch haben beide Punkte denselben Abstand zum Spiegel.
+
+<BlockMath math="M=\left(\frac{2+(-1)}2,\frac{1+(-2)}2\right)=\left(\frac12,-\frac12\right)" />
+
 <LineEquation
   title={
     <>
@@ -51,6 +53,7 @@ Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze und ihre Vor
     </>
   }
   data={[
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 0.5, y: -0.5, z: 0 }, { x: -1, y: -2, z: 0 }], smooth: false, color: "#65a30d", showPoints: false, labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0.3, -0.3, 0] }] },
     {
       points: [
         { x: -6, y: 6, z: 0 },
@@ -94,7 +97,7 @@ Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze und ihre Vor
 
 Bestimme das Bild des Dreiecks <InlineMath math="ABC" /> mit den Eckpunkten <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" /> und <InlineMath math="C(-3,-1)" /> bei der Spiegelung an der Geraden <InlineMath math="y=-x" />.
 
-Wir wenden die Koordinatenregel auf jeden Eckpunkt an:
+Wir wenden die Koordinatenregel auf **jeden Eckpunkt** an:
 
 1.  Punkt <InlineMath math="A(-2, 4)" />: Sein Bild ist <InlineMath math="A'(-4, 2)" />.
 2.  Punkt <InlineMath math="B(3, 1)" />: Sein Bild ist <InlineMath math="B'(-1, -3)" />.
@@ -118,12 +121,12 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-4, 2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
     }, // Spiegelgerade
     // Ausgangsdreieck ABC
     ...[
@@ -176,7 +179,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
 
 Die Gerade <InlineMath math="y = -4x - 2" /> wird an der Geraden <InlineMath math="y=-x" /> gespiegelt. Bestimme die Gleichung ihrer Bildgeraden.
 
-Um die Gleichung des Bildes zu finden, verwenden wir die Regel <InlineMath math="x' = -y" /> und <InlineMath math="y' = -x" />. Das bedeutet, dass wir jedes <InlineMath math="x" /> in der ursprünglichen Gleichung durch <InlineMath math="-y" /> und jedes <InlineMath math="y" /> durch <InlineMath math="-x" /> ersetzen.
+Um die Gleichung des Bildes zu finden, verwenden wir die Regel <InlineMath math="x' = -y" /> und <InlineMath math="y' = -x" />. Das bedeutet, dass wir jedes <InlineMath math="x" /> in der **ursprünglichen Gleichung** durch <InlineMath math="-y" /> und jedes <InlineMath math="y" /> durch <InlineMath math="-x" /> ersetzen.
 
 Ursprüngliche Gleichung:
 
@@ -213,17 +216,18 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
   data={[
     {
       points: [
-        { x: -7, y: 7, z: 0 },
-        { x: 7, y: -7, z: 0 },
+        { x: -5, y: 5, z: 0 },
+        { x: 5, y: -5, z: 0 },
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-3.7, 1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1, 0.2, 0] }],
     }, // Spiegelgerade
     {
       // Ursprüngliche Gerade y = -4x - 2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 0.5; // x range to prevent it from being too steep
+        const xVal = -2 + i * 0.3;
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
       color: "#9333ea",
@@ -232,8 +236,9 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
     },
     {
       // Bildgerade y = (-1/4)x + 1/2
+      showPoints: false,
       points: Array.from({ length: 11 }, (_, i) => {
-        const xVal = (i - 5) * 2; // x range to prevent it from being too flat
+        const xVal = (i - 5) * 1.2;
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
       color: "#db2777",
@@ -247,7 +252,7 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
 
 ## Übungen
 
-Alle drei Aufgaben spiegeln an der Geraden <InlineMath math="y = -x" />. Die letzte spiegelt eine ganze Gerade, sodass ihre Gleichung transformiert wird.
+Wende **dieselbe Koordinatenregel** auf den einzelnen Punkt und auf jeden Eckpunkt des Dreiecks an. Bei der letzten Aufgabe überträgst du die Regel auf die Geradengleichung, um alle Bildpunkte zu erfassen.
 
 1.  Bestimme die Koordinaten des Bildpunktes von <InlineMath math="S(5, -9)" /> bei der Spiegelung an der Geraden <InlineMath math="y = -x" />.
 2.  Bestimme das Bild des Dreiecks <InlineMath math="ABC" /> mit den Eckpunkten <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" /> und <InlineMath math="C(-2, 0)" /> bei der Spiegelung an der Geraden <InlineMath math="y = -x" />.
@@ -255,27 +260,35 @@ Alle drei Aufgaben spiegeln an der Geraden <InlineMath math="y = -x" />. Die let
 
 ### Lösungen
 
-1.  Das Bild des Punktes <InlineMath math="S(5, -9)" /> ist <InlineMath math="S'(9, -5)" />.
+Prüfe beim **Vertauschen der Koordinaten** ihre Reihenfolge. Die Vorzeichen müssen zur gewählten Spiegelungsregel passen. Vereinfache bei der Geraden die Gleichung erst nach allen Ersetzungen.
 
-    **Erklärung:**
+**Lösung 1**
 
-    <MathContainer>
-      <BlockMath math="x' = -(-9) = 9" />
-      <BlockMath math="y' = -(5) = -5" />
-    </MathContainer>
+Das Bild des Punktes <InlineMath math="S(5, -9)" /> ist <InlineMath math="S'(9, -5)" />.
 
-2.  Die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" /> sind:
+**Erklärung**:
 
-    - <InlineMath math="A'(2, -1)" /> (von <InlineMath math="A(1, -2)" />)
-    - <InlineMath math="B'(-3, -2)" /> (von <InlineMath math="B(2, 3)" />)
-    - <InlineMath math="C'(0, 2)" /> (von <InlineMath math="C(-2, 0)" />)
+<MathContainer>
+  <BlockMath math="x' = -(-9) = 9" />
+  <BlockMath math="y' = -(5) = -5" />
+</MathContainer>
 
-3.  Aus der ursprünglichen Gleichung <InlineMath math="4x + 3y - 2 = 0" /> entsteht nach dem Einsetzen <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+**Lösung 2**
 
-    **Erklärung:** Wir setzen <InlineMath math="x \rightarrow -y" /> und <InlineMath math="y \rightarrow -x" /> in die ursprüngliche Gleichung ein:
+Die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" /> sind:
 
-    <MathContainer>
-      <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
-      <BlockMath math="-4y - 3x - 2 = 0" />
-      <BlockMath math="3x + 4y + 2 = 0" />
-    </MathContainer>
+- <InlineMath math="A'(2, -1)" /> (von <InlineMath math="A(1, -2)" />)
+- <InlineMath math="B'(-3, -2)" /> (von <InlineMath math="B(2, 3)" />)
+- <InlineMath math="C'(0, 2)" /> (von <InlineMath math="C(-2, 0)" />)
+
+**Lösung 3**
+
+Aus der ursprünglichen Gleichung <InlineMath math="4x + 3y - 2 = 0" /> entsteht nach dem Einsetzen <InlineMath math="4(-y) + 3(-x) - 2 = 0" />.
+
+**Erklärung**: Wir setzen <InlineMath math="x \rightarrow -y" /> und <InlineMath math="y \rightarrow -x" /> in die ursprüngliche Gleichung ein:
+
+<MathContainer>
+  <BlockMath math="4(-y) + 3(-x) - 2 = 0" />
+  <BlockMath math="-4y - 3x - 2 = 0" />
+  <BlockMath math="3x + 4y + 2 = 0" />
+</MathContainer>

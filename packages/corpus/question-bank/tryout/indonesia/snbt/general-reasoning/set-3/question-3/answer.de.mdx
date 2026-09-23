@@ -5,67 +5,34 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Der Code ersetzt die Buchstaben indonesischer Ziffernnamen eindeutig. Ein wiederholter Codebuchstabe muss daher für einen wiederholten Klartextbuchstaben stehen. Zwei verschiedene Codebuchstaben dürfen nicht denselben Klartextbuchstaben darstellen.
+Der Code verwendet eine **eineindeutige Zuordnung**. Ein Codebuchstabe steht immer für denselben Klartextbuchstaben. Zwei verschiedene Codebuchstaben dürfen nicht denselben Klartextbuchstaben darstellen.
 
-#### Analyse des ersten Wortmusters
+#### Die ersten beiden Ziffernnamen entschlüsseln
 
-Gegeben:
+In <InlineMath math="\text{ABQBO}" /> sind der **zweite und vierte Buchstabe gleich**, während die anderen drei Positionen verschieden sind. Unter den indonesischen Namen der Ziffern null bis neun haben zwei Namen fünf Buchstaben: <InlineMath math="\text{EMPAT}" /> und <InlineMath math="\text{TUJUH}" />. Bei <InlineMath math="\text{EMPAT}" /> sind alle Buchstaben verschieden. Daher passt nur <InlineMath math="\text{TUJUH}" />.
 
-<BlockMath math="\text{ABQBO} - \text{APNH} = 4" />
+<BlockMath math="\text{ABQBO}=\text{TUJUH}=7" />
 
-Betrachten wir das Codewort <InlineMath math="\text{ABQBO}" />:
-- Besteht aus <InlineMath math="5" /> Buchstaben.
-- Die Buchstaben an den Positionen <InlineMath math="2" /> und <InlineMath math="4" /> sind gleich (Buchstabe <InlineMath math="B" />).
+Setze diesen Wert in die gegebene Gleichung ein, um den nächsten Ziffernnamen zu bestimmen:
 
-Unter den indonesischen Namen der Ziffern besitzt <InlineMath math="\text{TUJUH}" /> genau dieses Muster aus fünf Buchstaben: An der zweiten und vierten Stelle steht jeweils <InlineMath math="\text{U}" />, die übrigen Stellen unterscheiden sich. Daher gilt:
+<BlockMath math="\begin{aligned}7-\text{APNH}&amp;=4\\\text{APNH}&amp;=7-4=3\end{aligned}" />
 
-<BlockMath math="\text{ABQBO} = \text{TUJUH} = 7" />
+Also gilt <InlineMath math="\text{APNH}=\text{TIGA}" />. Aus diesen beiden entschlüsselten Wörtern erhalten wir die benötigten Zuordnungen:
 
-Daraus folgen die Zuordnungen:
-- <InlineMath math="A = T" />
-- <InlineMath math="B = U" />
-- <InlineMath math="Q = J" />
-- <InlineMath math="O = H" />
+| Codebuchstabe | Klartextbuchstabe |
+| --- | --- |
+| A | T |
+| B | U |
+| P | I |
+| N | G |
+| H | A |
 
-#### Analyse des zweiten Codeworts
+#### Den gesuchten Ausdruck entschlüsseln
 
-Aus der Gleichung:
+Mit diesen Zuordnungen wird <InlineMath math="\text{KBH}" /> zu <InlineMath math="\text{?UA}" />. Der einzige dreibuchstabige indonesische Ziffernname mit der Endung <InlineMath math="\text{UA}" /> ist <InlineMath math="\text{DUA}" /> mit dem Wert <InlineMath math="2" />.
 
-<MathContainer>
-  <BlockMath math="7 - \text{APNH} = 4" />
-  <BlockMath math="\text{APNH} = 3" />
-</MathContainer>
+Aus <InlineMath math="\text{SPTH}" /> wird <InlineMath math="\text{?I?A}" />. Sowohl <InlineMath math="\text{TIGA}" /> als auch <InlineMath math="\text{LIMA}" /> passen zu diesem Muster. Prüfe aber die **bereits verwendeten Zuordnungen**. Der Klartextbuchstabe <InlineMath math="\mathrm{T}" /> wird schon durch Code <InlineMath math="\mathrm{A}" /> dargestellt und der Klartextbuchstabe <InlineMath math="\mathrm{G}" /> durch Code <InlineMath math="\mathrm{N}" />. Bei <InlineMath math="\text{TIGA}" /> würden die Codes <InlineMath math="\mathrm{S}" /> und <InlineMath math="\mathrm{T}" /> dieselben Zuordnungen nochmals verwenden. Das widerspricht der eineindeutigen Zuordnung. Daher gilt <InlineMath math="\text{SPTH}=\text{LIMA}=5" />.
 
-Der indonesische Name der Ziffer <InlineMath math="3" /> lautet <InlineMath math="\text{TIGA}" />. Er besteht aus vier verschiedenen Buchstaben und beginnt mit <InlineMath math="\text{T}" />, was zur bereits bekannten Zuordnung <InlineMath math="A = T" /> passt. Somit gilt:
+Subtrahiere die beiden Werte in der gefragten Reihenfolge:
 
-<BlockMath math="\text{APNH} = \text{TIGA} = 3" />
-
-Zusätzliche Buchstabenzuordnung von <InlineMath math="\text{APNH} = \text{TIGA}" />:
-- <InlineMath math="P = I" />
-- <InlineMath math="N = G" />
-- <InlineMath math="H = A" />
-
-#### Berechnung der Frage
-
-Frage:
-
-<BlockMath math="\text{KBH} - \text{SPTH}" />
-
-1. **Den Wert von KBH bestimmen**
-   - Muster: <InlineMath math="K - B - H" />
-   - Bekannte Buchstaben einsetzen: <InlineMath math="\text{?UA}" /> (denn <InlineMath math="B = U" /> und <InlineMath math="H = A" />)
-   - Der dreibuchstabige indonesische Ziffernname mit der Endung <InlineMath math="\text{UA}" /> ist <InlineMath math="\text{DUA}" /> (<InlineMath math="2" />).
-   - Also <InlineMath math="\text{KBH} = 2" />.
-
-2. **Den Wert von SPTH bestimmen**
-   - Muster: <InlineMath math="S - P - T - H" />
-   - Bekannte Buchstaben einsetzen: <InlineMath math="\text{?I?A}" /> (denn <InlineMath math="P = I" /> und <InlineMath math="H = A" />)
-   - Sowohl <InlineMath math="\text{TIGA}" /> als auch <InlineMath math="\text{LIMA}" /> passen zum sichtbaren Muster <InlineMath math="\_\text{I}\_\text{A}" />.
-   - <InlineMath math="\text{TIGA}" /> verwendet jedoch Klartextbuchstaben, die bereits von <InlineMath math="A" /> und <InlineMath math="N" /> dargestellt werden. Da <InlineMath math="S" /> und <InlineMath math="T" /> andere Codebuchstaben sind, dürfen sie diese Klartextbuchstaben nicht erneut vertreten.
-   - Damit bleibt nur <InlineMath math="\text{SPTH} = \text{LIMA} = 5" />.
-
-#### Endergebnis
-
-<BlockMath math="\text{KBH} - \text{SPTH} = 2 - 5 = -3" />
-
-Die Antwort lautet also <InlineMath math="-3" />.
+<BlockMath math="\text{KBH}-\text{SPTH}=2-5=-3" />

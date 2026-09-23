@@ -3,7 +3,7 @@ export const metadata = {
     description: "Differentiate the six basic trigonometric functions in radians and apply sum, product, and quotient rules in worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Derivative Functions",
 };
 
@@ -17,41 +17,44 @@ The formulas below assume that angles are measured in **radians**. If an angle i
 
 The sine and cosine formulas <Highlight>follow from [the limit definition of the derivative](/en/subjects/mathematics/derivative-function/concept-of-derivative-function)</Highlight>. The remaining four can then be derived from trigonometric identities together with the product or quotient rule.
 
-These are the basic derivatives of the six trigonometric functions:
+The table pairs each function with its derivative and the condition under which the function is defined. All angles use **radians**. Restrictions on a denominator still apply after differentiation.
 
-1.  **Derivative of Sine**:
+| Function | Derivative | Condition |
+| --- | --- | --- |
+| <InlineMath math="\sin x" /> | <InlineMath math="\cos x" /> | All real numbers |
+| <InlineMath math="\cos x" /> | <InlineMath math="-\sin x" /> | All real numbers |
+| <InlineMath math="\tan x" /> | <InlineMath math="\sec^2 x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\cot x" /> | <InlineMath math="-\csc^2 x" /> | <InlineMath math="\sin x\ne0" /> |
+| <InlineMath math="\sec x" /> | <InlineMath math="\sec x\tan x" /> | <InlineMath math="\cos x\ne0" /> |
+| <InlineMath math="\csc x" /> | <InlineMath math="-\csc x\cot x" /> | <InlineMath math="\sin x\ne0" /> |
 
-    <BlockMath math="f(x) = \sin x \implies f'(x) = \cos x" />
+## Connecting Sine to Its Slope
 
-2.  **Derivative of Cosine**:
+For <InlineMath math="f(x)=\sin x" />, the derivative <InlineMath math="f'(x)=\cos x" /> gives the **slope of the sine curve**. At <InlineMath math="x=0" />, the sine slope is <InlineMath math="1" />. At the sine maximum <InlineMath math="x=\pi/2" />, the slope becomes <InlineMath math="0" />.
 
-    <BlockMath math="f(x) = \cos x \implies f'(x) = -\sin x" />
+<LineEquation
+  title="Sine and Its Derivative Function"
+  description="The purple curve is sine and the orange curve is cosine. The horizontal axis measures angles in radians. Compare the sign of cosine with the direction in which sine rises or falls."
+  data={[
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 10]}
+/>
 
-3.  **Derivative of Tangent**:
-
-    <BlockMath math="f(x) = \tan x \implies f'(x) = \sec^2 x" />
-
-4.  **Derivative of Cotangent**:
-
-    <BlockMath math="f(x) = \cot x \implies f'(x) = -\csc^2 x" />
-
-5.  **Derivative of Secant**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \sec x \\ &amp;\implies f'(x) \\ &amp;= \sec x \tan x \end{aligned}" />
-
-6.  **Derivative of Cosecant**:
-
-    <BlockMath math="\begin{aligned} f(x) &amp;= \csc x \\ &amp;\implies f'(x) \\ &amp;= -\csc x \cot x \end{aligned}" />
+On <InlineMath math="-\pi/2<x<\pi/2" />, cosine is positive, so sine increases. On <InlineMath math="\pi/2<x<\pi" />, cosine is negative, so sine decreases. A **zero derivative** at the maximum means the tangent is horizontal.
 
 ## Applying the Rules to Trigonometric Functions
 
-The examples below combine these formulas with familiar derivative rules. Identify the outer rule first, then differentiate the angle and multiply, because the derivative of <InlineMath math="\sin u" /> is <InlineMath math="\cos u" /> multiplied by the derivative of <InlineMath math="u" />.
+The examples below combine these formulas with familiar derivative rules. Identify the outer rule first, then **differentiate the angle** and multiply, because the derivative of <InlineMath math="\sin u" /> is <InlineMath math="\cos u" /> multiplied by the derivative of <InlineMath math="u" />.
 
 ### Combination of Algebra and Trigonometry
 
 Find the derivative of <InlineMath math="y = 2 \sin x + 5x" />.
 
-**Solution:**
+**Solution**:
 
 We can differentiate this function term by term using the sum rule.
 
@@ -65,7 +68,7 @@ We can differentiate this function term by term using the sum rule.
 
 Find the derivative of <InlineMath math="y = 2 \sin x \tan x" />.
 
-**Solution:**
+**Solution**:
 
 Use the product rule <InlineMath math="y' = u'v + uv'" />.
 
@@ -83,7 +86,7 @@ Then <InlineMath math="u' = 2 \cos x" /> and <InlineMath math="v' = \sec^2 x" />
 
 On its domain <InlineMath math="\sin x \ne 0" />, find the derivative of <InlineMath math="y = \frac{1 + \cos x}{\sin x}" />.
 
-**Solution:**
+**Solution**:
 
 Use the quotient rule <InlineMath math="y' = \frac{u'v - uv'}{v^2}" />.
 
@@ -114,14 +117,14 @@ The simplified formula is valid only on the original domain, so values with <Inl
 
 ## Exercises
 
-Each problem asks for the first derivative of a trigonometric expression, and the second one is a product. Choose the rule that matches the structure.
+Each problem asks for the first derivative of a trigonometric expression, and **the second one is a product**. Choose the rule that matches the structure.
 
 1. Find the first derivative of <InlineMath math="f(x) = 4x^3 - 5 \cos x" />.
 2. Find the first derivative of <InlineMath math="f(x) = \sin x \cos x" />.
 
 ### Answer Key
 
-1.  **Solution:**
+1.  **Solution**:
 
     Use the subtraction rule to differentiate each term separately.
 
@@ -139,7 +142,7 @@ Each problem asks for the first derivative of a trigonometric expression, and th
 
     So, the derivative of the function is <InlineMath math="12x^2 + 5 \sin x" />.
 
-2.  **Solution:**
+2.  **Solution**:
 
     Use the product rule, <InlineMath math="f'(x) = u'v + uv'" />.
 

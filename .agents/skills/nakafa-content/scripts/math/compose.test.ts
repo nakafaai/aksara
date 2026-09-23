@@ -65,7 +65,6 @@ it("reads a math prop written as an expression", () => {
 
 it("ignores math props that carry no static value", () => {
   assert.deepEqual(rulesForSource("<InlineMath math={value} />"), []);
-  assert.deepEqual(rulesForSource("<InlineMath math={`0 \\text{zu}`} />"), []);
   assert.deepEqual(rulesForSource("<InlineMath math />"), []);
   assert.deepEqual(rulesForSource('<Chart title="0 \\text{zu} 255" />'), []);
   assert.deepEqual(rulesForSource("<Chart />"), []);
@@ -190,5 +189,82 @@ it("reports every finding through the lesson voice scan", () => {
       rule,
     })),
     [{ line: 1, rule: GLUED }]
+  );
+});
+
+it("rejects tab-corrupted text and multiplication commands in decoded math", () => {
+  const source = [
+    '<InlineMath math="32/4=8\text{ kg}" />',
+    '<BlockMath math="60\times 5000=300000" />',
+    '<InlineMath math="8&#9;ext{ kg}" />',
+    '<InlineMath math="60&#x9;imes 5000" />',
+    '<InlineMath math={"32/4=8\\text{ kg}"} />',
+    "<BlockMath math={`60\\times 5000=300000`} />",
+    '<InlineMath math="2\times3" />',
+  ].join("\n");
+  const issues = findDisplayedMathCompositionIssues(source);
+  assert.deepEqual(
+    issues.map(({ line, rule }) => ({ line, rule })),
+    Array.from({ length: 7 }, (_, index) => ({
+      line: index + 1,
+      rule: "malformed-latex-command",
+    }))
+  );
+  const lines = source.split("\n");
+  assert.deepEqual(
+    issues.map(({ line, column }) => lines[line - 1]?.[column - 1]),
+    ["\t", "\t", "&", "&", "\\", "\\", "\t"]
+  );
+});
+
+it("maps nested JavaScript escape findings back to their exact authored bytes", () => {
+  const source = String.raw`<Chart description={<><InlineMath math={"\u0038\text{ kg}"} /><InlineMath math={"60" + "\times 5000"} /></>} />`;
+  const issues = findDisplayedMathCompositionIssues(source);
+  assert.deepEqual(
+    issues.map(({ column, rule }) => ({ column, rule })),
+    [
+      {
+        column: source.indexOf("\\text") + 1,
+        rule: "malformed-latex-command",
+      },
+      {
+        column: source.indexOf("\\times") + 1,
+        rule: "malformed-latex-command",
+      },
+    ]
+  );
+});
+
+it("preserves valid LaTeX escapes, tab spacing, and non-math examples", () => {
+  const source = [
+    String.raw`<InlineMath math="8\text{ kg}" />`,
+    String.raw`<BlockMath math="60\times 5000" />`,
+    String.raw`<InlineMath math={"8\\text{ kg}"} />`,
+    String.raw`<Chart description={<InlineMath math={"60\\times 5000"} />} />`,
+    '<BlockMath math="\tx + y\t= 3" />',
+    '<InlineMath math="x\timesteps" />',
+    '<InlineMath math="x\textension" />',
+    '<Chart title="32/4=8\text{ kg}" />',
+    '`<InlineMath math="32/4=8\text{ kg}" />`',
+    '```mdx\n<InlineMath math="60\times 5000" />\n```',
+  ].join("\n\n");
+  assert.deepEqual(rulesForSource(source), []);
+});
+
+it("blocks proven command corruption through the normal voice scan", () => {
+  const source = '<InlineMath math="32/4=8\text{ kg}" />';
+  assert.deepEqual(
+    findLessonVoiceIssues("en", source).map(({ rule }) => rule),
+    ["malformed-latex-command"]
+  );
+});
+
+it("checks nested math children while preserving other JSX attributes", () => {
+  const source =
+    '<Chart description={<span {...props} title="8\text{ kg}"><InlineMath math="60\times5" /></span>} />';
+  const issues = findDisplayedMathCompositionIssues(source);
+  assert.deepEqual(
+    issues.map(({ column, rule }) => ({ column, rule })),
+    [{ column: source.indexOf("\times") + 1, rule: "malformed-latex-command" }]
   );
 });

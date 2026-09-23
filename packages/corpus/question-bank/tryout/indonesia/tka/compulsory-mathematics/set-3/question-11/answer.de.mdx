@@ -5,16 +5,30 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Vom äußeren Punkt <InlineMath math="P" /> gilt der Tangenten-Sekanten-Satz:
+Vom äußeren Punkt <InlineMath math="P" /> gilt der **Tangenten-Sekanten-Satz**:
 
 <BlockMath math="PA^2=PB\cdot PC" />
 
-Setze <InlineMath math="PB=x" />. Wegen <InlineMath math="BC=10" /> hat die ganze Sekante die Länge <InlineMath math="PC=x+10" />. Daher
+Setze <InlineMath math="PB=x" />. Wegen <InlineMath math="BC=10" /> hat die Sekantenstrecke von P bis C die Länge <InlineMath math="PC=x+10" />. Daher
 
 <BlockMath math="\begin{aligned}
 12^2&=x(x+10),\\
 x^2+10x-144&=0,\\
-(x-8)(x+18)&=0.
+(x-8)(x+18)&=0 \\
+x&=8\ \text{oder}\ x=-18.
 \end{aligned}" />
 
 Eine Länge ist positiv. Somit ist <InlineMath math="x=8" /> und <InlineMath math="PC=8+10=18\,\mathrm{cm}" />.
+
+<LineEquation
+  title="Tangente und Sekantenstrecke"
+  description="P, B und C liegen in dieser Reihenfolge auf einer Geraden. Multipliziere PB mit der gesamten Strecke PC, nicht nur mit BC."
+  cameraPosition={[9,0,28]}
+  cameraTarget={[9,0,0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 121 }, (_, i) => { const t = 2*Math.PI*i/120; return { x: 13+5*Math.cos(t), y: 5*Math.sin(t), z: 0 }; }), color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }, { x: 18, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "P", at: 0, offset: [-0.4, -0.6, 0] }, { text: "B", at: 1, offset: [-0.3, -0.6, 0] }, { text: "C", at: 2, offset: [0.4, -0.6, 0] }, { text: "10 cm", at: 1, offset: [5, -0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 144/13, y: 60/13, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "A", at: 1, offset: [-0.3, 0.6, 0] }, { text: "12 cm", at: 0, offset: [5, 3.2, 0] }] },
+  ]}
+/>

@@ -32,13 +32,13 @@ In dieser FPS-Zeile bezeichnet <InlineMath math="\text{lb}" /> die Pfundmasse. S
 
 Ohne Angabe des Einheitensystems lassen sich solche Messwerte nur schwer vergleichen. Deshalb verwendet die moderne Wissenschaft das **Internationale Einheitensystem**, kurz **SI**. Die Abkürzung stammt vom französischen Namen *Système international d'unités*. Auf Englisch heißt es *International System of Units*. Das *Bureau International des Poids et Mesures*, kurz BIPM, betreut diesen internationalen Standard.
 
-Wenn du die offizielle Definition des SI und seiner Basiseinheiten prüfen möchtest, öffne die [BIPM-Übersicht zum Internationalen Einheitensystem](https://www.bipm.org/en/measurement-units).
+[Das BIPM legt die SI-Definitionen fest](https://www.bipm.org/en/measurement-units), damit die Einheiten einen gemeinsamen internationalen Bezug haben.
 
 > SI ist eine Vereinbarung, dass <InlineMath math="1 \text{ m}" />, <InlineMath math="1 \text{ kg}" /> und <InlineMath math="1 \text{ s}" /> in verschiedenen Schulen, Labors, Fabriken und Ländern dasselbe bedeuten.
 
 ## Die sieben Basiseinheiten des SI
 
-Die SI-Basiseinheiten sind die Bausteine des Systems. Aus ihnen entstehen Einheiten wie <InlineMath math="\text{m}^2" />, <InlineMath math="\text{m/s}" />, <InlineMath math="\text{N}" />, <InlineMath math="\text{J}" /> und <InlineMath math="\text{W}" />.
+Die **SI-Basiseinheiten** sind die Bausteine des Systems. Aus ihnen entstehen Einheiten wie <InlineMath math="\text{m}^2" />, <InlineMath math="\text{m/s}" />, <InlineMath math="\text{N}" />, <InlineMath math="\text{J}" /> und <InlineMath math="\text{W}" />.
 
 | Grundgröße | Übliches Symbol | SI-Einheit | Einheitensymbol | Dimension |
 | :------------ | :------------ | :------ | :---------- | :-------- |
@@ -59,7 +59,7 @@ Ein Detail führt häufig zu Verwechslungen: Die SI-Basiseinheit der Masse ist <
 
 ## Abgeleitete Einheiten entstehen aus Rechenoperationen mit Basiseinheiten
 
-Eine abgeleitete Einheit entsteht zusammen mit einer Größe, die aus Grundgrößen aufgebaut ist. Werden Größen in einer Formel multipliziert oder dividiert, geschieht dasselbe mit ihren Einheiten.
+Eine abgeleitete Einheit entsteht zusammen mit einer Größe, die aus Grundgrößen aufgebaut ist. Werden Größen in einer Formel **multipliziert oder dividiert**, geschieht dasselbe mit ihren Einheiten.
 
 | Abgeleitete Größe | Größenformel | SI-Einheit | Dimension |
 | :--------------- | :--------------- | :------ | :-------- |
@@ -71,6 +71,8 @@ Eine abgeleitete Einheit entsteht zusammen mit einer Größe, die aus Grundgrö�
 | Kraft | <InlineMath math="F = m \times a" /> | <InlineMath math="\text{N}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}][\mathrm{T}]^{-2}" /> |
 | Arbeit | <InlineMath math="W = F \times \Delta s" /> | <InlineMath math="\text{J}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-2}" /> |
 | Leistung | <InlineMath math="P = \frac{W}{t}" /> | <InlineMath math="\text{W}" /> | <InlineMath math="[\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}" /> |
+
+Die Arbeitsformel setzt eine konstante Kraft in Verschiebungsrichtung voraus. Die Formeln für Geschwindigkeit, Beschleunigung und Leistung in der Tabelle liefern Mittelwerte im betrachteten Zeitintervall.
 
 Die Zerlegung einer abgeleiteten Einheit zeigt ihren Ursprung. Kraft wird in Newton angegeben, doch ein Newton setzt sich aus Kilogramm, Meter und Sekunde zusammen.
 
@@ -91,16 +93,14 @@ Darauf aufbauend lassen sich Joule und Watt Schritt für Schritt zerlegen.
 
 ## Große und kleine Werte kompakt schreiben
 
-Sehr große und sehr kleine Werte müssen nicht als lange Nullreihen erscheinen. SI-Präfixe drücken Potenzen von <InlineMath math="10" /> direkt im Einheitennamen aus.
+Sehr große und sehr kleine Werte müssen nicht als lange Nullreihen erscheinen. **SI-Präfixe** drücken Potenzen von <InlineMath math="10" /> direkt im Einheitennamen aus.
 
 <Mermaid
   title="Kompakte Schreibweise durch metrische Präfixe"
   description="Verfolge, wie ein metrisches Präfix eine lange Nullfolge durch einen kompakten Einheitennamen ersetzt."
   chart={`flowchart LR
-    A["Wert lesen"] --> B["Präfix abtrennen"]
-    B --> C["Zehnerpotenz einsetzen"]
-    C --> D["Zahlenwert multiplizieren"]
-    D --> E["Endgültige Einheit notieren"]`}/>
+    A["7,5 km"] --> B["7,5 × 1000 m"]
+    B --> C["7500 m"]`}/>
 
 Zu den gebräuchlichen Präfixen gehören:
 
@@ -121,7 +121,7 @@ Die Tabelle enthält die Präfixe von Yokto bis Yotta. Das BIPM führt außerdem
 
 ## Präfixe in Berechnungen lesen
 
-Ein Präfix wird direkt vor die Einheit gesetzt. <InlineMath math="\text{km}" /> bedeutet daher Kilometer und bleibt über das Präfix mit dem Meter verbunden.
+Ein SI-Präfix kann vor einer **Basiseinheit oder einer abgeleiteten Einheit** stehen. Kilometer verwendet beispielsweise Meter, Kilowatt dagegen Watt. <InlineMath math="\text{km}" /> bedeutet daher Kilometer und bleibt über das Präfix mit dem Meter verbunden.
 
 <BlockMath math="\begin{aligned}
 7{,}5 \text{ km}
@@ -129,11 +129,11 @@ Ein Präfix wird direkt vor die Einheit gesetzt. <InlineMath math="\text{km}" />
 &= 7500 \text{ m}
 \end{aligned}" />
 
-Bei kleinen Größen ersetzt ein Präfix eine Folge von Dezimalnullen durch den Namen einer Zehnerpotenz. Ein Durchmesser von <InlineMath math="0{,}1 \ \mu\text{m}" /> entspricht:
+Bei kleinen Größen ersetzt ein Präfix eine Folge von Dezimalnullen durch den Namen einer Zehnerpotenz. Ein Durchmesser von <InlineMath math="0{,}10 \ \mu\text{m}" /> entspricht:
 
 <BlockMath math="\begin{aligned}
-0{,}1 \ \mu\text{m}
-&= 0{,}1 \times 10^{-6} \text{ m} \\
+0{,}10 \ \mu\text{m}
+&= 0{,}10 \times 10^{-6} \text{ m} \\
 &= 1{,}0 \times 10^{-7} \text{ m}
 \end{aligned}" />
 

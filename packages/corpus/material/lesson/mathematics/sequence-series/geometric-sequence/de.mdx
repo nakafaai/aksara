@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Geometrische Folge",
     description: "Leite das allgemeine Glied einer geometrischen Folge mit konstantem Faktor her und prüfe idealisierte Wachstumsmodelle.",
@@ -22,7 +21,7 @@ Jedes Glied entsteht also durch Multiplikation des vorherigen Gliedes mit dem Fa
 
 ## Erkundung durch Papierfalten
 
-Bei einem einfachen Faltmodell verdoppelt jede Faltung die Zahl der Schichten. Falte ein rechteckiges Blatt Papier mehrmals in der Mitte.
+Bei einem einfachen Faltmodell **verdoppelt jede Faltung** die Zahl der Schichten. Falte ein rechteckiges Blatt Papier mehrmals in der Mitte.
 
 Nach <InlineMath math="1 \text{ Mal}" /> Falten entstehen gedanklich <InlineMath math="2 \text{ Teile}" /> gleicher Größe. Nach dem zweiten Falten, also nach <InlineMath math="2 \text{ Mal}" />, sind es <InlineMath math="4 \text{ Teile}" />. Das Muster lautet:
 
@@ -39,7 +38,11 @@ Jedes Glied entsteht durch Multiplikation des vorherigen Gliedes mit <InlineMath
 
 ## Allgemeine Formel für geometrische Folgen
 
+Für einen **Faktor ungleich null** und eine positive ganzzahlige Gliednummer gilt:
+
 <BlockMath math="U_n = a \cdot r^{n-1}" />
+
+Für <InlineMath math="r=0" /> gilt <InlineMath math="U_1=a" /> und <InlineMath math="U_n=0" /> für <InlineMath math="n\ge2" />. So musst du beim ersten Glied keinen Ausdruck <InlineMath math="0^0" /> auswerten.
 
 Die Größen in dieser Formel bedeuten:
 
@@ -52,19 +55,23 @@ Der Exponent lautet <InlineMath math="n-1" />, weil vom ersten bis zum <InlineMa
 
 ## Folgenverhalten für verschiedene Faktoren
 
-Bei einem positiven ersten Glied bestimmt der Faktor das grundlegende Verhalten:
+Bei einem **positiven ersten Glied** bestimmt der Faktor das grundlegende Verhalten:
 
-- Für <InlineMath math="r>1" /> wachsen die positiven Glieder.
-- Für <InlineMath math="0<r<1" /> nähern sich die positiven Glieder null.
-- Für <InlineMath math="r=1" /> bleibt die Folge konstant.
-- Für <InlineMath math="r=0" /> sind alle Glieder nach dem ersten null.
-- Für <InlineMath math="r<0" /> wechseln die Vorzeichen. Die Beträge können dabei wachsen, schrumpfen oder konstant bleiben.
+| Faktor | Erste Glieder mit Anfangswert 8 | Verhalten |
+| --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="8,16,32,64" /> | Steigend |
+| <InlineMath math="1/2" /> | <InlineMath math="8,4,2,1" /> | Nähert sich null |
+| <InlineMath math="1" /> | <InlineMath math="8,8,8,8" /> | Konstant |
+| <InlineMath math="0" /> | <InlineMath math="8,0,0,0" /> | Ab dem zweiten Glied null |
+| <InlineMath math="-2" /> | <InlineMath math="8,-16,32,-64" /> | Wechselnde Vorzeichen, wachsende Beträge |
+| <InlineMath math="-1" /> | <InlineMath math="8,-8,8,-8" /> | Wechselnde Vorzeichen, konstante Beträge |
+| <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Wechselnde Vorzeichen, Beträge nähern sich null |
 
 Aus diesem Grund stellt eine geometrische Folge nicht immer ein Wachstum dar.
 
 ## Ein idealisiertes Bakterienwachstumsmodell
 
-Angenommen, die Anzahl der Bakterien in einer idealen Kultur verdreifacht sich alle <InlineMath math="2 \text{ Stunden}" />. Der Faktor <InlineMath math="3" /> beschreibt, wie sich die Gesamtzahl der Bakterien in jedem Zeitabschnitt ändert.
+Angenommen, die Anzahl der Bakterien in einer idealen Kultur **verdreifacht** sich alle <InlineMath math="2 \text{ Stunden}" />. Der Faktor <InlineMath math="3" /> beschreibt, wie sich die Gesamtzahl der Bakterien in jedem Zeitabschnitt ändert.
 
 Wenn die anfängliche Bakterienzahl <InlineMath math="2 \text{ Zellen}" /> beträgt, dann:
 
@@ -94,22 +101,6 @@ Nach dem idealisierten Modell enthält die Kultur also <InlineMath math="118{.}0
   />
 </ContentBlock>
 
-## Faktor und allgemeines Glied einer geometrischen Folge
-
-Jeder Schritt einer geometrischen Folge multipliziert mit demselben Faktor. Teilst du ein Glied durch das vorherige, erhältst du diesen Faktor zurück, und ein Startwert zusammen mit dem Faktor genügt für das allgemeine Glied.
-
-### Konstanter Faktor und Quotient
-
-Sofern das vorherige Glied nicht null ist, kann der Faktor <InlineMath math="r" /> als Quotient aus dem nächsten und dem vorherigen Glied berechnet werden:
-
-<BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
-
-### Das Glied an einer bestimmten Position bestimmen
-
-Das allgemeine Glied wird direkt mit folgender Formel berechnet:
-
-<BlockMath math="U_n = a \cdot r^{n-1}" />
-
 ## Wachstum und Abnahme mit konstantem Faktor
 
 Jeder Vorgang unten wiederholt in jedem Schritt eine Multiplikation, sodass derselbe Faktor die ganze Liste bestimmt:
@@ -125,7 +116,7 @@ Prüfe stets, ob ein Modell mit konstantem Faktor für die Situation und den unt
 
 ## Einen Faktor und ein unbekanntes Glied bestimmen
 
-Beide Beispiele geben einen Teil einer geometrischen Folge und fragen nach dem fehlenden Wert. Setze die bekannten Glieder in das allgemeine Glied ein und löse nach dem Unbekannten.
+Beide Beispiele geben einen Teil einer geometrischen Folge und fragen nach dem fehlenden Wert. Setze die **bekannten Glieder** in das allgemeine Glied ein und löse nach dem Unbekannten.
 
 ### Den Faktor bestimmen
 
@@ -160,7 +151,7 @@ Gegeben:
 - <InlineMath math="a = 16" /> (kürzestes Stück)
 - <InlineMath math="U_5 = 81" /> (längstes Stück)
 
-Zuerst bestimmen wir den Faktor:
+Alle Stücke haben **positive Längen**, also ist auch der Faktor positiv. Deshalb nehmen wir die positive vierte Wurzel:
 
 <MathContainer>
   <BlockMath math="U_5 = a \cdot r^{5-1}" />

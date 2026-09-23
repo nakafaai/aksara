@@ -5,33 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gesucht sind alle <InlineMath math="x" />-Werte, für die der Funktionswert <InlineMath math="f(x)" /> mindestens <InlineMath math="5" /> beträgt (<InlineMath math="f(x) \geq 5" />).
+Gesucht sind alle <InlineMath math="x" />-Werte, für die der Funktionswert <InlineMath math="f(x)" /> **mindestens** <InlineMath math="5" /> beträgt (<InlineMath math="f(x) \geq 5" />).
 
 Wir prüfen die vier Teilintervalle:
 
-1. **Intervall <InlineMath math="0 \leq x < 2" />**
-
-   In diesem Intervall gilt <InlineMath math="f(x) = 3" />.
-   Ist <InlineMath math="3 \geq 5" />? **Nein**.
-   Dieses Intervall **erfüllt also nicht** die Bedingung.
-
-2. **Intervall <InlineMath math="2 \leq x < 5" />**
-
-   In diesem Intervall gilt <InlineMath math="f(x) = 5" />.
-   Ist <InlineMath math="5 \geq 5" />? **Ja**.
-   Das Intervall <InlineMath math="[2, 5)" /> **erfüllt** also die Bedingung.
-
-3. **Intervall <InlineMath math="5 \leq x < 8" />**
-
-   In diesem Intervall gilt <InlineMath math="f(x) = 7" />.
-   Ist <InlineMath math="7 \geq 5" />? **Ja**.
-   Das Intervall <InlineMath math="[5, 8)" /> **erfüllt** also die Bedingung.
-
-4. **Intervall <InlineMath math="8 \leq x < 10" />**
-
-   In diesem Intervall gilt <InlineMath math="f(x) = 9" />.
-   Ist <InlineMath math="9 \geq 5" />? **Ja**.
-   Das Intervall <InlineMath math="[8, 10)" /> **erfüllt** also die Bedingung.
+| Intervall | Funktionswert | Prüfung | Erfüllt |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | Nein |
+| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Ja |
+| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Ja |
+| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Ja |
 
 #### Intervalle kombinieren
 
@@ -39,8 +22,16 @@ Wir kombinieren alle Intervalle, die die Bedingung erfüllen:
 
 <BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
 
-Die Teilintervalle schließen direkt aneinander an. Die Randpunkte <InlineMath math="5" /> und <InlineMath math="8" /> gehören jeweils zum folgenden Intervall, sodass keine Lücke entsteht. Deshalb lassen sie sich zu einem Intervall zusammenfassen.
+Die Teilintervalle schließen direkt aneinander an. Die Randpunkte <InlineMath math="5" /> und <InlineMath math="8" /> gehören jeweils zum folgenden Intervall, sodass **keine Lücke entsteht**. Deshalb lassen sie sich zu einem Intervall zusammenfassen.
 
 <BlockMath math="[2, 10)" />
 
 Somit ist das Intervall von <InlineMath math="x" />-Werten, das die Bedingung erfüllt, <InlineMath math="x \in [2, 10)" />.
+
+<NumberLine
+ title="Vereinigung der passenden Intervalle"
+ description="Der Punkt 2 gehört dazu, weil f(2)=5 gilt. Der Punkt 10 ist ausgeschlossen, da die Funktion dort nicht definiert ist."
+ min={0}
+ max={11}
+ segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+/>

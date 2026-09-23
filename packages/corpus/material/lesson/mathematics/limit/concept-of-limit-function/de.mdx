@@ -3,7 +3,7 @@ export const metadata = {
     description: "Grenzwerte mit Wertetabellen, einseitigem Verhalten, der Epsilon-Delta-Definition und vollständig gelösten Beispielen verstehen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Grenzwerte",
 };
 
@@ -17,9 +17,14 @@ Stetigkeit, [Ableitungen](/de/faecher/mathematik/ableitungen/begriff-der-ableitu
 
 Die folgende Tabelle zeigt die Werte von <InlineMath math="f(x) = x + 2" />, während sich <InlineMath math="x" /> dem Wert <InlineMath math="3" /> von beiden Seiten nähert.
 
-| <InlineMath math="x" /> | <InlineMath math="2{,}9" /> | <InlineMath math="2{,}99" /> | <InlineMath math="2{,}999" /> | ... | <InlineMath math="3{,}001" /> | <InlineMath math="3{,}01" /> | <InlineMath math="3{,}1" /> |
-|-------------|-----|------|-------|-----|-------|------|-----|
-| <InlineMath math="f(x)" /> | <InlineMath math="4{,}9" /> | <InlineMath math="4{,}99" /> | <InlineMath math="4{,}999" /> | ... | <InlineMath math="5{,}001" /> | <InlineMath math="5{,}01" /> | <InlineMath math="5{,}1" /> |
+| Annäherungsrichtung | Eingabe | Ausgabe |
+| --- | --- | --- |
+| Von links | <InlineMath math="2{,}9" /> | <InlineMath math="4{,}9" /> |
+| Von links | <InlineMath math="2{,}99" /> | <InlineMath math="4{,}99" /> |
+| Von links | <InlineMath math="2{,}999" /> | <InlineMath math="4{,}999" /> |
+| Von rechts | <InlineMath math="3{,}001" /> | <InlineMath math="5{,}001" /> |
+| Von rechts | <InlineMath math="3{,}01" /> | <InlineMath math="5{,}01" /> |
+| Von rechts | <InlineMath math="3{,}1" /> | <InlineMath math="5{,}1" /> |
 
 Die Tabelle zeigt: Nähert sich <InlineMath math="x" /> dem Wert <InlineMath math="3" /> von links, also mit <InlineMath math="x < 3" />, oder von rechts, also mit <InlineMath math="x > 3" />, dann nähert sich <InlineMath math="f(x)" /> dem Wert <InlineMath math="5" />. <Highlight>Dieser Annäherungswert heißt Grenzwert</Highlight>.
 
@@ -29,7 +34,7 @@ Die Standardschreibweise lautet:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
-Das liest man so: „**Der Grenzwert von <InlineMath math="f(x)" /> für <InlineMath math="x" /> gegen <InlineMath math="c" /> ist <InlineMath math="L" />.**“
+Die Schreibweise bedeutet: Der Grenzwert von <InlineMath math="f(x)" /> für <InlineMath math="x" /> gegen <InlineMath math="c" /> ist <InlineMath math="L" />. **Annähern** bedeutet nicht, den Funktionswert an dieser Stelle einzusetzen.
 
 Wenn <InlineMath math="c" /> ein innerer Punkt ist und die Funktion in der Umgebung von <InlineMath math="c" /> auf beiden Seiten definiert ist, existiert der zweiseitige Grenzwert genau dann, wenn:
 - Der **Grenzwert von links** und der **Grenzwert von rechts** müssen existieren
@@ -54,15 +59,23 @@ Die Epsilon-Delta-Definition gibt dem Wort "annähern" eine präzise mathematisc
 
 Für jede noch so kleine Ausgabetoleranz <InlineMath math="\varepsilon>0" /> lässt sich also eine Eingabetoleranz <InlineMath math="\delta>0" /> wählen. Liegt <InlineMath math="x" /> dann näher als <InlineMath math="\delta" /> bei <InlineMath math="c" />, ohne genau diesen Wert anzunehmen, liegt <InlineMath math="f(x)" /> näher als <InlineMath math="\varepsilon" /> bei <InlineMath math="L" />. Die Bedingung <InlineMath math="0<|x-c|" /> zeigt, dass das Verhalten in der Umgebung von <InlineMath math="c" /> den Grenzwert bestimmt.
 
+### Eine Eingabetoleranz wählen
+
+Für <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" /> und <InlineMath math="L=5" /> entspricht der Abstand der Ausgabe genau dem Abstand der Eingabe:
+
+<BlockMath math="|f(x)-5|=|(x+2)-5|=|x-3|" />
+
+Wähle **dieselbe Toleranz für Eingabe und Ausgabe**, also <InlineMath math="\delta=\varepsilon" />. Ein Ausgabefehler unter <InlineMath math="0{,}01" /> folgt zum Beispiel aus <InlineMath math="0<|x-3|<0{,}01" />. Diese Rechnung gilt für jede positive Toleranz.
+
 ## Grenzwerte berechnen
 
-Grenzwerte beantworten Fragen zum Verhalten einer Größe in der Nähe eines Punktes. Der Grenzwert kann sich vom Funktionswert an dieser Stelle unterscheiden, und die beiden Beispiele zeigen einen Fall, bei dem Einsetzen genügt, und einen Fall, der vorher vereinfacht werden muss.
+Grenzwerte beantworten Fragen zum Verhalten einer Größe in der Nähe eines Punktes. Der **Grenzwert** kann sich vom Funktionswert an dieser Stelle unterscheiden, und die beiden Beispiele zeigen einen Fall, bei dem Einsetzen genügt, und einen Fall, der vorher vereinfacht werden muss.
 
 ### Einen Grenzwert durch direktes Einsetzen berechnen
 
 Berechne <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
 
-**Lösung:**
+**Lösung**:
 
 Da <InlineMath math="f(x) = 2x - 1" /> bei <InlineMath math="x = 4" /> stetig ist, können wir direkt einsetzen:
 
@@ -72,7 +85,7 @@ Da <InlineMath math="f(x) = 2x - 1" /> bei <InlineMath math="x = 4" /> stetig is
 
 Berechne <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
 
-**Lösung:**
+**Lösung**:
 
 Direktes Einsetzen von <InlineMath math="x = 2" /> ergibt die unbestimmte Form <InlineMath math="\frac{0}{0}" />. Deshalb faktorisieren und vereinfachen wir zuerst:
 
@@ -83,27 +96,21 @@ Direktes Einsetzen von <InlineMath math="x = 2" /> ergibt die unbestimmte Form <
 
 Ein Grenzwert betrachtet benachbarte Werte mit <InlineMath math="x \neq 2" />. Deshalb dürfen wir den Faktor <InlineMath math="(x - 2)" /> kürzen, bevor wir den vereinfachten Ausdruck auswerten:
 
-<BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
+<BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
 ## Grundlegende Rechenregeln
 
-Jede Regel überträgt die Grenzwertbildung auf die einzelnen Bestandteile eines Terms. Die Linearität deckt Summen und konstante Vielfache ab, die Produktregel deckt Produkte ab, und die Quotientenregel gilt nur, solange der Grenzwert des Nenners von null verschieden bleibt.
+Für diese Regeln müssen beide Grenzwerte <InlineMath math="L=\lim_{x\to c}f(x)" /> und <InlineMath math="M=\lim_{x\to c}g(x)" /> **existieren und endlich sein**. Die Koeffizienten <InlineMath math="a,b" /> sind konstant.
 
-1. **Linearität:**
-
-    <InlineMath math="\lim_{x \to c} [af(x) + bg(x)] = a\lim_{x \to c} f(x) + b\lim_{x \to c} g(x)" />
-
-2. **Produktregel:**
-
-    <InlineMath math="\lim_{x \to c} [f(x) \cdot g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x)" />
-
-3. **Quotientenregel:**
-
-    <InlineMath math="\lim_{x \to c} \frac{f(x)}{g(x)} = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)}" />, sofern <InlineMath math="\lim_{x \to c} g(x) \neq 0" /> gilt
+| Operation | Grenzwert | Zusatzbedingung |
+| --- | --- | --- |
+| Linearkombination | <InlineMath math="aL+bM" /> | Keine |
+| Produkt | <InlineMath math="LM" /> | Keine |
+| Quotient | <InlineMath math="\frac{L}{M}" /> | <InlineMath math="M\ne0" /> |
 
 ## Übungen
 
-Die vier Aufgaben decken direktes Einsetzen, einen Fall mit Faktorisieren, einen trigonometrischen Grundgrenzwert und eine abschnittsweise definierte Funktion ab. Rechne jede Aufgabe zuerst auf Papier, bevor du die Lösung öffnest, und vergleiche dann deinen Weg mit dem Rechenweg unten.
+Die vier Aufgaben decken **direktes Einsetzen**, einen Fall mit Faktorisieren, einen trigonometrischen Grundgrenzwert und eine abschnittsweise definierte Funktion ab. Rechne jede Aufgabe zuerst auf Papier, bevor du die Lösung öffnest, und vergleiche dann deinen Weg mit dem Rechenweg unten.
 
 1. Berechne <InlineMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
 
@@ -117,45 +124,57 @@ Die vier Aufgaben decken direktes Einsetzen, einen Fall mit Faktorisieren, einen
 
    Berechne <InlineMath math="\lim_{x \to 2} f(x)" />.
 
-### Ausführliche Lösungen
+### Einsetzen in ein Polynom
 
-1. **Lösung:**
+Polynomfunktionen sind überall stetig. Deshalb können wir **direkt einsetzen**:
 
-   Polynomfunktionen sind überall stetig. Deshalb können wir direkt einsetzen:
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
+### Vor der Grenzwertbildung faktorisieren
 
-2. **Lösung:**
+Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Deshalb faktorisieren wir zuerst:
 
-   Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Deshalb faktorisieren wir zuerst:
+<MathContainer>
+<BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
+<BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
-   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
-   </MathContainer>
+Der **Grenzwert** verwendet benachbarte Werte mit <InlineMath math="x \neq 1" />. Deshalb können wir <InlineMath math="(x - 1)" /> kürzen, bevor wir den vereinfachten Ausdruck auswerten:
 
-   Der Grenzwert verwendet benachbarte Werte mit <InlineMath math="x \neq 1" />. Deshalb können wir <InlineMath math="(x - 1)" /> kürzen, bevor wir den vereinfachten Ausdruck auswerten:
+<BlockMath math="\lim_{x\to1}\frac{x^2-1}{x-1}= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
-   <BlockMath math="= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
+### Sinusgrenzwert im Bogenmaß
 
-3. **Lösung:**
+Dies ist ein **grundlegender trigonometrischer Grenzwert**. Direktes Einsetzen führt zu <InlineMath math="\frac{0}{0}" /> und hilft daher nicht weiter. Der trigonometrische Grenzwertsatz liefert:
 
-   Dies ist ein **grundlegender trigonometrischer Grenzwert**. Direktes Einsetzen führt zu <InlineMath math="\frac{0}{0}" /> und hilft daher nicht weiter. Der trigonometrische Grenzwertsatz liefert:
+<BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-   <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
+**Hinweis**: Gib <InlineMath math="x" /> im Bogenmaß an. Mit Grad erhältst du ein anderes Ergebnis.
 
-   **Hinweis:** Gib <InlineMath math="x" /> im Bogenmaß an. Mit Grad erhältst du ein anderes Ergebnis.
+### Unterschiedliche einseitige Grenzwerte
 
-4. **Lösung:**
+Bei stückweise definierten Funktionen prüfen wir den Grenzwert von links und von rechts getrennt:
 
-   Bei stückweise definierten Funktionen prüfen wir den Grenzwert von links und von rechts getrennt:
+**Grenzwert von links** (für <InlineMath math="x" /> gegen <InlineMath math="2" /> mit <InlineMath math="x < 2" />):
 
-   **Grenzwert von links** (für <InlineMath math="x" /> gegen <InlineMath math="2" /> mit <InlineMath math="x < 2" />):
+<BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
+**Grenzwert von rechts** (für <InlineMath math="x" /> gegen <InlineMath math="2" />, wobei benachbarte Eingaben <InlineMath math="x > 2" /> erfüllen):
 
-   **Grenzwert von rechts** (für <InlineMath math="x" /> gegen <InlineMath math="2" />, wobei benachbarte Eingaben <InlineMath math="x > 2" /> erfüllen):
+<BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
 
-   <BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
+Weil <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" /> gilt, **existiert** <InlineMath math="\lim_{x \to 2} f(x)" /> **nicht**.
 
-   Weil <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" /> gilt, **existiert** <InlineMath math="\lim_{x \to 2} f(x)" /> **nicht**.
+Der Graph zeigt **zwei unterschiedliche Annäherungshöhen**. Der Punkt am rechten Ast steht für <InlineMath math="f(2)=4" />. Dieser Funktionswert ändert den linksseitigen Grenzwert <InlineMath math="3" /> jedoch nicht.
+
+<LineEquation
+  title="Sprung einer abschnittsweise definierten Funktion"
+  description="Der linke Ast nähert sich der Höhe drei, der rechte Ast beginnt bei vier. Der orange Punkt zeigt den Funktionswert bei x gleich zwei."
+  showZAxis={false}
+  cameraTarget={[1.5, 3.5, 0]}
+  cameraPosition={[1.5, 3.5, 14]}
+  data={[
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 1.99, y: 2.99, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="3" />, offset: [0.4, -0.3, 0] }] },
+    { points: [{ x: 2, y: 4, z: 0 }, { x: 3, y: 7, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [0], labels: [{ at: 0, text: <InlineMath math="(2,4)" />, offset: [0.8, 0.2, 0] }] },
+  ]}
+/>

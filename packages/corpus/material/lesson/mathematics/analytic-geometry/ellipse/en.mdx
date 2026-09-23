@@ -235,19 +235,40 @@ The main components are:
 
 2. **Foci** (<InlineMath math="F_1" /> and <InlineMath math="F_2" />) are two fixed points that define the ellipse. Their distance from each other is <InlineMath math="2c" />.
 
-3. **Major axis** is the longest line that passes through the ellipse center and both foci. Its endpoints are points <InlineMath math="A_1" /> and <InlineMath math="A_2" />.
+3. **Major axis** is the longest diameter, a segment through the center and both foci with endpoints on the ellipse. Its endpoints are points <InlineMath math="A_1" /> and <InlineMath math="A_2" />.
 
-4. **Minor axis** is the shortest line that passes through the ellipse center and is perpendicular to the major axis. Its endpoints are points <InlineMath math="B_1" /> and <InlineMath math="B_2" />.
+4. **Minor axis** is the shortest diameter, a segment through the center perpendicular to the major axis with endpoints on the ellipse. Its endpoints are points <InlineMath math="B_1" /> and <InlineMath math="B_2" />.
 
 5. **Semi-major** (<InlineMath math="a" />) is half the length of the major axis, which is the distance from center to the major axis endpoint.
 
 6. **Semi-minor** (<InlineMath math="b" />) is half the length of the minor axis, which is the distance from center to the minor axis endpoint.
 
-> A noncircular ellipse satisfies <InlineMath math="a > b" />. In the limiting case <InlineMath math="a = b" />, the two semiaxes are equal and the curve is a circle.
+> A noncircular ellipse satisfies <InlineMath math="a > b > 0" />. In the limiting case <InlineMath math="a = b" />, the two semiaxes are equal and the curve is a circle.
 
 ## Ellipse Equations
 
-The equation form depends on the center and on whether the major axis is horizontal or vertical. Read the center from the numbers subtracted inside each square, and read the direction from the squared term with the larger denominator.
+The equation form depends on the center and on whether the major axis is horizontal or vertical. Read the center from the numbers subtracted inside each square, and read the direction from the squared term with the **larger denominator**.
+
+### From Distances to an Equation
+
+Place the foci at <InlineMath math="(-c,0)" /> and <InlineMath math="(c,0)" /> with <InlineMath math="a > c > 0" />. For a point <InlineMath math="P(x,y)" />, call the distances to the left and right foci <InlineMath math="d_1" /> and <InlineMath math="d_2" />. Write their **constant sum** as <InlineMath math="2a" />.
+
+<MathContainer>
+  <BlockMath math="d_1=\sqrt{(x+c)^2+y^2},\qquad d_2=\sqrt{(x-c)^2+y^2}" />
+  <BlockMath math="d_1+d_2=2a" />
+</MathContainer>
+
+Square <InlineMath math="d_1=2a-d_2" />. Subtracting the squared distances leaves the term <InlineMath math="4cx" />.
+
+<BlockMath math="\begin{aligned}d_1^2-d_2^2 &amp;=4a^2-4ad_2\\4cx &amp;=4a^2-4ad_2\\ad_2 &amp;=a^2-cx\end{aligned}" />
+
+Substitute the distance formula for <InlineMath math="d_2" />, square, and collect like terms.
+
+<BlockMath math="\begin{aligned}a^2[(x-c)^2+y^2]&amp;=(a^2-cx)^2\\a^2x^2-2a^2cx+a^2c^2+a^2y^2&amp;=a^4-2a^2cx+c^2x^2\\(a^2-c^2)x^2+a^2y^2&amp;=a^2(a^2-c^2)\end{aligned}" />
+
+Since <InlineMath math="a^2-c^2 > 0" />, write <InlineMath math="b^2=a^2-c^2" /> and divide both sides by <InlineMath math="a^2b^2" />. This gives the **standard ellipse equation**.
+
+<BlockMath math="b^2x^2+a^2y^2=a^2b^2\quad\Longrightarrow\quad\frac{x^2}{a^2}+\frac{y^2}{b^2}=1" />
 
 ### Center at Origin
 
@@ -255,7 +276,7 @@ If the ellipse center is at <InlineMath math="O(0,0)" />, there are two possible
 
 <LineEquation
   title="Horizontal Major Axis"
-  description={<>Ellipse <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> with <InlineMath math="a > b" />.</>}
+  description={<>Ellipse <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> with <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -339,15 +360,15 @@ If the ellipse center is at <InlineMath math="O(0,0)" />, there are two possible
   cameraPosition={[0, 0, 12]}
 />
 
-When the major axis is parallel to the <InlineMath math="x" /> axis (horizontal), the ellipse equation is:
+When the **major axis is parallel** to the <InlineMath math="x" /> axis (horizontal), the ellipse equation is:
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-This equation applies when <InlineMath math="a > b" />.
+This equation applies when <InlineMath math="a > b > 0" />.
 
 <LineEquation
   title="Vertical Major Axis"
-  description={<>Ellipse <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> with <InlineMath math="a > b" />.</>}
+  description={<>Ellipse <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> with <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -435,11 +456,11 @@ When the major axis is parallel to the <InlineMath math="y" /> axis (vertical), 
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-This equation applies when <InlineMath math="a > b" />.
+This equation applies when <InlineMath math="a > b > 0" />.
 
 ### Shifted Center
 
-For an ellipse centered at <InlineMath math="(h, k)" />, the equation becomes:
+For an **ellipse centered at** <InlineMath math="(h, k)" />, the equation becomes:
 
 For a horizontal major axis:
 
@@ -555,7 +576,7 @@ For a noncircular ellipse, <InlineMath math="0 < e < 1" />. As <InlineMath math=
 
 ## Exercises
 
-Each problem gives an ellipse equation and asks for a feature such as its centre, its axes, or its foci, so rewrite the equation into its standard form before you read the values.
+The problems provide different starting information. Distinguish **full axis lengths from semiaxes**, then use the foci or points on the curve to find the remaining parameters.
 
 1. Find the equation of an ellipse with center at <InlineMath math="(0,0)" />, major axis length <InlineMath math="12" /> and minor axis length <InlineMath math="8" />, with horizontal major axis.
 
@@ -567,110 +588,110 @@ Each problem gives an ellipse equation and asks for a feature such as its centre
 
 ### Solutions
 
-1. **Solution**:
+**Solution 1**:
 
-   Given:
-   - Center at <InlineMath math="(0,0)" />
-   - Major axis length is <InlineMath math="12" />, so <InlineMath math="2a = 12" />, thus <InlineMath math="a = 6" />
-   - Minor axis length is <InlineMath math="8" />, so <InlineMath math="2b = 8" />, thus <InlineMath math="b = 4" />
-   - Horizontal major axis
+Given:
+- Center at <InlineMath math="(0,0)" />
+- Major axis length is <InlineMath math="12" />, so <InlineMath math="2a = 12" />, thus <InlineMath math="a = 6" />
+- Minor axis length is <InlineMath math="8" />, so <InlineMath math="2b = 8" />, thus <InlineMath math="b = 4" />
+- Horizontal major axis
 
-   Ellipse equation with horizontal major axis:
+Ellipse equation with horizontal major axis:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Substituting values <InlineMath math="a = 6" /> and <InlineMath math="b = 4" />:
+Substituting values <InlineMath math="a = 6" /> and <InlineMath math="b = 4" />:
 
-   <BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
+<BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
 
-2. **Solution**:
+**Solution 2**:
 
-   From equation <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />:
-   - <InlineMath math="a^2 = 25" />, so <InlineMath math="a = 5" />
-   - <InlineMath math="b^2 = 16" />, so <InlineMath math="b = 4" />
+From equation <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />:
+- <InlineMath math="a^2 = 25" />, so <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 16" />, so <InlineMath math="b = 4" />
 
-   Since <InlineMath math="a^2 > b^2" />, the major axis is horizontal.
+Since <InlineMath math="a^2 > b^2" />, the major axis is horizontal.
 
-   Calculate <InlineMath math="c" />:
+Calculate <InlineMath math="c" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
-     <BlockMath math="c = 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
+  <BlockMath math="c = 3" />
+</MathContainer>
 
-   Foci coordinates: <InlineMath math="(\pm 3, 0)" /> which are <InlineMath math="(-3, 0)" /> and <InlineMath math="(3, 0)" />
+Foci coordinates: <InlineMath math="(\pm 3, 0)" /> which are <InlineMath math="(-3, 0)" /> and <InlineMath math="(3, 0)" />
 
-   Eccentricity:
+Eccentricity:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0.6" />
+<BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0.6" />
 
-3. **Solution**:
+**Solution 3**:
 
-   Given:
-   - Center: <InlineMath math="(3, -1)" />
-   - Foci: <InlineMath math="(3, 2)" /> and <InlineMath math="(3, -4)" />
-   - Minor axis length is <InlineMath math="6" />, so <InlineMath math="2b = 6" />, thus <InlineMath math="b = 3" />
+Given:
+- Center: <InlineMath math="(3, -1)" />
+- Foci: <InlineMath math="(3, 2)" /> and <InlineMath math="(3, -4)" />
+- Minor axis length is <InlineMath math="6" />, so <InlineMath math="2b = 6" />, thus <InlineMath math="b = 3" />
 
-   Since the foci have the same <InlineMath math="x" /> coordinate (<InlineMath math="x = 3" />), the major axis is vertical.
+Since the foci have the same <InlineMath math="x" /> coordinate (<InlineMath math="x = 3" />), the major axis is vertical.
 
-   <BlockMath math="\begin{aligned} &amp;\text{Distance between foci} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Distance between foci} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
-   so <InlineMath math="2c = 6" />, thus <InlineMath math="c = 3" />
+The focal separation is <InlineMath math="2c = 6" />, so <InlineMath math="c = 3" />.
 
-   Use <InlineMath math="c^2 = a^2-b^2" /> to calculate <InlineMath math="a" />:
+Use <InlineMath math="c^2 = a^2-b^2" /> to calculate <InlineMath math="a" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2" />
-     <BlockMath math="9 = a^2 - 9" />
-     <BlockMath math="a^2 = 18" />
-     <BlockMath math="a = 3\sqrt{2}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2" />
+  <BlockMath math="9 = a^2 - 9" />
+  <BlockMath math="a^2 = 18" />
+  <BlockMath math="a = 3\sqrt{2}" />
+</MathContainer>
 
-   Ellipse equation with center <InlineMath math="(h,k) = (3,-1)" /> and vertical major axis:
+Ellipse equation with center <InlineMath math="(h,k) = (3,-1)" /> and vertical major axis:
 
-   <BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
+<BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
 
-4. **Solution**:
+**Solution 4**:
 
-   An ellipse with center <InlineMath math="(0,0)" /> and horizontal major axis has the equation:
+An ellipse with center <InlineMath math="(0,0)" /> and horizontal major axis has the equation:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Substituting point <InlineMath math="(4,3)" />:
+Substituting point <InlineMath math="(4,3)" />:
 
-   <BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
+<BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
 
-   Substituting point <InlineMath math="(6,2)" />:
+Substituting point <InlineMath math="(6,2)" />:
 
-   <BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
+<BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
 
-   Let <InlineMath math="u = \frac{1}{a^2}" /> and <InlineMath math="v = \frac{1}{b^2}" />, then:
+Let <InlineMath math="u = \frac{1}{a^2}" /> and <InlineMath math="v = \frac{1}{b^2}" />, then:
 
-   <MathContainer>
-     <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
-     <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
+  <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
+</MathContainer>
 
-   From equation (1): <InlineMath math="v = \frac{1-16u}{9}" />
+From equation (1): <InlineMath math="v = \frac{1-16u}{9}" />
 
-   Substituting into equation (2):
+Substituting into equation (2):
 
-   <MathContainer>
-     <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
-     <BlockMath math="36u + \frac{4-64u}{9} = 1" />
-     <BlockMath math="324u + 4 - 64u = 9" />
-     <BlockMath math="260u = 5" />
-     <BlockMath math="u = \frac{1}{52}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
+  <BlockMath math="36u + \frac{4-64u}{9} = 1" />
+  <BlockMath math="324u + 4 - 64u = 9" />
+  <BlockMath math="260u = 5" />
+  <BlockMath math="u = \frac{1}{52}" />
+</MathContainer>
 
-   So <InlineMath math="a^2 = 52" />
+So <InlineMath math="a^2 = 52" />
 
-   Substituting back:
+Substituting back:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
+</MathContainer>
 
-   So <InlineMath math="b^2 = 13" />
+So <InlineMath math="b^2 = 13" />
 
-   Ellipse equation: <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />
+Ellipse equation: <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />

@@ -5,17 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Given:
-
-- Total number of students: <InlineMath math="n(S) = 800" />
-- Students who like Mathematics: <InlineMath math="n(M) = 400" />
-- Students who like Physics: <InlineMath math="n(F) = 500" />
-
-We want to find the maximum value (<InlineMath math="x" />) and minimum value (<InlineMath math="y" />) of the intersection of these two sets (students who like both).
+Find the **bounds on students who like both subjects**, given 800 students in total, 400 who like Mathematics, and 500 who like Physics.
 
 #### Finding the Maximum Intersection
 
-The number of students who like both will be maximum if the smaller set is a subset of the larger set.
+The number of students who like both will be maximum if the **smaller set is contained in the larger set**.
 Here, the number of students who like Mathematics (<InlineMath math="400" />) is less than those who like Physics (<InlineMath math="500" />).
 So, the maximum value of the intersection is the number of students in the smallest group.
 
@@ -23,7 +17,7 @@ So, the maximum value of the intersection is the number of students in the small
 
 #### Finding the Minimum Intersection
 
-The intersection is smallest when the union is as large as possible. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
+The intersection is smallest when the **union is as large as possible**. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
 
 The number of elements in the union is given by:
 
@@ -43,7 +37,12 @@ The smallest possible intersection occurs when the union reaches that upper boun
 
 #### Calculating the Difference
 
-Finally, we calculate the difference between the maximum and minimum values.
+Both bounds are attainable using these **nonoverlapping student groups**. Each row counts every student exactly once.
+
+| Intersection | Mathematics only | Both subjects | Physics only | Neither |
+| --- | --- | --- | --- | --- |
+| Maximum | 0 | 400 | 100 | 300 |
+| Minimum | 300 | 100 | 400 | 0 |
 
 <BlockMath math="x - y = 400 - 100 = 300" />
 

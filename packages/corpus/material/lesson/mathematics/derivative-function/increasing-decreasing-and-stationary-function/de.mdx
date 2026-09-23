@@ -37,13 +37,15 @@ Angenommen, die Funktion <InlineMath math="y = f(x)" /> ist über ein Intervall 
 
 Stationäre Punkte teilen den Definitionsbereich in prüfbare Intervalle. Sie sind mögliche Stellen für einen Monotoniewechsel. Tatsächlich wechselt die Funktion aber nur dann von steigend zu fallend oder umgekehrt, <Highlight>wenn sich das Vorzeichen der Ableitung ändert</Highlight>.
 
+Prüfe bei anderen Funktionen auch **Definitionsgrenzen und nicht differenzierbare Stellen**. Zum Beispiel trennt <InlineMath math="x=0" /> den Definitionsbereich von <InlineMath math="1/x" />, obwohl die Funktion keine stationäre Stelle besitzt. Untersuche das Vorzeichen auf jedem getrennten Definitionsintervall.
+
 ## Analysieren von Funktionsintervallen
 
 Das folgende Beispiel zeigt die vollständige Vorzeichenanalyse.
 
 Bestimme die Intervalle, in denen die Funktion <InlineMath math="f(x) = x^3 - 3x" /> steigt und fällt.
 
-**Lösung:**
+**Lösung**:
 
 **Schritt 1**: Erste Ableitung bestimmen
 
@@ -67,17 +69,11 @@ Daraus erhalten wir die stationären Punkte bei <InlineMath math="x = 1" /> und 
 
 Wir platzieren die stationären Punkte auf einer Zahlengeraden. Diese Punkte teilen die Linie in drei Intervalle. Wir nehmen einen Testpunkt aus jedem Intervall, um das Vorzeichen von <InlineMath math="f'(x)" /> (positiv oder negativ) zu finden.
 
--   **Intervall <InlineMath math="x < -1" />:**
-
-    Für <InlineMath math="x=-2" /> gilt <InlineMath math="f'(-2) = 3(-2)^2 - 3 = 9" />. Die Ableitung ist positiv, also steigt die Funktion.
-
--   **Intervall <InlineMath math="-1 < x < 1" />:**
-
-    Für <InlineMath math="x=0" /> gilt <InlineMath math="f'(0) = 3(0)^2 - 3 = -3" />. Die Ableitung ist negativ, also fällt die Funktion.
-
--   **Intervall <InlineMath math="x > 1" />:**
-
-    Für <InlineMath math="x=2" /> gilt <InlineMath math="f'(2) = 3(2)^2 - 3 = 9" />. Die Ableitung ist positiv, also steigt die Funktion.
+| Intervall | Teststelle | Ableitungswert | Verhalten |
+| --- | --- | --- | --- |
+| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | <InlineMath math="f'(-2)=3(-2)^2-3=9" /> | Steigend |
+| <InlineMath math="-1<x<1" /> | <InlineMath math="x=0" /> | <InlineMath math="f'(0)=3(0)^2-3=-3" /> | Fallend |
+| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | <InlineMath math="f'(2)=3(2)^2-3=9" /> | Steigend |
 
 **Schritt 4**: Intervalle zusammenfassen
 
@@ -176,7 +172,7 @@ Die Tests ergeben:
 
 ## Übungen
 
-Jede Aufgabe verlangt die Intervalle, in denen eine Funktion steigt oder fällt. Bestimme zuerst die stationären Punkte, denn sie trennen die Intervalle.
+Jede Aufgabe verlangt die Intervalle, in denen eine Funktion steigt oder fällt. Bestimme zuerst die **stationären Punkte**, denn sie trennen die Intervalle.
 
 1.  Bestimme die Intervalle, in denen <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> steigt und fällt.
 
@@ -184,78 +180,78 @@ Jede Aufgabe verlangt die Intervalle, in denen eine Funktion steigt oder fällt.
 
 3.  Bestimme die Intervalle, in denen <InlineMath math="f(x) = \sin 2x \cos 2x" /> steigt und fällt.
 
-### Lösungen
+### Monotonieintervalle einer kubischen Funktion
 
-1.  **Lösung:**
+Die erste Ableitung von <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> ist <InlineMath math="f'(x) = 3x^2 - 6x" />.
 
-    Die erste Ableitung von <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> ist <InlineMath math="f'(x) = 3x^2 - 6x" />.
+**Stationäre Punkte** werden gefunden, wenn <InlineMath math="f'(x) = 0" />.
 
-    Stationäre Punkte werden gefunden, wenn <InlineMath math="f'(x) = 0" />.
+<BlockMath math="3x^2 - 6x = 0 \implies 3x(x - 2) = 0" />
 
-    <BlockMath math="3x^2 - 6x = 0 \implies 3x(x - 2) = 0" />
+Die stationären Punkte liegen bei <InlineMath math="x=0" /> und <InlineMath math="x=2" />.
 
-    Die stationären Punkte liegen bei <InlineMath math="x=0" /> und <InlineMath math="x=2" />.
+Durch Testen der Intervalle auf einer Zahlengeraden:
 
-    Durch Testen der Intervalle auf einer Zahlengeraden:
+-   Für <InlineMath math="x<0" /> ist <InlineMath math="f'(x)" /> positiv (steigend).
 
-    -   Für <InlineMath math="x<0" /> ist <InlineMath math="f'(x)" /> positiv (steigend).
+-   Für <InlineMath math="0<x<2" /> ist <InlineMath math="f'(x)" /> negativ, also fällt die Funktion.
 
-    -   Für <InlineMath math="0<x<2" /> ist <InlineMath math="f'(x)" /> negativ, also fällt die Funktion.
+-   Für <InlineMath math="x>2" /> ist <InlineMath math="f'(x)" /> positiv (steigend).
 
-    -   Für <InlineMath math="x>2" /> ist <InlineMath math="f'(x)" /> positiv (steigend).
+Die Funktion nimmt also auf <InlineMath math="x < 0" /> oder <InlineMath math="x > 2" /> zu und im Intervall <InlineMath math="0 < x < 2" /> ab.
 
-    Die Funktion nimmt also auf <InlineMath math="x < 0" /> oder <InlineMath math="x > 2" /> zu und im Intervall <InlineMath math="0 < x < 2" /> ab.
+### Den Koeffizienten für eine steigende Funktion bestimmen
 
-2.  **Lösung:**
+Damit diese Funktion im gesamten Intervall steigt, genügt <InlineMath math="f'(x) \ge 0" /> an jeder Stelle des Intervalls.
 
-    Damit diese Funktion im gesamten Intervall steigt, genügt <InlineMath math="f'(x) \ge 0" /> an jeder Stelle des Intervalls.
+<BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
 
-    <BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
+Im Intervall <InlineMath math="0 < x < 2" /> ist der Faktor <InlineMath math="x" /> immer positiv. Daher darf für <InlineMath math="f'(x) \ge 0" /> auch der zweite Faktor <InlineMath math="(3ax + 2)" /> nicht negativ sein.
 
-    Im Intervall <InlineMath math="0 < x < 2" /> ist der Faktor <InlineMath math="x" /> immer positiv. Daher darf für <InlineMath math="f'(x) \ge 0" /> auch der zweite Faktor <InlineMath math="(3ax + 2)" /> nicht negativ sein.
+<BlockMath math="3ax + 2 \ge 0" />
 
-    <BlockMath math="3ax + 2 \ge 0" />
+Diese Ungleichung muss für jedes <InlineMath math="x" /> in <InlineMath math="0 < x < 2" /> gelten. Da <InlineMath math="h(x) = 3ax + 2" /> linear ist, wird ihr kleinster Grenzwert an einem Rand des Intervalls erreicht.
 
-    Diese Ungleichung muss für jedes <InlineMath math="x" /> in <InlineMath math="0 < x < 2" /> gelten. Da <InlineMath math="h(x) = 3ax + 2" /> linear ist, wird ihr kleinster Grenzwert an einem Rand des Intervalls erreicht.
+-   Für <InlineMath math="a \ge 0" /> gilt <InlineMath math="3ax \ge 0" />. Daher ist <InlineMath math="3ax+2" /> im gesamten Intervall positiv.
 
-    -   Für <InlineMath math="a \ge 0" /> gilt <InlineMath math="3ax \ge 0" />. Daher ist <InlineMath math="3ax+2" /> im gesamten Intervall positiv.
+-   Für <InlineMath math="a < 0" /> fällt <InlineMath math="h(x)" />. Da <InlineMath math="x=2" /> nicht zum Intervall gehört, besitzt <InlineMath math="h" /> dort kein Minimum. Sein Infimum ist jedoch der Grenzwert für <InlineMath math="x \to 2^-" />. Dieser Grenzwert darf nicht negativ sein.
 
-    -   Für <InlineMath math="a < 0" /> fällt <InlineMath math="h(x)" />. Da <InlineMath math="x=2" /> nicht zum Intervall gehört, besitzt <InlineMath math="h" /> dort kein Minimum. Sein Infimum ist jedoch der Grenzwert für <InlineMath math="x \to 2^-" />. Dieser Grenzwert muss nicht negativ sein.
+Wir prüfen die Randbedingung bei <InlineMath math="x=2" />:
 
-    Wir prüfen die Randbedingung bei <InlineMath math="x=2" />:
+<MathContainer>
+    <BlockMath math="3a(2) + 2 \ge 0" />
+    <BlockMath math="6a \ge -2" />
+    <BlockMath math="a \ge -1/3" />
+</MathContainer>
+
+Zusammen ergeben beide Fälle: Die Funktion steigt im gesamten Intervall genau für <InlineMath math="a \ge -1/3" />.
+
+Für den Grenzfall <InlineMath math="a=-1/3" /> wird die Ableitung zu <InlineMath math="f'(x)=x(2-x)>0" /> für alle <InlineMath math="0<x<2" />. Die Funktion ist also **im gesamten offenen Intervall steigend**. Bei <InlineMath math="a<-1/3" /> ist die Ableitung für Werte nahe genug an <InlineMath math="x=2" /> negativ. Dann steigt die Funktion nicht durchgehend.
+
+### Monotonieintervalle einer trigonometrischen Funktion
+
+Verwende die Doppelwinkelidentität <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" />.
+
+Also <InlineMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />.
+
+Seine erste Ableitung ist:
+
+<BlockMath math="f'(x) = \frac{1}{2} \cdot \cos(4x) \cdot 4 = 2\cos(4x)" />
+
+-   **Die Funktion steigt**, wenn <InlineMath math="f'(x) > 0" /> gilt, also bei <InlineMath math="2\cos(4x) > 0" /> beziehungsweise <InlineMath math="\cos(4x) > 0" />. Dies ist in den Quadranten <InlineMath math="\mathrm{I}" /> und <InlineMath math="\mathrm{IV}" /> der Fall.
 
     <MathContainer>
-        <BlockMath math="3a(2) + 2 \ge 0" />
-        <BlockMath math="6a \ge -2" />
-        <BlockMath math="a \ge -1/3" />
+        <BlockMath math="-\frac{\pi}{2} + 2k\pi < 4x < \frac{\pi}{2} + 2k\pi" />
+        <BlockMath math="-\frac{\pi}{8} + \frac{k\pi}{2} < x < \frac{\pi}{8} + \frac{k\pi}{2}" />
     </MathContainer>
 
-    Zusammen ergeben beide Fälle: Die Funktion steigt im gesamten Intervall genau für <InlineMath math="a \ge -1/3" />.
+    Dieses Intervall gilt für jede ganze Zahl <InlineMath math="k" />.
 
-3.  **Lösung:**
+-   **Die Funktion nimmt ab**, wenn <InlineMath math="f'(x) < 0" />, also <InlineMath math="\cos(4x) < 0" />. Dies geschieht in den Quadranten <InlineMath math="\mathrm{II}" /> und <InlineMath math="\mathrm{III}" />.
 
-    Verwende die Doppelwinkelidentität <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" />.
+    <MathContainer>
+        <BlockMath math="\frac{\pi}{2} + 2k\pi < 4x < \frac{3\pi}{2} + 2k\pi" />
+        <BlockMath math="\frac{\pi}{8} + \frac{k\pi}{2} < x < \frac{3\pi}{8} + \frac{k\pi}{2}" />
+    </MathContainer>
 
-    Also <InlineMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />.
-
-    Seine erste Ableitung ist:
-
-    <BlockMath math="f'(x) = \frac{1}{2} \cdot \cos(4x) \cdot 4 = 2\cos(4x)" />
-
-    -   **Die Funktion steigt**, wenn <InlineMath math="f'(x) > 0" /> gilt, also bei <InlineMath math="2\cos(4x) > 0" /> beziehungsweise <InlineMath math="\cos(4x) > 0" />. Dies ist in den Quadranten <InlineMath math="\mathrm{I}" /> und <InlineMath math="\mathrm{IV}" /> der Fall.
-
-        <MathContainer>
-            <BlockMath math="-\frac{\pi}{2} + 2k\pi < 4x < \frac{\pi}{2} + 2k\pi" />
-            <BlockMath math="-\frac{\pi}{8} + \frac{k\pi}{2} < x < \frac{\pi}{8} + \frac{k\pi}{2}" />
-        </MathContainer>
-
-        Dieses Intervall gilt für jede ganze Zahl <InlineMath math="k" />.
-
-    -   **Die Funktion nimmt ab**, wenn <InlineMath math="f'(x) < 0" />, also <InlineMath math="\cos(4x) < 0" />. Dies geschieht in den Quadranten <InlineMath math="\mathrm{II}" /> und <InlineMath math="\mathrm{III}" />.
-
-        <MathContainer>
-            <BlockMath math="\frac{\pi}{2} + 2k\pi < 4x < \frac{3\pi}{2} + 2k\pi" />
-            <BlockMath math="\frac{\pi}{8} + \frac{k\pi}{2} < x < \frac{3\pi}{8} + \frac{k\pi}{2}" />
-        </MathContainer>
-
-        Dieses Intervall gilt für jede ganze Zahl <InlineMath math="k" />.
+    Dieses Intervall gilt für jede ganze Zahl <InlineMath math="k" />.

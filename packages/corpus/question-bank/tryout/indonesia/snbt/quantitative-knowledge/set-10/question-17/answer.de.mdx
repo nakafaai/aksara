@@ -5,42 +5,15 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Definiere die Ergebnismenge und die Ereignisse:
-- <InlineMath math="S" /> = Ergebnisraum (Gesamtzahl der Eier)
-- <InlineMath math="D" /> = ein Entenei wird gezogen
-- <InlineMath math="C" /> = ein Hühnerei wird gezogen
-- <InlineMath math="B" /> = ein zerbrochenes Ei wird gezogen
+Ein zerbrochenes Entenei erfüllt **beide Bedingungen zugleich** und darf im Ereignis „Ente oder zerbrochen“ nur einmal gezählt werden. Teile die Eier nach Art und Zustand auf:
 
-Zuerst berechnen wir die Gesamtzahl der Eier im Korb:
+| Art | Zerbrochen | Unversehrt | Gesamt |
+| --- | --- | --- | --- |
+| Ente | <InlineMath math="\frac12\cdot10=5" /> | <InlineMath math="10-5=5" /> | <InlineMath math="10" /> |
+| Huhn | <InlineMath math="\frac14\cdot20=5" /> | <InlineMath math="20-5=15" /> | <InlineMath math="20" /> |
 
-<BlockMath math="\begin{aligned}n(S)&=n(D) + n(C)\\&=10 + 20\\&=30\end{aligned}" />
+Alle zehn Enteneier erfüllen die Bedingung, ob zerbrochen oder unversehrt. Dazu kommen die fünf zerbrochenen Hühnereier. Diese beiden Gruppen überschneiden sich nicht, daher gilt:
 
-Als nächstes berechnen wir die Anzahl der zerbrochenen Eier:
-- Zerbrochene Enteneier: <InlineMath math="\frac{1}{2} \times 10 = 5" />
-- Zerbrochene Hühnereier: <InlineMath math="\frac{1}{4} \times 20 = 5" />
+<BlockMath math="P=\frac{10+5}{10+20}=\frac{15}{30}=\frac12" />
 
-Die Gesamtzahl der zerbrochenen Eier (<InlineMath math="n(B)" />) beträgt:
-
-<BlockMath math="\begin{aligned}n(B)&=5 + 5\\&=10\end{aligned}" />
-
-Das Ereignis "Entenei oder zerbrochenes Ei" ist die Vereinigung <InlineMath math="D \cup B" />:
-
-<BlockMath math="P(D \cup B) = \frac{n(D \cup B)}{n(S)}" />
-
-Mit dem Einschluss-Ausschluss-Prinzip werden die zerbrochenen Enteneier nicht doppelt gezählt:
-
-<BlockMath math="\begin{aligned}n(D \cup B)&=n(D) + n(B)\\&\quad-n(D \cap B)\end{aligned}" />
-
-- <InlineMath math="n(D) = 10" /> (Anzahl Enteneier)
-- <InlineMath math="n(B) = 10" /> (Gesamtzahl der zerbrochenen Eier)
-- <InlineMath math="n(D \cap B)" /> zählt die Eier, die zugleich Enteneier und zerbrochen sind. Nach der obigen Rechnung sind das <InlineMath math="5" /> Eier.
-
-Also:
-
-<BlockMath math="\begin{aligned}n(D \cup B)&=10 + 10 - 5\\&=15\end{aligned}" />
-
-Die Wahrscheinlichkeit ist also:
-
-<BlockMath math="\begin{aligned}P(D \cup B)&=\frac{15}{30}\\&=\frac{1}{2}\\&=0{,}5\end{aligned}" />
-
-Die Wahrscheinlichkeit, ein Entenei oder ein zerbrochenes Ei zu ziehen, beträgt daher <InlineMath math="0{,}5" />.
+Die gesuchte Wahrscheinlichkeit ist <InlineMath math="0{,}5" />. Mit dem Einschluss-Ausschluss-Prinzip ergibt sich dieselbe günstige Anzahl: <InlineMath math="10+(5+5)-5=15" />.

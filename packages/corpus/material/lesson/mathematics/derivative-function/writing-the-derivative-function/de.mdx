@@ -3,7 +3,7 @@ export const metadata = {
     description: "Die Leibniz-Notation und die Strichnotation nach Lagrange lesen und passend zu ihrer Bedeutung und Verwendung auswählen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Ableitungsfunktionen",
 };
 
@@ -15,7 +15,7 @@ Diese Bezeichnungen sollte man auseinanderhalten. Das Strichzeichen in <InlineMa
 
 ## Zwei gebräuchliche Ableitungsnotationen
 
-<Highlight>Beide Schreibweisen bezeichnen dieselbe Ableitung</Highlight>. Die Leibniz-Notation nennt die veränderliche Größe und die Ableitungsvariable. Die Lagrange-Notation setzt Striche an den Funktionsnamen und hält dadurch wiederholte Ableitungen kurz.
+Beide Schreibweisen bezeichnen <Highlight>dieselbe Ableitung</Highlight>. Die Leibniz-Notation nennt die veränderliche Größe und die Ableitungsvariable. Die Lagrange-Notation setzt Striche an den Funktionsnamen und hält dadurch wiederholte Ableitungen kurz.
 
 ### Notation nach Leibniz
 
@@ -23,7 +23,7 @@ Gottfried Wilhelm Leibniz führte eine Notation ein, in der die Variablen ausdr�
 
 <BlockMath math="\frac{dy}{dx} \quad \text{oder} \quad \frac{df}{dx}" />
 
-Wir lesen <InlineMath math="\frac{dy}{dx}" /> als „Ableitung von <InlineMath math="y" /> nach <InlineMath math="x" />“. Der Zähler nennt die veränderliche Größe, der Nenner die Bezugsvariable. Dieser Unterschied kennzeichnet die Ableitungsvariable, wenn eine Aufgabe mehrere voneinander abhängige Variablen enthält.
+Wir lesen <InlineMath math="\frac{dy}{dx}" /> als „Ableitung von <InlineMath math="y" /> nach <InlineMath math="x" />“. Der Zähler nennt die veränderliche Größe, der Nenner die **Bezugsvariable**. Dieser Unterschied kennzeichnet die Ableitungsvariable, wenn eine Aufgabe mehrere voneinander abhängige Variablen enthält.
 
 ### Strichnotation nach Lagrange
 
@@ -31,7 +31,7 @@ Bei der Strichnotation nach Lagrange kennzeichnet ein Strich die Ableitung. Für
 
 <BlockMath math="y' \quad \text{oder} \quad f'(x)" />
 
-Wir lesen dies als „<InlineMath math="y" /> Strich“ und „<InlineMath math="f" /> Strich von <InlineMath math="x" />“. Die Schreibweise ist kurz und praktisch, wenn die unabhängige Variable bereits feststeht. Bei jeder weiteren Ableitung kommt ein zusätzlicher Strich hinzu. Die zweite Ableitung lautet deshalb <InlineMath math="f''(x)" />.
+Wir lesen dies als „<InlineMath math="y" /> Strich“ und „<InlineMath math="f" /> Strich von <InlineMath math="x" />“. Die Schreibweise ist kurz und praktisch, wenn die unabhängige Variable bereits feststeht. Bei jeder weiteren Ableitung kommt ein **zusätzlicher Strich** hinzu. Die zweite Ableitung lautet deshalb <InlineMath math="f''(x)" />.
 
 ## Die passende Notation wählen
 
@@ -39,4 +39,22 @@ Die **Strichnotation nach Lagrange**, etwa <InlineMath math="f'(x)" />, eignet s
 
 Die **Leibniz-Notation**, etwa <InlineMath math="\frac{dy}{dx}" />, eignet sich für Aufgaben mit mehreren Variablen. Der Nenner <InlineMath math="dx" /> gibt an, dass nach <InlineMath math="x" /> abgeleitet wird, etwa bei der Kettenregel, bei zusammenhängenden Änderungsraten und in der mehrdimensionalen Analysis.
 
-Die Mathematik bleibt bei beiden Notationen gleich. Die Lagrange-Notation hält Standardrechnungen kurz, während die Leibniz-Notation die Variable der Ableitung ausdrücklich nennt.
+## Mit beiden Schreibweisen rechnen
+
+Nimm <InlineMath math="y=f(x)=x^3-2x" />. Nach der Potenzregel ist die Ableitung von <InlineMath math="x^3" /> gleich <InlineMath math="3x^2" /> und die Ableitung von <InlineMath math="-2x" /> gleich <InlineMath math="-2" />. Beide Schreibweisen geben dieselbe Rechnung wieder:
+
+<BlockMath math="f'(x)=\frac{dy}{dx}=3x^2-2" />
+
+Unterscheide die **Ableitungsfunktion** von der **Ableitung an einer Stelle**. Um die Steigung bei <InlineMath math="x=2" /> zu bestimmen, setzt du diesen Wert in die Ableitungsfunktion ein.
+
+<BlockMath math="f'(2)=\left.\frac{dy}{dx}\right\rvert_{x=2}=3(2)^2-2=10" />
+
+Der senkrechte Strich in der Leibniz-Notation bedeutet, dass die Ableitung an der Stelle <InlineMath math="x=2" /> ausgewertet wird. Sowohl <InlineMath math="f'(2)" /> als auch <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}" /> stehen deshalb für die Zahl <InlineMath math="10" />.
+
+| Größe | Lagrange-Notation | Leibniz-Notation |
+| --- | --- | --- |
+| Ableitungsfunktion | <InlineMath math="f'(x)=3x^2-2" /> | <InlineMath math="\frac{dy}{dx}=3x^2-2" /> |
+| Ableitung an einer Stelle | <InlineMath math="f'(2)=10" /> | <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}=10" /> |
+| Zweite Ableitung | <InlineMath math="f''(x)=6x" /> | <InlineMath math="\frac{d^2y}{dx^2}=6x" /> |
+
+In der letzten Zeile leiten wir <InlineMath math="3x^2-2" /> noch einmal ab. Die Hochzahlen in der Leibniz-Notation kennzeichnen **zweimaliges Ableiten**. Sie bedeuten nicht, dass die erste Ableitung quadriert wird.

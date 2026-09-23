@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Definition and Creating Dictionaries
 
-A dictionary is <Highlight>a mutable mapping from unique keys to values</Highlight>. You look up each item through a meaningful key such as a name, identifier, or date.
+A dictionary is a mutable mapping from **unique keys to values**. You look up each item through a meaningful key such as a name, identifier, or date.
 
 ### Ways to Create Dictionaries
 
-Python provides several ways to create dictionaries, including empty ones and ones that already contain data.
+Python provides several ways to create dictionaries, including **empty ones** and ones that already contain data.
 
 <CodeBlock
   data={[
@@ -44,14 +44,14 @@ mass = dict(Mercury=3.3e23, Venus=4.9e24, Earth=6.0e24)
 print("Dictionary month:", month)
 print("Dictionary mass:", mass)
 # Output: Dictionary month: {1: 'Jan', 2: 'Feb', 3: 'Mar'}
-# Output: Dictionary mass: {'Mercury': 3.3e23, 'Venus': 4.9e24, 'Earth': 6.0e24}`
+# Output: Dictionary mass: {'Mercury': 3.3e+23, 'Venus': 4.9e+24, 'Earth': 6e+24}`
     }
   ]}
 />
 
 ### Dictionary Syntax
 
-A dictionary display uses curly braces. Commas separate its entries, and a colon separates each key from its value. The empty display `{}` creates an empty dictionary.
+A dictionary display uses curly braces. Commas separate its entries, and **a colon** separates each key from its value. The empty display `{}` creates an empty dictionary.
 
 <CodeBlock
   data={[
@@ -66,27 +66,20 @@ print(phone)
   ]}
 />
 
-<Highlight>Keys must be hashable</Highlight>, so immutable values such as strings, numbers, and suitable tuples are common choices. Values may be any Python object, including another dictionary.
+**Keys must be hashable**. Strings and numbers are common choices. A tuple qualifies only when every element is also hashable. A tuple containing a list does not qualify. Lists themselves are not hashable. Values may be any Python object, including another dictionary.
 
 ## Dictionary as Container
 
-A dictionary is a container because it holds a collection of other objects. Its defining behavior is mapping each key to one value while preserving the order in which keys were first inserted.
+A dictionary is a container because it holds a collection of other objects. Its defining behavior is **mapping each key to one value** while preserving the order in which keys were first inserted.
 
 <Mermaid
   title="Dictionary Stores Pairs by Key"
   description="See how a key selects its associated value without using a numeric position."
   chart={`
-    flowchart TD
-        A[Python Containers] --> B[String]
-        A --> C[List]
-        A --> D[Tuple]
-        A --> E[Dictionary]
-        A --> F[Set]
-
-        E --> E1[Key-value pairs]
-        E --> E2[Unique keys]
-        E --> E3[Mutable]
-        E --> E4[Insertion ordered]
+    flowchart LR
+        A["phone['ann']"] --> V1["110"]
+        B["phone['bob']"] --> V2["991"]
+        C["phone['cat']"] --> V3["112"]
   `}
 />
 
@@ -94,11 +87,11 @@ Lists and tuples organize items by position, while dictionaries organize entries
 
 ## Dictionary Characteristics
 
-A dictionary is mutable, its keys are unique and hashable, and its iteration order follows key insertion order. Those three properties explain most of the behavior you observe later: why you can add or remove entries after creation, why assigning to an existing key overwrites instead of duplicating, and why iterating over a dictionary gives a stable, predictable order.
+A dictionary is mutable, its **keys are unique and hashable**, and its iteration order follows key insertion order. Those three properties explain most of the behavior you observe later: why you can add or remove entries after creation, why assigning to an existing key overwrites instead of duplicating, and why iterating over a dictionary gives a stable, predictable order.
 
 ### Insertion Order and Unique Keys
 
-Python's language specification guarantees dictionary insertion order from Python `3.7` onward. Assigning a new value to an existing key updates that entry without moving the key. Deleting the key and inserting it again places it at the end.
+Python's language specification guarantees dictionary insertion order from Python `3.7` onward. Assigning a new value to an existing key updates that entry **without moving the key**. Deleting the key and inserting it again places it at the end.
 
 <CodeBlock
   data={[
@@ -119,7 +112,7 @@ Because keys are unique, a repeated key in a dictionary display keeps only its f
 
 ## Accessing Dictionaries
 
-To retrieve a value from a dictionary, provide its key. A meaningful key such as a name or date takes the place of a sequential numeric index.
+To retrieve a value from a dictionary, **provide its key**. A meaningful key such as a name or date takes the place of a sequential numeric index.
 
 ### Indexing with Keys
 
@@ -149,11 +142,11 @@ print(phone)
   ]}
 />
 
-Square-bracket access retrieves an existing value. Assignment with brackets updates an existing key or appends a new key-value pair to the insertion order.
+Square-bracket access retrieves an existing value. Assignment with brackets **updates an existing key** or appends a new key-value pair to the insertion order.
 
 ## Dictionary Iteration
 
-Choose the iteration form that matches whether you need keys alone, values alone, or both parts of each entry. Iterating a dictionary directly gives keys, calling `.values()` gives values, and calling `.items()` gives key-value pairs.
+Choose the iteration form that matches whether you need **keys alone, values alone**, or both parts of each entry. Iterating a dictionary directly gives keys, calling `.values()` gives values, and calling `.items()` gives key-value pairs.
 
 ### Iterating over Dictionary Keys
 
@@ -176,7 +169,7 @@ for key in phone:
   ]}
 />
 
-When you iterate a dictionary directly, Python retrieves keys in their insertion order.
+When you iterate a dictionary directly, Python retrieves **keys in their insertion order**.
 
 ### Iterating over Dictionary Entries
 
@@ -199,11 +192,11 @@ for key, val in phone.items():
   ]}
 />
 
-The `items()` view yields each key and value together, so tuple unpacking can name both values in one loop.
+The `items()` view yields **each key and value together**, so tuple unpacking can name both values in one loop.
 
 ## Three Types of Dictionary Views
 
-A dictionary exposes dynamic views of its keys, values, and key-value pairs. A view is not a copy: it reads the current contents of the dictionary every time you iterate it, so a change after the view was created shows up in the very next loop.
+A dictionary exposes **dynamic views** of its keys, values, and key-value pairs. A view is not a copy: it reads the current contents of the dictionary every time you iterate it, so a change after the view was created shows up in the very next loop.
 
 ### Creating Dictionary Views
 
@@ -228,16 +221,21 @@ print("Values:", list(values))
 # Getting key-value pairs
 items = phone.items()
 print("Items:", list(items))
-# Output: Items: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]`
+# Output: Items: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]
+
+snapshot = list(keys)
+phone['eve'] = 111
+print(list(keys))  # Output: ['ann', 'bob', 'cat', 'dan', 'eve']
+print(snapshot)    # Output: ['ann', 'bob', 'cat', 'dan']`
     }
   ]}
 />
 
-These methods return dynamic view objects. A view reflects later changes to its dictionary and supports iteration, but it does not support positional indexing or item assignment. Call `list()` only when you specifically need a separate list snapshot.
+These views support iteration, but not positional indexing or item assignment. Calling `list()` creates a **snapshot of the current entries**. A later key insertion appears in the view but not in the snapshot. If a value is mutable, the snapshot still holds a reference to that same object.
 
 ## The Get Method
 
-Use `get()` when a missing key is an expected case and you want a fallback value. Use bracket access when a missing key should be treated as an error.
+Use `get()` when a missing key is an expected case and you want a **fallback value**. Use bracket access when a missing key should be treated as an error.
 
 ### Errors from Bracket Access to Missing Keys
 
@@ -258,7 +256,7 @@ except KeyError as e:
   ]}
 />
 
-Indexing a dictionary with a non-existing key will result in a `KeyError`.
+Indexing a dictionary with a **non-existing key** will result in a `KeyError`.
 
 ### Solution with the Get Method
 
@@ -288,4 +286,4 @@ print("Result get('ann'):", result)
   ]}
 />
 
-`get()` returns the stored value when the key exists. Otherwise it returns the supplied default, or `None` when no default is supplied. Choose a default that cannot be confused with a valid stored value when that distinction matters.
+`get()` returns the stored value when the key exists. Otherwise it returns the **supplied default**, or `None` when no default is supplied. Choose a default that cannot be confused with a valid stored value when that distinction matters.

@@ -5,13 +5,13 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Für den Definitionsbereich müssen beide Wurzeln definiert sein. Zusätzlich darf der Nenner nicht null werden.
+Für den Definitionsbereich müssen beide Wurzeln definiert sein. Zusätzlich darf der **Nenner nicht null** werden.
 
 Zwei Bedingungen müssen erfüllt sein:
 
 #### Bedingung im Zähler
 
-Der Radikand im Zähler muss nichtnegativ sein:
+Der Radikand im Zähler muss **nichtnegativ** sein:
 
 <MathContainer>
   <BlockMath math="5 - x \geq 0" />
@@ -21,7 +21,7 @@ Der Radikand im Zähler muss nichtnegativ sein:
 
 #### Bedingung im Nenner
 
-Der Radikand im Nenner muss sogar positiv sein, weil ein Nenner von <InlineMath math="0" /> ausgeschlossen ist:
+Der Radikand im Nenner muss sogar **positiv** sein, weil ein Nenner von <InlineMath math="0" /> ausgeschlossen ist:
 
 <MathContainer>
   <BlockMath math="x^2 + x - 6 > 0" />
@@ -30,18 +30,16 @@ Der Radikand im Nenner muss sogar positiv sein, weil ein Nenner von <InlineMath 
 
 Die Randstellen sind <InlineMath math="x = -3" /> und <InlineMath math="x = 2" />.
 
-Mithilfe von Testpunkten finden wir den Lösungsbereich für den Nenner: <InlineMath math="x < -3" /> oder <InlineMath math="x > 2" />.
+Die Vorzeichen der Faktoren zeigen, wann ihr Produkt positiv ist:
+
+| <InlineMath math="x" /> | <InlineMath math="x+3" /> | <InlineMath math="x-2" /> | <InlineMath math="(x+3)(x-2)" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="x<-3" /> | − | − | + |
+| <InlineMath math="-3<x<2" /> | + | − | − |
+| <InlineMath math="x>2" /> | + | + | + |
 
 #### Schnittmenge der Bedingungen
 
-Der Definitionsbereich der Funktion <InlineMath math="f" /> ist die Schnittmenge der beiden Bedingungen:
-1.  <InlineMath math="x \leq 5" />
-2.  <InlineMath math="x < -3" /> oder <InlineMath math="x > 2" />
-
-Die Schnittmenge ergibt sich so:
--   Für <InlineMath math="x < -3" /> erfüllt es <InlineMath math="x \leq 5" />.
--   Im Bereich <InlineMath math="x > 2" /> bleiben wegen <InlineMath math="x \leq 5" /> nur die Werte <InlineMath math="2 < x \leq 5" /> übrig.
-
-Damit lautet der Definitionsbereich der Funktion <InlineMath math="f" />:
+Bilde die **Schnittmenge beider Bedingungen**: Jeder Wert <InlineMath math="x<-3" /> erfüllt bereits <InlineMath math="x\le5" />. Der Teil <InlineMath math="x>2" /> wird auf <InlineMath math="2<x\le5" /> begrenzt. Die Werte <InlineMath math="-3" /> und <InlineMath math="2" /> sind wegen des verschwindenden Nenners ausgeschlossen. Der Wert <InlineMath math="5" /> ist erlaubt, weil nur der Zähler null wird.
 
 <BlockMath math="D_f=(-\infty,-3)\cup(2,5]" />

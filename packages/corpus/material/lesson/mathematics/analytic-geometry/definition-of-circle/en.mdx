@@ -136,13 +136,13 @@ In the visualization, <InlineMath math="P" /> is the center, while <InlineMath m
 
 ## Circle as Points at a Fixed Distance
 
-We can now state the idea precisely. A circle with center <InlineMath math="P(a, b)" /> and radius <InlineMath math="r" /> is the set of all points <InlineMath math="(x, y)" /> that satisfy:
+We can now state the idea precisely. A circle with center <InlineMath math="P(a, b)" /> and radius <InlineMath math="r>0" /> is the set of all points <InlineMath math="(x, y)" /> that satisfy:
 
 <BlockMath math="d(P, (x,y)) = r" />
 
 Here, <InlineMath math="d(P, (x,y))" /> is the distance from the center <InlineMath math="P" /> to the point <InlineMath math="(x, y)" />.
 
-If we use the distance formula in the Cartesian coordinate system, we can write it like this:
+If we use the **distance formula** in the Cartesian coordinate system, we can write it like this:
 
 <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
 
@@ -246,7 +246,7 @@ For the circle in the visualization above, its equation is:
 
 ### Special Form of Circle Equation
 
-When the center is the origin <InlineMath math="(0, 0)" />, both shift terms disappear and the equation becomes:
+When the center is the **origin** <InlineMath math="(0, 0)" />, both shift terms disappear and the equation becomes:
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
@@ -285,7 +285,7 @@ The visualization shows how the radius and diameter share the same center:
       points: Array.from({ length: 2 }, (_, i) => {
         const center = { x: 0, y: 0 };
         const radius = 3;
-        const angle = 0; // horizontal radius showing radius
+        const angle = Math.PI / 4; // radius at 45 degrees
         return {
           x: center.x + i * radius * Math.cos(angle),
           y: center.y + i * radius * Math.sin(angle),
@@ -342,3 +342,7 @@ Substitute the given center and radius into the standard equation:
 </MathContainer>
 
 So the circle equation is <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+
+Check the point <InlineMath math="(8,-2)" />, which is <InlineMath math="5" /> units to the right of the center. **Substituting its coordinates** must give the squared radius:
+
+<BlockMath math="(8-3)^2+(-2+2)^2=5^2+0^2=25" />

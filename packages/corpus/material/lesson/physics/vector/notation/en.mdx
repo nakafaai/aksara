@@ -10,7 +10,7 @@ export const metadata = {
 
 ## What a Vector Arrow Shows
 
-<Highlight>A vector is commonly drawn as an arrow.</Highlight> Its tail shows the starting point, its tip shows the direction, and its length represents the vector magnitude.
+A vector is commonly drawn as an <Highlight>arrow</Highlight>. Its tail shows the starting point, its tip shows the direction, and its length represents the vector magnitude.
 
 If a force arrow is longer, the force is larger on the same drawing scale. If the arrow points up and to the right, the force acts up and to the right.
 
@@ -32,7 +32,7 @@ The order of the letters matters. <InlineMath math="\overrightarrow{AB}" /> and 
 
 ## Single Letter Notation
 
-In calculations, vectors are often named with one letter such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
+In calculations, vectors are often named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
 
 For example, <InlineMath math="\vec{F}" /> is often used for force, <InlineMath math="\vec{v}" /> for velocity, and <InlineMath math="\vec{s}" /> for displacement. The magnitude is written without the arrow, such as <InlineMath math="F" /> or <InlineMath math="\lvert\vec{F}\rvert" />.
 
@@ -45,24 +45,84 @@ The first line still includes direction. The second line states only the force m
 
 ## Zero Vectors and Unit Vectors
 
-Two special vector names appear often once vectors are calculated using components.
+When calculating components, you need to distinguish a vector with no length from a vector used to specify direction. **Zero vectors** and **unit vectors** serve these two different roles.
+
+### A Vector with Zero Magnitude
 
 A **zero vector** has magnitude <InlineMath math="0" />. Its tail and tip coincide, so its direction is undefined. In physics, a zero vector can appear when two equal and opposite forces cancel each other.
 
+For example, take right as the positive direction. Forces of <InlineMath math="20\text{ N}" /> to the right and to the left add to:
+
+<BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+### A Vector That Specifies Direction
+
 A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction. Unit vectors do not tell us how strong a force is or how far a displacement is. In the standard three-dimensional Cartesian basis, each unit vector has one component equal to <InlineMath math="1" />:
 
-<MathContainer>
-  <BlockMath math="\hat{i}=(1,0,0)" />
-  <BlockMath math="\hat{j}=(0,1,0)" />
-  <BlockMath math="\hat{k}=(0,0,1)" />
-</MathContainer>
+<ContentStack>
+  <MathContainer>
+    <BlockMath math="\hat{i}=(1,0,0)" />
+    <BlockMath math="\hat{j}=(0,1,0)" />
+    <BlockMath math="\hat{k}=(0,0,1)" />
+  </MathContainer>
+
+  <LineEquation
+    cameraPosition={[2, 1.5, 2.2]}
+    cameraTarget={[0.3, 0.35, 0.3]}
+    title="Directions of Three Unit Vectors"
+    description="Rotate the model to separate the three axis directions. Each arrow has length one, although perspective can make their displayed lengths differ."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{i}" />,
+        at: 1,
+        offset: [0.3, 0.15, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{j}" />,
+        at: 1,
+        offset: [0, 0.3, 0.15],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{k}" />,
+        at: 1,
+        offset: [0.15, 0, 0.3],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+</ContentStack>
+
+All three arrows have **the same actual length**. Rotating the view changes their projection on the screen, but not the magnitude of a unit vector.
 
 Later, when a vector is written as <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, <InlineMath math="\hat{i}" /> and <InlineMath math="\hat{j}" /> give the positive axis directions, while the signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes.
 
 ## Common Reading Mistakes
 
-The first mistake is treating <InlineMath math="\overrightarrow{AB}" /> as the same vector as <InlineMath math="\overrightarrow{BA}" /> because they use the same two points. Their directions are opposite.
+The first mistake is **ignoring the order of the points** and treating <InlineMath math="\overrightarrow{AB}" /> as the same vector as <InlineMath math="\overrightarrow{BA}" /> because they use the same two points. Their directions are opposite.
 
-The second mistake is writing a vector magnitude as a negative number. A magnitude is always <InlineMath math="0" /> or positive. A negative sign on a vector usually points the vector opposite to the chosen reference direction. It does not make the length negative.
+The second mistake is writing a **negative vector magnitude**. A magnitude is always <InlineMath math="0" /> or positive. A negative sign on a vector usually points the vector opposite to the chosen reference direction. It does not make the length negative.
 
 For example, <InlineMath math="-\vec{a}" /> does not mean the vector has negative magnitude. It means the vector has the same magnitude as <InlineMath math="\vec{a}" /> but points in the opposite direction.

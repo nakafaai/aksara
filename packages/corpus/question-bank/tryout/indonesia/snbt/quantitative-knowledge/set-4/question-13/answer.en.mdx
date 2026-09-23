@@ -5,24 +5,17 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The positions alternate in the pattern digit, letter, digit, letter. Count the valid choices at each position before multiplying them.
+The pattern is digit, letter, digit, letter. Apply the **no repetition rule** when counting choices for each position.
 
-#### First Digit
+| Position | Valid choices | Number of choices |
+| --- | --- | --- |
+| First digit | 1, 3, 5, 7, 9 | 5 |
+| First letter | E, I, U | 3 |
+| Second digit | 2, 4, 6, 8 | 4 |
+| Second letter | O | 1 |
 
-The first digit can be any odd digit in <InlineMath math="1, 3, 5, 7, 9" />, giving <InlineMath math="5" /> choices.
+The first letter cannot be A by the stated rule, and cannot be O because O already occupies the last position. The second digit is even, so it always differs from the first, odd digit.
 
-#### First Letter
+By the **multiplication rule**, each choice can be combined with all valid choices at the other positions:
 
-The second letter is fixed as <InlineMath math="O" />. Because letters may not repeat, the first letter can be neither <InlineMath math="A" /> nor <InlineMath math="O" />. The valid vowels are therefore <InlineMath math="E, I, U" />, giving <InlineMath math="3" /> choices.
-
-#### Second Digit and Second Letter
-
-The second digit is chosen from <InlineMath math="2, 4, 6, 8" />, giving <InlineMath math="4" /> choices. It cannot repeat the first digit because the first digit is odd and the second is even. The final letter is fixed, so it contributes <InlineMath math="1" /> choice.
-
-#### Total
-
-By the multiplication rule:
-
-<BlockMath math="5 \times 3 \times 4 \times 1 = 60" />
-
-Therefore, <InlineMath math="60" /> passwords satisfy every rule.
+<BlockMath math="5\times3\times4\times1=60" />

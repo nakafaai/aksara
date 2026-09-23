@@ -17,59 +17,21 @@ Anschließend werden alle **gleichartigen Terme zusammengefasst**. Erst dann lie
 
 ## Multiplikationsmethoden
 
-Es gibt mehrere Möglichkeiten, eine Polynommultiplikation durchzuführen, alle basieren jedoch auf der Verteilungseigenschaft. Die horizontale Methode schreibt jedes Teilprodukt in eine Zeile, und die Tabellenmethode legt sie in ein Raster, bevor du gleichartige Terme zusammenfasst.
+Es gibt mehrere Möglichkeiten, eine Polynommultiplikation durchzuführen, alle basieren jedoch auf dem **Distributivgesetz**. Die horizontale Methode schreibt jedes Teilprodukt in eine Zeile, und die Tabellenmethode legt sie in ein Raster, bevor du gleichartige Terme zusammenfasst.
 
 ### Horizontale Verteilungsmethode
 
-Bei dieser Methode wird jeder Term des ersten Polynoms auf alle Terme des zweiten Polynoms verteilt.
+Multipliziere **jedes Termpaar** und fasse danach gleichartige Terme zusammen. Beim ersten Produkt muss das Minuszeichen bei jeder Multiplikation mitgeführt werden. Wegen <InlineMath math="(-5)(-1)=5" /> ist die Konstante am Ende positiv.
 
-**Beispiel** 1:
+**Beispiel 1**
 
-Bestimme das Produkt <InlineMath math="(x - 5)(x^2 + 3x - 1)" />.
+<BlockMath math="\begin{aligned}(x-5)(x^2+3x-1)&amp;=x(x^2+3x-1)-5(x^2+3x-1) \\ &amp;=x^3+3x^2-x-5x^2-15x+5 \\ &amp;=x^3+(3-5)x^2+(-1-15)x+5 \\ &amp;=x^3-2x^2-16x+5\end{aligned}" />
 
-<BlockMath math="(x - 5)(x^2 + 3x - 1)" />
-  Verteile die Terme von <InlineMath math="x-5" />:
+**Beispiel 2**:
 
-<BlockMath math="=x(x^2+3x-1) -5(x^2+3x-1)" />
-  Berechne die einzelnen Termprodukte:
+Achte auf die negativen Terme im zweiten Faktor. Beispielsweise gilt <InlineMath math="(-2x)(-5)=10x" />. Die linearen Terme ergeben deshalb zusammen <InlineMath math="10x+14x=24x" />.
 
-<BlockMath math="\begin{aligned}  &amp;=(x\cdot x^2+x\cdot3x+x\cdot(-1)) \\ &amp;\quad{}+(-5\cdot x^2-5\cdot3x-5\cdot(-1)) \end{aligned}" />
-  Berechne die einzelnen Termprodukte:
-
-<BlockMath math="\begin{aligned}  &amp;=(x^3+3x^2-x) \\ &amp;\quad{}+(-5x^2-15x+5) \end{aligned}" />
-  Löse die Klammern auf:
-
-<BlockMath math="=x^3+3x^2-x -5x^2-15x+5" />
-  Ordne die gleichartigen Terme zusammen:
-
-<BlockMath math="\begin{aligned}  &amp;=x^3+(3x^2-5x^2) \\ &amp;\quad{}+(-x-15x)+5 \end{aligned}" />
-  Das Ergebnis lautet:
-
-<BlockMath math="= x^3 - 2x^2 - 16x + 5" />
-
-**Beispiel** 2:
-
-Bestimme das Produkt <InlineMath math="(x^2 - 2x + 7)(2x - 5)" />.
-
-<BlockMath math="(x^2 - 2x + 7)(2x - 5)" />
-  Verteile die Terme von <InlineMath math="x^2-2x+7" />:
-
-<BlockMath math="\begin{aligned}  &amp;=x^2(2x-5)-2x(2x-5) \\ &amp;\quad{}+7(2x-5) \end{aligned}" />
-  Berechne die einzelnen Termprodukte:
-
-<BlockMath math="\begin{aligned}  &amp;=(x^2\cdot2x+x^2\cdot(-5)) \\ &amp;\quad{}+(-2x\cdot2x-2x\cdot(-5)) \\ &amp;\quad{}+(7\cdot2x+7\cdot(-5)) \end{aligned}" />
-  Berechne die einzelnen Termprodukte:
-
-<BlockMath math="\begin{aligned}  &amp;=(2x^3-5x^2)+(-4x^2+10x) \\ &amp;\quad{}+(14x-35) \end{aligned}" />
-  Löse die Klammern auf:
-
-<BlockMath math="=2x^3-5x^2-4x^2 +10x+14x-35" />
-  Ordne die gleichartigen Terme zusammen:
-
-<BlockMath math="\begin{aligned}  &amp;=2x^3+(-5x^2-4x^2) \\ &amp;\quad{}+(10x+14x)-35 \end{aligned}" />
-  Das Ergebnis lautet:
-
-<BlockMath math="= 2x^3 - 9x^2 + 24x - 35" />
+<BlockMath math="\begin{aligned}(x^2-2x+7)(2x-5)&amp;=x^2(2x-5)-2x(2x-5)+7(2x-5) \\ &amp;=2x^3-5x^2-4x^2+10x+14x-35 \\ &amp;=2x^3+(-5-4)x^2+(10+14)x-35 \\ &amp;=2x^3-9x^2+24x-35\end{aligned}" />
 
 ### Tabellenmethode als Flächenmodell
 
@@ -86,61 +48,69 @@ Die Gesamtfläche beträgt <InlineMath math="100 + 60 + 20 + 12 = 192" />.
 
 Der gleiche Ansatz kann auf Polynome angewendet werden.
 
-**Beispiel** 3:
+Die **vier Teilflächen** erklären die vier Produkte in der Tabelle. Jede Teilfläche erhält ihre Breite aus einer Spalte und ihre Höhe aus einer Zeile. Zusammen ergeben sie die Fläche des ganzen Rechtecks.
+
+<MathVisual
+  title="Ein Rechteck mit Seitenlängen 16 und 12"
+  description="Vier Flächen mit Seitenlängen zehn und zehn, sechs und zehn, zehn und zwei sowie sechs und zwei bilden ein Rechteck."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 10 }, { x: 10, y: 10 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 10 }, { x: 10, y: 10 }, { x: 10, y: 12 }, { x: 0, y: 12 }], appearance: "answer" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 10, y: 10 }, { x: 16, y: 10 }, { x: 16, y: 12 }, { x: 10, y: 12 }], appearance: "construction" }
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 5, y: 5 }, placement: "above" },
+      { key: "wide", objectId: "wide", at: { x: 13, y: 5 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: 5, y: 11 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 13, y: 11 }, placement: "above" }
+    ]
+  }}
+  labels={{ square: "100", wide: "60", top: "20", corner: "12" }}
+/>
+
+**Beispiel 3**:
 
 Bestimme das Produkt <InlineMath math="(x + 6)(x + 2)" /> mithilfe der Tabellenmethode.
 
 |                             |  <InlineMath math="x" /> | <InlineMath math="+6" /> |
 | :------------ | :---------: | :---------- |
-| **<InlineMath math="x" />** | <InlineMath math="x^2" /> | <InlineMath math="+6x" /> |
+| <InlineMath math="x" /> | <InlineMath math="x^2" /> | <InlineMath math="+6x" /> |
 | <InlineMath math="+2" /> | <InlineMath math="+2x" /> | <InlineMath math="+12" /> |
 
 Addiere nun alle Ergebnisse aus den Tabellenfeldern:
 
-<BlockMath math="x^2 + 6x + 2x + 12" />
+<BlockMath math="(x+6)(x+2)=x^2+6x+2x+12=x^2+8x+12" />
 
-Fasse die gleichartigen Terme zusammen:
-
-<MathContainer>
-  <BlockMath math="= x^2 + (6x + 2x) + 12" />
-  <BlockMath math="= x^2 + 8x + 12" />
-</MathContainer>
-
-**Beispiel** 4:
+**Beispiel 4**:
 
 Bestimme das Produkt <InlineMath math="(x - 5)(x^2 + 3x - 1)" /> mithilfe der Tabellenmethode.
 
 |                             |  <InlineMath math="x^2" /> |  <InlineMath math="+3x" /> | <InlineMath math="-1" /> |
 | :------------ | :-----------: | :-----------: | :----------------------: |
-| **<InlineMath math="x" />** |  <InlineMath math="x^3" /> | <InlineMath math="+3x^2" /> | <InlineMath math="-x" /> |
+| <InlineMath math="x" /> |  <InlineMath math="x^3" /> | <InlineMath math="+3x^2" /> | <InlineMath math="-x" /> |
 | <InlineMath math="-5" /> | <InlineMath math="-5x^2" /> | <InlineMath math="-15x" /> | <InlineMath math="+5" /> |
 
 Addiere alle Ergebnisse aus den Tabellenfeldern:
 
-<BlockMath math="x^3 + 3x^2 - x - 5x^2 - 15x + 5" />
+<BlockMath math="\begin{aligned}(x-5)(x^2+3x-1)&amp;=x^3+3x^2-x-5x^2-15x+5 \\ &amp;=x^3-2x^2-16x+5\end{aligned}" />
 
-Fasse die gleichartigen Terme zusammen:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}  &amp;= x^3 + (3x^2 - 5x^2) \\ &amp;\quad{}+ (-x - 15x) + 5 \end{aligned}" />
-  <BlockMath math="= x^3 - 2x^2 - 16x + 5" />
-</MathContainer>
+Eine Polynomtabelle darf auch negative Terme enthalten. Ihre Felder zeigen dann **algebraische Produkte**, keine negativen geometrischen Flächen.
 
 Beide Methoden liefern dasselbe Ergebnis. Die Tabellenmethode ordnet lediglich alle Teilprodukte so an, dass kein Term übersehen wird.
 
 ## Übung
 
-Multipliziere <InlineMath math="(2x-3)(x^2+x-4)" /> aus und fasse gleichartige Terme zusammen. Multipliziere beide Terme des ersten Faktors aus und fasse anschließend die Terme mit derselben Hochzahl zusammen. Das Produkt eines linearen und eines quadratischen Faktors hat höchstens den Grad drei, sodass keine höhere Hochzahl als <InlineMath math="x^3" /> auftreten kann.
+Multipliziere <InlineMath math="(2x-3)(x^2+x-4)" /> aus und fasse gleichartige Terme zusammen. Multipliziere **beide Terme** des ersten Faktors aus und fasse anschließend die Terme mit derselben Hochzahl zusammen. Das Produkt eines linearen und eines quadratischen Faktors hat den Grad drei, sodass keine höhere Hochzahl als <InlineMath math="x^3" /> auftreten kann.
 
 ### Ausführliche Lösung
 
-Wir multiplizieren beide Terme des ersten Faktors mit jedem Term des zweiten Faktors. Zunächst bleiben alle Teilprodukte sichtbar, erst danach werden gleichartige Terme zusammengefasst:
+Wir multiplizieren beide Terme des ersten Faktors mit jedem Term des zweiten Faktors. Zunächst bleiben alle **Teilprodukte** sichtbar, erst danach werden gleichartige Terme zusammengefasst:
 
-<MathContainer>
-  <BlockMath math="(2x-3)(x^2+x-4)" />
-  <BlockMath math="=2x(x^2+x-4)-3(x^2+x-4)" />
-  <BlockMath math="=2x^3+2x^2-8x-3x^2-3x+12" />
-  <BlockMath math="=2x^3-x^2-11x+12" />
-</MathContainer>
+<BlockMath math="\begin{aligned}(2x-3)(x^2+x-4)&amp;=2x(x^2+x-4)-3(x^2+x-4) \\ &amp;=2x^3+2x^2-8x-3x^2-3x+12 \\ &amp;=2x^3-x^2-11x+12\end{aligned}" />
 
-Auch der Grad passt: Ein linearer Faktor multipliziert mit einem quadratischen Faktor hat höchstens den Grad <InlineMath math="3" />. Das Produkt der Leitterme <InlineMath math="2x\cdot x^2=2x^3" /> stimmt mit dem Leitterm des Ergebnisses überein.
+Auch der Grad passt: Ein linearer Faktor multipliziert mit einem quadratischen Faktor hat den Grad <InlineMath math="3" />. Das Produkt der Leitterme <InlineMath math="2x\cdot x^2=2x^3" /> stimmt mit dem Leitterm des Ergebnisses überein.

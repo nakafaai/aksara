@@ -10,34 +10,15 @@ export const metadata = {
 
 ## Jarak Titik dan Bayangannya dari Garis Cermin
 
-Pencerminan, atau refleksi, terhadap suatu garis adalah salah satu jenis transformasi geometri yang memindahkan setiap titik pada bidang ke posisi bayangannya.
+Pada pencerminan terhadap garis, **garis cermin** menjadi batas simetri antara titik asal dan bayangan. Titik tepat pada cermin tetap di tempat. Titik di luar cermin dipetakan ke sisi berlawanan dengan jarak tegak lurus yang sama.
 
-Garis yang menjadi acuan pencerminan ini disebut sebagai **garis cermin** atau **sumbu refleksi**.
+Jika <InlineMath math="P" /> berada pada garis cermin, <InlineMath math="P'=P" />. Jika tidak, tarik garis tegak lurus dari <InlineMath math="P" /> ke cermin. Sebut kaki tegak lurus itu <InlineMath math="M" />. Lanjutkan ruas melewati cermin sejauh panjang yang sama. Ujungnya adalah bayangan <InlineMath math="P'" />:
 
-Coba bayangkan kamu berdiri di depan cermin datar. Bayanganmu di cermin adalah hasil pencerminan dirimu terhadap permukaan cermin tersebut.
+<BlockMath math="PM=MP',\qquad PP'\perp m" />
 
-Secara matematis, jika kita punya titik <InlineMath math="P(x,y)" /> dan sebuah garis <InlineMath math="m" /> sebagai sumbu refleksi, maka titik bayangan <InlineMath math="P'(x',y')" /> akan punya sifat-sifat berikut:
+## Mencerminkan Titik pada Garis Miring
 
-1.  **Jika titik <InlineMath math="P" /> terletak pada garis cermin <InlineMath math="m" />**:
-
-    Bayangannya adalah titik itu sendiri.
-
-    <BlockMath math="P' = P" />
-
-2.  **Jika titik <InlineMath math="P" /> tidak terletak pada garis cermin <InlineMath math="m" />**:
-
-    Garis <InlineMath math="m" /> memotong ruas <InlineMath math="PP'" /> tepat di titik tengah dan tegak lurus terhadap ruas tersebut. Hubungan ini dapat ditulis sebagai:
-
-    <MathContainer>
-      <BlockMath math="\overline{PP'} \perp m" />
-      <BlockMath math="d(P,m) = d(P',m)" />
-    </MathContainer>
-
-    Akibatnya, garis <InlineMath math="m" /> memotong ruas garis <InlineMath math="PP'" /> tepat di tengah-tengahnya. Titik potong ini kita sebut sebagai titik <InlineMath math="M" />.
-
-## Visualisasi Pencerminan Titik terhadap Garis
-
-Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
+Kita akan mencerminkan <InlineMath math="P(2,4)" /> terhadap <InlineMath math="m:y=\frac12x+1" />. **Titik tengah** <InlineMath math="M" /> terletak pada cermin, sedangkan garis penghubung titik dan bayangan tegak lurus terhadap cermin.
 
 <LineEquation
   title="Pencerminan Titik terhadap Garis"
@@ -48,7 +29,8 @@ Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
       <InlineMath math="P'\left(\frac{18}{5},\frac{4}{5}\right)" />.
     </>
   }
-  cameraPosition={[12, 8, 12]}
+  cameraPosition={[2.5, 2.5, 9]}
+  cameraTarget={[2.5, 2.5, 0]}
   data={[
     {
       points: [
@@ -62,7 +44,7 @@ Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
         {
           text: <InlineMath math="m" />,
           at: 1,
-          offset: [1.2, 0.5, 0],
+          offset: [0.3, 0.4, 0],
         },
       ],
     },
@@ -114,4 +96,28 @@ Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
   ]}
 />
 
-Pada setiap pencerminan terhadap garis, ruas dari titik asli ke titik bayangan <Highlight>tegak lurus terhadap garis cermin</Highlight>. Kedua titik juga berjarak sama dari garis tersebut. Dua syarat ini menentukan koordinat titik bayangan.
+### Mencari Kaki Tegak Lurus
+
+Gradien cermin adalah <InlineMath math="\frac12" />. Maka **gradien garis tegak lurus** adalah <InlineMath math="-2" /> karena hasil kalinya <InlineMath math="-1" />. Garis melalui <InlineMath math="P(2,4)" /> memenuhi:
+
+<BlockMath math="y-4=-2(x-2)\quad\Longrightarrow\quad y=-2x+8" />
+
+Pada titik potong, kedua persamaan memberi nilai vertikal yang sama:
+
+<MathContainer>
+  <BlockMath math="\frac12x+1=-2x+8\quad\Longrightarrow\quad\frac52x=7\quad\Longrightarrow\quad x=\frac{14}{5}" />
+  <BlockMath math="y=\frac12\cdot\frac{14}{5}+1=\frac75+\frac55=\frac{12}{5},\qquad M\left(\frac{14}{5},\frac{12}{5}\right)" />
+</MathContainer>
+
+### Menentukan dan Memeriksa Bayangan
+
+Karena <InlineMath math="M" /> adalah **titik tengah ruas**, koordinat bayangan diperoleh dengan menggandakan koordinat <InlineMath math="M" />, lalu mengurangkan koordinat <InlineMath math="P" />:
+
+<BlockMath math="P'=2M-P=\left(2\cdot\frac{14}{5}-2,2\cdot\frac{12}{5}-4\right)=\left(\frac{18}{5},\frac45\right)" />
+
+Kedua jarak ke cermin adalah panjang ruas menuju <InlineMath math="M" />. Perhitungan ini memeriksa kesamaan panjang yang kamu lihat pada diagram:
+
+<MathContainer>
+  <BlockMath math="PM=\sqrt{\left(\frac{14}{5}-2\right)^2+\left(\frac{12}{5}-4\right)^2}=\sqrt{\frac{16+64}{25}}=\frac{4\sqrt5}{5}" />
+  <BlockMath math="MP'=\sqrt{\left(\frac{18}{5}-\frac{14}{5}\right)^2+\left(\frac45-\frac{12}{5}\right)^2}=\frac{4\sqrt5}{5}" />
+</MathContainer>

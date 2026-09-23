@@ -5,8 +5,28 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-<InlineMath math="\text{AB}" /> und <InlineMath math="\text{CD}" /> werden als Blöcke fester Reihenfolge zusammen mit <InlineMath math="E" />, <InlineMath math="F" />, <InlineMath math="G" /> und <InlineMath math="H" /> betrachtet. Das ergibt <InlineMath math="6!=720" /> Anordnungen der Einheiten. In <InlineMath math="2\cdot5!=240" /> Fällen liegen die Blöcke direkt nebeneinander, sodass <InlineMath math="480" /> getrennt bleiben. Die Hälfte hat <InlineMath math="E" /> vor <InlineMath math="F" />, also <InlineMath math="240" /> gültige Anordnungen. Damit <InlineMath math="240/40320=1/168" />.
+#### Aufeinanderfolgende Paare zusammenfassen
 
-Damit ist der gesuchte Wert <InlineMath math="\frac1{168}" />.
+Die Blöcke <InlineMath math="\text{AB}" /> und <InlineMath math="\text{CD}" /> haben eine **feste innere Reihenfolge**. Zusammen mit den Berichten <InlineMath math="E,F,G,H" /> bilden sie sechs verschiebbare Einheiten. Für diese gibt es:
 
-Das Vertauschen von <InlineMath math="E" /> und <InlineMath math="F" /> ändert keine andere Bedingung. Deshalb gibt es gleich viele Anordnungen mit <InlineMath math="E" /> vor <InlineMath math="F" /> wie mit der umgekehrten Reihenfolge.
+<BlockMath math="6!=720" />
+
+#### Anordnungen mit benachbarten Blöcken abziehen
+
+Liegen die beiden Blöcke nebeneinander, betrachten wir sie als **eine gemeinsame Einheit**. Dann werden fünf Einheiten angeordnet. Innerhalb der gemeinsamen Einheit sind zwei Reihenfolgen möglich: <InlineMath math="\text{ABCD}" /> oder <InlineMath math="\text{CDAB}" />.
+
+<BlockMath math="2\times5!=240" />
+
+Wir ziehen diese Anordnungen von allen Anordnungen der sechs Einheiten ab. In den übrigen Fällen liegt mindestens ein Bericht zwischen den beiden Blöcken.
+
+<BlockMath math="720-240=480" />
+
+#### Reihenfolge von E und F berücksichtigen
+
+Das **Vertauschen der Positionen** von <InlineMath math="E" /> und <InlineMath math="F" /> verändert weder die Blöcke noch ihren Abstand. Zu jeder Anordnung mit <InlineMath math="E" /> vor <InlineMath math="F" /> gehört genau eine mit umgekehrter Reihenfolge. Deshalb erfüllt genau die Hälfte der verbleibenden Anordnungen die letzte Bedingung.
+
+<BlockMath math="480\div2=240" />
+
+Die zufällige Auswahl erfolgt aus allen uneingeschränkten Anordnungen der acht Berichte, nicht nur aus den Anordnungen der sechs Einheiten. Der Ergebnisraum umfasst <InlineMath math="8!=40320" /> Anordnungen. Die gesuchte Wahrscheinlichkeit beträgt:
+
+<BlockMath math="P=\frac{240}{40320}=\frac1{168}" />

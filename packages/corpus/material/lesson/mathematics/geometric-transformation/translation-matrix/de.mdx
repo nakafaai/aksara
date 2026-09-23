@@ -18,6 +18,12 @@ Diese Operation kann in Form einer Vektoraddition (Spaltenmatrix) geschrieben we
 
 Drehungen um den Ursprung und Spiegelungen an Geraden durch den Ursprung lassen sich durch die Multiplikation mit einer <InlineMath math="2 \times 2" />-Matrix darstellen. Eine Verschiebung um einen von null verschiedenen Vektor addiert dagegen einen Vektor und <Highlight>lässt sich so nicht darstellen</Highlight>.
 
+### Warum homogene Koordinaten nötig sind
+
+Die gewöhnliche Matrixmultiplikation bildet den **Ursprung auf den Ursprung** ab. Eine Verschiebung um einen Vektor ungleich null versetzt ihn dagegen. Deshalb brauchen wir eine zusätzliche Koordinate:
+
+<BlockMath math="M\begin{pmatrix}0\\0\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix},\qquad T_{(a,b)}(0,0)=(a,b)" />
+
 Um die Verschiebung mit linearen Transformationen durch Matrixmultiplikation zu verbinden, verwenden wir **homogene Koordinaten**. Der Punkt <InlineMath math="(x,y)" /> wird als Spalte dargestellt:
 
 <BlockMath math="\begin{pmatrix} x \\ y \\ 1 \end{pmatrix}" />
@@ -30,11 +36,11 @@ Also:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \\ 1 \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 &amp; a \\ 0 &amp; 1 &amp; b \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} x+a \\ y+b \\ 1 \end{pmatrix} \end{aligned}" />
 
-### Matrixdarstellung
+### Homogene Koordinaten überprüfen
 
-Addiere für einen Punkt <InlineMath math="(x,y)" /> den Verschiebungsvektor komponentenweise:
+Die letzte Koordinate bleibt **gleich eins**. Im folgenden Beispiel berechnet die erste Zeile die horizontale Position, die zweite die vertikale. Das Ergebnis stimmt mit der Vektoraddition überein:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+<BlockMath math="\begin{pmatrix}1&amp;0&amp;-3\\0&amp;1&amp;4\\0&amp;0&amp;1\end{pmatrix}\begin{pmatrix}-2\\3\\1\end{pmatrix}=\begin{pmatrix}1(-2)+0(3)-3(1)\\0(-2)+1(3)+4(1)\\1\end{pmatrix}=\begin{pmatrix}-5\\7\\1\end{pmatrix}" />
 
 ## Einen Bildpunkt mit Matrizen bestimmen
 
@@ -42,9 +48,9 @@ Verschiebe den Punkt <InlineMath math="(-2,3)" /> mit dem folgenden Vektor und b
 
 <BlockMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />
 
-**Lösung:**
+**Lösung**:
 
-Die Matrixoperation liefert den Bildpunkt:
+Addiere die **entsprechenden Komponenten**, um den Bildpunkt zu erhalten:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -2 \\ 3 \end{pmatrix} + \begin{pmatrix} -3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 + (-3) \\ 3 + 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 7 \end{pmatrix} \end{aligned}" />
 
@@ -94,6 +100,8 @@ Der Bildpunkt ist <InlineMath math="(-5,7)" />.
 
 ## Übungen
 
+Wende **denselben Vektor** auf jeden Punkt an. Die horizontale Komponente steht in der ersten Zeile, die vertikale in der zweiten. Wiederhole die Addition beim Dreieck für alle drei Eckpunkte.
+
 1.  Verschiebe den Punkt <InlineMath math="(4,-5)" /> mit dem folgenden Vektor und bestimme seinen Bildpunkt mithilfe der Vektordarstellung:
 
     <BlockMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />
@@ -104,30 +112,36 @@ Der Bildpunkt ist <InlineMath math="(-5,7)" />.
 
 ### Lösungen
 
-1.  Verwende für den Punkt <InlineMath math="(4,-5)" /> die Verschiebungen <InlineMath math="a=-5" /> und <InlineMath math="b=4" />.
+Addiere die **entsprechenden Komponenten**. Ziehe anschließend von den Bildkoordinaten die ursprünglichen Koordinaten ab. Der erhaltene Verschiebungsvektor muss mit dem Vektor aus der Aufgabe übereinstimmen.
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
+**Lösung 1**
 
-    Der Bildpunkt ist <InlineMath math="(-1,-1)" />.
+Verwende für den Punkt <InlineMath math="(4,-5)" /> die Verschiebungen <InlineMath math="a=-5" /> und <InlineMath math="b=4" />.
 
-2.  Wende den gegebenen Verschiebungsvektor <InlineMath math="T" /> auf jeden Eckpunkt an:
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
 
-    - Für <InlineMath math="K(1,0)" />:
+Der Bildpunkt ist <InlineMath math="(-1,-1)" />.
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_K \\ y'_K \end{pmatrix} &amp;= \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ 1 \end{pmatrix} \end{aligned}" />
+**Lösung 2**
 
-      Also <InlineMath math="K'(-1,1)" />.
+Wende den gegebenen Verschiebungsvektor <InlineMath math="T" /> auf jeden Eckpunkt an:
 
-    - Für <InlineMath math="L(4,2)" />:
+Für <InlineMath math="K(1,0)" />:
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_L \\ y'_L \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 3 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_K \\ y'_K \end{pmatrix} &amp;= \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ 1 \end{pmatrix} \end{aligned}" />
 
-      Also <InlineMath math="L'(2,3)" />.
+Also <InlineMath math="K'(-1,1)" />.
 
-    - Für <InlineMath math="M(2,5)" />:
+Für <InlineMath math="L(4,2)" />:
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_M \\ y'_M \end{pmatrix} &amp;= \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ 6 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_L \\ y'_L \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 3 \end{pmatrix} \end{aligned}" />
 
-      Also <InlineMath math="M'(0,6)" />.
+Also <InlineMath math="L'(2,3)" />.
 
-    Die Bildpunkte sind <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" /> und <InlineMath math="M'(0,6)" />.
+Für <InlineMath math="M(2,5)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'_M \\ y'_M \end{pmatrix} &amp;= \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ 6 \end{pmatrix} \end{aligned}" />
+
+Also <InlineMath math="M'(0,6)" />.
+
+Die Bildpunkte sind <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" /> und <InlineMath math="M'(0,6)" />.

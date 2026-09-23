@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Barisan Geometri",
   description: "Bangun barisan geometri dari rasio tetap, turunkan rumus suku umum, lalu uji model pertumbuhan ideal melalui contoh lengkap.",
@@ -10,9 +9,9 @@ export const metadata = {
 
 ## Mengalikan Suku Sebelumnya dengan Rasio Tetap
 
-Barisan geometri adalah barisan bilangan yang memiliki <Highlight>rasio tetap antara dua suku berurutan</Highlight>. Rasio ini dilambangkan dengan huruf <InlineMath math="r" />.
+Pada barisan geometri, setiap suku setelah suku pertama diperoleh dengan **mengalikan suku sebelumnya dengan faktor tetap**. Rasio ini dilambangkan dengan huruf <InlineMath math="r" />.
 
-Jika kita memiliki barisan geometri <InlineMath math="U_1, U_2, U_3, ..., U_n" />, maka:
+Untuk suku-suku yang tidak nol, faktor tersebut dapat ditemukan melalui pembagian:
 
 <BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
 
@@ -22,7 +21,7 @@ Setiap suku diperoleh dengan mengalikan suku sebelumnya dengan rasio <InlineMath
 
 ## Eksplorasi Melipat Kertas
 
-Model lipatan sederhana memperlihatkan rasio tetap dengan jelas. Lipat selembar kertas persegi panjang menjadi dua beberapa kali.
+Model lipatan sederhana memperlihatkan **rasio tetap** dengan jelas. Lipat selembar kertas persegi panjang menjadi dua beberapa kali.
 
 Jika kertas dilipat <InlineMath math="1 \text{ kali}" />, maka kertas akan terbagi menjadi <InlineMath math="2 \text{ bagian}" /> sama besar. Jika dilipat lagi (<InlineMath math="2 \text{ kali}" />), akan terbentuk <InlineMath math="4 \text{ bagian}" /> sama besar. Berikut pola yang terbentuk:
 
@@ -39,7 +38,11 @@ Dalam barisan ini, setiap suku diperoleh dengan mengalikan suku sebelumnya denga
 
 ## Rumus Umum Barisan Geometri
 
+Dengan **rasio tidak nol** dan nomor suku berupa bilangan bulat positif, rumus suku umum adalah:
+
 <BlockMath math="U_n = a \cdot r^{n-1}" />
+
+Jika <InlineMath math="r=0" />, gunakan <InlineMath math="U_1=a" /> dan <InlineMath math="U_n=0" /> untuk <InlineMath math="n\ge2" />. Dengan begitu, kita tidak perlu menafsirkan <InlineMath math="0^0" /> pada rumus suku pertama.
 
 Pada rumus ini:
 
@@ -52,19 +55,23 @@ Eksponennya adalah <InlineMath math="n-1" /> karena perpindahan dari suku pertam
 
 ## Makna Nilai Rasio
 
-Untuk suku pertama yang positif, rasio menentukan perilaku barisan secara umum:
+Untuk **suku pertama yang positif**, rasio menentukan perilaku barisan secara umum:
 
-- Jika <InlineMath math="r>1" />, suku-suku positifnya bertambah.
-- Jika <InlineMath math="0<r<1" />, suku-suku positifnya mendekati nol.
-- Jika <InlineMath math="r=1" />, barisannya konstan.
-- Jika <InlineMath math="r=0" />, semua suku setelah suku pertama bernilai nol.
-- Jika <InlineMath math="r<0" />, tanda suku berganti-ganti, sedangkan nilai mutlaknya dapat bertambah, berkurang, atau tetap.
+| Rasio | Suku awal jika suku pertama 8 | Perilaku |
+| --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="8,16,32,64" /> | Naik |
+| <InlineMath math="1/2" /> | <InlineMath math="8,4,2,1" /> | Mendekati nol |
+| <InlineMath math="1" /> | <InlineMath math="8,8,8,8" /> | Konstan |
+| <InlineMath math="0" /> | <InlineMath math="8,0,0,0" /> | Nol setelah suku pertama |
+| <InlineMath math="-2" /> | <InlineMath math="8,-16,32,-64" /> | Tanda bergantian, nilai mutlak naik |
+| <InlineMath math="-1" /> | <InlineMath math="8,-8,8,-8" /> | Tanda bergantian, nilai mutlak tetap |
+| <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Tanda bergantian, nilai mutlak menuju nol |
 
 Karena itu, barisan geometri tidak selalu menggambarkan pertumbuhan.
 
 ## Model Ideal Pertumbuhan Bakteri
 
-Misalkan jumlah bakteri dalam suatu kultur ideal menjadi tiga kali lipat setiap <InlineMath math="2 \text{ jam}" />. Angka <InlineMath math="3" /> menyatakan perubahan jumlah seluruh bakteri dalam kultur pada setiap selang waktu.
+Misalkan jumlah bakteri dalam suatu kultur ideal menjadi **tiga kali lipat** setiap <InlineMath math="2 \text{ jam}" />. Angka <InlineMath math="3" /> menyatakan perubahan jumlah seluruh bakteri dalam kultur pada setiap selang waktu.
 
 Jika jumlah awal bakteri adalah <InlineMath math="2 \text{ sel}" />, maka:
 
@@ -94,22 +101,6 @@ Jadi, menurut model ideal ini, kultur tersebut berisi <InlineMath math="118{.}09
   />
 </ContentBlock>
 
-## Rasio dan Suku Umum Barisan Geometri
-
-Setiap langkah pada barisan geometri mengalikan dengan faktor yang sama. Membagi sebuah suku dengan suku sebelumnya mengembalikan faktor tersebut, dan satu nilai awal bersama satu faktor sudah cukup untuk menuliskan suku umumnya.
-
-### Rasio Barisan Geometri
-
-Faktor <InlineMath math="r" /> pada barisan geometri selalu tetap. Jika suku sebelumnya tidak nol, faktor yang sama dapat dihitung dengan membagi suku berikutnya dengan suku sebelumnya:
-
-<BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
-
-### Menentukan Suku Umum
-
-Untuk mencari suku umum dari barisan geometri, kita dapat menggunakan rumus:
-
-<BlockMath math="U_n = a \cdot r^{n-1}" />
-
 ## Model Pertumbuhan dan Peluruhan dengan Rasio Tetap
 
 Setiap proses berikut mengulang satu perkalian pada setiap langkah, sehingga rasio yang sama menggerakkan seluruh daftar:
@@ -125,7 +116,7 @@ Selalu periksa apakah model dengan faktor tetap masuk akal untuk situasi dan ren
 
 ## Menentukan Rasio dan Suku yang Belum Diketahui
 
-Kedua contoh memberi sebagian barisan geometri dan meminta nilai yang belum diketahui. Substitusi suku yang diketahui ke rumus suku umum, lalu selesaikan nilai yang dicari.
+Kedua contoh memberi sebagian barisan geometri dan meminta nilai yang belum diketahui. Substitusi **suku yang diketahui** ke rumus suku umum, lalu selesaikan nilai yang dicari.
 
 ### Mencari Rasio
 
@@ -160,7 +151,7 @@ Diketahui:
 - <InlineMath math="a = 16" /> (tali paling pendek)
 - <InlineMath math="U_5 = 81" /> (tali paling panjang)
 
-Langkah pertama, menentukan rasio:
+Panjang setiap potongan **positif**, sehingga rasionya juga positif. Karena itu, kita mengambil akar pangkat empat yang positif:
 
 <MathContainer>
   <BlockMath math="U_5 = a \cdot r^{5-1}" />

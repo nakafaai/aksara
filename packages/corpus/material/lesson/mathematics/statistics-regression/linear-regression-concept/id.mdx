@@ -18,6 +18,10 @@ Ketika kumpulan titik mengikuti kecenderungan garis lurus yang naik atau turun, 
 
 Garis regresi linear sering disebut garis _best-fit_ atau garis yang paling cocok. Menurut kriteria kuadrat terkecil, garis ini dipilih karena memiliki jumlah kuadrat residu vertikal paling kecil. Titik data dapat berada di atas atau di bawah garis. Garis regresi merangkum tren linear dalam data.
 
+Untuk setiap pengamatan, **residu** adalah nilai teramati dikurangi nilai prediksi. Titik di atas garis memiliki residu positif, sedangkan titik di bawah garis memiliki residu negatif.
+
+<BlockMath math="e_i=y_i-\hat y_i" />
+
 ## Contoh Garis Regresi
 
 Coba bandingkan lama belajar dan nilai ujian pada setiap pasangan data berikut. Ketika lama belajar bertambah, titik-titiknya cenderung naik. Pola itulah yang membentuk tren linear positif.
@@ -54,10 +58,6 @@ Coba bandingkan lama belajar dan nilai ujian pada setiap pasangan data berikut. 
 />
 
 Garis regresi pada diagram menunjukkan **tren umum**: ketika lama belajar bertambah, nilai ujian yang diprediksi cenderung meningkat. Nilai setiap siswa tetap dapat berada di atas atau di bawah garis.
-
-## Prediksi dengan Garis Regresi
-
-Salah satu kegunaan utamanya adalah **prediksi**. Misalnya, kita dapat memakai garis ini untuk memperkirakan nilai siswa yang belajar selama <InlineMath math="7 \text{ jam}" />. Namun, waktu belajar yang diamati hanya berkisar dari <InlineMath math="1" /> sampai <InlineMath math="6" /> jam. Prediksi pada <InlineMath math="7 \text{ jam}" /> adalah **ekstrapolasi**, sehingga keandalannya lebih rendah daripada prediksi di dalam rentang data.
 
 ## Metode Kuadrat Terkecil
 
@@ -99,3 +99,45 @@ Keterangan rumus:
   ).
 
 Rumus ini menentukan satu garis kuadrat terkecil yang unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama. Jika semua nilai <InlineMath math="x" /> identik, penyebut rumus kemiringan bernilai nol dan data tidak menentukan satu kemiringan regresi yang unik.
+
+
+### Menghitung Koefisien dari Data
+
+Gunakan semua pasangan pada diagram. Kolom hasil kali dan kuadrat menjaga agar setiap nilai ikut dihitung tepat satu kali. Setelah itu, **jumlah setiap kolom** masuk ke rumus kemiringan.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="60" /> | <InlineMath math="60" /> | <InlineMath math="1" /> |
+| <InlineMath math="1{,}5" /> | <InlineMath math="68" /> | <InlineMath math="102" /> | <InlineMath math="2{,}25" /> |
+| <InlineMath math="2" /> | <InlineMath math="65" /> | <InlineMath math="130" /> | <InlineMath math="4" /> |
+| <InlineMath math="2{,}5" /> | <InlineMath math="75" /> | <InlineMath math="187{,}5" /> | <InlineMath math="6{,}25" /> |
+| <InlineMath math="3" /> | <InlineMath math="72" /> | <InlineMath math="216" /> | <InlineMath math="9" /> |
+| <InlineMath math="3{,}5" /> | <InlineMath math="80" /> | <InlineMath math="280" /> | <InlineMath math="12{,}25" /> |
+| <InlineMath math="4" /> | <InlineMath math="85" /> | <InlineMath math="340" /> | <InlineMath math="16" /> |
+| <InlineMath math="4" /> | <InlineMath math="82" /> | <InlineMath math="328" /> | <InlineMath math="16" /> |
+| <InlineMath math="4{,}5" /> | <InlineMath math="90" /> | <InlineMath math="405" /> | <InlineMath math="20{,}25" /> |
+| <InlineMath math="5" /> | <InlineMath math="88" /> | <InlineMath math="440" /> | <InlineMath math="25" /> |
+| <InlineMath math="5{,}5" /> | <InlineMath math="95" /> | <InlineMath math="522{,}5" /> | <InlineMath math="30{,}25" /> |
+| <InlineMath math="6" /> | <InlineMath math="92" /> | <InlineMath math="552" /> | <InlineMath math="36" /> |
+| <InlineMath math="\sum x=42{,}5" /> | <InlineMath math="\sum y=952" /> | <InlineMath math="\sum xy=3563" /> | <InlineMath math="\sum x^2=178{,}25" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(3563)-(42{,}5)(952)}{12(178{,}25)-(42{,}5)^2} \\ &=\frac{2296}{332{,}75} \\ &=\frac{9184}{1331}\approx6{,}900\end{aligned}" />
+  <BlockMath math="a=\frac{952}{12}-\frac{9184}{1331}\cdot\frac{42{,}5}{12}=\frac{73066}{1331}\approx54{,}896" />
+</MathContainer>
+
+Gunakan koefisien yang belum dibulatkan ketika menghitung prediksi. Dengan membulatkan hanya angka yang ditampilkan, persamaan garis menjadi:
+
+<BlockMath math="\hat y\approx54{,}896+6{,}900x" />
+
+## Prediksi di Dalam dan di Luar Rentang Data
+
+Untuk waktu belajar <InlineMath math="4\text{ jam}" />, masukkan <InlineMath math="x=4" /> ke persamaan garis. Nilai ini berada dalam rentang pengamatan, sehingga prediksi ini merupakan **interpolasi**.
+
+<BlockMath math="\hat y(4)=\frac{73066+9184(4)}{1331}=\frac{109802}{1331}\approx82{,}50" />
+
+Pada <InlineMath math="7\text{ jam}" />, perhitungan yang sama memberi:
+
+<BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103{,}20" />
+
+Waktu belajar yang diamati hanya <InlineMath math="1" /> sampai <InlineMath math="6\text{ jam}" />. Prediksi kedua adalah **ekstrapolasi**. Data yang tersedia tidak memeriksa apakah tren linear tetap berlaku di luar rentang itu. Jika skor ujian dibatasi sampai <InlineMath math="100" />, hasil prediksi kedua bahkan melampaui batas skor. Garis regresi perlu diperiksa terhadap rentang data dan batas besaran yang diprediksi.

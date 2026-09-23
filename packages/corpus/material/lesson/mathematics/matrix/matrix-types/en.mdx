@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Row Matrix
 
-<Highlight>A row matrix is a matrix that consists of only one row.</Highlight>
+A row matrix is a matrix that **consists of only one row**.
 
 The order of a row matrix is <InlineMath math="1 \times n" />, where <InlineMath math="n" /> is the number of columns.
 
@@ -25,7 +25,7 @@ Matrix <InlineMath math="P" /> is a row matrix of order <InlineMath math="1 \tim
 
 ## Column Matrix
 
-A column matrix is a matrix that consists of only one column.
+A column matrix is a matrix that **consists of only one column**.
 
 The order of a column matrix is <InlineMath math="m \times 1" />, where <InlineMath math="m" /> is the number of rows.
 
@@ -74,7 +74,7 @@ Matrix <InlineMath math="M" /> is a square matrix of order <InlineMath math="3 \
 
 ## Rectangular Matrix
 
-A rectangular matrix is a matrix where the number of rows and columns are not equal (<InlineMath math="m \neq n" />).
+A rectangular matrix is a matrix where **the number of rows and columns are not equal** (<InlineMath math="m \neq n" />).
 
 General example:
 
@@ -86,31 +86,28 @@ Rectangular matrices with more columns than rows are often called wide, while th
 
 ### Wide Matrix
 
-A wide matrix is a rectangular matrix with more columns than rows (<InlineMath math="n > m" />).
+A wide matrix is a rectangular matrix with **more columns than rows** (<InlineMath math="n > m" />).
 
 Example:
 
 <BlockMath math="D = \begin{bmatrix} 1 & 0 & 4 \\ -2 & 3 & 5 \end{bmatrix}" />
 
 Matrix <InlineMath math="D" /> is a wide matrix of order <InlineMath math="2 \times 3" />.
-
 ### Tall Matrix
 
-A tall matrix is a rectangular matrix with more rows than columns (<InlineMath math="m > n" />).
+A tall matrix is a rectangular matrix with **more rows than columns** (<InlineMath math="m > n" />).
 
 Example:
 
 <BlockMath math="T = \begin{bmatrix} 7 & 1 \\ 0 & -3 \\ 4 & 2 \end{bmatrix}" />
 
 Matrix <InlineMath math="T" /> is a tall matrix of order <InlineMath math="3 \times 2" />.
-
 ## Triangular Matrix
 
-A triangular matrix is a square matrix where the elements on one side of the main diagonal are all zero. The diagonal entries themselves may be anything. Upper and lower triangular matrices differ in which side is zero.
-
+A triangular matrix is a square matrix where the elements on **one side of the main diagonal** are all zero. The diagonal entries themselves may be anything. Upper and lower triangular matrices differ in which side is zero.
 ### Upper Triangular Matrix
 
-An upper triangular matrix is a square matrix where all elements below the main diagonal are zero.
+An upper triangular matrix is a square matrix where **all elements below the main diagonal are zero**.
 
 In symbols, <InlineMath math="a_{ij} = 0" /> whenever <InlineMath math="i > j" />.
 
@@ -120,7 +117,7 @@ Example:
 
 ### Lower Triangular Matrix
 
-A lower triangular matrix is a square matrix where all elements above the main diagonal are zero.
+A lower triangular matrix is a square matrix where **all elements above the main diagonal are zero**.
 
 In symbols, <InlineMath math="a_{ij} = 0" /> whenever <InlineMath math="i < j" />.
 
@@ -130,7 +127,7 @@ Example:
 
 ## Diagonal Matrix
 
-A diagonal matrix is a square matrix where all elements outside the main diagonal are zero.
+A diagonal matrix is a square matrix where **all elements outside the main diagonal are zero**.
 
 In symbols, <InlineMath math="a_{ij} = 0" /> whenever <InlineMath math="i \neq j" />. Elements on the main diagonal can be zero or non-zero.
 
@@ -142,7 +139,7 @@ Matrix <InlineMath math="X" /> is a diagonal matrix of order <InlineMath math="3
 
 ## Identity Matrix
 
-An identity matrix (denoted by <InlineMath math="I" /> or <InlineMath math="I_n" />) is a diagonal matrix where all elements on the main diagonal are <InlineMath math="1" />.
+An identity matrix (denoted by <InlineMath math="I" /> or <InlineMath math="I_n" />) is a diagonal matrix where all elements on the **main diagonal** are <InlineMath math="1" />.
 
 Example:
 
@@ -154,10 +151,9 @@ Example:
 The identity matrix is the neutral element of matrix multiplication. If <InlineMath math="A" /> has dimensions <InlineMath math="m \times n" />, the identity matrix must match the side on which it is multiplied:
 
 <BlockMath math="I_mA=A=AI_n" />
-
 ## Zero Matrix
 
-A zero matrix (denoted by <InlineMath math="O" /> or <InlineMath math="O_{m \times n}" />) is a matrix where all elements are zero.
+A zero matrix (denoted by <InlineMath math="O" /> or <InlineMath math="O_{m \times n}" />) is a matrix where **all elements are zero**.
 
 Example:
 
@@ -168,7 +164,7 @@ Example:
 
 ## Symmetric Matrix
 
-A symmetric matrix is a square matrix that is equal to its transpose (<InlineMath math="A^T = A" />).
+A symmetric matrix is a square matrix that is **equal to its transpose** (<InlineMath math="A^T = A" />).
 
 For every pair of indices <InlineMath math="i" /> and <InlineMath math="j" />, a symmetric matrix satisfies <InlineMath math="a_{ij} = a_{ji}" />. Entries on opposite sides of the main diagonal are equal.
 
@@ -181,3 +177,12 @@ In matrix <InlineMath math="S" />:
 - <InlineMath math="s_{12} = s_{21} = 7" />
 - <InlineMath math="s_{13} = s_{31} = -3" />
 - <InlineMath math="s_{23} = s_{32} = 0" />
+
+## One Matrix Can Belong to Several Types
+
+These names **are not mutually exclusive**. An identity matrix is both diagonal and symmetric. However, a nonsquare zero matrix is neither diagonal nor symmetric under the definitions above. Check the shape first, then the pattern of entries.
+
+| Example | Applicable types | Reason |
+| --- | --- | --- |
+| <InlineMath math="I_3" /> | Identity, diagonal, upper and lower triangular, symmetric | Every off-diagonal entry is zero and every main-diagonal entry is one. |
+| <InlineMath math="O_{2\times3}" /> | Zero, rectangular, wide | Every entry is zero, but the row and column counts differ. |

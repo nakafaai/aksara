@@ -3,7 +3,7 @@ export const metadata = {
     description: "Verbinde symmetrische und hermitesche Matrizen mit reellen Eigenwerten, orthogonalen Eigenvektoren, quadratischen Formen und Diagonalisierung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
@@ -37,7 +37,7 @@ Transponieren und konjugiertes Transponieren dürfen nicht verwechselt werden. F
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-Für <InlineMath math="x\in\mathbb{C}^n" /> verwendet man die konjugierte Transponierte:
+Für <InlineMath math="x\in\mathbb{C}^n" /> verwendet man **die konjugierte Transponierte**:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -74,7 +74,7 @@ Der schiefsymmetrische Anteil trägt nichts bei, weil <InlineMath math="x^T(B-B^
 
 ## Warum hermitesche Eigenwerte reell sind
 
-Sei <InlineMath math="Hv=\lambda v" /> mit <InlineMath math="v\neq0" />. Aus der hermiteschen Symmetrie folgt
+Sei <InlineMath math="Hv=\lambda v" /> mit <InlineMath math="v\neq0" />. Aus der **hermiteschen Symmetrie** folgt
 
 <MathContainer>
 <BlockMath math="\lambda v^Hv=v^HHv" />
@@ -85,7 +85,7 @@ Da <InlineMath math="v^Hv>0" /> gilt, folgt <InlineMath math="\lambda=\overline{
 
 ## Warum verschiedene Eigenräume orthogonal sind
 
-Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />. Da beide Eigenwerte reell sind,
+Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />. Da **beide Eigenwerte reell** sind,
 
 <MathContainer>
 <BlockMath math="\lambda w^Hv=w^HHv" />
@@ -105,7 +105,7 @@ Der Spektralsatz fasst diese Tatsachen zu einer vollständigen Zerlegung zusamme
   <BlockMath math="H=U\Lambda U^H" />
 </MathContainer>
 
-Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine orthonormale Eigenbasis, und jeder Diagonaleintrag von <InlineMath math="\Lambda" /> ist reell. Sind <InlineMath math="u_1,\ldots,u_n" /> die Spalten von <InlineMath math="U" />, dann gilt
+Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine **orthonormale Eigenbasis**, und jeder Diagonaleintrag von <InlineMath math="\Lambda" /> ist reell. Sind <InlineMath math="u_1,\ldots,u_n" /> die Spalten von <InlineMath math="U" />, dann gilt
 
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
@@ -121,7 +121,7 @@ Für die Matrix <InlineMath math="H" /> lautet das charakteristische Polynom
 
 <BlockMath math="\begin{aligned} \det(H-\lambda I) &amp;=(2-\lambda)(3-\lambda)-2 \\ &amp;=(\lambda-1)(\lambda-4) \end{aligned}" />
 
-Normierte Eigenvektoren zu <InlineMath math="\lambda_1=1" /> und <InlineMath math="\lambda_2=4" /> sind
+**Normierte Eigenvektoren** zu <InlineMath math="\lambda_1=1" /> und <InlineMath math="\lambda_2=4" /> sind
 
 <MathContainer>
 <BlockMath math="u_1=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}" />
@@ -132,4 +132,9 @@ Sie erfüllen <InlineMath math="u_1^Hu_2=0" />. Mit <InlineMath math="U=(u_1\qua
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-Diese Gleichung liefert eine unitäre Diagonalisierung, die sich direkt überprüfen lässt.
+Prüfe die Orthogonalität und den ersten Eigenvektor direkt. Der Normierungsfaktor bleibt dabei außerhalb des Produkts.
+
+<MathContainer>
+<BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
+<BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
+</MathContainer>

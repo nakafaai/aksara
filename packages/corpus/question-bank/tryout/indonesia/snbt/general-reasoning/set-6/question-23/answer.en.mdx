@@ -5,11 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Use inclusion-exclusion to count participants using at least one service. Adding the A, B, and C counts directly counts users of two services twice, so subtract the three pairwise intersections. Then add the users of all three services once: they were initially counted three times and have just been subtracted three times.
+We need to count **each participant exactly once**, even if they use several services. Inclusion-exclusion corrects the repeated counts as follows:
+
+| Services used by one participant | Initial count from A + B + C | Pairwise correction | Three-service correction | Final count |
+| --- | --- | --- | --- | --- |
+| Exactly one | 1 | 0 | 0 | 1 |
+| Exactly two | 2 | −1 | 0 | 1 |
+| All three | 3 | −3 | +1 | 1 |
+
+A user of all three services is initially counted three times, then subtracted three times because they belong to every pairwise intersection. We must therefore **add them back once**.
 
 Let <InlineMath math="U" /> be the number using at least one service:
 
-<BlockMath math="\begin{aligned}U&=64+58+49\\&\quad-24-19-17+8\\&=171-60+8\\&=119\end{aligned}" />
+<BlockMath math="\begin{aligned}U&amp;=64+58+49\\&amp;\quad-24-19-17+8\\&amp;=171-60+8\\&amp;=119\end{aligned}" />
 
 Participants using none are the remainder of the <InlineMath math="140" /> surveyed:
 

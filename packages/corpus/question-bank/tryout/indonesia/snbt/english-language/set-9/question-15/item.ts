@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "systems thinking as a definition without a reviewable action",
+          label: "Systems thinking as a definition without a reviewable action",
         },
         {
           isCorrect: true,

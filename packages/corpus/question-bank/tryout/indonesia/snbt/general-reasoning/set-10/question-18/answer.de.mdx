@@ -5,4 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Wäre ein Alarm protokolliert worden, wäre ein Techniker benachrichtigt worden. Da keine Benachrichtigung erfolgte, wurde kein Alarm protokolliert. Ein aktiver Sensor hätte einen Alarm erzeugt, also war der Sensor nicht aktiv.
+Wir verfolgen die Regeln rückwärts von einer **nicht eingetretenen Folge**. Dabei bedeutet <InlineMath math="S" />, dass der Sensor aktiv war, <InlineMath math="A" />, dass ein Alarm protokolliert wurde, und <InlineMath math="T" />, dass der Techniker benachrichtigt wurde.
+
+<BlockMath math="S\Rightarrow A\Rightarrow T" />
+
+Der Techniker wurde nicht benachrichtigt, also ist <InlineMath math="T" /> falsch. Ein protokollierter Alarm hätte nach der zweiten Regel eine Benachrichtigung erfordert. Um der Angabe nicht zu widersprechen, kann **kein Alarm protokolliert** worden sein. Ein aktiver Sensor hätte wiederum einen Alarm erfordert. Ohne protokollierten Alarm kann der Sensor daher nicht aktiv gewesen sein.
+
+<BlockMath math="\neg T\Rightarrow\neg A\Rightarrow\neg S" />
+
+Das ist Kontraposition: Wenn eine Bedingung laut Regel eine Folge garantiert, schließt das Ausbleiben dieser Folge die Bedingung aus. Der Sensor war somit nicht aktiv und es wurde kein Alarm protokolliert.

@@ -41,35 +41,55 @@ Vektor yang memiliki dua komponen seperti ini disebut **vektor berdimensi dua**.
 
 Visualisasi berikut menghubungkan vektor, komponen-komponennya, dan besarnya pada bidang Kartesius:
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1, 1.4, 9]}
+  cameraTarget={[1, 1.4, 0]}
   title="Vektor pada Bidang Koordinat"
   description={
     <>
-      Visualisasi vektor <InlineMath math="OQ = 4\mathbf{i} + 3\mathbf{j}" />
+      Visualisasi vektor <InlineMath math="OQ = 4\mathbf{i} + 3\mathbf{j}" />{" "}
       pada bidang koordinat Kartesius
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 3, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.7 * ((4) - (0)), y: (0) + 0.7 * ((3) - (0)), z: (0) + 0.7 * ((0) - (0)) }, { x: 4, y: 3, z: 0 }],
       color: "#65a30d",
-      label: <>Vektor <InlineMath math="OQ" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Vektor <InlineMath math="OQ" /></>,
+        at: 1,
+        offset: [-0.25, 0.65, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <>Komponen <InlineMath math="x" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="x" /></>,
+        at: 1,
+        offset: [0, -0.5, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 3, 0],
-      labelOffset: [0.5, 1.5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 3, z: 0 }],
       color: "#ca8a04",
-      label: <>Komponen <InlineMath math="y" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="y" /></>,
+        at: 1,
+        offset: [-0.3, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -79,6 +99,19 @@ Diagram menampilkan ketiga sumbu koordinat. Vektor berada pada bidang <InlineMat
 Pada visualisasi di atas:
 
 - Vektor <InlineMath math="\overrightarrow{OQ}" /> (hijau muda) memiliki titik awal <InlineMath math="O(0,0)" /> dan titik akhir <InlineMath math="Q(4,3)" />
-- Komponen-<InlineMath math="x" /> (biru muda) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="x" />, yaitu <InlineMath math="4\mathbf{i}" />
+- Komponen-<InlineMath math="x" /> (tosca) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="x" />, yaitu <InlineMath math="4\mathbf{i}" />
 - Komponen-<InlineMath math="y" /> (kuning) adalah proyeksi vektor <InlineMath math="\overrightarrow{OQ}" /> pada sumbu-<InlineMath math="y" />, yaitu <InlineMath math="3\mathbf{j}" />
-- Panjang vektor <InlineMath math="|\overrightarrow{OQ}| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5" />
+
+Kita hitung **panjang vektor** dari kedua komponen yang tampak pada diagram:
+
+<BlockMath math="\begin{aligned}|\overrightarrow{OQ}|&amp;=\sqrt{4^2+3^2}\\&amp;=\sqrt{16+9}\\&amp;=5\end{aligned}" />
+
+### Vektor satuan dengan arah yang sama
+
+Untuk memperoleh **panjang satu**, bagi setiap komponen dengan panjang vektor. Arah tetap sama karena pembaginya positif:
+
+<BlockMath math="\hat{u}=\frac{\overrightarrow{OQ}}{|\overrightarrow{OQ}|}=\frac{4\mathbf{i}+3\mathbf{j}}{5}=\frac45\mathbf{i}+\frac35\mathbf{j}" />
+
+Kedua komponen baru membentuk rasio yang sama dengan komponen semula. Kita periksa panjang vektor satuan dengan Pythagoras:
+
+<BlockMath math="|\hat{u}|=\sqrt{\left(\frac45\right)^2+\left(\frac35\right)^2}=\sqrt{\frac{16}{25}+\frac9{25}}=\sqrt1=1" />

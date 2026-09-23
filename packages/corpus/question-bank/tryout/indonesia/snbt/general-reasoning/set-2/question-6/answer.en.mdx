@@ -5,32 +5,26 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The condition tells us to repeat the shortest visible cycle of year-to-year changes. This removes the ambiguity that would otherwise arise when extrapolating from only five data points.
+The question asks us to continue the **shortest cycle of changes** consistent with the data. The predictions use that assumption. Five sales figures alone do not guarantee the same pattern in real sales.
 
-#### Pattern Analysis
+#### Find the next sales figures
 
-1. **Shirts**: Sales data is <InlineMath math="50, 35, 20, 70, 55" />.
-   - The changes are <InlineMath math="-15, -15, +50, -15" />. They begin a repeating cycle of <InlineMath math="-15, -15, +50" />, so the next change is <InlineMath math="-15" />.
-   - Prediction for <InlineMath math="2016" />: <InlineMath math="55 - 15 = 40" />.
+Calculate the **difference between consecutive years**. For example, shirts fall from <InlineMath math="50" /> to <InlineMath math="35" />, so the first change is <InlineMath math="35-50=-15" />. Apply the same subtraction to each pair of years.
 
-2. **Pants**: Sales data is <InlineMath math="60, 60, 50, 40, 40" />.
-   - The changes are <InlineMath math="0, -10, -10, 0" />.
-   - The pattern repeats the cycle of "constant, decrease, decrease". Following this, the next change is a decrease of <InlineMath math="10" />.
-   - Prediction for <InlineMath math="2016" />: <InlineMath math="40 - 10 = 30" />.
+| Item | Known changes | Cycle | Prediction |
+| --- | --- | --- | --- |
+| Shirts | <InlineMath math="-15,-15,+50,-15" /> | <InlineMath math="-15,-15,+50" /> | <InlineMath math="55-15=40" /> |
+| Pants | <InlineMath math="0,-10,-10,0" /> | <InlineMath math="0,-10,-10" /> | <InlineMath math="40-10=30" /> |
+| Suits | <InlineMath math="+15,-10,+15,-10" /> | <InlineMath math="+15,-10" /> | <InlineMath math="50+15=65" /> |
 
-3. **Suits**: Sales data is <InlineMath math="40, 55, 45, 60, 50" />.
-   - The changes are <InlineMath math="+15, -10, +15, -10" />.
-   - The pattern alternates between adding <InlineMath math="15" /> and subtracting <InlineMath math="10" />. The next step is adding <InlineMath math="15" />.
-   - Prediction for <InlineMath math="2016" />: <InlineMath math="50 + 15 = 65" />.
+#### Check the choices
 
-#### Evaluating the Options
+The first statement says **less than**, but shirts and pants add up to exactly the stated boundary:
 
-Using the predictions (Shirts = <InlineMath math="40" />, Pants = <InlineMath math="30" />, Suits = <InlineMath math="65" />):
+<BlockMath math="40+30=70,\qquad 70\not<70" />
 
-1. **Pants sales are <InlineMath math="10" /> fewer than shirts**: <InlineMath math="30 = 40 - 10" /> (Correct).
-2. **Suits sales are <InlineMath math="35" /> more than pants**: <InlineMath math="65 = 30 + 35" /> (Correct).
-3. **The combined number of shirts and pants sold is less than** <InlineMath math="70" />: <InlineMath math="40 + 30 = 70" />. The total equals <InlineMath math="70" />, so it is not less than <InlineMath math="70" />. This statement is **incorrect**.
-4. **Shirts sales are <InlineMath math="10" /> more than pants**: <InlineMath math="40 = 30 + 10" /> (Correct).
-5. **Pants sales are <InlineMath math="35" /> less than suits**: <InlineMath math="30 = 65 - 35" /> (Correct).
+The other four statements follow from these two differences:
 
-Therefore, the incorrect prediction is **the combined number of shirts and pants sold is less than** <InlineMath math="70" />.
+<BlockMath math="\begin{aligned}40-30&amp;=10\\65-30&amp;=35\end{aligned}" />
+
+Shirts exceed pants by ten, or equivalently pants are ten fewer than shirts. Suits exceed pants by thirty-five, or equivalently pants are thirty-five fewer than suits. The first option is therefore the incorrect prediction.

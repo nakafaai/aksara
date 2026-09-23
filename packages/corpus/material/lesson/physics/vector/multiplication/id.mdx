@@ -14,7 +14,7 @@ export const metadata = {
 
 Perkalian vektor tidak selalu menghasilkan vektor. Ada dua jenis perkalian yang sering dipakai dalam fisika: **perkalian titik** dan **perkalian silang**.
 
-Perkalian titik menghasilkan skalar. Perkalian silang menghasilkan <Highlight>vektor baru yang arahnya tegak lurus</Highlight> terhadap dua vektor awal.
+Perkalian titik menghasilkan skalar. Perkalian silang menghasilkan vektor yang tegak lurus terhadap kedua vektor awal. Jika hasilnya bukan vektor nol, arahnya mengikuti **aturan tangan kanan**.
 
 | Jenis perkalian | Lambang | Hasil | Contoh fisika |
 | :-------------- | :------ | :---- | :------------ |
@@ -29,17 +29,17 @@ Perkalian titik antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-Sudut <InlineMath math="\theta" /> adalah sudut antara kedua vektor. Hasilnya berupa skalar, sehingga memiliki nilai tanpa arah.
+Untuk dua vektor bukan nol, <InlineMath math="\theta" /> adalah sudut antara keduanya, sedangkan <InlineMath math="A" /> dan <InlineMath math="B" /> adalah besar vektor. Hasilnya berupa skalar, sehingga memiliki nilai tanpa arah.
 
-Dalam fisika, usaha oleh gaya dapat ditulis:
+Untuk **gaya konstan** selama perpindahan, usaha oleh gaya tersebut adalah:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-Artinya, hanya komponen gaya yang searah perpindahan yang benar-benar melakukan usaha.
+Komponen gaya **sepanjang sumbu perpindahan** menentukan usaha. Komponen ini positif jika searah gerak dan negatif jika berlawanan arah.
 
-## Contoh Usaha dengan Perkalian Titik
+### Contoh Usaha dengan Perkalian Titik
 
-Seseorang menarik kotak dengan gaya <InlineMath math="40\text{ N}" /> sehingga kotak berpindah <InlineMath math="5\text{ m}" />. Gaya membentuk sudut <InlineMath math="60^\circ" /> terhadap arah perpindahan. Usahanya:
+Seseorang menarik kotak dengan gaya konstan <InlineMath math="40\text{ N}" /> sehingga kotak berpindah <InlineMath math="5\text{ m}" />. Gaya membentuk sudut <InlineMath math="60^\circ" /> terhadap arah perpindahan. Usahanya:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -50,7 +50,9 @@ W&=Fs\cos\theta \\
 
 Jika gaya tegak lurus terhadap perpindahan, <InlineMath math="\theta=90^\circ" /> dan <InlineMath math="\cos90^\circ=0" />. Pada kondisi itu, gaya tidak melakukan usaha pada arah perpindahan.
 
-Artinya, perkalian titik memilih bagian gaya yang benar-benar searah dengan perpindahan. Komponen gaya yang hanya menekan ke atas atau ke bawah tidak menambah usaha sepanjang arah gerak kotak.
+Jika gaya konstan yang sama melawan perpindahan, sudutnya <InlineMath math="180^\circ" />. **Usaha negatif** menunjukkan gaya mengambil energi dari gerak benda:
+
+<BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
 ## Perkalian Silang Mengukur Efek Memutar
 
@@ -58,9 +60,11 @@ Perkalian silang antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-Hasilnya berupa vektor yang arahnya tegak lurus terhadap bidang yang memuat <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" />. Arah ini ditentukan dengan aturan tangan kanan.
+Untuk dua vektor bukan nol dan tidak sejajar, hasilnya berupa vektor yang arahnya tegak lurus terhadap bidang yang memuat <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" />. Arah ini ditentukan dengan **aturan tangan kanan**: lengkungkan jari dari vektor pertama menuju vektor kedua melalui sudut terkecil. Ibu jari menunjukkan arah hasil. Jika vektor sejajar atau salah satunya nol, hasilnya vektor nol tanpa arah tertentu.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[9.9, 6.66, -7]}
+  cameraTarget={[1.5, 1.3, 5]}
   title={<>Arah <InlineMath math="\vec{A}\times\vec{B}" /></>}
   description={
     <>
@@ -68,9 +72,7 @@ Hasilnya berupa vektor yang arahnya tegak lurus terhadap bidang yang memuat <Inl
       pada satu bidang. Hasil kali silangnya keluar tegak lurus dari bidang itu.
     </>
   }
-  cameraPosition={[8, 7, 9]}
-  cameraTarget={[1.6, 1.4, 1.2]}
-  vectors={(() => {
+  data={(() => {
     const a = [4, 0, 0];
     const b = [0, 3, 0];
     const cross = [
@@ -78,53 +80,70 @@ Hasilnya berupa vektor yang arahnya tegak lurus terhadap bidang yang memuat <Inl
       a[2] * b[0] - a[0] * b[2],
       a[0] * b[1] - a[1] * b[0],
     ];
-    const displayScale = 4;
-    const crossDirection = cross.map((component) => component / displayScale);
 
     return [
       {
-        color: "#ea580c",
-        from: [0, 0, 0],
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelOffset: [0, -0.45, 0],
-        labelProgress: 1 / 2,
-        to: a,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((a)[0]) - (0)), y: (0) + 0.5 * (((a)[1]) - (0)), z: (0) + 0.5 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        at: 1,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#9333ea",
-        from: [0, 0, 0],
-        label: <InlineMath math="B" />,
-        labelAnchorX: "center",
-        labelOffset: [0.5, 0, 0.15],
-        labelProgress: 1 / 2,
-        to: b,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((b)[0]) - (0)), y: (0) + 0.5 * (((b)[1]) - (0)), z: (0) + 0.5 * (((b)[2]) - (0)) }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B" />,
+        at: 1,
+        offset: [0.5, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#d97706",
-        from: [0, 0, 0],
-        label: <InlineMath math="A\times B" />,
-        labelAnchorX: "center",
-        labelOffset: [0.45, 0.35, 0.2],
-        labelProgress: 1 / 2,
-        lineWidth: 4,
-        to: crossDirection,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((cross)[0]) - (0)), y: (0) + 0.5 * (((cross)[1]) - (0)), z: (0) + 0.5 * (((cross)[2]) - (0)) }, { x: (cross)[0], y: (cross)[1], z: (cross)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      lineWidth: 4,
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A\times B" />,
+        at: 1,
+        offset: [0, 1.2, 0],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
 
-Pada visual ini, <InlineMath math="\vec{A}" /> mengarah ke sumbu <InlineMath math="x" /> positif dan <InlineMath math="\vec{B}" /> mengarah ke sumbu <InlineMath math="y" /> positif. Rumus perkalian silang memberi arah <InlineMath math="z" /> positif untuk <InlineMath math="\vec{A}\times\vec{B}" />. Panah <InlineMath math="\vec{A}\times\vec{B}" /> diperkecil agar muat di layar, tetapi arahnya tetap mengikuti hasil perhitungan.
+Pada visual ini, <InlineMath math="\vec{A}" /> mengarah ke sumbu <InlineMath math="x" /> positif dan <InlineMath math="\vec{B}" /> mengarah ke sumbu <InlineMath math="y" /> positif. Rumus perkalian silang memberi arah <InlineMath math="z" /> positif untuk <InlineMath math="\vec{A}\times\vec{B}" />. Kedua vektor dalam model tidak memiliki satuan. Hitung komponennya: dua komponen pertama nol dan komponen ketiga adalah <InlineMath math="4\cdot3" />. Panah hasil memiliki panjang <InlineMath math="12" /> satuan. Putar model untuk membandingkan panah hasil dengan bidang kedua vektor awal.
+
+<BlockMath math="\begin{aligned}
+C_x&=0\cdot0-0\cdot3=0 \\
+C_y&=0\cdot0-4\cdot0=0 \\
+C_z&=4\cdot3-0\cdot0=12 \\
+\vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
+\end{aligned}" />
 
 Dalam momen gaya, perkalian silang ditulis:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Vektor <InlineMath math="\vec{r}" /> adalah vektor posisi dari sumbu putar ke titik kerja gaya. Panjang lengan momen yang tegak lurus adalah <InlineMath math="r\sin\theta" />. Pada sudut yang sama, gaya yang bekerja lebih jauh dari engsel pintu menghasilkan momen gaya yang lebih besar.
+Vektor <InlineMath math="\vec{r}" /> adalah vektor posisi dari titik acuan pada engsel ke titik kerja gaya. Panjang lengan momen yang tegak lurus adalah <InlineMath math="r\sin\theta" />. Pada sudut yang sama, gaya yang bekerja lebih jauh dari engsel pintu menghasilkan momen gaya yang lebih besar.
 
-## Contoh Momen Gaya
+### Contoh Momen Gaya
 
-Sebuah pintu didorong dengan gaya <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0{,}8\text{ m}" /> dari engsel. Arah gaya tegak lurus terhadap pintu, sehingga <InlineMath math="\theta=90^\circ" />.
+Ambil titik acuan pada engsel yang setinggi titik dorong. Sebuah pintu didorong horizontal dengan gaya <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0{,}8\text{ m}" /> dari engsel. Arah gaya **tegak lurus terhadap pintu**, sehingga <InlineMath math="\theta=90^\circ" />.
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
@@ -132,11 +151,11 @@ Sebuah pintu didorong dengan gaya <InlineMath math="30\text{ N}" /> pada jarak <
 &=24\text{ N m}
 \end{aligned}" />
 
-Jika <InlineMath math="r" /> dan <InlineMath math="F" /> tetap, gaya tegak lurus menghasilkan torsi maksimum karena <InlineMath math="\sin90^\circ=1" />. Gaya yang hampir sejajar dengan pintu menghasilkan torsi kecil karena faktor sinusnya mendekati nol.
+Jika <InlineMath math="r" /> dan <InlineMath math="F" /> tetap, gaya tegak lurus menghasilkan torsi maksimum karena <InlineMath math="\sin90^\circ=1" />. Gaya yang hampir sejajar dengan vektor posisi <InlineMath math="\vec{r}" /> menghasilkan torsi kecil karena faktor sinusnya mendekati nol.
 
 ## Membandingkan Titik dan Silang
 
-Bandingkan hasil kedua operasi pada sudut yang sama. Perkalian titik paling besar saat dua vektor searah karena <InlineMath math="\cos0^\circ=1" />. Perkalian silang justru nol saat dua vektor searah karena <InlineMath math="\sin0^\circ=0" />.
+Bandingkan hasil kedua operasi dengan **besar kedua vektor tetap dan bukan nol**. Perkalian titik paling besar saat dua vektor searah karena <InlineMath math="\cos0^\circ=1" />. Perkalian silang justru nol saat dua vektor searah karena <InlineMath math="\sin0^\circ=0" />.
 
 | Kondisi sudut | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :------------ | :---------------------------------------- | :------------------------------------------------------ |

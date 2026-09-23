@@ -5,82 +5,49 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Kita akan menghitung total biaya yang diperlukan Rani, yang terdiri dari harga pembelian paket bibit dan biaya pupuk untuk lahan yang digunakan.
+Pengeluaran Rani terdiri atas **harga dua paket bibit dan pupuk untuk bagian yang ditanami**. Luas seluruh lahan bukan dasar biaya pupuk karena Rani tidak menanami seluruh lahan.
 
-#### Menentukan Jumlah Bibit
+#### Menghitung Luas yang Ditanami
 
-Rani membeli <InlineMath math="2" /> paket bibit buah. Setiap paket berisi <InlineMath math="2" /> bibit stroberi, <InlineMath math="1" /> bibit jeruk, dan <InlineMath math="4" /> bibit mangga. Maka, total bibit yang diperoleh dari <InlineMath math="2" /> paket adalah:
+Dua paket menghasilkan 4 bibit stroberi, 2 bibit jeruk, dan 8 bibit mangga. Lahan satu bibit jeruk memiliki panjang dan lebar masing-masing dua kali ukuran lahan stroberi. Karena itu, **luasnya menjadi empat kali**, bukan dua kali.
 
-- Stroberi: <InlineMath math="2 \times 2 = 4" /> bibit.
-- Jeruk: <InlineMath math="2 \times 1 = 2" /> bibit.
-- Mangga: <InlineMath math="2 \times 4 = 8" /> bibit.
+| Bibit | Jumlah bibit | Luas per bibit (cm²) | Luas total (cm²) |
+| --- | --- | --- | --- |
+| Stroberi | <InlineMath math="2\times2=4" /> | <InlineMath math="10\times5=50" /> | <InlineMath math="4\times50=200" /> |
+| Jeruk | <InlineMath math="2\times1=2" /> | <InlineMath math="(2\times10)(2\times5)=200" /> | <InlineMath math="2\times200=400" /> |
+| Mangga | <InlineMath math="2\times4=8" /> | <InlineMath math="5\times2{,}5=12{,}5" /> | <InlineMath math="8\times12{,}5=100" /> |
 
-#### Menghitung Luas Lahan yang Dibutuhkan
+Jumlahkan luas ketiga kelompok. Untuk mengubah cm² menjadi m², bagi dengan <InlineMath math="100^2=10{.}000" />, karena kedua ukuran panjang berubah satuan.
 
-Kita hitung luas lahan untuk masing-masing jenis bibit:
+<BlockMath math="\begin{aligned}
+A&=200+400+100=700\,\mathrm{cm}^2 \\
+&=\frac{700}{10{.}000}\,\mathrm{m}^2 \\
+&=0{,}07\,\mathrm{m}^2
+\end{aligned}" />
 
-**Bibit Stroberi**
+Bibit juga dapat ditata tanpa tumpang tindih. Susun dua jeruk dalam baris 40 cm × 10 cm, empat stroberi dalam baris 40 cm × 5 cm, dan delapan mangga dalam baris 40 cm × 2,5 cm. Ketiga baris membentuk persegi panjang 40 cm × 17,5 cm yang muat di lahan 100 cm × 35 cm.
 
-Ukuran lahan satu bibit stroberi adalah <InlineMath math="10 \text{ cm} \times 5 \text{ cm}" />.
+<LineEquation
+  title="Susunan petak bibit"
+  description="Setiap kotak mewakili satu bibit. Ungu untuk jeruk, jingga untuk stroberi, dan hijau kebiruan untuk mangga. Satuan koordinat adalah sentimeter."
+  cameraPosition={[20,8.75,50]}
+  cameraTarget={[20,8.75,0]}
+  showZAxis={false}
+  data={[
+    ...[{ count: 2, width: 20, bottom: 0, height: 10, color: "#9333ea" }, { count: 4, width: 10, bottom: 10, height: 5, color: "#d97706" }, { count: 8, width: 5, bottom: 15, height: 2.5, color: "#0d9488" }].flatMap(({ count, width, bottom, height, color }) => Array.from({ length: count }, (_,i) => ({ points: [{ x: i*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom, z: 0 }], color, smooth: false, showPoints: false }))),
+  ]}
+/>
 
-<BlockMath math="\begin{aligned}&10 \times 5 \\ &=50 \text{ cm}^2\end{aligned}" />
+#### Menghitung Biaya Bibit dan Pupuk
 
-Total luas untuk <InlineMath math="4" /> bibit stroberi:
+Harga bibit dihitung per paket, sedangkan pupuk dihitung menurut **luas 0,07 m² yang ditanami**. Semua biaya pada perhitungan berikut dinyatakan dalam rupiah.
 
-<BlockMath math="\begin{aligned}&4 \times 50 \\ &=200 \text{ cm}^2\end{aligned}" />
+Di sini, <InlineMath math="C_b" /> adalah biaya bibit dan <InlineMath math="C_p" /> adalah biaya pupuk.
 
-**Bibit Jeruk**
+<BlockMath math="\begin{aligned}
+C_b&=2\times45{.}000=90{.}000 \\
+C_p&=0{,}07\times100{.}000=7{.}000 \\
+C&=90{.}000+7{.}000=97{.}000
+\end{aligned}" />
 
-Lahan bibit jeruk memiliki panjang dan lebar dua kali ukuran lahan bibit stroberi, sehingga ukurannya <InlineMath math="20 \text{ cm} \times 10 \text{ cm}" />.
-
-<BlockMath math="\begin{aligned}&20 \times 10 \\ &=200 \text{ cm}^2\end{aligned}" />
-
-Total luas untuk <InlineMath math="2" /> bibit jeruk:
-
-<BlockMath math="\begin{aligned}&2 \times 200 \\ &=400 \text{ cm}^2\end{aligned}" />
-
-**Bibit Mangga**
-
-Ukuran lahan satu bibit mangga adalah <InlineMath math="5 \text{ cm} \times 2{,}5 \text{ cm}" />.
-
-<BlockMath math="\begin{aligned}&5 \times 2{,}5 \\ &=12{,}5 \text{ cm}^2\end{aligned}" />
-
-Total luas untuk <InlineMath math="8" /> bibit mangga:
-
-<BlockMath math="\begin{aligned}&8 \times 12{,}5 \\ &=100 \text{ cm}^2\end{aligned}" />
-
-**Total Luas Lahan**
-
-<MathContainer>
-  <BlockMath math="200 + 400 + 100" />
-  <BlockMath math="700 \text{ cm}^2" />
-</MathContainer>
-
-Lahan yang tersedia memiliki luas <InlineMath math="0{,}35 \text{ m}^2" /> (<InlineMath math="3{.}500 \text{ cm}^2" />), sehingga seluruh bibit dapat ditanam. Pupuk hanya diperlukan untuk <InlineMath math="700 \text{ cm}^2" /> lahan yang benar-benar ditanami.
-
-Kita konversikan satuan luas ke meter persegi (<InlineMath math="1 \text{ m}^2 = 10{.}000 \text{ cm}^2" />):
-
-<BlockMath math="\begin{aligned}&\frac{700}{10{.}000} \\ &=0{,}07 \text{ m}^2\end{aligned}" />
-
-#### Menghitung Total Biaya
-
-**Biaya Bibit**
-
-Harga <InlineMath math="1" /> paket adalah <InlineMath math="\text{Rp}45{.}000{,}00" />. Untuk <InlineMath math="2" /> paket:
-
-<BlockMath math="\begin{aligned}&2 \times 45{.}000 \\ &=90{.}000\end{aligned}" />
-
-**Biaya Pupuk**
-
-Harga pupuk adalah <InlineMath math="\text{Rp}100{.}000{,}00/\text{m}^2" />. Untuk lahan seluas <InlineMath math="0{,}07 \text{ m}^2" />:
-
-<BlockMath math="\begin{aligned}&0{,}07 \times 100{.}000 \\ &=7{.}000\end{aligned}" />
-
-**Total Pengeluaran**
-
-<MathContainer>
-  <BlockMath math="90{.}000 + 7{.}000" />
-  <BlockMath math="97{.}000" />
-</MathContainer>
-
-Jadi, jumlah uang yang harus dikeluarkan oleh Rani adalah <InlineMath math="\text{Rp}97{.}000{,}00" />.
+Jadi, Rani membayar **Rp97.000,00**.

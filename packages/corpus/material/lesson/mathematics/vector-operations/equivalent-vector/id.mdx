@@ -15,29 +15,44 @@ Dua vektor disebut sama, atau direpresentasikan oleh ruas berarah yang ekuivalen
 
 Vektor ekuivalen bisa memiliki posisi yang berbeda dalam bidang atau ruang, tetapi tetap memiliki besar dan arah yang sama.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[7, 5, -6]}
+  cameraTarget={[2, 1.5, 1]}
   title="Contoh Vektor Ekuivalen"
   description="Vektor berwarna ungu dan oranye memiliki besar dan arah yang sama, sehingga keduanya ekuivalen meskipun posisinya berbeda."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 5, 8]}
 />
 
 ## Syarat Vektor Ekuivalen
 
-Dua vektor baru bisa disebut ekuivalen jika kedua syarat terpenuhi sekaligus, jadi periksa keduanya lebih dahulu. Pasangan yang hanya memenuhi satu syarat belum ekuivalen.
+Dua vektor baru bisa disebut ekuivalen jika **kedua syarat terpenuhi sekaligus**, jadi periksa keduanya lebih dahulu. Pasangan yang hanya memenuhi satu syarat belum ekuivalen.
 
 Dua vektor tak nol <InlineMath math="\overrightarrow{CD}" /> dan <InlineMath math="\overrightarrow{PQ}" /> sama jika:
 
@@ -46,9 +61,11 @@ Dua vektor tak nol <InlineMath math="\overrightarrow{CD}" /> dan <InlineMath mat
 
 ## Representasi Vektor Ekuivalen
 
-Dua vektor ekuivalen memiliki panjang dan arah yang sama, sehingga salah satunya bisa menggantikan yang lain. Penggantian itu memindahkan vektor ke titik awal yang lebih praktis tanpa mengubah vektornya.
+Dua vektor ekuivalen memiliki **panjang dan arah yang sama**, sehingga salah satunya bisa menggantikan yang lain. Penggantian itu memindahkan vektor ke titik awal yang lebih praktis tanpa mengubah vektornya.
 
 ### Dalam Bentuk Komponen
+
+Kesamaan vektor berarti **semua komponen yang bersesuaian sama**. Dua vektor dengan panjang yang sama masih dapat memiliki arah berbeda.
 
 Pada bidang Kartesius dua dimensi, dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> ekuivalen jika:
 
@@ -62,28 +79,44 @@ Pada ruang tiga dimensi, vektor <InlineMath math="\vec{a}" /> dan <InlineMath ma
 
 Kesamaan ini berlaku tepat ketika <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" />, dan <InlineMath math="a_3 = b_3" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[8, 5, -6]}
+  cameraTarget={[2.5, 1.5, 1.5]}
   title="Vektor Ekuivalen dalam Komponen"
   description="Dua vektor dengan komponen yang sama selalu ekuivalen, meskipun posisinya berbeda dalam ruang."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
 
 ### Dalam Bentuk Titik Pangkal dan Ujung
 
-Jika vektor <InlineMath math="\overrightarrow{AB}" /> memiliki titik pangkal <InlineMath math="A(x_1, y_1)" /> dan titik ujung <InlineMath math="B(x_2, y_2)" />, maka vektor dapat dinyatakan sebagai:
+Jika vektor <InlineMath math="\overrightarrow{AB}" /> memiliki **titik pangkal** <InlineMath math="A(x_1, y_1)" /> dan titik ujung <InlineMath math="B(x_2, y_2)" />, maka vektor dapat dinyatakan sebagai:
 
 <BlockMath math="\overrightarrow{AB} = (x_2 - x_1, y_2 - y_1)" />
 
@@ -95,17 +128,17 @@ Pada persamaan tersebut, <InlineMath math="C(x_3, y_3)" /> adalah titik pangkal 
 
 ## Aturan yang Mengikuti Kesamaan Vektor
 
-Setiap aturan mempertahankan titik ujung rantai dan menghapus satu vektor yang berulang, sehingga daftar yang panjang menyusut menjadi satu hubungan. Dengan begitu kamu bisa melewati vektor perantara tanpa mengubah pernyataannya.
-
-Kesamaan vektor berperilaku seperti kesamaan bilangan. Tiga aturan berikut memendekkan rantai vektor yang ekuivalen.
+Kesamaan vektor mengikuti **kesamaan setiap komponen**. Sifat refleksif membandingkan vektor dengan dirinya sendiri, sifat simetris menukar urutan dua vektor yang sama, dan sifat transitif menghubungkan kesamaan melalui satu vektor perantara.
 
 ### Sifat Refleksif
 
-Setiap vektor ekuivalen dengan dirinya sendiri.
+Setiap vektor ekuivalen dengan **dirinya sendiri**.
 
 <BlockMath math="\vec{a} = \vec{a}" />
 
 ### Sifat Simetris
+
+Kamu boleh **menukar ruas kiri dan kanan** pada kesamaan vektor.
 
 Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath math="\vec{b}" />, maka vektor <InlineMath math="\vec{b}" /> juga ekuivalen dengan vektor <InlineMath math="\vec{a}" />.
 
@@ -113,13 +146,17 @@ Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath ma
 
 ### Sifat Transitif
 
+Kesamaan dapat dihubungkan melalui **vektor perantara yang sama**.
+
 Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath math="\vec{b}" /> dan vektor <InlineMath math="\vec{b}" /> ekuivalen dengan vektor <InlineMath math="\vec{c}" />, maka vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath math="\vec{c}" />.
 
 <ContentStack>
 
   <BlockMath math="\text{Jika } \vec{a} = \vec{b} \text{ dan } \vec{b} = \vec{c} \text{, maka } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
+    cameraPosition={[7, 5, -6]}
+    cameraTarget={[2, 1.5, 1]}
     title="Sifat Transitif Vektor Ekuivalen"
     description={
       <>
@@ -127,41 +164,60 @@ Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath ma
         <InlineMath math="b = c" />, maka <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[7, 5, 7]}
   />
 </ContentStack>
 
 ## Memeriksa Vektor Ekuivalen dari Komponennya
 
-Kedua selisih koordinat harus sama, karena satu koordinat yang berbeda sudah membuat kedua vektor tidak ekuivalen. Contoh di bawah membandingkan selisih itu satu per satu.
+**Kedua selisih koordinat harus sama**, karena satu koordinat yang berbeda sudah membuat kedua vektor tidak ekuivalen. Contoh di bawah membandingkan selisih itu satu per satu.
 
-Dua vektor ekuivalen ketika perubahan koordinat pertama sama dan perubahan koordinat kedua juga sama. Contoh di bawah membandingkan kedua perubahan itu.
 
 ### Kesamaan dari Perubahan Komponen yang Sama
 
 Vektor <InlineMath math="\overrightarrow{AB}" /> dengan <InlineMath math="A(2, 3)" /> dan <InlineMath math="B(5, 7)" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{CD}" /> dengan <InlineMath math="C(1, 1)" /> dan <InlineMath math="D(4, 5)" />.
 
-Pembuktian:
+Hitung **koordinat ujung dikurangi koordinat pangkal** untuk kedua panah:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{AB} = (5-2, 7-3) = (3, 4)" />
@@ -170,7 +226,9 @@ Pembuktian:
 
 Karena <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, maka vektor <InlineMath math="\overrightarrow{AB}" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[3, 4, 10]}
+  cameraTarget={[3, 4, 0]}
   title={
     <>
       Vektor <InlineMath math="AB" /> dan <InlineMath math="CD" />
@@ -182,28 +240,41 @@ Karena <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />,
       <InlineMath math="CD(3,4,0)" /> yang ekuivalen dalam ruang.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[10, 10, 10]}
 />
 
 ### Vektor Ekuivalen dengan Titik Pangkal Berbeda
 
 Vektor <InlineMath math="\overrightarrow{PQ}" /> dengan <InlineMath math="P(0, 0)" /> dan <InlineMath math="Q(2, 2)" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{RS}" /> dengan <InlineMath math="R(3, 1)" /> dan <InlineMath math="S(5, 3)" />.
 
-Pembuktian:
+Hitung **koordinat ujung dikurangi koordinat pangkal** untuk kedua panah:
 
 <MathContainer>
   <BlockMath math="\overrightarrow{PQ} = (2-0, 2-0) = (2, 2)" />
@@ -212,7 +283,9 @@ Pembuktian:
 
 Karena <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, maka vektor <InlineMath math="\overrightarrow{PQ}" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[2.5, 1.5, 8]}
+  cameraTarget={[2.5, 1.5, 0]}
   title={
     <>
       Vektor <InlineMath math="PQ" /> dan <InlineMath math="RS" />
@@ -224,23 +297,36 @@ Karena <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />,
       <InlineMath math="RS(2,2,0)" /> yang ekuivalen dalam ruang.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[8, 6, 8]}
 />
 
 ## Alasan Titik Awal Dapat Berbeda
 
-Vektor ekuivalen memiliki besar dan arah yang sama meskipun titik awalnya berbeda. Karena itu, perpindahan yang sama dapat digambar di posisi berbeda dengan besar dan arah yang tetap sama. Sifat ini berguna saat membandingkan translasi atau memindahkan vektor dalam konstruksi geometri.
+Vektor ekuivalen memiliki besar dan arah yang sama meskipun **titik awalnya berbeda**. Karena itu, perpindahan yang sama dapat digambar di posisi berbeda dengan besar dan arah yang tetap sama. Sifat ini berguna saat membandingkan translasi atau memindahkan vektor dalam konstruksi geometri.

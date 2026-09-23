@@ -22,50 +22,54 @@ Setiap input yang membuat <InlineMath math="Q(x)=0" /> harus dikeluarkan dari do
 Pak Budi merencanakan kandang ayam berbentuk persegi panjang dengan luas <InlineMath math="100\text{ m}^2" />. Misalkan panjangnya <InlineMath math="x\text{ m}" /> dan lebarnya <InlineMath math="w\text{ m}" />. Maka
 
 <MathContainer>
-  <BlockMath math="xw=100" />
-  <BlockMath math="w(x)=\frac{100}{x}" />
+
+<BlockMath math="xw=100" />
+
+<BlockMath math="w(x)=\frac{100}{x}" />
 </MathContainer>
 
-Rumus ini merupakan fungsi rasional karena variabel muncul pada penyebut. Dalam situasi nyata, kedua ukuran harus positif. Jadi, domain yang bermakna secara fisik adalah <InlineMath math="x>0" />. Syarat <InlineMath math="x\neq 0" /> masih memuat ukuran negatif yang tidak sesuai dengan situasi tersebut.
+Rumus ini merupakan fungsi rasional karena pembilang dan penyebut berupa polinomial. Dalam situasi nyata, kedua ukuran harus positif. Jadi, domain yang bermakna secara fisik adalah <InlineMath math="x>0" />. Syarat <InlineMath math="x\neq 0" /> masih memuat ukuran negatif yang tidak sesuai dengan situasi tersebut.
 
 Model ini juga menunjukkan hubungan timbal balik: jika kandang dibuat lebih panjang, lebarnya harus mengecil agar luasnya tetap.
 
+Perubahan kedua ukuran bersifat **berbanding terbalik**. Panjang lima meter memerlukan lebar dua puluh meter, sedangkan panjang sepuluh meter memerlukan lebar sepuluh meter.
+
+<LineEquation
+  title="Panjang dan lebar dengan luas tetap"
+  description="Grafik menampilkan panjang 5 sampai 20 meter. Setiap titik memiliki hasil kali panjang dan lebar 100 meter persegi."
+  data={[{
+    points: Array.from({ length: 61 }, (_, i) => {
+      const x = 5 + i / 4;
+      return { x, y: 100 / x, z: 0 };
+    }),
+    smooth: false,
+    color: "#9333ea",
+    showPoints: false,
+    labels: [{ text: <InlineMath math="w=100/x" />, at: 20, offset: [1, 1, 0] }],
+  }]}
+  showZAxis={false}
+  cameraTarget={[12, 12, 0]}
+  cameraPosition={[12, 12, 35]}
+/>
+
 ## Bentuk yang Sering Dijumpai
 
-Beberapa hasil bagi polinomial muncul berulang dalam soal, misalnya <InlineMath math="\frac{1}{x}" /> atau <InlineMath math="\frac{x^2-1}{x-1}" />. Setiap bentuk punya asimtot dan titik tak terdefinisinya sendiri.
+Contoh-contoh berikut memiliki penyebut dengan derajat berbeda. **Faktor penyebut** menentukan input yang dilarang. Periksa faktor yang dapat dicoret sebelum menyimpulkan apakah ada lubang atau asimtot tegak.
 
-Fungsi rasional adalah hasil bagi dua polinomial, dan beberapa bentuknya sering muncul.
+| Bentuk | Batasan penyebut |
+| --- | --- |
+| <InlineMath math="\frac{k}{x}" /> | <InlineMath math="x\neq0" /> |
+| <InlineMath math="\frac{ax+b}{cx+d}" /> | <InlineMath math="cx+d\neq0" /> |
+| <InlineMath math="\frac{x^2+2x+1}{x-3}" /> | <InlineMath math="x\neq3" /> |
 
-### Bentuk Kebalikan
-
-Bentuk kebalikan yang paling dasar adalah
-
-<BlockMath math="f(x)=\frac{k}{x}" />
-
-Pada bentuk ini, <InlineMath math="k" /> adalah konstanta. Sebagai contoh, <InlineMath math="f(x)=\frac{5}{x}" /> memiliki domain <InlineMath math="x\neq 0" />.
-
-### Bentuk Linear per Linear
-
-Jika pembilang dan penyebutnya linear,
-
-<BlockMath math="f(x)=\frac{ax+b}{cx+d}" />
-
-Pada bentuk ini, penyebut harus memenuhi <InlineMath math="cx+d\neq 0" />. Contohnya, <InlineMath math="f(x)=\frac{2x+3}{x-1}" /> memiliki domain yang tidak memuat <InlineMath math="x=1" />.
-
-### Bentuk Berderajat Lebih Tinggi
-
-Salah satu atau kedua polinomial dapat berderajat dua atau lebih. Sebagai contoh,
-
-<BlockMath math="f(x)=\frac{x^2+2x+1}{x-3}" />
-
-Fungsi ini tetap merupakan fungsi rasional dan domainnya tidak memuat <InlineMath math="x=3" />.
+Contoh bentuk kebalikan adalah <InlineMath math="5/x" />. Untuk bentuk linear per linear, <InlineMath math="(2x+3)/(x-1)" /> tidak terdefinisi pada <InlineMath math="x=1" />.
 
 ## Menentukan Domain
 
 Untuk menentukan domain real suatu fungsi rasional:
 
-1. Samakan penyebut awal dengan nol.
-2. Cari semua nilai yang membuatnya nol.
+1. Samakan **penyebut awal** dengan nol.
+2. Cari semua nilai pembilang yang menghasilkan nol.
 3. Keluarkan nilai-nilai tersebut dari himpunan bilangan real.
 
 Ketiga langkah itu dipakai pada fungsi rasional yang penyebutnya bisa nol:
@@ -75,8 +79,10 @@ Ketiga langkah itu dipakai pada fungsi rasional yang penyebutnya bisa nol:
 Penyebut bernilai nol ketika:
 
 <MathContainer>
-  <BlockMath math="x-3=0" />
-  <BlockMath math="x=3." />
+
+<BlockMath math="x-3=0" />
+
+<BlockMath math="x=3." />
 </MathContainer>
 
 Jadi,
@@ -85,7 +91,7 @@ Jadi,
 
 ## Menyederhanakan Tanpa Kehilangan Domain
 
-Faktor persekutuan hanya boleh dicoret pada nilai yang membuat faktor itu tidak nol. Bentuk sederhana memberikan keluaran yang sama pada domain awal, tetapi tidak mengembalikan input yang sudah dikeluarkan.
+**Faktor persekutuan** hanya boleh dicoret pada nilai yang membuat faktor itu tidak nol. Bentuk sederhana memberikan keluaran yang sama pada domain awal, tetapi tidak mengembalikan input yang sudah dikeluarkan.
 
 ### Mencoret Pangkat Variabel yang Sama
 
@@ -93,11 +99,13 @@ Sederhanakan
 
 <BlockMath math="f(x)=\frac{6x^2}{3x}." />
 
-Penyebut awal mensyaratkan <InlineMath math="x\neq 0" />. Pada domain itu,
+**Penyebut** awal mensyaratkan <InlineMath math="x\neq 0" />. Pada domain itu,
 
 <MathContainer>
-  <BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
-  <BlockMath math="=2x,\qquad x\neq 0." />
+
+<BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
+
+<BlockMath math="\frac{6x^2}{3x}=2x,\qquad x\neq 0." />
 </MathContainer>
 
 Walaupun bentuk <InlineMath math="2x" /> terdefinisi saat <InlineMath math="x=0" />, fungsi rasional semula tidak terdefinisi di sana.
@@ -108,11 +116,13 @@ Sederhanakan
 
 <BlockMath math="g(x)=\frac{x^2-4}{x-2}." />
 
-Catat dahulu <InlineMath math="x\neq 2" />, lalu faktorkan selisih dua kuadrat:
+Catat dahulu <InlineMath math="x\neq 2" />, lalu faktorkan **selisih dua kuadrat**:
 
 <MathContainer>
-  <BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
-  <BlockMath math="=x+2,\qquad x\neq 2." />
+
+<BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
+
+<BlockMath math="\frac{x^2-4}{x-2}=x+2,\qquad x\neq 2." />
 </MathContainer>
 
 Grafiknya sama dengan garis <InlineMath math="y=x+2" />, kecuali terdapat lubang pada <InlineMath math="x=2" />.
@@ -121,26 +131,34 @@ Grafiknya sama dengan garis <InlineMath math="y=x+2" />, kecuali terdapat lubang
 
 Penjumlahan memerlukan penyebut yang sama, perkalian bisa langsung dikerjakan, sedangkan pembagian diselesaikan dengan mengalikan kebalikannya.
 
-Menjumlahkan, mengurangkan, mengalikan, dan membagi bentuk rasional mengikuti aturan pecahan.
+Catat **syarat penyebut tidak nol** sebelum menyederhanakan. Misalnya, mengalikan dua bentuk berikut membatalkan faktor, tetapi tidak mengizinkan masukan nol atau negatif satu.
+
+<BlockMath math="\frac{x}{x+1}\cdot\frac{x+1}{x}=1,\qquad x\neq-1,0" />
 
 ### Penjumlahan dan Pengurangan
 
-Gunakan penyebut bersama dan pertahankan semua batasan dari penyebut awal.
+Gunakan **penyebut bersama** dan pertahankan semua batasan dari penyebut awal.
 
 <MathContainer>
-  <BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
-  <BlockMath math="=\frac{2(x+1)+3x}{x(x+1)}" />
-  <BlockMath math="=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{2(x+1)+3x}{x(x+1)}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
 </MathContainer>
 
 ### Perkalian
 
-Kalikan pembilang dengan pembilang dan penyebut dengan penyebut, lalu faktorkan sebelum mencoret:
+Kalikan **pembilang** dengan pembilang dan penyebut dengan penyebut, lalu faktorkan sebelum mencoret:
 
 <MathContainer>
-  <BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
-  <BlockMath math="=\frac{2x(x+1)}{x(x-1)}" />
-  <BlockMath math="=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2x(x+1)}{x(x-1)}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
 </MathContainer>
 
 Habisnya faktor <InlineMath math="x" /> tidak menghapus batasan awal <InlineMath math="x\neq 0" />.
@@ -153,9 +171,13 @@ Membagi dengan pecahan berarti mengalikan dengan kebalikannya:
 
 Operasi ini memerlukan <InlineMath math="b\neq 0" /> dan <InlineMath math="d\neq 0" /> agar kedua pecahan awal terdefinisi, serta <InlineMath math="c\neq 0" /> agar pembaginya tidak bernilai nol.
 
+**Pembagi juga tidak boleh nol**. Pada contoh berikut, kedua pecahan memerlukan masukan bukan nol, dan pembagi menambahkan larangan masukan satu.
+
+<BlockMath math="\frac{x+1}{x}\div\frac{x-1}{x}=\frac{x+1}{x}\cdot\frac{x}{x-1}=\frac{x+1}{x-1},\quad x\neq0,1" />
+
 ## Latihan
 
-Setiap soal memberi bentuk rasional dan meminta domain atau bentuk sederhananya. Tentukan nilai yang tidak boleh dipakai lebih dulu, lalu sederhanakan.
+Setiap soal memberi bentuk rasional dan meminta **domain** atau bentuk sederhananya. Tentukan nilai yang tidak boleh dipakai lebih dulu, lalu sederhanakan.
 
 1. Tentukan domain <InlineMath math="f(x)=\frac{x+3}{x^2-9}" />.
 
@@ -165,42 +187,58 @@ Setiap soal memberi bentuk rasional dan meminta domain atau bentuk sederhananya.
 
 4. Sebuah mobil menempuh jarak <InlineMath math="300\text{ km}" /> dengan kecepatan rata-rata <InlineMath math="v\text{ km/jam}" />. Tuliskan waktu tempuh sebagai fungsi <InlineMath math="v" /> dan nyatakan domain yang bermakna secara fisik.
 
-### Pembahasan
+### Domain dengan dua nilai terlarang
 
-1. Pembilang tidak menentukan domain. Faktorkan penyebut:
+**Pembilang** tidak menentukan domain. Faktorkan penyebut:
 
-   <MathContainer>
-     <BlockMath math="x^2-9=(x-3)(x+3)" />
-     <BlockMath math="\begin{aligned} &amp;(x-3)(x+3) = 0 \\ &amp;\Longrightarrow x = 3 \text{ atau } x = -3. \end{aligned}" />
-   </MathContainer>
+<MathContainer>
 
-   Kedua nilai membuat penyebut awal bernilai nol. Jadi,
+<BlockMath math="x^2-9=(x-3)(x+3)" />
 
-   <BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
+<BlockMath math="\begin{aligned} &amp;(x-3)(x+3) = 0 \\ &amp;\Longrightarrow x = 3 \text{ atau } x = -3. \end{aligned}" />
+</MathContainer>
 
-2. Penyebut awal memberikan syarat <InlineMath math="x\neq -1" />. Faktorkan dan coret hanya pada domain tersebut:
+Kedua nilai membuat penyebut awal bernilai nol. Jadi,
 
-   <MathContainer>
-     <BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
-     <BlockMath math="=x-1,\qquad x\neq -1." />
-   </MathContainer>
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
 
-   Rumus sederhana itu tetap memiliki lubang pada input <InlineMath math="x=-1" />.
+### Penyederhanaan dan lubang
 
-3. Penyebut awal mensyaratkan <InlineMath math="x\neq 1" /> dan <InlineMath math="x\neq -1" />. Dengan <InlineMath math="(x-1)(x+1)" /> sebagai penyebut bersama,
+**Penyebut** awal memberikan syarat <InlineMath math="x\neq -1" />. Faktorkan dan coret hanya pada domain tersebut:
 
-   <MathContainer>
-     <BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
-     <BlockMath math="=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
-     <BlockMath math="=\frac{x+1-2x+2}{(x-1)(x+1)}" />
-     <BlockMath math="=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
-   </MathContainer>
+<MathContainer>
 
-4. Waktu sama dengan jarak dibagi kecepatan:
+<BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
 
-   <MathContainer>
-     <BlockMath math="\text{waktu}=\frac{\text{jarak}}{\text{kecepatan}}" />
-     <BlockMath math="t(v)=\frac{300}{v}." />
-   </MathContainer>
+<BlockMath math="\frac{x^2-1}{x+1}=x-1,\qquad x\neq -1." />
+</MathContainer>
 
-   Secara aljabar, <InlineMath math="v\neq 0" />. Untuk mobil yang sedang bergerak, kecepatan harus positif. Jadi, model fisiknya memakai <InlineMath math="v>0" />.
+Rumus sederhana itu tetap memiliki lubang pada input <InlineMath math="x=-1" />.
+
+### Mengurangkan dua pecahan
+
+**Penyebut** awal mensyaratkan <InlineMath math="x\neq 1" /> dan <InlineMath math="x\neq -1" />. Dengan <InlineMath math="(x-1)(x+1)" /> sebagai penyebut bersama,
+
+<MathContainer>
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2x+2}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
+</MathContainer>
+
+### Model waktu tempuh
+
+Waktu sama dengan jarak dibagi kecepatan:
+
+<MathContainer>
+
+<BlockMath math="\text{waktu}=\frac{\text{jarak}}{\text{kecepatan}}" />
+
+<BlockMath math="t(v)=\frac{300}{v}." />
+</MathContainer>
+
+Secara aljabar, <InlineMath math="v\neq 0" />. Untuk mobil yang sedang bergerak, **kecepatan harus positif**. Jadi, model fisiknya memakai <InlineMath math="v>0" />.

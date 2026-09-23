@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Lange Polynomdivision",
-  description: "Führe die synthetische Polynomdivision aus und bestimme Quotient sowie Rest in Rechenbeispielen.",
+  description: "Führe die schriftliche Polynomdivision aus und bestimme Quotient sowie Rest in Rechenbeispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-13",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Die schriftliche Zahlendivision auf Polynome übertragen
 
-<Highlight>Die schriftliche Polynomdivision bestimmt Quotient und Rest bei der Division zweier Polynome.</Highlight> Ihr Ablauf ähnelt der schriftlichen Division ganzer Zahlen. Die Spaltenausrichtung ist es, die dieses Muster funktionieren lässt, denn nur gleichartige Terme dürfen voneinander subtrahiert werden.
+Die schriftliche Polynomdivision bestimmt <Highlight>Quotient und Rest</Highlight> bei der Division zweier Polynome. Ihr Ablauf ähnelt der schriftlichen Division ganzer Zahlen. Die Spaltenausrichtung ist es, die dieses Muster funktionieren lässt, denn nur gleichartige Terme dürfen voneinander subtrahiert werden.
 
 ## Vorbereitung
 
@@ -35,99 +35,95 @@ Vor der Division sind einige Vorbereitungen nötig:
 
 ## Schritte der Polynomdivision
 
-Der Ablauf wiederholt fünf klare Schritte:
-
-1.  **Dividieren:** Teile den führenden Term von <InlineMath math="P(x)" /> durch den führenden Term von <InlineMath math="Q(x)" />. Schreibe das Ergebnis als ersten Term des Quotienten <InlineMath math="H(x)" /> über die Linie.
-2.  **Multiplizieren:** Multipliziere den so erhaltenen Quotiententerm mit dem _gesamten_ Divisor <InlineMath math="Q(x)" />.
-3.  **Subtrahieren:** Schreibe das Produkt unter <InlineMath math="P(x)" />, richte gleichartige Terme untereinander aus und subtrahiere es von <InlineMath math="P(x)" />. So entsteht ein vorläufiger Rest.
-4.  **Herunterziehen:** Ziehe den nächsten Term von <InlineMath math="P(x)" /> herunter und ergänze damit den vorläufigen Rest zu einem neuen Polynom.
-5.  **Wiederholen:** Wiederhole die Schritte <InlineMath math="1\text{-}4" />, bis der Grad des Rests kleiner als der Grad des Divisors <InlineMath math="Q(x)" /> ist.
+Der Divisor darf **nicht das Nullpolynom** sein. In jedem Durchgang beseitigen Multiplikation und Subtraktion den führenden Term des vorläufigen Rests. Beende die Division, wenn der Rest null ist oder einen kleineren Grad als der Divisor hat.
 
 ### Beispiel einer Polynomdivision
 
 Dividiere <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> durch <InlineMath math="Q(x) = x^2 + 4x - 1" />.
 
-1. **Vorbereitung:**
+**Schritt 1**. Vorbereitung
 
-   - <InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (Ergänze den fehlenden <InlineMath math="x^2" />-Term.)
-   - <InlineMath math="Q(x) = x^2 + 4x - 1" />
+<InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (Ergänze den fehlenden <InlineMath math="x^2" />-Term.)
+<InlineMath math="Q(x) = x^2 + 4x - 1" />
 
-2. **Divisionsrechnung:**
+**Schritt 2**. Divisionsrechnung
 
-   Der Quotient lautet <InlineMath math="4x^2+x" /> und der Rest <InlineMath math="-2x+1" />. Die folgenden Schritte zeigen jede Multiplikation und Subtraktion einschließlich des Nullkoeffizienten von <InlineMath math="x^2" />.
+Der Quotient lautet <InlineMath math="4x^2+x" /> und der Rest <InlineMath math="-2x+1" />. Die folgenden Schritte zeigen jede Multiplikation und Subtraktion einschließlich des Nullkoeffizienten von <InlineMath math="x^2" />.
 
-3. **Schritt-für-Schritt-Erklärung:**
+**Schritt 3**. Schritt-für-Schritt-Erklärung
 
-   **Iteration** <InlineMath math="1" />:
+**Iteration 1**:
 
-   - **Dividieren:** Teile den führenden Term <InlineMath math="4x^4" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
+**Dividieren:** Teile den führenden Term <InlineMath math="4x^4" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
+<BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
 
-     Schreibe <InlineMath math="4x^2" /> als ersten Term des Quotienten.
+Schreibe <InlineMath math="4x^2" /> als ersten Term des Quotienten.
 
-   - **Multiplizieren:** Multipliziere <InlineMath math="4x^2" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiplizieren:** Multipliziere <InlineMath math="4x^2" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
-   - **Subtrahieren:** Subtrahiere das Produkt vom anfänglichen Polynom:
+**Subtrahieren:** Subtrahiere das Produkt vom anfänglichen Polynom:
 
-     <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
 
-   - **Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="-3x" />) herunter, um das neue Polynom zu erhalten:
+**Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="-3x" />) herunter, um das neue Polynom zu erhalten:
 
-     <InlineMath math="x^3 + 4x^2 - 3x" />
+<InlineMath math="x^3 + 4x^2 - 3x" />
 
-   **Iteration** <InlineMath math="2" />:
+**Iteration 2**:
 
-   - **Dividieren:** Teile den führenden Term des neuen Polynoms <InlineMath math="x^3" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
+**Dividieren:** Teile den führenden Term des neuen Polynoms <InlineMath math="x^3" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{x^3}{x^2} = x" />
+<BlockMath math="\frac{x^3}{x^2} = x" />
 
-     Schreibe <InlineMath math="+x" /> als nächsten Term des Quotienten.
+Schreibe <InlineMath math="+x" /> als nächsten Term des Quotienten.
 
-   - **Multiplizieren:** Multipliziere <InlineMath math="x" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiplizieren:** Multipliziere <InlineMath math="x" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
+<BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
 
-   - **Subtrahieren:** Subtrahiere das Produkt vom aktuellen Polynom:
+**Subtrahieren:** Subtrahiere das Produkt vom aktuellen Polynom:
 
-     <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
-   - **Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="+1" />) herunter, um den vorläufigen Rest zu erhalten:
+**Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="+1" />) herunter, um den vorläufigen Rest zu erhalten:
 
-     <BlockMath math="-2x + 1" />
+<BlockMath math="-2x + 1" />
 
-   **Abbruch:** Der Grad des Restes (<InlineMath math="-2x+1" />, Grad <InlineMath math="1" />) ist kleiner als der Grad des Divisors (<InlineMath math="x^2+4x-1" />, Grad <InlineMath math="2" />). Damit ist die Division beendet.
+**Abbruch:** Der Grad des Restes (<InlineMath math="-2x+1" />, Grad <InlineMath math="1" />) ist kleiner als der Grad des Divisors (<InlineMath math="x^2+4x-1" />, Grad <InlineMath math="2" />). Damit ist die Division beendet.
 
-4. **Ergebnis:**
+**Schritt 4**. Ergebnis
 
-     - Der Quotient (<InlineMath math="H(x)" />) ist <InlineMath math="4x^2 + x" />.
-     - Der Rest (<InlineMath math="S(x)" />) beträgt <InlineMath math="-2x + 1" />.
+Der Quotient (<InlineMath math="H(x)" />) ist <InlineMath math="4x^2 + x" />.
+Der Rest (<InlineMath math="S(x)" />) beträgt <InlineMath math="-2x + 1" />.
 
-5. **Schreiben in Form eines Divisionsalgorithmus:**
+**Schritt 5**. Schreiben in Form eines Divisionsalgorithmus
 
-     Mit dem Divisionsalgorithmus können wir das Ergebnis so schreiben:
+Mit dem Divisionsalgorithmus können wir das Ergebnis so schreiben:
 
-     - Bruchform:
+Bruchform:
 
-       <BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
 
-     - Multiplikationsform:
+Multiplikationsform:
 
-       <BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
 
 Die Polynomdivision hält jeden Divisions-, Multiplikations- und Subtraktionsschritt fest. Diese Anordnung funktioniert für Divisoren beliebigen positiven Grades und erleichtert die Kontrolle mit <InlineMath math="P(x)=Q(x)H(x)+S(x)" />.
 
+Die Bruchform gilt nur für Eingaben mit <InlineMath math="Q(x)\ne0" />. Die Produktidentität gilt weiterhin für alle Eingaben.
+
 ## Übung
 
-Bestimme bei der Division von <InlineMath math="P(x) = x^3 - x + 9" /> durch <InlineMath math="Q(x) = x^2 - 2x + 3" /> das Quotientenpolynom <InlineMath math="H(x)" /> und das Restpolynom <InlineMath math="S(x)" />. Prüfe das Ergebnis, indem du den Divisor mit dem Quotienten multiplizierst und den Rest addierst.
+Bestimme bei der Division von <InlineMath math="P(x) = x^3 - x + 9" /> durch <InlineMath math="Q(x) = x^2 - 2x + 3" /> das **Quotientenpolynom** <InlineMath math="H(x)" /> und das Restpolynom <InlineMath math="S(x)" />. Prüfe das Ergebnis, indem du den Divisor mit dem Quotienten multiplizierst und den Rest addierst.
 
 Gib das Ergebnis in der Form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" /> an.
 
 ### Ausführliche Lösung
 
-Vervollständige <InlineMath math="P(x)" /> zu <InlineMath math="x^3 + 0x^2 - x + 9" />, damit alle Potenzen in absteigender Reihenfolge vorhanden sind.
+**Ergänze den Nullkoeffizienten** von <InlineMath math="P(x)" /> zu <InlineMath math="x^3 + 0x^2 - x + 9" />, damit alle Potenzen in absteigender Reihenfolge vorhanden sind.
 
 <BlockMath
   math="

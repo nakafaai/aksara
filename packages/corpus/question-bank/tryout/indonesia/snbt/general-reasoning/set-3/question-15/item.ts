@@ -17,7 +17,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Grüner Tee kann bewährten Sonnenschutz ersetzen.",
+          label:
+            "Das Trinken von grünem Tee kann bewährten Sonnenschutz nachweislich ersetzen.",
         },
         {
           isCorrect: true,
@@ -46,7 +47,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Drinking green tea can replace established sun protection.",
+          label:
+            "Drinking green tea is proven to replace established sun protection.",
         },
         {
           isCorrect: true,
@@ -76,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Minum teh hijau dapat menggantikan perlindungan matahari yang sudah mapan.",
+            "Minum teh hijau terbukti dapat menggantikan perlindungan matahari yang sudah mapan.",
         },
         {
           isCorrect: true,

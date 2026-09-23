@@ -3,17 +3,19 @@ export const metadata = {
     description: "Verfolge die QR-Iteration von der orthogonalen Faktorisierung bis zur Schurform und lies reelle sowie komplexe Eigenwerte ohne charakteristisches Polynom ab.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Lineare Methoden der KI",
 };
 
 ## Eigenwerte durch wiederholte Basiswechsel bestimmen
 
-Der <InlineMath math="\mathrm{QR}" />-Algorithmus berechnet alle Eigenwerte einer quadratischen Matrix durch wiederholte Basiswechsel. <Highlight>Jeder Schritt erzeugt eine ähnliche Matrix, sodass die Eigenwerte gleich bleiben.</Highlight> Die Iteration nähert sich einer Diagonalform oder Schurform. Aus deren Diagonaleinträgen oder kleinen Diagonalblöcken lassen sich die Eigenwerte bestimmen.
+Der <InlineMath math="\mathrm{QR}" />-Algorithmus berechnet alle Eigenwerte einer quadratischen Matrix durch wiederholte Basiswechsel. Jeder Schritt erzeugt eine <Highlight>ähnliche Matrix</Highlight>, sodass die Eigenwerte gleich bleiben. Ziel der Iteration ist eine Diagonalform oder Schurform. Für die Konvergenz braucht man geeignete Verschiebungs- und Deflationsstrategien. Aus deren Diagonaleinträgen oder kleinen Diagonalblöcken lassen sich die Eigenwerte bestimmen.
 
 Die folgende Variante ist die unverschobene <InlineMath math="\mathrm{QR}" />-Iteration. Praktische Eigenwertlöser verwenden zusätzlich Verschiebungen, reduzieren die Matrix auf Hessenbergform und trennen konvergierte Blöcke ab. Diese Schritte verbessern Geschwindigkeit und numerische Zuverlässigkeit.
 
 ## Eine Iteration mit QR
+
+Reduziere die Matrix für den folgenden Deflationstest zunächst durch unitäre Ähnlichkeit auf **obere Hessenbergform**. Alle Einträge unterhalb der ersten Nebendiagonalen sind dann null. Beginne mit dieser Matrix. Das folgende 2×2-Beispiel erfüllt die Bedingung bereits.
 
 1. Beginne mit <InlineMath math="A_0=A" />.
 
@@ -44,7 +46,7 @@ Damit ist <InlineMath math="A_{k+1}" /> unitär ähnlich zu <InlineMath math="A_
 
 ## Die entstehende Form
 
-Die Grenzform hängt von der Matrix und dem verwendeten Zahlkörper ab.
+Die Grenzform hängt von der Matrix und dem **verwendeten Zahlkörper** ab.
 
 | Matrix | Konvergierte Form | Eigenwerte ablesen |
 |---|---|---|
@@ -53,6 +55,12 @@ Die Grenzform hängt von der Matrix und dem verwendeten Zahlkörper ab.
 | Allgemein reell | Reelle obere Quasidreiecksform | Jeder <InlineMath math="1\times1" />-Block liefert einen reellen Eigenwert. Jeder <InlineMath math="2\times2" />-Block liefert ein komplex konjugiertes Paar |
 
 Die Eigenwerte können in jeder Reihenfolge erscheinen. Mehrfache Werte und besondere Anordnungen müssen gesondert behandelt werden, weil eine strenge Betragsordnung diese Fälle nicht abdeckt.
+
+Die unverschobene Iteration **konvergiert nicht immer zur angegebenen Form**. Beispielsweise besitzt die folgende symmetrische Matrix die Faktoren <InlineMath math="Q=C" /> und <InlineMath math="R=I" />. Die nächste Iterierte bleibt deshalb unverändert:
+
+<BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
+
+Die Eigenwerte sind 1 und −1. Ihre gleichen Beträge zeigen, warum praktische Verfahren geeignete Verschiebungen und Konvergenzprüfungen benötigen.
 
 ## Durchgerechnetes symmetrisches Beispiel
 
@@ -67,10 +75,8 @@ Eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit anschließender Multiplikat
 <BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
 </MathContainer>
 
-Der Betrag der Nebendiagonaleinträge ist bereits von <InlineMath math="1" /> auf <InlineMath math="3/5" /> gesunken. Weitere Iterationen treiben beide Einträge gegen null:
+Der **Betrag der Nebendiagonaleinträge** ist bereits von <InlineMath math="1" /> auf <InlineMath math="3/5" /> gesunken. Weitere Iterationen treiben beide Einträge gegen null:
 
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 Die Grenzdiagonale enthält die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Da jede Iterierte zu <InlineMath math="A_0" /> ähnlich ist, sind dies die Eigenwerte der ursprünglichen Matrix und keine durch eine veränderte Aufgabe erzeugten Näherungen.
-
-> Die <InlineMath math="\mathrm{QR}" />-Iteration ist ein Ähnlichkeitsprozess. Bei symmetrischen Matrizen nähert sie sich einer Diagonalform. Bei allgemeinen reellen Matrizen nähert sie sich einer reellen Schurform, die notwendige <InlineMath math="2\times2" />-Blöcke enthalten kann.

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Limit",
 };
 
@@ -29,38 +29,35 @@ Singkat suku akar sebagai <InlineMath math="R(t)" />:
   <BlockMath math="\begin{aligned} &amp;\lim_{t\to\infty}N(t) \\ &amp;=\lim_{t\to\infty}(285000-R(t)) \end{aligned}" />
 </MathContainer>
 
-**Perilaku jangka panjang:**
+Untuk menghitung limit secara tepat, keluarkan <InlineMath math="t^2" /> dari akar. Karena <InlineMath math="t>0" />, akar <InlineMath math="t^2" /> sama dengan <InlineMath math="t" />:
 
-Ketika <InlineMath math="t" /> sangat besar, suku <InlineMath math="t^2" /> akan mendominasi di dalam akar karena:
-- <InlineMath math="t^2" /> tumbuh lebih cepat dibanding <InlineMath math="t" /> dan konstanta <InlineMath math="(190{,}68)^3" />
-- Untuk <InlineMath math="t \gg 1" />, berlaku <InlineMath math="t^2 - t + (190{,}68)^3 \approx t^2" />
+<BlockMath math="R(t)=t\sqrt{1-\frac1t+\frac{(190{,}68)^3}{t^2}}" />
 
-Jadi,
+Faktor akar terakhir mendekati <InlineMath math="1" />, sedangkan <InlineMath math="t\to\infty" />. Maka <InlineMath math="R(t)\to\infty" /> dan **rumus kasus menjadi negatif** untuk masukan yang cukup besar:
 
-Untuk <InlineMath math="t" /> positif yang besar:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;\sqrt{t^2 - t + (190{,}68)^3} \\ &amp;\approx\sqrt{t^2}=|t|=t \end{aligned}" />
-  <BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
-</MathContainer>
+<BlockMath math="\lim_{t\to\infty}N(t)=-\infty" />
 
 > Jumlah kasus yang negatif menunjukkan bahwa rumus dipakai di luar rentang waktu yang dapat dimodelkan. Karena jumlah kasus tidak mungkin negatif, rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Rumus sederhana ini hanya menjadi contoh perhitungan matematika. Rumus ini tidak dapat memprediksi perkembangan wabah dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
 
-### Hasil Model pada Target Vaksinasi
+### Batas Masukan yang Memberi Hasil Tak Negatif
 
-Dalam model ini, limit dan nilai fungsi menunjukkan hasil rumus di sekitar target vaksinasi tertentu. Hasil perhitungan tersebut belum membuktikan bahwa target itu efektif. Untuk menilai efektivitas target, kita tetap membutuhkan data nyata tentang populasi dan penularan.
+Kita dapat menghitung rentang masukan yang memenuhi <InlineMath math="N(t)\ge0" />. Kedua ruas yang dikuadratkan berikut tidak negatif:
 
-Misalkan model memakai target vaksinasi <InlineMath math="V \text{ orang}" /> berusia di atas <InlineMath math="18 \text{ tahun}" />. Masukkan nilai <InlineMath math="V" /> ke dalam rumus untuk menghitung jumlah kasus yang diberikan oleh model pada target tersebut. Hasil ini hanya berasal dari rumus dan tidak membuktikan bahwa target itu merupakan strategi terbaik.
+<BlockMath math="C=(190{,}68)^3" />
+
+<BlockMath math="\begin{aligned}N(t)\ge0&\iff\sqrt{t^2-t+C}\le285000\\&\iff t^2-t+C\le285000^2\\&\iff0\le t\le\frac{1+\sqrt{1+4(285000^2-C)}}2\end{aligned}" />
+
+Untuk <InlineMath math="t\ge0" />, batas atasnya sekitar <InlineMath math="284988{,}34" />. Nilai <InlineMath math="282367" /> pada contoh berada di bawah batas ini. Uji tersebut hanya memeriksa **hasil tak negatif**, belum membuktikan model cocok dengan data.
 
 ## Aplikasi dalam Bidang Ekonomi
 
-Besaran marginal mengukur perubahan akibat satu satuan tambahan. Limit mengubah perubahan itu menjadi laju sesaat, dan itulah arti besaran marginal ketika tambahan satuannya dibuat sangat kecil.
+Besaran marginal mengukur perubahan akibat satu satuan tambahan. Limit mengubah perubahan itu menjadi **laju sesaat**, dan itulah arti besaran marginal ketika tambahan satuannya dibuat sangat kecil.
 
 ### Analisis Biaya Marginal
 
 Dalam model biaya yang dapat diturunkan, **biaya marginal** adalah laju sesaat perubahan biaya total terhadap jumlah produksi. Besaran ini didefinisikan dengan turunan:
 
-**Definisi matematis menggunakan limit:**
+**Definisi matematis menggunakan limit**:
 
 <BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
 
@@ -83,13 +80,31 @@ Karena <InlineMath math="e^{-rt} \to 0" /> ketika <InlineMath math="t \to \infty
 
 Di sini, <InlineMath math="K" /> adalah parameter dalam model yang disederhanakan. Daya dukung lingkungan nyata dapat berubah, sehingga limit tersebut tidak menyatakan bahwa setiap populasi terukur pasti menetap selamanya pada satu nilai tetap.
 
+Ambil <InlineMath math="A=4" /> dan gunakan koordinat tanpa satuan <InlineMath math="u=rt" /> serta <InlineMath math="q=P/K" />. Grafik kemudian memperlihatkan **bagian daya dukung yang telah tercapai**:
+
+<BlockMath math="q(u)=\frac1{1+4e^{-u}}" />
+
+Pada <InlineMath math="u=0" />, <InlineMath math="q=1/5" />. Pada <InlineMath math="u=\ln4" />, <InlineMath math="q=1/(1+4/4)=1/2" />. Kurva mendekati <InlineMath math="q=1" /> tanpa mencapainya pada waktu berhingga.
+
+<LineEquation
+  title="Populasi sebagai Bagian dari Daya Dukung"
+  description="Sumbu horizontal adalah u sama dengan r kali t. Sumbu vertikal adalah q sama dengan P dibagi K. Garis oranye menandai batas satu."
+  showZAxis={false}
+  cameraTarget={[3, 0.5, 0]}
+  cameraPosition={[3, 0.5, 11]}
+  data={[
+    { points: Array.from({ length: 121 }, (_, i) => { const x = i * 0.05; return { x, y: 1 / (1 + 4 * Math.exp(-x)), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: [{ x: 0, y: 1, z: 0 }, { x: 6, y: 1, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="q=1" />, offset: [0, 0.3, 0] }] },
+  ]}
+/>
+
 ## Penerapan dalam Teknologi dan Sains
 
-Setiap contoh menerapkan limit pada proses yang berlangsung, yaitu bagaimana suatu besaran berkembang ketika besaran lain menuju nilai limitnya. Pada kedua contoh, hasilnya berupa satu nilai akhir yang muncul setelah perubahan bertahap.
+Contoh filter mengubah frekuensi, sedangkan contoh reaksi mengubah waktu. Identifikasi **variabel yang didekati** sebelum menghitung limit untuk membedakan respons pada frekuensi rendah dari perilaku reaksi setelah waktu yang panjang.
 
-### Analisis Sinyal Digital
+### Respons Frekuensi Filter Analog
 
-Untuk **model low-pass orde satu yang dinormalisasi** dengan frekuensi cutoff <InlineMath math="\omega_c > 0" />, besar respons frekuensinya adalah:
+Untuk **model low-pass analog orde satu yang dinormalisasi** dengan frekuensi sudut cutoff <InlineMath math="\omega_c>0" />, besar responsnya adalah:
 
 <BlockMath math="|H(i\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}" />
 
@@ -100,7 +115,9 @@ Nilai limitnya memperjelas perilaku ideal model:
 <BlockMath math="\lim_{\omega \to \infty}|H(i\omega)|=0" />
 </MathContainer>
 
-Model ini meneruskan frekuensi yang sangat rendah dengan penguatan satu dan semakin meredam frekuensi tinggi. Aturan tersebut menjelaskan satu jenis filter matematis. Filter digital lain dapat mengikuti aturan yang berbeda.
+Model analog ini meneruskan frekuensi sangat rendah dengan penguatan mendekati satu dan semakin meredam frekuensi tinggi. Pada frekuensi cutoff, hasil substitusi adalah:
+
+<BlockMath math="|H(i\omega_c)|=\frac1{\sqrt{1+1^2}}=\frac1{\sqrt2}" />
 
 ### Laju Reaksi Kimia
 
@@ -116,7 +133,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
 
 ## Menghitung Kasus pada Target Vaksinasi
 
-Misalkan <InlineMath math="t" /> adalah jumlah orang yang telah divaksinasi dan <InlineMath math="N(t)" /> adalah jumlah kasus positif tersisa yang dihitung oleh model berikut:
+Misalkan <InlineMath math="t" /> adalah jumlah orang yang telah divaksinasi dan <InlineMath math="N(t)" /> adalah jumlah **kasus positif** tersisa yang dihitung oleh model berikut:
 
 <BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190{,}68)^3} \end{aligned}" />
 
@@ -128,8 +145,8 @@ Perhitungan ini memakai asumsi berikut:
 
 - Total populasi adalah <InlineMath math="576{.}260 \text{ orang}" />.
 - Anak-anak berjumlah <InlineMath math="21\%" /> dari populasi dan orang dewasa berjumlah <InlineMath math="79\%" />.
-- Proporsi kasus positif adalah <InlineMath math="30\%" /> pada setiap kelompok usia.
-- Hanya orang dewasa yang tidak termasuk kelompok kasus positif yang memenuhi syarat vaksinasi.
+- Proporsi **kasus positif** adalah <InlineMath math="30\%" /> pada setiap kelompok usia.
+- Pada skenario buatan ini, orang dewasa berusia di atas <InlineMath math="18 \text{ tahun}" /> dan tidak termasuk kelompok kasus positif.
 
 Asumsi tersebut menghasilkan jumlah berikut:
 
@@ -185,6 +202,8 @@ Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutn
 
 Jika <InlineMath math="282{.}367" /> orang sudah divaksinasi, rumus menghasilkan sekitar <InlineMath math="2{.}621" /> kasus positif tersisa. Hasil ini hanya berasal dari rumus sederhana tersebut. Data nyata tetap diperlukan untuk memprediksi jumlah kasus positif yang tersisa atau menentukan alokasi sumber daya kesehatan.
 
+Ada **ketidakcocokan nilai awal**: rumus memberi <InlineMath math="N(0)\approx282367" />, sedangkan asumsi populasi memberi <InlineMath math="172878" /> kasus awal. Jadi, contoh ini melatih evaluasi dan kritik model. Hasil rumus tidak dapat diperlakukan sebagai prediksi untuk populasi yang dijelaskan.
+
 ## Batas Rumus dan Model
 
 Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis dari rumus yang diberikan. Keputusan nyata masih memerlukan bukti yang diuji secara terpisah mengenai:
@@ -198,7 +217,7 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
 
 ## Latihan
 
-Setiap soal memberi suatu situasi dan meminta nilai yang didekati suatu besaran. Tentukan besarannya lebih dulu, lalu hitung limitnya.
+Setiap soal memberi suatu situasi dan meminta **nilai yang didekati** suatu besaran. Tentukan besarannya lebih dulu, lalu hitung limitnya.
 
 1. Sebuah perusahaan farmasi memodelkan produksi vaksin kumulatif dengan <InlineMath math="P(t) = 50000(1 - e^{-0{,}1t})" /> untuk <InlineMath math="t \geq 0" />. Tentukan batas produksi jangka panjang yang diprediksi model.
 
@@ -206,66 +225,66 @@ Setiap soal memberi suatu situasi dan meminta nilai yang didekati suatu besaran.
 
 3. Model biaya total untuk memproduksi <InlineMath math="x" /> masker adalah <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" />. Tentukan fungsi biaya marginal dengan definisi limit, lalu bandingkan dengan tambahan biaya tepat ketika produksi naik dari <InlineMath math="x" /> menjadi <InlineMath math="x+1" />.
 
-### Pembahasan
+### Batas Produksi Kumulatif
 
-1. **Penyelesaian:**
+**Batas jangka panjang** model diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
 
-   Batas jangka panjang model diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
+<BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0{,}1t})" />
+<BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ unit vaksin} \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
-   <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0{,}1t})" />
-   <BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ unit vaksin} \end{aligned}" />
-   </MathContainer>
+Produksi kumulatif dalam model mendekati <InlineMath math="50{.}000" /> unit vaksin. Nilainya tidak pernah tepat sama dengan angka tersebut pada <InlineMath math="t" /> berhingga karena <InlineMath math="e^{-0{,}1t}>0" /> untuk setiap <InlineMath math="t" /> berhingga.
 
-   Produksi kumulatif dalam model mendekati <InlineMath math="50{.}000" /> unit vaksin. Nilainya tidak pernah tepat sama dengan angka tersebut pada <InlineMath math="t" /> berhingga karena <InlineMath math="e^{-0{,}1t}>0" /> untuk setiap <InlineMath math="t" /> berhingga.
+### Batas Jangkauan Pesan
 
-2. **Penyelesaian:**
+Bagi pembilang dan penyebut dengan <InlineMath math="t" /> untuk melihat **suku yang menuju nol**. Pembagian ini sah ketika <InlineMath math="t>0" />, sesuai arah limit.
 
-   <MathContainer>
-   <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
-   <BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
-   <BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ orang}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
+<BlockMath math="= \lim_{t \to \infty} \frac{100000t}{t(1 + \frac{50}{t})} = \lim_{t \to \infty} \frac{100000}{1 + \frac{50}{t}}" />
+<BlockMath math="= \frac{100000}{1 + 0} = 100000 \text{ orang}" />
+</MathContainer>
 
-   Di dalam model, jangkauan kumulatif mendekati <InlineMath math="100{.}000 \text{ orang}" /> seiring waktu bertambah. Angka tersebut menjadi batas jangkauan di dalam model. Pesan nyata dapat menjangkau jumlah yang berbeda karena kondisinya dapat berubah.
+Di dalam model, jangkauan kumulatif mendekati <InlineMath math="100{.}000 \text{ orang}" /> seiring waktu bertambah. Angka tersebut menjadi batas jangkauan di dalam model. Pesan nyata dapat menjangkau jumlah yang berbeda karena kondisinya dapat berubah.
 
-3. **Penyelesaian:**
+### Biaya Marginal dan Biaya Satu Unit
 
-   Biaya marginal adalah turunan dari fungsi biaya, yang dapat dihitung menggunakan definisi limit:
+Biaya marginal adalah turunan dari fungsi biaya, yang dapat dihitung menggunakan definisi limit:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
+</MathContainer>
 
-   **Langkah detail:**
+**Langkah detail**:
 
-   <BlockMath math="\begin{aligned} C(x + \Delta x) &amp;= 1000 + 5(x + \Delta x) \\ &amp;\quad{}+ 0{,}01(x + \Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} C(x + \Delta x) &amp;= 1000 + 5(x + \Delta x) \\ &amp;\quad{}+ 0{,}01(x + \Delta x)^2 \end{aligned}" />
 
-   Kita ekspansi:
+Kita ekspansi:
 
-   <BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
+<BlockMath math="(x + \Delta x)^2 = x^2 + 2x\Delta x + (\Delta x)^2" />
 
-   Lalu kita substitusikan:
+Lalu kita substitusikan:
 
-   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) \\ &amp;= 1000 + 5x \\ &amp;\quad{}+ 5\Delta x + 0{,}01x^2 \\ &amp;\quad{}+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) \\ &amp;= 1000 + 5x \\ &amp;\quad{}+ 5\Delta x + 0{,}01x^2 \\ &amp;\quad{}+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
 
-   Maka,
+Maka,
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) \\ &amp;= 5\Delta x \\ &amp;\quad{}+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0{,}02x + 0{,}01\Delta x \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) \\ &amp;= 5 + 0{,}02x \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) \\ &amp;= 5\Delta x \\ &amp;\quad{}+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0{,}02x + 0{,}01\Delta x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) \\ &amp;= 5 + 0{,}02x \end{aligned}" />
+</MathContainer>
 
-   Jadi, fungsi biaya marginalnya adalah <InlineMath math="C'(x)=5+0{,}02x" /> satuan mata uang per unit produksi.
+Jadi, fungsi biaya marginalnya adalah <InlineMath math="C'(x)=5+0{,}02x" /> satuan mata uang per unit produksi.
 
-   Tambahan biaya tepat untuk unit utuh berikutnya adalah:
+Tambahan biaya tepat untuk unit utuh berikutnya adalah:
 
-   <MathContainer>
-   <BlockMath math="C(x+1)-C(x)" />
-   <BlockMath math="\begin{aligned}  &amp;=1000 +5(x+1) \\ &amp;\quad{}+0{,}01(x+1)^2 \\ &amp;\quad{}-(1000+5x+0{,}01x^2) \end{aligned}" />
-   <BlockMath math="=5{,}01+0{,}02x" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="C(x+1)-C(x)" />
+<BlockMath math="\begin{aligned}  &amp;=1000 +5(x+1) \\ &amp;\quad{}+0{,}01(x+1)^2 \\ &amp;\quad{}-(1000+5x+0{,}01x^2) \end{aligned}" />
+<BlockMath math="=5{,}01+0{,}02x" />
+</MathContainer>
 
-   Untuk model ini, turunan lebih kecil <InlineMath math="0{,}01" /> satuan mata uang daripada tambahan biaya satu unit yang sebenarnya. Perbandingan ini memperjelas bahwa biaya marginal adalah laju sesaat dan hanya mendekati biaya unit diskret berikutnya.
+Untuk model ini, turunan lebih kecil <InlineMath math="0{,}01" /> satuan mata uang daripada tambahan biaya satu unit yang sebenarnya. Perbandingan ini memperjelas bahwa biaya marginal adalah laju sesaat dan hanya mendekati biaya unit diskret berikutnya.

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan rangkaian tertutup sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Bacaan hanya mendefinisikan rangkaian tertutup tanpa membandingkan susunan komponen atau membahas perilaku lampu.",
         },
         {
           isCorrect: false,

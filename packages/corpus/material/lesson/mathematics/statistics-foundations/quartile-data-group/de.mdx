@@ -23,8 +23,7 @@ Dabei bezeichnet <InlineMath math="n" /> die Gesamtzahl aller Werte.
 
 ## Vorgehen bei gruppierten Daten
 
-Als Beispiel betrachten wir die nach Schuhgrößen gruppierten Verkaufszahlen eines Geschäfts. Die Häufigkeitstabelle unten nennt jede Klasse und die Zahl der verkauften Paare darin, und die Quartile werden durch Interpolation in der Klasse geschätzt, die die gesuchte Position enthält. Arbeite die Schritte mit der Tabelle daneben durch, denn jeder eingesetzte Wert stammt aus ihr.
-
+Als Beispiel betrachten wir die nach Schuhgrößen gruppierten Verkaufszahlen eines Geschäfts. Die Häufigkeitstabelle unten nennt jede Klasse und die Zahl der verkauften Paare darin, und die Quartile werden durch **Interpolation** in der Klasse geschätzt, die die gesuchte Position enthält. Arbeite die Schritte mit der Tabelle daneben durch, denn jeder eingesetzte Wert stammt aus ihr.
 ### Kumulative Häufigkeitstabelle aufstellen
 
 Zuerst ergänzen wir die kumulierte Häufigkeit <InlineMath math="F_k" />. Sie addiert alle Häufigkeiten von der ersten Klasse bis einschließlich der betrachteten Klasse. Daran erkennen wir, in welchem Intervall eine gesuchte Position liegt.
@@ -85,56 +84,58 @@ Diese Interpolation setzt voraus, dass die Beobachtungen <Highlight>innerhalb de
 
 Berechnen wir <InlineMath math="Q_1" /> aus der obigen Tabelle.
 
-1.  **Position von <InlineMath math="Q_1" />:** <InlineMath math="7{,}5" />.
-2.  **Klasse von <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
-3.  **Benötigte Größen ablesen:**
-    - Die untere Grenze der Klasse <InlineMath math="Q_1" /> (<InlineMath math="T_b" />) ist <InlineMath math="39{,}5" />
-    - Die Gesamtzahl der Werte (<InlineMath math="n" />) ist <InlineMath math="30" />
-    - Die kumulierte Häufigkeit vor der Klasse <InlineMath math="Q_1" /> (<InlineMath math="F_{\text{kum}}" />) beträgt <InlineMath math="2" /> (siehe <InlineMath math="F_k" /> für Klasse <InlineMath math="37\text{-}39" />)
-    - Die Häufigkeit der Klasse <InlineMath math="Q_1" /> (<InlineMath math="f_1" />) beträgt <InlineMath math="11" />
-    - Die Klassenbreite (<InlineMath math="p" />) beträgt <InlineMath math="3" />
-4.  **Werte einsetzen:**
+**Position von <InlineMath math="Q_1" />:** <InlineMath math="7{,}5" />.
+**Klasse von <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Einzusetzende Werte**
 
-    <MathContainer>
-      <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
-      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
-      <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
-      <BlockMath math="Q_1 = 39{,}5 + 1{,}5" />
-      <BlockMath math="Q_1 = 41" />
-    </MathContainer>
+| Größe | Wert |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="39{,}5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\text{kum}}" /> | <InlineMath math="2" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="11" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Werte einsetzen:
+
+<MathContainer>
+  <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{kum}}}{f_1} \right) p" />
+  <BlockMath math="Q_1 = 39{,}5 + \left( \frac{7{,}5 - 2}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39{,}5 + \left( \frac{5{,}5}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39{,}5 + (0{,}5) \times 3" />
+  <BlockMath math="Q_1 = 39{,}5 + 1{,}5" />
+  <BlockMath math="Q_1 = 41" />
+</MathContainer>
 
 Damit ergibt sich für <InlineMath math="Q_1" /> der Wert <InlineMath math="41" />. Nach dem gruppierten Modell entfallen also etwa <InlineMath math="25\%" /> der Verkäufe auf Schuhgröße <InlineMath math="41" /> oder kleiner.
 
 ## Übung
 
-Berechne <InlineMath math="Q_3" /> anhand der Schuhverkaufsdaten aus der Tabelle.
+Berechne <InlineMath math="Q_3" /> anhand der **Schuhverkaufsdaten** aus der Tabelle.
 
 Vergleiche anschließend die Interpolation bei gruppierten Daten mit der Quartilbestimmung für ungruppierte Daten. Warum liefert die gruppierte Tabelle nur einen Schätzwert?
-
 ### Lösung
 
-1.  **Position von <InlineMath math="Q_3" />:** <InlineMath math="22{,}5" />.
-2.  **Klasse von <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
-3.  **Benötigte Größen ablesen:**
+**Position von <InlineMath math="Q_3" />:** <InlineMath math="22{,}5" />.
+**Klasse von <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Einzusetzende Werte**
 
-    - <InlineMath math="T_b = 42{,}5" /> (untere Grenze der Klasse <InlineMath math="Q_3" />)
-    - <InlineMath math="n = 30" /> (Gesamtzahl der Werte)
-    - <InlineMath math="F_{\text{kum}} = 13" /> (siehe <InlineMath math="F_k" /> für Klasse
-      <InlineMath math="40\text{-}42" />)
-    - <InlineMath math="f_3 = 10" /> (Häufigkeit der Klasse <InlineMath math="Q_3" />)
-    - <InlineMath math="p = 3" /> (Klassenbreite)
+| Größe | Wert |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="42{,}5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\text{kum}}" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Werte einsetzen:
 
-4.  **Werte einsetzen:**
-
-    <MathContainer>
-      <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
-      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
-      <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
-      <BlockMath math="Q_3 = 42{,}5 + 2{,}85" />
-      <BlockMath math="Q_3 = 45{,}35" />
-    </MathContainer>
+<MathContainer>
+  <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{kum}}}{f_3} \right) p" />
+  <BlockMath math="Q_3 = 42{,}5 + \left( \frac{22{,}5 - 13}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42{,}5 + \left( \frac{9{,}5}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42{,}5 + (0{,}95) \times 3" />
+  <BlockMath math="Q_3 = 42{,}5 + 2{,}85" />
+  <BlockMath math="Q_3 = 45{,}35" />
+</MathContainer>
 
 Damit ergibt sich für <InlineMath math="Q_3" /> der Wert <InlineMath math="45{,}35" />. Im gruppierten Modell haben etwa <InlineMath math="75\%" /> der verkauften Schuhe die Größe <InlineMath math="45{,}35" /> oder eine kleinere Größe. Die übrigen <InlineMath math="25\%" /> haben eine Schuhgröße über <InlineMath math="45{,}35" />.
 

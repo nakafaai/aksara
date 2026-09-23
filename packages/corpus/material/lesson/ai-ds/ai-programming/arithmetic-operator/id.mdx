@@ -9,19 +9,19 @@ export const metadata = {
 
 ## Menghitung dengan Operator Python
 
-Operator aritmatika memberi tahu Python jenis perhitungan yang harus dilakukan. Misalnya, `+` menjumlahkan nilai, `*` mengalikannya, dan `` memangkatkan satu nilai dengan nilai lain.
+Operator aritmatika memberi tahu Python jenis perhitungan yang harus dilakukan. Misalnya, `+` menjumlahkan nilai, `*` mengalikan dua nilai, dan `**` memangkatkan satu nilai dengan nilai lain.
 
-Python memiliki tujuh operator aritmatika utama. Saat satu ekspresi memuat beberapa operator, <Highlight>operator precedence menentukan operasi yang dikerjakan lebih dahulu</Highlight>.
+Python memiliki tujuh operator aritmatika utama. Prioritas operator menentukan <Highlight>pengelompokan operasi dalam ekspresi</Highlight> ketika tanda kurung tidak menentukan pengelompokan tersebut.
 
 ## Urutan Prioritas Operator
 
-Ketika satu ekspresi memuat beberapa operator aritmatika sekaligus, Python memerlukan urutan tetap untuk menentukan perhitungan mana yang dikerjakan lebih dulu. Urutan itu berasal dari tiga tingkat prioritas. Operator pada tingkat yang lebih tinggi selalu selesai sebelum operator pada tingkat yang lebih rendah, sehingga tingkat setiap operator menentukan urutan perhitungannya.
+Ketika satu ekspresi memuat beberapa operator aritmatika sekaligus, Python memerlukan urutan tetap untuk menentukan perhitungan mana yang dikerjakan lebih dulu. Tujuh operator biner ini dikelompokkan ke dalam **tiga tingkat prioritas**. Prioritas menentukan pengelompokan operasi. Tanda kurung dapat mengubah pengelompokan tersebut.
 
 ### Prioritas Tertinggi
 
 **Operator Perpangkatan**
 
-Operator `**` digunakan untuk perpangkatan dan memiliki prioritas tertinggi di antara tujuh operator aritmatika biner yang dibahas di sini. Berbeda dari operator lainnya, operator ini memiliki asosiativitas kanan.
+Operator `**` digunakan untuk perpangkatan dan memiliki prioritas tertinggi di antara tujuh operator aritmatika biner yang dibahas di sini. Berbeda dari operator lainnya, operator ini memiliki **asosiativitas kanan**.
 
 <CodeBlock
   data={[
@@ -52,7 +52,7 @@ Operator `*` digunakan untuk mengalikan dua angka.
 
 **Operator Pembagian**
 
-Operator `/` melakukan pembagian dan selalu menghasilkan bilangan float, bahkan ketika kedua operand adalah integer.
+Operator `/` melakukan pembagian dan menghasilkan **bilangan float** untuk operand `int` atau `float`, bahkan ketika kedua operand adalah integer.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ Floor division membulatkan hasil ke arah negatif tak hingga. Untuk `-7 // 2`, Py
 
 **Operator Modulo `%`**
 
-Operator `%` mengembalikan sisa pembagian. Operator ini mengikuti rumus matematika <InlineMath math="a \% b = a - (a // b) \times b" />.
+Operator `%` mengembalikan sisa pembagian. Untuk operand bilangan bulat dan pembagi bukan nol, berlaku identitas eksak <InlineMath math="a \% b = a - (a // b) \times b" />.
 
 <CodeBlock
   data={[
@@ -129,21 +129,21 @@ Operator `%` mengembalikan sisa pembagian. Operator ini mengikuti rumus matemati
   ]}
 />
 
-Untuk bilangan negatif, ingatlah bahwa Python tetap mempertahankan identitas di atas. Itulah sebabnya `5 % 4` menghasilkan `1`, sedangkan `-5 % 4` menghasilkan `3`. Modulo berguna untuk memeriksa apakah satu bilangan habis dibagi bilangan lain dan, pada bilangan bulat tak negatif, mengambil digit terakhir.
+Untuk bilangan bulat negatif, Python tetap memenuhi identitas di atas. Itulah sebabnya `5 % 4` menghasilkan `1`, sedangkan `-5 % 4` menghasilkan `3`. Modulo berguna untuk memeriksa apakah satu bilangan habis dibagi bilangan lain dan, pada bilangan bulat tak negatif, mengambil digit terakhir.
 
 ### Prioritas Terendah
 
-Penjumlahan dan pengurangan dikerjakan paling akhir, setelah seluruh perpangkatan, perkalian, pembagian, pembagian bulat, dan sisa bagi di dalam ekspresi yang sama sudah menghasilkan nilai. Pada `2 + 3 * 4`, Python mengalikan lebih dulu lalu menjumlahkan, sehingga hasilnya `14`. Agar penjumlahan dikerjakan lebih dulu, bungkus bagian itu dengan tanda kurung dan tulis `(2 + 3) * 4`.
+**Penjumlahan dan pengurangan** memiliki prioritas lebih rendah daripada lima operator lainnya. Tanda kurung tetap dapat mengubah pengelompokan operasi. Pada `2 + 3 * 4`, Python mengalikan lebih dulu lalu menjumlahkan, sehingga hasilnya `14`. Agar penjumlahan dikerjakan lebih dulu, bungkus bagian itu dengan tanda kurung dan tulis `(2 + 3) * 4`.
 
 ## Aturan Prioritas dan Asosiativitas
 
-Python tidak membaca ekspresi dari kiri ke kanan. Prioritas menentukan operator mana yang dijalankan lebih dulu, sedangkan asosiativitas menentukan bagaimana Python mengelompokkan operator yang tingkatnya sama. Kedua aturan ini bekerja pada operator yang kamu tulis, sehingga `2 ** 3 ** 2` dan `8 - 3 - 2` masing-masing hanya punya satu cara pembacaan.
+**Prioritas dan asosiativitas** menentukan pengelompokan operasi, sedangkan Python mengevaluasi operand dari kiri ke kanan. Prioritas mengelompokkan operator dari tingkat berbeda, sedangkan asosiativitas mengelompokkan operator pada tingkat yang sama. Kedua aturan ini bekerja pada operator yang kamu tulis, sehingga `2 ** 3 ** 2` dan `8 - 3 - 2` masing-masing hanya punya satu cara pembacaan.
 
 ### Urutan Evaluasi Ekspresi
 
-Python mengevaluasi ekspresi berdasarkan tiga aturan utama.
+Tiga aturan berikut menentukan **pengelompokan operasi** dalam ekspresi.
 
-1. **Urutan prioritas** menentukan operator mana yang dikerjakan terlebih dahulu
+1. **Urutan prioritas** menentukan operator yang mengikat operand lebih kuat
 2. **Asosiativitas kiri** berlaku untuk operator dengan prioritas yang sama, kecuali perpangkatan
 3. **Tanda kurung** dapat mengubah urutan evaluasi
 
@@ -162,7 +162,7 @@ Python mengevaluasi ekspresi berdasarkan tiga aturan utama.
 16
 
 >>> 6 / 2 * 4
-12
+12.0
 
 >>> 6 / (2 * 4)
 0.75`
@@ -172,11 +172,11 @@ Python mengevaluasi ekspresi berdasarkan tiga aturan utama.
 
 ### Aturan Asosiativitas
 
-Asosiativitas menentukan urutan evaluasi ketika ada beberapa operator dengan prioritas yang sama dalam satu ekspresi.
+Asosiativitas menentukan **pengelompokan operator berprioritas sama** dalam satu ekspresi.
 
 **Asosiativitas Kiri**
 
-Evaluasi dimulai dari kiri ke kanan. Sebagian besar operator menggunakan aturan ini.
+Sebagian besar operator aritmatika biner berprioritas sama dikelompokkan dari kiri ke kanan.
 
 <CodeBlock
   data={[
@@ -184,7 +184,7 @@ Evaluasi dimulai dari kiri ke kanan. Sebagian besar operator menggunakan aturan 
       language: "python",
       filename: "left_associative.py",
       code: `>>> 6 / 2 * 4
-12
+12.0
 
 >>> 10 - 3 - 2
 5`
@@ -196,7 +196,7 @@ Perkalian dan pembagian memiliki prioritas yang sama, sehingga Python membaca ek
 
 **Asosiativitas Kanan**
 
-Evaluasi dimulai dari kanan ke kiri. Hanya operator perpangkatan `**` yang menggunakan aturan ini.
+Di antara tujuh operator ini, perpangkatan `**` dikelompokkan dari kanan ke kiri.
 
 <CodeBlock
   data={[
@@ -216,7 +216,7 @@ Python mengelompokkan perpangkatan berulang dari kanan ke kiri: `2 ** 3 ** 2 = 2
 
 ## Python Shell sebagai Kalkulator
 
-Operator `/` selalu menghasilkan float, termasuk ketika hasilnya berupa bilangan bulat. Operator `//` menghasilkan integer jika kedua operand berupa integer dan menghasilkan float jika salah satunya berupa float. Hasil modulo yang tidak nol memiliki tanda yang sama dengan pembagi dan memenuhi persamaan di atas.
+Untuk operand `int` atau `float`, operator `/` menghasilkan **float**, termasuk ketika hasilnya berupa bilangan bulat. Operator `//` menghasilkan integer jika kedua operand berupa integer dan menghasilkan float jika salah satunya berupa float. Hasil modulo yang tidak nol memiliki tanda yang sama dengan pembagi. Identitas di atas berlaku eksak untuk bilangan bulat, sedangkan operasi float dapat mengalami pembulatan.
 
 ## Tabel Ringkasan Operator Aritmatika
 
@@ -230,4 +230,4 @@ Operator `/` selalu menghasilkan float, termasuk ketika hasilnya berupa bilangan
 | **Terendah** | `+` | Penjumlahan | Kiri |
 | **Terendah** | `-` | Pengurangan | Kiri |
 
-Prioritas operator menentukan cara Python mengelompokkan ekspresi aritmatika. Gunakan tanda kurung jika urutan yang dimaksud berbeda dari pengelompokan standar.
+**Prioritas operator** menentukan cara Python mengelompokkan ekspresi aritmatika. Gunakan tanda kurung jika urutan yang dimaksud berbeda dari pengelompokan standar.

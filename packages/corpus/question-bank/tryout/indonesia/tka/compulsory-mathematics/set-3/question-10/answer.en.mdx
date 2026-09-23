@@ -5,11 +5,15 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-A point on <InlineMath math="y=x+1" /> can be written <InlineMath math="P=(t,t+1)" />. Compare squared distances from the two given points.
+A point on <InlineMath math="y=x+1" /> can be written <InlineMath math="P=(t,t+1)" />. Compare **squared distances** from the two given points.
 
 <BlockMath math="\begin{aligned}
 PA^2&=(t+2)^2+(t-3)^2 \\
-PB^2&=(t-6)^2+(t+1)^2
+&=t^2+4t+4+t^2-6t+9 \\
+&=2t^2-2t+13 \\
+PB^2&=(t-6)^2+(t+1)^2 \\
+&=t^2-12t+36+t^2+2t+1 \\
+&=2t^2-10t+37
 \end{aligned}" />
 
 Equate the squared distances and simplify.
@@ -23,3 +27,16 @@ t&=3
 Thus <InlineMath math="P=(3,4)" />. Its squared distance from the origin is:
 
 <BlockMath math="OP^2=3^2+4^2=25" />
+
+<LineEquation
+  title="An equidistant point"
+  description="The purple segments PA and PB both have length 5. Orange connects P to the origin."
+  cameraPosition={[2,2.5,14]}
+  cameraTarget={[2,2.5,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: -2, y: -1, z: 0 }, { x: 5, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -2, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }, { x: 6, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [-0.3, 0.4, 0] }, { text: "P", at: 1, offset: [0.3, 0.4, 0] }, { text: "B", at: 2, offset: [0.3, -0.4, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#d97706", smooth: false, showPoints: false, labels: [{ text: "O", at: 0, offset: [-0.4, -0.4, 0] }] },
+  ]}
+/>

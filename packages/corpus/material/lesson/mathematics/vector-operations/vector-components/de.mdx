@@ -15,7 +15,9 @@ Jeder Vektor in der Koordinatenebene lässt sich <Highlight>entlang der beiden K
 
 Die skalaren Komponenten geben an, wie weit und in welche vorzeichenbehaftete Richtung der Vektor entlang der <InlineMath math="x" />- und <InlineMath math="y" />-Achse reicht. Jeder Vektor in der Ebene ist eine Linearkombination der Einheitsvektoren <InlineMath math="\mathbf{i}" /> und <InlineMath math="\mathbf{j}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1.8, 4, 12.5]}
+  cameraTarget={[1.8, 4, 0]}
   title="Vektorvisualisierung und ihre Komponenten"
   description={
     <>
@@ -24,24 +26,45 @@ Die skalaren Komponenten geben an, wie weit und in welche vorzeichenbehaftete Ri
       <InlineMath math="z" />-Komponente von null.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.75 * ((6) - (0)), y: (0) + 0.75 * ((8) - (0)), z: (0) + 0.75 * ((0) - (0)) }, { x: 6, y: 8, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [-0.3, 0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [6, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        at: 1,
+        offset: [0, -0.6, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((8) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 8, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        at: 1,
+        offset: [-0.4, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -59,15 +82,15 @@ Die Komponenten in dieser Form bedeuten:
 
 ### Beispiel für Vektorkomponenten
 
-Betrachten wir den Vektor <InlineMath math="\overrightarrow{AB}" /> in der Abbildung. Er lässt sich so schreiben:
+Betrachten wir den Vektor <InlineMath math="\overrightarrow{AB}" /> im Diagramm. Er lässt sich so schreiben:
 
 <BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
 
-Der Vektor <InlineMath math="\overrightarrow{AB}" /> besitzt also die skalaren Komponenten <InlineMath math="6" /> und <InlineMath math="8" /> sowie die Vektorprojektionen <InlineMath math="6\mathbf{i}" /> nach rechts und <InlineMath math="8\mathbf{j}" /> nach oben.
+Der Vektor <InlineMath math="\overrightarrow{AB}" /> besitzt also die skalaren Komponenten <InlineMath math="6" /> und <InlineMath math="8" /> sowie die **Vektorprojektionen** <InlineMath math="6\mathbf{i}" /> nach rechts und <InlineMath math="8\mathbf{j}" /> nach oben.
 
 ## Betrag aus den Komponenten berechnen
 
-Sind die Komponenten bekannt, liefert der Satz des Pythagoras die Länge oder den Betrag des Vektors.
+Sind die Komponenten bekannt, liefert der **Satz des Pythagoras** die Länge oder den Betrag des Vektors.
 
 Der Betrag des Vektors <InlineMath math="\overrightarrow{AB}" /> wird mit <InlineMath math="|\overrightarrow{AB}|" /> bezeichnet und mit der Formel berechnet:
 
@@ -77,6 +100,8 @@ In dieser Formel sind <InlineMath math="a" /> und <InlineMath math="b" /> die Ko
 
 ### Beispiel für die Betragsberechnung
 
+Bilde die **Summe der Komponentenquadrate** und ziehe anschließend die positive Quadratwurzel für den Betrag.
+
 Für den Vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> ergibt sich:
 
 <BlockMath math="\begin{aligned} |\overrightarrow{AB}| &amp;= \sqrt{6^2 + 8^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
@@ -85,39 +110,68 @@ Für den Vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j
 
 Vektoren lassen sich in einer zweidimensionalen Ebene und im dreidimensionalen Raum verwenden.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[11, 10, -11]}
+  cameraTarget={[1.5, 3.5, 2]}
   title="Vektoren im 3D-Raum"
   description="Visualisierung eines Vektors und seiner Komponenten im dreidimensionalen Raum."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [5, 7, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.85 * ((5) - (0)), y: (0) + 0.85 * ((7) - (0)), z: (0) + 0.85 * ((4) - (0)) }, { x: 5, y: 7, z: 4 }],
       color: "#ea580c",
-      label: "3D-Vektor",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: "3D-Vektor",
+        at: 1,
+        offset: [0, 0.8, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [5, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        at: 1,
+        offset: [0, -0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 7, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((7) - (0)), z: (0) + 0.6 * ((0) - (0)) }, { x: 0, y: 7, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        at: 1,
+        offset: [-0.8, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((0) - (0)), z: (0) + 0.6 * ((4) - (0)) }, { x: 0, y: 0, z: 4 }],
       color: "#ca8a04",
-      label: <><InlineMath math="z" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="z" />-Komponente</>,
+        at: 1,
+        offset: [0.5, -0.3, 0],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
-Im dreidimensionalen Raum besitzt ein Vektor je eine Komponente entlang der drei Koordinatenachsen. Er lässt sich so schreiben:
+Im dreidimensionalen Raum besitzt ein Vektor je eine Komponente entlang der **drei Koordinatenachsen**. Er lässt sich so schreiben:
 
 <BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
 
@@ -135,7 +189,7 @@ Der Betrag eines Vektors im dreidimensionalen Raum wird nach folgender Formel be
 
 ## Einheitsrichtungsvektor
 
-Die Richtung eines Vektors ungleich null lässt sich mit einem Einheitsvektor darstellen. Ein Einheitsvektor hat den Betrag <InlineMath math="1 \text{ Einheit}" />. Wir erhalten ihn, indem wir den Vektor ungleich null durch seinen Betrag teilen.
+Die Richtung eines Vektors ungleich null lässt sich mit einem Einheitsvektor darstellen. Ein Einheitsvektor hat den Betrag <InlineMath math="1 \text{ Einheit}" />. Wir erhalten ihn, indem wir **den Vektor ungleich null durch seinen Betrag teilen**.
 
 Den Einheitsrichtungsvektor von <InlineMath math="\overrightarrow{AB}" /> bezeichnen wir mit <InlineMath math="\mathbf{u}_{AB}" />. Er wird so berechnet:
 
@@ -147,7 +201,7 @@ Für den Vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j
 
 <BlockMath math="\begin{aligned} \mathbf{u}_{AB} &amp;= \frac{6\mathbf{i} + 8\mathbf{j}}{10} \\ &amp;= \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} \\ &amp;= 0{,}6\mathbf{i} + 0{,}8\mathbf{j} \end{aligned}" />
 
-Dieser Einheitsvektor gibt die Richtung des Vektors <InlineMath math="\overrightarrow{AB}" /> unabhängig von seiner Größe an.
+Dieser Einheitsvektor gibt die Richtung des Vektors <InlineMath math="\overrightarrow{AB}" /> **unabhängig von seiner Größe** an.
 
 ## Anwendungen von Vektorkomponenten
 
@@ -158,4 +212,4 @@ Die Zerlegung eines Vektors entlang gewählter Achsen wird für folgende Berechn
 - Bestimmen der Richtung und Größe der Resultierenden bei der Objektbewegung
 - Navigation und Positionsbestimmung in Koordinatensystemen
 
-Vektorkomponenten trennen Betrag und Richtung entlang der gewählten Achsen. Dadurch kann jede Achse einzeln berechnet werden, bevor die Ergebnisse wieder zusammengeführt werden.
+Vektorkomponenten trennen Betrag und Richtung entlang der gewählten Achsen. Dadurch kann **jede Achse einzeln** berechnet werden, bevor die Ergebnisse wieder zusammengeführt werden.

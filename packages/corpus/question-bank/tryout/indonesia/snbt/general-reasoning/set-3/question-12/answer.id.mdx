@@ -5,26 +5,31 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Cek setiap pernyataan berdasarkan data tabel:
+Klaim dengan kata **selalu** harus benar di keempat minggu. Satu minggu yang tidak sesuai sudah cukup untuk menyanggah klaim tersebut.
 
-#### Tentang Penjualan Pasmina vs Segiempat
+#### Bandingkan jumlah pada minggu yang sama
 
-Data menunjukkan <InlineMath math="9 < 12" />, <InlineMath math="14 < 15" />, <InlineMath math="20 < 21" />, dan <InlineMath math="27 < 30" />. Semuanya benar, jadi pernyataan ini **Sesuai**.
+| Minggu | Pasmina dibandingkan segiempat | Bergo dibandingkan segiempat |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="9<12" /> | <InlineMath math="14>12" /> |
+| <InlineMath math="2" /> | <InlineMath math="14<15" /> | <InlineMath math="16>15" /> |
+| <InlineMath math="3" /> | <InlineMath math="20<21" /> | <InlineMath math="18<21" /> |
+| <InlineMath math="4" /> | <InlineMath math="27<30" /> | <InlineMath math="20<30" /> |
 
-#### Tentang Penjualan Bergo vs Segiempat
+Pasmina lebih sedikit daripada segiempat pada setiap minggu. Sebaliknya, **minggu ketiga dan keempat** menyanggah klaim bahwa bergo selalu lebih banyak daripada segiempat. Jadi, klaim tentang bergo tersebut tidak sesuai.
 
-Pada Minggu <InlineMath math="1" /> (<InlineMath math="14 > 12" />) dan Minggu <InlineMath math="2" /> (<InlineMath math="16 > 15" />) memang benar Bergo lebih tinggi. Namun, pada Minggu <InlineMath math="3" /> (<InlineMath math="18 < 21" />) dan Minggu <InlineMath math="4" /> (<InlineMath math="20 < 30" />), penjualan Bergo justru lebih rendah. Jadi, pernyataan ini **Tidak Sesuai**.
+#### Periksa pola dan kenaikan penjualan
 
-#### Tentang Pola Penjualan Bergo
+Data bergo membentuk **barisan aritmetika** karena selisih setiap dua minggu berurutan sama:
 
-Data penjualan Bergo adalah <InlineMath math="14,16,18,20" />. Selisih antar minggunya selalu konstan (<InlineMath math="2" />), yang berarti membentuk barisan aritmetika. Pernyataan ini **Sesuai**.
+<BlockMath math="16-14=18-16=20-18=2" />
 
-#### Tentang Tingkat Penjualan Mingguan
+Ketiga jenis kerudung juga selalu meningkat dari minggu ke minggu. Untuk membandingkan kenaikan keseluruhan, kurangkan penjualan minggu pertama dari minggu keempat:
 
-Jika kita lihat semua kolom, setiap jenis kerudung mengalami peningkatan penjualan dari minggu ke minggu tanpa ada penurunan. Pernyataan ini **Sesuai**.
+| Jenis kerudung | Kenaikan dari minggu pertama ke minggu keempat |
+| --- | --- |
+| Segiempat | <InlineMath math="30-12=18" /> |
+| Pasmina | <InlineMath math="27-9=18" /> |
+| Bergo | <InlineMath math="20-14=6" /> |
 
-#### Tentang Kenaikan Penjualan Bergo
-
-Dari minggu <InlineMath math="1" /> sampai minggu <InlineMath math="4" />, total kenaikan Segiempat adalah <InlineMath math="30 - 12 = 18" />. Total kenaikan Pasmina adalah <InlineMath math="27 - 9 = 18" />. Sedangkan total kenaikan Bergo hanya <InlineMath math="20 - 14 = 6" />. Benar bahwa Bergo memiliki kenaikan paling kecil. Pernyataan ini **Sesuai**.
-
-Jadi, pernyataan yang **paling tidak sesuai** dengan tabel adalah pernyataan bahwa penjualan Bergo selalu lebih tinggi dibandingkan Segiempat.
+Bergo memiliki kenaikan terkecil. Jadi, pilihan tentang barisan aritmetika, peningkatan tiap minggu, dan kenaikan terkecil semuanya sesuai. Hanya klaim bergo selalu lebih banyak daripada segiempat yang gagal.

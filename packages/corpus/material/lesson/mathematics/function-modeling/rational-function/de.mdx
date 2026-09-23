@@ -22,49 +22,53 @@ Der Nenner bringt eine entscheidende Regel mit sich: Alle Eingaben, für die <In
 Herr Budi plant einen rechteckigen Hühnerstall mit einer Fläche von <InlineMath math="100\text{ m}^2" />. Seine Länge sei <InlineMath math="x\text{ m}" />, seine Breite <InlineMath math="w\text{ m}" />. Dann gilt
 
 <MathContainer>
-  <BlockMath math="xw=100" />
-  <BlockMath math="w(x)=\frac{100}{x}" />
+
+<BlockMath math="xw=100" />
+
+<BlockMath math="w(x)=\frac{100}{x}" />
 </MathContainer>
 
-Die Formel beschreibt eine rationale Funktion, weil eine Variable im Nenner steht. In der realen Situation müssen beide Seitenlängen positiv sein. Der sinnvolle Definitionsbereich ist daher <InlineMath math="x>0" />. Die Bedingung <InlineMath math="x\neq 0" /> enthält weiterhin negative Längen, die hier keinen Sinn ergeben.
+Die Formel beschreibt eine rationale Funktion, weil Zähler und Nenner Polynome sind. In der realen Situation müssen beide Seitenlängen positiv sein. Der sinnvolle Definitionsbereich ist daher <InlineMath math="x>0" />. Die Bedingung <InlineMath math="x\neq 0" /> enthält weiterhin negative Längen, die hier keinen Sinn ergeben.
 
 Das Modell zeigt außerdem einen Zusammenhang: Wird der Stall länger, muss er schmaler werden, damit seine Fläche gleich bleibt.
 
+Die Seitenlängen sind **umgekehrt proportional**. Bei fünf Metern Länge brauchst du zwanzig Meter Breite. Bei zehn Metern Länge sind es zehn Meter Breite.
+
+<LineEquation
+  title="Länge und Breite bei fester Fläche"
+  description="Die Grafik zeigt Längen von 5 bis 20 Metern. An jedem Punkt ergeben Länge mal Breite 100 Quadratmeter."
+  data={[{
+    points: Array.from({ length: 61 }, (_, i) => {
+      const x = 5 + i / 4;
+      return { x, y: 100 / x, z: 0 };
+    }),
+    smooth: false,
+    color: "#9333ea",
+    showPoints: false,
+    labels: [{ text: <InlineMath math="w=100/x" />, at: 20, offset: [1, 1, 0] }],
+  }]}
+  showZAxis={false}
+  cameraTarget={[12, 12, 0]}
+  cameraPosition={[12, 12, 35]}
+/>
+
 ## Häufige Formen
 
-Einige Quotienten aus Polynomen tauchen in Aufgaben immer wieder auf, etwa <InlineMath math="\frac{1}{x}" /> oder <InlineMath math="\frac{x^2-1}{x-1}" />. Jede dieser Formen hat eine eigene Asymptote und eine eigene Definitionslücke.
+Diese Beispiele haben Nenner mit unterschiedlichen Graden. Die **Faktoren des Nenners** bestimmen die ausgeschlossenen Eingaben. Prüfe, welche Faktoren sich kürzen lassen, bevor du zwischen einer Lücke und einer senkrechten Asymptote unterscheidest.
 
-Eine gebrochenrationale Funktion ist der Quotient zweier Polynome, und einige Formen treten häufig auf.
+| Form | Bedingung für den Nenner |
+| --- | --- |
+| <InlineMath math="\frac{k}{x}" /> | <InlineMath math="x\neq0" /> |
+| <InlineMath math="\frac{ax+b}{cx+d}" /> | <InlineMath math="cx+d\neq0" /> |
+| <InlineMath math="\frac{x^2+2x+1}{x-3}" /> | <InlineMath math="x\neq3" /> |
 
-### Kehrwertform
-
-Die grundlegende Kehrwertform lautet
-
-<BlockMath math="f(x)=\frac{k}{x}" />
-
-In dieser Form ist <InlineMath math="k" /> eine Konstante. Zum Beispiel hat <InlineMath math="f(x)=\frac{5}{x}" /> den Definitionsbereich <InlineMath math="x\neq 0" />.
-
-### Linear gebrochene Form
-
-Sind Zähler und Nenner linear, so hat die Funktion die Form
-
-<BlockMath math="f(x)=\frac{ax+b}{cx+d}" />
-
-In dieser Form muss der Nenner <InlineMath math="cx+d\neq 0" /> erfüllen. Bei <InlineMath math="f(x)=\frac{2x+3}{x-1}" /> ist deshalb <InlineMath math="x=1" /> ausgeschlossen.
-
-### Höhergradige Form
-
-Eines oder beide Polynome können den Grad zwei oder höher haben. Zum Beispiel ist
-
-<BlockMath math="f(x)=\frac{x^2+2x+1}{x-3}" />
-
-Auch diese Funktion ist rational. Der Wert <InlineMath math="x=3" /> gehört nicht zur Definitionsmenge.
+Ein Beispiel für die Kehrwertform ist <InlineMath math="5/x" />. Bei einer linear gebrochenen Funktion <InlineMath math="(2x+3)/(x-1)" /> ist die ausgeschlossene Eingabe <InlineMath math="x=1" />.
 
 ## Die Definitionsmenge bestimmen
 
 So bestimmst du den reellen Definitionsbereich einer rationalen Funktion:
 
-1. Setze den ursprünglichen Nenner gleich null.
+1. Setze den **ursprünglichen Nenner** gleich null.
 2. Bestimme alle Werte, für die er null wird.
 3. Schließe diese Werte aus den reellen Zahlen aus.
 
@@ -75,8 +79,10 @@ Die drei Schritte werden auf eine rationale Funktion angewendet, deren Nenner nu
 Der Nenner wird null, wenn:
 
 <MathContainer>
-  <BlockMath math="x-3=0" />
-  <BlockMath math="x=3." />
+
+<BlockMath math="x-3=0" />
+
+<BlockMath math="x=3." />
 </MathContainer>
 
 Damit ist
@@ -85,7 +91,7 @@ Damit ist
 
 ## Vereinfachen ohne die Definitionsmenge zu verlieren
 
-Ein gemeinsamer Faktor darf nur dort gekürzt werden, wo er nicht null ist. Der vereinfachte Term liefert auf der ursprünglichen Definitionsmenge dieselben Werte, macht aber keine ausgeschlossene Eingabe wieder zulässig.
+Ein **gemeinsamer Faktor** darf nur dort gekürzt werden, wo er nicht null ist. Der vereinfachte Term liefert auf der ursprünglichen Definitionsmenge dieselben Werte, macht aber keine ausgeschlossene Eingabe wieder zulässig.
 
 ### Eine gemeinsame Potenz der Variablen kürzen
 
@@ -93,11 +99,13 @@ Vereinfache
 
 <BlockMath math="f(x)=\frac{6x^2}{3x}." />
 
-Aus dem ursprünglichen Nenner folgt <InlineMath math="x\neq 0" />. Auf diesem Definitionsbereich gilt
+Aus dem ursprünglichen Nenner folgt <InlineMath math="x\neq 0" />. Auf diesem **Definitionsbereich** gilt
 
 <MathContainer>
-  <BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
-  <BlockMath math="=2x,\qquad x\neq 0." />
+
+<BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
+
+<BlockMath math="\frac{6x^2}{3x}=2x,\qquad x\neq 0." />
 </MathContainer>
 
 Der Term <InlineMath math="2x" /> ist zwar bei <InlineMath math="x=0" /> definiert, die ursprüngliche rationale Funktion jedoch nicht.
@@ -108,11 +116,13 @@ Vereinfache
 
 <BlockMath math="g(x)=\frac{x^2-4}{x-2}." />
 
-Halte zuerst <InlineMath math="x\neq 2" /> fest und zerlege dann die Differenz zweier Quadrate:
+Halte zuerst <InlineMath math="x\neq 2" /> fest und zerlege dann die **Differenz zweier Quadrate**:
 
 <MathContainer>
-  <BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
-  <BlockMath math="=x+2,\qquad x\neq 2." />
+
+<BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
+
+<BlockMath math="\frac{x^2-4}{x-2}=x+2,\qquad x\neq 2." />
 </MathContainer>
 
 Der Graph stimmt mit der Geraden <InlineMath math="y=x+2" /> überein, hat aber bei <InlineMath math="x=2" /> eine Lücke.
@@ -121,26 +131,34 @@ Der Graph stimmt mit der Geraden <InlineMath math="y=x+2" /> überein, hat aber 
 
 Beim Addieren brauchst du einen gemeinsamen Nenner, beim Multiplizieren darfst du direkt ausmultiplizieren, und beim Dividieren multiplizierst du mit dem Kehrwert.
 
-Addieren, Subtrahieren, Multiplizieren und Dividieren rationaler Terme folgt den Bruchregeln.
+Notiere zuerst die **Bedingungen für Nenner ungleich null**. Beim folgenden Produkt kürzen sich Faktoren, aber die Eingaben null und minus eins bleiben ausgeschlossen.
+
+<BlockMath math="\frac{x}{x+1}\cdot\frac{x+1}{x}=1,\qquad x\neq-1,0" />
 
 ### Addition und Subtraktion
 
-Verwende einen gemeinsamen Nenner und behalte alle Einschränkungen der ursprünglichen Nenner bei.
+Verwende einen **gemeinsamen Nenner** und behalte alle Einschränkungen der ursprünglichen Nenner bei.
 
 <MathContainer>
-  <BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
-  <BlockMath math="=\frac{2(x+1)+3x}{x(x+1)}" />
-  <BlockMath math="=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{2(x+1)+3x}{x(x+1)}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
 </MathContainer>
 
 ### Multiplikation
 
-Multipliziere Zähler mit Zähler und Nenner mit Nenner. Faktorisiere anschließend, bevor du kürzt:
+Multipliziere Zähler mit Zähler und **Nenner** mit Nenner. Faktorisiere anschließend, bevor du kürzt:
 
 <MathContainer>
-  <BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
-  <BlockMath math="=\frac{2x(x+1)}{x(x-1)}" />
-  <BlockMath math="=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2x(x+1)}{x(x-1)}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
 </MathContainer>
 
 Dass sich der Faktor <InlineMath math="x" /> kürzen lässt, hebt die ursprüngliche Einschränkung <InlineMath math="x\neq 0" /> nicht auf.
@@ -153,9 +171,13 @@ Durch einen Bruch zu teilen bedeutet, mit seinem Kehrwert zu multiplizieren:
 
 Dabei müssen <InlineMath math="b\neq 0" /> und <InlineMath math="d\neq 0" /> gelten, damit beide ursprünglichen Brüche definiert sind. Zusätzlich muss <InlineMath math="c\neq 0" /> sein, damit der Divisor nicht null ist.
 
+Auch der **Divisor darf nicht null sein**. Im folgenden Beispiel schließen beide Brüche die Eingabe null aus. Der Divisor schließt zusätzlich die Eingabe eins aus.
+
+<BlockMath math="\frac{x+1}{x}\div\frac{x-1}{x}=\frac{x+1}{x}\cdot\frac{x}{x-1}=\frac{x+1}{x-1},\quad x\neq0,1" />
+
 ## Übungen
 
-Jede Aufgabe gibt einen rationalen Term und verlangt den Definitionsbereich oder die vereinfachte Form. Bestimme zuerst die ausgeschlossenen Werte und vereinfache danach.
+Jede Aufgabe gibt einen rationalen Term und verlangt den **Definitionsbereich** oder die vereinfachte Form. Bestimme zuerst die ausgeschlossenen Werte und vereinfache danach.
 
 1. Bestimme den Definitionsbereich von <InlineMath math="f(x)=\frac{x+3}{x^2-9}" />.
 
@@ -165,42 +187,58 @@ Jede Aufgabe gibt einen rationalen Term und verlangt den Definitionsbereich oder
 
 4. Ein Auto fährt <InlineMath math="300\text{ km}" /> mit einer Durchschnittsgeschwindigkeit von <InlineMath math="v\text{ km/h}" />. Stelle die Fahrzeit als Funktion von <InlineMath math="v" /> dar und gib den physikalisch sinnvollen Definitionsbereich an.
 
-### Ausführliche Lösungen
+### Definitionsmenge mit zwei Ausschlüssen
 
-1. Der Zähler entscheidet nicht über die Definitionsmenge. Faktorisiere den Nenner:
+Der Zähler entscheidet nicht über die Definitionsmenge. Faktorisiere den Nenner:
 
-   <MathContainer>
-     <BlockMath math="x^2-9=(x-3)(x+3)" />
-     <BlockMath math="\begin{aligned} &amp;(x-3)(x+3) = 0 \\ &amp;\Longrightarrow x = 3 \text{ oder } x = -3. \end{aligned}" />
-   </MathContainer>
+<MathContainer>
 
-   Beide Werte machen den ursprünglichen Nenner null. Daher gilt
+<BlockMath math="x^2-9=(x-3)(x+3)" />
 
-   <BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
+<BlockMath math="\begin{aligned} &amp;(x-3)(x+3) = 0 \\ &amp;\Longrightarrow x = 3 \text{ oder } x = -3. \end{aligned}" />
+</MathContainer>
 
-2. Aus dem ursprünglichen Nenner folgt <InlineMath math="x\neq -1" />. Faktorisiere und kürze nur auf diesem Definitionsbereich:
+Beide Werte machen den ursprünglichen **Nenner null**. Daher gilt
 
-   <MathContainer>
-     <BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
-     <BlockMath math="=x-1,\qquad x\neq -1." />
-   </MathContainer>
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
 
-   Die vereinfachte Formel hat bei der ausgeschlossenen Eingabe <InlineMath math="x=-1" /> weiterhin eine Lücke.
+### Vereinfachen und die Lücke
 
-3. Aus den ursprünglichen Nennern folgen <InlineMath math="x\neq 1" /> und <InlineMath math="x\neq -1" />. Mit <InlineMath math="(x-1)(x+1)" /> als gemeinsamem Nenner erhält man
+Aus dem ursprünglichen Nenner folgt <InlineMath math="x\neq -1" />. Faktorisiere und kürze nur auf diesem **Definitionsbereich**:
 
-   <MathContainer>
-     <BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
-     <BlockMath math="=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
-     <BlockMath math="=\frac{x+1-2x+2}{(x-1)(x+1)}" />
-     <BlockMath math="=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
-   </MathContainer>
+<MathContainer>
 
-4. Die Zeit ist der Quotient aus Strecke und Geschwindigkeit:
+<BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
 
-   <MathContainer>
-     <BlockMath math="\text{Zeit}=\frac{\text{Strecke}}{\text{Geschwindigkeit}}" />
-     <BlockMath math="t(v)=\frac{300}{v}." />
-   </MathContainer>
+<BlockMath math="\frac{x^2-1}{x+1}=x-1,\qquad x\neq -1." />
+</MathContainer>
 
-   Algebraisch gilt <InlineMath math="v\neq 0" />. Für ein fahrendes Auto muss die Geschwindigkeit positiv sein. Das physikalische Modell verwendet daher <InlineMath math="v>0" />.
+Die vereinfachte Formel hat bei der ausgeschlossenen Eingabe <InlineMath math="x=-1" /> weiterhin eine Lücke.
+
+### Zwei Brüche subtrahieren
+
+Aus den ursprünglichen Nennern folgen <InlineMath math="x\neq 1" /> und <InlineMath math="x\neq -1" />. Mit <InlineMath math="(x-1)(x+1)" /> als gemeinsamem **Nenner** erhält man
+
+<MathContainer>
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2x+2}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
+</MathContainer>
+
+### Ein Modell für die Fahrzeit
+
+Die Zeit ist der Quotient aus Strecke und Geschwindigkeit:
+
+<MathContainer>
+
+<BlockMath math="\text{Zeit}=\frac{\text{Strecke}}{\text{Geschwindigkeit}}" />
+
+<BlockMath math="t(v)=\frac{300}{v}." />
+</MathContainer>
+
+Algebraisch gilt <InlineMath math="v\neq 0" />. Für ein fahrendes Auto muss die **Geschwindigkeit positiv** sein. Das physikalische Modell verwendet daher <InlineMath math="v>0" />.

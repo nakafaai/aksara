@@ -23,7 +23,7 @@ Eine komplexe quadratische Matrix <InlineMath math="U\in\mathbb{C}^{n\times n}" 
 <BlockMath math="U^{-1}=U^H" />
 </MathContainer>
 
-Dabei ist <InlineMath math="U^H=\overline{U}^{,T}" /> die adjungierte Matrix. <Highlight>Eine reelle orthogonale Matrix ist eine unitäre Matrix mit ausschließlich reellen Einträgen.</Highlight>
+Dabei ist <InlineMath math="U^H=\overline{U}^{T}" /> die adjungierte Matrix. Eine reelle orthogonale Matrix ist eine **unitäre Matrix mit reellen Einträgen**.
 
 Die definierenden Gleichungen sind gleichbedeutend damit, dass die Spalten eine Orthonormalbasis bilden. Auch die Zeilen sind orthonormal.
 
@@ -58,7 +58,7 @@ Bei einer reellen orthogonalen Matrix ist die Determinante reell. Daher
 
 <BlockMath math="\det Q\in\{-1,1\}" />
 
-Der Fall <InlineMath math="\det Q=1" /> erhält die Orientierung. Der Fall <InlineMath math="\det Q=-1" /> kehrt die Orientierung um und enthält eine Spiegelungskomponente.
+Der Fall <InlineMath math="\det Q=1" /> **erhält die Orientierung**. Der Fall <InlineMath math="\det Q=-1" /> kehrt die Orientierung um und enthält eine Spiegelungskomponente.
 
 ## Eigenwerte und Spektralstruktur
 
@@ -69,7 +69,7 @@ Gilt <InlineMath math="Uv=\lambda v" /> mit <InlineMath math="v\ne0" />, dann
 <BlockMath math="|\lambda|=1" />
 </MathContainer>
 
-Jeder Eigenwert liegt daher auf dem komplexen Einheitskreis. Nichtreelle Eigenwerte einer reellen orthogonalen Matrix treten in konjugierten Paaren auf. Eine unitäre Matrix ist normal. Der komplexe Spektralsatz liefert deshalb
+Jeder Eigenwert liegt daher auf dem **komplexen Einheitskreis**. Nichtreelle Eigenwerte einer reellen orthogonalen Matrix treten in konjugierten Paaren auf. Eine unitäre Matrix ist normal. Der komplexe Spektralsatz liefert deshalb
 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
@@ -92,19 +92,19 @@ Das charakteristische Polynom lautet
 <BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
 </MathContainer>
 
-Falls <InlineMath math="\alpha" /> kein Vielfaches von <InlineMath math="\pi" /> ist, besitzt die Drehung keinen reellen Eigenvektor. Das ist zu erwarten: Bei einer echten ebenen Drehung bleibt keine reelle Richtung ungleich null fest oder ändert nur ihr Vorzeichen.
+Falls <InlineMath math="\alpha" /> kein Vielfaches von <InlineMath math="\pi" /> ist, besitzt die Drehung **keinen reellen Eigenvektor**. Das ist zu erwarten: Bei einer echten ebenen Drehung bleibt keine reelle Richtung ungleich null fest oder ändert nur ihr Vorzeichen.
 
 ## Spiegelungsbeispiel
 
-Für einen Einheitsvektor <InlineMath math="u\in\mathbb{R}^n" /> spiegelt die Householder-Matrix
+Für einen Einheitsvektor <InlineMath math="u\in\mathbb{R}^n" /> definieren wir die Householder-Matrix
 
 <BlockMath math="H=I-2uu^T" />
 
-Die Matrix <InlineMath math="H" /> spiegelt einen Vektor an der zu <InlineMath math="u" /> senkrechten Hyperebene. Ihre Orthogonalität lässt sich mit den folgenden Identitäten prüfen:
+Die Matrix <InlineMath math="H" /> spiegelt einen Vektor an der zu <InlineMath math="u" /> **senkrechten Hyperebene**. Ihre Orthogonalität lässt sich mit den folgenden Identitäten prüfen:
 
 <MathContainer>
 <BlockMath math="H^T=H" />
-<BlockMath math="H^2=(I-2uu^T)^2=I" />
+<BlockMath math="\begin{aligned} H^2 &amp;= I-4uu^T+4u(u^Tu)u^T \\ &amp;= I-4uu^T+4uu^T=I \end{aligned}" />
 </MathContainer>
 
 Aus den beiden Identitäten folgt <InlineMath math="H^TH=I" />. In Richtung <InlineMath math="u" /> hat die Matrix den Eigenwert <InlineMath math="-1" />. Jeder zu <InlineMath math="u" /> senkrechte Vektor hat den Eigenwert <InlineMath math="1" />. Deshalb ist <InlineMath math="\det H=-1" />.
@@ -120,7 +120,7 @@ Aus den beiden Identitäten folgt <InlineMath math="H^TH=I" />. In Richtung <Inl
 | Singulärwerte | alle <InlineMath math="1" /> | alle <InlineMath math="1" /> |
 | Konditionszahl in der Zweinorm | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Produkte und Inversen bleiben in derselben Klasse:
+**Produkte und Inversen** bleiben in derselben Klasse:
 
 <MathContainer>
 <BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />

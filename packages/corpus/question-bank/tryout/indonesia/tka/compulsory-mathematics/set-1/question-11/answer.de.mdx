@@ -5,13 +5,39 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Die Sonnenstrahlen treffen bei beiden Schatten im gleichen Winkel auf den Boden. Daher ist das Verhältnis von Höhe zu Schattenlänge gleich. Sei <InlineMath math="H" /> die gemeinsame Höhe von Baum und Podest.
+Beide Höhen-Schatten-Dreiecke haben einen rechten Winkel und denselben Einfallswinkel der Sonnenstrahlen. Sie sind **ähnliche Dreiecke**, weshalb ihre Verhältnisse von Höhe zu Schattenlänge übereinstimmen. Sei <InlineMath math="H" /> die gemeinsame Höhe von Baum und Podest.
 
 <BlockMath math="\begin{aligned}
 \frac{H}{8}&=\frac{1{,}8}{1{,}2} \\
-H&=8(1{,}5)=12
+H&=8\left(\frac{18}{12}\right) \\
+&=8\left(\frac32\right)=12
 \end{aligned}" />
 
 Ziehe die Podesthöhe ab, um die Baumhöhe zu bestimmen.
 
 <BlockMath math="h=12-2=10\,\mathrm{m}" />
+
+<LineEquation
+  title="Baumhöhe und Podesthöhe"
+  description="Violett kennzeichnet die Baumhöhe, Orange die Podesthöhe. Das große Dreieck hat eine Gesamthöhe von 12 Metern und eine Schattenlänge von 8 Metern."
+  cameraPosition={[3.8, 6, 18]}
+  cameraTarget={[3.8, 6, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: 0, y: 12, z: 0 }, { x: 8, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#64748b", smooth: false, showPoints: false,
+      labels: [{ text: <InlineMath math="8\text{ m}" />, at: 1, offset: [-4, -0.6, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 2, z: 0 }, { x: 0, y: 12, z: 0 }],
+      color: "#9333ea", smooth: false,
+      labels: [{ text: <InlineMath math="10\text{ m}" />, at: 0, offset: [-0.8, 5, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
+      color: "#d97706", smooth: false,
+      labels: [{ text: <InlineMath math="2\text{ m}" />, at: 0, offset: [-0.8, 1, 0] }],
+    },
+  ]}
+/>

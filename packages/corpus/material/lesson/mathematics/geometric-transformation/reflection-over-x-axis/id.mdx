@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Mengubah Tanda Koordinat Vertikal Titik
 
-Pada pencerminan terhadap sumbu <InlineMath math="x" />, setiap bayangan berada di sisi berlawanan dari sumbu <InlineMath math="x" /> dengan jarak yang sama. Sumbu <InlineMath math="x" /> <Highlight>berperan seperti cermin horizontal</Highlight>.
+Pada pencerminan terhadap sumbu <InlineMath math="x" />, bayangan titik yang tidak terletak pada sumbu berada di sisi berlawanan dari sumbu <InlineMath math="x" /> dengan jarak yang sama. Sumbu <InlineMath math="x" /> <Highlight>berperan seperti cermin horizontal</Highlight>.
 
 Jika sebuah titik <InlineMath math="P" /> memiliki koordinat <InlineMath math="(x,y)" />, maka bayangannya, kita sebut <InlineMath math="P'" />, akan memiliki koordinat <InlineMath math="x" /> yang sama, namun koordinat <InlineMath math="y" />-nya akan menjadi negatif dari nilai <InlineMath math="y" /> semula.
 
@@ -19,9 +19,7 @@ Secara matematis, jika titik awal adalah <InlineMath math="P(x,y)" />, maka sete
 
 ### Visualisasi Titik dan Bayangannya
 
-Pasangan titik berikut memperlihatkan hubungan pencerminan terhadap sumbu <InlineMath math="x" /> tersebut.
-
-Telusuri koordinatnya: koordinat <InlineMath math="y" /> berubah tanda, sedangkan koordinat <InlineMath math="x" /> tetap.
+Perhatikan **pasangan titik pada garis vertikal yang sama**. Titik di atas sumbu dipantulkan ke bawah, sedangkan titik di bawah dipantulkan ke atas. Jarak masing-masing titik ke sumbu tetap sama.
 
 <LineEquation
   title={<>Bayangan Titik terhadap Sumbu <InlineMath math="x" /></>}
@@ -38,10 +36,9 @@ Telusuri koordinatnya: koordinat <InlineMath math="y" /> berubah tanda, sedangka
       { x: -3, y: 1, label: <InlineMath math="B" /> },
       { x: 1, y: 2, label: <InlineMath math="C" /> },
       { x: 4, y: -2, label: <InlineMath math="D" /> },
-    ].map((p, i) => ({
+    ].map((p) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
-        { x: p.x, y: p.y, z: 0 }, // Single point
       ],
       color: "#d97706",
       labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -52,10 +49,9 @@ Telusuri koordinatnya: koordinat <InlineMath math="y" /> berubah tanda, sedangka
       { x: -3, y: -1, label: <InlineMath math="B'" /> },
       { x: 1, y: -2, label: <InlineMath math="C'" /> },
       { x: 4, y: 2, label: <InlineMath math="D'" /> },
-    ].map((p, i) => ({
+    ].map((p) => ({
       points: [
         { x: p.x, y: p.y, z: 0 },
-        { x: p.x, y: p.y, z: 0 }, // Single point
       ],
       color: "#0891b2",
       labels: [{ text: p.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -75,21 +71,23 @@ Setiap pasangan mempertahankan nilai <InlineMath math="x" /> dan mengubah tanda 
 
 ## Sifat Pencerminan terhadap Sumbu Horizontal
 
-Pasangan titik tersebut menghasilkan aturan koordinat pencerminan terhadap sumbu <InlineMath math="x" />:
+Pencerminan mempertahankan koordinat horizontal dan **membalik tanda koordinat vertikal**. Titik tengah antara titik asal dan bayangan tepat berada pada sumbu cermin:
 
-<BlockMath math="P(x,y) \xrightarrow{\text{Sumbu X}} P'(x,-y)" />
+<BlockMath math="P(x,y)\longmapsto P'(x,-y),\qquad M=\left(\frac{x+x}{2},\frac{y+(-y)}{2}\right)=(x,0)" />
 
-Artinya, bayangan titik <InlineMath math="P(x,y)" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="P'(x,-y)" />. Sumbu <InlineMath math="x" /> merupakan garis <InlineMath math="y=0" />.
+Jarak kedua titik ke sumbu sama-sama <InlineMath math="|y|" />. Jika titik asal berada pada sumbu, koordinat vertikalnya nol dan bayangannya tetap di tempat:
+
+<BlockMath math="P(x,0)\longmapsto P'(x,-0)=P(x,0)" />
 
 ## Mencerminkan Segitiga dan Garis
 
-Mencerminkan sebuah segitiga berarti mencerminkan setiap titik sudutnya. Garis justru memerlukan persamaan yang diubah, dan contoh di bawah mengerjakan keduanya. Pada segitiga, ubah ketiga titik sudutnya, sedangkan pada garis, substitusikan aturan pencerminan ke persamaannya.
+Pencerminan bekerja pada **setiap titik bangun**. Untuk segitiga, tiga titik sudut sudah cukup untuk menentukan bayangan seluruh bangun. Untuk garis, aturan koordinat dimasukkan ke persamaan agar mewakili semua titik pada garis sekaligus.
 
 ### Mencerminkan Segitiga
 
 Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(-2,-1)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" />.
 
-Untuk menentukan bayangan segitiga <InlineMath math="ABC" />, kita gunakan sifat pencerminan pada setiap titik sudutnya:
+Untuk menentukan bayangan segitiga <InlineMath math="ABC" />, kita gunakan sifat pencerminan pada **setiap titik sudut**:
 
 <MathContainer>
   <BlockMath math="A(-1,4) \xrightarrow{\text{Sumbu X}} A'(-1,-4)" />
@@ -177,7 +175,7 @@ Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMa
 
 Jika sebuah garis memiliki persamaan <InlineMath math="2x - 3y = 0" /> dicerminkan terhadap sumbu <InlineMath math="x" />, tentukan persamaan garis bayangannya.
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 Misalkan sebuah titik sembarang <InlineMath math="P(a,b)" /> terletak pada garis <InlineMath math="2x - 3y = 0" />. Maka, berlaku:
 
@@ -189,7 +187,7 @@ Untuk mendapatkan persamaan garis bayangan, kita substitusikan koordinat bayanga
 
 Dari sini, kita peroleh <InlineMath math="a = x'" /> dan <InlineMath math="b = -y'" />.
 
-Substitusikan <InlineMath math="a = x'" /> dan <InlineMath math="b = -y'" /> ke persamaan awal <InlineMath math="2a - 3b = 0" />:
+Substitusikan <InlineMath math="a = x'" /> dan <InlineMath math="b = -y'" /> ke **persamaan awal** <InlineMath math="2a - 3b = 0" />:
 
 <MathContainer>
   <BlockMath math="2(x') - 3(-y') = 0" />

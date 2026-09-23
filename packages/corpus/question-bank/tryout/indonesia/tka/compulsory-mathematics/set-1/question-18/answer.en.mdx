@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The fence follows the garden’s outer boundary and the pond perimeter. The path width does not change either perimeter.
+The fence follows the garden’s **outer boundary** and the **pond perimeter**. The path width does not change either perimeter.
 
 <BlockMath math="\begin{aligned}
 L&=2(30+22)+2(8+5)-3 \\
@@ -14,3 +14,23 @@ L&=2(30+22)+2(8+5)-3 \\
 \end{aligned}" />
 
 Subtracting <InlineMath math="3\,\mathrm{m}" /> leaves the outer entrance unfenced. The required fence length is <InlineMath math="127\,\mathrm{m}" />.
+
+<LineEquation
+  title="The outer fence and the pond fence"
+  description="Purple lines show the fence. A 3-metre gap at the bottom is the entrance. This is one possible entrance position."
+  cameraPosition={[15, 11, 40]}
+  cameraTarget={[15, 11, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: 13.5, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 22, z: 0 }, { x: 30, y: 22, z: 0 }, { x: 30, y: 0, z: 0 }, { x: 16.5, y: 0, z: 0 }],
+      color: "#9333ea", smooth: false, showPoints: false,
+      labels: [{ text: <InlineMath math="3\text{ m}" />, at: 0, offset: [1.5, -1, 0] }, { text: <InlineMath math="30\text{ m}" />, at: 2, offset: [15, 1, 0] }, { text: <InlineMath math="22\text{ m}" />, at: 3, offset: [1.8, -11, 0] }],
+    },
+    {
+      points: [{ x: 11, y: 8.5, z: 0 }, { x: 19, y: 8.5, z: 0 }, { x: 19, y: 13.5, z: 0 }, { x: 11, y: 13.5, z: 0 }, { x: 11, y: 8.5, z: 0 }],
+      color: "#9333ea", smooth: false, showPoints: false,
+      labels: [{ text: <InlineMath math="8\text{ m}" />, at: 0, offset: [4, -1, 0] }, { text: <InlineMath math="5\text{ m}" />, at: 1, offset: [1.5, 2.5, 0] }],
+    },
+  ]}
+/>

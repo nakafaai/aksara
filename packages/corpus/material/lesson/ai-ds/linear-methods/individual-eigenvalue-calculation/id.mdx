@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan iterasi pangkat, iterasi invers bergeser, hasil bagi Rayleigh, dan pemeriksaan residu untuk menghitung pasangan eigen terpilih.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -12,6 +12,8 @@ export const metadata = {
 Iterasi invers bergeser <Highlight>menargetkan nilai eigen yang paling dekat dengan pergeseran</Highlight> <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Semua nilai eigennya real dan vektor eigennya dapat dipilih sebagai basis ortonormal.
 
 Pilih <InlineMath math="\mu" /> yang bukan nilai eigen dan vektor awal satuan <InlineMath math="q_0" /> yang memiliki komponen tak nol pada arah vektor eigen tujuan. Faktorkan <InlineMath math="A-\mu I" /> sekali, lalu gunakan kembali faktorisasi tersebut.
+
+Asumsikan nilai eigen tujuan **paling dekat secara unik dengan pergeseran**. Dua nilai eigen yang berjarak sama tidak menghasilkan satu magnitudo transformasi dominan. Konvergensi yang dimaksud adalah konvergensi arah eigen. Nilai eigen transformasi negatif dapat membuat tanda vektor berganti.
 
 ### Satu Langkah Iterasi
 
@@ -24,7 +26,7 @@ Untuk <InlineMath math="k=0,1,2,\ldots" />, lakukan:
 <BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-Hasil bagi Rayleigh <InlineMath math="\rho_{k+1}" /> memperkirakan nilai eigen. Aturan penghentian yang memperhatikan skala memeriksa residu. Perbandingan dua estimasi berurutan saja belum cukup:
+**Hasil bagi Rayleigh** <InlineMath math="\rho_{k+1}" /> memperkirakan nilai eigen. Aturan penghentian yang memperhatikan skala memeriksa residu. Perbandingan dua estimasi berurutan saja belum cukup:
 
 <BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
 
@@ -36,7 +38,7 @@ Hubungan ini menunjukkan bahwa nilai eigen yang paling dekat dengan <InlineMath 
 
 ## Iterasi Pangkat
 
-Iterasi pangkat menargetkan nilai eigen dengan nilai absolut terbesar. Mulai dari vektor satuan <InlineMath math="q_0" />, ulangi:
+Iterasi pangkat menargetkan nilai eigen dengan **nilai absolut terbesar**. Mulai dari vektor satuan <InlineMath math="q_0" />, ulangi:
 
 <MathContainer>
 <BlockMath math="y_{k+1}=Aq_k" />
@@ -58,11 +60,11 @@ Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan sec
 | Metode | Target |
 | --- | --- |
 | Iterasi pangkat pada <InlineMath math="A" /> | Nilai eigen dengan nilai absolut terbesar |
-| Iterasi invers dengan <InlineMath math="\mu=0" /> | Nilai eigen tak nol dengan nilai absolut terkecil |
+| Iterasi invers dengan <InlineMath math="\mu=0" /> dan <InlineMath math="A" /> invertibel | Nilai eigen tak nol dengan nilai absolut terkecil |
 | Iterasi invers bergeser | Nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> |
 | Iterasi invers pada matriks definit positif | Nilai eigen aljabar terkecil, yang juga terkecil secara absolut |
 
-Pada matriks tak definit, nilai eigen dengan nilai absolut terkecil belum tentu merupakan nilai eigen paling negatif. Bedakan kedua nilai ini agar tidak memilih nilai eigen yang keliru.
+Pada matriks tak definit, nilai eigen dengan **nilai absolut terkecil belum tentu** merupakan nilai eigen paling negatif. Bedakan kedua nilai ini agar tidak memilih nilai eigen yang keliru.
 
 ## Contoh Iterasi Invers Bergeser
 
@@ -81,13 +83,17 @@ Sistem bergeser pada iterasi pertama menghasilkan
 <BlockMath math="\rho_1=q_1^TAq_1=\frac{37}{17}\approx2{,}176" />
 </MathContainer>
 
-Karena <InlineMath math="2" /> lebih dekat ke pergeseran <InlineMath math="1" /> daripada <InlineMath math="5" />, iterasi berikutnya mendorong komponen kedua menuju nol dan <InlineMath math="\rho_k" /> menuju <InlineMath math="2" />.
+Karena <InlineMath math="2" /> lebih dekat ke pergeseran <InlineMath math="1" /> daripada <InlineMath math="5" />, iterasi berikutnya mendorong **komponen kedua menuju nol** dan <InlineMath math="\rho_k" /> menuju <InlineMath math="2" />.
+
+Periksa juga residual pertama. Estimasinya membaik, tetapi belum konvergen:
+
+<BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
 ## Pemeriksaan Praktis
 
 Pemeriksaan berikut memutuskan apakah pasangan nilai eigen dan vektor eigen hasil hitunganmu benar tanpa mengulang seluruh determinan. Kerjakan berurutan untuk setiap pasangan yang kamu peroleh, karena setiap langkah menyaring jenis kesalahan yang berbeda: satu langkah menangkap penyimpangan angka, langkah lain menangkap pilihan tanda yang bebas.
 
 1. Faktorkan matriks bergeser dengan metode yang stabil dan pivoting jika diperlukan. Jika pergeseran tepat mengenai nilai eigen, matriks bergeser menjadi singular sehingga penyelesaian harus ditangani atau pergeserannya disesuaikan.
-2. Hentikan berdasarkan norma residu. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.
+2. Hentikan berdasarkan **norma residu**. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.
 3. Tanda vektor eigen bebas dipilih: <InlineMath math="q" /> dan <InlineMath math="-q" /> mewakili arah eigen yang sama.
-4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, seperti penyelesai eigen berbasis Lanczos, Arnoldi, atau <InlineMath math="\mathrm{QR}" />.
+4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, dengan Lanczos untuk masalah simetris serta Arnoldi atau <InlineMath math="\mathrm{QR}" />.

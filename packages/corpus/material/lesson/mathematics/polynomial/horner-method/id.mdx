@@ -47,43 +47,28 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Perhatikan bagaimana Metode Horner hanya fokus pada koefisien <InlineMath math="(1, 0, -7, 8)" /> dan nilai <InlineMath math="c=2" />. Baris bawah pada Metode Horner <InlineMath math="(1, 2, -3)" /> langsung memberikan koefisien hasil bagi <InlineMath math="1x^2 + 2x - 3" /> dan angka terakhir <InlineMath math="\boxed{2}" /> adalah sisanya.
 
-Skema tersebut tidak menulis ulang variabel dan pangkat. Baris paling bawah langsung memuat koefisien hasil bagi, diikuti oleh sisa pembagian.
-
 Metode ini hanya bisa langsung digunakan jika pembaginya adalah polinomial linier derajat satu, yaitu berbentuk <InlineMath math="(x-c)" /> atau <InlineMath math="(ax-b)" /> (yang bisa diubah bentuk).
 
 ## Persiapan Menggunakan Metode Horner
 
-Sebelum melakukan pembagian dengan metode Horner, ada beberapa langkah persiapan:
+**Urutan koefisien** harus mengikuti semua pangkat, dari pangkat tertinggi sampai konstanta. Suku yang tidak tertulis tetap memiliki tempat, dengan koefisien nol. Untuk <InlineMath math="2x^3+5x^2+6" />, urutannya adalah:
 
-1.  **Identifikasi Koefisien Polinomial yang Dibagi (<InlineMath math="P(x)" />):**
+| Pangkat | Koefisien |
+| --- | --- |
+| <InlineMath math="x^3" /> | 2 |
+| <InlineMath math="x^2" /> | 5 |
+| <InlineMath math="x" /> | 0 |
+| <InlineMath math="1" /> | 6 |
 
-    Tuliskan semua koefisien dari polinomial yang akan dibagi secara berurutan, dimulai dari suku dengan pangkat tertinggi hingga konstanta. Pastikan tidak ada pangkat yang terlewat. Jika ada suku dengan pangkat tertentu yang tidak ada, koefisiennya ditulis sebagai <InlineMath math="0" />.
-
-    **Contoh:**
-
-    Untuk <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" />, koefisien suku <InlineMath math="x" /> adalah <InlineMath math="0" />. Maka, koefisien yang kita tulis berurutan adalah: <InlineMath math="2, 5, 0, 6" />.
-
-2.  **Identifikasi Nilai <InlineMath math="c" /> dari Pembagi (<InlineMath math="x-c" />):**
-
-    Tentukan nilai <InlineMath math="c" /> dari polinomial pembagi. Ingat, jika pembagi adalah <InlineMath math="x-c" />, nilai yang digunakan adalah <InlineMath math="c" />. Jika pembagi adalah <InlineMath math="x+c" />, maka bentuknya sama dengan <InlineMath math="x - (-c)" />, sehingga nilai yang digunakan adalah <InlineMath math="-c" />.
-
-    **Contoh:**
-
-    Jika pembagi adalah <InlineMath math="x+3" />, maka <InlineMath math="x - (-3)" />, sehingga <InlineMath math="c = -3" />.
-
-3.  **Buat Skema Horner:**
-
-    Gambarkan skema atau bagan Horner. Letakkan nilai <InlineMath math="c" /> di sebelah kiri dan tuliskan koefisien <InlineMath math="P(x)" /> di baris atas.
+Letakkan **akar pembagi** di sebelah kiri skema. Pembagi <InlineMath math="x+3=x-(-3)" /> memberi <InlineMath math="c=-3" />, bukan tiga. Koefisien polinomial kemudian ditulis pada baris atas.
 
 ## Proses Pembagian dengan Metode Horner
 
-Berikut adalah langkah-langkah melakukan pembagian menggunakan skema Horner:
+Pada setiap kolom, **kalikan hasil sebelumnya lalu tambahkan koefisien berikutnya**. Aturan ini berasal dari penulisan polinomial sebagai perkalian bertingkat:
 
-1.  **Turunkan Koefisien Pertama:** Turunkan koefisien pertama (<InlineMath math="a_n" />) langsung ke baris hasil (baris paling bawah).
-2.  **Kali dan Letakkan:** Kalikan koefisien yang baru saja diturunkan dengan nilai <InlineMath math="c" />. Letakkan hasilnya di bawah koefisien kedua (<InlineMath math="a_{n-1}" />).
-3.  **Jumlahkan:** Jumlahkan koefisien kedua (<InlineMath math="a_{n-1}" />) dengan hasil perkalian dari langkah sebelumnya. Tuliskan hasilnya di baris hasil, tepat di bawahnya.
-4.  **Ulangi:** Ulangi langkah 2 (kali dengan <InlineMath math="c" />) dan langkah 3 (jumlahkan dengan koefisien di atasnya) untuk semua koefisien yang tersisa.
-5.  **Hasil Akhir:** Angka terakhir di baris hasil adalah **sisa pembagian (<InlineMath math="S" />)**. Angka-angka lainnya di baris hasil, dari kiri ke kanan, adalah **koefisien dari polinomial hasil bagi (<InlineMath math="H(x)" />)**, dimulai dari pangkat <InlineMath math="n-1" />.
+<BlockMath math="2x^3+5x^2+6=((2x+5)x+0)x+6" />
+
+Mulai dari koefisien pertama, yaitu dua. Setelah semua koefisien diproses, hasil terakhir adalah nilai polinomial pada akar pembagi, sehingga sama dengan sisa menurut Teorema Sisa. Hasil sebelumnya adalah koefisien hasil bagi.
 
 ## Penggunaan Metode Horner
 
@@ -108,50 +93,38 @@ x+3\overline{\big)2x^3 + 5x^2 + 0x + 6} \\
 
 **Metode Horner:**
 
-1.  **Persiapan:**
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-3 & 2 & 5 & 0 & 6 \\
+  &   & -6 & 3 & -9 \\
+\hline
+  & 2 & -1 & 3 & \boxed{-3} \\
+\end{array}
+"
+/>
 
-    - Koefisien <InlineMath math="P(x)" />: <InlineMath math="2, 5, 0" /> (untuk <InlineMath math="x^1" />), <InlineMath math="6" /> (konstanta).
-    - Pembagi adalah <InlineMath math="x+3" />, maka <InlineMath math="x - (-3)" />, jadi <InlineMath math="c = -3" />.
+| Koefisien berikutnya | Perkalian | Penjumlahan |
+| --- | --- | --- |
+| 5 | <InlineMath math="2(-3)=-6" /> | <InlineMath math="5-6=-1" /> |
+| 0 | <InlineMath math="(-1)(-3)=3" /> | <InlineMath math="0+3=3" /> |
+| 6 | <InlineMath math="3(-3)=-9" /> | <InlineMath math="6-9=-3" /> |
 
-2.  **Proses Horner:**
+Angka terakhir adalah **sisa**, yaitu <InlineMath math="-3" />. Tiga angka sebelumnya, <InlineMath math="2,-1,3" />, memberi hasil bagi <InlineMath math="H(x)=2x^2-x+3" />. Jadi:
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    -3 & 2 & 5 & 0 & 6 \\
-      &   & -6 & 3 & -9 \\
-    \hline
-      & 2 & -1 & 3 & \boxed{-3} \\
-    \end{array}
-    "
-    />
+<BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
-3.  **Penjelasan Skema:**
+### Pembagi dengan Koefisien Utama Selain Satu
 
-    - Angka <InlineMath math="2" /> (koefisien <InlineMath math="x^3" />) diturunkan.
-    - <InlineMath math="2 \times (-3) = -6" />. Letakkan <InlineMath math="-6" /> di bawah <InlineMath math="5" />.
-    - <InlineMath math="5 + (-6) = -1" />. Tulis <InlineMath math="-1" /> di baris hasil.
-    - <InlineMath math="-1 \times (-3) = 3" />. Letakkan <InlineMath math="3" /> di bawah <InlineMath math="0" />.
-    - <InlineMath math="0 + 3 = 3" />. Tulis <InlineMath math="3" /> di baris hasil.
-    - <InlineMath math="3 \times (-3) = -9" />. Letakkan <InlineMath math="-9" /> di bawah <InlineMath math="6" />.
-    - <InlineMath math="6 + (-9) = -3" />. Tulis <InlineMath math="-3" /> (sisa) di baris hasil paling kanan.
+Jika pembagi berbentuk <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0" />, gunakan <InlineMath math="c=b/a" /> pada skema. Namun, **hasil bagi harus dibagi lagi dengan koefisien utama pembagi**. Sisa tidak berubah.
 
-4.  **Hasil:**
+Misalnya, skema yang sama dapat digunakan untuk pembagi <InlineMath math="2x+6=2(x+3)" />. Supaya hasil perkaliannya tetap sama, bagi hasil bagi sebelumnya dengan dua:
 
-    - Angka terakhir di baris hasil adalah <InlineMath math="\boxed{-3}" />. Ini adalah **Sisa Pembagian (<InlineMath math="S" />)**.
-    - Angka-angka lainnya adalah <InlineMath math="2, -1, 3" />. Ini adalah koefisien **Hasil Bagi (<InlineMath math="H(x)" />)**. Karena <InlineMath math="P(x)" /> berderajat <InlineMath math="3" />, maka <InlineMath math="H(x)" /> berderajat <InlineMath math="2" />.
-    - Jadi, <InlineMath math="H(x) = 2x^2 - 1x + 3 = 2x^2 - x + 3" />.
-
-5.  **Penulisan Algoritma Pembagian:**
-
-    <MathContainer>
-      <BlockMath math="P(x) = (x-c) H(x) + S" />
-      <BlockMath math="\begin{aligned} &amp;2x^3 + 5x^2 + 6 \\ &amp;= (x+3)(2x^2 - x + 3) - 3 \end{aligned}" />
-    </MathContainer>
+<BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
 ## Latihan
 
-Tentukan hasil bagi dan sisa dari pembagian <InlineMath math="x^4 + 4" /> oleh <InlineMath math="x - 1" /> dengan menggunakan metode Horner dan pembagian bersusun.
+Tentukan **hasil bagi dan sisa** dari pembagian <InlineMath math="x^4 + 4" /> oleh <InlineMath math="x - 1" /> dengan menggunakan metode Horner dan pembagian bersusun.
 
 Nyatakan hasilnya ke dalam bentuk <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />. Kedua metode harus memberi nilai yang sama, dan pemeriksaan derajat memberi tahu berapa banyak suku yang mungkin pada hasil baginya.
 

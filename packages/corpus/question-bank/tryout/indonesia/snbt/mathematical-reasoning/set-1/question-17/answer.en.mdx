@@ -5,62 +5,29 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-We will combine all apple mass data from Ferdian and Belle, sort it, and then evaluate each statement.
+We evaluate **groups selected by mass order**, not merely their average. The value <InlineMath math="x=180" /> is given, so the two apples weighing 180 grams must still count as two separate apples.
 
-#### Combining and Sorting Data
+#### Sorting All Apples
 
-Ferdian's apple mass data (with <InlineMath math="x = 180" />):
+Combine both columns and arrange **all twelve masses from lightest to heaviest**. The table uses grams and retains every apple, including repeated masses.
 
-<BlockMath math="\begin{gathered}157, 163, 182, \\ 171, 167, 180\end{gathered}" />
+| Position | Masses (grams) |
+| --- | --- |
+| 1 to 3 | 154, 157, 161 |
+| 4 to 6 | 162, 163, 167 |
+| 7 to 9 | 170, 171, 175 |
+| 10 to 12 | 180, 180, 182 |
 
-Belle's apple mass data:
+#### Checking Each Group against Its Bound
 
-<BlockMath math="\begin{gathered}180, 175, 162, \\ 154, 161, 170\end{gathered}" />
+A quarter of twelve apples contains three apples, while half contains six. The signs **less than and greater than are strict**: a value equal to the bound does not satisfy them.
 
-Combined data (total <InlineMath math="12" /> apples):
+<BlockMath math="\begin{aligned}25\%\times12&=\frac{25}{100}\times12=3\\50\%\times12&=\frac{50}{100}\times12=6\end{aligned}" />
 
-<BlockMath math="\begin{gathered}157, 163, 182, \\ 171, 167, 180, \\ 180, 175, 162, \\ 154, 161, 170\end{gathered}" />
+| Statement | Selected apples (grams) | Check | Result |
+| --- | --- | --- | --- |
+| First, three lightest | 154, 157, 161 | Largest mass 161 is below 162 | True |
+| Second, three heaviest | 180, 180, 182 | Two apples equal 180 rather than exceeding it | False |
+| Third, six lightest | 154, 157, 161, 162, 163, 167 | Largest mass 167 is below 170 | True |
 
-Sorted data from smallest to largest:
-
-<BlockMath math="\begin{gathered}154, 157, 161, \\ 162, 163, 167, \\ 170, 171, 175, \\ 180, 180, 182\end{gathered}" />
-
-Total data (<InlineMath math="n" />) is <InlineMath math="12" />.
-
-#### Evaluating First Statement
-
-**Statement:** The smallest <InlineMath math="25\%" /> of all the apples have a mass of <InlineMath math="< 162 \text{ grams}" />.
-
-We calculate <InlineMath math="25\%" /> of the total data:
-
-<BlockMath math="25\% \times 12 = 3 \text{ items}" />
-
-The <InlineMath math="3" /> smallest data points are <InlineMath math="154" />, <InlineMath math="157" />, <InlineMath math="161" />. All these values are less than <InlineMath math="162\text{ grams}" />.
-
-**Conclusion:** First statement is **TRUE**.
-
-#### Evaluating Second Statement
-
-**Statement:** The largest <InlineMath math="25\%" /> of all the apples have a mass of <InlineMath math="> 180 \text{ grams}" />.
-
-We calculate <InlineMath math="25\%" /> of the total data:
-
-<BlockMath math="25\% \times 12 = 3 \text{ items}" />
-
-The <InlineMath math="3" /> largest data points are <InlineMath math="182" />, <InlineMath math="180" />, <InlineMath math="180" />. Not all of these are greater than <InlineMath math="180" /> (since two values are exactly <InlineMath math="180" />).
-
-**Conclusion:** Second statement is **FALSE**.
-
-#### Evaluating Third Statement
-
-**Statement:** The smallest <InlineMath math="50\%" /> of all the apples have a mass of <InlineMath math="< 170 \text{ grams}" />.
-
-We calculate <InlineMath math="50\%" /> of the total data:
-
-<BlockMath math="50\% \times 12 = 6 \text{ items}" />
-
-The <InlineMath math="6" /> smallest data points are <InlineMath math="154" />, <InlineMath math="157" />, <InlineMath math="161" />, <InlineMath math="162" />, <InlineMath math="163" />, <InlineMath math="167" />. The largest value in this group is <InlineMath math="167" />, which is less than <InlineMath math="170" />.
-
-**Conclusion:** Third statement is **TRUE**.
-
-So, the sequence of truth is **TRUE - FALSE - TRUE**.
+The second statement fails even though the 182-gram apple exceeds the bound. The claim concerns every apple in the group, so all three must satisfy it. The sequence is **true, false, true**, or TFT.

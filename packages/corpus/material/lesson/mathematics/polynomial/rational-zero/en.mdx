@@ -26,141 +26,130 @@ This theorem only provides a list of **possible** rational roots. Not all values
 
 ## Steps for Using the Rational Zero Theorem
 
-Here are the steps to find rational roots using this theorem, often combined with the Factor Theorem:
+**A candidate is not yet a root**. Use positive and negative divisors of the constant as numerators and positive divisors of the leading coefficient as denominators. Reduce the fractions so that equal values are not tested repeatedly. Check each candidate by substitution or [Horner’s method](/en/subjects/mathematics/polynomial/horner-method).
 
-1.  **Identify Coefficients:** Ensure all coefficients (<InlineMath math="a_n, \dots, a_0" />) are integers. Identify the constant term <InlineMath math="a_0" /> and the leading coefficient <InlineMath math="a_n" />.
-2.  **List Factors of <InlineMath math="p" />:** List all integer factors (positive and negative) of the constant term <InlineMath math="a_0" />.
-3.  **List Factors of <InlineMath math="q" />:** List all integer factors (positive and negative) of the leading coefficient <InlineMath math="a_n" />.
-4.  **List Possible Roots <InlineMath math="\frac{p}{q}" />:** List all possible values of <InlineMath math="\frac{p}{q}" /> by dividing each factor <InlineMath math="p" /> by each factor <InlineMath math="q" />. Simplify the fractions and remove duplicates.
-5.  **Test Possible Roots:** Test each value <InlineMath math="\frac{p}{q}" /> from the list by substituting it into <InlineMath math="P(x)" /> (using the Remainder Theorem) or using [Horner's method](/en/subjects/mathematics/polynomial/horner-method). If the result is <InlineMath math="P(\frac{p}{q}) = 0" />, then <InlineMath math="\frac{p}{q}" /> is a rational root, and <InlineMath math="(x - \frac{p}{q})" /> (or the form <InlineMath math="(qx - p)" />) is a factor (Factor Theorem).
-6.  **Factor Further:** After finding one rational root <InlineMath math="c" />, use the quotient from Horner's method to find the remaining roots from the lower-degree polynomial.
+If the constant is zero, factor out <InlineMath math="x" /> first. For example, <InlineMath math="x^3-2x^2=x^2(x-2)" /> has zero as a root, and the remaining factor gives the root two.
+
+If no candidate works, the conclusion is only **no rational roots**. The candidates for <InlineMath math="x^2-2" /> are <InlineMath math="\pm1,\pm2" />, but none makes the polynomial zero. It still has the real roots <InlineMath math="\pm\sqrt2" />.
 
 ### Using the Factor Theorem and Rational Zero Theorem
 
 Factor the polynomial <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> completely.
 
-1.  **Identify Coefficients:**
+**Step 1**. Identify Coefficients
 
-    The coefficients are integers. <InlineMath math="a_0 = -18" /> and <InlineMath math="a_n = 1" />.
+The coefficients are integers. <InlineMath math="a_0 = -18" /> and <InlineMath math="a_n = 1" />.
 
-2.  **Factors of <InlineMath math="p" /> (from <InlineMath math="a_0 = -18" />):**
+**Step 2**. Factors of <InlineMath math="p" /> (from <InlineMath math="a_0 = -18" />)
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-3.  **Factors of <InlineMath math="q" /> (from <InlineMath math="a_n = 1" />):**
+**Step 3**. Factors of <InlineMath math="q" /> (from <InlineMath math="a_n = 1" />)
 
-    <BlockMath math="\pm 1" />
+<BlockMath math="\pm 1" />
 
-4.  **Possible Roots <InlineMath math="\frac{p}{q}" />:**
+**Step 4**. Possible Roots <InlineMath math="\frac{p}{q}" />
 
-    Dividing all <InlineMath math="p" /> by <InlineMath math="q = \pm 1" /> yields:
+Dividing all <InlineMath math="p" /> by <InlineMath math="q = \pm 1" /> yields:
 
-    <BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
 
-5.  **Test Possible Roots:** Test some values from the list.
+**Step 5**
 
-    - Try <InlineMath math="x = 1" />:
+| Candidate | Substitution result | Decision |
+| --- | --- | --- |
+| 1 | <InlineMath math="1+2-9-18=-24" /> | Not a root |
+| -1 | <InlineMath math="-1+2+9-18=-8" /> | Not a root |
+| 2 | <InlineMath math="8+8-18-18=-20" /> | Not a root |
+| -2 | <InlineMath math="-8+8+18-18=0" /> | Root |
+| 3 | <InlineMath math="27+18-27-18=0" /> | Root |
 
-      <BlockMath math="P(1) = 1 + 2 - 9 - 18 = -24 \neq 0" />
+Use the root <InlineMath math="3" /> for the division. The root <InlineMath math="-2" /> is also valid and reappears when you factor the quotient.
 
-    - Try <InlineMath math="x = -1" />:
+**Step 6**. Factor Further (using the root <InlineMath math="x = 3" />)
 
-      <BlockMath math="P(-1) = -1 + 2 + 9 - 18 = -8 \neq 0" />
+Divide <InlineMath math="P(x)" /> by <InlineMath math="(x-3)" /> using Horner's (<InlineMath math="c = 3" />).
 
-    - Try <InlineMath math="x = 2" />:
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+3 & 1 & 2 & -9 & -18 \\
+  &   & 3 & 15 & 18 \\
+\hline
+  & 1 & 5 & 6 & \boxed{0} \\
+\end{array}
+"
+/>
 
-      <BlockMath math="P(2) = 8 + 8 - 18 - 18 = -20 \neq 0" />
+The quotient is <InlineMath math="H(x) = x^2 + 5x + 6" />.
 
-    - Try <InlineMath math="x = -2" />:
+Thus, <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
 
-      <BlockMath math="P(-2) = -8 + 8 + 18 - 18 = 0" />
+**Step 7**. Factor the Quotient
 
-      Success! So, <InlineMath math="x = -2" /> is a root, and <InlineMath math="(x+2)" /> is a factor.
+Factor <InlineMath math="x^2 + 5x + 6" />.
 
-    - Alternatively, try <InlineMath math="x = 3" />:
+<BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
 
-      <BlockMath math="P(3) = (3)^3 + 2(3)^2 - 9(3) - 18 = 27 + 18 - 27 - 18 = 0" />
+**Step 8**. Complete Factorization
 
-      Success! So, <InlineMath math="x = 3" /> is a root, and <InlineMath math="(x-3)" /> is a factor.
-
-6.  **Factor Further (using the root <InlineMath math="x = 3" />):**
-
-    Divide <InlineMath math="P(x)" /> by <InlineMath math="(x-3)" /> using Horner's (<InlineMath math="c = 3" />).
-
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    3 & 1 & 2 & -9 & -18 \\
-      &   & 3 & 15 & 18 \\
-    \hline
-      & 1 & 5 & 6 & \boxed{0} \\
-    \end{array}
-    "
-    />
-
-    The quotient is <InlineMath math="H(x) = x^2 + 5x + 6" />.
-
-    Thus, <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
-
-7.  **Factor the Quotient:**
-
-    Factor <InlineMath math="x^2 + 5x + 6" />.
-
-    <BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
-
-8.  **Complete Factorization:**
-
-    <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+<BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
 
 ## Exercise
 
-Factor <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> completely using the Rational Zero Theorem and the Factor Theorem. List the possible roots from the factors of the constant and the leading coefficient, then test them in order and divide out each root you confirm.
+Factor <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> completely using the **Rational Zero Theorem** and the Factor Theorem. List the possible roots from the factors of the constant and the leading coefficient, then test them in order and divide out each root you confirm.
 
 ### Answer Key
 
-1.  **Identify Coefficients:** <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
-2.  **Factors of <InlineMath math="p" /> (from <InlineMath math="20" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
-3.  **Factors of <InlineMath math="q" /> (from <InlineMath math="2" />):** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
-4.  **Possible Roots <InlineMath math="\frac{p}{q}" />:** <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
-5.  **Test Roots:**
+**Step 1**. Identify Coefficients <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
 
-    Try <InlineMath math="x = 2" />.
+**Step 2**. Factors of <InlineMath math="p" /> (from <InlineMath math="20" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
 
-    <MathContainer>
-      <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
-      <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
-      <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
-      <BlockMath math="P(2) = 4 - 4 = 0" />
-    </MathContainer>
+**Step 3**. Factors of <InlineMath math="q" /> (from <InlineMath math="2" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
 
-    Since <InlineMath math="P(2)=0" />, <InlineMath math="x=2" /> is a root and <InlineMath math="(x-2)" /> is a factor.
+**Step 4**. Possible Roots <InlineMath math="\frac{p}{q}" /> <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
 
-6.  **Divide using Horner (<InlineMath math="c = 2" />):**
+**Step 5**. Test Roots
 
-    <BlockMath
-      math="
-    \begin{array}{c|cccc}
-    2 & 2 & -3 & -12 & 20 \\
-      &   & 4 & 2 & -20 \\
-    \hline
-      & 2 & 1 & -10 & \boxed{0} \\
-    \end{array}
-    "
-    />
+Try <InlineMath math="x = 2" />.
 
-    The quotient is <InlineMath math="H(x) = 2x^2 + x - 10" />.
+<MathContainer>
+  <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
+  <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
+  <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
+  <BlockMath math="P(2) = 4 - 4 = 0" />
+</MathContainer>
 
-    <InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
+Since <InlineMath math="P(2)=0" />, <InlineMath math="x=2" /> is a root and <InlineMath math="(x-2)" /> is a factor.
 
-7.  **Factor the Quotient:**
+**Step 6**. Divide using Horner (<InlineMath math="c = 2" />)
 
-    Factor <InlineMath math="2x^2 + x - 10" />.
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & -12 & 20 \\
+  &   & 4 & 2 & -20 \\
+\hline
+  & 2 & 1 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
 
-    <BlockMath math="2x^2 + x - 10 = (2x+5)(x-2)" />
+The quotient is <InlineMath math="H(x) = 2x^2 + x - 10" />.
 
-8.  **Complete Factorization:**
+<InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
 
-    <MathContainer>
-      <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
-      <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
-    </MathContainer>
+**Step 7**. Factor the Quotient
+
+Factor <InlineMath math="2x^2 + x - 10" />.
+
+<BlockMath math="\begin{aligned}2x^2+x-10&amp;=2x^2-4x+5x-10 \\ &amp;=2x(x-2)+5(x-2) \\ &amp;=(2x+5)(x-2)\end{aligned}" />
+
+**Step 8**. Complete Factorization
+
+<MathContainer>
+  <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
+  <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
+</MathContainer>
+
+The root <InlineMath math="2" /> occurs twice because <InlineMath math="x-2" /> is squared. The other root is <InlineMath math="-5/2" />, obtained from <InlineMath math="2x+5=0" />.

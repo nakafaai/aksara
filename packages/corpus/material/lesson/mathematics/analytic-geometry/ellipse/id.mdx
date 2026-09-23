@@ -235,19 +235,40 @@ Komponen utama elips adalah:
 
 2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) adalah dua titik tetap yang mendefinisikan elips. Jarak antara keduanya adalah <InlineMath math="2c" />.
 
-3. **Sumbu mayor** adalah garis terpanjang yang lewat pusat elips dan kedua fokus. Ujung-ujungnya adalah titik <InlineMath math="A_1" /> dan <InlineMath math="A_2" />.
+3. **Sumbu mayor** adalah diameter terpanjang elips, yaitu ruas garis melalui pusat dan kedua fokus dengan kedua ujung pada elips. Ujung-ujungnya adalah titik <InlineMath math="A_1" /> dan <InlineMath math="A_2" />.
 
-4. **Sumbu minor** adalah garis terpendek yang lewat pusat elips dan tegak lurus sumbu mayor. Ujung-ujungnya adalah titik <InlineMath math="B_1" /> dan <InlineMath math="B_2" />.
+4. **Sumbu minor** adalah diameter terpendek elips, yaitu ruas garis melalui pusat yang tegak lurus sumbu mayor dengan kedua ujung pada elips. Ujung-ujungnya adalah titik <InlineMath math="B_1" /> dan <InlineMath math="B_2" />.
 
 5. **Semi-mayor** (<InlineMath math="a" />) adalah setengah panjang sumbu mayor, yaitu jarak dari pusat ke ujung sumbu mayor.
 
 6. **Semi-minor** (<InlineMath math="b" />) adalah setengah panjang sumbu minor, yaitu jarak dari pusat ke ujung sumbu minor.
 
-> Elips yang bukan lingkaran memenuhi <InlineMath math="a > b" />. Pada kasus batas <InlineMath math="a = b" />, kedua semisumbunya sama panjang sehingga kurvanya menjadi lingkaran.
+> Elips yang bukan lingkaran memenuhi <InlineMath math="a > b > 0" />. Pada kasus batas <InlineMath math="a = b" />, kedua semisumbunya sama panjang sehingga kurvanya menjadi lingkaran.
 
 ## Persamaan Elips
 
-Bentuk persamaan elips bergantung pada letak pusat dan arah sumbu mayornya. Pusatnya dibaca dari bilangan yang dikurangkan di dalam setiap kuadrat, sedangkan arahnya dibaca dari suku kuadrat yang penyebutnya lebih besar.
+Bentuk persamaan elips bergantung pada letak pusat dan arah sumbu mayornya. Pusatnya dibaca dari bilangan yang dikurangkan di dalam setiap kuadrat, sedangkan arahnya dibaca dari suku kuadrat yang **penyebutnya lebih besar**.
+
+### Dari Jarak ke Persamaan
+
+Ambil fokus di <InlineMath math="(-c,0)" /> dan <InlineMath math="(c,0)" /> dengan <InlineMath math="a > c > 0" />. Untuk titik <InlineMath math="P(x,y)" />, beri nama jarak ke fokus kiri dan kanan sebagai <InlineMath math="d_1" /> dan <InlineMath math="d_2" />. **Jumlah jarak tetap** itu kita tulis sebagai <InlineMath math="2a" />.
+
+<MathContainer>
+  <BlockMath math="d_1=\sqrt{(x+c)^2+y^2},\qquad d_2=\sqrt{(x-c)^2+y^2}" />
+  <BlockMath math="d_1+d_2=2a" />
+</MathContainer>
+
+Kuadratkan <InlineMath math="d_1=2a-d_2" />. Selisih kuadrat kedua jarak menyisakan suku <InlineMath math="4cx" />.
+
+<BlockMath math="\begin{aligned}d_1^2-d_2^2 &amp;=4a^2-4ad_2\\4cx &amp;=4a^2-4ad_2\\ad_2 &amp;=a^2-cx\end{aligned}" />
+
+Masukkan rumus jarak untuk <InlineMath math="d_2" />, kuadratkan, lalu kumpulkan suku sejenis.
+
+<BlockMath math="\begin{aligned}a^2[(x-c)^2+y^2]&amp;=(a^2-cx)^2\\a^2x^2-2a^2cx+a^2c^2+a^2y^2&amp;=a^4-2a^2cx+c^2x^2\\(a^2-c^2)x^2+a^2y^2&amp;=a^2(a^2-c^2)\end{aligned}" />
+
+Karena <InlineMath math="a^2-c^2 > 0" />, kita boleh menulis <InlineMath math="b^2=a^2-c^2" /> dan membagi kedua ruas dengan <InlineMath math="a^2b^2" />. Inilah asal **persamaan baku elips**.
+
+<BlockMath math="b^2x^2+a^2y^2=a^2b^2\quad\Longrightarrow\quad\frac{x^2}{a^2}+\frac{y^2}{b^2}=1" />
 
 ### Pusat di Titik Asal
 
@@ -255,7 +276,7 @@ Kalau pusat elips ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orien
 
 <LineEquation
   title="Sumbu Mayor Horizontal"
-  description={<>Elips <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a > b" />.</>}
+  description={<>Elips <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -339,15 +360,15 @@ Kalau pusat elips ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orien
   cameraPosition={[0, 0, 12]}
 />
 
-Kalau sumbu mayor sejajar sumbu <InlineMath math="x" /> (horizontal), persamaan elipsnya:
+Kalau **sumbu mayor sejajar** sumbu <InlineMath math="x" /> (horizontal), persamaan elipsnya:
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-Rumus ini berlaku ketika <InlineMath math="a > b" />.
+Rumus ini berlaku ketika <InlineMath math="a > b > 0" />.
 
 <LineEquation
   title="Sumbu Mayor Vertikal"
-  description={<>Elips <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> dengan <InlineMath math="a > b" />.</>}
+  description={<>Elips <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
   data={[
     {
       smooth: false,
@@ -435,11 +456,11 @@ Kalau sumbu mayor sejajar sumbu <InlineMath math="y" /> (vertikal), persamaan el
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-Rumus ini berlaku ketika <InlineMath math="a > b" />.
+Rumus ini berlaku ketika <InlineMath math="a > b > 0" />.
 
 ### Pusat Berpindah
 
-Kalau pusat elips berpindah ke titik <InlineMath math="(h, k)" />, persamaannya jadi:
+Kalau **pusat elips berpindah** ke titik <InlineMath math="(h, k)" />, persamaannya jadi:
 
 Untuk sumbu mayor horizontal:
 
@@ -555,7 +576,7 @@ Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <Inlin
 
 ## Latihan
 
-Setiap soal memberikan persamaan elips dan meminta unsur seperti pusat, sumbu, atau fokusnya, jadi ubah dulu persamaannya ke bentuk baku sebelum membaca nilainya.
+Informasi awal setiap soal berbeda. Bedakan **panjang sumbu penuh dari semisumbu**, lalu gunakan letak fokus atau titik pada kurva untuk menentukan parameter yang belum diketahui.
 
 1. Tentukan persamaan elips dengan pusat di <InlineMath math="(0,0)" />, sumbu mayor sepanjang <InlineMath math="12" /> dan sumbu minor sepanjang <InlineMath math="8" />, dengan sumbu mayor horizontal.
 
@@ -567,110 +588,110 @@ Setiap soal memberikan persamaan elips dan meminta unsur seperti pusat, sumbu, a
 
 ### Penyelesaian
 
-1. **Penyelesaian**:
+**Pembahasan 1**:
 
-   Diketahui:
-   - Pusat di <InlineMath math="(0,0)" />
-   - Panjang sumbu mayor adalah <InlineMath math="12" />, jadi <InlineMath math="2a = 12" />, maka <InlineMath math="a = 6" />
-   - Panjang sumbu minor adalah <InlineMath math="8" />, jadi <InlineMath math="2b = 8" />, maka <InlineMath math="b = 4" />
-   - Sumbu mayor horizontal
+Diketahui:
+- Pusat di <InlineMath math="(0,0)" />
+- Panjang sumbu mayor adalah <InlineMath math="12" />, jadi <InlineMath math="2a = 12" />, maka <InlineMath math="a = 6" />
+- Panjang sumbu minor adalah <InlineMath math="8" />, jadi <InlineMath math="2b = 8" />, maka <InlineMath math="b = 4" />
+- Sumbu mayor horizontal
 
-   Persamaan elips dengan sumbu mayor horizontal:
+Persamaan elips dengan sumbu mayor horizontal:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Substitusi nilai <InlineMath math="a = 6" /> dan <InlineMath math="b = 4" />:
+Substitusi nilai <InlineMath math="a = 6" /> dan <InlineMath math="b = 4" />:
 
-   <BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
+<BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
 
-2. **Penyelesaian**:
+**Pembahasan 2**:
 
-   Dari persamaan <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />:
-   - <InlineMath math="a^2 = 25" />, jadi <InlineMath math="a = 5" />
-   - <InlineMath math="b^2 = 16" />, jadi <InlineMath math="b = 4" />
+Dari persamaan <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />:
+- <InlineMath math="a^2 = 25" />, jadi <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 16" />, jadi <InlineMath math="b = 4" />
 
-   Karena <InlineMath math="a^2 > b^2" />, sumbu mayor horizontal.
+Karena <InlineMath math="a^2 > b^2" />, sumbu mayor horizontal.
 
-   Hitung <InlineMath math="c" />:
+Hitung <InlineMath math="c" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
-     <BlockMath math="c = 3" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
+  <BlockMath math="c = 3" />
+</MathContainer>
 
-   Koordinat fokus: <InlineMath math="(\pm 3, 0)" /> yaitu <InlineMath math="(-3, 0)" /> dan <InlineMath math="(3, 0)" />
+Koordinat fokus: <InlineMath math="(\pm 3, 0)" /> yaitu <InlineMath math="(-3, 0)" /> dan <InlineMath math="(3, 0)" />
 
-   Eksentrisitas:
+Eksentrisitas:
 
-   <BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{,}6" />
+<BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0{,}6" />
 
-3. **Penyelesaian**:
+**Pembahasan 3**:
 
-   Diketahui:
-   - Pusat: <InlineMath math="(3, -1)" />
-   - Fokus: <InlineMath math="(3, 2)" /> dan <InlineMath math="(3, -4)" />
-   - Panjang sumbu minor adalah <InlineMath math="6" />, jadi <InlineMath math="2b = 6" />, maka <InlineMath math="b = 3" />
+Diketahui:
+- Pusat: <InlineMath math="(3, -1)" />
+- Fokus: <InlineMath math="(3, 2)" /> dan <InlineMath math="(3, -4)" />
+- Panjang sumbu minor adalah <InlineMath math="6" />, jadi <InlineMath math="2b = 6" />, maka <InlineMath math="b = 3" />
 
-   Karena fokus punya koordinat <InlineMath math="x" /> yang sama (<InlineMath math="x = 3" />), sumbu mayor vertikal.
+Karena fokus punya koordinat <InlineMath math="x" /> yang sama (<InlineMath math="x = 3" />), sumbu mayor vertikal.
 
-   <BlockMath math="\begin{aligned} &amp;\text{Jarak antar fokus} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Jarak antar fokus} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
-   jadi <InlineMath math="2c = 6" />, maka <InlineMath math="c = 3" />
+Jarak antarfokus adalah <InlineMath math="2c = 6" />, jadi <InlineMath math="c = 3" />.
 
-   Gunakan <InlineMath math="c^2 = a^2-b^2" /> untuk menghitung <InlineMath math="a" />:
+Gunakan <InlineMath math="c^2 = a^2-b^2" /> untuk menghitung <InlineMath math="a" />:
 
-   <MathContainer>
-     <BlockMath math="c^2 = a^2 - b^2" />
-     <BlockMath math="9 = a^2 - 9" />
-     <BlockMath math="a^2 = 18" />
-     <BlockMath math="a = 3\sqrt{2}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2" />
+  <BlockMath math="9 = a^2 - 9" />
+  <BlockMath math="a^2 = 18" />
+  <BlockMath math="a = 3\sqrt{2}" />
+</MathContainer>
 
-   Persamaan elips dengan pusat <InlineMath math="(h,k) = (3,-1)" /> dan sumbu mayor vertikal:
+Persamaan elips dengan pusat <InlineMath math="(h,k) = (3,-1)" /> dan sumbu mayor vertikal:
 
-   <BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
+<BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
 
-4. **Penyelesaian**:
+**Pembahasan 4**:
 
-   Elips dengan pusat <InlineMath math="(0,0)" /> dan sumbu mayor horizontal punya persamaan:
+Elips dengan pusat <InlineMath math="(0,0)" /> dan sumbu mayor horizontal punya persamaan:
 
-   <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-   Substitusi titik <InlineMath math="(4,3)" />:
+Substitusi titik <InlineMath math="(4,3)" />:
 
-   <BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
+<BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
 
-   Substitusi titik <InlineMath math="(6,2)" />:
+Substitusi titik <InlineMath math="(6,2)" />:
 
-   <BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
+<BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
 
-   Misalkan <InlineMath math="u = \frac{1}{a^2}" /> dan <InlineMath math="v = \frac{1}{b^2}" />, maka:
+Misalkan <InlineMath math="u = \frac{1}{a^2}" /> dan <InlineMath math="v = \frac{1}{b^2}" />, maka:
 
-   <MathContainer>
-     <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
-     <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
+  <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
+</MathContainer>
 
-   Dari persamaan (1): <InlineMath math="v = \frac{1-16u}{9}" />
+Dari persamaan (1): <InlineMath math="v = \frac{1-16u}{9}" />
 
-   Substitusi ke persamaan (2):
+Substitusi ke persamaan (2):
 
-   <MathContainer>
-     <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
-     <BlockMath math="36u + \frac{4-64u}{9} = 1" />
-     <BlockMath math="324u + 4 - 64u = 9" />
-     <BlockMath math="260u = 5" />
-     <BlockMath math="u = \frac{1}{52}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
+  <BlockMath math="36u + \frac{4-64u}{9} = 1" />
+  <BlockMath math="324u + 4 - 64u = 9" />
+  <BlockMath math="260u = 5" />
+  <BlockMath math="u = \frac{1}{52}" />
+</MathContainer>
 
-   Maka <InlineMath math="a^2 = 52" />
+Maka <InlineMath math="a^2 = 52" />
 
-   Substitusi kembali:
+Substitusi kembali:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
+</MathContainer>
 
-   Maka <InlineMath math="b^2 = 13" />
+Maka <InlineMath math="b^2 = 13" />
 
-   Persamaan elips: <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />
+Persamaan elips: <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />

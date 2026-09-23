@@ -17,7 +17,7 @@ Wenn du die Syntax prüfen oder eine Funktion in der Standardbibliothek suchen m
 
 ## Hello World Programm
 
-Ein verbreitetes erstes Programm gibt den Text „Hello World!“ aus. Wenn es läuft, kann Python eine Datei ausführen, und du hast zugleich ein kleines, vollständiges Programm zum Untersuchen.
+Ein verbreitetes erstes Programm gibt den **Text „Hello World!“** aus. Wenn es läuft, kann Python eine Datei ausführen, und du hast zugleich ein kleines, vollständiges Programm zum Untersuchen.
 
 <CodeBlock
   data={[{
@@ -31,11 +31,11 @@ Ein verbreitetes erstes Programm gibt den Text „Hello World!“ aus. Wenn es l
 
 ## Drei Möglichkeiten Programme in Python auszuführen
 
-Python-Code lässt sich auf drei verbreitete Arten ausführen. Die interaktive Eingabeaufforderung eignet sich zum Ausprobieren einzelner Ausdrücke, eine gespeicherte Skriptdatei für ein Programm, das du wiederholt startest, und ein Notebook für die Verbindung von Code und Notizen.
+Python-Code lässt sich auf drei verbreitete Arten ausführen. Die interaktive Eingabeaufforderung eignet sich zum Ausprobieren einzelner Ausdrücke, eine gespeicherte Skriptdatei für ein Programm, das du wiederholt startest, und ein Notebook für die **Verbindung von Code und Notizen**.
 
 ### Interaktiver Modus
 
-Im interaktiven Modus kannst du Python-Code direkt im Terminal schreiben und ausführen. Das eignet sich gut, um kurze Ausdrücke zu prüfen oder etwas schnell auszuprobieren.
+Im interaktiven Modus kannst du Python-Code direkt im Terminal schreiben und ausführen. Das eignet sich gut, um **kurze Ausdrücke zu prüfen** oder etwas schnell auszuprobieren.
 
 Öffne ein Terminal, gib `python` oder `python3` ein und drücke die Eingabetaste. Die Eingabeaufforderung `>>>` zeigt, dass Python bereit ist. Gib danach eine Python-Anweisung ein und bestätige erneut mit der Eingabetaste.
 
@@ -44,9 +44,6 @@ Im interaktiven Modus kannst du Python-Code direkt im Terminal schreiben und aus
     language: "bash",
     filename: "terminal",
     code: `$ python3
-Python 3.8.5 (default, Sep  4 2020, 02:22:02)
-[Clang 10.0.0 ] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
 >>> print("Hello World!")
 Hello World!
 >>> 2 + 3
@@ -60,9 +57,9 @@ Hello, Alice!
 
 ### Skriptmodus
 
-Im Skriptmodus wird eine gespeicherte Python-Datei ausgeführt. Das eignet sich für längere Programme und für Code, den du später erneut verwenden möchtest.
+Im Skriptmodus wird eine **gespeicherte Python-Datei** ausgeführt. Das eignet sich für längere Programme und für Code, den du später erneut verwenden möchtest.
 
-Erstelle dazu mit einem Texteditor eine Datei mit der Endung `.py`, schreibe den Python-Code hinein und speichere die Datei. Öffne anschließend ein Terminal, wechsle in den Ordner der Datei und führe `python dateiname.py` aus.
+Erstelle dazu mit einem Texteditor eine Datei mit der Endung `.py`, schreibe den Python-Code hinein und speichere die Datei. Öffne anschließend ein Terminal, wechsle in den Ordner der Datei und führe `python3 dateiname.py` aus.
 
 <CodeBlock
   data={[{
@@ -95,21 +92,23 @@ Viel Spaß beim Lernen von Python!`
 
 ### Jupyter Lab und Notebooks
 
-Jupyter ist eine interaktive Umgebung, die häufig für Data Science und interaktives Lernen verwendet wird. Ein Notebook verbindet ausführbaren Code, dessen Ausgabe und schriftliche Erklärungen in einem Dokument.
+Jupyter ist eine interaktive Umgebung, die häufig für Data Science und interaktives Lernen verwendet wird. Ein Notebook verbindet **ausführbaren Code**, dessen Ausgabe und schriftliche Erklärungen in einem Dokument.
 
 Jede Zelle lässt sich einzeln ausführen, und ihre Ausgabe erscheint direkt darunter. Code, Ergebnisse, Erklärungen und Diagramme bleiben in einem Dokument. So kann ein Notebook jeden Schritt eines Experiments oder einer Datenanalyse festhalten.
 
+Die Zellen teilen den Zustand desselben Kernels. Führe sie nach einem Kernel-Neustart von oben nach unten aus: Eine Zelle mit `math` oder einer Funktion benötigt die vorherige Definition dieses Namens.
+
 Installiere JupyterLab in einer eigenen Python-Umgebung, damit seine Pakete nicht mit anderen Projekten in Konflikt geraten:
+
+Diese Befehle verwenden macOS/Linux-Pfade. Unter Windows nutzt du `py -m venv .venv`, danach `.venv\Scripts\python -m pip install jupyterlab` und `.venv\Scripts\jupyter lab`.
 
 <CodeBlock
   data={[{
     language: "bash",
     filename: "terminal",
     code: `# JupyterLab mit dem gewählten Python-Interpreter installieren
-python3 -m pip install jupyterlab
-
-# Oder aus conda-forge in einer Conda-Umgebung installieren
-conda install -c conda-forge jupyterlab`
+python3 -m venv .venv
+.venv/bin/python -m pip install jupyterlab`
   }]}
 />
 
@@ -120,7 +119,7 @@ Starte danach JupyterLab:
     language: "bash",
     filename: "terminal",
     code: `# JupyterLab starten
-jupyter lab
+.venv/bin/jupyter lab
 
 # Öffnet die Jupyter-Oberfläche im Browser`
   }]}
@@ -156,11 +155,11 @@ print(f"Kreisfläche mit Radius {test_radius} ist {result:.2f}")`
 
 ## Grundlegende Syntax von Python
 
-Ein erstes Python-Programm liest seine Anweisungen von oben nach unten. Eine Variable speichert einen Wert, ein Datentyp legt fest, welche Operationen dieser Wert unterstützt, und Eingabe, Ausgabe und Rechenoperationen ergeben zusammen ein vollständiges Programm.
+Ein erstes Python-Programm liest seine Anweisungen von oben nach unten. Eine Variable speichert einen Wert, ein **Datentyp legt fest**, welche Operationen dieser Wert unterstützt, und Eingabe, Ausgabe und Rechenoperationen ergeben zusammen ein vollständiges Programm.
 
 ### Variablen und Datentypen
 
-Python kennt mehrere grundlegende Datentypen. Ein Variablenname verweist auf einen Wert. Eine neue Zuweisung ändert diese Bindung, statt jeden Wert in einen veränderbaren Behälter zu verwandeln.
+Python kennt mehrere grundlegende Datentypen. Ein **Variablenname verweist auf einen Wert**. Eine neue Zuweisung ändert diese Bindung, statt jeden Wert in einen veränderbaren Behälter zu verwandeln.
 
 <CodeBlock
   data={[{
@@ -176,7 +175,7 @@ message = 'Hello Python!'
 age = 25
 year = 2025
 
-# Float (Dezimalzahlen)
+# Float (Gleitkommazahlen)
 height = 175.5
 pi = 3.14159
 
@@ -207,7 +206,7 @@ print(type(person))      # <class 'dict'>`
 
 ### Eingabe und Ausgabe
 
-Programme können Eingaben abfragen und daraus eine Ausgabe erzeugen. `input()` liest zunächst Text ein, während `print()` Werte ausgibt.
+Programme können Eingaben abfragen und daraus eine Ausgabe erzeugen. `input()` liest zunächst **Text ein**, während `print()` Werte ausgibt.
 
 <CodeBlock
   data={[{
@@ -237,7 +236,7 @@ print("Alter nächstes Jahr:", next_year)`
 
 ### Grundlegende mathematische Operationen
 
-Python unterstützt verschiedene mathematische Operationen:
+Python unterstützt verschiedene **mathematische Operationen**:
 
 <CodeBlock
   data={[{
@@ -274,11 +273,11 @@ print(f"Aktueller Wert von x: {x}")`
 
 ## Praktische Übungen
 
-Bearbeite die folgenden Übungen zu Variablen, Ein- und Ausgabe sowie grundlegenden Operationen. Schreibe jede Lösung zuerst selbst auf, denn geübt wird der Lösungsweg. Die Lösungen folgen derselben Reihenfolge wie die Aufgaben.
+Bearbeite die folgenden Übungen zu **Variablen, Ein- und Ausgabe** sowie grundlegenden Operationen. Schreibe jede Lösung zuerst selbst auf, denn geübt wird der Lösungsweg. Die Lösungen folgen derselben Reihenfolge wie die Aufgaben.
 
 ### Einfacher Rechner
 
-Dieses Programm liest zwei Zahlen und einen Operator und gibt das Ergebnis aus. Es verbindet Eingabe, Typumwandlung und Verzweigung in einer Datei.
+Dieses Programm liest **zwei Zahlen und einen Operator** und gibt das Ergebnis aus. Es verbindet Eingabe, Typumwandlung und Verzweigung in einer Datei.
 
 <CodeBlock
   data={[{
@@ -317,20 +316,24 @@ if result is not None:
 
 ### Temperaturumrechnung
 
-Dieses Programm rechnet eine Celsius-Temperatur in Fahrenheit und Kelvin um und weist einen Wert unterhalb des absoluten Nullpunkts zurück.
+Dieses Programm rechnet eine **Celsius-Temperatur in Fahrenheit und Kelvin** um und weist einen Wert unterhalb des absoluten Nullpunkts zurück.
+
+Die Aussagen zu Gefrier- und Siedepunkt beziehen sich näherungsweise auf reines Wasser bei einer Atmosphäre. Probiere `26.85`: Die Umrechnung ergibt `80.3 °F` und `300.0 K`.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "temperature_converter.py",
-    code: `# Temperaturkonverter von Celsius in Fahrenheit und Kelvin
+    code: `import math
+
+# Temperaturkonverter von Celsius in Fahrenheit und Kelvin
 print("=== TEMPERATURKONVERTER ===")
 
 # Eingabetemperatur in Celsius
 celsius = float(input("Temperatur in Celsius eingeben: "))
 
-if celsius < -273.15:
-    raise ValueError("Die Temperatur darf nicht unter dem absoluten Nullpunkt liegen")
+if not math.isfinite(celsius) or celsius < -273.15:
+    raise ValueError("Die Temperatur muss endlich sein und mindestens dem absoluten Nullpunkt entsprechen")
 
 # In Fahrenheit und Kelvin umrechnen
 fahrenheit = (celsius * 9/5) + 32
@@ -355,22 +358,24 @@ elif celsius > 100:
 
 ### Studentenprofil
 
-Dieses Programm fragt die Angaben einer Studierenden ab, speichert sie in Variablen und gibt ein kurzes Profil aus.
+Dieses Programm fragt die Angaben einer Studierenden ab, speichert sie in Variablen und gibt **ein kurzes Profil** aus.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "personal_info.py",
     code: `# Programm zum Sammeln und Anzeigen persönlicher Informationen
-print("=== SCHÜLERPROFIL ===")
+print("=== STUDIERENDENPROFIL ===")
 
 # Eingabeinformationen
 name = input("Vollständiger Name: ")
 student_id = input("Matrikelnummer: ")
 major = input("Studiengang: ")
 semester = int(input("Semester: "))
+if semester < 1:
+    raise ValueError("Das Semester muss mindestens 1 sein")
 hobby = input("Lieblingshobby: ")
-current_year = int(input("Aktuelles Jahr: "))
+current_year = int(input("Beginnjahr des aktuellen Studienjahrs: "))
 
 # Schätzung mit zwei Semestern pro Studienjahr
 entry_year = current_year - (semester - 1) // 2
@@ -385,7 +390,7 @@ print(f"Matrikelnummer: {student_id}")
 print(f"Studiengang: {major}")
 print(f"Semester    : {semester}")
 print(f"Hobby: {hobby}")
-print(f"Eintragsjahr: {entry_year}")
+print(f"Studienbeginn: {entry_year}")
 print(f"Voraussichtlicher Abschluss: {estimated_graduation}")
 print("="*40)
 
@@ -401,7 +406,7 @@ else:
 
 ### Ergebnis prüfen
 
-Deine Übungsprogramme funktionieren wie vorgesehen, wenn:
+**Deine Übungsprogramme funktionieren wie vorgesehen**, wenn:
 
 - Der Rechner fragt nach zwei Zahlen und einem Operator und zeigt dann das Ergebnis der ausgewählten Operation an.
 - Der Temperaturkonverter zeigt Fahrenheit- und Kelvin-Werte vom Celsius-Eingang an.

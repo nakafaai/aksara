@@ -10,10 +10,10 @@ Die Spiegelung an <InlineMath math="y=x" /> vertauscht die Koordinaten. Addiere 
 <BlockMath math="\begin{aligned}
 M(x,y)&=(y,x)+(2,-1) \\
 &=(y+2,x-1) \\
-M(3,-2)&=(0,2)
+M(3,-2)&=(-2+2,3-1)=(0,2)
 \end{aligned}" />
 
-Spiegelung und Verschiebung erhalten beide die Abstände. Die Spiegelung kehrt die Orientierung um, die Verschiebung erhält sie. Die Verkettung kehrt daher die Orientierung um. Zweifaches Anwenden ergibt:
+Spiegelung und Verschiebung erhalten beide die Abstände. Die Spiegelung **kehrt die Orientierung um**, die Verschiebung erhält sie. Die Verkettung kehrt daher die Orientierung um. Zweifaches Anwenden ergibt:
 
 Bezeichne die Koordinaten nach der zweiten Anwendung mit <InlineMath math="x_2" /> und <InlineMath math="y_2" />.
 
@@ -25,3 +25,17 @@ M^2(x,y)=(x+1,y+1)
 \end{gathered}" />
 
 Ein Fixpunkt müsste <InlineMath math="x=y+2" /> und <InlineMath math="y=x-1" /> erfüllen. Einsetzen ergibt den Widerspruch <InlineMath math="x=x+1" />. Es gibt daher keinen Fixpunkt. Die vier Aussagen über Bildpunkt, Abstände, Orientierung und <InlineMath math="M^2" /> stimmen.
+
+Orientierung meint die Umlaufrichtung um die Eckpunkte. In der Zeichnung verläuft A nach B nach C gegen den Uhrzeigersinn, A′ nach B′ nach C′ dagegen im Uhrzeigersinn. Beide Dreiecke bleiben kongruent.
+
+<LineEquation
+  title="Vor und nach der Transformation"
+  description="Violett zeigt das ursprüngliche Dreieck, Orange sein Bild nach Spiegelung und Verschiebung."
+  cameraPosition={[3,1.5,8]}
+  cameraTarget={[3,1.5,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 1, y: 2, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 1, y: 2, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [-0.2, -0.35, 0] }, { text: "B", at: 1, offset: [0.2, 0.3, 0] }, { text: "C", at: 2, offset: [-0.2, 0.3, 0] }] },
+    { points: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 2, z: 0 }, { x: 5, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "A′", at: 0, offset: [-0.2, -0.35, 0] }, { text: "B′", at: 1, offset: [0.2, 0.3, 0] }, { text: "C′", at: 2, offset: [0.2, -0.35, 0] }] },
+  ]}
+/>

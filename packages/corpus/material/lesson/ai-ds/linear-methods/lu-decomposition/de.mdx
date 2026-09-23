@@ -33,11 +33,11 @@ Anschließend wenden wir die folgende Zeilenaktualisierung an.
 
 <BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
-Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die bereits gefüllten Spalten von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
+Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die **bereits gefüllten Spalten** von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
 
 ## Eine Matrix mit partieller Pivotisierung faktorisieren
 
-Betrachten wir
+Wir verfolgen **beide Zeilenvertauschungen**, damit die endgültige Permutation zu den Faktoren passt.
 
 <MathContainer>
 <BlockMath math="A=\begin{pmatrix}0&2&1\\1&1&0\\2&1&1\end{pmatrix}" />
@@ -46,11 +46,15 @@ Betrachten wir
 
 ### Erster Pivot
 
-In der ersten Spalte liegt der größte Betrag <InlineMath math="2" /> in der dritten Zeile. Wir vertauschen die erste und dritte Zeile. Der erste Eliminationsmultiplikator ist <InlineMath math="\ell_{31}=1/2" />. Der andere Eintrag unterhalb des Pivots ist bereits null.
+Der größte Betrag in der ersten Spalte ist <InlineMath math="2" />. **Vertausche die erste und dritte Zeile** und eliminiere dann den Eintrag der zweiten Zeile mit <InlineMath math="\ell_{21}=1/2" />. Die dritte Zeile beginnt bereits mit null.
+
+<BlockMath math="\begin{pmatrix}2&amp;1&amp;1\\1&amp;1&amp;0\\0&amp;2&amp;1\end{pmatrix}\longrightarrow\begin{pmatrix}2&amp;1&amp;1\\0&amp;1/2&amp;-1/2\\0&amp;2&amp;1\end{pmatrix}" />
 
 ### Zweiter Pivot
 
-Der größte verbleibende Eintrag in der zweiten Spalte ist <InlineMath math="2" />, daher ist keine zweite Vertauschung nötig. Der Multiplikator für die letzte Zeile ist <InlineMath math="\ell_{32}=1/4" />.
+Der nächste Pivot hat den Betrag <InlineMath math="2" /> und steht in Zeile drei. **Vertausche deshalb die zweite und dritte Zeile**, einschließlich ihrer bereits gespeicherten Multiplikatoren in der ersten Spalte von <InlineMath math="L" />. Für die letzte Zeile gilt danach <InlineMath math="\ell_{32}=(1/2)/2=1/4" />.
+
+<BlockMath math="u_{33}=-\frac12-\frac14\cdot1=-\frac34" />
 
 Damit ergeben sich die Faktoren
 
@@ -70,7 +74,7 @@ Aus <InlineMath math="PA=LU" /> wird die Gleichung <InlineMath math="Ax=b" /> zu
 
 <BlockMath math="LUx=Pb" />
 
-Wir lösen dieses System in zwei Schritten mit Dreiecksmatrizen.
+Wir lösen dieses System in **zwei Schritten** mit Dreiecksmatrizen.
 
 ### Vorwärtssubstitution
 
@@ -85,11 +89,11 @@ Für eine allgemeine untere Dreiecksmatrix lautet die Rekursion
 
 <BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
-Die Diagonaleinträge dieses <InlineMath math="L" /> sind alle eins.
+Die **Diagonaleinträge** dieses <InlineMath math="L" /> sind alle eins.
 
 ### Rückwärtssubstitution
 
-Anschließend lösen wir <InlineMath math="Ux=y" /> von der letzten Zeile nach oben:
+Anschließend lösen wir <InlineMath math="Ux=y" /> von der **letzten Zeile nach oben**:
 
 <BlockMath math="x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^{n}u_{ij}x_j\right)" />
 
@@ -105,7 +109,7 @@ Eine dichte <InlineMath math="\mathrm{LU}" />-Faktorisierung benötigt ungefähr
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt werden. Sobald die Faktoren vorliegen, benötigt jede neue rechte Seite nur <InlineMath math="O(n^2)" /> Arbeit für die beiden Substitutionen. Die Wiederverwendung derselben <InlineMath math="\mathrm{LU}" />-Faktoren vermeidet daher eine erneute Faktorisierung mit <InlineMath math="O(n^3)" /> Aufwand für jede rechte Seite.
+Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt werden. Sobald die Faktoren vorliegen, benötigt jede neue rechte Seite nur <InlineMath math="O(n^2)" /> Arbeit für die beiden Substitutionen. Die **Wiederverwendung derselben** <InlineMath math="\mathrm{LU}" />-Faktoren vermeidet daher eine erneute Faktorisierung mit <InlineMath math="O(n^3)" /> Aufwand für jede rechte Seite.
 
 Auch die Determinante folgt aus den Faktoren:
 
@@ -121,9 +125,17 @@ Auch die Determinante folgt aus den Faktoren:
 
 def plu_factor(matrix, tolerance=1e-12):
     """Return P, L, U such that P @ matrix == L @ U."""
-    A = np.asarray(matrix, dtype=float)
-    if A.ndim != 2 or A.shape[0] != A.shape[1]:
-        raise ValueError("PLU factorization requires a square matrix")
+    A = np.asarray(matrix)
+    if np.iscomplexobj(A):
+        raise ValueError("this example requires real entries")
+    A = A.astype(float)
+    if A.ndim != 2 or A.shape[0] != A.shape[1] or A.shape[0] == 0:
+        raise ValueError("PLU factorization requires a nonempty square matrix")
+    if not np.all(np.isfinite(A)):
+        raise ValueError("matrix entries must be finite")
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("relative tolerance must be finite and nonnegative")
+    threshold = tolerance * np.linalg.norm(A, ord=np.inf)
 
     n = A.shape[0]
     U = A.copy()
@@ -132,7 +144,7 @@ def plu_factor(matrix, tolerance=1e-12):
 
     for k in range(n - 1):
         pivot = k + np.argmax(np.abs(U[k:, k]))
-        if abs(U[pivot, k]) <= tolerance:
+        if abs(U[pivot, k]) <= threshold:
             raise np.linalg.LinAlgError("matrix is singular to working precision")
 
         if pivot != k:
@@ -144,7 +156,7 @@ def plu_factor(matrix, tolerance=1e-12):
             L[i, k] = U[i, k] / U[k, k]
             U[i, k:] -= L[i, k] * U[k, k:]
 
-    if abs(U[-1, -1]) <= tolerance:
+    if abs(U[-1, -1]) <= threshold:
         raise np.linalg.LinAlgError("matrix is singular to working precision")
 
     return P, L, U
@@ -161,8 +173,9 @@ def forward_substitution(L, right_hand_side):
 def backward_substitution(U, right_hand_side, tolerance=1e-12):
     y = np.asarray(right_hand_side, dtype=float)
     x = np.empty_like(y)
+    threshold = tolerance * np.linalg.norm(U, ord=np.inf)
     for i in range(len(y) - 1, -1, -1):
-        if abs(U[i, i]) <= tolerance:
+        if abs(U[i, i]) <= threshold:
             raise np.linalg.LinAlgError("singular triangular system")
         x[i] = (y[i] - U[i, i + 1:] @ x[i + 1:]) / U[i, i]
     return x
@@ -170,7 +183,13 @@ def backward_substitution(U, right_hand_side, tolerance=1e-12):
 
 def plu_solve(matrix, right_hand_side):
     P, L, U = plu_factor(matrix)
-    y = forward_substitution(L, P @ right_hand_side)
+    b = np.asarray(right_hand_side)
+    if np.iscomplexobj(b):
+        raise ValueError("this example requires a real right-hand side")
+    b = b.astype(float)
+    if b.shape != (len(P),) or not np.all(np.isfinite(b)):
+        raise ValueError("right-hand side must be a finite vector of matching size")
+    y = forward_substitution(L, P @ b)
     x = backward_substitution(U, y)
     return x, P, L, U
 
@@ -184,8 +203,10 @@ assert np.allclose(A @ x, b)
 assert np.allclose(x, np.array([1, 2, 3], dtype=float))`
 }]} />
 
-Die Prüfungen gehören zum Beispiel, weil eine falsche Faktorordnung und fehlerhaftes Verbuchen von Zeilenvertauschungen häufige Implementierungsfehler sind.
+Die Prüfungen gehören zum Beispiel, weil eine falsche **Faktorordnung** und fehlerhaftes Verbuchen von Zeilenvertauschungen häufige Implementierungsfehler sind.
+
+Die Pivottoleranz bezieht sich auf die Unendlichnorm der Matrix. Eine gleichmäßige Skalierung eines gut konditionierten Systems löst deshalb nicht allein wegen kleiner Einträge einen Fehler aus. Der Schwellenwert ist eine numerische Entscheidung und kein Beweis exakter Singularität.
 
 ## Gültigkeitsbereich der Methode
 
-Diese Implementierung löst nur Gleichungssysteme mit invertierbaren quadratischen Matrizen und behandelt einen numerischen Nullpivot als Fehler. Für rechteckige Ausgleichsprobleme eignet sich eine <InlineMath math="\mathrm{QR}" />-Zerlegung. Bei rangdefizienten Problemen sind eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung oder eine <InlineMath math="\mathrm{SVD}" /> erforderlich. Auch für eine singuläre quadratische Matrix kann eine <InlineMath math="\mathrm{PLU}" />-Faktorisierung existieren, doch dieses Lösungsverfahren kann damit keine eindeutige Lösung bestimmen.
+Diese Implementierung löst nur Gleichungssysteme mit **invertierbaren quadratischen Matrizen** und behandelt einen numerischen Nullpivot als Fehler. Für rechteckige Ausgleichsprobleme eignet sich eine <InlineMath math="\mathrm{QR}" />-Zerlegung. Bei rangdefizienten Problemen sind eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung oder eine <InlineMath math="\mathrm{SVD}" /> erforderlich. Auch für eine singuläre quadratische Matrix kann eine <InlineMath math="\mathrm{PLU}" />-Faktorisierung existieren, doch dieses Lösungsverfahren kann damit keine eindeutige Lösung bestimmen.

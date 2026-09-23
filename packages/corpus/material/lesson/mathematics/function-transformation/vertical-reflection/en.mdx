@@ -7,8 +7,6 @@ export const metadata = {
   subject: "Function Transformation",
 };
 
-
-
 ## Flipping a Graph across the Horizontal Axis
 
 Vertical reflection flips a function graph across the <InlineMath math="x" />-axis. Like a reflection on calm water, each point <Highlight>keeps its horizontal position</Highlight> and appears at <Highlight>the same distance on the opposite side</Highlight>.
@@ -22,6 +20,10 @@ For any function <InlineMath math="f(x)" />, vertical reflection is defined as:
 <BlockMath math="g(x) = -f(x)" />
 
 This transformation changes every point <InlineMath math="(x, y)" /> on the original graph to <InlineMath math="(x, -y)" /> on the reflected graph.
+
+Points on the **mirror axis stay fixed**. For other points, the coordinate perpendicular to the mirror axis changes sign. Reflecting twice returns every point to its original position.
+
+<BlockMath math="-g(x)=-(-f(x))=f(x)" />
 
 ## Visualization of Vertical Reflection
 
@@ -52,10 +54,13 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, vertical reflection
       showPoints: false,
     },
   ]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
 />
 
 The graph shows:
-- The original function <InlineMath math="f(x) = x^2" /> opens upward with vertex at <InlineMath math="(0, 0)" />
+- The original function <InlineMath math="f(x) = x^2" /> opens **upward** with vertex at <InlineMath math="(0, 0)" />
 - The reflected function <InlineMath math="g(x) = -x^2" /> opens downward with vertex still at <InlineMath math="(0, 0)" />
 - The two graphs are mirror images of one another across the <InlineMath math="x" />-axis
 
@@ -66,7 +71,8 @@ The same reflection rule applies to the linear function <InlineMath math="f(x) =
 <LineEquation
   title={<>Vertical Reflection of Linear Function <InlineMath math="f(x) = 2x + 3" /></>}
   description={<>The reflected line has opposite slope and opposite <InlineMath math="y" />-intercept.</>}
-  cameraPosition={[12, 6, 12]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
   data={[
     {
       points: Array.from({ length: 48 }, (_, pointIndex) => {
@@ -91,10 +97,11 @@ The same reflection rule applies to the linear function <InlineMath math="f(x) =
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
 The two lines show:
-- The original function <InlineMath math="f(x) = 2x + 3" /> has positive slope and intersects the <InlineMath math="y" />-axis at <InlineMath math="(0, 3)" />
+- The original function <InlineMath math="f(x) = 2x + 3" /> has **positive slope** and intersects the <InlineMath math="y" />-axis at <InlineMath math="(0, 3)" />
 - The reflected function <InlineMath math="g(x) = -2x - 3" /> has negative slope and intersects the <InlineMath math="y" />-axis at <InlineMath math="(0, -3)" />
 - Both lines intersect at the <InlineMath math="x" />-axis
 
@@ -121,35 +128,35 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, every positive ou
 <LineEquation
   title={<>Vertical Reflection of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
   description={<>The reflected exponential curve decreases and approaches the same horizontal asymptote <InlineMath math="y = 0" /> from below.</>}
-  cameraPosition={[8, 6, 8]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
   data={[
     {
       smooth: false,
       points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -3 + (pointIndex / 960) * 6;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 900 }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 480 }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 210;
-        const x = (i - 15) * 0.3;
+        const x = -3 + (pointIndex / 480) * 6;
         return { x, y: -Math.pow(2, x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=-2^x" />, offset: [0.5, -1, 0], at: 450 }],
+      labels: [{ text: <InlineMath math="g(x)=-2^x" />, offset: [0.5, -1, 0], at: 240 }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
 For exponential functions:
-- The horizontal asymptote remains at <InlineMath math="y = 0" /> for both functions (since the <InlineMath math="x" />-axis reflects onto itself)
+- The **horizontal asymptote** remains at <InlineMath math="y = 0" /> for both functions (since the <InlineMath math="x" />-axis reflects onto itself)
 - The <InlineMath math="y" />-intercept changes from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, -1)" />
 - The function that was originally increasing becomes decreasing
 
@@ -160,7 +167,8 @@ For the <InlineMath math="\sin" /> function, vertical reflection exchanges crest
 <LineEquation
   title={<>Vertical Reflection of Sine Function <InlineMath math="f(x) = \sin(x)" /></>}
   description={<>The reflected <InlineMath math="\sin" /> wave produces a wave that moves in opposite phase.</>}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
   data={[
     {
       smooth: false,
@@ -185,16 +193,17 @@ For the <InlineMath math="\sin" /> function, vertical reflection exchanges crest
       showPoints: false,
     },
   ]}
+  showZAxis={false}
 />
 
 The graph shows:
 - The amplitude remains the same but the wave direction is inverted
-- The period and frequency do not change
+- The **period** and frequency do not change
 - Maximum points become minimum points and vice versa
 
 ## Exercises
 
-The three problems below use the mirror rule you have just learned. Each one multiplies the whole output by <InlineMath math="-1" />, so every height appears on the opposite side of the <InlineMath math="x" />-axis. Try them without the answer key first, then compare your steps with the worked answers.
+The three problems below use the mirror rule you have just learned. Each one multiplies the whole output by <InlineMath math="-1" />, so every **height** appears on the opposite side of the <InlineMath math="x" />-axis. Try them without the answer key first, then compare your steps with the worked answers.
 
 1. Given the function <InlineMath math="f(x) = x^2 + 4x + 3" />. Determine the equation of the function resulting from vertical reflection.
 
@@ -202,116 +211,134 @@ The three problems below use the mirror rule you have just learned. Each one mul
 
 3. Function <InlineMath math="h(x) = \sqrt{x + 1}" /> undergoes vertical reflection. Determine the <InlineMath math="y" />-intercept of the resulting reflected function.
 
-### Answer Key
+### The Reflected Parabola
 
-Every worked answer starts by multiplying the whole output expression by <InlineMath math="-1" />, because that is where the mirror rule lives. The equation is then simplified and the new graph is checked to confirm that it sits on the opposite side of the <InlineMath math="x" />-axis.
+Multiply the **entire output** by negative one, including every constant term:
 
-1. Vertical reflection: <InlineMath math="f'(x) = -f(x) = -(x^2 + 4x + 3) = -x^2 - 4x - 3" />
+Vertical reflection:
 
-   <LineEquation
-     title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Reflection Result</>}
-     description={<>The upward-opening parabola is reflected across the <InlineMath math="x" />-axis and opens downward.</>}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 173 }, (_, pointIndex) => {
-           const i = pointIndex / 4 - 3;
-           const x = (i - 20) * 0.25;
-           return { x, y: x * x + 4 * x + 3, z: 0 };
-         }),
-         color: "#9333ea",
-         labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, offset: [1, 1, 0], at: 92 }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 193 }, (_, pointIndex) => {
-           const i = pointIndex / 4 - 8;
-           const x = (i - 20) * 0.25;
-           return { x, y: -(x * x + 4 * x + 3), z: 0 };
-         }),
-         color: "#ea580c",
-         labels: [{ text: <InlineMath math="f'(x)=-x^2-4x-3" />, offset: [1, -1, 0], at: 112 }],
-         showPoints: false,
-       },
-     ]}
-   />
+<BlockMath math="F(x) = -f(x) = -(x^2 + 4x + 3) = -x^2 - 4x - 3" />
 
-2. Equation of the resulting reflected function:
+<LineEquation
+  title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Reflection Result</>}
+  description={<>The upward-opening parabola is reflected across the <InlineMath math="x" />-axis and opens downward.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 173 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 3;
+        const x = (i - 20) * 0.25;
+        return { x, y: x * x + 4 * x + 3, z: 0 };
+      }),
+      color: "#9333ea",
+      labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, offset: [1, 1, 0], at: 92 }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 193 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 8;
+        const x = (i - 20) * 0.25;
+        return { x, y: -(x * x + 4 * x + 3), z: 0 };
+      }),
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="F(x)=-x^2-4x-3" />, offset: [1, -1, 0], at: 112 }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+/>
 
-   - Vertical reflection: <InlineMath math="g'(x) = -(3^x + 2) = -3^x - 2" />
-   - Range after reflection: Since the original range of <InlineMath math="g(x) = 3^x + 2" /> is <InlineMath math="(2, \infty)" />, the range after reflection is <InlineMath math="(-\infty, -2)" />
+### The Exponential Range
 
-   Visualization:
+<BlockMath math="3^x>0\;\Rightarrow\;3^x+2>2\;\Rightarrow\;-(3^x+2)&lt;-2" />
 
-   <LineEquation
-     title={<>Function <InlineMath math="g(x) = 3^x + 2" /> and Its Reflection Result</>}
-     description="The increasing exponential curve is reflected to become a decreasing curve with a new horizontal asymptote."
-     cameraPosition={[8, 6, 8]}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 481 }, (_, pointIndex) => {
-           const i = pointIndex / 2 - 210;
-           const x = (i - 15) * 0.2;
-           return { x, y: Math.pow(3, x) + 2, z: 0 };
-         }),
-         color: "#7c3aed",
-         labels: [{ text: <InlineMath math="g(x)=3^x+2" />, offset: [0.5, 1, 0], at: 450 }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 346 }, (_, pointIndex) => {
-           const i = pointIndex - 315;
-           const x = (i - 15) * 0.2;
-           return { x, y: -(Math.pow(3, x) + 2), z: 0 };
-         }),
-         color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=-3^x-2" />, offset: [0.5, -1, 0], at: 330 }],
-         showPoints: false,
-       },
-     ]}
-   />
+Multiplying by negative one **reverses the inequality**. Two is only a boundary, because an exponential is always positive.
 
-3. The original function <InlineMath math="h(x) = \sqrt{x + 1}" /> has a <InlineMath math="y" />-intercept at <InlineMath math="(0, 1)" /> because <InlineMath math="h(0) = \sqrt{0 + 1} = 1" />.
-   After vertical reflection: <InlineMath math="h'(x) = -\sqrt{x + 1}" />, the <InlineMath math="y" />-intercept becomes <InlineMath math="(0, -1)" />.
+Equation of the resulting reflected function:
 
-   <LineEquation
-     title={<>Function <InlineMath math="h(x) = \sqrt{x + 1}" /> and Its Reflection Result</>}
-     description={<>The square root curve is reflected across the <InlineMath math="x" />-axis resulting in a curve opening downward.</>}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t + -1;
-               return { x, y: t, z: 0 };
-             });
-         })(),
-         color: "#4f46e5",
-         labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
-           parameters.push(1.5811388300841898);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = t * t + -1;
-               return { x, y: -1 * t, z: 0 };
-             });
-         })(),
-         color: "#059669",
-         labels: [{ at: 64, text: <InlineMath math="h'(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
-         showPoints: false,
-       },
-     ]}
-   />
+- Vertical reflection: <InlineMath math="G(x) = -(3^x + 2) = -3^x - 2" />
+- Range after reflection: Since the original range of <InlineMath math="g(x) = 3^x + 2" /> is <InlineMath math="(2, \infty)" />, the range after reflection is <InlineMath math="(-\infty, -2)" />
+
+Visualization:
+
+<LineEquation
+  title={<>Function <InlineMath math="g(x) = 3^x + 2" /> and Its Reflection Result</>}
+  description="The increasing exponential curve is reflected to become a decreasing curve with a new horizontal asymptote."
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 481 }, (_, pointIndex) => {
+        const x = -3 + (pointIndex / 480) * 6;
+        return { x, y: Math.pow(3, x) + 2, z: 0 };
+      }),
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x)=3^x+2" />, offset: [0.5, 1, 0], at: 240 }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 346 }, (_, pointIndex) => {
+        const x = -3 + (pointIndex / 345) * 6;
+        return { x, y: -(Math.pow(3, x) + 2), z: 0 };
+      }),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="G(x)=-3^x-2" />, offset: [0.5, -1, 0], at: 173 }],
+      showPoints: false,
+    },
+  ]}
+  showZAxis={false}
+/>
+
+### The Square Root Intercept
+
+A vertical intercept uses **zero input**. Calculate the function value, then reverse its sign.
+
+The original function <InlineMath math="h(x) = \sqrt{x + 1}" /> has a <InlineMath math="y" />-intercept at <InlineMath math="(0, 1)" /> because <InlineMath math="h(0) = \sqrt{0 + 1} = 1" />.
+After vertical reflection: <InlineMath math="H(x) = -\sqrt{x + 1}" />, the <InlineMath math="y" />-intercept becomes <InlineMath math="(0, -1)" />.
+
+<LineEquation
+  title={<>Function <InlineMath math="h(x) = \sqrt{x + 1}" /> and Its Reflection Result</>}
+  description={<>The square root curve is reflected across the <InlineMath math="x" />-axis resulting in a curve opening downward.</>}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -1;
+            return { x, y: t, z: 0 };
+          });
+      })(),
+      color: "#4f46e5",
+      labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -1;
+            return { x, y: -1 * t, z: 0 };
+          });
+      })(),
+      color: "#059669",
+      labels: [{ at: 64, text: <InlineMath math="H(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 16]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+/>

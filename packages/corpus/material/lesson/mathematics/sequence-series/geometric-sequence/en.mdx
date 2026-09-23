@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Geometric Sequence",
   description: "Build geometric sequences from a constant ratio, derive the general term, and test idealized growth models in complete examples.",
@@ -10,9 +9,9 @@ export const metadata = {
 
 ## Multiplying Each Term by the Same Factor
 
-A geometric sequence is a sequence of numbers in which each term has <Highlight>a constant ratio to the previous term</Highlight>. This ratio is denoted by the letter <InlineMath math="r" />.
+In a geometric sequence, every term after the first is obtained by **multiplying the previous term by a constant factor**. This ratio is denoted by the letter <InlineMath math="r" />.
 
-If we have a geometric sequence <InlineMath math="U_1, U_2, U_3, ..., U_n" />, then:
+For nonzero terms, we can find that factor by division:
 
 <BlockMath math="\frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ... = r" />
 
@@ -22,7 +21,7 @@ Each term is obtained by multiplying the previous term by the ratio <InlineMath 
 
 ## Paper Folding Exploration
 
-In a simple folding model, each fold doubles the number of layers. Fold a rectangular sheet of paper in half several times.
+In a simple folding model, **each fold doubles** the number of layers. Fold a rectangular sheet of paper in half several times.
 
 If the paper is folded <InlineMath math="1 \text{ time}" />, it will be divided into <InlineMath math="2 \text{ parts}" /> of equal size. If folded again (<InlineMath math="2 \text{ times}" />), it will form <InlineMath math="4 \text{ parts}" /> of equal size. The following pattern emerges:
 
@@ -39,9 +38,11 @@ In this sequence, each term is obtained by multiplying the previous term by <Inl
 
 ## General Formula for Geometric Sequences
 
-The general formula for a geometric sequence is:
+For a **nonzero ratio** and a positive integer term number, the general term is:
 
 <BlockMath math="U_n = a \cdot r^{n-1}" />
+
+If <InlineMath math="r=0" />, use <InlineMath math="U_1=a" /> and <InlineMath math="U_n=0" /> for <InlineMath math="n\ge2" />. This avoids evaluating <InlineMath math="0^0" /> for the first term.
 
 The quantities in this formula are:
 
@@ -54,19 +55,23 @@ The exponent is <InlineMath math="n-1" /> because moving from the first term to 
 
 ## Sequence Behavior for Different Ratios
 
-For a positive first term, the ratio determines the overall behavior:
+For a **positive first term**, the ratio determines the overall behavior:
 
-- If <InlineMath math="r>1" />, the positive terms grow.
-- If <InlineMath math="0<r<1" />, the positive terms approach zero.
-- If <InlineMath math="r=1" />, the sequence is constant.
-- If <InlineMath math="r=0" />, every term after the first is zero.
-- If <InlineMath math="r<0" />, the signs alternate while the magnitudes may grow, shrink, or stay constant.
+| Ratio | First terms starting at 8 | Behavior |
+| --- | --- | --- |
+| <InlineMath math="2" /> | <InlineMath math="8,16,32,64" /> | Increasing |
+| <InlineMath math="1/2" /> | <InlineMath math="8,4,2,1" /> | Approaching zero |
+| <InlineMath math="1" /> | <InlineMath math="8,8,8,8" /> | Constant |
+| <InlineMath math="0" /> | <InlineMath math="8,0,0,0" /> | Zero after the first term |
+| <InlineMath math="-2" /> | <InlineMath math="8,-16,32,-64" /> | Alternating signs, increasing magnitudes |
+| <InlineMath math="-1" /> | <InlineMath math="8,-8,8,-8" /> | Alternating signs, constant magnitudes |
+| <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Alternating signs, magnitudes approaching zero |
 
 This is why a geometric sequence does not always represent growth.
 
 ## An Idealized Bacterial Growth Model
 
-Suppose the number of bacteria in an ideal culture triples every <InlineMath math="2 \text{ hours}" />. The factor <InlineMath math="3" /> describes how the total number of bacteria changes during each interval.
+Suppose the number of bacteria in an ideal culture **triples** every <InlineMath math="2 \text{ hours}" />. The factor <InlineMath math="3" /> describes how the total number of bacteria changes during each interval.
 
 If the initial number of bacteria is <InlineMath math="2 \text{ cells}" />, then:
 
@@ -96,22 +101,6 @@ So, under this idealized model, the culture contains <InlineMath math="118{,}098
   />
 </ContentBlock>
 
-## Ratio and General Term of a Geometric Sequence
-
-Every step in a geometric sequence multiplies by the same factor. Dividing any term by the term before it recovers that factor, and one starting value together with one factor is enough to write the general term.
-
-### Ratio in Geometric Sequences
-
-The factor <InlineMath math="r" /> in a geometric sequence is constant. Whenever the previous term is nonzero, the same factor can be calculated by dividing the next term by the previous term:
-
-<BlockMath math="r = \frac{U_2}{U_1} = \frac{U_3}{U_2} = \frac{U_4}{U_3} = ..." />
-
-### Finding the nth Term
-
-To find the general term of a geometric sequence, we can use the formula:
-
-<BlockMath math="U_n = a \cdot r^{n-1}" />
-
 ## Growth and Decay Models Using a Constant Ratio
 
 Each process below repeats one multiplication at every step, so the same ratio drives the whole list:
@@ -127,7 +116,7 @@ Always check whether a constant-factor model is reasonable for the situation and
 
 ## Finding a Ratio and an Unknown Term
 
-Both examples give part of a geometric sequence and ask for the missing value. Substitute the known terms into the general formula and solve for the unknown.
+Both examples give part of a geometric sequence and ask for the missing value. Substitute the **known terms** into the general formula and solve for the unknown.
 
 ### Finding the Ratio
 
@@ -162,7 +151,7 @@ Given:
 - <InlineMath math="a = 16" /> (shortest piece)
 - <InlineMath math="U_5 = 81" /> (longest piece)
 
-First step, determine the ratio:
+Each piece has a **positive length**, so the ratio is positive too. We therefore take the positive fourth root:
 
 <MathContainer>
   <BlockMath math="U_5 = a \cdot r^{5-1}" />

@@ -5,9 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Balik urutan transformasi. Misalkan <InlineMath math="R" /> adalah titik setelah refleksi, sebelum dilatasi. Dengan faktor dilatasi <InlineMath math="-2" />, persamaan <InlineMath math="Q=C-2(R-C)" /> memberikan:
+Balik **urutan transformasi**. Misalkan <InlineMath math="R" /> adalah titik setelah refleksi, sebelum dilatasi. Dengan faktor dilatasi <InlineMath math="-2" />, persamaan <InlineMath math="Q=C-2(R-C)" /> memberikan:
 
 <BlockMath math="\begin{aligned}
+Q-C&=-2(R-C) \\
+R-C&=-\frac12(Q-C) \\
 R&=C-\frac12(Q-C) \\
 &=(1,-2)-\frac12(6,2) \\
 &=(-2,-3)
@@ -21,3 +23,16 @@ Q&=C-2(R-C) \\
 &=(1,-2)+(6,2) \\
 &=(7,0)
 \end{aligned}" />
+
+<LineEquation
+  title="Refleksi dan dilatasi negatif"
+  description="R dan Q berada pada sisi berlawanan dari pusat C. Jarak CQ dua kali CR."
+  cameraPosition={[2,-2,17]}
+  cameraTarget={[2,-2,0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: -4, y: -4, z: 0 }, { x: 1, y: 1, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: -3, y: -2, z: 0 }, { x: -2, y: -3, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0, -0.6, 0] }] },
+    { points: [{ x: -2, y: -3, z: 0 }, { x: 1, y: -2, z: 0 }, { x: 7, y: 0, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "C", at: 1, offset: [0, -0.6, 0] }, { text: "Q", at: 2, offset: [0.4, 0.4, 0] }] },
+  ]}
+/>

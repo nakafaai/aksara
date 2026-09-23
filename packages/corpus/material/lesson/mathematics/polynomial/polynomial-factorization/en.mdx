@@ -21,125 +21,143 @@ If <InlineMath math="P(x)" /> is a polynomial of degree <InlineMath math="n \ge 
 
 <BlockMath math="\begin{aligned} &amp;P(x) \\ &amp;= a_n(x - c_1)(x - c_2)\dots(x - c_n) \end{aligned}" />
 
-This means that every polynomial of degree <InlineMath math="n" /> can be broken down into exactly <InlineMath math="n" /> linear factors <InlineMath math="(x - \text{root})" /> multiplied by its leading coefficient.
+This means that every polynomial of degree <InlineMath math="n" /> can be broken down into exactly <InlineMath math="n" /> linear factors <InlineMath math="(x - \text{root})" /> multiplied by its **leading coefficient**.
 
 ## Steps for Complete Factorization
 
-To perform a complete factorization of a polynomial <InlineMath math="P(x)" />:
+Each root gives one linear factor. Find roots by **grouping or testing rational candidates**, then use division to reduce the degree. Solve any remaining quadratic with the quadratic formula, including when its discriminant is negative.
 
-1. **Find All Complex Roots:** Find all <InlineMath math="n" /> complex roots (zeros) of <InlineMath math="P(x) = 0" />. This might involve:
+Keep the **leading coefficient** and any repeated factors. For example, the following polynomial has three roots when repetition is counted: one, one, and minus two.
 
-   - Factoring directly (grouping, etc.).
-   - Using the [Rational Zero Theorem](/en/subjects/mathematics/polynomial/rational-zero) to find rational roots.
-   - Using division (Horner/long division) to reduce the degree of the polynomial after a root is found.
-   - Solving quadratic equations (using the quadratic formula) which might yield complex roots <InlineMath math="a \pm bi" />.
-
-2. **Apply the Factor Theorem:** For each root <InlineMath math="c_i" /> found, form its linear factor, which is <InlineMath math="(x - c_i)" />.
-3. **Write the Complete Factorization:** Multiply all the obtained linear factors by the leading coefficient <InlineMath math="a_n" /> of <InlineMath math="P(x)" />.
-
-   <BlockMath math="\begin{aligned} &amp;P(x)= \\ &amp;a_n(x - c_1)(x - c_2)\dots(x - c_n) \end{aligned}" />
+<BlockMath math="2x^3-6x+4=2(x-1)^2(x+2)" />
 
 ### Using Complete Factorization
 
-Find all complex zeros of <InlineMath math="P(x) = x^3 - x^2 + x - 1" /> and factor the polynomial completely.
+Find all **complex zeros** of <InlineMath math="P(x) = x^3 - x^2 + x - 1" /> and factor the polynomial completely.
 
 **Solution:**
 
-1. **Find Roots:** Try to factor <InlineMath math="P(x)" /> first.
+**Step 1**. Find Roots Try to factor <InlineMath math="P(x)" /> first.
 
-    - Factor by grouping:
+Factor by grouping:
 
-      <MathContainer>
-        <BlockMath math="P(x) = (x^3 - x^2) + (x - 1)" />
-        <BlockMath math="P(x) = x^2(x - 1) + 1(x - 1)" />
-        <BlockMath math="P(x) = (x^2 + 1)(x - 1)" />
-      </MathContainer>
+<MathContainer>
+<BlockMath math="P(x) = (x^3 - x^2) + (x - 1)" />
+<BlockMath math="P(x) = x^2(x - 1) + 1(x - 1)" />
+<BlockMath math="P(x) = (x^2 + 1)(x - 1)" />
+</MathContainer>
 
-    - Now, find the roots by setting <InlineMath math="P(x) = 0" />:
+Now, find the roots by setting <InlineMath math="P(x) = 0" />:
 
-      <BlockMath math="(x^2 + 1)(x - 1) = 0" />
+<BlockMath math="(x^2 + 1)(x - 1) = 0" />
 
-    - This gives two possibilities:
+This gives two possibilities:
 
-      <MathContainer>
-        <BlockMath math="x - 1 = 0 \implies x = 1" />
-        <BlockMath math="\begin{aligned} x^2 + 1 &amp;= 0 \\ &amp;\implies x^2 \\ &amp;= -1 \\ &amp;\implies x \\ &amp;= \pm\sqrt{-1} \\ &amp;\implies x \\ &amp;= \pm i \end{aligned}" />
-      </MathContainer>
+<MathContainer>
+<BlockMath math="x - 1 = 0 \implies x = 1" />
+<BlockMath math="x^2+1=0\implies x^2=-1\implies x=\pm i" />
+</MathContainer>
 
-    So, the complex roots are <InlineMath math="1, i, -i" />.
+So, the complex roots are <InlineMath math="1, i, -i" />.
 
-2. **Form Linear Factors:**
+**Step 2**. Form Linear Factors
 
-    - From the root <InlineMath math="1" />, the factor is <InlineMath math="(x - 1)" />.
-    - From the root <InlineMath math="i" />, the factor is <InlineMath math="(x - i)" />.
-    - From the root <InlineMath math="-i" />, the factor is <InlineMath math="(x - (-i)) = (x + i)" />.
+From the root <InlineMath math="1" />, the factor is <InlineMath math="(x - 1)" />.
+From the root <InlineMath math="i" />, the factor is <InlineMath math="(x - i)" />.
+From the root <InlineMath math="-i" />, the factor is <InlineMath math="(x - (-i)) = (x + i)" />.
 
-3. **Write Complete Factorization:**
+**Step 3**. Write Complete Factorization
 
-    The leading coefficient of <InlineMath math="P(x)" /> is <InlineMath math="a_3 = 1" />.
+The leading coefficient of <InlineMath math="P(x)" /> is <InlineMath math="a_3 = 1" />.
 
-    <MathContainer>
-      <BlockMath math="P(x) = 1 \cdot (x - 1)(x - i)(x + i)" />
-      <BlockMath math="P(x) = (x - 1)(x - i)(x + i)" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="P(x) = 1 \cdot (x - 1)(x - i)(x + i)" />
+<BlockMath math="P(x) = (x - 1)(x - i)(x + i)" />
+</MathContainer>
 
 ## Exercise
 
-Find all complex zeros of <InlineMath math="P(x) = x^3 - 3x^2 + x + 5" />, then factor <InlineMath math="P(x)" /> completely. Start from the possible rational roots, test them with substitution, and divide out each factor you find until only a quadratic remains.
+Find all **complex zeros** of <InlineMath math="P(x) = x^3 - 3x^2 + x + 5" />, then factor <InlineMath math="P(x)" /> completely. Start from the possible rational roots, test them with substitution, and divide out each factor you find until only a quadratic remains.
 
 ### Answer Key
 
-1. **Find Rational Roots (Rational Zero Theorem):**
+**Step 1**. Find Rational Roots (Rational Zero Theorem)
 
-    - <InlineMath math="a_0 = 5" />, factors <InlineMath math="p" />: <InlineMath math="\pm 1, \pm 5" />.
-    - <InlineMath math="a_n = 1" />, factors <InlineMath math="q" />: <InlineMath math="\pm 1" />.
-    - Possible roots <InlineMath math="p/q" />: <InlineMath math="\pm 1, \pm 5" />.
-    - Test <InlineMath math="x = -1" />:
+<InlineMath math="a_0 = 5" />, factors <InlineMath math="p" />: <InlineMath math="\pm 1, \pm 5" />.
+<InlineMath math="a_n = 1" />, factors <InlineMath math="q" />: <InlineMath math="\pm 1" />.
+Possible roots <InlineMath math="p/q" />: <InlineMath math="\pm 1, \pm 5" />.
+Test <InlineMath math="x = -1" />:
 
-      <BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3-3(-1)^2 \\ &amp;\quad{}+(-1)+5 \\ &amp;= -1-3(1)-1+5 \\ &amp;= -1-3-1+5 \\ &amp;= 0 \end{aligned}" />
+<BlockMath math="\begin{aligned} P(-1) &amp;= (-1)^3-3(-1)^2 \\ &amp;\quad{}+(-1)+5 \\ &amp;= -1-3(1)-1+5 \\ &amp;= -1-3-1+5 \\ &amp;= 0 \end{aligned}" />
 
-      So, <InlineMath math="x = -1" /> is a root, and <InlineMath math="(x+1)" /> is a factor.
+So, <InlineMath math="x = -1" /> is a root, and <InlineMath math="(x+1)" /> is a factor.
 
-2. **Divide using Horner's Method (<InlineMath math="c = -1" />):**
+**Step 2**. Divide using Horner's Method (<InlineMath math="c = -1" />)
 
-   <BlockMath
-     math="
-        \begin{array}{c|cccc}
-        -1 & 1 & -3 & 1 & 5 \\
+<BlockMath
+math="
+\begin{array}{c|cccc}
+-1 & 1 & -3 & 1 & 5 \\
           &   & -1 & 4 & -5 \\
-        \hline
+\hline
           & 1 & -4 & 5 & \boxed{0} \\
-        \end{array}
-        "
-   />
+\end{array}
+"
+/>
 
-   Quotient <InlineMath math="H(x) = x^2 - 4x + 5" />.
+Quotient <InlineMath math="H(x) = x^2 - 4x + 5" />.
 
-   <InlineMath math="P(x) = (x+1)(x^2 - 4x + 5)" />.
+<InlineMath math="P(x) = (x+1)(x^2 - 4x + 5)" />.
 
-3. **Find Roots of the Quotient:** Solve <InlineMath math="x^2 - 4x + 5 = 0" /> using the quadratic formula.
+**Step 3**. Find Roots of the Quotient Solve <InlineMath math="x^2 - 4x + 5 = 0" /> using the quadratic formula.
 
-   <MathContainer>
-     <BlockMath math="x = \frac{-(-4) \pm \sqrt{(-4)^2 - 4(1)(5)}}{2(1)}" />
-     <BlockMath math="x = \frac{4 \pm \sqrt{16 - 20}}{2}" />
-     <BlockMath math="x = \frac{4 \pm \sqrt{-4}}{2}" />
-     <BlockMath math="x = \frac{4 \pm 2i}{2}" />
-     <BlockMath math="x = 2 \pm i" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="x = \frac{-(-4) \pm \sqrt{(-4)^2 - 4(1)(5)}}{2(1)}" />
+<BlockMath math="x = \frac{4 \pm \sqrt{16 - 20}}{2}" />
+<BlockMath math="x = \frac{4 \pm \sqrt{-4}}{2}" />
+<BlockMath math="x = \frac{4 \pm 2i}{2}" />
+<BlockMath math="x = 2 \pm i" />
+</MathContainer>
 
-   The other roots are <InlineMath math="2 + i" /> and <InlineMath math="2 - i" />.
+The other roots are <InlineMath math="2 + i" /> and <InlineMath math="2 - i" />.
 
-4. **All Complex Roots:** The roots are <InlineMath math="-1, 2+i, 2-i" />.
+**Step 4**. All Complex Roots The roots are <InlineMath math="-1, 2+i, 2-i" />.
 
-5. **Complete Factorization (<InlineMath math="a_n = 1" />):**
+**Step 5**. Complete Factorization (<InlineMath math="a_n = 1" />)
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} &amp;P(x) \\ &amp;=1\cdot(x-(-1)) \\ &amp;\quad{}\cdot(x-(2+i))(x-(2-i)) \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;P(x) \\ &amp;= (x + 1)(x - 2 - i)(x - 2 + i) \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;P(x) \\ &amp;=1\cdot(x-(-1)) \\ &amp;\quad{}\cdot(x-(2+i))(x-(2-i)) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;P(x) \\ &amp;= (x + 1)(x - 2 - i)(x - 2 + i) \end{aligned}" />
+</MathContainer>
 
 ## Non Real Roots of Real Polynomials
 
-Can a polynomial with real coefficients have **exactly one** non-real complex zero? **No.**
+The horizontal axis represents the real part and the vertical axis the imaginary part. The roots <InlineMath math="2+i" /> and <InlineMath math="2-i" /> are **reflections across the real axis**, while the root <InlineMath math="-1" /> lies on the real axis.
 
-If <InlineMath math="a+bi" /> with <InlineMath math="b\neq0" /> is a root of a polynomial with real coefficients, then <InlineMath math="a-bi" /> is also a root. The two roots form a conjugate pair, so such a polynomial cannot have exactly one non-real root.
+<MathVisual
+  title="The roots -1, 2+i, and 2-i"
+  description="The roots 2+i and 2-i lie one unit above and below the real axis."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 3 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "real-root", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "upper-root", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "lower-root", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "pair", kind: "segment", from: { x: 2, y: -1 }, to: { x: 2, y: 1 }, appearance: "reference" }
+    ],
+    labels: [
+      { key: "real-root", objectId: "real-root", at: { x: -1, y: 0 }, placement: "above" },
+      { key: "upper-root", objectId: "upper-root", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "lower-root", objectId: "lower-root", at: { x: 2, y: -1 }, placement: "below-left" }
+    ]
+  }}
+  labels={{ "real-root": <InlineMath math="-1" />, "upper-root": <InlineMath math="2+i" />, "lower-root": <InlineMath math="2-i" /> }}
+/>
+
+The pairing works because every coefficient is real. Conjugating the output then equals evaluating the polynomial at the conjugate input:
+
+<BlockMath math="P(\overline z)=\overline{P(z)}=\overline0=0" />
+
+If <InlineMath math="P(z)=0" />, then <InlineMath math="P(\overline z)=0" /> as well. The real-coefficient assumption matters. For example, <InlineMath math="P(z)=z-i" /> has a complex coefficient and only the root <InlineMath math="i" />.

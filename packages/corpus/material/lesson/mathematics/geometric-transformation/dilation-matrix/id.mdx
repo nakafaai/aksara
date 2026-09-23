@@ -26,20 +26,23 @@ Dari perkalian matriks di sisi kiri, kita dapatkan:
 
 Dengan menyamakan komponen yang bersesuaian:
 
-- **Baris pertama:** <InlineMath math="rx + sy = kx" />. Agar persamaan ini berlaku untuk semua <InlineMath math="x" /> dan <InlineMath math="y" />, maka koefisien <InlineMath math="x" /> harus sama dan koefisien <InlineMath math="y" /> harus sama. Jadi, <InlineMath math="r = k" /> dan <InlineMath math="s = 0" />.
-- **Baris kedua:** <InlineMath math="tx + uy = ky" />. Dengan cara yang sama, <InlineMath math="t = 0" /> dan <InlineMath math="u = k" />.
+- **Baris pertama**: <InlineMath math="rx + sy = kx" />. Agar persamaan ini berlaku untuk semua <InlineMath math="x" /> dan <InlineMath math="y" />, maka koefisien <InlineMath math="x" /> harus sama dan koefisien <InlineMath math="y" /> harus sama. Jadi, <InlineMath math="r = k" /> dan <InlineMath math="s = 0" />.
+- **Baris kedua**: <InlineMath math="tx + uy = ky" />. Dengan cara yang sama, <InlineMath math="t = 0" /> dan <InlineMath math="u = k" />.
 
 ## Matriks Dilatasi terhadap Titik Pusat
 
-Matriks yang terkait dengan dilatasi dengan faktor <InlineMath math="k \neq 0" /> oleh titik pusat <InlineMath math="O(0,0)" /> adalah
+Matriks dilatasi berpusat di asal adalah **kelipatan matriks identitas**. Untuk <InlineMath math="k\ne0" />, dilatasi invers memiliki faktor <InlineMath math="1/k" />:
 
-<BlockMath math="\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}" />
+<MathContainer>
+  <BlockMath math="D_k=kI=\begin{pmatrix}k&0\\0&k\end{pmatrix}" />
+  <BlockMath math="D_{1/k}D_k=\begin{pmatrix}1/k&0\\0&1/k\end{pmatrix}\begin{pmatrix}k&0\\0&k\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}" />
+</MathContainer>
 
 ## Operasi Matriks terkait Dilatasi terhadap Sebarang Titik
 
 Titik <InlineMath math="(x,y)" /> yang didilatasikan dengan faktor <InlineMath math="k \neq 0" /> dan pusat <InlineMath math="(a,b)" /> akan dipetakan ke <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
 
-Setelah koordinat pusat dikurangkan, vektor posisinya menjadi:
+Setelah **koordinat pusat dikurangkan**, vektor posisinya menjadi:
 
 <BlockMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" />
 
@@ -59,9 +62,9 @@ Bentuk yang setara adalah:
 
 Tentukan bayangan titik <InlineMath math="A(2,4)" /> yang ditransformasikan oleh dilatasi dengan faktor <InlineMath math="2" /> oleh titik pusat <InlineMath math="P(1,1)" />!
 
-**Penyelesaian:**
+**Penyelesaian**:
 
-Diketahui <InlineMath math="x=2, y=4, k=2, a=1, b=1" />.
+Gunakan **vektor dari pusat ke titik**, bukan langsung koordinat titik. Diketahui <InlineMath math="x=2, y=4, k=2, a=1, b=1" />.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 2-1 \\ 4-1 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
@@ -118,7 +121,7 @@ Jadi, bayangan titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3,
     },
     {
       points: [
-        { x: 1, y: 1, z: 0 }, // P
+        { x: 2, y: 4, z: 0 }, // A
         { x: 3, y: 7, z: 0 }, // A'
       ],
       smooth: false,
@@ -126,12 +129,13 @@ Jadi, bayangan titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3,
       cone: { position: "end", size: 0.3 },
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[2, 4, 11]}
+  cameraTarget={[2, 4, 0]}
 />
 
 ## Latihan
 
-Setiap soal menyusun matriks dilatasi atau memakainya. Faktor skala menentukan seberapa jauh bayangan bergerak dari pusat, sedangkan soal ketiga memindahkan pusat dari titik asal sehingga langkah translasi juga diperlukan.
+Setiap soal menyusun matriks dilatasi atau memakainya. **Faktor skala** menentukan seberapa jauh bayangan bergerak dari pusat, sedangkan soal ketiga memindahkan pusat dari titik asal sehingga langkah translasi juga diperlukan.
 
 1.  Carilah koordinat bayangan titik <InlineMath math="(a,b)" /> oleh dilatasi <InlineMath math="[O,3]" />!
 2.  Tentukan matriks yang bersesuaian dengan dilatasi dengan faktor skala <InlineMath math="-2" /> dan pusat di <InlineMath math="O(0,0)" />.
@@ -140,148 +144,158 @@ Setiap soal menyusun matriks dilatasi atau memakainya. Faktor skala menentukan s
 
 ### Pembahasan
 
-1.  Dilatasi <InlineMath math="[O,3]" /> berarti pusat dilatasi adalah <InlineMath math="O(0,0)" /> dan faktor skala <InlineMath math="k=3" />.
+Untuk pusat asal, kalikan setiap koordinat dengan faktor. Untuk pusat lain, **kurangi pusat sebelum mengalikan**, lalu tambahkan kembali. Ini memastikan pusat dilatasi tetap di tempat.
 
-    Misalkan titiknya adalah <InlineMath math="Q(a,b)" />.
+**Pembahasan 1**
 
-    Maka <InlineMath math="x=a, y=b, k=3" />.
+Dilatasi <InlineMath math="[O,3]" /> berarti pusat dilatasi adalah <InlineMath math="O(0,0)" /> dan faktor skala <InlineMath math="k=3" />.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 3a \\ 3b \end{pmatrix}" />
+Misalkan titiknya adalah <InlineMath math="Q(a,b)" />.
 
-    Jadi, koordinat bayangan titik <InlineMath math="(a,b)" /> adalah <InlineMath math="(3a, 3b)" />.
+Maka <InlineMath math="x=a, y=b, k=3" />.
 
-2.  Faktor skala <InlineMath math="k=-2" />, pusat <InlineMath math="O(0,0)" />.
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 3a \\ 3b \end{pmatrix}" />
 
-    Matriks dilatasinya adalah:
+Jadi, koordinat bayangan titik <InlineMath math="(a,b)" /> adalah <InlineMath math="(3a, 3b)" />.
 
-    <BlockMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" />
+**Pembahasan 2**
 
-3.  Titik <InlineMath math="B(-1, 5)" />, pusat <InlineMath math="P(2, -3)" />, faktor skala <InlineMath math="k = \frac{1}{2}" />.
+Faktor skala <InlineMath math="k=-2" />, pusat <InlineMath math="O(0,0)" />.
 
-    <InlineMath math="x=-1, y=5, a=2, b=-3, k=\frac{1}{2}" />.
+Matriks dilatasinya adalah:
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; 0 \\ 0 &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} -1-2 \\ 5-(-3) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 2 \\ -3 \end{pmatrix} \end{aligned}" />
-      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -3 \\ 8 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
-    </MathContainer>
-          Hitung kedua koordinat, termasuk vektor translasinya:
+<BlockMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" />
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;x'=(\frac12)(-3)+(0)(8)+2 \\ &amp;y'=(0)(-3)+(\frac12)(8)-3 \end{aligned}" />
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} \\ &amp;= \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+**Pembahasan 3**
 
-    Koordinat bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(\frac{1}{2}, 1)" />.
+Titik <InlineMath math="B(-1, 5)" />, pusat <InlineMath math="P(2, -3)" />, faktor skala <InlineMath math="k = \frac{1}{2}" />.
 
-4.  Segitiga <InlineMath math="KLM" /> dengan <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, <InlineMath math="M(3,4)" />.
+<InlineMath math="x=-1, y=5, a=2, b=-3, k=\frac{1}{2}" />.
 
-    Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=2" />.
+<MathContainer>
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; 0 \\ 0 &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} -1-2 \\ 5-(-3) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 2 \\ -3 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -3 \\ 8 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
+</MathContainer>
+Hitung kedua koordinat, termasuk vektor translasinya:
 
-    Bayangan titik <InlineMath math="K(1,1)" />:
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x'=(\frac12)(-3)+(0)(8)+2 \\ &amp;y'=(0)(-3)+(\frac12)(8)-3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} \\ &amp;= \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix} \end{aligned}" />
+</MathContainer>
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x_K' \\ y_K' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;\implies K'(2,2) \end{aligned}" />
+Koordinat bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(\frac{1}{2}, 1)" />.
 
-    Bayangan titik <InlineMath math="L(5,1)" />:
+**Pembahasan 4**
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x_L' \\ y_L' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 10 \\ 2 \end{pmatrix} \\ &amp;\implies L'(10,2) \end{aligned}" />
+Segitiga <InlineMath math="KLM" /> dengan <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, <InlineMath math="M(3,4)" />.
 
-    Bayangan titik <InlineMath math="M(3,4)" />:
+Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=2" />.
 
-    <ContentStack>
+Bayangan titik <InlineMath math="K(1,1)" />:
 
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x_M' \\ y_M' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 6 \\ 8 \end{pmatrix} \\ &amp;\implies M'(6,8) \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x_K' \\ y_K' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;\implies K'(2,2) \end{aligned}" />
 
-      <LineEquation
-        title={
-          <>
-            Visualisasi Dilatasi Segitiga <InlineMath math="KLM" /> dengan Pusat{" "}
-            <InlineMath math="O(0,0)" /> dan Faktor Skala{" "}
-            <InlineMath math="k=2" />
-          </>
-        }
-        description={
-          <>
-            Segitiga <InlineMath math="KLM" /> didilatasikan menjadi segitiga{" "}
-            <InlineMath math="K'L'M'" />. Titik pusat dilatasi{" "}
-            <InlineMath math="O(0,0)" />.
-          </>
-        }
-        data={[
-          // Original Triangle KLM
-          {
-            points: [
-              { x: 1, y: 1, z: 0 }, // K
-              { x: 5, y: 1, z: 0 }, // L
-            ],
-            smooth: false,
-            color: "#0284c7",
-            labels: [
-              { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.3, -0.75, 0] },
-              { text: <InlineMath math="L(5,1)" />, at: 1, offset: [0.7, -0.2, 0] },
-            ],
-            showPoints: true,
-          },
-          {
-            points: [
-              { x: 5, y: 1, z: 0 }, // L
-              { x: 3, y: 4, z: 0 }, // M
-            ],
-            smooth: false,
-            color: "#ea580c",
-            labels: [{ text: <InlineMath math="M(3,4)" />, at: 1, offset: [0, 0.5, 0] }],
-            showPoints: true,
-          },
-          {
-            points: [
-              { x: 3, y: 4, z: 0 }, // M
-              { x: 1, y: 1, z: 0 }, // K
-            ],
-            smooth: false,
-            color: "#9333ea",
-            showPoints: true,
-          },
-          // Dilated Triangle K'L'M'
-          {
-            points: [
-              { x: 2, y: 2, z: 0 }, // K'
-              { x: 10, y: 2, z: 0 }, // L'
-            ],
-            smooth: false,
-            color: "#0d9488",
-            labels: [
-              { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-1.8, 0.7, 0] },
-              { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0, -0.7, 0] },
-            ],
-            showPoints: true,
-          },
-          {
-            points: [
-              { x: 10, y: 2, z: 0 }, // L'
-              { x: 6, y: 8, z: 0 }, // M'
-            ],
-            smooth: false,
-            color: "#db2777",
-            labels: [{ text: <InlineMath math="M'(6,8)" />, at: 1, offset: [0, 0.6, 0] }],
-            showPoints: true,
-          },
-          {
-            points: [
-              { x: 6, y: 8, z: 0 }, // M'
-              { x: 2, y: 2, z: 0 }, // K'
-            ],
-            smooth: false,
-            color: "#4f46e5",
-            showPoints: true,
-          },
-          // Origin
-          {
-            points: [{ x: 0, y: 0, z: 0 }],
-            color: "#4f46e5",
-            showPoints: true,
-            labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -1.1, 0] }],
-          },
-        ]}
-        cameraPosition={[5, 4, 16]}
-        cameraTarget={[5, 4, 0]}
-      />
-    </ContentStack>
+Bayangan titik <InlineMath math="L(5,1)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x_L' \\ y_L' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 10 \\ 2 \end{pmatrix} \\ &amp;\implies L'(10,2) \end{aligned}" />
+
+Bayangan titik <InlineMath math="M(3,4)" />:
+
+<ContentStack>
+
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x_M' \\ y_M' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 6 \\ 8 \end{pmatrix} \\ &amp;\implies M'(6,8) \end{aligned}" />
+
+  <LineEquation
+    title={
+      <>
+        Visualisasi Dilatasi Segitiga <InlineMath math="KLM" /> dengan Pusat{" "}
+        <InlineMath math="O(0,0)" /> dan Faktor Skala{" "}
+        <InlineMath math="k=2" />
+      </>
+    }
+    description={
+      <>
+        Segitiga <InlineMath math="KLM" /> didilatasikan menjadi segitiga{" "}
+        <InlineMath math="K'L'M'" />. Titik pusat dilatasi{" "}
+        <InlineMath math="O(0,0)" />.
+      </>
+    }
+    data={[
+      // Original Triangle KLM
+      {
+        points: [
+          { x: 1, y: 1, z: 0 }, // K
+          { x: 5, y: 1, z: 0 }, // L
+        ],
+        smooth: false,
+        color: "#0284c7",
+        labels: [
+          { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.3, -0.75, 0] },
+          { text: <InlineMath math="L(5,1)" />, at: 1, offset: [0.7, -0.2, 0] },
+        ],
+        showPoints: true,
+      },
+      {
+        points: [
+          { x: 5, y: 1, z: 0 }, // L
+          { x: 3, y: 4, z: 0 }, // M
+        ],
+        smooth: false,
+        color: "#ea580c",
+        labels: [{ text: <InlineMath math="M(3,4)" />, at: 1, offset: [0, 0.5, 0] }],
+        showPoints: true,
+      },
+      {
+        points: [
+          { x: 3, y: 4, z: 0 }, // M
+          { x: 1, y: 1, z: 0 }, // K
+        ],
+        smooth: false,
+        color: "#9333ea",
+        showPoints: true,
+      },
+      // Dilated Triangle K'L'M'
+      {
+        points: [
+          { x: 2, y: 2, z: 0 }, // K'
+          { x: 10, y: 2, z: 0 }, // L'
+        ],
+        smooth: false,
+        color: "#0d9488",
+        labels: [
+          { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-1.8, 0.7, 0] },
+          { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0, -0.7, 0] },
+        ],
+        showPoints: true,
+      },
+      {
+        points: [
+          { x: 10, y: 2, z: 0 }, // L'
+          { x: 6, y: 8, z: 0 }, // M'
+        ],
+        smooth: false,
+        color: "#db2777",
+        labels: [{ text: <InlineMath math="M'(6,8)" />, at: 1, offset: [0, 0.6, 0] }],
+        showPoints: true,
+      },
+      {
+        points: [
+          { x: 6, y: 8, z: 0 }, // M'
+          { x: 2, y: 2, z: 0 }, // K'
+        ],
+        smooth: false,
+        color: "#4f46e5",
+        showPoints: true,
+      },
+      // Origin
+      {
+        points: [{ x: 0, y: 0, z: 0 }],
+        color: "#4f46e5",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -1.1, 0] }],
+      },
+    ]}
+    cameraPosition={[5, 4, 16]}
+    cameraTarget={[5, 4, 0]}
+  />
+</ContentStack>

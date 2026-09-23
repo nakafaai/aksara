@@ -5,8 +5,28 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Treat <InlineMath math="\text{AB}" /> and <InlineMath math="\text{CD}" /> as fixed-order blocks together with <InlineMath math="E" />, <InlineMath math="F" />, <InlineMath math="G" />, and <InlineMath math="H" />, giving <InlineMath math="6!=720" /> unit arrangements. The two blocks are adjacent in <InlineMath math="2\cdot5!=240" /> arrangements, so <InlineMath math="480" /> keep at least one report between them. Half place <InlineMath math="E" /> before <InlineMath math="F" />, leaving <InlineMath math="240" /> valid arrangements. Thus <InlineMath math="240/40320=1/168" />.
+#### Combine consecutive pairs
 
-Therefore, the requested value is <InlineMath math="\frac1{168}" />.
+Blocks <InlineMath math="\text{AB}" /> and <InlineMath math="\text{CD}" /> have **fixed internal order**. Together with reports <InlineMath math="E,F,G,H" />, they form six movable units. The number of arrangements of these units is:
 
-Swapping <InlineMath math="E" /> and <InlineMath math="F" /> preserves every other condition. Therefore, the number with <InlineMath math="E" /> before <InlineMath math="F" /> equals the number with the reverse order.
+<BlockMath math="6!=720" />
+
+#### Remove arrangements with adjacent blocks
+
+When the two blocks are adjacent, treat them as **one combined unit**. There are then five units to arrange, with two internal orders for the combined unit: <InlineMath math="\text{ABCD}" /> or <InlineMath math="\text{CDAB}" />.
+
+<BlockMath math="2\times5!=240" />
+
+Subtract those arrangements from the total for six units. The remaining arrangements have at least one report between the two blocks.
+
+<BlockMath math="720-240=480" />
+
+#### Apply the order of E and F
+
+**Swapping the positions** of <InlineMath math="E" /> and <InlineMath math="F" /> preserves both blocks and their separation. Each arrangement with <InlineMath math="E" /> before <InlineMath math="F" /> pairs with one having the reverse order. Exactly half of the remaining arrangements therefore meet the last condition.
+
+<BlockMath math="480\div2=240" />
+
+The random choice comes from all unrestricted arrangements of eight reports, rather than only the six-unit arrangements. The sample space has size <InlineMath math="8!=40320" />. The required probability is:
+
+<BlockMath math="P=\frac{240}{40320}=\frac1{168}" />

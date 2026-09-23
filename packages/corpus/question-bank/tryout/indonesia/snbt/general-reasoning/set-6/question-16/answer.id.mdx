@@ -5,22 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Terdapat <InlineMath math="5" /> anak <InlineMath math="\{\mathrm{A}, \mathrm{B}, \mathrm{C}, \mathrm{D}, \mathrm{E}\}" /> dan <InlineMath math="5" /> tujuan perjalanan. Syarat korespondensi satu-satu memberikan satu tujuan kepada setiap anak dan menggunakan setiap tujuan tepat satu kali.
+A hanya menginginkan Yogyakarta atau Lombok. Karena E sudah mendapat Lombok dan **setiap tujuan hanya digunakan sekali**, pilihan A tinggal **Yogyakarta**.
 
-Pertama, cari anak yang memiliki pilihan "eksklusif" atau unik:
-1.  **Bali**: Hanya muncul di daftar keinginan **B**. Maka, **B harus ke Bali**.
-2.  **Manado**: Hanya muncul di daftar keinginan **C**. Maka, **C harus ke Manado**.
+Kita dapat memeriksa bahwa pilihan ini tetap memungkinkan semua tiket dibagikan sesuai syarat:
 
-Sekarang tersisa <InlineMath math="3" /> anak <InlineMath math="\{\mathrm{A}, \mathrm{D}, \mathrm{E}\}" /> dan <InlineMath math="3" /> tujuan (Yogyakarta, Lombok, Padang).
--   A ingin: Yogyakarta atau Lombok.
--   D ingin: Yogyakarta atau Padang.
--   E ingin: Padang, Lombok, atau Yogyakarta.
+| Anak | Tujuan | Alasan |
+| --- | --- | --- |
+| E | Lombok | Ditetapkan dalam soal |
+| A | Yogyakarta | Lombok sudah diberikan kepada E |
+| B | Bali | Bali wajib digunakan dan hanya ada dalam daftar B |
+| C | Manado | Manado wajib digunakan dan hanya ada dalam daftar C |
+| D | Padang | Yogyakarta sudah diberikan kepada A, sehingga tersisa Padang dalam daftar D |
 
-Berdasarkan informasi tambahan pada soal, diketahui bahwa **E pergi ke Lombok**.
-
-Karena **Lombok** sudah diambil oleh E, lihat pilihan A:
--   A awalnya ingin Yogyakarta atau Lombok.
--   Opsi Lombok sudah tertutup (karena E di sana).
--   Maka, satu-satunya pilihan yang tersisa bagi A adalah **Yogyakarta**.
-
-Dengan demikian, ayah memberikan tiket **Yogyakarta** kepada A. Tujuan yang tersisa untuk D adalah Padang.
+Kelima tujuan terpakai tepat sekali dan setiap anak memperoleh tujuan dalam daftar keinginannya. Jadi, pembagian tiket ini memenuhi seluruh syarat.

@@ -5,7 +5,9 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gunakan ribu rupiah sebagai satuan perhitungan. Urutan harga harus dibalik: hapus pajak, kembalikan potongan voucher, lalu hapus kenaikan harga.
+Gunakan ribu rupiah sebagai satuan perhitungan. Urutan perubahan harga harus **dibalik**: hapus pajak, kembalikan potongan voucher, lalu hapus kenaikan harga.
+
+Pajak dihitung dari harga sesudah voucher. Karena harga akhir adalah <InlineMath math="110\%" /> dari harga tersebut, kita membagi dengan <InlineMath math="1{,}10" /> untuk kembali ke harga sebelum pajak.
 
 Sebelum pajak <InlineMath math="10\%" />, harga sesudah voucher adalah
 
@@ -13,6 +15,6 @@ Sebelum pajak <InlineMath math="10\%" />, harga sesudah voucher adalah
 
 Tambahkan kembali voucher <InlineMath math="50" /> ribu rupiah, kemudian bagi dengan faktor kenaikan <InlineMath math="1{,}20" />.
 
-<BlockMath math="\begin{aligned} 550+50 &=600 \\ P_0 &=600\div1{,}20=500 \\ 605-P_0 &=605-500=105 \end{aligned}" />
+<BlockMath math="\begin{aligned} 550+50 &amp;=600 \\ P_0 &amp;=600\div1{,}20=500 \\ 605-P_0 &amp;=605-500=105 \end{aligned}" />
 
 Jadi, harga akhir lebih tinggi <InlineMath math="105" /> ribu rupiah daripada harga awal.

@@ -7,9 +7,15 @@ export const metadata = {
 
 Misalkan banyak paket kedua jenis adalah <InlineMath math="X" />, <InlineMath math="Y" />. Kedua batas sumber daya dan laba memenuhi
 
-<BlockMath math="\begin{aligned} 4X+Y&\le25 \\ 2X+3Y&\le24 \\ L&=8X+5Y \end{aligned}" />
+<BlockMath math="\begin{aligned} 4X+Y&amp;\le25 \\ 2X+3Y&amp;\le24 \\ L&amp;=8X+5Y \end{aligned}" />
 
-Untuk setiap jumlah paket pertama, laba naik jika jumlah paket kedua bertambah. Jadi, cukup periksa jumlah maksimum paket kedua yang masih memenuhi kedua batas.
+Karena <InlineMath math="Y\ge0" />, batas bahan memberikan <InlineMath math="4X\le25" />. Maka **jumlah paket pertama** hanya mungkin <InlineMath math="0,1,\ldots,6" />.
+
+Untuk setiap nilai <InlineMath math="X" />, tambahan paket kedua meningkatkan laba sebesar <InlineMath math="5" />. Jadi, cukup periksa **jumlah terbesar yang memenuhi kedua batas**. Misalnya, untuk <InlineMath math="X=5" />:
+
+<BlockMath math="\begin{aligned} Y&amp;\le25-4(5)=5 \\ Y&amp;\le\frac{24-2(5)}{3}=\frac{14}{3}. \end{aligned}" />
+
+Karena jumlah paket harus bulat, batas kedua membatasi <InlineMath math="Y" /> menjadi paling banyak <InlineMath math="4" />. Lakukan cara yang sama untuk setiap nilai <InlineMath math="X" />:
 
 | <InlineMath math="X" /> | <InlineMath math="Y" /> (maksimum) | Laba |
 | ---: | ---: | ---: |

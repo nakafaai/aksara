@@ -15,7 +15,7 @@ If <InlineMath math="\vec{v}" /> describes a displacement from left to right, th
 
 ## Formula for an Opposite Vector
 
-Multiplying a vector by the scalar <InlineMath math="-1" /> reverses every component:
+Multiplying a vector by the scalar <InlineMath math="-1" /> **reverses the sign of every component**:
 
 <BlockMath math="-\vec{v}=(-1)\vec{v}" />
 
@@ -37,32 +37,45 @@ Its magnitude is:
 
 <BlockMath math="|\overrightarrow{AB}|=\sqrt{6^2+8^2}=\sqrt{100}=10" />
 
-Multiply every component by <InlineMath math="-1" /> to find the opposite vector:
+Multiply **every component** by <InlineMath math="-1" /> to find the opposite vector:
 
 <BlockMath math="-\overrightarrow{AB}=-(6\mathbf{i}+8\mathbf{j})=-6\mathbf{i}-8\mathbf{j}" />
 
 Both vectors have magnitude <InlineMath math="10" />, but their directions differ by <InlineMath math="180^\circ" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[0.5, 0.3, 23]}
+  cameraTarget={[0.5, 0.3, 0]}
   title="A Vector and Its Opposite"
   description={<>The vectors <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="-\overrightarrow{AB}" /> have equal lengths and point in opposite directions.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#ea580c",
-      label: <InlineMath math="\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [-6, -8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="-\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\overrightarrow{AB}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 10, 12]}
 />
 
 ## Properties of Opposite Vectors
@@ -73,7 +86,7 @@ Both vectors have magnitude <InlineMath math="10" />, but their directions diffe
 
 2. For a nonzero vector, their directions differ by <InlineMath math="180^\circ" />.
 
-3. Their sum is the zero vector:
+3. Their sum is the **zero vector**:
 
    <BlockMath math="\vec{v}+(-\vec{v})=\vec{0}" />
 
@@ -95,43 +108,56 @@ Opposite vectors appear whenever a direction is reversed:
 
 ## Unit Vectors and Opposite Direction
 
-A unit vector is built from a nonzero vector by dividing that vector by its length. Multiplying the result by <InlineMath math="-1" /> reverses its direction while keeping the same line.
+A unit vector is built from a nonzero vector by **dividing that vector by its length**. Multiplying the result by <InlineMath math="-1" /> reverses its direction while keeping the same line.
 
 ### Unit Vector
 
-For a nonzero vector <InlineMath math="\vec{v}" />, its unit vector is:
+For a **nonzero vector** <InlineMath math="\vec{v}" />, its unit vector is:
 
 <BlockMath math="\hat{v}=\frac{\vec{v}}{|\vec{v}|}" />
 
 It has magnitude <InlineMath math="1" /> and points in the same direction as <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
+    cameraPosition={[0.1, 0.1, 3.2]}
+    cameraTarget={[0.1, 0.1, 0]}
     title="Opposite Unit Directions"
     description="The two unit vectors have equal length and opposite direction."
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
-        color: "#d97706",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [-0.6, -0.8, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="-\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\hat{v}" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
-    cameraPosition={[12, 10, 12]}
   />
 </ContentBlock>
 
 ### Relationship with the Opposite Vector
 
-The unit vector in the opposite direction is <InlineMath math="-\hat{v}" />. Multiplying it by the original magnitude gives the opposite vector:
+The unit vector in the **opposite direction** is <InlineMath math="-\hat{v}" />. Multiplying it by the original magnitude gives the opposite vector:
 
 <BlockMath math="-\vec{v}=|\vec{v}|(-\hat{v})" />
 

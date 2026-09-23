@@ -24,11 +24,11 @@ For discrete events such as completed cell divisions, <InlineMath math="x" /> is
 
 ## Building a Model from a Table
 
-A table of values shows the repeated factor directly. Divide any term by the term before it to confirm that the ratio stays the same at every step.
+A table of values shows the repeated factor directly. **Divide a term by the preceding term** to confirm that the ratio stays the same at every step.
 
 ### Idealized Bacterial Growth
 
-Suppose a culture starts with <InlineMath math="30" /> bacteria and every bacterium divides into two every <InlineMath math="30\text{ minutes}" />. The model ignores deaths and resource limits so that we can focus on the repeated factor.
+Suppose a culture starts with <InlineMath math="30" /> bacteria and every bacterium divides into two every <InlineMath math="30\text{ minutes}" />. The model ignores deaths and **resource limits** so that we can focus on the repeated factor.
 
 Let <InlineMath math="x" /> count completed thirty-minute intervals:
 
@@ -50,7 +50,7 @@ The model is:
 
 ### Connecting the Table and Graph
 
-The table records completed divisions at integer values of <InlineMath math="x" />. The plotted curve extends <InlineMath math="f(x)=30\cdot2^x" /> to real values of <InlineMath math="x" />. In this discrete model, points between two integers interpolate the formula. They do not count an additional completed division.
+The table records completed divisions at **integer values** of <InlineMath math="x" />. The plotted curve extends <InlineMath math="f(x)=30\cdot2^x" /> to real values of <InlineMath math="x" />. In this discrete model, points between two integers interpolate the formula. They do not count an additional completed division.
 
 <FunctionChart
   p={30}
@@ -67,7 +67,7 @@ Each doubling adds more bacteria than the preceding doubling, so the slope of th
 
 ### Converting Time to Intervals
 
-Five hours contain ten thirty-minute intervals:
+Five hours contain **ten thirty-minute intervals**:
 
 <BlockMath math="x=\frac{5\cdot60}{30}=10" />
 
@@ -79,7 +79,7 @@ Under the idealized model, the culture contains <InlineMath math="30{,}720" /> b
 
 ## Changing or Recovering the Initial Value
 
-For a fixed growth factor <InlineMath math="a" />, changing <InlineMath math="P_0" /> scales every output:
+For a fixed growth factor <InlineMath math="a" />, changing <InlineMath math="P_0" /> **scales every output**:
 
 <BlockMath math="f(x)=P_0a^x" />
 
@@ -91,7 +91,7 @@ For example, with a doubling factor:
 
 ### Recovering an Unknown Initial Value
 
-Suppose a culture contains <InlineMath math="8{,}000" /> bacteria after <InlineMath math="2" /> doubling intervals. Let <InlineMath math="P_0" /> be the unknown initial count:
+Suppose a culture contains <InlineMath math="8{,}000" /> bacteria after <InlineMath math="2" /> doubling intervals. Let <InlineMath math="P_0" /> be the **unknown initial count**:
 
 <MathContainer>
   <BlockMath math="8{,}000=P_0\cdot2^2" />
@@ -112,72 +112,76 @@ After <InlineMath math="10" /> doubling intervals, the same culture has:
   <BlockMath math="f(10)=2{,}048{,}000" />
 </MathContainer>
 
-The time represented by those ten intervals depends on the interval length. If one interval is thirty minutes, ten intervals equal five hours.
+The time represented by those ten intervals depends on the **interval length**. If one interval is thirty minutes, ten intervals equal five hours.
 
 ## Exercises
 
-Each problem gives a starting value and the interval after which it doubles. Build the model, then answer the question for the requested interval.
+Each problem gives a **starting value** and the interval after which it doubles. Build the model, then answer the question for the requested interval.
 
 1. An idealized bacterial culture starts with <InlineMath math="50" /> cells and doubles every <InlineMath math="15\text{ minutes}" />.
 
-   1. Make a table and graph from interval <InlineMath math="0" /> through interval <InlineMath math="5" />.
-   2. Write the growth function.
-   3. Predict the count after <InlineMath math="3\text{ hours}" /> and after <InlineMath math="4\text{ hours}" />.
+   Make a table and graph from interval <InlineMath math="0" /> through interval <InlineMath math="5" />. Write the growth function. Predict the count after <InlineMath math="3\text{ hours}" /> and after <InlineMath math="4\text{ hours}" />.
 
 2. A region has a population of <InlineMath math="36{,}000{,}000" />. Assume it grows by a constant <InlineMath math="2\%" /> per year for the next five years. What population does the model predict after five years?
 
 ### Worked Solutions
 
-1. The initial value is <InlineMath math="50" /> and the growth factor is <InlineMath math="2" />.
+Use the **number of completed intervals** as the exponent. Convert time in hours into the number of intervals before substituting into the formula. At interval zero, the bacterial count still equals the initial count.
 
-   1. The first six values are:
+#### Bacterial Culture
 
-      | Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-      | -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-      | Bacteria | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{,}600" /> |
+The initial value is <InlineMath math="50" /> and the **growth factor** is <InlineMath math="2" />.
 
-      <FunctionChart
-        p={50}
-        a={2}
-        n={7}
-        title="Idealized Bacterial Growth"
-        description={
-          <>
-            The count doubles every <InlineMath math="15\text{ minutes}" />.
-          </>
-        }
-      />
+The first six values are:
 
-   2. With <InlineMath math="x" /> measured in fifteen-minute intervals:
+| Interval | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bacteria | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{,}600" /> |
 
-      <BlockMath math="f(x)=50\cdot2^x" />
+<FunctionChart
+  p={50}
+  a={2}
+  n={6}
+  title="Idealized Bacterial Growth"
+  description={
+    <>
+      The count doubles every <InlineMath math="15\text{ minutes}" />.
+    </>
+  }
+/>
 
-   3. Three hours contain <InlineMath math="\frac{3\cdot60}{15}=12" /> intervals:
+With <InlineMath math="x" /> measured in fifteen-minute intervals:
 
-      <MathContainer>
-        <BlockMath math="f(12)=50\cdot2^{12}" />
-        <BlockMath math="f(12)=50\cdot4{,}096" />
-        <BlockMath math="f(12)=204{,}800" />
-      </MathContainer>
+<BlockMath math="f(x)=50\cdot2^x" />
 
-      Four hours contain <InlineMath math="\frac{4\cdot60}{15}=16" /> intervals:
+Three hours contain <InlineMath math="\frac{3\cdot60}{15}=12" /> intervals:
 
-      <MathContainer>
-        <BlockMath math="f(16)=50\cdot2^{16}" />
-        <BlockMath math="f(16)=50\cdot65{,}536" />
-        <BlockMath math="f(16)=3{,}276{,}800" />
-      </MathContainer>
+<MathContainer>
+  <BlockMath math="f(12)=50\cdot2^{12}" />
+  <BlockMath math="f(12)=50\cdot4{,}096" />
+  <BlockMath math="f(12)=204{,}800" />
+</MathContainer>
 
-2. A <InlineMath math="2\%" /> increase corresponds to the annual factor <InlineMath math="1.02" />:
+Four hours contain <InlineMath math="\frac{4\cdot60}{15}=16" /> intervals:
 
-   <MathContainer>
-     <BlockMath math="P(t)=36{,}000{,}000(1.02)^t" />
-     <BlockMath math="P(5)=36{,}000{,}000(1.02)^5" />
-     <BlockMath math="P(5)\approx39{,}746{,}909" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="f(16)=50\cdot2^{16}" />
+  <BlockMath math="f(16)=50\cdot65{,}536" />
+  <BlockMath math="f(16)=3{,}276{,}800" />
+</MathContainer>
 
-   The model predicts about <InlineMath math="39.75\text{ million people}" /> after five years.
+#### Population Growth
+
+A <InlineMath math="2\%" /> increase corresponds to the **annual factor** <InlineMath math="1.02" />:
+
+<MathContainer>
+  <BlockMath math="P(t)=36{,}000{,}000(1.02)^t" />
+  <BlockMath math="P(5)=36{,}000{,}000(1.02)^5" />
+  <BlockMath math="P(5)\approx39{,}746{,}909" />
+</MathContainer>
+
+The model predicts about <InlineMath math="39.75\text{ million people}" /> after five years.
 
 ## Model Boundaries
 
-Exponential growth appears in compound interest, idealized population models, early transmission models, and unconstrained laboratory growth. Always identify the initial value, factor, and interval. Real systems usually introduce changing rates, limited resources, or other constraints, so an exponential rule should only be extended as far as its assumptions remain reasonable.
+Exponential growth appears in compound interest, idealized population models, early transmission models, and unconstrained laboratory growth. Identify the **initial value, factor, and interval** before applying the model. Real systems usually introduce changing rates, limited resources, or other constraints, so an exponential rule should only be extended as far as its assumptions remain reasonable.

@@ -95,13 +95,29 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
 
 ## From Secant Line to Tangent Line
 
-Next, move <InlineMath math="Q" /> closer and closer to <InlineMath math="P" />. The horizontal distance <InlineMath math="\Delta x" /> becomes smaller and approaches zero.
+Imagine choosing <InlineMath math="Q" /> on the parabola closer and closer to <InlineMath math="P" />. The horizontal separation <InlineMath math="\Delta x" /> then approaches zero. We can calculate the effect of choosing different points while keeping the same parabola.
 
 As <InlineMath math="\Delta x \to 0" /> (read "delta x approaches zero"), the secant lines approach the **tangent line** at <InlineMath math="P" />. The tangent line shows the curve's local direction at that point. It need not intersect the entire curve only once. What matters is its local behavior near <InlineMath math="P" />.
 
 The tangent's slope is the **instantaneous rate of change** of the curve at <InlineMath math="P" />. We find it with a **limit**:
 
 <BlockMath math="\begin{aligned} &amp;m_{\text{tangent}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
+
+For the plotted parabola, fix <InlineMath math="P=(1,1)" /> and write <InlineMath math="h=\Delta x" />. The second point is <InlineMath math="Q=(1+h,(1+h)^2)" />. As long as <InlineMath math="h\ne0" />, the secant slope simplifies to:
+
+<BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
+
+We can cancel the factor <InlineMath math="h" /> because the two points are still distinct. The table compares slopes with <InlineMath math="Q" /> to the left and to the right of <InlineMath math="P" />.
+
+| <InlineMath math="h" /> | Secant slope <InlineMath math="2+h" /> |
+| --- | --- |
+| <InlineMath math="-0.5" /> | <InlineMath math="1.5" /> |
+| <InlineMath math="-0.1" /> | <InlineMath math="1.9" /> |
+| <InlineMath math="0.1" /> | <InlineMath math="2.1" /> |
+| <InlineMath math="0.5" /> | <InlineMath math="2.5" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> |
+
+As the **horizontal separation approaches zero from both sides**, the slope approaches <InlineMath math="2" />. The tangent slope at <InlineMath math="P" /> is therefore <InlineMath math="2" />. We take the limit after simplifying the fraction, so no division by zero occurs.
 
 ## Definition of the Derivative
 

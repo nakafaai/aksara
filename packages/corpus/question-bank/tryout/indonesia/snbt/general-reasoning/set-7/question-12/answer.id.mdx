@@ -5,7 +5,33 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Karena permukaannya datar dan kedua bayangan terbentuk pada saat yang sama, sudut datang sinar matahari sama. Setiap orang dan bayangannya membentuk segitiga siku-siku yang sebangun. Karena itu, perbandingan tinggi terhadap panjang bayangan bernilai sama. Misalkan <InlineMath math="h_N" /> dan <InlineMath math="s_N" /> adalah tinggi dan panjang bayangan Nafis, serta <InlineMath math="h_M" /> dan <InlineMath math="s_M" /> adalah tinggi dan panjang bayangan Mirza. Semua panjang dinyatakan dalam meter.
+Karena permukaan tanah datar dan kedua bayangan terbentuk pada saat yang sama, sudut datang sinar matahari sama. Setiap orang dan bayangannya membentuk segitiga siku-siku yang **sebangun**. Karena itu, perbandingan tinggi terhadap panjang bayangan bernilai sama. Misalkan <InlineMath math="h_N" /> dan <InlineMath math="s_N" /> adalah tinggi dan panjang bayangan Nafis, serta <InlineMath math="h_M" /> dan <InlineMath math="s_M" /> adalah tinggi dan panjang bayangan Mirza. Semua panjang dinyatakan dalam meter.
+
+<MathVisual
+  title="Tinggi dan bayangan membentuk segitiga sebangun"
+  description="Kedua segitiga ditampilkan terpisah. Sisi tegak menunjukkan tinggi orang, sisi mendatar menunjukkan bayangan, dan sisi miring mengikuti arah sinar matahari. Kemiringan kedua sisi miring sama."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "nafis", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }, { x: 0, y: 1.5 }], appearance: "primary" },
+      { id: "mirza", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 6, y: 3 }, { x: 0, y: 5 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "nafis-height", objectId: "nafis", at: { x: 0, y: 0.75 }, placement: "left" },
+      { key: "nafis-shadow", objectId: "nafis", at: { x: 2.25, y: 0 }, placement: "below" },
+      { key: "mirza-height", objectId: "mirza", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "mirza-shadow", objectId: "mirza", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "nafis-height": <InlineMath math="h_N=1{,}5\text{ m}" />,
+    "nafis-shadow": <InlineMath math="s_N=4{,}5\text{ m}" />,
+    "mirza-height": <InlineMath math="h_M" />,
+    "mirza-shadow": <InlineMath math="s_M=6\text{ m}" />,
+  }}
+/>
 
 Diketahui:
 - Tinggi Nafis = <InlineMath math="1{,}5\text{ meter}" />

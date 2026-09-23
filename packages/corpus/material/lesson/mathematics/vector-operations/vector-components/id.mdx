@@ -15,7 +15,9 @@ Setiap vektor pada bidang koordinat <Highlight>dapat diuraikan sepanjang kedua s
 
 Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membentang sepanjang sumbu <InlineMath math="x" /> dan <InlineMath math="y" />. Setiap vektor pada bidang merupakan kombinasi linear dari vektor satuan <InlineMath math="\mathbf{i}" /> dan <InlineMath math="\mathbf{j}" />.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[1.8, 4, 12.5]}
+  cameraTarget={[1.8, 4, 0]}
   title="Visualisasi Vektor dan Komponennya"
   description={
     <>
@@ -24,24 +26,45 @@ Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membe
       <InlineMath math="z" /> bernilai nol.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.75 * ((6) - (0)), y: (0) + 0.75 * ((8) - (0)), z: (0) + 0.75 * ((0) - (0)) }, { x: 6, y: 8, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        at: 1,
+        offset: [-0.3, 0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [6, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <>Komponen <InlineMath math="x" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="x" /></>,
+        at: 1,
+        offset: [0, -0.6, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((8) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 8, z: 0 }],
       color: "#65a30d",
-      label: <>Komponen <InlineMath math="y" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="y" /></>,
+        at: 1,
+        offset: [-0.4, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -63,11 +86,11 @@ Perhatikan vektor <InlineMath math="\overrightarrow{AB}" /> pada diagram. Vektor
 
 <BlockMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />
 
-Ini berarti <InlineMath math="\overrightarrow{AB}" /> memiliki komponen skalar <InlineMath math="6" /> dan <InlineMath math="8" />, dengan proyeksi vektor <InlineMath math="6\mathbf{i}" /> ke kanan dan <InlineMath math="8\mathbf{j}" /> ke atas.
+Ini berarti <InlineMath math="\overrightarrow{AB}" /> memiliki komponen skalar <InlineMath math="6" /> dan <InlineMath math="8" />, dengan **proyeksi vektor** <InlineMath math="6\mathbf{i}" /> ke kanan dan <InlineMath math="8\mathbf{j}" /> ke atas.
 
 ## Panjang Vektor dari Setiap Komponen
 
-Ketika kita telah mengetahui komponen-komponen suatu vektor, kita dapat menghitung panjang atau besar vektor tersebut menggunakan teorema Pythagoras.
+Ketika kita telah mengetahui komponen-komponen suatu vektor, kita dapat menghitung panjang atau besar vektor tersebut menggunakan **teorema Pythagoras**.
 
 Panjang vektor <InlineMath math="\overrightarrow{AB}" /> dilambangkan dengan <InlineMath math="|\overrightarrow{AB}|" /> dan dihitung dengan rumus:
 
@@ -77,6 +100,8 @@ Pada rumus ini, <InlineMath math="a" /> dan <InlineMath math="b" /> adalah kompo
 
 ### Contoh Perhitungan Panjang Vektor
 
+Gunakan **jumlah kuadrat komponen**, lalu ambil akar positif untuk memperoleh panjang.
+
 Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" />, panjang vektornya adalah:
 
 <BlockMath math="\begin{aligned} |\overrightarrow{AB}| &amp;= \sqrt{6^2 + 8^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
@@ -85,39 +110,68 @@ Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" 
 
 Vektor dapat digunakan pada bidang datar dua dimensi dan ruang tiga dimensi.
 
-<Vector3d
+<LineEquation
+  cameraPosition={[11, 10, -11]}
+  cameraTarget={[1.5, 3.5, 2]}
   title="Vektor dalam Ruang 3D"
   description="Visualisasi vektor beserta komponennya dalam ruang tiga dimensi."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [5, 7, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.85 * ((5) - (0)), y: (0) + 0.85 * ((7) - (0)), z: (0) + 0.85 * ((4) - (0)) }, { x: 5, y: 7, z: 4 }],
       color: "#ea580c",
-      label: "Vektor 3D",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: "Vektor 3D",
+        at: 1,
+        offset: [0, 0.8, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [5, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <>Komponen <InlineMath math="x" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="x" /></>,
+        at: 1,
+        offset: [0, -0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 7, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((7) - (0)), z: (0) + 0.6 * ((0) - (0)) }, { x: 0, y: 7, z: 0 }],
       color: "#65a30d",
-      label: <>Komponen <InlineMath math="y" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="y" /></>,
+        at: 1,
+        offset: [-0.8, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((0) - (0)), z: (0) + 0.6 * ((4) - (0)) }, { x: 0, y: 0, z: 4 }],
       color: "#ca8a04",
-      label: <>Komponen <InlineMath math="z" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Komponen <InlineMath math="z" /></>,
+        at: 1,
+        offset: [0.5, -0.3, 0],
+        anchorX: "left",
+      }],
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
-Dalam ruang tiga dimensi, sebuah vektor memiliki tiga komponen: komponen x, komponen y, dan komponen z. Vektor di ruang tiga dimensi dapat dinyatakan sebagai:
+Dalam ruang tiga dimensi, sebuah vektor memiliki **tiga komponen**: komponen <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor di ruang tiga dimensi dapat dinyatakan sebagai:
 
 <BlockMath math="\vec{v} = a\mathbf{i} + b\mathbf{j} + c\mathbf{k}" />
 
@@ -135,7 +189,7 @@ Panjang vektor dalam ruang tiga dimensi dihitung dengan rumus:
 
 ## Vektor Satuan Arah
 
-Untuk menyatakan arah vektor tak nol, kita dapat menggunakan vektor satuan. Vektor satuan memiliki besar <InlineMath math="1 \text{ satuan}" />. Kita memperolehnya dengan membagi vektor tak nol tersebut dengan besarnya.
+Untuk menyatakan arah vektor tak nol, kita dapat menggunakan vektor satuan. Vektor satuan memiliki besar <InlineMath math="1 \text{ satuan}" />. Kita memperolehnya dengan **membagi vektor tak nol dengan besarnya**.
 
 Vektor satuan arah dari <InlineMath math="\overrightarrow{AB}" /> kita lambangkan dengan <InlineMath math="\mathbf{u}_{AB}" /> dan dihitung dengan:
 
@@ -147,7 +201,7 @@ Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" 
 
 <BlockMath math="\begin{aligned} \mathbf{u}_{AB} &amp;= \frac{6\mathbf{i} + 8\mathbf{j}}{10} \\ &amp;= \frac{6}{10}\mathbf{i} + \frac{8}{10}\mathbf{j} \\ &amp;= 0{,}6\mathbf{i} + 0{,}8\mathbf{j} \end{aligned}" />
 
-Vektor satuan ini menunjukkan arah dari vektor <InlineMath math="\overrightarrow{AB}" /> tanpa memperhatikan besarnya.
+Vektor satuan ini **menunjukkan arah** dari vektor <InlineMath math="\overrightarrow{AB}" /> tanpa memperhatikan besarnya.
 
 ## Aplikasi Komponen Vektor
 
@@ -158,4 +212,4 @@ Penguraian vektor pada sumbu yang dipilih dipakai dalam perhitungan berikut:
 - Menentukan arah dan besar resultan dalam pergerakan objek
 - Navigasi dan penentuan posisi dalam sistem koordinat
 
-Komponen vektor memisahkan besar dan arah pada sumbu yang dipilih. Komponen pada setiap sumbu dapat dihitung secara terpisah sebelum digabungkan kembali.
+Komponen vektor memisahkan besar dan arah pada sumbu yang dipilih. Komponen pada **setiap sumbu** dapat dihitung secara terpisah sebelum digabungkan kembali.

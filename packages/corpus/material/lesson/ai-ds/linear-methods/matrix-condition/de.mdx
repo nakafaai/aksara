@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Induzierte Matrixnormen
 
-<Highlight>Eine Vektornorm misst die Größe eines Vektors.</Highlight> Die zugehörige induzierte Matrixnorm misst den größten Faktor, um den eine Matrix einen Vektor strecken kann:
+Eine Vektornorm misst die **Größe eines Vektors**. Die zugehörige induzierte Matrixnorm misst den größten Faktor, um den eine Matrix einen Vektor strecken kann:
 
 <BlockMath math="\|A\|=\sup_{x\ne0}\frac{\|Ax\|}{\|x\|}=\max_{\|x\|=1}\|Ax\|" />
 
@@ -46,7 +46,7 @@ Ist <InlineMath math="A" /> reell symmetrisch, so sind ihre Singulärwerte die B
 
 <BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
 
-Bei einer allgemeinen nichtnormalen Matrix müssen Spektralradius und Spektralnorm nicht übereinstimmen.
+Bei einer allgemeinen nichtnormalen Matrix müssen Spektralradius und Spektralnorm **nicht übereinstimmen**.
 
 ## Konditionszahl eines linearen Gleichungssystems
 
@@ -62,11 +62,11 @@ Für eine invertierbare symmetrische Matrix wird daraus
 
 <BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-Im Nenner steht der Eigenwert mit dem kleinsten Betrag. Sein Vorzeichen entscheidet diese Auswahl nicht.
+Im Nenner steht der Eigenwert mit dem **kleinsten Betrag**. Sein Vorzeichen entscheidet diese Auswahl nicht.
 
 | Größe von <InlineMath math="\kappa(A)" /> | Bedeutung |
 | --- | --- |
-| Nahe bei <InlineMath math="1" /> | Im ungünstigsten Fall ist die relative Änderung der Lösung ungefähr so groß wie die relative Änderung der Eingabe. |
+| Nahe bei <InlineMath math="1" /> | Im **ungünstigsten Fall** ist die relative Änderung der Lösung ungefähr so groß wie die relative Änderung der Eingabe. |
 | Groß | Bestimmte Eingaberichtungen können viel größere relative Änderungen der Lösung erzeugen. |
 | Unendlich | Die Matrix ist singulär, daher ist das inverse Problem nicht eindeutig lösbar. |
 
@@ -84,11 +84,23 @@ Für <InlineMath math="b=(b_1,b_2)^{\mathsf T}" /> ist die Lösung
 
 <BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
 
-Eine kleine Änderung von <InlineMath math="b_2" /> wird in der zweiten Lösungskomponente mit <InlineMath math="1/\varepsilon" /> verstärkt. Die Matrix ist beinahe singulär, weil sie Vektoren in Richtung der zweiten Koordinatenachse mit dem nahezu null betragenden Wert <InlineMath math="\varepsilon" /> multipliziert.
+Eine kleine Änderung von <InlineMath math="b_2" /> wird in der zweiten Lösungskomponente mit <InlineMath math="1/\varepsilon" /> **verstärkt**. Die Matrix ist beinahe singulär, weil sie Vektoren in Richtung der zweiten Koordinatenachse mit dem nahezu null betragenden Wert <InlineMath math="\varepsilon" /> multipliziert.
+
+Setze <InlineMath math="\varepsilon=1/1000" /> und vergleiche zwei rechte Seiten. Nur die zweite Beobachtung ändert sich.
+
+| <InlineMath math="b" /> | <InlineMath math="x=A^{-1}b" /> |
+| --- | --- |
+| <InlineMath math="(1,1/1000)^T" /> | <InlineMath math="(1,1)^T" /> |
+| <InlineMath math="(1,2/1000)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<MathContainer>
+<BlockMath math="\Delta b_2=\frac1{1000},\qquad\Delta x_2=\frac{1/1000}{1/1000}=1" />
+<BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
+</MathContainer>
 
 ## Störungsabschätzung
 
-Wir betrachten das Ausgangssystem <InlineMath math="Ax=b" /> und das folgende gestörte System.
+Seien <InlineMath math="A" /> invertierbar und <InlineMath math="b\ne0" />, damit die relativen Fehler unten **Nenner ungleich null** besitzen. Wir betrachten das Ausgangssystem <InlineMath math="Ax=b" /> und das folgende gestörte System.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 

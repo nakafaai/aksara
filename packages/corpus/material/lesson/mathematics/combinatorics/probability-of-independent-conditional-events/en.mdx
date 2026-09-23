@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use conditional probability correctly, distinguish dependence from independence, and solve sequential selection problems.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Combinatorics",
 };
 
@@ -17,7 +17,7 @@ Before calculating the next probability, restrict the possible outcomes using th
 
 ## Mathematical Formula and Notation
 
-For events <InlineMath math="A" /> and <InlineMath math="B" /> with <InlineMath math="P(A) > 0" />, conditional probability is defined by:
+For events <InlineMath math="A" /> and <InlineMath math="B" /> with <InlineMath math="P(A) > 0" />, **conditional probability** is defined by:
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
@@ -33,11 +33,9 @@ Rearranging the definition gives the general multiplication rule:
 If the events are independent, learning <InlineMath math="A" /> does not change the probability of <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
-
 ## Application to Card Drawing
 
-Drawing without replacement changes the sample space after each card leaves the deck. Both examples below update the probabilities at the second draw. Because the first card is not returned, the denominator of the second probability is one smaller.
-
+Drawing without replacement changes the sample space after each card leaves the deck. Both examples below update the probabilities at the second draw. Because the first card is not returned, the **denominator of the second probability** is one smaller.
 ### Ace and King Scenario
 
 A standard deck has <InlineMath math="52 \text{ cards}" />. It contains <InlineMath math="4 \text{ Aces}" /> and <InlineMath math="4 \text{ Kings}" />. Two cards are drawn without replacement. What is the probability of drawing an Ace first and a King second?
@@ -60,7 +58,7 @@ After one Ace is drawn, <InlineMath math="51 \text{ cards}" /> remain. All <Inli
 
 ### Probability of Drawing Two Hearts in Sequence
 
-To see how the favorable count can change, consider drawing two Hearts in a row:
+To see how the **favorable count** can change, consider drawing two Hearts in a row:
 
 - First draw: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
 - Second draw after getting a heart: <InlineMath math="P(B|A) = \frac{12}{51}" />
@@ -68,10 +66,9 @@ To see how the favorable count can change, consider drawing two Hearts in a row:
 The probability of drawing Hearts on both draws is therefore:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
-
 ## Application in Management Selection
 
-A company reviews the distribution of managers by gender and job level. Its data has the following composition:
+Suppose a company has the following manager data. The table distinguishes gender and job level, allowing us to restrict a calculation to the relevant group.
 
 | Management Position | Male | Female | Total |
 |------------------|---------------|---------------|-------|
@@ -81,6 +78,12 @@ A company reviews the distribution of managers by gender and job level. Its data
 | **Total**        | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
 
 Let <InlineMath math="L" /> denote the event that a selected manager is male.
+
+If the selected manager is known to be senior, the sample space is only the **senior row**, rather than all managers. Of the <InlineMath math="200" /> senior managers, <InlineMath math="78" /> are male.
+
+<BlockMath math="P(L|S)=\frac{78}{200}=0.39\ne\frac{200}{600}=P(L)" />
+
+Job-level information changes the gender probability in this data. Conditional probability **does not require a time sequence**.
 
 The company randomly selects two managers without replacement for a committee. The probability that both selected managers are male is:
 
@@ -135,8 +138,8 @@ Suppose we want to calculate the probability of getting two aces in succession f
     </MathContainer>
 
 **Result Comparison:**
-- Independent probability: <InlineMath math="\frac{1}{169} = 0.00592" />
-- Conditional probability: <InlineMath math="\frac{1}{221} = 0.00452" />
+- With replacement: <InlineMath math="\frac{1}{169} \approx 0.00592" />
+- Without replacement: <InlineMath math="\frac{1}{221} \approx 0.00452" />
 
 In this example, drawing without replacement gives a **smaller** result because the number of remaining Aces decreases from <InlineMath math="4" /> to <InlineMath math="3" />, while the total cards decrease from <InlineMath math="52" /> to <InlineMath math="51" />.
 
@@ -146,35 +149,34 @@ In this example, drawing without replacement gives a **smaller** result because 
 
 2. A deck of cards is shuffled randomly. Three cards are drawn successively without replacement. What is the probability of getting an Ace on the first draw, a King on the second draw, and a Queen on the third draw?
 
-Try each exercise before reading its worked solution. At every draw, write both the favorable count and the new total before multiplying.
-
+Try each exercise before reading its worked solution. At every draw, write both the favorable count and **the new total** before multiplying.
 ### Worked Solutions
 
-1. **Solution:**
+**Problem 1**
 
-   Let <InlineMath math="A" /> be getting a red ball first, and let <InlineMath math="B" /> be getting a blue ball second
+Let <InlineMath math="A" /> be getting a red ball first, and let <InlineMath math="B" /> be getting a blue ball second
 
-   Total initial balls is <InlineMath math="8 + 12 = 20 \text{ balls}" />
+Total initial balls is <InlineMath math="8 + 12 = 20 \text{ balls}" />
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
-   <BlockMath math="P(B|A) = \frac{12}{19}" />
-   <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
+<BlockMath math="P(B|A) = \frac{12}{19}" />
+<BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
+</MathContainer>
 
-   After drawing one red ball, there are <InlineMath math="19 \text{ balls}" /> remaining in total (<InlineMath math="8 - 1 = 7" /> red, <InlineMath math="12" /> blue). The number of blue balls does not change (remains <InlineMath math="12" />), so the probability of drawing a blue ball second is <InlineMath math="\frac{12}{19}" />.
+After drawing one red ball, there are <InlineMath math="19 \text{ balls}" /> remaining in total (<InlineMath math="8 - 1 = 7" /> red, <InlineMath math="12" /> blue). The number of blue balls does not change (remains <InlineMath math="12" />), so the probability of drawing a blue ball second is <InlineMath math="\frac{12}{19}" />.
 
-2. **Solution:**
+**Problem 2**
 
-   Let <InlineMath math="A" /> be getting an Ace first, let <InlineMath math="K" /> be getting a King second, and let <InlineMath math="Q" /> be getting a Queen third
+Let <InlineMath math="A" /> be getting an Ace first, let <InlineMath math="K" /> be getting a King second, and let <InlineMath math="Q" /> be getting a Queen third
 
-   A standard deck has <InlineMath math="52 \text{ cards}" />, including <InlineMath math="4" /> Aces, <InlineMath math="4" /> Kings, and <InlineMath math="4" /> Queens.
+A standard deck has <InlineMath math="52 \text{ cards}" />, including <InlineMath math="4" /> Aces, <InlineMath math="4" /> Kings, and <InlineMath math="4" /> Queens.
 
-   <MathContainer>
-   <BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
-   <BlockMath math="P(K|A) = \frac{4}{51}" />
-   <BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
-   <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(K|A) = \frac{4}{51}" />
+<BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
+<BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
+</MathContainer>
 
-   Each draw reduces the total number of cards (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.
+Each draw reduces the total number of cards (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.

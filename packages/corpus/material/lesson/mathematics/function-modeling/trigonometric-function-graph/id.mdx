@@ -10,35 +10,43 @@ export const metadata = {
 
 ## Gerak Berulang dalam Grafik Trigonometri
 
-<Highlight>Gelombang air laut bergerak naik dan turun dengan pola yang berulang.</Highlight> Fungsi trigonometri dapat memodelkan gerak periodik seperti ini.
+Gerak naik turun yang **berulang secara teratur** dapat dimodelkan dengan sinus atau kosinus. Model ini menggambarkan gelombang ideal, bukan setiap perubahan air laut.
 
 Untuk membaca grafik fungsi trigonometri, kita perlu memahami ukuran sudut dalam radian. Dalam kehidupan sehari-hari, kita terbiasa menggunakan derajat. Namun dalam matematika tingkat lanjut, radian lebih sering digunakan.
 
 ## Konversi Derajat dan Radian
 
-Satu putaran penuh lingkaran adalah <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" /> radian. Dari hubungan ini, kita memperoleh rumus konversi berikut:
+**Satu putaran penuh** lingkaran adalah <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" /> radian. Dari hubungan ini, kita memperoleh rumus konversi berikut:
 
 <MathContainer>
-  <BlockMath math="180^\circ = \pi \text{ radian}" />
-  <BlockMath math="1^\circ = \frac{\pi}{180} \text{ radian}" />
-  <BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57{,}3^\circ" />
+
+<BlockMath math="180^\circ = \pi \text{ radian}" />
+
+<BlockMath math="1^\circ = \frac{\pi}{180} \text{ radian}" />
+
+<BlockMath math="1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57{,}3^\circ" />
 </MathContainer>
 
 ### Contoh Konversi
 
-Mengubah derajat ke radian:
+Mengubah **derajat ke radian**:
 
 <MathContainer>
-  <BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radian}" />
-  <BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ radian}" />
-  <BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ radian}" />
+
+<BlockMath math="90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radian}" />
+
+<BlockMath math="60^\circ = 60 \times \frac{\pi}{180} = \frac{\pi}{3} \text{ radian}" />
+
+<BlockMath math="45^\circ = 45 \times \frac{\pi}{180} = \frac{\pi}{4} \text{ radian}" />
 </MathContainer>
 
 Mengubah radian ke derajat:
 
 <MathContainer>
-  <BlockMath math="\frac{\pi}{6} \text{ radian} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
-  <BlockMath math="\frac{3\pi}{4} \text{ radian} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
+
+<BlockMath math="\frac{\pi}{6} \text{ radian} = \frac{\pi}{6} \times \frac{180}{\pi} = 30^\circ" />
+
+<BlockMath math="\frac{3\pi}{4} \text{ radian} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
 </MathContainer>
 
 ## Amplitudo dan Periode
@@ -59,7 +67,7 @@ Amplitudo adalah <Highlight>jarak vertikal maksimum dari garis tengah gelombang<
         const x = (i / 99) * 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <>Amplitudo = <InlineMath math="2" /></>, at: 25, offset: [0, 0.5, 0] }],
       showPoints: false,
     },
@@ -73,12 +81,14 @@ Amplitudo adalah <Highlight>jarak vertikal maksimum dari garis tengah gelombang<
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 10]}
+  showZAxis={false}
+  cameraPosition={[Math.PI, 0, 10]}
+  cameraTarget={[Math.PI, 0, 0]}
 />
 
 ### Periode
 
-Periode adalah panjang interval yang diperlukan untuk satu siklus lengkap. Untuk fungsi <InlineMath math="y = \sin(Bx)" /> atau <InlineMath math="y = \cos(Bx)" />, periode adalah <InlineMath math="\frac{2\pi}{|B|}" />.
+Periode adalah panjang **interval** yang diperlukan untuk satu siklus lengkap. Untuk fungsi <InlineMath math="y = \sin(Bx)" /> atau <InlineMath math="y = \cos(Bx)" />, periode adalah <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Konsep Periode"
@@ -114,27 +124,20 @@ Periode adalah panjang interval yang diperlukan untuk satu siklus lengkap. Untuk
       ],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  showZAxis={false}
+  cameraPosition={[2*Math.PI, 0, 16]}
+  cameraTarget={[2*Math.PI, 0, 0]}
 />
 
 ### Amplitudo dan Periode dari Koefisien
 
-Pada bentuk <InlineMath math="y = A \sin(Bx)" />, faktor <InlineMath math="A" /> menentukan amplitudo dan faktor <InlineMath math="B" /> menentukan periode. Kedua rumus di bawah menghitung kedua besaran itu langsung dari <InlineMath math="A" /> dan <InlineMath math="B" />. Sinus dan kosinus selalu punya amplitudo yang terdefinisi, sedangkan tangen tidak punya karena nilainya tidak terbatas.
+Untuk rumus berikut, ambil <InlineMath math="A\neq0" /> dan <InlineMath math="B\neq0" />. Amplitudo memakai **nilai mutlak**, sedangkan periode mengukur jarak pengulangan terkecil yang positif. Jika salah satu koefisien itu nol pada sinus atau kosinus, fungsi menjadi konstan dan tidak memiliki periode dasar terkecil.
 
-- <InlineMath math="y = A \sin(Bx)" /> dan <InlineMath math="y = A \cos(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \sin(Bx)" />
-    <BlockMath math="y = A \cos(Bx)" />
-  </MathContainer>
-
-- <InlineMath math="y = A \tan(Bx)" />:
-
-  <MathContainer>
-    <BlockMath math="y = A \tan(Bx)" />
-    <BlockMath math="\text{Amplitudo} = \text{tidak terdefinisi}" />
-    <BlockMath math="\text{Periode} = \frac{\pi}{|B|}" />
-  </MathContainer>
+| Fungsi | Amplitudo | Periode |
+| --- | --- | --- |
+| <InlineMath math="A\sin(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\cos(Bx)" /> | <InlineMath math="\lvert A\rvert" /> | <InlineMath math="2\pi/\lvert B\rvert" /> |
+| <InlineMath math="A\tan(Bx)" /> | Tidak terdefinisi | <InlineMath math="\pi/\lvert B\rvert" /> |
 
 ## Grafik Fungsi Sinus
 
@@ -151,25 +154,25 @@ Fungsi <InlineMath math="y = \sin x" /> bersifat periodik dengan periode <Inline
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Karakteristik grafik:** <InlineMath math="y = \sin x" />
+**Karakteristik grafik**: <InlineMath math="y = \sin x" />
 
 - **Periode**: <InlineMath math="2\pi" /> (grafik berulang setiap <InlineMath math="2\pi \text{ satuan}" />)
 - **Amplitudo**: <InlineMath math="1" /> (nilai maksimum dikurangi nilai minimum, lalu dibagi <InlineMath math="2" />)
 - **Domain**: Semua bilangan real
 - **Range**: <InlineMath math="[-1, 1]" />
-- **Titik potong sumbu <InlineMath math="x" />**: <InlineMath math="x = n\pi" /> untuk <InlineMath math="n" /> bilangan bulat
+- Titik potong sumbu <InlineMath math="x" />: <InlineMath math="x = n\pi" /> untuk <InlineMath math="n" /> bilangan bulat
 - **Nilai maksimum**: <InlineMath math="1" /> pada <InlineMath math="x = \frac{\pi}{2} + 2n\pi" />
 - **Nilai minimum**: <InlineMath math="-1" /> pada <InlineMath math="x = \frac{3\pi}{2} + 2n\pi" />
 
@@ -188,8 +191,7 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -197,22 +199,23 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Karakteristik grafik:** <InlineMath math="y = \cos x" />
+**Karakteristik grafik**: <InlineMath math="y = \cos x" />
 
 - **Periode**: <InlineMath math="2\pi" />
 - **Amplitudo**: <InlineMath math="1" />
 - **Domain**: Semua bilangan real
 - **Range**: <InlineMath math="[-1, 1]" />
-- **Titik potong sumbu <InlineMath math="x" />**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
+- Titik potong sumbu <InlineMath math="x" />: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
 - **Nilai maksimum**: <InlineMath math="1" /> pada <InlineMath math="x = 2n\pi" />
 - **Nilai minimum**: <InlineMath math="-1" /> pada <InlineMath math="x = \pi + 2n\pi" />
 
 ### Perbandingan Sin dan Cos
 
-Kedua kurva berulang setelah satu putaran penuh dan berbeda pada pergeseran horizontal. Bandingkan puncak dan titik nol kedua kurva itu pada tampilan yang sama.
+Kedua kurva berulang setelah satu putaran penuh dan berbeda pada **pergeseran horizontal**. Bandingkan puncak dan titik nol kedua kurva itu pada tampilan yang sama.
 
 <LineEquation
   title={<>Perbandingan Grafik <InlineMath math="\sin" /> dan <InlineMath math="\cos" /></>}
@@ -225,19 +228,17 @@ Kedua kurva berulang setelah satu putaran penuh dan berbeda pada pergeseran hori
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
@@ -245,6 +246,7 @@ Kedua kurva berulang setelah satu putaran penuh dan berbeda pada pergeseran hori
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
@@ -261,12 +263,12 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
   description="Garis vertikal merah menandai asimtotnya."
   data={[
     // Fungsi tangen
-    ...Array.from({ length: 11 }, (_, periodIndex) => {
-      const offset = (periodIndex - 5) * Math.PI;
+    ...Array.from({ length: 3 }, (_, periodIndex) => {
+      const offset = (periodIndex - 1) * Math.PI;
       return {
         smooth: false,
         points: (() => {
-          const parameters = Array.from({ length: 641 }, (_, i) => (i - 320) / 64);
+          const parameters = Array.from({ length: 321 }, (_, i) => (i - 160) / 64);
           parameters.push(0.02885536458803665);
           return parameters
             .sort((a, b) => a - b)
@@ -278,46 +280,45 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
         })(),
         color: "#059669",
         labels:
-          periodIndex === 5
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 322, offset: [2, 0.5, 0] }]
+          periodIndex === 1
+            ? [{ text: <InlineMath math="y=\tan x" />, at: 162, offset: [2, 0.5, 0] }]
             : [],
         showPoints: false,
       };
     }),
     // Asimtot vertikal
-    ...Array.from({ length: 12 }, (_, i) => {
-      const x = (i - 5) * Math.PI - Math.PI / 2;
+    ...Array.from({ length: 4 }, (_, i) => {
+      const x = (i - 1) * Math.PI - Math.PI / 2;
       return {
-        points: [{ x, y: -80, z: 0 }, { x, y: 5, z: 0 }, { x, y: 80, z: 0 }],
+        points: [{ x, y: -6, z: 0 }, { x, y: 5, z: 0 }, { x, y: 6, z: 0 }],
         smooth: false,
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 6 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 2 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
-**Karakteristik grafik:** <InlineMath math="y = \tan x" />
+**Karakteristik grafik**: <InlineMath math="y = \tan x" />
 
 - **Periode**: <InlineMath math="\pi" /> (lebih pendek dari <InlineMath math="\sin" /> dan <InlineMath math="\cos" />)
 - **Amplitudo**: Tidak terdefinisi
 - **Domain**: <InlineMath math="x \neq \frac{\pi}{2} + n\pi" />
 - **Range**: Semua bilangan real
 - **Asimtot vertikal**: <InlineMath math="x = \frac{\pi}{2} + n\pi" />
-- **Titik potong sumbu <InlineMath math="x" />**: <InlineMath math="x = n\pi" />
+- Titik potong sumbu <InlineMath math="x" />: <InlineMath math="x = n\pi" />
 
 ## Transformasi Fungsi Trigonometri
 
-Setiap parameter bekerja pada bagian persamaan yang berbeda, sehingga setiap parameter mengubah satu ciri kurva. Contoh berikut memperlihatkan pengaruhnya pada grafik.
-
-Amplitudo, periode, dan pergeseran fase mengubah kurva dengan cara masing-masing.
+Perubahan **amplitudo, periode, dan posisi garis tengah** dapat dibaca dari koefisien. Saat satu koefisien diubah, periksa titik puncak dan titik nol untuk melihat akibatnya pada kurva.
 
 ### Perubahan Amplitudo
 
-Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath math="|A|" />.
+Fungsi <InlineMath math="y = A \sin x" /> mengubah **amplitudo** menjadi <InlineMath math="|A|" />.
 
 <LineEquation
   title="Pengaruh Amplitudo"
@@ -331,19 +332,17 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
@@ -353,8 +352,7 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
@@ -362,12 +360,13 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Perubahan Periode
 
-Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath math="\frac{2\pi}{|B|}" />.
+Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah **periode** menjadi <InlineMath math="\frac{2\pi}{|B|}" />.
 
 <LineEquation
   title="Pengaruh Periode"
@@ -380,19 +379,17 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 1109 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 1108) * 4 * Math.PI;
         return { x, y: Math.sin(2 * x), z: 0 };
       }),
       color: "#e11d48",
@@ -402,8 +399,7 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
     {
       smooth: false,
       points: Array.from({ length: 278 }, (_, pointIndex) => {
-        const i = pointIndex - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 277) * 4 * Math.PI;
         return { x, y: Math.sin(0.5 * x), z: 0 };
       }),
       color: "#059669",
@@ -411,16 +407,19 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ### Pergeseran Vertikal dan Horizontal
 
+Bentuk ini memisahkan **pergeseran di dalam dan di luar fungsi**. Garis tengahnya adalah <InlineMath math="y=D" />, bukan selalu sumbu mendatar.
+
 Bentuk umum:
 
 <BlockMath math="y = A \sin(B(x - C)) + D" />
 
-- <InlineMath math="A" />: Amplitudo
+- <InlineMath math="|A|" />: Amplitudo
 - <InlineMath math="B" />: Memengaruhi periode (
   <InlineMath math="\text{periode} = \frac{2\pi}{|B|}" />)
 - <InlineMath math="C" />: Pergeseran horizontal (fase)
@@ -440,19 +439,17 @@ Perhatikan pergeseran horizontal dan vertikal dari grafik:
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: Array.from({ length: 555 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 89;
-        const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
+        const x = -2 * Math.PI + (pointIndex / 554) * 4 * Math.PI;
         return { x, y: 2 * Math.sin(x - Math.PI / 4) + 1, z: 0 };
       }),
       color: "#e11d48",
@@ -462,12 +459,13 @@ Perhatikan pergeseran horizontal dan vertikal dari grafik:
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 15]}
 />
 
 ## Latihan
 
-Lima soal di bawah ini menerapkan aturan periode, amplitudo, dan pergeseran pada grafik yang kamu sketsa sendiri. Kerjakan setiap soal sebelum membaca kunci jawaban, lalu bandingkan sketsa dan persamaanmu dengan jawaban yang tercatat.
+Lima soal di bawah ini menerapkan aturan **periode**, amplitudo, dan pergeseran pada grafik yang kamu sketsa sendiri. Kerjakan setiap soal sebelum membaca kunci jawaban, lalu bandingkan sketsa dan persamaanmu dengan jawaban yang tercatat.
 
 1. Konversikan sudut berikut:
 
@@ -498,35 +496,71 @@ Lima soal di bawah ini menerapkan aturan periode, amplitudo, dan pergeseran pada
    - Bergeser <InlineMath math="\frac{\pi}{4}" /> ke kanan
    - Bergeser <InlineMath math="2 \text{ satuan}" /> ke atas
 
-### Kunci Jawaban
+### Konversi Sudut
 
-1. Konversi sudut:
+Untuk mengubah satuan, kalikan dengan **faktor konversi** yang sesuai.
 
-   - <InlineMath math="120^\circ = 120 \times \frac{\pi}{180} = \frac{2\pi}{3}" /> radian
-   - <InlineMath math="\frac{5\pi}{6} = \frac{5\pi}{6} \times \frac{180}{\pi} = 150^\circ" />
+- <InlineMath math="120^\circ\cdot\frac{\pi\,\mathrm{rad}}{180^\circ}=\frac{2\pi}{3}\,\mathrm{rad}" />
+- <InlineMath math="\frac{5\pi}{6}\,\mathrm{rad}\cdot\frac{180^\circ}{\pi\,\mathrm{rad}}=150^\circ" />
 
-2. Periode dan amplitudo:
+Satu putaran penuh sama dengan tiga ratus enam puluh derajat atau dua pi radian. Karena kedua besaran setara, rasionya bernilai satu dan hanya mengubah satuan, bukan besar sudut.
 
-   - <InlineMath math="y = 3 \sin(2x)" />: amplitudo <InlineMath math="3" />, periode <InlineMath math="\frac{2\pi}{2} = \pi" />
-   - <InlineMath math="y = -2 \cos(\frac{x}{3})" />: amplitudo <InlineMath math="2" />, periode <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
+### Amplitudo dan Periode
 
-3. Untuk <InlineMath math="y = 2 \sin(x + \frac{\pi}{3}) - 1" />:
+Gunakan **nilai mutlak koefisien** untuk amplitudo. Tanda negatif pada kosinus mencerminkan kurva tanpa membuat amplitudonya negatif.
 
-   - Amplitudo: <InlineMath math="2" />
-   - Periode: <InlineMath math="2\pi" />
-   - Pergeseran fase: <InlineMath math="\frac{\pi}{3}" /> ke kiri
-   - Pergeseran vertikal: <InlineMath math="1 \text{ satuan}" /> ke bawah
+- <InlineMath math="y = 3 \sin(2x)" />: amplitudo <InlineMath math="3" />, periode <InlineMath math="\frac{2\pi}{2} = \pi" />
+- <InlineMath math="y = -2 \cos(\frac{x}{3})" />: amplitudo <InlineMath math="2" />, periode <InlineMath math="\frac{2\pi}{1/3} = 6\pi" />
 
-4. Untuk <InlineMath math="h(t) = 2 \sin(\frac{\pi t}{6}) + 5" />:
+Untuk kurva kedua, koefisien masukan adalah sepertiga. Argumen kosinus memerlukan perubahan masukan enam pi agar bertambah dua pi, jadi periode menjadi tiga kali periode kosinus dasar.
 
-   - Tinggi maksimum: <InlineMath math="5 + 2 = 7 \text{ meter}" />
-   - Tinggi minimum: <InlineMath math="5 - 2 = 3 \text{ meter}" />
-   - Periode: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ jam}" />
+<BlockMath math="\frac{T}{3}=2\pi \quad\Rightarrow\quad T=6\pi" />
 
-5. Persamaan yang memenuhi syarat:
+### Sketsa Grafik Bergeser
 
-   <BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+Bentuk <InlineMath math="x+\pi/3=x-(-\pi/3)" /> menunjukkan **pergeseran ke kiri**. Lima titik satu siklus berikut menentukan sketsa:
 
-   atau
+- Amplitudo: <InlineMath math="2" />
+- Periode: <InlineMath math="2\pi" />
+- Pergeseran fase: <InlineMath math="\frac{\pi}{3}" /> ke kiri
+- Pergeseran vertikal: <InlineMath math="1 \text{ satuan}" /> ke bawah
 
-   <BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />
+| <InlineMath math="x" /> | <InlineMath math="-\pi/3" /> | <InlineMath math="\pi/6" /> | <InlineMath math="2\pi/3" /> | <InlineMath math="7\pi/6" /> | <InlineMath math="5\pi/3" /> |
+| --- | --- | --- | --- | --- | --- |
+| <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+
+<LineEquation
+  title="Sketsa Satu Siklus"
+  description="Titik-titik menandai garis tengah, puncak, dan lembah setelah pergeseran."
+  data={[
+    { points: Array.from({length: 161}, (_, i) => { const x = -Math.PI / 3 + i * 2 * Math.PI / 160; return {x, y: 2 * Math.sin(x + Math.PI / 3) - 1, z: 0}; }), smooth: false, showPoints: false, color: "#9333ea" },
+    ...[{x: -Math.PI/3,y:-1,z:0},{x:Math.PI/6,y:1,z:0},{x:2*Math.PI/3,y:-1,z:0},{x:7*Math.PI/6,y:-3,z:0},{x:5*Math.PI/3,y:-1,z:0}].map((point) => ({points:[point],showPoints:true,color:"#ea580c"}))
+  ]}
+  showZAxis={false}
+  cameraPosition={[2,-1,11]}
+  cameraTarget={[2,-1,0]}
+/>
+
+### Model Pasang Surut
+
+Tinggi air berpusat pada **garis tengah** lima meter, dengan simpangan maksimum dua meter.
+
+- Tinggi maksimum: <InlineMath math="5 + 2 = 7 \text{ meter}" />
+- Tinggi minimum: <InlineMath math="5 - 2 = 3 \text{ meter}" />
+- Periode: <InlineMath math="\frac{2\pi}{\pi/6} = 12 \text{ jam}" />
+
+Nilai sinus dibatasi negatif satu dan satu, sehingga model ini selalu memberi tinggi di antara tiga dan tujuh meter. Periode adalah waktu yang diperlukan agar argumen sinus bertambah dua pi.
+
+<BlockMath math="\frac{\pi}{6}T=2\pi \quad\Rightarrow\quad T=12" />
+
+### Menyusun Persamaan
+
+Cari koefisien frekuensi dari **periode yang diberikan**, lalu masukkan pergeseran di dalam kurung.
+
+<BlockMath math="2\pi/B=\pi\;\Rightarrow\;B=2" />
+
+<BlockMath math="y = 3 \sin(2(x - \frac{\pi}{4})) + 2" />
+
+Bentuk ekuivalen setelah mengalikan argumen adalah:
+
+<BlockMath math="y = 3 \sin(2x - \frac{\pi}{2}) + 2" />

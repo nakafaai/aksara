@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "co-design as a definition without a reviewable action",
+          label: "Co-design as a definition without a reviewable action",
         },
         {
           isCorrect: false,

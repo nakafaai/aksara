@@ -5,6 +5,19 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The original total is <InlineMath math="12\cdot76=912" />. Removing one project leaves <InlineMath math="11\cdot74=814" />, so the removed score was <InlineMath math="98" />. After an <InlineMath math="8" />-point downward correction, <InlineMath math="90" /> is restored. The new mean is
+Convert the mean to the **sum of all scores**. Before removing one score, the twelve scores total:
+
+<BlockMath math="12\times76=912" />
+
+The remaining eleven scores total <InlineMath math="11\times74=814" />. The removed score is the difference between those totals, then receives an <InlineMath math="8" />-point correction downward.
+
+<MathContainer>
+  <BlockMath math="912-814=98" />
+  <BlockMath math="98-8=90" />
+</MathContainer>
+
+Restoring the corrected score of <InlineMath math="90" /> brings the count back to twelve. The new mean is:
 
 <BlockMath math="\frac{814+90}{12}=\frac{904}{12}=75\frac13" />
+
+You can also check using the **decrease in the total**: just one score drops by <InlineMath math="8" />, so the mean falls by <InlineMath math="8/12=2/3" /> from <InlineMath math="76" />.

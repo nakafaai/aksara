@@ -25,8 +25,8 @@ Für die Summe <InlineMath math="z_1 + z_2" /> werden <Highlight>die Realteile u
 
 Seien <InlineMath math="z_1 = 2 + 3i" /> und <InlineMath math="z_2 = 1 - i" />.
 
-- Der Realteil von <InlineMath math="z_1" /> ist <InlineMath math="2" />, der Realteil von <InlineMath math="z_2" /> ist <InlineMath math="1" />.
-- Der Imaginärteil von <InlineMath math="z_1" /> ist <InlineMath math="3" />, der Imaginärteil von <InlineMath math="z_2" /> ist <InlineMath math="-1" />.
+- Der **Realteil** von <InlineMath math="z_1" /> ist <InlineMath math="2" />, der Realteil von <InlineMath math="z_2" /> ist <InlineMath math="1" />.
+- Der **Imaginärteil** von <InlineMath math="z_1" /> ist <InlineMath math="3" />, der Imaginärteil von <InlineMath math="z_2" /> ist <InlineMath math="-1" />.
 
 Dann ist ihre Summe:
 
@@ -34,7 +34,7 @@ Dann ist ihre Summe:
 
 ### Addition in der komplexen Ebene
 
-In der komplexen Ebene lässt sich die Addition mit der Parallelogrammregel deuten. Stellen wir <InlineMath math="z_1" /> und <InlineMath math="z_2" /> als Vektoren vom Ursprung <InlineMath math="(0, 0)" /> dar, dann bildet ihre Summe <InlineMath math="z_1 + z_2" /> die Diagonale des Parallelogramms, das <InlineMath math="z_1" /> und <InlineMath math="z_2" /> aufspannen.
+In der komplexen Ebene lässt sich die Addition mit der **Parallelogrammregel** deuten. Stellen wir <InlineMath math="z_1" /> und <InlineMath math="z_2" /> als Vektoren vom Ursprung <InlineMath math="(0, 0)" /> dar, dann bildet ihre Summe <InlineMath math="z_1 + z_2" /> die Diagonale des Parallelogramms, das <InlineMath math="z_1" /> und <InlineMath math="z_2" /> aufspannen.
 
 <LineEquation
   title="Geometrische Addition komplexer Zahlen"
@@ -47,6 +47,7 @@ In der komplexen Ebene lässt sich die Addition mit der Parallelogrammregel deut
   }
   cameraPosition={[1.5, 1, 8]}
   cameraTarget={[1.5, 1, 0]}
+  showZAxis={false}
   data={[
     // Vektor z1
     {
@@ -78,7 +79,7 @@ In der komplexen Ebene lässt sich die Addition mit der Parallelogrammregel deut
       ],
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.4, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.55, 0, 0] }],
       cone: { position: "end" },
     },
     // Parallelogramm-Hilfslinie vom Ende von z1 zum Ende von z1+z2
@@ -104,15 +105,17 @@ In der komplexen Ebene lässt sich die Addition mit der Parallelogrammregel deut
 
 ## Skalieren Negieren und Subtrahieren
 
-Dieselbe Trennung von Real- und Imaginärteil hilft auch bei weiteren Rechenoperationen. Die Multiplikation mit einer reellen Zahl skaliert beide Teile, die Negation dreht beide Vorzeichen um, und die Subtraktion verbindet Negation mit Addition. Jede Regel wirkt auf beide Teile getrennt, deshalb musst du sie nie vermischen.
+Dieselbe Trennung von **Real- und Imaginärteil** hilft auch bei weiteren Rechenoperationen. Die Multiplikation mit einer reellen Zahl skaliert beide Teile, die Negation dreht beide Vorzeichen um, und die Subtraktion verbindet Negation mit Addition. Jede Regel wirkt auf beide Teile getrennt, deshalb musst du sie nie vermischen.
 
 ### Skalare Multiplikation
 
-Bei der Multiplikation einer komplexen Zahl <InlineMath math="z = x + iy" /> mit einem reellen Skalar <InlineMath math="c" /> wird jeder der beiden Teile mit diesem Skalar multipliziert.
+Bei der Multiplikation einer komplexen Zahl <InlineMath math="z = x + iy" /> mit einem reellen Skalar <InlineMath math="c" /> werden **beide Teile mit demselben Skalar** multipliziert.
 
 <BlockMath math="cz = c(x + iy) = cx + i(cy)" />
 
-Geometrisch wird der Vektor <InlineMath math="z" /> dadurch um den Faktor <InlineMath math="c" /> gestreckt oder gestaucht. Ist <InlineMath math="c" /> negativ, kehrt sich zusätzlich seine Richtung um.
+Geometrisch wird der Vektor <InlineMath math="z" /> dadurch in seiner Länge um den Faktor <InlineMath math="|c|" /> gestreckt oder gestaucht. Ist <InlineMath math="c" /> negativ, kehrt sich zusätzlich seine Richtung um.
+
+Beim Skalar null werden beide Komponenten null. Der **Nullvektor** hat keine Richtung.
 
 ### Gegenzahl einer komplexen Zahl
 
@@ -120,11 +123,11 @@ Die Gegenzahl zu <InlineMath math="z = x + iy" /> ist <InlineMath math="-z" />. 
 
 <BlockMath math="\begin{aligned} -z &amp;= -(x + iy) \\ &amp;= -x + i(-y) \\ &amp;= -x - iy \end{aligned}" />
 
-Der Vektor <InlineMath math="-z" /> hat dieselbe Länge wie <InlineMath math="z" />, zeigt aber in die entgegengesetzte Richtung. Das entspricht einer Drehung um <InlineMath math="180^\circ" />.
+Für <InlineMath math="z\ne0" /> hat der Vektor <InlineMath math="-z" /> dieselbe Länge wie <InlineMath math="z" />, zeigt aber in die **entgegengesetzte Richtung**. Das entspricht einer Drehung um <InlineMath math="180^\circ" />.
 
 ### Subtraktion zweier komplexer Zahlen
 
-Wird <InlineMath math="z_2" /> von <InlineMath math="z_1" /> subtrahiert, entsteht <InlineMath math="z_1 - z_2" />. Das entspricht der Addition von <InlineMath math="z_1" /> mit der Gegenzahl von <InlineMath math="z_2" />, also <InlineMath math="z_1 + (-z_2)" />.
+Wird <InlineMath math="z_2" /> von <InlineMath math="z_1" /> subtrahiert, entsteht <InlineMath math="z_1 - z_2" />. Das entspricht der Addition von <InlineMath math="z_1" /> mit der **Gegenzahl** von <InlineMath math="z_2" />, also <InlineMath math="z_1 + (-z_2)" />.
 
 <BlockMath math="\begin{aligned} &amp;z_1 - z_2 = z_1 + (-z_2) \\ &amp;= (x_1 + (-x_2)) + i(y_1 + (-y_2)) \\ &amp;= (x_1 - x_2) + i(y_1 - y_2) \end{aligned}" />
 
@@ -141,34 +144,23 @@ Verwende die folgenden beiden Zahlen:
   <BlockMath math="z_2 = -3 + \sqrt{2}i" />
 </MathContainer>
 
-Berechne drei Ausdrücke, indem du Realteil und Imaginärteil getrennt behandelst:
+Berechne drei Ausdrücke, indem du **Realteil und Imaginärteil getrennt** behandelst:
 
-1.  **<InlineMath math="2z_1" /> (Skalarmultiplikation):**
+1.  <InlineMath math="2z_1" /> (**Skalarmultiplikation**):
 
     <BlockMath math="\begin{aligned} 2z_1 &amp;= 2(2 + \frac{1}{2}i) \\ &amp;= 2(2) + i(2 \times \frac{1}{2}) \\ &amp;= 4 + i \end{aligned}" />
 
-2.  **<InlineMath math="z_1 + 3z_2" /> (Addition und Skalarmultiplikation):**
+2.  <InlineMath math="z_1 + 3z_2" /> (**Addition und Skalarmultiplikation**):
 
-    <MathContainer>
-      <BlockMath math="z_1 + 3z_2 = (2 + \frac{1}{2}i) + 3(-3 + \sqrt{2}i)" />
-      <BlockMath math="= (2 + \frac{1}{2}i) + (3(-3) + i(3\sqrt{2}))" />
-      <BlockMath math="= (2 + \frac{1}{2}i) + (-9 + 3\sqrt{2}i)" />
-      <BlockMath math="= (2 - 9) + i(\frac{1}{2} + 3\sqrt{2})" />
-      <BlockMath math="= -7 + i(\frac{1}{2} + 3\sqrt{2})" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned}z_1+3z_2&amp;=(2+\frac12i)+3(-3+\sqrt2i)\\&amp;=(2-9)+i(\frac12+3\sqrt2)\\&amp;=-7+i(\frac12+3\sqrt2)\end{aligned}" />
 
-3.  **<InlineMath math="2z_1 - z_2" /> (Subtraktion und Skalarmultiplikation):**
+3.  <InlineMath math="2z_1 - z_2" /> (**Subtraktion und Skalarmultiplikation**):
 
-    <MathContainer>
-      <BlockMath math="2z_1 - z_2 = (4 + i) - (-3 + \sqrt{2}i)" />
-      <BlockMath math="= (4 - (-3)) + i(1 - \sqrt{2})" />
-      <BlockMath math="= (4 + 3) + i(1 - \sqrt{2})" />
-      <BlockMath math="= 7 + i(1 - \sqrt{2})" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned}2z_1-z_2&amp;=(4+i)-(-3+\sqrt2i)\\&amp;=(4-(-3))+i(1-\sqrt2)\\&amp;=7+i(1-\sqrt2)\end{aligned}" />
 
 ## Übung
 
-Diese Übung verbindet Addition und Subtraktion mit einer Zeichnung in der komplexen Ebene. Berechne zuerst jedes Ergebnis und zeichne erst danach die drei Vektoren in die komplexe Ebene ein.
+Berechne **Summe und Differenz**. Die Komponenten der Summe sind die Koordinaten des Endpunkts der Diagonale. Das Minuszeichen bei der Subtraktion gilt für die gesamte zweite Zahl, also auch für ihren Imaginärteil.
 
 Gegeben sind <InlineMath math="z_1=1+2i" /> und <InlineMath math="z_2=3-i" />. Bestimme:
 
@@ -178,7 +170,7 @@ Gegeben sind <InlineMath math="z_1=1+2i" /> und <InlineMath math="z_2=3-i" />. B
 
 ### Lösung
 
-Addiere und subtrahiere die entsprechenden Teile und lies die Summe anschließend als Diagonale in der komplexen Ebene.
+Addiere und subtrahiere die entsprechenden Teile und lies die Summe anschließend als **Diagonale** in der komplexen Ebene.
 
 1.  Für die Summe werden Real- und Imaginärteile addiert:
 
@@ -201,6 +193,7 @@ Addiere und subtrahiere die entsprechenden Teile und lies die Summe anschließen
       }
       cameraPosition={[2, 0.5, 8]}
       cameraTarget={[2, 0.5, 0]}
+      showZAxis={false}
       data={[
         {
           points: [

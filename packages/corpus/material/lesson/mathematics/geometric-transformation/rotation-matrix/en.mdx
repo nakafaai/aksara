@@ -38,13 +38,13 @@ By equating the corresponding components:
 
 ### Rotation Matrix about the Origin
 
-Using one consistent angle unit, the rotation matrix about the origin <InlineMath math="O(0,0)" /> is:
+Each **matrix column** is the image of a unit vector. The horizontal unit vector rotates to <InlineMath math="(\cos\theta,\sin\theta)" />. The vertical unit vector starts a quarter turn ahead, so its image is <InlineMath math="(-\sin\theta,\cos\theta)" />. Use the same angle unit for sine and cosine:
 
 <BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
 
 ## Rotating about an Arbitrary Center
 
-To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMath math="P(a,b)" /> by an angle <InlineMath math="\theta" />, we perform three steps:
+To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMath math="P(a,b)" /> by an angle <InlineMath math="\theta" />, we **translate, rotate, then translate back** in three steps:
 
 1. Translate the point <InlineMath math="(x,y)" /> so that <InlineMath math="P(a,b)" /> becomes the origin: <InlineMath math="(x-a, y-b)" />.
 2. Rotate the translated point about the origin by <InlineMath math="\theta" /> using the matrix <InlineMath math="R_\theta" />.
@@ -52,17 +52,25 @@ To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMa
 
 ### Centered Matrix Formula
 
-The operation associated with rotation by an angle <InlineMath math="\theta" /> radians about the point <InlineMath math="(a,b)" /> is:
+This operation acts on the **vector relative to the center**, not directly on the position vector from the origin:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
+When the point being rotated is the center itself, the relative vector is zero. The center therefore remains fixed:
+
+<BlockMath math="R_\theta\left(\begin{pmatrix}a\\b\end{pmatrix}-\begin{pmatrix}a\\b\end{pmatrix}\right)+\begin{pmatrix}a\\b\end{pmatrix}=R_\theta\begin{pmatrix}0\\0\end{pmatrix}+\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}a\\b\end{pmatrix}" />
+
 ## Finding a Specific Rotation Matrix
 
-For <InlineMath math="\theta = \frac{1}{4}\pi" /> radians, or <InlineMath math="45^\circ" />, both trigonometric values equal <InlineMath math="\frac{1}{\sqrt{2}}" />:
+For <InlineMath math="\theta = \frac{1}{4}\pi" /> radians, or <InlineMath math="45^\circ" />, both **trigonometric values** equal <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
 <BlockMath math="\begin{aligned} R_{\frac{\pi}{4}} &amp;= \begin{pmatrix} \cos(\frac{\pi}{4}) &amp; -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) &amp; \cos(\frac{\pi}{4}) \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{pmatrix} \end{aligned}" />
 
 This matrix rotates every position vector by <InlineMath math="45^\circ" /> counter-clockwise.
+
+For the point in the diagram, matrix multiplication gives:
+
+<BlockMath math="\begin{pmatrix}1/\sqrt2&-1/\sqrt2\\1/\sqrt2&1/\sqrt2\end{pmatrix}\begin{pmatrix}2\\0\end{pmatrix}=\begin{pmatrix}2/\sqrt2\\2/\sqrt2\end{pmatrix}=\begin{pmatrix}\sqrt2\\\sqrt2\end{pmatrix}" />
 
 <LineEquation
   title={
@@ -115,12 +123,13 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
       color: "#4f46e5",
     },
   ]}
-  cameraPosition={[0, 0, 8]}
+  cameraPosition={[1, 0.7, 6]}
+  cameraTarget={[1, 0.7, 0]}
 />
 
 ## Exercises
 
-The problems move from building the rotation matrix to applying it. The last one rotates about a center that is not the origin.
+The problems move from building the rotation matrix to applying it. The last one rotates about **a center that is not the origin**.
 
 1.  Determine the matrix associated with a rotation about the origin <InlineMath math="O(0,0)" /> by <InlineMath math="\frac{1}{6}\pi" /> radians.
 2.  Determine the image of point <InlineMath math="P(4,2)" /> if it is rotated about the origin <InlineMath math="O(0,0)" /> by <InlineMath math="60^\circ" />.
@@ -128,30 +137,47 @@ The problems move from building the rotation matrix to applying it. The last one
 
 ### Solutions
 
-1.  For <InlineMath math="\theta = \frac{\pi}{6}" />, or <InlineMath math="30^\circ" />, the sine and cosine are:
+Watch the **negative sign in the top-right entry** of the rotation matrix. For an arbitrary center, subtract and add the center coordinates outside the rotation multiplication.
 
-    <MathContainer>
-      <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
-      <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
-    </MathContainer>
+**Solution 1**
 
-    Substituting these values gives:
+For <InlineMath math="\theta = \frac{\pi}{6}" />, or <InlineMath math="30^\circ" />, the sine and cosine are:
 
-    <BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
+<MathContainer>
+  <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
+  <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
+</MathContainer>
 
-2.  For point <InlineMath math="P(4,2)" /> and <InlineMath math="\theta = 60^\circ" />, use <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+Substituting these values gives:
 
-    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
 
-    The image is <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+**Solution 2**
 
-3.  The point being rotated is <InlineMath math="Q(3,1)" />, the center of rotation is <InlineMath math="C(1,-2)" />, and <InlineMath math="\theta = 90^\circ" />. Thus, <InlineMath math="(a,b)=(1,-2)" />.
+For point <InlineMath math="P(4,2)" /> and <InlineMath math="\theta = 60^\circ" />, use <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
-    <MathContainer>
-      <BlockMath math="\cos 90^\circ = 0" />
-      <BlockMath math="\sin 90^\circ = 1" />
-      <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
-      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
 
-    The image is <InlineMath math="Q'(-2,0)" />.
+The image is <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+
+**Solution 3**
+
+The point being rotated is <InlineMath math="Q(3,1)" />, the center of rotation is <InlineMath math="C(1,-2)" />, and <InlineMath math="\theta = 90^\circ" />. Thus, <InlineMath math="(a,b)=(1,-2)" />.
+
+<MathContainer>
+  <BlockMath math="\cos 90^\circ = 0" />
+  <BlockMath math="\sin 90^\circ = 1" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+The image is <InlineMath math="Q'(-2,0)" />.
+
+<LineEquation title="A quarter turn about a shifted center" description="Q rotates ninety degrees counterclockwise about C. Both radii keep the same length."
+  data={[
+    { points: [{ x: 3, y: 1, z: 0 }, { x: 1, y: -2, z: 0 }, { x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#4f46e5", labels: [{ text: <InlineMath math="Q(3,1)" />, at: 0, offset: [0.3, 0.3, 0] }, { text: <InlineMath math="C(1,-2)" />, at: 1, offset: [0.3, -0.3, 0] }, { text: <InlineMath math="Q'(-2,0)" />, at: 2, offset: [-0.5, -0.3, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(3, 2) + i * Math.PI / 64; return { x: 1 + Math.sqrt(13) * Math.cos(angle), y: -2 + Math.sqrt(13) * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [0, 0.4, 0] }] },
+  ]}
+  cameraTarget={[0.5, -0.2, 0]}
+  cameraPosition={[0.5, -0.2, 9]}
+/>

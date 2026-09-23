@@ -5,33 +5,16 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-We are asked to find the interval of <InlineMath math="x" /> values where the function value <InlineMath math="f(x)" /> is greater than or equal to <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
+We are asked to find the interval of <InlineMath math="x" /> values where the function value <InlineMath math="f(x)" /> is **greater than or equal to** <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
 
 Check each part of the function one by one:
 
-1. **Interval <InlineMath math="0 \leq x < 2" />**
-
-   In this interval, <InlineMath math="f(x) = 3" />.
-   Is <InlineMath math="3 \geq 5" />? **No**.
-   So, this interval **does not satisfy** the condition.
-
-2. **Interval <InlineMath math="2 \leq x < 5" />**
-
-   In this interval, <InlineMath math="f(x) = 5" />.
-   Is <InlineMath math="5 \geq 5" />? **Yes**.
-   So, the interval <InlineMath math="[2, 5)" /> **satisfies** the condition.
-
-3. **Interval <InlineMath math="5 \leq x < 8" />**
-
-   In this interval, <InlineMath math="f(x) = 7" />.
-   Is <InlineMath math="7 \geq 5" />? **Yes**.
-   So, the interval <InlineMath math="[5, 8)" /> **satisfies** the condition.
-
-4. **Interval <InlineMath math="8 \leq x < 10" />**
-
-   In this interval, <InlineMath math="f(x) = 9" />.
-   Is <InlineMath math="9 \geq 5" />? **Yes**.
-   So, the interval <InlineMath math="[8, 10)" /> **satisfies** the condition.
+| Interval | Function value | Check | Satisfies |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | No |
+| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Yes |
+| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Yes |
+| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Yes |
 
 #### Combining Intervals
 
@@ -39,8 +22,16 @@ We combine all intervals that satisfy the condition:
 
 <BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
 
-The intervals meet at <InlineMath math="5" /> and <InlineMath math="8" />. Each joining point belongs to the next interval, so there is no gap. The three intervals therefore form one interval.
+The intervals meet at <InlineMath math="5" /> and <InlineMath math="8" />. Each joining point belongs to the next interval, so **there is no gap**. The three intervals therefore form one interval.
 
 <BlockMath math="[2, 10)" />
 
 Thus, the interval of <InlineMath math="x" /> values that satisfies the condition is <InlineMath math="x \in [2, 10)" />.
+
+<NumberLine
+ title="Union of the Valid Intervals"
+ description="The point 2 is included because f(2)=5. The point 10 is excluded because the function is undefined there."
+ min={0}
+ max={11}
+ segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+/>

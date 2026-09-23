@@ -1,8 +1,6 @@
-
-
 export const metadata = {
   title: "Perkalian Skalar Bilangan Kompleks",
-    description: "Tentukan perubahan panjang dan arah vektor kompleks setelah dikalikan dengan skalar positif, negatif, atau nol.",
+  description: "Tentukan perubahan panjang dan arah vektor kompleks setelah dikalikan dengan skalar positif, negatif, atau nol.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
   dateModified: "2026-09-12",
@@ -22,7 +20,9 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
       <InlineMath math="c=-0{,}5" />.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0.75, 1.5, 9]}
+  cameraTarget={[0.75, 1.5, 0]}
+  showZAxis={false}
   data={[
     // Vektor z asli
     {
@@ -60,12 +60,14 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
   ]}
 />
 
-Dari visualisasi di atas, kita bisa lihat:
+Untuk vektor tak nol, berlaku kasus berikut:
 
 - Mengalikan <InlineMath math="z" /> dengan skalar <InlineMath math="c > 1" /> (seperti <InlineMath math="2" />) akan **memperpanjang** vektor <InlineMath math="z" /> searah.
 - Mengalikan <InlineMath math="z" /> dengan skalar <InlineMath math="0 < c < 1" /> akan **memperpendek** vektor <InlineMath math="z" /> searah.
 - Mengalikan <InlineMath math="z" /> dengan <InlineMath math="c = 0" /> memindahkan ujung vektor ke titik asal, sehingga <InlineMath math="0z = 0" />.
 - Untuk <InlineMath math="z\neq0" />, perkalian dengan skalar <InlineMath math="c < 0" /> (seperti <InlineMath math="-0{,}5" />) **membalikkan arah** vektor sebesar <InlineMath math="180^\circ" /> dan mengalikan panjangnya dengan <InlineMath math="|c|" />.
+
+Untuk skalar satu, vektor tidak berubah. Untuk skalar nol atau bilangan kompleks nol, hasil perkalian adalah **vektor nol tanpa arah**.
 
 ## Mengalikan Bilangan Kompleks dengan Skalar
 
@@ -73,9 +75,15 @@ Jika <InlineMath math="z = x + iy" /> adalah bilangan kompleks dan <InlineMath m
 
 <BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
 
-Rumus tersebut mengalikan skalar <InlineMath math="c" /> dengan bagian real <InlineMath math="x" /> dan bagian imajiner <InlineMath math="y" /> secara terpisah.
+Rumus tersebut menerapkan **faktor yang sama pada kedua komponen** dengan mengalikan skalar <InlineMath math="c" /> dengan bagian real <InlineMath math="x" /> dan bagian imajiner <InlineMath math="y" /> secara terpisah.
+
+Panjang selalu dikalikan dengan **nilai mutlak skalar**, bukan dengan skalar bertanda. Hal ini mengikuti rumus modulus:
+
+<BlockMath math="\begin{aligned}|cz|&amp;=\sqrt{(cx)^2+(cy)^2}\\&amp;=\sqrt{c^2(x^2+y^2)}\\&amp;=|c|\sqrt{x^2+y^2}=|c||z|\end{aligned}" />
 
 ### Mengalikan Bilangan Kompleks dengan Skalar Real
+
+Perhatikan **tanda kedua komponen**. Pada contoh kedua, skalar negatif bertemu komponen imajiner negatif, sehingga komponen imajiner hasil perkalian justru positif.
 
 Jika <InlineMath math="z = -3 + 4i" /> dan <InlineMath math="c = 3" />, maka:
 
@@ -91,7 +99,9 @@ Skalar real mengubah panjang anak panah dan dapat pula membalik arahnya. Kasus-k
 
 ### Skalar Lebih dari Satu
 
-Di sini faktornya lebih besar dari satu, jadi arah panahnya tetap dan panjangnya bertambah sesuai faktor itu.
+Skalar positif mempertahankan arah, sedangkan nilai lebih besar dari satu **memperpanjang vektor**. Untuk contoh pada gambar, kalikan setiap komponen dengan faktor yang sama:
+
+<BlockMath math="\frac32(-2+i)=\frac32(-2)+\frac32i=-3+\frac32i" />
 
 <LineEquation
   title={
@@ -108,6 +118,7 @@ Di sini faktornya lebih besar dari satu, jadi arah panahnya tetap dan panjangnya
   }
   cameraPosition={[-1.5, 0.75, 6.5]}
   cameraTarget={[-1.5, 0.75, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -134,7 +145,9 @@ Di sini faktornya lebih besar dari satu, jadi arah panahnya tetap dan panjangnya
 
 ### Skalar di antara Nol dan Satu
 
-Di sini faktornya berada di antara nol dan satu, jadi arah panahnya tetap dan panjangnya menyusut.
+Skalar di antara nol dan satu **memperpendek vektor** tanpa membalik arah. Faktor tiga perempat berarti setiap komponen tersisa tiga perempat dari nilai awal:
+
+<BlockMath math="\frac34(3-2i)=\frac94-\frac64i=\frac94-\frac32i" />
 
 <LineEquation
   title={
@@ -151,6 +164,7 @@ Di sini faktornya berada di antara nol dan satu, jadi arah panahnya tetap dan pa
   }
   cameraPosition={[1.5, -1, 6.5]}
   cameraTarget={[1.5, -1, 0]}
+  showZAxis={false}
   data={[
     {
       points: [
@@ -177,7 +191,7 @@ Di sini faktornya berada di antara nol dan satu, jadi arah panahnya tetap dan pa
 
 ### Skalar Negatif
 
-Perkalian dengan <InlineMath math="-1" /> menghasilkan invers aditif (negatif) dari bilangan kompleks.
+Perkalian dengan <InlineMath math="-1" /> menghasilkan **invers aditif (negatif)** dari bilangan kompleks.
 
 <LineEquation
   title={
@@ -193,6 +207,8 @@ Perkalian dengan <InlineMath math="-1" /> menghasilkan invers aditif (negatif) d
     </>
   }
   cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
   data={[
     {
       points: [

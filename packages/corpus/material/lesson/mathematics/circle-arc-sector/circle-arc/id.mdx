@@ -11,9 +11,9 @@ export const metadata = {
 
 ## Hubungan Busur dengan Tali Busur
 
-Setiap busur lingkaran memiliki hubungan erat dengan tali busur yang menghubungkan kedua ujungnya. Tali busur adalah garis lurus yang menghubungkan dua titik ujung busur, sedangkan busur adalah jalur melengkung di sepanjang keliling lingkaran. Pada busur panah, talinya berupa garis lurus dan kayunya melengkung.
+Setiap busur lingkaran memiliki hubungan erat dengan tali busur yang menghubungkan kedua ujungnya. Tali busur adalah ruas garis yang menghubungkan dua titik ujung busur, sedangkan busur adalah jalur melengkung di sepanjang keliling lingkaran. Pada busur panah, talinya berupa garis lurus dan kayunya melengkung.
 
-Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghasilkan busur dan tali busur yang lebih panjang, tetapi <Highlight>hubungannya tidak linear</Highlight>. Setelah melewati <InlineMath math="180^\circ" />, busur besar terus memanjang sedangkan tali busurnya memendek, karena tali busur tersebut juga dimiliki oleh busur kecil pelengkapnya.
+Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghasilkan busur dan tali busur yang lebih panjang, tetapi <Highlight>panjang tali busur tidak sebanding lurus dengan panjang busur</Highlight>. Setelah melewati <InlineMath math="180^\circ" />, busur besar terus memanjang sedangkan tali busurnya memendek, karena tali busur tersebut juga dimiliki oleh busur kecil pelengkapnya.
 
 <LineEquation
   title="Hubungan Busur dan Tali Busur"
@@ -134,9 +134,11 @@ Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghas
 
 ## Rumus Panjang Tali Busur
 
-Jari-jari dan sudut pusat menentukan panjang tali busur:
+Tarik garis dari pusat ke **titik tengah tali busur**. Garis ini membagi segitiga sama kaki menjadi dua segitiga siku-siku. Pada salah satu segitiga, sisi di depan setengah sudut pusat adalah setengah tali busur:
 
-<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right)=\frac{c/2}{r}\quad\Longrightarrow\quad c=2r\sin\left(\frac{\theta}{2}\right)" />
+
+
 
 Pada rumus ini:
 - <InlineMath math="c" /> = panjang tali busur
@@ -147,7 +149,9 @@ Rumus ini menentukan panjang tali busur dari jari-jari dan sudut pusat sebuah bu
 
 ## Tinggi Busur dan Sagita
 
-Tinggi busur, atau sagita, adalah jarak dari titik tengah tali busur ke busur kecil yang bersesuaian, diukur tegak lurus terhadap tali busur. Bersama tali busur, sagita menentukan bentuk sebuah busur lingkaran ideal.
+Tinggi busur, atau sagita, adalah jarak dari titik tengah tali busur ke busur kecil yang bersesuaian, diukur **tegak lurus terhadap tali busur**. Bersama tali busur, sagita menentukan bentuk sebuah busur lingkaran ideal.
+
+Diagram menggunakan busur kecil dengan <InlineMath math="0&lt;\theta\leq180^\circ" />. Jarak pusat ke titik tengah tali busur adalah <InlineMath math="r\cos(\theta/2)" />. Kurangi jarak itu dari jari-jari untuk memperoleh sagita.
 
 <BlockMath math="\begin{aligned} h &amp;= r - r\cos\left(\frac{\theta}{2}\right) \\ &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \end{aligned}" />
 
@@ -159,8 +163,8 @@ Pada rumus ini:
 Diagram berikut menandai tali busur, titik tengahnya, dan ruas tegak lurus yang panjangnya sama dengan sagita.
 
 <LineEquation
-  title="Tinggi Busur pada Berbagai Sudut Pusat"
-  description="Tinggi busur (sagita) pada berbagai sudut pusat."
+  title="Sagita Busur 60 Derajat"
+  description={<>Titik tengah <InlineMath math="M" /> membagi tali busur <InlineMath math="PQ" />. Selisih jari-jari dan jarak <InlineMath math="OM" /> adalah sagita.</>}
   data={[
     {
       smooth: false,
@@ -275,14 +279,20 @@ Diagram berikut menandai tali busur, titik tengahnya, dan ruas tegak lurus yang 
 
 ## Busur dalam Sistem Koordinat
 
-Dalam sistem koordinat Kartesius, busur dapat direpresentasikan menggunakan persamaan parametrik:
+Untuk lingkaran **berpusat di titik asal**, koordinat titik pada busur mengikuti persamaan parametrik berikut. Parameter <InlineMath math="t" /> adalah sudut yang diukur dari sumbu horizontal positif berlawanan arah jarum jam.
 
 <MathContainer>
 <BlockMath math="x = r\cos(t)" />
 <BlockMath math="y = r\sin(t)" />
 </MathContainer>
 
-Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awal hingga sudut akhir busur.
+Di sini, <InlineMath math="t" /> bergerak dari sudut awal ke sudut akhir busur. Pada gambar dengan jari-jari 3, nilai parameter berikut menunjukkan posisi sepanjang busur:
+
+| Parameter | Titik pada busur |
+| --- | --- |
+| <InlineMath math="\pi/4" /> | <InlineMath math="(3\sqrt2/2,3\sqrt2/2)" /> |
+| <InlineMath math="\pi/2" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="3\pi/4" /> | <InlineMath math="(-3\sqrt2/2,3\sqrt2/2)" /> |
 
 <LineEquation
   title="Busur dalam Koordinat Kartesius"
@@ -371,9 +381,9 @@ Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awa
 
 ## Contoh Lengkungan Lingkaran Ideal
 
-Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="25 \text{ meter}" /> dan sudut pusat <InlineMath math="120^\circ" />. Tali busur menyatakan bentangnya, sedangkan sagita menyatakan tinggi lengkungan.
+Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="25 \text{ meter}" /> dan sudut pusat <InlineMath math="120^\circ" />. **Tali busur menyatakan bentang** lengkungan, sedangkan sagita menyatakan tinggi lengkungan.
 
-**Menghitung panjang tali busur:**
+**Menghitung panjang tali busur**:
 
 <MathContainer>
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
@@ -382,7 +392,7 @@ Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="25 \text{
 <BlockMath math="c = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3} \text{ meter}" />
 </MathContainer>
 
-**Menghitung tinggi busur:**
+**Menghitung tinggi busur**:
 
 <MathContainer>
 <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
@@ -392,7 +402,7 @@ Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="25 \text{
 
 ## Latihan
 
-Setiap soal mencampur ukuran lingkaran dengan ukuran busur, jadi tandai dulu besaran mana yang diketahui sebelum memilih rumusnya.
+Tandai **besaran yang diketahui** sebelum memilih rumus. Tiga soal pertama memakai tali busur atau sagita, sedangkan soal terakhir meminta koordinat sepanjang busur.
 
 1. Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="30 \text{ m}" /> dan sudut pusat <InlineMath math="90^\circ" />. Hitung panjang tali busur dan tinggi busurnya.
 
@@ -404,78 +414,80 @@ Setiap soal mencampur ukuran lingkaran dengan ukuran busur, jadi tandai dulu bes
 
 ### Pembahasan
 
-1. **Penyelesaian:**
+Gunakan **setengah sudut pusat** pada sinus dan kosinus. Untuk soal ketiga, segitiga siku-siku memberi tinggi yang tepat tanpa membulatkan sudut terlebih dahulu.
 
-   Diketahui: <InlineMath math="r = 30 \text{ m}" /> dan <InlineMath math="\theta = 90^\circ" />
+**Pembahasan 1**
 
-   **Panjang tali busur:**
+Diketahui: <InlineMath math="r = 30 \text{ m}" /> dan <InlineMath math="\theta = 90^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
-   <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
-   </MathContainer>
+**Panjang tali busur**:
 
-   **Tinggi busur:**
+<MathContainer>
+<BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
+<BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42{,}43 \text{ m}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
-   <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
-   </MathContainer>
+**Tinggi busur**:
 
-2. **Penyelesaian:**
+<MathContainer>
+<BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
+<BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8{,}79 \text{ m}" />
+</MathContainer>
 
-   Diketahui: <InlineMath math="h = 8 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
+**Pembahasan 2**
 
-   **Langkah 1**: Gunakan rumus tinggi busur
+Diketahui: <InlineMath math="h = 8 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
 
-   <BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+**Langkah 1**: Gunakan rumus tinggi busur
 
-   **Langkah 2**: Isolasi <InlineMath math="\cos" />
+<BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-   <MathContainer>
-   <BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
-   </MathContainer>
+**Langkah 2**: Isolasi <InlineMath math="\cos" />
 
-   **Langkah 3**: Hitung sudut
+<MathContainer>
+<BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
-   <BlockMath math="\theta \approx 124{,}36^\circ" />
-   </MathContainer>
+**Langkah 3**: Hitung sudut
 
-3. **Penyelesaian:**
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62{,}18^\circ" />
+<BlockMath math="\theta \approx 124{,}36^\circ" />
+</MathContainer>
 
-   Diketahui: <InlineMath math="c = 24 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
+**Pembahasan 3**
 
-   **Langkah 1**: Gunakan rumus tali busur
+Diketahui: <InlineMath math="c = 24 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
 
-   <MathContainer>
-   <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
-   <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
-   </MathContainer>
+**Langkah 1**: Gunakan rumus tali busur
 
-   **Langkah 2**: Hitung sudut pusat kecil
+<MathContainer>
+<BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0{,}8" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
-   <BlockMath math="\theta \approx 106{,}26^\circ" />
-   </MathContainer>
+**Langkah 2**: Hitung sudut pusat kecil
 
-   **Langkah 3**: Hitung tinggi busur
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arcsin(0{,}8) \approx 53{,}13^\circ" />
+<BlockMath math="\theta \approx 106{,}26^\circ" />
+</MathContainer>
 
-   <BlockMath math="\begin{aligned} h &amp;= 15\left(1 - \cos(53{,}13^\circ)\right) \\ &amp;= 15(1 - 0{,}6) \\ &amp;= 6 \text{ m} \end{aligned}" />
+**Langkah 3**: Hitung tinggi busur
 
-4. **Penyelesaian:**
+<BlockMath math="OM=\sqrt{15^2-12^2}=\sqrt{81}=9\text{ m},\qquad h=15-9=6\text{ m}" />
 
-   - Titik awal: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
-   - Titik akhir: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
-   - Jari-jari: <InlineMath math="r = 4" />
+**Pembahasan 4**
 
-   **Persamaan parametrik:**
+- Titik awal: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+- Titik akhir: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
+- Jari-jari: <InlineMath math="r = 4" />
 
-   <MathContainer>
-   <BlockMath math="x = 4\cos(t)" />
-   <BlockMath math="y = 4\sin(t)" />
-   <BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
-   </MathContainer>
+**Persamaan parametrik**:
+
+<MathContainer>
+<BlockMath math="x = 4\cos(t)" />
+<BlockMath math="y = 4\sin(t)" />
+<BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
+</MathContainer>

@@ -15,7 +15,7 @@ Untuk matriks simetris real <InlineMath math="A\in\mathbb{R}^{n\times n}" />, pe
 
 Versi kompleks menggunakan matriks Hermitian dan <InlineMath math="q(x)=x^HAx" />. Tanda skalar ini mengklasifikasikan matriks:
 
-| Kelas | Syarat untuk setiap <InlineMath math="x" /> tak nol |
+| Kelas | Syarat tanda |
 | --- | --- |
 | Positif definit | <InlineMath math="x^TAx>0" /> |
 | Positif semidefinit | <InlineMath math="x^TAx\ge0" /> |
@@ -23,7 +23,9 @@ Versi kompleks menggunakan matriks Hermitian dan <InlineMath math="q(x)=x^HAx" /
 | Negatif semidefinit | <InlineMath math="x^TAx\le0" /> |
 | Indefinit | bentuk kuadrat menghasilkan nilai positif dan negatif |
 
-<Highlight>Kesimetrian merupakan bagian dari definisi yang lazim.</Highlight> Untuk matriks real tak simetris,
+Untuk empat kelas definit atau semidefinit, pertidaksamaan harus berlaku bagi **setiap vektor tak nol**. Indefinit berarti ada vektor yang menghasilkan nilai positif dan ada vektor lain yang menghasilkan nilai negatif.
+
+**Kesimetrian** merupakan bagian dari definisi yang lazim. Untuk matriks real tak simetris,
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
@@ -49,7 +51,7 @@ Setiap entri diagonal matriks positif definit bernilai positif karena
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-Sebuah matriks dapat memiliki entri diagonal positif tetapi tetap tidak positif definit karena suku silang juga memengaruhi <InlineMath math="x^TAx" />.
+Sebuah matriks dapat memiliki entri diagonal positif tetapi tetap tidak positif definit karena **suku silang** juga memengaruhi <InlineMath math="x^TAx" />.
 
 ## Geometri Elipsoid
 
@@ -61,7 +63,36 @@ Himpunan <InlineMath math="E" /> adalah elipsoid yang berpusat di titik asal. Da
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-Persamaan ini menunjukkan bahwa sumbu utama elipsoid mengikuti arah vektor eigen dari <InlineMath math="A" />. Panjang semisumbu ke-<InlineMath math="i" /> adalah <InlineMath math="1/\sqrt{\lambda_i}" />. Nilai eigen yang lebih kecil menghasilkan semisumbu yang lebih panjang, sedangkan nilai eigen yang lebih besar menghasilkan semisumbu yang lebih pendek.
+Persamaan ini menunjukkan bahwa **sumbu utama elipsoid** mengikuti arah vektor eigen dari <InlineMath math="A" />. Panjang semisumbu ke-<InlineMath math="i" /> adalah <InlineMath math="1/\sqrt{\lambda_i}" />. Nilai eigen yang lebih kecil menghasilkan semisumbu yang lebih panjang, sedangkan nilai eigen yang lebih besar menghasilkan semisumbu yang lebih pendek.
+
+
+Untuk <InlineMath math="A=\operatorname{diag}(1,1/4,1/9)" />, ketiga nilai eigen memberikan panjang semisumbu <InlineMath math="1,2,3" />. Putar model untuk membandingkan ketiga arah. Kurva-kurva pada model adalah penampang elipsoid yang sama.
+
+<BlockMath math="x^2+\frac{y^2}{4}+\frac{z^2}{9}=1" />
+
+<LineEquation
+  title="Nilai Eigen Menentukan Panjang Semisumbu"
+  description={<>Penampang <InlineMath math="x^2 + \frac{y^2}{4} + \frac{z^2}{9} = 1" />. Semisumbu pada arah x, y, z memiliki panjang 1, 2, 3.</>}
+  cameraPosition={[6, 5, 7]}
+  data={[
+    ...Array.from({ length: 4 }, (_, meridian) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const turn = meridian * Math.PI / 4;
+        return { x: Math.cos(turn) * Math.sin(angle), y: 2 * Math.sin(turn) * Math.sin(angle), z: 3 * Math.cos(angle) };
+      }),
+      smooth: false, showPoints: false, color: "#0d9488",
+    })),
+    ...Array.from({ length: 5 }, (_, latitude) => ({
+      points: Array.from({ length: 73 }, (_, index) => {
+        const angle = index * Math.PI / 36;
+        const tilt = (latitude + 1) * Math.PI / 6;
+        return { x: Math.sin(tilt) * Math.cos(angle), y: 2 * Math.sin(tilt) * Math.sin(angle), z: 3 * Math.cos(tilt) };
+      }),
+      smooth: false, showPoints: false, color: "#f97316",
+    })),
+  ]}
+/>
 
 ## Uji Minor Utama
 
@@ -71,7 +102,7 @@ Matriks <InlineMath math="A" /> definit positif jika dan hanya jika setiap deter
 
 <BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
-Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan semua minor utama bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
+Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan **semua minor utama** bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
 
 ## Pemeriksaan Matriks Dua Kali Dua
 
@@ -86,7 +117,7 @@ Minor utama terdepannya adalah
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-Kedua minor utama terdepan bernilai positif, sehingga <InlineMath math="A" /> positif definit. Kedua nilai eigennya juga positif:
+**Kedua minor utama terdepan bernilai positif**, sehingga <InlineMath math="A" /> positif definit. Kedua nilai eigennya juga positif:
 
 <BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197 \end{aligned}" />
 
@@ -124,7 +155,7 @@ Persamaan ini menunjukkan bahwa <InlineMath math="M^TM" /> selalu positif semide
 
 Kita tidak perlu menetapkan <InlineMath math="m\ge n" /> untuk menyimpulkan bahwa <InlineMath math="M^{\mathsf T}M" /> positif semidefinit. Syarat <InlineMath math="m\ge n" /> baru mengikuti ketika <InlineMath math="M" /> memiliki peringkat kolom penuh.
 
-Secara lebih umum, matriks Gram <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positif semidefinit dan menjadi positif definit tepat ketika vektor-vektor <InlineMath math="v_i" /> saling bebas linear.
+Secara lebih umum, matriks Gram <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positif semidefinit dan menjadi positif definit tepat ketika vektor-vektor <InlineMath math="v_i" /> **saling bebas linear**.
 
 ## Peminimum Unik pada Fungsi Kuadrat
 
@@ -139,7 +170,7 @@ Gradien dan Hessiannya adalah
 <BlockMath math="\nabla^2F(x)=A" />
 </MathContainer>
 
-Jika <InlineMath math="A" /> positif definit, <InlineMath math="F" /> bersifat konveks ketat dan memiliki peminimum unik
+Jika <InlineMath math="A" /> positif definit, <InlineMath math="F" /> bersifat **konveks ketat** dan memiliki peminimum unik
 
 <BlockMath math="x_*=A^{-1}b" />
 
@@ -155,4 +186,4 @@ Untuk matriks Hermitian <InlineMath math="A" />, nilai eigen <InlineMath math="A
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-Jika <InlineMath math="A\succ0" />, maka <InlineMath math="A^{-1}\succ0" /> juga berlaku, dengan nilai eigen <InlineMath math="1/\lambda_i(A)" />. Dalam algoritma numerik, selesaikan sistem linear secara langsung karena membentuk invers eksplisit memerlukan lebih banyak operasi dan dapat memperbesar galat pembulatan.
+Jika <InlineMath math="A\succ0" />, maka <InlineMath math="A^{-1}\succ0" /> juga berlaku, dengan nilai eigen <InlineMath math="1/\lambda_i(A)" />. Dalam algoritma numerik, **selesaikan sistem linear secara langsung** karena membentuk invers eksplisit memerlukan lebih banyak operasi dan dapat memperbesar galat pembulatan.

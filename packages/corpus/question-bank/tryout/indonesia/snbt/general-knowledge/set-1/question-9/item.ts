@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "die Zunahme sportlicher Aktivität während der COVID-19-Pandemie.",
+            "die Zunahme des Interesses an Sport während der COVID-19-Pandemie.",
         },
         {
           isCorrect: false,
@@ -36,7 +36,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "the increase in exercise participation during the COVID-19 pandemic.",
+            "the increase in interest in exercise during the COVID-19 pandemic.",
         },
         {
           isCorrect: false,
@@ -62,7 +62,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "peningkatan partisipasi olahraga selama pandemi COVID-19.",
+          label: "peningkatan minat terhadap olahraga selama pandemi COVID-19.",
         },
         {
           isCorrect: false,

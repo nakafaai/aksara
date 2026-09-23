@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "product-life extension as the main measure in a service trial",
+            "Product-life extension as the main measure in a service trial",
         },
         {
           isCorrect: false,

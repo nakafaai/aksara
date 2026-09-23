@@ -3,7 +3,7 @@ export const metadata = {
     description: "Read and write text and binary files safely in Python, choose suitable opening modes, and manage stream positions.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -11,9 +11,11 @@ export const metadata = {
 
 Python <Highlight>reads and writes files through file objects</Highlight>. In text mode, the file object decodes stored bytes into strings using a chosen encoding. In binary mode, it exposes the bytes unchanged.
 
+Prepare four UTF-8 text files in your practice directory: `file.txt`, `data.txt`, `sample.txt`, and `input.txt`, each containing `Halo Python` without a final newline. Run the reading examples before the writing examples, since `w` replaces file contents. In the position example, the first read yields `Halo `, the second `Pyt`, and the repeated read also `Pyt`.
+
 ### Reading Entire File Content
 
-The `read()` method loads the entire file into memory at once:
+The `read()` method loads **all remaining file content** into memory at once:
 
 <CodeBlock
   data={[
@@ -25,7 +27,8 @@ with open('file.txt', 'r', encoding='utf-8') as f:
     txt = f.read()
 
 print(txt)
-# Output: [complete file content will be displayed]`
+# Output:
+# Halo Python`
     }
   ]}
 />
@@ -34,7 +37,7 @@ print(txt)
 
 ### Reading File Line by Line
 
-For large files, reading line by line is more efficient because it doesn't load the entire file into memory at once.
+For large files, **reading line by line** is more efficient because it doesn't load the entire file into memory at once.
 
 <CodeBlock
   data={[
@@ -56,11 +59,11 @@ Each line retains its ending newline when one exists. The final line may have no
 
 ## Writing to Files
 
-Writing to a file keeps data or calculation results available after the program stops running. Python opens the file in a mode that decides whether existing content is replaced or extended, then writes through the returned file object.
+Writing to a file keeps data or calculation results available after the program stops running. Python opens the file in a mode that decides whether **existing content is replaced or extended**, then writes through the returned file object.
 
 ### Writing Strings to Files
 
-The example opens a file for writing, writes its lines, and closes it, which is the sequence every write operation follows.
+This example uses `w` to **replace the entire file content**. Ten calls to `write()` occur inside one `with` block before the file closes.
 
 <CodeBlock
   data={[
@@ -83,7 +86,7 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 ### Redirecting Print Output to File
 
-You can redirect the output of the `print()` function directly to a file using the `file` parameter.
+You can redirect the output of the `print()` function directly to a file using the **`file` parameter**.
 
 <CodeBlock
   data={[
@@ -107,7 +110,7 @@ The `file` argument reuses `print()` formatting while directing the resulting te
 
 ## File Opening Modes
 
-Python provides various modes for opening files according to the needs of the operations to be performed.
+Python provides various **modes for opening files** according to the needs of the operations to be performed.
 
 <Mermaid
   title="Choose the Mode Before Touching a File"
@@ -155,15 +158,15 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
   ]}
 />
 
-The mode controls whether a file must already exist, whether opening it truncates existing content, and which operations are allowed. `r` and `r+` require an existing file. `w` creates or truncates, while `a` creates or appends. Adding `b` selects binary mode, where `encoding` is not used.
+The mode controls **whether a file must already exist**, whether opening it truncates existing content, and which operations are allowed. `r` and `r+` require an existing file. `w` creates or truncates, while `a` creates or appends. Adding `b` selects binary mode, where `encoding` is not used.
 
 ## File Reading Methods
 
-Python offers more than one way to read a file, and the choice depends on how much of the content you need at once and whether the read position matters afterwards. `read()` takes the whole remainder or a fixed number of characters, while `readline()` and `readlines()` work line by line.
+Python offers more than one way to read a file, and the choice depends on **how much of the content** you need at once and whether the read position matters afterwards. `read()` takes the whole remainder or at most a requested number of characters. `readline()` takes one line, while `readlines()` without arguments loads all remaining lines into a list.
 
 ### Read Method with Parameters
 
-`read()` accepts a size argument, so you can take a fixed number of characters at a time. The example reads a file in small chunks and prints each one.
+`read()` accepts a **size argument**, so you can take a fixed number of characters at a time. The example compares reading at most ten characters, the entire content, and one line.
 
 <CodeBlock
   data={[
@@ -191,7 +194,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### File Position and Reading
 
-A newly opened file starts at its initial stream position. Reading advances that position. In text mode, `tell()` may return a special position marker. Save that marker and pass it back to Python when you need the same position.
+A file opened in `r` mode starts at its initial stream position. Reading advances that position. In text mode, `tell()` may return a **special position marker**. Save that marker and pass it back to Python when you need the same position.
 
 <CodeBlock
   data={[

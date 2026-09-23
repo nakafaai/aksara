@@ -3,7 +3,7 @@ export const metadata = {
     description: "Apply the power, constant-multiple, sum, difference, and substitution rules to indefinite integrals with worked solutions.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Integrals",
 };
 
@@ -13,7 +13,7 @@ For a power of the integration variable, use:
 
 <BlockMath math="\begin{aligned} &amp;\int x^n \, dx = \frac{1}{n+1}x^{n+1} + C, \\ &amp;\text{where } n \neq -1 \end{aligned}" />
 
-<Highlight>Increase the exponent by one, then divide by that new exponent.</Highlight>
+Increase the exponent by one, then divide by the **new exponent**. Apply the formula on an interval where the integrand is defined. For an arbitrary real exponent, we can use an interval with <InlineMath math="x>0" />.
 
 The value <InlineMath math="n=-1" /> is excluded because it would make the denominator zero. That case follows [the logarithmic rule](/en/subjects/mathematics/exponential-logarithm/logarithm-definition) <InlineMath math="\int x^{-1}\,dx=\ln|x|+C" />.
 
@@ -30,13 +30,19 @@ Here, <InlineMath math="n=5" />, so:
 
 A constant factor <Highlight>can be moved outside an integral</Highlight>:
 
-<BlockMath math="\int a \cdot f(x) \, dx = a \int f(x) \, dx" />
+If <InlineMath math="F'(x)=f(x)" />, multiplying an antiderivative by a constant gives:
+
+<BlockMath math="\int a f(x)\,dx=aF(x)+C" />
+
+Keep the constant of integration, including when <InlineMath math="a=0" />. For example, the factor <InlineMath math="-3" /> in <InlineMath math="-3x^2" /> remains after integration:
+
+<BlockMath math="\int -3x^2\,dx=-3\frac{x^3}{3}+C=-x^3+C" />
 
 > The rule requires <InlineMath math="a" /> to be constant with respect to the integration variable.
 
 ## Sum and Difference Rule
 
-A sum or difference can be integrated term by term.
+A sum or difference can be integrated **term by term**.
 
 <BlockMath math="\begin{aligned} &amp;\int [f(x) \pm g(x)] \, dx = \int f(x) \, dx \\ &amp;\pm \int g(x) \, dx \end{aligned}" />
 
@@ -48,7 +54,7 @@ For example, to solve <InlineMath math="\int (x^4 - x^3) \, dx" />, we first sep
 <BlockMath math="= \frac{1}{5}x^5 - \frac{1}{4}x^4 + C" />
 </MathContainer>
 
-Write one constant **<InlineMath math="C" />** at the end. Formally, we could use separate constants <InlineMath math="C_1" /> and <InlineMath math="C_2" /> for the two antiderivatives, but their sum or difference is again an arbitrary constant. A single **<InlineMath math="C" />** therefore covers every possible value of that constant.
+Write one constant <InlineMath math="C" /> at the end. Formally, we could use separate constants <InlineMath math="C_1" /> and <InlineMath math="C_2" /> for the two antiderivatives, but their sum or difference is again an arbitrary constant. A single <InlineMath math="C" /> therefore covers every possible value of that constant.
 
 ## Substitution Rule
 
@@ -60,68 +66,74 @@ This change of variable is called **u-substitution**. It turns the nested integr
 
 ## Exercises
 
-Each problem uses the linearity rules, so split the sum into separate integrals, factor out the constant, and then integrate each term with the power rule.
+The first two problems use **linearity of integration** and the power rule. In the third, the expression <InlineMath math="x^2+3" /> appears alongside its derivative <InlineMath math="2x" />, suggesting substitution.
 
 1.  Find the result of <InlineMath math="\int 6x^2 \, dx" />!
 2.  Find the result of <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />!
 3.  Solve the integral <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> using the substitution rule!
 
-### Worked Solutions
+### Integrating a Constant Multiple
 
-1.  To solve <InlineMath math="\int 6x^2 \, dx" />, we can use the **Constant Multiple Rule** and the **Power Rule**.
+To solve <InlineMath math="\int 6x^2 \, dx" />, we can use the **Constant Multiple Rule** and the **Power Rule**.
 
-    **Step 1**: Pull the constant <InlineMath math="6" /> out of the integral.
+**Step 1**: Pull the constant <InlineMath math="6" /> out of the integral.
 
-    <BlockMath math="\int 6x^2 \, dx = 6 \int x^2 \, dx" />
+<BlockMath math="\int 6x^2 \, dx = 6 \int x^2 \, dx" />
 
-    **Step 2**: Use the power rule on <InlineMath math="\int x^2 \, dx" />, where <InlineMath math="n=2" />.
+**Step 2**: Use the power rule on <InlineMath math="\int x^2 \, dx" />, where <InlineMath math="n=2" />.
 
-    <MathContainer>
-    <BlockMath math="6 \left( \frac{1}{2+1}x^{2+1} \right) + C" />
-    <BlockMath math="= 6 \left( \frac{1}{3}x^3 \right) + C" />
-    </MathContainer>
+<MathContainer>
+<BlockMath math="\int 6x^2\,dx=6\left(\frac{x^{2+1}}{2+1}\right)+C" />
+<BlockMath math="= 6 \left( \frac{1}{3}x^3 \right) + C" />
+</MathContainer>
 
-    **Step 3**: Multiply the constants to get the final result.
+**Step 3**: Multiply the constants to get the final result.
 
-    <BlockMath math="= 2x^3 + C" />
+<BlockMath math="\int 6x^2\,dx=2x^3+C" />
 
-2.  For the integral <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />, we use the **Sum and Difference Rule** to break it down into three separate integrals.
+### Integrating Three Terms
 
-    **Step 1**: Separate each term into its own integral.
+For the integral <InlineMath math="\int (3x^2 + 2x - 5) \, dx" />, we use the **Sum and Difference Rule** to break it down into three separate integrals.
 
-    <BlockMath math="\int 3x^2 \, dx + \int 2x \, dx - \int 5 \, dx" />
+**Step 1**: Separate each term into its own integral.
 
-    **Step 2**: Solve each integral one by one using the power and constant rules.
+<BlockMath math="\int(3x^2+2x-5)\,dx=\int3x^2\,dx+\int2x\,dx-\int5\,dx" />
 
-    <MathContainer>
-    <BlockMath math="= 3\left(\frac{1}{3}x^3\right) + 2\left(\frac{1}{2}x^2\right) - 5x + C" />
-    <BlockMath math="= x^3 + x^2 - 5x + C" />
-    </MathContainer>
+**Step 2**: Solve each integral one by one using the power and constant rules.
 
-    So, the answer is <InlineMath math="x^3 + x^2 - 5x + C" />.
+<MathContainer>
+<BlockMath math="\int(3x^2+2x-5)\,dx=3\left(\frac{x^3}{3}\right)+2\left(\frac{x^2}{2}\right)-5x+C" />
+<BlockMath math="= x^3 + x^2 - 5x + C" />
+</MathContainer>
 
-3.  The integral <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> is a classic example for the **Substitution Rule**.
+So, the answer is <InlineMath math="x^3 + x^2 - 5x + C" />.
 
-    **Step 1**: Choose a part of the function to be <InlineMath math="u" />. A good choice is the part inside the parentheses.
+### Changing the Variable by Substitution
 
-    Let: <InlineMath math="u = x^2 + 3" />.
+The integral <InlineMath math="\int 2x(x^2 + 3)^4 \, dx" /> allows **substitution** because the factor <InlineMath math="2x" /> is the derivative of the expression in parentheses.
 
-    **Step 2**: Find the derivative of <InlineMath math="u" /> with respect to <InlineMath math="x" />, which is <InlineMath math="du/dx" />.
+**Step 1**: Choose a part of the function to be <InlineMath math="u" />. A good choice is the part inside the parentheses.
 
-    <BlockMath math="\frac{du}{dx} = 2x" />
+Let: <InlineMath math="u = x^2 + 3" />.
 
-    From this, we can write <InlineMath math="du = 2x \, dx" />.
+**Step 2**: Find the derivative of <InlineMath math="u" /> with respect to <InlineMath math="x" />, which is <InlineMath math="du/dx" />.
 
-    **Step 3**: Perform the substitution. Replace <InlineMath math="x^2+3" /> with <InlineMath math="u" /> and <InlineMath math="2x \, dx" /> with <InlineMath math="du" />.
+<BlockMath math="\frac{du}{dx} = 2x" />
 
-    <BlockMath math="\int (x^2 + 3)^4 (2x \, dx) = \int u^4 \, du" />
+From this, we can write <InlineMath math="du = 2x \, dx" />.
 
-    **Step 4**: Solve the simplified integral using the power rule.
+**Step 3**: Perform the substitution. Replace <InlineMath math="x^2+3" /> with <InlineMath math="u" /> and <InlineMath math="2x \, dx" /> with <InlineMath math="du" />.
 
-    <BlockMath math="\int u^4 \, du = \frac{1}{5}u^5 + C" />
+<BlockMath math="\int (x^2 + 3)^4 (2x \, dx) = \int u^4 \, du" />
 
-    **Step 5**: Substitute <InlineMath math="u" /> back to its original form.
+**Step 4**: Solve the simplified integral using the power rule.
 
-    <BlockMath math="= \frac{1}{5}(x^2 + 3)^5 + C" />
+<BlockMath math="\int u^4 \, du = \frac{1}{5}u^5 + C" />
 
-    This is the final result.
+**Step 5**: Substitute <InlineMath math="u" /> back to its original form.
+
+<BlockMath math="\int2x(x^2+3)^4\,dx=\frac15(x^2+3)^5+C" />
+
+Check the answer by **differentiating it**. The chain rule returns the original integrand:
+
+<BlockMath math="\frac{d}{dx}\left[\frac15(x^2+3)^5+C\right]=\frac15\cdot5(x^2+3)^4\cdot2x=2x(x^2+3)^4" />

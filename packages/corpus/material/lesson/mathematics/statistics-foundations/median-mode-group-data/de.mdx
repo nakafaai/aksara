@@ -27,50 +27,27 @@ Die folgende Tabelle zeigt die verkauften Schuhgrößen in Geschäft A:
 
 Die höchste Häufigkeit beträgt <InlineMath math="16" />. Damit ist <InlineMath math="43\text{-}45" /> die Modalklasse.
 
-Die am häufigsten verkauften Schuhgrößen liegen also in diesem Intervall. Die gruppierte Tabelle gibt nicht an, welche einzelne Größe am häufigsten vorkommt.
+Dieses Intervall enthält die **meisten Verkäufe als gesamte Klasse**. Der häufigste Einzelwert muss jedoch nicht in dieser Klasse liegen. Die <InlineMath math="16" /> Verkäufe könnten sich etwa auf drei Größen verteilen, während die <InlineMath math="11" /> Verkäufe einer anderen Klasse alle dieselbe Größe betreffen. Diese Einzelheiten fehlen in der gruppierten Tabelle.
 
 ## Median für gruppierte Daten
 
-Der Median teilt geordnete Daten in zwei gleich große Hälften. Eine gruppierte Tabelle enthält Klassenintervalle und Häufigkeiten anstelle der einzelnen Beobachtungswerte. Deshalb bestimmen wir zuerst die Medianklasse und schätzen dann die Position des Medians innerhalb dieser Klasse.
+Der Median teilt geordnete Daten in zwei gleich große Hälften. Eine gruppierte Tabelle enthält Klassenintervalle und Häufigkeiten anstelle der einzelnen Beobachtungswerte. Deshalb bestimmen wir zuerst die Medianklasse und **schätzen dann die Position des Medians** innerhalb dieser Klasse.
+### Medianklasse und Medianposition bestimmen
 
-### Median bei gruppierten Daten bestimmen
+Berechne die **kumulierte Häufigkeit**, indem du die Häufigkeiten von der ersten bis zur betrachteten Klasse addierst. Suche die erste Klasse, deren kumulierte Häufigkeit <InlineMath math="n/2" /> erreicht. Innerhalb dieser Klasse schätzt du den Median durch Interpolation:
 
-1.  **Medianposition berechnen:**
+<BlockMath math="\operatorname{Me}=L+\frac{n/2-F}{f_{\mathrm{Me}}}\,c" />
 
-    Bestimme die Mitte der Daten mit <InlineMath math="n/2" />, wobei <InlineMath math="n" /> die Gesamthäufigkeit bezeichnet.
+| Symbol | Bedeutung |
+| --- | --- |
+| <InlineMath math="\operatorname{Me}" /> | Geschätzter Median |
+| <InlineMath math="L" /> | Untere stetige Grenze der Medianklasse |
+| <InlineMath math="n" /> | Gesamthäufigkeit |
+| <InlineMath math="F" /> | Kumulierte Häufigkeit vor der Medianklasse |
+| <InlineMath math="f_{\mathrm{Me}}" /> | Häufigkeit der Medianklasse |
+| <InlineMath math="c" /> | Klassenbreite |
 
-2.  **Kumulierte Häufigkeit bilden:**
-
-    Ergänze eine Spalte für die kumulierte Häufigkeit <InlineMath math="F_k" />. Jeder Eintrag summiert die Häufigkeiten von der ersten bis zur gerade betrachteten Klasse.
-
-3.  **Medianklasse bestimmen:**
-
-    Die Medianklasse ist die erste Klasse, deren kumulierte Häufigkeit **mindestens** <InlineMath math="n/2" /> beträgt.
-
-4.  **Medianformel anwenden:**
-
-    Sobald die Medianklasse feststeht, lässt sich der Median schätzen:
-
-    <BlockMath math="\operatorname{Me} = L + \left( \frac{\frac{n}{2} - F}{f_{\mathrm{Me}}} \right) \times c" />
-
-    Dabei gilt:
-
-    - <InlineMath math="\operatorname{Me}" /> = geschätzter Median der gruppierten Daten
-    - <InlineMath math="L" /> = **untere Klassengrenze der Medianklasse**. Bei
-      aufeinanderfolgenden ganzzahligen Klassen gilt:
-
-      <InlineMath math="L" /> ist die untere Klassengrenze der Medianklasse minus <InlineMath math="0{,}5" />.
-
-    - <InlineMath math="n" /> = Gesamthäufigkeit
-    - <InlineMath math="F" /> = kumulierte Häufigkeit **vor** der Medianklasse
-    - <InlineMath math="f_{\mathrm{Me}}" /> = Häufigkeit der Medianklasse
-    - <InlineMath math="c" /> = Klassenbreite mit:
-
-      <InlineMath math="c" /> ist die obere Klassenschwelle minus die untere Klassenschwelle.
-
-      Die Korrektur um <InlineMath math="0{,}5" /> ist hier nötig, weil die Schuhgrößen als aufeinanderfolgende ganze Zahlen erfasst wurden.
-
-    Die Interpolation setzt außerdem voraus, dass die Beobachtungen innerhalb der Medianklasse gleichmäßig verteilt sind. Das Ergebnis ist daher eine modellbasierte Schätzung, die von der angenommenen Verteilung innerhalb der Klasse abhängt.
+Bei aufeinanderfolgenden ganzzahligen Größen liegen die stetigen Klassengrenzen eine halbe Einheit außerhalb der angegebenen Grenzen. Die Klasse <InlineMath math="43\text{-}45" /> verwendet daher <InlineMath math="42{,}5" /> und <InlineMath math="45{,}5" /> als stetige Grenzen. Die **Interpolation setzt eine gleichmäßige Verteilung** dazwischen voraus. Da die Einzelwerte fehlen, ist das Ergebnis eine Schätzung.
 
 **Durchgerechnetes Beispiel:**
 
@@ -78,37 +55,36 @@ Wir verwenden wieder die Schuhgrößen aus Geschäft A.
 
 | Schuhgröße | Häufigkeit (<InlineMath math="f_i" />) | Kumulierte Häufigkeit (<InlineMath math="F_k" />) |
 | :-------- | :------------------------------------ | :------------------ |
-| <InlineMath math="37 - 39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
-| <InlineMath math="40 - 42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
-| <InlineMath math="43 - 45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
-| <InlineMath math="46 - 48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> | <InlineMath math="2 + 11 = 13" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="16" /> (<InlineMath math="f_{\mathrm{Me}}" />) | <InlineMath math="13 + 16 = 29" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="1" /> | <InlineMath math="29 + 1 = 30" /> |
 | Gesamt | <InlineMath math="n = 30" /> |                                                  |
 
-1.  **Medianposition:** <InlineMath math="n/2 = 30/2 = 15" />. Gesucht ist die Beobachtung an Position <InlineMath math="15" />.
-2.  **Kumulierte Häufigkeit:** Sie steht bereits in der Tabelle.
-3.  **Medianklasse:** Nach der zweiten Klasse beträgt die kumulierte Häufigkeit <InlineMath math="13" />, nach der dritten <InlineMath math="29" />. Position <InlineMath math="15" /> liegt daher in der Klasse <InlineMath math="43\text{-}45" />.
-4.  **Formelkomponenten:**
+Die Medianposition ist <InlineMath math="n/2=30/2=15" />. Nach der zweiten Klasse beträgt die kumulierte Häufigkeit <InlineMath math="13" />, nach der dritten <InlineMath math="29" />. Die **Medianklasse** ist daher <InlineMath math="43\text{-}45" />. Aus der Tabelle erhalten wir:
 
-    - Medianklasse: <InlineMath math="43\text{-}45" />
-    - Untere Klassengrenze: <InlineMath math="L = 43 - 0{,}5 = 42{,}5" />
-    - <InlineMath math="n/2 = 30/2 = 15" />
-    - Kumulierte Häufigkeit vor der Medianklasse: <InlineMath math="F = 13" />
-    - Häufigkeit in der Medianklasse: <InlineMath math="f_{\mathrm{Me}} = 16" />
-    - Klassenbreite: <InlineMath math="c = \text{Obere Grenze} - \text{Untere Grenze}" />
+| Größe | Wert |
+| --- | --- |
+| <InlineMath math="L" /> | <InlineMath math="43-0{,}5=42{,}5" /> |
+| <InlineMath math="n/2" /> | <InlineMath math="30/2=15" /> |
+| <InlineMath math="F" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_{\mathrm{Me}}" /> | <InlineMath math="16" /> |
 
-      <BlockMath math="\begin{aligned} c &amp;= (45 + 0{,}5) - (43 - 0{,}5) \\ &amp;= 45{,}5 - 42{,}5 \\ &amp;= 3 \end{aligned}" />
+Die Klassenbreite ist die Differenz der beiden stetigen Grenzen:
 
-5.  **Einsetzen in die Medianformel:**
+<BlockMath math="\begin{aligned} c &amp;= (45 + 0{,}5) - (43 - 0{,}5) \\ &amp;= 45{,}5 - 42{,}5 \\ &amp;= 3 \end{aligned}" />
 
-    <MathContainer>
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{15 - 13}{16} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{2}{16} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{1}{8} \right) \times 3" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + \frac{3}{8}" />
-      <BlockMath math="\operatorname{Me} = 42{,}5 + 0{,}375" />
-      <BlockMath math="\operatorname{Me} = 42{,}875" />
-    </MathContainer>
+**Einsetzen in die Medianformel:**
 
-**Der geschätzte Median der Schuhgrößen beträgt <InlineMath math="42{,}875" />.** Mit den kontinuierlichen Klassengrenzen liegt dieser Wert in der Medianklasse <InlineMath math="43\text{-}45" />.
+<MathContainer>
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{15 - 13}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{2}{16} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \left( \frac{1}{8} \right) \times 3" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + \frac{3}{8}" />
+  <BlockMath math="\operatorname{Me} = 42{,}5 + 0{,}375" />
+  <BlockMath math="\operatorname{Me} = 42{,}875" />
+</MathContainer>
+
+Der geschätzte Median der Schuhgrößen beträgt <InlineMath math="42{,}875" />. Dieser Wert liegt zwischen den stetigen Klassengrenzen <InlineMath math="42{,}5" /> und <InlineMath math="45{,}5" />, die für die Interpolation verwendet werden.
 
 Das Ergebnis ist eine **Schätzung**, die aus den gruppierten Intervallen stammt. Durch die Gruppierung gehen die genauen Werte innerhalb der Intervalle verloren. Für den [Mittelwert gruppierter Daten](/de/faecher/mathematik/grundlagen-der-statistik/mittelwert-gruppierter-daten) gilt dieselbe Einschränkung.

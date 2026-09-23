@@ -5,4 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-If an alarm had been logged, a technician would have been notified. Since no notification occurred, no alarm was logged. An active sensor would have logged an alarm, so the sensor was not active.
+Trace the rules backward from an **outcome that did not occur**. Let <InlineMath math="S" /> mean the sensor was active, <InlineMath math="A" /> mean an alarm was logged, and <InlineMath math="T" /> mean the technician was notified.
+
+<BlockMath math="S\Rightarrow A\Rightarrow T" />
+
+The technician was not notified, so <InlineMath math="T" /> is false. If an alarm had been logged, the second rule would require notification. To avoid contradicting the stated fact, **no alarm was logged**. Next, an active sensor would require an alarm log. With no alarm logged, the sensor cannot have been active.
+
+<BlockMath math="\neg T\Rightarrow\neg A\Rightarrow\neg S" />
+
+This is contraposition: when a rule says that a condition guarantees an outcome, the absence of that outcome rules out the condition. Therefore the sensor was inactive and no alarm was logged.

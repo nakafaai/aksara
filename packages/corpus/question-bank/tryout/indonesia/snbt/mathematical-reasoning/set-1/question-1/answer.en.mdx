@@ -5,56 +5,52 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-We will determine the coop dimensions and the number of panels needed.
+The panels cover **all four walls of the coop**. Each panel is as tall as a wall, so it contributes 0.8 m along the perimeter. We first need base dimensions that use whole panels, then we can calculate the cost.
 
-#### Coop Dimension Analysis
+#### Finding the Base Dimensions
 
-Given:
-- Coop height <InlineMath math="= 3 \text{ m}" />.
-- Base area <InlineMath math="= 256 \text{ m}^2" />.
-- Panel size <InlineMath math="80 \text{ cm} \times 300 \text{ cm}" /> (<InlineMath math="0.8 \text{ m} \times 3 \text{ m}" />).
+Write the width as <InlineMath math="w=0.8m" /> and the length as <InlineMath math="l=0.8n" />. The positive integers <InlineMath math="m" /> and <InlineMath math="n" /> count the panels along one short wall and one long wall. The base area is 256 m², so:
 
-Since the panel height matches the coop height (<InlineMath math="3 \text{ m}" />), panels are installed vertically. To avoid cutting, the length and width of the coop must be multiples of the panel width, which is <InlineMath math="0.8 \text{ m}" />.
+<BlockMath math="\begin{aligned}
+lw&=256 \\
+(0.8n)(0.8m)&=256 \\
+0.64mn&=256 \\
+mn&=\frac{256}{0.64}=400
+\end{aligned}" />
 
-Width constraint (<InlineMath math="w" />):
+The width must be between 5 m and 7.5 m, which limits the short wall's panel count.
 
-<BlockMath math="5 \leq w \leq 7.5" />
+<BlockMath math="\begin{aligned}
+5\le0.8m&\le7.5 \\
+6.25\le m&\le9.375
+\end{aligned}" />
 
-We look for multiples of <InlineMath math="0.8" /> within that range:
-- <InlineMath math="0.8 \times 7 = 5.6" />
-- <InlineMath math="0.8 \times 8 = 6.4" />
-- <InlineMath math="0.8 \times 9 = 7.2" />
+Thus <InlineMath math="m" /> can only be 7, 8, or 9. The key condition is that **both panel counts must be integers**.
 
-Check corresponding length (<InlineMath math="l" />) so that area is <InlineMath math="256" /> and <InlineMath math="l" /> is also a multiple of <InlineMath math="0.8" />:
+| Short-wall panels <InlineMath math="m" /> | Width (m) | Long-wall panels <InlineMath math="n=400/m" /> | Whole panels? |
+| ---: | ---: | --- | --- |
+| 7 | 5.6 | <InlineMath math="400/7=57+1/7" /> | No |
+| 8 | 6.4 | <InlineMath math="400/8=50" /> | Yes |
+| 9 | 7.2 | <InlineMath math="400/9=44+4/9" /> | No |
 
-1. If <InlineMath math="w = 5.6" />, then <InlineMath math="l = \frac{256}{5.6} \approx 45.71" /> (Not a multiple of <InlineMath math="0.8" />).
-2. If <InlineMath math="w = 6.4" />, then <InlineMath math="l = \frac{256}{6.4} = 40" />.
-   Check multiple: <InlineMath math="\frac{40}{0.8} = 50" /> (Valid).
-3. If <InlineMath math="w = 7.2" />, then <InlineMath math="l = \frac{256}{7.2} \approx 35.56" /> (Not a multiple of <InlineMath math="0.8" />).
+The width is therefore 6.4 m and the length is <InlineMath math="0.8(50)=40\,\mathrm{m}" />. Check the area: <InlineMath math="6.4\times40=256\,\mathrm{m}^2" />.
 
-So, the possible coop dimensions are **width <InlineMath math="6.4 \text{ m}" />** and **length <InlineMath math="40 \text{ m}" />**.
+#### Counting Panels and Calculating Cost
 
-#### Calculating Number of Panels
+There are **two pairs of equal walls**. Each short wall uses 8 panels, and each long wall uses 50.
 
-Number of panels for width side:
+<BlockMath math="\begin{aligned}
+N&=2(8)+2(50) \\
+&=16+100=116
+\end{aligned}" />
 
-<BlockMath math="\frac{6.4}{0.8} = 8 \text{ panels}" />
+Multiply 116 panels by Rp40,000.00 per panel.
 
-Number of panels for length side:
+<BlockMath math="\begin{aligned}
+C&=116\times40{,}000 \\
+&=(100+16)\times40{,}000 \\
+&=4{,}000{,}000+640{,}000 \\
+&=4{,}640{,}000
+\end{aligned}" />
 
-<BlockMath math="\frac{40}{0.8} = 50 \text{ panels}" />
-
-Total panels needed to surround the coop (<InlineMath math="2" /> width sides + <InlineMath math="2" /> length sides):
-
-<BlockMath math="\begin{aligned}2(8+50)&=2\times58 \\ &=116\end{aligned}" />
-
-#### Calculating Cost
-
-The price of one panel is <InlineMath math="\text{Rp}40{,}000.00" />.
-
-<MathContainer>
-  <BlockMath math="116 \times 40{,}000" />
-  <BlockMath math="=4{,}640{,}000" />
-</MathContainer>
-
-Thus, the required cost is <InlineMath math="\text{Rp}4{,}640{,}000.00" />.
+The panels cost **Rp4,640,000.00**.

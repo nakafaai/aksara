@@ -9,76 +9,29 @@ export const metadata = {
 
 ## Two Ways to Apply a Sequence of Matrix Transformations
 
-<Highlight>In geometry, a transformation maps every point of a figure to an image point.</Highlight> Depending on the transformation, the figure's position, orientation, size, or shape may change. Applying several transformations in sequence creates a composition of transformations.
+Applying transformations in sequence creates a **composition of transformations**. The output of the first becomes the input to the next. Here we use two-by-two matrices that preserve the origin. A nonzero translation requires vector addition or homogeneous coordinates.
 
-We can use matrices to represent many geometric transformations and also to find the result of the composition of these transformations.
+The table collects the operations we will use. Rotations and dilations in it are centered at <InlineMath math="O(0,0)" />.
 
-We will focus on transformations represented by <InlineMath math="2 \times 2" /> matrices. For example, reflection across the <InlineMath math="x" />-axis uses this matrix:
-
-<BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-
-To find the image of <InlineMath math="(x,y)" /> under this reflection, multiply the matrix by the point's position vector:
-
-<BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
-
-Here are some basic transformations along with their matrices that are often used in the composition of transformations:
-
-1.  Reflection across the <InlineMath math="x" />-axis:
-
-    <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
-2.  Reflection across the <InlineMath math="y" />-axis:
-
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
-3.  Reflection across the line <InlineMath math="y=x" />:
-
-    <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
-4.  Reflection across the line <InlineMath math="y=-x" />:
-
-    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
-5.  Reflection across the origin <InlineMath math="O(0,0)" /> (equivalent to a <InlineMath math="180^\circ" /> rotation):
-
-    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
-6.  Rotation about the origin <InlineMath math="(0,0)" /> by an angle <InlineMath math="\theta" />:
-
-    <BlockMath math="\begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
-7.  Dilation about the origin <InlineMath math="(0,0)" /> with a scale factor <InlineMath math="k" />:
-
-    <BlockMath math="\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}" />
+| Transformation | Matrix |
+| --- | --- |
+| Reflection across horizontal axis | <InlineMath math="\begin{pmatrix}1&0\\0&-1\end{pmatrix}" /> |
+| Reflection across vertical axis | <InlineMath math="\begin{pmatrix}-1&0\\0&1\end{pmatrix}" /> |
+| Reflection across positive diagonal | <InlineMath math="\begin{pmatrix}0&1\\1&0\end{pmatrix}" /> |
+| Reflection across negative diagonal | <InlineMath math="\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> |
+| Origin reflection or half-turn | <InlineMath math="\begin{pmatrix}-1&0\\0&-1\end{pmatrix}" /> |
+| Rotation through <InlineMath math="\theta" /> | <InlineMath math="\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" /> |
+| Dilation with <InlineMath math="k\ne0" /> | <InlineMath math="\begin{pmatrix}k&0\\0&k\end{pmatrix}" /> |
 
 ### Applying Composite Transformations with Matrices
 
-Composition of transformations means performing several transformations in sequence. If transformation <InlineMath math="T_1" /> is followed by transformation <InlineMath math="T_2" />, we denote it as <InlineMath math="T_2 \circ T_1" />. This means <InlineMath math="T_1" /> is applied first, then its result is transformed by <InlineMath math="T_2" />.
+In <InlineMath math="T_2\circ T_1" />, the **rightmost transformation acts first**. For a column vector <InlineMath math="P" />, calculate the first image, then use it as the input to the second:
 
-Suppose the matrix corresponding to <InlineMath math="T_1" /> is <InlineMath math="M_1" />, and the matrix corresponding to <InlineMath math="T_2" /> is <InlineMath math="M_2" />. To find the image of point <InlineMath math="P(x,y)" /> under the composition <InlineMath math="T_2 \circ T_1" />, there are two equivalent methods:
+<BlockMath math="P'=M_1P,\qquad P''=M_2P'=M_2(M_1P)=(M_2M_1)P" />
 
-1.  **Applying Transformations Sequentially to the Point:**
+Associativity changes the grouping of a product while preserving the order of its factors. For many points, calculate <InlineMath math="M_2M_1" /> once. To trace one point, the sequential form reveals its intermediate image.
 
-    - Calculate the image <InlineMath math="P'(x',y')" /> of <InlineMath math="P(x,y)" /> under <InlineMath math="T_1" />:
-
-      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix}" />
-    - Then, calculate the image <InlineMath math="P''(x'',y'')" /> of <InlineMath math="P'(x',y')" /> under <InlineMath math="T_2" />:
-
-      <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix}" />
-
-    Substituting the first image into the second calculation gives:
-
-    <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \left( M_1 \begin{pmatrix} x \\ y \end{pmatrix} \right)" />
-
-2.  **Finding the Composite Matrix:**
-
-    - Determine the matrix <InlineMath math="M" /> that represents the composite transformation <InlineMath math="T_2 \circ T_1" />. This matrix is the product <InlineMath math="M_2 M_1" />.
-
-      **Note the order:** the matrix of the second transformation (<InlineMath math="M_2" />) stands to the left of the matrix of the first transformation (<InlineMath math="M_1" />).
-
-    - Calculate the image <InlineMath math="P''(x'',y'')" /> of <InlineMath math="P(x,y)" /> using the composite matrix <InlineMath math="M" />:
-
-      <BlockMath math="\begin{aligned} &\begin{pmatrix} x'' \\ y'' \end{pmatrix} \\ & = M \begin{pmatrix} x \\ y \end{pmatrix} \\ & = (M_2 M_1) \begin{pmatrix} x \\ y \end{pmatrix} \end{aligned}" />
-
-Both methods give the same final image because matrix multiplication is associative: <InlineMath math="M_2 (M_1 P) = (M_2 M_1) P" />. Here, <InlineMath math="P" /> is the column vector:
-
-<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
-
-**Illustrative Example:**
+**Illustrative Example**:
 
 Suppose <InlineMath math="T_1" /> is a reflection across the <InlineMath math="y" />-axis, and <InlineMath math="T_2" /> is a rotation about the origin <InlineMath math="O" /> by <InlineMath math="\frac{1}{2}\pi" /> radians (<InlineMath math="90^\circ" />). We want to find the image of point <InlineMath math="P(x,y)" /> under <InlineMath math="T_2 \circ T_1" />.
 
@@ -92,52 +45,65 @@ The matrix for <InlineMath math="T_2" /> (rotation <InlineMath math="90^\circ" /
 
 **Method 1: Sequential Transformation on the Point**
 
-- Image of <InlineMath math="P(x,y)" /> under <InlineMath math="T_1" />:
+Image of <InlineMath math="P(x,y)" /> under <InlineMath math="T_1" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M_1 \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -x \\ y \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M_1 \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -x \\ y \end{pmatrix} \end{aligned}" />
 
-  So <InlineMath math="P'(-x,y)" />.
+So <InlineMath math="P'(-x,y)" />.
 
-- Image of <InlineMath math="P'(-x,y)" /> under <InlineMath math="T_2" />:
+Image of <InlineMath math="P'(-x,y)" /> under <InlineMath math="T_2" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
 
-- The final image is <InlineMath math="P''(-y,-x)" />.
+The final image is <InlineMath math="P''(-y,-x)" />.
 
 **Method 2: Composite Matrix First**
 
-- Composite matrix <InlineMath math="M = M_2 M_1" />:
+Composite matrix <InlineMath math="M = M_2 M_1" />:
 
-  Write <InlineMath math="M=(m_{ij})" />. The subscripts name the row and column of each entry. To find <InlineMath math="m_{12}" />, for example, multiply the first row of the left matrix by the second column of the right matrix and add the products.
+Write <InlineMath math="M=(m_{ij})" />. The subscripts name the row and column of each entry. To find <InlineMath math="m_{12}" />, for example, multiply the first row of the left matrix by the second column of the right matrix and add the products.
 
-  <MathContainer>
-    <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-    <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{12}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{21}&amp;=(1)(-1)+(0)(0)=-1 \\ m_{22}&amp;=(1)(0)+(0)(1)=0 \end{aligned}" />
-    <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
-  </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{12}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{21}&amp;=(1)(-1)+(0)(0)=-1 \\ m_{22}&amp;=(1)(0)+(0)(1)=0 \end{aligned}" />
+  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+</MathContainer>
 
-- Image of <InlineMath math="P(x,y)" /> under <InlineMath math="M" />:
+Image of <InlineMath math="P(x,y)" /> under <InlineMath math="M" />:
 
-  <BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
 
-- The final image is <InlineMath math="P''(-y,-x)" />.
+The final image is <InlineMath math="P''(-y,-x)" />.
 
 Both methods give the same result. If many points use the same composition, calculate <InlineMath math="M_2 M_1" /> once and apply that composite matrix to every point.
 
 ## Composite Matrix Rule
 
-Let <InlineMath math="M_1" /> and <InlineMath math="M_2" /> be the matrices for transformations <InlineMath math="T_1" /> and <InlineMath math="T_2" />, respectively:
+If <InlineMath math="M_1" /> acts first and <InlineMath math="M_2" /> follows, pair **rows of the second matrix with columns of the first**. Each output entry is a sum of two products:
 
-<MathContainer>
-  <BlockMath math="M_1 = \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />
-  <BlockMath math="M_2 = \begin{pmatrix} t & u \\ v & w \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="M_2M_1=\begin{pmatrix}t&u\\v&w\end{pmatrix}\begin{pmatrix}p&q\\r&s\end{pmatrix}=\begin{pmatrix}tp+ur&tq+us\\vp+wr&vq+ws\end{pmatrix}" />
 
-For the composition <InlineMath math="T_2 \circ T_1" />, we apply <InlineMath math="T_1" /> first and then <InlineMath math="T_2" />. Its matrix is:
+### Reversing Reflection and Rotation
 
-<BlockMath math="M_2 M_1 = \begin{pmatrix} t & u \\ v & w \end{pmatrix} \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />
+Compare vertical-axis reflection <InlineMath math="F" /> and a positive quarter-turn <InlineMath math="R" /> on <InlineMath math="P(2,1)" />. **Reversing the order gives different final points**:
 
-The order of matrix multiplication determines the order of the transformations. The matrix for the transformation performed first (<InlineMath math="M_1" />) is written on the right.
+<BlockMath math="RF=\begin{pmatrix}0&-1\\-1&0\end{pmatrix},\qquad FR=\begin{pmatrix}0&1\\1&0\end{pmatrix}" />
+
+| Order | Start | First image | Final image |
+| --- | --- | --- | --- |
+| Reflection then rotation | <InlineMath math="(2,1)" /> | <InlineMath math="(-2,1)" /> | <InlineMath math="(-1,-2)" /> |
+| Rotation then reflection | <InlineMath math="(2,1)" /> | <InlineMath math="(-1,2)" /> | <InlineMath math="(1,2)" /> |
+
+<LineEquation title="Reflection and rotation order changes the final point" description="The green path reflects first, then rotates. The orange path rotates first, then reflects. Arcs show turns, while straight segments join reflection pairs."
+  data={[
+    { points: [{ x: 2, y: 1, z: 0 }, { x: -2, y: 1, z: 0 }], smooth: false, color: "#059669", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="P(2,1)" />, at: 0, offset: [0.4, -0.3, 0] }, { text: <InlineMath math="F(P)" />, at: 1, offset: [-0.4, 0, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,-2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#059669", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="RF(P)=(-1,-2)" />, at: 32, offset: [0.5, -0.4, 0] }] },
+    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="R(P)" />, at: 32, offset: [-0.2, 0.4, 0] }] },
+    { points: [{ x: -1, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="FR(P)=(1,2)" />, at: 1, offset: [0.3, 0.5, 0] }] },
+  ]}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 8]}
+/>
 
 ## Combining Reflections and Rotations with Matrices
 
@@ -145,9 +111,9 @@ Combining two transformations means multiplying their matrices, and <Highlight>t
 
 ### Composition of Two Reflections
 
-Determine the image of the point <InlineMath math="(2,5)" /> reflected across the <InlineMath math="x" />-axis and then reflected across the <InlineMath math="y" />-axis.
+Determine the image of the point <InlineMath math="(2,5)" /> reflected across the <InlineMath math="x" />-axis and **then reflected** across the <InlineMath math="y" />-axis.
 
-**Solution:**
+**Solution**:
 
 Let <InlineMath math="T_1" /> be the reflection across the <InlineMath math="x" />-axis, and <InlineMath math="T_2" /> be the reflection across the <InlineMath math="y" />-axis.
 
@@ -162,9 +128,9 @@ The matrix for <InlineMath math="T_2" /> (<InlineMath math="M_2" />) is:
 The composition of transformations <InlineMath math="T_2 \circ T_1" /> has the matrix <InlineMath math="M = M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{12}&amp;=(-1)(0)+(0)(-1)=0 \\ m_{21}&amp;=(0)(1)+(1)(0)=0 \\ m_{22}&amp;=(0)(0)+(1)(-1)=-1 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{12}&amp;=(-1)(0)+(0)(-1)=0 \\ m_{21}&amp;=(0)(1)+(1)(0)=0 \\ m_{22}&amp;=(0)(0)+(1)(-1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 The image of the point <InlineMath math="(2,5)" /> is:
@@ -175,9 +141,9 @@ So, the image of the point is <InlineMath math="(-2,-5)" />.
 
 ### Composition of Reflection and Rotation
 
-Determine the image of the point <InlineMath math="(-2,3)" /> transformed by the composition of a reflection across the <InlineMath math="y" />-axis followed by a <InlineMath math="180^\circ" /> rotation about the origin.
+Determine the image of the point <InlineMath math="(-2,3)" /> transformed by the composition of a reflection across the <InlineMath math="y" />-axis **followed by** a <InlineMath math="180^\circ" /> rotation about the origin.
 
-**Solution:**
+**Solution**:
 
 Let <InlineMath math="T_1" /> be the reflection across the <InlineMath math="y" />-axis, and <InlineMath math="T_2" /> be the <InlineMath math="180^\circ" /> rotation about the origin.
 
@@ -192,9 +158,9 @@ The matrix for <InlineMath math="T_2" /> (<InlineMath math="M_2" />) is:
 The composition of transformations <InlineMath math="T_2 \circ T_1" /> has the matrix <InlineMath math="M = M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ m_{12}&amp;=(-1)(0)+(0)(1)=0 \\ m_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ m_{12}&amp;=(-1)(0)+(0)(1)=0 \\ m_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 The image of the point <InlineMath math="(-2,3)" /> is:
@@ -205,41 +171,41 @@ So, the image of the point is <InlineMath math="(-2,-3)" />.
 
 ### Composition of Three Transformations
 
-Apply three transformations to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="x" />-axis, then rotate it <InlineMath math="90^\circ" /> about the origin, and finally rotate it <InlineMath math="180^\circ" /> about the origin. Determine its image.
+Apply **three transformations** to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="x" />-axis, then rotate it <InlineMath math="90^\circ" /> about the origin, and finally rotate it <InlineMath math="180^\circ" /> about the origin. Determine its image.
 
-**Solution:**
+**Solution**:
 
 Let:
 
-- <InlineMath math="T_1" />: Reflection across the <InlineMath math="x" />-axis.
+<InlineMath math="T_1" />: Reflection across the <InlineMath math="x" />-axis.
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-- <InlineMath math="T_2" />: Rotation <InlineMath math="90^\circ" /> about the
-  origin.
+<InlineMath math="T_2" />: Rotation <InlineMath math="90^\circ" /> about the
+origin.
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
 
-- <InlineMath math="T_3" />: Half turn (<InlineMath math="180^\circ" /> rotation
-  about the origin).
+<InlineMath math="T_3" />: Half turn (<InlineMath math="180^\circ" /> rotation
+about the origin).
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="\begin{aligned} M_3 &= \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} M_3 &= \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
 
 The composition of transformations is <InlineMath math="T_3 \circ T_2 \circ T_1" />. Its matrix is <InlineMath math="M = M_3 M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} n_{11}&amp;=(0)(1)+(-1)(0)=0 \\ n_{12}&amp;=(0)(0)+(-1)(-1)=1 \\ n_{21}&amp;=(1)(1)+(0)(0)=1 \\ n_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
-  <BlockMath math="M_2 M_1=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}" />
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=M_3(M_2 M_1) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(0)+(0)(1)=0 \\ m_{12}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{21}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{22}&amp;=(0)(1)+(-1)(0)=0 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(0)(1)+(-1)(0)=0 \\ n_{12}&amp;=(0)(0)+(-1)(-1)=1 \\ n_{21}&amp;=(1)(1)+(0)(0)=1 \\ n_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=M_3(M_2 M_1) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(0)+(0)(1)=0 \\ m_{12}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{21}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{22}&amp;=(0)(1)+(-1)(0)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
 </MathContainer>
 
 The image of <InlineMath math="P(2,5)" /> is:
@@ -250,48 +216,47 @@ So, the image of the point is <InlineMath math="(-5,-2)" />.
 
 ## Exercise
 
-Apply three transformations to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="y" />-axis, then rotate it <InlineMath math="180^\circ" /> about the origin, and finally reflect it across the line <InlineMath math="y=x" />. Determine its image.
+Apply three transformations to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="y" />-axis, then rotate it <InlineMath math="180^\circ" /> about the origin, and finally reflect it across the line <InlineMath math="y=x" />. Determine its image, keeping the **transformation order** as given.
 
 ### Solution
 
 Let:
 
-- <InlineMath math="T_1" />: Reflection across the <InlineMath math="y" />-axis.
+<InlineMath math="T_1" />: Reflection across the <InlineMath math="y" />-axis.
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+<BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
 
-- <InlineMath math="T_2" />: Rotation <InlineMath math="180^\circ" /> about the
-  origin.
+<InlineMath math="T_2" />: Rotation <InlineMath math="180^\circ" /> about the
+origin.
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+<BlockMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-- <InlineMath math="T_3" />: Reflection across the line <InlineMath math="y=x" />
-  .
+<InlineMath math="T_3" />: Reflection across the line <InlineMath math="y=x" />.
 
-  The matrix is:
+The matrix is:
 
-  <BlockMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+<BlockMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
 
 The composition of transformations is <InlineMath math="T_3 \circ T_2 \circ T_1" />. Its matrix is <InlineMath math="M = M_3 M_2 M_1" />.
 
 **Step 1**: Calculate <InlineMath math="M_2 M_1" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} n_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ n_{12}&amp;=(-1)(0)+(0)(1)=0 \\ n_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ n_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
-  <BlockMath math="M_2 M_1=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ n_{12}&amp;=(-1)(0)+(0)(1)=0 \\ n_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ n_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
 </MathContainer>
 
 **Step 2**: Calculate <InlineMath math="M = M_3 (M_2 M_1)" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
-  <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(1)+(1)(0)=0 \\ m_{12}&amp;=(0)(0)+(1)(-1)=-1 \\ m_{21}&amp;=(1)(1)+(0)(0)=1 \\ m_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
-  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(0)(1)+(1)(0)=0 \\ m_{12}&amp;=(0)(0)+(1)(-1)=-1 \\ m_{21}&amp;=(1)(1)+(0)(0)=1 \\ m_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}" />
 </MathContainer>
 
 The image of <InlineMath math="P(2,5)" /> is:
@@ -299,3 +264,7 @@ The image of <InlineMath math="P(2,5)" /> is:
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(2)+(-1)(5) \\ (1)(2)+(0)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 2 \end{pmatrix} \end{aligned}" />
 
 So, the image of the point is <InlineMath math="(-5,2)" />.
+
+Check the matrix product using **intermediate coordinates**. After each operation, the point is:
+
+<BlockMath math="(2,5)\xrightarrow{T_1}(-2,5)\xrightarrow{T_2}(2,-5)\xrightarrow{T_3}(-5,2)" />

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Exponential Function",
   description: "Use exponential functions to model quantities that change by a constant factor, including population, radioactive decay, and compound interest.",
@@ -12,7 +11,7 @@ export const metadata = {
 
 An exponential function has <Highlight>its independent variable in the exponent</Highlight>. The growth and decay models below use the general form <InlineMath math="f(x) = a \cdot b^x" /> with <InlineMath math="a > 0" />, <InlineMath math="b > 0" />, and <InlineMath math="b \neq 1" />.
 
-**Components of exponential functions:**
+**Components of exponential functions**:
 
 In the function <InlineMath math="f(x) = a \cdot b^x" />:
 
@@ -24,35 +23,37 @@ In the function <InlineMath math="f(x) = a \cdot b^x" />:
 
 ## Characteristics of Exponential Functions
 
-Exponential functions have several special properties that distinguish them from other functions. The base decides whether the graph grows or falls, and the value at <InlineMath math="x = 0" /> is always the same.
+With a positive initial value, the **base determines the direction of change**. At input zero, the function equals its initial multiplier.
+
+Increasing the input by one always multiplies the output by the same base. This distinguishes exponential change from adding a fixed amount in a linear function.
+
+<BlockMath math="\frac{f(x+1)}{f(x)}=\frac{ab^{x+1}}{ab^x}=b" />
 
 ### How the Graph Behaves
 
-Two identities fix the shape of every exponential graph: it passes through the point where the input is zero, and adding two inputs multiplies the two function values.
+The exponent rules give the following identities. Multiplying two function values includes the **initial multiplier** twice. We must therefore divide that product by the initial multiplier to obtain the value at the sum of the inputs.
 
 <MathContainer>
-  <BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
-  <BlockMath math="\begin{aligned} f(x_1 + x_2) &amp;= a \cdot b^{x_1 + x_2} \\ &amp;= a \cdot b^{x_1} \cdot b^{x_2} \end{aligned}" />
-  <BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+
+<BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
+
+<BlockMath math="\begin{aligned} f(x_1 + x_2) &amp;= a \cdot b^{x_1 + x_2} \\ &amp;= a \cdot b^{x_1} \cdot b^{x_2} \end{aligned}" />
+
+<BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+
+<BlockMath math="f(x_1+x_2)=\frac{f(x_1)f(x_2)}{a},\quad f(x_1-x_2)=\frac{a f(x_1)}{f(x_2)}" />
 </MathContainer>
 
 ### Types of Exponential Functions
 
-**Exponential Growth Function** (<InlineMath math="b > 1" />):
-
-- Function values increase as <InlineMath math="x" /> increases
-- Graph rises from left to right
-- Example: <InlineMath math="f(x) = 2^x" />
-
-**Exponential Decay Function** (<InlineMath math="0 < b < 1" />):
-
-- Function values decrease as <InlineMath math="x" /> increases
-- Graph falls from left to right
-- Example: <InlineMath math="f(x) = (0.5)^x" />
+| Type | Base | Change | Example |
+| --- | --- | --- | --- |
+| **Growth** | <InlineMath math="b>1" /> | Increasing | <InlineMath math="2^x" /> |
+| **Decay** | <InlineMath math="0<b<1" /> | Decreasing | <InlineMath math="(1/2)^x" /> |
 
 ## Graphs of Exponential Functions
 
-The following is a visualization of various exponential functions:
+The following is a visualization of various **exponential functions**:
 
 <LineEquation
   title={<>Comparison of Exponential Functions</>}
@@ -84,6 +85,7 @@ The following is a visualization of various exponential functions:
       labels: [{ text: <InlineMath math="g(x)=(0.5)^x" />, at: 50, offset: [-2, -0.5, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 10]}
 />
 
@@ -96,11 +98,11 @@ Comparison of function values <InlineMath math="f(x) = 2^x" /> and <InlineMath m
 
 ## Transformations of Exponential Functions
 
-A vertical shift moves the asymptote, while a horizontal shift moves a reference point on the graph. Each constant added to the function shifts the graph in one fixed direction, and the transformed equation shows which direction that is.
+A **vertical shift** moves the asymptote, while a horizontal shift moves a reference point on the graph. Each constant added to the function shifts the graph in one fixed direction, and the transformed equation shows which direction that is.
 
 ### Vertical Translation
 
-The function <InlineMath math="f(x) = a \cdot b^x + c" /> shifts the graph upward (if <InlineMath math="c > 0" />) or downward (if <InlineMath math="c < 0" />).
+The function <InlineMath math="f(x) = a \cdot b^x + c" /> shifts the graph **upward** (if <InlineMath math="c > 0" />) or downward (if <InlineMath math="c < 0" />).
 
 <LineEquation
   title={<>Vertical Translation</>}
@@ -113,47 +115,51 @@ The function <InlineMath math="f(x) = a \cdot b^x + c" /> shifts the graph upwar
   data={[
     {
       smooth: false,
-      points: [
-        ...Array.from({ length: 56 }, (_, i) => {
-          const x = i - 64;
-          return { x, y: Math.pow(2, x), z: 0 };
-        }),
-        ...Array.from({ length: 276 }, (_, i) => {
-          const x = (i - 200) / 25;
-          return { x, y: Math.pow(2, x), z: 0 };
-        }),
-      ],
+      points: Array.from({ length: 176 }, (_, i) => {
+        const x = -4 + i / 25;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 281, offset: [1.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 125, offset: [1.5, -0.5, 0] }],
     },
     {
       smooth: false,
-      points: [
-        ...Array.from({ length: 56 }, (_, i) => {
-          const x = i - 64;
-          return { x, y: Math.pow(2, x) + 2, z: 0 };
-        }),
-        ...Array.from({ length: 276 }, (_, i) => {
-          const x = (i - 200) / 25;
-          return { x, y: Math.pow(2, x) + 2, z: 0 };
-        }),
-      ],
+      points: Array.from({ length: 176 }, (_, i) => {
+        const x = -4 + i / 25;
+        return { x, y: Math.pow(2, x) + 2, z: 0 };
+      }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 281, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 125, offset: [0, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[8, 5, 8]}
+  showZAxis={false}
+  cameraTarget={[0, 3, 0]}
+  cameraPosition={[0, 3, 13]}
 />
 
 ### Horizontal Translation
 
 The function <InlineMath math="f(x) = a \cdot b^{x-h}" /> shifts the graph to the right (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />). The shift moves every point by the same amount, so the asymptote stays where it is and the shape of the curve does not change.
 
+For a **shift two units right**, add two to each original input while preserving its output.
+
+<BlockMath math="g(x)=2^{x-2},\qquad g(2)=2^0=1" />
+
+| Original point | New point |
+| --- | --- |
+| <InlineMath math="(0,1)" /> | <InlineMath math="(2,1)" /> |
+| <InlineMath math="(1,2)" /> | <InlineMath math="(3,2)" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="(4,4)" /> |
+
 ## Applications of Exponential Functions
 
-The quantity in each example below changes by a constant factor over equal intervals. That factor represents population growth, decay, or an increase in an account balance due to interest.
+The quantity in each example below changes by a **constant factor** over equal intervals. That factor represents population growth, decay, or an increase in an account balance due to interest.
+
+The same percentage is applied to the latest amount, so the absolute increase is not constant. Ten percent growth changes one hundred to one hundred ten, then to one hundred twenty-one.
+
+<BlockMath math="100\cdot1.1=110,\qquad110\cdot1.1=121" />
 
 ### Population Growth
 
@@ -161,13 +167,11 @@ When a population has a constant proportional growth rate and its conditions do 
 
 <BlockMath math="P(t) = P_0 \cdot (1 + r)^t" />
 
-**Example:** Bacterial population that reproduces every hour at a rate of <InlineMath math="20\%" />:
+**Example**: Bacterial population that reproduces every hour at a rate of <InlineMath math="20\%" />:
 
 - Initial population: <InlineMath math="1000 \text{ bacteria}" />
 - Growth rate: <InlineMath math="r = 0.2" />
 - Function: <InlineMath math="P(t) = 1000 \cdot (1.2)^t" />
-
-### Bacterial Growth Table
 
 | Time (hours) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
 | ------------ | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -181,6 +185,16 @@ Radioactive substances decay following exponential functions. If the initial mas
 
 <BlockMath math="M(t) = M_0 \cdot \left(\frac{1}{2}\right)^{t/t_{1/2}}" />
 
+For example, an initial mass of eighty grams with a **two-year half-life** halves every two years.
+
+<BlockMath math="M(4)=80\left(\frac12\right)^{4/2}=80\cdot\frac14=20" />
+
+| Time (years) | Mass (grams) |
+| --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="40" /> |
+| <InlineMath math="4" /> | <InlineMath math="20" /> |
+
 ### Compound Interest
 
 Investments with compound interest grow exponentially. If the initial capital is <InlineMath math="P" />, interest rate is <InlineMath math="r" /> per year, and time is <InlineMath math="t \text{ years}" />:
@@ -188,6 +202,12 @@ Investments with compound interest grow exponentially. If the initial capital is
 <BlockMath math="A = P \cdot \left(1 + \frac{r}{n}\right)^{nt}" />
 
 In this formula, <InlineMath math="n" /> is the number of times interest is compounded per year.
+
+Suppose an initial one million rupiah earns a nominal annual rate of ten percent, **compounded twice a year**. This model has no deposits, withdrawals, fees, or taxes.
+
+<BlockMath math="A=1{,}000{,}000\left(1+\frac{0.10}{2}\right)^{2\cdot1}=1{,}000{,}000(1.05)^2=1{,}102{,}500" />
+
+Every half-year, the balance is multiplied by the same factor. The model gives an end-of-year balance of Rp1,102,500.
 
 ## Exponential Equations
 
@@ -199,13 +219,17 @@ An exponential equation is an equation that contains a variable in the exponent.
 
 If <InlineMath math="b^{f(x)} = b^{g(x)}" />, then <InlineMath math="f(x) = g(x)" />
 
-**Example:** Solve <InlineMath math="2^{x+1} = 8" />
+**Example**: Solve <InlineMath math="2^{x+1} = 8" />
 
 <MathContainer>
-  <BlockMath math="2^{x+1} = 8" />
-  <BlockMath math="2^{x+1} = 2^3" />
-  <BlockMath math="x + 1 = 3" />
-  <BlockMath math="x = 2" />
+
+<BlockMath math="2^{x+1} = 8" />
+
+<BlockMath math="2^{x+1} = 2^3" />
+
+<BlockMath math="x + 1 = 3" />
+
+<BlockMath math="x = 2" />
 </MathContainer>
 
 **Method 2: Using Logarithms**
@@ -224,51 +248,55 @@ Each problem gives information about an exponential function and asks for the fu
 
 3. A city's population is <InlineMath math="50{,}000 \text{ people}" /> and grows <InlineMath math="3\%" /> per year. What will the population be after <InlineMath math="10 \text{ years}" />?
 
-4. A radioactive substance has a half-life of <InlineMath math="5 \text{ years}" />. If the initial mass is <InlineMath math="100 \text{ grams}" />, how much mass remains after <InlineMath math="15 \text{ years}" />?
+4. A radioactive substance has a **half-life** of <InlineMath math="5 \text{ years}" />. If the initial mass is <InlineMath math="100 \text{ grams}" />, how much mass remains after <InlineMath math="15 \text{ years}" />?
 
-### Worked Solutions
+### Evaluate the function
 
-Cover a solution, work the problem yourself, then compare your steps and your final value. Work through the steps in order, because one wrong step carries into the final result.
-
-#### Evaluate the function
-
-Substitute <InlineMath math="x = 3" /> into <InlineMath math="f(x) = 5 \cdot 2^x" />. Evaluate the exponent before multiplying by the initial factor.
+Substitute <InlineMath math="x = 3" /> into <InlineMath math="f(x) = 5 \cdot 2^x" />. Evaluate the **exponent before multiplying** by the initial factor.
 
 <BlockMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
 
 <InlineMath math="f(3) = 40" />.
 
-#### Match equal bases
+### Match equal bases
 
-Rewrite <InlineMath math="27" /> as <InlineMath math="3^3" />. Equal positive bases have equal exponents.
+Rewrite <InlineMath math="27" /> as <InlineMath math="3^3" />. Because base three is positive and not one, equal powers have **equal exponents**.
 
 <MathContainer>
-  <BlockMath math="3^{2x-1} = 3^3" />
-  <BlockMath math="2x - 1 = 3" />
-  <BlockMath math="x = 2" />
+
+<BlockMath math="3^{2x-1} = 3^3" />
+
+<BlockMath math="2x - 1 = 3" />
+
+<BlockMath math="x = 2" />
 </MathContainer>
 
 Checking gives <InlineMath math="3^{2(2)-1} = 3^3 = 27" />, so the solution is correct.
 
-#### Model population growth
+### Model population growth
 
-The initial population is <InlineMath math="P_0 = 50{,}000" />, the annual growth rate is <InlineMath math="r = 0.03" />, and the time is <InlineMath math="t = 10" /> years. Use the annual growth factor <InlineMath math="1 + r = 1.03" />.
+The initial population is <InlineMath math="P_0 = 50{,}000" />, the annual **growth rate** is <InlineMath math="r = 0.03" />, and the time is <InlineMath math="t = 10" /> years. Use the annual growth factor <InlineMath math="1 + r = 1.03" />.
 
 <MathContainer>
-  <BlockMath math="P(10) = 50{,}000 \cdot (1.03)^{10}" />
-  <BlockMath math="\begin{aligned} P(10) &amp;\approx 50{,}000 \cdot 1.343916 \\ &amp;= 67{,}195.82 \end{aligned}" />
-  <BlockMath math="P(10) \approx 67{,}196 \text{ people}" />
+
+<BlockMath math="P(10) = 50{,}000 \cdot (1.03)^{10}" />
+
+<BlockMath math="\begin{aligned} P(10) &amp;\approx 50{,}000 \cdot 1.343916 \\ &amp;\approx 67{,}195.82 \end{aligned}" />
+
+<BlockMath math="P(10) \approx 67{,}196 \text{ people}" />
 </MathContainer>
 
 The population is rounded to the nearest whole person.
 
-#### Apply the half life
+### Apply the half life
 
-Fifteen years contain <InlineMath math="15/5 = 3" /> half-life periods. The mass is therefore multiplied by <InlineMath math="1/2" /> three times.
+Fifteen years contain <InlineMath math="15/5 = 3" /> **half-life** periods. The mass is therefore multiplied by <InlineMath math="1/2" /> three times.
 
 <MathContainer>
-  <BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
-  <BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12.5 \text{ grams}" />
+
+<BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
+
+<BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12.5 \text{ grams}" />
 </MathContainer>
 
 After <InlineMath math="15 \text{ years}" />, <InlineMath math="12.5 \text{ grams}" /> remains.

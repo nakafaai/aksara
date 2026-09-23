@@ -9,19 +9,19 @@ export const metadata = {
 
 ## Mit Operatoren in Python rechnen
 
-Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addiert Werte, `*` multipliziert sie und `` potenziert einen Wert.
+Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addiert Werte, `*` multipliziert sie und `**` potenziert einen Wert.
 
-Python besitzt sieben grundlegende arithmetische Operatoren. Enthält ein Ausdruck mehrere Operatoren, <Highlight>bestimmt ihre Priorität die Reihenfolge der Rechnungen</Highlight>.
+Python besitzt sieben grundlegende arithmetische Operatoren. Ihre Priorität bestimmt <Highlight>die Gruppierung der Operationen</Highlight>, wenn keine Klammern diese Gruppierung vorgeben.
 
 ## Rangfolge der Operatoren
 
-Enthält ein Ausdruck mehrere arithmetische Operatoren, braucht Python eine feste Reihenfolge, um zu entscheiden, welche Rechnung zuerst läuft. Diese Reihenfolge <Highlight>ergibt sich aus drei Prioritätsstufen</Highlight>. Ein Operator einer höheren Stufe ist immer vor einem Operator einer niedrigeren Stufe fertig, sodass die Stufe jedes Operators die Reihenfolge der Rechnungen festlegt.
+Enthält ein Ausdruck mehrere arithmetische Operatoren, braucht Python eine feste Reihenfolge, um zu entscheiden, welche Rechnung zuerst läuft. Diese Reihenfolge <Highlight>ergibt sich aus drei Prioritätsstufen</Highlight>. Die Priorität bestimmt die Gruppierung der Operationen. Klammern können diese Gruppierung ändern.
 
 ### Höchste Priorität
 
 **Potenzierungsoperator**
 
-Der Operator `**` dient zum Potenzieren und hat unter den sieben hier behandelten binären Operatoren die höchste Priorität. Anders als die übrigen Operatoren ist er rechtsassoziativ.
+Der Operator `**` dient zum Potenzieren und hat unter den sieben hier behandelten binären Operatoren die höchste Priorität. Anders als die übrigen Operatoren ist er **rechtsassoziativ**.
 
 <CodeBlock
   data={[
@@ -52,7 +52,7 @@ Der Operator `*` multipliziert zwei Zahlen.
 
 **Divisionsoperator**
 
-Der Operator `/` dividiert zwei Zahlen und liefert immer einen Float, auch wenn beide Operanden ganze Zahlen sind.
+Der Operator `/` dividiert zwei Zahlen und liefert für Operanden vom Typ `int` oder `float` einen **Float**, auch wenn beide ganze Zahlen sind.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ Die Abrundung erfolgt in Richtung negativ unendlich. Bei `-7 // 2` erhält Pytho
 
 **Modulo-Operator `%`**
 
-Der Operator `%` liefert den zur Abrundungsdivision gehörenden Rest. Dabei gilt stets <InlineMath math="a \% b = a - (a // b) \times b" />.
+Der Operator `%` liefert den zur Abrundungsdivision gehörenden Rest. Für ganzzahlige Operanden und einen Divisor ungleich null gilt exakt <InlineMath math="a \% b = a - (a // b) \times b" />.
 
 <CodeBlock
   data={[
@@ -129,21 +129,21 @@ Der Operator `%` liefert den zur Abrundungsdivision gehörenden Rest. Dabei gilt
   ]}
 />
 
-Auch bei negativen Zahlen bleibt diese Gleichung gültig. Daher ist `5 % 4` gleich `1`, während `-5 % 4` den Wert `3` ergibt. Modulo eignet sich für Teilbarkeitstests und bei nichtnegativen ganzen Zahlen zum Bestimmen der letzten Ziffer.
+Auch bei negativen ganzen Zahlen bleibt diese Gleichung gültig. Daher ist `5 % 4` gleich `1`, während `-5 % 4` den Wert `3` ergibt. Modulo eignet sich für Teilbarkeitstests und bei nichtnegativen ganzen Zahlen zum Bestimmen der letzten Ziffer.
 
 ### Niedrigste Priorität
 
-Addition und Subtraktion werden zuletzt ausgewertet, nachdem jede Potenzierung, Multiplikation, Division, Ganzzahldivision und Modulo-Operation im selben Ausdruck einen Wert geliefert hat. In `2 + 3 * 4` multipliziert Python zuerst und addiert danach, das Ergebnis ist `14`. Damit die Addition früher stattfindet, setzt du sie in Klammern und schreibst `(2 + 3) * 4`.
+**Addition und Subtraktion** besitzen eine niedrigere Priorität als die anderen fünf Operatoren. Klammern können die Gruppierung weiterhin ändern. In `2 + 3 * 4` multipliziert Python zuerst und addiert danach, das Ergebnis ist `14`. Damit die Addition früher stattfindet, setzt du sie in Klammern und schreibst `(2 + 3) * 4`.
 
 ## Vorrangregeln und Assoziativität
 
-Python liest einen Ausdruck nicht von links nach rechts. Die Priorität bestimmt, welcher Operator zuerst läuft, und die Assoziativität bestimmt, wie Python Operatoren derselben Stufe gruppiert. Beide Regeln greifen auf die Operatoren zu, die du geschrieben hast, sodass `2 ** 3 ** 2` und `8 - 3 - 2` jeweils genau eine Lesart haben.
+**Priorität und Assoziativität** bestimmen die Gruppierung der Operationen. Python wertet die Operanden von links nach rechts aus. Die Priorität gruppiert Operatoren verschiedener Stufen. Die Assoziativität gruppiert Operatoren derselben Stufe. Beide Regeln greifen auf die Operatoren zu, die du geschrieben hast, sodass `2 ** 3 ** 2` und `8 - 3 - 2` jeweils genau eine Lesart haben.
 
 ### Ausdrucksbewertungsreihenfolge
 
-Python wertet Ausdrücke nach drei Hauptregeln aus.
+Drei Regeln bestimmen die **Gruppierung der Operationen** in einem Ausdruck.
 
-1. **Rangfolge** bestimmt, welcher Operator zuerst ausgeführt wird
+1. **Rangfolge** bestimmt, welche Operatoren stärker binden
 2. **Linke Assoziativität** gilt für Operatoren mit derselben Priorität, mit Ausnahme der Potenzierung
 3. **Klammern** können die Auswertungsreihenfolge ändern
 
@@ -162,7 +162,7 @@ Python wertet Ausdrücke nach drei Hauptregeln aus.
 16
 
 >>> 6 / 2 * 4
-12
+12.0
 
 >>> 6 / (2 * 4)
 0.75`
@@ -172,11 +172,11 @@ Python wertet Ausdrücke nach drei Hauptregeln aus.
 
 ### Assoziativitätsregeln
 
-Die Assoziativität legt die Reihenfolge fest, wenn mehrere Operatoren dieselbe Priorität besitzen.
+Die Assoziativität bestimmt die **Gruppierung bei gleicher Priorität**.
 
 **Linke Assoziativität**
 
-Die meisten Operatoren gleicher Priorität werden von links nach rechts ausgewertet.
+Die meisten binären Rechenoperatoren gleicher Priorität werden von links nach rechts gruppiert.
 
 <CodeBlock
   data={[
@@ -184,7 +184,7 @@ Die meisten Operatoren gleicher Priorität werden von links nach rechts ausgewer
       language: "python",
       filename: "left_associative.py",
       code: `>>> 6 / 2 * 4
-12
+12.0
 
 >>> 10 - 3 - 2
 5`
@@ -196,7 +196,7 @@ Multiplikation und Division haben dieselbe Priorität. Deshalb liest Python dies
 
 **Rechte Assoziativität**
 
-Nur der Potenzierungsoperator `**` wird bei gleicher Verschachtelung von rechts nach links ausgewertet.
+Unter diesen sieben Operatoren wird der Potenzierungsoperator `**` von rechts nach links gruppiert.
 
 <CodeBlock
   data={[
@@ -218,7 +218,7 @@ Python gruppiert aufeinanderfolgende Potenzen von rechts nach links: `2 ** 3 ** 
 
 Die Python-Shell lässt sich direkt als Rechner verwenden. Nach der Eingabe eines mathematischen Ausdrucks wertet Python ihn sofort aus.
 
-Der Operator `/` liefert immer einen Float. `//` liefert bei zwei ganzzahligen Operanden einen Integer und bei mindestens einem Float einen Float. Beim Modulo hat ein von null verschiedenes Ergebnis dasselbe Vorzeichen wie der Divisor und erfüllt die zuvor gezeigte Gleichung.
+Für Operanden vom Typ `int` oder `float` liefert `/` einen **Float**. `//` liefert bei zwei ganzzahligen Operanden einen Integer und bei mindestens einem Float einen Float. Beim Modulo hat ein von null verschiedenes Ergebnis dasselbe Vorzeichen wie der Divisor. Die zuvor gezeigte Identität gilt für ganze Zahlen exakt. Bei Gleitkommaoperationen können Rundungen auftreten.
 
 ## Übersichtstabelle der arithmetischen Operatoren
 
@@ -232,4 +232,4 @@ Der Operator `/` liefert immer einen Float. `//` liefert bei zwei ganzzahligen O
 | **Niedrigste** | `+` | Addition | Links |
 | **Niedrigste** | `-` | Subtraktion | Links |
 
-Die Rangfolge erklärt, warum Python einen Ausdruck in einer bestimmten Reihenfolge auswertet. Wenn eine andere Reihenfolge gemeint ist oder der Ausdruck leichter lesbar werden soll, machen Klammern diese Absicht eindeutig.
+Die **Rangfolge der Operatoren** bestimmt die Gruppierung eines arithmetischen Ausdrucks. Wenn eine andere Reihenfolge gemeint ist oder der Ausdruck leichter lesbar werden soll, machen Klammern diese Absicht eindeutig.

@@ -9,19 +9,19 @@ export const metadata = {
 
 ## Using Operators for Arithmetic
 
-Arithmetic operators tell Python which calculation to perform. For example, `+` adds values, `*` multiplies them, and `` raises one value to a power.
+Arithmetic operators tell Python which calculation to perform. For example, `+` adds values, `*` multiplies them, and `**` raises one value to a power.
 
-Python provides seven main arithmetic operators. Python evaluates them according to their precedence, so <Highlight>an operator with higher precedence runs first</Highlight>.
+Python provides seven main arithmetic operators. Their precedence determines <Highlight>how an expression is grouped</Highlight> when parentheses do not specify the grouping.
 
 ## Operator Precedence Order
 
-When one expression mixes several arithmetic operators, Python needs a fixed order to decide which calculation happens first. That order comes from three precedence levels. An operator on a higher level always finishes before an operator on a lower one, so the level of each operator in an expression fixes the sequence of calculations.
+When one expression mixes several arithmetic operators, Python needs a fixed order to decide which calculation happens first. These seven binary operators fall into **three precedence levels**. Precedence determines how operations are grouped. Parentheses can change that grouping.
 
 ### Highest Precedence
 
 **Exponentiation Operator**
 
-The `**` operator is used for exponentiation and has the highest precedence among the seven binary arithmetic operators discussed here. Unlike the others, it is right-associative.
+The `**` operator is used for exponentiation and has the highest precedence among the seven binary arithmetic operators discussed here. Unlike the others, it is **right-associative**.
 
 <CodeBlock
   data={[
@@ -52,7 +52,7 @@ The `*` operator is used to multiply two numbers.
 
 **Division Operator**
 
-The `/` operator performs division and always produces a float result, even when both operands are integers.
+The `/` operator performs division and produces a **float result** for `int` or `float` operands, even when both are integers.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ Floor division rounds toward negative infinity. For `-7 // 2`, Python gets `-3.5
 
 **Modulo Operator `%`**
 
-The `%` operator returns the remainder of division. This operator follows the mathematical formula <InlineMath math="a \% b = a - (a // b) \times b" />.
+The `%` operator returns the remainder of division. For integer operands and a nonzero divisor, it follows the exact identity <InlineMath math="a \% b = a - (a // b) \times b" />.
 
 <CodeBlock
   data={[
@@ -129,21 +129,21 @@ The `%` operator returns the remainder of division. This operator follows the ma
   ]}
 />
 
-For negative numbers, Python still satisfies the identity above. That is why `5 % 4` produces `1`, while `-5 % 4` produces `3`. Modulo is useful for divisibility checks and, for nonnegative integers, for finding the last digit.
+For negative integers, Python still satisfies the identity above. That is why `5 % 4` produces `1`, while `-5 % 4` produces `3`. Modulo is useful for divisibility checks and, for nonnegative integers, for finding the last digit.
 
 ### Lowest Precedence
 
-Addition and subtraction are evaluated last, after every exponentiation, multiplication, division, floor division, and modulus in the same expression has produced a value. In `2 + 3 * 4`, Python multiplies first and adds afterwards, so the result is `14`. To make the addition happen earlier, wrap it in parentheses and write `(2 + 3) * 4`.
+**Addition and subtraction** have lower precedence than the other five operators. Parentheses can still change the grouping of operations. In `2 + 3 * 4`, Python multiplies first and adds afterwards, so the result is `14`. To make the addition happen earlier, wrap it in parentheses and write `(2 + 3) * 4`.
 
 ## Precedence Rules and Associativity
 
-Python does not read an expression from left to right. Precedence decides which operator runs first, and associativity decides how Python groups operators that sit on the same level. Both rules act on the operators you actually wrote, so `2 ** 3 ** 2` and `8 - 3 - 2` each have exactly one reading.
+**Precedence and associativity** determine how operations are grouped, while Python evaluates operands from left to right. Precedence groups operators from different levels, and associativity groups operators that sit on the same level. Both rules act on the operators you actually wrote, so `2 ** 3 ** 2` and `8 - 3 - 2` each have exactly one reading.
 
 ### Expression Evaluation Order
 
-Python evaluates expressions based on three main rules.
+Three rules determine **how operations are grouped** within an expression.
 
-1. **Precedence order** determines which operator is executed first
+1. **Precedence order** determines which operators bind more tightly
 2. **Left associativity** applies to operators with the same precedence, except exponentiation
 3. **Parentheses** can change the evaluation order
 
@@ -162,7 +162,7 @@ Python evaluates expressions based on three main rules.
 16
 
 >>> 6 / 2 * 4
-12
+12.0
 
 >>> 6 / (2 * 4)
 0.75`
@@ -172,11 +172,11 @@ Python evaluates expressions based on three main rules.
 
 ### Associativity Rules
 
-Associativity determines the evaluation order when there are multiple operators with the same precedence in one expression.
+Associativity determines **grouping at equal precedence** within an expression.
 
 **Left Associativity**
 
-Evaluation starts from left to right. Most operators use this rule.
+Most binary arithmetic operators at the same precedence level are grouped from left to right.
 
 <CodeBlock
   data={[
@@ -184,7 +184,7 @@ Evaluation starts from left to right. Most operators use this rule.
       language: "python",
       filename: "left_associative.py",
       code: `>>> 6 / 2 * 4
-12
+12.0
 
 >>> 10 - 3 - 2
 5`
@@ -196,7 +196,7 @@ Multiplication and division have the same priority, so Python reads this express
 
 **Right Associativity**
 
-Evaluation starts from right to left. Only the exponentiation operator `**` uses this rule.
+Among these seven operators, exponentiation `**` is grouped from right to left.
 
 <CodeBlock
   data={[
@@ -216,7 +216,7 @@ Python groups repeated exponentiation from right to left: `2 ** 3 ** 2 = 2 ** (3
 
 ## Python Shell as Calculator
 
-The `/` operator always produces a float, even when the result is a whole number. The `//` operator produces an integer when both operands are integers and a float when either operand is a float. A nonzero modulo result has the same sign as the divisor and satisfies the equation shown above.
+For `int` or `float` operands, the `/` operator produces a **float**, even when the result is a whole number. The `//` operator produces an integer when both operands are integers and a float when either operand is a float. A nonzero modulo result has the same sign as the divisor. The identity shown above is exact for integers, while floating-point operations can introduce rounding.
 
 ## Arithmetic Operators Summary Table
 
@@ -230,4 +230,4 @@ The `/` operator always produces a float, even when the result is a whole number
 | **Lowest** | `+` | Addition | Left |
 | **Lowest** | `-` | Subtraction | Left |
 
-Operator precedence determines how Python groups an arithmetic expression. Use parentheses to override the standard grouping when the intended order differs.
+**Operator precedence** determines how Python groups an arithmetic expression. Use parentheses to override the standard grouping when the intended order differs.

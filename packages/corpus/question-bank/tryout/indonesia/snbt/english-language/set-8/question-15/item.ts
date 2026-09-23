@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "connotation as a definition without a reviewable action",
+          label: "Connotation as a definition without a reviewable action",
         },
         {
           isCorrect: false,

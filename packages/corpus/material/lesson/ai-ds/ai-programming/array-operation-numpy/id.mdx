@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Broadcasting dalam NumPy
 
-[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) adalah <Highlight>aturan NumPy untuk menggabungkan array dengan shape berbeda yang masih kompatibel</Highlight>. Dimensi berukuran satu diperlakukan seolah-olah ukurannya sama dengan ukuran dimensi yang bersesuaian pada array lain, tanpa menyalin data ke array yang lebih besar.
+[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) adalah aturan NumPy untuk menggabungkan array dengan **shape berbeda yang kompatibel**. Dimensi berukuran satu diperlakukan seolah-olah ukurannya sama dengan ukuran dimensi yang bersesuaian pada array lain, tanpa menyalin data ke array yang lebih besar.
 
 Vektorisasi memungkinkan satu ekspresi bekerja pada seluruh array. NumPy menjalankan loop di baliknya dalam kode terkompilasi yang telah dioptimalkan, sehingga sering lebih cepat daripada loop Python eksplisit.
 
@@ -43,12 +43,12 @@ Tiga aturan menutup semua kemungkinan. Tabel di bawah ini menyebutkan syarat yan
 | Aturan | Syarat pada shape | Yang NumPy lakukan |
 | --- | --- | --- |
 | Aturan <InlineMath math="1" /> | Kedua shape punya jumlah dimensi yang berbeda | NumPy menambahkan dimensi berukuran <InlineMath math="1" /> di sebelah kiri shape yang lebih pendek |
-| Aturan <InlineMath math="2" /> | Sebuah pasangan sejajar berukuran sama, atau salah satu sisinya berukuran <InlineMath math="1" /> | NumPy mengulang satu entri pada dimensi itu sampai kedua ukurannya sama |
+| Aturan <InlineMath math="2" /> | Sebuah pasangan sejajar berukuran sama, atau salah satu sisinya berukuran <InlineMath math="1" /> | Ukuran yang sama langsung cocok. Dimensi berukuran satu dipakai ulang secara konseptual tanpa membuat salinan berulang |
 | Aturan <InlineMath math="3" /> | Sebuah pasangan sejajar berukuran berbeda dan tidak ada sisi yang berukuran <InlineMath math="1" /> | NumPy menghasilkan `ValueError` |
 
 ### Array dengan Skalar
 
-Broadcasting juga berlaku antara array dan satu bilangan. NumPy melebarkan skalar itu ke setiap elemen, sehingga kamu tidak perlu menulis loop.
+Broadcasting juga berlaku antara **array dan satu bilangan**. NumPy melebarkan skalar itu ke setiap elemen, sehingga kamu tidak perlu menulis loop.
 
 <CodeBlock
   data={[
@@ -77,7 +77,7 @@ print(f"Hasil a + b: {hasil}")
 
 ### Array Dua Dimensi dengan Array Satu Dimensi
 
-Jika dua array memiliki bentuk berbeda yang masih kompatibel, NumPy dapat menyesuaikannya secara otomatis melalui broadcasting. Dengan cara ini, satu operasi dapat diterapkan ke setiap baris atau kolom tanpa menyalin nilai secara manual.
+Jika dua array memiliki **bentuk berbeda yang masih kompatibel**, NumPy dapat menyesuaikannya secara otomatis melalui broadcasting. Dengan cara ini, satu operasi dapat diterapkan ke setiap baris atau kolom tanpa menyalin nilai secara manual.
 
 <CodeBlock
   data={[
@@ -107,7 +107,7 @@ print(hasil)
 
 ### Kasus Broadcasting Gagal
 
-Tidak setiap pasangan bentuk dapat disejajarkan. Contoh berikut memperlihatkan pasangan bentuk yang melanggar aturan <InlineMath math="3" /> dan pesan galat yang dikembalikan NumPy.
+Pada shape `(2, 3)` dan `(2,)`, **dimensi terakhir tidak cocok**: ukurannya `3` dan `2`, dan tidak ada yang bernilai `1`. NumPy menghasilkan `ValueError` sebelum penjumlahan dilakukan.
 
 <CodeBlock
   data={[
@@ -135,7 +135,7 @@ except ValueError as e:
 
 ## Operasi Aritmetika Array
 
-Operator aritmetika NumPy bekerja elemen per elemen, kecuali operasi yang memang memiliki semantik lain, seperti perkalian matriks.
+Operator aritmetika NumPy bekerja **elemen per elemen**, kecuali operasi yang memang memiliki semantik lain, seperti perkalian matriks.
 
 Ketika array digabungkan dengan skalar, broadcasting menerapkan skalar itu pada setiap elemen. Kita tidak perlu menulis indexing loop secara manual.
 
@@ -192,16 +192,16 @@ print(f"a * b = {a * b}")
 # Perkalian matriks (dot product)
 print("Perkalian matriks:")
 print(f"a @ b = {a @ b}")
-# Output: 10 (hasil dot product)`
+# Output: 10`
     }
   ]}
 />
 
-Perkalian elemen per elemen dan perkalian matriks memakai aturan yang berbeda. Operator `*` mengalikan elemen pada posisi yang sama. Operator `@` dan fungsi `np.dot()` menghitung perkalian baris dengan kolom sesuai aturan aljabar linear.
+Operator `*` mengalikan **elemen pada posisi yang sama**. Untuk dua array satu dimensi di atas, `@` menghasilkan hasil kali titik: `0 + 3 + 4 + 3 + 0` sama dengan `10`. Untuk dua matriks, `@` memakai aturan baris dikalikan kolom. Jangan menyamakan `np.dot()` dengan `@` untuk semua bentuk array. Aturan keduanya berbeda pada dimensi yang lebih tinggi.
 
 ### Perbandingan dan Logika
 
-Operasi perbandingan NumPy menghasilkan array boolean. Gunakan array tersebut untuk menyaring data atau menggabungkan beberapa kondisi.
+Operasi perbandingan NumPy menghasilkan **array boolean**. Gunakan array tersebut untuk menyaring data atau menggabungkan beberapa kondisi.
 
 <CodeBlock
   data={[
@@ -234,7 +234,7 @@ Untuk logika boolean elemen per elemen, gunakan `~` untuk NOT, `&` untuk AND, da
 
 ## Fungsi Statistik dan Reduksi
 
-Fungsi reduksi menggabungkan banyak elemen menjadi lebih sedikit nilai. Tanpa axis, seluruh array dapat direduksi menjadi satu nilai. Dengan axis, hanya dimensi tersebut yang direduksi. Pada tabel nilai ujian, hasilnya dapat berupa rata-rata per mata pelajaran atau per siswa.
+Fungsi reduksi menggabungkan **banyak elemen menjadi lebih sedikit nilai**. Tanpa axis, seluruh array dapat direduksi menjadi satu nilai. Dengan axis, hanya dimensi tersebut yang direduksi. Pada tabel nilai ujian, hasilnya dapat berupa rata-rata per mata pelajaran atau per siswa.
 
 NumPy menyediakan fungsi statistik untuk menghitung ringkasan seperti jumlah, rata-rata, dan simpangan baku. Setiap fungsi dapat diterapkan pada seluruh array atau sumbu tertentu.
 
@@ -271,7 +271,7 @@ print(f"Standar deviasi: {np.std(data):.2f}")
 
 ### Operasi dengan Sumbu
 
-Pada array dua dimensi, `axis=0` mereduksi dimensi baris dan menghasilkan satu nilai per kolom. `axis=1` mereduksi dimensi kolom dan menghasilkan satu nilai per baris.
+Pada array dua dimensi, `axis=0` mereduksi dimensi baris dan menghasilkan **satu nilai per kolom**. `axis=1` mereduksi dimensi kolom dan menghasilkan satu nilai per baris.
 
 Sumbu yang dipilih menentukan dimensi yang direduksi oleh fungsi statistik. Pada data penjualan bulanan untuk beberapa produk, satu sumbu dapat menghasilkan total per produk dan sumbu lainnya menghasilkan total per bulan.
 
@@ -309,7 +309,7 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
 
 ## Manipulasi Bentuk Array
 
-Operasi shape mengubah cara elemen-elemen yang sama diindeks. Reshape mempertahankan jumlah elemen, tetapi menempatkannya ke dalam susunan dimensi yang berbeda.
+Operasi shape mengubah cara elemen-elemen yang sama diindeks. Reshape mempertahankan **jumlah elemen**, tetapi menempatkannya ke dalam susunan dimensi yang berbeda.
 
 Array NumPy yang baru dibuat biasanya tersimpan berurutan dengan tata letak `C-contiguous`. Dalam tata letak ini, indeks terakhir berubah paling cepat saat data dibaca dari memori. Hasil slicing atau transpose dapat merujuk ke data yang sama dengan jarak antarelemen memori yang berbeda. Karena itu, perhatikan argumen `order` dan atribut `strides` saat memakai `reshape()` atau `flatten()`.
 
@@ -328,14 +328,14 @@ print(f"Bentuk: {a.shape}")
 
 # Melihat bagaimana disimpan dalam memori
 print(f"Disimpan dalam memori sebagai: {a.ravel()}")
-# Output: [0 1 2 3] (row-major order)`
+# Output: [0 1 2 3]`
     }
   ]}
 />
 
 ### Flatten dan Ravel
 
-`flatten()` dan `ravel()` sama-sama menghasilkan array satu dimensi. `flatten()` selalu membuat salinan, sedangkan `ravel()` mengembalikan view jika memungkinkan dan salinan jika tata letak memorinya mengharuskan demikian.
+`flatten()` dan `ravel()` sama-sama menghasilkan array satu dimensi. `flatten()` **selalu membuat salinan**, sedangkan `ravel()` mengembalikan view jika memungkinkan dan salinan jika tata letak memorinya mengharuskan demikian.
 
 <CodeBlock
   data={[
@@ -376,7 +376,7 @@ print(a)`
 
 ### Reshape dan Resize
 
-`reshape()` mengubah shape selama jumlah elemennya tetap sama dan mengembalikan `view` jika memungkinkan. Method `ndarray.resize()` yang digunakan di bawah mengubah array asli secara langsung.
+`reshape()` mengubah shape selama jumlah elemennya tetap sama dan mengembalikan `view` jika memungkinkan. Method `ndarray.resize()` yang digunakan di bawah **mengubah array asli secara langsung**.
 
 <CodeBlock
   data={[
@@ -411,7 +411,7 @@ print(a_flat)  # Sekarang a_flat sudah menjadi 2D`
 
 ### Transpose
 
-Transpose menukar urutan `axis` array. Pada array dua dimensi, baris dan kolom saling bertukar. NumPy menyediakan method `transpose()` dan atribut `.T` yang lebih singkat.
+Transpose menukar urutan `axis` array. Pada array dua dimensi, **baris dan kolom saling bertukar**. NumPy menyediakan method `transpose()` dan atribut `.T` yang lebih singkat.
 
 <CodeBlock
   data={[
@@ -443,9 +443,9 @@ print("Apakah transpose adalah view?", np.shares_memory(a, b))`
 
 ## Standardisasi Data dengan Z Score
 
-Standardisasi z-score memusatkan setiap fitur pada rata-rata <InlineMath math="0" /> dan menskalakannya ke standar deviasi <InlineMath math="1" />. Operasi ini hanya terdefinisi untuk fitur dengan standar deviasi tak nol. Setelah standardisasi, fitur yang semula memakai skala berbeda dapat dibandingkan pada skala yang sama.
+Standardisasi z-score memusatkan setiap fitur pada rata-rata <InlineMath math="0" /> dan menskalakannya ke standar deviasi <InlineMath math="1" />. Operasi ini hanya terdefinisi untuk fitur dengan **standar deviasi tak nol**. Setelah standardisasi, fitur yang semula memakai skala berbeda dapat dibandingkan pada skala yang sama.
 
-Formula Z-Transform adalah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dengan:
+Rumus standardisasi z-score adalah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dengan:
 - <InlineMath math="X" /> adalah matriks fitur berukuran <InlineMath math="n \times k" />
 - <InlineMath math="n" /> adalah jumlah observasi (baris)
 - <InlineMath math="k" /> adalah jumlah fitur (kolom)
@@ -456,12 +456,12 @@ Formula Z-Transform adalah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, den
   data={[
     {
       language: "python",
-      filename: "z_transform.py",
+      filename: "z_score.py",
       code: `import numpy as np
 
 # Membuat data contoh (5 observasi, 3 fitur)
-np.random.seed(42)
-X = np.random.randn(5, 3) * 10 + 50  # Data dengan mean~50, std~10
+rng = np.random.default_rng(42)
+X = rng.standard_normal((5, 3)) * 10 + 50  # Sampel dari distribusi normal dengan mean 50 dan std 10
 
 print("Data asli:")
 print(X)
@@ -474,17 +474,16 @@ sigma = np.std(X, axis=0)  # Standar deviasi setiap kolom
 print(f"Rata-rata setiap fitur: {mu}")
 print(f"Standar deviasi setiap fitur: {sigma}")
 
-# Melakukan Z-Transform
+# Melakukan standardisasi z-score
 Z = (X - mu) / sigma
 
-print("Data setelah Z-Transform:")
+print("Data setelah standardisasi z-score:")
 print(Z)
 
 # Verifikasi hasil standardisasi
 print("Verifikasi standardisasi:")
 print(f"Rata-rata baru: {np.mean(Z, axis=0)}")  # Harus mendekati 0
 print(f"Standar deviasi baru: {np.std(Z, axis=0)}")  # Harus mendekati 1
-# Output rata-rata baru: [ 1.24344979e-15  8.88178420e-17 -1.77635684e-16] (mendekati 0)
 # Output standar deviasi baru: [1. 1. 1.]`
     }
   ]}

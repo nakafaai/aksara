@@ -6,6 +6,10 @@ Classify each target before changing its bytes.
 
 - Nakafa-authored prose and localized metadata receive the authored review
   workflow below.
+- Lessons follow teacher-led pedagogy. Articles follow professional
+  scientific-journal analysis and retain claim-matched sources and analytical
+  visuals. Assessed prompts retain real-exam language and structure. Worked
+  answers retain complete post-attempt pedagogy.
 - Prompts and response options whose language is being assessed retain that assessed
   language.
 - Byte-exact official sources and quoted material retain their required source

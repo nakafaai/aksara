@@ -3,17 +3,17 @@ export const metadata = {
     description: "Python comparison and boolean operators, precedence, falsy/truthy values, and safe float comparisons.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
 ## Operator Precedence Order
 
-Operator precedence <Highlight>determines how Python groups an expression when parentheses do not state the grouping explicitly</Highlight>. This rule describes the grouping. Python may evaluate the operands in a different order from the one you see on the page.
+Operator precedence <Highlight>determines how Python groups an expression when parentheses do not state the grouping explicitly</Highlight>. This rule describes the grouping. Python evaluates operands from left to right. Precedence determines how operations on those operands are grouped.
 
 <Mermaid
-  title="Which Operator Runs First"
-  description="Read evaluation order from parentheses to logic operators so expression results are not guessed."
+  title="Precedence of the Operators Discussed"
+  description="The diagram summarizes the precedence of the operators discussed, not the evaluation time of each operand."
   chart={`
     flowchart LR
         A["parentheses, calls, indexing"] --> B["** exponent"]
@@ -26,6 +26,8 @@ Operator precedence <Highlight>determines how Python groups an expression when p
         H --> I["or"]
   `}
 />
+
+Exponentiation treats a unary operator on its right specially: `2 ** -1` means `2 ** (-1)` and equals `0.5`. By contrast, `-2 ** 2` means `-(2 ** 2)` and equals `-4`.
 
 Higher-precedence operators bind more tightly. Most binary operators at the same level group from left to right, but exponentiation groups from right to left and comparisons form chains. Parentheses are the clearest choice whenever the intended grouping might be missed.
 
@@ -40,7 +42,7 @@ Comparison operators are used to compare two values and produce boolean values (
 - `>` greater than
 - `>=` greater than or equal to
 
-These operators return a `bool`. Equality can compare objects of different types, but ordering comparisons such as `<` require types that define a compatible ordering and may raise `TypeError` otherwise. Comparisons share a precedence level and can be chained.
+Comparisons of built-in values such as numbers and strings return **boolean values**. User-defined objects may implement other comparison results. Equality can compare objects of different types, but ordering comparisons such as `<` require types that define a compatible ordering and may raise `TypeError` otherwise. Comparisons share a precedence level and can be chained.
 
 <CodeBlock
   data={[
@@ -93,7 +95,7 @@ Boolean operators combine multiple conditions or modify boolean values. Python p
       language: "python",
       filename: "boolean_operators.py",
       code: `# Example of boolean operators
->>> 4.0 and 5.0  # evaluates 4.0 as true, evaluates 5.0 as true, returns 5.0
+>>> 4.0 and 5.0  # 4.0 is truthy, then returns 5.0 without truth-testing 5.0
 5.0
 
 >>> 0 and 5  # evaluates 0 as false, returns 0 (short-circuit)
@@ -102,7 +104,7 @@ Boolean operators combine multiple conditions or modify boolean values. Python p
 >>> 4.0 or 5.0  # evaluates 4.0 as true, returns 4.0 (short-circuit)
 4.0
 
->>> 0 or 5  # evaluates 0 as false, evaluates 5 as true, returns 5
+>>> 0 or 5  # 0 is falsy, then returns 5 without truth-testing 5
 5
 
 >>> not 4.0  # evaluates 4.0 as true, returns False
@@ -118,7 +120,7 @@ The `and` and `or` operators use <Highlight>short-circuit evaluation</Highlight>
 
 ## Values in Boolean Context
 
-Any Python object can appear where a condition is expected, including objects that are not the values `True` and `False`. Python then decides for itself which values count as false. Under that rule an empty list, the number zero, and the empty string all behave like `False` inside an `if`, while a non-empty container behaves like `True`.
+Any Python object can undergo **truth testing**, including objects that are not the values `True` and `False`. Python then decides for itself which values count as false. Under that rule an empty list, the number zero, and the empty string all behave like `False` inside an `if`, while a non-empty container behaves like `True`.
 
 ### Falsy and Truthy Values
 
@@ -131,32 +133,29 @@ Any Python object can appear where a condition is expected, including objects th
         B -->|Falsy| C[False]
         B -->|Falsy| D[None]
         B -->|Falsy| E["Zero and empty containers"]
-        B -->|Truthy| F["All other values"]
+        B -->|Truthy| F["Examples of truthy built-ins"]
         F --> G["Non-zero numbers"]
         F --> H["Non-empty values"]
   `}
 />
 
-**Values considered `False` (Falsy):**
+These built-in values follow **truthiness rules** that you can test with `bool()`.
 
-1. `False` itself
-2. `None` (from NoneType)
-3. Zero from all numeric data types:
-   - `0` (integer zero)
-   - `0.0` (float zero)
-   - `0j` (complex zero, where j is the imaginary unit)
-4. Empty string `""`
-5. Empty containers: `[]`, `{}`, `()`, `set()`
+| Group | Falsy examples | Truthy examples |
+| --- | --- | --- |
+| Boolean | `False` | `True` |
+| Missing value | `None` | Not applicable |
+| Numbers | `0`, `0.0`, `0j` | `-1`, `0.5`, `2j` |
+| Strings | `""` | `"0"` |
+| Containers | `[]`, `{}`, `()`, `set()` | `[0]`, `{"a": 0}` |
 
-**Values considered `True` (Truthy):**
-
-1. Other nonzero and nonempty built-in values
+The string `"0"` and list `[0]` remain truthy because they are not empty. The value of an element does not determine the truthiness of its built-in container.
 
 User-defined objects can customize truth testing with `__bool__()` or `__len__()`. If neither is defined, an instance is truthy by default.
 
 ### Boolean Data Type
 
-The `bool` type in Python represents truth values `False` and `True`, is a subtype of integer (`int`), and booleans behave like <InlineMath math="0" /> and <InlineMath math="1" /> in mathematical operations.
+The `bool` type in Python represents **truth values** `False` and `True`, is a subtype of integer (`int`), and booleans behave like <InlineMath math="0" /> and <InlineMath math="1" /> in mathematical operations.
 
 <CodeBlock
   data={[
@@ -181,7 +180,7 @@ False
 
 ## Combining Operators
 
-You can combine comparison operators with boolean operators to create more complex conditions. Python also allows more natural comparison chaining like `1 < 2 < 3`.
+You can combine comparison operators with boolean operators to create **combined conditions**. Python also allows more natural comparison chaining like `1 < 2 < 3`.
 
 <CodeBlock
   data={[
@@ -210,28 +209,28 @@ True`
 
 ## Floating Point Number Comparison
 
-Many decimal fractions have no exact finite binary floating-point representation. Arithmetic rounds intermediate results, so two mathematically equivalent calculations can produce nearby but unequal floats.
+Many decimal fractions have no exact finite binary floating-point representation. Arithmetic rounds intermediate results, so two mathematically equivalent calculations can produce **nearby but unequal floats**.
 
 ### Float Precision Issues
 
-The diagram traces a decimal value into binary floating-point storage, which is where the comparison surprise comes from.
+A decimal fraction may require **rounding in binary**. The diagram distinguishes exactly representable values from values that need rounding.
 
 <Mermaid
   title="Decimals Can Compare Differently Than They Look"
-  description="Decimal values become binary floats, and limited precision can cause a rounding error that makes a comparison fail. math.isclose with a relative or absolute tolerance compares the values safely."
+  description="Decimal values become binary floats, and limited precision can cause a rounding error that makes a comparison fail. math.isclose with a relative or absolute tolerance compares the values against the chosen tolerance."
   chart={`
     flowchart TD
         A[Decimal Numbers] --> B[Binary Conversion]
         B --> C[Float Representation]
-        C --> D{Limited Precision?}
-        D -->|Yes| E[Rounding Error]
-        D -->|No| F[Exact Representation]
-        E --> G[Comparison Fails]
-        F --> H[Comparison Succeeds]
+        C --> D{Exactly representable?}
+        D -->|No| E[Rounding]
+        D -->|Yes| F[Exact Representation]
+        E --> G[Equality can differ]
+        F --> H[This value is stored exactly]
 
         I[Solution math.isclose] --> J[Relative Tolerance]
         I --> K[Absolute Tolerance]
-        J --> L[Safe Comparison]
+        J --> L[Comparison with tolerance]
         K --> L
   `}
 />
@@ -263,6 +262,14 @@ True`
 
 ### Solution with the Isclose Function
 
-Python provides the `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` function to test approximate equality. This function uses relative tolerance (rel_tol) and absolute tolerance (abs_tol) to determine whether two values are close enough.
+Python provides the `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` function to test approximate equality. This function uses **relative and absolute tolerances** through `rel_tol` and `abs_tol` to determine whether two values are close enough.
+
+
+For `math.isclose(100, 95, rel_tol=0.05)`, the absolute difference is 5. Relative tolerance uses the larger absolute value, which is 100.
+
+<BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0.05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
+
+The difference does not exceed the tolerance, so the result is `True`. With `abs_tol=5`, the absolute tolerance of 5 also accepts this difference.
+
 
 > Use exact equality when exact identity of the floating-point value is genuinely required. For measured or calculated quantities, choose tolerances from the problem domain and use `math.isclose()`. Near zero, relative tolerance alone shrinks with the compared values, so set an `abs_tol` that reflects the smallest meaningful difference.

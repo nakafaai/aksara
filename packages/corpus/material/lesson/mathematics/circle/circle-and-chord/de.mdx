@@ -10,7 +10,7 @@ export const metadata = {
 
 ## Zwei Punkte auf der Kreislinie verbinden
 
-<Highlight>Eine Sehne ist eine Strecke, deren beide Endpunkte auf einem Kreis liegen.</Highlight> Ein Durchmesser ist die besondere Sehne durch den Mittelpunkt. Andere Sehnen müssen nicht durch den Mittelpunkt verlaufen.
+Eine Sehne ist eine <Highlight>Strecke mit beiden Endpunkten auf einem Kreis</Highlight>. Ein Durchmesser ist die besondere Sehne durch den Mittelpunkt. Andere Sehnen müssen nicht durch den Mittelpunkt verlaufen.
 
 <LineEquation
   title="Sehnen auf einem Kreis"
@@ -94,7 +94,7 @@ Die Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> überspannen gl
 
 ## Zusammenhang von Sehnenlänge und Abstand zum Mittelpunkt
 
-Sehnenlänge und Abstand vom Mittelpunkt bestimmen einander. Wird der Abstand kleiner, wird die Sehne länger, und beide Größen lassen sich mit dem Satz des Pythagoras ineinander umrechnen.
+Im **selben Kreis** bestimmen Sehnenlänge und senkrechter Abstand vom Mittelpunkt einander. Wird der Abstand kleiner, wird die Sehne länger, und beide Größen lassen sich mit dem Satz des Pythagoras ineinander umrechnen.
 
 ### Sehnen gleicher Länge
 
@@ -185,7 +185,7 @@ Wenn <InlineMath math="PQ = RS" />, dann ist der Abstand vom Kreismittelpunkt <I
 
 ### Senkrechte vom Mittelpunkt auf eine Sehne
 
-Das Lot vom Kreismittelpunkt auf eine Sehne halbiert die Sehne.
+Das Lot vom Kreismittelpunkt auf eine Sehne **halbiert die Sehne**.
 
 <LineEquation
   title="Senkrechte vom Mittelpunkt auf eine Sehne"
@@ -251,8 +251,8 @@ Das Lot vom Kreismittelpunkt auf eine Sehne halbiert die Sehne.
           (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
         return [
           { x: chordMidX - 0.3, y: chordMidY, z: 0 },
-          { x: chordMidX - 0.3, y: chordMidY + 0.3, z: 0 },
-          { x: chordMidX, y: chordMidY + 0.3, z: 0 },
+          { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
+          { x: chordMidX, y: chordMidY - 0.3, z: 0 },
         ];
       })(),
       color: "#d97706",
@@ -267,7 +267,7 @@ In der Abbildung gilt <InlineMath math="OM \perp AB" />. Der Punkt <InlineMath m
 
 ## Sehnenlänge
 
-Eine Sehne und ihr Mittelpunktswinkel bilden mit zwei Radien ein gleichschenkliges Dreieck. Die Formel unten entsteht, indem dieses Dreieck halbiert wird. Aus dem halben Dreieck ergibt sich die halbe Sehnenlänge als <InlineMath math="r\sin(\theta/2)" />.
+Eine Sehne und ihr Mittelpunktswinkel bilden mit zwei Radien ein gleichschenkliges Dreieck. Die Formel unten entsteht, indem **dieses Dreieck halbiert** wird. Aus dem halben Dreieck ergibt sich die halbe Sehnenlänge als <InlineMath math="r\sin(\theta/2)" />.
 
 ### Formel für die Sehnenlänge
 
@@ -278,7 +278,7 @@ Um die Länge einer Sehne zu berechnen, können wir die Formel verwenden:
 Dabei gilt:
 
 - <InlineMath math="r" /> = Radius des Kreises
-- <InlineMath math="\theta" /> = der kleinere Mittelpunktswinkel über der Sehne. Der Rechnermodus muss zur Winkeleinheit passen
+- <InlineMath math="\theta" /> = der **kleinere Mittelpunktswinkel** über der Sehne. Der Rechnermodus muss zur Winkeleinheit passen
 
 Wenn der kleinere Mittelpunktswinkel <InlineMath math="\theta" /> von <InlineMath math="0" /> bis <InlineMath math="180^\circ" /> wächst, steigt <InlineMath math="\sin(\theta/2)" /> von <InlineMath math="0" /> bis <InlineMath math="1" />. Die Sehnenlänge wächst dadurch von <InlineMath math="0" /> bis zum Durchmesser <InlineMath math="2r" />.
 
@@ -371,13 +371,13 @@ Wenn der kleinere Mittelpunktswinkel <InlineMath math="\theta" /> von <InlineMat
 
 ### Abstand einer Sehne vom Mittelpunkt
 
-Der Abstand einer Sehne vom Mittelpunkt des Kreises kann mit der Formel berechnet werden:
+Im rechtwinkligen Dreieck ist der Mittelpunktabstand die Ankathete zum halben Mittelpunktswinkel. Der Radius ist die Hypotenuse. Der **Kosinus des halben Winkels** liefert daher:
 
 <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right)" />
 
-Oder wenn die Sehnenlänge <InlineMath math="l" /> bekannt ist:
+Ist die Sehnenlänge <InlineMath math="l" /> bekannt, verwende die **halbe Sehnenlänge** als eine Kathete des rechtwinkligen Dreiecks:
 
-<BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+<BlockMath math="d^2+\left(\frac{l}{2}\right)^2=r^2\quad\Longrightarrow\quad d=\sqrt{r^2-\left(\frac{l}{2}\right)^2}" />
 
 ## Sehnensatz
 
@@ -385,108 +385,34 @@ Wenn sich zwei Sehnen innerhalb eines Kreises schneiden, dann ist das Produkt de
 
 <LineEquation
   title="Schnittpunkt zweier Sehnen"
-  description={
-    <>
-      Sehnensatz: <InlineMath math="PA \times PB = PC \times PD" />.
-    </>
-  }
+  description="Zwei Sehnen schneiden sich außerhalb des Kreismittelpunkts."
+  cameraPosition={[0, 0, 15]}
+  showZAxis={false}
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const angle1 = Math.PI / 3;
-        const angle2 = (4 * Math.PI) / 3;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const angle1 = (5 * Math.PI) / 6;
-        const angle2 = (11 * Math.PI) / 6;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        // Schnittpunkt P berechnen
-        const A = {
-          x: 5 * Math.cos(Math.PI / 3),
-          y: 5 * Math.sin(Math.PI / 3),
-        };
-        const B = {
-          x: 5 * Math.cos((4 * Math.PI) / 3),
-          y: 5 * Math.sin((4 * Math.PI) / 3),
-        };
-        const C = {
-          x: 5 * Math.cos((5 * Math.PI) / 6),
-          y: 5 * Math.sin((5 * Math.PI) / 6),
-        };
-        const D = {
-          x: 5 * Math.cos((11 * Math.PI) / 6),
-          y: 5 * Math.sin((11 * Math.PI) / 6),
-        };
-
-        // Gerade AB in Parameterform
-        // Gerade CD in Parameterform
-        // Schnittpunkt bestimmen
-        const denominator =
-          (A.x - B.x) * (C.y - D.y) - (A.y - B.y) * (C.x - D.x);
-        const t =
-          ((A.x - C.x) * (C.y - D.y) - (A.y - C.y) * (C.x - D.x)) / denominator;
-
-        const P = {
-          x: A.x + t * (B.x - A.x),
-          y: A.y + t * (B.y - A.y),
-        };
-
-        return [{ x: P.x, y: P.y, z: 0 }];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.3, 0, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 15]}
+    { kind: "circle-outline", radius: 5, color: "#9333ea" },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
+      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
+      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
+      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
+    ] },
+    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
+  ]}
 />
 
-In der Abbildung oben gilt: <InlineMath math="PA \times PB = PC \times PD" />
+Der Kreis im Diagramm hat den Radius <InlineMath math="5" /> und den Schnittpunkt <InlineMath math="P(1,0)" />. Die horizontalen Teilstrecken sind unterschiedlich lang. Ihr **Produkt** entspricht aber dem Produkt der vertikalen Teilstrecken.
+
+<MathContainer>
+  <BlockMath math="PA=5-1=4,\quad PB=1-(-5)=6" />
+  <BlockMath math="PC=PD=\sqrt{5^2-1^2}=\sqrt{24}" />
+  <BlockMath math="PA\cdot PB=4\cdot6=24=\sqrt{24}\cdot\sqrt{24}=PC\cdot PD" />
+</MathContainer>
 
 ## Umfangswinkel im selben Kreissegment
 
-Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte auf derselben Seite der Sehne liegen.
+Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte auf **derselben Seite** der Sehne liegen.
 
 <LineEquation
   title="Umfangswinkel im selben Kreissegment"
@@ -569,7 +495,7 @@ In der Abbildung gilt <InlineMath math="\angle ACB = \angle ADB" />, weil beide 
 
 ## Apothem einer Sehne
 
-Das Apothem einer Sehne ist das Lot vom Kreismittelpunkt auf die Sehne. Seine Länge ist der kürzeste Abstand zwischen Mittelpunkt und Sehne.
+Das Apothem einer Sehne ist das Lot vom Kreismittelpunkt auf die Sehne. Seine Länge ist der **kürzeste Abstand** zwischen Mittelpunkt und Sehne.
 
 <LineEquation
   title="Apothem einer Sehne"
@@ -651,7 +577,7 @@ Dabei gilt:
 
 ## Parallele Sehnen
 
-Zwei parallele Sehnen in einem Kreis haben besondere Eigenschaften.
+Zwei parallele Sehnen begrenzen auf den gegenüberliegenden Kreisseiten **gleich lange Verbindungsbögen**. Vergleiche den kleinen Bogen links mit dem kleinen Bogen rechts, nicht mit dem langen Bogen um die andere Kreisseite.
 
 <LineEquation
   title="Parallele Sehnen"
@@ -712,7 +638,7 @@ Zwei parallele Sehnen in einem Kreis haben besondere Eigenschaften.
         const angle1 = Math.atan2(y1, -x1);
         const y2 = -2;
         const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, -x2);
+        const angle2 = Math.atan2(y2, -x2) + 2 * Math.PI;
         const numPoints = 20;
         return Array.from({ length: numPoints + 1 }, (_, i) => {
           const angle = angle1 + (angle2 - angle1) * (i / numPoints);
@@ -756,12 +682,9 @@ Wenn <InlineMath math="AB \parallel CD" />, dann ist Bogen <InlineMath math="AC"
 
 ## Übungsaufgaben
 
-Jede Aufgabe gibt ein Maß einer Sehne und verlangt ein anderes. Bestimme den passenden Zusammenhang und berechne den fehlenden Wert.
+Die ersten vier Aufgaben nutzen Winkel, Mittelpunktabstände oder Teilstrecken, um fehlende Maße zu bestimmen. In der letzten Aufgabe beweist du die maximale Sehnenlänge mithilfe des **größten möglichen Sinuswerts**.
 
-1. Ein Kreis hat einen Radius von <InlineMath math="10 \text{ cm}" />. Der kleinere Mittelpunktswinkel über einer Sehne beträgt <InlineMath math="60^\circ" />. Bestimme:
-
-   - Die Länge der Sehne
-   - Den Abstand der Sehne vom Mittelpunkt des Kreises
+1. Ein Kreis hat einen Radius von <InlineMath math="10 \text{ cm}" />. Der kleinere Mittelpunktswinkel über einer Sehne beträgt <InlineMath math="60^\circ" />. Bestimme die Sehnenlänge und den Abstand der Sehne vom Kreismittelpunkt.
 
 2. Zwei Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> schneiden sich im Punkt <InlineMath math="P" /> innerhalb eines Kreises. Gegeben sind <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" /> und <InlineMath math="PC = 3 \text{ cm}" />. Bestimme die Länge von <InlineMath math="PD" />.
 
@@ -773,69 +696,69 @@ Jede Aufgabe gibt ein Maß einer Sehne und verlangt ein anderes. Bestimme den pa
 
 ### Ausführliche Lösungen
 
-1. **Sehnenlänge und Abstand vom Kreismittelpunkt berechnen**
+**Lösung 1**: Sehnenlänge und Abstand vom Kreismittelpunkt berechnen
 
-   Gegeben: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
+Gegeben: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
-     <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0{,}5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
-     <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
-     <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0{,}5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
+  <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
+  <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
+</MathContainer>
 
-2. **Sehnensatz**
+**Lösung 2**: Sehnensatz
 
-   Gegeben: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
+Gegeben: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="PA \times PB = PC \times PD" />
-     <BlockMath math="4 \times 6 = 3 \times PD" />
-     <BlockMath math="24 = 3 \times PD" />
-     <BlockMath math="PD = 8 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="PA \times PB = PC \times PD" />
+  <BlockMath math="4 \times 6 = 3 \times PD" />
+  <BlockMath math="24 = 3 \times PD" />
+  <BlockMath math="PD = 8 \text{ cm}" />
+</MathContainer>
 
-3. **Abstand der Sehne vom Kreismittelpunkt berechnen**
+**Lösung 3**: Abstand der Sehne vom Kreismittelpunkt berechnen
 
-   Gegeben: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
+Gegeben: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
-     <BlockMath math="d = \sqrt{13^2 - 12^2}" />
-     <BlockMath math="d = \sqrt{169 - 144}" />
-     <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+  <BlockMath math="d = \sqrt{13^2 - 12^2}" />
+  <BlockMath math="d = \sqrt{169 - 144}" />
+  <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
+</MathContainer>
 
-4. **Parallele Sehnen**
+**Lösung 4**: Parallele Sehnen
 
-   Gegeben: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
+Gegeben: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
 
-   Für die erste Sehne:
+Für die erste Sehne:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-   Für die zweite Sehne:
+Für die zweite Sehne:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
+</MathContainer>
 
-5. **Beweis, dass der Durchmesser die längste Sehne ist**
+**Lösung 5**: Beweis, dass der Durchmesser die längste Sehne ist
 
-   Für jede Sehne sei <InlineMath math="\theta" /> der kleinere Mittelpunktswinkel, sodass <InlineMath math="0^\circ\leq\theta\leq180^\circ" /> gilt:
+Für jede Sehne sei <InlineMath math="\theta" /> der kleinere Mittelpunktswinkel, sodass <InlineMath math="0^\circ\leq\theta\leq180^\circ" /> gilt:
 
-   <MathContainer>
-     <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
+</MathContainer>
 
-   Der Maximalwert von <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> wird erreicht, wenn <InlineMath math="\frac{\theta}{2} = 90^\circ" />, also <InlineMath math="\theta = 180^\circ" />.
+Der Maximalwert von <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> wird erreicht, wenn <InlineMath math="\frac{\theta}{2} = 90^\circ" />, also <InlineMath math="\theta = 180^\circ" />.
 
-   Bei <InlineMath math="\theta = 180^\circ" /> verläuft die Sehne durch den Mittelpunkt des Kreises (Durchmesser) mit der Länge:
+Bei <InlineMath math="\theta = 180^\circ" /> verläuft die Sehne durch den Mittelpunkt des Kreises (Durchmesser) mit der Länge:
 
-   <MathContainer>
-     <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
+</MathContainer>
 
-   Daher ist der Durchmesser die längste Sehne.
+Daher ist der Durchmesser die längste Sehne.

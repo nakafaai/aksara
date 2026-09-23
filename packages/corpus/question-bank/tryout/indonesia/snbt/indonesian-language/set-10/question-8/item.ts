@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "$$67$$ mililiter, karena air permukaan setelah lima menit ditambahkan ke air yang keluar.",
+            "$$67$$ mililiter, karena $$8$$ mililiter air permukaan ditambahkan ke selisih $$150$$ dan $$91$$ mililiter.",
         },
         {
           isCorrect: true,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil vertritt die Behauptung "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht"; der folgende nutzt "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition" als Hauptbeleg.',
+            "Der Anfang erklärt das schriftliche Stück zum Original, der spätere Teil entfernt mündliche Varianten aus der Aufführung.",
         },
         {
           isCorrect: true,
           label:
-            "Die Quellenvielfalt erzeugt ein Authentizitätsproblem; Inszenierung und Programmheft bilden eine am Publikum prüfbare Antwort.",
+            "Vielfältige Quellen prägen die Inszenierung, danach verbessert eine Publikumsprobe die Darstellung und das Programm erklärt Änderungen.",
         },
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen".',
+            "Der Anfang vermischt Fassungen ohne Erklärung, der spätere Teil verbirgt Quellen zugunsten freier Deutung.",
         },
         {
           isCorrect: false,
           label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition" fest.',
+            "Der Anfang lehnt Änderungen der Geschichte ab, der spätere Teil misst Treue an wortgetreuer Übereinstimmung.",
         },
         {
           isCorrect: false,
           label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären" aus dem Beleg "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht" ab.',
+            "Der Anfang prüft Publikumsreaktionen, der spätere Teil wählt die älteste Fassung durch Mehrheitsentscheidung.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'The first part advances the claim "The written script that was found was published in the 1970s", and the later part uses "Every change in an adaptation necessarily damages tradition" as its main support.',
+            "The opening establishes the written script as original, and the later part removes oral variants from the performance.",
         },
         {
           isCorrect: true,
           label:
-            "Source diversity creates a problem of authenticity, and staging plus programme notes provide a response that can be tested with audiences.",
+            "Diverse sources shape the staging, then audience testing refines its presentation and programme notes explain the changes.",
         },
         {
           isCorrect: false,
           label:
-            'The first part establishes "Because versions differ, the group need not explain any source or change" as a final conclusion; the later part only states the plan "The group will identify sources and dramatic changes in the programme notes".',
+            "The opening blends versions without explanation, and the later part hides sources to leave interpretation open.",
         },
         {
           isCorrect: false,
           label:
-            'Both parts maintain the claim "Every change in an adaptation necessarily damages tradition" from the same perspective without adding a test.',
+            "The opening rejects changes to the story, and the later part measures faithfulness through identical wording.",
         },
         {
           isCorrect: false,
           label:
-            'The later part reverses the argument by deriving "Because versions differ, the group need not explain any source or change" from the evidence "The written script that was found was published in the 1970s".',
+            "The opening tests audience responses, and the later part selects the oldest version by majority vote.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Bagian awal mengajukan klaim "Naskah tertulis yang ditemukan diterbitkan pada 1970-an", lalu bagian kedua memakai "Setiap perubahan dalam adaptasi pasti merusak tradisi" sebagai dukungan utama.',
+            "Bagian awal menetapkan naskah tertulis sebagai versi asli, lalu bagian berikutnya menghapus variasi lisan dari pertunjukan.",
         },
         {
           isCorrect: true,
           label:
-            "Keragaman sumber menimbulkan masalah keaslian, lalu rancangan panggung dan catatan program menjadi jawaban yang dapat diuji penonton.",
+            "Keragaman sumber mendorong rancangan panggung, lalu uji penonton memperbaiki penyajian dan catatan program menjelaskan perubahan.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian pertama menetapkan "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program".',
+            "Bagian awal menggabungkan versi tanpa penjelasan, lalu bagian berikutnya menyembunyikan sumber agar penonton bebas menafsirkan.",
         },
         {
           isCorrect: false,
           label:
-            'Kedua bagian mempertahankan klaim "Setiap perubahan dalam adaptasi pasti merusak tradisi" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Bagian awal menolak perubahan cerita, lalu bagian berikutnya mengukur kesetiaan melalui kesamaan setiap kata dengan naskah.",
         },
         {
           isCorrect: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun" dari bukti "Naskah tertulis yang ditemukan diterbitkan pada 1970-an".',
+            "Bagian awal menguji tanggapan penonton, lalu bagian berikutnya memilih versi tertua berdasarkan suara terbanyak.",
         },
       ],
     },

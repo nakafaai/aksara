@@ -13,18 +13,16 @@ A probability distribution lists the possible values of a random quantity and <H
 
 ## The Sample Space of All Possible Outcomes
 
-The sample space is the set of every elementary outcome that _can_ occur in an experiment. We write it with the symbol <InlineMath math="\Omega" /> (Omega).
+The sample space is the set of **every elementary outcome** that _can_ occur in an experiment. We write it with the symbol <InlineMath math="\Omega" /> (Omega).
 
 For one roll of a standard <InlineMath math="6" />-sided die, the possible outcomes are <InlineMath math="1, 2, 3, 4, 5," /> and <InlineMath math="6" />. Together they form the sample space:
 
 <BlockMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />
 
 There are a total of <InlineMath math="6" /> possible outcomes here.
-
 ## Events and Their Probabilities
 
-An event selects part of the sample space. That selection can hold one outcome or several, and its probability measures how large the selected part is compared with the whole sample space.
-
+An event is a **set of outcomes satisfying a condition**. Its probability is the sum of the probabilities of those outcomes. When all elementary outcomes are equally likely, divide the number of favorable outcomes by the total number of outcomes.
 ### Event
 
 An event is a subset of the sample space containing the outcomes that satisfy a condition of interest.
@@ -39,7 +37,7 @@ There are <InlineMath math="3" /> outcomes in this event <InlineMath math="A" />
 
 ### Calculating the Probability of an Event
 
-Probability measures how likely an event is to occur.
+Probability measures **how likely an event is** to occur.
 
 When all elementary outcomes are equally likely, the probability is the number of favorable outcomes divided by the total number of outcomes:
 
@@ -60,10 +58,9 @@ So, the probability of the event "getting an even number" (event <InlineMath mat
 <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
 
 The event therefore has probability <InlineMath math="1/2" />, or <InlineMath math="50\%" />.
-
 ## Rules for Probability Distributions
 
-A probability distribution is valid when both rules hold for every possible value of the random variable. The two conditions make the listed probabilities add up to a complete description of all outcomes.
+A probability distribution is valid when both rules hold for every possible value of the random variable. The two conditions make the listed probabilities **add up to a complete description** of all outcomes.
 
 1.  The probability of each value (<InlineMath math="P(x)" />) lies between <InlineMath math="0" /> and <InlineMath math="1" />.
 
@@ -72,10 +69,9 @@ A probability distribution is valid when both rules hold for every possible valu
 2.  The probabilities of all possible values add up to exactly <InlineMath math="1" />.
 
     <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
-
 ## Rolling One Die
 
-For one fair die, every face has the same probability. Its distribution is:
+For one fair die, every face has the **same probability**. Its distribution is:
 
 | Outcome <InlineMath math="x" /> | Probability <InlineMath math="P(x)" /> |
 | :------------------------------ | :------------------------------------- |
@@ -86,15 +82,14 @@ For one fair die, every face has the same probability. Its distribution is:
 | <InlineMath math="5" />         | <InlineMath math="1/6" />              |
 | <InlineMath math="6" />         | <InlineMath math="1/6" />              |
 
-**Why are they all <InlineMath math="1/6" />?**
+Why are they all <InlineMath math="1/6" />?
 
 The die has <InlineMath math="6" /> equally likely faces, so each face has probability <InlineMath math="1/6" />. Their sum is <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" />, as required.
-
 ## Rolling Two Dice
 
 Now roll **one red die and one white die**. Listing the result as an ordered pair produces <InlineMath math="36" /> possible outcomes.
 
-**Why <InlineMath math="36" />?**
+Why <InlineMath math="36" />?
 
 The red die has <InlineMath math="6" /> possibilities and the white die has <InlineMath math="6" /> possibilities, giving <InlineMath math="6 \times 6 = 36" /> ordered pairs.
 
@@ -113,7 +108,7 @@ Because the dice have different colors, a red <InlineMath math="3" /> with a whi
 
 ### Probability Distribution for the Sum of Two Dice
 
-If the random variable is the _sum_ of the two dice, its smallest value is <InlineMath math="1+1=2" /> and its largest value is <InlineMath math="6+6=12" />. Different sums contain different numbers of ordered pairs, so their probabilities differ:
+If the random variable is the _sum_ of the two dice, its smallest value is <InlineMath math="1+1=2" /> and its largest value is <InlineMath math="6+6=12" />. Different sums contain **different numbers of ordered pairs**, so their probabilities differ:
 
 | Sum of Numbers <InlineMath math="j" /> | Possible Pairs                                                 | Number of Pairs         | Probability <InlineMath math="P(j)" /> |
 | :------------------------------------- | :------------------------------------------------------------- | :---------------------- | :------------------------------------- |
@@ -131,6 +126,13 @@ If the random variable is the _sum_ of the two dice, its smallest value is <Inli
 
 The sum <InlineMath math="7" /> is most likely because <InlineMath math="6" /> ordered pairs produce it, while the sums <InlineMath math="2" /> and <InlineMath math="12" /> each come from only one pair. This difference matters when a game or model uses the total from both dice.
 
+<BarChart
+  title="Outcome Counts for Each Dice Sum"
+  description="The middle bar is tallest because more ordered pairs produce that sum."
+  data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
+  chartConfig={{ value: { label: "Number of pairs", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Number of pairs"
+/>
 ## Comparing Outcomes and Risks
 
 A probability distribution pairs each possible outcome with its probability. Those numbers support several concrete comparisons:
@@ -144,11 +146,10 @@ Each use relies on the same structure: a defined set of outcomes and <Highlight>
 
 ## Exercise
 
-Three fair coins are tossed. Let <InlineMath math="X" /> be the number of heads. Build the probability distribution of <InlineMath math="X" />, verify that it is valid, and find <InlineMath math="P(X \geq 2)" />.
-
+Three fair coins are tossed. Let <InlineMath math="X" /> be the **number of heads**. Build the probability distribution of <InlineMath math="X" />, verify that it is valid, and find <InlineMath math="P(X \geq 2)" />.
 ### Worked Solution
 
-Encode a head as <InlineMath math="1" /> and a tail as <InlineMath math="0" />. The three tosses then produce <InlineMath math="2^3=8" /> equally likely ordered triples:
+Encode a head as <InlineMath math="1" /> and a tail as <InlineMath math="0" />. The three tosses then produce <InlineMath math="2^3=8" /> **equally likely ordered triples**:
 
 <BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
 

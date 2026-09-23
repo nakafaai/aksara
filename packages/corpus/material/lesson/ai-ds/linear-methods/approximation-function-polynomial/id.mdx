@@ -3,15 +3,17 @@ export const metadata = {
     description: "Gunakan produk skalar dan proyeksi ortogonal untuk mencari aproksimasi polinom atau trigonometri terbaik terhadap suatu fungsi dalam norma L2.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-13",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
 ## Ketika Fungsi Sederhana Sudah Cukup
 
-<Highlight>Sebuah fungsi dapat terlalu rumit atau terlalu lama untuk dihitung berulang kali.</Highlight> Kita dapat mencari fungsi yang lebih sederhana dan tetap dekat dengan fungsi awal.
+Sebuah fungsi dapat terlalu rumit atau <Highlight>terlalu lama untuk dihitung</Highlight> berulang kali. Kita dapat mencari fungsi yang lebih sederhana dan tetap dekat dengan fungsi awal.
 
 Misalkan <InlineMath math="C([a,b])" /> menyatakan ruang vektor real yang terdiri atas fungsi kontinu pada <InlineMath math="[a,b]" />. Galat akan diukur pada seluruh interval, sehingga setiap titik ikut diperhitungkan.
+
+Asumsikan <InlineMath math="a&lt;b" /> agar panjang interval positif.
 
 ## Produk Skalar dan Galat pada Seluruh Interval
 
@@ -22,7 +24,7 @@ Untuk <InlineMath math="f,g\in C([a,b])" />, definisikan
 <BlockMath math="\begin{aligned} \|f\|_2 &amp;=\sqrt{\langle f,f\rangle} \\ &amp;=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2} \end{aligned}" />
 </MathContainer>
 
-Produk skalar ini menjadikan <InlineMath math="C([a,b])" /> sebuah ruang berproduk skalar. Norma yang ditampilkan adalah norma <InlineMath math="L^2" />. Untuk mendapatkan akar rata-rata kuadrat, bagi nilai tersebut dengan akar panjang interval:
+Produk skalar ini menjadikan <InlineMath math="C([a,b])" /> sebuah ruang berproduk skalar. Norma yang ditampilkan adalah norma <InlineMath math="L^2" />. Untuk mendapatkan **akar rata-rata kuadrat**, bagi nilai tersebut dengan akar panjang interval:
 
 <BlockMath math="\operatorname{RMS}(f)=\frac{1}{\sqrt{b-a}}\|f\|_2" />
 
@@ -34,7 +36,7 @@ Misalkan <InlineMath math="S\subset C([a,b])" /> adalah subruang berdimensi hing
 
 <BlockMath math="\|f-g\|_2=\min_{\varphi\in S}\|f-\varphi\|_2" />
 
-Secara geometris, <InlineMath math="g" /> adalah proyeksi ortogonal <InlineMath math="f" /> pada <InlineMath math="S" />. Residual <InlineMath math="r=f-g" /> harus ortogonal terhadap setiap fungsi dalam ruang aproksimasi:
+Secara geometris, <InlineMath math="g" /> adalah **proyeksi ortogonal** <InlineMath math="f" /> pada <InlineMath math="S" />. Residual <InlineMath math="r=f-g" /> harus ortogonal terhadap setiap fungsi dalam ruang aproksimasi:
 
 <BlockMath math="\begin{aligned} &amp;\langle f-g,s\rangle=0 \\ &amp;\text{untuk setiap }s\in S \end{aligned}" />
 
@@ -51,14 +53,102 @@ Aproksimasikan <InlineMath math="f(x)=x^2" /> pada <InlineMath math="[-1,1]" /> 
 <BlockMath math="\int_{-1}^{1}x\left(x^2-c_0-c_1x\right)\,dx=0" />
 </MathContainer>
 
-Suku ganjil berintegral nol pada interval simetris. Persamaan kedua menghasilkan <InlineMath math="c_1=0" />, sedangkan persamaan pertama menghasilkan <InlineMath math="c_0=1/3" />. Jadi,
+<BlockMath math="\frac23-2c_0=0,\qquad -\frac23c_1=0\quad\Longrightarrow\quad c_0=\frac13,\ c_1=0" />
+
+**Suku ganjil** berintegral nol pada interval simetris. Persamaan kedua menghasilkan <InlineMath math="c_1=0" />, sedangkan persamaan pertama menghasilkan <InlineMath math="c_0=1/3" />. Jadi,
 
 <MathContainer>
 <BlockMath math="g(x)=\frac13" />
-<BlockMath math="\begin{aligned} \|f-g\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx \\ &amp;=\frac8{45} \end{aligned}" />
+<BlockMath math="\begin{aligned} \|f-g\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx \\ &amp;=\frac25-\frac49+\frac29=\frac8{45} \end{aligned}" />
 </MathContainer>
 
 Garis terbaiknya mendatar. Kesimpulan ini bukan tebakan: kesimetrian <InlineMath math="x^2" /> memaksa koefisien fungsi basis ganjil <InlineMath math="x" /> bernilai nol.
+
+<LineEquation
+  title="Fungsi kuadrat dan aproksimasi linear terbaik"
+  description={<>Parabola sian adalah <InlineMath math="x^2" />, garis jingga adalah <InlineMath math="\frac{1}{3}" />. Ruas ungu menunjukkan selisih vertikal bertanda yang kuadratnya diintegralkan.</>}
+  cameraPosition={[0, 0.5, 3.5]}
+  cameraTarget={[0, 0.5, 0]}
+  showZAxis={false}
+  data={[
+  {
+    "points": Array.from({ length: 81 }, (_, index) => {
+        const x = -1 + index / 40;
+        return { x, y: x * x, z: 0 };
+      }),
+    "color": "#0891b2",
+    "smooth": false,
+    "showPoints": false
+  },
+  {
+    "points": [
+      {
+        "x": -1,
+        "y": 0.3333333333333333,
+        "z": 0
+      },
+      {
+        "x": 1,
+        "y": 0.3333333333333333,
+        "z": 0
+      }
+    ],
+    "color": "#ea580c",
+    "smooth": false,
+    "showPoints": false
+  },
+  {
+    "points": [
+      {
+        "x": -0.8,
+        "y": 0.3333333333333333,
+        "z": 0
+      },
+      {
+        "x": -0.8,
+        "y": 0.6400000000000001,
+        "z": 0
+      }
+    ],
+    "color": "#7c3aed",
+    "smooth": false,
+    "showPoints": false
+  },
+  {
+    "points": [
+      {
+        "x": 0,
+        "y": 0.3333333333333333,
+        "z": 0
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    ],
+    "color": "#7c3aed",
+    "smooth": false,
+    "showPoints": false
+  },
+  {
+    "points": [
+      {
+        "x": 0.8,
+        "y": 0.3333333333333333,
+        "z": 0
+      },
+      {
+        "x": 0.8,
+        "y": 0.6400000000000001,
+        "z": 0
+      }
+    ],
+    "color": "#7c3aed",
+    "smooth": false,
+    "showPoints": false
+  }
+]} />
 
 ## Ruang Aproksimasi Polinom
 
@@ -66,13 +156,11 @@ Untuk polinom aljabar berderajat paling tinggi <InlineMath math="n" />, gunakan
 
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
-Peningkatan <InlineMath math="n" /> memperbesar ruang aproksimasi, sehingga galat <InlineMath math="L^2" /> terkecil tidak mungkin bertambah. Dalam komputasi, basis polinom ortogonal sering lebih baik daripada pangkat biasa karena menghasilkan sistem dengan kondisi numerik yang lebih baik.
+Peningkatan <InlineMath math="n" /> memperbesar ruang aproksimasi, sehingga galat <InlineMath math="L^2" /> terkecil **tidak mungkin bertambah**. Dalam komputasi, basis polinom ortogonal sering lebih baik daripada pangkat biasa karena menghasilkan sistem dengan kondisi numerik yang lebih baik.
 
 ## Ruang Aproksimasi Trigonometri
 
-Untuk fungsi periodik dengan periode <InlineMath math="\omega>0" />, salah satu ruang yang berguna adalah
-
-Ruang <InlineMath math="T_n(\omega)" /> memuat semua fungsi berbentuk berikut, dengan koefisien real <InlineMath math="a_i,b_i" />:
+Untuk periode <InlineMath math="\omega>0" />, ruang <InlineMath math="T_n(\omega)" /> memuat semua fungsi berbentuk berikut, dengan koefisien real <InlineMath math="a_i,b_i" />:
 
 <MathContainer>
   <BlockMath math="p(x)=\frac{a_0}{2}+\sum_{i=1}^n q_i(x)" />
@@ -80,7 +168,7 @@ Ruang <InlineMath math="T_n(\omega)" /> memuat semua fungsi berbentuk berikut, d
   <BlockMath math="\begin{aligned} q_i(x) &amp;=a_i\cos\left(\frac{2\pi ix}{\omega}\right) \\ &amp;\quad{}+b_i\sin\left(\frac{2\pi ix}{\omega}\right) \end{aligned}" />
 </MathContainer>
 
-Pada satu periode penuh, fungsi basis sinus dan kosinus tersebut saling ortogonal. Koefisiennya dapat dihitung dengan memproyeksikan fungsi sasaran pada setiap fungsi basis. Inilah gagasan berdimensi hingga yang mendasari aproksimasi Fourier.
+Pada satu periode penuh, fungsi basis sinus dan kosinus tersebut **saling ortogonal**. Koefisiennya dapat dihitung dengan memproyeksikan fungsi sasaran pada setiap fungsi basis. Inilah gagasan berdimensi hingga yang mendasari aproksimasi Fourier.
 
 | Pilihan <InlineMath math="S" /> | Cocok untuk | Penentu koefisien |
 |---|---|---|

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Grenzwerte von Polynom- und rationalen Funktionen berechnen, unbestimmte Formen erkennen und durch Faktorisieren oder Rationalisieren auflösen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Grenzwerte",
 };
 
@@ -11,11 +11,11 @@ export const metadata = {
 
 Bei einem **algebraischen Grenzwert** entscheidet die Form des Ausdrucks darüber, welche Rechenoperation zulässig ist. <Highlight>Ein Polynom kann direkt ausgewertet werden</Highlight>. Ein rationaler Ausdruck oder ein Wurzelausdruck kann dagegen einen kürzbaren Faktor, einen Rand des Definitionsbereichs oder eine senkrechte Asymptote enthalten, die zuerst untersucht werden muss.
 
-Algebraische Funktionen entstehen aus Addition, Subtraktion, Multiplikation, Division und Potenzen mit rationalen Exponenten. Beispiele sind das Polynom <InlineMath math="f(x) = x^2 + 3x - 2" /> und die rationale Funktion <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. Wir verwenden direktes Einsetzen als Diagnose und faktorisieren, rationalisieren oder prüfen einseitiges Verhalten, wenn das Einsetzen den Grenzwert noch nicht bestimmt.
+Viele Beispiele algebraischer Funktionen lassen sich durch Addition, Subtraktion, Multiplikation, Division und Potenzen mit rationalen Exponenten bilden. Beispiele sind das Polynom <InlineMath math="f(x) = x^2 + 3x - 2" /> und die rationale Funktion <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. Wir verwenden direktes Einsetzen als Diagnose und faktorisieren, rationalisieren oder prüfen einseitiges Verhalten, wenn das Einsetzen den Grenzwert noch nicht bestimmt.
 
 ## Grundlegende Rechenwege
 
-Welcher Rechenweg passt, hängt von der Art der Funktion und vom Ergebnis des direkten Einsetzens ab. Liefert das Einsetzen einen definierten Wert, ist die Rechnung beendet. Erst wenn eine unbestimmte Form entsteht, ist eine Umformung nötig.
+Welcher Rechenweg passt, hängt von der Art der Funktion und vom Ergebnis des direkten Einsetzens ab. Liefert das Einsetzen einen definierten Wert, ist die Rechnung beendet. Erst wenn eine **unbestimmte Form** entsteht, ist eine Umformung nötig.
 
 ### Grenzwerte von Polynomfunktionen
 
@@ -33,19 +33,19 @@ Da Polynomfunktionen überall stetig sind, setzen wir direkt ein:
 
 Rationale Funktionen haben die Form <InlineMath math="\frac{P(x)}{Q(x)}" />, wobei <InlineMath math="P(x)" /> und <InlineMath math="Q(x)" /> Polynome sind. Der Nenner entscheidet über den nächsten Schritt:
 
-- **Ist der Nenner nicht null:** Setze direkt ein, genau wie bei einer Polynomfunktion.
+- **Ist der Nenner nicht null**: Setze direkt ein, genau wie bei einer Polynomfunktion.
 
-- **Ist der Nenner null:** Prüfe Zähler, Vorzeichen und einseitiges Verhalten. Nur <InlineMath math="\frac{0}{0}" /> ist eine unbestimmte Form, die sich möglicherweise algebraisch auflösen lässt. Ein von null verschiedener Zähler über null ist nicht unbestimmt.
+- **Ist der Nenner null**: Prüfe Zähler, Vorzeichen und einseitiges Verhalten. Nur <InlineMath math="\frac{0}{0}" /> ist eine unbestimmte Form, die sich möglicherweise algebraisch auflösen lässt. Ein von null verschiedener Zähler über null ist nicht unbestimmt.
 
 ## Unbestimmte Formen auflösen
 
-Ergibt direktes Einsetzen <InlineMath math="\frac{0}{0}" />, ist der Grenzwert noch nicht bestimmt. Dann helfen unter anderem Faktorisieren und Rationalisieren. Nach beiden Techniken lässt sich der gemeinsame Faktor kürzen, der die Null im Nenner verursacht.
+Ergibt direktes Einsetzen <InlineMath math="\frac{0}{0}" />, ist der **Grenzwert** noch nicht bestimmt. Dann helfen unter anderem Faktorisieren und Rationalisieren. Nach beiden Techniken lässt sich der gemeinsame Faktor kürzen, der die Null im Nenner verursacht.
 
 ### Faktorisieren
 
-Oft lassen sich Zähler und Nenner faktorisieren, sodass ein gemeinsamer Faktor gekürzt werden kann.
+Ein **gemeinsamer Faktor** darf nur für Eingaben gekürzt werden, bei denen er nicht null ist. Der vereinfachte Term stimmt in der Umgebung der Grenzwertstelle mit dem ursprünglichen überein, auch wenn die ursprüngliche Funktion dort selbst nicht definiert ist.
 
-**Beispiel:** Berechne <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
+**Beispiel**: Berechne <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
 Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren:
 
@@ -56,19 +56,17 @@ Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren:
 
 Da sich <InlineMath math="x" /> der Zahl <InlineMath math="2" /> nähert, aber nicht gleich <InlineMath math="2" /> ist, dürfen wir <InlineMath math="(x - 2)" /> kürzen:
 
-<BlockMath math="= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
+<BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
 ### Rationalisierungstechnik
 
 Bei Ausdrücken mit Wurzeln hilft häufig das Rationalisieren. Auch hier zeigt direktes Einsetzen zunächst, ob eine unbestimmte Form vorliegt.
 
-**Beispiel:** Berechne <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
+**Beispiel**: Berechne <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
 
 Direktes Einsetzen:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} \frac{\sqrt{1} - 1}{1 - 1} &amp;= \frac{1 - 1}{0} \\ &amp;= \frac{0}{0} \text{(unbestimmte Form)} \end{aligned}" />
-</MathContainer>
+Der Zähler <InlineMath math="\sqrt1-1=0" /> und der Nenner <InlineMath math="1-1=0" /> sind beide null. Die unbestimmte Form <InlineMath math="0/0" /> liefert noch keinen Grenzwert.
 
 Wir multiplizieren mit dem **konjugierten Ausdruck** <InlineMath math="\sqrt{x} + 1" />. Dadurch verschwindet die Wurzel aus dem Zähler, denn <InlineMath math="(a-b)(a+b) = a^2 - b^2" />:
 
@@ -84,13 +82,11 @@ Für <InlineMath math="x \neq 1" /> nähert sich der Variablenwert der Zahl <Inl
 
 ## Mehrere Techniken verbinden
 
-Bei komplizierteren Termen werden die gleichen Schritte nacheinander angewendet. Jeder Schritt macht den Term einfacher, und am Ende liefert das direkte Einsetzen einen definierten Wert.
+Bei komplizierteren Termen werden die gleichen Schritte nacheinander angewendet. Jeder Schritt macht den Term einfacher, und am Ende liefert das **direkte Einsetzen** einen definierten Wert.
 
 ### Zähler und Nenner faktorisieren
 
-**Beispiel:** Berechne <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
-
-Direktes Einsetzen:
+**Beispiel**: Berechne <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
 
 Direktes Einsetzen führt zur unbestimmten Form <InlineMath math="\frac00" />: Zähler und Nenner sind beide null.
 
@@ -124,6 +120,20 @@ Nun setzen wir <InlineMath math="x = 3" /> ein: <InlineMath math="\frac{3 + 3}{3
 
 Da die einseitigen Grenzwerte verschieden sind, existiert <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> nicht als zweiseitiger Grenzwert. Ergibt das Einsetzen dagegen <InlineMath math="\frac{0}{0}" />, wird der Term zuerst faktorisiert, rationalisiert oder auf andere Weise vereinfacht.
 
+Achte auf das **Vorzeichen des Nenners**. Links von <InlineMath math="2" /> nähert sich der negative Nenner der null, und die Funktion geht gegen <InlineMath math="-\infty" />. Rechts ist der Nenner positiv, und die Funktion geht gegen <InlineMath math="+\infty" />. Verbinde die Äste nicht über die Asymptote hinweg.
+
+<LineEquation
+  title="Zwei Richtungen an einer senkrechten Asymptote"
+  description="Graph von eins geteilt durch x minus zwei. Die beiden Äste bleiben getrennt, weil die Funktion bei x gleich zwei nicht definiert ist."
+  showZAxis={false}
+  cameraTarget={[2, 0, 0]}
+  cameraPosition={[2, 0, 20]}
+  data={[
+    { points: Array.from({ length: 91 }, (_, i) => { const x = i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
+    { points: Array.from({ length: 91 }, (_, i) => { const x = 2.2 + i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#ea580c", smooth: false, showPoints: false },
+  ]}
+/>
+
 ## Stetigkeit und Grenzwerte
 
 Eine Funktion <InlineMath math="f" /> heißt bei <InlineMath math="x = c" /> **stetig**, wenn:
@@ -136,7 +146,7 @@ Polynomfunktionen sind überall stetig. Rationale Funktionen sind an allen Stell
 
 ## Übungen
 
-Jede Aufgabe verlangt den Grenzwert eines algebraischen Terms. Bestimme zuerst die Form, denn bei null durch null sind Faktorisieren oder Erweitern nötig.
+Jede Aufgabe verlangt den **Grenzwert** eines algebraischen Terms. Bestimme zuerst die Form, denn bei null durch null sind Faktorisieren oder Erweitern nötig.
 
 1. Berechne <InlineMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
 
@@ -148,56 +158,54 @@ Jede Aufgabe verlangt den Grenzwert eines algebraischen Terms. Bestimme zuerst d
 
 5. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
 
-### Ausführliche Lösungen
+### Einsetzen in ein Polynom
 
-1. **Lösung:**
+Da die Polynomfunktion **überall stetig** ist, setzen wir direkt ein:
 
-   Da die Polynomfunktion überall stetig ist, setzen wir direkt ein:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
-   </MathContainer>
+### Zähler null und Nenner ungleich null
 
-2. **Lösung:**
+Der **Nenner** der rationalen Funktion ist bei <InlineMath math="x = 2" /> ungleich null. Deshalb setzen wir direkt ein:
 
-   Der Nenner der rationalen Funktion ist bei <InlineMath math="x = 2" /> ungleich null. Deshalb setzen wir direkt ein:
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
+<BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
-   <BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
-   </MathContainer>
+### Einen Faktor bei einer unbestimmten Form kürzen
 
-3. **Lösung:**
+**Direktes Einsetzen** ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren den Zähler:
 
-   Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren den Zähler:
+<MathContainer>
+<BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
+<BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
-   <BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
-   </MathContainer>
+### Alle drei Stetigkeitsbedingungen prüfen
 
-4. **Lösung:**
+Für die Stetigkeit bei <InlineMath math="x = 1" /> prüfen wir drei Bedingungen:
 
-   Für die Stetigkeit bei <InlineMath math="x = 1" /> prüfen wir drei Bedingungen:
+| Bedingung | Prüfung |
+| --- | --- |
+| Der Funktionswert existiert | <InlineMath math="f(1)=1^2-2(1)+1=0" /> |
+| Der Grenzwert existiert | <InlineMath math="\lim_{x\to1}(x^2-2x+1)=1-2+1=0" /> |
+| Grenzwert und Funktionswert stimmen überein | <InlineMath math="\lim_{x\to1}f(x)=0=f(1)" /> |
 
-   - **Bedingung 1 (Funktion ist definiert):** <InlineMath math="f(1) = 1^2 - 2(1) + 1 = 1 - 2 + 1 = 0" /> ✓ (existiert)
+Alle drei Bedingungen sind erfüllt. Daher ist die Funktion bei <InlineMath math="x = 1" /> **stetig**.
 
-   - **Bedingung 2 (Grenze vorhanden):** Da es sich um eine Polynomfunktion handelt, <InlineMath math="\lim_{x \to 1} f(x) = f(1) = 0" /> ✓ (existiert)
+### Mit dem konjugierten Ausdruck erweitern
 
-   - **Bedingung 3 (Grenze entspricht Funktionswert):** <InlineMath math="\lim_{x \to 1} f(x) = f(1) = 0" /> ✓ (gleich)
+**Direktes Einsetzen** ergibt <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" />, also eine unbestimmte Form.
 
-   Alle drei Bedingungen sind erfüllt. Daher ist die Funktion bei <InlineMath math="x = 1" /> **stetig**.
+Wir rationalisieren durch Multiplikation mit dem konjugierten Ausdruck <InlineMath math="\sqrt{x + 4} + 2" />:
 
-5. **Lösung:**
-
-   Direktes Einsetzen ergibt <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" />, also eine unbestimmte Form.
-
-   Wir rationalisieren durch Multiplikation mit dem konjugierten Ausdruck <InlineMath math="\sqrt{x + 4} + 2" />:
-
-   <MathContainer>
-   <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
-   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
-   <BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+<BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
+</MathContainer>

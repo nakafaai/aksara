@@ -5,11 +5,11 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Diketahui fungsi <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> dan <InlineMath math="F(x) = \int f(x) \, dx" /> dengan kondisi <InlineMath math="F(-3) = 2" />.
+Diketahui fungsi <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> dan <InlineMath math="F(x) = \int f(x) \, dx" /> dengan **syarat awal** <InlineMath math="F(-3) = 2" />.
 
 #### Substitusi U
 
-Untuk menyelesaikan integral ini, kita gunakan metode substitusi.
+Gunakan **substitusi** karena turunan bentuk kuadrat di dalam pangkat memuat faktor <InlineMath math="x+3" /> yang ada di luar pangkat.
 
 Misalkan <InlineMath math="u = x^2 + 6x + 8" />.
 
@@ -31,7 +31,7 @@ Bagi kedua ruas dengan <InlineMath math="2" />:
 
 #### Menyelesaikan Integral
 
-Substitusi ke dalam integral:
+Setelah penggantian variabel, **aturan pangkat integral** dapat digunakan:
 
 <BlockMath math="\begin{aligned}F(x)&=\int f(x)\,dx\\&=\int(x+3)u^4\,dx\end{aligned}" />
 
@@ -50,7 +50,7 @@ Substitusi kembali <InlineMath math="u = x^2 + 6x + 8" />:
 
 #### Menentukan Konstanta C
 
-Gunakan kondisi <InlineMath math="F(-3) = 2" />:
+Gunakan **syarat awal** <InlineMath math="F(-3) = 2" />:
 
 <BlockMath math="\begin{aligned}F(-3)&=\frac1{10}\bigl(9-18+8\bigr)^5\\&\quad+C\\&=2\end{aligned}" />
 
@@ -76,3 +76,7 @@ Substitusi nilai <InlineMath math="C" /> ke dalam <InlineMath math="F(x)" />:
 <BlockMath math="\begin{aligned}F(x)&=\frac1{10}(x^2+6x+8)^5\\&\quad+\frac{21}{10}\end{aligned}" />
 
 Konstanta tersebut memberikan <InlineMath math="F(-3)=2" />, sesuai syarat awal.
+
+Hasil ini adalah [antiturunan](/id/materi/matematika/integral/definisi-integral-tak-tentu). Kita dapat memeriksanya dengan **menurunkan kembali**:
+
+<BlockMath math="\begin{aligned}F\prime(x)&=\frac5{10}(x^2+6x+8)^4(2x+6)\\&=(x+3)(x^2+6x+8)^4\\&=f(x)\end{aligned}" />

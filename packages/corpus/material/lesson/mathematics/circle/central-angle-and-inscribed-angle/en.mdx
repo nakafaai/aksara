@@ -79,7 +79,7 @@ In the diagram above:
 
 ## Definition of Inscribed Angle
 
-An inscribed angle is an angle formed by two chords with the vertex located on the circle. The sides of the inscribed angle are chords that connect the vertex to two other points on the circle.
+An inscribed angle is an angle formed by two chords with the vertex located **on the circle**. The sides of the inscribed angle are chords that connect the vertex to two other points on the circle.
 
 <LineEquation
   title="Inscribed Angle"
@@ -140,7 +140,7 @@ In the diagram above:
 
 ## Relationship Between Central Angle and Inscribed Angle
 
-When they subtend the same arc, <Highlight>the central angle is twice the inscribed angle</Highlight>. The diagram below shows this relationship.
+When they subtend the **same arc**, the central angle is <Highlight>twice the inscribed angle</Highlight>. The diagram below shows this relationship.
 
 <LineEquation
   title="Relationship Between Central Angle and Inscribed Angle"
@@ -233,14 +233,10 @@ When they subtend the same arc, <Highlight>the central angle is twice the inscri
   cameraPosition={[0, 0, 12]}
 />
 
-### Theorem of Central Angle and Inscribed Angle Relationship
 
-<BlockMath math="\begin{aligned} &amp;\text{Inscribed angle} \\ &amp;= \frac{1}{2} \times \text{Central angle} \end{aligned}" />
+In the relationship diagram above, the central angle is <InlineMath math="45^\circ" />. The inscribed angle intercepting the same minor arc is therefore:
 
-If a central angle and an inscribed angle subtend the same arc, then:
-
-- <InlineMath math="\text{measure of inscribed angle} = \frac{1}{2} \times \text{measure of central angle}" />
-- <InlineMath math="\text{measure of central angle} = 2 \times \text{measure of inscribed angle}" />
+<BlockMath math="\angle ACB=\frac12\angle AOB=\frac12(45^\circ)=22.5^\circ" />
 
 ## Proof of Central Angle and Inscribed Angle Relationship
 
@@ -324,7 +320,7 @@ Draw the diameter through <InlineMath math="C" /> and the center <InlineMath mat
   cameraPosition={[0, 0, 12]}
 />
 
-**Proof steps:**
+**Proof steps**:
 
 1. Construct line <InlineMath math="CD" /> that passes through point <InlineMath math="O" /> (center of the circle)
 2. Because all four segments are radii, <InlineMath math="OA = OB = OC = OD" />
@@ -338,184 +334,195 @@ This construction proves the configuration shown, where <InlineMath math="C" /> 
 
 ## Properties of Central Angle and Inscribed Angle
 
-1. **Inscribed Angle Subtending a Diameter**
+The central-angle relationship gives two useful consequences. A **diameter** determines a straight central angle. Keeping the intercepted arc fixed also keeps its central angle fixed, even when the vertex of the inscribed angle moves.
 
-   Every inscribed angle that subtends a diameter of a circle measures <InlineMath math="90^\circ" /> (right angle).
+### Inscribed Angle Subtending a Diameter
 
-   <LineEquation
-     title="Inscribed Angle Subtending a Diameter"
-     description={<>Inscribed angle subtending a diameter is always <InlineMath math="90^\circ" />.</>}
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 361 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: -4, y: 0, z: 0 },
-           { x: 4, y: 0, z: 0 },
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: true,
-         labels: [
-           { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
-           { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
-         ],
-       },
-       {
-         points: [
-           { x: -4, y: 0, z: 0 },
-           { x: 0, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 0, y: 4, z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-       },
-       {
-         points: [{ x: 0, y: 0, z: 0 }],
-         color: "#d97706",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-       },
-       {
-         smooth: false,
-         points: (() => {
-           const C = { x: 0, y: 4 };
-           const A = { x: -4, y: 0 };
-           const B = { x: 4, y: 0 };
+Every inscribed angle that subtends a diameter of a circle measures <InlineMath math="90^\circ" /> (right angle).
 
-           // Calculate angle ACB at point C (should be 90°)
-           const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
-           const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
+<LineEquation
+  title="Inscribed Angle Subtending a Diameter"
+  description={<>Inscribed angle subtending a diameter is always <InlineMath math="90^\circ" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#d97706",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
+    },
+    {
+      smooth: false,
+      points: (() => {
+        const C = { x: 0, y: 4 };
+        const A = { x: -4, y: 0 };
+        const B = { x: 4, y: 0 };
 
-           return Array.from({ length: 16 }, (_, i) => {
-             const t = i / 15;
-             const angle = angleCA + t * (angleCB - angleCA);
-             return {
-               x: C.x + 0.8 * Math.cos(angle),
-               y: C.y + 0.8 * Math.sin(angle),
-               z: 0,
-             };
-           });
-         })(),
-         color: "#db2777",
-         showPoints: false,
-         labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+        // Calculate angle ACB at point C (should be 90°)
+        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
+        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
-2. **Inscribed Angles Subtending the Same Arc**
+        return Array.from({ length: 16 }, (_, i) => {
+          const t = i / 15;
+          const angle = angleCA + t * (angleCB - angleCA);
+          return {
+            x: C.x + 0.8 * Math.cos(angle),
+            y: C.y + 0.8 * Math.sin(angle),
+            z: 0,
+          };
+        });
+      })(),
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
 
-   <InlineMath math="\angle ACB = \angle ADB" />, both angles subtend the same
-   arc <InlineMath math="AB" />. In other words, sliding <InlineMath math="C" /> to <InlineMath math="D" /> along the same arc does not change the measure.
+A semicircle gives a **straight central angle**, so:
 
-   <LineEquation
-     title="Inscribed Angles Subtending the Same Arc"
-     description="Inscribed angles that subtend the same arc have equal measures."
-     data={[
-       {
-         smooth: false,
-         points: Array.from({ length: 361 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#9333ea",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#ea580c",
-         showPoints: true,
-         labels: [
-           { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-           { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-         ],
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-       },
-       {
-         points: [
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-           { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0891b2",
-         showPoints: false,
-       },
-       {
-         points: [
-           { x: 4, y: 0, z: 0 },
-           { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0d9488",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
-       },
-       {
-         points: [
-           { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-           { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-         ],
-         smooth: false,
-         color: "#0d9488",
-         showPoints: false,
-       },
-       {
-         smooth: false,
-         points: Array.from({ length: 46 }, (_, i) => {
-           const angle = (i * Math.PI) / 180;
-           return {
-             x: 4 * Math.cos(angle),
-             y: 4 * Math.sin(angle),
-             z: 0,
-           };
-         }),
-         color: "#d97706",
-         showPoints: false,
-         labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
-       },
-     ]}
-     cameraPosition={[0, 0, 12]}
-   />
+<BlockMath math="\angle ACB=\frac12(180^\circ)=90^\circ" />
+
+
+### Inscribed Angles Subtending the Same Arc
+
+<InlineMath math="\angle ACB = \angle ADB" />, both angles subtend the same
+arc <InlineMath math="AB" />. In other words, sliding <InlineMath math="C" /> to <InlineMath math="D" /> along the same arc does not change the measure.
+
+<LineEquation
+  title="Inscribed Angles Subtending the Same Arc"
+  description="Inscribed angles that subtend the same arc have equal measures."
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 46 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
+
+Here the two vertices lie on the **same major arc**. Both intercept the minor arc whose central angle is <InlineMath math="45^\circ" />.
+
+<BlockMath math="\angle ACB=\angle ADB=\frac12(45^\circ)=22.5^\circ" />
 
 ## Calculating Inscribed Angle
 
@@ -599,7 +606,7 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
   cameraPosition={[0, 0, 12]}
 />
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
@@ -611,7 +618,7 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
 
 Given inscribed angle <InlineMath math="\angle ACB = 35^\circ" />. Find the measure of central angle <InlineMath math="\angle AOB" /> that subtends the same arc!
 
-**Solution:**
+**Solution**:
 
 <MathContainer>
   <BlockMath math="\angle AOB = 2 \times \angle ACB" />
@@ -621,7 +628,7 @@ Given inscribed angle <InlineMath math="\angle ACB = 35^\circ" />. Find the meas
 
 ## Practice Problems
 
-Each problem gives either the central angle or the inscribed angle and asks for the other. Both angles subtend the same arc.
+Identify the **vertex and intercepted arc** first. Use half or twice the angle for central-inscribed pairs, then apply the diameter and equal-arc properties in the last two problems.
 
 1. If the central angle of a circle is <InlineMath math="120^\circ" />, what is the measure of the inscribed angle that subtends the same arc?
 
@@ -633,12 +640,20 @@ Each problem gives either the central angle or the inscribed angle and asks for 
 
 ### Worked Solutions
 
-1. The inscribed angle subtends the same arc as the central angle, so its measure is half the central angle: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
+**Solution 1**
 
-2. The central angle and <InlineMath math="\angle ACB" /> intercept arc <InlineMath math="AB" />. The central angle is twice the inscribed angle:
+The inscribed angle subtends the same arc as the central angle, so its measure is **half the central angle**: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
 
-   <BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+**Solution 2**
 
-3. A diameter cuts off a semicircle, whose central angle is <InlineMath math="180^\circ" />. The inscribed angle is half of that angle, so <InlineMath math="\angle PQR = 90^\circ" />.
+The central angle and <InlineMath math="\angle ACB" /> intercept arc <InlineMath math="AB" />. The central angle is twice the inscribed angle:
 
-4. Inscribed angles that intercept the same arc have equal measures. The other angle is also <InlineMath math="25^\circ" />.
+<BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
+
+**Solution 3**
+
+A diameter cuts off a semicircle, whose central angle is <InlineMath math="180^\circ" />. The inscribed angle is half of that angle, so <InlineMath math="\angle PQR = 90^\circ" />.
+
+**Solution 4**
+
+Inscribed angles that intercept the same arc have equal measures. The other angle is also <InlineMath math="25^\circ" />.

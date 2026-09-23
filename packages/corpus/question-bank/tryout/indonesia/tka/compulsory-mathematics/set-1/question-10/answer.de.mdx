@@ -5,15 +5,37 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Gleiche Abstände haben gleiche Quadrate. Setze <InlineMath math="P=(t,0)" /> in die Abstandsformel ein.
+Da Abstände nicht negativ sind, bedeuten **gleiche Abstandsquadrate** auch gleiche Längen. Setze <InlineMath math="P=(t,0)" /> in die Abstandsformel ein.
 
 <BlockMath math="\begin{aligned}
+(t-(-2))^2+(0-3)^2&=(t-4)^2+(0-5)^2 \\
 (t+2)^2+3^2&=(t-4)^2+5^2 \\
 t^2+4t+13&=t^2-8t+41 \\
+4t+8t&=41-13 \\
 12t&=28 \\
-t&=\frac73
+t&=\frac{28}{12}=\frac73
 \end{aligned}" />
 
 Damit ist <InlineMath math="P=(\frac73,0)" />. Gesucht ist:
 
 <BlockMath math="3t=3\left(\frac73\right)=7" />
+
+<LineEquation
+  title="Zwei gleiche Abstände"
+  description="Die violetten Strecken treffen sich bei P auf der x-Achse. PA und PB sind gleich lang, obwohl sie in unterschiedliche Richtungen zeigen."
+  cameraPosition={[1, 2.5, 9]}
+  cameraTarget={[1, 2.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [{ x: -2, y: 3, z: 0 }, { x: 7 / 3, y: 0, z: 0 }, { x: 4, y: 5, z: 0 }],
+      color: "#9333ea",
+      smooth: false,
+      labels: [
+        { text: <InlineMath math="A(-2,3)" />, at: 0, offset: [-0.4, 0.5, 0] },
+        { text: <InlineMath math="P(7/3,0)" />, at: 1, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="B(4,5)" />, at: 2, offset: [0, 0.5, 0] },
+      ],
+    },
+  ]}
+/>

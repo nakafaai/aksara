@@ -5,4 +5,14 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Among the listed choices, only <InlineMath math="F,A,D,E,B,C" /> meets every condition: <InlineMath math="A" /> is before <InlineMath math="D" />, <InlineMath math="B" /> immediately follows <InlineMath math="E" />, <InlineMath math="C" /> is not adjacent to <InlineMath math="A" />, and <InlineMath math="F" /> is before <InlineMath math="E" />.
+An order must satisfy **all conditions at once**. Before does not mean immediately before, but sessions E and B must be consecutive, with no session between them.
+
+| Order | A before D | B immediately after E | C not adjacent to A | F before E |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A,F,B,E,D,C" /> | Yes | No | Yes | Yes |
+| <InlineMath math="E,B,F,A,C,D" /> | Yes | Yes | No | No |
+| <InlineMath math="F,E,B,D,C,A" /> | No | Yes | No | Yes |
+| <InlineMath math="A,C,D,F,E,B" /> | Yes | Yes | No | Yes |
+| <InlineMath math="F,A,D,E,B,C" /> | Yes | Yes | Yes | Yes |
+
+Only the last choice, <InlineMath math="F,A,D,E,B,C" />, passes all four checks.

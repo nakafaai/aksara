@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan modul math, built-in numerik, beberapa cara import, domain fungsi, dan konstanta Python dalam perhitungan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
@@ -15,15 +15,15 @@ Python <Highlight>menyimpan banyak kode yang dapat digunakan ulang di dalam modu
 
 ## Modul math untuk Fungsi Matematika
 
-Modul `math` menyediakan fungsi dan konstanta bernilai riil. Modul ini menerima bilangan riil yang kompatibel seperti `int` dan `float`, tetapi operasi seperti `sqrt()` tidak menerima nilai kompleks. Gunakan `cmath` ketika domain atau hasilnya dapat berupa bilangan kompleks.
+Modul `math` menyediakan **fungsi dan konstanta bernilai riil**. Modul ini menerima bilangan riil yang kompatibel seperti `int` dan `float`, tetapi operasi seperti `sqrt()` tidak menerima nilai kompleks. Gunakan `cmath` ketika domain atau hasilnya dapat berupa bilangan kompleks.
 
 ## Cara Import Modul math
 
-Python menawarkan beberapa cara untuk mengimpor modul, dan pilihannya memengaruhi bentuk setiap pemanggilan setelahnya. Kamu bisa mengimpor seluruh modul, mengimpor nama tertentu saja, atau mengganti nama modul saat impor.
+Python menawarkan beberapa cara untuk mengimpor modul, dan pilihannya memengaruhi **bentuk setiap pemanggilan** setelahnya. Kamu bisa mengimpor seluruh modul, mengimpor nama tertentu saja, atau mengganti nama modul saat impor.
 
 ### Import Dasar dengan Namespace
 
-Statement `import math` menambahkan modul ke namespace dengan nama `math`. Setelah itu, fungsi dan konstanta dipanggil dengan nama seperti `math.sqrt` dan `math.pi`.
+Statement `import math` menambahkan modul ke namespace dengan **nama `math`**. Setelah itu, fungsi dan konstanta dipanggil dengan nama seperti `math.sqrt` dan `math.pi`.
 
 <CodeBlock
   data={[
@@ -46,7 +46,7 @@ print(math.pi)  # Output: 3.141592653589793
 
 ### Import dengan Alias
 
-Alias mengikat modul ke nama lokal lain. Pakai alias jika mengikuti konvensi yang sudah mapan atau jika dua nama memang bertabrakan. Nama `math` sendiri sudah singkat dan jelas.
+Alias mengikat modul ke **nama lokal lain**. Pakai alias jika mengikuti konvensi yang sudah mapan atau jika dua nama memang bertabrakan. Nama `math` sendiri sudah singkat dan jelas.
 
 <CodeBlock
   data={[
@@ -59,7 +59,7 @@ Alias mengikat modul ke nama lokal lain. Pakai alias jika mengikuti konvensi yan
 print(m.sqrt(9))  # Output: 3.0
 print(m.pi)       # Output: 3.141592653589793
 
-# Nama asli 'math' tidak lagi tersedia
+# Import ini hanya mengikat nama m, bukan math
 # math.sqrt(9)  # NameError: name 'math' is not defined`
     }
   ]}
@@ -90,7 +90,7 @@ print(pi)       # Output: 3.141592653589793
 
 ### Import Fungsi Tertentu
 
-Import hanya fungsi yang dipakai program. Nama fungsi tetap dapat dipanggil tanpa prefix modul, sedangkan baris import tetap mencatat asalnya.
+Import **hanya fungsi yang dipakai program**. Nama fungsi tetap dapat dipanggil tanpa prefix modul, sedangkan baris import tetap mencatat asalnya.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ print(sqrt(9))  # Output: 3.0
 
 ### Import dengan Alias Fungsi
 
-Fungsi yang di-import dapat diberi alias untuk menghindari konflik nama atau mengikuti konvensi lokal yang sudah ditetapkan.
+Fungsi yang di-import dapat diberi alias untuk **menghindari konflik nama** atau mengikuti konvensi lokal yang sudah ditetapkan.
 
 <CodeBlock
   data={[
@@ -136,11 +136,11 @@ print(fac(5))  # Output: 120
 
 ## Built In dan Fungsi Modul
 
-Python menyediakan built-in numerik seperti `abs()` dan `round()` tanpa import. Keduanya bekerja pada berbagai tipe melalui protokol numerik Python. Setiap tipe dapat menentukan operasi yang didukungnya.
+Python menyediakan built-in numerik seperti `abs()` dan `round()` **tanpa import**. Keduanya bekerja pada berbagai tipe melalui protokol numerik Python. Setiap tipe dapat menentukan operasi yang didukungnya.
 
 ### Fungsi Nilai Absolut
 
-Untuk bilangan riil, `abs()` mengembalikan besar nonnegatif. Untuk bilangan kompleks, fungsi ini mengembalikan jarak dari titik asal.
+Untuk bilangan riil, `abs()` mengembalikan besar nonnegatif. Untuk bilangan kompleks, fungsi ini mengembalikan **jarak dari titik asal**.
 
 <CodeBlock
   data={[
@@ -163,7 +163,7 @@ Hasil untuk `4 + 3j` adalah <InlineMath math="5.0" /> karena <InlineMath math="|
 
 ### Fungsi Pembulatan
 
-Untuk tipe numerik bawaan Python, `round()` membulatkan ke nilai terdekat dan memilih yang genap ketika tepat di tengah. Pemanggilan tanpa `ndigits` mengembalikan integer untuk float, sedangkan argumen kedua memilih posisi desimal.
+Untuk tipe numerik bawaan Python, `round()` membulatkan ke nilai terdekat dan **memilih yang genap** ketika tepat di tengah. Pemanggilan tanpa `ndigits` mengembalikan integer untuk float, sedangkan argumen kedua memilih posisi desimal.
 
 <CodeBlock
   data={[
@@ -173,7 +173,7 @@ Untuk tipe numerik bawaan Python, `round()` membulatkan ke nilai terdekat dan me
       code: `# Pembulatan standar
 print(round(-3.8))  # Output: -4
 print(round(3.5))   # Output: 4
-print(round(4.5))   # Output: 4 (bukan 5!)
+print(round(4.5))   # Output: 4
 
 # Pembulatan dengan presisi tertentu
 print(round(3.141592653589793, 3))  # Output: 3.142
@@ -186,11 +186,11 @@ Karena itu, `round(4.5)` menghasilkan <InlineMath math="4" />, sedangkan `round(
 
 ## Fungsi dan Konstanta dalam Modul math
 
-Setiap fungsi `math` memiliki domain. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif. Nilai di luar domain itu menghasilkan `ValueError`, bukan sebuah angka.
+Setiap fungsi `math` **memiliki domain**. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif. Nilai di luar domain itu menghasilkan `ValueError`, bukan sebuah angka.
 
 ### Fungsi Akar dan Logaritma
 
-Contoh berikut memanggil fungsi akar dan logaritma, lalu memperlihatkan cara Python melaporkan masukan di luar daerah asalnya.
+Contoh berikut memanggil fungsi akar dan logaritma, lalu memperlihatkan cara Python melaporkan **masukan di luar daerah asalnya**.
 
 <CodeBlock
   data={[
@@ -200,26 +200,32 @@ Contoh berikut memanggil fungsi akar dan logaritma, lalu memperlihatkan cara Pyt
       code: `import math
 
 # Fungsi akar kuadrat
-print(f"Akar kuadrat 16: {math.sqrt(16)}")  # Output: 4.0
+print(f"Akar kuadrat 16: {math.sqrt(16)}")  # Output: Akar kuadrat 16: 4.0
 
 # Fungsi eksponensial (e^x)
-print(f"e pangkat 2: {math.exp(2)}")  # Output: 7.38905609893065
+print(f"e pangkat 2: {math.exp(2)}")  # Output: e pangkat 2: 7.38905609893065
 
 # Fungsi logaritma natural
-print(f"ln(10): {math.log(10)}")  # Output: 2.302585092994046
+print(f"ln(10): {math.log(10)}")  # Output: ln(10): 2.302585092994046
 
 # Fungsi logaritma basis 10
-print(f"log10(100): {math.log10(100)}")  # Output: 2.0
+print(f"log10(100): {math.log10(100)}")  # Output: log10(100): 2.0
 
 # Fungsi logaritma dengan basis tertentu
-print(f"log2(8): {math.log(8, 2)}")  # Output: 3.0`
+print(f"log2(8): {math.log(8, 2)}")  # Output: log2(8): 3.0
+
+try:
+    math.sqrt(-1)
+except ValueError as error:
+    print(type(error).__name__)
+# Output: ValueError`
     }
   ]}
 />
 
 ### Fungsi Trigonometri
 
-Fungsi trigonometri memakai satuan radian. Contoh berikut mengubah satu sudut lalu memanggil ketiga fungsi utamanya.
+Fungsi trigonometri memakai **satuan radian**. Contoh berikut mengubah satu sudut lalu memanggil ketiga fungsi utamanya.
 
 <CodeBlock
   data={[
@@ -231,21 +237,21 @@ Fungsi trigonometri memakai satuan radian. Contoh berikut mengubah satu sudut la
 # Fungsi trigonometri (input dalam radian)
 angle_rad = math.pi / 4  # 45 derajat dalam radian
 
-print(f"sin(π/4): {math.sin(angle_rad)}")  # Output: 0.7071067811865475
-print(f"cos(π/4): {math.cos(angle_rad)}")  # Output: 0.7071067811865476
-print(f"tan(π/4): {math.tan(angle_rad)}")  # Output: 0.9999999999999999
+print(f"sin(π/4): {math.sin(angle_rad)}")  # Output: sin(π/4): 0.7071067811865475
+print(f"cos(π/4): {math.cos(angle_rad)}")  # Output: cos(π/4): 0.7071067811865476
+print(f"tan(π/4): {math.tan(angle_rad)}")  # Output: tan(π/4): 0.9999999999999999
 
 # Konversi derajat ke radian
 angle_deg = 45
 angle_rad = math.radians(angle_deg)
-print(f"45 derajat = {angle_rad} radian")  # Output: 0.7853981633974483`
+print(f"45 derajat = {angle_rad} radian")  # Output: 45 derajat = 0.7853981633974483 radian`
     }
   ]}
 />
 
 ### Fungsi Ceiling Floor dan Faktorial
 
-Pembulatan ke atas, pembulatan ke bawah, dan faktorial menjawab pertanyaan yang berbeda. Contoh berikut menerapkan setiap fungsi lalu mencetak hasilnya.
+Pembulatan ke atas, pembulatan ke bawah, dan faktorial menjawab **pertanyaan yang berbeda**. Contoh berikut menerapkan setiap fungsi lalu mencetak hasilnya.
 
 <CodeBlock
   data={[
@@ -257,20 +263,20 @@ Pembulatan ke atas, pembulatan ke bawah, dan faktorial menjawab pertanyaan yang 
 number = 4.7
 
 # Ceiling: bilangan bulat terkecil yang >= x
-print(f"ceil(4.7): {math.ceil(number)}")    # Output: 5
+print(f"ceil(4.7): {math.ceil(number)}")    # Output: ceil(4.7): 5
 
 # Floor: bilangan bulat terbesar yang <= x
-print(f"floor(4.7): {math.floor(number)}")  # Output: 4
+print(f"floor(4.7): {math.floor(number)}")  # Output: floor(4.7): 4
 
 # Faktorial
-print(f"5!: {math.factorial(5)}")  # Output: 120`
+print(f"5!: {math.factorial(5)}")  # Output: 5!: 120`
     }
   ]}
 />
 
 ### Konstanta Matematika
 
-Modul ini juga menyediakan konstanta matematika berhingga serta nilai khusus bertipe `float`.
+Modul ini juga menyediakan konstanta matematika berhingga serta **nilai khusus bertipe `float`**.
 
 <CodeBlock
   data={[
@@ -301,11 +307,11 @@ print(f"Luas lingkaran dengan radius {lingkaran_radius}: {luas_lingkaran}")`
 
 ## Memilih Cara Import Modul
 
-Pilih cara mengimpor yang tetap menampilkan nama modul pada setiap pemanggilan ketika konteks itu dibutuhkan, dan impor hanya nama yang benar-benar dipakai program. Satu fungsi yang dipakai sekali lebih jelas ditulis `from math import sqrt`, sedangkan banyak pemanggilan lebih rapi dengan `import math`.
+Pilih cara mengimpor yang tetap menampilkan **nama modul pada setiap pemanggilan** ketika konteks itu dibutuhkan, dan impor hanya nama yang benar-benar dipakai program. Satu fungsi yang dipakai sekali lebih jelas ditulis `from math import sqrt`, sedangkan banyak pemanggilan lebih rapi dengan `import math`.
 
 ### Panduan Import Modul
 
-Pilih gaya import dari banyaknya nama yang kamu butuhkan dan seberapa jelas pemanggilannya. Daftar berikut mengurutkan pilihan dari yang paling eksplisit.
+Pilih gaya import dari banyaknya nama yang kamu butuhkan dan **seberapa jelas pemanggilannya**. Daftar berikut mengurutkan pilihan dari yang paling eksplisit.
 
 1. **Utamakan `import math`** ketika program memakai beberapa anggota. Pemanggilan seperti `math.sqrt()` menempatkan nama modul di sebelah fungsi.
 2. **Gunakan `import math as m` dengan sengaja** hanya ketika alias tersebut merupakan konvensi lokal yang terdokumentasi.
@@ -313,6 +319,10 @@ Pilih gaya import dari banyaknya nama yang kamu butuhkan dan seberapa jelas pema
 4. **Hindari `from math import *`** karena setiap nama dipakai tanpa awalan modul dan dapat mengganti nama yang sudah digunakan program.
 
 ### Menghitung Jarak dan Luas
+
+Untuk titik `(0, 0)` dan `(3, 4)`, **jarak Euclidean** adalah akar jumlah kuadrat selisih koordinat. Untuk sisi `3`, `4`, dan `5`, rumus Heron memberi luas yang sama dengan rumus segitiga siku-siku.
+
+<BlockMath math="\begin{aligned}d&=\sqrt{(3-0)^2+(4-0)^2}=5\\s&=\frac{3+4+5}{2}=6\\A&=\sqrt{6(6-3)(6-4)(6-5)}=\sqrt{36}=6\end{aligned}" />
 
 <CodeBlock
   data={[
@@ -327,6 +337,8 @@ def hitung_jarak_euclidean(x1, y1, x2, y2):
 
 def hitung_luas_segitiga(a, b, c):
     """Menghitung luas segitiga menggunakan rumus Heron"""
+    if not all(math.isfinite(side) for side in (a, b, c)):
+        raise ValueError("Panjang sisi harus berhingga")
     if min(a, b, c) <= 0:
         raise ValueError("Panjang sisi harus positif")
 
@@ -353,4 +365,4 @@ print(f"Luas segitiga dengan sisi 3, 4, 5: {luas}")`
   ]}
 />
 
-Kode numerik perlu menunjukkan tiga hal: namespace pemilik operasi, domain input, dan cara menangani input yang berada di luar domain atau memiliki nilai khusus seperti `nan`. Informasi ini lebih berguna daripada menyingkat nama fungsi beberapa karakter.
+Kode numerik perlu menunjukkan tiga hal: namespace pemilik operasi, **domain input**, dan cara menangani input yang berada di luar domain atau memiliki nilai khusus seperti `nan`. Informasi ini lebih berguna daripada menyingkat nama fungsi beberapa karakter.

@@ -5,4 +5,31 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-From B, the sight line makes an angle of <InlineMath math="30^\circ" /> west of north. Its westward component to A is <InlineMath math="30" /> km. If <InlineMath math="d" /> is the distance from B to the lighthouse, then <InlineMath math="d\sin30^\circ=30" />. Hence <InlineMath math="d=60" /> km.
+The bearing angle is measured **from north toward west**. At B, the lighthouse direction is therefore <InlineMath math="30^\circ" /> from the northward reference. The horizontal distance <InlineMath math="AB=30\text{ km}" /> is opposite that angle, while the sight distance <InlineMath math="d" /> is the hypotenuse:
+
+<BlockMath math="\begin{aligned}\sin30^\circ&=\frac{30}{d}\\\frac12&=\frac{30}{d}\\d&=\frac{30}{1/2}=60\text{ km}\end{aligned}" />
+
+Check the westward component: <InlineMath math="60\sin30^\circ=30\text{ km}" />. In the diagram, <InlineMath math="L" /> marks the lighthouse and <InlineMath math="N" /> the northward reference. Coordinates are measured in kilometers.
+
+<MathVisual
+  title="Measure the Bearing from North"
+  description="The marked angle lies between the northward ray from B and the sight line BL."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 35 }, y: { min: -5, max: 58 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 0, y: 51.96152422706631 }] },
+      { id: "north", kind: "ray", appearance: "reference", from: { x: 30, y: 0 }, through: { x: 30, y: 20 } },
+      { id: "bearing", kind: "arc", appearance: "highlight", center: { x: 30, y: 0 }, radius: 8, startDegrees: 90, sweepDegrees: 30 }
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 30, y: 0 }, placement: "below-right" },
+      { key: "l", objectId: "triangle", at: { x: 0, y: 51.96152422706631 }, placement: "above" },
+      { key: "north", objectId: "north", at: { x: 30, y: 28 }, placement: "right" },
+      { key: "angle", objectId: "bearing", at: { x: 25, y: 11 }, placement: "above-left" }
+    ]
+  }}
+  labels={{ a: <InlineMath math="A" />, b: <InlineMath math="B" />, l: <InlineMath math="L" />, north: <InlineMath math="N" />, angle: <InlineMath math="30^\circ" /> }}
+/>

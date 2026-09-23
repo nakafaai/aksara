@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena guru pendamping ikut membahas hasil, kondisi pembanding $$17$$ tidak lagi diperlukan untuk menilai program.",
+            "Karena peserta ikut memberi masukan, kondisi pembanding $$17$$ tidak lagi diperlukan untuk menilai program.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Program sebaiknya langsung diterapkan penuh karena perubahan jadwal dan jumlah petugas telah dihindari.",
+            "Program sebaiknya langsung diterapkan penuh karena mata pelajaran, jadwal, dan kehadiran awal telah dibuat sebanding.",
         },
       ],
     },

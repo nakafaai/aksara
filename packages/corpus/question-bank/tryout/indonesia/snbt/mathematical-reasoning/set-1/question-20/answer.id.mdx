@@ -5,11 +5,11 @@ export const metadata = {
   datePublished: "2025-11-23",
 };
 
-Kita akan menghitung pendapatan normal terlebih dahulu, kemudian menentukan harga baru dan jumlah penjualan baru agar pendapatan tetap sama namun jumlah penjualan meningkat.
+Kita akan menghitung pendapatan normal terlebih dahulu, kemudian menentukan harga baru dan jumlah penjualan baru agar **pendapatan tetap sama** namun jumlah penjualan meningkat.
 
 #### Menghitung Pendapatan Normal
 
-Pendapatan normal (<InlineMath math="I_{\text{normal}}" />) adalah:
+Pendapatan harian adalah **harga per gelas dikali jumlah gelas terjual**. Kita memakai hasil penjualan sebelum dikurangi biaya, bukan laba.
 
 <MathContainer>
   <BlockMath math="I_{\text{normal}} = 12{.}000 \times 200" />
@@ -29,7 +29,7 @@ Kita ingin pendapatan tetap sama (<InlineMath math="\text{Rp}2{.}400{.}000{,}00"
   <BlockMath math="\begin{aligned}&(12{.}000-1{.}000x) \\ &\quad\times(200+20x) \\ &=2{.}400{.}000\end{aligned}" />
 </MathContainer>
 
-Kita sederhanakan dengan membagi faktor-faktornya (misal bagi <InlineMath math="1{.}000" /> pada harga dan bagi <InlineMath math="20" /> pada jumlah):
+Faktorkan <InlineMath math="1{.}000" /> dari harga dan <InlineMath math="20" /> dari jumlah gelas. Lalu **bagi kedua ruas dengan <InlineMath math="20{.}000" />** agar persamaannya lebih sederhana.
 
 <MathContainer>
   <BlockMath math="\begin{aligned}&(12-x)(10+x) \\ &=\frac{2{.}400{.}000}{1{.}000\times20}\end{aligned}" />
@@ -47,7 +47,7 @@ Karena pemilik kedai ingin **meningkatkan** penjualan, kita pilih <InlineMath ma
 
 #### Menghitung Banyak Es Kopi yang Terjual
 
-Substitusikan <InlineMath math="x = 2" /> ke rumus jumlah terjual baru:
+Substitusikan **dua tahap penurunan harga** (<InlineMath math="x=2" />) ke rumus jumlah terjual baru:
 
 <MathContainer>
   <BlockMath math="J = 200 + 20(2)" />
@@ -56,3 +56,12 @@ Substitusikan <InlineMath math="x = 2" /> ke rumus jumlah terjual baru:
 </MathContainer>
 
 Jadi, banyak es kopi yang terjual adalah <InlineMath math="240" /> gelas.
+
+| Penurunan | Harga (Rp) | Gelas per hari | Pendapatan (Rp) |
+| --- | --- | --- | --- |
+| 0 | 12.000 | 200 | 2.400.000 |
+| 1 | 11.000 | 220 | 2.420.000 |
+| 2 | 10.000 | 240 | 2.400.000 |
+| 3 | 9.000 | 260 | 2.340.000 |
+
+Harga baru Rp10.000 dan penjualan 240 gelas memberi <InlineMath math="10{.}000\times240=2{.}400{.}000" /> rupiah, sama dengan pendapatan normal. Ini berbeda dari ambang biaya Rp2.100.000 yang disebutkan dalam soal.

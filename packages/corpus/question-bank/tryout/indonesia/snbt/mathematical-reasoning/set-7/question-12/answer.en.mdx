@@ -5,69 +5,25 @@ export const metadata = {
   datePublished: "2026-02-17",
 };
 
-#### Calculating Actual Distances
+#### Convert the Map Scale
 
-A scale of <InlineMath math="1:2{,}000{,}000" /> means that the actual distance <InlineMath math="J_s" /> is <InlineMath math="2{,}000{,}000" /> times the map distance <InlineMath math="J_p" />, when both use the same unit:
+The scale applies to distances expressed in **the same unit**. Since <InlineMath math="1\text{ km}=100{,}000\text{ cm}" />:
 
-<BlockMath math="J_s=J_p\times2{,}000{,}000" />
+<BlockMath math="2{,}000{,}000\text{ cm}=\frac{2{,}000{,}000}{100{,}000}\text{ km}=20\text{ km}" />
 
-**Actual Distance from City <InlineMath math="A" /> to City <InlineMath math="x" />:**
+Thus, every <InlineMath math="1\text{ cm}" /> on the map represents <InlineMath math="20\text{ km}" />. Convert each segment:
 
-<MathContainer>
-  <BlockMath math="2.5\text{ cm}\times2{,}000{,}000" />
-  <BlockMath math="= 5{,}000{,}000 \text{ cm}" />
-  <BlockMath math="= 50 \text{ km}" />
-</MathContainer>
+| Segment | Map length in centimeters | Actual length in kilometers |
+| --- | ---: | ---: |
+| <InlineMath math="A\to x" /> | <InlineMath math="2.5" /> | <InlineMath math="2.5\times20=50" /> |
+| <InlineMath math="x\to B" /> | <InlineMath math="3" /> | <InlineMath math="3\times20=60" /> |
+| <InlineMath math="A\to y" /> | <InlineMath math="4" /> | <InlineMath math="4\times20=80" /> |
+| <InlineMath math="y\to B" /> | <InlineMath math="4.5" /> | <InlineMath math="4.5\times20=90" /> |
 
-**Actual Distance from City <InlineMath math="x" /> to City <InlineMath math="B" />:**
+#### Compare the Complete Routes
 
-<MathContainer>
-  <BlockMath math="3\text{ cm}\times2{,}000{,}000" />
-  <BlockMath math="= 6{,}000{,}000 \text{ cm}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
+Each traveler uses **two segments**, so add both before comparing. Let <InlineMath math="J_B" /> be Benu's distance and <InlineMath math="J_M" /> Mamang's distance, in kilometers.
 
-**Actual Distance from City <InlineMath math="A" /> to City <InlineMath math="y" />:**
+<BlockMath math="\begin{aligned}J_B&=50+60=110 \\ J_M&=80+90=170 \\ J_M-J_B&=170-110=60\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="4\text{ cm}\times2{,}000{,}000" />
-  <BlockMath math="= 8{,}000{,}000 \text{ cm}" />
-  <BlockMath math="= 80 \text{ km}" />
-</MathContainer>
-
-**Actual Distance from City <InlineMath math="y" /> to City <InlineMath math="B" />:**
-
-<MathContainer>
-  <BlockMath math="4.5\text{ cm}\times2{,}000{,}000" />
-  <BlockMath math="= 9{,}000{,}000 \text{ cm}" />
-  <BlockMath math="= 90 \text{ km}" />
-</MathContainer>
-
-#### Calculating Travel Distances
-
-**Benu's Journey (<InlineMath math="A \to x \to B" />):**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Benu}}&=J_s(A\to x) \\ &\quad+J_s(x\to B)\end{aligned}" />
-  <BlockMath math="= 50 \text{ km} + 60 \text{ km}" />
-  <BlockMath math="= 110 \text{ km}" />
-</MathContainer>
-
-**Mamang's Journey (<InlineMath math="A \to y \to B" />):**
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}J_{\text{Mamang}}&=J_s(A\to y) \\ &\quad+J_s(y\to B)\end{aligned}" />
-  <BlockMath math="= 80 \text{ km} + 90 \text{ km}" />
-  <BlockMath math="= 170 \text{ km}" />
-</MathContainer>
-
-#### Calculating Distance Difference
-
-The difference in travel distance between Benu and Mamang is:
-
-<MathContainer>
-  <BlockMath math="|170-110|\text{ km}" />
-  <BlockMath math="= 60 \text{ km}" />
-</MathContainer>
-
-Thus, the difference in travel distance is <InlineMath math="60 \text{ km}" />.
+Mamang travels <InlineMath math="60\text{ km}" /> farther. As a check, the map routes differ by <InlineMath math="(4+4.5)-(2.5+3)=3\text{ cm}" />, corresponding to <InlineMath math="3\times20=60\text{ km}" />.

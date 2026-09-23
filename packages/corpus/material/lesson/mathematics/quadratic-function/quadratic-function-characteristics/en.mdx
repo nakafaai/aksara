@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Characteristics of Quadratic Functions",
   description: "Read a quadratic graph from its leading coefficient, vertex, symmetry axis, intercepts, range, and worked graphing examples.",
@@ -11,11 +9,11 @@ export const metadata = {
 
 ## Shape of Quadratic Function Graphs
 
-<Highlight>A parabola is symmetric, and its lowest or highest point sits on the axis of symmetry.</Highlight> The leading coefficient <InlineMath math="a" /> controls its opening direction and how narrow or wide it appears. The three coefficients <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> together fix that shape.
+A parabola has an <Highlight>axis of symmetry and a vertex</Highlight>. For <InlineMath math="f(x)=ax^2+bx+c" /> with <InlineMath math="a\ne0" />, the sign of the leading coefficient determines the opening direction. Its magnitude determines curvature, while all three coefficients locate the graph.
 
 ## Influence of the Leading Coefficient on Graph Shape
 
-The sign of the leading coefficient decides whether the parabola opens upward or downward. Its magnitude then decides how narrow or wide the parabola becomes, because a larger magnitude pulls both branches closer to the axis of symmetry.
+The **sign of the leading coefficient** decides whether the parabola opens upward or downward. Its magnitude then decides how narrow or wide the parabola becomes, because a larger magnitude pulls both branches closer to the axis of symmetry.
 
 ### When the Leading Coefficient Is Positive
 
@@ -28,285 +26,397 @@ Examples of functions with <InlineMath math="a > 0" />:
 
 The sign of <InlineMath math="a" /> <Highlight>controls the opening direction</Highlight>. Its magnitude controls the width: compared with <InlineMath math="y=x^2" />, the graph is narrower when <InlineMath math="|a|>1" /> and wider when <InlineMath math="0<|a|<1" />.
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Quadratic Function Graph with <InlineMath math="a > 0" />
-      </>
+<MathVisual
+  title="Parabola width"
+  description="All three parabolas have vertex (0,0). Coefficient 2 gives the narrowest curve, while 0.5 gives the widest."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -2.5,
+      "max": 2.5
+    },
+    "y": {
+      "min": -0.5,
+      "max": 8.5
     }
-    description="Graph opens upward and has a minimum point."
-    cameraPosition={[5, 5, 12]}
-    data={[
-      {
-        pointIndices: [0, 16, 32, 48, 64, 80, 96],
-        smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
-          const i = sampleIndex / 16;
-          const x = i - 3; // x values from -3 to 3
-          return { x, y: x * x, z: 0 };
-        }),
-        color: "#4f46e5",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=x^2" />,
-            at: 80,
-            offset: [1, -1, 0],
-          },
-        ],
+  },
+  "view": {
+    "kind": "fit",
+    "padding": 0.1
+  },
+  "objects": [
+    {
+      "id": "curve0",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 0.5,
+        "b": 0,
+        "c": 0
       },
-    ]}
-  />
-</ContentBlock>
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "primary"
+    },
+    {
+      "id": "curve1",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 1,
+        "b": 0,
+        "c": 0
+      },
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "secondary"
+    },
+    {
+      "id": "curve2",
+      "kind": "quadratic",
+      "inputAxis": "x",
+      "coefficients": {
+        "a": 2,
+        "b": 0,
+        "c": 0
+      },
+      "domain": {
+        "min": -2,
+        "max": 2
+      },
+      "appearance": "highlight"
+    }
+  ],
+  "labels": [
+    {
+      "key": "c0",
+      "objectId": "curve0",
+      "at": {
+        "x": 1.8,
+        "y": 1.62
+      },
+      "placement": "above-left"
+    },
+    {
+      "key": "c1",
+      "objectId": "curve1",
+      "at": {
+        "x": 1.8,
+        "y": 3.24
+      },
+      "placement": "above-left"
+    },
+    {
+      "key": "c2",
+      "objectId": "curve2",
+      "at": {
+        "x": 1.8,
+        "y": 6.48
+      },
+      "placement": "above-left"
+    }
+  ]
+}}
+  labels={{ c0: <InlineMath math="a=0.5" />, c1: <InlineMath math="a=1" />, c2: <InlineMath math="a=2" /> }}
+/>
 
 ### When the Leading Coefficient Is Negative
 
-If <InlineMath math="a < 0" />, the graph of the quadratic function will open downward. This means the graph has a maximum point.
+If <InlineMath math="a < 0" />, the graph of the quadratic function will **open downward**. This means the graph has a maximum point.
 
 Examples of functions with <InlineMath math="a < 0" />:
 
 - <InlineMath math="f(x) = -x^2" /> with <InlineMath math="a = -1" />
 - <InlineMath math="f(x) = -3x^2 - 12x - 15" /> with <InlineMath math="a = -3" />
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Quadratic Function Graph with <InlineMath math="a < 0" />
-      </>
-    }
-    description="Graph opens downward and has a maximum point."
-    cameraPosition={[0, -2, 10]}
-    cameraTarget={[0, -2, 0]}
-    data={[
-      {
-        pointIndices: [0, 16, 32, 48, 64, 80, 96],
-        smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
-          const i = sampleIndex / 16;
-          const x = i - 3; // x values from -3 to 3
-          return { x, y: -x * x, z: 0 };
-        }),
-        color: "#e11d48",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=-x^2" />,
-            at: 64,
-            offset: [2, 0, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+For the second example, complete the square to find the maximum. Multiplying a nonnegative square by a negative number gives a nonpositive result.
+
+<BlockMath math="-3x^2-12x-15=-3(x+2)^2-3\le-3" />
 
 ### Why the Leading Coefficient Cannot Be Zero
 
-When <InlineMath math="a = 0" />, the function form becomes <InlineMath math="f(x) = bx + c" />. This is no longer a quadratic function, but a linear function. A quadratic function must have <InlineMath math="a \neq 0" /> so that the highest power of the variable <InlineMath math="x" /> is <InlineMath math="2" />.
+If <InlineMath math="a=0" />, the <Highlight>quadratic term disappears</Highlight>. The expression <InlineMath math="bx+c" /> is linear when <InlineMath math="b\ne0" /> and constant when <InlineMath math="b=0" />. For example, <InlineMath math="2x+3" /> gives a sloping line, while <InlineMath math="3" /> gives a horizontal line.
+
+
+For a straight line, increasing the input by one always changes the output by the same linear coefficient. There is no turning point as there is on a parabola.
+
+<BlockMath math="f(x+1)-f(x)=b(x+1)+c-(bx+c)=b" />
 
 ## Key Points and Lines on the Parabola
 
-Four features fix the shape and position of a parabola. The vertex and the axis of symmetry locate the curve, while the two intercepts show where it crosses each axis. Together they are enough to sketch a parabola without plotting many individual points.
+Use the <Highlight>vertex, symmetry axis, and intercepts</Highlight> to locate the parabola. Not every parabola crosses the horizontal axis. The leading coefficient still determines the width, especially when several features coincide at one point.
 
 ### Vertex
 
-The vertex is the highest point (if <InlineMath math="a < 0" />) or the lowest point (if <InlineMath math="a > 0" />) on the graph. The coordinates of the vertex are expressed as <InlineMath math="(-\frac{b}{2a}, f(-\frac{b}{2a}))" />.
+Completing the square reveals the <Highlight>extreme value</Highlight> because a square is nonnegative. For <InlineMath math="f(x)=x^2-2x-3" />, the minimum occurs when <InlineMath math="x=1" />:
+
+<BlockMath math="f(x)=(x-1)^2-4\ge-4" />
 
 ### Axis of Symmetry
 
-The axis of symmetry is a vertical line that divides the parabola into two symmetrical parts. The equation of the axis of symmetry is <InlineMath math="x = -\frac{b}{2a}" />.
+Two points at the <Highlight>same distance from the symmetry axis</Highlight> have equal height. For <InlineMath math="f(x)=(x-1)^2-4" />, use distance <InlineMath math="t" /> from the line <InlineMath math="x=1" />:
+
+<BlockMath math="f(1-t)=(-t)^2-4=t^2-4=f(1+t)" />
 
 ### Vertical Axis Intercept
 
-The <InlineMath math="y" />-intercept is obtained when <InlineMath math="x = 0" />. Its value is <InlineMath math="f(0) = c" />. For <InlineMath math="f(x) = 2x^2 - 4x + 5" /> the intercept is the point <InlineMath math="(0, 5)" />, so the constant term already tells you where the parabola crosses the vertical axis.
+For the vertical intercept, use an <Highlight>input of zero</Highlight>. Every variable term vanishes. For <InlineMath math="f(x)=2x^2-4x+5" />:
+
+<BlockMath math="f(0)=2(0)^2-4(0)+5=5\quad\Rightarrow\quad(0,5)" />
 
 ### Horizontal Axis Intercepts
 
-The intercepts on the <InlineMath math="x" />-axis are obtained when <InlineMath math="f(x) = 0" />, that is, when <InlineMath math="ax^2 + bx + c = 0" />. The solutions can be found using the formula:
+For horizontal intercepts, find where the <Highlight>function value is zero</Highlight>. Factoring <InlineMath math="x^2-2x-3" /> gives two roots. A negative discriminant would mean no real horizontal-axis intercepts:
 
-<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
-
-## Steps to Graph a Quadratic Function
-
-The steps below turn those formulas into a graph. Work through them in order, because the vertex decides where the remaining points go.
-
-1. Determine whether the parabola opens upward (<InlineMath math="a > 0" />) or downward (<InlineMath math="a < 0" />).
-2. Calculate the coordinates of the vertex <InlineMath math="(-\frac{b}{2a}, f(-\frac{b}{2a}))" />.
-3. Calculate the <InlineMath math="y" />-intercept: <InlineMath math="(0, c)" />.
-4. Calculate the intercepts on the <InlineMath math="x" />-axis, if any.
-5. Choose several other <InlineMath math="x" /> values and calculate their corresponding <InlineMath math="y" /> values.
-6. Plot all points in the coordinate system.
-7. Connect the points with a parabolic curve.
+<BlockMath math="(x-3)(x+1)=0\quad\Rightarrow\quad x\in\{-1,3\}" />
 
 ## Drawing Quadratic Function Graphs
 
-The examples below draw one upward opening and one downward opening parabola. Each step of the drawing is written out, so the shape can be compared with the formula.
+The examples below draw one upward opening and one downward opening parabola. Each **graphing step** is written out, so the shape can be compared with the formula.
 
 ### Upward Opening Parabola Example
 
 Graph the function <InlineMath math="f(x) = x^2 - 2x - 3" />:
 
-1. Coefficient <InlineMath math="a = 1 > 0" />, so the parabola opens upward.
-2. Vertex:
+**Step 1**: Coefficient <InlineMath math="a = 1 > 0" />, so the parabola opens upward.
+**Step 2**: Vertex:
 
-   <MathContainer>
-     <BlockMath math="x = -\frac{b}{2a} = -\frac{-2}{2 \cdot 1} = 1" />
-     <BlockMath math="\begin{aligned} f(1) &amp;= 1^2 - 2 \cdot 1 - 3 \\ &amp;= 1 - 2 - 3 \\ &amp;= -4 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x = -\frac{b}{2a} = -\frac{-2}{2 \cdot 1} = 1" />
+  <BlockMath math="\begin{aligned} f(1) &amp;= 1^2 - 2 \cdot 1 - 3 \\ &amp;= 1 - 2 - 3 \\ &amp;= -4 \end{aligned}" />
+</MathContainer>
 
-   So the vertex is at <InlineMath math="(1, -4)" />.
+So the vertex is at <InlineMath math="(1, -4)" />.
 
-3. <InlineMath math="y" />-intercept:
+**Step 3**: <InlineMath math="y" />-intercept:
 
-   <BlockMath math="f(0) = 0^2 - 2 \cdot 0 - 3 = -3" />
+<BlockMath math="f(0) = 0^2 - 2 \cdot 0 - 3 = -3" />
 
-   So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, -3)" />.
+So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, -3)" />.
 
-4. Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="x^2 - 2x - 3 = 0" />
+**Step 4**: Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="x^2 - 2x - 3 = 0" />
 
-   Using the quadratic formula:
+Using the quadratic formula:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{2 \pm \sqrt{4 + 12}}{2} \\ &amp;= \frac{2 \pm \sqrt{16}}{2} \\ &amp;= \frac{2 \pm 4}{2} \end{aligned}" />
-     <BlockMath math="\begin{aligned} &amp;x = \frac{2 + 4}{2} = 3 \\ &amp;\text{or} \\ &amp;x = \frac{2 - 4}{2} = -1 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{2 \pm \sqrt{4 + 12}}{2} \\ &amp;= \frac{2 \pm \sqrt{16}}{2} \\ &amp;= \frac{2 \pm 4}{2} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x = \frac{2 + 4}{2} = 3 \\ &amp;\text{or} \\ &amp;x = \frac{2 - 4}{2} = -1 \end{aligned}" />
+</MathContainer>
 
-   So the intercepts on the <InlineMath math="x" />-axis are <InlineMath math="(-1, 0)" /> and <InlineMath math="(3, 0)" />.
+So the intercepts on the <InlineMath math="x" />-axis are <InlineMath math="(-1, 0)" /> and <InlineMath math="(3, 0)" />.
 
-5. Calculate some additional points:
+**Step 5**: Calculate some additional points:
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} f(-2) &amp;= (-2)^2 - 2 \cdot (-2) - 3 \\ &amp;= 4 + 4 - 3 \\ &amp;= 5 \end{aligned}" />
-     <BlockMath math="\begin{aligned} f(2) &amp;= 2^2 - 2 \cdot 2 - 3 \\ &amp;= 4 - 4 - 3 \\ &amp;= -3 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="\begin{aligned} f(-2) &amp;= (-2)^2 - 2 \cdot (-2) - 3 \\ &amp;= 4 + 4 - 3 \\ &amp;= 5 \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(2) &amp;= 2^2 - 2 \cdot 2 - 3 \\ &amp;= 4 - 4 - 3 \\ &amp;= -3 \end{aligned}" />
+</MathContainer>
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Graph of <InlineMath math="f(x) = x^2 - 2x - 3" />
-      </>
-    }
-    description={
-      <>
-        Parabola opens upward with vertex at{" "}
-        <InlineMath math="(1, -4)" /> and intercepts on the <InlineMath math="x" />-axis at{" "}
-        <InlineMath math="(-1, 0)" /> and
-        <InlineMath math="(3, 0)" />.
-      </>
-    }
-    cameraPosition={[1, 0, 13]}
-    cameraTarget={[1, 0, 0]}
-    data={[
-      {
-        pointIndices: [11, 27, 43, 59, 75, 91, 107],
-        smooth: false,
-        points: Array.from({ length: 119 }, (_, pointIndex) => {
-          const sampleIndex = pointIndex - 11;
-          const i = sampleIndex / 16;
-          const x = i - 2; // x values from -2 to 4
-          return { x, y: x * x - 2 * x - 3, z: 0 };
-        }),
-        color: "#0d9488",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
-            at: 91,
-            offset: [-2, 4.4, 0],
-          },
-          {
-            text: <>Vertex <InlineMath math="(1,-4)" /></>,
-            at: 59,
-            offset: [0, -0.5, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+<MathVisual
+  title="Vertex and intercepts"
+  description="Vertex and intercepts"
+  scene={{
+  "space": "plane",
+  "frame": {
+ "kind": "cartesian",
+ "x": {
+   "min": -2.5,
+   "max": 4.5
+ },
+ "y": {
+   "min": -5,
+   "max": 6
+ }
+  },
+  "view": {
+ "kind": "fit",
+ "padding": 0.1
+  },
+  "objects": [
+ {
+   "id": "curve0",
+   "kind": "quadratic",
+   "inputAxis": "x",
+   "coefficients": {
+     "a": 1,
+     "b": -2,
+     "c": -3
+   },
+   "domain": {
+     "min": -2,
+     "max": 4
+   },
+   "appearance": "primary"
+ },
+ {
+   "id": "vertex",
+   "kind": "point",
+   "at": {
+     "x": 1,
+     "y": -4
+   },
+   "appearance": "answer"
+ },
+ {
+   "id": "left",
+   "kind": "point",
+   "at": {
+     "x": -1,
+     "y": 0
+   },
+   "appearance": "answer"
+ },
+ {
+   "id": "right",
+   "kind": "point",
+   "at": {
+     "x": 3,
+     "y": 0
+   },
+   "appearance": "answer"
+ }
+  ],
+  "labels": [
+ {
+   "key": "vertex",
+   "objectId": "vertex",
+   "at": {
+     "x": 1,
+     "y": -4
+   },
+   "placement": "below"
+ },
+ {
+   "key": "left",
+   "objectId": "left",
+   "at": {
+     "x": -1,
+     "y": 0
+   },
+   "placement": "above"
+ },
+ {
+   "key": "right",
+   "objectId": "right",
+   "at": {
+     "x": 3,
+     "y": 0
+   },
+   "placement": "above"
+ }
+  ]
+}}
+  labels={{ vertex: <InlineMath math="(1,-4)" />, left: <InlineMath math="(-1,0)" />, right: <InlineMath math="(3,0)" /> }}
+/>
 
 ### Downward Opening Parabola Example
 
 Graph the function <InlineMath math="f(x) = -x^2" />:
 
-1. Coefficient <InlineMath math="a = -1 < 0" />, so the parabola opens downward.
-2. Vertex:
+**Step 1**: Coefficient <InlineMath math="a = -1 < 0" />, so the parabola opens downward.
+**Step 2**: Vertex:
 
-   <MathContainer>
-     <BlockMath math="x = -\frac{b}{2a} = -\frac{0}{2 \cdot (-1)} = 0" />
-     <BlockMath math="f(0) = -(0)^2 = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x = -\frac{b}{2a} = -\frac{0}{2 \cdot (-1)} = 0" />
+  <BlockMath math="f(0) = -(0)^2 = 0" />
+</MathContainer>
 
-   So the vertex is at <InlineMath math="(0, 0)" />.
+So the vertex is at <InlineMath math="(0, 0)" />.
 
-3. <InlineMath math="y" />-intercept:
+**Step 3**: <InlineMath math="y" />-intercept:
 
-   <BlockMath math="f(0) = 0" />
+<BlockMath math="f(0) = 0" />
 
-   So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, 0)" />.
+So the <InlineMath math="y" />-intercept is at <InlineMath math="(0, 0)" />.
 
-4. Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="-x^2 = 0" />
+**Step 4**: Intercepts on the <InlineMath math="x" />-axis: <InlineMath math="f(x) = 0" /> or <InlineMath math="-x^2 = 0" />
 
-   <MathContainer>
-     <BlockMath math="x^2 = 0" />
-     <BlockMath math="x = 0" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="x^2 = 0" />
+  <BlockMath math="x = 0" />
+</MathContainer>
 
-   So the <InlineMath math="x" />-intercept is at <InlineMath math="(0, 0)" />.
+So the <InlineMath math="x" />-intercept is at <InlineMath math="(0, 0)" />.
 
-5. Calculate some additional points:
+**Step 5**: Calculate some additional points:
 
-   <MathContainer>
-     <BlockMath math="f(-2) = -((-2)^2) = -4" />
-     <BlockMath math="f(-1) = -((-1)^2) = -1" />
-     <BlockMath math="f(1) = -(1^2) = -1" />
-     <BlockMath math="f(2) = -(2^2) = -4" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="f(-2) = -((-2)^2) = -4" />
+  <BlockMath math="f(-1) = -((-1)^2) = -1" />
+  <BlockMath math="f(1) = -(1^2) = -1" />
+  <BlockMath math="f(2) = -(2^2) = -4" />
+</MathContainer>
 
-<ContentBlock>
-  <LineEquation
-    title={
-      <>
-        Graph of <InlineMath math="f(x) = -x^2" />
-      </>
-    }
-    description={
-      <>
-        Parabola opens downward with vertex at{" "}
-        <InlineMath math="(0, 0)" />.
-      </>
-    }
-    cameraPosition={[2, 2, 12]}
-    data={[
-      {
-        pointIndices: [0, 16, 32, 48, 64, 80, 96],
-        smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
-          const i = sampleIndex / 16;
-          const x = i - 3; // x values from -3 to 3
-          return { x, y: -x * x, z: 0 };
-        }),
-        color: "#ea580c",
-        labels: [
-          {
-            text: <InlineMath math="f(x)=-x^2" />,
-            at: 64,
-            offset: [2, 0, 0],
-          },
-          {
-            text: <>Vertex <InlineMath math="(0,0)" /></>,
-            at: 48,
-            offset: [0, 0.5, 0],
-          },
-        ],
-      },
-    ]}
-  />
-</ContentBlock>
+<MathVisual
+  title="A parabola with a maximum"
+  description="A parabola with a maximum"
+  scene={{
+  "space": "plane",
+  "frame": {
+ "kind": "cartesian",
+ "x": {
+   "min": -2.5,
+   "max": 2.5
+ },
+ "y": {
+   "min": -4.5,
+   "max": 1
+ }
+  },
+  "view": {
+ "kind": "fit",
+ "padding": 0.1
+  },
+  "objects": [
+ {
+   "id": "curve0",
+   "kind": "quadratic",
+   "inputAxis": "x",
+   "coefficients": {
+     "a": -1,
+     "b": 0,
+     "c": 0
+   },
+   "domain": {
+     "min": -2,
+     "max": 2
+   },
+   "appearance": "primary"
+ },
+ {
+   "id": "vertex",
+   "kind": "point",
+   "at": {
+     "x": 0,
+     "y": 0
+   },
+   "appearance": "answer"
+ }
+  ],
+  "labels": [
+ {
+   "key": "vertex",
+   "objectId": "vertex",
+   "at": {
+     "x": 0,
+     "y": 0
+   },
+   "placement": "above"
+ }
+  ]
+}}
+  labels={{ vertex: <InlineMath math="(0,0)" /> }}
+/>
 
 ## Opening Direction Vertex and Range
 
-Write the vertex as <InlineMath math="(x_v,y_v)" />, where <InlineMath math="y_v=f(x_v)" />.
+This table assumes a <Highlight>domain of all real numbers</Highlight>. On a restricted domain, the extreme value might not be reached. Write the vertex as <InlineMath math="(x_v,y_v)" />, where <InlineMath math="y_v=f(x_v)" />.
 
 | Condition                    | Opening  | Vertex value | Range                                  |
 | ---------------------------- | -------- | ------------ | -------------------------------------- |
@@ -317,11 +427,11 @@ Write the vertex as <InlineMath math="(x_v,y_v)" />, where <InlineMath math="y_v
 
 This problem runs the whole checklist on one function, so a single answer has to name every feature.
 
-Analyze the graph of <InlineMath math="g(x)=-2(x+1)^2+8" />. Find its opening direction, vertex, symmetry axis, intercepts, and range.
+Analyze the graph of <InlineMath math="g(x)=-2(x+1)^2+8" />. Find its **opening direction**,  vertex, symmetry axis, intercepts, and range.
 
 ### Worked Solution
 
-The function is already in vertex form <InlineMath math="a(x-h)^2+k" />. Here <InlineMath math="a=-2" />, <InlineMath math="h=-1" />, and <InlineMath math="k=8" />.
+The function is already in **vertex form** <InlineMath math="a(x-h)^2+k" />. Here <InlineMath math="a=-2" />, <InlineMath math="h=-1" />, and <InlineMath math="k=8" />.
 
 - Because <InlineMath math="a<0" />, the parabola opens downward.
 - The vertex is <InlineMath math="(-1,8)" />, so its maximum value is <InlineMath math="8" />.

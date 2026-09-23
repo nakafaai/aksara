@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung susunan melingkar berdasarkan urutan relatif, anggap rotasi sebagai susunan yang sama, bedakan hasil pencerminan bila diperlukan, lalu selesaikan susunan dengan syarat khusus.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-19",
    subject: "Kombinatorik",
 };
 
@@ -26,11 +26,18 @@ Keterangan:
 - <InlineMath math="n" /> = banyaknya objek yang akan disusun
 - <InlineMath math="(n-1)!" /> = faktorial dari <InlineMath math="(n-1)" />
 
-**Mengapa rumusnya <InlineMath math="(n-1)!" />?**
+Mengapa rumusnya <InlineMath math="(n-1)!" />?
 
 Dalam permutasi melingkar, memutar semua objek bersama-sama tidak menghasilkan susunan baru. Contoh meja bundar menunjukkan mengapa susunan yang hanya berbeda karena rotasi dihitung satu kali.
 
 Misalkan <InlineMath math="3" /> anak, yaitu <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, duduk mengelilingi meja bundar. Urutan <InlineMath math="ABC" />, <InlineMath math="BCA" />, dan <InlineMath math="CAB" /> adalah **susunan yang sama** karena ketiganya hanya berbeda akibat rotasi dan posisi relatifnya tidak berubah.
+
+Tabel mengelompokkan semua enam urutan linear. Baca setiap urutan searah jarum jam. **Rotasi tetap dalam baris yang sama**, sedangkan pencerminan berpindah baris.
+
+| Susunan melingkar | Urutan linear yang setara |
+| --- | --- |
+| 1 | ABC, BCA, CAB |
+| 2 | ACB, CBA, BAC |
 
 Langkah perhitungan:
 1. Tetapkan satu objek sebagai **titik referensi** (misalnya anak A)
@@ -44,21 +51,19 @@ Rumus <InlineMath math="(n-1)!" /> menyamakan rotasi, tetapi masih menganggap ba
 
 ## Menghitung Susunan Melingkar
 
-Rumus yang sama menghitung susunan tempat duduk melingkar dan formasi lain yang mengelilingi satu titik pusat.
+Rumus yang sama menghitung **susunan tempat duduk melingkar** dan formasi lain yang mengelilingi satu titik pusat. Pertahankan satu orang sebagai acuan, lalu hitung urutan orang lain terhadap orang tersebut. Jika orang berpasangan, unit yang disusun berubah menjadi pasangan.
 
-**Tempat Duduk Melingkar:**
+### Tempat Duduk Melingkar
 
-Lima siswa akan duduk mengelilingi meja bundar untuk berdiskusi. Banyaknya cara mereka dapat duduk adalah:
+Lima siswa akan duduk **mengelilingi meja bundar** untuk berdiskusi. Banyaknya cara mereka dapat duduk adalah:
 
 <BlockMath math="\begin{aligned} P_5 &amp;= (5-1)! \\ &amp;= 4! \\ &amp;= 4 \times 3 \times 2 \times 1 \\ &amp;= 24 \text{ cara} \end{aligned}" />
+### Permainan dalam Lingkaran
 
-**Permainan Tradisional:**
-
-Delapan anak bermain dalam lingkaran. Banyaknya formasi berbeda yang dapat mereka bentuk adalah:
+Delapan anak **bermain dalam lingkaran**. Banyaknya formasi berbeda yang dapat mereka bentuk adalah:
 
 <BlockMath math="\begin{aligned} P_8 &amp;= (8-1)! \\ &amp;= 7! \\ &amp;= 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 \\ &amp;= 5\,040 \text{ cara} \end{aligned}" />
-
-**Situasi dengan Syarat Khusus:**
+### Pasangan yang Berdampingan
 
 Ketika ada **syarat tambahan** seperti objek tertentu harus berdampingan, kita menggunakan **teknik pengelompokan**:
 
@@ -72,7 +77,7 @@ Contoh: <InlineMath math="4" /> pasang suami istri duduk melingkar, setiap pasan
 
 ## Latihan
 
-Ketiga soal berbeda pada satu syarat: lingkaran biasa, gelang yang menyamakan bayangan cermin, dan pasangan yang harus bersebelahan. Pilih rumus yang sesuai sebelum menghitung, karena satu syarat tambahan mengubah banyaknya susunan yang dihitung.
+Keempat soal membandingkan lingkaran biasa, gelang yang menyamakan bayangan cermin, pasangan yang harus bersebelahan, dan dua orang yang tidak boleh bersebelahan. Pilih rumus yang sesuai sebelum menghitung, karena **satu syarat tambahan** mengubah banyaknya susunan yang dihitung.
 
 1. Terdapat <InlineMath math="6" /> teman yang akan duduk mengelilingi api unggun. Berapa banyak cara mereka dapat duduk?
 
@@ -81,48 +86,64 @@ Ketiga soal berbeda pada satu syarat: lingkaran biasa, gelang yang menyamakan ba
 3. <InlineMath math="5" /> pasangan suami istri akan duduk mengelilingi meja bundar dengan syarat setiap suami harus duduk bersebelahan dengan istrinya. Berapa banyak cara duduk yang mungkin?
 
 4. <InlineMath math="7" /> siswa akan bermain permainan melingkar, tetapi dua siswa tertentu tidak boleh duduk bersebelahan. Berapa banyak cara mereka dapat membentuk lingkaran?
-
 ### Kunci Jawaban
 
-1. **Jawaban: <InlineMath math="120 \text{ cara}" />**
+**Soal 1**
 
-   Langkah penyelesaian:
-   - Diketahui: <InlineMath math="n = 6 \text{ orang}" />
-   - Rumus permutasi siklis: <InlineMath math="P_n = (n-1)!" />
-   - <InlineMath math="P_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />
+<InlineMath math="120 \text{ cara}" />
 
-   Jadi, <InlineMath math="6 \text{ orang}" /> dapat duduk mengelilingi api unggun dengan <InlineMath math="120" /> susunan berbeda.
+Langkah penyelesaian:
 
-2. **Jawaban: <InlineMath math="2\,520 \text{ cara}" />**
+Diketahui: <InlineMath math="n = 6 \text{ orang}" />
+Rumus permutasi siklis: <InlineMath math="P_n = (n-1)!" />
+<BlockMath math="P_6 = (6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />
 
-   Langkah penyelesaian:
-   - Pertama, anggap susunan yang hanya berbeda karena rotasi sebagai susunan yang sama: <InlineMath math="P_8 = (8-1)! = 7!" />
-   - <InlineMath math="7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040" />
-   - Membalik gelang membuat setiap urutan searah jarum jam sama dengan bayangan cerminnya yang berlawanan arah.
-   - Karena semua manik berbeda, susunan tersebut berpasangan, sehingga hasilnya dibagi <InlineMath math="2" />.
-   - <InlineMath math="\frac{5\,040}{2} = 2\,520" />
+Jadi, <InlineMath math="6 \text{ orang}" /> dapat duduk mengelilingi api unggun dengan <InlineMath math="120" /> susunan berbeda.
 
-   Gelang dapat dibuat dalam <InlineMath math="2\,520" /> susunan berbeda.
+**Soal 2**
 
-3. **Jawaban: <InlineMath math="768 \text{ cara}" />**
+<InlineMath math="2\,520 \text{ cara}" />
 
-   Langkah penyelesaian:
-   - Diketahui: <InlineMath math="5" /> pasangan suami istri (<InlineMath math="10 \text{ orang}" />), setiap pasangan harus berdampingan
-   - **Teknik pengelompokan:** Anggap setiap pasangan sebagai satu unit → <InlineMath math="5 \text{ unit}" />
-   - Permutasi siklis <InlineMath math="5 \text{ unit}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
-   - Setiap pasangan dapat bertukar posisi: <InlineMath math="2! = 2 \text{ cara}" /> per pasangan
-   - Total: <InlineMath math="24 \times 2^5 = 24 \times 32 = 768" />
+Langkah penyelesaian:
 
-   Terdapat <InlineMath math="768" /> susunan tempat duduk yang memenuhi syarat.
+Pertama, anggap susunan yang hanya berbeda karena rotasi sebagai susunan yang sama: <InlineMath math="P_8 = (8-1)! = 7!" />
+<BlockMath math="7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5\,040" />
 
-4. **Jawaban: <InlineMath math="480 \text{ cara}" />**
+Membalik gelang membuat setiap urutan searah jarum jam sama dengan bayangan cerminnya yang berlawanan arah.
+Karena semua manik berbeda, susunan tersebut berpasangan, sehingga hasilnya dibagi <InlineMath math="2" />.
+<BlockMath math="\frac{5\,040}{2} = 2\,520" />
 
-   Langkah penyelesaian (**metode komplemen**):
-   - Total cara tanpa syarat: <InlineMath math="(7-1)! = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
-   - Untuk menghitung cara yang tidak diinginkan, anggap <InlineMath math="2 \text{ siswa}" /> yang bersebelahan sebagai satu unit.
-   - Sekarang ada <InlineMath math="6" /> unit yang disusun melingkar, sehingga banyak susunannya adalah <InlineMath math="(6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />.
-   - <InlineMath math="2 \text{ siswa}" /> di dalam unit itu dapat bertukar posisi, sehingga ada <InlineMath math="2! = 2" /> susunan internal.
-   - Total cara bersebelahan: <InlineMath math="120 \times 2 = 240" />
-   - **Cara yang diinginkan:** <InlineMath math="720 - 240 = 480" />
+Gelang dapat dibuat dalam <InlineMath math="2\,520" /> susunan berbeda.
 
-   Jadi, ada <InlineMath math="480 \text{ cara}" /> membentuk susunan melingkar dengan kedua siswa tidak bersebelahan.
+**Soal 3**
+
+<InlineMath math="768 \text{ cara}" />
+
+Langkah penyelesaian:
+
+Diketahui: <InlineMath math="5" /> pasangan suami istri (<InlineMath math="10 \text{ orang}" />), setiap pasangan harus berdampingan
+**Teknik pengelompokan:** Anggap setiap pasangan sebagai satu unit → <InlineMath math="5 \text{ unit}" />
+
+Permutasi siklis <InlineMath math="5 \text{ unit}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
+Setiap pasangan dapat bertukar posisi: <InlineMath math="2! = 2 \text{ cara}" /> per pasangan
+
+Total: <InlineMath math="24 \times 2^5 = 24 \times 32 = 768" />
+
+Terdapat <InlineMath math="768" /> susunan tempat duduk yang memenuhi syarat.
+
+**Soal 4**
+
+<InlineMath math="480 \text{ cara}" />
+
+Langkah penyelesaian (**metode komplemen**):
+
+Total cara tanpa syarat: <InlineMath math="(7-1)! = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
+Untuk menghitung cara yang tidak diinginkan, anggap <InlineMath math="2 \text{ siswa}" /> yang bersebelahan sebagai satu unit.
+
+Sekarang ada <InlineMath math="6" /> unit yang disusun melingkar, sehingga banyak susunannya adalah <InlineMath math="(6-1)! = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120" />.
+<InlineMath math="2 \text{ siswa}" /> di dalam unit itu dapat bertukar posisi, sehingga ada <InlineMath math="2! = 2" /> susunan internal.
+
+Total cara bersebelahan: <InlineMath math="120 \times 2 = 240" />
+**Cara yang diinginkan:** <InlineMath math="720 - 240 = 480" />
+
+Jadi, ada <InlineMath math="480 \text{ cara}" /> membentuk susunan melingkar dengan kedua siswa tidak bersebelahan.

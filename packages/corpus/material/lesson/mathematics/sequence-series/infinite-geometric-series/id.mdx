@@ -30,13 +30,13 @@ Deret matematis ini tidak memiliki pantulan terakhir. Namun, jumlah parsialnya d
 
 <BlockMath math="|r| < 1 \quad \text{atau} \quad -1 < r < 1" />
 
-Deret seperti ini disebut **konvergen**, artinya <Highlight>jumlah parsialnya mendekati satu nilai berhingga</Highlight>. Dalam contoh bola, <InlineMath math="r = \frac{1}{4}" />, dan karena <InlineMath math="-1 < \frac{1}{4} < 1" />, deretnya konvergen.
+Deret seperti ini disebut **konvergen**, artinya jumlah parsialnya mendekati **satu nilai berhingga**. Dalam contoh bola, <InlineMath math="r = \frac{1}{4}" />, dan karena <InlineMath math="-1 < \frac{1}{4} < 1" />, deretnya konvergen.
 
 Jika <InlineMath math="|r| \ge 1" /> dan <InlineMath math="a\ne0" />, suku-sukunya tidak mendekati nol, sehingga deretnya **divergen**. Jumlah parsialnya dapat bertambah tanpa batas, berkurang tanpa batas, atau berosilasi. Divergen berarti tidak ada limit berhingga. Hasilnya tidak selalu <InlineMath math="+\infty" /> atau <InlineMath math="-\infty" />.
 
 ## Menghitung Jumlah Deret Tak Hingga
 
-Bagaimana cara menghitung jumlah deret tak hingga yang konvergen? Kita mulai dari rumus jumlah <InlineMath math="n" /> suku pertama deret geometri:
+Bagaimana cara menghitung **jumlah deret tak hingga yang konvergen**? Kita mulai dari rumus jumlah <InlineMath math="n" /> suku pertama deret geometri:
 
 <BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
 
@@ -68,22 +68,33 @@ Di sini <InlineMath math="a=1" /> dan <InlineMath math="r=\frac12" />, sehingga:
 
 Tidak ada jumlah parsial berhingga yang tepat sama dengan <InlineMath math="2" />, tetapi jumlah parsialnya dapat dibuat sedekat apa pun dengan <InlineMath math="2" />. Jumlah tak hingga adalah limit dari jumlah-jumlah parsial berhingga tersebut.
 
+
+<LineEquation
+  title="Jumlah parsial mendekati dua"
+  description="Titik menunjukkan jumlah setelah 1 sampai 6 suku. Garis penghubung hanya membantu mengikuti urutan titik, sedangkan garis mendatar menunjukkan limit 2. Putar atau perbesar tampilan untuk membandingkan jarak titik ke garis limit."
+  cameraPosition={[3, 1, 9]}
+  cameraTarget={[3, 1, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 1.5, z: 0 }, { x: 3, y: 1.75, z: 0 }, { x: 4, y: 1.875, z: 0 }, { x: 5, y: 1.9375, z: 0 }, { x: 6, y: 1.96875, z: 0 }], smooth: false, showPoints: true, color: "blue", labels: [{ text: <InlineMath math="S(n)" />, at: 3, offset: [0, -0.25, 0] }] },
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0, 0.2, 0] }] }
+  ]}
+/>
+
+Selisih ke limit juga dapat dihitung. Setelah enam suku, jumlahnya <InlineMath math="1{,}96875" /> dan kekurangannya <InlineMath math="0{,}03125" />. Setiap suku tambahan membagi **sisa jarak ke limit** menjadi dua.
+
+<BlockMath math="S_n=2-2^{1-n},\qquad 2-S_n=2^{1-n}" />
+
 ## Menghitung Total Lintasan
 
 Kita bisa menghitung total lintasan bola menggunakan rumus <InlineMath math="S_\infty" />. Ada dua bagian lintasan:
 
-1.  **Lintasan Turun:** Bola jatuh dari ketinggian <InlineMath math="a" />, lalu jatuh lagi setelah pantulan pertama (<InlineMath math="ar" />), jatuh lagi setelah pantulan kedua (<InlineMath math="ar^2" />), dan seterusnya.
+**Jatuh pertama dihitung sekali**. Sesudah itu, setiap tinggi pantulan dilalui dua kali, sekali naik dan sekali turun. Pisahkan kedua arah agar tidak ada lintasan yang terlewat.
 
-    - Deret turun: <InlineMath math="a + ar + ar^2 + ar^3 + \dots" />
-    - Suku pertama (<InlineMath math="a_{\downarrow}" />) adalah <InlineMath math="a" />
-    - Rasio (<InlineMath math="r_{\downarrow}" />) adalah <InlineMath math="r" />
-    - Jumlah lintasan turun: <InlineMath math="S_{\downarrow}=\frac{a_{\downarrow}}{1-r_{\downarrow}}=\frac{a}{1-r}" />
-
-2.  **Lintasan Naik:** Bola naik setelah pantulan pertama (<InlineMath math="ar" />), naik lagi setelah pantulan kedua (<InlineMath math="ar^2" />), dan seterusnya.
-    - Deret naik: <InlineMath math="ar + ar^2 + ar^3 + \dots" />
-    - Suku pertama (<InlineMath math="a_{\uparrow}" />) adalah <InlineMath math="ar" />
-    - Rasio (<InlineMath math="r_{\uparrow}" />) adalah <InlineMath math="r" />
-    - Jumlah lintasan naik: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
+| Arah | Tinggi yang dilalui | Suku pertama | Jumlah lintasan |
+| --- | --- | --- | --- |
+| Turun | <InlineMath math="a,ar,ar^2,\ldots" /> | <InlineMath math="a" /> | <InlineMath math="S_{\downarrow}=\frac{a}{1-r}" /> |
+| Naik | <InlineMath math="ar,ar^2,ar^3,\ldots" /> | <InlineMath math="ar" /> | <InlineMath math="S_{\uparrow}=\frac{ar}{1-r}" /> |
 
 Panjang lintasan total adalah jumlah seluruh lintasan turun ditambah seluruh lintasan naik.
 
@@ -116,8 +127,8 @@ Tentukan jumlah deret berikut:
 
 <BlockMath math="12-6+3-\frac32+\cdots" />
 
-Di sini <InlineMath math="a=12" /> dan <InlineMath math="r=-\frac12" />. Karena <InlineMath math="|r|<1" />, deretnya konvergen:
+Di sini <InlineMath math="a=12" /> dan <InlineMath math="r=-\frac12" />. Karena <InlineMath math="|r|<1" />, **deretnya konvergen**:
 
-<BlockMath math="S_\infty=\frac{12}{1-(-1/2)}=8" />
+<BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 Rasio negatif membuat tanda suku berganti-ganti, tetapi nilai mutlaknya mengecil cukup cepat sehingga jumlah parsialnya mendekati <InlineMath math="8" />.

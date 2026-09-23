@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baca dan pilih notasi Leibniz atau notasi aksen Lagrange untuk turunan berdasarkan makna dan kegunaannya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-19",
     subject: "Turunan Fungsi",
 };
 
@@ -15,7 +15,7 @@ Nama keduanya perlu dibedakan. Tanda aksen pada <InlineMath math="f'(x)" /> dika
 
 ## Dua Notasi Turunan yang Umum
 
-<Highlight>Kedua notasi menyatakan turunan yang sama</Highlight>. Notasi Leibniz menunjukkan besaran yang berubah dan variabel yang menjadi acuan turunan. Notasi Lagrange menempelkan tanda aksen pada nama fungsi, sehingga turunan berulang dapat ditulis lebih singkat.
+Kedua notasi menyatakan <Highlight>turunan yang sama</Highlight>. Notasi Leibniz menunjukkan besaran yang berubah dan variabel yang menjadi acuan turunan. Notasi Lagrange menempelkan tanda aksen pada nama fungsi, sehingga turunan berulang dapat ditulis lebih singkat.
 
 ### Notasi Leibniz
 
@@ -23,11 +23,11 @@ Gottfried Wilhelm Leibniz memperkenalkan notasi yang menampilkan variabel secara
 
 <BlockMath math="\frac{dy}{dx} \quad \text{atau} \quad \frac{df}{dx}" />
 
-Kita membaca <InlineMath math="\frac{dy}{dx}" /> sebagai "turunan <InlineMath math="y" /> terhadap <InlineMath math="x" />." Notasi tersebut menunjukkan bahwa <InlineMath math="y" /> diturunkan terhadap <InlineMath math="x" />. Informasi ini penting ketika soal memuat beberapa variabel yang saling berkaitan.
+Kita membaca <InlineMath math="\frac{dy}{dx}" /> sebagai "turunan <InlineMath math="y" /> terhadap <InlineMath math="x" />." Notasi tersebut menunjukkan bahwa <InlineMath math="y" /> diturunkan terhadap <InlineMath math="x" />. Informasi ini penting ketika soal memuat **beberapa variabel yang saling berkaitan**.
 
 ### Notasi Aksen Lagrange
 
-Notasi aksen Lagrange menandai turunan dengan tanda aksen. Jika <InlineMath math="y = f(x)" />, turunannya dapat ditulis sebagai:
+Notasi aksen Lagrange menandai turunan dengan **tanda aksen**. Jika <InlineMath math="y = f(x)" />, turunannya dapat ditulis sebagai:
 
 <BlockMath math="y' \quad \text{atau} \quad f'(x)" />
 
@@ -39,4 +39,22 @@ Gunakan **notasi aksen Lagrange**, seperti <InlineMath math="f'(x)" />, ketika f
 
 Gunakan **notasi Leibniz**, seperti <InlineMath math="\frac{dy}{dx}" />, ketika soal memuat beberapa variabel. Penyebut <InlineMath math="dx" /> menyatakan bahwa penurunan dilakukan terhadap <InlineMath math="x" />, seperti pada aturan rantai, laju terkait, dan kalkulus multivariabel.
 
-Kedua notasi tidak mengubah matematikanya. Notasi Lagrange mempersingkat perhitungan rutin, sedangkan notasi Leibniz menyebutkan variabel acuan secara langsung.
+## Menghitung Turunan dengan Kedua Notasi
+
+Ambil <InlineMath math="y=f(x)=x^3-2x" />. Dengan aturan pangkat, turunan <InlineMath math="x^3" /> adalah <InlineMath math="3x^2" /> dan turunan <InlineMath math="-2x" /> adalah <InlineMath math="-2" />. Kedua notasi mencatat perhitungan yang sama:
+
+<BlockMath math="f'(x)=\frac{dy}{dx}=3x^2-2" />
+
+Bedakan **fungsi turunan** dengan **nilai turunan di satu titik**. Untuk mencari kemiringan pada <InlineMath math="x=2" />, masukkan nilai tersebut setelah memperoleh fungsi turunan.
+
+<BlockMath math="f'(2)=\left.\frac{dy}{dx}\right\rvert_{x=2}=3(2)^2-2=10" />
+
+Garis vertikal pada notasi Leibniz berarti nilai turunan dihitung pada <InlineMath math="x=2" />. Jadi, baik <InlineMath math="f'(2)" /> maupun <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}" /> menyatakan bilangan <InlineMath math="10" />.
+
+| Besaran | Notasi Lagrange | Notasi Leibniz |
+| --- | --- | --- |
+| Fungsi turunan | <InlineMath math="f'(x)=3x^2-2" /> | <InlineMath math="\frac{dy}{dx}=3x^2-2" /> |
+| Turunan pada satu titik | <InlineMath math="f'(2)=10" /> | <InlineMath math="\left.\frac{dy}{dx}\right\rvert_{x=2}=10" /> |
+| Turunan kedua | <InlineMath math="f''(x)=6x" /> | <InlineMath math="\frac{d^2y}{dx^2}=6x" /> |
+
+Pada baris terakhir, kita menurunkan <InlineMath math="3x^2-2" /> sekali lagi. Pangkat pada notasi Leibniz menandai **dua kali diferensiasi**. Notasi itu tidak berarti menguadratkan turunan pertama.

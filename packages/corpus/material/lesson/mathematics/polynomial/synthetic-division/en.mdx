@@ -35,99 +35,95 @@ Before starting the division, there are a few things to prepare:
 
 ## Steps for Long Division
 
-The division process is performed step-by-step as follows:
-
-1.  **Divide:** Divide the first term of <InlineMath math="P(x)" /> by the first term of <InlineMath math="Q(x)" />. Write the result as the first term of the quotient (<InlineMath math="H(x)" />) above the line.
-2.  **Multiply:** Multiply the quotient term just obtained by the _entire_ divisor <InlineMath math="Q(x)" />.
-3.  **Subtract:** Write the result of the multiplication below <InlineMath math="P(x)" />, aligning like terms, then subtract it from <InlineMath math="P(x)" /> to get a temporary remainder.
-4.  **Bring Down:** Bring down the next term from <InlineMath math="P(x)" /> next to the temporary remainder to form a new polynomial.
-5.  **Repeat:** Repeat steps <InlineMath math="1\text{-}4" /> with this new polynomial until the degree of the temporary remainder is less than the degree of the divisor <InlineMath math="Q(x)" />.
+The divisor must be a **nonzero polynomial**. In each round, multiplication and subtraction eliminate the leading term of the current remainder. Stop when the remainder is zero or has lower degree than the divisor.
 
 ### Long Division Example
 
 Divide <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> by <InlineMath math="Q(x) = x^2 + 4x - 1" />.
 
-1. **Preparation:**
+**Step 1**. Preparation
 
-   - <InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (complete the <InlineMath math="x^2" /> term)
-   - <InlineMath math="Q(x) = x^2 + 4x - 1" />
+<InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" /> (complete the <InlineMath math="x^2" /> term)
+<InlineMath math="Q(x) = x^2 + 4x - 1" />
 
-2. **Division Process:**
+**Step 2**. Division Process
 
-   The quotient is <InlineMath math="4x^2+x" /> and the remainder is <InlineMath math="-2x+1" />. The next steps show each multiplication and subtraction, including the zero coefficient of <InlineMath math="x^2" />.
+The quotient is <InlineMath math="4x^2+x" /> and the remainder is <InlineMath math="-2x+1" />. The next steps show each multiplication and subtraction, including the zero coefficient of <InlineMath math="x^2" />.
 
-3. **Step-by-Step Explanation:**
+**Step 3**. Step-by-Step Explanation
 
-   **Iteration** <InlineMath math="1" />:
+**Iteration 1**:
 
-   - **Divide:** Divide the first term <InlineMath math="4x^4" /> by the first term of the divisor <InlineMath math="x^2" />:
+**Divide:** Divide the first term <InlineMath math="4x^4" /> by the first term of the divisor <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
+<BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
 
-     Write <InlineMath math="4x^2" /> as the first term of the quotient.
+Write <InlineMath math="4x^2" /> as the first term of the quotient.
 
-   - **Multiply:** Multiply <InlineMath math="4x^2" /> by the divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiply:** Multiply <InlineMath math="4x^2" /> by the divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
-   - **Subtract:** Subtract the result from the initial polynomial:
+**Subtract:** Subtract the result from the initial polynomial:
 
-     <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
 
-   - **Bring Down:** Bring down the next term (<InlineMath math="-3x" />) to get the new polynomial:
+**Bring Down:** Bring down the next term (<InlineMath math="-3x" />) to get the new polynomial:
 
-     <InlineMath math="x^3 + 4x^2 - 3x" />
+<InlineMath math="x^3 + 4x^2 - 3x" />
 
-   **Iteration** <InlineMath math="2" />:
+**Iteration 2**:
 
-   - **Divide:** Divide the first term of the new polynomial <InlineMath math="x^3" /> by the first term of the divisor <InlineMath math="x^2" />:
+**Divide:** Divide the first term of the new polynomial <InlineMath math="x^3" /> by the first term of the divisor <InlineMath math="x^2" />:
 
-     <BlockMath math="\frac{x^3}{x^2} = x" />
+<BlockMath math="\frac{x^3}{x^2} = x" />
 
-     Write <InlineMath math="+x" /> as the next term of the quotient.
+Write <InlineMath math="+x" /> as the next term of the quotient.
 
-   - **Multiply:** Multiply <InlineMath math="x" /> by the divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiply:** Multiply <InlineMath math="x" /> by the divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
+<BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
 
-   - **Subtract:** Subtract the result from the current polynomial:
+**Subtract:** Subtract the result from the current polynomial:
 
-     <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
-   - **Bring Down:** Bring down the next term (<InlineMath math="+1" />) to get the temporary remainder:
+**Bring Down:** Bring down the next term (<InlineMath math="+1" />) to get the temporary remainder:
 
-     <BlockMath math="-2x + 1" />
+<BlockMath math="-2x + 1" />
 
-   **Stop:** The degree of the remainder (<InlineMath math="-2x+1" />, degree <InlineMath math="1" />) is less than the degree of the divisor (<InlineMath math="x^2+4x-1" />, degree <InlineMath math="2" />), so the division stops.
+**Stop:** The degree of the remainder (<InlineMath math="-2x+1" />, degree <InlineMath math="1" />) is less than the degree of the divisor (<InlineMath math="x^2+4x-1" />, degree <InlineMath math="2" />), so the division stops.
 
-4. **Result:**
+**Step 4**. Result
 
-     - The Quotient (<InlineMath math="H(x)" />) is <InlineMath math="4x^2 + x" />.
-     - The Remainder (<InlineMath math="S(x)" />) is <InlineMath math="-2x + 1" />.
+The Quotient (<InlineMath math="H(x)" />) is <InlineMath math="4x^2 + x" />.
+The Remainder (<InlineMath math="S(x)" />) is <InlineMath math="-2x + 1" />.
 
-5. **Writing in Division Algorithm Form:**
+**Step 5**. Writing in Division Algorithm Form
 
-     Based on the division algorithm, we can write the result as:
+Based on the division algorithm, we can write the result as:
 
-     - Fraction Form:
+Fraction Form:
 
-       <BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
 
-     - Multiplication Form:
+Multiplication Form:
 
-       <BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;\quad{}+ (-2x + 1) \end{aligned}" />
 
 Long division records every quotient, multiplication, and subtraction step. That explicit layout works for divisors of any positive degree and makes the reconstruction <InlineMath math="P(x)=Q(x)H(x)+S(x)" /> easy to check.
 
+The fractional form is valid only for inputs with <InlineMath math="Q(x)\ne0" />. The multiplication identity remains valid for every input.
+
 ## Exercise
 
-Find the quotient polynomial <InlineMath math="H(x)" /> and the remainder polynomial <InlineMath math="S(x)" /> after dividing <InlineMath math="P(x) = x^3 - x + 9" /> by <InlineMath math="Q(x) = x^2 - 2x + 3" />. Confirm the result by multiplying the divisor with the quotient and adding the remainder.
+Find the **quotient polynomial** <InlineMath math="H(x)" /> and the remainder polynomial <InlineMath math="S(x)" /> after dividing <InlineMath math="P(x) = x^3 - x + 9" /> by <InlineMath math="Q(x) = x^2 - 2x + 3" />. Confirm the result by multiplying the divisor with the quotient and adding the remainder.
 
 State the result in the form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />.
 
 ### Worked Solution
 
-Complete <InlineMath math="P(x)" /> to become <InlineMath math="x^3 + 0x^2 - x + 9" />.
+**Insert the zero coefficient** in <InlineMath math="P(x)" /> to become <InlineMath math="x^3 + 0x^2 - x + 9" />.
 
 <BlockMath
   math="

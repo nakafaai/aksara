@@ -14,7 +14,7 @@ A line that intersects a circle at two points forms a [chord](/en/subjects/mathe
 
 ## Difference Between Arc and Segment
 
-An arc and a segment name different parts of a circle:
+An arc is a **curved line**, while a segment is the region between an arc and its chord. Measure an arc in length units such as centimeters, but a segment in area units such as square centimeters.
 
 <ContentStack>
 
@@ -102,13 +102,9 @@ An arc and a segment name different parts of a circle:
 
 </ContentStack>
 
-**Summary of Differences:**
-- **Arc**: Curved line on the circumference of a circle (only has length, no area)
-- **Segment**: Region surrounded by arc and chord (has area, can be calculated)
-
 ## Types of Segment Based on Size
 
-Based on their size, segments can be divided into two types with different characteristics:
+Choose the **bounding arc** before classifying a segment. A minor arc bounds less than half the circle, while the major arc bounds the remaining region. If the chord is a diameter, the two regions have equal area.
 
 <ContentStack>
 
@@ -186,7 +182,7 @@ Based on their size, segments can be divided into two types with different chara
       showPoints: false,
       lineWidth: 3,
     },
-    // Segment (shaded area)
+    // Segment (boundary)
     { kind: "circle-segment", color: "#ea580c",
       radius: 4,
       startDegrees: 30,
@@ -273,7 +269,7 @@ Based on their size, segments can be divided into two types with different chara
       showPoints: false,
       lineWidth: 3,
     },
-    // Major segment (shaded area)
+    // Major segment (boundary)
     { kind: "circle-segment", color: "#65a30d",
       radius: 4,
       startDegrees: 45,
@@ -294,7 +290,7 @@ For a fixed radius, the central angle distinguishes the two segments:
 
 ## Segment Area Formula
 
-To calculate the area of a minor segment, subtract the triangle formed by the two radii and the chord from its sector.
+To calculate the area of a minor segment, subtract the **triangle area from the sector area**.
 
 Compare arc length and segment area before using their formulas.
 
@@ -326,7 +322,7 @@ For a major segment, first use the complementary minor angle <InlineMath math="\
 
 ## Sector Triangle and Segment
 
-The diagram labels the sector, the triangle formed by the two radii and chord, and the segment left after subtracting the triangle.
+In the 90-degree sector below, the chord joins the endpoints of two perpendicular radii. The **region between the arc and chord** remains after removing the right triangle inside the sector.
 
 <ContentStack>
 
@@ -410,7 +406,7 @@ The diagram labels the sector, the triangle formed by the two radii and chord, a
 
 ## Segment Area Calculation
 
-To understand how to calculate the area of a segment, use an example with a central angle of <InlineMath math="\alpha = 90^\circ" /> and radius <InlineMath math="r = 10 \text{ cm}" />, according to the visualization of segment formation components above.
+Use the same **quarter-circle shape** as in the diagram, but with new dimensions: a central angle of <InlineMath math="90^\circ" /> and radius <InlineMath math="10\text{ cm}" />. Calculate the sector and triangle areas separately.
 
 **Step 1**: Calculate Sector Area
 
@@ -443,7 +439,7 @@ For a <InlineMath math="90^\circ" /> angle, the triangle formed is a right trian
 
 ## Exercises
 
-Each problem asks for the area of a segment, so subtract the triangle from the sector that share the same central angle.
+Problem one asks for **segment area**, problem two finds an angle from an area, and problem three finds the water-filled cross-section. In the tank, measure depth from the bottom to find the distance from the surface to the center.
 
 1. A circle has a radius of <InlineMath math="7 \text{ cm}" />. If there is a segment with a central angle of <InlineMath math="60^\circ" />, determine the area of the segment.
 
@@ -453,92 +449,96 @@ Each problem asks for the area of a segment, so subtract the triangle from the s
 
 ### Worked Solutions
 
-1. **Solution Steps:**
+Use **sector minus triangle** for a minor segment area. When area is given, find the angle that makes the formula produce it. In the tank cross-section, first draw the chord at the water surface.
 
-   Given: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
+**Solution 1**
 
-   Calculate sector area:
+Given: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
 
-   <MathContainer>
-   <BlockMath math="\text{Sector Area} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
-   <BlockMath math="= \frac{1}{6} \times \pi \times 49" />
-   <BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
-   </MathContainer>
+Calculate sector area:
 
-   Calculate triangle area:
+<MathContainer>
+<BlockMath math="\text{Sector Area} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
+<BlockMath math="= \frac{1}{6} \times \pi \times 49" />
+<BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\text{Triangle Area} = \frac{1}{2} r^2 \sin 60^\circ" />
-   <BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
-   <BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
-   </MathContainer>
+Calculate triangle area:
 
-   Calculate segment area:
+<MathContainer>
+<BlockMath math="\text{Triangle Area} = \frac{1}{2} r^2 \sin 60^\circ" />
+<BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
+<BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
+</MathContainer>
 
-   <MathContainer>
-   <BlockMath math="\text{Segment Area} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
-   <BlockMath math="\approx 25.6563 - 21.2176 = 4.4387 \text{ cm}^2" />
-   </MathContainer>
+Calculate segment area:
 
-2. **Solution Steps:**
+<MathContainer>
+<BlockMath math="\text{Segment Area} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
+<BlockMath math="\approx 25.6563 - 21.2176 = 4.4387 \text{ cm}^2" />
+</MathContainer>
 
-   Given: segment area <InlineMath math="\approx 15.3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
+**Solution 2**
 
-   Using the formula: <InlineMath math="\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+Given: segment area <InlineMath math="\approx 15.3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
 
-   Solve this equation numerically on the minor-angle interval <InlineMath math="0^\circ<\alpha<180^\circ" />. This gives:
-   <InlineMath math="\alpha \approx 120^\circ" />
+Using the formula: <InlineMath math="\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
 
-   Verification:
+Find the angle by **narrowing an interval**. Minor segment area increases as its angle grows. Substituting with a calculator in degree mode gives:
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned} \text{Sector Area} &amp;= \frac{120^\circ}{360^\circ} \times \pi \times 25 \\ &amp;= \frac{25\pi}{3} \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\text{Triangle Area} \\ &amp;= \frac{1}{2} \times 25 \times \sin 120^\circ \\ &amp;= \frac{25\sqrt{3}}{4} \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;\text{Segment Area} \\ &amp;= \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \\ &amp;\approx 26.1799 - 10.8253 \\ &amp;= 15.3546 \text{ cm}^2 \end{aligned}" />
-   </MathContainer>
+<BlockMath math="A(\alpha)=\frac{25\pi\alpha}{360^\circ}-\frac{25}{2}\sin\alpha" />
 
-   This matches the stated area after rounding, so the central angle is approximately <InlineMath math="120^\circ" />.
+| Trial angle | Calculated area |
+| --- | --- |
+| <InlineMath math="110^\circ" /> | <InlineMath math="12.2521\text{ cm}^2" /> |
+| <InlineMath math="130^\circ" /> | <InlineMath math="18.7860\text{ cm}^2" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="15.3546\text{ cm}^2" /> |
 
-3. **Solution Steps:**
+The target lies between the values for 110 and 130 degrees. Try the interval midpoint, 120 degrees. Its area matches the target to four decimal places:
 
-   Given: tank radius = <InlineMath math="2 \text{ m}" />, water depth = <InlineMath math="1.5 \text{ m}" />
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Sector Area} &amp;= \frac{120^\circ}{360^\circ} \times \pi \times 25 \\ &amp;= \frac{25\pi}{3} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Triangle Area} \\ &amp;= \frac{1}{2} \times 25 \times \sin 120^\circ \\ &amp;= \frac{25\sqrt{3}}{4} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Segment Area} \\ &amp;= \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \\ &amp;\approx 26.1799 - 10.8253 \\ &amp;= 15.3546 \text{ cm}^2 \end{aligned}" />
+</MathContainer>
 
-   Since the water depth (<InlineMath math="1.5 \text{ m}" />) is less than the radius (<InlineMath math="2 \text{ m}" />), the filled part of the circular cross-section is a minor segment.
+This matches the stated area after rounding, so the central angle is approximately <InlineMath math="120^\circ" />.
 
-   For horizontal cylindrical tanks, we use a special segment formula with a specific height.
+**Solution 3**
 
-   Determine segment height from tank bottom:
+In the tank cross-section, the **water surface is a chord**. The distance from the center to the surface is the radius minus the water depth:
 
-   The water height measured from the bottom is <InlineMath math="h=1.5\text{ m}" />.
+<BlockMath math="d=r-h=2-1.5=0.5\text{ m}" />
 
-   Using the segment area formula for water in a horizontal tank:
+<LineEquation
+  title="Tank Cross-Section with 1.5 Meters of Water"
+  description="Horizontal blue lines hatch the water. The surface is 0.5 meters below the center and 1.5 meters above the bottom."
+  data={[
+    { kind: "circle-outline", radius: 2, color: "#7c3aed", showPoints: false },
+    ...Array.from({ length: 14 }, (_, i) => {
+      const y = -1.9 + i * 0.1;
+      const x = Math.sqrt(4 - y * y);
+      return { points: [{ x: -x, y, z: 0 }, { x, y, z: 0 }], smooth: false, showPoints: false, color: "#0891b2" };
+    }),
+    { points: [{ x: -Math.sqrt(3.75), y: -0.5, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0891b2", lineWidth: 3 },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="d" />, at: 0, offset: [0.25, -0.25, 0] }] },
+    { points: [{ x: 0, y: -0.5, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, showPoints: false, color: "#65a30d", labels: [{ text: <InlineMath math="h" />, at: 1, offset: [0.25, 0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="r=2" />, at: 1, offset: [-0.8, 0.45, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: -Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
+  ]}
+  cameraPosition={[0, 0, 6.5]}
+/>
 
-   Write <InlineMath math="A" /> for the segment area and define the height ratio <InlineMath math="u" />:
+Draw radii to both ends of the water surface. Let half the sector angle be <InlineMath math="\varphi" />. The right triangle on the right gives:
 
-   <MathContainer>
-     <BlockMath math="u=\frac{r-h}{r}" />
+<BlockMath math="\cos\varphi=\frac{d}{r}=\frac{0.5}{2}=0.25,\qquad \varphi=\arccos(0.25)\approx1.3181161\text{ rad}" />
 
-     <BlockMath math="A=r^2\left(\arccos u-u\sqrt{1-u^2}\right)" />
-   </MathContainer>
+<BlockMath math="\frac{c}{2}=\sqrt{r^2-d^2}=\sqrt{4-0.25}=\sqrt{3.75}\text{ m}" />
 
-   Here the angle returned by <InlineMath math="\arccos" /> is measured in radians, as required by the area formula.
+The sector with full angle <InlineMath math="2\varphi" /> has area <InlineMath math="r^2\varphi" />. The removed triangle has area equal to half the water width times the distance from the center to the surface:
 
-   Substitute values:
+<BlockMath math="A_{\triangle}=\frac{1}{2}\times(2\sqrt{3.75})\times0.5=0.5\sqrt{3.75}\text{ m}^2" />
 
-   <MathContainer>
-   <BlockMath math="\frac{r-h}{r} = \frac{2-1.5}{2} = 0.25" />
-   <BlockMath math="\arccos(0.25) \approx 1.3181 \text{ radians}" />
-   <BlockMath math="\sqrt{1-0.25^2} = \sqrt{0.9375} \approx 0.9682" />
-   </MathContainer>
+Subtract the two areas. Use the angle **in radians** and keep full calculator precision until the final rounding:
 
-   Calculate the water-filled cross-sectional area:
-
-   <MathContainer>
-     <BlockMath math="\theta=\arccos(0.25)" />
-
-     <BlockMath math="v=0.25\sqrt{0.9375}" />
-
-     <BlockMath math="A=4(\theta-v)" />
-     <BlockMath math="\approx 4 \times 1.0760546" />
-     <BlockMath math="\approx 4.3042 \text{ m}^2" />
-   </MathContainer>
+<BlockMath math="A=4\arccos(0.25)-0.5\sqrt{3.75}\approx5.2724643-0.9682458\approx4.3042\text{ m}^2" />

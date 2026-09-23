@@ -7,9 +7,15 @@ export const metadata = {
 
 Die Paketanzahlen seien <InlineMath math="X" />, <InlineMath math="Y" />. Die Ressourcenbedingungen und der Gewinn lauten
 
-<BlockMath math="\begin{aligned} 4X+Y&\le25 \\ 2X+3Y&\le24 \\ L&=8X+5Y \end{aligned}" />
+<BlockMath math="\begin{aligned} 4X+Y&amp;\le25 \\ 2X+3Y&amp;\le24 \\ L&amp;=8X+5Y \end{aligned}" />
 
-Bei fester Anzahl des ersten Pakets wächst der Gewinn mit der Anzahl des zweiten. Daher genügt jeweils die größte zulässige Anzahl des zweiten Pakets.
+Wegen <InlineMath math="Y\ge0" /> folgt aus der Materialgrenze <InlineMath math="4X\le25" />. Für **die Anzahl der ersten Pakete** kommen daher nur <InlineMath math="0,1,\ldots,6" /> infrage.
+
+Bei festem <InlineMath math="X" /> erhöht jedes zusätzliche zweite Paket den Gewinn um <InlineMath math="5" />. Deshalb prüfen wir jeweils **die größte Anzahl, die beide Grenzen einhält**. Für <InlineMath math="X=5" /> gilt beispielsweise:
+
+<BlockMath math="\begin{aligned} Y&amp;\le25-4(5)=5 \\ Y&amp;\le\frac{24-2(5)}{3}=\frac{14}{3}. \end{aligned}" />
+
+Die Paketanzahlen müssen ganzzahlig sein. Daher lässt die zweite Grenze höchstens <InlineMath math="Y=4" /> zu. Dasselbe Verfahren wenden wir auf jedes mögliche <InlineMath math="X" /> an:
 
 | <InlineMath math="X" /> | <InlineMath math="Y" /> (maximal) | Gewinn |
 | ---: | ---: | ---: |

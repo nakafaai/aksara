@@ -7,9 +7,15 @@ export const metadata = {
 
 Let the package counts be <InlineMath math="X" />, <InlineMath math="Y" />. The resource constraints and profit are
 
-<BlockMath math="\begin{aligned} 4X+Y&\le25 \\ 2X+3Y&\le24 \\ L&=8X+5Y \end{aligned}" />
+<BlockMath math="\begin{aligned} 4X+Y&amp;\le25 \\ 2X+3Y&amp;\le24 \\ L&amp;=8X+5Y \end{aligned}" />
 
-For each fixed count of the first package, profit increases with the count of the second. It is therefore enough to check the largest feasible second count.
+Since <InlineMath math="Y\ge0" />, the material constraint gives <InlineMath math="4X\le25" />. Thus **the first-package count** can only be <InlineMath math="0,1,\ldots,6" />.
+
+For each fixed <InlineMath math="X" />, an additional second package increases profit by <InlineMath math="5" />. We therefore check **the largest count satisfying both constraints**. For example, when <InlineMath math="X=5" />:
+
+<BlockMath math="\begin{aligned} Y&amp;\le25-4(5)=5 \\ Y&amp;\le\frac{24-2(5)}{3}=\frac{14}{3}. \end{aligned}" />
+
+Package counts must be integers, so the second constraint limits <InlineMath math="Y" /> to at most <InlineMath math="4" />. Apply the same method to each possible <InlineMath math="X" />:
 
 | <InlineMath math="X" /> | <InlineMath math="Y" /> (maximum) | Profit |
 | ---: | ---: | ---: |

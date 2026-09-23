@@ -9,6 +9,8 @@ export const metadata = {
 
 ## Calculating Roots from Quadratic Coefficients
 
+The coefficients <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> here are real numbers.
+
 A quadratic equation has the form <InlineMath math="ax^2 + bx + c = 0" />, where <InlineMath math="a \neq 0" />, with the following coefficients:
 
 - <InlineMath math="a" /> is the coefficient of <InlineMath math="x^2" />
@@ -60,6 +62,8 @@ To derive the quadratic formula, [complete the square](/en/subjects/mathematics/
 
 <BlockMath math="x + \frac{b}{2a} = \pm\frac{\sqrt{b^2 - 4ac}}{2a}" />
 
+For a nonnegative discriminant, <InlineMath math="\sqrt{4a^2}=2|a|" />. Because we use <Highlight>both square-root signs</Highlight>, replacing <InlineMath math="2|a|" /> by <InlineMath math="2a" /> only exchanges the two solutions when <InlineMath math="a<0" />. A negative discriminant is handled over the complex numbers.
+
 **Step 7**: Solve for <InlineMath math="x" />:
 
 <BlockMath math="\begin{aligned} x &amp;= -\frac{b}{2a} \pm \frac{\sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \end{aligned}" />
@@ -68,18 +72,9 @@ We obtain the quadratic formula:
 
 <BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
 
-### Using the Quadratic Formula
-
-To solve a quadratic equation using the formula, follow these steps:
-
-1. Make sure the quadratic equation is in standard form <InlineMath math="ax^2 + bx + c = 0" />
-2. Identify the values of <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />
-3. Substitute these values into the formula <InlineMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
-4. Calculate the values of <InlineMath math="x" /> to find the roots of the equation
-
 ### Solving with the Quadratic Formula
 
-**Example** 1: Solve the equation <InlineMath math="x^2 + 5x + 6 = 0" />
+**Example 1**: Solve the equation <InlineMath math="x^2 + 5x + 6 = 0" />
 
 Identify the values: <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, and <InlineMath math="c = 6" />
 
@@ -97,7 +92,7 @@ For <InlineMath math="x_2" />, take the negative sign:
 
 The roots of the equation are <InlineMath math="x_1 = -2" /> and <InlineMath math="x_2 = -3" />
 
-**Example** 2: Solve the equation <InlineMath math="2x^2 - 7x + 3 = 0" />
+**Example 2**: Solve the equation <InlineMath math="2x^2 - 7x + 3 = 0" />
 
 Identify the values: <InlineMath math="a = 2" />, <InlineMath math="b = -7" />, and <InlineMath math="c = 3" />
 
@@ -117,17 +112,39 @@ The roots of the equation are <InlineMath math="x_1 = 3" /> and <InlineMath math
 
 ## The Discriminant of a Quadratic Equation
 
-The expression <InlineMath math="b^2 - 4ac" /> in the quadratic formula is called [the discriminant](/en/subjects/mathematics/quadratic-function/quadratic-equation-types-of-root), often denoted by <InlineMath math="D" /> or <InlineMath math="\Delta" />.
+The value of <InlineMath math="D" /> determines the <Highlight>number of horizontal-axis intercepts</Highlight>. Only the constant changes between these three equations. Increasing the constant moves the vertex upward.
 
-The sign of the discriminant determines the type of roots of a quadratic equation:
+| Equation | Discriminant | Real roots |
+| --- | --- | --- |
+| <InlineMath math="x^2+5x+6=0" /> | <InlineMath math="25-24=1" /> | <InlineMath math="-3,-2" /> |
+| <InlineMath math="x^2+5x+6.25=0" /> | <InlineMath math="25-25=0" /> | <InlineMath math="-2.5" /> |
+| <InlineMath math="x^2+5x+7=0" /> | <InlineMath math="25-28=-3" /> | None |
 
-- If <InlineMath math="D > 0" />: The equation has two distinct real roots
-- If <InlineMath math="D = 0" />: The equation has one real root (a repeated root)
-- If <InlineMath math="D < 0" />: The equation has no real roots (the roots are complex numbers)
+For the first equation, the formula gives <InlineMath math="-3" /> and <InlineMath math="-2" />. The graph shows those values as the horizontal coordinates where the function is zero. The vertex lies below the horizontal axis.
+
+<MathVisual
+  title="Two roots as intercepts"
+  description="The parabola x² + 5x + 6 crosses the horizontal axis at -3 and -2. Its vertex is (-2.5, -0.25)."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: -0.8 }, y: { min: -0.75, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{ left: <InlineMath math="(-3,0)" />, right: <InlineMath math="(-2,0)" /> }}
+/>
 
 ## Relationship Between Roots and Coefficients
 
-The sum and the product of the two roots can be read off the coefficients without solving the equation first. That gives you a quick check on a solution or a way to find a missing value.
+The **sum and product** of the two roots can be read off the coefficients without solving the equation first. That gives you a quick check on a solution or a way to find a missing value.
 
 If <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are the roots of the quadratic equation <InlineMath math="ax^2 + bx + c = 0" />, then:
 
@@ -140,17 +157,17 @@ From the quadratic formula, we know that:
 
 <BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\text{and} \\ &amp;x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a} \end{aligned}" />
 
-Adding the roots:
+When we add, the <Highlight>radical terms cancel</Highlight>:
 
-<BlockMath math="\begin{aligned} &amp;x_1 + x_2 \\ &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad+ \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{-2b}{2a} \\ &amp;= -\frac{b}{a} \end{aligned}" />
+<BlockMath math="\begin{aligned} x_1+x_2 &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad+ \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{-2b}{2a} \\ &amp;= -\frac{b}{a} \end{aligned}" />
 
 Multiplying the roots:
 
-<BlockMath math="\begin{aligned} &amp;x_1 \cdot x_2 \\ &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad{}\cdot \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{b^2 - (\sqrt{b^2 - 4ac})^2}{4a^2} \\ &amp;= \frac{b^2 - (b^2 - 4ac)}{4a^2} \\ &amp;= \frac{4ac}{4a^2} \\ &amp;= \frac{c}{a} \end{aligned}" />
+<BlockMath math="\begin{aligned} x_1x_2 &amp;= \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\ &amp;\quad{}\cdot \frac{-b - \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{b^2 - (\sqrt{b^2 - 4ac})^2}{4a^2} \\ &amp;= \frac{b^2 - (b^2 - 4ac)}{4a^2} \\ &amp;= \frac{4ac}{4a^2} \\ &amp;= \frac{c}{a} \end{aligned}" />
 
 ## Creating New Quadratic Equations from Known Roots
 
-If <InlineMath math="p" /> and <InlineMath math="q" /> are known roots, one monic quadratic equation with those roots is:
+If <InlineMath math="p" /> and <InlineMath math="q" /> are <Highlight>known roots</Highlight>, one monic quadratic equation with those roots is:
 
 <BlockMath math="(x - p)(x - q) = 0" />
 
@@ -160,56 +177,62 @@ Or in standard form:
 
 ### Changing the Roots of a Quadratic Equation
 
-1. The quadratic equation <InlineMath math="x^2 + 4x + 3 = 0" /> has roots <InlineMath math="p" /> and <InlineMath math="q" />.
+**Problem 1**
 
-   Find the quadratic equation with roots <InlineMath math="2p" /> and <InlineMath math="2q" />.
+The quadratic equation <InlineMath math="x^2 + 4x + 3 = 0" /> has roots <InlineMath math="p" /> and <InlineMath math="q" />.
 
-   **Step 1**: Find the values of <InlineMath math="p + q" /> and <InlineMath math="p \cdot q" />
+Find the quadratic equation with roots <InlineMath math="2p" /> and <InlineMath math="2q" />.
 
-   <MathContainer>
-     <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
-     <BlockMath math="p \cdot q = \frac{c}{a} = \frac{3}{1} = 3" />
-   </MathContainer>
+**Step 1**: Find the values of <InlineMath math="p + q" /> and <InlineMath math="p \cdot q" />
 
-   **Step 2**: Calculate the sum and product of the new roots
+<MathContainer>
+  <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
+  <BlockMath math="p \cdot q = \frac{c}{a} = \frac{3}{1} = 3" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="2p + 2q = 2(p + q) = 2(-4) = -8" />
-     <BlockMath math="2p \cdot 2q = 4(p \cdot q) = 4 \cdot 3 = 12" />
-   </MathContainer>
+**Step 2**: Calculate the sum and product of the new roots
 
-   **Step 3**: Create the new quadratic equation
+<MathContainer>
+  <BlockMath math="2p + 2q = 2(p + q) = 2(-4) = -8" />
+  <BlockMath math="2p \cdot 2q = 4(p \cdot q) = 4 \cdot 3 = 12" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="x^2 - (-8)x + 12 = 0" />
-     <BlockMath math="x^2 + 8x + 12 = 0" />
-   </MathContainer>
+**Step 3**: Create the new quadratic equation
 
-2. The quadratic equation <InlineMath math="x^2 + 4x - 21 = 0" /> has roots <InlineMath math="p" /> and <InlineMath math="q" />.
+<MathContainer>
+  <BlockMath math="x^2 - (-8)x + 12 = 0" />
+  <BlockMath math="x^2 + 8x + 12 = 0" />
+</MathContainer>
 
-   Find the quadratic equation with roots <InlineMath math="\frac{1}{2p}" /> and <InlineMath math="\frac{1}{2q}" />.
+**Problem 2**
 
-   **Step 1**: Find the values of <InlineMath math="p + q" /> and <InlineMath math="p \cdot q" />
+The quadratic equation <InlineMath math="x^2 + 4x - 21 = 0" /> has roots <InlineMath math="p" /> and <InlineMath math="q" />.
 
-   <MathContainer>
-     <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
-     <BlockMath math="p \cdot q = \frac{c}{a} = \frac{-21}{1} = -21" />
-   </MathContainer>
+Find the quadratic equation with roots <InlineMath math="\frac{1}{2p}" /> and <InlineMath math="\frac{1}{2q}" />.
 
-   **Step 2**: Calculate the sum and product of the new roots
+**Step 1**: Find the values of <InlineMath math="p + q" /> and <InlineMath math="p \cdot q" />
 
-   <MathContainer>
-     <BlockMath math="\begin{aligned} \frac{1}{2p} + \frac{1}{2q} &amp;= \frac{1}{2} \left(\frac{q + p}{pq}\right) \\ &amp;= \frac{1}{2} \cdot \frac{-4}{-21} \\ &amp;= \frac{1}{2} \cdot \frac{4}{21} \\ &amp;= \frac{4}{42} \\ &amp;= \frac{2}{21} \end{aligned}" />
-     <BlockMath math="\begin{aligned} \frac{1}{2p} \cdot \frac{1}{2q} &amp;= \frac{1}{4pq} \\ &amp;= \frac{1}{4 \cdot (-21)} \\ &amp;= \frac{1}{-84} \\ &amp;= -\frac{1}{84} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="p + q = -\frac{b}{a} = -\frac{4}{1} = -4" />
+  <BlockMath math="p \cdot q = \frac{c}{a} = \frac{-21}{1} = -21" />
+</MathContainer>
 
-   **Step 3**: Create the new quadratic equation
+The product <InlineMath math="pq=-21" /> is nonzero. Therefore <Highlight>both roots are nonzero</Highlight>, so the following reciprocals are defined.
 
-   <BlockMath math="x^2 - \frac{2}{21}x - \frac{1}{84} = 0" />
+**Step 2**: Calculate the sum and product of the new roots
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \frac{1}{2p} + \frac{1}{2q} &amp;= \frac{1}{2} \left(\frac{q + p}{pq}\right) \\ &amp;= \frac{1}{2} \cdot \frac{-4}{-21} \\ &amp;= \frac{1}{2} \cdot \frac{4}{21} \\ &amp;= \frac{4}{42} \\ &amp;= \frac{2}{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} \frac{1}{2p} \cdot \frac{1}{2q} &amp;= \frac{1}{4pq} \\ &amp;= \frac{1}{4 \cdot (-21)} \\ &amp;= \frac{1}{-84} \\ &amp;= -\frac{1}{84} \end{aligned}" />
+</MathContainer>
+
+**Step 3**: Create the new quadratic equation
+
+<BlockMath math="x^2 - \frac{2}{21}x - \frac{1}{84} = 0" />
 
 ## Practice Problems
 
-Each equation is already in standard form, so read the coefficients before you substitute them into the formula. Check the value under the square root first to see how many real solutions to expect.
+Each equation is already in standard form, so read the **coefficients with their signs** before you substitute them into the formula. Check the value under the square root first to see how many real solutions to expect.
 
 Solve the following quadratic equations using the quadratic formula:
 
@@ -221,103 +244,86 @@ Solve the following quadratic equations using the quadratic formula:
 
 ### Answer Key
 
-1. Solution to the quadratic equation <InlineMath math="x^2 + 5x + 6 = 0" />
+**Problem 1**
 
-   Identify: <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, <InlineMath math="c = 6" />
+Solution to the quadratic equation <InlineMath math="x^2 + 5x + 6 = 0" />
 
-   <MathContainer>
-     <BlockMath math="x_{1,2} = \frac{-5 \pm \sqrt{5^2 - 4 \cdot 1 \cdot 6}}{2 \cdot 1}" />
-     <BlockMath math="= \frac{-5 \pm \sqrt{25 - 24}}{2}" />
-     <BlockMath math="= \frac{-5 \pm \sqrt{1}}{2}" />
-     <BlockMath math="= \frac{-5 \pm 1}{2}" />
-   </MathContainer>
+Identify: <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, <InlineMath math="c = 6" />
 
-   For <InlineMath math="x_1" />:
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-5 \pm \sqrt{5^2 - 4 \cdot 1 \cdot 6}}{2 \cdot 1} \\ &amp;= \frac{-5 \pm \sqrt{25 - 24}}{2} \\ &amp;= \frac{-5 \pm \sqrt{1}}{2} \\ &amp;= \frac{-5 \pm 1}{2} \end{aligned}" />
 
-   <BlockMath math="x_1 = \frac{-5 + 1}{2} = \frac{-4}{2} = -2" />
+For <InlineMath math="x_1" />:
 
-   For <InlineMath math="x_2" />:
+<BlockMath math="x_1 = \frac{-5 + 1}{2} = \frac{-4}{2} = -2" />
 
-   <BlockMath math="x_2 = \frac{-5 - 1}{2} = \frac{-6}{2} = -3" />
+For <InlineMath math="x_2" />:
 
-   Therefore, the roots of the equation are <InlineMath math="x_1 = -2" /> and <InlineMath math="x_2 = -3" />.
+<BlockMath math="x_2 = \frac{-5 - 1}{2} = \frac{-6}{2} = -3" />
 
-2. Solution to the quadratic equation <InlineMath math="2x^2 + 6x + 3 = 0" />
+Therefore, the roots of the equation are <InlineMath math="x_1 = -2" /> and <InlineMath math="x_2 = -3" />.
 
-   Identify: <InlineMath math="a = 2" />, <InlineMath math="b = 6" />, <InlineMath math="c = 3" />
+**Problem 2**
 
-   <MathContainer>
-     <BlockMath math="x_{1,2} = \frac{-6 \pm \sqrt{6^2 - 4 \cdot 2 \cdot 3}}{2 \cdot 2}" />
-     <BlockMath math="= \frac{-6 \pm \sqrt{36 - 24}}{4}" />
-     <BlockMath math="= \frac{-6 \pm \sqrt{12}}{4}" />
-     <BlockMath math="= \frac{-6 \pm 2\sqrt{3}}{4}" />
-     <BlockMath math="= \frac{-3 \pm \sqrt{3}}{2}" />
-   </MathContainer>
+Solution to the quadratic equation <InlineMath math="2x^2 + 6x + 3 = 0" />
 
-   For <InlineMath math="x_1" />:
+Identify: <InlineMath math="a = 2" />, <InlineMath math="b = 6" />, <InlineMath math="c = 3" />
 
-   <BlockMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" />
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-6 \pm \sqrt{6^2 - 4 \cdot 2 \cdot 3}}{2 \cdot 2} \\ &amp;= \frac{-6 \pm \sqrt{36 - 24}}{4} \\ &amp;= \frac{-6 \pm \sqrt{12}}{4} \\ &amp;= \frac{-6 \pm 2\sqrt{3}}{4} \\ &amp;= \frac{-3 \pm \sqrt{3}}{2} \end{aligned}" />
 
-   For <InlineMath math="x_2" />:
+For <InlineMath math="x_1" />:
 
-   <BlockMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />
+<BlockMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" />
 
-   Therefore, the roots of the equation are <InlineMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" /> and <InlineMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />.
+For <InlineMath math="x_2" />:
 
-3. Solution to the quadratic equation <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
+<BlockMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />
 
-   Identify: <InlineMath math="a = 6" />, <InlineMath math="b = 2" />, <InlineMath math="c = \frac{1}{6}" />
+Therefore, the roots of the equation are <InlineMath math="x_1 = \frac{-3 + \sqrt{3}}{2}" /> and <InlineMath math="x_2 = \frac{-3 - \sqrt{3}}{2}" />.
 
-   <MathContainer>
-     <BlockMath math="x_{1,2} = \frac{-2 \pm \sqrt{2^2 - 4 \cdot 6 \cdot \frac{1}{6}}}{2 \cdot 6}" />
-     <BlockMath math="= \frac{-2 \pm \sqrt{4 - 4}}{12}" />
-     <BlockMath math="= \frac{-2 \pm 0}{12}" />
-     <BlockMath math="= \frac{-2}{12} = -\frac{1}{6}" />
-   </MathContainer>
+**Problem 3**
 
-   Since the discriminant <InlineMath math="b^2 - 4ac = 0" />, the equation has one root (a repeated root).
+Solution to the quadratic equation <InlineMath math="6x^2 + 2x + \frac{1}{6} = 0" />
 
-   The equation has the repeated root <InlineMath math="x_1 = x_2 = -\frac{1}{6}" />.
+Identify: <InlineMath math="a = 6" />, <InlineMath math="b = 2" />, <InlineMath math="c = \frac{1}{6}" />
 
-4. Solution to the quadratic equation <InlineMath math="\frac{1}{2}x^2 + 4x + 6 = 0" />
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-2 \pm \sqrt{2^2 - 4 \cdot 6 \cdot \frac{1}{6}}}{2 \cdot 6} \\ &amp;= \frac{-2 \pm \sqrt{4 - 4}}{12} \\ &amp;= \frac{-2 \pm 0}{12} \\ &amp;= \frac{-2}{12} = -\frac{1}{6} \end{aligned}" />
 
-   Identify: <InlineMath math="a = \frac{1}{2}" />, <InlineMath math="b = 4" />, <InlineMath math="c = 6" />
+Since the discriminant <InlineMath math="b^2 - 4ac = 0" />, the equation has one root (a repeated root).
 
-   <MathContainer>
-     <BlockMath math="x_{1,2} = \frac{-4 \pm \sqrt{4^2 - 4 \cdot \frac{1}{2} \cdot 6}}{2 \cdot \frac{1}{2}}" />
-     <BlockMath math="= \frac{-4 \pm \sqrt{16 - 12}}{1}" />
-     <BlockMath math="= \frac{-4 \pm \sqrt{4}}{1}" />
-     <BlockMath math="= -4 \pm 2" />
-   </MathContainer>
+The equation has the repeated root <InlineMath math="x_1 = x_2 = -\frac{1}{6}" />.
 
-   For <InlineMath math="x_1" />:
+**Problem 4**
 
-   <BlockMath math="x_1 = -4 + 2 = -2" />
+Solution to the quadratic equation <InlineMath math="\frac{1}{2}x^2 + 4x + 6 = 0" />
 
-   For <InlineMath math="x_2" />:
+Identify: <InlineMath math="a = \frac{1}{2}" />, <InlineMath math="b = 4" />, <InlineMath math="c = 6" />
 
-   <BlockMath math="x_2 = -4 - 2 = -6" />
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-4 \pm \sqrt{4^2 - 4 \cdot \frac{1}{2} \cdot 6}}{2 \cdot \frac{1}{2}} \\ &amp;= \frac{-4 \pm \sqrt{16 - 12}}{1} \\ &amp;= \frac{-4 \pm \sqrt{4}}{1} \\ &amp;= -4 \pm 2 \end{aligned}" />
 
-   The roots of the equation are <InlineMath math="x_1 = -2" /> and <InlineMath math="x_2 = -6" />.
+For <InlineMath math="x_1" />:
 
-5. Solution to the quadratic equation <InlineMath math="\frac{2}{3}x^2 + 2x - 12 = 0" />
+<BlockMath math="x_1 = -4 + 2 = -2" />
 
-   Identify: <InlineMath math="a = \frac{2}{3}" />, <InlineMath math="b = 2" />, <InlineMath math="c = -12" />
+For <InlineMath math="x_2" />:
 
-   <MathContainer>
-     <BlockMath math="x_{1,2} = \frac{-2 \pm \sqrt{2^2 - 4 \cdot \frac{2}{3} \cdot (-12)}}{2 \cdot \frac{2}{3}}" />
-     <BlockMath math="= \frac{-2 \pm \sqrt{4 + 32}}{4/3}" />
-     <BlockMath math="= \frac{-2 \pm \sqrt{36}}{4/3}" />
-     <BlockMath math="= \frac{-2 \pm 6}{4/3}" />
-     <BlockMath math="= \frac{3(-2 \pm 6)}{4}" />
-   </MathContainer>
+<BlockMath math="x_2 = -4 - 2 = -6" />
 
-   For <InlineMath math="x_1" />:
+The roots of the equation are <InlineMath math="x_1 = -2" /> and <InlineMath math="x_2 = -6" />.
 
-   <BlockMath math="x_1 = \frac{3(-2 + 6)}{4} = \frac{3 \cdot 4}{4} = 3" />
+**Problem 5**
 
-   For <InlineMath math="x_2" />:
+Solution to the quadratic equation <InlineMath math="\frac{2}{3}x^2 + 2x - 12 = 0" />
 
-   <BlockMath math="x_2 = \frac{3(-2 - 6)}{4} = \frac{3 \cdot (-8)}{4} = -6" />
+Identify: <InlineMath math="a = \frac{2}{3}" />, <InlineMath math="b = 2" />, <InlineMath math="c = -12" />
 
-   The roots of the equation are <InlineMath math="x_1 = 3" /> and <InlineMath math="x_2 = -6" />.
+<BlockMath math="\begin{aligned} x_{1,2} &amp;= \frac{-2 \pm \sqrt{2^2 - 4 \cdot \frac{2}{3} \cdot (-12)}}{2 \cdot \frac{2}{3}} \\ &amp;= \frac{-2 \pm \sqrt{4 + 32}}{4/3} \\ &amp;= \frac{-2 \pm \sqrt{36}}{4/3} \\ &amp;= \frac{-2 \pm 6}{4/3} \\ &amp;= \frac{3(-2 \pm 6)}{4} \end{aligned}" />
+
+For <InlineMath math="x_1" />:
+
+<BlockMath math="x_1 = \frac{3(-2 + 6)}{4} = \frac{3 \cdot 4}{4} = 3" />
+
+For <InlineMath math="x_2" />:
+
+<BlockMath math="x_2 = \frac{3(-2 - 6)}{4} = \frac{3 \cdot (-8)}{4} = -6" />
+
+The roots of the equation are <InlineMath math="x_1 = 3" /> and <InlineMath math="x_2 = -6" />.

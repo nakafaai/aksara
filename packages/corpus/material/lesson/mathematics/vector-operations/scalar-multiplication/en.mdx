@@ -9,7 +9,7 @@ export const metadata = {
 
 ## How a Real Multiplier Changes a Vector
 
-<Highlight>The result is a new vector whose magnitude is scaled by the scalar's absolute value.</Highlight> For a nonzero original vector, the sign determines whether the direction stays the same or reverses.
+Scalar multiplication gives a new vector. Its magnitude is the original magnitude multiplied by **the scalar's absolute value**. For a nonzero original vector, the sign determines whether the direction stays the same or reverses.
 
 If <InlineMath math="k" /> is a real number (scalar) and <InlineMath math="\vec{v}" /> is a vector, then the scalar multiplication of a vector is denoted as <InlineMath math="k \cdot \vec{v}" />.
 
@@ -22,13 +22,66 @@ Scalar multiplication changes a vector according to the following rules:
 3. If <InlineMath math="k = 0" />, then the resulting vector is a zero vector.
 4. The resulting magnitude is the original magnitude multiplied by the factor <InlineMath math="|k|" />.
 
+
+The diagram uses <InlineMath math="\vec v=(2,1)" />. **Subtracting each arrow's starting coordinates** from its endpoint gives <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" />, and <InlineMath math="(-2,-1)" />.
+
+<ContentBlock>
+  <LineEquation
+    cameraPosition={[1, 2, 9]}
+    cameraTarget={[1, 2, 0]}
+    title="Scaling Length and Direction"
+    description="The arrow tails are separated so all three vectors can be compared. A positive factor keeps the direction and a negative factor reverses it."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 2, z: 0 }, { x: 4, y: 4, z: 0 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="2\vec v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 4, z: 0 }, { x: -2, y: 3, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\vec v" />,
+        at: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+    ]}
+  />
+</ContentBlock>
+
 ## Representation of Scalar Multiplication of Vectors
 
-Multiplying a vector by a number changes its length by that factor and may also reverse it. The result stays a vector on the same line, so the length and the direction can be checked separately.
+The **absolute value of the scalar** determines the resulting length, while its sign determines whether the direction stays the same or reverses. Multiplication by zero produces the zero vector, which has no direction.
 
 ### Magnitude and Direction of a Scaled Vector
 
-Geometrically, scalar multiplication changes a vector's magnitude by the factor <InlineMath math="|k|" />. For a nonzero vector, its direction depends on the sign of <InlineMath math="k" />:
+Geometrically, scalar multiplication changes a vector's magnitude by the factor <InlineMath math="|k|" />. For a nonzero vector, its direction depends on the **sign** of <InlineMath math="k" />:
 
 - If <InlineMath math="k > 0" />, the direction of the vector remains unchanged
 - If <InlineMath math="k < 0" />, the direction of the vector is opposite to the original vector
@@ -38,6 +91,8 @@ In both cases, and also when <InlineMath math="k=0" />, the magnitude satisfies:
 <BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
 
 ### Scaling a Vector by Components
+
+Apply the **same factor to every component**. Keep the component order aligned with the coordinate axes.
 
 If <InlineMath math="\vec{v} = (v_1, v_2, v_3)" /> is a vector in <InlineMath math="3" />-dimensional space, then:
 
@@ -53,7 +108,7 @@ In unit vector notation:
 
 ## Multiplying Vectors by Positive and Negative Scalars
 
-A factor greater than one stretches the vector, a factor between zero and one shrinks it, and a <Highlight>negative factor also reverses the direction</Highlight>. So multiplying by a negative scalar always changes the direction, while multiplying by a positive scalar never does.
+A factor greater than one stretches the vector, a factor between zero and one shrinks it, and a <Highlight>negative factor also reverses the direction</Highlight>. These direction statements apply to a **nonzero original vector**. The zero vector remains zero after multiplication by any scalar and has no defined direction.
 
 ### Multiplying by a Positive Scalar
 
@@ -61,10 +116,7 @@ Given the vector <InlineMath math="\vec{a} = 2\vec{i} + 3\vec{j} + 5\vec{k}" />.
 
 **Solution:**
 
-<MathContainer>
-  <BlockMath math="2\vec{a} = 2(2\vec{i} + 3\vec{j} + 5\vec{k})" />
-  <BlockMath math="= 4\vec{i} + 6\vec{j} + 10\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{a} &amp;= 2(2\vec{i} + 3\vec{j} + 5\vec{k}) \\ &amp;= 4\vec{i} + 6\vec{j} + 10\vec{k} \end{aligned}" />
 
 ### Multiplying by a Negative Scalar
 
@@ -72,10 +124,7 @@ Given the vector <InlineMath math="\vec{v} = (4, -2, 3)" />. Determine the resul
 
 **Solution:**
 
-<MathContainer>
-  <BlockMath math="-3\vec{v} = -3(4, -2, 3)" />
-  <BlockMath math="= (-12, 6, -9)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
 
 The resulting vector points in the opposite direction because the scalar is negative.
 
@@ -91,7 +140,7 @@ Scalar multiplication of vectors has many applications in physics and mathematic
 
 ## Practice Problems
 
-Each problem multiplies a vector by one or two scalars. Multiply every component by the same factor, then combine the results where two scalars appear.
+Each problem multiplies a vector by one or two scalars. Multiply **every component by the same factor**, then combine the results where two scalars appear.
 
 1. Given the vector <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />. Determine the result of <InlineMath math="-2\vec{a}" />.
 
@@ -105,9 +154,7 @@ Each problem multiplies a vector by one or two scalars. Multiply every component
 
 ## Answer Key
 
-Each answer keeps the full computation and the final value, so you can compare your own attempt line by line. Read the working first and check your numbers afterwards.
-
-Each answer multiplies component by component and then recombines the terms. Compare your result with the value at each coordinate.
+Each solution multiplies **every component by the same factor**, then combines components on matching axes. A negative factor times a negative component produces a positive component. To recover a point, add its displacement vector to the starting position.
 
 ### First Problem
 
@@ -115,10 +162,7 @@ Given the vector <InlineMath math="\vec{a} = 3\vec{i} - 4\vec{j} + 2\vec{k}" />.
 
 **Solution:**
 
-<MathContainer>
-  <BlockMath math="-2\vec{a} = -2(3\vec{i} - 4\vec{j} + 2\vec{k})" />
-  <BlockMath math="= -6\vec{i} + 8\vec{j} - 4\vec{k}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} -2\vec{a} &amp;= -2(3\vec{i} - 4\vec{j} + 2\vec{k}) \\ &amp;= -6\vec{i} + 8\vec{j} - 4\vec{k} \end{aligned}" />
 
 The result of <InlineMath math="-2\vec{a}" /> is <InlineMath math="-6\vec{i} + 8\vec{j} - 4\vec{k}" />.
 
@@ -128,14 +172,7 @@ Vectors <InlineMath math="\vec{u} = (2, -5, 1)" /> and <InlineMath math="\vec{v}
 
 **Solution:**
 
-<MathContainer>
-  <BlockMath math="2\vec{u} = 2(2, -5, 1) = (4, -10, 2)" />
-  <BlockMath math="3\vec{v} = 3(-4, 3, 6) = (-12, 9, 18)" />
-  <BlockMath math="2\vec{u} - 3\vec{v} = (4, -10, 2) - (-12, 9, 18)" />
-  <BlockMath math="= (4 - (-12), -10 - 9, 2 - 18)" />
-  <BlockMath math="= (4 + 12, -10 - 9, 2 - 18)" />
-  <BlockMath math="= (16, -19, -16)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} 2\vec{u} &amp;= 2(2, -5, 1) = (4, -10, 2) \\ 3\vec{v} &amp;= 3(-4, 3, 6) = (-12, 9, 18) \\ 2\vec{u} - 3\vec{v} &amp;= (4, -10, 2) - (-12, 9, 18) \\ &amp;= (4 - (-12), -10 - 9, 2 - 18) \\ &amp;= (4 + 12, -10 - 9, 2 - 18) \\ &amp;= (16, -19, -16) \end{aligned}" />
 
 The vector <InlineMath math="2\vec{u} - 3\vec{v}" /> is <InlineMath math="(16, -19, -16)" /> or <InlineMath math="16\vec{i} - 19\vec{j} - 16\vec{k}" />.
 
@@ -153,12 +190,7 @@ We know:
 
 Check if <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{BU} + \overrightarrow{UR} = 0.65 \cdot \overrightarrow{BR} + 0.35 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= (0.65 + 0.35) \cdot \overrightarrow{BR}" />
-  <BlockMath math="= 1 \cdot \overrightarrow{BR}" />
-  <BlockMath math="= \overrightarrow{BR}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{BU} + \overrightarrow{UR} &amp;= 0.65 \cdot \overrightarrow{BR} + 0.35 \cdot \overrightarrow{BR} \\ &amp;= (0.65 + 0.35) \cdot \overrightarrow{BR} \\ &amp;= 1 \cdot \overrightarrow{BR} \\ &amp;= \overrightarrow{BR} \end{aligned}" />
 
 The equality <InlineMath math="\overrightarrow{BU} + \overrightarrow{UR} = \overrightarrow{BR}" /> is the vector addition law for the collinear points <InlineMath math="B" />, <InlineMath math="U" />, and <InlineMath math="R" />.
 
@@ -173,12 +205,7 @@ Given <InlineMath math="|\vec{p}| = 5 \text{ units}" /> and <InlineMath math="\v
 
 To determine the length of vector <InlineMath math="\vec{q}" />, we use the property of scalar multiplication:
 
-<MathContainer>
-  <BlockMath math="|\vec{q}| = |3\vec{p}|" />
-  <BlockMath math="= |3| \cdot |\vec{p}|" />
-  <BlockMath math="= 3 \cdot 5" />
-  <BlockMath math="= 15" />
-</MathContainer>
+<BlockMath math="\begin{aligned} |\vec{q}| &amp;= |3\vec{p}| \\ &amp;= |3| \cdot |\vec{p}| \\ &amp;= 3 \cdot 5 \\ &amp;= 15 \end{aligned}" />
 
 The length of vector <InlineMath math="\vec{q}" /> is <InlineMath math="15 \text{ units}" />.
 
@@ -189,20 +216,11 @@ Given points <InlineMath math="A(2, 3, -1)" />, <InlineMath math="B(5, -2, 4)" /
 **Solution:**
 First, we determine the vector <InlineMath math="\overrightarrow{AB}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AB} = B - A" />
-  <BlockMath math="= (5, -2, 4) - (2, 3, -1)" />
-  <BlockMath math="= (5-2, -2-3, 4-(-1))" />
-  <BlockMath math="= (3, -5, 5)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AB} &amp;= B - A \\ &amp;= (5, -2, 4) - (2, 3, -1) \\ &amp;= (5-2, -2-3, 4-(-1)) \\ &amp;= (3, -5, 5) \end{aligned}" />
 
 Then, we use the relationship <InlineMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" /> to determine the vector <InlineMath math="\overrightarrow{AC}" />:
 
-<MathContainer>
-  <BlockMath math="\overrightarrow{AC} = 2\overrightarrow{AB}" />
-  <BlockMath math="= 2(3, -5, 5)" />
-  <BlockMath math="= (6, -10, 10)" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \overrightarrow{AC} &amp;= 2\overrightarrow{AB} \\ &amp;= 2(3, -5, 5) \\ &amp;= (6, -10, 10) \end{aligned}" />
 
 Next, we determine the coordinates of point <InlineMath math="C" />:
 

@@ -20,7 +20,7 @@ Definisi ini langsung memberikan dua batas penting bagi matriks dan vektor yang 
 <BlockMath math="\|AB\|\le\|A\|\|B\|" />
 </MathContainer>
 
-<Highlight>Norma vektor yang dipilih menentukan norma matriks terinduksinya.</Highlight>
+**Norma vektor yang dipilih** menentukan norma matriks terinduksi.
 
 | Norma vektor | Norma matriks terinduksi |
 | --- | --- |
@@ -46,7 +46,7 @@ Jika <InlineMath math="A" /> adalah matriks simetris real, nilai singularnya ada
 
 <BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
 
-Untuk matriks nonnormal umum, radius spektral dan norma spektral tidak harus sama.
+Untuk matriks nonnormal umum, radius spektral dan norma spektral **tidak harus sama**.
 
 ## Bilangan kondisi penyelesaian linear
 
@@ -62,7 +62,7 @@ Untuk matriks simetris yang dapat diinverskan, rumus ini menjadi
 
 <BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
 
-Gunakan nilai eigen dengan magnitudo terkecil pada penyebut. Tanda positif atau negatif tidak menentukan pilihan ini.
+Gunakan nilai eigen dengan **magnitudo terkecil** pada penyebut. Tanda positif atau negatif tidak menentukan pilihan ini.
 
 | Ukuran <InlineMath math="\kappa(A)" /> | Artinya |
 | --- | --- |
@@ -84,11 +84,23 @@ Untuk <InlineMath math="b=(b_1,b_2)^{\mathsf T}" />, solusinya adalah
 
 <BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
 
-Perubahan kecil pada <InlineMath math="b_2" /> diperbesar sebesar <InlineMath math="1/\varepsilon" /> pada komponen solusi kedua. Matriks tersebut mendekati singular karena vektor pada arah koordinat kedua dikalikan dengan <InlineMath math="\varepsilon" /> yang mendekati nol.
+Perubahan kecil pada <InlineMath math="b_2" /> **diperbesar sebesar** <InlineMath math="1/\varepsilon" /> pada komponen solusi kedua. Matriks tersebut mendekati singular karena vektor pada arah koordinat kedua dikalikan dengan <InlineMath math="\varepsilon" /> yang mendekati nol.
+
+Ambil <InlineMath math="\varepsilon=1/1000" /> dan bandingkan dua ruas kanan. Hanya pengamatan kedua yang berubah.
+
+| <InlineMath math="b" /> | <InlineMath math="x=A^{-1}b" /> |
+| --- | --- |
+| <InlineMath math="(1,1/1000)^T" /> | <InlineMath math="(1,1)^T" /> |
+| <InlineMath math="(1,2/1000)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<MathContainer>
+<BlockMath math="\Delta b_2=\frac1{1000},\qquad\Delta x_2=\frac{1/1000}{1/1000}=1" />
+<BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
+</MathContainer>
 
 ## Batas Perubahan Solusi
 
-Bandingkan sistem awal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit.
+Asumsikan <InlineMath math="A" /> dapat diinverskan dan <InlineMath math="b\ne0" />, agar galat relatif berikut memiliki **penyebut tak nol**. Bandingkan sistem awal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
@@ -100,7 +112,7 @@ Jika syarat tersebut terpenuhi, perubahan relatif solusi dibatasi oleh
 
 <BlockMath math="\begin{aligned} \frac{\|\delta x\|}{\|x\|} &amp;\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|} \\ &amp;\quad{}\cdot\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right) \end{aligned}" />
 
-Batas ini menunjukkan perubahan solusi terbesar yang mungkin terjadi. Pada banyak perubahan kecil, perubahan solusi lebih kecil daripada batas tersebut.
+Batas ini menunjukkan perubahan solusi **terbesar yang mungkin terjadi**. Pada banyak perubahan kecil, perubahan solusi lebih kecil daripada batas tersebut.
 
 ## Kondisi Masalah dan Stabilitas Algoritma
 

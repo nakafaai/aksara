@@ -5,22 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-#### Represent the premises
+Dito is a student in this system, so **both rules apply to him**. We can work backward from the missing consequence, one step at a time.
 
-Let:
+| Step | Rule and fact | Conclusion |
+| --- | --- | --- |
+| Check the practice test | If Dito takes the test, he receives a report. In fact, he received no report | Dito did not take the test |
+| Check the prerequisite exercises | If Dito completes the exercises, he takes the test. The first step shows he did not take the test | Dito did not complete the exercises |
 
-- <InlineMath math="p" />: Dito completes the prerequisite exercises.
-- <InlineMath math="q" />: Dito takes the practice test.
-- <InlineMath math="r" />: Dito receives an evaluation report.
+This reasoning is **modus tollens**: when a condition guarantees a consequence, the absence of that consequence rules out the condition. Let <InlineMath math="p" /> mean completing the exercises, <InlineMath math="q" /> taking the test, and <InlineMath math="r" /> receiving the report. The two steps are
 
-The premises are <InlineMath math="p \rightarrow q" />, <InlineMath math="q \rightarrow r" />, and <InlineMath math="\lnot r" />.
+<MathContainer>
+  <BlockMath math="q\rightarrow r,\quad\neg r\quad\Longrightarrow\quad\neg q" />
+  <BlockMath math="p\rightarrow q,\quad\neg q\quad\Longrightarrow\quad\neg p" />
+</MathContainer>
 
-#### Reason backward from the missing report
-
-From <InlineMath math="q \rightarrow r" /> and <InlineMath math="\lnot r" />, modus tollens gives <InlineMath math="\lnot q" />. Dito therefore did not take the practice test.
-
-Now combine <InlineMath math="p \rightarrow q" /> with <InlineMath math="\lnot q" />. A second application of modus tollens gives:
-
-<BlockMath math="\begin{aligned}p &\rightarrow q\\ \lnot q&\\ \therefore\ \lnot p&\end{aligned}" />
-
-Therefore, Dito **did not complete the prerequisite exercises**. The premises do not say that he is not a student. They only determine what he did not complete.
+Therefore, Dito **did not complete the prerequisite exercises**. His status as a student remains true. Not completing an activity does not mean he is not a student.

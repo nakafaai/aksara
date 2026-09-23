@@ -14,7 +14,7 @@ Grafik logaritma <Highlight>berubah cepat di dekat asimtot vertikalnya</Highligh
 
 ## Karakteristik Grafik Logaritma
 
-Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa nilai basis yang lebih besar dari <InlineMath math="1" />. Semua grafik melewati titik <InlineMath math="(1,0)" /> dan naik dengan laju yang berbeda.
+Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa nilai basis yang lebih besar dari <InlineMath math="1" />. **Semua grafik** melewati titik <InlineMath math="(1,0)" /> dan naik dengan laju yang berbeda.
 
 <LineEquation
   title="Perbandingan Grafik Logaritma dengan Basis Berbeda"
@@ -28,8 +28,8 @@ Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa n
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -39,16 +39,16 @@ Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa n
             return { x, y: Math.log2(x), z: 0 };
           });
       })(),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1250, offset: [-0.2, 0.65, 0] }],
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 219, offset: [-0.2, 0.65, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -59,15 +59,15 @@ Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa n
           });
       })(),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{10} x" />, at: 1250, offset: [0.3, -1.55, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{10} x" />, at: 219, offset: [0.3, -1.55, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
         const parameters = Array.from(
-          { length: 1305 },
-          (_, i) => -48 + (i / 1304) * 52.15888308335967
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
         );
         parameters.push(1.9700042649107503);
         return parameters
@@ -78,179 +78,190 @@ Grafik berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa n
           });
       })(),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=\ln x" />, at: 1250, offset: [0.3, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\ln x" />, at: 219, offset: [0.3, -0.5, 0] }],
       showPoints: false,
     },
   ]}
+  showZAxis={false}
   cameraPosition={[4, 0, 13]}
   cameraTarget={[4, 0, 0]}
 />
 
 ### Sifat Grafik Logaritma
 
-Untuk fungsi <InlineMath math="f(x) = \log_b x" /> dengan <InlineMath math="b > 1" />:
+Untuk <InlineMath math="f(x) = \log_b x" /> dengan <InlineMath math="b>0,\ b\neq1" />, grafik hanya menerima <Highlight>masukan positif</Highlight>. Arah grafik ditentukan oleh basis yang lebih besar atau lebih kecil dari <InlineMath math="1" />.
 
-1. **Domain**: <InlineMath math="x > 0" /> (hanya bilangan positif)
-2. **Range**: Semua bilangan real (<InlineMath math="-\infty < y < \infty" />)
-3. **Titik potong sumbu <InlineMath math="x" />**: <InlineMath math="(1, 0)" /> karena <InlineMath math="\log_b 1 = 0" />
-4. **Asimtot vertikal**: Sumbu <InlineMath math="y" /> (<InlineMath math="x = 0" />)
-5. **Perilaku fungsi**:
-   - Naik untuk <InlineMath math="b > 1" />
-   - Turun untuk <InlineMath math="0 < b < 1" />
+| Ciri | Perilaku grafik |
+| :--- | :--- |
+| Domain | <InlineMath math="x>0" /> |
+| Range | Semua bilangan real, <InlineMath math="-\infty<y<\infty" /> |
+| Titik potong sumbu <InlineMath math="x" /> | Melewati <InlineMath math="(1,0)" /> karena <InlineMath math="\log_b1=0" /> |
+| Asimtot vertikal | Mendekati sumbu <InlineMath math="y" /> pada <InlineMath math="x=0" /> |
+| Basis <InlineMath math="b>1" /> | Naik secara ketat |
+| Basis <InlineMath math="0<b<1" /> | Turun secara ketat |
 
 ## Menggambar Grafik Fungsi Logaritma
 
-Pelajari langkah-langkah menggambar grafik fungsi logaritma dengan contoh konkret.
+Pilih **pangkat dari basis** sebagai masukan. Jika masukan berbentuk <InlineMath math="b^n" />, keluarannya adalah <InlineMath math="n" />. Kamu memperoleh titik tepat tanpa pembulatan.
 
-1. **Menggambar <InlineMath math="y = \log_2 x" />**
+Contohnya, pangkat negatif juga memberi masukan positif yang sah. Dengan basis dua, masukan seperempat menghasilkan keluaran negatif dua.
 
-   Untuk menggambar grafik ini, kita buat tabel nilai dengan memilih nilai <InlineMath math="x" /> yang merupakan pangkat dari <InlineMath math="2" />:
+<BlockMath math="2^{-2}=\frac14 \quad\Longleftrightarrow\quad \log_2\frac14=-2" />
 
-   | <InlineMath math="x" />            | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
-   | ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
-   | <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+### Grafik Basis Dua
 
-   <LineEquation
-     title={
-       <>
-         Grafik <InlineMath math="y = \log_2 x" />
-       </>
-     }
-     description="Perhatikan titik-titik penting dan bentuk kurva."
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from(
-             { length: 1305 },
-             (_, i) => -48 + (i / 1304) * 52.15888308335967
-           );
-           parameters.push(1.6214662906712296);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = Math.exp(t);
-               return { x, y: Math.log2(x), z: 0 };
-             });
-         })(),
-         color: "#0284c7",
-         labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1241, offset: [-0.3, 1, 0] }],
-         showPoints: false,
-       },
-       {
-         points: [{ x: 0.125, y: -3, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 0.25, y: -2, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 0.5, y: -1, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1, y: 0, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [1, -1, 0] }],
-       },
-       {
-         points: [{ x: 2, y: 1, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 4, y: 2, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 8, y: 3, z: 0 }],
-         color: "#e11d48",
-         showPoints: true,
-       },
-     ]}
-     cameraPosition={[3, -0.5, 12]}
-     cameraTarget={[3, -0.5, 0]}
-   />
+Untuk menggambar grafik ini, kita buat tabel nilai dengan memilih nilai <InlineMath math="x" /> yang merupakan **pangkat** dari <InlineMath math="2" />:
 
-2. **Menggambar <InlineMath math="y = \log_{\frac{1}{3}} x" />**
+| <InlineMath math="x" />            | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
+| ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
 
-   Untuk basis <InlineMath math="0 < b < 1" />, grafik akan menurun:
+<LineEquation
+  title={
+    <>
+      Grafik <InlineMath math="y = \log_2 x" />
+    </>
+  }
+  description="Perhatikan titik-titik penting dan bentuk kurva."
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from(
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
+        );
+        parameters.push(1.6214662906712296);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.exp(t);
+            return { x, y: Math.log2(x), z: 0 };
+          });
+      })(),
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 205, offset: [-0.3, 1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0.125, y: -3, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0.25, y: -2, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0.5, y: -1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [1, -1, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 8, y: 3, z: 0 }],
+      color: "#e11d48",
+      showPoints: true,
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, -0.5, 12]}
+  cameraTarget={[3, -0.5, 0]}
+/>
 
-   | <InlineMath math="x" />                        | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
-   | ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
-   | <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+### Grafik Basis Sepertiga
 
-   <LineEquation
-     title={
-       <>
-         Grafik <InlineMath math="y = \log_{\frac{1}{3}} x" />
-       </>
-     }
-     description={<>Grafik menurun karena basis berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.</>}
-     data={[
-       {
-         smooth: false,
-         points: (() => {
-           const parameters = Array.from(
-             { length: 1305 },
-             (_, i) => -48 + (i / 1304) * 52.15888308335967
-           );
-           parameters.push(1.111957191471041);
-           return parameters
-             .sort((a, b) => a - b)
-             .map((t) => {
-               const x = Math.exp(t);
-               return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
-             });
-         })(),
-         color: "#e11d48",
-         labels: [{ text: <InlineMath math="y=\log_{\frac{1}{3}} x" />, at: 1228, offset: [0.5, -1, 0] }],
-         showPoints: false,
-       },
-       {
-         points: [{ x: 1 / 27, y: 3, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1 / 9, y: 2, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1 / 3, y: 1, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 1, y: 0, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
-       },
-       {
-         points: [{ x: 3, y: -1, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-       {
-         points: [{ x: 9, y: -2, z: 0 }],
-         color: "#9333ea",
-         showPoints: true,
-       },
-     ]}
-     cameraPosition={[0, 0, 15]}
-   />
+Untuk basis <InlineMath math="0 < b < 1" />, grafik akan **menurun**:
+
+| <InlineMath math="x" />                        | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
+| ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+
+<LineEquation
+  title={
+    <>
+      Grafik <InlineMath math="y = \log_{\frac{1}{3}} x" />
+    </>
+  }
+  description={<>Grafik menurun karena basis berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: (() => {
+        const parameters = Array.from(
+          { length: 241 },
+          (_, i) => -3.5 + i / 40
+        );
+        parameters.push(1.111957191471041);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.exp(t);
+            return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
+          });
+      })(),
+      color: "#e11d48",
+      labels: [{ text: <InlineMath math="y=\log_{\frac{1}{3}} x" />, at: 185, offset: [0.5, -1, 0] }],
+      showPoints: false,
+    },
+    {
+      points: [{ x: 1 / 27, y: 3, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1 / 9, y: 2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1 / 3, y: 1, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: [{ x: 3, y: -1, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 9, y: -2, z: 0 }],
+      color: "#9333ea",
+      showPoints: true,
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[4, 0, 13]}
+  cameraTarget={[4, 0, 0]}
+/>
 
 ## Perbandingan Grafik Logaritma
 
-Bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
+Grafik dengan basis saling berbalikan memiliki **keluaran yang berlawanan tanda**. Karena <InlineMath math="\log(1/2)=-\log 2" />, kedua grafik berikut merupakan pencerminan terhadap sumbu mendatar.
+
+<BlockMath math="\log_{1/2}x=-\log_2x" />
 
 <LineEquation
   title={
@@ -267,7 +278,7 @@ Bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log2(x), z: 0 };
       }),
-      color: "#0284c7",
+      color: "#0d9488",
       labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 40, offset: [0.5, 0.5, 0] }],
       showPoints: false,
     },
@@ -294,7 +305,9 @@ Bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 12]}
+  cameraTarget={[3, 0, 0]}
 />
 
 | Sifat                | <InlineMath math="b > 1" />  | <InlineMath math="0 < b < 1" /> |
@@ -307,15 +320,15 @@ Bandingkan grafik logaritma dengan basis berbeda dalam satu koordinat:
 
 ## Transformasi Grafik Logaritma
 
-Pergeseran vertikal memindahkan seluruh kurva dan membiarkan asimtot tegak tetap di <InlineMath math="x = 0" />. Pergeseran horizontal sebaliknya memindahkan asimtot beserta titik potong sumbu-<InlineMath math="x" /> ke kanan atau ke kiri, sehingga seluruh grafik bergeser mendatar.
+**Pergeseran vertikal** memindahkan seluruh kurva dan membiarkan asimtot tegak tetap di <InlineMath math="x = 0" />. Pergeseran horizontal sebaliknya memindahkan asimtot beserta titik potong sumbu-<InlineMath math="x" /> ke kanan atau ke kiri, sehingga seluruh grafik bergeser mendatar.
 
 ### Translasi Vertikal
 
-Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi konstanta <InlineMath math="k" /> pada fungsi.
+Tambahkan konstanta **di luar logaritma** untuk menggeser semua nilai keluaran. Domain dan asimtot vertikal tetap, tetapi titik potong sumbu mendatar memenuhi <InlineMath math="\log_b x=-k" />, sehingga <InlineMath math="x=b^{-k}" />.
 
 <ContentStack>
 
-  <BlockMath math="y = \log_b x + k" />
+<BlockMath math="y = \log_b x + k" />
 
   <LineEquation
     title="Translasi Vertikal"
@@ -330,8 +343,8 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -342,15 +355,15 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
             });
         })(),
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 1236, offset: [0.5, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -360,16 +373,16 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
               return { x, y: Math.log2(x) + 2, z: 0 };
             });
         })(),
-        color: "#0284c7",
-        labels: [{ text: <InlineMath math="y=\log_{2} x+2" />, at: 1236, offset: [0.5, -1, 0] }],
+        color: "#0d9488",
+        labels: [{ text: <InlineMath math="y=\log_{2} x+2" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
           const parameters = Array.from(
-            { length: 1305 },
-            (_, i) => -48 + (i / 1304) * 52.15888308335967
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
           );
           parameters.push(1.420793377375702);
           return parameters
@@ -380,22 +393,23 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
             });
         })(),
         color: "#e11d48",
-        labels: [{ text: <InlineMath math="y=\log_{2} x-2" />, at: 1236, offset: [0.5, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x-2" />, at: 197, offset: [0.5, -1, 0] }],
         showPoints: false,
       },
     ]}
-    cameraPosition={[3, 0, 13]}
+    showZAxis={false}
+  cameraPosition={[3, 0, 13]}
     cameraTarget={[3, 0, 0]}
   />
 </ContentStack>
 
 ### Translasi Horizontal
 
-Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi konstanta <InlineMath math="h" /> pada fungsi.
+Ganti masukan dengan **argumen** <InlineMath math="x-h" /> untuk menggeser grafik. Syarat <InlineMath math="x-h>0" /> memberi domain <InlineMath math="x>h" /> dan asimtot <InlineMath math="x=h" />. Titik potong sumbu mendatar bergeser dari <InlineMath math="1" /> ke <InlineMath math="h+1" />.
 
 <ContentStack>
 
-  <BlockMath math="y = \log_b (x - h)" />
+<BlockMath math="y = \log_b (x - h)" />
 
   <LineEquation
     title="Translasi Horizontal"
@@ -409,8 +423,8 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
       {
         smooth: false,
         points: (() => {
-          const points = Array.from({ length: 481 }, (_, i) => {
-            const y = (i - 320) / 32;
+          const points = Array.from({ length: 225 }, (_, i) => {
+            const y = (i - 128) / 32;
             return { x: Math.pow(2, y), y, z: 0 };
           });
           const x = (40 / 99) * 10 + 0.1;
@@ -418,14 +432,14 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           return points.sort((a, b) => a.x - b.x);
         })(),
         color: "#9333ea",
-        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 386, offset: [0.5, 1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 194, offset: [0.5, 1, 0] }],
         showPoints: false,
       },
       {
         smooth: false,
         points: (() => {
-          const points = Array.from({ length: 481 }, (_, i) => {
-            const y = (i - 320) / 32;
+          const points = Array.from({ length: 225 }, (_, i) => {
+            const y = (i - 128) / 32;
             return { x: 2 + Math.pow(2, y), y, z: 0 };
           });
           const x = (40 / 99) * 8 + 2.1;
@@ -433,18 +447,19 @@ Kita dapat menggeser grafik fungsi logaritma dengan menambahkan atau mengurangi 
           return points.sort((a, b) => a.x - b.x);
         })(),
         color: "#059669",
-        labels: [{ text: <InlineMath math="y=\log_{2}(x-2)" />, at: 376, offset: [1, -1, 0] }],
+        labels: [{ text: <InlineMath math="y=\log_{2}(x-2)" />, at: 184, offset: [1, -1, 0] }],
         showPoints: false,
       },
     ]}
-    cameraPosition={[3, 0, 13]}
+    showZAxis={false}
+  cameraPosition={[3, 0, 13]}
     cameraTarget={[3, 0, 0]}
   />
 </ContentStack>
 
 ## Latihan
 
-Empat soal di bawah ini melatih cara membaca grafik logaritma dan memperkirakan pergeserannya ketika ada perubahan di dalam argumen. Kerjakan setiap soal sebelum membaca penyelesaian, lalu bandingkan alasanmu dengan jawaban yang menyusul.
+Latihan ini menghubungkan **argumen positif** dengan domain, asimtot, dan arah pergeseran. Gunakan pangkat basis untuk menentukan titik-titik grafik sebelum membuat sketsa.
 
 1. Buatlah tabel nilai dan gambarlah grafik fungsi:
 
@@ -460,134 +475,139 @@ Empat soal di bawah ini melatih cara membaca grafik logaritma dan memperkirakan 
 
 4. Sketsa grafik <InlineMath math="y = \log_3 x + 2" /> dan tentukan titik potong dengan sumbu <InlineMath math="y" />.
 
-### Pembahasan
+### Dua Tabel Nilai
 
-1. Tabel nilai:
+Untuk <InlineMath math="y = \log_3 x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
 
-   Untuk <InlineMath math="y = \log_3 x" />:
-   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
-   |-------------------------|-------------------------------------|------------------------------------|----|----|----|
-   | <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+Untuk <InlineMath math="y = \log_{\frac{1}{2}} x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
 
-   Untuk <InlineMath math="y = \log_{\frac{1}{2}} x" />:
-   | <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
-   |-------------------------|-------------------------------------|------------------------------------|----|----|----|
-   | <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
+Plot setiap pasangan berurutan, lalu buat kurva halus yang tetap berada di sebelah kanan **asimtot vertikal** <InlineMath math="x=0" />. Grafik berbasis <InlineMath math="3" /> naik, sedangkan grafik berbasis <InlineMath math="\frac{1}{2}" /> turun.
 
-   Plot setiap pasangan berurutan, lalu buat kurva halus yang tetap berada di sebelah kanan asimtot vertikal <InlineMath math="x=0" />. Grafik berbasis <InlineMath math="3" /> naik, sedangkan grafik berbasis <InlineMath math="\frac{1}{2}" /> turun.
+### Domain dan Asimtot
 
-2. Untuk <InlineMath math="f(x) = \log_5 (x + 3)" />:
+Logaritma hanya terdefinisi ketika argumennya positif. Batas dari syarat tersebut menjadi asimtot vertikal:
 
-   Logaritma hanya terdefinisi ketika argumennya positif. Batas dari syarat tersebut menjadi asimtot vertikal:
+- Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
+- Range: Semua bilangan real
+- Asimtot vertikal: <InlineMath math="x = -3" />
 
-   - Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
-   - Range: Semua bilangan real
-   - Asimtot vertikal: <InlineMath math="x = -3" />
+Batas tersebut tidak termasuk domain karena argumen logaritma harus **positif**, bukan nol. Masukan negatif dua sah, tetapi masukan negatif tiga membuat argumen nol.
 
-3. Untuk <InlineMath math="g(x) = \log_2 (x - 4)" />:
+<BlockMath math="(-2)+3=1>0,\qquad (-3)+3=0" />
 
-   Mengganti <InlineMath math="x" /> dengan <InlineMath math="x-4" /> menggeser grafik ke kanan. Bentuk yang sama juga harus tetap positif:
+### Pergeseran Empat Satuan
 
-   - Pergeseran: <InlineMath math="4 \text{ satuan}" /> ke kanan
-   - Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
+Mengganti <InlineMath math="x" /> dengan <InlineMath math="x-4" /> menggeser grafik ke kanan. Bentuk yang sama juga harus tetap positif:
 
-4. Untuk <InlineMath math="y = \log_3 x + 2" />:
+- Pergeseran: <InlineMath math="4 \text{ satuan}" /> ke kanan
+- Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
 
-   Penambahan <InlineMath math="2" /> di luar logaritma menggeser semua titik secara vertikal tanpa mengubah domain atau asimtot:
+Periksa perpindahan titik potong horizontal: **masukan** satu pada grafik asal menjadi masukan lima. Nilai keluarannya tetap nol.
 
-   - Grafik <InlineMath math="y = \log_3 x" /> digeser <InlineMath math="2 \text{ satuan}" /> ke atas
-   - Tidak ada titik potong dengan sumbu <InlineMath math="y" /> karena domain adalah <InlineMath math="x > 0" />
+<BlockMath math="\log_b(5-4)=\log_b1=0,\qquad b>0,\ b\ne1" />
 
-   Secara khusus, titik potong dengan sumbu <InlineMath math="y" /> memerlukan <InlineMath math="x=0" />, padahal logaritma tidak terdefinisi di sana. Grafik berikut menegaskan bahwa kurva mendekati, tetapi tidak pernah mencapai, sumbu <InlineMath math="y" />.
+### Pergeseran ke Atas
 
-   <ContentBlock>
-     <LineEquation
-       title={
-         <>
-           Sketsa Grafik <InlineMath math="y = \log_3 x + 2" />
-         </>
-       }
-       description={<>Grafik logaritma basis <InlineMath math="3" /> yang digeser <InlineMath math="2 \text{ satuan}" /> ke atas.</>}
-       data={[
-         {
-           smooth: false,
-           points: (() => {
-             const parameters = Array.from(
-               { length: 1305 },
-               (_, i) => -48 + (i / 1304) * 52.15888308335967
-             );
-             parameters.push(1.3988166392051704);
-             return parameters
-               .sort((a, b) => a - b)
-               .map((t) => {
-                 const x = Math.exp(t);
-                 return { x, y: Math.log(x) / Math.log(3), z: 0 };
-               });
-           })(),
-           color: "#9333ea",
-           labels: [{ text: <InlineMath math="y=\log_{3} x" />, at: 1235, offset: [0.5, -0.5, 0] }],
-           showPoints: false,
-         },
-         {
-           smooth: false,
-           points: (() => {
-             const parameters = Array.from(
-               { length: 1305 },
-               (_, i) => -48 + (i / 1304) * 52.15888308335967
-             );
-             parameters.push(1.6214662906712296);
-             return parameters
-               .sort((a, b) => a - b)
-               .map((t) => {
-                 const x = Math.exp(t);
-                 return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
-               });
-           })(),
-           color: "#059669",
-           labels: [{ text: <InlineMath math="y=\log_{3} x+2" />, at: 1241, offset: [0.5, 1, 0] }],
-           showPoints: false,
-         },
-         {
-           points: [{ x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [{ x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [{ x: 1, y: 2, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-           labels: [{ text: <InlineMath math="(1,2)" />, at: 0, offset: [0, 1, 0] }],
-         },
-         {
-           points: [{ x: 3, y: 3, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-           labels: [{ text: <InlineMath math="(3,3)" />, at: 0, offset: [0, 0.5, 0] }],
-         },
-         {
-           points: [{ x: 9, y: 4, z: 0 }],
-           color: "#e11d48",
-           showPoints: true,
-         },
-         {
-           points: [
-           { x: 0, y: -80, z: 0 },
-           { x: 0, y: -2, z: 0 },
-           { x: 0, y: 5, z: 0 },
-           { x: 0, y: 80, z: 0 },
-           ],
-           smooth: false,
-           color: "#9333ea",
-           labels: [{ text: <><InlineMath math="x=0" /> (asimtot)</>, at: 2, offset: [3.8, 0.7, 0] }],
-           showPoints: false,
-         },
-       ]}
-       cameraPosition={[4, 1, 13]}
-       cameraTarget={[4, 1, 0]}
-     />
-   </ContentBlock>
+Penambahan <InlineMath math="2" /> di luar logaritma menggeser semua titik secara vertikal tanpa mengubah **domain** atau asimtot:
+
+- Grafik <InlineMath math="y = \log_3 x" /> digeser <InlineMath math="2 \text{ satuan}" /> ke atas
+- Tidak ada titik potong dengan sumbu <InlineMath math="y" /> karena domain adalah <InlineMath math="x > 0" />
+
+Secara khusus, titik potong dengan sumbu <InlineMath math="y" /> memerlukan <InlineMath math="x=0" />, padahal logaritma tidak terdefinisi di sana. Grafik berikut menegaskan bahwa kurva mendekati, tetapi tidak pernah mencapai, sumbu <InlineMath math="y" />.
+
+<ContentBlock>
+  <LineEquation
+    title={
+      <>
+        Sketsa Grafik <InlineMath math="y = \log_3 x + 2" />
+      </>
+    }
+    description={<>Grafik logaritma basis <InlineMath math="3" /> yang digeser <InlineMath math="2 \text{ satuan}" /> ke atas.</>}
+    data={[
+      {
+        smooth: false,
+        points: (() => {
+          const parameters = Array.from(
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
+          );
+          parameters.push(1.3988166392051704);
+          return parameters
+            .sort((a, b) => a - b)
+            .map((t) => {
+              const x = Math.exp(t);
+              return { x, y: Math.log(x) / Math.log(3), z: 0 };
+            });
+        })(),
+        color: "#9333ea",
+        labels: [{ text: <InlineMath math="y=\log_{3} x" />, at: 196, offset: [0.5, -0.5, 0] }],
+        showPoints: false,
+      },
+      {
+        smooth: false,
+        points: (() => {
+          const parameters = Array.from(
+            { length: 241 },
+            (_, i) => -3.5 + i / 40
+          );
+          parameters.push(1.6214662906712296);
+          return parameters
+            .sort((a, b) => a - b)
+            .map((t) => {
+              const x = Math.exp(t);
+              return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
+            });
+        })(),
+        color: "#059669",
+        labels: [{ text: <InlineMath math="y=\log_{3} x+2" />, at: 205, offset: [0.5, 1, 0] }],
+        showPoints: false,
+      },
+      {
+        points: [{ x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1, y: 2, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="(1,2)" />, at: 0, offset: [0, 1, 0] }],
+      },
+      {
+        points: [{ x: 3, y: 3, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="(3,3)" />, at: 0, offset: [0, 0.5, 0] }],
+      },
+      {
+        points: [{ x: 9, y: 4, z: 0 }],
+        color: "#e11d48",
+        showPoints: true,
+      },
+      {
+        points: [
+        { x: 0, y: -2, z: 0 },
+        { x: 0, y: 5, z: 0 },
+        ],
+        smooth: false,
+        color: "#9333ea",
+        labels: [{ text: <><InlineMath math="x=0" /> (asimtot)</>, at: 1, offset: [3.8, 0.7, 0] }],
+        showPoints: false,
+      },
+    ]}
+    showZAxis={false}
+  cameraPosition={[4, 1, 13]}
+    cameraTarget={[4, 1, 0]}
+  />
+</ContentBlock>

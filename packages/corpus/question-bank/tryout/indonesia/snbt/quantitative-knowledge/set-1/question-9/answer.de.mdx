@@ -4,7 +4,7 @@ export const metadata = {
   datePublished: "2025-06-11",
 };
 
-Der Graph der quadratischen Funktion <InlineMath math="f(x) = ax^2 + bx + c" /> schneidet die <InlineMath math="y" />-Achse im Punkt <InlineMath math="(0, 8)" /> und hat den Scheitelpunkt <InlineMath math="(2, -4)" />.
+Der Graph der quadratischen Funktion <InlineMath math="f(x) = ax^2 + bx + c" /> schneidet die <InlineMath math="y" />-Achse im Punkt <InlineMath math="(0, 8)" /> und hat den **Scheitelpunkt** <InlineMath math="(2, -4)" />.
 
 Aus dem Punkt <InlineMath math="(0, 8)" /> folgt durch Einsetzen von <InlineMath math="x = 0" /> und <InlineMath math="f(0) = 8" />:
 
@@ -44,11 +44,31 @@ Aus <InlineMath math="b = -4a" /> erhalten wir <InlineMath math="b = -4(3) = -12
 
 Die quadratische Funktionsgleichung lautet also <InlineMath math="f(x) = 3x^2 - 12x + 8" />.
 
-**Aussage <InlineMath math="\text{(I)}" />: Die vollständige Gleichung der quadratischen Funktion ist <InlineMath math="f(x) = 3x^2 - 12x + 8" />**
+<LineEquation
+  title="Scheitelpunkt und Punkte der Parabel"
+  description="Der Scheitelpunkt liegt bei (2, −4). Die Punkte (0, 8) und (3, −1) prüfen zwei Funktionswerte."
+  data={[{
+    points: Array.from({ length: 81 }, (_, i) => { const x = i / 20; return { x, y: 3 * (x - 2) ** 2 - 4, z: 0 }; }),
+    color: "#9333ea",
+    smooth: false,
+    showPoints: true,
+    pointIndices: [0, 40, 60],
+    labels: [
+      { at: 0, text: <InlineMath math="(0,8)" />, offset: [0.7, 0.5, 0] },
+      { at: 40, text: <InlineMath math="(2,-4)" />, offset: [0, -0.6, 0] },
+      { at: 60, text: <InlineMath math="(3,-1)" />, offset: [0.8, 0, 0] },
+    ],
+  }]}
+  cameraPosition={[2, 2, 18]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+/>
+
+**Aussage (I)**: Die vollständige Gleichung der quadratischen Funktion ist <InlineMath math="f(x) = 3x^2 - 12x + 8" />
 
 Die Berechnung ergibt die quadratische Funktion <InlineMath math="f(x) = 3x^2 - 12x + 8" />. Aussage <InlineMath math="\text{(I)}" /> ist daher wahr.
 
-**Aussage <InlineMath math="\text{(II)}" />: Der Punkt <InlineMath math="(3, -1)" /> liegt auf dem Graphen von <InlineMath math="f" />**
+**Aussage (II)**: Der Punkt <InlineMath math="(3, -1)" /> liegt auf dem Graphen von <InlineMath math="f" />
 
 Wir setzen <InlineMath math="x = 3" /> in <InlineMath math="f(x) = 3x^2 - 12x + 8" /> ein:
 
@@ -61,7 +81,7 @@ Wir setzen <InlineMath math="x = 3" /> in <InlineMath math="f(x) = 3x^2 - 12x + 
 
 Es ist <InlineMath math="f(3) = -1" />. Der Punkt <InlineMath math="(3, -1)" /> liegt somit auf dem Graphen von <InlineMath math="f" />, und Aussage <InlineMath math="\text{(II)}" /> ist wahr.
 
-**Aussage <InlineMath math="\text{(III)}" />: Der Wert von <InlineMath math="f(-1)" /> ist <InlineMath math="22" />**
+**Aussage (III)**: Der Wert von <InlineMath math="f(-1)" /> ist <InlineMath math="22" />
 
 Wir setzen <InlineMath math="x = -1" /> in <InlineMath math="f(x) = 3x^2 - 12x + 8" /> ein:
 

@@ -15,7 +15,7 @@ Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breit
 
 ### Formattypen für Zahlensysteme
 
-Ein Formatbezeichner kann eine ganze Zahl in einem anderen Zahlensystem darstellen. Die Tabelle nennt die Typzeichen und die Ausgabe, die jedes für denselben Wert erzeugt.
+Ein Formatbezeichner kann eine ganze Zahl in einem **anderen Zahlensystem** darstellen. Die Tabelle nennt die Typzeichen und die Ausgabe, die jedes für denselben Wert erzeugt.
 
 | Formattyp | Symbol | Beispieleingabe | Ausgabe | Verwendung |
 |-------------|---------|--------------|--------|-------|
@@ -43,11 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Ausgabe: |xxx|`
 
 ## Positionseinstellungen und Füllzeichen
 
-Ein Feld fester Breite braucht eine Regel, wo der Text steht und womit der Rest gefüllt wird. Das Ausrichtungszeichen setzt den Wert an den linken oder rechten Rand oder in die Mitte dieser Breite, und ein Füllzeichen bestimmt, welches Symbol den übrigen Platz auffüllt. Zusammen halten sie Zahlen und Beschriftungen in sauberen Spalten.
+Ein Feld fester Breite braucht eine Regel, **wo der Text steht** und womit der Rest gefüllt wird. Das Ausrichtungszeichen setzt den Wert an den linken oder rechten Rand oder in die Mitte dieser Breite, und ein Füllzeichen bestimmt, welches Symbol den übrigen Platz auffüllt. Zusammen halten sie Zahlen und Beschriftungen in sauberen Spalten.
 
 ### Ausrichtungsoptionen
 
-Das Diagramm vergleicht denselben Text links, rechts und mittig in einer festen Breite, damit das Ausrichtungszeichen leicht zu lesen ist.
+Das Diagramm vergleicht denselben Text **links, rechts und mittig** in einer festen Breite, damit das Ausrichtungszeichen leicht zu lesen ist.
 
 <Mermaid
   title="Wie Breite Text platziert"
@@ -122,7 +122,7 @@ Ein Ersetzungsfeld wählt **den Wert für die Textausgabe**. Verwende einen Inde
 
 ### Vergleich der Referenzmethoden
 
-Ein Formatstring kann seine Argumente auf drei Arten benennen. Die Tabelle vergleicht sie danach, was jede Art braucht und wo sie endet.
+Ein Formatstring kann seine Argumente auf **drei Arten** benennen. Die Tabelle vergleicht sie danach, was jede Art braucht und wo sie endet.
 
 | Methode | Syntax | Vorteile | Einschränkungen |
 |--------|---------|-----------|-------------|
@@ -163,7 +163,7 @@ except IndexError as e:
 
 ## Präzision und Vorzeichen
 
-Die Präzision steuert die Ziffern im formatierten Text. Die Vorzeichenoption bestimmt, ob ein Plus, Minus oder Leerzeichen erscheint. Zum Beispiel ergibt `format(12.3, "+.2f")` den Text `+12.30`: Das Pluszeichen und die zwei Nachkommastellen stammen aus getrennten Optionen.
+Die Präzision steuert die **Ziffern im formatierten Text**. Die Vorzeichenoption bestimmt, ob ein Plus, Minus oder Leerzeichen erscheint. Zum Beispiel ergibt `format(12.3, "+.2f")` den Text `+12.30`: Das Pluszeichen und die zwei Nachkommastellen stammen aus getrennten Optionen.
 
 ### Präzision für Dezimalzahlen
 
@@ -194,7 +194,7 @@ Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` best
   `}
 />
 
-In der Leerzeichenzeile ist das Symbol ein Leerzeichen innerhalb des Formatbezeichners, wie in `{: d}`. Da dieses Zeichen unsichtbar ist, wird es in der Tabelle als literales Leerzeichen bezeichnet.
+In der Leerzeichenzeile ist das Symbol **ein Leerzeichen innerhalb** des Formatbezeichners, wie in `{: d}`. Da dieses Zeichen unsichtbar ist, wird es in der Tabelle als literales Leerzeichen bezeichnet.
 
 | Symbol | Verhalten | Beispiel |
 |--------|----------|---------|
@@ -234,7 +234,7 @@ F-Strings gibt es seit Python 3.6. Sie werten **Ausdrücke innerhalb der Ersetzu
 
 ### Dynamische Formatvorlagen
 
-Verschachtelte Ersetzungsfelder können Breite, Füllzeichen oder Ausrichtung aus einem anderen Wert übernehmen. Verwende diese Form, wenn diese Formatwerte erst zur Laufzeit feststehen.
+**Verschachtelte Ersetzungsfelder** können Breite, Füllzeichen oder Ausrichtung aus einem anderen Wert übernehmen. Verwende diese Form, wenn diese Formatwerte erst zur Laufzeit feststehen.
 
 <CodeBlock
   data={[
@@ -288,6 +288,6 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
   `}
 />
 
-Probiere `"{value:*^+10.2f}".format(value=12.3)` aus. Die Ausgabe lautet `**+12.30**`. Der Typ `f` mit Präzision `2` erzeugt `12.30`, das Pluszeichen ergänzt ein Zeichen, und vier Füllzeichen vervollständigen die Mindestbreite von zehn Zeichen. Die Ausrichtung `^` verteilt diese vier Füllzeichen gleichmäßig: zwei links und zwei rechts.
+Probiere `"{value:*^+10.2f}".format(value=12.3)` aus. Die Ausgabe lautet `**+12.30**`. Der Typ `f` mit Präzision `2` erzeugt `12.30`, das Pluszeichen ergänzt ein Zeichen, und vier Füllzeichen vervollständigen die **Mindestbreite von zehn Zeichen**. Die Ausrichtung `^` verteilt diese vier Füllzeichen gleichmäßig: zwei links und zwei rechts.
 
 Die Formatierung erzeugt ein neues [Stringobjekt](/de/faecher/ki-und-data-science/ki-programmierung/strings-als-objekte). Die Zahl `12.3` bleibt unverändert. Du kannst sie weiterhin für eine andere Berechnung verwenden.

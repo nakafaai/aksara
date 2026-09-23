@@ -11,7 +11,7 @@ export const metadata = {
 
 ## How a Central Angle Sets the Size of a Sector
 
-<Highlight>A circle sector is bounded by two radii and the arc between them.</Highlight> The two radii form a central angle whose vertex lies at the center of the circle. An open hand fan or a slice of cake has the same basic shape.
+A circle sector is bounded by <Highlight>two radii and the arc</Highlight> between them. The two radii form a central angle whose vertex lies at the center of the circle. An open hand fan or a slice of cake has the same basic shape.
 
 The central angle determines what fraction of the circle the sector occupies. For a fixed radius, a larger angle produces a larger sector area, while a smaller angle produces a smaller one.
 
@@ -78,7 +78,7 @@ The central angle determines what fraction of the circle the sector occupies. Fo
       smooth: false,
       lineWidth: 4,
       labels: [
-        { text: "Sector", at: 20, offset: [-0.8, 0.6, 0] }
+        { text: "Arc", at: 20, offset: [-0.8, 0.6, 0] }
       ]
     },
     {
@@ -106,11 +106,9 @@ The central angle determines what fraction of the circle the sector occupies. Fo
 
 ## Properties of Central Angle in Sectors
 
-- **Both angle sides**: Always consist of radii of equal length
-- **Angle vertex**: Always located exactly at the center of the circle
-- **Proportion to circle**: The size of the central angle determines the sector's proportion to the entire circle
+Within the **same circle**, equal central angles produce equal sector areas. The two radii form the angle sides, and the center is the vertex. Dividing a full turn into eight equal angles gives each sector one eighth of the circle area.
 
-Within the same circle, equal central angles produce equal sector areas. Dividing the full angle into equal angles therefore divides the circle into equal areas.
+<BlockMath math="\theta=\frac{360^\circ}{8}=45^\circ,\qquad A=\frac{1}{8}\pi r^2" />
 
 ## Relationship Between Central Angle and Sector Area
 
@@ -129,149 +127,31 @@ The variables in both formulas are:
 - <InlineMath math="\theta" /> = central angle, measured in degrees in the first formula and radians in the second
 - <InlineMath math="r" /> = radius
 
-Both formulas show that <Highlight>sector area is proportional to the central angle</Highlight> size. When the central angle is doubled, the sector area also becomes twice as large. Conversely, if the central angle is halved, the sector area becomes half.
+Both formulas show that <Highlight>sector area is proportional to the central angle</Highlight> size. For a fixed radius, when the central angle is doubled, the sector area also becomes twice as large. Conversely, if the central angle is halved, the sector area becomes half.
 
 <LineEquation
-  title={<>Comparison of Central Angles on Different Sectors</>}
-  description={<>Visualization of sectors with central angles of <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, and <InlineMath math="135^\circ" /> showing proportional relationships.</>}
+  title="Comparing Sectors in One Circle"
+  description="Adjacent 45, 90, and 135 degree sectors share the same radius."
   data={[
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = (i / 100) * 2 * Math.PI;
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5 * Math.cos(Math.PI / 4), y: 3.5 * Math.sin(Math.PI / 4), z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i / 15) * (Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="45^\circ" />, at: 49, offset: [0.4, 0.2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5, y: 0, z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 2 },
-        { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 26 }, (_, i) => {
-        const angle = (i / 25) * (Math.PI / 2);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 2
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.2, 0.4, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5, y: 0, z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 4 },
-        { x: 3.5 * Math.cos(3 * Math.PI / 4), y: 3.5 * Math.sin(3 * Math.PI / 4), z: 4 }
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-      lineWidth: 2
-    },
-    {
-      points: Array.from({ length: 36 }, (_, i) => {
-        const angle = (i / 35) * (3 * Math.PI / 4);
-        return {
-          x: 3.5 * Math.cos(angle),
-          y: 3.5 * Math.sin(angle),
-          z: 4
-        };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="135^\circ" />, at: 17, offset: [-0.2, 0.4, 0] }
-      ]
-    }
+    { kind: "circle-outline", radius: 3.5, color: "#0d9488", showPoints: false },
+    ...[0, 45, 135, 270].map((degrees) => ({ kind: "circle-radius", radius: 3.5, degrees, color: "#7c3aed", showPoints: false })),
+    { kind: "circle-arc", radius: 3.5, startDegrees: 0, sweepDegrees: 45, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="45^\circ" />, offset: [0.4, 0.2, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 45, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [0, 0.4, 0] } },
+    { kind: "circle-arc", radius: 3.5, startDegrees: 135, sweepDegrees: 135, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="135^\circ" />, offset: [-0.4, -0.2, 0] } },
   ]}
-  cameraPosition={[9.6, 7.2, 11.6]}
-  cameraTarget={[0, 0, 2]}
-  showZAxis={true}
+  cameraPosition={[0, 0, 11]}
 />
+
+| Central angle | Fraction of circle | Sector area |
+| --- | --- | --- |
+| <InlineMath math="45^\circ" /> | <InlineMath math="\frac{45}{360}=\frac{1}{8}" /> | <InlineMath math="\frac{1\pi r^2}{8}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{2}{8}" /> | <InlineMath math="\frac{2\pi r^2}{8}" /> |
+| <InlineMath math="135^\circ" /> | <InlineMath math="\frac{135}{360}=\frac{3}{8}" /> | <InlineMath math="\frac{3\pi r^2}{8}" /> |
+
 
 ## Measurement and Identification of Central Angles
 
-To identify a central angle, check that its vertex lies at the center of the circle and that both sides are radii. By contrast, an inscribed angle has its vertex on the circumference.
+To identify a central angle, check that its vertex lies **at the center of the circle** and that both sides are radii. By contrast, an inscribed angle has its vertex on the circumference.
 
 **Central angle measurement methods:**
 
@@ -364,44 +244,36 @@ Once the central angle is known, its value can be used to calculate the correspo
 
 ## Central Angle and Arc Theorem
 
-For a central angle and its intercepted arc, the following relationship holds:
+An arc's **degree measure** equals the central angle that subtends it. This differs from arc length: at the same angle, a larger radius produces a longer arc. In the same circle, equal angles produce congruent arcs and sectors. Equal sector areas also imply equal angles.
 
-**Main theorem:**
-- The central angle measure equals the arc measure it subtends
-- If a central angle measures <InlineMath math="\alpha" /> degrees, then the arc it forms also measures <InlineMath math="\alpha" /> degrees
+For adjacent sectors that do not overlap, add their angles, arc lengths, and areas. For example, the 45-degree and 90-degree sectors in the diagram combine into a 135-degree sector:
 
-**Properties:**
-
-- In the same circle, congruent central angles produce congruent arcs and sectors
-- If two sectors of the same circle have the same area, then their central angles have the same measure
-- When adjacent central angles are added, the measures of their corresponding arcs are added as well
-
-These properties connect central angles, arc measures, and sector areas within one circle. Always distinguish an arc's degree measure from its physical length.
+<BlockMath math="\frac{45^\circ}{360^\circ}\pi r^2+\frac{90^\circ}{360^\circ}\pi r^2=\frac{135^\circ}{360^\circ}\pi r^2" />
 
 ## Calculating Central Angle from Sector Information
 
 Determining the central angle measure can be done through various known information about the sector:
 
-1. **From sector area and radius:**
+**From sector area and radius:**
 
-   <BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
+<BlockMath math="\alpha = \frac{360^\circ \times A}{\pi r^2}" />
 
-2. **From arc length and radius:**
+**From arc length and radius:**
 
-   <BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
+<BlockMath math="\alpha = \frac{180^\circ \times s}{\pi r}" />
 
-3. **From equal circle division:**
+**From equal circle division:**
 
-   <BlockMath math="\alpha = \frac{360^\circ}{n}" />
+<BlockMath math="\alpha = \frac{360^\circ}{n}" />
 
-where:
+The variables mean:
 - <InlineMath math="\alpha" /> = central angle (in degrees)
 - <InlineMath math="A" /> = sector area
 - <InlineMath math="s" /> = arc length
 - <InlineMath math="r" /> = radius
 - <InlineMath math="n" /> = number of divisions
 
-Choose the formula that matches the given information: sector area, arc length, or the number of equal parts.
+Choose the formula that matches the **given information**: sector area, arc length, or the number of equal parts.
 
 <LineEquation
   title={<>Central Angle Parameters</>}
@@ -482,6 +354,14 @@ Choose the formula that matches the given information: sector area, arc length, 
   ]}
   cameraPosition={[0, 0, 11]}
 />
+
+In the diagram, take the radius as 4 units. If the sector area is <InlineMath math="16\pi/5" /> square units, rearrange the area formula to find the angle:
+
+<BlockMath math="\alpha=\frac{360^\circ\times A}{\pi r^2}=\frac{360^\circ\times(16\pi/5)}{\pi\times4^2}=\frac{360^\circ}{5}=72^\circ" />
+
+The same sector has arc length <InlineMath math="8\pi/5" /> units. The arc-length formula gives the same angle:
+
+<BlockMath math="\alpha=\frac{180^\circ\times s}{\pi r}=\frac{180^\circ\times(8\pi/5)}{4\pi}=72^\circ" />
 
 **Formula application examples:**
 

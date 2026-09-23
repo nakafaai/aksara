@@ -5,8 +5,12 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Für jede Maschine wird der fehlerhafte vom gesamten Ausstoß abgezogen:
+Prüfe zuerst die **geforderte fehlerfreie Produktion**, bevor du Indizes vergleichst. Fehlerhafte Einheiten werden vom gesamten Ausstoß abgezogen, weil die Grenze von <InlineMath math="650" /> für fehlerfreie Einheiten gilt.
 
-<BlockMath math="\begin{aligned} 620-20&=600 \\ 540-18&=522 \\ 700-28&=672 \end{aligned}" />
+| Maschine | Fehlerfreie Produktion | Grenze erreicht? |
+| --- | --- | --- |
+| <InlineMath math="A" /> | <InlineMath math="620-20=600" /> | Nein, <InlineMath math="600<650" /> |
+| <InlineMath math="B" /> | <InlineMath math="540-18=522" /> | Nein, <InlineMath math="522<650" /> |
+| <InlineMath math="C" /> | <InlineMath math="700-28=672" /> | Ja, <InlineMath math="672\geq650" /> |
 
-Nur Maschine <InlineMath math="C" /> erreicht die Grenze von <InlineMath math="650" /> Einheiten. Sie wird daher ausgewählt, ohne ihren Index mit dem der ungeeigneten Maschinen vergleichen zu müssen.
+Nur Maschine <InlineMath math="C" /> erfüllt die Bedingung und wird daher ausgewählt. Die Indizes von <InlineMath math="A" /> und <InlineMath math="B" /> ändern nichts daran, dass beide die Produktionsgrenze verfehlen. Ein Indexvergleich ist erst nötig, wenn mehr als eine Maschine die Grenze erreicht.

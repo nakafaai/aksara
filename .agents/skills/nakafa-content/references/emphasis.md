@@ -20,14 +20,25 @@ uses the warning surface.
   the few phrases a learner would write down.
 - Do not nest one marker inside the other. Both markers render the same
   surface, so nesting adds nothing for the learner. The gate traverses the
-  authored tree and reports it (`highlight-nesting`). A marker that wraps a
-  whole sentence, a heading, or mathematics stays with the [final
-  review](review.md#final-language-review), because no rule reports that shape.
+  authored tree and reports it (`highlight-nesting`). The `sentence-punctuation-emphasis` rule catches a marked phrase of four
+  or more words ending in a sentence mark. It preserves assessed prompts,
+  quotations, code, and short abbreviations. Whole sentences without that
+  punctuation, headings, and mathematics still need the [final
+  review](review.md#final-language-review).
 - Let each locale choose its own phrase instead of translating a sibling's
-  marked words. A locale that marks nothing has left that step unmarked for its
-  readers, so every authored locale document carries at least one marked phrase
-  using either syntax (`lesson-without-highlight`). The opening section a learner reads first marks
-  at least one phrase with either marker (`lesson-opening-highlight`).
+  marked words. Every lesson locale carries at least one marked phrase using
+  either syntax (`lesson-without-highlight`), and its opening section marks at
+  least one phrase (`lesson-opening-highlight`). Worked answers mark decisive
+  conditions without copying a sibling's phrase. Article emphasis is optional
+  and follows the scientific argument rather than a document-wide quota.
+- In lessons and worked answers, mark an important phrase inside every heading body, not only the opening.
+  Choose the deciding term, condition, operation, or interpretation in that
+  section. A marked title, diagram label, or earlier section does not signal
+  the current explanation. A short bridge also names the important relationship it introduces. The
+  `section-body-highlight` rule checks each lesson and worked-answer heading body independently, down
+  to nested answer sections. Exact quotations, code, and pure notation remain
+  untouched. Choose the phrase in context instead of highlighting the first
+  sentence mechanically.
 - Use the same judgment for both syntaxes. Do not enforce a component-only
   quota or switch to `**` to evade a limit. A comparison table can mark several
   distinct criteria, while a short paragraph may need only one phrase. Check

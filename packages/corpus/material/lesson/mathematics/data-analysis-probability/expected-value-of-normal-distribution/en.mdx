@@ -3,7 +3,7 @@ export const metadata = {
   description: "Interpret the mean of a normal distribution as its expected value in statistics problems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-13",
+   dateModified: "2026-09-19",
    subject: "Data Analysis and Probability",
 };
 
@@ -55,6 +55,31 @@ Evaluate the two integrals separately:
 
 - **Second integral** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> is the Gaussian integral. After multiplication by the normalizing factor <InlineMath math="1/\sqrt{2\pi}" />, it gives total probability <InlineMath math="1" /> for the standard normal density.
 
+Both halves of the first integral **converge separately**. The antiderivative <InlineMath math="-e^{-t^2/2}" /> gives each contribution, so the zero is not obtained by subtracting two infinite values.
+
+<MathContainer>
+  <BlockMath math="\int_0^\infty te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_0^\infty=0-(-1)=1" />
+  <BlockMath math="\int_{-\infty}^0 te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_{-\infty}^0=-1-0=-1" />
+</MathContainer>
+
+<LineEquation
+  title="Opposite Contributions Cancel"
+  description={<>The graph of <InlineMath math="g(t) = t e^{-t^2/2}" /> from -3 to 3. The heights at t and -t have equal magnitude and opposite signs. The tails beyond the view are symmetric too.</>}
+  cameraPosition={[0, 0, 8]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 61 }, (_, index) => {
+        const t = (index - 30) / 10;
+        return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    },
+  ]}
+/>
+
 The calculation gives:
 
 <MathContainer>
@@ -62,7 +87,7 @@ The calculation gives:
 <BlockMath math="E(X) = 0 + \mu = \mu" />
 </MathContainer>
 
-**The expected value of a normal random variable equals its mean parameter**.
+The expected value of a normal random variable equals its **mean parameter**.
 
 > For every normal distribution <InlineMath math="X \sim N(\mu, \sigma^2)" />, we have <InlineMath math="E(X) = \mu" />. This means we don't need to perform integration every time we calculate the expected value of a normal distribution. We simply use the parameter value <InlineMath math="\mu" />.
 
@@ -78,7 +103,7 @@ If the heights of a group of students are normally distributed with mean <Inline
 
 ## Expected Values for Exam Scores and Birth Weights
 
-**Example** 1
+**Example 1**
 
 Suppose the math exam scores in a class are normally distributed with mean <InlineMath math="\mu = 75" /> and standard deviation <InlineMath math="\sigma = 10" />. What is the expected value of a student's exam score?
 
@@ -90,7 +115,7 @@ Since normal distribution has the property <InlineMath math="E(X) = \mu" />, the
 
 The expected value of a student's exam score is <InlineMath math="75" />.
 
-**Example** 2
+**Example 2**
 
 Suppose newborn weights at a hospital are modeled by a normal distribution with mean <InlineMath math="3{,}200 \text{ grams}" /> and standard deviation <InlineMath math="400 \text{ grams}" />. Determine the expected weight of one randomly selected newborn.
 
@@ -104,17 +129,16 @@ The expected weight is the mean parameter:
 
 ## Exercises
 
-Both problems give the mean and the standard deviation of a normal distribution and ask for the expected value. Read the mean directly from the description, because the expected value of a normal distribution equals its center.
+All three problems give the **mean and the standard deviation** of a normal distribution and ask for the expected value. Read the mean directly from the description, because the expected value of a normal distribution equals its center.
 
 1. Travel time from home to school is modeled by a normal distribution with mean <InlineMath math="25 \text{ minutes}" /> and standard deviation <InlineMath math="5 \text{ minutes}" />. Determine the expected travel time.
 
 2. Daily air temperature in Jakarta during June is modeled by a normal distribution with mean <InlineMath math="28^\circ\text{C}" /> and standard deviation <InlineMath math="3^\circ\text{C}" />. What is the expected temperature on a randomly selected day?
 
 3. Physics exam scores of grade <InlineMath math="12" /> students are modeled by a normal distribution with mean <InlineMath math="78" /> and standard deviation <InlineMath math="12" />. What is the expected score of a randomly selected student?
-
 ### Answer Key
 
-1. **Solution to Problem** 1:
+1. **Solution to Problem 1**:
 
    Given: <InlineMath math="\mu = 25 \text{ minutes}" />, <InlineMath math="\sigma = 5 \text{ minutes}" />
 
@@ -124,7 +148,7 @@ Both problems give the mean and the standard deviation of a normal distribution 
 
    **Answer:** The expected value of travel time is <InlineMath math="25 \text{ minutes}" />.
 
-2. **Solution to Problem** 2:
+2. **Solution to Problem 2**:
 
    Given: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
 
@@ -134,7 +158,7 @@ Both problems give the mean and the standard deviation of a normal distribution 
 
    **Answer:** The expected value of air temperature is <InlineMath math="28^\circ\text{C}" />.
 
-3. **Solution to Problem** 3:
+3. **Solution to Problem 3**:
 
    Given: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
 

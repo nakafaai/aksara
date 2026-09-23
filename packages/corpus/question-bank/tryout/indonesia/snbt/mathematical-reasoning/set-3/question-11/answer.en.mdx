@@ -5,34 +5,21 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Filling Slots Method**
+#### Choosing the two ends
 
-We have <InlineMath math="7" /> flags with a specific condition: **Armenia** and **Belgium** must be at the ends of the row. We can visualize the arrangement using slots (boxes).
+Armenia and Belgium must occupy the **two end positions**. Swapping these flags gives two possible choices.
 
-**Step 1**: Determine End Positions
+| Left end | Five middle positions | Right end |
+| --- | --- | --- |
+| Armenia | China, Denmark, Ecuador, Finland, Ghana in any order | Belgium |
+| Belgium | China, Denmark, Ecuador, Finland, Ghana in any order | Armenia |
 
-There are only <InlineMath math="2" /> possibilities for the ends: Armenia on the left and Belgium on the right, or vice versa. Thus, we write the number <InlineMath math="2" /> in the first box as the multiplier for the end variations.
+#### Filling the middle positions
 
-**Step 2**: Fill Middle Positions
+For each choice of ends, the other five flags occupy **five distinct positions**. There are 5 choices for the first middle position. After placing one flag, there are 4 choices for the next position, then 3, 2, and 1.
 
-There are <InlineMath math="5" /> remaining flags (China, Denmark, Ecuador, Finland, Ghana) to fill the <InlineMath math="5" /> middle positions. We fill the remaining slots in descending order (<InlineMath math="5, 4, 3, 2, 1" />) following the permutation principle.
+<BlockMath math="5!=5\times4\times3\times2\times1=120" />
 
-Here is the visualization of the filled slots:
+Each of the two end choices allows 120 middle arrangements. By the multiplication rule, the total number of arrangements is:
 
-<BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
-
-The number <InlineMath math="2" /> represents the ways to arrange the ends.
-
-The numbers <InlineMath math="5, 4, 3, 2, 1" /> represent the ways to arrange the <InlineMath math="5" /> middle flags (<InlineMath math="5!" />).
-
-**Final Calculation**
-
-Let <InlineMath math="N" /> be the number of arrangements. The six boxes show counting factors, rather than the seven physical flag positions. Multiplying the factors gives <InlineMath math="N" />.
-
-<MathContainer>
-  <BlockMath math="\begin{aligned}N &= 2\,(5 \times 4 \\ &\quad \times 3 \times 2 \times 1)\end{aligned}" />
-  <BlockMath math="N = 2 \times 5!" />
-  <BlockMath math="N = 2(5!) = 240" />
-</MathContainer>
-
-Thus, there are <InlineMath math="2(5!)" /> ways to arrange the flags.
+<BlockMath math="N=2\times5!=2\times120=240" />

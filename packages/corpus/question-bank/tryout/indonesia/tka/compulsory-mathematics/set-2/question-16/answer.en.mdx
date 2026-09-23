@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The region between the minor arc and chord is a circular segment. Its area is the sector area minus the triangle formed by the radii.
+The region between the minor arc and chord is a **circular segment**. Its area is the sector area minus the triangle formed by the radii.
 
 <BlockMath math="A_1=\frac{120}{360}\pi(12)^2=48\pi" />
 
@@ -22,3 +22,18 @@ Subtract the triangle area from the sector area.
 A&=A_1-A_2 \\
 &=(48\pi-36\sqrt3)\,\mathrm{cm}^2
 \end{aligned}" />
+
+<LineEquation
+  title="Sector minus triangle"
+  description="Orange hatching lies between the chord and the minor arc. The two purple radii form a central angle of 120°."
+  cameraPosition={[0, 6, 33]}
+  cameraTarget={[0, 6, 0]}
+  showZAxis={false}
+  data={[
+    { points: Array.from({ length: 101 }, (_, i) => { const t = Math.PI / 6 + 2 * Math.PI * i / 300; return { x: 12 * Math.cos(t), y: 12 * Math.sin(t), z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
+    { points: [{ x: -6 * Math.sqrt(3), y: 6, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 6 * Math.sqrt(3), y: 6, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "12 cm", at: 2, offset: [-4.5, -3.5, 0] }] },
+    { points: [{ x: -6 * Math.sqrt(3), y: 6, z: 0 }, { x: 6 * Math.sqrt(3), y: 6, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
+    ...Array.from({ length: 11 }, (_, i) => { const y = 6.5 + i * 0.5; const x = Math.sqrt(144 - y * y); return { points: [{ x: -x, y, z: 0 }, { x, y, z: 0 }], smooth: false, color: "#d97706", showPoints: false }; }),
+    { points: Array.from({ length: 41 }, (_, i) => { const t = Math.PI / 6 + 2 * Math.PI * i / 120; return { x: 2 * Math.cos(t), y: 2 * Math.sin(t), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "120°", at: 20, offset: [0, 1.1, 0] }] },
+  ]}
+/>

@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Asimtot",
   description: "Cara menemukan asimtot vertikal, horizontal, dan miring pada grafik fungsi rasional dengan contoh bertahap.",
@@ -11,11 +9,13 @@ export const metadata = {
 
 ## Garis yang Didekati Grafik Fungsi
 
-Asimtot adalah <Highlight>garis yang didekati grafik</Highlight> dalam suatu proses limit. Di dekat asimtot vertikal, nilai fungsi membesar tanpa batas. Di dekat asimtot horizontal atau miring, jarak antara grafik dan garis mendekati nol ketika besar nilai masukan terus bertambah.
+Asimtot adalah <Highlight>garis yang didekati grafik</Highlight> dalam suatu proses limit. Di dekat asimtot vertikal, besar nilai fungsi bertambah tanpa batas. Di dekat asimtot horizontal atau miring, jarak antara grafik dan garis mendekati nol ketika besar nilai masukan terus bertambah.
 
-Grafik dapat memotong asimtot horizontal atau miring pada nilai masukan yang berhingga. Asimtot hanya menjelaskan nilai yang didekati grafik saat nilai masukannya bergerak sangat jauh.
+Grafik dapat memotong asimtot horizontal atau miring pada nilai masukan yang berhingga. Asimtot horizontal dan miring menjelaskan perilaku grafik ketika besar masukannya terus bertambah.
 
 ## Berbagai Jenis Asimtot
+
+**Arah garis** membedakan tiga jenis asimtot.
 
 Ada tiga jenis asimtot. Jenisnya ditentukan oleh cara grafik mendekati garis itu, sehingga setiap jenis punya ciri pengenal sendiri. Ketiga jenis itu dinamai menurut arah garis yang didekati grafik.
 
@@ -23,48 +23,63 @@ Ada tiga jenis asimtot. Jenisnya ditentukan oleh cara grafik mendekati garis itu
 
 Asimtot vertikal adalah garis vertikal yang didekati grafik ketika nilai fungsi menuju positif atau negatif tak hingga.
 
-**Definisi:** Garis <InlineMath math="x = a" /> adalah asimtot vertikal jika setidaknya salah satu limit satu sisi berikut tak berhingga:
+**Definisi**: Garis <InlineMath math="x = a" /> adalah asimtot vertikal jika setidaknya salah satu limit satu sisi berikut tak berhingga:
 
 - Ketika <InlineMath math="x" /> mendekati <InlineMath math="a" /> dari kiri, <InlineMath math="f(x) \to \pm\infty" />
 - Ketika <InlineMath math="x" /> mendekati <InlineMath math="a" /> dari kanan, <InlineMath math="f(x) \to \pm\infty" />
 
-**Cara mencari:** Sederhanakan dahulu faktor polinom yang sama. Pada fungsi rasional yang sudah disederhanakan, asimtot vertikal muncul ketika <InlineMath math="Q(x) = 0" /> sedangkan <InlineMath math="P(x) \neq 0" />. Jika faktornya tercoret, grafik memiliki lubang pada nilai masukan tersebut.
+**Cara mencari**: Sederhanakan dahulu faktor polinom yang sama. Pada fungsi rasional yang sudah disederhanakan, asimtot vertikal muncul ketika <InlineMath math="Q(x) = 0" /> sedangkan <InlineMath math="P(x) \neq 0" />. Hanya jika **seluruh faktor penyebab nol pada penyebut** habis dicoret, nilai masukan itu menjadi lubang. Jika faktor yang sama masih tersisa pada penyebut, nilai tersebut tetap merupakan asimtot vertikal.
+
+| Bentuk awal | Bentuk sederhana | Perilaku pada satu |
+| --- | --- | --- |
+| <InlineMath math="\frac{x-1}{x-1}" /> | <InlineMath math="1,\quad x\neq1" /> | Lubang |
+| <InlineMath math="\frac{x-1}{(x-1)^2}" /> | <InlineMath math="\frac1{x-1},\quad x\neq1" /> | Asimtot vertikal |
 
 ### Asimtot Horizontal
 
 Asimtot horizontal adalah garis horizontal yang didekati grafik ketika <InlineMath math="x" /> menuju positif tak hingga, negatif tak hingga, atau keduanya.
 
-**Definisi:** Garis <InlineMath math="y = b" /> adalah asimtot horizontal pada setiap arah yang memenuhi limit berikut:
+**Definisi**: Garis <InlineMath math="y = b" /> adalah asimtot horizontal pada setiap arah yang memenuhi limit berikut:
 
 - <InlineMath math="\lim_{x \to \infty} f(x) = b" />
 - <InlineMath math="\lim_{x \to -\infty} f(x) = b" />
 
 ### Asimtot Miring
 
+Istilah **miring** mensyaratkan gradien bukan nol. Jika gradien nol, garis tersebut tergolong asimtot horizontal.
+
+<BlockMath math="m\neq0" />
+
 Asimtot miring adalah garis miring yang didekati grafik ketika <InlineMath math="x" /> menuju positif tak hingga, negatif tak hingga, atau keduanya.
 
-**Definisi:** Garis <InlineMath math="y = mx + c" /> adalah asimtot miring pada arah ketika selisih berikut menuju nol:
+**Definisi**: Garis <InlineMath math="y = mx + c" /> adalah asimtot miring pada arah ketika selisih berikut menuju nol:
 
 <MathContainer>
-  <BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
-  <BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
+
+<BlockMath math="\lim_{x \to \infty} [f(x) - (mx + c)] = 0" />
+
+<BlockMath math="\lim_{x \to -\infty} [f(x) - (mx + c)] = 0" />
 </MathContainer>
 
 ## Asimtot pada Fungsi Rasional
+
+**Derajat polinomial** menentukan perilaku fungsi rasional untuk masukan besar.
 
 Fokus pada fungsi rasional <InlineMath math="f(x) = \frac{P(x)}{Q(x)}" /> dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> sebagai polinomial. Akar penyebut menandai nilai masukan yang tidak boleh dipakai, sedangkan derajat kedua polinomial menentukan jenis asimtot yang muncul.
 
 ### Mencari Asimtot Vertikal
 
-**Langkah-langkah:**
+**Sederhanakan faktor persekutuan terlebih dahulu**, sambil mempertahankan domain awal. Kemudian gunakan pembilang dan penyebut dari bentuk yang sudah disederhanakan pada langkah berikut.
+
+**Langkah-langkah**:
 
 1. Cari nilai <InlineMath math="x" /> yang membuat <InlineMath math="Q(x) = 0" />
 2. Periksa apakah <InlineMath math="P(x) \neq 0" /> pada nilai tersebut
 3. Jika ya, maka ada asimtot vertikal di <InlineMath math="x = a" />
 
-**Contoh:** Tentukan asimtot vertikal dari <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />
+**Contoh**: Tentukan asimtot vertikal dari <InlineMath math="f(x) = \frac{x + 3}{x - 2}" />
 
-**Penyelesaian:**
+**Penyelesaian**:
 
 - Penyebut nol ketika: <InlineMath math="x - 2 = 0" />, jadi <InlineMath math="x = 2" />
 - Saat <InlineMath math="x = 2" />, pembilang adalah <InlineMath math="2 + 3 = 5 \neq 0" />
@@ -77,7 +92,7 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
 | <InlineMath math="1{,}9" />  | <InlineMath math="\frac{1{,}9 + 3}{1{,}9 - 2} = \frac{4{,}9}{-0{,}1} = -49" /> | Mendekati <InlineMath math="-\infty" /> |
 | <InlineMath math="1{,}99" /> | <InlineMath math="\frac{4{,}99}{-0{,}01} = -499" />                        | Semakin negatif                         |
 | <InlineMath math="2{,}01" /> | <InlineMath math="\frac{5{,}01}{0{,}01} = 501" />                          | Mendekati <InlineMath math="+\infty" /> |
-| <InlineMath math="2{,}1" />  | <InlineMath math="\frac{5{,}1}{0{,}1} = 51" />                             | Semakin positif                         |
+| <InlineMath math="2{,}1" />  | <InlineMath math="\frac{5{,}1}{0{,}1} = 51" />                             | Nilai di kanan asimtot                         |
 
 <LineEquation
   title={
@@ -96,7 +111,7 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         parameters.push(1.0986122886681096);
         return parameters
           .sort((a, b) => a - b)
@@ -110,7 +125,7 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
       labels: [
         {
           text: <InlineMath math="x \to 2^{-}" />,
-          at: 391,
+          at: 379,
           offset: [-0.5, -3, 0],
         },
       ],
@@ -118,7 +133,7 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         parameters.push(1.3862943611198906);
         return parameters
           .sort((a, b) => a - b)
@@ -132,16 +147,16 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
       labels: [
         {
           text: <InlineMath math="x \to 2^{+}" />,
-          at: 407,
+          at: 415,
           offset: [-0.4, 2.75, 0],
         },
       ],
     },
     {
       points: [
-        { x: 2, y: -50, z: 0 },
+        { x: 2, y: -12, z: 0 },
         { x: 2, y: 0, z: 0 },
-        { x: 2, y: 50, z: 0 },
+        { x: 2, y: 12, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -149,13 +164,14 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
       labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1.5, -1, 0] }],
     },
   ]}
+  showZAxis={false}
   cameraPosition={[2, 1, 15]}
   cameraTarget={[2, 1, 0]}
 />
 
 ### Mencari Asimtot Horizontal
 
-**Aturan untuk fungsi rasional:**
+**Aturan untuk fungsi rasional**:
 
 Misalkan derajat pembilang adalah <InlineMath math="m" /> dan derajat penyebut = <InlineMath math="n" />
 
@@ -163,17 +179,17 @@ Misalkan derajat pembilang adalah <InlineMath math="m" /> dan derajat penyebut =
 2. Jika <InlineMath math="m = n" />: Asimtot horizontal adalah <InlineMath math="y = \frac{a}{b}" /> (rasio koefisien utama)
 3. Jika <InlineMath math="m > n" />: Tidak ada asimtot horizontal (tapi mungkin ada asimtot miring)
 
-**Contoh:** Tentukan asimtot horizontal dari:
+**Contoh**: Tentukan asimtot horizontal dari:
 
 1. <InlineMath math="f(x) = \frac{2x + 1}{x^2 - 4}" />
 
-   **Penyelesaian:**
+   **Penyelesaian**:
 
    Derajat pembilang <InlineMath math="= 1" /> dan derajat penyebut <InlineMath math="= 2" />. Karena <InlineMath math="1 < 2" />, asimtot horizontalnya adalah <InlineMath math="y = 0" />.
 
 2. <InlineMath math="g(x) = \frac{3x^2 - 1}{2x^2 + 5}" />
 
-   **Penyelesaian:**
+   **Penyelesaian**:
 
    Derajat pembilang <InlineMath math="= 2" /> dan derajat penyebut <InlineMath math="= 2" />. Karena derajatnya sama, asimtot horizontalnya adalah <InlineMath math="y = \frac{3}{2}" />.
 
@@ -202,7 +218,7 @@ Lihat bagaimana fungsi mendekati asimtot horizontal:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -5 + (i / 500) * 10);
+        const parameters = Array.from({ length: 501 }, (_, i) => -3 + (i / 500) * 6);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -215,31 +231,38 @@ Lihat bagaimana fungsi mendekati asimtot horizontal:
     },
     {
       points: [
-      { x: -160, y: 1.5, z: 0 },
       { x: -10, y: 1.5, z: 0 },
       { x: 0, y: 1.5, z: 0 },
       { x: 10, y: 1.5, z: 0 },
-      { x: 160, y: 1.5, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 2, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 1, offset: [2, 0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ### Mencari Asimtot Miring
 
 Asimtot miring muncul ketika <InlineMath math="\text{derajat pembilang} = \text{derajat penyebut} + 1" />.
 
-**Cara mencari:** Lakukan pembagian polinomial.
+**Cara mencari**: Lakukan pembagian polinomial.
 
-**Contoh:** Tentukan asimtot miring dari <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />
+**Contoh**: Tentukan asimtot miring dari <InlineMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1}" />
 
-**Penyelesaian:**
+**Penyelesaian**:
 Dengan pembagian polinomial:
+
+Pembagian polinomial dilakukan dalam **dua pengurangan**. Setiap baris menghilangkan suku berderajat tertinggi pada sisa sebelumnya.
+
+| Suku hasil bagi | Perkalian dengan pembagi | Sisa |
+| --- | --- | --- |
+| <InlineMath math="x" /> | <InlineMath math="x(x-1)=x^2-x" /> | <InlineMath math="(x^2+2x-1)-(x^2-x)=3x-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="3(x-1)=3x-3" /> | <InlineMath math="(3x-1)-(3x-3)=2" /> |
 
 <BlockMath math="\begin{aligned} f(x) &amp;= \frac{x^2 + 2x - 1}{x - 1} \\ &amp;= x + 3 + \frac{2}{x - 1} \end{aligned}" />
 
@@ -264,7 +287,7 @@ Jadi, asimtot miring: <InlineMath math="y = x + 3" />
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -278,7 +301,7 @@ Jadi, asimtot miring: <InlineMath math="y = x + 3" />
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -291,32 +314,30 @@ Jadi, asimtot miring: <InlineMath math="y = x + 3" />
     },
     {
       points: [
-      { x: -160, y: -157, z: 0 },
       { x: -8, y: -5, z: 0 },
       { x: 0, y: 3, z: 0 },
       { x: 10, y: 13, z: 0 },
-      { x: 160, y: 163, z: 0 },
       ],
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+3" />, at: 2, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+3" />, at: 1, offset: [3, 1.5, 0] }],
     },
     {
       points: [
-      { x: 1, y: -80, z: 0 },
       { x: 1, y: -10, z: 0 },
       { x: 1, y: 0, z: 0 },
       { x: 1, y: 15, z: 0 },
-      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ## Menggambar Grafik dengan Asimtot
@@ -329,7 +350,7 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
 4. **Tentukan beberapa titik tambahan**
 5. **Gambar kurva** yang mendekati asimtot
 
-**Contoh Lengkap:** Gambar grafik <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
+**Contoh Lengkap**: Gambar grafik <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
 
 **Langkah 1**: Cari asimtot
 
@@ -374,7 +395,7 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -382,13 +403,13 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
             return { x, y: (x + 1) / (x - 2), z: 0 };
           });
       })(),
-      color: "#0284c7",
+      color: "#0d9488",
       showPoints: false,
     },
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -396,34 +417,30 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
             return { x, y: (x + 1) / (x - 2), z: 0 };
           });
       })(),
-      color: "#0284c7",
+      color: "#0d9488",
       showPoints: false,
     },
     {
       points: [
-      { x: 2, y: -80, z: 0 },
-      { x: 2, y: -20, z: 0 },
+      { x: 2, y: -12, z: 0 },
       { x: 2, y: 0, z: 0 },
-      { x: 2, y: 20, z: 0 },
-      { x: 2, y: 80, z: 0 },
+      { x: 2, y: 12, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-      { x: -160, y: 1, z: 0 },
       { x: -5, y: 1, z: 0 },
       { x: 0, y: 1, z: 0 },
       { x: 9, y: 1, z: 0 },
-      { x: 160, y: 1, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1" />, at: 2, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [1, 0.5, 0] }],
     },
     {
       points: [{ x: -1, y: 0, z: 0 }],
@@ -438,12 +455,14 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
       labels: [{ text: <InlineMath math="(0,-0{,}5)" />, at: 0, offset: [-1.5, -1, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />
 
 ## Latihan
 
-Setiap soal meminta asimtot dari suatu fungsi, jadi temukan dulu suku yang mengendalikan kurvanya, entah penyebut yang menuju nol atau suku eksponensial yang mendominasi.
+Periksa **faktor penyebut dan selisih derajat** pada setiap fungsi. Semua fungsi dalam latihan ini berbentuk rasional.
 
 1. Tentukan semua asimtot dari <InlineMath math="f(x) = \frac{2x^2 - 3x + 1}{x - 3}" />
 
@@ -453,11 +472,9 @@ Setiap soal meminta asimtot dari suatu fungsi, jadi temukan dulu suku yang menge
 
 4. Gambar sketsa grafik <InlineMath math="h(x) = \frac{x}{x^2 - 1}" /> lengkap dengan asimtotnya.
 
-### Pembahasan
+### Asimtot vertikal dan miring
 
-**Soal** 1:
-
-Penyebut bernilai nol pada <InlineMath math="x = 3" />, sedangkan nilai pembilangnya adalah <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Karena pembilang tidak ikut bernilai nol, <InlineMath math="x = 3" /> merupakan asimtot vertikal.
+Penyebut bernilai nol pada <InlineMath math="x = 3" />, sedangkan nilai pembilangnya adalah <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Karena **pembilang** tidak ikut bernilai nol, <InlineMath math="x = 3" /> merupakan asimtot vertikal.
 
 Pembagian polinom memisahkan perilaku linear jangka panjang dari suku sisanya:
 
@@ -465,26 +482,28 @@ Pembagian polinom memisahkan perilaku linear jangka panjang dari suku sisanya:
 
 Ketika <InlineMath math="x \to \pm\infty" />, suku sisa <InlineMath math="\frac{10}{x - 3} \to 0" />. Jadi, asimtot miringnya adalah <InlineMath math="y = 2x + 3" />.
 
-**Soal** 2:
+### Dua asimtot vertikal
 
-Faktorkan pembilang dan penyebut sebelum mengelompokkan akar-akarnya:
+**Faktorkan pembilang** dan penyebut sebelum mengelompokkan akar-akarnya:
 
 <MathContainer>
-  <BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
-  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+
+<BlockMath math="x^2 - 4 = (x - 2)(x + 2)" />
+
+<BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
 </MathContainer>
 
 Tidak ada faktor yang sama untuk dicoret. Karena itu, akar penyebut <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" /> merupakan asimtot vertikal. Akar pembilang <InlineMath math="x = -2" /> dan <InlineMath math="x = 2" /> merupakan titik potong sumbu <InlineMath math="x" />. Derajat pembilang dan penyebut sama, serta koefisien terdepannya sama-sama <InlineMath math="1" />, sehingga asimtot horizontalnya adalah <InlineMath math="y = 1" />.
 
-**Soal** 3:
+### Batas biaya rata-rata
 
 <BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
 
-Ketika <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Karena itu, <InlineMath math="C(x) \to 3" />. Biaya mendekati <InlineMath math="3" /> per unit, tetapi tidak sama dengan nilai tersebut untuk nilai positif <InlineMath math="x" /> yang berhingga.
+Ketika <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Karena itu, <InlineMath math="C(x) \to 3" />. Biaya mendekati <InlineMath math="3" /> per unit, tetapi tidak sama dengan nilai tersebut untuk nilai positif <InlineMath math="x" /> yang **berhingga**.
 
-**Soal** 4:
+### Tiga cabang grafik
 
-Faktorkan penyebut menjadi <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Tidak ada faktor yang dapat dicoret dengan pembilang, sehingga asimtot vertikalnya adalah <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />. Karena derajat pembilang lebih kecil daripada derajat penyebut, <InlineMath math="h(x) \to 0" /> ketika <InlineMath math="x \to \pm\infty" />. Jadi, asimtot horizontalnya adalah <InlineMath math="y = 0" />.
+Faktorkan penyebut menjadi <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Tidak ada faktor yang dapat dicoret dengan **pembilang**, sehingga asimtot vertikalnya adalah <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />. Karena derajat pembilang lebih kecil daripada derajat penyebut, <InlineMath math="h(x) \to 0" /> ketika <InlineMath math="x \to \pm\infty" />. Jadi, asimtot horizontalnya adalah <InlineMath math="y = 0" />.
 
 Kedua asimtot vertikal membagi domain menjadi tiga interval. Tanda <InlineMath math="h(x)" /> negatif pada <InlineMath math="x < -1" />, positif pada <InlineMath math="-1 < x < 0" />, negatif pada <InlineMath math="0 < x < 1" />, dan positif pada <InlineMath math="x > 1" />. Informasi tanda ini, bersama titik potong <InlineMath math="(0,0)" />, menentukan letak ketiga cabang grafik.
 
@@ -516,7 +535,7 @@ Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        const parameters = Array.from({ length: 551 }, (_, i) => -2 + (i / 550) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -530,7 +549,7 @@ Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -4 + (i / 500) * 8);
+        const parameters = Array.from({ length: 501 }, (_, i) => -1.6 + (i / 500) * 3.2);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -544,7 +563,7 @@ Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     {
       smooth: false,
       points: (() => {
-        const parameters = Array.from({ length: 501 }, (_, i) => -6 + (i / 500) * 10);
+        const parameters = Array.from({ length: 501 }, (_, i) => -2 + (i / 500) * 4.5);
         return parameters
           .sort((a, b) => a - b)
           .map((t) => {
@@ -557,43 +576,39 @@ Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     },
     {
       points: [
-      { x: -1, y: -80, z: 0 },
       { x: -1, y: -10, z: 0 },
       { x: -1, y: 0, z: 0 },
       { x: -1, y: 10, z: 0 },
-      { x: -1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=-1" />, at: 2, offset: [-2, 1, 0] }],
+      labels: [{ text: <InlineMath math="x=-1" />, at: 1, offset: [-2, 1, 0] }],
     },
     {
       points: [
-      { x: 1, y: -80, z: 0 },
       { x: 1, y: -10, z: 0 },
       { x: 1, y: 0, z: 0 },
       { x: 1, y: 10, z: 0 },
-      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-      { x: -160, y: 0, z: 0 },
       { x: -3, y: 0, z: 0 },
       { x: 0, y: 0, z: 0 },
       { x: 3, y: 0, z: 0 },
-      { x: 160, y: 0, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=0" />, at: 2, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0" />, at: 1, offset: [1, 0.5, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 16]}
 />

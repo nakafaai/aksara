@@ -9,7 +9,7 @@ export const metadata = {
   subject: "Vector and Operations",
 };
 
-## Adding Displacements Tip to Tail
+## How Direction Affects a Displacement Sum
 
 Vector addition differs from scalar addition. In scalar addition, we only add magnitudes without considering direction. For example, <InlineMath math="2 \text{ kg}" /> of sugar plus <InlineMath math="3 \text{ kg}" /> of sugar equals <InlineMath math="5 \text{ kg}" /> of sugar. However, in vector addition, we must consider both magnitude and direction.
 
@@ -22,35 +22,51 @@ For instance, if someone walks <InlineMath math="2 \text{ m}" /> east and then <
 3. Draw the resultant from the tail of the first vector to the tip of the second
 
 <ContentBlock>
-  <Vector3d
-    cameraPosition={[0, 0, 12]}
+  <LineEquation
+    cameraPosition={[3.2, 2.3, 10]}
+    cameraTarget={[3.2, 2.3, 0]}
     title="Vector Addition Using the Triangle Method"
     description={<>Triangle method for adding vector <InlineMath math="\vec{a}" /> and vector <InlineMath math="\vec{b}" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0.4, -0.45, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.6, -0.25, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [4, 1, 0],
-        to: [6, 4, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [0.6, -0.2, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 4, y: 1, z: 0 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.6, -0.2, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [6, 4, 0],
-        color: "#65a30d",
-        label: <InlineMath math="a+b" />,
-        labelOffset: [-0.2, 0.65, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        at: 1,
+        offset: [0, 0.85, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -59,7 +75,7 @@ Mathematically, if <InlineMath math="\overrightarrow{AB}" /> and <InlineMath mat
 
 <BlockMath math="\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC} = \vec{a} + \vec{b}" />
 
-Vector addition satisfies the commutative property:
+Vector addition satisfies the **commutative property**:
 
 <BlockMath math="\vec{a} + \vec{b} = \vec{b} + \vec{a}" />
 
@@ -72,52 +88,77 @@ Another method for adding vectors is the parallelogram method. The steps are:
 3. The resultant vector is the diagonal of the parallelogram passing through the common origin of both vectors
 
 <ContentBlock>
-  <Vector3d
-    cameraPosition={[0, 0, 12]}
+  <LineEquation
+    cameraPosition={[3.5, 3.3, 11.5]}
+    cameraTarget={[3.5, 3.3, 0]}
     title="Vector Addition Using the Parallelogram Method"
     description={<>Parallelogram method for adding vector <InlineMath math="\vec{a}" /> and vector <InlineMath math="\vec{b}" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [5, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0.4, -0.4, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.6, -0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [2, 5, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [-1.4, 0.1, 0],
-        labelAnchorX: "right",
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((5) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 2, y: 5, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [-1.4, 0.1, 0],
+        anchorX: "right",
+      }],
+    },
       {
-        from: [5, 1, 0],
-        to: [7, 6, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [0.6, -0.2, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 5, y: 1, z: 0 }, { x: (5) + 0.5 * ((7) - (5)), y: (1) + 0.5 * ((6) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 6, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.6, -0.2, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 5, 0],
-        to: [7, 6, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0, 0.7, 0],
-        labelPosition: "start",
-      },
+      points: [{ x: 2, y: 5, z: 0 }, { x: 7, y: 6, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 0,
+        offset: [0, 0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [7, 6, 0],
-        color: "#65a30d",
-        label: <InlineMath math="a+b" />,
-        labelOffset: [0.5, 0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 6, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        at: 1,
+        offset: [0.7, 0.8, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -128,8 +169,9 @@ This method also satisfies the **commutative property**, so the order of additio
 
 To add more than two vectors, we can use the polygon method. The principle is that the tip of the previous vector <Highlight>meets the tail of the next vector</Highlight>. The resultant vector connects the tail of the first vector to the tip of the last vector.
 
-<Vector3d
-  cameraPosition={[10, 8, -10]}
+<LineEquation
+  cameraPosition={[10, 6, -8]}
+  cameraTarget={[3.5, 1.8, 1]}
   title="Adding Three Vectors Using the Polygon Method"
   description={
     <>
@@ -137,38 +179,58 @@ To add more than two vectors, we can use the polygon method. The principle is th
       method.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 1, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="a" />,
-      labelOffset: [0, 0.8, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 1, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 4, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: (3) + 0.5 * ((5) - (3)), y: (1) + 0.5 * ((4) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 4, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="b" />,
-      labelOffset: [0, 0.8, 0],
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0, 0.8, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [5, 4, 0],
-      to: [7, 3, 2],
+      points: [{ x: 5, y: 4, z: 0 }, { x: (5) + 0.5 * ((7) - (5)), y: (4) + 0.5 * ((3) - (4)), z: (0) + 0.5 * ((2) - (0)) }, { x: 7, y: 3, z: 2 }],
       color: "#65a30d",
-      label: <InlineMath math="c" />,
-      labelOffset: [0, -0.5, 0],
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        at: 1,
+        offset: [0, -0.5, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [7, 3, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="a+b+c" />,
-      labelOffset: [0, -1.4, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b+c" />,
+        at: 1,
+        offset: [0.2, -1.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -185,79 +247,112 @@ To add three vectors using the parallelogram method, we can:
 In the following two diagrams, <InlineMath math="A=(3,1,0)" />, <InlineMath math="B=(1,3,0)" />, and <InlineMath math="C=(0,1,3)" />. The intermediate sums are <InlineMath math="B+C=(1,4,3)" /> and <InlineMath math="A+B=(4,4,0)" />. Both groupings give <InlineMath math="A+B+C=(4,5,3)" />.
 
 <ContentBlock>
-  <Vector3d
-    cameraPosition={[10, 8, -10]}
+  <LineEquation
+    cameraPosition={[9, 7, -8]}
+    cameraTarget={[2, 2.5, 1.5]}
     title={<>Add <InlineMath math="B" /> and <InlineMath math="C" /> First</>}
-    description={<>The vector <InlineMath math="B+C" /> starts at the tip of <InlineMath math="A" /> and reaches the final endpoint.</>}
-    vectors={[
+    description={<>The vector <InlineMath math="B+C" /> starts at the tip of A and reaches the final endpoint.</>}
+    data={[
       {
-        from: [0, 0, 0],
-        to: [3, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="A" />,
-        labelOffset: [0.85, -0.3, 0.85],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        at: 1,
+        offset: [1.05, -0.1, 1.05],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [3, 1, 0],
-        to: [4, 5, 3],
-        color: "#ea580c",
-        label: <InlineMath math="B+C" />,
-        labelOffset: [0, -0.7, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 3, y: 1, z: 0 }, { x: (3) + 0.5 * ((4) - (3)), y: (1) + 0.5 * ((5) - (1)), z: (0) + 0.5 * ((3) - (0)) }, { x: 4, y: 5, z: 3 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B+C" />,
+        at: 1,
+        offset: [0, -0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 5, 3],
-        color: "#db2777",
-        label: <InlineMath math="A+B+C" />,
-        labelOffset: [0, 0.9, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B+C" />,
+        at: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
 
 <ContentBlock>
-  <Vector3d
-    cameraPosition={[10, 8, -10]}
-    title={<>Add <InlineMath math="A" /> and <InlineMath math="B" /> First</>}
+  <LineEquation
+    cameraPosition={[9, 7, -8]}
+    cameraTarget={[2, 2.5, 1.5]}
+    title={<>Add A and <InlineMath math="B" /> First</>}
     description={<>The vector <InlineMath math="C" /> starts at the tip of <InlineMath math="A+B" /> and reaches the same endpoint.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 4, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="A+B" />,
-        labelOffset: [0, -0.8, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((4) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B" />,
+        at: 1,
+        offset: [0, -0.8, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [4, 4, 0],
-        to: [4, 5, 3],
-        color: "#65a30d",
-        label: <InlineMath math="C" />,
-        labelOffset: [0, 0.7, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 4, y: 4, z: 0 }, { x: (4) + 0.5 * ((4) - (4)), y: (4) + 0.5 * ((5) - (4)), z: (0) + 0.5 * ((3) - (0)) }, { x: 4, y: 5, z: 3 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        at: 1,
+        offset: [0, 0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 5, 3],
-        color: "#db2777",
-        label: <InlineMath math="A+B+C" />,
-        labelOffset: [0, 0.9, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B+C" />,
+        at: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
 
 ## Vector Addition by Components
 
-Besides graphical methods, vectors can also be added by their components. In a coordinate system, each vector can be expressed in terms of its components.
+Add **components along the same axis**. Combine horizontal with horizontal and vertical with vertical.
 
-<Vector3d
-  cameraPosition={[10, 8, -10]}
+<LineEquation
+  cameraPosition={[10, 8, -8]}
+  cameraTarget={[2.5, 2.8, 1.5]}
   title="Vector Addition by Components"
   description={
     <>
@@ -265,56 +360,84 @@ Besides graphical methods, vectors can also be added by their components. In a c
       and <InlineMath math="z" /> axes.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#e11d48",
-      label: <InlineMath math="a" />,
-      labelOffset: [0, 0.7, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        at: 1,
+        offset: [0.2, 0.9, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [3, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="a_x" />,
-      labelOffset: [0, -1, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_x" />,
+        at: 1,
+        offset: [0.2, -0.8, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
       color: "#65a30d",
-      label: <InlineMath math="a_y" />,
-      labelOffset: [0.4, 0.5, 0.4],
-      labelAnchorX: "right",
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_y" />,
+        at: 1,
+        offset: [0.6, 0.7, 0.6],
+        anchorX: "right",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
       color: "#ea580c",
-      label: <InlineMath math="a_z" />,
-      labelOffset: [0.3, -0.6, 0.3],
-      labelAnchorX: "right",
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_z" />,
+        at: 1,
+        offset: [0.5, -0.4, 0.5],
+        anchorX: "right",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [2, 4, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 4, z: 2 }],
       color: "#db2777",
-      label: <InlineMath math="b" />,
-      labelOffset: [0, 0.7, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        at: 1,
+        offset: [0.2, 0.9, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [5, 6, 3],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 6, z: 3 }],
       color: "#c026d3",
-      label: <InlineMath math="a+b" />,
-      labelOffset: [0, 0.9, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        at: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -337,45 +460,69 @@ Vector addition can determine the velocity of a boat crossing a river:
 2. If the river current velocity is nonzero, the boat's velocity relative to the shore is the vector sum of its water-relative velocity and the current velocity. Whether its direction, magnitude, or both change depends on the current's direction
 
 <ContentBlock>
-  <Vector3d
-    cameraPosition={[0, 0, 12]}
+  <LineEquation
+    cameraPosition={[1.4, 2, 8]}
+    cameraTarget={[1.4, 2, 0]}
     title="Application of Vector Addition: Boat Crossing a River"
     description={<>Resultant <InlineMath math="v_R" /> of boat velocity <InlineMath math="v_B" /> and river current <InlineMath math="v_F" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0, 4, 0],
-        color: "#0d9488",
-        label: <InlineMath math="v_B" />,
-        labelOffset: [-0.8, 0.2, 0],
-        labelAnchorX: "right",
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((4) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_B" />,
+        at: 1,
+        offset: [-0.8, 0.2, 0],
+        anchorX: "right",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3, 0, 0],
-        color: "#65a30d",
-        label: <InlineMath math="v_F" />,
-        labelOffset: [0.5, -0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_F" />,
+        at: 1,
+        offset: [0.7, -0.4, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3, 4, 0],
-        color: "#e11d48",
-        label: <InlineMath math="v_R" />,
-        labelOffset: [0.5, 0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_R" />,
+        at: 1,
+        offset: [0.7, 0.8, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
+
+In this diagram, take the horizontal axis along the current and the vertical axis across the river. Suppose the boat velocity relative to the water is <InlineMath math="(0,4)\,\text{m/s}" /> and the current velocity is <InlineMath math="(3,0)\,\text{m/s}" />. Add the components to find the **velocity relative to the shore**:
+
+<MathContainer>
+  <BlockMath math="\vec v_R=(0+3,4+0)\,\text{m/s}=(3,4)\,\text{m/s}" />
+  <BlockMath math="|\vec v_R|=\sqrt{3^2+4^2}\,\text{m/s}=\sqrt{25}\,\text{m/s}=5\,\text{m/s}" />
+</MathContainer>
+
+The boat moves across the river while drifting with the current. Its speed relative to the shore is <InlineMath math="5\,\text{m/s}" />, rather than <InlineMath math="4+3=7\,\text{m/s}" />, because the two velocities are perpendicular.
 
 A sequence of displacement vectors can likewise be added. Its resultant gives the net displacement. Route length and the shortest route must be determined from the path of the journey.
 
 ## Difference Between Scalar and Vector Addition
 
-Both scalar addition and vector addition produce a unique result for fixed inputs. The difference is that scalar inputs carry only magnitude, while vector inputs also carry direction. Changing a vector's direction therefore changes the input and can change the resultant.
+Both scalar addition and vector addition produce a unique result for fixed inputs. The difference is that a scalar is described by one value, while a nonzero vector also carries direction. Changing a vector's direction therefore changes the input and can change the resultant.
 
 **Example of scalar addition**:
 

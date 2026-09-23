@@ -16,7 +16,7 @@ export const references: ArticleReference[] = [
     title:
       "Upaya Konstitusional Dalam Memutus Mata Rantai Dinasti Politik Pada Pemilukada Serentak Tahun 2024",
     url: "https://doi.org/10.35316/hukmy.2022.v2i2.199-210",
-    year: 2024,
+    year: 2022,
   },
   {
     authors: "Dwyer, S. O.",
@@ -54,7 +54,30 @@ export const references: ArticleReference[] = [
     year: 2023,
   },
   {
-    authors: "Mcleod, R. H.",
+    authors: "Mahkamah Agung",
+    title: "Putusan Nomor 23 P/HUM/2024",
+    url: "https://putusan3.mahkamahagung.go.id/direktori/putusan/zaef21887b3c4de28717313630353533.html",
+    year: 2024,
+  },
+  {
+    authors: "Mahkamah Konstitusi",
+    citation: "2015a",
+    details: "Putusan Nomor 33/PUU-XIII/2015",
+    title: "Pengujian Undang-Undang Nomor 8 Tahun 2015",
+    url: "https://mkri.id/public/content/persidangan/putusan/33_PUU-XIII_2015.pdf",
+    year: 2015,
+  },
+  {
+    authors: "Mahkamah Konstitusi",
+    citation: "2024a",
+    details: "Putusan Nomor 70/PUU-XXII/2024, 20 August 2024",
+    title:
+      "MK: Persyaratan Harus Dipenuhi Sebelum Penetapan Calon Kepala Daerah",
+    url: "https://www.mkri.id/berita/mk%3A-persyaratan-harus-dipenuhi-sebelum-penetapan-calon-kepala-daerah-21467",
+    year: 2024,
+  },
+  {
+    authors: "McLeod, R. H.",
     details: "7(2), 99–112",
     publication: "Agenda: A Journal of Policy Analysis and Reform",
     title: "Soeharto's Indonesia: A Better Class of Corruption",
@@ -97,6 +120,20 @@ export const references: ArticleReference[] = [
     title: "Daftar Politik Dinasti-Keluarga di Pileg 2024 dan Dapilnya",
     url: "https://tirto.id/daftar-politik-dinasti-keluarga-di-pileg-2024-dan-dapilnya-gVYg",
     year: 2024,
+  },
+  {
+    authors: "Republik Indonesia",
+    details: "Articles 27 and 28",
+    title: "Undang-Undang Dasar Negara Republik Indonesia Tahun 1945",
+    year: 1945,
+  },
+  {
+    authors: "Robison, R.",
+    details: "9(3), 309–327",
+    publication: "The Pacific Review",
+    title: "The politics of Asian values",
+    url: "https://doi.org/10.1080/09512749608719189",
+    year: 1996,
   },
   {
     authors: "Susanti, M. H.",

@@ -1,4 +1,5 @@
 import type {
+  LessonVoiceGenre,
   LessonVoiceIssue,
   LessonVoiceLocale,
   LessonVoiceRule,
@@ -276,7 +277,8 @@ export function findStructuralIssues(
   lineNumber: number,
   state: LineState,
   isProtectedRegion: boolean,
-  inspectMetadataTitle: boolean
+  inspectMetadataTitle: boolean,
+  genre: LessonVoiceGenre
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
   const controlCharacterIssue = locateIssue(
@@ -293,7 +295,7 @@ export function findStructuralIssues(
   if (metadataTitleIssue) {
     issues.push(metadataTitleIssue);
   }
-  if (isProtectedRegion) {
+  if (isProtectedRegion || genre === "article") {
     return issues;
   }
   const headingIssue = locateIssue(

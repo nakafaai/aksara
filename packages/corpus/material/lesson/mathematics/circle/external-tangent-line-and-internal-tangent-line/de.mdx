@@ -17,7 +17,7 @@ Eine gemeinsame Tangente ist eine Gerade, <Highlight>die zwei Kreise berührt</H
 
 ## Äußere gemeinsame Tangente
 
-Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwischen ihren Mittelpunkten zu schneiden.
+Eine äußere gemeinsame Tangente berührt beide Kreise, **ohne die Verbindungsstrecke ihrer Mittelpunkte zu schneiden**.
 
 <LineEquation
   title="Äußere gemeinsame Tangente"
@@ -107,8 +107,8 @@ Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwisch
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -166,8 +166,8 @@ Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwisch
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -181,6 +181,7 @@ Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwisch
       labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
     },
 
+    { points: [{ x: -4, y: 0, z: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8, z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
 ]}
 cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
@@ -188,19 +189,11 @@ cameraPosition={[0.5, 0, 16.5]}
 
 ### Längenformel für die äußere gemeinsame Tangente
 
-Für zwei Kreise mit:
+Zeichne im ersten Bild die Hilfsstrecke <InlineMath math="AH" /> parallel zur Tangente. Für <InlineMath math="r_2\ge r_1" /> entspricht die senkrechte Seite <InlineMath math="BH" /> der **Differenz der Radien**. Außerdem gilt <InlineMath math="AB=d" /> und <InlineMath math="AH=l" />. Der Winkel bei <InlineMath math="H" /> ist rechtwinklig, deshalb gilt:
 
-- Erster Kreismittelpunkt: <InlineMath math="O_1" />
-- Zweiter Kreismittelpunkt: <InlineMath math="O_2" />
-- Erster Kreisradius: <InlineMath math="r_1" />
-- Zweiter Kreisradius: <InlineMath math="r_2" />
-- Abstand zwischen den Mittelpunkten: <InlineMath math="d" />
+<BlockMath math="l^2+(r_2-r_1)^2=d^2\quad\Longrightarrow\quad l=\sqrt{d^2-(r_2-r_1)^2}" />
 
-Länge der äußeren gemeinsamen Tangente:
-
-<BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
-
-Diese Strecke hat eine positive Länge, wenn <InlineMath math="d > |r_2-r_1|" /> gilt. Bei Gleichheit berühren sich die Kreise von innen und besitzen nur die Tangente durch den Berührpunkt.
+Für <InlineMath math="r_1>r_2" /> vertauschst du die Kreisnamen. Eine positive Streckenlänge erfordert <InlineMath math="d>|r_2-r_1|" />. Bei <InlineMath math="d=|r_2-r_1|>0" /> berühren sich die Kreise von innen. Bei <InlineMath math="d=0" /> und gleichen Radien sind die Kreise deckungsgleich.
 
 ### Länge der äußeren gemeinsamen Tangente berechnen
 
@@ -352,7 +345,7 @@ cameraPosition={[0.5, 0, 13]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-(-3))^2 + (0-0)^2} \\ &amp;= \sqrt{36} \\ &amp;= 6 \end{aligned}" />
@@ -366,7 +359,7 @@ Daher beträgt die Länge der äußeren gemeinsamen Tangente <InlineMath math="\
 
 ## Innere gemeinsame Tangente
 
-Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüberliegenden Seiten berührt und die Verbindungslinie der beiden Kreismittelpunkte schneidet.
+Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüberliegenden Seiten berührt und die **Verbindungsstrecke der beiden Mittelpunkte** schneidet.
 
 <LineEquation
   title="Innere gemeinsame Tangente"
@@ -439,8 +432,8 @@ Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüber
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -481,8 +474,8 @@ Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüber
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -496,15 +489,20 @@ Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüber
       labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
     },
 
+    { points: [{ x: -4, y: 0, z: 0 }, { x: 2, y: -2 * Math.sqrt(3), z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
 ]}
 cameraPosition={[0, 0, 15]}
 />
 
 ### Längenformel für die innere gemeinsame Tangente
 
+Verlängere bei der inneren Tangente den Radius von <InlineMath math="B" /> bis zum Hilfspunkt <InlineMath math="H" />. Die senkrechte Seite im gezeichneten Dreieck <InlineMath math="AHB" /> entspricht der **Summe der Radien**. Mit <InlineMath math="AH=l" /> und <InlineMath math="AB=d" /> folgt:
+
+<BlockMath math="l^2+(r_1+r_2)^2=d^2" />
+
 <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
 
-**Bedingung:** Ein inneres gemeinsames Tangentenstück hat positive Länge, wenn <InlineMath math="d > r_1 + r_2" /> gilt. Bei Gleichheit berühren sich die Kreise von außen: Die beiden Berührpunkte fallen zusammen, das Tangentenstück hat die Länge null und es bleibt nur eine innere gemeinsame Tangente.
+**Bedingung**: Ein inneres gemeinsames Tangentenstück hat positive Länge, wenn <InlineMath math="d > r_1 + r_2" /> gilt. Bei Gleichheit berühren sich die Kreise von außen: Die beiden Berührpunkte fallen zusammen, das Tangentenstück hat die Länge null und es bleibt nur eine innere gemeinsame Tangente.
 
 ### Länge der inneren gemeinsamen Tangente berechnen
 
@@ -623,7 +621,7 @@ Die beiden Kreise haben die Mittelpunkte <InlineMath math="P(-5, 0)" /> und <Inl
 cameraPosition={[0, 0, 18]}
 />
 
-**Lösung:**
+**Lösung**:
 
 Zuerst prüfen wir, ob eine innere gemeinsame Tangente existiert:
 
@@ -647,7 +645,7 @@ Die innere gemeinsame Tangente ist daher <InlineMath math="5\sqrt{3} \text{ Einh
 
 ## Kreise mit gleichen Radien
 
-Wenn zwei Kreise gleiche Radien (<InlineMath math="r_1 = r_2 = r" />) haben, werden die gemeinsamen Tangenten einfacher. Die äußere gemeinsame Tangente verläuft parallel zur Verbindungslinie der Mittelpunkte, die innere gemeinsame Tangente steht senkrecht auf dieser Verbindungslinie und trifft sie in ihrem Mittelpunkt.
+Für zwei verschiedene Kreise mit <InlineMath math="r_1=r_2=r" /> verlaufen die äußeren Tangenten **parallel zur Mittelpunktsgeraden**. Für <InlineMath math="d>2r" /> schneiden sich die beiden inneren Tangenten im **Mittelpunkt der Verbindungsstrecke**, stehen aber im Allgemeinen schräg zur Mittelpunktsgeraden. Erst bei <InlineMath math="d=2r" /> steht die einzige verbleibende innere Tangente senkrecht darauf.
 
 ### Parallele Tangenten bei gleichen Radien
 
@@ -803,8 +801,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -860,8 +858,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -901,8 +899,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -942,8 +940,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -961,7 +959,7 @@ cameraPosition={[0.5, 0, 19]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
   <BlockMath math="d = \sqrt{(6-(-6))^2 + (0-0)^2} = 12" />
@@ -1010,8 +1008,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
           { x: 5, y: 1.5, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1030,8 +1028,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
           { x: 5, y: -1.5, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 1,
-          y: (points[1].y - points[0].y) * 1,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1071,8 +1069,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1112,8 +1110,8 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
         const extension = {
-          x: (points[1].x - points[0].x) * 2,
-          y: (points[1].y - points[0].y) * 2,
+          x: (points[1].x - points[0].x) * 0.1,
+          y: (points[1].y - points[0].y) * 0.1,
         };
         return [
           { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
@@ -1130,7 +1128,7 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
 cameraPosition={[0, 0, 10]}
 />
 
-**Lösung:**
+**Lösung**:
 
 <MathContainer>
   <BlockMath math="d = \sqrt{(2-(-2))^2 + (0-0)^2} = 4" />
@@ -1141,12 +1139,9 @@ cameraPosition={[0, 0, 10]}
 
 ## Übungsaufgaben
 
-Die Aufgaben geben zwei Kreise und verlangen die Längen ihrer gemeinsamen Tangenten. Trenne vor dem Rechnen den äußeren und den inneren Fall.
+Die ersten beiden Aufgaben fragen nach Streckenlängen, die dritte nach dem Mittelpunktabstand, die vierte nach einem Radius und die letzte nach der Tangentenanzahl. Wähle je nach Tangentenart die **Differenz oder Summe der Radien**, bevor du eine Gleichung aufstellst.
 
-1. Zwei Kreise haben die Mittelpunkte <InlineMath math="A(-4, 0)" /> und <InlineMath math="B(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme:
-
-   - Länge der äußeren gemeinsamen Tangente
-   - Länge der inneren gemeinsamen Tangente
+1. Zwei Kreise haben die Mittelpunkte <InlineMath math="A(-4, 0)" /> und <InlineMath math="B(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme die Längen des äußeren und des inneren gemeinsamen Tangentenabschnitts.
 
 2. Der erste Kreis hat den Mittelpunkt <InlineMath math="(0, 0)" /> und den Radius <InlineMath math="4" />, der zweite den Mittelpunkt <InlineMath math="(10, 0)" /> und den Radius <InlineMath math="2" />. Berechne beide Tangentenlängen.
 
@@ -1154,63 +1149,60 @@ Die Aufgaben geben zwei Kreise und verlangen die Längen ihrer gemeinsamen Tange
 
 4. Kreis <InlineMath math="A" /> hat den Mittelpunkt <InlineMath math="(-5, 0)" /> und den Radius <InlineMath math="r" />, Kreis <InlineMath math="B" /> den Mittelpunkt <InlineMath math="(7, 0)" /> und den Radius <InlineMath math="2r" />. Die äußere gemeinsame Tangente ist <InlineMath math="4\sqrt{8}" /> lang. Bestimme <InlineMath math="r" />.
 
-5. Gib die Bedingungen an, unter denen zwei Kreise folgende Anzahl gemeinsamer Tangenten besitzen:
-   - Genau zwei gemeinsame Tangenten
-   - Genau drei gemeinsame Tangenten
-   - Genau vier gemeinsame Tangenten
+5. Gib die Bedingungen an, unter denen zwei Kreise genau zwei, drei oder vier gemeinsame Tangenten besitzen. Erkläre jeden Fall getrennt.
 
 ### Ausführliche Lösungen
 
-1. **Gemeinsame Tangentenlängen berechnen**
+**Lösung 1**: Gemeinsame Tangentenlängen berechnen
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
+</MathContainer>
 
-2. **Kreise mit unterschiedlichen Mittelpunkten**
+**Lösung 2**: Kreise mit unterschiedlichen Mittelpunkten
 
-   <MathContainer>
-     <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
-     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
+</MathContainer>
 
-3. **Mittelpunktabstand aus der inneren Tangente bestimmen**
+**Lösung 3**: Mittelpunktabstand aus der inneren Tangente bestimmen
 
-   Gegeben: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
+Gegeben: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
 
-   <MathContainer>
-     <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
-     <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
-     <BlockMath math="64 = d^2 - 36" />
-     <BlockMath math="d^2 = 100" />
-     <BlockMath math="d = 10 \text{ cm}" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+  <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
+  <BlockMath math="64 = d^2 - 36" />
+  <BlockMath math="d^2 = 100" />
+  <BlockMath math="d = 10 \text{ cm}" />
+</MathContainer>
 
-4. **Gesuchten Wert bestimmen:** <InlineMath math="r" />
+4. **Gesuchten Wert bestimmen**: <InlineMath math="r" />
 
-   Gegeben: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
+Gegeben: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
 
-   <MathContainer>
-     <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
-     <BlockMath math="16 \cdot 8 = 144 - r^2" />
-     <BlockMath math="128 = 144 - r^2" />
-     <BlockMath math="r^2 = 16" />
-     <BlockMath math="r = 4" />
-   </MathContainer>
+<MathContainer>
+  <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
+  <BlockMath math="16 \cdot 8 = 144 - r^2" />
+  <BlockMath math="128 = 144 - r^2" />
+  <BlockMath math="r^2 = 16" />
+  <BlockMath math="r = 4" />
+</MathContainer>
 
-5. **Bedingungen für die Anzahl gemeinsamer Tangenten**
+**Lösung 5**: Bedingungen für die Anzahl gemeinsamer Tangenten
 
-   Der Abstand der Mittelpunkte sei <InlineMath math="d" />. Für zwei verschiedene Kreise, die nicht deckungsgleich sind, gilt die vollständige Einteilung:
+Der Abstand der Mittelpunkte sei <InlineMath math="d" />. Für zwei verschiedene Kreise, die nicht deckungsgleich sind, gilt die vollständige Einteilung:
 
-   | Bedingung für den Mittelpunktabstand | Gemeinsame Tangenten | Lage der Kreise |
-   | --- | ---: | --- |
-   | <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | außen getrennt |
-   | <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | äußere Berührung |
-   | <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | Schnitt in zwei Punkten |
-   | <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | innere Berührung |
-   | <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | ein Kreis liegt vollständig im anderen |
+| Bedingung für den Mittelpunktabstand | Gemeinsame Tangenten | Lage der Kreise |
+| --- | ---: | --- |
+| <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | außen getrennt |
+| <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | äußere Berührung |
+| <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | Schnitt in zwei Punkten |
+| <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | innere Berührung |
+| <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | ein Kreis liegt vollständig im anderen |
 
-   Die gesuchten Bedingungen stehen somit in den ersten drei Zeilen. Deckungsgleiche Kreise mit <InlineMath math="d=0" /> und <InlineMath math="r_1=r_2" /> bilden einen Sonderfall mit unendlich vielen gemeinsamen Tangenten.
+Die gesuchten Bedingungen stehen somit in den ersten drei Zeilen. Deckungsgleiche Kreise mit <InlineMath math="d=0" /> und <InlineMath math="r_1=r_2" /> bilden einen Sonderfall mit unendlich vielen gemeinsamen Tangenten.

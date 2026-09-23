@@ -4,16 +4,15 @@ import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
 import { Effect, FileSystem } from "effect";
+import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import {
-  findDocumentIssues,
-  questionBodyKind,
-} from "#nakafa-content/voice/document";
+import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
+import { documentProfile } from "#nakafa-content/voice/profile";
 import {
   isLessonVoiceLocale,
   type LessonVoiceLocale,
@@ -109,7 +108,7 @@ export const collectLessonFiles = Effect.fn(
 
 /** Scans every lesson file and attaches its locale and repository path. */
 export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
-  function* (root: string) {
+  function* (root: string, pedagogyReview = false) {
     const fileSystem = yield* FileSystem.FileSystem;
     const files = yield* collectLocaleFiles(root);
     if (files.length === 0) {
@@ -162,13 +161,28 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       ...findLessonHighlightIssues(
         root,
         siblingDocuments.filter(
-          ({ file }) => questionBodyKind(file) === undefined
+          ({ file }) => documentProfile(file) === "lesson"
         )
       )
     );
     const report: LessonVoiceReport = {
       fileCount: files.length,
       issues,
+      ...(pedagogyReview
+        ? {
+            pedagogy: documents
+              .filter(({ file }) =>
+                ["lesson", "answer"].includes(documentProfile(file))
+              )
+              .flatMap(({ repositoryPath, locale, tree }) =>
+                reviewTeachingSections(tree).map((section) => ({
+                  ...section,
+                  file: repositoryPath,
+                  locale,
+                }))
+              ),
+          }
+        : {}),
     };
     return report;
   }
@@ -219,6 +233,23 @@ const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
       yield* Effect.sync(() => console.error(line));
     }
   }
+  const { pedagogy } = report;
+  if (options.format === "text" && pedagogy) {
+    for (const section of pedagogy) {
+      if (section.signals.length > 0) {
+        yield* Effect.sync(() =>
+          console.log(
+            `${section.file}:${section.line} [manual] ${section.signals.join(", ")}: ${section.heading}`
+          )
+        );
+      }
+    }
+    yield* Effect.sync(() =>
+      console.log(
+        `Inventoried ${pedagogy.length} sections. These signals require contextual review, not automatic edits; exit status covers deterministic findings only.`
+      )
+    );
+  }
   return blockingIssues.length === 0 ? 0 : 1;
 });
 
@@ -227,7 +258,7 @@ export const runCli = Effect.fn("LessonVoiceCheck.runCli")(function* (
   arguments_: readonly string[]
 ) {
   const options = yield* parseArguments(arguments_);
-  const report = yield* checkLessonRoot(options.root);
+  const report = yield* checkLessonRoot(options.root, options.pedagogyReview);
   return yield* printReport(options, report);
 });
 

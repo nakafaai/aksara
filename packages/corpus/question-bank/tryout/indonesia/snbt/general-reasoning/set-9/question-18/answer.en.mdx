@@ -5,4 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Because quota is available, approval would necessarily have led to publication. The report is not published, so it is not approved. A completed audit would have led to approval, so the audit cannot be complete.
+Let <InlineMath math="A" /> mean the audit is complete, <InlineMath math="P" /> the report is approved, <InlineMath math="Q" /> quota is available, and <InlineMath math="R" /> the report is published. The rules and facts are:
+
+<MathContainer>
+  <BlockMath math="A\Rightarrow P" />
+  <BlockMath math="(P\land Q)\Rightarrow R" />
+  <BlockMath math="Q\land\neg R" />
+</MathContainer>
+
+Since **quota is available**, approval would lead to publication. Yet the report is not published, so it is **not approved**. A completed audit would require that approval under the first rule.
+
+The contrapositive of the first rule gives:
+
+<BlockMath math="\neg P\Rightarrow\neg A" />
+
+Therefore, the audit is not complete. This does not imply cancellation, which the question does not mention.

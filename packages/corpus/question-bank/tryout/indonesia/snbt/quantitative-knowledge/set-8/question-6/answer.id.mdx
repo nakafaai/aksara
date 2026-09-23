@@ -5,7 +5,7 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Urutan anggota dalam himpunan tidak diperhatikan, sehingga kita menggunakan konsep kombinasi.
+**Urutan anggota tidak diperhatikan** dalam himpunan, sehingga kita menggunakan konsep kombinasi.
 
 Total banyaknya himpunan bagian dari suatu himpunan dengan <InlineMath math="n" /> anggota adalah <InlineMath math="2^n" />. Diketahui <InlineMath math="n = 10" />, maka total himpunan bagian adalah:
 
@@ -19,23 +19,14 @@ Rumus kombinasi adalah:
 
 <BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
 
-Hitung satu per satu.
+| Anggota yang dipilih | Perhitungan | Banyak himpunan bagian |
+| --- | --- | --- |
+| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
+| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
+| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
+| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
 
-#### Himpunan Bagian dengan Nol Anggota
-
-<BlockMath math="\begin{aligned}C(10, 0)&=\frac{10!}{0!10!}\\&=1\end{aligned}" />
-
-#### Himpunan Bagian dengan Satu Anggota
-
-<BlockMath math="\begin{aligned}C(10, 1)&=\frac{10!}{1!9!}\\&=10\end{aligned}" />
-
-#### Himpunan Bagian dengan Dua Anggota
-
-<BlockMath math="\begin{aligned}C(10, 2)&=\frac{10!}{2!8!}\\&=\frac{10 \times 9}{2 \times 1}\\&=45\end{aligned}" />
-
-#### Himpunan Bagian dengan Tiga Anggota
-
-<BlockMath math="\begin{aligned}C(10, 3)&=\frac{10!}{3!7!}\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
+Satu himpunan bagian dengan nol anggota adalah **himpunan kosong**, sehingga tetap dihitung.
 
 Jumlah himpunan bagian dengan anggota <InlineMath math="\leq 3" /> adalah:
 

@@ -4,13 +4,13 @@ export const metadata = {
   datePublished: "2026-02-08",
 };
 
-**Identifikasi Hubungan Geometris**
+#### Identifikasi Hubungan Geometris
 
-Diketahui bahwa jari-jari (<InlineMath math="r" />) kemasan adalah setengah dari tingginya (<InlineMath math="t" />), sehingga kita dapat menuliskan <InlineMath math="r = \frac{1}{2}t" />. Volume kemasan silindris diberikan sebagai <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" />.
+Diketahui bahwa jari-jari (<InlineMath math="r" />) kemasan adalah **setengah dari tinggi tabung** (<InlineMath math="t" />), sehingga kita dapat menuliskan <InlineMath math="r = \frac{1}{2}t" />. Volume kemasan silindris diberikan sebagai <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" />.
 
-**Menghitung Tinggi Kemasan**
+#### Menghitung Tinggi Kemasan
 
-Dengan menggunakan rumus volume silinder, kita substitusikan nilai <InlineMath math="r" /> untuk mencari nilai <InlineMath math="t" />.
+Dengan menggunakan **rumus volume silinder**, kita substitusikan nilai <InlineMath math="r" /> untuk mencari nilai <InlineMath math="t" />.
 
 <MathContainer>
   <BlockMath math="V = \pi r^2 t" />
@@ -21,3 +21,19 @@ Dengan menggunakan rumus volume silinder, kita substitusikan nilai <InlineMath m
 </MathContainer>
 
 Jadi, tinggi kemasan tersebut adalah <InlineMath math="9 \text{ cm}" />.
+
+Pada gambar, satu satuan mewakili 1 cm. Putar tabung untuk membandingkan jari-jari alas dengan tinggi tabung.
+
+<LineEquation
+  title="Jari-jari dan tinggi tabung"
+  description="Jari-jari 4,5 cm dan tinggi 9 cm. Garis hijau menunjukkan jari-jari, garis jingga menunjukkan tinggi."
+  cameraPosition={[16, -20, 14]}
+  cameraTarget={[0, 0, 4.5]}
+  data={[
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:0})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:9})),color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:-4.5,y:0,z:0},{x:-4.5,y:0,z:9}],color:"#6366f1",showPoints:false,smooth:false},
+    {points:[{x:4.5,y:0,z:0},{x:4.5,y:0,z:4.5},{x:4.5,y:0,z:9}],color:"#f97316",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="t=9" />,offset:[0.5,0,0]}]},
+    {points:[{x:0,y:0,z:0},{x:2.25,y:0,z:0},{x:4.5,y:0,z:0}],color:"#10b981",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="r=9/2" />,offset:[0,-0.5,0]}]}
+  ]}
+/>

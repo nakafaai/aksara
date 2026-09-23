@@ -10,7 +10,7 @@ export const metadata = {
 
 ## State the Domain Before Using a Rule
 
-<Highlight>Exponent rules depend on the kind of exponent and the sign of the base.</Highlight> The following seven identities are useful, but their conditions are part of each statement.
+Exponent rules depend on the **kind of exponent** and the **sign of the base**. The following seven identities are useful, but their conditions are part of each statement.
 
 | Property | Identity | Conditions used here |
 | -------- | -------- | -------------------- |
@@ -26,11 +26,11 @@ The integer rules can sometimes be extended to other domains, but those extensio
 
 ## Proofs for Integer Exponents
 
-The proofs below write each power as repeated multiplication. That form shows directly why the exponents add, subtract, or multiply. Read each proof as a short chain of equalities, and check that every step uses only the definition of a power.
+The proofs below write each power as **repeated multiplication**. That form shows directly why the exponents add, subtract, or multiply. Read each proof as a short chain of equalities, and check that every step uses only the definition of a power.
 
 ### Same Base Product
 
-For positive integers <InlineMath math="m" /> and <InlineMath math="n" />, write each power as repeated multiplication:
+For positive integers <InlineMath math="m" /> and <InlineMath math="n" />, write each power as **repeated multiplication**:
 
 <MathContainer>
   <BlockMath math="a^m=\underbrace{a\cdot a\cdots a}_{m\text{ factors}}" />
@@ -42,7 +42,7 @@ The zero case follows from <InlineMath math="a^0=1" />. Negative integer exponen
 
 ### Same Base Quotient
 
-Division removes <InlineMath math="n" /> factors from the numerator when <InlineMath math="m\geq n" />:
+Division removes <InlineMath math="n" /> **factors from the numerator** when <InlineMath math="m\geq n" />:
 
 <BlockMath math="\frac{a^m}{a^n}=\frac{\overbrace{a\cdots a}^{m\text{ factors}}}{\underbrace{a\cdots a}_{n\text{ factors}}}=a^{m-n}" />
 
@@ -52,7 +52,7 @@ If <InlineMath math="m<n" />, the uncancelled factors stay in the denominator. T
 
 ### Power of a Power
 
-For positive <InlineMath math="n" />, the factor <InlineMath math="a^m" /> appears <InlineMath math="n" /> times:
+For positive <InlineMath math="n" />, the factor <InlineMath math="a^m" /> **appears** <InlineMath math="n" /> times:
 
 <BlockMath math="\begin{aligned} (a^m)^n &amp;=\underbrace{a^m a^m\cdots a^m}_{n\text{ factors}} \\ &amp;=a^{m+m+\cdots+m} \\ &amp;=a^{mn} \end{aligned}" />
 
@@ -60,7 +60,7 @@ The zero exponent covers <InlineMath math="n=0" />, and the reciprocal covers ne
 
 ### Power of a Product and Quotient
 
-For positive <InlineMath math="m" />, regrouping the factors gives:
+For positive <InlineMath math="m" />, **regrouping the factors** gives:
 
 <MathContainer>
   <BlockMath math="(ab)^m=\underbrace{(ab)(ab)\cdots(ab)}_{m\text{ factors}}=a^m b^m" />
@@ -71,34 +71,27 @@ The zero and negative cases again follow from <InlineMath math="x^0=1" /> and <I
 
 ## Proofs for Rational Exponents
 
-For rational exponents, <Highlight>use a positive base so every real root</Highlight> is defined consistently. The proofs below extend each integer rule to fractional exponents by writing the root as a power. So every root can be rewritten with the exponent rules you already know.
+For rational exponents, use a **positive base**. We write both factors as integer powers of the same positive root. Take the denominators to be positive. If a denominator starts negative, first multiply both numerator and denominator by negative one.
 
 ### Equal Denominators
 
-Apply the same-base product rule and add the fractions:
+Let <InlineMath math="t=\sqrt[n]{a}>0" />. Since <InlineMath math="a^{m/n}=t^m" /> and <InlineMath math="a^{p/n}=t^p" />, we can apply the proven **integer-power rule**:
 
-<MathContainer>
-  <BlockMath math="a^{m/n}a^{p/n}=a^{m/n+p/n}" />
-  <BlockMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} a^{m/n}a^{p/n} &=t^m t^p \\ &=t^{m+p} \\ &=a^{(m+p)/n} \end{aligned}" />
 
 ### Different Denominators
 
-First rewrite the exponents with the common denominator <InlineMath math="nq" />:
+Take the **common root** <InlineMath math="t=\sqrt[nq]{a}>0" />. Since <InlineMath math="(t^q)^n=a" /> and <InlineMath math="(t^n)^q=a" />, the positive root <InlineMath math="\sqrt[n]{a}" /> equals <InlineMath math="t^q" />, and <InlineMath math="\sqrt[q]{a}" /> equals <InlineMath math="t^n" />. Therefore:
 
-<MathContainer>
-  <BlockMath math="a^{m/n}a^{p/q}=a^{m/n+p/q}" />
-  <BlockMath math="a^{m/n}a^{p/q}=a^{mq/(nq)+pn/(nq)}" />
-  <BlockMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} a^{m/n}a^{p/q} &=(t^q)^m(t^n)^p \\ &=t^{mq}t^{np} \\ &=t^{mq+np} \\ &=a^{(mq+pn)/(nq)} \end{aligned}" />
 
 ## Using and Verifying Exponent Rules
 
-The examples below apply the rules and then check the result. Each one names the rule used, so the steps can be retraced. Cover the answer, work the problem yourself, and use the named rule to find where the two solutions differ.
+The examples below apply the rules and then **check the result**. Each one names the rule used, so the steps can be retraced. Cover the answer, work the problem yourself, and use the named rule to find where the two solutions differ.
 
 ### Determining an Unknown Exponent
 
-The two problems below ask for an exponent that makes both sides match. Rewrite each side with the same base first, because equal bases force the exponents to be equal.
+To find an exponent, write both sides with **the same positive base other than one**. Under this condition, different exponents produce different function values. The multiplication example between the two equations also checks the rule for adding exponents.
 
 1. Determine <InlineMath math="p" /> in <InlineMath math="(3^4)^2=3^p" />.
 
@@ -125,27 +118,16 @@ The two problems below ask for an exponent that makes both sides match. Rewrite 
 
 ### Simplifying Expressions
 
-Each expression below combines several exponent rules. Work from the inside out, and reduce the numbers and the variables separately so a mistake in one part does not hide in the other.
+Each expression below combines several exponent rules. Work from the **inside out**, and reduce the numbers and the variables separately so a mistake in one part does not hide in the other.
 
 1. Simplify <InlineMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3" />.
 
-    <MathContainer>
-      <BlockMath math="\left(\frac{2^4 3^6}{2^3 3^2}\right)^3=\left(2^{4-3}3^{6-2}\right)^3" />
-      <BlockMath math="=\left(2\cdot3^4\right)^3" />
-      <BlockMath math="=2^3 3^{12}" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned} \left(\frac{2^4 3^6}{2^3 3^2}\right)^3 &=\left(2^{4-3}3^{6-2}\right)^3 \\ &=\left(2\cdot3^4\right)^3 \\ &=2^3 3^{12} \end{aligned}" />
 
 2. Simplify <InlineMath math="(3u^3v^5)(9u^4v)" />.
 
-    <MathContainer>
-      <BlockMath math="(3u^3v^5)(9u^4v)=27u^{3+4}v^{5+1}" />
-      <BlockMath math="=27u^7v^6" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned} (3u^3v^5)(9u^4v) &=27u^{3+4}v^{5+1} \\ &=27u^7v^6 \end{aligned}" />
 
 3. For <InlineMath math="n\neq0" /> and <InlineMath math="r\neq0" />, simplify <InlineMath math="\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{aligned} &amp;\left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2 \\ &amp;=\left(\frac{n^{-1-(-6)}r^{4-(-4)}}5\right)^2 \end{aligned}" />
-      <BlockMath math="=\left(\frac{n^5r^8}{5}\right)^2" />
-      <BlockMath math="=\frac{n^{10}r^{16}}{25}" />
-    </MathContainer>
+    <BlockMath math="\begin{aligned} \left(\frac{n^{-1}r^4}{5n^{-6}r^{-4}}\right)^2 &=\left(\frac{n^{-1-(-6)}r^{4-(-4)}}5\right)^2 \\ &=\left(\frac{n^5r^8}{5}\right)^2 \\ &=\frac{n^{10}r^{16}}{25} \end{aligned}" />

@@ -11,32 +11,43 @@ export const metadata = {
 
 Wie lassen sich die Glieder einer Zahlenfolge zusammenfassen? Ein Ausdruck wie <InlineMath math="1+2+3+\cdots" /> heißt **Reihe**.
 
-Eine Zahlenreihe wird <Highlight>gebildet, indem die Glieder [einer Zahlenfolge](/de/faecher/mathematik/folgen-und-reihen/begriff-der-folge)</Highlight> in der angegebenen Reihenfolge addiert werden. Zwei gängige Beispiele sind eine arithmetische Reihe, deren Glieder aus einer arithmetischen Folge stammen, und eine **geometrische Reihe**, deren Glieder aus einer geometrischen Folge stammen.
+Eine Zahlenreihe wird gebildet, indem **die Glieder** [einer Zahlenfolge](/de/faecher/mathematik/folgen-und-reihen/begriff-der-folge) in der angegebenen Reihenfolge addiert werden. Zwei gängige Beispiele sind eine arithmetische Reihe, deren Glieder aus einer arithmetischen Folge stammen, und eine **geometrische Reihe**, deren Glieder aus einer geometrischen Folge stammen.
 
 Im folgenden Händedruckbeispiel fügt jede weitere Person der Summe einen neuen Term hinzu.
 
 ## Partialsummen verbinden eine Folge mit ihrer Reihe
 
-Für eine Folge <InlineMath math="(U_n)" /> ist die Summe ihrer ersten <InlineMath math="n" /> Glieder die <InlineMath math="n" />-te Teilsumme:
+Für eine Folge <InlineMath math="(U_n)" /> ist die Summe ihrer ersten <InlineMath math="n" /> Glieder die <InlineMath math="n" />-te **Teilsumme**:
 
 <BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
 
 Endliche Probleme erfordern eine bestimmte Teilsumme. Für eine unendliche Reihe untersuchen wir, ob sich die Folge <InlineMath math="(S_n)" /> einem endlichen Grenzwert nähert, wenn <InlineMath math="n" /> wächst.
 
-## Anzahl der Handshakes
+## Anzahl der Händedrücke
 
 In einer Gruppe schüttelt jede Person jeder anderen Person genau einmal die Hand. Wie viele Händedrücke gibt es insgesamt?
 
-Wir zählen schrittweise:
+Bei drei Personen schüttelt die erste Person den beiden anderen die Hand. Ein Paar bleibt zwischen der zweiten und dritten Person, also gibt es insgesamt <InlineMath math="2+1=3" /> Händedrücke. Für vier Personen enthält das Diagramm **eine Linie pro Paar**. Eine Kreuzung von Linien fügt keine Person und keinen Händedruck hinzu.
 
-- **Bei <InlineMath math="2 \text{ Personen}" />:** Es gibt genau <InlineMath math="1 \text{ Händedruck}" />.
-- **Bei <InlineMath math="3 \text{ Personen}" />:** Die erste Person begrüßt <InlineMath math="2 \text{ Personen}" />. Die zweite Person hat die erste bereits begrüßt und schüttelt nur noch der dritten die Hand. Insgesamt sind das <InlineMath math="2 + 1 = 3 \text{ Händedrücke}" />.
-- **Bei <InlineMath math="4 \text{ Personen}" />:** Nach demselben Muster ergeben sich <InlineMath math="3 + 2 + 1 = 6 \text{ Händedrücke}" />.
-- **Bei <InlineMath math="5 \text{ Personen}" />:** Insgesamt sind es <InlineMath math="4 + 3 + 2 + 1 = 10 \text{ Händedrücke}" />.
+<Mermaid
+  title="Händedruckpaare"
+  description="Jede Linie verbindet ein Paar. Zähle jede Linie einmal, obwohl sie zwei Enden hat."
+  chart={`flowchart LR
+  A["Erste Person"]
+  B["Zweite Person"]
+  C["Dritte Person"]
+  D["Vierte Person"]
+  A --- B
+  A --- C
+  A --- D
+  B --- C
+  B --- D
+  C --- D`}
+/>
 
-Die Anzahl der Händedrücke bildet also eine fortlaufende Summe natürlicher Zahlen.
+Die Tabelle zählt die Händedrücke, wenn jeweils eine weitere Person dazukommt. Diese Person begrüßt alle bereits anwesenden Personen. Daher kommen nacheinander <InlineMath math="1,2,3,4" /> Händedrücke hinzu.
 
-| Anzahl der anwesenden Personen | Anzahl Handshakes | Aufschlüsselung der Handshakes |
+| Anzahl der anwesenden Personen | Anzahl der Händedrücke | Berechnung der Händedrücke |
 | :--------- | :------------------- | :-------------- |
 | Zwei Personen | <InlineMath math="1" /> | <InlineMath math="1" /> |
 | Drei Personen | <InlineMath math="3" /> | <InlineMath math="1+2" /> |
@@ -49,7 +60,7 @@ Jedes Paar muss genau einmal gezählt werden. Würde man die Handschläge jeder 
 
 ### Ein zweiter Zählweg
 
-Ein Händedruck ist ein ungeordnetes Personenpaar. Die Anzahl der aus <InlineMath math="n" /> Personen ausgewählten Paare beträgt:
+Ein Händedruck ist ein **ungeordnetes Personenpaar**. Die Anzahl der aus <InlineMath math="n" /> Personen ausgewählten Paare beträgt:
 
 <BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
 
@@ -63,7 +74,7 @@ Jeder Ausdruck <InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath m
 
 ## Übung
 
-Wie viele Händedrücke gibt es bei <InlineMath math="12 \text{ Personen}" />, wenn sich jedes Paar genau einmal die Hand schüttelt?
+Wie viele Händedrücke gibt es bei <InlineMath math="12 \text{ Personen}" />, wenn sich jedes Paar **genau einmal** die Hand schüttelt?
 
 Die sequentielle Summenmethode ergibt:
 

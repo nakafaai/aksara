@@ -5,12 +5,20 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-The same calibration applies to every reading, so their mean follows the same linear rule.
+Calibration applies **the same linear rule to every reading**. When you add all 40 calibrated readings, the factor 1.5 stays outside the raw total, while the subtraction of 8 occurs 40 times. Dividing by 40 gives this relationship between the means.
+
+<BlockMath math="\begin{aligned}
+\bar y&=\frac{1}{40}\sum_{i=1}^{40}(1.5x_i-8) \\
+&=1.5\frac{\sum_{i=1}^{40}x_i}{40}-\frac{40\cdot8}{40} \\
+&=1.5\bar x-8
+\end{aligned}" />
+
+Insert the calibrated mean of 70 to find the raw mean.
 
 <BlockMath math="\begin{aligned}
 70&=1.5\bar x-8 \\
 1.5\bar x&=78 \\
-\bar x&=52
+\bar x&=\frac{78}{1.5}=52
 \end{aligned}" />
 
 The mean of the recorded raw readings is <InlineMath math="52" />.

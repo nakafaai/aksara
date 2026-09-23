@@ -3,7 +3,7 @@ export const metadata = {
     description: "Python string methods for text transformation, search, character validation, and advanced string operations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "AI Programming",
 };
 
@@ -42,7 +42,7 @@ Slicing and concatenation are two ways to build a new string from an existing on
 
 ## Measuring String Length
 
-For a Python string, `len()` counts Unicode code points. An ordinary Latin letter, space, or punctuation mark usually contributes one, but a single visible grapheme can contain several code points, as happens with some emoji and combining marks.
+For a Python string, `len()` counts **Unicode code points**. An ordinary Latin letter, space, or punctuation mark usually contributes one, but a single visible grapheme can contain several code points, as happens with some emoji and combining marks.
 
 <CodeBlock
   data={[
@@ -68,7 +68,7 @@ print(f"String with escape sequence: {len(special)} characters")
 print(f"String display: {repr(special)}")
 
 raw_newline = r"\\n"
-print(f"Raw \\n spelling: {len(raw_newline)} code points")`
+print(f"Raw spelling {raw_newline!r}: {len(raw_newline)} code points")`
     }
   ]}
 />
@@ -77,11 +77,11 @@ In a normal string literal, the source spellings `\n` and `\t` each become one n
 
 ## String Transformation Methods
 
-These methods return a new string and leave the original unchanged. That happens because a string is immutable, so every transformation produces a second value instead of editing the first.
+These methods return a new string and **leave the original unchanged**. That happens because a string is immutable, so every transformation produces a second value instead of editing the first.
 
 ### Changing Letter Case
 
-Python provides several case-conversion methods. Each returns a new string and applies Unicode casing rules.
+Python provides several case-conversion methods. Each returns a new string and applies **Unicode casing rules**.
 
 <CodeBlock
   data={[
@@ -119,7 +119,7 @@ The `title()` method follows a mechanical casing rule. It can be convenient for 
 
 ### Removing Characters at Start and End
 
-With no argument, `strip()`, `lstrip()`, and `rstrip()` remove surrounding whitespace. A `chars` argument gives Python a set of individual characters. Python repeatedly removes any of those characters from the relevant ends.
+With no argument, `strip()`, `lstrip()`, and `rstrip()` remove surrounding whitespace. A `chars` argument gives Python a **set of individual characters**. Python repeatedly removes any of those characters from the relevant ends.
 
 <CodeBlock
   data={[
@@ -163,11 +163,11 @@ Use `removeprefix()` or `removesuffix()` when you need to remove one exact token
 
 ## Search and Validation Methods
 
-One group of methods locates text, and another group answers yes-or-no questions about it. The searching methods return a position, while the validating methods return `True` or `False`.
+One group of methods locates text, and another group answers yes-or-no questions about it. The searching methods **return a position**, while the validating methods return `True` or `False`.
 
 ### Finding Substring Position
 
-The `index()` and `find()` methods are used to search for substring positions in strings. The difference lies in how they handle cases when the substring is not found.
+The `index()` and `find()` methods are used to search for substring positions in strings. The difference lies in how they handle cases when the **substring is not found**.
 
 <CodeBlock
   data={[
@@ -213,7 +213,7 @@ Choose the method according to the failure contract: `find()` returns `-1`, whil
 
 ### String Character Validation
 
-Methods such as `isalpha()` and `isdigit()` return a Boolean after checking whether the string's code points satisfy a particular category rule. These methods check character categories only. A username, email address, or account number needs separate rules for its full format.
+Methods such as `isalpha()` and `isdigit()` return a Boolean after checking whether the string's code points satisfy a particular category rule. These methods **check character categories only**. A username, email address, or account number needs separate rules for its full format.
 
 <CodeBlock
   data={[
@@ -268,7 +268,7 @@ Methods such as `isdigit()` and `isalnum()` are Unicode-aware, and the empty str
 
 ## Prefix and Suffix Search Methods
 
-The `startswith()` and `endswith()` methods return whether a string begins or ends with a specific substring.
+The `startswith()` and `endswith()` methods return whether a string **begins or ends** with a specific substring.
 
 <CodeBlock
   data={[
@@ -306,7 +306,7 @@ urls = [
 print("\\nURL analysis:")
 for url in urls:
     if url.startswith("https://"):
-        print(f"Secure web: {url}")
+        print(f"HTTPS: {url}")
     elif url.startswith("http://"):
         print(f"Web: {url}")
     elif url.startswith("ftp://"):
@@ -323,13 +323,15 @@ print(f"\\nStarts with greeting: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
 
 Both methods accept a tuple, so one call can test several prefixes or suffixes.
 
+The prefix `https://` classifies the text by URL scheme. It does not establish that the site is trustworthy or the address is valid.
+
 ## Replace and Split Methods
 
-These two methods change how a string is divided into parts. `replace` swaps one substring for another, and `split` breaks a string into a list at a separator.
+These two methods change how a string is divided into parts. `replace` **swaps one substring for another**, and `split` breaks a string into a list at a separator.
 
 ### Replacing Substrings
 
-The `replace()` method is used to replace all occurrences of a substring with a new string.
+The `replace()` method is used to replace **all occurrences of a substring** with a new string.
 
 <CodeBlock
   data={[
@@ -374,7 +376,7 @@ The `replace()` method is case-sensitive and replaces all occurrences unless lim
 
 ### Splitting Strings
 
-The `split()` method breaks a string into a list around a specified delimiter. With no delimiter, it treats consecutive whitespace as one separator and omits leading or trailing empty fields.
+The `split()` method breaks a string into a list around a specified delimiter. With no delimiter, it treats **consecutive whitespace as one separator** and omits leading or trailing empty fields.
 
 <CodeBlock
   data={[
@@ -425,7 +427,9 @@ Use `split()` only when the delimiter rules are genuinely simple. It does not un
 
 ## String Method Chaining
 
-Because string methods return new strings, several transformations can be chained in one expression. Keep a chain short enough that each step remains obvious. Use an intermediate variable when one step needs validation or explanation before the next transformation.
+Transformation methods that **return strings** can be chained. A method such as `split()` returns a list, so the next operation must suit that result type. Keep a chain short enough that each step remains obvious. Use an intermediate variable when one step needs validation or explanation before the next transformation.
+
+After the first `.strip()`, spaces remain between `+++` and `Python`. Therefore `.strip("+- ")` removes **plus signs, minus signs, and spaces** from both ends before case conversion.
 
 <CodeBlock
   data={[
@@ -439,7 +443,7 @@ print(f"Input: '{messy_input}'")
 # Chaining multiple methods
 clean_result = (messy_input
                 .strip()  # remove spaces at start/end
-                .strip("+-")  # remove + and - characters
+                .strip("+- ")  # remove + and - characters
                 .lower()  # convert to lowercase
                 .replace("beginners", "experts"))  # replace word
 
@@ -491,7 +495,9 @@ Method chaining works well for a short linear cleanup. It is not automatically c
 
 ## Practical String Method Applications
 
-Each small example isolates the behavior of a string method under stated assumptions. Production validators and parsers need rules written for their real data.
+Each small example isolates the behavior of a string method under **stated assumptions**. Production validators and parsers need rules written for their real data.
+
+The phone function formats only two sample patterns. Indonesian phone numbers are not limited to those lengths. A filename is assumed to be a simple name without directories. The email normalization above demonstrates string processing rather than full email-address validation.
 
 <CodeBlock
   data={[
@@ -509,7 +515,7 @@ def format_phone_number(phone):
 
     digits_only = "".join(char for char in phone if char in "0123456789")
 
-    # Format according to Indonesian standard
+    # Two sample patterns, not all Indonesian numbering rules
     if len(digits_only) == 13 and digits_only.startswith("62"):
         return f"+{digits_only[:2]}-{digits_only[2:5]}-{digits_only[5:9]}-{digits_only[9:]}"
     elif len(digits_only) == 12 and digits_only.startswith("08"):

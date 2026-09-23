@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Quadratische Formen mit symmetrischen Matrizen
 
-<Highlight>Eine quadratische Gleichung mit einem gemischten Term nennt ihre Hauptachsenrichtungen nicht direkt.</Highlight> Ihre quadratische Form fasst die Koeffizienten in einer symmetrischen Matrix zusammen. Die Eigenvektoren dieser Matrix geben die Hauptachsenrichtungen an. In zwei Dimensionen sei
+Eine quadratische Gleichung mit einem <Highlight>gemischten Term</Highlight> nennt ihre Hauptachsenrichtungen nicht direkt. Ihre quadratische Form fasst die Koeffizienten in einer symmetrischen Matrix zusammen. Die Eigenvektoren dieser Matrix geben die Hauptachsenrichtungen an. In zwei Dimensionen sei
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
@@ -27,7 +27,7 @@ Für die Gleichung <InlineMath math="x^TAx+p^Tx+f=0" /> verwenden wir die gedreh
 
 Für beide Variablen mit <InlineMath math="\lambda_1, \lambda_2 \neq 0" /> wird die Vervollständigung des Quadratprozesses separat durchgeführt:
 
-Benenne die Klammern der quadratischen Ergänzung, damit die addierten und subtrahierten Terme sichtbar bleiben:
+Benenne die Klammern der quadratischen Ergänzung, damit die **addierten und subtrahierten Terme** sichtbar bleiben:
 
 <MathContainer>
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
@@ -40,7 +40,7 @@ Benenne die Klammern der quadratischen Ergänzung, damit die addierten und subtr
 Nach dem Zusammenfassen erhalten wir
 
 <MathContainer>
-<BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Wir definieren den Mittelpunkt in den gedrehten Koordinaten und die verschobene Konstante durch
@@ -60,7 +60,7 @@ Die Vorzeichen von <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2"
 
 ## Kurvenklassifizierung
 
-Die Vorzeichen der beiden Eigenwerte entscheiden, welcher Kegelschnitt entsteht, deshalb geht jeder Fall unten eine Vorzeichenkombination durch und nennt die zugehörige Kurve. Die Größe der Eigenwerte legt dagegen nur fest, wie stark die Kurve gestreckt oder gestaucht wird, nicht ihre Art.
+Bei **positiver verschobener Konstante** <InlineMath math="\gamma" /> ergeben zwei positive Eigenwerte eine Ellipse, Eigenwerte mit entgegengesetzten Vorzeichen eine Hyperbel. Bei einem Eigenwert null muss der verbleibende lineare Term geprüft werden: Nur mit einem Koeffizienten ungleich null entsteht eine Parabel.
 
 ### Beide Eigenwerte positiv
 
@@ -142,6 +142,7 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -161,7 +162,7 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
   data={[
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2; // λ₁ > 0
         const lambda2 = -1; // λ₂ < 0
         const gamma = 3; // γ > 0
@@ -177,7 +178,7 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
     },
     {
       points: Array.from({ length: 60 }, (_, i) => {
-        const t = (i / 29 - 1) * 2.5;
+        const t = (2 * i / 59 - 1) * Math.asinh(4 / Math.sqrt(3));
         const lambda1 = 2;
         const lambda2 = -1;
         const gamma = 3;
@@ -270,6 +271,7 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
       ]
     }
   ]}
+  showZAxis={false}
   cameraPosition={[0, 0, 12]}
 />
 
@@ -283,11 +285,15 @@ Benenne dieselben Klammern der quadratischen Ergänzung, damit sich die addierte
   <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
 
   <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\epsilon\xi_2+f" />
-  <BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} 0 &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
   <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittelbar erkennbar:
+Wegen des zweiten Eigenwerts null ergänzen wir nur das erste Quadrat. Setze daher:
+
+<BlockMath math="m_1=-\frac{\delta}{2\lambda_1},\qquad \gamma=\frac{\delta^2}{4\lambda_1}-f" />
+
+Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die **Parabelform** unmittelbar erkennbar:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -299,8 +305,7 @@ Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittel
   data={[
     {
       points: Array.from({ length: 155 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 14;
-        const t = (i / 49 - 0.5) * 6;
+        const t = (pointIndex / 154 - 0.5) * 6;
         const lambda1 = 1; // λ₁ ≠ 0
         const epsilon = -2; // ε ≠ 0
         const gamma = 2; // γ
@@ -346,7 +351,9 @@ Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittel
       ]
     }
   ]}
-  cameraPosition={[0, 0, 12]}
+  showZAxis={false}
+  cameraPosition={[0, 1, 10]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Einen zweidimensionalen Kegelschnitt drehen und verschieben
@@ -365,7 +372,7 @@ Die Eigenpaare lauten
 <BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
 </MathContainer>
 
-Der Mittelpunkt in den ursprünglichen Koordinaten ist <InlineMath math="h=(1,-1)^T" />, denn <InlineMath math="2Ah+p=0" />. In den gedrehten Koordinaten gilt <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Mit <InlineMath math="\eta=\xi-m" /> wird die Gleichung zu
+Der **Mittelpunkt in den ursprünglichen Koordinaten** ist <InlineMath math="h=(1,-1)^T" />, denn <InlineMath math="2Ah+p=0" />. In den gedrehten Koordinaten gilt <InlineMath math="m=S^Th=(1/\sqrt5,-3/\sqrt5)^T" />. Mit <InlineMath math="\eta=\xi-m" /> wird die Gleichung zu
 
 <MathContainer>
 <BlockMath math="6\eta_1^2+\eta_2^2=12" />

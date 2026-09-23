@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Turunan untuk Menganalisis Gerak
 
-<Highlight>Turunan menjelaskan bagaimana suatu besaran berubah terhadap masukannya.</Highlight> Gerak memberi contoh yang konkret: dari fungsi posisi sebuah benda, kita dapat menentukan kecepatan sesaat lalu percepatannya. Keduanya sama-sama turunan, sehingga satu fungsi posisi sudah cukup untuk membaca dua besaran itu tanpa mengukur ulang di lapangan.
+Turunan menyatakan <Highlight>laju perubahan suatu besaran</Highlight> terhadap variabel acuan. Dari fungsi posisi terhadap waktu, kita menentukan kecepatan sesaat dan percepatan melalui diferensiasi berturut-turut. Kecepatan mengukur perubahan posisi per satuan waktu, sedangkan percepatan mengukur perubahan kecepatan per satuan waktu.
 
 ## Kecepatan Sesaat dari Posisi
 
@@ -34,6 +34,28 @@ Pada <InlineMath math="t = 1 \text{ detik}" />, kecepatannya adalah <InlineMath 
 
 Untuk <InlineMath math="0<t<1" />, kedua faktor bernilai negatif sehingga <InlineMath math="v(t)>0" />. Untuk <InlineMath math="1<t<3" />, kedua faktor berlainan tanda sehingga <InlineMath math="v(t)<0" />. Perubahan tanda kecepatan pada <InlineMath math="t=1" /> membuktikan bahwa partikel berbalik arah pada saat tersebut.
 
+Grafik kecepatan memperlihatkan **perubahan arah gerak** melalui perpotongan dengan sumbu waktu. Pada interval yang ditampilkan, kurva memotong sumbu waktu pada <InlineMath math="t=1" /> dan <InlineMath math="t=3" />. Bandingkan tanda kecepatan sebelum dan sesudah setiap perpotongan.
+
+<LineEquation
+  title="Tanda Kecepatan dan Arah Gerak"
+  description="Sumbu mendatar menyatakan waktu dalam detik dan sumbu tegak menyatakan kecepatan dalam meter per detik. Kurva di bawah sumbu waktu berarti posisi sedang berkurang."
+  data={[{
+    points: Array.from({ length: 81 }, (_, i) => { const t = i / 20; return { x: t, y: 3 * t * t - 12 * t + 9, z: 0 }; }),
+    smooth: false,
+    color: "#9333ea",
+    showPoints: true,
+    pointIndices: [20, 60],
+    labels: [
+      { at: 20, text: <InlineMath math="t=1" />, offset: [-0.7, 0.5, 0] },
+      { at: 60, text: <InlineMath math="t=3" />, offset: [0.7, 0.5, 0] },
+      { at: 40, text: <InlineMath math="v(2)=-3" />, offset: [0, -0.8, 0] },
+    ],
+  }]}
+  showZAxis={false}
+  cameraTarget={[2, 2.5, 0]}
+  cameraPosition={[2, 2.5, 20]}
+/>
+
 ## Percepatan dari Kecepatan
 
 Kecepatan dapat berubah, misalnya ketika mobil mempercepat atau mengerem. Laju perubahan kecepatan disebut **percepatan**. Percepatan <InlineMath math="a(t)" /> adalah <Highlight>turunan pertama dari kecepatan</Highlight> dan karena itu merupakan turunan kedua dari posisi.
@@ -42,7 +64,7 @@ Kecepatan dapat berubah, misalnya ketika mobil mempercepat atau mengerem. Laju p
 
 ### Menentukan Fungsi Percepatan
 
-Melanjutkan contoh partikel sebelumnya, kita sudah punya fungsi kecepatan <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Fungsi percepatannya dapat kita cari dengan menurunkan fungsi <InlineMath math="v(t)" />.
+Melanjutkan contoh partikel sebelumnya, kita sudah punya fungsi kecepatan <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Fungsi percepatannya dapat kita cari dengan **menurunkan fungsi** <InlineMath math="v(t)" />.
 
 <MathContainer>
   <BlockMath math="a(t) = \frac{d}{dt}(3t^2 - 12t + 9)" />
@@ -84,4 +106,4 @@ Jadi, bola mencapai puncak pada <InlineMath math="5 \text{ detik}" />. Untuk men
 
 <BlockMath math="\begin{aligned} h(5) &amp;= 50(5) - 5(5)^2 \\ &amp;= 250 - 125 \\ &amp;= 125 \end{aligned}" />
 
-Jadi, tinggi maksimum bola adalah **<InlineMath math="125 \text{ meter}" />**. Untuk mencari tinggi maksimum, turunkan fungsi posisi, cari saat kecepatan nol selama bola bergerak, lalu substitusikan waktu tersebut ke fungsi ketinggian semula.
+**Tinggi maksimum** bola adalah <InlineMath math="125 \text{ meter}" />. Kecepatan positif sebelum <InlineMath math="t=5" /> dan negatif sesudahnya pada interval <InlineMath math="0<t<10" />. Jadi, ketinggian bertambah hingga puncak lalu berkurang. Perubahan tanda ini memastikan titik yang ditemukan memang maksimum.

@@ -9,13 +9,13 @@ export const metadata = {
 
 ## Sistem Tipe Data NumPy
 
-Setiap elemen dalam array NumPy <Highlight>memiliki tipe yang menentukan representasinya di memori dan operasi yang dapat dilakukan NumPy terhadapnya</Highlight>. Boolean NumPy memakai satu byte, sedangkan bilangan kompleks menyimpan komponen real dan imajiner secara terpisah.
+Tipe data menentukan **representasi nilai di memori** dan operasi yang dapat dilakukan NumPy pada nilai tersebut. Boolean NumPy memakai satu byte, sedangkan bilangan kompleks menyimpan komponen real dan imajiner secara terpisah.
 
 Semua elemen dalam array NumPy biasa memakai [tipe data yang sama](https://numpy.org/doc/stable/user/basics.types.html). Dengan susunan ini, loop yang dijalankan NumPy dalam kode C dapat memproses elemen tanpa memeriksa tipe setiap nilai satu per satu.
 
 ### Tipe Data Dasar
 
-NumPy menerima tipe skalar bawaan Python dan menyediakan tipe skalar dengan lebar tetap ketika representasi data harus ditentukan secara tepat:
+NumPy menerima tipe skalar bawaan Python dan menyediakan tipe skalar dengan **lebar tetap** ketika representasi data harus ditentukan secara tepat:
 
 1. **Boolean** (`bool` atau `np.bool_`) untuk `True` dan `False`, dengan satu byte per elemen
 2. **Integer** (`np.int8` hingga `np.int64`) untuk bilangan bulat bertanda dengan lebar yang eksplisit
@@ -47,7 +47,7 @@ print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
 
 ### Tipe Data Numerik Spesifik
 
-NumPy menyediakan kontrol presisi yang detail dengan berbagai ukuran tipe data numerik:
+NumPy menyediakan kontrol presisi yang detail dengan **berbagai ukuran tipe data numerik**:
 
 | Kategori | Tipe Data | Deskripsi | Rentang Nilai |
 |----------|-----------|-----------|---------------|
@@ -67,7 +67,7 @@ NumPy menyediakan kontrol presisi yang detail dengan berbagai ukuran tipe data n
 
 ### Menentukan Tipe Data
 
-Kamu dapat menentukan tipe data saat membuat array atau mengonversi nilainya menjadi array baru dengan dtype lain:
+Kamu dapat menentukan tipe data **saat membuat array** atau mengonversi nilainya menjadi array baru dengan dtype lain:
 
 <CodeBlock
   data={[
@@ -100,7 +100,7 @@ print(a)
 
 ### Deteksi Otomatis Tipe Data
 
-NumPy secara otomatis mendeteksi tipe data berdasarkan elemen yang diberikan:
+NumPy secara otomatis mendeteksi tipe data berdasarkan **elemen yang diberikan**:
 
 <CodeBlock
   data={[
@@ -127,11 +127,11 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## Atribut Array NumPy
 
-Setiap array NumPy menyediakan atribut yang menjelaskan bentuk, jumlah elemen, tipe data, dan penggunaan memorinya. Membaca atribut tersebut hampir tidak memakan waktu karena nilainya tersimpan bersama array, bukan dihitung dengan menelusuri elemen satu per satu.
+Atribut menjelaskan **struktur array** tanpa membaca setiap nilai: bentuk, jumlah elemen, dtype, dan byte yang dipakai elemen. `nbytes` menghitung penyimpanan elemen, bukan seluruh memori proses Python atau metadata objek array.
 
 ### Atribut Dimensi dan Bentuk
 
-Contoh berikut membaca atribut struktur utama dari sebuah array dua dimensi.
+Contoh berikut membaca **atribut struktur utama** dari sebuah array dua dimensi.
 
 <CodeBlock
   data={[
@@ -159,7 +159,7 @@ print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen
 
 ### Atribut Array
 
-Sebuah array melaporkan strukturnya sendiri melalui atribut. Tabel berikut memuat atribut yang paling sering dibaca dan nilai yang dikembalikan masing-masing untuk array <InlineMath math="2 \times 3" />.
+Sebuah array melaporkan strukturnya sendiri melalui atribut. Tabel berikut memuat atribut yang paling sering dibaca dan **nilai yang dikembalikan** masing-masing untuk array <InlineMath math="2 \times 3" />.
 
 | Atribut | Fungsi | Contoh Hasil |
 |---------|---------|--------------|
@@ -198,11 +198,11 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 
 ## Konversi dan Manipulasi Tipe Data
 
-Tipe data yang dipakai sebuah array saat dibuat jarang menjadi tipe yang dibutuhkan di akhir perhitungan. Konversi berguna untuk memperkecil penggunaan memori, memenuhi kebutuhan fungsi yang mensyaratkan tipe tertentu, dan menjaga aritmetika bilangan bulat agar tidak berubah menjadi bilangan pecahan. Sebelum mengonversi, periksa dulu tipe apa yang benar-benar dibutuhkan hasil perhitungan.
+Lakukan konversi ketika **tipe yang dibutuhkan berbeda** dari dtype saat ini, misalnya untuk memenuhi masukan suatu fungsi atau menghemat memori. Konversi dapat kehilangan presisi atau nilai pecahan. Menyimpan nilai sebagai integer juga tidak menjamin semua operasi berikutnya menghasilkan integer.
 
 ### Method Konversi Tipe Data
 
-Konversi tipe data mengubah array ke tipe yang dibutuhkan untuk analisis berikutnya. Method `astype()` mengembalikan array hasil konversi dan tidak mengubah array asal secara langsung. Saat mengubah nilai desimal menjadi integer, NumPy memotong bagian pecahan menuju nol.
+Konversi tipe data mengubah array ke tipe yang dibutuhkan untuk analisis berikutnya. Method `astype()` mengembalikan array hasil konversi dan tidak mengubah array asal secara langsung. Saat mengubah nilai desimal menjadi integer, NumPy **memotong bagian pecahan menuju nol**.
 
 <CodeBlock
   data={[
@@ -236,7 +236,7 @@ print("Tipe data hasil konversi ke int:", int_from_string.dtype)  # Output: Tipe
 
 ### Optimasi Memori dengan Tipe Data
 
-Memilih tipe data tersempit yang tetap mencakup nilai dan presisi yang dibutuhkan dapat mengurangi penggunaan memori secara nyata. Sebelum memperkecil dtype, periksa rentangnya agar nilai tidak meluap atau kehilangan presisi penting.
+Memilih tipe data tersempit yang tetap mencakup **nilai dan presisi yang dibutuhkan** dapat mengurangi penggunaan memori secara nyata. Sebelum memperkecil dtype, periksa rentangnya agar nilai tidak meluap atau kehilangan presisi penting.
 
 <CodeBlock
   data={[
@@ -248,12 +248,12 @@ Memilih tipe data tersempit yang tetap mencakup nilai dan presisi yang dibutuhka
 # Array dengan tipe integer 64-bit yang eksplisit
 large_array_int64 = np.arange(1000000, dtype=np.int64)
 print("Int64 itemsize:", large_array_int64.itemsize, "bytes")  # Output: Int64 itemsize: 8 bytes
-print("Int64 total memory:", large_array_int64.nbytes, "bytes")  # Output: Int64 total memory: 8000000 bytes
+print("Int64 element memory:", large_array_int64.nbytes, "bytes")  # Output: Int64 element memory: 8000000 bytes
 
 # Array dengan tipe data lebih kecil (int32)
 large_array_int32 = np.arange(1000000, dtype=np.int32)
 print("Int32 itemsize:", large_array_int32.itemsize, "bytes")  # Output: Int32 itemsize: 4 bytes
-print("Int32 total memory:", large_array_int32.nbytes, "bytes")  # Output: Int32 total memory: 4000000 bytes
+print("Int32 element memory:", large_array_int32.nbytes, "bytes")  # Output: Int32 element memory: 4000000 bytes
 
 # Penghematan memori
 memory_saved = large_array_int64.nbytes - large_array_int32.nbytes
@@ -265,7 +265,7 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
 
 ### Informasi Detail Tipe Data
 
-Atribut `itemsize` memperlihatkan langsung hubungan antara presisi dan penggunaan memori pada setiap array.
+Atribut `itemsize` memperlihatkan langsung hubungan antara presisi dan **penggunaan memori pada setiap array**.
 
 <CodeBlock
   data={[
@@ -302,11 +302,11 @@ for name, arr in arrays.items():
 
 ## Penggunaan Praktis Atribut Array
 
-Atribut array terutama berguna sebagai alat kontrol saat mengolah data. Dengan `shape`, `ndim`, dan `dtype`, kamu bisa memeriksa apakah hasil antara masih punya struktur yang diharapkan dan menemukan kesalahan sebelum kesalahan itu terbawa ke langkah berikutnya.
+Atribut array terutama berguna sebagai alat kontrol saat mengolah data. Dengan `shape`, `ndim`, dan `dtype`, kamu bisa memeriksa apakah hasil antara masih punya **struktur yang diharapkan** dan menemukan kesalahan sebelum kesalahan itu terbawa ke langkah berikutnya.
 
 ### Analisis Struktur Data
 
-Fungsi analisis kecil dapat menampilkan shape, jumlah dimensi, tipe data, dan pemakaian memori array dalam satu keluaran. Ringkasan ini memudahkan pencarian shape atau tipe data yang salah.
+Fungsi analisis kecil dapat menampilkan **shape, jumlah dimensi, tipe data, dan pemakaian memori** array dalam satu keluaran. Ringkasan ini memudahkan pencarian shape atau tipe data yang salah.
 
 <CodeBlock
   data={[
@@ -323,7 +323,7 @@ def analyze_array(arr, name="Array"):
     print(f"Size: {arr.size}")
     print(f"Data type: {arr.dtype}")
     print(f"Item size: {arr.itemsize} bytes")
-    print(f"Total memory: {arr.nbytes} bytes")
+    print(f"Element memory: {arr.nbytes} bytes")
 
     if arr.ndim <= 2:
         print(f"Array content:\\n{arr}")
@@ -344,7 +344,7 @@ analyze_array(array_3d, "3D")
 # Size: 5
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 40 bytes
+# Element memory: 40 bytes
 # Array content:
 # [1 2 3 4 5]
 #
@@ -354,7 +354,7 @@ analyze_array(array_3d, "3D")
 # Size: 6
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 48 bytes
+# Element memory: 48 bytes
 # Array content:
 # [[1 2 3]
 #  [4 5 6]]
@@ -365,14 +365,14 @@ analyze_array(array_3d, "3D")
 # Size: 8
 # Data type: int64
 # Item size: 8 bytes
-# Total memory: 64 bytes`
+# Element memory: 64 bytes`
     }
   ]}
 />
 
 ### Validasi Data dan Pelacakan Kesalahan
 
-Sebelum meneruskan array ke model, periksa bentuk, dtype, nilai yang hilang, dan penggunaan memori yang benar-benar diharapkan model tersebut.
+Sebelum meneruskan array ke model, periksa **bentuk, dtype, nilai yang hilang**, dan penggunaan memori yang benar-benar diharapkan model tersebut.
 
 <CodeBlock
   data={[
@@ -406,8 +406,8 @@ def validate_feature_matrix(arr):
         print("✓ Tidak ada nilai NaN")
 
     # Informasi memori
-    memory_mb = arr.nbytes / (1024 * 1024)
-    print(f"Penggunaan memori: {memory_mb:.2f} MB")
+    memory_mib = arr.nbytes / (1024 * 1024)
+    print(f"Penggunaan memori: {memory_mib:.2f} MiB")
 
 # Test dengan berbagai array
 test_arrays = [
@@ -426,21 +426,21 @@ for i, arr in enumerate(test_arrays):
 # ✓ Array 2D dengan shape: (2, 3)
 # ✓ Tipe data numerik: float64
 # ✓ Tidak ada nilai NaN
-# Penggunaan memori: 0.00 MB
+# Penggunaan memori: 0.00 MiB
 #
 # --- Test Array 2 ---
 # === Validasi Array untuk ML ===
 # WARNING: Array bukan 2D (current: 1D)
 # ✓ Tipe data numerik: int64
 # ✓ Tidak ada nilai NaN
-# Penggunaan memori: 0.00 MB
+# Penggunaan memori: 0.00 MiB
 #
 # --- Test Array 3 ---
 # === Validasi Array untuk ML ===
 # ✓ Array 2D dengan shape: (2, 3)
 # ✓ Tipe data numerik: float64
 # WARNING: Terdapat 1 nilai NaN
-# Penggunaan memori: 0.00 MB`
+# Penggunaan memori: 0.00 MiB`
     }
   ]}
 />

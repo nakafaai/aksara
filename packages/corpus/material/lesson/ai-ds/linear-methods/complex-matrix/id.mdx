@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan matriks kompleks, hitung transpose konjugat, dan pakai produk skalar Hermitian untuk mengukur vektor kompleks dengan benar.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Metode Linear AI",
 };
 
@@ -38,33 +38,23 @@ Jadi, entri pada baris <InlineMath math="j" /> dan kolom <InlineMath math="i" />
 
 ## Sifat Matriks Adjoint
 
-Adjoint memiliki sejumlah aturan yang memudahkanmu memindahkannya melewati penjumlahan, perkalian, dan perkalian skalar tanpa kembali ke definisi. Setiap aturan memasangkan sebuah nama dengan persamaan yang dihasilkannya, dan pasangan itulah yang kamu pakai saat menyederhanakan ekspresi secara manual.
+Adjoint **membalik urutan faktor dalam hasil kali** dan mengonjugasi skalar. Ukuran matriks pada penjumlahan dan perkalian berikut harus sesuai.
 
-### Aturan Matriks Adjoint
+| Aturan | Identitas | Alasan |
+| --- | --- | --- |
+| Entri real | <InlineMath math="A^H=A^T" /> | Konjugasi tidak mengubah entri real. |
+| Adjoint dua kali | <InlineMath math="(A^H)^H=A" /> | Transpose dan konjugasi masing-masing dibatalkan. |
+| Penjumlahan | <InlineMath math="(A+B)^H=A^H+B^H" /> | Konjugasi distributif terhadap penjumlahan. |
+| Perkalian skalar | <InlineMath math="(\lambda A)^H=\overline\lambda A^H" /> | Skalar dikonjugasi bersama setiap entri. |
+| Hasil kali | <InlineMath math="(AB)^H=B^HA^H" /> | Transpose membalik urutan pasangan baris dan kolom. |
 
-1. **Hubungan dengan transpose real**: Untuk <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" />, berlaku <InlineMath math="A^H = A^T" />
+Untuk matriks satu entri <InlineMath math="A=(1+i)" />, bandingkan konjugat <InlineMath math="iA" /> dengan hasil kali <InlineMath math="i" /> dan konjugat <InlineMath math="A" />:
 
-Konjugasi kompleks tidak mengubah entri real. Karena itu, adjoint matriks tersebut sama dengan transpos biasa.
-
-2. **Involusi**: <InlineMath math="(A^H)^H = A" />
-
-Jika kita mengambil adjoint dari adjoint, kita kembali ke matriks asal.
-
-### Sifat Operasi Linear
-
-Kedua aturan ini berlaku selama ukuran matriksnya sesuai, sehingga adjoint dapat melewati penjumlahan atau perkalian skalar tanpa membuka entri satu per satu. Pekerjaanmu tetap berada pada tingkat matriks, bukan pada tingkat entri.
-
-3. **Linearitas penjumlahan**: <InlineMath math="(A + B)^H = A^H + B^H" />
-
-4. **Linearitas konjugat terhadap skalar**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
-
-Perhatikan bahwa untuk perkalian skalar, kita perlu mengambil konjugat dari skalar <InlineMath math="\lambda" />.
-
-### Sifat Perkalian
-
-5. **Pembalikan urutan hasil kali**: <InlineMath math="(A \cdot B)^H = B^H \cdot A^H" />
-
-Aturan ini bukan sifat antikomutatif. Artinya, pengambilan adjoint dari suatu hasil kali membalik urutan faktor, sama seperti transpose pada matriks real.
+<MathContainer>
+<BlockMath math="(iA)^H=\overline{-1+i}=-1-i" />
+<BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
+<BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
+</MathContainer>
 
 ## Norma Euclidean pada Ruang Kompleks
 

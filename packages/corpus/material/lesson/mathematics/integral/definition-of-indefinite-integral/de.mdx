@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ein unbestimmtes Integral umfasst alle Stammfunktionen, die sich nur durch eine Integrationskonstante unterscheiden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-19",
     subject: "Integrale",
 };
 
@@ -13,7 +13,7 @@ Durch [Differenzieren](/de/faecher/mathematik/ableitungen/begriff-der-ableitungs
 
 ## Aufgabe der Integrationskonstante
 
-Vergleiche die folgenden Funktionen mit ihren Ableitungen.
+Gesucht sind Funktionen mit der Ableitung <InlineMath math="4x" />. Die Tabelle vergleicht vier Möglichkeiten. Du erkennst, dass **verschiedene Konstanten** dieselbe Ableitung ergeben.
 
 | Funktion <InlineMath math="F(x)" /> | Ableitung <InlineMath math="f(x) = F'(x)" /> |
 | :--- | :--- |
@@ -26,6 +26,27 @@ Alle vier Funktionen <InlineMath math="F(x)" /> haben dieselbe Ableitung <Inline
 
 Die Ableitung enthält <Highlight>die Konstante der ursprünglichen Funktion</Highlight> nicht mehr. Deshalb lässt sich aus ihr nicht erkennen, ob diese Konstante <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" /> oder einen anderen Wert hatte. Das Symbol <InlineMath math="C" /> steht für alle möglichen Werte. Das unbestimmte Integral umfasst somit alle Stammfunktionen, die sich nur durch ihre Konstante unterscheiden.
 
+Die Aussage über eine konstante Differenz gilt auf **einem Intervall**, auf dem die Stammfunktionen definiert sind. Bei diesen Polynomen kann das Intervall alle reellen Zahlen umfassen.
+
+## Graphen der Stammfunktionen vergleichen
+
+Die drei Parabeln stellen <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" /> und <InlineMath math="2x^2+5" /> dar. Bei demselben Wert von <InlineMath math="x" /> haben die Kurven unterschiedliche Höhen, aber gleiche Tangentensteigungen. Verschiebe oder drehe die Ansicht und vergleiche die Form der Kurven.
+
+<LineEquation
+  title="Stammfunktionen mit verschiedenen Konstanten"
+  description="Die violette Kurve hat die Konstante null, die orange Kurve eins und die türkise Kurve fünf."
+  data={[
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
+    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
+  ]}
+  showZAxis={false}
+  cameraTarget={[0, 4.5, 0]}
+  cameraPosition={[0, 4.5, 17]}
+/>
+
+Eine Änderung der Konstanten bewirkt eine **vertikale Verschiebung**. Bei <InlineMath math="x=1" /> sind die Funktionswerte zum Beispiel <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="7" />. Alle drei Ableitungen haben dort den Wert <InlineMath math="4" />.
+
 ## Formale Notation von Integralen
 
 Die folgende Schreibweise zeigt Integrand, Integrationsvariable, Stammfunktion und Integrationskonstante:
@@ -33,13 +54,21 @@ Die folgende Schreibweise zeigt Integrand, Integrationsvariable, Stammfunktion u
 <BlockMath math="\int f(x) \, dx = F(x) + C" />
 
 Jeder Teil hat eine bestimmte Aufgabe:
-- **<InlineMath math="\int" />** ist das **Integralsymbol**. Seine Form geht auf ein verlängertes S für das lateinische Wort *summa* zurück, das Summe bedeutet.
-- **<InlineMath math="f(x)" />** ist die Funktion, die wir integrieren werden, genannt **Integrand**.
-- **<InlineMath math="dx" />** heißt **Differential** von <InlineMath math="x" />. Dies ist ein entscheidender Teil, der anzeigt, dass wir in Bezug auf die Variable <InlineMath math="x" /> integrieren. Ohne sie ist der Integralausdruck unvollständig.
-- **<InlineMath math="F(x) + C" />** ist das **unbestimmte Integral** von <InlineMath math="f(x)" />. Dies ist unsere Antwort, wobei <InlineMath math="F(x)" /> die Stammfunktion und <InlineMath math="C" /> die **Integrationskonstante** ist.
+- <InlineMath math="\int" /> ist das **Integralsymbol**. Seine Form geht auf ein verlängertes S für das lateinische Wort *summa* zurück, das Summe bedeutet.
+- <InlineMath math="f(x)" /> ist die Funktion, die wir integrieren werden, genannt **Integrand**.
+- <InlineMath math="dx" /> heißt **Differential** von <InlineMath math="x" />. Dies ist ein entscheidender Teil, der anzeigt, dass wir in Bezug auf die Variable <InlineMath math="x" /> integrieren. Ohne sie ist der Integralausdruck unvollständig.
+- <InlineMath math="F(x) + C" /> ist das **unbestimmte Integral** von <InlineMath math="f(x)" />. Dies ist unsere Antwort, wobei <InlineMath math="F(x)" /> die Stammfunktion und <InlineMath math="C" /> die **Integrationskonstante** ist.
 
 Zwischen Stammfunktion und unbestimmtem Integral gilt:
 
 <BlockMath math="\begin{aligned} &amp;\frac{d}{dx} [F(x)] = f(x) \\ &amp;\iff \\ &amp;\int f(x) \, dx = F(x) + C \end{aligned}" />
 
 > Wenn <InlineMath math="F(x)" /> die Ableitung <InlineMath math="f(x)" /> hat, dann umfasst das unbestimmte Integral von <InlineMath math="f(x)" /> alle Funktionen der Form <InlineMath math="F(x) + C" />.
+
+## Die Konstante aus einem Funktionswert bestimmen
+
+Es gelte <InlineMath math="F'(x)=4x" /> und <InlineMath math="F(1)=7" />. Die allgemeine Stammfunktion lautet <InlineMath math="F(x)=2x^2+C" />. Der **bekannte Funktionswert** legt die Konstante fest:
+
+<BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
+
+Damit ist <InlineMath math="F(x)=2x^2+5" />. Prüfe beide Bedingungen: Die Ableitung von <InlineMath math="2x^2+5" /> ist <InlineMath math="4x" />, und <InlineMath math="F(1)=2+5=7" />. Ein Funktionswert wählt genau eine der Stammfunktionen auf demselben Intervall aus.

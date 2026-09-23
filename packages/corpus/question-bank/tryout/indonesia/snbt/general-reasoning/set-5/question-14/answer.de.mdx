@@ -5,16 +5,45 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-Die Maße werden in Dezimeter umgerechnet: Höhe <InlineMath math="h=42\text{ dm}" /> und Radius <InlineMath math="r=15\text{ dm}" />. Mit dem vorgegebenen Näherungswert beträgt das Wasservolumen:
+Für das Zylindervolumen brauchst du den **Radius**, gegeben ist aber der Durchmesser. Passe außerdem die Längeneinheit an die Durchflussrate in Kubikdezimetern pro Minute an.
 
-<MathContainer>
-  <BlockMath math="V=\pi r^2h" />
+#### Zylindervolumen berechnen
 
-  <BlockMath math="\begin{aligned}V&\approx\frac{22}{7}\times15^2\times42\\&=29{.}700\text{ dm}^3\end{aligned}" />
-</MathContainer>
+Ein Meter entspricht zehn Dezimetern. Die Höhe beträgt deshalb <InlineMath math="4{,}2\times10=42\text{ dm}" /> und der Durchmesser <InlineMath math="3\times10=30\text{ dm}" />. Der **Radius ist der halbe Durchmesser**, also <InlineMath math="30/2=15\text{ dm}" />.
 
-Das Volumen wird durch die konstante Durchflussrate geteilt. Für die Zeit in Minuten gilt:
+<MathVisual
+  title="Grundfläche des Zylinders von oben"
+  description="Der Durchmesser verläuft durch den Mittelpunkt von einem Rand zum gegenüberliegenden Rand. Der Radius reicht nur vom Mittelpunkt bis zu einem Rand und ist deshalb halb so lang."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -18, max: 18 }, y: { min: -18, max: 18 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 15, appearance: "primary" },
+      { id: "diameter", kind: "segment", from: { x: -15, y: 0 }, to: { x: 15, y: 0 }, appearance: "secondary" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 15 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "diameter", objectId: "diameter", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "radius", objectId: "radius", at: { x: 0, y: 7.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    diameter: <InlineMath math="d=30\text{ dm}" />,
+    radius: <InlineMath math="r=15\text{ dm}" />,
+  }}
+/>
 
-<BlockMath math="t\approx\frac{29{.}700}{12}=2{.}475" />
+<BlockMath math="\begin{aligned}V&amp;=\pi r^2h\\&amp;\approx\frac{22}{7}\times15^2\times42\\&amp;=22\times225\times6\\&amp;=29{.}700\text{ dm}^3\end{aligned}" />
 
-Wegen <InlineMath math="2{.}475=41\times60+15" /> dauert die Entleerung ungefähr <InlineMath math="41" /> Stunden und <InlineMath math="15" /> Minuten.
+#### Volumen in Zeit umrechnen
+
+Bei einer **konstanten Durchflussrate** fließt jede Minute dasselbe Volumen ab. Teile das volle Volumen durch die Leckrate, um die Zeit in Minuten zu erhalten:
+
+<BlockMath math="t\approx\frac{29{.}700}{12}=2{.}475\text{ min}" />
+
+Zerlege die Minuten in volle Stunden und einen Rest:
+
+<BlockMath math="2{.}475=41\times60+15" />
+
+Die Entleerung dauert damit ungefähr <InlineMath math="41\text{ Stunden }15\text{ Minuten}" />.

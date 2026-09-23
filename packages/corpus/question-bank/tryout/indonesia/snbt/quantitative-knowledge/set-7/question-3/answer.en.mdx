@@ -5,46 +5,13 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-We will check each number to see if it satisfies the following two conditions:
-1. When divided by <InlineMath math="5" />, the remainder is <InlineMath math="4" /> (<InlineMath math="n \equiv 4 \pmod 5" />).
-2. When divided by <InlineMath math="4" />, the remainder is <InlineMath math="3" /> (<InlineMath math="n \equiv 3 \pmod 4" />).
+A selected number must satisfy **both remainder conditions**. Check division by 5 and 4 for every candidate.
 
-#### Checking Number Nineteen
+| Number | Division by 5 | Division by 4 | Satisfies both |
+| --- | --- | --- | --- |
+| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Yes |
+| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | No |
+| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Yes |
+| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | No |
 
-<MathContainer>
-  <BlockMath math="19 = 3 \times 5 + 4" />
-  <BlockMath math="19 = 4 \times 4 + 3" />
-</MathContainer>
-
-The number <InlineMath math="19" /> satisfies both conditions. (Correct)
-
-#### Checking Number Twenty Nine
-
-<MathContainer>
-  <BlockMath math="29 = 5 \times 5 + 4" />
-  <BlockMath math="29 = 7 \times 4 + 1" />
-</MathContainer>
-
-The number <InlineMath math="29" /> does not satisfy the second condition because the remainder is <InlineMath math="1" /> when divided by <InlineMath math="4" />. (Incorrect)
-
-#### Checking Number Thirty Nine
-
-<MathContainer>
-  <BlockMath math="39 = 7 \times 5 + 4" />
-  <BlockMath math="39 = 9 \times 4 + 3" />
-</MathContainer>
-
-The number <InlineMath math="39" /> satisfies both conditions. (Correct)
-
-#### Checking Number Forty Nine
-
-<MathContainer>
-  <BlockMath math="49 = 9 \times 5 + 4" />
-  <BlockMath math="49 = 12 \times 4 + 1" />
-</MathContainer>
-
-The number <InlineMath math="49" /> does not satisfy the second condition because the remainder is <InlineMath math="1" /> when divided by <InlineMath math="4" />. (Incorrect)
-
-#### Numbers Satisfying Both Conditions
-
-The numbers that satisfy the conditions are <InlineMath math="19" /> and <InlineMath math="39" /> (statements (1) and (3)).
+Only 19 and 39 satisfy both conditions, namely **choices 1 and 3**.
