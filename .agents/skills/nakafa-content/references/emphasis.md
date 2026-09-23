@@ -9,8 +9,14 @@ learned, and `success` marks a phrase whose condition the learner has already
 met, such as a satisfied requirement or a completed step. A bare `<Highlight>`
 uses the warning surface.
 
+Prefer native Markdown `**phrase**` for ordinary authored prose. Use
+`<Highlight>` only when a JSX context or an explicit supported tone needs it.
+Both syntaxes share the same styling and inherit the surrounding font weight:
+the marker surface provides the emphasis without making the text heavier.
+
 - Mark the phrase, not the sentence. Emphasis stays inside one sentence and
-  never wraps a whole sentence, a heading, or mathematics. Name the one term,
+  never wraps a whole sentence or a heading. Do not mark pure mathematical
+  notation; a meaningful prose phrase may include inline math. Name the one term,
   condition, or quantity a learner would write down: a few load-bearing words
   beat a highlighted sentence. A mark that spans a whole sentence is a smell;
   narrow it to the decisive clause, and split a genuine pair such as two
@@ -18,10 +24,17 @@ uses the warning surface.
   carries criterion content may stay whole.
 - Keep emphasis sparse. A section that marks everything marks nothing, so mark
   the few phrases a learner would write down.
+- Review the marked phrases as a student's revision notes. Mark enough key
+  terms, deciding conditions, and method changes to recover the reasoning when
+  scanning the page, including worked tryout answers. Do not substitute one
+  highlighted sentence for useful marks throughout a substantial explanation,
+  and do not add a quota of marks to every paragraph.
 - Do not nest one marker inside the other. Both markers render the same
   surface, so nesting adds nothing for the learner. The gate traverses the
-  authored tree and reports it (`highlight-nesting`). The `sentence-punctuation-emphasis` rule catches a marked phrase of four
-  or more words ending in a sentence mark. It preserves assessed prompts,
+  authored tree and reports it (`highlight-nesting`). The
+  `sentence-punctuation-emphasis` rule catches marked phrases ending in a
+  comma, semicolon, or colon, including short labels. It also catches phrases
+  of four or more words ending in a sentence mark. It preserves assessed prompts,
   quotations, code, and short abbreviations. Whole sentences without that
   punctuation, headings, and mathematics still need the [final
   review](review.md#final-language-review).
@@ -47,6 +60,9 @@ uses the warning surface.
   marked phrase. Preserve punctuation that belongs to an assessed quotation or
   the term itself. Mark a complete step label, such as `**Langkah 1**`, rather
   than `**Langkah** 1`. The number identifies the step and belongs with its noun.
+- Number and step identifiers help navigation but do not substitute for a
+  marked concept or deciding condition. `section-body-highlight` does not count
+  a bare `**Soal 1**` or `**Langkah 1**` as pedagogical emphasis.
 - In a worked answer, mark the deciding condition, operation, or interpretation.
   Keep the complete substitution and calculation visible in math blocks. Do
   not mark the entire conclusion or every answer option merely to distinguish

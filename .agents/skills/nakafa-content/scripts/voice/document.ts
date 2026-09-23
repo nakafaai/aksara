@@ -3,6 +3,7 @@ import {
   findEmphasisArtifactIssues,
   findPhraseEmphasisIssues,
 } from "#nakafa-content/emphasis/check";
+import { findExerciseAnswerIssues } from "#nakafa-content/exercise/answers";
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
 import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
 import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
@@ -72,9 +73,17 @@ export function findDocumentIssues(
     ...findBodyHighlightIssues(tree, profile === "answer"),
     ...findMathBlockFragmentIssues(source, tree),
     ...findLearnerFacingSemicolonIssues(source, tree),
-    ...findHeadingOrderIssues(source, tree, profile === "answer" ? 4 : 2),
+    ...findHeadingOrderIssues(
+      source,
+      tree,
+      profile === "answer" ? 4 : 2,
+      profile === "answer" ? undefined : locale
+    ),
     ...(profile === "answer"
       ? []
-      : [...findOpeningHighlightIssues(source, tree)]),
+      : [
+          ...findOpeningHighlightIssues(source, tree),
+          ...findExerciseAnswerIssues(source, tree, locale),
+        ]),
   ];
 }

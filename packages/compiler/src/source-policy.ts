@@ -1,4 +1,7 @@
-import type { ContentKey } from "@nakafa/aksara-contracts/ids";
+import type {
+  ContentKey,
+  CorpusSourcePath,
+} from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import {
   ExecutablePolicyError,
@@ -8,6 +11,7 @@ import {
   UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import {
+  type AuthoredHeadingDepthError,
   type AuthoredListHeadingError,
   createHeadingPolicy,
 } from "#compiler/heading-policy";
@@ -16,6 +20,7 @@ import { enforceExecutablePolicy } from "#compiler/policy";
 
 /** Every expected failure surfaced by authored-source policy validation. */
 export type SourcePolicyError =
+  | AuthoredHeadingDepthError
   | AuthoredListHeadingError
   | ExecutablePolicyError
   | MathVisualPolicyError
@@ -24,9 +29,10 @@ export type SourcePolicyError =
 /** Creates the complete authored-source policy used by inspection and compilation. */
 export function createSourcePolicy(
   contentKey: ContentKey,
+  sourcePath: CorpusSourcePath,
   allowedComponents: ReadonlySet<string>
 ) {
-  const headingPolicy = createHeadingPolicy(contentKey);
+  const headingPolicy = createHeadingPolicy(contentKey, sourcePath);
   const mathVisualPolicy = createMathVisualPolicy(contentKey);
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];

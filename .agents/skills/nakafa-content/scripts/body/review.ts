@@ -9,6 +9,9 @@ import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
+const STRUCTURAL_MARKER =
+  /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung|Langkah|Step|Schritt|Contoh|Example|Beispiel)\s+\d+$/iu;
+
 /** Observable section features that require a contextual teaching decision. */
 export interface TeachingSectionReview {
   components: string[];
@@ -79,7 +82,11 @@ function hasProseEmphasis(node: MdxNode): boolean {
     return false;
   }
   if (node.type === "strong" || isHighlightComponentName(node.name)) {
-    return hasMarkedPhrase(node);
+    const phrase = proseParts(node)
+      .map(({ text }) => text)
+      .join("")
+      .trim();
+    return !STRUCTURAL_MARKER.test(phrase) && hasMarkedPhrase(node);
   }
   return (node.children ?? []).some(hasProseEmphasis);
 }

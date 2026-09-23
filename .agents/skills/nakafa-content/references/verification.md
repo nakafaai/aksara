@@ -170,8 +170,12 @@ boundary before widening a rule. Preserve the following verification boundaries:
   an external or protocol-relative destination that carries a generic label, a
   reference-style destination with prose, and a link beside math, inline code,
   or an image valid. The numeric link ceiling stays editorial.
-- `heading-order` fixtures cover a skipped level, a body that opens above `##`,
-  and the answer-key nesting `##` to `###` to `####` to `#####`.
+- `heading-order` fixtures reject skipped levels, incorrect opening levels, and
+  lesson/article H4 or deeper even without a skipped level. Standalone
+  question-bank answers retain valid H4 and H5, while H6 is rejected. Lesson
+  fixtures also reject an explicit answer H2 immediately after its exercise H2,
+  preserve the exercise H2 and solution H3, and retain conceptual solution
+  headings and independent article structure.
 - `duplicated-list-ordinal` fixtures cover `1. Pertama,`, `1. First,`,
   `1. Zuerst,`, and `3. **Zunächst:**`, and must keep `1. Pertama kali`,
   `1. First die 3, second die 4`, `1. First ionization energy`,
@@ -261,3 +265,12 @@ unfinished parenthesis, bracket, or group, as in `P(S &= 7)` instead of
 `P(S=7) &= ...`. Preserve complete event arguments, radicals, and conditions.
 Nested matrices and cases retain their own alignment. Recompute the displayed
 steps after repairing their layout.
+
+Exercise mapping regression fixtures cover missing question numbers, calculation
+steps inside an answer, continuous and restarted prompt groups, prose labels,
+numbered answers, prose-numbered prompts, mixed list continuations, and table row
+and column references in ID, EN, and DE. Fixtures include Answer, Jawaban, and
+Antwort labels, literal and expression-wrapped JSX headings, and mixed
+Markdown/JSX section boundaries. Heading labels come from visible parsed children, never
+component attributes. The check is lesson-only and does not rewrite question-bank
+answer structure.

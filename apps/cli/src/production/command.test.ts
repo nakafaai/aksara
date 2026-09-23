@@ -43,12 +43,12 @@ describe("production command", () => {
       expect(receipt).toMatchObject({ releaseId: "release-active" });
       expect(calls).toMatchObject({
         catalogCalls: 0,
-        cleanReads: 0,
+        cleanReads: 1,
         publishCalls: 0,
         rendererCalls: 0,
         resumeBundle: active,
         resumeCalls: 1,
-        rootReads: 0,
+        rootReads: 1,
         signingSecretReads: 0,
         sourceLayers: 0,
         targetServiceReads: 1,
@@ -74,13 +74,43 @@ describe("production command", () => {
       expect(receipt).toEqual(receiptFor(completed.release.manifest));
       expect(calls).toMatchObject({
         catalogCalls: 0,
-        cleanReads: 0,
+        cleanReads: 1,
         publishCalls: 0,
         rendererCalls: 0,
         resumeBundle: completed,
         resumeCalls: 1,
         signingSecretReads: 0,
         sourceLayers: 0,
+      });
+    })
+  );
+
+  it.effect("rejects an active receipt from another source revision", () =>
+    Effect.gen(function* () {
+      const active = gitBundle("release-active", {
+        sha: GitCommitShaSchema.make("b".repeat(40)),
+      });
+      calls.current = currentState({
+        active: completedBundle(active),
+        candidate: null,
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      });
+      const error = yield* productionProgram({
+        command: "release",
+        recoveryId: releaseId("recovery-active"),
+        releaseId: releaseId("release-active"),
+        scope: FUNCTION_SCOPE,
+      }).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        failure: "RecoveryRevisionMismatchError",
+        stage: "prepare",
+      });
+      expect(calls).toMatchObject({
+        cleanReads: 1,
+        publishCalls: 0,
+        resumeCalls: 0,
+        signingSecretReads: 0,
       });
     })
   );

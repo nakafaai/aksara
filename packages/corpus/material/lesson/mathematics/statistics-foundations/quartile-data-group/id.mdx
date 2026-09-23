@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung kuartil data kelompok dengan menentukan posisi pada frekuensi kumulatif dan melakukan interpolasi di antara tepi kelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-24",
   subject: "Statistika",
 };
 
@@ -51,15 +51,15 @@ Kita cari dulu posisi data ke berapa si kuartil itu.
 
 Total data (<InlineMath math="n" />) adalah <InlineMath math="30" />.
 
-- **Letak <InlineMath math="Q_1" />:** data ke <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
+- **Letak <InlineMath math="Q_1" />**: data ke <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
 
   Pada kolom <InlineMath math="F_k" />, kelas pertama berakhir di posisi <InlineMath math="2" /> dan kelas kedua berakhir di posisi <InlineMath math="13" />. Posisi <InlineMath math="3" /> hingga <InlineMath math="13" /> berada di kelas kedua, sehingga posisi <InlineMath math="7{,}5" /> termasuk kelas <InlineMath math="40\text{-}42" />.
 
-- **Letak <InlineMath math="Q_2" /> (Median):** data ke <InlineMath math="\frac{1}{2} \times 30 = 15" />.
+- **Letak <InlineMath math="Q_2" /> (Median)**: data ke <InlineMath math="\frac{1}{2} \times 30 = 15" />.
 
   Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="15" /> ada di kelas <InlineMath math="43\text{-}45" /> (karena <InlineMath math="F_k" /> sebelumnya <InlineMath math="13" />, dan <InlineMath math="F_k" /> kelas ini <InlineMath math="23" />).
 
-- **Letak <InlineMath math="Q_3" />:** data ke <InlineMath math="\frac{3}{4} \times 30 = 22{,}5" />.
+- **Letak <InlineMath math="Q_3" />**: data ke <InlineMath math="\frac{3}{4} \times 30 = 22{,}5" />.
 
   Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="22{,}5" /> ada di kelas <InlineMath math="43\text{-}45" /> juga (karena <InlineMath math="F_k" /> sebelumnya <InlineMath math="13" />, dan <InlineMath math="F_k" /> kelas ini <InlineMath math="23" />).
 
@@ -84,8 +84,8 @@ Interpolasi ini mengasumsikan bahwa <Highlight>data tersebar merata di dalam kel
 
 Kita hitung <InlineMath math="Q_1" /> dari tabel di atas.
 
-**Letak <InlineMath math="Q_1" />:** Data ke-<InlineMath math="7{,}5" />.
-**Kelas <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Letak <InlineMath math="Q_1" />**: Data ke-<InlineMath math="7{,}5" />.
+**Kelas <InlineMath math="Q_1" />**: <InlineMath math="40\text{-}42" />.
 **Nilai yang digunakan**
 
 | Besaran | Nilai |
@@ -115,8 +115,8 @@ Hitung <InlineMath math="Q_3" /> dari **data penjualan sepatu** Toko A pada tabe
 Kemudian, bandingkan langkah interpolasi kuartil data kelompok dengan cara menentukan [kuartil data tunggal](/id/materi/matematika/statistika-dasar/kuartil-data-tunggal). Mengapa tabel kelompok hanya memberikan perkiraan?
 ### Kunci Jawaban
 
-**Letak <InlineMath math="Q_3" />:** Data ke-<InlineMath math="22{,}5" />.
-**Kelas <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Letak <InlineMath math="Q_3" />**: Data ke-<InlineMath math="22{,}5" />.
+**Kelas <InlineMath math="Q_3" />**: <InlineMath math="43\text{-}45" />.
 **Nilai yang digunakan**
 
 | Besaran | Nilai |
@@ -139,7 +139,7 @@ Masukkan ke rumus:
 
 Perkiraan nilai <InlineMath math="Q_3" /> adalah <InlineMath math="45{,}35" />. Dalam model data kelompok ini, sekitar <InlineMath math="75\%" /> sepatu yang terjual berukuran <InlineMath math="45{,}35" /> atau lebih kecil. Sisanya, sekitar <InlineMath math="25\%" />, berukuran lebih besar dari <InlineMath math="45{,}35" />.
 
-**Perbandingan dengan Data Tunggal:**
+**Perbandingan dengan Data Tunggal**:
 
 Kuartil data kelompok dihitung dengan **interpolasi** karena tabel hanya memuat interval dan frekuensi tanpa setiap nilai asli. Perhitungan tersebut menghasilkan perkiraan nilai kuartil.
 

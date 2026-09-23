@@ -4,34 +4,8 @@
   "envMode": "strict",
   "globalDependencies": ["packages/typescript-config/*.json"],
   "tasks": {
-    "//#typecheck:root": {
-      "inputs": [
-        "tsconfig.json",
-        ".agents/skills/nakafa-content/scripts/**/*.ts",
-        "scripts/**/*.ts",
-        "apps/*/vitest.config.ts",
-        "packages/*/vitest.config.ts",
-        "packages/*/scripts/**/*.ts",
-        "packages/*/package.json"
-      ],
-      "outputs": [],
-      "dependsOn": [
-        "@nakafa/aksara-contracts#transit",
-        "@nakafa/aksara-utilities#transit"
-      ]
-    },
-    "//#test:root": {
-      "dependsOn": [
-        "//#test:lesson-voice",
-        "@nakafa/aksara-contracts#build",
-        "@nakafa/aksara-utilities#build"
-      ],
-      "inputs": [
-        "package.json",
-        "scripts/**/*.ts",
-        "packages/testing/index.ts"
-      ],
-      "outputs": ["coverage/**"]
+    "//#clean:root": {
+      "cache": false
     },
     "//#test:lesson-voice": {
       "inputs": [
@@ -50,17 +24,39 @@
       ],
       "outputs": ["coverage/voice/**"]
     },
-    "//#clean:root": {
-      "cache": false
+    "//#test:root": {
+      "dependsOn": [
+        "//#test:lesson-voice",
+        "@nakafa/aksara-contracts#build",
+        "@nakafa/aksara-utilities#build"
+      ],
+      "inputs": [
+        "package.json",
+        "scripts/**/*.ts",
+        "packages/testing/index.ts"
+      ],
+      "outputs": ["coverage/**"]
     },
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+    "//#typecheck:root": {
+      "inputs": [
+        "tsconfig.json",
+        ".agents/skills/nakafa-content/scripts/**/*.ts",
+        "scripts/**/*.ts",
+        "apps/*/vitest.config.ts",
+        "packages/*/vitest.config.ts",
+        "packages/*/scripts/**/*.ts",
+        "packages/*/package.json"
+      ],
+      "outputs": [],
+      "dependsOn": [
+        "@nakafa/aksara-contracts#transit",
+        "@nakafa/aksara-utilities#transit"
+      ]
     },
-    "check": {
-      "dependsOn": ["build"],
-      "cache": false,
-      "env": ["NAKAFA_APP_DIR"]
+    "@nakafa/aksara-contracts#test": {
+      "dependsOn": ["//#test:root", "build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
+      "outputs": ["coverage/**"]
     },
     "@nakafa/aksara-corpus#build": {
       "cache": false,
@@ -72,15 +68,6 @@
       "dependsOn": ["//#test:root", "^build"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
       "outputs": ["coverage/**"]
-    },
-    "@nakafa/aksara-contracts#test": {
-      "dependsOn": ["//#test:root", "build"],
-      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
-      "outputs": ["coverage/**"]
-    },
-    "clean": {
-      "dependsOn": ["//#clean:root"],
-      "cache": false
     },
     "abort": {
       "dependsOn": ["build"],
@@ -94,6 +81,19 @@
       "passThroughEnv": ["NODE_EXTRA_CA_CERTS"],
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "check": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "env": ["NAKAFA_APP_DIR"]
+    },
+    "clean": {
+      "dependsOn": ["//#clean:root"],
+      "cache": false
+    },
     "cleanup": {
       "dependsOn": ["build"],
       "cache": false,
@@ -104,6 +104,29 @@
       "cache": false,
       "env": ["NAKAFA_APP_DIR"],
       "persistent": true
+    },
+    "parity": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "passThroughEnv": ["NODE_EXTRA_CA_CERTS"],
+      "env": [
+        "AKSARA_DEV_PUBLICATION_ENDPOINT",
+        "AKSARA_DEV_PUBLICATION_TOKEN",
+        "AKSARA_PUBLICATION_ENDPOINT",
+        "AKSARA_PUBLICATION_TOKEN"
+      ]
+    },
+    "recover": {
+      "dependsOn": ["build"],
+      "cache": false,
+      "passThroughEnv": ["NODE_EXTRA_CA_CERTS"],
+      "env": [
+        "AKSARA_CACHE_SURFACE",
+        "AKSARA_PUBLICATION_ENDPOINT",
+        "AKSARA_PUBLICATION_TOKEN",
+        "AKSARA_RENDERER_ENDPOINT",
+        "AKSARA_RENDERER_TOKEN"
+      ]
     },
     "release": {
       "dependsOn": ["build"],
@@ -119,23 +142,16 @@
         "AKSARA_SIGNING_PRIVATE_KEY"
       ]
     },
-    "recover": {
-      "dependsOn": ["build"],
-      "cache": false,
-      "passThroughEnv": ["NODE_EXTRA_CA_CERTS"],
-      "env": [
-        "AKSARA_CACHE_SURFACE",
-        "AKSARA_PUBLICATION_ENDPOINT",
-        "AKSARA_PUBLICATION_TOKEN",
-        "AKSARA_RENDERER_ENDPOINT",
-        "AKSARA_RENDERER_TOKEN"
-      ]
-    },
     "status": {
       "dependsOn": ["build"],
       "cache": false,
       "passThroughEnv": ["NODE_EXTRA_CA_CERTS"],
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
+    },
+    "test": {
+      "dependsOn": ["//#test:root", "^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
+      "outputs": ["coverage/**"]
     },
     "transit": {
       "dependsOn": ["^transit"]
@@ -143,11 +159,6 @@
     "typecheck": {
       "dependsOn": ["//#typecheck:root", "transit"],
       "outputs": []
-    },
-    "test": {
-      "dependsOn": ["//#test:root", "^build"],
-      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
-      "outputs": ["coverage/**"]
     },
     "verify:consumer": {
       "cache": false

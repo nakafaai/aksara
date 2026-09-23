@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate work from variable forces, spring energy, distributed mass, and center of mass with integrals.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-19",
+   dateModified: "2026-09-23",
    subject: "Integrals",
 };
 
@@ -134,9 +134,9 @@ For work and spring energy, integrate force with respect to displacement. For ma
 
 3. A wire of length <InlineMath math="4 \text{ meters}" /> has linear density <InlineMath math="\rho(x) = (2 + x)\,\text{kg/m}" />, where <InlineMath math="x" /> is measured in meters. Determine the total mass of the wire and the position of its center of mass.
 
-### Calculating work with variable force
+### Worked Solutions
 
-The force depends on position. Add the contributions <InlineMath math="F(x)\,dx" /> from <InlineMath math="0" /> to <InlineMath math="3" />, then **subtract the antiderivative values** at the two limits.
+**Problem 1**. The force depends on position. Add the contributions <InlineMath math="F(x)\,dx" /> from <InlineMath math="0" /> to <InlineMath math="3" />, then **subtract the antiderivative values** at the two limits.
 
 <MathContainer>
 <BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
@@ -147,9 +147,7 @@ The force depends on position. Add the contributions <InlineMath math="F(x)\,dx"
 
 The work done is <InlineMath math="9" /> Joules.
 
-### Calculating spring energy
-
-When the spring is stretched slowly, the required external force increases as <InlineMath math="F(x)=kx" />. The stored **potential energy** equals the work of this force from zero extension to <InlineMath math="0.1" /> metre.
+**Problem 2**. When the spring is stretched slowly, the required external force increases as <InlineMath math="F(x)=kx" />. The stored **potential energy** equals the work of this force from zero extension to <InlineMath math="0.1" /> metre.
 
 <MathContainer>
 <BlockMath math="E = \int_{0}^{0.1} kx \, dx = \int_{0}^{0.1} 200x \, dx" />
@@ -159,9 +157,7 @@ When the spring is stretched slowly, the required external force increases as <I
 
 The potential energy stored is <InlineMath math="1" /> Joule.
 
-### Calculating wire mass and center of mass
-
-Add the mass of each short piece of wire, found by multiplying its linear density by its length:
+**Problem 3**. Add the mass of each short piece of wire, found by multiplying its linear density by its length:
 
 <BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
 

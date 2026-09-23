@@ -3,7 +3,7 @@ export const metadata = {
     description: "Grenzwerte auf vereinfachte Gesundheits-, Wirtschafts-, Bevölkerungs-, Signal- und Reaktionsmodelle anwenden und die Aussagegrenzen jedes Modells prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-09-23",
     subject: "Grenzwerte",
 };
 
@@ -180,7 +180,7 @@ Für die Fallzahl des Modells verwenden wir <InlineMath math="t=282{.}367" />:
 
 <BlockMath math="\begin{aligned} &amp;(190{,}68)^3 \\ &amp;= 190{,}68 \times 190{,}68 \times 190{,}68 \\ &amp;\approx 6{.}932{.}907{,}88 \end{aligned}" />
 
-Der angezeigte Wert ist auf zwei Dezimalstellen gerundet. Die nächste Rechnung verwendet intern weiterhin den ungerundeten Wert.
+Der angezeigte Wert ist auf zwei Dezimalstellen gerundet. Die nächste Rechnung verwendet intern weiterhin den **ungerundeten Wert**.
 
 **Schritt 2** berechnet das Quadrat der Impfzahl.
 
@@ -227,9 +227,9 @@ Jede Aufgabe gibt eine Situation vor und verlangt den Wert, dem sich eine Größ
 
 3. Die Gesamtkosten für die Produktion von <InlineMath math="x" /> Masken werden durch <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" /> modelliert. Bestimme die Grenzkostenfunktion mit der Grenzwertdefinition und vergleiche sie anschließend mit den exakten Zusatzkosten beim Anstieg von <InlineMath math="x" /> auf <InlineMath math="x+1" /> Einheiten.
 
-### Grenze der kumulierten Produktion
+### Lösungen
 
-Die langfristige Grenze des Modells ergibt sich aus dem **Grenzwert** für <InlineMath math="t \to \infty" />:
+**Aufgabe 1**. Die langfristige Grenze des Modells ergibt sich aus dem **Grenzwert** für <InlineMath math="t \to \infty" />:
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
@@ -239,9 +239,7 @@ Die langfristige Grenze des Modells ergibt sich aus dem **Grenzwert** für <Inli
 
 Die kumulierte Produktion nähert sich im Modell <InlineMath math="50{.}000" /> Impfstoffeinheiten. Für ein endliches <InlineMath math="t" /> erreicht sie diesen Wert nicht genau, weil <InlineMath math="e^{-0{,}1t}>0" /> für jedes endliche <InlineMath math="t" /> gilt.
 
-### Grenze der Nachrichtenreichweite
-
-Teile Zähler und Nenner durch <InlineMath math="t" />, um den **gegen null gehenden Term** zu erkennen. Die Division ist für <InlineMath math="t>0" /> zulässig, also in der Nähe dieses Grenzübergangs.
+**Aufgabe 2**. Teile Zähler und Nenner durch <InlineMath math="t" />, um den **gegen null gehenden Term** zu erkennen. Die Division ist für <InlineMath math="t>0" /> zulässig, also in der Nähe dieses Grenzübergangs.
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
@@ -251,9 +249,7 @@ Teile Zähler und Nenner durch <InlineMath math="t" />, um den **gegen null gehe
 
 Innerhalb des Modells nähert sich die kumulierte Reichweite mit zunehmender Zeit <InlineMath math="100{.}000 \text{ Menschen}" />. Dieser Grenzwert ist ein modelliertes Sättigungsniveau, das nur unter den Annahmen des Modells gilt.
 
-### Grenzkosten und eine ganze zusätzliche Einheit
-
-Die Grenzkosten sind die Ableitung der Kostenfunktion und lassen sich mit der Grenzwertdefinition berechnen:
+**Aufgabe 3**. Die Grenzkosten sind die Ableitung der Kostenfunktion und lassen sich mit der Grenzwertdefinition berechnen:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\text{Grenzkosten} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />

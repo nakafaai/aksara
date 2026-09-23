@@ -48,7 +48,9 @@ export interface MdxNode {
   depth?: number;
   identifier?: string;
   name?: string;
+  ordered?: boolean;
   position?: SourceRange;
+  start?: number | null;
   title?: string;
   type: string;
   url?: string;

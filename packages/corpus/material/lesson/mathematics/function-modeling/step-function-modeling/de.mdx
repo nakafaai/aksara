@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelliere Stufenfunktionen mit Buchrabatten und Aufzugskapazitäten und vergleiche Abrundungs-, Aufrundungs- und Einheitssprungfunktionen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-23",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -296,9 +296,9 @@ Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erst
 
 5. Ein Aufzug kann maximal <InlineMath math="8 \text{ Menschen}" /> aufnehmen. Wenn es <InlineMath math="n \text{ Menschen}" /> gibt, die den Aufzug benutzen möchten, wie oft muss der Aufzug fahren?
 
-### Abrunden und Aufrunden
+### Lösungen
 
-Bei einer **negativen Eingabe** führt Abrunden zur kleineren ganzen Zahl, nicht in Richtung null.
+**Aufgabe 1**. Bei einer **negativen Eingabe** führt Abrunden zur kleineren ganzen Zahl, nicht in Richtung null.
 
 <BlockMath math="\lfloor3{,}7\rfloor=3" />
 
@@ -308,9 +308,7 @@ Bei einer **negativen Eingabe** führt Abrunden zur kleineren ganzen Zahl, nicht
 <InlineMath math="-2" /> ist die kleinste ganze Zahl, die größer oder gleich <InlineMath math="-2{,}3" /> ist.
 <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
-### Rabatt und Gesamtpreis
-
-Der Rabattsatz ist eine **Stufenfunktion**, der Gesamtpreis <InlineMath math="H(n)" /> steigt jedoch innerhalb jeder Rabattstufe mit der Buchanzahl. Das folgende Preismodell ist daher stückweise auf ganzzahligen Buchanzahlen definiert und innerhalb der Stufen nicht konstant.
+**Aufgabe 2**. Der Rabattsatz ist eine **Stufenfunktion**, der Gesamtpreis <InlineMath math="H(n)" /> steigt jedoch innerhalb jeder Rabattstufe mit der Buchanzahl. Das folgende Preismodell ist daher stückweise auf ganzzahligen Buchanzahlen definiert und innerhalb der Stufen nicht konstant.
 
 Der Rabatt gilt für den **gesamten Einkauf**. Sechs Bücher erhalten beispielsweise zehn Prozent Rabatt:
 
@@ -320,9 +318,7 @@ Sei <InlineMath math="n\in\mathbb{N}" /> die positive ganzzahlige Anzahl der gek
 
 <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{wenn } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{wenn } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{wenn } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{wenn } n > 20\end{gathered}\end{cases}" />
 
-### Transformierter Stufengraph
-
-Prüfe den **rechten Rand des Definitionsbereichs** gesondert: Der Wert bei <InlineMath math="x=3" /> unterscheidet sich vom Wert auf dem Intervall unmittelbar links davon.
+**Aufgabe 3**. Prüfe den **rechten Rand des Definitionsbereichs** gesondert: Der Wert bei <InlineMath math="x=3" /> unterscheidet sich vom Wert auf dem Intervall unmittelbar links davon.
 
 Für jedes Intervall:
 
@@ -382,9 +378,7 @@ Der folgende Graph zeigt den Funktionswert in jedem Intervall und an den Randpun
   cameraTarget={[0, -1, 0]}
 />
 
-### Gleichung mit Abrundung
-
-Verwende die **einschließende Ungleichung der Abrundung**, subtrahiere überall eins und teile anschließend alle drei Ausdrücke durch zwei.
+**Aufgabe 4**. Verwende die **einschließende Ungleichung der Abrundung**, subtrahiere überall eins und teile anschließend alle drei Ausdrücke durch zwei.
 
 <MathContainer>
 
@@ -397,9 +391,7 @@ Verwende die **einschließende Ungleichung der Abrundung**, subtrahiere überall
 
 Die Lösungsmenge ist also <InlineMath math="\{x\mid 2 \leq x &lt; 2{,}5\}" />.
 
-### Aufzugsfahrten
-
-Gezählt werden **Aufwärtsfahrten mit Fahrgästen**. Notwendige leere Rückfahrten zählen nicht dazu. Für neun Personen reicht eine volle Fahrt nicht aus:
+**Aufgabe 5**. Gezählt werden **Aufwärtsfahrten mit Fahrgästen**. Notwendige leere Rückfahrten zählen nicht dazu. Für neun Personen reicht eine volle Fahrt nicht aus:
 
 <BlockMath math="9=8+1,\qquad \lceil9/8\rceil=2" />
 

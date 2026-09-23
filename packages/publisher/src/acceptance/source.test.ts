@@ -105,6 +105,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         );
         expect([...groups].sort()).toEqual([
           "lesson.mathematics.analytic-geometry",
+          "lesson.mathematics.exponential-logarithm",
           "lesson.mathematics.function-composition-inverse-function",
           "lesson.mathematics.linear-equation-inequality",
           "lesson.mathematics.trigonometry",
@@ -113,7 +114,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           materials.filter(({ route }) => groups.has(route.materialKey))
         );
         expect(selected.material.length).toBeGreaterThan(
-          5 * ACTIVE_APP_LOCALES.length
+          6 * ACTIVE_APP_LOCALES.length
         );
         expect(selected.article).toEqual(
           articles
@@ -192,6 +193,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
     "articles/politics/merah-putih-cabinet-analysis:en",
     "articles/politics/regional-elections-turmoil:id",
     "material/lesson/mathematics/analytic-geometry/hyperbola:de",
+    "material/lesson/mathematics/exponential-logarithm/exponential-growth:id",
   ])(
     "rejects a required authored locale instead of shrinking the sample: %s",
     (identity) =>

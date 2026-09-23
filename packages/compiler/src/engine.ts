@@ -140,6 +140,7 @@ export const compileValidatedContent = Effect.fn(
   const allowedComponents = new Set(components);
   const sourcePolicy = createSourcePolicy(
     request.contentKey,
+    request.sourcePath,
     allowedComponents
   );
   const requiredComponentNames = new Set<string>();

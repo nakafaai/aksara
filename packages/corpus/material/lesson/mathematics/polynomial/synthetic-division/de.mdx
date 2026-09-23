@@ -3,7 +3,7 @@ export const metadata = {
   description: "Führe die schriftliche Polynomdivision aus und bestimme Quotient sowie Rest in Rechenbeispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-24",
   subject: "Polynom",
 };
 
@@ -15,21 +15,21 @@ Die schriftliche Polynomdivision bestimmt <Highlight>Quotient und Rest</Highligh
 
 Vor der Division sind einige Vorbereitungen nötig:
 
-1.  **Terme ordnen:**
+1.  **Terme ordnen**:
 
     Ordne den Dividenden (<InlineMath math="P(x)" />) und den Divisor (<InlineMath math="Q(x)" />) nach fallenden Potenzen der Variablen.
 
-2.  **Fehlende Potenzen ergänzen:**
+2.  **Fehlende Potenzen ergänzen**:
 
     Fehlt eine Potenz, <Highlight>ergänze ihren Nullkoeffizienten</Highlight> als _Platzhalter_. Dadurch stehen beim Subtrahieren gleiche Potenzen in derselben Spalte.
 
-    **Beispiel:**
+    **Beispiel**:
 
     Wenn <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" />, fehlt der <InlineMath math="x^2" />-Term.
 
     Also schreiben wir es als <InlineMath math="P(x) = 4x^4 + 17x^3 + 0x^2 - 3x + 1" />.
 
-3.  **Divisionsschema aufbauen:**
+3.  **Divisionsschema aufbauen**:
 
     Schreibe die Division als schriftliches Schema. Das vervollständigte <InlineMath math="P(x)" /> steht unter dem Divisionsstrich, <InlineMath math="Q(x)" /> als Divisor davor.
 
@@ -54,45 +54,45 @@ Der Quotient lautet <InlineMath math="4x^2+x" /> und der Rest <InlineMath math="
 
 **Iteration 1**:
 
-**Dividieren:** Teile den führenden Term <InlineMath math="4x^4" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
+**Dividieren**: Teile den führenden Term <InlineMath math="4x^4" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
 <BlockMath math="\frac{4x^4}{x^2} = 4x^2" />
 
 Schreibe <InlineMath math="4x^2" /> als ersten Term des Quotienten.
 
-**Multiplizieren:** Multipliziere <InlineMath math="4x^2" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiplizieren**: Multipliziere <InlineMath math="4x^2" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
 
 <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
-**Subtrahieren:** Subtrahiere das Produkt vom anfänglichen Polynom:
+**Subtrahieren**: Subtrahiere das Produkt vom anfänglichen Polynom:
 
 <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;\quad{}- (4x^4 + 16x^3 - 4x^2)  \\ &amp;= x^3 + 4x^2 \end{aligned}" />
 
-**Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="-3x" />) herunter, um das neue Polynom zu erhalten:
+**Herunterziehen**: Ziehe den nächsten Term (<InlineMath math="-3x" />) herunter, um das neue Polynom zu erhalten:
 
 <InlineMath math="x^3 + 4x^2 - 3x" />
 
 **Iteration 2**:
 
-**Dividieren:** Teile den führenden Term des neuen Polynoms <InlineMath math="x^3" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
+**Dividieren**: Teile den führenden Term des neuen Polynoms <InlineMath math="x^3" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
 <BlockMath math="\frac{x^3}{x^2} = x" />
 
 Schreibe <InlineMath math="+x" /> als nächsten Term des Quotienten.
 
-**Multiplizieren:** Multipliziere <InlineMath math="x" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
+**Multiplizieren**: Multipliziere <InlineMath math="x" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
 
 <BlockMath math="x(x^2 + 4x - 1) = x^3 + 4x^2 - x" />
 
-**Subtrahieren:** Subtrahiere das Produkt vom aktuellen Polynom:
+**Subtrahieren**: Subtrahiere das Produkt vom aktuellen Polynom:
 
 <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;\quad{}- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
-**Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="+1" />) herunter, um den vorläufigen Rest zu erhalten:
+**Herunterziehen**: Ziehe den nächsten Term (<InlineMath math="+1" />) herunter, um den vorläufigen Rest zu erhalten:
 
 <BlockMath math="-2x + 1" />
 
-**Abbruch:** Der Grad des Restes (<InlineMath math="-2x+1" />, Grad <InlineMath math="1" />) ist kleiner als der Grad des Divisors (<InlineMath math="x^2+4x-1" />, Grad <InlineMath math="2" />). Damit ist die Division beendet.
+**Abbruch**: Der Grad des Restes (<InlineMath math="-2x+1" />, Grad <InlineMath math="1" />) ist kleiner als der Grad des Divisors (<InlineMath math="x^2+4x-1" />, Grad <InlineMath math="2" />). Damit ist die Division beendet.
 
 **Schritt 4**. Ergebnis
 

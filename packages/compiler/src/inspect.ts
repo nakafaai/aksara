@@ -159,7 +159,11 @@ const validateSourcePolicy = Effect.fn(
     ...request.rendererManifest.base,
     ...domain.components,
   ]);
-  const policy = createSourcePolicy(request.contentKey, allowedComponents);
+  const policy = createSourcePolicy(
+    request.contentKey,
+    request.sourcePath,
+    allowedComponents
+  );
   yield* Effect.try({
     catch: (cause) =>
       new MdxCompilationError({

@@ -30,11 +30,13 @@ import {
   readProductionEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
+import { readCleanAksaraRevision } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { prepareProductionGit } from "#cli/production/preparation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
+import { validateRecoveryRevision } from "#cli/recovery";
 import {
   PUBLICATION_ACTIVATION_TIMEOUT,
   PUBLICATION_TARGET_TIMEOUT,
@@ -138,6 +140,15 @@ export const runProductionCommand: (
     );
 
     if (action.kind === "resume") {
+      const checkoutRoot = yield* findAksaraRoot(input.cwd).pipe(
+        Effect.mapError(mapProductionError("prepare"))
+      );
+      const currentSha = yield* readCleanAksaraRevision(checkoutRoot).pipe(
+        Effect.mapError(mapProductionError("prepare"))
+      );
+      yield* validateRecoveryRevision(action.sha, currentSha).pipe(
+        Effect.mapError(mapProductionError("prepare"))
+      );
       yield* logPublicationScope(action.bundle.release.manifest);
       const receipt = yield* resumeContentRelease(action.bundle).pipe(
         Effect.provideService(PublicationActivation, activation),

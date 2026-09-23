@@ -32,6 +32,7 @@ export interface ProgramCalls {
         readonly requestedDocument: string;
       }
     | undefined;
+  parity: RecoveryCommand | undefined;
   production:
     | {
         readonly args: {

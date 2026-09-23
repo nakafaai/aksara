@@ -38,6 +38,14 @@ export interface AcceptArguments {
   readonly releaseId: ReleaseId;
 }
 
+/** Paired publication identities selected for authenticated content parity. */
+export type ParityArguments = Pick<
+  AcceptArguments,
+  "releaseId" | "recoveryId"
+> & {
+  readonly command: "parity";
+};
+
 /** Exact active and retained inverse selected for emergency recovery. */
 export interface RecoverArguments {
   readonly command: "recover";
@@ -50,6 +58,7 @@ export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
   | CleanupArguments
+  | ParityArguments
   | RecoverArguments
   | ReleaseArguments
   | StatusArguments;
@@ -60,6 +69,7 @@ export function isProductionCommand(
   value: string | undefined
 ): value is ProductionCommand {
   return (
+    value === "parity" ||
     value === "cleanup" ||
     value === "accept" ||
     value === "abort" ||
@@ -112,6 +122,9 @@ export const parseProductionArguments = Effect.fn(
   );
   if (recoveryId === releaseId) {
     return yield* argumentError(command, "--recovery-id", "identity");
+  }
+  if (command === "parity") {
+    return { command, recoveryId, releaseId } satisfies ParityArguments;
   }
   if (command === "accept") {
     return { command, recoveryId, releaseId } satisfies AcceptArguments;

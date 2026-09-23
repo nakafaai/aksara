@@ -43,7 +43,7 @@ function logCurrent(current: ContentReleaseCurrent) {
 
 /** Reads authoritative publication state without requiring signing secrets. */
 export const runStatusCommand: StatusCommand = Effect.gen(function* () {
-  const environment = yield* readPublicationEnvironment().pipe(
+  const environment = yield* readPublicationEnvironment("production").pipe(
     Effect.mapError(mapProductionError("environment"))
   );
   const rawTarget = yield* makeHttpPublicationTarget({

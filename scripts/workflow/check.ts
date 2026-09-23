@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/check/files";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
+import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -17,7 +18,6 @@ const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
 const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const ARCHIVE_BUILD_PATTERN =
   /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
-const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
 const FULL_GATE_PATTERN =
   /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build/u;
 const CONDITIONAL_GATE_PATTERN =
@@ -43,16 +43,6 @@ const PUBLISHED_RELEASE_PATTERN =
   /Publish immutable release[\s\S]*gh release edit "\$RELEASE_TAG"[\s\S]*--draft=false[\s\S]*\.immutable == true[\s\S]*\.assets\[0\]\.digest == \$digest[\s\S]*git\/ref\/tags\/\$RELEASE_TAG[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release verify "\$RELEASE_TAG"[\s\S]*gh release verify-asset "\$RELEASE_TAG" "\$TARBALL"[\s\S]*gh attestation verify "\$TARBALL"/u;
 const MUTABLE_RECOVERY_PATTERN =
   /if: failure\(\)(?: && steps\.state\.outputs\.mode == 'create')?[\s\S]*--json isImmutable,targetCommitish[\s\S]*\.isImmutable == false and \.targetCommitish == \$sha[\s\S]*\.object\.type == "commit" and \.object\.sha == \$sha[\s\S]*gh release delete "\$RELEASE_TAG"[\s\S]*--yes[\s\S]*if \[\[ -n "\$tag" \]\][\s\S]*gh api --method DELETE[\s\S]*git\/refs\/tags\/\$RELEASE_TAG/u;
-const ISOLATED_OPERATION_PATTERN =
-  /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
-const TERMINAL_GATE_PATTERN =
-  /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
-const PUBLICATION_SCOPE_PATTERN =
-  /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
-const CONTENT_CONTRACT_PATTERN =
-  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
-const OPERATION_HISTORY_PATTERN =
-  /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;
 const WORKFLOW_PATH_PATTERN = /^\.github\/workflows\/[^/]+\.ya?ml$/u;
 const TOP_LEVEL_JOB_PATTERN = /\n {2}[a-z][a-z_]*:\n/u;
@@ -234,46 +224,7 @@ export function verifyWorkflows({
     );
   }
 
-  assert.match(
-    release,
-    PRODUCTION_ENV_PATTERN,
-    "Content operations must require production environment approval"
-  );
-  assert.match(
-    release,
-    VERIFY_CONSUMER_PATTERN,
-    "Full content operations must prove the contracts release archive"
-  );
-  assert.match(
-    release,
-    CONTENT_CONTRACT_PATTERN,
-    "Every content operation must depend on the exact immutable contract proof"
-  );
-  assert.match(
-    release,
-    OPERATION_HISTORY_PATTERN,
-    "Production content operations must preserve complete Git history"
-  );
-  assert.ok(
-    release.indexOf("- name: Prove immutable contract release") <
-      release.indexOf("environment: content-production"),
-    "Contract proof must finish before production credentials are approved"
-  );
-  assert.match(
-    release,
-    ISOLATED_OPERATION_PATTERN,
-    "Content operations must run from one clean exact-revision checkout"
-  );
-  assert.match(
-    release,
-    TERMINAL_GATE_PATTERN,
-    "Terminal content operations must retain scoped recovery gates"
-  );
-  assert.match(
-    release,
-    PUBLICATION_SCOPE_PATTERN,
-    "Content releases must validate and pass one explicit scalable scope"
-  );
+  verifyPublicationWorkflow(release, all);
 }
 
 const workflowPaths = trackedFiles().filter((path) =>

@@ -1,6 +1,10 @@
 import { assert, it } from "@effect/vitest";
 
-import { exerciseSectionLines } from "#nakafa-content/exercise/context";
+import {
+  exerciseSectionLines,
+  isExerciseHeading,
+  isSolutionHeading,
+} from "#nakafa-content/exercise/context";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
 it("tracks exercise prose through nested sections in every locale", () => {
@@ -34,4 +38,37 @@ it("does not classify similarly named prose as an exercise section", () => {
   ].join("\n");
 
   assert.deepEqual([...exerciseSectionLines("en", source)], []);
+});
+
+it("recognizes the current corpus exercise and solution titles without broad matching", () => {
+  const cases: readonly [LessonVoiceLocale, string, string][] = [
+    ["id", "Periksa Pemahamanmu", "Pembahasan"],
+    ["id", "Latihan dengan Pembahasan Lengkap", "Pembahasan Lengkap"],
+    ["id", "Latihan Merasionalkan", "Pembahasan Rasionalisasi Penyebut"],
+    ["id", "Latihan", "Pembahasan Terperinci"],
+    ["en", "Practice with Complete Solutions", "Worked Solutions"],
+    [
+      "en",
+      "Rationalization Exercises",
+      "Solutions for Rationalizing Denominators",
+    ],
+    ["de", "Überprüfe dein Verständnis", "Ausführliche Lösungen"],
+    ["de", "Übung", "Ausführliche Lösung"],
+    ["de", "Übung", "Lösung"],
+    ["de", "Übungen", "Lösungen"],
+    ["de", "Übungen mit vollständigen Lösungen", "Ausgearbeitete Lösungen"],
+    [
+      "de",
+      "Aufgaben zum Rationalisieren",
+      "Lösungen zum Rationalisieren von Nennern",
+    ],
+  ];
+  for (const [locale, exercise, solution] of cases) {
+    assert.ok(isExerciseHeading(locale, exercise));
+    assert.ok(isSolutionHeading(locale, solution));
+  }
+  assert.isFalse(isExerciseHeading("en", "Practice with Units"));
+  assert.isFalse(isSolutionHeading("en", "Solutions of Quadratic Equations"));
+  assert.isFalse(isSolutionHeading("de", "Lösunge"));
+  assert.isFalse(isSolutionHeading("de", "Ausführliche Lösunge"));
 });

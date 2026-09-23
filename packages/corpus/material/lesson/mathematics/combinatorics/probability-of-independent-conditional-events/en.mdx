@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use conditional probability correctly, distinguish dependence from independence, and solve sequential selection problems.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-09-24",
     subject: "Combinatorics",
 };
 
@@ -40,7 +40,7 @@ Drawing without replacement changes the sample space after each card leaves the 
 
 A standard deck has <InlineMath math="52 \text{ cards}" />. It contains <InlineMath math="4 \text{ Aces}" /> and <InlineMath math="4 \text{ Kings}" />. Two cards are drawn without replacement. What is the probability of drawing an Ace first and a King second?
 
-**Step-by-step analysis:**
+**Step-by-step analysis**:
 
 Let:
 - Event <InlineMath math="C" /> is drawing an Ace first
@@ -117,7 +117,7 @@ For **independent events**, the condition does not change the next probability. 
 
 Suppose we want to calculate the probability of getting two aces in succession from a standard deck (<InlineMath math="52 \text{ cards}" />, <InlineMath math="4" /> aces). Let <InlineMath math="A_1" /> denote the event that the first card is an ace and <InlineMath math="A_2" /> the event that the second card is an ace.
 
-1. **Independent Probability (With Replacement):**
+1. **Independent Probability (With Replacement)**:
 
     If after drawing the first card, the card is returned and the deck is reshuffled:
 
@@ -127,7 +127,7 @@ Suppose we want to calculate the probability of getting two aces in succession f
     <BlockMath math="\begin{aligned} P(A_1 \cap A_2) &amp;= \frac{4}{52} \times \frac{4}{52} \\ &amp;= \frac{1}{13} \times \frac{1}{13} \\ &amp;= \frac{1}{169} \end{aligned}" />
     </MathContainer>
 
-2. **Dependent Draw (Without Replacement):**
+2. **Dependent Draw (Without Replacement)**:
 
     If the first card is not returned:
 
@@ -137,7 +137,7 @@ Suppose we want to calculate the probability of getting two aces in succession f
     <BlockMath math="\begin{aligned} P(A_1 \cap A_2) &amp;= \frac{4}{52} \times \frac{3}{51} \\ &amp;= \frac{1}{13} \times \frac{1}{17} \\ &amp;= \frac{1}{221} \end{aligned}" />
     </MathContainer>
 
-**Result Comparison:**
+**Result Comparison**:
 - With replacement: <InlineMath math="\frac{1}{169} \approx 0.00592" />
 - Without replacement: <InlineMath math="\frac{1}{221} \approx 0.00452" />
 
@@ -164,7 +164,7 @@ Total initial balls is <InlineMath math="8 + 12 = 20 \text{ balls}" />
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
 </MathContainer>
 
-After drawing one red ball, there are <InlineMath math="19 \text{ balls}" /> remaining in total (<InlineMath math="8 - 1 = 7" /> red, <InlineMath math="12" /> blue). The number of blue balls does not change (remains <InlineMath math="12" />), so the probability of drawing a blue ball second is <InlineMath math="\frac{12}{19}" />.
+After drawing one red ball, there are <InlineMath math="19 \text{ balls}" /> remaining in total (<InlineMath math="8 - 1 = 7" /> red, <InlineMath math="12" /> blue). The **number of blue balls does not change** (remains <InlineMath math="12" />), so the probability of drawing a blue ball second is <InlineMath math="\frac{12}{19}" />.
 
 **Problem 2**
 
@@ -179,4 +179,4 @@ A standard deck has <InlineMath math="52 \text{ cards}" />, including <InlineMat
 <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
 </MathContainer>
 
-Each draw reduces the total number of cards (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.
+Each draw **reduces the total number of cards** (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.
