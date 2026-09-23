@@ -14,6 +14,7 @@ const calls = vi.hoisted(
       "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx",
     info: undefined,
     open: undefined,
+    parity: undefined,
     production: undefined,
     recover: undefined,
     status: false,
@@ -45,6 +46,15 @@ vi.mock("#cli/accept", async () => {
     runAcceptCommand: (args: NonNullable<typeof calls.accept>) => {
       calls.accept = args;
       return TestEffect.succeed("accept-complete");
+    },
+  };
+});
+vi.mock("#cli/parity", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return {
+    runParityCommand: (args: NonNullable<typeof calls.parity>) => {
+      calls.parity = args;
+      return TestEffect.succeed("parity-complete");
     },
   };
 });
@@ -135,6 +145,7 @@ beforeEach(() => {
   calls.info = undefined;
   calls.open = undefined;
   calls.production = undefined;
+  calls.parity = undefined;
   calls.recover = undefined;
   calls.status = false;
 });
@@ -191,8 +202,9 @@ describe("CLI program", () => {
       })
   );
 
-  it.effect.each(["accept", "recover"] satisfies readonly (
+  it.effect.each(["accept", "recover", "parity"] satisfies readonly (
     | "accept"
+    | "parity"
     | "recover"
   )[])("dispatches %s without entering signed publication", (command) =>
     Effect.gen(function* () {

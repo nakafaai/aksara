@@ -8,9 +8,9 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
   if (args[0] === "abort") {
     return Effect.succeed({ command: "abort", releaseId: "release-abort" });
   }
-  if (args[0] === "accept") {
+  if (args[0] === "accept" || args[0] === "parity") {
     return Effect.succeed({
-      command: "accept",
+      command: args[0],
       recoveryId: "recovery-active",
       releaseId: "release-active",
     });

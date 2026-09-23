@@ -52,6 +52,12 @@ blocking slot, and a release that cannot adopt the live renderer manifest names
 the closure it failed to prove. The required `accept`, `abort`, or `cleanup`
 command therefore follows from the failure line.
 
+Protected content publication is owned by `.github/workflows/release.yml`.
+Release and acceptance always cover both development and production. Only
+recovery, abort, and cleanup may select a single target. An active release resume
+requires a clean checkout at the exact immutable source revision recorded in its
+manifest; a same-name receipt from another revision is rejected before reuse.
+
 ## License
 
 This package uses the Nakafa Source Available License 1.0. See `LICENSE` in the

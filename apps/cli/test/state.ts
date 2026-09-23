@@ -1,4 +1,6 @@
+import { generateKeyPairSync, sign } from "node:crypto";
 import {
+  Ed25519SignatureSchema,
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -7,15 +9,19 @@ import {
   type ContentReleaseManifest,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
+import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/current/evidence";
 import {
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
 } from "@nakafa/aksara-contracts/release/current/state";
+import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
+import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import {
   inheritContentSnapshots,
   snapshotRowCount,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { selectProductionAction } from "#cli/state";
@@ -151,4 +157,40 @@ export const rejectState = Effect.fn("AksaraCliTest.rejectState")(
 export const selectState = Effect.fn("AksaraCliTest.selectState")(
   (args: ReleaseArguments, state: ReturnType<typeof stateCurrent>) =>
     selectProductionAction(args, state)
+);
+
+/** Creates signed target evidence using an isolated ephemeral verification key. */
+export const signedActiveState = Effect.fn("StateTest.signedActiveState")(
+  function* (active: ActiveContentRelease) {
+    const keys = yield* Effect.sync(() => generateKeyPairSync("ed25519"));
+    const publicKey = keys.publicKey
+      .export({ format: "pem", type: "spki" })
+      .toString();
+    const manifestHash = yield* hashContentReleaseManifest(
+      active.release.manifest
+    );
+    const signature = yield* Effect.sync(() =>
+      Ed25519SignatureSchema.make(
+        sign(
+          null,
+          Buffer.from(
+            canonicalizeContentReleaseSigningInput(
+              manifestHash,
+              active.release.manifest
+            )
+          ),
+          keys.privateKey
+        ).toString("base64url")
+      )
+    );
+    const value = activeState({
+      ...active,
+      receipt: { ...active.receipt, manifestHash },
+      release: { ...active.release, manifestHash, signature },
+    });
+    const resolver = ContentVerificationKeyResolver.of({
+      resolve: () => Effect.succeed(publicKey),
+    });
+    return { resolver, value };
+  }
 );

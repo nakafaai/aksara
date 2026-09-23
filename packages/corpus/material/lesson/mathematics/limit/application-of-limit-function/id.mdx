@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-09-23",
     subject: "Limit",
 };
 
@@ -180,7 +180,7 @@ Untuk menghitung jumlah kasus dalam model, kita memakai <InlineMath math="t=282{
 
 <BlockMath math="\begin{aligned} &amp;(190{,}68)^3 \\ &amp;= 190{,}68 \times 190{,}68 \times 190{,}68 \\ &amp;\approx 6{.}932{.}907{,}88 \end{aligned}" />
 
-Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai nilai sebelum pembulatan.
+Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai **nilai sebelum pembulatan**.
 
 **Langkah 2** menghitung kuadrat jumlah orang yang divaksinasi.
 
@@ -227,9 +227,9 @@ Setiap soal memberi suatu situasi dan meminta **nilai yang didekati** suatu besa
 
 3. Model biaya total untuk memproduksi <InlineMath math="x" /> masker adalah <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" />. Tentukan fungsi biaya marginal dengan definisi limit, lalu bandingkan dengan tambahan biaya tepat ketika produksi naik dari <InlineMath math="x" /> menjadi <InlineMath math="x+1" />.
 
-### Batas Produksi Kumulatif
+### Pembahasan
 
-**Batas jangka panjang** model diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
+**Soal 1**. **Batas jangka panjang** model diperoleh dengan menghitung limit ketika <InlineMath math="t \to \infty" />:
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
@@ -239,9 +239,7 @@ Setiap soal memberi suatu situasi dan meminta **nilai yang didekati** suatu besa
 
 Produksi kumulatif dalam model mendekati <InlineMath math="50{.}000" /> unit vaksin. Nilainya tidak pernah tepat sama dengan angka tersebut pada <InlineMath math="t" /> berhingga karena <InlineMath math="e^{-0{,}1t}>0" /> untuk setiap <InlineMath math="t" /> berhingga.
 
-### Batas Jangkauan Pesan
-
-Bagi pembilang dan penyebut dengan <InlineMath math="t" /> untuk melihat **suku yang menuju nol**. Pembagian ini sah ketika <InlineMath math="t>0" />, sesuai arah limit.
+**Soal 2**. Bagi pembilang dan penyebut dengan <InlineMath math="t" /> untuk melihat **suku yang menuju nol**. Pembagian ini sah ketika <InlineMath math="t>0" />, sesuai arah limit.
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
@@ -251,9 +249,7 @@ Bagi pembilang dan penyebut dengan <InlineMath math="t" /> untuk melihat **suku 
 
 Di dalam model, jangkauan kumulatif mendekati <InlineMath math="100{.}000 \text{ orang}" /> seiring waktu bertambah. Angka tersebut menjadi batas jangkauan di dalam model. Pesan nyata dapat menjangkau jumlah yang berbeda karena kondisinya dapat berubah.
 
-### Biaya Marginal dan Biaya Satu Unit
-
-Biaya marginal adalah turunan dari fungsi biaya, yang dapat dihitung menggunakan definisi limit:
+**Soal 3**. Biaya marginal adalah turunan dari fungsi biaya, yang dapat dihitung menggunakan definisi limit:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />

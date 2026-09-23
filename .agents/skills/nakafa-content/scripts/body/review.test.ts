@@ -240,3 +240,39 @@ it("preserves quoted terminology and authored diagnostic questions", () => {
     );
   }
 });
+
+it("distinguishes answer and step identifiers from decisive teaching phrases", () => {
+  for (const label of [
+    "Soal 1",
+    "Langkah 2",
+    "Problem 3",
+    "Step 1",
+    "Aufgabe 2",
+    "Schritt 1",
+  ]) {
+    for (const marker of [`**${label}**`, `<Highlight>${label}</Highlight>`]) {
+      const source = `export const metadata = {};
+
+### Solutions
+
+${marker}. The denominator must be positive.`;
+      assert.equal(findBodyHighlightIssues(parseLessonMdx(source)).length, 1);
+      assert.deepEqual(
+        findBodyHighlightIssues(
+          parseLessonMdx(
+            `${source} Its **positive sign** selects the valid interval.`
+          )
+        ),
+        []
+      );
+    }
+  }
+  assert.deepEqual(
+    findBodyHighlightIssues(
+      parseLessonMdx(
+        "export const metadata = {};\n\n### Method\n\n**Step 1 uses the product rule** because both factors depend on the variable."
+      )
+    ),
+    []
+  );
+});

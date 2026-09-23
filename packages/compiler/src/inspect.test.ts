@@ -113,6 +113,29 @@ describe("content source inspection", () => {
     })
   );
 
+  it.effect.each([
+    "packages/corpus/material/lesson/test/en.mdx",
+    "packages/corpus/articles/test/en.mdx",
+  ])(
+    "rejects deep headings at compilation and before artifact reuse for %s",
+    (sourcePath) =>
+      Effect.gen(function* () {
+        const request = yield* testRequest;
+        const input = {
+          ...request,
+          rawMdx: `${request.rawMdx}\n\n### Solutions\n\n#### Subproblem`,
+          sourcePath,
+        };
+        const errors = [
+          yield* Effect.flip(compileContent(input)),
+          yield* Effect.flip(inspectContentSource(input)),
+        ];
+        for (const error of errors) {
+          assert.strictEqual(error._tag, "AuthoredHeadingDepthError");
+        }
+      })
+  );
+
   it.effect("rejects list-shaped headings before reuse decisions", () =>
     Effect.gen(function* () {
       const request = yield* testRequest;

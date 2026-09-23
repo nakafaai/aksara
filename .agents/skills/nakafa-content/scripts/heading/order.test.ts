@@ -57,7 +57,7 @@ it("rejects a body that opens below the second level", () => {
   );
 });
 
-it("keeps real nested answer-key headings valid", () => {
+it("rejects deep lesson solutions even when no level is skipped", () => {
   assert.deepEqual(
     findHeadingOrderIssues(
       [
@@ -84,7 +84,20 @@ it("keeps real nested answer-key headings valid", () => {
         "| 1 | satu |",
       ].join("\n")
     ),
-    []
+    [
+      {
+        column: 1,
+        excerpt: "#### Menghitung nilai fungsi",
+        line: 7,
+        rule: "heading-order",
+      },
+      {
+        column: 1,
+        excerpt: "##### Kasus khusus",
+        line: 9,
+        rule: "heading-order",
+      },
+    ]
   );
 });
 
@@ -107,6 +120,7 @@ it("skips headings without a resolved position and tolerates a missing line", ()
         type: "heading",
       },
       { depth: 4, type: "heading" },
+      { name: "h4", type: "mdxJsxFlowElement" },
       { depth: 4, position: {}, type: "heading" },
       { depth: 4, position: { start: { line: 9 } }, type: "heading" },
       {
@@ -126,4 +140,75 @@ it("skips headings without a resolved position and tolerates a missing line", ()
       rule: "heading-order",
     },
   ]);
+});
+
+it.each([
+  "<h4>Deep solution</h4>",
+  "Text <h5>Deep solution</h5>",
+  "{<h4>Deep solution</h4>}",
+  "<Panel title={<h6>Deep solution</h6>} />",
+  "<Panel {...{ title: <h4>Deep solution</h4> }} />",
+])("rejects JSX heading escapes: %s", (heading) => {
+  const source = `${AUTHORED}## Section\n\n### Subsection\n\n${heading}`;
+  assert.deepEqual(
+    findHeadingOrderIssues(source).map(({ line }) => line),
+    [7]
+  );
+});
+
+it("accepts valid Markdown and JSX levels and ignores fenced examples", () => {
+  const source = `${AUTHORED}## Section\n\n<h3>Detail</h3>\n\n{<h2>Section</h2>}\n\n<Panel title={<>Label</>} />\n\n<Panel title={2} />\n\n\`\`\`md\n#### Example\n\`\`\``;
+  assert.deepEqual(findHeadingOrderIssues(source), []);
+});
+
+it("rejects H6 in standalone answers while retaining real H4 and H5", () => {
+  const source = `${AUTHORED}#### Answer\n\n##### Subcase\n\n###### Too deep`;
+  assert.deepEqual(
+    findHeadingOrderIssues(source, parseLessonMdx(source), 4).map(
+      ({ line }) => line
+    ),
+    [7]
+  );
+});
+
+it("keeps JSX headings in source order when they share a line", () => {
+  const source = `${AUTHORED}<><h2>Section</h2><h3>Detail</h3></>`;
+  assert.deepEqual(findHeadingOrderIssues(source), []);
+});
+
+it.each([
+  ["id", "Latihan", "Pembahasan"],
+  ["en", "First Exercise", "Solution to First Exercise"],
+  ["de", "Zweite Übung", "Lösung zur zweiten Übung"],
+] as const)(
+  "keeps %s solutions beneath their exercises",
+  (locale, exercise, solution) => {
+    const source = `${AUTHORED}## ${exercise}\n\nSolve.\n\n## ${solution}\n\nExplain.`;
+    assert.deepEqual(
+      findHeadingOrderIssues(source, parseLessonMdx(source), 2, locale).map(
+        ({ line }) => line
+      ),
+      [7]
+    );
+    const nested = source.replace(`## ${solution}`, `### ${solution}`);
+    assert.deepEqual(
+      findHeadingOrderIssues(nested, parseLessonMdx(nested), 2, locale),
+      []
+    );
+  }
+);
+
+it("preserves conceptual solution headings and article structure", () => {
+  for (const source of [
+    `${AUTHORED}## Exercises\n\nSolve.\n\n## Solution Uniqueness and Numerical Stability`,
+    `${AUTHORED}## Concept\n\nExplain.\n\n## Worked Solutions`,
+    `${AUTHORED}## Exercises\n\nSolve.\n\n## Summary\n\nSummarize.\n\n## Worked Solutions`,
+  ]) {
+    assert.deepEqual(
+      findHeadingOrderIssues(source, parseLessonMdx(source), 2, "en"),
+      []
+    );
+  }
+  const article = `${AUTHORED}## Exercises\n\nAnalysis.\n\n## Worked Solutions`;
+  assert.deepEqual(findHeadingOrderIssues(article), []);
 });

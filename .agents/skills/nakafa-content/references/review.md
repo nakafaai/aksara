@@ -70,12 +70,19 @@
   label. The gate blocks missing opening emphasis, nested markers, and a split
   step label. Phrase selection and useful density require this contextual
   review, without a numeric quota.
-- Walk the heading tree. Ordinary explanation stays at `##` and `###`, and
-  grouped lesson answers nest `####` and `#####` under their own `###`
-  heading. Short answers can use direct `###` sections under the exercise
-  heading without adding a redundant answer-key wrapper. A
-  fourth level in ordinary explanation means the section needs splitting. The
-  gate blocks a skipped level and a body that opens above `##`.
+- Walk the heading tree. Every lesson and article section, including lesson
+  exercises and worked solutions, stays at `##` and `###`. Keep lesson solutions
+  at `###` under their `##` exercises. Rephrase deeper subgoals as connected
+  teaching prose without promoting the solution or adding bold substitute
+  headings. Check the full exercise and solution together so each transition
+  names the operation, case, or quantity being considered. Only standalone
+  question-bank answers use `####` and
+  `#####` beneath the app-owned `###` explanation heading.
+- Match every numbered exercise to its complete answer. Confirm that the
+  visible question identifier begins the corresponding explanation, list item,
+  or table row or column. Step numbers do not identify question numbers. Name
+  the group when numbering restarts, and check all locale siblings against the
+  same question-to-answer mapping.
 - Read every blockquote body by hand. The gate scans blockquote prose for
   address and for an editorial prefix such as `Quick check:` or `Cek cepat:`
   (`blockquote-editorial-label`), and it leaves a real quotation whose bytes are

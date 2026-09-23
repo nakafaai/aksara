@@ -57,7 +57,11 @@ export type ProductionStateAction =
       readonly scope: PublicationScope;
       readonly sha: GitCommitSha;
     }
-  | { readonly bundle: ContentReleaseBundle; readonly kind: "resume" };
+  | {
+      readonly bundle: ContentReleaseBundle;
+      readonly kind: "resume";
+      readonly sha: GitCommitSha;
+    };
 
 interface StoredCommand {
   readonly scope: PublicationScope;
@@ -151,7 +155,7 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
 
   if (active?.release.manifest.releaseId === args.releaseId) {
     const bundle = activeBundle(active);
-    yield* validateStoredCommand(args, bundle);
+    const stored = yield* validateStoredCommand(args, bundle);
     if (
       recovery !== null &&
       recovery.release.manifest.releaseId !== args.recoveryId
@@ -162,7 +166,7 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
         recoveryReleaseId: recovery.release.manifest.releaseId,
       });
     }
-    return { bundle, kind: "resume" };
+    return { bundle, kind: "resume", sha: stored.sha };
   }
   if (recovery !== null) {
     return yield* new ProductionStateError({

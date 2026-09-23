@@ -71,6 +71,47 @@ option letter.
 | Can sequence full examples, faded examples, and independent practice. | Must not fade essential steps because it is the learner's only post-attempt explanation. |
 | May revisit prerequisite theory in depth. | Gives only the prerequisite reminder needed to understand this solution. |
 
+## Heading hierarchy
+
+In a lesson, the exercise section owns an H2 and its worked solutions stay
+at H3 beneath it. Do not add headings inside those solutions or promote them
+to a sibling H2 to satisfy the depth limit. Introduce a new problem or subgoal
+with a complete sentence that identifies the relevant givens or operation.
+Retain the derivations, checks, tables, and diagrams that support the reasoning.
+Use emphasis for a decisive phrase inside that prose, not a substitute heading.
+Standalone question-bank answers have a different renderer boundary and follow
+the H4/H5 contract in [headings](headings.md).
+
+## Mapping exercises to answers
+
+Read the questions and answers together from the learner's point of view. A
+learner must be able to locate the answer to each numbered question without
+inferring it from a topic name or counting paragraphs.
+
+- Begin each separate answer with its exact question number, such as
+  `**Soal 1**.`, `**Problem 1**.`, or `**Aufgabe 1**.`, followed by a sentence
+  identifying the relevant givens or method. These are question identifiers
+  inside prose, not extra headings. A numbered answer list is equally valid
+  when each complete explanation stays inside its corresponding item.
+- Preserve existing clear mappings. Do not impose one visual template on a
+  table, a short answer list, and a long derivation. A shared answer table must
+  identify question numbers in its row or column labels.
+- Distinguish question numbers from calculation steps. Several answers may
+  each begin with `**Langkah 1**`, but that label cannot identify which question
+  is being solved. Mark the whole identifier and leave punctuation outside.
+- When question groups restart at one, include the group in every answer
+  identifier, such as `**Soal identifikasi 1**`. A later check of the same
+  result must name the original question rather than appear to be a new item.
+- Keep subparts and connected problems together while naming their targets.
+  Retain every derivation, domain restriction, check, table, and visual. Never
+  delete reasoning or move solutions beside the exercise to simplify numbering.
+
+The `exercise-answer-reference` gate catches missing visible references in
+explicitly labeled lesson exercises with unique numbered prompts. It recognizes
+prose labels, answer lists, and numbered table rows or columns. Restarted groups,
+subparts, and whether a calculation actually answers its labeled question remain
+part of the complete contextual review.
+
 ## Step granularity
 
 Use prose between conceptual moves. Use one connected mathematical display for

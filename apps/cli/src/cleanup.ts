@@ -47,7 +47,7 @@ function logCleanupReceipt(receipt: ReleaseCleanupReceipt) {
 export const runCleanupCommand: (args: CleanupArguments) => CleanupCommand =
   Effect.fn("AksaraCli.runCleanupCommand")((args) =>
     Effect.gen(function* () {
-      const environment = yield* readPublicationEnvironment().pipe(
+      const environment = yield* readPublicationEnvironment("production").pipe(
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({

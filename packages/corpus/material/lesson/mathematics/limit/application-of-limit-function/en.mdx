@@ -3,7 +3,7 @@ export const metadata = {
     description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-09-23",
     subject: "Limits",
 };
 
@@ -180,7 +180,7 @@ To calculate the model's case count, we use <InlineMath math="t=282{,}367" />:
 
 <BlockMath math="\begin{aligned} &amp;(190.68)^3 \\ &amp;= 190.68 \times 190.68 \times 190.68 \\ &amp;\approx 6{,}932{,}907.88 \end{aligned}" />
 
-The displayed value is rounded to two decimal places. The next calculation retains the unrounded value internally.
+The displayed value is rounded to two decimal places. The next calculation retains the **unrounded value** internally.
 
 **Step 2** calculates the square of the vaccination count.
 
@@ -227,9 +227,9 @@ Each problem gives a situation and asks for the **value a quantity approaches**.
 
 3. The total cost model for producing <InlineMath math="x" /> masks is <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Determine the marginal-cost function using the limit definition, then compare it with the exact cost of increasing output from <InlineMath math="x" /> to <InlineMath math="x+1" />.
 
-### The Cumulative Production Limit
+### Worked Solutions
 
-The model's **long-term ceiling** is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
+**Problem 1**. The model's **long-term ceiling** is obtained by calculating the limit when <InlineMath math="t \to \infty" />:
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
@@ -239,9 +239,7 @@ The model's **long-term ceiling** is obtained by calculating the limit when <Inl
 
 The modeled cumulative production approaches <InlineMath math="50{,}000" /> vaccine units. It does not equal that value at any finite <InlineMath math="t" /> because <InlineMath math="e^{-0.1t}>0" /> for finite <InlineMath math="t" />.
 
-### The Message Reach Limit
-
-Divide the numerator and denominator by <InlineMath math="t" /> to identify the **term that approaches zero**. This division is valid for <InlineMath math="t>0" />, as required near this limit.
+**Problem 2**. Divide the numerator and denominator by <InlineMath math="t" /> to identify the **term that approaches zero**. This division is valid for <InlineMath math="t>0" />, as required near this limit.
 
 <MathContainer>
 <BlockMath math="\lim_{t \to \infty} I(t) = \lim_{t \to \infty} \frac{100000t}{t + 50}" />
@@ -251,9 +249,7 @@ Divide the numerator and denominator by <InlineMath math="t" /> to identify the 
 
 Within the model, cumulative reach approaches <InlineMath math="100{,}000 \text{ people}" /> as time grows. That number is the model's saturation level. A real message may reach a different audience because its conditions can change.
 
-### Marginal Cost and One Whole Unit
-
-Marginal cost is the derivative of the cost function, which can be calculated using the limit definition:
+**Problem 3**. Marginal cost is the derivative of the cost function, which can be calculated using the limit definition:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />

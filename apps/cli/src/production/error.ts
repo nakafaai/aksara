@@ -8,6 +8,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "abort",
       "accept",
       "cleanup",
+      "parity",
       "recover",
       "release",
       "status",

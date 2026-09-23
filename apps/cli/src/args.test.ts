@@ -62,6 +62,24 @@ describe("preview arguments", () => {
   );
 });
 
+it.effect("decodes exact identities for paired publication verification", () =>
+  Effect.gen(function* () {
+    expect(
+      yield* parseCliArguments([
+        "parity",
+        "--release-id",
+        "release-paired",
+        "--recovery-id",
+        "recovery-paired",
+      ])
+    ).toEqual({
+      command: "parity",
+      recoveryId: "recovery-paired",
+      releaseId: "release-paired",
+    });
+  })
+);
+
 describe("production arguments", () => {
   it.effect("decodes the complete supported command vocabulary", () =>
     Effect.gen(function* () {

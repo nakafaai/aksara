@@ -4,7 +4,7 @@ export const metadata = {
   description: "Model bookstore discounts, elevator capacity, and floor and ceiling rules with piecewise step functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-23",
   subject: "Functions and Their Modeling",
 };
 
@@ -296,9 +296,9 @@ The problems mix floor and ceiling values with a quantity that changes in whole 
 
 5. An elevator can accommodate a maximum of <InlineMath math="8 \text{ people}" />. If there are <InlineMath math="n \text{ people}" /> who want to use the elevator, how many times must the elevator operate?
 
-### Floor and Ceiling Values
+### Worked Solutions
 
-For a **negative input**, rounding down moves toward a smaller integer, not toward zero.
+**Problem 1**. For a **negative input**, rounding down moves toward a smaller integer, not toward zero.
 
 <BlockMath math="\lfloor3.7\rfloor=3" />
 
@@ -308,9 +308,7 @@ For a **negative input**, rounding down moves toward a smaller integer, not towa
 <InlineMath math="-2" /> is the smallest integer greater than or equal to <InlineMath math="-2.3" />.
 <BlockMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil = 3 + (-2) = 1" />
 
-### Discount and Total Price
-
-The discount percentage is a **step function**, but the total price <InlineMath math="H(n)" /> grows with the number of books within each tier. The total-price model below is therefore piecewise on integer book counts, rather than constant within each tier.
+**Problem 2**. The discount percentage is a **step function**, but the total price <InlineMath math="H(n)" /> grows with the number of books within each tier. The total-price model below is therefore piecewise on integer book counts, rather than constant within each tier.
 
 The discount applies to the **whole purchase**. For example, six books receive a ten-percent discount:
 
@@ -320,9 +318,7 @@ Let <InlineMath math="n\in\mathbb{N}" /> be the positive whole number of books p
 
 <BlockMath math="H(n) = \begin{cases}\begin{gathered}50000n\\\text{if } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.9\\\text{if } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.85\\\text{if } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.8\\\text{if } n > 20\end{gathered}\end{cases}" />
 
-### A Transformed Step Graph
-
-Check the **right endpoint of the domain** separately: the value at <InlineMath math="x=3" /> differs from the value on the interval immediately to its left.
+**Problem 3**. Check the **right endpoint of the domain** separately: the value at <InlineMath math="x=3" /> differs from the value on the interval immediately to its left.
 
 For each interval:
 
@@ -382,9 +378,7 @@ The following graph shows the function value on each interval and at the endpoin
   cameraTarget={[0, -1, 0]}
 />
 
-### A Floor Equation
-
-Use the **bounding inequality for floor**, subtract one from all three expressions, and then divide throughout by two.
+**Problem 4**. Use the **bounding inequality for floor**, subtract one from all three expressions, and then divide throughout by two.
 
 <MathContainer>
 
@@ -397,9 +391,7 @@ Use the **bounding inequality for floor**, subtract one from all three expressio
 
 So the solution set is <InlineMath math="x \in [2, 2.5)" />.
 
-### Elevator Trips
-
-Count **loaded upward trips**, allowing the elevator to return empty when needed. For nine people, one full trip is insufficient:
+**Problem 5**. Count **loaded upward trips**, allowing the elevator to return empty when needed. For nine people, one full trip is insufficient:
 
 <BlockMath math="9=8+1,\qquad \lceil9/8\rceil=2" />
 

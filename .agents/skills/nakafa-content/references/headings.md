@@ -1,14 +1,20 @@
 # Headings
 
-- Lesson and article body headings start at `##` and use `###` only for real
-  nested concepts. `heading-order` blocks a body that opens above `##` or skips
-  a level, such as `##` straight to `####`. A question-bank answer file is
-  rendered beneath an app-owned `###` heading, so its sections start at `####`
-  and may use `#####` for real nested analysis under the question-bank contract
-  instead of this opening rule.
-- A lesson exercise answer key nests `####` and `#####` under its own `###`
-  heading. Reaching a fourth level for ordinary explanation means the section
-  needs splitting, not another heading level.
+- Lesson and article bodies use only `##` and `###`, including lesson exercises
+  and their worked solutions. `heading-order` rejects a different opening level,
+  skipped levels, and every heading deeper than `###`.
+- Preserve the teaching hierarchy: a lesson exercise section stays at `##`, and
+  its worked solutions stay at `###` beneath it. Never promote the solutions to
+  `##` merely to remove deeper headings. Inside the solutions, connect subgoals
+  through complete prose, with selective emphasis, derivations, tables, or
+  diagrams when they help. Remove deeper headings by rewriting their transitions
+  in context, never by flattening the outline or replacing them with bold titles.
+  Numbered question identifiers such as `**Soal 1**.` belong at the start of
+  the answer prose so the learner can match questions and answers. Follow the
+  [worked-solution mapping](worked-solutions.md#mapping-exercises-to-answers).
+- A standalone question-bank answer renders beneath an app-owned `###` heading.
+  Its sections start at `####` and may use `#####` for real nested analysis.
+  This exception belongs only to question-bank answers, never lesson solutions.
 - Leave one blank line after headings.
 - Page titles and body headings use one short phrase containing letters and
   ordinary spaces. Put formulas, code tokens, aliases, digits, operators,

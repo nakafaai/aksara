@@ -214,10 +214,16 @@ know, so it is not the full id list.
   paragraph, so such a marker reaches the learner as literal `**`. A pair inside
   one paragraph stays valid even when it wraps an inline component, and inline
   or fenced code keeps `**` as programming syntax.
-- `heading-order` blocks a body that opens above `##` or a heading whose level
-  skips one. The corpus nests answer-key headings to `####` and `#####` under a
-  `###` heading, which stays valid because no level is skipped, so the gate
-  enforces order rather than a maximum depth.
+- `heading-order` requires lesson and article bodies to start at `##` and use
+  at most `###`, including lesson answer keys. Standalone question-bank answers
+  start at `####` and use at most `#####` beneath the app-owned explanation.
+  The gate rejects skipped levels and headings outside the genre's two levels.
+- `exercise-answer-reference` requires a visible answer reference for each
+  uniquely numbered prompt in an explicitly labeled lesson exercise and solution.
+  Prose identifiers, numbered answer lists, and table row or column labels are
+  valid. Numbered steps inside an already labeled answer do not stand in for the
+  next question. Restarted groups and the correctness of the mapping require the
+  contextual [worked-solution review](worked-solutions.md#mapping-exercises-to-answers).
 - `section-body-highlight` requires a selective phrase in every lesson and
   worked-answer heading body, including the body below the app-owned answer heading. A
   marked title or earlier section does not satisfy it. Exact balanced inline
@@ -352,3 +358,11 @@ unreported mark is a useful phrase, so the manual emphasis review remains.
 equality inside an event argument. Nearby valid event relations remain inside
 the complete argument, and nested cases and matrix environments keep their own
 alignment. This rule checks layout, not the truth of an equation.
+
+The `heading-order` check also rejects an explicit lesson answer heading promoted
+to H2 immediately after a recognized exercise section. The regression is grounded
+in the scalar-multiplication lesson and the reviewed growth, logarithm, quadratic,
+and arithmetic exercise labels in ID, EN, and DE. Conceptual headings such as
+`Solution Uniqueness and Numerical Stability`, articles, and question-bank answers
+keep their own scope. Semantic parentage beyond these exact labels still requires
+the full editorial read.

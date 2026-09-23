@@ -222,3 +222,31 @@ source repository is public.
 - Copying immutable structured rows during forward rollback.
 - Treating a result digest as a row inclusion proof.
 - Claiming signed artifacts protect against arbitrary trusted-database writes.
+
+## Development and production parity
+
+One protected workflow owns publication for both environments. It runs shared
+repository and contract verification before a two-target matrix, with independent
+credentials selected by key and matrix cancellation disabled. Release and
+acceptance require both targets. Terminal repair operations may select one target
+because a failed or recovered target need not share its peer's current state.
+The standalone development publisher is removed.
+
+Each target retains the existing signed release protocol and its own base history.
+The workflow does not create a distributed transaction. Its read-only parity
+command authenticates both active signed bundles and compares source revision,
+locales, frozen renderer, complete result catalog digest, and every snapshot result
+identity. The catalog digest covers artifact, source, projection, route and delivery
+identities, including content outside the selected scope. The gate runs after
+paired publication and before either acceptance mutation. It compares current
+content identities and hashes, not manifest hashes,
+which legitimately include different prior histories. A rerun keeps the same
+release identity and exact Git revision; the CLI checks clean checkout provenance
+before resuming an active receipt. A partial failure remains a failed release until
+both authoritative states converge and rendered acceptance passes.
+
+A retry after a lost acceptance response may find one expected inverse already
+cleared. Parity permits this idempotent state only while both active catalogs still
+match, neither has a candidate, and any remaining inverse has the requested ID and
+verified phase. Paired acceptance then clears the remaining inverse. A different
+frozen renderer fails parity and requires complete renderer closure publication.

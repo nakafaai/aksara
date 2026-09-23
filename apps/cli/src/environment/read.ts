@@ -136,21 +136,35 @@ export const readPreviewEnvironment = Effect.fn("AksaraCli.readEnvironment")(
     )
 );
 
+/** Target names whose credentials are isolated at the environment boundary. */
+export const PublicationEnvironmentTargetSchema = Schema.Literals([
+  "development",
+  "production",
+]);
+export type PublicationEnvironmentTarget =
+  typeof PublicationEnvironmentTargetSchema.Type;
+
 /** Loads only the authenticated target shared by publication commands. */
 export const readPublicationEnvironment = Effect.fn(
   "AksaraCli.readPublicationEnvironment"
-)(function* () {
+)(function* (target: PublicationEnvironmentTarget) {
+  const endpointVariable =
+    target === "development"
+      ? "AKSARA_DEV_PUBLICATION_ENDPOINT"
+      : "AKSARA_PUBLICATION_ENDPOINT";
+  const tokenVariable =
+    target === "development"
+      ? "AKSARA_DEV_PUBLICATION_TOKEN"
+      : "AKSARA_PUBLICATION_TOKEN";
   const publicationEndpoint = yield* readConfig(
-    Config.URL("AKSARA_PUBLICATION_ENDPOINT"),
-    "AKSARA_PUBLICATION_ENDPOINT"
+    Config.URL(endpointVariable),
+    endpointVariable
   ).pipe(
-    Effect.flatMap((endpoint) =>
-      validateEndpoint("AKSARA_PUBLICATION_ENDPOINT", endpoint)
-    )
+    Effect.flatMap((endpoint) => validateEndpoint(endpointVariable, endpoint))
   );
   const publicationToken = yield* readConfig(
-    tokenConfig("AKSARA_PUBLICATION_TOKEN"),
-    "AKSARA_PUBLICATION_TOKEN"
+    tokenConfig(tokenVariable),
+    tokenVariable
   );
   return {
     publicationEndpoint,
@@ -162,7 +176,7 @@ export const readPublicationEnvironment = Effect.fn(
 export const readRecoveryEnvironment = Effect.fn(
   "AksaraCli.readRecoveryEnvironment"
 )(function* () {
-  const publication = yield* readPublicationEnvironment();
+  const publication = yield* readPublicationEnvironment("production");
   const rendererEndpoint = yield* readConfig(
     Config.URL("AKSARA_RENDERER_ENDPOINT"),
     "AKSARA_RENDERER_ENDPOINT"

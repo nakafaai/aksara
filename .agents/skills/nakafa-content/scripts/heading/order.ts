@@ -1,10 +1,25 @@
 import { Predicate } from "effect";
 import {
+  isExerciseHeading,
+  isSolutionHeading,
+} from "#nakafa-content/exercise/context";
+import { issueAtOffset } from "#nakafa-content/math/finding";
+import {
+  attributeEstree,
+  type EstreeNode,
+  jsxComponentName,
   type MdxNode,
   parseLessonMdx,
   visitMdxNodes,
+  walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";
-import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
+import type {
+  LessonVoiceIssue,
+  LessonVoiceLocale,
+} from "#nakafa-content/voice/types";
+
+const HTML_HEADING_PATTERN = /^h[1-6]$/u;
+const SECTION_PREFIX_PATTERN = /^##\s+/u;
 
 const BODY_HEADING_DEPTH = 2;
 
@@ -25,44 +40,100 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
 }
 
 /**
- * Finds body headings whose level jumps.
+ * Enforces the two authored heading levels owned by each document genre.
  *
- * A lesson body opens at `##`, and every later heading may descend one level
- * at a time or return to any level above it. A jump such as `##` to `####`
- * hides the missing nesting, so the learner meets a heading whose parent is
- * never written. Answer keys legitimately nest to `####` under a `###`
- * heading, and that stays valid because the level is not skipped.
+ * Lessons and articles use H2 and H3, including their worked solutions.
+ * Standalone question-bank answers use H4 and H5 beneath the app-owned H3.
  */
 export function findHeadingOrderIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source),
-  bodyHeadingDepth = BODY_HEADING_DEPTH
+  bodyHeadingDepth = BODY_HEADING_DEPTH,
+  lessonLocale?: LessonVoiceLocale
 ): LessonVoiceIssue[] {
   const children = tree.children ?? [];
   if (!children.some((node) => node.type === "mdxjsEsm")) {
     return [];
   }
-  const headings: HeadingNode[] = [];
+  const headings: { depth: number; line: number; column: number }[] = [];
+  /** Records only statically named HTML headings with parser-owned offsets. */
+  function recordJsx(
+    name: string | undefined,
+    offset: number | undefined
+  ): void {
+    if (
+      name === undefined ||
+      offset === undefined ||
+      !HTML_HEADING_PATTERN.test(name)
+    ) {
+      return;
+    }
+    const { line, column } = issueAtOffset(source, offset, "heading-order");
+    headings.push({ column, depth: Number(name.slice(1)), line });
+  }
+  /** Inspects JSX hidden inside expressions and component attributes. */
+  function inspectProgram(program: EstreeNode | undefined): void {
+    if (!program) {
+      return;
+    }
+    walkEstreeDeep(program, (node) => {
+      if (node.type === "JSXElement") {
+        recordJsx(jsxComponentName(node), node.start);
+      }
+    });
+  }
   visitMdxNodes(tree, (node) => {
     if (isHeadingNode(node)) {
-      headings.push(node);
+      headings.push({ depth: node.depth, ...node.position.start });
+    }
+    if (
+      node.type === "mdxJsxFlowElement" ||
+      node.type === "mdxJsxTextElement"
+    ) {
+      recordJsx(node.name, node.position?.start?.offset);
+      for (const attribute of node.attributes ?? []) {
+        inspectProgram(attributeEstree(attribute));
+      }
+    }
+    if (node.type !== "mdxjsEsm") {
+      inspectProgram(node.data?.estree);
     }
   });
+  headings.sort(
+    (left, right) => left.line - right.line || left.column - right.column
+  );
   const lines = source.split("\n");
   const issues: LessonVoiceIssue[] = [];
   let previousDepth: number | undefined;
+  let exerciseSection = false;
   for (const heading of headings) {
+    const excerpt = (lines[heading.line - 1] ?? "").trim();
+    const label = excerpt.replace(SECTION_PREFIX_PATTERN, "");
+    const promotedSolution =
+      lessonLocale !== undefined &&
+      heading.depth === 2 &&
+      exerciseSection &&
+      isSolutionHeading(lessonLocale, label);
     const skipped =
       previousDepth !== undefined && heading.depth > previousDepth + 1;
     const misrooted =
       previousDepth === undefined && heading.depth !== bodyHeadingDepth;
-    if (skipped || misrooted || heading.depth < bodyHeadingDepth) {
+    if (
+      promotedSolution ||
+      skipped ||
+      misrooted ||
+      heading.depth < bodyHeadingDepth ||
+      heading.depth > bodyHeadingDepth + 1
+    ) {
       issues.push({
-        column: heading.position.start.column,
-        excerpt: (lines[heading.position.start.line - 1] ?? "").trim(),
-        line: heading.position.start.line,
+        column: heading.column,
+        excerpt,
+        line: heading.line,
         rule: "heading-order",
       });
+    }
+    if (lessonLocale !== undefined && heading.depth === 2) {
+      exerciseSection = isExerciseHeading(lessonLocale, label);
     }
     previousDepth = heading.depth;
   }

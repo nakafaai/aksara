@@ -33,7 +33,7 @@ function logAbortReceipt(receipt: ReleaseAbortReceipt) {
 export const runAbortCommand: (args: AbortArguments) => AbortCommand =
   Effect.fn("AksaraCli.runAbortCommand")((args) =>
     Effect.gen(function* () {
-      const environment = yield* readPublicationEnvironment().pipe(
+      const environment = yield* readPublicationEnvironment("production").pipe(
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({

@@ -1,3 +1,8 @@
+import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import {
+  makeTrustedKeyResolver,
+  TRUSTED_CONTENT_KEYS,
+} from "@nakafa/aksara-contracts/signature/trusted";
 import { Effect } from "effect";
 import { runAbortCommand } from "#cli/abort";
 import { printCliInfo } from "#cli/about";
@@ -5,6 +10,7 @@ import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
+import { runParityCommand } from "#cli/parity";
 import { runPreviewCommand } from "#cli/preview";
 import { runProductionCommand } from "#cli/production/command";
 import { runRecoverCommand } from "#cli/recover";
@@ -38,6 +44,14 @@ export function makeCliProgram(input: {
     }
     if (args.command === "recover") {
       return yield* runRecoverCommand(args);
+    }
+    if (args.command === "parity") {
+      return yield* runParityCommand(args).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS)
+        )
+      );
     }
     if (args.command === "status") {
       return yield* runStatusCommand;

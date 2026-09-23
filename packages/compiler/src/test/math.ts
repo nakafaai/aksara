@@ -1,5 +1,8 @@
 import { compile } from "@mdx-js/mdx";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import { createMathVisualPolicy } from "#compiler/math-policy";
 import { createSourcePolicy } from "#compiler/source-policy";
@@ -46,6 +49,7 @@ export const validateMathSource = Effect.fn(
 )(function* (rawMdx: string) {
   const policy = createSourcePolicy(
     TEST_MATH_CONTENT_KEY,
+    CorpusSourcePathSchema.make("packages/corpus/material/lesson/test/en.mdx"),
     new Set(["InlineMath", "MathVisual"])
   );
   yield* Effect.promise(() =>

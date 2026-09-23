@@ -163,6 +163,26 @@ Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does
 not compile mutable working-tree bytes.
 
+The protected `release.yml` workflow publishes and accepts development and
+production together from that revision. Its default target is `both`; release
+and acceptance reject a single target. One shared verification job finishes
+before either publication job receives credentials. A failed target does not
+cancel its peer. Inspect both durable states before rerunning the same release
+identity at its exact original revision. Resume rejects a different revision.
+Recovery, abort, and cleanup may select one explicit target to repair a partial
+failure. Development has no deployed cache surface; production invalidates its
+deployed surface. Credentials are selected by target key with no value fallback.
+
+The read-only `pnpm parity -- --release-id <id> --recovery-id <id>` command
+verifies both active signatures, source revision, locales, frozen renderer,
+complete result catalog digest, and every snapshot result identity. The workflow
+runs it after paired release and acceptance, and before either acceptance mutation.
+A partial-scope release with inherited drift therefore fails the workflow. Signed
+manifest hashes may differ because each manifest binds its own base history.
+Accept both only after rendered acceptance is verified; the workflow enforces
+content parity before releasing either inverse. The targets activate independently;
+a failed workflow is not evidence of cross-target atomicity or completed parity.
+
 Concurrent backend verification uses a task-owned Nakafa deployment through
 [Convex Agent Mode](https://docs.convex.dev/cli/agent-mode), never a shared
 development or production deployment. Local HTTPS renderer verification may

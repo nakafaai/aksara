@@ -21,7 +21,7 @@ type AcceptCommand = Effect.Effect<
 export const runAcceptCommand: (args: AcceptArguments) => AcceptCommand =
   Effect.fn("AksaraCli.runAcceptCommand")((args) =>
     Effect.gen(function* () {
-      const environment = yield* readPublicationEnvironment().pipe(
+      const environment = yield* readPublicationEnvironment("production").pipe(
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({

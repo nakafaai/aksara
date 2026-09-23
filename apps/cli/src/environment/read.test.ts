@@ -37,7 +37,6 @@ function makeEnvironmentFixture() {
         variable.startsWith("AKSARA_PUBLICATION_")
       )
     );
-
     return { privateKeyPem, productionValues, publicationValues };
   });
 }
@@ -70,7 +69,10 @@ function rejectProduction(values: ReadonlyMap<string, string>) {
 
 /** Returns one sanitized publication configuration failure. */
 function rejectPublication(values: ReadonlyMap<string, string>) {
-  return provideConfig(readPublicationEnvironment().pipe(Effect.flip), values);
+  return provideConfig(
+    readPublicationEnvironment("production").pipe(Effect.flip),
+    values
+  );
 }
 
 describe("preview environment", () => {
@@ -141,7 +143,7 @@ describe("production environment", () => {
       Effect.gen(function* () {
         const { publicationValues } = yield* makeEnvironmentFixture();
         const environment = yield* provideConfig(
-          readPublicationEnvironment(),
+          readPublicationEnvironment("production"),
           publicationValues
         );
 

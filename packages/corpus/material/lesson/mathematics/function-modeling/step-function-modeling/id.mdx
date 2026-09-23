@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelkan diskon toko buku, kapasitas lift, serta fungsi lantai dan langit-langit dengan fungsi tangga yang memakai aturan berbeda pada setiap interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-23",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -296,9 +296,9 @@ Soal-soal ini menggabungkan **nilai lantai dan langit-langit** dengan besaran ya
 
 5. Sebuah lift dapat menampung maksimal <InlineMath math="8 \text{ orang}" />. Jika ada <InlineMath math="n \text{ orang}" /> yang ingin naik lift, berapa kali lift harus beroperasi?
 
-### Nilai Lantai dan Langit-langit
+### Pembahasan
 
-Untuk **masukan negatif**, pembulatan ke bawah bergerak menuju bilangan yang lebih kecil, bukan menuju nol.
+**Soal 1**. Untuk **masukan negatif**, pembulatan ke bawah bergerak menuju bilangan yang lebih kecil, bukan menuju nol.
 
 <BlockMath math="\lfloor3{,}7\rfloor=3" />
 
@@ -308,9 +308,7 @@ Untuk **masukan negatif**, pembulatan ke bawah bergerak menuju bilangan yang leb
 <InlineMath math="-2" /> adalah bilangan bulat terkecil yang lebih dari atau sama dengan <InlineMath math="-2{,}3" />.
 <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
-### Diskon dan Total Harga
-
-Persentase diskon adalah **fungsi tangga**, tetapi total harga <InlineMath math="H(n)" /> bertambah dengan jumlah buku di dalam setiap tingkat. Jadi, model total harga berikut merupakan fungsi sepotong-sepotong pada jumlah buku bulat, bukan fungsi tangga yang konstan pada setiap tingkat.
+**Soal 2**. Persentase diskon adalah **fungsi tangga**, tetapi total harga <InlineMath math="H(n)" /> bertambah dengan jumlah buku di dalam setiap tingkat. Jadi, model total harga berikut merupakan fungsi sepotong-sepotong pada jumlah buku bulat, bukan fungsi tangga yang konstan pada setiap tingkat.
 
 Diskon berlaku untuk **seluruh pembelian**. Sebagai contoh, enam buku mendapat diskon sepuluh persen:
 
@@ -320,9 +318,7 @@ Misalkan <InlineMath math="n\in\mathbb{N}" /> adalah banyak buku yang dibeli, be
 
 <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{jika } n > 20\end{gathered}\end{cases}" />
 
-### Grafik Bertingkat
-
-Periksa **ujung kanan domain** secara terpisah: nilai di <InlineMath math="x=3" /> berbeda dari nilai pada interval tepat di sebelah kirinya.
+**Soal 3**. Periksa **ujung kanan domain** secara terpisah: nilai di <InlineMath math="x=3" /> berbeda dari nilai pada interval tepat di sebelah kirinya.
 
 Untuk setiap interval:
 
@@ -382,9 +378,7 @@ Grafik berikut menampilkan nilai fungsi pada setiap interval dan titik ujung:
   cameraTarget={[0, -1, 0]}
 />
 
-### Persamaan Fungsi Lantai
-
-Gunakan **ketaksamaan pembatas fungsi lantai**, kurangi kedua batas dengan satu, lalu bagi seluruh pertidaksamaan dengan dua.
+**Soal 4**. Gunakan **ketaksamaan pembatas fungsi lantai**, kurangi kedua batas dengan satu, lalu bagi seluruh pertidaksamaan dengan dua.
 
 <MathContainer>
 
@@ -397,9 +391,7 @@ Gunakan **ketaksamaan pembatas fungsi lantai**, kurangi kedua batas dengan satu,
 
 Jadi himpunan penyelesaiannya adalah <InlineMath math="\{x\mid 2 \leq x &lt; 2{,}5\}" />.
 
-### Jumlah Perjalanan Lift
-
-Yang dihitung adalah **perjalanan naik yang membawa penumpang**, dengan lift kembali kosong bila diperlukan. Untuk sembilan orang, satu perjalanan penuh belum cukup:
+**Soal 5**. Yang dihitung adalah **perjalanan naik yang membawa penumpang**, dengan lift kembali kosong bila diperlukan. Untuk sembilan orang, satu perjalanan penuh belum cukup:
 
 <BlockMath math="9=8+1,\qquad \lceil9/8\rceil=2" />
 

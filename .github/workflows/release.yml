@@ -1,4 +1,5 @@
 name: Release content
+run-name: ${{ inputs.operation }} ${{ inputs.release_id }} (${{ inputs.target }})
 
 on:
   workflow_dispatch:
@@ -13,6 +14,15 @@ on:
           - cleanup
           - recover
           - release
+      target:
+        description: Release and accept require both; select one target only for recovery, abort, or cleanup
+        required: true
+        default: both
+        type: choice
+        options:
+          - both
+          - development
+          - production
       release_id:
         description: Exact release ID for the requested operation. For release, a fresh <slug>-YYYYMMDD identity that must differ from the recovery ID. For accept, recover, abort, or cleanup, the existing release that operation targets.
         required: true
@@ -34,7 +44,7 @@ on:
 permissions: {}
 
 concurrency:
-  group: content-production
+  group: content-publication
   cancel-in-progress: false
 
 jobs:
@@ -82,55 +92,17 @@ jobs:
           --repository "$GITHUB_REPOSITORY"
           --source-sha "$GITHUB_SHA"
 
-  operate:
+  verify:
     needs: contracts
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
       && needs.contracts.result == 'success'
-    environment: content-production
     runs-on: ubuntu-latest
-    # Full rebuilds must cover validation, candidate upload, retained-inverse
-    # upload, two bounded proof passes, activation, and compensation.
-    timeout-minutes: 120
+    timeout-minutes: 30
     permissions:
       contents: read
     steps:
-      - name: Validate operation
-        env:
-          OPERATION: ${{ inputs.operation }}
-          REBUILD: ${{ inputs.rebuild }}
-          RECOVERY_ID: ${{ inputs.recovery_id }}
-          RELEASE_ID: ${{ inputs.release_id }}
-          PUBLICATION_SCOPE: ${{ inputs.scope }}
-        run: |
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
-            if [[ -z "$RECOVERY_ID" ]]; then
-              echo "The operation must name its exact retained inverse." >&2
-              exit 1
-            fi
-            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
-              echo "Active and recovery release identities must differ." >&2
-              exit 1
-            fi
-          elif [[ -n "$RECOVERY_ID" ]]; then
-            echo "Abort and cleanup do not accept a recovery identity." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "release" ]]; then
-            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
-              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
-              exit 1
-            fi
-          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
-            echo "Only release may select a publication scope." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
-            echo "Only release may rebuild selected families." >&2
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -185,6 +157,98 @@ jobs:
             --filter=@nakafa/aksara-cli
           pnpm deprecations:audit
 
+  operate:
+    name: ${{ inputs.operation }} (${{ matrix.target }})
+    needs: [contracts, verify]
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && needs.contracts.result == 'success'
+      && needs.verify.result == 'success'
+    environment: content-production
+    runs-on: ubuntu-latest
+    # Full rebuilds must cover validation, candidate upload, retained-inverse
+    # upload, two bounded proof passes, activation, and compensation.
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    steps:
+      - name: Validate operation
+        env:
+          OPERATION: ${{ inputs.operation }}
+          TARGET: ${{ inputs.target }}
+          REBUILD: ${{ inputs.rebuild }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+          PUBLICATION_SCOPE: ${{ inputs.scope }}
+        run: |
+          case "$TARGET" in
+            both|development|production) ;;
+            *) echo "Unknown publication target." >&2; exit 1 ;;
+          esac
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" ]]; then
+            if [[ "$TARGET" != "both" ]]; then
+              echo "Release and acceptance must cover development and production together." >&2
+              exit 1
+            fi
+          fi
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+            if [[ -z "$RECOVERY_ID" ]]; then
+              echo "The operation must name its exact retained inverse." >&2
+              exit 1
+            fi
+            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
+              echo "Active and recovery release identities must differ." >&2
+              exit 1
+            fi
+          elif [[ -n "$RECOVERY_ID" ]]; then
+            echo "Abort and cleanup do not accept a recovery identity." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "release" ]]; then
+            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
+              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
+              exit 1
+            fi
+          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
+            echo "Only release may select a publication scope." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
+            echo "Only release may rebuild selected families." >&2
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit dependencies
+        run: pnpm security:audit
+
+      - name: Verify exact main revision
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=normal)" ]]; then
+            echo "The reviewed production checkout is dirty." >&2
+            exit 1
+          fi
+          git rev-parse --verify HEAD
+
       - name: Prepare isolated operation checkout
         env:
           OPERATION_ROOT: ${{ runner.temp }}/aksara-operation
@@ -204,8 +268,9 @@ jobs:
         if: inputs.operation == 'release'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
+          AKSARA_CACHE_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
@@ -227,12 +292,26 @@ jobs:
           pnpm release -- --release-id "$RELEASE_ID" \
             --recovery-id "$RECOVERY_ID" "${scope_args[@]}" "${rebuild_args[@]}"
 
+      - name: Verify paired acceptance
+        if: inputs.operation == 'accept'
+        working-directory: ${{ runner.temp }}/aksara-operation
+        env:
+          AKSARA_DEV_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_DEV_PUBLICATION_ENDPOINT }}
+          AKSARA_DEV_PUBLICATION_TOKEN: ${{ secrets.AKSARA_DEV_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm parity -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"
+
       - name: Accept active release
         if: inputs.operation == 'accept'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: >-
@@ -243,8 +322,9 @@ jobs:
         if: inputs.operation == 'recover'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
+          AKSARA_CACHE_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
@@ -257,8 +337,8 @@ jobs:
         if: inputs.operation == 'cleanup'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: pnpm cleanup -- --release-id "$RELEASE_ID"
 
@@ -266,7 +346,46 @@ jobs:
         if: inputs.operation == 'abort'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
-          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
-          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: pnpm abort -- --release-id "$RELEASE_ID"
+
+  parity:
+    needs: operate
+    if: >-
+      github.ref == 'refs/heads/main'
+      && github.repository == 'nakafaai/aksara'
+      && needs.operate.result == 'success'
+      && (inputs.operation == 'release' || inputs.operation == 'accept')
+    environment: content-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify paired result
+        env:
+          AKSARA_DEV_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_DEV_PUBLICATION_ENDPOINT }}
+          AKSARA_DEV_PUBLICATION_TOKEN: ${{ secrets.AKSARA_DEV_PUBLICATION_TOKEN }}
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm parity -- --release-id "$RELEASE_ID"
+          --recovery-id "$RECOVERY_ID"

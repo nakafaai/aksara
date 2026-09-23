@@ -21,6 +21,7 @@ const BLOCKING_RULES = new Set([
   "empty-section-body",
   "evidence-carrying-metaphor",
   "exact-line-smoothing",
+  "exercise-answer-reference",
   "external-link-invalid-placement",
   "forbidden-control-character",
   "german-formal-address",
