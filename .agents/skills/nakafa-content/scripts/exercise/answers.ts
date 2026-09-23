@@ -3,6 +3,7 @@ import {
   isExerciseHeading,
   isSolutionHeading,
 } from "#nakafa-content/exercise/context";
+import { headingText } from "#nakafa-content/heading/label";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type {
@@ -14,6 +15,25 @@ const REFERENCE =
   /^(?:Soal|Pembahasan|Problem|Question|Solution|Aufgabe|Lösung)\s+(\d+)\b/iu;
 const NUMBER_COLUMN = /^(?:Soal|Problem|Question|Aufgabe)$/iu;
 const NUMBER = /^\d+$/u;
+const HTML_HEADING = /^h[1-6]$/u;
+const WHITESPACE = /\s+/gu;
+
+/** Resolves a document heading without treating component attributes as sections. */
+function headingDepth(node: MdxNode): number | undefined {
+  if (node.type === "heading") {
+    return node.depth;
+  }
+  const child = node.children?.[0];
+  if (node.type === "paragraph" && node.children?.length === 1 && child) {
+    return headingDepth(child);
+  }
+  return (node.type === "mdxJsxFlowElement" ||
+    node.type === "mdxJsxTextElement") &&
+    node.name !== undefined &&
+    HTML_HEADING.test(node.name)
+    ? Number(node.name.slice(1))
+    : undefined;
+}
 
 /** Reads visible identifiers without treating code or component data as prose. */
 function text(node: MdxNode): string {
@@ -102,22 +122,24 @@ export function findExerciseAnswerIssues(
   const issues: LessonVoiceIssue[] = [];
   for (const [index, heading] of children.entries()) {
     if (
-      heading.type !== "heading" ||
-      heading.depth !== 2 ||
-      !isExerciseHeading(locale, text(heading))
+      headingDepth(heading) !== 2 ||
+      !isExerciseHeading(
+        locale,
+        headingText(heading).replace(WHITESPACE, " ").trim()
+      )
     ) {
       continue;
     }
     const following = children.slice(index + 1);
-    const end = following.findIndex(
-      (node) => node.type === "heading" && node.depth === 2
-    );
+    const end = following.findIndex((node) => headingDepth(node) === 2);
     const section = end < 0 ? following : following.slice(0, end);
     const solutionIndex = section.findIndex(
       (node) =>
-        node.type === "heading" &&
-        node.depth === 3 &&
-        isSolutionHeading(locale, text(node))
+        headingDepth(node) === 3 &&
+        isSolutionHeading(
+          locale,
+          headingText(node).replace(WHITESPACE, " ").trim()
+        )
     );
     if (solutionIndex < 0) {
       continue;

@@ -10,6 +10,9 @@ const TARGET_IDENTITY_PATTERN =
 const PAIRED_TARGET_PATTERN =
   /if \[\[ "\$OPERATION" == "release" \|\| "\$OPERATION" == "accept" \]\]; then\s+if \[\[ "\$TARGET" != "both" \]\]; then[\s\S]*exit 1/u;
 
+const TERMINAL_TARGET_PATTERN =
+  /elif \[\[ "\$TARGET" == "both" \]\]; then\s+echo "Recovery, abort, and cleanup require one explicit target\." >&2\s+exit 1/u;
+
 const PARITY_PREFLIGHT_PATTERN =
   /Verify paired acceptance[\s\S]*if: inputs\.operation == 'accept'[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
 const PARITY_RESULT_PATTERN =
@@ -117,6 +120,11 @@ export function verifyPublicationWorkflow(
     release,
     PAIRED_TARGET_PATTERN,
     "Release and acceptance must require both targets"
+  );
+  assert.match(
+    release,
+    TERMINAL_TARGET_PATTERN,
+    "Recovery, abort, and cleanup must require one explicit target"
   );
   assert.match(
     release,

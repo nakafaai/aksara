@@ -144,3 +144,39 @@ it("ignores absent parser positions and incomplete identifiers", () => {
   table.children = [];
   assert.equal(findExerciseAnswerIssues(source, incomplete, "en").length, 1);
 });
+
+it.each([
+  ["en", "<h2>Exercises</h2>", "<h3>Solutions</h3>"],
+  ["en", "## Exercises", "<h3><strong>Worked Solutions</strong></h3>"],
+  ["en", "<h2>Practice Problems</h2>", "### Solutions"],
+  ["id", "<h2>Latihan</h2>", "<h3>Pembahasan</h3>"],
+  ["de", "<h2>Übung</h2>", "<h3>Ausführliche Lösung</h3>"],
+  ["en", "<h2>{'Exercises'}</h2>", "<h3>Worked\nSolutions</h3>"],
+] as const)(
+  "checks %s answers under literal JSX headings",
+  (locale, exercise, solution) => {
+    const source = `${METADATA}${exercise}\n\n${QUESTIONS}${solution}\n\nA first result.\n\nA second result.`;
+    assert.equal(
+      findExerciseAnswerIssues(source, parseLessonMdx(source), locale).length,
+      1
+    );
+    const mapped = `${source}\n\n1. First answer.\n2. Second answer.`;
+    assert.deepEqual(
+      findExerciseAnswerIssues(mapped, parseLessonMdx(mapped), locale),
+      []
+    );
+  }
+);
+
+it("does not borrow JSX sections or component attributes as answer mappings", () => {
+  const source = `${METADATA}<h2>Exercises</h2>\n\n${QUESTIONS}<h3>Solutions</h3>\n\n**Problem 1**. First answer.\n\n<h2>Another topic</h2>\n\n**Problem 2**. Another answer.`;
+  assert.equal(
+    findExerciseAnswerIssues(source, parseLessonMdx(source), "en").length,
+    1
+  );
+  const unrelated = `${METADATA}<Panel title={<h2>Exercises</h2>} />\n\n${QUESTIONS}<h3>Solutions</h3>\n\nUnnumbered.`;
+  assert.deepEqual(
+    findExerciseAnswerIssues(unrelated, parseLessonMdx(unrelated), "en"),
+    []
+  );
+});

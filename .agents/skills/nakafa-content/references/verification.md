@@ -269,5 +269,7 @@ steps after repairing their layout.
 Exercise mapping regression fixtures cover missing question numbers, calculation
 steps inside an answer, continuous and restarted prompt groups, prose labels,
 numbered answers, mixed list continuations, and table row and column references
-in ID, EN, and DE. The check is lesson-only and does not rewrite question-bank
+in ID, EN, and DE, including literal JSX headings and mixed Markdown/JSX
+section boundaries. Heading labels come from visible parsed children, never
+component attributes. The check is lesson-only and does not rewrite question-bank
 answer structure.

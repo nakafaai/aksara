@@ -195,6 +195,9 @@ jobs:
               echo "Release and acceptance must cover development and production together." >&2
               exit 1
             fi
+          elif [[ "$TARGET" == "both" ]]; then
+            echo "Recovery, abort, and cleanup require one explicit target." >&2
+            exit 1
           fi
           if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
             if [[ -z "$RECOVERY_ID" ]]; then

@@ -76,6 +76,11 @@ describe("paired publication policy", () => {
       "Release and acceptance must require both targets",
     ],
     [
+      'elif [[ "$TARGET" == "both" ]]; then',
+      "elif false; then",
+      "Recovery, abort, and cleanup must require one explicit target",
+    ],
+    [
       "vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT']",
       "vars.AKSARA_DEV_PUBLICATION_ENDPOINT || vars.AKSARA_PUBLICATION_ENDPOINT",
       "Each operation must select credential keys",
