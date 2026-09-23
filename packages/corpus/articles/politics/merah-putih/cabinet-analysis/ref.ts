@@ -131,7 +131,7 @@ export const references: ArticleReference[] = [
     details: "4(59), 1–5",
     publication: "Jurnal Pembangunan Daerah",
     title: "Mengembangkan etika kepemimpinan: Fenomena pada jabatan publik",
-    url: "https://puskapol.fisip.ui.ac.id/wp-content/uploads/2015/02/Makalah-Djayadi-Hanan.pdf",
+    url: "https://widyagama.ac.id/iwan-nugroho/wp-content/uploads/2012/01/MCW-Etika-Kepemimpinan-jabatan-publik-feb-2013.pdf",
     year: 2013,
   },
   {
