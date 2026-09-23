@@ -5,7 +5,7 @@ export const metadata = {
     description: "Stelle zweidimensionale Vektoren in der Koordinatenebene dar und berechne ihre Komponenten sowie ihren Betrag.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-07",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -41,7 +41,7 @@ Die **Länge** oder der **Betrag** von <InlineMath math="\overrightarrow{OQ}" />
 
 Die folgende Darstellung verbindet den Vektor mit seinen Komponenten und seinem Betrag in der kartesischen Ebene:
 
-<Vector3d
+<LineEquation
   cameraPosition={[1, 1.4, 9]}
   cameraTarget={[1, 1.4, 0]}
   title="Vektor in der Koordinatenebene"
@@ -52,33 +52,45 @@ Die folgende Darstellung verbindet den Vektor mit seinen Komponenten und seinem 
       im kartesischen Koordinatensystem
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 3, 0],
-      labelOffset: [-0.25, 0.65, 0],
-      labelProgress: 0.7,
-      labelAnchorX: "center",
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 0 }],
       color: "#65a30d",
-      label: <>Vektor <InlineMath math="OQ" /></>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <>Vektor <InlineMath math="OQ" /></>,
+        progress: 0.7,
+        offset: [-0.25, 0.65, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
-      labelOffset: [0, -0.5, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "center",
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        progress: 0.5,
+        offset: [0, -0.5, 0],
+        anchorX: "center",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 3, 0],
-      labelOffset: [-0.3, 0, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "right",
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
       color: "#ca8a04",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        progress: 0.5,
+        offset: [-0.3, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />

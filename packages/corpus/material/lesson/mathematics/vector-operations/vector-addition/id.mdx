@@ -5,7 +5,7 @@ export const metadata = {
     description: "Jumlahkan vektor dengan metode segitiga, jajar genjang, poligon, dan komponen, lalu gunakan resultannya untuk menjelaskan gerak atau gaya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektor dan Operasinya",
 };
 
@@ -24,36 +24,51 @@ Pada metode segitiga, susun kedua vektor **secara berurutan**:
 3. Gambar resultan dari pangkal vektor pertama ke ujung vektor kedua
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[3.2, 2.3, 10]}
     cameraTarget={[3.2, 2.3, 0]}
     title="Penjumlahan Vektor dengan Metode Segitiga"
     description={<>Metode segitiga untuk menjumlahkan vektor <InlineMath math="\vec{a}" /> dan vektor <InlineMath math="\vec{b}" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0.4, -0.45, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.6, -0.25, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [4, 1, 0],
-        to: [6, 4, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [0.6, -0.2, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 4, y: 1, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [0.6, -0.2, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [6, 4, 0],
-        color: "#65a30d",
-        label: <InlineMath math="a+b" />,
-        labelOffset: [-0.2, 0.65, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        progress: 1,
+        offset: [0, 0.85, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -75,53 +90,77 @@ Caranya:
 3. Resultan vektor adalah diagonal jajar genjang yang melalui titik pangkal kedua vektor
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[3.5, 3.3, 11.5]}
     cameraTarget={[3.5, 3.3, 0]}
     title="Penjumlahan Vektor dengan Metode Jajar Genjang"
     description={<>Metode jajar genjang untuk menjumlahkan vektor <InlineMath math="\vec{a}" /> dan vektor <InlineMath math="\vec{b}" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [5, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0.4, -0.4, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.6, -0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [2, 5, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [-1.4, 0.1, 0],
-        labelAnchorX: "right",
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 5, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [-1.4, 0.1, 0],
+        anchorX: "right",
+      }],
+    },
       {
-        from: [5, 1, 0],
-        to: [7, 6, 0],
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelOffset: [0.6, -0.2, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 5, y: 1, z: 0 }, { x: 7, y: 6, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [0.6, -0.2, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 5, 0],
-        to: [7, 6, 0],
-        color: "#e11d48",
-        label: <InlineMath math="a" />,
-        labelOffset: [0, 0.7, 0],
-        labelPosition: "start",
-      },
+      points: [{ x: 2, y: 5, z: 0 }, { x: 7, y: 6, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 0,
+        offset: [0, 0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [7, 6, 0],
-        color: "#65a30d",
-        label: <InlineMath math="a+b" />,
-        labelOffset: [0.5, 0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 6, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        progress: 1,
+        offset: [0.7, 0.8, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -132,7 +171,7 @@ Penjumlahan vektor juga memenuhi **sifat komutatif**, sehingga urutan penjumlaha
 
 Untuk menjumlahkan lebih dari dua vektor, kita dapat menggunakan metode poligon. Prinsipnya adalah ujung vektor sebelumnya <Highlight>bertemu dengan pangkal vektor sesudahnya</Highlight>. Resultan vektor adalah vektor yang menghubungkan pangkal vektor pertama dengan ujung vektor terakhir.
 
-<Vector3d
+<LineEquation
   cameraPosition={[10, 6, -8]}
   cameraTarget={[3.5, 1.8, 1]}
   title="Penjumlahan Tiga Vektor dengan Metode Poligon"
@@ -142,38 +181,58 @@ Untuk menjumlahkan lebih dari dua vektor, kita dapat menggunakan metode poligon.
       poligon.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 1, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="a" />,
-      labelOffset: [0, 0.8, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 1, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 4, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 4, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="b" />,
-      labelOffset: [0, 0.8, 0],
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [0, 0.8, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [5, 4, 0],
-      to: [7, 3, 2],
+      points: [{ x: 5, y: 4, z: 0 }, { x: 7, y: 3, z: 2 }],
       color: "#65a30d",
-      label: <InlineMath math="c" />,
-      labelOffset: [0, -0.5, 0],
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        progress: 0.5,
+        offset: [0, -0.5, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [7, 3, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="a+b+c" />,
-      labelOffset: [0, -1.4, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b+c" />,
+        progress: 1,
+        offset: [0.2, -1.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -190,71 +249,101 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
 Untuk kedua diagram berikut, gunakan <InlineMath math="A=(3,1,0)" />, <InlineMath math="B=(1,3,0)" />, dan <InlineMath math="C=(0,1,3)" />. Resultan sementaranya adalah <InlineMath math="B+C=(1,4,3)" /> dan <InlineMath math="A+B=(4,4,0)" />. Kedua pengelompokan menghasilkan <InlineMath math="A+B+C=(4,5,3)" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[9, 7, -8]}
     cameraTarget={[2, 2.5, 1.5]}
     title={<>Jumlahkan <InlineMath math="B" /> dan <InlineMath math="C" /> Terlebih Dahulu</>}
     description={<>Vektor <InlineMath math="B+C" /> berawal di ujung <InlineMath math="A" /> dan mencapai titik akhir penjumlahan.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [3, 1, 0],
-        color: "#e11d48",
-        label: <InlineMath math="A" />,
-        labelOffset: [0.85, -0.3, 0.85],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 1,
+        offset: [1.05, -0.1, 1.05],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [3, 1, 0],
-        to: [4, 5, 3],
-        color: "#ea580c",
-        label: <InlineMath math="B+C" />,
-        labelOffset: [0, -0.7, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 3, y: 1, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B+C" />,
+        progress: 0.5,
+        offset: [0, -0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 5, 3],
-        color: "#db2777",
-        label: <InlineMath math="A+B+C" />,
-        labelOffset: [0, 0.9, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B+C" />,
+        progress: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[9, 7, -8]}
     cameraTarget={[2, 2.5, 1.5]}
     title={<>Jumlahkan <InlineMath math="A" /> dan <InlineMath math="B" /> Terlebih Dahulu</>}
     description={<>Vektor <InlineMath math="C" /> berawal di ujung <InlineMath math="A+B" /> dan mencapai titik akhir yang sama.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 4, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="A+B" />,
-        labelOffset: [0, -0.8, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B" />,
+        progress: 0.5,
+        offset: [0, -0.8, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [4, 4, 0],
-        to: [4, 5, 3],
-        color: "#65a30d",
-        label: <InlineMath math="C" />,
-        labelOffset: [0, 0.7, 0],
-        labelPosition: "middle",
-      },
+      points: [{ x: 4, y: 4, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        progress: 0.5,
+        offset: [0, 0.7, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 5, 3],
-        color: "#db2777",
-        label: <InlineMath math="A+B+C" />,
-        labelOffset: [0, 0.9, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 5, z: 3 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A+B+C" />,
+        progress: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -263,7 +352,7 @@ Untuk kedua diagram berikut, gunakan <InlineMath math="A=(3,1,0)" />, <InlineMat
 
 Jumlahkan **komponen pada sumbu yang sama**. Komponen horizontal dijumlahkan dengan horizontal dan komponen vertikal dengan vertikal.
 
-<Vector3d
+<LineEquation
   cameraPosition={[10, 8, -8]}
   cameraTarget={[2.5, 2.8, 1.5]}
   title="Penjumlahan Vektor secara Komponen"
@@ -273,56 +362,84 @@ Jumlahkan **komponen pada sumbu yang sama**. Komponen horizontal dijumlahkan den
       <InlineMath math="y" />, dan <InlineMath math="z" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#e11d48",
-      label: <InlineMath math="a" />,
-      labelOffset: [0, 0.7, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.9, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [3, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="a_x" />,
-      labelOffset: [0, -1, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_x" />,
+        progress: 1,
+        offset: [0.2, -0.8, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
       color: "#65a30d",
-      label: <InlineMath math="a_y" />,
-      labelOffset: [0.4, 0.5, 0.4],
-      labelAnchorX: "right",
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_y" />,
+        progress: 1,
+        offset: [0.6, 0.7, 0.6],
+        anchorX: "right",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
       color: "#ea580c",
-      label: <InlineMath math="a_z" />,
-      labelOffset: [0.3, -0.6, 0.3],
-      labelAnchorX: "right",
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_z" />,
+        progress: 1,
+        offset: [0.5, -0.4, 0.5],
+        anchorX: "right",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [2, 4, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 4, z: 2 }],
       color: "#db2777",
-      label: <InlineMath math="b" />,
-      labelOffset: [0, 0.7, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.9, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [5, 6, 3],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 6, z: 3 }],
       color: "#c026d3",
-      label: <InlineMath math="a+b" />,
-      labelOffset: [0, 0.9, 0],
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a+b" />,
+        progress: 1,
+        offset: [0.2, 1.1, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -345,37 +462,51 @@ Penjumlahan vektor dapat digunakan untuk menghitung kecepatan perahu yang menyeb
 2. Jika kecepatan arus sungai tak nol, kecepatan perahu relatif terhadap tepi sungai adalah jumlah vektor antara kecepatan perahu relatif terhadap air dan kecepatan arus. Arah, besar, atau keduanya dapat berubah, bergantung pada arah arus
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[1.4, 2, 8]}
     cameraTarget={[1.4, 2, 0]}
     title="Aplikasi Penjumlahan Vektor: Perahu Menyeberangi Sungai"
     description={<>Kecepatan resultan <InlineMath math="v_R" /> dari kecepatan perahu <InlineMath math="v_B" /> dan arus sungai <InlineMath math="v_F" />.</>}
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0, 4, 0],
-        color: "#0d9488",
-        label: <InlineMath math="v_B" />,
-        labelOffset: [-0.8, 0.2, 0],
-        labelAnchorX: "right",
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_B" />,
+        progress: 0.5,
+        offset: [-0.8, 0.2, 0],
+        anchorX: "right",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3, 0, 0],
-        color: "#65a30d",
-        label: <InlineMath math="v_F" />,
-        labelOffset: [0.5, -0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
+      color: "#65a30d",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_F" />,
+        progress: 1,
+        offset: [0.7, -0.4, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3, 4, 0],
-        color: "#e11d48",
-        label: <InlineMath math="v_R" />,
-        labelOffset: [0.5, 0.6, 0],
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
+      color: "#e11d48",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_R" />,
+        progress: 1,
+        offset: [0.7, 0.8, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

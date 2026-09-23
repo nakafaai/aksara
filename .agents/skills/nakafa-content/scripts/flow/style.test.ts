@@ -16,6 +16,31 @@ it("rejects attention fillers and formulaic utility transitions", () => {
     );
   }
 });
+
+it("rejects announcement prefaces without rejecting real scope comparisons", () => {
+  const failures = {
+    de: "Wichtig zu erwähnen ist, dass der Wert konstant bleibt.",
+    en: "It is important to note that the value remains constant.",
+    id: "Penting untuk dicatat bahwa nilainya tetap.",
+  };
+  const validComparisons = {
+    de: "Wenn es um die Identität eines Objekts geht, verwenden wir is.",
+    en: "When it comes to object identity, use is.",
+    id: "Saat kita membandingkan identitas objek, gunakan is.",
+  };
+
+  for (const locale of ["de", "en", "id"] as const) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, failures[locale]).map(({ rule }) => rule),
+      ["formulaic-attention-filler"]
+    );
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, validComparisons[locale]),
+      []
+    );
+  }
+});
+
 it("rejects generic tips simplification and abstraction claims", () => {
   const samples = {
     de: "Hilfreiche Kontrollen:\nDer Einfachheit halber verwenden wir Einheitsvektoren.\nDas Modell macht den Begriff weniger abstrakt.",

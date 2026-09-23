@@ -26,15 +26,16 @@ uses the warning surface.
   punctuation, headings, and mathematics still need the [final
   review](review.md#final-language-review).
 - Let each locale choose its own phrase instead of translating a sibling's
-  marked words. A locale that marks nothing has left that step unmarked for its
-  readers, so every authored locale document carries at least one marked phrase
-  using either syntax (`lesson-without-highlight`). The opening section a learner reads first marks
-  at least one phrase with either marker (`lesson-opening-highlight`).
-- Mark an important phrase inside every authored heading body, not only the opening.
+  marked words. Every lesson locale carries at least one marked phrase using
+  either syntax (`lesson-without-highlight`), and its opening section marks at
+  least one phrase (`lesson-opening-highlight`). Worked answers mark decisive
+  conditions without copying a sibling's phrase. Article emphasis is optional
+  and follows the scientific argument rather than a document-wide quota.
+- In lessons and worked answers, mark an important phrase inside every heading body, not only the opening.
   Choose the deciding term, condition, operation, or interpretation in that
   section. A marked title, diagram label, or earlier section does not signal
   the current explanation. A short bridge also names the important relationship it introduces. The
-  `section-body-highlight` rule checks each heading body independently, down
+  `section-body-highlight` rule checks each lesson and worked-answer heading body independently, down
   to nested answer sections. Exact quotations, code, and pure notation remain
   untouched. Choose the phrase in context instead of highlighting the first
   sentence mechanically.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkalian skalar dapat mengubah besar dan arah vektor. Terapkan operasi ini dalam perhitungan, fisika, dan geometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-13",
   subject: "Vektor dan Operasinya",
 };
 
@@ -24,15 +24,51 @@ Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math=
 Vektor pada diagram memakai <InlineMath math="\vec v=(2,1)" />. **Selisih koordinat ujung dan pangkal** untuk ketiga panah adalah <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" />, dan <InlineMath math="(-2,-1)" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[1, 2, 9]}
     cameraTarget={[1, 2, 0]}
     title="Skalar Mengubah Panjang dan Arah"
     description="Pangkal panah dipisahkan agar ketiga vektor dapat dibandingkan. Faktor positif mempertahankan arah dan faktor negatif membalik arah."
-    vectors={[
-      { from: [0, 0, 0], to: [2, 1, 0], color: "#9333ea", label: <InlineMath math="\vec v" /> },
-      { from: [0, 2, 0], to: [4, 4, 0], color: "#ea580c", label: <InlineMath math="2\vec v" /> },
-      { from: [0, 4, 0], to: [-2, 3, 0], color: "#0d9488", label: <InlineMath math="-\vec v" /> },
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 2, z: 0 }, { x: 4, y: 4, z: 0 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="2\vec v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 4, z: 0 }, { x: -2, y: 3, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\vec v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

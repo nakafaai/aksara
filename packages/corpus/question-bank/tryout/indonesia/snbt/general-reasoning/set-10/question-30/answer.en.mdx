@@ -15,7 +15,11 @@ Let <InlineMath math="x" /> and <InlineMath math="y" /> be the two package count
   <BlockMath math="x,y\in\mathbb Z_{\ge0}" />
 </MathContainer>
 
-For each <InlineMath math="x" />, choose the largest feasible <InlineMath math="y" />. Each additional <InlineMath math="Y" /> adds <InlineMath math="10" /> profit, with a setup cost of <InlineMath math="3" /> only for the first package of that type. Therefore, the largest <InlineMath math="y" /> also gives the highest net profit for that <InlineMath math="x" />.
+The material bound <InlineMath math="5x\le45" /> limits our checks to <InlineMath math="x=0,1,\ldots,9" />. For each <InlineMath math="x" />, the two constraints give the following maximum <InlineMath math="y" />. The floor symbols round down because packages must be whole.
+
+<BlockMath math="y_{\max}=\min\left(\left\lfloor\frac{45-5x}{3}\right\rfloor,\left\lfloor\frac{32-2x}{4}\right\rfloor\right)" />
+
+Choose the largest **feasible package count** for <InlineMath math="y" />. Each additional <InlineMath math="Y" /> adds <InlineMath math="10" /> profit, with a setup cost of <InlineMath math="3" /> only for the first package of that type. Therefore, the largest <InlineMath math="y" /> also gives the highest net profit for that <InlineMath math="x" />.
 
 | <InlineMath math="x" /> | <InlineMath math="y" /> maximum | Profit before setup | Net profit |
 | :---: | :---: | :---: | :---: |

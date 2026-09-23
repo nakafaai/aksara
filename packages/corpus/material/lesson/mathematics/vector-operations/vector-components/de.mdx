@@ -5,7 +5,7 @@ export const metadata = {
   description: "Zerlege Vektoren in Koordinatenkomponenten, berechne ihren Betrag mit dem Satz des Pythagoras und bilde Einheitsvektoren für ihre Richtung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -15,7 +15,7 @@ Jeder Vektor in der Koordinatenebene lässt sich <Highlight>entlang der beiden K
 
 Die skalaren Komponenten geben an, wie weit und in welche vorzeichenbehaftete Richtung der Vektor entlang der <InlineMath math="x" />- und <InlineMath math="y" />-Achse reicht. Jeder Vektor in der Ebene ist eine Linearkombination der Einheitsvektoren <InlineMath math="\mathbf{i}" /> und <InlineMath math="\mathbf{j}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[1.8, 4, 12.5]}
   cameraTarget={[1.8, 4, 0]}
   title="Vektorvisualisierung und ihre Komponenten"
@@ -26,33 +26,45 @@ Die skalaren Komponenten geben an, wie weit und in welche vorzeichenbehaftete Ri
       <InlineMath math="z" />-Komponente von null.
     </>
   }
-  vectors={[
+  data={[
     {
-      labelOffset: [-0.3, 0.7, 0],
-      labelProgress: 0.75,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 0.75,
+        offset: [-0.3, 0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [0, -0.6, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [6, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        progress: 0.5,
+        offset: [0, -0.6, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [-0.4, 0, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "right",
-      from: [0, 0, 0],
-      to: [0, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 8, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        progress: 0.5,
+        offset: [-0.4, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -98,47 +110,63 @@ Für den Vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j
 
 Vektoren lassen sich in einer zweidimensionalen Ebene und im dreidimensionalen Raum verwenden.
 
-<Vector3d
+<LineEquation
   cameraPosition={[11, 10, -11]}
   cameraTarget={[1.5, 3.5, 2]}
   title="Vektoren im 3D-Raum"
   description="Visualisierung eines Vektors und seiner Komponenten im dreidimensionalen Raum."
-  vectors={[
+  data={[
     {
-      labelOffset: [0, 0.8, 0],
-      labelProgress: 0.85,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [5, 7, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 7, z: 4 }],
       color: "#ea580c",
-      label: "3D-Vektor",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: "3D-Vektor",
+        progress: 0.85,
+        offset: [0, 0.8, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [0, -0.7, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [5, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-Komponente</>,
+        progress: 0.5,
+        offset: [0, -0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [-0.8, 0, 0],
-      labelProgress: 0.6,
-      labelAnchorX: "left",
-      from: [0, 0, 0],
-      to: [0, 7, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 7, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-Komponente</>,
+        progress: 0.6,
+        offset: [-0.8, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      labelOffset: [0.5, -0.3, 0],
-      labelProgress: 0.6,
-      labelAnchorX: "left",
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#ca8a04",
-      label: <><InlineMath math="z" />-Komponente</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="z" />-Komponente</>,
+        progress: 0.6,
+        offset: [0.5, -0.3, 0],
+        anchorX: "left",
+      }],
     },
   ]}
 />

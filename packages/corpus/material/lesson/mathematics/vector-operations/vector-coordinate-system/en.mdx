@@ -5,7 +5,7 @@ export const metadata = {
     description: "Locate points in two and three dimensions, then relate their position and displacement vectors to coordinates on a map.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-09",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-13",
   subject: "Vectors and Operations",
 };
 
@@ -51,7 +51,7 @@ In **three dimensions**, we add a <InlineMath math="z" /> axis that is perpendic
 
 In one common spatial model, <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> can represent length, width, and height. The chosen model gives each axis its meaning.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -5]}
   cameraTarget={[1.5, 2, 2.5]}
   title={
@@ -65,12 +65,19 @@ In one common spatial model, <InlineMath math="x" />, <InlineMath math="y" />, a
       <InlineMath math="P(3, 4, 5)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 5],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 5 }],
       color: "#9333ea",
-      label: <InlineMath math="P(3, 4, 5)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="P(3, 4, 5)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

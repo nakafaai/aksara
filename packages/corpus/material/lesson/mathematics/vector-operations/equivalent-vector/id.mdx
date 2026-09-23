@@ -5,7 +5,7 @@ export const metadata = {
     description: "Tentukan apakah dua vektor ekuivalen dari komponennya, lalu jelaskan mengapa perubahan titik pangkal tidak mengubah besar atau arah vektor.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektor dan Operasinya",
 };
 
@@ -15,23 +15,37 @@ Dua vektor disebut sama, atau direpresentasikan oleh ruas berarah yang ekuivalen
 
 Vektor ekuivalen bisa memiliki posisi yang berbeda dalam bidang atau ruang, tetapi tetap memiliki besar dan arah yang sama.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -6]}
   cameraTarget={[2, 1.5, 1]}
   title="Contoh Vektor Ekuivalen"
   description="Vektor berwarna ungu dan oranye memiliki besar dan arah yang sama, sehingga keduanya ekuivalen meskipun posisinya berbeda."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -65,23 +79,37 @@ Pada ruang tiga dimensi, vektor <InlineMath math="\vec{a}" /> dan <InlineMath ma
 
 Kesamaan ini berlaku tepat ketika <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" />, dan <InlineMath math="a_3 = b_3" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[8, 5, -6]}
   cameraTarget={[2.5, 1.5, 1.5]}
   title="Vektor Ekuivalen dalam Komponen"
   description="Dua vektor dengan komponen yang sama selalu ekuivalen, meskipun posisinya berbeda dalam ruang."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -126,7 +154,7 @@ Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath ma
 
   <BlockMath math="\text{Jika } \vec{a} = \vec{b} \text{ dan } \vec{b} = \vec{c} \text{, maka } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
     cameraPosition={[7, 5, -6]}
     cameraTarget={[2, 1.5, 1]}
     title="Sifat Transitif Vektor Ekuivalen"
@@ -136,25 +164,46 @@ Jika vektor <InlineMath math="\vec{a}" /> ekuivalen dengan vektor <InlineMath ma
         <InlineMath math="b = c" />, maka <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentStack>
@@ -177,7 +226,7 @@ Hitung **koordinat ujung dikurangi koordinat pangkal** untuk kedua panah:
 
 Karena <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, maka vektor <InlineMath math="\overrightarrow{AB}" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3, 4, 10]}
   cameraTarget={[3, 4, 0]}
   title={
@@ -191,18 +240,32 @@ Karena <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />,
       <InlineMath math="CD(3,4,0)" /> yang ekuivalen dalam ruang.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -220,7 +283,7 @@ Hitung **koordinat ujung dikurangi koordinat pangkal** untuk kedua panah:
 
 Karena <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, maka vektor <InlineMath math="\overrightarrow{PQ}" /> ekuivalen dengan vektor <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2.5, 1.5, 8]}
   cameraTarget={[2.5, 1.5, 0]}
   title={
@@ -234,18 +297,32 @@ Karena <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />,
       <InlineMath math="RS(2,2,0)" /> yang ekuivalen dalam ruang.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

@@ -67,7 +67,7 @@ it("recognizes tables, code, quotations and components as support", () => {
     "| Input | Output |\n| --- | --- |\n| One | Two |",
     "```python\nprint(2)\n```",
     "> An exact quotation.",
-    '<Vector3d title="Example" description="Rotate the vectors." vectors={[]} />',
+    '<LineEquation title="Example" description="Compare the lines." data={[]} />',
   ]) {
     const [review] = reviewTeachingSections(
       parseLessonMdx(
@@ -144,7 +144,7 @@ it("checks the unheaded body rendered beneath an app-owned answer heading", () =
 it("does not borrow emphasis from a quotation or a component label", () => {
   for (const support of [
     "> A **quoted condition** remains exact.",
-    "<Vector3d label={<Highlight>Vector label</Highlight>} />",
+    "<LineEquation data={[{ points: [], labels: [{ text: <Highlight>Line label</Highlight> }] }]} />",
     "```md\n**A code sample**\n```",
   ]) {
     const tree = parseLessonMdx(
@@ -156,4 +156,87 @@ it("does not borrow emphasis from a quotation or a component label", () => {
     "export const metadata = {};\n\n## Reasoning\n\nThe <Highlight>negative sign</Highlight> identifies the opposite direction."
   );
   assert.deepEqual(findBodyHighlightIssues(tree), []);
+});
+
+it("preserves exact inline quotations across marks, entities, and paragraphs", () => {
+  for (const quotation of [
+    '"The river flooded after two days of rain."',
+    "“The river flooded after **two days of rain**.”",
+    "„Der Fluss trat nach <Highlight>zwei Regentagen</Highlight> über die Ufer.“",
+    "&quot;Sungai meluap setelah **dua hari hujan**.&quot;",
+    '"The river flooded after two days of rain.\n\nThe bridge was closed."',
+  ]) {
+    const tree = parseLessonMdx(
+      `export const metadata = {};\n\n#### Quoted evidence\n\n${quotation}`
+    );
+    assert.deepEqual(findBodyHighlightIssues(tree, true), []);
+    assert.equal(reviewTeachingSections(tree)[0]?.proseWords, 0);
+  }
+});
+
+it("inventories quoted-only emphasis without inferring source ownership", () => {
+  for (const quotation of [
+    '"The river flooded after **two days of rain**."',
+    "“The river flooded after <Highlight>two days of rain</Highlight>.”",
+    '"The river flooded.\n\nThe **bridge was closed**."',
+  ]) {
+    const tree = parseLessonMdx(
+      `export const metadata = {};\n\n#### Evidence\n\nRainfall caused the flooding. The passage says, ${quotation}`
+    );
+    assert.deepEqual(findBodyHighlightIssues(tree), []);
+    assert.ok(
+      reviewTeachingSections(tree)[0]?.signals.includes("quoted-emphasis-only")
+    );
+    assert.equal(reviewTeachingSections(tree)[0]?.proseWords, 7);
+  }
+  const tree = parseLessonMdx(
+    'export const metadata = {};\n\n#### Evidence\n\n**Rainfall** caused the flooding. The passage says, "The river flooded after two days of rain."'
+  );
+  assert.deepEqual(findBodyHighlightIssues(tree), []);
+  assert.ok(
+    !reviewTeachingSections(tree)[0]?.signals.includes("quoted-emphasis-only")
+  );
+});
+
+it("keeps apostrophes and unmatched quotation marks in authored prose", () => {
+  for (const body of [
+    "The student's calculation uses the original denominator.",
+    "The students’ calculations use the original denominator.",
+    "The passage begins “Rainfall caused flooding. The original denominator remains unchanged.",
+    'The passage begins "Rainfall caused flooding. The next quotation is "A separate quoted sentence."',
+  ]) {
+    const tree = parseLessonMdx(
+      `export const metadata = {};\n\n#### Reasoning\n\n${body}`
+    );
+    assert.equal(findBodyHighlightIssues(tree).length, 1);
+  }
+});
+
+it("retains meaningful inline code and static expression emphasis", () => {
+  for (const body of [
+    'The <Highlight>{"negative sign"}</Highlight> identifies direction.',
+    "The **`dtype`** field names the numeric representation.",
+    'The **sign of the component** determines direction. The literal `"` is a quotation character.',
+  ]) {
+    const tree = parseLessonMdx(
+      `export const metadata = {};\n\n## Reasoning\n\n${body}`
+    );
+    assert.deepEqual(findBodyHighlightIssues(tree), []);
+  }
+});
+
+it("preserves quoted terminology and authored diagnostic questions", () => {
+  for (const body of [
+    'To find the probability of “event <InlineMath math="A" /> **OR** event <InlineMath math="B" />,” use the union.',
+    'Ask yourself: "Can these events occur **simultaneously in one experiment**?" If they cannot, they are mutually exclusive.',
+    "Das Ministerium verwendet den Begriff „**Neue und erneuerbare Energie**“, abgekürzt EBT.",
+  ]) {
+    const tree = parseLessonMdx(
+      `export const metadata = {};\n\n## Reasoning\n\n${body}`
+    );
+    assert.deepEqual(findBodyHighlightIssues(tree), []);
+    assert.ok(
+      reviewTeachingSections(tree)[0]?.signals.includes("quoted-emphasis-only")
+    );
+  }
 });

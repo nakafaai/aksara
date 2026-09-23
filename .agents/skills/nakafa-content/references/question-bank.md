@@ -20,11 +20,25 @@ and editorial checks, whether or not that locale is included in a publication.
 The presence of an authored source file alone never changes publication state.
 
 TKA subject identities must distinguish compulsory from elective subjects.
-Compulsory mathematics uses `compulsory-mathematics` in the question-bank
-directory, track key, and section key. Its localized route slugs are
-`matematika-wajib`, `compulsory-mathematics`, and `pflichtmathematik`.
-Advanced mathematics must own a separate subject identity when it is authored.
-Do not reserve empty tracks or duplicate registries for future subjects.
+The primary TKA pages identify `Matematika` under `Mata Pelajaran Wajib` and
+`Matematika Tingkat Lanjut` under `Mata Pelajaran Pilihan`:
+[compulsory mathematics](https://pusmendik.kemendikdasmen.go.id/tka/tka/view/mata-pelajaran-wajib/sma/matematika)
+and
+[advanced mathematics](https://pusmendik.kemendikdasmen.go.id/tka/tka/view/mata-pelajaran-pilihan/sma/matematika-tingkat-lanjut).
+Those are verified framework names.
+
+Nakafa product naming is separate from the official taxonomy. Compulsory
+mathematics uses `compulsory-mathematics` in the question-bank directory,
+track key, and section key. Its localized route slugs are `matematika-wajib`,
+`compulsory-mathematics`, and `pflichtmathematik`. Use `Matematika Wajib` when
+the product needs to distinguish the compulsory subject, and
+`Matematika Tingkat Lanjut` for the elective subject. English may use
+`Compulsory Mathematics` and `Advanced Mathematics`. Advanced mathematics
+must own a separate Nakafa subject identity when it is authored. Do not reserve
+empty tracks or duplicate registries for future subjects. Google Drive folder
+and file names such as `MTK Wajib` and `MTK Tingkat Lanjut` are product and
+research evidence only, not official framework evidence. Do not collapse this
+TKA subject taxonomy into UTBK-SNBT's `Penalaran Matematika`.
 Renderer domains describe available components, not subject identities:
 `tka-math` supplies mathematical renderers without defining a mathematics track.
 
@@ -109,6 +123,17 @@ to reduce line count.
 - Match the source-owned blueprint and current official framework. Benchmark
   new try-out sets against official examples and any authorized reference
   corpus. Preserve a deliberate cognitive-level distribution.
+- Keep TKA and SNBT frameworks distinct. The
+  [official TKA framework](https://pusmendik.kemendikdasmen.go.id/tka/page/download_file/370807_44)
+  uses single-choice, multiple-choice multiple-answer, and category responses,
+  with single or grouped stimuli. It measures knowledge and understanding,
+  application, and reasoning through mathematical and everyday contexts.
+- The [official SNPMB information page](https://snpmb.id/utbk-snbt/informasi-umum)
+  and
+  [2026 SNPMB launch deck](https://files.snpmb.id/web2026/Paparan%20Informasi%20SNPMB%202026%20untuk%20Peluncuran.pdf)
+  define UTBK-SNBT as a separate university-selection test with TPS and
+  literacy sections. Never use one framework's subject name or item contract as
+  evidence for the other.
 - Build difficulty from linked decisions, constraints, interpretation, and
   plausible distractors. Use a small number of meaningful dependent steps.
   Application or reasoning must require more than direct formula recall; a

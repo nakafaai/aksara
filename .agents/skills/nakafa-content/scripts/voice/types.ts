@@ -7,6 +7,8 @@ import type { TeachingSectionReview } from "#nakafa-content/body/review";
 
 export type LessonVoiceLocale = AppLocaleCode;
 
+export type LessonVoiceGenre = "article" | "lesson";
+
 export interface LessonVoiceRule {
   id: string;
   inspectLinkLabels?: boolean;

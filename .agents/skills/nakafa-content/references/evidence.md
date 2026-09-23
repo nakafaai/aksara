@@ -1,5 +1,9 @@
 # Accuracy and evidence
 
+- Articles use a professional scientific-journal register. Preserve every
+  claim-matched citation, source distinction, limitation, table, chart, and
+  author-created analytical figure. Do not rewrite an article as a lesson or
+  remove its evidence to make the prose shorter.
 - Preserve the source's meaning, uncertainty, scope, names, and numerical facts.
 - Prefer primary evidence for factual claims. Use an authoritative review or
   institutional history when the claim itself depends on synthesis or

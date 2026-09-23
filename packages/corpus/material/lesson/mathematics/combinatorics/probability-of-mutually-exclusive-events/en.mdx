@@ -35,7 +35,15 @@ The following pairs cannot occur in the **same trial**:
 - In a race: placing first and placing second simultaneously
 ### Identifying Mutually Exclusive Events
 
-To identify whether two events are mutually exclusive, ask yourself: "Can these two events occur **simultaneously in one experiment**?" If the answer is no, then the two events are mutually exclusive.
+Inspect the outcome sets before calculating. Two events are mutually exclusive only when <Highlight>their intersection is empty</Highlight>.
+
+| Test | Empty intersection | Nonempty intersection |
+| :--- | :--- | :--- |
+| Can one outcome satisfy both events? | No | Yes |
+| Classification | Mutually exclusive | Not mutually exclusive |
+| Addition rule | <InlineMath math="P(A)+P(B)" /> | <InlineMath math="P(A)+P(B)-P(A\cap B)" /> |
+
+For example, "even die value" and "odd die value" cannot describe the same roll, so their intersection is empty. "Prime die value" and "odd die value" can both describe a roll of <InlineMath math="3" /> or <InlineMath math="5" />, so their intersection is not empty.
 ## Formula for Probability of Mutually Exclusive Events
 
 The general addition rule subtracts the overlap <InlineMath math="P(A \cap B)" />. Mutually exclusive events have <InlineMath math="P(A \cap B)=0" />, so that term disappears:

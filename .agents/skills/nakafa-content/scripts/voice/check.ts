@@ -7,14 +7,12 @@ import { Effect, FileSystem } from "effect";
 import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import {
-  findDocumentIssues,
-  questionBodyKind,
-} from "#nakafa-content/voice/document";
+import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
+import { documentProfile } from "#nakafa-content/voice/profile";
 import {
   isLessonVoiceLocale,
   type LessonVoiceLocale,
@@ -162,8 +160,8 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
     issues.push(
       ...findLessonHighlightIssues(
         root,
-        siblingDocuments.filter(
-          ({ file }) => questionBodyKind(file) === undefined
+        siblingDocuments.filter(({ file }) =>
+          ["article", "lesson"].includes(documentProfile(file))
         )
       )
     );
@@ -173,7 +171,9 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       ...(pedagogyReview
         ? {
             pedagogy: documents
-              .filter(({ file }) => questionBodyKind(file) !== "question")
+              .filter(({ file }) =>
+                ["lesson", "answer"].includes(documentProfile(file))
+              )
               .flatMap(({ repositoryPath, locale, tree }) =>
                 reviewTeachingSections(tree).map((section) => ({
                   ...section,

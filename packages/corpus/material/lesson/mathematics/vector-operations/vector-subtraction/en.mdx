@@ -5,7 +5,7 @@ export const metadata = {
     description: "Subtract vectors geometrically and by components, then apply the result to displacement problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vector and Operations",
 };
 
@@ -30,7 +30,7 @@ The following four steps show two equivalent constructions of <InlineMath math="
 
 The visualization shows both constructions. The two arrows labeled <InlineMath math="a-b" /> have the same components, length, and direction even though they **begin at different points**.
 
-<Vector3d
+<LineEquation
   cameraPosition={[6, 4, -5]}
   cameraTarget={[1.5, 1, 0.5]}
   title="Visualization of Vector Subtraction in 3D Space"
@@ -40,38 +40,71 @@ The visualization shows both constructions. The two arrows labeled <InlineMath m
       <InlineMath math="a-b=a+(-b)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#0d9488",
-      label: <InlineMath math="a" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [1, 2, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 2 }],
       color: "#e11d48",
-      label: <InlineMath math="b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 2, 2],
-      to: [3, 2, 1],
+      points: [{ x: 1, y: 2, z: 2 }, { x: 3, y: 2, z: 1 }],
       color: "#9333ea",
-      label: <InlineMath math="a-b" />,
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a-b" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 2, 1],
-      to: [2, 0, -1],
+      points: [{ x: 3, y: 2, z: 1 }, { x: 2, y: 0, z: -1 }],
       color: "#ea580c",
-      label: <InlineMath math="-b" />,
-      labelPosition: "middle",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-b" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [2, 0, -1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: -1 }],
       color: "#db2777",
-      label: <InlineMath math="a - b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a - b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -112,7 +145,7 @@ While vector subtraction <InlineMath math="\vec{b} - \vec{a}" /> is:
 
 Notice that <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" /> in general. For a nonzero difference, **reversing the order** reverses the direction: <InlineMath math="\vec{a} - \vec{b} = -(\vec{b} - \vec{a})" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[1.5, 2, 7.5]}
   cameraTarget={[1.5, 2, 0]}
   title="Example of Vector Subtraction"
@@ -122,24 +155,45 @@ Notice that <InlineMath math="\vec{a} - \vec{b} \neq \vec{b} - \vec{a}" /> in ge
       <InlineMath math="a - b = (3,4,0) - (1,2,0) = (2,2,0)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="a" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [1, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#65a30d",
-      label: <InlineMath math="a - b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a - b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

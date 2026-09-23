@@ -5,7 +5,7 @@ export const metadata = {
     description: "Tentukan letak titik dalam dua dan tiga dimensi, lalu hubungkan koordinatnya dengan vektor posisi, perpindahan, dan peta.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-09",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-13",
   subject: "Vektor dan Operasinya",
 };
 
@@ -51,7 +51,7 @@ Pada **tiga dimensi**, kita menambahkan sumbu <InlineMath math="z" /> yang tegak
 
 Dalam salah satu model ruang yang umum, <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> dapat menyatakan panjang, lebar, dan tinggi. Model yang dipilih menentukan makna setiap sumbu.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -5]}
   cameraTarget={[1.5, 2, 2.5]}
   title={
@@ -65,12 +65,19 @@ Dalam salah satu model ruang yang umum, <InlineMath math="x" />, <InlineMath mat
       <InlineMath math="P(3, 4, 5)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 5],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 5 }],
       color: "#9333ea",
-      label: <InlineMath math="P(3, 4, 5)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="P(3, 4, 5)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

@@ -5,7 +5,7 @@ export const metadata = {
     description: "Entscheide anhand ihrer Komponenten, ob zwei Vektoren gleich sind, und erkläre, warum ein anderer Anfangspunkt weder Länge noch Richtung verändert.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -15,23 +15,37 @@ Zwei Vektoren sind gleich, oder werden durch äquivalente gerichtete Strecken da
 
 Gleiche Vektoren dürfen an verschiedenen Stellen einer Ebene oder des Raums eingezeichnet sein. Betrag und Richtung bleiben dabei unverändert.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -6]}
   cameraTarget={[2, 1.5, 1]}
   title="Beispiel für gleiche Vektoren"
   description="Der violette und der orangefarbene Vektor haben denselben Betrag und dieselbe Richtung. Deshalb sind sie trotz ihrer unterschiedlichen Positionen gleich."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -65,23 +79,37 @@ Im dreidimensionalen Raum sind die Vektoren <InlineMath math="\vec{a}" /> und <I
 
 Diese Gleichheit gilt genau dann, wenn <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" /> und <InlineMath math="a_3 = b_3" /> gelten.
 
-<Vector3d
+<LineEquation
   cameraPosition={[8, 5, -6]}
   cameraTarget={[2.5, 1.5, 1.5]}
   title="Gleiche Vektoren in Komponentenform"
   description="Zwei Vektoren mit denselben Komponenten sind gleich, auch wenn sie an unterschiedlichen Stellen im Raum eingezeichnet sind."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -126,7 +154,7 @@ Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math=
 
   <BlockMath math="\text{Wenn } \vec{a} = \vec{b} \text{ und } \vec{b} = \vec{c} \text{, dann } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
     cameraPosition={[7, 5, -6]}
     cameraTarget={[2, 1.5, 1]}
     title="Transitive Eigenschaft gleicher Vektoren"
@@ -136,25 +164,46 @@ Ist der Vektor <InlineMath math="\vec{a}" /> gleich dem Vektor <InlineMath math=
         <InlineMath math="b = c" /> folgt <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentStack>
@@ -177,7 +226,7 @@ Berechne für beide Pfeile **Endpunkt minus Anfangspunkt**:
 
 Da <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" /> gilt, ist der Vektor <InlineMath math="\overrightarrow{AB}" /> gleich dem Vektor <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3, 4, 10]}
   cameraTarget={[3, 4, 0]}
   title={
@@ -191,18 +240,32 @@ Da <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" /> gilt
       <InlineMath math="AB(3,4,0)" /> und <InlineMath math="CD(3,4,0)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -220,7 +283,7 @@ Berechne für beide Pfeile **Endpunkt minus Anfangspunkt**:
 
 Da <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" /> gilt, ist der Vektor <InlineMath math="\overrightarrow{PQ}" /> gleich dem Vektor <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2.5, 1.5, 8]}
   cameraTarget={[2.5, 1.5, 0]}
   title={
@@ -234,18 +297,32 @@ Da <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" /> gilt
       <InlineMath math="PQ(2,2,0)" /> und <InlineMath math="RS(2,2,0)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

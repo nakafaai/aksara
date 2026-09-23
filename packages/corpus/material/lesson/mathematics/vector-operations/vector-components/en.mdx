@@ -5,7 +5,7 @@ export const metadata = {
   description: "Decompose vectors into coordinate components, recover their magnitude with the Pythagorean theorem, and form unit direction vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-11",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vector and Operations",
 };
 
@@ -15,7 +15,7 @@ Every vector in the coordinate plane <Highlight>can be decomposed along the two 
 
 The scalar components tell us how far and in which signed direction the vector extends along the <InlineMath math="x" />- and <InlineMath math="y" />-axes. Every vector in the plane is a linear combination of the unit vectors <InlineMath math="\mathbf{i}" /> and <InlineMath math="\mathbf{j}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[1.8, 4, 12.5]}
   cameraTarget={[1.8, 4, 0]}
   title="Vector Visualization and Its Components"
@@ -26,33 +26,45 @@ The scalar components tell us how far and in which signed direction the vector e
       <InlineMath math="z" />-component.
     </>
   }
-  vectors={[
+  data={[
     {
-      labelOffset: [-0.3, 0.7, 0],
-      labelProgress: 0.75,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 0.75,
+        offset: [-0.3, 0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [0, -0.6, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [6, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-component</>,
+        progress: 0.5,
+        offset: [0, -0.6, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [-0.4, 0, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "right",
-      from: [0, 0, 0],
-      to: [0, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 8, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-component</>,
+        progress: 0.5,
+        offset: [-0.4, 0, 0],
+        anchorX: "right",
+      }],
     },
   ]}
 />
@@ -98,47 +110,63 @@ For the vector <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}
 
 Vectors can be used on a two-dimensional plane and in three-dimensional space.
 
-<Vector3d
+<LineEquation
   cameraPosition={[11, 10, -11]}
   cameraTarget={[1.5, 3.5, 2]}
   title="Vectors in 3D Space"
   description="Visualization of a vector and its components in three-dimensional space."
-  vectors={[
+  data={[
     {
-      labelOffset: [0, 0.8, 0],
-      labelProgress: 0.85,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [5, 7, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 7, z: 4 }],
       color: "#ea580c",
-      label: "3D Vector",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: "3D Vector",
+        progress: 0.85,
+        offset: [0, 0.8, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [0, -0.7, 0],
-      labelProgress: 0.5,
-      labelAnchorX: "center",
-      from: [0, 0, 0],
-      to: [5, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <><InlineMath math="x" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="x" />-component</>,
+        progress: 0.5,
+        offset: [0, -0.7, 0],
+        anchorX: "center",
+      }],
     },
     {
-      labelOffset: [-0.8, 0, 0],
-      labelProgress: 0.6,
-      labelAnchorX: "left",
-      from: [0, 0, 0],
-      to: [0, 7, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 7, z: 0 }],
       color: "#65a30d",
-      label: <><InlineMath math="y" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="y" />-component</>,
+        progress: 0.6,
+        offset: [-0.8, 0, 0],
+        anchorX: "left",
+      }],
     },
     {
-      labelOffset: [0.5, -0.3, 0],
-      labelProgress: 0.6,
-      labelAnchorX: "left",
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#ca8a04",
-      label: <><InlineMath math="z" />-component</>,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <><InlineMath math="z" />-component</>,
+        progress: 0.6,
+        offset: [0.5, -0.3, 0],
+        anchorX: "left",
+      }],
     },
   ]}
 />

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Vektor posisi menentukan letak titik dari titik asal, menghubungkan dua posisi dengan perpindahan, dan menampilkan posisi dalam sistem koordinat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-07",
   subject: "Vektor dan Operasinya",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 Vektor posisi <Highlight>berpangkal di titik asal</Highlight> <InlineMath math="O" /> dan berujung di titik yang ditinjau. Komponennya sama dengan koordinat titik ujung, sehingga vektor ini menyatakan letak titik tersebut relatif terhadap titik asal.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2, 2.5, 15]}
   cameraTarget={[2, 2.5, 0]}
   title="Visualisasi Vektor Posisi"
@@ -23,20 +23,32 @@ Vektor posisi <Highlight>berpangkal di titik asal</Highlight> <InlineMath math="
       <InlineMath math="A" /> dan <InlineMath math="B" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [-3, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
       color: "#db2777",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [7, 5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -57,39 +69,63 @@ Pada ruang tiga dimensi, jika titik <InlineMath math="P" /> memiliki koordinat <
 
 Dalam visualisasi di bawah, kita menggunakan notasi <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" />, dan <InlineMath math="OD" /> untuk menunjukkan vektor posisi dari titik <InlineMath math="O" /> ke titik tertentu (<InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, atau <InlineMath math="D" />).
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 6, -7]}
   cameraTarget={[1.5, 1.7, 1.5]}
   title="Vektor Posisi dalam Ruang Tiga Dimensi"
   description="Contoh beberapa vektor posisi dalam ruang tiga dimensi."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#ea580c",
-      label: <InlineMath math="OC" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OC" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [3, 3, 3],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 3 }],
       color: "#ca8a04",
-      label: <InlineMath math="OD" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OD" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -124,7 +160,7 @@ Vektor perpindahan dapat diperoleh dari **selisih dua vektor posisi**. Jika kita
 <BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[2, 2.5, 15]}
     cameraTarget={[2, 2.5, 0]}
     title="Hubungan Vektor Posisi dan Vektor Perpindahan"
@@ -134,28 +170,46 @@ Vektor perpindahan dapat diperoleh dari **selisih dua vektor posisi**. Jika kita
         vektor posisi <InlineMath math="OB" /> dan <InlineMath math="OA" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [-3, 2, 0],
-        color: "#db2777",
-        label: <InlineMath math="OA" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [7, 5, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="OB" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [-3, 2, 0],
-        to: [7, 5, 0],
-        color: "#0d9488",
-        label: <InlineMath math="AB" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: -3, y: 2, z: 0 }, { x: 7, y: 5, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

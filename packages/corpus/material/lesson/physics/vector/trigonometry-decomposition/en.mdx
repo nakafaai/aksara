@@ -6,7 +6,7 @@ export const metadata = {
     "Resolve a slanted vector into horizontal and vertical components using sine and cosine.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vector",
 };
 
@@ -27,7 +27,7 @@ For a vector in quadrant I, measure <InlineMath math="\theta" /> from the positi
 
 Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to the right. The pull has **rightward and upward force components**. An upward component does not necessarily lift the box: its motion also depends on its weight and the normal force from the floor.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2.1, 1.3, 7.5]}
   cameraTarget={[2.1, 1.3, 0]}
   title={<>Resolving a Slanted Force</>}
@@ -39,7 +39,7 @@ Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to 
       <InlineMath math="\sin37^\circ" />.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const angle = (37 * Math.PI) / 180;
     const fx = [5 * Math.cos(angle), 0, 0];
     const fy = [0, 5 * Math.sin(angle), 0];
@@ -47,32 +47,44 @@ Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to 
 
     return [
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="F" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.25, 0.5, 0.2],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="F" />,
+        progress: 3 / 5,
+        offset: [0.25, 0.5, 0.2],
+        anchorX: "center",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: fx,
-        color: "#0d9488",
-        label: <InlineMath math="F_x" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (fx)[0], y: (fx)[1], z: (fx)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="F_x" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: fx,
-        to: resultant,
-        color: "#d97706",
-        label: <InlineMath math="F_y" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.55, 0, 0.2],
-      },
+      points: [{ x: (fx)[0], y: (fx)[1], z: (fx)[2] }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="F_y" />,
+        progress: 1 / 2,
+        offset: [0.55, 0, 0.2],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />

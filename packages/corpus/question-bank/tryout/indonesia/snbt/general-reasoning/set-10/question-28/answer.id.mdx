@@ -5,8 +5,28 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Perlakukan <InlineMath math="\text{AB}" /> dan <InlineMath math="\text{CD}" /> sebagai blok berurutan tetap bersama <InlineMath math="E" />, <InlineMath math="F" />, <InlineMath math="G" />, dan <InlineMath math="H" />. Keenam unit itu dapat disusun dalam <InlineMath math="6!=720" /> cara. Kedua blok bersebelahan dalam <InlineMath math="2\cdot5!=240" /> susunan, sehingga <InlineMath math="480" /> susunan memisahkan keduanya. Tepat setengahnya menempatkan <InlineMath math="E" /> sebelum <InlineMath math="F" />, jadi ada <InlineMath math="240" /> susunan valid.
+#### Gabungkan pasangan berurutan
 
-Peluangnya adalah <InlineMath math="240/40320=\frac1{168}" />.
+Blok <InlineMath math="\text{AB}" /> dan <InlineMath math="\text{CD}" /> mempunyai **urutan internal tetap**. Bersama laporan <InlineMath math="E,F,G,H" />, ada enam unit yang dapat dipindahkan. Banyak susunan keenam unit adalah:
 
-Pertukaran posisi <InlineMath math="E" /> dan <InlineMath math="F" /> tidak mengubah syarat lain. Karena itu, jumlah susunan dengan <InlineMath math="E" /> sebelum <InlineMath math="F" /> sama dengan jumlah susunan dengan urutan sebaliknya.
+<BlockMath math="6!=720" />
+
+#### Keluarkan susunan dengan blok bersebelahan
+
+Jika kedua blok bersebelahan, perlakukan keduanya sebagai **satu unit gabungan**. Ada lima unit yang disusun, dengan dua urutan di dalam unit gabungan: <InlineMath math="\text{ABCD}" /> atau <InlineMath math="\text{CDAB}" />.
+
+<BlockMath math="2\times5!=240" />
+
+Kurangi susunan itu dari seluruh susunan enam unit. Sisanya menempatkan setidaknya satu laporan di antara kedua blok.
+
+<BlockMath math="720-240=480" />
+
+#### Terapkan urutan E dan F
+
+**Pertukaran posisi** <InlineMath math="E" /> dan <InlineMath math="F" /> tidak mengubah keutuhan atau jarak kedua blok. Setiap susunan dengan <InlineMath math="E" /> sebelum <InlineMath math="F" /> berpasangan dengan satu susunan berurutan sebaliknya. Jadi, tepat separuh susunan tersisa memenuhi syarat terakhir.
+
+<BlockMath math="480\div2=240" />
+
+Pemilihan acak dilakukan dari seluruh susunan delapan laporan tanpa pembatasan, bukan hanya dari susunan enam unit. Ruang sampel berukuran <InlineMath math="8!=40320" />. Peluang yang diminta adalah:
+
+<BlockMath math="P=\frac{240}{40320}=\frac1{168}" />

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Beschreibe, wie Ortsvektoren Punkte vom Ursprung aus festlegen, mit Verschiebungen zusammenhängen und in Koordinatensystemen dargestellt werden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-07",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 Ein Ortsvektor <Highlight>beginnt im Ursprung</Highlight> <InlineMath math="O" /> eines Koordinatensystems und endet am betrachteten Punkt. Er beschreibt damit eindeutig die Lage dieses Punktes im gewählten Koordinatensystem.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2, 2.5, 15]}
   cameraTarget={[2, 2.5, 0]}
   title="Ortsvektoren in der Koordinatenebene"
@@ -23,20 +23,32 @@ Ein Ortsvektor <Highlight>beginnt im Ursprung</Highlight> <InlineMath math="O" /
       <InlineMath math="A" /> und <InlineMath math="B" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [-3, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
       color: "#db2777",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [7, 5, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -57,39 +69,63 @@ Hat der Punkt <InlineMath math="P" /> im dreidimensionalen Raum die Koordinaten 
 
 In der folgenden Darstellung bezeichnen <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" /> und <InlineMath math="OD" /> die Ortsvektoren vom Ursprung <InlineMath math="O" /> zu den Punkten <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> und <InlineMath math="D" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 6, -7]}
   cameraTarget={[1.5, 1.7, 1.5]}
   title="Ortsvektoren im dreidimensionalen Raum"
   description="Vier Ortsvektoren zeigen vom Ursprung zu verschiedenen Punkten im dreidimensionalen Raum."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [4, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="OA" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="OB" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#ea580c",
-      label: <InlineMath math="OC" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OC" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [3, 3, 3],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 3 }],
       color: "#ca8a04",
-      label: <InlineMath math="OD" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OD" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -122,7 +158,7 @@ Der Verschiebungsvektor ergibt sich aus der **Differenz zweier Ortsvektoren**. S
 <BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[2, 2.5, 15]}
     cameraTarget={[2, 2.5, 0]}
     title="Zusammenhang zwischen Ortsvektoren und Verschiebung"
@@ -133,28 +169,46 @@ Der Verschiebungsvektor ergibt sich aus der **Differenz zweier Ortsvektoren**. S
         <InlineMath math="OA" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [-3, 2, 0],
-        color: "#db2777",
-        label: <InlineMath math="OA" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OA" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [7, 5, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="OB" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="OB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [-3, 2, 0],
-        to: [7, 5, 0],
-        color: "#0d9488",
-        label: <InlineMath math="AB" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: -3, y: 2, z: 0 }, { x: 7, y: 5, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

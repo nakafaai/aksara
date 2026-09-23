@@ -5,4 +5,18 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Da die Quote verfügbar ist, hätte eine Genehmigung zwingend zur Veröffentlichung geführt. Der Bericht ist nicht veröffentlicht, also ist er nicht genehmigt. Eine abgeschlossene Prüfung hätte wiederum zur Genehmigung geführt. Folglich ist die Prüfung nicht abgeschlossen.
+Es sei <InlineMath math="A" /> „Prüfung abgeschlossen“, <InlineMath math="P" /> „Bericht genehmigt“, <InlineMath math="Q" /> „Quote verfügbar“ und <InlineMath math="R" /> „Bericht veröffentlicht“. Die Regeln und Fakten lauten:
+
+<MathContainer>
+  <BlockMath math="A\Rightarrow P" />
+  <BlockMath math="(P\land Q)\Rightarrow R" />
+  <BlockMath math="Q\land\neg R" />
+</MathContainer>
+
+Da die **Quote verfügbar** ist, würde eine Genehmigung zur Veröffentlichung führen. Der Bericht ist aber nicht veröffentlicht, also **nicht genehmigt**. Eine abgeschlossene Prüfung würde nach der ersten Regel diese Genehmigung verlangen.
+
+Die Kontraposition der ersten Regel ergibt:
+
+<BlockMath math="\neg P\Rightarrow\neg A" />
+
+Die Prüfung ist somit nicht abgeschlossen. Daraus folgt kein Abbruch, denn dazu macht die Aufgabe keine Angabe.

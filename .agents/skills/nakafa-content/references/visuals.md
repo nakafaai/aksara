@@ -124,6 +124,11 @@ lesson. A removal is valid only when the representation no longer has a
 teaching job or when every locale sibling carries the same job more clearly in
 another form.
 
+For an article, author-written charts, tables, diagrams, and data displays are
+part of the argument and source record. Preserve them unless the underlying
+data is wrong or the source can no longer support them. A clean scientific
+article remains rich in evidence; it does not become prose-only during editing.
+
 Keep the teaching structure equivalent across locale siblings. If a diagram,
 table, example, warning, or worked model is necessary in one authored locale,
 preserve the same instructional evidence in the others while localizing its

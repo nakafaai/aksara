@@ -89,6 +89,12 @@ Read only what the task needs. Each reference owns one concern.
   Name objects, actions, conditions, and results. Preserve technical meaning and
   necessary reasoning. Follow the locale's voice and terminology rules without
   imposing one lesson template or inventing anecdotes, settings, or metaphors.
+- Keep genre boundaries explicit. Lessons use teacher-led pedagogy. Articles
+  use a professional scientific-journal register for professional readers,
+  preserve claim-matched sources and author-written charts, tables, and other
+  evidence, and never receive lesson choreography. Assessed questions keep the
+  source-owned real-exam language and difficulty. Worked answers use complete
+  post-attempt pedagogy without rewriting the assessed prompt.
 - Keep facts and source attribution verified. Preserve claim-matched provenance
   when changing the page outline or removing a resource. A learner-visible
   external resource must satisfy the [link policy](references/links.md).

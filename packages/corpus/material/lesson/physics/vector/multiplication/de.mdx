@@ -6,7 +6,7 @@ export const metadata = {
     "Skalarprodukt und Kreuzprodukt unterscheiden und ihren Zusammenhang mit Arbeit und Drehmoment verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -62,7 +62,7 @@ Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}
 
 Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis senkrecht auf der von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> aufgespannten Ebene. Seine Richtung folgt der **Rechte-Hand-Regel**: Krümme die Finger vom ersten zum zweiten Vektor über den kleineren Winkel. Der Daumen zeigt die Ergebnisrichtung. Bei parallelen Vektoren oder einem Nullvektor als Eingabe entsteht der Nullvektor ohne bestimmte Richtung.
 
-<Vector3d
+<LineEquation
   cameraPosition={[9.9, 6.66, -7]}
   cameraTarget={[1.5, 1.3, 5]}
   title={<>Richtung <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -72,7 +72,7 @@ Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis se
       liegen in einer Ebene. Ihr Kreuzprodukt steht senkrecht auf dieser Ebene.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 0, 0];
     const b = [0, 3, 0];
     const cross = [
@@ -83,38 +83,50 @@ Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis se
 
     return [
       {
-        color: "#ea580c",
-        from: [0, 0, 0],
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelOffset: [0, -0.45, 0],
-        labelProgress: 1 / 2,
-        to: a,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#9333ea",
-        from: [0, 0, 0],
-        label: <InlineMath math="B" />,
-        labelAnchorX: "center",
-        labelOffset: [0.5, 0, 0.15],
-        labelProgress: 1 / 2,
-        to: b,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B" />,
+        progress: 1 / 2,
+        offset: [0.5, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#d97706",
-        from: [0, 0, 0],
-        label: <InlineMath math="A\times B" />,
-        labelAnchorX: "center",
-        labelOffset: [0, 1.2, 0],
-        labelProgress: 1 / 2,
-        lineWidth: 4,
-        to: cross,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (cross)[0], y: (cross)[1], z: (cross)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      lineWidth: 4,
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A\times B" />,
+        progress: 1 / 2,
+        offset: [0, 1.2, 0],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
 
-In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Beide Modellvektoren sind dimensionslos. Berechne die Komponenten: Die ersten beiden sind null und die dritte ist <InlineMath math="4\cdot3" />. Der Ergebnispfeil ist 12 Einheiten lang. Drehe das Modell und vergleiche diesen Pfeil mit der Ebene der ursprünglichen Vektoren.
+In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Beide Modellvektoren sind dimensionslos. Berechne die Komponenten: Die ersten beiden sind null und die dritte ist <InlineMath math="4\cdot3" />. Der Ergebnispfeil ist <InlineMath math="12" /> Einheiten lang. Drehe das Modell und vergleiche diesen Pfeil mit der Ebene der ursprünglichen Vektoren.
 
 <BlockMath math="\begin{aligned}
 C_x&=0\cdot0-0\cdot3=0 \\

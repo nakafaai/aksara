@@ -6,7 +6,7 @@ export const metadata = {
     "Addiere und subtrahiere Vektoren zeichnerisch mit Dreiecks-, Parallelogramm- und Polygonmethode sowie Gegenvektoren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -22,7 +22,7 @@ Bei der grafischen Methode entsteht die Resultierende in einer maßstäblichen Z
 
 Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor und setze den Fußpunkt des zweiten an seine Spitze. Die Resultierende führt vom ursprünglichen Fußpunkt direkt zur letzten Pfeilspitze.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3, 2, 9]}
   cameraTarget={[3, 2, 0]}
   title={<>Spitze-an-Fußpunkt-Addition</>}
@@ -33,39 +33,51 @@ Mit der Dreiecksmethode werden zwei Vektoren addiert. Zeichne den ersten Vektor 
       direkt mit dem Endpunkt.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 1, 0];
     const b = [2, 3, 0];
     const resultant = a.map((component, index) => component + b.at(index));
 
     return [
       {
-        from: [0, 0, 0],
-        to: a,
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: a,
-        to: resultant,
-        color: "#d97706",
-        label: <InlineMath math="b" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.35, 0.45, 0.2],
-      },
+      points: [{ x: (a)[0], y: (a)[1], z: (a)[2] }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1 / 2,
+        offset: [0.35, 0.45, 0.2],
+        anchorX: "center",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="R" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.25, 0.75, 0.35],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="R" />,
+        progress: 3 / 5,
+        offset: [0.25, 0.75, 0.35],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
@@ -78,17 +90,77 @@ Setze den **Fußpunkt des zweiten Vektors an die Spitze des ersten**. Die Koordi
 
 Zwei Kräfte, die an einem Punkt angreifen, lassen sich mit einem **gemeinsamen Fußpunkt** zeichnen. Zum Beispiel ziehen zwei Seile an einem Ring. Die verschobenen Vektoren im Modell behalten Länge und Richtung der ursprünglichen Pfeile. Ob du erst der unteren und dann der rechten Seite folgst oder erst der linken und dann der oberen: Beide Wege enden am selben Punkt.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3, 2, 9]}
   cameraTarget={[3, 2, 0]}
   title={<>Die Diagonale des Parallelogramms</>}
-  description={<>Der violette Pfeil verbindet den gemeinsamen Fußpunkt mit dem Endpunkt beider Wege. Die Vektoren a und b stimmen mit ihren parallel verschobenen Kopien überein.</>}
-  vectors={[
-    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,-0.4,0]},
-    {from: [0,0,0], to: [2,3,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [-0.5,0,0]},
-    {from: [2,3,0], to: [6,4,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
-    {from: [4,1,0], to: [6,4,0], color: "#d97706", label: <InlineMath math="b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
-    {from: [0,0,0], to: [6,4,0], color: "#7c3aed", label: <InlineMath math="R" />, labelProgress: 0.5, labelOffset: [-0.4,0.35,0]}
+  description={<>Der violette Pfeil verbindet den gemeinsamen Fußpunkt mit dem Endpunkt beider Wege. Die Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> stimmen mit ihren parallel verschobenen Kopien überein.</>}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 0.5,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [-0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 2, y: 3, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 0.5,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 4, y: 1, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="R" />,
+        progress: 0.5,
+        offset: [-0.4, 0.35, 0],
+        anchorX: "left",
+      }],
+    }
   ]}
 />
 
@@ -110,16 +182,54 @@ Füge zum Beispiel nach den beiden Verschiebungen im Modell <InlineMath math="\v
 
 Für die Subtraktion **kehrst du den abzuziehenden Vektor um**. Beim selben Vektorpaar wird aus <InlineMath math="\vec{b}=(2,3)" /> der Gegenvektor <InlineMath math="-\vec{b}=(-2,-3)" />.
 
-<BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
+<ContentStack>
+  <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
 
-<Vector3d
-  cameraPosition={[2, -0.5, 7]}
-  cameraTarget={[2, -0.5, 0]}
-  title={<>Den Gegenvektor addieren</>}
-  description={<>Gehe von der Spitze von a bei (4,1) zwei Einheiten nach links und drei nach unten. Die Resultierende endet bei (2,-2).</>}
-  vectors={[
-    {from: [0,0,0], to: [4,1,0], color: "#0d9488", label: <InlineMath math="a" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
-    {from: [4,1,0], to: [2,-2,0], color: "#d97706", label: <InlineMath math="-b" />, labelProgress: 0.5, labelOffset: [0.5,0,0]},
-    {from: [0,0,0], to: [2,-2,0], color: "#7c3aed", label: <InlineMath math="a-b" />, labelProgress: 0.5, labelOffset: [-0.5,-0.2,0]}
-  ]}
-/>
+  <LineEquation
+    cameraPosition={[2, -0.5, 7]}
+    cameraTarget={[2, -0.5, 0]}
+    title={<>Den Gegenvektor addieren</>}
+    description={<>Gehe von der Spitze von <InlineMath math="\vec{a}" /> bei <InlineMath math="(4,1)" /> zwei Einheiten nach links und drei nach unten. Die Resultierende endet bei <InlineMath math="(2,-2)" />.</>}
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 0.5,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 4, y: 1, z: 0 }, { x: 2, y: -2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-b" />,
+        progress: 0.5,
+        offset: [0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: -2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a-b" />,
+        progress: 0.5,
+        offset: [-0.5, -0.2, 0],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+</ContentStack>

@@ -4,7 +4,7 @@ export const metadata = {
     "Den Betrag der Resultierenden zweier Vektoren mit bekanntem Zwischenwinkel mithilfe des Kosinussatzes bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektor",
 };
 
@@ -40,15 +40,51 @@ Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des 
 
 An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 3, 20]}
   cameraTarget={[7, 3, 0]}
   title="Resultierendendreieck zweier Kräfte"
   description="Der violette Pfeil ist die Resultierende. Der orange Pfeil beginnt an der Spitze des türkisfarbenen Pfeils. Der Innenwinkel ergänzt deshalb den Zwischenwinkel der Kräfte."
-  vectors={[
-    {from: [0, 0, 0], to: [10, 0, 0], color: "#0d9488", label: <InlineMath math="\vec{A}" />, labelProgress: 0.5, labelOffset: [0, -1, 0]},
-    {from: [10, 0, 0], to: [14, 4 * Math.sqrt(3), 0], color: "#d97706", label: <InlineMath math="\vec{B}" />, labelProgress: 0.5, labelOffset: [1, 0, 0]},
-    {from: [0, 0, 0], to: [14, 4 * Math.sqrt(3), 0], color: "#7c3aed", label: <InlineMath math="\vec{R}" />, labelProgress: 0.5, labelOffset: [-1, 1, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{A}" />,
+        progress: 0.5,
+        offset: [0, -1, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 10, y: 0, z: 0 }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{B}" />,
+        progress: 0.5,
+        offset: [1, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{R}" />,
+        progress: 0.5,
+        offset: [-1, 1, 0],
+        anchorX: "left",
+      }],
+    }
   ]}
 />
 

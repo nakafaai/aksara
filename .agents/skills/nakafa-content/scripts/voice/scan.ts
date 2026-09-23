@@ -23,6 +23,7 @@ import {
 import { findBlockquoteEditorialLabelIssues } from "#nakafa-content/voice/quote";
 import {
   ANSWER_VOICE_RULES,
+  ARTICLE_VOICE_RULES,
   LESSON_VOICE_RULES,
 } from "#nakafa-content/voice/rules";
 import {
@@ -38,6 +39,7 @@ import {
 } from "#nakafa-content/voice/text";
 import {
   isLessonVoiceLocale,
+  type LessonVoiceGenre,
   type LessonVoiceIssue,
   type LessonVoiceLocale,
   type LessonVoiceRule,
@@ -135,7 +137,8 @@ function inspectLessonLine(
   quotationRanges: readonly { end: number; start: number }[],
   state: LineState,
   matchesByRule: Map<string, LessonVoiceIssue[]>,
-  bodyKind?: QuestionBodyKind
+  bodyKind: QuestionBodyKind | undefined,
+  voiceRules: readonly LessonVoiceRule[]
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
   const issues = findStructuralIssues(
@@ -157,7 +160,7 @@ function inspectLessonLine(
         );
     issues.push(
       ...matchLineRules(
-        bodyKind === "answer" ? ANSWER_VOICE_RULES : LESSON_VOICE_RULES,
+        voiceRules,
         locale,
         searchableLine,
         line,
@@ -200,7 +203,8 @@ export function findLessonVoiceIssues(
   locale: string,
   source: string,
   tree?: MdxNode,
-  bodyKind?: QuestionBodyKind
+  bodyKind?: QuestionBodyKind,
+  genre: LessonVoiceGenre = "lesson"
 ): LessonVoiceIssue[] {
   if (!isLessonVoiceLocale(locale)) {
     throw new UnsupportedLessonLocale({ locale });
@@ -209,6 +213,12 @@ export function findLessonVoiceIssues(
   const parsedTree = tree ?? parseLessonMdx(source);
   const protectedRanges = rawLineProtectedRanges(parsedTree);
   const quotationRanges = multilineQuotationRanges(source);
+  let voiceRules: readonly LessonVoiceRule[] = LESSON_VOICE_RULES;
+  if (bodyKind === "answer") {
+    voiceRules = ANSWER_VOICE_RULES;
+  } else if (genre === "article") {
+    voiceRules = ARTICLE_VOICE_RULES;
+  }
   const matchesByRule = new Map<string, LessonVoiceIssue[]>(
     REPETITIVE_OPENER_RULES.map(({ id }): [string, LessonVoiceIssue[]] => [
       id,
@@ -228,7 +238,8 @@ export function findLessonVoiceIssues(
         quotationRanges,
         state,
         matchesByRule,
-        bodyKind
+        bodyKind,
+        voiceRules
       )
     );
     lineOffset += line.length + 1;
@@ -237,12 +248,7 @@ export function findLessonVoiceIssues(
     issues.push(...matches.slice(REPETITIVE_OPENER_LIMIT));
   }
   issues.push(
-    ...findVisibleProseRuleIssues(
-      locale,
-      source,
-      parsedTree,
-      bodyKind === "answer" ? ANSWER_VOICE_RULES : LESSON_VOICE_RULES
-    ),
+    ...findVisibleProseRuleIssues(locale, source, parsedTree, voiceRules),
     ...findPlainMathLabelIssues(source, parsedTree),
     ...findMalformedLatexCommandIssues(source, parsedTree),
     ...findDisplayedMathCompositionIssues(source, parsedTree),

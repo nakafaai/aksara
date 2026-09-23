@@ -15,6 +15,7 @@ it("flags a relation moved inside the event or radical being evaluated", () => {
     String.raw`\begin{aligned} P(S &= 7) \\ &= \frac{6}{36}\end{aligned}`,
     String.raw`\begin{aligned} \sqrt{4 &= 2} \end{aligned}`,
     String.raw`\begin{aligned} f[x &\approx 2] \end{aligned}`,
+    String.raw`\begin{aligned} P\left\{X &= 1\right\} \\ &= \frac16\end{aligned}`,
   ]) {
     assert.deepEqual(rules(value), ["nested-relation-alignment"]);
   }
@@ -27,6 +28,7 @@ it("keeps event relations inside complete arguments and nested environments", ()
     String.raw`\begin{aligned} f(x) &= \left(\begin{matrix} a &= b \\ c &= d \end{matrix}\right)\end{aligned}`,
     String.raw`\begin{aligned} \text{A \& B} &= C\end{aligned}`,
     String.raw`\begin{aligned} f(x) &= \left(a+b \right)\end{aligned}`,
+    String.raw`\begin{aligned} P\left\{X=1\right\} &= \frac16\end{aligned}`,
   ]) {
     assert.deepEqual(rules(value), []);
   }

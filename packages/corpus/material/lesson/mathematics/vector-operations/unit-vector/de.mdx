@@ -5,7 +5,7 @@ export const metadata = {
   description: "Normiere einen Vektor ungleich null zum Einheitsvektor und verbinde den Betrag 1 mit Richtung und den kartesischen Standardeinheitsvektoren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -23,25 +23,37 @@ Der Nenner <InlineMath math="|\overrightarrow{PQ}|" /> ist der Betrag von <Inlin
 
 Der Einheitsvektor zeigt in dieselbe Richtung wie der ursprüngliche Vektor, hat aber den normierten Betrag <InlineMath math="1 \text{ Einheit}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[1.5, 2, 7]}
   cameraTarget={[1.5, 2, 0]}
   title="Vektor und Einheitsvektor"
   description="Der ursprüngliche Vektor und sein Einheitsvektor zeigen in dieselbe Richtung, besitzen aber unterschiedliche Beträge."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="v" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0.6, 0.8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
       color: "#d97706",
-      label: <InlineMath math="\hat{v}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -71,7 +83,7 @@ Damit erhalten wir:
 <BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[7.5, 6.5, -7]}
     cameraTarget={[1.5, 2.9, 1.8]}
     title="Einheitsvektor im dreidimensionalen Raum"
@@ -81,21 +93,33 @@ Damit erhalten wir:
         <InlineMath math="\hat{v}" /> zeigen in dieselbe Richtung.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [3, 6, 4],
-        color: "#db2777",
-        label: <InlineMath math="v" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 6, z: 4 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [3 / Math.sqrt(61), 6 / Math.sqrt(61), 4 / Math.sqrt(61)],
-        color: "#0d9488",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3 / Math.sqrt(61), y: 6 / Math.sqrt(61), z: 4 / Math.sqrt(61) }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -123,32 +147,50 @@ Im dreidimensionalen Koordinatensystem gibt es drei Standardeinheitsvektoren, di
 
 Jeder Vektor in <InlineMath math="\mathbb{R}^3" /> kann als lineare Kombination dieser drei Einheitsvektoren ausgedrückt werden.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2, 1.5, 2.2]}
   cameraTarget={[0.3, 0.35, 0.3]}
   title="Standard-Einheitsvektoren"
   description="Standardeinheitsvektoren auf den Koordinatenachsen."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [1, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="\hat{\imath}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{\imath}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 1, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="\hat{\jmath}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{\jmath}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
       color: "#ea580c",
-      label: <InlineMath math="\hat{k}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{k}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

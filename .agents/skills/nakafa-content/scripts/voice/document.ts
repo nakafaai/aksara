@@ -1,6 +1,3 @@
-import { basename } from "node:path";
-import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
-import { Schema } from "effect";
 import { findBodyHighlightIssues } from "#nakafa-content/body/review";
 import {
   findEmphasisArtifactIssues,
@@ -19,16 +16,10 @@ import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { findForbiddenControlCharacterIssue } from "#nakafa-content/voice/heading";
+import { documentProfile } from "#nakafa-content/voice/profile";
 import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
-
-/** Reads the contract-owned body role without mixing prompts and explanations. */
-export function questionBodyKind(file: string) {
-  const stem = basename(file, ".mdx");
-  const kind = stem.slice(0, stem.lastIndexOf("."));
-  return Schema.is(QuestionBodyKindSchema)(kind) ? kind : undefined;
-}
 
 /** Applies structural checks to assessed prompts and authored voice to explanations. */
 export function findDocumentIssues(
@@ -37,7 +28,7 @@ export function findDocumentIssues(
   source: string,
   tree: MdxNode
 ) {
-  const kind = questionBodyKind(file);
+  const profile = documentProfile(file);
   const structural = [
     ...findExternalLinkPlacementIssues(source, tree),
     ...findInternalLinkIssues(source, tree),
@@ -45,7 +36,7 @@ export function findDocumentIssues(
     ...findHighlightVariantIssues(source, tree),
     ...findExactLineSmoothingIssues(source, tree),
   ];
-  if (kind === "question") {
+  if (profile === "question") {
     return [
       ...structural,
       ...source.split("\n").flatMap((line, index) => {
@@ -58,14 +49,30 @@ export function findDocumentIssues(
       ...findDisplayedMathCompositionIssues(source, tree),
     ];
   }
+  if (profile === "article") {
+    return [
+      ...structural,
+      ...findLessonVoiceIssues(locale, source, tree, undefined, "article"),
+      ...findPhraseEmphasisIssues(source, tree),
+      ...findMathBlockFragmentIssues(source, tree),
+      ...findHeadingOrderIssues(source, tree, 2),
+    ];
+  }
   return [
     ...structural,
-    ...findLessonVoiceIssues(locale, source, tree, kind),
+    ...findLessonVoiceIssues(
+      locale,
+      source,
+      tree,
+      profile === "answer" ? "answer" : undefined
+    ),
     ...findPhraseEmphasisIssues(source, tree),
-    ...findBodyHighlightIssues(tree, kind === "answer"),
+    ...findBodyHighlightIssues(tree, profile === "answer"),
     ...findMathBlockFragmentIssues(source, tree),
     ...findLearnerFacingSemicolonIssues(source, tree),
-    ...findHeadingOrderIssues(source, tree, kind === "answer" ? 4 : 2),
-    ...(kind === "answer" ? [] : [...findOpeningHighlightIssues(source, tree)]),
+    ...findHeadingOrderIssues(source, tree, profile === "answer" ? 4 : 2),
+    ...(profile === "answer"
+      ? []
+      : [...findOpeningHighlightIssues(source, tree)]),
   ];
 }

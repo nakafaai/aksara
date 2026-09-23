@@ -4,7 +4,7 @@ export const metadata = {
     "Vektoren über ihre x- und y-Komponenten addieren und subtrahieren sowie Betrag und Richtung der Resultierenden bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -94,16 +94,64 @@ Betrachten wir zum Beispiel <InlineMath math="\vec{A}=7\hat{i}+4\hat{j}" /> und 
 
 Das negative Vorzeichen in <InlineMath math="-2\hat{j}" /> bedeutet, dass die resultierende <InlineMath math="y" />-Komponente nach unten zeigt.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3.5, 1.8, 12]}
   cameraTarget={[3.5, 1.8, 0]}
   title={<>Die Differenz zweier Vektoren</>}
-  description={<>Der Pfeil C von der Spitze von B zur Spitze von A hat die Komponenten (5,-2). Der violette Pfeil am Ursprung ist derselbe Vektor, nur parallel verschoben.</>}
-  vectors={[
-    {from: [0,0,0], to: [7,4,0], color: "#0d9488", label: <InlineMath math="A" />, labelProgress: 0.55, labelOffset: [0,-0.4,0]},
-    {from: [0,0,0], to: [2,6,0], color: "#d97706", label: <InlineMath math="B" />, labelProgress: 0.5, labelOffset: [-0.5,0,0]},
-    {from: [2,6,0], to: [7,4,0], color: "#7c3aed", label: <InlineMath math="C" />, labelProgress: 0.5, labelOffset: [0,0.4,0]},
-    {from: [0,0,0], to: [5,-2,0], color: "#7c3aed", label: <InlineMath math="C" />, labelProgress: 0.5, labelOffset: [0,-0.4,0]}
+  description={<>Der Pfeil <InlineMath math="\vec{C}" /> von der Spitze von <InlineMath math="\vec{B}" /> zur Spitze von <InlineMath math="\vec{A}" /> hat die Komponenten <InlineMath math="(5,-2)" />. Der violette Pfeil am Ursprung ist derselbe Vektor, nur parallel verschoben.</>}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 0.55,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 6, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B" />,
+        progress: 0.5,
+        offset: [-0.5, 0, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 2, y: 6, z: 0 }, { x: 7, y: 4, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        progress: 0.5,
+        offset: [0, 0.4, 0],
+        anchorX: "left",
+      }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: -2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="C" />,
+        progress: 0.5,
+        offset: [0, -0.4, 0],
+        anchorX: "left",
+      }],
+    }
   ]}
 />
 

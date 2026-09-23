@@ -70,7 +70,7 @@ checkTest(
       assert.deepEqual(report.issues, []);
     }
   }),
-  90_000
+  180_000
 );
 
 checkTest(

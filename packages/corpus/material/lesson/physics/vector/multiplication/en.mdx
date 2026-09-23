@@ -6,7 +6,7 @@ export const metadata = {
     "The vector dot product produces a scalar and models work, while the cross product produces a vector and models torque.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vector",
 };
 
@@ -62,7 +62,7 @@ The cross product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}
 
 For two nonzero, nonparallel vectors, the result is a vector perpendicular to the plane containing <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />. Its direction follows the **right-hand rule**: curl your fingers from the first vector toward the second through the smaller angle. Your thumb gives the resulting direction. Parallel vectors or a zero input vector give the zero vector, which has no defined direction.
 
-<Vector3d
+<LineEquation
   cameraPosition={[9.9, 6.66, -7]}
   cameraTarget={[1.5, 1.3, 5]}
   title={<>Direction of <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -72,7 +72,7 @@ For two nonzero, nonparallel vectors, the result is a vector perpendicular to th
       one plane. Their cross product points perpendicular to that plane.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 0, 0];
     const b = [0, 3, 0];
     const cross = [
@@ -83,38 +83,50 @@ For two nonzero, nonparallel vectors, the result is a vector perpendicular to th
 
     return [
       {
-        color: "#ea580c",
-        from: [0, 0, 0],
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelOffset: [0, -0.45, 0],
-        labelProgress: 1 / 2,
-        to: a,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#9333ea",
-        from: [0, 0, 0],
-        label: <InlineMath math="B" />,
-        labelAnchorX: "center",
-        labelOffset: [0.5, 0, 0.15],
-        labelProgress: 1 / 2,
-        to: b,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="B" />,
+        progress: 1 / 2,
+        offset: [0.5, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        color: "#d97706",
-        from: [0, 0, 0],
-        label: <InlineMath math="A\times B" />,
-        labelAnchorX: "center",
-        labelOffset: [0, 1.2, 0],
-        labelProgress: 1 / 2,
-        lineWidth: 4,
-        to: cross,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (cross)[0], y: (cross)[1], z: (cross)[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      lineWidth: 4,
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A\times B" />,
+        progress: 1 / 2,
+        offset: [0, 1.2, 0],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
 
-In this visual, <InlineMath math="\vec{A}" /> points along the positive <InlineMath math="x" /> axis and <InlineMath math="\vec{B}" /> points along the positive <InlineMath math="y" /> axis. The cross-product formula gives the positive <InlineMath math="z" /> direction for <InlineMath math="\vec{A}\times\vec{B}" />. Both model vectors are dimensionless. Calculate the components: the first two are zero and the third is <InlineMath math="4\cdot3" />. The result arrow has a length of 12 units. Rotate the model to compare this arrow with the plane of the original vectors.
+In this visual, <InlineMath math="\vec{A}" /> points along the positive <InlineMath math="x" /> axis and <InlineMath math="\vec{B}" /> points along the positive <InlineMath math="y" /> axis. The cross-product formula gives the positive <InlineMath math="z" /> direction for <InlineMath math="\vec{A}\times\vec{B}" />. Both model vectors are dimensionless. Calculate the components: the first two are zero and the third is <InlineMath math="4\cdot3" />. The result arrow has a length of <InlineMath math="12" /> units. Rotate the model to compare this arrow with the plane of the original vectors.
 
 <BlockMath math="\begin{aligned}
 C_x&=0\cdot0-0\cdot3=0 \\

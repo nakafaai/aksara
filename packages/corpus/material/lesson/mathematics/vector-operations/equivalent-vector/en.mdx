@@ -5,7 +5,7 @@ export const metadata = {
     description: "Decide whether two vectors are equivalent from their components, and explain why changing the starting point does not change a vector's magnitude or direction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vector and Operations",
 };
 
@@ -15,23 +15,37 @@ Two vectors are equal, or represented by equivalent directed segments, <Highligh
 
 Equivalent vectors can have different positions in a plane or space, but they maintain the same magnitude and direction.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -6]}
   cameraTarget={[2, 1.5, 1]}
   title="Example of Equivalent Vectors"
   description="The purple and orange vectors have the same magnitude and direction, making them equivalent despite their different positions."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 2, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
       color: "#7c3aed",
-      label: <InlineMath math="v_1" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_1" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 1],
-      to: [4, 3, 2],
+      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
       color: "#ea580c",
-      label: <InlineMath math="v_2" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v_2" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -65,23 +79,37 @@ In three-dimensional space, vectors <InlineMath math="\vec{a}" /> and <InlineMat
 
 This equality holds exactly when <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" />, and <InlineMath math="a_3 = b_3" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[8, 5, -6]}
   cameraTarget={[2.5, 1.5, 1.5]}
   title="Equivalent Vectors in Component Form"
   description="Two vectors with the same components are always equivalent, even if they have different positions in space."
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 3, 1],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
       color: "#c026d3",
-      label: <InlineMath math="a=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 0, 2],
-      to: [5, 3, 3],
+      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
       color: "#0891b2",
-      label: <InlineMath math="b=(2, 3, 1)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b=(2, 3, 1)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -126,7 +154,7 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
 
   <BlockMath math="\text{If } \vec{a} = \vec{b} \text{ and } \vec{b} = \vec{c} \text{, then } \vec{a} = \vec{c}" />
 
-  <Vector3d
+  <LineEquation
     cameraPosition={[7, 5, -6]}
     cameraTarget={[2, 1.5, 1]}
     title="Transitive Property of Equivalent Vectors"
@@ -136,25 +164,46 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
         <InlineMath math="b = c" />, then <InlineMath math="a = c" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 2, 0],
-        color: "#d97706",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [1, 1, 2],
-        to: [3, 3, 2],
-        color: "#059669",
-        label: <InlineMath math="b" />,
-      },
+      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 0, 1],
-        to: [4, 2, 1],
-        color: "#db2777",
-        label: <InlineMath math="c" />,
-      },
+      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentStack>
@@ -176,7 +225,7 @@ Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, vector <InlineMath math="\overrightarrow{AB}" /> is equivalent to vector <InlineMath math="\overrightarrow{CD}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3, 4, 10]}
   cameraTarget={[3, 4, 0]}
   title={
@@ -190,18 +239,32 @@ Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, 
       <InlineMath math="CD(3,4,0)" /> which are equivalent in space.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [2, 3, 0],
-      to: [5, 7, 0],
+      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
       color: "#7c3aed",
-      label: <InlineMath math="AB" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="AB" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [1, 1, 0],
-      to: [4, 5, 0],
+      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
       color: "#ca8a04",
-      label: <InlineMath math="CD" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="CD" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -219,7 +282,7 @@ Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, vector <InlineMath math="\overrightarrow{PQ}" /> is equivalent to vector <InlineMath math="\overrightarrow{RS}" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[2.5, 1.5, 8]}
   cameraTarget={[2.5, 1.5, 0]}
   title={
@@ -233,18 +296,32 @@ Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, 
       <InlineMath math="RS(2,2,0)" /> which are equivalent in space.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="PQ" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="PQ" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [3, 1, 0],
-      to: [5, 3, 0],
+      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="RS" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="RS" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

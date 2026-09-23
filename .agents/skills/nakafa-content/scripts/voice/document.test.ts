@@ -1,9 +1,7 @@
 import { assert, it } from "@effect/vitest";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import {
-  findDocumentIssues,
-  questionBodyKind,
-} from "#nakafa-content/voice/document";
+import { findDocumentIssues } from "#nakafa-content/voice/document";
+import { documentProfile } from "#nakafa-content/voice/profile";
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
 
@@ -75,10 +73,42 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
     ),
     ["lesson-opening-highlight"]
   );
-  assert.equal(questionBodyKind("/corpus/question.en.mdx"), "question");
-  assert.equal(questionBodyKind("/corpus/answer.de.mdx"), "answer");
-  assert.equal(questionBodyKind("/corpus/en.mdx"), undefined);
-  assert.equal(questionBodyKind("/corpus/notes.en.mdx"), undefined);
+  assert.equal(documentProfile("/corpus/question.en.mdx"), "question");
+  assert.equal(documentProfile("/corpus/answer.de.mdx"), "answer");
+  assert.equal(documentProfile("/corpus/en.mdx"), "lesson");
+  assert.equal(documentProfile("/corpus/notes.en.mdx"), "lesson");
+  assert.equal(documentProfile("/corpus/articles/topic/en.mdx"), "article");
+});
+
+it("keeps article evidence and journal style outside lesson pedagogy", () => {
+  const source = `${METADATA}## Method\n\nThe study reports **the measured effect**.\n\n| Evidence | Finding |\n| --- | --- |\n| Source | Stable result |\n\nStudies show that the measured effect remains stable.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/articles/topic/article/en.mdx",
+      "en",
+      source,
+      parseLessonMdx(source)
+    ).map(({ rule }) => rule),
+    ["article-vague-attribution"]
+  );
+  assert.equal(
+    findDocumentIssues(
+      "/corpus/lesson/topic/en.mdx",
+      "en",
+      source,
+      parseLessonMdx(source)
+    ).some(({ rule }) => rule === "article-vague-attribution"),
+    false
+  );
+  assert.equal(
+    findDocumentIssues(
+      "question.en.mdx",
+      "en",
+      source,
+      parseLessonMdx(source)
+    ).some(({ rule }) => rule === "article-vague-attribution"),
+    false
+  );
 });
 
 it("does not join teacher narration to modal verbs in an assessed quotation", () => {

@@ -5,6 +5,7 @@ import {
   parseLessonMdx,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
@@ -29,6 +30,38 @@ function phraseText(node: MdxNode): string {
     return "";
   }
   return (node.children ?? []).map(phraseText).join("");
+}
+
+/** Locates unquoted rendered characters, including entity-decoded quotation marks. */
+function authoredTextOffsets(
+  source: string,
+  tree: MdxNode
+): number[] | undefined {
+  if (!tree.position) {
+    return undefined;
+  }
+  const rendered = renderedNodeRange(tree, source)?.rendered;
+  if (!rendered) {
+    return undefined;
+  }
+  const characters: string[] = [];
+  const offsets: number[] = [];
+  for (const [index, offset] of rendered.offsets.entries()) {
+    const previous = rendered.offsets[index - 1];
+    if (
+      previous !== undefined &&
+      source.slice(previous + 1, offset).includes("\n")
+    ) {
+      characters.push("\n");
+      offsets.push(offset);
+    }
+    characters.push(rendered.text.slice(index, index + 1));
+    offsets.push(offset);
+  }
+  const unquoted = maskBalancedQuotations(characters.join(""));
+  return offsets.filter(
+    (_, index) => unquoted.slice(index, index + 1).trim() !== ""
+  );
 }
 
 /**
@@ -96,6 +129,7 @@ export function findPhraseEmphasisIssues(
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
   const unquoted = maskBalancedQuotations(source);
+  const authored = authoredTextOffsets(source, tree);
 
   /** Reads authored body markers without changing assessed or quoted wording. */
   function visit(node: MdxNode): void {
@@ -113,7 +147,9 @@ export function findPhraseEmphasisIssues(
     const end = node.position?.end?.offset ?? source.length;
     if (
       marked &&
-      unquoted.slice(start, end).trim() !== "" &&
+      (authored
+        ? authored.some((offset) => offset >= start && offset < end)
+        : unquoted.slice(start, end).trim() !== "") &&
       SENTENCE_PUNCTUATION_PATTERN.test(phrase) &&
       (phrase.match(WORD_PATTERN)?.length ?? 0) >= 4
     ) {

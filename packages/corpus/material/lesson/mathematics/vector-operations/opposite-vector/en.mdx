@@ -3,7 +3,7 @@ export const metadata = {
   description: "Describe how an opposite vector keeps the same magnitude and reverses direction, then use opposite vectors in addition, displacement, and force problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-07",
   subject: "Vectors and Operations",
 };
 
@@ -43,25 +43,37 @@ Multiply **every component** by <InlineMath math="-1" /> to find the opposite ve
 
 Both vectors have magnitude <InlineMath math="10" />, but their directions differ by <InlineMath math="180^\circ" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[0.5, 0.3, 23]}
   cameraTarget={[0.5, 0.3, 0]}
   title="A Vector and Its Opposite"
   description={<>The vectors <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="-\overrightarrow{AB}" /> have equal lengths and point in opposite directions.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#ea580c",
-      label: <InlineMath math="\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\overrightarrow{AB}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [-6, -8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="-\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\overrightarrow{AB}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -107,26 +119,38 @@ For a **nonzero vector** <InlineMath math="\vec{v}" />, its unit vector is:
 It has magnitude <InlineMath math="1" /> and points in the same direction as <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[0.1, 0.1, 3.2]}
     cameraTarget={[0.1, 0.1, 0]}
     title="Opposite Unit Directions"
     description="The two unit vectors have equal length and opposite direction."
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
-        color: "#d97706",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [-0.6, -0.8, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="-\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

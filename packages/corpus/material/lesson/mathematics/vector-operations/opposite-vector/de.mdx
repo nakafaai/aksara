@@ -3,7 +3,7 @@ export const metadata = {
   description: "Beschreibe, wie ein Gegenvektor den Betrag beibehält und die Richtung umkehrt. Nutze Gegenvektoren bei Addition, Verschiebung und Kräften.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-07",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -43,25 +43,37 @@ Für den Gegenvektor multiplizieren wir **jede Komponente** mit <InlineMath math
 
 Beide Vektoren haben den Betrag <InlineMath math="10" />, ihre Richtungen unterscheiden sich jedoch um <InlineMath math="180^\circ" />.
 
-<Vector3d
+<LineEquation
   cameraPosition={[0.5, 0.3, 23]}
   cameraTarget={[0.5, 0.3, 0]}
   title="Ein Vektor und sein Gegenvektor"
   description={<>Die Vektoren <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="-\overrightarrow{AB}" /> sind gleich lang und zeigen in entgegengesetzte Richtungen.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [6, 8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
       color: "#ea580c",
-      label: <InlineMath math="\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\overrightarrow{AB}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [-6, -8, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
       color: "#9333ea",
-      label: <InlineMath math="-\overrightarrow{AB}" />,
-      labelPosition: "end",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\overrightarrow{AB}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -107,26 +119,38 @@ Für einen Vektor <InlineMath math="\vec{v}" /> **ungleich null** ist der zugeh�
 Er hat den Betrag <InlineMath math="1" /> und zeigt in dieselbe Richtung wie <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[0.1, 0.1, 3.2]}
     cameraTarget={[0.1, 0.1, 0]}
     title="Entgegengesetzte Einheitsrichtungen"
     description="Die beiden Einheitsvektoren sind gleich lang und zeigen in entgegengesetzte Richtungen."
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [0.6, 0.8, 0],
-        color: "#d97706",
-        label: <InlineMath math="\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [-0.6, -0.8, 0],
-        color: "#7c3aed",
-        label: <InlineMath math="-\hat{v}" />,
-        labelPosition: "end",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-\hat{v}" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>

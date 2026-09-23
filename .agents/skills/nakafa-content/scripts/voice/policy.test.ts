@@ -6,6 +6,7 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 const blockingRules = [
   "abstract-concept-question-personification",
   "abrupt-scenario-imperative",
+  "chatbot-artifact",
   "compressed-renewable-timescale-contrast",
   "corrective-decoration-metaphor",
   "chemical-formula-personification",
@@ -52,6 +53,7 @@ const blockingRules = [
   "internal-link-navigation-heading",
   "internal-link-only-block",
   "irrelevant-fiction-label",
+  "knowledge-cutoff-disclaimer",
   "learner-facing-semicolon",
   "locale-representation-parity",
   "malformed-latex-command",

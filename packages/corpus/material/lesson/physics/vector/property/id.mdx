@@ -6,7 +6,7 @@ export const metadata = {
     "Vektor yang sama, vektor negatif, dan vektor nol memiliki aturan komponen berbeda, sedangkan perkalian skalar mengubah besar dan dapat membalik arah vektor.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -14,7 +14,7 @@ export const metadata = {
 
 Dua vektor dikatakan sama jika <Highlight>besar dan arahnya sama</Highlight>. Letak panahnya boleh berbeda. Kesamaan ini membandingkan vektornya. Untuk gaya, titik kerjanya tetap dapat mengubah efek putar walaupun vektor gayanya tidak berubah.
 
-<Vector3d
+<LineEquation
   cameraPosition={[3.5, 4.5, 8]}
   cameraTarget={[1, 0, 0]}
   title={<>Vektor Sama dan Vektor Berlawanan</>}
@@ -25,7 +25,7 @@ Dua vektor dikatakan sama jika <Highlight>besar dan arahnya sama</Highlight>. Le
       <InlineMath math="-\vec{a}" /> berlawanan arah.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const a = [4, 2, 0];
     const bShift = [0, 0, 2];
     const negativeShift = [0, 0, -2];
@@ -36,32 +36,44 @@ Dua vektor dikatakan sama jika <Highlight>besar dan arahnya sama</Highlight>. Le
 
     return [
       {
-        from: [0, 0, 0],
-        to: a,
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.15, 0.45, 0],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 3 / 5,
+        offset: [0.15, 0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: bShift,
-        to: b,
-        color: "#0d9488",
-        label: <InlineMath math="b" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.15, 0.45, 0.15],
-      },
+      points: [{ x: (bShift)[0], y: (bShift)[1], z: (bShift)[2] }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 3 / 5,
+        offset: [0.15, 0.45, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: negativeShift,
-        to: negativeA,
-        color: "#7c3aed",
-        label: <InlineMath math="-a" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.1, -0.55, 0],
-      },
+      points: [{ x: (negativeShift)[0], y: (negativeShift)[1], z: (negativeShift)[2] }, { x: (negativeA)[0], y: (negativeA)[1], z: (negativeA)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="-a" />,
+        progress: 1 / 2,
+        offset: [0.1, -0.55, 0],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />

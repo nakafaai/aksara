@@ -4,7 +4,7 @@ export const metadata = {
     "Einen Vektor mithilfe von Einheitsvektoren in Komponenten entlang der x-, y- und z-Achse zerlegen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -40,7 +40,7 @@ Im dreidimensionalen Raum benötigt ein Vektor drei Komponenten. Die allgemeine 
 
 Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koordinatenachse**, der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
 
-<Vector3d
+<LineEquation
   cameraPosition={[8, 6, -6]}
   cameraTarget={[2, 1.5, 1]}
   title={<>Komponenten von <InlineMath math="\vec{A}" /></>}
@@ -50,7 +50,7 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koo
       drei zueinander senkrechte Komponenten zerlegt.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const components = [
       [4, 0, 0],
       [0, 3, 0],
@@ -71,41 +71,57 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koo
 
     return [
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.35, 0.55, 0.3],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 3 / 5,
+        offset: [0.35, 0.55, 0.3],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[0],
-        to: points[1],
-        color: "#0d9488",
-        label: <InlineMath math="A_x" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: (points[0])[0], y: (points[0])[1], z: (points[0])[2] }, { x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_x" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[1],
-        to: points[2],
-        color: "#d97706",
-        label: <InlineMath math="A_y" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.55, 0, 0.15],
-      },
+      points: [{ x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }, { x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_y" />,
+        progress: 1 / 2,
+        offset: [0.55, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[2],
-        to: points[3],
-        color: "#0891b2",
-        label: <InlineMath math="A_z" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.65, -0.25, 0.15],
-      },
+      points: [{ x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }, { x: (points[3])[0], y: (points[3])[1], z: (points[3])[2] }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_z" />,
+        progress: 1 / 2,
+        offset: [0.65, -0.25, 0.15],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
@@ -115,7 +131,7 @@ Die Darstellung setzt die Komponenten nacheinander zusammen: zuerst entlang der 
 
 ### Den Betrag im Raum berechnen
 
-Drehe das Modell, bis du die senkrechte Komponente von der Grundebene unterscheiden kannst. Die ersten beiden Komponenten bestimmen die Länge in dieser Ebene. Für den räumlichen Vektorbetrag kommt die **dritte Komponente** hinzu.
+Drehe das Modell, um zu sehen, dass die <InlineMath math="z" />-Komponente **senkrecht auf der <InlineMath math="xy" />-Ebene** steht. Die <InlineMath math="x" />- und <InlineMath math="y" />-Komponenten bilden einen Vektor in dieser Ebene. Für den räumlichen Vektorbetrag kommt die <InlineMath math="z" />-Komponente hinzu.
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 

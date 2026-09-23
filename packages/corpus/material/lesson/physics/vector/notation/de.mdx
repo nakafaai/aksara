@@ -4,7 +4,7 @@ export const metadata = {
     "Vektorsymbole, Zweipunktnotation, Vektorbeträge, Nullvektoren und Einheitsvektoren in der Physik lesen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vektor",
 };
 
@@ -59,23 +59,61 @@ Lege zum Beispiel rechts als positive Richtung fest. Zwei Kräfte von jeweils <I
 
 Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet eine Richtung. Er sagt weder aus, wie groß eine Kraft ist, noch wie weit eine Verschiebung reicht. In der dreidimensionalen kartesischen Standardbasis besitzt jeder Einheitsvektor genau eine Komponente mit dem Wert <InlineMath math="1" />:
 
-<MathContainer>
-  <BlockMath math="\hat{i}=(1,0,0)" />
-  <BlockMath math="\hat{j}=(0,1,0)" />
-  <BlockMath math="\hat{k}=(0,0,1)" />
-</MathContainer>
+<ContentStack>
+  <MathContainer>
+    <BlockMath math="\hat{i}=(1,0,0)" />
+    <BlockMath math="\hat{j}=(0,1,0)" />
+    <BlockMath math="\hat{k}=(0,0,1)" />
+  </MathContainer>
 
-<Vector3d
-  cameraPosition={[2, 1.5, 2.2]}
-  cameraTarget={[0.3, 0.35, 0.3]}
-  title="Richtungen dreier Einheitsvektoren"
-  description="Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt."
-  vectors={[
-    {from: [0, 0, 0], to: [1, 0, 0], color: "#7c3aed", label: <InlineMath math="\hat{i}" />, labelProgress: 1, labelOffset: [0.3, 0.15, 0]},
-    {from: [0, 0, 0], to: [0, 1, 0], color: "#d97706", label: <InlineMath math="\hat{j}" />, labelProgress: 1, labelOffset: [0, 0.3, 0.15]},
-    {from: [0, 0, 0], to: [0, 0, 1], color: "#0891b2", label: <InlineMath math="\hat{k}" />, labelProgress: 1, labelOffset: [0.15, 0, 0.3]}
-  ]}
-/>
+  <LineEquation
+    cameraPosition={[2, 1.5, 2.2]}
+    cameraTarget={[0.3, 0.35, 0.3]}
+    title="Richtungen dreier Einheitsvektoren"
+    description="Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{i}" />,
+        progress: 1,
+        offset: [0.3, 0.15, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{j}" />,
+        progress: 1,
+        offset: [0, 0.3, 0.15],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\hat{k}" />,
+        progress: 1,
+        offset: [0.15, 0, 0.3],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
+</ContentStack>
 
 Alle drei Pfeile haben **dieselbe tatsächliche Länge**. Beim Drehen ändert sich ihre Projektion auf den Bildschirm, aber nicht der Betrag der Einheitsvektoren.
 

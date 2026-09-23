@@ -5,7 +5,7 @@ export const metadata = {
     description: "Bestimme Punkte in zwei und drei Dimensionen und verbinde ihre Koordinaten mit Ortsvektoren, Verschiebungsvektoren und Karten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-13",
   subject: "Vektoren und Operationen",
 };
 
@@ -51,7 +51,7 @@ In **drei Dimensionen** kommt eine <InlineMath math="z" />-Achse hinzu, die senk
 
 In einem häufig verwendeten räumlichen Modell können <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" /> Länge, Breite und Höhe darstellen. Das gewählte Modell legt die Bedeutung jeder Achse fest.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -5]}
   cameraTarget={[1.5, 2, 2.5]}
   title={
@@ -65,12 +65,19 @@ In einem häufig verwendeten räumlichen Modell können <InlineMath math="x" />,
       <InlineMath math="P(3, 4, 5)" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 5],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 5 }],
       color: "#9333ea",
-      label: <InlineMath math="P(3, 4, 5)" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="P(3, 4, 5)" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />

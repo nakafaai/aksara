@@ -4,7 +4,7 @@ export const metadata = {
     "Setelah besar resultan diketahui, rumus sinus menentukan arah resultan terhadap kedua vektor awal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektor",
 };
 
@@ -88,23 +88,61 @@ Misalkan <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}
 
 Komponen horizontal **negatif**, sedangkan komponen vertikal **positif**. Resultan berada di kuadran kedua.
 
-<Vector3d
-  cameraPosition={[0.15, 0.35, 3]}
-  cameraTarget={[0.15, 0.35, 0]}
-  title="Resultan di Kuadran Kedua"
-  description="Panah resultan ungu mengarah ke kiri atas. Bandingkan arah itu dengan sudut lancip yang dikembalikan invers sinus."
-  vectors={[
-    {from: [0, 0, 0], to: [1, 0, 0], color: "#0d9488", label: <InlineMath math="\vec{A}" />, labelProgress: 0.5, labelOffset: [0, -0.3, 0]},
-    {from: [1, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#d97706", label: <InlineMath math="\vec{B}" />, labelProgress: 0.5, labelOffset: [0.2, 0.3, 0]},
-    {from: [0, 0, 0], to: [-0.5, Math.sqrt(3) / 2, 0], color: "#7c3aed", label: <InlineMath math="\vec{R}" />, labelProgress: 0.5, labelOffset: [-0.4, 0, 0]}
-  ]}
-/>
+<ContentStack>
+  <LineEquation
+    cameraPosition={[0.15, 0.35, 3]}
+    cameraTarget={[0.15, 0.35, 0]}
+    title="Resultan di Kuadran Kedua"
+    description="Panah resultan ungu mengarah ke kiri atas. Bandingkan arah itu dengan sudut lancip yang dikembalikan invers sinus."
+    data={[
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{A}" />,
+        progress: 0.5,
+        offset: [0, -0.3, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 1, y: 0, z: 0 }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{B}" />,
+        progress: 0.5,
+        offset: [0.2, 0.3, 0],
+        anchorX: "left",
+      }],
+    },
+      {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="\vec{R}" />,
+        progress: 0.5,
+        offset: [-0.4, 0, 0],
+        anchorX: "left",
+      }],
+    }
+    ]}
+  />
 
 
-<MathContainer>
-  <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
-  <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
-</MathContainer>
+  <MathContainer>
+    <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
+    <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
+  </MathContainer>
+</ContentStack>
 
 Invers sinus memberi <InlineMath math="60^\circ" />, tetapi arah resultan adalah <InlineMath math="180^\circ-60^\circ=120^\circ" />. Tanda komponenlah yang membedakan kedua calon sudut.
 

@@ -27,6 +27,7 @@ it("preserves phrase emphasis, abbreviations, code, and exact quotations", () =>
     "<Highlight>For example, **etc.**</Highlight>",
     '**<InlineMath math="x = 2." />**',
     "**`A whole code sentence here.`**",
+    "**![A vector points toward the positive axis.](vector.svg)**",
     "> **A quoted sentence stays exactly as supplied.**",
     '"**A quoted sentence stays exactly as supplied.**"',
     "<Highlight>„Ein Zitat bleibt im Original.“</Highlight>",
@@ -34,6 +35,80 @@ it("preserves phrase emphasis, abbreviations, code, and exact quotations", () =>
   ]) {
     assert.deepEqual(findPhraseEmphasisIssues(source), []);
   }
+});
+
+it("protects entity-decoded quotations while still inspecting nearby authored sentences", () => {
+  for (const quoted of [
+    "&quot;**A quoted sentence stays exactly as supplied.**&quot;",
+    "&#34;<Highlight>A quoted sentence stays exactly as supplied.</Highlight>&#34;",
+    "&#x201E;**Ein Zitat bleibt im ursprünglichen Wortlaut.**&#x201C;",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(quoted), []);
+    const source = `${quoted}\n\n**The following sentence belongs to the author.**`;
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ line, rule }) => ({
+        line,
+        rule,
+      })),
+      [{ line: 3, rule: "sentence-punctuation-emphasis" }]
+    );
+  }
+});
+
+it("keeps empty components and punctuation-only marks outside sentence detection", () => {
+  for (const source of [
+    "<Highlight />",
+    "**<Highlight />**",
+    "<Highlight>...!</Highlight>",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(source), []);
+  }
+});
+
+it("does not let an unmatched quote borrow a later paragraph's quotation", () => {
+  for (const [open, close] of [
+    ['"', '"'],
+    ["“", "”"],
+    ["„", "“"],
+  ]) {
+    const source = `An unmatched ${open}opening starts here.\n\n**The author still needs selective emphasis.**\n\n${open}An exact quotation stays unchanged.${close}`;
+    assert.deepEqual(
+      findPhraseEmphasisIssues(source).map(({ line, rule }) => ({
+        line,
+        rule,
+      })),
+      [{ line: 3, rule: "sentence-punctuation-emphasis" }]
+    );
+  }
+});
+
+it("retains useful diagnostics when an upstream tree has incomplete positions", () => {
+  const source = "A sentence with several words.";
+  const tree: MdxNode = {
+    children: [
+      { children: [{ type: "text", value: source }], type: "strong" },
+      {
+        children: [{ type: "text", value: source }],
+        position: {},
+        type: "strong",
+      },
+    ],
+    type: "root",
+  };
+  assert.deepEqual(findPhraseEmphasisIssues(source, tree), [
+    {
+      column: 1,
+      excerpt: source,
+      line: 1,
+      rule: "sentence-punctuation-emphasis",
+    },
+    {
+      column: 1,
+      excerpt: source,
+      line: 1,
+      rule: "sentence-punctuation-emphasis",
+    },
+  ]);
 });
 
 it.each(["Langkah", "Step", "Schritt"])(

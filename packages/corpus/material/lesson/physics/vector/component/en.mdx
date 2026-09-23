@@ -4,7 +4,7 @@ export const metadata = {
     "Express a vector as components along the x, y, and z axes using unit vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-01",
   subject: "Vector",
 };
 
@@ -40,7 +40,7 @@ In three-dimensional space, a vector needs three components. The general form is
 
 The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinate axis**, the <InlineMath math="z" /> axis. This component is needed when motion or force is not limited to a flat plane, such as a drone moving east, north, and upward at the same time.
 
-<Vector3d
+<LineEquation
   cameraPosition={[8, 6, -6]}
   cameraTarget={[2, 1.5, 1]}
   title={<>Components of <InlineMath math="\vec{A}" /></>}
@@ -50,7 +50,7 @@ The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinat
       into three perpendicular components.
     </>
   }
-  vectors={(() => {
+  data={(() => {
     const components = [
       [4, 0, 0],
       [0, 3, 0],
@@ -71,41 +71,57 @@ The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinat
 
     return [
       {
-        from: [0, 0, 0],
-        to: resultant,
-        color: "#7c3aed",
-        label: <InlineMath math="A" />,
-        labelAnchorX: "center",
-        labelProgress: 3 / 5,
-        labelOffset: [0.35, 0.55, 0.3],
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A" />,
+        progress: 3 / 5,
+        offset: [0.35, 0.55, 0.3],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[0],
-        to: points[1],
-        color: "#0d9488",
-        label: <InlineMath math="A_x" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0, -0.45, 0],
-      },
+      points: [{ x: (points[0])[0], y: (points[0])[1], z: (points[0])[2] }, { x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_x" />,
+        progress: 1 / 2,
+        offset: [0, -0.45, 0],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[1],
-        to: points[2],
-        color: "#d97706",
-        label: <InlineMath math="A_y" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.55, 0, 0.15],
-      },
+      points: [{ x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }, { x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_y" />,
+        progress: 1 / 2,
+        offset: [0.55, 0, 0.15],
+        anchorX: "center",
+      }],
+    },
       {
-        from: points[2],
-        to: points[3],
-        color: "#0891b2",
-        label: <InlineMath math="A_z" />,
-        labelAnchorX: "center",
-        labelProgress: 1 / 2,
-        labelOffset: [0.65, -0.25, 0.15],
-      },
+      points: [{ x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }, { x: (points[3])[0], y: (points[3])[1], z: (points[3])[2] }],
+      color: "#0891b2",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="A_z" />,
+        progress: 1 / 2,
+        offset: [0.65, -0.25, 0.15],
+        anchorX: "center",
+      }],
+    },
     ];
   })()}
 />
@@ -115,7 +131,7 @@ The visual uses component steps in order: move along the <InlineMath math="x" />
 
 ### Calculating Length in Space
 
-Rotate the model until the vertical component stands out from the base plane. The first two components determine the length in that plane. The spatial vector length also includes the **third component**.
+Rotate the model to see that the <InlineMath math="z" /> component is **perpendicular to the <InlineMath math="xy" /> plane**. The <InlineMath math="x" /> and <InlineMath math="y" /> components form a vector in that plane. The spatial vector length also includes the <InlineMath math="z" /> component.
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 

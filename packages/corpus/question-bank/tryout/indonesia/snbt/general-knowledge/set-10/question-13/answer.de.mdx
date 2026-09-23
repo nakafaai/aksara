@@ -5,6 +5,22 @@ export const metadata = {
   dateModified: "2026-09-07",
 };
 
-Der Anfang zeigt ungleiche Auffindbarkeit und verfolgt Fehler von der Texterkennung in die Metadaten. Der spätere Teil zeigt Grenzen, bietet andere Suchwege und prüft Ergebnisse.
+Die ersten beiden Absätze erklären, wie ungleiche Auffindbarkeit entstehen kann: Erkennungsfehler gelangen in vorgeschlagene Metadaten, und beliebte Sammlungen erhalten mehr Korrekturen. Die späteren Absätze machen diese Schwächen überprüfbar.
 
-Der Zusammenhang ist **eine Fehlerkette, die Oberflächenänderungen und überprüfbare Audits veranlasst**. Die Automatisierung bleibt bestehen. Leere Ergebnisse gelten nicht als sicherer Beweis fehlender Dokumente.
+<Mermaid
+  title="Von der Texterkennung zur Prüfung"
+  description="Erkennungsfehler können Metadaten und Suchergebnisse erreichen. Originalbilder und alternative Zugänge über Sammlungsdaten unterstützen die menschliche Prüfung."
+  chart={`flowchart TD
+  A["Gescannten Brief erfassen"] --> B["Texterkennung"]
+  B --> C["Namen, Orte und Themen vorschlagen"]
+  C --> D["Suchergebnisse"]
+  A --> E["Originalbild und Sammlungsdaten"]
+  E --> F["Menschliche Prüfung und Korrektur"]
+  D --> G["Stichprobe leerer Suchen"]
+  G --> F
+  F --> C`}
+/>
+
+Verfolge den **Fehlerweg von der Texterkennung über Metadaten zu Suchergebnissen**. Ein leeres Ergebnis kann auf diesem Weg entstehen, ohne dass das Dokument fehlt. Originalbilder, Sammlungsnummern, Zeiträume und Schreibvarianten ermöglichen andere Zugänge. Stichproben leerer Suchen und Prüfungen einzelner Dokumentgruppen untersuchen, wo Fehler auftreten.
+
+Auf die ermittelte Fehlerkette folgen also Maßnahmen zur Prüfung und Korrektur. Automatisierung bleibt im Einsatz. Suchergebnisse gelten nicht als endgültige Beschreibung des Archivbestands.

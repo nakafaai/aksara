@@ -139,9 +139,14 @@ function hasNestedRelation(row: string): boolean {
     if (environmentDepth !== 0) {
       continue;
     }
-    if (token === "(" || token === "[" || token === "{") {
+    if (token === "(" || token === "[" || token === "{" || token === "\\{") {
       groupDepth += 1;
-    } else if (token === ")" || token === "]" || token === "}") {
+    } else if (
+      token === ")" ||
+      token === "]" ||
+      token === "}" ||
+      token === "\\}"
+    ) {
       groupDepth -= 1;
     } else if (token.startsWith("&") && groupDepth > 0) {
       return true;

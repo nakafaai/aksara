@@ -5,7 +5,7 @@ export const metadata = {
     description: "Nyatakan vektor tiga dimensi, hitung besarnya, lalu terapkan penjumlahan, perkalian titik, dan perkalian silang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-19",
+  dateModified: "2026-09-12",
   subject: "Vektor dan Operasinya",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highlight>. Ketiga komponen mengukur perpindahan sepanjang sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor tak nol memiliki besar dan arah, sedangkan vektor nol tidak memiliki arah geometris.
 
-<Vector3d
+<LineEquation
   cameraPosition={[7, 5, -5]}
   cameraTarget={[1.5, 2, 1]}
   title="Vektor dalam Ruang Tiga Dimensi"
@@ -24,12 +24,19 @@ Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highligh
       <InlineMath math="z" />.
     </>
   }
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [3, 4, 2],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 2 }],
       color: "#7c3aed",
-      label: <InlineMath math="v" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="v" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
@@ -66,7 +73,7 @@ Pada bentuk ini:
 - <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> adalah vektor satuan pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[7, 5, -6]}
     cameraTarget={[2, 1.5, 1]}
     title="Komponen Vektor Tiga Dimensi"
@@ -76,31 +83,59 @@ Pada bentuk ini:
         <InlineMath math="y" />, dan <InlineMath math="z" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [4, 0, 0],
-        color: "#9333ea",
-        label: <InlineMath math="a_x" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
+      color: "#9333ea",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_x" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [0, 3, 0],
-        color: "#0d9488",
-        label: <InlineMath math="a_y" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_y" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [0, 0, 2],
-        color: "#d97706",
-        label: <InlineMath math="a_z" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 2 }],
+      color: "#d97706",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a_z" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 3, 2],
-        color: "#db2777",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 2 }],
+      color: "#db2777",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -133,7 +168,7 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{
 </MathContainer>
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[9, 6, -7]}
     cameraTarget={[2.5, 2, 1.5]}
     title="Penjumlahan Vektor Tiga Dimensi"
@@ -144,27 +179,46 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{
         <InlineMath math="c = a + b" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 3, 1],
-        color: "#0d9488",
-        label: <InlineMath math="a" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [2, 3, 1],
-        to: [5, 4, 3],
-        color: "#ea580c",
-        label: <InlineMath math="b" />,
-        labelPosition: "middle",
-      },
+      points: [{ x: 2, y: 3, z: 1 }, { x: 5, y: 4, z: 3 }],
+      color: "#ea580c",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 0.5,
+        offset: [0, 0, 0],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [5, 4, 3],
-        color: "#ca8a04",
-        label: <InlineMath math="c=a + b" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 4, z: 3 }],
+      color: "#ca8a04",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="c=a + b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -176,7 +230,7 @@ Perkalian skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
 
 <ContentBlock>
-  <Vector3d
+  <LineEquation
     cameraPosition={[8, 4, -5]}
     cameraTarget={[2, 1, 2]}
     title="Perkalian Skalar dengan Vektor"
@@ -186,19 +240,33 @@ Perkalian skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}
         <InlineMath math="a" />, dengan <InlineMath math="k = 2" />.
       </>
     }
-    vectors={[
+    data={[
       {
-        from: [0, 0, 0],
-        to: [2, 1, 2],
-        color: "#059669",
-        label: <InlineMath math="a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 2 }],
+      color: "#059669",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
       {
-        from: [0, 0, 0],
-        to: [4, 2, 4],
-        color: "#c026d3",
-        label: <InlineMath math="2a" />,
-      },
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 2, z: 4 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="2a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
+    },
     ]}
   />
 </ContentBlock>
@@ -235,29 +303,50 @@ Pada rumus sudut ini, kedua vektor harus tak nol. Simbol <InlineMath math="\thet
 
 Jika <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya tegak lurus terhadap kedua faktor dan mengikuti kaidah tangan kanan dari <InlineMath math="\vec{a}" /> menuju <InlineMath math="\vec{b}" />. Jika salah satu faktor adalah vektor nol atau kedua faktor sejajar, hasil kali silangnya adalah <InlineMath math="\vec{0}" /> sehingga tidak memiliki arah geometris.
 
-<Vector3d
+<LineEquation
   cameraPosition={[4.6, 3.6, -4.2]}
   cameraTarget={[0.8, 0.8, 1.7]}
   title="Perkalian Silang Vektor"
   description={<>Arah kaidah tangan kanan dari <InlineMath math="\vec{a}\times\vec{b}" />, yang tegak lurus terhadap kedua vektor tak sejajar.</>}
-  vectors={[
+  data={[
     {
-      from: [0, 0, 0],
-      to: [2, 0, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }],
       color: "#0d9488",
-      label: <InlineMath math="a" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 2, 0],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
       color: "#e11d48",
-      label: <InlineMath math="b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
     {
-      from: [0, 0, 0],
-      to: [0, 0, 4],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
       color: "#65a30d",
-      label: <InlineMath math="a \times b" />,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{
+        text: <InlineMath math="a \times b" />,
+        progress: 1,
+        offset: [0.2, 0.2, 0.2],
+        anchorX: "left",
+      }],
     },
   ]}
 />
