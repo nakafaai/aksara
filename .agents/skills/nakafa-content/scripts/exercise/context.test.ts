@@ -53,6 +53,9 @@ it("recognizes the current corpus exercise and solution titles without broad mat
       "Solutions for Rationalizing Denominators",
     ],
     ["de", "Überprüfe dein Verständnis", "Ausführliche Lösungen"],
+    ["de", "Übung", "Ausführliche Lösung"],
+    ["de", "Übung", "Lösung"],
+    ["de", "Übungen", "Lösungen"],
     ["de", "Übungen mit vollständigen Lösungen", "Ausgearbeitete Lösungen"],
     [
       "de",
@@ -66,4 +69,6 @@ it("recognizes the current corpus exercise and solution titles without broad mat
   }
   assert.isFalse(isExerciseHeading("en", "Practice with Units"));
   assert.isFalse(isSolutionHeading("en", "Solutions of Quadratic Equations"));
+  assert.isFalse(isSolutionHeading("de", "Lösunge"));
+  assert.isFalse(isSolutionHeading("de", "Ausführliche Lösunge"));
 });

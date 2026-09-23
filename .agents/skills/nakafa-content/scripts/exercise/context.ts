@@ -9,7 +9,7 @@ const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
 };
 
 const SOLUTION_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
-  de: /^(?:Lösungen?|Ausführliche Lösungen?|Ausgearbeitete Lösungen|Lösungen zum Rationalisieren von Nennern|Lösung zur (?:ersten|zweiten) Übung)$/iu,
+  de: /^(?:Lösung(?:en)?|Ausführliche Lösung(?:en)?|Ausgearbeitete Lösungen|Lösungen zum Rationalisieren von Nennern|Lösung zur (?:ersten|zweiten) Übung)$/iu,
   en: /^(?:Solutions for Rationalizing Denominators|Answer Key|Worked Solutions?|Solutions?|Solution to (?:First|Second) Exercise)$/iu,
   id: /^(?:Penyelesaian|Pembahasan(?: Lengkap| Terperinci| Rasionalisasi Penyebut)?|Kunci Jawaban(?: Latihan (?:Pertama|Kedua))?)$/iu,
 };

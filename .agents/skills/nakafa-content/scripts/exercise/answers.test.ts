@@ -11,6 +11,8 @@ it.each([
   ["id", "Latihan", "Pembahasan", "Soal"],
   ["en", "Practice Problems", "Worked Solutions", "Problem"],
   ["de", "Übungsaufgaben", "Lösungen", "Aufgabe"],
+  ["de", "Übung", "Lösung", "Aufgabe"],
+  ["de", "Übung", "Ausführliche Lösung", "Aufgabe"],
 ] as const)(
   "requires %s answer numbers, not merely topic names or step numbers",
   (locale, exercise, solution, label) => {
