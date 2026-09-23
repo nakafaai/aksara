@@ -17,6 +17,7 @@ import { Effect, Schema } from "effect";
 
 const materialKeys = [
   "material/lesson/mathematics/analytic-geometry/hyperbola",
+  "material/lesson/mathematics/exponential-logarithm/exponential-growth",
   "material/lesson/mathematics/function-composition-inverse-function/function-concept",
   "material/lesson/mathematics/linear-equation-inequality/system-linear-equation",
   "material/lesson/mathematics/trigonometry/right-triangle-naming",
