@@ -7,6 +7,7 @@ import { issueAtOffset } from "#nakafa-content/math/finding";
 import {
   attributeEstree,
   type EstreeNode,
+  estreeChildren,
   jsxComponentName,
   type MdxNode,
   parseLessonMdx,
@@ -19,7 +20,7 @@ import type {
 } from "#nakafa-content/voice/types";
 
 const HTML_HEADING_PATTERN = /^h[1-6]$/u;
-const SECTION_PREFIX_PATTERN = /^##\s+/u;
+const WHITESPACE_PATTERN = /\s+/gu;
 
 const BODY_HEADING_DEPTH = 2;
 
@@ -39,6 +40,28 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
   );
 }
 
+/** Reads visible JSX children without including attributes or expression identifiers. */
+function expressionText(node: EstreeNode): string {
+  if (node.type === "JSXText" || node.type === "Literal") {
+    return Predicate.isString(node.value) ? node.value : "";
+  }
+  return ["children", "expression", "body"]
+    .flatMap((key) => estreeChildren(node[key]))
+    .map(expressionText)
+    .join("");
+}
+
+/** Reads a heading label from parsed Markdown and literal JSX content. */
+function headingText(node: MdxNode): string {
+  if (node.type === "text") {
+    return Predicate.isString(node.value) ? node.value : "";
+  }
+  if (node.data?.estree) {
+    return expressionText(node.data.estree);
+  }
+  return (node.children ?? []).map(headingText).join("");
+}
+
 /**
  * Enforces the two authored heading levels owned by each document genre.
  *
@@ -55,11 +78,17 @@ export function findHeadingOrderIssues(
   if (!children.some((node) => node.type === "mdxjsEsm")) {
     return [];
   }
-  const headings: { depth: number; line: number; column: number }[] = [];
+  const headings: {
+    depth: number;
+    line: number;
+    column: number;
+    label: string;
+  }[] = [];
   /** Records only statically named HTML headings with parser-owned offsets. */
   function recordJsx(
     name: string | undefined,
-    offset: number | undefined
+    offset: number | undefined,
+    label: string
   ): void {
     if (
       name === undefined ||
@@ -69,7 +98,7 @@ export function findHeadingOrderIssues(
       return;
     }
     const { line, column } = issueAtOffset(source, offset, "heading-order");
-    headings.push({ column, depth: Number(name.slice(1)), line });
+    headings.push({ column, depth: Number(name.slice(1)), label, line });
   }
   /** Inspects JSX hidden inside expressions and component attributes. */
   function inspectProgram(program: EstreeNode | undefined): void {
@@ -78,19 +107,23 @@ export function findHeadingOrderIssues(
     }
     walkEstreeDeep(program, (node) => {
       if (node.type === "JSXElement") {
-        recordJsx(jsxComponentName(node), node.start);
+        recordJsx(jsxComponentName(node), node.start, expressionText(node));
       }
     });
   }
   visitMdxNodes(tree, (node) => {
     if (isHeadingNode(node)) {
-      headings.push({ depth: node.depth, ...node.position.start });
+      headings.push({
+        depth: node.depth,
+        label: headingText(node),
+        ...node.position.start,
+      });
     }
     if (
       node.type === "mdxJsxFlowElement" ||
       node.type === "mdxJsxTextElement"
     ) {
-      recordJsx(node.name, node.position?.start?.offset);
+      recordJsx(node.name, node.position?.start?.offset, headingText(node));
       for (const attribute of node.attributes ?? []) {
         inspectProgram(attributeEstree(attribute));
       }
@@ -108,7 +141,7 @@ export function findHeadingOrderIssues(
   let exerciseSection = false;
   for (const heading of headings) {
     const excerpt = (lines[heading.line - 1] ?? "").trim();
-    const label = excerpt.replace(SECTION_PREFIX_PATTERN, "");
+    const label = heading.label.replace(WHITESPACE_PATTERN, " ").trim();
     const promotedSolution =
       lessonLocale !== undefined &&
       heading.depth === 2 &&

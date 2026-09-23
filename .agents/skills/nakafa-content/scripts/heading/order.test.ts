@@ -212,3 +212,45 @@ it("preserves conceptual solution headings and article structure", () => {
   const article = `${AUTHORED}## Exercises\n\nAnalysis.\n\n## Worked Solutions`;
   assert.deepEqual(findHeadingOrderIssues(article), []);
 });
+
+it.each([
+  ["<h2>Exercises</h2>", "<h2>Solutions</h2>"],
+  ["## Exercises", "<h2>Solutions</h2>"],
+  ["<h2><span>Exercises</span></h2>", "## **Solutions**"],
+  ["{<h2>Exercises</h2>}", "{<h2>Solutions</h2>}"],
+  ['<h2>{"Exercises"}</h2>', '<h2>{"Solutions"}</h2>'],
+  [
+    "<Panel title={<h2>Exercises</h2>} />",
+    "<Panel title={<h2><span>Solutions</span></h2>} />",
+  ],
+  ["<h2>Exercises</h2>", "<h2>\n  Worked Solutions\n</h2>"],
+])("recognizes parsed heading labels: %s", (exercise, solution) => {
+  const source = `${AUTHORED}${exercise}\n\nSolve.\n\n${solution}`;
+  assert.deepEqual(
+    findHeadingOrderIssues(source, parseLessonMdx(source), 2, "en").map(
+      ({ line }) => line
+    ),
+    [7]
+  );
+});
+
+it("ignores attributes and nonliteral expression values in heading labels", () => {
+  const source = `${AUTHORED}<h2 title="Exercises">Concept</h2>\n\n<h2>Solutions</h2>\n\n{<h2>{3}</h2>}\n\n<h2>{title}</h2>`;
+  assert.deepEqual(
+    findHeadingOrderIssues(source, parseLessonMdx(source), 2, "en"),
+    []
+  );
+  const tree: MdxNode = {
+    children: [
+      { type: "mdxjsEsm" },
+      {
+        children: [{ type: "text", value: 3 }],
+        depth: 2,
+        position: { start: { column: 1, line: 3 } },
+        type: "heading",
+      },
+    ],
+    type: "root",
+  };
+  assert.deepEqual(findHeadingOrderIssues(source, tree, 2, "en"), []);
+});
