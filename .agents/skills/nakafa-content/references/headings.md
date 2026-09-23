@@ -2,7 +2,9 @@
 
 - Lesson and article bodies use only `##` and `###`, including lesson exercises
   and their worked solutions. `heading-order` rejects a different opening level,
-  skipped levels, and every heading deeper than `###`.
+  skipped levels, and every heading deeper than `###`. In lesson exercises,
+  it also rejects further headings after the H3 solution boundary until the
+  next H2 teaching section.
 - Preserve the teaching hierarchy: a lesson exercise section stays at `##`, and
   its worked solutions stay at `###` beneath it. Never promote the solutions to
   `##` merely to remove deeper headings. Inside the solutions, connect subgoals

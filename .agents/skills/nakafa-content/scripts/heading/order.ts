@@ -117,6 +117,7 @@ export function findHeadingOrderIssues(
   const issues: LessonVoiceIssue[] = [];
   let previousDepth: number | undefined;
   let exerciseSection = false;
+  let solutionSection = false;
   for (const heading of headings) {
     const excerpt = (lines[heading.line - 1] ?? "").trim();
     const label = heading.label.replace(WHITESPACE_PATTERN, " ").trim();
@@ -131,6 +132,7 @@ export function findHeadingOrderIssues(
       previousDepth === undefined && heading.depth !== bodyHeadingDepth;
     if (
       promotedSolution ||
+      (solutionSection && heading.depth > 2) ||
       skipped ||
       misrooted ||
       heading.depth < bodyHeadingDepth ||
@@ -145,6 +147,15 @@ export function findHeadingOrderIssues(
     }
     if (lessonLocale !== undefined && heading.depth === 2) {
       exerciseSection = isExerciseHeading(lessonLocale, label);
+      solutionSection = false;
+    }
+    if (
+      lessonLocale !== undefined &&
+      exerciseSection &&
+      heading.depth === 3 &&
+      isSolutionHeading(lessonLocale, label)
+    ) {
+      solutionSection = true;
     }
     previousDepth = heading.depth;
   }

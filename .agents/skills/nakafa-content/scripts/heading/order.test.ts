@@ -254,3 +254,44 @@ it("ignores attributes and nonliteral expression values in heading labels", () =
   };
   assert.deepEqual(findHeadingOrderIssues(source, tree, 2, "en"), []);
 });
+
+it.each([
+  ["id", "Latihan", "Pembahasan"],
+  ["en", "Exercises", "Solutions"],
+  ["de", "Übung", "Lösung"],
+] as const)(
+  "keeps %s answer subgoals in prose instead of flattened H3 headings",
+  (locale, exercise, solution) => {
+    for (const subgoal of [
+      "### Bacteria",
+      "<h3>Bacteria</h3>",
+      "{<h3>Bacteria</h3>}",
+    ]) {
+      const source = `${AUTHORED}## ${exercise}\n\nSolve.\n\n### ${solution}\n\nExplain.\n\n${subgoal}`;
+      assert.deepEqual(
+        findHeadingOrderIssues(source, parseLessonMdx(source), 2, locale).map(
+          ({ line }) => line
+        ),
+        [11]
+      );
+      const prose = source.replace(
+        subgoal,
+        "**Problem 1**. Count the doubling intervals."
+      );
+      assert.deepEqual(
+        findHeadingOrderIssues(prose, parseLessonMdx(prose), 2, locale),
+        []
+      );
+      const nextSection = `${prose}\n\n## Model limits\n\n### Resource constraints`;
+      assert.deepEqual(
+        findHeadingOrderIssues(
+          nextSection,
+          parseLessonMdx(nextSection),
+          2,
+          locale
+        ),
+        []
+      );
+    }
+  }
+);
