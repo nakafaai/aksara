@@ -117,10 +117,11 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         );
         expect(selected.article).toEqual(
           articles
-            .filter(
-              ({ route }) =>
-                route.contentKey ===
-                "articles/politics/regional-elections-turmoil"
+            .filter(({ route }) =>
+              [
+                "articles/politics/merah-putih-cabinet-analysis",
+                "articles/politics/regional-elections-turmoil",
+              ].includes(route.contentKey)
             )
             .sort((left, right) => compareContentHeads(left.route, right.route))
         );
@@ -128,7 +129,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         for (const entry of selected.article) {
           expect(ACTIVE_APP_LOCALES).toContain(entry.route.artifactLocale);
         }
-        expect(selected.article).toHaveLength(ACTIVE_APP_LOCALES.length);
+        expect(selected.article).toHaveLength(2 * ACTIVE_APP_LOCALES.length);
         const registry = yield* decodeTryoutRegistry();
         const { tryout } = selected;
         const expectedRoots = registry.flatMap(({ tracks }) =>
@@ -188,6 +189,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
   );
 
   it.effect.each([
+    "articles/politics/merah-putih-cabinet-analysis:en",
     "articles/politics/regional-elections-turmoil:id",
     "material/lesson/mathematics/analytic-geometry/hyperbola:de",
   ])(

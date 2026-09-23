@@ -22,7 +22,10 @@ const materialKeys = [
   "material/lesson/mathematics/trigonometry/right-triangle-naming",
   "material/lesson/mathematics/trigonometry/trigonometry-concept",
 ];
-const articleKeys = ["articles/politics/regional-elections-turmoil"];
+const articleKeys = [
+  "articles/politics/merah-putih-cabinet-analysis",
+  "articles/politics/regional-elections-turmoil",
+];
 
 /** The pinned acceptance corpus no longer contains a required reviewed source. */
 export class AcceptanceSourceError extends Schema.TaggedError<AcceptanceSourceError>()(
