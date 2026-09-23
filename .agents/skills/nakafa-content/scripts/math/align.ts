@@ -129,7 +129,10 @@ function hasNestedRelation(row: string): boolean {
   let environmentDepth = 0;
   let groupDepth = 0;
   const tokens = row.matchAll(
-    /\\(begin|end)\{[^}]*\}|\\[A-Za-z]+|\\[^A-Za-z]|[()[\]{}]|&\s*(?:=|\\approx|\\equiv|\\leq|\\geq)/gu
+    new RegExp(
+      String.raw`\\(begin|end)\{[^}]*\}|\\[A-Za-z]+|\\[^A-Za-z]|[()[\]{}]|&\s*${RELATION_ANYWHERE_PATTERN.source}`,
+      "gu"
+    )
   );
   for (const [token, boundary] of tokens) {
     if (boundary) {

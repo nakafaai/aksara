@@ -138,7 +138,8 @@ function inspectLessonLine(
   state: LineState,
   matchesByRule: Map<string, LessonVoiceIssue[]>,
   bodyKind: QuestionBodyKind | undefined,
-  voiceRules: readonly LessonVoiceRule[]
+  voiceRules: readonly LessonVoiceRule[],
+  genre: LessonVoiceGenre
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
   const issues = findStructuralIssues(
@@ -147,7 +148,8 @@ function inspectLessonLine(
     lineNumber,
     state,
     context.isProtectedRegion,
-    bodyKind === undefined
+    bodyKind === undefined && genre === "lesson",
+    genre
   );
   if (!context.isProtectedRegion || context.isMetadataDescription) {
     const searchableLine = context.isMetadataDescription
@@ -167,11 +169,15 @@ function inspectLessonLine(
         lineNumber,
         quotationMaskedLine
       ),
-      ...(context.isMetadataDescription
+      ...(context.isMetadataDescription && genre === "lesson"
         ? matchMetadataGermanAddress(locale, searchableLine, line, lineNumber)
         : [])
     );
-    if (!context.isProtectedRegion && bodyKind !== "answer") {
+    if (
+      !context.isProtectedRegion &&
+      bodyKind !== "answer" &&
+      genre === "lesson"
+    ) {
       recordRepetitiveOpeners(
         matchesByRule,
         locale,
@@ -239,7 +245,8 @@ export function findLessonVoiceIssues(
         state,
         matchesByRule,
         bodyKind,
-        voiceRules
+        voiceRules,
+        genre
       )
     );
     lineOffset += line.length + 1;
@@ -254,8 +261,10 @@ export function findLessonVoiceIssues(
     ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
     ...findEmphasisArtifactIssues(source, parsedTree),
-    ...(bodyKind ? [] : findSectionBodyIssues(source, parsedTree)),
-    ...(bodyKind
+    ...(bodyKind || genre === "article"
+      ? []
+      : findSectionBodyIssues(source, parsedTree)),
+    ...(bodyKind || genre === "article"
       ? []
       : findUndefinedHeadingAbbreviationIssues(source, parsedTree))
   );

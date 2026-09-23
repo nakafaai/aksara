@@ -47,40 +47,40 @@ Bayangkan tali menarik kotak dengan gaya <InlineMath math="\vec{F}" /> miring ke
 
     return [
       {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
       color: "#7c3aed",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="F" />,
-        progress: 3 / 5,
+        at: 1,
         offset: [0.25, 0.5, 0.2],
         anchorX: "center",
       }],
     },
       {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (fx)[0], y: (fx)[1], z: (fx)[2] }],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((fx)[0]) - (0)), y: (0) + 0.5 * (((fx)[1]) - (0)), z: (0) + 0.5 * (((fx)[2]) - (0)) }, { x: (fx)[0], y: (fx)[1], z: (fx)[2] }],
       color: "#0d9488",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="F_x" />,
-        progress: 1 / 2,
+        at: 1,
         offset: [0, -0.45, 0],
         anchorX: "center",
       }],
     },
       {
-      points: [{ x: (fx)[0], y: (fx)[1], z: (fx)[2] }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
+      points: [{ x: (fx)[0], y: (fx)[1], z: (fx)[2] }, { x: ((fx)[0]) + 0.5 * (((resultant)[0]) - ((fx)[0])), y: ((fx)[1]) + 0.5 * (((resultant)[1]) - ((fx)[1])), z: ((fx)[2]) + 0.5 * (((resultant)[2]) - ((fx)[2])) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
       color: "#d97706",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="F_y" />,
-        progress: 1 / 2,
+        at: 1,
         offset: [0.55, 0, 0.2],
         anchorX: "center",
       }],

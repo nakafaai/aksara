@@ -89,25 +89,48 @@ it("keeps article evidence and journal style outside lesson pedagogy", () => {
       source,
       parseLessonMdx(source)
     ).map(({ rule }) => rule),
-    ["article-vague-attribution"]
+    []
   );
-  assert.equal(
-    findDocumentIssues(
-      "/corpus/lesson/topic/en.mdx",
+});
+
+it("allows scientific sections, citations, formal address and unmarked prose", () => {
+  const sources = [
+    [
       "en",
+      `${METADATA}## Introduction\n\nStudies show a four percent increase (Lee et al., 2025).\n\n## Methods 2025\n\nThe observations use a fixed measurement interval.\n\n## References\n\nLee et al. (2025).`,
+    ],
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
+    ],
+    [
+      "de",
+      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
+    ],
+  ] as const;
+  for (const [locale, source] of sources) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/articles/topic/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ),
+      []
+    );
+  }
+});
+
+it("preserves scientific interpretation and established theorem names", () => {
+  const source = `${METADATA}## Interpretasi Hasil\n\nTeorema fundamental kalkulus menghubungkan turunan dan integral.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/articles/topic/id.mdx",
+      "id",
       source,
       parseLessonMdx(source)
-    ).some(({ rule }) => rule === "article-vague-attribution"),
-    false
-  );
-  assert.equal(
-    findDocumentIssues(
-      "question.en.mdx",
-      "en",
-      source,
-      parseLessonMdx(source)
-    ).some(({ rule }) => rule === "article-vague-attribution"),
-    false
+    ),
+    []
   );
 });
 

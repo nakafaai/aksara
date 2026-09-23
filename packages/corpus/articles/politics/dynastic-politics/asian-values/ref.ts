@@ -16,7 +16,7 @@ export const references: ArticleReference[] = [
     title:
       "Upaya Konstitusional Dalam Memutus Mata Rantai Dinasti Politik Pada Pemilukada Serentak Tahun 2024",
     url: "https://doi.org/10.35316/hukmy.2022.v2i2.199-210",
-    year: 2024,
+    year: 2022,
   },
   {
     authors: "Dwyer, S. O.",
@@ -56,6 +56,7 @@ export const references: ArticleReference[] = [
   {
     authors: "Mahkamah Agung",
     title: "Putusan Nomor 23 P/HUM/2024",
+    url: "https://putusan3.mahkamahagung.go.id/direktori/putusan/zaef21887b3c4de28717313630353533.html",
     year: 2024,
   },
   {

@@ -23,6 +23,10 @@ it("blocks assistant artifacts but protects real quotations", () => {
     ["de", "Ich hoffe, das hilft."],
     ["en", "Great question! I hope this helps."],
     ["id", "Tentu saja! Semoga ini membantu."],
+    ["en", "Certainly!"],
+    ["en", "Great question!"],
+    ["id", "Tentu saja!"],
+    ["id", "Pertanyaan bagus!"],
   ] as const;
   for (const [locale, source] of failures) {
     assert.deepEqual(rules(locale, source), ["chatbot-artifact"], source);
@@ -35,9 +39,9 @@ it("blocks assistant artifacts but protects real quotations", () => {
 
 it("blocks knowledge-cutoff disclaimers without flagging a data cutoff", () => {
   const failures = [
-    ["de", "Meines Wissens nach war der Wert konstant."],
+    ["de", "Mein letztes Wissensupdate war im Juni."],
     ["en", "As of my last update, the value was stable."],
-    ["id", "Hingga pembaruan terakhir, nilainya stabil."],
+    ["id", "Pembaruan terakhir pengetahuanku adalah Juni."],
   ] as const;
   for (const [locale, source] of failures) {
     assert.deepEqual(
@@ -49,6 +53,26 @@ it("blocks knowledge-cutoff disclaimers without flagging a data cutoff", () => {
   assert.deepEqual(rules("en", "The data cutoff was June 2025."), []);
   assert.deepEqual(rules("id", "Data berakhir pada Juni 2025."), []);
   assert.deepEqual(rules("de", "Der Datenstand ist der 30. Juni 2025."), []);
+  assert.deepEqual(
+    rules(
+      "id",
+      "Hingga pembaruan terakhir pada 1 Januari 2026, laporan itu mencatat 20 kasus.",
+      true
+    ),
+    []
+  );
+  assert.deepEqual(
+    rules(
+      "en",
+      "As of our last update on 1 January 2026, the registry contained 20 cases.",
+      true
+    ),
+    []
+  );
+  assert.deepEqual(
+    rules("de", "Meines Wissens nach enthält das Register 20 Fälle.", true),
+    []
+  );
 });
 
 it("flags only redundant hedge stacks", () => {

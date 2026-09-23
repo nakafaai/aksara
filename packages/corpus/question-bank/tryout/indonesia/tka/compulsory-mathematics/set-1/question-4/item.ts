@@ -4,7 +4,7 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {

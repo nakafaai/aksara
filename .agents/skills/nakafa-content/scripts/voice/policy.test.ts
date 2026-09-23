@@ -62,6 +62,8 @@ const blockingRules = [
   "redirected-cell-machinery-metaphor",
   "rhetorical-not-only",
   "source-navigation-filler",
+  "sentence-punctuation-emphasis",
+  "section-body-highlight",
   "unexplained-output-scheduling",
   "unqualified-energy-density-claim",
   "unqualified-fuel-storage-claim",

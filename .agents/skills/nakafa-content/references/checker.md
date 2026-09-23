@@ -121,7 +121,7 @@ scores never become source gates.
 | `r-029 staged reveal questions` | Manual review | Teacher questions and assessed prompts are legitimate; concept personification already has blockers. |
 | `r-030 repeated sentence openers` | Existing repeated-opener review candidates plus manual read | A repeated technical subject can preserve exact reference. |
 | `r-031 significance inflation` | Review candidates `inflated-utility-claim` and `significance-inflation` | The existing rule covers role inflation; the new rule covers only testimonial, shift, and legacy claims. Measured operations and mechanisms stay valid. |
-| `r-032 vague attribution` | Article review candidate `article-vague-attribution` | Named authors, studies, institutions, dates, and protected quotations remain valid. |
+| `r-032 vague attribution` | Manual evidence review | Read the complete claim with its in-text citations and reference list. A phrase such as `studies show` alone cannot establish whether attribution is missing. |
 | `r-033 challenges-and-prospects arc` | Review candidate `cliche-challenges-outcome` | A specific challenge and specific outcome remain valid. |
 | `r-034 absence of voice` | Excluded from deterministic gate | Professional scientific articles may correctly use impersonal analysis. |
 | `r-035 generic upbeat conclusion` | Review candidate `generic-upbeat-conclusion` | A dated release, result, or next action remains valid. |
@@ -139,6 +139,10 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
   scientific-register, evidence, source, math, and phrase-emphasis checks.
   Article emphasis is optional and contextual, so the lesson opening and
   section-body requirements do not apply.
+  Scientific section names, numbered headings, formal address, and reference
+  lists are valid. Lesson heading style, body-length, abbreviation, and repeated
+  opener rules do not apply. Source support is reviewed against the complete
+  claim and its cited evidence, never inferred from an attribution phrase alone.
 - Assessed questions receive forbidden-control-character, link, component,
   emphasis-syntax, and math checks.
   The checker preserves their language register, punctuation, titles, and quoted

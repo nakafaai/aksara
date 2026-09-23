@@ -42,7 +42,7 @@ smallest measured starting partition is eleven source domains:
 8. SNBT: mathematical reasoning;
 9. SNBT: quantitative knowledge;
 10. SNBT: one validated fallback for the four all-plain sections;
-11. TKA: mathematics.
+11. TKA: tka-math.
 
 Static route children win over dynamic siblings. The plain SNBT fallback must
 accept only English language, general knowledge, Indonesian language, and
@@ -62,7 +62,7 @@ internal physical entries do not change public URLs.
 | SNBT mathematical reasoning | 560 | 34 R3F | 526 |
 | SNBT quantitative knowledge | 800 | 60 R3F | 740 |
 | SNBT plain fallback | 720 | none | 720 |
-| TKA mathematics | 480 | 8 charts and 12 R3F | 460 |
+| TKA tka-math | 480 | 8 charts and 12 R3F | 460 |
 
 Further partitioning by topic, set, or document would add substantial route
 duplication and is not justified by current evidence. The registry concept is

@@ -160,8 +160,8 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
     issues.push(
       ...findLessonHighlightIssues(
         root,
-        siblingDocuments.filter(({ file }) =>
-          ["article", "lesson"].includes(documentProfile(file))
+        siblingDocuments.filter(
+          ({ file }) => documentProfile(file) === "lesson"
         )
       )
     );

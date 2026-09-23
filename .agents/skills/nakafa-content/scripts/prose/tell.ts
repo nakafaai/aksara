@@ -6,17 +6,17 @@ export const AI_ARTIFACT_RULES = [
     id: "chatbot-artifact",
     patterns: {
       de: /\b(?:Ich hoffe,? das hilft|Bei weiteren Fragen|gern(e)? wieder|meldet euch einfach)\b/iu,
-      en: /\b(?:Certainly!|Great question!|I hope this helps|let me know if|feel free to ask)\b/iu,
-      id: /\b(?:Tentu saja!|Pertanyaan bagus!|Semoga ini membantu|kabari aku jika|jangan ragu bertanya)\b/iu,
+      en: /\b(?:Certainly!|Great question!|(?:I hope this helps|let me know if|feel free to ask)\b)/iu,
+      id: /\b(?:Tentu saja!|Pertanyaan bagus!|(?:Semoga ini membantu|kabari aku jika|jangan ragu bertanya)\b)/iu,
     },
     protectInlineQuotations: true,
   },
   {
     id: "knowledge-cutoff-disclaimer",
     patterns: {
-      de: /\b(?:als (?:mein|unser) letztes Update|meines Wissens nach|ich habe keinen Zugriff auf|solange die Details begrenzt sind)\b/iu,
-      en: /\b(?:as of (?:my|our) last update|while specific details are limited|I (?:do not|don't) have access to)\b/iu,
-      id: /\b(?:hingga pembaruan terakhir|sepengetahuanku|sepengetahuan saya|selama rinciannya terbatas|aku tidak memiliki akses ke)\b/iu,
+      de: /\b(?:als KI(?:-Modell)? habe ich keinen Zugriff auf|mein Trainingsdatenstand|mein letztes Wissensupdate)\b/iu,
+      en: /\b(?:as of my last (?:knowledge )?update|as an AI(?: model)?,? I (?:do not|don't) have access to)\b/iu,
+      id: /\b(?:pembaruan terakhir pengetahuanku|sebagai (?:AI|model AI),? aku tidak memiliki akses ke)\b/iu,
     },
     protectInlineQuotations: true,
   },

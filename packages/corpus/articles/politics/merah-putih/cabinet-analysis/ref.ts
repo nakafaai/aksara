@@ -42,7 +42,7 @@ export const references: ArticleReference[] = [
     publication: "Universitas Paramadina",
     title:
       "Memperkuat Presidensialisme Multipartai di Indonesia: Pemilu Serentak, Sistem Pemilu, dan Sistem Kepartaian",
-    url: "https://widyagama.ac.id/iwan-nugroho/wp-content/uploads/2012/01/MCW-Etika-Kepemimpinan-jabatan-publik-feb-2013.pdf",
+    url: "https://puskapol.fisip.ui.ac.id/wp-content/uploads/2015/02/Makalah-Djayadi-Hanan.pdf",
     year: 2016,
   },
   {
@@ -50,7 +50,7 @@ export const references: ArticleReference[] = [
     publication: "Indonesia Corruption Watch",
     title:
       "Kabinet Prabowo-Gibran Tak Cerminkan Keberpihakan Pemberantasan Korupsi",
-    url: "https://antikorupsi.org/id/kabinet-prabowo-gibran-tak-cerminkan-keberpihakan-pemberantasan-korupsi",
+    url: "https://www.antikorupsi.org/id/kabinet-prabowo-gibran-tak-cerminkan-keberpihakan-pemberantasan-korupsi",
     year: 2024,
   },
   {
@@ -107,7 +107,7 @@ export const references: ArticleReference[] = [
     publication: "Jurnal Hukum Samudra Keadilan",
     title:
       "MENAPAKI JALAN KONSTITUSIONAL MENUJU ZAKEN CABINET: IKHTIAR MEWUJUDKAN PEMERINTAH BERKUALITAS KONSTITUSI",
-    url: "https://doi.org/https://doi.org/10.33059/jhsk.v15i1.1653",
+    url: "https://doi.org/10.33059/jhsk.v15i1.1653",
     year: 2020,
   },
   {
@@ -131,7 +131,7 @@ export const references: ArticleReference[] = [
     details: "4(59), 1–5",
     publication: "Jurnal Pembangunan Daerah",
     title: "Mengembangkan etika kepemimpinan: Fenomena pada jabatan publik",
-    url: "https://widyagama.ac.id/iwan-nugroho/wp-content/uploads/2012/01/MCW-Etika-Kepemimpinan-jabatan-publik-feb-2013.pdf",
+    url: "https://puskapol.fisip.ui.ac.id/wp-content/uploads/2015/02/Makalah-Djayadi-Hanan.pdf",
     year: 2013,
   },
   {

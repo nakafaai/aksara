@@ -3,7 +3,6 @@ import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
 import { NAVIGATION_VOICE_RULES } from "#nakafa-content/link/check";
 import { TECHNICAL_METAPHOR_RULES } from "#nakafa-content/metaphor/technical";
-import { ARTICLE_EVIDENCE_RULES } from "#nakafa-content/prose/article";
 import { AI_ARTIFACT_RULES, AI_STYLE_RULES } from "#nakafa-content/prose/tell";
 import { ADDRESS_VOICE_RULES } from "#nakafa-content/voice/address";
 import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice/ambiguity";
@@ -13,7 +12,10 @@ import { DEFECT_VOICE_RULES } from "#nakafa-content/voice/defect";
 import { DEMONSTRATIVE_VOICE_RULES } from "#nakafa-content/voice/demonstrative";
 import { FLOW_VOICE_RULES } from "#nakafa-content/voice/flow";
 import { HEADING_VOICE_RULES } from "#nakafa-content/voice/heading";
-import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice/language";
+import {
+  LANGUAGE_COPY_RULES,
+  LANGUAGE_VOICE_RULES,
+} from "#nakafa-content/voice/language";
 import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
 import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
 import { NARRATION_VOICE_RULES } from "#nakafa-content/voice/narration";
@@ -58,15 +60,10 @@ export const LESSON_VOICE_RULES = [
  * narrative heuristics stay out because an article is not a classroom script.
  */
 export const ARTICLE_VOICE_RULES = [
-  ...ADDRESS_VOICE_RULES,
   ...AI_ARTIFACT_RULES,
   ...AI_STYLE_RULES,
-  ...ARTICLE_EVIDENCE_RULES,
   ...DEFECT_VOICE_RULES,
-  ...CLAIM_VOICE_RULES,
-  ...AMBIGUITY_VOICE_RULES,
-  ...HEADING_VOICE_RULES,
-  ...LANGUAGE_VOICE_RULES,
+  ...LANGUAGE_COPY_RULES,
   ...NAVIGATION_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
 

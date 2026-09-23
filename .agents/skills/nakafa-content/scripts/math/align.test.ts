@@ -12,6 +12,9 @@ const CONJUNCTION = "conjunction-in-aligned-chain";
 
 it("flags a relation moved inside the event or radical being evaluated", () => {
   for (const value of [
+    String.raw`\begin{aligned} P(S &< 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} P(S &> 7) \\ &= \frac{6}{36}\end{aligned}`,
+    String.raw`\begin{aligned} P(S &\ne 7) \\ &= \frac{6}{36}\end{aligned}`,
     String.raw`\begin{aligned} P(S &= 7) \\ &= \frac{6}{36}\end{aligned}`,
     String.raw`\begin{aligned} \sqrt{4 &= 2} \end{aligned}`,
     String.raw`\begin{aligned} f[x &\approx 2] \end{aligned}`,

@@ -36,40 +36,40 @@ Dua vektor dikatakan sama jika <Highlight>besar dan arahnya sama</Highlight>. Le
 
     return [
       {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
+      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((a)[0]) - (0)), y: (0) + 0.6 * (((a)[1]) - (0)), z: (0) + 0.6 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
       color: "#0d9488",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="a" />,
-        progress: 3 / 5,
+        at: 1,
         offset: [0.15, 0.45, 0],
         anchorX: "center",
       }],
     },
       {
-      points: [{ x: (bShift)[0], y: (bShift)[1], z: (bShift)[2] }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
+      points: [{ x: (bShift)[0], y: (bShift)[1], z: (bShift)[2] }, { x: ((bShift)[0]) + 0.6 * (((b)[0]) - ((bShift)[0])), y: ((bShift)[1]) + 0.6 * (((b)[1]) - ((bShift)[1])), z: ((bShift)[2]) + 0.6 * (((b)[2]) - ((bShift)[2])) }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
       color: "#0d9488",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="b" />,
-        progress: 3 / 5,
+        at: 1,
         offset: [0.15, 0.45, 0.15],
         anchorX: "center",
       }],
     },
       {
-      points: [{ x: (negativeShift)[0], y: (negativeShift)[1], z: (negativeShift)[2] }, { x: (negativeA)[0], y: (negativeA)[1], z: (negativeA)[2] }],
+      points: [{ x: (negativeShift)[0], y: (negativeShift)[1], z: (negativeShift)[2] }, { x: ((negativeShift)[0]) + 0.5 * (((negativeA)[0]) - ((negativeShift)[0])), y: ((negativeShift)[1]) + 0.5 * (((negativeA)[1]) - ((negativeShift)[1])), z: ((negativeShift)[2]) + 0.5 * (((negativeA)[2]) - ((negativeShift)[2])) }, { x: (negativeA)[0], y: (negativeA)[1], z: (negativeA)[2] }],
       color: "#7c3aed",
       cone: { position: "end", size: 0.25 },
       showPoints: false,
       smooth: false,
       labels: [{
         text: <InlineMath math="-a" />,
-        progress: 1 / 2,
+        at: 1,
         offset: [0.1, -0.55, 0],
         anchorX: "center",
       }],

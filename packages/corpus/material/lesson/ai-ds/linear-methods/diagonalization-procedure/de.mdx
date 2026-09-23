@@ -17,28 +17,28 @@ Zur Diagonalisierung einer Matrix <InlineMath math="A \in \mathbb{K}^{n \times n
 
 Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
 
-**Charakteristisches Polynom berechnen**. Daraus folgen alle Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> und ihre algebraischen Multiplizitäten <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
+1. **Charakteristisches Polynom berechnen**. Daraus folgen alle Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> und ihre algebraischen Multiplizitäten <InlineMath math="\mu_A(\lambda_1), \ldots, \mu_A(\lambda_k)" />.
 
-Über dem gewählten Körper <InlineMath math="\mathbb{K}" /> muss das charakteristische Polynom <InlineMath math="\chi_A(t)" /> vollständig in lineare Faktoren zerfallen:
+   Über dem gewählten Körper <InlineMath math="\mathbb{K}" /> muss das charakteristische Polynom <InlineMath math="\chi_A(t)" /> vollständig in lineare Faktoren zerfallen:
 
-<MathContainer>
-<BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
-<BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
-</MathContainer>
+   <MathContainer>
+   <BlockMath math="\chi_A(t) = \prod_{i=1}^k (\lambda_i - t)^{\mu_A(\lambda_i)}" />
+   <BlockMath math="\sum_{i=1}^k \mu_A(\lambda_i) = n" />
+   </MathContainer>
 
-Zerfällt das Polynom nicht vollständig, ist die Matrix über diesem Körper nicht diagonalisierbar.
+   Zerfällt das Polynom nicht vollständig, ist die Matrix über diesem Körper nicht diagonalisierbar.
 
-**Eigenräume bestimmen**. Für jeden Eigenwert lösen wir das homogene lineare System:
+2. **Eigenräume bestimmen**. Für jeden Eigenwert lösen wir das homogene lineare System:
 
-<BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
+   <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
 
-Gesucht sind alle Vektoren, die die Matrix <InlineMath math="A" /> auf ein skalares Vielfaches ihrer selbst abbildet. Der Faktor ist der Eigenwert <InlineMath math="\lambda_i" />. Ein negativer Faktor kehrt die Richtung um, lässt den Vektor aber auf derselben Geraden.
+   Gesucht sind alle Vektoren, die die Matrix <InlineMath math="A" /> auf ein skalares Vielfaches ihrer selbst abbildet. Der Faktor ist der Eigenwert <InlineMath math="\lambda_i" />. Ein negativer Faktor kehrt die Richtung um, lässt den Vektor aber auf derselben Geraden.
 
-**Diagonalisierbarkeit prüfen**. Für jeden Eigenwert muss die algebraische Multiplizität mit der geometrischen Multiplizität übereinstimmen. Für alle <InlineMath math="i = 1, \ldots, k" /> muss also <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" /> gelten.
+3. **Diagonalisierbarkeit prüfen**. Für jeden Eigenwert muss die algebraische Multiplizität mit der geometrischen Multiplizität übereinstimmen. Für alle <InlineMath math="i = 1, \ldots, k" /> muss also <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" /> gelten.
 
-Diese Bedingung stellt sicher, dass wir <Highlight>genügend unabhängige Eigenvektoren</Highlight> haben, um eine vollständige Basis zu bilden. Wenn erfüllt, bilden die Basisvektoren aller Eigenräume die Spalten der Transformationsmatrix <InlineMath math="S" /> und ergeben:
+   Diese Bedingung stellt sicher, dass wir <Highlight>genügend unabhängige Eigenvektoren</Highlight> haben, um eine vollständige Basis zu bilden. Wenn erfüllt, bilden die Basisvektoren aller Eigenräume die Spalten der Transformationsmatrix <InlineMath math="S" /> und ergeben:
 
-<BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+   <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
 ## Beispielanwendung des Verfahrens
 
@@ -48,32 +48,32 @@ Betrachten wir die Matrix:
 
 Nun führen wir die drei Schritte durch:
 
-Wir berechnen das charakteristische Polynom:
+1. Wir berechnen das charakteristische Polynom:
 
-<BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
+   <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
 
-Nach Faktorisierung erhalten wir:
+   Nach Faktorisierung erhalten wir:
 
-<BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
+   <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
 
-Damit ist <InlineMath math="\lambda_1 = 1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(1) = 2" /> und <InlineMath math="\lambda_2 = -1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(-1) = 1" />. Die Summe <InlineMath math="2 + 1 = 3" /> stimmt mit der Matrixdimension überein.
+   Damit ist <InlineMath math="\lambda_1 = 1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(1) = 2" /> und <InlineMath math="\lambda_2 = -1" /> ein Eigenwert mit algebraischer Multiplizität <InlineMath math="\mu_A(-1) = 1" />. Die Summe <InlineMath math="2 + 1 = 3" /> stimmt mit der Matrixdimension überein.
 
-Für jeden Eigenwert bestimmen wir den zugehörigen Eigenraum:
+2. Für jeden Eigenwert bestimmen wir den zugehörigen Eigenraum:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
-<BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
-</MathContainer>
+   <MathContainer>
+   <BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
+   <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
+   </MathContainer>
 
-Für den Eigenwert 1 liefert jede Zeile von <InlineMath math="A-I" /> dieselbe **Ebenengleichung** <InlineMath math="z=x+y" />. Für den Eigenwert −1 lösen wir die ersten beiden Gleichungen in <InlineMath math="(A+I)v=0" />:
+   Für den Eigenwert 1 liefert jede Zeile von <InlineMath math="A-I" /> dieselbe **Ebenengleichung** <InlineMath math="z=x+y" />. Für den Eigenwert −1 lösen wir die ersten beiden Gleichungen in <InlineMath math="(A+I)v=0" />:
 
-<BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
+   <BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
 
-Der Kern oder Nullraum enthält alle Vektoren, die auf den Nullvektor abgebildet werden. Die lineare Hülle einer Vektormenge umfasst dagegen alle Linearkombinationen dieser Vektoren.
+   Der Kern oder Nullraum enthält alle Vektoren, die auf den Nullvektor abgebildet werden. Die lineare Hülle einer Vektormenge umfasst dagegen alle Linearkombinationen dieser Vektoren.
 
-Wir prüfen, ob die Diagonalisierungsbedingungen erfüllt sind. Für den Eigenwert <InlineMath math="\lambda_1 = 1" /> beträgt seine algebraische Multiplizität <InlineMath math="2" /> und sein Eigenraum hat die Dimension <InlineMath math="2" /> (zwei unabhängige Basisvektoren). Für den Eigenwert <InlineMath math="\lambda_2 = -1" /> beträgt seine algebraische Multiplizität <InlineMath math="1" /> und sein Eigenraum hat die Dimension <InlineMath math="1" />.
+3. Wir prüfen, ob die Diagonalisierungsbedingungen erfüllt sind. Für den Eigenwert <InlineMath math="\lambda_1 = 1" /> beträgt seine algebraische Multiplizität <InlineMath math="2" /> und sein Eigenraum hat die Dimension <InlineMath math="2" /> (zwei unabhängige Basisvektoren). Für den Eigenwert <InlineMath math="\lambda_2 = -1" /> beträgt seine algebraische Multiplizität <InlineMath math="1" /> und sein Eigenraum hat die Dimension <InlineMath math="1" />.
 
-Da <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> und <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" /> gelten, sind beide Bedingungen erfüllt.
+   Da <InlineMath math="\mu_A(1) = 2 = \dim E_A(1)" /> und <InlineMath math="\mu_A(-1) = 1 = \dim E_A(-1)" /> gelten, sind beide Bedingungen erfüllt.
 
 Jetzt können wir die Transformationsmatrix <InlineMath math="S" /> bilden, indem wir alle Eigenvektoren als Spalten anordnen, und die Diagonalmatrix <InlineMath math="\Lambda" /> mit Eigenwerten auf der Hauptdiagonale:
 
@@ -92,4 +92,4 @@ Das Verfahren weist damit beide Voraussetzungen nach: Die Eigenvektoren bilden e
 
 Drehe das Modell, um die **beiden Eigenräume** zu unterscheiden. Jeder Punkt der grünen Ebene <InlineMath math="z=x+y" /> bleibt wegen des Eigenwerts 1 fest. Der orange Vektor <InlineMath math="v_3" /> liegt außerhalb der Ebene und wird auf den roten Vektor <InlineMath math="Av_3=-v_3" /> abgebildet. Zusammen spannen diese Richtungen den ganzen Raum auf.
 
-<LineEquation description="Die grüne Ebene bleibt fest, während der orangefarbene Vektor zum entgegengesetzten roten Vektor wird. Drehe das Modell, um zu sehen, dass der orangefarbene Vektor außerhalb der Ebene liegt." title="Eine feste Ebene und eine umgekehrte Richtung" cameraPosition={[7, 6, 9]} cameraTarget={[0, 0, 0]} data={[{"points": [{"x": -1, "y": -1, "z": -2}, {"x": 1, "y": -1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": -1, "z": -2}, {"x": -1, "y": 1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 0, "z": -1}, {"x": 1, "y": 0, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": -1, "z": -1}, {"x": 0, "y": 1, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 1, "y": -1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 0, "z": 1}], "color": "#2563eb", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₁", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 0, "y": 1, "z": 1}], "color": "#9333ea", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₂", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 3, "z": 2}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": "v₃", "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -3, "z": -2}], "color": "#dc2626", "smooth": false, "pointIndices": [1], "labels": [{"text": "Av₃", "at": 1}]}]} />
+<LineEquation description="Die grüne Ebene bleibt fest, während der orangefarbene Vektor zum entgegengesetzten roten Vektor wird. Drehe das Modell, um zu sehen, dass der orangefarbene Vektor außerhalb der Ebene liegt." title="Eine feste Ebene und eine umgekehrte Richtung" cameraPosition={[7, 6, 9]} cameraTarget={[0, 0, 0]} data={[{"points": [{"x": -1, "y": -1, "z": -2}, {"x": 1, "y": -1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": -1, "z": -2}, {"x": -1, "y": 1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 0, "z": -1}, {"x": 1, "y": 0, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": -1, "z": -1}, {"x": 0, "y": 1, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 1, "y": -1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 0, "z": 1}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_1" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 0, "y": 1, "z": 1}], "color": "#9333ea", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_2" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 3, "z": 2}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_3" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -3, "z": -2}], "color": "#be123c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Av_3" />, "at": 1}]}]} />
