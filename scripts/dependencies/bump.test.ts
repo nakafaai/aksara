@@ -51,10 +51,10 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
     const manifest = path.join(root, "package.json");
     const workspace = path.join(root, "pnpm-workspace.yaml");
     const devDependencies: Record<string, string> = {
-      "@biomejs/biome": "2.5.13",
+      "@biomejs/biome": "2.5.14",
       "@effect/tsgo": "0.45.0",
-      "@types/node": "24.13.4",
-      ...(input?.omitUltracite ? {} : { ultracite: "7.11.1" }),
+      "@types/node": "24.13.6",
+      ...(input?.omitUltracite ? {} : { ultracite: "7.12.0" }),
     };
     const ignoreDeps = expectedIgnoredDependencies().filter(
       (dependency) => dependency !== input?.omitIgnore
@@ -74,12 +74,12 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       input?.invalidWorkspace ??
         stringify({
           catalog: {
-            "@effect/platform-node": "4.0.0-rc.115",
-            "@effect/vitest": "4.0.0-rc.115",
-            "@vitest/coverage-istanbul": "5.0.0",
-            effect: "4.0.0-rc.115",
+            "@effect/platform-node": "4.0.0-rc.117",
+            "@effect/vitest": "4.0.0-rc.117",
+            "@vitest/coverage-istanbul": "5.0.1",
+            effect: "4.0.0-rc.117",
             typescript: "7.0.2",
-            vitest: "5.0.0",
+            vitest: "5.0.1",
           },
           update: { ignoreDeps },
         })
@@ -141,8 +141,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
           assert.ok(effectReport);
-          assert.strictEqual(effectReport.current, "4.0.0-rc.115");
-          assert.strictEqual(effectReport.latest, "4.0.0-rc.115");
+          assert.strictEqual(effectReport.current, "4.0.0-rc.117");
+          assert.strictEqual(effectReport.latest, "4.0.0-rc.117");
           assert.strictEqual(runtime.calls, 1);
         })
     );

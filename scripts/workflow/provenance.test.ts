@@ -12,7 +12,8 @@ function mutateJob(source: string, job: string, from: string, to: string) {
   const start = source.indexOf(`\n  ${job}:`);
   const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
   nextJob.lastIndex = start + 1;
-  const end = nextJob.exec(source)?.index ?? source.length;
+  const match: RegExpExecArray | null = nextJob.exec(source);
+  const end = match?.index ?? source.length;
   return `${source.slice(0, start)}${source.slice(start, end).replace(from, to)}${source.slice(end)}`;
 }
 
@@ -165,12 +166,23 @@ describe("contract provenance policy", () => {
     const changed = mutateJob(
       workflowSource(),
       "publish",
-      "    timeout-minutes: 10",
-      "    timeout-minutes: 11"
+      "    timeout-minutes: 15",
+      "    timeout-minutes: 16"
     );
     expect(() => verifyProvenanceWorkflow(changed)).toThrow(
       "npm publication must match the exact trusted job"
     );
+  });
+
+  it("keeps npm publication checks inside the registry processing window", () => {
+    expect(() =>
+      verifyProvenanceWorkflow(
+        workflowSource().replaceAll(
+          "PUBLICATION_WINDOW_SECONDS=300",
+          "PUBLICATION_WINDOW_SECONDS=30"
+        )
+      )
+    ).toThrow("npm publication must allow npm metadata propagation");
   });
 
   it("rejects malformed or incomplete workflow jobs", () => {

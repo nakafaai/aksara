@@ -121,7 +121,7 @@ jobs:
     needs: build
     environment: npm-production
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       id-token: write
     steps:
@@ -243,24 +243,31 @@ jobs:
             --ignore-scripts \
             --provenance
 
-          for attempt in {1..10}; do
+          PUBLICATION_WINDOW_SECONDS=300
+          publication_deadline=$((SECONDS + PUBLICATION_WINDOW_SECONDS))
+          publication_delay=3
+          while true; do
             if metadata=$(read_metadata) \
               && is_exact_package <<< "$metadata" >/dev/null; then
               echo "Published $package_specifier with exact archive bytes."
               exit 0
             fi
-            if [[ "$attempt" -lt 10 ]]; then
-              sleep 3
+            if [[ "$SECONDS" -ge "$publication_deadline" ]]; then
+              break
+            fi
+            sleep "$publication_delay"
+            if [[ "$publication_delay" -lt 15 ]]; then
+              publication_delay=$((publication_delay + 3))
             fi
           done
 
-          echo "The published CLI did not reach its exact registry bytes." >&2
+          echo "The published CLI did not reach its exact registry bytes within ${PUBLICATION_WINDOW_SECONDS}s." >&2
           exit 1
 
   verify:
     needs: [build, publish]
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions: {}
     steps:
       - name: Download verified package
@@ -400,15 +407,22 @@ jobs:
             fi
           }
 
-          for attempt in {1..10}; do
+          PUBLICATION_WINDOW_SECONDS=300
+          publication_deadline=$((SECONDS + PUBLICATION_WINDOW_SECONDS))
+          publication_delay=3
+          while true; do
             if is_exact_publication; then
               echo "Verified $package_specifier with exact npm provenance."
               exit 0
             fi
-            if [[ "$attempt" -lt 10 ]]; then
-              sleep 3
+            if [[ "$SECONDS" -ge "$publication_deadline" ]]; then
+              break
+            fi
+            sleep "$publication_delay"
+            if [[ "$publication_delay" -lt 15 ]]; then
+              publication_delay=$((publication_delay + 3))
             fi
           done
 
-          echo "The CLI publication did not reach its exact verified state." >&2
+          echo "The CLI publication did not reach its exact verified state within ${PUBLICATION_WINDOW_SECONDS}s." >&2
           exit 1

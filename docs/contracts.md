@@ -115,6 +115,13 @@ SHA. It never deletes an immutable release, another revision's tag, or an npm
 package version. npm package versions are immutable, so an existing version
 with different bytes is a hard failure.
 
+A draft release carries no tag until it is published, so the workflow removes
+the tag only when that exact tag exists. Both the publication and the
+independent verification keep polling public npm metadata for at least five
+minutes, because the registry reports a fresh version as processing while its
+metadata propagates. An exact release is therefore never rejected while npm is
+still catching up.
+
 GitHub's ordinary workflow token cannot read the repository Administration
 setting for immutable releases. The workflow therefore proves that the final
 release is immutable instead of claiming an impossible preflight.

@@ -80,7 +80,9 @@ export function readExitSignal(error: unknown): Option.Option<NodeSignal> {
   ) {
     return Option.none();
   }
-  const match = signalMessage.exec(reason.cause.message);
+  const match: RegExpExecArray | null = signalMessage.exec(
+    reason.cause.message
+  );
   return Schema.decodeUnknownOption(NodeSignalSchema)(match?.[1]);
 }
 

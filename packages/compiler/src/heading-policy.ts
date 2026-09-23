@@ -45,7 +45,9 @@ export class AuthoredListHeadingError extends Schema.TaggedError<AuthoredListHea
 function listHeadingOccurrence(
   node: Heading
 ): AuthoredListHeadingOccurrence | undefined {
-  const match = LIST_HEADING_MARKER.exec(mdastToString(node).trim());
+  const match: RegExpExecArray | null = LIST_HEADING_MARKER.exec(
+    mdastToString(node).trim()
+  );
   if (!match) {
     return;
   }

@@ -44,11 +44,12 @@ export function isExternalDestination(destination: string): boolean {
 
 /** Finds an explicit external protocol without mistaking ordinary colons. */
 function explicitExternalMatch(text: string): ExternalMatch | undefined {
-  const match = EXPLICIT_EXTERNAL_PATTERN.exec(text);
+  const match: RegExpExecArray | null = EXPLICIT_EXTERNAL_PATTERN.exec(text);
   if (match?.index !== undefined) {
     return { index: match.index, value: match[0] };
   }
-  const protocolRelative = EMBEDDED_PROTOCOL_RELATIVE_PATTERN.exec(text);
+  const protocolRelative: RegExpExecArray | null =
+    EMBEDDED_PROTOCOL_RELATIVE_PATTERN.exec(text);
   const value = protocolRelative?.[1];
   if (protocolRelative?.index === undefined || value === undefined) {
     return;
@@ -72,7 +73,7 @@ function completeExternalMatch(text: string): ExternalMatch | undefined {
 
 /** Finds an external URL scheme at the start of any srcset candidate. */
 function srcSetExternalMatch(text: string): ExternalMatch | undefined {
-  const match = SRCSET_EXTERNAL_PATTERN.exec(text);
+  const match: RegExpExecArray | null = SRCSET_EXTERNAL_PATTERN.exec(text);
   if (!match) {
     return;
   }
