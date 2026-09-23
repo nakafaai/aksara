@@ -180,3 +180,84 @@ it("does not borrow JSX sections or component attributes as answer mappings", ()
     []
   );
 });
+
+it.each([
+  ["en", "Exercises", "Solutions", "Problem", "Answer"],
+  ["id", "Latihan", "Pembahasan", "Soal", "Jawaban"],
+  ["de", "Übung", "Lösung", "Aufgabe", "Antwort"],
+] as const)(
+  "maps %s prose-numbered prompts to the established answer vocabulary",
+  (locale, exercise, solution, prompt, answer) => {
+    for (const questions of [
+      `**${prompt} 1**. First prompt.\n\n**${prompt} 2**. Second prompt.`,
+      `1. First prompt.\n\n**${prompt} 2**. Second prompt.`,
+      `**${prompt} 1**. First prompt.\n\n2. Second prompt.`,
+      QUESTIONS,
+    ]) {
+      const source = `${METADATA}## ${exercise}\n\n${questions}\n\n### ${solution}\n\n**${answer} 1**. First answer.\n\n`;
+      for (const missing of [
+        source,
+        `${source}**${answer} 3**. Wrong number.`,
+      ]) {
+        assert.equal(
+          findExerciseAnswerIssues(missing, parseLessonMdx(missing), locale)
+            .length,
+          1
+        );
+      }
+      const complete = `${source}**${answer} 2**. Second answer.`;
+      assert.deepEqual(
+        findExerciseAnswerIssues(complete, parseLessonMdx(complete), locale),
+        []
+      );
+    }
+  }
+);
+
+it("distinguishes prose prompt labels from their calculation lists and restarted groups", () => {
+  const source = `${METADATA}## Exercise\n\n**Problem 1**. First prompt.\n\n1. A step.\n2. Another step.\n\n**Problem 2**. Second prompt.\n\n### Solution\n\n**Answer 1**. First answer.`;
+  assert.equal(
+    findExerciseAnswerIssues(source, parseLessonMdx(source), "en").length,
+    1
+  );
+  const restarted = source.replace("**Problem 2**", "**Problem 1**");
+  assert.deepEqual(
+    findExerciseAnswerIssues(restarted, parseLessonMdx(restarted), "en"),
+    []
+  );
+});
+
+it.each(["{<h2>Exercises</h2>}", "{<> <h2>Exercises</h2> </>}"])(
+  "checks expression-wrapped section headings: %s",
+  (exercise) => {
+    const source = `${METADATA}${exercise}\n\n${QUESTIONS}{<h3>Solutions</h3>}\n\n**Answer 1**. First answer.\n\n{<h2>Next topic</h2>}\n\n**Answer 2**. Unrelated answer.`;
+    assert.equal(
+      findExerciseAnswerIssues(source, parseLessonMdx(source), "en").length,
+      1
+    );
+    const complete = source.replace(
+      "{<h2>Next topic</h2>}",
+      "**Answer 2**. Second answer.\n\n{<h2>Next topic</h2>}"
+    );
+    assert.deepEqual(
+      findExerciseAnswerIssues(complete, parseLessonMdx(complete), "en"),
+      []
+    );
+  }
+);
+
+it.each([
+  "{<Panel title={<h2>Exercises</h2>} />}",
+  "{<ui.h2>Exercises</ui.h2>}",
+  "{<> <h2>Exercises</h2> <p>Another block</p> </>}",
+  "{'Exercises'}",
+])(
+  "does not infer section boundaries from opaque expressions: %s",
+  (expression) => {
+    const source = `${METADATA}${expression}\n\n${QUESTIONS}### Solutions\n\nAn unnumbered result.`;
+    assert.deepEqual(
+      findExerciseAnswerIssues(source, parseLessonMdx(source), "en"),
+      []
+    );
+  }
+);

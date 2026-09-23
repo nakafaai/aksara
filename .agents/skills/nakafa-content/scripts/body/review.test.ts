@@ -244,6 +244,9 @@ it("preserves quoted terminology and authored diagnostic questions", () => {
 it("distinguishes answer and step identifiers from decisive teaching phrases", () => {
   for (const label of [
     "Soal 1",
+    "Jawaban 1",
+    "Answer 1",
+    "Antwort 1",
     "Langkah 2",
     "Problem 3",
     "Step 1",

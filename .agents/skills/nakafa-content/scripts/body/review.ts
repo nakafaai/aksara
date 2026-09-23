@@ -10,7 +10,7 @@ import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const STRUCTURAL_MARKER =
-  /^(?:Soal|Pembahasan|Problem|Question|Solution|Aufgabe|Lösung|Langkah|Step|Schritt|Contoh|Example|Beispiel)\s+\d+$/iu;
+  /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung|Langkah|Step|Schritt|Contoh|Example|Beispiel)\s+\d+$/iu;
 
 /** Observable section features that require a contextual teaching decision. */
 export interface TeachingSectionReview {

@@ -15,7 +15,8 @@ Both syntaxes share the same styling and inherit the surrounding font weight:
 the marker surface provides the emphasis without making the text heavier.
 
 - Mark the phrase, not the sentence. Emphasis stays inside one sentence and
-  never wraps a whole sentence, a heading, or mathematics. Name the one term,
+  never wraps a whole sentence or a heading. Do not mark pure mathematical
+  notation; a meaningful prose phrase may include inline math. Name the one term,
   condition, or quantity a learner would write down: a few load-bearing words
   beat a highlighted sentence. A mark that spans a whole sentence is a smell;
   narrow it to the decisive clause, and split a genuine pair such as two
