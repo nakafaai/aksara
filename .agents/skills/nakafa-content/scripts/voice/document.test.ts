@@ -1,9 +1,33 @@
 import { assert, it } from "@effect/vitest";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findDocumentIssues } from "#nakafa-content/voice/document";
+import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { documentProfile } from "#nakafa-content/voice/profile";
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
+
+it("blocks unwrapped math stacks in every authored document profile", () => {
+  const source = `${METADATA}<BlockMath math="x+2=5" />\n\n<BlockMath math="x=3" />\n\n<MathContainer>\nA condition belongs outside the formula cards.\n</MathContainer>`;
+  for (const file of [
+    "question.en.mdx",
+    "answer.en.mdx",
+    "/corpus/articles/topic/en.mdx",
+    "en.mdx",
+  ]) {
+    const issues = findDocumentIssues(
+      file,
+      "en",
+      source,
+      parseLessonMdx(source)
+    );
+    const stack = issues.filter(
+      ({ rule }) =>
+        rule === "unwrapped-math-stack" || rule === "math-stack-content"
+    );
+    assert.equal(stack.length, 2, file);
+    assert.ok(stack.every(isBlockingLessonVoiceIssue));
+  }
+});
 
 it("checks forbidden control bytes without rewriting assessed language", () => {
   const source = `${METADATA}Anda menghitung\u000B luas; sebutkan hasilnya.`;

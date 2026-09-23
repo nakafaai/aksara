@@ -13,6 +13,7 @@ import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
 import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
+import { findMathStackIssues } from "#nakafa-content/math/stack";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { findForbiddenControlCharacterIssue } from "#nakafa-content/voice/heading";
@@ -30,6 +31,7 @@ export function findDocumentIssues(
 ) {
   const profile = documentProfile(file);
   const structural = [
+    ...findMathStackIssues(source, tree),
     ...findExternalLinkPlacementIssues(source, tree),
     ...findInternalLinkIssues(source, tree),
     ...findHighlightNestingIssues(source, tree),

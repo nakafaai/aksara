@@ -79,6 +79,18 @@ strings with their own [math syntax](question-bank.md#response-items).
   comparison in `<MathContainer>`. Blank MDX lines do not space adjacent JSX
   blocks. Keep intervening prose outside the wrapper; use `ContentStack` for
   math grouped with a graph, diagram, simulation, or other non-math component.
+  The `unwrapped-math-stack` gate checks rendered MDX sibling order, including
+  transparent fragments and comment-only gaps. It applies to questions,
+  answers, articles, and lessons. A prose paragraph, heading, distinct list
+  item, or different visual separates the blocks and stays valid. Code examples
+  are not rendered math. JSX inside expression-valued props still requires
+  manual composition review.
+  The `math-stack-content` gate rejects paragraphs, headings, and other visuals
+  inside `MathContainer`, whose direct rendered children must be `BlockMath`
+  cards. Do not hide those children inside fragments or other wrappers:
+  the renderer counts direct React children to reserve the stack height.
+  Move the explanation outside, and split the stack where prose
+  separates mathematical steps.
 - Direct MDX attributes keep one LaTeX backslash, as in `math="8\text{ kg}"`.
   JavaScript expression strings and ordinary template literals escape it, as
   in `math={"8\\text{ kg}"}`. A single `\t` inside such a string becomes a
