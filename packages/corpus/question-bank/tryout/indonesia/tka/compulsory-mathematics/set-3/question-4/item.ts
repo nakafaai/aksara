@@ -4,7 +4,7 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1,1)$$",
+          label: "$$-2$$",
         },
         {
           isCorrect: false,
-          label: "$$(0,2)$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,
-          label: "$$(2,1)$$",
+          label: "$$-\\frac32$$",
         },
         {
           isCorrect: false,
-          label: "$$(3,1)$$",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "$$(1,0)$$",
+          label: "$$\\frac32$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1,1)$$",
+          label: "$$-2$$",
         },
         {
           isCorrect: false,
-          label: "$$(0,2)$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,
-          label: "$$(2,1)$$",
+          label: "$$-\\frac32$$",
         },
         {
           isCorrect: false,
-          label: "$$(3,1)$$",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "$$(1,0)$$",
+          label: "$$\\frac32$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1,1)$$",
+          label: "$$-2$$",
         },
         {
           isCorrect: false,
-          label: "$$(0,2)$$",
+          label: "$$-1$$",
         },
         {
           isCorrect: true,
-          label: "$$(2,1)$$",
+          label: "$$-\\frac32$$",
         },
         {
           isCorrect: false,
-          label: "$$(3,1)$$",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "$$(1,0)$$",
+          label: "$$\\frac32$$",
         },
       ],
     },
