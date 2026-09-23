@@ -44,7 +44,9 @@ export const tkaCompulsoryMathematicsReadiness = defineAssessmentReadiness({
           {
             cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["algebra"],
-            editorialMinimum: 3,
+            // Set 1 has two linear-system items; its rational equation belongs
+            // to functions. Topic frequencies are editorial, not official quotas.
+            editorialMinimum: 2,
             key: "linear-equations-inequalities",
           },
           {
