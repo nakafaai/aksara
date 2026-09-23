@@ -30,8 +30,10 @@ the marker surface provides the emphasis without making the text heavier.
   and do not add a quota of marks to every paragraph.
 - Do not nest one marker inside the other. Both markers render the same
   surface, so nesting adds nothing for the learner. The gate traverses the
-  authored tree and reports it (`highlight-nesting`). The `sentence-punctuation-emphasis` rule catches a marked phrase of four
-  or more words ending in a sentence mark. It preserves assessed prompts,
+  authored tree and reports it (`highlight-nesting`). The
+  `sentence-punctuation-emphasis` rule catches marked phrases ending in a
+  comma, semicolon, or colon, including short labels. It also catches phrases
+  of four or more words ending in a sentence mark. It preserves assessed prompts,
   quotations, code, and short abbreviations. Whole sentences without that
   punctuation, headings, and mathematics still need the [final
   review](review.md#final-language-review).

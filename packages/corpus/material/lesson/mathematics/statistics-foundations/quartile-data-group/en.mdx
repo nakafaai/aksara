@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate grouped data quartiles by locating their cumulative frequencies and interpolating within the class boundaries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-24",
   subject: "Statistics",
 };
 
@@ -51,15 +51,15 @@ First, locate each quartile position.
 
 Total data (<InlineMath math="n" />) is <InlineMath math="30" />.
 
-- **Position of <InlineMath math="Q_1" />:** the <InlineMath math="\frac{1}{4} \times 30 = 7.5" />-th data point.
+- **Position of <InlineMath math="Q_1" />**: the <InlineMath math="\frac{1}{4} \times 30 = 7.5" />-th data point.
 
   In the <InlineMath math="F_k" /> column, the first class ends at position <InlineMath math="2" /> and the second ends at position <InlineMath math="13" />. Positions <InlineMath math="3" /> through <InlineMath math="13" /> belong to the second class, so position <InlineMath math="7.5" /> lies in <InlineMath math="40\text{-}42" />.
 
-- **Position of <InlineMath math="Q_2" /> (Median):** the <InlineMath math="\frac{1}{2} \times 30 = 15" />-th data point.
+- **Position of <InlineMath math="Q_2" /> (Median)**: the <InlineMath math="\frac{1}{2} \times 30 = 15" />-th data point.
 
   Look at <InlineMath math="F_k" />. The <InlineMath math="15" />th data point is in the <InlineMath math="43\text{-}45" /> class (because the previous <InlineMath math="F_k" /> was <InlineMath math="13" />, and this class's <InlineMath math="F_k" /> is <InlineMath math="23" />).
 
-- **Position of <InlineMath math="Q_3" />:** the <InlineMath math="\frac{3}{4} \times 30 = 22.5" />-th data point.
+- **Position of <InlineMath math="Q_3" />**: the <InlineMath math="\frac{3}{4} \times 30 = 22.5" />-th data point.
 
   Look at <InlineMath math="F_k" />. The <InlineMath math="22.5" />th data point is also in the <InlineMath math="43\text{-}45" /> class (because the previous <InlineMath math="F_k" /> was <InlineMath math="13" />, and this class's <InlineMath math="F_k" /> is <InlineMath math="23" />).
 
@@ -85,8 +85,8 @@ This interpolation assumes that observations are <Highlight>distributed uniforml
 
 Calculate <InlineMath math="Q_1" /> from the table above.
 
-**Position of <InlineMath math="Q_1" />:** <InlineMath math="7.5" />th data point.
-**Class of <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Position of <InlineMath math="Q_1" />**: <InlineMath math="7.5" />th data point.
+**Class of <InlineMath math="Q_1" />**: <InlineMath math="40\text{-}42" />.
 **Values to substitute**
 
 | Quantity | Value |
@@ -116,8 +116,8 @@ Calculate <InlineMath math="Q_3" /> from the **shoe sales data** in the table ab
 Then compare grouped-data interpolation with the calculation of quartiles from ungrouped data. Why does the grouped table provide only an estimate?
 ### Answer Key
 
-**Position of <InlineMath math="Q_3" />:** <InlineMath math="22.5" />th data point.
-**Class of <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Position of <InlineMath math="Q_3" />**: <InlineMath math="22.5" />th data point.
+**Class of <InlineMath math="Q_3" />**: <InlineMath math="43\text{-}45" />.
 **Values to substitute**
 
 | Quantity | Value |
@@ -140,7 +140,7 @@ Plug into the formula:
 
 The estimated value of <InlineMath math="Q_3" /> is <InlineMath math="45.35" />. In this grouped model, about <InlineMath math="75\%" /> of the shoes sold have size <InlineMath math="45.35" /> or below. The remaining <InlineMath math="25\%" /> have a shoe size above <InlineMath math="45.35" />.
 
-**Comparison with Single Data:**
+**Comparison with Single Data**:
 
 Finding quartiles for grouped data uses **interpolation** because the table provides intervals and frequencies without the individual observations. The result is an estimated quartile value.
 

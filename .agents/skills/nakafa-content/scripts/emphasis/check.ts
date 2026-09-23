@@ -15,7 +15,17 @@ const EXCERPT_CHARACTER_LIMIT = 200;
 const STEP_LABEL_PATTERN = /^(?:Langkah|Step|Schritt)$/iu;
 const STEP_NUMBER_PATTERN = /^[\t ]*\d+(?:[\s.:)]|$)/u;
 const SENTENCE_PUNCTUATION_PATTERN = /[.!?]$/u;
+const PHRASE_PUNCTUATION_PATTERN = /[,;:]$/u;
 const WORD_PATTERN = /[\p{L}\p{N}]+/gu;
+
+/** Distinguishes authored separators from short abbreviations and pure notation. */
+function hasMarkedPunctuation(phrase: string): boolean {
+  const words = phrase.match(WORD_PATTERN)?.length ?? 0;
+  if (PHRASE_PUNCTUATION_PATTERN.test(phrase)) {
+    return words > 0;
+  }
+  return SENTENCE_PUNCTUATION_PATTERN.test(phrase) && words >= 4;
+}
 
 /** Reads emphasis prose while leaving mathematics and code outside the test. */
 function phraseText(node: MdxNode): string {
@@ -27,7 +37,9 @@ function phraseText(node: MdxNode): string {
     node.name === "InlineMath" ||
     node.name === "BlockMath"
   ) {
-    return "";
+    // Opaque content still occupies the phrase end, so preceding punctuation
+    // must not become a false sentence or separator boundary.
+    return "\uFFFC";
   }
   return (node.children ?? []).map(phraseText).join("");
 }
@@ -122,7 +134,7 @@ export function findEmphasisArtifactIssues(
   return issues;
 }
 
-/** Finds authored sentence punctuation included in a long marked phrase. */
+/** Keeps authored separator punctuation and whole-sentence endings outside marks. */
 export function findPhraseEmphasisIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source)
@@ -150,8 +162,7 @@ export function findPhraseEmphasisIssues(
       (authored
         ? authored.some((offset) => offset >= start && offset < end)
         : unquoted.slice(start, end).trim() !== "") &&
-      SENTENCE_PUNCTUATION_PATTERN.test(phrase) &&
-      (phrase.match(WORD_PATTERN)?.length ?? 0) >= 4
+      hasMarkedPunctuation(phrase)
     ) {
       issues.push({
         column: node.position?.start?.column ?? 1,

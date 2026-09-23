@@ -235,3 +235,33 @@ it("tolerates text nodes without a resolved position or string value", () => {
     ]
   );
 });
+
+it.each([
+  "Soal:",
+  "Step 1:",
+  "Aufgabe:",
+  "the elapsed time, including pauses,",
+  "one condition;",
+])("keeps punctuation outside a marked phrase: %s", (phrase) => {
+  for (const source of [`**${phrase}**`, `<Highlight>${phrase}</Highlight>`]) {
+    assert.equal(findPhraseEmphasisIssues(source).length, 1);
+  }
+  const mark = phrase.slice(0, -1);
+  const punctuation = phrase.slice(-1);
+  assert.deepEqual(findPhraseEmphasisIssues(`**${mark}**${punctuation}`), []);
+  assert.deepEqual(findPhraseEmphasisIssues(`"**${phrase}**"`), []);
+  assert.deepEqual(findPhraseEmphasisIssues(`> **${phrase}**`), []);
+});
+
+it("preserves code, mathematical separators and punctuation-only demonstrations", () => {
+  for (const source of [
+    "**`if:`**",
+    '**Condition 1: <InlineMath math="p > 0" />**',
+    "**A displayed code example: `result`**",
+    '**Several words before a period. <InlineMath math="x" />**',
+    '<Highlight><InlineMath math="a:b" />:</Highlight>',
+    "<Highlight>:</Highlight>",
+  ]) {
+    assert.deepEqual(findPhraseEmphasisIssues(source), []);
+  }
+});

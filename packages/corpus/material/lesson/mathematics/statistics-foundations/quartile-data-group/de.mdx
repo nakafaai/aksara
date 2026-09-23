@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Quartile gruppierter Daten mithilfe kumulierter Häufigkeiten, Klassengrenzen und linearer Interpolation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-24",
   subject: "Statistik",
 };
 
@@ -51,15 +51,15 @@ Nun bestimmen wir zunächst die Position jedes Quartils.
 
 Insgesamt liegen <InlineMath math="n" /> = <InlineMath math="30" /> Werte vor.
 
-- **Position von <InlineMath math="Q_1" />:** <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
+- **Position von <InlineMath math="Q_1" />**: <InlineMath math="\frac{1}{4} \times 30 = 7{,}5" />.
 
   In der Spalte <InlineMath math="F_k" /> endet die erste Klasse an Position <InlineMath math="2" /> und die zweite an Position <InlineMath math="13" />. Die Positionen <InlineMath math="3" /> bis <InlineMath math="13" /> gehören zur zweiten Klasse, sodass Position <InlineMath math="7{,}5" /> in der Klasse <InlineMath math="40\text{-}42" /> liegt.
 
-- **Position von <InlineMath math="Q_2" /> (Median):** <InlineMath math="\frac{1}{2} \times 30 = 15" />.
+- **Position von <InlineMath math="Q_2" /> (Median)**: <InlineMath math="\frac{1}{2} \times 30 = 15" />.
 
   In der Spalte <InlineMath math="F_k" /> liegt die Position <InlineMath math="15" /> in der Klasse <InlineMath math="43\text{-}45" />: Der vorherige Wert von <InlineMath math="F_k" /> ist <InlineMath math="13" />, der Wert von <InlineMath math="F_k" /> in dieser Klasse ist <InlineMath math="23" />.
 
-- **Position von <InlineMath math="Q_3" />:** <InlineMath math="\frac{3}{4} \times 30 = 22{,}5" />.
+- **Position von <InlineMath math="Q_3" />**: <InlineMath math="\frac{3}{4} \times 30 = 22{,}5" />.
 
   In der Spalte <InlineMath math="F_k" /> liegt auch die Position <InlineMath math="22{,}5" /> in der Klasse <InlineMath math="43\text{-}45" />: Der vorherige Wert von <InlineMath math="F_k" /> ist <InlineMath math="13" />, der Wert von <InlineMath math="F_k" /> in dieser Klasse ist <InlineMath math="23" />.
 
@@ -84,8 +84,8 @@ Diese Interpolation setzt voraus, dass die Beobachtungen <Highlight>innerhalb de
 
 Berechnen wir <InlineMath math="Q_1" /> aus der obigen Tabelle.
 
-**Position von <InlineMath math="Q_1" />:** <InlineMath math="7{,}5" />.
-**Klasse von <InlineMath math="Q_1" />:** <InlineMath math="40\text{-}42" />.
+**Position von <InlineMath math="Q_1" />**: <InlineMath math="7{,}5" />.
+**Klasse von <InlineMath math="Q_1" />**: <InlineMath math="40\text{-}42" />.
 **Einzusetzende Werte**
 
 | Größe | Wert |
@@ -115,8 +115,8 @@ Berechne <InlineMath math="Q_3" /> anhand der **Schuhverkaufsdaten** aus der Tab
 Vergleiche anschließend die Interpolation bei gruppierten Daten mit der Quartilbestimmung für ungruppierte Daten. Warum liefert die gruppierte Tabelle nur einen Schätzwert?
 ### Lösung
 
-**Position von <InlineMath math="Q_3" />:** <InlineMath math="22{,}5" />.
-**Klasse von <InlineMath math="Q_3" />:** <InlineMath math="43\text{-}45" />.
+**Position von <InlineMath math="Q_3" />**: <InlineMath math="22{,}5" />.
+**Klasse von <InlineMath math="Q_3" />**: <InlineMath math="43\text{-}45" />.
 **Einzusetzende Werte**
 
 | Größe | Wert |
@@ -139,7 +139,7 @@ Werte einsetzen:
 
 Damit ergibt sich für <InlineMath math="Q_3" /> der Wert <InlineMath math="45{,}35" />. Im gruppierten Modell haben etwa <InlineMath math="75\%" /> der verkauften Schuhe die Größe <InlineMath math="45{,}35" /> oder eine kleinere Größe. Die übrigen <InlineMath math="25\%" /> haben eine Schuhgröße über <InlineMath math="45{,}35" />.
 
-**Vergleich mit Einzeldaten:**
+**Vergleich mit Einzeldaten**:
 
 Bei gruppierten Daten enthält die Tabelle Intervalle und Häufigkeiten ohne die einzelnen Werte. Deshalb liefert die **Interpolation** einen geschätzten Quartilwert.
 
