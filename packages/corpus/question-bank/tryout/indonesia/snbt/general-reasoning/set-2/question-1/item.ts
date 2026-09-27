@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Neue Studierende suchen nach privaten Universitäten mit umfassender Ausstattung",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine gute Dozentenqualität kann die Zahl neuer Studierender erhöhen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Neue Studierende entscheiden sich für private Universitäten mit geringen Kosten",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Neue Studierende werden sich dennoch für eine gute Privatuniversität entscheiden, auch wenn diese teuer ist",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine gute Universität verfügt über gute Dozenten und angemessene Einrichtungen",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "New students look for private universities with complete facilities",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Good lecturer quality can increase the number of new students enrolling",
-        },
-        {
-          isCorrect: false,
-          label: "New students choose private universities with low costs",
-        },
-        {
-          isCorrect: true,
-          label:
-            "New students will still choose a good private university even if it is expensive",
-        },
-        {
-          isCorrect: false,
-          label: "A good university has good lecturers and adequate facilities",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

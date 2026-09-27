@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "linear-equations-inequalities",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$7$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$7$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

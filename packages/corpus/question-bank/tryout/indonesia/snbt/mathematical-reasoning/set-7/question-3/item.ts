@@ -2,47 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Hefte",
-        },
-        {
-          isCorrect: false,
-          label: "Kugelschreiber",
-        },
-        {
-          isCorrect: false,
-          label: "Hefte und Bleistifte",
-        },
-        {
-          isCorrect: false,
-          label: "Alle bringen den gleichen Gewinn",
-        },
-        {
-          isCorrect: true,
-          label: "Bleistifte",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        { isCorrect: false, label: "Notebooks" },
-        { isCorrect: false, label: "Ballpoint pens" },
-        {
-          isCorrect: false,
-          label: "Notebooks and pencils",
-        },
-        {
-          isCorrect: false,
-          label: "All give equal profit",
-        },
-        { isCorrect: true, label: "Pencils" },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

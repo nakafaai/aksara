@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "konkurriert mit.",
-        },
-        {
-          isCorrect: false,
-          label: "ahmt nach.",
-        },
-        {
-          isCorrect: false,
-          label: "folgt.",
-        },
-        {
-          isCorrect: true,
-          label: "gleicht.",
-        },
-        {
-          isCorrect: false,
-          label: "ersetzt.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "competes with.",
-        },
-        {
-          isCorrect: false,
-          label: "imitates.",
-        },
-        {
-          isCorrect: false,
-          label: "follows.",
-        },
-        {
-          isCorrect: true,
-          label: "looks like.",
-        },
-        {
-          isCorrect: false,
-          label: "replaces.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

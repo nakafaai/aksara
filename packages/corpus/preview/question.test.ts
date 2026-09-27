@@ -75,32 +75,30 @@ describe("question preview", () => {
       })
   );
 
-  it.effect(
-    "watches the owner-co-located item for an ordinary German prompt",
-    () =>
-      Effect.gen(function* () {
-        const genericRoot =
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
-        const genericPrompt = `${genericRoot}/question.de.mdx`;
-        const german = yield* selectDocument(genericPrompt, [], "de");
+  it.effect("watches the Indonesian exam item in a German app shell", () =>
+    Effect.gen(function* () {
+      const genericRoot =
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
+      const genericPrompt = `${genericRoot}/question.id.mdx`;
+      const german = yield* selectDocument(genericPrompt, [], "de");
 
-        expect(german.document).toMatchObject({
-          identity: { artifactLocale: "de" },
-          target: {
-            placement: { appLocale: "de", deliveryLanguage: "de" },
-          },
-        });
-        const [source] = german.sources;
-        expect(source.family).toBe("question");
-        if (source.family !== "question") {
-          return;
-        }
-        expect(source).toMatchObject({ appLocale: "de" });
-        expect(source.dependencies[0]).toEqual({
-          mode: "reload",
-          sourcePath: `${genericRoot}/item.ts`,
-        });
-      })
+      expect(german.document).toMatchObject({
+        identity: { artifactLocale: "id" },
+        target: {
+          placement: { appLocale: "de", deliveryLanguage: "id" },
+        },
+      });
+      const [source] = german.sources;
+      expect(source.family).toBe("question");
+      if (source.family !== "question") {
+        return;
+      }
+      expect(source).toMatchObject({ appLocale: "de" });
+      expect(source.dependencies[0]).toEqual({
+        mode: "reload",
+        sourcePath: `${genericRoot}/item.ts`,
+      });
+    })
   );
 
   it.effect(
@@ -112,8 +110,9 @@ describe("question preview", () => {
         const directoryReads: QuestionDirectoryRead[] = [];
 
         yield* selectDocument(
-          `${questionRoot}/question.en.mdx`,
-          directoryReads
+          `${questionRoot}/question.id.mdx`,
+          directoryReads,
+          "en"
         );
 
         expect(directoryReads).toEqual([

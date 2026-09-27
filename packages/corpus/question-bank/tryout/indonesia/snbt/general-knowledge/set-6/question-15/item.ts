@@ -2,63 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Ein einheitliches Aussehen kann Geschichte verdecken, wenn es materiell belegte Veränderungen verbirgt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält.",
-        },
-        {
-          isCorrect: false,
-          label: "Die älteste Farbe wurde nur in wenigen Räumen gefunden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "A uniform appearance can obscure history if it conceals changes evidenced by the building materials.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Every old material must be retained even when it endangers visitors.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The building can be authentic only if every surface is returned to one old colour.",
-        },
-        {
-          isCorrect: false,
-          label: "The oldest paint was found in only a few rooms.",
-        },
-        {
-          isCorrect: false,
-          label: "Every new part will be recorded so changes remain legible.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

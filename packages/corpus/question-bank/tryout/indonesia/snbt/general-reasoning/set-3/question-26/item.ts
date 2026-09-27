@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$C$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$A$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$B$$",
-        },
-        {
-          isCorrect: false,
-          label: "Maschinen $$A$$ und $$C$$ haben denselben höchsten Index",
-        },
-        {
-          isCorrect: false,
-          label: "Maschinen $$B$$ und $$C$$ haben denselben höchsten Index",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$C$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$A$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$B$$",
-        },
-        {
-          isCorrect: false,
-          label: "Machines $$A$$ and $$C$$ tie for the highest index",
-        },
-        {
-          isCorrect: false,
-          label: "Machines $$B$$ and $$C$$ tie for the highest index",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

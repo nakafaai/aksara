@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "vollständige Verdauung.",
-        },
-        {
-          isCorrect: true,
-          label: "unvollständige Aufnahme.",
-        },
-        {
-          isCorrect: false,
-          label: "schnelle Fermentation.",
-        },
-        {
-          isCorrect: false,
-          label: "übermäßige Enzymbildung.",
-        },
-        {
-          isCorrect: false,
-          label: "Vorliebe für ein Lebensmittel.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "complete digestion.",
-        },
-        {
-          isCorrect: true,
-          label: "incomplete absorption.",
-        },
-        {
-          isCorrect: false,
-          label: "rapid fermentation.",
-        },
-        {
-          isCorrect: false,
-          label: "excess enzyme production.",
-        },
-        {
-          isCorrect: false,
-          label: "food preference.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

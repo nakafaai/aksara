@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$3\\text{ Stunden}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1\\text{ Stunde}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1\\text{ Stunde} 30\\text{ Minuten}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$2\\text{ Stunden}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$2\\text{ Stunden} 30\\text{ Minuten}$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$3\\text{ hours}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1\\text{ hour}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1\\text{ hour} 30\\text{ minutes}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$2\\text{ hours}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$2\\text{ hours} 30\\text{ minutes}$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

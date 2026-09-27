@@ -7,59 +7,6 @@ const item: QuestionItem = {
     topic: "measurement",
   },
   responses: {
-    de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
-        {
-          correctCategoryOrder: 1,
-          label: "Die kleinste mögliche Fläche ist $$78{,}21$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Die größte mögliche Fläche ist $$81{,}81$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Der Umfang liegt zwischen $$35{,}6$$ cm und $$36{,}4$$ cm.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label: "Der maximale absolute Flächenfehler beträgt $$1{,}8$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Der maximale relative Flächenfehler ist größer als $$2{,}2\\%$$.",
-        },
-      ],
-    },
-    en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
-        {
-          correctCategoryOrder: 1,
-          label: "The least possible area is $$78.21$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "The greatest possible area is $$81.81$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "The perimeter lies between $$35.6$$ cm and $$36.4$$ cm.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label: "The greatest absolute area error is $$1.8$$ cm².",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "The greatest relative area error exceeds $$2.2\\%$$.",
-        },
-      ],
-    },
     id: {
       categories: ["Benar", "Salah"],
       kind: "category",

@@ -2,60 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "Fabrik $$Z$$ verkauft $$250{.}000$$ Stück",
-        },
-        {
-          isCorrect: false,
-          label: "Fabrik $$X$$ verkauft $$500{.}000$$ Stück",
-        },
-        {
-          isCorrect: false,
-          label: "Fabrik $$Y$$ verkauft $$5{.}200{.}000$$ Stück",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die prognostizierten Verkäufe von Fabrik $$Y$$ sind viermal so hoch wie die Verkäufe von Fabrik $$X$$ im Jahr $$2016$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fabrik $$X$$ verkauft $$800{.}000$$ Stück weniger als im Jahr $$2016$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "Factory $$Z$$ sells $$250{,}000$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "Factory $$X$$ sells $$500{,}000$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "Factory $$Y$$ sells $$5{,}200{,}000$$ units",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Factory $$Y$$'s predicted sales are four times Factory $$X$$'s $$2016$$ sales",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Factory $$X$$ sells $$800{,}000$$ fewer units than in $$2016$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

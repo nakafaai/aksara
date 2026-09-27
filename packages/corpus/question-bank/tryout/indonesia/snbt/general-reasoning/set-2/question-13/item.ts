@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Inlandsbeschaffung und Reisimporte werden als gleichläufig beschrieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Text beschreibt keinen Zusammenhang zwischen Inlandsbeschaffung und Reisimporten",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Inlandsbeschaffung und Reisimporte werden als gegenläufig beschrieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Inlandsbeschaffung und Reisexporte werden als gegenläufig beschrieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Lösung der Überarbeitung der Präsidialverordnung Nr. $$63$$ von $$2017$$ wird die Budgetzuweisungen ändern",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Domestic procurement and rice imports are described as moving in the same direction",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage describes no relationship between domestic procurement and rice imports",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Domestic procurement and rice imports are described as moving in opposite directions",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Domestic procurement and rice exports are described as moving in opposite directions",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The solution of revising Presidential Regulation Number $$63$$ of $$2017$$ will change budget allocations",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

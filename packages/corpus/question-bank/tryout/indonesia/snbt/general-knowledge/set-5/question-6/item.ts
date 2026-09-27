@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "die wortgetreue Kopie einer ausgewählten Erinnerung",
-        },
-        {
-          isCorrect: false,
-          label: "das Füllen von Lücken mit nicht gekennzeichneten Erfindungen",
-        },
-        {
-          isCorrect: false,
-          label: "eine chronologische Ereignisliste ohne Quellenvergleich",
-        },
-        {
-          isCorrect: true,
-          label:
-            "die erneute Zusammensetzung einer Darstellung der Vergangenheit aus vorhandenen Spuren",
-        },
-        {
-          isCorrect: false,
-          label:
-            "die Reparatur eines alten Gegenstands, damit er wieder wie neu aussieht",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "a word-for-word copy of one selected memory",
-        },
-        {
-          isCorrect: false,
-          label: "filling gaps with unmarked fictional material",
-        },
-        {
-          isCorrect: false,
-          label: "a date-ordered event list without source comparison",
-        },
-        {
-          isCorrect: true,
-          label: "rebuilding an account of the past from available traces",
-        },
-        {
-          isCorrect: false,
-          label: "physical repair that makes an old object look new again",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

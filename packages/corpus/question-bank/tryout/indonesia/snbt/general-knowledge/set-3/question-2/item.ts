@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Wiederholte Messungen bleiben trotz unterschiedlicher Erfassungszeiten in einem engen Bereich.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Einheiten, Rundungsregeln und Kategoriengrenzen werden vor Beginn der Erfassung festgelegt.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Repeated measurements remain within a narrow range even when taken at different times.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data are collected through a planned sequence of steps repeated under the same rules.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Reviewers use a rubric set before they know participant identities or final outcomes.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Units, rounding rules, and category boundaries are defined before recording begins.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

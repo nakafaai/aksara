@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die derzeit beste Deutung bleibt korrigierbar, weil historische Quellen die Vergangenheit nicht vollkommen abbilden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine in der Ausstellung gezeigte Deutung darf auch bei neuen Belegen nicht verändert werden.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Written documents prove that oral testimony has no historical value.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The archive should choose the most confident witness and delete inconsistent recordings.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The opening ceremony took place months after some classes moved.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The best current interpretation remains open to correction because historical sources do not record the past perfectly.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "An interpretation displayed in an exhibition must not change even when new evidence is found.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

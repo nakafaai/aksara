@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Die Zutaten wurden nach Rezeptschritten geordnet, weil eine alphabetische Ordnung nachweislich immer scheiterte.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die neue Anordnung wurde dauerhaft eingeführt und die alphabetische Ordnung abgeschafft.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In Versuchseinheiten waren die Zutaten nach Rezeptschritten geordnet, während sie in Vergleichseinheiten alphabetisch auf dem gemeinsamen Tisch blieben.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Beide Anordnungen wurden ohne getrennte Vergleichsbedingungen verwendet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team verglich die neue Anordnung nur mit Rückmeldungen zur alphabetischen Ordnung.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Ingredients were arranged by recipe stage because alphabetical order had proved to fail in every situation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The new layout was adopted permanently and alphabetical order was discontinued.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In trial sessions, ingredients were arranged by recipe stage, while in comparison sessions they remained in alphabetical order on the shared table.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The new layout and alphabetical order were used without separate comparison conditions.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team compared the new layout only with comments about alphabetical order.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

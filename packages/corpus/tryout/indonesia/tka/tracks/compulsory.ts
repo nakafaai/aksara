@@ -24,7 +24,7 @@ export const tkaCompulsoryMathematicsTrack = {
       sections: [
         {
           key: "compulsory-mathematics",
-          languagePolicy: { kind: "app-locale" as const },
+          languagePolicy: { kind: "fixed" as const, language: "id" as const },
           order: 1,
           questionCount: 25,
           questionSourcePath: `${TKA_QUESTION_ROOT}/compulsory-mathematics/${setKey}`,

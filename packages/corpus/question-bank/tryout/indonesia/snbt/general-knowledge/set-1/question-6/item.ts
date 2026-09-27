@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Etwa $$1{.}400$$ Jahre alte genetische Befunde helfen dabei, die Evolutionsgeschichte des Variola-Virus zu rekonstruieren.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die jüngsten alten DNA-Proben der Studie stammen aus der Zeit um $$600$$ n. Chr.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In den archäologischen Überresten ließ sich keine Variola-DNA nachweisen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Studie beweist, dass die Pocken während der Wikingerzeit in Nordeuropa entstanden.",
-        },
-        {
-          isCorrect: false,
-          label: "Alle oben genannten Aussagen sind falsch.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Genetic evidence about $$1{,}400$$ years old helps reconstruct the evolutionary history of the variola virus.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The youngest ancient DNA samples in the study date to around $$600$$ CE.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The archaeological remains contained no detectable variola DNA.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The study proves that smallpox originated in Viking Age northern Europe.",
-        },
-        {
-          isCorrect: false,
-          label: "All of the statements above are false.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

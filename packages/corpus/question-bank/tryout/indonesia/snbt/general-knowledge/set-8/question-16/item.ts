@@ -2,62 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Prüfung von Ergebnissen anhand einer Referenz, damit sie angemessen gedeutet werden können",
-        },
-        {
-          isCorrect: false,
-          label: "die Zahl der Meldungen ohne Genauigkeitsprüfung erhöhen",
-        },
-        {
-          isCorrect: false,
-          label: "alle vom Anfangsverdacht abweichenden Ergebnisse entfernen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "alle Beobachtungen ohne Berücksichtigung der Besuchschance mitteln",
-        },
-        {
-          isCorrect: false,
-          label: "Expertenurteile als unfehlbar und prüfungsfrei behandeln",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "checking results against a reference so they can be interpreted appropriately",
-        },
-        {
-          isCorrect: false,
-          label: "increasing the number of reports without checking accuracy",
-        },
-        {
-          isCorrect: false,
-          label:
-            "removing every result that differs from the initial expectation",
-        },
-        {
-          isCorrect: false,
-          label:
-            "averaging all observations without accounting for visit opportunity",
-        },
-        {
-          isCorrect: false,
-          label:
-            "treating expert judgement as infallible and exempt from testing",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

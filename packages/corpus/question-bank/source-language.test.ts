@@ -50,7 +50,12 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
         const [item, extraLocales, wrongLocale] = yield* Effect.all(
           [
             read(itemSource("en")),
-            read(validQuestionItemSource).pipe(Effect.flip),
+            read(
+              validQuestionItemSource.replace(
+                "    id:",
+                '    en: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },\n    id:'
+              )
+            ).pipe(Effect.flip),
             read(itemSource("id")).pipe(Effect.flip),
           ],
           { concurrency: "unbounded" }
@@ -75,7 +80,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
         });
         expect(extraLocales).toMatchObject({
           _tag: "QuestionItemLocaleError",
-          actualLocales: ["en", "id", "de"],
+          actualLocales: ["en", "id"],
           expectedLocales: ["en"],
         });
         expect(wrongLocale).toMatchObject({
@@ -86,7 +91,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
       })
     );
 
-    it.effect("loads every general-section locale from one owner source", () =>
+    it.effect("loads the fixed exam response from one owner source", () =>
       Effect.gen(function* () {
         const path = yield* Path.Path;
         const root = "indonesia/snbt/general-reasoning/set-1/question-1";
@@ -103,7 +108,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
 
         expect(item).toMatchObject({
           responses: {
-            de: {
+            id: {
               kind: "single-choice",
               options: [
                 {

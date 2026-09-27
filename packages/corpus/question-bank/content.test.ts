@@ -5,7 +5,6 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import { Effect, FileSystem, Path } from "effect";
-
 import {
   loadQuestionContent,
   loadSelectedQuestionContent,
@@ -84,7 +83,7 @@ layer(NodeServices.layer)("question registry", (it) => {
           .map(({ sourcePath }) => sourcePath)
           .sort();
 
-        expect(entries).toHaveLength(9650);
+        expect(entries).toHaveLength(7300);
         expect(
           new Set(
             entries.map(
@@ -92,20 +91,20 @@ layer(NodeServices.layer)("question registry", (it) => {
                 `${contentKey}\0${artifactLocale}`
             )
           ).size
-        ).toBe(9650);
+        ).toBe(7300);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
           ["authenticated", "entitled"].map(
             (delivery) =>
               entries.filter((entry) => entry.delivery === delivery).length
           )
-        ).toEqual([4175, 5475]);
+        ).toEqual([1825, 5475]);
         expect(
           ["en", "id", "de"].map(
             (locale) =>
               entries.filter((entry) => entry.artifactLocale === locale).length
           )
-        ).toEqual([3275, 3375, 3000]);
+        ).toEqual([2100, 3375, 1825]);
         expect(
           [
             "snbt-general",
@@ -117,7 +116,7 @@ layer(NodeServices.layer)("question registry", (it) => {
             (domain) =>
               entries.filter((entry) => entry.rendererDomain === domain).length
           )
-        ).toEqual([1800, 1200, 5000, 1200, 450]);
+        ).toEqual([1200, 800, 4200, 800, 300]);
         expect(
           entries.some(({ contentKey }) =>
             contentKey.includes("snbt/general-reasoning/set-10/")
@@ -150,11 +149,11 @@ layer(NodeServices.layer)("question registry", (it) => {
         expect(observed.readDirectory).toHaveBeenCalledTimes(2);
         expect(observed.readFileString).toHaveBeenCalledTimes(2);
         expect(sources).toHaveLength(2);
-        expect(entries).toHaveLength(10);
+        expect(entries).toHaveLength(8);
         const question = entries.find(
           ({ artifactLocale, contentKey }) =>
             contentKey === `${readingQuestionKey}/question` &&
-            artifactLocale === "en"
+            artifactLocale === "id"
         );
         const answer = entries.find(
           ({ artifactLocale, contentKey }) =>
@@ -163,17 +162,17 @@ layer(NodeServices.layer)("question registry", (it) => {
         );
 
         expect(question).toEqual({
-          artifactLocale: "en",
+          artifactLocale: "id",
           bodyKind: "question",
           contentKey: `${readingQuestionKey}/question`,
           delivery: "authenticated",
-          languagePolicy: { kind: "app-locale" },
+          languagePolicy: { kind: "fixed", language: "id" },
           peerContentKey: `${readingQuestionKey}/answer`,
           questionKey: readingQuestionKey,
           questionNumber: 1,
           rendererDomain: "snbt-plain",
           setKey: readingSetKey,
-          sourcePath: `${readingSourceRoot}/question.en.mdx`,
+          sourcePath: `${readingSourceRoot}/question.id.mdx`,
           sourceRoot: readingSourceRoot,
         });
         expect(answer).toMatchObject({
@@ -281,22 +280,24 @@ layer(NodeServices.layer)("question registry", (it) => {
     })
   );
 
-  it.effect("projects the complete active German question pair", () =>
-    Effect.gen(function* () {
-      const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const content = yield* registry(
-        [root, ...generalQuestionSourceFiles.map((file) => `${root}/${file}`)],
-        itemForQuestion(root)
-      );
+  it.effect(
+    "keeps the German explanation with the Indonesian exam prompt",
+    () =>
+      Effect.gen(function* () {
+        const root = "indonesia/snbt/general-reasoning/set-1/question-1";
+        const content = yield* registry(
+          [
+            root,
+            ...generalQuestionSourceFiles.map((file) => `${root}/${file}`),
+          ],
+          itemForQuestion(root)
+        );
 
-      expect(
-        content.entries
-          .filter(({ artifactLocale }) => artifactLocale === "de")
-          .map(({ sourcePath }) => sourcePath)
-      ).toEqual([
-        `${questionTestSourceRoot}/${root}/answer.de.mdx`,
-        `${questionTestSourceRoot}/${root}/question.de.mdx`,
-      ]);
-    })
+        expect(
+          content.entries
+            .filter(({ artifactLocale }) => artifactLocale === "de")
+            .map(({ sourcePath }) => sourcePath)
+        ).toEqual([`${questionTestSourceRoot}/${root}/answer.de.mdx`]);
+      })
   );
 });

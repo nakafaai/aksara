@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die wöchentlichen Verkaufszahlen der Bergo-Tücher bilden eine arithmetische Folge.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Von jedem Kopftuchmodell werden in jeder Woche mehr Stück als in der Vorwoche verkauft.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Verkaufszahl der Bergo-Tücher steigt von Woche $$1$$ bis Woche $$4$$ am wenigsten.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Bergo headscarf sales are higher than square headscarf sales in every week.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Pashmina headscarf sales are lower than square headscarf sales in every week.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The weekly number of bergo headscarves sold forms an arithmetic sequence.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Sales of each headscarf style are higher than in the preceding week.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bergo headscarf sales have the smallest increase from week $$1$$ to week $$4$$.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

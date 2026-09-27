@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            'Der erste Teil vertritt die Behauptung "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt"; der folgende nutzt "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen" als Hauptbeleg.',
-        },
-        {
-          isCorrect: false,
-          label:
-            'Der erste Teil legt "Das älteste Datum ist für jede Art von Geschichte immer das passendste" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen".',
-        },
-        {
-          isCorrect: true,
-          label:
-            "Mehrere Daten erzeugen Mehrdeutigkeit; eine begriffliche Unterscheidung ermöglicht anschließend ein genaueres Schild.",
-        },
-        {
-          isCorrect: false,
-          label:
-            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen" fest.',
-        },
-        {
-          isCorrect: false,
-          label:
-            'Der folgende Teil kehrt die Argumentation um und leitet "Das älteste Datum ist für jede Art von Geschichte immer das passendste" aus dem Beleg "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt" ab.',
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            'The first part advances the claim "The bridge\'s central span was substantially replaced in 1958", and the later part uses "Because several dates exist, no fact about the bridge\'s history can be established" as its main support.',
-        },
-        {
-          isCorrect: false,
-          label:
-            'The first part establishes "The oldest date is always the most appropriate for every kind of history" as a final conclusion; the later part only states the plan "The new plaque will display a timeline explaining each date".',
-        },
-        {
-          isCorrect: true,
-          label:
-            "The discovery of several dates creates ambiguity, and a conceptual distinction is then used to construct a more accurate label.",
-        },
-        {
-          isCorrect: false,
-          label:
-            'Both parts maintain the claim "Because several dates exist, no fact about the bridge\'s history can be established" from the same perspective without adding a test.',
-        },
-        {
-          isCorrect: false,
-          label:
-            'The later part reverses the argument by deriving "The oldest date is always the most appropriate for every kind of history" from the evidence "The bridge\'s central span was substantially replaced in 1958".',
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

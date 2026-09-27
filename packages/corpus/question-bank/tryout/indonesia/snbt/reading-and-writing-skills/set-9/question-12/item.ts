@@ -2,61 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "am Montag prüfte das Team den Digitalplan im Proberaum.",
-        },
-        {
-          isCorrect: true,
-          label: "Am Montag prüfte das Team den Digitalplan im Proberaum.",
-        },
-        {
-          isCorrect: false,
-          label: "Am montag prüfte das Team den Digitalplan im Proberaum.",
-        },
-        {
-          isCorrect: false,
-          label: "Am Montag prüfte Das Team den Digitalplan im Proberaum.",
-        },
-        {
-          isCorrect: false,
-          label: "Am Montag, prüfte das Team den Digitalplan im Proberaum",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "on Monday, the team tested the digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "On Monday, the team tested the digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "On monday, the team tested the digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "On Monday, The team tested the digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "On Monday the team tested the digital schedule updated after cancellations",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

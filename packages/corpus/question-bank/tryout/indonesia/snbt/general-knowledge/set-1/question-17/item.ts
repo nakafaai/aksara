@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Onkel.",
-        },
-        {
-          isCorrect: false,
-          label: "Nation.",
-        },
-        {
-          isCorrect: false,
-          label: "Held.",
-        },
-        {
-          isCorrect: true,
-          label: "gefallen.",
-        },
-        {
-          isCorrect: false,
-          label: "Feind.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "uncle.",
-        },
-        {
-          isCorrect: false,
-          label: "nation.",
-        },
-        {
-          isCorrect: false,
-          label: "hero.",
-        },
-        {
-          isCorrect: true,
-          label: "fell.",
-        },
-        {
-          isCorrect: false,
-          label: "enemy.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

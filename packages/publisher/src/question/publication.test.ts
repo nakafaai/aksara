@@ -56,7 +56,7 @@ const familyCases = [
     "question",
     {
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.id.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.en.mdx",
     },
   ],
   [
@@ -64,7 +64,7 @@ const familyCases = [
     "question",
     {
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-2/question.en.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-2/question.id.mdx",
     },
   ],
   [
@@ -72,7 +72,7 @@ const familyCases = [
     "question",
     {
       sourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-x/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-x/question-1/question.id.mdx",
     },
   ],
 ] as const;
@@ -88,16 +88,16 @@ const modifyHead = Effect.fn("QuestionPublicationTest.modifyHead")(
 /** Creates one route-free stale head for a real renderer-domain grammar. */
 const makeStaleHead = Effect.fn("QuestionPublicationTest.makeStaleHead")(
   (
-    englishHead: QuestionHead,
+    promptHead: QuestionHead,
     relativeQuestion: string,
     rendererDomain: QuestionHead["rendererDomain"],
     physicalQuestion = relativeQuestion
   ) =>
     modifyHead({
-      ...englishHead,
+      ...promptHead,
       contentKey: `question-bank/tryout/indonesia/${relativeQuestion}/question`,
       rendererDomain,
-      sourcePath: `packages/corpus/question-bank/tryout/indonesia/${physicalQuestion}/question.en.mdx`,
+      sourcePath: `packages/corpus/question-bank/tryout/indonesia/${physicalQuestion}/question.id.mdx`,
     })
 );
 
@@ -107,10 +107,10 @@ const makePublicationTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
-    const englishHead = yield* Effect.fromNullishOr(
+    const promptHead = yield* Effect.fromNullishOr(
       publishedHeads.find(
         ({ contentKey, artifactLocale }) =>
-          contentKey === `${questionKey}/question` && artifactLocale === "en"
+          contentKey === `${questionKey}/question` && artifactLocale === "id"
       )
     );
     const answerHead = yield* Effect.fromNullishOr(
@@ -119,14 +119,8 @@ const makePublicationTestFixtures = Effect.fn(
           contentKey === `${questionKey}/answer` && artifactLocale === "en"
       )
     );
-    const indonesianHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
-        ({ contentKey, artifactLocale }) =>
-          contentKey === `${questionKey}/question` && artifactLocale === "id"
-      )
-    );
 
-    return { answerHead, englishHead, indonesianHead, publishedHeads };
+    return { answerHead, promptHead, publishedHeads };
   })
 );
 
@@ -163,7 +157,7 @@ layer(publicationTestLayer)("question publication", (it) => {
         Stream.fromIterable(transitions)
       ).pipe(Stream.runCollect);
 
-      expect(created).toHaveLength(6);
+      expect(created).toHaveLength(4);
       expect(retained).toHaveLength(1);
       expect(
         transitions.every(
@@ -177,35 +171,35 @@ layer(publicationTestLayer)("question publication", (it) => {
 
   it.effect("accepts every real question renderer grammar", () =>
     Effect.gen(function* () {
-      const { englishHead } = yield* QuestionPublicationTestFixtures;
+      const { promptHead } = yield* QuestionPublicationTestFixtures;
       const stale = yield* Effect.all([
         makeStaleHead(
-          englishHead,
+          promptHead,
           "snbt/english-language/set-9/question-1",
           "snbt-plain"
         ),
         makeStaleHead(
-          englishHead,
+          promptHead,
           "snbt/general-reasoning/set-9/question-1",
           "snbt-general"
         ),
         makeStaleHead(
-          englishHead,
+          promptHead,
           "snbt/mathematical-reasoning/set-9/question-1",
           "snbt-math"
         ),
         makeStaleHead(
-          englishHead,
+          promptHead,
           "snbt/quantitative-knowledge/set-99/question-1",
           "snbt-quant"
         ),
         makeStaleHead(
-          englishHead,
+          promptHead,
           "snbt/reading-and-writing-skills/set-9/question-1",
           "snbt-plain"
         ),
         makeStaleHead(
-          englishHead,
+          promptHead,
           "tka/compulsory-mathematics/set-9/question-1",
           "tka-math"
         ),
@@ -233,9 +227,9 @@ layer(publicationTestLayer)("question publication", (it) => {
     "tombstones a question bank removed from the current registry",
     () =>
       Effect.gen(function* () {
-        const { englishHead } = yield* QuestionPublicationTestFixtures;
+        const { promptHead } = yield* QuestionPublicationTestFixtures;
         const deletedBank = yield* makeStaleHead(
-          englishHead,
+          promptHead,
           "retired-exam/reading-and-writing-skills/archive-set/question-1",
           "snbt-plain"
         );
@@ -260,13 +254,13 @@ layer(publicationTestLayer)("question publication", (it) => {
     "rejects duplicate and noncanonical published heads as typed failures",
     () =>
       Effect.gen(function* () {
-        const { englishHead, indonesianHead } =
+        const { promptHead, answerHead } =
           yield* QuestionPublicationTestFixtures;
         const duplicate = yield* Effect.promise(() =>
-          rejectQuestionPublication([englishHead, englishHead])
+          rejectQuestionPublication([promptHead, promptHead])
         );
         const noncanonical = yield* Effect.promise(() =>
-          rejectQuestionPublication([indonesianHead, englishHead])
+          rejectQuestionPublication([promptHead, answerHead])
         );
 
         expect(duplicate).toBeInstanceOf(QuestionHeadDuplicateError);
@@ -282,9 +276,9 @@ layer(publicationTestLayer)("question publication", (it) => {
     "rejects a question-head %s contradiction",
     ([field, bodyKind, changes]) =>
       Effect.gen(function* () {
-        const { answerHead, englishHead } =
+        const { answerHead, promptHead } =
           yield* QuestionPublicationTestFixtures;
-        const baseHead = bodyKind === "answer" ? answerHead : englishHead;
+        const baseHead = bodyKind === "answer" ? answerHead : promptHead;
         const head = yield* modifyHead({ ...baseHead, ...changes });
         const error = yield* Effect.promise(() =>
           rejectQuestionPublication([head])

@@ -1,5 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   Deferred,
   Effect,
@@ -22,7 +23,7 @@ import { runWatch } from "#test/session";
 
 const repositories = makeRepositoryTracker();
 const questionPath =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.en.mdx";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.id.mdx";
 const answerPath =
   "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/answer.en.mdx";
 
@@ -55,7 +56,11 @@ const selectRealDocument = Effect.fn("AksaraCliTest.selectRealDocument")(
   function* (sourcePath: string) {
     const fileSystem = yield* FileSystem.FileSystem;
     const aksaraRoot = yield* fileSystem.realPath(REPOSITORY_ROOT);
-    return yield* selectPreviewDocument(aksaraRoot, sourcePath);
+    return yield* selectPreviewDocument(
+      aksaraRoot,
+      sourcePath,
+      AppLocaleSchema.make("en")
+    );
   }
 );
 

@@ -2,59 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Überschwemmungen können Trinkwasserquellen verunreinigen",
-        },
-        {
-          isCorrect: false,
-          label: "Stehendes Wasser kann Mücken als Brutstätte dienen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine Überschwemmung allein beweist nicht, dass ein Ausbruch stattfinden wird",
-        },
-        {
-          isCorrect: true,
-          label: "Stehendes Wasser bietet Mücken niemals Brutplätze",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Floods can contaminate drinking-water supplies",
-        },
-        {
-          isCorrect: false,
-          label: "Standing water can provide breeding sites for mosquitoes",
-        },
-        {
-          isCorrect: false,
-          label: "A flood by itself does not prove that an outbreak will occur",
-        },
-        {
-          isCorrect: true,
-          label: "Standing water never provides breeding sites for mosquitoes",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Local conditions and control measures can affect outbreak risk",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

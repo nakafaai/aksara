@@ -1,5 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
 import {
   fingerprintSelectedDocument,
@@ -11,7 +12,7 @@ import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
 
 const repositories = makeRepositoryTracker();
 const QUESTION_PATH =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.en.mdx";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.id.mdx";
 
 afterEach(() => {
   repositories.clear();
@@ -65,7 +66,8 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const selected = yield* selectPreviewDocument(
           yield* fileSystem.realPath(REPOSITORY_ROOT),
-          QUESTION_PATH
+          QUESTION_PATH,
+          AppLocaleSchema.make("en")
         );
         const [directory] = selected.directories;
         expect(directory).toBeDefined();

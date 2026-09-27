@@ -1,4 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import { deliveryLanguageForPolicy } from "@nakafa/aksara-contracts/tryout/language";
 import { Effect } from "effect";
 import {
   projectTryoutCatalog,
@@ -104,6 +106,25 @@ describe("tryout catalog", () => {
           )
         ).toHaveLength(27);
       })
+  );
+
+  it.effect("keeps exam language independent of every app locale", () =>
+    Effect.gen(function* () {
+      const sources = yield* decodeTryoutRegistry();
+      const sections = sources.flatMap((source) =>
+        source.tracks.flatMap((track) =>
+          track.sets.flatMap((set) => set.sections)
+        )
+      );
+      expect(sections).toHaveLength(79);
+      for (const section of sections) {
+        for (const locale of ACTIVE_APP_LOCALES) {
+          expect(
+            deliveryLanguageForPolicy(section.languagePolicy, locale)
+          ).toBe(section.key === "english-language" ? "en" : "id");
+        }
+      }
+    })
   );
 
   it.effect(

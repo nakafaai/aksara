@@ -7,58 +7,6 @@ const item: QuestionItem = {
     topic: "functions",
   },
   responses: {
-    de: {
-      kind: "multiple-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "Der Scheitel ist $$(2,-1)$$.",
-        },
-        {
-          isCorrect: true,
-          label: "Der Wertebereich ist $$[-1,\\infty)$$.",
-        },
-        {
-          isCorrect: true,
-          label: "Die Funktion ist auf $$(-\\infty,2]$$ fallend.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Funktion ist auf $$\\mathbb R$$ injektiv.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Bei Einschränkung des Definitionsbereichs von $$f$$ auf $$[2,\\infty)$$ gilt $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
-        },
-      ],
-    },
-    en: {
-      kind: "multiple-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "The vertex is $$(2,-1)$$.",
-        },
-        {
-          isCorrect: true,
-          label: "The range is $$[-1,\\infty)$$.",
-        },
-        {
-          isCorrect: true,
-          label: "The function decreases on $$(-\\infty,2]$$.",
-        },
-        {
-          isCorrect: false,
-          label: "The function is one-to-one on $$\\mathbb R$$.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Restricting the domain of $$f$$ to $$[2,\\infty)$$ gives $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
-        },
-      ],
-    },
     id: {
       kind: "multiple-choice",
       options: [

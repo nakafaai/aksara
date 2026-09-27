@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Der Preis von Nudel A ist nie gesunken",
-        },
-        {
-          isCorrect: false,
-          label: "Der Preis von Nudel B ist in jedem Zeitraum gestiegen",
-        },
-        {
-          isCorrect: false,
-          label: "Bei jedem Produkt gab es mehr Anstiege als Rückgänge",
-        },
-        {
-          isCorrect: true,
-          label: "Bei einem Nudelprodukt sank der Preis genau einmal",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Preis von Nudel A lag jedes Jahr unter $$\\text{Rp}\\,3000$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "The price of Noodle A never decreased",
-        },
-        {
-          isCorrect: false,
-          label: "The price of Noodle B increased in every interval",
-        },
-        {
-          isCorrect: false,
-          label: "Every product rose more often than it fell",
-        },
-        {
-          isCorrect: true,
-          label: "One noodle product experienced exactly one price decrease",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The price of Noodle A stayed below $$\\text{Rp}\\,3000$$ every year",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

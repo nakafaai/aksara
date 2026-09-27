@@ -202,7 +202,7 @@ describe("question path", () => {
         (path) => rejectQuestionPath(questionBanks, path)
       );
       const bodyPath = CorpusSourcePathSchema.make(
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.en.mdx"
+        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.id.mdx"
       );
       const [body, invalidDocument, itemDocument] = yield* Effect.all([
         decodeQuestionDocumentPath(questionBanks, bodyPath),
@@ -221,7 +221,7 @@ describe("question path", () => {
       ]);
 
       expect(body).toMatchObject({
-        artifactLocale: "en",
+        artifactLocale: "id",
         bodyKind: "question",
         rendererDomain: "snbt-general",
         sourcePath: bodyPath,

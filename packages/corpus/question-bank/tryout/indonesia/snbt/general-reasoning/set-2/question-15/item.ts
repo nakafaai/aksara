@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der staatliche Ankaufspreis für GKP sinkt von Januar bis April durchgehend",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Erzeugerpreis für Rohreis steigt und fällt in jedem der vier Monate",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im März und April ist die Differenz zwischen Erzeugerpreis und staatlichem Ankaufspreis gleich groß",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "The government purchase price for GKP remained unchanged from January to April",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The government purchase price for grain, GKP, from farmers always decreases from January to April",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Grain prices at the farmer level always fluctuate (up and down) during the last four months",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The gap between the farm-gate price and the government purchase price was the same in March and April",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

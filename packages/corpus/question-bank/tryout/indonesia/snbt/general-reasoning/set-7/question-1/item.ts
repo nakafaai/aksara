@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein ganzer Apfel vor dem Mittagessen verhindert immer Adipositas.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alle vier Apfelzubereitungen führten zum gleichen Sättigungsgefühl.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Apfelsaft führte zu einer niedrigeren gesamten Energieaufnahme als der ganze Apfel.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Studie bewies, dass allein die Ballaststoffe alle Unterschiede zwischen den Apfelzubereitungen verursachten.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
-        },
-        {
-          isCorrect: false,
-          label: "Eating a whole apple before lunch always prevents obesity.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "All four apple preparations produced the same level of fullness.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Apple juice led to a lower total energy intake than the whole apple.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The study proved that fiber alone caused every difference between the apple preparations.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Tägliches Trinken von grünem Tee beseitigt Akne nachweislich.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Klinische Studien haben bewiesen, dass grüner Tee jede Form UV-bedingter Hautschädigung verhindert.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Trinken von grünem Tee kann bewährten Sonnenschutz nachweislich ersetzen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Oral eingenommener grüner Tee wird auf mögliche Hautwirkungen untersucht, doch die Evidenz rechtfertigt weder ein Heilversprechen bei Akne noch eine sichere Vorbeugung gegen lichtbedingte Hautalterung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Konzentrierte Grünteepräparate sind nachweislich für alle Menschen sicher, weil sie pflanzlich sind.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Drinking green tea every day is a proven way to eliminate acne.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Clinical studies have proved that green tea prevents every form of UV-related skin damage.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Drinking green tea is proven to replace established sun protection.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Oral green tea is being studied for possible skin effects, but the evidence does not justify promising that it treats acne or prevents photoaging.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Concentrated green tea supplements are proven safe for everyone because they are herbal.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

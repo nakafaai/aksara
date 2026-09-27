@@ -93,7 +93,7 @@ export const questionPathFixtures = Effect.gen(function* () {
               sections: [
                 {
                   key: "mathematics",
-                  languagePolicy: { kind: "app-locale" },
+                  languagePolicy: { kind: "fixed", language: "de" },
                   order: 1,
                   questionCount: 1,
                   questionSourcePath:

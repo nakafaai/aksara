@@ -117,6 +117,6 @@ export const tkaCompulsoryMathematicsReadiness = defineAssessmentReadiness({
       },
     },
   ],
-  sourceRevision: "2026-08-31",
+  sourceRevision: "2026-09-27",
   trackKey: "compulsory-mathematics",
 });

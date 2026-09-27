@@ -1,5 +1,6 @@
 import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
 import {
   indexQuestionBanks,
@@ -73,15 +74,14 @@ export const validQuestionItemSource = `import type { QuestionItem } from "@naka
 
 const item: QuestionItem = {
   responses: {
-    de: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
-    en: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
     id: { kind: "single-choice", options: [{ isCorrect: true, label: "A" }, { isCorrect: false, label: "B" }] },
   },
 };
 
 export default item;`;
 export const generalQuestionSourceFiles = questionSourceFiles({
-  kind: "app-locale",
+  kind: "fixed",
+  language: DeliveryLanguageSchema.make("id"),
 });
 export const invalidQuestionItemSources = [
   "export default item;",

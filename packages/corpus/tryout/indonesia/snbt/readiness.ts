@@ -62,6 +62,6 @@ export const snbtReadiness = defineAssessmentReadiness({
       timeLimitSeconds: official(2550),
     },
   ],
-  sourceRevision: "2026-08-30",
+  sourceRevision: "2026-09-27",
   trackKey: "2027",
 });

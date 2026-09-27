@@ -21,7 +21,7 @@ const pageRestartSourcePaths = [
 ];
 const questionRoot =
   "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
-const promptPath = `${questionRoot}/question.en.mdx`;
+const promptPath = `${questionRoot}/question.id.mdx`;
 const answerPath = `${questionRoot}/answer.en.mdx`;
 
 /** Selects one real-corpus preview document for native Effect tests. */
@@ -44,7 +44,7 @@ describe("preview selection", () => {
             selectDocument(materialPath, "id"),
             selectDocument(pagePath, "en"),
             selectDocument(germanPagePath, "de"),
-            selectDocument(promptPath),
+            selectDocument(promptPath, "en"),
             selectDocument(answerPath),
           ]);
 
@@ -208,8 +208,6 @@ describe("preview selection", () => {
                     "answer.en.mdx",
                     "answer.id.mdx",
                     "item.ts",
-                    "question.de.mdx",
-                    "question.en.mdx",
                     "question.id.mdx",
                   ],
                   sourcePath: questionRoot,

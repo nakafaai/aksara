@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Ein Quellenkonflikt muss nicht beseitigt werden; das Museum sollte erklären, was belegt, erinnert und noch offen ist.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Museum kann die Handelszeit sicher feststellen, sobald mehr Personen eine Darstellung unterstützen.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Written records are always correct, whereas all oral testimony must be rejected.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "A source conflict need not be erased; the museum should explain what is documented, remembered, and still open.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The museum should choose the most engaging story and remove details that disrupt the narrative.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The museum will display the exhibition label's revision history.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The museum can establish the trading time with certainty whenever more people support one account.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

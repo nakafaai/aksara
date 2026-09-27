@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Inklusiv bedeutet praktikable Wege zur Berücksichtigung verschiedener Gruppen, nicht den Sieg jeder Forderung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein Beitrag verdient nur Berücksichtigung, wenn er persönlich und mündlich in der Versammlung vorgetragen wird.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "A consultation is valid only if every resident proposal is ultimately accepted.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Because the invitation was open, participant origins and reasons for absence need not be examined.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Nearly every initial speaker came from the three nearest neighbourhoods.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Inclusive means providing workable ways for different groups to be considered, not guaranteeing that every demand wins.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A contribution deserves consideration only if it is delivered orally in person at the meeting.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

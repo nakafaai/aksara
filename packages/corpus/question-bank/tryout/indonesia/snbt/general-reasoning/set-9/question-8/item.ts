@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Jeder Studienanfänger der Universität $$P$$ hat die Schule abgeschlossen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Kein Schüler ohne Abschluss beginnt im selben Jahrgang an der Universität $$P$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jeder Schüler ohne Abschluss nimmt am Vermittlungsprogramm der Schule teil",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die beiden Gruppen Schulabschluss und Abgang ohne Abschluss überschneiden sich nicht",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Studienanfänger der Universität $$P$$ gehören zur Gruppe der Schulabgänger ohne Abschluss",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Every student entering University $$P$$ completed school",
-        },
-        {
-          isCorrect: false,
-          label:
-            "No withdrawn student enters University $$P$$ in the same intake",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Every withdrawn student joins the school's job-placement program",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The completed-school and withdrawal categories do not overlap",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Students entering University $$P$$ belong to the withdrawal category",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "hohes Plateau.",
-        },
-        {
-          isCorrect: false,
-          label: "das Frostphänomen.",
-        },
-        {
-          isCorrect: false,
-          label: "die Grasfläche.",
-        },
-        {
-          isCorrect: false,
-          label: "der Frost.",
-        },
-        {
-          isCorrect: false,
-          label: "noch vorhanden.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "high plateau.",
-        },
-        {
-          isCorrect: false,
-          label: "dew phenomenon.",
-        },
-        {
-          isCorrect: false,
-          label: "expanse of grass.",
-        },
-        {
-          isCorrect: false,
-          label: "frost.",
-        },
-        {
-          isCorrect: false,
-          label: "still located.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

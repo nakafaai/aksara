@@ -19,7 +19,7 @@ type SnbtSection = Omit<
 const snbtSections: readonly SnbtSection[] = [
   {
     key: "general-reasoning",
-    languagePolicy: { kind: "app-locale" },
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 30,
     rendererDomain: "snbt-general",
     routeSlugs: {
@@ -36,7 +36,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "general-knowledge",
-    languagePolicy: { kind: "app-locale" },
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -53,7 +53,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "reading-and-writing-skills",
-    languagePolicy: { kind: "app-locale" },
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
@@ -70,7 +70,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "quantitative-knowledge",
-    languagePolicy: { kind: "app-locale" },
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-quant",
     routeSlugs: {
@@ -121,7 +121,7 @@ const snbtSections: readonly SnbtSection[] = [
   },
   {
     key: "mathematical-reasoning",
-    languagePolicy: { kind: "app-locale" },
+    languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-math",
     routeSlugs: {
@@ -159,7 +159,7 @@ const snbtTryoutCatalog = defineTryoutExamSource({
     },
   },
   scoringStrategy: "irt",
-  sourceRevision: "2026-08-30",
+  sourceRevision: "2026-09-27",
   tracks: [
     {
       key: "2027",

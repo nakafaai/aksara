@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Ein neu gefundenes datiertes Foto hält die Handelszeit eindeutig fest und löst den Quellenkonflikt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Zwei weitere unabhängige Archive liefern ebenfalls widersprüchliche Angaben zur Handelszeit.",
-        },
-        {
-          isCorrect: false,
-          label: "Einige Besucher bevorzugen kürzere Schilder.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "A newly found dated photograph clearly records the trading time and resolves the conflict between the two sources.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Two additional independent archives also give conflicting accounts of the trading time.",
-        },
-        {
-          isCorrect: false,
-          label: "Some visitors prefer shorter labels.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The museum will accept corrections that include a verifiable source trail.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The museum will display the exhibition label's revision history.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "data",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$75{,}6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$76{,}8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$77{,}2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$78$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$79{,}2$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$75.6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$76.8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$77.2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$78$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$79.2$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

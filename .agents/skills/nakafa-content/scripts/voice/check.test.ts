@@ -63,7 +63,7 @@ checkTest(
     for (const [root, minimum] of [
       ["material/lesson", 1149],
       ["articles", 21],
-      ["question-bank", 9650],
+      ["question-bank", 7300],
     ] as const) {
       const report = yield* checkLessonRoot(join(corpusRoot, root));
       assert.ok(report.fileCount >= minimum);

@@ -12,9 +12,12 @@ The exact required file set is derived by the contracts and corpus reader. Do
 not copy a list of locale suffixes into this skill, and do not add a local
 override file or language mapping.
 
-An ordinary section owns one localized prompt, one localized worked answer,
-and one localized response item for every app locale in its authorized
-authoring scope.
+Every exam section owns its real assessment language, independent of the
+application locale. Indonesian SNBT and TKA sections use Indonesian, except
+English assessments, which use English. A German exam owns the appropriate
+German regional language. The section's fixed language policy selects exactly
+one prompt and response locale. Worked answers remain localized for every
+application locale in the authorized authoring scope.
 Every authored locale file must pass the same inventory, ownership, preview,
 and editorial checks, whether or not that locale is included in a publication.
 The presence of an authored source file alone never changes publication state.
@@ -42,10 +45,9 @@ TKA subject taxonomy into UTBK-SNBT's `Penalaran Matematika`.
 Renderer domains describe available components, not subject identities:
 `tka-math` supplies mathematical renderers without defining a mathematics track.
 
-A language-assessment section owns one prompt and one response item in the
-assessed delivery language. It owns one worked answer explanation for every app
-locale in its authorized authoring scope. Never duplicate an assessed prompt or
-its response options merely because the application locale changes.
+Never duplicate an exam prompt or its response options merely because the
+application locale changes. Explanations may quote the original prompt language
+while explaining the reasoning in the learner's application locale.
 
 ## Prompt rules
 

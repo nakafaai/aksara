@@ -2,62 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Basketball ist das beliebteste Freizeitinteresse",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Insgesamt interessieren sich $$65$$ Schülerinnen und Schüler für Schauspiel",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Gesamtzahl der Schülerinnen und Schüler in Klasse $$\\text{XII}$$ beträgt $$306$$",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Insgesamt interessieren sich $$160$$ Schülerinnen und Schüler für Malerei",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Unter den drei Klassenstufen hat Klasse $$\\text{X}$$ die wenigsten Tanzinteressierten",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Basketball is the most popular interest",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The number of students interested in acting is $$65$$ students",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The number of class $$\\text{XII}$$ students according to interest is $$306$$",
-        },
-        {
-          isCorrect: true,
-          label: "The number of students interested in painting is $$160$$",
-        },
-        {
-          isCorrect: false,
-          label: "The least interest in dance is in class $$\\text{X}$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [
