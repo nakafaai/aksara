@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "senkt den Blutdruck",
-        },
-        {
-          isCorrect: false,
-          label: "beugt Herz-Kreislauf-Erkrankungen vor",
-        },
-        {
-          isCorrect: true,
-          label: "erhöht den Blutdruck",
-        },
-        {
-          isCorrect: false,
-          label: "beschleunigt die Verdauung",
-        },
-        {
-          isCorrect: false,
-          label: "beseitigt den Kaliumbedarf des Körpers",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "lowers blood pressure",
-        },
-        {
-          isCorrect: false,
-          label: "prevents cardiovascular disease",
-        },
-        {
-          isCorrect: true,
-          label: "raises blood pressure",
-        },
-        {
-          isCorrect: false,
-          label: "accelerates digestion",
-        },
-        {
-          isCorrect: false,
-          label: "removes the body's need for potassium",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

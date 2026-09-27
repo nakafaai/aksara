@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Das Team plant einen längeren Versuch mit geänderten Messregeln.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team will nur die Kurseinheiten mit dem höchsten Ergebnis wiederholen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Das Team plant einen längeren Versuch mit vielfältigeren Rezepten unter denselben Messregeln.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team will die neue Anordnung dauerhaft einführen statt erneut zu testen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team plant einen längeren Versuch mit ausschließlich denselben Rezepten.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "The team plans a longer test with revised measurement rules.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team will repeat only the sessions with the highest result.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The team plans a longer test with a wider range of recipes under the same measurement rules.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team will adopt the new layout permanently instead of testing again.",
-        },
-        {
-          isCorrect: false,
-          label: "The team plans a longer test using only the same recipes.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

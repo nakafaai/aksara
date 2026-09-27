@@ -16,11 +16,11 @@ describe("tryout content", () => {
           Effect.provide(questionLayer)
         );
 
-        expect(content.entries).toHaveLength(9650);
+        expect(content.entries).toHaveLength(7300);
         expect(content.projection.placements).toHaveLength(5475);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "question")
-        ).toHaveLength(4175);
+        ).toHaveLength(1825);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "answer")
         ).toHaveLength(5475);
@@ -61,7 +61,7 @@ describe("tryout content", () => {
             )
           ).size
         ).toBe(1825);
-        expect(activeQuestionEntries).toHaveLength(4175);
+        expect(activeQuestionEntries).toHaveLength(1825);
         expect(new Set(fingerprints).size).toBe(fingerprints.length);
       }).pipe(Effect.provide(questionLayer)),
     { timeout: 30_000 }

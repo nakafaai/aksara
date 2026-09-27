@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Das Treffen fand im Staatspalast statt",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Leistungsbilanzdefizit war mehr als dreimal so hoch wie das Handelsbilanzdefizit",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Text beweist, dass der Handelskrieg das Handelsdefizit dauerhaft verursachte",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Nach dem Text kann die Wirtschaft künftige Herausforderungen ohne die Regierung bewältigen",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "The meeting took place at the State Palace",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The government requested concrete, quickly implementable input from business representatives",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The current-account deficit was more than three times the trade-balance deficit",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that the trade war permanently caused the trade deficit",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage says business can address future challenges without government",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

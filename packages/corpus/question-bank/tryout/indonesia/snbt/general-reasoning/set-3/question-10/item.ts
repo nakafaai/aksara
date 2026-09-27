@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Jeder für die Jackfrucht angegebene Nährstoffwert ist höher als der entsprechende Wert der Pomelo.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Der Gesamtkalziumgehalt von Pomelo und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jeder für die Avocado angegebene Nährstoffwert ist höher als der entsprechende Wert der Pomelo.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Gesamtproteingehalt von Pomelo und Jackfrucht ist höher als der Gesamtproteingehalt von Avocado und Ambarella.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Jackfrucht hat bei jedem aufgeführten Nährstoff den höchsten Wert.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Every nutrient listed for jackfruit is higher than the corresponding value for pomelo.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The total calcium content of pomelo and avocado is lower than the total calcium content of ambarella and jackfruit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Every nutrient listed for avocado is higher than the corresponding value for pomelo.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The total protein content of pomelo and jackfruit is higher than the total protein content of avocado and ambarella.",
-        },
-        {
-          isCorrect: false,
-          label: "Jackfruit has the highest value for every nutrient listed.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -14,7 +14,7 @@ import {
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const promptPath = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.en.mdx"
+  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.id.mdx"
 );
 
 /** Loads one real question and its exact source-owned placement context. */
@@ -138,7 +138,7 @@ describe("tryout placement", () => {
           fixture.context,
           {
             ...fixture.question,
-            item: { responses: { id: indonesian } },
+            item: { responses: { en: indonesian } },
           },
           ActiveAppLocaleSchema.make("en")
         ).pipe(Effect.flip);
@@ -165,8 +165,8 @@ describe("tryout placement", () => {
         expect(placement).toMatchObject({
           answerArtifactLocale: "de",
           appLocale: "de",
-          deliveryLanguage: "de",
-          questionArtifactLocale: "de",
+          deliveryLanguage: "id",
+          questionArtifactLocale: "id",
         });
       })
   );

@@ -7,67 +7,6 @@ const item: QuestionItem = {
     topic: "probability",
   },
   responses: {
-    de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Die Wahrscheinlichkeit für eine ungerade Summe beträgt $$\\frac47$$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Die Wahrscheinlichkeit für zwei Primzahlen beträgt $$\\frac3{14}$$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Ist die erste Karte gerade, beträgt die Wahrscheinlichkeit für eine ungerade zweite Karte $$\\frac47$$.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label:
-            "Die Ereignisse erste Karte gerade und zweite Karte ungerade sind unabhängig.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Die Wahrscheinlichkeit, dass die größere Zahl $$8$$ ist, beträgt $$\\frac14$$.",
-        },
-      ],
-    },
-    en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
-        {
-          correctCategoryOrder: 1,
-          label: "The probability of an odd sum is $$\\frac47$$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "The probability that both cards are prime is $$\\frac3{14}$$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "Given an even first card, the probability that the second card is odd is $$\\frac47$$.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label:
-            "The events first card even and second card odd are independent.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label:
-            "The probability that the larger number is $$8$$ is $$\\frac14$$.",
-        },
-      ],
-    },
     id: {
       categories: ["Benar", "Salah"],
       kind: "category",

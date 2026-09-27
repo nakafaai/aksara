@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "Zusammen werden weniger als $$70$$ Hemden und Hosen verkauft",
-        },
-        {
-          isCorrect: false,
-          label: "Der Verkauf von Hosen ist $$10$$ geringer als der von Hemden",
-        },
-        {
-          isCorrect: false,
-          label: "Der Verkauf von Anzügen ist $$35$$ höher als der von Hosen",
-        },
-        {
-          isCorrect: false,
-          label: "Der Verkauf von Hemden ist $$10$$ höher als der von Hosen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Verkauf von Hosen ist $$35$$ geringer als der von Anzügen",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "The combined number of shirts and pants sold is less than $$70$$",
-        },
-        {
-          isCorrect: false,
-          label: "Pants sales are $$10$$ fewer than shirts",
-        },
-        {
-          isCorrect: false,
-          label: "Suits sales are $$35$$ more than pants",
-        },
-        {
-          isCorrect: false,
-          label: "Shirts sales are $$10$$ more than pants",
-        },
-        {
-          isCorrect: false,
-          label: "Pants sales are $$35$$ less than suits",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

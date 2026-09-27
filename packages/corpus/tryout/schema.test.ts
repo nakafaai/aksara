@@ -14,7 +14,7 @@ type TryoutSectionInput =
 
 const section = {
   key: "general-reasoning",
-  languagePolicy: { kind: "app-locale" },
+  languagePolicy: { kind: "fixed", language: "id" },
   order: 1,
   questionCount: 20,
   questionSourcePath:
@@ -174,6 +174,13 @@ describe("tryout schema", () => {
   );
 
   test.each([
+    {
+      field: "app-dependent exam language",
+      input: withSections([
+        { ...section, languagePolicy: { kind: "app-locale" } },
+      ]),
+      message: "Exam language must be fixed independently of the app locale.",
+    },
     {
       field: "exam key",
       input: { ...tryoutSource, examKey: "SNBT" },

@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Eine unabhängige Bauakte unterscheidet ebenfalls Klassenumzug und Eröffnung.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Ein neu entdeckter und überprüfter Brief aus der Umzugszeit zeigt, dass alle Klassen am selben Tag umzogen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Besucher verwechseln die beiden Daten seltener, wenn die Bildunterschriften direkt unter den jeweiligen Fotos stehen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "An independent construction record also distinguishes the class-move date from the opening date.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "A newly discovered and verified letter from the time of the move shows that every class moved on the same day.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Visitors confuse the two dates less often when the captions are placed directly beneath the corresponding photographs.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Original recordings are preserved so later researchers can reassess the interpretation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The opening ceremony took place months after some classes moved.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

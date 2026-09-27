@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "(2) und (4) sind korrekt",
-        },
-        {
-          isCorrect: false,
-          label: "(1), (2) und (3) sind korrekt",
-        },
-        {
-          isCorrect: false,
-          label: "(1) und (3) sind korrekt",
-        },
-        {
-          isCorrect: false,
-          label: "Nur (4) ist korrekt",
-        },
-        {
-          isCorrect: false,
-          label: "alle sind richtig",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "(2) and (4) are correct",
-        },
-        {
-          isCorrect: false,
-          label: "(1), (2), and (3) are correct",
-        },
-        {
-          isCorrect: false,
-          label: "(1) and (3) are correct",
-        },
-        {
-          isCorrect: false,
-          label: "(4) only is correct",
-        },
-        {
-          isCorrect: false,
-          label: "all are correct",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

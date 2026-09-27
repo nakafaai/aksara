@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Wegen auftretender Fehler muss jede automatische Suche beendet werden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden.",
-        },
-        {
-          isCorrect: false,
-          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Beliebte Sammlungen können durch häufigere Korrekturen zunehmend leichter auffindbar werden als andere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Because the system makes errors, all automated search must be stopped.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A document absent from automated search is certainly not stored in the archive.",
-        },
-        {
-          isCorrect: false,
-          label: "User corrections were more frequent for popular collections.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Popular collections may become progressively easier to search than others because they receive more corrections.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team will audit performance differences by writing type and period.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

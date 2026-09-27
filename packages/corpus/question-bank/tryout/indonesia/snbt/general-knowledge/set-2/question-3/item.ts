@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Nur Schulgebäude benötigen eine Verringerung des Katastrophenrisikos, weil andere Infrastruktur bereits sicher ist.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Frühwarnsysteme können risikobewusste Planung und die Durchsetzung von Vorschriften bei Bauvorhaben ersetzen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Katastrophenrisiken müssen erst nach Abschluss einer Entwicklungsinvestition berücksichtigt werden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Verstärkung von Gebäuden reicht auch ohne Vorschriften, Aufsicht oder Katastrophenschutzübungen aus.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, damit Gebäude sicherer und Menschen besser vorbereitet sind.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Only school buildings need disaster-risk reduction because other infrastructure is already safe.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Early-warning systems can replace risk-aware planning and enforcement in development projects.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Disaster risks need to be considered only after a development investment has been completed.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Reinforcing buildings is sufficient even without regulation, oversight, or preparedness drills.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Disaster-risk reduction should guide development investment so buildings are safer and residents are better prepared.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

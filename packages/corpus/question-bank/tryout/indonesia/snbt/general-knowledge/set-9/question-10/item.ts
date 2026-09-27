@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Die Wirkung einer Normbotschaft beruht auf einem glaubwürdigen Bild üblichen Verhaltens, nicht nur auf einer beeindruckenden Zahl.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine hohe Mehrheitszahl genügt für Glaubwürdigkeit, selbst wenn sie dem Verhalten der Fahrgäste widerspricht.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "The force of a norm message depends on a credible picture of common behaviour, not merely an impressive-sounding number.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Any message mentioning a majority will certainly change every passenger's behaviour.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Because complaints fell, the total number of loud conversations must have fallen by the same amount.",
-        },
-        {
-          isCorrect: false,
-          label: "Anonymous observers used predefined volume criteria.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A large majority figure is enough to maintain credibility even when it conflicts with passenger behaviour.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

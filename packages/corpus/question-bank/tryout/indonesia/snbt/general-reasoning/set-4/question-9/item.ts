@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Tempeh enthält $$72\\text{ kcal}$$ mehr Energie und $$13{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fettes Rindfleisch enthält $$3{,}3\\text{ g}$$ mehr Protein pro $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label: "Tempeh und fettes Rindfleisch enthalten gleich viel Protein",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Fettes Rindfleisch enthält $$72\\text{ kcal}$$ mehr Energie und $$13{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fettes Rindfleisch enthält $$82\\text{ kcal}$$ mehr Energie pro $$100\\text{ g}$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Tempeh contains $$72\\text{ kcal}$$ more energy and $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fatty beef contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label: "Tempeh and fatty beef contain the same amount of protein",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Fatty beef contains $$72\\text{ kcal}$$ more energy and $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Fatty beef contains $$82\\text{ kcal}$$ more energy per $$100\\text{ g}$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

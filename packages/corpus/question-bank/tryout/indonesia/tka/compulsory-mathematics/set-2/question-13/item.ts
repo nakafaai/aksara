@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "geometry-transformations",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$-8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$-6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$-2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$-4$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$-8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$-6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$-2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$-4$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

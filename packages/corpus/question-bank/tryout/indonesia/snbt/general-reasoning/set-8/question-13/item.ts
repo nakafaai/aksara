@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Viele Lernende berichten, dass die Erinnerungen ihnen bei den Fristen geholfen haben.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vergleichbare Klassen ohne App zeigten keinen Anstieg pünktlicher Abgaben.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Schule verwendete in beiden Zeiträumen dieselbe Definition von „pünktlich“.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In derselben Woche wurde die Abgabefrist von $$17$$ Uhr bis Mitternacht verlängert.",
-        },
-        {
-          isCorrect: false,
-          label: "Die App erinnert einen Tag vor jeder Abgabefrist.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Many students report that the reminders helped them remember due dates.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Comparable classes without the app showed no increase in on-time submissions.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The school used the same definition of “on time” in both periods.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In the same week, the submission deadline was extended from $$5$$ p.m. to midnight.",
-        },
-        {
-          isCorrect: false,
-          label: "The app sends a reminder one day before each deadline.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

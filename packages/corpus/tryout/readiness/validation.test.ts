@@ -8,7 +8,7 @@ import { defineTryoutExamSource } from "#corpus/tryout/schema";
 const sections = [
   {
     key: "general-reasoning",
-    languagePolicy: { kind: "app-locale" as const },
+    languagePolicy: { kind: "fixed" as const, language: "id" as const },
     order: 1,
     questionCount: 30,
     questionSourcePath:
@@ -23,7 +23,7 @@ const sections = [
   },
   {
     key: "quantitative-knowledge",
-    languagePolicy: { kind: "app-locale" as const },
+    languagePolicy: { kind: "fixed" as const, language: "id" as const },
     order: 2,
     questionCount: 20,
     questionSourcePath:

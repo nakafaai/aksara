@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "In vielen Bürovierteln ist der Mietaufschlag in Arbeitsplatznähe höher als die zusätzlichen Fahrtkosten eines weiter entfernten Zimmers, sodass die entfernte Wahl insgesamt weniger kostet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Viele junge Berufstätige bevorzugen ein Zimmer nahe der Arbeit, selbst wenn die Miete etwas höher ist.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine niedrige Miete und ein kurzer Arbeitsweg machen ein Mietzimmer für Interessierte attraktiver.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Junge Berufstätige vergleichen Miete und Fahrtkosten, wenn sie ihre monatlichen Gesamtkosten berechnen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein kürzerer Arbeitsweg verringert die Entfernung zwischen Zimmer und Arbeitsplatz.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "In many office districts, the rent premium near work is larger than the extra transport cost from a more distant room, so the distant option has a lower total monthly cost.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Many young workers prefer a room near work even when its rent is slightly higher.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Low rent and a short commute make a rented room more attractive to prospective tenants.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Young workers compare rent and transport when estimating their total monthly cost.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A shorter route reduces the distance travelled between the room and the workplace.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

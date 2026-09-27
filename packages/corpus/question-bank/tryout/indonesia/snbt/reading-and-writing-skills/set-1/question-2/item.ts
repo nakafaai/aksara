@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "vor Satz (5).",
-        },
-        {
-          isCorrect: false,
-          label: "nach Satz (1).",
-        },
-        {
-          isCorrect: false,
-          label: "vor Satz (6).",
-        },
-        {
-          isCorrect: true,
-          label: "nach dem Satz (2).",
-        },
-        {
-          isCorrect: false,
-          label: "nach dem Satz (7).",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "before sentence (5).",
-        },
-        {
-          isCorrect: false,
-          label: "after sentence (1).",
-        },
-        {
-          isCorrect: false,
-          label: "before sentence (6).",
-        },
-        {
-          isCorrect: true,
-          label: "after sentence (2).",
-        },
-        {
-          isCorrect: false,
-          label: "after sentence (7).",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

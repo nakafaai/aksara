@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "real-numbers",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$14$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$16$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$14$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$16$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

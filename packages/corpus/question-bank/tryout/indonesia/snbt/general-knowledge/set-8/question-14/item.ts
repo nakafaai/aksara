@@ -2,64 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge.",
-        },
-        {
-          isCorrect: false,
-          label: "Bei Flutaufnahmen blieb die Übereinstimmung geringer.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Kalibrierung mittelt alle Meldungen, ohne Besuchszahlen und Validierungsergebnisse zu unterscheiden.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kalibrierung ordnet Bürgerbeiträge einer überprüfbaren Unsicherheit zu.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Classification errors make all volunteer data scientifically worthless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "An area without reports certainly contains no mangrove seedlings.",
-        },
-        {
-          isCorrect: false,
-          label: "Agreement remained lower for high-tide photographs.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Calibration averages every report without distinguishing visit counts and validation results.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Calibration places community contributions within measurable uncertainty.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -2,59 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Mindestens ein Gericht ist nicht zugleich säuerlich und scharf",
-        },
-        {
-          isCorrect: false,
-          label: "Mindestens ein Gericht ist weder säuerlich noch scharf",
-        },
-        {
-          isCorrect: false,
-          label: "Jedes Gericht enthält rohes Gemüse",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Mindestens ein Gericht enthält kein rohes Gemüse und schmeckt säuerlich und scharf",
-        },
-        {
-          isCorrect: false,
-          label: "Kein Gericht enthält rohes Gemüse",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "At least one dish is not both sour and spicy",
-        },
-        {
-          isCorrect: false,
-          label: "At least one dish is neither sour nor spicy",
-        },
-        {
-          isCorrect: false,
-          label: "Every dish contains raw vegetables",
-        },
-        {
-          isCorrect: true,
-          label:
-            "At least one dish contains no raw vegetables and tastes sour and spicy",
-        },
-        {
-          isCorrect: false,
-          label: "No dish contains raw vegetables",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

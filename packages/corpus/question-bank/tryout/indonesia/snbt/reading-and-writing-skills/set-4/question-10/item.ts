@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Unter denselben Messregeln plante das Team einen längeren Test der Fotoetiketten mit getrennter Auswertung neuer und erfahrener Ausleihender.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Mit geänderten Messregeln plante das Team einen längeren Test mit Fotoetiketten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wollte nur die Versuchstermine mit Fotoetiketten mit dem höchsten Ergebnis wiederholen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wollte Fotoetiketten dauerhaft einführen statt einen längeren Versuch durchzuführen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team plante einen längeren Test, der neue und erfahrene Ausleihende ohne Unterscheidung zusammenfasste.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Using the same measurement rules, the team planned a longer photo-label test with separate data for new and returning borrowers.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Using revised measurement rules, the team planned a longer photo-label test.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team planned to repeat only photo-label sessions with the highest result.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team planned to adopt photo labels permanently instead of running a longer test.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team planned a longer test that pooled new and returning borrowers without distinguishing them.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

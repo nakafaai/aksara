@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Alle Teilnehmenden wählten Tee mit Zuckerzusatz.",
-        },
-        {
-          isCorrect: false,
-          label: "Alle Teetrinkenden gaben Zucker hinzu.",
-        },
-        {
-          isCorrect: false,
-          label: "Niemand trank Tee ohne Zuckerzusatz.",
-        },
-        {
-          isCorrect: true,
-          label: "Mindestens eine Person trank Tee ohne Zuckerzusatz.",
-        },
-        {
-          isCorrect: false,
-          label: "Alle Teilnehmenden, die ein Getränk wählten, wählten Tee.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Every participant chose tea with added sugar.",
-        },
-        {
-          isCorrect: false,
-          label: "Every tea drinker added sugar.",
-        },
-        {
-          isCorrect: false,
-          label: "No participant drank tea without added sugar.",
-        },
-        {
-          isCorrect: true,
-          label: "At least one participant drank tea without added sugar.",
-        },
-        {
-          isCorrect: false,
-          label: "Every participant who chose a drink chose tea.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

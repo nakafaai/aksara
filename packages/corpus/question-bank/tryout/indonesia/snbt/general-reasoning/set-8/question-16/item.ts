@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv wahr.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist wahrscheinlich wahr.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv falsch.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "The conclusion is definitely true.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is probably true.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is definitely false.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is irrelevant to the given information.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

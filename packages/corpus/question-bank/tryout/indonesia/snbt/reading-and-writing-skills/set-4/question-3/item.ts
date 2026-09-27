@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Die Ausgangsbeobachtung bewies, dass Fotoetiketten den Ergebnisunterschied verursachten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team musste vor der nächsten Messung mehrere Merkmale des Dienstes gleichzeitig ändern.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Ausgangsmuster rechtfertigte die dauerhafte Einführung von Fotoetiketten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich überflüssig.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Hypothese musste deshalb durch zusätzliche Fotoetiketten an den Regalen geprüft werden.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "The baseline observation proved that photo labels caused the difference in results.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team needed to change several service features at once before measuring again.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The baseline pattern justified adopting photo labels permanently.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The remaining uncertainty made a further comparison unnecessary.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The hypothesis therefore needed to be tested by adding photo labels to the shelves.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

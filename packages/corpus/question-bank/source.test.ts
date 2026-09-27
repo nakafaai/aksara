@@ -124,7 +124,7 @@ layer(Path.layer)("question source", (it) => {
   it.effect("rejects missing, replaced, and nested companion files", () =>
     Effect.gen(function* () {
       const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const [missing, replaced, nested, missingGermanPrompt] =
+      const [missing, replaced, nested, missingAssessedPrompt] =
         yield* Effect.all(
           [
             rejectSyntheticQuestionSources(
@@ -149,7 +149,7 @@ layer(Path.layer)("question source", (it) => {
               questionEntries(
                 root,
                 generalQuestionSourceFiles.filter(
-                  (file) => file !== "question.de.mdx"
+                  (file) => file !== "question.id.mdx"
                 )
               ),
               new Map()
@@ -164,7 +164,7 @@ layer(Path.layer)("question source", (it) => {
         _tag: "QuestionFileSetError",
         sourcePath: `${questionTestSourceRoot}/${root}`,
       });
-      expect(missingGermanPrompt._tag).toBe("QuestionFileSetError");
+      expect(missingAssessedPrompt._tag).toBe("QuestionFileSetError");
     })
   );
   it.effect("rejects unevaluable and invalid localized item catalogs", () =>

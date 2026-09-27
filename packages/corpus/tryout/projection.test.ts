@@ -156,7 +156,7 @@ describe("tryout projection", () => {
                 ...question,
                 item: {
                   responses: {
-                    id: activeIndonesianResponse,
+                    en: activeIndonesianResponse,
                   },
                 },
               }

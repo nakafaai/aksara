@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Der Direktor sagt beide Vorhaben für dieses Jahr ab.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik verkauft das neue Produkt in diesem Jahr.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Direktor verschiebt beide Vorhaben bis zur Erteilung der Genehmigung.",
-        },
-        {
-          isCorrect: false,
-          label: "PT Batik verkauft das neue Produkt in diesem Jahr nicht.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Genehmigung wird in diesem Jahr erteilt.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "The director cancels both programs this year.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik sells the new product this year.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The director postpones both programs until the permit is complete.",
-        },
-        {
-          isCorrect: false,
-          label: "PT Batik does not sell the new product this year.",
-        },
-        {
-          isCorrect: false,
-          label: "The permit will be completed this year.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

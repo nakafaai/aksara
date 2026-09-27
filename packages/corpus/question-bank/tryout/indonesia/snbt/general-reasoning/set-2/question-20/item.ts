@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Indonesiens Bekleidungsexporte in die Vereinigten Staaten sanken um $$9{,}2\\%$$.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Japan ist der wichtigste Markt für Indonesiens Konfektionsbekleidung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die USA und Deutschland sind die beiden Länder mit den höchsten Exportwerten.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren $$2018$$ die Vereinigten Staaten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Wert der Bekleidungsexporte in die Vereinigten Staaten war niedriger als im Vorjahr.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Indonesia's garment exports to the United States fell by $$9.2\\%$$.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Japan is the main market for Indonesia's ready-made clothing products.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The United States and Germany are the two countries with the highest export values.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The main market for Indonesia's ready-made clothing products in $$2018$$ was the United States.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The export value of Indonesia's ready-made clothing to the United States is less than last year.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

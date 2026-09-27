@@ -35,7 +35,7 @@ const MATERIAL_HEAD = MaterialHeadSchema.make({
 });
 const QUESTION_HEAD = QuestionHeadSchema.make({
   artifactHash: HEAD_HASH,
-  artifactLocale: ArtifactLocaleSchema.make("en"),
+  artifactLocale: ArtifactLocaleSchema.make("id"),
   compilerConfigHash: HEAD_HASH,
   contentKey: ContentKeySchema.make(
     "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question"
@@ -46,7 +46,7 @@ const QUESTION_HEAD = QuestionHeadSchema.make({
   rendererDomain: "snbt-general",
   sourceHash: HEAD_HASH,
   sourcePath: CorpusSourcePathSchema.make(
-    "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.en.mdx"
+    "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.id.mdx"
   ),
 });
 

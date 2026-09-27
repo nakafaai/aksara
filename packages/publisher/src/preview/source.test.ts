@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
@@ -32,7 +33,7 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
     );
     const promptEntry = questionEntries.find(
       ({ bodyKind, artifactLocale }) =>
-        bodyKind === "question" && artifactLocale === "en"
+        bodyKind === "question" && artifactLocale === "id"
     );
     const answerEntry = questionEntries.find(
       ({ bodyKind, artifactLocale }) =>
@@ -59,7 +60,11 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
         selectPreviewDocument(article.checkoutRoot, articleEntry.sourcePath),
         selectPreviewDocument(material.checkoutRoot, englishPath),
         selectPreviewDocument(article.checkoutRoot, pageEntry.sourcePath),
-        selectPreviewDocument(article.checkoutRoot, promptEntry.sourcePath),
+        selectPreviewDocument(
+          article.checkoutRoot,
+          promptEntry.sourcePath,
+          AppLocaleSchema.make("en")
+        ),
         selectPreviewDocument(article.checkoutRoot, answerEntry.sourcePath),
       ],
       { concurrency: 5 }
@@ -180,7 +185,7 @@ layer(previewTestLayer)("preview source", (it) => {
         kind: "public-page",
       });
       expect(question).toMatchObject({
-        artifactLocale: "en",
+        artifactLocale: "id",
         bodyKind: "question",
         kind: "question-body",
       });

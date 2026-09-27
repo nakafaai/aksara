@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$2520$$ Einheiten",
-        },
-        {
-          isCorrect: false,
-          label: "$$1960$$ Einheiten",
-        },
-        {
-          isCorrect: false,
-          label: "$$2000$$ Einheiten",
-        },
-        {
-          isCorrect: false,
-          label: "$$2720$$ Einheiten",
-        },
-        {
-          isCorrect: false,
-          label: "$$3000$$ Einheiten",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$2520$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "$$1960$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "$$2000$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "$$2720$$ units",
-        },
-        {
-          isCorrect: false,
-          label: "$$3000$$ units",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -87,8 +87,8 @@ describe("tryout registry", () => {
       ]);
       expect(tiedExams.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
       expect(sources.map(({ sourceRevision }) => sourceRevision)).toEqual([
-        "2026-08-30",
-        "2026-08-31",
+        "2026-09-27",
+        "2026-09-27",
       ]);
     })
   );

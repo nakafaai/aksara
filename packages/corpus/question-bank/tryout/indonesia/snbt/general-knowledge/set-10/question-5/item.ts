@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Produktangaben müssen Lieferstufen unterscheiden, damit sie für Käufer knapp und bei Prüfungen rückverfolgbar bleiben.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In der Simulation begrenzten nach Produktionsstufen gegliederte Aufzeichnungen den Rückruf besser als ein einzelner Ortsname.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Marktleitung schlägt ein Herkunftslabel nach dem letzten Verpackungsort vor.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Product-origin information must distinguish supply-chain stages so it remains concise for buyers and traceable during inspection.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In the simulation, layered records narrowed the products requiring withdrawal compared with a single-location label.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Market managers propose one origin label based on the place where the product was last packed.",
-        },
-        {
-          isCorrect: false,
-          label: "A package code will link to a fuller supply-chain record.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Every production stage must be printed in full on the front of every package.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Die Veränderung ist groß genug, um die Entscheidung auch unter Berücksichtigung der Messunsicherheit zu ändern.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Stichprobengröße und Ressourcen werden im Verhältnis zur Reichweite der beabsichtigten Aussage erhöht.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die letzte zusätzliche Einheit fügt dem bereits erzielten Nutzen nur einen kleinen Betrag hinzu.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team erzielt bei gleicher Qualität ein gleichwertiges Ergebnis mit weniger Zeit und Energie.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "The change is large enough to alter the decision after measurement uncertainty is considered.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Sample size and resources are increased in proportion to the scope of the intended claim.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The final additional unit adds only a small amount to the benefit already obtained.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team obtains an equivalent output with less time and energy without reducing quality.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

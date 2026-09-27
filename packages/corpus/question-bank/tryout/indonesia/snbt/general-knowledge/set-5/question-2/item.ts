@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Bewertenden verwenden ein vorab festgelegtes Raster und kennen bei der Bewertung weder die Identitäten noch die Endergebnisse.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "The claim is built from repeated observations and measurements rather than assumption alone.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The source, method, and data trail can be checked independently before the claim is accepted.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Reviewers use a predefined rubric and assess the work without knowing participant identities or final outcomes.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

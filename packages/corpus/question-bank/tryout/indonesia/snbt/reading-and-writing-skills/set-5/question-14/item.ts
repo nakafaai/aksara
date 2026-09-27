@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Die Daten worden im Aufnahmestudio der Schule erhebt und danach vergleichen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten wurden an das Aufnahmestudio der Schule erhoben und danach verglichen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Daten wurden im Aufnahmestudio der Schule erhoben und danach verglichen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten wurden im Aufnahmestudio der Schule erhoben anschließend sie verglichen wurden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten wurden von Aufnahmestudio der Schule erheben und anschließend vergleicht.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Data were collected in the school recording studio and compared afterward in.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data was collect in the school recording studio and comparing afterward.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data were collected in the school recording studio and compared afterward.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data were collected in the school recording studio and afterward compared it.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data collected the school recording studio and were comparison afterward.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

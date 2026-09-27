@@ -33,7 +33,7 @@ const tkaTryoutCatalog = defineTryoutExamSource({
     },
   },
   scoringStrategy: "raw",
-  sourceRevision: "2026-08-31",
+  sourceRevision: "2026-09-27",
   tracks: [tkaCompulsoryMathematicsTrack, tkaIndonesianTrack, tkaEnglishTrack],
 });
 

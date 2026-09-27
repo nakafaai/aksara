@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "deshalb.",
-        },
-        {
-          isCorrect: false,
-          label: "das.",
-        },
-        {
-          isCorrect: false,
-          label: "also.",
-        },
-        {
-          isCorrect: false,
-          label: "weil.",
-        },
-        {
-          isCorrect: true,
-          label: "aber.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "therefore.",
-        },
-        {
-          isCorrect: false,
-          label: "that.",
-        },
-        {
-          isCorrect: false,
-          label: "so.",
-        },
-        {
-          isCorrect: false,
-          label: "because.",
-        },
-        {
-          isCorrect: true,
-          label: "but.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

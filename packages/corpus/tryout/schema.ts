@@ -30,7 +30,11 @@ const TryoutTranslationMapSchema = localizedSourceMapSchema(
 
 const TryoutSectionSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
-  languagePolicy: AssessmentLanguagePolicySchema,
+  languagePolicy: AssessmentLanguagePolicySchema.check(
+    Schema.makeFilter((policy) => policy.kind === "fixed", {
+      message: "Exam language must be fixed independently of the app locale.",
+    })
+  ),
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionSourcePath: QuestionSetKeySchema,

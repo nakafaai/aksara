@@ -2,56 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "Hygrometer : Luftfeuchtigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "Temperatur : Thermometer",
-        },
-        {
-          isCorrect: false,
-          label: "Entfernung : Kilometerzähler",
-        },
-        {
-          isCorrect: false,
-          label: "Waage : Geschwindigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "Mikroskop : Schallintensität",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "hygrometer : humidity",
-        },
-        {
-          isCorrect: false,
-          label: "temperature : thermometer",
-        },
-        {
-          isCorrect: false,
-          label: "distance : odometer",
-        },
-        {
-          isCorrect: false,
-          label: "scale : speed",
-        },
-        {
-          isCorrect: false,
-          label: "microscope : sound intensity",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

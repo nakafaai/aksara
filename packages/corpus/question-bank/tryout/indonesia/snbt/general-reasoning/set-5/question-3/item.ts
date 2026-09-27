@@ -2,60 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "Stunting bedeutet ein zu geringes Gewicht für die Körpergröße",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Stunting kann nur durch genetische Faktoren verursacht werden",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Stunting ist eine zu geringe Körpergröße für das Alter und steht häufig mit chronischer oder wiederkehrender Unterernährung in Verbindung",
-        },
-        {
-          isCorrect: false,
-          label: "Stunting verursacht immer eine kognitive Behinderung",
-        },
-        {
-          isCorrect: false,
-          label: "Überernährung ist die einzige Ursache von Stunting",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Stunting means low weight for height",
-        },
-        {
-          isCorrect: false,
-          label: "Only genetic factors can cause stunting",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Stunting is low height for age and is commonly linked to chronic or recurrent undernutrition",
-        },
-        {
-          isCorrect: false,
-          label: "Stunting always causes cognitive disability",
-        },
-        {
-          isCorrect: false,
-          label: "Overnutrition is the only cause of stunting",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "Der GKP-Erzeugerpreis sinkt von Jahr zu Jahr weiter",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Regierung muss den Ankaufspreis erhöhen und den Landwirten zusätzliche Hilfen gewähren",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die zuständigen Stellen müssen die Präsidialverordnung Nr. $$63$$ von $$2017$$ zur bargeldlosen Sozialhilfe überarbeiten",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Zahl der Rohreisverkäufe in $$30$$ Provinzen sank im April $$2019$$ um $$5{,}37\\%$$, während Grundnahrungsmittel teurer wurden",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Eine schwächere Preisstabilisierung auf Erzeugerebene verringert Kaufkraft und Lebensstandard der Landwirte",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label:
-            "The price of grain, GKP (dry harvested grain), at the farmer level continues to decline from year to year",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The government is forced to increase the purchase price of farmers' grain and provide assistance to farmers",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Related parties must revise Presidential Regulation Number $$63$$ of $$2017$$ regarding Non-Cash Social Assistance Distribution",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Grain sales transactions in $$30$$ provinces during April $$2019$$ fell $$5.37\\%$$, in stark contrast to the increase in prices of basic needs",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

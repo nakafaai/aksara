@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "measurement",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$\\frac35$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac23$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{109}{165}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{107}{165}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac7{10}$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$\\frac35$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac23$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{109}{165}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{107}{165}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac7{10}$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

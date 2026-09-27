@@ -2,65 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Ein Ortsname kann wahr und dennoch irreführend sein, wenn er als gesamte Produktreise verstanden wird.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Maniok wurde im Dorf Rawa geschnitten und in der Stadt frittiert.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "A single place name can be true yet misleading if readers take it to represent the product's entire journey.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Every production stage must be printed in full on the front of every package.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Once a code exists, supplier records no longer need updating.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The cassava was sliced in Rawa Village and fried in the city.",
-        },
-        {
-          isCorrect: false,
-          label: "A package code will link to a fuller supply-chain record.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

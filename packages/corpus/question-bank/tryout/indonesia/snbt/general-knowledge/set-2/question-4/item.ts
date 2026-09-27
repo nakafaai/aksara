@@ -2,58 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "wie Fledermäuse nachts Nahrung suchen.",
-        },
-        {
-          isCorrect: true,
-          label: "die Vorteile des kopfüber hängenden Ruhens für Fledermäuse.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "wie das Fallenlassen von einer Sitzfläche den Abflug erleichtert.",
-        },
-        {
-          isCorrect: false,
-          label: "die Orte, an denen Fledermäuse tagsüber ruhen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "wie hohe Quartiere Fledermäuse vor Raubtieren schützen können.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "how bats search for food at night.",
-        },
-        {
-          isCorrect: true,
-          label: "the advantages of upside-down roosting for bats.",
-        },
-        {
-          isCorrect: false,
-          label: "how dropping from a perch helps a bat take flight.",
-        },
-        {
-          isCorrect: false,
-          label: "the places where bats rest during the day.",
-        },
-        {
-          isCorrect: false,
-          label: "how high roosts may help bats avoid predators.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

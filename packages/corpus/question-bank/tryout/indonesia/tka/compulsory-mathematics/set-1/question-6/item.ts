@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "linear-equations-inequalities",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp }27{.}000$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }22{.}500$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }24{.}750$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }29{.}250$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }31{.}500$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp }27{,}000$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }22{,}500$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }24{,}750$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }29{,}250$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\text{Rp }31{,}500$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

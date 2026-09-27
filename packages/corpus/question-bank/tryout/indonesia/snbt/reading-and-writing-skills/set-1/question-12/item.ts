@@ -2,66 +2,6 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, die sich zum Beispiel in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, sodass sie sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, weil sie sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, aber sie zeigt sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität und die sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: true,
-          label:
-            "Environmental degradation is a decline in environmental quality that is evident, for example, in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Environmental degradation is a decline in environmental quality, so it is evident in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Environmental degradation is a decline in environmental quality because it is evident in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Environmental degradation is a decline in environmental quality, but it is evident in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Environmental degradation is a decline in environmental quality and which is evident in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

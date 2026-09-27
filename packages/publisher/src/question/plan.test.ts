@@ -63,20 +63,20 @@ function replaceHead(
 const makePlanTestFixtures = Effect.fn("QuestionPlanTest.makeFixtures")(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
-    const englishEntry = yield* Effect.fromNullishOr(
+    const promptEntry = yield* Effect.fromNullishOr(
       questionEntries.find(
         ({ bodyKind, artifactLocale }) =>
-          bodyKind === "question" && artifactLocale === "en"
+          bodyKind === "question" && artifactLocale === "id"
       )
     );
-    const englishHead = yield* Effect.fromNullishOr(
+    const promptHead = yield* Effect.fromNullishOr(
       publishedHeads.find(
         ({ contentKey, artifactLocale }) =>
-          contentKey === englishEntry.contentKey && artifactLocale === "en"
+          contentKey === promptEntry.contentKey && artifactLocale === "id"
       )
     );
 
-    return { englishEntry, englishHead, publishedHeads };
+    return { promptEntry, promptHead, publishedHeads };
   })
 );
 
@@ -111,11 +111,11 @@ layer(planTestLayer)("question plan", (it) => {
 
   it.effect("compiles only the real question body whose source changed", () =>
     Effect.gen(function* () {
-      const { englishEntry, publishedHeads } = yield* QuestionPlanTestFixtures;
+      const { promptEntry, publishedHeads } = yield* QuestionPlanTestFixtures;
       const sources = new Map(sourceByPath);
-      const absolutePath = resolve(checkoutRoot, englishEntry.sourcePath);
-      const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${english}\n`);
+      const absolutePath = resolve(checkoutRoot, promptEntry.sourcePath);
+      const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
+      sources.set(absolutePath, `${source}\n`);
 
       const records = yield* Effect.promise(() =>
         collectQuestionPublication({
@@ -126,7 +126,7 @@ layer(planTestLayer)("question plan", (it) => {
 
       expect(records).toHaveLength(1);
       expect(records[0]?.record.change).toMatchObject({
-        artifactLocale: "en",
+        artifactLocale: "id",
         delivery: "authenticated",
         family: "question",
         operation: "upsert",
@@ -141,7 +141,7 @@ layer(planTestLayer)("question plan", (it) => {
       Effect.gen(function* () {
         const fixture = yield* QuestionPlanTestFixtures;
         const head = yield* modifyHead({
-          ...fixture.englishHead,
+          ...fixture.promptHead,
           ...changed,
         });
         const records = yield* Effect.promise(() =>
@@ -159,11 +159,11 @@ layer(planTestLayer)("question plan", (it) => {
     Effect.gen(function* () {
       const fixture = yield* QuestionPlanTestFixtures;
       const stale = yield* modifyHead({
-        ...fixture.englishHead,
+        ...fixture.promptHead,
         contentKey:
           "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-99/question",
         sourcePath:
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-99/question.en.mdx",
+          "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-99/question.id.mdx",
       });
       const records = yield* Effect.promise(() =>
         collectQuestionPublication({
@@ -175,7 +175,7 @@ layer(planTestLayer)("question plan", (it) => {
         prior: { head: stale, state: "question" },
         record: {
           change: {
-            artifactLocale: "en",
+            artifactLocale: "id",
             contentKey: stale.contentKey,
             family: "question",
             operation: "delete",
@@ -192,20 +192,20 @@ layer(planTestLayer)("question plan", (it) => {
         collectQuestionPublication({ heads: [] })
       );
 
-      expect(records).toHaveLength(6);
+      expect(records).toHaveLength(4);
       expect(
         records.every(({ record }) => record.change.operation === "upsert")
       ).toBe(true);
-      expect(compilerState.calls).toBe(6);
+      expect(compilerState.calls).toBe(4);
     })
   );
 
   it.effect("fails when a body cannot join its canonical item source", () =>
     Effect.gen(function* () {
-      const { englishEntry } = yield* QuestionPlanTestFixtures;
+      const { promptEntry } = yield* QuestionPlanTestFixtures;
       const error = yield* planQuestionPublication({
         checkoutRoot,
-        entries: [englishEntry],
+        entries: [promptEntry],
         published: Stream.empty,
         rendererManifest,
         sources: [],
@@ -218,7 +218,7 @@ layer(planTestLayer)("question plan", (it) => {
       expect(error).toBeInstanceOf(QuestionItemJoinError);
       expect(error).toMatchObject({
         _tag: "QuestionItemJoinError",
-        sourceRoot: englishEntry.sourceRoot,
+        sourceRoot: promptEntry.sourceRoot,
       });
     })
   );

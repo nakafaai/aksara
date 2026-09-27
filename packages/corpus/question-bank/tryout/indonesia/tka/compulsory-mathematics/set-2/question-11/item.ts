@@ -7,56 +7,6 @@ const item: QuestionItem = {
     topic: "geometry-objects",
   },
   responses: {
-    de: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$112$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$120$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$130$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$136$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$124$$",
-        },
-      ],
-    },
-    en: {
-      kind: "single-choice",
-      options: [
-        {
-          isCorrect: false,
-          label: "$$112$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$120$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$130$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$136$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$124$$",
-        },
-      ],
-    },
     id: {
       kind: "single-choice",
       options: [

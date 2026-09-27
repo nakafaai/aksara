@@ -17,14 +17,14 @@ import {
 
 const promptEntry = questionEntries.find(
   ({ bodyKind, artifactLocale }) =>
-    bodyKind === "question" && artifactLocale === "en"
+    bodyKind === "question" && artifactLocale === "id"
 );
 const answerEntry = questionEntries.find(
   ({ bodyKind, artifactLocale }) =>
     bodyKind === "answer" && artifactLocale === "en"
 );
 
-/** Requires the paired English question and answer registry fixtures. */
+/** Requires the Indonesian question and English answer registry fixtures. */
 const requireEntries = Effect.fn("QuestionDocumentTest.requireEntries")(
   function* () {
     const prompt = yield* Effect.fromNullishOr(promptEntry);
@@ -114,7 +114,7 @@ describe("question document", () => {
         ]);
         const response = yield* questionResponseFor(
           questionItem,
-          ArtifactLocaleSchema.make("en")
+          ArtifactLocaleSchema.make("id")
         );
 
         expect(prompt).toMatchObject({
