@@ -75,6 +75,9 @@ for clarity, measurable scale, and safe releases.
   filesystem paths are not module imports.
 - Root task scripts delegate to Turbo, except repository-wide tooling such as
   Ultracite and source-policy checks.
+- Before changing Turborepo configuration or commands, read `docs/README.md` in
+  the installed `turbo` package and the relevant pages under its `docs/`
+  directory.
 - Run focused workspace tests through `pnpm exec turbo run test --filter=...`.
   Do not bypass Turbo for tests that consume another workspace because Turbo
   owns the dependency build order.

@@ -27,7 +27,7 @@ const OutdatedSchema = Schema.Record(Schema.String, Schema.Unknown);
 /** A dependency command could not execute or returned unusable output. */
 export class DependencyCommandError extends Schema.TaggedError<DependencyCommandError>()(
   "DependencyCommandError",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 /** Collects one child-process byte stream as UTF-8 text. */
@@ -59,7 +59,7 @@ export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
       })
     ).pipe(
       Effect.mapError(
-        (error) => new DependencyCommandError({ detail: error.message })
+        (error) => new DependencyCommandError({ message: error.message })
       )
     )
 );
@@ -69,14 +69,14 @@ export function decodeRegistryVersion(output: CommandOutput, registry: string) {
   if (output.exitCode !== 0) {
     return Effect.fail(
       new DependencyCommandError({
-        detail: output.stderr.trim() || `Unable to inspect ${registry}.`,
+        message: output.stderr.trim() || `Unable to inspect ${registry}.`,
       })
     );
   }
   return Effect.try({
     catch: () =>
       new DependencyCommandError({
-        detail: `${registry} returned invalid JSON.`,
+        message: `${registry} returned invalid JSON.`,
       }),
     try: () => JSON.parse(output.stdout) as unknown,
   }).pipe(
@@ -84,7 +84,7 @@ export function decodeRegistryVersion(output: CommandOutput, registry: string) {
     Effect.mapError(
       () =>
         new DependencyCommandError({
-          detail: `${registry} returned no version.`,
+          message: `${registry} returned no version.`,
         })
     )
   );
@@ -95,7 +95,7 @@ export function decodeOutdatedDependencies(output: CommandOutput) {
   if (![0, 1].includes(output.exitCode)) {
     return Effect.fail(
       new DependencyCommandError({
-        detail: output.stderr.trim() || "pnpm outdated failed.",
+        message: output.stderr.trim() || "pnpm outdated failed.",
       })
     );
   }
@@ -103,7 +103,7 @@ export function decodeOutdatedDependencies(output: CommandOutput) {
     ? Effect.try({
         catch: () =>
           new DependencyCommandError({
-            detail: "pnpm outdated returned invalid JSON.",
+            message: "pnpm outdated returned invalid JSON.",
           }),
         try: () => JSON.parse(output.stdout) as unknown,
       })
@@ -114,7 +114,7 @@ export function decodeOutdatedDependencies(output: CommandOutput) {
     Effect.mapError(
       () =>
         new DependencyCommandError({
-          detail: "pnpm outdated returned an invalid shape.",
+          message: "pnpm outdated returned an invalid shape.",
         })
     )
   );
