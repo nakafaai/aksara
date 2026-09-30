@@ -49,6 +49,9 @@ Never duplicate an exam prompt or its response options merely because the
 application locale changes. Explanations may quote the original prompt language
 while explaining the reasoning in the learner's application locale.
 
+New sets imported from Nakafa's own PDFs also follow
+[importing try-out sets](import.md).
+
 ## Prompt rules
 
 - Keep the wording unambiguous and preserve assessed source meaning.

@@ -64,3 +64,29 @@
 - Prefer concise completeness over brevity. A shorter explanation is worse when
   it forces the learner to invent a missing premise or reasoning step.
 - Use concrete examples only when they immediately clarify the concept.
+
+## A conversation, not a textbook
+
+Lessons should read like a good teacher sitting next to one learner: warm,
+direct, and precise. Stiff textbook prose and generated-sounding prose both
+push the learner away.
+
+- Address the learner directly and keep the learner as the actor when the
+  learner does something: `Coba geser titik P ke kanan dan perhatikan jarak ke
+  titik O.` rather than `Titik P dapat digeser ke kanan.`
+- Answer the question a learner would ask next, in the next sentence. When a
+  rule has a condition, say why the condition matters with a case where it
+  fails.
+- State facts directly. Indonesian framing such as `dapat dilihat bahwa`,
+  `dapat disimpulkan bahwa`, and `perlu diperhatikan bahwa`, and the English
+  and German equivalents, usually hide the fact behind a frame; say the fact.
+- Treat these generated-sounding shapes as review signals, judged in context:
+  sweeping openers about everyday life or importance; closers that summarize
+  what was just said; inflated significance such as `memainkan peran penting`,
+  `plays a crucial role`, or `spielt eine wichtige Rolle`; lists of three vague
+  benefits; repeated `tidak hanya ... tetapi juga` or `not only ... but also`
+  contrasts; and stacked hedges. Keep a sentence when it carries a concrete,
+  checkable fact in this lesson. This is not a word ban; the test is whether a
+  teacher would say it to a learner.
+- Keep technical terms. Define each at first use in plain words, then use it
+  consistently.

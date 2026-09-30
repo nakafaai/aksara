@@ -112,10 +112,45 @@ never changes the mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
-effort. This is a review decision, not a quota. A clear short lesson can remain
-mostly prose, and a routine worked answer can remain prose plus one derivation.
-Do not add a table, blockquote, Mermaid diagram, video, or interaction merely
-to make the document look more varied.
+effort. Tables, blockquotes, and Mermaid diagrams remain review decisions, not
+quotas: a routine worked answer can remain prose plus one derivation, and none
+of them is added merely to make a document look more varied. Lessons also
+follow the interactive visual rule below.
+
+## Interactive visual in every lesson
+
+Learners understand and remember a concept they can see and play with, and
+Nakafa's most visited lessons are the ones with the richest scenes. Every
+lesson therefore carries at least one interactive visual.
+
+- The interaction answers a question the lesson asks: change a parameter and
+  watch the result, step through a process, rotate a structure, or run a
+  random experiment many times. A picture that only illustrates does not count.
+- The visual models this lesson's concept. Reusing a component is right when
+  its configuration teaches this lesson's question; the same component showing
+  the same kind of picture as a neighboring lesson is redundant, and the lesson
+  needs a visual of its own.
+- Choose the technology by the teaching job. Geometry, graphs, vectors, fields,
+  and 3D structures use the shared three.js foundation described above.
+  Probability experiments, step-by-step algorithms, particle and population
+  simulations, and other 2D animations use the renderer's p5 sketch component.
+  Data exploration uses the established interactive chart components.
+- Build component families, not one-off pictures. A new component takes the
+  parameters its lessons need, computes every drawn value from the governing
+  formula in a data module with complete unit tests, and cites the source of
+  every scientific constant. Scientific structures such as cells, viruses,
+  molecules, and machines must match their cited references in parts,
+  proportions where stated, labels, and motion.
+- Every visual renders inside its renderer-owned card: a header with a title
+  and description, the scene, and a footer holding the controls and the
+  fullscreen action. Fullscreen must stay readable and fully interactive on
+  phones and desktops.
+- Motion respects `prefers-reduced-motion`: the visual starts paused and its
+  still frame still teaches. Scenes and sketches pause when far off screen.
+- Be creative inside these limits. A good visual surprises the learner with a
+  relationship they can discover by playing, and every frame stays exact.
+- Verify every visual as described above, and additionally in fullscreen, with
+  reduced motion, and in every locale that changes its labels.
 
 During a humanization pass, compare the representation inventory before and
 after editing. Do not flatten a useful list, table, blockquote, Mermaid diagram,

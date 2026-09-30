@@ -52,6 +52,7 @@ Read only what the task needs. Each reference owns one concern.
 
 | Work | Read |
 | --- | --- |
+| Any lesson addition or rewrite | [Lesson standard](references/lesson.md) |
 | Any authored revision or translation | [Editorial workflow](references/editorial-workflow.md) |
 | Voice, register, and the clarity test | [Voice and scope](references/voice.md) |
 | Terminology and technical vocabulary | [Terminology](references/terminology.md) |
@@ -67,10 +68,12 @@ Read only what the task needs. Each reference owns one concern.
 | Learner-facing punctuation | [Learner facing punctuation](references/punctuation.md) |
 | Emphasis markers | [Emphasis](references/emphasis.md) |
 | Internal and external links | [Links](references/links.md) |
+| Search titles, descriptions, and search intent | [Search and answer engines](references/search.md) |
 | Mathematics and code in MDX | [Mathematics and code](references/math.md) |
 | Graphs, diagrams, and components | [Components and visuals](references/visuals.md) |
 | Representation research basis | [Evidence basis](references/evidence-basis.md) |
 | Questions and response items | [Question bank](references/question-bank.md) |
+| Importing try-out sets from Nakafa PDFs | [Importing try-out sets](references/import.md) |
 | Worked answer explanations | [Worked solutions](references/worked-solutions.md) |
 | Verification commands and acceptance | [Verification](references/verification.md) |
 
@@ -111,6 +114,13 @@ Read only what the task needs. Each reference owns one concern.
   `<Highlight>` render the same treatment, so the [emphasis
   contract](references/emphasis.md) owns where they belong and how dense they
   may be.
+- Every lesson meets the [lesson standard](references/lesson.md): the answer
+  first, a teacher talking to one learner, at least one interactive visual that
+  models the concept, complete worked examples, common mistakes, practice with
+  answers, and search metadata in every locale.
+- Nothing is published before it passes the
+  [release gate](references/verification.md#release-gate). A small error on an
+  education platform is a defect, so every artifact is verified, never a sample.
 - Keep every lesson self-contained. An internal link adds navigation, never a
   teaching step, so explain the concept and link only where the prose genuinely
   invokes the relation. The [link policy](references/links.md) owns
