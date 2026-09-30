@@ -20,6 +20,8 @@ const ARCHIVE_BUILD_PATTERN =
   /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
 const FULL_GATE_PATTERN =
   /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build/u;
+const CI_TRIGGER_PATTERN =
+  /^on:\n {2}pull_request:\n(?: {2}#[^\n]*\n)* {2}merge_group:\n {4}branches: \[main\]\n {4}types: \[checks_requested\]\n\npermissions:/mu;
 const CONDITIONAL_GATE_PATTERN =
   /Decide exact archive release[\s\S]*Verify repository[\s\S]*if: steps\.decision\.outputs\.mode == 'create'[\s\S]*pnpm lint/u;
 const CONTRACT_TRIGGER_PATTERN =
@@ -103,6 +105,11 @@ export function verifyWorkflows({
     "CI must not parse contract versions in shell"
   );
   assert.match(ci, FULL_GATE_PATTERN, "CI must run every repository gate");
+  assert.match(
+    ci,
+    CI_TRIGGER_PATTERN,
+    "CI must run only for pull requests and merge queue groups"
+  );
   assert.match(
     ci,
     VERIFY_CONSUMER_PATTERN,
