@@ -38,7 +38,7 @@ misses an element below is not finished.
 9. **Woven internal links.** The lesson links its prerequisite and its natural
    next concept wherever the corpus teaches them, inside sentences that use the
    relation. [Links](links.md) owns the policy.
-10. **Search metadata.** Each locale carries its own `searchTitle` and
+10. **Search metadata.** Each locale carries its own `title` and
     `description` written for that language's learners. [Search](search.md)
     owns the rules.
 

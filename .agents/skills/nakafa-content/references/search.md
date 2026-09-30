@@ -14,13 +14,12 @@ and lessons reported as "Crawled, currently not indexed" come first. Record the
 queries a rewrite targets in the verification record outside the publication
 source, never in the lesson.
 
-## Search title and description
+## Title and description
 
-- Every lesson locale carries a `searchTitle`: the concept named with the words
-  that locale's learners type, plus the most useful promise the lesson keeps,
-  such as `Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal`. It stays within the
-  contract's length limit, contains no brand name, and never promises content
-  the lesson does not contain.
+- The `title` names the concept with the words that locale's learners type,
+  such as `Rotasi Fungsi`. It is the lesson heading and the page title a search
+  result shows, so it contains no brand name and never promises content the
+  lesson does not contain.
 - The `description` states in one or two sentences what the learner can do
   after reading, between about 120 and 155 characters.
 - Each locale writes for its own language's searches. Do not translate an
