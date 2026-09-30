@@ -11,9 +11,11 @@ standard and verified.
   work: written for Nakafa, or adapted from Nakafa's own earlier material after
   verification. Every passage and data source is original or used under the
   terms in [passages and rights](#passages-and-rights).
-- Never copy a question, passage, figure, or explanation from third-party
-  material. A third-party item may inform the topic, skill, and difficulty; the
-  published item has its own context, values, and wording.
+- Never copy a question, figure, or explanation from third-party material,
+  and use a third-party passage or data source only under the terms in
+  [passages and rights](#passages-and-rights). A third-party item may inform
+  the topic, skill, and difficulty; the published item has its own context,
+  values, and wording.
 - Treat every key and explanation in source material as a claim to verify,
   never as a fact.
 - Record the origin of each source and pin the exact version consulted in the
