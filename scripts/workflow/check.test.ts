@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
+import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
 
 const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
@@ -29,7 +30,7 @@ describe("workflow policy", () => {
   });
   it("always verifies each named release workflow", () => {
     const release = sources.release.replaceAll(
-      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b",
+      TOOLCHAIN_SETUP_ACTION,
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
     );
     expect(() => verifyWorkflows({ ...sources, release })).toThrow(

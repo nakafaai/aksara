@@ -5,6 +5,23 @@ const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
 const PNPM_SELECTOR_PATTERN =
   /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
 const TOOLCHAIN_SETUP_PREFIX = "pnpm/setup@";
+/** The reviewed pnpm/setup v3.0.0 commit. A newer release needs a new review. */
+export const TOOLCHAIN_SETUP_ACTION =
+  "pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024";
+/** Setup inputs that would replace the toolchain the root package.json owns. */
+const PACKAGE_JSON_INPUTS = [
+  ["version", "Workflows must derive the pnpm version from package.json"],
+  ["runtime", "Workflows must derive the runtime from package.json"],
+  ["node-version-file", "Workflows must derive the runtime from package.json"],
+  [
+    "package-json-file",
+    "Workflows must derive the toolchain from the root package.json",
+  ],
+  [
+    "working-directory",
+    "Workflows must derive the toolchain from the root package.json",
+  ],
+] as const;
 const LEGACY_PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
 const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
@@ -237,6 +254,11 @@ function verifyPnpmJob(
   const setupStep = steps[setupIndex];
   assert.ok(setupStep, "The toolchain setup step must exist");
   assert.equal(
+    scalarText(mapValue(setupStep, "uses")),
+    TOOLCHAIN_SETUP_ACTION,
+    "The toolchain setup must use the reviewed pnpm/setup release"
+  );
+  assert.equal(
     mapValue(setupStep, "if"),
     undefined,
     "The toolchain setup step must run unconditionally"
@@ -248,26 +270,9 @@ function verifyPnpmJob(
 
   const inputs = setupInputs(setupStep);
   assert.ok(inputs, "The toolchain setup step must define inputs");
-  assert.equal(
-    actionInput(inputs, "version"),
-    undefined,
-    "Workflows must derive the pnpm version from package.json"
-  );
-  assert.equal(
-    actionInput(inputs, "runtime"),
-    undefined,
-    "Workflows must derive the runtime from package.json"
-  );
-  assert.equal(
-    actionInput(inputs, "package-json-file"),
-    undefined,
-    "Workflows must derive the toolchain from the root package.json"
-  );
-  assert.equal(
-    actionInput(inputs, "working-directory"),
-    undefined,
-    "Workflows must derive the toolchain from the root package.json"
-  );
+  for (const [input, message] of PACKAGE_JSON_INPUTS) {
+    assert.equal(actionInput(inputs, input), undefined, message);
+  }
   const cache = actionInput(inputs, "cache");
   assert.ok(
     isScalar(cache) && cache.value === true,
