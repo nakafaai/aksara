@@ -61,6 +61,19 @@ for clarity, measurable scale, and safe releases.
   `pnpm deprecations` must cover every tracked authored TypeScript file.
 - Run `pnpm security:audit` after changing dependencies or the lockfile. Known
   dependency advisories are release blockers.
+- CI audits against live OSV advisories, so a new advisory can fail CI with no
+  code change. Pin the patched version with an override in
+  `pnpm-workspace.yaml` in its own change, then update waiting pull requests
+  from `main`.
+- pnpm checks every lockfile entry against its one-day `minimumReleaseAge`,
+  even in frozen installs. List a reviewed version that must land sooner in
+  `minimumReleaseAgeExclude`, and remove the entry once that version is a day
+  old or leaves the lockfile.
+- Judge a typecheck by its exit code. The Effect language service reports
+  suggestions, such as `Effect.undefined` for `Effect.succeed(undefined)`, that
+  fail the typecheck without the word "error".
+- Unresolved review threads, including automated reviewers', block merging. Fix
+  each verified finding or reply with evidence, then resolve the thread.
 - Keep handwritten TypeScript modules at or below 300 lines.
 - Give every stable callable declaration, including functions, methods, and
   callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
