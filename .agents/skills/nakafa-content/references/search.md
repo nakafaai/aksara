@@ -7,8 +7,8 @@ honestly what the learner will get.
 
 ## Evidence first
 
-Prioritize and plan rewrites with Google Search Console data for the
-`sc-domain:nakafa.com` property: queries, impressions, clicks, position, and
+Prioritize and plan rewrites with the site's search performance data, such as
+Google Search Console: queries, impressions, clicks, average position, and
 page indexing status. Lessons with many impressions at positions four to twenty
 and lessons reported as "Crawled, currently not indexed" come first. Record the
 queries a rewrite targets in the verification record outside the publication

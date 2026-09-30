@@ -119,9 +119,8 @@ follow the interactive visual rule below.
 
 ## Interactive visual in every lesson
 
-Learners understand and remember a concept they can see and play with, and
-Nakafa's most visited lessons are the ones with the richest scenes. Every
-lesson therefore carries at least one interactive visual.
+Learners understand and remember a concept they can see and change, so every
+lesson carries at least one interactive visual.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a

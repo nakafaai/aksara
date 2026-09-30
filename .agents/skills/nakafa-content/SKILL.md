@@ -73,7 +73,7 @@ Read only what the task needs. Each reference owns one concern.
 | Graphs, diagrams, and components | [Components and visuals](references/visuals.md) |
 | Representation research basis | [Evidence basis](references/evidence-basis.md) |
 | Questions and response items | [Question bank](references/question-bank.md) |
-| Importing try-out sets from Nakafa PDFs | [Importing try-out sets](references/import.md) |
+| Building try-out sets from any source material | [Try-out sets](references/sets.md) |
 | Worked answer explanations | [Worked solutions](references/worked-solutions.md) |
 | Verification commands and acceptance | [Verification](references/verification.md) |
 
