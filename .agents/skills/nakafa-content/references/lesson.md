@@ -67,8 +67,8 @@ count toward it.
    finding reaches zero, and every signal is either fixed or retained with a
    stated teaching reason.
 6. Compile the lesson and preview it through Nakafa's renderer at 390 and 1440
-   pixels in light and dark themes. Rotate every 3D scene, play every
-   animation, and open every visual in fullscreen.
+   pixels in light and dark themes. Rotate every 3D scene and play every
+   animation.
 7. Keep the verification record (claims, sources, recomputations, rendered
    checks) outside the publication source.
 

@@ -130,10 +130,12 @@ lesson carries at least one interactive visual.
   the same kind of picture as a neighboring lesson is redundant, and the lesson
   needs a visual of its own.
 - Choose the technology by the teaching job. Geometry, graphs, vectors, fields,
-  and 3D structures use the shared three.js foundation described above.
-  Probability experiments, step-by-step algorithms, particle and population
-  simulations, and other 2D animations use the renderer's p5 sketch component.
-  Data exploration uses the established interactive chart components.
+  and 3D structures use the shared three.js foundation described above. Data
+  exploration uses the established EvilCharts components. When no component in
+  the current renderer manifest can carry the teaching job, such as a random
+  experiment, a step-by-step algorithm, or a particle simulation, that is a
+  renderer gap: the component is built and deployed in Nakafa's renderer first,
+  and a lesson uses it only after the manifest lists it.
 - Build component families, not one-off pictures. A new component takes the
   parameters its lessons need, computes every drawn value from the governing
   formula in a data module with complete unit tests, and cites the source of
@@ -141,15 +143,13 @@ lesson carries at least one interactive visual.
   molecules, and machines must match their cited references in parts,
   proportions where stated, labels, and motion.
 - Every visual renders inside its renderer-owned card: a header with a title
-  and description, the scene, and a footer holding the controls and the
-  fullscreen action. Fullscreen must stay readable and fully interactive on
-  phones and desktops.
-- Motion respects `prefers-reduced-motion`: the visual starts paused and its
-  still frame still teaches. Scenes and sketches pause when far off screen.
+  and description, the scene, and a footer holding the controls.
+- The still frame teaches on its own, because a learner may pause the motion
+  or read the page with reduced motion.
 - Be creative inside these limits. A good visual surprises the learner with a
   relationship they can discover by playing, and every frame stays exact.
-- Verify every visual as described above, and additionally in fullscreen, with
-  reduced motion, and in every locale that changes its labels.
+- Verify every visual as described above, and additionally in every locale
+  that changes its labels.
 
 During a humanization pass, compare the representation inventory before and
 after editing. Do not flatten a useful list, table, blockquote, Mermaid diagram,

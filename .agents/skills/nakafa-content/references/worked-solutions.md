@@ -217,13 +217,6 @@ term at first use and explain it in the explanation language, for example
 *Definitionsbereich* (domain). Mathematics, symbols, and results stay identical
 across every locale.
 
-## Open-response answers with a rubric
-
-An open-response answer follows its rubric criterion by criterion, so the
-learner sees exactly which step earns which points. Show the complete solution
-path for each criterion, the final answer each deterministic criterion checks,
-and the common error that loses the point.
-
 ## Visual reasoning
 
 Geometry, vector, function, and data items get an interactive visual in the

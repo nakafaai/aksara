@@ -7,10 +7,13 @@ standard and verified.
 
 ## Original items
 
-- Every published prompt, option, passage, figure, and explanation is original
-  Nakafa work. Never copy a question, passage, figure, or explanation from
-  third-party material. An outside item may inform the topic, skill, and
-  difficulty; the published item has its own context, values, and wording.
+- Every published prompt, option, figure, and explanation is original Nakafa
+  work: written for Nakafa, or adapted from Nakafa's own earlier material after
+  verification. Every passage and data source is original or used under the
+  terms in [passages and rights](#passages-and-rights).
+- Never copy a question, passage, figure, or explanation from third-party
+  material. A third-party item may inform the topic, skill, and difficulty; the
+  published item has its own context, values, and wording.
 - Treat every key and explanation in source material as a claim to verify,
   never as a fact.
 - Record the origin of each source and a hash of the exact bytes consulted in

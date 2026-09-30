@@ -296,11 +296,15 @@ never to a sample, and the author of an artifact never serves as its verifier.
 - **Visuals:** data modules are unit tested at full coverage, drawn values are
   compared with the governing formula, scientific constants cite their source,
   and the rendered component is checked at phone and desktop widths, in light
-  and dark themes, in fullscreen, with reduced motion, and after rotation.
+  and dark themes, and after rotation.
 - **Scores:** each new set is attempted end to end, and the score matches a hand
   calculation for all-correct, all-wrong, and mixed answers.
-- **Release:** publish to development, pass acceptance, publish to production,
-  and check the published pages in production.
+- **Acceptance:** the change is published to development and passes
+  acceptance there.
+
+Production publication is the approved, protected release that follows a
+passed gate. After it, check the published pages in production and treat any
+difference from acceptance as a release defect.
 
 When verifiers disagree, a third verifier and the release owner decide from
 the evidence. An ambiguity that cannot be resolved removes the item or rewrites
