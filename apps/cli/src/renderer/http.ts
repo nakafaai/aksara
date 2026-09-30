@@ -6,11 +6,7 @@ import {
   readText,
 } from "@nakafa/aksara-utilities/http/response";
 import { Effect, type Redacted } from "effect";
-import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "effect/unstable/http";
+import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { makeNakafaAppError } from "#cli/app-error";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;

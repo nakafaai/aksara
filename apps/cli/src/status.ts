@@ -2,7 +2,7 @@ import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/cur
 
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { readPublicationEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import { retryPublicationTarget } from "#cli/retry";

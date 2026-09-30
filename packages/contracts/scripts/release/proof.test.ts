@@ -1,15 +1,8 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  Crypto,
-  Effect,
-  Encoding,
-  FileSystem,
-  Path,
-  Sink,
-  Stream,
-} from "effect";
-import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
+import { Crypto, Effect, FileSystem, Path, Sink, Stream } from "effect";
+import { Hex } from "effect/encoding";
+import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
   proveContractRelease,
@@ -94,7 +87,7 @@ const releaseMetadata = Effect.fn("ReleaseProofTest.releaseMetadata")(
     return {
       assets: [
         {
-          digest: `sha256:${Encoding.encodeHex(digest)}`,
+          digest: `sha256:${Hex.encode(digest)}`,
           name: `nakafa-aksara-contracts-${VERSION}.tgz`,
           size: Number(info.size),
         },

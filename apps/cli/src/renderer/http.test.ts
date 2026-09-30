@@ -8,7 +8,7 @@ import {
   HttpClient,
   HttpClientError,
   HttpClientRequest,
-} from "effect/unstable/http";
+} from "effect/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";

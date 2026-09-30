@@ -14,11 +14,11 @@ const ChildUrlSchema = Schema.String.pipe(
 
 const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PREVIEW_EVENTS_PATH: Schema.String.pipe(
-    Schema.check(Schema.isStartsWith("/"))
+    Schema.check(Schema.isStartingWith("/"))
   ),
   AKSARA_PREVIEW_KEY_ID: Schema.Trimmed.check(Schema.isNonEmpty()),
   AKSARA_PREVIEW_MANIFEST_PATH: Schema.String.pipe(
-    Schema.check(Schema.isStartsWith("/"))
+    Schema.check(Schema.isStartingWith("/"))
   ),
   AKSARA_PREVIEW_ORIGIN: Schema.String.pipe(
     Schema.check(Schema.isPattern(/^http:\/\/127\.0\.0\.1:\d+\/$/u))
@@ -39,7 +39,7 @@ const ChildEnvironmentSchema = Schema.Struct({
   NEXT_PUBLIC_CONVEX_URL: ChildUrlSchema,
   NEXT_PUBLIC_MCP_URL: ChildUrlSchema,
   NEXT_PUBLIC_POSTHOG_KEY: Schema.String.pipe(
-    Schema.check(Schema.isStartsWith("phc_"))
+    Schema.check(Schema.isStartingWith("phc_"))
   ),
   NEXT_PUBLIC_POSTHOG_UI_HOST: ChildUrlSchema,
   NEXT_PUBLIC_VERSION: Schema.Literal("aksara-preview"),

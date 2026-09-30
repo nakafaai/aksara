@@ -16,11 +16,7 @@ import {
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 
 import { Effect, Schema } from "effect";
-import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "effect/unstable/http";
+import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import {
   type PublicationTargetFailure,

@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import { parseVersion } from "#scripts/release/identity";
 

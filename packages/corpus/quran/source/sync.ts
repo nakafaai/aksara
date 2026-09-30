@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readBytes } from "@nakafa/aksara-utilities/http/response";
 import { Duration, Effect, FileSystem, Path, Result, Schema } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 
 import {
   GERMAN_QURAN_EDITION_URL,

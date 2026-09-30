@@ -5,7 +5,7 @@ import {
   HttpClient,
   type HttpClientRequest,
   HttpClientResponse,
-} from "effect/unstable/http";
+} from "effect/http";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { HttpPublicationTargetConfig } from "#publisher/target/config";
 import { makeHttpPublicationTarget } from "#publisher/target/http";

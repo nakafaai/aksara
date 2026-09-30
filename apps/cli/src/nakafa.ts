@@ -1,7 +1,7 @@
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Context, Effect, Layer } from "effect";
+import { HttpClient } from "effect/http";
 import type * as Scope from "effect/Scope";
-import { HttpClient } from "effect/unstable/http";
 import type { NakafaAppError } from "#cli/app-error";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {

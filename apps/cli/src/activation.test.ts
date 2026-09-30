@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "@effect/vitest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Stream } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";

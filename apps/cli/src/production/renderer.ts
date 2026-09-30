@@ -4,7 +4,7 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Redacted, Result, Schedule } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 

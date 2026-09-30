@@ -9,7 +9,7 @@ import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/cur
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { ConfigProvider, Effect, Schema } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
 import { captureClient, requestJson, webResponse } from "#test/http";

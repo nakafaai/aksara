@@ -8,9 +8,9 @@ import {
 } from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Fiber, Redacted } from "effect";
+import type { HttpClientRequest } from "effect/http";
+import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
-import type { HttpClientRequest } from "effect/unstable/http";
-import { HttpClient } from "effect/unstable/http";
 import type { RendererCredentials } from "#cli/credentials";
 import { fetchRendererManifest, waitForRenderer } from "#cli/renderer/manifest";
 import { captureClient, webResponse } from "#test/http";

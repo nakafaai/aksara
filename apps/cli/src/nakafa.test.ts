@@ -5,7 +5,7 @@ import {
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
 import { Effect, Redacted } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";

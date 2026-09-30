@@ -19,17 +19,17 @@ export interface DependencyHold {
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.0.0-rc.117",
+    approvedCurrent: "4.0.0-rc.118",
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort; RC118 needs a contracts release with the matching peer.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort.",
     registry: "effect@rc",
     reviewedLatest: "4.0.0-rc.118",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.0-rc.117",
+    approvedCurrent: "4.0.0-rc.118",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason: "All Effect ecosystem packages must use one exact cohort.",
@@ -38,7 +38,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.0-rc.117",
+    approvedCurrent: "4.0.0-rc.118",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason: "The test adapter must match the installed Effect cohort.",
@@ -50,7 +50,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "5.0.2",
     cohort: "Effect testing",
     dependency: "vitest",
-    reason: "The Effect RC117 test adapter accepts Vitest version 5.",
+    reason: "The Effect RC118 test adapter accepts Vitest version 5.",
     registry: "vitest@latest",
     reviewedLatest: "5.0.2",
     source: "catalog",
@@ -65,13 +65,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.46.1",
+    approvedCurrent: "0.47.1",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.46.1 fixes diagnostics within the Effect RC117 cohort, and 0.47.0 targets the Effect RC118 cohort.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.47 targets the Effect RC118 cohort, and 0.47.1 runs effect-tsgo patch without the deprecated --force flag.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.47.0",
+    reviewedLatest: "0.47.1",
     source: "root-dev-dependency",
   },
   {

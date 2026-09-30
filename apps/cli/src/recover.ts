@@ -11,7 +11,7 @@ import {
 import { recoverContentRelease } from "@nakafa/aksara-publisher/recover";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { Effect } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { readRecoveryEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";

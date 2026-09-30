@@ -3,11 +3,7 @@ import {
   ContentCacheRequestSchema,
 } from "@nakafa/aksara-contracts/cache/content";
 import { Effect, type Redacted, Schema } from "effect";
-import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-} from "effect/unstable/http";
+import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { readCacheReceipt } from "#cli/cache/receipt";
 

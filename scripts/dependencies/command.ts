@@ -1,9 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
-import {
-  ChildProcess,
-  type ChildProcessSpawner,
-} from "effect/unstable/process";
+import { ChildProcess, type ChildProcessSpawner } from "effect/process";
 
 /** Complete output from one repository-owned pnpm command. */
 export interface CommandOutput {

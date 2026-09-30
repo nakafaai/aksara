@@ -23,7 +23,7 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
 import { Effect } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
 import {

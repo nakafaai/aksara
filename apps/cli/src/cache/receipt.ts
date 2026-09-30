@@ -8,7 +8,7 @@ import {
   readText,
 } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";
-import type { HttpClientResponse } from "effect/unstable/http";
+import type { HttpClientResponse } from "effect/http";
 import { ContentCacheError } from "#cli/cache/error";
 
 const MAX_CACHE_RECEIPT_BYTES = 32 * 1024;

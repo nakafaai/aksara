@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Fiber, Logger, Redacted, References } from "effect";
+import type { HttpClientRequest } from "effect/http";
+import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
-import type { HttpClientRequest } from "effect/unstable/http";
-import { HttpClient } from "effect/unstable/http";
 import {
   fetchProductionRenderer,
   selectRendererManifest,

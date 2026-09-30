@@ -8,7 +8,7 @@ import {
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, type Redacted, Schedule, Schema, Stream } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { invalidateContentCache } from "#cli/cache/exchange";
 import { isRendererEndpoint } from "#cli/production/renderer";

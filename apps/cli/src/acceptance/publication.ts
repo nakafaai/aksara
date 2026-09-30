@@ -14,7 +14,7 @@ import {
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect, FileSystem, type Path, Stream } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import {
   AcceptanceEnvironmentError,
   readAcceptanceRenderer,

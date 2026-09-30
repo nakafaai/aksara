@@ -5,12 +5,8 @@ import {
   MAX_PUBLICATION_REQUEST_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Fiber, Schema } from "effect";
+import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
-import {
-  HttpClient,
-  HttpClientError,
-  HttpClientResponse,
-} from "effect/unstable/http";
 import {
   capturedClient,
   endpoint,
