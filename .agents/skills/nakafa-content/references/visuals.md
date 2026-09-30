@@ -119,8 +119,10 @@ follow the interactive visual rule below.
 
 ## Interactive visual in every lesson
 
-Learners understand and remember a concept they can see and change, so every
-lesson carries at least one interactive visual.
+Nakafa's lesson standard requires at least one interactive visual in every
+lesson, because learners understand and remember a concept they can see and
+change. The research in the [evidence basis](evidence-basis.md) governs how the
+visual is designed: it carries a teaching job and never decorates.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a

@@ -29,8 +29,8 @@ source, never in the lesson.
 ## Answering the question
 
 - The opening section answers the lesson's main question directly (see the
-  [lesson standard](lesson.md)). Answer engines and featured snippets quote
-  that passage.
+  [lesson standard](lesson.md)). Answer engines and featured snippets can quote
+  such a passage, although the search engine decides what it shows.
 - A heading may take the form of the question a learner asks, such as
   `Bagaimana cara merotasi titik 90°?`, when answering it is the section's
   teaching job. The [structure](structure.md) and [headings](headings.md) rules
