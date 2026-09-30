@@ -45,7 +45,7 @@ const WorkspaceSchema = Schema.Struct({
 /** A held cohort differs from its explicit repository review decision. */
 export class DependencyPolicyError extends Schema.TaggedError<DependencyPolicyError>()(
   "DependencyPolicyError",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 /** Reads one structured repository file through its runtime schema. */
@@ -60,18 +60,20 @@ const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(
       .readFileString(path)
       .pipe(
         Effect.mapError(
-          (error) => new DependencyPolicyError({ detail: error.message })
+          (error) => new DependencyPolicyError({ message: error.message })
         )
       );
     const input = yield* Effect.try({
       catch: () =>
-        new DependencyPolicyError({ detail: `${path} is not valid.` }),
+        new DependencyPolicyError({ message: `${path} is not valid.` }),
       try: () => parseSource(source),
     });
     return yield* Schema.decodeUnknownEffect(schema)(input).pipe(
       Effect.mapError(
         () =>
-          new DependencyPolicyError({ detail: `${path} has an invalid shape.` })
+          new DependencyPolicyError({
+            message: `${path} has an invalid shape.`,
+          })
       )
     );
   }
@@ -117,7 +119,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       );
     }
     if (problems.length > 0) {
-      return yield* new DependencyPolicyError({ detail: problems.join("\n") });
+      return yield* new DependencyPolicyError({ message: problems.join("\n") });
     }
 
     const update = yield* runner(config.root, [
@@ -127,7 +129,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     ]);
     if (update.exitCode !== 0) {
       return yield* new DependencyCommandError({
-        detail: update.stderr.trim() || "pnpm update failed.",
+        message: update.stderr.trim() || "pnpm update failed.",
       });
     }
 
@@ -179,7 +181,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       );
     }
     if (problems.length > 0) {
-      return yield* new DependencyPolicyError({ detail: problems.join("\n") });
+      return yield* new DependencyPolicyError({ message: problems.join("\n") });
     }
 
     yield* Effect.logInfo(

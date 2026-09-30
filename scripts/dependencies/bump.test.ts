@@ -35,6 +35,15 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
 
 const originalPath = process.env.PATH;
 
+/** Returns the approved declaration for one held dependency. */
+function approved(dependency: string) {
+  const hold = DEPENDENCY_HOLDS.find(
+    (entry) => entry.dependency === dependency
+  );
+  assert.ok(hold, `${dependency} has a reviewed hold`);
+  return hold.approvedCurrent;
+}
+
 /** Writes one complete dependency-policy fixture. */
 const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
   function* (input?: {
@@ -51,10 +60,10 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
     const manifest = path.join(root, "package.json");
     const workspace = path.join(root, "pnpm-workspace.yaml");
     const devDependencies: Record<string, string> = {
-      "@biomejs/biome": "2.5.14",
-      "@effect/tsgo": "0.45.0",
-      "@types/node": "24.13.6",
-      ...(input?.omitUltracite ? {} : { ultracite: "7.12.0" }),
+      "@biomejs/biome": approved("@biomejs/biome"),
+      "@effect/tsgo": approved("@effect/tsgo"),
+      "@types/node": approved("@types/node"),
+      ...(input?.omitUltracite ? {} : { ultracite: approved("ultracite") }),
     };
     const ignoreDeps = expectedIgnoredDependencies().filter(
       (dependency) => dependency !== input?.omitIgnore
@@ -74,12 +83,12 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       input?.invalidWorkspace ??
         stringify({
           catalog: {
-            "@effect/platform-node": "4.0.0-rc.117",
-            "@effect/vitest": "4.0.0-rc.117",
-            "@vitest/coverage-istanbul": "5.0.1",
-            effect: "4.0.0-rc.117",
-            typescript: "7.0.2",
-            vitest: "5.0.1",
+            "@effect/platform-node": approved("@effect/platform-node"),
+            "@effect/vitest": approved("@effect/vitest"),
+            "@vitest/coverage-istanbul": approved("@vitest/coverage-istanbul"),
+            effect: approved("effect"),
+            typescript: approved("typescript"),
+            vitest: approved("vitest"),
           },
           update: { ignoreDeps },
         })
@@ -141,8 +150,12 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
           assert.ok(effectReport);
-          assert.strictEqual(effectReport.current, "4.0.0-rc.117");
-          assert.strictEqual(effectReport.latest, "4.0.0-rc.117");
+          assert.strictEqual(effectReport.current, approved("effect"));
+          assert.strictEqual(
+            effectReport.latest,
+            DEPENDENCY_HOLDS.find(({ dependency }) => dependency === "effect")
+              ?.reviewedLatest
+          );
           assert.strictEqual(runtime.calls, 1);
         })
     );
@@ -163,10 +176,10 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           );
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(error.detail.includes("ultracite declares no version"));
-          assert.ok(error.detail.includes("ultracite upstream is 7.10.7"));
+          assert.ok(error.message.includes("ultracite declares no version"));
+          assert.ok(error.message.includes("ultracite upstream is 7.10.7"));
           assert.ok(
-            error.detail.includes("Routine dependencies remain outdated: yaml")
+            error.message.includes("Routine dependencies remain outdated: yaml")
           );
         })
     );
@@ -182,7 +195,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const error = yield* fail(config, runner);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(error.detail.includes("update.ignoreDeps"));
+          assert.ok(error.message.includes("update.ignoreDeps"));
           assert.strictEqual(runner.mock.calls.length, 0);
         })
     );
@@ -196,13 +209,13 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           makeRunner({ update: output(2, "", "update failed") })
         );
         assert.strictEqual(updateFailure._tag, "DependencyCommandError");
-        assert.strictEqual(updateFailure.detail, "update failed");
+        assert.strictEqual(updateFailure.message, "update failed");
 
         const emptyUpdateFailure = yield* fail(
           config,
           makeRunner({ update: output(2) })
         );
-        assert.strictEqual(emptyUpdateFailure.detail, "pnpm update failed.");
+        assert.strictEqual(emptyUpdateFailure.message, "pnpm update failed.");
 
         const missingManifest = yield* fail(
           {
@@ -218,11 +231,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           invalidManifest,
           makeRunner()
         );
-        assert.ok(invalidManifestFailure.detail.includes("is not valid"));
+        assert.ok(invalidManifestFailure.message.includes("is not valid"));
 
         const emptyManifest = yield* createConfig({ invalidManifest: "{}" });
         const emptyManifestFailure = yield* fail(emptyManifest, makeRunner());
-        assert.ok(emptyManifestFailure.detail.includes("invalid shape"));
+        assert.ok(emptyManifestFailure.message.includes("invalid shape"));
 
         const invalidWorkspace = yield* createConfig({
           invalidWorkspace: "[invalid",
@@ -231,11 +244,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           invalidWorkspace,
           makeRunner()
         );
-        assert.ok(invalidWorkspaceFailure.detail.includes("is not valid"));
+        assert.ok(invalidWorkspaceFailure.message.includes("is not valid"));
 
         const emptyWorkspace = yield* createConfig({ invalidWorkspace: "{}" });
         const emptyWorkspaceFailure = yield* fail(emptyWorkspace, makeRunner());
-        assert.ok(emptyWorkspaceFailure.detail.includes("invalid shape"));
+        assert.ok(emptyWorkspaceFailure.message.includes("invalid shape"));
       })
     );
 
@@ -244,11 +257,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const config = yield* createConfig();
         const error = yield* fail(config, () =>
           Effect.fail(
-            new DependencyCommandError({ detail: "runner unavailable" })
+            new DependencyCommandError({ message: "runner unavailable" })
           )
         );
 
-        assert.strictEqual(error.detail, "runner unavailable");
+        assert.strictEqual(error.message, "runner unavailable");
       })
     );
 

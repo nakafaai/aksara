@@ -25,22 +25,22 @@ const PackageManifest = Schema.Struct({
 
 class EffectSourceReadError extends Schema.TaggedError<EffectSourceReadError>()(
   "EffectSourceReadError",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 class EffectSourceGitError extends Schema.TaggedError<EffectSourceGitError>()(
   "EffectSourceGitError",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 class EffectSourceMismatch extends Schema.TaggedError<EffectSourceMismatch>()(
   "EffectSourceMismatch",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 class EffectSourceUsageError extends Schema.TaggedError<EffectSourceUsageError>()(
   "EffectSourceUsageError",
-  { detail: Schema.String }
+  { message: Schema.String }
 ) {}
 
 /** Collects one command stream without leaving a child process unscoped. */
@@ -56,7 +56,7 @@ function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
 
 /** Translates one platform command failure into the CLI error contract. */
 function gitPlatformError(error: PlatformError) {
-  return new EffectSourceGitError({ detail: error.message });
+  return new EffectSourceGitError({ message: error.message });
 }
 
 /** Runs Git with structured concurrency and preserves non-zero diagnostics. */
@@ -78,7 +78,7 @@ const runGit = Effect.fn("EffectSource.runGit")((args: readonly string[]) =>
       if (exitCode !== 0) {
         const diagnostic = stderr.trim() || stdout.trim() || "Git failed.";
         return yield* new EffectSourceGitError({
-          detail: `git ${args.join(" ")}: ${diagnostic}`,
+          message: `git ${args.join(" ")}: ${diagnostic}`,
         });
       }
 
@@ -102,13 +102,13 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
     .readFileString(path)
     .pipe(
       Effect.mapError(
-        (error) => new EffectSourceReadError({ detail: error.message })
+        (error) => new EffectSourceReadError({ message: error.message })
       )
     );
   const input = yield* Effect.try({
     catch: () =>
       new EffectSourceReadError({
-        detail: `${path} does not contain valid JSON.`,
+        message: `${path} does not contain valid JSON.`,
       }),
     try: (): unknown => JSON.parse(source),
   });
@@ -117,7 +117,7 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
     Effect.mapError(
       () =>
         new EffectSourceReadError({
-          detail: `${path} does not contain a valid Effect version.`,
+          message: `${path} does not contain a valid Effect version.`,
         })
     ),
     Effect.map((manifest) => manifest.version)
@@ -137,7 +137,7 @@ const inspectSource = Effect.fn("EffectSource.inspect")(function* (
 
   if (sourceStatus.trim()) {
     return yield* new EffectSourceMismatch({
-      detail: `${config.sourcePath} has local changes; treat vendored source as read-only.`,
+      message: `${config.sourcePath} has local changes; treat vendored source as read-only.`,
     });
   }
 
@@ -153,7 +153,7 @@ const inspectSource = Effect.fn("EffectSource.inspect")(function* (
   ]);
   if (!referenceCommit) {
     return yield* new EffectSourceMismatch({
-      detail: `${config.sourcePath} has no valid Git subtree identity.`,
+      message: `${config.sourcePath} has no valid Git subtree identity.`,
     });
   }
 
@@ -163,7 +163,7 @@ const inspectSource = Effect.fn("EffectSource.inspect")(function* (
   ]);
   if (currentTree !== referenceTree) {
     return yield* new EffectSourceMismatch({
-      detail: `${config.sourcePath} differs from its recorded read-only subtree.`,
+      message: `${config.sourcePath} differs from its recorded read-only subtree.`,
     });
   }
 
@@ -178,7 +178,7 @@ const checkSource = Effect.fn("EffectSource.check")(function* (
 
   if (state.installedVersion !== state.vendoredVersion) {
     return yield* new EffectSourceMismatch({
-      detail: `Installed Effect is ${state.installedVersion}, but ${config.sourcePath} is ${state.vendoredVersion}. Commit dependency changes, then run pnpm effect:source:update.`,
+      message: `Installed Effect is ${state.installedVersion}, but ${config.sourcePath} is ${state.vendoredVersion}. Commit dependency changes, then run pnpm effect:source:update.`,
     });
   }
 
@@ -196,7 +196,7 @@ const requireCleanWorktree = Effect.fn("EffectSource.requireClean")(
 
     if (status.trim()) {
       return yield* new EffectSourceMismatch({
-        detail:
+        message:
           "Effect source updates require a clean worktree. Commit dependency changes first.",
       });
     }
@@ -270,7 +270,7 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
     }
 
     return yield* new EffectSourceUsageError({
-      detail: "Usage: node scripts/effect/source.ts <check|update>",
+      message: "Usage: node scripts/effect/source.ts <check|update>",
     });
   }
 );
