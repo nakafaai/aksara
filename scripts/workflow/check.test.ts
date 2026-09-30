@@ -84,6 +84,16 @@ describe("workflow policy", () => {
     ).toThrow("CI must not parse contract versions in shell");
   });
 
+  it("runs CI only for pull requests and merge queue groups", () => {
+    const ci = sources.ci.replace(
+      "\n\npermissions:",
+      "\n  push:\n    branches: [main]\n\npermissions:"
+    );
+    expect(() => verifyWorkflows({ ...sources, ci })).toThrow(
+      "CI must run only for pull requests and merge queue groups"
+    );
+  });
+
   it("attests the verified archive before privileged transfer", () => {
     const contracts = sources.contracts
       .replace("- name: Upload verified package", "- name: Later transfer")

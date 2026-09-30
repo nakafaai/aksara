@@ -3,20 +3,19 @@ name: CI
 on:
   pull_request:
   # The merge queue reruns this gate on each queued change combined with main
-  # and every change queued ahead of it, so main never needs manual updates.
+  # and every change queued ahead of it, then lands that exact tested commit,
+  # so main needs neither manual updates nor a second run after each merge.
   merge_group:
     branches: [main]
     types: [checks_requested]
-  push:
-    branches: [main]
 
 permissions:
   contents: read
   pull-requests: read
 
 concurrency:
-  # Merge groups and main pushes key on their immutable commit, so a later
-  # change never cancels a run the queue is waiting for.
+  # Merge groups key on their immutable commit, so a later change never
+  # cancels a run the queue is waiting for.
   group: ci-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
