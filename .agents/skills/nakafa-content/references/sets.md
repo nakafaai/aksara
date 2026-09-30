@@ -16,9 +16,10 @@ standard and verified.
   published item has its own context, values, and wording.
 - Treat every key and explanation in source material as a claim to verify,
   never as a fact.
-- Record the origin of each source and a hash of the exact bytes consulted in
-  the verification record outside the publication source, and cite that record
-  in the pull request. Folder and file names are product evidence only.
+- Record the origin of each source and a hash of the exact bytes consulted
+  (the file itself, or the extracted text when that is what you read) in the
+  verification record outside the publication source, and cite that record in
+  the pull request. Folder and file names are product evidence only.
   Official names, formats, and blueprints come from official sources
   ([question bank](question-bank.md)).
 
