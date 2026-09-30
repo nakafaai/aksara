@@ -1,7 +1,7 @@
 # Repository governance
 
 This file records the external repository controls that were verified through
-2026-08-31. These settings are part of the release boundary but do not replace
+2026-09-30. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -10,10 +10,13 @@ artifact signatures, application authorization, or content entitlement checks.
 - Default branch: `main`; initial commit
   `1e5214e474dcbd32eb3a72dff944d657127fa0aa`.
 - Ruleset `19330486` targets `refs/heads/main` and requires pull requests,
-  resolved review conversations, and the strict `verify` check, and blocks
-  deletion and non-fast-forward updates. It has no bypass actor. Squash and
-  rebase merges are allowed, merge commits are disabled, and merged branches
-  are deleted automatically.
+  resolved review conversations, and the `verify` check, and blocks deletion
+  and non-fast-forward updates. It has no bypass actor. Changes land only
+  through its squash merge queue, which reruns `verify` on each change combined
+  with `main` and every change queued ahead of it and then merges exactly the
+  tested commit, so strict up-to-date checks stay off. Merge commits and
+  repository auto-merge are disabled, and merged branches are deleted
+  automatically.
 - Ruleset `19595471` targets `refs/tags/history/*`, blocks deletion and
   non-fast-forward updates, and has no bypass actor. Those tags retain reviewed
   filtered Nakafa ancestry without weakening the repository's linear-history
@@ -25,9 +28,10 @@ artifact signatures, application authorization, or content entitlement checks.
 - Initial CI run
   [`29829177311`](https://github.com/nakafaai/aksara/actions/runs/29829177311)
   passed and exposed the exact GitHub Actions check name `verify`.
-- Ruleset `19330486` requires the `verify` check and tests pull requests against
-  the latest `main`. This was added only after the exact check passed on both
-  the initial main ref and cleanup pull request.
+- CI runs the repository gates and the tests as parallel jobs, and `verify`
+  reports their combined result, so the required check name never changed. The
+  ruleset first required `verify` only after the exact check passed on both
+  the initial main ref and the cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
 - Actions are limited to GitHub-owned actions and `pnpm/setup`; every

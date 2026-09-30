@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  verify:
+  checks:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -89,9 +89,6 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Test
-        run: pnpm test
-
       - name: Build
         run: pnpm build
 
@@ -137,3 +134,40 @@ jobs:
             arguments+=(--previous "$LATEST_ARCHIVE")
           fi
           node packages/contracts/scripts/release/command.ts "${arguments[@]}"
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup toolchain
+        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        with:
+          cache: true
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: pnpm test
+
+  # The ruleset and the merge queue require only this check. It reports the
+  # combined result of the jobs above, which run in parallel on separate
+  # runners so the static checks never compete with the tests for CPU.
+  verify:
+    needs: [checks, test]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every job
+        env:
+          CHECKS: ${{ needs.checks.result }}
+          TEST: ${{ needs.test.result }}
+        run: test "$CHECKS" = success && test "$TEST" = success

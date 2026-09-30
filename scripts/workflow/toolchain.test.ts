@@ -19,7 +19,7 @@ const TOOLCHAIN_STEP = `${SETUP_HEADER}
 
 describe("workflow toolchain policy", () => {
   it("accepts package.json-owned toolchains and every YAML job identifier", () => {
-    const quotedUppercaseJob = ci.replace("  verify:\n", '  "Verify_Main":\n');
+    const quotedUppercaseJob = ci.replace("  checks:\n", '  "Checks_Main":\n');
 
     expect(() => verifyWorkflowToolchains(sources)).not.toThrow();
     expect(() => verifyWorkflowToolchains([quotedUppercaseJob])).not.toThrow();
@@ -64,8 +64,8 @@ describe("workflow toolchain policy", () => {
     );
 
     const jobEnvironment = ci.replace(
-      "  verify:\n",
-      '  verify:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
+      "  checks:\n",
+      '  checks:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
     );
     expect(() => verifyWorkflowToolchains([jobEnvironment])).toThrow(
       "Workflows must not duplicate Node or pnpm versions"
@@ -116,15 +116,15 @@ describe("workflow toolchain policy", () => {
 
   it("detects pnpm invoked through a workflow environment alias", () => {
     const aliasedPnpm = ci
-      .replace("  verify:\n", "  verify:\n    env:\n      PM: pnpm\n")
+      .replace("  checks:\n", "  checks:\n    env:\n      PM: pnpm\n")
       .replace("run: pnpm install", "run: $PM install");
     const actionsAlias = aliasedPnpm.replace(
       "run: $PM install",
       ["run: $", "{{ env.PM }} install"].join("")
     );
     const numericEnvironment = ci.replace(
-      "  verify:\n",
-      "  verify:\n    env:\n      RETRIES: 3\n"
+      "  checks:\n",
+      "  checks:\n    env:\n      RETRIES: 3\n"
     );
 
     expect(() => verifyWorkflowToolchains([aliasedPnpm])).not.toThrow();
