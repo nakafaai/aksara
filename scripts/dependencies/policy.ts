@@ -65,11 +65,11 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.45.0",
+    approvedCurrent: "0.46.1",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.47.0 targets the Effect RC118 cohort.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.46.1 fixes diagnostics within the Effect RC117 cohort, and 0.47.0 targets the Effect RC118 cohort.",
     registry: "@effect/tsgo@latest",
     reviewedLatest: "0.47.0",
     source: "root-dev-dependency",
