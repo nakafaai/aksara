@@ -112,10 +112,46 @@ never changes the mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
-effort. This is a review decision, not a quota. A clear short lesson can remain
-mostly prose, and a routine worked answer can remain prose plus one derivation.
-Do not add a table, blockquote, Mermaid diagram, video, or interaction merely
-to make the document look more varied.
+effort. Tables, blockquotes, and Mermaid diagrams remain review decisions, not
+quotas: a routine worked answer can remain prose plus one derivation, and none
+of them is added merely to make a document look more varied. Lessons also
+follow the interactive visual rule below.
+
+## Interactive visual in every lesson
+
+Nakafa's lesson standard requires at least one interactive visual in every
+lesson, because learners understand and remember a concept they can see and
+change. The research in the [evidence basis](evidence-basis.md) governs how the
+visual is designed: it carries a teaching job and never decorates.
+
+- The interaction answers a question the lesson asks: change a parameter and
+  watch the result, step through a process, rotate a structure, or run a
+  random experiment many times. A picture that only illustrates does not count.
+- The visual models this lesson's concept. Reusing a component is right when
+  its configuration teaches this lesson's question; the same component showing
+  the same kind of picture as a neighboring lesson is redundant, and the lesson
+  needs a visual of its own.
+- Choose the technology by the teaching job. Geometry, graphs, vectors, fields,
+  and 3D structures use the shared three.js foundation described above. Data
+  exploration uses the established EvilCharts components. When no component in
+  the current renderer manifest can carry the teaching job, such as a random
+  experiment, a step-by-step algorithm, or a particle simulation, that is a
+  renderer gap: the component is built and deployed in Nakafa's renderer first,
+  and a lesson uses it only after the manifest lists it.
+- Build component families, not one-off pictures. A new component takes the
+  parameters its lessons need, computes every drawn value from the governing
+  formula in a data module with complete unit tests, and cites the source of
+  every scientific constant. Scientific structures such as cells, viruses,
+  molecules, and machines must match their cited references in parts,
+  proportions where stated, labels, and motion.
+- Every visual renders inside its renderer-owned card: a header with a title
+  and description, the scene, and a footer holding the controls.
+- The still frame teaches on its own, because a learner may pause the motion
+  or read the page with reduced motion.
+- Be creative inside these limits. A good visual surprises the learner with a
+  relationship they can discover by playing, and every frame stays exact.
+- Verify every visual as described above, and additionally in every locale
+  that changes its labels.
 
 During a humanization pass, compare the representation inventory before and
 after editing. Do not flatten a useful list, table, blockquote, Mermaid diagram,

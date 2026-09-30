@@ -38,8 +38,8 @@ the product needs to distinguish the compulsory subject, and
 `Matematika Tingkat Lanjut` for the elective subject. English may use
 `Compulsory Mathematics` and `Advanced Mathematics`. Advanced mathematics
 must own a separate Nakafa subject identity when it is authored. Do not reserve
-empty tracks or duplicate registries for future subjects. Google Drive folder
-and file names such as `MTK Wajib` and `MTK Tingkat Lanjut` are product and
+empty tracks or duplicate registries for future subjects. Source folder and
+file names such as `MTK Wajib` and `MTK Tingkat Lanjut` are product and
 research evidence only, not official framework evidence. Do not collapse this
 TKA subject taxonomy into UTBK-SNBT's `Penalaran Matematika`.
 Renderer domains describe available components, not subject identities:
@@ -48,6 +48,8 @@ Renderer domains describe available components, not subject identities:
 Never duplicate an exam prompt or its response options merely because the
 application locale changes. Explanations may quote the original prompt language
 while explaining the reasoning in the learner's application locale.
+
+New try-out sets also follow [try-out sets](sets.md).
 
 ## Prompt rules
 

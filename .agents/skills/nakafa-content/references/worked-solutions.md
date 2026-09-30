@@ -187,6 +187,43 @@ Use calm, direct language. Explain what matters at the moment it matters. A
 teacher voice is not simulated dialogue, praise, or excessive use of `we`. It
 is a sequence of explanations that anticipates likely confusion.
 
+## Choices, statements, and distractors
+
+A learner who chose a wrong option needs to see why it is wrong.
+
+- For a single-choice item, show why the correct option holds, then name the
+  misconception behind each tempting distractor in one sentence each, such as
+  a sign error, a swapped ratio, or a condition ignored. Skip an option only
+  when it has no plausible reasoning path.
+- For multiple-choice and category items, judge every option or statement
+  separately with its own reason. A learner must be able to find why each one
+  is true or false.
+- Never conclude with an option letter alone; state the result in the terms of
+  the question (see "Conclude" above).
+
+## Reading, data, and evidence items
+
+- Quote or precisely paraphrase the sentence, paragraph, row, or value that
+  decides the answer, and name where it is. The learner must not need to reread
+  the passage to follow the reasoning.
+- For inference items, show the step from the evidence to the conclusion and
+  why the distractors overreach, contradict, or ignore the evidence.
+
+## Assessed-language exams
+
+When the exam language differs from the explanation language, as with German
+Studienkolleg exams explained in Indonesian or English, quote each German exam
+term at first use and explain it in the explanation language, for example
+*Definitionsbereich* (domain). Mathematics, symbols, and results stay identical
+across every locale.
+
+## Visual reasoning
+
+Geometry, vector, function, and data items get an interactive visual in the
+explanation when rotating, moving, or changing a value makes the reasoning
+visible. Reuse the question's visual as the starting state so the learner
+recognizes it.
+
 ## Evidence basis
 
 These rules follow the practical conclusions of the following sources:

@@ -104,3 +104,21 @@ A whole-corpus audit must account for every requested document and locale.
 A machine scan, a representative sample, or zero findings is not a manual
 read-through. Keep audit evidence outside publication contracts and record actual
 coverage, source hashes, decisions, mathematical checks, and rendered checks.
+
+## Lesson shape
+
+The [lesson standard](lesson.md) lists every element a complete lesson
+contains. Its structural parts are enforced here:
+
+- The opening section answers the lesson's main question before it builds
+  context.
+- A lesson usually has five to nine H2 sections. Fewer often means missing
+  examples or practice; more often means thin sections that should merge.
+- Keep paragraphs to about seventy words. A paragraph near a hundred words
+  usually hides a derivation, comparison, or process that a math block, table,
+  diagram, or interactive visual would show better.
+- Do not nest lists in lessons. Turn a nested list into a sequence of short
+  paragraphs, a table, or separate steps with their own explanation.
+- Give common mistakes and practice their own sections with real teaching
+  content: the mistake, why it fails, and how to check; the problem and its
+  complete answer.

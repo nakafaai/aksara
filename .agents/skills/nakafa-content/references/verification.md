@@ -274,3 +274,39 @@ Antwort labels, literal and expression-wrapped JSX headings, and mixed
 Markdown/JSX section boundaries. Heading labels come from visible parsed children, never
 component attributes. The check is lesson-only and does not rewrite question-bank
 answer structure.
+
+## Release gate
+
+Nakafa is an education platform, so a small error is a defect that blocks
+publication. Every new or rewritten lesson, item, answer, and visual passes
+this gate in full before it is published. The gate applies to every artifact,
+never to a sample, and the author of an artifact never serves as its verifier.
+
+- **Items:** two verifiers solve the item independently without seeing the
+  key. A computer algebra system or exact arithmetic recomputes every value.
+  Each option and statement is judged, a single-choice item has exactly one
+  defensible answer, data in visuals matches the prompt, the assessed language
+  is correct, and the item repeats nothing in the bank.
+- **Answers:** every step is recomputed, the conclusion matches the key, the
+  distractor analysis is correct, and every locale carries the same steps and
+  mathematics.
+- **Lessons:** every factual claim has primary or official evidence, every
+  formula, example, and exercise is recomputed, a verifier reads the complete
+  lesson in every locale, and the gate reports zero findings.
+- **Visuals:** data modules are unit tested at full coverage, drawn values are
+  compared with the governing formula, scientific constants cite their source,
+  and the rendered component is checked at phone and desktop widths, in light
+  and dark themes, and after rotation.
+- **Scores:** each new set is attempted end to end, and the score matches a hand
+  calculation for all-correct, all-wrong, and mixed answers.
+- **Acceptance:** the change is published to development and passes
+  acceptance there.
+
+Production publication is the approved, protected release that follows a
+passed gate. After it, check the published pages in production and treat any
+difference from acceptance as a release defect.
+
+When verifiers disagree, a third verifier and the release owner decide from
+the evidence. An ambiguity that cannot be resolved removes the item or rewrites
+it. Keep every verification record outside the publication source and link it
+from the pull request.

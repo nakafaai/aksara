@@ -18,5 +18,10 @@
   https://doi.org/10.1016/j.edurev.2015.12.003
 
 This evidence supports purposeful representations, clear signaling, and
-removal of irrelevant decoration. It does not support adding multimedia to
-every page or shortening the explanation that makes a representation useful.
+removal of irrelevant decoration. On its own it does not justify adding
+multimedia to every page or shortening the explanation that makes a
+representation useful. The rule that every lesson carries an interactive
+visual is Nakafa's lesson standard, a product decision recorded in
+[visuals](visuals.md#interactive-visual-in-every-lesson). This evidence governs
+how each of those visuals is chosen and built: it models the concept, answers a
+question the lesson asks, and never decorates.
