@@ -1,14 +1,18 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
-import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
+import {
+  TOOLCHAIN_SETUP_ACTION,
+  verifyWorkflowToolchains,
+} from "#scripts/workflow/toolchain";
 
 const ci = readFileSync(".github/workflows/ci.yml", "utf8");
 const cli = readFileSync(".github/workflows/cli.yml", "utf8");
 const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
 const release = readFileSync(".github/workflows/release.yml", "utf8");
 const sources = [ci, cli, contracts, release];
-const TOOLCHAIN_STEP = `      - name: Setup toolchain
-        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
+const SETUP_HEADER = `      - name: Setup toolchain
+        uses: ${TOOLCHAIN_SETUP_ACTION} # v3.0.0`;
+const TOOLCHAIN_STEP = `${SETUP_HEADER}
         with:
           cache: true
           install: false`;
@@ -85,14 +89,18 @@ describe("workflow toolchain policy", () => {
     );
   });
 
-  it("rejects legacy and competing setup actions", () => {
+  it("rejects legacy, competing, and unreviewed setup actions", () => {
     const legacyPnpm = ci.replace(
-      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b",
+      TOOLCHAIN_SETUP_ACTION,
       "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
     );
     const competingNode = ci.replace(
       TOOLCHAIN_STEP,
       `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020`
+    );
+    const unreviewed = ci.replace(
+      TOOLCHAIN_SETUP_ACTION,
+      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b"
     );
 
     expect(() => verifyWorkflowToolchains([legacyPnpm])).toThrow(
@@ -100,6 +108,9 @@ describe("workflow toolchain policy", () => {
     );
     expect(() => verifyWorkflowToolchains([competingNode])).toThrow(
       "Workflows must not use a second Node.js setup action"
+    );
+    expect(() => verifyWorkflowToolchains([unreviewed])).toThrow(
+      "The toolchain setup must use the reviewed pnpm/setup release"
     );
   });
 
@@ -171,10 +182,7 @@ ${TOOLCHAIN_STEP}`
       "Workflows must derive the runtime from package.json"
     );
 
-    const noInputs = ci.replace(
-      `${TOOLCHAIN_STEP}\n`,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0\n"
-    );
+    const noInputs = ci.replace(`${TOOLCHAIN_STEP}\n`, `${SETUP_HEADER}\n`);
     expect(() => verifyWorkflowToolchains([noInputs])).toThrow(
       "The toolchain setup step must define inputs"
     );
@@ -239,7 +247,7 @@ ${TOOLCHAIN_STEP}`
   it("rejects malformed action inputs without matching unrelated values", () => {
     const malformedInputs = ci.replace(
       TOOLCHAIN_STEP,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0\n        with: invalid"
+      `${SETUP_HEADER}\n        with: invalid`
     );
     expect(() => verifyWorkflowToolchains([malformedInputs])).toThrow(
       "Workflow action inputs must be a mapping"
@@ -255,6 +263,10 @@ ${TOOLCHAIN_STEP}`
   it.each([
     ["VERSION: 11", "Workflows must derive the pnpm version from package.json"],
     ["RUNTIME: node@24", "Workflows must derive the runtime from package.json"],
+    [
+      "NODE-VERSION-FILE: .nvmrc",
+      "Workflows must derive the runtime from package.json",
+    ],
     [
       "PACKAGE-JSON-FILE: other/package.json",
       "Workflows must derive the toolchain from the root package.json",
