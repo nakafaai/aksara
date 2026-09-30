@@ -72,10 +72,10 @@ export function decodeWorkflow(source: string) {
   assert.equal(
     document.errors.length,
     0,
-    document.errors[0]?.message ?? "npm workflow YAML must parse"
+    document.errors[0]?.message ?? "Workflow YAML must parse"
   );
   const decoded = Schema.decodeUnknownOption(WorkflowSchema)(document.toJS());
-  assert.ok(Option.isSome(decoded), "npm workflow must contain decodable jobs");
+  assert.ok(Option.isSome(decoded), "Workflow must contain decodable jobs");
   return decoded.value;
 }
 

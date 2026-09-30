@@ -188,7 +188,7 @@ describe("contract provenance policy", () => {
   it("rejects malformed or incomplete workflow jobs", () => {
     expect(() => verifyProvenanceWorkflow("jobs: [")).toThrow();
     expect(() => verifyProvenanceWorkflow("jobs:\n  build: {}\n")).toThrow(
-      "npm workflow must contain decodable jobs"
+      "Workflow must contain decodable jobs"
     );
     expect(() =>
       verifyProvenanceWorkflow(
