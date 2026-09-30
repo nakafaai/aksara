@@ -72,6 +72,10 @@ for clarity, measurable scale, and safe releases.
 - Judge a typecheck by its exit code. The Effect language service reports
   suggestions, such as `Effect.undefined` for `Effect.succeed(undefined)`, that
   fail the typecheck without the word "error".
+- The shared TypeScript config turns off the language service's
+  `unstableApiUsage` warning. Aksara uses Effect's `@stability unstable` HTTP
+  and process modules on purpose, pins Effect exactly, and reviews every
+  upgrade, so the warning would fail every typecheck with nothing to act on.
 - Unresolved review threads, including automated reviewers', block merging. Fix
   each verified finding or reply with evidence, then resolve the thread.
 - `main` merges only through GitHub's merge queue. `gh pr merge` queues through

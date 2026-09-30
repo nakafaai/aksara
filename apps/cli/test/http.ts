@@ -5,7 +5,7 @@ import {
   type HttpClientRequest,
   type HttpClientResponse,
   HttpClientResponse as Response,
-} from "effect/unstable/http";
+} from "effect/http";
 
 /** Builds one official Effect HTTP response around an explicit web body. */
 export function webResponse(

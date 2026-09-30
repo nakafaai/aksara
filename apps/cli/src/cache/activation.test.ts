@@ -4,8 +4,8 @@ import {
   ContentCacheRequestSchema,
 } from "@nakafa/aksara-contracts/cache/content";
 import { Effect, Fiber, Redacted, Schema, Stream } from "effect";
+import { HttpClientError, HttpClientRequest } from "effect/http";
 import { TestClock } from "effect/testing";
-import { HttpClientError, HttpClientRequest } from "effect/unstable/http";
 import {
   makeAbsentCacheInvalidation,
   makeProductionCacheInvalidation,

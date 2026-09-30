@@ -39,7 +39,7 @@ import type {
   StageSnapshotRequest,
 } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Effect, Schema } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type HttpPublicationTargetConfig,

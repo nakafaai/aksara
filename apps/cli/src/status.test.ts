@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ConfigProvider, Effect, Logger, References } from "effect";
-import type { HttpClientRequest } from "effect/unstable/http";
-import { HttpClient } from "effect/unstable/http";
+import type { HttpClientRequest } from "effect/http";
+import { HttpClient } from "effect/http";
 import { runStatusCommand } from "#cli/status";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";

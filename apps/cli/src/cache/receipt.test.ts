@@ -9,7 +9,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
-import { HttpClientRequest } from "effect/unstable/http";
+import { HttpClientRequest } from "effect/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
 import { webResponse } from "#test/http";
 

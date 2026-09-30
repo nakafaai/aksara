@@ -7,7 +7,7 @@ import {
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Schedule, Schema } from "effect";
-import type { HttpClient } from "effect/unstable/http";
+import type { HttpClient } from "effect/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import type { RendererCredentials } from "#cli/credentials";
 import { isNakafaOrigin } from "#cli/origin";

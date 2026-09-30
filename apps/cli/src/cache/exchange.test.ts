@@ -10,7 +10,7 @@ import {
   HttpClient,
   HttpClientError,
   HttpClientRequest,
-} from "effect/unstable/http";
+} from "effect/http";
 
 import { invalidateContentCache } from "#cli/cache/exchange";
 import { captureClient, webResponse } from "#test/http";

@@ -1,7 +1,7 @@
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import { Effect, FileSystem, Schema, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 

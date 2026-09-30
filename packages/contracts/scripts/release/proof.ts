@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { Effect, FileSystem, Path, Schema, Stream } from "effect";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 import { verifyArchive } from "#scripts/release/archive";
 import { packageIdentity, releaseError } from "#scripts/release/identity";
 

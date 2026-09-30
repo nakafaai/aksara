@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 import { makeReleaseCommand } from "#scripts/release/program";
 
 /** Creates one archive carrying the exact package identity. */

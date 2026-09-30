@@ -7,7 +7,7 @@ import {
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, type Redacted } from "effect";
-import { HttpClient } from "effect/unstable/http";
+import { HttpClient } from "effect/http";
 import {
   type CacheSurface,
   makeAbsentCacheInvalidation,

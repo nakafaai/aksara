@@ -4,13 +4,13 @@ import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
 import { Duration, Effect, Fiber, Redacted, Schema } from "effect";
-import { TestClock } from "effect/testing";
 import {
   FetchHttpClient,
   HttpClient,
   HttpClientRequest,
   HttpClientResponse,
-} from "effect/unstable/http";
+} from "effect/http";
+import { TestClock } from "effect/testing";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
 import { transportRequests } from "#test/transport/spec";

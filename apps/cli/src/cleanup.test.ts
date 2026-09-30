@@ -1,8 +1,8 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ConfigProvider, Effect } from "effect";
-import type { HttpClientRequest } from "effect/unstable/http";
-import { HttpClient } from "effect/unstable/http";
+import type { HttpClientRequest } from "effect/http";
+import { HttpClient } from "effect/http";
 import { runCleanupCommand } from "#cli/cleanup";
 import { captureClient, requestJson, webResponse } from "#test/http";
 

@@ -12,7 +12,7 @@ import {
   Predicate,
   Schema,
 } from "effect";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 import {
   type InfoArgumentsError,
   parseInfoArguments,

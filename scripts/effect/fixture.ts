@@ -1,7 +1,7 @@
 import { assert } from "@effect/vitest";
 import { Effect, FileSystem, Path, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/unstable/process";
+import { ChildProcess } from "effect/process";
 
 import type { EffectSourceConfig } from "#scripts/effect/source";
 

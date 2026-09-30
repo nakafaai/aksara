@@ -1,5 +1,5 @@
 import { Chunk, Effect, Schema, Stream } from "effect";
-import type { HttpClientResponse } from "effect/unstable/http";
+import type { HttpClientResponse } from "effect/http";
 import { joinBytes } from "#utilities/bytes/join";
 
 interface BodyState {

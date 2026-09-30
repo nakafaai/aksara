@@ -7,7 +7,7 @@ import {
 
 import { isJsonType, readText } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";
-import type { HttpClientResponse } from "effect/unstable/http";
+import type { HttpClientResponse } from "effect/http";
 import {
   PublicationTargetProtocolError,
   type PublicationTargetTransportError,
