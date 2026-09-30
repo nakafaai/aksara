@@ -74,6 +74,19 @@ for clarity, measurable scale, and safe releases.
   fail the typecheck without the word "error".
 - Unresolved review threads, including automated reviewers', block merging. Fix
   each verified finding or reply with evidence, then resolve the thread.
+- `main` merges only through GitHub's merge queue. `gh pr merge` queues through
+  auto-merge, which stays off, so once `verify` passes on a pull request's
+  exact head, enqueue that head directly:
+
+  ```sh
+  gh api graphql -F id="$(gh pr view <number> --json id --jq .id)" -F head=<sha> \
+    -f query='mutation($id: ID!, $head: GitObjectID!) { enqueuePullRequest(input: {pullRequestId: $id, expectedHeadOid: $head}) { mergeQueueEntry { position } } }'
+  ```
+
+  The queue retests it on the latest `main` with every change queued ahead of
+  it and squash merges it, so the branch needs no update from `main` to merge.
+  A pull request is merged once its state is `MERGED`, not when it enters the
+  queue.
 - Keep handwritten TypeScript modules at or below 300 lines.
 - Give every stable callable declaration, including functions, methods, and
   callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
