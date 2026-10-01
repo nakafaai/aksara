@@ -2,14 +2,14 @@ export const metadata = {
   title: "Terms of Service",
   description: "Read Nakafa's Terms of Service to understand the rules and guidelines for using our educational platform and services.",
   datePublished: "2025-10-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-10-01",
 };
 
 # Terms of Service
 
-Last updated: August 29, 2026
+Last updated: October 1, 2026
 
-These Terms of Service (the "Terms") are a binding contract between you and PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our"). These Terms govern your access to and use of our websites, applications, and related services (collectively, the "Services").
+These Terms of Service (the "Terms") are a binding contract between you and PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our"). These Terms govern your access to and use of our websites, applications, and related services, including Nakafa School (collectively, the "Services").
 
 By using the Services, you agree to these Terms. If you do not agree, do not use the Services.
 
@@ -17,22 +17,28 @@ Your use of the Services is also subject to our [Privacy Policy](/en/privacy-pol
 
 ## Key definitions
 
-- Services means our websites, apps, and related services operated by Nakafa.
+- Services means our websites, apps, and related services operated by Nakafa, including Nakafa School.
 - User means any person or entity that accesses or uses the Services.
 - User Content means information you submit through the Services, such as chat messages and comments.
 - Subscription means a paid plan that grants access to certain paid features.
+- Nakafa School means the part of the Services that a School uses for its classes, assignments, assessments, grades, report cards, and communication with Guardians.
+- School means a school, foundation, or other educational institution that uses Nakafa School under a written agreement with Nakafa.
+- School Data means personal data that Nakafa processes for a School in Nakafa School, as our Privacy Policy describes.
+- Guardian means a parent or legal guardian of a student.
 
 ## What the Services are
 
-Nakafa is an educational platform that provides structured learning content and interactive features. The Services include AI-powered features that generate outputs based on prompts you submit.
+Nakafa is an educational platform that provides structured learning content and interactive features. The Services include AI-powered features that generate outputs based on prompts you submit, a decision model that scores some assessment answers, and Nakafa School for Schools.
 
 ## Eligibility
 
-You must be at least 13 years old to use the Services.
+You must be at least 13 years old to use the Services with a personal account.
 
 If you are under 18 years old, you may use the Services only with the permission and involvement of a parent or legal guardian, who must agree to these Terms on your behalf.
 
-AI features have a separate age requirement. You must be at least 18 years old and meet any higher minimum age required by the law where you live to use AI features.
+AI features have a separate age requirement. You must be at least 18 years old and meet any higher minimum age required by the law where you live to use AI features. This requirement also applies in Nakafa School. Answer scoring with Jev is not an AI feature for this purpose, as our Privacy Policy explains.
+
+In Nakafa School, the School decides which of its students receive accounts, including students under 13, and the School is responsible for the consent of parents or guardians that the law requires. Nakafa records a Guardian's verified consent as our Privacy Policy describes.
 
 You may not use the Services if your use is prohibited by applicable law.
 
@@ -45,6 +51,8 @@ You are responsible for:
 - Maintaining the confidentiality of your account credentials.
 - All activity that occurs under your account.
 - Promptly notifying us if you suspect unauthorized access or misuse.
+
+If a School created your account, the School manages it, including its username and password, and your use of it is also subject to the School's rules.
 
 We may implement device and session security measures (for example device-based security records and session controls) to protect accounts and reduce fraud and abuse.
 
@@ -60,6 +68,9 @@ You must not:
 - Use the Services to violate the rights of others, including intellectual property, privacy, or publicity rights.
 - Post or transmit unlawful, defamatory, or infringing content, or content that is harassing, hateful, or abusive.
 - Use the Services to generate or distribute spam, deceptive content, or content designed to mislead others.
+- Access, or try to access, data of a School, class, or person that your role does not allow you to see.
+- Share exam questions or answers while an exam is open, or help another person cheat on an exam.
+- Upload, import, or connect content or personal data that you have no right to share.
 
 We may suspend or terminate access if we believe you have violated these Terms or if your behavior creates risk for the Services, other users, or third parties.
 
@@ -67,19 +78,45 @@ We may suspend or terminate access if we believe you have violated these Terms o
 
 ### How AI features work
 
-If you use AI features, you submit prompts or messages and the Services generate outputs. Nakafa routes prompts and related context through Vercel AI Gateway to Gemini 3.5 Flash Lite or Gemini 3.7 Flash. The Gateway may select Google or Google Cloud Vertex AI, but no other model provider is permitted. Each request requires a route that Vercel identifies as disallowing prompt training. If no eligible Google or Vertex AI route is available, the request fails. No other provider receives it. Research features may also use Google Search grounding to corroborate public information.
+If you use AI features, you submit prompts or messages and the Services generate outputs. Nakafa routes Nina's prompts and related context through Vercel AI Gateway to Gemini 3.5 Flash Lite or Gemini 3.7 Flash. The Gateway may select Google or Google Cloud Vertex AI, but no other language-model provider is permitted. Each request requires a route that Vercel identifies as disallowing prompt training. If no eligible Google or Vertex AI route is available, the request fails. No other language-model provider receives it. Research features may also use Google Search grounding to corroborate public information, and Firecrawl to search the web and read pages.
 
 Our use of these services is subject to the [Vercel AI Product Terms](https://vercel.com/legal/ai-product-terms#ai-gateway), [Vercel Notices and License Information](https://vercel.com/legal/notices-and-license-information#ai-gateway), [Gemini API Additional Terms](https://ai.google.dev/gemini-api/terms), and [Google Cloud Terms](https://cloud.google.com/terms), as applicable to the selected route.
+
+### Answer scoring with Jev
+
+Some try-out and School assessment answers are scored with Jev, a decision model from TypeSafe AI, Inc., which Nakafa calls through Vercel AI Gateway. Jev receives the answer text and the material needed to score it, without your name or account identifiers, and returns scores and probabilities. In try-outs outside Nakafa School, these scores are calculated automatically. In Nakafa School, a Jev score for an exam is a suggestion that a teacher reviews before any grade is released. Our Privacy Policy describes the providers that run Jev and how they handle the data.
 
 ### AI limitations and your responsibility
 
 AI outputs may be inaccurate, incomplete, or inappropriate. You are responsible for verifying any output before relying on it, including in educational, professional, medical, legal, or financial contexts.
 
-Do not include sensitive personal data in prompts (for example government IDs or payment card numbers). You are responsible for the content you submit.
+Scores from Jev can also be wrong. If you believe a score is wrong, contact your teacher in Nakafa School, or contact us at [nakafaai@gmail.com](mailto:nakafaai@gmail.com).
+
+Do not include sensitive personal data in prompts or free-text answers (for example government IDs or payment card numbers). You are responsible for the content you submit.
+
+## Google connectors
+
+If you connect a Google service, such as Google Drive, Google Forms, Google Classroom, or Google Calendar, you authorize Nakafa to access the Google data that our Privacy Policy describes for the features you use. Connect only accounts and data you are allowed to use. If a School or another organization manages your Google account, its rules apply, and its administrator may limit what you can connect. A School administrator can also turn connectors off for particular roles in Nakafa School. Google's terms continue to govern your Google account. You can disconnect a connector at any time.
+
+## Nakafa School
+
+A School uses Nakafa School under a written agreement with Nakafa. That agreement sets the School's plan, fees, and modules, includes a data processing agreement for School Data, and licenses the Nakafa content the School may use. If these Terms conflict with that agreement on the School's use of Nakafa School, the agreement prevails.
+
+The School decides who joins its space in Nakafa School and with which role, such as administrator, teacher, student, or Guardian. The School is responsible for the people it invites or creates accounts for, the roles it assigns, the content it uploads, and the instructions it gives Nakafa about School Data. Teachers and staff use Nakafa School on the School's behalf.
+
+A School can create username accounts for its students. The School manages these accounts and their credentials, and a student uses such an account for the School's learning and assessments.
+
+Nakafa content, including lessons, articles, and try-out questions, is licensed under the [Nakafa Content License](https://github.com/nakafaai/nakafa.com/blob/main/CONTENT_LICENSE.md), which allows personal, non-commercial learning without written permission. Using that content in a school program, a learning management system, or a question bank requires Nakafa's prior written permission, so a School may use Nakafa content in Nakafa School only as its written agreement licenses it. Questions from Nakafa's public question bank are open to everyone, so students may have seen them before. Nakafa School labels these questions as public, and the School decides whether to use them in an exam.
+
+In Nakafa School, AI output is a suggestion. Jev and other AI features can suggest scores, draft report card descriptions, and summarize progress, but a teacher reviews and decides every exam grade before it is released, and teachers approve report cards and the narratives Guardians see. For practice work, a School can let suggested scores be released automatically.
+
+Nakafa School can detect and flag signs of exam misconduct, such as leaving the exam page, but a web page cannot lock a device. The School decides how to respond to a flag.
+
+Report cards and other documents that a School issues through Nakafa School are the School's documents, and the School is responsible for their content. Nakafa does not issue official diplomas.
 
 ## Subscriptions and payments
 
-Certain features may require a paid Subscription.
+Certain features may require a paid Subscription. A School pays for Nakafa School under its written agreement with Nakafa.
 
 Polar Software, Inc. ("Polar") acts as the merchant of record and authorized reseller for purchases made through Polar checkout. Your purchase and payment contract is with Polar under its [Buyer Terms](https://polar.sh/legal/checkout-buyer-terms). These Terms continue to govern your use of Nakafa.
 
@@ -101,7 +138,7 @@ We may change pricing or plans over time. If changes apply to your Subscription,
 
 ## Emails and communications
 
-When a new account is created, the current account workflow [schedules a welcome email](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/auth/client.ts) and [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/070d125d16bb9f2a94125e23ed7f6a256df8a8a6/packages/backend/convex/emails/mutations.ts).
+When a new account is created, the account workflow [prepares a welcome email](https://github.com/nakafaai/nakafa.com/blob/78b0f47e413abb6192238ce39edb261a74c3727b/packages/backend/confect/auth/client.ts), and after you complete onboarding, Nakafa [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/78b0f47e413abb6192238ce39edb261a74c3727b/packages/backend/confect/emails/welcome/internal.ts). In Nakafa School, Nakafa also sends invitations, one-time sign-in codes for Guardians, and notifications about School activity by email, and sends web push notifications if you allow them in your browser. Nakafa does not send messages through WhatsApp.
 
 ## Intellectual property
 
@@ -124,6 +161,8 @@ By submitting User Content, you grant Nakafa a worldwide, non-exclusive, royalty
 
 You represent that you have the rights necessary to submit User Content and that your User Content does not violate applicable law or the rights of others.
 
+In Nakafa School, the School's written agreement also governs the content that the School and its users upload.
+
 ## Third-party services
 
 The Services rely on third-party services to operate. These may include:
@@ -134,8 +173,12 @@ The Services rely on third-party services to operate. These may include:
 - PostHog (pseudonymous usage counting plus, after consent, product analytics; identity-free operational error reporting)
 - Resend (email delivery)
 - Vercel AI Gateway (AI request routing)
-- Google (Gemini API model processing)
+- Google (Gemini API model processing, Google sign-in, the Google services you connect, and the icons of web sources)
 - Google Cloud (Vertex AI model processing)
+- TypeSafe and DigitalOcean (answer scoring with Jev)
+- Firecrawl (web search and page retrieval for research features)
+- OpenWeather (weather data)
+- The push service your browser uses (web push notifications)
 
 Third-party terms and privacy notices may also apply when you interact with those services. Nothing in this section excludes responsibility that Nakafa has under mandatory law.
 
@@ -162,6 +205,8 @@ If you use the Services on behalf of a business or organization, that entity is 
 You may stop using the Services at any time.
 
 We may suspend or terminate your access to the Services if we believe you violated these Terms, if required to comply with law, or if your use creates risk or harm to the Services, other users, or third parties.
+
+If a School removes you from its space, or its agreement with Nakafa ends, you lose access to that School's spaces, and School Data follows the School's instructions.
 
 Upon termination, your right to use the Services will stop immediately. Provisions that by their nature should survive termination will survive, including intellectual property, disclaimers, limitation of liability, business-user claims, and dispute resolution.
 
