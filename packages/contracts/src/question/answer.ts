@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 
 const DECIMAL_PATTERN = /^(?:0|-?[1-9]\d*|-?(?:0|[1-9]\d*)\.\d*[1-9])$/u;
-const CONTROL_CHARACTER_PATTERN = /\p{Cc}/u;
+const UNTYPABLE_CHARACTER_PATTERN = /[\p{Cc}\p{Cf}]|[^\S ]/u;
 const WHITESPACE_RUN_PATTERN = /\s+/gu;
 
 /**
@@ -68,11 +68,17 @@ export const QuestionNumberAnswerSchema = Schema.Struct({
 );
 export type QuestionNumberAnswer = typeof QuestionNumberAnswerSchema.Type;
 
-/** One accepted single-line answer written without surrounding whitespace. */
+/**
+ * One accepted answer as a learner types it on one line: trimmed, non-empty,
+ * with the ordinary space as its only whitespace and no control or invisible
+ * format character, so every accepted key can be typed into a single-line
+ * answer field.
+ */
 const QuestionAcceptedTextSchema = Schema.Trimmed.check(
   Schema.isNonEmpty(),
-  Schema.makeFilter((text) => !CONTROL_CHARACTER_PATTERN.test(text), {
-    message: "Expected single-line accepted text without control characters.",
+  Schema.makeFilter((text) => !UNTYPABLE_CHARACTER_PATTERN.test(text), {
+    message:
+      "Expected one typed line whose only whitespace is the ordinary space.",
   })
 );
 

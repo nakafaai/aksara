@@ -119,7 +119,7 @@ describe("question answer key", () => {
     ).toEqual(["Berlin", "BERLIN"]);
   });
 
-  it("rejects text answers that normalize together or break one line", () => {
+  it("rejects text answers that normalize together or cannot be typed on one line", () => {
     for (const answer of [
       { ...city, acceptedAnswers: [] },
       { ...city, acceptedAnswers: ["Berlin", "BERLIN"] },
@@ -129,6 +129,10 @@ describe("question answer key", () => {
       { ...city, acceptedAnswers: [""] },
       { ...city, acceptedAnswers: ["Ber\nlin"] },
       { ...city, acceptedAnswers: ["Ber\tlin"] },
+      { ...city, acceptedAnswers: ["New\u2028York"] },
+      { ...city, acceptedAnswers: ["New\u2029York"] },
+      { ...city, acceptedAnswers: ["New\u00a0York"] },
+      { ...city, acceptedAnswers: ["New\u200bYork"] },
       { ...city, ignoreCase: "yes" },
     ]) {
       expect(rejects(QuestionTextAnswerSchema, answer)).toBe(true);
