@@ -166,6 +166,48 @@ describe("tryout catalog", () => {
       })
   );
 
+  it.effect("signs institution tracks and penalized section marks", () =>
+    Effect.gen(function* () {
+      const sources = yield* decodeTryoutRegistry();
+      const tka = yield* Effect.fromNullishOr(
+        sources.find(({ examKey }) => examKey === "tka")
+      );
+      const marks = { blank: 0, correct: 4, wrong: -1 };
+      const rows = yield* projectTryoutCatalog([
+        {
+          ...tka,
+          scoringStrategy: "penalized",
+          tracks: tka.tracks.map((track) => ({
+            ...track,
+            kind: "institution",
+            sets: track.sets.map((set) => ({
+              ...set,
+              sections: set.sections.map((section) => ({ ...section, marks })),
+            })),
+          })),
+        },
+      ]);
+      const facts = new Set(
+        rows.map((row) => {
+          if (row.kind === "section") {
+            return JSON.stringify(row.marks);
+          }
+          if (row.kind === "track") {
+            return row.trackKind;
+          }
+          return row.kind === "country" ? "country" : row.scoringStrategy;
+        })
+      );
+
+      expect([...facts].sort()).toEqual([
+        "country",
+        "institution",
+        "penalized",
+        JSON.stringify(marks),
+      ]);
+    })
+  );
+
   it.effect("preserves an authored country description when present", () =>
     Effect.gen(function* () {
       const sources = yield* decodeTryoutRegistry();

@@ -10,6 +10,7 @@ import {
 import { AppLocaleSchema } from "#contracts/locale";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
+  TryoutMarksSchema,
   TryoutScoringSchema,
   TryoutSourceRevisionSchema,
   TryoutTrackKindSchema,
@@ -165,11 +166,15 @@ export const TryoutSetSchema = Schema.Struct({
 );
 export type TryoutSet = typeof TryoutSetSchema.Type;
 
-/** One localized section row with source ownership. */
+/**
+ * One localized section row with source ownership. A section of a penalized
+ * set carries the marks that score its questions; no other section has marks.
+ */
 export const TryoutSectionSchema = Schema.Struct({
   ...LocalizedFields,
   ...ParentFields,
   kind: Schema.Literal("section"),
+  marks: Schema.optionalKey(TryoutMarksSchema),
   order: PositiveCountSchema,
   publicPath: Schema.optional(PublicPathSchema),
   questionCount: PositiveCountSchema,

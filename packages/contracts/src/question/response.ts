@@ -1,5 +1,17 @@
 import { Schema } from "effect";
 
+import {
+  canonicalQuestionAnswer,
+  canonicalQuestionAnswerStructure,
+  QuestionAnswerSchema,
+} from "#contracts/question/answer";
+import { QuestionResponseLabelSchema } from "#contracts/question/label";
+import {
+  canonicalQuestionRubric,
+  canonicalQuestionRubricStructure,
+  QuestionRubricResponseSchema,
+} from "#contracts/question/rubric";
+
 const OPTION_KEY_PATTERN = /^option-[1-9]\d*$/u;
 const CATEGORY_KEY_PATTERN = /^category-[1-9]\d*$/u;
 const STATEMENT_KEY_PATTERN = /^statement-[1-9]\d*$/u;
@@ -7,18 +19,19 @@ const PositiveOrderSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThan(0))
 );
 
-/** Response formats supported by one assessment item. */
+/**
+ * Response formats supported by one assessment item. `short-answer` grades one
+ * typed number or text deterministically, and `rubric` scores an open response
+ * per criterion.
+ */
 export const QuestionResponseKindSchema = Schema.Literals([
   "category",
   "multiple-choice",
+  "rubric",
+  "short-answer",
   "single-choice",
 ]);
 export type QuestionResponseKind = typeof QuestionResponseKindSchema.Type;
-
-/** One non-empty Markdown label rendered by the product-owned content surface. */
-export const QuestionResponseLabelSchema = Schema.String.check(
-  Schema.isNonEmpty()
-);
 
 const QuestionOptionSchema = Schema.Struct({
   isCorrect: Schema.Boolean,
@@ -141,16 +154,38 @@ const CategoryResponseSchema = Schema.Struct({
   )
 );
 
+/** One typed number or text graded deterministically against its key. */
+const ShortAnswerResponseSchema = Schema.Struct({
+  answer: QuestionAnswerSchema,
+  kind: Schema.Literal("short-answer"),
+});
+
 /** Frozen locale-specific response used from publication through review. */
 export const QuestionResponseSchema = Schema.Union([
   CategoryResponseSchema,
   MultipleChoiceResponseSchema,
+  QuestionRubricResponseSchema,
+  ShortAnswerResponseSchema,
   SingleChoiceResponseSchema,
 ]);
 export type QuestionResponse = typeof QuestionResponseSchema.Type;
 
-/** Returns locale-neutral response identity without localized label content. */
+/**
+ * Returns the response identity shared by every delivery language: keys,
+ * order, and answer keys without labels or accepted text written in one
+ * delivery language. A rubric keeps its labels because each copy carries them
+ * in every active app locale.
+ */
 export function canonicalQuestionResponseStructure(response: QuestionResponse) {
+  if (response.kind === "rubric") {
+    return canonicalQuestionRubricStructure(response);
+  }
+  if (response.kind === "short-answer") {
+    return {
+      answer: canonicalQuestionAnswerStructure(response.answer),
+      kind: response.kind,
+    };
+  }
   if (response.kind === "category") {
     return {
       categories: response.categories.map(({ categoryKey, order }) => ({
@@ -179,6 +214,15 @@ export function canonicalQuestionResponseStructure(response: QuestionResponse) {
 
 /** Returns response facts in stable field order for signed canonicalizers. */
 export function canonicalQuestionResponse(response: QuestionResponse) {
+  if (response.kind === "rubric") {
+    return canonicalQuestionRubric(response);
+  }
+  if (response.kind === "short-answer") {
+    return {
+      answer: canonicalQuestionAnswer(response.answer),
+      kind: response.kind,
+    };
+  }
   if (response.kind === "category") {
     return {
       categories: response.categories.map(({ categoryKey, label, order }) => ({

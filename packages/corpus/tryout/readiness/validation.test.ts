@@ -121,6 +121,21 @@ const readinessInput = {
   trackKey: "2027",
 } as const;
 
+const marks = { blank: 0, correct: 4, wrong: -1 };
+const MARKS_FACT = '{"blank":0,"correct":4,"wrong":-1}';
+
+/** Builds the fixture exam as a penalized source with uniform section marks. */
+function penalizedSource(value: typeof marks) {
+  const [track] = sourceInput.tracks;
+  const markedSections = sections.map((section) => ({
+    ...section,
+    marks: value,
+  }));
+  const set = { ...track.sets[0], sections: markedSections };
+  const tracks = [{ ...track, sets: [set] }];
+  return { ...sourceInput, scoringStrategy: "penalized" as const, tracks };
+}
+
 describe("assessment source readiness validation", () => {
   it.effect("accepts every active set that matches its readiness gate", () =>
     Effect.gen(function* () {
@@ -236,6 +251,47 @@ describe("assessment source readiness validation", () => {
         "trackKey",
         "activeSets",
         "sectionKey",
+      ]);
+    })
+  );
+
+  it.effect("validates penalized marks against their readiness evidence", () =>
+    Effect.gen(function* () {
+      const [first, second] = readinessInput.sections;
+      const evidence = { ...official(0), value: marks };
+      const readiness = yield* defineAssessmentReadiness({
+        ...readinessInput,
+        sections: [
+          { ...first, marks: evidence },
+          { ...second, marks: evidence },
+        ],
+      });
+      const [penalized, drifted, unmarked] = yield* Effect.all([
+        defineTryoutExamSource(penalizedSource(marks)),
+        defineTryoutExamSource(penalizedSource({ ...marks, correct: 3 })),
+        defineTryoutExamSource(sourceInput),
+      ]);
+      const failures = yield* Effect.forEach(
+        [
+          validateAssessmentSourceReadiness(drifted, readiness),
+          validateAssessmentSourceReadiness(unmarked, readiness),
+          validateAssessmentSourceReadiness(
+            penalized,
+            yield* defineAssessmentReadiness(readinessInput)
+          ),
+        ],
+        Effect.flip
+      );
+
+      expect(
+        yield* validateAssessmentSourceReadiness(penalized, readiness)
+      ).toBe(penalized);
+      expect(
+        failures.map(({ actual, expected, field }) => [field, actual, expected])
+      ).toEqual([
+        ["marks", '{"blank":0,"correct":3,"wrong":-1}', MARKS_FACT],
+        ["marks", "none", MARKS_FACT],
+        ["marks", MARKS_FACT, "none"],
       ]);
     })
   );

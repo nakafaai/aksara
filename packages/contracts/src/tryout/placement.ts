@@ -15,7 +15,11 @@ import {
   questionKeyParts,
 } from "#contracts/question/identity";
 import { QuestionBlueprintSchema } from "#contracts/question/item";
-import { QuestionResponseSchema } from "#contracts/question/response";
+import { AuthoredQuestionPointsSchema } from "#contracts/question/points";
+import {
+  type QuestionResponse,
+  QuestionResponseSchema,
+} from "#contracts/question/response";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
@@ -41,6 +45,7 @@ const PlacementFields = {
   deliveryLanguage: DeliveryLanguageSchema,
   examKey: TryoutKeySchema,
   languagePolicy: AssessmentLanguagePolicySchema,
+  points: Schema.optionalKey(AuthoredQuestionPointsSchema),
   questionArtifactLocale: ArtifactLocaleSchema,
   questionContentKey: ContentKeySchema,
   questionOrder: PositiveCountSchema,
@@ -109,7 +114,21 @@ function hasCoherentPlacementLanguages(input: {
   );
 }
 
-/** Active placement before immutable artifact hashes are bound. */
+/** Requires a rubric placement to take its worth from the rubric total. */
+function hasCoherentPlacementPoints(input: {
+  readonly points?: number;
+  readonly response: QuestionResponse;
+}) {
+  return input.points === undefined || input.response.kind !== "rubric";
+}
+
+const PLACEMENT_POINTS_MESSAGE =
+  "Rubric placements derive their points from the rubric total.";
+
+/**
+ * Active placement before immutable artifact hashes are bound. Absent points
+ * mean the default single point; read worth through `questionPoints`.
+ */
 export const TryoutPlacementSourceSchema = Schema.Struct(PlacementFields).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentPlacementKeys, {
@@ -120,6 +139,11 @@ export const TryoutPlacementSourceSchema = Schema.Struct(PlacementFields).pipe(
     Schema.makeFilter(hasCoherentPlacementLanguages, {
       message:
         "Placement app, delivery, question, and answer languages must agree.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementPoints, {
+      message: PLACEMENT_POINTS_MESSAGE,
     })
   )
 );
@@ -141,6 +165,11 @@ export const TryoutPlacementSchema = Schema.Struct({
     Schema.makeFilter(hasCoherentPlacementLanguages, {
       message:
         "Placement app, delivery, question, and answer languages must agree.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPlacementPoints, {
+      message: PLACEMENT_POINTS_MESSAGE,
     })
   )
 );

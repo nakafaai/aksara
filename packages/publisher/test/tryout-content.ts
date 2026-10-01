@@ -1,6 +1,11 @@
 import { resolve } from "node:path";
 import type { DateOnly } from "@nakafa/aksara-contracts/date";
-import { QuestionBlueprintSchema } from "@nakafa/aksara-contracts/question/item";
+import { artifactLocaleCode } from "@nakafa/aksara-contracts/locale";
+import {
+  QuestionBlueprintSchema,
+  type QuestionResponseSource,
+  questionResponseFor,
+} from "@nakafa/aksara-contracts/question/item";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { Effect, Path, Stream } from "effect";
@@ -158,4 +163,69 @@ export const collectEnrichedTryoutContent = Effect.fn(
     record,
     stimulusKey,
   };
+});
+
+const rubricLabel = { de: "Ansatz", en: "Approach", id: "Pendekatan" };
+
+/** Test-only short-answer and rubric responses for the fixture question. */
+export const assessedResponses: readonly QuestionResponseSource[] = [
+  {
+    answer: { acceptsFractions: true, kind: "number", value: "0.5" },
+    kind: "short-answer",
+  },
+  {
+    criteria: [
+      {
+        label: rubricLabel,
+        levels: [
+          { label: rubricLabel, points: 0 },
+          { label: rubricLabel, points: 2 },
+        ],
+      },
+    ],
+    kind: "rubric",
+  },
+];
+
+/** Binds the fixture question after replacing its assessed response. */
+export const collectRespondedTryoutContent = Effect.fn(
+  "TryoutContentTest.collectResponded"
+)(function* (binding: BoundTryoutPlacement, response: QuestionResponseSource) {
+  const answerEntry = yield* Effect.fromNullishOr(
+    placementEntry(binding, "answer")
+  );
+  const questionEntry = yield* Effect.fromNullishOr(
+    placementEntry(binding, "question")
+  );
+  const source = yield* Effect.fromNullishOr(questionSources[0]);
+  const item = {
+    ...source.item,
+    responses: { [artifactLocaleCode(questionEntry.artifactLocale)]: response },
+  };
+  const frozen = yield* questionResponseFor(item, questionEntry.artifactLocale);
+  const [answerDocument, questionDocument] = yield* Effect.all([
+    inspectQuestionDocument(checkoutRoot, rendererManifest, answerEntry, item),
+    inspectQuestionDocument(
+      checkoutRoot,
+      rendererManifest,
+      questionEntry,
+      item
+    ),
+  ]).pipe(Effect.provide([testFileLayer(sourceByPath), Path.layer]));
+  const respondedBinding = {
+    answerHead: QuestionHeadSchema.make({
+      ...binding.answerHead,
+      projectionHash: answerDocument.projectionHash,
+    }),
+    placement: { ...binding.placement, response: frozen },
+    questionHead: QuestionHeadSchema.make({
+      ...binding.questionHead,
+      projectionHash: questionDocument.projectionHash,
+    }),
+  } satisfies BoundTryoutPlacement;
+  const [record] = yield* collectTryoutContent([binding], {
+    sources: [{ ...source, item }],
+    values: [respondedBinding],
+  });
+  return { frozen, questionDocument, record };
 });

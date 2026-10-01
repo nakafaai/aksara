@@ -2,6 +2,7 @@ import { expect, layer } from "@effect/vitest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { Effect, Path } from "effect";
 import {
+  inspectMaterialDocument,
   loadMaterialDocument,
   makeMaterialProjection,
 } from "#publisher/material/document";
@@ -99,6 +100,67 @@ layer(materialTestLayer)("material document", (it) => {
         }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
 
         expect(error).toMatchObject({
+          _tag: "MaterialMetadataError",
+          sourcePath: entry.sourcePath,
+        });
+      })
+  );
+
+  it.effect(
+    "carries an authored search title from lesson metadata into the projection",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* MaterialTestFixtures;
+        const entry = yield* requireEnglishEntry();
+        const absolutePath = yield* Effect.fromNullishOr(
+          fixture.absolutePaths.get(englishPath)
+        );
+        const authored = yield* Effect.fromNullishOr(
+          fixture.sources.get(absolutePath)
+        );
+        /** Adds one search title line to the authored lesson metadata. */
+        const withSearchTitle = (title: string) =>
+          new Map(fixture.sources).set(
+            absolutePath,
+            authored.replace(
+              '  title: "Function Concept",',
+              `  title: "Function Concept",\n  searchTitle: "${title}",`
+            )
+          );
+        const searchTitle =
+          "Function Concept: Definition, Notation, and Examples";
+        const [plain, searchable] = yield* Effect.forEach(
+          [fixture.sources, withSearchTitle(searchTitle)],
+          (files) =>
+            inspectMaterialDocument(
+              fixture.checkoutRoot,
+              fixture.rendererManifest,
+              entry
+            ).pipe(Effect.provide([testFileLayer(files), Path.layer]))
+        );
+        const overlong = yield* inspectMaterialDocument(
+          fixture.checkoutRoot,
+          fixture.rendererManifest,
+          entry
+        ).pipe(
+          Effect.provide([
+            testFileLayer(
+              withSearchTitle(
+                Array.from({ length: 8 }, () => "Function").join(" ")
+              )
+            ),
+            Path.layer,
+          ]),
+          Effect.flip
+        );
+
+        expect(plain?.projection.metadata).not.toHaveProperty("searchTitle");
+        expect(searchable?.projection.metadata).toMatchObject({
+          searchTitle,
+          title: "Function Concept",
+        });
+        expect(searchable?.projectionHash).not.toBe(plain?.projectionHash);
+        expect(overlong).toMatchObject({
           _tag: "MaterialMetadataError",
           sourcePath: entry.sourcePath,
         });

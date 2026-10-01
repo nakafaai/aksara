@@ -143,4 +143,15 @@ describe("try-out locale closure placement facts", () => {
       );
     })
   );
+
+  it.effect("rejects point drift across app locales", () =>
+    Effect.gen(function* () {
+      const { index, placement } = yield* indonesianPlacement();
+      const replacement = yield* updatePlacement(placement, { points: 2 });
+
+      expect((yield* rejectReplacement(index, replacement)).code).toBe(
+        "fact-mismatch"
+      );
+    })
+  );
 });

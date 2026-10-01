@@ -2,15 +2,23 @@ import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
+  canonicalTryoutMarks,
   TryoutContentHashSchema,
+  TryoutMarksSchema,
   TryoutScoringSchema,
   TryoutSourceRevisionSchema,
+  TryoutTrackKindSchema,
   TryoutVisibilitySchema,
 } from "#contracts/tryout/spec";
 
 describe("try-out shared contracts", () => {
-  it("accepts the implemented scoring and visibility vocabulary", () => {
-    expect(TryoutScoringSchema.literals).toEqual(["irt", "raw"]);
+  it("accepts the implemented scoring, track, and visibility vocabulary", () => {
+    expect(TryoutScoringSchema.literals).toEqual(["irt", "penalized", "raw"]);
+    expect(TryoutTrackKindSchema.literals).toEqual([
+      "institution",
+      "subject",
+      "year",
+    ]);
     expect(TryoutVisibilitySchema.literals).toEqual([
       "internal-entry",
       "visible",
@@ -31,5 +39,35 @@ describe("try-out shared contracts", () => {
     expect(
       Exit.isFailure(invalidKey) ? String(invalidKey.cause) : ""
     ).toContain("Invalid try-out key.");
+  });
+
+  it("accepts penalized marks and canonicalizes them in stable order", () => {
+    for (const marks of [
+      { blank: 0, correct: 4, wrong: -1 },
+      { blank: -1, correct: 1, wrong: -1 },
+      { blank: 1, correct: 6, wrong: -2 },
+    ]) {
+      const decoded = Schema.decodeSync(TryoutMarksSchema)(marks);
+      expect(JSON.stringify(canonicalTryoutMarks(decoded))).toBe(
+        JSON.stringify({
+          blank: marks.blank,
+          correct: marks.correct,
+          wrong: marks.wrong,
+        })
+      );
+    }
+  });
+
+  it("rejects marks that reward mistakes or blanks over correct answers", () => {
+    for (const marks of [
+      { blank: 0, correct: 4, wrong: 0 },
+      { blank: 0, correct: 0, wrong: -1 },
+      { blank: -2, correct: 4, wrong: -1 },
+      { blank: 4, correct: 4, wrong: -1 },
+      { blank: 0, correct: 4, wrong: -0.5 },
+    ]) {
+      const result = Schema.decodeExit(TryoutMarksSchema)(marks);
+      expect(Exit.isFailure(result)).toBe(true);
+    }
   });
 });

@@ -2,7 +2,10 @@ import { DateOnlySchema } from "@nakafa/aksara-contracts/date";
 import { QuestionResponseKindSchema } from "@nakafa/aksara-contracts/question/response";
 import { isHttpsUrl } from "@nakafa/aksara-contracts/text/syntax";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { TryoutSourceRevisionSchema } from "@nakafa/aksara-contracts/tryout/spec";
+import {
+  TryoutMarksSchema,
+  TryoutSourceRevisionSchema,
+} from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
 
 const PositiveCountSchema = Schema.Int.pipe(
@@ -19,16 +22,25 @@ const ReadinessEvidenceSchema = Schema.Struct({
   url: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
 
+const OfficialProvenanceSchema = Schema.Struct({
+  evidenceKey: TryoutKeySchema,
+  kind: Schema.Literal("official"),
+});
 const ExpectationProvenanceSchema = Schema.Union([
-  Schema.Struct({
-    evidenceKey: TryoutKeySchema,
-    kind: Schema.Literal("official"),
-  }),
+  OfficialProvenanceSchema,
   Schema.Struct({ kind: Schema.Literal("editorial") }),
 ]);
 const ScheduleExpectationSchema = Schema.Struct({
   provenance: ExpectationProvenanceSchema,
   value: PositiveCountSchema,
+});
+/**
+ * Penalized marks change a learner's score, so only official evidence may set
+ * them.
+ */
+const MarksExpectationSchema = Schema.Struct({
+  provenance: OfficialProvenanceSchema,
+  value: TryoutMarksSchema,
 });
 const CoverageMinimumSchema = Schema.Struct({
   editorialMinimum: PositiveCountSchema,
@@ -53,9 +65,14 @@ const SectionBlueprintSchema = Schema.Struct({
   responseMinimums: Schema.NonEmptyArray(ResponseMinimumSchema),
   topics: Schema.NonEmptyArray(TopicMinimumSchema),
 });
+/**
+ * Expected facts for one scheduled section. `marks` records the official
+ * evidence for the correct, wrong, and blank marks of a penalized section.
+ */
 const ReadinessSectionSchema = Schema.Struct({
   blueprint: Schema.optionalKey(SectionBlueprintSchema),
   key: TryoutKeySchema,
+  marks: Schema.optionalKey(MarksExpectationSchema),
   order: PositiveCountSchema,
   questionCount: ScheduleExpectationSchema,
   timeLimitSeconds: ScheduleExpectationSchema,
@@ -86,7 +103,11 @@ function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
   }
   return readiness.sections.every((section, index) => {
     const { blueprint } = section;
-    const expectations = [section.questionCount, section.timeLimitSeconds];
+    const expectations = [
+      section.questionCount,
+      section.timeLimitSeconds,
+      ...(section.marks === undefined ? [] : [section.marks]),
+    ];
     const evidenceExists = expectations.every(
       ({ provenance }) =>
         provenance.kind === "editorial" ||

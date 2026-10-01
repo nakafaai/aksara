@@ -29,6 +29,7 @@ export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
     deliveryLanguage: row.deliveryLanguage,
     examKey: row.examKey,
     languagePolicy: canonicalAssessmentLanguagePolicy(row.languagePolicy),
+    ...(row.points === undefined ? {} : { points: row.points }),
     questionArtifactHash: row.questionArtifactHash,
     questionArtifactLocale: row.questionArtifactLocale,
     questionContentKey: row.questionContentKey,

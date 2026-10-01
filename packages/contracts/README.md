@@ -30,7 +30,23 @@ Current consumers use unversioned semantic Interfaces:
 - `tryout/catalog` owns minimal catalog node schemas, while `tryout/identity`
   builds their pure lookup identities before complete signed rows are loaded.
 - `projection/material` owns the application-locale material namespace and
-  validates every signed route and projection against it.
+  validates every signed route and projection against it. Lesson metadata may
+  carry an optional `searchTitle` for the HTML title, while `title` stays the
+  short navigation name.
+- `question/response` owns the frozen response formats: `single-choice`,
+  `multiple-choice`, `category`, `short-answer`, and `rubric`.
+- `question/answer` owns deterministic short-answer and final-answer keys: an
+  exact canonical decimal with an optional tolerance and an explicit fraction
+  flag, or accepted text with explicit normalization rules. Graders compare
+  text only through `normalizeTextAnswer`.
+- `question/rubric` owns ordered criteria and levels with labels in every
+  active app locale. Each judged criterion maps onto one Effect
+  `Decision.rate` decision, and its total is derived, never stored.
+- `question/points` owns a question's worth. Raw, penalized, and IRT scoring
+  read it only through `questionPoints`.
+- `tryout/spec` owns the `irt`, `penalized`, and `raw` scoring strategies, the
+  per-section marks of a penalized exam, and the `institution`, `subject`, and
+  `year` track kinds.
 - `projection/page` owns stable public page identities, localized paths, and
   signed metadata for human, agent, and sitemap delivery.
 - `math/visual` owns the unversioned, renderer-neutral plane and space scene

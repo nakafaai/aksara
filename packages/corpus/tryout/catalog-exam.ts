@@ -105,6 +105,7 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutCatalogSection")(
       examKey: source.examKey,
       graph,
       kind: "section",
+      ...(section.marks === undefined ? {} : { marks: section.marks }),
       order: section.order,
       ...(routeSlug === undefined
         ? {}

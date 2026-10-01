@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
@@ -8,34 +8,28 @@ import {
   tryoutSectionLogicalIdentity,
 } from "#contracts/tryout/catalog-hash";
 import { tryoutPlacementLogicalIdentity } from "#contracts/tryout/identity";
+import {
+  addLocale,
+  TryoutClosureError,
+  validateLocales,
+} from "#contracts/tryout/locales";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
 import {
   canonicalizeAssessedLanguagePlacementFacts,
   canonicalizeLocaleNeutralPlacementFacts,
 } from "#contracts/tryout/placement-closure";
-
-/** A try-out snapshot is incomplete or inconsistent across app locales. */
-export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
-  "TryoutClosureError",
-  {
-    actual: Schema.String,
-    code: Schema.Literals([
-      "assessed-language",
-      "duplicate-locale",
-      "fact-mismatch",
-      "inactive-locale",
-      "missing-locale",
-      "missing-section",
-      "question-count",
-    ]),
-    expected: Schema.String,
-    identity: Schema.String,
-  }
-) {}
+import {
+  makeTryoutScoringFacts,
+  recordTryoutScoringFacts,
+  type TryoutScoringFacts,
+  validateTryoutPlacementScoring,
+  validateTryoutScoringFacts,
+} from "#contracts/tryout/scoring";
 
 interface CatalogClosureState {
   readonly factsByIdentity: Map<string, string>;
   readonly localesByIdentity: Map<string, Set<AppLocale>>;
+  readonly scoring: TryoutScoringFacts;
   readonly sections: Map<string, number>;
 }
 
@@ -44,85 +38,6 @@ interface PlacementClosureState {
   readonly countsBySectionLocale: Map<string, number>;
   readonly factsByIdentity: Map<string, string>;
   readonly localesByIdentity: Map<string, Set<AppLocale>>;
-}
-
-/** Serializes locale sets through the active list's signed canonical order. */
-function localeSetIdentity(
-  locales: ReadonlySet<AppLocale>,
-  activeAppLocales: ActiveAppLocaleList
-) {
-  return JSON.stringify(
-    activeAppLocales.filter((locale) => locales.has(locale))
-  );
-}
-
-/** Adds one active locale to a logical identity without duplicates. */
-function addLocale(
-  localesByIdentity: Map<string, Set<AppLocale>>,
-  activeAppLocales: ActiveAppLocaleList,
-  identity: string,
-  appLocale: AppLocale
-) {
-  if (!activeAppLocales.includes(appLocale)) {
-    return Effect.fail(
-      new TryoutClosureError({
-        actual: appLocale,
-        code: "inactive-locale",
-        expected: JSON.stringify(activeAppLocales),
-        identity,
-      })
-    );
-  }
-  const locales = localesByIdentity.get(identity) ?? new Set<AppLocale>();
-  if (locales.has(appLocale)) {
-    return Effect.fail(
-      new TryoutClosureError({
-        actual: appLocale,
-        code: "duplicate-locale",
-        expected: "one row per active app locale",
-        identity,
-      })
-    );
-  }
-  locales.add(appLocale);
-  localesByIdentity.set(identity, locales);
-  return Effect.void;
-}
-
-/** Confirms every logical row closes over the exact active locale list. */
-function validateLocales(
-  localesByIdentity: Map<string, Set<AppLocale>>,
-  activeAppLocales: ActiveAppLocaleList
-) {
-  if (localesByIdentity.size === 0) {
-    return Effect.fail(
-      new TryoutClosureError({
-        actual: "[]",
-        code: "missing-locale",
-        expected: JSON.stringify(activeAppLocales),
-        identity: "empty",
-      })
-    );
-  }
-  return Effect.forEach(
-    localesByIdentity,
-    ([identity, locales]) => {
-      const actual = localeSetIdentity(locales, activeAppLocales);
-      const expected = JSON.stringify(activeAppLocales);
-      if (actual === expected) {
-        return Effect.void;
-      }
-      return Effect.fail(
-        new TryoutClosureError({
-          actual,
-          code: "missing-locale",
-          expected,
-          identity,
-        })
-      );
-    },
-    { discard: true }
-  );
 }
 
 /** Adds one catalog row and compares its locale-neutral facts. */
@@ -145,6 +60,7 @@ function addCatalogRow(
     );
   }
   state.factsByIdentity.set(identity, facts);
+  recordTryoutScoringFacts(state.scoring, row);
   if (row.kind === "section") {
     state.sections.set(identity, row.questionCount);
   }
@@ -211,12 +127,17 @@ function addPlacement(
     sectionLocaleIdentity,
     (state.countsBySectionLocale.get(sectionLocaleIdentity) ?? 0) + 1
   );
-  return addLocale(
-    state.localesByIdentity,
-    activeAppLocales,
-    identity,
-    row.appLocale
-  ).pipe(Effect.as(state));
+  return validateTryoutPlacementScoring(catalog.scoring, row).pipe(
+    Effect.andThen(
+      addLocale(
+        state.localesByIdentity,
+        activeAppLocales,
+        identity,
+        row.appLocale
+      )
+    ),
+    Effect.as(state)
+  );
 }
 
 /** Confirms each localized section owns its declared question inventory. */
@@ -252,7 +173,10 @@ function validateQuestionCounts(
   );
 }
 
-/** Verifies catalog facts, language policy, and inventory across app locales. */
+/**
+ * Verifies catalog facts, language policy, inventory, and scoring across app
+ * locales in one pass over each stream.
+ */
 export const verifyTryoutLocaleClosure = Effect.fn(
   "AksaraContracts.verifyTryoutLocaleClosure"
 )(function* <
@@ -279,6 +203,7 @@ export const verifyTryoutLocaleClosure = Effect.fn(
         ({
           factsByIdentity: new Map(),
           localesByIdentity: new Map(),
+          scoring: makeTryoutScoringFacts(),
           sections: new Map(),
         }) satisfies CatalogClosureState,
       (state, record) =>
@@ -286,6 +211,7 @@ export const verifyTryoutLocaleClosure = Effect.fn(
     )
   );
   yield* validateLocales(catalog.localesByIdentity, input.activeAppLocales);
+  yield* validateTryoutScoringFacts(catalog.scoring);
 
   const placements = yield* input.placements.pipe(
     Stream.runFoldEffect(

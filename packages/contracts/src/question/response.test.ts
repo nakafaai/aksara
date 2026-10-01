@@ -6,6 +6,11 @@ import {
   canonicalQuestionResponseStructure,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import {
+  canonicalQuestionRubric,
+  canonicalQuestionRubricStructure,
+} from "#contracts/question/rubric";
+import { rubric } from "#contracts/test/rubric";
 
 const single = {
   kind: "single-choice",
@@ -172,5 +177,57 @@ describe("question response", () => {
         )
       ).toBe(true);
     }
+  });
+
+  it("canonicalizes short answers and keeps only locale-neutral rules as structure", () => {
+    const number = Schema.decodeSync(QuestionResponseSchema)({
+      answer: {
+        acceptsFractions: true,
+        kind: "number",
+        tolerance: { kind: "absolute", value: "0.01" },
+        value: "1.25",
+      },
+      kind: "short-answer",
+    });
+    const text = Schema.decodeSync(QuestionResponseSchema)({
+      answer: {
+        acceptedAnswers: ["fotosintesis"],
+        collapseWhitespace: true,
+        ignoreCase: true,
+        kind: "text",
+      },
+      kind: "short-answer",
+    });
+
+    expect(JSON.stringify(canonicalQuestionResponse(number))).toBe(
+      '{"answer":{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"absolute","value":"0.01"},"value":"1.25"},"kind":"short-answer"}'
+    );
+    expect(canonicalQuestionResponseStructure(number)).toEqual(
+      canonicalQuestionResponse(number)
+    );
+    expect(canonicalQuestionResponse(text)).toEqual(text);
+    expect(canonicalQuestionResponseStructure(text)).toEqual({
+      answer: { collapseWhitespace: true, ignoreCase: true, kind: "text" },
+      kind: "short-answer",
+    });
+    expect(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionResponseSchema)({
+          answer: { acceptsFractions: false, kind: "number", value: "1.50" },
+          kind: "short-answer",
+        })
+      )
+    ).toBe(true);
+  });
+
+  it("canonicalizes a rubric through its owning rubric contract", () => {
+    const decoded = Schema.decodeSync(QuestionResponseSchema)(rubric);
+
+    expect(canonicalQuestionResponse(decoded)).toEqual(
+      canonicalQuestionRubric(rubric)
+    );
+    expect(canonicalQuestionResponseStructure(decoded)).toEqual(
+      canonicalQuestionRubricStructure(rubric)
+    );
   });
 });

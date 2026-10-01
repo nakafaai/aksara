@@ -3,8 +3,12 @@ import { Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { AppLocaleCode } from "#contracts/locale";
+import { makeTryoutTestRows } from "#contracts/test/tryout";
 import { compareTryoutPlacements } from "#contracts/tryout/identity";
-import { TryoutPlacementSchema } from "#contracts/tryout/placement";
+import {
+  type TryoutPlacement,
+  TryoutPlacementSchema,
+} from "#contracts/tryout/placement";
 import {
   canonicalizeTryoutPlacement,
   digestTryoutPlacements,
@@ -136,5 +140,31 @@ describe("try-out placement hashing", () => {
       const summary = yield* digestTryoutPlacements(Stream.empty);
       expect(summary.count).toBe(0);
     })
+  );
+
+  it.effect(
+    "keeps default-point bytes and binds authored points after the policy",
+    () =>
+      Effect.gen(function* () {
+        const record = yield* Effect.fromNullishOr(
+          makeTryoutTestRows().placements.find(
+            ({ row }) => row.appLocale === "en"
+          )
+        );
+        const weighted: TryoutPlacement = { ...record.row, points: 2 };
+
+        expect(record.rowHash).toBe(
+          "sha256:8e7edda82a3a066a064cd68dd6431367f0b5c946a555763b0d5cdf155c588066"
+        );
+        expect(canonicalizeTryoutPlacement(weighted)).toContain(
+          '"languagePolicy":{"kind":"app-locale"},"points":2,"questionArtifactHash"'
+        );
+        expect(JSON.parse(canonicalizeTryoutPlacement(weighted))).toEqual(
+          weighted
+        );
+        expect(makeTryoutPlacementRecord(weighted).rowHash).not.toBe(
+          record.rowHash
+        );
+      })
   );
 });
