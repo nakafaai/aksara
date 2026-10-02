@@ -17,17 +17,17 @@ import { addMaterialContext } from "#corpus/curriculum/context";
 import {
   type CurriculumRouteContext,
   projectCurriculumNodeRoutes,
-} from "#corpus/curriculum/node-route";
-import {
-  type ProjectedCurriculumNode,
-  projectCurriculumNodes,
-} from "#corpus/curriculum/projection";
+} from "#corpus/curriculum/node";
 import {
   CurriculumRouteError,
   curriculumSourcePath,
   requireCurriculumProgram,
   requireProgramTranslation,
-} from "#corpus/curriculum/route-source";
+} from "#corpus/curriculum/ownership";
+import {
+  type ProjectedCurriculumNode,
+  projectCurriculumNodes,
+} from "#corpus/curriculum/projection";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
 import {
   decodeMaterialDomains,

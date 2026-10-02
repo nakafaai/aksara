@@ -10,7 +10,7 @@ import {
   corpusRoot,
   physicalQuestionBankTestTimeout,
   questionLayer,
-} from "#corpus/test/question-layer";
+} from "#corpus/test/question";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";

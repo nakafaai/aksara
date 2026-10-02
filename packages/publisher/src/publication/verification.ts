@@ -14,11 +14,11 @@ import {
   PublicationStatusMismatchError,
   PublicationVerificationTimeoutError,
 } from "#publisher/publication/spec";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 import {
   validatePublicationReceipt,
   validateVerificationEvidence,
-} from "#publisher/release-validation";
-import type { PublicationTargetFailure } from "#publisher/target/errors";
+} from "#publisher/validation";
 
 /** Candidate staging either found a terminal receipt or reached verification. */
 export type CandidateStageResult =

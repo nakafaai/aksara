@@ -25,7 +25,7 @@ import { readMetadataDocument } from "#compiler/metadata";
 import {
   createSourcePolicy,
   type SourcePolicyError,
-} from "#compiler/source-policy";
+} from "#compiler/policy/source";
 
 /** Lightweight source facts used before deciding whether code generation is needed. */
 export interface ContentSourceInspection {

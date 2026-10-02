@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Schema, Stream } from "effect";
 import { QuranSurahSchema } from "#corpus/quran/schema";
-import { testQuranSources } from "#corpus/test/quran";
+import { testQuranSources } from "#corpus/test/quran/sources";
 
 const decodeSurah = Schema.decodeUnknownEffect(QuranSurahSchema);
 

@@ -4,8 +4,8 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
-import { createMathVisualPolicy } from "#compiler/math-policy";
-import { createSourcePolicy } from "#compiler/source-policy";
+import { createMathVisualPolicy } from "#compiler/policy/math";
+import { createSourcePolicy } from "#compiler/policy/source";
 
 export const TEST_MATH_CONTENT_KEY = ContentKeySchema.make(
   "test:math-visual-policy"

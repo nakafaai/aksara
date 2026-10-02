@@ -11,8 +11,8 @@ import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,
 } from "#compiler/errors";
-import { collectUnsupportedMdxModules } from "#compiler/module-policy";
-import { inspectPropertyProgram } from "#compiler/property-policy";
+import { collectUnsupportedMdxModules } from "#compiler/policy/module";
+import { inspectPropertyProgram } from "#compiler/policy/property";
 
 const NETWORK_GLOBALS = new Set(["fetch", "WebSocket", "EventSource"]);
 const SAFE_GLOBALS = new Set([

@@ -9,13 +9,13 @@ import {
   curriculumNamespace,
 } from "#contracts/program/curriculum";
 import {
+  ProgramRowHashError,
+  verifyProgramSnapshotRowHash,
+} from "#contracts/program/snapshot/hash";
+import {
   canonicalizeProgramSnapshotRow,
   type ProgramSnapshotRow,
 } from "#contracts/program/snapshot/row";
-import {
-  ProgramRowHashError,
-  verifyProgramSnapshotRowHash,
-} from "#contracts/program/snapshot/row-hash";
 import type { ProgramCounts } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
 import { compareCodeUnits } from "#contracts/text/order";

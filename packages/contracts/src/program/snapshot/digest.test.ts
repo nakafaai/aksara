@@ -9,11 +9,11 @@ import {
 } from "#contracts/locale";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import { digestProgramRows } from "#contracts/program/snapshot/digest";
-import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
-} from "#contracts/program/snapshot/row-hash";
+} from "#contracts/program/snapshot/hash";
+import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import { LearningProgramSchema } from "#contracts/program/spec";
 import {
   curriculumRows,

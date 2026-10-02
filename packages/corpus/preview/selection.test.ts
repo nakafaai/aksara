@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Layer, Path } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
+import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
 
 const articlePath =
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";

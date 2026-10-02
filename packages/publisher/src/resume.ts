@@ -14,11 +14,11 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { validatePublicationStatus } from "#publisher/publication/verification";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 import {
   type PublicationReceiptMismatchError,
   validateManifestReceipt,
-} from "#publisher/release-validation";
-import type { PublicationTargetFailure } from "#publisher/target/errors";
+} from "#publisher/validation";
 
 type BundleVerificationError = Effect.Error<
   ReturnType<typeof verifyContentReleaseBundle>

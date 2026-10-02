@@ -1,0 +1,271 @@
+import { describe, expect, it } from "@effect/vitest";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import {
+  ContentReleaseItemSchema,
+  ContentReleaseManifestSchema,
+  PublicationReceiptSchema,
+  ReleaseVerificationEvidenceSchema,
+  SignedContentReleaseSchema,
+} from "@nakafa/aksara-contracts/release";
+import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
+import {
+  inheritContentSnapshot,
+  inheritContentSnapshots,
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { Effect, Schema } from "effect";
+import {
+  validateCompiledPayloadForItem,
+  validatePublicationReceipt,
+  validateReleaseRendererManifest,
+  validateReleaseSnapshots,
+  validateVerificationEvidence,
+} from "#publisher/validation";
+import { testRendererDomains } from "#test/renderer";
+
+const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
+  activeAppLocales: ACTIVE_APP_LOCALES,
+  baseActiveAppLocales: null,
+  baseManifestHash: null,
+  baseReleaseId: null,
+  baseResultCount: 0,
+  baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+  deleteCount: 0,
+  format: "localized-content-release",
+  itemCount: 0,
+  itemsDigest: `sha256:${"c".repeat(64)}`,
+  origin: { kind: "git", sha: "a".repeat(40) },
+  projectionCount: 2,
+  projectionDigest: `sha256:${"b".repeat(64)}`,
+  releaseId: "test-release-counts",
+  rendererManifestHash: `sha256:${"d".repeat(64)}`,
+  resultCount: 0,
+  resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+  rollbackCount: 0,
+  rollbackDigest: `sha256:${"a".repeat(64)}`,
+  routeCount: 0,
+  routeDigest: `sha256:${"b".repeat(64)}`,
+  scope: { families: [], snapshots: ["program"] },
+  snapshots: inheritContentSnapshots(null),
+  upsertCount: 0,
+});
+const release = Schema.decodeSync(SignedContentReleaseSchema)({
+  keyId: "test-release-key",
+  manifest,
+  manifestHash: `sha256:${"e".repeat(64)}`,
+  signature: `${"A".repeat(85)}A`,
+});
+const evidence = Schema.decodeSync(ReleaseVerificationEvidenceSchema)({
+  activeAppLocales: manifest.activeAppLocales,
+  baseActiveAppLocales: manifest.baseActiveAppLocales,
+  baseManifestHash: manifest.baseManifestHash,
+  baseReleaseId: manifest.baseReleaseId,
+  baseResultCount: manifest.baseResultCount,
+  baseResultDigest: manifest.baseResultDigest,
+  deleteHeads: 0,
+  itemCount: 0,
+  itemsDigest: manifest.itemsDigest,
+  manifestHash: release.manifestHash,
+  projectionCount: manifest.projectionCount,
+  projectionDigest: manifest.projectionDigest,
+  releaseId: manifest.releaseId,
+  rendererManifestHash: manifest.rendererManifestHash,
+  resultCount: manifest.resultCount,
+  resultDigest: manifest.resultDigest,
+  rollbackCount: manifest.rollbackCount,
+  rollbackDigest: manifest.rollbackDigest,
+  routeCount: manifest.routeCount,
+  routeDigest: manifest.routeDigest,
+  snapshots: manifest.snapshots,
+  stagedArtifacts: 0,
+  stagedRoutes: manifest.routeCount,
+  stagedSnapshotRows: 0,
+  upsertHeads: 0,
+});
+const summary = { deleteCount: 0, upsertCount: 0 };
+const projectionSummary = { count: manifest.projectionCount };
+const routeSummary = { count: manifest.routeCount };
+const snapshotSummary = { snapshots: manifest.snapshots, stagedRows: 0 };
+const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const item = Schema.decodeSync(ContentReleaseItemSchema)({
+  change: {
+    artifactHash,
+    artifactLocale: "en",
+    contentKey: "test:content",
+    delivery: "public",
+    family: "material",
+    operation: "upsert",
+    rendererDomain: "mathematics",
+    sourcePath: "packages/corpus/test/content/en.mdx",
+  },
+  index: 0,
+  releaseId: manifest.releaseId,
+});
+const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
+  artifactLocale: "en",
+  byteLength: 1,
+  compiledCode: "x",
+  compilerConfigHash: `sha256:${"e".repeat(64)}`,
+  compilerVersion: "0.1.0",
+  contentKey: "test:content",
+  format: "mdx-function-body",
+  mdxCompilerVersion: "3.1.1",
+  plainText: "x",
+  rawMdx: "x",
+  rendererDomain: "mathematics",
+  requiredComponents: [],
+  sourceHash: `sha256:${"f".repeat(64)}`,
+});
+const rendererManifestProgram = createRendererManifest({
+  base: ["BlockMath"],
+  domains: testRendererDomains({
+    chemistry: ["AtomShellLab"],
+    mathematics: ["FunctionMachine"],
+  }),
+  publishedDomains: ["mathematics"],
+});
+
+describe("release validation", () => {
+  it.effect(
+    "requires the compiled payload to use the signed renderer domain",
+    () =>
+      Effect.gen(function* () {
+        yield* validateCompiledPayloadForItem(item, artifactHash, payload);
+        const error = yield* validateCompiledPayloadForItem(
+          item,
+          artifactHash,
+          { ...payload, rendererDomain: "chemistry" }
+        ).pipe(Effect.flip);
+        expect(error._tag).toBe("ReleaseArtifactMismatchError");
+      })
+  );
+
+  it.effect("accepts the exact projection count recomputed by the target", () =>
+    Effect.gen(function* () {
+      yield* validateReleaseSnapshots(manifest, snapshotSummary);
+      yield* validateVerificationEvidence(
+        release,
+        summary,
+        projectionSummary,
+        routeSummary,
+        snapshotSummary,
+        evidence
+      );
+    })
+  );
+
+  it.effect("rejects tampered structured snapshot evidence", () =>
+    Effect.gen(function* () {
+      const snapshots = {
+        ...evidence.snapshots,
+        program: inheritContentSnapshot(
+          Sha256HashSchema.make(`sha256:${"9".repeat(64)}`)
+        ),
+      };
+      const snapshotError = yield* validateReleaseSnapshots(manifest, {
+        snapshots,
+        stagedRows: 0,
+      }).pipe(Effect.flip);
+      const error = yield* validateVerificationEvidence(
+        release,
+        summary,
+        projectionSummary,
+        routeSummary,
+        snapshotSummary,
+        { ...evidence, snapshots }
+      ).pipe(Effect.flip);
+
+      expect(snapshotError._tag).toBe("ReleaseVerificationMismatchError");
+      expect(error._tag).toBe("ReleaseVerificationMismatchError");
+    })
+  );
+
+  it.effect("rejects a release prepared for another renderer manifest", () =>
+    Effect.gen(function* () {
+      const rendererManifest = yield* rendererManifestProgram;
+      const error = yield* validateReleaseRendererManifest(
+        manifest,
+        rendererManifest
+      ).pipe(Effect.flip);
+
+      expect(error._tag).toBe("ReleaseRendererManifestMismatchError");
+      expect(error).toHaveProperty("actualHash", rendererManifest.hash);
+    })
+  );
+
+  it.effect("rejects an activation receipt with tampered snapshots", () =>
+    Effect.gen(function* () {
+      const snapshots = {
+        ...manifest.snapshots,
+        program: inheritContentSnapshot(
+          Sha256HashSchema.make(`sha256:${"8".repeat(64)}`)
+        ),
+      };
+      const receipt = PublicationReceiptSchema.make({
+        activatedHeads: 0,
+        activeAppLocales: manifest.activeAppLocales,
+        deletedHeads: 0,
+        manifestHash: release.manifestHash,
+        projectionDigest: manifest.projectionDigest,
+        releaseId: manifest.releaseId,
+        resultCount: manifest.resultCount,
+        resultDigest: manifest.resultDigest,
+        routeDigest: manifest.routeDigest,
+        snapshots,
+        stagedArtifacts: 0,
+        stagedItems: 0,
+        stagedProjections: manifest.projectionCount,
+        stagedRoutes: manifest.routeCount,
+        stagedSnapshotRows: 0,
+      });
+      const error = yield* validatePublicationReceipt(
+        release,
+        summary,
+        projectionSummary,
+        routeSummary,
+        snapshotSummary,
+        receipt
+      ).pipe(Effect.flip);
+
+      expect(error._tag).toBe("PublicationReceiptMismatchError");
+    })
+  );
+
+  it.effect("rejects receipt counts from another replayed stream", () =>
+    Effect.gen(function* () {
+      const receipt = PublicationReceiptSchema.make({
+        activatedHeads: 0,
+        activeAppLocales: manifest.activeAppLocales,
+        deletedHeads: 0,
+        manifestHash: release.manifestHash,
+        projectionDigest: manifest.projectionDigest,
+        releaseId: manifest.releaseId,
+        resultCount: manifest.resultCount,
+        resultDigest: manifest.resultDigest,
+        routeDigest: manifest.routeDigest,
+        snapshots: manifest.snapshots,
+        stagedArtifacts: 0,
+        stagedItems: 0,
+        stagedProjections: manifest.projectionCount - 1,
+        stagedRoutes: manifest.routeCount,
+        stagedSnapshotRows: 0,
+      });
+      const error = yield* validatePublicationReceipt(
+        release,
+        summary,
+        projectionSummary,
+        routeSummary,
+        snapshotSummary,
+        receipt
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "PublicationReceiptMismatchError",
+        message:
+          "Publication receipt does not match the replayed release streams.",
+      });
+    })
+  );
+});

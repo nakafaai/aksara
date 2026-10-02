@@ -10,14 +10,20 @@ for clarity, measurable scale, and safe releases.
   while `packages/testing` owns shared test-runner defaults consumed by local
   workspace configs. Add CLI ownership only with the actual Nakafa preview
   caller; never fill a workspace with substitute content.
-- Name new code directories and new or touched code and script files with one
-  concise domain word. Group a longer capability under its domain, such as
-  `artifact/verify.ts`, without repeating the parent name. Preserve toolchain
-  filenames and suffixes such as `.config.ts`, `.d.ts`, and `.test.ts`, plus
-  contract-owned source filenames. Preserve exact educational directory
-  identities below `packages/corpus/material/lesson` and
-  `packages/corpus/question-bank/tryout`; never invent a hierarchy or rename
-  source identities to satisfy code naming. Do not mass-rename unrelated code.
+- Name every code, script, and document folder and file with exactly one
+  concise domain word; `pnpm names` enforces it. Group a longer capability
+  under its domain, such as `artifact/verify.ts` or `tryout/hash/catalog.ts`,
+  without repeating the parent name. Role suffixes such as `.config.ts`,
+  `.d.ts`, and `.test.ts`, toolchain files such as `pnpm-workspace.yaml`, and
+  uppercase repository documents such as `CONTENT_LICENSE.md` keep their
+  conventional names. Content identities keep their exact names: folders below
+  `packages/corpus/material/lesson`, `packages/corpus/articles`,
+  `packages/corpus/curriculum`, and `packages/corpus/pages`, the
+  `question-bank` root with its source hierarchy, and skill folders. Code in a
+  content root is a one-word file at that root, because its folders belong to
+  content. Never invent a hierarchy or rename a source identity to satisfy
+  code naming. Rename existing code in a dedicated change that rewrites every
+  import, export, and reference in one pass.
 - Never invent educational content, author metadata, corpus facts, renderer
   manifests, or production-state claims. Test-only protocol values must be
   unmistakably named as tests; content evidence must cite an exact Nakafa

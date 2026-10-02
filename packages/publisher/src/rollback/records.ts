@@ -22,7 +22,7 @@ import { Effect, Schema, Stream } from "effect";
 import {
   type ReleaseArtifactMismatchError,
   validateArtifactForItem,
-} from "#publisher/release-validation";
+} from "#publisher/validation";
 
 type ArtifactVerificationError = Effect.Error<
   | ReturnType<typeof verifySignedContentArtifact>

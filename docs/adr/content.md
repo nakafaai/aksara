@@ -192,9 +192,9 @@ MDX graph. The later published-artifact runtime therefore had to prove final
 body isolation before material activation.
 
 Evidence is recorded in
-[`docs/baselines/renderer-isolation.md`](../baselines/renderer-isolation.md).
+[`docs/baselines/renderer.md`](../baselines/renderer.md).
 The full AST import inventory and measured eleven-shard candidate are recorded in
-[`docs/baselines/import-inventory.md`](../baselines/import-inventory.md).
+[`docs/baselines/inventory.md`](../baselines/inventory.md).
 The relevant framework constraints are documented in the Next.js
 [lazy-loading guide](https://nextjs.org/docs/app/guides/lazy-loading) and
 [`connection()` reference](https://nextjs.org/docs/app/api-reference/functions/connection).

@@ -4,7 +4,7 @@ import {
   arcCurvatureUnresolved,
   arcEndpointAxesUnresolved,
   arcEndpointsUnresolved,
-} from "#contracts/math/arc-precision";
+} from "#contracts/math/arc";
 import {
   concentricRadiusCollisionPaths,
   coordinateCollisionPaths,

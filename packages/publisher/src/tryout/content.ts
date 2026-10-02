@@ -1,8 +1,8 @@
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/content-hash";
+import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/hash/content";
+import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/hash/placement";
 import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement";
-import { makeTryoutPlacementRecord } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";

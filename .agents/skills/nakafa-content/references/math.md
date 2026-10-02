@@ -1,7 +1,7 @@
 # Mathematics and code
 
 These rules apply to MDX and renderer props. Response labels are Markdown
-strings with their own [math syntax](question-bank.md#response-items).
+strings with their own [math syntax](questions.md#response-items).
 
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
   units, coordinates, and calculated values in prose. Keep instructional

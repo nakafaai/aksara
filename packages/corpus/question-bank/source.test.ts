@@ -20,7 +20,7 @@ import {
   realQuestionEntries,
   realQuestionItems,
   rejectSyntheticQuestionSources,
-} from "#corpus/test/question-layer";
+} from "#corpus/test/question";
 
 layer(Path.layer)("question source", (it) => {
   it.effect(

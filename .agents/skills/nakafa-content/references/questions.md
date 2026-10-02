@@ -1,0 +1,162 @@
+# Question bank
+
+## Directory contract
+
+Question directories live below:
+
+```text
+packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{question}/
+```
+
+The exact required file set is derived by the contracts and corpus reader. Do
+not copy a list of locale suffixes into this skill, and do not add a local
+override file or language mapping.
+
+Every exam section owns its real assessment language, independent of the
+application locale. Indonesian SNBT and TKA sections use Indonesian, except
+English assessments, which use English. A German exam owns the appropriate
+German regional language. The section's fixed language policy selects exactly
+one prompt and response locale. Worked answers remain localized for every
+application locale in the authorized authoring scope.
+Every authored locale file must pass the same inventory, ownership, preview,
+and editorial checks, whether or not that locale is included in a publication.
+The presence of an authored source file alone never changes publication state.
+
+TKA subject identities must distinguish compulsory from elective subjects.
+The primary TKA pages identify `Matematika` under `Mata Pelajaran Wajib` and
+`Matematika Tingkat Lanjut` under `Mata Pelajaran Pilihan`:
+[compulsory mathematics](https://pusmendik.kemendikdasmen.go.id/tka/tka/view/mata-pelajaran-wajib/sma/matematika)
+and
+[advanced mathematics](https://pusmendik.kemendikdasmen.go.id/tka/tka/view/mata-pelajaran-pilihan/sma/matematika-tingkat-lanjut).
+Those are verified framework names.
+
+Nakafa product naming is separate from the official taxonomy. Compulsory
+mathematics uses `compulsory-mathematics` in the question-bank directory,
+track key, and section key. Its localized route slugs are `matematika-wajib`,
+`compulsory-mathematics`, and `pflichtmathematik`. Use `Matematika Wajib` when
+the product needs to distinguish the compulsory subject, and
+`Matematika Tingkat Lanjut` for the elective subject. English may use
+`Compulsory Mathematics` and `Advanced Mathematics`. Advanced mathematics
+must own a separate Nakafa subject identity when it is authored. Do not reserve
+empty tracks or duplicate registries for future subjects. Source folder and
+file names such as `MTK Wajib` and `MTK Tingkat Lanjut` are product and
+research evidence only, not official framework evidence. Do not collapse this
+TKA subject taxonomy into UTBK-SNBT's `Penalaran Matematika`.
+Renderer domains describe available components, not subject identities:
+`tka-math` supplies mathematical renderers without defining a mathematics track.
+
+Never duplicate an exam prompt or its response options merely because the
+application locale changes. Explanations may quote the original prompt language
+while explaining the reasoning in the learner's application locale.
+
+New try-out sets also follow [try-out sets](sets.md).
+
+## Prompt rules
+
+- Keep the wording unambiguous and preserve assessed source meaning.
+- Define abbreviations, symbols, and uncommon terms when the item depends on
+  them.
+- Do not mention answer-option letters unless the source format itself requires
+  them.
+- Keep quoted and assessed passages byte-preserved when policy requires it.
+- Use math components consistently with [mathematics and code](math.md).
+- Every question must contain the information needed to answer it. Never depend
+  on an unstated intermediate value from a preceding question.
+- Every question and locale sibling with the same `stimulusKey` must present
+  the exact same stimulus. Question-specific instructions may differ, but may
+  not shorten, enrich, or otherwise change the shared evidence.
+
+## Answer rules
+
+Read [worked solutions](solutions.md) before editing any explanation.
+It owns the complete novice-safe reasoning contract, including method choice,
+subgoals, substitutions, conditions, cases, transformations, units, checks,
+and a conclusion stated by content rather than an option letter. Keep notation
+consistent with the prompt. Use the [heading rules](headings.md):
+answer sections start at `####` and name real subgoals. Never delete reasoning
+to reduce line count.
+
+## Response items
+
+- Author exactly one `item.ts` beside the question and answer MDX files. Import
+  only the `QuestionItem` type from
+  `@nakafa/aksara-contracts/question/item`, assign one literal `item` constant,
+  and export it as default. The corpus reader deliberately rejects executable
+  values, helper imports, spreads, computed keys, duplicate keys, and additional
+  statements.
+- Put responses under their exact artifact locale. Include every locale derived
+  from the stable section language policy and no others.
+- Use the stable response kinds `single-choice`, `multiple-choice`, and
+  `category`. Array position is the authoring order. Publication derives stable
+  option, statement, and category keys once, so authors must not duplicate those
+  runtime identities.
+- A response label is one non-empty rich Markdown string rendered by Nakafa's
+  canonical `MarkdownContent` surface. Plain prose needs no wrapper. Use
+  no-space `$$...$$` for inline math, such as `The result is $$x=4$$.`.
+  Response choices, category names, and statements keep mathematics inline.
+  Never use display math, a fenced `math` block, or single-dollar math in a
+  response label. Keep substantial derivations in the prompt or worked answer.
+  Escape LaTeX backslashes in TypeScript strings. For a literal currency dollar
+  in prose, use an escaped Markdown dollar or the explicit currency code.
+  Write percentage signs as `\%` inside LaTeX, with the backslash escaped in
+  TypeScript. A bare `%` starts a LaTeX comment and can silently hide the sign
+  or the rest of a response. Comments have no place in a response formula.
+  Do not wrap math in inline code or use alternate LaTeX delimiters such as
+  `\(...\)` and `\[...\]`. Raw HTML and MDX math components are not response
+  syntax. Renderer preprocessing can otherwise change their meaning before
+  Markdown parsing, so source validation rejects these forms.
+- Markdown emphasis, lists, tables, and other supported syntax use that same
+  string. Never add a plain-versus-rich mode, text-versus-math union, fragment
+  array, renderer-specific AST, or second response-label renderer. MDX
+  components belong in the prompt or answer, not in these labels.
+- A `single-choice` response has at least two options and exactly one correct
+  option. A `multiple-choice` response has at least two correct options and at
+  least one distractor. A `category` response has at least two categories and
+  one or more statements whose one-based `correctCategoryOrder` refers to an
+  existing category.
+- Locale siblings may translate their labels, but they must preserve the same
+  response kind, array structure, and answer key. An assessed-language section
+  owns one response in that assessed language instead of duplicating it for the
+  application locale.
+- When an official blueprint applies, record `cognitiveLevel`, `contentDomain`,
+  and `topic` on the item. Use one `stimulusKey` for a contiguous grouped
+  stimulus and preserve it across every localized placement.
+
+## Assessment review
+
+- Match the source-owned blueprint and current official framework. Benchmark
+  new try-out sets against official examples and any authorized reference
+  corpus. Preserve a deliberate cognitive-level distribution.
+- Keep TKA and SNBT frameworks distinct. The
+  [official TKA framework](https://pusmendik.kemendikdasmen.go.id/tka/page/download_file/370807_44)
+  uses single-choice, multiple-choice multiple-answer, and category responses,
+  with single or grouped stimuli. It measures knowledge and understanding,
+  application, and reasoning through mathematical and everyday contexts.
+- The [official SNPMB information page](https://snpmb.id/utbk-snbt/informasi-umum)
+  and
+  [2026 SNPMB launch deck](https://files.snpmb.id/web2026/Paparan%20Informasi%20SNPMB%202026%20untuk%20Peluncuran.pdf)
+  define UTBK-SNBT as a separate university-selection test with TPS and
+  literacy sections. Never use one framework's subject name or item contract as
+  evidence for the other.
+- Build difficulty from linked decisions, constraints, interpretation, and
+  plausible distractors. Use a small number of meaningful dependent steps.
+  Application or reasoning must require more than direct formula recall; a
+  reasoning item cannot reduce to substitution. Larger numbers, obscure
+  wording, oversized arithmetic, or gratuitous data do not establish a harder
+  cognitive task.
+- A graph, chart, or 3D model must support a real inference. Trace the complete
+  path from stimulus to answer; visual polish does not establish reasoning.
+- Independently solve every new question, verify each distractor, and confirm
+  that exactly the intended responses are correct before publication. Compare
+  sibling sets for substantive uniqueness. Flag a template whose only variation
+  is changed numbers or names.
+- Check the logical force of each prompt and option. A sufficient combination
+  can have sufficient supersets, so ask for the minimal combination when that
+  is intended. Distinguish a possible claim from one that is guaranteed.
+  A percentage in one group alone does not establish an association without
+  a comparison group. State assumptions needed for equal probabilities,
+  mixture volumes, exhaustive categories, or constant rates in the prompt.
+- Across each active set, section, locale, and option-count cohort, balance
+  correct positions so frequencies differ by at most one. Keep their question
+  order unpredictable and preserve distractor meaning across locales. Never
+  move only the `isCorrect` marker to manufacture balance.

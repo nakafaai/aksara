@@ -10,7 +10,7 @@ import {
   type QuestionBankIndex,
 } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
-import { corpusRoot, questionLayer } from "#corpus/test/question-layer";
+import { corpusRoot, questionLayer } from "#corpus/test/question";
 import { loadTryoutContent } from "#corpus/tryout/content";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";

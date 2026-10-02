@@ -7,7 +7,7 @@ import {
 } from "@nakafa/aksara-utilities/http/response";
 import { Effect, type Redacted } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
-import { makeNakafaAppError } from "#cli/app-error";
+import { makeNakafaAppError } from "#cli/error";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
 const PREVIEW_NONCE_HEADER = "x-aksara-preview-nonce";

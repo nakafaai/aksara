@@ -1,7 +1,6 @@
 import { Server } from "node:net";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import {
   NakafaProcess,
   type NakafaProcessInput,
@@ -9,6 +8,7 @@ import {
 } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
 import { makePreviewCredentials } from "#cli/credentials";
+import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import type { PreviewProvider } from "#cli/provider";
 
 afterEach(() => {

@@ -218,7 +218,7 @@ passage being reviewed and validate their findings in context.
    Retell the reasoning and answer the student questions about what changes,
    compared with what, why, and with which example.
 3. Compare the base and changed teaching inventories from the
-   [editorial workflow](editorial-workflow.md). Preserve every meaningful step,
+   [editorial workflow](editorial.md). Preserve every meaningful step,
    condition, unit, conclusion, and representation. Investigate each lost list,
    table, quotation, diagram, derivation, or component and record which teaching
    job replaced it in every locale. A compiling summary is insufficient.
@@ -238,8 +238,8 @@ passage being reviewed and validate their findings in context.
    supported interactions and 3D rotation. Render every affected locale without
    clipping, overlap, console errors, or network errors. Check response labels
    through Nakafa's canonical Markdown surface too.
-7. For questions, complete the [assessment review](question-bank.md#assessment-review)
-   and [worked-solution checks](worked-solutions.md). Keep language policy,
+7. For questions, complete the [assessment review](questions.md#assessment-review)
+   and [worked-solution checks](solutions.md). Keep language policy,
    answer keys, difficulty, and shared stimuli coherent across all placements.
 8. Audit task-owned temporary inputs, preview processes, caches, and artifacts.
    Remove only resources proven obsolete and safe to remove; record anything

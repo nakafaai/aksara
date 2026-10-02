@@ -10,11 +10,11 @@ import { Effect, Stream } from "effect";
 
 import type { PreparedContentRelease } from "#publisher/preparation/prepared";
 import type { SnapshotVerificationError } from "#publisher/publication/failure";
+import { makeSnapshotBatches } from "#publisher/snapshot/batch";
 import {
   ReleaseVerificationMismatchError,
   validateReleaseSnapshots,
-} from "#publisher/release-validation";
-import { makeSnapshotBatches } from "#publisher/snapshot/batch";
+} from "#publisher/validation";
 
 type VerifyPublicationSnapshots = <E, R>(
   input: PreparedContentRelease<E, R>

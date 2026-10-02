@@ -3,7 +3,7 @@ import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import type { Root } from "mdast";
 import { unified } from "unified";
-import { createMathVisualPolicy } from "#compiler/math-policy";
+import { createMathVisualPolicy } from "#compiler/policy/math";
 import {
   planeScene,
   rejectMathVisual,

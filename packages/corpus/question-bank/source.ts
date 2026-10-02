@@ -9,7 +9,7 @@ import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import { decodeQuestionItemSource } from "#corpus/question-bank/item-source";
+import { validateQuestionItemLocales } from "#corpus/question-bank/language";
 import {
   decodeQuestionPath,
   locateQuestionEntry,
@@ -20,7 +20,7 @@ import {
   QuestionPathError,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
-import { validateQuestionItemLocales } from "#corpus/question-bank/source-language";
+import { decodeQuestionItemSource } from "#corpus/question-bank/reader";
 
 const isTryoutKey = Schema.is(TryoutKeySchema);
 /** One complete authored question directory discovered from the checkout. */

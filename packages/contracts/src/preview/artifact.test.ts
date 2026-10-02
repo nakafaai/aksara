@@ -5,7 +5,7 @@ import {
   localPreviewArtifactPath,
   PreviewArtifactSchema,
 } from "#contracts/preview/artifact";
-import { testPromptProjection } from "#contracts/test/preview-question";
+import { testPromptProjection } from "#contracts/test/preview/question";
 
 it("rejects predecessor Question fields from current preview", () => {
   const artifactHash = `sha256:${"1".repeat(64)}`;

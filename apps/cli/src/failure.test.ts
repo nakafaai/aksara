@@ -4,8 +4,8 @@ import {
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
 } from "@nakafa/aksara-publisher/target/errors";
-import { makeNakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
+import { makeNakafaAppError } from "#cli/error";
 import { mapProductionError } from "#cli/failure";
 import { ProductionStateError } from "#cli/state";
 

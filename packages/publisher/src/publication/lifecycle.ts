@@ -4,7 +4,7 @@ import { Effect } from "effect";
 import type { PublicationPlan } from "#publisher/publication/plan";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
 import { PublicationActivation } from "#publisher/publication/spec";
-import { validatePublicationReceipt } from "#publisher/release-validation";
+import { validatePublicationReceipt } from "#publisher/validation";
 
 type ActivateCandidateRelease = <E, R>(
   plan: PublicationPlan<E, R>

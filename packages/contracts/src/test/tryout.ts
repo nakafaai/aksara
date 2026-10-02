@@ -13,12 +13,12 @@ import {
   type TryoutCatalogRecord,
   TryoutCatalogRowSchema,
 } from "#contracts/tryout/catalog";
-import { makeTryoutCatalogRecord } from "#contracts/tryout/catalog-hash";
+import { makeTryoutCatalogRecord } from "#contracts/tryout/hash/catalog";
+import { makeTryoutPlacementRecord } from "#contracts/tryout/hash/placement";
 import {
   type TryoutPlacementRecord,
   TryoutPlacementSchema,
 } from "#contracts/tryout/placement";
-import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 

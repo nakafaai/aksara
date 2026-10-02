@@ -162,10 +162,10 @@ describe("curriculum schema", () => {
       const files = yield* importCorpusModules("curriculum/**/*.ts", [
         "curriculum/context.ts",
         "curriculum/material.ts",
-        "curriculum/node-route.ts",
+        "curriculum/node.ts",
+        "curriculum/ownership.ts",
         "curriculum/projection.ts",
         "curriculum/route.ts",
-        "curriculum/route-source.ts",
         "curriculum/schema.ts",
         "curriculum/source.ts",
       ]);

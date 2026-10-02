@@ -3,7 +3,7 @@ import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import {
   compareTryoutCatalog,
   makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/catalog-hash";
+} from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";

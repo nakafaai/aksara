@@ -92,7 +92,7 @@
 - Confirm the prose does not preserve unnatural source-language syntax.
 - Apply the MDX references to headings, punctuation, resources,
   representations, math, and component labels. Check response strings against
-  [question-bank Markdown](question-bank.md#response-items) separately.
+  [question-bank Markdown](questions.md#response-items) separately.
 - Walk every internal link. Confirm the sentence genuinely uses, contrasts with,
   or builds on the destination concept, that the label names that concept, and
   that the link is not the section's way of skipping an explanation. The gate

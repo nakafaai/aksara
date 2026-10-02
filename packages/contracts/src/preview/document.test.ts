@@ -10,11 +10,11 @@ import {
   testArticleDocument,
   testMaterialDocument,
   testPageDocument,
-} from "#contracts/test/preview";
+} from "#contracts/test/preview/documents";
 import {
   testAnswerDocument,
   testPromptDocument,
-} from "#contracts/test/preview-question";
+} from "#contracts/test/preview/question";
 
 /** Reports whether strict preview document decoding rejects one candidate. */
 function rejectsDocument(candidate: unknown) {

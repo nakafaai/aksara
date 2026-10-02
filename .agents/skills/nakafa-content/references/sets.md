@@ -25,7 +25,7 @@ standard and verified.
   service. Never invent or hand-compute a hash. Cite the record in the pull
   request. Folder and file names are product evidence only.
   Official names, formats, and blueprints come from official sources
-  ([question bank](question-bank.md)).
+  ([question bank](questions.md)).
 
 ## Reading source documents
 
@@ -41,7 +41,7 @@ standard and verified.
   real exam.
 - Each item gets its `item.ts` with the response kind the official format
   requires, and answers in every app locale that follow
-  [worked solutions](worked-solutions.md).
+  [worked solutions](solutions.md).
 - Diagrams, graphs, tables, and charts become Nakafa components or Markdown
   tables whose data the item states exactly. Nakafa publishes no images.
 - New sets continue the numbering after the highest existing set of the same
@@ -66,7 +66,7 @@ test description and the rules that govern it.
 - Each set follows its readiness blueprint for cognitive levels, content
   domains, topics, and response kinds. Difficulty comes from linked decisions,
   constraints, and plausible distractors, never from obscure wording or
-  oversized arithmetic ([question bank](question-bank.md#assessment-review)).
+  oversized arithmetic ([question bank](questions.md#assessment-review)).
 
 ## Passages and rights
 

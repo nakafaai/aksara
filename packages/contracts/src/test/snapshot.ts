@@ -18,9 +18,9 @@ import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
   compareTryoutCatalog,
   digestTryoutCatalog,
-} from "#contracts/tryout/catalog-hash";
+} from "#contracts/tryout/hash/catalog";
+import { digestTryoutPlacements } from "#contracts/tryout/hash/placement";
 import { compareTryoutPlacements } from "#contracts/tryout/identity";
-import { digestTryoutPlacements } from "#contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const sourceDigest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);

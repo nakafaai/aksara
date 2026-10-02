@@ -41,7 +41,7 @@ import {
   type MetadataCollector,
   validateMetadata,
 } from "#compiler/metadata";
-import { createSourcePolicy } from "#compiler/source-policy";
+import { createSourcePolicy } from "#compiler/policy/source";
 
 type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>

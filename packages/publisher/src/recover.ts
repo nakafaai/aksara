@@ -8,11 +8,11 @@ import {
   PublicationActivation,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { validateManifestReceipt } from "#publisher/release-validation";
 import {
   type RetainedRecoveryInput,
   selectRetainedRecovery,
 } from "#publisher/retention";
+import { validateManifestReceipt } from "#publisher/validation";
 
 /** A legacy retained inverse has no permanent runtime pair to restore safely. */
 export class RecoveryRuntimeMissingError extends Schema.TaggedError<RecoveryRuntimeMissingError>()(

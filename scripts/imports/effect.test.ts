@@ -96,7 +96,7 @@ layer(TypeScriptParser.layer)("Effect test policy", (it) => {
       ).toEqual([]);
       expect(
         yield* effectTestViolations(
-          "packages/contracts/scripts/consumer.test.ts",
+          "packages/contracts/scripts/consumer/tools.test.ts",
           'expect(source).toContain("await Effect.runPromise(");'
         )
       ).toEqual([]);
