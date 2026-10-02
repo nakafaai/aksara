@@ -12,10 +12,8 @@ import {
   TryoutCatalogRowSchema,
 } from "#contracts/tryout/catalog";
 import { makeTryoutCatalogRecord } from "#contracts/tryout/catalog-hash";
-import {
-  TryoutClosureError,
-  verifyTryoutLocaleClosure,
-} from "#contracts/tryout/locale-closure";
+import { verifyTryoutLocaleClosure } from "#contracts/tryout/locale-closure";
+import { TryoutClosureError } from "#contracts/tryout/locales";
 import {
   type TryoutPlacementRecord,
   TryoutPlacementSchema,
@@ -69,7 +67,7 @@ const rejectClosure = Effect.fn("AksaraContracts.test.rejectTryoutClosure")(
       activeAppLocales: input.activeAppLocales ?? activeAppLocales,
       catalog: Stream.fromIterable(input.catalog ?? catalog),
       placements: Stream.fromIterable(input.placements ?? placements),
-    }).pipe(Effect.flip);
+    }).pipe(Effect.catchTag("TryoutScoringError", Effect.die), Effect.flip);
   }
 );
 

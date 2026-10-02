@@ -73,6 +73,10 @@ const tryoutSource = {
   ],
 } as const;
 
+const marks = { blank: 0, correct: 4, wrong: -1 };
+const marksMessage =
+  "Every section of a penalized exam, and no other section, needs marks.";
+
 /** Builds one direct-entry section from the same reviewed section fields. */
 function directEntrySection(key: string = section.key): TryoutSectionInput {
   return { ...section, key, visibility: "internal-entry" };
@@ -197,6 +201,16 @@ describe("tryout schema", () => {
         { ...section, questionSourcePath: "tryout/indonesia/snbt/set-1" },
       ]),
       message: "Invalid try-out question-set key.",
+    },
+    {
+      field: "penalized exam without section marks",
+      input: { ...tryoutSource, scoringStrategy: "penalized" as const },
+      message: marksMessage,
+    },
+    {
+      field: "section marks outside a penalized exam",
+      input: withSections([{ ...section, marks }]),
+      message: marksMessage,
     },
   ])("rejects an invalid $field", ({ input, message }) => {
     const result = Schema.decodeExit(TryoutExamSourceSchema)(input);

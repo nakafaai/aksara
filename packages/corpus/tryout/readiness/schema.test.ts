@@ -1,7 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, Exit, Schema } from "effect";
 
-import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
+import {
+  AssessmentReadinessSchema,
+  defineAssessmentReadiness,
+} from "#corpus/tryout/readiness/schema";
 
 /** Binds one fixture value to its fixture-owned official evidence. */
 const official = (value: number) => ({
@@ -59,6 +62,59 @@ describe("assessment readiness schema", () => {
         examKey: "snbt",
         trackKey: "2027",
       });
+    })
+  );
+
+  it.effect("decodes official evidence for penalized section marks", () =>
+    Effect.gen(function* () {
+      const [section] = readinessInput.sections;
+      const marks = { blank: 0, correct: 4, wrong: -1 };
+      const readiness = yield* defineAssessmentReadiness({
+        ...readinessInput,
+        sections: [
+          {
+            ...section,
+            marks: {
+              provenance: {
+                evidenceKey: "official-source",
+                kind: "official" as const,
+              },
+              value: marks,
+            },
+          },
+        ],
+      });
+      const failures = yield* Effect.forEach(
+        [
+          { evidenceKey: "missing-source", value: marks },
+          { evidenceKey: "official-source", value: { ...marks, wrong: 0 } },
+        ],
+        ({ evidenceKey, value }) =>
+          defineAssessmentReadiness({
+            ...readinessInput,
+            sections: [
+              {
+                ...section,
+                marks: { provenance: { evidenceKey, kind: "official" }, value },
+              },
+            ],
+          }).pipe(Effect.flip)
+      );
+      const editorial = Schema.decodeUnknownExit(AssessmentReadinessSchema)({
+        ...readinessInput,
+        sections: [
+          {
+            ...section,
+            marks: { provenance: { kind: "editorial" }, value: marks },
+          },
+        ],
+      });
+
+      expect(readiness.sections[0]?.marks?.value).toEqual(marks);
+      expect(
+        failures.every(({ _tag }) => _tag === "AssessmentReadinessDecodeError")
+      ).toBe(true);
+      expect(Exit.isFailure(editorial)).toBe(true);
     })
   );
 

@@ -4,8 +4,15 @@ import { Exit, Schema } from "effect";
 import {
   canonicalQuestionResponse,
   canonicalQuestionResponseStructure,
+  type QuestionResponse,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import {
+  canonicalQuestionRubric,
+  canonicalQuestionRubricStructure,
+} from "#contracts/question/rubric";
+import { shortNumber, shortText } from "#contracts/test/answer";
+import { rubric } from "#contracts/test/rubric";
 
 const single = {
   kind: "single-choice",
@@ -172,5 +179,72 @@ describe("question response", () => {
         )
       ).toBe(true);
     }
+  });
+
+  it("canonicalizes short answers and keeps only locale-neutral rules as structure", () => {
+    const number = Schema.decodeSync(QuestionResponseSchema)({
+      key: {
+        acceptsFractions: true,
+        kind: "number",
+        tolerance: { kind: "absolute", value: "0.01" },
+        value: "1.25",
+      },
+      kind: "short-answer",
+    });
+    const text = Schema.decodeSync(QuestionResponseSchema)({
+      key: {
+        acceptedAnswers: ["fotosintesis"],
+        collapseWhitespace: true,
+        ignoreCase: true,
+        kind: "text",
+      },
+      kind: "short-answer",
+    });
+
+    expect(JSON.stringify(canonicalQuestionResponse(number))).toBe(
+      '{"key":{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"absolute","value":"0.01"},"value":"1.25"},"kind":"short-answer"}'
+    );
+    expect(canonicalQuestionResponseStructure(number)).toEqual(
+      canonicalQuestionResponse(number)
+    );
+    expect(canonicalQuestionResponse(text)).toEqual(text);
+    expect(canonicalQuestionResponseStructure(text)).toEqual({
+      key: { collapseWhitespace: true, ignoreCase: true, kind: "text" },
+      kind: "short-answer",
+    });
+    expect(
+      Exit.isFailure(
+        Schema.decodeExit(QuestionResponseSchema)({
+          key: { acceptsFractions: false, kind: "number", value: "1.50" },
+          kind: "short-answer",
+        })
+      )
+    ).toBe(true);
+  });
+
+  it("canonicalizes a rubric through its owning rubric contract", () => {
+    const decoded = Schema.decodeSync(QuestionResponseSchema)(rubric);
+
+    expect(canonicalQuestionResponse(decoded)).toEqual(
+      canonicalQuestionRubric(rubric)
+    );
+    expect(canonicalQuestionResponseStructure(decoded)).toEqual(
+      canonicalQuestionRubricStructure(rubric)
+    );
+  });
+
+  it("returns canonical responses that stay valid frozen responses", () => {
+    const responses = [single, shortNumber, shortText, rubric].map((response) =>
+      Schema.decodeSync(QuestionResponseSchema)(response)
+    );
+    const stored: readonly QuestionResponse[] = responses.map(
+      canonicalQuestionResponse
+    );
+
+    expect(
+      stored.map((response) =>
+        Schema.decodeSync(QuestionResponseSchema)(response)
+      )
+    ).toEqual(responses);
   });
 });

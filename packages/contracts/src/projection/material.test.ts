@@ -97,6 +97,62 @@ describe("material projection", () => {
     expect(canonicalizeMaterialProjection(minimal)).not.toContain('"subject":');
   });
 
+  it("carries a readable search title beside the navigation title", () => {
+    const searchable = Schema.decodeSync(MaterialLessonProjectionSchema)({
+      ...projection,
+      metadata: {
+        ...projection.metadata,
+        searchTitle: "Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal",
+      },
+    });
+
+    expect(canonicalizeMaterialProjection(searchable)).toContain(
+      '"description":"Test body metadata.","searchTitle":"Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal","subject":"Test Subject"'
+    );
+    expect(JSON.parse(canonicalizeMaterialProjection(searchable))).toEqual(
+      searchable
+    );
+    expect(canonicalizeMaterialProjection(projection)).not.toContain(
+      "searchTitle"
+    );
+    expect(
+      Schema.decodeSync(MaterialMetadataSchema)({
+        authors: [],
+        datePublished: "2026-01-01",
+        searchTitle: "x".repeat(70),
+        title: "Limit",
+      }).searchTitle
+    ).toHaveLength(70);
+  });
+
+  it("rejects search titles that are long, padded, multi-line, invisible, or undefined", () => {
+    for (const searchTitle of [
+      "x".repeat(71),
+      "",
+      " Rotasi",
+      "Rotasi ",
+      "Rotasi  Fungsi",
+      "Rotasi\nFungsi",
+      "Rotasi\tFungsi",
+      "Rotasi\u00a0Fungsi",
+      "Rotasi\u200bFungsi",
+      "Rota\u00adsi Fungsi",
+      "Rotasi \u202eisgnuF",
+      undefined,
+    ]) {
+      expect(
+        Exit.isFailure(
+          Schema.decodeUnknownExit(MaterialMetadataSchema)({
+            authors: [],
+            datePublished: "2026-01-01",
+            searchTitle,
+            title: "Rotasi",
+          })
+        )
+      ).toBe(true);
+    }
+  });
+
   it("accepts an absent modification date and rejects explicit undefined", () => {
     const absent = Schema.decodeExit(MaterialMetadataSchema)({
       authors: [],

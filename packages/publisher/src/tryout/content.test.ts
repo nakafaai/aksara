@@ -18,7 +18,9 @@ import {
 import { questionEntries } from "#test/question/spec";
 import { tryoutFixtures } from "#test/tryout";
 import {
+  assessedResponses,
   collectEnrichedTryoutContent,
+  collectRespondedTryoutContent,
   collectTryoutContent,
   rejectTryoutContent,
 } from "#test/tryout-content";
@@ -164,6 +166,28 @@ contentTests("try-out content binding", (it) => {
           })
         ).toBe(true);
       })
+  );
+
+  it.effect("binds short-answer and rubric responses through both heads", () =>
+    Effect.gen(function* () {
+      const { binding } = yield* TryoutContentTestFixtures;
+      const [baseline] = yield* collectTryoutContent([binding], {});
+      const [first, second] = yield* Effect.forEach([1, 2], () =>
+        Effect.forEach(assessedResponses, (response) =>
+          collectRespondedTryoutContent(binding, response)
+        )
+      );
+
+      for (const { frozen, questionDocument, record } of first ?? []) {
+        expect(questionDocument.projection).toMatchObject({ response: frozen });
+        expect(record?.row.response).toEqual(frozen);
+      }
+      const hashes = [baseline, ...(first ?? []).map(({ record }) => record)];
+      expect(new Set(hashes.map((row) => row?.row.contentHash)).size).toBe(3);
+      expect(second?.map(({ record }) => record?.rowHash)).toEqual(
+        first?.map(({ record }) => record?.rowHash)
+      );
+    })
   );
 
   it.effect("rejects a missing body entry or canonical item source", () =>

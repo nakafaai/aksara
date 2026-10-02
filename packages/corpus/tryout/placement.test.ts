@@ -4,6 +4,7 @@ import {
   ActiveAppLocaleSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
@@ -168,6 +169,71 @@ describe("tryout placement", () => {
           deliveryLanguage: "id",
           questionArtifactLocale: "id",
         });
+      })
+  );
+
+  it.effect("carries authored points into the placement", () =>
+    Effect.gen(function* () {
+      const fixture = yield* loadPlacementFixture();
+      const placement = yield* makeTryoutPlacement(
+        fixture.context,
+        {
+          ...fixture.question,
+          item: { ...fixture.question.item, points: 3 },
+        },
+        ActiveAppLocaleSchema.make("en")
+      );
+
+      expect(placement.points).toBe(3);
+    })
+  );
+
+  it.effect(
+    "places rubric items only where raw scoring sums their points",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* loadPlacementFixture();
+        const label = { de: "Ansatz", en: "Approach", id: "Pendekatan" };
+        const item: QuestionItem = {
+          responses: {
+            id: {
+              criteria: [
+                {
+                  label,
+                  levels: [
+                    { label, points: 0 },
+                    { label, points: 2 },
+                  ],
+                },
+              ],
+              kind: "rubric",
+            },
+          },
+        };
+        const rubricQuestion = { ...fixture.question, item };
+        const [irt, raw] = yield* Effect.all([
+          makeTryoutPlacement(
+            fixture.context,
+            rubricQuestion,
+            ActiveAppLocaleSchema.make("en")
+          ).pipe(Effect.flip),
+          makeTryoutPlacement(
+            {
+              ...fixture.context,
+              source: { ...fixture.context.source, scoringStrategy: "raw" },
+            },
+            rubricQuestion,
+            ActiveAppLocaleSchema.make("en")
+          ),
+        ]);
+
+        expect(irt).toBeInstanceOf(TryoutPlacementError);
+        expect(irt).toMatchObject({
+          _tag: "TryoutPlacementError",
+          reason: "scoring",
+        });
+        expect(raw.response.kind).toBe("rubric");
+        expect(raw).not.toHaveProperty("points");
       })
   );
 });

@@ -27,6 +27,7 @@ export function canonicalizeLocaleNeutralPlacementFacts(row: TryoutPlacement) {
       ? {}
       : { blueprint: canonicalQuestionBlueprint(row.blueprint) }),
     languagePolicy: canonicalAssessmentLanguagePolicy(row.languagePolicy),
+    ...(row.points === undefined ? {} : { points: row.points }),
     questionContentKey: row.questionContentKey,
     questionSourcePath: row.questionSourcePath,
     rendererDomain: row.rendererDomain,

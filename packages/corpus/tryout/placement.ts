@@ -25,12 +25,22 @@ export interface TryoutPlacementContext {
   readonly track: TryoutTrackSource;
 }
 
-/** One question cannot be placed in the supplied source hierarchy. */
+/**
+ * One question cannot be placed in the supplied source hierarchy. `scoring`
+ * means a rubric item sits in an exam that scores correct and wrong outcomes
+ * instead of summing raw points.
+ */
 export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementError>()(
   "TryoutPlacementError",
   {
     questionKey: QuestionKeySchema,
-    reason: Schema.Literals(["decode", "order", "owner", "response"]),
+    reason: Schema.Literals([
+      "decode",
+      "order",
+      "owner",
+      "response",
+      "scoring",
+    ]),
   }
 ) {}
 
@@ -93,6 +103,12 @@ export const makeTryoutPlacement = Effect.fn(
         })
     )
   );
+  if (response.kind === "rubric" && source.scoringStrategy !== "raw") {
+    return yield* new TryoutPlacementError({
+      questionKey: question.questionKey,
+      reason: "scoring",
+    });
+  }
   return yield* Schema.decodeEffect(TryoutPlacementSourceSchema)(
     {
       answerArtifactLocale,
@@ -105,6 +121,9 @@ export const makeTryoutPlacement = Effect.fn(
       deliveryLanguage,
       examKey: source.examKey,
       languagePolicy: section.languagePolicy,
+      ...(question.item.points === undefined
+        ? {}
+        : { points: question.item.points }),
       questionArtifactLocale,
       questionContentKey: `${question.questionKey}/question`,
       questionOrder: question.questionNumber,

@@ -1,5 +1,8 @@
-import type { QuestionResponse } from "@nakafa/aksara-contracts/question/response";
-import { Effect } from "effect";
+import {
+  type QuestionResponse,
+  QuestionResponseSchema,
+} from "@nakafa/aksara-contracts/question/response";
+import { Effect, Schema } from "effect";
 
 import {
   decodeQuestionPath,
@@ -37,23 +40,9 @@ export const loadTryoutProjectionSources = Effect.fn(
   ];
 });
 
-/** Confirms one projected response retains its response-kind invariant. */
+/** Confirms one projected response still satisfies its owning contract. */
 export function hasValidQuestionResponse(response: QuestionResponse) {
-  if (response.kind === "single-choice") {
-    return response.options.filter(({ isCorrect }) => isCorrect).length === 1;
-  }
-  if (response.kind === "multiple-choice") {
-    const correct = response.options.filter(
-      ({ isCorrect }) => isCorrect
-    ).length;
-    return correct >= 2 && correct < response.options.length;
-  }
-  const categoryKeys = new Set(
-    response.categories.map(({ categoryKey }) => categoryKey)
-  );
-  return response.statements.every(({ correctCategoryKey }) =>
-    categoryKeys.has(correctCategoryKey)
-  );
+  return Schema.is(QuestionResponseSchema)(response);
 }
 
 /** Loads current banks plus one registered future assessment hierarchy. */

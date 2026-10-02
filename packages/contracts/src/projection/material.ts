@@ -16,6 +16,9 @@ import {
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const SEARCH_TITLE_MAX_LENGTH = 70;
+const SINGLE_SPACED_LINE_PATTERN =
+  /^[^\p{Cc}\p{Cf}\s]+(?: [^\p{Cc}\p{Cf}\s]+)*$/u;
 
 const MaterialPublicPathSchema = PublicPathSchema.pipe(
   Schema.check(
@@ -66,9 +69,24 @@ export const MaterialSectionSchema = Schema.String.pipe(
 );
 export type MaterialSection = typeof MaterialSectionSchema.Type;
 
+/**
+ * Readable HTML title for search results that names the lesson concept in the
+ * words its locale's learners search for. It is one trimmed line of single
+ * spaces and at most 70 characters, while `title` stays the short navigation
+ * name.
+ */
+export const MaterialSearchTitleSchema = Schema.Trimmed.check(
+  Schema.isNonEmpty(),
+  Schema.isMaxLength(SEARCH_TITLE_MAX_LENGTH),
+  Schema.isPattern(SINGLE_SPACED_LINE_PATTERN, {
+    message: "Expected one line of words separated by single spaces.",
+  })
+);
+
 const MaterialMetadataFields = {
   authors: Schema.Array(ContentAuthorSchema),
   description: Schema.optional(Schema.String),
+  searchTitle: Schema.optionalKey(MaterialSearchTitleSchema),
   subject: Schema.optional(Schema.String),
   title: Schema.String,
 };
@@ -245,6 +263,9 @@ export function canonicalizeMaterialProjection(
     ...(projection.metadata.description === undefined
       ? {}
       : { description: projection.metadata.description }),
+    ...(projection.metadata.searchTitle === undefined
+      ? {}
+      : { searchTitle: projection.metadata.searchTitle }),
     ...(projection.metadata.subject === undefined
       ? {}
       : { subject: projection.metadata.subject }),

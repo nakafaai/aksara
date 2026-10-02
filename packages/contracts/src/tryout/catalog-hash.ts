@@ -10,6 +10,7 @@ import {
 } from "#contracts/tryout/catalog";
 import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 import { digestTryoutRecords } from "#contracts/tryout/row-hash";
+import { canonicalTryoutMarks } from "#contracts/tryout/spec";
 
 const CATALOG_DOMAIN = "nakafa.aksara.tryout-catalog";
 
@@ -119,6 +120,9 @@ export function canonicalizeTryoutCatalogFacts(row: TryoutCatalogRow) {
     ...shared,
     countryKey: row.countryKey,
     examKey: row.examKey,
+    ...(row.marks === undefined
+      ? {}
+      : { marks: canonicalTryoutMarks(row.marks) }),
     questionCount: row.questionCount,
     questionSourcePath: row.questionSourcePath,
     sectionKey: row.sectionKey,
@@ -197,6 +201,9 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
     countryKey: row.countryKey,
     examKey: row.examKey,
     kind: row.kind,
+    ...(row.marks === undefined
+      ? {}
+      : { marks: canonicalTryoutMarks(row.marks) }),
     order: row.order,
     ...optionalField("publicPath", row.publicPath),
     questionCount: row.questionCount,

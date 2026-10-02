@@ -112,6 +112,69 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
     })
   );
 
+  it.effect("decodes authored short answers, points, and rubrics", () =>
+    Effect.gen(function* () {
+      const shortAnswer = yield* decodeQuestionItemSource(
+        itemModule(
+          typeImport,
+          `const item: QuestionItem = {
+  points: 2,
+  responses: {
+    id: {
+      key: {
+        acceptsFractions: true,
+        kind: "number",
+        tolerance: { kind: "absolute", value: "0.05" },
+        value: "-2.5",
+      },
+      kind: "short-answer",
+    },
+  },
+};`
+        ),
+        sourcePath
+      );
+      const rubric = yield* decodeQuestionItemSource(
+        itemModule(
+          typeImport,
+          `const item: QuestionItem = {
+  responses: {
+    de: {
+      criteria: [
+        {
+          finalAnswer: {
+            acceptedAnswers: ["streng monoton steigend"],
+            collapseWhitespace: true,
+            ignoreCase: true,
+            kind: "text",
+          },
+          label: { de: "Ergebnis", en: "Result", id: "Hasil" },
+          levels: [
+            { label: { de: "falsch", en: "wrong", id: "salah" }, points: 0 },
+            { label: { de: "richtig", en: "right", id: "benar" }, points: 1 },
+          ],
+        },
+      ],
+      kind: "rubric",
+    },
+  },
+};`
+        ),
+        sourcePath
+      );
+
+      expect(shortAnswer.points).toBe(2);
+      expect(shortAnswer.responses.id).toMatchObject({
+        key: { value: "-2.5" },
+        kind: "short-answer",
+      });
+      expect(rubric.responses.de).toMatchObject({
+        criteria: [{ levels: [{ points: 0 }, { points: 1 }] }],
+        kind: "rubric",
+      });
+    })
+  );
+
   it.effect(
     "rejects imports that expand the authoring module capability",
     () => {

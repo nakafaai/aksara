@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 
+import { rubric } from "#contracts/test/rubric";
 import {
   TryoutPlacementSchema,
   TryoutPlacementSourceSchema,
@@ -138,6 +139,48 @@ describe("try-out placement", () => {
     expect(Exit.isFailure(languageError)).toBe(true);
     expect(String(languageError)).toContain(
       "Placement app, delivery, question, and answer languages must agree."
+    );
+  });
+
+  it("carries non-default points and derives a rubric's worth from its levels", () => {
+    const bound = {
+      ...placement,
+      answerArtifactHash: `sha256:${"a".repeat(64)}`,
+      contentHash: "c".repeat(64),
+      questionArtifactHash: `sha256:${"b".repeat(64)}`,
+    };
+    const rubricPoints = Schema.decodeExit(TryoutPlacementSchema)({
+      ...bound,
+      points: 2,
+      response: rubric,
+    });
+
+    expect(
+      Schema.decodeSync(TryoutPlacementSourceSchema)({
+        ...placement,
+        points: 2,
+      }).points
+    ).toBe(2);
+    expect(
+      Schema.decodeSync(TryoutPlacementSchema)({ ...bound, response: rubric })
+        .response.kind
+    ).toBe("rubric");
+    for (const result of [
+      Schema.decodeExit(TryoutPlacementSourceSchema)({
+        ...placement,
+        points: 1,
+      }),
+      Schema.decodeExit(TryoutPlacementSourceSchema)({
+        ...placement,
+        points: 2,
+        response: rubric,
+      }),
+      rubricPoints,
+    ]) {
+      expect(Exit.isFailure(result)).toBe(true);
+    }
+    expect(String(rubricPoints)).toContain(
+      "Rubric placements derive their points from the rubric total."
     );
   });
 });

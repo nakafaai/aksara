@@ -2,6 +2,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
+import { rubric as rubricResponse } from "#contracts/test/rubric";
 import { responseText } from "#contracts/test/tryout";
 import {
   canonicalizeTryoutContent,
@@ -93,7 +94,7 @@ describe("try-out content hash", () => {
   });
 
   it("changes when response label, order, or correctness changes", () => {
-    assert(source.response.kind !== "category");
+    assert(source.response.kind === "single-choice");
     const variants = [
       {
         ...source.response,
@@ -123,6 +124,30 @@ describe("try-out content hash", () => {
           hashTryoutContent(source)
       )
     ).toBe(true);
+  });
+
+  it("binds short-answer and rubric responses into the question identity", () => {
+    const shortAnswer = Schema.decodeSync(TryoutContentInputSchema)({
+      ...source,
+      response: {
+        key: { acceptsFractions: false, kind: "number", value: "12" },
+        kind: "short-answer",
+      },
+    });
+    const rubric = Schema.decodeSync(TryoutContentInputSchema)({
+      ...source,
+      response: rubricResponse,
+    });
+
+    expect(canonicalizeTryoutContent(shortAnswer)).toContain(
+      '"response":{"key":{"acceptsFractions":false,"kind":"number","value":"12"},"kind":"short-answer"}'
+    );
+    expect(canonicalizeTryoutContent(rubric)).toContain(
+      '"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"}'
+    );
+    expect(
+      new Set([source, shortAnswer, rubric].map(hashTryoutContent)).size
+    ).toBe(3);
   });
 
   it("rejects modification dates that are not later than publication", () => {

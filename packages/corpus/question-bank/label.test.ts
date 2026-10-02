@@ -143,4 +143,77 @@ describe("question label source validation", () => {
       assert.strictEqual(category.labelPath, "responses.id.categories[1]");
     })
   );
+
+  it.effect("checks every locale of rubric criterion and level labels", () =>
+    Effect.gen(function* () {
+      const item: QuestionItem = {
+        responses: {
+          de: {
+            criteria: [
+              {
+                label: { de: "Ansatz", en: "Approach", id: "Pendekatan" },
+                levels: [
+                  {
+                    label: { de: "fehlt", en: "missing", id: "tidak ada" },
+                    points: 0,
+                  },
+                  {
+                    label: {
+                      de: "Ableitung $$f'(x)=2x$$",
+                      en: "Derivative $$f'(x)=2x$$",
+                      id: "Turunan $$f'(x)=2x$$",
+                    },
+                    points: 2,
+                  },
+                ],
+              },
+            ],
+            kind: "rubric",
+          },
+        },
+      };
+      yield* validateQuestionLabels(item, sourcePath);
+      const response = item.responses.de;
+      assert.ok(response?.kind === "rubric");
+      const [criterion] = response.criteria;
+      assert.ok(criterion !== undefined);
+      criterion.levels[1] = {
+        label: { de: "richtig", en: "right", id: "Turunan $f'(x)$" },
+        points: 2,
+      };
+      const level = yield* Effect.flip(
+        validateQuestionLabels(item, sourcePath)
+      );
+      assert.strictEqual(
+        level.labelPath,
+        "responses.de.criteria[0].levels[1].label.id"
+      );
+      criterion.label = { ...criterion.label, en: "$x$" };
+      const label = yield* Effect.flip(
+        validateQuestionLabels(item, sourcePath)
+      );
+      assert.strictEqual(label.labelPath, "responses.de.criteria[0].label.en");
+    })
+  );
+
+  it.effect(
+    "leaves plain accepted short-answer text to the answer contract",
+    () =>
+      validateQuestionLabels(
+        {
+          responses: {
+            en: {
+              key: {
+                acceptedAnswers: ["$5"],
+                collapseWhitespace: false,
+                ignoreCase: false,
+                kind: "text",
+              },
+              kind: "short-answer",
+            },
+          },
+        },
+        sourcePath
+      )
+  );
 });

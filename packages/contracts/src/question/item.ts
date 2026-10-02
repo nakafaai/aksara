@@ -5,10 +5,18 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "#contracts/locale";
+import { QuestionAnswerKeySchema } from "#contracts/question/answer";
+import { QuestionResponseLabelSchema } from "#contracts/question/label";
+import { AuthoredQuestionPointsSchema } from "#contracts/question/points";
 import {
-  QuestionResponseLabelSchema,
+  canonicalQuestionResponseStructure,
+  type QuestionResponse,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import {
+  freezeQuestionRubric,
+  QuestionRubricResponseSourceSchema,
+} from "#contracts/question/rubric";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 const PositiveOrderSchema = Schema.Int.pipe(
@@ -108,10 +116,18 @@ const CategoryResponseSourceSchema = Schema.Struct({
     )
   );
 
+/** One typed answer authored exactly as it is frozen and graded. */
+const ShortAnswerResponseSourceSchema = Schema.Struct({
+  key: QuestionAnswerKeySchema,
+  kind: Schema.Literal("short-answer"),
+}).mapFields(Struct.map(Schema.mutableKey));
+
 /** One locale-specific response authored without duplicated runtime keys. */
 export const QuestionResponseSourceSchema = Schema.Union([
   CategoryResponseSourceSchema,
   MultipleChoiceResponseSourceSchema,
+  QuestionRubricResponseSourceSchema,
+  ShortAnswerResponseSourceSchema,
   SingleChoiceResponseSourceSchema,
 ]);
 export type QuestionResponseSource = typeof QuestionResponseSourceSchema.Type;
@@ -129,21 +145,58 @@ export const QuestionBlueprintSchema = Schema.Struct({
 });
 export type QuestionBlueprint = typeof QuestionBlueprintSchema.Type;
 
-/** Serializes response shape and answer-key positions for locale comparison. */
-function responseStructure(response: QuestionResponseSource) {
+/** Derives stable option keys and orders from source-authored array order. */
+function freezeOptions(options: readonly QuestionOptionSource[]) {
+  return options.map(({ isCorrect, label }, index) => ({
+    isCorrect,
+    label,
+    optionKey: `option-${index + 1}`,
+    order: index + 1,
+  }));
+}
+
+/** Freezes one authored response, deriving every stable runtime key once. */
+function freezeQuestionResponse(
+  response: QuestionResponseSource
+): QuestionResponse {
+  if (response.kind === "rubric") {
+    return freezeQuestionRubric(response);
+  }
+  if (response.kind === "short-answer") {
+    return QuestionResponseSchema.make({
+      key: response.key,
+      kind: response.kind,
+    });
+  }
   if (response.kind === "category") {
-    return JSON.stringify({
-      categories: response.categories.length,
+    return QuestionResponseSchema.make({
+      categories: response.categories.map((label, index) => ({
+        categoryKey: `category-${index + 1}`,
+        label,
+        order: index + 1,
+      })),
       kind: response.kind,
       statements: response.statements.map(
-        ({ correctCategoryOrder }) => correctCategoryOrder
+        ({ correctCategoryOrder, label }, index) => ({
+          correctCategoryKey: `category-${correctCategoryOrder}`,
+          label,
+          order: index + 1,
+          statementKey: `statement-${index + 1}`,
+        })
       ),
     });
   }
-  return JSON.stringify({
-    correctness: response.options.map(({ isCorrect }) => isCorrect),
+  return QuestionResponseSchema.make({
     kind: response.kind,
+    options: freezeOptions(response.options),
   });
+}
+
+/** Serializes response shape and answer key for locale comparison. */
+function responseStructure(response: QuestionResponseSource) {
+  return JSON.stringify(
+    canonicalQuestionResponseStructure(freezeQuestionResponse(response))
+  );
 }
 
 /** Requires locale siblings to preserve one response format and answer key. */
@@ -166,9 +219,30 @@ function hasCoherentLocalizedResponses(input: {
   );
 }
 
-/** Complete source-owned item, including optional shared-stimulus identity. */
+/** Requires a rubric item to take its worth from the rubric total alone. */
+function hasCoherentPoints(input: {
+  readonly points?: number;
+  readonly responses: {
+    readonly de?: QuestionResponseSource | undefined;
+    readonly en?: QuestionResponseSource | undefined;
+    readonly id?: QuestionResponseSource | undefined;
+  };
+}) {
+  return (
+    input.points === undefined ||
+    Object.values(input.responses).every(
+      (response) => response?.kind !== "rubric"
+    )
+  );
+}
+
+/**
+ * Complete source-owned item with optional shared-stimulus identity and points.
+ * Points appear only above the default single point and never on a rubric.
+ */
 export const QuestionItemSchema = Schema.Struct({
   blueprint: Schema.optionalKey(QuestionBlueprintSchema),
+  points: Schema.optionalKey(AuthoredQuestionPointsSchema),
   responses: QuestionResponseSourceMapSchema,
   stimulusKey: Schema.optionalKey(TryoutKeySchema),
 }).pipe(
@@ -176,6 +250,11 @@ export const QuestionItemSchema = Schema.Struct({
     Schema.makeFilter(hasCoherentLocalizedResponses, {
       message:
         "Localized responses must preserve one format, structure, and answer key.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentPoints, {
+      message: "Rubric items derive their points from the rubric total.",
     })
   )
 );
@@ -196,16 +275,6 @@ export class QuestionResponseLocaleMissingError extends Schema.TaggedError<Quest
   { artifactLocale: ArtifactLocaleSchema }
 ) {}
 
-/** Derives stable option keys and orders from source-authored array order. */
-function freezeOptions(options: readonly QuestionOptionSource[]) {
-  return options.map(({ isCorrect, label }, index) => ({
-    isCorrect,
-    label,
-    optionKey: `option-${index + 1}`,
-    order: index + 1,
-  }));
-}
-
 /** Resolves and freezes one exact-locale response from an authored item. */
 export const questionResponseFor = Effect.fn(
   "AksaraContracts.questionResponseFor"
@@ -217,26 +286,5 @@ export const questionResponseFor = Effect.fn(
   if (response === undefined) {
     return yield* new QuestionResponseLocaleMissingError({ artifactLocale });
   }
-  if (response.kind !== "category") {
-    return QuestionResponseSchema.make({
-      kind: response.kind,
-      options: freezeOptions(response.options),
-    });
-  }
-  return QuestionResponseSchema.make({
-    categories: response.categories.map((label, index) => ({
-      categoryKey: `category-${index + 1}`,
-      label,
-      order: index + 1,
-    })),
-    kind: response.kind,
-    statements: response.statements.map(
-      ({ correctCategoryOrder, label }, index) => ({
-        correctCategoryKey: `category-${correctCategoryOrder}`,
-        label,
-        order: index + 1,
-        statementKey: `statement-${index + 1}`,
-      })
-    ),
-  });
+  return freezeQuestionResponse(response);
 });

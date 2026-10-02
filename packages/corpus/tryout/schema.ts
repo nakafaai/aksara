@@ -7,6 +7,7 @@ import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { AssessmentLanguagePolicySchema } from "@nakafa/aksara-contracts/tryout/language";
 import {
+  TryoutMarksSchema,
   TryoutScoringSchema,
   TryoutTrackKindSchema,
   TryoutVisibilitySchema,
@@ -35,6 +36,7 @@ const TryoutSectionSourceSchema = Schema.Struct({
       message: "Exam language must be fixed independently of the app locale.",
     })
   ),
+  marks: Schema.optionalKey(TryoutMarksSchema),
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
   questionSourcePath: QuestionSetKeySchema,
@@ -127,12 +129,35 @@ function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
   );
 }
 
-/** Complete active contract for one imported try-out exam source. */
+/** Requires marks on every section of a penalized exam and on no other. */
+function hasScoringMarks(source: TryoutExamSourceFields) {
+  const penalized = source.scoringStrategy === "penalized";
+  return source.tracks.every((track) =>
+    track.sets.every((set) =>
+      set.sections.every(
+        (section) => (section.marks !== undefined) === penalized
+      )
+    )
+  );
+}
+
+/**
+ * Complete active contract for one imported try-out exam source. A penalized
+ * exam keeps each section's marks here, beside its question count and time
+ * limit, so they are source-controlled and signed into the section row; its
+ * readiness gate records the official evidence for the same values.
+ */
 export const TryoutExamSourceSchema = TryoutExamSourceFieldsSchema.pipe(
   Schema.check(
     Schema.makeFilter(hasOwnedQuestionSources, {
       message:
         "Question sources must match their country, exam, section, and set.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasScoringMarks, {
+      message:
+        "Every section of a penalized exam, and no other section, needs marks.",
     })
   )
 );

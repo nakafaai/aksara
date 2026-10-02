@@ -1,3 +1,4 @@
+import { canonicalTryoutMarks } from "@nakafa/aksara-contracts/tryout/spec";
 import { Effect, Schema } from "effect";
 
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
@@ -6,6 +7,13 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 type ReadinessSection = AssessmentReadiness["sections"][number];
 type TryoutTrack = TryoutExamSource["tracks"][number];
 type TryoutSection = TryoutTrack["sets"][number]["sections"][number];
+
+/** Serializes optional section marks into one comparable readiness fact. */
+function marksFact(marks: TryoutSection["marks"]) {
+  return marks === undefined
+    ? "none"
+    : JSON.stringify(canonicalTryoutMarks(marks));
+}
 
 export class AssessmentReadinessMismatchError extends Schema.TaggedError<AssessmentReadinessMismatchError>()(
   "AssessmentReadinessMismatchError",
@@ -132,6 +140,12 @@ export const validateAssessmentSourceReadiness = Effect.fn(
         actual.timeLimitSeconds,
         expected.timeLimitSeconds.value,
         "timeLimitSeconds",
+        scope
+      );
+      yield* validateReadinessField(
+        marksFact(actual.marks),
+        marksFact(expected.marks?.value),
+        "marks",
         scope
       );
     }

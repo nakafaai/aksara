@@ -1,5 +1,10 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
+import type {
+  QuestionItem,
+  QuestionResponseSource,
+} from "@nakafa/aksara-contracts/question/item";
+import type { QuestionRubricLabel } from "@nakafa/aksara-contracts/question/rubric";
 import { Effect, Schema } from "effect";
 import type { InlineCode, Nodes, Text } from "mdast";
 import remarkGfm from "remark-gfm";
@@ -156,7 +161,50 @@ function labelViolation(label: string) {
   return reason;
 }
 
-/** Rejects malformed math at source ingestion before any signed publication. */
+/** Lists one rubric label in every active app locale with its source path. */
+function rubricLabels(label: QuestionRubricLabel, path: string) {
+  return ACTIVE_APP_LOCALE_CODES.map((locale) => ({
+    label: label[locale],
+    path: `${path}.label.${locale}`,
+  }));
+}
+
+/** Lists every rendered Markdown label authored in one response. */
+function responseLabels(response: QuestionResponseSource) {
+  if (response.kind === "category") {
+    return [
+      ...response.categories.map((label, index) => ({
+        label,
+        path: `categories[${index}]`,
+      })),
+      ...response.statements.map(({ label }, index) => ({
+        label,
+        path: `statements[${index}].label`,
+      })),
+    ];
+  }
+  if (response.kind === "rubric") {
+    return response.criteria.flatMap(({ label, levels }, index) => [
+      ...rubricLabels(label, `criteria[${index}]`),
+      ...levels.flatMap((level, levelIndex) =>
+        rubricLabels(level.label, `criteria[${index}].levels[${levelIndex}]`)
+      ),
+    ]);
+  }
+  if (response.kind === "short-answer") {
+    return [];
+  }
+  return response.options.map(({ label }, index) => ({
+    label,
+    path: `options[${index}].label`,
+  }));
+}
+
+/**
+ * Rejects malformed math at source ingestion before any signed publication.
+ * Accepted short-answer text is plain text that graders compare, never
+ * Markdown that renders, so only Markdown labels pass through this check.
+ */
 export const validateQuestionLabels = Effect.fn(
   "AksaraCorpus.validateQuestionLabels"
 )(function* (
@@ -167,23 +215,7 @@ export const validateQuestionLabels = Effect.fn(
     if (response === undefined) {
       continue;
     }
-    const labels =
-      response.kind === "category"
-        ? [
-            ...response.categories.map((label, index) => ({
-              label,
-              path: `categories[${index}]`,
-            })),
-            ...response.statements.map(({ label }, index) => ({
-              label,
-              path: `statements[${index}].label`,
-            })),
-          ]
-        : response.options.map(({ label }, index) => ({
-            label,
-            path: `options[${index}].label`,
-          }));
-    for (const { label, path } of labels) {
+    for (const { label, path } of responseLabels(response)) {
       const reason = labelViolation(label);
       if (reason !== undefined) {
         return yield* new QuestionLabelError({
