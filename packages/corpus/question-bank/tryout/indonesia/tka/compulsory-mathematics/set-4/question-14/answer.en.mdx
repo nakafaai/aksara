@@ -1,0 +1,93 @@
+export const metadata = {
+  title: "Solution to Question 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+You need to choose the point <InlineMath math="P" /> on the bank where the sample is taken so that <InlineMath math="AP+PB" /> is as small as possible. The key is to **reflect <InlineMath math="B" /> in the river bank**. A reflection keeps distances, so every point <InlineMath math="P" /> on the bank satisfies <InlineMath math="PB=PB'" />, where <InlineMath math="B'" /> is the image of <InlineMath math="B" />. Then <InlineMath math="AP+PB=AP+PB'" />. Two segments joining <InlineMath math="A" /> to <InlineMath math="B'" /> have the smallest total length when <InlineMath math="A" />, <InlineMath math="P" />, and <InlineMath math="B'" /> lie on one line.
+
+Place the bank on the <InlineMath math="x" />-axis with the bank point nearest to <InlineMath math="A" /> at the origin. Then <InlineMath math="A(0,20)" />, <InlineMath math="B(120,30)" />, and <InlineMath math="B'(120,-30)" />.
+
+<BlockMath math="\begin{aligned}
+AP+PB&=AP+PB'\ge AB' \\
+AB'&=\sqrt{(120-0)^2+(-30-20)^2} \\
+&=\sqrt{14{,}400+2{,}500} \\
+&=\sqrt{16{,}900}=130
+\end{aligned}" />
+
+Segment <InlineMath math="AB'" /> drops <InlineMath math="50\text{ m}" /> over a horizontal run of <InlineMath math="120\text{ m}" />. It meets the bank after dropping <InlineMath math="20\text{ m}" />, that is, after <InlineMath math="\frac{20}{50}" /> of its horizontal run.
+
+<BlockMath math="x_P=\frac{20}{50}\cdot120=48" />
+
+<MathVisual
+  title="The shortest path by reflection"
+  description={<>Segment <InlineMath math="PB'" /> is the mirror image of segment <InlineMath math="PB" /> in the bank, so the two are equally long. Because <InlineMath math="A" />, <InlineMath math="P" />, and <InlineMath math="B'" /> lie on one line, the path from <InlineMath math="A" /> to <InlineMath math="P" /> to <InlineMath math="B" /> is <InlineMath math="52+78=130\text{ m}" /> long.</>}
+  labels={{
+    "name-a": <InlineMath math="A" />,
+    "name-b": <InlineMath math="B" />,
+    "length-a": <InlineMath math="20\text{ m}" />,
+    "length-b": <InlineMath math="30\text{ m}" />,
+    "name-p": <InlineMath math="P" />,
+    "name-b-image": <InlineMath math="B'" />,
+    "length-ap": <InlineMath math="52\text{ m}" />,
+    "length-pb": <InlineMath math="78\text{ m}" />,
+    "length-pb-image": <InlineMath math="78\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -15, max: 135 },
+      y: { min: -45, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "river-bank", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 120, y: 0 }] },
+      { id: "drop-a", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 0, y: 0 } },
+      { id: "drop-b", kind: "segment", appearance: "construction", from: { x: 120, y: 30 }, to: { x: 120, y: 0 } },
+      { id: "post-a", kind: "point", appearance: "primary", at: { x: 0, y: 20 } },
+      { id: "post-b", kind: "point", appearance: "primary", at: { x: 120, y: 30 } },
+      { id: "mirror-b", kind: "segment", appearance: "reference", from: { x: 120, y: 0 }, to: { x: 120, y: -30 } },
+      { id: "walk-ap", kind: "segment", appearance: "answer", from: { x: 0, y: 20 }, to: { x: 48, y: 0 } },
+      { id: "walk-pb", kind: "segment", appearance: "answer", from: { x: 48, y: 0 }, to: { x: 120, y: 30 } },
+      { id: "reflected-pb", kind: "segment", appearance: "warning", from: { x: 48, y: 0 }, to: { x: 120, y: -30 } },
+      { id: "sample-p", kind: "point", appearance: "answer", at: { x: 48, y: 0 } },
+      { id: "image-b", kind: "point", appearance: "warning", at: { x: 120, y: -30 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "post-a", at: { x: 0, y: 20 }, placement: "above-right" },
+      { key: "name-b", objectId: "post-b", at: { x: 120, y: 30 }, placement: "above" },
+      { key: "length-a", objectId: "drop-a", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "length-b", objectId: "drop-b", at: { x: 120, y: 15 }, placement: "right" },
+      { key: "name-p", objectId: "sample-p", at: { x: 48, y: 0 }, placement: "below" },
+      { key: "name-b-image", objectId: "image-b", at: { x: 120, y: -30 }, placement: "right" },
+      { key: "length-ap", objectId: "walk-ap", at: { x: 24, y: 10 }, placement: "above-right" },
+      { key: "length-pb", objectId: "walk-pb", at: { x: 84, y: 15 }, placement: "above-left" },
+      { key: "length-pb-image", objectId: "reflected-pb", at: { x: 84, y: -15 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Check both parts of the path. The point <InlineMath math="P(48,0)" /> is <InlineMath math="120-48=72\text{ m}" /> from the bank point nearest to <InlineMath math="B" />.
+
+<BlockMath math="\begin{aligned}
+AP&=\sqrt{48^2+20^2}=\sqrt{2{,}704}=52 \\
+PB&=\sqrt{72^2+30^2}=\sqrt{6{,}084}=78 \\
+AP+PB&=52+78=130
+\end{aligned}" />
+
+Comparing other sampling points confirms that **the point on the line through <InlineMath math="A" /> and <InlineMath math="B'" />** gives the shortest path.
+
+| Position of the sampling point | Path length <InlineMath math="(\text{m})" /> | Approximate value <InlineMath math="(\text{m})" /> |
+| --- | ---: | ---: |
+| Directly in front of <InlineMath math="A" />, <InlineMath math="x=0" /> | <InlineMath math="20+30\sqrt{17}" /> | <InlineMath math="143.7" /> |
+| On the line, <InlineMath math="x=48" /> | <InlineMath math="130" /> | <InlineMath math="130" /> |
+| Midpoint, <InlineMath math="x=60" /> | <InlineMath math="20\sqrt{10}+30\sqrt5" /> | <InlineMath math="130.3" /> |
+| Directly in front of <InlineMath math="B" />, <InlineMath math="x=120" /> | <InlineMath math="20\sqrt{37}+30" /> | <InlineMath math="151.7" /> |
+
+The shortest path is therefore <InlineMath math="130\text{ m}" /> long, with the sample taken <InlineMath math="48\text{ m}" /> from the bank point nearest to post <InlineMath math="A" />.
+
+- <InlineMath math="10\sqrt{145}\text{ m}" /> is the straight distance from <InlineMath math="A" /> to <InlineMath math="B" /> without touching the river, about <InlineMath math="120.4\text{ m}" />. The officer must stop at the bank, and every path that does so is at least <InlineMath math="130\text{ m}" /> long.
+- <InlineMath math="\left(20\sqrt{10}+30\sqrt5\right)\text{ m}" /> is the path when the sample is taken at the midpoint, about <InlineMath math="130.3\text{ m}" />, slightly longer than <InlineMath math="130\text{ m}" />.
+- <InlineMath math="\left(20+30\sqrt{17}\right)\text{ m}" /> is the path when the sample is taken directly in front of <InlineMath math="A" />.
+- <InlineMath math="\left(30+20\sqrt{37}\right)\text{ m}" /> is the path when the sample is taken directly in front of <InlineMath math="B" />.

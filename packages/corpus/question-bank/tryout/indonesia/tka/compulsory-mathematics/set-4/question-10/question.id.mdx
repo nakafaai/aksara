@@ -1,0 +1,45 @@
+export const metadata = {
+  title: "Soal 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Pada segitiga <InlineMath math="ABC" />, sudut <InlineMath math="C" /> siku-siku. Titik <InlineMath math="D" /> terletak pada sisi <InlineMath math="AB" /> sehingga <InlineMath math="CD" /> tegak lurus <InlineMath math="AB" />. Panjang <InlineMath math="AD=4\text{ cm}" /> dan <InlineMath math="DB=9\text{ cm}" />.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan garis tinggi <InlineMath math="CD" /></>}
+  description={<>Sudut di <InlineMath math="C" /> dan sudut di <InlineMath math="D" /> siku-siku. Titik <InlineMath math="D" /> membagi sisi <InlineMath math="AB" /> menjadi <InlineMath math="AD=4\text{ cm}" /> dan <InlineMath math="DB=9\text{ cm}" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "foot-d": <InlineMath math="D" />,
+    "length-ad": <InlineMath math="4\text{ cm}" />,
+    "length-db": <InlineMath math="9\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 17.5 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-abc", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 16, y: 0 }, { x: 7, y: 6 }] },
+      { id: "altitude-cd", kind: "segment", appearance: "secondary", from: { x: 7, y: 6 }, to: { x: 7, y: 0 } },
+      { id: "right-angle-d", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0.6 }, { x: 7.6, y: 0.6 }, { x: 7.6, y: 0 }] },
+      { id: "right-angle-c", kind: "polyline", appearance: "reference", vertices: [{ x: 6.664, y: 5.496 }, { x: 7.168, y: 5.16 }, { x: 7.504, y: 5.664 }] },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-abc", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "triangle-abc", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "triangle-abc", at: { x: 7, y: 6 }, placement: "above" },
+      { key: "foot-d", objectId: "altitude-cd", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "length-ad", objectId: "triangle-abc", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "length-db", objectId: "triangle-abc", at: { x: 11.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Panjang <InlineMath math="CD" /> adalah ....

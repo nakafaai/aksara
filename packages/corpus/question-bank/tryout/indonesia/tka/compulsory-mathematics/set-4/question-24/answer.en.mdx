@@ -1,0 +1,101 @@
+export const metadata = {
+  title: "Solution to Question 24",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+A five-number summary (*statistik lima serangkai*) gives only five values for each group: the minimum, the lower quartile, the median, the upper quartile, and the maximum. A statement that depends only on these five values can be judged directly. A statement with the word **certainly** (*pasti*) is already false if one data set matches the summaries but breaks the statement.
+
+#### Spread and position of the data
+
+The interquartile range is **the upper quartile minus the lower quartile**, the width of the box in the plot. Let <InlineMath math="J_A" /> and <InlineMath math="J_B" /> be the interquartile ranges of medium A and medium B.
+
+<BlockMath math="\begin{aligned}
+J_A&=Q_3-Q_1=15-12=3\text{ cm} \\
+J_B&=Q_3-Q_1=15-13=2\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title="Box width as the interquartile range"
+  description={<>The box for medium A is <InlineMath math="3\text{ cm}" /> wide and the box for medium B is <InlineMath math="2\text{ cm}" /> wide. The median line of medium A is at <InlineMath math="13\text{ cm}" />, to the left of the median line of medium B at <InlineMath math="14\text{ cm}" />.</>}
+  labels={{
+    "name-a": "Medium A",
+    "name-b": "Medium B",
+    "length-spread-a": <InlineMath math="3\text{ cm}" />,
+    "length-spread-b": <InlineMath math="2\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 20 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "medium-a-box", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 2.6 }, { x: 15, y: 2.6 }, { x: 15, y: 3.4 }, { x: 12, y: 3.4 }] },
+      { id: "medium-a-median", kind: "segment", appearance: "primary", from: { x: 13, y: 2.6 }, to: { x: 13, y: 3.4 } },
+      { id: "medium-a-whisker-low", kind: "segment", appearance: "primary", from: { x: 10, y: 3 }, to: { x: 12, y: 3 } },
+      { id: "medium-a-whisker-high", kind: "segment", appearance: "primary", from: { x: 15, y: 3 }, to: { x: 19, y: 3 } },
+      { id: "medium-a-cap-low", kind: "segment", appearance: "primary", from: { x: 10, y: 2.8 }, to: { x: 10, y: 3.2 } },
+      { id: "medium-a-cap-high", kind: "segment", appearance: "primary", from: { x: 19, y: 2.8 }, to: { x: 19, y: 3.2 } },
+      { id: "medium-b-box", kind: "polygon", appearance: "secondary", vertices: [{ x: 13, y: 0.6 }, { x: 15, y: 0.6 }, { x: 15, y: 1.4 }, { x: 13, y: 1.4 }] },
+      { id: "medium-b-median", kind: "segment", appearance: "secondary", from: { x: 14, y: 0.6 }, to: { x: 14, y: 1.4 } },
+      { id: "medium-b-whisker-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 1 }, to: { x: 13, y: 1 } },
+      { id: "medium-b-whisker-high", kind: "segment", appearance: "secondary", from: { x: 15, y: 1 }, to: { x: 17, y: 1 } },
+      { id: "medium-b-cap-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 0.8 }, to: { x: 11, y: 1.2 } },
+      { id: "medium-b-cap-high", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 17, y: 1.2 } },
+      { id: "spread-a", kind: "segment", appearance: "highlight", from: { x: 12, y: 2.3 }, to: { x: 15, y: 2.3 } },
+      { id: "spread-b", kind: "segment", appearance: "highlight", from: { x: 13, y: 0.3 }, to: { x: 15, y: 0.3 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "medium-a-box", at: { x: 13.5, y: 3.4 }, placement: "above" },
+      { key: "name-b", objectId: "medium-b-box", at: { x: 14, y: 1.4 }, placement: "above" },
+      { key: "length-spread-a", objectId: "spread-a", at: { x: 13.5, y: 2.3 }, placement: "below" },
+      { key: "length-spread-b", objectId: "spread-b", at: { x: 14, y: 0.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+The median of medium B is <InlineMath math="14\text{ cm}" />. With <InlineMath math="40" /> ordered values <InlineMath math="x_1\le x_2\le\dots\le x_{40}" />, the median is the mean of the twentieth and twenty-first values. The twenty-first value is not smaller than the twentieth, so it is at least the mean of the two.
+
+<BlockMath math="\begin{aligned}
+\frac{x_{20}+x_{21}}{2}&=14 \\
+x_{21}&\ge\frac{x_{20}+x_{21}}{2}=14
+\end{aligned}" />
+
+So the values in positions <InlineMath math="21" /> through <InlineMath math="40" />, which are <InlineMath math="20" /> seedlings or half of the group, are at least <InlineMath math="14\text{ cm}" /> tall.
+
+#### A mean that is not determined
+
+The table shows one data set that matches both summaries. It shows that **a five-number summary does not determine the mean**.
+
+| Height <InlineMath math="(\text{cm})" /> | Seedlings in medium A | Seedlings in medium B |
+| ---: | ---: | ---: |
+| <InlineMath math="10" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="11" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="12" /> | <InlineMath math="10" /> | <InlineMath math="0" /> |
+| <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="19" /> |
+| <InlineMath math="15" /> | <InlineMath math="10" /> | <InlineMath math="19" /> |
+| <InlineMath math="17" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="19" /> | <InlineMath math="9" /> | <InlineMath math="0" /> |
+| Total | <InlineMath math="40" /> | <InlineMath math="40" /> |
+
+Check the summaries. In medium A, value <InlineMath math="1" /> is <InlineMath math="10" />, values <InlineMath math="2" /> through <InlineMath math="11" /> are <InlineMath math="12" />, values <InlineMath math="12" /> through <InlineMath math="21" /> are <InlineMath math="13" />, values <InlineMath math="22" /> through <InlineMath math="31" /> are <InlineMath math="15" />, and the rest are <InlineMath math="19" />. So <InlineMath math="Q_1=\frac{x_{10}+x_{11}}{2}=12" />, the median is <InlineMath math="\frac{x_{20}+x_{21}}{2}=13" />, and <InlineMath math="Q_3=\frac{x_{30}+x_{31}}{2}=15" />. In medium B, value <InlineMath math="1" /> is <InlineMath math="11" />, values <InlineMath math="2" /> through <InlineMath math="20" /> are <InlineMath math="13" />, values <InlineMath math="21" /> through <InlineMath math="39" /> are <InlineMath math="15" />, and value <InlineMath math="40" /> is <InlineMath math="17" />. So <InlineMath math="Q_1=13" />, the median is <InlineMath math="\frac{13+15}{2}=14" />, and <InlineMath math="Q_3=15" />.
+
+<BlockMath math="\begin{aligned}
+\bar x_A&=\frac{10+10\cdot12+10\cdot13+10\cdot15+9\cdot19}{40}=\frac{581}{40}=14.525 \\
+\bar x_B&=\frac{11+19\cdot13+19\cdot15+17}{40}=\frac{560}{40}=14
+\end{aligned}" />
+
+In this example the mean of medium A is actually larger than the mean of medium B, even though both five-number summaries are exactly the ones in the problem.
+
+#### Judging each statement
+
+1. The statement that the interquartile range of medium A is larger is true, because <InlineMath math="3\text{ cm}>2\text{ cm}" />.
+2. The statement that the mean of medium A is certainly smaller is false. The data set above matches the summaries, but **the mean of medium A is larger**, <InlineMath math="14.525\text{ cm}" /> against <InlineMath math="14\text{ cm}" />.
+3. The statement that at least half of the seedlings in medium B are <InlineMath math="14\text{ cm}" /> or taller is true, because the values in positions <InlineMath math="21" /> through <InlineMath math="40" /> in medium B are at least <InlineMath math="14\text{ cm}" />.
+4. The statement that the median of medium A is larger is false, because the median of medium A is <InlineMath math="13\text{ cm}" />, smaller than the median of medium B, <InlineMath math="14\text{ cm}" />.
+5. The statement that the shortest seedling grows in medium A is true. The shortest seedling in medium A is <InlineMath math="10\text{ cm}" /> tall, while every seedling in medium B is at least <InlineMath math="11\text{ cm}" /> tall.
+
+The true statements are the ones about the interquartile range, about at least half of the seedlings in medium B reaching <InlineMath math="14\text{ cm}" />, and about the shortest seedling growing in medium A.

@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Solution to Question 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The problem uses two exchange rates. The selling rate (*kurs jual*) of <InlineMath math="\text{Rp}17{,}500" /> applies when the bank sells euros to the student, and the buying rate (*kurs beli*) of <InlineMath math="\text{Rp}17{,}000" /> applies when the bank buys the leftover euros back. What the student really pays is the **net cost**: the rupiah paid out minus the rupiah received back. Divide that cost by the **euros actually spent**, which is <InlineMath math="600" /> euros, not <InlineMath math="750" /> euros.
+
+| Step | Change in euros | Change in rupiah |
+| --- | ---: | ---: |
+| Buy euros at the selling rate | <InlineMath math="+750" /> | <InlineMath math="-13{,}125{,}000" /> |
+| Spend euros in Germany | <InlineMath math="-600" /> | <InlineMath math="0" /> |
+| Sell the leftover euros at the buying rate | <InlineMath math="-150" /> | <InlineMath math="+2{,}550{,}000" /> |
+| Total | <InlineMath math="0" /> | <InlineMath math="-10{,}575{,}000" /> |
+
+The table shows that all the euros are gone while the student's money dropped by <InlineMath math="\text{Rp}10{,}575{,}000" />. Let <InlineMath math="B" /> be the net cost in rupiah and <InlineMath math="r" /> the average cost per euro spent.
+
+<BlockMath math="\begin{aligned}
+B&=750\times17{,}500-150\times17{,}000 \\
+&=13{,}125{,}000-2{,}550{,}000 \\
+&=10{,}575{,}000 \\
+r&=\frac{B}{600}=\frac{10{,}575{,}000}{600}=17{,}625
+\end{aligned}" />
+
+Check with a second method. Each euro sold back loses <InlineMath math="17{,}500-17{,}000=500" /> rupiah, so the <InlineMath math="150" /> leftover euros lose <InlineMath math="75{,}000" /> rupiah in total. That loss is shared by the <InlineMath math="600" /> euros that were spent.
+
+<BlockMath math="17{,}500+\frac{150\times500}{600}=17{,}500+125=17{,}625" />
+
+The average cost of each euro the student actually spent is therefore <InlineMath math="\text{Rp}17{,}625" />.
+
+- <InlineMath math="\text{Rp}14{,}100" /> comes from dividing the net cost by <InlineMath math="750" /> euros, although <InlineMath math="150" /> of them were never spent.
+- <InlineMath math="\text{Rp}16{,}875" /> appears when the selling and buying rates are swapped, as if the student bought euros at <InlineMath math="\text{Rp}17{,}000" /> and sold them back at <InlineMath math="\text{Rp}17{,}500" />.
+- <InlineMath math="\text{Rp}17{,}500" /> is only the selling rate, as if the leftover euros were bought back at the same price and the rate spread cost nothing.
+- <InlineMath math="\text{Rp}21{,}875" /> comes from dividing the whole purchase cost by <InlineMath math="600" /> euros without subtracting the money received for the leftover euros.

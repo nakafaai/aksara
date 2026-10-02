@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Soal 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Sebuah lift barang bergerak naik dan turun di sebuah gedung. Ketinggian lantai lift di atas lantai dasar adalah <InlineMath math="h" /> meter pada saat <InlineMath math="t" /> detik sejak lift mulai bergerak. Grafik garis patah berikut menyajikan <InlineMath math="h" /> selama <InlineMath math="40" /> detik pertama. Sumbu mendatar menyatakan <InlineMath math="t" /> dan sumbu tegak menyatakan <InlineMath math="h" />. Di antara dua titik sudut grafik yang berurutan, ketinggian lift berubah dengan laju tetap.
+
+<MathVisual
+  title="Ketinggian lift terhadap waktu"
+  description={<>Sumbu mendatar adalah waktu <InlineMath math="t" /> dalam detik dan sumbu tegak adalah ketinggian <InlineMath math="h" /> dalam meter. Titik-titik sudut grafik adalah <InlineMath math="(0,0)" />, <InlineMath math="(10,20)" />, <InlineMath math="(16,20)" />, <InlineMath math="(24,8)" />, <InlineMath math="(28,8)" />, dan <InlineMath math="(40,26)" />.</>}
+  labels={{
+    "coordinate-0": <InlineMath math="(0,0)" />,
+    "coordinate-1": <InlineMath math="(10,20)" />,
+    "coordinate-2": <InlineMath math="(16,20)" />,
+    "coordinate-3": <InlineMath math="(24,8)" />,
+    "coordinate-4": <InlineMath math="(28,8)" />,
+    "coordinate-5": <InlineMath math="(40,26)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lift-graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 20 }, { x: 16, y: 20 }, { x: 24, y: 8 }, { x: 28, y: 8 }, { x: 40, y: 26 }] },
+      { id: "vertex-0", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "vertex-1", kind: "point", appearance: "primary", at: { x: 10, y: 20 } },
+      { id: "vertex-2", kind: "point", appearance: "primary", at: { x: 16, y: 20 } },
+      { id: "vertex-3", kind: "point", appearance: "primary", at: { x: 24, y: 8 } },
+      { id: "vertex-4", kind: "point", appearance: "primary", at: { x: 28, y: 8 } },
+      { id: "vertex-5", kind: "point", appearance: "primary", at: { x: 40, y: 26 } },
+    ],
+    labels: [
+      { key: "coordinate-0", objectId: "vertex-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "coordinate-1", objectId: "vertex-1", at: { x: 10, y: 20 }, placement: "above-left" },
+      { key: "coordinate-2", objectId: "vertex-2", at: { x: 16, y: 20 }, placement: "above-right" },
+      { key: "coordinate-3", objectId: "vertex-3", at: { x: 24, y: 8 }, placement: "below-left" },
+      { key: "coordinate-4", objectId: "vertex-4", at: { x: 28, y: 8 }, placement: "below-right" },
+      { key: "coordinate-5", objectId: "vertex-5", at: { x: 40, y: 26 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Laju rata-rata lift pada suatu selang waktu adalah total jarak yang ditempuh lift pada selang tersebut dibagi lamanya selang tersebut.
+
+Berdasarkan grafik tersebut, kategorikan setiap pernyataan sebagai benar atau salah.

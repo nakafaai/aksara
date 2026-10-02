@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Pembahasan Soal 12",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Komponen atas vektor <InlineMath math="T" /> adalah pergeseran mendatar dan komponen bawahnya pergeseran tegak. Jadi, translasi ini **menggeser setiap titik <InlineMath math="2" /> satuan ke kiri dan <InlineMath math="3" /> satuan ke atas**, yaitu <InlineMath math="(x,y)\mapsto(x-2,\,y+3)" />. Translasi tidak mengubah bentuk parabola, jadi cukup lacak puncaknya. Ubah dulu persamaan ke bentuk puncak dengan melengkapkan kuadrat.
+
+<BlockMath math="\begin{aligned}
+y&=x^2-4x+1 \\
+&=\left(x^2-4x+4\right)-4+1 \\
+&=(x-2)^2-3
+\end{aligned}" />
+
+Puncak parabola semula adalah <InlineMath math="(2,-3)" />. Setelah ditranslasikan, puncaknya menjadi <InlineMath math="(2-2,\,-3+3)=(0,0)" />. Koefisien <InlineMath math="x^2" /> tetap <InlineMath math="1" />, sehingga bayangannya adalah parabola <InlineMath math="y=x^2" />.
+
+<MathVisual
+  title="Parabola sebelum dan sesudah translasi"
+  description={<>Puncak <InlineMath math="P(2,-3)" /> berpindah ke <InlineMath math="P'(0,0)" />, dan titik <InlineMath math="Q(4,1)" /> berpindah ke <InlineMath math="Q'(2,4)" />. Ruas <InlineMath math="PP'" /> dan <InlineMath math="QQ'" /> sejajar dan sama panjang karena translasi menggeser semua titik dengan vektor yang sama, yaitu <InlineMath math="T" />.</>}
+  labels={{
+    "equation-original": <InlineMath math="y=x^2-4x+1" />,
+    "equation-image": <InlineMath math="y=x^2" />,
+    "name-vertex-original": <InlineMath math="P" />,
+    "name-vertex-image": <InlineMath math="P'" />,
+    "name-point-original": <InlineMath math="Q" />,
+    "name-point-image": <InlineMath math="Q'" />,
+    "vector-t": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 8 },
+      y: { min: -4.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph-original", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x" },
+      { id: "graph-image", kind: "quadratic", appearance: "answer", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2.5, max: 2.5 }, inputAxis: "x" },
+      { id: "shift-vertex", kind: "segment", appearance: "highlight", from: { x: 2, y: -3 }, to: { x: 0, y: 0 } },
+      { id: "shift-point", kind: "segment", appearance: "highlight", from: { x: 4, y: 1 }, to: { x: 2, y: 4 } },
+      { id: "vertex-original", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "vertex-image", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "point-original", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "equation-original", objectId: "graph-original", at: { x: 4.5, y: 3.25 }, placement: "right" },
+      { key: "equation-image", objectId: "graph-image", at: { x: -2.5, y: 6.25 }, placement: "left" },
+      { key: "name-vertex-original", objectId: "vertex-original", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "name-vertex-image", objectId: "vertex-image", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-point-original", objectId: "point-original", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "name-point-image", objectId: "point-image", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "vector-t", objectId: "shift-point", at: { x: 3, y: 2.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Periksa dengan substitusi. Titik <InlineMath math="(x',y')" /> pada bayangan berasal dari titik <InlineMath math="(x'+2,\,y'-3)" /> pada grafik semula. Titik asal itu memenuhi persamaan semula.
+
+<BlockMath math="\begin{aligned}
+y'-3&=(x'+2)^2-4(x'+2)+1 \\
+&=x'^2+4x'+4-4x'-8+1 \\
+&=x'^2-3 \\
+y'&=x'^2
+\end{aligned}" />
+
+Jadi, persamaan bayangan grafik tersebut adalah <InlineMath math="y=x^2" />.
+
+- <InlineMath math="y=x^2-6" /> muncul jika komponen tegak diterapkan ke arah yang salah, seolah-olah grafik digeser <InlineMath math="3" /> satuan ke bawah, sehingga puncaknya menjadi <InlineMath math="(0,-6)" />.
+- <InlineMath math="y=x^2+8" /> muncul jika <InlineMath math="x+2" /> hanya disubstitusikan pada suku <InlineMath math="x^2" />, sedangkan suku <InlineMath math="-4x" /> tidak ikut diganti.
+- <InlineMath math="y=x^2-8x+10" /> muncul jika kedua komponen diterapkan terbalik, yaitu <InlineMath math="2" /> satuan ke kanan dan <InlineMath math="3" /> satuan ke bawah, sehingga puncaknya menjadi <InlineMath math="(4,-6)" />.
+- <InlineMath math="y=x^2-8x+16" /> muncul jika hanya komponen mendatar yang terbalik, yaitu <InlineMath math="2" /> satuan ke kanan, sehingga puncaknya menjadi <InlineMath math="(4,0)" />.

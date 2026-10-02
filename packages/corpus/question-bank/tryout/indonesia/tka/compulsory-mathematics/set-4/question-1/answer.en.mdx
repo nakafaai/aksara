@@ -1,0 +1,31 @@
+export const metadata = {
+  title: "Solution to Question 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+You need the number of cells that fit along a line <InlineMath math="3\text{ mm}" /> long when each cell is <InlineMath math="2\times10^{-6}\text{ m}" /> long. The cells sit end to end with no gaps, so the length of the line equals the number of cells times the length of one cell. Dividing the line length by the cell length gives the count, but **both lengths must use the same unit** first.
+
+| Quantity | Given length | In meters |
+| --- | --- | --- |
+| Line of cells | <InlineMath math="3\text{ mm}" /> | <InlineMath math="3\times10^{-3}\text{ m}" /> |
+| One cell | <InlineMath math="2\times10^{-6}\text{ m}" /> | <InlineMath math="2\times10^{-6}\text{ m}" /> |
+
+One millimeter is <InlineMath math="10^{-3}" /> meter, so <InlineMath math="3\text{ mm}=3\times10^{-3}\text{ m}" />. Let <InlineMath math="n" /> be the number of cells. Divide the coefficients, <InlineMath math="3" /> by <InlineMath math="2" />, then divide the powers of ten. In a quotient, **the exponent of the denominator is subtracted** from the exponent of the numerator: <InlineMath math="\frac{10^{a}}{10^{b}}=10^{a-b}" />.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{3\times10^{-3}\text{ m}}{2\times10^{-6}\text{ m}} \\
+&=\frac{3}{2}\times10^{-3-(-6)} \\
+&=1.5\times10^{3}
+\end{aligned}" />
+
+The meters in the numerator and denominator cancel, so the result is a pure number, which is what a count of cells should be. To check, multiply the number of cells by the length of one cell. The product must equal the length of the line.
+
+<BlockMath math="1{,}500\times2\times10^{-6}\text{ m}=3\times10^{-3}\text{ m}=3\text{ mm}" />
+
+The line of length <InlineMath math="3\text{ mm}" /> therefore consists of <InlineMath math="1.5\times10^{3}" />, or <InlineMath math="1{,}500" />, bacterial cells.
+
+- <InlineMath math="1.5\times10^{-9}" /> comes from adding the exponents, although in a quotient the exponent of the denominator is subtracted.
+- <InlineMath math="6\times10^{-9}" /> is the product of the two lengths, not the line length divided by the cell length.
+- <InlineMath math="1.5\times10^{4}" /> appears when <InlineMath math="3\text{ mm}" /> is written as <InlineMath math="3\times10^{-2}\text{ m}" />, which mixes up millimeters and centimeters.
+- <InlineMath math="1.5\times10^{6}" /> appears when the <InlineMath math="3" /> from the millimeters is divided directly by the cell length in meters without converting the unit.

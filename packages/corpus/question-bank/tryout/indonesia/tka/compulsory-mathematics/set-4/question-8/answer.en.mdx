@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Solution to Question 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+All four statements are judged from the graph. On each slanted piece, **the speed of the lift is the size of the height change divided by the duration of the piece**, and on each flat piece the lift stands still.
+
+| Time interval | Motion of the lift | Speed |
+| --- | --- | ---: |
+| <InlineMath math="0\le t\le10" /> | rises from <InlineMath math="0" /> to <InlineMath math="20\text{ m}" /> | <InlineMath math="\frac{20}{10}=2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | stays at <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | falls from <InlineMath math="20" /> to <InlineMath math="8\text{ m}" /> | <InlineMath math="\frac{12}{8}=1.5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | stays at <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | rises from <InlineMath math="8" /> to <InlineMath math="26\text{ m}" /> | <InlineMath math="\frac{18}{12}=1.5\text{ m/s}" /> |
+
+For the height of <InlineMath math="14\text{ m}" />, write the height formula on each slanted piece and set it equal to <InlineMath math="14" />. On the first piece <InlineMath math="h=2t" />, on the third piece <InlineMath math="h=20-1.5(t-16)" />, and on the fifth piece <InlineMath math="h=8+1.5(t-28)" />.
+
+<BlockMath math="\begin{aligned}
+2t=14&\iff t=7 \\
+20-1.5(t-16)=14&\iff t=20 \\
+8+1.5(t-28)=14&\iff t=32
+\end{aligned}" />
+
+Each of these times lies inside the interval of its piece. On the two flat pieces the height stays at <InlineMath math="20\text{ m}" /> and <InlineMath math="8\text{ m}" />, so there is no other moment when the lift is at <InlineMath math="14\text{ m}" />.
+
+<MathVisual
+  title="When the lift is fourteen meters high"
+  description={<>The horizontal line <InlineMath math="h=14" /> crosses the height graph exactly three times, at <InlineMath math="t=7" />, <InlineMath math="t=20" />, and <InlineMath math="t=32" />. The flat pieces at <InlineMath math="h=20" /> and <InlineMath math="h=8" /> never touch that line.</>}
+  labels={{
+    "time-1": <InlineMath math="t=7" />,
+    "time-2": <InlineMath math="t=20" />,
+    "time-3": <InlineMath math="t=32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lift-graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 20 }, { x: 16, y: 20 }, { x: 24, y: 8 }, { x: 28, y: 8 }, { x: 40, y: 26 }] },
+      { id: "level-14", kind: "line", appearance: "highlight", through: [{ x: 0, y: 14 }, { x: 40, y: 14 }] },
+      { id: "cross-1", kind: "point", appearance: "answer", at: { x: 7, y: 14 } },
+      { id: "cross-2", kind: "point", appearance: "answer", at: { x: 20, y: 14 } },
+      { id: "cross-3", kind: "point", appearance: "answer", at: { x: 32, y: 14 } },
+    ],
+    labels: [
+      { key: "time-1", objectId: "cross-1", at: { x: 7, y: 14 }, placement: "above-left" },
+      { key: "time-2", objectId: "cross-2", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "time-3", objectId: "cross-3", at: { x: 32, y: 14 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+For the last statement, let <InlineMath math="v_1" /> be the average speed on <InlineMath math="0\le t\le24" /> and <InlineMath math="v_2" /> the average speed on <InlineMath math="24\le t\le40" />. The distance in each interval is the sum of the distances on the pieces inside it.
+
+<BlockMath math="\begin{aligned}
+v_1&=\frac{20+0+12}{24}=\frac{32}{24}=\frac43\text{ m/s} \\
+v_2&=\frac{0+18}{16}=\frac{18}{16}=\frac98\text{ m/s}
+\end{aligned}" />
+
+1. The statement that the lift moves fastest during the first <InlineMath math="10" /> seconds is true. Its speed there is <InlineMath math="2\text{ m/s}" />, while on every other piece the speed is at most <InlineMath math="1.5\text{ m/s}" />.
+2. The statement that the lift is at a height of <InlineMath math="14\text{ m}" /> exactly three times is true, at <InlineMath math="t=7" />, <InlineMath math="t=20" />, and <InlineMath math="t=32" />.
+3. The statement about the interval <InlineMath math="16\le t\le24" /> is false. On that interval the lift **goes down from <InlineMath math="20\text{ m}" /> to <InlineMath math="8\text{ m}" />**, so its height decreases by <InlineMath math="1.5\text{ m}" /> every second instead of increasing.
+4. The statement that the two average speeds are equal is false, because <InlineMath math="\frac43\text{ m/s}\ne\frac98\text{ m/s}" />. The speed over the first <InlineMath math="24" /> seconds is larger, since <InlineMath math="\frac43=\frac{32}{24}" /> while <InlineMath math="\frac98=\frac{27}{24}" />.
+
+So the first two statements are true, and the statements about the interval <InlineMath math="16\le t\le24" /> and about equal average speeds are false.

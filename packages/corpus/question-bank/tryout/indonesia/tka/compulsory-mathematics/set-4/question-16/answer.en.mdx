@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Solution to Question 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Let <InlineMath math="O" /> be the point where the two diagonals of the base meet. In a regular square pyramid the apex <InlineMath math="T" /> lies directly above <InlineMath math="O" />, so <InlineMath math="TO=3\text{ m}" /> is perpendicular to the base. Triangle <InlineMath math="TOA" /> therefore has a right angle at <InlineMath math="O" />, and **the lateral edge <InlineMath math="TA" /> is the hypotenuse of triangle <InlineMath math="TOA" />**. Its legs are <InlineMath math="TO" /> and <InlineMath math="OA" />, which is half of a diagonal of the base.
+
+<BlockMath math="\begin{aligned}
+AC&=\sqrt{8^2+8^2}=8\sqrt2 \\
+OA&=\frac12\,AC=4\sqrt2 \\
+TA^2&=TO^2+OA^2=3^2+\left(4\sqrt2\right)^2=9+32=41 \\
+TA&=\sqrt{41}
+\end{aligned}" />
+
+<MathVisual
+  title={<>The right triangle <InlineMath math="TOA" /> inside the roof</>}
+  description={<>Triangle <InlineMath math="TOA" /> stands upright inside the pyramid, with its right angle at the center of the base <InlineMath math="O" />. Its legs are the height <InlineMath math="3\text{ m}" /> and the half diagonal <InlineMath math="4\sqrt2\text{ m}" />. Rotate the figure to see the right angle.</>}
+  labels={{
+    "vertex-t": <InlineMath math="T" />,
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-d": <InlineMath math="D" />,
+    "length-ab": <InlineMath math="8\text{ m}" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
+    "name-o": <InlineMath math="O" />,
+    "length-oa": <InlineMath math="4\sqrt2\text{ m}" />,
+    "length-ta": <InlineMath math="\sqrt{41}\text{ m}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 4 },
+      z: { min: -5, max: 5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
+      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
+      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
+      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "triangle-toa", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: -4, y: 0, z: 4 }] },
+      { id: "half-diagonal-oa", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: -4, y: 0, z: 4 } },
+      { id: "edge-ta", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: -4, y: 0, z: 4 } },
+      { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
+      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
+      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "length-ab", objectId: "base-abcd", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "right" },
+      { key: "length-oa", objectId: "half-diagonal-oa", at: { x: -2, y: 0, z: 2 }, placement: "below" },
+      { key: "length-ta", objectId: "edge-ta", at: { x: -2, y: 1.5, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+The result makes sense. The value <InlineMath math="\sqrt{41}\approx6.4" /> is larger than both legs, <InlineMath math="3" /> and <InlineMath math="4\sqrt2\approx5.66" />, as a hypotenuse must be the longest side. It is also smaller than the sum of the legs, as the triangle inequality requires.
+
+The lateral edge <InlineMath math="TA" /> is therefore <InlineMath math="\sqrt{41}\text{ m}" /> long.
+
+- <InlineMath math="5\text{ m}" /> is the slant height of a face, the distance from <InlineMath math="T" /> to the midpoint of <InlineMath math="AB" />. It comes from the leg <InlineMath math="4\text{ m}" />, half of a base side, not from <InlineMath math="OA" />.
+- <InlineMath math="\sqrt{73}\text{ m}" /> appears when the base side <InlineMath math="8\text{ m}" /> is used as a leg, although the distance from <InlineMath math="O" /> to <InlineMath math="A" /> is half of a diagonal.
+- <InlineMath math="\left(3+4\sqrt2\right)\text{ m}" /> is the sum of the two legs. The hypotenuse comes from the Pythagorean theorem, not from adding the legs.
+- <InlineMath math="\sqrt{137}\text{ m}" /> appears when the whole diagonal <InlineMath math="8\sqrt2\text{ m}" /> is used as a leg, although <InlineMath math="O" /> sits at the middle of the diagonal.

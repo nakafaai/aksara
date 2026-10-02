@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Pembahasan Soal 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Daerah yang diarsir dibatasi oleh sumbu <InlineMath math="y" /> dan dua garis miring, jadi **setiap garis batas memberi satu pertidaksamaan**. Untuk setiap garis miring, susun dulu persamaannya dari titik potong dengan sumbu. Setelah itu, tentukan arah tandanya dengan **titik uji** yang tidak terletak pada garis tersebut.
+
+Garis yang memotong sumbu <InlineMath math="x" /> di <InlineMath math="(a,0)" /> dan sumbu <InlineMath math="y" /> di <InlineMath math="(0,b)" /> memiliki persamaan <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Garis pertama memotong sumbu di <InlineMath math="(6,0)" /> dan <InlineMath math="(0,6)" />, sedangkan garis kedua di <InlineMath math="(9,0)" /> dan <InlineMath math="(0,3)" />.
+
+<BlockMath math="\begin{aligned}
+\frac{x}{6}+\frac{y}{6}=1&\iff x+y=6 \\
+\frac{x}{9}+\frac{y}{3}=1&\iff x+3y=9
+\end{aligned}" />
+
+Pakai titik asal <InlineMath math="(0,0)" /> sebagai titik uji. Pada garis <InlineMath math="x+y=6" />, titik asal memberi <InlineMath math="0\le6" />, dan daerah yang diarsir berada di sisi garis yang sama dengan titik asal. Jadi, daerah itu memenuhi <InlineMath math="x+y\le6" />. Pada garis <InlineMath math="x+3y=9" />, titik asal memberi <InlineMath math="0<9" />, tetapi daerah yang diarsir berada di sisi garis yang berlawanan dengan titik asal. Jadi, daerah itu memenuhi <InlineMath math="x+3y\ge9" />. Batas kiri daerah adalah sumbu <InlineMath math="y" />, sehingga berlaku <InlineMath math="x\ge0" />.
+
+<MathVisual
+  title="Titik uji pada daerah yang diarsir"
+  description={<>Titik asal berada di luar daerah karena tidak memenuhi <InlineMath math="x+3y\ge9" />, sedangkan titik <InlineMath math="(1,3)" /> berada di dalam daerah. Kedua garis miring berpotongan di <InlineMath math="\left(\frac92,\frac32\right)" />.</>}
+  labels={{
+    "coordinate-g-y": <InlineMath math="(0,6)" />,
+    "coordinate-g-x": <InlineMath math="(6,0)" />,
+    "coordinate-h-y": <InlineMath math="(0,3)" />,
+    "coordinate-h-x": <InlineMath math="(9,0)" />,
+    "coordinate-corner": <InlineMath math="\left(\frac92,\frac32\right)" />,
+    "coordinate-origin": <InlineMath math="(0,0)" />,
+    "coordinate-inside": <InlineMath math="(1,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 10.5 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "solution-region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 0, y: 6 }, { x: 4.5, y: 1.5 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }] },
+      { id: "line-h", kind: "line", appearance: "secondary", through: [{ x: 0, y: 3 }, { x: 9, y: 0 }] },
+      { id: "point-g-y", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "point-g-x", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "point-h-y", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "point-h-x", kind: "point", appearance: "secondary", at: { x: 9, y: 0 } },
+      { id: "corner-gh", kind: "point", appearance: "highlight", at: { x: 4.5, y: 1.5 } },
+      { id: "test-origin", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "test-inside", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
+    ],
+    labels: [
+      { key: "coordinate-g-y", objectId: "point-g-y", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "coordinate-g-x", objectId: "point-g-x", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "coordinate-h-y", objectId: "point-h-y", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "coordinate-h-x", objectId: "point-h-x", at: { x: 9, y: 0 }, placement: "below" },
+      { key: "coordinate-corner", objectId: "corner-gh", at: { x: 4.5, y: 1.5 }, placement: "above-right" },
+      { key: "coordinate-origin", objectId: "test-origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "coordinate-inside", objectId: "test-inside", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Syarat <InlineMath math="y\ge0" /> pada setiap pilihan jawaban sudah otomatis terpenuhi. Jika <InlineMath math="x+y\le6" /> dikurangkan dari <InlineMath math="x+3y\ge9" />, diperoleh batas bawah untuk <InlineMath math="y" />.
+
+<BlockMath math="(x+3y)-(x+y)\ge9-6\iff2y\ge3\iff y\ge\frac32" />
+
+Untuk memeriksa, uji titik <InlineMath math="(1,3)" /> yang berada di dalam daerah. Kedua pertidaksamaan miring harus terpenuhi.
+
+<BlockMath math="\begin{aligned}
+1+3&=4\le6 \\
+1+3(3)&=10\ge9
+\end{aligned}" />
+
+Jadi, daerah yang diarsir adalah himpunan penyelesaian sistem <InlineMath math="x+y\le6,\ x+3y\ge9,\ x\ge0,\ y\ge0" />.
+
+- <InlineMath math="x+y\le6,\ x+3y\le9" /> beserta kedua syarat tanda menggambarkan daerah di bawah kedua garis, yaitu segi empat yang memuat titik asal.
+- <InlineMath math="x+y\le6,\ 3x+y\ge9" /> beserta kedua syarat tanda memakai garis yang memotong sumbu di <InlineMath math="(3,0)" /> dan <InlineMath math="(0,9)" />, karena peran kedua titik potong tertukar saat menyusun persamaan garis kedua.
+- <InlineMath math="x+y\ge6,\ x+3y\ge9" /> beserta kedua syarat tanda menggambarkan daerah di atas kedua garis, yang terus memanjang ke kanan atas.
+- <InlineMath math="x+y\ge6,\ x+3y\le9" /> beserta kedua syarat tanda menggambarkan segitiga kecil dengan titik sudut <InlineMath math="\left(\frac92,\frac32\right)" />, <InlineMath math="(6,0)" />, dan <InlineMath math="(9,0)" />, bukan daerah yang diarsir.

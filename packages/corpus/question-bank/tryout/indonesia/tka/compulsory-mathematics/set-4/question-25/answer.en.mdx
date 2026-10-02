@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Solution to Question 25",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The probability of each sector is proportional to its central angle, so it equals the central angle divided by <InlineMath math="360^\circ" />. The two spins are independent, so **the probability of a pair of results is the product of the probabilities of the two spins**.
+
+<BlockMath math="\begin{aligned}
+P(A)&=\frac{180^\circ}{360^\circ}=\frac12 \\
+P(B)&=\frac{120^\circ}{360^\circ}=\frac13 \\
+P(C)&=\frac{60^\circ}{360^\circ}=\frac16
+\end{aligned}" />
+
+<LineEquation
+  title="A spinner with three sectors"
+  description={<>Sector <InlineMath math="A" /> covers half of the circle, so its probability is <InlineMath math="\frac12" />. Sectors <InlineMath math="B" /> and <InlineMath math="C" /> cover a third and a sixth of the circle.</>}
+  cameraPosition={[10, 10, 12]}
+  cameraTarget={[10, 10, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const t = (i * Math.PI) / 180;
+        return { x: 10 + 4 * Math.cos(t), y: 10 + 4 * Math.sin(t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...[90, 270, 30].map((degrees) => ({
+      points: [0, 4].map((r) => ({ x: 10 + r * Math.cos((degrees * Math.PI) / 180), y: 10 + r * Math.sin((degrees * Math.PI) / 180), z: 0 })),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((90 + (i / 240) * 180) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="A" />, at: 120, offset: [1.9 * Math.cos(Math.PI), 1.9 * Math.sin(Math.PI), 0] },
+        { text: <InlineMath math="180^\circ" />, at: 120, offset: [0.8 * Math.cos(Math.PI), 0.8 * Math.sin(Math.PI), 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((270 + (i / 240) * 120) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="B" />, at: 120, offset: [1.9 * Math.cos((11 * Math.PI) / 6), 1.9 * Math.sin((11 * Math.PI) / 6), 0] },
+        { text: <InlineMath math="120^\circ" />, at: 120, offset: [0.8 * Math.cos((11 * Math.PI) / 6), 0.8 * Math.sin((11 * Math.PI) / 6), 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 + (i / 240) * 60) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#d97706",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="C" />, at: 120, offset: [1.9 * Math.cos(Math.PI / 3), 1.9 * Math.sin(Math.PI / 3), 0] },
+        { text: <InlineMath math="60^\circ" />, at: 120, offset: [0.8 * Math.cos(Math.PI / 3), 0.8 * Math.sin(Math.PI / 3), 0] },
+      ],
+    },
+  ]}
+/>
+
+The table lists the probabilities of all nine pairs of results. Rows give the result of the first spin and columns the result of the second spin. The nine probabilities add up to <InlineMath math="1" />, as a complete sample space must.
+
+| First spin | Second at <InlineMath math="A" /> | Second at <InlineMath math="B" /> | Second at <InlineMath math="C" /> |
+| --- | ---: | ---: | ---: |
+| <InlineMath math="A" /> | <InlineMath math="\frac14" /> | <InlineMath math="\frac16" /> | <InlineMath math="\frac1{12}" /> |
+| <InlineMath math="B" /> | <InlineMath math="\frac16" /> | <InlineMath math="\frac19" /> | <InlineMath math="\frac1{18}" /> |
+| <InlineMath math="C" /> | <InlineMath math="\frac1{12}" /> | <InlineMath math="\frac1{18}" /> | <InlineMath math="\frac1{36}" /> |
+
+1. The statement that the probability of stopping at <InlineMath math="C" /> at least once is <InlineMath math="\frac13" /> is false. Use the complement, in which neither spin stops at <InlineMath math="C" />. The value <InlineMath math="\frac13=\frac16+\frac16" /> counts the pair <InlineMath math="CC" /> twice.
+
+<BlockMath math="P(\text{at least once at }C)=1-\left(\frac56\right)^2=1-\frac{25}{36}=\frac{11}{36}" />
+
+2. The statement that the probability of both spins stopping at the same sector is <InlineMath math="\frac{7}{18}" /> is true. Add the three probabilities on the diagonal of the table, <InlineMath math="\frac14+\frac19+\frac1{36}=\frac{9+4+1}{36}=\frac{14}{36}=\frac{7}{18}" />.
+3. The statement that the probability of the first spin at <InlineMath math="A" /> and the second spin not at <InlineMath math="A" /> is <InlineMath math="\frac14" /> is true, because <InlineMath math="\frac12\cdot\left(1-\frac12\right)=\frac14" />. The table gives the same value, <InlineMath math="\frac16+\frac1{12}=\frac14" />.
+4. The statement that the two events are independent is false. Let <InlineMath math="E" /> be the event that the first spin stops at <InlineMath math="A" /> and <InlineMath math="F" /> the event that both spins stop at the same sector. Their intersection is only the pair <InlineMath math="AA" />. Two events are independent only when **the probability of their intersection equals the product of their probabilities**.
+
+<BlockMath math="\begin{aligned}
+P(E\cap F)&=P(AA)=\frac14=\frac{9}{36} \\
+P(E)\cdot P(F)&=\frac12\cdot\frac{7}{18}=\frac{7}{36}\ne\frac{9}{36}
+\end{aligned}" />
+
+So the statements about the same sector and about <InlineMath math="A" /> followed by a sector other than <InlineMath math="A" /> are true, while the statements about the probability <InlineMath math="\frac13" /> and about independent events are false.

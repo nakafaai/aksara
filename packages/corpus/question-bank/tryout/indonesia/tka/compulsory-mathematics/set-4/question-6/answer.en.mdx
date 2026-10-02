@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Solution to Question 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+You need the value of <InlineMath math="t" /> that makes <InlineMath math="M(t)=6" />. Divide both sides by <InlineMath math="192" />, then write the right side as a **power of the same base**, <InlineMath math="\frac12" />. Two powers with the same base are equal only when their exponents are equal.
+
+<BlockMath math="\begin{aligned}
+192\left(\frac12\right)^{\frac t5}&=6 \\
+\left(\frac12\right)^{\frac t5}&=\frac{6}{192}=\frac{1}{32}=\left(\frac12\right)^{5} \\
+\frac t5&=5 \\
+t&=25
+\end{aligned}" />
+
+The <InlineMath math="5" /> in the denominator of the exponent means that **the mass halves every <InlineMath math="5" /> years**. The halving table checks the result without algebra.
+
+| Time <InlineMath math="t" /> (years) | Mass <InlineMath math="M(t)" /> (grams) |
+| ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="192" /> |
+| <InlineMath math="5" /> | <InlineMath math="96" /> |
+| <InlineMath math="10" /> | <InlineMath math="48" /> |
+| <InlineMath math="15" /> | <InlineMath math="24" /> |
+| <InlineMath math="20" /> | <InlineMath math="12" /> |
+| <InlineMath math="25" /> | <InlineMath math="6" /> |
+
+Going from <InlineMath math="192\text{ g}" /> to <InlineMath math="6\text{ g}" /> takes five halvings, and each halving lasts <InlineMath math="5" /> years, so the time is <InlineMath math="5\times5=25" /> years. Direct substitution agrees: <InlineMath math="M(25)=192\left(\frac12\right)^{5}=\frac{192}{32}=6" />.
+
+The mass is therefore down to <InlineMath math="6\text{ g}" /> after <InlineMath math="25" /> years.
+
+- <InlineMath math="1" /> year comes from solving <InlineMath math="\frac t5=5" /> by dividing, <InlineMath math="t=\frac55" />, although both sides must be multiplied by <InlineMath math="5" />.
+- <InlineMath math="5" /> years comes from reading <InlineMath math="\frac t5=5" /> as <InlineMath math="t=5" />, which mistakes the number of halvings for the time.
+- <InlineMath math="20" /> years covers only four halvings, which end at a mass of <InlineMath math="12\text{ g}" />.
+- <InlineMath math="30" /> years comes from counting all six rows of the table, including the starting mass of <InlineMath math="192\text{ g}" /> at <InlineMath math="t=0" />, as six halvings.

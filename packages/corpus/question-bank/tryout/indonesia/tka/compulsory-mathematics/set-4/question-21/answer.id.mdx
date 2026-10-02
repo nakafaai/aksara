@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Pembahasan Soal 21",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Diagram batang-daun sudah menyusun data dari yang terkecil. Batang menyatakan angka puluhan dan daun menyatakan angka satuan, jadi baris <InlineMath math="4\mid1\ 3\ 3\ 6\ 7" /> berarti data <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" />, <InlineMath math="46" />, dan <InlineMath math="47" />. Banyak data adalah <InlineMath math="n=3+5+6+1=15" />. Karena <InlineMath math="n" /> ganjil, **median adalah satu data yang tepat di tengah**, yaitu data ke-<InlineMath math="\frac{n+1}{2}" />.
+
+<BlockMath math="\frac{n+1}{2}=\frac{15+1}{2}=8" />
+
+Hitung urutan data dari batang paling atas. Tiga data pertama ada pada batang <InlineMath math="3" />, lalu lima data berikutnya pada batang <InlineMath math="4" />, sehingga data ke-<InlineMath math="8" /> adalah daun terakhir pada batang <InlineMath math="4" />.
+
+| Batang | Daun | Banyak data | Urutan data |
+| ---: | --- | ---: | --- |
+| 3 | 5 8 9 | <InlineMath math="3" /> | ke-<InlineMath math="1" /> sampai ke-<InlineMath math="3" /> |
+| 4 | 1 3 3 6 7 | <InlineMath math="5" /> | ke-<InlineMath math="4" /> sampai ke-<InlineMath math="8" /> |
+| 5 | 0 2 4 4 4 9 | <InlineMath math="6" /> | ke-<InlineMath math="9" /> sampai ke-<InlineMath math="14" /> |
+| 6 | 1 | <InlineMath math="1" /> | ke-<InlineMath math="15" /> |
+
+Data ke-<InlineMath math="8" /> adalah <InlineMath math="47" />. Grafik berikut memperlihatkan banyak hari pada setiap kelompok puluhan. Batang pertama memuat <InlineMath math="3" /> hari dan dua batang pertama memuat <InlineMath math="3+5=8" /> hari, jadi data ke-<InlineMath math="8" /> menutup kelompok <InlineMath math="40" />-an.
+
+<HistogramChart
+  title="Banyak hari menurut kelompok pengunjung"
+  description="Setiap batang menghitung hari dengan banyak pengunjung pada satu kelompok puluhan. Data yang tepat di tengah berada pada kelompok empat puluhan."
+  data={[
+    { name: "30-an", value: 3 },
+    { name: "40-an", value: 5 },
+    { name: "50-an", value: 6 },
+    { name: "60-an", value: 1 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Banyak hari",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+      },
+    },
+  }}
+  yAxisLabel="Banyak hari"
+/>
+
+Periksa bahwa <InlineMath math="47" /> benar-benar di tengah. Ada tujuh data yang lebih kecil, yaitu <InlineMath math="35" />, <InlineMath math="38" />, <InlineMath math="39" />, <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" />, dan <InlineMath math="46" />, serta tujuh data yang lebih besar, yaitu <InlineMath math="50" />, <InlineMath math="52" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="59" />, dan <InlineMath math="61" />.
+
+Jadi, median banyak pengunjung harian adalah <InlineMath math="47" /> orang.
+
+- <InlineMath math="46" /> adalah data ke-<InlineMath math="7" />, satu posisi sebelum data tengah.
+- <InlineMath math="48{,}5" /> adalah rata-rata data ke-<InlineMath math="8" /> dan ke-<InlineMath math="9" />. Cara itu hanya dipakai jika banyak data genap.
+- <InlineMath math="50" /> adalah data ke-<InlineMath math="9" />, satu posisi sesudah data tengah.
+- <InlineMath math="54" /> adalah modus, yaitu nilai yang paling sering muncul, bukan nilai yang berada di tengah.
