@@ -40,13 +40,13 @@ describe("SNBT readiness", () => {
             timeLimitSeconds: 1800,
           },
           {
-            key: "general-knowledge",
+            key: "general-knowledge-and-understanding",
             order: 2,
             questionCount: 20,
             timeLimitSeconds: 900,
           },
           {
-            key: "reading-and-writing-skills",
+            key: "reading-comprehension-and-writing",
             order: 3,
             questionCount: 20,
             timeLimitSeconds: 1500,
@@ -58,13 +58,13 @@ describe("SNBT readiness", () => {
             timeLimitSeconds: 1200,
           },
           {
-            key: "indonesian-language",
+            key: "literacy-in-indonesian",
             order: 5,
             questionCount: 30,
             timeLimitSeconds: 2550,
           },
           {
-            key: "english-language",
+            key: "literacy-in-english",
             order: 6,
             questionCount: 20,
             timeLimitSeconds: 1200,
@@ -118,11 +118,11 @@ describe("SNBT readiness", () => {
       ).toBe(true);
       expect(track.sets[0]?.sections.map(({ key }) => key)).toEqual([
         "general-reasoning",
-        "general-knowledge",
-        "reading-and-writing-skills",
+        "general-knowledge-and-understanding",
+        "reading-comprehension-and-writing",
         "quantitative-knowledge",
-        "indonesian-language",
-        "english-language",
+        "literacy-in-indonesian",
+        "literacy-in-english",
         "mathematical-reasoning",
       ]);
     })

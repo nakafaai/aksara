@@ -33,7 +33,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
         const path = yield* Path.Path;
         const location = yield* decodeQuestionPath(
           realQuestionBanks,
-          "indonesia/snbt/english-language/set-1/question-1"
+          "indonesia/snbt/literacy-in-english/set-1/question-1"
         );
         const sourcePath = path.join(
           corpusRoot,

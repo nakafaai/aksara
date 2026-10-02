@@ -42,7 +42,7 @@ const englishPlacement = Effect.fn(
   "AksaraContracts.test.makeEnglishTryoutPlacement"
 )(function* (record: TryoutPlacementRecord) {
   const root =
-    "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1";
+    "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1";
   const row = yield* Schema.decodeEffect(TryoutPlacementSchema)({
     ...record.row,
     answerContentKey: `${root}/answer`,
@@ -51,7 +51,7 @@ const englishPlacement = Effect.fn(
     questionArtifactLocale: "en",
     questionContentKey: `${root}/question`,
     questionSourcePath: `packages/corpus/${root}`,
-    sectionKey: "english-language",
+    sectionKey: "literacy-in-english",
   });
   return makeTryoutPlacementRecord(row);
 });
@@ -200,8 +200,8 @@ describe("try-out locale closure", () => {
         record.row.kind === "section"
           ? updateCatalog(record, {
               questionSourcePath:
-                "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1",
-              sectionKey: "english-language",
+                "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1",
+              sectionKey: "literacy-in-english",
             })
           : Effect.succeed(record)
       );

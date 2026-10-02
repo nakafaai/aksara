@@ -16,7 +16,7 @@ import {
 } from "#corpus/test/question";
 
 const generalSet = "indonesia/snbt/general-reasoning/set-1";
-const englishRoot = "indonesia/snbt/english-language/set-1/question-1";
+const englishRoot = "indonesia/snbt/literacy-in-english/set-1/question-1";
 const englishItemSource = `import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {

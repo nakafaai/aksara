@@ -12,7 +12,7 @@ import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
 
 const repositories = makeRepositoryTracker();
 const QUESTION_PATH =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.id.mdx";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
 
 afterEach(() => {
   repositories.clear();

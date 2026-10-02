@@ -20,7 +20,7 @@ const pageRestartSourcePaths = [
   "packages/corpus/locale/source.ts",
 ];
 const questionRoot =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1";
 const promptPath = `${questionRoot}/question.id.mdx`;
 const answerPath = `${questionRoot}/answer.en.mdx`;
 

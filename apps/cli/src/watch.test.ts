@@ -23,9 +23,9 @@ import { runWatch } from "#test/session";
 
 const repositories = makeRepositoryTracker();
 const questionPath =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/question.id.mdx";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
 const answerPath =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/answer.en.mdx";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/answer.en.mdx";
 
 /** Acquires one repository pair and removes it when the test scope closes. */
 const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
@@ -197,7 +197,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
         yield* Fiber.interrupt(watcher);
         expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
           questionPath,
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/item.ts",
+          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/item.ts",
           "packages/corpus/tryout/registry.ts",
           "packages/corpus/tryout/indonesia/snbt/source.ts",
           "packages/corpus/tryout/indonesia/country.ts",

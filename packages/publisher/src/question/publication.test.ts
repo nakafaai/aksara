@@ -175,7 +175,7 @@ layer(publicationTestLayer)("question publication", (it) => {
       const stale = yield* Effect.all([
         makeStaleHead(
           promptHead,
-          "snbt/english-language/set-9/question-1",
+          "snbt/literacy-in-english/set-9/question-1",
           "snbt-plain"
         ),
         makeStaleHead(
@@ -195,7 +195,7 @@ layer(publicationTestLayer)("question publication", (it) => {
         ),
         makeStaleHead(
           promptHead,
-          "snbt/reading-and-writing-skills/set-9/question-1",
+          "snbt/reading-comprehension-and-writing/set-9/question-1",
           "snbt-plain"
         ),
         makeStaleHead(
@@ -230,7 +230,7 @@ layer(publicationTestLayer)("question publication", (it) => {
         const { promptHead } = yield* QuestionPublicationTestFixtures;
         const deletedBank = yield* makeStaleHead(
           promptHead,
-          "retired-exam/reading-and-writing-skills/archive-set/question-1",
+          "retired-exam/reading-comprehension-and-writing/archive-set/question-1",
           "snbt-plain"
         );
         const records = yield* Effect.promise(() =>
