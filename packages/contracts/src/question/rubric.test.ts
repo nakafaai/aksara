@@ -37,7 +37,7 @@ function oneCriterion(criterion: unknown) {
 }
 
 /** Builds authored levels worth the given points, in order. */
-function levels(...points: number[]) {
+function authoredLevels(...points: number[]) {
   return points.map((value) => ({
     label: label(`Level ${value}`),
     points: value,
@@ -176,7 +176,12 @@ describe("question rubric", () => {
   it("accepts judged scales from any non-negative start", () => {
     const fourPoint = Schema.decodeUnknownSync(
       QuestionRubricResponseSourceSchema
-    )(oneCriterion({ label: label("Aspect"), levels: levels(1, 2, 3, 4) }));
+    )(
+      oneCriterion({
+        label: label("Aspect"),
+        levels: authoredLevels(1, 2, 3, 4),
+      })
+    );
 
     expect(questionRubricPoints(freezeQuestionRubric(fourPoint))).toBe(4);
   });
@@ -186,10 +191,10 @@ describe("question rubric", () => {
     const criteria = [
       ...[[0], [0, 0], [2, 0], [-1, 0], [0, 0.5]].map((points) => ({
         label: label("Criterion"),
-        levels: levels(...points),
+        levels: authoredLevels(...points),
       })),
-      { ...result, levels: levels(0, 1, 2) },
-      { ...result, levels: levels(1, 2) },
+      { ...result, levels: authoredLevels(0, 1, 2) },
+      { ...result, levels: authoredLevels(1, 2) },
     ];
 
     for (const criterion of criteria) {
