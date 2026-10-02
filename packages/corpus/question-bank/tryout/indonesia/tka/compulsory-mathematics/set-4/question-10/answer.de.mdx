@@ -1,0 +1,82 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Die Höhe <InlineMath math="CD" /> vom rechten Winkel aus zerlegt das Dreieck <InlineMath math="ABC" /> in zwei kleinere rechtwinklige Dreiecke, <InlineMath math="ADC" /> und <InlineMath math="CDB" />. Diese beiden Dreiecke sind **ähnlich**, deshalb führen die Seitenverhältnisse zu <InlineMath math="CD" />.
+
+Sie sind ähnlich, weil zwei Winkelpaare übereinstimmen. Die Winkel <InlineMath math="ADC" /> und <InlineMath math="CDB" /> betragen beide <InlineMath math="90^\circ" />. Die Winkelsumme im Dreieck <InlineMath math="ADC" /> und im Dreieck <InlineMath math="ABC" /> ist jeweils <InlineMath math="180^\circ" />, also sind die folgenden beiden Winkel gleich groß.
+
+<BlockMath math="\begin{aligned}
+\angle ACD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A \\
+\angle CBD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A
+\end{aligned}" />
+
+Bei dieser Ähnlichkeit entspricht <InlineMath math="A" /> dem Punkt <InlineMath math="C" />, <InlineMath math="D" /> dem Punkt <InlineMath math="D" /> und <InlineMath math="C" /> dem Punkt <InlineMath math="B" />. Also sind **die Verhältnisse der Katheten beider Dreiecke gleich**.
+
+<BlockMath math="\begin{aligned}
+\frac{AD}{CD}&=\frac{CD}{DB} \\
+CD^2&=AD\cdot DB=4\cdot9=36 \\
+CD&=6
+\end{aligned}" />
+
+Eine Länge ist positiv, also gilt <InlineMath math="CD=6\text{ cm}" />.
+
+<MathVisual
+  title="Zwei ähnliche rechtwinklige Dreiecke"
+  description={<>Das Dreieck <InlineMath math="ADC" /> links und das Dreieck <InlineMath math="CDB" /> rechts sind ähnlich. Die Seite <InlineMath math="AD" /> entspricht <InlineMath math="CD" />, und <InlineMath math="CD" /> entspricht <InlineMath math="DB" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "foot-d": <InlineMath math="D" />,
+    "length-ad": <InlineMath math="4\text{ cm}" />,
+    "length-db": <InlineMath math="9\text{ cm}" />,
+    "length-cd": <InlineMath math="6\text{ cm}" />,
+    "length-ac": <InlineMath math="2\sqrt{13}\text{ cm}" />,
+    "length-bc": <InlineMath math="3\sqrt{13}\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 17.5 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-adc", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }] },
+      { id: "triangle-cdb", kind: "polygon", appearance: "highlight", vertices: [{ x: 7, y: 0 }, { x: 16, y: 0 }, { x: 7, y: 6 }] },
+      { id: "altitude-cd", kind: "segment", appearance: "answer", from: { x: 7, y: 6 }, to: { x: 7, y: 0 } },
+      { id: "right-angle-d", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0.6 }, { x: 7.6, y: 0.6 }, { x: 7.6, y: 0 }] },
+      { id: "right-angle-c", kind: "polyline", appearance: "reference", vertices: [{ x: 6.664, y: 5.496 }, { x: 7.168, y: 5.16 }, { x: 7.504, y: 5.664 }] },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-adc", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "triangle-cdb", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "triangle-cdb", at: { x: 7, y: 6 }, placement: "above" },
+      { key: "foot-d", objectId: "altitude-cd", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "length-ad", objectId: "triangle-adc", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "length-db", objectId: "triangle-cdb", at: { x: 11.5, y: 0 }, placement: "below" },
+      { key: "length-cd", objectId: "altitude-cd", at: { x: 7, y: 3 }, placement: "right" },
+      { key: "length-ac", objectId: "triangle-adc", at: { x: 5, y: 3 }, placement: "above-left" },
+      { key: "length-bc", objectId: "triangle-cdb", at: { x: 11.5, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Prüfe das Ergebnis mit dem Satz des Pythagoras. Berechne <InlineMath math="AC^2" /> und <InlineMath math="BC^2" /> aus den beiden kleinen Dreiecken und kontrolliere dann den Satz im großen Dreieck mit <InlineMath math="AB=4+9=13" />.
+
+<BlockMath math="\begin{aligned}
+AC^2&=4^2+6^2=52 \\
+BC^2&=9^2+6^2=117 \\
+AC^2+BC^2&=169=13^2=AB^2
+\end{aligned}" />
+
+Die Länge von <InlineMath math="CD" /> beträgt also <InlineMath math="6\text{ cm}" />.
+
+- <InlineMath math="\frac{13}{2}\text{ cm}" /> ist die Hälfte von <InlineMath math="AB" />, also die Länge der Seitenhalbierenden von <InlineMath math="C" /> zur Mitte von <InlineMath math="AB" />. Seitenhalbierende und Höhe sind nur dann gleich lang, wenn <InlineMath math="AD=DB" /> gilt.
+- <InlineMath math="2\sqrt{13}\text{ cm}" /> ist die Länge von <InlineMath math="AC" />, die aus <InlineMath math="AC^2=AD\cdot AB=4\cdot13" /> folgt, nicht die Länge von <InlineMath math="CD" />.
+- <InlineMath math="6\sqrt{2}\text{ cm}" /> entsteht, wenn du <InlineMath math="AB^2=AC^2+BC^2" /> als <InlineMath math="169=16+81+CD^2" /> schreibst, obwohl <InlineMath math="CD^2" /> zweimal vorkommt, einmal in <InlineMath math="AC^2" /> und einmal in <InlineMath math="BC^2" />.
+- <InlineMath math="3\sqrt{13}\text{ cm}" /> ist die Länge von <InlineMath math="BC" />, die aus <InlineMath math="BC^2=DB\cdot AB=9\cdot13" /> folgt.

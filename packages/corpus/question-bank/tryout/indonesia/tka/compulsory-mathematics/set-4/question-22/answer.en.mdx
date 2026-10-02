@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Solution to Question 22",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Only grade X students who chose sports (*olahraga*) switch to arts (*seni*), so **the <InlineMath math="25\%" /> is taken of <InlineMath math="48" /> students**, not of <InlineMath math="84" /> or <InlineMath math="120" /> students. Grade X still has <InlineMath math="120" /> students, because the students who switch are still in grade X. Let <InlineMath math="k" /> be the number of students who switch and <InlineMath math="S" /> the number of grade X students who choose arts after the switch.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{25}{100}\cdot48=12 \\
+S&=30+12=42 \\
+\frac{S}{120}\cdot100\%&=\frac{42}{120}\cdot100\%=35\%
+\end{aligned}" />
+
+| Grade X choice | Before | Change | After |
+| --- | ---: | ---: | ---: |
+| Sports | <InlineMath math="48" /> | <InlineMath math="-12" /> | <InlineMath math="36" /> |
+| Arts | <InlineMath math="30" /> | <InlineMath math="+12" /> | <InlineMath math="42" /> |
+| Science | <InlineMath math="42" /> | <InlineMath math="0" /> | <InlineMath math="42" /> |
+| Total | <InlineMath math="120" /> | <InlineMath math="0" /> | <InlineMath math="120" /> |
+
+The table confirms that the number of grade X students does not change. The chart shows the choices of grade X after the switch. The arts bar is now as tall as the science bar, <InlineMath math="42" /> of <InlineMath math="120" /> students.
+
+<HistogramChart
+  title="Grade X choices after the switch"
+  description="The arts bar rises to the height of the science bar, while the sports bar drops because a quarter of its students moved to arts."
+  data={[
+    { name: "Sports", value: 36 },
+    { name: "Arts", value: 42 },
+    { name: "Science", value: 42 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Number of students",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+      },
+    },
+  }}
+  yAxisLabel="Number of students"
+/>
+
+After the switch, <InlineMath math="35\%" /> of grade X students therefore choose arts.
+
+- <InlineMath math="25\%" /> is the share of arts before the switch, <InlineMath math="\frac{30}{120}" />, so the switch has not been counted.
+- <InlineMath math="31.25\%" /> appears when the number of arts students is increased by <InlineMath math="25\%" />, giving <InlineMath math="30\cdot1.25=37.5" /> students. The percentage belongs to the sports students, and a number of students cannot be a fraction anyway.
+- <InlineMath math="42.5\%" /> appears when <InlineMath math="25\%" /> of all <InlineMath math="84" /> sports students in grades X and XI are assumed to switch, although grade XI students do not switch.
+- <InlineMath math="50\%" /> appears when <InlineMath math="25\%" /> of all <InlineMath math="120" /> grade X students, which is <InlineMath math="30" /> students, are assumed to switch to arts.

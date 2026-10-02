@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Solution to Question 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Look at a panel from the side. The tilted side of the panel, its projection on the roof, and the vertical segment from the top edge to the roof form a right triangle with hypotenuse <InlineMath math="2.5\text{ m}" /> and angle <InlineMath math="\theta" /> at the bottom edge. **The horizontal projection uses the cosine**, and **the height uses the sine**. The angle <InlineMath math="\theta" /> is acute, so <InlineMath math="\sin\theta" /> is positive.
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\sqrt{1-\cos^2\theta}=\sqrt{1-0.9216}=\sqrt{0.0784}=0.28 \\
+p&=2.5\cos\theta=2.5\cdot0.96=2.4\text{ m} \\
+t&=2.5\sin\theta=2.5\cdot0.28=0.7\text{ m}
+\end{aligned}" />
+
+Here <InlineMath math="p" /> is the horizontal projection of the panel and <InlineMath math="t" /> is the height of its top edge above the roof. The smallest horizontal gap from the top edge of one panel to the bottom edge of the next is <InlineMath math="c=3t" />. The distance between the bottom edges of two consecutive rows is the projection of the panel plus that gap.
+
+<BlockMath math="\begin{aligned}
+c&=3t=3\cdot0.7=2.1\text{ m} \\
+d&=p+c=2.4+2.1=4.5\text{ m}
+\end{aligned}" />
+
+<LineEquation
+  title="Two consecutive rows of panels"
+  description={<>The distance between the bottom edges of the two panels consists of the panel projection <InlineMath math="2.4\text{ m}" /> and the gap <InlineMath math="2.1\text{ m}" />, which is three times the height <InlineMath math="0.7\text{ m}" />.</>}
+  cameraPosition={[9.5, 6, 9]}
+  cameraTarget={[9.5, 6, 0]}
+  showZAxis={false}
+  data={(() => {
+    const cosTheta = 0.96;
+    const sinTheta = Math.sqrt(1 - cosTheta ** 2);
+    const run = 2.5 * cosTheta;
+    const height = 2.5 * sinTheta;
+    const gap = 3 * height;
+    const pitch = run + gap;
+    return [
+      {
+        points: [{ x: 5.6, y: 6, z: 0 }, { x: 6.4 + pitch + run, y: 6, z: 0 }],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2.5\text{ m}" />, at: 1, offset: [-0.08, 0.16, 0], anchorX: "right" }],
+      },
+      {
+        points: [0, 1].map((k) => ({ x: 6 + pitch + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [1, 0.5, 0].map((k) => ({ x: 6 + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="0.7\text{ m}" />, at: 1, offset: [0.1, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: [1, 0].map((k) => ({ x: 6 + pitch + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 5.7, z: 0 })),
+        color: "#7c3aed",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2.4\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + run + k * gap, y: 5.7, z: 0 })),
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2.1\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * pitch, y: 5.05, z: 0 })),
+        color: "#c026d3",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="4.5\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+    ];
+  })()}
+/>
+
+Check the side triangle with the Pythagorean theorem: <InlineMath math="2.4^2+0.7^2=5.76+0.49=6.25=2.5^2" />. It is the <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="25" /> triangle scaled down by a factor of ten.
+
+The smallest horizontal distance between the bottom edges of two consecutive rows is therefore <InlineMath math="4.5\text{ m}" />.
+
+- <InlineMath math="2.1\text{ m}" /> is only the gap between the top edge of the front panel and the bottom edge of the panel behind it, without the projection of the panel itself.
+- <InlineMath math="3.1\text{ m}" /> is the projection plus the height, <InlineMath math="2.4+0.7" />, which forgets the factor three in the gap rule.
+- <InlineMath math="4.6\text{ m}" /> appears when the panel length <InlineMath math="2.5\text{ m}" /> is used directly as the horizontal projection, although the panel is tilted and its projection is <InlineMath math="2.5\cos\theta" />.
+- <InlineMath math="7.9\text{ m}" /> appears when the sine and cosine are swapped, so the height is taken as <InlineMath math="2.4\text{ m}" /> and the projection as <InlineMath math="0.7\text{ m}" />.

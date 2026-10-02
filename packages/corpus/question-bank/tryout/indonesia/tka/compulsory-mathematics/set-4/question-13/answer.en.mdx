@@ -1,0 +1,84 @@
+export const metadata = {
+  title: "Solution to Question 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Let the center of rotation be <InlineMath math="P(a,b)" />. To rotate a point <InlineMath math="(x,y)" /> by <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="P" />, **move <InlineMath math="P" /> to the origin, rotate, then move back**. The vector <InlineMath math="(x-a,\,y-b)" /> turns into <InlineMath math="\bigl(-(y-b),\,x-a\bigr)" />, which gives the following map.
+
+<BlockMath math="(x,y)\mapsto\bigl(a-(y-b),\ b+(x-a)\bigr)" />
+
+Apply the map to <InlineMath math="A(2,2)" />, which goes to <InlineMath math="A'(-1,-1)" />. Each coordinate gives one equation.
+
+<BlockMath math="\begin{aligned}
+a-(2-b)&=-1 \\
+b+(2-a)&=-1
+\end{aligned}" />
+
+Rewrite both equations, add them to find <InlineMath math="a" />, then substitute <InlineMath math="a" /> into <InlineMath math="a+b=1" />.
+
+<BlockMath math="\begin{aligned}
+a+b&=1 \\
+a-b&=3 \\
+2a&=4 \\
+a&=2 \\
+b&=1-a=-1
+\end{aligned}" />
+
+One center has to work for every point, so **check with <InlineMath math="B" /> and <InlineMath math="C" />** using <InlineMath math="P(2,-1)" />.
+
+<BlockMath math="\begin{aligned}
+B(6,3)&\mapsto\bigl(2-(3+1),\ -1+(6-2)\bigr)=(-2,3)=B' \\
+C(1,5)&\mapsto\bigl(2-(5+1),\ -1+(1-2)\bigr)=(-4,-2)=C'
+\end{aligned}" />
+
+<MathVisual
+  title={<>The center of rotation <InlineMath math="P(2,-1)" /></>}
+  description={<>Segments <InlineMath math="PA" /> and <InlineMath math="PA'" /> have the same length, <InlineMath math="3" /> units, and are perpendicular. Segments <InlineMath math="PB" /> and <InlineMath math="PB'" /> also have the same length, <InlineMath math="4\sqrt{2}" /> units, and are perpendicular. The arc from <InlineMath math="A" /> to <InlineMath math="A'" /> shows the <InlineMath math="90^\circ" /> turn around <InlineMath math="P" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-a-image": <InlineMath math="A'" />,
+    "vertex-b-image": <InlineMath math="B'" />,
+    "vertex-c-image": <InlineMath math="C'" />,
+    "name-p": <InlineMath math="P(2,-1)" />,
+    "angle-a": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 7.5 },
+      y: { min: -3.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-abc", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 6, y: 3 }, { x: 1, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: -1 }, { x: -2, y: 3 }, { x: -4, y: -2 }] },
+      { id: "arm-pa", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: 2, y: 2 } },
+      { id: "arm-pa-image", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: -1, y: -1 } },
+      { id: "turn-a", kind: "arc", appearance: "highlight", center: { x: 2, y: -1 }, radius: 3, startDegrees: 90, sweepDegrees: 90 },
+      { id: "arm-pb", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 6, y: 3 } },
+      { id: "arm-pb-image", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: -2, y: 3 } },
+      { id: "center-p", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-abc", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "vertex-b", objectId: "triangle-abc", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "vertex-c", objectId: "triangle-abc", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "vertex-a-image", objectId: "triangle-image", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "vertex-b-image", objectId: "triangle-image", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "vertex-c-image", objectId: "triangle-image", at: { x: -4, y: -2 }, placement: "below-left" },
+      { key: "name-p", objectId: "center-p", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "angle-a", objectId: "turn-a", at: { x: 1, y: 0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
+The coordinates of <InlineMath math="P" /> are therefore <InlineMath math="(2,-1)" />.
+
+- <InlineMath math="(-1,2)" /> sends <InlineMath math="A" /> to <InlineMath math="A'" /> if the rotation is clockwise. This center fails for <InlineMath math="B" />, which would go to <InlineMath math="(0,-5)" /> instead of <InlineMath math="B'" />.
+- <InlineMath math="(0,0)" /> comes from assuming that every rotation is about the origin, although a <InlineMath math="90^\circ" /> rotation about the origin sends <InlineMath math="A" /> to <InlineMath math="(-2,2)" />, not to <InlineMath math="A'" />.
+- <InlineMath math="\left(\frac12,\frac12\right)" /> is the midpoint of <InlineMath math="AA'" />. The center lies at the midpoint of <InlineMath math="AA'" /> only for a <InlineMath math="180^\circ" /> rotation, while for a <InlineMath math="90^\circ" /> rotation it only lies on the perpendicular bisector of <InlineMath math="AA'" />.
+- <InlineMath math="(1,-3)" /> is the shift vector in <InlineMath math="A'=R(A)+(1,-3)" />, where <InlineMath math="R" /> is the <InlineMath math="90^\circ" /> rotation about the origin. That vector is not the center, because the center satisfies <InlineMath math="P-R(P)=(1,-3)" />.

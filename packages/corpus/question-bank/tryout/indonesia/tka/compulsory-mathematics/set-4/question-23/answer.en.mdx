@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Solution to Question 23",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The sample space is every student in the table, **<InlineMath math="220" /> students who are equally likely to be chosen**. The event asks for a student who meets two conditions at once: in grade XI and choosing science (*sains*). Those students sit in the cell in row XI and column Sains, which holds <InlineMath math="24" /> students.
+
+| Group of students | Number of students |
+| --- | ---: |
+| Grade XI and choosing science | <InlineMath math="24" /> |
+| All grade XI students | <InlineMath math="100" /> |
+| All students choosing science | <InlineMath math="66" /> |
+| All students in the table | <InlineMath math="220" /> |
+
+The first row counts the favorable outcomes, and the last row counts all possible outcomes. The two middle rows are not the sample space, because the student is chosen from the whole table, not from one grade or one club only.
+
+<BlockMath math="P(\text{XI and science})=\frac{24}{220}=\frac{6}{55}" />
+
+Check that the value is reasonable. The probability of two conditions together cannot exceed the probability of either condition, and indeed <InlineMath math="\frac{6}{55}" /> is smaller than the probability of grade XI, <InlineMath math="\frac{100}{220}=\frac{5}{11}" />, and the probability of choosing science, <InlineMath math="\frac{66}{220}=\frac{3}{10}" />.
+
+The probability that the chosen student is in grade XI and chose science is therefore <InlineMath math="\frac{6}{55}" />.
+
+- <InlineMath math="\frac{6}{25}=\frac{24}{100}" /> is the probability that a student chose science given that the student is in grade XI. It wrongly limits the sample space to the <InlineMath math="100" /> grade XI students.
+- <InlineMath math="\frac{3}{10}=\frac{66}{220}" /> is the probability that a student chose science in any grade, which forgets the grade XI condition.
+- <InlineMath math="\frac{4}{11}=\frac{24}{66}" /> is the probability that a student is in grade XI given that the student chose science. It wrongly limits the sample space to the <InlineMath math="66" /> science students.
+- <InlineMath math="\frac{5}{11}=\frac{100}{220}" /> is the probability that a student is in grade XI, which forgets the science condition.

@@ -1,0 +1,84 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Das Drehzentrum sei <InlineMath math="P(a,b)" />. Um einen Punkt <InlineMath math="(x,y)" /> um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="P" /> zu drehen, **verschiebst du <InlineMath math="P" /> in den Ursprung, drehst und verschiebst zurück**. Der Vektor <InlineMath math="(x-a,\,y-b)" /> geht dabei in <InlineMath math="\bigl(-(y-b),\,x-a\bigr)" /> über, und das ergibt die folgende Abbildung.
+
+<BlockMath math="(x,y)\mapsto\bigl(a-(y-b),\ b+(x-a)\bigr)" />
+
+Wende die Abbildung auf <InlineMath math="A(2,2)" /> an, das auf <InlineMath math="A'(-1,-1)" /> abgebildet wird. Jede Koordinate liefert eine Gleichung.
+
+<BlockMath math="\begin{aligned}
+a-(2-b)&=-1 \\
+b+(2-a)&=-1
+\end{aligned}" />
+
+Forme beide Gleichungen um, addiere sie, um <InlineMath math="a" /> zu erhalten, und setze <InlineMath math="a" /> in <InlineMath math="a+b=1" /> ein.
+
+<BlockMath math="\begin{aligned}
+a+b&=1 \\
+a-b&=3 \\
+2a&=4 \\
+a&=2 \\
+b&=1-a=-1
+\end{aligned}" />
+
+Ein Zentrum muss für alle Punkte passen, also **prüfst du mit <InlineMath math="B" /> und <InlineMath math="C" />** und verwendest <InlineMath math="P(2,-1)" />.
+
+<BlockMath math="\begin{aligned}
+B(6,3)&\mapsto\bigl(2-(3+1),\ -1+(6-2)\bigr)=(-2,3)=B' \\
+C(1,5)&\mapsto\bigl(2-(5+1),\ -1+(1-2)\bigr)=(-4,-2)=C'
+\end{aligned}" />
+
+<MathVisual
+  title={<>Das Drehzentrum <InlineMath math="P(2,-1)" /></>}
+  description={<>Die Strecken <InlineMath math="PA" /> und <InlineMath math="PA'" /> sind gleich lang, nämlich <InlineMath math="3" /> Einheiten, und stehen senkrecht aufeinander. Auch <InlineMath math="PB" /> und <InlineMath math="PB'" /> sind gleich lang, nämlich <InlineMath math="4\sqrt{2}" /> Einheiten, und stehen senkrecht aufeinander. Der Bogen von <InlineMath math="A" /> nach <InlineMath math="A'" /> zeigt die Drehung um <InlineMath math="90^\circ" /> um <InlineMath math="P" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-a-image": <InlineMath math="A'" />,
+    "vertex-b-image": <InlineMath math="B'" />,
+    "vertex-c-image": <InlineMath math="C'" />,
+    "name-p": <InlineMath math="P(2,-1)" />,
+    "angle-a": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 7.5 },
+      y: { min: -3.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-abc", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 6, y: 3 }, { x: 1, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: -1 }, { x: -2, y: 3 }, { x: -4, y: -2 }] },
+      { id: "arm-pa", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: 2, y: 2 } },
+      { id: "arm-pa-image", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: -1, y: -1 } },
+      { id: "turn-a", kind: "arc", appearance: "highlight", center: { x: 2, y: -1 }, radius: 3, startDegrees: 90, sweepDegrees: 90 },
+      { id: "arm-pb", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 6, y: 3 } },
+      { id: "arm-pb-image", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: -2, y: 3 } },
+      { id: "center-p", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-abc", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "vertex-b", objectId: "triangle-abc", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "vertex-c", objectId: "triangle-abc", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "vertex-a-image", objectId: "triangle-image", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "vertex-b-image", objectId: "triangle-image", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "vertex-c-image", objectId: "triangle-image", at: { x: -4, y: -2 }, placement: "below-left" },
+      { key: "name-p", objectId: "center-p", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "angle-a", objectId: "turn-a", at: { x: 1, y: 0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
+Die Koordinaten von <InlineMath math="P" /> sind also <InlineMath math="(2,-1)" />.
+
+- <InlineMath math="(-1,2)" /> bildet <InlineMath math="A" /> auf <InlineMath math="A'" /> ab, wenn die Drehung im Uhrzeigersinn erfolgt. Dieses Zentrum versagt bei <InlineMath math="B" />, das dann nach <InlineMath math="(0,-5)" /> statt nach <InlineMath math="B'" /> gelangt.
+- <InlineMath math="(0,0)" /> entsteht, wenn du annimmst, dass jede Drehung um den Ursprung erfolgt. Eine Drehung um <InlineMath math="90^\circ" /> um den Ursprung bildet <InlineMath math="A" /> aber auf <InlineMath math="(-2,2)" /> ab und nicht auf <InlineMath math="A'" />.
+- <InlineMath math="\left(\frac12,\frac12\right)" /> ist der Mittelpunkt von <InlineMath math="AA'" />. Das Zentrum liegt nur bei einer Drehung um <InlineMath math="180^\circ" /> in der Mitte von <InlineMath math="AA'" />, bei <InlineMath math="90^\circ" /> liegt es nur auf der Mittelsenkrechten von <InlineMath math="AA'" />.
+- <InlineMath math="(1,-3)" /> ist der Verschiebungsvektor in <InlineMath math="A'=R(A)+(1,-3)" />, wobei <InlineMath math="R" /> die Drehung um <InlineMath math="90^\circ" /> um den Ursprung ist. Dieser Vektor ist nicht das Zentrum, denn das Zentrum erfüllt <InlineMath math="P-R(P)=(1,-3)" />.

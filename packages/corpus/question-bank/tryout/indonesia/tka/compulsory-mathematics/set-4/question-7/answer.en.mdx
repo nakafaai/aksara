@@ -1,0 +1,72 @@
+export const metadata = {
+  title: "Solution to Question 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Average speed comes from the **total distance traveled**, not from the difference between the final and starting heights. Moving up and moving down both add to the distance. On each piece of the graph, the distance is the size of the height change, and the speed is that distance divided by the duration of the piece.
+
+| Time interval | Height | Distance | Duration | Speed |
+| --- | --- | ---: | ---: | ---: |
+| <InlineMath math="0\le t\le10" /> | rises from <InlineMath math="0" /> to <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="10\text{ s}" /> | <InlineMath math="2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | stays at <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="6\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | falls from <InlineMath math="20" /> to <InlineMath math="8\text{ m}" /> | <InlineMath math="12\text{ m}" /> | <InlineMath math="8\text{ s}" /> | <InlineMath math="1.5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | stays at <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | rises from <InlineMath math="8" /> to <InlineMath math="26\text{ m}" /> | <InlineMath math="18\text{ m}" /> | <InlineMath math="12\text{ s}" /> | <InlineMath math="1.5\text{ m/s}" /> |
+
+<MathVisual
+  title="Speed on each piece of the graph"
+  description={<>Slanted pieces show the lift moving, and flat pieces show it standing still. The falling piece on <InlineMath math="16\le t\le24" /> still adds <InlineMath math="12\text{ m}" /> to the distance traveled.</>}
+  labels={{
+    "speed-1": <InlineMath math="2\text{ m/s}" />,
+    "speed-2": <InlineMath math="0\text{ m/s}" />,
+    "speed-3": <InlineMath math="1.5\text{ m/s}" />,
+    "speed-4": <InlineMath math="0\text{ m/s}" />,
+    "speed-5": <InlineMath math="1.5\text{ m/s}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "part-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 20 } },
+      { id: "part-2", kind: "segment", appearance: "reference", from: { x: 10, y: 20 }, to: { x: 16, y: 20 } },
+      { id: "part-3", kind: "segment", appearance: "primary", from: { x: 16, y: 20 }, to: { x: 24, y: 8 } },
+      { id: "part-4", kind: "segment", appearance: "reference", from: { x: 24, y: 8 }, to: { x: 28, y: 8 } },
+      { id: "part-5", kind: "segment", appearance: "primary", from: { x: 28, y: 8 }, to: { x: 40, y: 26 } },
+      { id: "vertex-0", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "vertex-1", kind: "point", appearance: "reference", at: { x: 10, y: 20 } },
+      { id: "vertex-2", kind: "point", appearance: "reference", at: { x: 16, y: 20 } },
+      { id: "vertex-3", kind: "point", appearance: "reference", at: { x: 24, y: 8 } },
+      { id: "vertex-4", kind: "point", appearance: "reference", at: { x: 28, y: 8 } },
+      { id: "vertex-5", kind: "point", appearance: "reference", at: { x: 40, y: 26 } },
+    ],
+    labels: [
+      { key: "speed-1", objectId: "part-1", at: { x: 5, y: 10 }, placement: "above-left" },
+      { key: "speed-2", objectId: "part-2", at: { x: 13, y: 20 }, placement: "above" },
+      { key: "speed-3", objectId: "part-3", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "speed-4", objectId: "part-4", at: { x: 26, y: 8 }, placement: "below" },
+      { key: "speed-5", objectId: "part-5", at: { x: 34, y: 17 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Let <InlineMath math="s" /> be the total distance traveled and <InlineMath math="v" /> the average speed over the <InlineMath math="40" /> seconds.
+
+<BlockMath math="\begin{aligned}
+s&=20+0+12+0+18=50\text{ m} \\
+v&=\frac{s}{40\text{ s}}=\frac{50\text{ m}}{40\text{ s}}=\frac54\text{ m/s}
+\end{aligned}" />
+
+The result makes sense. An average speed must lie between the lowest speed, <InlineMath math="0\text{ m/s}" />, and the highest speed, <InlineMath math="2\text{ m/s}" />. Also, the lift stands still for <InlineMath math="10" /> seconds, so its average speed has to be lower than its average speed while moving, <InlineMath math="\frac{50}{30}=\frac53\text{ m/s}" />.
+
+The average speed of the lift over those <InlineMath math="40" /> seconds is therefore <InlineMath math="\frac54\text{ m/s}" />.
+
+- <InlineMath math="\frac{13}{20}\text{ m/s}" /> comes from the change in height from start to finish, <InlineMath math="26\text{ m}" />, divided by <InlineMath math="40\text{ s}" />. That makes the <InlineMath math="12\text{ m}" /> descent reduce the distance, although the lift actually travels it.
+- <InlineMath math="\frac{19}{20}\text{ m/s}" /> counts only the upward motion, <InlineMath math="20+18=38\text{ m}" />, and forgets the <InlineMath math="12\text{ m}" /> descent.
+- <InlineMath math="1\text{ m/s}" /> is the mean of the five piece speeds, <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="1.5" />, <InlineMath math="0" />, and <InlineMath math="1.5" />, which ignores that the pieces last for different times.
+- <InlineMath math="\frac53\text{ m/s}" /> comes from dividing the total distance by only the <InlineMath math="30" /> seconds of motion, although the <InlineMath math="10" /> seconds standing still are part of the <InlineMath math="40" />-second interval.

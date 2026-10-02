@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Solution to Question 21",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+A stem-and-leaf plot already lists the data from smallest to largest. The stem gives the tens digit and the leaf gives the ones digit, so the row <InlineMath math="4\mid1\ 3\ 3\ 6\ 7" /> stands for <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" />, <InlineMath math="46" />, and <InlineMath math="47" />. There are <InlineMath math="n=3+5+6+1=15" /> values. Since <InlineMath math="n" /> is odd, **the median is the single value exactly in the middle**, the value in position <InlineMath math="\frac{n+1}{2}" />.
+
+<BlockMath math="\frac{n+1}{2}=\frac{15+1}{2}=8" />
+
+Count positions from the top stem. The first three values are on stem <InlineMath math="3" /> and the next five are on stem <InlineMath math="4" />, so the eighth value is the last leaf on stem <InlineMath math="4" />.
+
+| Stem | Leaves | Number of values | Positions |
+| ---: | --- | ---: | --- |
+| 3 | 5 8 9 | <InlineMath math="3" /> | <InlineMath math="1" /> to <InlineMath math="3" /> |
+| 4 | 1 3 3 6 7 | <InlineMath math="5" /> | <InlineMath math="4" /> to <InlineMath math="8" /> |
+| 5 | 0 2 4 4 4 9 | <InlineMath math="6" /> | <InlineMath math="9" /> to <InlineMath math="14" /> |
+| 6 | 1 | <InlineMath math="1" /> | <InlineMath math="15" /> |
+
+The eighth value is <InlineMath math="47" />. The chart shows how many days fall in each group of tens. The first bar holds <InlineMath math="3" /> days and the first two bars hold <InlineMath math="3+5=8" /> days, so the eighth value closes the forties group.
+
+<HistogramChart
+  title="Number of days by visitor group"
+  description="Each bar counts the days whose number of visitors falls in one group of tens. The middle value lies in the forties group."
+  data={[
+    { name: "30s", value: 3 },
+    { name: "40s", value: 5 },
+    { name: "50s", value: 6 },
+    { name: "60s", value: 1 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Number of days",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+      },
+    },
+  }}
+  yAxisLabel="Number of days"
+/>
+
+Check that <InlineMath math="47" /> really is in the middle. Seven values are smaller, <InlineMath math="35" />, <InlineMath math="38" />, <InlineMath math="39" />, <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" />, and <InlineMath math="46" />, and seven values are larger, <InlineMath math="50" />, <InlineMath math="52" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="59" />, and <InlineMath math="61" />.
+
+The median number of daily visitors is therefore <InlineMath math="47" />.
+
+- <InlineMath math="46" /> is the seventh value, one position before the middle.
+- <InlineMath math="48.5" /> is the mean of the eighth and ninth values. That method applies only when the number of values is even.
+- <InlineMath math="50" /> is the ninth value, one position after the middle.
+- <InlineMath math="54" /> is the mode, the value that occurs most often, not the value in the middle.

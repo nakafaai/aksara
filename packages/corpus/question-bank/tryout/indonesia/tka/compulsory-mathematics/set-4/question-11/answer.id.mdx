@@ -1,0 +1,76 @@
+export const metadata = {
+  title: "Pembahasan Soal 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Jarak terpendek dari sebuah titik ke sebuah garis adalah **panjang ruas yang tegak lurus terhadap garis itu**. Ruas lain dari <InlineMath math="O" /> ke jalan raya selalu lebih panjang, karena ruas itu menjadi sisi miring sebuah segitiga siku-siku yang salah satu kakinya adalah ruas tegak lurus tadi. Jadi, panjang jalan baru adalah tinggi segitiga <InlineMath math="OAB" /> dari <InlineMath math="O" /> ke sisi <InlineMath math="AB" />.
+
+Sudut di <InlineMath math="O" /> siku-siku karena <InlineMath math="A" /> terletak pada sumbu <InlineMath math="x" /> dan <InlineMath math="B" /> pada sumbu <InlineMath math="y" />. Misalkan <InlineMath math="d" /> adalah panjang jalan baru. Hitung <InlineMath math="AB" /> dengan teorema Pythagoras, lalu tulis **luas segitiga <InlineMath math="OAB" /> dengan dua pasang alas dan tinggi**: alas <InlineMath math="OA" /> dengan tinggi <InlineMath math="OB" />, serta alas <InlineMath math="AB" /> dengan tinggi <InlineMath math="d" />.
+
+<BlockMath math="\begin{aligned}
+AB&=\sqrt{12^2+9^2}=\sqrt{225}=15 \\
+\frac12\cdot OA\cdot OB&=\frac12\cdot AB\cdot d \\
+\frac12\cdot12\cdot9&=\frac12\cdot15\cdot d \\
+54&=\frac{15}{2}\,d \\
+d&=\frac{108}{15}=7{,}2
+\end{aligned}" />
+
+<MathVisual
+  title="Jalan terpendek tegak lurus jalan raya"
+  description={<>Ruas <InlineMath math="OF" /> tegak lurus jalan raya di <InlineMath math="F" /> dan panjangnya <InlineMath math="7{,}2\text{ km}" />. Ruas <InlineMath math="OM" /> menuju titik tengah <InlineMath math="AB" /> lebih panjang, yaitu <InlineMath math="7{,}5\text{ km}" />, karena tidak tegak lurus.</>}
+  labels={{
+    "name-o": <InlineMath math="O(0,0)" />,
+    "name-a": <InlineMath math="A(12,0)" />,
+    "name-b": <InlineMath math="B(0,9)" />,
+    "name-f": <InlineMath math="F" />,
+    "name-m": <InlineMath math="M" />,
+    "length-of": <InlineMath math="7{,}2\text{ km}" />,
+    "length-om": <InlineMath math="7{,}5\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "highway", kind: "line", appearance: "primary", through: [{ x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "office-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 12, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 0, y: 9 } },
+      { id: "road-of", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4.32, y: 5.76 } },
+      { id: "road-om", kind: "segment", appearance: "warning", from: { x: 0, y: 0 }, to: { x: 6, y: 4.5 } },
+      { id: "right-angle-f", kind: "polyline", appearance: "reference", vertices: [{ x: 3.96, y: 5.28 }, { x: 4.44, y: 4.92 }, { x: 4.8, y: 5.4 }] },
+      { id: "foot-f", kind: "point", appearance: "answer", at: { x: 4.32, y: 5.76 } },
+      { id: "midpoint-m", kind: "point", appearance: "warning", at: { x: 6, y: 4.5 } },
+    ],
+    labels: [
+      { key: "name-o", objectId: "office-o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-a", objectId: "point-a", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "name-b", objectId: "point-b", at: { x: 0, y: 9 }, placement: "above-right" },
+      { key: "name-f", objectId: "foot-f", at: { x: 4.32, y: 5.76 }, placement: "above-right" },
+      { key: "name-m", objectId: "midpoint-m", at: { x: 6, y: 4.5 }, placement: "above-right" },
+      { key: "length-of", objectId: "road-of", at: { x: 2.16, y: 2.88 }, placement: "above-left" },
+      { key: "length-om", objectId: "road-om", at: { x: 3, y: 2.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Periksa dengan cara kedua. Jalan raya memenuhi <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, atau <InlineMath math="3x+4y=36" />. Gradien <InlineMath math="AB" /> adalah <InlineMath math="-\frac34" />, jadi ruas yang tegak lurus <InlineMath math="AB" /> bergradien <InlineMath math="\frac43" />. Titik kakinya dapat ditulis <InlineMath math="F(3k,4k)" />. Substitusikan ke persamaan jalan raya.
+
+<BlockMath math="\begin{aligned}
+3(3k)+4(4k)&=36 \\
+25k&=36 \\
+k&=\frac{36}{25} \\
+OF&=\sqrt{(3k)^2+(4k)^2}=5k=\frac{36}{5}=7{,}2
+\end{aligned}" />
+
+Jadi, panjang jalan baru tersebut adalah <InlineMath math="7{,}2\text{ km}" />.
+
+- <InlineMath math="3{,}6\text{ km}" /> muncul jika luas <InlineMath math="54" /> langsung dibagi <InlineMath math="AB=15" />, padahal luas sama dengan setengah kali alas kali tinggi, sehingga <InlineMath math="d=\frac{2\cdot54}{15}" />.
+- <InlineMath math="7{,}5\text{ km}" /> adalah jarak <InlineMath math="O" /> ke titik tengah <InlineMath math="AB" />, yaitu <InlineMath math="M\left(6,\frac92\right)" />. Titik tengah bukan titik terdekat, karena <InlineMath math="OM" /> tidak tegak lurus jalan raya.
+- <InlineMath math="9\text{ km}" /> adalah panjang jalan yang menyusuri sumbu <InlineMath math="y" /> ke <InlineMath math="B" />. Jalan itu miring terhadap jalan raya, jadi lebih panjang daripada <InlineMath math="OF" />.
+- <InlineMath math="12\text{ km}" /> adalah panjang jalan yang menyusuri sumbu <InlineMath math="x" /> ke <InlineMath math="A" />, yang juga lebih panjang daripada jalan yang tegak lurus.

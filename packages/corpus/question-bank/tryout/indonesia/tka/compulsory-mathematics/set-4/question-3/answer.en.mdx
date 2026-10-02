@@ -1,0 +1,118 @@
+export const metadata = {
+  title: "Solution to Question 3",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Let a sheet of size A<InlineMath math="n" /> have long side <InlineMath math="a_n" /> and short side <InlineMath math="b_n" />, both in meters. Every statement can be judged once you know how **the sides and the area change** from one size to the next.
+
+#### The cutting rule
+
+A cut parallel to the short side **halves the long side**. The new sheet measures <InlineMath math="b_n" /> by <InlineMath math="\frac{a_n}{2}" />. Since <InlineMath math="a_n=\sqrt2\,b_n" />, the value <InlineMath math="\frac{a_n}{2}=\frac{b_n}{\sqrt2}" /> is smaller than <InlineMath math="b_n" />. So the long side of the new sheet is the short side of the old one.
+
+<BlockMath math="\begin{aligned}
+a_{n+1}&=b_n=\frac{a_n}{\sqrt2} \\
+b_{n+1}&=\frac{a_n}{2}=\frac{b_n}{\sqrt2}
+\end{aligned}" />
+
+Each cut halves the area and multiplies every side by <InlineMath math="\frac{1}{\sqrt2}" />. That is why all sizes in the A series are similar rectangles.
+
+#### The starting size and the whole series
+
+For A0 the product of the sides is <InlineMath math="1" />, and the long side is <InlineMath math="\sqrt2" /> times the short side. Substitute the second relation into the first equation.
+
+<BlockMath math="\begin{aligned}
+a_0\,b_0&=1 \\
+\sqrt2\,b_0^2&=1 \\
+b_0^2&=2^{-\frac12} \\
+b_0&=2^{-\frac14} \\
+a_0&=\sqrt2\,b_0=2^{\frac12}\cdot2^{-\frac14}=2^{\frac14}
+\end{aligned}" />
+
+By the cutting rule, **each step lowers the power of two by <InlineMath math="\frac12" />** on both sides and divides the area by <InlineMath math="2" />.
+
+| Size | Area <InlineMath math="(\text{m}^2)" /> | Long side <InlineMath math="(\text{m})" /> | Short side <InlineMath math="(\text{m})" /> |
+| --- | ---: | ---: | ---: |
+| A0 | <InlineMath math="1" /> | <InlineMath math="2^{\frac14}" /> | <InlineMath math="2^{-\frac14}" /> |
+| A1 | <InlineMath math="\frac12" /> | <InlineMath math="2^{-\frac14}" /> | <InlineMath math="2^{-\frac34}" /> |
+| A2 | <InlineMath math="\frac14" /> | <InlineMath math="2^{-\frac34}" /> | <InlineMath math="2^{-\frac54}" /> |
+| A3 | <InlineMath math="\frac18" /> | <InlineMath math="2^{-\frac54}" /> | <InlineMath math="2^{-\frac74}" /> |
+| A4 | <InlineMath math="\frac1{16}" /> | <InlineMath math="2^{-\frac74}" /> | <InlineMath math="2^{-\frac94}" /> |
+
+<LineEquation
+  title="One A0 sheet cut again and again"
+  description={<>Each cut halves the long side of the previous piece. One sheet each of A1, A2, and A3 remains, and the last cut leaves two A4 sheets. Every sheet has half the area of the one before it.</>}
+  cameraPosition={[16.6, 10 + 5 * 2 ** -0.25, 20]}
+  cameraTarget={[16.6, 10 + 5 * 2 ** -0.25, 0]}
+  showZAxis={false}
+  data={(() => {
+    const a = 10 * 2 ** 0.25;
+    const b = 10 * 2 ** -0.25;
+    const at = (u, v) => ({ x: 14 + u * a, y: 10 + v * b, z: 0 });
+    return [
+      {
+        points: [at(0, 0), at(1, 0), at(1, 1), at(0, 1), at(0, 0)],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [at(1 / 2, 0), at(1 / 2, 1)],
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A1", at: 0, offset: [-a / 4, b / 2, 0] }],
+      },
+      {
+        points: [at(1 / 2, 1 / 2), at(1, 1 / 2)],
+        color: "#7c3aed",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A2", at: 0, offset: [a / 4, b / 4, 0] }],
+      },
+      {
+        points: [at(3 / 4, 0), at(3 / 4, 1 / 2)],
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A3", at: 0, offset: [-a / 8, b / 4, 0] }],
+      },
+      {
+        points: [at(3 / 4, 1 / 4), at(1, 1 / 4)],
+        color: "#c026d3",
+        smooth: false,
+        showPoints: false,
+        labels: [
+          { text: "A4", at: 0, offset: [a / 8, b / 8, 0] },
+          { text: "A4", at: 0, offset: [a / 8, -b / 8, 0] },
+        ],
+      },
+      {
+        points: [0, 1 / 2, 1].map((u) => ({ x: 14 + u * a, y: 9.2, z: 0 })),
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a_0=2^{\frac14}\text{ m}" />, at: 1, offset: [0, -1, 0] }],
+      },
+      {
+        points: [0, 1 / 2, 1].map((v) => ({ x: 13.2, y: 10 + v * b, z: 0 })),
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b_0=2^{-\frac14}\text{ m}" />, at: 1, offset: [-0.5, 0, 0], anchorX: "right" }],
+      },
+    ];
+  })()}
+/>
+
+As a check, <InlineMath math="a_4=2^{-\frac74}\approx0.297\text{ m}" /> and <InlineMath math="b_4=2^{-\frac94}\approx0.210\text{ m}" />. That matches the A4 paper you know, which measures about <InlineMath math="297\text{ mm}" /> by <InlineMath math="210\text{ mm}" />.
+
+#### Judging each statement
+
+1. The area of A4 is <InlineMath math="\frac1{16}\text{ m}^2" />, so this statement is true. Going from A0 to A4 takes four cuts, giving an area of <InlineMath math="1\times\left(\frac12\right)^4=\frac1{16}\text{ m}^2" />.
+2. The statement that the long side of A3 equals the short side of A2 is true. The cutting rule gives <InlineMath math="a_3=b_2" />, and the table shows <InlineMath math="2^{-\frac54}\text{ m}" /> for both.
+3. The statement that every length is multiplied by <InlineMath math="2" /> is false. The pictures on A4 and A3 are similar, and the scale factor is the ratio of matching sides, <InlineMath math="\frac{a_3}{a_4}=\frac{2^{-5/4}}{2^{-7/4}}=2^{\frac12}=\sqrt2" />. The number <InlineMath math="2" /> is the **ratio of the areas**, because area scales with the square of the length factor, <InlineMath math="(\sqrt2)^2=2" />.
+4. The statement about the perimeter is true. Going from A4 to A2 takes two steps, so every side is multiplied by <InlineMath math="\sqrt2\times\sqrt2=2" />. The perimeter of A2 is <InlineMath math="2(a_2+b_2)=2(2a_4+2b_4)=2\times2(a_4+b_4)" />, which is twice the perimeter of A4.
+5. The statement that the long side of A1 is <InlineMath math="\sqrt[4]{2}\text{ m}" /> is false. The long side of A1 equals the short side of A0, <InlineMath math="a_1=b_0=2^{-\frac14}\text{ m}\approx0.84\text{ m}" />. The value <InlineMath math="\sqrt[4]{2}\text{ m}=2^{\frac14}\text{ m}\approx1.19\text{ m}" /> is the long side of A0.
+
+The true statements are the ones about the area of A4, about the long side of A3 matching the short side of A2, and about the perimeter of A2.
