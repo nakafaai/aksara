@@ -17,6 +17,71 @@ Koordinat <InlineMath math="x" /> tetap, dan tinggi setiap titik dikalikan <Inli
 
 Di tampilan tiga dimensi lapisan grafik, beberapa grafik <InlineMath math="a f(x)" /> disusun menurut nilai <InlineMath math="a" />. Kamu bisa memutar tampilan itu dan melihat setiap titik bergerak sepanjang garis lurus ketika <InlineMath math="a" /> berubah.
 
+Terapkan aturan itu pada parabola <InlineMath math="f(x) = x^2" /> dengan <InlineMath math="a = 2" /> dan <InlineMath math="a = \frac{1}{2}" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="f(x) = x^2" />, <InlineMath math="g(x) = 2f(x)" />, dan <InlineMath math="h(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>Dari titik <InlineMath math="(2, 4)" /> pada <InlineMath math="f" />, satu panah naik ke <InlineMath math="(2, 8)" /> pada <InlineMath math="g" /> dan panah lain turun ke <InlineMath math="(2, 2)" /> pada <InlineMath math="h" />. Koordinat <InlineMath math="x" /> tetap <InlineMath math="2" />.</>}
+  cameraPosition={[0, 4.4, 9.6]}
+  cameraTarget={[0, 4.4, 0]}
+  data={(() => {
+    // y = a f(x) with f(x) = x^2 leaves the frame y <= 49/4 at x = ±sqrt(49 / (4a)).
+    // Every curve uses the grid x = i / 160 strictly inside its exits, plus both exits.
+    const f = (x) => x * x;
+    const xs = Array.from({ length: 1601 }, (_, i) => (i - 800) / 160);
+    const curve = (a) => {
+      const exit = Math.sqrt(49 / (4 * a));
+      return [-exit, ...xs.filter((x) => Math.abs(x) < exit), exit].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    // The point (x0, f(x0)) moves straight up or down to (x0, a f(x0)).
+    const move = (x0, a) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: a * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [880],
+        labels: [{ text: <InlineMath math="f" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: curve(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 105, offset: [0.25, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 1300, offset: [0.25, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: move(2, 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2, 1 / 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
+Ketiga parabola berbagi titik puncak <InlineMath math="(0, 0)" />, karena tinggi nol tetap nol. Ikuti garis <InlineMath math="x = 2" />: tinggi <InlineMath math="4" /> dikali <InlineMath math="2" /> menjadi <InlineMath math="8" />, dan dikali <InlineMath math="\frac{1}{2}" /> menjadi <InlineMath math="2" />.
+
 ## Tinggi Titik Berlipat tetapi Pembuat Nol Diam
 
 Pada nilai <InlineMath math="x" /> yang sama, tinggi grafik baru selalu <InlineMath math="a" /> kali tinggi grafik lama. Pembuat nol <InlineMath math="x_0" /> memenuhi <InlineMath math="f(x_0) = 0" />, jadi <InlineMath math="a f(x_0) = 0" /> juga. Sebaliknya, untuk <InlineMath math="a \ne 0" />, hasil kali <InlineMath math="a f(x)" /> bernilai nol hanya jika <InlineMath math="f(x) = 0" />, jadi tidak ada pembuat nol baru. Kedua fakta itu berarti **pembuat nol tidak berpindah**. Untuk <InlineMath math="a = 0" />, setiap <InlineMath math="x" /> menjadi pembuat nol, dan karena itulah dilatasi memerlukan <InlineMath math="a \ne 0" />.
@@ -33,56 +98,129 @@ Periksa ketiga titik khusus itu. Nilai <InlineMath math="g(1) = 3 - 12 + 9 = 0" 
   showZAxis={false}
   title={<>Parabola <InlineMath math="f(x) = x^2 - 4x + 3" /> dan <InlineMath math="g(x) = 3f(x)" /></>}
   description={<>Panah tegak membawa titik pada <InlineMath math="f" /> ke titik pada <InlineMath math="g" /> yang tingginya dikali <InlineMath math="3" />: titik di atas sumbu <InlineMath math="x" /> naik, titik di bawah sumbu <InlineMath math="x" /> turun, dan kedua pembuat nol tetap di tempatnya.</>}
-  cameraPosition={[3, 3, 15]}
-  cameraTarget={[3, 3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 81 }, (_, index) => {
-        const x = index / 20;
-        return { x, y: x * x - 4 * x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 81 }, (_, index) => {
-        const x = index / 20;
-        return { x, y: 3 * x * x - 12 * x + 9, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=3x^2-12x+9" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 9, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 2, y: -1, z: 0 }, { x: 2, y: -3, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      smooth: false,
-      color: "#475569",
-      showPoints: true,
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }],
-      smooth: false,
-      color: "#475569",
-      showPoints: true,
-    },
-  ]}
+  cameraPosition={[2, 3, 15]}
+  cameraTarget={[2, 3, 0]}
+  data={(() => {
+    // f(x) = (x - 1)(x - 3) = (x - 2)^2 - 1. The curve y = a f(x) leaves the frame y <= 15 where
+    // (x - 2)^2 = 1 + 15 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => (x - 1) * (x - 3);
+    const xs = Array.from({ length: 3601 }, (_, i) => -5 + i / 240);
+    const curve = (a) => {
+      const d = Math.sqrt(1 + 15 / a);
+      return [2 - d, ...xs.filter((x) => Math.abs(x - 2) < d), 2 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: 3 * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1680, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 1037, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: move(4),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 1, y: f(1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 3, y: f(3), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
+Garis <InlineMath math="f(x) = x + 1" /> memperlihatkan hal yang sama pada fungsi linear. Untuk setiap faktor, pembuat nol <InlineMath math="x = -1" /> tetap, sedangkan titik <InlineMath math="(1, 2)" /> naik ke <InlineMath math="(1, 6)" /> untuk <InlineMath math="a = 3" /> dan turun ke <InlineMath math="(1, 1)" /> untuk <InlineMath math="a = \frac{1}{2}" />. Kemiringan garis <InlineMath math="a(x + 1)" /> menjadi <InlineMath math="a" />, dan titik potong sumbu <InlineMath math="y" /> pindah dari <InlineMath math="(0, 1)" /> ke <InlineMath math="(0, a)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Garis <InlineMath math="f(x) = x + 1" />, <InlineMath math="g(x) = 3f(x)" />, dan <InlineMath math="h(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>Ketiga garis melewati titik tetap <InlineMath math="(-1, 0)" /> pada sumbu <InlineMath math="x" />. Pada <InlineMath math="x = 1" />, panah membawa tinggi <InlineMath math="2" /> ke <InlineMath math="6" /> dan ke <InlineMath math="1" />.</>}
+  cameraPosition={[0.5, 2, 10]}
+  cameraTarget={[0.5, 2, 0]}
+  data={(() => {
+    // f(x) = x + 1. Inside the frame -11 <= x <= 12, -6 <= y <= 10 the straight line y = a f(x)
+    // runs from a f(x) = -6 to a f(x) = 10, cut at the frame sides. Every line holds the zero x = -1,
+    // its y-intercept, and the point at x = 1 named in the text; the sample xLabel only carries the label.
+    const f = (x) => x + 1;
+    const line = (a, xLabel) =>
+      [Math.max(-11, -6 / a - 1), -1, 0, 1, xLabel, Math.min(12, 10 / a - 1)].map((x) => ({ x, y: a * f(x), z: 0 }));
+    const move = (x0, a) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: a * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: line(1, 3),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 4, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: line(3, 1.1),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 4, offset: [-0.3, 0.2, 0], anchorX: "right" }],
+      },
+      {
+        points: line(1 / 2, 3.5),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 4, offset: [0.1, -0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: move(1, 3),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(1, 1 / 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.25 },
+      },
+      {
+        points: [{ x: -1, y: f(-1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
 
 ## Garis Lurus yang Menghubungkan Semua Lapisan
@@ -91,282 +229,158 @@ Untuk satu nilai <InlineMath math="x" />, bagaimana tinggi titik berubah ketika 
 
 Lapisan <InlineMath math="a = 0" /> datar karena <InlineMath math="0 \cdot f(x) = 0" /> untuk setiap <InlineMath math="x" />. Dilatasi memerlukan <InlineMath math="a \ne 0" />, jadi lapisan datar itu hanya dipakai sebagai poros yang dilewati semua garis. Garis lurus menghubungkan titik-titik yang memiliki nilai <InlineMath math="x" /> sama di semua lapisan, yaitu di <InlineMath math="x = -2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />.
 
-<MathVisual
+<LineEquation
   title={<>Lapisan grafik <InlineMath math="a f(x)" /> untuk <InlineMath math="f(x) = x^2 - 1" /></>}
-  description={<>Setiap garis lurus memuat titik dengan <InlineMath math="x" /> sama di semua lapisan. Putar sampai sumbu <InlineMath math="x" /> mengarah ke matamu dan lihat semua garis bertemu di lapisan <InlineMath math="a = 0" />.</>}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -4, max: 7 },
-      z: { min: -2.5, max: 4.5 },
-    },
-    view: { kind: "isometric" },
-    objects: [
+  description={<>Setiap garis lurus memuat titik dengan <InlineMath math="x" /> sama di semua lapisan. Putar sampai sumbu <InlineMath math="x" /> mengarah ke matamu dan lihat setiap garis melewati lapisan <InlineMath math="a = 0" />.</>}
+  cameraPosition={[4.3, 7.34, 13.02]}
+  cameraTarget={[0, 1.2, 1.2]}
+  data={(() => {
+    // f(x) = x^2 - 1 on -2 <= x <= 2. The layer for the factor a lies in the plane z = 2(1 - a)
+    // and draws y = a f(x).
+    const f = (x) => x * x - 1;
+    const depth = (a) => 2 * (1 - a);
+    const xs = Array.from({ length: 641 }, (_, i) => -2 + i / 160);
+    const layer = (a) => xs.map((x) => ({ x, y: a * f(x), z: depth(a) }));
+    // The line through x0 holds the point (x0, a f(x0)) of every layer. It is straight because the
+    // height a f(x0) and the depth 2(1 - a) both change linearly with a.
+    const ray = (x0) => [-1, 0, 1 / 2, 1, 2].map((a) => ({ x: x0, y: a * f(x0), z: depth(a) }));
+    return [
       {
-        id: "layer-two",
-        kind: "polyline",
-        appearance: "construction",
-        vertices: [
-          { x: -2, y: 6, z: -2 },
-          { x: -1.9, y: 5.22, z: -2 },
-          { x: -1.8, y: 4.48, z: -2 },
-          { x: -1.7, y: 3.78, z: -2 },
-          { x: -1.6, y: 3.12, z: -2 },
-          { x: -1.5, y: 2.5, z: -2 },
-          { x: -1.4, y: 1.92, z: -2 },
-          { x: -1.3, y: 1.38, z: -2 },
-          { x: -1.2, y: 0.88, z: -2 },
-          { x: -1.1, y: 0.42, z: -2 },
-          { x: -1, y: 0, z: -2 },
-          { x: -0.9, y: -0.38, z: -2 },
-          { x: -0.8, y: -0.72, z: -2 },
-          { x: -0.7, y: -1.02, z: -2 },
-          { x: -0.6, y: -1.28, z: -2 },
-          { x: -0.5, y: -1.5, z: -2 },
-          { x: -0.4, y: -1.68, z: -2 },
-          { x: -0.3, y: -1.82, z: -2 },
-          { x: -0.2, y: -1.92, z: -2 },
-          { x: -0.1, y: -1.98, z: -2 },
-          { x: 0, y: -2, z: -2 },
-          { x: 0.1, y: -1.98, z: -2 },
-          { x: 0.2, y: -1.92, z: -2 },
-          { x: 0.3, y: -1.82, z: -2 },
-          { x: 0.4, y: -1.68, z: -2 },
-          { x: 0.5, y: -1.5, z: -2 },
-          { x: 0.6, y: -1.28, z: -2 },
-          { x: 0.7, y: -1.02, z: -2 },
-          { x: 0.8, y: -0.72, z: -2 },
-          { x: 0.9, y: -0.38, z: -2 },
-          { x: 1, y: 0, z: -2 },
-          { x: 1.1, y: 0.42, z: -2 },
-          { x: 1.2, y: 0.88, z: -2 },
-          { x: 1.3, y: 1.38, z: -2 },
-          { x: 1.4, y: 1.92, z: -2 },
-          { x: 1.5, y: 2.5, z: -2 },
-          { x: 1.6, y: 3.12, z: -2 },
-          { x: 1.7, y: 3.78, z: -2 },
-          { x: 1.8, y: 4.48, z: -2 },
-          { x: 1.9, y: 5.22, z: -2 },
-          { x: 2, y: 6, z: -2 },
-        ],
+        points: layer(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 2" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
-        id: "layer-one",
-        kind: "polyline",
-        appearance: "primary",
-        vertices: [
-          { x: -2, y: 3, z: 0 },
-          { x: -1.9, y: 2.61, z: 0 },
-          { x: -1.8, y: 2.24, z: 0 },
-          { x: -1.7, y: 1.89, z: 0 },
-          { x: -1.6, y: 1.56, z: 0 },
-          { x: -1.5, y: 1.25, z: 0 },
-          { x: -1.4, y: 0.96, z: 0 },
-          { x: -1.3, y: 0.69, z: 0 },
-          { x: -1.2, y: 0.44, z: 0 },
-          { x: -1.1, y: 0.21, z: 0 },
-          { x: -1, y: 0, z: 0 },
-          { x: -0.9, y: -0.19, z: 0 },
-          { x: -0.8, y: -0.36, z: 0 },
-          { x: -0.7, y: -0.51, z: 0 },
-          { x: -0.6, y: -0.64, z: 0 },
-          { x: -0.5, y: -0.75, z: 0 },
-          { x: -0.4, y: -0.84, z: 0 },
-          { x: -0.3, y: -0.91, z: 0 },
-          { x: -0.2, y: -0.96, z: 0 },
-          { x: -0.1, y: -0.99, z: 0 },
-          { x: 0, y: -1, z: 0 },
-          { x: 0.1, y: -0.99, z: 0 },
-          { x: 0.2, y: -0.96, z: 0 },
-          { x: 0.3, y: -0.91, z: 0 },
-          { x: 0.4, y: -0.84, z: 0 },
-          { x: 0.5, y: -0.75, z: 0 },
-          { x: 0.6, y: -0.64, z: 0 },
-          { x: 0.7, y: -0.51, z: 0 },
-          { x: 0.8, y: -0.36, z: 0 },
-          { x: 0.9, y: -0.19, z: 0 },
-          { x: 1, y: 0, z: 0 },
-          { x: 1.1, y: 0.21, z: 0 },
-          { x: 1.2, y: 0.44, z: 0 },
-          { x: 1.3, y: 0.69, z: 0 },
-          { x: 1.4, y: 0.96, z: 0 },
-          { x: 1.5, y: 1.25, z: 0 },
-          { x: 1.6, y: 1.56, z: 0 },
-          { x: 1.7, y: 1.89, z: 0 },
-          { x: 1.8, y: 2.24, z: 0 },
-          { x: 1.9, y: 2.61, z: 0 },
-          { x: 2, y: 3, z: 0 },
-        ],
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 1" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
-        id: "layer-half",
-        kind: "polyline",
-        appearance: "secondary",
-        vertices: [
-          { x: -2, y: 1.5, z: 1 },
-          { x: -1.9, y: 1.305, z: 1 },
-          { x: -1.8, y: 1.12, z: 1 },
-          { x: -1.7, y: 0.945, z: 1 },
-          { x: -1.6, y: 0.78, z: 1 },
-          { x: -1.5, y: 0.625, z: 1 },
-          { x: -1.4, y: 0.48, z: 1 },
-          { x: -1.3, y: 0.345, z: 1 },
-          { x: -1.2, y: 0.22, z: 1 },
-          { x: -1.1, y: 0.105, z: 1 },
-          { x: -1, y: 0, z: 1 },
-          { x: -0.9, y: -0.095, z: 1 },
-          { x: -0.8, y: -0.18, z: 1 },
-          { x: -0.7, y: -0.255, z: 1 },
-          { x: -0.6, y: -0.32, z: 1 },
-          { x: -0.5, y: -0.375, z: 1 },
-          { x: -0.4, y: -0.42, z: 1 },
-          { x: -0.3, y: -0.455, z: 1 },
-          { x: -0.2, y: -0.48, z: 1 },
-          { x: -0.1, y: -0.495, z: 1 },
-          { x: 0, y: -0.5, z: 1 },
-          { x: 0.1, y: -0.495, z: 1 },
-          { x: 0.2, y: -0.48, z: 1 },
-          { x: 0.3, y: -0.455, z: 1 },
-          { x: 0.4, y: -0.42, z: 1 },
-          { x: 0.5, y: -0.375, z: 1 },
-          { x: 0.6, y: -0.32, z: 1 },
-          { x: 0.7, y: -0.255, z: 1 },
-          { x: 0.8, y: -0.18, z: 1 },
-          { x: 0.9, y: -0.095, z: 1 },
-          { x: 1, y: 0, z: 1 },
-          { x: 1.1, y: 0.105, z: 1 },
-          { x: 1.2, y: 0.22, z: 1 },
-          { x: 1.3, y: 0.345, z: 1 },
-          { x: 1.4, y: 0.48, z: 1 },
-          { x: 1.5, y: 0.625, z: 1 },
-          { x: 1.6, y: 0.78, z: 1 },
-          { x: 1.7, y: 0.945, z: 1 },
-          { x: 1.8, y: 1.12, z: 1 },
-          { x: 1.9, y: 1.305, z: 1 },
-          { x: 2, y: 1.5, z: 1 },
-        ],
+        points: layer(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = \tfrac{1}{2}" />, at: 0, offset: [-0.45, 0.45, 0], anchorX: "right" }],
       },
       {
-        id: "layer-minus",
-        kind: "polyline",
-        appearance: "warning",
-        vertices: [
-          { x: -2, y: -3, z: 4 },
-          { x: -1.9, y: -2.61, z: 4 },
-          { x: -1.8, y: -2.24, z: 4 },
-          { x: -1.7, y: -1.89, z: 4 },
-          { x: -1.6, y: -1.56, z: 4 },
-          { x: -1.5, y: -1.25, z: 4 },
-          { x: -1.4, y: -0.96, z: 4 },
-          { x: -1.3, y: -0.69, z: 4 },
-          { x: -1.2, y: -0.44, z: 4 },
-          { x: -1.1, y: -0.21, z: 4 },
-          { x: -1, y: 0, z: 4 },
-          { x: -0.9, y: 0.19, z: 4 },
-          { x: -0.8, y: 0.36, z: 4 },
-          { x: -0.7, y: 0.51, z: 4 },
-          { x: -0.6, y: 0.64, z: 4 },
-          { x: -0.5, y: 0.75, z: 4 },
-          { x: -0.4, y: 0.84, z: 4 },
-          { x: -0.3, y: 0.91, z: 4 },
-          { x: -0.2, y: 0.96, z: 4 },
-          { x: -0.1, y: 0.99, z: 4 },
-          { x: 0, y: 1, z: 4 },
-          { x: 0.1, y: 0.99, z: 4 },
-          { x: 0.2, y: 0.96, z: 4 },
-          { x: 0.3, y: 0.91, z: 4 },
-          { x: 0.4, y: 0.84, z: 4 },
-          { x: 0.5, y: 0.75, z: 4 },
-          { x: 0.6, y: 0.64, z: 4 },
-          { x: 0.7, y: 0.51, z: 4 },
-          { x: 0.8, y: 0.36, z: 4 },
-          { x: 0.9, y: 0.19, z: 4 },
-          { x: 1, y: 0, z: 4 },
-          { x: 1.1, y: -0.21, z: 4 },
-          { x: 1.2, y: -0.44, z: 4 },
-          { x: 1.3, y: -0.69, z: 4 },
-          { x: 1.4, y: -0.96, z: 4 },
-          { x: 1.5, y: -1.25, z: 4 },
-          { x: 1.6, y: -1.56, z: 4 },
-          { x: 1.7, y: -1.89, z: 4 },
-          { x: 1.8, y: -2.24, z: 4 },
-          { x: 1.9, y: -2.61, z: 4 },
-          { x: 2, y: -3, z: 4 },
-        ],
+        points: layer(0),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 0" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
-        id: "layer-zero",
-        kind: "segment",
-        appearance: "reference",
-        from: { x: -2, y: 0, z: 2 },
-        to: { x: 2, y: 0, z: 2 },
+        points: layer(-1),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = -1" />, at: 0, offset: [-0.45, 0.25, 0], anchorX: "right" }],
       },
       {
-        id: "ray-minus-two",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: -2, y: -3, z: 4 },
-        to: { x: -2, y: 6, z: -2 },
+        points: ray(-2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
       },
       {
-        id: "ray-minus-one",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: -1, y: 0, z: 4 },
-        to: { x: -1, y: 0, z: -2 },
+        points: ray(-1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
       },
       {
-        id: "ray-zero",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 0, y: 1, z: 4 },
-        to: { x: 0, y: -2, z: -2 },
+        points: ray(0),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
       },
       {
-        id: "ray-one",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 1, y: 0, z: 4 },
-        to: { x: 1, y: 0, z: -2 },
+        points: ray(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
       },
       {
-        id: "ray-two",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 2, y: -3, z: 4 },
-        to: { x: 2, y: 6, z: -2 },
+        points: ray(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
       },
-    ],
-    labels: [
-      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.3, y: -1.82, z: -2 }, placement: "below-right" },
-      { key: "layer-one-label", objectId: "layer-one", at: { x: -2, y: 3, z: 0 }, placement: "above-left" },
-      { key: "layer-half-label", objectId: "layer-half", at: { x: -2, y: 1.5, z: 1 }, placement: "above-left" },
-      { key: "layer-zero-label", objectId: "layer-zero", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "layer-minus-label", objectId: "layer-minus", at: { x: -2, y: -3, z: 4 }, placement: "below-left" },
-    ],
-  }}
-  labels={{
-    "layer-two-label": <><InlineMath math="a = 2" /></>,
-    "layer-one-label": <><InlineMath math="a = 1" /></>,
-    "layer-half-label": <><InlineMath math="a = \tfrac{1}{2}" /></>,
-    "layer-zero-label": <><InlineMath math="a = 0" /></>,
-    "layer-minus-label": <><InlineMath math="a = -1" /></>,
-  }}
+    ];
+  })()}
 />
 
 Ikuti garis di <InlineMath math="x = 2" />. Titik-titiknya adalah <InlineMath math="(2, 3a)" />, dengan tinggi <InlineMath math="6" />, <InlineMath math="3" />, <InlineMath math="\frac{3}{2}" />, <InlineMath math="0" />, dan <InlineMath math="-3" /> untuk <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" />, dan <InlineMath math="-1" />. Garis itu lurus karena tinggi <InlineMath math="3a" /> dan letak lapisan <InlineMath math="z = 2(1 - a)" /> sama-sama berubah secara linear terhadap <InlineMath math="a" />.
 
-Seret tampilan sampai sumbu <InlineMath math="x" /> mengarah lurus ke matamu. Dari samping, **semua garis bertemu di lapisan datar <InlineMath math="a = 0" />**. Garis di <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" /> rebah di ketinggian <InlineMath math="0" /> karena kedua nilai itu adalah pembuat nol <InlineMath math="f" />. Setelah melewati lapisan datar, tinggi pada setiap garis lain berganti tanda, sehingga lapisan <InlineMath math="a = -1" /> terbalik.
+Seret tampilan sampai sumbu <InlineMath math="x" /> mengarah ke matamu. Dalam tampilan samping itu, **setiap garis melewati lapisan datar <InlineMath math="a = 0" />**. Garis di <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" /> rebah di ketinggian <InlineMath math="0" /> karena kedua nilai itu adalah pembuat nol <InlineMath math="f" />. Setelah melewati lapisan datar, tinggi pada setiap garis lain berganti tanda, sehingga lapisan <InlineMath math="a = -1" /> terbalik.
 
-Dari depan, dengan sumbu <InlineMath math="z" /> mengarah ke matamu, setiap garis yang melewati titik di luar sumbu <InlineMath math="x" /> tampak sebagai ruas tegak, karena titik itu hanya naik atau turun. Dua garis di pembuat nol masing-masing menyusut menjadi satu titik, sebab titik di sumbu <InlineMath math="x" /> tidak pernah bergerak.
+Setiap garis berada pada satu nilai <InlineMath math="x" /> saja, karena dilatasi vertikal hanya menggerakkan titik naik atau turun. Dua garis di pembuat nol bahkan tidak berubah tinggi, sebab titik di sumbu <InlineMath math="x" /> tidak pernah bergerak.
 
-Dari atas, semua lapisan menempati selang yang sama, dari <InlineMath math="x = -2" /> sampai <InlineMath math="x = 2" />, karena dilatasi vertikal tidak menggeser titik mana pun ke kiri atau ke kanan, jadi domain fungsi tidak berubah. Pada [dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal), jejak titik di lapisan serupa melengkung karena koordinat <InlineMath math="x" /> dibagi pengali masukan.
+Semua lapisan menempati selang yang sama, dari <InlineMath math="x = -2" /> sampai <InlineMath math="x = 2" />, karena dilatasi vertikal tidak menggeser titik mana pun ke kiri atau ke kanan, jadi domain fungsi tidak berubah. Pada [dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal), jejak titik di lapisan serupa melengkung karena koordinat <InlineMath math="x" /> dibagi pengali masukan.
 
 ## Faktor Negatif Membalik Grafik
 
 Faktor negatif bisa dibaca sebagai dua langkah. Kalikan dulu dengan <InlineMath math="|a|" /> untuk meregangkan atau memampatkan, lalu kalikan dengan <InlineMath math="-1" /> untuk **mencerminkan grafik terhadap sumbu <InlineMath math="x" />**. Untuk <InlineMath math="a = -1" />, yang tersisa hanya pencerminan <InlineMath math="y = -f(x)" />, yaitu [refleksi vertikal](/id/materi/matematika/transformasi-fungsi/refleksi-vertikal).
+
+Pada <InlineMath math="f(x) = x^2" /> dengan <InlineMath math="a = -2" />, tinggi <InlineMath math="x^2" /> menjadi <InlineMath math="-2x^2" />. Titik <InlineMath math="(1, 1)" /> turun ke <InlineMath math="(1, -2)" /> dan titik <InlineMath math="(2, 4)" /> turun ke <InlineMath math="(2, -8)" />. Parabola yang membuka ke atas kini membuka ke bawah dan lebih ramping, sedangkan titik puncak <InlineMath math="(0, 0)" /> tidak bergerak.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Parabola <InlineMath math="f(x) = x^2" /> dan <InlineMath math="g(x) = -2f(x)" /></>}
+  description={<>Kedua panah menyeberangi sumbu <InlineMath math="x" />, dan jarak ujungnya ke sumbu <InlineMath math="x" /> menjadi dua kali jarak semula. Titik puncak <InlineMath math="(0, 0)" /> tetap.</>}
+  cameraPosition={[0, -2, 14]}
+  cameraTarget={[0, -2, 0]}
+  data={(() => {
+    // f(x) = x^2 stays inside the frame -12.5 <= y <= 9 for -3 <= x <= 3, and g(x) = -2f(x)
+    // for -5/2 <= x <= 5/2. Both use the grid x = i / 160.
+    const f = (x) => x * x;
+    const g = (x) => -2 * f(x);
+    const grid = (to) => Array.from({ length: 320 * to + 1 }, (_, i) => -to + i / 160);
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: g(x0), z: 0 },
+    ];
+    return [
+      {
+        points: grid(3).map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 176, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: grid(5 / 2).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
 
 Ambil <InlineMath math="h(x) = |x - 1| + 2" />. Titik puncaknya <InlineMath math="(1, 2)" /> adalah titik terendah, jadi range <InlineMath math="h" /> adalah <InlineMath math="[2, \infty)" />. Kalikan seluruh fungsi dengan <InlineMath math="a = -2" />:
 
@@ -374,42 +388,65 @@ Ambil <InlineMath math="h(x) = |x - 1| + 2" />. Titik puncaknya <InlineMath math
 
 Titik puncak pindah ke <InlineMath math="(1, -4)" /> dan sekarang menjadi titik tertinggi. Range berubah dari <InlineMath math="[2, \infty)" /> menjadi <InlineMath math="(-\infty, -4]" />, karena **perkalian dengan bilangan negatif membalik urutan batas**. Periksa satu titik lain: <InlineMath math="h(3) = 4" />, dan <InlineMath math="H(3) = -2 \cdot 2 - 4 = -8 = -2 \cdot 4" />.
 
+Sebagai pembanding, <InlineMath math="a = -1" /> menghasilkan <InlineMath math="-h(x) = -|x - 1| - 2" /> dengan titik puncak <InlineMath math="(1, -2)" />. Grafik itu hanya dicerminkan, tanpa regangan.
+
 <LineEquation
   showZAxis={false}
-  title={<>Grafik <InlineMath math="h(x) = |x - 1| + 2" /> dan <InlineMath math="H(x) = -2h(x)" /></>}
-  description={<>Panah menembus sumbu <InlineMath math="x" />: titik terendah <InlineMath math="(1, 2)" /> menjadi titik tertinggi <InlineMath math="(1, -4)" />.</>}
-  cameraPosition={[2, -2, 15]}
-  cameraTarget={[2, -2, 0]}
-  data={[
-    {
-      points: [{ x: -1, y: 4, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 3, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -1, y: -8, z: 0 }, { x: 1, y: -4, z: 0 }, { x: 3, y: -8, z: 0 }],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="H(x)=-2|x-1|-4" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 1, y: 2, z: 0 }, { x: 1, y: -4, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 3, y: 4, z: 0 }, { x: 3, y: -8, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-  ]}
+  title={<>Grafik <InlineMath math="h(x) = |x - 1| + 2" />, <InlineMath math="y = -h(x)" />, dan <InlineMath math="H(x) = -2h(x)" /></>}
+  description={<>Panah menembus sumbu <InlineMath math="x" />: titik terendah <InlineMath math="(1, 2)" /> menjadi titik tertinggi <InlineMath math="(1, -4)" />. Untuk <InlineMath math="a = -1" />, titik puncaknya <InlineMath math="(1, -2)" />.</>}
+  cameraPosition={[1, -2, 14]}
+  cameraTarget={[1, -2, 0]}
+  data={(() => {
+    // h(x) = |x - 1| + 2 is exact with straight pieces, so each graph y = a h(x) needs its corner x = 1,
+    // the point x = 3 named in the text, and the points where it leaves the frame -12 <= y <= 8:
+    // a h(x) = 8 when a > 0 and a h(x) = -12 when a < 0, at |x - 1| = r.
+    const h = (x) => Math.abs(x - 1) + 2;
+    const v = (a) => {
+      const r = (a > 0 ? 8 / a : -12 / a) - 2;
+      return [1 - r, 1, 3, 1 + r].map((x) => ({ x, y: a * h(x), z: 0 }));
+    };
+    const move = (x0) => [
+      { x: x0, y: h(x0), z: 0 },
+      { x: x0, y: -2 * h(x0), z: 0 },
+    ];
+    return [
+      {
+        points: v(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 1, offset: [0.3, -0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: v(-1),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-h" />, at: 1, offset: [0.3, 0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: v(-2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="H" />, at: 1, offset: [1, -1, 0], anchorX: "left" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(3),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
 />
 
 ## Range dan Asimtot setelah Dikalikan
@@ -428,6 +465,74 @@ Karena hanya tinggi yang berubah, **setiap bagian yang ditentukan oleh tinggi ik
 
 Grafik <InlineMath math="f(x) = 2^x - 4" /> mendekati [asimtot horizontal](/id/materi/matematika/fungsi-dan-pemodelannya/asimtot) <InlineMath math="y = -4" /> dan memiliki range <InlineMath math="(-4, \infty)" />. Dengan <InlineMath math="a = \frac{1}{2}" />, fungsinya menjadi <InlineMath math="\frac{1}{2} \cdot 2^x - 2" />. Asimtotnya <InlineMath math="y = -2" />, range-nya <InlineMath math="(-2, \infty)" />, dan titik potong sumbu <InlineMath math="y" /> berubah dari <InlineMath math="(0, -3)" /> menjadi <InlineMath math="\left(0, -\frac{3}{2}\right)" />. Untuk <InlineMath math="a \ne 1" />, hanya asimtot <InlineMath math="y = 0" /> yang tidak bergeser, karena <InlineMath math="a \cdot 0 = 0" />.
 
+<LineEquation
+  showZAxis={false}
+  title={<>Kurva <InlineMath math="f(x) = 2^x - 4" /> dan <InlineMath math="g(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>Garis tipis menandai asimtot <InlineMath math="y = -4" /> dan <InlineMath math="y = -2" />. Panah membawa <InlineMath math="(3, 4)" /> ke <InlineMath math="(3, 2)" />, sedangkan titik potong <InlineMath math="(2, 0)" /> dengan sumbu <InlineMath math="x" /> tetap.</>}
+  cameraPosition={[0.5, -0.5, 12]}
+  cameraTarget={[0.5, -0.5, 0]}
+  data={(() => {
+    // f(x) = 2^x - 4 stays inside the frame x >= -12, y <= 12 up to x = 4, where 2^x = 16.
+    // g(x) = f(x) / 2 reaches y = 12 where 2^x = 28; it uses the same grid plus that exact exit.
+    const f = (x) => 2 ** x - 4;
+    const g = (x) => f(x) / 2;
+    const xs = Array.from({ length: 1089 }, (_, i) => -12 + i / 64);
+    const asymptote = (y) => [-12, 12.6].map((x) => ({ x, y, z: 0 }));
+    return [
+      {
+        points: xs.filter((x) => x <= 4).map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="f" />, at: 966, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: [...xs.filter((x) => 2 ** x < 28), Math.log2(28)].map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="g" />, at: 1000, offset: [0.3, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-4),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -4" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -2" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 3, y: f(3), z: 0 },
+          { x: 3, y: g(3), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 2, y: f(2), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
+Asimtot <InlineMath math="y = -4" /> pindah ke <InlineMath math="y = -2" /> karena tingginya ikut dikali <InlineMath math="\frac{1}{2}" />, sedangkan pembuat nol <InlineMath math="x = 2" /> tetap karena <InlineMath math="f(2) = 0" />.
+
 ## Satu Grafik dari Dua Transformasi
 
 Untuk fungsi tertentu, dilatasi vertikal menghasilkan grafik yang persis sama dengan dilatasi horizontal atau translasi. **Kesamaan itu muncul dari sifat aljabar fungsinya**, jadi setiap baris tabel bisa dibuktikan dengan satu perhitungan pendek.
@@ -440,7 +545,139 @@ Untuk fungsi tertentu, dilatasi vertikal menghasilkan grafik yang persis sama de
 
 Baris pertama memakai <InlineMath math="(2x)^2 = 4x^2" />, baris kedua memakai <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> untuk <InlineMath math="x \ge 0" />, dan baris ketiga memakai <InlineMath math="2^{x + 1} = 2^x \cdot 2" />. Kesamaan ini bergantung pada fungsinya. Untuk <InlineMath math="f(x) = x^2 + 1" />, <InlineMath math="4f(x) = 4x^2 + 4" />, sedangkan <InlineMath math="f(2x) = 4x^2 + 1" />, jadi kedua grafik berbeda.
 
+Kedua bacaan baris ketiga bertemu di satu titik. Titik <InlineMath math="(1, 2)" /> pada <InlineMath math="y = 2^x" /> naik tegak ke <InlineMath math="(1, 4)" /> karena tingginya dikali <InlineMath math="2" />, sedangkan titik <InlineMath math="(2, 4)" /> bergeser satu satuan ke kiri ke titik yang sama.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Kurva <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = 2f(x) = 2^{x + 1}" /></>}
+  description={<>Panah tegak membawa <InlineMath math="(1, 2)" /> ke <InlineMath math="(1, 4)" />, dan panah mendatar membawa <InlineMath math="(2, 4)" /> ke titik yang sama. Titik potong <InlineMath math="(0, 1)" /> dengan sumbu <InlineMath math="y" /> pindah ke <InlineMath math="(0, 2)" />.</>}
+  cameraPosition={[0.5, 3.5, 10]}
+  cameraTarget={[0.5, 3.5, 0]}
+  data={(() => {
+    // f(x) = 2^x stays inside the frame x >= -12, y <= 16 up to x = 4, and g(x) = 2 f(x) up to x = 3.
+    // Both use the grid x = i / 64; sample 768 is x = 0.
+    const f = (x) => 2 ** x;
+    const g = (x) => 2 * f(x);
+    const xs = Array.from({ length: 1025 }, (_, i) => -12 + i / 64);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="f" />, at: 928, offset: [0.3, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.filter((x) => x <= 3).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.3, 0.2, 0], anchorX: "right" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: g(1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [
+          { x: 2, y: f(2), z: 0 },
+          { x: 2 - 1, y: g(2 - 1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
 Baris pertama juga menjelaskan bentuk <InlineMath math="y = a x^2" />. Jika <InlineMath math="a > 0" />, berlaku <InlineMath math="a x^2 = \left(\sqrt{a}\, x\right)^2" />, jadi koefisien utama yang mengatur seberapa ramping parabola pada [karakteristik fungsi kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/karakteristik-fungsi-kuadrat) bisa dibaca sebagai dilatasi vertikal dengan faktor <InlineMath math="a" /> atau dilatasi horizontal dengan pengali masukan <InlineMath math="\sqrt{a}" />.
+
+Di tampilan tiga dimensi lapisan grafik, grafik <InlineMath math="y = a x^2" /> untuk <InlineMath math="a = 1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4" /> diletakkan pada kedalaman <InlineMath math="z = -a" />. Garis lurus di <InlineMath math="x = 1" /> memuat titik <InlineMath math="(1, a)" /> dari setiap lapisan, sedangkan kurva di ketinggian <InlineMath math="4" /> memuat titik <InlineMath math="\left(\frac{2}{\sqrt{a}}, 4\right)" />.
+
+<LineEquation
+  title={<>Lapisan grafik <InlineMath math="y = a x^2" /> dibaca dua cara</>}
+  description={<>Lapisan untuk <InlineMath math="a" /> berada di <InlineMath math="z = -a" />. Garis lurus di <InlineMath math="x = 1" /> naik sebanding dengan <InlineMath math="a" />, sedangkan kurva di ketinggian <InlineMath math="4" /> mendekati sumbu <InlineMath math="y" />.</>}
+  cameraPosition={[7.13, 7.87, 2.49]}
+  cameraTarget={[0, 2, -2.5]}
+  data={(() => {
+    // y = a x^2 for a = 1, 2, 3, 4, each in the plane z = -a and drawn up to the height 4, which it reaches
+    // at x = ±2 / sqrt(a). The grid x = i / 320 strictly inside those exits, plus both exits.
+    const xs = Array.from({ length: 1281 }, (_, i) => -2 + i / 320);
+    const layer = (a) => {
+      const e = 2 / Math.sqrt(a);
+      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * x * x, z: -a }));
+    };
+    // The factor a runs from 1 to 4 in steps of 1 / 100, so a = 1, 2, 3, 4 sit at the indices 0, 100, 200, 300.
+    const as = Array.from({ length: 301 }, (_, i) => 1 + i / 100);
+    // Read vertically, the height at x = x0 is a x0^2: the line through (x0, a x0^2, -a) is straight.
+    const ray = (x0) => as.map((a) => ({ x: x0, y: a * x0 * x0, z: -a }));
+    // Read horizontally, a x^2 = (sqrt(a) x)^2, so the height 4 sits at x = ±2 / sqrt(a): a curved trace.
+    const level = (side) => as.map((a) => ({ x: side * (2 / Math.sqrt(a)), y: 4, z: -a }));
+    return [
+      {
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 1" />, at: 960, offset: [0.45, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 2" />, at: 0, offset: [0.25, 0.7, 0], anchorX: "right" }],
+      },
+      {
+        points: layer(3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 3" />, at: 0, offset: [-0.45, 0.7, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(4),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 4" />, at: 320, offset: [0.7, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: ray(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 100, 200, 300],
+        labels: [{ text: <InlineMath math="(1, a)" />, at: 300, offset: [0.45, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: level(1),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="x = \tfrac{2}{\sqrt{a}}" />, at: 300, offset: [-0.25, 0.7, 0], anchorX: "left" }],
+      },
+      {
+        points: level(-1),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+      },
+    ];
+  })()}
+/>
+
+Garis lurus itu adalah bacaan vertikal: **tinggi di <InlineMath math="x = 1" /> naik sebanding dengan <InlineMath math="a" />**. Kurva di ketinggian <InlineMath math="4" /> adalah bacaan horizontal: lebar parabola menyusut menjadi <InlineMath math="\frac{1}{\sqrt{a}}" /> kali lebar semula. Keduanya menggambarkan lapisan yang sama.
 
 ## Kesalahan Saat Mengalikan Keluaran
 
@@ -474,11 +711,116 @@ Soal-soal ini bergerak dari perkalian langsung ke soal yang memintamu menemukan 
 
 Pembuat nol <InlineMath math="f(x) = (x + 2)(x - 4)" /> adalah <InlineMath math="-2" /> dan <InlineMath math="4" />, dan **keduanya tetap menjadi pembuat nol <InlineMath math="g" />**. Titik puncak <InlineMath math="f" /> terletak tepat di tengah kedua pembuat nol, yaitu di <InlineMath math="x = \frac{-2 + 4}{2} = 1" />, dan <InlineMath math="f(1) = 1 - 2 - 8 = -9" />. Faktor <InlineMath math="\frac{1}{3}" /> positif, jadi titik terendah <InlineMath math="f" /> tetap menjadi titik terendah <InlineMath math="g" /> dengan koordinat <InlineMath math="x" /> yang sama. Titik puncak <InlineMath math="g" /> adalah <InlineMath math="\left(1, \tfrac{1}{3} \cdot (-9)\right) = (1, -3)" />. Periksa: <InlineMath math="g(1) = \frac{1}{3} - \frac{2}{3} - \frac{8}{3} = -3" />.
 
+<LineEquation
+  showZAxis={false}
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 2x - 8" /> dan <InlineMath math="g(x) = \tfrac{1}{3}f(x)" /></>}
+  description={<>Kedua parabola memotong sumbu <InlineMath math="x" /> di titik tetap <InlineMath math="(-2, 0)" /> dan <InlineMath math="(4, 0)" />. Panah membawa titik puncak <InlineMath math="(1, -9)" /> ke <InlineMath math="(1, -3)" />.</>}
+  cameraPosition={[1, -2.5, 16]}
+  cameraTarget={[1, -2.5, 0]}
+  data={(() => {
+    // f(x) = (x + 2)(x - 4) = (x - 1)^2 - 9. The curve y = a f(x) leaves the frame y <= 9 where
+    // (x - 1)^2 = 9 + 9 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => (x + 2) * (x - 4);
+    const xs = Array.from({ length: 3841 }, (_, i) => -7 + i / 240);
+    const curve = (a) => {
+      const d = Math.sqrt(9 + 9 / a);
+      return [1 - d, ...xs.filter((x) => Math.abs(x - 1) < d), 1 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1815, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(1 / 3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 2370, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: f(1) / 3, z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: -2, y: f(-2), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 4, y: f(4), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
 **Soal 2**. Faktor <InlineMath math="\frac{1}{2}" /> memampatkan grafik ke arah sumbu <InlineMath math="x" />:
 
 <BlockMath math="G(x) = \tfrac{1}{2}\sqrt{x}" />
 
 Titik <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(4, 1)" /> karena <InlineMath math="G(4) = \frac{1}{2} \cdot 2 = 1" />. **Range tetap <InlineMath math="[0, \infty)" />**, karena setiap bilangan <InlineMath math="r \ge 0" /> tetap tercapai, yaitu di <InlineMath math="x = 4r^2" />: <InlineMath math="G(4r^2) = \frac{1}{2} \cdot 2r = r" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Kurva <InlineMath math="g(x) = \sqrt{x}" /> dan <InlineMath math="G(x) = \tfrac{1}{2}\sqrt{x}" /></>}
+  description={<>Panah tegak membawa <InlineMath math="(1, 1)" /> ke <InlineMath math="\left(1, \tfrac{1}{2}\right)" /> dan <InlineMath math="(4, 2)" /> ke <InlineMath math="(4, 1)" />. Koordinat <InlineMath math="x" /> setiap titik tetap.</>}
+  cameraPosition={[2.5, 1.2, 6.4]}
+  cameraTarget={[2.5, 1.2, 0]}
+  data={(() => {
+    // g(x) = sqrt(x) is sampled at x = r^2 for r from 0 to 3, which keeps the samples dense where the
+    // curve leaves the y-axis vertically; the frame x <= 9 stops it at r = 3. G uses the same x-values.
+    const g = (x) => Math.sqrt(x);
+    const G = (x) => g(x) / 2;
+    const xs = Array.from({ length: 1201 }, (_, i) => (i / 400) ** 2);
+    const move = (x0) => [
+      { x: x0, y: g(x0), z: 0 },
+      { x: x0, y: G(x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.2, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: G(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="G" />, at: 920, offset: [0, -0.35, 0], anchorX: "right" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.15 },
+      },
+      {
+        points: move(4),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.2 },
+      },
+    ];
+  })()}
+/>
 
 **Soal 3**. Kalikan seluruh fungsi, termasuk konstanta <InlineMath math="1" />, dengan <InlineMath math="-3" />:
 
@@ -486,8 +828,126 @@ Titik <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(4, 1)" /> karena
 
 Asimtot <InlineMath math="y = 1" /> menjadi <InlineMath math="y = -3" />. Karena <InlineMath math="2^x + 1 > 1" /> untuk setiap <InlineMath math="x" />, perkalian dengan <InlineMath math="-3" /> **membalik arah pertidaksamaan** menjadi <InlineMath math="H(x) < -3" />, jadi range-nya <InlineMath math="(-\infty, -3)" />. Titik potong sumbu <InlineMath math="y" /> adalah <InlineMath math="(0, -6)" /> karena <InlineMath math="H(0) = -3 \cdot 2 = -6" />.
 
+<LineEquation
+  showZAxis={false}
+  title={<>Kurva <InlineMath math="f(x) = 2^x + 1" /> dan <InlineMath math="H(x) = -3f(x)" /></>}
+  description={<>Garis tipis menandai asimtot <InlineMath math="y = 1" /> dan <InlineMath math="y = -3" />. Panah membawa <InlineMath math="(1, 3)" /> ke <InlineMath math="(1, -9)" />, dan titik potong <InlineMath math="(0, 2)" /> dengan sumbu <InlineMath math="y" /> pindah ke <InlineMath math="(0, -6)" />.</>}
+  cameraPosition={[0, -2, 15]}
+  cameraTarget={[0, -2, 0]}
+  data={(() => {
+    // f(x) = 2^x + 1 stays inside the frame x >= -16, -15 <= y <= 9 up to x = 3, where 2^x = 8.
+    // H(x) = -3 f(x) reaches y = -15 where 2^x = 4, so it stops at x = 2. Both use the grid x = i / 64;
+    // sample 1024 is x = 0.
+    const f = (x) => 2 ** x + 1;
+    const H = (x) => -3 * f(x);
+    const xs = Array.from({ length: 1217 }, (_, i) => -16 + i / 64);
+    const asymptote = (y) => [-16, 16].map((x) => ({ x, y, z: 0 }));
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [1024],
+        labels: [{ text: <InlineMath math="f" />, at: 1125, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.filter((x) => x <= 2).map((x) => ({ x, y: H(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1024],
+        labels: [{ text: <InlineMath math="H" />, at: 1061, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: asymptote(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: H(1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
 **Soal 4**. Substitusikan titik <InlineMath math="(2, 12)" /> ke persamaan grafik:
 
 <BlockMath math="\begin{aligned} a\left(2^2 - 1\right) &= 12 \\ 3a &= 12 \\ a &= 4 \end{aligned}" />
 
 Persamaannya <InlineMath math="y = 4(x^2 - 1)" />. **Pembuat nolnya tetap <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />**, sama dengan pembuat nol <InlineMath math="x^2 - 1" />. Periksa titik yang diberikan: <InlineMath math="4(2^2 - 1) = 4 \cdot 3 = 12" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 1" /> dan <InlineMath math="g(x) = 4f(x)" /></>}
+  description={<>Panah membawa <InlineMath math="(2, 3)" /> ke titik yang diberikan <InlineMath math="(2, 12)" />, sedangkan titik potong <InlineMath math="(-1, 0)" /> dan <InlineMath math="(1, 0)" /> dengan sumbu <InlineMath math="x" /> tetap.</>}
+  cameraPosition={[0, 5, 18]}
+  cameraTarget={[0, 5, 0]}
+  data={(() => {
+    // f(x) = x^2 - 1. The curve y = a f(x) leaves the frame y <= 18 at x = ±sqrt(1 + 18 / a);
+    // it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => x * x - 1;
+    const xs = Array.from({ length: 2641 }, (_, i) => -5.5 + i / 240);
+    const curve = (a) => {
+      const e = Math.sqrt(1 + 18 / a);
+      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1900, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(4),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1043],
+        labels: [{ text: <InlineMath math="g" />, at: 131, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: [
+          { x: 2, y: f(2), z: 0 },
+          { x: 2, y: 4 * f(2), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.35 },
+      },
+      {
+        points: [{ x: -1, y: f(-1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1, y: f(1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>

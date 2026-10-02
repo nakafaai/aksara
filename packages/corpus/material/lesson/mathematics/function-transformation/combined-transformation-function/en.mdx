@@ -3,7 +3,7 @@ export const metadata = {
   description: "Combine shifts, stretches, and reflections of a function graph step by step, and learn when changing the order of the steps changes the final equation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-10-01",
+  dateModified: "2026-10-02",
   subject: "Function Transformation",
 };
 
@@ -13,7 +13,7 @@ Combining transformations means applying several transformations one at a time, 
 
 <BlockMath math="g(x) = a\,f\big(b(x - h)\big) + k" />
 
-Starting from the graph of <InlineMath math="f" />, stretch or compress horizontally by the factor <InlineMath math="\tfrac{1}{b}" />, shift horizontally by <InlineMath math="h" />, stretch or compress vertically by the factor <InlineMath math="a" />, and then shift vertically by <InlineMath math="k" />. In the 3D view, the graph of <InlineMath math="y = x^2" /> is compressed and shifted horizontally in two different orders. Turn the view until you look down from above, and compare where the vertex of each order stops.
+Starting from the graph of <InlineMath math="f" />, stretch or compress horizontally by the factor <InlineMath math="\tfrac{1}{b}" />, shift horizontally by <InlineMath math="h" />, stretch or compress vertically by the factor <InlineMath math="a" />, and then shift vertically by <InlineMath math="k" />.
 
 A shift and a stretch on the same axis give a different result when you swap them, unless the factor is <InlineMath math="1" /> or the shift is <InlineMath math="0" />, while **horizontal and vertical steps can be swapped**.
 
@@ -23,16 +23,71 @@ A negative <InlineMath math="a" /> also reflects the graph across the <InlineMat
 
 Two vertical steps are enough to show the effect of order. The function <InlineMath math="f(x) = x^2" /> gets a [vertical stretch](/en/subjects/mathematics/function-transformation/vertical-dilation) by the factor <InlineMath math="2" /> and a [vertical shift](/en/subjects/mathematics/function-transformation/vertical-translation) of <InlineMath math="1" /> unit up. Order A multiplies the output by <InlineMath math="2" /> first and then adds <InlineMath math="1" />. Order B adds <InlineMath math="1" /> first and then multiplies the result by <InlineMath math="2" />:
 
+<ContentStack>
+
 <MathContainer>
 <BlockMath math="g_A(x) = 2f(x) + 1 = 2x^2 + 1" />
 <BlockMath math="g_B(x) = 2\big(f(x) + 1\big) = 2x^2 + 2" />
 </MathContainer>
 
+<LineEquation
+  title={<>Graphs of <InlineMath math="f(x) = x^2" />, <InlineMath math="g_A" />, and <InlineMath math="g_B" /></>}
+  description={<>The point <InlineMath math="(1, 1)" /> on <InlineMath math="f" /> rises to <InlineMath math="(1, 2)" /> in both orders, then stops at <InlineMath math="(1, 3)" /> on <InlineMath math="g_A" /> and at <InlineMath math="(1, 4)" /> on <InlineMath math="g_B" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 3, 8.5]}
+  cameraTarget={[0, 3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 321 }, (_, i) => {
+        const x = (i - 160) / 100;
+        return { x, y: x * x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 200;
+        return { x, y: 2 * x * x + 1, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g_A" />, at: 60, offset: [-0.17, -0.25, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 561 }, (_, i) => {
+        const x = (i - 280) / 200;
+        return { x, y: 2 * x * x + 2, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g_B" />, at: 40, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 1, y: 4, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.17, -0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="(1, 3)" />, at: 2, offset: [0.18, -0.08, 0], anchorX: "left" },
+        { text: <InlineMath math="(1, 4)" />, at: 3, offset: [0.39, -0.08, 0], anchorX: "left" },
+      ],
+    },
+  ]}
+/>
+
+</ContentStack>
+
 Track the point <InlineMath math="(1, 1)" /> on the graph of <InlineMath math="f" />. Order A moves that point to <InlineMath math="(1, 2)" /> and then to <InlineMath math="(1, 3)" />, and indeed <InlineMath math="g_A(1) = 3" />. Order B moves it to <InlineMath math="(1, 2)" /> and then to <InlineMath math="(1, 4)" />, and <InlineMath math="g_B(1) = 4" />. The graphs differ because in order B **the stretch also doubles the shift** that has already happened:
 
 <BlockMath math="a\big(f(x) + k\big) = a\,f(x) + ak" />
 
-So for a stretch by the factor <InlineMath math="a" /> followed by a shift of <InlineMath math="k" />, write <InlineMath math="a\,f(x) + k" />. If the shift comes first, the final shift becomes <InlineMath math="ak" />.
+So for a stretch by the factor <InlineMath math="a" /> followed by a shift of <InlineMath math="k" />, write <InlineMath math="a\,f(x) + k" />. If the shift comes first, the final shift becomes <InlineMath math="ak" />. On the graph, <InlineMath math="g_B" /> always lies exactly one unit above <InlineMath math="g_A" />, because <InlineMath math="2x^2 + 2 = (2x^2 + 1) + 1" /> for every <InlineMath math="x" />.
 
 ## Compress First or Shift First
 
@@ -53,18 +108,18 @@ Order B shifts first, and then the compression replaces every <InlineMath math="
   cameraTarget={[1.5, 0.8, 0]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const s = (index - 30) / 20;
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
         return { x: s, y: s * s, z: 0 };
       }),
       smooth: false,
-      color: "#475569",
+      color: "#64748b",
       showPoints: false,
       labels: [{ text: <InlineMath math="y = f(x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
     },
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const s = (index - 30) / 20;
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
         return { x: s / 2, y: s * s, z: 2 };
       }),
       smooth: false,
@@ -73,28 +128,28 @@ Order B shifts first, and then the compression replaces every <InlineMath math="
       labels: [{ text: <InlineMath math="y = f(2x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
     },
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const s = (index - 30) / 20;
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
         return { x: s / 2 + 3, y: s * s, z: 4 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(2(x - 3))" />, at: 30, offset: [0, -0.9, 0] }],
+      labels: [{ text: <InlineMath math="y = f(2(x - 3))" />, at: 300, offset: [0, -0.9, 0] }],
     },
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const s = (index - 30) / 20;
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
         return { x: s + 3, y: s * s, z: -2 };
       }),
       smooth: false,
       color: "#c026d3",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(x - 3)" />, at: 30, offset: [0, -0.9, 0] }],
+      labels: [{ text: <InlineMath math="y = f(x - 3)" />, at: 300, offset: [0, -0.9, 0] }],
     },
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const s = (index - 30) / 20;
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
         return { x: (s + 3) / 2, y: s * s, z: -4 };
       }),
       smooth: false,
@@ -109,7 +164,7 @@ Order B shifts first, and then the compression replaces every <InlineMath math="
       showPoints: true,
     },
     {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: -2 }, { x: 1.5, y: 0, z: -4 }],
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: -2 }, { x: 3 / 2, y: 0, z: -4 }],
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
@@ -167,26 +222,26 @@ So <InlineMath math="a = 2" />, <InlineMath math="b = 2" />, <InlineMath math="h
   cameraTarget={[1.5, 1.4, 0]}
   data={[
     {
-      points: Array.from({ length: 51 }, (_, index) => {
-        const s = index / 20;
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
         return { x: s * s, y: s, z: 0 };
       }),
       smooth: false,
-      color: "#475569",
+      color: "#64748b",
       showPoints: true,
-      pointIndices: [0, 40],
-      labels: [{ text: <InlineMath math="f" />, at: 45, offset: [0, 0.45, 0] }],
+      pointIndices: [0, 400],
+      labels: [{ text: <InlineMath math="f" />, at: 450, offset: [0, 0.45, 0] }],
     },
     {
-      points: Array.from({ length: 51 }, (_, index) => {
-        const s = index / 20;
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
         return { x: (s * s) / 2 - 3, y: 2 * s - 1, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 40],
-      labels: [{ text: <InlineMath math="g" />, at: 30, offset: [-0.5, 0.2, 0] }],
+      pointIndices: [0, 400],
+      labels: [{ text: <InlineMath math="g" />, at: 300, offset: [-0.5, 0.2, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -1, z: 0 }],
@@ -210,6 +265,70 @@ Check with the equation of <InlineMath math="g" />: <InlineMath math="g(-3) = 2\
 ## Horizontal and Vertical Steps Can Be Swapped
 
 A horizontal step only changes the <InlineMath math="x" />-coordinate of each point, and a vertical step only changes the <InlineMath math="y" />-coordinate. Because they change different coordinates, **horizontal and vertical steps can be done in either order**. Shift <InlineMath math="y = x^2" /> by <InlineMath math="1" /> unit to the right and then <InlineMath math="2" /> units up, and you get <InlineMath math="y = (x - 1)^2 + 2" />. If you shift <InlineMath math="2" /> units up first, you get <InlineMath math="y = x^2 + 2" />, and the shift to the right turns <InlineMath math="x^2 + 2" /> into <InlineMath math="(x - 1)^2 + 2" /> as well.
+
+<LineEquation
+  title={<>Two orders that end on the same graph</>}
+  description={<>The first layer is <InlineMath math="y = x^2" />. The second layer holds both intermediate results, <InlineMath math="y = (x - 1)^2" /> and <InlineMath math="y = x^2 + 2" />. The two vertex paths meet again at <InlineMath math="(1, 2)" /> on the third layer, <InlineMath math="y = (x - 1)^2 + 2" />.</>}
+  cameraPosition={[7, 6.5, 9]}
+  cameraTarget={[0.5, 1.5, 2]}
+  data={[
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s, y: s * s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 0, offset: [-0.8, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s + 1, y: s * s, z: 2 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = (x - 1)^2" />, at: 600, offset: [1.2, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s, y: s * s + 2, z: 2 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2 + 2" />, at: 0, offset: [-1.1, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s + 1, y: s * s + 2, z: 4 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = (x - 1)^2 + 2" />, at: 600, offset: [1.5, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 2 }, { x: 1, y: 2, z: 4 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 2 }, { x: 1, y: 2, z: 4 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1, 2)" />, at: 2, offset: [0.7, 0.35, 0] }],
+    },
+  ]}
+/>
+
+One path moves right first and the other moves up first, but both end at the same vertex, <InlineMath math="(1, 2)" />. The four vertices form a parallelogram, because each path takes one step of <InlineMath math="1" /> unit to the right and one step of <InlineMath math="2" /> units up, only in a different order.
 
 Two reflections can also be swapped. A [reflection across the <InlineMath math="x" />-axis](/en/subjects/mathematics/function-transformation/vertical-reflection) changes the sign of the output, while a [reflection across the <InlineMath math="y" />-axis](/en/subjects/mathematics/function-transformation/horizontal-reflection) changes the sign of the input. In either order, the two reflections send every point to the point with both coordinates negated:
 
@@ -238,6 +357,79 @@ When the transformations are given in words, **write one intermediate function f
 </MathContainer>
 
 Track the point <InlineMath math="(1, 1)" /> on the graph of <InlineMath math="f" />. Step by step, it moves to <InlineMath math="(-1, 1)" />, <InlineMath math="(-1, -1)" />, <InlineMath math="(-1, -3)" />, and finally <InlineMath math="(-1, 1)" />. The final equation gives <InlineMath math="g(-1) = -3|1| + 4 = 1" />, which matches the last point. The vertex <InlineMath math="(0, 0)" /> ends up at <InlineMath math="(-2, 4)" />, and <InlineMath math="g(-2) = 4" />.
+
+<LineEquation
+  title={<>One layer for each intermediate function from <InlineMath math="f(x) = |x|" /></>}
+  description={<>The layers hold <InlineMath math="f" />, <InlineMath math="f_1" />, <InlineMath math="f_2" />, <InlineMath math="f_3" />, and <InlineMath math="g" /> in order. One path follows the point <InlineMath math="(1, 1)" /> to <InlineMath math="(-1, 1)" />, and another follows the vertex from <InlineMath math="(0, 0)" /> to <InlineMath math="(-2, 4)" />.</>}
+  cameraPosition={[11, 7, 13]}
+  cameraTarget={[-1, 0, 4]}
+  data={[
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s, y: Math.abs(s), z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: Math.abs(s), z: 2 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_1" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -Math.abs(s), z: 4 };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_2" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -3 * Math.abs(s), z: 6 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_3" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -3 * Math.abs(s) + 4, z: 8 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: -1, y: 1, z: 2 }, { x: -1, y: -1, z: 4 }, { x: -1, y: -3, z: 6 }, { x: -1, y: 1, z: 8 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -2, y: 0, z: 2 }, { x: -2, y: 0, z: 4 }, { x: -2, y: 0, z: 6 }, { x: -2, y: 4, z: 8 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+    },
+  ]}
+/>
+
+Turn the view and follow the point <InlineMath math="(1, 1)" /> from layer to layer. Each of its positions satisfies the intermediate function on that layer, for example <InlineMath math="f_2(-1) = -|1| = -1" />. The reflection flips the V downward, the stretch makes it three times as steep, and only the last step lifts the vertex to <InlineMath math="(-2, 4)" />.
 
 The order of the words decides the equation. If the shift of <InlineMath math="4" /> units up happens before the reflection, **the later reflection also flips that shift**:
 
@@ -279,6 +471,57 @@ In problems 1 and 2 you build an equation from steps described in words. Problem
 
 The shift of <InlineMath math="3" /> is also multiplied by <InlineMath math="\tfrac{1}{2}" />, because the compression comes after it. Track the point <InlineMath math="(1, 1)" />: it moves to <InlineMath math="(1, 4)" /> and then to <InlineMath math="(1, 2)" />, and <InlineMath math="g(1) = \tfrac{1}{2} + \tfrac{3}{2} = 2" />. So <InlineMath math="g(x) = \tfrac{1}{2}x^2 + \tfrac{3}{2}" />.
 
+<LineEquation
+  title={<>Graphs of <InlineMath math="f" />, <InlineMath math="f_1" />, and <InlineMath math="g" /> in problem 1</>}
+  description={<>The graph of <InlineMath math="f_1(x) = x^2 + 3" /> lies <InlineMath math="3" /> units above <InlineMath math="f" />, and <InlineMath math="g" /> halves every height of <InlineMath math="f_1" />. The vertex <InlineMath math="(0, 3)" /> comes down to <InlineMath math="\left(0, \tfrac{3}{2}\right)" /> as well.</>}
+  showZAxis={false}
+  cameraPosition={[0, 3, 9]}
+  cameraTarget={[0, 3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const x = (i - 250) / 100;
+        return { x, y: x * x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const x = (i - 180) / 100;
+        return { x, y: x * x + 3, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [180, 280],
+      labels: [{ text: <InlineMath math="f_1" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: (x * x + 3) / 2, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [300, 400],
+      labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.17, -0.25, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.22, -0.33, 0], anchorX: "left" }],
+    },
+  ]}
+/>
+
+On the graph, the point <InlineMath math="(1, 4)" /> on <InlineMath math="f_1" /> and the point <InlineMath math="(1, 2)" /> on <InlineMath math="g" /> lie on the same vertical line as <InlineMath math="(1, 1)" />, because both steps only change heights.
+
 **Problem 2**. The reflection across the <InlineMath math="y" />-axis replaces <InlineMath math="x" /> with <InlineMath math="-x" />. The shift to the right then **replaces every <InlineMath math="x" /> with <InlineMath math="x - 1" />** in that result:
 
 <MathContainer>
@@ -288,11 +531,112 @@ The shift of <InlineMath math="3" /> is also multiplied by <InlineMath math="\tf
 
 The exponent <InlineMath math="-x" /> becomes <InlineMath math="-(x - 1)" />, so the result is <InlineMath math="2^{1 - x}" />, and the form <InlineMath math="2^{-x - 1}" /> is wrong. Track the point <InlineMath math="(1, 2)" /> on the graph of <InlineMath math="f" />: the reflection moves that point to <InlineMath math="(-1, 2)" />, the shift moves it to <InlineMath math="(0, 2)" />, and <InlineMath math="g(0) = 2^1 = 2" />. So <InlineMath math="g(x) = 2^{1 - x}" />.
 
+<LineEquation
+  title={<>Graphs of <InlineMath math="f(x) = 2^x" />, <InlineMath math="f_1(x) = 2^{-x}" />, and <InlineMath math="g(x) = 2^{1 - x}" /></>}
+  description={<>The three marked points lie on the line <InlineMath math="y = 2" />: <InlineMath math="(1, 2)" /> on <InlineMath math="f" />, <InlineMath math="(-1, 2)" /> on <InlineMath math="f_1" />, and <InlineMath math="(0, 2)" /> on <InlineMath math="g" />. The graph of <InlineMath math="g" /> is <InlineMath math="f_1" /> shifted <InlineMath math="1" /> unit to the right.</>}
+  showZAxis={false}
+  cameraPosition={[0.5, 2.6, 9]}
+  cameraTarget={[0.5, 2.6, 0]}
+  data={[
+    {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: 2 ** x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      pointIndices: [400],
+      labels: [
+        { text: <InlineMath math="f" />, at: 520, offset: [-0.17, 0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(1, 2)" />, at: 400, offset: [0.17, -0.25, 0], anchorX: "left" },
+      ],
+    },
+    {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 250) / 100;
+        return { x, y: 2 ** -x, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [150],
+      labels: [
+        { text: <InlineMath math="f_1" />, at: 30, offset: [-0.17, -0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(-1, 2)" />, at: 150, offset: [-0.17, -0.25, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 150) / 100;
+        return { x, y: 2 ** (1 - x), z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [150],
+      labels: [
+        { text: <InlineMath math="g" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="(0, 2)" />, at: 150, offset: [0.57, 0.57, 0] },
+      ],
+    },
+  ]}
+/>
+
+The horizontal line <InlineMath math="y = 2" /> shows both steps. The reflection carries <InlineMath math="(1, 2)" /> across the <InlineMath math="y" />-axis, and the shift moves it <InlineMath math="1" /> unit to the right to <InlineMath math="(0, 2)" />, the <InlineMath math="y" />-intercept of <InlineMath math="g" />.
+
 **Problem 3**. Factor the coefficient of <InlineMath math="x" /> out of the parentheses so that you can read the general form:
 
 <BlockMath math="r(x) = (3x + 6)^2 - 4 = \big(3(x + 2)\big)^2 - 4 = f\big(3(x + 2)\big) - 4" />
 
 So <InlineMath math="b = 3" />, <InlineMath math="h = -2" />, and <InlineMath math="k = -4" />. The graph of <InlineMath math="y = x^2" /> is compressed horizontally by the factor <InlineMath math="\tfrac{1}{3}" />, shifted <InlineMath math="2" /> units to the left, and shifted <InlineMath math="4" /> units down. The vertex <InlineMath math="(0, 0)" /> stays put during the compression, moves to <InlineMath math="(-2, 0)" />, and ends at **the vertex <InlineMath math="(-2, -4)" />**. Check: <InlineMath math="r(-2) = (-6 + 6)^2 - 4 = -4" />. The point <InlineMath math="(1, 1)" /> also fits, because it moves to <InlineMath math="\left(\tfrac{1}{3}, 1\right)" />, <InlineMath math="\left(-\tfrac{5}{3}, 1\right)" />, and then <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />, and <InlineMath math="r\left(-\tfrac{5}{3}\right) = (-5 + 6)^2 - 4 = -3" />.
+
+<LineEquation
+  title={<>Graphs of <InlineMath math="y = x^2" /> and <InlineMath math="r(x) = (3x + 6)^2 - 4" /></>}
+  description={<>Every point <InlineMath math="(s, s^2)" /> on <InlineMath math="y = x^2" /> moves to <InlineMath math="\left(\tfrac{s}{3} - 2, s^2 - 4\right)" />. The marked path takes <InlineMath math="(1, 1)" /> through <InlineMath math="\left(\tfrac{1}{3}, 1\right)" /> and <InlineMath math="\left(-\tfrac{5}{3}, 1\right)" /> to <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />.</>}
+  showZAxis={false}
+  cameraPosition={[-0.5, 0.5, 11]}
+  cameraTarget={[-0.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 441 }, (_, i) => {
+        const s = (i - 220) / 100;
+        return { x: s, y: s * s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 400, offset: [0.22, -0.33, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 3001 }, (_, i) => {
+        const s = (i - 1500) / 500;
+        return { x: s / 3 - 2, y: s * s - 4, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1500],
+      labels: [
+        { text: <InlineMath math="r" />, at: 300, offset: [-0.2, 0.04, 0], anchorX: "right" },
+        { text: <InlineMath math="(-2, -4)" />, at: 1500, offset: [-0.33, -0.22, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 1 / 3, y: 1, z: 0 }, { x: -5 / 3, y: 1, z: 0 }, { x: -5 / 3, y: -3, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: true,
+      cone: { position: "end", size: 0.25 },
+      labels: [
+        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.22, -0.33, 0], anchorX: "left" },
+        { text: <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />, at: 3, offset: [0.3, -0.15, 0], anchorX: "left" },
+      ],
+    },
+  ]}
+/>
+
+The graph of <InlineMath math="r" /> is much steeper than <InlineMath math="y = x^2" />, because the compression by the factor <InlineMath math="\tfrac{1}{3}" /> cuts every horizontal distance to the axis of symmetry to a third, while the height of each point above the vertex stays the same.
 
 **Problem 4**. Factor the coefficient of <InlineMath math="x" /> out of the radicand, <InlineMath math="p(x) = \sqrt{2x - 4} = \sqrt{2(x - 2)}" />. This form means the graph of <InlineMath math="y = \sqrt{x}" /> is compressed horizontally by the factor <InlineMath math="\tfrac{1}{2}" /> and then shifted <InlineMath math="2" /> units to the right. The starting point <InlineMath math="(0, 0)" /> stays put during the compression and then moves to <InlineMath math="(2, 0)" />.
 
@@ -301,3 +645,53 @@ The function <InlineMath math="q" /> uses the same compression, but **the shift 
 <BlockMath math="\begin{aligned} 2x - 4 \geq 0 &\iff x \geq 2 \\ 2(x - 4) \geq 0 &\iff x \geq 4 \end{aligned}" />
 
 So the domain of <InlineMath math="p" /> is <InlineMath math="x \geq 2" /> and the domain of <InlineMath math="q" /> is <InlineMath math="x \geq 4" />. If you read <InlineMath math="p" /> as shift first and compress second, the shift is <InlineMath math="4" /> units, and the compression brings the starting point from <InlineMath math="(4, 0)" /> back to <InlineMath math="(2, 0)" />. Both readings give the same domain.
+
+<LineEquation
+  title={<>Graphs of <InlineMath math="f(x) = \sqrt{x}" />, <InlineMath math="p(x) = \sqrt{2x - 4}" />, and <InlineMath math="q(x) = \sqrt{2(x - 4)}" /></>}
+  description={<>The graphs of <InlineMath math="p" /> and <InlineMath math="q" /> have the same shape, <InlineMath math="y = \sqrt{x}" /> compressed by the factor <InlineMath math="\tfrac{1}{2}" />. Their starting points are <InlineMath math="(2, 0)" /> and <InlineMath math="(4, 0)" />, which match the two domains.</>}
+  showZAxis={false}
+  cameraPosition={[3.4, 1.2, 9.5]}
+  cameraTarget={[3.4, 1.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: s * s, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 460, offset: [0.23, 0.55, 0] }],
+    },
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: (s * s) / 2 + 2, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [0],
+      labels: [
+        { text: <InlineMath math="p" />, at: 460, offset: [-0.22, 0.33, 0], anchorX: "right" },
+        { text: <InlineMath math="(2, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: (s * s) / 2 + 4, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [0],
+      labels: [
+        { text: <InlineMath math="q" />, at: 460, offset: [0.22, -0.33, 0], anchorX: "left" },
+        { text: <InlineMath math="(4, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
+      ],
+    },
+  ]}
+/>
+
+The curve of <InlineMath math="q" /> is the curve of <InlineMath math="p" /> shifted <InlineMath math="2" /> units to the right, because <InlineMath math="q(x) = p(x - 2)" />. That shift comes after the compression, so it is not halved, and the starting point <InlineMath math="(2, 0)" /> moves exactly to <InlineMath math="(4, 0)" />.

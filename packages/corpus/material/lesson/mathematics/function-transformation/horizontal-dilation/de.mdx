@@ -17,6 +17,68 @@ Die Höhe jedes Punktes bleibt gleich, nur sein Abstand zur <InlineMath math="y"
 
 Punkte auf der <InlineMath math="y" />-Achse bleiben liegen, weil <InlineMath math="\frac{0}{b} = 0" /> gilt, und ein negativer Faktor spiegelt den Graphen zusätzlich an der <InlineMath math="y" />-Achse. Manche Aufgaben nennen einen Streckfaktor <InlineMath math="s" /> in <InlineMath math="x" />-Richtung. Dann wird jede <InlineMath math="x" />-Koordinate mit <InlineMath math="s" /> multipliziert, die Gleichung lautet <InlineMath math="y = f\left(\frac{x}{s}\right)" />, und es gilt <InlineMath math="b = \frac{1}{s}" />.
 
+Wende die Regel auf die Parabel <InlineMath math="f(x) = x^2" /> mit <InlineMath math="b = 2" /> und <InlineMath math="b = \frac{1}{2}" /> an.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphen von <InlineMath math="f(x) = x^2" />, <InlineMath math="g(x) = f(2x)" /> und <InlineMath math="h(x) = f\left(\tfrac{x}{2}\right)" /></>}
+  description={<>Vom Punkt <InlineMath math="(2, 4)" /> auf <InlineMath math="f" /> führt ein Pfeil zu <InlineMath math="(1, 4)" /> auf <InlineMath math="g" /> und ein zweiter zu <InlineMath math="(4, 4)" /> auf <InlineMath math="h" />. Die Höhe bleibt <InlineMath math="4" />.</>}
+  cameraPosition={[0, 4.4, 9.6]}
+  cameraTarget={[0, 4.4, 0]}
+  data={(() => {
+    // f(x) = x^2 stays inside the frame y <= 49/4 for the inputs -7/2 <= t <= 7/2.
+    // y = f(bx) reaches the height f(t) at x = t / b, so every curve reuses the inputs t.
+    const f = (x) => x * x;
+    const t = Array.from({ length: 1121 }, (_, i) => (i - 560) / 160);
+    const curve = (b) => t.map((s) => s / b).map((x) => ({ x, y: f(b * x), z: 0 }));
+    // The point (x0, f(x0)) of f moves to (x0 / b, f(x0)) on y = f(bx).
+    const move = (x0, b) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 / b, y: f(b * (x0 / b)), z: 0 },
+    ];
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [880],
+        labels: [{ text: <InlineMath math="f" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: curve(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 1024, offset: [0.25, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 912, offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: move(2, 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2, 1 / 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
+Alle drei Parabeln haben den Scheitelpunkt <InlineMath math="(0, 0)" />, weil dieser Punkt auf der <InlineMath math="y" />-Achse liegt. Folge der Höhe <InlineMath math="4" />: Die <InlineMath math="x" />-Koordinate <InlineMath math="2" /> geteilt durch <InlineMath math="2" /> ergibt <InlineMath math="1" />, geteilt durch <InlineMath math="\frac{1}{2}" /> ergibt sie <InlineMath math="4" />.
+
 ## Warum ein großer Faktor den Graphen schmaler macht
 
 Nimm einen Punkt <InlineMath math="(x_0, y_0)" /> auf dem Graphen von <InlineMath math="f" />, also <InlineMath math="f(x_0) = y_0" />. Die neue Funktion <InlineMath math="g(x) = f(bx)" /> multipliziert ihr Argument zuerst mit <InlineMath math="b" />. Damit <InlineMath math="g" /> denselben Funktionswert liefert, muss das Produkt <InlineMath math="bx" /> gleich <InlineMath math="x_0" /> sein, also <InlineMath math="x = \frac{x_0}{b}" />.
@@ -29,57 +91,63 @@ Wende <InlineMath math="b = 2" /> jetzt auf <InlineMath math="f(x) = x^2 - 4x" /
 
 <BlockMath math="\begin{aligned} g(x) &= f(2x) \\ &= (2x)^2 - 4(2x) \\ &= 4x^2 - 8x \end{aligned}" />
 
-Aus <InlineMath math="4x^2 - 8x = 4x(x - 2)" /> folgen die Nullstellen <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />, also die Nullstellen von <InlineMath math="f" /> geteilt durch <InlineMath math="2" />. Der Scheitelpunkt von <InlineMath math="g" /> liegt bei <InlineMath math="x = \frac{8}{2 \cdot 4} = 1" /> mit <InlineMath math="g(1) = 4 - 8 = -4" />. Damit wandert der Scheitelpunkt <InlineMath math="(2, -4)" /> nach <InlineMath math="(1, -4)" />: Seine Höhe bleibt gleich, während sich **sein Abstand zur <InlineMath math="y" />-Achse halbiert**.
+Aus <InlineMath math="4x^2 - 8x = 4x(x - 2)" /> folgen die Nullstellen <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />, also die Nullstellen von <InlineMath math="f" /> geteilt durch <InlineMath math="2" />. Der Scheitelpunkt von <InlineMath math="g" /> liegt bei <InlineMath math="x = \frac{8}{2 \cdot 4} = 1" /> mit <InlineMath math="g(1) = 4 - 8 = -4" />. Damit wandert der Scheitelpunkt <InlineMath math="(2, -4)" /> nach <InlineMath math="(1, -4)" />: **Seine Höhe bleibt gleich**, während sich **sein Abstand zur <InlineMath math="y" />-Achse halbiert**.
 
 <LineEquation
   showZAxis={false}
   title={<>Parabeln <InlineMath math="f(x) = x^2 - 4x" /> und <InlineMath math="g(x) = f(2x)" /></>}
   description={<>Jeder Pfeil führt von einem Punkt auf <InlineMath math="f" /> zum zugehörigen Punkt auf <InlineMath math="g" />. Beide Punkte liegen gleich hoch, der zweite ist nur halb so weit von der <InlineMath math="y" />-Achse entfernt.</>}
-  cameraPosition={[1.5, 0, 14]}
-  cameraTarget={[1.5, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 121 }, (_, index) => {
-        const x = (index - 20) / 20;
-        return { x, y: x * x - 4 * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x^2-4x" />, at: 60, offset: [0.3, -0.7, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 121 }, (_, index) => {
-        const x = (index - 20) / 40;
-        return { x, y: 4 * x * x - 8 * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=4x^2-8x" />, at: 60, offset: [-0.3, -0.7, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 5, y: 5, z: 0 }, { x: 2.5, y: 5, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: -1, y: 5, z: 0 }, { x: -0.5, y: 5, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 2, y: -4, z: 0 }, { x: 1, y: -4, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-  ]}
+  cameraPosition={[1.5, 0.5, 13]}
+  cameraTarget={[1.5, 0.5, 0]}
+  data={(() => {
+    // f(x) = x^2 - 4x stays inside the frame y <= 12 for -2 <= x <= 6.
+    // g(x) = f(2x) reaches the height f(t) at x = t / 2, so g reuses the inputs t of f.
+    const f = (x) => x * x - 4 * x;
+    const g = (x) => f(2 * x);
+    const t = Array.from({ length: 1281 }, (_, i) => -2 + i / 160);
+    // The point (x0, f(x0)) of f moves to (x0 / 2, f(x0)) on g.
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 / 2, y: g(x0 / 2), z: 0 },
+    ];
+    return [
+      {
+        points: t.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 640, offset: [0.3, -0.7, 0], anchorX: "left" }],
+      },
+      {
+        points: t.map((s) => s / 2).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 640, offset: [-0.3, -0.7, 0], anchorX: "right" }],
+      },
+      {
+        points: move(5),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(-1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
 />
 
 Die beiden Pfeile in der Höhe <InlineMath math="5" /> bringen <InlineMath math="(5, 5)" /> nach <InlineMath math="\left(\frac{5}{2}, 5\right)" /> und <InlineMath math="(-1, 5)" /> nach <InlineMath math="\left(-\frac{1}{2}, 5\right)" />. Beide zeigen zur <InlineMath math="y" />-Achse, denn das Teilen durch <InlineMath math="2" /> halbiert den Abstand jedes Punktes zur <InlineMath math="y" />-Achse.
@@ -90,381 +158,80 @@ Was passiert mit der Breite des Graphen von <InlineMath math="f(bx)" />, wenn si
 
 Der Graph von <InlineMath math="f" /> verläuft vom <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 4)" /> hinunter zum Scheitelpunkt <InlineMath math="(1, 0)" /> und wieder hinauf nach <InlineMath math="(2, 4)" />. In der Schicht zu <InlineMath math="b" /> werden aus diesen drei Punkten <InlineMath math="(0, 4)" />, <InlineMath math="\left(\frac{1}{b}, 0\right)" /> und <InlineMath math="\left(\frac{2}{b}, 4\right)" />. Drei Spuren verbinden die zugehörigen Punkte aller Schichten.
 
-<MathVisual
+<LineEquation
   title={<>Graphenschichten <InlineMath math="f(bx)" /> für <InlineMath math="f(x) = 4(x - 1)^2" /></>}
-  description={<>Die Schicht zu <InlineMath math="b" /> liegt bei <InlineMath math="z = b" />. Drehe die Ansicht, bis du von oben schaust, und folge der Spur der rechten Enden <InlineMath math="x = \frac{2}{b}" />.</>}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 4.5 },
-      y: { min: -0.5, max: 4.5 },
-      z: { min: 0, max: 4.5 },
-    },
-    view: { kind: "isometric" },
-    objects: [
+  description={<>Die Schicht zu <InlineMath math="b" /> liegt bei <InlineMath math="z = b" />. Drehe die Ansicht, bis du von oben schaust, und folge der Spur der rechten Enden <InlineMath math="x = \tfrac{2}{b}" />.</>}
+  cameraPosition={[4.7, 8.88, 10.72]}
+  cameraTarget={[1.6, 1.8, 2.2]}
+  data={(() => {
+    // f(x) = 4(x - 1)^2 runs from its y-intercept (0, 4) down to the vertex (1, 0) and up to (2, 4).
+    // The layer for b lies in the plane z = b and draws y = f(bx) for the inputs t = bx from 0 to 2.
+    const f = (x) => 4 * (x - 1) ** 2;
+    const t = Array.from({ length: 4001 }, (_, i) => i / 2000);
+    const layer = (b) => t.map((s) => s / b).map((x) => ({ x, y: f(b * x), z: b }));
+    // A trace follows the point (x0, f(x0)) of f through the layers: on layer b it sits at x0 / b.
+    // b = 2^k for k from -1 to 2 in equal steps, so every trace meets every layer at a sample.
+    const k = Array.from({ length: 481 }, (_, i) => -1 + i / 160);
+    const trace = (x0) => k.map((e) => 2 ** e).map((b) => ({ x: x0 / b, y: f(x0), z: b }));
+    return [
       {
-        id: "layer-half",
-        kind: "polyline",
-        appearance: "secondary",
-        vertices: [
-          { x: 0, y: 4, z: 0.5 },
-          { x: 0.1, y: 3.61, z: 0.5 },
-          { x: 0.2, y: 3.24, z: 0.5 },
-          { x: 0.3, y: 2.89, z: 0.5 },
-          { x: 0.4, y: 2.56, z: 0.5 },
-          { x: 0.5, y: 2.25, z: 0.5 },
-          { x: 0.6, y: 1.96, z: 0.5 },
-          { x: 0.7, y: 1.69, z: 0.5 },
-          { x: 0.8, y: 1.44, z: 0.5 },
-          { x: 0.9, y: 1.21, z: 0.5 },
-          { x: 1, y: 1, z: 0.5 },
-          { x: 1.1, y: 0.81, z: 0.5 },
-          { x: 1.2, y: 0.64, z: 0.5 },
-          { x: 1.3, y: 0.49, z: 0.5 },
-          { x: 1.4, y: 0.36, z: 0.5 },
-          { x: 1.5, y: 0.25, z: 0.5 },
-          { x: 1.6, y: 0.16, z: 0.5 },
-          { x: 1.7, y: 0.09, z: 0.5 },
-          { x: 1.8, y: 0.04, z: 0.5 },
-          { x: 1.9, y: 0.01, z: 0.5 },
-          { x: 2, y: 0, z: 0.5 },
-          { x: 2.1, y: 0.01, z: 0.5 },
-          { x: 2.2, y: 0.04, z: 0.5 },
-          { x: 2.3, y: 0.09, z: 0.5 },
-          { x: 2.4, y: 0.16, z: 0.5 },
-          { x: 2.5, y: 0.25, z: 0.5 },
-          { x: 2.6, y: 0.36, z: 0.5 },
-          { x: 2.7, y: 0.49, z: 0.5 },
-          { x: 2.8, y: 0.64, z: 0.5 },
-          { x: 2.9, y: 0.81, z: 0.5 },
-          { x: 3, y: 1, z: 0.5 },
-          { x: 3.1, y: 1.21, z: 0.5 },
-          { x: 3.2, y: 1.44, z: 0.5 },
-          { x: 3.3, y: 1.69, z: 0.5 },
-          { x: 3.4, y: 1.96, z: 0.5 },
-          { x: 3.5, y: 2.25, z: 0.5 },
-          { x: 3.6, y: 2.56, z: 0.5 },
-          { x: 3.7, y: 2.89, z: 0.5 },
-          { x: 3.8, y: 3.24, z: 0.5 },
-          { x: 3.9, y: 3.61, z: 0.5 },
-          { x: 4, y: 4, z: 0.5 },
-        ],
+        points: layer(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b = \tfrac{1}{2}" />, at: 3663, offset: [0.9, -0.5, 0], anchorX: "left" }],
       },
       {
-        id: "layer-one",
-        kind: "polyline",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 4, z: 1 },
-          { x: 0.05, y: 3.61, z: 1 },
-          { x: 0.1, y: 3.24, z: 1 },
-          { x: 0.15, y: 2.89, z: 1 },
-          { x: 0.2, y: 2.56, z: 1 },
-          { x: 0.25, y: 2.25, z: 1 },
-          { x: 0.3, y: 1.96, z: 1 },
-          { x: 0.35, y: 1.69, z: 1 },
-          { x: 0.4, y: 1.44, z: 1 },
-          { x: 0.45, y: 1.21, z: 1 },
-          { x: 0.5, y: 1, z: 1 },
-          { x: 0.55, y: 0.81, z: 1 },
-          { x: 0.6, y: 0.64, z: 1 },
-          { x: 0.65, y: 0.49, z: 1 },
-          { x: 0.7, y: 0.36, z: 1 },
-          { x: 0.75, y: 0.25, z: 1 },
-          { x: 0.8, y: 0.16, z: 1 },
-          { x: 0.85, y: 0.09, z: 1 },
-          { x: 0.9, y: 0.04, z: 1 },
-          { x: 0.95, y: 0.01, z: 1 },
-          { x: 1, y: 0, z: 1 },
-          { x: 1.05, y: 0.01, z: 1 },
-          { x: 1.1, y: 0.04, z: 1 },
-          { x: 1.15, y: 0.09, z: 1 },
-          { x: 1.2, y: 0.16, z: 1 },
-          { x: 1.25, y: 0.25, z: 1 },
-          { x: 1.3, y: 0.36, z: 1 },
-          { x: 1.35, y: 0.49, z: 1 },
-          { x: 1.4, y: 0.64, z: 1 },
-          { x: 1.45, y: 0.81, z: 1 },
-          { x: 1.5, y: 1, z: 1 },
-          { x: 1.55, y: 1.21, z: 1 },
-          { x: 1.6, y: 1.44, z: 1 },
-          { x: 1.65, y: 1.69, z: 1 },
-          { x: 1.7, y: 1.96, z: 1 },
-          { x: 1.75, y: 2.25, z: 1 },
-          { x: 1.8, y: 2.56, z: 1 },
-          { x: 1.85, y: 2.89, z: 1 },
-          { x: 1.9, y: 3.24, z: 1 },
-          { x: 1.95, y: 3.61, z: 1 },
-          { x: 2, y: 4, z: 1 },
-        ],
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b = 1" />, at: 0, offset: [-0.5, 0.9, 0], anchorX: "right" }],
       },
       {
-        id: "layer-two",
-        kind: "polyline",
-        appearance: "construction",
-        vertices: [
-          { x: 0, y: 4, z: 2 },
-          { x: 0.025, y: 3.61, z: 2 },
-          { x: 0.05, y: 3.24, z: 2 },
-          { x: 0.075, y: 2.89, z: 2 },
-          { x: 0.1, y: 2.56, z: 2 },
-          { x: 0.125, y: 2.25, z: 2 },
-          { x: 0.15, y: 1.96, z: 2 },
-          { x: 0.175, y: 1.69, z: 2 },
-          { x: 0.2, y: 1.44, z: 2 },
-          { x: 0.225, y: 1.21, z: 2 },
-          { x: 0.25, y: 1, z: 2 },
-          { x: 0.275, y: 0.81, z: 2 },
-          { x: 0.3, y: 0.64, z: 2 },
-          { x: 0.325, y: 0.49, z: 2 },
-          { x: 0.35, y: 0.36, z: 2 },
-          { x: 0.375, y: 0.25, z: 2 },
-          { x: 0.4, y: 0.16, z: 2 },
-          { x: 0.425, y: 0.09, z: 2 },
-          { x: 0.45, y: 0.04, z: 2 },
-          { x: 0.475, y: 0.01, z: 2 },
-          { x: 0.5, y: 0, z: 2 },
-          { x: 0.525, y: 0.01, z: 2 },
-          { x: 0.55, y: 0.04, z: 2 },
-          { x: 0.575, y: 0.09, z: 2 },
-          { x: 0.6, y: 0.16, z: 2 },
-          { x: 0.625, y: 0.25, z: 2 },
-          { x: 0.65, y: 0.36, z: 2 },
-          { x: 0.675, y: 0.49, z: 2 },
-          { x: 0.7, y: 0.64, z: 2 },
-          { x: 0.725, y: 0.81, z: 2 },
-          { x: 0.75, y: 1, z: 2 },
-          { x: 0.775, y: 1.21, z: 2 },
-          { x: 0.8, y: 1.44, z: 2 },
-          { x: 0.825, y: 1.69, z: 2 },
-          { x: 0.85, y: 1.96, z: 2 },
-          { x: 0.875, y: 2.25, z: 2 },
-          { x: 0.9, y: 2.56, z: 2 },
-          { x: 0.925, y: 2.89, z: 2 },
-          { x: 0.95, y: 3.24, z: 2 },
-          { x: 0.975, y: 3.61, z: 2 },
-          { x: 1, y: 4, z: 2 },
-        ],
+        points: layer(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b = 2" />, at: 2331, offset: [0.9, -0.5, 0], anchorX: "left" }],
       },
       {
-        id: "layer-four",
-        kind: "polyline",
-        appearance: "answer",
-        vertices: [
-          { x: 0, y: 4, z: 4 },
-          { x: 0.0125, y: 3.61, z: 4 },
-          { x: 0.025, y: 3.24, z: 4 },
-          { x: 0.0375, y: 2.89, z: 4 },
-          { x: 0.05, y: 2.56, z: 4 },
-          { x: 0.0625, y: 2.25, z: 4 },
-          { x: 0.075, y: 1.96, z: 4 },
-          { x: 0.0875, y: 1.69, z: 4 },
-          { x: 0.1, y: 1.44, z: 4 },
-          { x: 0.1125, y: 1.21, z: 4 },
-          { x: 0.125, y: 1, z: 4 },
-          { x: 0.1375, y: 0.81, z: 4 },
-          { x: 0.15, y: 0.64, z: 4 },
-          { x: 0.1625, y: 0.49, z: 4 },
-          { x: 0.175, y: 0.36, z: 4 },
-          { x: 0.1875, y: 0.25, z: 4 },
-          { x: 0.2, y: 0.16, z: 4 },
-          { x: 0.2125, y: 0.09, z: 4 },
-          { x: 0.225, y: 0.04, z: 4 },
-          { x: 0.2375, y: 0.01, z: 4 },
-          { x: 0.25, y: 0, z: 4 },
-          { x: 0.2625, y: 0.01, z: 4 },
-          { x: 0.275, y: 0.04, z: 4 },
-          { x: 0.2875, y: 0.09, z: 4 },
-          { x: 0.3, y: 0.16, z: 4 },
-          { x: 0.3125, y: 0.25, z: 4 },
-          { x: 0.325, y: 0.36, z: 4 },
-          { x: 0.3375, y: 0.49, z: 4 },
-          { x: 0.35, y: 0.64, z: 4 },
-          { x: 0.3625, y: 0.81, z: 4 },
-          { x: 0.375, y: 1, z: 4 },
-          { x: 0.3875, y: 1.21, z: 4 },
-          { x: 0.4, y: 1.44, z: 4 },
-          { x: 0.4125, y: 1.69, z: 4 },
-          { x: 0.425, y: 1.96, z: 4 },
-          { x: 0.4375, y: 2.25, z: 4 },
-          { x: 0.45, y: 2.56, z: 4 },
-          { x: 0.4625, y: 2.89, z: 4 },
-          { x: 0.475, y: 3.24, z: 4 },
-          { x: 0.4875, y: 3.61, z: 4 },
-          { x: 0.5, y: 4, z: 4 },
-        ],
+        points: layer(4),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b = 4" />, at: 333, offset: [-0.9, -0.9, 0], anchorX: "right" }],
       },
       {
-        id: "trace-top",
-        kind: "polyline",
-        appearance: "highlight",
-        vertices: [
-          { x: 4, y: 4, z: 0.5 },
-          { x: 3.863749, y: 4, z: 0.517632 },
-          { x: 3.73213, y: 4, z: 0.535887 },
-          { x: 3.605, y: 4, z: 0.554785 },
-          { x: 3.482203, y: 4, z: 0.574349 },
-          { x: 3.363583, y: 4, z: 0.594604 },
-          { x: 3.249011, y: 4, z: 0.615572 },
-          { x: 3.138338, y: 4, z: 0.63728 },
-          { x: 3.031433, y: 4, z: 0.659754 },
-          { x: 2.928172, y: 4, z: 0.68302 },
-          { x: 2.828426, y: 4, z: 0.707107 },
-          { x: 2.73208, y: 4, z: 0.732043 },
-          { x: 2.639017, y: 4, z: 0.757858 },
-          { x: 2.549122, y: 4, z: 0.784584 },
-          { x: 2.46229, y: 4, z: 0.812252 },
-          { x: 2.378415, y: 4, z: 0.840896 },
-          { x: 2.297396, y: 4, z: 0.870551 },
-          { x: 2.21914, y: 4, z: 0.90125 },
-          { x: 2.143547, y: 4, z: 0.933033 },
-          { x: 2.070531, y: 4, z: 0.965936 },
-          { x: 2, y: 4, z: 1 },
-          { x: 1.931873, y: 4, z: 1.035265 },
-          { x: 1.866067, y: 4, z: 1.071773 },
-          { x: 1.802502, y: 4, z: 1.109569 },
-          { x: 1.741102, y: 4, z: 1.148698 },
-          { x: 1.681793, y: 4, z: 1.189207 },
-          { x: 1.624505, y: 4, z: 1.231144 },
-          { x: 1.569168, y: 4, z: 1.274561 },
-          { x: 1.515716, y: 4, z: 1.319508 },
-          { x: 1.464086, y: 4, z: 1.36604 },
-          { x: 1.414213, y: 4, z: 1.414214 },
-          { x: 1.36604, y: 4, z: 1.464086 },
-          { x: 1.319508, y: 4, z: 1.515717 },
-          { x: 1.274561, y: 4, z: 1.569168 },
-          { x: 1.231144, y: 4, z: 1.624505 },
-          { x: 1.189207, y: 4, z: 1.681793 },
-          { x: 1.148698, y: 4, z: 1.741101 },
-          { x: 1.109569, y: 4, z: 1.802501 },
-          { x: 1.071773, y: 4, z: 1.866066 },
-          { x: 1.035265, y: 4, z: 1.931873 },
-          { x: 1, y: 4, z: 2 },
-          { x: 0.965936, y: 4, z: 2.07053 },
-          { x: 0.933033, y: 4, z: 2.143547 },
-          { x: 0.90125, y: 4, z: 2.219139 },
-          { x: 0.87055, y: 4, z: 2.297397 },
-          { x: 0.840896, y: 4, z: 2.378414 },
-          { x: 0.812252, y: 4, z: 2.462289 },
-          { x: 0.784584, y: 4, z: 2.549121 },
-          { x: 0.757858, y: 4, z: 2.639016 },
-          { x: 0.732043, y: 4, z: 2.732081 },
-          { x: 0.707107, y: 4, z: 2.828427 },
-          { x: 0.68302, y: 4, z: 2.928171 },
-          { x: 0.659754, y: 4, z: 3.031433 },
-          { x: 0.63728, y: 4, z: 3.138336 },
-          { x: 0.615572, y: 4, z: 3.24901 },
-          { x: 0.594603, y: 4, z: 3.363586 },
-          { x: 0.574349, y: 4, z: 3.482202 },
-          { x: 0.554785, y: 4, z: 3.605002 },
-          { x: 0.535887, y: 4, z: 3.732132 },
-          { x: 0.517633, y: 4, z: 3.863745 },
-          { x: 0.5, y: 4, z: 4 },
-        ],
+        points: trace(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="x = \tfrac{2}{b}" />, at: 0, offset: [0.25, 0.9, 0], anchorX: "left" }],
       },
       {
-        id: "trace-vertex",
-        kind: "polyline",
-        appearance: "highlight",
-        vertices: [
-          { x: 2, y: 0, z: 0.5 },
-          { x: 1.931874, y: 0, z: 0.517632 },
-          { x: 1.866065, y: 0, z: 0.535887 },
-          { x: 1.8025, y: 0, z: 0.554785 },
-          { x: 1.741102, y: 0, z: 0.574349 },
-          { x: 1.681792, y: 0, z: 0.594604 },
-          { x: 1.624505, y: 0, z: 0.615572 },
-          { x: 1.569169, y: 0, z: 0.63728 },
-          { x: 1.515716, y: 0, z: 0.659754 },
-          { x: 1.464086, y: 0, z: 0.68302 },
-          { x: 1.414213, y: 0, z: 0.707107 },
-          { x: 1.36604, y: 0, z: 0.732043 },
-          { x: 1.319508, y: 0, z: 0.757858 },
-          { x: 1.274561, y: 0, z: 0.784584 },
-          { x: 1.231145, y: 0, z: 0.812252 },
-          { x: 1.189208, y: 0, z: 0.840896 },
-          { x: 1.148698, y: 0, z: 0.870551 },
-          { x: 1.10957, y: 0, z: 0.90125 },
-          { x: 1.071773, y: 0, z: 0.933033 },
-          { x: 1.035265, y: 0, z: 0.965936 },
-          { x: 1, y: 0, z: 1 },
-          { x: 0.965936, y: 0, z: 1.035265 },
-          { x: 0.933033, y: 0, z: 1.071773 },
-          { x: 0.901251, y: 0, z: 1.109569 },
-          { x: 0.870551, y: 0, z: 1.148698 },
-          { x: 0.840896, y: 0, z: 1.189207 },
-          { x: 0.812253, y: 0, z: 1.231144 },
-          { x: 0.784584, y: 0, z: 1.274561 },
-          { x: 0.757858, y: 0, z: 1.319508 },
-          { x: 0.732043, y: 0, z: 1.36604 },
-          { x: 0.707107, y: 0, z: 1.414214 },
-          { x: 0.68302, y: 0, z: 1.464086 },
-          { x: 0.659754, y: 0, z: 1.515717 },
-          { x: 0.63728, y: 0, z: 1.569168 },
-          { x: 0.615572, y: 0, z: 1.624505 },
-          { x: 0.594603, y: 0, z: 1.681793 },
-          { x: 0.574349, y: 0, z: 1.741101 },
-          { x: 0.554785, y: 0, z: 1.802501 },
-          { x: 0.535887, y: 0, z: 1.866066 },
-          { x: 0.517632, y: 0, z: 1.931873 },
-          { x: 0.5, y: 0, z: 2 },
-          { x: 0.482968, y: 0, z: 2.07053 },
-          { x: 0.466516, y: 0, z: 2.143547 },
-          { x: 0.450625, y: 0, z: 2.219139 },
-          { x: 0.435275, y: 0, z: 2.297397 },
-          { x: 0.420448, y: 0, z: 2.378414 },
-          { x: 0.406126, y: 0, z: 2.462289 },
-          { x: 0.392292, y: 0, z: 2.549121 },
-          { x: 0.378929, y: 0, z: 2.639016 },
-          { x: 0.366021, y: 0, z: 2.732081 },
-          { x: 0.353553, y: 0, z: 2.828427 },
-          { x: 0.34151, y: 0, z: 2.928171 },
-          { x: 0.329877, y: 0, z: 3.031433 },
-          { x: 0.31864, y: 0, z: 3.138336 },
-          { x: 0.307786, y: 0, z: 3.24901 },
-          { x: 0.297302, y: 0, z: 3.363586 },
-          { x: 0.287175, y: 0, z: 3.482202 },
-          { x: 0.277392, y: 0, z: 3.605002 },
-          { x: 0.267943, y: 0, z: 3.732132 },
-          { x: 0.258816, y: 0, z: 3.863745 },
-          { x: 0.25, y: 0, z: 4 },
-        ],
+        points: trace(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="x = \tfrac{1}{b}" />, at: 480, offset: [-0.9, 0.25, 0], anchorX: "right" }],
       },
       {
-        id: "spine",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 0, y: 4, z: 0.5 },
-        to: { x: 0, y: 4, z: 4 },
+        points: trace(0),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="(0, 4)" />, at: 440, offset: [-0.5, 0.5, 0], anchorX: "right" }],
       },
-    ],
-    labels: [
-      { key: "layer-half-label", objectId: "layer-half", at: { x: 2.7, y: 0.49, z: 0.5 }, placement: "below-right" },
-      { key: "layer-one-label", objectId: "layer-one", at: { x: 1.7, y: 1.96, z: 1 }, placement: "below-right" },
-      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.5, y: 0, z: 2 }, placement: "below-right" },
-      { key: "layer-four-label", objectId: "layer-four", at: { x: 0.25, y: 0, z: 4 }, placement: "below-left" },
-      { key: "trace-top-label", objectId: "trace-top", at: { x: 3.73213, y: 4, z: 0.535887 }, placement: "above-right" },
-      { key: "trace-vertex-label", objectId: "trace-vertex", at: { x: 0.267943, y: 0, z: 3.732132 }, placement: "below-right" },
-      { key: "spine-label", objectId: "spine", at: { x: 0, y: 4, z: 3.34375 }, placement: "above-left" },
-    ],
-  }}
-  labels={{
-    "layer-half-label": <><InlineMath math="b = \tfrac{1}{2}" /></>,
-    "layer-one-label": <><InlineMath math="b = 1" /></>,
-    "layer-two-label": <><InlineMath math="b = 2" /></>,
-    "layer-four-label": <><InlineMath math="b = 4" /></>,
-    "trace-top-label": <><InlineMath math="x = \tfrac{2}{b}" /></>,
-    "trace-vertex-label": <><InlineMath math="x = \tfrac{1}{b}" /></>,
-    "spine-label": <><InlineMath math="(0, 4)" /></>,
-  }}
+    ];
+  })()}
 />
 
 Ziehe die Ansicht, bis du von oben auf den Stapel schaust und die <InlineMath math="y" />-Achse direkt auf dich zeigt. Die Spur der rechten Enden bildet die Kurve <InlineMath math="x = \frac{2}{b}" />. Verdoppelt sich <InlineMath math="b" />, ist die Schicht also **nur noch halb so breit**. Das Produkt aus <InlineMath math="b" /> und Breite ist immer <InlineMath math="2" />, die Breite ist also umgekehrt proportional zum Faktor im Argument.
 
-Durch <InlineMath math="(0, 4)" /> verläuft eine gerade Spur bei <InlineMath math="x = 0" />, weil Punkte auf der <InlineMath math="y" />-Achse nicht wandern. Genau in der Mitte zwischen dieser geraden Spur und der Spur der rechten Enden liegt die Spur der Scheitelpunkte <InlineMath math="x = \frac{1}{b}" />, denn <InlineMath math="\frac{1}{b}" /> ist die Hälfte von <InlineMath math="\frac{2}{b}" />.
+Durch <InlineMath math="(0, 4)" /> verläuft eine gerade Spur bei <InlineMath math="x = 0" />, weil Punkte auf der <InlineMath math="y" />-Achse nicht wandern. In jeder Schicht liegt der Scheitelpunkt bei <InlineMath math="x = \frac{1}{b}" />, genau in der Mitte zwischen dieser geraden Spur und dem rechten Ende <InlineMath math="x = \frac{2}{b}" />, denn <InlineMath math="\frac{1}{b}" /> ist die Hälfte von <InlineMath math="\frac{2}{b}" />.
 
-Von der Seite, mit der <InlineMath math="x" />-Achse direkt auf dich gerichtet, erscheint jede Schicht als senkrechte Strecke von Höhe <InlineMath math="0" /> bis <InlineMath math="4" />. Alle diese Strecken sind gleich hoch, also **ändert eine horizontale Streckung oder Stauchung keine einzige Höhe**, und der Wertebereich des gezeichneten Teils bleibt <InlineMath math="[0, 4]" />.
+Jede Schicht reicht weiterhin von der Höhe <InlineMath math="0" /> bis zur Höhe <InlineMath math="4" />. Die Spur der Scheitelpunkte liegt in der Ebene <InlineMath math="y = 0" />, die Spur der rechten Enden und die gerade Spur bleiben in der Höhe <InlineMath math="4" />. Also **ändert eine horizontale Streckung oder Stauchung keine einzige Höhe**, und der Wertebereich des gezeichneten Teils bleibt <InlineMath math="[0, 4]" />.
 
 In jeder Schicht haben Scheitelpunkt und rechtes Ende die <InlineMath math="x" />-Koordinaten <InlineMath math="1" /> und <InlineMath math="2" />, jeweils geteilt durch <InlineMath math="b" />.
 
@@ -491,7 +258,68 @@ Ein Beispiel: Jede <InlineMath math="x" />-Koordinate auf dem Graphen von <Inlin
 
 <BlockMath math="g(x) = \sqrt{\frac{x}{3}}" />
 
-Prüfe mit dem Punkt <InlineMath math="(9, 3)" /> auf <InlineMath math="y = \sqrt{x}" />. Er wandert nach <InlineMath math="(27, 3)" />, und tatsächlich ist <InlineMath math="g(27) = \sqrt{\frac{27}{3}} = \sqrt{9} = 3" />. Der Definitionsbereich bleibt <InlineMath math="[0, \infty)" />, weil <InlineMath math="\frac{x}{3} \ge 0" /> genau dann gilt, wenn <InlineMath math="x \ge 0" /> ist.
+Prüfe mit dem Punkt <InlineMath math="(4, 2)" /> auf <InlineMath math="y = \sqrt{x}" />. Er wandert nach <InlineMath math="(12, 2)" />, und tatsächlich ist <InlineMath math="g(12) = \sqrt{\frac{12}{3}} = \sqrt{4} = 2" />. Der Definitionsbereich bleibt <InlineMath math="[0, \infty)" />, weil <InlineMath math="\frac{x}{3} \ge 0" /> genau dann gilt, wenn <InlineMath math="x \ge 0" /> ist.
+
+In der 3D-Ansicht der Graphenschichten liegen die Graphen von <InlineMath math="y = \sqrt{\frac{x}{s}}" /> für <InlineMath math="s = 1" />, <InlineMath math="2" /> und <InlineMath math="3" /> in den Tiefen <InlineMath math="z = s" />. In der Schicht zu <InlineMath math="s" /> liegt der Punkt der Höhe <InlineMath math="2" /> bei <InlineMath math="x = 4s" />, in der Schicht <InlineMath math="s = 3" /> also genau der Punkt <InlineMath math="(12, 2)" />, den du eben geprüft hast.
+
+<LineEquation
+  title={<>Graphenschichten <InlineMath math="y = \sqrt{\tfrac{x}{s}}" /> für den Streckfaktor <InlineMath math="s" /></>}
+  description={<>Die Schicht zu <InlineMath math="s" /> liegt bei <InlineMath math="z = s" />. Die Spuren der Punkte in der Höhe <InlineMath math="2" /> und in der Höhe <InlineMath math="1" /> sind Geraden.</>}
+  cameraPosition={[-1.71, 9.39, 11.56]}
+  cameraTarget={[5.6, 1, 1.5]}
+  data={(() => {
+    // Multiplying every x-coordinate of y = sqrt(x) by s gives y = sqrt(x / s).
+    // The layer for s lies in the plane z = s and is drawn up to the height 2, reached at x = 4s.
+    const g = (x, s) => Math.sqrt(x / s);
+    // Heights r from 0 to 2: the point of height r sits at x = s r^2, which keeps the samples
+    // dense where the curve leaves the y-axis vertically.
+    const r = Array.from({ length: 801 }, (_, i) => i / 400);
+    const layer = (s) => r.map((y) => s * y * y).map((x) => ({ x, y: g(x, s), z: s }));
+    // The point of height r0 sits at x = s r0^2 on every layer: a straight line through (0, r0, 0).
+    const trace = (r0) => [0, 1, 2, 3].map((s) => ({ x: s * r0 * r0, y: r0, z: s }));
+    return [
+      {
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="s = 1" />, at: 800, offset: [0.9, 0.9, 0], anchorX: "right" }],
+      },
+      {
+        points: layer(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="s = 2" />, at: 800, offset: [0.9, 0.9, 0], anchorX: "right" }],
+      },
+      {
+        points: layer(3),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="s = 3" />, at: 132, offset: [0.9, -0.9, 0], anchorX: "left" }],
+      },
+      {
+        points: trace(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [1, 2, 3],
+        labels: [{ text: <InlineMath math="x = 4s" />, at: 3, offset: [0, 0.9, 0], anchorX: "right" }],
+      },
+      {
+        points: trace(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [1, 2, 3],
+        labels: [{ text: <InlineMath math="x = s" />, at: 3, offset: [0.9, -0.9, 0], anchorX: "left" }],
+      },
+    ];
+  })()}
+/>
+
+Beide Spuren sind gerade, weil jede <InlineMath math="x" />-Koordinate mit <InlineMath math="s" /> multipliziert wird: **Die Breite des Graphen ist proportional zum Streckfaktor**. Vergleiche das mit der gekrümmten Spur <InlineMath math="x = \frac{2}{b}" /> der Schichten <InlineMath math="f(bx)" />, wo die <InlineMath math="x" />-Koordinate durch den Faktor im Argument <InlineMath math="b = \frac{1}{s}" /> geteilt wird.
 
 Eine [zentrische Streckung](/de/faecher/mathematik/geometrische-transformationen/streckung) am Ursprung multipliziert beide Koordinaten mit demselben Faktor, deshalb bleibt jeder Winkel gleich groß, und die Bildfigur ist der ursprünglichen Figur ähnlich. Eine horizontale Streckung oder Stauchung multipliziert nur die <InlineMath math="x" />-Koordinate, deshalb **können sich Winkel am Graphen ändern**. Die beiden Schenkel von <InlineMath math="y = |x|" /> stehen senkrecht aufeinander. Bei <InlineMath math="y = |2x| = 2|x|" /> haben die Schenkel die Steigungen <InlineMath math="2" /> und <InlineMath math="-2" />, und der Winkel am Scheitelpunkt schrumpft auf etwa <InlineMath math="53^\circ" />.
 
@@ -509,15 +337,246 @@ Für <InlineMath math="b > 0" /> wird **jedes Merkmal, das von einem <InlineMath
 | <InlineMath math="y" />-Achsenabschnitt | bleibt <InlineMath math="(0, f(0))" /> | <InlineMath math="\frac{0}{b} = 0" /> |
 | Waagerechte Asymptote <InlineMath math="y = y_1" /> | unverändert | eine Höhe legt die Gerade fest |
 
+Die Gerade <InlineMath math="f(x) = x + 2" /> zeigt zwei Zeilen der Tabelle auf einmal. Ihre Nullstelle <InlineMath math="-2" /> wandert für <InlineMath math="b = 2" /> nach <InlineMath math="\frac{-2}{2} = -1" /> und für <InlineMath math="b = \frac{1}{2}" /> nach <InlineMath math="\frac{-2}{1/2} = -4" />. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 2)" /> bleibt liegen, während die Steigung der Geraden <InlineMath math="f(bx) = bx + 2" /> zu <InlineMath math="b" /> wird.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Geraden <InlineMath math="f(x) = x + 2" />, <InlineMath math="g(x) = f(2x)" /> und <InlineMath math="h(x) = f\left(\tfrac{x}{2}\right)" /></>}
+  description={<>Alle drei Geraden gehen durch den festen Punkt <InlineMath math="(0, 2)" />. Die Nullstellen von <InlineMath math="f" />, <InlineMath math="g" /> und <InlineMath math="h" /> liegen bei <InlineMath math="-2" />, <InlineMath math="-1" /> und <InlineMath math="-4" />.</>}
+  cameraPosition={[-0.3, 2, 10]}
+  cameraTarget={[-0.3, 2, 0]}
+  data={(() => {
+    // f(x) = x + 2. Inside the frame -12 <= x <= 10, -6 <= y <= 10 the straight line y = f(bx)
+    // runs from f(bx) = -6 to f(bx) = 10, cut at the frame sides. Its zero is x = -2 / b, and
+    // the sample xLabel only carries the label.
+    const f = (x) => x + 2;
+    const line = (b, xLabel) =>
+      [Math.max(-12, -8 / b), -2 / b, 0, xLabel, Math.min(10, 8 / b)].map((x) => ({ x, y: f(b * x), z: 0 }));
+    return [
+      {
+        points: line(1, 2.5),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [1],
+        labels: [{ text: <InlineMath math="f" />, at: 3, offset: [0.65, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: line(2, 1.75),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1],
+        labels: [{ text: <InlineMath math="g" />, at: 3, offset: [0.45, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: line(1 / 2, 3),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: true,
+        pointIndices: [1],
+        labels: [{ text: <InlineMath math="h" />, at: 3, offset: [0, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: [{ x: 0, y: f(0), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
 Der Graph von <InlineMath math="y = 2^x" /> geht durch <InlineMath math="(3, 8)" />. Der Graph von <InlineMath math="y = 2^{3x}" /> geht durch <InlineMath math="(1, 8)" />, weil <InlineMath math="2^{3 \cdot 1} = 8" /> ist, während der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 1)" /> und die Asymptote <InlineMath math="y = 0" /> bleiben. Bei einer steigenden [Exponentialfunktion](/de/faecher/mathematik/funktionen-und-modelle/exponentialfunktion) macht eine Stauchung mit <InlineMath math="b > 1" /> die Kurve in jeder Höhe steiler, ohne ihren <InlineMath math="y" />-Achsenabschnitt zu verschieben.
 
-Die Funktion <InlineMath math="f(x) = \frac{1}{x - 2}" /> hat die [senkrechte Asymptote](/de/faecher/mathematik/funktionen-und-modelle/asymptoten) <InlineMath math="x = 2" />. Bei <InlineMath math="f(2x) = \frac{1}{2x - 2}" /> wird der Nenner bei <InlineMath math="x = 1" /> null, die Asymptote wandert also nach <InlineMath math="x = \frac{2}{2} = 1" />.
+<LineEquation
+  showZAxis={false}
+  title={<>Kurven <InlineMath math="f(x) = 2^x" /> und <InlineMath math="y = f(3x) = 2^{3x}" /></>}
+  description={<>Der Pfeil bringt <InlineMath math="(3, 8)" /> nach <InlineMath math="(1, 8)" />. Beide Kurven gehen durch den festen Punkt <InlineMath math="(0, 1)" /> und nähern sich links der Asymptote <InlineMath math="y = 0" />.</>}
+  cameraPosition={[0, 4, 11]}
+  cameraTarget={[0, 4, 0]}
+  data={(() => {
+    // f(x) = 2^x stays inside the frame x >= -12, y <= 16 up to x = 4.
+    // f(3x) reaches the height f(t) at x = t / 3, so its inputs t run from -36 to 4.
+    const f = (x) => 2 ** x;
+    const grid = (from, to) => Array.from({ length: (to - from) * 64 + 1 }, (_, i) => from + i / 64);
+    return [
+      {
+        points: grid(-12, 4).map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2^x" />, at: 928, offset: [0.3, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: grid(-36, 4).map((t) => t / 3).map((x) => ({ x, y: f(3 * x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2^{3x}" />, at: 2480, offset: [0.3, 0.1, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 3, y: f(3), z: 0 },
+          { x: 3 / 3, y: f(3 * (3 / 3)), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 0, y: f(0), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
+Die Kurve <InlineMath math="2^{3x}" /> erreicht die Höhe <InlineMath math="8" /> schon im Drittel des Abstands zur <InlineMath math="y" />-Achse, während der Punkt <InlineMath math="(0, 1)" /> liegen bleibt.
+
+Die Funktion <InlineMath math="f(x) = \frac{1}{x - 4}" /> hat die [senkrechte Asymptote](/de/faecher/mathematik/funktionen-und-modelle/asymptoten) <InlineMath math="x = 4" />. Bei <InlineMath math="f(2x) = \frac{1}{2x - 4}" /> wird der Nenner bei <InlineMath math="x = 2" /> null, die Asymptote wandert also nach <InlineMath math="x = \frac{4}{2} = 2" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphen von <InlineMath math="f(x) = \frac{1}{x - 4}" /> und <InlineMath math="g(x) = f(2x)" /></>}
+  description={<>Dünne Linien markieren die senkrechten Asymptoten <InlineMath math="x = 4" /> und <InlineMath math="x = 2" />. Der Pfeil bringt <InlineMath math="(5, 1)" /> nach <InlineMath math="\left(\tfrac{5}{2}, 1\right)" />.</>}
+  cameraPosition={[3, 0, 10]}
+  cameraTarget={[3, 0, 0]}
+  data={(() => {
+    // f(x) = 1 / (x - 4) inside the frame -9 <= x <= 15, -8 <= y <= 8: f = -8 at x = 31/8 and
+    // f = 8 at x = 33/8, so each branch stops there and never crosses the asymptote x = 4.
+    // f(2x) = 1 / (2x - 4) has its asymptote at x = 2 and stops at x = 31/16 and x = 33/16.
+    const f = (x) => 1 / (x - 4);
+    const g = (x) => f(2 * x);
+    const grid = (from, to) =>
+      Array.from({ length: Math.round((to - from) * 128) + 1 }, (_, i) => from + i / 128);
+    const branch = (h, from, to) => grid(from, to).map((x) => ({ x, y: h(x), z: 0 }));
+    const asymptote = (x) => [-8, 8].map((y) => ({ x, y, z: 0 }));
+    return [
+      {
+        points: branch(f, -9, 31 / 8),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+      },
+      {
+        points: branch(f, 33 / 8, 15),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 176, offset: [0.25, 0.35, 0], anchorX: "left" }],
+      },
+      {
+        points: branch(g, -9, 31 / 16),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+      },
+      {
+        points: branch(g, 33 / 16, 15),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 56, offset: [0.25, 0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(4),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="x = 4" />, at: 0, offset: [0.2, 4, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="x = 2" />, at: 0, offset: [0.2, 4, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 5, y: f(5), z: 0 },
+          { x: 5 / 2, y: g(5 / 2), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 0, y: f(0), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
+
+Die beiden Äste jedes Graphen werden durch seine Asymptote getrennt, und auch diese Asymptote wird durch <InlineMath math="2" /> geteilt. Die waagerechte Asymptote <InlineMath math="y = 0" /> bleibt, weil eine Höhe sie festlegt, und der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="\left(0, -\frac{1}{4}\right)" /> bleibt, weil er auf der <InlineMath math="y" />-Achse liegt.
 
 Vergleiche das mit einer [horizontalen Verschiebung](/de/faecher/mathematik/funktionstransformationen/horizontale-verschiebung), die zu jeder <InlineMath math="x" />-Koordinate dieselbe Zahl addiert. Eine Verschiebung bewegt den Punkt <InlineMath math="(0, f(0))" />, eine horizontale Streckung lässt diesen Punkt liegen, weil null geteilt durch jede von null verschiedene Zahl null bleibt.
 
 ## Ein negativer Faktor spiegelt zusätzlich
 
 Die Regel <InlineMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b}, y_0\right)" /> gilt auch für <InlineMath math="b < 0" />. Das Teilen durch eine negative Zahl kehrt das Vorzeichen der <InlineMath math="x" />-Koordinate um, also wird der Graph mit dem Faktor <InlineMath math="\frac{1}{|b|}" /> gestreckt oder gestaucht und dann **an der <InlineMath math="y" />-Achse gespiegelt**. Für <InlineMath math="b = -1" /> bleibt nur die [Spiegelung an der <InlineMath math="y" />-Achse](/de/faecher/mathematik/funktionstransformationen/spiegelung-an-der-y-achse) <InlineMath math="y = f(-x)" /> übrig.
+
+Bei einer geraden Funktion sieht man die Spiegelung nicht. Für <InlineMath math="f(x) = x^2 + 1" /> und <InlineMath math="b = -2" /> gilt <InlineMath math="f(-2x) = 4x^2 + 1 = f(2x)" />, der Graph stimmt also mit dem Ergebnis der Stauchung allein überein. Der Punkt <InlineMath math="(2, 5)" /> wandert trotzdem auf die linke Seite nach <InlineMath math="(-1, 5)" />, und der Punkt <InlineMath math="(-1, 2)" /> wandert auf die rechte Seite nach <InlineMath math="\left(\frac{1}{2}, 2\right)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphen von <InlineMath math="f(x) = x^2 + 1" /> und <InlineMath math="g(x) = f(-2x)" /></>}
+  description={<>Beide Pfeile überqueren die <InlineMath math="y" />-Achse, doch jeder Bildpunkt landet auf einer symmetrischen Parabel, deshalb stimmt <InlineMath math="g" /> mit <InlineMath math="f(2x)" /> überein.</>}
+  cameraPosition={[0, 3.5, 9]}
+  cameraTarget={[0, 3.5, 0]}
+  data={(() => {
+    // f(x) = x^2 + 1 stays inside the frame y <= 10 for -3 <= x <= 3.
+    // g(x) = f(-2x) reaches the height f(t) at x = t / -2, so g reuses the inputs t of f.
+    const f = (x) => x * x + 1;
+    const g = (x) => f(-2 * x);
+    const t = Array.from({ length: 961 }, (_, i) => -3 + i / 160);
+    // The point (x0, f(x0)) moves to (x0 / -2, f(x0)): across the y-axis and half as far from it.
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 / -2, y: g(x0 / -2), z: 0 },
+    ];
+    return [
+      {
+        points: t.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 880, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: t.map((s) => s / -2).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(-1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
 
 Nur <InlineMath math="b = 0" /> ist ausgeschlossen. Für <InlineMath math="b = 0" /> wird jedes Argument zu <InlineMath math="0" />, also gilt <InlineMath math="f(0 \cdot x) = f(0)" /> für jedes <InlineMath math="x" />, und der Graph ist nur noch die waagerechte Gerade <InlineMath math="y = f(0)" />, sofern <InlineMath math="f(0)" /> definiert ist. Auch die Regel <InlineMath math="\frac{x_0}{b}" /> versagt, weil die Division durch null nicht definiert ist.
 
@@ -531,41 +590,60 @@ Nimm <InlineMath math="h(x) = |x - 2|" /> mit dem Scheitelpunkt <InlineMath math
 
 Der letzte Schritt nutzt <InlineMath math="-2x - 2 = -2(x + 1)" /> und <InlineMath math="|-2| = 2" />. Der Scheitelpunkt wandert nach <InlineMath math="\left(\frac{2}{-2}, 0\right) = (-1, 0)" />, und tatsächlich ist <InlineMath math="H(-1) = 0" />. Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(-2, 2)" />: Sein Abstand zur <InlineMath math="y" />-Achse halbiert sich, und er landet auf der anderen Seite. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 2)" /> bleibt, weil <InlineMath math="H(0) = 2 = h(0)" /> gilt.
 
+Zum Vergleich liefert <InlineMath math="b = -1" /> die Funktion <InlineMath math="h(-x) = |-x - 2| = |x + 2|" /> mit dem Scheitelpunkt <InlineMath math="(-2, 0)" />. Dieser Graph wird nur gespiegelt, seine Breite bleibt also gleich.
+
 <LineEquation
   showZAxis={false}
-  title={<>Graphen von <InlineMath math="h(x) = |x - 2|" /> und <InlineMath math="H(x) = h(-2x)" /></>}
-  description={<>Der Pfeil bringt <InlineMath math="(4, 2)" /> nach <InlineMath math="(-2, 2)" /> und läuft dabei durch den festen Punkt <InlineMath math="(0, 2)" /> auf der <InlineMath math="y" />-Achse.</>}
-  cameraPosition={[0.5, 1, 12]}
-  cameraTarget={[0.5, 1, 0]}
-  data={[
-    {
-      points: [{ x: -1, y: 3, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 5, y: 3, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, at: 1, offset: [0.3, -0.7, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -2.5, y: 3, z: 0 }, { x: -1, y: 0, z: 0 }, { x: 0.5, y: 3, z: 0 }],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="H(x)=2|x+1|" />, at: 1, offset: [-0.3, -0.7, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 4, y: 2, z: 0 }, { x: -2, y: 2, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 0, y: 2, z: 0 }],
-      smooth: false,
-      color: "#475569",
-      showPoints: true,
-    },
-  ]}
+  title={<>Graphen von <InlineMath math="h(x) = |x - 2|" />, <InlineMath math="y = h(-x)" /> und <InlineMath math="H(x) = h(-2x)" /></>}
+  description={<>Der Pfeil bringt <InlineMath math="(4, 2)" /> nach <InlineMath math="(-2, 2)" /> und läuft dabei durch den festen Punkt <InlineMath math="(0, 2)" /> auf der <InlineMath math="y" />-Achse. Der Scheitelpunkt <InlineMath math="(2, 0)" /> wandert für <InlineMath math="b = -1" /> nach <InlineMath math="(-2, 0)" /> und für <InlineMath math="b = -2" /> nach <InlineMath math="(-1, 0)" />.</>}
+  cameraPosition={[0, 2, 10]}
+  cameraTarget={[0, 2, 0]}
+  data={(() => {
+    // h(x) = |x - 2| is exact with straight pieces, so each graph needs its corner, the points
+    // named in the text, and the points where it leaves the frame y <= 9 (the inputs t = -7, 11).
+    // y = h(bx) takes the value h(t) at x = t / b; the corner t = 2 lands at x = 2 / b.
+    const h = (x) => Math.abs(x - 2);
+    const v = (b) => [-7, 0, 2, 4, 11].map((t) => t / b).map((x) => ({ x, y: h(b * x), z: 0 }));
+    return [
+      {
+        points: v(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 2, offset: [0.3, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: v(-1),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h(-x)" />, at: 2, offset: [-0.3, -0.6, 0], anchorX: "right" }],
+      },
+      {
+        points: v(-2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="H" />, at: 2, offset: [0.3, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 4, y: h(4), z: 0 },
+          { x: 4 / -2, y: h(-2 * (4 / -2)), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 0, y: h(0), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
 
 ## Fehler beim Lesen des Faktors
@@ -599,11 +677,108 @@ Beginne jede Aufgabe damit, **den Faktor <InlineMath math="b" /> zu bestimmen**,
 
 Aus der faktorisierten Form liest du die Nullstellen <InlineMath math="x = -\frac{1}{3}" /> und <InlineMath math="x = 1" /> ab. Die Regel der Stauchung liefert eine zweite Kontrolle: <InlineMath math="f(x) = (x + 1)(x - 3)" /> hat die Nullstellen <InlineMath math="-1" /> und <InlineMath math="3" />, und **beide durch <InlineMath math="3" /> geteilt** ergeben genau <InlineMath math="-\frac{1}{3}" /> und <InlineMath math="1" />.
 
+<LineEquation
+  showZAxis={false}
+  title={<>Parabeln <InlineMath math="f(x) = x^2 - 2x - 3" /> und <InlineMath math="F(x) = f(3x)" /></>}
+  description={<>Die Punkte auf jeder Parabel markieren ihre Nullstellen. Der Pfeil bringt den Scheitelpunkt <InlineMath math="(1, -4)" /> nach <InlineMath math="\left(\tfrac{1}{3}, -4\right)" />.</>}
+  cameraPosition={[1, 0.5, 12]}
+  cameraTarget={[1, 0.5, 0]}
+  data={(() => {
+    // f(x) = x^2 - 2x - 3 stays inside the frame y <= 12 for -3 <= x <= 5.
+    // F(x) = f(3x) reaches the height f(t) at x = t / 3, so F reuses the inputs t of f.
+    // Sample 480 is t = -1 and sample 1440 is t = 3, the zeros of f.
+    const f = (x) => x * x - 2 * x - 3;
+    const F = (x) => f(3 * x);
+    const t = Array.from({ length: 1921 }, (_, i) => -3 + i / 240);
+    return [
+      {
+        points: t.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [480, 1440],
+        labels: [{ text: <InlineMath math="f" />, at: 1680, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: t.map((s) => s / 3).map((x) => ({ x, y: F(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [480, 1440],
+        labels: [{ text: <InlineMath math="F" />, at: 1560, offset: [0.25, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1 / 3, y: F(1 / 3), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.25 },
+      },
+    ];
+  })()}
+/>
+
 **Aufgabe 2**. Jede <InlineMath math="x" />-Koordinate wird mit <InlineMath math="4" /> multipliziert, **der Streckfaktor ist also <InlineMath math="s = 4" />** und <InlineMath math="b = \frac{1}{4}" />. Ersetze <InlineMath math="x" /> durch <InlineMath math="\frac{x}{4}" />:
 
 <BlockMath math="y = \sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{2}" />
 
-Die zweite Form gilt, weil <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> für <InlineMath math="x \ge 0" /> ist. Prüfe mit <InlineMath math="(4, 2)" /> auf <InlineMath math="y = \sqrt{x}" />: Der Punkt wandert nach <InlineMath math="(16, 2)" />, und <InlineMath math="\frac{\sqrt{16}}{2} = 2" />. Die Form <InlineMath math="\frac{\sqrt{x}}{2}" /> lässt sich auch als vertikale Stauchung mit dem Faktor <InlineMath math="\frac{1}{2}" /> lesen. Bei der Wurzelfunktion liefern beide Transformationen also denselben Graphen.
+Die zweite Form gilt, weil <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> für <InlineMath math="x \ge 0" /> ist. Prüfe mit <InlineMath math="(1, 1)" /> auf <InlineMath math="y = \sqrt{x}" />: Der Punkt wandert nach <InlineMath math="(4, 1)" />, und <InlineMath math="\frac{\sqrt{4}}{2} = 1" />. Die Form <InlineMath math="\frac{\sqrt{x}}{2}" /> lässt sich auch als vertikale Stauchung mit dem Faktor <InlineMath math="\frac{1}{2}" /> lesen: Der Punkt <InlineMath math="(4, 2)" /> sinkt senkrecht nach <InlineMath math="(4, 1)" />. Bei der Wurzelfunktion liefern beide Transformationen also denselben Graphen.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Kurven <InlineMath math="y = \sqrt{x}" /> und <InlineMath math="y = \sqrt{\tfrac{x}{4}}" /></>}
+  description={<>Der waagerechte Pfeil bringt <InlineMath math="(1, 1)" /> nach <InlineMath math="(4, 1)" />, der senkrechte Pfeil bringt <InlineMath math="(4, 2)" /> zum selben Punkt.</>}
+  cameraPosition={[2.5, 1.2, 6.4]}
+  cameraTarget={[2.5, 1.2, 0]}
+  data={(() => {
+    // y = sqrt(x) is sampled by its heights r: the point of height r sits at x = r^2, which keeps
+    // the samples dense where the curve leaves the y-axis vertically. The frame x <= 9 stops it at r = 3.
+    // Moving every point (x, y) to (4x, y) gives y = sqrt(x / 4); its point of height r sits at
+    // x = 4 r^2, and it reaches the frame side x = 9 at r = 3/2.
+    const g = (x) => Math.sqrt(x);
+    const G = (x) => g(x / 4);
+    const r = Array.from({ length: 1201 }, (_, i) => i / 400);
+    return [
+      {
+        points: r.map((y) => y * y).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="\sqrt{x}" />, at: 880, offset: [-0.2, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: r.slice(0, 601).map((y) => 4 * y * y).map((x) => ({ x, y: G(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="\sqrt{\tfrac{x}{4}}" />, at: 460, offset: [0, -0.45, 0], anchorX: "right" }],
+      },
+      {
+        points: [
+          { x: 1, y: g(1), z: 0 },
+          { x: 4, y: G(4), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.2 },
+      },
+      {
+        points: [
+          { x: 4, y: g(4), z: 0 },
+          { x: 4, y: G(4), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.2 },
+      },
+    ];
+  })()}
+/>
 
 **Aufgabe 3**. Der Faktor ist <InlineMath math="b = -\frac{1}{2}" />, die Intervallgrenzen tauschen also die Plätze. Der Wert <InlineMath math="g(x)" /> ist definiert, wenn das Argument <InlineMath math="-\frac{x}{2}" /> im Definitionsbereich von <InlineMath math="f" /> liegt. Multipliziere die Ungleichungskette mit <InlineMath math="-2" /> und **kehre beide Ungleichheitszeichen um**:
 
@@ -616,3 +791,50 @@ Die Regel <InlineMath math="\left[\frac{d}{b}, \frac{c}{b}\right] = \left[\frac{
 <BlockMath math="\begin{aligned} 2^{6b} &= 8 = 2^3 \\ 6b &= 3 \\ b &= \tfrac{1}{2} \end{aligned}" />
 
 Die Funktion <InlineMath math="2^t" /> ist streng monoton steigend, deshalb gilt <InlineMath math="2^{6b} = 2^3" /> nur für <InlineMath math="6b = 3" />. Wegen <InlineMath math="0 < b < 1" /> wird der Graph von <InlineMath math="y = 2^x" /> mit dem Faktor <InlineMath math="\frac{1}{b} = 2" /> von der <InlineMath math="y" />-Achse weg gestreckt: **Jeder Abstand zur <InlineMath math="y" />-Achse verdoppelt sich**. Probe: Der Punkt <InlineMath math="(3, 8)" /> auf <InlineMath math="y = 2^x" /> wandert nach <InlineMath math="\left(\frac{3}{1/2}, 8\right) = (6, 8)" />, genau zum gegebenen Punkt. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 1)" /> und die Asymptote <InlineMath math="y = 0" /> bleiben, wo sie sind.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Kurven <InlineMath math="y = 2^x" /> und <InlineMath math="g(x) = 2^{x/2}" /></>}
+  description={<>Der Pfeil bringt <InlineMath math="(3, 8)" /> nach <InlineMath math="(6, 8)" />, sein Abstand zur <InlineMath math="y" />-Achse verdoppelt sich also, während <InlineMath math="(0, 1)" /> bleibt.</>}
+  cameraPosition={[1.5, 4.2, 11]}
+  cameraTarget={[1.5, 4.2, 0]}
+  data={(() => {
+    // f(x) = 2^x stays inside the frame x >= -10, y <= 16 up to x = 4, and g(x) = f(x / 2) up to x = 8.
+    // g reaches the height f(t) at x = 2t, so it reuses the inputs t of f from -5 to 4.
+    const f = (x) => 2 ** x;
+    const g = (x) => f(x / 2);
+    const t = Array.from({ length: 897 }, (_, i) => -10 + i / 64);
+    return [
+      {
+        points: t.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2^x" />, at: 832, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: t.filter((s) => s >= -5).map((s) => 2 * s).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 448, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 3, y: f(3), z: 0 },
+          { x: 6, y: g(6), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 0, y: f(0), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
