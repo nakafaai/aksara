@@ -2,12 +2,9 @@ import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, FileSystem, Path, Schema } from "effect";
-import {
-  QuestionReadError,
-  type QuestionSource,
-} from "#corpus/question-bank/source";
+import { Effect, Schema } from "effect";
+import { readQuestionPrompts } from "#corpus/question-bank/prompt";
+import type { QuestionSource } from "#corpus/question-bank/source";
 
 const METADATA_PATTERN = /^export const metadata = \{[\s\S]*?\};\s*/u;
 const MARK_PATTERN = /[“”„"'‘’`*]/gu;
@@ -69,32 +66,11 @@ function repeat(
 export const validateQuestionUniqueness = Effect.fn(
   "AksaraCorpus.validateQuestionUniqueness"
 )(function* (corpusRoot: string, sources: readonly QuestionSource[]) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
-  const prompts = sources.flatMap(({ languagePolicy, sourceRoot }) =>
-    questionArtifactLocalesForPolicy(languagePolicy).map((locale) => ({
-      locale,
-      path: CorpusSourcePathSchema.make(`${sourceRoot}/question.${locale}.mdx`),
-    }))
-  );
-  const prints = yield* Effect.forEach(
-    prompts,
-    ({ locale, path: sourcePath }) =>
-      fileSystem.readFileString(path.join(corpusRoot, sourcePath), "utf8").pipe(
-        Effect.mapError(
-          (cause) => new QuestionReadError({ cause, path: sourcePath })
-        ),
-        Effect.map((rawMdx) => {
-          const text = `${locale}\n${normalizePrompt(rawMdx)}`;
-          return {
-            numbers: text.replace(NUMBER_PATTERN, "#"),
-            path: sourcePath,
-            text,
-          };
-        })
-      ),
-    { concurrency: 16 }
-  );
+  const prompts = yield* readQuestionPrompts(corpusRoot, sources);
+  const prints = prompts.map(({ locale, path, rawMdx }) => {
+    const text = `${locale}\n${normalizePrompt(rawMdx)}`;
+    return { numbers: text.replace(NUMBER_PATTERN, "#"), path, text };
+  });
   const repeats = [
     ...sharedPrints(prints, ({ text }) => text).map((group) =>
       repeat("text", group)
