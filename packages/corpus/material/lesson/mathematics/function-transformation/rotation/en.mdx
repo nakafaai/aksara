@@ -1,566 +1,270 @@
 export const metadata = {
-  title: "Rotation",
-  description: "Use formulas, graphs, and fully worked examples to rotate points and function curves around a fixed center.",
+  title: "Rotating a Function Graph",
+  description: "Rotate points and function graphs by 90, 180, or 270 degrees or any angle about the origin or another center, then find the equation of the rotated curve.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-01",
   subject: "Function Transformation",
 };
 
-## Turning a Graph around a Fixed Point
+## Turning Every Point of a Graph
 
-Rotation is a geometric transformation that rotates an object <Highlight>around a specific center point with a determined rotation angle</Highlight>. In the context of functions, rotation changes the position of the function graph by rotating every point on the graph.
+A rotation of a function graph turns every point of the graph **through the same angle about one center of rotation**. A positive angle means a counterclockwise turn, and a negative angle means a clockwise turn. About the origin <InlineMath math="O(0, 0)" />, a rotation by <InlineMath math="\theta" /> moves the point <InlineMath math="(x, y)" /> to its image <InlineMath math="(x', y')" />:
 
-Imagine a wheel turning. Each point on the wheel moves along a circle centered at the axle. A graph rotation works the same way. Each point moves around the rotation center while keeping the same distance from it.
+<BlockMath math="\begin{aligned} x' &= x\cos\theta - y\sin\theta \\ y' &= x\sin\theta + y\cos\theta \end{aligned}" />
 
-## Rotation Formula Around Center Point
+For multiples of <InlineMath math="90^\circ" />, the formula reduces to short rules. A turn of <InlineMath math="90^\circ" /> moves <InlineMath math="(x, y)" /> to <InlineMath math="(-y, x)" />, a turn of <InlineMath math="180^\circ" /> to <InlineMath math="(-x, -y)" />, and a turn of <InlineMath math="270^\circ" /> to <InlineMath math="(y, -x)" />. On the interactive unit circle, you can change <InlineMath math="\theta" /> yourself and watch where the point <InlineMath math="(1, 0)" /> lands.
 
-To rotate point <InlineMath math="(x, y)" /> around center <InlineMath math="(a, b)" /> through angle <InlineMath math="\theta" />, first find the point's coordinates relative to the center. Call these coordinates <InlineMath math="u" /> and <InlineMath math="v" />:
+For a function graph, the rotation also changes the equation. To get the new equation, write the old coordinates in terms of the new ones and substitute those expressions into the original equation. The rotated curve **need not be the graph of a function**, because after the turn one value of <InlineMath math="x" /> can be paired with two values of <InlineMath math="y" />. The same turning rule moves points and plane shapes in [rotation as a geometric transformation](/en/subjects/mathematics/geometric-transformation/rotation).
 
-<BlockMath math="\begin{aligned} u &amp;= x-a \\ v &amp;= y-b \end{aligned}" />
+## The Rotation Formula from the Unit Circle
 
-Rotate these relative coordinates, then add the center coordinates back. Adding <InlineMath math="a" /> to the horizontal coordinate and <InlineMath math="b" /> to the vertical coordinate places the rotated point in the original coordinate system:
+Start with the point <InlineMath math="(1, 0)" />, which lies at distance <InlineMath math="1" /> from the origin. Because **a rotation keeps every distance to the center**, its image stays on the circle of radius <InlineMath math="1" />, at the end of the radius that makes the angle <InlineMath math="\theta" /> with the positive <InlineMath math="x" />-axis. On the unit circle, the point at the end of the radius with angle <InlineMath math="\theta" /> has coordinates <InlineMath math="(\cos\theta, \sin\theta)" />. That is how cosine and sine are defined for any angle.
 
-<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ y' &amp;= u\sin\theta+v\cos\theta+b \end{aligned}" />
-
-The symbols in these equations mean:
-- <InlineMath math="(x, y)" /> is the **original point** coordinate
-- <InlineMath math="(x', y')" /> is the rotated point coordinate
-- <InlineMath math="(a, b)" /> is the rotation center point
-- <InlineMath math="\theta" /> is the rotation angle (positive for counterclockwise direction)
-
-## Special Rotation Around Origin
-
-Rotation around the origin <InlineMath math="(0, 0)" /> is the case students meet first, because substituting <InlineMath math="a = 0" /> and <InlineMath math="b = 0" /> removes the translation terms from the general formula. What remains is a pure change of direction, and the three quarter turns below cover most textbook problems.
-
-The first rule is a **quarter turn counterclockwise**. Applying that first rule twice gives the half-turn rule. Applying it three times gives the three-quarter-turn rule.
-
-1. <InlineMath math="90^\circ" /> Rotation
-
-<BlockMath math="(x, y) \rightarrow (-y, x)" />
-
-2. <InlineMath math="180^\circ" /> Rotation
-
-<BlockMath math="(x, y) \rightarrow (-x, -y)" />
-
-3. <InlineMath math="270^\circ" /> Rotation
-
-<BlockMath math="(x, y) \rightarrow (y, -x)" />
-
-## Visualization of Quadratic Function Rotation
-
-Rotating a curve means rotating every individual point. The quadratic function <InlineMath math="y = x^2" /> is a convenient choice for that check because its points come in pairs with the same value, so you can verify the rotation by hand. The display below shows the original parabola and its <InlineMath math="90^\circ" /> counterclockwise rotation around the origin.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Function <InlineMath math="y = x^2" /> Around Origin</>}
-  description={<>Comparison of original function with <InlineMath math="90^\circ" /> counterclockwise rotation result.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 135 }, (_, pointIndex) => {
-        const x = -2.5 + pointIndex / 134 * 5;
-        const y = x * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=x^2" />,
-          at: 92,
-          offset: [0.5, 0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 369 }, (_, pointIndex) => {
-        const x = -2.5 + pointIndex / 368 * 5;
-        const y = x * x;
-        // 90° rotation around origin: (x,y) → (-y,x)
-        const xRotated = -y;
-        const yRotated = x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <><InlineMath math="90^\circ" /> Rotation Result</>,
-          at: 159,
-          offset: [-1, 0.5, 0],
-        },
-      ],
-    },
-  ]}
+<UnitCircle
+  title={<>Image of the point <InlineMath math="(1, 0)" /> after a turn by <InlineMath math="\theta" /></>}
+  description={<>Change <InlineMath math="\theta" /> in the angle field. The end of the radius is the image of <InlineMath math="(1, 0)" />, so its coordinates are always <InlineMath math="(\cos\theta, \sin\theta)" /> and its distance from the origin stays <InlineMath math="1" />.</>}
+  angle={60}
 />
 
-The rotated curve satisfies a **relation**, rather than a single function of the horizontal coordinate:
+The angle field starts at <InlineMath math="60" />, so the end of the radius sits at <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, matching the values <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> shown below the circle.
 
-<BlockMath math="X=-y=-x^2=-Y^2" />
+Now enter <InlineMath math="90" />, <InlineMath math="180" />, and <InlineMath math="270" />. The end of the radius stops at <InlineMath math="(0, 1)" />, <InlineMath math="(-1, 0)" />, and <InlineMath math="(0, -1)" />, and the point never leaves the circle. If you enter <InlineMath math="-90" />, the radius turns clockwise and stops at <InlineMath math="(0, -1)" />, the same place as a <InlineMath math="270^\circ" /> turn.
 
-The points <InlineMath math="(1,1)" /> and <InlineMath math="(-1,1)" /> become <InlineMath math="(-1,1)" /> and <InlineMath math="(-1,-1)" />. One input <InlineMath math="X=-1" /> has two <InlineMath math="Y" /> values.
+The point <InlineMath math="(0, 1)" /> already makes an angle of <InlineMath math="90^\circ" /> with the positive <InlineMath math="x" />-axis, so turning that point by <InlineMath math="\theta" /> is the same as **reading the circle at the angle <InlineMath math="\theta + 90^\circ" />**. Enter <InlineMath math="150" />, which is <InlineMath math="60 + 90" />, and the end of the radius sits at <InlineMath math="\left(-\tfrac{\sqrt{3}}{2}, \tfrac{1}{2}\right)" />. That pair equals <InlineMath math="(-\sin 60^\circ, \cos 60^\circ)" />.
 
-## Properties of Function Rotation
+The same pattern holds for every angle, because <InlineMath math="\cos(\theta + 90^\circ) = -\sin\theta" /> and <InlineMath math="\sin(\theta + 90^\circ) = \cos\theta" />, so the image of <InlineMath math="(0, 1)" /> is <InlineMath math="(-\sin\theta, \cos\theta)" />.
 
-Rotation moves a graph around a fixed point without changing its size, so the graph keeps its shape and only its orientation changes. The table below lists what stays fixed and what changes.
+These two images are enough to turn any point. You reach <InlineMath math="(x, y)" /> from the origin by taking <InlineMath math="x" /> steps in the direction of <InlineMath math="(1, 0)" /> and then <InlineMath math="y" /> steps in the direction of <InlineMath math="(0, 1)" />. The rotation turns the rectangle formed by those steps as one rigid piece, so you reach the image by taking **the same numbers of steps along the turned directions**:
 
-| Property | What happens | Why it holds |
-| --- | --- | --- |
-| Shape | The shape of the graph does not change | Rotation moves every point by the same angle around the same center |
-| Distances | The distance between two points stays the same | Rotating two points around one center preserves the segment that joins them |
-| Angles between sides | Angles in the figure stay the same | A rotation is a rigid motion, so it never bends the figure |
-| Orientation | The graph turns toward a new direction | Noncentral points trace circular arcs about the center |
-| Compounding | Two rotations around the same center add their angles | Turning by <InlineMath math="\theta_1" /> and then by <InlineMath math="\theta_2" /> is a single turn by <InlineMath math="\theta_1 + \theta_2" /> |
+<BlockMath math="\begin{aligned} (x', y') &= x(\cos\theta, \sin\theta) + y(-\sin\theta, \cos\theta) \\ &= (x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta) \end{aligned}" />
 
-Because distances and angles never change, a rotation is called a rigid motion. That single fact explains why shape and size survive, while position and direction are <Highlight>the only things that move</Highlight>.
+The two components are the rotation formula about the origin. You can also write this formula as one product of a [rotation matrix](/en/subjects/mathematics/geometric-transformation/rotation-matrix) with the vector <InlineMath math="(x, y)" />.
 
-## Application of Rotation to Various Functions
+As an example, the point <InlineMath math="P(2, 4)" /> on the graph of <InlineMath math="y = x^2" /> turns by <InlineMath math="60^\circ" /> about the origin. The values <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> appear on the unit circle at <InlineMath math="\theta = 60^\circ" /> and in the table of [special angle values](/en/subjects/mathematics/trigonometry/trigonometric-comparison-special-angle). With <InlineMath math="x = 2" /> and <InlineMath math="y = 4" />, the rotation formula gives:
 
-Rotation does not treat every curve the same way. A straight line and an exponential curve both **keep their shape**, but the rotated line stays a straight line while the rotated exponential curve changes which axis it approaches. The two cases below show that difference.
+<BlockMath math="\begin{aligned} x' &= 2 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = 1 - 2\sqrt{3} \\ y' &= 2 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = \sqrt{3} + 2 \end{aligned}" />
 
-### Linear Function Rotation
+The image is <InlineMath math="P'(1 - 2\sqrt{3}, \sqrt{3} + 2)" />, with <InlineMath math="x' \approx -2.46" /> and <InlineMath math="y' \approx 3.73" />. The distance from <InlineMath math="P'" /> to the origin must equal the distance <InlineMath math="OP" />:
 
-For a linear function <InlineMath math="y = mx + c" />, every point moves to a new position, so <Highlight>slope and position change together</Highlight>. The <InlineMath math="45^\circ" /> counterclockwise rotation around the origin shows how the original line becomes a second line.
+<BlockMath math="(1 - 2\sqrt{3})^2 + (\sqrt{3} + 2)^2 = (13 - 4\sqrt{3}) + (7 + 4\sqrt{3}) = 20 = 2^2 + 4^2" />
 
-For the example <InlineMath math="y=2x+1" />, the rotation rule gives these new coordinates. Eliminate the old variable to obtain the rotated line equation.
+The direction checks out too. Since <InlineMath math="P" /> has <InlineMath math="y > x > 0" />, the angle of <InlineMath math="OP" /> with the positive <InlineMath math="x" />-axis lies between <InlineMath math="45^\circ" /> and <InlineMath math="90^\circ" />. Adding <InlineMath math="60^\circ" /> puts that angle between <InlineMath math="105^\circ" /> and <InlineMath math="150^\circ" />, in quadrant II, and <InlineMath math="P'" /> does have <InlineMath math="x' < 0" /> and <InlineMath math="y' > 0" />.
 
-<MathContainer>
-<BlockMath math="X=\frac{x-(2x+1)}{\sqrt2}=-\frac{x+1}{\sqrt2},\qquad Y=\frac{x+(2x+1)}{\sqrt2}=\frac{3x+1}{\sqrt2}" />
+## Turns by Multiples of a Right Angle
 
-<BlockMath math="x=-\sqrt2X-1 \quad\Rightarrow\quad Y=-3X-\sqrt2" />
-</MathContainer>
+At <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" />, and <InlineMath math="270^\circ" />, the values of <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> are only <InlineMath math="0" />, <InlineMath math="1" />, or <InlineMath math="-1" />. The rotation formula then shrinks to **changing the signs of the coordinates**, and at <InlineMath math="90^\circ" /> and <InlineMath math="270^\circ" /> the two coordinates also swap places. For <InlineMath math="90^\circ" />, substituting <InlineMath math="\cos 90^\circ = 0" /> and <InlineMath math="\sin 90^\circ = 1" /> gives:
+
+<BlockMath math="\begin{aligned} x' &= x \cdot 0 - y \cdot 1 = -y \\ y' &= x \cdot 1 + y \cdot 0 = x \end{aligned}" />
+
+In the same way, <InlineMath math="\cos 180^\circ = -1" /> and <InlineMath math="\sin 180^\circ = 0" /> give <InlineMath math="(-x, -y)" />, while <InlineMath math="\cos 270^\circ = 0" /> and <InlineMath math="\sin 270^\circ = -1" /> give <InlineMath math="(y, -x)" />. The column for the image of <InlineMath math="(1, 0)" /> in the table is where the end of the radius sits on the unit circle at the same angle, so you can match every rule there.
+
+| Angle | Image of <InlineMath math="(1, 0)" /> | Image of <InlineMath math="(x, y)" /> | Direction |
+| --- | --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(0, 1)" /> | <InlineMath math="(-y, x)" /> | Quarter turn counterclockwise |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-1, 0)" /> | <InlineMath math="(-x, -y)" /> | Half turn, the same in either direction |
+| <InlineMath math="270^\circ" /> | <InlineMath math="(0, -1)" /> | <InlineMath math="(y, -x)" /> | Same as <InlineMath math="-90^\circ" />, a quarter turn clockwise |
+
+For instance, the point <InlineMath math="P(3, 4)" /> turns <InlineMath math="90^\circ" /> counterclockwise about the origin. The rule <InlineMath math="(x, y) \mapsto (-y, x)" /> gives:
+
+<BlockMath math="P(3, 4) \longmapsto P'(-4, 3)" />
+
+Check the distance and the angle. Both points lie at the same distance from <InlineMath math="O" />, because <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. The slope of <InlineMath math="OP" /> is <InlineMath math="\tfrac{4}{3}" /> and the slope of <InlineMath math="OP'" /> is <InlineMath math="-\tfrac{3}{4}" />. Their product is <InlineMath math="-1" />, so <InlineMath math="OP" /> is perpendicular to <InlineMath math="OP'" />. The image <InlineMath math="P'" /> also lies in quadrant II, one quadrant counterclockwise from <InlineMath math="P" />.
+
+A <InlineMath math="180^\circ" /> turn changes the sign of both coordinates at once. You get the same result by reflecting the graph across the <InlineMath math="x" />-axis, which changes the sign of <InlineMath math="y" />, and then across the <InlineMath math="y" />-axis, which changes the sign of <InlineMath math="x" />. In equation form, **a half turn changes <InlineMath math="y = f(x)" /> into <InlineMath math="y = -f(-x)" />**, which combines a [reflection across the <InlineMath math="x" />-axis](/en/subjects/mathematics/function-transformation/vertical-reflection) with a [reflection across the <InlineMath math="y" />-axis](/en/subjects/mathematics/function-transformation/horizontal-reflection).
+
+The two reflections act on different coordinates, so you may swap their order, just like horizontal and vertical steps when you [combine function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function).
+
+## Rotating about Another Center
+
+The formulas <InlineMath math="x' = x\cos\theta - y\sin\theta" /> and <InlineMath math="y' = x\sin\theta + y\cos\theta" /> only turn about the origin. For a center <InlineMath math="C(p, q)" />, first shift the plane so that <InlineMath math="C" /> lands on the origin, turn with the origin formula, and then shift the plane back. The difference <InlineMath math="(x - p, y - q)" /> is the position of the point as seen from <InlineMath math="C" />, and **that difference is what gets turned** before the coordinates of <InlineMath math="C" /> are added back:
+
+<BlockMath math="\begin{aligned} x' &= p + (x - p)\cos\theta - (y - q)\sin\theta \\ y' &= q + (x - p)\sin\theta + (y - q)\cos\theta \end{aligned}" />
+
+The center <InlineMath math="C" /> itself does not move, because the difference of <InlineMath math="C" /> from <InlineMath math="C" /> is <InlineMath math="(0, 0)" />. Every other point moves on a circle centered at <InlineMath math="C" />, so its distance to <InlineMath math="C" /> stays the same.
+
+Take the point <InlineMath math="P(2, 5)" /> turning <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="C(1, 1)" />. The difference of <InlineMath math="P" /> from <InlineMath math="C" /> is <InlineMath math="(2 - 1, 5 - 1) = (1, 4)" />. A quarter turn changes that difference by the rule <InlineMath math="(u, v) \mapsto (-v, u)" />, and then the coordinates of <InlineMath math="C" /> are added back:
+
+<ContentStack>
+
+<BlockMath math="(1, 4) \longmapsto (-4, 1), \qquad P' = (1 + (-4),\ 1 + 1) = (-3, 2)" />
 
 <LineEquation
+  title={<>A quarter turn of <InlineMath math="P(2, 5)" /> about <InlineMath math="C(1, 1)" /></>}
+  description={<>The arc shows the path of <InlineMath math="P" /> on the circle centered at <InlineMath math="C" />. The segments <InlineMath math="CP" /> and <InlineMath math="CP'" /> have the same length, <InlineMath math="\sqrt{17}" />, and are perpendicular.</>}
   showZAxis={false}
-  title={<>Rotation of Linear Function <InlineMath math="y = 2x + 1" /></>}
-  description={<><InlineMath math="45^\circ" /> rotation around origin.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
+  cameraPosition={[-0.5, 3, 10]}
+  cameraTarget={[-0.5, 3, 0]}
   data={[
     {
-      points: Array.from({ length: 23 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = i - 5;
-        const y = 2 * x + 1;
-        return { x, y, z: 0 };
+      points: Array.from({ length: 61 }, (_, index) => {
+        const angle = Math.atan2(4, 1) + (Math.PI / 2) * (index / 60);
+        return { x: 1 + Math.sqrt(17) * Math.cos(angle), y: 1 + Math.sqrt(17) * Math.sin(angle), z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=2x + 1" />,
-          at: 18,
-          offset: [1, 0.5, 0],
-        },
-      ],
+      cone: { position: "end", size: 0.3 },
     },
     {
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const i = pointIndex - 2;
-        const x = i - 5;
-        const y = 2 * x + 1;
-        // 45° rotation around origin
-        const cos45 = Math.cos(Math.PI / 4);
-        const sin45 = Math.sin(Math.PI / 4);
-        const xRotated = x * cos45 - y * sin45;
-        const yRotated = x * sin45 + y * cos45;
-        return { x: xRotated, y: yRotated, z: 0 };
+      points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 5, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P(2, 5)" />, at: 1, offset: [1, 0.2, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: -3, y: 2, z: 0 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P'(-3, 2)" />, at: 1, offset: [-0.4, -0.6, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C(1, 1)" />, at: 0, offset: [1, -0.4, 0] }],
+    },
+  ]}
+/>
+
+</ContentStack>
+
+The distance to the center does not change. Before the turn, <InlineMath math="|CP|^2 = 1^2 + 4^2 = 17" />. After it, <InlineMath math="|CP'|^2 = (-3 - 1)^2 + (2 - 1)^2 = 16 + 1 = 17" />. The slope of <InlineMath math="CP" /> is <InlineMath math="4" /> and the slope of <InlineMath math="CP'" /> is <InlineMath math="-\tfrac{1}{4}" />, with product <InlineMath math="-1" />, so the two segments are perpendicular. Turning <InlineMath math="P" /> about <InlineMath math="O" /> by mistake gives <InlineMath math="(-5, 2)" />. The distance of that point to <InlineMath math="C" /> changes from <InlineMath math="\sqrt{17}" /> to <InlineMath math="\sqrt{37}" />, which tells you the wrong center was used.
+
+## The Equation of a Rotated Curve
+
+The rotation formula gives the image of one point, but the equation of the rotated curve needs the opposite direction. Every new point <InlineMath math="(x', y')" /> comes from an old point <InlineMath math="(x, y)" /> that satisfies the original equation. You find that old point by **turning the new point back by <InlineMath math="-\theta" />**:
+
+<BlockMath math="\begin{aligned} x &= x'\cos\theta + y'\sin\theta \\ y &= -x'\sin\theta + y'\cos\theta \end{aligned}" />
+
+Substitute both expressions into the original equation, simplify, and then drop the primes. The primes only keep the new point apart from the old one during the calculation, so the final equation is written with <InlineMath math="x" /> and <InlineMath math="y" /> again.
+
+For the parabola <InlineMath math="y = x^2" /> turned by <InlineMath math="90^\circ" />, the values <InlineMath math="\cos 90^\circ = 0" /> and <InlineMath math="\sin 90^\circ = 1" /> give <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" />. Substituting into <InlineMath math="y = x^2" /> gives:
+
+<BlockMath math="\begin{aligned} y &= x^2 \\ -x' &= (y')^2 \\ x' &= -(y')^2 \end{aligned}" />
+
+After dropping the primes, the rotated curve is **the parabola <InlineMath math="x = -y^2" />, which opens to the left**. Check one point: <InlineMath math="(2, 4)" /> on the original parabola moves to <InlineMath math="(-4, 2)" /> under the rule <InlineMath math="(x, y) \mapsto (-y, x)" />, and that point satisfies <InlineMath math="-4 = -(2)^2" />.
+
+The line <InlineMath math="y = 2x + 1" /> turned by <InlineMath math="90^\circ" /> works the same way, with <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" />:
+
+<BlockMath math="\begin{aligned} -x' &= 2y' + 1 \\ y' &= -\frac{x' + 1}{2} \end{aligned}" />
+
+The image line is <InlineMath math="y = -\tfrac{x + 1}{2}" />, or <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />. Its slope <InlineMath math="-\tfrac{1}{2}" /> is the negative reciprocal of the original slope <InlineMath math="2" />, as expected for a line turned a quarter turn. The point <InlineMath math="(0, 1)" /> moves to <InlineMath math="(-1, 0)" /> and the point <InlineMath math="(1, 3)" /> moves to <InlineMath math="(-3, 1)" />. Both satisfy the new equation, since <InlineMath math="-\tfrac{-1 + 1}{2} = 0" /> and <InlineMath math="-\tfrac{-3 + 1}{2} = 1" />.
+
+## When the Rotated Graph Is No Longer a Function
+
+A curve is the graph of a function if every vertical line meets that curve at most once. This check is the [vertical line test](/en/subjects/mathematics/function-composition-inverse-function/function-and-non-function). The parabola <InlineMath math="x = -y^2" />, which is the rotated <InlineMath math="y = x^2" />, **fails the vertical line test**, because the line <InlineMath math="x = -4" /> meets the parabola at <InlineMath math="(-4, 2)" /> and <InlineMath math="(-4, -2)" />.
+
+<LineEquation
+  title={<>The parabola <InlineMath math="y = x^2" /> and its image after a <InlineMath math="90^\circ" /> turn</>}
+  description={<>The vertical line <InlineMath math="x = -4" /> meets the curve <InlineMath math="x = -y^2" /> at <InlineMath math="(-4, 2)" /> and <InlineMath math="(-4, -2)" />, the images of <InlineMath math="(2, 4)" /> and <InlineMath math="(-2, 4)" /> on the original parabola.</>}
+  showZAxis={false}
+  cameraPosition={[-1.05, 1.1, 10]}
+  cameraTarget={[-1.05, 1.1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 89 }, (_, index) => {
+        const t = (index - 44) / 20;
+        return { x: t, y: t * t, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [4, 84],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 80, offset: [1, -0.2, 0] }],
+    },
+    {
+      points: Array.from({ length: 89 }, (_, index) => {
+        const t = (index - 44) / 20;
+        return { x: -t * t, y: t, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
-      showPoints: false,
+      showPoints: true,
+      pointIndices: [4, 84],
       labels: [
-        {
-          text: <><InlineMath math="45^\circ" /> Rotation</>,
-          at: 8,
-          offset: [-0.5, 1.8, 0],
-        },
+        { text: <InlineMath math="x = -y^2" />, at: 28, offset: [-1.76, 0, 0] },
+        { text: <InlineMath math="(-4, 2)" />, at: 84, offset: [1.2, 0.3, 0] },
+        { text: <InlineMath math="(-4, -2)" />, at: 4, offset: [1.2, -0.3, 0] },
       ],
+    },
+    {
+      points: [{ x: -4, y: -2.6, z: 0 }, { x: -4, y: 2.6, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x = -4" />, at: 1, offset: [-0.8, 0.35, 0] }],
     },
   ]}
 />
 
-### Exponential Function Rotation
+The curve <InlineMath math="x = -y^2" /> is still a **relation**, a set of ordered pairs <InlineMath math="(x, y)" />. On this curve, each value of <InlineMath math="y" /> has exactly one value of <InlineMath math="x" />. The trouble runs the other way. One value of <InlineMath math="x" /> to the left of the origin is paired with two values of <InlineMath math="y" />, so the curve cannot be written as a single function <InlineMath math="y = g(x)" />.
 
-An exponential curve can also be rotated point by point. After rotation, the curve may no longer represent a function of the horizontal coordinate.
+A <InlineMath math="90^\circ" /> turn swaps the roles of <InlineMath math="x" /> and <InlineMath math="y" /> and changes one sign. As a result, the image after a <InlineMath math="90^\circ" /> or <InlineMath math="270^\circ" /> turn is a function exactly when **every horizontal line meets the original graph at most once**. The parabola <InlineMath math="y = x^2" /> fails because the line <InlineMath math="y = 4" /> meets the parabola at <InlineMath math="(2, 4)" /> and <InlineMath math="(-2, 4)" />. Both points move onto the same vertical line, <InlineMath math="x = -4" />.
 
-For this particular turn, the result **remains a function**. Using <InlineMath math="X=-2^x" /> and <InlineMath math="Y=x" /> gives:
+The graph of <InlineMath math="y = 2^x" /> meets that condition. Every horizontal line <InlineMath math="y = c" /> with <InlineMath math="c > 0" /> meets the graph exactly once, and a line with <InlineMath math="c \le 0" /> does not meet it at all. A <InlineMath math="90^\circ" /> turn moves the point <InlineMath math="(x, 2^x)" /> to <InlineMath math="(-2^x, x)" />. So the new coordinates satisfy <InlineMath math="x' = -2^{y'}" />, or <InlineMath math="2^{y'} = -x'" />, and the rotated curve is:
 
-<BlockMath math="Y=\log_2(-X),\qquad X<0" />
+<BlockMath math="y = \log_2(-x), \qquad x < 0" />
 
-The original horizontal asymptote becomes the vertical asymptote <InlineMath math="X=0" />.
+The horizontal asymptote <InlineMath math="y = 0" /> of the original graph turns into the vertical asymptote <InlineMath math="x = 0" />. Check the point <InlineMath math="(1, 2)" />: its image is <InlineMath math="(-2, 1)" />, and <InlineMath math="\log_2(-(-2)) = \log_2 2 = 1" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Function <InlineMath math="y = 2^x" /></>}
-  description={<><InlineMath math="90^\circ" /> counterclockwise rotation.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 779 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 778 * 7;
-        const y = Math.pow(2, x);
-        return { x, y, z: 0 };
-      }),
-      color: "#059669",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=2^x" />,
-          at: 556,
-          offset: [-0.2, -2, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 326 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 325 * 7;
-        const y = Math.pow(2, x);
-        // 90° rotation around origin: (x,y) → (-y,x)
-        const xRotated = -y;
-        const yRotated = x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [
-        {
-          text: <><InlineMath math="90^\circ" /> Rotation</>,
-          at: 186,
-          offset: [-0.5, 0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+A <InlineMath math="180^\circ" /> turn always gives a function, because the result is <InlineMath math="y = -f(-x)" />. By contrast, the horizontal line <InlineMath math="y = 3" /> turned by <InlineMath math="90^\circ" /> becomes the vertical line <InlineMath math="x = -3" />, where every point has the same value of <InlineMath math="x" />.
 
-## Steps to Determine Rotation Results
+## Mistakes with Direction and Center
 
-When you rotate a whole curve, the **rotation formula** applies to points, so the work runs point by point. Start by fixing the center and the angle, because both of them appear in every calculation that follows.
+A rotation keeps every point's distance to the center, and a turn by <InlineMath math="\theta" /> about the origin always takes <InlineMath math="(1, 0)" /> to <InlineMath math="(\cos\theta, \sin\theta)" />. So you can **test a rotation with one easy point** before you use the result. The image of <InlineMath math="(1, 0)" /> checks the direction, the distance to the center checks the center, and the image of one point of the curve checks the new equation.
 
-Next, choose several points on the original curve, including any endpoints and turning points that exist, and apply the rotation formula to each one. Plot the rotated points, join them in the original order, and check a few extra points between the samples. The result may no longer be a function of <InlineMath math="x" />, because two rotated points can share the same <InlineMath math="x" /> value.
+| Mistake | Why it fails | How to catch it |
+| --- | --- | --- |
+| Using <InlineMath math="(y, -x)" /> for a <InlineMath math="90^\circ" /> counterclockwise turn | That rule turns <InlineMath math="90^\circ" /> clockwise, the same as <InlineMath math="270^\circ" /> | The point <InlineMath math="(1, 0)" /> must land at <InlineMath math="(0, 1)" />, not at <InlineMath math="(0, -1)" /> |
+| Turning about the origin when the center is <InlineMath math="C(p, q)" /> | The formula without <InlineMath math="p" /> and <InlineMath math="q" /> only keeps the distance to <InlineMath math="O" /> | The distance to <InlineMath math="C" /> must be the same before and after the turn |
+| Swapping <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> | The <InlineMath math="x" />-coordinate of the end of the radius is <InlineMath math="\cos\theta" /> | At <InlineMath math="\theta = 60^\circ" />, the end of the radius is at <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" /> |
+| Substituting the forward rule into the original equation | The result is the curve turned the other way, such as <InlineMath math="x = y^2" /> for <InlineMath math="y = x^2" /> | The image of <InlineMath math="(2, 4)" />, which is <InlineMath math="(-4, 2)" />, must satisfy the new equation |
+| Assuming the rotated curve is always a function | A <InlineMath math="90^\circ" /> turn can give two values of <InlineMath math="y" /> for one <InlineMath math="x" /> | Apply the vertical line test to the rotated curve |
 
 ## Exercises
 
-Every problem below asks for one rotation, so each one reduces to placing the center and angle into the **rotation formula**. Work point by point and keep the direction of the angle in mind, because a counterclockwise turn and a clockwise turn give different results. Try them without the answer key first, then compare your steps with the worked answers.
+In problem 1 you turn a single point, in problem 2 a line, and in problem 3 a parabola, each about the origin. Problem 4 asks you to turn a parabola about another center. Write down the center and the angle before you calculate, and **test your answer with the distance to the center or with one point** before you read the worked solutions.
 
-1. Determine the rotation result of point <InlineMath math="(3, 4)" /> around the origin with a <InlineMath math="90^\circ" /> counterclockwise angle.
+1. Find the image of the point <InlineMath math="A(-2, 5)" /> under a rotation by <InlineMath math="-90^\circ" /> about the origin.
 
-2. Function <InlineMath math="f(x) = x^2 - 2x + 1" /> is rotated <InlineMath math="180^\circ" /> around the origin. Determine the coordinates of the rotation result vertex if the original vertex is at <InlineMath math="(1, 0)" />.
+2. The line <InlineMath math="y = 3x - 2" /> is turned <InlineMath math="90^\circ" /> counterclockwise about the origin. Find the equation of the image line.
 
-3. Line <InlineMath math="y = 3x - 2" /> is rotated <InlineMath math="270^\circ" /> around the origin. Determine the equation of the rotation result line.
+3. The parabola <InlineMath math="y = x^2 - 4" /> is turned <InlineMath math="180^\circ" /> about the origin. Find the equation of the rotated curve and check whether it is still the graph of a function.
 
-4. Point <InlineMath math="(2, 5)" /> is rotated <InlineMath math="60^\circ" /> around point <InlineMath math="(1, 1)" />. Determine the rotation result coordinates.
-
-5. Function <InlineMath math="y = \sqrt{x}" /> for <InlineMath math="x \geq 0" /> is rotated <InlineMath math="90^\circ" /> counterclockwise around the origin. Explain the shape of the rotation result graph.
+4. The parabola <InlineMath math="y = (x - 3)^2 + 1" /> is turned <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="C(1, 2)" />. Find the image of its vertex and the equation of the rotated curve, then check whether the rotated curve is still the graph of a function.
 
 ### Worked Solutions
 
-**Problem 1**. Using the <InlineMath math="90^\circ" /> **rotation formula**:
+**Problem 1**. An angle of <InlineMath math="-90^\circ" /> means **a quarter turn clockwise**, the same as <InlineMath math="270^\circ" />. The rule is <InlineMath math="(x, y) \mapsto (y, -x)" />:
 
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (-y, x)" />
-<BlockMath math="(3, 4) \rightarrow (-4, 3)" />
-</MathContainer>
+<BlockMath math="A(-2, 5) \longmapsto A'(5, -(-2)) = A'(5, 2)" />
 
-So the rotation result is <InlineMath math="(-4, 3)" />.
+The distance to the origin stays the same, because <InlineMath math="(-2)^2 + 5^2 = 5^2 + 2^2 = 29" />. The slope of <InlineMath math="OA" /> is <InlineMath math="-\tfrac{5}{2}" /> and the slope of <InlineMath math="OA'" /> is <InlineMath math="\tfrac{2}{5}" />, with product <InlineMath math="-1" />. The point <InlineMath math="A" /> lies in quadrant II, and a quarter turn clockwise carries <InlineMath math="A" /> into quadrant I. So the image of <InlineMath math="A" /> is <InlineMath math="A'(5, 2)" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Visualization of Point <InlineMath math="(3, 4)" /> Rotation</>}
-  description={<><InlineMath math="90^\circ" /> counterclockwise rotation around origin.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(3, 4)" />,
-          at: 1,
-          offset: [0.3, 0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 3, z: 0 }
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(-4, 3)" />,
-          at: 1,
-          offset: [-0.5, 0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-  ]}
-/>
+**Problem 2**. For a <InlineMath math="90^\circ" /> turn, the old point is written through the new one as <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" />. Substitute into <InlineMath math="y = 3x - 2" /> and **solve for <InlineMath math="y'" />**:
 
-**Problem 2**. Original **vertex** rotated <InlineMath math="180^\circ" />:
+<BlockMath math="\begin{aligned} -x' &= 3y' - 2 \\ 3y' &= -x' + 2 \\ y' &= -\tfrac{1}{3}x' + \tfrac{2}{3} \end{aligned}" />
 
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (-x, -y)" />
-<BlockMath math="(1, 0) \rightarrow (-1, 0)" />
-</MathContainer>
+Check with two points of the original line. The point <InlineMath math="(0, -2)" /> moves to <InlineMath math="(2, 0)" />, and <InlineMath math="-\tfrac{2}{3} + \tfrac{2}{3} = 0" />. The point <InlineMath math="(1, 1)" /> moves to <InlineMath math="(-1, 1)" />, and <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />. So the image line is <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />.
 
-The coordinates of the rotation result vertex are <InlineMath math="(-1, 0)" />.
+**Problem 3**. For <InlineMath math="180^\circ" />, the values <InlineMath math="\cos 180^\circ = -1" /> and <InlineMath math="\sin 180^\circ = 0" /> give <InlineMath math="x = -x'" /> and <InlineMath math="y = -y'" />. Substitute into <InlineMath math="y = x^2 - 4" />:
 
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Function <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
-  description={<><InlineMath math="180^\circ" /> rotation around origin.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 127 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex + 0;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x - 2 * x + 1;
-        return { x, y, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
-          at: 90,
-          offset: [1, 0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 160 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex + 0;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x - 2 * x + 1;
-        // 180° rotation: (x,y) → (-x,-y)
-        const xRotated = -x;
-        const yRotated = -y;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        {
-          text: <><InlineMath math="180^\circ" /> Rotation Result</>,
-          at: 40,
-          offset: [-0.5, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+<BlockMath math="\begin{aligned} -y' &= (-x')^2 - 4 \\ y' &= -(x')^2 + 4 \end{aligned}" />
 
-**Problem 3**. Take **two points** on the line and rotate <InlineMath math="270^\circ" />:
+The rotated curve is <InlineMath math="y = 4 - x^2" />, which matches <InlineMath math="y = -f(-x)" />. The vertex <InlineMath math="(0, -4)" /> moves to <InlineMath math="(0, 4)" />, and <InlineMath math="4 - 0^2 = 4" />. The <InlineMath math="x" />-intercept <InlineMath math="(2, 0)" /> moves to <InlineMath math="(-2, 0)" />, and <InlineMath math="4 - (-2)^2 = 0" />. The parabola <InlineMath math="y = 4 - x^2" /> opens downward and every vertical line meets it exactly once, so the rotated curve **is still the graph of a function**.
 
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (y, -x)" />
-<BlockMath math="(0, -2) \rightarrow (-2, 0)" />
-<BlockMath math="(1, 1) \rightarrow (1, -1)" />
-<BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
-<BlockMath math="0=-\frac{1}{3}(-2)+b \quad\Rightarrow\quad b=-\frac{2}{3}" />
-<BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
-</MathContainer>
+**Problem 4**. The vertex of the original parabola is <InlineMath math="V(3, 1)" />, and its difference from <InlineMath math="C(1, 2)" /> is <InlineMath math="(2, -1)" />. A quarter turn changes that difference into <InlineMath math="(1, 2)" />, and then the coordinates of <InlineMath math="C" /> are added back:
 
-So the equation of the rotation result line is <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
+<BlockMath math="(2, -1) \longmapsto (1, 2), \qquad V' = (1 + 1,\ 2 + 2) = (2, 4)" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Line <InlineMath math="y = 3x - 2" /></>}
-  description={<><InlineMath math="270^\circ" /> rotation around origin.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 14 }, (_, pointIndex) => {
-        const i = pointIndex - 3;
-        const x = (i - 5) * 0.8;
-        const y = 3 * x - 2;
-        return { x, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#059669",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=3x - 2" />,
-          at: 9,
-          offset: [2, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: Array.from({ length: 17 }, (_, pointIndex) => {
-        const i = pointIndex - 5;
-        const x = (i - 5) * 0.8;
-        const y = 3 * x - 2;
-        // 270° rotation: (x,y) → (y,-x)
-        const xRotated = y;
-        const yRotated = -x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
-          at: 10,
-          offset: [-0.5, 1.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+The distance to the center is unchanged, because <InlineMath math="|CV|^2 = 2^2 + (-1)^2 = 5" /> and <InlineMath math="|CV'|^2 = 1^2 + 2^2 = 5" />. For the equation of the curve, **write the old point through the new one**. A <InlineMath math="90^\circ" /> turn about <InlineMath math="C" /> gives <InlineMath math="x' = 1 - (y - 2)" /> and <InlineMath math="y' = 2 + (x - 1)" />, so <InlineMath math="x = y' - 1" /> and <InlineMath math="y = 3 - x'" />. Substitute into <InlineMath math="y = (x - 3)^2 + 1" />:
 
-**Problem 4**. Find the coordinates of point <InlineMath math="(2, 5)" /> relative to center <InlineMath math="(1, 1)" />:
+<BlockMath math="\begin{aligned} 3 - x' &= \left((y' - 1) - 3\right)^2 + 1 \\ 3 - x' &= (y' - 4)^2 + 1 \\ x' &= 2 - (y' - 4)^2 \end{aligned}" />
 
-<BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
-
-Substitute these values and the angle <InlineMath math="60^\circ" /> into the rotation formulas. Both **center coordinates** equal <InlineMath math="1" />, so each formula includes an added <InlineMath math="1" />:
-
-<MathContainer>
-<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
-<BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
-</MathContainer>
-
-Rotation result coordinates: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Point <InlineMath math="(2, 5)" /> Around Point <InlineMath math="(1, 1)" /></>}
-  description={<><InlineMath math="60^\circ" /> counterclockwise rotation.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: [
-        { x: 1, y: 1, z: 0 },
-        { x: 2, y: 5, z: 0 }
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(2, 5)" />,
-          at: 1,
-          offset: [0.7, -0.2, 0],
-        },
-        {
-          text: <>Center <InlineMath math="(1,1)" /></>,
-          at: 0,
-          offset: [0.3, -0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-    {
-      points: [
-        { x: 1, y: 1, z: 0 },
-        { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
-      ],
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [
-        {
-          text: "Rotation Result",
-          at: 1,
-          offset: [-0.5, 0.1, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-  ]}
-/>
-
-**Problem 5**. Function <InlineMath math="y = \sqrt{x}" /> rotated <InlineMath math="90^\circ" /> becomes:
-
-<MathContainer>
-<BlockMath math="X=-y=-\sqrt{x},\quad Y=x" />
-<BlockMath math="X=-\sqrt{Y}\le0 \quad\Rightarrow\quad Y=X^2" />
-<BlockMath math="y = x^2 \text{ for } x \leq 0" />
-</MathContainer>
-
-The rotated curve is the left half of an **upward**-opening parabola. Its domain is <InlineMath math="x \leq 0" /> and its range is <InlineMath math="y \geq 0" />. It is obtained by reflecting the original right half of <InlineMath math="y = x^2" /> across the <InlineMath math="y" />-axis.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotation of Function <InlineMath math="y = \sqrt{x}" /></>}
-  description={<><InlineMath math="90^\circ" /> counterclockwise rotation around origin.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.9364916731037085);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#65a30d",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=\sqrt{x}" />,
-          at: 78,
-          offset: [0.5, 0.3, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.9364916731037085);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = -t;
-            return { x, y: t * t, z: 0 };
-          });
-      })(),
-      color: "#e11d48",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=x^2 (x \le 0)" />,
-          at: 78,
-          offset: [-0.8, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+After dropping the primes, the rotated curve is <InlineMath math="x = 2 - (y - 4)^2" />, a parabola that opens to the left with vertex <InlineMath math="(2, 4)" />, which matches <InlineMath math="V'" />. This curve **is not the graph of a function**. The points <InlineMath math="(2, 2)" /> and <InlineMath math="(4, 2)" /> of the original parabola move to <InlineMath math="(1, 3)" /> and <InlineMath math="(1, 5)" />, two points on the vertical line <InlineMath math="x = 1" />. Both satisfy the new equation, since <InlineMath math="2 - (3 - 4)^2 = 1" /> and <InlineMath math="2 - (5 - 4)^2 = 1" />.
