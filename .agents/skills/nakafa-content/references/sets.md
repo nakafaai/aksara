@@ -60,6 +60,16 @@ test description and the rules that govern it.
   it, including items that differ only in numbers, names, or option order.
   Compare every new item with the complete bank and its source material before
   authoring it, not only with its own set.
+- The bank loader rejects a prompt that repeats another prompt in the same
+  locale exactly or with only its numbers changed, so `pnpm test` and every
+  publication fail on it.
+- Before a set is integrated, run the similarity check on its directory and
+  resolve every pair it reports:
+  `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/similar/check.ts <set directory>`.
+  It compares each item with its siblings by their own wording, with every
+  other set by the whole item including its passage, and reports passages
+  reused from another set. Rewrite a near duplicate as an original item. A
+  shared question stem over a different passage is not a duplicate.
 - Each set follows its readiness blueprint for cognitive levels, content
   domains, topics, and response kinds. Difficulty comes from linked decisions,
   constraints, and plausible distractors, never from obscure wording or
