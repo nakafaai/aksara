@@ -5,6 +5,7 @@ import type { AppLocaleCode } from "#contracts/locale";
 import {
   canonicalQuestionAnswerKey,
   canonicalQuestionAnswerKeyStructure,
+  isBlankAnswer,
   matchesAnswerKey,
   type QuestionAnswerKey,
   QuestionAnswerKeySchema,
@@ -192,6 +193,12 @@ describe("typed learner answer", () => {
     ] as const) {
       expect(Option.getOrNull(reading(input, language))).toBe(expected);
     }
+  });
+
+  it("treats an answer with nothing visible as blank", () => {
+    const invisible = " \t\n\u00a0\u2028\u200b\u2060\u00ad\ufeff";
+    expect(["", invisible, ...invisible].every(isBlankAnswer)).toBe(true);
+    expect(["0", "x", `x${invisible}`].some(isBlankAnswer)).toBe(false);
   });
 
   it("reads nothing outside the one documented number grammar", () => {

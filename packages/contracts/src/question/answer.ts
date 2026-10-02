@@ -1,4 +1,4 @@
-import { BigDecimal, Option, Schema } from "effect";
+import { BigDecimal, Option, Schema, String as Str } from "effect";
 
 import type { AppLocaleCode } from "#contracts/locale";
 
@@ -212,6 +212,17 @@ function readFraction(typed: string): Option.Option<QuestionNumberAnswer> {
       ? Option.none()
       : Option.some({ denominator, fraction: true, numerator })
   );
+}
+
+/**
+ * Checks whether one typed learner answer is blank: nothing remains once it is
+ * read as visible text, so whitespace and invisible format characters alone
+ * are no answer. Every runtime decides whether a typed answer exists only
+ * through this check. A blank answer is unanswered, matches no key, and earns
+ * zero on every rubric criterion.
+ */
+export function isBlankAnswer(answer: string) {
+  return Str.isEmpty(visibleText(answer));
 }
 
 /**
