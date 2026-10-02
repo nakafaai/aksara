@@ -8,8 +8,8 @@ import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snaps
 import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
-import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/catalog-hash";
-import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
+import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/hash/catalog";
+import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/hash/placement";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";

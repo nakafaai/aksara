@@ -4,15 +4,13 @@ import {
   type ProgramDigestError,
 } from "@nakafa/aksara-contracts/program/snapshot/digest";
 import {
+  makeCurriculumSnapshotRow,
   makeProgramSnapshot,
+  makeProgramSnapshotRow,
+  type ProgramRowHashError,
   type ProgramSnapshotHashError,
 } from "@nakafa/aksara-contracts/program/snapshot/hash";
 import type { ProgramSnapshotRow } from "@nakafa/aksara-contracts/program/snapshot/row";
-import {
-  makeCurriculumSnapshotRow,
-  makeProgramSnapshotRow,
-  type ProgramRowHashError,
-} from "@nakafa/aksara-contracts/program/snapshot/row-hash";
 import {
   type ProgramCounts,
   ProgramCountsSchema,

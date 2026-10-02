@@ -4,12 +4,12 @@ import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Stream } from "effect";
+import type { CompiledReleaseSource } from "#publisher/compilation";
+import type { PublicationSigner } from "#publisher/signing/service";
 import {
   ReleaseArtifactMismatchError,
   validateArtifactForItem,
-} from "#publisher/release-validation";
-import type { PublicationSigner } from "#publisher/signing/service";
-import type { CompiledReleaseSource } from "#publisher/source-compilation";
+} from "#publisher/validation";
 
 type ArtifactVerificationError = Effect.Error<
   ReturnType<typeof verifySignedContentArtifact>

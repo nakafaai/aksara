@@ -10,7 +10,6 @@ import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
 import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
-import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import { mergeRollbackResult } from "#publisher/rollback/catalog";
@@ -33,12 +32,13 @@ import {
   buildRollbackRelease,
   type RollbackTargetPolicy,
 } from "#publisher/rollback/release";
-import { streamRouteRecords } from "#publisher/rollback/route-page";
+import { streamRouteRecords } from "#publisher/rollback/route/page";
 import {
   inverseRouteStream,
   verifyRouteProof,
-} from "#publisher/rollback/route-proof";
+} from "#publisher/rollback/route/proof";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
+import { validateReleaseRendererManifest } from "#publisher/validation";
 
 type RollbackPageStream = ReturnType<typeof streamRollbackRecords>;
 type RoutePageStream = ReturnType<typeof streamRouteRecords>;

@@ -13,13 +13,13 @@ import {
   testMaterialProjection,
   testPageDocument,
   testPageProjection,
-} from "#contracts/test/preview";
+} from "#contracts/test/preview/documents";
 import {
   previewArtifact,
   previewManifestBase,
   previewRepositories,
   rejectsPreviewManifest,
-} from "#contracts/test/preview-manifest";
+} from "#contracts/test/preview/manifest";
 import {
   testAnswerDocument,
   testAnswerProjection,
@@ -28,7 +28,7 @@ import {
   testGermanPromptProjection,
   testPromptDocument,
   testPromptProjection,
-} from "#contracts/test/preview-question";
+} from "#contracts/test/preview/question";
 
 const articleArtifact = previewArtifact(testArticleProjection, "c");
 const materialArtifact = previewArtifact(testMaterialProjection, "d");

@@ -15,7 +15,7 @@ import {
   quranSyncFixtureLayer,
   quranSyncTestProgram,
   replaceQuranSyncSource,
-} from "#corpus/test/quran-sync";
+} from "#corpus/test/quran/sync";
 
 layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
   it.effect(

@@ -11,9 +11,9 @@ import {
 import { createTestRendererManifest } from "#compiler/test/content";
 
 const sourcePolicyState = vi.hoisted(() => ({ failTransformer: false }));
-vi.mock("#compiler/source-policy", async (importOriginal) => {
+vi.mock("#compiler/policy/source", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("#compiler/source-policy")>();
+    await importOriginal<typeof import("#compiler/policy/source")>();
   return {
     ...original,
     /** Adds one deterministic transformer defect for boundary coverage. */

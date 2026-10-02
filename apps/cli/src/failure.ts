@@ -9,8 +9,8 @@ import {
   PublicationTransportDetailSchema,
 } from "@nakafa/aksara-publisher/target/errors";
 import { Option, Predicate, Schema } from "effect";
-import { NakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
+import { NakafaAppError } from "#cli/error";
 import { ProductionStateError } from "#cli/state";
 
 const ProductionStageSchema = Schema.Literals([

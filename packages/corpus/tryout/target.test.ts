@@ -11,7 +11,7 @@ import { Effect, Path } from "effect";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
+import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import type { TryoutExamSource } from "#corpus/tryout/schema";

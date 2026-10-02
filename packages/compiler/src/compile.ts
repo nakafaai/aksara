@@ -18,7 +18,7 @@ import type {
   RendererComponentMissingError,
 } from "#compiler/errors";
 import type { AuthoredMetadata } from "#compiler/metadata";
-import type { SourcePolicyError } from "#compiler/source-policy";
+import type { SourcePolicyError } from "#compiler/policy/source";
 
 /** One generic compile result with its single AST-decoded metadata object. */
 export interface CompiledContentResult {

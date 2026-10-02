@@ -13,7 +13,7 @@ import {
   makeQuestionSourceLayer,
   questionEntries,
   questionTestSourceRoot,
-} from "#corpus/test/question-layer";
+} from "#corpus/test/question";
 
 const generalSet = "indonesia/snbt/general-reasoning/set-1";
 const englishRoot = "indonesia/snbt/english-language/set-1/question-1";

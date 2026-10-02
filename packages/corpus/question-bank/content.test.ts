@@ -22,7 +22,7 @@ import {
   realQuestionEntries,
   realQuestionItems,
   realTryoutSources,
-} from "#corpus/test/question-layer";
+} from "#corpus/test/question";
 
 const readingSetKey =
   "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1";

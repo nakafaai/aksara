@@ -6,12 +6,19 @@ import { Sha256HashSchema } from "#contracts/ids";
 import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeProgramSnapshot,
+  makeCurriculumSnapshotRow,
   makeProgramSnapshot,
+  makeProgramSnapshotRow,
   verifyProgramSnapshotHash,
+  verifyProgramSnapshotRowHash,
 } from "#contracts/program/snapshot/hash";
 import { ProgramSnapshotFactsSchema } from "#contracts/program/snapshot/spec";
+import {
+  makeTestCurriculumRoot,
+  makeTestProgram,
+} from "#contracts/test/program";
 
-const failures = vi.hoisted(() => ({ hash: false }));
+const failures = vi.hoisted(() => ({ hash: false, rowHash: false }));
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -25,13 +32,18 @@ vi.mock("node:crypto", async (importOriginal) => {
         get(target, property, receiver) {
           if (property === "update") {
             return (data: BinaryLike) => {
+              const text = String(data);
               if (
                 failures.hash &&
-                String(data).startsWith(
-                  "nakafa.aksara.localized-program-snapshot\n"
-                )
+                text.startsWith("nakafa.aksara.localized-program-snapshot\n")
               ) {
                 throw new TypeError("injected program snapshot hash failure");
+              }
+              if (
+                failures.rowHash &&
+                text.startsWith("nakafa.aksara.program-row\n")
+              ) {
+                throw new TypeError("injected program row hash failure");
               }
               target.update(data);
               return receiver;
@@ -85,6 +97,48 @@ describe("program snapshot hashing", () => {
 
       const error = yield* makeProgramSnapshot(facts).pipe(Effect.flip);
       expect(error._tag).toBe("ProgramSnapshotHashError");
+    })
+  );
+});
+
+describe("program snapshot row hashing", () => {
+  it.effect("creates and verifies both authenticated row kinds", () =>
+    Effect.gen(function* () {
+      const program = makeTestProgram(1);
+      const route = makeTestCurriculumRoot(program, AppLocaleSchema.make("en"));
+      const [programRecord, curriculumRecord] = yield* Effect.all([
+        makeProgramSnapshotRow(program),
+        makeCurriculumSnapshotRow(route),
+      ]);
+
+      expect(yield* verifyProgramSnapshotRowHash(programRecord)).toBe(
+        programRecord.rowHash
+      );
+      expect(yield* verifyProgramSnapshotRowHash(curriculumRecord)).toBe(
+        curriculumRecord.rowHash
+      );
+    })
+  );
+
+  it.effect("maps row hashing failures to the typed error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() => {
+          failures.rowHash = true;
+        }),
+        () =>
+          Effect.sync(() => {
+            failures.rowHash = false;
+          })
+      );
+
+      const error = yield* makeProgramSnapshotRow(makeTestProgram(1)).pipe(
+        Effect.flip
+      );
+      expect(error).toMatchObject({
+        _tag: "ProgramRowHashError",
+        scope: "row",
+      });
     })
   );
 });

@@ -11,7 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Schema, Stream } from "effect";
 import { streamQuranRows } from "#corpus/quran/projection";
-import { testQuranRegistry } from "#corpus/test/quran";
+import { testQuranRegistry } from "#corpus/test/quran/sources";
 
 /** Replays the verified Quran fixture for each projection assertion. */
 const source = testQuranRegistry;

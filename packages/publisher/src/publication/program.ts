@@ -36,16 +36,16 @@ import type {
   PublicationTarget,
   PublicationVerificationTimeoutError,
 } from "#publisher/publication/spec";
+import type { ReplaySpoolError } from "#publisher/replay/error";
+import type { ContentSigningError } from "#publisher/signing/error";
+import type { SnapshotBatchBindingError } from "#publisher/snapshot/batch";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 import type {
   PublicationReceiptMismatchError,
   ReleaseArtifactMismatchError,
   ReleaseRendererManifestMismatchError,
   ReleaseVerificationMismatchError,
-} from "#publisher/release-validation";
-import type { ReplaySpoolError } from "#publisher/replay/error";
-import type { ContentSigningError } from "#publisher/signing/error";
-import type { SnapshotBatchBindingError } from "#publisher/snapshot/batch";
-import type { PublicationTargetFailure } from "#publisher/target/errors";
+} from "#publisher/validation";
 
 /** Every expected failure surfaced by one idempotent publication attempt. */
 export type PublishContentReleaseError<E> =

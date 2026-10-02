@@ -122,7 +122,7 @@ a feasibility GO for the bounded slice, not production completion.
 An isolated production Turbopack fixture has since passed official-run browser
 interaction and R3F fidelity with physical route-domain registries. The result
 and the rejected shared-registry topologies are recorded in
-[`renderer-isolation.md`](renderer-isolation.md). Full Nakafa application and
+[`renderer.md`](renderer.md). Full Nakafa application and
 hosted-production fidelity remain pending gates. Aksara must keep every
 rejected file explicit; it must not evaluate `getColor` or add a compatibility
 workaround.

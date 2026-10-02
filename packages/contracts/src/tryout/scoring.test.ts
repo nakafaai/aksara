@@ -5,10 +5,10 @@ import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { rubric } from "#contracts/test/rubric";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
-import { makeTryoutCatalogRecord } from "#contracts/tryout/catalog-hash";
-import { verifyTryoutLocaleClosure } from "#contracts/tryout/locale-closure";
+import { verifyTryoutLocaleClosure } from "#contracts/tryout/closure/locale";
+import { makeTryoutCatalogRecord } from "#contracts/tryout/hash/catalog";
+import { makeTryoutPlacementRecord } from "#contracts/tryout/hash/placement";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
-import { makeTryoutPlacementRecord } from "#contracts/tryout/placement-hash";
 import type { TryoutMarks, TryoutScoring } from "#contracts/tryout/spec";
 
 const rows = makeTryoutTestRows();

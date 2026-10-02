@@ -13,14 +13,14 @@ import {
   verifySignedContentRelease,
 } from "#contracts/release/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
+import { replacementSnapshots } from "#contracts/test/request";
 import {
   verificationBaseReleaseId as baseReleaseId,
   verificationManifest as manifest,
   verificationRendererManifest as rendererManifest,
   signVerificationRelease as signRelease,
   verificationKeyResolver as trustedResolver,
-} from "#contracts/test/release-verification";
-import { replacementSnapshots } from "#contracts/test/request";
+} from "#contracts/test/verification";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();

@@ -13,7 +13,7 @@
   in context, never by flattening the outline or replacing them with bold titles.
   Numbered question identifiers such as `**Soal 1**.` belong at the start of
   the answer prose so the learner can match questions and answers. Follow the
-  [worked-solution mapping](worked-solutions.md#mapping-exercises-to-answers).
+  [worked-solution mapping](solutions.md#mapping-exercises-to-answers).
 - A standalone question-bank answer renders beneath an app-owned `###` heading.
   Its sections start at `####` and may use `#####` for real nested analysis.
   This exception belongs only to question-bank answers, never lesson solutions.

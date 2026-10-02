@@ -53,7 +53,7 @@ Read only what the task needs. Each reference owns one concern.
 | Work | Read |
 | --- | --- |
 | Any lesson addition or rewrite | [Lesson standard](references/lesson.md) |
-| Any authored revision or translation | [Editorial workflow](references/editorial-workflow.md) |
+| Any authored revision or translation | [Editorial workflow](references/editorial.md) |
 | Voice, register, and the clarity test | [Voice and scope](references/voice.md) |
 | Terminology and technical vocabulary | [Terminology](references/terminology.md) |
 | Claims, comparisons, and causal sentences | [Claims and references](references/claims.md) |
@@ -62,7 +62,7 @@ Read only what the task needs. Each reference owns one concern.
 | Facts, citations, and source accuracy | [Accuracy and evidence](references/evidence.md) |
 | Checker scope and rule admission | [Checker limits and gate scope](references/checker.md) |
 | The closing read-through | [Final language review](references/review.md) |
-| Locale wording and cross-locale review | [Locale sources](references/locale-sources.md) |
+| Locale wording and cross-locale review | [Locale sources](references/locales.md) |
 | Raw MDX, metadata, and readability | [Source and readability](references/source.md) |
 | MDX headings | [Headings](references/headings.md) |
 | Learner-facing punctuation | [Learner facing punctuation](references/punctuation.md) |
@@ -71,10 +71,10 @@ Read only what the task needs. Each reference owns one concern.
 | Search titles, descriptions, and search intent | [Search and answer engines](references/search.md) |
 | Mathematics and code in MDX | [Mathematics and code](references/math.md) |
 | Graphs, diagrams, and components | [Components and visuals](references/visuals.md) |
-| Representation research basis | [Evidence basis](references/evidence-basis.md) |
-| Questions and response items | [Question bank](references/question-bank.md) |
+| Representation research basis | [Evidence basis](references/research.md) |
+| Questions and response items | [Question bank](references/questions.md) |
 | Building try-out sets from any source material | [Try-out sets](references/sets.md) |
-| Worked answer explanations | [Worked solutions](references/worked-solutions.md) |
+| Worked answer explanations | [Worked solutions](references/solutions.md) |
 | Verification commands and acceptance | [Verification](references/verification.md) |
 
 ## Content invariants
@@ -107,9 +107,9 @@ Read only what the task needs. Each reference owns one concern.
 - Use the current renderer contract. MDX math and React-node labels follow
   [mathematics and code](references/math.md); response labels remain one rich
   Markdown string under the
-  [question-bank contract](references/question-bank.md#response-items). Worked
+  [question-bank contract](references/questions.md#response-items). Worked
   answers retain the complete post-attempt reasoning described in
-  [worked solutions](references/worked-solutions.md).
+  [worked solutions](references/solutions.md).
 - Mark an emphasised phrase, and no more of it than the phrase. `**` and
   `<Highlight>` render the same treatment, so the [emphasis
   contract](references/emphasis.md) owns where they belong and how dense they

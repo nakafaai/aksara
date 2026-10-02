@@ -16,14 +16,14 @@ import {
   TryoutHeadMismatchError,
 } from "#publisher/tryout/error";
 import { questionEntries } from "#test/question/spec";
-import { tryoutFixtures } from "#test/tryout";
 import {
   assessedResponses,
   collectEnrichedTryoutContent,
   collectRespondedTryoutContent,
   collectTryoutContent,
   rejectTryoutContent,
-} from "#test/tryout-content";
+} from "#test/tryout/content";
+import { tryoutFixtures } from "#test/tryout/fixtures";
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [

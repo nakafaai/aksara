@@ -7,7 +7,7 @@ import {
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question-layer";
+import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
 import {
   makeTryoutPlacement,
   TryoutPlacementError,

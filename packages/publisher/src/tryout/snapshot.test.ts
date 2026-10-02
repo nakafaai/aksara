@@ -23,7 +23,7 @@ import {
   sourceByPath,
 } from "#test/question/spec";
 import { incompleteRendererManifest } from "#test/renderer";
-import { selectTryoutSlice } from "#test/tryout-slice";
+import { selectTryoutSlice } from "#test/tryout/slice";
 
 /** Counts exact hierarchy kinds from the configured snapshot fixture. */
 function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {

@@ -9,7 +9,7 @@ import {
 } from "#corpus/articles/preview";
 import { selectArticleEntries } from "#corpus/preview/public";
 import { articleSource } from "#corpus/test/article";
-import { corpusRoot } from "#corpus/test/question-layer";
+import { corpusRoot } from "#corpus/test/question";
 
 const englishPath = CorpusSourcePathSchema.make(
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"

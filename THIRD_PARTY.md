@@ -3,7 +3,7 @@
 Aksara preserves third-party rights independently from the Nakafa software and
 content licenses. The Quran source identities, exact artifacts, retrieval
 metadata, and legal-evidence hashes are recorded in
-`docs/baselines/quran-provenance.md`.
+`docs/baselines/quran.md`.
 
 ## Tanzil Quran Text
 

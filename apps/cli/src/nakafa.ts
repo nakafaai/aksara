@@ -2,7 +2,6 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { Context, Effect, Layer } from "effect";
 import { HttpClient } from "effect/http";
 import type * as Scope from "effect/Scope";
-import type { NakafaAppError } from "#cli/app-error";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
   type NakafaStartInput,
@@ -10,6 +9,7 @@ import {
   startNakafa,
 } from "#cli/child/session";
 import type { RendererCredentials } from "#cli/credentials";
+import type { NakafaAppError } from "#cli/error";
 import { waitForRenderer } from "#cli/renderer/manifest";
 
 /** Injectable actual-app boundary used by the preview orchestration. */

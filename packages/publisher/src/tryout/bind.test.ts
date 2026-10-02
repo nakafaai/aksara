@@ -22,7 +22,7 @@ import {
 import {
   collectTryoutHeadBindings,
   rejectTryoutHeadBindings,
-} from "#test/tryout-heads";
+} from "#test/tryout/heads";
 
 const questionRoot =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";

@@ -1,9 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
 import { Effect, Schema } from "effect";
-
+import { CurriculumRouteError } from "#corpus/curriculum/ownership";
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
-import { CurriculumRouteError } from "#corpus/curriculum/route-source";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { decodeMaterialSources } from "#corpus/material/source";
 import { decodeProgramCatalog } from "#corpus/program/catalog";

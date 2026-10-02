@@ -31,6 +31,11 @@ import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/
 import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
+import {
+  type CompiledReleaseSource,
+  CompiledReleaseSourceSchema,
+  compileReleaseSources,
+} from "#publisher/compilation";
 import type {
   PreparedContentRelease,
   PreparedGitRelease,
@@ -50,18 +55,13 @@ import {
   type PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { validateReleaseRendererManifest } from "#publisher/release-validation";
 import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
-import {
-  type CompiledReleaseSource,
-  CompiledReleaseSourceSchema,
-  compileReleaseSources,
-} from "#publisher/source-compilation";
 import {
   stagePreparedRelease,
   stageRuntimeBundles,
 } from "#publisher/stage/plan";
+import { validateReleaseRendererManifest } from "#publisher/validation";
 
 /** One prepared release mode plus any exact-Git source dependency it needs. */
 export type PublicationInvocation<E, R> =

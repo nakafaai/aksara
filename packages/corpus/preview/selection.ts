@@ -6,7 +6,7 @@ import {
   selectMaterial,
   selectPage,
 } from "#corpus/preview/public";
-import { selectQuestion } from "#corpus/preview/question";
+import { selectQuestion } from "#corpus/preview/question/prompt";
 import { PreviewSelectionError } from "#corpus/preview/source";
 
 const ARTICLE_ROOT = "packages/corpus/articles/";

@@ -10,11 +10,11 @@ import {
   CurriculumRouteSchema,
   curriculumNamespace,
 } from "#contracts/program/curriculum";
-import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
-} from "#contracts/program/snapshot/row-hash";
+} from "#contracts/program/snapshot/hash";
+import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import {
   LearningProgramKeySchema,
   LearningProgramSchema,

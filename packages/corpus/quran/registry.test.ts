@@ -11,7 +11,7 @@ import {
   streamQuranRegistry,
 } from "#corpus/quran/registry";
 import type { QuranSurah } from "#corpus/quran/schema";
-import { testQuranRegistry } from "#corpus/test/quran";
+import { testQuranRegistry } from "#corpus/test/quran/sources";
 
 /** Collects one registry stream inside the Effect test runtime. */
 function collect(source = testQuranRegistry) {

@@ -3,7 +3,7 @@ import { BigDecimal } from "effect";
 import {
   arcCurvatureUnresolved,
   arcEndpointsUnresolved,
-} from "#contracts/math/arc-precision";
+} from "#contracts/math/arc";
 import {
   clippedPathCoordinates,
   sceneCoordinate as coordinate,

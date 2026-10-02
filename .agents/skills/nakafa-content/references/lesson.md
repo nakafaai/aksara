@@ -27,7 +27,7 @@ misses an element below is not finished.
    error, why it fails, and how the learner can catch it.
 6. **Practice with answers.** Two to four problems of rising difficulty, each
    answered in the same lesson with complete reasoning under the
-   [worked solutions](worked-solutions.md) rules.
+   [worked solutions](solutions.md) rules.
 7. **A clear shape.** Usually five to nine H2 sections, each with a real
    teaching job. No section whose body is only a list, no nested lists, and
    paragraphs of about seventy words at most. [Structure](structure.md) owns the
@@ -60,8 +60,8 @@ count toward it.
    neighbors; otherwise specify an instance of a component family under
    [visuals](visuals.md).
 4. Rewrite the Indonesian lesson to this standard through the
-   [editorial workflow](editorial-workflow.md), then recreate English and
-   German from the corrected meaning under [locale sources](locale-sources.md).
+   [editorial workflow](editorial.md), then recreate English and
+   German from the corrected meaning under [locale sources](locales.md).
 5. Run the gate on the lesson directory with `--strict-review` and read the
    `--pedagogy-review` inventory ([verification](verification.md)). Every
    finding reaches zero, and every signal is either fixed or retained with a

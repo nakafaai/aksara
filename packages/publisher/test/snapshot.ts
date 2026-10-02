@@ -34,8 +34,8 @@ import { TryoutCountrySchema } from "@nakafa/aksara-contracts/tryout/catalog";
 import {
   digestTryoutCatalog,
   makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/catalog-hash";
-import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
+} from "@nakafa/aksara-contracts/tryout/hash/catalog";
+import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/hash/placement";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";

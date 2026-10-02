@@ -10,7 +10,7 @@ import {
 } from "#corpus/material/preview";
 import { selectMaterialEntry } from "#corpus/preview/public";
 import { lessonMaterialSource } from "#corpus/test/material";
-import { corpusRoot } from "#corpus/test/question-layer";
+import { corpusRoot } from "#corpus/test/question";
 
 const englishPath = CorpusSourcePathSchema.make(
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx"

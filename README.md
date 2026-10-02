@@ -65,7 +65,7 @@ See:
   trusted MDX and renderer boundaries.
 - [`docs/adr/release.md`](docs/adr/release.md) for release,
   compatibility, recovery, and cleanup rules.
-- [`docs/publication-scope.md`](docs/publication-scope.md) for canonical release
+- [`docs/scope.md`](docs/scope.md) for canonical release
   scopes.
 - [`docs/contracts.md`](docs/contracts.md) for the immutable contracts archive.
 - [`docs/governance.md`](docs/governance.md) for repository and release

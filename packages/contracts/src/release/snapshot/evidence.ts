@@ -1,10 +1,10 @@
 import { Effect } from "effect";
 
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
-import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence-requirement";
-import { verifyProgramSnapshotRows } from "#contracts/release/snapshot/program-evidence";
-import { verifyQuranSnapshotRows } from "#contracts/release/snapshot/quran-evidence";
-import { verifyTryoutSnapshotRows } from "#contracts/release/snapshot/tryout-evidence";
+import { verifyProgramSnapshotRows } from "#contracts/release/snapshot/evidence/program";
+import { verifyQuranSnapshotRows } from "#contracts/release/snapshot/evidence/quran";
+import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
+import { verifyTryoutSnapshotRows } from "#contracts/release/snapshot/evidence/tryout";
 
 /** Authenticates one replacement manifest through fresh structured-row replays. */
 export const verifySnapshotRows = Effect.fn(

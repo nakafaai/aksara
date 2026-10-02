@@ -7,7 +7,7 @@ import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog"
 import { Effect, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import { projectTryoutExam } from "#corpus/tryout/catalog-exam";
+import { projectTryoutExam } from "#corpus/tryout/exam";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 

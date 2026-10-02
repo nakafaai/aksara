@@ -88,9 +88,10 @@ pnpm verify:consumer
 
 - Keep TypeScript strict and Effect-native.
 - Use package aliases instead of relative TypeScript imports.
-- Keep file and folder names to at most two semantic words. Exact authored
-  directory slugs under `packages/corpus/material/lesson` and
-  `packages/corpus/question-bank/tryout` are exempt.
+- Name every file and folder with exactly one semantic word; `pnpm names`
+  enforces it. Content identities such as lesson, article, curriculum, page,
+  and question-bank source folders keep their exact names. `AGENTS.md` lists
+  every convention the check allows.
 - Keep handwritten TypeScript modules at or below 300 non-JSDoc lines.
 - Document stable callable declarations with useful JSDoc.
 - Maintain 100% per-file statement, branch, function, and line coverage for

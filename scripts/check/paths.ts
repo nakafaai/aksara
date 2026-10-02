@@ -4,6 +4,8 @@ const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
 const ACRONYM_WORD_PATTERN = /(\p{Lu}+)(\p{Lu}\p{Ll})/gu;
 const NUMBER_PATTERN = /^\d+$/u;
+const EXTENSION_PATTERN = /(?<=[^.])\.[^.]+$/u;
+const DOCUMENT_PATTERN = /^[A-Z][A-Z\d]*(?:_[A-Z\d]+)+(?:\.md)?$/u;
 const JAVASCRIPT_PATTERN = /\.[cm]?jsx?$/u;
 const RUNNABLE_TEST_FILE_PATTERN = /\.(?:spec|test)\.[cm]?[jt]sx?$/u;
 const FINAL_TEST_FILE_PATTERN = /\.test\.ts$/u;
@@ -18,45 +20,37 @@ const FORBIDDEN_FILE_NAMES = new Set([
   "package-lock.json",
   "yarn.lock",
 ]);
-const ROLE_SUFFIXES = new Set(["build", "config", "d", "test"]);
-const EXTENSION_SUFFIXES = new Set([
-  "cjs",
-  "cts",
-  "js",
-  "json",
-  "jsonc",
-  "lock",
-  "md",
-  "mdx",
-  "mjs",
-  "mts",
-  "ts",
-  "tsx",
-  "yaml",
-  "yml",
-]);
-const MATERIAL_LESSON_PREFIX = ["packages", "corpus", "material", "lesson"];
-const QUESTION_BANK_PREFIX = ["packages", "corpus", "question-bank", "tryout"];
+/** Repository files whose exact names the toolchain mandates. */
+const TOOLCHAIN_FILES = new Set(["pnpm-lock.yaml", "pnpm-workspace.yaml"]);
+const ROLE_SUFFIXES = new Set(["build", "config", "d", "spec", "test"]);
+/** Roots whose folders are content identities, such as lesson and article slugs. */
+const CONTENT_ROOTS = [
+  ["packages", "corpus", "articles"],
+  ["packages", "corpus", "curriculum"],
+  ["packages", "corpus", "material", "lesson"],
+  ["packages", "corpus", "pages"],
+];
+/** Roots whose direct entries are skill identities that agents invoke by name. */
+const SKILL_ROOTS = [
+  [".agents", "skills"],
+  [".claude", "skills"],
+];
+const QUESTION_BANK_ROOT = ["packages", "corpus", "question-bank"];
+const QUESTION_BANK_PREFIX = [...QUESTION_BANK_ROOT, "tryout"];
 const QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
 const QUESTION_SOURCE_PATTERN =
   /^(?:item\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
 const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
-/** Returns the semantic words in one file or folder name. */
-function words(segment: string): string[] {
-  const tokens = segment
+/** Returns the semantic words in one folder name or extensionless file name. */
+function words(segment: string, isFile: boolean): string[] {
+  const name = isFile ? segment.replace(EXTENSION_PATTERN, "") : segment;
+  const tokens = name
     .replace(ACRONYM_WORD_PATTERN, "$1 $2")
     .replace(CAMEL_WORD_PATTERN, "$1 $2")
     .split(WORD_SEPARATOR_PATTERN)
     .filter((word) => word.length > 0);
-  while (tokens.length > 0) {
-    const lastToken = tokens.at(-1);
-    if (
-      lastToken === undefined ||
-      !(EXTENSION_SUFFIXES.has(lastToken) || ROLE_SUFFIXES.has(lastToken))
-    ) {
-      break;
-    }
+  while (ROLE_SUFFIXES.has(tokens.at(-1) ?? "")) {
     tokens.pop();
   }
   return tokens.filter((word) => !NUMBER_PATTERN.test(word));
@@ -90,24 +84,42 @@ function isQuestionSource(segments: readonly string[]) {
   );
 }
 
-/** Allows only source-owned lesson and question-group folder identities. */
-function isEducationalFolder(segments: readonly string[], index: number) {
+/** Allows content and skill identities that contracts and agents own by name. */
+function isIdentity(segments: readonly string[], index: number) {
+  const isFolder = index < segments.length - 1;
   if (
-    hasPrefix(segments, MATERIAL_LESSON_PREFIX) &&
-    index >= MATERIAL_LESSON_PREFIX.length &&
-    index < segments.length - 1
+    CONTENT_ROOTS.some(
+      (root) => isFolder && hasPrefix(segments, root) && index >= root.length
+    )
   ) {
     return true;
   }
-
-  return (
-    isQuestionSource(segments) &&
-    index >= QUESTION_BANK_PREFIX.length &&
-    index < segments.length - 2
-  );
+  if (
+    SKILL_ROOTS.some(
+      (root) => hasPrefix(segments, root) && index === root.length
+    )
+  ) {
+    return true;
+  }
+  if (
+    hasPrefix(segments, QUESTION_BANK_ROOT) &&
+    index === QUESTION_BANK_ROOT.length - 1
+  ) {
+    return true;
+  }
+  return isQuestionSource(segments) && index >= QUESTION_BANK_PREFIX.length;
 }
 
-/** Collects forbidden toolchains, JavaScript, and overlong semantic path names. */
+/** Allows toolchain files and uppercase repository documents by convention. */
+function isConventionalFile(file: string, basename: string) {
+  if (TOOLCHAIN_FILES.has(file)) {
+    return true;
+  }
+  const isDocumentPath = file === basename || file === `.github/${basename}`;
+  return isDocumentPath && DOCUMENT_PATTERN.test(basename);
+}
+
+/** Collects forbidden toolchains, JavaScript, and multi-word path names. */
 export function pathViolations(files: readonly string[]): readonly string[] {
   const tracked = new Set(files);
   return files.flatMap((file) => {
@@ -131,10 +143,15 @@ export function pathViolations(files: readonly string[]): readonly string[] {
         : [];
     const segments = file.split("/");
     const nameViolations = segments.flatMap((segment, index) => {
-      if (isEducationalFolder(segments, index) || words(segment).length <= 2) {
+      const isFile = index === segments.length - 1;
+      if (
+        isIdentity(segments, index) ||
+        (isFile && isConventionalFile(file, segment)) ||
+        words(segment, isFile).length <= 1
+      ) {
         return [];
       }
-      return [`${file}: ${segment}`];
+      return [`${file}: ${segment} must be one word`];
     });
 
     return [

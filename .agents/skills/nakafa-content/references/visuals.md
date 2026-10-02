@@ -3,7 +3,7 @@
 Choose a representation for its instructional job, not for variety alone.
 
 For assessed content, also apply the
-[question-bank assessment review](question-bank.md#assessment-review).
+[question-bank assessment review](questions.md#assessment-review).
 
 - Use prose for explanation, interpretation, uncertainty, and causal reasoning.
 - Use a short list for parallel items that do not need cross-column comparison.
@@ -121,7 +121,7 @@ follow the interactive visual rule below.
 
 Nakafa's lesson standard requires at least one interactive visual in every
 lesson, because learners understand and remember a concept they can see and
-change. The research in the [evidence basis](evidence-basis.md) governs how the
+change. The research in the [evidence basis](research.md) governs how the
 visual is designed: it carries a teaching job and never decorates.
 
 - The interaction answers a question the lesson asks: change a parameter and

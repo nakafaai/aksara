@@ -25,7 +25,7 @@
   surrounding language review, but this skill does not attribute those exact
   Nakafa rules to an external source that does not state them.
 - The representation rules are supported by the evidence listed in
-  [evidence basis](evidence-basis.md), including the What Works
+  [evidence basis](research.md), including the What Works
   Clearinghouse guide, Mayer's multimedia principles, and signaling meta-analyses. Those sources
   support purposeful structure and relevant signals. They do not justify a
   visual quota or automatic sentence shortening.
@@ -160,7 +160,7 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
 A full question-bank run covers 9650 MDX files. A clean automated result proves
 only these boundaries, never mathematical accuracy or the completeness of every
-worked solution. The [worked-solution review](worked-solutions.md) still owns
+worked solution. The [worked-solution review](solutions.md) still owns
 those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
@@ -223,7 +223,7 @@ know, so it is not the full id list.
   Prose identifiers, numbered answer lists, and table row or column labels are
   valid. Numbered steps inside an already labeled answer do not stand in for the
   next question. Restarted groups and the correctness of the mapping require the
-  contextual [worked-solution review](worked-solutions.md#mapping-exercises-to-answers).
+  contextual [worked-solution review](solutions.md#mapping-exercises-to-answers).
 - `section-body-highlight` requires a selective phrase in every lesson and
   worked-answer heading body, including the body below the app-owned answer heading. A
   marked title or earlier section does not satisfy it. Exact balanced inline

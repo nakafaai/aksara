@@ -1,9 +1,9 @@
 import { createServer } from "node:net";
 import { Effect, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import { NakafaProcess } from "#cli/child/process";
 import type { PreviewCredentials } from "#cli/credentials";
+import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import type { PreviewProvider } from "#cli/provider";
 
