@@ -1,0 +1,85 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Von einer Stufe zur nächsten ändern sich zwei Größen. **Die Anzahl der gefärbten Dreiecke verdreifacht sich**, weil jedes gefärbte Dreieck drei neue gefärbte Dreiecke liefert. **Die gefärbte Fläche schrumpft auf drei Viertel**, weil die vier neuen Dreiecke gleich groß sind und nur eines der vier Teile seine Farbe verliert.
+
+Auf Stufe <InlineMath math="0" /> hat das Dreieck die Fläche <InlineMath math="\frac12\times8\times8=32\text{ cm}^2" />. Es seien <InlineMath math="N_n" /> die Anzahl der gefärbten Dreiecke und <InlineMath math="L_n" /> die gefärbte Fläche in <InlineMath math="\text{cm}^2" /> auf Stufe <InlineMath math="n" />. Beide bilden geometrische Folgen.
+
+<BlockMath math="\begin{aligned}
+N_n&=3^n \\
+L_n&=32\left(\frac34\right)^n \\
+L_{n-1}-L_n&=\frac14\,L_{n-1}
+\end{aligned}" />
+
+Die letzte Zeile gibt die Fläche an, die beim Übergang von Stufe <InlineMath math="n-1" /> zu Stufe <InlineMath math="n" /> ihre Farbe verliert, also ein Viertel der gefärbten Fläche der vorherigen Stufe.
+
+| Stufe | Gefärbte Dreiecke | Gefärbte Fläche <InlineMath math="(\text{cm}^2)" /> | Gerade entfärbte Fläche <InlineMath math="(\text{cm}^2)" /> |
+| ---: | ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | noch keine |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="\frac{27}{2}=13{,}5" /> | <InlineMath math="\frac92" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="\frac{81}{8}=10{,}125" /> | <InlineMath math="\frac{27}{8}" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="\frac{243}{32}\approx7{,}59" /> | <InlineMath math="\frac{81}{32}" /> |
+
+<MathVisual
+  title={<>Stufe <InlineMath math="3" /> des Musters</>}
+  description={<>Stufe <InlineMath math="3" /> enthält <InlineMath math="27" /> gefärbte Dreiecke mit Schenkeln von <InlineMath math="1\text{ cm}" />. Jedes kleine Dreieck hat die Fläche <InlineMath math="\frac12\text{ cm}^2" />, also beträgt die gefärbte Fläche <InlineMath math="\frac{27}{2}\text{ cm}^2" />.</>}
+  labels={{
+    "leg-small": <InlineMath math="1\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "stage-3-part-1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }] },
+      { id: "stage-3-part-2", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 1 }] },
+      { id: "stage-3-part-3", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 2 }] },
+      { id: "stage-3-part-4", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 2, y: 1 }] },
+      { id: "stage-3-part-5", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 3, y: 1 }] },
+      { id: "stage-3-part-6", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }] },
+      { id: "stage-3-part-7", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 0, y: 3 }] },
+      { id: "stage-3-part-8", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }] },
+      { id: "stage-3-part-9", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 4 }] },
+      { id: "stage-3-part-10", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 4, y: 1 }] },
+      { id: "stage-3-part-11", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 5, y: 1 }] },
+      { id: "stage-3-part-12", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 4, y: 2 }] },
+      { id: "stage-3-part-13", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 6, y: 1 }] },
+      { id: "stage-3-part-14", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 8, y: 0 }, { x: 7, y: 1 }] },
+      { id: "stage-3-part-15", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 1 }, { x: 7, y: 1 }, { x: 6, y: 2 }] },
+      { id: "stage-3-part-16", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 2 }, { x: 5, y: 2 }, { x: 4, y: 3 }] },
+      { id: "stage-3-part-17", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 2 }, { x: 6, y: 2 }, { x: 5, y: 3 }] },
+      { id: "stage-3-part-18", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }, { x: 4, y: 4 }] },
+      { id: "stage-3-part-19", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 1, y: 4 }, { x: 0, y: 5 }] },
+      { id: "stage-3-part-20", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 4 }, { x: 2, y: 4 }, { x: 1, y: 5 }] },
+      { id: "stage-3-part-21", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 1, y: 5 }, { x: 0, y: 6 }] },
+      { id: "stage-3-part-22", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 4 }, { x: 3, y: 4 }, { x: 2, y: 5 }] },
+      { id: "stage-3-part-23", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 3, y: 5 }] },
+      { id: "stage-3-part-24", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }] },
+      { id: "stage-3-part-25", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 6 }, { x: 1, y: 6 }, { x: 0, y: 7 }] },
+      { id: "stage-3-part-26", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 6 }, { x: 2, y: 6 }, { x: 1, y: 7 }] },
+      { id: "stage-3-part-27", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 7 }, { x: 1, y: 7 }, { x: 0, y: 8 }] },
+    ],
+    labels: [
+      { key: "leg-small", objectId: "stage-3-part-1", at: { x: 0.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Das Bild von Stufe <InlineMath math="3" /> prüft auch die Tabelle. Es zeigt <InlineMath math="27" /> kleine gefärbte Dreiecke mit Schenkeln von <InlineMath math="\frac{8}{2^3}=1\text{ cm}" />, also beträgt die gefärbte Fläche <InlineMath math="27\times\frac12=13{,}5\text{ cm}^2" />, genau <InlineMath math="L_3" />.
+
+1. Die Aussage, dass Stufe <InlineMath math="n" /> genau <InlineMath math="3n" /> gefärbte Dreiecke hat, ist falsch. Die Formel passt nur für <InlineMath math="n=1" />. Stufe <InlineMath math="2" /> hat <InlineMath math="3^2=9" /> Dreiecke und nicht <InlineMath math="3\times2=6" />, weil die Anzahl auf jeder Stufe mit <InlineMath math="3" /> multipliziert und nicht um <InlineMath math="3" /> erhöht wird.
+2. Die Aussage, dass Stufe <InlineMath math="4" /> genau <InlineMath math="81" /> gefärbte Dreiecke enthält, ist wahr, denn <InlineMath math="N_4=3^4=81" />.
+3. Die Aussage, dass bei den ersten beiden Übergängen gleich viel Fläche entfärbt wird, ist falsch. Von Stufe <InlineMath math="0" /> zu Stufe <InlineMath math="1" /> werden <InlineMath math="\frac14\times32=8\text{ cm}^2" /> entfärbt, von Stufe <InlineMath math="1" /> zu Stufe <InlineMath math="2" /> nur <InlineMath math="\frac14\times24=6\text{ cm}^2" />. Der entfärbte Teil schrumpft, weil das Viertel von einer immer kleineren gefärbten Fläche genommen wird.
+4. Die Aussage, dass die gefärbte Fläche auf Stufe <InlineMath math="3" /> genau <InlineMath math="13{,}5\text{ cm}^2" /> beträgt, ist wahr, denn <InlineMath math="L_3=32\times\frac{27}{64}=\frac{27}{2}=13{,}5" />.
+5. Die Aussage über Stufe <InlineMath math="5" /> ist wahr. Die gefärbte Fläche nimmt ständig ab, <InlineMath math="L_4=\frac{81}{8}=10{,}125" /> ist noch größer als <InlineMath math="10" />, und <InlineMath math="L_5=\frac{243}{32}\approx7{,}59" /> ist bereits kleiner als <InlineMath math="10" />.
+
+Wahr sind also die Aussagen über <InlineMath math="81" /> Dreiecke auf Stufe <InlineMath math="4" />, über die Fläche <InlineMath math="13{,}5\text{ cm}^2" /> auf Stufe <InlineMath math="3" /> und über Stufe <InlineMath math="5" /> als erste Stufe mit einer gefärbten Fläche unter <InlineMath math="10\text{ cm}^2" />.

@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Pembahasan Soal 15",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Ujung jarum menit bergerak pada lingkaran yang jari-jarinya sama dengan panjang jarum, yaitu <InlineMath math="r=21\text{ cm}" />. Dalam <InlineMath math="60" /> menit jarum menempuh satu putaran penuh. Dari pukul <InlineMath math="08.10" /> sampai <InlineMath math="08.30" /> ada <InlineMath math="20" /> menit, jadi **jarum menempuh <InlineMath math="\frac{20}{60}=\frac13" /> putaran**. Jarak tempuh ujungnya adalah panjang busur sepertiga keliling lingkaran. Misalkan <InlineMath math="K" /> adalah keliling lingkaran dan <InlineMath math="s" /> adalah panjang busur itu.
+
+<BlockMath math="\begin{aligned}
+K&=2\pi r=2\cdot\frac{22}{7}\cdot21=132\text{ cm} \\
+s&=\frac{20}{60}\cdot K=\frac13\cdot132=44\text{ cm}
+\end{aligned}" />
+
+<LineEquation
+  title={<>Gerak jarum menit dari pukul <InlineMath math="08.10" /> sampai <InlineMath math="08.30" /></>}
+  description={<>Angka <InlineMath math="12" /> berada di atas. Pada pukul <InlineMath math="08.10" /> jarum menit menunjuk angka <InlineMath math="2" />, dan pada pukul <InlineMath math="08.30" /> jarum menit menunjuk angka <InlineMath math="6" />. Ujung jarum menempuh busur dengan sudut pusat <InlineMath math="120^\circ" />.</>}
+  cameraPosition={[50, 50, 66]}
+  cameraTarget={[50, 50, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const t = (i * Math.PI) / 180;
+        return { x: 50 + 21 * Math.cos(t), y: 50 + 21 * Math.sin(t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [0, 21].map((r) => ({ x: 50 + r * Math.cos(Math.PI / 6), y: 50 + r * Math.sin(Math.PI / 6), z: 0 })),
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="08.10" />, at: 1, offset: [1.2, 0.7, 0], anchorX: "left" }],
+    },
+    {
+      points: [0, 10.5, 21].map((r) => ({ x: 50 + r * Math.cos(-Math.PI / 2), y: 50 + r * Math.sin(-Math.PI / 2), z: 0 })),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="08.30" />, at: 2, offset: [0, -2.4, 0] },
+        { text: <InlineMath math="21\text{ cm}" />, at: 1, offset: [-1.2, 0, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 - i / 2) * Math.PI) / 180;
+        return { x: 50 + 21 * Math.cos(t), y: 50 + 21 * Math.sin(t), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="44\text{ cm}" />, at: 120, offset: [1.2, -0.7, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 - i / 2) * Math.PI) / 180;
+        return { x: 50 + 4 * Math.cos(t), y: 50 + 4 * Math.sin(t), z: 0 };
+      }),
+      color: "#d97706",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="120^\circ" />, at: 120, offset: [0.8, 0, 0], anchorX: "left" }],
+    },
+  ]}
+/>
+
+Periksa dengan sudut. Jarum menit berputar <InlineMath math="\frac{360^\circ}{60}=6^\circ" /> setiap menit, jadi dalam <InlineMath math="20" /> menit ia berputar <InlineMath math="120^\circ" />.
+
+<BlockMath math="s=\frac{120^\circ}{360^\circ}\cdot132=44\text{ cm}" />
+
+Jadi, ujung jarum menit menempuh <InlineMath math="44\text{ cm}" />.
+
+- <InlineMath math="14\text{ cm}" /> adalah sepertiga diameter <InlineMath math="42\text{ cm}" />. Nilai ini muncul jika keliling disamakan dengan diameter sehingga faktor <InlineMath math="\pi" /> hilang, padahal dalam satu putaran penuh ujung jarum menempuh <InlineMath math="2\pi r=132\text{ cm}" />.
+- <InlineMath math="22\text{ cm}" /> muncul jika keliling dihitung sebagai <InlineMath math="\pi r=66\text{ cm}" />, yaitu <InlineMath math="21\text{ cm}" /> dianggap diameter, bukan jari-jari.
+- <InlineMath math="26{,}4\text{ cm}" /> muncul jika <InlineMath math="20" /> menit ditulis sebagai <InlineMath math="0{,}2" /> jam, padahal <InlineMath math="20" /> menit adalah <InlineMath math="\frac{20}{60}=\frac13" /> jam.
+- <InlineMath math="42\text{ cm}" /> muncul jika <InlineMath math="\pi" /> dibulatkan menjadi <InlineMath math="3" />, padahal soal meminta <InlineMath math="\pi=\frac{22}{7}" />.

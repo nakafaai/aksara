@@ -1,0 +1,93 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Gesucht ist der Punkt <InlineMath math="P" /> am Ufer, an dem die Probe genommen wird, sodass <InlineMath math="AP+PB" /> möglichst klein ist. Der Schlüssel ist, **<InlineMath math="B" /> am Ufer zu spiegeln**. Eine Spiegelung erhält Abstände, also gilt für jeden Punkt <InlineMath math="P" /> am Ufer <InlineMath math="PB=PB'" />, wobei <InlineMath math="B'" /> das Spiegelbild von <InlineMath math="B" /> ist. Damit ist <InlineMath math="AP+PB=AP+PB'" />. Zwei Strecken, die <InlineMath math="A" /> mit <InlineMath math="B'" /> verbinden, sind zusammen am kürzesten, wenn <InlineMath math="A" />, <InlineMath math="P" /> und <InlineMath math="B'" /> auf einer Geraden liegen.
+
+Lege das Ufer auf die <InlineMath math="x" />-Achse, mit dem Uferpunkt, der <InlineMath math="A" /> am nächsten liegt, im Ursprung. Dann gilt <InlineMath math="A(0,20)" />, <InlineMath math="B(120,30)" /> und <InlineMath math="B'(120,-30)" />.
+
+<BlockMath math="\begin{aligned}
+AP+PB&=AP+PB'\ge AB' \\
+AB'&=\sqrt{(120-0)^2+(-30-20)^2} \\
+&=\sqrt{14{.}400+2{.}500} \\
+&=\sqrt{16{.}900}=130
+\end{aligned}" />
+
+Die Strecke <InlineMath math="AB'" /> fällt um <InlineMath math="50\text{ m}" /> auf <InlineMath math="120\text{ m}" /> waagerechter Länge. Sie trifft das Ufer, nachdem sie <InlineMath math="20\text{ m}" /> gefallen ist, also nach <InlineMath math="\frac{20}{50}" /> ihrer waagerechten Länge.
+
+<BlockMath math="x_P=\frac{20}{50}\cdot120=48" />
+
+<MathVisual
+  title="Der kürzeste Weg durch Spiegelung"
+  description={<>Die Strecke <InlineMath math="PB'" /> ist das Spiegelbild der Strecke <InlineMath math="PB" /> am Ufer, deshalb sind beide gleich lang. Weil <InlineMath math="A" />, <InlineMath math="P" /> und <InlineMath math="B'" /> auf einer Geraden liegen, ist der Weg von <InlineMath math="A" /> über <InlineMath math="P" /> nach <InlineMath math="B" /> genau <InlineMath math="52+78=130\text{ m}" /> lang.</>}
+  labels={{
+    "name-a": <InlineMath math="A" />,
+    "name-b": <InlineMath math="B" />,
+    "length-a": <InlineMath math="20\text{ m}" />,
+    "length-b": <InlineMath math="30\text{ m}" />,
+    "name-p": <InlineMath math="P" />,
+    "name-b-image": <InlineMath math="B'" />,
+    "length-ap": <InlineMath math="52\text{ m}" />,
+    "length-pb": <InlineMath math="78\text{ m}" />,
+    "length-pb-image": <InlineMath math="78\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -15, max: 135 },
+      y: { min: -45, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "river-bank", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 120, y: 0 }] },
+      { id: "drop-a", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 0, y: 0 } },
+      { id: "drop-b", kind: "segment", appearance: "construction", from: { x: 120, y: 30 }, to: { x: 120, y: 0 } },
+      { id: "post-a", kind: "point", appearance: "primary", at: { x: 0, y: 20 } },
+      { id: "post-b", kind: "point", appearance: "primary", at: { x: 120, y: 30 } },
+      { id: "mirror-b", kind: "segment", appearance: "reference", from: { x: 120, y: 0 }, to: { x: 120, y: -30 } },
+      { id: "walk-ap", kind: "segment", appearance: "answer", from: { x: 0, y: 20 }, to: { x: 48, y: 0 } },
+      { id: "walk-pb", kind: "segment", appearance: "answer", from: { x: 48, y: 0 }, to: { x: 120, y: 30 } },
+      { id: "reflected-pb", kind: "segment", appearance: "warning", from: { x: 48, y: 0 }, to: { x: 120, y: -30 } },
+      { id: "sample-p", kind: "point", appearance: "answer", at: { x: 48, y: 0 } },
+      { id: "image-b", kind: "point", appearance: "warning", at: { x: 120, y: -30 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "post-a", at: { x: 0, y: 20 }, placement: "above-right" },
+      { key: "name-b", objectId: "post-b", at: { x: 120, y: 30 }, placement: "above" },
+      { key: "length-a", objectId: "drop-a", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "length-b", objectId: "drop-b", at: { x: 120, y: 15 }, placement: "right" },
+      { key: "name-p", objectId: "sample-p", at: { x: 48, y: 0 }, placement: "below" },
+      { key: "name-b-image", objectId: "image-b", at: { x: 120, y: -30 }, placement: "right" },
+      { key: "length-ap", objectId: "walk-ap", at: { x: 24, y: 10 }, placement: "above-right" },
+      { key: "length-pb", objectId: "walk-pb", at: { x: 84, y: 15 }, placement: "above-left" },
+      { key: "length-pb-image", objectId: "reflected-pb", at: { x: 84, y: -15 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Prüfe beide Teile des Weges. Der Punkt <InlineMath math="P(48,0)" /> liegt <InlineMath math="120-48=72\text{ m}" /> vom Uferpunkt entfernt, der <InlineMath math="B" /> am nächsten liegt.
+
+<BlockMath math="\begin{aligned}
+AP&=\sqrt{48^2+20^2}=\sqrt{2{.}704}=52 \\
+PB&=\sqrt{72^2+30^2}=\sqrt{6{.}084}=78 \\
+AP+PB&=52+78=130
+\end{aligned}" />
+
+Der Vergleich mit anderen Entnahmestellen bestätigt, dass **der Punkt auf der Geraden durch <InlineMath math="A" /> und <InlineMath math="B'" />** den kürzesten Weg liefert.
+
+| Lage der Entnahmestelle | Weglänge <InlineMath math="(\text{m})" /> | Näherungswert <InlineMath math="(\text{m})" /> |
+| --- | ---: | ---: |
+| Direkt vor <InlineMath math="A" />, <InlineMath math="x=0" /> | <InlineMath math="20+30\sqrt{17}" /> | <InlineMath math="143{,}7" /> |
+| Auf der Geraden, <InlineMath math="x=48" /> | <InlineMath math="130" /> | <InlineMath math="130" /> |
+| Mittelpunkt, <InlineMath math="x=60" /> | <InlineMath math="20\sqrt{10}+30\sqrt5" /> | <InlineMath math="130{,}3" /> |
+| Direkt vor <InlineMath math="B" />, <InlineMath math="x=120" /> | <InlineMath math="20\sqrt{37}+30" /> | <InlineMath math="151{,}7" /> |
+
+Der kürzeste Weg ist also <InlineMath math="130\text{ m}" /> lang, wobei die Probe <InlineMath math="48\text{ m}" /> von dem Uferpunkt entfernt genommen wird, der Posten <InlineMath math="A" /> am nächsten liegt.
+
+- <InlineMath math="10\sqrt{145}\text{ m}" /> ist die gerade Entfernung von <InlineMath math="A" /> nach <InlineMath math="B" /> ohne Halt am Fluss, etwa <InlineMath math="120{,}4\text{ m}" />. Der Mitarbeiter muss aber zum Ufer, und jeder Weg mit einem Halt dort ist mindestens <InlineMath math="130\text{ m}" /> lang.
+- <InlineMath math="\left(20\sqrt{10}+30\sqrt5\right)\text{ m}" /> ist der Weg, wenn die Probe in der Mitte genommen wird, etwa <InlineMath math="130{,}3\text{ m}" />, also etwas länger als <InlineMath math="130\text{ m}" />.
+- <InlineMath math="\left(20+30\sqrt{17}\right)\text{ m}" /> ist der Weg, wenn die Probe direkt vor <InlineMath math="A" /> genommen wird.
+- <InlineMath math="\left(30+20\sqrt{37}\right)\text{ m}" /> ist der Weg, wenn die Probe direkt vor <InlineMath math="B" /> genommen wird.

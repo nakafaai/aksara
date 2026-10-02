@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Die Masse ist Dichte mal Volumen, also brauchst du **nur das Betonvolumen in der Wand**, nicht das Volumen des ganzen Zylinders. Der Querschnitt des Betonrohrs (*gorong-gorong*) ist ein Ring zwischen einem äußeren Kreis mit dem Radius <InlineMath math="R=35\text{ cm}" /> und einem inneren Kreis mit dem Radius <InlineMath math="r=35-7=28\text{ cm}" />. Die Dichte ist in <InlineMath math="\text{g/cm}^3" /> angegeben, also muss auch die Länge in Zentimetern stehen, <InlineMath math="\ell=1\text{ m}=100\text{ cm}" />.
+
+<MathVisual
+  title="Querschnitt des Betonrohrs"
+  description={<>Beton füllt nur den Ring zwischen dem äußeren Kreis mit dem Radius <InlineMath math="35\text{ cm}" /> und dem inneren Kreis mit dem Radius <InlineMath math="28\text{ cm}" />. Die Breite des Rings ist die Wandstärke, <InlineMath math="7\text{ cm}" />.</>}
+  labels={{
+    "length-outer": <InlineMath math="35\text{ cm}" />,
+    "length-inner": <InlineMath math="28\text{ cm}" />,
+    "length-wall": <InlineMath math="7\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 82 },
+      y: { min: -2, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-wall", kind: "circle", appearance: "primary", center: { x: 40, y: 40 }, radius: 35 },
+      { id: "inner-wall", kind: "circle", appearance: "secondary", center: { x: 40, y: 40 }, radius: 28 },
+      { id: "radius-outer", kind: "segment", appearance: "primary", from: { x: 40, y: 40 }, to: { x: 40, y: 75 } },
+      { id: "radius-inner", kind: "segment", appearance: "secondary", from: { x: 40, y: 40 }, to: { x: 12, y: 40 } },
+      { id: "wall-thickness", kind: "segment", appearance: "highlight", from: { x: 68, y: 40 }, to: { x: 75, y: 40 } },
+    ],
+    labels: [
+      { key: "length-outer", objectId: "radius-outer", at: { x: 40, y: 57.5 }, placement: "right" },
+      { key: "length-inner", objectId: "radius-inner", at: { x: 26, y: 40 }, placement: "above" },
+      { key: "length-wall", objectId: "wall-thickness", at: { x: 75, y: 40 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Ringfläche ist die Fläche des äußeren Kreises minus die Fläche des inneren Kreises. Die Differenz der Quadrate berechnest du am einfachsten durch Faktorisieren, <InlineMath math="35^2-28^2=(35-28)(35+28)=7\cdot63=441" />. Die Dichte des Betons bezeichnest du mit <InlineMath math="\rho=2{,}5\text{ g/cm}^3" />.
+
+<BlockMath math="\begin{aligned}
+V&=\pi\left(R^2-r^2\right)\ell \\
+&=\frac{22}{7}\cdot441\cdot100 \\
+&=138{.}600\text{ cm}^3 \\
+m&=\rho V=2{,}5\cdot138{.}600=346{.}500\text{ g}=346{,}5\text{ kg}
+\end{aligned}" />
+
+Prüfe das Ergebnis auf einem zweiten Weg. Wenn du die Wand zu einer Platte abwickelst, ist ihre Länge der Umfang des mittleren Kreises mit dem Radius <InlineMath math="\frac{35+28}{2}=31{,}5\text{ cm}" />, ihre Breite <InlineMath math="100\text{ cm}" /> und ihre Dicke <InlineMath math="7\text{ cm}" />. Das ist exakt, weil <InlineMath math="R^2-r^2=(R-r)(R+r)" /> gilt.
+
+<BlockMath math="2\cdot\frac{22}{7}\cdot31{,}5\cdot7\cdot100=138{.}600\text{ cm}^3" />
+
+Ein Betonrohr hat also die Masse <InlineMath math="346{,}5\text{ kg}" />.
+
+- <InlineMath math="3{,}465\text{ kg}" /> entsteht, wenn du die Länge <InlineMath math="1\text{ m}" /> nicht in <InlineMath math="100\text{ cm}" /> umrechnest. Dann bleibt nur ein Volumen von <InlineMath math="1{.}386\text{ cm}^3" />.
+- <InlineMath math="38{,}5\text{ kg}" /> entsteht, wenn du die Ringfläche als <InlineMath math="\pi\cdot7^2" /> berechnest, also die Wandstärke quadrierst, obwohl die Ringfläche <InlineMath math="\pi\left(R^2-r^2\right)" /> ist.
+- <InlineMath math="138{,}6\text{ kg}" /> entsteht, wenn du das Volumen <InlineMath math="138{.}600\text{ cm}^3=138{,}6" /> Liter direkt als <InlineMath math="138{,}6\text{ kg}" /> liest, als hätte Beton die Dichte von Wasser, <InlineMath math="1\text{ g/cm}^3" />.
+- <InlineMath math="962{,}5\text{ kg}" /> ist die Masse eines vollen Zylinders mit dem Radius <InlineMath math="35\text{ cm}" />, ohne den Hohlraum abzuziehen.

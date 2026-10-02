@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Solution to Question 12",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The top entry of the vector <InlineMath math="T" /> is the horizontal shift and the bottom entry is the vertical shift. So this translation **moves every point <InlineMath math="2" /> units to the left and <InlineMath math="3" /> units up**, <InlineMath math="(x,y)\mapsto(x-2,\,y+3)" />. A translation does not change the shape of the parabola, so it is enough to follow the vertex. First rewrite the equation in vertex form by completing the square.
+
+<BlockMath math="\begin{aligned}
+y&=x^2-4x+1 \\
+&=\left(x^2-4x+4\right)-4+1 \\
+&=(x-2)^2-3
+\end{aligned}" />
+
+The vertex of the original parabola is <InlineMath math="(2,-3)" />. After the translation, the vertex is <InlineMath math="(2-2,\,-3+3)=(0,0)" />. The coefficient of <InlineMath math="x^2" /> stays <InlineMath math="1" />, so the image is the parabola <InlineMath math="y=x^2" />.
+
+<MathVisual
+  title="The parabola before and after the translation"
+  description={<>The vertex <InlineMath math="P(2,-3)" /> moves to <InlineMath math="P'(0,0)" />, and the point <InlineMath math="Q(4,1)" /> moves to <InlineMath math="Q'(2,4)" />. The segments <InlineMath math="PP'" /> and <InlineMath math="QQ'" /> are parallel and equally long because a translation moves every point by the same vector, <InlineMath math="T" />.</>}
+  labels={{
+    "equation-original": <InlineMath math="y=x^2-4x+1" />,
+    "equation-image": <InlineMath math="y=x^2" />,
+    "name-vertex-original": <InlineMath math="P" />,
+    "name-vertex-image": <InlineMath math="P'" />,
+    "name-point-original": <InlineMath math="Q" />,
+    "name-point-image": <InlineMath math="Q'" />,
+    "vector-t": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 8 },
+      y: { min: -4.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph-original", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x" },
+      { id: "graph-image", kind: "quadratic", appearance: "answer", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2.5, max: 2.5 }, inputAxis: "x" },
+      { id: "shift-vertex", kind: "segment", appearance: "highlight", from: { x: 2, y: -3 }, to: { x: 0, y: 0 } },
+      { id: "shift-point", kind: "segment", appearance: "highlight", from: { x: 4, y: 1 }, to: { x: 2, y: 4 } },
+      { id: "vertex-original", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "vertex-image", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "point-original", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "equation-original", objectId: "graph-original", at: { x: 4.5, y: 3.25 }, placement: "right" },
+      { key: "equation-image", objectId: "graph-image", at: { x: -2.5, y: 6.25 }, placement: "left" },
+      { key: "name-vertex-original", objectId: "vertex-original", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "name-vertex-image", objectId: "vertex-image", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-point-original", objectId: "point-original", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "name-point-image", objectId: "point-image", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "vector-t", objectId: "shift-point", at: { x: 3, y: 2.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Check by substitution. A point <InlineMath math="(x',y')" /> on the image comes from the point <InlineMath math="(x'+2,\,y'-3)" /> on the original graph. That original point satisfies the original equation.
+
+<BlockMath math="\begin{aligned}
+y'-3&=(x'+2)^2-4(x'+2)+1 \\
+&=x'^2+4x'+4-4x'-8+1 \\
+&=x'^2-3 \\
+y'&=x'^2
+\end{aligned}" />
+
+The equation of the image is therefore <InlineMath math="y=x^2" />.
+
+- <InlineMath math="y=x^2-6" /> comes from applying the vertical part in the wrong direction, as if the graph moved <InlineMath math="3" /> units down, which puts the vertex at <InlineMath math="(0,-6)" />.
+- <InlineMath math="y=x^2+8" /> comes from substituting <InlineMath math="x+2" /> only into the <InlineMath math="x^2" /> term and leaving the <InlineMath math="-4x" /> term unchanged.
+- <InlineMath math="y=x^2-8x+10" /> comes from reversing both parts, <InlineMath math="2" /> units to the right and <InlineMath math="3" /> units down, which puts the vertex at <InlineMath math="(4,-6)" />.
+- <InlineMath math="y=x^2-8x+16" /> comes from reversing only the horizontal part, <InlineMath math="2" /> units to the right, which puts the vertex at <InlineMath math="(4,0)" />.

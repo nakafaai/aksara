@@ -1,0 +1,82 @@
+export const metadata = {
+  title: "Pembahasan Soal 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Garis tinggi <InlineMath math="CD" /> dari sudut siku-siku membagi segitiga <InlineMath math="ABC" /> menjadi dua segitiga siku-siku yang lebih kecil, yaitu <InlineMath math="ADC" /> dan <InlineMath math="CDB" />. Kedua segitiga itu **sebangun**, sehingga perbandingan sisi-sisinya bisa dipakai untuk mencari <InlineMath math="CD" />.
+
+Alasan kesebangunannya adalah dua pasang sudut yang sama besar. Sudut <InlineMath math="ADC" /> dan sudut <InlineMath math="CDB" /> sama-sama <InlineMath math="90^\circ" />. Jumlah sudut segitiga <InlineMath math="ADC" /> dan jumlah sudut segitiga <InlineMath math="ABC" /> sama-sama <InlineMath math="180^\circ" />, jadi kedua sudut berikut sama besar.
+
+<BlockMath math="\begin{aligned}
+\angle ACD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A \\
+\angle CBD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A
+\end{aligned}" />
+
+Pada kesebangunan itu, <InlineMath math="A" /> bersesuaian dengan <InlineMath math="C" />, <InlineMath math="D" /> dengan <InlineMath math="D" />, dan <InlineMath math="C" /> dengan <InlineMath math="B" />. Jadi, **perbandingan kaki-kaki kedua segitiga sama**.
+
+<BlockMath math="\begin{aligned}
+\frac{AD}{CD}&=\frac{CD}{DB} \\
+CD^2&=AD\cdot DB=4\cdot9=36 \\
+CD&=6
+\end{aligned}" />
+
+Panjang selalu positif, jadi <InlineMath math="CD=6\text{ cm}" />.
+
+<MathVisual
+  title="Dua segitiga siku-siku yang sebangun"
+  description={<>Segitiga <InlineMath math="ADC" /> di kiri dan segitiga <InlineMath math="CDB" /> di kanan sebangun. Sisi <InlineMath math="AD" /> bersesuaian dengan <InlineMath math="CD" />, dan <InlineMath math="CD" /> bersesuaian dengan <InlineMath math="DB" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "foot-d": <InlineMath math="D" />,
+    "length-ad": <InlineMath math="4\text{ cm}" />,
+    "length-db": <InlineMath math="9\text{ cm}" />,
+    "length-cd": <InlineMath math="6\text{ cm}" />,
+    "length-ac": <InlineMath math="2\sqrt{13}\text{ cm}" />,
+    "length-bc": <InlineMath math="3\sqrt{13}\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 17.5 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-adc", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }] },
+      { id: "triangle-cdb", kind: "polygon", appearance: "highlight", vertices: [{ x: 7, y: 0 }, { x: 16, y: 0 }, { x: 7, y: 6 }] },
+      { id: "altitude-cd", kind: "segment", appearance: "answer", from: { x: 7, y: 6 }, to: { x: 7, y: 0 } },
+      { id: "right-angle-d", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0.6 }, { x: 7.6, y: 0.6 }, { x: 7.6, y: 0 }] },
+      { id: "right-angle-c", kind: "polyline", appearance: "reference", vertices: [{ x: 6.664, y: 5.496 }, { x: 7.168, y: 5.16 }, { x: 7.504, y: 5.664 }] },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-adc", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "triangle-cdb", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "triangle-cdb", at: { x: 7, y: 6 }, placement: "above" },
+      { key: "foot-d", objectId: "altitude-cd", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "length-ad", objectId: "triangle-adc", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "length-db", objectId: "triangle-cdb", at: { x: 11.5, y: 0 }, placement: "below" },
+      { key: "length-cd", objectId: "altitude-cd", at: { x: 7, y: 3 }, placement: "right" },
+      { key: "length-ac", objectId: "triangle-adc", at: { x: 5, y: 3 }, placement: "above-left" },
+      { key: "length-bc", objectId: "triangle-cdb", at: { x: 11.5, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Periksa hasilnya dengan teorema Pythagoras. Hitung <InlineMath math="AC^2" /> dan <InlineMath math="BC^2" /> dari kedua segitiga kecil, lalu pastikan keduanya memenuhi teorema Pythagoras pada segitiga besar dengan <InlineMath math="AB=4+9=13" />.
+
+<BlockMath math="\begin{aligned}
+AC^2&=4^2+6^2=52 \\
+BC^2&=9^2+6^2=117 \\
+AC^2+BC^2&=169=13^2=AB^2
+\end{aligned}" />
+
+Jadi, panjang <InlineMath math="CD" /> adalah <InlineMath math="6\text{ cm}" />.
+
+- <InlineMath math="\frac{13}{2}\text{ cm}" /> adalah setengah <InlineMath math="AB" />, yaitu panjang garis berat dari <InlineMath math="C" /> ke titik tengah <InlineMath math="AB" />. Garis berat dan garis tinggi hanya sama panjang jika <InlineMath math="AD=DB" />.
+- <InlineMath math="2\sqrt{13}\text{ cm}" /> adalah panjang <InlineMath math="AC" />, yang diperoleh dari <InlineMath math="AC^2=AD\cdot AB=4\cdot13" />, bukan panjang <InlineMath math="CD" />.
+- <InlineMath math="6\sqrt{2}\text{ cm}" /> muncul jika <InlineMath math="AB^2=AC^2+BC^2" /> ditulis <InlineMath math="169=16+81+CD^2" />, padahal <InlineMath math="CD^2" /> muncul dua kali, sekali di <InlineMath math="AC^2" /> dan sekali di <InlineMath math="BC^2" />.
+- <InlineMath math="3\sqrt{13}\text{ cm}" /> adalah panjang <InlineMath math="BC" />, yang diperoleh dari <InlineMath math="BC^2=DB\cdot AB=9\cdot13" />.

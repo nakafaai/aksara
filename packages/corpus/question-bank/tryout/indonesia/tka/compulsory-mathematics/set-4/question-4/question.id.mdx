@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Soal 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Daerah yang diarsir pada gambar berikut, termasuk garis-garis batasnya, adalah himpunan penyelesaian suatu sistem pertidaksamaan linear dua variabel.
+
+<MathVisual
+  title="Daerah himpunan penyelesaian"
+  description={<>Daerah segitiga yang diarsir dibatasi oleh sumbu <InlineMath math="y" />, garis yang melalui <InlineMath math="(0,6)" /> dan <InlineMath math="(6,0)" />, serta garis yang melalui <InlineMath math="(0,3)" /> dan <InlineMath math="(9,0)" />.</>}
+  labels={{
+    "coordinate-g-y": <InlineMath math="(0,6)" />,
+    "coordinate-g-x": <InlineMath math="(6,0)" />,
+    "coordinate-h-y": <InlineMath math="(0,3)" />,
+    "coordinate-h-x": <InlineMath math="(9,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 10.5 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "solution-region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 0, y: 6 }, { x: 4.5, y: 1.5 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }] },
+      { id: "line-h", kind: "line", appearance: "secondary", through: [{ x: 0, y: 3 }, { x: 9, y: 0 }] },
+      { id: "point-g-y", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "point-g-x", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "point-h-y", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "point-h-x", kind: "point", appearance: "secondary", at: { x: 9, y: 0 } },
+    ],
+    labels: [
+      { key: "coordinate-g-y", objectId: "point-g-y", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "coordinate-g-x", objectId: "point-g-x", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "coordinate-h-y", objectId: "point-h-y", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "coordinate-h-x", objectId: "point-h-x", at: { x: 9, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Sistem pertidaksamaan tersebut adalah ....

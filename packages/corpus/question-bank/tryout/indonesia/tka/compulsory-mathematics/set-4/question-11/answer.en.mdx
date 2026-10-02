@@ -1,0 +1,76 @@
+export const metadata = {
+  title: "Solution to Question 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The shortest distance from a point to a line is **the length of the segment perpendicular to that line**. Any other segment from <InlineMath math="O" /> to the highway is longer, because it is the hypotenuse of a right triangle whose leg is that perpendicular segment. So the new road is the altitude of triangle <InlineMath math="OAB" /> from <InlineMath math="O" /> to side <InlineMath math="AB" />.
+
+The angle at <InlineMath math="O" /> is a right angle because <InlineMath math="A" /> lies on the <InlineMath math="x" />-axis and <InlineMath math="B" /> on the <InlineMath math="y" />-axis. Let <InlineMath math="d" /> be the length of the new road. Find <InlineMath math="AB" /> with the Pythagorean theorem, then write **the area of triangle <InlineMath math="OAB" /> with two pairs of base and height**: base <InlineMath math="OA" /> with height <InlineMath math="OB" />, and base <InlineMath math="AB" /> with height <InlineMath math="d" />.
+
+<BlockMath math="\begin{aligned}
+AB&=\sqrt{12^2+9^2}=\sqrt{225}=15 \\
+\frac12\cdot OA\cdot OB&=\frac12\cdot AB\cdot d \\
+\frac12\cdot12\cdot9&=\frac12\cdot15\cdot d \\
+54&=\frac{15}{2}\,d \\
+d&=\frac{108}{15}=7.2
+\end{aligned}" />
+
+<MathVisual
+  title="The shortest road meets the highway at a right angle"
+  description={<>Segment <InlineMath math="OF" /> is perpendicular to the highway at <InlineMath math="F" /> and is <InlineMath math="7.2\text{ km}" /> long. Segment <InlineMath math="OM" /> to the midpoint of <InlineMath math="AB" /> is longer, <InlineMath math="7.5\text{ km}" />, because it is not perpendicular.</>}
+  labels={{
+    "name-o": <InlineMath math="O(0,0)" />,
+    "name-a": <InlineMath math="A(12,0)" />,
+    "name-b": <InlineMath math="B(0,9)" />,
+    "name-f": <InlineMath math="F" />,
+    "name-m": <InlineMath math="M" />,
+    "length-of": <InlineMath math="7.2\text{ km}" />,
+    "length-om": <InlineMath math="7.5\text{ km}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "highway", kind: "line", appearance: "primary", through: [{ x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "office-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 12, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 0, y: 9 } },
+      { id: "road-of", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4.32, y: 5.76 } },
+      { id: "road-om", kind: "segment", appearance: "warning", from: { x: 0, y: 0 }, to: { x: 6, y: 4.5 } },
+      { id: "right-angle-f", kind: "polyline", appearance: "reference", vertices: [{ x: 3.96, y: 5.28 }, { x: 4.44, y: 4.92 }, { x: 4.8, y: 5.4 }] },
+      { id: "foot-f", kind: "point", appearance: "answer", at: { x: 4.32, y: 5.76 } },
+      { id: "midpoint-m", kind: "point", appearance: "warning", at: { x: 6, y: 4.5 } },
+    ],
+    labels: [
+      { key: "name-o", objectId: "office-o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-a", objectId: "point-a", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "name-b", objectId: "point-b", at: { x: 0, y: 9 }, placement: "above-right" },
+      { key: "name-f", objectId: "foot-f", at: { x: 4.32, y: 5.76 }, placement: "above-right" },
+      { key: "name-m", objectId: "midpoint-m", at: { x: 6, y: 4.5 }, placement: "above-right" },
+      { key: "length-of", objectId: "road-of", at: { x: 2.16, y: 2.88 }, placement: "above-left" },
+      { key: "length-om", objectId: "road-om", at: { x: 3, y: 2.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Check with a second method. The highway satisfies <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, or <InlineMath math="3x+4y=36" />. The slope of <InlineMath math="AB" /> is <InlineMath math="-\frac34" />, so a segment perpendicular to <InlineMath math="AB" /> has slope <InlineMath math="\frac43" />. Its foot can be written as <InlineMath math="F(3k,4k)" />. Substitute it into the equation of the highway.
+
+<BlockMath math="\begin{aligned}
+3(3k)+4(4k)&=36 \\
+25k&=36 \\
+k&=\frac{36}{25} \\
+OF&=\sqrt{(3k)^2+(4k)^2}=5k=\frac{36}{5}=7.2
+\end{aligned}" />
+
+The new road is therefore <InlineMath math="7.2\text{ km}" /> long.
+
+- <InlineMath math="3.6\text{ km}" /> comes from dividing the area <InlineMath math="54" /> directly by <InlineMath math="AB=15" />, although the area is half of base times height, so <InlineMath math="d=\frac{2\cdot54}{15}" />.
+- <InlineMath math="7.5\text{ km}" /> is the distance from <InlineMath math="O" /> to the midpoint of <InlineMath math="AB" />, <InlineMath math="M\left(6,\frac92\right)" />. The midpoint is not the nearest point, because <InlineMath math="OM" /> is not perpendicular to the highway.
+- <InlineMath math="9\text{ km}" /> is the length of a road along the <InlineMath math="y" />-axis to <InlineMath math="B" />. That road meets the highway at a slant, so it is longer than <InlineMath math="OF" />.
+- <InlineMath math="12\text{ km}" /> is the length of a road along the <InlineMath math="x" />-axis to <InlineMath math="A" />, which is also longer than the perpendicular road.

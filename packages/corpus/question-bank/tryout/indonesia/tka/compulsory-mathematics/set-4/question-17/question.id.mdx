@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Soal 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Atap sebuah pendopo berbentuk limas segi empat beraturan <InlineMath math="T.ABCD" />. Alas atap <InlineMath math="ABCD" /> berbentuk persegi dengan panjang sisi <InlineMath math="8\text{ m}" />, dan tinggi atap, yaitu jarak dari puncak <InlineMath math="T" /> ke bidang alas, adalah <InlineMath math="3\text{ m}" />.
+
+<MathVisual
+  title={<>Atap berbentuk limas <InlineMath math="T.ABCD" /></>}
+  description={<>Alas <InlineMath math="ABCD" /> adalah persegi dengan sisi <InlineMath math="8\text{ m}" />. Ruas tegak dari puncak <InlineMath math="T" /> ke pusat alas panjangnya <InlineMath math="3\text{ m}" />. Putar gambar untuk melihat keempat sisi tegak atap.</>}
+  labels={{
+    "vertex-t": <InlineMath math="T" />,
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-d": <InlineMath math="D" />,
+    "length-ab": <InlineMath math="8\text{ m}" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 4 },
+      z: { min: -5, max: 5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
+      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
+      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
+      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
+      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
+      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "length-ab", objectId: "base-abcd", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+Keempat sisi tegak atap akan ditutup seluruhnya dengan atap logam seharga <InlineMath math="\text{Rp}85{.}000" /> per <InlineMath math="\text{m}^2" />, tanpa sisa potongan. Biaya pembelian atap logam tersebut adalah ....

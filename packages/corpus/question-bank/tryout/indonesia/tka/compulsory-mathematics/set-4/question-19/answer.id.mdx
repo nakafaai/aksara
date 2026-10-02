@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Pembahasan Soal 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Satu putaran pedal memutar gir depan satu kali, sehingga rantai melewati <InlineMath math="48" /> gigi. Gir belakang harus dilewati oleh <InlineMath math="48" /> gigi yang sama, padahal satu putarannya hanya <InlineMath math="16" /> gigi. Jadi, **gir belakang berputar <InlineMath math="\frac{48}{16}=3" /> kali** untuk setiap putaran pedal. Roda belakang ikut berputar <InlineMath math="3" /> kali, dan setiap putaran roda memindahkan sepeda sejauh keliling roda.
+
+<MathVisual
+  title="Gir depan, gir belakang, dan rantai"
+  description={<>Jari-jari kedua gir digambar sebanding dengan banyak giginya, <InlineMath math="48:16=3:1" />. Ketika gir depan berputar sekali, rantai yang sama panjangnya membuat gir belakang berputar <InlineMath math="3" /> kali.</>}
+  labels={{
+    "teeth-front": <><InlineMath math="48" /> gigi</>,
+    "teeth-rear": <><InlineMath math="16" /> gigi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "chainring", kind: "circle", appearance: "primary", center: { x: 3.5, y: 3.5 }, radius: 2.1 },
+      { id: "sprocket", kind: "circle", appearance: "secondary", center: { x: 8.5, y: 3.5 }, radius: 0.7 },
+      { id: "chain-top", kind: "segment", appearance: "reference", from: { x: 4.088, y: 5.516 }, to: { x: 8.696, y: 4.172 } },
+      { id: "chain-bottom", kind: "segment", appearance: "reference", from: { x: 4.088, y: 1.484 }, to: { x: 8.696, y: 2.828 } },
+      { id: "hub-front", kind: "point", appearance: "primary", at: { x: 3.5, y: 3.5 } },
+      { id: "hub-rear", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.5 } },
+    ],
+    labels: [
+      { key: "teeth-front", objectId: "chainring", at: { x: 3.5, y: 1.4 }, placement: "below" },
+      { key: "teeth-rear", objectId: "sprocket", at: { x: 9.2, y: 3.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Misalkan <InlineMath math="K" /> adalah keliling roda dan <InlineMath math="s" /> adalah jarak tempuh sepeda untuk satu putaran pedal.
+
+<BlockMath math="\begin{aligned}
+K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
+s&=3\cdot220=660\text{ cm}=6{,}6\text{ m}
+\end{aligned}" />
+
+| Bagian | Gerak untuk satu putaran pedal |
+| --- | --- |
+| Pedal dan gir depan | <InlineMath math="1" /> putaran, rantai melewati <InlineMath math="48" /> gigi |
+| Gir belakang | <InlineMath math="\frac{48}{16}=3" /> putaran |
+| Roda belakang | <InlineMath math="3" /> putaran, ikut gir belakang |
+| Sepeda | <InlineMath math="3\cdot220\text{ cm}=660\text{ cm}" /> |
+
+1. Pernyataan bahwa satu putaran pedal memindahkan sepeda sejauh <InlineMath math="6{,}6\text{ m}" /> benar, sesuai perhitungan <InlineMath math="s=660\text{ cm}" /> di atas.
+2. Pernyataan tentang <InlineMath math="600" /> putaran pedal salah. Jarak <InlineMath math="1{,}32\text{ km}=1{.}320\text{ m}" /> hanya memerlukan <InlineMath math="\frac{1{.}320}{6{,}6}=200" /> putaran pedal. Angka <InlineMath math="600" /> adalah banyak putaran roda, <InlineMath math="200\cdot3" />, bukan putaran pedal.
+3. Pernyataan tentang gir belakang <InlineMath math="24" /> gigi salah. Dengan gir itu, roda berputar <InlineMath math="\frac{48}{24}=2" /> kali, sehingga sepeda berpindah <InlineMath math="2\cdot220=440\text{ cm}=4{,}4\text{ m}" />. Jadi, **gir belakang yang lebih besar memperpendek jarak** setiap putaran pedal. Nilai <InlineMath math="9{,}9\text{ m}" /> muncul jika <InlineMath math="6{,}6" /> dikalikan <InlineMath math="\frac{24}{16}" />, yaitu perbandingannya terbalik.
+4. Pernyataan tentang kelajuan <InlineMath math="23{,}76\text{ km/jam}" /> benar. Dalam satu menit sepeda menempuh <InlineMath math="60\cdot6{,}6=396\text{ m}" />, dan satu jam berisi <InlineMath math="60" /> menit.
+
+<BlockMath math="\begin{aligned}
+v&=60\cdot6{,}6\text{ m/menit}=396\text{ m/menit} \\
+&=396\cdot60\text{ m/jam}=23{.}760\text{ m/jam}=23{,}76\text{ km/jam}
+\end{aligned}" />
+
+Jadi, pernyataan tentang jarak <InlineMath math="6{,}6\text{ m}" /> dan tentang kelajuan <InlineMath math="23{,}76\text{ km/jam}" /> benar, sedangkan pernyataan tentang <InlineMath math="600" /> putaran dan tentang jarak <InlineMath math="9{,}9\text{ m}" /> salah.

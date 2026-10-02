@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Solution to Question 5",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Let the team win <InlineMath math="x" /> matches, draw <InlineMath math="y" /> matches, and lose <InlineMath math="z" /> matches. The problem gives three facts, and **each fact becomes one equation**: the number of matches, the number of points, and the link between losses and draws. A loss is worth <InlineMath math="0" /> points, so <InlineMath math="z" /> does not appear in the points equation.
+
+<BlockMath math="\begin{aligned}
+x+y+z&=16 \\
+3x+y&=33 \\
+z&=y
+\end{aligned}" />
+
+Substitute <InlineMath math="z=y" /> into the first equation, write <InlineMath math="x" /> in terms of <InlineMath math="y" />, and put the result into the points equation.
+
+<BlockMath math="\begin{aligned}
+x+2y&=16 \\
+x&=16-2y \\
+3(16-2y)+y&=33 \\
+48-5y&=33 \\
+y&=3
+\end{aligned}" />
+
+From <InlineMath math="y=3" /> you get <InlineMath math="x=16-2(3)=10" /> and <InlineMath math="z=y=3" />. The table checks all three facts at once: <InlineMath math="16" /> matches, <InlineMath math="33" /> points, and as many losses as draws.
+
+| Result | Number of matches | Points per match | Total points |
+| --- | ---: | ---: | ---: |
+| Win | <InlineMath math="10" /> | <InlineMath math="3" /> | <InlineMath math="30" /> |
+| Draw | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
+| Loss | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| Total | <InlineMath math="16" /> |  | <InlineMath math="33" /> |
+
+The futsal team therefore won <InlineMath math="10" /> matches that season.
+
+- <InlineMath math="3" /> is the number of draws, which also equals the number of losses, not the number of wins.
+- <InlineMath math="6" /> is the number of matches the team did not win, <InlineMath math="y+z" />.
+- <InlineMath math="11" /> comes from assuming every point came from a win, <InlineMath math="\frac{33}{3}=11" />. With <InlineMath math="11" /> wins and no draws, the team lost <InlineMath math="5" /> times, so the losses would not equal the draws.
+- <InlineMath math="13" /> is the number of matches the team did not lose, <InlineMath math="x+y" />.
