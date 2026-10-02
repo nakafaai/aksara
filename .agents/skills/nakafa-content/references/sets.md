@@ -2,20 +2,17 @@
 
 Aksara is the original and canonical source of every try-out item. Outside
 material, such as documents, PDFs, notes, earlier drafts, and item ideas, is
-input only. Nothing from it is published until it is written to the Nakafa
-standard and verified.
+inspiration only. Every published item is written to the Nakafa standard and
+verified.
 
 ## Original items
 
-- Every published prompt, option, figure, and explanation is original Nakafa
-  work: written for Nakafa, or adapted from Nakafa's own earlier material after
-  verification. Every passage and data source is original or used under the
-  terms in [passages and rights](#passages-and-rights).
-- Never copy a question, figure, or explanation from third-party material,
-  and use a third-party passage or data source only under the terms in
-  [passages and rights](#passages-and-rights). A third-party item may inform
-  the topic, skill, and difficulty; the published item has its own context,
-  values, and wording.
+- Source material is inspiration, Nakafa's own earlier material included. It
+  may set an item's topic, skill, format, and difficulty, while each published
+  prompt, passage, option, figure, and explanation is written for Nakafa with
+  its own context, numbers, and wording. A third-party passage or data source
+  may instead be used under the terms in
+  [passages and rights](#passages-and-rights).
 - Treat every key and explanation in source material as a claim to verify,
   never as a fact.
 - Record the origin of each source and pin the exact version consulted in the
@@ -59,10 +56,10 @@ test description and the rules that govern it.
 
 ## Uniqueness and difficulty
 
-- No item may repeat another item anywhere in the bank or in its source
-  material, including items that differ only in numbers, names, or option
-  order. Compare every new item with the complete bank before authoring it,
-  not only with its own set.
+- No item may repeat another item in the bank or the source item that inspired
+  it, including items that differ only in numbers, names, or option order.
+  Compare every new item with the complete bank and its source material before
+  authoring it, not only with its own set.
 - Each set follows its readiness blueprint for cognitive levels, content
   domains, topics, and response kinds. Difficulty comes from linked decisions,
   constraints, and plausible distractors, never from obscure wording or
