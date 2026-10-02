@@ -11,7 +11,7 @@ export const tkaEnglishTrack = {
     en: "english",
     id: "bahasa-inggris",
   },
-  sets: [1, 2, 3].map((setNumber) => {
+  sets: [1, 2, 3, 4].map((setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,

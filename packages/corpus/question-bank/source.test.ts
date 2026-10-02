@@ -24,7 +24,7 @@ import {
 
 layer(Path.layer)("question source", (it) => {
   it.effect(
-    "discovers and validates all 1825 real question directories",
+    "discovers and validates all 1850 real question directories",
     () =>
       Effect.gen(function* () {
         const sources = yield* discoverSyntheticQuestionSources(
@@ -34,10 +34,10 @@ layer(Path.layer)("question source", (it) => {
         const itemsByRoot = indexQuestionItems(sources);
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
 
-        expect(sources).toHaveLength(1825);
-        expect(itemsByRoot.size).toBe(1825);
+        expect(sources).toHaveLength(1850);
+        expect(itemsByRoot.size).toBe(1850);
         expect(itemsByRoot.get(first.sourceRoot)).toBe(first.item);
-        expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(79);
+        expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(80);
         for (const { count, rendererDomain } of questionRendererCounts) {
           expect(
             sources.filter((source) => source.rendererDomain === rendererDomain)

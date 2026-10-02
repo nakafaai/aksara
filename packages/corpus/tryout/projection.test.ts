@@ -32,21 +32,21 @@ describe("tryout projection", () => {
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 237,
-          set: 57,
+          section: 240,
+          set: 60,
           track: 12,
         });
-        expect(projection.catalog).toHaveLength(315);
-        expect(projection.routeCount).toBe(288);
-        expect(projection.placements).toHaveLength(5475);
+        expect(projection.catalog).toHaveLength(321);
+        expect(projection.routeCount).toBe(291);
+        expect(projection.placements).toHaveLength(5550);
         expect(
           new Set(
             projection.placements.map(
               ({ questionContentKey }) => questionContentKey
             )
           ).size
-        ).toBe(1825);
-        expect(bodyHeads.size).toBe(10_950);
+        ).toBe(1850);
+        expect(bodyHeads.size).toBe(11_100);
         expect(
           projection.placements.every(
             ({ response, scope }) =>
@@ -108,7 +108,7 @@ describe("tryout projection", () => {
         );
 
         expect(snbt).toHaveLength(4800);
-        expect(tka).toHaveLength(675);
+        expect(tka).toHaveLength(750);
         expect(
           Array.from({ length: 10 }, (_, index) => `set-${index + 1}`).map(
             (setKey) =>
@@ -126,12 +126,12 @@ describe("tryout projection", () => {
                   appLocale === "en" && placementTrackKey === trackKey
               ).length
           )
-        ).toEqual([75, 75, 75]);
+        ).toEqual([75, 75, 100]);
         expect(new Set(snbt.map(({ setKey }) => setKey))).toEqual(
           new Set(Array.from({ length: 10 }, (_, index) => `set-${index + 1}`))
         );
         expect(new Set(tka.map(({ setKey }) => setKey))).toEqual(
-          new Set(["set-1", "set-2", "set-3"])
+          new Set(["set-1", "set-2", "set-3", "set-4"])
         );
       }),
     { timeout: 30_000 }

@@ -16,14 +16,14 @@ describe("tryout content", () => {
           Effect.provide(questionLayer)
         );
 
-        expect(content.entries).toHaveLength(7300);
-        expect(content.projection.placements).toHaveLength(5475);
+        expect(content.entries).toHaveLength(7400);
+        expect(content.projection.placements).toHaveLength(5550);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "question")
-        ).toHaveLength(1825);
+        ).toHaveLength(1850);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "answer")
-        ).toHaveLength(5475);
+        ).toHaveLength(5550);
       }),
     { timeout: 30_000 }
   );
@@ -60,8 +60,8 @@ describe("tryout content", () => {
               ({ questionContentKey }) => questionContentKey
             )
           ).size
-        ).toBe(1825);
-        expect(activeQuestionEntries).toHaveLength(1825);
+        ).toBe(1850);
+        expect(activeQuestionEntries).toHaveLength(1850);
         expect(new Set(fingerprints).size).toBe(fingerprints.length);
       }).pipe(Effect.provide(questionLayer)),
     { timeout: 30_000 }
