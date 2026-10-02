@@ -235,6 +235,7 @@ export async function runOsvAudit(
         [
           "scan",
           "source",
+          `--config=${resolve(input.root, "osv.toml")}`,
           `--lockfile=${resolve(input.root, "pnpm-lock.yaml")}`,
         ],
         input.root
