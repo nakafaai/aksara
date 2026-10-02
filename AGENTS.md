@@ -70,7 +70,12 @@ for clarity, measurable scale, and safe releases.
 - CI audits against live OSV advisories, so a new advisory can fail CI with no
   code change. Pin the patched version with an override in
   `pnpm-workspace.yaml` in its own change, then update waiting pull requests
-  from `main`.
+  from `main`. When no patched release exists and only development tooling
+  reaches the package, add a time-boxed `IgnoredVulns` entry to
+  `osv-scanner.toml` in its own change instead: `ignoreUntil` at most 14 days
+  out and a `reason` naming the dependency path and why it cannot be exploited.
+  Delete the entry once a patched release ships; an expired entry fails the
+  audit again.
 - pnpm checks every lockfile entry against its one-day `minimumReleaseAge`,
   even in frozen installs. List a reviewed version that must land sooner in
   `minimumReleaseAgeExclude`, and remove the entry once that version is a day
