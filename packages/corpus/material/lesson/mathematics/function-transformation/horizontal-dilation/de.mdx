@@ -1,372 +1,618 @@
 export const metadata = {
   title: "Horizontale Streckung und Stauchung",
-  description: "Bestimme die horizontale Skalierung aus dem Multiplikator im Funktionsargument und wende die Regel auf Graphen, Definitionsbereiche und Beispiele an.",
+  description: "Multipliziere das Argument einer Funktion mit einem Faktor, erkenne, warum ein Faktor über eins den Graphen staucht, und bestimme Punkte und Gleichung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Funktionstransformation",
 };
 
-## Die Breite eines Funktionsgraphen verändern
+## Das Argument mit einer Zahl multiplizieren
 
-Eine horizontale Skalierung verändert den **Abstand zur senkrechten Achse**, ohne einen Funktionswert zu ändern. Der Graph kann gestreckt, gestaucht oder gespiegelt werden. Zugehörige Punkte behalten denselben <InlineMath math="y" />-Wert.
+Bei einer **horizontalen Streckung oder Stauchung** wird aus <InlineMath math="y = f(x)" /> die Funktion <InlineMath math="y = f(bx)" /> mit <InlineMath math="b > 0" />. Der Faktor <InlineMath math="b" /> im Argument multipliziert <InlineMath math="x" />, bevor die Vorschrift <InlineMath math="f" /> angewendet wird. Dadurch wandert jeder Punkt des Graphen von <InlineMath math="f" /> waagerecht:
 
-Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = f(kx)" />. Dabei ist <InlineMath math="k \ne 0" /> die Zahl, die das Funktionsargument multipliziert, und die horizontale Skalierung des neuen Graphen beträgt <InlineMath math="s = \frac{1}{|k|}" />.
+<BlockMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b},\ y_0\right)" />
 
-### Wie der Faktor die Breite ändert
+Die Höhe jedes Punktes bleibt gleich, nur sein Abstand zur <InlineMath math="y" />-Achse wird durch <InlineMath math="b" /> geteilt. Für <InlineMath math="b > 1" /> wird der Graph **zur <InlineMath math="y" />-Achse hin gestaucht** und schrumpft auf das <InlineMath math="\frac{1}{b}" />-Fache seiner Breite, für <InlineMath math="0 < b < 1" /> wird er mit dem Faktor <InlineMath math="\frac{1}{b}" /> von der <InlineMath math="y" />-Achse weg gestreckt. In der 3D-Ansicht der Graphenschichten kannst du einen Stapel von Graphen <InlineMath math="f(bx)" /> drehen und zusehen, wie die Breite schrumpft, wenn <InlineMath math="b" /> wächst.
 
-Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Faktor <InlineMath math="k" />, der das Argument multipliziert, gilt:
+Punkte auf der <InlineMath math="y" />-Achse bleiben liegen, weil <InlineMath math="\frac{0}{b} = 0" /> gilt, und ein negativer Faktor spiegelt den Graphen zusätzlich an der <InlineMath math="y" />-Achse. Manche Aufgaben nennen einen Streckfaktor <InlineMath math="s" /> in <InlineMath math="x" />-Richtung. Dann wird jede <InlineMath math="x" />-Koordinate mit <InlineMath math="s" /> multipliziert, die Gleichung lautet <InlineMath math="y = f\left(\frac{x}{s}\right)" />, und es gilt <InlineMath math="b = \frac{1}{s}" />.
 
-<MathContainer>
+## Warum ein großer Faktor den Graphen schmaler macht
 
-<BlockMath math="g(x) = f(kx)" />
+Nimm einen Punkt <InlineMath math="(x_0, y_0)" /> auf dem Graphen von <InlineMath math="f" />, also <InlineMath math="f(x_0) = y_0" />. Die neue Funktion <InlineMath math="g(x) = f(bx)" /> multipliziert ihr Argument zuerst mit <InlineMath math="b" />. Damit <InlineMath math="g" /> denselben Funktionswert liefert, muss das Produkt <InlineMath math="bx" /> gleich <InlineMath math="x_0" /> sein, also <InlineMath math="x = \frac{x_0}{b}" />.
 
-<BlockMath math="s = \frac{1}{|k|}" />
-</MathContainer>
+<BlockMath math="g\left(\frac{x_0}{b}\right) = f\left(b \cdot \frac{x_0}{b}\right) = f(x_0) = y_0" />
 
-Der Faktor <InlineMath math="k" /> bestimmt, was mit der Breite geschieht:
-- Bei <InlineMath math="k > 1" /> schrumpft die Breite des Graphen auf <InlineMath math="\frac{1}{k}" /> ihrer ursprünglichen Größe
-- Bei <InlineMath math="0 < k < 1" /> wächst die Breite des Graphen auf das <InlineMath math="\frac{1}{k}" />-Fache
-- Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
-- Bei <InlineMath math="k < 0" /> wird der Graph zusätzlich an der <InlineMath math="y" />-Achse gespiegelt
+Für <InlineMath math="b = 2" /> erreicht <InlineMath math="g" /> den Funktionswert, den <InlineMath math="f" /> bei <InlineMath math="x = 6" /> hat, schon bei <InlineMath math="x = 3" />. **Jeder Funktionswert erscheint im halben Abstand zur <InlineMath math="y" />-Achse**, deshalb ist der Graph von <InlineMath math="g" /> nur halb so breit wie der Graph von <InlineMath math="f" />.
 
-Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen. Ist <InlineMath math="f(0)" /> definiert, liefert jede reelle Eingabe diesen gleichen Wert. Der Graph ist dann eine waagerechte Gerade.
+Wende <InlineMath math="b = 2" /> jetzt auf <InlineMath math="f(x) = x^2 - 4x" /> an. Die Funktion hat die Nullstellen <InlineMath math="x = 0" /> und <InlineMath math="x = 4" /> und den Scheitelpunkt <InlineMath math="(2, -4)" />. Ersetze jedes <InlineMath math="x" /> durch <InlineMath math="2x" />:
 
-Der Kehrwert ist hier entscheidend. Ein größerer Betrag des Faktors macht den Graphen <Highlight>schmaler</Highlight>, weil die horizontale Skalierung <InlineMath math="\frac{1}{|k|}" /> beträgt.
+<BlockMath math="\begin{aligned} g(x) &= f(2x) \\ &= (2x)^2 - 4(2x) \\ &= 4x^2 - 8x \end{aligned}" />
 
-## Vergleich am Graphen
-
-Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Wirkung verschiedener Multiplikatoren besonders deutlich.
+Aus <InlineMath math="4x^2 - 8x = 4x(x - 2)" /> folgen die Nullstellen <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />, also die Nullstellen von <InlineMath math="f" /> geteilt durch <InlineMath math="2" />. Der Scheitelpunkt von <InlineMath math="g" /> liegt bei <InlineMath math="x = \frac{8}{2 \cdot 4} = 1" /> mit <InlineMath math="g(1) = 4 - 8 = -4" />. Damit wandert der Scheitelpunkt <InlineMath math="(2, -4)" /> nach <InlineMath math="(1, -4)" />: Seine Höhe bleibt gleich, während sich **sein Abstand zur <InlineMath math="y" />-Achse halbiert**.
 
 <LineEquation
   showZAxis={false}
-  title={<>Horizontale Skalierung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
-  description="Vergleiche, wie verschiedene Multiplikatoren die Breite des Graphen verändern."
+  title={<>Parabeln <InlineMath math="f(x) = x^2 - 4x" /> und <InlineMath math="g(x) = f(2x)" /></>}
+  description={<>Jeder Pfeil führt von einem Punkt auf <InlineMath math="f" /> zum zugehörigen Punkt auf <InlineMath math="g" />. Beide Punkte liegen gleich hoch, der zweite ist nur halb so weit von der <InlineMath math="y" />-Achse entfernt.</>}
+  cameraPosition={[1.5, 0, 14]}
+  cameraTarget={[1.5, 0, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
+      points: Array.from({ length: 121 }, (_, index) => {
+        const x = (index - 20) / 20;
+        return { x, y: x * x - 4 * x, z: 0 };
       }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
-      showPoints: false,
-    },
-    {
       smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 2 * x * (2 * x), z: 0 };
-      }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=x^2-4x" />, at: 60, offset: [0.3, -0.7, 0], anchorX: "left" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 129 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 12;
-        const x = (i - 20) * 0.25;
-        return { x, y: 0.5 * x * (0.5 * x), z: 0 };
-      }),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [2.5, -3.2, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[0, 3, 0]}
-  cameraPosition={[0, 3, 15]}
-/>
-
-Der Graph zeigt:
-- Wir vergleichen mit der ursprünglichen Funktion <InlineMath math="f(x) = x^2" />
-- Die Funktion <InlineMath math="g(x) = (2x)^2" /> verwendet den Multiplikator <InlineMath math="2" />, ihre horizontale Skalierung beträgt also <InlineMath math="\frac{1}{2}" />
-- Die Funktion <InlineMath math="h(x) = (0{,}5x)^2" /> verwendet den Multiplikator <InlineMath math="0{,}5" />, ihre horizontale Skalierung beträgt also <InlineMath math="2" />
-- Alle Graphen haben den gleichen **Scheitelpunkt** bei <InlineMath math="(0, 0)" />
-
-## Skalierung einer linearen Funktion
-
-Dieselbe Skalierungsregel gilt für die lineare Funktion <InlineMath math="f(x) = x + 2" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Horizontale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 2" /></>}
-  description={<>Der Multiplikator verändert die Steigung, aber nicht den <InlineMath math="y" />-Achsenabschnitt.</>}
-  cameraPosition={[0, 2, 14]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 239 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 238 * 12;
-        return { x, y: x + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+2" />, offset: [2, 0.5, 0], at: 220 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 47 * 12;
-        return { x, y: 2 * x + 2, z: 0 };
+      points: Array.from({ length: 121 }, (_, index) => {
+        const x = (index - 20) / 40;
+        return { x, y: 4 * x * x - 8 * x, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=2x+2" />, offset: [1, 1.5, 0], at: 37 }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=4x^2-8x" />, at: 60, offset: [-0.3, -0.7, 0], anchorX: "right" }],
     },
     {
-      points: Array.from({ length: 354 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 353 * 12;
-        return { x, y: 0.5 * x + 2, z: 0 };
-      }),
+      points: [{ x: 5, y: 5, z: 0 }, { x: 2.5, y: 5, z: 0 }],
       smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0], at: 325 }],
+      color: "#d97706",
       showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: -1, y: 5, z: 0 }, { x: -0.5, y: 5, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 2, y: -4, z: 0 }, { x: 1, y: -4, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
     },
   ]}
 />
 
-Der Vergleich zeigt:
-- Die ursprüngliche Funktion <InlineMath math="f(x) = x + 2" /> hat die **Steigung** <InlineMath math="1" />
-- Funktion <InlineMath math="g(x) = f(2x) = 2x + 2" /> hat Steigung <InlineMath math="2" /> (horizontal komprimiert)
-- Funktion <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> hat Steigung <InlineMath math="0{,}5" /> (horizontal gestreckt)
-- Alle Geraden schneiden die <InlineMath math="y" />-Achse im gleichen Punkt <InlineMath math="(0, 2)" />
+Die beiden Pfeile in der Höhe <InlineMath math="5" /> bringen <InlineMath math="(5, 5)" /> nach <InlineMath math="\left(\frac{5}{2}, 5\right)" /> und <InlineMath math="(-1, 5)" /> nach <InlineMath math="\left(-\frac{1}{2}, 5\right)" />. Beide zeigen zur <InlineMath math="y" />-Achse, denn das Teilen durch <InlineMath math="2" /> halbiert den Abstand jedes Punktes zur <InlineMath math="y" />-Achse.
 
-## Welche Werte die horizontale Skalierung verschiebt
+## Wie die Breite vom Faktor abhängt
 
-Wenn du weißt, ob der Graph gestreckt oder gestaucht wird, bleibt noch die Frage, welche Werte mitwandern. Die horizontale Skalierung teilt jede horizontale Koordinate durch den Faktor <InlineMath math="k" />, der das Argument multipliziert. Die Lage entlang der <InlineMath math="x" />-Achse ändert sich also, die Höhen bleiben gleich.
+Was passiert mit der Breite des Graphen von <InlineMath math="f(bx)" />, wenn sich <InlineMath math="b" /> verdoppelt? In der 3D-Ansicht der Graphenschichten vergleichst du mehrere Werte von <InlineMath math="b" /> auf einmal, denn dort liegen die Graphen von <InlineMath math="g(x) = f(bx)" /> mit <InlineMath math="f(x) = 4(x - 1)^2" /> für <InlineMath math="b = \frac{1}{2}" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="4" /> übereinander. Die Schicht zu einem Wert <InlineMath math="b" /> liegt in der Tiefe <InlineMath math="z = b" />, sodass **die <InlineMath math="z" />-Achse die Werte von <InlineMath math="b" /> anzeigt**.
 
-Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Der zugehörige Punkt auf dem Graphen von <InlineMath math="f(kx)" /> ist <InlineMath math="(\frac{a}{k}, b)" />. Der <InlineMath math="y" />-Wert bleibt <InlineMath math="b" />, weil eine horizontale Skalierung niemals eine Höhe verändert.
+Der Graph von <InlineMath math="f" /> verläuft vom <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 4)" /> hinunter zum Scheitelpunkt <InlineMath math="(1, 0)" /> und wieder hinauf nach <InlineMath math="(2, 4)" />. In der Schicht zu <InlineMath math="b" /> werden aus diesen drei Punkten <InlineMath math="(0, 4)" />, <InlineMath math="\left(\frac{1}{b}, 0\right)" /> und <InlineMath math="\left(\frac{2}{b}, 4\right)" />. Drei Spuren verbinden die zugehörigen Punkte aller Schichten.
 
-| Teil der Funktion | Vor der Skalierung | Nach der Skalierung mit <InlineMath math="k > 0" /> |
+<MathVisual
+  title={<>Graphenschichten <InlineMath math="f(bx)" /> für <InlineMath math="f(x) = 4(x - 1)^2" /></>}
+  description={<>Die Schicht zu <InlineMath math="b" /> liegt bei <InlineMath math="z = b" />. Drehe die Ansicht, bis du von oben schaust, und folge der Spur der rechten Enden <InlineMath math="x = \frac{2}{b}" />.</>}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.5 },
+      y: { min: -0.5, max: 4.5 },
+      z: { min: 0, max: 4.5 },
+    },
+    view: { kind: "isometric" },
+    objects: [
+      {
+        id: "layer-half",
+        kind: "polyline",
+        appearance: "secondary",
+        vertices: [
+          { x: 0, y: 4, z: 0.5 },
+          { x: 0.1, y: 3.61, z: 0.5 },
+          { x: 0.2, y: 3.24, z: 0.5 },
+          { x: 0.3, y: 2.89, z: 0.5 },
+          { x: 0.4, y: 2.56, z: 0.5 },
+          { x: 0.5, y: 2.25, z: 0.5 },
+          { x: 0.6, y: 1.96, z: 0.5 },
+          { x: 0.7, y: 1.69, z: 0.5 },
+          { x: 0.8, y: 1.44, z: 0.5 },
+          { x: 0.9, y: 1.21, z: 0.5 },
+          { x: 1, y: 1, z: 0.5 },
+          { x: 1.1, y: 0.81, z: 0.5 },
+          { x: 1.2, y: 0.64, z: 0.5 },
+          { x: 1.3, y: 0.49, z: 0.5 },
+          { x: 1.4, y: 0.36, z: 0.5 },
+          { x: 1.5, y: 0.25, z: 0.5 },
+          { x: 1.6, y: 0.16, z: 0.5 },
+          { x: 1.7, y: 0.09, z: 0.5 },
+          { x: 1.8, y: 0.04, z: 0.5 },
+          { x: 1.9, y: 0.01, z: 0.5 },
+          { x: 2, y: 0, z: 0.5 },
+          { x: 2.1, y: 0.01, z: 0.5 },
+          { x: 2.2, y: 0.04, z: 0.5 },
+          { x: 2.3, y: 0.09, z: 0.5 },
+          { x: 2.4, y: 0.16, z: 0.5 },
+          { x: 2.5, y: 0.25, z: 0.5 },
+          { x: 2.6, y: 0.36, z: 0.5 },
+          { x: 2.7, y: 0.49, z: 0.5 },
+          { x: 2.8, y: 0.64, z: 0.5 },
+          { x: 2.9, y: 0.81, z: 0.5 },
+          { x: 3, y: 1, z: 0.5 },
+          { x: 3.1, y: 1.21, z: 0.5 },
+          { x: 3.2, y: 1.44, z: 0.5 },
+          { x: 3.3, y: 1.69, z: 0.5 },
+          { x: 3.4, y: 1.96, z: 0.5 },
+          { x: 3.5, y: 2.25, z: 0.5 },
+          { x: 3.6, y: 2.56, z: 0.5 },
+          { x: 3.7, y: 2.89, z: 0.5 },
+          { x: 3.8, y: 3.24, z: 0.5 },
+          { x: 3.9, y: 3.61, z: 0.5 },
+          { x: 4, y: 4, z: 0.5 },
+        ],
+      },
+      {
+        id: "layer-one",
+        kind: "polyline",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4, z: 1 },
+          { x: 0.05, y: 3.61, z: 1 },
+          { x: 0.1, y: 3.24, z: 1 },
+          { x: 0.15, y: 2.89, z: 1 },
+          { x: 0.2, y: 2.56, z: 1 },
+          { x: 0.25, y: 2.25, z: 1 },
+          { x: 0.3, y: 1.96, z: 1 },
+          { x: 0.35, y: 1.69, z: 1 },
+          { x: 0.4, y: 1.44, z: 1 },
+          { x: 0.45, y: 1.21, z: 1 },
+          { x: 0.5, y: 1, z: 1 },
+          { x: 0.55, y: 0.81, z: 1 },
+          { x: 0.6, y: 0.64, z: 1 },
+          { x: 0.65, y: 0.49, z: 1 },
+          { x: 0.7, y: 0.36, z: 1 },
+          { x: 0.75, y: 0.25, z: 1 },
+          { x: 0.8, y: 0.16, z: 1 },
+          { x: 0.85, y: 0.09, z: 1 },
+          { x: 0.9, y: 0.04, z: 1 },
+          { x: 0.95, y: 0.01, z: 1 },
+          { x: 1, y: 0, z: 1 },
+          { x: 1.05, y: 0.01, z: 1 },
+          { x: 1.1, y: 0.04, z: 1 },
+          { x: 1.15, y: 0.09, z: 1 },
+          { x: 1.2, y: 0.16, z: 1 },
+          { x: 1.25, y: 0.25, z: 1 },
+          { x: 1.3, y: 0.36, z: 1 },
+          { x: 1.35, y: 0.49, z: 1 },
+          { x: 1.4, y: 0.64, z: 1 },
+          { x: 1.45, y: 0.81, z: 1 },
+          { x: 1.5, y: 1, z: 1 },
+          { x: 1.55, y: 1.21, z: 1 },
+          { x: 1.6, y: 1.44, z: 1 },
+          { x: 1.65, y: 1.69, z: 1 },
+          { x: 1.7, y: 1.96, z: 1 },
+          { x: 1.75, y: 2.25, z: 1 },
+          { x: 1.8, y: 2.56, z: 1 },
+          { x: 1.85, y: 2.89, z: 1 },
+          { x: 1.9, y: 3.24, z: 1 },
+          { x: 1.95, y: 3.61, z: 1 },
+          { x: 2, y: 4, z: 1 },
+        ],
+      },
+      {
+        id: "layer-two",
+        kind: "polyline",
+        appearance: "construction",
+        vertices: [
+          { x: 0, y: 4, z: 2 },
+          { x: 0.025, y: 3.61, z: 2 },
+          { x: 0.05, y: 3.24, z: 2 },
+          { x: 0.075, y: 2.89, z: 2 },
+          { x: 0.1, y: 2.56, z: 2 },
+          { x: 0.125, y: 2.25, z: 2 },
+          { x: 0.15, y: 1.96, z: 2 },
+          { x: 0.175, y: 1.69, z: 2 },
+          { x: 0.2, y: 1.44, z: 2 },
+          { x: 0.225, y: 1.21, z: 2 },
+          { x: 0.25, y: 1, z: 2 },
+          { x: 0.275, y: 0.81, z: 2 },
+          { x: 0.3, y: 0.64, z: 2 },
+          { x: 0.325, y: 0.49, z: 2 },
+          { x: 0.35, y: 0.36, z: 2 },
+          { x: 0.375, y: 0.25, z: 2 },
+          { x: 0.4, y: 0.16, z: 2 },
+          { x: 0.425, y: 0.09, z: 2 },
+          { x: 0.45, y: 0.04, z: 2 },
+          { x: 0.475, y: 0.01, z: 2 },
+          { x: 0.5, y: 0, z: 2 },
+          { x: 0.525, y: 0.01, z: 2 },
+          { x: 0.55, y: 0.04, z: 2 },
+          { x: 0.575, y: 0.09, z: 2 },
+          { x: 0.6, y: 0.16, z: 2 },
+          { x: 0.625, y: 0.25, z: 2 },
+          { x: 0.65, y: 0.36, z: 2 },
+          { x: 0.675, y: 0.49, z: 2 },
+          { x: 0.7, y: 0.64, z: 2 },
+          { x: 0.725, y: 0.81, z: 2 },
+          { x: 0.75, y: 1, z: 2 },
+          { x: 0.775, y: 1.21, z: 2 },
+          { x: 0.8, y: 1.44, z: 2 },
+          { x: 0.825, y: 1.69, z: 2 },
+          { x: 0.85, y: 1.96, z: 2 },
+          { x: 0.875, y: 2.25, z: 2 },
+          { x: 0.9, y: 2.56, z: 2 },
+          { x: 0.925, y: 2.89, z: 2 },
+          { x: 0.95, y: 3.24, z: 2 },
+          { x: 0.975, y: 3.61, z: 2 },
+          { x: 1, y: 4, z: 2 },
+        ],
+      },
+      {
+        id: "layer-four",
+        kind: "polyline",
+        appearance: "answer",
+        vertices: [
+          { x: 0, y: 4, z: 4 },
+          { x: 0.0125, y: 3.61, z: 4 },
+          { x: 0.025, y: 3.24, z: 4 },
+          { x: 0.0375, y: 2.89, z: 4 },
+          { x: 0.05, y: 2.56, z: 4 },
+          { x: 0.0625, y: 2.25, z: 4 },
+          { x: 0.075, y: 1.96, z: 4 },
+          { x: 0.0875, y: 1.69, z: 4 },
+          { x: 0.1, y: 1.44, z: 4 },
+          { x: 0.1125, y: 1.21, z: 4 },
+          { x: 0.125, y: 1, z: 4 },
+          { x: 0.1375, y: 0.81, z: 4 },
+          { x: 0.15, y: 0.64, z: 4 },
+          { x: 0.1625, y: 0.49, z: 4 },
+          { x: 0.175, y: 0.36, z: 4 },
+          { x: 0.1875, y: 0.25, z: 4 },
+          { x: 0.2, y: 0.16, z: 4 },
+          { x: 0.2125, y: 0.09, z: 4 },
+          { x: 0.225, y: 0.04, z: 4 },
+          { x: 0.2375, y: 0.01, z: 4 },
+          { x: 0.25, y: 0, z: 4 },
+          { x: 0.2625, y: 0.01, z: 4 },
+          { x: 0.275, y: 0.04, z: 4 },
+          { x: 0.2875, y: 0.09, z: 4 },
+          { x: 0.3, y: 0.16, z: 4 },
+          { x: 0.3125, y: 0.25, z: 4 },
+          { x: 0.325, y: 0.36, z: 4 },
+          { x: 0.3375, y: 0.49, z: 4 },
+          { x: 0.35, y: 0.64, z: 4 },
+          { x: 0.3625, y: 0.81, z: 4 },
+          { x: 0.375, y: 1, z: 4 },
+          { x: 0.3875, y: 1.21, z: 4 },
+          { x: 0.4, y: 1.44, z: 4 },
+          { x: 0.4125, y: 1.69, z: 4 },
+          { x: 0.425, y: 1.96, z: 4 },
+          { x: 0.4375, y: 2.25, z: 4 },
+          { x: 0.45, y: 2.56, z: 4 },
+          { x: 0.4625, y: 2.89, z: 4 },
+          { x: 0.475, y: 3.24, z: 4 },
+          { x: 0.4875, y: 3.61, z: 4 },
+          { x: 0.5, y: 4, z: 4 },
+        ],
+      },
+      {
+        id: "trace-top",
+        kind: "polyline",
+        appearance: "highlight",
+        vertices: [
+          { x: 4, y: 4, z: 0.5 },
+          { x: 3.863749, y: 4, z: 0.517632 },
+          { x: 3.73213, y: 4, z: 0.535887 },
+          { x: 3.605, y: 4, z: 0.554785 },
+          { x: 3.482203, y: 4, z: 0.574349 },
+          { x: 3.363583, y: 4, z: 0.594604 },
+          { x: 3.249011, y: 4, z: 0.615572 },
+          { x: 3.138338, y: 4, z: 0.63728 },
+          { x: 3.031433, y: 4, z: 0.659754 },
+          { x: 2.928172, y: 4, z: 0.68302 },
+          { x: 2.828426, y: 4, z: 0.707107 },
+          { x: 2.73208, y: 4, z: 0.732043 },
+          { x: 2.639017, y: 4, z: 0.757858 },
+          { x: 2.549122, y: 4, z: 0.784584 },
+          { x: 2.46229, y: 4, z: 0.812252 },
+          { x: 2.378415, y: 4, z: 0.840896 },
+          { x: 2.297396, y: 4, z: 0.870551 },
+          { x: 2.21914, y: 4, z: 0.90125 },
+          { x: 2.143547, y: 4, z: 0.933033 },
+          { x: 2.070531, y: 4, z: 0.965936 },
+          { x: 2, y: 4, z: 1 },
+          { x: 1.931873, y: 4, z: 1.035265 },
+          { x: 1.866067, y: 4, z: 1.071773 },
+          { x: 1.802502, y: 4, z: 1.109569 },
+          { x: 1.741102, y: 4, z: 1.148698 },
+          { x: 1.681793, y: 4, z: 1.189207 },
+          { x: 1.624505, y: 4, z: 1.231144 },
+          { x: 1.569168, y: 4, z: 1.274561 },
+          { x: 1.515716, y: 4, z: 1.319508 },
+          { x: 1.464086, y: 4, z: 1.36604 },
+          { x: 1.414213, y: 4, z: 1.414214 },
+          { x: 1.36604, y: 4, z: 1.464086 },
+          { x: 1.319508, y: 4, z: 1.515717 },
+          { x: 1.274561, y: 4, z: 1.569168 },
+          { x: 1.231144, y: 4, z: 1.624505 },
+          { x: 1.189207, y: 4, z: 1.681793 },
+          { x: 1.148698, y: 4, z: 1.741101 },
+          { x: 1.109569, y: 4, z: 1.802501 },
+          { x: 1.071773, y: 4, z: 1.866066 },
+          { x: 1.035265, y: 4, z: 1.931873 },
+          { x: 1, y: 4, z: 2 },
+          { x: 0.965936, y: 4, z: 2.07053 },
+          { x: 0.933033, y: 4, z: 2.143547 },
+          { x: 0.90125, y: 4, z: 2.219139 },
+          { x: 0.87055, y: 4, z: 2.297397 },
+          { x: 0.840896, y: 4, z: 2.378414 },
+          { x: 0.812252, y: 4, z: 2.462289 },
+          { x: 0.784584, y: 4, z: 2.549121 },
+          { x: 0.757858, y: 4, z: 2.639016 },
+          { x: 0.732043, y: 4, z: 2.732081 },
+          { x: 0.707107, y: 4, z: 2.828427 },
+          { x: 0.68302, y: 4, z: 2.928171 },
+          { x: 0.659754, y: 4, z: 3.031433 },
+          { x: 0.63728, y: 4, z: 3.138336 },
+          { x: 0.615572, y: 4, z: 3.24901 },
+          { x: 0.594603, y: 4, z: 3.363586 },
+          { x: 0.574349, y: 4, z: 3.482202 },
+          { x: 0.554785, y: 4, z: 3.605002 },
+          { x: 0.535887, y: 4, z: 3.732132 },
+          { x: 0.517633, y: 4, z: 3.863745 },
+          { x: 0.5, y: 4, z: 4 },
+        ],
+      },
+      {
+        id: "trace-vertex",
+        kind: "polyline",
+        appearance: "highlight",
+        vertices: [
+          { x: 2, y: 0, z: 0.5 },
+          { x: 1.931874, y: 0, z: 0.517632 },
+          { x: 1.866065, y: 0, z: 0.535887 },
+          { x: 1.8025, y: 0, z: 0.554785 },
+          { x: 1.741102, y: 0, z: 0.574349 },
+          { x: 1.681792, y: 0, z: 0.594604 },
+          { x: 1.624505, y: 0, z: 0.615572 },
+          { x: 1.569169, y: 0, z: 0.63728 },
+          { x: 1.515716, y: 0, z: 0.659754 },
+          { x: 1.464086, y: 0, z: 0.68302 },
+          { x: 1.414213, y: 0, z: 0.707107 },
+          { x: 1.36604, y: 0, z: 0.732043 },
+          { x: 1.319508, y: 0, z: 0.757858 },
+          { x: 1.274561, y: 0, z: 0.784584 },
+          { x: 1.231145, y: 0, z: 0.812252 },
+          { x: 1.189208, y: 0, z: 0.840896 },
+          { x: 1.148698, y: 0, z: 0.870551 },
+          { x: 1.10957, y: 0, z: 0.90125 },
+          { x: 1.071773, y: 0, z: 0.933033 },
+          { x: 1.035265, y: 0, z: 0.965936 },
+          { x: 1, y: 0, z: 1 },
+          { x: 0.965936, y: 0, z: 1.035265 },
+          { x: 0.933033, y: 0, z: 1.071773 },
+          { x: 0.901251, y: 0, z: 1.109569 },
+          { x: 0.870551, y: 0, z: 1.148698 },
+          { x: 0.840896, y: 0, z: 1.189207 },
+          { x: 0.812253, y: 0, z: 1.231144 },
+          { x: 0.784584, y: 0, z: 1.274561 },
+          { x: 0.757858, y: 0, z: 1.319508 },
+          { x: 0.732043, y: 0, z: 1.36604 },
+          { x: 0.707107, y: 0, z: 1.414214 },
+          { x: 0.68302, y: 0, z: 1.464086 },
+          { x: 0.659754, y: 0, z: 1.515717 },
+          { x: 0.63728, y: 0, z: 1.569168 },
+          { x: 0.615572, y: 0, z: 1.624505 },
+          { x: 0.594603, y: 0, z: 1.681793 },
+          { x: 0.574349, y: 0, z: 1.741101 },
+          { x: 0.554785, y: 0, z: 1.802501 },
+          { x: 0.535887, y: 0, z: 1.866066 },
+          { x: 0.517632, y: 0, z: 1.931873 },
+          { x: 0.5, y: 0, z: 2 },
+          { x: 0.482968, y: 0, z: 2.07053 },
+          { x: 0.466516, y: 0, z: 2.143547 },
+          { x: 0.450625, y: 0, z: 2.219139 },
+          { x: 0.435275, y: 0, z: 2.297397 },
+          { x: 0.420448, y: 0, z: 2.378414 },
+          { x: 0.406126, y: 0, z: 2.462289 },
+          { x: 0.392292, y: 0, z: 2.549121 },
+          { x: 0.378929, y: 0, z: 2.639016 },
+          { x: 0.366021, y: 0, z: 2.732081 },
+          { x: 0.353553, y: 0, z: 2.828427 },
+          { x: 0.34151, y: 0, z: 2.928171 },
+          { x: 0.329877, y: 0, z: 3.031433 },
+          { x: 0.31864, y: 0, z: 3.138336 },
+          { x: 0.307786, y: 0, z: 3.24901 },
+          { x: 0.297302, y: 0, z: 3.363586 },
+          { x: 0.287175, y: 0, z: 3.482202 },
+          { x: 0.277392, y: 0, z: 3.605002 },
+          { x: 0.267943, y: 0, z: 3.732132 },
+          { x: 0.258816, y: 0, z: 3.863745 },
+          { x: 0.25, y: 0, z: 4 },
+        ],
+      },
+      {
+        id: "spine",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 0, y: 4, z: 0.5 },
+        to: { x: 0, y: 4, z: 4 },
+      },
+    ],
+    labels: [
+      { key: "layer-half-label", objectId: "layer-half", at: { x: 2.7, y: 0.49, z: 0.5 }, placement: "below-right" },
+      { key: "layer-one-label", objectId: "layer-one", at: { x: 1.7, y: 1.96, z: 1 }, placement: "below-right" },
+      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.5, y: 0, z: 2 }, placement: "below-right" },
+      { key: "layer-four-label", objectId: "layer-four", at: { x: 0.25, y: 0, z: 4 }, placement: "below-left" },
+      { key: "trace-top-label", objectId: "trace-top", at: { x: 3.73213, y: 4, z: 0.535887 }, placement: "above-right" },
+      { key: "trace-vertex-label", objectId: "trace-vertex", at: { x: 0.267943, y: 0, z: 3.732132 }, placement: "below-right" },
+      { key: "spine-label", objectId: "spine", at: { x: 0, y: 4, z: 3.34375 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "layer-half-label": <><InlineMath math="b = \tfrac{1}{2}" /></>,
+    "layer-one-label": <><InlineMath math="b = 1" /></>,
+    "layer-two-label": <><InlineMath math="b = 2" /></>,
+    "layer-four-label": <><InlineMath math="b = 4" /></>,
+    "trace-top-label": <><InlineMath math="x = \tfrac{2}{b}" /></>,
+    "trace-vertex-label": <><InlineMath math="x = \tfrac{1}{b}" /></>,
+    "spine-label": <><InlineMath math="(0, 4)" /></>,
+  }}
+/>
+
+Ziehe die Ansicht, bis du von oben auf den Stapel schaust und die <InlineMath math="y" />-Achse direkt auf dich zeigt. Die Spur der rechten Enden bildet die Kurve <InlineMath math="x = \frac{2}{b}" />. Verdoppelt sich <InlineMath math="b" />, ist die Schicht also **nur noch halb so breit**. Das Produkt aus <InlineMath math="b" /> und Breite ist immer <InlineMath math="2" />, die Breite ist also umgekehrt proportional zum Faktor im Argument.
+
+Durch <InlineMath math="(0, 4)" /> verläuft eine gerade Spur bei <InlineMath math="x = 0" />, weil Punkte auf der <InlineMath math="y" />-Achse nicht wandern. Genau in der Mitte zwischen dieser geraden Spur und der Spur der rechten Enden liegt die Spur der Scheitelpunkte <InlineMath math="x = \frac{1}{b}" />, denn <InlineMath math="\frac{1}{b}" /> ist die Hälfte von <InlineMath math="\frac{2}{b}" />.
+
+Von der Seite, mit der <InlineMath math="x" />-Achse direkt auf dich gerichtet, erscheint jede Schicht als senkrechte Strecke von Höhe <InlineMath math="0" /> bis <InlineMath math="4" />. Alle diese Strecken sind gleich hoch, also **ändert eine horizontale Streckung oder Stauchung keine einzige Höhe**, und der Wertebereich des gezeichneten Teils bleibt <InlineMath math="[0, 4]" />.
+
+In jeder Schicht haben Scheitelpunkt und rechtes Ende die <InlineMath math="x" />-Koordinaten <InlineMath math="1" /> und <InlineMath math="2" />, jeweils geteilt durch <InlineMath math="b" />.
+
+| <InlineMath math="b" /> | Scheitelpunkt | Rechtes Ende | Breite |
+| --- | --- | --- | --- |
+| <InlineMath math="\frac{1}{2}" /> | <InlineMath math="(2, 0)" /> | <InlineMath math="(4, 4)" /> | <InlineMath math="4" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1, 0)" /> | <InlineMath math="(2, 4)" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="\left(\frac{1}{2}, 0\right)" /> | <InlineMath math="(1, 4)" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="\left(\frac{1}{4}, 0\right)" /> | <InlineMath math="\left(\frac{1}{2}, 4\right)" /> | <InlineMath math="\frac{1}{2}" /> |
+
+Bei einer [vertikalen Streckung](/de/faecher/mathematik/funktionstransformationen/vertikale-streckung-und-stauchung) ist die Höhe eines Punktes proportional zum Faktor, deshalb bildet die Spur eines Punktes über ähnliche Schichten eine Gerade. Bei der horizontalen Streckung wird die <InlineMath math="x" />-Koordinate durch <InlineMath math="b" /> geteilt, und genau diese Division krümmt die Spur.
+
+## Streckfaktor und Faktor im Argument
+
+Nicht jede Aufgabe nennt den Faktor im Argument. Manche nennen einen **Streckfaktor** <InlineMath math="s" /> in <InlineMath math="x" />-Richtung: Jede <InlineMath math="x" />-Koordinate wird mit <InlineMath math="s" /> multipliziert, die <InlineMath math="y" />-Koordinate bleibt. Der Punkt <InlineMath math="(x_0, y_0)" /> auf dem Graphen von <InlineMath math="f" /> wandert nach <InlineMath math="(s x_0, y_0)" />.
+
+Für die Gleichung drückst du die alten Koordinaten durch die neuen aus. Aus <InlineMath math="x = s x_0" /> folgt <InlineMath math="x_0 = \frac{x}{s}" />, und Einsetzen in <InlineMath math="y = f(x_0)" /> ergibt:
+
+<BlockMath math="y = f\left(\frac{x}{s}\right)" />
+
+Das ist <InlineMath math="y = f(bx)" /> mit <InlineMath math="b = \frac{1}{s}" />. Die Koordinaten mit <InlineMath math="s" /> zu multiplizieren heißt also, **das Argument durch <InlineMath math="s" /> zu teilen**. Ein Streckfaktor <InlineMath math="3" /> macht den Graphen dreimal so breit, mit der Gleichung <InlineMath math="y = f\left(\frac{x}{3}\right)" />.
+
+Ein Beispiel: Jede <InlineMath math="x" />-Koordinate auf dem Graphen von <InlineMath math="y = \sqrt{x}" /> wird mit <InlineMath math="3" /> multipliziert. Ersetze <InlineMath math="x" /> durch <InlineMath math="\frac{x}{3}" />:
+
+<BlockMath math="g(x) = \sqrt{\frac{x}{3}}" />
+
+Prüfe mit dem Punkt <InlineMath math="(9, 3)" /> auf <InlineMath math="y = \sqrt{x}" />. Er wandert nach <InlineMath math="(27, 3)" />, und tatsächlich ist <InlineMath math="g(27) = \sqrt{\frac{27}{3}} = \sqrt{9} = 3" />. Der Definitionsbereich bleibt <InlineMath math="[0, \infty)" />, weil <InlineMath math="\frac{x}{3} \ge 0" /> genau dann gilt, wenn <InlineMath math="x \ge 0" /> ist.
+
+Eine [zentrische Streckung](/de/faecher/mathematik/geometrische-transformationen/streckung) am Ursprung multipliziert beide Koordinaten mit demselben Faktor, deshalb bleibt jeder Winkel gleich groß, und die Bildfigur ist der ursprünglichen Figur ähnlich. Eine horizontale Streckung oder Stauchung multipliziert nur die <InlineMath math="x" />-Koordinate, deshalb **können sich Winkel am Graphen ändern**. Die beiden Schenkel von <InlineMath math="y = |x|" /> stehen senkrecht aufeinander. Bei <InlineMath math="y = |2x| = 2|x|" /> haben die Schenkel die Steigungen <InlineMath math="2" /> und <InlineMath math="-2" />, und der Winkel am Scheitelpunkt schrumpft auf etwa <InlineMath math="53^\circ" />.
+
+## Welche Merkmale wandern und welche bleiben
+
+Für <InlineMath math="b > 0" /> wird **jedes Merkmal, das von einem <InlineMath math="x" />-Wert abhängt, durch <InlineMath math="b" /> geteilt**. Merkmale, die von einer Höhe abhängen, bleiben gleich.
+
+| Merkmal | Bei <InlineMath math="f(bx)" /> | Grund |
 | --- | --- | --- |
-| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(\frac{a}{k}, b)" /> |
-| Definitionsbereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" /> |
-| Wertebereich | Die ursprünglichen Ausgabewerte | Dieselben Werte wie vorher |
-| <InlineMath math="x" />-Achsenabschnitt | Bei <InlineMath math="x = x_0" /> | Wandert zu <InlineMath math="x = \frac{x_0}{k}" /> |
-| <InlineMath math="y" />-Achsenabschnitt | Bei <InlineMath math="x = 0" /> | Bleibt bei <InlineMath math="x = 0" /> |
+| Punkt <InlineMath math="(x_0, y_0)" /> | <InlineMath math="\left(\frac{x_0}{b}, y_0\right)" /> | Höhe bleibt, <InlineMath math="x" /> wird durch <InlineMath math="b" /> geteilt |
+| Nullstelle <InlineMath math="x_0" /> | <InlineMath math="\frac{x_0}{b}" /> | eine Nullstelle ist ein <InlineMath math="x" />-Wert |
+| Definitionsbereich <InlineMath math="[c, d]" /> | <InlineMath math="\left[\frac{c}{b}, \frac{d}{b}\right]" /> | er enthält <InlineMath math="x" />-Werte |
+| Senkrechte Asymptote <InlineMath math="x = x_1" /> | <InlineMath math="x = \frac{x_1}{b}" /> | ein <InlineMath math="x" />-Wert legt die Gerade fest |
+| Wertebereich | unverändert | er enthält Höhen |
+| <InlineMath math="y" />-Achsenabschnitt | bleibt <InlineMath math="(0, f(0))" /> | <InlineMath math="\frac{0}{b} = 0" /> |
+| Waagerechte Asymptote <InlineMath math="y = y_1" /> | unverändert | eine Höhe legt die Gerade fest |
 
-Der Definitionsbereich schrumpft oder wächst zusammen mit dem Graphen, weil er die erlaubten Werte von <InlineMath math="x" /> enthält. Der Wertebereich behält seine Werte, weil die Höhe des Graphen an jeder Stelle unverändert bleibt. Eine [horizontale Verschiebung](/de/faecher/mathematik/funktionstransformationen/horizontale-verschiebung) verschiebt diese Koordinaten, statt sie zu teilen.
+Der Graph von <InlineMath math="y = 2^x" /> geht durch <InlineMath math="(3, 8)" />. Der Graph von <InlineMath math="y = 2^{3x}" /> geht durch <InlineMath math="(1, 8)" />, weil <InlineMath math="2^{3 \cdot 1} = 8" /> ist, während der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 1)" /> und die Asymptote <InlineMath math="y = 0" /> bleiben. Bei einer steigenden [Exponentialfunktion](/de/faecher/mathematik/funktionen-und-modelle/exponentialfunktion) macht eine Stauchung mit <InlineMath math="b > 1" /> die Kurve in jeder Höhe steiler, ohne ihren <InlineMath math="y" />-Achsenabschnitt zu verschieben.
 
-Bei einem **negativen Faktor** kehrt sich die Reihenfolge der Intervallgrenzen um. Aus dem Definitionsbereich <InlineMath math="[c,d]" /> wird <InlineMath math="[d/k,c/k]" />. Zum Beispiel ergibt <InlineMath math="2\le -2x\le 6" /> den Bereich <InlineMath math="-3\le x\le -1" />.
+Die Funktion <InlineMath math="f(x) = \frac{1}{x - 2}" /> hat die [senkrechte Asymptote](/de/faecher/mathematik/funktionen-und-modelle/asymptoten) <InlineMath math="x = 2" />. Bei <InlineMath math="f(2x) = \frac{1}{2x - 2}" /> wird der Nenner bei <InlineMath math="x = 1" /> null, die Asymptote wandert also nach <InlineMath math="x = \frac{2}{2} = 1" />.
 
-## Die Wachstumsrate einer Exponentialfunktion verändern
+Vergleiche das mit einer [horizontalen Verschiebung](/de/faecher/mathematik/funktionstransformationen/horizontale-verschiebung), die zu jeder <InlineMath math="x" />-Koordinate dieselbe Zahl addiert. Eine Verschiebung bewegt den Punkt <InlineMath math="(0, f(0))" />, eine horizontale Streckung lässt diesen Punkt liegen, weil null geteilt durch jede von null verschiedene Zahl null bleibt.
 
-Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verändert die horizontale Skalierung, wie schnell der Graph steigt.
+## Ein negativer Faktor spiegelt zusätzlich
+
+Die Regel <InlineMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b}, y_0\right)" /> gilt auch für <InlineMath math="b < 0" />. Das Teilen durch eine negative Zahl kehrt das Vorzeichen der <InlineMath math="x" />-Koordinate um, also wird der Graph mit dem Faktor <InlineMath math="\frac{1}{|b|}" /> gestreckt oder gestaucht und dann **an der <InlineMath math="y" />-Achse gespiegelt**. Für <InlineMath math="b = -1" /> bleibt nur die [Spiegelung an der <InlineMath math="y" />-Achse](/de/faecher/mathematik/funktionstransformationen/spiegelung-an-der-y-achse) <InlineMath math="y = f(-x)" /> übrig.
+
+Nur <InlineMath math="b = 0" /> ist ausgeschlossen. Für <InlineMath math="b = 0" /> wird jedes Argument zu <InlineMath math="0" />, also gilt <InlineMath math="f(0 \cdot x) = f(0)" /> für jedes <InlineMath math="x" />, und der Graph ist nur noch die waagerechte Gerade <InlineMath math="y = f(0)" />, sofern <InlineMath math="f(0)" /> definiert ist. Auch die Regel <InlineMath math="\frac{x_0}{b}" /> versagt, weil die Division durch null nicht definiert ist.
+
+Die Spiegelung bei <InlineMath math="b < 0" /> vertauscht auch die Reihenfolge der Intervallgrenzen. Hat <InlineMath math="f" /> den Definitionsbereich <InlineMath math="[c, d]" /> und ist <InlineMath math="b < 0" />, stammt die linke Grenze des neuen Bereichs von der rechten Grenze des alten:
+
+<BlockMath math="[c, d] \longmapsto \left[\frac{d}{b},\ \frac{c}{b}\right]" />
+
+Nimm <InlineMath math="h(x) = |x - 2|" /> mit dem Scheitelpunkt <InlineMath math="(2, 0)" /> und wende <InlineMath math="b = -2" /> an:
+
+<BlockMath math="\begin{aligned} H(x) &= h(-2x) \\ &= |-2x - 2| \\ &= 2\,|x + 1| \end{aligned}" />
+
+Der letzte Schritt nutzt <InlineMath math="-2x - 2 = -2(x + 1)" /> und <InlineMath math="|-2| = 2" />. Der Scheitelpunkt wandert nach <InlineMath math="\left(\frac{2}{-2}, 0\right) = (-1, 0)" />, und tatsächlich ist <InlineMath math="H(-1) = 0" />. Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(-2, 2)" />: Sein Abstand zur <InlineMath math="y" />-Achse halbiert sich, und er landet auf der anderen Seite. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 2)" /> bleibt, weil <InlineMath math="H(0) = 2 = h(0)" /> gilt.
 
 <LineEquation
   showZAxis={false}
-  title={<>Horizontale Skalierung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
-  description="Der Multiplikator verändert, wie schnell der Exponentialgraph ansteigt."
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Graphen von <InlineMath math="h(x) = |x - 2|" /> und <InlineMath math="H(x) = h(-2x)" /></>}
+  description={<>Der Pfeil bringt <InlineMath math="(4, 2)" /> nach <InlineMath math="(-2, 2)" /> und läuft dabei durch den festen Punkt <InlineMath math="(0, 2)" /> auf der <InlineMath math="y" />-Achse.</>}
+  cameraPosition={[0.5, 1, 12]}
+  cameraTarget={[0.5, 1, 0]}
   data={[
     {
+      points: [{ x: -1, y: 3, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 5, y: 3, z: 0 }],
       smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
+      color: "#ea580c",
       showPoints: false,
+      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, at: 1, offset: [0.3, -0.7, 0], anchorX: "left" }],
     },
     {
+      points: [{ x: -2.5, y: 3, z: 0 }, { x: -1, y: 0, z: 0 }, { x: 0.5, y: 3, z: 0 }],
       smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, 2 * x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{2x}" />, offset: [1, 2, 0], at: 549 }],
+      color: "#0d9488",
       showPoints: false,
+      labels: [{ text: <InlineMath math="H(x)=2|x+1|" />, at: 1, offset: [-0.3, -0.7, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }, { x: -2, y: 2, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 0, y: 2, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
     },
   ]}
 />
 
-Für Exponentialfunktionen:
-- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
-- Der <InlineMath math="y" />-Achsenabschnitt bleibt bei <InlineMath math="(0, 1)" /> gleich
-- Die **Wachstumsrate** der Funktion ändert sich entsprechend dem Multiplikator
+## Fehler beim Lesen des Faktors
 
-## Negativer Multiplikator im Funktionsargument
+Um einen Fehler wie in dieser Tabelle zu finden, nimmst du einen Punkt, den du schon kennst, **berechnest seinen Bildpunkt auf dem Graphen von <InlineMath math="f(bx)" />** und gleichst ihn mit deiner Antwort ab.
 
-Ein negatives **Vorzeichen** im Argument spiegelt den Graphen zusätzlich an der senkrechten Achse.
+| Fehler | Warum falsch | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="f(2x)" /> als doppelt so breit lesen | Das Argument wird verdoppelt, jeder Funktionswert erscheint im halben Abstand | Eine Nullstelle <InlineMath math="x_0" /> muss zu <InlineMath math="\frac{x_0}{2}" /> werden |
+| Höhen teilen, etwa <InlineMath math="\left(x_0, \frac{y_0}{b}\right)" /> schreiben | Der Faktor im Argument ändert nur die Eingabe | Setze <InlineMath math="x = \frac{x_0}{b}" /> ein und prüfe, ob <InlineMath math="y_0" /> herauskommt |
+| <InlineMath math="f(3x)" /> für den Streckfaktor <InlineMath math="3" /> schreiben | Ein Streckfaktor <InlineMath math="s" /> bedeutet <InlineMath math="b = \frac{1}{s}" /> | Der Punkt <InlineMath math="(x_0, y_0)" /> muss zu <InlineMath math="(3x_0, y_0)" /> werden |
+| <InlineMath math="f(2x - 6)" /> als Verschiebung um <InlineMath math="6" /> lesen | <InlineMath math="2x - 6 = 2(x - 3)" />, die Verschiebung beträgt also <InlineMath math="3" /> Einheiten | Klammere den Faktor im Argument zuerst aus |
+| Grenzen bei <InlineMath math="b < 0" /> nicht vertauschen | Teilen durch eine negative Zahl kehrt die Reihenfolge um | Die linke Grenze des neuen Bereichs muss die kleinere Zahl sein |
 
-<LineEquation
-  showZAxis={false}
-  title={<>Horizontale Skalierung mit negativem Multiplikator bei <InlineMath math="f(x) = x^2 + 1" /></>}
-  description="Sein Betrag bestimmt die horizontale Skalierung, sein Vorzeichen die Spiegelung."
-  cameraPosition={[0, 3, 13]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 1, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, -1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: (-2 * x) * (-2 * x) + 1, z: 0 };
-      }),
-      color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [2, -2.8, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
-
-Für einen negativen Multiplikator gilt:
-- Der Graph erfährt eine Spiegelung an der <InlineMath math="y" />-Achse
-- Der Betrag der horizontalen Skalierung ist <InlineMath math="\frac{1}{|k|}" />
-- Bei dieser geraden Funktion bleibt die Spiegelung unsichtbar. Der Faktor <InlineMath math="2" /> **halbiert trotzdem die Breite**: <InlineMath math="f(-2x)=f(2x)=4x^2+1" />. Dieser Graph unterscheidet sich von <InlineMath math="f(x)=x^2+1" />.
+Die Gleichung <InlineMath math="f(2x - 6) = f(2(x - 3))" /> bedeutet: Der Graph wird mit dem Faktor <InlineMath math="\frac{1}{2}" /> gestaucht und dann um <InlineMath math="3" /> Einheiten nach rechts verschoben, sodass der Punkt <InlineMath math="(x_0, y_0)" /> bei <InlineMath math="\left(\frac{x_0}{2} + 3, y_0\right)" /> landet. Verschiebst du zuerst um <InlineMath math="3" /> Einheiten nach rechts und stauchst danach, lautet die Gleichung <InlineMath math="f(2x - 3)" />, und derselbe Punkt landet bei <InlineMath math="\left(\frac{x_0 + 3}{2}, y_0\right)" />. Bei [kombinierten Funktionstransformationen](/de/faecher/mathematik/funktionstransformationen/kombinierte-funktionstransformationen) liest du die Reihenfolge der Schritte an der Form der Gleichung ab, so wie beim Ausklammern von <InlineMath math="f(2x - 6)" />.
 
 ## Übungen
 
-Die drei Aufgaben nutzen die Breitenregel, die du gerade gelernt hast. Jede Aufgabe multipliziert das Argument mit einem angegebenen Faktor, also achte darauf, ob dieser Faktor größer als eins, zwischen null und eins oder negativ ist. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+Beginne jede Aufgabe damit, **den Faktor <InlineMath math="b" /> zu bestimmen**, denn dieser Faktor teilt die <InlineMath math="x" />-Koordinaten. In Aufgabe 1 ersetzt du nur <InlineMath math="x" /> durch <InlineMath math="3x" />, in Aufgabe 4 bestimmst du <InlineMath math="b" /> aus einem einzigen Punkt des Graphen.
 
-1. Wende den Multiplikator <InlineMath math="3" /> auf das Argument der Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /> an und bestimme die neue Funktionsgleichung.
-
-2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird mit dem Faktor <InlineMath math="\frac{1}{2}" /> im Argument horizontal skaliert. Bestimme die Gleichung der skalierten Funktion und danach den **Definitionsbereich** dieser Funktion.
-
-3. Skaliere die Funktion <InlineMath math="h(x) = |x - 2|" /> horizontal mit dem Multiplikator <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
-
-Jede Lösung beginnt damit, <InlineMath math="x" /> durch das Produkt aus dem Faktor und <InlineMath math="x" /> zu ersetzen, denn dort steckt die Breitenregel. Danach wird die Gleichung vereinfacht und der neue Graph geprüft, damit klar bleibt, ob er gestreckt oder gestaucht wurde.
+1. Gegeben ist <InlineMath math="f(x) = x^2 - 2x - 3" />. Bestimme <InlineMath math="f(3x)" /> und die Nullstellen.
+2. Jeder Punkt <InlineMath math="(x, y)" /> auf dem Graphen von <InlineMath math="y = \sqrt{x}" /> wandert nach <InlineMath math="(4x, y)" />. Bestimme die Gleichung des neuen Graphen und prüfe sie mit einem Punkt.
+3. Die Funktion <InlineMath math="f" /> hat den Definitionsbereich <InlineMath math="[-2, 8]" />. Bestimme den Definitionsbereich von <InlineMath math="g(x) = f\left(-\frac{x}{2}\right)" />.
+4. Der Graph von <InlineMath math="g(x) = 2^{bx}" /> geht durch <InlineMath math="(6, 8)" />. Bestimme <InlineMath math="b" /> und beschreibe, wie der Graph von <InlineMath math="y = 2^x" /> in den Graphen von <InlineMath math="g" /> übergeht.
 
 ### Lösungen
 
-**Aufgabe 1**. **Horizontale Skalierung** mit dem Multiplikator <InlineMath math="3" />:
+**Aufgabe 1**. Der Faktor im Argument ist <InlineMath math="b = 3" />, also ersetzt du jedes <InlineMath math="x" /> in <InlineMath math="f" /> durch <InlineMath math="3x" />:
 
-<BlockMath math="F(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+<BlockMath math="\begin{aligned} f(3x) &= (3x)^2 - 2(3x) - 3 \\ &= 9x^2 - 6x - 3 \\ &= 3(3x + 1)(x - 1) \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /> und ihr Skalierungsergebnis</>}
-  description={
-    <>
-      Der Multiplikator <InlineMath math="3" /> ergibt die horizontale Skalierung{" "}
-      <InlineMath math="\frac{1}{3}" /> und macht die Parabel schmaler.
-    </>
-  }
-  cameraPosition={[1, 2, 14]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 2 * x + 1, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2-2x+1" />, offset: [4, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 9 * x * x - 6 * x + 1, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=9x^2-6x+1" />, offset: [3, 2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+Aus der faktorisierten Form liest du die Nullstellen <InlineMath math="x = -\frac{1}{3}" /> und <InlineMath math="x = 1" /> ab. Die Regel der Stauchung liefert eine zweite Kontrolle: <InlineMath math="f(x) = (x + 1)(x - 3)" /> hat die Nullstellen <InlineMath math="-1" /> und <InlineMath math="3" />, und **beide durch <InlineMath math="3" /> geteilt** ergeben genau <InlineMath math="-\frac{1}{3}" /> und <InlineMath math="1" />.
 
-**Aufgabe 2**. Multipliziere das Argument mit einem Halb, bevor du die Wurzel ziehst. Prüfe die Wurzelbedingung, um den Definitionsbereich zu bestimmen.
+**Aufgabe 2**. Jede <InlineMath math="x" />-Koordinate wird mit <InlineMath math="4" /> multipliziert, **der Streckfaktor ist also <InlineMath math="s = 4" />** und <InlineMath math="b = \frac{1}{4}" />. Ersetze <InlineMath math="x" /> durch <InlineMath math="\frac{x}{4}" />:
 
-- Horizontale Skalierung: <InlineMath math="G(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
-- **Definitionsbereich** nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />, weil der Multiplikator positiv ist
+<BlockMath math="y = \sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{2}" />
 
-Im Graphen:
+Die zweite Form gilt, weil <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> für <InlineMath math="x \ge 0" /> ist. Prüfe mit <InlineMath math="(4, 2)" /> auf <InlineMath math="y = \sqrt{x}" />: Der Punkt wandert nach <InlineMath math="(16, 2)" />, und <InlineMath math="\frac{\sqrt{16}}{2} = 2" />. Die Form <InlineMath math="\frac{\sqrt{x}}{2}" /> lässt sich auch als vertikale Stauchung mit dem Faktor <InlineMath math="\frac{1}{2}" /> lesen. Bei der Wurzelfunktion liefern beide Transformationen also denselben Graphen.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und ihr Skalierungsergebnis</>}
-  description={
-    <>
-      Der Multiplikator <InlineMath math="0{,}5" /> ergibt die horizontale Skalierung{" "}
-      <InlineMath math="2" /> und macht den Quadratwurzelgraphen doppelt so breit.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841895);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: 0.7071067811865476 * t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ at: 64, text: <InlineMath math="G(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[2, 1, 0]}
-  cameraPosition={[2, 1, 8]}
-/>
+**Aufgabe 3**. Der Faktor ist <InlineMath math="b = -\frac{1}{2}" />, die Intervallgrenzen tauschen also die Plätze. Der Wert <InlineMath math="g(x)" /> ist definiert, wenn das Argument <InlineMath math="-\frac{x}{2}" /> im Definitionsbereich von <InlineMath math="f" /> liegt. Multipliziere die Ungleichungskette mit <InlineMath math="-2" /> und **kehre beide Ungleichheitszeichen um**:
 
-**Aufgabe 3**. Die ursprüngliche Funktion <InlineMath math="h(x) = |x - 2|" /> hat ihren **Scheitelpunkt** bei <InlineMath math="(2, 0)" />.
-Nach horizontaler Skalierung mit dem Multiplikator <InlineMath math="-1" />: <InlineMath math="H(x) = |-x - 2| = |-(x + 2)| = |x + 2|" /> wird der Scheitelpunkt zu <InlineMath math="(-2, 0)" />.
+<BlockMath math="\begin{aligned} -2 &\le -\frac{x}{2} \le 8 \\ 4 &\ge x \ge -16 \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="h(x) = |x - 2|" /> und ihr Skalierungsergebnis</>}
-  description={<>Der Multiplikator <InlineMath math="-1" /> spiegelt den Betragsgraphen an der <InlineMath math="y" />-Achse, ohne seine horizontale Größe zu ändern.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 86 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 85 * 12;
-        return { x, y: Math.abs(x - 2), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, offset: [2.5, 1, 0], at: 38 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 94 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 93 * 12;
-        return { x, y: Math.abs(-x - 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=|-x-2|" />, offset: [2.5, 2, 0], at: 61 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Die Regel <InlineMath math="\left[\frac{d}{b}, \frac{c}{b}\right] = \left[\frac{8}{-1/2}, \frac{-2}{-1/2}\right] = [-16, 4]" /> liefert dasselbe Intervall. Prüfe beide Grenzen: <InlineMath math="x = -16" /> ergibt das Argument <InlineMath math="8" />, und <InlineMath math="x = 4" /> ergibt das Argument <InlineMath math="-2" />. Beides sind genau die Grenzen des Definitionsbereichs von <InlineMath math="f" />, also ist der Definitionsbereich von <InlineMath math="g" /> das Intervall <InlineMath math="[-16, 4]" />.
+
+**Aufgabe 4**. Setze den Punkt <InlineMath math="(6, 8)" /> in <InlineMath math="g(x) = 2^{bx}" /> ein:
+
+<BlockMath math="\begin{aligned} 2^{6b} &= 8 = 2^3 \\ 6b &= 3 \\ b &= \tfrac{1}{2} \end{aligned}" />
+
+Die Funktion <InlineMath math="2^t" /> ist streng monoton steigend, deshalb gilt <InlineMath math="2^{6b} = 2^3" /> nur für <InlineMath math="6b = 3" />. Wegen <InlineMath math="0 < b < 1" /> wird der Graph von <InlineMath math="y = 2^x" /> mit dem Faktor <InlineMath math="\frac{1}{b} = 2" /> von der <InlineMath math="y" />-Achse weg gestreckt: **Jeder Abstand zur <InlineMath math="y" />-Achse verdoppelt sich**. Probe: Der Punkt <InlineMath math="(3, 8)" /> auf <InlineMath math="y = 2^x" /> wandert nach <InlineMath math="\left(\frac{3}{1/2}, 8\right) = (6, 8)" />, genau zum gegebenen Punkt. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 1)" /> und die Asymptote <InlineMath math="y = 0" /> bleiben, wo sie sind.

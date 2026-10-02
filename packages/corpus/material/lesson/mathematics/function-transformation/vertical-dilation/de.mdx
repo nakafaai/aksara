@@ -1,366 +1,493 @@
 export const metadata = {
   title: "Vertikale Streckung und Stauchung",
-  description: "Strecke, stauche oder spiegle die Funktionswerte mit einem vertikalen Skalierungsfaktor und vergleiche die Graphen.",
+  description: "Multipliziere eine Funktion mit einem Faktor, um ihren Graphen zu strecken, zu stauchen oder zu spiegeln, und erkenne feste Punkte und den Wertebereich.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Funktionstransformation",
 };
 
 ## Jeden Funktionswert mit demselben Faktor multiplizieren
 
-Eine vertikale Skalierung multipliziert **jeden Funktionswert** mit demselben Faktor. Die waagerechten Koordinaten bleiben unverändert. Der Abstand zur <InlineMath math="x" />-Achse wird mit dem Betrag dieses Faktors multipliziert.
+Bei einer **vertikalen Streckung oder Stauchung** mit dem Faktor <InlineMath math="a \ne 0" /> wird aus <InlineMath math="y = f(x)" /> die Funktion <InlineMath math="y = a f(x)" />. Der Faktor multipliziert den Funktionswert, nachdem die Vorschrift <InlineMath math="f" /> angewendet wurde. Deshalb wandert jeder Punkt des Graphen senkrecht:
 
-Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = k \cdot f(x)" />. Dabei ist <InlineMath math="k \ne 0" /> der Faktor, der jeden Funktionswert multipliziert.
+<BlockMath math="(x_0, y_0) \longmapsto (x_0,\ a y_0)" />
 
-### Wie der Faktor die Höhe ändert
+Die <InlineMath math="x" />-Koordinate bleibt, und jede Höhe wird mit <InlineMath math="a" /> multipliziert. Für <InlineMath math="a > 1" /> wird der Graph **von der <InlineMath math="x" />-Achse weg gestreckt**, für <InlineMath math="0 < a < 1" /> zur <InlineMath math="x" />-Achse hin gestaucht. Ein negativer Faktor spiegelt den Graphen zusätzlich an der <InlineMath math="x" />-Achse. Punkte auf der <InlineMath math="x" />-Achse bleiben liegen, weil ihre Höhe null ist und <InlineMath math="a \cdot 0 = 0" /> gilt.
 
-Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Faktor <InlineMath math="k" /> gilt:
+In der 3D-Ansicht der Graphenschichten sind mehrere Graphen <InlineMath math="a f(x)" /> nach ihrem Wert von <InlineMath math="a" /> gestapelt. Du kannst diese Ansicht drehen und zusehen, wie jeder Punkt auf einer Geraden wandert, wenn sich <InlineMath math="a" /> ändert.
 
-<BlockMath math="g(x) = k \cdot f(x)" />
+## Vervielfachte Höhen und feste Nullstellen
 
-Der Faktor <InlineMath math="k" /> bestimmt, was mit der Höhe geschieht:
-- Bei <InlineMath math="k > 1" /> wird der Graph vertikal gestreckt
-- Bei <InlineMath math="0 < k < 1" /> wird der Graph vertikal gestaucht
-- Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
-- Bei <InlineMath math="k < 0" /> kommt zur Streckung oder Stauchung eine Spiegelung hinzu
+An derselben Stelle <InlineMath math="x" /> ist der neue Graph immer <InlineMath math="a" />-mal so hoch wie der alte. Eine Nullstelle <InlineMath math="x_0" /> erfüllt <InlineMath math="f(x_0) = 0" />, also gilt auch <InlineMath math="a f(x_0) = 0" />. Umgekehrt ist das Produkt <InlineMath math="a f(x)" /> bei <InlineMath math="a \ne 0" /> nur dann null, wenn <InlineMath math="f(x) = 0" /> gilt, deshalb kommt keine neue Nullstelle hinzu. Zusammen heißt das: **Nullstellen wandern nicht**. Für <InlineMath math="a = 0" /> wäre jede Stelle <InlineMath math="x" /> eine Nullstelle, deshalb verlangt eine Streckung <InlineMath math="a \ne 0" />.
 
-Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen, weil dann alle Funktionswerte zu <InlineMath math="0" /> zusammenfallen. Die entstehenden Punkte liegen nur für Eingaben des ursprünglichen Definitionsbereichs auf der waagerechten Achse.
+Bei einer [vertikalen Verschiebung](/de/faecher/mathematik/funktionstransformationen/vertikale-verschiebung) wird zu jeder Höhe dieselbe Zahl addiert. Dann werden auch Punkte auf der <InlineMath math="x" />-Achse angehoben oder abgesenkt, und Nullstellen können wandern, entstehen oder verschwinden. Die Multiplikation lässt die Höhe null bei null, die Addition macht aus ihr die addierte Zahl.
 
-Der Betrag des Faktors verändert den **Abstand zur waagerechten Achse**. Ein positiver Faktor über eins vergrößert diesen Abstand. Ein Faktor zwischen null und eins verkleinert ihn.
+Wende den Faktor <InlineMath math="a = 3" /> auf <InlineMath math="f(x) = x^2 - 4x + 3 = (x - 1)(x - 3)" /> an. Der Graph von <InlineMath math="f" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />, hat den Scheitelpunkt <InlineMath math="(2, -1)" /> und trifft die <InlineMath math="y" />-Achse in <InlineMath math="(0, 3)" />. Multipliziere die ganze Funktion mit <InlineMath math="3" />:
 
-## Vergleich am Graphen
+<BlockMath math="\begin{aligned} g(x) &= 3f(x) \\ &= 3(x^2 - 4x + 3) \\ &= 3x^2 - 12x + 9 \end{aligned}" />
 
-Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt besonders deutlich, wie verschiedene Faktoren den Abstand zur <InlineMath math="x" />-Achse verändern.
+Prüfe die drei besonderen Punkte. Die Werte <InlineMath math="g(1) = 3 - 12 + 9 = 0" /> und <InlineMath math="g(3) = 27 - 36 + 9 = 0" /> zeigen, dass die Nullstellen bleiben. Der Scheitelpunkt von <InlineMath math="g" /> liegt bei <InlineMath math="x = \frac{12}{2 \cdot 3} = 2" /> mit <InlineMath math="g(2) = -3 = 3 \cdot (-1)" />. Der <InlineMath math="y" />-Achsenabschnitt wird zu <InlineMath math="(0, 9)" />, weil <InlineMath math="g(0) = 9 = 3 \cdot 3" /> ist. **Jede Höhe verdreifacht sich**, auch eine negative.
 
 <LineEquation
   showZAxis={false}
-  title={<>Vertikale Skalierung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
-  description="Achte darauf, wie die unterschiedlichen Skalierungsfaktoren den Graphen vertikal strecken oder stauchen."
-  cameraPosition={[0, 3, 15]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Parabeln <InlineMath math="f(x) = x^2 - 4x + 3" /> und <InlineMath math="g(x) = 3f(x)" /></>}
+  description={<>Senkrechte Pfeile bringen jeden Punkt auf <InlineMath math="f" /> zum Punkt auf <InlineMath math="g" />, dessen Höhe mit <InlineMath math="3" /> multipliziert ist: Punkte über der <InlineMath math="x" />-Achse steigen, Punkte darunter sinken, und beide Nullstellen bleiben liegen.</>}
+  cameraPosition={[3, 3, 15]}
+  cameraTarget={[3, 3, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
+      points: Array.from({ length: 81 }, (_, index) => {
+        const x = index / 20;
+        return { x, y: x * x - 4 * x + 3, z: 0 };
       }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
-      showPoints: false,
-    },
-    {
       smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 2 * x * x, z: 0 };
-      }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 0.5 * x * x, z: 0 };
-      }),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5x^2" />, offset: [2.5, -3.2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
-
-Der Graph zeigt:
-- Wir vergleichen mit der ursprünglichen Funktion <InlineMath math="f(x) = x^2" />
-- Die Funktion <InlineMath math="g(x) = 2x^2" /> wird durch den Faktor <InlineMath math="2" /> vertikal gestreckt
-- Die Funktion <InlineMath math="h(x) = 0{,}5x^2" /> wird durch den Faktor <InlineMath math="0{,}5" /> vertikal gestaucht
-- Alle Graphen haben den gleichen **Scheitelpunkt** bei <InlineMath math="(0, 0)" />
-
-## Skalierung einer linearen Funktion
-
-Dieselbe Skalierungsregel gilt für die lineare Funktion <InlineMath math="f(x) = x + 1" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Vertikale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 1" /></>}
-  description={<>Die Skalierung verändert sowohl die Steigung als auch den <InlineMath math="y" />-Achsenabschnitt.</>}
-  cameraPosition={[-0.5, 2, 14]}
-  cameraTarget={[-0.5, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 51 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 50 * 12;
-        return { x, y: x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [-3.3, 1, 0], at: 22 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * (x + 1), z: 0 };
+      points: Array.from({ length: 81 }, (_, index) => {
+        const x = index / 20;
+        return { x, y: 3 * x * x - 12 * x + 9, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [-2, 2, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=3x^2-12x+9" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 66 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 65 * 12;
-        return { x, y: 0.5 * (x + 1), z: 0 };
-      }),
+      points: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 9, z: 0 }],
       smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [1.5, -1.5, 0], at: 37 }],
+      color: "#d97706",
       showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 2, y: -1, z: 0 }, { x: 2, y: -3, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
     },
   ]}
 />
 
-Der Vergleich zeigt:
-- Die ursprüngliche Funktion <InlineMath math="f(x) = x + 1" /> hat die **Steigung** <InlineMath math="1" />
-- Funktion <InlineMath math="g(x) = 3(x + 1)" /> hat Steigung <InlineMath math="3" /> (gestreckt)
-- Funktion <InlineMath math="h(x) = 0{,}5(x + 1)" /> hat Steigung <InlineMath math="0{,}5" /> (gestaucht)
-- Alle Geraden schneiden immer noch die <InlineMath math="y" />-Achse, allerdings an unterschiedlichen Punkten
+## Geraden durch alle Schichten
 
-## Welche Werte die vertikale Skalierung verschiebt
+Wie ändert sich die Höhe an einer festen Stelle <InlineMath math="x" />, wenn <InlineMath math="a" /> von <InlineMath math="2" /> bis <InlineMath math="-1" /> läuft? Die 3D-Ansicht der Graphenschichten stapelt die Graphen von <InlineMath math="y = a f(x)" /> mit <InlineMath math="f(x) = x^2 - 1" /> für <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" /> und <InlineMath math="-1" />. Die Schicht zum Faktor <InlineMath math="a" /> liegt bei <InlineMath math="z = 2(1 - a)" />. Der ursprüngliche Graph <InlineMath math="a = 1" /> liegt also in der <InlineMath math="xy" />-Ebene, und **der Abstand zweier Schichten ist proportional zur Differenz ihrer Werte von <InlineMath math="a" />**.
 
-Wenn du weißt, ob der Graph höher oder niedriger wird, bleibt noch die Frage, welche Werte mitwandern. Die vertikale Skalierung multipliziert jeden Funktionswert mit dem Faktor <InlineMath math="k" />. Die Höhen ändern sich also, während die Lage entlang der <InlineMath math="x" />-Achse gleich bleibt.
+Flach ist die Schicht <InlineMath math="a = 0" />, weil <InlineMath math="0 \cdot f(x) = 0" /> für jedes <InlineMath math="x" /> gilt. Eine Streckung verlangt <InlineMath math="a \ne 0" />, deshalb ist die flache Schicht nur das Gelenk, durch das alle Geraden laufen. Geraden verbinden die Punkte mit gleichem <InlineMath math="x" />-Wert in allen Schichten, nämlich bei <InlineMath math="x = -2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" />.
 
-Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Der zugehörige Punkt auf dem Graphen von <InlineMath math="k \cdot f(x)" /> ist <InlineMath math="(a, k \cdot b)" />. Die <InlineMath math="x" />-Koordinate bleibt <InlineMath math="a" />, weil eine vertikale Skalierung keinen Punkt seitlich verschiebt.
+<MathVisual
+  title={<>Graphenschichten <InlineMath math="a f(x)" /> für <InlineMath math="f(x) = x^2 - 1" /></>}
+  description={<>Jede Gerade enthält die Punkte mit gleichem <InlineMath math="x" /> in allen Schichten. Drehe die Ansicht, bis die <InlineMath math="x" />-Achse auf dich zeigt, und sieh, wie sich alle Geraden in der Schicht <InlineMath math="a = 0" /> treffen.</>}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -4, max: 7 },
+      z: { min: -2.5, max: 4.5 },
+    },
+    view: { kind: "isometric" },
+    objects: [
+      {
+        id: "layer-two",
+        kind: "polyline",
+        appearance: "construction",
+        vertices: [
+          { x: -2, y: 6, z: -2 },
+          { x: -1.9, y: 5.22, z: -2 },
+          { x: -1.8, y: 4.48, z: -2 },
+          { x: -1.7, y: 3.78, z: -2 },
+          { x: -1.6, y: 3.12, z: -2 },
+          { x: -1.5, y: 2.5, z: -2 },
+          { x: -1.4, y: 1.92, z: -2 },
+          { x: -1.3, y: 1.38, z: -2 },
+          { x: -1.2, y: 0.88, z: -2 },
+          { x: -1.1, y: 0.42, z: -2 },
+          { x: -1, y: 0, z: -2 },
+          { x: -0.9, y: -0.38, z: -2 },
+          { x: -0.8, y: -0.72, z: -2 },
+          { x: -0.7, y: -1.02, z: -2 },
+          { x: -0.6, y: -1.28, z: -2 },
+          { x: -0.5, y: -1.5, z: -2 },
+          { x: -0.4, y: -1.68, z: -2 },
+          { x: -0.3, y: -1.82, z: -2 },
+          { x: -0.2, y: -1.92, z: -2 },
+          { x: -0.1, y: -1.98, z: -2 },
+          { x: 0, y: -2, z: -2 },
+          { x: 0.1, y: -1.98, z: -2 },
+          { x: 0.2, y: -1.92, z: -2 },
+          { x: 0.3, y: -1.82, z: -2 },
+          { x: 0.4, y: -1.68, z: -2 },
+          { x: 0.5, y: -1.5, z: -2 },
+          { x: 0.6, y: -1.28, z: -2 },
+          { x: 0.7, y: -1.02, z: -2 },
+          { x: 0.8, y: -0.72, z: -2 },
+          { x: 0.9, y: -0.38, z: -2 },
+          { x: 1, y: 0, z: -2 },
+          { x: 1.1, y: 0.42, z: -2 },
+          { x: 1.2, y: 0.88, z: -2 },
+          { x: 1.3, y: 1.38, z: -2 },
+          { x: 1.4, y: 1.92, z: -2 },
+          { x: 1.5, y: 2.5, z: -2 },
+          { x: 1.6, y: 3.12, z: -2 },
+          { x: 1.7, y: 3.78, z: -2 },
+          { x: 1.8, y: 4.48, z: -2 },
+          { x: 1.9, y: 5.22, z: -2 },
+          { x: 2, y: 6, z: -2 },
+        ],
+      },
+      {
+        id: "layer-one",
+        kind: "polyline",
+        appearance: "primary",
+        vertices: [
+          { x: -2, y: 3, z: 0 },
+          { x: -1.9, y: 2.61, z: 0 },
+          { x: -1.8, y: 2.24, z: 0 },
+          { x: -1.7, y: 1.89, z: 0 },
+          { x: -1.6, y: 1.56, z: 0 },
+          { x: -1.5, y: 1.25, z: 0 },
+          { x: -1.4, y: 0.96, z: 0 },
+          { x: -1.3, y: 0.69, z: 0 },
+          { x: -1.2, y: 0.44, z: 0 },
+          { x: -1.1, y: 0.21, z: 0 },
+          { x: -1, y: 0, z: 0 },
+          { x: -0.9, y: -0.19, z: 0 },
+          { x: -0.8, y: -0.36, z: 0 },
+          { x: -0.7, y: -0.51, z: 0 },
+          { x: -0.6, y: -0.64, z: 0 },
+          { x: -0.5, y: -0.75, z: 0 },
+          { x: -0.4, y: -0.84, z: 0 },
+          { x: -0.3, y: -0.91, z: 0 },
+          { x: -0.2, y: -0.96, z: 0 },
+          { x: -0.1, y: -0.99, z: 0 },
+          { x: 0, y: -1, z: 0 },
+          { x: 0.1, y: -0.99, z: 0 },
+          { x: 0.2, y: -0.96, z: 0 },
+          { x: 0.3, y: -0.91, z: 0 },
+          { x: 0.4, y: -0.84, z: 0 },
+          { x: 0.5, y: -0.75, z: 0 },
+          { x: 0.6, y: -0.64, z: 0 },
+          { x: 0.7, y: -0.51, z: 0 },
+          { x: 0.8, y: -0.36, z: 0 },
+          { x: 0.9, y: -0.19, z: 0 },
+          { x: 1, y: 0, z: 0 },
+          { x: 1.1, y: 0.21, z: 0 },
+          { x: 1.2, y: 0.44, z: 0 },
+          { x: 1.3, y: 0.69, z: 0 },
+          { x: 1.4, y: 0.96, z: 0 },
+          { x: 1.5, y: 1.25, z: 0 },
+          { x: 1.6, y: 1.56, z: 0 },
+          { x: 1.7, y: 1.89, z: 0 },
+          { x: 1.8, y: 2.24, z: 0 },
+          { x: 1.9, y: 2.61, z: 0 },
+          { x: 2, y: 3, z: 0 },
+        ],
+      },
+      {
+        id: "layer-half",
+        kind: "polyline",
+        appearance: "secondary",
+        vertices: [
+          { x: -2, y: 1.5, z: 1 },
+          { x: -1.9, y: 1.305, z: 1 },
+          { x: -1.8, y: 1.12, z: 1 },
+          { x: -1.7, y: 0.945, z: 1 },
+          { x: -1.6, y: 0.78, z: 1 },
+          { x: -1.5, y: 0.625, z: 1 },
+          { x: -1.4, y: 0.48, z: 1 },
+          { x: -1.3, y: 0.345, z: 1 },
+          { x: -1.2, y: 0.22, z: 1 },
+          { x: -1.1, y: 0.105, z: 1 },
+          { x: -1, y: 0, z: 1 },
+          { x: -0.9, y: -0.095, z: 1 },
+          { x: -0.8, y: -0.18, z: 1 },
+          { x: -0.7, y: -0.255, z: 1 },
+          { x: -0.6, y: -0.32, z: 1 },
+          { x: -0.5, y: -0.375, z: 1 },
+          { x: -0.4, y: -0.42, z: 1 },
+          { x: -0.3, y: -0.455, z: 1 },
+          { x: -0.2, y: -0.48, z: 1 },
+          { x: -0.1, y: -0.495, z: 1 },
+          { x: 0, y: -0.5, z: 1 },
+          { x: 0.1, y: -0.495, z: 1 },
+          { x: 0.2, y: -0.48, z: 1 },
+          { x: 0.3, y: -0.455, z: 1 },
+          { x: 0.4, y: -0.42, z: 1 },
+          { x: 0.5, y: -0.375, z: 1 },
+          { x: 0.6, y: -0.32, z: 1 },
+          { x: 0.7, y: -0.255, z: 1 },
+          { x: 0.8, y: -0.18, z: 1 },
+          { x: 0.9, y: -0.095, z: 1 },
+          { x: 1, y: 0, z: 1 },
+          { x: 1.1, y: 0.105, z: 1 },
+          { x: 1.2, y: 0.22, z: 1 },
+          { x: 1.3, y: 0.345, z: 1 },
+          { x: 1.4, y: 0.48, z: 1 },
+          { x: 1.5, y: 0.625, z: 1 },
+          { x: 1.6, y: 0.78, z: 1 },
+          { x: 1.7, y: 0.945, z: 1 },
+          { x: 1.8, y: 1.12, z: 1 },
+          { x: 1.9, y: 1.305, z: 1 },
+          { x: 2, y: 1.5, z: 1 },
+        ],
+      },
+      {
+        id: "layer-minus",
+        kind: "polyline",
+        appearance: "warning",
+        vertices: [
+          { x: -2, y: -3, z: 4 },
+          { x: -1.9, y: -2.61, z: 4 },
+          { x: -1.8, y: -2.24, z: 4 },
+          { x: -1.7, y: -1.89, z: 4 },
+          { x: -1.6, y: -1.56, z: 4 },
+          { x: -1.5, y: -1.25, z: 4 },
+          { x: -1.4, y: -0.96, z: 4 },
+          { x: -1.3, y: -0.69, z: 4 },
+          { x: -1.2, y: -0.44, z: 4 },
+          { x: -1.1, y: -0.21, z: 4 },
+          { x: -1, y: 0, z: 4 },
+          { x: -0.9, y: 0.19, z: 4 },
+          { x: -0.8, y: 0.36, z: 4 },
+          { x: -0.7, y: 0.51, z: 4 },
+          { x: -0.6, y: 0.64, z: 4 },
+          { x: -0.5, y: 0.75, z: 4 },
+          { x: -0.4, y: 0.84, z: 4 },
+          { x: -0.3, y: 0.91, z: 4 },
+          { x: -0.2, y: 0.96, z: 4 },
+          { x: -0.1, y: 0.99, z: 4 },
+          { x: 0, y: 1, z: 4 },
+          { x: 0.1, y: 0.99, z: 4 },
+          { x: 0.2, y: 0.96, z: 4 },
+          { x: 0.3, y: 0.91, z: 4 },
+          { x: 0.4, y: 0.84, z: 4 },
+          { x: 0.5, y: 0.75, z: 4 },
+          { x: 0.6, y: 0.64, z: 4 },
+          { x: 0.7, y: 0.51, z: 4 },
+          { x: 0.8, y: 0.36, z: 4 },
+          { x: 0.9, y: 0.19, z: 4 },
+          { x: 1, y: 0, z: 4 },
+          { x: 1.1, y: -0.21, z: 4 },
+          { x: 1.2, y: -0.44, z: 4 },
+          { x: 1.3, y: -0.69, z: 4 },
+          { x: 1.4, y: -0.96, z: 4 },
+          { x: 1.5, y: -1.25, z: 4 },
+          { x: 1.6, y: -1.56, z: 4 },
+          { x: 1.7, y: -1.89, z: 4 },
+          { x: 1.8, y: -2.24, z: 4 },
+          { x: 1.9, y: -2.61, z: 4 },
+          { x: 2, y: -3, z: 4 },
+        ],
+      },
+      {
+        id: "layer-zero",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -2, y: 0, z: 2 },
+        to: { x: 2, y: 0, z: 2 },
+      },
+      {
+        id: "ray-minus-two",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: -2, y: -3, z: 4 },
+        to: { x: -2, y: 6, z: -2 },
+      },
+      {
+        id: "ray-minus-one",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: -1, y: 0, z: 4 },
+        to: { x: -1, y: 0, z: -2 },
+      },
+      {
+        id: "ray-zero",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 0, y: 1, z: 4 },
+        to: { x: 0, y: -2, z: -2 },
+      },
+      {
+        id: "ray-one",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 1, y: 0, z: 4 },
+        to: { x: 1, y: 0, z: -2 },
+      },
+      {
+        id: "ray-two",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 2, y: -3, z: 4 },
+        to: { x: 2, y: 6, z: -2 },
+      },
+    ],
+    labels: [
+      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.3, y: -1.82, z: -2 }, placement: "below-right" },
+      { key: "layer-one-label", objectId: "layer-one", at: { x: -2, y: 3, z: 0 }, placement: "above-left" },
+      { key: "layer-half-label", objectId: "layer-half", at: { x: -2, y: 1.5, z: 1 }, placement: "above-left" },
+      { key: "layer-zero-label", objectId: "layer-zero", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "layer-minus-label", objectId: "layer-minus", at: { x: -2, y: -3, z: 4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "layer-two-label": <><InlineMath math="a = 2" /></>,
+    "layer-one-label": <><InlineMath math="a = 1" /></>,
+    "layer-half-label": <><InlineMath math="a = \tfrac{1}{2}" /></>,
+    "layer-zero-label": <><InlineMath math="a = 0" /></>,
+    "layer-minus-label": <><InlineMath math="a = -1" /></>,
+  }}
+/>
 
-| Teil der Funktion | Vor der Skalierung | Nach der Skalierung mit <InlineMath math="k > 0" /> |
+Folge der Geraden bei <InlineMath math="x = 2" />. Ihre Punkte sind <InlineMath math="(2, 3a)" /> mit den Höhen <InlineMath math="6" />, <InlineMath math="3" />, <InlineMath math="\frac{3}{2}" />, <InlineMath math="0" /> und <InlineMath math="-3" /> für <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" /> und <InlineMath math="-1" />. Diese Punkte liegen auf einer Geraden, weil sich die Höhe <InlineMath math="3a" /> und die Lage der Schicht <InlineMath math="z = 2(1 - a)" /> beide linear mit <InlineMath math="a" /> ändern.
+
+Ziehe die Ansicht, bis die <InlineMath math="x" />-Achse direkt auf dich zeigt. Von der Seite gesehen **treffen sich alle Geraden in der flachen Schicht <InlineMath math="a = 0" />**. Die Geraden bei <InlineMath math="x = -1" /> und <InlineMath math="x = 1" /> liegen flach auf der Höhe <InlineMath math="0" />, weil diese beiden Werte die Nullstellen von <InlineMath math="f" /> sind. Jenseits der flachen Schicht wechselt die Höhe auf jeder anderen Geraden das Vorzeichen, deshalb steht die Schicht <InlineMath math="a = -1" /> auf dem Kopf.
+
+Von vorn, mit der <InlineMath math="z" />-Achse auf dich gerichtet, schrumpft jede Gerade durch einen Punkt außerhalb der <InlineMath math="x" />-Achse zu einer senkrechten Strecke, weil sich dieser Punkt nur nach oben oder unten bewegt. Die beiden Geraden in den Nullstellen schrumpfen zu einzelnen Punkten, weil Punkte auf der <InlineMath math="x" />-Achse nie wandern.
+
+Von oben liegen alle Schichten über demselben Intervall von <InlineMath math="x = -2" /> bis <InlineMath math="x = 2" />: Eine vertikale Streckung verschiebt keinen Punkt nach links oder rechts, deshalb ändert sich der Definitionsbereich nicht. Bei einer [horizontalen Streckung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung) ist die Spur eines Punktes über ähnliche Schichten gekrümmt, weil die <InlineMath math="x" />-Koordinate durch den Faktor im Argument geteilt wird.
+
+## Ein negativer Faktor stellt den Graphen auf den Kopf
+
+Einen negativen Faktor kannst du als zwei Schritte lesen. Multipliziere zuerst mit <InlineMath math="|a|" />, um zu strecken oder zu stauchen, und dann mit <InlineMath math="-1" />, um **den Graphen an der <InlineMath math="x" />-Achse zu spiegeln**. Für <InlineMath math="a = -1" /> bleibt nur die [Spiegelung an der <InlineMath math="x" />-Achse](/de/faecher/mathematik/funktionstransformationen/spiegelung-an-der-x-achse) <InlineMath math="y = -f(x)" /> übrig.
+
+Nimm <InlineMath math="h(x) = |x - 1| + 2" />. Der Scheitelpunkt <InlineMath math="(1, 2)" /> ist der tiefste Punkt des Graphen, also hat <InlineMath math="h" /> den Wertebereich <InlineMath math="[2, \infty)" />. Multipliziere die ganze Funktion mit <InlineMath math="a = -2" />:
+
+<BlockMath math="\begin{aligned} H(x) &= -2\,h(x) \\ &= -2\left(|x - 1| + 2\right) \\ &= -2|x - 1| - 4 \end{aligned}" />
+
+Nach der Multiplikation liegt der Scheitelpunkt bei <InlineMath math="(1, -4)" /> und ist der höchste Punkt. Der Wertebereich ändert sich von <InlineMath math="[2, \infty)" /> zu <InlineMath math="(-\infty, -4]" />, weil **die Multiplikation mit einer negativen Zahl die Reihenfolge der Grenzen umkehrt**. Prüfe noch einen Punkt: <InlineMath math="h(3) = 4" /> und <InlineMath math="H(3) = -2 \cdot 2 - 4 = -8 = -2 \cdot 4" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphen von <InlineMath math="h(x) = |x - 1| + 2" /> und <InlineMath math="H(x) = -2h(x)" /></>}
+  description={<>Die Pfeile kreuzen die <InlineMath math="x" />-Achse: Der tiefste Punkt <InlineMath math="(1, 2)" /> wird zum höchsten Punkt <InlineMath math="(1, -4)" />.</>}
+  cameraPosition={[2, -2, 15]}
+  cameraTarget={[2, -2, 0]}
+  data={[
+    {
+      points: [{ x: -1, y: 4, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 3, y: 4, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: -1, y: -8, z: 0 }, { x: 1, y: -4, z: 0 }, { x: 3, y: -8, z: 0 }],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="H(x)=-2|x-1|-4" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 1, y: 2, z: 0 }, { x: 1, y: -4, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 3, y: 4, z: 0 }, { x: 3, y: -8, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+  ]}
+/>
+
+## Wertebereich und Asymptote nach der Multiplikation
+
+Weil sich nur Höhen ändern, wird **jedes Merkmal, das von einer Höhe abhängt, mit <InlineMath math="a" /> multipliziert**. Merkmale, die von einem <InlineMath math="x" />-Wert abhängen, bleiben gleich.
+
+| Merkmal | Bei <InlineMath math="a f(x)" /> | Grund |
 | --- | --- | --- |
-| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(a, k \cdot b)" /> |
-| Definitionsbereich | Das ursprüngliche Intervall | Dasselbe Intervall wie vorher |
-| Wertebereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[k \cdot c, k \cdot d]" /> |
-| <InlineMath math="x" />-Achsenabschnitt | Bei <InlineMath math="x = x_0" /> | Bleibt bei <InlineMath math="x = x_0" /> |
-| <InlineMath math="y" />-Achsenabschnitt | Bei <InlineMath math="y = y_0" /> | Wandert zu <InlineMath math="y = k \cdot y_0" /> |
+| Punkt <InlineMath math="(x_0, y_0)" /> | <InlineMath math="(x_0, a y_0)" /> | <InlineMath math="x" /> bleibt, die Höhe wird mit <InlineMath math="a" /> multipliziert |
+| Nullstellen | unverändert | die Höhe null bleibt null |
+| Definitionsbereich | unverändert | er enthält <InlineMath math="x" />-Werte |
+| Wertebereich <InlineMath math="[c, d]" /> für <InlineMath math="a > 0" /> | <InlineMath math="[ac, ad]" /> | jede Höhe wird mit <InlineMath math="a" /> multipliziert |
+| Wertebereich <InlineMath math="[c, d]" /> für <InlineMath math="a < 0" /> | <InlineMath math="[ad, ac]" /> | die Grenzen tauschen die Plätze |
+| <InlineMath math="y" />-Achsenabschnitt | <InlineMath math="(0, a f(0))" /> | seine Höhe <InlineMath math="f(0)" /> wird mit <InlineMath math="a" /> multipliziert |
+| Waagerechte Asymptote <InlineMath math="y = y_1" /> | <InlineMath math="y = a y_1" /> | eine Höhe legt die Gerade fest |
 
-Der Wertebereich wächst oder schrumpft zusammen mit dem Graphen, weil er die Ausgabewerte enthält. Der Definitionsbereich bleibt gleich, weil sich die erlaubten Eingaben nicht ändern. Eine [horizontale Skalierung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung) teilt die waagerechten Koordinaten und lässt die Höhen unverändert.
+Der Graph von <InlineMath math="f(x) = 2^x - 4" /> nähert sich der [waagerechten Asymptote](/de/faecher/mathematik/funktionen-und-modelle/asymptoten) <InlineMath math="y = -4" /> und hat den Wertebereich <InlineMath math="(-4, \infty)" />. Mit <InlineMath math="a = \frac{1}{2}" /> wird daraus <InlineMath math="\frac{1}{2} \cdot 2^x - 2" />. Die Asymptote ist dann <InlineMath math="y = -2" />, der Wertebereich <InlineMath math="(-2, \infty)" />, und der <InlineMath math="y" />-Achsenabschnitt ändert sich von <InlineMath math="(0, -3)" /> zu <InlineMath math="\left(0, -\frac{3}{2}\right)" />. Für <InlineMath math="a \ne 1" /> bleibt nur die waagerechte Asymptote <InlineMath math="y = 0" /> an ihrem Platz, weil <InlineMath math="a \cdot 0 = 0" /> ist.
 
-Bei einem **negativen Faktor** kehrt sich die Reihenfolge der Grenzen im Wertebereich um. Aus <InlineMath math="[c,d]" /> wird <InlineMath math="[kd,kc]" />. So ergibt der Bereich <InlineMath math="[1,4]" /> mit <InlineMath math="k=-2" /> den neuen Bereich <InlineMath math="[-8,-2]" />.
+## Ein Graph aus zwei Transformationen
 
-## Die Werte einer Exponentialfunktion skalieren
+Bei bestimmten Funktionen liefert eine vertikale Streckung oder Stauchung genau denselben Graphen wie eine horizontale Streckung, eine horizontale Stauchung oder eine Verschiebung. **Die Übereinstimmung folgt aus der Algebra der Funktion**, deshalb lässt sich jede Zeile der Tabelle mit einer kurzen Rechnung beweisen.
 
-Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verdoppelt der vertikale Faktor alle Funktionswerte.
+| <InlineMath math="f(x)" /> | Vertikale Streckung oder Stauchung | Derselbe Graph als | Gelesen als |
+| --- | --- | --- | --- |
+| <InlineMath math="x^2" /> | <InlineMath math="4x^2" /> | <InlineMath math="(2x)^2" /> | horizontale Stauchung mit <InlineMath math="b = 2" /> |
+| <InlineMath math="\sqrt{x}" /> | <InlineMath math="\frac{1}{2}\sqrt{x}" /> | <InlineMath math="\sqrt{\frac{x}{4}}" /> | horizontale Streckung mit <InlineMath math="b = \frac{1}{4}" /> |
+| <InlineMath math="2^x" /> | <InlineMath math="2 \cdot 2^x" /> | <InlineMath math="2^{x + 1}" /> | Verschiebung um <InlineMath math="1" /> nach links |
 
-<LineEquation
-  showZAxis={false}
-  title={<>Vertikale Skalierung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
-  description="Der Skalierungsfaktor verändert die Höhe des Exponentialgraphen."
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 480 * 7;
-        return { x, y: 2 * Math.pow(2, x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2 \cdot 2^x" />, offset: [1, 2, 0], at: 274 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Die erste Zeile nutzt <InlineMath math="(2x)^2 = 4x^2" />, die zweite <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> für <InlineMath math="x \ge 0" /> und die dritte <InlineMath math="2^{x + 1} = 2^x \cdot 2" />. Solche Übereinstimmungen hängen von der Funktion ab. Für <InlineMath math="f(x) = x^2 + 1" /> ist <InlineMath math="4f(x) = 4x^2 + 4" />, aber <InlineMath math="f(2x) = 4x^2 + 1" />, die beiden Graphen sind also verschieden.
 
-Für Exponentialfunktionen:
-- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
-- Der <InlineMath math="y" />-Achsenabschnitt ändert sich von <InlineMath math="(0, 1)" /> auf <InlineMath math="(0, 2)" />
-- Jeder Funktionswert verdoppelt sich, während Basis und relative **Wachstumsrate** gleich bleiben
+Die erste Zeile erklärt auch die Form von <InlineMath math="y = a x^2" />. Bei positivem <InlineMath math="a" /> gilt <InlineMath math="a x^2 = \left(\sqrt{a}\, x\right)^2" />. Den Leitkoeffizienten, der bei den [Eigenschaften quadratischer Funktionen](/de/faecher/mathematik/quadratische-funktionen/eigenschaften-quadratischer-funktionen) bestimmt, wie schmal eine Parabel ist, kannst du deshalb als vertikale Streckung oder Stauchung mit dem Faktor <InlineMath math="a" /> oder als horizontale Streckung oder Stauchung mit dem Faktor <InlineMath math="\sqrt{a}" /> im Argument lesen.
 
-## Negativer Skalierungsfaktor
+## Fehler beim Multiplizieren der Funktionswerte
 
-Ein negatives Vorzeichen vor der Funktion spiegelt den Graphen zusätzlich an der <InlineMath math="x" />-Achse.
+Jeder Fehler in dieser Tabelle verletzt dieselbe Regel: **Die <InlineMath math="x" />-Koordinate bleibt**, und **jede Höhe wird mit <InlineMath math="a" /> multipliziert**.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Vertikale Skalierung mit negativem Faktor bei <InlineMath math="f(x) = x^2" /></>}
-  description="Der Betrag des Faktors bestimmt die Skalierung, sein Minuszeichen die Spiegelung."
-  cameraPosition={[0, 0, 13]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3, 2, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: -2 * x * x, z: 0 };
-      }),
-      color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [3.6, -2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+| Fehler | Warum falsch | So prüfst du |
+| --- | --- | --- |
+| Nur den ersten Summanden multiplizieren, etwa <InlineMath math="3x^2 - 4x + 3" /> für <InlineMath math="3f(x)" /> mit <InlineMath math="f(x) = x^2 - 4x + 3" /> schreiben | Der Faktor multipliziert den ganzen Funktionswert | Bei <InlineMath math="x = 1" /> kommt <InlineMath math="2" /> heraus, obwohl die Nullstelle <InlineMath math="0" /> liefern muss |
+| Nullstellen verschieben | <InlineMath math="a \cdot 0 = 0" /> | Setze die alten Nullstellen in die neue Funktion ein |
+| Den Definitionsbereich ändern | Die <InlineMath math="x" />-Koordinaten ändern sich nicht | Vergleiche die Grenzen vorher und nachher |
+| Die Spiegelung bei <InlineMath math="a < 0" /> vergessen | Ein negatives Vorzeichen kehrt jede Höhe um | Der tiefste Punkt muss zum höchsten werden |
+| <InlineMath math="a f(x)" /> mit <InlineMath math="f(ax)" /> verwechseln | Ein Faktor außen multipliziert Funktionswerte, ein Faktor im Argument multipliziert die Eingabe | Vergleiche die <InlineMath math="y" />-Achsenabschnitte: <InlineMath math="a f(0)" /> unterscheidet sich von <InlineMath math="f(0)" />, wenn <InlineMath math="f(0) \ne 0" /> ist |
+| Eine waagerechte Asymptote auf der alten Höhe lassen | Die Höhe <InlineMath math="y_1" /> der Asymptote wird mitmultipliziert | Multipliziere die Höhe der Asymptote mit <InlineMath math="a" /> |
 
-Für einen negativen Skalierungsfaktor gilt:
-- Der Graph erfährt eine Spiegelung an der <InlineMath math="x" />-Achse
-- Gleichzeitig wird der Graph entsprechend dem Betrag des Skalierungsfaktors gestreckt oder gestaucht
-- Eine Parabel, die sich **nach oben** öffnet, wird zu einer, die sich nach unten öffnet
+In <InlineMath math="H(x) = -2\left(|x - 1| + 2\right) = -2|x - 1| - 4" /> steckt die Verschiebung um <InlineMath math="2" /> nach oben schon vor der Multiplikation in <InlineMath math="h" />, deshalb macht die Streckung aus dieser Verschiebung <InlineMath math="-4" />. Multiplizierst du zuerst <InlineMath math="|x - 1|" /> mit <InlineMath math="-2" /> und verschiebst dann um <InlineMath math="2" /> nach oben, erhältst du <InlineMath math="-2|x - 1| + 2" /> mit dem Scheitelpunkt <InlineMath math="(1, 2)" />, also einen anderen Graphen. Bei [kombinierten Funktionstransformationen](/de/faecher/mathematik/funktionstransformationen/kombinierte-funktionstransformationen) schreibst du nach jedem Schritt die neue Funktion auf, damit dir eine solche Änderung nicht entgeht.
 
 ## Übungen
 
-Die drei Aufgaben nutzen die Höhenregel, die du gerade gelernt hast. Jede Aufgabe multipliziert die Ausgabe mit einem angegebenen Faktor, also achte darauf, ob dieser Faktor größer als eins, zwischen null und eins oder negativ ist. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+Die Aufgaben führen von der direkten Multiplikation zu Aufgaben, in denen du den Faktor selbst findest. **Multipliziere in jeder Aufgabe den ganzen Funktionswert mit dem Faktor**, das konstante Glied eingeschlossen.
 
-1. Skaliere die Funktion <InlineMath math="f(x) = x^2 - 4x + 3" /> vertikal mit dem Faktor <InlineMath math="3" /> und bestimme die neue Funktionsgleichung.
-
-2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird vertikal mit dem Faktor <InlineMath math="\frac{1}{2}" /> skaliert. Bestimme die Gleichung der skalierten Funktion und danach den **Wertebereich** dieser Funktion.
-
-3. Skaliere die Funktion <InlineMath math="h(x) = |x - 1| + 2" /> vertikal mit dem Faktor <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
-
-Jede Lösung beginnt damit, den gesamten Ausdruck der Ausgabe mit dem Faktor zu multiplizieren, denn dort steckt die Höhenregel. Danach wird die Gleichung vereinfacht und der neue Graph geprüft, damit klar bleibt, ob er höher oder niedriger wurde.
+1. Gegeben ist <InlineMath math="f(x) = x^2 - 2x - 8" />. Bestimme <InlineMath math="\frac{1}{3}f(x)" />, die Nullstellen und den Scheitelpunkt.
+2. Der Graph von <InlineMath math="g(x) = \sqrt{x}" /> wird mit dem Faktor <InlineMath math="\frac{1}{2}" /> vertikal gestaucht. Bestimme die neue Gleichung, den Bildpunkt von <InlineMath math="(4, 2)" /> und den Wertebereich.
+3. Die Funktion <InlineMath math="f(x) = 2^x + 1" /> wird mit dem Faktor <InlineMath math="-3" /> multipliziert. Bestimme die neue Gleichung, die waagerechte Asymptote, den Wertebereich und den <InlineMath math="y" />-Achsenabschnitt.
+4. Der Graph von <InlineMath math="y = a(x^2 - 1)" /> geht durch <InlineMath math="(2, 12)" />. Bestimme <InlineMath math="a" /> und die Nullstellen des Graphen.
 
 ### Lösungen
 
-**Aufgabe 1**. **Vertikale Skalierung** mit Faktor <InlineMath math="3" />:
+**Aufgabe 1**. Der Faktor ist <InlineMath math="a = \frac{1}{3}" />, also wird jeder Summand von <InlineMath math="f" /> mit <InlineMath math="\frac{1}{3}" /> multipliziert:
 
-<BlockMath math="F(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
+<BlockMath math="\begin{aligned} g(x) &= \tfrac{1}{3}\left(x^2 - 2x - 8\right) \\ &= \tfrac{1}{3}x^2 - \tfrac{2}{3}x - \tfrac{8}{3} \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="f(x) = x^2 - 4x + 3" /> und ihr Skalierungsergebnis</>}
-  description={
-    <>
-      Der Faktor{" "}
-      <InlineMath math="3" /> streckt die ursprüngliche Parabel vertikal und macht sie steiler.
-    </>
-  }
-  cameraPosition={[1, 2, 14]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 4 * x + 3, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 3 * (x * x - 4 * x + 3), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=3x^2-12x+9" />, offset: [1, -3, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+Die Nullstellen von <InlineMath math="f(x) = (x + 2)(x - 4)" /> sind <InlineMath math="-2" /> und <InlineMath math="4" />, und **beide bleiben Nullstellen von <InlineMath math="g" />**. Der Scheitelpunkt von <InlineMath math="f" /> liegt genau in der Mitte zwischen den beiden Nullstellen, also bei <InlineMath math="x = \frac{-2 + 4}{2} = 1" />, und es gilt <InlineMath math="f(1) = 1 - 2 - 8 = -9" />. Der Faktor <InlineMath math="\frac{1}{3}" /> ist positiv, deshalb bleibt der tiefste Punkt von <InlineMath math="f" /> der tiefste Punkt von <InlineMath math="g" />, mit derselben <InlineMath math="x" />-Koordinate. Der Scheitelpunkt von <InlineMath math="g" /> ist also <InlineMath math="\left(1, \tfrac{1}{3} \cdot (-9)\right) = (1, -3)" />. Probe: <InlineMath math="g(1) = \frac{1}{3} - \frac{2}{3} - \frac{8}{3} = -3" />.
 
-**Aufgabe 2**. Multipliziere jeden Funktionswert mit einem Halb. Der positive Faktor erhält das Vorzeichen der Funktionswerte und den kleinsten Wert null.
+**Aufgabe 2**. Der Faktor <InlineMath math="\frac{1}{2}" /> staucht den Graphen zur <InlineMath math="x" />-Achse hin:
 
-- Vertikale Skalierung: <InlineMath math="G(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-- **Wertebereich** nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />. Für jede Eingabe wird der positive Funktionswert halbiert
+<BlockMath math="G(x) = \tfrac{1}{2}\sqrt{x}" />
 
-Im Graphen:
+Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(4, 1)" />, weil <InlineMath math="G(4) = \frac{1}{2} \cdot 2 = 1" /> ist. **Der Wertebereich bleibt <InlineMath math="[0, \infty)" />**, weil jede Zahl <InlineMath math="r \ge 0" /> weiterhin erreicht wird, nämlich bei <InlineMath math="x = 4r^2" />: <InlineMath math="G(4r^2) = \frac{1}{2} \cdot 2r = r" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und ihr Skalierungsergebnis</>}
-  description={
-    <>
-      Der Faktor{" "}
-      <InlineMath math="0{,}5" /> staucht den Quadratwurzelgraphen vertikal und halbiert seine Funktionswerte.
-    </>
-  }
-  cameraPosition={[2, 1, 8]}
-  cameraTarget={[2, 1, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: 0.5 * t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ at: 64, text: <InlineMath math="G(x)=0{,}5\sqrt{x}" />, offset: [0.9, -1.340569, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+**Aufgabe 3**. Multipliziere die ganze Funktion, die Konstante <InlineMath math="1" /> eingeschlossen, mit <InlineMath math="-3" />:
 
-**Aufgabe 3**. Die ursprüngliche Funktion <InlineMath math="h(x) = |x - 1| + 2" /> hat ihren **Scheitelpunkt** bei <InlineMath math="(1, 2)" />.
-Nach vertikaler Skalierung mit dem Faktor <InlineMath math="-1" />: <InlineMath math="H(x) = -1 \cdot (|x - 1| + 2) = -|x - 1| - 2" /> wird der Scheitelpunkt zu <InlineMath math="(1, -2)" />.
+<BlockMath math="\begin{aligned} H(x) &= -3\left(2^x + 1\right) \\ &= -3 \cdot 2^x - 3 \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktion <InlineMath math="h(x) = |x - 1| + 2" /> und ihr Skalierungsergebnis</>}
-  description={<>Der Faktor <InlineMath math="-1" /> spiegelt den Betragsgraphen an der <InlineMath math="x" />-Achse, ohne seine vertikale Größe zu ändern.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 71 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 70 * 12;
-        return { x, y: Math.abs(x - 1) + 2, z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, offset: [1, -1.5, 0], at: 32 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 368 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 367 * 12;
-        return { x, y: -(Math.abs(x - 1) + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=-|x-1|-2" />, offset: [1, 1.5, 0], at: 214 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Die Asymptote <InlineMath math="y = 1" /> wird zu <InlineMath math="y = -3" />. Weil <InlineMath math="2^x + 1 > 1" /> für jedes <InlineMath math="x" /> gilt, **kehrt die Multiplikation mit <InlineMath math="-3" /> die Ungleichung um** zu <InlineMath math="H(x) < -3" />. Der Wertebereich ist also <InlineMath math="(-\infty, -3)" />. Der <InlineMath math="y" />-Achsenabschnitt ist <InlineMath math="(0, -6)" />, weil <InlineMath math="H(0) = -3 \cdot 2 = -6" /> ist.
+
+**Aufgabe 4**. Setze den Punkt <InlineMath math="(2, 12)" /> in die Gleichung des Graphen ein:
+
+<BlockMath math="\begin{aligned} a\left(2^2 - 1\right) &= 12 \\ 3a &= 12 \\ a &= 4 \end{aligned}" />
+
+Die Gleichung lautet <InlineMath math="y = 4(x^2 - 1)" />. **Die Nullstellen bleiben bei <InlineMath math="x = -1" /> und <InlineMath math="x = 1" />**, genau wie bei <InlineMath math="x^2 - 1" />. Probe mit dem gegebenen Punkt: <InlineMath math="4(2^2 - 1) = 4 \cdot 3 = 12" />.

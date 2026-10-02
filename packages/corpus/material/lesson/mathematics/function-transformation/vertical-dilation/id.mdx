@@ -1,366 +1,493 @@
 export const metadata = {
-  title: "Dilatasi Vertikal",
-  description: "Gunakan grafik dan contoh untuk memahami bagaimana faktor skala meregangkan, memampatkan, atau mencerminkan fungsi secara vertikal.",
+  title: "Dilatasi Vertikal Fungsi",
+  description: "Kalikan seluruh fungsi dengan sebuah faktor untuk meregangkan, memampatkan, atau membalik grafik, lalu periksa titik yang diam dan perubahan range grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Transformasi Fungsi",
 };
 
-## Mengalikan Nilai Fungsi dengan Faktor Skala
+## Mengalikan Setiap Keluaran dengan Faktor yang Sama
 
-Dilatasi vertikal mengalikan **setiap nilai keluaran** dengan faktor yang sama. Koordinat horizontal tidak berubah, sedangkan jarak titik dari sumbu <InlineMath math="x" /> dikalikan dengan besar mutlak faktor tersebut.
+**Dilatasi vertikal** dengan faktor <InlineMath math="a \ne 0" /> mengubah fungsi <InlineMath math="y = f(x)" /> menjadi <InlineMath math="y = a f(x)" />. Faktor <InlineMath math="a" /> mengalikan keluaran setelah aturan <InlineMath math="f" /> bekerja, sehingga setiap titik grafik pindah tegak:
 
-Untuk fungsi <InlineMath math="f(x)" />, dilatasi vertikal menghasilkan <InlineMath math="g(x) = k \cdot f(x)" />. Di sini <InlineMath math="k \ne 0" /> adalah faktor yang mengalikan setiap nilai keluaran.
+<BlockMath math="(x_0, y_0) \longmapsto (x_0,\ a y_0)" />
 
-### Cara Faktor Keluaran Mengubah Tinggi
+Koordinat <InlineMath math="x" /> tetap, dan tinggi setiap titik dikalikan <InlineMath math="a" />. Jika <InlineMath math="a > 1" />, grafik **meregang menjauhi sumbu <InlineMath math="x" />**, sedangkan untuk <InlineMath math="0 < a < 1" /> grafik memampat ke arah sumbu <InlineMath math="x" />. Faktor negatif juga mencerminkan grafik terhadap sumbu <InlineMath math="x" />. Titik di sumbu <InlineMath math="x" /> tidak bergerak karena tingginya nol dan <InlineMath math="a \cdot 0 = 0" />.
 
-Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor tak nol <InlineMath math="k" />, dilatasi vertikal didefinisikan sebagai:
+Di tampilan tiga dimensi lapisan grafik, beberapa grafik <InlineMath math="a f(x)" /> disusun menurut nilai <InlineMath math="a" />. Kamu bisa memutar tampilan itu dan melihat setiap titik bergerak sepanjang garis lurus ketika <InlineMath math="a" /> berubah.
 
-<BlockMath math="g(x) = k \cdot f(x)" />
+## Tinggi Titik Berlipat tetapi Pembuat Nol Diam
 
-Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada tinggi grafik:
-- Jika <InlineMath math="k > 1" />, grafik diregangkan secara vertikal (diperbesar)
-- Jika <InlineMath math="0 < k < 1" />, grafik ditekan secara vertikal (diperkecil)
-- Jika <InlineMath math="k = 1" />, grafik tidak berubah
-- Jika <InlineMath math="k < 0" />, grafik mengalami refleksi sekaligus dilatasi
+Pada nilai <InlineMath math="x" /> yang sama, tinggi grafik baru selalu <InlineMath math="a" /> kali tinggi grafik lama. Pembuat nol <InlineMath math="x_0" /> memenuhi <InlineMath math="f(x_0) = 0" />, jadi <InlineMath math="a f(x_0) = 0" /> juga. Sebaliknya, untuk <InlineMath math="a \ne 0" />, hasil kali <InlineMath math="a f(x)" /> bernilai nol hanya jika <InlineMath math="f(x) = 0" />, jadi tidak ada pembuat nol baru. Kedua fakta itu berarti **pembuat nol tidak berpindah**. Untuk <InlineMath math="a = 0" />, setiap <InlineMath math="x" /> menjadi pembuat nol, dan karena itulah dilatasi memerlukan <InlineMath math="a \ne 0" />.
 
-Nilai <InlineMath math="k = 0" /> tidak termasuk karena semua nilai keluaran menjadi <InlineMath math="0" />. Titik hasil berada pada sumbu <InlineMath math="x" /> hanya untuk masukan dalam domain asal.
+Pada [translasi vertikal](/id/materi/matematika/transformasi-fungsi/translasi-vertikal), bilangan yang sama ditambahkan ke setiap tinggi, sehingga titik di sumbu <InlineMath math="x" /> ikut naik atau turun dan pembuat nol bisa bergeser, muncul, atau hilang. Perkalian membiarkan tinggi nol tetap nol, sedangkan penjumlahan mengubah tinggi nol menjadi bilangan yang ditambahkan.
 
-Besar mutlak faktor mengubah **jarak dari sumbu horizontal**. Jika faktor positif lebih besar dari satu, titik menjauh dari sumbu tersebut. Jika faktor berada di antara nol dan satu, titik mendekati sumbu tersebut.
+Terapkan faktor <InlineMath math="a = 3" /> pada <InlineMath math="f(x) = x^2 - 4x + 3 = (x - 1)(x - 3)" />. Grafik <InlineMath math="f" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />, titik puncaknya <InlineMath math="(2, -1)" />, dan titik potongnya dengan sumbu <InlineMath math="y" /> adalah <InlineMath math="(0, 3)" />. Kalikan seluruh bentuk fungsi dengan <InlineMath math="3" />:
 
-## Visualisasi Dilatasi Vertikal
+<BlockMath math="\begin{aligned} g(x) &= 3f(x) \\ &= 3(x^2 - 4x + 3) \\ &= 3x^2 - 12x + 9 \end{aligned}" />
 
-Fungsi kuadrat <InlineMath math="f(x) = x^2" /> menunjukkan bagaimana beberapa faktor skala mengubah **jarak vertikal** dari sumbu <InlineMath math="x" />.
+Periksa ketiga titik khusus itu. Nilai <InlineMath math="g(1) = 3 - 12 + 9 = 0" /> dan <InlineMath math="g(3) = 27 - 36 + 9 = 0" />, jadi pembuat nol tetap. Titik puncak <InlineMath math="g" /> ada di <InlineMath math="x = \frac{12}{2 \cdot 3} = 2" /> dengan <InlineMath math="g(2) = -3 = 3 \cdot (-1)" />. Titik potong sumbu <InlineMath math="y" /> menjadi <InlineMath math="(0, 9)" /> karena <InlineMath math="g(0) = 9 = 3 \cdot 3" />. **Setiap tinggi menjadi tiga kali lipat**, termasuk tinggi negatif.
 
 <LineEquation
   showZAxis={false}
-  title={<>Dilatasi Vertikal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
-  description="Perhatikan bagaimana grafik diregangkan atau ditekan secara vertikal dengan faktor skala yang berbeda."
-  cameraPosition={[0, 3, 15]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 4x + 3" /> dan <InlineMath math="g(x) = 3f(x)" /></>}
+  description={<>Panah tegak membawa titik pada <InlineMath math="f" /> ke titik pada <InlineMath math="g" /> yang tingginya dikali <InlineMath math="3" />: titik di atas sumbu <InlineMath math="x" /> naik, titik di bawah sumbu <InlineMath math="x" /> turun, dan kedua pembuat nol tetap di tempatnya.</>}
+  cameraPosition={[3, 3, 15]}
+  cameraTarget={[3, 3, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
+      points: Array.from({ length: 81 }, (_, index) => {
+        const x = index / 20;
+        return { x, y: x * x - 4 * x + 3, z: 0 };
       }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
-      showPoints: false,
-    },
-    {
       smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 2 * x * x, z: 0 };
-      }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 0.5 * x * x, z: 0 };
-      }),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5x^2" />, offset: [2.5, -3.2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
-
-Grafik tersebut menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = x^2" /> sebagai referensi
-- Fungsi <InlineMath math="g(x) = 2x^2" /> diregangkan vertikal dengan faktor <InlineMath math="2" />
-- Fungsi <InlineMath math="h(x) = 0{,}5x^2" /> ditekan vertikal dengan faktor <InlineMath math="0{,}5" />
-- Semua grafik memiliki titik puncak yang sama di <InlineMath math="(0, 0)" />
-
-## Dilatasi Vertikal pada Fungsi Linear
-
-**Aturan yang sama** berlaku pada fungsi linear <InlineMath math="f(x) = x + 1" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Dilatasi Vertikal Fungsi Linear <InlineMath math="f(x) = x + 1" /></>}
-  description={<>Faktor skala mengubah gradien dan titik potong sumbu <InlineMath math="y" />.</>}
-  cameraPosition={[-0.5, 2, 14]}
-  cameraTarget={[-0.5, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 51 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 50 * 12;
-        return { x, y: x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [-3.3, 1, 0], at: 22 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * (x + 1), z: 0 };
+      points: Array.from({ length: 81 }, (_, index) => {
+        const x = index / 20;
+        return { x, y: 3 * x * x - 12 * x + 9, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [-2, 2, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=3x^2-12x+9" />, at: 80, offset: [0.3, 0, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 66 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 65 * 12;
-        return { x, y: 0.5 * (x + 1), z: 0 };
-      }),
+      points: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 9, z: 0 }],
       smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [1.5, -1.5, 0], at: 37 }],
+      color: "#d97706",
       showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 2, y: -1, z: 0 }, { x: 2, y: -3, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
     },
   ]}
 />
 
-Ketiga garis menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = x + 1" /> memiliki kemiringan <InlineMath math="1" />
-- Fungsi <InlineMath math="g(x) = 3(x + 1)" /> memiliki kemiringan <InlineMath math="3" /> (diregangkan)
-- Fungsi <InlineMath math="h(x) = 0{,}5(x + 1)" /> memiliki kemiringan <InlineMath math="0{,}5" /> (ditekan)
-- Semua garis masih memotong sumbu <InlineMath math="y" />, tetapi di titik yang berbeda
+## Garis Lurus yang Menghubungkan Semua Lapisan
 
-## Nilai Mana yang Bergeser pada Skala Vertikal
+Untuk satu nilai <InlineMath math="x" />, bagaimana tinggi titik berubah ketika <InlineMath math="a" /> bergerak dari <InlineMath math="2" /> sampai <InlineMath math="-1" />? Tampilan tiga dimensi lapisan grafik menyusun grafik <InlineMath math="y = a f(x)" /> dari <InlineMath math="f(x) = x^2 - 1" /> untuk <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" />, dan <InlineMath math="-1" />. Lapisan untuk faktor <InlineMath math="a" /> terletak di <InlineMath math="z = 2(1 - a)" />, jadi grafik asli <InlineMath math="a = 1" /> berada di bidang <InlineMath math="xy" /> dan **jarak antarlapisan sebanding dengan selisih nilai <InlineMath math="a" />**.
 
-Setelah kamu tahu apakah grafik menjadi lebih tinggi atau lebih pendek, kamu perlu tahu nilai mana yang ikut berpindah. Dilatasi vertikal mengalikan setiap nilai keluaran dengan faktor <InlineMath math="k" />, jadi tinggi grafik berubah sedangkan posisi sepanjang sumbu <InlineMath math="x" /> tetap.
+Lapisan <InlineMath math="a = 0" /> datar karena <InlineMath math="0 \cdot f(x) = 0" /> untuk setiap <InlineMath math="x" />. Dilatasi memerlukan <InlineMath math="a \ne 0" />, jadi lapisan datar itu hanya dipakai sebagai poros yang dilewati semua garis. Garis lurus menghubungkan titik-titik yang memiliki nilai <InlineMath math="x" /> sama di semua lapisan, yaitu di <InlineMath math="x = -2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />.
 
-Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />. Titik yang bersesuaian pada grafik <InlineMath math="k \cdot f(x)" /> adalah <InlineMath math="(a, k \cdot b)" />. Koordinat <InlineMath math="x" /> tetap <InlineMath math="a" /> karena dilatasi vertikal tidak pernah menggeser titik secara horizontal.
+<MathVisual
+  title={<>Lapisan grafik <InlineMath math="a f(x)" /> untuk <InlineMath math="f(x) = x^2 - 1" /></>}
+  description={<>Setiap garis lurus memuat titik dengan <InlineMath math="x" /> sama di semua lapisan. Putar sampai sumbu <InlineMath math="x" /> mengarah ke matamu dan lihat semua garis bertemu di lapisan <InlineMath math="a = 0" />.</>}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -4, max: 7 },
+      z: { min: -2.5, max: 4.5 },
+    },
+    view: { kind: "isometric" },
+    objects: [
+      {
+        id: "layer-two",
+        kind: "polyline",
+        appearance: "construction",
+        vertices: [
+          { x: -2, y: 6, z: -2 },
+          { x: -1.9, y: 5.22, z: -2 },
+          { x: -1.8, y: 4.48, z: -2 },
+          { x: -1.7, y: 3.78, z: -2 },
+          { x: -1.6, y: 3.12, z: -2 },
+          { x: -1.5, y: 2.5, z: -2 },
+          { x: -1.4, y: 1.92, z: -2 },
+          { x: -1.3, y: 1.38, z: -2 },
+          { x: -1.2, y: 0.88, z: -2 },
+          { x: -1.1, y: 0.42, z: -2 },
+          { x: -1, y: 0, z: -2 },
+          { x: -0.9, y: -0.38, z: -2 },
+          { x: -0.8, y: -0.72, z: -2 },
+          { x: -0.7, y: -1.02, z: -2 },
+          { x: -0.6, y: -1.28, z: -2 },
+          { x: -0.5, y: -1.5, z: -2 },
+          { x: -0.4, y: -1.68, z: -2 },
+          { x: -0.3, y: -1.82, z: -2 },
+          { x: -0.2, y: -1.92, z: -2 },
+          { x: -0.1, y: -1.98, z: -2 },
+          { x: 0, y: -2, z: -2 },
+          { x: 0.1, y: -1.98, z: -2 },
+          { x: 0.2, y: -1.92, z: -2 },
+          { x: 0.3, y: -1.82, z: -2 },
+          { x: 0.4, y: -1.68, z: -2 },
+          { x: 0.5, y: -1.5, z: -2 },
+          { x: 0.6, y: -1.28, z: -2 },
+          { x: 0.7, y: -1.02, z: -2 },
+          { x: 0.8, y: -0.72, z: -2 },
+          { x: 0.9, y: -0.38, z: -2 },
+          { x: 1, y: 0, z: -2 },
+          { x: 1.1, y: 0.42, z: -2 },
+          { x: 1.2, y: 0.88, z: -2 },
+          { x: 1.3, y: 1.38, z: -2 },
+          { x: 1.4, y: 1.92, z: -2 },
+          { x: 1.5, y: 2.5, z: -2 },
+          { x: 1.6, y: 3.12, z: -2 },
+          { x: 1.7, y: 3.78, z: -2 },
+          { x: 1.8, y: 4.48, z: -2 },
+          { x: 1.9, y: 5.22, z: -2 },
+          { x: 2, y: 6, z: -2 },
+        ],
+      },
+      {
+        id: "layer-one",
+        kind: "polyline",
+        appearance: "primary",
+        vertices: [
+          { x: -2, y: 3, z: 0 },
+          { x: -1.9, y: 2.61, z: 0 },
+          { x: -1.8, y: 2.24, z: 0 },
+          { x: -1.7, y: 1.89, z: 0 },
+          { x: -1.6, y: 1.56, z: 0 },
+          { x: -1.5, y: 1.25, z: 0 },
+          { x: -1.4, y: 0.96, z: 0 },
+          { x: -1.3, y: 0.69, z: 0 },
+          { x: -1.2, y: 0.44, z: 0 },
+          { x: -1.1, y: 0.21, z: 0 },
+          { x: -1, y: 0, z: 0 },
+          { x: -0.9, y: -0.19, z: 0 },
+          { x: -0.8, y: -0.36, z: 0 },
+          { x: -0.7, y: -0.51, z: 0 },
+          { x: -0.6, y: -0.64, z: 0 },
+          { x: -0.5, y: -0.75, z: 0 },
+          { x: -0.4, y: -0.84, z: 0 },
+          { x: -0.3, y: -0.91, z: 0 },
+          { x: -0.2, y: -0.96, z: 0 },
+          { x: -0.1, y: -0.99, z: 0 },
+          { x: 0, y: -1, z: 0 },
+          { x: 0.1, y: -0.99, z: 0 },
+          { x: 0.2, y: -0.96, z: 0 },
+          { x: 0.3, y: -0.91, z: 0 },
+          { x: 0.4, y: -0.84, z: 0 },
+          { x: 0.5, y: -0.75, z: 0 },
+          { x: 0.6, y: -0.64, z: 0 },
+          { x: 0.7, y: -0.51, z: 0 },
+          { x: 0.8, y: -0.36, z: 0 },
+          { x: 0.9, y: -0.19, z: 0 },
+          { x: 1, y: 0, z: 0 },
+          { x: 1.1, y: 0.21, z: 0 },
+          { x: 1.2, y: 0.44, z: 0 },
+          { x: 1.3, y: 0.69, z: 0 },
+          { x: 1.4, y: 0.96, z: 0 },
+          { x: 1.5, y: 1.25, z: 0 },
+          { x: 1.6, y: 1.56, z: 0 },
+          { x: 1.7, y: 1.89, z: 0 },
+          { x: 1.8, y: 2.24, z: 0 },
+          { x: 1.9, y: 2.61, z: 0 },
+          { x: 2, y: 3, z: 0 },
+        ],
+      },
+      {
+        id: "layer-half",
+        kind: "polyline",
+        appearance: "secondary",
+        vertices: [
+          { x: -2, y: 1.5, z: 1 },
+          { x: -1.9, y: 1.305, z: 1 },
+          { x: -1.8, y: 1.12, z: 1 },
+          { x: -1.7, y: 0.945, z: 1 },
+          { x: -1.6, y: 0.78, z: 1 },
+          { x: -1.5, y: 0.625, z: 1 },
+          { x: -1.4, y: 0.48, z: 1 },
+          { x: -1.3, y: 0.345, z: 1 },
+          { x: -1.2, y: 0.22, z: 1 },
+          { x: -1.1, y: 0.105, z: 1 },
+          { x: -1, y: 0, z: 1 },
+          { x: -0.9, y: -0.095, z: 1 },
+          { x: -0.8, y: -0.18, z: 1 },
+          { x: -0.7, y: -0.255, z: 1 },
+          { x: -0.6, y: -0.32, z: 1 },
+          { x: -0.5, y: -0.375, z: 1 },
+          { x: -0.4, y: -0.42, z: 1 },
+          { x: -0.3, y: -0.455, z: 1 },
+          { x: -0.2, y: -0.48, z: 1 },
+          { x: -0.1, y: -0.495, z: 1 },
+          { x: 0, y: -0.5, z: 1 },
+          { x: 0.1, y: -0.495, z: 1 },
+          { x: 0.2, y: -0.48, z: 1 },
+          { x: 0.3, y: -0.455, z: 1 },
+          { x: 0.4, y: -0.42, z: 1 },
+          { x: 0.5, y: -0.375, z: 1 },
+          { x: 0.6, y: -0.32, z: 1 },
+          { x: 0.7, y: -0.255, z: 1 },
+          { x: 0.8, y: -0.18, z: 1 },
+          { x: 0.9, y: -0.095, z: 1 },
+          { x: 1, y: 0, z: 1 },
+          { x: 1.1, y: 0.105, z: 1 },
+          { x: 1.2, y: 0.22, z: 1 },
+          { x: 1.3, y: 0.345, z: 1 },
+          { x: 1.4, y: 0.48, z: 1 },
+          { x: 1.5, y: 0.625, z: 1 },
+          { x: 1.6, y: 0.78, z: 1 },
+          { x: 1.7, y: 0.945, z: 1 },
+          { x: 1.8, y: 1.12, z: 1 },
+          { x: 1.9, y: 1.305, z: 1 },
+          { x: 2, y: 1.5, z: 1 },
+        ],
+      },
+      {
+        id: "layer-minus",
+        kind: "polyline",
+        appearance: "warning",
+        vertices: [
+          { x: -2, y: -3, z: 4 },
+          { x: -1.9, y: -2.61, z: 4 },
+          { x: -1.8, y: -2.24, z: 4 },
+          { x: -1.7, y: -1.89, z: 4 },
+          { x: -1.6, y: -1.56, z: 4 },
+          { x: -1.5, y: -1.25, z: 4 },
+          { x: -1.4, y: -0.96, z: 4 },
+          { x: -1.3, y: -0.69, z: 4 },
+          { x: -1.2, y: -0.44, z: 4 },
+          { x: -1.1, y: -0.21, z: 4 },
+          { x: -1, y: 0, z: 4 },
+          { x: -0.9, y: 0.19, z: 4 },
+          { x: -0.8, y: 0.36, z: 4 },
+          { x: -0.7, y: 0.51, z: 4 },
+          { x: -0.6, y: 0.64, z: 4 },
+          { x: -0.5, y: 0.75, z: 4 },
+          { x: -0.4, y: 0.84, z: 4 },
+          { x: -0.3, y: 0.91, z: 4 },
+          { x: -0.2, y: 0.96, z: 4 },
+          { x: -0.1, y: 0.99, z: 4 },
+          { x: 0, y: 1, z: 4 },
+          { x: 0.1, y: 0.99, z: 4 },
+          { x: 0.2, y: 0.96, z: 4 },
+          { x: 0.3, y: 0.91, z: 4 },
+          { x: 0.4, y: 0.84, z: 4 },
+          { x: 0.5, y: 0.75, z: 4 },
+          { x: 0.6, y: 0.64, z: 4 },
+          { x: 0.7, y: 0.51, z: 4 },
+          { x: 0.8, y: 0.36, z: 4 },
+          { x: 0.9, y: 0.19, z: 4 },
+          { x: 1, y: 0, z: 4 },
+          { x: 1.1, y: -0.21, z: 4 },
+          { x: 1.2, y: -0.44, z: 4 },
+          { x: 1.3, y: -0.69, z: 4 },
+          { x: 1.4, y: -0.96, z: 4 },
+          { x: 1.5, y: -1.25, z: 4 },
+          { x: 1.6, y: -1.56, z: 4 },
+          { x: 1.7, y: -1.89, z: 4 },
+          { x: 1.8, y: -2.24, z: 4 },
+          { x: 1.9, y: -2.61, z: 4 },
+          { x: 2, y: -3, z: 4 },
+        ],
+      },
+      {
+        id: "layer-zero",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -2, y: 0, z: 2 },
+        to: { x: 2, y: 0, z: 2 },
+      },
+      {
+        id: "ray-minus-two",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: -2, y: -3, z: 4 },
+        to: { x: -2, y: 6, z: -2 },
+      },
+      {
+        id: "ray-minus-one",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: -1, y: 0, z: 4 },
+        to: { x: -1, y: 0, z: -2 },
+      },
+      {
+        id: "ray-zero",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 0, y: 1, z: 4 },
+        to: { x: 0, y: -2, z: -2 },
+      },
+      {
+        id: "ray-one",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 1, y: 0, z: 4 },
+        to: { x: 1, y: 0, z: -2 },
+      },
+      {
+        id: "ray-two",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 2, y: -3, z: 4 },
+        to: { x: 2, y: 6, z: -2 },
+      },
+    ],
+    labels: [
+      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.3, y: -1.82, z: -2 }, placement: "below-right" },
+      { key: "layer-one-label", objectId: "layer-one", at: { x: -2, y: 3, z: 0 }, placement: "above-left" },
+      { key: "layer-half-label", objectId: "layer-half", at: { x: -2, y: 1.5, z: 1 }, placement: "above-left" },
+      { key: "layer-zero-label", objectId: "layer-zero", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "layer-minus-label", objectId: "layer-minus", at: { x: -2, y: -3, z: 4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "layer-two-label": <><InlineMath math="a = 2" /></>,
+    "layer-one-label": <><InlineMath math="a = 1" /></>,
+    "layer-half-label": <><InlineMath math="a = \tfrac{1}{2}" /></>,
+    "layer-zero-label": <><InlineMath math="a = 0" /></>,
+    "layer-minus-label": <><InlineMath math="a = -1" /></>,
+  }}
+/>
 
-| Bagian fungsi | Sebelum dilatasi | Setelah dilatasi dengan <InlineMath math="k > 0" /> |
+Ikuti garis di <InlineMath math="x = 2" />. Titik-titiknya adalah <InlineMath math="(2, 3a)" />, dengan tinggi <InlineMath math="6" />, <InlineMath math="3" />, <InlineMath math="\frac{3}{2}" />, <InlineMath math="0" />, dan <InlineMath math="-3" /> untuk <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" />, dan <InlineMath math="-1" />. Garis itu lurus karena tinggi <InlineMath math="3a" /> dan letak lapisan <InlineMath math="z = 2(1 - a)" /> sama-sama berubah secara linear terhadap <InlineMath math="a" />.
+
+Seret tampilan sampai sumbu <InlineMath math="x" /> mengarah lurus ke matamu. Dari samping, **semua garis bertemu di lapisan datar <InlineMath math="a = 0" />**. Garis di <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" /> rebah di ketinggian <InlineMath math="0" /> karena kedua nilai itu adalah pembuat nol <InlineMath math="f" />. Setelah melewati lapisan datar, tinggi pada setiap garis lain berganti tanda, sehingga lapisan <InlineMath math="a = -1" /> terbalik.
+
+Dari depan, dengan sumbu <InlineMath math="z" /> mengarah ke matamu, setiap garis yang melewati titik di luar sumbu <InlineMath math="x" /> tampak sebagai ruas tegak, karena titik itu hanya naik atau turun. Dua garis di pembuat nol masing-masing menyusut menjadi satu titik, sebab titik di sumbu <InlineMath math="x" /> tidak pernah bergerak.
+
+Dari atas, semua lapisan menempati selang yang sama, dari <InlineMath math="x = -2" /> sampai <InlineMath math="x = 2" />, karena dilatasi vertikal tidak menggeser titik mana pun ke kiri atau ke kanan, jadi domain fungsi tidak berubah. Pada [dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal), jejak titik di lapisan serupa melengkung karena koordinat <InlineMath math="x" /> dibagi pengali masukan.
+
+## Faktor Negatif Membalik Grafik
+
+Faktor negatif bisa dibaca sebagai dua langkah. Kalikan dulu dengan <InlineMath math="|a|" /> untuk meregangkan atau memampatkan, lalu kalikan dengan <InlineMath math="-1" /> untuk **mencerminkan grafik terhadap sumbu <InlineMath math="x" />**. Untuk <InlineMath math="a = -1" />, yang tersisa hanya pencerminan <InlineMath math="y = -f(x)" />, yaitu [refleksi vertikal](/id/materi/matematika/transformasi-fungsi/refleksi-vertikal).
+
+Ambil <InlineMath math="h(x) = |x - 1| + 2" />. Titik puncaknya <InlineMath math="(1, 2)" /> adalah titik terendah, jadi range <InlineMath math="h" /> adalah <InlineMath math="[2, \infty)" />. Kalikan seluruh fungsi dengan <InlineMath math="a = -2" />:
+
+<BlockMath math="\begin{aligned} H(x) &= -2\,h(x) \\ &= -2\left(|x - 1| + 2\right) \\ &= -2|x - 1| - 4 \end{aligned}" />
+
+Titik puncak pindah ke <InlineMath math="(1, -4)" /> dan sekarang menjadi titik tertinggi. Range berubah dari <InlineMath math="[2, \infty)" /> menjadi <InlineMath math="(-\infty, -4]" />, karena **perkalian dengan bilangan negatif membalik urutan batas**. Periksa satu titik lain: <InlineMath math="h(3) = 4" />, dan <InlineMath math="H(3) = -2 \cdot 2 - 4 = -8 = -2 \cdot 4" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="h(x) = |x - 1| + 2" /> dan <InlineMath math="H(x) = -2h(x)" /></>}
+  description={<>Panah menembus sumbu <InlineMath math="x" />: titik terendah <InlineMath math="(1, 2)" /> menjadi titik tertinggi <InlineMath math="(1, -4)" />.</>}
+  cameraPosition={[2, -2, 15]}
+  cameraTarget={[2, -2, 0]}
+  data={[
+    {
+      points: [{ x: -1, y: 4, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 3, y: 4, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: -1, y: -8, z: 0 }, { x: 1, y: -4, z: 0 }, { x: 3, y: -8, z: 0 }],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="H(x)=-2|x-1|-4" />, at: 2, offset: [0.3, 0, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 1, y: 2, z: 0 }, { x: 1, y: -4, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 3, y: 4, z: 0 }, { x: 3, y: -8, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+  ]}
+/>
+
+## Range dan Asimtot setelah Dikalikan
+
+Karena hanya tinggi yang berubah, **setiap bagian yang ditentukan oleh tinggi ikut dikalikan <InlineMath math="a" />**, sedangkan setiap bagian yang ditentukan oleh nilai <InlineMath math="x" /> tetap.
+
+| Bagian grafik | Pada <InlineMath math="a f(x)" /> | Alasan |
 | --- | --- | --- |
-| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(a, k \cdot b)" /> |
-| Domain | Selang asli | Tetap sama seperti semula |
-| Range <InlineMath math="[c, d]" /> | Selang asli | Menjadi <InlineMath math="[k \cdot c, k \cdot d]" /> |
-| Titik potong sumbu <InlineMath math="x" /> | Di <InlineMath math="x = x_0" /> | Tetap di <InlineMath math="x = x_0" /> |
-| Titik potong sumbu <InlineMath math="y" /> | Di <InlineMath math="y = y_0" /> | Berpindah ke <InlineMath math="y = k \cdot y_0" /> |
+| Titik <InlineMath math="(x_0, y_0)" /> | <InlineMath math="(x_0, a y_0)" /> | <InlineMath math="x" /> tetap, tinggi dikali <InlineMath math="a" /> |
+| Pembuat nol | tetap | tinggi nol tetap nol |
+| Domain | tetap | domain berisi nilai <InlineMath math="x" /> |
+| Range <InlineMath math="[c, d]" /> untuk <InlineMath math="a > 0" /> | <InlineMath math="[ac, ad]" /> | setiap tinggi dikali <InlineMath math="a" /> |
+| Range <InlineMath math="[c, d]" /> untuk <InlineMath math="a < 0" /> | <InlineMath math="[ad, ac]" /> | urutan batas berbalik |
+| Titik potong sumbu <InlineMath math="y" /> | <InlineMath math="(0, a f(0))" /> | tingginya <InlineMath math="f(0)" /> dikali <InlineMath math="a" /> |
+| Asimtot horizontal <InlineMath math="y = y_1" /> | <InlineMath math="y = a y_1" /> | garis mendatar ditentukan oleh tinggi |
 
-Range ikut meregang atau menyusut bersama grafik karena range memuat nilai keluaran, sedangkan domain tetap karena batas nilai masukan tidak berubah. [Dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal) membagi koordinat horizontal dan membiarkan tinggi grafik tetap.
+Grafik <InlineMath math="f(x) = 2^x - 4" /> mendekati [asimtot horizontal](/id/materi/matematika/fungsi-dan-pemodelannya/asimtot) <InlineMath math="y = -4" /> dan memiliki range <InlineMath math="(-4, \infty)" />. Dengan <InlineMath math="a = \frac{1}{2}" />, fungsinya menjadi <InlineMath math="\frac{1}{2} \cdot 2^x - 2" />. Asimtotnya <InlineMath math="y = -2" />, range-nya <InlineMath math="(-2, \infty)" />, dan titik potong sumbu <InlineMath math="y" /> berubah dari <InlineMath math="(0, -3)" /> menjadi <InlineMath math="\left(0, -\frac{3}{2}\right)" />. Untuk <InlineMath math="a \ne 1" />, hanya asimtot <InlineMath math="y = 0" /> yang tidak bergeser, karena <InlineMath math="a \cdot 0 = 0" />.
 
-Jika faktor **negatif**, urutan batas range berbalik. Range asal <InlineMath math="[c,d]" /> menjadi <InlineMath math="[kd,kc]" />. Sebagai contoh, <InlineMath math="[1,4]" /> dengan <InlineMath math="k=-2" /> menjadi <InlineMath math="[-8,-2]" />.
+## Satu Grafik dari Dua Transformasi
 
-## Mengalikan Nilai Fungsi Eksponensial
+Untuk fungsi tertentu, dilatasi vertikal menghasilkan grafik yang persis sama dengan dilatasi horizontal atau translasi. **Kesamaan itu muncul dari sifat aljabar fungsinya**, jadi setiap baris tabel bisa dibuktikan dengan satu perhitungan pendek.
 
-Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, faktor skala mengalikan setiap nilai fungsi.
+| <InlineMath math="f(x)" /> | Dilatasi vertikal | Bentuk lain yang sama | Dibaca sebagai |
+| --- | --- | --- | --- |
+| <InlineMath math="x^2" /> | <InlineMath math="4x^2" /> | <InlineMath math="(2x)^2" /> | dilatasi horizontal dengan <InlineMath math="b = 2" /> |
+| <InlineMath math="\sqrt{x}" /> | <InlineMath math="\frac{1}{2}\sqrt{x}" /> | <InlineMath math="\sqrt{\frac{x}{4}}" /> | dilatasi horizontal dengan <InlineMath math="b = \frac{1}{4}" /> |
+| <InlineMath math="2^x" /> | <InlineMath math="2 \cdot 2^x" /> | <InlineMath math="2^{x + 1}" /> | translasi <InlineMath math="1" /> satuan ke kiri |
 
-<LineEquation
-  showZAxis={false}
-  title={<>Dilatasi Vertikal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
-  description="Kurva eksponensial mengalami perubahan tinggi sesuai faktor skala."
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 480 * 7;
-        return { x, y: 2 * Math.pow(2, x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2 \cdot 2^x" />, offset: [1, 2, 0], at: 274 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Baris pertama memakai <InlineMath math="(2x)^2 = 4x^2" />, baris kedua memakai <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> untuk <InlineMath math="x \ge 0" />, dan baris ketiga memakai <InlineMath math="2^{x + 1} = 2^x \cdot 2" />. Kesamaan ini bergantung pada fungsinya. Untuk <InlineMath math="f(x) = x^2 + 1" />, <InlineMath math="4f(x) = 4x^2 + 4" />, sedangkan <InlineMath math="f(2x) = 4x^2 + 1" />, jadi kedua grafik berbeda.
 
-Pada fungsi eksponensial:
-- **Asimtot horizontal** tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
-- Titik potong dengan sumbu <InlineMath math="y" /> berubah dari <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(0, 2)" />
-- Setiap nilai fungsi menjadi dua kali lipat, sedangkan basis eksponensial dan laju pertumbuhan relatif tetap sama
+Baris pertama juga menjelaskan bentuk <InlineMath math="y = a x^2" />. Jika <InlineMath math="a > 0" />, berlaku <InlineMath math="a x^2 = \left(\sqrt{a}\, x\right)^2" />, jadi koefisien utama yang mengatur seberapa ramping parabola pada [karakteristik fungsi kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/karakteristik-fungsi-kuadrat) bisa dibaca sebagai dilatasi vertikal dengan faktor <InlineMath math="a" /> atau dilatasi horizontal dengan pengali masukan <InlineMath math="\sqrt{a}" />.
 
-## Dilatasi Vertikal dengan Faktor Negatif
+## Kesalahan Saat Mengalikan Keluaran
 
-Faktor skala negatif menggabungkan penskalaan vertikal dengan pencerminan terhadap sumbu <InlineMath math="x" />.
+Setiap kesalahan di tabel ini melanggar aturan yang sama: **koordinat <InlineMath math="x" /> tetap**, sedangkan **setiap tinggi dikalikan <InlineMath math="a" />**.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Dilatasi Vertikal dengan Faktor Negatif <InlineMath math="f(x) = x^2" /></>}
-  description="Faktor skala negatif menyebabkan refleksi sekaligus dilatasi."
-  cameraPosition={[0, 0, 13]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3, 2, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: -2 * x * x, z: 0 };
-      }),
-      color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [3.6, -2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Mengalikan suku pertama saja, misalnya menulis <InlineMath math="3x^2 - 4x + 3" /> untuk <InlineMath math="3f(x)" /> dengan <InlineMath math="f(x) = x^2 - 4x + 3" /> | Faktor mengalikan seluruh keluaran | Di <InlineMath math="x = 1" /> hasilnya <InlineMath math="2" />, padahal pembuat nol harus tetap <InlineMath math="0" /> |
+| Memindahkan pembuat nol | <InlineMath math="a \cdot 0 = 0" /> | Substitusikan pembuat nol lama ke fungsi baru |
+| Mengubah domain | Koordinat <InlineMath math="x" /> tidak berubah | Bandingkan batas domain sebelum dan sesudah |
+| Lupa pencerminan saat <InlineMath math="a < 0" /> | Tanda negatif membalik setiap tinggi | Titik terendah harus menjadi titik tertinggi |
+| Menukar <InlineMath math="a f(x)" /> dengan <InlineMath math="f(ax)" /> | Faktor di luar mengalikan keluaran, faktor di dalam mengalikan masukan | Bandingkan titik potong sumbu <InlineMath math="y" />: <InlineMath math="a f(0)" /> berbeda dari <InlineMath math="f(0)" /> bila <InlineMath math="f(0) \ne 0" /> |
+| Membiarkan asimtot horizontal di tempat lama | Tinggi asimtot <InlineMath math="y_1" /> ikut dikali | Kalikan tinggi asimtot dengan <InlineMath math="a" /> |
 
-Ketika faktor skala negatif:
-- Grafik mengalami refleksi terhadap sumbu <InlineMath math="x" />
-- Sekaligus mengalami dilatasi sesuai nilai absolut faktor skala
-- Parabola yang membuka **ke atas** menjadi membuka ke bawah
+Pada <InlineMath math="H(x) = -2\left(|x - 1| + 2\right) = -2|x - 1| - 4" />, pergeseran <InlineMath math="2" /> satuan ke atas sudah ada di dalam <InlineMath math="h" /> sebelum perkalian, jadi dilatasi mengubah pergeseran itu menjadi <InlineMath math="-4" />. Jika <InlineMath math="|x - 1|" /> dikalikan <InlineMath math="-2" /> lebih dulu lalu digeser <InlineMath math="2" /> satuan ke atas, hasilnya <InlineMath math="-2|x - 1| + 2" /> dengan titik puncak <InlineMath math="(1, 2)" />, grafik yang berbeda. Pada [kombinasi transformasi fungsi](/id/materi/matematika/transformasi-fungsi/kombinasi-transformasi-fungsi), kamu menulis fungsi hasil setiap langkah agar perubahan seperti ini tidak terlewat.
 
 ## Latihan
 
-Tiga soal berikut memakai aturan **tinggi** grafik yang baru saja kamu pelajari. Setiap soal mengalikan nilai keluaran dengan faktor tertentu, jadi perhatikan apakah faktornya lebih besar dari satu, di antara nol dan satu, atau negatif. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+Soal-soal ini bergerak dari perkalian langsung ke soal yang memintamu menemukan faktornya. Pada setiap soal, **kalikan seluruh keluaran dengan faktornya**, termasuk suku konstanta.
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 4x + 3" />. Tentukan persamaan fungsi hasil dilatasi vertikal dengan faktor skala <InlineMath math="3" />.
-
-2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />. Tentukan persamaan fungsi hasilnya, lalu tentukan range fungsi tersebut.
-
-3. Fungsi <InlineMath math="h(x) = |x - 1| + 2" /> mengalami dilatasi vertikal dengan faktor <InlineMath math="-1" />. Tentukan titik puncak dari fungsi hasil dilatasi.
-
-Dilatasi vertikal mengalikan seluruh bentuk keluaran dengan faktor, karena di situlah letak aturan tingginya. Persamaannya lalu disederhanakan dan grafik barunya diperiksa untuk memastikan apakah grafik menjadi lebih tinggi atau lebih pendek.
+1. Diberikan <InlineMath math="f(x) = x^2 - 2x - 8" />. Tentukan persamaan <InlineMath math="\frac{1}{3}f(x)" />, pembuat nolnya, dan titik puncaknya.
+2. Grafik <InlineMath math="g(x) = \sqrt{x}" /> didilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />. Tentukan persamaan grafik baru, bayangan titik <InlineMath math="(4, 2)" />, dan range grafik baru itu.
+3. Fungsi <InlineMath math="f(x) = 2^x + 1" /> didilatasi vertikal dengan faktor <InlineMath math="-3" />. Tentukan persamaan, asimtot horizontal, range, dan titik potong sumbu <InlineMath math="y" /> grafik hasilnya.
+4. Grafik <InlineMath math="y = a(x^2 - 1)" /> melalui titik <InlineMath math="(2, 12)" />. Tentukan <InlineMath math="a" /> dan pembuat nol grafik itu.
 
 ### Pembahasan
 
-**Soal 1**. **Dilatasi vertikal** dengan faktor <InlineMath math="3" />:
+**Soal 1**. Faktornya <InlineMath math="a = \frac{1}{3}" />, jadi setiap suku <InlineMath math="f" /> dikalikan <InlineMath math="\frac{1}{3}" />:
 
-<BlockMath math="F(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
+<BlockMath math="\begin{aligned} g(x) &= \tfrac{1}{3}\left(x^2 - 2x - 8\right) \\ &= \tfrac{1}{3}x^2 - \tfrac{2}{3}x - \tfrac{8}{3} \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="f(x) = x^2 - 4x + 3" /> dan Hasil Dilatasinya</>}
-  description={
-    <>
-      Parabola asli diregangkan vertikal dengan faktor{" "}
-      <InlineMath math="3" /> menghasilkan parabola yang lebih tinggi.
-    </>
-  }
-  cameraPosition={[1, 2, 14]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 4 * x + 3, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 3 * (x * x - 4 * x + 3), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=3x^2-12x+9" />, offset: [1, -3, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+Pembuat nol <InlineMath math="f(x) = (x + 2)(x - 4)" /> adalah <InlineMath math="-2" /> dan <InlineMath math="4" />, dan **keduanya tetap menjadi pembuat nol <InlineMath math="g" />**. Titik puncak <InlineMath math="f" /> terletak tepat di tengah kedua pembuat nol, yaitu di <InlineMath math="x = \frac{-2 + 4}{2} = 1" />, dan <InlineMath math="f(1) = 1 - 2 - 8 = -9" />. Faktor <InlineMath math="\frac{1}{3}" /> positif, jadi titik terendah <InlineMath math="f" /> tetap menjadi titik terendah <InlineMath math="g" /> dengan koordinat <InlineMath math="x" /> yang sama. Titik puncak <InlineMath math="g" /> adalah <InlineMath math="\left(1, \tfrac{1}{3} \cdot (-9)\right) = (1, -3)" />. Periksa: <InlineMath math="g(1) = \frac{1}{3} - \frac{2}{3} - \frac{8}{3} = -3" />.
 
-**Soal 2**. Kalikan setiap keluaran dengan setengah. Faktor positif ini mempertahankan tanda keluaran dan nilai minimum nol.
+**Soal 2**. Faktor <InlineMath math="\frac{1}{2}" /> memampatkan grafik ke arah sumbu <InlineMath math="x" />:
 
-- Dilatasi vertikal: <InlineMath math="G(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-- Range setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" />. Pada setiap input, **nilai fungsi** positif menjadi setengahnya
+<BlockMath math="G(x) = \tfrac{1}{2}\sqrt{x}" />
 
-Visualisasi:
+Titik <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(4, 1)" /> karena <InlineMath math="G(4) = \frac{1}{2} \cdot 2 = 1" />. **Range tetap <InlineMath math="[0, \infty)" />**, karena setiap bilangan <InlineMath math="r \ge 0" /> tetap tercapai, yaitu di <InlineMath math="x = 4r^2" />: <InlineMath math="G(4r^2) = \frac{1}{2} \cdot 2r = r" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="g(x) = \sqrt{x}" /> dan Hasil Dilatasinya</>}
-  description={
-    <>
-      Kurva akar kuadrat ditekan vertikal dengan faktor{" "}
-      <InlineMath math="0{,}5" /> menghasilkan kurva yang lebih rendah.
-    </>
-  }
-  cameraPosition={[2, 1, 8]}
-  cameraTarget={[2, 1, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: 0.5 * t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ at: 64, text: <InlineMath math="G(x)=0{,}5\sqrt{x}" />, offset: [0.9, -1.340569, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+**Soal 3**. Kalikan seluruh fungsi, termasuk konstanta <InlineMath math="1" />, dengan <InlineMath math="-3" />:
 
-**Soal 3**. Fungsi asli <InlineMath math="h(x) = |x - 1| + 2" /> memiliki **titik puncak** di <InlineMath math="(1, 2)" />.
-Setelah dilatasi vertikal dengan faktor <InlineMath math="-1" />: <InlineMath math="H(x) = -1 \cdot (|x - 1| + 2) = -|x - 1| - 2" />, titik puncak menjadi <InlineMath math="(1, -2)" />.
+<BlockMath math="\begin{aligned} H(x) &= -3\left(2^x + 1\right) \\ &= -3 \cdot 2^x - 3 \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="h(x) = |x - 1| + 2" /> dan Hasil Dilatasinya</>}
-  description={<>Faktor <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="x" /> tanpa mengubah skala vertikalnya.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 71 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 70 * 12;
-        return { x, y: Math.abs(x - 1) + 2, z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, offset: [1, -1.5, 0], at: 32 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 368 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 367 * 12;
-        return { x, y: -(Math.abs(x - 1) + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=-|x-1|-2" />, offset: [1, 1.5, 0], at: 214 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Asimtot <InlineMath math="y = 1" /> menjadi <InlineMath math="y = -3" />. Karena <InlineMath math="2^x + 1 > 1" /> untuk setiap <InlineMath math="x" />, perkalian dengan <InlineMath math="-3" /> **membalik arah pertidaksamaan** menjadi <InlineMath math="H(x) < -3" />, jadi range-nya <InlineMath math="(-\infty, -3)" />. Titik potong sumbu <InlineMath math="y" /> adalah <InlineMath math="(0, -6)" /> karena <InlineMath math="H(0) = -3 \cdot 2 = -6" />.
+
+**Soal 4**. Substitusikan titik <InlineMath math="(2, 12)" /> ke persamaan grafik:
+
+<BlockMath math="\begin{aligned} a\left(2^2 - 1\right) &= 12 \\ 3a &= 12 \\ a &= 4 \end{aligned}" />
+
+Persamaannya <InlineMath math="y = 4(x^2 - 1)" />. **Pembuat nolnya tetap <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />**, sama dengan pembuat nol <InlineMath math="x^2 - 1" />. Periksa titik yang diberikan: <InlineMath math="4(2^2 - 1) = 4 \cdot 3 = 12" />.

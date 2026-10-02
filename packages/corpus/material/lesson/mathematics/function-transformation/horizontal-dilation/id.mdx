@@ -1,372 +1,618 @@
 export const metadata = {
-  title: "Dilatasi Horizontal",
-  description: "Pengali input menentukan skala horizontal suatu fungsi. Terapkan aturan tersebut pada grafik, domain, dan contoh perhitungan.",
+  title: "Dilatasi Horizontal Fungsi",
+  description: "Kalikan masukan fungsi dengan sebuah bilangan, lihat mengapa bilangan di atas satu menyempitkan grafik, lalu tentukan titik, domain, dan persamaan barunya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Transformasi Fungsi",
 };
 
-## Mengubah Lebar Grafik melalui Masukan Fungsi
+## Mengalikan Masukan dengan Sebuah Bilangan
 
-Dilatasi horizontal mengubah **jarak titik dari sumbu vertikal** tanpa mengubah nilai keluaran. Grafik dapat meregang, memampat, atau tercermin, tetapi titik yang bersesuaian tetap memiliki nilai <InlineMath math="y" /> yang sama.
+**Dilatasi horizontal** mengubah fungsi <InlineMath math="y = f(x)" /> menjadi <InlineMath math="y = f(bx)" /> dengan <InlineMath math="b > 0" />. Bilangan <InlineMath math="b" /> disebut pengali masukan karena bilangan ini mengalikan <InlineMath math="x" /> sebelum aturan <InlineMath math="f" /> bekerja. Akibatnya, setiap titik grafik <InlineMath math="f" /> pindah mendatar:
 
-Jika kamu memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" />. Di sini <InlineMath math="k \ne 0" /> adalah bilangan yang mengalikan masukan, dan skala horizontal grafik baru adalah <InlineMath math="s = \frac{1}{|k|}" />.
+<BlockMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b},\ y_0\right)" />
 
-### Cara Faktor Pengali Masukan Mengubah Lebar
+Tinggi titik tidak berubah, hanya jaraknya ke sumbu <InlineMath math="y" /> yang dibagi <InlineMath math="b" />. Jika <InlineMath math="b > 1" />, grafik **memampat ke arah sumbu <InlineMath math="y" />** sehingga lebarnya tinggal <InlineMath math="\frac{1}{b}" /> kali lebar semula. Jika <InlineMath math="0 < b < 1" />, grafik meregang menjauhi sumbu <InlineMath math="y" /> dengan faktor <InlineMath math="\frac{1}{b}" />. Di tampilan tiga dimensi lapisan grafik, kamu bisa memutar susunan grafik <InlineMath math="f(bx)" /> dan melihat lebarnya mengecil ketika <InlineMath math="b" /> membesar.
 
-Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor tak nol <InlineMath math="k" /> yang mengalikan masukan, dilatasi horizontal didefinisikan sebagai:
+Titik di sumbu <InlineMath math="y" /> tidak bergerak karena <InlineMath math="\frac{0}{b} = 0" />, dan pengali negatif menambahkan pencerminan terhadap sumbu <InlineMath math="y" />. Jika soal menyebut faktor skala <InlineMath math="s" />, setiap koordinat <InlineMath math="x" /> dikalikan <InlineMath math="s" />, jadi persamaannya <InlineMath math="y = f\left(\frac{x}{s}\right)" /> dengan <InlineMath math="b = \frac{1}{s}" />.
 
-<MathContainer>
+## Mengapa Pengali Besar Membuat Grafik Sempit
 
-<BlockMath math="g(x) = f(kx)" />
+Ambil satu titik <InlineMath math="(x_0, y_0)" /> pada grafik <InlineMath math="f" />, jadi <InlineMath math="f(x_0) = y_0" />. Fungsi baru <InlineMath math="g(x) = f(bx)" /> mengalikan masukannya dengan <InlineMath math="b" /> lebih dulu. Agar <InlineMath math="g" /> menghasilkan keluaran yang sama, hasil kali <InlineMath math="bx" /> harus sama dengan <InlineMath math="x_0" />, sehingga <InlineMath math="x = \frac{x_0}{b}" />.
 
-<BlockMath math="s = \frac{1}{|k|}" />
-</MathContainer>
+<BlockMath math="g\left(\frac{x_0}{b}\right) = f\left(b \cdot \frac{x_0}{b}\right) = f(x_0) = y_0" />
 
-Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada lebar grafik:
-- Jika <InlineMath math="k > 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> dari lebar semula
-- Jika <InlineMath math="0 < k < 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> kali lebar semula
-- Jika <InlineMath math="k = 1" />, grafik tidak berubah
-- Jika <InlineMath math="k < 0" />, grafik juga dicerminkan terhadap sumbu <InlineMath math="y" />
+Untuk <InlineMath math="b = 2" />, keluaran yang dicapai <InlineMath math="f" /> di <InlineMath math="x = 6" /> sudah dicapai <InlineMath math="g" /> di <InlineMath math="x = 3" />. **Setiap keluaran muncul pada separuh jarak dari sumbu <InlineMath math="y" />**, sehingga lebar grafik <InlineMath math="g" /> tinggal separuh lebar grafik <InlineMath math="f" />.
 
-Nilai <InlineMath math="k = 0" /> tidak termasuk. Jika <InlineMath math="f(0)" /> terdefinisi, semua input menghasilkan nilai <InlineMath math="f(0)" />, sehingga grafik fungsi menjadi satu garis horizontal.
+Sekarang terapkan <InlineMath math="b = 2" /> pada <InlineMath math="f(x) = x^2 - 4x" />. Fungsi ini memiliki pembuat nol <InlineMath math="x = 0" /> dan <InlineMath math="x = 4" />, serta titik puncak <InlineMath math="(2, -4)" />. Ganti setiap <InlineMath math="x" /> dengan <InlineMath math="2x" />:
 
-Hubungan kebalikan ini penting. Besar mutlak faktor yang lebih besar membuat grafik <Highlight>lebih sempit</Highlight>, karena skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
+<BlockMath math="\begin{aligned} g(x) &= f(2x) \\ &= (2x)^2 - 4(2x) \\ &= 4x^2 - 8x \end{aligned}" />
 
-## Visualisasi Dilatasi Horizontal
-
-Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan hubungan kebalikan tersebut untuk beberapa **pengali masukan**.
+Pemfaktoran <InlineMath math="4x^2 - 8x = 4x(x - 2)" /> memberi pembuat nol <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />, yaitu pembuat nol <InlineMath math="f" /> yang dibagi <InlineMath math="2" />. Titik puncak <InlineMath math="g" /> ada di <InlineMath math="x = \frac{8}{2 \cdot 4} = 1" /> dengan <InlineMath math="g(1) = 4 - 8 = -4" />. Jadi titik puncak <InlineMath math="(2, -4)" /> pindah ke <InlineMath math="(1, -4)" />: **tingginya tetap**, sedangkan **jaraknya ke sumbu <InlineMath math="y" /> menjadi separuh**.
 
 <LineEquation
   showZAxis={false}
-  title={<>Dilatasi Horizontal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
-  description="Bandingkan perubahan lebar grafik akibat beberapa pengali masukan."
+  title={<>Parabola <InlineMath math="f(x) = x^2 - 4x" /> dan <InlineMath math="g(x) = f(2x)" /></>}
+  description={<>Setiap panah berangkat dari titik pada <InlineMath math="f" /> menuju pasangannya pada <InlineMath math="g" />. Tinggi kedua titik sama, sedangkan jaraknya ke sumbu <InlineMath math="y" /> tinggal separuh.</>}
+  cameraPosition={[1.5, 0, 14]}
+  cameraTarget={[1.5, 0, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
+      points: Array.from({ length: 121 }, (_, index) => {
+        const x = (index - 20) / 20;
+        return { x, y: x * x - 4 * x, z: 0 };
       }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
-      showPoints: false,
-    },
-    {
       smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 2 * x * (2 * x), z: 0 };
-      }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="f(x)=x^2-4x" />, at: 60, offset: [0.3, -0.7, 0], anchorX: "left" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 129 }, (_, pointIndex) => {
-        const i = pointIndex / 2 - 12;
-        const x = (i - 20) * 0.25;
-        return { x, y: 0.5 * x * (0.5 * x), z: 0 };
-      }),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [2.5, -3.2, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[0, 3, 0]}
-  cameraPosition={[0, 3, 15]}
-/>
-
-Grafik tersebut menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = x^2" /> sebagai referensi
-- Fungsi <InlineMath math="g(x) = (2x)^2" /> memakai pengali masukan <InlineMath math="2" />, sehingga skala horizontalnya <InlineMath math="\frac{1}{2}" />
-- Fungsi <InlineMath math="h(x) = (0{,}5x)^2" /> memakai pengali masukan <InlineMath math="0{,}5" />, sehingga skala horizontalnya <InlineMath math="2" />
-- Semua grafik memiliki titik puncak yang sama di <InlineMath math="(0, 0)" />
-
-## Dilatasi Horizontal pada Fungsi Linear
-
-**Aturan yang sama** berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Dilatasi Horizontal Fungsi Linear <InlineMath math="f(x) = x + 2" /></>}
-  description={<>Pengali masukan mengubah gradien, tetapi mempertahankan titik potong sumbu <InlineMath math="y" />.</>}
-  cameraPosition={[0, 2, 14]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 239 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 238 * 12;
-        return { x, y: x + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+2" />, offset: [2, 0.5, 0], at: 220 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 47 * 12;
-        return { x, y: 2 * x + 2, z: 0 };
+      points: Array.from({ length: 121 }, (_, index) => {
+        const x = (index - 20) / 40;
+        return { x, y: 4 * x * x - 8 * x, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=2x+2" />, offset: [1, 1.5, 0], at: 37 }],
       showPoints: false,
+      labels: [{ text: <InlineMath math="g(x)=4x^2-8x" />, at: 60, offset: [-0.3, -0.7, 0], anchorX: "right" }],
     },
     {
-      points: Array.from({ length: 354 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 353 * 12;
-        return { x, y: 0.5 * x + 2, z: 0 };
-      }),
+      points: [{ x: 5, y: 5, z: 0 }, { x: 2.5, y: 5, z: 0 }],
       smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0], at: 325 }],
+      color: "#d97706",
       showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: -1, y: 5, z: 0 }, { x: -0.5, y: 5, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 2, y: -4, z: 0 }, { x: 1, y: -4, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
     },
   ]}
 />
 
-Ketiga garis menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = x + 2" /> memiliki kemiringan <InlineMath math="1" />
-- Fungsi <InlineMath math="g(x) = f(2x) = 2x + 2" /> memiliki kemiringan <InlineMath math="2" /> (ditekan horizontal)
-- Fungsi <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> memiliki kemiringan <InlineMath math="0{,}5" /> (diregangkan horizontal)
-- Semua garis memotong sumbu <InlineMath math="y" /> di titik yang sama <InlineMath math="(0, 2)" />
+Dua panah di ketinggian <InlineMath math="5" /> membawa <InlineMath math="(5, 5)" /> ke <InlineMath math="\left(\frac{5}{2}, 5\right)" /> dan <InlineMath math="(-1, 5)" /> ke <InlineMath math="\left(-\frac{1}{2}, 5\right)" />. Keduanya mengarah ke sumbu <InlineMath math="y" />, karena membagi dengan <InlineMath math="2" /> mengubah jarak setiap titik ke sumbu <InlineMath math="y" /> menjadi separuh.
 
-## Nilai Mana yang Bergeser pada Skala Horizontal
+## Lebar Grafik yang Berbanding Terbalik dengan Pengali
 
-Setelah kamu tahu apakah grafik meregang atau memampat, kamu perlu tahu nilai mana yang ikut berpindah. Dilatasi horizontal membagi setiap koordinat horizontal dengan faktor <InlineMath math="k" /> yang mengalikan masukan, jadi posisi sepanjang sumbu <InlineMath math="x" /> berubah sedangkan tingginya tetap.
+Apa yang terjadi pada lebar grafik <InlineMath math="f(bx)" /> jika <InlineMath math="b" /> menjadi dua kali? Kamu bisa membandingkan beberapa nilai <InlineMath math="b" /> sekaligus di tampilan tiga dimensi lapisan grafik, yang menyusun grafik <InlineMath math="g(x) = f(bx)" /> dari <InlineMath math="f(x) = 4(x - 1)^2" /> untuk <InlineMath math="b = \frac{1}{2}" />, <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="4" />. Lapisan untuk setiap nilai <InlineMath math="b" /> diletakkan pada kedalaman <InlineMath math="z = b" />, jadi **bergerak sepanjang sumbu <InlineMath math="z" /> sama dengan memperbesar <InlineMath math="b" />**.
 
-Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />. Titik yang bersesuaian pada grafik <InlineMath math="f(kx)" /> adalah <InlineMath math="(\frac{a}{k}, b)" />. Nilai <InlineMath math="y" /> tetap <InlineMath math="b" /> karena dilatasi horizontal tidak pernah mengubah tinggi titik.
+Grafik <InlineMath math="f" /> digambar dari titik potong sumbu <InlineMath math="y" /> di <InlineMath math="(0, 4)" />, turun ke titik puncak <InlineMath math="(1, 0)" />, lalu naik lagi ke <InlineMath math="(2, 4)" />. Pada lapisan <InlineMath math="b" />, ketiga titik itu menjadi <InlineMath math="(0, 4)" />, <InlineMath math="\left(\frac{1}{b}, 0\right)" />, dan <InlineMath math="\left(\frac{2}{b}, 4\right)" />. Tiga jejak menghubungkan titik yang bersesuaian di semua lapisan.
 
-| Bagian fungsi | Sebelum dilatasi | Setelah dilatasi dengan <InlineMath math="k > 0" /> |
+<MathVisual
+  title={<>Lapisan grafik <InlineMath math="f(bx)" /> untuk <InlineMath math="f(x) = 4(x - 1)^2" /></>}
+  description={<>Lapisan untuk <InlineMath math="b" /> berada di <InlineMath math="z = b" />. Putar sampai kamu melihat dari atas, lalu ikuti jejak ujung kanan <InlineMath math="x = \frac{2}{b}" />.</>}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 4.5 },
+      y: { min: -0.5, max: 4.5 },
+      z: { min: 0, max: 4.5 },
+    },
+    view: { kind: "isometric" },
+    objects: [
+      {
+        id: "layer-half",
+        kind: "polyline",
+        appearance: "secondary",
+        vertices: [
+          { x: 0, y: 4, z: 0.5 },
+          { x: 0.1, y: 3.61, z: 0.5 },
+          { x: 0.2, y: 3.24, z: 0.5 },
+          { x: 0.3, y: 2.89, z: 0.5 },
+          { x: 0.4, y: 2.56, z: 0.5 },
+          { x: 0.5, y: 2.25, z: 0.5 },
+          { x: 0.6, y: 1.96, z: 0.5 },
+          { x: 0.7, y: 1.69, z: 0.5 },
+          { x: 0.8, y: 1.44, z: 0.5 },
+          { x: 0.9, y: 1.21, z: 0.5 },
+          { x: 1, y: 1, z: 0.5 },
+          { x: 1.1, y: 0.81, z: 0.5 },
+          { x: 1.2, y: 0.64, z: 0.5 },
+          { x: 1.3, y: 0.49, z: 0.5 },
+          { x: 1.4, y: 0.36, z: 0.5 },
+          { x: 1.5, y: 0.25, z: 0.5 },
+          { x: 1.6, y: 0.16, z: 0.5 },
+          { x: 1.7, y: 0.09, z: 0.5 },
+          { x: 1.8, y: 0.04, z: 0.5 },
+          { x: 1.9, y: 0.01, z: 0.5 },
+          { x: 2, y: 0, z: 0.5 },
+          { x: 2.1, y: 0.01, z: 0.5 },
+          { x: 2.2, y: 0.04, z: 0.5 },
+          { x: 2.3, y: 0.09, z: 0.5 },
+          { x: 2.4, y: 0.16, z: 0.5 },
+          { x: 2.5, y: 0.25, z: 0.5 },
+          { x: 2.6, y: 0.36, z: 0.5 },
+          { x: 2.7, y: 0.49, z: 0.5 },
+          { x: 2.8, y: 0.64, z: 0.5 },
+          { x: 2.9, y: 0.81, z: 0.5 },
+          { x: 3, y: 1, z: 0.5 },
+          { x: 3.1, y: 1.21, z: 0.5 },
+          { x: 3.2, y: 1.44, z: 0.5 },
+          { x: 3.3, y: 1.69, z: 0.5 },
+          { x: 3.4, y: 1.96, z: 0.5 },
+          { x: 3.5, y: 2.25, z: 0.5 },
+          { x: 3.6, y: 2.56, z: 0.5 },
+          { x: 3.7, y: 2.89, z: 0.5 },
+          { x: 3.8, y: 3.24, z: 0.5 },
+          { x: 3.9, y: 3.61, z: 0.5 },
+          { x: 4, y: 4, z: 0.5 },
+        ],
+      },
+      {
+        id: "layer-one",
+        kind: "polyline",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4, z: 1 },
+          { x: 0.05, y: 3.61, z: 1 },
+          { x: 0.1, y: 3.24, z: 1 },
+          { x: 0.15, y: 2.89, z: 1 },
+          { x: 0.2, y: 2.56, z: 1 },
+          { x: 0.25, y: 2.25, z: 1 },
+          { x: 0.3, y: 1.96, z: 1 },
+          { x: 0.35, y: 1.69, z: 1 },
+          { x: 0.4, y: 1.44, z: 1 },
+          { x: 0.45, y: 1.21, z: 1 },
+          { x: 0.5, y: 1, z: 1 },
+          { x: 0.55, y: 0.81, z: 1 },
+          { x: 0.6, y: 0.64, z: 1 },
+          { x: 0.65, y: 0.49, z: 1 },
+          { x: 0.7, y: 0.36, z: 1 },
+          { x: 0.75, y: 0.25, z: 1 },
+          { x: 0.8, y: 0.16, z: 1 },
+          { x: 0.85, y: 0.09, z: 1 },
+          { x: 0.9, y: 0.04, z: 1 },
+          { x: 0.95, y: 0.01, z: 1 },
+          { x: 1, y: 0, z: 1 },
+          { x: 1.05, y: 0.01, z: 1 },
+          { x: 1.1, y: 0.04, z: 1 },
+          { x: 1.15, y: 0.09, z: 1 },
+          { x: 1.2, y: 0.16, z: 1 },
+          { x: 1.25, y: 0.25, z: 1 },
+          { x: 1.3, y: 0.36, z: 1 },
+          { x: 1.35, y: 0.49, z: 1 },
+          { x: 1.4, y: 0.64, z: 1 },
+          { x: 1.45, y: 0.81, z: 1 },
+          { x: 1.5, y: 1, z: 1 },
+          { x: 1.55, y: 1.21, z: 1 },
+          { x: 1.6, y: 1.44, z: 1 },
+          { x: 1.65, y: 1.69, z: 1 },
+          { x: 1.7, y: 1.96, z: 1 },
+          { x: 1.75, y: 2.25, z: 1 },
+          { x: 1.8, y: 2.56, z: 1 },
+          { x: 1.85, y: 2.89, z: 1 },
+          { x: 1.9, y: 3.24, z: 1 },
+          { x: 1.95, y: 3.61, z: 1 },
+          { x: 2, y: 4, z: 1 },
+        ],
+      },
+      {
+        id: "layer-two",
+        kind: "polyline",
+        appearance: "construction",
+        vertices: [
+          { x: 0, y: 4, z: 2 },
+          { x: 0.025, y: 3.61, z: 2 },
+          { x: 0.05, y: 3.24, z: 2 },
+          { x: 0.075, y: 2.89, z: 2 },
+          { x: 0.1, y: 2.56, z: 2 },
+          { x: 0.125, y: 2.25, z: 2 },
+          { x: 0.15, y: 1.96, z: 2 },
+          { x: 0.175, y: 1.69, z: 2 },
+          { x: 0.2, y: 1.44, z: 2 },
+          { x: 0.225, y: 1.21, z: 2 },
+          { x: 0.25, y: 1, z: 2 },
+          { x: 0.275, y: 0.81, z: 2 },
+          { x: 0.3, y: 0.64, z: 2 },
+          { x: 0.325, y: 0.49, z: 2 },
+          { x: 0.35, y: 0.36, z: 2 },
+          { x: 0.375, y: 0.25, z: 2 },
+          { x: 0.4, y: 0.16, z: 2 },
+          { x: 0.425, y: 0.09, z: 2 },
+          { x: 0.45, y: 0.04, z: 2 },
+          { x: 0.475, y: 0.01, z: 2 },
+          { x: 0.5, y: 0, z: 2 },
+          { x: 0.525, y: 0.01, z: 2 },
+          { x: 0.55, y: 0.04, z: 2 },
+          { x: 0.575, y: 0.09, z: 2 },
+          { x: 0.6, y: 0.16, z: 2 },
+          { x: 0.625, y: 0.25, z: 2 },
+          { x: 0.65, y: 0.36, z: 2 },
+          { x: 0.675, y: 0.49, z: 2 },
+          { x: 0.7, y: 0.64, z: 2 },
+          { x: 0.725, y: 0.81, z: 2 },
+          { x: 0.75, y: 1, z: 2 },
+          { x: 0.775, y: 1.21, z: 2 },
+          { x: 0.8, y: 1.44, z: 2 },
+          { x: 0.825, y: 1.69, z: 2 },
+          { x: 0.85, y: 1.96, z: 2 },
+          { x: 0.875, y: 2.25, z: 2 },
+          { x: 0.9, y: 2.56, z: 2 },
+          { x: 0.925, y: 2.89, z: 2 },
+          { x: 0.95, y: 3.24, z: 2 },
+          { x: 0.975, y: 3.61, z: 2 },
+          { x: 1, y: 4, z: 2 },
+        ],
+      },
+      {
+        id: "layer-four",
+        kind: "polyline",
+        appearance: "answer",
+        vertices: [
+          { x: 0, y: 4, z: 4 },
+          { x: 0.0125, y: 3.61, z: 4 },
+          { x: 0.025, y: 3.24, z: 4 },
+          { x: 0.0375, y: 2.89, z: 4 },
+          { x: 0.05, y: 2.56, z: 4 },
+          { x: 0.0625, y: 2.25, z: 4 },
+          { x: 0.075, y: 1.96, z: 4 },
+          { x: 0.0875, y: 1.69, z: 4 },
+          { x: 0.1, y: 1.44, z: 4 },
+          { x: 0.1125, y: 1.21, z: 4 },
+          { x: 0.125, y: 1, z: 4 },
+          { x: 0.1375, y: 0.81, z: 4 },
+          { x: 0.15, y: 0.64, z: 4 },
+          { x: 0.1625, y: 0.49, z: 4 },
+          { x: 0.175, y: 0.36, z: 4 },
+          { x: 0.1875, y: 0.25, z: 4 },
+          { x: 0.2, y: 0.16, z: 4 },
+          { x: 0.2125, y: 0.09, z: 4 },
+          { x: 0.225, y: 0.04, z: 4 },
+          { x: 0.2375, y: 0.01, z: 4 },
+          { x: 0.25, y: 0, z: 4 },
+          { x: 0.2625, y: 0.01, z: 4 },
+          { x: 0.275, y: 0.04, z: 4 },
+          { x: 0.2875, y: 0.09, z: 4 },
+          { x: 0.3, y: 0.16, z: 4 },
+          { x: 0.3125, y: 0.25, z: 4 },
+          { x: 0.325, y: 0.36, z: 4 },
+          { x: 0.3375, y: 0.49, z: 4 },
+          { x: 0.35, y: 0.64, z: 4 },
+          { x: 0.3625, y: 0.81, z: 4 },
+          { x: 0.375, y: 1, z: 4 },
+          { x: 0.3875, y: 1.21, z: 4 },
+          { x: 0.4, y: 1.44, z: 4 },
+          { x: 0.4125, y: 1.69, z: 4 },
+          { x: 0.425, y: 1.96, z: 4 },
+          { x: 0.4375, y: 2.25, z: 4 },
+          { x: 0.45, y: 2.56, z: 4 },
+          { x: 0.4625, y: 2.89, z: 4 },
+          { x: 0.475, y: 3.24, z: 4 },
+          { x: 0.4875, y: 3.61, z: 4 },
+          { x: 0.5, y: 4, z: 4 },
+        ],
+      },
+      {
+        id: "trace-top",
+        kind: "polyline",
+        appearance: "highlight",
+        vertices: [
+          { x: 4, y: 4, z: 0.5 },
+          { x: 3.863749, y: 4, z: 0.517632 },
+          { x: 3.73213, y: 4, z: 0.535887 },
+          { x: 3.605, y: 4, z: 0.554785 },
+          { x: 3.482203, y: 4, z: 0.574349 },
+          { x: 3.363583, y: 4, z: 0.594604 },
+          { x: 3.249011, y: 4, z: 0.615572 },
+          { x: 3.138338, y: 4, z: 0.63728 },
+          { x: 3.031433, y: 4, z: 0.659754 },
+          { x: 2.928172, y: 4, z: 0.68302 },
+          { x: 2.828426, y: 4, z: 0.707107 },
+          { x: 2.73208, y: 4, z: 0.732043 },
+          { x: 2.639017, y: 4, z: 0.757858 },
+          { x: 2.549122, y: 4, z: 0.784584 },
+          { x: 2.46229, y: 4, z: 0.812252 },
+          { x: 2.378415, y: 4, z: 0.840896 },
+          { x: 2.297396, y: 4, z: 0.870551 },
+          { x: 2.21914, y: 4, z: 0.90125 },
+          { x: 2.143547, y: 4, z: 0.933033 },
+          { x: 2.070531, y: 4, z: 0.965936 },
+          { x: 2, y: 4, z: 1 },
+          { x: 1.931873, y: 4, z: 1.035265 },
+          { x: 1.866067, y: 4, z: 1.071773 },
+          { x: 1.802502, y: 4, z: 1.109569 },
+          { x: 1.741102, y: 4, z: 1.148698 },
+          { x: 1.681793, y: 4, z: 1.189207 },
+          { x: 1.624505, y: 4, z: 1.231144 },
+          { x: 1.569168, y: 4, z: 1.274561 },
+          { x: 1.515716, y: 4, z: 1.319508 },
+          { x: 1.464086, y: 4, z: 1.36604 },
+          { x: 1.414213, y: 4, z: 1.414214 },
+          { x: 1.36604, y: 4, z: 1.464086 },
+          { x: 1.319508, y: 4, z: 1.515717 },
+          { x: 1.274561, y: 4, z: 1.569168 },
+          { x: 1.231144, y: 4, z: 1.624505 },
+          { x: 1.189207, y: 4, z: 1.681793 },
+          { x: 1.148698, y: 4, z: 1.741101 },
+          { x: 1.109569, y: 4, z: 1.802501 },
+          { x: 1.071773, y: 4, z: 1.866066 },
+          { x: 1.035265, y: 4, z: 1.931873 },
+          { x: 1, y: 4, z: 2 },
+          { x: 0.965936, y: 4, z: 2.07053 },
+          { x: 0.933033, y: 4, z: 2.143547 },
+          { x: 0.90125, y: 4, z: 2.219139 },
+          { x: 0.87055, y: 4, z: 2.297397 },
+          { x: 0.840896, y: 4, z: 2.378414 },
+          { x: 0.812252, y: 4, z: 2.462289 },
+          { x: 0.784584, y: 4, z: 2.549121 },
+          { x: 0.757858, y: 4, z: 2.639016 },
+          { x: 0.732043, y: 4, z: 2.732081 },
+          { x: 0.707107, y: 4, z: 2.828427 },
+          { x: 0.68302, y: 4, z: 2.928171 },
+          { x: 0.659754, y: 4, z: 3.031433 },
+          { x: 0.63728, y: 4, z: 3.138336 },
+          { x: 0.615572, y: 4, z: 3.24901 },
+          { x: 0.594603, y: 4, z: 3.363586 },
+          { x: 0.574349, y: 4, z: 3.482202 },
+          { x: 0.554785, y: 4, z: 3.605002 },
+          { x: 0.535887, y: 4, z: 3.732132 },
+          { x: 0.517633, y: 4, z: 3.863745 },
+          { x: 0.5, y: 4, z: 4 },
+        ],
+      },
+      {
+        id: "trace-vertex",
+        kind: "polyline",
+        appearance: "highlight",
+        vertices: [
+          { x: 2, y: 0, z: 0.5 },
+          { x: 1.931874, y: 0, z: 0.517632 },
+          { x: 1.866065, y: 0, z: 0.535887 },
+          { x: 1.8025, y: 0, z: 0.554785 },
+          { x: 1.741102, y: 0, z: 0.574349 },
+          { x: 1.681792, y: 0, z: 0.594604 },
+          { x: 1.624505, y: 0, z: 0.615572 },
+          { x: 1.569169, y: 0, z: 0.63728 },
+          { x: 1.515716, y: 0, z: 0.659754 },
+          { x: 1.464086, y: 0, z: 0.68302 },
+          { x: 1.414213, y: 0, z: 0.707107 },
+          { x: 1.36604, y: 0, z: 0.732043 },
+          { x: 1.319508, y: 0, z: 0.757858 },
+          { x: 1.274561, y: 0, z: 0.784584 },
+          { x: 1.231145, y: 0, z: 0.812252 },
+          { x: 1.189208, y: 0, z: 0.840896 },
+          { x: 1.148698, y: 0, z: 0.870551 },
+          { x: 1.10957, y: 0, z: 0.90125 },
+          { x: 1.071773, y: 0, z: 0.933033 },
+          { x: 1.035265, y: 0, z: 0.965936 },
+          { x: 1, y: 0, z: 1 },
+          { x: 0.965936, y: 0, z: 1.035265 },
+          { x: 0.933033, y: 0, z: 1.071773 },
+          { x: 0.901251, y: 0, z: 1.109569 },
+          { x: 0.870551, y: 0, z: 1.148698 },
+          { x: 0.840896, y: 0, z: 1.189207 },
+          { x: 0.812253, y: 0, z: 1.231144 },
+          { x: 0.784584, y: 0, z: 1.274561 },
+          { x: 0.757858, y: 0, z: 1.319508 },
+          { x: 0.732043, y: 0, z: 1.36604 },
+          { x: 0.707107, y: 0, z: 1.414214 },
+          { x: 0.68302, y: 0, z: 1.464086 },
+          { x: 0.659754, y: 0, z: 1.515717 },
+          { x: 0.63728, y: 0, z: 1.569168 },
+          { x: 0.615572, y: 0, z: 1.624505 },
+          { x: 0.594603, y: 0, z: 1.681793 },
+          { x: 0.574349, y: 0, z: 1.741101 },
+          { x: 0.554785, y: 0, z: 1.802501 },
+          { x: 0.535887, y: 0, z: 1.866066 },
+          { x: 0.517632, y: 0, z: 1.931873 },
+          { x: 0.5, y: 0, z: 2 },
+          { x: 0.482968, y: 0, z: 2.07053 },
+          { x: 0.466516, y: 0, z: 2.143547 },
+          { x: 0.450625, y: 0, z: 2.219139 },
+          { x: 0.435275, y: 0, z: 2.297397 },
+          { x: 0.420448, y: 0, z: 2.378414 },
+          { x: 0.406126, y: 0, z: 2.462289 },
+          { x: 0.392292, y: 0, z: 2.549121 },
+          { x: 0.378929, y: 0, z: 2.639016 },
+          { x: 0.366021, y: 0, z: 2.732081 },
+          { x: 0.353553, y: 0, z: 2.828427 },
+          { x: 0.34151, y: 0, z: 2.928171 },
+          { x: 0.329877, y: 0, z: 3.031433 },
+          { x: 0.31864, y: 0, z: 3.138336 },
+          { x: 0.307786, y: 0, z: 3.24901 },
+          { x: 0.297302, y: 0, z: 3.363586 },
+          { x: 0.287175, y: 0, z: 3.482202 },
+          { x: 0.277392, y: 0, z: 3.605002 },
+          { x: 0.267943, y: 0, z: 3.732132 },
+          { x: 0.258816, y: 0, z: 3.863745 },
+          { x: 0.25, y: 0, z: 4 },
+        ],
+      },
+      {
+        id: "spine",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 0, y: 4, z: 0.5 },
+        to: { x: 0, y: 4, z: 4 },
+      },
+    ],
+    labels: [
+      { key: "layer-half-label", objectId: "layer-half", at: { x: 2.7, y: 0.49, z: 0.5 }, placement: "below-right" },
+      { key: "layer-one-label", objectId: "layer-one", at: { x: 1.7, y: 1.96, z: 1 }, placement: "below-right" },
+      { key: "layer-two-label", objectId: "layer-two", at: { x: 0.5, y: 0, z: 2 }, placement: "below-right" },
+      { key: "layer-four-label", objectId: "layer-four", at: { x: 0.25, y: 0, z: 4 }, placement: "below-left" },
+      { key: "trace-top-label", objectId: "trace-top", at: { x: 3.73213, y: 4, z: 0.535887 }, placement: "above-right" },
+      { key: "trace-vertex-label", objectId: "trace-vertex", at: { x: 0.267943, y: 0, z: 3.732132 }, placement: "below-right" },
+      { key: "spine-label", objectId: "spine", at: { x: 0, y: 4, z: 3.34375 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "layer-half-label": <><InlineMath math="b = \tfrac{1}{2}" /></>,
+    "layer-one-label": <><InlineMath math="b = 1" /></>,
+    "layer-two-label": <><InlineMath math="b = 2" /></>,
+    "layer-four-label": <><InlineMath math="b = 4" /></>,
+    "trace-top-label": <><InlineMath math="x = \tfrac{2}{b}" /></>,
+    "trace-vertex-label": <><InlineMath math="x = \tfrac{1}{b}" /></>,
+    "spine-label": <><InlineMath math="(0, 4)" /></>,
+  }}
+/>
+
+Seret tampilan sampai kamu melihat susunan lapisan dari atas, dengan sumbu <InlineMath math="y" /> mengarah lurus ke matamu. Jejak ujung kanan membentuk kurva <InlineMath math="x = \frac{2}{b}" />: **jika <InlineMath math="b" /> menjadi dua kali, lebar lapisan menjadi separuh**. Hasil kali <InlineMath math="b" /> dan lebar selalu <InlineMath math="2" />, jadi lebar grafik berbanding terbalik dengan pengali masukan.
+
+Titik <InlineMath math="(0, 4)" /> meninggalkan jejak lurus di <InlineMath math="x = 0" />, karena titik di sumbu <InlineMath math="y" /> tidak ikut berpindah. Jejak titik puncak <InlineMath math="x = \frac{1}{b}" /> selalu berada tepat di tengah antara jejak lurus itu dan jejak ujung kanan, sebab <InlineMath math="\frac{1}{b}" /> adalah separuh dari <InlineMath math="\frac{2}{b}" />.
+
+Dari samping, dengan sumbu <InlineMath math="x" /> mengarah lurus ke matamu, setiap lapisan tampak sebagai ruas tegak dari ketinggian <InlineMath math="0" /> sampai <InlineMath math="4" />. Semua ruas itu sama tinggi, jadi **dilatasi horizontal tidak mengubah tinggi mana pun**, dan range bagian grafik yang digambar tetap <InlineMath math="[0, 4]" />.
+
+Pada setiap lapisan, koordinat <InlineMath math="x" /> titik puncak dan ujung kanan sama dengan <InlineMath math="1" /> dan <InlineMath math="2" /> yang dibagi <InlineMath math="b" />.
+
+| <InlineMath math="b" /> | Titik puncak | Ujung kanan | Lebar |
+| --- | --- | --- | --- |
+| <InlineMath math="\frac{1}{2}" /> | <InlineMath math="(2, 0)" /> | <InlineMath math="(4, 4)" /> | <InlineMath math="4" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1, 0)" /> | <InlineMath math="(2, 4)" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="\left(\frac{1}{2}, 0\right)" /> | <InlineMath math="(1, 4)" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="\left(\frac{1}{4}, 0\right)" /> | <InlineMath math="\left(\frac{1}{2}, 4\right)" /> | <InlineMath math="\frac{1}{2}" /> |
+
+Pada [dilatasi vertikal](/id/materi/matematika/transformasi-fungsi/dilatasi-vertikal), tinggi titik sebanding dengan faktornya, sehingga jejak titik pada lapisan serupa berupa garis lurus. Pada dilatasi horizontal, koordinat <InlineMath math="x" /> dibagi <InlineMath math="b" />, dan pembagian itulah yang membuat jejaknya melengkung.
+
+## Faktor Skala Horizontal dan Pengali Masukan
+
+Soal dilatasi tidak selalu menyebut pengali masukan. Ada soal yang menyebut **faktor skala** <InlineMath math="s" />: setiap koordinat <InlineMath math="x" /> dikalikan <InlineMath math="s" />, sedangkan koordinat <InlineMath math="y" /> tetap. Titik <InlineMath math="(x_0, y_0)" /> pada grafik <InlineMath math="f" /> pindah ke <InlineMath math="(s x_0, y_0)" />.
+
+Untuk menemukan persamaannya, nyatakan koordinat lama dengan koordinat baru. Dari <InlineMath math="x = s x_0" /> diperoleh <InlineMath math="x_0 = \frac{x}{s}" />, lalu substitusikan ke <InlineMath math="y = f(x_0)" />:
+
+<BlockMath math="y = f\left(\frac{x}{s}\right)" />
+
+Persamaan ini sama dengan <InlineMath math="y = f(bx)" /> untuk <InlineMath math="b = \frac{1}{s}" />. Jadi **mengalikan koordinat dengan <InlineMath math="s" /> sama dengan membagi masukan dengan <InlineMath math="s" />**. Faktor skala <InlineMath math="3" /> menghasilkan grafik yang lebarnya tiga kali lebar semula, dengan persamaan <InlineMath math="y = f\left(\frac{x}{3}\right)" />.
+
+Contohnya, setiap koordinat <InlineMath math="x" /> pada grafik <InlineMath math="y = \sqrt{x}" /> dikalikan <InlineMath math="3" />. Ganti <InlineMath math="x" /> dengan <InlineMath math="\frac{x}{3}" />:
+
+<BlockMath math="g(x) = \sqrt{\frac{x}{3}}" />
+
+Periksa dengan titik <InlineMath math="(9, 3)" /> pada <InlineMath math="y = \sqrt{x}" />. Titik itu pindah ke <InlineMath math="(27, 3)" />, dan memang <InlineMath math="g(27) = \sqrt{\frac{27}{3}} = \sqrt{9} = 3" />. Domain tetap <InlineMath math="[0, \infty)" /> karena <InlineMath math="\frac{x}{3} \ge 0" /> tepat ketika <InlineMath math="x \ge 0" />.
+
+[Dilatasi](/id/materi/matematika/transformasi-geometri/dilatasi) terhadap titik asal mengalikan kedua koordinat dengan faktor yang sama, sehingga besar setiap sudut tetap dan bangun hasilnya sebangun dengan bangun semula. Dilatasi horizontal hanya mengalikan koordinat <InlineMath math="x" />, jadi **sudut pada grafik bisa berubah**. Kedua kaki grafik <InlineMath math="y = |x|" /> saling tegak lurus, sedangkan kaki grafik <InlineMath math="y = |2x| = 2|x|" /> memiliki kemiringan <InlineMath math="2" /> dan <InlineMath math="-2" />, sehingga sudut di titik puncaknya menyempit menjadi sekitar <InlineMath math="53^\circ" />.
+
+## Bagian Grafik yang Berpindah dan yang Tetap
+
+Untuk <InlineMath math="b > 0" />, **setiap bagian yang ditentukan oleh nilai <InlineMath math="x" /> dibagi <InlineMath math="b" />**, sedangkan setiap bagian yang ditentukan oleh tinggi tetap sama.
+
+| Bagian grafik | Pada <InlineMath math="f(bx)" /> | Alasan |
 | --- | --- | --- |
-| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(\frac{a}{k}, b)" /> |
-| Domain <InlineMath math="[c, d]" /> | Selang asli | Menjadi <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" /> |
-| Range | Nilai keluaran asli | Tetap sama seperti semula |
-| Titik potong sumbu <InlineMath math="x" /> | Di <InlineMath math="x = x_0" /> | Berpindah ke <InlineMath math="x = \frac{x_0}{k}" /> |
-| Titik potong sumbu <InlineMath math="y" /> | Di <InlineMath math="x = 0" /> | Tetap di <InlineMath math="x = 0" /> |
+| Titik <InlineMath math="(x_0, y_0)" /> | <InlineMath math="\left(\frac{x_0}{b}, y_0\right)" /> | tinggi tetap, <InlineMath math="x" /> dibagi <InlineMath math="b" /> |
+| Pembuat nol <InlineMath math="x_0" /> | <InlineMath math="\frac{x_0}{b}" /> | pembuat nol adalah nilai <InlineMath math="x" /> |
+| Domain <InlineMath math="[c, d]" /> | <InlineMath math="\left[\frac{c}{b}, \frac{d}{b}\right]" /> | domain berisi nilai <InlineMath math="x" /> |
+| Asimtot vertikal <InlineMath math="x = x_1" /> | <InlineMath math="x = \frac{x_1}{b}" /> | garis tegak ditentukan oleh nilai <InlineMath math="x" /> |
+| Range | tetap | range berisi tinggi |
+| Titik potong sumbu <InlineMath math="y" /> | tetap <InlineMath math="(0, f(0))" /> | <InlineMath math="\frac{0}{b} = 0" /> |
+| Asimtot horizontal <InlineMath math="y = y_1" /> | tetap | garis mendatar ditentukan oleh tinggi |
 
-Domain ikut menyempit atau melebar bersama grafik karena domain memuat batas nilai <InlineMath math="x" />, sedangkan range tidak berubah karena tinggi grafik di setiap titik tetap. [Translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal) menggeser koordinat itu tanpa mengubah ukurannya.
+Grafik <InlineMath math="y = 2^x" /> melalui <InlineMath math="(3, 8)" />. Grafik <InlineMath math="y = 2^{3x}" /> melalui <InlineMath math="(1, 8)" /> karena <InlineMath math="2^{3 \cdot 1} = 8" />, sedangkan titik potong <InlineMath math="(0, 1)" /> dan asimtot <InlineMath math="y = 0" /> tetap. Pada [fungsi eksponensial](/id/materi/matematika/fungsi-dan-pemodelannya/fungsi-eksponensial) yang naik, dilatasi dengan <InlineMath math="b > 1" /> membuat kurva lebih curam pada setiap ketinggian tanpa mengubah titik potongnya dengan sumbu <InlineMath math="y" />.
 
-Untuk faktor **negatif**, urutan batas domain berbalik. Jika domain asal <InlineMath math="[c,d]" />, domain baru adalah <InlineMath math="[d/k,c/k]" />. Contohnya, <InlineMath math="2\le -2x\le 6" /> menghasilkan <InlineMath math="-3\le x\le -1" />.
+Fungsi <InlineMath math="f(x) = \frac{1}{x - 2}" /> memiliki [asimtot vertikal](/id/materi/matematika/fungsi-dan-pemodelannya/asimtot) <InlineMath math="x = 2" />. Pada <InlineMath math="f(2x) = \frac{1}{2x - 2}" />, penyebutnya nol saat <InlineMath math="x = 1" />, jadi asimtotnya pindah ke <InlineMath math="x = \frac{2}{2} = 1" />.
 
-## Mengubah Laju Pertumbuhan Fungsi Eksponensial
+Bandingkan dengan [translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal), yang menambahkan bilangan yang sama ke setiap koordinat <InlineMath math="x" />. Translasi ikut memindahkan titik <InlineMath math="(0, f(0))" />, sedangkan dilatasi horizontal membiarkan titik itu di tempatnya karena nol dibagi bilangan tak nol mana pun tetap nol.
 
-Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, pengali masukan mengubah seberapa cepat grafik naik.
+## Pengali Negatif Menambahkan Pencerminan
+
+Aturan <InlineMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b}, y_0\right)" /> tetap berlaku ketika <InlineMath math="b < 0" />. Membagi dengan bilangan negatif membalik tanda koordinat <InlineMath math="x" />, jadi grafik meregang atau memampat dengan faktor <InlineMath math="\frac{1}{|b|}" /> lalu **dicerminkan terhadap sumbu <InlineMath math="y" />**. Untuk <InlineMath math="b = -1" />, yang tersisa hanya pencerminan <InlineMath math="y = f(-x)" />, yaitu [refleksi horizontal](/id/materi/matematika/transformasi-fungsi/refleksi-horizontal).
+
+Satu-satunya nilai yang tidak boleh dipakai adalah <InlineMath math="b = 0" />. Untuk <InlineMath math="b = 0" />, setiap masukan berubah menjadi <InlineMath math="0" />, jadi <InlineMath math="f(0 \cdot x) = f(0)" /> untuk setiap <InlineMath math="x" />, dan grafiknya hanya berupa garis mendatar <InlineMath math="y = f(0)" /> jika <InlineMath math="f(0)" /> terdefinisi. Aturan <InlineMath math="\frac{x_0}{b}" /> juga tidak bisa dipakai karena pembagian dengan nol tidak terdefinisi.
+
+Pencerminan pada <InlineMath math="b < 0" /> juga menukar urutan batas domain. Jika domain <InlineMath math="f" /> adalah <InlineMath math="[c, d]" /> dan <InlineMath math="b < 0" />, batas kiri domain baru berasal dari batas kanan domain lama:
+
+<BlockMath math="[c, d] \longmapsto \left[\frac{d}{b},\ \frac{c}{b}\right]" />
+
+Ambil <InlineMath math="h(x) = |x - 2|" /> dengan titik puncak <InlineMath math="(2, 0)" />, lalu terapkan <InlineMath math="b = -2" />:
+
+<BlockMath math="\begin{aligned} H(x) &= h(-2x) \\ &= |-2x - 2| \\ &= 2\,|x + 1| \end{aligned}" />
+
+Langkah terakhir memakai <InlineMath math="-2x - 2 = -2(x + 1)" /> dan <InlineMath math="|-2| = 2" />. Titik puncak pindah ke <InlineMath math="\left(\frac{2}{-2}, 0\right) = (-1, 0)" />, dan memang <InlineMath math="H(-1) = 0" />. Titik <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(-2, 2)" />: jaraknya ke sumbu <InlineMath math="y" /> menjadi separuh dan sisinya berpindah. Titik potong <InlineMath math="(0, 2)" /> tidak bergerak karena <InlineMath math="H(0) = 2 = h(0)" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Dilatasi Horizontal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
-  description="Pengali masukan mengubah seberapa cepat kurva eksponensial naik."
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Grafik <InlineMath math="h(x) = |x - 2|" /> dan <InlineMath math="H(x) = h(-2x)" /></>}
+  description={<>Panah membawa <InlineMath math="(4, 2)" /> ke <InlineMath math="(-2, 2)" /> melewati titik tetap <InlineMath math="(0, 2)" /> di sumbu <InlineMath math="y" />.</>}
+  cameraPosition={[0.5, 1, 12]}
+  cameraTarget={[0.5, 1, 0]}
   data={[
     {
+      points: [{ x: -1, y: 3, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 5, y: 3, z: 0 }],
       smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
+      color: "#ea580c",
       showPoints: false,
+      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, at: 1, offset: [0.3, -0.7, 0], anchorX: "left" }],
     },
     {
+      points: [{ x: -2.5, y: 3, z: 0 }, { x: -1, y: 0, z: 0 }, { x: 0.5, y: 3, z: 0 }],
       smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, 2 * x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{2x}" />, offset: [1, 2, 0], at: 549 }],
+      color: "#0d9488",
       showPoints: false,
+      labels: [{ text: <InlineMath math="H(x)=2|x+1|" />, at: 1, offset: [-0.3, -0.7, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }, { x: -2, y: 2, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 0, y: 2, z: 0 }],
+      smooth: false,
+      color: "#475569",
+      showPoints: true,
     },
   ]}
 />
 
-Pada fungsi eksponensial:
-- **Asimtot horizontal** tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
-- Titik potong dengan sumbu <InlineMath math="y" /> tetap sama di <InlineMath math="(0, 1)" />
-- Laju pertumbuhan fungsi berubah sesuai pengali masukan
+## Kesalahan Membaca Faktor Pengali
 
-## Dilatasi Horizontal dengan Pengali Masukan Negatif
+Untuk menemukan kesalahan seperti di tabel ini, ambil satu titik yang sudah kamu ketahui, **hitung bayangannya pada grafik <InlineMath math="f(bx)" />**, lalu cocokkan bayangan itu dengan jawabanmu.
 
-Pengali masukan negatif menggabungkan penskalaan horizontal dengan pencerminan.
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Membaca <InlineMath math="f(2x)" /> sebagai grafik dua kali lebih lebar | Masukan dikali <InlineMath math="2" />, jadi setiap keluaran muncul pada separuh jarak | Pembuat nol <InlineMath math="x_0" /> harus menjadi <InlineMath math="\frac{x_0}{2}" /> |
+| Membagi tinggi titik menjadi <InlineMath math="\left(x_0, \frac{y_0}{b}\right)" /> | Pengali di dalam <InlineMath math="f" /> hanya mengubah masukan | Substitusikan <InlineMath math="x = \frac{x_0}{b}" /> dan pastikan hasilnya <InlineMath math="y_0" /> |
+| Menulis <InlineMath math="f(3x)" /> untuk faktor skala <InlineMath math="3" /> | Faktor skala <InlineMath math="s" /> berarti <InlineMath math="b = \frac{1}{s}" /> | Titik <InlineMath math="(x_0, y_0)" /> harus menjadi <InlineMath math="(3x_0, y_0)" /> |
+| Membaca <InlineMath math="f(2x - 6)" /> sebagai geser <InlineMath math="6" /> satuan | <InlineMath math="2x - 6 = 2(x - 3)" />, jadi pergeserannya <InlineMath math="3" /> satuan | Faktorkan pengali dari dalam kurung lebih dulu |
+| Lupa menukar batas domain saat <InlineMath math="b < 0" /> | Pembagian dengan bilangan negatif membalik urutan | Batas kiri domain baru harus lebih kecil dari batas kanannya |
 
-<LineEquation
-  showZAxis={false}
-  title={<>Dilatasi Horizontal dengan Pengali Masukan Negatif pada <InlineMath math="f(x) = x^2 + 1" /></>}
-  description="Nilai absolutnya menentukan skala horizontal, sedangkan tandanya menyebabkan refleksi."
-  cameraPosition={[0, 3, 13]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 1, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, -1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: (-2 * x) * (-2 * x) + 1, z: 0 };
-      }),
-      color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [2, -2.8, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
-
-Ketika pengali masukan negatif:
-- Grafik mengalami refleksi terhadap sumbu <InlineMath math="y" />
-- Besar skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />
-- Pencerminan tidak terlihat pada fungsi genap ini, tetapi faktor <InlineMath math="2" /> tetap **memampatkan lebarnya menjadi setengah**: <InlineMath math="f(-2x)=f(2x)=4x^2+1" />. Grafik tersebut berbeda dari <InlineMath math="f(x)=x^2+1" />.
+Persamaan <InlineMath math="f(2x - 6) = f(2(x - 3))" /> berarti grafik dimampatkan dengan faktor <InlineMath math="\frac{1}{2}" /> lalu digeser <InlineMath math="3" /> satuan ke kanan, sehingga titik <InlineMath math="(x_0, y_0)" /> berakhir di <InlineMath math="\left(\frac{x_0}{2} + 3, y_0\right)" />. Jika urutannya dibalik, yaitu digeser <InlineMath math="3" /> satuan ke kanan dulu lalu dimampatkan, persamaannya menjadi <InlineMath math="f(2x - 3)" /> dan titik yang sama berakhir di <InlineMath math="\left(\frac{x_0 + 3}{2}, y_0\right)" />. Pada [kombinasi transformasi fungsi](/id/materi/matematika/transformasi-fungsi/kombinasi-transformasi-fungsi), kamu menentukan urutan langkah dari bentuk persamaan, seperti saat memfaktorkan <InlineMath math="f(2x - 6)" /> tadi.
 
 ## Latihan
 
-Tiga soal berikut memakai aturan lebar grafik yang baru saja kamu pelajari. Setiap soal mengalikan masukan dengan faktor tertentu, jadi perhatikan apakah faktornya lebih besar dari satu, di antara nol dan satu, atau negatif. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+Mulailah setiap soal dengan **menentukan nilai <InlineMath math="b" />**, karena pengali itulah yang membagi koordinat <InlineMath math="x" />. Soal 1 cukup mengganti <InlineMath math="x" /> dengan <InlineMath math="3x" />, sedangkan pada soal 4 kamu harus menemukan <InlineMath math="b" /> dari satu titik pada grafik.
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi yang dihasilkan oleh **pengali masukan** <InlineMath math="3" />.
-
-2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan faktor masukan <InlineMath math="\frac{1}{2}" />. Tentukan persamaan fungsi hasilnya, lalu tentukan domain fungsi tersebut.
-
-3. Fungsi <InlineMath math="h(x) = |x - 2|" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />. Tentukan titik puncak fungsi hasilnya.
-
-Dilatasi horizontal mengganti <InlineMath math="x" /> menjadi hasil kali faktor dengan <InlineMath math="x" />, karena di situlah letak aturan lebarnya. Persamaannya lalu disederhanakan dan grafik barunya diperiksa untuk memastikan apakah grafik meregang atau memampat.
+1. Diberikan <InlineMath math="f(x) = x^2 - 2x - 3" />. Tentukan persamaan <InlineMath math="f(3x)" /> beserta pembuat nolnya.
+2. Setiap titik <InlineMath math="(x, y)" /> pada grafik <InlineMath math="y = \sqrt{x}" /> dipindahkan ke <InlineMath math="(4x, y)" />. Tentukan persamaan grafik barunya, lalu periksa dengan satu titik.
+3. Fungsi <InlineMath math="f" /> memiliki domain <InlineMath math="[-2, 8]" />. Tentukan domain <InlineMath math="g(x) = f\left(-\frac{x}{2}\right)" />.
+4. Grafik <InlineMath math="g(x) = 2^{bx}" /> melalui titik <InlineMath math="(6, 8)" />. Tentukan <InlineMath math="b" />, lalu jelaskan dilatasi yang mengubah <InlineMath math="y = 2^x" /> menjadi grafik <InlineMath math="g" />.
 
 ### Pembahasan
 
-**Soal 1**. Dilatasi horizontal dengan **pengali masukan** <InlineMath math="3" />:
+**Soal 1**. Pengali masukannya <InlineMath math="b = 3" />, jadi ganti setiap <InlineMath math="x" /> pada <InlineMath math="f" /> dengan <InlineMath math="3x" />:
 
-<BlockMath math="F(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
+<BlockMath math="\begin{aligned} f(3x) &= (3x)^2 - 2(3x) - 3 \\ &= 9x^2 - 6x - 3 \\ &= 3(3x + 1)(x - 1) \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dan Hasil Dilatasinya</>}
-  description={
-    <>
-      Pengali masukan <InlineMath math="3" /> menghasilkan skala horizontal{" "}
-      <InlineMath math="\frac{1}{3}" />, sehingga parabola menjadi lebih sempit.
-    </>
-  }
-  cameraPosition={[1, 2, 14]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 2 * x + 1, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2-2x+1" />, offset: [4, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 9 * x * x - 6 * x + 1, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=9x^2-6x+1" />, offset: [3, 2, 0] }],
-      showPoints: false,
-    },
-  ]}
-/>
+Dari bentuk faktor, pembuat nolnya <InlineMath math="x = -\frac{1}{3}" /> dan <InlineMath math="x = 1" />. Aturan dilatasi memberi pemeriksaan kedua: <InlineMath math="f(x) = (x + 1)(x - 3)" /> punya pembuat nol <InlineMath math="-1" /> dan <InlineMath math="3" />, dan **keduanya dibagi <InlineMath math="3" />** menjadi tepat <InlineMath math="-\frac{1}{3}" /> dan <InlineMath math="1" />.
 
-**Soal 2**. Kalikan masukan fungsi dengan setengah sebelum menghitung akar. Periksa syarat akar untuk menentukan domainnya.
+**Soal 2**. Setiap koordinat <InlineMath math="x" /> dikalikan <InlineMath math="4" />, jadi **faktor skalanya <InlineMath math="s = 4" />** dan <InlineMath math="b = \frac{1}{4}" />. Ganti <InlineMath math="x" /> dengan <InlineMath math="\frac{x}{4}" />:
 
-- Dilatasi horizontal: <InlineMath math="G(x) = g(\frac{1}{2}x) = \sqrt{\frac{1}{2}x} = \sqrt{\frac{x}{2}}" />
-- **Domain** setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" /> karena pengali masukannya positif
+<BlockMath math="y = \sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{2}" />
 
-Visualisasi:
+Bentuk kedua berlaku karena <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> untuk <InlineMath math="x \ge 0" />. Periksa dengan <InlineMath math="(4, 2)" /> pada <InlineMath math="y = \sqrt{x}" />: titik itu pindah ke <InlineMath math="(16, 2)" />, dan <InlineMath math="\frac{\sqrt{16}}{2} = 2" />. Bentuk <InlineMath math="\frac{\sqrt{x}}{2}" /> juga bisa dibaca sebagai dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />, jadi untuk fungsi akar kedua dilatasi itu menghasilkan grafik yang sama.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="g(x) = \sqrt{x}" /> dan Hasil Dilatasinya</>}
-  description={
-    <>
-      Pengali masukan <InlineMath math="0{,}5" /> menghasilkan skala horizontal{" "}
-      <InlineMath math="2" />, sehingga kurva akar kuadrat menjadi dua kali lebih lebar.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841895);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: 0.7071067811865476 * t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ at: 64, text: <InlineMath math="G(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[2, 1, 0]}
-  cameraPosition={[2, 1, 8]}
-/>
+**Soal 3**. Pengalinya <InlineMath math="b = -\frac{1}{2}" />, jadi urutan batas domain akan berbalik. Nilai <InlineMath math="g(x)" /> terdefinisi ketika masukan <InlineMath math="-\frac{x}{2}" /> berada di domain <InlineMath math="f" />. Kalikan pertidaksamaan dengan <InlineMath math="-2" /> dan **balik arah tandanya**:
 
-**Soal 3**. Fungsi asli <InlineMath math="h(x) = |x - 2|" /> memiliki titik puncak di <InlineMath math="(2, 0)" />.
-Setelah dilatasi horizontal dengan **pengali masukan** <InlineMath math="-1" />: <InlineMath math="H(x) = |-x - 2| = |-(x + 2)| = |x + 2|" />, titik puncaknya menjadi <InlineMath math="(-2, 0)" />.
+<BlockMath math="\begin{aligned} -2 &\le -\frac{x}{2} \le 8 \\ 4 &\ge x \ge -16 \end{aligned}" />
 
-<LineEquation
-  showZAxis={false}
-  title={<>Fungsi <InlineMath math="h(x) = |x - 2|" /> dan Hasil Dilatasinya</>}
-  description={<>Pengali masukan <InlineMath math="-1" /> mencerminkan fungsi nilai mutlak terhadap sumbu <InlineMath math="y" /> tanpa mengubah skala horizontalnya.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 86 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 85 * 12;
-        return { x, y: Math.abs(x - 2), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x-2|" />, offset: [2.5, 1, 0], at: 38 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 94 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 93 * 12;
-        return { x, y: Math.abs(-x - 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=|-x-2|" />, offset: [2.5, 2, 0], at: 61 }],
-      showPoints: false,
-    },
-  ]}
-/>
+Rumus <InlineMath math="\left[\frac{d}{b}, \frac{c}{b}\right] = \left[\frac{8}{-1/2}, \frac{-2}{-1/2}\right] = [-16, 4]" /> memberi selang yang sama. Periksa kedua batas: <InlineMath math="x = -16" /> memberi masukan <InlineMath math="8" />, dan <InlineMath math="x = 4" /> memberi masukan <InlineMath math="-2" />. Keduanya tepat batas domain <InlineMath math="f" />, jadi domain <InlineMath math="g" /> adalah <InlineMath math="[-16, 4]" />.
+
+**Soal 4**. Substitusikan titik <InlineMath math="(6, 8)" /> ke <InlineMath math="g(x) = 2^{bx}" />:
+
+<BlockMath math="\begin{aligned} 2^{6b} &= 8 = 2^3 \\ 6b &= 3 \\ b &= \tfrac{1}{2} \end{aligned}" />
+
+Fungsi <InlineMath math="2^t" /> selalu naik, jadi <InlineMath math="2^{6b} = 2^3" /> hanya berlaku jika <InlineMath math="6b = 3" />. Karena <InlineMath math="0 < b < 1" />, grafik <InlineMath math="y = 2^x" /> diregangkan menjauhi sumbu <InlineMath math="y" /> dengan faktor <InlineMath math="\frac{1}{b} = 2" />: **setiap jarak ke sumbu <InlineMath math="y" /> menjadi dua kali lipat**. Periksa: titik <InlineMath math="(3, 8)" /> pada <InlineMath math="y = 2^x" /> pindah ke <InlineMath math="\left(\frac{3}{1/2}, 8\right) = (6, 8)" />, tepat titik yang diberikan. Titik potong <InlineMath math="(0, 1)" /> dan asimtot <InlineMath math="y = 0" /> tetap di tempatnya.
