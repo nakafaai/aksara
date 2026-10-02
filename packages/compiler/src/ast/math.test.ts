@@ -7,6 +7,7 @@ import { createMathVisualPolicy } from "#compiler/policy/math";
 import {
   planeScene,
   rejectMathVisual,
+  sceneEndingAt,
   TEST_MATH_CONTENT_KEY,
   validateMathSource,
   validateMathVisual,
@@ -234,5 +235,53 @@ describe("MathVisual authored syntax", () => {
         { column: 1, line: 1, reason: "description-missing" },
       ]);
     })
+  );
+});
+
+describe("MathVisual constant expressions", () => {
+  it.effect("accepts expressions as exact irrational coordinates", () =>
+    validateMathSource(`<MathVisual
+      title="Coordinate plane"
+      description="One diagonal line."
+      scene={${sceneEndingAt(
+        "Math.sqrt(3) / 2",
+        'labels: [{ key: "tip", objectId: "diagonal", at: { x: 0.63 * Math.cos(Math.PI / 8), y: -Math.SQRT1_2 } }],'
+      )}}
+      labels={{ tip: <>Tip</> }}
+    />`)
+  );
+
+  it.effect("checks the folded value of an expression against its frame", () =>
+    Effect.gen(function* () {
+      const error = yield* rejectMathVisual(
+        `<MathVisual scene={${sceneEndingAt("3 * Math.sqrt(3)")}} title="Plane" description="A mathematical plane." />`
+      );
+      const [violation] = error.violations;
+
+      assert.ok(violation?.reason === "scene-schema");
+      assert.strictEqual(
+        violation.message,
+        "Expected plane geometry visible inside its frame."
+      );
+    })
+  );
+
+  it.effect.each(["1 / 0", "Math.random()", "Math.sqrt(-1)"])(
+    "rejects the expression %s as a dynamic scene value",
+    (source) =>
+      Effect.gen(function* () {
+        const rawMdx = `<MathVisual scene={${sceneEndingAt(source)}} title="Plane" description="A mathematical plane." />`;
+        const offset = rawMdx.indexOf(source);
+        const before = rawMdx.slice(0, offset);
+        const error = yield* rejectMathVisual(rawMdx);
+
+        assert.deepStrictEqual(error.violations, [
+          {
+            column: offset - before.lastIndexOf("\n"),
+            line: before.split("\n").length,
+            reason: "scene-dynamic-value",
+          },
+        ]);
+      })
   );
 });

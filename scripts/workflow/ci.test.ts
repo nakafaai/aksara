@@ -34,6 +34,29 @@ describe("CI workflow policy", () => {
     ).toThrow("CI must run every workspace test");
   });
 
+  it("compares visuals with the base of the pull request or merge group", () => {
+    const message =
+      "CI must compare lesson visuals with the base of the pull request or merge group";
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          'run: pnpm points --base "$BASE_SHA"',
+          "run: pnpm points"
+        )
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace("github.event.merge_group.base_sha", "github.sha")
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace('run: pnpm points --base "$BASE_SHA"', "run: pnpm names")
+      )
+    ).toThrow("CI must run every repository gate");
+  });
+
   it("derives verify from the result of every CI job", () => {
     expect(() =>
       verifyCiWorkflow(

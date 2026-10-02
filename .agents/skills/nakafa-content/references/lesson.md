@@ -15,10 +15,14 @@ misses an element below is not finished.
 2. **A teacher talks to one learner.** Short sentences, direct address, named
    objects and actions, and the next likely question answered in the next
    sentence. [Voice](voice.md) owns the register for each locale.
-3. **At least one interactive visual models the concept.** Changing a
-   parameter, stepping through a process, rotating a structure, or running an
-   experiment answers a question the lesson asks. [Visuals](visuals.md) owns
-   the choice, the component families, and the verification.
+3. **Rich interactive visuals model the concept.** Learners skim long text, so
+   3D scenes and animations carry Nakafa's lessons: every main idea a learner
+   can see gets its own interactive visual, usually one in each teaching
+   section, and the lesson never has fewer than it had before a revision.
+   Changing a parameter, stepping through a process, rotating a structure, or
+   running an experiment answers a question the lesson asks. Every plotted
+   point is computed from its formula. [Visuals](visuals.md) owns the choice,
+   the component families, the computation, and the verification.
 4. **At least two worked examples.** Every transformation is written in a
    math block and each example ends with a check. In biology, chemistry, and
    programming lessons a worked example may be an analyzed case: data, a
@@ -55,17 +59,23 @@ count toward it.
    ([accuracy and evidence](evidence.md)). Recompute every formula, example,
    exercise, and plotted value independently with a computer algebra system
    such as SymPy or with exact arithmetic, and record the result.
-3. Decide the interactive visual. Reuse an existing Nakafa component when its
+3. Inventory every interactive visual the lesson has today, with its teaching
+   job. Keep every one, fixing any that is wrong, and add a visual for each
+   main idea that has none. Reuse an existing Nakafa component when its
    configuration teaches this lesson's question and differs from its
    neighbors; otherwise specify an instance of a component family under
-   [visuals](visuals.md).
+   [visuals](visuals.md). A rewrite never ends with fewer interactive visuals
+   than it started with.
 4. Rewrite the Indonesian lesson to this standard through the
    [editorial workflow](editorial.md), then recreate English and
    German from the corrected meaning under [locale sources](locales.md).
 5. Run the gate on the lesson directory with `--strict-review` and read the
    `--pedagogy-review` inventory ([verification](verification.md)). Every
    finding reaches zero, and every signal is either fixed or retained with a
-   stated teaching reason.
+   stated teaching reason. Run the
+   [points gate](verification.md#points-gate) on the same directory: it fails
+   a typed coordinate list, a long decimal coordinate, and any file with fewer
+   interactive visuals than before.
 6. Compile the lesson and preview it through Nakafa's renderer at 390 and 1440
    pixels in light and dark themes. Rotate every 3D scene and play every
    animation.
@@ -81,5 +91,9 @@ count toward it.
 - A formula stated without its conditions, its symbols, or a worked use.
 - A visual that only draws a static line or shape when the lesson's question is
   about how a parameter, step, or structure changes the result.
+- A revision that removes or merges interactive visuals, so the lesson ends
+  with fewer than it had.
+- A coordinate list typed into the source instead of computed from its
+  formula, or a smooth function drawn with visible corners.
 - An example that stops at the answer without checking it.
 - Exercises without answers, or answers without reasoning.

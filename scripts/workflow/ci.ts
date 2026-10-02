@@ -10,9 +10,14 @@ const DOLLAR = "$";
 const TRIGGER_PATTERN =
   /^on:\n {2}pull_request:\n(?: {2}#[^\n]*\n)* {2}merge_group:\n {4}branches: \[main\]\n {4}types: \[checks_requested\]\n\npermissions:/mu;
 const CHECKS_PATTERN =
-  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm build/u;
+  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm points[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm build/u;
 const TEST_PATTERN = /^pnpm test$/mu;
 const JOBS = ["checks", "test", "verify"];
+const POINTS_STEP = [
+  'pnpm points --base "$BASE_SHA"',
+  "BASE_SHA",
+  `${DOLLAR}{{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}`,
+].join("\n");
 const RESULT_SOURCE = [
   'test "$CHECKS" = success && test "$TEST" = success',
   "CHECKS",
@@ -44,10 +49,11 @@ export function verifyCiWorkflow(source: string): void {
     JOBS,
     "CI must run checks and tests in parallel behind one verify job"
   );
-  assert.match(
-    jobSource(requireJob(jobs, "checks")),
-    CHECKS_PATTERN,
-    "CI must run every repository gate"
+  const checks = jobSource(requireJob(jobs, "checks"));
+  assert.match(checks, CHECKS_PATTERN, "CI must run every repository gate");
+  assert.ok(
+    checks.includes(POINTS_STEP),
+    "CI must compare lesson visuals with the base of the pull request or merge group"
   );
   assert.match(
     jobSource(requireJob(jobs, "test")),

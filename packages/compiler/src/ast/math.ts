@@ -9,7 +9,7 @@ import {
   inspectRichAttribute,
 } from "#compiler/ast/attribute";
 import {
-  decodeStaticLiteral,
+  decodeConstantLiteral,
   type StaticLiteral,
   type StaticLiteralSyntaxReason,
   staticPropertyName,
@@ -39,7 +39,7 @@ interface EstreeLocation {
     | undefined;
 }
 
-/** Static MathVisual data retained for contract-level validation. */
+/** Constant MathVisual data retained for contract-level validation. */
 export interface MathVisualCandidate {
   readonly labelKeys: readonly string[];
   readonly labelLocation: SourceLocation;
@@ -259,7 +259,7 @@ export function inspectMathVisual(
     return { violations };
   }
   const sceneLocation = mdxLocation(sceneAttribute);
-  const scene = decodeStaticLiteral(sceneExpression);
+  const scene = decodeConstantLiteral(sceneExpression);
   if (!scene.success) {
     violations.push({
       ...estreeLocation(scene.failure.node, sceneLocation),

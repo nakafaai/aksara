@@ -32,6 +32,14 @@ export function planeScene(labels = "") {
   }`;
 }
 
+/** Builds the plane scene whose diagonal ends at the given x expression. */
+export function sceneEndingAt(x: string, labels = "") {
+  return planeScene(labels).replace(
+    "to: { x: 1, y: 1 }",
+    `to: { x: ${x}, y: 1 }`
+  );
+}
+
 /** Applies only the compiler-owned MathVisual policy to one MDX fixture. */
 export const validateMathVisual = Effect.fn("MathVisualPolicyTest.validate")(
   function* (rawMdx: string) {

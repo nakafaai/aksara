@@ -5,8 +5,9 @@ import type {
   Pattern,
   Property,
 } from "estree-jsx";
+import { foldNumber } from "#compiler/ast/constant";
 
-/** Recursive JavaScript literal value accepted without evaluation. */
+/** Recursive JavaScript literal value accepted without running authored code. */
 export type StaticLiteral =
   | boolean
   | null
@@ -101,9 +102,13 @@ function failed(
   return { failure: { node, reason }, success: false };
 }
 
+/** Reads the number one expression denotes, or nothing when it denotes none. */
+type NumberReader = (node: Expression | Pattern) => number | undefined;
+
 /** Decodes a static array without executing authored JavaScript. */
 function decodeArray(
-  node: Extract<Expression, { readonly type: "ArrayExpression" }>
+  node: Extract<Expression, { readonly type: "ArrayExpression" }>,
+  readNumber: NumberReader
 ): StaticLiteralResult {
   const values: StaticLiteral[] = [];
   for (const element of node.elements) {
@@ -113,7 +118,7 @@ function decodeArray(
     if (element.type === "SpreadElement") {
       return failed("spread", element.argument);
     }
-    const decoded = decodeStaticLiteral(element);
+    const decoded = decode(element, readNumber);
     if (!decoded.success) {
       return decoded;
     }
@@ -123,7 +128,10 @@ function decodeArray(
 }
 
 /** Decodes a static object while rejecting ambiguous property syntax. */
-function decodeObject(node: ObjectExpression): StaticLiteralResult {
+function decodeObject(
+  node: ObjectExpression,
+  readNumber: NumberReader
+): StaticLiteralResult {
   const entries: [string, StaticLiteral][] = [];
   const names = new Set<string>();
   for (const property of node.properties) {
@@ -143,7 +151,7 @@ function decodeObject(node: ObjectExpression): StaticLiteralResult {
     if (names.has(name)) {
       return failed("duplicate-property", property);
     }
-    const decoded = decodeStaticLiteral(property.value);
+    const decoded = decode(property.value, readNumber);
     if (!decoded.success) {
       return decoded;
     }
@@ -153,9 +161,23 @@ function decodeObject(node: ObjectExpression): StaticLiteralResult {
   return { success: true, value: Object.fromEntries(entries) };
 }
 
-/** Decodes the recursive literal subset accepted by static authoring policy. */
-export function decodeStaticLiteral(
-  node: Expression | Pattern
+/** Reads a number that is written directly, with an optional sign. */
+function readSignedLiteral(node: Expression | Pattern): number | undefined {
+  if (
+    node.type === "UnaryExpression" &&
+    (node.operator === "+" || node.operator === "-") &&
+    node.argument.type === "Literal" &&
+    typeof node.argument.value === "number" &&
+    Number.isFinite(node.argument.value)
+  ) {
+    return node.operator === "-" ? -node.argument.value : node.argument.value;
+  }
+}
+
+/** Decodes one node, reading each number it holds with the given reader. */
+function decode(
+  node: Expression | Pattern,
+  readNumber: NumberReader
 ): StaticLiteralResult {
   if (node.type === "Literal") {
     const { value } = node;
@@ -169,23 +191,33 @@ export function decodeStaticLiteral(
     }
     return failed("dynamic-value", node);
   }
-  if (
-    node.type === "UnaryExpression" &&
-    (node.operator === "+" || node.operator === "-") &&
-    node.argument.type === "Literal" &&
-    typeof node.argument.value === "number" &&
-    Number.isFinite(node.argument.value)
-  ) {
-    return {
-      success: true,
-      value: node.operator === "-" ? -node.argument.value : node.argument.value,
-    };
-  }
   if (node.type === "ArrayExpression") {
-    return decodeArray(node);
+    return decodeArray(node, readNumber);
   }
   if (node.type === "ObjectExpression") {
-    return decodeObject(node);
+    return decodeObject(node, readNumber);
   }
-  return failed("dynamic-value", node);
+  const value = readNumber(node);
+  return value === undefined
+    ? failed("dynamic-value", node)
+    : { success: true, value };
+}
+
+/** Decodes the recursive literal subset accepted by static authoring policy. */
+export function decodeStaticLiteral(
+  node: Expression | Pattern
+): StaticLiteralResult {
+  return decode(node, readSignedLiteral);
+}
+
+/**
+ * Decodes the static literal subset and also folds constant numeric
+ * expressions, such as `Math.sqrt(3)` or `1 / 3`, into the numbers they denote.
+ * Exact geometry names irrational coordinates this way instead of rounding
+ * them, and the renderer evaluates the same source when it draws the scene.
+ */
+export function decodeConstantLiteral(
+  node: Expression | Pattern
+): StaticLiteralResult {
+  return decode(node, foldNumber);
 }
