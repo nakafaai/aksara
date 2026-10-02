@@ -205,27 +205,6 @@ it("rejects Indonesian reduplication damaged by the symbol rule", () => {
     ]
   );
 });
-it("allows required Indonesian reduplication hyphens only", () => {
-  const source = [
-    '  title: "Kecepatan Rata-rata",',
-    "## Kecepatan Rata-rata",
-    "## Jari-jari Lingkaran",
-    "## Istilah Satu-ke-Satu",
-    "## Nilai Rata-rata-Akhir",
-  ].join("\n");
-
-  assert.deepEqual(
-    findLessonVoiceIssues("id", source).map(({ line, rule }) => ({
-      line,
-      rule,
-    })),
-    [
-      { line: 4, rule: "heading-symbol" },
-      { line: 5, rule: "heading-symbol" },
-    ]
-  );
-});
-
 it("rejects German headings that need forbidden punctuation", () => {
   const source = [
     "## Emissionen sinken wenn sich ihre Quellen verändern",

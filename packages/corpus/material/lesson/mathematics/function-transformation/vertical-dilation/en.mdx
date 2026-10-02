@@ -1,366 +1,953 @@
 export const metadata = {
-  title: "Vertical Dilation",
-  description: "Use graphs and examples to understand how a scale factor stretches, compresses, or reflects a function vertically.",
+  title: "Vertical Dilation of a Function",
+  description: "Multiply a whole function by a factor to stretch, compress, or flip its graph, then see which points stay fixed and how the range and asymptote change.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Function Transformation",
 };
 
-## Scaling the Heights of a Function Graph
+## Multiplying Every Output by the Same Factor
 
-Vertical dilation multiplies **every output value** by the same factor. Horizontal coordinates remain unchanged, while the distance from the <InlineMath math="x" />-axis is multiplied by the absolute value of that factor.
+A **vertical dilation** by a factor <InlineMath math="a \ne 0" />, also called a vertical stretch or compression, turns <InlineMath math="y = f(x)" /> into <InlineMath math="y = a f(x)" />. The factor multiplies the output after the rule <InlineMath math="f" /> has acted, so every point of the graph moves straight up or down:
 
-If you have a function <InlineMath math="f(x)" />, then vertical dilation produces a new function <InlineMath math="g(x) = k \cdot f(x)" />. Here <InlineMath math="k \ne 0" /> is the factor that multiplies each output value.
+<BlockMath math="(x_0, y_0) \longmapsto (x_0,\ a y_0)" />
 
-### How the Output Factor Changes the Height
+The <InlineMath math="x" />-coordinate stays, and every height is multiplied by <InlineMath math="a" />. If <InlineMath math="a > 1" />, the graph is **stretched away from the <InlineMath math="x" />-axis**, and if <InlineMath math="0 < a < 1" />, it is compressed toward the <InlineMath math="x" />-axis. A negative factor also reflects the graph across the <InlineMath math="x" />-axis. Points on the <InlineMath math="x" />-axis do not move, because their height is zero and <InlineMath math="a \cdot 0 = 0" />.
 
-For any function <InlineMath math="f(x)" /> and a nonzero factor <InlineMath math="k" />, vertical dilation is defined as:
+In the 3D layer view, several graphs <InlineMath math="a f(x)" /> are stacked by their value of <InlineMath math="a" />. You can turn that view and watch every point travel along a straight line as <InlineMath math="a" /> changes.
 
-<BlockMath math="g(x) = k \cdot f(x)" />
-
-The factor <InlineMath math="k" /> decides what happens to the height:
-- If <InlineMath math="k > 1" />, the graph is stretched vertically (enlarged)
-- If <InlineMath math="0 < k < 1" />, the graph is compressed vertically (reduced)
-- If <InlineMath math="k = 1" />, the graph does not change
-- If <InlineMath math="k < 0" />, the graph undergoes reflection as well as dilation
-
-The value <InlineMath math="k = 0" /> is excluded because it sends every output to <InlineMath math="0" />. The resulting graph lies on the <InlineMath math="x" />-axis only at inputs in the original domain.
-
-The absolute factor changes the **distance from the horizontal axis**. A positive factor above one moves points farther from that axis. A factor between zero and one moves points closer to it.
-
-## Visualization of Vertical Dilation
-
-The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale factors change **vertical distance** from the <InlineMath math="x" />-axis.
+Apply the rule to the parabola <InlineMath math="f(x) = x^2" /> with <InlineMath math="a = 2" /> and <InlineMath math="a = \frac{1}{2}" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Vertical Dilation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
-  description="Notice how the graph is stretched or compressed vertically with different scale factors."
-  cameraPosition={[0, 3, 15]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 2 * x * x, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [2.5, -2.1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 0.5 * x * x, z: 0 };
-      }),
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=0.5x^2" />, offset: [2.5, -3.2, 0] }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Graphs of <InlineMath math="f(x) = x^2" />, <InlineMath math="g(x) = 2f(x)" />, and <InlineMath math="h(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>From the point <InlineMath math="(2, 4)" /> on <InlineMath math="f" />, one arrow rises to <InlineMath math="(2, 8)" /> on <InlineMath math="g" /> and another drops to <InlineMath math="(2, 2)" /> on <InlineMath math="h" />. The <InlineMath math="x" />-coordinate stays <InlineMath math="2" />.</>}
+  cameraPosition={[0, 4.4, 9.6]}
+  cameraTarget={[0, 4.4, 0]}
+  data={(() => {
+    // y = a f(x) with f(x) = x^2 leaves the frame y <= 49/4 at x = ±sqrt(49 / (4a)).
+    // Every curve uses the grid x = i / 160 strictly inside its exits, plus both exits.
+    const f = (x) => x * x;
+    const xs = Array.from({ length: 1601 }, (_, i) => (i - 800) / 160);
+    const curve = (a) => {
+      const exit = Math.sqrt(49 / (4 * a));
+      return [-exit, ...xs.filter((x) => Math.abs(x) < exit), exit].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    // The point (x0, f(x0)) moves straight up or down to (x0, a f(x0)).
+    const move = (x0, a) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: a * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [880],
+        labels: [{ text: <InlineMath math="f" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: curve(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 105, offset: [0.25, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 1300, offset: [0.25, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: move(2, 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2, 1 / 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
 />
 
-The graph shows:
-- The original function <InlineMath math="f(x) = x^2" /> as reference
-- Function <InlineMath math="g(x) = 2x^2" /> is vertically stretched by factor <InlineMath math="2" />
-- Function <InlineMath math="h(x) = 0.5x^2" /> is vertically compressed by factor <InlineMath math="0.5" />
-- All graphs have the same vertex at <InlineMath math="(0, 0)" />
+All three parabolas share the vertex <InlineMath math="(0, 0)" />, because a height of zero stays zero. Follow the line <InlineMath math="x = 2" />: the height <InlineMath math="4" /> times <InlineMath math="2" /> becomes <InlineMath math="8" />, and times <InlineMath math="\frac{1}{2}" /> it becomes <InlineMath math="2" />.
 
-## Vertical Dilation on Linear Functions
+## Heights Scale but Zeros Stay Put
 
-The **same rule** applies to the linear function <InlineMath math="f(x) = x + 1" />.
+At the same <InlineMath math="x" />-value, the new graph is always <InlineMath math="a" /> times as high as the old one. A zero <InlineMath math="x_0" /> satisfies <InlineMath math="f(x_0) = 0" />, so <InlineMath math="a f(x_0) = 0" /> as well. Conversely, with <InlineMath math="a \ne 0" />, the product <InlineMath math="a f(x)" /> is zero only when <InlineMath math="f(x) = 0" />, so no new zero appears. Together, these two facts mean that **zeros do not move**. For <InlineMath math="a = 0" />, every <InlineMath math="x" /> would become a zero, which is why a dilation needs <InlineMath math="a \ne 0" />.
+
+A [vertical shift](/en/subjects/mathematics/function-transformation/vertical-translation) adds the same number to every height, so points on the <InlineMath math="x" />-axis move up or down too, and zeros can move, appear, or disappear. Multiplication keeps a height of zero at zero, while addition turns it into the number that was added.
+
+Apply the factor <InlineMath math="a = 3" /> to <InlineMath math="f(x) = x^2 - 4x + 3 = (x - 1)(x - 3)" />. The graph of <InlineMath math="f" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="x = 1" /> and <InlineMath math="x = 3" />, has its vertex at <InlineMath math="(2, -1)" />, and meets the <InlineMath math="y" />-axis at <InlineMath math="(0, 3)" />. Multiply the whole function by <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned} g(x) &= 3f(x) \\ &= 3(x^2 - 4x + 3) \\ &= 3x^2 - 12x + 9 \end{aligned}" />
+
+Check the three special points. The values <InlineMath math="g(1) = 3 - 12 + 9 = 0" /> and <InlineMath math="g(3) = 27 - 36 + 9 = 0" /> show that the zeros stay. The vertex of <InlineMath math="g" /> lies at <InlineMath math="x = \frac{12}{2 \cdot 3} = 2" /> with <InlineMath math="g(2) = -3 = 3 \cdot (-1)" />. The <InlineMath math="y" />-intercept becomes <InlineMath math="(0, 9)" /> because <InlineMath math="g(0) = 9 = 3 \cdot 3" />. **Every height triples**, negative heights included.
 
 <LineEquation
   showZAxis={false}
-  title={<>Vertical Dilation of Linear Function <InlineMath math="f(x) = x + 1" /></>}
-  description={<>The scale factor changes both the slope and the <InlineMath math="y" />-intercept.</>}
-  cameraPosition={[-0.5, 2, 14]}
-  cameraTarget={[-0.5, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 51 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 50 * 12;
-        return { x, y: x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [-3.3, 1, 0], at: 22 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * (x + 1), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [-2, 2, 0] }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 66 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 65 * 12;
-        return { x, y: 0.5 * (x + 1), z: 0 };
-      }),
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0.5(x+1)" />, offset: [1.5, -1.5, 0], at: 37 }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Parabolas <InlineMath math="f(x) = x^2 - 4x + 3" /> and <InlineMath math="g(x) = 3f(x)" /></>}
+  description={<>Vertical arrows take each point on <InlineMath math="f" /> to the point on <InlineMath math="g" /> whose height is multiplied by <InlineMath math="3" />: points above the <InlineMath math="x" />-axis rise, points below it sink, and both zeros stay where they are.</>}
+  cameraPosition={[2, 3, 15]}
+  cameraTarget={[2, 3, 0]}
+  data={(() => {
+    // f(x) = (x - 1)(x - 3) = (x - 2)^2 - 1. The curve y = a f(x) leaves the frame y <= 15 where
+    // (x - 2)^2 = 1 + 15 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => (x - 1) * (x - 3);
+    const xs = Array.from({ length: 3601 }, (_, i) => -5 + i / 240);
+    const curve = (a) => {
+      const d = Math.sqrt(1 + 15 / a);
+      return [2 - d, ...xs.filter((x) => Math.abs(x - 2) < d), 2 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: 3 * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1680, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 1037, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: move(4),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 1, y: f(1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 3, y: f(3), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
 
-The three lines show:
-- The original function <InlineMath math="f(x) = x + 1" /> has slope <InlineMath math="1" />
-- Function <InlineMath math="g(x) = 3(x + 1)" /> has slope <InlineMath math="3" /> (stretched)
-- Function <InlineMath math="h(x) = 0.5(x + 1)" /> has slope <InlineMath math="0.5" /> (compressed)
-- All lines still intersect the <InlineMath math="y" />-axis, but at different points
+The line <InlineMath math="f(x) = x + 1" /> shows the same thing for a linear function. For every factor the zero <InlineMath math="x = -1" /> stays, while the point <InlineMath math="(1, 2)" /> rises to <InlineMath math="(1, 6)" /> for <InlineMath math="a = 3" /> and sinks to <InlineMath math="(1, 1)" /> for <InlineMath math="a = \frac{1}{2}" />. The slope of the line <InlineMath math="a(x + 1)" /> becomes <InlineMath math="a" />, and the <InlineMath math="y" />-intercept moves from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, a)" />.
 
-## Which Values the Vertical Scale Moves
+<LineEquation
+  showZAxis={false}
+  title={<>Lines <InlineMath math="f(x) = x + 1" />, <InlineMath math="g(x) = 3f(x)" />, and <InlineMath math="h(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>All three lines pass through the fixed point <InlineMath math="(-1, 0)" /> on the <InlineMath math="x" />-axis. At <InlineMath math="x = 1" />, the arrows take the height <InlineMath math="2" /> to <InlineMath math="6" /> and to <InlineMath math="1" />.</>}
+  cameraPosition={[0.5, 2, 10]}
+  cameraTarget={[0.5, 2, 0]}
+  data={(() => {
+    // f(x) = x + 1. Inside the frame -11 <= x <= 12, -6 <= y <= 10 the straight line y = a f(x)
+    // runs from a f(x) = -6 to a f(x) = 10, cut at the frame sides. Every line holds the zero x = -1,
+    // its y-intercept, and the point at x = 1 named in the text; the sample xLabel only carries the label.
+    const f = (x) => x + 1;
+    const line = (a, xLabel) =>
+      [Math.max(-11, -6 / a - 1), -1, 0, 1, xLabel, Math.min(12, 10 / a - 1)].map((x) => ({ x, y: a * f(x), z: 0 }));
+    const move = (x0, a) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: a * f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: line(1, 3),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 4, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: line(3, 1.1),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 4, offset: [-0.3, 0.2, 0], anchorX: "right" }],
+      },
+      {
+        points: line(1 / 2, 3.5),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 4, offset: [0.1, -0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: move(1, 3),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(1, 1 / 2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.25 },
+      },
+      {
+        points: [{ x: -1, y: f(-1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
+/>
 
-Once you know whether the graph grows taller or shorter, you still need to know which values move. Vertical dilation multiplies every output value by the factor <InlineMath math="k" />, so heights change while positions along the <InlineMath math="x" />-axis stay the same.
+## Straight Lines Through All the Layers
 
-Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. The matching point on the graph of <InlineMath math="k \cdot f(x)" /> is <InlineMath math="(a, k \cdot b)" />. The <InlineMath math="x" /> coordinate stays at <InlineMath math="a" /> because vertical dilation never moves a point sideways.
+At one fixed <InlineMath math="x" />, how does the height change as <InlineMath math="a" /> runs from <InlineMath math="2" /> down to <InlineMath math="-1" />? The 3D layer view stacks the graphs of <InlineMath math="y = a f(x)" /> for <InlineMath math="f(x) = x^2 - 1" /> and <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" />, and <InlineMath math="-1" />. The layer for the factor <InlineMath math="a" /> lies at <InlineMath math="z = 2(1 - a)" />, so the original graph <InlineMath math="a = 1" /> sits in the <InlineMath math="xy" />-plane, and **the gap between two layers is proportional to the difference of their <InlineMath math="a" />-values**.
 
-| Part of the function | Before the dilation | After the dilation by <InlineMath math="k > 0" /> |
+The flat layer is <InlineMath math="a = 0" />, because <InlineMath math="0 \cdot f(x) = 0" /> for every <InlineMath math="x" />. A dilation needs <InlineMath math="a \ne 0" />, so the flat layer is only the hinge that every line passes through. Straight lines connect the points with the same <InlineMath math="x" />-value on all layers, at <InlineMath math="x = -2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" />.
+
+<LineEquation
+  title={<>Layers of <InlineMath math="a f(x)" /> for <InlineMath math="f(x) = x^2 - 1" /></>}
+  description={<>Each straight line holds the points with the same <InlineMath math="x" /> on all layers. Turn the view until the <InlineMath math="x" />-axis points at you and see every line pass through the layer <InlineMath math="a = 0" />.</>}
+  cameraPosition={[4.3, 7.34, 13.02]}
+  cameraTarget={[0, 1.2, 1.2]}
+  data={(() => {
+    // f(x) = x^2 - 1 on -2 <= x <= 2. The layer for the factor a lies in the plane z = 2(1 - a)
+    // and draws y = a f(x).
+    const f = (x) => x * x - 1;
+    const depth = (a) => 2 * (1 - a);
+    const xs = Array.from({ length: 641 }, (_, i) => -2 + i / 160);
+    const layer = (a) => xs.map((x) => ({ x, y: a * f(x), z: depth(a) }));
+    // The line through x0 holds the point (x0, a f(x0)) of every layer. It is straight because the
+    // height a f(x0) and the depth 2(1 - a) both change linearly with a.
+    const ray = (x0) => [-1, 0, 1 / 2, 1, 2].map((a) => ({ x: x0, y: a * f(x0), z: depth(a) }));
+    return [
+      {
+        points: layer(2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 2" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 1" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(1 / 2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = \tfrac{1}{2}" />, at: 0, offset: [-0.45, 0.45, 0], anchorX: "right" }],
+      },
+      {
+        points: layer(0),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 0" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(-1),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = -1" />, at: 0, offset: [-0.45, 0.25, 0], anchorX: "right" }],
+      },
+      {
+        points: ray(-2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
+      },
+      {
+        points: ray(-1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
+      },
+      {
+        points: ray(0),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
+      },
+      {
+        points: ray(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
+      },
+      {
+        points: ray(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 1, 2, 3, 4],
+      },
+    ];
+  })()}
+/>
+
+Follow the line at <InlineMath math="x = 2" />. Its points are <InlineMath math="(2, 3a)" />, with heights <InlineMath math="6" />, <InlineMath math="3" />, <InlineMath math="\frac{3}{2}" />, <InlineMath math="0" />, and <InlineMath math="-3" /> for <InlineMath math="a = 2" />, <InlineMath math="1" />, <InlineMath math="\frac{1}{2}" />, <InlineMath math="0" />, and <InlineMath math="-1" />. The line is straight because both the height <InlineMath math="3a" /> and the layer position <InlineMath math="z = 2(1 - a)" /> change linearly with <InlineMath math="a" />.
+
+Drag the view until the <InlineMath math="x" />-axis points at you. In that side view, **every line passes through the flat layer <InlineMath math="a = 0" />**. The lines at <InlineMath math="x = -1" /> and <InlineMath math="x = 1" /> lie flat at height <InlineMath math="0" />, because those two values are the zeros of <InlineMath math="f" />. Past the flat layer, the height on every other line changes sign, so the layer <InlineMath math="a = -1" /> is upside down.
+
+Every line stays at a single <InlineMath math="x" />-value, because a vertical dilation only moves points up or down. The two lines at the zeros do not even change height, because points on the <InlineMath math="x" />-axis never move.
+
+All layers cover the same interval, from <InlineMath math="x = -2" /> to <InlineMath math="x = 2" />, because a vertical dilation moves no point left or right, so the domain does not change. In a [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation), the trace of a point across similar layers is curved, because the <InlineMath math="x" />-coordinate is divided by the input multiplier.
+
+## A Negative Factor Flips the Graph
+
+A negative factor can be read as two steps. First multiply by <InlineMath math="|a|" /> to stretch or compress, then multiply by <InlineMath math="-1" /> to **reflect the graph across the <InlineMath math="x" />-axis**. For <InlineMath math="a = -1" />, only the [vertical reflection](/en/subjects/mathematics/function-transformation/vertical-reflection) <InlineMath math="y = -f(x)" /> remains.
+
+For <InlineMath math="f(x) = x^2" /> and <InlineMath math="a = -2" />, every height <InlineMath math="x^2" /> becomes <InlineMath math="-2x^2" />. The point <InlineMath math="(1, 1)" /> drops to <InlineMath math="(1, -2)" />, and the point <InlineMath math="(2, 4)" /> drops to <InlineMath math="(2, -8)" />. The parabola that opened upward now opens downward and is narrower, while the vertex <InlineMath math="(0, 0)" /> does not move.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Parabolas <InlineMath math="f(x) = x^2" /> and <InlineMath math="g(x) = -2f(x)" /></>}
+  description={<>Both arrows cross the <InlineMath math="x" />-axis, and the distance of each tip to the <InlineMath math="x" />-axis is twice the original distance. The vertex <InlineMath math="(0, 0)" /> stays.</>}
+  cameraPosition={[0, -2, 14]}
+  cameraTarget={[0, -2, 0]}
+  data={(() => {
+    // f(x) = x^2 stays inside the frame -12.5 <= y <= 9 for -3 <= x <= 3, and g(x) = -2f(x)
+    // for -5/2 <= x <= 5/2. Both use the grid x = i / 160.
+    const f = (x) => x * x;
+    const g = (x) => -2 * f(x);
+    const grid = (to) => Array.from({ length: 320 * to + 1 }, (_, i) => -to + i / 160);
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: g(x0), z: 0 },
+    ];
+    return [
+      {
+        points: grid(3).map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 176, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: grid(5 / 2).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
+Take <InlineMath math="h(x) = |x - 1| + 2" />. Its vertex <InlineMath math="(1, 2)" /> is the lowest point, so the range of <InlineMath math="h" /> is <InlineMath math="[2, \infty)" />. Multiply the whole function by <InlineMath math="a = -2" />:
+
+<BlockMath math="\begin{aligned} H(x) &= -2\,h(x) \\ &= -2\left(|x - 1| + 2\right) \\ &= -2|x - 1| - 4 \end{aligned}" />
+
+The vertex moves to <InlineMath math="(1, -4)" /> and is now the highest point. The range changes from <InlineMath math="[2, \infty)" /> to <InlineMath math="(-\infty, -4]" />, because **multiplying by a negative number reverses the order of the endpoints**. Check one more point: <InlineMath math="h(3) = 4" />, and <InlineMath math="H(3) = -2 \cdot 2 - 4 = -8 = -2 \cdot 4" />.
+
+For comparison, <InlineMath math="a = -1" /> gives <InlineMath math="-h(x) = -|x - 1| - 2" /> with vertex <InlineMath math="(1, -2)" />. That graph is only reflected, without a stretch.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphs of <InlineMath math="h(x) = |x - 1| + 2" />, <InlineMath math="y = -h(x)" />, and <InlineMath math="H(x) = -2h(x)" /></>}
+  description={<>The arrows cross the <InlineMath math="x" />-axis: the lowest point <InlineMath math="(1, 2)" /> becomes the highest point <InlineMath math="(1, -4)" />. For <InlineMath math="a = -1" />, the vertex is <InlineMath math="(1, -2)" />.</>}
+  cameraPosition={[1, -2, 14]}
+  cameraTarget={[1, -2, 0]}
+  data={(() => {
+    // h(x) = |x - 1| + 2 is exact with straight pieces, so each graph y = a h(x) needs its corner x = 1,
+    // the point x = 3 named in the text, and the points where it leaves the frame -12 <= y <= 8:
+    // a h(x) = 8 when a > 0 and a h(x) = -12 when a < 0, at |x - 1| = r.
+    const h = (x) => Math.abs(x - 1) + 2;
+    const v = (a) => {
+      const r = (a > 0 ? 8 / a : -12 / a) - 2;
+      return [1 - r, 1, 3, 1 + r].map((x) => ({ x, y: a * h(x), z: 0 }));
+    };
+    const move = (x0) => [
+      { x: x0, y: h(x0), z: 0 },
+      { x: x0, y: -2 * h(x0), z: 0 },
+    ];
+    return [
+      {
+        points: v(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 1, offset: [0.3, -0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: v(-1),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-h" />, at: 1, offset: [0.3, 0.5, 0], anchorX: "left" }],
+      },
+      {
+        points: v(-2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="H" />, at: 1, offset: [1, -1, 0], anchorX: "left" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(3),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
+## Range and Asymptote After Multiplying
+
+Because only heights change, **every feature set by a height is multiplied by <InlineMath math="a" />**, while every feature set by an <InlineMath math="x" />-value stays.
+
+| Feature | In <InlineMath math="a f(x)" /> | Reason |
 | --- | --- | --- |
-| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a, k \cdot b)" /> |
-| Domain | The original interval | The same interval as before |
-| Range <InlineMath math="[c, d]" /> | The original interval | Becomes <InlineMath math="[k \cdot c, k \cdot d]" /> |
-| <InlineMath math="x" />-intercept | At <InlineMath math="x = x_0" /> | Stays at <InlineMath math="x = x_0" /> |
-| <InlineMath math="y" />-intercept | At <InlineMath math="y = y_0" /> | Moves to <InlineMath math="y = k \cdot y_0" /> |
+| Point <InlineMath math="(x_0, y_0)" /> | <InlineMath math="(x_0, a y_0)" /> | <InlineMath math="x" /> kept, height multiplied by <InlineMath math="a" /> |
+| Zeros | unchanged | a height of zero stays zero |
+| Domain | unchanged | the domain holds <InlineMath math="x" />-values |
+| Range <InlineMath math="[c, d]" /> for <InlineMath math="a > 0" /> | <InlineMath math="[ac, ad]" /> | every height is multiplied by <InlineMath math="a" /> |
+| Range <InlineMath math="[c, d]" /> for <InlineMath math="a < 0" /> | <InlineMath math="[ad, ac]" /> | the endpoints change order |
+| <InlineMath math="y" />-intercept | <InlineMath math="(0, a f(0))" /> | its height <InlineMath math="f(0)" /> is multiplied by <InlineMath math="a" /> |
+| Horizontal asymptote <InlineMath math="y = y_1" /> | <InlineMath math="y = a y_1" /> | a horizontal line is fixed by a height |
 
-The range grows or shrinks together with the graph, because it lists the output values. The domain keeps its own values because the allowed inputs do not change. A [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) divides the horizontal coordinates, so the heights stay unchanged.
-
-With a **negative factor**, the range endpoints reverse order. The range <InlineMath math="[c,d]" /> becomes <InlineMath math="[kd,kc]" />. For example, scaling <InlineMath math="[1,4]" /> by <InlineMath math="k=-2" /> gives <InlineMath math="[-8,-2]" />.
-
-## Scaling the Values of an Exponential Function
-
-For the exponential function <InlineMath math="f(x) = 2^x" />, the scale factor multiplies every function value.
+The graph of <InlineMath math="f(x) = 2^x - 4" /> approaches the [horizontal asymptote](/en/subjects/mathematics/function-modeling/asymptote) <InlineMath math="y = -4" /> and has range <InlineMath math="(-4, \infty)" />. With <InlineMath math="a = \frac{1}{2}" />, the function becomes <InlineMath math="\frac{1}{2} \cdot 2^x - 2" />. Its asymptote is <InlineMath math="y = -2" />, its range is <InlineMath math="(-2, \infty)" />, and its <InlineMath math="y" />-intercept changes from <InlineMath math="(0, -3)" /> to <InlineMath math="\left(0, -\frac{3}{2}\right)" />. For <InlineMath math="a \ne 1" />, the only horizontal asymptote that stays in place is <InlineMath math="y = 0" />, because <InlineMath math="a \cdot 0 = 0" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Vertical Dilation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description="The exponential curve undergoes height changes according to the scale factor."
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 960 * 7;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [2, 1, 0], at: 549 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 480 * 7;
-        return { x, y: 2 * Math.pow(2, x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2 \cdot 2^x" />, offset: [1, 2, 0], at: 274 }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Curves <InlineMath math="f(x) = 2^x - 4" /> and <InlineMath math="g(x) = \tfrac{1}{2}f(x)" /></>}
+  description={<>Thin lines mark the asymptotes <InlineMath math="y = -4" /> and <InlineMath math="y = -2" />. The arrow takes <InlineMath math="(3, 4)" /> to <InlineMath math="(3, 2)" />, while the <InlineMath math="x" />-intercept <InlineMath math="(2, 0)" /> stays.</>}
+  cameraPosition={[0.5, -0.5, 12]}
+  cameraTarget={[0.5, -0.5, 0]}
+  data={(() => {
+    // f(x) = 2^x - 4 stays inside the frame x >= -12, y <= 12 up to x = 4, where 2^x = 16.
+    // g(x) = f(x) / 2 reaches y = 12 where 2^x = 28; it uses the same grid plus that exact exit.
+    const f = (x) => 2 ** x - 4;
+    const g = (x) => f(x) / 2;
+    const xs = Array.from({ length: 1089 }, (_, i) => -12 + i / 64);
+    const asymptote = (y) => [-12, 12.6].map((x) => ({ x, y, z: 0 }));
+    return [
+      {
+        points: xs.filter((x) => x <= 4).map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="f" />, at: 966, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: [...xs.filter((x) => 2 ** x < 28), Math.log2(28)].map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="g" />, at: 1000, offset: [0.3, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-4),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -4" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-2),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -2" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 3, y: f(3), z: 0 },
+          { x: 3, y: g(3), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 2, y: f(2), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
 
-For exponential functions:
-- The **horizontal asymptote** remains at <InlineMath math="y = 0" /> for both functions
-- The <InlineMath math="y" />-intercept changes from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, 2)" />
-- Every function value doubles, while the exponential base and relative growth rate stay the same
+The asymptote <InlineMath math="y = -4" /> moves to <InlineMath math="y = -2" /> because its height is multiplied by <InlineMath math="\frac{1}{2}" /> as well, while the zero <InlineMath math="x = 2" /> stays because <InlineMath math="f(2) = 0" />.
 
-## Vertical Dilation with Negative Factor
+## One Graph From Two Transformations
 
-A negative scale factor combines vertical scaling with reflection across the <InlineMath math="x" />-axis.
+For certain functions, a vertical dilation gives exactly the same graph as a horizontal dilation or a shift. **The match comes from the algebra of the function**, so each row of the table takes one short calculation to prove.
+
+| <InlineMath math="f(x)" /> | Vertical dilation | Same graph written as | Read as |
+| --- | --- | --- | --- |
+| <InlineMath math="x^2" /> | <InlineMath math="4x^2" /> | <InlineMath math="(2x)^2" /> | horizontal compression with <InlineMath math="b = 2" /> |
+| <InlineMath math="\sqrt{x}" /> | <InlineMath math="\frac{1}{2}\sqrt{x}" /> | <InlineMath math="\sqrt{\frac{x}{4}}" /> | horizontal stretch with <InlineMath math="b = \frac{1}{4}" /> |
+| <InlineMath math="2^x" /> | <InlineMath math="2 \cdot 2^x" /> | <InlineMath math="2^{x + 1}" /> | shift of <InlineMath math="1" /> unit to the left |
+
+The first row uses <InlineMath math="(2x)^2 = 4x^2" />, the second uses <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}}{\sqrt{4}}" /> for <InlineMath math="x \ge 0" />, and the third uses <InlineMath math="2^{x + 1} = 2^x \cdot 2" />. These matches depend on the function. For <InlineMath math="f(x) = x^2 + 1" />, <InlineMath math="4f(x) = 4x^2 + 4" /> while <InlineMath math="f(2x) = 4x^2 + 1" />, so the two graphs differ.
+
+The two readings of the third row meet at one point. The point <InlineMath math="(1, 2)" /> on <InlineMath math="y = 2^x" /> rises straight up to <InlineMath math="(1, 4)" /> because its height is multiplied by <InlineMath math="2" />, while the point <InlineMath math="(2, 4)" /> shifts one unit to the left onto the same point.
 
 <LineEquation
   showZAxis={false}
-  title={<>Vertical Dilation with Negative Factor <InlineMath math="f(x) = x^2" /></>}
-  description="Negative scale factor causes reflection as well as dilation."
-  cameraPosition={[0, 0, 13]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3, 2, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: -2 * x * x, z: 0 };
-      }),
-      color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [3.6, -2, 0] }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Curves <InlineMath math="f(x) = 2^x" /> and <InlineMath math="g(x) = 2f(x) = 2^{x + 1}" /></>}
+  description={<>The vertical arrow takes <InlineMath math="(1, 2)" /> to <InlineMath math="(1, 4)" />, and the horizontal arrow takes <InlineMath math="(2, 4)" /> to the same point. The <InlineMath math="y" />-intercept <InlineMath math="(0, 1)" /> moves to <InlineMath math="(0, 2)" />.</>}
+  cameraPosition={[0.5, 3.5, 10]}
+  cameraTarget={[0.5, 3.5, 0]}
+  data={(() => {
+    // f(x) = 2^x stays inside the frame x >= -12, y <= 16 up to x = 4, and g(x) = 2 f(x) up to x = 3.
+    // Both use the grid x = i / 64; sample 768 is x = 0.
+    const f = (x) => 2 ** x;
+    const g = (x) => 2 * f(x);
+    const xs = Array.from({ length: 1025 }, (_, i) => -12 + i / 64);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="f" />, at: 928, offset: [0.3, -0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.filter((x) => x <= 3).map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [768],
+        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.3, 0.2, 0], anchorX: "right" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: g(1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [
+          { x: 2, y: f(2), z: 0 },
+          { x: 2 - 1, y: g(2 - 1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
 />
 
-When the scale factor is negative:
-- The graph undergoes reflection across the <InlineMath math="x" />-axis
-- Simultaneously undergoes dilation according to the absolute value of the scale factor
-- A parabola that opens **upward** becomes one that opens downward
+The first row also explains the shape of <InlineMath math="y = a x^2" />. When <InlineMath math="a > 0" />, <InlineMath math="a x^2 = \left(\sqrt{a}\, x\right)^2" />, so the leading coefficient that controls how narrow a parabola is in the [quadratic function characteristics](/en/subjects/mathematics/quadratic-function/quadratic-function-characteristics) can be read as a vertical dilation by <InlineMath math="a" /> or as a horizontal dilation with input multiplier <InlineMath math="\sqrt{a}" />.
+
+In the 3D layer view, the graphs of <InlineMath math="y = a x^2" /> for <InlineMath math="a = 1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" /> sit at the depths <InlineMath math="z = -a" />. The straight line at <InlineMath math="x = 1" /> holds the point <InlineMath math="(1, a)" /> of every layer, while the curve at height <InlineMath math="4" /> holds the point <InlineMath math="\left(\frac{2}{\sqrt{a}}, 4\right)" />.
+
+<LineEquation
+  title={<>Layers of <InlineMath math="y = a x^2" /> read in two ways</>}
+  description={<>The layer for <InlineMath math="a" /> sits at <InlineMath math="z = -a" />. The straight line at <InlineMath math="x = 1" /> rises in proportion to <InlineMath math="a" />, while the curve at height <InlineMath math="4" /> approaches the <InlineMath math="y" />-axis.</>}
+  cameraPosition={[7.13, 7.87, 2.49]}
+  cameraTarget={[0, 2, -2.5]}
+  data={(() => {
+    // y = a x^2 for a = 1, 2, 3, 4, each in the plane z = -a and drawn up to the height 4, which it reaches
+    // at x = ±2 / sqrt(a). The grid x = i / 320 strictly inside those exits, plus both exits.
+    const xs = Array.from({ length: 1281 }, (_, i) => -2 + i / 320);
+    const layer = (a) => {
+      const e = 2 / Math.sqrt(a);
+      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * x * x, z: -a }));
+    };
+    // The factor a runs from 1 to 4 in steps of 1 / 100, so a = 1, 2, 3, 4 sit at the indices 0, 100, 200, 300.
+    const as = Array.from({ length: 301 }, (_, i) => 1 + i / 100);
+    // Read vertically, the height at x = x0 is a x0^2: the line through (x0, a x0^2, -a) is straight.
+    const ray = (x0) => as.map((a) => ({ x: x0, y: a * x0 * x0, z: -a }));
+    // Read horizontally, a x^2 = (sqrt(a) x)^2, so the height 4 sits at x = ±2 / sqrt(a): a curved trace.
+    const level = (side) => as.map((a) => ({ x: side * (2 / Math.sqrt(a)), y: 4, z: -a }));
+    return [
+      {
+        points: layer(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 1" />, at: 960, offset: [0.45, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(2),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 2" />, at: 0, offset: [0.25, 0.7, 0], anchorX: "right" }],
+      },
+      {
+        points: layer(3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 3" />, at: 0, offset: [-0.45, 0.7, 0], anchorX: "left" }],
+      },
+      {
+        points: layer(4),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a = 4" />, at: 320, offset: [0.7, -0.25, 0], anchorX: "left" }],
+      },
+      {
+        points: ray(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: true,
+        pointIndices: [0, 100, 200, 300],
+        labels: [{ text: <InlineMath math="(1, a)" />, at: 300, offset: [0.45, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: level(1),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="x = \tfrac{2}{\sqrt{a}}" />, at: 300, offset: [-0.25, 0.7, 0], anchorX: "left" }],
+      },
+      {
+        points: level(-1),
+        smooth: false,
+        color: "#64748b",
+        showPoints: false,
+      },
+    ];
+  })()}
+/>
+
+The straight line is the vertical reading: **the height at <InlineMath math="x = 1" /> grows in proportion to <InlineMath math="a" />**. The curve at height <InlineMath math="4" /> is the horizontal reading: the parabola shrinks to <InlineMath math="\frac{1}{\sqrt{a}}" /> of its original width. Both describe the same layers.
+
+## Mistakes When Multiplying the Output
+
+Every mistake in this table breaks the same rule: **the <InlineMath math="x" />-coordinate stays**, and **every height is multiplied by <InlineMath math="a" />**.
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Multiplying only the first term, as in <InlineMath math="3x^2 - 4x + 3" /> for <InlineMath math="3f(x)" /> with <InlineMath math="f(x) = x^2 - 4x + 3" /> | The factor multiplies the whole output | At <InlineMath math="x = 1" /> the result is <InlineMath math="2" />, although the zero must stay <InlineMath math="0" /> |
+| Moving the zeros | <InlineMath math="a \cdot 0 = 0" /> | Substitute the old zeros into the new function |
+| Changing the domain | The <InlineMath math="x" />-coordinates do not change | Compare the domain endpoints before and after |
+| Forgetting the reflection when <InlineMath math="a < 0" /> | A negative sign flips every height | The lowest point must become the highest point |
+| Confusing <InlineMath math="a f(x)" /> with <InlineMath math="f(ax)" /> | A factor outside multiplies outputs, a factor inside multiplies inputs | Compare the <InlineMath math="y" />-intercepts: <InlineMath math="a f(0)" /> differs from <InlineMath math="f(0)" /> when <InlineMath math="f(0) \ne 0" /> |
+| Leaving a horizontal asymptote at its old height | The asymptote height <InlineMath math="y_1" /> is multiplied too | Multiply the asymptote height by <InlineMath math="a" /> |
+
+In <InlineMath math="H(x) = -2\left(|x - 1| + 2\right) = -2|x - 1| - 4" />, the shift of <InlineMath math="2" /> units up was already inside <InlineMath math="h" /> before the multiplication, so the dilation turns that shift into <InlineMath math="-4" />. If you multiply <InlineMath math="|x - 1|" /> by <InlineMath math="-2" /> first and then shift <InlineMath math="2" /> units up, you get <InlineMath math="-2|x - 1| + 2" /> with vertex <InlineMath math="(1, 2)" />, a different graph. In [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function), you write down the function after every step so that a change like this is not missed.
 
 ## Exercises
 
-The three problems below use the **height** rule you have just learned. Each one multiplies the output by a stated factor, so watch whether that factor is greater than one, between zero and one, or negative. Try them without the answer key first, then compare your steps with the worked answers.
+The problems move from direct multiplication to finding the factor yourself. In each one, **multiply the whole output by the factor**, constant term included.
 
-1. Given the function <InlineMath math="f(x) = x^2 - 4x + 3" />. Determine the equation of the function resulting from vertical dilation with scale factor <InlineMath math="3" />.
-
-2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> undergoes vertical dilation with factor <InlineMath math="\frac{1}{2}" />. Determine the equation of the resulting function, then determine the range of that function.
-
-3. Function <InlineMath math="h(x) = |x - 1| + 2" /> undergoes vertical dilation with factor <InlineMath math="-1" />. Determine the vertex of the resulting dilated function.
-
-Every worked answer starts by multiplying the whole output expression by the factor, because that is where the height rule lives. The equation is then simplified and the new graph is checked to confirm whether it grew taller or shorter.
+1. Given <InlineMath math="f(x) = x^2 - 2x - 8" />, find <InlineMath math="\frac{1}{3}f(x)" />, its zeros, and its vertex.
+2. The graph of <InlineMath math="g(x) = \sqrt{x}" /> is compressed vertically by the factor <InlineMath math="\frac{1}{2}" />. Find the new equation, the image of the point <InlineMath math="(4, 2)" />, and the range.
+3. The function <InlineMath math="f(x) = 2^x + 1" /> is multiplied by the factor <InlineMath math="-3" />. Find the new equation, its horizontal asymptote, its range, and its <InlineMath math="y" />-intercept.
+4. The graph of <InlineMath math="y = a(x^2 - 1)" /> passes through <InlineMath math="(2, 12)" />. Find <InlineMath math="a" /> and the zeros of the graph.
 
 ### Worked Solutions
 
-**Problem 1**. **Vertical dilation** with factor <InlineMath math="3" />:
+**Problem 1**. The factor is <InlineMath math="a = \frac{1}{3}" />, so every term of <InlineMath math="f" /> is multiplied by <InlineMath math="\frac{1}{3}" />:
 
-<BlockMath math="F(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
+<BlockMath math="\begin{aligned} g(x) &= \tfrac{1}{3}\left(x^2 - 2x - 8\right) \\ &= \tfrac{1}{3}x^2 - \tfrac{2}{3}x - \tfrac{8}{3} \end{aligned}" />
+
+The zeros of <InlineMath math="f(x) = (x + 2)(x - 4)" /> are <InlineMath math="-2" /> and <InlineMath math="4" />, and **both remain zeros of <InlineMath math="g" />**. The vertex of <InlineMath math="f" /> lies exactly midway between the two zeros, at <InlineMath math="x = \frac{-2 + 4}{2} = 1" />, and <InlineMath math="f(1) = 1 - 2 - 8 = -9" />. The factor <InlineMath math="\frac{1}{3}" /> is positive, so the lowest point of <InlineMath math="f" /> stays the lowest point of <InlineMath math="g" /> with the same <InlineMath math="x" />-coordinate. The vertex of <InlineMath math="g" /> is <InlineMath math="\left(1, \tfrac{1}{3} \cdot (-9)\right) = (1, -3)" />. Check: <InlineMath math="g(1) = \frac{1}{3} - \frac{2}{3} - \frac{8}{3} = -3" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Function <InlineMath math="f(x) = x^2 - 4x + 3" /> and Its Dilation Result</>}
-  description={
-    <>
-      The original parabola is vertically stretched by factor{" "}
-      <InlineMath math="3" /> multiplying the distance of each point from the horizontal axis by three.
-    </>
-  }
-  cameraPosition={[1, 2, 14]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 4 * x + 3, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2-4x+3" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: 3 * (x * x - 4 * x + 3), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=3x^2-12x+9" />, offset: [1, -3, 0] }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Parabolas <InlineMath math="f(x) = x^2 - 2x - 8" /> and <InlineMath math="g(x) = \tfrac{1}{3}f(x)" /></>}
+  description={<>Both parabolas cross the <InlineMath math="x" />-axis at the fixed points <InlineMath math="(-2, 0)" /> and <InlineMath math="(4, 0)" />. The arrow takes the vertex <InlineMath math="(1, -9)" /> to <InlineMath math="(1, -3)" />.</>}
+  cameraPosition={[1, -2.5, 16]}
+  cameraTarget={[1, -2.5, 0]}
+  data={(() => {
+    // f(x) = (x + 2)(x - 4) = (x - 1)^2 - 9. The curve y = a f(x) leaves the frame y <= 9 where
+    // (x - 1)^2 = 9 + 9 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => (x + 2) * (x - 4);
+    const xs = Array.from({ length: 3841 }, (_, i) => -7 + i / 240);
+    const curve = (a) => {
+      const d = Math.sqrt(9 + 9 / a);
+      return [1 - d, ...xs.filter((x) => Math.abs(x - 1) < d), 1 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1815, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(1 / 3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 2370, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: f(1) / 3, z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: -2, y: f(-2), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 4, y: f(4), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
 
-**Problem 2**. Multiply each output by one half. This positive factor preserves the sign of the output and the minimum value zero.
+**Problem 2**. The factor <InlineMath math="\frac{1}{2}" /> compresses the graph toward the <InlineMath math="x" />-axis:
 
-- Vertical dilation: <InlineMath math="G(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-- Range after dilation: <InlineMath math="[0, \infty)" /> remains <InlineMath math="[0, \infty)" />. At each **input**, the positive function value is halved
+<BlockMath math="G(x) = \tfrac{1}{2}\sqrt{x}" />
 
-Visualization:
+The point <InlineMath math="(4, 2)" /> moves to <InlineMath math="(4, 1)" /> because <InlineMath math="G(4) = \frac{1}{2} \cdot 2 = 1" />. **The range stays <InlineMath math="[0, \infty)" />**, because every number <InlineMath math="r \ge 0" /> is still reached, namely at <InlineMath math="x = 4r^2" />: <InlineMath math="G(4r^2) = \frac{1}{2} \cdot 2r = r" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Function <InlineMath math="g(x) = \sqrt{x}" /> and Its Dilation Result</>}
-  description={
-    <>
-      The square root curve is vertically compressed by factor{" "}
-      <InlineMath math="0.5" /> producing a lower curve.
-    </>
-  }
-  cameraPosition={[2, 1, 8]}
-  cameraTarget={[2, 1, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: 0.5 * t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ at: 64, text: <InlineMath math="G(x)=0.5\sqrt{x}" />, offset: [0.9, -1.340569, 0] }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Curves <InlineMath math="g(x) = \sqrt{x}" /> and <InlineMath math="G(x) = \tfrac{1}{2}\sqrt{x}" /></>}
+  description={<>Vertical arrows take <InlineMath math="(1, 1)" /> to <InlineMath math="\left(1, \tfrac{1}{2}\right)" /> and <InlineMath math="(4, 2)" /> to <InlineMath math="(4, 1)" />. The <InlineMath math="x" />-coordinate of every point stays.</>}
+  cameraPosition={[2.5, 1.2, 6.4]}
+  cameraTarget={[2.5, 1.2, 0]}
+  data={(() => {
+    // g(x) = sqrt(x) is sampled at x = r^2 for r from 0 to 3, which keeps the samples dense where the
+    // curve leaves the y-axis vertically; the frame x <= 9 stops it at r = 3. G uses the same x-values.
+    const g = (x) => Math.sqrt(x);
+    const G = (x) => g(x) / 2;
+    const xs = Array.from({ length: 1201 }, (_, i) => (i / 400) ** 2);
+    const move = (x0) => [
+      { x: x0, y: g(x0), z: 0 },
+      { x: x0, y: G(x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.2, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: G(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="G" />, at: 920, offset: [0, -0.35, 0], anchorX: "right" }],
+      },
+      {
+        points: move(1),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.15 },
+      },
+      {
+        points: move(4),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.2 },
+      },
+    ];
+  })()}
 />
 
-**Problem 3**. The original function <InlineMath math="h(x) = |x - 1| + 2" /> has its **vertex** at <InlineMath math="(1, 2)" />.
-After vertical dilation with factor <InlineMath math="-1" />: <InlineMath math="H(x) = -1 \cdot (|x - 1| + 2) = -|x - 1| - 2" />, the vertex becomes <InlineMath math="(1, -2)" />.
+**Problem 3**. Multiply the whole function, including the constant <InlineMath math="1" />, by <InlineMath math="-3" />:
+
+<BlockMath math="\begin{aligned} H(x) &= -3\left(2^x + 1\right) \\ &= -3 \cdot 2^x - 3 \end{aligned}" />
+
+The asymptote <InlineMath math="y = 1" /> becomes <InlineMath math="y = -3" />. Because <InlineMath math="2^x + 1 > 1" /> for every <InlineMath math="x" />, multiplying by <InlineMath math="-3" /> **reverses the inequality** to <InlineMath math="H(x) < -3" />, so the range is <InlineMath math="(-\infty, -3)" />. The <InlineMath math="y" />-intercept is <InlineMath math="(0, -6)" /> because <InlineMath math="H(0) = -3 \cdot 2 = -6" />.
 
 <LineEquation
   showZAxis={false}
-  title={<>Function <InlineMath math="h(x) = |x - 1| + 2" /> and Its Dilation Result</>}
-  description={<>Factor <InlineMath math="-1" /> reflects the absolute value function across the <InlineMath math="x" />-axis without changing its vertical scale.</>}
-  cameraPosition={[0, 0, 16]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 71 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 70 * 12;
-        return { x, y: Math.abs(x - 1) + 2, z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x-1|+2" />, offset: [1, -1.5, 0], at: 32 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 368 }, (_, pointIndex) => {
-        const x = -6 + pointIndex / 367 * 12;
-        return { x, y: -(Math.abs(x - 1) + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=-|x-1|-2" />, offset: [1, 1.5, 0], at: 214 }],
-      showPoints: false,
-    },
-  ]}
+  title={<>Curves <InlineMath math="f(x) = 2^x + 1" /> and <InlineMath math="H(x) = -3f(x)" /></>}
+  description={<>Thin lines mark the asymptotes <InlineMath math="y = 1" /> and <InlineMath math="y = -3" />. The arrow takes <InlineMath math="(1, 3)" /> to <InlineMath math="(1, -9)" />, and the <InlineMath math="y" />-intercept <InlineMath math="(0, 2)" /> moves to <InlineMath math="(0, -6)" />.</>}
+  cameraPosition={[0, -2, 15]}
+  cameraTarget={[0, -2, 0]}
+  data={(() => {
+    // f(x) = 2^x + 1 stays inside the frame x >= -16, -15 <= y <= 9 up to x = 3, where 2^x = 8.
+    // H(x) = -3 f(x) reaches y = -15 where 2^x = 4, so it stops at x = 2. Both use the grid x = i / 64;
+    // sample 1024 is x = 0.
+    const f = (x) => 2 ** x + 1;
+    const H = (x) => -3 * f(x);
+    const xs = Array.from({ length: 1217 }, (_, i) => -16 + i / 64);
+    const asymptote = (y) => [-16, 16].map((x) => ({ x, y, z: 0 }));
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [1024],
+        labels: [{ text: <InlineMath math="f" />, at: 1125, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.filter((x) => x <= 2).map((x) => ({ x, y: H(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1024],
+        labels: [{ text: <InlineMath math="H" />, at: 1061, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: asymptote(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
+      },
+      {
+        points: asymptote(-3),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        lineWidth: 1,
+        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
+      },
+      {
+        points: [
+          { x: 1, y: f(1), z: 0 },
+          { x: 1, y: H(1), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
+/>
+
+**Problem 4**. Substitute the point <InlineMath math="(2, 12)" /> into the equation of the graph:
+
+<BlockMath math="\begin{aligned} a\left(2^2 - 1\right) &= 12 \\ 3a &= 12 \\ a &= 4 \end{aligned}" />
+
+The equation is <InlineMath math="y = 4(x^2 - 1)" />. **Its zeros stay at <InlineMath math="x = -1" /> and <InlineMath math="x = 1" />**, the same as the zeros of <InlineMath math="x^2 - 1" />. Check the given point: <InlineMath math="4(2^2 - 1) = 4 \cdot 3 = 12" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Parabolas <InlineMath math="f(x) = x^2 - 1" /> and <InlineMath math="g(x) = 4f(x)" /></>}
+  description={<>The arrow takes <InlineMath math="(2, 3)" /> to the given point <InlineMath math="(2, 12)" />, while the <InlineMath math="x" />-intercepts <InlineMath math="(-1, 0)" /> and <InlineMath math="(1, 0)" /> stay.</>}
+  cameraPosition={[0, 5, 18]}
+  cameraTarget={[0, 5, 0]}
+  data={(() => {
+    // f(x) = x^2 - 1. The curve y = a f(x) leaves the frame y <= 18 at x = ±sqrt(1 + 18 / a);
+    // it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    const f = (x) => x * x - 1;
+    const xs = Array.from({ length: 2641 }, (_, i) => -5.5 + i / 240);
+    const curve = (a) => {
+      const e = Math.sqrt(1 + 18 / a);
+      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * f(x), z: 0 }));
+    };
+    return [
+      {
+        points: curve(1),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 1900, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: curve(4),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1043],
+        labels: [{ text: <InlineMath math="g" />, at: 131, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: [
+          { x: 2, y: f(2), z: 0 },
+          { x: 2, y: 4 * f(2), z: 0 },
+        ],
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.35 },
+      },
+      {
+        points: [{ x: -1, y: f(-1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 1, y: f(1), z: 0 }],
+        smooth: false,
+        color: "#64748b",
+        showPoints: true,
+      },
+    ];
+  })()}
 />
