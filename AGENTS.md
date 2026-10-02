@@ -79,9 +79,10 @@ for clarity, measurable scale, and safe releases.
   suggestions, such as `Effect.undefined` for `Effect.succeed(undefined)`, that
   fail the typecheck without the word "error".
 - The shared TypeScript config turns off the language service's
-  `unstableApiUsage` warning. Aksara uses Effect's `@stability unstable` HTTP
-  and process modules on purpose, pins Effect exactly, and reviews every
-  upgrade, so the warning would fail every typecheck with nothing to act on.
+  `unstableApiUsage` and `experimentalApiUsage` rules. Aksara uses Effect's
+  `@stability unstable` HTTP and process modules on purpose, pins Effect
+  exactly, and reviews every upgrade, so a stability warning on each use would
+  fail every typecheck with nothing to act on.
 - Unresolved review threads, including automated reviewers', block merging. Fix
   each verified finding or reply with evidence, then resolve the thread.
 - `main` merges only through GitHub's merge queue. `gh pr merge` queues through
@@ -97,6 +98,10 @@ for clarity, measurable scale, and safe releases.
   it and squash merges it, so the branch needs no update from `main` to merge.
   A pull request is merged once its state is `MERGED`, not when it enters the
   queue.
+- A push to `main` builds and verifies the contracts package but never
+  publishes it. To release a contracts version, dispatch `Release contracts`
+  from `main`; the owner approves its `npm-production` gate. `docs/contracts.md`
+  owns the release path.
 - Keep handwritten TypeScript modules at or below 300 lines.
 - Give every stable callable declaration, including functions, methods, and
   callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
