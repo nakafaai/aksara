@@ -32,6 +32,16 @@ for (const sourcePath of globSync("packages/corpus/**/*.ts", {
 export const realQuestionItems = new Map(
   [...sources].filter(([sourcePath]) => sourcePath.endsWith("/item.ts"))
 );
+/** Every real prompt body, so whole-bank loads can check prompt uniqueness. */
+export const realQuestionPrompts = new Map<string, string>();
+for (const sourcePath of globSync("**/question.*.mdx", {
+  cwd: absoluteQuestionTestSourceRoot,
+})) {
+  const absolutePath = resolve(absoluteQuestionTestSourceRoot, sourcePath);
+  const prompt = readFileSync(absolutePath, "utf8");
+  realQuestionPrompts.set(absolutePath, prompt);
+  sources.set(absolutePath, prompt);
+}
 export const realTryoutSources = await Effect.runPromise(
   decodeTryoutRegistry()
 );
@@ -137,6 +147,20 @@ export function makeQuestionSourceLayer(
       return Effect.succeed(source);
     },
   });
+}
+
+/** Serves synthetic discovery beside the real prompts a whole-bank load reads. */
+export function makeQuestionRegistryLayer(
+  directoryEntries: readonly string[],
+  sourceFiles: ReadonlyMap<string, string>
+) {
+  return Layer.merge(
+    makeQuestionSourceLayer(
+      directoryEntries,
+      new Map([...realQuestionPrompts, ...sourceFiles])
+    ),
+    Path.layer
+  );
 }
 
 /** Creates a path-faithful question filesystem with optional read evidence. */

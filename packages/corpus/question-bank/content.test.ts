@@ -15,6 +15,7 @@ import {
   corpusRoot,
   generalQuestionSourceFiles,
   itemForQuestion,
+  makeQuestionRegistryLayer,
   makeQuestionSourceLayer,
   questionEntries,
   questionTestSourceRoot,
@@ -34,10 +35,7 @@ function registry(
   items: ReadonlyMap<string, string>
 ) {
   return loadQuestionContent(corpusRoot, realTryoutSources).pipe(
-    Effect.provide([
-      makeQuestionSourceLayer(discoveredEntries, items),
-      Path.layer,
-    ])
+    Effect.provide(makeQuestionRegistryLayer(discoveredEntries, items))
   );
 }
 

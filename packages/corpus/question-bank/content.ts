@@ -35,6 +35,7 @@ import {
   QuestionSourceSchema,
   readQuestionSource,
 } from "#corpus/question-bank/source";
+import { validateQuestionUniqueness } from "#corpus/question-bank/uniqueness";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 const QuestionEntrySourceSchema = QuestionSourceSchema.mapFields(
@@ -160,12 +161,13 @@ function projectQuestionEntries(sources: readonly QuestionSource[]) {
     .sort(compareContentHeads);
 }
 
-/** Discovers every question once and returns its canonical body registry. */
+/** Discovers every unique question once and returns its canonical body registry. */
 export const loadQuestionContent = Effect.fn(
   "AksaraCorpus.loadQuestionContent"
 )(function* (corpusRoot: string, tryoutSources: readonly TryoutExamSource[]) {
   const questionBanks = yield* indexQuestionBanks(tryoutSources);
   const sources = yield* discoverQuestionSources(corpusRoot, questionBanks);
+  yield* validateQuestionUniqueness(corpusRoot, sources);
   const entries = projectQuestionEntries(sources);
   return { entries, questionBanks, sources };
 });
