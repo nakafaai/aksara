@@ -67,7 +67,38 @@ export const resolveBase = Effect.fn("PointsCheck.resolveBase")(function* (
   return output.trim();
 });
 
-/** Lists the tracked files below the paths that differ from the base revision. */
+/**
+ * Pairs each changed file with its path at the base revision. Git reports a
+ * modified file as `M`, then its path, and a renamed one as `R` and a score,
+ * then its old and its new path, every field ending with a NUL byte.
+ */
+export const parseChanges = Effect.fn("PointsCheck.parseChanges")(function* (
+  output: string
+) {
+  const fields = output.split("\0");
+  const changes = new Map<string, string>();
+  let index = 0;
+  while (index < fields.length - 1) {
+    const [status, from, to] = fields.slice(index, index + 3);
+    const renamed = status?.startsWith("R") === true;
+    const head = renamed ? to : from;
+    if (!(from && head)) {
+      return yield* new PointsCheckError({
+        detail: `Unexpected git diff output: ${JSON.stringify(output)}`,
+        reason: "unreadable-entry",
+      });
+    }
+    changes.set(head, from);
+    index += renamed ? 3 : 2;
+  }
+  return changes;
+});
+
+/**
+ * Lists the tracked files below the paths that differ from the base revision,
+ * each paired with the path it had there. Git pairs a renamed file with its
+ * old path, so moving a lesson never hides a lost visual.
+ */
 export const changedFiles = Effect.fn("PointsCheck.changedFiles")(function* (
   root: string,
   base: string,
@@ -77,10 +108,10 @@ export const changedFiles = Effect.fn("PointsCheck.changedFiles")(function* (
     root,
     [
       "diff",
-      "--name-only",
+      "--name-status",
       "-z",
-      "--no-renames",
-      "--diff-filter=M",
+      "--find-renames",
+      "--diff-filter=MR",
       "--relative",
       base,
       "--",
@@ -88,7 +119,7 @@ export const changedFiles = Effect.fn("PointsCheck.changedFiles")(function* (
     ],
     "unreadable-entry"
   );
-  return new Set(output.split("\0").filter((file) => file !== ""));
+  return yield* parseChanges(output);
 });
 
 /** Reads one file as it was committed at the base revision. */

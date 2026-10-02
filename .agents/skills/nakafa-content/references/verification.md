@@ -213,8 +213,8 @@ passage being reviewed and validate their findings in context.
 The gate keeps every plotted value computed from its formula and stops a
 revision from ending with fewer interactive visuals than it started with. It
 parses each MDX file with the checker's own MDX tooling and reads the ESTree of
-every JSX attribute expression, never raw text. The three findings, the
-thresholds, and the two scoped skips live in
+every JSX attribute and every expression of the page, never raw text. The
+three findings, the thresholds, and the one scoped skip live in
 [computed and exact visuals](visuals.md#computed-and-exact-visuals).
 
 ```sh
@@ -226,12 +226,16 @@ node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/che
 `--base` names the revision the change started from. The gate compares each
 changed file with its version at the merge base of that revision and `HEAD`, so
 visuals that landed on `main` after the branch point never read as visuals this
-change removed. A file that gains visuals passes, and a file at a new path,
-including a renamed lesson, has nothing to compare with. A revision that
-removes one fails even when the lesson is otherwise better, so replace a visual
-with an equal or better one instead of deleting it. Exit code `1` means
-findings, and exit code `2` means a typed failure such as an unknown base. CI
-checks out the full history, so the merge base is always available.
+change removed. A file that gains visuals passes, and a file at a new path has
+nothing to compare with, except that Git pairs a renamed lesson with the file
+it came from when the two are at least half alike, so a slug change that keeps
+the lesson recognizable never hides a lost visual. A revision that removes one
+fails even when the lesson is otherwise better, so replace a visual with an
+equal or better one instead of deleting it. Exit code `1` means findings, and exit code `2` means a typed
+failure such as an unknown base. CI and the content release check out the full
+history, so the merge base is always available. The release repeats the gate on
+the exact `main` revision it publishes, where the merge base is the revision
+itself, so it enforces the literal rules over both corpus roots.
 
 No Aksara module lists the renderer component names: the contracts package
 defines only the manifest schema, and the live renderer supplies the names when

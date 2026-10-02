@@ -135,13 +135,21 @@ graph teaches the wrong mathematics on an education platform.
   numbers. Observations are the one thing no formula draws, so a chart of
   observed data such as `ScatterDiagram` keeps its measured values as typed
   data.
-- **`MathVisual` holds exact named geometry only.** The compiler decodes its
-  `scene` as a static literal and rejects `Array.from` and every other
-  expression there, so a scene carries points, segments, circles, arcs, and
-  polylines or polygons of at most eight vertices. Draw a sampled curve with
-  `LineEquation`. An irrational named point such as (sqrt(3), 1) can only be a
-  decimal inside a `MathVisual` scene, so that decimal stays a literal there
-  until the component evaluates expressions.
+- **`MathVisual` holds exact named geometry, written as expressions.** The
+  compiler reads its `scene` without running code. It accepts literals and
+  constant numeric expressions, such as `Math.sqrt(3)`, `Math.SQRT1_2`,
+  `1 / 3`, or `0.63 * Math.cos(Math.PI / 8)`, folds them to check the scene
+  against its contract, and rejects `Array.from`, variables, and every other
+  expression. An irrational named point is therefore the expression that
+  computes it, never a rounded decimal. Write every repeated value, such as the
+  mirror image of a coordinate, as the same expression with its sign changed,
+  because the contract rejects two coordinates that differ by less than the
+  render resolution, and two different trigonometric calls can differ in their
+  last digits. A plane scene draws points, lines, rays, segments, polylines,
+  polygons, circles, arcs, and the exact `quadratic` object, which draws a
+  parabola without sampling. A space scene draws points, lines, rays,
+  segments, polylines, polygons, and cuboids. A sampled curve belongs to
+  `LineEquation`.
 - **A smooth function renders smooth.** Sample only the part of the domain
   that stays inside the frame: solve for the frame bounds instead of sampling
   far outside them, so the visible part gets the samples. Use at least two
@@ -164,23 +172,29 @@ graph teaches the wrong mathematics on an education platform.
   Aksara's source policy where it rejects the source, with the best
   composition, and deploy it before the content that uses it. Never work
   around a component limit with hard-coded data. A `MathVisual` scene that
-  needs a computed curve is such a limit: use `LineEquation` for the curve and
-  raise the gap.
+  needs a curve its exact objects cannot draw is such a limit: draw the curve
+  with `LineEquation` and raise the gap.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
   on every changed lesson and article, or `pnpm points` for both corpus roots.
   It reports `file:line:column` for three findings. `literal-points` means one
-  array holds more than eight typed points, either `{ x, y }` objects or tuples
-  of two or three numbers. `long-decimal` means an `x`, `y`, or `z` coordinate
-  is a literal with four or more fractional digits, such as `0.707107`.
-  `interactive-visuals-fell` means a file has fewer interactive visuals than
-  the same file at its merge base with `--base` (default `origin/main`). Text,
-  notation, code, emphasis, layout, `Mermaid`, and video components never
-  count, and a new file has nothing to compare with. The gate skips
-  `ScatterDiagram`, because observations are data, and never applies
-  `long-decimal` to `MathVisual`, because its scene can only hold literals. CI
-  runs the gate on both corpus roots against the base of every pull request and
-  merge group.
+  series holds more than eight typed points, either `{ x, y }` objects or
+  tuples of two or three numbers, counted through the arrays it spreads into
+  itself and the pieces `concat` joins. `long-decimal` means an `x`, `y`, or
+  `z` property, or a number in a tuple that an array lists, is a literal with
+  four or more fractional digits, such as `0.707107`, in every component
+  including `MathVisual`. A tuple that stands alone, such as a label `offset`
+  or a `cameraPosition`, places something and plots nothing, so only a list of
+  tuples counts. `interactive-visuals-fell` means a file has fewer interactive
+  visuals than the same file at its merge base with `--base` (default
+  `origin/main`), counted wherever the element is written, and a renamed file
+  is compared with the path Git pairs it with. Text, notation, code, emphasis,
+  layout, `Mermaid`, and video components never count, and a new file has
+  nothing to compare with. The gate skips `ScatterDiagram`, because
+  observations are data. It reads coordinates and typed lists, so a constant
+  that code turns into a coordinate, such as `parameters.push(1.9700042649107503)`,
+  and the density of a computed series stay review items. CI runs the gate on
+  both corpus roots against the base of every pull request and merge group.
 
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already

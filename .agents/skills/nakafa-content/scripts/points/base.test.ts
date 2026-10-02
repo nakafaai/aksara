@@ -1,9 +1,10 @@
 import { join } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, FileSystem } from "effect";
 import {
   changedFiles,
+  parseChanges,
   readBase,
   resolveBase,
 } from "#nakafa-content/points/base";
@@ -68,7 +69,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       })
     );
 
-    it.effect("lists only the modified files below the checked paths", () =>
+    it.effect("lists only the changed files below the checked paths", () =>
       Effect.gen(function* () {
         const root = yield* createRepository();
         yield* writeFiles(root, {
@@ -94,23 +95,98 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         yield* git(root, "rm", "--quiet", "lessons/d/id.mdx");
         yield* git(root, "mv", "lessons/e/id.mdx", "lessons/e/renamed.mdx");
 
-        /** Sorts one set of changed files for a stable comparison. */
-        const sorted = (files: ReadonlySet<string>) => [...files].sort();
+        /** Sorts one map of changed files for a stable comparison. */
+        const sorted = (files: ReadonlyMap<string, string>) =>
+          [...files].sort();
         assert.deepStrictEqual(
           sorted(yield* changedFiles(root, base, ["lessons"])),
-          ["lessons/a/id.mdx", "lessons/b/source.ts"]
+          [
+            ["lessons/a/id.mdx", "lessons/a/id.mdx"],
+            ["lessons/b/source.ts", "lessons/b/source.ts"],
+            ["lessons/e/renamed.mdx", "lessons/e/id.mdx"],
+          ]
         );
         assert.deepStrictEqual(
           sorted(
             yield* changedFiles(root, base, ["lessons/a/id.mdx", "other"])
           ),
-          ["lessons/a/id.mdx", "other/c.mdx"]
+          [
+            ["lessons/a/id.mdx", "lessons/a/id.mdx"],
+            ["other/c.mdx", "other/c.mdx"],
+          ]
         );
         assert.deepStrictEqual(sorted(yield* changedFiles(root, base, ["."])), [
-          "lessons/a/id.mdx",
-          "lessons/b/source.ts",
-          "other/c.mdx",
+          ["lessons/a/id.mdx", "lessons/a/id.mdx"],
+          ["lessons/b/source.ts", "lessons/b/source.ts"],
+          ["lessons/e/renamed.mdx", "lessons/e/id.mdx"],
+          ["other/c.mdx", "other/c.mdx"],
         ]);
+      })
+    );
+
+    it.effect("pairs a renamed and edited file with its path at the base", () =>
+      Effect.gen(function* () {
+        const root = yield* createRepository();
+        const lines = Array.from({ length: 20 }, (_, index) => `line ${index}`);
+        yield* writeFiles(root, {
+          "lessons/moved/id.mdx": "moved out of the checked paths\n",
+          "lessons/old/id.mdx": `${lines.join("\n")}\n`,
+        });
+        const base = yield* commitAll(root, "base");
+        const fileSystem = yield* FileSystem.FileSystem;
+        for (const folder of ["lessons/new", "other"]) {
+          yield* fileSystem.makeDirectory(join(root, folder), {
+            recursive: true,
+          });
+        }
+        yield* git(root, "mv", "lessons/old/id.mdx", "lessons/new/id.mdx");
+        yield* git(root, "mv", "lessons/moved/id.mdx", "other/id.mdx");
+        yield* writeFiles(root, {
+          "lessons/new/id.mdx": `${[...lines.slice(0, 19), "line changed"].join("\n")}\n`,
+        });
+
+        assert.deepStrictEqual(
+          [...(yield* changedFiles(root, base, ["lessons"]))],
+          [["lessons/new/id.mdx", "lessons/old/id.mdx"]]
+        );
+        assert.deepStrictEqual(
+          yield* readBase(root, base, "lessons/old/id.mdx"),
+          `${lines.join("\n")}\n`
+        );
+      })
+    );
+
+    it.effect("parses the name-status output that git prints", () =>
+      Effect.gen(function* () {
+        assert.deepStrictEqual([...(yield* parseChanges(""))], []);
+        assert.deepStrictEqual(
+          [...(yield* parseChanges("M\0a/id.mdx\0"))],
+          [["a/id.mdx", "a/id.mdx"]]
+        );
+        assert.deepStrictEqual(
+          [
+            ...(yield* parseChanges(
+              "M\0a/id.mdx\0R087\0old/id.mdx\0new/id.mdx\0M\0b/id.mdx\0R100\0x\0y\0"
+            )),
+          ],
+          [
+            ["a/id.mdx", "a/id.mdx"],
+            ["new/id.mdx", "old/id.mdx"],
+            ["b/id.mdx", "b/id.mdx"],
+            ["y", "x"],
+          ]
+        );
+      })
+    );
+
+    it.effect("fails with a typed error for output it cannot pair", () =>
+      Effect.gen(function* () {
+        for (const output of ["M\0", "R100\0old\0", "R100\0\0"]) {
+          const error = yield* parseChanges(output).pipe(Effect.flip);
+          assert.strictEqual(error._tag, "PointsCheckError");
+          assert.strictEqual(error.reason, "unreadable-entry");
+          assert.include(error.detail, "Unexpected git diff output");
+        }
       })
     );
 

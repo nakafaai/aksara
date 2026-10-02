@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+import type { PlatformError } from "effect/PlatformError";
 
 /**
  * Typed failure for the standalone points gate.
@@ -21,3 +22,12 @@ export class PointsCheckError extends Schema.TaggedError<PointsCheckError>()(
 ) {}
 
 export type PointsFailureReason = PointsCheckError["reason"];
+
+/** Maps a platform failure on one path to the typed unreadable-entry failure. */
+export function unreadable(path: string) {
+  return (error: PlatformError) =>
+    new PointsCheckError({
+      detail: `Cannot read ${path}: ${error.message}`,
+      reason: "unreadable-entry",
+    });
+}

@@ -1,5 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { inspectDocument } from "#nakafa-content/points/document";
 import { lesson } from "#nakafa-content/points/test/lesson";
 import {
   countVisuals,
@@ -7,9 +8,9 @@ import {
   isInteractiveVisual,
 } from "#nakafa-content/points/visual";
 
-/** Parses one lesson that holds the given teaching blocks. */
+/** Parses and inspects one lesson that holds the given teaching blocks. */
 function parse(...blocks: readonly string[]) {
-  return parseLessonMdx(lesson(...blocks));
+  return inspectDocument(parseLessonMdx(lesson(...blocks)));
 }
 
 /** Writes one self-closing LineEquation, the most common lesson visual. */
@@ -68,6 +69,42 @@ describe("visual inventory", () => {
       ["MathVisual", 1],
       ["UnitCircle", 1],
     ]);
+  });
+});
+
+describe("visuals written inside expressions", () => {
+  it("counts a visual in a flow expression or an attribute of another element", () => {
+    const tree = parse(
+      `{${LINE}}`,
+      `<ContentBlock title={${UNIT_CIRCLE}} />`,
+      '<>\n\n<BlockMath math="y=x" />\n\n</>'
+    );
+
+    assert.deepStrictEqual([...countVisuals(tree)].sort(), [
+      ["LineEquation", 1],
+      ["UnitCircle", 1],
+    ]);
+  });
+
+  it("keeps the count when a visual moves into an expression", () => {
+    const base = parse(LINE, UNIT_CIRCLE);
+
+    assert.isUndefined(findVisualLoss(base, parse(`{${LINE}}`, UNIT_CIRCLE)));
+  });
+
+  it("notices a visual that is deleted from inside an expression", () => {
+    const base = parse(`{${LINE}}`, UNIT_CIRCLE);
+
+    assert.include(
+      findVisualLoss(base, parse(UNIT_CIRCLE))?.message,
+      "fell from 2 to 1 (LineEquation 1 to 0)"
+    );
+  });
+
+  it("never counts a fragment or an element with a member name", () => {
+    const tree = parse("<>\n\n</>", "{<Charts.Line data={[]} />}", "{<></>}");
+
+    assert.deepStrictEqual([...countVisuals(tree)], []);
   });
 });
 

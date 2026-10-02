@@ -1,3 +1,7 @@
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { inspectDocument } from "#nakafa-content/points/document";
+import { findLiteralPoints } from "#nakafa-content/points/literal";
+
 const METADATA = `export const metadata = {
   title: "Parabola",
   description: "Read the vertex and the opening of a parabola from its equation.",
@@ -110,4 +114,14 @@ export function typedTuples(count: number, width: number): string {
     (_, index) => `[${Array.from({ length: width }, () => index).join(", ")}]`
   );
   return `[${points.join(", ")}]`;
+}
+
+/** Parses one real MDX document and runs the literal rules over it. */
+export function literalFindings(source: string) {
+  return findLiteralPoints(source, inspectDocument(parseLessonMdx(source)));
+}
+
+/** Returns the rule id of every literal finding in a lesson of these blocks. */
+export function literalRules(blocks: string) {
+  return literalFindings(lesson(blocks)).map(({ rule }) => rule);
 }

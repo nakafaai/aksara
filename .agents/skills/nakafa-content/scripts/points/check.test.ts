@@ -9,7 +9,6 @@ import {
   curveWith,
   lesson,
   PASTED_CURVE,
-  typedObjects,
 } from "#nakafa-content/points/test/lesson";
 import {
   commitAll,
@@ -148,6 +147,35 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       })
     );
 
+    it.effect("compares a renamed lesson with the file it came from", () =>
+      Effect.gen(function* () {
+        const root = yield* commitLesson(COMPUTED_CURVE, COMPUTED_CURVE);
+        yield* git(root, "mv", LESSON, SIBLING);
+        yield* writeFiles(root, { [SIBLING]: lesson(COMPUTED_CURVE) });
+        const result = yield* check(root);
+
+        assert.strictEqual(result.code, 1);
+        assert.strictEqual(
+          result.error[0],
+          `${SIBLING}:1:1 [interactive-visuals-fell] interactive visuals fell from 2 to 1 (LineEquation 2 to 1): a revision never removes 3D or animation`
+        );
+      })
+    );
+
+    it.effect("passes a renamed lesson that keeps every visual", () =>
+      Effect.gen(function* () {
+        const root = yield* commitLesson(COMPUTED_CURVE, COMPUTED_CURVE);
+        yield* git(root, "mv", LESSON, SIBLING);
+        const result = yield* check(root);
+
+        assert.strictEqual(result.code, 0);
+        assert.include(
+          result.log[0],
+          "passed for 1 files and compared 1 changed files"
+        );
+      })
+    );
+
     it.effect("does not blame a branch for visuals that landed on main", () =>
       Effect.gen(function* () {
         const root = yield* commitLesson(COMPUTED_CURVE);
@@ -182,43 +210,24 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       })
     );
 
-    it.effect("rejects missing, unknown, and incomplete arguments", () =>
-      Effect.gen(function* () {
-        const root = yield* commitLesson(COMPUTED_CURVE);
-        const result = yield* capture(
-          Effect.all([
-            runMain([], root),
-            runMain(["--unknown", ROOT], root),
-            runMain([ROOT, "--base"], root),
-          ])
-        );
-
-        assert.deepStrictEqual(result.code, [2, 2, 2]);
-        assert.isTrue(
-          result.error.every((line) =>
-            line.startsWith("PointsCheckError [invalid-arguments]")
-          )
-        );
-        assert.include(result.error[0], "Usage: points/check.ts");
-      })
-    );
-
-    it.effect("fails with a typed error for an unusable target or base", () =>
+    it.effect("exits with 2 and names the reason of every typed failure", () =>
       Effect.gen(function* () {
         const root = yield* commitLesson(COMPUTED_CURVE);
         yield* writeFiles(root, { "empty/readme.md": "No lessons here.\n" });
         const result = yield* capture(
           Effect.all([
+            runMain([], root),
             runMain(["missing", "--base", "HEAD"], root),
             runMain(["empty", "--base", "HEAD"], root),
             runMain([ROOT, "--base", "origin/missing"], root),
           ])
         );
 
-        assert.deepStrictEqual(result.code, [2, 2, 2]);
+        assert.deepStrictEqual(result.code, [2, 2, 2, 2]);
         assert.deepStrictEqual(
           result.error.map((line) => line.split("]")[0]),
           [
+            "PointsCheckError [invalid-arguments",
             "PointsCheckError [unreadable-entry",
             "PointsCheckError [empty-targets",
             "PointsCheckError [unknown-base",
@@ -246,15 +255,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           base.error[0] ?? "",
           new RegExp(`Cannot parse ${LESSON} at [0-9a-f]{7}`)
         );
-      })
-    );
-
-    it.effect("passes a series typed up to the limit", () =>
-      Effect.gen(function* () {
-        const root = yield* commitLesson(curveWith(typedObjects(8)));
-        const result = yield* check(root);
-
-        assert.strictEqual(result.code, 0);
       })
     );
 

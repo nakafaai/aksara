@@ -3,7 +3,7 @@ import {
   isHighlightComponentName,
   isMathComponentName,
 } from "#nakafa-content/mdx/fields";
-import { type MdxNode, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import type { DocumentParts } from "#nakafa-content/points/document";
 import type { PointsFinding } from "#nakafa-content/points/finding";
 
 /**
@@ -39,19 +39,19 @@ export function isInteractiveVisual(name: string): boolean {
   );
 }
 
-/** Counts the interactive visuals of one document by component name. */
-export function countVisuals(tree: MdxNode): ReadonlyMap<string, number> {
+/**
+ * Counts the interactive visuals of one document by component name, whether
+ * the element stands in the page or inside an expression of another one.
+ */
+export function countVisuals(
+  document: DocumentParts
+): ReadonlyMap<string, number> {
   const counts = new Map<string, number>();
-  visitMdxNodes(tree, (node) => {
-    if (
-      (node.type === "mdxJsxFlowElement" ||
-        node.type === "mdxJsxTextElement") &&
-      node.name !== undefined &&
-      isInteractiveVisual(node.name)
-    ) {
-      counts.set(node.name, (counts.get(node.name) ?? 0) + 1);
+  for (const name of document.elements) {
+    if (isInteractiveVisual(name)) {
+      counts.set(name, (counts.get(name) ?? 0) + 1);
     }
-  });
+  }
   return counts;
 }
 
@@ -66,8 +66,8 @@ function total(counts: ReadonlyMap<string, number>): number {
 
 /** Reports a document whose interactive visuals fell below its base version. */
 export function findVisualLoss(
-  base: MdxNode,
-  head: MdxNode
+  base: DocumentParts,
+  head: DocumentParts
 ): PointsFinding | undefined {
   const before = countVisuals(base);
   const after = countVisuals(head);
