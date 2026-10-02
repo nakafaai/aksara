@@ -18,7 +18,7 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 import { selectTryoutTarget } from "#corpus/tryout/target";
 
 const questionRoot =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
+  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1";
 const promptPath = CorpusSourcePathSchema.make(
   `${questionRoot}/question.en.mdx`
 );
@@ -115,7 +115,7 @@ describe("tryout target", () => {
             questionOrder: 1,
             questionSourcePath: questionRoot,
           },
-          section: { sectionKey: "reading-and-writing-skills" },
+          section: { sectionKey: "reading-comprehension-and-writing" },
           set: { setKey: "set-1" },
           track: { trackKey: "2027" },
         });
@@ -152,7 +152,7 @@ describe("tryout target", () => {
                 row.kind === "track" ||
                 row.setKey === "set-1") &&
               (row.kind !== "section" ||
-                row.sectionKey === "reading-and-writing-skills")
+                row.sectionKey === "reading-comprehension-and-writing")
           );
         /** Removes the selected row kind from the canonical catalog. */
         const without = (kind: TargetRowKind) =>
@@ -248,7 +248,7 @@ describe("tryout target", () => {
             rejectTarget(fixture.rows, fixture.sources, fixture.prompt, {
               ...fixture.question,
               questionKey: QuestionKeySchema.make(
-                "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-2"
+                "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-2"
               ),
             }),
             rejectTarget(

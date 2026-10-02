@@ -23,26 +23,26 @@ const snbtSections: readonly SnbtSection[] = [
     questionCount: 30,
     rendererDomain: "snbt-general",
     routeSlugs: {
-      de: "allgemeines-logisches-denken",
+      de: "allgemeines-schlussfolgern",
       en: "general-reasoning",
       id: "penalaran-umum",
     },
     timeLimitSeconds: 1800,
     translations: {
-      de: { title: "Allgemeines logisches Denken" },
+      de: { title: "Allgemeines Schlussfolgern" },
       en: { title: "General Reasoning" },
       id: { title: "Penalaran Umum" },
     },
   },
   {
-    key: "general-knowledge",
+    key: "general-knowledge-and-understanding",
     languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
-      de: "allgemeinwissen",
-      en: "general-knowledge",
-      id: "pengetahuan-umum",
+      de: "allgemeines-wissen-und-verstaendnis",
+      en: "general-knowledge-and-understanding",
+      id: "pengetahuan-dan-pemahaman-umum",
     },
     timeLimitSeconds: 900,
     translations: {
@@ -52,14 +52,14 @@ const snbtSections: readonly SnbtSection[] = [
     },
   },
   {
-    key: "reading-and-writing-skills",
+    key: "reading-comprehension-and-writing",
     languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
-      de: "lese-und-schreibkompetenz",
-      en: "reading-and-writing-skills",
-      id: "literasi-membaca-menulis",
+      de: "leseverstaendnis-und-schreiben",
+      en: "reading-comprehension-and-writing",
+      id: "pemahaman-bacaan-dan-menulis",
     },
     timeLimitSeconds: 1500,
     translations: {
@@ -86,14 +86,14 @@ const snbtSections: readonly SnbtSection[] = [
     },
   },
   {
-    key: "indonesian-language",
+    key: "literacy-in-indonesian",
     languagePolicy: { kind: "fixed", language: "id" },
     questionCount: 30,
     rendererDomain: "snbt-plain",
     routeSlugs: {
-      de: "indonesische-sprache",
-      en: "indonesian-language",
-      id: "bahasa-indonesia",
+      de: "lesekompetenz-in-indonesischer-sprache",
+      en: "literacy-in-indonesian",
+      id: "literasi-dalam-bahasa-indonesia",
     },
     timeLimitSeconds: 2550,
     translations: {
@@ -103,14 +103,14 @@ const snbtSections: readonly SnbtSection[] = [
     },
   },
   {
-    key: "english-language",
+    key: "literacy-in-english",
     languagePolicy: { kind: "fixed", language: "en" },
     questionCount: 20,
     rendererDomain: "snbt-plain",
     routeSlugs: {
-      de: "englische-sprache",
-      en: "english-language",
-      id: "bahasa-inggris",
+      de: "lesekompetenz-in-englischer-sprache",
+      en: "literacy-in-english",
+      id: "literasi-dalam-bahasa-inggris",
     },
     timeLimitSeconds: 1200,
     translations: {
@@ -159,7 +159,7 @@ const snbtTryoutCatalog = defineTryoutExamSource({
     },
   },
   scoringStrategy: "irt",
-  sourceRevision: "2026-09-27",
+  sourceRevision: "2026-10-02",
   tracks: [
     {
       key: "2027",

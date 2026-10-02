@@ -57,11 +57,11 @@ describe("path policy", () => {
         "packages/corpus/material/lesson/very-long-source-slug/en.mdx",
         "packages/corpus/pages/privacy-policy/en.mdx",
         "packages/corpus/question-bank/reader.ts",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/answer.id.mdx",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/item.ts",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.en.mdx",
-        "packages/corpus/question-bank/tryout/germany/abitur/reading-and-writing-skills/foundation-set/question-1/item.ts",
-        "packages/corpus/question-bank/tryout/united-arab-emirates/national-school-leaving-exam/reading-and-writing-skills/foundation-set/question-1/item.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/answer.id.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/item.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/germany/abitur/reading-comprehension-and-writing/foundation-set/question-1/item.ts",
+        "packages/corpus/question-bank/tryout/united-arab-emirates/national-school-leaving-exam/reading-comprehension-and-writing/foundation-set/question-1/item.ts",
       ])
     ).toEqual([]);
   });
@@ -94,8 +94,8 @@ describe("path policy", () => {
         "packages/corpus/articles/source-map.ts",
         "packages/corpus/material/lesson/very-long-source-slug/worked-example.mdx",
         "packages/corpus/quran/sources/german/edition-notes.pdf",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx",
-        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-x/item.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/three-word-source.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts",
         "packages/corpus/question-bank/tryout/helpers/two-words/file.ts",
         "packages/corpus/question-bank/two-words/item.ts",
       ])
@@ -106,10 +106,10 @@ describe("path policy", () => {
       "packages/corpus/articles/source-map.ts: source-map.ts must be one word",
       "packages/corpus/material/lesson/very-long-source-slug/worked-example.mdx: worked-example.mdx must be one word",
       "packages/corpus/quran/sources/german/edition-notes.pdf: edition-notes.pdf must be one word",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx: reading-and-writing-skills must be one word",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/three-word-source.mdx: three-word-source.mdx must be one word",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-x/item.ts: reading-and-writing-skills must be one word",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-x/item.ts: question-x must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/three-word-source.mdx: reading-comprehension-and-writing must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/three-word-source.mdx: three-word-source.mdx must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts: reading-comprehension-and-writing must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts: question-x must be one word",
       "packages/corpus/question-bank/tryout/helpers/two-words/file.ts: two-words must be one word",
       "packages/corpus/question-bank/two-words/item.ts: two-words must be one word",
     ]);

@@ -97,7 +97,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
           "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
         );
         const answer = yield* compileRealDocument(
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge/set-2/question-1/answer.en.mdx"
+          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/answer.en.mdx"
         );
 
         const [articleResult] = article.results;

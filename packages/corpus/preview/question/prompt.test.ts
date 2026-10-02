@@ -37,7 +37,7 @@ describe("question preview", () => {
     () =>
       Effect.gen(function* () {
         const sharedRoot =
-          "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1";
+          "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1";
         const sharedPrompt = `${sharedRoot}/question.en.mdx`;
         const [german, ambiguous] = yield* Effect.all([
           selectDocument(sharedPrompt, [], "de"),
@@ -106,7 +106,7 @@ describe("question preview", () => {
     () =>
       Effect.gen(function* () {
         const questionRoot =
-          "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1";
+          "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1";
         const directoryReads: QuestionDirectoryRead[] = [];
 
         yield* selectDocument(

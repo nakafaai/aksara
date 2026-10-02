@@ -25,7 +25,7 @@ import {
 } from "#corpus/test/question";
 
 const readingSetKey =
-  "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1";
+  "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1";
 const readingQuestionKey = `${readingSetKey}/question-1`;
 const readingSourceRoot = `packages/corpus/${readingQuestionKey}`;
 
@@ -137,7 +137,7 @@ layer(NodeServices.layer)("question registry", (it) => {
         const keys = [
           readingQuestionKey,
           readingQuestionKey,
-          "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1",
+          "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1",
         ].map((key) => QuestionKeySchema.make(key));
         const { entries, sources } = yield* loadSelectedQuestionContent(
           corpusRoot,
@@ -185,12 +185,12 @@ layer(NodeServices.layer)("question registry", (it) => {
 
   it.effect.each([
     [
-      "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/answer.id.mdx",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/answer.id.mdx",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/question.en.mdx",
     ],
     [
-      "packages/corpus/question-bank/tryout/indonesia/snbt/indonesian-language/set-1/question-1/answer.en.mdx",
-      "packages/corpus/question-bank/tryout/indonesia/snbt/indonesian-language/set-1/question-1/question.id.mdx",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-indonesian/set-1/question-1/answer.en.mdx",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-indonesian/set-1/question-1/question.id.mdx",
     ],
   ] as const)("selects each assessed-language prompt", ([answer, prompt]) =>
     Effect.gen(function* () {

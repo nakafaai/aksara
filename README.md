@@ -115,7 +115,7 @@ Preview a German application shell while preserving the language being
 assessed:
 
 ```sh
-pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx --app-locale de
+pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/question.en.mdx --app-locale de
 ```
 
 The selected prompt and response options remain in the assessed language. The

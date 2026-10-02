@@ -15,7 +15,7 @@ import {
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 const promptPath = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1/question.id.mdx"
+  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/question.id.mdx"
 );
 
 /** Loads one real question and its exact source-owned placement context. */
@@ -38,7 +38,7 @@ const loadPlacementFixture = Effect.fn(
     track.sets.find(({ key }) => key === "set-1")
   );
   const section = yield* Effect.fromNullishOr(
-    set.sections.find(({ key }) => key === "reading-and-writing-skills")
+    set.sections.find(({ key }) => key === "reading-comprehension-and-writing")
   );
   return {
     context: { section, set, source, track },
@@ -58,7 +58,7 @@ describe("tryout placement", () => {
 
       expect(placement).toMatchObject({
         questionOrder: 1,
-        sectionKey: "reading-and-writing-skills",
+        sectionKey: "reading-comprehension-and-writing",
         setKey: "set-1",
         trackKey: "2027",
       });
@@ -110,7 +110,7 @@ describe("tryout placement", () => {
         const inconsistentSourcePath = {
           ...fixture.question,
           sourceRoot: CorpusSourcePathSchema.make(
-            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-2"
+            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-2"
           ),
         };
         const error = yield* makeTryoutPlacement(

@@ -30,26 +30,49 @@ and
 [advanced mathematics](https://pusmendik.kemendikdasmen.go.id/tka/tka/view/mata-pelajaran-pilihan/sma/matematika-tingkat-lanjut).
 Those are verified framework names.
 
-Nakafa product naming is separate from the official taxonomy. Compulsory
-mathematics uses `compulsory-mathematics` in the question-bank directory,
-track key, and section key. Its localized route slugs are `matematika-wajib`,
-`compulsory-mathematics`, and `pflichtmathematik`. Use `Matematika Wajib` when
-the product needs to distinguish the compulsory subject, and
-`Matematika Tingkat Lanjut` for the elective subject. English may use
-`Compulsory Mathematics` and `Advanced Mathematics`. Advanced mathematics
-must own a separate Nakafa subject identity when it is authored. Do not reserve
-empty tracks or duplicate registries for future subjects. Source folder and
-file names such as `MTK Wajib` and `MTK Tingkat Lanjut` are product and
-research evidence only, not official framework evidence. Do not collapse this
-TKA subject taxonomy into UTBK-SNBT's `Penalaran Matematika`.
-Renderer domains describe available components, not subject identities:
-`tka-math` supplies mathematical renderers without defining a mathematics track.
-
 Never duplicate an exam prompt or its response options merely because the
 application locale changes. Explanations may quote the original prompt language
 while explaining the reasoning in the learner's application locale.
 
 New try-out sets also follow [try-out sets](sets.md).
+
+## Names and identities
+
+- A catalog title is the official name of its exam, track, or section,
+  written in full. Indonesian titles match the official wording exactly:
+  UTBK-SNBT has `Penalaran Umum`, `Pengetahuan dan Pemahaman Umum`,
+  `Pemahaman Bacaan dan Menulis`, `Pengetahuan Kuantitatif`,
+  `Literasi dalam Bahasa Indonesia`, `Literasi dalam Bahasa Inggris`, and
+  `Penalaran Matematika`. English and German titles are faithful translations
+  that render the same official word the same way everywhere, so *Penalaran*
+  is *Reasoning* and *Schlussfolgern* in both reasoning sections. Never publish
+  an abbreviation such as `MTK`, `PU`, or `PPU` as a title.
+- When the official name leaves a distinction implicit, add the official
+  qualifier: `Matematika Wajib` for the compulsory subject beside
+  `Matematika Tingkat Lanjut` for the elective one, with `Compulsory
+  Mathematics` and `Advanced Mathematics` in English. Advanced mathematics owns
+  a separate subject identity when it is authored. Do not reserve empty tracks
+  or duplicate registries for future subjects.
+- A stable key, used for the track, the section, and the question-bank
+  directory, is the English name of the official subject in lowercase kebab
+  case: `literacy-in-english` for `Literasi dalam Bahasa Inggris`,
+  `english-language` for the TKA subject `Bahasa Inggris`, and
+  `compulsory-mathematics` for `Matematika Wajib`. A key never names a subject
+  other than the one its title names.
+- Every localized route slug spells its localized title, with German letters
+  written out (`ä` as `ae`, `ö` as `oe`, `ü` as `ue`, `ß` as `ss`), so
+  `Matematika Wajib` is `matematika-wajib` and `Leseverständnis und Schreiben`
+  is `leseverstaendnis-und-schreiben`. A year track is the exception: its slug
+  is the year. The catalog schema rejects a slug that does not spell its title.
+- Renaming a published key or slug changes identities. Attempts stay bound to
+  the signed snapshot they started on, and Nakafa redirects every retired
+  public URL permanently to its successor once the release is live.
+- Source folder and file names such as `MTK Wajib` and `MTK Tingkat Lanjut`
+  are product and research evidence only, not official framework evidence. Do
+  not collapse the TKA subject taxonomy into UTBK-SNBT's `Penalaran
+  Matematika`. Renderer domains describe available components, not subject
+  identities: `tka-math` supplies mathematical renderers without defining a
+  mathematics track.
 
 ## Prompt rules
 

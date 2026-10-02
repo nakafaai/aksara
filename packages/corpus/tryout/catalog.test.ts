@@ -8,6 +8,9 @@ import {
 } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
+/** SNBT literacy in English and the TKA English subject are assessed in English. */
+const ENGLISH_SECTIONS = new Set(["english-language", "literacy-in-english"]);
+
 describe("tryout catalog", () => {
   it.effect(
     "derives graph identity from source keys for routes and internal entries",
@@ -121,7 +124,7 @@ describe("tryout catalog", () => {
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             deliveryLanguageForPolicy(section.languagePolicy, locale)
-          ).toBe(section.key === "english-language" ? "en" : "id");
+          ).toBe(ENGLISH_SECTIONS.has(section.key) ? "en" : "id");
         }
       }
     })
