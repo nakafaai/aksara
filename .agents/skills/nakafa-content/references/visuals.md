@@ -62,18 +62,17 @@ For assessed content, also apply the
   footer. Grid and playback controls belong in that footer; do not add a gizmo
   or overlay controls on the mathematical subject.
   Use the established EvilCharts components, tables, and diagrams when their
-  axes, values, comparisons, or structure explain the content more clearly.
-  The restriction on bespoke SVG does not prohibit the chart library's own
-  renderer, and does not require converting every visual to 3D.
+  axes, values, comparisons, or structure explain real data more clearly. The
+  chart library's own renderer is a data display, not a hand-drawn
+  illustration, so the ban on bespoke SVG does not apply to it.
 - Preserve exact straight geometry with `MathVisual`'s `segment`, `polyline`,
-  or `polygon` objects. Generate circles, arcs, and quadratic curves from their
-  mathematical functions. Do not smooth polygon edges or use interpolated
-  points that change the equation being taught.
-  For a sampled analytic `LineEquation`, calculate points from the formula and
-  set `smooth: false`. Increase the sampling density when visible segments do
-  not represent the curve adequately. Keep discontinuous branches separate.
-  When adding samples, remap label indices to their original mathematical
-  anchors and use `pointIndices` to preserve the intended visible markers.
+  or `polygon` objects. Generate circles, arcs, and curves from their
+  mathematical functions under
+  [computed and exact visuals](#computed-and-exact-visuals). Do not smooth
+  polygon edges or use interpolated points that change the equation being
+  taught. When adding samples, remap label indices to their original
+  mathematical anchors and use `pointIndices` to preserve the intended visible
+  markers.
   A set of isolated observations uses one-point series, without connecting
   them into an additional curve. Declarative circle objects own their exact
   sampling and accept no authored `smooth` override.
@@ -104,6 +103,63 @@ For assessed content, also apply the
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
+## Computed and exact visuals
+
+These rules have no exceptions, because a single wrong or jagged graph teaches
+the wrong mathematics on an education platform.
+
+- **Only three.js and p5 draw illustrations.** Geometry, graphs, vectors,
+  fields, structures, and simulations render through Nakafa's React Three
+  Fiber foundation (`CoordinateSystem`, `LineEquation`, `MathVisual`, and the
+  owned 3D components) or, once the renderer manifest lists it, a p5 sketch.
+  Never author hand-written SVG, raw SVG paths, HTML or CSS drawings, canvas
+  code, or images. A p5 sketch meets the same bar as a 3D scene: every drawn
+  value is computed, the motion teaches, and the still frame reads on its own.
+- **Every plotted coordinate is computed in the source.** Build each point
+  series in the MDX expression from the formula the lesson teaches, with
+  `Array.from` over a parameter:
+
+  ```tsx
+  // F(x) = (3x - 1)^2 stays inside a frame of height 4 for -1/3 <= x <= 1.
+  points: Array.from({ length: 401 }, (_, i) => {
+    const x = -1 / 3 + (i / 400) * (4 / 3);
+    return { x, y: (3 * x - 1) ** 2, z: 0 };
+  }),
+  ```
+
+  The same applies to `MathVisual` vertices, traces, and surfaces. Never type a
+  list of coordinates, never paste values an external script printed, and
+  never round a computed value into the source. A literal coordinate is
+  allowed only for a point the lesson names exactly, such as a vertex, an
+  intercept, or the corner of a polygon, and it must equal the formula's
+  value. A reader checks a visual by reading its formula, not its numbers.
+- **A smooth function renders smooth.** Sample only the part of the domain
+  that stays inside the frame: solve for the frame bounds instead of sampling
+  far outside them, so the visible part gets the samples. Use at least two
+  hundred samples per visible branch and more where the slope or curvature is
+  high, until no corner shows at the largest card size, including full
+  screen. Keep `smooth: false`, so the path follows the exact samples instead
+  of an interpolating spline.
+- **Corners and breaks appear exactly where the mathematics puts them.** Put
+  an exact sample at every corner, cusp, piecewise boundary, and named point,
+  such as the vertex of `|x|`. Split the series at every discontinuity and
+  asymptote instead of joining across it.
+- **A revision never removes 3D or animation.** Inventory every interactive
+  visual before editing. Fix a visual that is wrong, rebuild it when its
+  component cannot carry the job, and add visuals where a main idea has none.
+  Never remove, merge, or replace interactive visuals so that the lesson ends
+  with fewer than it started with. More well-made 3D scenes and animations
+  make a better Nakafa lesson.
+- **Fix the component, never the data.** When a component cannot draw a
+  concept exactly or smoothly, improve the component in Nakafa's renderer with
+  the best composition and deploy it before the content that uses it. Never
+  work around a component limit with hard-coded data.
+- **The `points` gate enforces this.** Run
+  `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
+  on every changed lesson and article. It rejects literal coordinate lists and
+  reports any lesson whose interactive visuals fall below their count on
+  `origin/main`.
+
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
 performs the teaching job. Add a new owned component only for a verified gap.
@@ -119,9 +175,9 @@ follow the interactive visual rule below.
 
 ## Interactive visual in every lesson
 
-Nakafa's lesson standard requires at least one interactive visual in every
-lesson, because learners understand and remember a concept they can see and
-change. The research in the [evidence basis](research.md) governs how the
+Nakafa's lesson standard requires rich interactive visuals in every lesson,
+usually one for each main idea a learner can see, because learners understand
+and remember a concept they can see and change, and they skim long text. The research in the [evidence basis](research.md) governs how the
 visual is designed: it carries a teaching job and never decorates.
 
 - The interaction answers a question the lesson asks: change a parameter and
