@@ -96,7 +96,7 @@ export const invalidQuestionItemSources = [
 export const questionRendererCounts = [
   { count: 300, rendererDomain: "snbt-general" },
   { count: 200, rendererDomain: "snbt-math" },
-  { count: 1050, rendererDomain: "snbt-plain" },
+  { count: 1075, rendererDomain: "snbt-plain" },
   { count: 200, rendererDomain: "snbt-quant" },
   { count: 75, rendererDomain: "tka-math" },
 ];

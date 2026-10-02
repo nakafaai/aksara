@@ -89,12 +89,12 @@ describe("tryout catalog", () => {
           ])
         );
 
-        expect(rows).toHaveLength(315);
+        expect(rows).toHaveLength(321);
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 237,
-          set: 57,
+          section: 240,
+          set: 60,
           track: 12,
         });
         expect(
@@ -104,7 +104,7 @@ describe("tryout catalog", () => {
               row.examKey === "tka" &&
               row.publicPath === undefined
           )
-        ).toHaveLength(27);
+        ).toHaveLength(30);
       })
   );
 
@@ -116,7 +116,7 @@ describe("tryout catalog", () => {
           track.sets.flatMap((set) => set.sections)
         )
       );
-      expect(sections).toHaveLength(79);
+      expect(sections).toHaveLength(80);
       for (const section of sections) {
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
@@ -202,7 +202,7 @@ describe("tryout catalog", () => {
         const rows = yield* projectTryoutCatalog(sources);
 
         expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(
-          105
+          107
         );
         expect(
           rows.find(
