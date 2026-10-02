@@ -158,10 +158,10 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
   do not reject them in an answer. Read the prompt and all answer siblings to
   evaluate their pedagogical use.
 
-A full question-bank run covers 9650 MDX files. A clean automated result proves
-only these boundaries, never mathematical accuracy or the completeness of every
-worked solution. The [worked-solution review](solutions.md) still owns
-those decisions.
+A full question-bank run covers every MDX file in the bank. A clean automated
+result proves only these boundaries, never mathematical accuracy or the
+completeness of every worked solution. The
+[worked-solution review](solutions.md) still owns those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
 `--strict-review` fails it while the repository suite still rejects it. A
