@@ -52,212 +52,31 @@ A fair spinner has **eight equal sectors** numbered <InlineMath math="1" /> thro
   title="Eight equal sectors"
   description="Each number occupies one 45-degree sector. All sectors have equal area."
   scene={{
-  "space": "plane",
-  "frame": {
-    "kind": "cartesian",
-    "x": {
-      "min": -1.25,
-      "max": 1.25
-    },
-    "y": {
-      "min": -1.25,
-      "max": 1.25
-    }
-  },
-  "view": {
-    "kind": "fit"
-  },
-  "objects": [
-    {
-      "id": "wheel",
-      "kind": "circle",
-      "appearance": "primary",
-      "center": {
-        "x": 0,
-        "y": 0
-      },
-      "radius": 1
-    },
-    {
-      "id": "radius-1",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": 1.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "radius-2",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": 0.707106781187,
-        "y": 0.707106781187
-      }
-    },
-    {
-      "id": "radius-3",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": 0.0,
-        "y": 1.0
-      }
-    },
-    {
-      "id": "radius-4",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": -0.707106781187,
-        "y": 0.707106781187
-      }
-    },
-    {
-      "id": "radius-5",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": -1.0,
-        "y": 0.0
-      }
-    },
-    {
-      "id": "radius-6",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": -0.707106781187,
-        "y": -0.707106781187
-      }
-    },
-    {
-      "id": "radius-7",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": -0.0,
-        "y": -1.0
-      }
-    },
-    {
-      "id": "radius-8",
-      "kind": "segment",
-      "appearance": "construction",
-      "from": {
-        "x": 0,
-        "y": 0
-      },
-      "to": {
-        "x": 0.707106781187,
-        "y": -0.707106781187
-      }
-    }
-  ],
-  "labels": [
-    {
-      "key": "sector-1",
-      "objectId": "wheel",
-      "at": {
-        "x": 0.582044105482,
-        "y": 0.24109056239
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-2",
-      "objectId": "wheel",
-      "at": {
-        "x": 0.24109056239,
-        "y": 0.582044105482
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-3",
-      "objectId": "wheel",
-      "at": {
-        "x": -0.24109056239,
-        "y": 0.582044105482
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-4",
-      "objectId": "wheel",
-      "at": {
-        "x": -0.582044105482,
-        "y": 0.24109056239
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-5",
-      "objectId": "wheel",
-      "at": {
-        "x": -0.582044105482,
-        "y": -0.24109056239
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-6",
-      "objectId": "wheel",
-      "at": {
-        "x": -0.24109056239,
-        "y": -0.582044105482
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-7",
-      "objectId": "wheel",
-      "at": {
-        "x": 0.24109056239,
-        "y": -0.582044105482
-      },
-      "placement": "center"
-    },
-    {
-      "key": "sector-8",
-      "objectId": "wheel",
-      "at": {
-        "x": 0.582044105482,
-        "y": -0.24109056239
-      },
-      "placement": "center"
-    }
-  ]
-}}
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "wheel", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "radius-1", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "radius-2", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 } },
+      { id: "radius-3", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "radius-4", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 } },
+      { id: "radius-5", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "radius-6", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 } },
+      { id: "radius-7", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -1 } },
+      { id: "radius-8", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 } },
+    ],
+    labels: [
+      { key: "sector-1", objectId: "wheel", at: { x: 0.63 * Math.cos(Math.PI / 8), y: 0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-2", objectId: "wheel", at: { x: 0.63 * Math.sin(Math.PI / 8), y: 0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-3", objectId: "wheel", at: { x: -0.63 * Math.sin(Math.PI / 8), y: 0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-4", objectId: "wheel", at: { x: -0.63 * Math.cos(Math.PI / 8), y: 0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-5", objectId: "wheel", at: { x: -0.63 * Math.cos(Math.PI / 8), y: -0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-6", objectId: "wheel", at: { x: -0.63 * Math.sin(Math.PI / 8), y: -0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-7", objectId: "wheel", at: { x: 0.63 * Math.sin(Math.PI / 8), y: -0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-8", objectId: "wheel", at: { x: 0.63 * Math.cos(Math.PI / 8), y: -0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+    ],
+  }}
   labels={{ "sector-1": <InlineMath math="1" />, "sector-2": <InlineMath math="2" />, "sector-3": <InlineMath math="3" />, "sector-4": <InlineMath math="4" />, "sector-5": <InlineMath math="5" />, "sector-6": <InlineMath math="6" />, "sector-7": <InlineMath math="7" />, "sector-8": <InlineMath math="8" /> }}
 />
 
