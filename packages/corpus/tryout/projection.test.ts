@@ -64,7 +64,7 @@ describe("tryout projection", () => {
         const { projection, sources: questions } =
           yield* loadTryoutProjectionContent();
         const english = projection.placements.filter(({ questionContentKey }) =>
-          questionContentKey.includes("/snbt/english-language/")
+          questionContentKey.includes("/snbt/literacy-in-english/")
         );
         const placement = yield* Effect.fromNullishOr(
           english.find(({ appLocale }) => appLocale === "en")

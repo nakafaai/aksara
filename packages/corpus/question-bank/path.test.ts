@@ -61,7 +61,7 @@ describe("question path", () => {
         const [plain, mathematics] = yield* Effect.all([
           decodeQuestionPath(
             questionBanks,
-            "indonesia/snbt/reading-and-writing-skills/set-1/question-1"
+            "indonesia/snbt/reading-comprehension-and-writing/set-1/question-1"
           ),
           decodeQuestionPath(
             questionBanks,
@@ -72,7 +72,7 @@ describe("question path", () => {
         expect(plain).toMatchObject({
           rendererDomain: "snbt-plain",
           setKey:
-            "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1",
+            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1",
         });
         expect(mathematics).toMatchObject({
           questionNumber: 40,

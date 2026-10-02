@@ -46,16 +46,16 @@ layer(Path.layer)("question source", (it) => {
         expect(
           sources.find(({ questionKey }) =>
             questionKey.endsWith(
-              "snbt/reading-and-writing-skills/set-1/question-1"
+              "snbt/reading-comprehension-and-writing/set-1/question-1"
             )
           )
         ).toMatchObject({
           questionKey:
-            "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1",
+            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1",
           setKey:
-            "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1",
+            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1",
           sourceRoot:
-            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1/question-1",
+            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1",
         });
       }),
     30_000

@@ -27,9 +27,9 @@ import { tryoutFixtures } from "#test/tryout/fixtures";
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
-  "a8160b3360083cabdfd45166e4c0f79bf4f934310ecc5402f1f80bc2092b3927",
-  "df502a40c193addaba574997c6ff2f1b697efc0a5c45fcf0ac215abebc95aa43",
-  "b0015da3c8f87b17c4aacf5e80dbf32c6dc78f0158134b4ea1ae353476fee138",
+  "16f301b09447305bbfb64ac0525279ea8ef1269ac086cb2b194522cff69d9192",
+  "cb2a3a43b49a3232e7144fac9028451159f948dadfe793029011a859256894bb",
+  "91fc09f8efb04959865e3d32d04da121043835504bbb3bfd475fb983c4013bb2",
 ];
 
 /** Loads exact real bindings once for every content-binding test. */

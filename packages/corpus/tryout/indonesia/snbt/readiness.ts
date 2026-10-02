@@ -26,13 +26,13 @@ export const snbtReadiness = defineAssessmentReadiness({
       timeLimitSeconds: official(1800),
     },
     {
-      key: "general-knowledge",
+      key: "general-knowledge-and-understanding",
       order: 2,
       questionCount: official(20),
       timeLimitSeconds: official(900),
     },
     {
-      key: "reading-and-writing-skills",
+      key: "reading-comprehension-and-writing",
       order: 3,
       questionCount: official(20),
       timeLimitSeconds: official(1500),
@@ -44,13 +44,13 @@ export const snbtReadiness = defineAssessmentReadiness({
       timeLimitSeconds: official(1200),
     },
     {
-      key: "indonesian-language",
+      key: "literacy-in-indonesian",
       order: 5,
       questionCount: official(30),
       timeLimitSeconds: official(2550),
     },
     {
-      key: "english-language",
+      key: "literacy-in-english",
       order: 6,
       questionCount: official(20),
       timeLimitSeconds: official(1200),
@@ -62,6 +62,6 @@ export const snbtReadiness = defineAssessmentReadiness({
       timeLimitSeconds: official(2550),
     },
   ],
-  sourceRevision: "2026-09-27",
+  sourceRevision: "2026-10-02",
   trackKey: "2027",
 });

@@ -12,7 +12,7 @@ const QUESTION_SUFFIX_PATTERN = /\/question$/u;
 const placement = {
   answerArtifactLocale: "de",
   answerContentKey:
-    "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/answer",
+    "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/answer",
   appLocale: "de",
   countryKey: "indonesia",
   deliveryLanguage: "en",
@@ -20,10 +20,10 @@ const placement = {
   languagePolicy: { kind: "fixed", language: "en" },
   questionArtifactLocale: "en",
   questionContentKey:
-    "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question",
+    "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/question",
   questionOrder: 1,
   questionSourcePath:
-    "packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1",
+    "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1",
   rendererDomain: "snbt-plain",
   response: {
     kind: "single-choice",
@@ -43,7 +43,7 @@ const placement = {
     ],
   },
   scope: "server",
-  sectionKey: "english-language",
+  sectionKey: "literacy-in-english",
   setKey: "set-1",
   sourceRevision: "test-revision",
   trackKey: "snbt",
