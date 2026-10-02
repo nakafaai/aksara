@@ -123,7 +123,9 @@ Read only what the task needs. Each reference owns one concern.
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's
   three.js foundation or p5, never SVG, HTML drawings, canvas code, or images.
   [Components and visuals](references/visuals.md#computed-and-exact-visuals)
-  owns these rules and the `points` gate that enforces them.
+  owns these rules and the `points` gate that enforces them, and
+  [verification](references/verification.md#points-gate) owns the gate's
+  command and scope.
 - Nothing is published before it passes the
   [release gate](references/verification.md#release-gate). A small error on an
   education platform is a defect, so every artifact is verified, never a sample.

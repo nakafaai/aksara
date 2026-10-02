@@ -51,6 +51,7 @@ pnpm names
 pnpm lines
 pnpm jsdocs
 pnpm locales
+pnpm points
 pnpm boundaries
 pnpm lint
 pnpm typecheck
@@ -207,6 +208,39 @@ boundary before widening a rule. Preserve the following verification boundaries:
 Global language linters are not MDX parsers. Give them only the learner-visible
 passage being reviewed and validate their findings in context.
 
+## Points gate
+
+The gate keeps every plotted value computed from its formula and stops a
+revision from ending with fewer interactive visuals than it started with. It
+parses each MDX file with the checker's own MDX tooling and reads the ESTree of
+every JSX attribute expression, never raw text. The three findings, the
+thresholds, and the two scoped skips live in
+[computed and exact visuals](visuals.md#computed-and-exact-visuals).
+
+```sh
+pnpm points
+pnpm points --base <ref>
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts packages/corpus/material/lesson/mathematics/<topic> --base origin/main
+```
+
+`--base` names the revision the change started from. The gate compares each
+changed file with its version at the merge base of that revision and `HEAD`, so
+visuals that landed on `main` after the branch point never read as visuals this
+change removed. A file that gains visuals passes, and a file at a new path,
+including a renamed lesson, has nothing to compare with. A revision that
+removes one fails even when the lesson is otherwise better, so replace a visual
+with an equal or better one instead of deleting it. Exit code `1` means
+findings, and exit code `2` means a typed failure such as an unknown base. CI
+checks out the full history, so the merge base is always available.
+
+No Aksara module lists the renderer component names: the contracts package
+defines only the manifest schema, and the live renderer supplies the names when
+a document compiles. The visual count therefore excludes the closed set of
+names that only lay out, typeset, emphasize, or embed content, plus every
+lowercase HTML element, and counts every other name. A newly deployed visual
+counts without a change to the gate. A new text, layout, or media component
+joins `NON_VISUAL_COMPONENTS` in `points/visual.ts` with its test.
+
 ## Acceptance review
 
 1. Confirm exact ownership, app locale, assessed delivery language, and route
@@ -221,7 +255,9 @@ passage being reviewed and validate their findings in context.
    [editorial workflow](editorial.md). Preserve every meaningful step,
    condition, unit, conclusion, and representation. Investigate each lost list,
    table, quotation, diagram, derivation, or component and record which teaching
-   job replaced it in every locale. A compiling summary is insufficient.
+   job replaced it in every locale. A compiling summary is insufficient. The
+   [points gate](#points-gate) counts the interactive visuals mechanically, and
+   the count never falls.
 4. Compare source and revised URL inventories under the
    [link policy](links.md). A removed, dead, or mismatched URL blocks
    release until its replacement or justified removal is recorded. For a
@@ -295,8 +331,9 @@ never to a sample, and the author of an artifact never serves as its verifier.
   lesson in every locale, and the gate reports zero findings.
 - **Visuals:** data modules are unit tested at full coverage, drawn values are
   compared with the governing formula, scientific constants cite their source,
-  and the rendered component is checked at phone and desktop widths, in light
-  and dark themes, and after rotation.
+  the [points gate](#points-gate) reports zero findings, and the rendered
+  component is checked at phone and desktop widths, in light and dark themes,
+  and after rotation.
 - **Scores:** each new set is attempted end to end, and the score matches a hand
   calculation for all-correct, all-wrong, and mixed answers.
 - **Acceptance:** the change is published to development and passes

@@ -105,8 +105,8 @@ For assessed content, also apply the
 
 ## Computed and exact visuals
 
-These rules have no exceptions, because a single wrong or jagged graph teaches
-the wrong mathematics on an education platform.
+These rules cover every value a formula draws, because a single wrong or jagged
+graph teaches the wrong mathematics on an education platform.
 
 - **Only three.js and p5 draw illustrations.** Geometry, graphs, vectors,
   fields, structures, and simulations render through Nakafa's React Three
@@ -127,12 +127,21 @@ the wrong mathematics on an education platform.
   }),
   ```
 
-  The same applies to `MathVisual` vertices, traces, and surfaces. Never type a
-  list of coordinates, never paste values an external script printed, and
-  never round a computed value into the source. A literal coordinate is
-  allowed only for a point the lesson names exactly, such as a vertex, an
-  intercept, or the corner of a polygon, and it must equal the formula's
-  value. A reader checks a visual by reading its formula, not its numbers.
+  Never type a list of coordinates, never paste values an external script
+  printed, and never round a computed value into the source. A literal
+  coordinate is allowed only for a point the lesson names exactly, such as a
+  vertex, an intercept, or the corner of a polygon, and it must equal the
+  formula's value. A reader checks a visual by reading its formula, not its
+  numbers. Observations are the one thing no formula draws, so a chart of
+  observed data such as `ScatterDiagram` keeps its measured values as typed
+  data.
+- **`MathVisual` holds exact named geometry only.** The compiler decodes its
+  `scene` as a static literal and rejects `Array.from` and every other
+  expression there, so a scene carries points, segments, circles, arcs, and
+  polylines or polygons of at most eight vertices. Draw a sampled curve with
+  `LineEquation`. An irrational named point such as (sqrt(3), 1) can only be a
+  decimal inside a `MathVisual` scene, so that decimal stays a literal there
+  until the component evaluates expressions.
 - **A smooth function renders smooth.** Sample only the part of the domain
   that stays inside the frame: solve for the frame bounds instead of sampling
   far outside them, so the visible part gets the samples. Use at least two
@@ -151,14 +160,27 @@ the wrong mathematics on an education platform.
   with fewer than it started with. More well-made 3D scenes and animations
   make a better Nakafa lesson.
 - **Fix the component, never the data.** When a component cannot draw a
-  concept exactly or smoothly, improve the component in Nakafa's renderer with
-  the best composition and deploy it before the content that uses it. Never
-  work around a component limit with hard-coded data.
+  concept exactly or smoothly, improve the component in Nakafa's renderer, and
+  Aksara's source policy where it rejects the source, with the best
+  composition, and deploy it before the content that uses it. Never work
+  around a component limit with hard-coded data. A `MathVisual` scene that
+  needs a computed curve is such a limit: use `LineEquation` for the curve and
+  raise the gap.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
-  on every changed lesson and article. It rejects literal coordinate lists and
-  reports any lesson whose interactive visuals fall below their count on
-  `origin/main`.
+  on every changed lesson and article, or `pnpm points` for both corpus roots.
+  It reports `file:line:column` for three findings. `literal-points` means one
+  array holds more than eight typed points, either `{ x, y }` objects or tuples
+  of two or three numbers. `long-decimal` means an `x`, `y`, or `z` coordinate
+  is a literal with four or more fractional digits, such as `0.707107`.
+  `interactive-visuals-fell` means a file has fewer interactive visuals than
+  the same file at its merge base with `--base` (default `origin/main`). Text,
+  notation, code, emphasis, layout, `Mermaid`, and video components never
+  count, and a new file has nothing to compare with. The gate skips
+  `ScatterDiagram`, because observations are data, and never applies
+  `long-decimal` to `MathVisual`, because its scene can only hold literals. CI
+  runs the gate on both corpus roots against the base of every pull request and
+  merge group.
 
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already

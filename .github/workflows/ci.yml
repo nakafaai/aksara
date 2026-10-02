@@ -80,6 +80,14 @@ jobs:
       - name: Locale source policy
         run: pnpm locales
 
+      # The merge queue compares the combined change with the base of its merge
+      # group, and a pull request with its own base, so no revision may end with
+      # fewer interactive visuals than it started with.
+      - name: Computed points and visual inventory
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
+        run: pnpm points --base "$BASE_SHA"
+
       - name: Workflow policy
         run: pnpm workflows
 

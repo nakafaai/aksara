@@ -72,7 +72,10 @@ count toward it.
 5. Run the gate on the lesson directory with `--strict-review` and read the
    `--pedagogy-review` inventory ([verification](verification.md)). Every
    finding reaches zero, and every signal is either fixed or retained with a
-   stated teaching reason.
+   stated teaching reason. Run the
+   [points gate](verification.md#points-gate) on the same directory: it fails
+   a typed coordinate list, a long decimal coordinate, and any file with fewer
+   interactive visuals than before.
 6. Compile the lesson and preview it through Nakafa's renderer at 390 and 1440
    pixels in light and dark themes. Rotate every 3D scene and play every
    animation.

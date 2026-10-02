@@ -97,6 +97,7 @@ pnpm jsdocs
 pnpm lines
 pnpm boundaries
 pnpm locales
+pnpm points
 pnpm workflows
 pnpm typecheck
 pnpm test

@@ -77,6 +77,7 @@ pnpm security:audit
 pnpm names
 pnpm jsdocs
 pnpm lines
+pnpm points
 pnpm boundaries
 pnpm typecheck
 pnpm test
