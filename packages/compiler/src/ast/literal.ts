@@ -214,7 +214,7 @@ export function decodeStaticLiteral(
  * Decodes the static literal subset and also folds constant numeric
  * expressions, such as `Math.sqrt(3)` or `1 / 3`, into the numbers they denote.
  * Exact geometry names irrational coordinates this way instead of rounding
- * them, and the renderer evaluates the same source to the same values.
+ * them, and the renderer evaluates the same source when it draws the scene.
  */
 export function decodeConstantLiteral(
   node: Expression | Pattern

@@ -131,8 +131,8 @@ function evaluate(node: Node): number | undefined {
  *
  * The expression may hold only numeric literals, the arithmetic operators, and
  * the `Math` constants and functions above, so folding never runs authored
- * code and always matches what the renderer computes when it evaluates the
- * same source.
+ * code. It applies the same operators and functions that the renderer's
+ * JavaScript applies when it evaluates the same source.
  */
 export function foldNumber(node: Node): number | undefined {
   const value = evaluate(node);

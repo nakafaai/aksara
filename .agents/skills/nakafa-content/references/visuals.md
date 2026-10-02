@@ -191,10 +191,11 @@ graph teaches the wrong mathematics on an education platform.
   is compared with the path Git pairs it with. Text, notation, code, emphasis,
   layout, `Mermaid`, and video components never count, and a new file has
   nothing to compare with. The gate skips `ScatterDiagram`, because
-  observations are data. It reads coordinates and typed lists, so a constant
-  that code turns into a coordinate, such as `parameters.push(1.9700042649107503)`,
-  and the density of a computed series stay review items. CI runs the gate on
-  both corpus roots against the base of every pull request and merge group.
+  observations are data. It reads coordinates and typed lists, so a printed
+  constant that code turns into a coordinate, such as
+  `parameters.push(1.9700042649107503)`, and the density of a computed series
+  stay review items. CI runs the gate on both corpus roots against the base of
+  every pull request and merge group.
 
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
@@ -213,8 +214,9 @@ follow the interactive visual rule below.
 
 Nakafa's lesson standard requires rich interactive visuals in every lesson,
 usually one for each main idea a learner can see, because learners understand
-and remember a concept they can see and change, and they skim long text. The research in the [evidence basis](research.md) governs how the
-visual is designed: it carries a teaching job and never decorates.
+and remember a concept they can see and change, and they skim long text. The
+research in the [evidence basis](research.md) governs how the visual is
+designed: it carries a teaching job and never decorates.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a
