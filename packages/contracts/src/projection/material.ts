@@ -17,7 +17,8 @@ const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const SEARCH_TITLE_MAX_LENGTH = 70;
-const SINGLE_SPACED_LINE_PATTERN = /^[^\p{Cc}\s]+(?: [^\p{Cc}\s]+)*$/u;
+const SINGLE_SPACED_LINE_PATTERN =
+  /^[^\p{Cc}\p{Cf}\s]+(?: [^\p{Cc}\p{Cf}\s]+)*$/u;
 
 const MaterialPublicPathSchema = PublicPathSchema.pipe(
   Schema.check(

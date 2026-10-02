@@ -125,7 +125,7 @@ describe("material projection", () => {
     ).toHaveLength(70);
   });
 
-  it("rejects search titles that are long, padded, multi-line, or undefined", () => {
+  it("rejects search titles that are long, padded, multi-line, invisible, or undefined", () => {
     for (const searchTitle of [
       "x".repeat(71),
       "",
@@ -135,6 +135,9 @@ describe("material projection", () => {
       "Rotasi\nFungsi",
       "Rotasi\tFungsi",
       "Rotasi\u00a0Fungsi",
+      "Rotasi\u200bFungsi",
+      "Rota\u00adsi Fungsi",
+      "Rotasi \u202eisgnuF",
       undefined,
     ]) {
       expect(

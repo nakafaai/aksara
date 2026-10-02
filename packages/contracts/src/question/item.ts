@@ -5,7 +5,7 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "#contracts/locale";
-import { QuestionAnswerSchema } from "#contracts/question/answer";
+import { QuestionAnswerKeySchema } from "#contracts/question/answer";
 import { QuestionResponseLabelSchema } from "#contracts/question/label";
 import { AuthoredQuestionPointsSchema } from "#contracts/question/points";
 import {
@@ -118,7 +118,7 @@ const CategoryResponseSourceSchema = Schema.Struct({
 
 /** One typed answer authored exactly as it is frozen and graded. */
 const ShortAnswerResponseSourceSchema = Schema.Struct({
-  answer: QuestionAnswerSchema,
+  key: QuestionAnswerKeySchema,
   kind: Schema.Literal("short-answer"),
 }).mapFields(Struct.map(Schema.mutableKey));
 
@@ -164,7 +164,7 @@ function freezeQuestionResponse(
   }
   if (response.kind === "short-answer") {
     return QuestionResponseSchema.make({
-      answer: response.answer,
+      key: response.key,
       kind: response.kind,
     });
   }

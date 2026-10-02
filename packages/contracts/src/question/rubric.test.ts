@@ -9,6 +9,7 @@ import {
   QuestionRubricLabelSchema,
   QuestionRubricResponseSchema,
   QuestionRubricResponseSourceSchema,
+  QuestionRubricScaleSchema,
   questionRubricPoints,
 } from "#contracts/question/rubric";
 import {
@@ -33,6 +34,14 @@ function rejects(
 /** Builds one authored rubric with a single criterion. */
 function oneCriterion(criterion: unknown) {
   return { criteria: [criterion], kind: "rubric" };
+}
+
+/** Builds authored levels worth the given points, in order. */
+function levels(...points: number[]) {
+  return points.map((value) => ({
+    label: label(`Level ${value}`),
+    points: value,
+  }));
 }
 
 const textResult = rubricSourceWith({
@@ -81,10 +90,22 @@ describe("question rubric", () => {
     expect(questionRubricPoints(rubric)).toBe(3);
   });
 
-  it("orders every label by the signed active locale order, not by key", () => {
-    expect(Object.keys(label("Approach"))).toEqual(["de", "en", "id"]);
+  it("signs every label with its locales in alphabetical order", () => {
+    const reversed = Schema.decodeUnknownSync(QuestionRubricLabelSchema)(
+      Object.fromEntries(Object.entries(label("Approach")).reverse())
+    );
+    const relabeled = QuestionRubricResponseSchema.make({
+      ...rubric,
+      criteria: rubric.criteria.map((criterion, index) =>
+        index === 0 ? { ...criterion, label: reversed } : criterion
+      ),
+    });
+
     expect(JSON.stringify(canonicalQuestionRubric(rubric))).toBe(
-      '{"criteria":[{"criterionKey":"criterion-1","label":{"en":"Approach (en)","id":"Approach (id)","de":"Approach (de)"},"levels":[{"label":{"en":"Missing (en)","id":"Missing (id)","de":"Missing (de)"},"levelKey":"level-1","order":1,"points":0},{"label":{"en":"Partial (en)","id":"Partial (id)","de":"Partial (de)"},"levelKey":"level-2","order":2,"points":1},{"label":{"en":"Complete (en)","id":"Complete (id)","de":"Complete (de)"},"levelKey":"level-3","order":3,"points":2}],"order":1},{"criterionKey":"criterion-2","finalAnswer":{"acceptsFractions":true,"kind":"number","value":"0.5"},"label":{"en":"Result (en)","id":"Result (id)","de":"Result (de)"},"levels":[{"label":{"en":"Wrong (en)","id":"Wrong (id)","de":"Wrong (de)"},"levelKey":"level-1","order":1,"points":0},{"label":{"en":"Right (en)","id":"Right (id)","de":"Right (de)"},"levelKey":"level-2","order":2,"points":1}],"order":2}],"kind":"rubric"}'
+      '{"criteria":[{"criterionKey":"criterion-1","label":{"de":"Approach (de)","en":"Approach (en)","id":"Approach (id)"},"levels":[{"label":{"de":"Missing (de)","en":"Missing (en)","id":"Missing (id)"},"levelKey":"level-1","order":1,"points":0},{"label":{"de":"Partial (de)","en":"Partial (en)","id":"Partial (id)"},"levelKey":"level-2","order":2,"points":1},{"label":{"de":"Complete (de)","en":"Complete (en)","id":"Complete (id)"},"levelKey":"level-3","order":3,"points":2}],"order":1},{"criterionKey":"criterion-2","finalAnswer":{"acceptsFractions":true,"kind":"number","value":"0.5"},"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"},"levels":[{"label":{"de":"Wrong (de)","en":"Wrong (en)","id":"Wrong (id)"},"levelKey":"level-1","order":1,"points":0},{"label":{"de":"Right (de)","en":"Right (en)","id":"Right (id)"},"levelKey":"level-2","order":2,"points":1}],"order":2}],"kind":"rubric"}'
+    );
+    expect(JSON.stringify(canonicalQuestionRubric(relabeled))).toBe(
+      JSON.stringify(canonicalQuestionRubric(rubric))
     );
   });
 
@@ -152,56 +173,64 @@ describe("question rubric", () => {
     })
   );
 
-  it("rejects scales that are short, flat, descending, unanchored, or ambiguous", () => {
-    for (const levels of [
-      [{ label: label("Only"), points: 0 }],
-      [
-        { label: label("Low"), points: 0 },
-        { label: label("Same"), points: 0 },
-      ],
-      [
-        { label: label("High"), points: 2 },
-        { label: label("Low"), points: 0 },
-      ],
-      [
-        { label: label("Negative"), points: -1 },
-        { label: label("Zero"), points: 0 },
-      ],
-      [
-        { label: label("One"), points: 1 },
-        { label: label("Two"), points: 2 },
-      ],
-      [
-        { label: label("Zero"), points: 0 },
-        { label: label("Half"), points: 0.5 },
-      ],
-    ]) {
+  it("accepts judged scales from any non-negative start", () => {
+    const fourPoint = Schema.decodeUnknownSync(
+      QuestionRubricResponseSourceSchema
+    )(oneCriterion({ label: label("Aspect"), levels: levels(1, 2, 3, 4) }));
+
+    expect(questionRubricPoints(freezeQuestionRubric(fourPoint))).toBe(4);
+  });
+
+  it("rejects scales that are short, flat, descending, fractional, or ambiguous", () => {
+    const [, result] = source.criteria;
+    const criteria = [
+      ...[[0], [0, 0], [2, 0], [-1, 0], [0, 0.5]].map((points) => ({
+        label: label("Criterion"),
+        levels: levels(...points),
+      })),
+      { ...result, levels: levels(0, 1, 2) },
+      { ...result, levels: levels(1, 2) },
+    ];
+
+    for (const criterion of criteria) {
       expect(
-        rejects(
-          QuestionRubricResponseSourceSchema,
-          oneCriterion({ label: label("Criterion"), levels })
-        )
+        rejects(QuestionRubricResponseSourceSchema, oneCriterion(criterion))
       ).toBe(true);
     }
-    const [, result] = source.criteria;
-    expect(
-      rejects(
-        QuestionRubricResponseSourceSchema,
-        oneCriterion({
-          ...result,
-          levels: [
-            { label: label("Wrong"), points: 0 },
-            { label: label("Close"), points: 1 },
-            { label: label("Right"), points: 2 },
-          ],
-        })
-      )
-    ).toBe(true);
     expect(
       rejects(QuestionRubricResponseSourceSchema, {
         criteria: [],
         kind: "rubric",
       })
+    ).toBe(true);
+  });
+
+  it("validates a single-language rubric's scale without its labels", () => {
+    const school = {
+      criteria: rubric.criteria.map((criterion) => ({
+        ...criterion,
+        label: criterion.label.id,
+        levels: criterion.levels.map((level) => ({
+          ...level,
+          label: level.label.id,
+        })),
+      })),
+      kind: "rubric",
+    };
+    const scale = Schema.decodeUnknownSync(QuestionRubricScaleSchema)(school);
+
+    expect(scale.criteria[0]).not.toHaveProperty("label");
+    expect(scale.criteria[1]?.finalAnswer).toEqual(
+      rubric.criteria[1]?.finalAnswer
+    );
+    expect(questionRubricPoints(scale)).toBe(questionRubricPoints(rubric));
+    expect(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(QuestionRubricScaleSchema)({
+          ...school,
+          criteria: [...school.criteria].reverse(),
+        })
+      )
     ).toBe(true);
   });
 

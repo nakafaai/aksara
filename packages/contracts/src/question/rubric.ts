@@ -1,14 +1,11 @@
 import { Schema, Struct } from "effect";
 
+import { ActiveAppLocaleCodeSchema } from "#contracts/locale";
 import {
-  ACTIVE_APP_LOCALE_CODES,
-  ActiveAppLocaleCodeSchema,
-} from "#contracts/locale";
-import {
-  canonicalQuestionAnswer,
-  canonicalQuestionAnswerStructure,
-  type QuestionAnswer,
-  QuestionAnswerSchema,
+  canonicalQuestionAnswerKey,
+  canonicalQuestionAnswerKeyStructure,
+  type QuestionAnswerKey,
+  QuestionAnswerKeySchema,
 } from "#contracts/question/answer";
 import { QuestionResponseLabelSchema } from "#contracts/question/label";
 
@@ -29,18 +26,18 @@ export const QuestionRubricLabelSchema = Schema.Record(
 );
 export type QuestionRubricLabel = typeof QuestionRubricLabelSchema.Type;
 
-/** Scale facts shared by authored and frozen rubric criteria. */
-interface RubricScale {
-  readonly finalAnswer?: QuestionAnswer;
+/** Scale facts shared by authored, frozen, and label-free rubric criteria. */
+interface RubricCriterionScale {
+  readonly finalAnswer?: QuestionAnswerKey;
   readonly levels: readonly { readonly points: number }[];
 }
 
 /**
- * Checks one criterion scale: two or more levels whose points start at zero
- * and strictly ascend, and exactly two levels when a deterministic final
- * answer decides between them.
+ * Checks one criterion scale: two or more levels whose points strictly
+ * ascend. A final-answer criterion has exactly two levels and its lower level
+ * is worth zero, because a wrong result earns nothing.
  */
-function hasOrderedScale(criterion: RubricScale) {
+function hasOrderedScale(criterion: RubricCriterionScale) {
   let previous = -1;
   for (const { points } of criterion.levels) {
     if (points <= previous) {
@@ -48,39 +45,27 @@ function hasOrderedScale(criterion: RubricScale) {
     }
     previous = points;
   }
-  const [lowest] = criterion.levels;
-  const levelCount = criterion.levels.length;
-  return (
-    lowest?.points === 0 &&
-    (criterion.finalAnswer === undefined ? levelCount >= 2 : levelCount === 2)
-  );
+  if (criterion.finalAnswer === undefined) {
+    return criterion.levels.length >= 2;
+  }
+  const [lower] = criterion.levels;
+  return criterion.levels.length === 2 && lower?.points === 0;
 }
 
 const ORDERED_SCALE_MESSAGE =
-  "Rubric criteria need two or more levels whose points start at zero and strictly ascend, and exactly two levels when a final answer decides them.";
-
-/** One frozen scoring level of a rubric criterion. */
-const QuestionRubricLevelSchema = Schema.Struct({
-  label: QuestionRubricLabelSchema,
-  levelKey: Schema.String.check(Schema.isPattern(LEVEL_KEY_PATTERN)),
-  order: PositiveOrderSchema,
-  points: LevelPointsSchema,
-});
-
-/** One frozen rubric criterion with its ordered level scale. */
-const QuestionRubricCriterionSchema = Schema.Struct({
-  criterionKey: Schema.String.check(Schema.isPattern(CRITERION_KEY_PATTERN)),
-  finalAnswer: Schema.optionalKey(QuestionAnswerSchema),
-  label: QuestionRubricLabelSchema,
-  levels: Schema.Array(QuestionRubricLevelSchema),
-  order: PositiveOrderSchema,
-}).check(
-  Schema.makeFilter(hasOrderedScale, { message: ORDERED_SCALE_MESSAGE })
-);
-type QuestionRubricCriterion = typeof QuestionRubricCriterionSchema.Type;
+  "Rubric criteria need two or more levels whose points strictly ascend, and a final-answer criterion needs exactly a zero level and one higher level.";
 
 /** Checks one or more criteria and the stable keys derived from their order. */
-function hasCanonicalCriteria(criteria: readonly QuestionRubricCriterion[]) {
+function hasCanonicalCriteria(
+  criteria: readonly {
+    readonly criterionKey: string;
+    readonly levels: readonly {
+      readonly levelKey: string;
+      readonly order: number;
+    }[];
+    readonly order: number;
+  }[]
+) {
   return (
     criteria.length > 0 &&
     criteria.every(
@@ -96,19 +81,73 @@ function hasCanonicalCriteria(criteria: readonly QuestionRubricCriterion[]) {
   );
 }
 
+const CANONICAL_CRITERIA_MESSAGE =
+  "Rubric criteria and levels require canonical keys and order.";
+
+const LevelScaleFields = {
+  levelKey: Schema.String.check(Schema.isPattern(LEVEL_KEY_PATTERN)),
+  order: PositiveOrderSchema,
+  points: LevelPointsSchema,
+};
+const CriterionScaleFields = {
+  criterionKey: Schema.String.check(Schema.isPattern(CRITERION_KEY_PATTERN)),
+  finalAnswer: Schema.optionalKey(QuestionAnswerKeySchema),
+  order: PositiveOrderSchema,
+};
+
+/** One label-free rubric criterion with its ordered level scale. */
+const QuestionRubricCriterionScaleSchema = Schema.Struct({
+  ...CriterionScaleFields,
+  levels: Schema.Array(Schema.Struct(LevelScaleFields)),
+}).check(
+  Schema.makeFilter(hasOrderedScale, { message: ORDERED_SCALE_MESSAGE })
+);
+
 /**
- * Frozen open-response rubric. A criterion without a final answer maps onto
- * one Effect `Decision.rate` decision keyed by `criterionKey`: its level keys
- * are the rating scale from lowest to highest, a rating answer's probabilities
- * are keyed by them, and the chosen level's points are earned. A criterion with
- * a final answer is graded deterministically instead: a matching final answer
- * earns its upper level and any other answer its lower level. Every lowest
- * level is worth zero points, so an unanswered criterion earns nothing.
+ * Locale-neutral rubric scale that grading reads: ordered criteria with
+ * stable keys, ordered levels with points, and optional final-answer keys. It
+ * ignores labels, so content written in one language, such as a School
+ * tenant's rubric, validates its scale here and owns its own labels. A judged
+ * criterion maps onto one Effect `Decision.rate` decision keyed by
+ * `criterionKey`: its level keys are the rating scale from lowest to highest,
+ * a rating answer's probabilities are keyed by them, and the chosen level's
+ * points are earned. A final-answer criterion is graded with
+ * `matchesAnswerKey` instead: a match earns its upper level and any other
+ * answer its zero level. A blank answer earns zero on every criterion.
+ */
+export const QuestionRubricScaleSchema = Schema.Struct({
+  criteria: Schema.Array(QuestionRubricCriterionScaleSchema).check(
+    Schema.makeFilter(hasCanonicalCriteria, {
+      message: CANONICAL_CRITERIA_MESSAGE,
+    })
+  ),
+  kind: Schema.Literal("rubric"),
+});
+export type QuestionRubricScale = typeof QuestionRubricScaleSchema.Type;
+
+/** One frozen scoring level of a rubric criterion. */
+const QuestionRubricLevelSchema = Schema.Struct({
+  ...LevelScaleFields,
+  label: QuestionRubricLabelSchema,
+});
+
+/** One frozen rubric criterion with its ordered level scale. */
+const QuestionRubricCriterionSchema = Schema.Struct({
+  ...CriterionScaleFields,
+  label: QuestionRubricLabelSchema,
+  levels: Schema.Array(QuestionRubricLevelSchema),
+}).check(
+  Schema.makeFilter(hasOrderedScale, { message: ORDERED_SCALE_MESSAGE })
+);
+
+/**
+ * Frozen open-response rubric of Aksara content: the rubric scale with every
+ * criterion and level labeled in every active app locale.
  */
 export const QuestionRubricResponseSchema = Schema.Struct({
   criteria: Schema.Array(QuestionRubricCriterionSchema).check(
     Schema.makeFilter(hasCanonicalCriteria, {
-      message: "Rubric criteria and levels require canonical keys and order.",
+      message: CANONICAL_CRITERIA_MESSAGE,
     })
   ),
   kind: Schema.Literal("rubric"),
@@ -123,7 +162,7 @@ const QuestionRubricLevelSourceSchema = Schema.Struct({
 
 /** One authored criterion before its stable key and order are derived. */
 const QuestionRubricCriterionSourceSchema = Schema.Struct({
-  finalAnswer: Schema.optionalKey(QuestionAnswerSchema),
+  finalAnswer: Schema.optionalKey(QuestionAnswerKeySchema),
   label: QuestionRubricLabelSchema,
   levels: Schema.Array(QuestionRubricLevelSourceSchema).pipe(Schema.mutable),
 })
@@ -168,24 +207,22 @@ export function freezeQuestionRubric(source: QuestionRubricResponseSource) {
   });
 }
 
-/** Returns one label in the canonical active app locale order. */
-function canonicalRubricLabel(label: QuestionRubricLabel) {
-  return Object.fromEntries(
-    ACTIVE_APP_LOCALE_CODES.map((locale) => [locale, label[locale]])
-  );
+/** Returns one label with every active app locale in alphabetical order. */
+function canonicalRubricLabel(label: QuestionRubricLabel): QuestionRubricLabel {
+  return { de: label.de, en: label.en, id: label.id };
 }
 
-/** Serializes criteria in stable field order with one answer encoding. */
-function canonicalRubricCriteria(
+/** Serializes criteria in stable field order with one answer-key encoding. */
+function canonicalRubricCriteria<Key>(
   rubric: QuestionRubricResponse,
-  canonicalAnswer: (answer: QuestionAnswer) => object
+  canonicalKey: (key: QuestionAnswerKey) => Key
 ) {
   return rubric.criteria.map(
     ({ criterionKey, finalAnswer, label, levels, order }) => ({
       criterionKey,
       ...(finalAnswer === undefined
         ? {}
-        : { finalAnswer: canonicalAnswer(finalAnswer) }),
+        : { finalAnswer: canonicalKey(finalAnswer) }),
       label: canonicalRubricLabel(label),
       levels: levels.map((level) => ({
         label: canonicalRubricLabel(level.label),
@@ -207,7 +244,10 @@ export function canonicalQuestionRubricStructure(
   rubric: QuestionRubricResponse
 ) {
   return {
-    criteria: canonicalRubricCriteria(rubric, canonicalQuestionAnswerStructure),
+    criteria: canonicalRubricCriteria(
+      rubric,
+      canonicalQuestionAnswerKeyStructure
+    ),
     kind: rubric.kind,
   };
 }
@@ -215,13 +255,13 @@ export function canonicalQuestionRubricStructure(
 /** Returns every rubric fact, accepted final-answer text included. */
 export function canonicalQuestionRubric(rubric: QuestionRubricResponse) {
   return {
-    criteria: canonicalRubricCriteria(rubric, canonicalQuestionAnswer),
+    criteria: canonicalRubricCriteria(rubric, canonicalQuestionAnswerKey),
     kind: rubric.kind,
   };
 }
 
 /** Returns the rubric total: the sum of every criterion's highest level. */
-export function questionRubricPoints(rubric: QuestionRubricResponse) {
+export function questionRubricPoints(rubric: QuestionRubricScale) {
   return rubric.criteria.reduce(
     (total, { levels }) =>
       total +

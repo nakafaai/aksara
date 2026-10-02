@@ -1,4 +1,4 @@
-import type { QuestionAnswer } from "#contracts/question/answer";
+import type { QuestionAnswerKey } from "#contracts/question/answer";
 import {
   freezeQuestionRubric,
   type QuestionRubricResponseSource,
@@ -14,7 +14,7 @@ export function rubricLabel(text: string) {
  * criterion decided by the supplied final answer.
  */
 export function rubricSourceWith(
-  finalAnswer: QuestionAnswer
+  finalAnswer: QuestionAnswerKey
 ): QuestionRubricResponseSource {
   return {
     criteria: [

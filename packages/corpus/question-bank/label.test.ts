@@ -203,7 +203,7 @@ describe("question label source validation", () => {
         {
           responses: {
             en: {
-              answer: {
+              key: {
                 acceptedAnswers: ["$5"],
                 collapseWhitespace: false,
                 ignoreCase: false,

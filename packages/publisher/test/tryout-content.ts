@@ -170,7 +170,7 @@ const rubricLabel = { de: "Ansatz", en: "Approach", id: "Pendekatan" };
 /** Test-only short-answer and rubric responses for the fixture question. */
 export const assessedResponses: readonly QuestionResponseSource[] = [
   {
-    answer: { acceptsFractions: true, kind: "number", value: "0.5" },
+    key: { acceptsFractions: true, kind: "number", value: "0.5" },
     kind: "short-answer",
   },
   {

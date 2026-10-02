@@ -9,7 +9,7 @@ import {
 import { rubric } from "#contracts/test/rubric";
 
 const response = {
-  answer: { acceptsFractions: false, kind: "number", value: "12" },
+  key: { acceptsFractions: false, kind: "number", value: "12" },
   kind: "short-answer",
 } as const;
 

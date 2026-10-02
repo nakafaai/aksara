@@ -1,9 +1,9 @@
 import { Schema } from "effect";
 
 import {
-  canonicalQuestionAnswer,
-  canonicalQuestionAnswerStructure,
-  QuestionAnswerSchema,
+  canonicalQuestionAnswerKey,
+  canonicalQuestionAnswerKeyStructure,
+  QuestionAnswerKeySchema,
 } from "#contracts/question/answer";
 import { QuestionResponseLabelSchema } from "#contracts/question/label";
 import {
@@ -154,9 +154,9 @@ const CategoryResponseSchema = Schema.Struct({
   )
 );
 
-/** One typed number or text graded deterministically against its key. */
+/** One typed number or text graded with `matchesAnswerKey` against its key. */
 const ShortAnswerResponseSchema = Schema.Struct({
-  answer: QuestionAnswerSchema,
+  key: QuestionAnswerKeySchema,
   kind: Schema.Literal("short-answer"),
 });
 
@@ -182,7 +182,7 @@ export function canonicalQuestionResponseStructure(response: QuestionResponse) {
   }
   if (response.kind === "short-answer") {
     return {
-      answer: canonicalQuestionAnswerStructure(response.answer),
+      key: canonicalQuestionAnswerKeyStructure(response.key),
       kind: response.kind,
     };
   }
@@ -219,7 +219,7 @@ export function canonicalQuestionResponse(response: QuestionResponse) {
   }
   if (response.kind === "short-answer") {
     return {
-      answer: canonicalQuestionAnswer(response.answer),
+      key: canonicalQuestionAnswerKey(response.key),
       kind: response.kind,
     };
   }

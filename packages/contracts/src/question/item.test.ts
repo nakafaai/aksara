@@ -228,11 +228,11 @@ describe("question item", () => {
     /** Builds one short text answer written in one delivery language. */
     const textAnswer = (text: string) => ({
       ...shortText,
-      answer: { ...shortText.answer, acceptedAnswers: [text] },
+      key: { ...shortText.key, acceptedAnswers: [text] },
     });
     /** Builds the fixture rubric whose result accepts one written text. */
     const textResult = (text: string) =>
-      rubricSourceWith({ ...shortText.answer, acceptedAnswers: [text] });
+      rubricSourceWith({ ...shortText.key, acceptedAnswers: [text] });
     const rescaled = [0, 2].map((points) => ({
       label: rubricLabel("R"),
       points,
@@ -247,13 +247,13 @@ describe("question item", () => {
     for (const [base, copy] of [
       [
         shortNumber,
-        { ...shortNumber, answer: { ...shortNumber.answer, value: "1" } },
+        { ...shortNumber, key: { ...shortNumber.key, value: "1" } },
       ],
       [
         shortText,
-        { ...shortText, answer: { ...shortText.answer, ignoreCase: false } },
+        { ...shortText, key: { ...shortText.key, ignoreCase: false } },
       ],
-      [rubricSource, rubricSourceWith({ ...shortNumber.answer, value: "1" })],
+      [rubricSource, rubricSourceWith({ ...shortNumber.key, value: "1" })],
       [rubricSource, patchRubricCriterion(0, { label: rubricLabel("Method") })],
       [rubricSource, patchRubricCriterion(1, { levels: rescaled })],
     ]) {

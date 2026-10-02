@@ -130,7 +130,7 @@ describe("try-out content hash", () => {
     const shortAnswer = Schema.decodeSync(TryoutContentInputSchema)({
       ...source,
       response: {
-        answer: { acceptsFractions: false, kind: "number", value: "12" },
+        key: { acceptsFractions: false, kind: "number", value: "12" },
         kind: "short-answer",
       },
     });
@@ -140,10 +140,10 @@ describe("try-out content hash", () => {
     });
 
     expect(canonicalizeTryoutContent(shortAnswer)).toContain(
-      '"response":{"answer":{"acceptsFractions":false,"kind":"number","value":"12"},"kind":"short-answer"}'
+      '"response":{"key":{"acceptsFractions":false,"kind":"number","value":"12"},"kind":"short-answer"}'
     );
     expect(canonicalizeTryoutContent(rubric)).toContain(
-      '"label":{"en":"Result (en)","id":"Result (id)","de":"Result (de)"}'
+      '"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"}'
     );
     expect(
       new Set([source, shortAnswer, rubric].map(hashTryoutContent)).size

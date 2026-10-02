@@ -121,7 +121,7 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
   points: 2,
   responses: {
     id: {
-      answer: {
+      key: {
         acceptsFractions: true,
         kind: "number",
         tolerance: { kind: "absolute", value: "0.05" },
@@ -165,7 +165,7 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
 
       expect(shortAnswer.points).toBe(2);
       expect(shortAnswer.responses.id).toMatchObject({
-        answer: { value: "-2.5" },
+        key: { value: "-2.5" },
         kind: "short-answer",
       });
       expect(rubric.responses.de).toMatchObject({

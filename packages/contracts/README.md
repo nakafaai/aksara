@@ -37,9 +37,12 @@ Current consumers use unversioned semantic Interfaces:
   `multiple-choice`, `category`, `short-answer`, and `rubric`.
 - `question/answer` owns deterministic short-answer and final-answer keys: an
   exact canonical decimal with an optional tolerance and an explicit fraction
-  flag, or accepted text with explicit normalization rules. Graders compare
-  text only through `normalizeTextAnswer`.
-- `question/rubric` owns ordered criteria and levels with labels in every
+  flag, or accepted text with explicit normalization rules. Every runtime
+  grades a typed answer only through `matchesAnswerKey`, and reads a typed
+  number only through `readNumberAnswer`, the one number grammar.
+- `question/rubric` owns the locale-neutral `QuestionRubricScaleSchema`
+  (ordered criteria and levels with points and optional final-answer keys)
+  and the Aksara rubric, which labels every criterion and level in every
   active app locale. Each judged criterion maps onto one Effect
   `Decision.rate` decision, and its total is derived, never stored.
 - `question/points` owns a question's worth. Raw, penalized, and IRT scoring
