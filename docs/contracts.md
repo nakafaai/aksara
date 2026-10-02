@@ -79,15 +79,23 @@ workflow follows the npm trusted-publisher requirements documented in
 [Generating provenance statements](https://docs.npmjs.com/generating-provenance-statements/).
 It does not use an npm access token.
 
+A push to `main` runs only `build`, so every merged revision is built and
+verified without reaching the `npm-production` gate. Every `main` revision
+lands through the merge queue, which makes `github-merge-queue[bot]` the actor
+of its push run, and GitHub refuses environment reviews in runs that actor
+triggers. To publish, dispatch the workflow from `main`. Only a dispatched run
+continues to `publish`, `verify`, and `finalize`, and the repository owner
+approves its `npm-production` gate.
+
 1. `build` checks out the exact source revision, installs the frozen lockfile,
    builds and verifies the package, runs every repository gate when bytes
    changed, builds the standalone provenance verifier, and attests both
    transported artifacts.
-2. `publish` runs only from protected `main` in the `npm-production`
-   environment. It downloads the attested archive, verifies its digest and
-   size, creates a same-SHA draft GitHub Release, and publishes the archive with
-   the pinned npm CLI, OIDC, public access, ignored lifecycle scripts, and npm
-   provenance.
+2. `publish` runs only in a dispatched run from protected `main`, in the
+   `npm-production` environment. It downloads the attested archive, verifies
+   its digest and size, creates a same-SHA draft GitHub Release, and publishes
+   the archive with the pinned npm CLI, OIDC, public access, ignored lifecycle
+   scripts, and npm provenance.
 3. `verify` has no permissions and no OIDC identity. It reads the public npm
    metadata, proves exact shasum and integrity, installs the exact package, runs
    `npm audit signatures --include-attestations`, and checks provenance against

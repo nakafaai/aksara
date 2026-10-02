@@ -109,9 +109,12 @@ Every protected `main` revision builds only the small verified archive required
 for comparison. One tested TypeScript module compares its exact bytes with the
 latest immutable release, so unchanged contract artifacts stop before the full
 release gate and changed bytes require a greater package version. This
-byte-level decision replaces brittle workflow path lists. Manual dispatch
-remains available for same-SHA mutable recovery because only final immutable
-releases participate in previous-archive comparison. Historical
-`contracts-v*` releases remain immutable history, while new tags use
+byte-level decision replaces brittle workflow path lists. A push run stops
+after that build and verification: `main` revisions land through the merge
+queue, and GitHub refuses environment reviews in runs that
+`github-merge-queue[bot]` triggers. Publication therefore runs only in a manual
+dispatch from `main`, which also recovers a same-SHA mutable release because
+only final immutable releases participate in previous-archive comparison.
+Historical `contracts-v*` releases remain immutable history, while new tags use
 `@nakafa/aksara-contracts@<version>`. No npm registry token, Changesets bot, or
 fixed waiting window participates in this boundary.

@@ -22,6 +22,24 @@ describe("contract provenance policy", () => {
     expect(() => verifyProvenanceWorkflow(workflowSource())).not.toThrow();
   });
 
+  it("keeps push runs away from the npm-production gate", () => {
+    for (const [job, message] of [
+      ["publish", "Contract publication must run only in a dispatched release"],
+      [
+        "finalize",
+        "Contract finalization must run only in a dispatched release",
+      ],
+    ] as const) {
+      const pushed = mutateJob(
+        workflowSource(),
+        job,
+        "github.event_name == 'workflow_dispatch' && ",
+        ""
+      );
+      expect(() => verifyProvenanceWorkflow(pushed)).toThrow(message);
+    }
+  });
+
   it("requires exact verifier construction, transport, and execution", () => {
     const source = workflowSource();
     for (const changed of [

@@ -186,7 +186,7 @@ jobs:
 
   publish:
     needs: build
-    if: needs.build.outputs.mode == 'create'
+    if: github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'
     environment: npm-production
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -464,7 +464,7 @@ jobs:
 
   verify:
     needs: [build, publish]
-    if: needs.build.outputs.mode == 'create'
+    if: github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions: {}
@@ -628,7 +628,7 @@ jobs:
 
   finalize:
     needs: [build, publish, verify]
-    if: always() && needs.build.result == 'success' && needs.build.outputs.mode == 'create'
+    if: always() && needs.build.result == 'success' && github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
