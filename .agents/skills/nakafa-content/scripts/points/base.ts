@@ -97,7 +97,8 @@ export const parseChanges = Effect.fn("PointsCheck.parseChanges")(function* (
 /**
  * Lists the tracked files below the paths that differ from the base revision,
  * each paired with the path it had there. Git pairs a renamed file with its
- * old path, so moving a lesson never hides a lost visual.
+ * old path when the two are at least half alike, so a moved lesson that Git
+ * still recognizes keeps its lost visuals visible.
  */
 export const changedFiles = Effect.fn("PointsCheck.changedFiles")(function* (
   root: string,
