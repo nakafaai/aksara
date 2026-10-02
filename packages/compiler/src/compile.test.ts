@@ -7,12 +7,13 @@ import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect } from "effect";
 import { compileContent } from "#compiler/compile";
 import { createTestRendererManifest } from "#compiler/test/content";
+import { sceneEndingAt } from "#compiler/test/math";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const VALID_METADATA = "export const metadata = {}";
 
 const testRendererManifest = createTestRendererManifest({
-  components: ["BlockMath", "InlineMath"],
+  components: ["BlockMath", "InlineMath", "MathVisual"],
   domains: {
     chemistry: ["AtomShellLab"],
     mathematics: ["FunctionMachine"],
@@ -260,6 +261,19 @@ describe("compileContent", () => {
       );
       assert.ok(payload.compiledCode.includes("values.map"));
     })
+  );
+
+  it.effect(
+    "leaves a constant scene expression for the renderer to evaluate",
+    () =>
+      Effect.gen(function* () {
+        const { payload } = yield* compileRawMdx(
+          withMetadata(
+            `<MathVisual title="Plane" description="A plane." scene={${sceneEndingAt("Math.SQRT1_2 / 2")}} />`
+          )
+        );
+        assert.include(payload.compiledCode, "x: Math.SQRT1_2 / 2");
+      })
   );
 
   it.effect("wraps malformed MDX as a typed compilation failure", () =>
