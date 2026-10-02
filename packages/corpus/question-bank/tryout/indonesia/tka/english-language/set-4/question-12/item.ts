@@ -20,7 +20,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "He is able to laugh at his own fear afterwards.",
+          label: "He is able to joke about his own fear afterwards.",
         },
         {
           isCorrect: true,

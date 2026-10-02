@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "A power cut scares Bayu, his grandmother calls, he fetches light and her stick and prepares for next time.",
+            "A power cut scares Bayu, his grandmother calls, he gets her stick and a candle, and he prepares for next time.",
         },
         {
           isCorrect: false,
