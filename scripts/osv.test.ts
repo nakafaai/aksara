@@ -203,6 +203,7 @@ describe("OSV dependency audit", () => {
         args: [
           "scan",
           "source",
+          `--config=${resolve(root, "osv.toml")}`,
           `--lockfile=${resolve(root, "pnpm-lock.yaml")}`,
         ],
         cwd: root,
