@@ -38,8 +38,10 @@ Current consumers use unversioned semantic Interfaces:
 - `question/answer` owns deterministic short-answer and final-answer keys: an
   exact canonical decimal with an optional tolerance and an explicit fraction
   flag, or accepted text with explicit normalization rules. Every runtime
-  grades a typed answer only through `matchesAnswerKey`, and reads a typed
-  number only through `readNumberAnswer`, the one number grammar.
+  grades a typed answer only through `matchesAnswerKey`, reads a typed number
+  only through `readNumberAnswer`, the one number grammar, and decides that a
+  typed answer is blank only through `isBlankAnswer`, so whitespace and
+  invisible format characters alone never count as an answer.
 - `question/rubric` owns the locale-neutral `QuestionRubricScaleSchema`
   (ordered criteria and levels with points and optional final-answer keys)
   and the Aksara rubric, which labels every criterion and level in every
