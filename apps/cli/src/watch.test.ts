@@ -74,6 +74,16 @@ function createEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Create", path };
 }
 
+/**
+ * Advances test time one batch window at a time until a refresh lands. A
+ * window opens at its first event, so no fixed advance is known in advance.
+ */
+const awaitRefresh = (count: Ref.Ref<number>) =>
+  TestClock.adjust("75 millis").pipe(
+    Effect.andThen(Ref.get(count)),
+    Effect.repeat({ until: (refreshes) => refreshes > 0 })
+  );
+
 layer(NodeServices.layer)("selected document watch", (it) => {
   it.effect(
     "filters siblings, refreshes the selected file, and stays active",
@@ -90,24 +100,14 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           Stream.never
         );
         const count = yield* Ref.make(0);
-        const refreshed = yield* Deferred.make<void>();
         const watcher = yield* runWatch(selected, events, () =>
-          Ref.update(count, (value) => value + 1).pipe(
-            Effect.andThen(Deferred.succeed(refreshed, undefined))
-          )
+          Ref.update(count, (value) => value + 1)
         ).pipe(Effect.forkChild({ startImmediately: true }));
-        // The batch window opens at its first event, so time advances until
-        // the refresh lands and then past another window to prove it is alone.
-        yield* Effect.raceFirst(
-          Deferred.await(refreshed),
-          Effect.forever(TestClock.adjust("75 millis"))
-        );
+        yield* awaitRefresh(count);
         yield* TestClock.adjust("150 millis");
-        const refreshes = yield* Ref.get(count);
-        const watcherRunning = watcher.pollUnsafe() === undefined;
+        expect(yield* Ref.get(count)).toBe(1);
+        expect(watcher.pollUnsafe()).toBeUndefined();
         yield* Fiber.interrupt(watcher);
-        expect(refreshes).toBe(1);
-        expect(watcherRunning).toBe(true);
       })
   );
 
@@ -198,17 +198,10 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           Stream.never
         );
         const count = yield* Ref.make(0);
-        const refreshed = yield* Deferred.make<void>();
         const watcher = yield* runWatch(selected, events, () =>
-          Ref.update(count, (value) => value + 1).pipe(
-            Effect.andThen(Deferred.succeed(refreshed, undefined))
-          )
+          Ref.update(count, (value) => value + 1)
         ).pipe(Effect.forkChild({ startImmediately: true }));
-        yield* Effect.raceFirst(
-          Deferred.await(refreshed),
-          Effect.forever(TestClock.adjust("75 millis"))
-        );
-        const refreshes = yield* Ref.get(count);
+        const refreshes = yield* awaitRefresh(count);
         yield* Fiber.interrupt(watcher);
         expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
           questionPath,
