@@ -90,9 +90,18 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           Stream.never
         );
         const count = yield* Ref.make(0);
+        const refreshed = yield* Deferred.make<void>();
         const watcher = yield* runWatch(selected, events, () =>
-          Ref.update(count, (value) => value + 1)
+          Ref.update(count, (value) => value + 1).pipe(
+            Effect.andThen(Deferred.succeed(refreshed, undefined))
+          )
         ).pipe(Effect.forkChild({ startImmediately: true }));
+        // The batch window opens at its first event, so time advances until
+        // the refresh lands and then past another window to prove it is alone.
+        yield* Effect.raceFirst(
+          Deferred.await(refreshed),
+          Effect.forever(TestClock.adjust("75 millis"))
+        );
         yield* TestClock.adjust("150 millis");
         const refreshes = yield* Ref.get(count);
         const watcherRunning = watcher.pollUnsafe() === undefined;
@@ -189,10 +198,16 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           Stream.never
         );
         const count = yield* Ref.make(0);
+        const refreshed = yield* Deferred.make<void>();
         const watcher = yield* runWatch(selected, events, () =>
-          Ref.update(count, (value) => value + 1)
+          Ref.update(count, (value) => value + 1).pipe(
+            Effect.andThen(Deferred.succeed(refreshed, undefined))
+          )
         ).pipe(Effect.forkChild({ startImmediately: true }));
-        yield* TestClock.adjust("75 millis");
+        yield* Effect.raceFirst(
+          Deferred.await(refreshed),
+          Effect.forever(TestClock.adjust("75 millis"))
+        );
         const refreshes = yield* Ref.get(count);
         yield* Fiber.interrupt(watcher);
         expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
