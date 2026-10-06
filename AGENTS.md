@@ -63,6 +63,10 @@ for clarity, measurable scale, and safe releases.
   migration-only readers and writers.
 - Keep authored executable source in TypeScript. Do not add JavaScript source
   files or generated JavaScript to Git.
+- The dependency audit, `scripts/osv`, is the one shell script. It decides
+  whether the installed packages can be trusted, so it imports none of them:
+  it downloads the checksum-pinned OSV Scanner with `curl` and runs it. Keep
+  it identical to the script in nakafa.com except for the lockfiles it names.
 - Do not use APIs marked deprecated by the installed TypeScript declarations.
   `pnpm deprecations` must cover every tracked authored TypeScript file.
 - Run `pnpm security:audit` after changing dependencies or the lockfile. Known
@@ -89,6 +93,14 @@ for clarity, measurable scale, and safe releases.
   `@stability unstable` HTTP and process modules on purpose, pins Effect
   exactly, and reviews every upgrade, so a stability warning on each use would
   fail every typecheck with nothing to act on.
+- The typecheck enforces the Effect language service's type-aware rules as
+  errors: `preferSchemaTypeProperty` (`typeof X.Type`, never
+  `Schema.Schema.Type<typeof X>`), `instanceOfSchema` (`Schema.is(X)`, never
+  `instanceof` on a Schema class), and `extendsNativeError` (a failure class
+  extends `Schema.TaggedError` or `Data.TaggedError`, never `Error`).
+  `packages/typescript-config/base.json` sets them. A rule moves to `error` in
+  the change that brings its violations to zero, and no `@effect-diagnostics`
+  comment may switch off a rule named here.
 - Unresolved review threads, including automated reviewers', block merging. Fix
   each verified finding or reply with evidence, then resolve the thread.
 - `main` merges only through GitHub's merge queue. `gh pr merge` queues through

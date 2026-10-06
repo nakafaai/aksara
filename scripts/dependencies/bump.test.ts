@@ -74,8 +74,8 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       input?.invalidManifest ??
         JSON.stringify({
           devDependencies,
-          devEngines: { runtime: { version: "24.21.0" } },
-          packageManager: "pnpm@11.27.0",
+          devEngines: { runtime: { version: approved("node") } },
+          packageManager: `pnpm@${approved("pnpm")}`,
         })
     );
     yield* fileSystem.writeFileString(

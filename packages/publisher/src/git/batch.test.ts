@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
@@ -76,7 +76,7 @@ describe("Git batch protocol", () => {
             TEST_SOURCE_PATH,
           ]).pipe(Effect.flip)
         );
-        expect(errors.every((error) => error instanceof GitBatchError)).toBe(
+        expect(errors.every((error) => Schema.is(GitBatchError)(error))).toBe(
           true
         );
         expect(errors.map(({ reason }) => reason)).toEqual([

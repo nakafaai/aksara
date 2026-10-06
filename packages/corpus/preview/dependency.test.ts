@@ -5,7 +5,7 @@ import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, FileSystem, Path, PlatformError } from "effect";
+import { Effect, FileSystem, Path, PlatformError, Schema } from "effect";
 import {
   discoverSourceDependencies,
   SourceDependencyError,
@@ -228,7 +228,7 @@ layer(NodeServices.layer)("source dependencies", (it) => {
 
         expect(
           failures.map((failure) =>
-            failure instanceof SourceDependencyError
+            Schema.is(SourceDependencyError)(failure)
               ? failure.reason
               : failure._tag
           )
