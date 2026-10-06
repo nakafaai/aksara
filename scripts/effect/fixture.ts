@@ -73,6 +73,11 @@ const initializeRepository = Effect.fn(
   "EffectSourceFixture.initializeRepository"
 )(function* (root: string) {
   yield* git(root, "init", "--quiet");
+  // Git starts detached maintenance after a commit. A fixture repository lives
+  // in a scoped temporary folder, so nothing may still write into it when the
+  // scope removes that folder.
+  yield* git(root, "config", "gc.auto", "0");
+  yield* git(root, "config", "maintenance.auto", "false");
   yield* git(root, "config", "user.email", "tests@nakafa.com");
   yield* git(root, "config", "user.name", "Nakafa Tests");
 });

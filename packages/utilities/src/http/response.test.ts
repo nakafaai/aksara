@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import {
   BodyError,
@@ -107,7 +107,7 @@ describe("HTTP response utilities", () => {
             "encoding",
           ]
         );
-        assert.ok(errors.every((error) => error instanceof BodyError));
+        assert.ok(errors.every((error) => Schema.is(BodyError)(error)));
       })
   );
 });

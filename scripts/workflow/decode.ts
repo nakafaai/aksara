@@ -36,7 +36,7 @@ const WorkflowSchema = Schema.StructWithRest(
   [Schema.Record(Schema.String, Schema.Unknown)]
 );
 
-export type WorkflowJob = Schema.Schema.Type<typeof JobSchema>;
+export type WorkflowJob = typeof JobSchema.Type;
 
 const SHELL_COMMENT = /(^|[ \t])#.*$/u;
 
