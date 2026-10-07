@@ -210,9 +210,9 @@ export function manifestTestTargets(
   path: string,
   source: string
 ): readonly string[] {
-  const manifest = Schema.decodeUnknownOption(
-    Schema.fromJsonString(ManifestSchema)
-  )(source);
+  const manifest = Schema.decodeOption(Schema.fromJsonString(ManifestSchema))(
+    source
+  );
   assert.ok(Option.isSome(manifest), `${path} must be a package manifest`);
   const scripts = manifest.value.scripts ?? {};
   if (path === MANIFEST_FILE) {
