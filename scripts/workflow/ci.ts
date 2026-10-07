@@ -57,6 +57,11 @@ const TEST_GROUPS: Readonly<Record<string, readonly string[]>> = {
   voice: ["test:lesson-voice"],
 };
 
+/** The only keys the test job may carry, so no key can skip a group or let its failure pass. */
+const TEST_JOB_KEYS = ["runs-on", "steps", "strategy", "timeout-minutes"];
+/** The only keys each test step may carry, so no step can skip its command or change its shell. */
+const TEST_STEP_KEYS = ["name", "run", "uses", "with"];
+
 const MatrixLegSchema = Schema.Struct({
   command: Schema.String,
   group: Schema.String,
@@ -119,8 +124,18 @@ function skipsRootTasks(command: string): boolean {
   );
 }
 
+/** Reports whether every key of one YAML mapping is among the allowed keys. */
+function hasOnlyKeys(mapping: object, keys: readonly string[]): boolean {
+  return Object.keys(mapping).every((key) => keys.includes(key));
+}
+
 /** Verifies that the test matrix runs every test target in exactly one group. */
 function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
+  assert.ok(
+    hasOnlyKeys(job, TEST_JOB_KEYS) &&
+      job.steps.every((step) => hasOnlyKeys(step, TEST_STEP_KEYS)),
+    "The test job may carry only the keys that run each test group"
+  );
   const strategy = decodeTestStrategy(job.strategy);
   assert.ok(
     Option.isSome(strategy),

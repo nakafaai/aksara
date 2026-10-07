@@ -97,6 +97,47 @@ describe("CI workflow policy", () => {
     ).toThrow("Each CI test group must run only its matrix command");
   });
 
+  it("keeps every test group from passing or being skipped silently", () => {
+    const message =
+      "The test job may carry only the keys that run each test group";
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          "    timeout-minutes: 20\n    strategy:",
+          `    timeout-minutes: 20\n    continue-on-error: ${DOLLAR}{{ matrix.group == 'voice' }}\n    strategy:`
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          MATRIX_COMMAND_STEP,
+          `continue-on-error: true\n        ${MATRIX_COMMAND_STEP}`
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          MATRIX_COMMAND_STEP,
+          `if: matrix.group != 'voice'\n        ${MATRIX_COMMAND_STEP}`
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          MATRIX_COMMAND_STEP,
+          `shell: "true {0}"\n        ${MATRIX_COMMAND_STEP}`
+        ),
+        targets
+      )
+    ).toThrow(message);
+  });
+
   it("keeps every test group running after one group fails", () => {
     expect(() =>
       verifyCiWorkflow(
