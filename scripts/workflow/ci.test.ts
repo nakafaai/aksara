@@ -214,6 +214,40 @@ describe("CI workflow policy", () => {
     ).toThrow(message);
   });
 
+  it("runs each test group as one Turbo run that executes tests", () => {
+    const message =
+      "Each CI test group must run through Turbo with --concurrency=1";
+    const voice =
+      "command: pnpm exec turbo run test:lesson-voice --concurrency=1";
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          voice,
+          `${voice} && pnpm exec turbo run test --concurrency=1`
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          voice,
+          "command: pnpm exec turbo run test:lesson-voice --dry=json --concurrency=1"
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          voice,
+          'command: "pnpm exec turbo run test:lesson-voice --concurrency=1\\npnpm test"'
+        ),
+        targets
+      )
+    ).toThrow(message);
+  });
+
   it("names only repository test targets", () => {
     expect(() =>
       verifyCiWorkflow(

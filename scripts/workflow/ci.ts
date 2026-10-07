@@ -30,7 +30,10 @@ const RESULT_SOURCE = [
   `${DOLLAR}{{ needs.test.result }}`,
 ].join("\n");
 const TEST_COMMAND = `${DOLLAR}{{ matrix.command }}`;
-const TURBO_COMMAND_PATTERN = /^pnpm exec turbo run .+ --concurrency=1$/u;
+// One Turbo run of test tasks and package filters, ending at one concurrent task.
+// Shell operators, newlines, dry runs, and other flags never match.
+const TURBO_COMMAND_PATTERN =
+  /^pnpm exec turbo run (?:(?:test(?::[\w-]+)?|--filter=[\w@/.-]+) )+--concurrency=1$/u;
 const TEST_TASK_PREFIX = "test:";
 const TEST_SCRIPT = "test";
 const FILTER_PREFIX = "--filter=";
