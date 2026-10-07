@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
+import { repositoryTestTargets } from "#scripts/workflow/ci";
 import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
 
 const OPERATION_HISTORY_INPUT =
@@ -14,7 +15,14 @@ function currentSources(): WorkflowSources {
   const cli = readFileSync(".github/workflows/cli.yml", "utf8");
   const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
   const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return { all: [ci, cli, contracts, release], ci, cli, contracts, release };
+  return {
+    all: [ci, cli, contracts, release],
+    ci,
+    cli,
+    contracts,
+    release,
+    testTargets: repositoryTestTargets(),
+  };
 }
 
 const sources = currentSources();
