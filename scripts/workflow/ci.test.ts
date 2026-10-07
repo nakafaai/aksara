@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import {
+  manifestPaths,
   manifestTestTargets,
   repositoryTestTargets,
   verifyCiWorkflow,
@@ -249,5 +250,32 @@ describe("test target discovery", () => {
     expect(() =>
       manifestTestTargets("packages/broken/package.json", "{")
     ).toThrow("packages/broken/package.json must be a package manifest");
+  });
+
+  it("finds workspaces under any pnpm glob, not only the default layout", () => {
+    expect(
+      manifestPaths("packages:\n  - tools/*\n", [
+        "package.json",
+        "apps/www/package.json",
+        "tools/lint/package.json",
+        "tools/lint/src/package.json",
+        "tools/lint/index.ts",
+      ])
+    ).toEqual(["package.json", "tools/lint/package.json"]);
+  });
+
+  it("rejects a workspace glob that is not a plain directory", () => {
+    expect(() => manifestPaths("packages:\n  - packages/**\n", [])).toThrow(
+      "Workspace glob packages/** must be a plain directory followed by /*, such as apps/*"
+    );
+  });
+
+  it("rejects a workspace file that is not valid YAML or names no packages", () => {
+    expect(() => manifestPaths("packages: [\n", [])).toThrow(
+      "pnpm-workspace.yaml must be valid YAML"
+    );
+    expect(() => manifestPaths("catalog: {}\n", [])).toThrow(
+      "pnpm-workspace.yaml must declare its packages"
+    );
   });
 });
