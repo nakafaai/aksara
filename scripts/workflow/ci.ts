@@ -53,23 +53,22 @@ const TEST_GROUPS: Readonly<Record<string, readonly string[]>> = {
   voice: ["test:lesson-voice"],
 };
 
-const MatrixLegSchema = Schema.StructWithRest(
-  Schema.Struct({
-    command: Schema.String,
-    group: Schema.String,
-  }),
-  [Schema.Record(Schema.String, Schema.Unknown)]
-);
+const MatrixLegSchema = Schema.Struct({
+  command: Schema.String,
+  group: Schema.String,
+});
 
-const TestStrategySchema = Schema.StructWithRest(
-  Schema.Struct({
-    "fail-fast": Schema.optional(Schema.Boolean),
-    matrix: Schema.Struct({
-      include: Schema.Array(MatrixLegSchema),
-    }),
+const TestStrategySchema = Schema.Struct({
+  "fail-fast": Schema.optional(Schema.Boolean),
+  matrix: Schema.Struct({
+    include: Schema.Array(MatrixLegSchema),
   }),
-  [Schema.Record(Schema.String, Schema.Unknown)]
-);
+});
+
+/** Rejects any strategy key beyond these, so an exclude or base matrix key cannot change the legs. */
+const decodeTestStrategy = Schema.decodeUnknownOption(TestStrategySchema, {
+  onExcessProperty: "error",
+});
 
 const ManifestSchema = Schema.Struct({
   name: Schema.String,
@@ -118,7 +117,7 @@ function skipsRootTasks(command: string): boolean {
 
 /** Verifies that the test matrix runs every test target in exactly one group. */
 function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
-  const strategy = Schema.decodeUnknownOption(TestStrategySchema)(job.strategy);
+  const strategy = decodeTestStrategy(job.strategy);
   assert.ok(
     Option.isSome(strategy),
     "The test job must run one matrix leg per test group"

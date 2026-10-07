@@ -113,6 +113,37 @@ describe("CI workflow policy", () => {
     ).toThrow("CI must run the four test groups, one matrix leg each");
   });
 
+  it("rejects matrix keys and leg keys beyond the four groups", () => {
+    const message = "The test job must run one matrix leg per test group";
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          "      matrix:\n        include:",
+          "      matrix:\n        exclude:\n          - group: voice\n        include:"
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          "      matrix:\n        include:",
+          "      matrix:\n        shard: [1, 2]\n        include:"
+        ),
+        targets
+      )
+    ).toThrow(message);
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          "- group: voice",
+          "- group: voice\n            os: ubuntu-latest"
+        ),
+        targets
+      )
+    ).toThrow(message);
+  });
+
   it("runs every test target in exactly one group", () => {
     expect(() =>
       verifyCiWorkflow(source, [...targets, "@nakafa/aksara-new"])
