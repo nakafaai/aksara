@@ -152,6 +152,14 @@ describe("CI workflow policy", () => {
     );
   });
 
+  it("runs root test tasks only with the root package selected", () => {
+    expect(() =>
+      verifyCiWorkflow(source.replace("--filter=// ", ""), targets)
+    ).toThrow(
+      "A CI test group that selects root test tasks with package filters must include --filter=//"
+    );
+  });
+
   it("runs every test group through Turbo with one concurrent task", () => {
     const message =
       "Each CI test group must run through Turbo with --concurrency=1";

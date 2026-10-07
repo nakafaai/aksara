@@ -106,6 +106,16 @@ function legTargets(command: string): readonly string[] {
     .sort();
 }
 
+/** Reports whether a matrix command filters packages without the root package, which drops the root test tasks it names. */
+function skipsRootTasks(command: string): boolean {
+  const tokens = command.split(WHITESPACE_PATTERN);
+  return (
+    tokens.some((token) => token.startsWith(TEST_TASK_PREFIX)) &&
+    tokens.some((token) => token.startsWith(FILTER_PREFIX)) &&
+    !tokens.includes(ROOT_FILTER)
+  );
+}
+
 /** Verifies that the test matrix runs every test target in exactly one group. */
 function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
   const strategy = Schema.decodeUnknownOption(TestStrategySchema)(job.strategy);
@@ -159,6 +169,12 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
     ),
     "Each CI test group must run exactly its own test targets"
   );
+  for (const leg of legs) {
+    assert.ok(
+      !skipsRootTasks(leg.command),
+      "A CI test group that selects root test tasks with package filters must include --filter=//"
+    );
+  }
   assert.ok(
     job.steps.some((step) => step.run === TEST_COMMAND),
     "Every CI test group must run its own matrix command"
