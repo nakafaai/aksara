@@ -55,7 +55,6 @@ export interface WorkflowSources {
   readonly cli: string;
   readonly contracts: string;
   readonly release: string;
-  readonly testTargets: readonly string[];
 }
 
 /** Verifies one source-only contract archive and one content release path. */
@@ -65,7 +64,6 @@ export function verifyWorkflows({
   cli,
   contracts,
   release,
-  testTargets,
 }: WorkflowSources): void {
   const releaseCombined = `${ci}\n${contracts}\n${release}`;
   const combined = `${releaseCombined}\n${cli}`;
@@ -89,7 +87,7 @@ export function verifyWorkflows({
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
   verifyWorkflowToolchains([...new Set([ci, cli, contracts, release, ...all])]);
-  verifyCiWorkflow(ci, testTargets);
+  verifyCiWorkflow(ci, repositoryTestTargets());
   verifyCliWorkflow(cli);
   assert.match(
     ci,
@@ -240,6 +238,5 @@ verifyWorkflows({
   cli: readFileSync(".github/workflows/cli.yml", "utf8"),
   contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
   release: readFileSync(".github/workflows/release.yml", "utf8"),
-  testTargets: repositoryTestTargets(),
 });
 process.stdout.write("Verified immutable contract and content workflows.\n");
