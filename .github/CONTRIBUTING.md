@@ -47,7 +47,7 @@ pnpm install --frozen-lockfile
 ```
 
 Before editing, read root `AGENTS.md` and the nearest nested `AGENTS.md`. For
-Effect work, read `repos/effect/AGENTS.md`, then inspect the matching
+Effect work, read `repos/effect/.agents/AGENTS.md`, then inspect the matching
 implementation, tests, type-level tests, module structure, and API design.
 Treat the vendored subtree as read-only application reference material.
 

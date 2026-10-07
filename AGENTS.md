@@ -1,182 +1,72 @@
 # Aksara Agent Guide
 
-Aksara is Nakafa's trusted content-authoring and publication system. Build it
-for clarity, measurable scale, and safe releases.
+Aksara is Nakafa's trusted content-authoring and publication system. Build it for clarity, measurable scale, and safe releases.
 
-- Keep only workspaces with a real implemented capability. The domain modules
-  are `packages/contracts`, `packages/compiler`, `packages/corpus`, and
-  `packages/publisher`. `packages/utilities` owns only generic cross-workspace
-  primitives. `packages/typescript-config` owns the shared compiler contract,
-  while `packages/testing` owns shared test-runner defaults consumed by local
-  workspace configs. Add CLI ownership only with the actual Nakafa preview
-  caller; never fill a workspace with substitute content.
-- Name every code, script, and document folder and file with exactly one
-  concise domain word; `pnpm names` enforces it. Group a longer capability
-  under its domain, such as `artifact/verify.ts` or `tryout/hash/catalog.ts`,
-  without repeating the parent name. Role suffixes such as `.config.ts`,
-  `.d.ts`, and `.test.ts`, toolchain files such as `pnpm-workspace.yaml`, and
-  uppercase repository documents such as `CONTENT_LICENSE.md` keep their
-  conventional names. Content identities keep their exact names: folders below
-  `packages/corpus/material/lesson`, `packages/corpus/articles`,
-  `packages/corpus/curriculum`, and `packages/corpus/pages`, the
-  `question-bank` root with its source hierarchy, and skill folders. Code in a
-  content root is a one-word file at that root, because its folders belong to
-  content. Never invent a hierarchy or rename a source identity to satisfy
-  code naming. Rename existing code in a dedicated change that rewrites every
-  import, export, and reference in one pass.
-- Never invent educational content, author metadata, corpus facts, renderer
-  manifests, or production-state claims. Test-only protocol values must be
-  unmistakably named as tests; content evidence must cite an exact Nakafa
-  source and commit.
-- Treat Effect as architecture. Expected failures use typed errors, effectful
-  seams compose Effects, and runners stay at CLI, framework, or test boundaries.
-- `scripts/check/effect.ts` enforces this across `apps`, `packages`, and
-  `scripts`: no raw `try`/`catch` statement and no `typeof ... === "object"`
-  narrowing. Narrow unknown input with `Predicate` or `Schema` and model
-  expected failure with a tagged Effect error. Agent skill tooling under
-  `.agents/` keeps its own conventions and is out of scope.
-- Optimize for code that is easy to read and skim. Use direct names, early
-  returns, and small named steps. Avoid clever pipelines, nested ternaries,
-  workaround types, wrapper-only functions, and abstractions without a real
-  caller.
-- Use Effect v4 `Context.Service` plus `Layer` for dependency contracts.
-  Function-style and class-style service keys are both native v4 patterns. A
-  service may own a `make` effect only when its module genuinely owns
-  construction. Only the matching v4 service Interface is valid. Follow the
-  vendored Effect source and its native Interfaces.
-- Keep authored MDX executable and trusted. Compile it ahead of time into a
-  signed `function-body` artifact. Nakafa may evaluate only reviewed,
-  source-controlled, hash-verified artifacts through official server-only
-  `@mdx-js/mdx/run` after signature and renderer-contract checks.
-- The trusted artifact path is not a sandbox. Never accept arbitrary or
-  untrusted MDX uploads into compilation or runtime evaluation.
-- Preserve Nakafa's real React/Next renderer. Do not create a JSON/AST renderer,
-  duplicate preview renderer, or manual per-document import registry.
-- Keep React and TSX component implementations in Nakafa. Corpus MDX references
-  current authenticated renderer names; Aksara never owns a duplicate preview
-  component. Internal renderer changes use one current implementation and
-  component set. Renderer manifests and artifact requirements contain names,
-  without version fields or separate authoring and supported registries. Deploy
-  the matching renderer before publishing content that uses it. Breaking signed
-  contract changes require a complete current-format republish, and the
-  predecessor encoding is retired in the same change rather than supported by
-  migration-only readers and writers.
-- Keep authored executable source in TypeScript. Do not add JavaScript source
-  files or generated JavaScript to Git.
-- The dependency audit, `scripts/osv`, is the one shell script. It decides
-  whether the installed packages can be trusted, so it imports none of them:
-  it downloads the checksum-pinned OSV Scanner with `curl` and runs it. Keep
-  it identical to the script in nakafa.com except for the lockfiles it names.
-- Do not use APIs marked deprecated by the installed TypeScript declarations.
-  `pnpm deprecations` must cover every tracked authored TypeScript file.
-- Run `pnpm security:audit` after changing dependencies or the lockfile. Known
-  dependency advisories are release blockers.
-- CI audits against live OSV advisories, so a new advisory can fail CI with no
-  code change. Pin the patched version with an override in
-  `pnpm-workspace.yaml` in its own change, then update waiting pull requests
-  from `main`. When no patched release exists and only development tooling
-  reaches the package, add a time-boxed `IgnoredVulns` entry to `osv.toml`,
-  the scanner configuration `pnpm security:audit` passes with `--config`, in
-  its own change instead: `ignoreUntil` at most 14 days out and a `reason`
-  naming the dependency path and why it cannot be exploited.
-  Delete the entry once a patched release ships; an expired entry fails the
-  audit again.
-- pnpm checks every lockfile entry against its one-day `minimumReleaseAge`,
-  even in frozen installs. List a reviewed version that must land sooner in
-  `minimumReleaseAgeExclude`, and remove the entry once that version is a day
-  old or leaves the lockfile.
-- Judge a typecheck by its exit code. The Effect language service reports
-  suggestions, such as `Effect.undefined` for `Effect.succeed(undefined)`, that
-  fail the typecheck without the word "error".
-- The shared TypeScript config turns off the language service's
-  `unstableApiUsage` and `experimentalApiUsage` rules. Aksara uses Effect's
-  `@stability unstable` HTTP and process modules on purpose, pins Effect
-  exactly, and reviews every upgrade, so a stability warning on each use would
-  fail every typecheck with nothing to act on.
-- The typecheck enforces the Effect language service's type-aware rules as
-  errors: `preferSchemaTypeProperty` (`typeof X.Type`, never
-  `Schema.Schema.Type<typeof X>`), `instanceOfSchema` (`Schema.is(X)`, never
-  `instanceof` on a Schema class), and `extendsNativeError` (a failure class
-  extends `Schema.TaggedError` or `Data.TaggedError`, never `Error`).
-  `packages/typescript-config/base.json` sets them. A rule moves to `error` in
-  the change that brings its violations to zero, and no `@effect-diagnostics`
-  comment may switch off a rule named here.
-- Unresolved review threads, including automated reviewers', block merging. Fix
-  each verified finding or reply with evidence, then resolve the thread.
-- `main` merges only through GitHub's merge queue. `gh pr merge` queues through
-  auto-merge, which stays off, so once `verify` passes on a pull request's
-  exact head, enqueue that head directly:
+This guide is a map. It states each Aksara decision once and names the command or file that owns the detail. What a command enforces is not restated here: run the command and follow its message.
+
+## Sources Of Truth
+
+| Topic | Owner |
+| --- | --- |
+| Writing Effect v4 | `repos/effect/LLMS.md`, then source and tests under `repos/effect/packages` |
+| Effect-native source rules | `scripts/check/effect.ts`, run by `pnpm lint` |
+| Effect compiler rules | `packages/typescript-config/base.json` |
+| File and folder names | `pnpm names` |
+| Module length | `pnpm lines` |
+| JSDoc on stable callables | `pnpm jsdocs` |
+| Deprecated APIs | `pnpm deprecations` |
+| Import aliases and boundaries | `pnpm boundaries` |
+| Locale declarations | `pnpm locales` |
+| Workflow policy | `pnpm workflows` |
+| Dependency audit and its time-boxed exceptions | `scripts/osv`, `osv.toml` |
+| Contracts release path | `docs/contracts.md` |
+| Scope, governance, architecture decisions | `docs/scope.md`, `docs/governance.md`, `docs/adr` |
+| Authoring, reviewing, and verifying content | `.agents/skills/nakafa-content` |
+| Turborepo | `docs/README.md` inside the installed `turbo` package |
+
+## Workspaces And Names
+
+- Keep only workspaces with a real implemented capability. The domain modules are `packages/contracts`, `packages/compiler`, `packages/corpus`, and `packages/publisher`. `packages/utilities` owns only generic cross-workspace primitives, `packages/typescript-config` the shared compiler contract, and `packages/testing` the shared test-runner defaults. Add CLI ownership only with the actual Nakafa preview caller; never fill a workspace with substitute content.
+- Name every code, script, and document folder and file with exactly one concise domain word. Group a longer capability under its domain, such as `artifact/verify.ts` or `tryout/hash/catalog.ts`, without repeating the parent name. Role suffixes such as `.config.ts`, `.d.ts`, and `.test.ts`, toolchain files, and uppercase repository documents keep their conventional names.
+- Content identities keep their exact names: folders below `packages/corpus/material/lesson`, `packages/corpus/articles`, `packages/corpus/curriculum`, and `packages/corpus/pages`, the `question-bank` root with its source hierarchy, and skill folders. Code in a content root is a one-word file at that root. Never invent a hierarchy or rename a source identity to satisfy code naming, and rename existing code in a dedicated change that rewrites every import, export, and reference in one pass.
+- Put dependencies in the workspace that uses them, with `workspace:*` for internal ones. Same-package imports use the private workspace alias such as `#contracts/*`; cross-package imports use exact `@nakafa/*` package exports. Relative module imports are forbidden; relative config inheritance and CLI filesystem paths are not module imports.
+- Authored executable source is TypeScript: no JavaScript source and no generated JavaScript in Git. The dependency audit `scripts/osv` is the one shell script, because it decides whether the installed packages can be trusted and so imports none of them. Keep it identical to the script in nakafa.com except for the lockfiles it names.
+- Root task scripts delegate to Turbo, except repository-wide tooling such as Ultracite and the source-policy checks. Run focused workspace tests through `pnpm exec turbo run test --filter=...`, because Turbo owns the dependency build order.
+
+## Content And Publication
+
+- Never invent educational content, author metadata, corpus facts, renderer manifests, or production-state claims. Test-only protocol values must be unmistakably named as tests; content evidence must cite an exact Nakafa source and commit.
+- Authored MDX is executable and trusted. Compile it ahead of time into a signed `function-body` artifact. Nakafa may evaluate only reviewed, source-controlled, hash-verified artifacts through official server-only `@mdx-js/mdx/run` after signature and renderer-contract checks. That path is not a sandbox: never accept arbitrary or untrusted MDX uploads into compilation or runtime evaluation.
+- Nakafa's real React and Next.js renderer is the only renderer. Do not create a JSON or AST renderer, a duplicate preview renderer, a manual per-document import registry, or a React component in Aksara. Corpus MDX references current authenticated renderer names; renderer manifests and artifact requirements contain names, without version fields or separate authoring and supported registries. Deploy the matching renderer before publishing content that uses it.
+- A breaking signed contract change requires a complete current-format republish, and the predecessor encoding is retired in the same change instead of being supported by migration-only readers and writers. Do not add compatibility layers; a migration-only seam needs an explicit deletion gate.
+- Never add deployment credentials to the repository. Publisher transport implementations stay injected, authenticated, and exact-contract. Tests and repository verification never call a remote target; only an explicit CLI or protected release boundary may publish after approval.
+- A push to `main` builds and verifies the contracts package but never publishes it. To release a contracts version, dispatch `Release contracts` from `main`; the owner approves its `npm-production` gate.
+
+## Effect And TypeScript
+
+- Treat Effect as architecture. Expected failures use typed errors, effectful seams compose Effects, and runners stay at CLI, framework, or test boundaries. Dependency contracts use Effect v4 `Context.Service` plus `Layer`: function-style and class-style service keys are both native, a service owns a `make` effect only when its module genuinely owns construction, and only the matching v4 service Interface is valid.
+- `repos/effect` is a read-only Git subtree pinned to the installed `effect` version. Prefer it over memory, generated declarations, or examples for another major version, and never edit, import from, build, lint, or test it. `pnpm effect:source:check` verifies parity; `pnpm effect:source:update` creates the matching reference commit after an Effect update.
+- Enforcement: `pnpm lint` runs the source rules over `apps`, `packages`, and `scripts` (agent skill tooling under `.agents/` keeps its own conventions), and the typecheck runs the compiler rules. Each violation names its fix. A rule becomes an error in the change that clears its last violation, and no `@effect-diagnostics` comment may switch one off.
+- Judge a typecheck by its exit code: the Effect language service reports suggestions that fail it without the word "error". The shared configuration turns off `unstableApiUsage` and `experimentalApiUsage`, because Aksara uses Effect's unstable HTTP and process modules on purpose, pins Effect exactly, and reviews every upgrade.
+- Optimize for code that is easy to read and skim: direct names, early returns, and small named steps. Avoid clever pipelines, nested ternaries, workaround types, wrapper-only functions, and abstractions without a real caller.
+- Give every stable callable declaration useful JSDoc. Keep framework callbacks anonymous instead of inventing names or filler comments for compliance.
+
+## Testing
+
+- A colocated `name.test.ts` tests the real `name.ts`. Import test APIs from `@effect/vitest` and use the shared configured `vi` global; never import `vi` or `vitest` directly.
+- A test proves meaningful behavior, a regression, or a failure contract at the owning public seam. Never create one because a file exists, to restate declarative configuration, or for coverage. Keep 100% statement, branch, function, and line coverage without lowering thresholds or excluding behavior, and keep declarative configuration outside the executable coverage surface instead of creating mirror modules.
+
+## Dependencies And Release
+
+- Run `pnpm security:audit` after changing dependencies or the lockfile; known advisories are release blockers. CI audits against live OSV advisories, so a new advisory can fail CI with no code change: pin the patched version with an override in `pnpm-workspace.yaml` in its own change, then update waiting pull requests from `main`.
+- pnpm checks every lockfile entry against its one-day `minimumReleaseAge`, even in frozen installs. List a reviewed version that must land sooner in `minimumReleaseAgeExclude`, and remove the entry once that version is a day old or leaves the lockfile.
+- Unresolved review threads, automated reviewers' included, block merging: fix each verified finding or reply with evidence, then resolve the thread.
+- `main` merges only through GitHub's merge queue, and auto-merge stays off. Once `verify` passes on a pull request's exact head, enqueue that head:
 
   ```sh
   gh api graphql -F id="$(gh pr view <number> --json id --jq .id)" -F head=<sha> \
     -f query='mutation($id: ID!, $head: GitObjectID!) { enqueuePullRequest(input: {pullRequestId: $id, expectedHeadOid: $head}) { mergeQueueEntry { position } } }'
   ```
 
-  The queue retests it on the latest `main` with every change queued ahead of
-  it and squash merges it, so the branch needs no update from `main` to merge.
-  A pull request is merged once its state is `MERGED`, not when it enters the
-  queue.
-- A push to `main` builds and verifies the contracts package but never
-  publishes it. To release a contracts version, dispatch `Release contracts`
-  from `main`; the owner approves its `npm-production` gate. `docs/contracts.md`
-  owns the release path.
-- Keep handwritten TypeScript modules at or below 300 lines.
-- Give every stable callable declaration, including functions, methods, and
-  callable bindings, useful JSDoc. Keep framework callbacks anonymous instead of
-  inventing names or filler comments solely for compliance. JSDoc-only lines
-  do not count toward the 300-line module limit.
-- Put dependencies in the workspace that uses them and use `workspace:*` for
-  internal dependencies.
-- Same-package TypeScript imports use their private workspace alias such as
-  `#contracts/*`, `#compiler/*`, `#corpus/*`, `#publisher/*`, `#utilities/*`,
-  or `#cli/*`. Cross-package imports use exact `@nakafa/*` package exports.
-  Relative module imports are forbidden; relative config inheritance and CLI
-  filesystem paths are not module imports.
-- Root task scripts delegate to Turbo, except repository-wide tooling such as
-  Ultracite and source-policy checks.
-- Before changing Turborepo configuration or commands, read `docs/README.md` in
-  the installed `turbo` package and the relevant pages under its `docs/`
-  directory.
-- Run focused workspace tests through `pnpm exec turbo run test --filter=...`.
-  Do not bypass Turbo for tests that consume another workspace because Turbo
-  owns the dependency build order.
-- Import test APIs from `@effect/vitest`. Use the shared configured `vi` global
-  for mocks because Vitest hoists mock calls before re-export bindings
-  initialize. Do not import `vi`. Keep `vitest` installed only because
-  `@effect/vitest`, the CLI runner, coverage, and `vitest/config` require it.
-  Raw `vitest` imports are forbidden in authored TypeScript.
-- Never add deployment credentials to the repository. Publisher transport
-  implementations must remain injected, authenticated, and exact-contract.
-  Tests and repository verification never call a remote target; only an
-  explicit CLI or protected release boundary may execute publication after
-  approval.
-- Use colocated `name.test.ts` files to test the real `name.ts` module.
-- Do not create a test merely because a `.ts` file exists, to restate
-  declarative configuration, or to satisfy coverage. Every test must prove
-  meaningful behavior, a regression, or a failure contract at the owning
-  public seam. Maintain 100% statement, branch, function, and line coverage
-  without lowering thresholds or excluding behavior. Keep declarative
-  configuration outside the executable coverage surface instead of creating
-  mirror modules solely to manufacture tests.
+  The queue retests it on the latest `main` with every change queued ahead of it and squash merges it, so the branch needs no update from `main`. A pull request is merged once its state is `MERGED`, not when it enters the queue.
 - Do not use U+2014 in authored content, metadata, documentation, or code.
-- Do not add compatibility layers. Migration-only seams need explicit deletion
-  gates.
-
-## Vendored References
-
-- External source references live under `repos/` as read-only Git subtrees.
-- Follow the official Effect guidance on
-  [vendoring source for coding agents](https://www.effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive).
-- `repos/effect` is pinned to the installed `effect` package version. Before
-  writing or reviewing Effect code, read `repos/effect/LLMS.md` and
-  `repos/effect/.agents/AGENTS.md`, then inspect relevant implementation,
-  tests, type-level tests, module structure, and API design under
-  `repos/effect/packages/effect`.
-- Prefer the matching vendored source for Effect API shape and idioms instead
-  of guessing from memory, generated declarations, or examples for another
-  major version.
-- Never edit, import from, build, lint, or test `repos/effect` as Aksara code.
-- `pnpm effect:source:check` verifies that the installed and vendored Effect
-  versions match. After committing an Effect dependency update, run
-  `pnpm effect:source:update`; it pulls the matching release tag and creates one
-  linear reference update commit.
