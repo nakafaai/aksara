@@ -82,7 +82,19 @@ describe("CI workflow policy", () => {
         source.replace(MATRIX_COMMAND_STEP, "run: pnpm test"),
         targets
       )
-    ).toThrow("Every CI test group must run its own matrix command");
+    ).toThrow("Each CI test group must run only its matrix command");
+  });
+
+  it("runs no command beyond its matrix command", () => {
+    expect(() =>
+      verifyCiWorkflow(
+        source.replace(
+          MATRIX_COMMAND_STEP,
+          `${MATRIX_COMMAND_STEP}\n      - name: Extra\n        run: pnpm test`
+        ),
+        targets
+      )
+    ).toThrow("Each CI test group must run only its matrix command");
   });
 
   it("keeps every test group running after one group fails", () => {

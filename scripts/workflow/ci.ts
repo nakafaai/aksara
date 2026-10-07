@@ -29,6 +29,7 @@ const RESULT_SOURCE = [
   "TEST",
   `${DOLLAR}{{ needs.test.result }}`,
 ].join("\n");
+const INSTALL_COMMAND = "pnpm install --frozen-lockfile";
 const TEST_COMMAND = `${DOLLAR}{{ matrix.command }}`;
 // One Turbo run of test tasks and package filters, ending at one concurrent task.
 // Shell operators, newlines, dry runs, and other flags never match.
@@ -177,9 +178,10 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
       "A CI test group that selects root test tasks with package filters must include --filter=//"
     );
   }
-  assert.ok(
-    job.steps.some((step) => step.run === TEST_COMMAND),
-    "Every CI test group must run its own matrix command"
+  assert.deepEqual(
+    job.steps.flatMap((step) => (step.run === undefined ? [] : [step.run])),
+    [INSTALL_COMMAND, TEST_COMMAND],
+    "Each CI test group must run only its matrix command"
   );
 }
 
