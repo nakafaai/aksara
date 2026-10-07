@@ -246,5 +246,8 @@ describe("test target discovery", () => {
     expect(() =>
       manifestTestTargets("packages/broken/package.json", "{}")
     ).toThrow("packages/broken/package.json must be a package manifest");
+    expect(() =>
+      manifestTestTargets("packages/broken/package.json", "{")
+    ).toThrow("packages/broken/package.json must be a package manifest");
   });
 });
