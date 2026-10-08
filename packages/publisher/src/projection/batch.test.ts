@@ -180,7 +180,7 @@ describe("projection batch canonical wire bytes", () => {
           artifactLocale: "en",
           bodyKind: "question",
           contentKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question",
           kind: "question-body",
           metadata: {
             authors: [{ name: "Test Author" }],
@@ -188,9 +188,9 @@ describe("projection batch canonical wire bytes", () => {
             title: "Question 1",
           },
           peerContentKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer",
           questionKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1",
           questionNumber: 1,
           response: {
             kind: "single-choice",
@@ -199,7 +199,8 @@ describe("projection batch canonical wire bytes", () => {
               { isCorrect: false, label: "B", optionKey: "option-2", order: 2 },
             ],
           },
-          setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+          setKey:
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set",
         }
       );
       expect(
@@ -209,7 +210,7 @@ describe("projection batch canonical wire bytes", () => {
           releaseId,
         })
       ).toMatchInlineSnapshot(
-        `"{"batchIndex":1,"projections":[{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"A","optionKey":"option-1","order":1},{"isCorrect":false,"label":"B","optionKey":"option-2","order":2}]},"artifactLocale":"en","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Question 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"},{"appLocale":"en","artifactLocale":"en","contentKey":"pages/privacy-policy","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"},"pageKey":"privacy-policy","publicPath":"privacy-policy","sitemap":true,"sourcePath":"packages/corpus/pages/privacy-policy/en.mdx"},{"appLocale":"en","artifactLocale":"en","contentKey":"test:projection-0000","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson-0","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson-0","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson-0","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Pelajaran é ✓ 数学"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson-0","sectionKey":"test-lesson-0","sitemap":true,"topicTitle":"Test Material"},{"appLocale":"en","articleRouteSlug":"test-article","articleSlug":"test-article","artifactLocale":"en","category":"politics","categoryRouteSlug":"politics","categoryTitle":"Politics","contentKey":"articles/politics/test-article","graph":{"alignmentId":"alignment:article:politics:article:politics:test-article","assetId":"asset:en:article:politics:article:politics:test-article","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:test-article","lensId":"lens:article:politics"},"kind":"article","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Article"},"official":true,"parentPath":"articles/politics","publicPath":"articles/politics/test-article","references":[],"sitemap":true}],"operation":"stageProjectionBatch","releaseId":"test-release-projections"}"`
+        `"{"batchIndex":1,"projections":[{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"A","optionKey":"option-1","order":1},{"isCorrect":false,"label":"B","optionKey":"option-2","order":2}]},"artifactLocale":"en","contentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Question 1"},"peerContentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer","questionKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1","questionNumber":1,"setKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set"},{"appLocale":"en","artifactLocale":"en","contentKey":"pages/privacy-policy","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"},"pageKey":"privacy-policy","publicPath":"privacy-policy","sitemap":true,"sourcePath":"packages/corpus/pages/privacy-policy/en.mdx"},{"appLocale":"en","artifactLocale":"en","contentKey":"test:projection-0000","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson-0","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson-0","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson-0","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Pelajaran é ✓ 数学"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson-0","sectionKey":"test-lesson-0","sitemap":true,"topicTitle":"Test Material"},{"appLocale":"en","articleRouteSlug":"test-article","articleSlug":"test-article","artifactLocale":"en","category":"politics","categoryRouteSlug":"politics","categoryTitle":"Politics","contentKey":"articles/politics/test-article","graph":{"alignmentId":"alignment:article:politics:article:politics:test-article","assetId":"asset:en:article:politics:article:politics:test-article","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:test-article","lensId":"lens:article:politics"},"kind":"article","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Article"},"official":true,"parentPath":"articles/politics","publicPath":"articles/politics/test-article","references":[],"sitemap":true}],"operation":"stageProjectionBatch","releaseId":"test-release-projections"}"`
       );
     })
   );
