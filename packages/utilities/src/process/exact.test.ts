@@ -4,6 +4,7 @@ import {
   Effect,
   Fiber,
   FileSystem,
+  Layer,
   Option,
   Path,
   Schedule,
@@ -36,12 +37,17 @@ function nodeInput(
   };
 }
 
+/** The live service with the Node platform services it requires. */
+const LiveExactProcess = ExactProcessLive.pipe(
+  Layer.provide(NodeServices.layer)
+);
+
 /** Runs one process through the live direct-Node service. */
 const runLive = Effect.fn("ExactProcessTest.runLive")(
   (input: ExactProcessInput) =>
     ExactProcess.pipe(
       Effect.flatMap((exactProcess) => exactProcess.run(input)),
-      Effect.provide(ExactProcessLive)
+      Effect.provide(LiveExactProcess)
     )
 );
 

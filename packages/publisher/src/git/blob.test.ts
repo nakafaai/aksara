@@ -7,7 +7,7 @@ import {
   type ExactProcessInput,
   ExactProcessLive,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Layer } from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
@@ -47,7 +47,9 @@ describe("GitBlob", () => {
         );
         const fileSystem = yield* FileSystem.FileSystem;
         expect(yield* fileSystem.exists(root)).toBe(false);
-      }).pipe(Effect.provide([NodeServices.layer, ExactProcessLive]))
+      }).pipe(
+        Effect.provide(Layer.provideMerge(ExactProcessLive, NodeServices.layer))
+      )
   );
 
   it.effect("returns an empty batch without starting Git", () =>

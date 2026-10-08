@@ -1,41 +1,44 @@
-import type { ChildProcessByStdio } from "node:child_process";
-import { spawn } from "node:child_process";
-import { isAbsolute } from "node:path";
-import type { Readable, Writable } from "node:stream";
-import { NodeSink, NodeStream } from "@effect/platform-node";
 import {
+  Array as Arr,
   Chunk,
   Context,
-  Deferred,
   Effect,
   Layer,
+  Path,
+  Record as Rec,
   Schema,
   Stream,
 } from "effect";
-import { constant, constVoid } from "effect/Function";
+import { constant } from "effect/Function";
+import type * as PlatformError from "effect/PlatformError";
+import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import { joinBytes } from "#utilities/bytes/join";
-import { terminateProcessGroup } from "#utilities/process/group";
 
 const TERMINATION_GRACE = "250 millis";
-const TERMINATION_LIMIT = "250 millis";
 
 /** Exact operating-system process input with no inherited environment. */
-export interface ExactProcessInput {
-  readonly args: readonly string[];
-  readonly environment: Readonly<Record<string, string>>;
-  readonly executable: string;
-  readonly root: string;
-  readonly stderrLimit: number;
-  readonly stdin?: Uint8Array;
-  readonly stdoutLimit: number;
-}
+const ExactProcessInputSchema = Schema.Struct({
+  args: Schema.Array(Schema.String),
+  environment: Schema.Record(Schema.String, Schema.String),
+  executable: Schema.String,
+  root: Schema.String,
+  stderrLimit: Schema.Finite,
+  stdin: Schema.optionalKey(Schema.Uint8Array),
+  stdoutLimit: Schema.Finite,
+});
+
+/** Exact operating-system process input with no inherited environment. */
+export type ExactProcessInput = typeof ExactProcessInputSchema.Type;
 
 /** Bounded output returned by one successfully observed child process. */
-export interface ExactProcessOutput {
-  readonly exitCode: number;
-  readonly stderr: Uint8Array;
-  readonly stdout: Uint8Array;
-}
+const ExactProcessOutputSchema = Schema.Struct({
+  exitCode: Schema.Finite,
+  stderr: Schema.Uint8Array,
+  stdout: Schema.Uint8Array,
+});
+
+/** Bounded output returned by one successfully observed child process. */
+export type ExactProcessOutput = typeof ExactProcessOutputSchema.Type;
 
 /** An exact process could not start, stream bounded output, or exit normally. */
 export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(
@@ -65,30 +68,20 @@ export class ExactProcess extends Context.Service<
   }
 >()("AksaraExactProcess") {}
 
-interface OpenedProcess {
-  readonly child: ChildProcessByStdio<Writable, Readable, Readable>;
-  readonly exit: Deferred.Deferred<number, ExactProcessError>;
-  readonly pid: number;
-}
-
-interface OutputState {
-  readonly chunks: Chunk.Chunk<Uint8Array>;
-  readonly size: number;
-}
-
-const EMPTY_OUTPUT: OutputState = {
-  chunks: Chunk.empty(),
+const EMPTY_OUTPUT = {
+  chunks: Chunk.empty<Uint8Array>(),
   size: 0,
 };
 
-/** Validates the operating-system coordinates and output ceilings. */
-function validateInput(
-  input: ExactProcessInput
-): Effect.Effect<ExactProcessInput, ExactProcessError> {
-  if (!isAbsolute(input.executable)) {
+/**
+ * Validates the operating-system coordinates, output ceilings, and text.
+ * Node throws synchronously for NUL bytes, so they are spawn failures.
+ */
+function validateInput(path: Path.Path, input: ExactProcessInput) {
+  if (!path.isAbsolute(input.executable)) {
     return Effect.fail(new ExactProcessError({ reason: "executable" }));
   }
-  if (!isAbsolute(input.root)) {
+  if (!path.isAbsolute(input.root)) {
     return Effect.fail(new ExactProcessError({ reason: "root" }));
   }
   if (
@@ -101,20 +94,28 @@ function validateInput(
   ) {
     return Effect.fail(new ExactProcessError({ reason: "limit" }));
   }
-  return Effect.succeed(input);
+  const texts = [
+    input.executable,
+    input.root,
+    ...input.args,
+    ...Rec.keys(input.environment),
+    ...Rec.values(input.environment),
+  ];
+  if (Arr.some(texts, (text) => text.includes("\0"))) {
+    return Effect.fail(new ExactProcessError({ reason: "spawn" }));
+  }
+  return Effect.void;
 }
 
 /** Drains one process pipe without retaining bytes beyond its exact ceiling. */
 function collectOutput(
-  readable: Readable,
+  stream: Stream.Stream<Uint8Array, PlatformError.PlatformError>,
   limit: number,
   reason: "stdout" | "stderr"
 ) {
   const error = new ExactProcessError({ reason });
-  return NodeStream.fromReadable({
-    evaluate: () => readable,
-    onError: constant(error),
-  }).pipe(
+  return stream.pipe(
+    Stream.mapError(constant(error)),
     Stream.runFoldEffect(
       () => EMPTY_OUTPUT,
       (output, chunk) => {
@@ -132,105 +133,72 @@ function collectOutput(
   );
 }
 
-/** Opens one detached process and records its terminal state exactly once. */
-const openProcess = Effect.fn("AksaraUtilities.openExactProcess")(function* (
-  input: ExactProcessInput
+/** Writes exact standard input bytes; without input, stdin was closed at spawn. */
+function writeStdin(
+  handle: ChildProcessSpawner.ChildProcessHandle,
+  stdin: Uint8Array | undefined
 ) {
-  const exit = yield* Deferred.make<number, ExactProcessError>();
-  const child = yield* Effect.try({
-    catch: () => new ExactProcessError({ reason: "spawn" }),
-    try: () =>
-      spawn(input.executable, input.args, {
-        cwd: input.root,
-        detached: true,
-        env: input.environment,
-        shell: false,
-        stdio: ["pipe", "pipe", "pipe"],
-      }),
-  });
-  const pid = yield* Effect.callback<number, ExactProcessError>((resume) => {
-    child.once("error", () => {
-      const error = new ExactProcessError({ reason: "spawn" });
-      Deferred.doneUnsafe(exit, Effect.fail(error));
-      resume(Effect.fail(error));
-    });
-    child.once("spawn", () => {
-      const error = new ExactProcessError({ reason: "spawn" });
-      resume(
-        Schema.decodeUnknownEffect(Schema.Int.check(Schema.isGreaterThan(0)))(
-          child.pid
-        ).pipe(Effect.mapError(constant(error)))
-      );
-    });
-  });
-  child.once("close", (code) =>
-    Deferred.doneUnsafe(
-      exit,
-      code === null
-        ? Effect.fail(new ExactProcessError({ reason: "signal" }))
-        : Effect.succeed(code)
-    )
-  );
-  return { child, exit, pid };
-});
-
-/** Runs one acquired process while draining both output pipes concurrently. */
-function runOpened(
-  opened: OpenedProcess,
-  input: ExactProcessInput
-): Effect.Effect<ExactProcessOutput, ExactProcessError> {
-  const writeStdin =
-    input.stdin === undefined
-      ? Effect.sync(() => {
-          opened.child.stdin.on("error", constVoid);
-          opened.child.stdin.end();
-        })
-      : Stream.make(input.stdin).pipe(
-          Stream.run(
-            NodeSink.fromWritable({
-              evaluate: () => opened.child.stdin,
-              onError: () => new ExactProcessError({ reason: "stdin" }),
-            })
-          )
-        );
-  return Effect.all(
-    {
-      exitCode: Deferred.await(opened.exit),
-      stderr: collectOutput(opened.child.stderr, input.stderrLimit, "stderr"),
-      stdin: writeStdin,
-      stdout: collectOutput(opened.child.stdout, input.stdoutLimit, "stdout"),
-    },
-    { concurrency: "unbounded" }
-  ).pipe(
-    Effect.map(({ exitCode, stderr, stdout }) => ({
-      exitCode,
-      stderr,
-      stdout,
-    }))
+  if (stdin === undefined) {
+    return Effect.void;
+  }
+  return Stream.make(stdin).pipe(
+    Stream.run(handle.stdin),
+    Effect.mapError(constant(new ExactProcessError({ reason: "stdin" })))
   );
 }
 
 /** Runs one exact child process and owns its complete detached process group. */
-const runExactProcess = Effect.fn("AksaraUtilities.runExactProcess")(
-  (input: ExactProcessInput) =>
-    validateInput(input).pipe(
-      Effect.flatMap((validated) =>
-        Effect.acquireUseRelease(
-          openProcess(validated),
-          (opened) => runOpened(opened, validated),
-          (opened) =>
-            terminateProcessGroup({
-              ...opened,
-              grace: TERMINATION_GRACE,
-              limit: TERMINATION_LIMIT,
-            })
-        )
-      )
-    )
-);
+const runExactProcess = Effect.fn("AksaraUtilities.runExactProcess")(function* (
+  input: ExactProcessInput
+) {
+  const path = yield* Path.Path;
+  yield* validateInput(path, input);
+  const handle = yield* ChildProcess.make(input.executable, input.args, {
+    cwd: input.root,
+    detached: true,
+    env: input.environment,
+    extendEnv: false,
+    forceKillAfter: TERMINATION_GRACE,
+    shell: false,
+    // An empty stream closes the child's stdin when the command has no input.
+    stdin: input.stdin === undefined ? Stream.empty : "pipe",
+  }).pipe(
+    Effect.mapError(constant(new ExactProcessError({ reason: "spawn" })))
+  );
+  const output = yield* Effect.all(
+    {
+      exitCode: handle.exitCode.pipe(
+        Effect.mapError(constant(new ExactProcessError({ reason: "signal" })))
+      ),
+      stderr: collectOutput(handle.stderr, input.stderrLimit, "stderr"),
+      stdin: writeStdin(handle, input.stdin),
+      stdout: collectOutput(handle.stdout, input.stdoutLimit, "stdout"),
+    },
+    { concurrency: "unbounded" }
+  );
+  return {
+    exitCode: output.exitCode,
+    stderr: output.stderr,
+    stdout: output.stdout,
+  };
+});
 
-/** Live direct-Node implementation of the exact process boundary. */
-export const ExactProcessLive = Layer.succeed(
+/** Live implementation of the exact process boundary on Effect's child process spawner. */
+export const ExactProcessLive = Layer.effect(
   ExactProcess,
-  ExactProcess.of({ run: runExactProcess })
+  Effect.gen(function* () {
+    const path = yield* Path.Path;
+    const spawner = yield* ChildProcessSpawner.ChildProcessSpawner;
+    return ExactProcess.of({
+      run: (input) =>
+        runExactProcess(input).pipe(
+          Effect.provideService(Path.Path, path),
+          Effect.provideService(
+            ChildProcessSpawner.ChildProcessSpawner,
+            spawner
+          ),
+          Effect.scoped
+        ),
+    });
+  })
 );
