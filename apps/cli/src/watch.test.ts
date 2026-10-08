@@ -1,16 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  Deferred,
-  Effect,
-  Fiber,
-  FileSystem,
-  Path,
-  PlatformError,
-  Ref,
-  Stream,
-} from "effect";
+import { Deferred, Effect, Fiber, FileSystem, Path, PlatformError, Ref, Stream, HashMap } from "effect";
 import { TestClock } from "effect/testing";
 import { PreviewProviderError } from "#cli/provider";
 import { selectPreviewDocument } from "#cli/repository";
@@ -170,7 +161,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           focused,
           events,
           refresh,
-          new Map(),
+          HashMap.empty(),
           invalidate
         ).pipe(Effect.forkChild({ startImmediately: true }));
         yield* TestClock.adjust("100 millis");
@@ -244,7 +235,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
       const selected = yield* selectRealDocument(questionPath);
       const [directory] = selected.directories;
       assert(directory !== undefined, "Expected one selected directory.");
-      const changedFiles = new Map([
+      const changedFiles = HashMap.fromIterable([
         [directory.absolutePath, [...directory.files, "draft.mdx"]],
       ]);
       const error = yield* runWatch(

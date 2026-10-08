@@ -3,13 +3,7 @@ import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import {
-  Effect,
-  FileSystem,
-  Path,
-  type PlatformError,
-  type Stream,
-} from "effect";
+import { Effect, FileSystem, Path, type PlatformError, type Stream, HashMap, Option } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
@@ -83,10 +77,10 @@ export function runWatch(
     PreviewProviderError,
     FileSystem.FileSystem | Path.Path
   >,
-  directoryFiles: ReadonlyMap<string, readonly string[]> = new Map(),
+  directoryFiles: HashMap.HashMap<string, readonly string[]> = HashMap.empty(),
   invalidate: Effect.Effect<number, PreviewProviderError> = Effect.succeed(1)
 ) {
-  const selectedFiles = new Map(
+  const selectedFiles = HashMap.fromIterable(
     selected.directories.map((directory) => [
       directory.absolutePath,
       directory.files,
@@ -98,8 +92,8 @@ export function runWatch(
       FileSystem.layerNoop({
         readDirectory: (directory) =>
           Effect.succeed([
-            ...(directoryFiles.get(directory) ??
-              selectedFiles.get(directory) ??
+            ...(Option.getOrUndefined(HashMap.get(directoryFiles, directory)) ??
+              Option.getOrUndefined(HashMap.get(selectedFiles, directory)) ??
               []),
           ]),
         realPath: (path) => Effect.succeed(path),

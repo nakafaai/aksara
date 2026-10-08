@@ -1,4 +1,5 @@
-import type { Effect } from "effect";
+import { type Effect, Schema } from "effect";
+import { JsonTextSchema } from "#cli/text/json";
 import {
   HttpClient,
   type HttpClientError,
@@ -38,7 +39,7 @@ export function requestJson(request: HttpClientRequest.HttpClientRequest) {
   if (request.body._tag !== "Uint8Array") {
     throw new Error("Expected a JSON request body.");
   }
-  const parsed: unknown = JSON.parse(
+  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(
     Buffer.from(request.body.body).toString("utf8")
   );
   return parsed;
