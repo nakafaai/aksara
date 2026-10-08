@@ -1,17 +1,6 @@
-import { Effect, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
+import { Effect } from "effect";
 import { ChildProcess } from "effect/process";
-
-/** Collects one child-process stream as text without leaving it unscoped. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
+import { collectText } from "#scripts/output";
 
 /**
  * Runs one Git command, in the working directory unless `cwd` names another,

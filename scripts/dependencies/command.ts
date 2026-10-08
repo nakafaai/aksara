@@ -1,6 +1,6 @@
-import { Effect, Record as Rec, Schema, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
+import { Effect, Record as Rec, Schema } from "effect";
 import { ChildProcess, type ChildProcessSpawner } from "effect/process";
+import { collectText } from "#scripts/output";
 
 const CommandOutputSchema = Schema.Struct({
   exitCode: Schema.Finite,
@@ -30,17 +30,6 @@ export class DependencyCommandError extends Schema.TaggedError<DependencyCommand
   "DependencyCommandError",
   { message: Schema.String }
 ) {}
-
-/** Collects one child-process byte stream as UTF-8 text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
 
 /** Runs pnpm in the repository and preserves its exact terminal output. */
 export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
