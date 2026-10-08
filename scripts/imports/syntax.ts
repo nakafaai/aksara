@@ -1,4 +1,4 @@
-import { Array as Arr, MutableList } from "effect";
+import { Array as Arr } from "effect";
 import {
   type ExportDeclaration,
   type ImportDeclaration,
@@ -14,12 +14,12 @@ import {
   isNamespaceImport,
   isStringLiteral,
   isStringLiteralLikeNode,
-  isTypeNode,
   type Node,
   type SourceFile,
   type StringLiteralLikeNode,
   SyntaxKind,
 } from "typescript/unstable/ast";
+import { syntaxNodes } from "#scripts/check/syntax";
 
 /** Returns the statically knowable module specifier owned by one syntax node. */
 function staticModuleSpecifier(node: Node): StringLiteralLikeNode | undefined {
@@ -65,37 +65,11 @@ function staticModuleSpecifier(node: Node): StringLiteralLikeNode | undefined {
     : undefined;
 }
 
-/**
- * Returns the syntax nodes of one module in breadth-first order. With
- * `skipTypes`, a type node is listed but its children are not.
- */
-export function syntaxNodes(
-  sourceFile: SourceFile,
-  skipTypes: boolean
-): readonly Node[] {
-  const pending = MutableList.make<Node>();
-  const visited = MutableList.make<Node>();
-  MutableList.append(pending, sourceFile);
-  for (
-    let node = MutableList.take(pending);
-    node !== MutableList.Empty;
-    node = MutableList.take(pending)
-  ) {
-    MutableList.append(visited, node);
-    if (!(skipTypes && isTypeNode(node))) {
-      node.forEachChild((child) => {
-        MutableList.append(pending, child);
-      });
-    }
-  }
-  return MutableList.takeAll(visited);
-}
-
 /** Returns every static or dynamic module specifier in one source module. */
 export function moduleSpecifiers(
   sourceFile: SourceFile
 ): readonly StringLiteralLikeNode[] {
-  return Arr.flatMap(syntaxNodes(sourceFile, false), (node) => {
+  return Arr.flatMap(syntaxNodes(sourceFile), (node) => {
     const specifier = staticModuleSpecifier(node);
     return specifier === undefined ? [] : [specifier];
   });
@@ -176,7 +150,7 @@ export function exposedModuleBindings(
   moduleName: string,
   exportName: string
 ): readonly Node[] {
-  return Arr.flatMap(syntaxNodes(sourceFile, false), (node) => [
+  return Arr.flatMap(syntaxNodes(sourceFile), (node) => [
     ...(isImportDeclaration(node)
       ? importBindings(node, moduleName, exportName)
       : []),

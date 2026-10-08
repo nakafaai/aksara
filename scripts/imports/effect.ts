@@ -21,7 +21,7 @@ import {
   type Node,
   SyntaxKind,
 } from "typescript/unstable/ast";
-import { syntaxNodes } from "#scripts/imports/syntax";
+import { syntaxNodesSkippingTypes } from "#scripts/check/syntax";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;
 const LEGACY_ADAPTER = "@nakafa/testing/effect";
@@ -188,7 +188,7 @@ export const effectTestViolations = Effect.fn("AksaraPolicy.effectTests")(
     return yield* parser.inspect(
       { fileName: file, source: sourceText },
       ({ sourceFile }) => {
-        const nodes = syntaxNodes(sourceFile, true);
+        const nodes = syntaxNodesSkippingTypes(sourceFile);
         const imports = runtimeImports(nodes);
         return [
           ...(imports.legacy

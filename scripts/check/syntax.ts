@@ -1,5 +1,9 @@
 import { MutableList } from "effect";
-import type { Node, SourceFile } from "typescript/unstable/ast";
+import {
+  isTypeNode,
+  type Node,
+  type SourceFile,
+} from "typescript/unstable/ast";
 
 /**
  * Lists a module's syntax nodes breadth first, starting with the module
@@ -7,6 +11,24 @@ import type { Node, SourceFile } from "typescript/unstable/ast";
  * traversal produced before the walk moved to Effect's mutable list.
  */
 export function syntaxNodes(sourceFile: SourceFile): readonly Node[] {
+  return walkSyntax(sourceFile, () => true);
+}
+
+/**
+ * Lists a module's syntax nodes breadth first, as `syntaxNodes` does, except
+ * that the children of a type node are left out.
+ */
+export function syntaxNodesSkippingTypes(
+  sourceFile: SourceFile
+): readonly Node[] {
+  return walkSyntax(sourceFile, (node) => !isTypeNode(node));
+}
+
+/** Lists nodes breadth first, expanding a node's children only when `expand` accepts it. */
+function walkSyntax(
+  sourceFile: SourceFile,
+  expand: (node: Node) => boolean
+): readonly Node[] {
   const pending = MutableList.make<Node>();
   const visited = MutableList.make<Node>();
   MutableList.append(pending, sourceFile);
@@ -16,9 +38,11 @@ export function syntaxNodes(sourceFile: SourceFile): readonly Node[] {
     node = MutableList.take(pending)
   ) {
     MutableList.append(visited, node);
-    node.forEachChild((child) => {
-      MutableList.append(pending, child);
-    });
+    if (expand(node)) {
+      node.forEachChild((child) => {
+        MutableList.append(pending, child);
+      });
+    }
   }
   return MutableList.takeAll(visited);
 }
