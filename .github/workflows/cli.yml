@@ -51,7 +51,10 @@ jobs:
           pnpm boundaries
 
       - name: Verify CLI package
-        run: pnpm exec turbo run test typecheck build --filter=@nakafa/aksara-cli
+        run: |
+          # Package test tasks do not reach the root suites, so name them here.
+          pnpm exec turbo run test:root test:lesson-voice --filter=// --concurrency=1
+          pnpm exec turbo run test typecheck build --filter=@nakafa/aksara-cli
 
       - name: Verify stable package version
         run: |

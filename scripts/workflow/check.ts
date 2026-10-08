@@ -5,6 +5,7 @@ import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -87,7 +88,7 @@ export function verifyWorkflows({
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
   verifyWorkflowToolchains([...new Set([ci, cli, contracts, release, ...all])]);
-  verifyCiWorkflow(ci);
+  verifyCiWorkflow(ci, repositoryTestTargets());
   verifyCliWorkflow(cli);
   assert.match(
     ci,

@@ -143,9 +143,24 @@ jobs:
           fi
           node packages/contracts/scripts/release/command.ts "${arguments[@]}"
 
+  # One matrix leg per test group. The groups partition every test target, and
+  # scripts/workflow/ci.ts checks that partition. fail-fast is off, so one
+  # failing group never cancels the others.
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: voice
+            command: pnpm exec turbo run test:lesson-voice --concurrency=1
+          - group: scripts
+            command: pnpm exec turbo run test:root test --filter=// --filter=@nakafa/aksara-contracts --concurrency=1
+          - group: corpus
+            command: pnpm exec turbo run test --filter=@nakafa/aksara-corpus --filter=@nakafa/aksara-utilities --filter=@nakafa/aksara-compiler --concurrency=1
+          - group: publisher
+            command: pnpm exec turbo run test --filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-cli --concurrency=1
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -162,12 +177,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Test
-        run: pnpm test
+      - name: Test ${{ matrix.group }}
+        run: ${{ matrix.command }}
 
   # The ruleset and the merge queue require only this check. It reports the
-  # combined result of the jobs above, which run in parallel on separate
-  # runners so the static checks never compete with the tests for CPU.
+  # combined result of checks and of every test group, each on its own runner,
+  # so the static checks never compete with the tests for CPU.
   verify:
     needs: [checks, test]
     if: ${{ !cancelled() }}

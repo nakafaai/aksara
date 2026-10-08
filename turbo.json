@@ -27,7 +27,6 @@
     },
     "//#test:root": {
       "dependsOn": [
-        "//#test:lesson-voice",
         "@nakafa/aksara-contracts#build",
         "@nakafa/aksara-utilities#build"
       ],
@@ -55,7 +54,7 @@
       ]
     },
     "@nakafa/aksara-contracts#test": {
-      "dependsOn": ["//#test:root", "build"],
+      "dependsOn": ["build"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
       "outputs": ["coverage/**"]
     },
@@ -66,7 +65,7 @@
     },
     "@nakafa/aksara-corpus#test": {
       "cache": false,
-      "dependsOn": ["//#test:root", "^build"],
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
       "outputs": ["coverage/**"]
     },
@@ -150,7 +149,7 @@
       "env": ["AKSARA_PUBLICATION_ENDPOINT", "AKSARA_PUBLICATION_TOKEN"]
     },
     "test": {
-      "dependsOn": ["//#test:root", "^build"],
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/packages/testing/index.ts"],
       "outputs": ["coverage/**"]
     },
