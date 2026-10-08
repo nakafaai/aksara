@@ -106,7 +106,7 @@ describe("GitBlob", () => {
           TEST_RAW_MDX
         );
         expect(commands).toEqual([
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: [
               "rev-parse",
               "--verify",
@@ -117,7 +117,7 @@ describe("GitBlob", () => {
             stderrLimit: 16 * 1024,
             stdoutLimit: 4096,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["cat-file", "--batch-check"],
             root: TEST_REPOSITORY_ROOT,
             stderrLimit: 16 * 1024,
@@ -126,7 +126,7 @@ describe("GitBlob", () => {
             ),
             stdoutLimit: 96,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["cat-file", "--batch"],
             root: TEST_REPOSITORY_ROOT,
             stderrLimit: 16 * 1024,
@@ -134,7 +134,7 @@ describe("GitBlob", () => {
             stdoutLimit: TEST_RAW_BYTES.byteLength + 97,
           }),
         ]);
-      })
+      }).pipe(Effect.provide(NodeServices.layer))
   );
 
   it.effect(

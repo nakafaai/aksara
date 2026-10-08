@@ -1,4 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import {
@@ -85,7 +86,7 @@ function rejectEvidence(overrides: EvidenceOverrides) {
   );
 }
 
-describe("repository evidence", () => {
+layer(NodeServices.layer)("repository evidence", (it) => {
   it.effect("captures exact clean and dirty repository states", () =>
     Effect.gen(function* () {
       const [clean, dirty] = yield* Effect.all(
@@ -111,19 +112,19 @@ describe("repository evidence", () => {
         yield* readEvidence(undefined, commands);
 
         expect(commands).toEqual([
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["rev-parse", "--verify", "HEAD"],
             root: "/code/aksara",
             stderrLimit: 16 * 1024,
             stdoutLimit: 4 * 1024 * 1024,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["status", "--porcelain=v1", "--untracked-files=normal"],
             root: "/code/aksara",
             stderrLimit: 16 * 1024,
             stdoutLimit: 4 * 1024 * 1024,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["rev-parse", "--verify", "HEAD"],
             root: "/code/aksara",
             stderrLimit: 16 * 1024,

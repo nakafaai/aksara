@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { NodeServices } from "@effect/platform-node";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
@@ -144,7 +145,8 @@ export function readTestBlobs(
       gitBlob.read({ revision: TEST_COMMIT_SHA, sourcePaths })
     ),
     Effect.provide(makeGitBlobLive(TEST_REPOSITORY_ROOT)),
-    Effect.provideService(ExactProcess, exactProcess)
+    Effect.provideService(ExactProcess, exactProcess),
+    Effect.provide(NodeServices.layer)
   );
 }
 
@@ -164,15 +166,14 @@ const runTestGit = Effect.fn("GitBlobTest.runGit")(function* (
   stdin?: Uint8Array
 ) {
   const process = yield* ExactProcess;
-  const result = yield* process.run(
-    makeExactGitInput({
-      args,
-      root,
-      stderrLimit: 4096,
-      stdoutLimit: 4096,
-      ...(stdin === undefined ? {} : { stdin }),
-    })
-  );
+  const input = yield* makeExactGitInput({
+    args,
+    root,
+    stderrLimit: 4096,
+    stdoutLimit: 4096,
+    ...(stdin === undefined ? {} : { stdin }),
+  });
+  const result = yield* process.run(input);
   if (result.exitCode !== 0) {
     return yield* Effect.die(new TextDecoder().decode(result.stderr));
   }
