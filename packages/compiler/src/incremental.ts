@@ -10,6 +10,7 @@ import {
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Exit, Predicate, Schema } from "effect";
+import { StaticLiteralSchema } from "#compiler/ast/literal";
 import type {
   CompileContentError,
   CompiledContentResult,
@@ -27,21 +28,9 @@ import type {
 
 const CACHE_FORMAT = "aksara-local-compile";
 
-const MetadataValueSchema: Schema.Codec<AuthoredMetadataValue> = Schema.suspend(
-  () =>
-    Schema.Union([
-      Schema.Boolean,
-      Schema.Null,
-      Schema.Finite,
-      Schema.String,
-      Schema.Array(MetadataValueSchema),
-      Schema.Record(Schema.String, MetadataValueSchema),
-    ])
-);
-
 const MetadataSchema: Schema.Codec<AuthoredMetadata> = Schema.Record(
   Schema.String,
-  MetadataValueSchema
+  StaticLiteralSchema
 );
 
 /** Complete input identity that decides whether local compilation is reusable. */
