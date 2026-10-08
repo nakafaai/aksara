@@ -4,7 +4,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Record, Schema, Stream } from "effect";
 import { QuranSurahSchema } from "#corpus/quran/schema";
 import { testQuranSources } from "#corpus/test/quran/sources";
 
@@ -44,7 +44,7 @@ describe("Quran schema", () => {
         values.every(({ verses }) =>
           verses.every(
             ({ tafsir, translation }) =>
-              Object.keys(tafsir).length === 1 && translation.de !== undefined
+              Record.keys(tafsir).length === 1 && translation.de !== undefined
           )
         )
       ).toBe(true);

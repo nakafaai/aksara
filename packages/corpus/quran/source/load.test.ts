@@ -8,9 +8,12 @@ import {
   Context,
   Effect,
   FileSystem,
+  HashMap,
   Layer,
+  Option,
   Path,
   PlatformError,
+  Record,
   Schema,
 } from "effect";
 
@@ -21,7 +24,7 @@ interface QuranSourceFixtureValue {
   readonly repositoryRoot: string;
   /** Resolves one repository-owned Quran source path. */
   readonly resolveSource: (relativePath: string) => string;
-  readonly sourceBytes: ReadonlyMap<string, Uint8Array>;
+  readonly sourceBytes: HashMap.HashMap<string, Uint8Array>;
 }
 
 class QuranSourceFixture extends Context.Service<
@@ -32,12 +35,12 @@ class QuranSourceFixture extends Context.Service<
 const pinnedSourcePaths = [
   QURAN_SOURCE_POLICY.data.arabic.path,
   QURAN_SOURCE_POLICY.data.metadata.path,
-  ...Object.values(QURAN_SOURCE_POLICY.data.names).map(({ path }) => path),
-  ...Object.values(QURAN_SOURCE_POLICY.data.translations).map(
+  ...Record.values(QURAN_SOURCE_POLICY.data.names).map(({ path }) => path),
+  ...Record.values(QURAN_SOURCE_POLICY.data.translations).map(
     ({ path }) => path
   ),
-  ...Object.values(QURAN_SOURCE_POLICY.evidence).map(({ path }) => path),
-  ...Object.values(QURAN_SOURCE_POLICY.terms).map(({ path }) => path),
+  ...Record.values(QURAN_SOURCE_POLICY.evidence).map(({ path }) => path),
+  ...Record.values(QURAN_SOURCE_POLICY.terms).map(({ path }) => path),
   ...Array.from(
     { length: 114 },
     (_, index) => `${QURAN_SOURCE_POLICY.tafsir.directory}/${index + 1}.json`
@@ -69,7 +72,7 @@ const loadSourceFixture = Effect.fn("AksaraCorpus.test.loadQuranSourceFixture")(
       repositoryRoot,
       resolveSource: (relativePath: string) =>
         path.resolve(sourceRoot, relativePath),
-      sourceBytes: new Map(entries),
+      sourceBytes: HashMap.fromIterable(entries),
     } satisfies QuranSourceFixtureValue;
   }
 );
@@ -79,10 +82,10 @@ const fixtureLayer = Layer.effect(QuranSourceFixture)(loadSourceFixture()).pipe(
 );
 
 /** Provides deterministic byte reads for every pinned Quran source. */
-function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
+function fileLayer(sources: HashMap.HashMap<string, Uint8Array>) {
   return FileSystem.layerNoop({
     readFile: (path) => {
-      const bytes = sources.get(path);
+      const bytes = Option.getOrUndefined(HashMap.get(sources, path));
       if (bytes !== undefined) {
         return Effect.succeed(bytes);
       }
@@ -100,7 +103,7 @@ function fileLayer(sources: ReadonlyMap<string, Uint8Array>) {
 
 /** Loads pinned sources through one deterministic Effect file adapter. */
 const load = Effect.fn("AksaraCorpus.test.loadPinnedQuranSources")(function* (
-  sources: ReadonlyMap<string, Uint8Array>,
+  sources: HashMap.HashMap<string, Uint8Array>,
   appLocales?: ActiveAppLocaleList
 ) {
   const { repositoryRoot } = yield* QuranSourceFixture;
@@ -114,7 +117,7 @@ const load = Effect.fn("AksaraCorpus.test.loadPinnedQuranSources")(function* (
 /** Returns one typed pinned-source rejection inside the Effect runtime. */
 const reject = Effect.fn("AksaraCorpus.test.rejectPinnedQuranSources")(
   function* (
-    sources: ReadonlyMap<string, Uint8Array>,
+    sources: HashMap.HashMap<string, Uint8Array>,
     appLocales?: ActiveAppLocaleList
   ) {
     return yield* load(sources, appLocales).pipe(Effect.flip);
@@ -137,9 +140,11 @@ function replace(
   relativePath: string,
   bytes: Uint8Array
 ) {
-  const sources = new Map(fixture.sourceBytes);
-  sources.set(fixture.resolveSource(relativePath), bytes);
-  return sources;
+  return HashMap.set(
+    fixture.sourceBytes,
+    fixture.resolveSource(relativePath),
+    bytes
+  );
 }
 
 /** Mutates one byte while preserving the source byte count and UTF-8. */
@@ -148,7 +153,9 @@ const drift = Effect.fn("AksaraCorpus.test.driftPinnedQuranSource")(function* (
   relativePath: string
 ) {
   const bytes = yield* Effect.fromNullishOr(
-    fixture.sourceBytes.get(fixture.resolveSource(relativePath))
+    Option.getOrUndefined(
+      HashMap.get(fixture.sourceBytes, fixture.resolveSource(relativePath))
+    )
   ).pipe(Effect.orDie);
   const changed = Uint8Array.from(bytes);
   changed[0] = changed[0] === 65 ? 66 : 65;
@@ -194,12 +201,18 @@ layer(fixtureLayer)("Quran source loading", (it) => {
   it.effect("rejects missing data, legal, and Tafsir source files", () =>
     Effect.gen(function* () {
       const fixture = yield* QuranSourceFixture;
-      const missingData = new Map(fixture.sourceBytes);
-      missingData.delete(fixture.resolveSource("tanzil/text.txt"));
-      const missingTerms = new Map(fixture.sourceBytes);
-      missingTerms.delete(fixture.resolveSource("tanzil/terms.html"));
-      const missingTafsir = new Map(fixture.sourceBytes);
-      missingTafsir.delete(fixture.resolveSource("quranenc/tafsir/114.json"));
+      const missingData = HashMap.remove(
+        fixture.sourceBytes,
+        fixture.resolveSource("tanzil/text.txt")
+      );
+      const missingTerms = HashMap.remove(
+        fixture.sourceBytes,
+        fixture.resolveSource("tanzil/terms.html")
+      );
+      const missingTafsir = HashMap.remove(
+        fixture.sourceBytes,
+        fixture.resolveSource("quranenc/tafsir/114.json")
+      );
 
       const errors = yield* Effect.all(
         [reject(missingData), reject(missingTerms), reject(missingTafsir)],
@@ -220,7 +233,12 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       Effect.gen(function* () {
         const fixture = yield* QuranSourceFixture;
         const english = yield* Effect.fromNullishOr(
-          fixture.sourceBytes.get(fixture.resolveSource("quranenc/en.xml"))
+          Option.getOrUndefined(
+            HashMap.get(
+              fixture.sourceBytes,
+              fixture.resolveSource("quranenc/en.xml")
+            )
+          )
         ).pipe(Effect.orDie);
 
         const errors = yield* Effect.all(
@@ -284,8 +302,11 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       Effect.gen(function* () {
         const fixture = yield* QuranSourceFixture;
         const first = yield* Effect.fromNullishOr(
-          fixture.sourceBytes.get(
-            fixture.resolveSource("quranenc/tafsir/1.json")
+          Option.getOrUndefined(
+            HashMap.get(
+              fixture.sourceBytes,
+              fixture.resolveSource("quranenc/tafsir/1.json")
+            )
           )
         ).pipe(Effect.orDie);
 

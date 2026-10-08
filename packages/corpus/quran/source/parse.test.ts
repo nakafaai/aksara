@@ -1,16 +1,17 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Context, Effect, Layer, Path } from "effect";
+import { Context, Effect, Layer, Path, Schema, Struct } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
-import type { RawSources } from "#corpus/quran/source/model";
+import { type RawSources, RawSourcesSchema } from "#corpus/quran/source/model";
 import { parseQuranSources } from "#corpus/quran/source/parse";
 
-interface QuranParseFixtureValue {
-  readonly completeSources: RawSources;
-  readonly englishSource: string;
-  readonly rawSources: RawSources;
-}
+const QuranParseFixtureValueSchema = Schema.Struct({
+  completeSources: RawSourcesSchema,
+  englishSource: Schema.String,
+  rawSources: RawSourcesSchema,
+});
+type QuranParseFixtureValue = typeof QuranParseFixtureValueSchema.Type;
 
 class QuranParseFixture extends Context.Service<
   QuranParseFixture,
@@ -90,7 +91,7 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
           surahs.reduce((count, surah) => count + surah.verses.length, 0)
         ).toBe(6236);
         expect(
-          Object.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()
+          Struct.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()
         ).toEqual(["de", "en", "id"]);
         expect(surahs[0]?.verses[0]?.translation.de).toEqual({
           footnotes: "",

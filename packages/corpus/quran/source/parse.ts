@@ -2,7 +2,7 @@ import {
   type QuranTranslation,
   QuranTranslationSchema,
 } from "@nakafa/aksara-contracts/quran/notes";
-import { Effect, Schema } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 import {
   mapLocalizedSource,
   traverseLocalizedSources,
@@ -219,7 +219,7 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
             manzil,
             page,
             ruku,
-            sajda: metadata.sajdas.get(position) ?? null,
+            sajda: Option.getOrNull(HashMap.get(metadata.sajdas, position)),
           },
           number: { inQuran: position, inSurah: index + 1 },
           tafsir: { id: tafsirText },

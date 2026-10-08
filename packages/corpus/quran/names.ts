@@ -1,6 +1,6 @@
 import { QuranSurahNumberSchema } from "@nakafa/aksara-contracts/quran/spec";
 import { QuranMeaningfulTextSchema } from "@nakafa/aksara-contracts/quran/text";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Schema } from "effect";
 
 import { quranGenerationFailure } from "#corpus/quran/source/error";
 
@@ -152,9 +152,10 @@ export const decodeQuranSurahNames = Effect.fn(
   "AksaraCorpus.decodeQuranSurahNames"
 )((source: SupplementalNames) =>
   Schema.decodeEffect(SupplementalNamesSchema)(source).pipe(
-    Effect.map(
-      (rows) =>
-        new Map(rows.map(([number, id, de]) => [number, { de, id }] as const))
+    Effect.map((rows) =>
+      MutableHashMap.fromIterable(
+        rows.map(([number, id, de]) => [number, { de, id }] as const)
+      )
     ),
     Effect.mapError(() =>
       quranGenerationFailure(
