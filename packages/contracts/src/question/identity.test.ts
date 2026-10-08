@@ -24,12 +24,16 @@ const setKey = "question-bank/tryout/indonesia/snbt/general-reasoning/set-1";
 const questionKey = `${setKey}/question-1`;
 
 describe("question identity golden derivations", () => {
+  const goldenSetKey =
+    "question-bank/tryout/test-country/test-exam/test-section-2/test-set";
+  const goldenQuestionKey = `${goldenSetKey}/question-1`;
+
   it("derives the bank, set, and question identities from exact keys", () => {
-    const setId = Schema.decodeSync(QuestionSetKeySchema)(setKey);
-    const questionId = Schema.decodeSync(QuestionKeySchema)(questionKey);
+    const setId = Schema.decodeSync(QuestionSetKeySchema)(goldenSetKey);
+    const questionId = Schema.decodeSync(QuestionKeySchema)(goldenQuestionKey);
 
     expect(questionBankKey(setId)).toBe(
-      "question-bank/tryout/indonesia/snbt/general-reasoning"
+      "question-bank/tryout/test-country/test-exam/test-section-2"
     );
     expect(questionSetKeyParts(setId)).toEqual(setParts);
     expect(questionKeyParts(questionId)).toEqual(questionParts);
@@ -39,14 +43,14 @@ describe("question identity golden derivations", () => {
     expect(
       questionSourcePathParts(
         Schema.decodeSync(QuestionSourcePathSchema)(
-          `packages/corpus/${questionKey}/item.ts`
+          `packages/corpus/${goldenQuestionKey}/item.ts`
         )
       )
     ).toEqual(itemSourceParts);
     expect(
       questionSourcePathParts(
         Schema.decodeSync(QuestionSourcePathSchema)(
-          `packages/corpus/${questionKey}/answer.id.mdx`
+          `packages/corpus/${goldenQuestionKey}/answer.id.mdx`
         )
       )
     ).toEqual(answerSourceParts);
