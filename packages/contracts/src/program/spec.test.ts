@@ -55,8 +55,8 @@ const goldenFull = Schema.decodeSync(LearningProgramSchema)({
   key: "matematika-dasar",
   kind: "institution-program",
   navigation: { levels: ["topic", "subject", "unit"], model: "track-topic" },
-  provider: { homeCountry: "ID", kind: "institution", name: "Lembaga Uji é" },
-  recommendedCountry: "ID",
+  provider: { homeCountry: "ZZ", kind: "institution", name: "Lembaga Uji é" },
+  recommendedCountry: "ZZ",
   sources: [
     {
       label: "Zeta sumber é",
@@ -137,7 +137,7 @@ const goldenMixed = Schema.decodeSync(LearningProgramSchema)({
 describe("learning program golden canonical bytes", () => {
   it("pins the canonical bytes of a program with every optional field", () => {
     expect(canonicalizeLearningProgram(goldenFull)).toBe(
-      '{"defaultCoverageStatus":"available","displayOrder":3,"iconKey":"mathematics","key":"matematika-dasar","kind":"institution-program","navigation":{"levels":["topic","subject","unit"],"model":"track-topic"},"provider":{"homeCountry":"ID","kind":"institution","name":"Lembaga Uji é"},"recommendedCountry":"ID","sources":[{"label":"Zeta sumber é","retrievedAt":"2026-06-14","reviewAfter":"2027-01-01","type":"institution-document","url":"https://example.test/zeta"},{"label":"Alpha source","retrievedAt":"2026-06-15","type":"official-portal","url":"https://example.test/alpha"}],"translations":[{"appLocale":"en","publicSlug":"basic-mathematics","title":"Basic Mathematics é"},{"appLocale":"id","publicSlug":"matematika-dasar","title":"Matematika Dasar"},{"appLocale":"de","publicSlug":"grundlagen-mathematik","title":"Grundlagen Mathematik"}],"version":{"endsAt":"2027-12-31","label":"2026/2027","startsAt":"2026-07-01"}}'
+      '{"defaultCoverageStatus":"available","displayOrder":3,"iconKey":"mathematics","key":"matematika-dasar","kind":"institution-program","navigation":{"levels":["topic","subject","unit"],"model":"track-topic"},"provider":{"homeCountry":"ZZ","kind":"institution","name":"Lembaga Uji é"},"recommendedCountry":"ZZ","sources":[{"label":"Zeta sumber é","retrievedAt":"2026-06-14","reviewAfter":"2027-01-01","type":"institution-document","url":"https://example.test/zeta"},{"label":"Alpha source","retrievedAt":"2026-06-15","type":"official-portal","url":"https://example.test/alpha"}],"translations":[{"appLocale":"en","publicSlug":"basic-mathematics","title":"Basic Mathematics é"},{"appLocale":"id","publicSlug":"matematika-dasar","title":"Matematika Dasar"},{"appLocale":"de","publicSlug":"grundlagen-mathematik","title":"Grundlagen Mathematik"}],"version":{"endsAt":"2027-12-31","label":"2026/2027","startsAt":"2026-07-01"}}'
     );
   });
 
