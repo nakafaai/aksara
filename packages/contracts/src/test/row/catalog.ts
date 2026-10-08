@@ -26,7 +26,7 @@ export const countryRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       title: "Judul uji é",
     },
     rowHash:
-      "sha256:5837245a718549d1811a9d3d95a6b163bd51cf88b2682ac35fbbf579f41e53de",
+      "sha256:17e5b667d629410f51cf65ad99db205ea955fa642a9bf7aecbb28cc228341304",
   },
   rowKind: "catalog",
 });

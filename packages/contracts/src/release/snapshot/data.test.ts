@@ -107,7 +107,7 @@ describe("structured snapshot data", () => {
 
   it("pins the canonical bytes of a try-out catalog row", () => {
     expect(canonicalizeContentSnapshotRow(countryRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"de","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","assetId":"asset:de:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Judul uji é","countryCode":"ZZ","countryKey":"test-country","kind":"country","order":1,"publicPath":"try-out/test-country"},"rowHash":"sha256:5837245a718549d1811a9d3d95a6b163bd51cf88b2682ac35fbbf579f41e53de"},"rowKind":"catalog"}'
+      '{"family":"tryout","record":{"row":{"appLocale":"de","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","assetId":"asset:de:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Judul uji é","countryCode":"ZZ","countryKey":"test-country","kind":"country","order":1,"publicPath":"try-out/test-country"},"rowHash":"sha256:17e5b667d629410f51cf65ad99db205ea955fa642a9bf7aecbb28cc228341304"},"rowKind":"catalog"}'
     );
   });
 
