@@ -3,15 +3,12 @@ import { assert, describe, it } from "@effect/vitest";
 import { Effect, FileSystem, Layer, Result, Schema } from "effect";
 import { ProvenanceBundleVerifier } from "#scripts/provenance/bundle";
 import { runProvenanceMain } from "#scripts/provenance/main";
-import {
-  AuditSchema,
-  ProvenanceStatementSchema,
-} from "#scripts/provenance/schema";
+import { ProvenanceStatementSchema } from "#scripts/provenance/schema";
 
 const PACKAGE_SHA512 =
   "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 const SOURCE_SHA = "0123456789abcdef0123456789abcdef01234567";
-const AuditText = Schema.fromJsonString(AuditSchema);
+const JsonText = Schema.fromJsonString(Schema.Unknown);
 const StatementText = Schema.fromJsonString(ProvenanceStatementSchema);
 
 /** Creates the exact argument contract for one audit file. */
@@ -31,7 +28,7 @@ function argumentsFor(auditPath: string) {
 
 /** Creates one exact npm audit fixture for the boundary program. */
 function audit() {
-  return Schema.encodeSync(AuditText)({
+  return Schema.encodeSync(JsonText)({
     invalid: [],
     missing: [],
     verified: [
