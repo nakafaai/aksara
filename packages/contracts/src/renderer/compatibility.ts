@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import {
   ArtifactRendererComponentMissingError,
   ArtifactRendererDomainUnpublishedError,
@@ -43,9 +43,9 @@ const verifyCapabilitySuperset = Effect.fn(
   live: RendererComponents,
   rendererScope: typeof RendererCapabilityScopeSchema.Type
 ) {
-  const supported = new Set(live);
+  const supported = HashSet.fromIterable(live);
   for (const componentName of frozen) {
-    if (supported.has(componentName)) {
+    if (HashSet.has(supported, componentName)) {
       continue;
     }
     return yield* new RendererManifestComponentUnsupportedError({
@@ -113,9 +113,12 @@ export const verifyContentRendererCompatibility = Effect.fn(
     manifest,
     payload.rendererDomain
   );
-  const available = new Set([...manifest.base, ...domain.components]);
+  const available = HashSet.fromIterable([
+    ...manifest.base,
+    ...domain.components,
+  ]);
   for (const componentName of payload.requiredComponents) {
-    if (!available.has(componentName)) {
+    if (!HashSet.has(available, componentName)) {
       return yield* new ArtifactRendererComponentMissingError({
         componentName,
         contentKey: payload.contentKey,

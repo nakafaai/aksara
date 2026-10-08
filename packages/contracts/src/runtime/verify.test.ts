@@ -29,11 +29,6 @@ import {
   tamperedFoundResponses,
 } from "#contracts/test/runtime/public";
 
-interface RuntimeExchangeInput {
-  readonly rendererManifest?: unknown;
-  readonly request?: unknown;
-  readonly response: unknown;
-}
 /** Supplies the trusted fixture resolver to one runtime verification effect. */
 const provideFixtureKey = Effect.provideService(
   ContentVerificationKeyResolver,
@@ -43,7 +38,11 @@ const provideFixtureKey = Effect.provideService(
 /** Verifies one runtime exchange with the fixture key and default request. */
 const verifyRuntimeExchange = Effect.fn(
   "AksaraContracts.test.verifyRuntimeExchange"
-)(function* (input: RuntimeExchangeInput) {
+)(function* (input: {
+  readonly rendererManifest?: unknown;
+  readonly request?: unknown;
+  readonly response: unknown;
+}) {
   return yield* verifyContentRuntimeExchange({
     rendererManifest: input.rendererManifest ?? rendererManifest,
     request: input.request ?? request,

@@ -14,10 +14,6 @@ import {
   type PublicContentRuntimeRequest,
 } from "#contracts/runtime/spec";
 
-type PublicRuntimeVerificationPolicy =
-  | { readonly kind: "evidence" }
-  | { readonly kind: "execution"; readonly rendererManifest: unknown };
-
 /** Checks one article path preserves its pair-grouped physical source identity. */
 function hasArticleSourcePath(
   projection: Extract<RoutedContentProjection, { readonly kind: "article" }>,
@@ -110,7 +106,9 @@ const verifyPublicRelease = Effect.fn("AksaraContracts.verifyPublicRelease")(
 const verifyPublicRuntimeExchange = Effect.fn(
   "AksaraContracts.verifyPublicRuntimeExchange"
 )(function* (input: {
-  readonly policy: PublicRuntimeVerificationPolicy;
+  readonly policy:
+    | { readonly kind: "evidence" }
+    | { readonly kind: "execution"; readonly rendererManifest: unknown };
   readonly request: unknown;
   readonly response: unknown;
 }) {

@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type RendererComponents,
@@ -10,6 +10,9 @@ import {
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
+
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Stable format for the one current domain-scoped renderer manifest. */
 export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer";
@@ -75,10 +78,10 @@ function hasDistinctBaseComponents(manifest: {
   readonly base: RendererComponents;
   readonly domains: readonly RendererDomainCapability[];
 }) {
-  const baseNames = new Set(manifest.base);
+  const baseNames = HashSet.fromIterable(manifest.base);
   for (const domain of manifest.domains) {
     for (const name of domain.components) {
-      if (baseNames.has(name)) {
+      if (HashSet.has(baseNames, name)) {
         return false;
       }
     }
@@ -146,7 +149,7 @@ export function canonicalizeRendererManifestContract(input: {
   readonly domains: readonly RendererDomainCapability[];
   readonly publishedDomains: RendererPublishedDomains;
 }) {
-  return JSON.stringify([
+  return encodeJson([
     RENDERER_MANIFEST_FORMAT,
     input.base,
     sortRendererDomains(input.domains).map(({ name, components }) => ({

@@ -9,6 +9,7 @@ import {
   PublicContentRuntimeRequestSchema,
   PublicContentRuntimeResponseSchema,
 } from "#contracts/runtime/spec";
+import { encodeJson } from "#contracts/test/json";
 import { accepts } from "#contracts/test/runtime/fixture";
 import {
   articleFound,
@@ -40,7 +41,7 @@ describe("content runtime contract", () => {
 
   it.effect("accepts found, missing, and sanitized failure responses", () =>
     Effect.gen(function* () {
-      expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
+      expect(Buffer.byteLength(encodeJson(found), "utf8")).toBeLessThan(
         MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
       );
       for (const response of [

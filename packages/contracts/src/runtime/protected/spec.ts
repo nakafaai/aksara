@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
@@ -60,7 +60,7 @@ function hasUniqueSelectors(
   selectors: readonly ProtectedContentRuntimeSelector[]
 ) {
   const hashes = selectors.map(({ artifactHash }) => artifactHash);
-  return new Set(hashes).size === hashes.length;
+  return HashSet.size(HashSet.fromIterable(hashes)) === hashes.length;
 }
 
 const ProtectedContentRuntimeSelectorsSchema = Schema.Array(
@@ -98,7 +98,7 @@ function hasUniqueArtifacts(
   items: readonly { readonly artifact: SignedContentArtifact }[]
 ) {
   const hashes = items.map(({ artifact }) => artifact.artifactHash);
-  return new Set(hashes).size === hashes.length;
+  return HashSet.size(HashSet.fromIterable(hashes)) === hashes.length;
 }
 
 const ProtectedContentRuntimeItemsSchema = Schema.Array(
