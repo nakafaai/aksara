@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect } from "effect";
 import { selectQuestionPreviewSources } from "#corpus/preview/question/source";
@@ -6,18 +6,20 @@ import { loadQuestionContent } from "#corpus/question-bank/content";
 import {
   corpusRoot,
   questionLayer,
+  realQuestionCorpusLayer,
   realTryoutSources,
 } from "#corpus/test/question";
 
-describe("question preview source", () => {
+layer(realQuestionCorpusLayer)("question preview source", (it) => {
   it.effect(
     "batches empty, repeated, active, and missing source ownership",
     () =>
       Effect.gen(function* () {
-        const content = yield* loadQuestionContent(
-          corpusRoot,
-          realTryoutSources
-        ).pipe(Effect.provide(questionLayer));
+        const root = yield* corpusRoot;
+        const tryoutSources = yield* realTryoutSources;
+        const content = yield* loadQuestionContent(root, tryoutSources).pipe(
+          Effect.provide(questionLayer)
+        );
         const german = yield* Effect.fromNullishOr(
           content.entries.find(({ sourcePath }) =>
             sourcePath.endsWith("answer.de.mdx")
@@ -31,12 +33,12 @@ describe("question preview source", () => {
           )
         );
         expect(
-          yield* selectQuestionPreviewSources(corpusRoot, [], []).pipe(
+          yield* selectQuestionPreviewSources(root, [], []).pipe(
             Effect.provide(questionLayer)
           )
         ).toEqual([]);
         const sources = yield* selectQuestionPreviewSources(
-          corpusRoot,
+          root,
           [
             { appLocale: AppLocaleSchema.make("de"), entry: german },
             { appLocale: AppLocaleSchema.make("de"), entry: german },
@@ -45,7 +47,7 @@ describe("question preview source", () => {
           content.sources
         ).pipe(Effect.provide(questionLayer));
         const missing = yield* selectQuestionPreviewSources(
-          corpusRoot,
+          root,
           [{ appLocale: AppLocaleSchema.make("en"), entry: active }],
           []
         ).pipe(Effect.flip, Effect.provide(questionLayer));

@@ -1,4 +1,3 @@
-import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
@@ -18,6 +17,7 @@ import {
   makeQuestionSourceLayer,
   questionEntries,
   questionTestSourceRoot,
+  realQuestionCorpusLayer,
   realQuestionEntries,
   realQuestionItems,
   realTryoutSources,
@@ -33,7 +33,10 @@ function registry(
   discoveredEntries: readonly string[],
   items: Iterable<readonly [string, string]>
 ) {
-  return loadQuestionContent(corpusRoot, realTryoutSources).pipe(
+  return Effect.all([corpusRoot, realTryoutSources]).pipe(
+    Effect.flatMap(([root, tryoutSources]) =>
+      loadQuestionContent(root, tryoutSources)
+    ),
     Effect.provide(makeQuestionRegistryLayer(discoveredEntries, items))
   );
 }
@@ -56,19 +59,19 @@ function rejectRegistry(
   return questionRegistry(discoveredEntries, items).pipe(Effect.flip);
 }
 
-layer(NodeServices.layer)("question registry", (it) => {
+layer(realQuestionCorpusLayer)("question registry", (it) => {
   it.effect(
     "projects every real question and answer body onto its exact path",
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const entries = yield* questionRegistry(
-          realQuestionEntries,
-          realQuestionItems
+          yield* realQuestionEntries,
+          yield* realQuestionItems
         );
         const authoredPaths = (yield* fileSystem.glob(
           "packages/corpus/question-bank/tryout/indonesia/**/*.mdx",
-          { root: corpusRoot }
+          { root: yield* corpusRoot }
         ))
           .filter((sourcePath) =>
             ACTIVE_APP_LOCALES.some((locale) =>
@@ -141,8 +144,8 @@ layer(NodeServices.layer)("question registry", (it) => {
           "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1",
         ].map((key) => QuestionKeySchema.make(key));
         const { entries, sources } = yield* loadSelectedQuestionContent(
-          corpusRoot,
-          realTryoutSources,
+          yield* corpusRoot,
+          yield* realTryoutSources,
           keys
         ).pipe(Effect.provideService(FileSystem.FileSystem, observed));
         expect(observed.readDirectory).toHaveBeenCalledTimes(2);
@@ -196,8 +199,8 @@ layer(NodeServices.layer)("question registry", (it) => {
   ] as const)("selects each assessed-language prompt", ([answer, prompt]) =>
     Effect.gen(function* () {
       const selected = yield* selectQuestionContent(
-        corpusRoot,
-        realTryoutSources,
+        yield* corpusRoot,
+        yield* realTryoutSources,
         CorpusSourcePathSchema.make(answer)
       );
 
@@ -214,10 +217,9 @@ layer(NodeServices.layer)("question registry", (it) => {
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
-        const content = yield* loadQuestionContent(
-          corpusRoot,
-          realTryoutSources
-        );
+        const root = yield* corpusRoot;
+        const tryoutSources = yield* realTryoutSources;
+        const content = yield* loadQuestionContent(root, tryoutSources);
         const entry = yield* Effect.fromNullishOr(
           content.entries.find(
             ({ bodyKind, sourcePath }) =>
@@ -231,11 +233,11 @@ layer(NodeServices.layer)("question registry", (it) => {
         );
         const path = yield* Path.Path;
         const rawMdx = yield* fileSystem.readFileString(
-          path.resolve(corpusRoot, entry.sourcePath)
+          path.resolve(root, entry.sourcePath)
         );
         const [document, error] = yield* Effect.all([
-          readQuestionDocument(corpusRoot, entry, source.item),
-          readQuestionDocument(corpusRoot, entry, source.item).pipe(
+          readQuestionDocument(root, entry, source.item),
+          readQuestionDocument(root, entry, source.item).pipe(
             Effect.provide([makeQuestionSourceLayer([], []), Path.layer]),
             Effect.flip
           ),
@@ -260,7 +262,7 @@ layer(NodeServices.layer)("question registry", (it) => {
       )}/question-1`;
       const error = yield* rejectRegistry(
         questionEntries(root, generalQuestionSourceFiles),
-        itemForQuestion(root)
+        yield* itemForQuestion(root)
       );
 
       expect(error).toMatchObject({
@@ -287,7 +289,7 @@ layer(NodeServices.layer)("question registry", (it) => {
             root,
             ...generalQuestionSourceFiles.map((file) => `${root}/${file}`),
           ],
-          itemForQuestion(root)
+          yield* itemForQuestion(root)
         );
 
         expect(

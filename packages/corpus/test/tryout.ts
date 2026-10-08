@@ -19,9 +19,8 @@ import { defineTryoutExamSource } from "#corpus/tryout/schema";
 export const loadTryoutProjectionContent = Effect.fn(
   "AksaraCorpus.test.loadTryoutProjectionContent"
 )(function* () {
-  return yield* loadTryoutContent(corpusRoot).pipe(
-    Effect.provide(questionLayer)
-  );
+  const root = yield* corpusRoot;
+  return yield* loadTryoutContent(root).pipe(Effect.provide(questionLayer));
 });
 
 /** Loads reviewed hierarchy and question sources for typed failure tests. */
@@ -30,10 +29,10 @@ export const loadTryoutProjectionSources = Effect.fn(
 )(function* () {
   const sources = yield* decodeTryoutRegistry();
   const questionBanks = yield* indexQuestionBanks(sources);
-  const questions = yield* discoverQuestionSources(
-    corpusRoot,
-    questionBanks
-  ).pipe(Effect.provide(questionLayer));
+  const root = yield* corpusRoot;
+  const questions = yield* discoverQuestionSources(root, questionBanks).pipe(
+    Effect.provide(questionLayer)
+  );
   return [sources, questions] satisfies readonly [
     typeof sources,
     typeof questions,

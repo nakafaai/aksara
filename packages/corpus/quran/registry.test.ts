@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
@@ -11,10 +11,13 @@ import {
   streamQuranRegistry,
 } from "#corpus/quran/registry";
 import type { QuranSurah } from "#corpus/quran/schema";
-import { testQuranRegistry } from "#corpus/test/quran/sources";
+import {
+  quranTestSourcesLayer,
+  testQuranRegistry,
+} from "#corpus/test/quran/sources";
 
 /** Collects one registry stream inside the Effect test runtime. */
-function collect(source = testQuranRegistry) {
+function collect(source: ReturnType<typeof streamQuranRegistry>) {
   return Stream.runCollect(source);
 }
 
@@ -25,7 +28,9 @@ function reject(source: ReturnType<typeof streamQuranRegistry>) {
 
 /** Returns the first two real decoded surahs for isolated invariant failures. */
 function firstTwoSurahs() {
-  return collect(testQuranRegistry.pipe(Stream.take(2)));
+  return Effect.flatMap(testQuranRegistry, (registry) =>
+    collect(registry.pipe(Stream.take(2)))
+  );
 }
 
 /** Replaces one verse while retaining the exact real surah fields. */
@@ -33,10 +38,10 @@ function withVerse(surah: QuranSurah, verse: QuranSurah["verses"][number]) {
   return { ...surah, verses: [verse, ...surah.verses.slice(1)] };
 }
 
-describe("Quran registry", () => {
+layer(quranTestSourcesLayer)("Quran registry", (it) => {
   it.effect("emits every canonical surah, verse, and revelation order", () =>
     Effect.gen(function* () {
-      const surahs = yield* collect();
+      const surahs = yield* collect(yield* testQuranRegistry);
       const verses = surahs.flatMap(({ verses: sourceVerses }) => sourceVerses);
 
       expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
@@ -62,7 +67,7 @@ describe("Quran registry", () => {
     () =>
       Effect.gen(function* () {
         const [first] = yield* firstTwoSurahs();
-        const surahs = yield* collect();
+        const surahs = yield* collect(yield* testQuranRegistry);
         const last = surahs.at(-1);
         if (first === undefined) {
           return yield* Effect.die(

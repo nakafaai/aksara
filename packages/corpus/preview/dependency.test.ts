@@ -24,11 +24,12 @@ const loadCorpusSources = Effect.fn("AksaraCorpus.test.loadCorpusSources")(
   function* () {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
+    const root = yield* corpusRoot;
     const sourcePaths = yield* fileSystem.glob("packages/corpus/**/*.ts", {
-      root: corpusRoot,
+      root,
     });
     const sources = yield* Effect.forEach(sourcePaths, (sourcePath) => {
-      const absolutePath = path.resolve(corpusRoot, sourcePath);
+      const absolutePath = path.resolve(root, sourcePath);
       return fileSystem
         .readFileString(absolutePath)
         .pipe(Effect.map((source) => [absolutePath, source] as const));
@@ -42,9 +43,10 @@ function discoverReal(
   sourcePath: CorpusSourcePath,
   sources: HashMap.HashMap<string, string>
 ) {
-  return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-    Effect.provide([sourceLayer(sources), Path.layer])
-  );
+  return Effect.gen(function* () {
+    const root = yield* corpusRoot;
+    return yield* discoverSourceDependencies(root, sourcePath);
+  }).pipe(Effect.provide([sourceLayer(sources), Path.layer]));
 }
 
 /** Creates an in-memory source filesystem for dependency failure tests. */
@@ -72,9 +74,10 @@ function discover(
   sourcePath: CorpusSourcePath,
   sources: HashMap.HashMap<string, string>
 ) {
-  return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-    Effect.provide([sourceLayer(sources), Path.layer])
-  );
+  return Effect.gen(function* () {
+    const root = yield* corpusRoot;
+    return yield* discoverSourceDependencies(root, sourcePath);
+  }).pipe(Effect.provide([sourceLayer(sources), Path.layer]));
 }
 
 /** Returns a typed source-closure failure through a controlled filesystem. */
@@ -82,10 +85,10 @@ function reject(
   sourcePath: CorpusSourcePath,
   sources: HashMap.HashMap<string, string>
 ) {
-  return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
-    Effect.provide([sourceLayer(sources), Path.layer]),
-    Effect.flip
-  );
+  return Effect.gen(function* () {
+    const root = yield* corpusRoot;
+    return yield* discoverSourceDependencies(root, sourcePath);
+  }).pipe(Effect.provide([sourceLayer(sources), Path.layer]), Effect.flip);
 }
 
 /** Maps one canonical corpus path onto its controlled absolute test path. */
@@ -94,7 +97,7 @@ const sourceEntry = Effect.fn("AksaraCorpus.test.sourceEntry")(function* (
   source: string
 ) {
   const path = yield* Path.Path;
-  return [path.resolve(corpusRoot, sourcePath), source] as const;
+  return [path.resolve(yield* corpusRoot, sourcePath), source] as const;
 });
 
 layer(NodeServices.layer)("source dependencies", (it) => {

@@ -1,6 +1,7 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import { Effect, HashSet, Record as Rec } from "effect";
+import { realQuestionCorpusLayer } from "#corpus/test/question";
 import {
   hasValidQuestionResponse,
   loadTryoutProjectionContent,
@@ -10,7 +11,7 @@ import { projectTryoutSources } from "#corpus/tryout/projection";
 
 const COMPULSORY_TRACK = "compulsory-mathematics";
 
-describe("tryout projection", () => {
+layer(realQuestionCorpusLayer)("tryout projection", (it) => {
   it.effect(
     "projects the exact active hierarchy and localized placements",
     () =>

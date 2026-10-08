@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, MutableHashMap, Path } from "effect";
 import { questionSourceFiles } from "#corpus/question-bank/path";
@@ -12,6 +12,7 @@ import {
   makeQuestionSourceLayer,
   questionEntries,
   questionTestSourceRoot,
+  realQuestionCorpusLayer,
 } from "#corpus/test/question";
 
 const generalSet = "indonesia/snbt/general-reasoning/set-1";
@@ -52,48 +53,48 @@ function validate(
 ) {
   return Effect.gen(function* () {
     const path = yield* Path.Path;
+    const repositoryRoot = yield* corpusRoot;
+    const questionRoot = yield* absoluteQuestionTestSourceRoot;
     const entries: string[] = [];
     const items = MutableHashMap.empty<string, string>();
     const files = MutableHashMap.empty<string, string>();
     for (const [root, body] of prompts) {
       entries.push(...questionEntries(root, generalQuestionSourceFiles));
-      for (const [itemPath, source] of itemForQuestion(root)) {
+      const itemSources = yield* itemForQuestion(root);
+      for (const [itemPath, source] of itemSources) {
         MutableHashMap.set(items, itemPath, source);
       }
       MutableHashMap.set(
         files,
-        path.resolve(absoluteQuestionTestSourceRoot, root, "question.id.mdx"),
+        path.resolve(questionRoot, root, "question.id.mdx"),
         body
       );
     }
     if (english !== undefined) {
       entries.push(...questionEntries(englishRoot, englishFiles));
-      for (const [itemPath, source] of itemForQuestion(
+      const englishSources = yield* itemForQuestion(
         englishRoot,
         englishItemSource
-      )) {
+      );
+      for (const [itemPath, source] of englishSources) {
         MutableHashMap.set(items, itemPath, source);
       }
       MutableHashMap.set(
         files,
-        path.resolve(
-          absoluteQuestionTestSourceRoot,
-          englishRoot,
-          "question.en.mdx"
-        ),
+        path.resolve(questionRoot, englishRoot, "question.en.mdx"),
         english
       );
     }
     return yield* discoverSyntheticQuestionSources(entries, items).pipe(
       Effect.flatMap((sources) =>
-        validateQuestionUniqueness(corpusRoot, sources)
+        validateQuestionUniqueness(repositoryRoot, sources)
       ),
       Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
     );
   }).pipe(Effect.provide(Path.layer));
 }
 
-describe("question uniqueness", () => {
+layer(realQuestionCorpusLayer)("question uniqueness", (it) => {
   it.effect(
     "accepts distinct prompts and the same words in another locale",
     () =>
@@ -184,12 +185,13 @@ describe("question uniqueness", () => {
 
   it.effect("types an unreadable prompt", () =>
     Effect.gen(function* () {
+      const repositoryRoot = yield* corpusRoot;
       const error = yield* discoverSyntheticQuestionSources(
         questionEntries(generalRoot(1), generalQuestionSourceFiles),
-        itemForQuestion(generalRoot(1))
+        yield* itemForQuestion(generalRoot(1))
       ).pipe(
         Effect.flatMap((sources) =>
-          validateQuestionUniqueness(corpusRoot, sources)
+          validateQuestionUniqueness(repositoryRoot, sources)
         ),
         Effect.provide([makeQuestionSourceLayer([], []), Path.layer]),
         Effect.flip

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -11,10 +11,10 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Schema, Stream } from "effect";
 import { streamQuranRows } from "#corpus/quran/projection";
-import { testQuranRegistry } from "#corpus/test/quran/sources";
-
-/** Replays the verified Quran fixture for each projection assertion. */
-const source = testQuranRegistry;
+import {
+  quranTestSourcesLayer,
+  testQuranRegistry,
+} from "#corpus/test/quran/sources";
 
 type QuranChunkRow = Extract<QuranRowPayload, { readonly kind: "quran-chunk" }>;
 type QuranSearchRow = Extract<
@@ -32,11 +32,12 @@ function isSearch(row: QuranRowPayload): row is QuranSearchRow {
   return row.kind === "quran-search";
 }
 
-describe("Quran projection", () => {
+layer(quranTestSourcesLayer)("Quran projection", (it) => {
   it.effect(
     "emits the complete bounded runtime and locale search snapshot",
     () =>
       Effect.gen(function* () {
+        const source = yield* testQuranRegistry;
         const rows = yield* Stream.runCollect(streamQuranRows(source));
         const surahs = rows.filter(({ kind }) => kind === "quran-surah");
         const attributions = rows.filter(
@@ -153,6 +154,7 @@ describe("Quran projection", () => {
     "derives stable graph identities with locale-specific assets",
     () =>
       Effect.gen(function* () {
+        const source = yield* testQuranRegistry;
         const searches = yield* streamQuranRows(source).pipe(
           Stream.filter(isSearch),
           Stream.take(2),
@@ -182,6 +184,7 @@ describe("Quran projection", () => {
     "projects active German search and runtime rows",
     () =>
       Effect.gen(function* () {
+        const source = yield* testQuranRegistry;
         const rows = yield* streamQuranRows(source, ACTIVE_APP_LOCALES).pipe(
           Stream.runCollect
         );
@@ -226,6 +229,7 @@ describe("Quran projection", () => {
     "omits Indonesian Tafsir when it is outside the selected locale policy",
     () =>
       Effect.gen(function* () {
+        const source = yield* testQuranRegistry;
         const germanOnly = yield* Schema.decodeEffect(
           ActiveAppLocaleListSchema
         )(["de"]);
@@ -244,7 +248,8 @@ describe("Quran projection", () => {
     "preserves non-null Tafsir footnotes in Indonesian search text",
     () =>
       Effect.gen(function* () {
-        const [quranSource] = yield* testQuranRegistry.pipe(
+        const source = yield* testQuranRegistry;
+        const [quranSource] = yield* source.pipe(
           Stream.take(1),
           Stream.runCollect
         );
