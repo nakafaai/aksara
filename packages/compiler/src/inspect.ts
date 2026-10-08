@@ -41,7 +41,14 @@ const ContentSourceInspectionSchema = Schema.Struct({
   sourceHash: Sha256HashSchema,
   sourcePath: CorpusSourcePathSchema,
 });
-export type ContentSourceInspection = typeof ContentSourceInspectionSchema.Type;
+type ContentSourceInspectionShape = typeof ContentSourceInspectionSchema.Type;
+
+/**
+ * A named interface over the inspection Schema: consumers print this name
+ * instead of expanding the Schema type into metadata values that no entry
+ * point exports (TS2883 in declaration emit).
+ */
+export interface ContentSourceInspection extends ContentSourceInspectionShape {}
 
 const HistoricalContentSourceRequestSchema = Schema.Struct({
   contentKey: ContentKeySchema,
