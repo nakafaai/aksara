@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Option, Schema } from "effect";
-import { JsonTextSchema, encodeJsonText } from "#cli/text/json";
+import { encodeJsonText, JsonTextSchema } from "#cli/text/json";
 
 describe("plain JSON text", () => {
   it("writes the bytes JSON.stringify writes for nested data", () => {

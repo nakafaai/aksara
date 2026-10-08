@@ -1,5 +1,4 @@
 import { type Effect, Schema } from "effect";
-import { JsonTextSchema } from "#cli/text/json";
 import {
   HttpClient,
   type HttpClientError,
@@ -7,6 +6,7 @@ import {
   type HttpClientResponse,
   HttpClientResponse as Response,
 } from "effect/http";
+import { JsonTextSchema } from "#cli/text/json";
 
 /** Builds one official Effect HTTP response around an explicit web body. */
 export function webResponse(

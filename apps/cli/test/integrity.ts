@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { PageEntrySchema } from "@nakafa/aksara-corpus/pages/registry";
-import { Effect, Schema, HashMap, Option } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 import type { SelectedDocument, SelectedFileCandidate } from "#cli/integrity";
 
 /** Restart-scoped files at fixed paths, so pinned hashes never read the live corpus. */

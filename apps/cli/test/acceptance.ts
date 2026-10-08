@@ -12,8 +12,8 @@ import {
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { encodeJsonText } from "#cli/text/json";
 import { Effect, Redacted, Schema, Stream } from "effect";
+import { encodeJsonText } from "#cli/text/json";
 import {
   completedBundle,
   gitBundle,

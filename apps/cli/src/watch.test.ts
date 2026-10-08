@@ -1,7 +1,17 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Deferred, Effect, Fiber, FileSystem, Path, PlatformError, Ref, Stream, HashMap } from "effect";
+import {
+  Deferred,
+  Effect,
+  Fiber,
+  FileSystem,
+  HashMap,
+  Path,
+  PlatformError,
+  Ref,
+  Stream,
+} from "effect";
 import { TestClock } from "effect/testing";
 import { PreviewProviderError } from "#cli/provider";
 import { selectPreviewDocument } from "#cli/repository";
