@@ -1,4 +1,3 @@
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
@@ -9,7 +8,6 @@ import {
   FileSystem,
   HashMap,
   HashSet,
-  Layer,
   Option,
 } from "effect";
 import {
@@ -17,6 +15,7 @@ import {
   trackedFiles,
   typescriptFiles,
 } from "#scripts/check/files";
+import { runEntry } from "#scripts/entry";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
@@ -162,7 +161,7 @@ const readTypescriptSource = Effect.fn("AksaraPolicy.readSource")(function* (
 });
 
 /** Runs every repository import, test, and source-condition policy and reports each group. */
-const checkRepository = Effect.gen(function* () {
+export const checkRepository = Effect.gen(function* () {
   const files = yield* trackedFiles();
   const sources = yield* Effect.forEach(typescriptFiles(files), (file) =>
     readTypescriptSource(file).pipe(Effect.map((text) => ({ file, text })))
@@ -203,8 +202,6 @@ const checkRepository = Effect.gen(function* () {
       sourceConditionViolations(file, text, workspaceSourceCondition)
     )
   );
-}).pipe(
-  Effect.provide(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))
-);
+}).pipe(Effect.provide(TypeScriptParser.layer));
 
-NodeRuntime.runMain(checkRepository);
+runEntry(import.meta.main, checkRepository);

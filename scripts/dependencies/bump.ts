@@ -1,4 +1,3 @@
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import {
   Array as Arr,
   Effect,
@@ -23,6 +22,7 @@ import {
   declaredVersion,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
+import { runEntry } from "#scripts/entry";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
   manifest: Schema.String,
@@ -209,9 +209,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
   }
 );
 
-NodeRuntime.runMain(
-  defaultBumpConfig.pipe(
-    Effect.flatMap(makeBumpDependenciesProgram),
-    Effect.provide(NodeServices.layer)
-  )
+runEntry(
+  import.meta.main,
+  defaultBumpConfig.pipe(Effect.flatMap(makeBumpDependenciesProgram))
 );

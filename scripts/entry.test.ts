@@ -97,6 +97,19 @@ describe("script entry", () => {
     })
   );
 
+  it.effect("logs a defect on stderr and keeps stdout quiet", () =>
+    Effect.gen(function* () {
+      runEntry(true, Effect.die(new Error("A script defect.")));
+      const [program] = yield* handedRuntimeCall();
+
+      expect(Exit.isFailure(yield* Effect.exit(program))).toBe(true);
+      expect(String(yield* TestConsole.errorLines)).toContain(
+        "A script defect."
+      );
+      expect(yield* TestConsole.logLines).toEqual([]);
+    })
+  );
+
   it.effect("stays silent when the program is interrupted", () =>
     Effect.gen(function* () {
       runEntry(true, Effect.failCause(Cause.interrupt()));

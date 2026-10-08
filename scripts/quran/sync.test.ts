@@ -4,22 +4,7 @@ import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
 
-const runtime = vi.hoisted(() => ({ calls: 0 }));
 const sync = vi.hoisted(() => ({ repositoryRoots: [] as string[] }));
-
-vi.mock("@effect/platform-node", async (importOriginal) => {
-  const platform =
-    await importOriginal<typeof import("@effect/platform-node")>();
-  return {
-    ...platform,
-    NodeRuntime: {
-      ...platform.NodeRuntime,
-      runMain: vi.fn(() => {
-        runtime.calls += 1;
-      }),
-    },
-  };
-});
 
 vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
   syncGermanQuranSources: vi.fn((repositoryRoot: string) => {
@@ -53,7 +38,6 @@ describe("German Quran source sync command", () => {
         assert.deepStrictEqual(sync.repositoryRoots, [
           resolve(import.meta.dirname, "../.."),
         ]);
-        assert.strictEqual(runtime.calls, 1);
       })
   );
 });

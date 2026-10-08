@@ -26,22 +26,7 @@ import {
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
 
-const runtime = vi.hoisted(() => ({ calls: 0 }));
 const JsonText = Schema.fromJsonString(Schema.Unknown);
-
-vi.mock("@effect/platform-node", async (importOriginal) => {
-  const platform =
-    await importOriginal<typeof import("@effect/platform-node")>();
-  return {
-    ...platform,
-    NodeRuntime: {
-      ...platform.NodeRuntime,
-      runMain: vi.fn(() => {
-        runtime.calls += 1;
-      }),
-    },
-  };
-});
 
 const originalPath = process.env.PATH;
 
@@ -170,7 +155,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             DEPENDENCY_HOLDS.find(({ dependency }) => dependency === "effect")
               ?.reviewedLatest
           );
-          assert.strictEqual(runtime.calls, 1);
         })
     );
 

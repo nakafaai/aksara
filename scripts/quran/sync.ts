@@ -1,12 +1,9 @@
 import { resolve } from "node:path";
 
-import {
-  NodeHttpClient,
-  NodeRuntime,
-  NodeServices,
-} from "@effect/platform-node";
+import { NodeHttpClient } from "@effect/platform-node";
 import { syncGermanQuranSources } from "@nakafa/aksara-corpus/quran/source/sync";
 import { Effect } from "effect";
+import { runEntry } from "#scripts/entry";
 
 /** Synchronizes the pinned German Quran source from its official endpoint. */
 export const makeQuranSourceSyncProgram = Effect.fn(
@@ -18,8 +15,9 @@ export const makeQuranSourceSyncProgram = Effect.fn(
   yield* Effect.logInfo("German Quran sources synchronized", result);
 });
 
-NodeRuntime.runMain(
+runEntry(
+  import.meta.main,
   Effect.scoped(makeQuranSourceSyncProgram()).pipe(
-    Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
+    Effect.provide(NodeHttpClient.layerNodeHttp)
   )
 );

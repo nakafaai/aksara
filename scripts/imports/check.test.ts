@@ -1,40 +1,22 @@
-import { afterEach, assert, expect, layer } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, Schema } from "effect";
 import { importViolations } from "#scripts/imports/check";
 import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
-const runtime = vi.hoisted(
-  (): { program?: Effect.Effect<unknown, unknown> } => ({})
-);
-
-vi.mock("@effect/platform-node", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@effect/platform-node")>()),
-  NodeRuntime: {
-    runMain: vi.fn((program: Effect.Effect<unknown, unknown>) => {
-      runtime.program = program;
-    }),
-  },
-}));
 
 /** Creates one manifest reader for import-boundary policy tests. */
 function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
   return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
 }
 
-/** Imports a fresh check module, so its top-level runner call is recorded for the tests. */
+/** Imports a fresh check module, so the mocks of one test apply to the program it exports. */
 const importCheck = Effect.fn("ImportCheckTest.importCheck")(function* () {
   vi.resetModules();
-  yield* Effect.tryPromise(() => import("#scripts/imports/check"));
+  return yield* Effect.tryPromise(() => import("#scripts/imports/check"));
 });
-
-/** Returns the program that the most recently imported check module handed to its runner. */
-function checkProgram() {
-  const { program } = runtime;
-  assert.ok(program, "the check module hands its program to the runner");
-  return program;
-}
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -276,9 +258,9 @@ const multiple = require("first", "second");
     "passes the repository import policy without a violation report",
     () =>
       Effect.gen(function* () {
-        yield* importCheck();
+        const { checkRepository } = yield* importCheck();
         const stderr = vi.spyOn(process.stderr, "write");
-        yield* checkProgram();
+        yield* checkRepository.pipe(Effect.provide(NodeServices.layer));
         expect(stderr).not.toHaveBeenCalled();
       }),
     { timeout: 60_000 }
@@ -290,8 +272,11 @@ const multiple = require("first", "second");
         trackedFiles: () => Effect.succeed([]),
         typescriptFiles: () => ["test-missing-source.ts"],
       }));
-      yield* importCheck();
-      const failure = yield* checkProgram().pipe(Effect.flip);
+      const { checkRepository } = yield* importCheck();
+      const failure = yield* checkRepository.pipe(
+        Effect.flip,
+        Effect.provide(NodeServices.layer)
+      );
       expect(failure).toMatchObject({
         _tag: "TypeScriptSourceError",
         fileName: "test-missing-source.ts",
