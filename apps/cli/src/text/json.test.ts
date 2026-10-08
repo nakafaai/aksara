@@ -4,14 +4,15 @@ import { decodeJsonText, encodeJsonText } from "#cli/text/json";
 
 describe("plain JSON text", () => {
   it("writes the bytes JSON.stringify writes for nested data", () => {
+    const accented = String.fromCharCode(0xe9);
     expect(
       encodeJsonText({
         list: [true, null, "x"],
-        nested: { text: "café" },
+        nested: { text: `caf${accented}` },
         number: 1.5,
       })
     ).toBe(
-      '{"list":[true,null,"x"],"nested":{"text":"café"},"number":1.5}'
+      `{"list":[true,null,"x"],"nested":{"text":"caf${accented}"},"number":1.5}`
     );
   });
 
