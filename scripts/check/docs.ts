@@ -1,9 +1,8 @@
-import { readFileSync } from "node:fs";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import { Array as Arr, Effect, FileSystem } from "effect";
 import {
   type Expression,
   isArrowFunction,
@@ -28,6 +27,8 @@ import {
 } from "typescript/unstable/ast";
 
 import { enforceViolations, typescriptFiles } from "#scripts/check/files";
+import { syntaxNodes } from "#scripts/check/syntax";
+import { runEntry } from "#scripts/entry";
 
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
@@ -68,24 +69,26 @@ function documentationOwner(node: Node): Node {
 
 /** Extracts prose from leading JSDoc while ignoring tags and delimiters. */
 function documentationText(node: Node, sourceFile: SourceFile): string {
-  return (documentationOwner(node).jsDoc ?? [])
-    .filter(isJSDoc)
-    .map((doc) => doc.getText(sourceFile))
-    .join("\n")
+  const docs = Arr.filter(documentationOwner(node).jsDoc ?? [], isJSDoc);
+  const text = Arr.join(
+    Arr.map(docs, (doc) => doc.getText(sourceFile)),
+    "\n"
+  )
     .replaceAll("/**", "")
     .replaceAll("*/", "")
-    .replace(/^\s*\*\s?/gmu, "")
-    .split("\n")
-    .filter((line) => !line.trimStart().startsWith("@"))
-    .join(" ")
-    .trim();
+    .replace(/^\s*\*\s?/gmu, "");
+  return Arr.join(
+    Arr.filter(text.split("\n"), (line) => !line.trimStart().startsWith("@")),
+    " "
+  ).trim();
 }
 
 /** Reports whether a declaration has a short but meaningful JSDoc summary. */
 function hasUsefulDocumentation(node: Node, sourceFile: SourceFile): boolean {
-  const words = documentationText(node, sourceFile)
-    .split(WHITESPACE_PATTERN)
-    .filter((word) => word.length > 0);
+  const words = Arr.filter(
+    documentationText(node, sourceFile).split(WHITESPACE_PATTERN),
+    (word) => word.length > 0
+  );
   return words.length >= MINIMUM_DOCUMENTATION_WORDS;
 }
 
@@ -132,6 +135,21 @@ function callableName(node: Node, sourceFile: SourceFile): string | undefined {
   }
 }
 
+/** Describes one callable declaration that lacks useful JSDoc, if it is one. */
+function missingDeclaration(
+  file: string,
+  node: Node,
+  sourceFile: SourceFile
+): readonly string[] {
+  const name = callableName(node, sourceFile);
+  if (!name || hasUsefulDocumentation(node, sourceFile)) {
+    return [];
+  }
+  const line =
+    sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1;
+  return [`${file}:${line} ${name}`];
+}
+
 /** Collects stable callable declarations that lack useful JSDoc. */
 export const missingDocumentation = Effect.fn(
   "AksaraPolicy.missingDocumentation"
@@ -139,43 +157,45 @@ export const missingDocumentation = Effect.fn(
   const parser = yield* TypeScriptParser;
   return yield* parser.inspect(
     { fileName: file, source: sourceText },
-    ({ sourceFile }) => {
-      const missing: string[] = [];
-      const nodes: Node[] = [sourceFile];
-
-      for (const node of nodes) {
-        const name = callableName(node, sourceFile);
-        if (name && !hasUsefulDocumentation(node, sourceFile)) {
-          const line =
-            sourceFile.getLineAndCharacterOfPosition(node.getStart()).line + 1;
-          missing.push(`${file}:${line} ${name}`);
-        }
-        node.forEachChild((child) => {
-          nodes.push(child);
-        });
-      }
-
-      return missing;
-    }
+    ({ sourceFile }) =>
+      Arr.flatMap(syntaxNodes(sourceFile), (node) =>
+        missingDeclaration(file, node, sourceFile)
+      )
   );
 });
 
 /** Collects missing JSDoc diagnostics from authored TypeScript source files. */
 export const documentationViolations = Effect.fn("AksaraPolicy.documentation")(
-  function* (files: readonly string[], readSource: (file: string) => string) {
+  function* (
+    files: readonly string[],
+    readSource: (file: string) => Effect.Effect<string, unknown>
+  ) {
     const violations = yield* Effect.forEach(files, (file) =>
-      Effect.try({
-        catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
-        try: () => readSource(file),
-      }).pipe(Effect.flatMap((source) => missingDocumentation(file, source)))
+      readSource(file).pipe(
+        Effect.mapError(
+          (cause) => new TypeScriptSourceError({ cause, fileName: file })
+        ),
+        Effect.flatMap((source) => missingDocumentation(file, source))
+      )
     );
-    return violations.flat();
+    return Arr.flatten(violations);
   }
 );
 
-const violations = await Effect.runPromise(
-  documentationViolations(typescriptFiles(), (file) =>
-    readFileSync(file, "utf8")
-  ).pipe(Effect.provide(TypeScriptParser.layer))
+/** Reports every named callable without useful JSDoc in the given modules. */
+export const documentationReport = Effect.fn(
+  "AksaraPolicy.documentationReport"
+)(function* (files: readonly string[]) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const violations = yield* documentationViolations(files, (file) =>
+    fileSystem.readFileString(file)
+  );
+  enforceViolations("Named callables require useful JSDoc", violations);
+});
+
+runEntry(
+  import.meta.main,
+  documentationReport(typescriptFiles()).pipe(
+    Effect.provide(TypeScriptParser.layer)
+  )
 );
-enforceViolations("Named callables require useful JSDoc", violations);
