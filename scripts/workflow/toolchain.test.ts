@@ -78,6 +78,38 @@ describe("workflow toolchain policy", () => {
     );
   });
 
+  it("keeps a job environment value over the workflow value of the same name", () => {
+    const npmJob = [
+      "env:",
+      "  PM: pnpm",
+      "jobs:",
+      "  install:",
+      "    env:",
+      "      PM: npm",
+      "    steps:",
+      "      - run: $PM install",
+    ].join("\n");
+
+    expect(() => verifyWorkflowToolchains([npmJob])).not.toThrow();
+  });
+
+  it("requires toolchain setup when a job environment value makes it run pnpm", () => {
+    const pnpmJob = [
+      "env:",
+      "  PM: npm",
+      "jobs:",
+      "  install:",
+      "    env:",
+      "      PM: pnpm",
+      "    steps:",
+      "      - run: $PM install",
+    ].join("\n");
+
+    expect(() => verifyWorkflowToolchains([pnpmJob])).toThrow(
+      "Every pnpm job must set up the toolchain once"
+    );
+  });
+
   it.each([
     ci.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
     ci.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`),
