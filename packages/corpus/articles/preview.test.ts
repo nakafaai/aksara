@@ -54,7 +54,8 @@ layer(NodeServices.layer)("article preview projection", (it) => {
           return;
         }
 
-        const [selection, repeated] = yield* selectArticleEntries(corpusRoot, [
+        const root = yield* corpusRoot;
+        const [selection, repeated] = yield* selectArticleEntries(root, [
           selected,
           selected,
         ]);

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { Effect, MutableHashMap, Path, Schema } from "effect";
 import { scanQuestionSimilarity } from "#corpus/question-bank/similarity";
 import {
@@ -10,6 +10,7 @@ import {
   makeQuestionSourceLayer,
   questionEntries,
   questionTestSourceRoot,
+  realQuestionCorpusLayer,
 } from "#corpus/test/question";
 
 const track = "indonesia/snbt/general-reasoning";
@@ -79,6 +80,8 @@ function source(path: string) {
 function scan(questions: readonly Question[], target: string, threshold = 0.5) {
   return Effect.gen(function* () {
     const path = yield* Path.Path;
+    const repositoryRoot = yield* corpusRoot;
+    const questionRoot = yield* absoluteQuestionTestSourceRoot;
     const entries: string[] = [];
     const items = MutableHashMap.empty<string, string>();
     const files = MutableHashMap.empty<string, string>();
@@ -86,32 +89,31 @@ function scan(questions: readonly Question[], target: string, threshold = 0.5) {
       entries.push(
         ...questionEntries(question.root, generalQuestionSourceFiles)
       );
-      for (const [itemPath, item] of itemForQuestion(
-        question.root,
-        question.item
-      )) {
+      const itemSources = yield* itemForQuestion(question.root, question.item);
+      for (const [itemPath, item] of itemSources) {
         MutableHashMap.set(items, itemPath, item);
       }
       MutableHashMap.set(
         files,
-        path.resolve(
-          absoluteQuestionTestSourceRoot,
-          question.root,
-          "question.id.mdx"
-        ),
+        path.resolve(questionRoot, question.root, "question.id.mdx"),
         `export const metadata = {\n  title: "Soal",\n};\n\n${question.prompt}\n`
       );
     }
     return yield* discoverSyntheticQuestionSources(entries, items).pipe(
       Effect.flatMap((sources) =>
-        scanQuestionSimilarity(corpusRoot, sources, source(target), threshold)
+        scanQuestionSimilarity(
+          repositoryRoot,
+          sources,
+          source(target),
+          threshold
+        )
       ),
       Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
     );
   }).pipe(Effect.provide(Path.layer));
 }
 
-describe("question similarity", () => {
+layer(realQuestionCorpusLayer)("question similarity", (it) => {
   it.effect("flags an item in another set that changes only numbers", () =>
     Effect.gen(function* () {
       const questions = [

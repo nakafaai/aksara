@@ -1,11 +1,15 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Layer, Path } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
+import {
+  corpusRoot,
+  makeQuestionLayer,
+  realQuestionCorpusLayer,
+} from "#corpus/test/question";
 
 const articlePath =
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
@@ -26,14 +30,17 @@ const answerPath = `${questionRoot}/answer.en.mdx`;
 
 /** Selects one real-corpus preview document for native Effect tests. */
 function selectDocument(sourcePath: string, appLocale?: AppLocaleCode) {
-  return selectPreviewDocument(
-    corpusRoot,
-    sourcePath,
-    appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
-  ).pipe(Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)));
+  return Effect.gen(function* () {
+    const root = yield* corpusRoot;
+    return yield* selectPreviewDocument(
+      root,
+      sourcePath,
+      appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
+    );
+  }).pipe(Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)));
 }
 
-describe("preview selection", () => {
+layer(realQuestionCorpusLayer)("preview selection", (it) => {
   it.effect(
     "selects each real family with its exact ordered source closure",
     () =>
@@ -240,15 +247,7 @@ describe("preview selection", () => {
       Effect.gen(function* () {
         const [article, material, page] = yield* Effect.forEach(
           [articlePath, materialPath, pagePath],
-          (sourcePath) =>
-            selectPreviewDocument(
-              corpusRoot,
-              sourcePath,
-              AppLocaleSchema.make("de")
-            ).pipe(
-              Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
-              Effect.flip
-            )
+          (sourcePath) => selectDocument(sourcePath, "de").pipe(Effect.flip)
         );
 
         expect(article).toMatchObject({
@@ -276,11 +275,7 @@ describe("preview selection", () => {
             "packages/corpus/pages/missing/en.mdx",
             `${questionRoot}/missing.en.mdx`,
           ],
-          (sourcePath) =>
-            selectPreviewDocument(corpusRoot, sourcePath).pipe(
-              Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
-              Effect.flip
-            )
+          (sourcePath) => selectDocument(sourcePath).pipe(Effect.flip)
         );
 
         expect(failures).toMatchObject([

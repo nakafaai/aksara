@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type AppLocaleCode,
@@ -11,6 +11,7 @@ import {
   makeQuestionLayer,
   type QuestionDirectoryRead,
   type QuestionLayerOverrides,
+  realQuestionCorpusLayer,
 } from "#corpus/test/question";
 
 /** Selects one question through the real preview owner. */
@@ -20,18 +21,21 @@ function selectDocument(
   appLocale?: AppLocaleCode,
   overrides?: QuestionLayerOverrides
 ) {
-  return selectQuestion(
-    corpusRoot,
-    CorpusSourcePathSchema.make(sourcePath),
-    appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
-  ).pipe(
+  return Effect.gen(function* () {
+    const root = yield* corpusRoot;
+    return yield* selectQuestion(
+      root,
+      CorpusSourcePathSchema.make(sourcePath),
+      appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
+    );
+  }).pipe(
     Effect.provide(
       Layer.merge(makeQuestionLayer(directoryReads, overrides), Path.layer)
     )
   );
 }
 
-describe("question preview", () => {
+layer(realQuestionCorpusLayer)("question preview", (it) => {
   it.effect(
     "requires an explicit shell locale for a shared assessed prompt",
     () =>
@@ -42,7 +46,7 @@ describe("question preview", () => {
         const [german, ambiguous] = yield* Effect.all([
           selectDocument(sharedPrompt, [], "de"),
           selectQuestion(
-            corpusRoot,
+            yield* corpusRoot,
             CorpusSourcePathSchema.make(sharedPrompt)
           ).pipe(
             Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
@@ -115,9 +119,10 @@ describe("question preview", () => {
           "en"
         );
 
+        const root = yield* corpusRoot;
         expect(directoryReads).toEqual([
           {
-            path: `${corpusRoot}/${questionRoot}`,
+            path: `${root}/${questionRoot}`,
             recursive: false,
           },
         ]);
