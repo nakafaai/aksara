@@ -11,22 +11,22 @@ export const placementRow = Schema.decodeSync(ContentSnapshotRowSchema)({
         "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       answerArtifactLocale: "de",
       answerContentKey:
-        "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer",
+        "question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/answer",
       appLocale: "de",
       contentHash:
         "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      countryKey: "indonesia",
+      countryKey: "test-country",
       deliveryLanguage: "de",
-      examKey: "snbt",
+      examKey: "test-exam",
       languagePolicy: { kind: "app-locale" },
       questionArtifactHash:
         "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       questionArtifactLocale: "de",
       questionContentKey:
-        "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question",
+        "question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/question",
       questionOrder: 1,
       questionSourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1",
+        "packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-1",
       rendererDomain: "snbt-quant",
       response: {
         kind: "single-choice",
@@ -46,13 +46,13 @@ export const placementRow = Schema.decodeSync(ContentSnapshotRowSchema)({
         ],
       },
       scope: "server",
-      sectionKey: "quantitative-knowledge",
-      setKey: "set-1",
+      sectionKey: "test-section",
+      setKey: "test-set",
       sourceRevision: "2026-08-12",
-      trackKey: "2027",
+      trackKey: "test-track",
     },
     rowHash:
-      "sha256:23bb7e0ce445a0f594e73a1985db5b3e64b6f45dba3cd357ac0a04460c20674b",
+      "sha256:7b99090567abb870969f34b114cf13fa5b6ef8fb627a916767f4c5a13398a3c8",
   },
   rowKind: "placement",
 });
@@ -66,7 +66,7 @@ export const scoredPlacementRow = Schema.decodeSync(ContentSnapshotRowSchema)({
         "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       answerArtifactLocale: "id",
       answerContentKey:
-        "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-2/answer",
+        "question-bank/tryout/test-country/test-exam/test-section/test-set/question-2/answer",
       appLocale: "id",
       blueprint: {
         cognitiveLevel: "apply",
@@ -75,19 +75,19 @@ export const scoredPlacementRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       },
       contentHash:
         "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-      countryKey: "indonesia",
+      countryKey: "test-country",
       deliveryLanguage: "id",
-      examKey: "snbt",
+      examKey: "test-exam",
       languagePolicy: { kind: "app-locale" },
       points: 2,
       questionArtifactHash:
         "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       questionArtifactLocale: "id",
       questionContentKey:
-        "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-2/question",
+        "question-bank/tryout/test-country/test-exam/test-section/test-set/question-2/question",
       questionOrder: 2,
       questionSourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-2",
+        "packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-2",
       rendererDomain: "snbt-quant",
       response: {
         kind: "single-choice",
@@ -107,11 +107,11 @@ export const scoredPlacementRow = Schema.decodeSync(ContentSnapshotRowSchema)({
         ],
       },
       scope: "server",
-      sectionKey: "quantitative-knowledge",
-      setKey: "set-1",
+      sectionKey: "test-section",
+      setKey: "test-set",
       sourceRevision: "2026-08-12",
       stimulusKey: "stimulus-1",
-      trackKey: "2027",
+      trackKey: "test-track",
     },
     rowHash:
       "sha256:cafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe",
