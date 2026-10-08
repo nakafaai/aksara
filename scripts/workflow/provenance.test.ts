@@ -1,25 +1,22 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
+import { workflowSources } from "#scripts/workflow/test/sources";
 
-/** Reads the exact contract release workflow under test. */
-function workflowSource() {
-  return readFileSync(".github/workflows/contracts.yml", "utf8");
-}
+const { contracts: source } = await workflowSources;
 
 /** Replaces one source fragment only inside its owning job. */
-function mutateJob(source: string, job: string, from: string, to: string) {
-  const start = source.indexOf(`\n  ${job}:`);
+function mutateJob(workflow: string, job: string, from: string, to: string) {
+  const start = workflow.indexOf(`\n  ${job}:`);
   const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
   nextJob.lastIndex = start + 1;
-  const match: RegExpExecArray | null = nextJob.exec(source);
-  const end = match?.index ?? source.length;
-  return `${source.slice(0, start)}${source.slice(start, end).replace(from, to)}${source.slice(end)}`;
+  const match: RegExpExecArray | null = nextJob.exec(workflow);
+  const end = match?.index ?? workflow.length;
+  return `${workflow.slice(0, start)}${workflow.slice(start, end).replace(from, to)}${workflow.slice(end)}`;
 }
 
 describe("contract provenance policy", () => {
   it("accepts isolated publication and unprivileged verification", () => {
-    expect(() => verifyProvenanceWorkflow(workflowSource())).not.toThrow();
+    expect(() => verifyProvenanceWorkflow(source)).not.toThrow();
   });
 
   it("keeps push runs away from the npm-production gate", () => {
@@ -31,7 +28,7 @@ describe("contract provenance policy", () => {
       ],
     ] as const) {
       const pushed = mutateJob(
-        workflowSource(),
+        source,
         job,
         "github.event_name == 'workflow_dispatch' && ",
         ""
@@ -41,7 +38,6 @@ describe("contract provenance policy", () => {
   });
 
   it("requires exact verifier construction, transport, and execution", () => {
-    const source = workflowSource();
     for (const changed of [
       source.replace("scripts/provenance/main.ts", "scripts/other/main.ts"),
       source.replaceAll("EXPECTED_VERIFIER_SHA256", "UNVERIFIED_SHA256"),
@@ -71,13 +67,12 @@ describe("contract provenance policy", () => {
       "is_exact_provenance()",
     ]) {
       expect(() =>
-        verifyProvenanceWorkflow(`${workflowSource()}\n# ${fragment}`)
+        verifyProvenanceWorkflow(`${source}\n# ${fragment}`)
       ).toThrow("npm provenance must not parse unauthenticated source");
     }
   });
 
   it("binds identity and ordering to decoded jobs", () => {
-    const source = workflowSource();
     const cases = [
       [
         mutateJob(
@@ -182,7 +177,7 @@ describe("contract provenance policy", () => {
 
   it("includes undeclared job properties in the publication integrity check", () => {
     const changed = mutateJob(
-      workflowSource(),
+      source,
       "publish",
       "    timeout-minutes: 15",
       "    timeout-minutes: 16"
@@ -195,7 +190,7 @@ describe("contract provenance policy", () => {
   it("keeps npm publication checks inside the registry processing window", () => {
     expect(() =>
       verifyProvenanceWorkflow(
-        workflowSource().replaceAll(
+        source.replaceAll(
           "PUBLICATION_WINDOW_SECONDS=300",
           "PUBLICATION_WINDOW_SECONDS=30"
         )
@@ -209,14 +204,11 @@ describe("contract provenance policy", () => {
       "Workflow must contain decodable jobs"
     );
     expect(() =>
-      verifyProvenanceWorkflow(
-        workflowSource().replace("\n  finalize:", "\n  other:")
-      )
+      verifyProvenanceWorkflow(source.replace("\n  finalize:", "\n  other:"))
     ).toThrow("Contract publication requires a finalize job");
   });
 
   it("keeps build-produced code outside npm identity", () => {
-    const source = workflowSource();
     const privilegedVerifier = mutateJob(
       source,
       "publish",

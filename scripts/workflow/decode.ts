@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { Option, Schema } from "effect";
+import { Array as Arr, Option, pipe, Record as Rec, Schema } from "effect";
 import { parseDocument } from "yaml";
 
 const StepSchema = Schema.StructWithRest(
@@ -42,28 +42,38 @@ const SHELL_COMMENT = /(^|[ \t])#.*$/u;
 
 /** Removes disabled shell comments from one decoded program. */
 export function executableSource(run: string | undefined) {
-  return (run ?? "")
-    .split("\n")
-    .map((line) => line.replace(SHELL_COMMENT, "$1").trimEnd())
-    .filter((line) => line.trim().length > 0)
-    .join("\n");
+  return pipe(
+    (run ?? "").split("\n"),
+    Arr.map((line) => line.replace(SHELL_COMMENT, "$1").trimEnd()),
+    Arr.filter((line) => line.trim().length > 0),
+    Arr.join("\n")
+  );
+}
+
+/** Renders one declared step value as the workflow text it carries. */
+function declaredText(value: unknown): string {
+  return `${value ?? ""}`;
 }
 
 /** Collects executable and declarative fields from one step. */
 function stepSource(step: WorkflowJob["steps"][number]) {
-  return [
+  const values = [
     executableSource(step.run),
     step.uses,
-    ...Object.entries(step.env ?? {}).flat(),
-    ...Object.entries(step.with ?? {}).flat(),
-  ]
-    .filter((value) => value !== undefined)
-    .join("\n");
+    ...Arr.flatten(Rec.toEntries(step.env ?? {})),
+    ...Arr.flatten(Rec.toEntries(step.with ?? {})),
+  ];
+  return pipe(
+    values,
+    Arr.filter((value) => value !== undefined),
+    Arr.map(declaredText),
+    Arr.join("\n")
+  );
 }
 
 /** Collects bounded source from one decoded workflow job. */
 export function jobSource(job: WorkflowJob) {
-  return job.steps.map(stepSource).join("\n");
+  return Arr.join(Arr.map(job.steps, stepSource), "\n");
 }
 
 /** Decodes one exact workflow while preserving security-relevant properties. */
@@ -81,11 +91,11 @@ export function decodeWorkflow(source: string) {
 
 /** Reports whether one job owns exactly the expected dependencies. */
 export function exactNeeds(job: WorkflowJob, expected: readonly string[]) {
-  const needs = Array.isArray(job.needs)
+  const needs = Arr.isArray(job.needs)
     ? job.needs
-    : [job.needs].filter((need) => need !== undefined);
+    : Arr.filter([job.needs], (need) => need !== undefined);
   return (
     needs.length === expected.length &&
-    expected.every((need) => needs.includes(need))
+    Arr.every(expected, (need) => needs.includes(need))
   );
 }
