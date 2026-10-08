@@ -1,4 +1,11 @@
-import { Effect } from "effect";
+import {
+  Effect,
+  HashSet,
+  MutableHashMap,
+  Option,
+  Schema,
+  Struct,
+} from "effect";
 
 import type { QuestionSource } from "#corpus/question-bank/source";
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
@@ -17,30 +24,35 @@ type TryoutSection = TryoutTrack["sets"][number]["sections"][number];
 
 /** Counts each observed readiness key without losing unknown values. */
 function countBy(values: readonly string[]) {
-  const counts = new Map<string, number>();
+  const counts = MutableHashMap.empty<string, number>();
   for (const value of values) {
-    counts.set(value, (counts.get(value) ?? 0) + 1);
+    MutableHashMap.set(
+      counts,
+      value,
+      Option.getOrElse(MutableHashMap.get(counts, value), () => 0) + 1
+    );
   }
   return counts;
 }
 
-interface CoverageRequirement {
-  readonly editorialMinimum: number;
-  readonly key: string;
-}
+const CoverageRequirementSchema = Schema.Struct({
+  editorialMinimum: Schema.Finite,
+  key: Schema.String,
+});
+type CoverageRequirement = typeof CoverageRequirementSchema.Type;
 
 /** Validates allowed keys and editorial minimums for one blueprint dimension. */
 const validateCoverage = Effect.fn("AksaraCorpus.validateReadinessCoverage")(
   function* (
-    actualCounts: ReadonlyMap<string, number>,
+    actualCounts: MutableHashMap.MutableHashMap<string, number>,
     requirements: readonly CoverageRequirement[],
     field: string,
     scope: string
   ) {
-    const allowed = new Set(requirements.map(({ key }) => key));
-    for (const actual of actualCounts.keys()) {
+    const allowed = HashSet.fromIterable(requirements.map(({ key }) => key));
+    for (const actual of MutableHashMap.keys(actualCounts)) {
       yield* validateReadinessField(
-        allowed.has(actual) ? "allowed" : actual,
+        HashSet.has(allowed, actual) ? "allowed" : actual,
         "allowed",
         field,
         scope
@@ -48,7 +60,8 @@ const validateCoverage = Effect.fn("AksaraCorpus.validateReadinessCoverage")(
     }
     for (const { editorialMinimum, key } of requirements) {
       yield* validateReadinessField(
-        (actualCounts.get(key) ?? 0) >= editorialMinimum
+        Option.getOrElse(MutableHashMap.get(actualCounts, key), () => 0) >=
+          editorialMinimum
           ? "covered"
           : "missing",
         "covered",
@@ -140,7 +153,9 @@ const validateSectionQuestionReadiness = Effect.fn(
   );
   const responseKinds = readiness.responseMinimums.flatMap(({ kind }) =>
     selected.flatMap(({ item }) =>
-      Object.values(item.responses).some((response) => response?.kind === kind)
+      Struct.keys(item.responses).some(
+        (key) => item.responses[key]?.kind === kind
+      )
         ? [kind]
         : []
     )
@@ -161,13 +176,13 @@ const validateSectionQuestionReadiness = Effect.fn(
     scope
   );
   yield* validateTopicBlueprints(blueprints, readiness, scope);
-  const grouped = new Set(
+  const grouped = HashSet.fromIterable(
     selected.flatMap(({ item }) =>
       item.stimulusKey === undefined ? [] : [item.stimulusKey]
     )
   );
   yield* validateReadinessField(
-    grouped.size >= readiness.groupedStimulusEditorialMinimum
+    HashSet.size(grouped) >= readiness.groupedStimulusEditorialMinimum
       ? "covered"
       : "missing",
     "covered",

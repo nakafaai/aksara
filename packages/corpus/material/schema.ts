@@ -5,7 +5,7 @@ import {
   isLowerKebab,
   isLowerKebabPath,
 } from "@nakafa/aksara-contracts/text/syntax";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
@@ -54,11 +54,14 @@ const LessonEvidenceUrlsSchema = Schema.NonEmptyArray(
   LessonEvidenceUrlSchema
 ).pipe(
   Schema.check(
-    Schema.makeFilter((urls) => new Set(urls).size === urls.length, {
-      description: "Unique evidence URLs reviewed for one lesson section.",
-      identifier: "LessonEvidenceUrls",
-      message: "Duplicate lesson evidence URL.",
-    })
+    Schema.makeFilter(
+      (urls) => HashSet.size(HashSet.fromIterable(urls)) === urls.length,
+      {
+        description: "Unique evidence URLs reviewed for one lesson section.",
+        identifier: "LessonEvidenceUrls",
+        message: "Duplicate lesson evidence URL.",
+      }
+    )
   )
 );
 

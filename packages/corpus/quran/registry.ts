@@ -3,23 +3,26 @@ import {
   QURAN_VERSE_COUNT,
   QuranSurahNumberSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, HashSet, Schema, Stream } from "effect";
 import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
 
-interface QuranRegistryState {
-  readonly nextSurah: number;
-  readonly nextVerse: number;
-  readonly revelationOrders: ReadonlySet<number>;
-}
+const QuranRegistryStateSchema = Schema.Struct({
+  nextSurah: Schema.Finite,
+  nextVerse: Schema.Finite,
+  revelationOrders: Schema.HashSet(Schema.Finite),
+});
+type QuranRegistryState = typeof QuranRegistryStateSchema.Type;
 
-type QuranRegistryItem =
-  | { readonly _tag: "Source"; readonly source: unknown }
-  | { readonly _tag: "End" };
+const QuranRegistryItemSchema = Schema.Union([
+  Schema.TaggedStruct("Source", { source: Schema.Unknown }),
+  Schema.TaggedStruct("End", {}),
+]);
+type QuranRegistryItem = typeof QuranRegistryItemSchema.Type;
 
 const INITIAL_STATE: QuranRegistryState = {
   nextSurah: 1,
   nextVerse: 1,
-  revelationOrders: new Set(),
+  revelationOrders: HashSet.empty(),
 };
 
 /** One authored surah failed the exact Quran source contract. */
@@ -112,7 +115,7 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
     }
   }
 
-  if (state.revelationOrders.has(surah.revelation.order)) {
+  if (HashSet.has(state.revelationOrders, surah.revelation.order)) {
     return Effect.fail(
       new QuranRevelationError({
         order: surah.revelation.order,
@@ -121,8 +124,10 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
     );
   }
 
-  const revelationOrders = new Set(state.revelationOrders);
-  revelationOrders.add(surah.revelation.order);
+  const revelationOrders = HashSet.add(
+    state.revelationOrders,
+    surah.revelation.order
+  );
   return Effect.succeed([
     {
       nextSurah: state.nextSurah + 1,

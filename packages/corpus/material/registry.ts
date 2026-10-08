@@ -20,7 +20,7 @@ import {
   MaterialKeySchema,
   MaterialLessonRouteSchema,
 } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
@@ -42,10 +42,12 @@ export const MaterialEntrySchema = Schema.Struct({
 });
 export type MaterialEntry = typeof MaterialEntrySchema.Type;
 
-export interface MaterialSourceBinding {
-  readonly descriptor: MaterialDomainDescriptor;
-  readonly source: LessonMaterialSource;
-}
+/** One lesson source paired with the domain descriptor that owns its routes. */
+const MaterialSourceBindingSchema = Schema.Struct({
+  descriptor: MaterialDomainDescriptorSchema,
+  source: LessonMaterialSourceSchema,
+});
+type MaterialSourceBinding = typeof MaterialSourceBindingSchema.Type;
 
 /** A decoded material source catalog repeats one stable material key. */
 export class MaterialKeyError extends Schema.TaggedError<MaterialKeyError>()(
@@ -153,20 +155,20 @@ export const validateMaterialSources = Effect.fn(
   sources: readonly LessonMaterialSource[],
   descriptors: readonly MaterialDomainDescriptor[]
 ) {
-  const keys = new Set<string>();
-  const roots = new Set<string>();
+  const keys = MutableHashSet.empty<string>();
+  const roots = MutableHashSet.empty<string>();
   const bindings: MaterialSourceBinding[] = [];
 
   for (const source of sources) {
-    if (keys.has(source.key)) {
+    if (MutableHashSet.has(keys, source.key)) {
       return yield* new MaterialKeyError({ materialKey: source.key });
     }
-    keys.add(source.key);
+    MutableHashSet.add(keys, source.key);
 
-    if (roots.has(source.assetRoot)) {
+    if (MutableHashSet.has(roots, source.assetRoot)) {
       return yield* new MaterialRootError({ assetRoot: source.assetRoot });
     }
-    roots.add(source.assetRoot);
+    MutableHashSet.add(roots, source.assetRoot);
     const descriptor = yield* requireMaterialDomain(
       descriptors,
       source.domain,
@@ -182,27 +184,27 @@ export const validateMaterialSources = Effect.fn(
 export const validateMaterialEntries = Effect.fn(
   "AksaraCorpus.validateMaterialEntries"
 )(function* (entries: readonly MaterialEntry[]) {
-  const heads = new Set<string>();
-  const routes = new Set<string>();
+  const heads = MutableHashSet.empty<string>();
+  const routes = MutableHashSet.empty<string>();
 
   for (const entry of entries) {
     const head = headIdentity(entry.route);
-    if (heads.has(head)) {
+    if (MutableHashSet.has(heads, head)) {
       return yield* new MaterialIdentityError({
         artifactLocale: entry.route.artifactLocale,
         contentKey: entry.route.contentKey,
       });
     }
-    heads.add(head);
+    MutableHashSet.add(heads, head);
 
     const route = routeIdentity(entry.route);
-    if (routes.has(route)) {
+    if (MutableHashSet.has(routes, route)) {
       return yield* new MaterialRouteError({
         appLocale: entry.route.appLocale,
         publicPath: entry.route.publicPath,
       });
     }
-    routes.add(route);
+    MutableHashSet.add(routes, route);
   }
 
   return [...entries].sort((left, right) =>

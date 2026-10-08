@@ -1,7 +1,14 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, PlatformError } from "effect";
+import {
+  Effect,
+  FileSystem,
+  HashMap,
+  HashSet,
+  Option,
+  Path,
+  PlatformError,
+} from "effect";
 
 import { decodeMaterialRegistry } from "#corpus/material/registry";
 import {
@@ -9,30 +16,35 @@ import {
   readMaterialDocument,
 } from "#corpus/material/source";
 
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+/** Resolves the corpus root through the platform-neutral path service. */
+const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(import.meta.dirname, "..", "..", "..")
+);
 
 /** Loads checked-in material fixtures through the Node Effect services. */
 const loadMaterialFixtures = Effect.fn(
   "AksaraCorpus.test.loadMaterialFixtures"
 )(function* () {
   const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const corpusRoot = yield* resolveCorpusRoot;
   const entries = yield* decodeMaterialRegistry();
   const sources = yield* Effect.forEach(entries, (entry) =>
     Effect.gen(function* () {
-      const absolutePath = resolve(corpusRoot, entry.sourcePath);
+      const absolutePath = path.resolve(corpusRoot, entry.sourcePath);
       const source = yield* fileSystem.readFileString(absolutePath);
       return [absolutePath, source] as const;
     })
   );
 
-  return { entries, sourceByPath: new Map(sources) } as const;
+  return { entries, sourceByPath: HashMap.fromIterable(sources) } as const;
 });
 
 /** Provides deterministic file reads for every checked-in material body. */
-function fileLayer(sources: ReadonlyMap<string, string>) {
+function fileLayer(sources: HashMap.HashMap<string, string>) {
   return FileSystem.layerNoop({
     readFileString: (path) => {
-      const source = sources.get(path);
+      const source = Option.getOrUndefined(HashMap.get(sources, path));
       if (source !== undefined) {
         return Effect.succeed(source);
       }
@@ -51,11 +63,14 @@ function fileLayer(sources: ReadonlyMap<string, string>) {
 /** Reads every material through the production Effect Platform seam. */
 function readSources(
   entries: Effect.Success<ReturnType<typeof decodeMaterialRegistry>>,
-  sources: ReadonlyMap<string, string>
+  sources: HashMap.HashMap<string, string>
 ) {
-  return Effect.forEach(entries, (entry) =>
-    readMaterialDocument(corpusRoot, entry)
-  ).pipe(Effect.provide([fileLayer(sources), Path.layer]));
+  return Effect.gen(function* () {
+    const corpusRoot = yield* resolveCorpusRoot;
+    return yield* Effect.forEach(entries, (entry) =>
+      readMaterialDocument(corpusRoot, entry)
+    );
+  }).pipe(Effect.provide([fileLayer(sources), Path.layer]));
 }
 
 layer(NodeServices.layer)("material source", (it) => {
@@ -69,10 +84,14 @@ layer(NodeServices.layer)("material source", (it) => {
         expect(
           sources.reduce((count, source) => count + source.sections.length, 0)
         ).toBe(383);
-        expect(new Set(sources.map(({ key }) => key)).size).toBe(36);
-        expect(new Set(sources.map(({ assetRoot }) => assetRoot)).size).toBe(
-          36
-        );
+        expect(
+          HashSet.size(HashSet.fromIterable(sources.map(({ key }) => key)))
+        ).toBe(36);
+        expect(
+          HashSet.size(
+            HashSet.fromIterable(sources.map(({ assetRoot }) => assetRoot))
+          )
+        ).toBe(36);
 
         const sectionsWithEvidence = sources.flatMap(({ sections }) =>
           sections.filter(({ evidenceUrls }) => evidenceUrls !== undefined)
@@ -88,7 +107,8 @@ layer(NodeServices.layer)("material source", (it) => {
           sectionsWithEvidence.every(
             ({ evidenceUrls }) =>
               evidenceUrls !== undefined &&
-              new Set(evidenceUrls).size === evidenceUrls.length
+              HashSet.size(HashSet.fromIterable(evidenceUrls)) ===
+                evidenceUrls.length
           )
         ).toBe(true);
 
@@ -109,6 +129,8 @@ layer(NodeServices.layer)("material source", (it) => {
     "reads every locale body byte-exactly from its signed source path",
     () =>
       Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const corpusRoot = yield* resolveCorpusRoot;
         const { entries, sourceByPath } = yield* loadMaterialFixtures();
         const documents = yield* readSources(entries, sourceByPath);
 
@@ -119,7 +141,10 @@ layer(NodeServices.layer)("material source", (it) => {
         expect(
           documents.every(
             ({ rawMdx, sourcePath }) =>
-              rawMdx === sourceByPath.get(resolve(corpusRoot, sourcePath))
+              rawMdx ===
+              Option.getOrUndefined(
+                HashMap.get(sourceByPath, path.resolve(corpusRoot, sourcePath))
+              )
           )
         ).toBe(true);
         expect(documents.every(({ rawMdx }) => rawMdx.length > 0)).toBe(true);
@@ -128,6 +153,7 @@ layer(NodeServices.layer)("material source", (it) => {
 
   it.effect("maps one missing reviewed source file to a typed failure", () =>
     Effect.gen(function* () {
+      const corpusRoot = yield* resolveCorpusRoot;
       const { entries } = yield* loadMaterialFixtures();
       const [entry] = entries;
       expect(entry).toBeDefined();
@@ -136,7 +162,10 @@ layer(NodeServices.layer)("material source", (it) => {
       }
 
       const error = yield* readMaterialDocument(corpusRoot, entry).pipe(
-        Effect.provide([fileLayer(new Map()), Path.layer]),
+        Effect.provide([
+          fileLayer(HashMap.empty<string, string>()),
+          Path.layer,
+        ]),
         Effect.flip
       );
 

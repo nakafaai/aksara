@@ -7,7 +7,7 @@ import {
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import {
@@ -38,24 +38,20 @@ export class TryoutStimulusGroupError extends Schema.TaggedError<TryoutStimulusG
   }
 ) {}
 
-/** Exact active try-out hierarchy and server-only placement expectations. */
-interface TryoutProjection {
-  readonly catalog: readonly ReturnType<typeof makeTryoutCatalogRecord>[];
-  readonly placements: readonly TryoutPlacementSource[];
-  readonly routeCount: number;
-}
-
 /** Indexes physical question sources and rejects repeated logical identities. */
 const indexQuestions = Effect.fn("AksaraCorpus.indexTryoutQuestions")(
   function* (sources: readonly QuestionSource[]) {
-    const questions = new Map<QuestionSource["questionKey"], QuestionSource>();
+    const questions = MutableHashMap.empty<
+      QuestionSource["questionKey"],
+      QuestionSource
+    >();
     for (const source of sources) {
-      if (questions.has(source.questionKey)) {
+      if (MutableHashMap.has(questions, source.questionKey)) {
         return yield* new TryoutQuestionDuplicateError({
           questionKey: source.questionKey,
         });
       }
-      questions.set(source.questionKey, source);
+      MutableHashMap.set(questions, source.questionKey, source);
     }
     return questions;
   }
@@ -81,7 +77,7 @@ function activeSections(sources: readonly TryoutExamSource[]) {
 const validateStimulusGroups = Effect.fn(
   "AksaraCorpus.validateTryoutStimulusGroups"
 )(function* (questions: readonly QuestionSource[]) {
-  const groups = new Map<
+  const groups = MutableHashMap.empty<
     NonNullable<QuestionSource["item"]["stimulusKey"]>,
     [QuestionSource, ...QuestionSource[]]
   >();
@@ -90,9 +86,11 @@ const validateStimulusGroups = Effect.fn(
     if (stimulusKey === undefined) {
       continue;
     }
-    const group = groups.get(stimulusKey);
+    const group = Option.getOrUndefined(
+      MutableHashMap.get(groups, stimulusKey)
+    );
     if (group === undefined) {
-      groups.set(stimulusKey, [question]);
+      MutableHashMap.set(groups, stimulusKey, [question]);
     } else {
       group.push(question);
     }
@@ -126,7 +124,10 @@ const validateStimulusGroups = Effect.fn(
 const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
   function* (
     context: TryoutPlacementContext,
-    questions: ReadonlyMap<QuestionSource["questionKey"], QuestionSource>
+    questions: MutableHashMap.MutableHashMap<
+      QuestionSource["questionKey"],
+      QuestionSource
+    >
   ) {
     const { section, set, source, track } = context;
     const selected: QuestionSource[] = [];
@@ -138,7 +139,9 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
       const questionKey = QuestionKeySchema.make(
         `${section.questionSourcePath}/question-${questionOrder}`
       );
-      const question = questions.get(questionKey);
+      const question = Option.getOrUndefined(
+        MutableHashMap.get(questions, questionKey)
+      );
       if (question === undefined) {
         return yield* new TryoutQuestionMissingError({ questionKey });
       }
@@ -192,5 +195,10 @@ export const projectTryoutSources = Effect.fn(
     routeCount: catalog.filter(
       ({ row }) => "publicPath" in row && row.publicPath !== undefined
     ).length,
-  } satisfies TryoutProjection;
+  } satisfies {
+    /** Exact active try-out hierarchy and server-only placement expectations. */
+    readonly catalog: readonly ReturnType<typeof makeTryoutCatalogRecord>[];
+    readonly placements: readonly TryoutPlacementSource[];
+    readonly routeCount: number;
+  };
 });

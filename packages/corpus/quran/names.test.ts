@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, MutableHashMap, Option } from "effect";
 
 import {
   decodeQuranSurahNames,
@@ -11,16 +11,25 @@ describe("Quran surah names", () => {
     Effect.gen(function* () {
       const names = yield* readQuranSurahNames();
 
-      expect([...names.keys()]).toEqual(
+      expect([...MutableHashMap.keys(names)]).toEqual(
         Array.from({ length: 114 }, (_, index) => index + 1)
       );
-      expect(names.get(2)).toEqual({ de: "Die Kuh", id: "Sapi" });
-      expect(names.get(46)).toEqual({ de: "Die Dünen", id: "Ahqaf" });
-      expect(names.get(108)).toEqual({
+      expect(Option.getOrUndefined(MutableHashMap.get(names, 2))).toEqual({
+        de: "Die Kuh",
+        id: "Sapi",
+      });
+      expect(Option.getOrUndefined(MutableHashMap.get(names, 46))).toEqual({
+        de: "Die Dünen",
+        id: "Ahqaf",
+      });
+      expect(Option.getOrUndefined(MutableHashMap.get(names, 108))).toEqual({
         de: "Die Fülle",
         id: "Nikmat yang Banyak",
       });
-      expect(names.get(114)).toEqual({ de: "Die Menschen", id: "Manusia" });
+      expect(Option.getOrUndefined(MutableHashMap.get(names, 114))).toEqual({
+        de: "Die Menschen",
+        id: "Manusia",
+      });
     })
   );
 

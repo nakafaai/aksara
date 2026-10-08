@@ -10,7 +10,7 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
-import { Effect, Schema, type Stream } from "effect";
+import { Effect, MutableHashMap, Option, Schema, type Stream } from "effect";
 import { planFamilyPublication } from "#publisher/family/plan";
 import {
   PreparedContentTransitionSchema,
@@ -88,7 +88,9 @@ const inspectQuestionEntry = Effect.fn("AksaraPublisher.inspectQuestionEntry")(
     entry: QuestionEntry,
     itemsByRoot: ReturnType<typeof indexQuestionItems>
   ) {
-    const item = itemsByRoot.get(entry.sourceRoot);
+    const item = Option.getOrUndefined(
+      MutableHashMap.get(itemsByRoot, entry.sourceRoot)
+    );
     if (item === undefined) {
       return yield* new QuestionItemJoinError({
         sourceRoot: entry.sourceRoot,

@@ -1,22 +1,21 @@
-import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
-import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, FileSystem, Path } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import {
   QuestionReadError,
   type QuestionSource,
+  QuestionSourceSchema,
 } from "#corpus/question-bank/source";
 
 /** One authored prompt body with the question and locale that own it. */
-export interface QuestionPrompt {
-  readonly locale: ArtifactLocale;
-  readonly path: CorpusSourcePath;
-  readonly rawMdx: string;
-  readonly source: QuestionSource;
-}
+const QuestionPromptSchema = Schema.Struct({
+  locale: ArtifactLocaleSchema,
+  path: CorpusSourcePathSchema,
+  rawMdx: Schema.String,
+  source: QuestionSourceSchema,
+});
+export type QuestionPrompt = typeof QuestionPromptSchema.Type;
 
 /** Reads every prompt body of the given questions in each assessed locale. */
 export const readQuestionPrompts = Effect.fn(

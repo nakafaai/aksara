@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
 import {
   PageEntrySchema,
@@ -18,7 +18,7 @@ export const decodePagePreviewEntries = Effect.fn(
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown
 ) {
-  const selected = new Set(sourcePaths);
+  const selected = HashSet.fromIterable(sourcePaths);
   const sources = yield* decodePageSources(input);
   yield* validatePageSources(sources);
   const projected: unknown[] = [];
@@ -28,7 +28,7 @@ export const decodePagePreviewEntries = Effect.fn(
       const expectedPath = CorpusSourcePathSchema.make(
         `packages/corpus/${source.sourceRoot}/${localeCode}.mdx`
       );
-      if (!selected.has(expectedPath)) {
+      if (!HashSet.has(selected, expectedPath)) {
         continue;
       }
       projected.push(yield* projectPage(source, appLocale));

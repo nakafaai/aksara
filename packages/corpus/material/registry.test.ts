@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
@@ -7,7 +6,7 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, HashSet, Path } from "effect";
 
 import {
   decodeMaterialDomains,
@@ -20,7 +19,10 @@ import {
   lessonMaterialSource,
 } from "#corpus/test/material";
 
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+/** Resolves the corpus root through the platform-neutral path service. */
+const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(import.meta.dirname, "..", "..", "..")
+);
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
@@ -42,6 +44,7 @@ layer(NodeServices.layer)("material registry", (it) => {
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
+        const corpusRoot = yield* resolveCorpusRoot;
         const entries = yield* decodeMaterialRegistry();
         const authoredPaths = (yield* fileSystem.glob(
           "packages/corpus/material/lesson/**/*.mdx",
@@ -59,17 +62,19 @@ layer(NodeServices.layer)("material registry", (it) => {
 
         expect(entries).toHaveLength(1149);
         expect(
-          new Set(entries.map(({ route }) => route.materialKey)).size
+          HashSet.size(
+            HashSet.fromIterable(entries.map(({ route }) => route.materialKey))
+          )
         ).toBe(36);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             entries.filter(({ route }) => route.appLocale === locale)
           ).toHaveLength(383);
         }
-        expect(new Set(projectedPaths).size).toBe(1149);
+        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(1149);
         expect(projectedPaths).toEqual(authoredPaths);
 
-        const representativeKeys = new Set([
+        const representativeKeys = HashSet.fromIterable<string>([
           "material/lesson/ai-ds/ai-programming/arithmetic-operator",
           "material/lesson/biology/biodiversity/bacteria",
           "material/lesson/chemistry/structure-matter/atom-shell",
@@ -78,7 +83,9 @@ layer(NodeServices.layer)("material registry", (it) => {
         ]);
         expect(
           entries
-            .filter(({ route }) => representativeKeys.has(route.contentKey))
+            .filter(({ route }) =>
+              HashSet.has(representativeKeys, route.contentKey)
+            )
             .map(({ route }) => route.publicPath)
         ).toEqual([
           "faecher/ki-und-data-science/ki-programmierung/rechenoperatoren",

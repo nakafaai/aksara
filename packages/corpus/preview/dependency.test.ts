@@ -1,11 +1,18 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, FileSystem, Path, PlatformError, Schema } from "effect";
+import {
+  Effect,
+  FileSystem,
+  HashMap,
+  Option,
+  Path,
+  PlatformError,
+  Schema,
+} from "effect";
 import {
   discoverSourceDependencies,
   SourceDependencyError,
@@ -16,23 +23,24 @@ import { corpusRoot } from "#corpus/test/question";
 const loadCorpusSources = Effect.fn("AksaraCorpus.test.loadCorpusSources")(
   function* () {
     const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
     const sourcePaths = yield* fileSystem.glob("packages/corpus/**/*.ts", {
       root: corpusRoot,
     });
     const sources = yield* Effect.forEach(sourcePaths, (sourcePath) => {
-      const absolutePath = resolve(corpusRoot, sourcePath);
+      const absolutePath = path.resolve(corpusRoot, sourcePath);
       return fileSystem
         .readFileString(absolutePath)
         .pipe(Effect.map((source) => [absolutePath, source] as const));
     });
-    return new Map(sources);
+    return HashMap.fromIterable(sources);
   }
 );
 
 /** Discovers one real source closure through a captured corpus filesystem. */
 function discoverReal(
   sourcePath: CorpusSourcePath,
-  sources: ReadonlyMap<string, string>
+  sources: HashMap.HashMap<string, string>
 ) {
   return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
     Effect.provide([sourceLayer(sources), Path.layer])
@@ -40,10 +48,10 @@ function discoverReal(
 }
 
 /** Creates an in-memory source filesystem for dependency failure tests. */
-function sourceLayer(sources: ReadonlyMap<string, string>) {
+function sourceLayer(sources: HashMap.HashMap<string, string>) {
   return FileSystem.layerNoop({
     readFileString: (path) => {
-      const source = sources.get(path);
+      const source = Option.getOrUndefined(HashMap.get(sources, path));
       if (source !== undefined) {
         return Effect.succeed(source);
       }
@@ -62,7 +70,7 @@ function sourceLayer(sources: ReadonlyMap<string, string>) {
 /** Discovers one source closure through a controlled filesystem. */
 function discover(
   sourcePath: CorpusSourcePath,
-  sources: ReadonlyMap<string, string>
+  sources: HashMap.HashMap<string, string>
 ) {
   return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
     Effect.provide([sourceLayer(sources), Path.layer])
@@ -72,7 +80,7 @@ function discover(
 /** Returns a typed source-closure failure through a controlled filesystem. */
 function reject(
   sourcePath: CorpusSourcePath,
-  sources: ReadonlyMap<string, string>
+  sources: HashMap.HashMap<string, string>
 ) {
   return discoverSourceDependencies(corpusRoot, sourcePath).pipe(
     Effect.provide([sourceLayer(sources), Path.layer]),
@@ -81,12 +89,13 @@ function reject(
 }
 
 /** Maps one canonical corpus path onto its controlled absolute test path. */
-function sourceEntry(
+const sourceEntry = Effect.fn("AksaraCorpus.test.sourceEntry")(function* (
   sourcePath: CorpusSourcePath,
   source: string
-): readonly [string, string] {
-  return [resolve(corpusRoot, sourcePath), source];
-}
+) {
+  const path = yield* Path.Path;
+  return [path.resolve(corpusRoot, sourcePath), source] as const;
+});
 
 layer(NodeServices.layer)("source dependencies", (it) => {
   it.effect(
@@ -143,13 +152,13 @@ layer(NodeServices.layer)("source dependencies", (it) => {
         const dependencyPath = CorpusSourcePathSchema.make(
           "packages/corpus/test/data.ts"
         );
-        const sources = new Map([
-          sourceEntry(
+        const sources = HashMap.make(
+          yield* sourceEntry(
             sourcePath,
             'import "effect";\nimport "#corpus/test/data";\nexport { value } from "#corpus/test/data";\ntype External = import("typescript").Node;'
           ),
-          sourceEntry(dependencyPath, 'import "#corpus/test/source";'),
-        ]);
+          yield* sourceEntry(dependencyPath, 'import "#corpus/test/source";')
+        );
 
         expect(yield* discover(sourcePath, sources)).toEqual([
           sourcePath,
@@ -166,13 +175,13 @@ layer(NodeServices.layer)("source dependencies", (it) => {
       const dependencyPath = CorpusSourcePathSchema.make(
         "packages/corpus/test/data.ts"
       );
-      const sources = new Map([
-        sourceEntry(
+      const sources = HashMap.make(
+        yield* sourceEntry(
           sourcePath,
           'export type Value = import("#corpus/test/data").Value;'
         ),
-        sourceEntry(dependencyPath, "export type Value = string;"),
-      ]);
+        yield* sourceEntry(dependencyPath, "export type Value = string;")
+      );
 
       expect(yield* discover(sourcePath, sources)).toEqual([
         sourcePath,
@@ -189,40 +198,47 @@ layer(NodeServices.layer)("source dependencies", (it) => {
           "packages/corpus/test/source.ts"
         );
         const failures = yield* Effect.all([
-          reject(sourcePath, new Map()),
+          reject(sourcePath, HashMap.empty<string, string>()),
           reject(
             sourcePath,
-            new Map([sourceEntry(sourcePath, "const broken = {;")])
+            HashMap.make(yield* sourceEntry(sourcePath, "const broken = {;"))
           ),
           reject(
             sourcePath,
-            new Map([sourceEntry(sourcePath, 'import("./data");')])
+            HashMap.make(yield* sourceEntry(sourcePath, 'import("./data");'))
           ),
           reject(
             sourcePath,
-            new Map([
-              sourceEntry(sourcePath, 'import value = require("data");'),
-            ])
+            HashMap.make(
+              yield* sourceEntry(sourcePath, 'import value = require("data");')
+            )
           ),
           reject(
             sourcePath,
-            new Map([sourceEntry(sourcePath, 'import value from "./data";')])
+            HashMap.make(
+              yield* sourceEntry(sourcePath, 'import value from "./data";')
+            )
           ),
           reject(
             sourcePath,
-            new Map([
-              sourceEntry(sourcePath, 'type Value = import("./data").Value;'),
-            ])
+            HashMap.make(
+              yield* sourceEntry(
+                sourcePath,
+                'type Value = import("./data").Value;'
+              )
+            )
           ),
           reject(
             sourcePath,
-            new Map([
-              sourceEntry(sourcePath, "type Value = import(data).Value;"),
-            ])
+            HashMap.make(
+              yield* sourceEntry(sourcePath, "type Value = import(data).Value;")
+            )
           ),
           reject(
             sourcePath,
-            new Map([sourceEntry(sourcePath, 'import "#corpus/../data";')])
+            HashMap.make(
+              yield* sourceEntry(sourcePath, 'import "#corpus/../data";')
+            )
           ),
         ]);
 
@@ -261,8 +277,8 @@ layer(NodeServices.layer)("source dependencies", (it) => {
           )
         ),
       ];
-      const sources = new Map(
-        sourcePaths.map((currentPath, index) =>
+      const sources = HashMap.fromIterable(
+        yield* Effect.forEach(sourcePaths, (currentPath, index) =>
           sourceEntry(
             currentPath,
             index === sourcePaths.length - 1

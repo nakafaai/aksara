@@ -1,10 +1,25 @@
 import type { QuestionResponseSource } from "@nakafa/aksara-contracts/question/item";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, Predicate } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Predicate,
+  Schema,
+  Struct,
+} from "effect";
 import {
   type QuestionPrompt,
   readQuestionPrompts,
 } from "#corpus/question-bank/prompt";
+import {
+  type Print,
+  PrintSchema,
+  score,
+  shingles,
+} from "#corpus/question-bank/similarity/print";
 import type { QuestionSource } from "#corpus/question-bank/source";
 
 const METADATA_PATTERN = /^export const metadata = \{[\s\S]*?\};\s*/u;
@@ -15,43 +30,8 @@ const COMMAND_PATTERN = /\\([a-z]+)/gu;
 const SYMBOL_PATTERN = /[{}()[\]$^_=+\-*/,.;:!?"'`|<>“”„‘’]/gu;
 const NUMBER_PATTERN = /\d+/gu;
 const SPACE_PATTERN = /\s+/u;
-const SHINGLE_SIZE = 3;
 const PASSAGE_WORDS = 25;
-const MASKED_FLOOR = 0.8;
-const EXACT_FLOOR = 0.25;
 const COMMON_SHINGLE = 64;
-
-/** Word 3-gram shingles of one text, as written and with numbers masked. */
-interface Print {
-  readonly exact: ReadonlySet<string>;
-  readonly masked: ReadonlySet<string>;
-}
-
-/** One pair of questions or passages that read too much alike. */
-export interface SimilarityMatch {
-  readonly exact: number;
-  readonly first: string;
-  readonly masked: number;
-  readonly score: number;
-  readonly second: string;
-}
-
-/** Every item and passage pair at or above the threshold, highest first. */
-export interface SimilarityReport {
-  readonly items: readonly SimilarityMatch[];
-  readonly passages: readonly SimilarityMatch[];
-}
-
-/** One prompt with its own wording separated from the passage it shares. */
-interface Unit {
-  readonly full: Print;
-  readonly id: number;
-  readonly locale: string;
-  readonly own: Print;
-  readonly root: string;
-  readonly set: string;
-  readonly stimulus: readonly string[];
-}
 
 /** Splits one text into comparable words, optionally masking every number. */
 function words(text: string, mask: boolean) {
@@ -63,18 +43,6 @@ function words(text: string, mask: boolean) {
   return masked.split(SPACE_PATTERN).filter((word) => word.length > 0);
 }
 
-/** Collects the word 3-gram shingles of one word list. */
-function shingles(list: readonly string[]): ReadonlySet<string> {
-  if (list.length <= SHINGLE_SIZE) {
-    return new Set([list.join(" ")]);
-  }
-  return new Set(
-    list
-      .slice(SHINGLE_SIZE - 1)
-      .map((_, index) => list.slice(index, index + SHINGLE_SIZE).join(" "))
-  );
-}
-
 /** Prints one text in both comparison forms. */
 function print(text: string): Print {
   return {
@@ -83,25 +51,34 @@ function print(text: string): Print {
   };
 }
 
-/** Measures the shared share of two non-empty shingle sets. */
-function jaccard(left: ReadonlySet<string>, right: ReadonlySet<string>) {
-  const shared = [...left].filter((shingle) => right.has(shingle)).length;
-  return shared / (left.size + right.size - shared);
-}
+/** One pair of questions or passages that read too much alike. */
+const SimilarityMatchSchema = Schema.Struct({
+  exact: Schema.Finite,
+  first: Schema.String,
+  masked: Schema.Finite,
+  score: Schema.Finite,
+  second: Schema.String,
+});
+export type SimilarityMatch = typeof SimilarityMatchSchema.Type;
 
-/** Scores two prints; a masked match counts only when the wording overlaps. */
-function score(first: string, left: Print, second: string, right: Print) {
-  const exact = jaccard(left.exact, right.exact);
-  const masked = jaccard(left.masked, right.masked);
-  const counted = masked >= MASKED_FLOOR && exact >= EXACT_FLOOR;
-  return {
-    exact,
-    first,
-    masked,
-    score: counted ? Math.max(exact, masked) : exact,
-    second,
-  };
-}
+/** Every item and passage pair at or above the threshold, highest first. */
+const SimilarityReportSchema = Schema.Struct({
+  items: Schema.Array(SimilarityMatchSchema),
+  passages: Schema.Array(SimilarityMatchSchema),
+});
+export type SimilarityReport = typeof SimilarityReportSchema.Type;
+
+/** One prompt with its own wording separated from the passage it shares. */
+const UnitSchema = Schema.Struct({
+  full: PrintSchema,
+  id: Schema.Finite,
+  locale: Schema.String,
+  own: PrintSchema,
+  root: Schema.String,
+  set: Schema.String,
+  stimulus: Schema.Array(Schema.String),
+});
+type Unit = typeof UnitSchema.Type;
 
 /** Reads the visible paragraphs of one prompt, math included. */
 function paragraphs(rawMdx: string) {
@@ -135,24 +112,33 @@ function setOf(root: string) {
 
 /** Separates each prompt's shared passage from its own question wording. */
 function units(prompts: readonly QuestionPrompt[]) {
-  const groups = new Map<string, QuestionPrompt[]>();
+  const groups = MutableHashMap.empty<string, QuestionPrompt[]>();
   for (const prompt of prompts) {
     const key = `${setOf(prompt.source.sourceRoot)}\n${prompt.locale}`;
-    groups.set(key, [...(groups.get(key) ?? []), prompt]);
+    MutableHashMap.set(groups, key, [
+      ...Option.getOrElse(MutableHashMap.get(groups, key), () => []),
+      prompt,
+    ]);
   }
-  return [...groups.values()].flatMap((members) => {
+  return [...MutableHashMap.values(groups)].flatMap((members) => {
     const read = members.map((prompt) => ({
       list: paragraphs(prompt.rawMdx),
       prompt,
     }));
-    const counts = new Map<string, number>();
-    for (const part of read.flatMap(({ list }) => [...new Set(list)])) {
-      counts.set(part, (counts.get(part) ?? 0) + 1);
+    const counts = MutableHashMap.empty<string, number>();
+    for (const part of read.flatMap(({ list }) => Arr.dedupe(list))) {
+      MutableHashMap.set(
+        counts,
+        part,
+        Option.getOrElse(MutableHashMap.get(counts, part), () => 0) + 1
+      );
     }
     /** A paragraph is shared unless exactly one prompt in the set uses it. */
-    const isShared = (part: string) => counts.get(part) !== 1;
+    const isShared = (part: string) =>
+      Option.getOrUndefined(MutableHashMap.get(counts, part)) !== 1;
     return read.map(({ list, prompt }): Omit<Unit, "id"> => {
-      const answers = Object.values(prompt.source.item.responses)
+      const answers = Struct.keys(prompt.source.item.responses)
+        .map((key) => prompt.source.item.responses[key])
         .filter(Predicate.isNotUndefined)
         .flatMap(labels);
       const own = list.filter((part) => !isShared(part));
@@ -169,10 +155,14 @@ function units(prompts: readonly QuestionPrompt[]) {
 }
 
 /** Adds one unit to the list kept under one key. */
-function collect(map: Map<string, Unit[]>, key: string, unit: Unit) {
-  const list = map.get(key);
+function collect(
+  map: MutableHashMap.MutableHashMap<string, Unit[]>,
+  key: string,
+  unit: Unit
+) {
+  const list = Option.getOrUndefined(MutableHashMap.get(map, key));
   if (list === undefined) {
-    map.set(key, [unit]);
+    MutableHashMap.set(map, key, [unit]);
     return;
   }
   list.push(unit);
@@ -197,8 +187,8 @@ function itemMatches(
   isTarget: (root: string) => boolean,
   threshold: number
 ) {
-  const siblings = new Map<string, Unit[]>();
-  const shared = new Map<string, Unit[]>();
+  const siblings = MutableHashMap.empty<string, Unit[]>();
+  const shared = MutableHashMap.empty<string, Unit[]>();
   for (const unit of all) {
     collect(siblings, `${unit.set}\n${unit.locale}`, unit);
     for (const shingle of unit.full.masked) {
@@ -206,18 +196,20 @@ function itemMatches(
     }
   }
   const groups = [
-    ...siblings.values(),
-    ...[...shared.values()].filter(({ length }) => length <= COMMON_SHINGLE),
+    ...MutableHashMap.values(siblings),
+    ...[...MutableHashMap.values(shared)].filter(
+      ({ length }) => length <= COMMON_SHINGLE
+    ),
   ];
-  const seen = new Set<string>();
+  const seen = MutableHashSet.empty<string>();
   const matches: SimilarityMatch[] = [];
   for (const group of groups) {
     for (const { left, right } of pairs(group, ({ root }) => isTarget(root))) {
       const key = `${left.id}\n${right.id}`;
-      if (seen.has(key)) {
+      if (MutableHashSet.has(seen, key)) {
         continue;
       }
-      seen.add(key);
+      MutableHashSet.add(seen, key);
       const sibling = left.set === right.set;
       const match = sibling
         ? score(left.root, left.own, right.root, right.own)
@@ -231,12 +223,13 @@ function itemMatches(
 }
 
 /** One passage shared inside a set, with the questions that share it. */
-interface Passage {
-  readonly locale: string;
-  readonly members: string[];
-  readonly print: Print;
-  readonly set: string;
-}
+const PassageSchema = Schema.Struct({
+  locale: Schema.String,
+  members: Schema.mutable(Schema.Array(Schema.String)),
+  print: PrintSchema,
+  set: Schema.String,
+});
+type Passage = typeof PassageSchema.Type;
 
 /** Names one shared passage by its set and the questions that use it. */
 function passageName({ members, set }: Passage) {
@@ -249,7 +242,7 @@ function passageMatches(
   isTarget: (root: string) => boolean,
   threshold: number
 ) {
-  const passages = new Map<string, Passage>();
+  const passages = MutableHashMap.empty<string, Passage>();
   for (const unit of all) {
     const text = unit.stimulus.join(" ");
     if (words(text, false).length < PASSAGE_WORDS) {
@@ -257,15 +250,20 @@ function passageMatches(
     }
     const key = `${unit.set}\n${unit.locale}\n${text}`;
     const name = unit.root.slice(unit.set.length + 1);
-    const passage = passages.get(key);
+    const passage = Option.getOrUndefined(MutableHashMap.get(passages, key));
     if (passage === undefined) {
       const { locale, set } = unit;
-      passages.set(key, { locale, members: [name], print: print(text), set });
+      MutableHashMap.set(passages, key, {
+        locale,
+        members: [name],
+        print: print(text),
+        set,
+      });
       continue;
     }
     passage.members.push(name);
   }
-  return pairs([...passages.values()], ({ set }) => isTarget(set))
+  return pairs([...MutableHashMap.values(passages)], ({ set }) => isTarget(set))
     .filter(
       ({ left, right }) =>
         left.set !== right.set && left.locale === right.locale

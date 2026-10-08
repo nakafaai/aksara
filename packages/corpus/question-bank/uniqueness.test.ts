@@ -1,7 +1,6 @@
-import { resolve } from "node:path";
 import { describe, expect, it } from "@effect/vitest";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, Path } from "effect";
+import { Effect, MutableHashMap, Path } from "effect";
 import { questionSourceFiles } from "#corpus/question-bank/path";
 import { validateQuestionUniqueness } from "#corpus/question-bank/uniqueness";
 import {
@@ -51,38 +50,47 @@ function validate(
   prompts: readonly (readonly [root: string, body: string])[],
   english?: string
 ) {
-  const entries: string[] = [];
-  const items = new Map<string, string>();
-  const files = new Map<string, string>();
-  for (const [root, body] of prompts) {
-    entries.push(...questionEntries(root, generalQuestionSourceFiles));
-    for (const [itemPath, source] of itemForQuestion(root)) {
-      items.set(itemPath, source);
+  return Effect.gen(function* () {
+    const path = yield* Path.Path;
+    const entries: string[] = [];
+    const items = MutableHashMap.empty<string, string>();
+    const files = MutableHashMap.empty<string, string>();
+    for (const [root, body] of prompts) {
+      entries.push(...questionEntries(root, generalQuestionSourceFiles));
+      for (const [itemPath, source] of itemForQuestion(root)) {
+        MutableHashMap.set(items, itemPath, source);
+      }
+      MutableHashMap.set(
+        files,
+        path.resolve(absoluteQuestionTestSourceRoot, root, "question.id.mdx"),
+        body
+      );
     }
-    files.set(
-      resolve(absoluteQuestionTestSourceRoot, root, "question.id.mdx"),
-      body
-    );
-  }
-  if (english !== undefined) {
-    entries.push(...questionEntries(englishRoot, englishFiles));
-    for (const [itemPath, source] of itemForQuestion(
-      englishRoot,
-      englishItemSource
-    )) {
-      items.set(itemPath, source);
+    if (english !== undefined) {
+      entries.push(...questionEntries(englishRoot, englishFiles));
+      for (const [itemPath, source] of itemForQuestion(
+        englishRoot,
+        englishItemSource
+      )) {
+        MutableHashMap.set(items, itemPath, source);
+      }
+      MutableHashMap.set(
+        files,
+        path.resolve(
+          absoluteQuestionTestSourceRoot,
+          englishRoot,
+          "question.en.mdx"
+        ),
+        english
+      );
     }
-    files.set(
-      resolve(absoluteQuestionTestSourceRoot, englishRoot, "question.en.mdx"),
-      english
+    return yield* discoverSyntheticQuestionSources(entries, items).pipe(
+      Effect.flatMap((sources) =>
+        validateQuestionUniqueness(corpusRoot, sources)
+      ),
+      Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
     );
-  }
-  return discoverSyntheticQuestionSources(entries, items).pipe(
-    Effect.flatMap((sources) =>
-      validateQuestionUniqueness(corpusRoot, sources)
-    ),
-    Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
-  );
+  }).pipe(Effect.provide(Path.layer));
 }
 
 describe("question uniqueness", () => {
@@ -183,7 +191,7 @@ describe("question uniqueness", () => {
         Effect.flatMap((sources) =>
           validateQuestionUniqueness(corpusRoot, sources)
         ),
-        Effect.provide([makeQuestionSourceLayer([], new Map()), Path.layer]),
+        Effect.provide([makeQuestionSourceLayer([], []), Path.layer]),
         Effect.flip
       );
 

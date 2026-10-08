@@ -111,10 +111,12 @@ export class MaterialReadError extends Schema.TaggedError<MaterialReadError>()(
   { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
 ) {}
 
+/** The authored MDX body that a material document adds to its registry entry. */
+const MaterialDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });
+
 /** Complete authored material document passed to release preparation. */
-export type MaterialDocumentSource = Omit<MaterialEntry, "assetRoot"> & {
-  readonly rawMdx: string;
-};
+export type MaterialDocumentSource = Omit<MaterialEntry, "assetRoot"> &
+  typeof MaterialDocumentBodySchema.Type;
 
 /** Reads one registry-owned source without escaping the supplied checkout root. */
 export const readMaterialDocument = Effect.fn(

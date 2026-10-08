@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Record } from "effect";
 
 import { QURAN_SOURCE_POLICY } from "#corpus/quran/source/policy";
 
@@ -20,11 +21,11 @@ describe("Quran source policy", () => {
       name: "islamhouse-german-bubenheim.json",
       path: "german/publication.json",
     });
-    expect(Object.keys(QURAN_SOURCE_POLICY.evidence)).toEqual([
+    expect(Record.keys(QURAN_SOURCE_POLICY.evidence)).toEqual([
       "germanPublication",
       "kemenagPublication",
     ]);
-    expect(Object.keys(QURAN_SOURCE_POLICY.terms)).toEqual([
+    expect(Record.keys(QURAN_SOURCE_POLICY.terms)).toEqual([
       "islamhouse",
       "kemenag",
       "quranenc",

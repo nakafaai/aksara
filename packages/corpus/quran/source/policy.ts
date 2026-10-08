@@ -1,7 +1,8 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranSourceArtifactSchema } from "@nakafa/aksara-contracts/quran/source";
+import { Schema } from "effect";
 
-import type { LocalizedSourceMap } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Domain that authenticates the complete ordered official data bundle. */
 export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle";
@@ -19,35 +20,37 @@ function artifact(byteCount: number, digest: string, fileCount = 1) {
 }
 
 /** One source-controlled official file required by the Quran parser. */
-export interface PinnedQuranFile {
-  readonly artifact: ReturnType<typeof artifact>;
-  readonly name: string;
-  readonly path: string;
-}
+const PinnedQuranFileSchema = Schema.Struct({
+  artifact: QuranSourceArtifactSchema,
+  name: Schema.String,
+  path: Schema.String,
+});
+export type PinnedQuranFile = typeof PinnedQuranFileSchema.Type;
 
-interface QuranSourcePolicy {
-  readonly data: {
-    readonly arabic: PinnedQuranFile;
-    readonly metadata: PinnedQuranFile;
-    readonly names: LocalizedSourceMap<PinnedQuranFile>;
-    readonly translations: LocalizedSourceMap<PinnedQuranFile>;
-  };
-  readonly evidence: {
-    readonly germanPublication: PinnedQuranFile;
-    readonly kemenagPublication: PinnedQuranFile;
-  };
-  readonly tafsir: {
-    readonly artifact: ReturnType<typeof artifact>;
-    readonly directory: string;
-    readonly name: string;
-  };
-  readonly terms: {
-    readonly islamhouse: PinnedQuranFile;
-    readonly quranenc: PinnedQuranFile;
-    readonly kemenag: PinnedQuranFile;
-    readonly tanzil: PinnedQuranFile;
-  };
-}
+const QuranSourcePolicySchema = Schema.Struct({
+  data: Schema.Struct({
+    arabic: PinnedQuranFileSchema,
+    metadata: PinnedQuranFileSchema,
+    names: localizedSourceMapSchema(PinnedQuranFileSchema),
+    translations: localizedSourceMapSchema(PinnedQuranFileSchema),
+  }),
+  evidence: Schema.Struct({
+    germanPublication: PinnedQuranFileSchema,
+    kemenagPublication: PinnedQuranFileSchema,
+  }),
+  tafsir: Schema.Struct({
+    artifact: QuranSourceArtifactSchema,
+    directory: Schema.String,
+    name: Schema.String,
+  }),
+  terms: Schema.Struct({
+    islamhouse: PinnedQuranFileSchema,
+    kemenag: PinnedQuranFileSchema,
+    quranenc: PinnedQuranFileSchema,
+    tanzil: PinnedQuranFileSchema,
+  }),
+});
+type QuranSourcePolicy = typeof QuranSourcePolicySchema.Type;
 
 /** Complete physical and content identity for every pinned Quran source. */
 export const QURAN_SOURCE_POLICY = {

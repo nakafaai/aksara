@@ -11,7 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/program/curriculum";
 import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect } from "effect";
+import { Effect, HashMap, HashSet } from "effect";
 
 import { addMaterialContext } from "#corpus/curriculum/context";
 import {
@@ -42,13 +42,13 @@ const validateProgramOwnership = Effect.fn(
   curricula: readonly CurriculumSource[],
   programs: readonly LearningProgram[]
 ) {
-  const curriculumKeys = new Set(
+  const curriculumKeys = HashSet.fromIterable(
     curricula.map((curriculum) => curriculum.programKey)
   );
   for (const program of programs) {
     if (
       program.navigation.model === "curriculum-tree" &&
-      !curriculumKeys.has(program.key)
+      !HashSet.has(curriculumKeys, program.key)
     ) {
       return yield* new CurriculumRouteError({
         code: "curriculum",
@@ -61,16 +61,13 @@ const validateProgramOwnership = Effect.fn(
 
 /** Identifies every curriculum node with at least one material descendant. */
 function materialAncestorIdentities(nodes: readonly ProjectedCurriculumNode[]) {
-  const identities = new Set<string>();
-  for (const node of nodes) {
-    if (node.materialKeys.length === 0) {
-      continue;
-    }
-    for (const ancestor of node.path) {
-      identities.add(`${node.curriculumKey}\0${ancestor.key}`);
-    }
-  }
-  return identities;
+  return HashSet.fromIterable(
+    nodes.flatMap((node) =>
+      node.materialKeys.length === 0
+        ? []
+        : node.path.map((ancestor) => `${node.curriculumKey}\0${ancestor.key}`)
+    )
+  );
 }
 
 /** Projects every localized program root before its curriculum descendants. */
@@ -79,7 +76,7 @@ const projectCurriculumRoots = Effect.fn("AksaraCorpus.projectCurriculumRoots")(
     readonly appLocales: readonly AppLocale[];
     readonly curricula: readonly CurriculumSource[];
     readonly nodes: readonly ProjectedCurriculumNode[];
-    readonly programByKey: ReadonlyMap<string, LearningProgram>;
+    readonly programByKey: HashMap.HashMap<string, LearningProgram>;
   }) {
     const routes: CurriculumRouteDraft[] = [];
     for (const curriculum of input.curricula) {
@@ -132,11 +129,17 @@ export const projectCurriculumRoutes = Effect.fn(
   const appLocales = input.appLocales ?? ACTIVE_APP_LOCALES;
   const domains = input.domains ?? (yield* decodeMaterialDomains());
   yield* validateProgramOwnership(input.curricula, input.programs);
-  const programByKey = new Map(
-    input.programs.map((program) => [program.key, program])
+  const programByKey = HashMap.fromIterable(
+    input.programs.map((program): [string, LearningProgram] => [
+      program.key,
+      program,
+    ])
   );
-  const materialByKey = new Map(
-    input.materials.map((material) => [material.key, material])
+  const materialByKey = HashMap.fromIterable(
+    input.materials.map((material): [string, LessonMaterialSource] => [
+      material.key,
+      material,
+    ])
   );
   const nodes = yield* projectCurriculumNodes(
     input.curricula,

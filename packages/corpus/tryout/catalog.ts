@@ -4,7 +4,7 @@ import {
   type AppLocale,
 } from "@nakafa/aksara-contracts/locale";
 import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
 import { projectTryoutExam } from "#corpus/tryout/exam";
@@ -56,7 +56,14 @@ const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
 /** Selects one registry-validated owner of each shared country identity. */
 function uniqueCountries(sources: readonly TryoutExamSource[]) {
   return [
-    ...new Map(sources.map((source) => [source.countryKey, source])).values(),
+    ...MutableHashMap.values(
+      MutableHashMap.fromIterable(
+        sources.map((source): [string, TryoutExamSource] => [
+          source.countryKey,
+          source,
+        ])
+      )
+    ),
   ];
 }
 

@@ -6,13 +6,12 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
-  type QuranSourceArtifact,
   QuranSourceArtifactSchema,
   quranSourceFileCount,
 } from "@nakafa/aksara-contracts/quran/source";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, Path, Record, Schema } from "effect";
 import { mapLocalizedSource } from "#corpus/locale/source";
-import type { RawSources } from "#corpus/quran/source/model";
+import { RawSourcesSchema } from "#corpus/quran/source/model";
 import {
   type PinnedQuranFile,
   QURAN_SOURCE_BUNDLE_DOMAIN,
@@ -36,11 +35,12 @@ export class QuranSourceLocaleError extends Schema.TaggedError<QuranSourceLocale
   }
 ) {}
 
+const LoadedQuranSourcesSchema = Schema.Struct({
+  sources: RawSourcesSchema,
+  summary: QuranSourceArtifactSchema,
+});
 /** Exact raw source text and byte identity accepted by Quran publication. */
-export interface LoadedQuranSources {
-  readonly sources: RawSources;
-  readonly summary: QuranSourceArtifact;
-}
+export type LoadedQuranSources = typeof LoadedQuranSourcesSchema.Type;
 
 /** Returns one lowercase SHA-256 digest without a wire prefix. */
 function digest(bytes: Uint8Array) {
@@ -255,12 +255,12 @@ export const loadPinnedQuranSources = Effect.fn(
     { concurrency: 2 }
   );
   yield* Effect.forEach(
-    Object.values(QURAN_SOURCE_POLICY.evidence),
+    Record.values(QURAN_SOURCE_POLICY.evidence),
     (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
     { concurrency: 2, discard: true }
   );
   yield* Effect.forEach(
-    Object.values(QURAN_SOURCE_POLICY.terms),
+    Record.values(QURAN_SOURCE_POLICY.terms),
     (source) => readPinnedFile(fileSystem, path, sourceRoot, source),
     { concurrency: 2, discard: true }
   );

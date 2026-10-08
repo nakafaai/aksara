@@ -8,7 +8,7 @@ import {
 } from "@nakafa/aksara-contracts/material/domain";
 import { ProgramNavigationIconKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
 import {
   localizedSourceMapSchema,
   sourceLocaleValue,
@@ -96,18 +96,18 @@ export const decodeMaterialDomains = Effect.fn(
         })
     )
   );
-  const keys = new Set<string>();
-  const routes = new Map<string, MaterialDomain>();
+  const keys = MutableHashSet.empty<string>();
+  const routes = MutableHashMap.empty<string, MaterialDomain>();
 
   for (const descriptor of descriptors) {
-    if (keys.has(descriptor.key)) {
+    if (MutableHashSet.has(keys, descriptor.key)) {
       return yield* new MaterialDomainConflictError({
         code: "key",
         key: descriptor.key,
         value: descriptor.key,
       });
     }
-    keys.add(descriptor.key);
+    MutableHashSet.add(keys, descriptor.key);
 
     for (const appLocaleCode of APP_LOCALE_CODES) {
       const routeSlug = descriptor.routeSlugs[appLocaleCode];
@@ -115,7 +115,7 @@ export const decodeMaterialDomains = Effect.fn(
         continue;
       }
       const identity = `${appLocaleCode}\0${routeSlug}`;
-      const owner = routes.get(identity);
+      const owner = Option.getOrUndefined(MutableHashMap.get(routes, identity));
       if (owner) {
         return yield* new MaterialDomainConflictError({
           code: "route",
@@ -123,7 +123,7 @@ export const decodeMaterialDomains = Effect.fn(
           value: `${appLocaleCode}:${routeSlug}:${owner}`,
         });
       }
-      routes.set(identity, descriptor.key);
+      MutableHashMap.set(routes, identity, descriptor.key);
     }
   }
 

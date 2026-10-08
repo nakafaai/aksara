@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 
 import {
   ArticleEntrySchema,
@@ -19,7 +19,7 @@ export const decodeArticlePreviewEntries = Effect.fn(
   sourcePaths: readonly (typeof CorpusSourcePathSchema.Type)[],
   input?: unknown
 ) {
-  const selected = new Set(sourcePaths);
+  const selected = HashSet.fromIterable(sourcePaths);
   const sources = yield* decodeArticleSources(input);
   yield* validateArticleSources(sources);
   const projected: unknown[] = [];
@@ -28,7 +28,7 @@ export const decodeArticlePreviewEntries = Effect.fn(
       const expectedPath = CorpusSourcePathSchema.make(
         `packages/corpus/${source.sourceRoot}/${appLocaleCode(appLocale)}.mdx`
       );
-      if (!selected.has(expectedPath)) {
+      if (!HashSet.has(selected, expectedPath)) {
         continue;
       }
       projected.push(yield* projectArticle(source, appLocale));

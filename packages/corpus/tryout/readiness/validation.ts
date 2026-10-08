@@ -12,7 +12,9 @@ type TryoutSection = TryoutTrack["sets"][number]["sections"][number];
 function marksFact(marks: TryoutSection["marks"]) {
   return marks === undefined
     ? "none"
-    : JSON.stringify(canonicalTryoutMarks(marks));
+    : Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))(
+        canonicalTryoutMarks(marks)
+      );
 }
 
 export class AssessmentReadinessMismatchError extends Schema.TaggedError<AssessmentReadinessMismatchError>()(

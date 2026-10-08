@@ -3,7 +3,7 @@ import {
   APP_LOCALE_CODES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Struct } from "effect";
 
 import {
   localizedSourceMapSchema,
@@ -76,7 +76,7 @@ describe("localized source maps", () => {
         mapLocalizedSource(partial, (value, locale) => `${locale}:${value}`)
       ).toEqual({ en: "en:English" });
       expect(
-        Object.keys(
+        Struct.keys(
           mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
         )
       ).toEqual(APP_LOCALE_CODES);
