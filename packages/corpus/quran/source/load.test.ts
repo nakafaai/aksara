@@ -1,85 +1,26 @@
-import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
-  Context,
   Effect,
   FileSystem,
   HashMap,
-  Layer,
   Option,
   Path,
   PlatformError,
-  Record,
   Schema,
 } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
-import { QURAN_SOURCE_POLICY } from "#corpus/quran/source/policy";
-
-interface QuranSourceFixtureValue {
-  readonly repositoryRoot: string;
-  /** Resolves one repository-owned Quran source path. */
-  readonly resolveSource: (relativePath: string) => string;
-  readonly sourceBytes: HashMap.HashMap<string, Uint8Array>;
-}
-
-class QuranSourceFixture extends Context.Service<
+import {
+  fixtureLayer,
   QuranSourceFixture,
-  QuranSourceFixtureValue
->()("AksaraCorpus.test.QuranSourceFixture") {}
+  type QuranSourceFixtureValue,
+} from "#corpus/test/quran/pinned";
 
-const pinnedSourcePaths = [
-  QURAN_SOURCE_POLICY.data.arabic.path,
-  QURAN_SOURCE_POLICY.data.metadata.path,
-  ...Record.values(QURAN_SOURCE_POLICY.data.names).map(({ path }) => path),
-  ...Record.values(QURAN_SOURCE_POLICY.data.translations).map(
-    ({ path }) => path
-  ),
-  ...Record.values(QURAN_SOURCE_POLICY.evidence).map(({ path }) => path),
-  ...Record.values(QURAN_SOURCE_POLICY.terms).map(({ path }) => path),
-  ...Array.from(
-    { length: 114 },
-    (_, index) => `${QURAN_SOURCE_POLICY.tafsir.directory}/${index + 1}.json`
-  ),
-] as const;
 const germanOnly = Schema.decodeEffect(ActiveAppLocaleListSchema)(["de"]);
-
-/** Loads every source fixture through Effect's filesystem and path services. */
-const loadSourceFixture = Effect.fn("AksaraCorpus.test.loadQuranSourceFixture")(
-  function* () {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const path = yield* Path.Path;
-    const repositoryRoot = path.resolve(import.meta.dirname, "../../../..");
-    const sourceRoot = path.resolve(
-      repositoryRoot,
-      "packages/corpus/quran/sources"
-    );
-    const entries = yield* Effect.forEach(
-      pinnedSourcePaths,
-      (relativePath) =>
-        Effect.map(
-          fileSystem.readFile(path.resolve(sourceRoot, relativePath)),
-          (bytes) => [path.resolve(sourceRoot, relativePath), bytes] as const
-        ),
-      { concurrency: "unbounded" }
-    );
-
-    return {
-      repositoryRoot,
-      resolveSource: (relativePath: string) =>
-        path.resolve(sourceRoot, relativePath),
-      sourceBytes: HashMap.fromIterable(entries),
-    } satisfies QuranSourceFixtureValue;
-  }
-);
-
-const fixtureLayer = Layer.effect(QuranSourceFixture)(loadSourceFixture()).pipe(
-  Layer.provideMerge(NodeServices.layer)
-);
 
 /** Provides deterministic byte reads for every pinned Quran source. */
 function fileLayer(sources: HashMap.HashMap<string, Uint8Array>) {
@@ -140,11 +81,14 @@ function replace(
   relativePath: string,
   bytes: Uint8Array
 ) {
-  return HashMap.set(
-    fixture.sourceBytes,
-    fixture.resolveSource(relativePath),
-    bytes
-  );
+  const key = fixture.resolveSource(relativePath);
+  return HashMap.set(fixture.sourceBytes, key, bytes);
+}
+
+/** Reads one pinned source copy from the fixture by its repository-relative path. */
+function sourceAt(fixture: QuranSourceFixtureValue, relativePath: string) {
+  const key = fixture.resolveSource(relativePath);
+  return Option.getOrUndefined(HashMap.get(fixture.sourceBytes, key));
 }
 
 /** Mutates one byte while preserving the source byte count and UTF-8. */
@@ -153,9 +97,7 @@ const drift = Effect.fn("AksaraCorpus.test.driftPinnedQuranSource")(function* (
   relativePath: string
 ) {
   const bytes = yield* Effect.fromNullishOr(
-    Option.getOrUndefined(
-      HashMap.get(fixture.sourceBytes, fixture.resolveSource(relativePath))
-    )
+    sourceAt(fixture, relativePath)
   ).pipe(Effect.orDie);
   const changed = Uint8Array.from(bytes);
   changed[0] = changed[0] === 65 ? 66 : 65;
@@ -233,12 +175,7 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       Effect.gen(function* () {
         const fixture = yield* QuranSourceFixture;
         const english = yield* Effect.fromNullishOr(
-          Option.getOrUndefined(
-            HashMap.get(
-              fixture.sourceBytes,
-              fixture.resolveSource("quranenc/en.xml")
-            )
-          )
+          sourceAt(fixture, "quranenc/en.xml")
         ).pipe(Effect.orDie);
 
         const errors = yield* Effect.all(
@@ -302,12 +239,7 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       Effect.gen(function* () {
         const fixture = yield* QuranSourceFixture;
         const first = yield* Effect.fromNullishOr(
-          Option.getOrUndefined(
-            HashMap.get(
-              fixture.sourceBytes,
-              fixture.resolveSource("quranenc/tafsir/1.json")
-            )
-          )
+          sourceAt(fixture, "quranenc/tafsir/1.json")
         ).pipe(Effect.orDie);
 
         const errors = yield* Effect.all(
