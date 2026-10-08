@@ -137,7 +137,7 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
   );
 });
 
-/** Reads one authored TypeScript module, reporting a missing module as a source error. */
+/** Reads one authored TypeScript module, reporting a failed read as a source error. */
 const readTypescriptSource = Effect.fn("AksaraPolicy.readSource")(function* (
   file: string
 ) {
