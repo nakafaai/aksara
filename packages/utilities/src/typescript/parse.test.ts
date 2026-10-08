@@ -1,5 +1,5 @@
 import { afterEach, expect, layer, it as test } from "@effect/vitest";
-import { Effect, Layer } from "effect";
+import { Effect, Layer, MutableHashMap, Option } from "effect";
 import { isJSDoc } from "typescript/unstable/ast";
 import {
   API,
@@ -13,7 +13,7 @@ import {
   TypeScriptSourceError,
 } from "#utilities/typescript/parse";
 
-const nativeFailures = vi.hoisted(() => new Map<string, Error>());
+const nativeFailures = MutableHashMap.empty<string, Error>();
 const nativeFileSystems = vi.hoisted(
   () => [] as NonNullable<APIOptions["fs"]>[]
 );
@@ -26,9 +26,9 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
     API: class extends native.API {
       /** Injects a startup failure before acquiring a native compiler process. */
       constructor(...args: ConstructorParameters<typeof native.API>) {
-        const failure = nativeFailures.get("startup");
-        if (failure !== undefined) {
-          throw failure;
+        const failure = MutableHashMap.get(nativeFailures, "startup");
+        if (Option.isSome(failure)) {
+          throw failure.value;
         }
         const [options] = args;
         if (
@@ -45,7 +45,7 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
 });
 
 afterEach(() => {
-  nativeFailures.clear();
+  MutableHashMap.clear(nativeFailures);
   nativeFileSystems.length = 0;
   vi.restoreAllMocks();
 });
@@ -53,7 +53,7 @@ afterEach(() => {
 test.effect("preserves native compiler startup failures", () =>
   Effect.gen(function* () {
     const cause = new Error("test native compiler unavailable");
-    nativeFailures.set("startup", cause);
+    MutableHashMap.set(nativeFailures, "startup", cause);
     const failure = yield* Effect.void.pipe(
       Effect.provide(TypeScriptParser.layer),
       Effect.flip
