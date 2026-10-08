@@ -1,4 +1,4 @@
-import { Predicate } from "effect";
+import { Array as Arr, Predicate } from "effect";
 import type { Program } from "estree-jsx";
 import type { Node as UnistNode } from "unist";
 
@@ -10,7 +10,7 @@ function isProgram(value: unknown): value is Program {
   if (!("type" in value && value.type === "Program")) {
     return false;
   }
-  return "body" in value && Array.isArray(value.body);
+  return "body" in value && Arr.isArray(value.body);
 }
 
 /** Reads a validated ESTree program attached to one unified syntax node. */

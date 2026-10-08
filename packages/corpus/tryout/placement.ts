@@ -11,19 +11,21 @@ import {
 import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
 import { Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
-
-type TryoutTrackSource = TryoutExamSource["tracks"][number];
-type TryoutSetSource = TryoutTrackSource["sets"][number];
-type TryoutSectionSource = TryoutSetSource["sections"][number];
+import {
+  TryoutExamSourceSchema,
+  TryoutSectionSourceSchema,
+  TryoutSetSourceSchema,
+  TryoutTrackSourceSchema,
+} from "#corpus/tryout/schema";
 
 /** Exact source hierarchy that owns one authored question placement. */
-export interface TryoutPlacementContext {
-  readonly section: TryoutSectionSource;
-  readonly set: TryoutSetSource;
-  readonly source: TryoutExamSource;
-  readonly track: TryoutTrackSource;
-}
+const TryoutPlacementContextSchema = Schema.Struct({
+  section: TryoutSectionSourceSchema,
+  set: TryoutSetSourceSchema,
+  source: TryoutExamSourceSchema,
+  track: TryoutTrackSourceSchema,
+});
+export type TryoutPlacementContext = typeof TryoutPlacementContextSchema.Type;
 
 /**
  * One question cannot be placed in the supplied source hierarchy. `scoring`

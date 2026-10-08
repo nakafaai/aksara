@@ -4,7 +4,14 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, Path, PlatformError } from "effect";
+import {
+  Effect,
+  FileSystem,
+  HashMap,
+  Option,
+  Path,
+  PlatformError,
+} from "effect";
 import { decodePageRegistry } from "#corpus/pages/registry";
 import {
   decodePageSources,
@@ -148,13 +155,15 @@ layer(Path.layer)("public page source", (it) => {
           expect(rawMdx).not.toContain("Host: nakafa.com");
           expect(rawMdx).not.toContain("nakafa-cli");
         }
-        const expectedTitles = new Map([
+        const expectedTitles = HashMap.make(
           ["de", "Entwicklerressourcen"],
           ["en", "Developer Resources"],
-          ["id", "Panduan Developer"],
-        ]);
+          ["id", "Panduan Developer"]
+        );
         for (const { rawMdx, route } of documents) {
-          const expectedTitle = expectedTitles.get(route.appLocale);
+          const expectedTitle = Option.getOrUndefined(
+            HashMap.get(expectedTitles, route.appLocale)
+          );
           expect(expectedTitle).toBeDefined();
           expect(rawMdx).toContain(`title: "${expectedTitle}"`);
           expect(rawMdx).toContain(`# ${expectedTitle}`);

@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Context, Effect, FileSystem, Layer, Path } from "effect";
+import { Context, Effect, FileSystem, HashMap, Layer, Path } from "effect";
 
 import {
   parseQuranMetadata,
@@ -40,7 +40,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
         meaning: { de: "Die Kuh", en: "The Cow", id: "Sapi" },
         transliteration: "Al-Baqara",
       });
-      expect(metadata.sajdas).toHaveLength(15);
+      expect(HashMap.size(metadata.sajdas)).toBe(15);
       expect(quranMarkerAt(metadata.juzs, 0)).toBeUndefined();
       expect(quranMarkerAt(metadata.juzs, 1)).toBe(1);
       expect(quranMarkerAt(metadata.juzs, 6236)).toBe(30);

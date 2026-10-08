@@ -1,24 +1,31 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import {
+  type AppLocale,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
-import { Effect } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 import type { QuestionPreviewSource } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import {
   makeRestartDependencyLookup,
   type RestartDependencyLookup,
 } from "#corpus/preview/topology";
-import type { QuestionEntry } from "#corpus/question-bank/content";
+import {
+  type QuestionEntry,
+  QuestionEntrySchema,
+} from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";
 
 const QUESTION_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/tryout/registry.ts"
 );
 /** One already decoded question with its exact shell locale. */
-export interface QuestionPreviewInput {
-  readonly appLocale: AppLocale;
-  readonly entry: QuestionEntry;
-}
+const QuestionPreviewInputSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  entry: QuestionEntrySchema,
+});
+export type QuestionPreviewInput = typeof QuestionPreviewInputSchema.Type;
 
 /** Builds one trusted compile source without inventing a publication target. */
 export const makeQuestionPreviewSource = Effect.fn(
@@ -58,15 +65,20 @@ export const selectQuestionPreviewSources = Effect.fn(
   inputs: readonly QuestionPreviewInput[],
   questionSources: readonly QuestionSource[]
 ) {
-  const sourcesByQuestion = new Map(
-    questionSources.map((source) => [source.questionKey, source])
+  const sourcesByQuestion = HashMap.fromIterable(
+    questionSources.map((source): [string, QuestionSource] => [
+      source.questionKey,
+      source,
+    ])
   );
   const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
   return yield* Effect.forEach(
     inputs,
     ({ appLocale, entry }) =>
       Effect.gen(function* () {
-        const source = sourcesByQuestion.get(entry.questionKey);
+        const source = Option.getOrUndefined(
+          HashMap.get(sourcesByQuestion, entry.questionKey)
+        );
         if (source === undefined) {
           return yield* new PreviewSelectionError({
             reason: "missing",

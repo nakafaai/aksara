@@ -1,6 +1,5 @@
-import { resolve } from "node:path";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Path } from "effect";
+import { Effect, MutableHashMap, Path, Schema } from "effect";
 import { scanQuestionSimilarity } from "#corpus/question-bank/similarity";
 import {
   absoluteQuestionTestSourceRoot,
@@ -58,12 +57,13 @@ const item: QuestionItem = {
 
 export default item;`;
 
+const QuestionSchema = Schema.Struct({
+  item: Schema.optionalKey(Schema.String),
+  prompt: Schema.String,
+  root: Schema.String,
+});
 /** One synthetic question with its prompt and optional item source. */
-interface Question {
-  readonly item?: string;
-  readonly prompt: string;
-  readonly root: string;
-}
+type Question = typeof QuestionSchema.Type;
 
 /** Names one synthetic question by its set and number. */
 function root(set: number, question: number) {
@@ -77,25 +77,38 @@ function source(path: string) {
 
 /** Discovers synthetic questions, then scans them against each other. */
 function scan(questions: readonly Question[], target: string, threshold = 0.5) {
-  const entries: string[] = [];
-  const items = new Map<string, string>();
-  const files = new Map<string, string>();
-  for (const question of questions) {
-    entries.push(...questionEntries(question.root, generalQuestionSourceFiles));
-    for (const [path, item] of itemForQuestion(question.root, question.item)) {
-      items.set(path, item);
+  return Effect.gen(function* () {
+    const path = yield* Path.Path;
+    const entries: string[] = [];
+    const items = MutableHashMap.empty<string, string>();
+    const files = MutableHashMap.empty<string, string>();
+    for (const question of questions) {
+      entries.push(
+        ...questionEntries(question.root, generalQuestionSourceFiles)
+      );
+      for (const [itemPath, item] of itemForQuestion(
+        question.root,
+        question.item
+      )) {
+        MutableHashMap.set(items, itemPath, item);
+      }
+      MutableHashMap.set(
+        files,
+        path.resolve(
+          absoluteQuestionTestSourceRoot,
+          question.root,
+          "question.id.mdx"
+        ),
+        `export const metadata = {\n  title: "Soal",\n};\n\n${question.prompt}\n`
+      );
     }
-    files.set(
-      resolve(absoluteQuestionTestSourceRoot, question.root, "question.id.mdx"),
-      `export const metadata = {\n  title: "Soal",\n};\n\n${question.prompt}\n`
+    return yield* discoverSyntheticQuestionSources(entries, items).pipe(
+      Effect.flatMap((sources) =>
+        scanQuestionSimilarity(corpusRoot, sources, source(target), threshold)
+      ),
+      Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
     );
-  }
-  return discoverSyntheticQuestionSources(entries, items).pipe(
-    Effect.flatMap((sources) =>
-      scanQuestionSimilarity(corpusRoot, sources, source(target), threshold)
-    ),
-    Effect.provide([makeQuestionSourceLayer([], files), Path.layer])
-  );
+  }).pipe(Effect.provide(Path.layer));
 }
 
 describe("question similarity", () => {

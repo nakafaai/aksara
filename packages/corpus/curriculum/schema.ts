@@ -6,12 +6,8 @@ import {
   type ProgramNavigationLevel,
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import {
-  type MaterialKey,
-  MaterialKeySchema,
-} from "@nakafa/aksara-contracts/projection/material";
-import { Effect, Schema } from "effect";
-import type { NonEmptyReadonlyArray } from "effect/Array";
+import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
+import { Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
@@ -44,66 +40,32 @@ export const CurriculumMaterialCardMapSchema = localizedSourceMapSchema(
   CurriculumMaterialCardSchema
 );
 
-type TranslationMap = typeof CurriculumNodeTranslationMapSchema.Type;
-type EncodedTranslationMap = typeof CurriculumNodeTranslationMapSchema.Encoded;
+type CurriculumStructureNodeShape = typeof CurriculumStructureNodeSchema.Type;
 
-export interface CurriculumStructureNode {
-  readonly children?: readonly CurriculumTreeNode[] | undefined;
-  readonly displayGroup?:
-    | typeof CurriculumDisplayGroupMapSchema.Type
-    | undefined;
-  readonly displayGroupIconKey?:
-    | typeof ProgramNavigationIconKeySchema.Type
-    | undefined;
-  readonly iconKey?: typeof ProgramNavigationIconKeySchema.Type | undefined;
-  readonly key: typeof CurriculumNodeKeySchema.Type;
-  readonly level: ProgramNavigationLevel;
-  readonly materialCard?:
-    | typeof CurriculumMaterialCardMapSchema.Type
-    | undefined;
-  readonly materialDomain?: typeof MaterialDomainSchema.Type | undefined;
-  readonly order: number;
-  readonly translations: TranslationMap;
-}
+/**
+ * One decoded structure node. The interface names the recursive shape, because
+ * the tree schema refers to the node type that contains it.
+ */
+export interface CurriculumStructureNode extends CurriculumStructureNodeShape {}
 
-export interface CurriculumMaterialNode {
-  readonly displayOverride?: TranslationMap | undefined;
-  readonly key: typeof CurriculumNodeKeySchema.Type;
-  readonly level: ProgramNavigationLevel;
-  readonly materialKeys: NonEmptyReadonlyArray<MaterialKey>;
-  readonly order: number;
-}
+export type CurriculumMaterialNode = typeof CurriculumMaterialNodeSchema.Type;
 
 export type CurriculumTreeNode =
   | CurriculumMaterialNode
   | CurriculumStructureNode;
 
-export interface CurriculumStructureInput {
-  readonly children?: readonly CurriculumTreeInput[] | undefined;
-  readonly displayGroup?:
-    | typeof CurriculumDisplayGroupMapSchema.Encoded
-    | undefined;
-  readonly displayGroupIconKey?:
-    | typeof ProgramNavigationIconKeySchema.Encoded
-    | undefined;
-  readonly iconKey?: typeof ProgramNavigationIconKeySchema.Encoded | undefined;
-  readonly key: string;
-  readonly level: ProgramNavigationLevel;
-  readonly materialCard?:
-    | typeof CurriculumMaterialCardMapSchema.Encoded
-    | undefined;
-  readonly materialDomain?: typeof MaterialDomainSchema.Encoded | undefined;
-  readonly order: number;
-  readonly translations: EncodedTranslationMap;
-}
+type CurriculumStructureInputShape =
+  typeof CurriculumStructureNodeSchema.Encoded;
 
-export interface CurriculumMaterialInput {
-  readonly displayOverride?: EncodedTranslationMap | undefined;
-  readonly key: string;
-  readonly level: ProgramNavigationLevel;
-  readonly materialKeys: NonEmptyReadonlyArray<string>;
-  readonly order: number;
-}
+/**
+ * One authored structure node before decoding. The interface names the
+ * recursive shape, because the input tree refers to the node type that contains it.
+ */
+export interface CurriculumStructureInput
+  extends CurriculumStructureInputShape {}
+
+export type CurriculumMaterialInput =
+  typeof CurriculumMaterialNodeSchema.Encoded;
 
 export type CurriculumTreeInput =
   | CurriculumMaterialInput
@@ -137,7 +99,7 @@ const CurriculumMaterialNodeSchema = Schema.Struct({
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
 });
 
-const CurriculumTreeNodeSchema: Schema.Codec<
+export const CurriculumTreeNodeSchema: Schema.Codec<
   CurriculumTreeNode,
   CurriculumTreeInput
 > = Schema.Union([CurriculumMaterialNodeSchema, CurriculumStructureNodeSchema]);
@@ -149,18 +111,11 @@ export const CurriculumSourceSchema = Schema.Struct({
 });
 export type CurriculumSource = typeof CurriculumSourceSchema.Type;
 export type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
+/** A structure node before the helper that defines its level adds it. */
 type StructureNodeInput = Omit<
   typeof CurriculumStructureNodeSchema.Encoded,
-  "children" | "level"
-> & {
-  readonly children?: readonly CurriculumTreeInput[];
-};
-type MaterialNodeInput = Omit<
-  typeof CurriculumMaterialNodeSchema.Encoded,
   "level"
-> & {
-  readonly level: ProgramNavigationLevel;
-};
+>;
 
 /** A curriculum source failed strict schema decoding at its definition seam. */
 export class CurriculumDecodeError extends Schema.TaggedError<CurriculumDecodeError>()(
@@ -216,7 +171,7 @@ export function unitNode(input: StructureNodeInput): CurriculumStructureInput {
 
 /** Defines one material-reference curriculum leaf. */
 export function materialNode(
-  input: MaterialNodeInput
+  input: CurriculumMaterialInput
 ): CurriculumMaterialInput {
   return input;
 }
@@ -250,15 +205,15 @@ export const defineCurriculum = Effect.fn("AksaraCorpus.defineCurriculum")(
           })
       )
     );
-    const nodeKeys = new Set<string>();
+    const nodeKeys = MutableHashSet.empty<string>();
     for (const node of flattenCurriculumTree(curriculum.tree)) {
-      if (nodeKeys.has(node.key)) {
+      if (MutableHashSet.has(nodeKeys, node.key)) {
         return yield* new CurriculumDuplicateError({
           nodeKey: node.key,
           programKey: curriculum.programKey,
         });
       }
-      nodeKeys.add(node.key);
+      MutableHashSet.add(nodeKeys, node.key);
     }
     return curriculum;
   }

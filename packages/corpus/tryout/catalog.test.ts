@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { deliveryLanguageForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect } from "effect";
+import { Effect, HashSet, Record as Rec, Schema } from "effect";
 import {
   projectTryoutCatalog,
   TryoutCatalogDecodeError,
@@ -9,7 +9,10 @@ import {
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
 /** SNBT literacy in English and the TKA English subject are assessed in English. */
-const ENGLISH_SECTIONS = new Set(["english-language", "literacy-in-english"]);
+const ENGLISH_SECTIONS = HashSet.make(
+  "english-language",
+  "literacy-in-english"
+);
 
 describe("tryout catalog", () => {
   it.effect(
@@ -85,7 +88,7 @@ describe("tryout catalog", () => {
         const rows = yield* Effect.flatMap(decodeTryoutRegistry(), (sources) =>
           projectTryoutCatalog(sources)
         );
-        const counts = Object.fromEntries(
+        const counts = Rec.fromEntries(
           ["country", "exam", "track", "set", "section"].map((kind) => [
             kind,
             rows.filter((row) => row.kind === kind).length,
@@ -124,7 +127,7 @@ describe("tryout catalog", () => {
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             deliveryLanguageForPolicy(section.languagePolicy, locale)
-          ).toBe(ENGLISH_SECTIONS.has(section.key) ? "en" : "id");
+          ).toBe(HashSet.has(ENGLISH_SECTIONS, section.key) ? "en" : "id");
         }
       }
     })
@@ -190,10 +193,12 @@ describe("tryout catalog", () => {
           })),
         },
       ]);
-      const facts = new Set(
+      const facts = HashSet.fromIterable(
         rows.map((row) => {
           if (row.kind === "section") {
-            return JSON.stringify(row.marks);
+            return Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))(
+              row.marks
+            );
           }
           if (row.kind === "track") {
             return row.trackKind;
@@ -206,7 +211,9 @@ describe("tryout catalog", () => {
         "country",
         "institution",
         "penalized",
-        JSON.stringify(marks),
+        yield* Schema.encodeEffect(Schema.fromJsonString(Schema.Unknown))(
+          marks
+        ),
       ]);
     })
   );

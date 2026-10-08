@@ -12,7 +12,7 @@ import {
   TryoutTrackKindSchema,
   TryoutVisibilitySchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 import {
@@ -29,7 +29,7 @@ const TryoutTranslationMapSchema = localizedSourceMapSchema(
   })
 );
 
-const TryoutSectionSourceSchema = Schema.Struct({
+export const TryoutSectionSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
   languagePolicy: AssessmentLanguagePolicySchema.check(
     Schema.makeFilter((policy) => policy.kind === "fixed", {
@@ -70,7 +70,7 @@ const TryoutSetSourceFieldsSchema = Schema.Struct({
 });
 type TryoutSetSourceFields = typeof TryoutSetSourceFieldsSchema.Type;
 
-const TryoutSetSourceSchema = TryoutSetSourceFieldsSchema.pipe(
+export const TryoutSetSourceSchema = TryoutSetSourceFieldsSchema.pipe(
   Schema.check(
     Schema.makeFilter(hasReachableTryoutSections, {
       message:
@@ -79,7 +79,7 @@ const TryoutSetSourceSchema = TryoutSetSourceFieldsSchema.pipe(
   )
 );
 
-const TryoutTrackSourceSchema = Schema.Struct({
+export const TryoutTrackSourceSchema = Schema.Struct({
   key: TryoutKeySchema,
   kind: TryoutTrackKindSchema,
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
@@ -183,12 +183,12 @@ export class TryoutDuplicateError extends Schema.TaggedError<TryoutDuplicateErro
 function findDuplicateKey(
   entries: readonly { readonly key: string }[]
 ): string | undefined {
-  const keys = new Set<string>();
+  const keys = MutableHashSet.empty<string>();
   for (const entry of entries) {
-    if (keys.has(entry.key)) {
+    if (MutableHashSet.has(keys, entry.key)) {
       return entry.key;
     }
-    keys.add(entry.key);
+    MutableHashSet.add(keys, entry.key);
   }
 }
 

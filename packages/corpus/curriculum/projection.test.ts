@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
 import { projectCurriculumNodes } from "#corpus/curriculum/projection";
@@ -82,9 +82,10 @@ describe("curriculum node projection", () => {
               (materialCard === undefined || materialCard.de !== undefined)
           )
         ).toBe(true);
-        expect(
-          new Set(materialNodes.flatMap(({ materialKeys }) => materialKeys))
-        ).toHaveProperty("size", 34);
+        const allMaterialKeys = materialNodes.flatMap(
+          ({ materialKeys }) => materialKeys
+        );
+        expect(HashSet.size(HashSet.fromIterable(allMaterialKeys))).toBe(34);
         expect(nodes.at(0)).toMatchObject({
           curriculumKey: "cambridge-international",
           key: "early-years",

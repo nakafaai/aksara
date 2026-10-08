@@ -5,7 +5,7 @@ import {
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Schema } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 
 /** A material route has no complete subject or course presentation context. */
 export class CurriculumContextError extends Schema.TaggedError<CurriculumContextError>()(
@@ -19,12 +19,15 @@ export class CurriculumContextError extends Schema.TaggedError<CurriculumContext
 /** Finds the closest card group and subject/course parent for one material. */
 function findMaterialContext(
   route: CurriculumRouteDraft,
-  routeByPath: ReadonlyMap<string, CurriculumRouteDraft>
+  routeByPath: HashMap.HashMap<string, CurriculumRouteDraft>
 ) {
   let current: CurriculumRouteDraft = route;
   while (current.parentPath) {
-    const parent = routeByPath.get(
-      `${current.programKey}\0${current.appLocale}\0${current.parentPath}`
+    const parent = Option.getOrUndefined(
+      HashMap.get(
+        routeByPath,
+        `${current.programKey}\0${current.appLocale}\0${current.parentPath}`
+      )
     );
     if (!parent) {
       return;
@@ -39,8 +42,8 @@ function findMaterialContext(
 /** Adds complete source-owned material presentation context to every leaf. */
 export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
   function* (routes: readonly CurriculumRouteDraft[]) {
-    const routeByPath = new Map(
-      routes.map((route) => [
+    const routeByPath = HashMap.fromIterable(
+      routes.map((route): [string, CurriculumRouteDraft] => [
         `${route.programKey}\0${route.appLocale}\0${route.publicPath}`,
         route,
       ])

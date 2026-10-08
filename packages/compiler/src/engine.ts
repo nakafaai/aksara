@@ -18,7 +18,7 @@ import {
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Predicate } from "effect";
+import { Effect, HashSet, MutableHashSet, Predicate } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
 import type { Root } from "mdast";
@@ -78,7 +78,9 @@ export function enforceContentByteLimit(
 }
 
 /** Captures custom component dependencies emitted as missing references. */
-function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
+function captureRequiredComponents(
+  names: MutableHashSet.MutableHashSet<string>
+): Plugin<[], Program> {
   return () => (tree) => {
     visit(tree, (node) => {
       if (node.type !== "CallExpression") {
@@ -92,7 +94,7 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
       }
       const [name] = node.arguments;
       if (name?.type === "Literal" && Predicate.isString(name.value)) {
-        names.add(name.value);
+        MutableHashSet.add(names, name.value);
       }
     });
   };
@@ -101,7 +103,7 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
 /** Resolves referenced component names to current renderer names. */
 function selectRendererRequirements(
   contentKey: ContentKey,
-  names: ReadonlySet<string>,
+  names: Iterable<string>,
   components: readonly RendererComponentName[]
 ) {
   return Effect.forEach([...names].sort(), (componentName) => {
@@ -137,13 +139,13 @@ export const compileValidatedContent = Effect.fn(
     request.rendererDomain
   );
   const components = [...request.rendererManifest.base, ...domain.components];
-  const allowedComponents = new Set(components);
+  const allowedComponents = HashSet.fromIterable(components);
   const sourcePolicy = createSourcePolicy(
     request.contentKey,
     request.sourcePath,
     allowedComponents
   );
-  const requiredComponentNames = new Set<string>();
+  const requiredComponentNames = MutableHashSet.empty<string>();
   const metadataCollector: MetadataCollector = {
     candidates: [],
     syntaxReasons: [],

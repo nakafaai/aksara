@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { Effect } from "effect";
+import { Effect, HashSet } from "effect";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";
 import { unified } from "unified";
@@ -34,7 +34,7 @@ const inspectPolicy = Effect.fn("ExecutablePolicyTest.inspectPolicy")(
       compile(rawMdx, {
         remarkPlugins: [
           enforceExecutablePolicy(
-            new Set(allowedComponents),
+            HashSet.fromIterable(allowedComponents),
             unsupportedModules,
             violations
           ),
@@ -54,7 +54,7 @@ const inspectTree = Effect.fn("ExecutablePolicyTest.inspectTree")(function* (
     unified()
       .use(
         enforceExecutablePolicy(
-          new Set<string>(),
+          HashSet.empty<string>(),
           unsupportedModules,
           violations
         )

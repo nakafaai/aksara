@@ -3,7 +3,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Effect, HashSet } from "effect";
 import { createMathVisualPolicy } from "#compiler/policy/math";
 import { createSourcePolicy } from "#compiler/policy/source";
 
@@ -58,7 +58,7 @@ export const validateMathSource = Effect.fn(
   const policy = createSourcePolicy(
     TEST_MATH_CONTENT_KEY,
     CorpusSourcePathSchema.make("packages/corpus/material/lesson/test/en.mdx"),
-    new Set(["InlineMath", "MathVisual"])
+    HashSet.make("InlineMath", "MathVisual")
   );
   yield* Effect.promise(() =>
     compile(rawMdx, { remarkPlugins: policy.remarkPlugins })

@@ -16,7 +16,7 @@ import {
   AssessmentLanguagePolicySchema,
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** Repository-relative root containing every authored Nakafa question. */
@@ -39,11 +39,15 @@ export const QuestionLocationSchema = Schema.Struct({
   sourceRoot: CorpusSourcePathSchema,
 });
 export type QuestionLocation = typeof QuestionLocationSchema.Type;
-export interface QuestionBankDefinition {
-  readonly languagePolicy: AssessmentLanguagePolicy;
-  readonly rendererDomain: typeof RendererDomainSchema.Type;
-}
-export type QuestionBankIndex = ReadonlyMap<string, QuestionBankDefinition>;
+const QuestionBankDefinitionSchema = Schema.Struct({
+  languagePolicy: AssessmentLanguagePolicySchema,
+  rendererDomain: RendererDomainSchema,
+});
+export type QuestionBankDefinition = typeof QuestionBankDefinitionSchema.Type;
+export type QuestionBankIndex = MutableHashMap.MutableHashMap<
+  string,
+  QuestionBankDefinition
+>;
 
 /** Derives exact answer and assessed-language prompt files for one section. */
 export function questionSourceFiles(languagePolicy: AssessmentLanguagePolicy) {
@@ -107,11 +111,13 @@ function hasSameLanguagePolicy(
 /** Requires repeated use of one physical bank to retain one exact contract. */
 const registerQuestionBank = Effect.fn("AksaraCorpus.registerQuestionBank")(
   function* (
-    banks: Map<string, QuestionBankDefinition>,
+    banks: QuestionBankIndex,
     section: ReturnType<typeof questionBankSections>[number]
   ) {
     const bankKey = questionBankKey(section.questionSourcePath);
-    const definition = banks.get(bankKey);
+    const definition = Option.getOrUndefined(
+      MutableHashMap.get(banks, bankKey)
+    );
     if (
       definition !== undefined &&
       definition.rendererDomain !== section.rendererDomain
@@ -130,7 +136,7 @@ const registerQuestionBank = Effect.fn("AksaraCorpus.registerQuestionBank")(
         sourcePath: `packages/corpus/${bankKey}`,
       });
     }
-    banks.set(bankKey, {
+    MutableHashMap.set(banks, bankKey, {
       languagePolicy: section.languagePolicy,
       rendererDomain: section.rendererDomain,
     });
@@ -140,7 +146,7 @@ const registerQuestionBank = Effect.fn("AksaraCorpus.registerQuestionBank")(
 /** Indexes reviewed question banks once and rejects renderer conflicts. */
 export const indexQuestionBanks = Effect.fn("AksaraCorpus.indexQuestionBanks")(
   function* (sources: readonly TryoutExamSource[]) {
-    const banks = new Map<string, QuestionBankDefinition>();
+    const banks: QuestionBankIndex = MutableHashMap.empty();
     for (const section of questionBankSections(sources)) {
       yield* registerQuestionBank(banks, section);
     }
@@ -160,7 +166,9 @@ export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
       )
     );
     const { questionNumber, questionSetKey } = questionKeyParts(questionKey);
-    const definition = questionBanks.get(questionBankKey(questionSetKey));
+    const definition = Option.getOrUndefined(
+      MutableHashMap.get(questionBanks, questionBankKey(questionSetKey))
+    );
     if (definition === undefined) {
       return yield* new QuestionPathError({ reason: "renderer", sourcePath });
     }

@@ -1,5 +1,5 @@
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
-import { Effect, Predicate } from "effect";
+import { Array as Arr, Effect, Option, Predicate, Schema } from "effect";
 import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
@@ -8,76 +8,73 @@ import {
   decodeStaticLiteral,
   type StaticLiteral,
   type StaticLiteralResult,
+  StaticLiteralSchema,
 } from "#compiler/ast/literal";
 import {
   AuthoredMetadataDuplicateError,
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
-  type AuthoredMetadataSyntaxReason,
+  AuthoredMetadataSyntaxReasonSchema,
 } from "#compiler/errors";
 
 export type AuthoredMetadataValue = StaticLiteral;
 
 /** Plain static object extracted from one reviewed MDX metadata export. */
-export interface AuthoredMetadata {
-  readonly [key: string]: AuthoredMetadataValue;
-}
-
-type StatementResult =
-  | { readonly matched: false }
-  | {
-      readonly matched: true;
-      readonly result:
-        | StaticLiteralResult
-        | { readonly reason: "invalid-declaration"; readonly success: false };
-    };
+export const AuthoredMetadataSchema = Schema.Record(
+  Schema.String,
+  StaticLiteralSchema
+);
+export type AuthoredMetadata = typeof AuthoredMetadataSchema.Type;
 
 /** Mutable metadata state scoped to one official MDX compilation. */
-export interface MetadataCollector {
-  readonly candidates: AuthoredMetadataValue[];
-  readonly syntaxReasons: AuthoredMetadataSyntaxReason[];
-}
+const MetadataCollectorSchema = Schema.Struct({
+  candidates: Schema.mutable(Schema.Array(StaticLiteralSchema)),
+  syntaxReasons: Schema.mutable(
+    Schema.Array(AuthoredMetadataSyntaxReasonSchema)
+  ),
+});
+export type MetadataCollector = typeof MetadataCollectorSchema.Type;
 
 /** Exact source and UTF-16 offsets occupied by one validated metadata export. */
-export interface MetadataSourceRange {
-  readonly end: number;
-  readonly source: string;
-  readonly start: number;
-}
+const MetadataSourceRangeSchema = Schema.Struct({
+  end: Schema.Int,
+  source: Schema.String,
+  start: Schema.Int,
+});
+export type MetadataSourceRange = typeof MetadataSourceRangeSchema.Type;
 
-/** Detects and statically decodes a metadata export statement. */
-function inspectStatement(statement: Program["body"][number]): StatementResult {
+/** Detects and statically decodes a metadata export statement, or none for any other statement. */
+function inspectStatement(
+  statement: Program["body"][number]
+): Option.Option<
+  | StaticLiteralResult
+  | { readonly reason: "invalid-declaration"; readonly success: false }
+> {
   if (statement.type !== "ExportNamedDeclaration") {
-    return { matched: false };
+    return Option.none();
   }
   const { declaration } = statement;
   if (declaration?.type !== "VariableDeclaration") {
-    return { matched: false };
+    return Option.none();
   }
   const metadata = declaration.declarations.filter(
     ({ id }) => id.type === "Identifier" && id.name === "metadata"
   );
   if (metadata.length === 0) {
-    return { matched: false };
+    return Option.none();
   }
   if (
     declaration.kind !== "const" ||
     declaration.declarations.length !== 1 ||
     metadata.length !== 1
   ) {
-    return {
-      matched: true,
-      result: { reason: "invalid-declaration", success: false },
-    };
+    return Option.some({ reason: "invalid-declaration", success: false });
   }
   const initializer = metadata[0]?.init;
   if (!initializer) {
-    return {
-      matched: true,
-      result: { reason: "invalid-declaration", success: false },
-    };
+    return Option.some({ reason: "invalid-declaration", success: false });
   }
-  return { matched: true, result: decodeStaticLiteral(initializer) };
+  return Option.some(decodeStaticLiteral(initializer));
 }
 
 /** Collects metadata candidates and removes matched exports from the body. */
@@ -93,7 +90,7 @@ function collectMetadata(
     return true;
   }
   const results = program.body.map(inspectStatement);
-  const metadata = results.filter((result) => result.matched);
+  const metadata = Arr.getSomes(results);
   if (metadata.length === 0) {
     return true;
   }
@@ -102,13 +99,11 @@ function collectMetadata(
     return false;
   }
   for (const result of metadata) {
-    if (result.result.success) {
-      collector.candidates.push(result.result.value);
+    if (result.success) {
+      collector.candidates.push(result.value);
     } else {
       collector.syntaxReasons.push(
-        "reason" in result.result
-          ? result.result.reason
-          : result.result.failure.reason
+        "reason" in result ? result.reason : result.failure.reason
       );
     }
   }

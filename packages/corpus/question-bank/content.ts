@@ -16,13 +16,16 @@ import {
   type QuestionBodyKind,
   type QuestionKey,
 } from "@nakafa/aksara-contracts/question/identity";
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import {
+  type QuestionItem,
+  QuestionItemSchema,
+} from "@nakafa/aksara-contracts/question/item";
 import {
   questionArtifactLocaleForPolicy,
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, Path, Schema, Struct } from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema, Struct } from "effect";
 import {
   decodeQuestionDocumentPath,
   decodeQuestionPath,
@@ -64,26 +67,34 @@ const QuestionAnswerEntrySchema = Schema.Struct({
 });
 
 /** Strict question-bank body prepared for its exact delivery boundary. */
-const QuestionEntrySchema = Schema.Union([
+export const QuestionEntrySchema = Schema.Union([
   QuestionPromptEntrySchema,
   QuestionAnswerEntrySchema,
 ]);
 export type QuestionEntry = typeof QuestionEntrySchema.Type;
 
+/** The authored body of one question document: its canonical item and MDX text. */
+const QuestionDocumentBodySchema = Schema.Struct({
+  item: QuestionItemSchema,
+  rawMdx: Schema.String,
+});
+
 /** Complete authored question or answer body joined with its canonical item. */
-export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> & {
-  readonly item: QuestionItem;
-  readonly rawMdx: string;
-};
+export type QuestionDocumentSource = Omit<QuestionEntry, "sourceRoot"> &
+  typeof QuestionDocumentBodySchema.Type;
+
+const QuestionContentSelectionSchema = Schema.Struct({
+  entries: Schema.Union([
+    Schema.Tuple([QuestionEntrySchema]),
+    Schema.Tuple([QuestionEntrySchema, QuestionEntrySchema]),
+  ]),
+  selected: QuestionEntrySchema,
+  source: QuestionSourceSchema,
+});
 
 /** One selected prompt or answer with its exact source-owned compile closure. */
-export interface QuestionContentSelection {
-  readonly entries:
-    | readonly [QuestionEntry]
-    | readonly [QuestionEntry, QuestionEntry];
-  readonly selected: QuestionEntry;
-  readonly source: QuestionSource;
-}
+export type QuestionContentSelection =
+  typeof QuestionContentSelectionSchema.Type;
 
 /** Projects one exact body and locale from its decoded question source. */
 function projectQuestionEntry(
@@ -182,7 +193,7 @@ export const loadSelectedQuestionContent = Effect.fn(
 ) {
   const questionBanks = yield* indexQuestionBanks(tryoutSources);
   const sources = yield* Effect.forEach(
-    [...new Set(questionKeys)],
+    Arr.dedupe(questionKeys),
     (questionKey) =>
       Effect.gen(function* () {
         const location = yield* decodeQuestionPath(

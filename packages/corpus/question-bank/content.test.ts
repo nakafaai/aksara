@@ -1,10 +1,9 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
-import { Effect, FileSystem, Path } from "effect";
+import { Effect, FileSystem, HashSet, Path } from "effect";
 import {
   loadQuestionContent,
   loadSelectedQuestionContent,
@@ -32,7 +31,7 @@ const readingSourceRoot = `packages/corpus/${readingQuestionKey}`;
 /** Builds one synthetic question registry Effect without hiding its error type. */
 function registry(
   discoveredEntries: readonly string[],
-  items: ReadonlyMap<string, string>
+  items: Iterable<readonly [string, string]>
 ) {
   return loadQuestionContent(corpusRoot, realTryoutSources).pipe(
     Effect.provide(makeQuestionRegistryLayer(discoveredEntries, items))
@@ -42,7 +41,7 @@ function registry(
 /** Projects one synthetic question registry without leaving Effect. */
 function questionRegistry(
   discoveredEntries: readonly string[],
-  items: ReadonlyMap<string, string>
+  items: Iterable<readonly [string, string]>
 ) {
   return registry(discoveredEntries, items).pipe(
     Effect.map(({ entries }) => entries)
@@ -52,7 +51,7 @@ function questionRegistry(
 /** Returns one typed registry rejection for native Effect composition. */
 function rejectRegistry(
   discoveredEntries: readonly string[],
-  items: ReadonlyMap<string, string>
+  items: Iterable<readonly [string, string]>
 ) {
   return questionRegistry(discoveredEntries, items).pipe(Effect.flip);
 }
@@ -83,12 +82,14 @@ layer(NodeServices.layer)("question registry", (it) => {
 
         expect(entries).toHaveLength(7400);
         expect(
-          new Set(
-            entries.map(
-              ({ artifactLocale, contentKey }) =>
-                `${contentKey}\0${artifactLocale}`
+          HashSet.size(
+            HashSet.fromIterable(
+              entries.map(
+                ({ artifactLocale, contentKey }) =>
+                  `${contentKey}\0${artifactLocale}`
+              )
             )
-          ).size
+          )
         ).toBe(7400);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
@@ -228,16 +229,14 @@ layer(NodeServices.layer)("question registry", (it) => {
             ({ sourceRoot }) => sourceRoot === entry.sourceRoot
           )
         );
+        const path = yield* Path.Path;
         const rawMdx = yield* fileSystem.readFileString(
-          resolve(corpusRoot, entry.sourcePath)
+          path.resolve(corpusRoot, entry.sourcePath)
         );
         const [document, error] = yield* Effect.all([
           readQuestionDocument(corpusRoot, entry, source.item),
           readQuestionDocument(corpusRoot, entry, source.item).pipe(
-            Effect.provide([
-              makeQuestionSourceLayer([], new Map()),
-              Path.layer,
-            ]),
+            Effect.provide([makeQuestionSourceLayer([], []), Path.layer]),
             Effect.flip
           ),
         ]);
@@ -273,7 +272,7 @@ layer(NodeServices.layer)("question registry", (it) => {
 
   it.effect("allows an empty checkout without inventing entries", () =>
     Effect.gen(function* () {
-      const entries = yield* questionRegistry([], new Map());
+      const entries = yield* questionRegistry([], []);
       expect(entries).toEqual([]);
     })
   );

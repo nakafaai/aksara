@@ -1,4 +1,4 @@
-import { Predicate, Schema } from "effect";
+import { MutableHashSet, Predicate, Record as Rec, Schema } from "effect";
 import type {
   Expression,
   ObjectExpression,
@@ -15,6 +15,19 @@ export type StaticLiteral =
   | string
   | readonly StaticLiteral[]
   | { readonly [key: string]: StaticLiteral };
+
+/** Schema of every static literal value, recursive through its arrays and objects. */
+export const StaticLiteralSchema: Schema.Codec<StaticLiteral> = Schema.suspend(
+  (): Schema.Codec<StaticLiteral> =>
+    Schema.Union([
+      Schema.Boolean,
+      Schema.Null,
+      Schema.Finite,
+      Schema.String,
+      Schema.Array(StaticLiteralSchema),
+      Schema.Record(Schema.String, StaticLiteralSchema),
+    ])
+);
 
 /** Stable reasons for rejecting syntax outside the static literal subset. */
 export const StaticLiteralSyntaxReasonSchema = Schema.Literals([
@@ -133,7 +146,7 @@ function decodeObject(
   readNumber: NumberReader
 ): StaticLiteralResult {
   const entries: [string, StaticLiteral][] = [];
-  const names = new Set<string>();
+  const names = MutableHashSet.empty<string>();
   for (const property of node.properties) {
     if (property.type === "SpreadElement") {
       return failed("spread", property.argument);
@@ -148,17 +161,17 @@ function decodeObject(
     if (name === undefined) {
       return failed("unsupported-property", property);
     }
-    if (names.has(name)) {
+    if (MutableHashSet.has(names, name)) {
       return failed("duplicate-property", property);
     }
     const decoded = decode(property.value, readNumber);
     if (!decoded.success) {
       return decoded;
     }
-    names.add(name);
+    MutableHashSet.add(names, name);
     entries.push([name, decoded.value]);
   }
-  return { success: true, value: Object.fromEntries(entries) };
+  return { success: true, value: Rec.fromEntries(entries) };
 }
 
 /** Reads a number that is written directly, with an optional sign. */

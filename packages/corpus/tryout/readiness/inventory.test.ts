@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, Struct } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import {
@@ -248,8 +248,8 @@ describe("assessment question readiness", () => {
         });
         const single = yield* Effect.fromNullishOr(
           questions.find(({ item }) =>
-            Object.values(item.responses).some(
-              (response) => response?.kind === "single-choice"
+            Struct.keys(item.responses).some(
+              (key) => item.responses[key]?.kind === "single-choice"
             )
           )
         );

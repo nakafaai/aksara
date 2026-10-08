@@ -2,7 +2,7 @@ import type {
   ContentKey,
   CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Effect, type HashSet } from "effect";
 import {
   ExecutablePolicyError,
   type ExecutablePolicyViolation,
@@ -30,7 +30,7 @@ export type SourcePolicyError =
 export function createSourcePolicy(
   contentKey: ContentKey,
   sourcePath: CorpusSourcePath,
-  allowedComponents: ReadonlySet<string>
+  allowedComponents: HashSet.HashSet<string>
 ) {
   const headingPolicy = createHeadingPolicy(contentKey, sourcePath);
   const mathVisualPolicy = createMathVisualPolicy(contentKey);

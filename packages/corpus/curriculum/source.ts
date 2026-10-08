@@ -1,6 +1,6 @@
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -25,14 +25,14 @@ export class CurriculumCatalogError extends Schema.TaggedError<CurriculumCatalog
 export const validateCurriculumCatalog = Effect.fn(
   "AksaraCorpus.validateCurriculumCatalog"
 )(function* (curricula: readonly CurriculumSource[]) {
-  const programKeys = new Set<string>();
+  const programKeys = MutableHashSet.empty<string>();
   for (const curriculum of curricula) {
-    if (programKeys.has(curriculum.programKey)) {
+    if (MutableHashSet.has(programKeys, curriculum.programKey)) {
       return yield* new CurriculumCatalogError({
         programKey: curriculum.programKey,
       });
     }
-    programKeys.add(curriculum.programKey);
+    MutableHashSet.add(programKeys, curriculum.programKey);
   }
   return [...curricula].sort((left, right) =>
     compareCodeUnits(left.programKey, right.programKey)

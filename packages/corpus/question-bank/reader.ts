@@ -1,7 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Record as Rec, Schema } from "effect";
 import {
   type Expression,
   isArrayLiteralExpression,
@@ -66,19 +66,23 @@ function readStaticValue(expression: Expression): unknown {
     return;
   }
 
-  const values = new Map<string, unknown>();
+  const values = MutableHashMap.empty<string, unknown>();
   for (const property of expression.properties) {
     if (!isPropertyAssignment(property)) {
       return;
     }
     const name = readPropertyName(property.name);
     const value = readStaticValue(property.initializer);
-    if (name === undefined || value === undefined || values.has(name)) {
+    if (
+      name === undefined ||
+      value === undefined ||
+      MutableHashMap.has(values, name)
+    ) {
       return;
     }
-    values.set(name, value);
+    MutableHashMap.set(values, name, value);
   }
-  return Object.fromEntries(values);
+  return Rec.fromEntries(values);
 }
 
 /** Confirms the module's sole import is the authoring-only item type. */

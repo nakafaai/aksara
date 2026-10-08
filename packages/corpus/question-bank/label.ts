@@ -5,7 +5,7 @@ import type {
   QuestionResponseSource,
 } from "@nakafa/aksara-contracts/question/item";
 import type { QuestionRubricLabel } from "@nakafa/aksara-contracts/question/rubric";
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Struct } from "effect";
 import type { InlineCode, Nodes, Text } from "mdast";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -211,7 +211,8 @@ export const validateQuestionLabels = Effect.fn(
   item: QuestionItem,
   sourcePath: typeof CorpusSourcePathSchema.Type
 ) {
-  for (const [locale, response] of Object.entries(item.responses)) {
+  for (const locale of Struct.keys(item.responses)) {
+    const response = item.responses[locale];
     if (response === undefined) {
       continue;
     }
