@@ -2,20 +2,16 @@ import { expect, layer } from "@effect/vitest";
 import { Array as Arr } from "effect";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import {
+  MATRIX_COMMAND_STEP,
+  MATRIX_KEY_EDITS,
+  PUBLISHER_LEG,
+  SILENT_PASS_EDITS,
+  STRATEGY_BLOCK_PATTERN,
+} from "#scripts/workflow/test/ci";
+import {
   sourceTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
-
-const DOLLAR = "$";
-const MATRIX_COMMAND_STEP = `run: ${DOLLAR}{{ matrix.command }}`;
-const STRATEGY_BLOCK_PATTERN = / {4}strategy:[\s\S]*?\n {4}steps:/u;
-const PUBLISHER_LEG = Arr.join(
-  [
-    "          - group: publisher",
-    "            command: pnpm exec turbo run test --filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-cli --concurrency=1",
-  ],
-  "\n"
-);
 
 type Rejects = (
   ci: string,
@@ -130,34 +126,9 @@ layer(workflowSourcesLayer)("CI workflow policy", (layered) => {
   }) => {
     const message =
       "The test job may carry only the keys that run each test group";
-    rejects(
-      source.replace(
-        "    timeout-minutes: 20\n    strategy:",
-        `    timeout-minutes: 20\n    continue-on-error: ${DOLLAR}{{ matrix.group == 'voice' }}\n    strategy:`
-      ),
-      message
-    );
-    rejects(
-      source.replace(
-        MATRIX_COMMAND_STEP,
-        `continue-on-error: true\n        ${MATRIX_COMMAND_STEP}`
-      ),
-      message
-    );
-    rejects(
-      source.replace(
-        MATRIX_COMMAND_STEP,
-        `if: matrix.group != 'voice'\n        ${MATRIX_COMMAND_STEP}`
-      ),
-      message
-    );
-    rejects(
-      source.replace(
-        MATRIX_COMMAND_STEP,
-        `shell: "true {0}"\n        ${MATRIX_COMMAND_STEP}`
-      ),
-      message
-    );
+    for (const { from, to } of SILENT_PASS_EDITS) {
+      rejects(source.replace(from, to), message);
+    }
   });
 
   it("keeps every test group running after one group fails", ({
@@ -191,27 +162,9 @@ layer(workflowSourcesLayer)("CI workflow policy", (layered) => {
     rejects,
   }) => {
     const message = "The test job must run one matrix leg per test group";
-    rejects(
-      source.replace(
-        "      matrix:\n        include:",
-        "      matrix:\n        exclude:\n          - group: voice\n        include:"
-      ),
-      message
-    );
-    rejects(
-      source.replace(
-        "      matrix:\n        include:",
-        "      matrix:\n        shard: [1, 2]\n        include:"
-      ),
-      message
-    );
-    rejects(
-      source.replace(
-        "- group: voice",
-        "- group: voice\n            os: ubuntu-latest"
-      ),
-      message
-    );
+    for (const { from, to } of MATRIX_KEY_EDITS) {
+      rejects(source.replace(from, to), message);
+    }
   });
 
   it("runs every test target in exactly one group", ({
