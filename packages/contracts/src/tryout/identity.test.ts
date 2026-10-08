@@ -75,27 +75,27 @@ describe("try-out identity golden strings", () => {
           TryoutCatalogNodeIdentitySchema
         )({
           appLocale: "en",
-          countryKey: "indonesia",
+          countryKey: "test-country",
           kind: "country",
         });
         const exam = yield* Schema.decodeEffect(
           TryoutCatalogNodeIdentitySchema
         )({
           appLocale: "en",
-          countryKey: "indonesia",
-          examKey: "snbt",
+          countryKey: "test-country",
+          examKey: "test-exam",
           kind: "exam",
         });
         const section = yield* Schema.decodeEffect(
           TryoutCatalogNodeIdentitySchema
         )({
           appLocale: "en",
-          countryKey: "indonesia",
-          examKey: "snbt",
+          countryKey: "test-country",
+          examKey: "test-exam",
           kind: "section",
-          sectionKey: "quantitative-knowledge",
-          setKey: "set-1",
-          trackKey: "2027",
+          sectionKey: "test-section",
+          setKey: "test-set",
+          trackKey: "test-track",
         });
         const placements = makeTryoutTestRows().placements.map(
           ({ row }) => row
@@ -105,13 +105,13 @@ describe("try-out identity golden strings", () => {
         );
 
         expect(tryoutCatalogNodeIdentity(country)).toBe(
-          "en\u0000country\u0000indonesia\u0000\u0000\u0000\u0000"
+          "en\u0000country\u0000test-country\u0000\u0000\u0000\u0000"
         );
         expect(tryoutCatalogNodeIdentity(exam)).toBe(
-          "en\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000"
+          "en\u0000exam\u0000test-country\u0000test-exam\u0000\u0000\u0000"
         );
         expect(tryoutCatalogNodeIdentity(section)).toBe(
-          "en\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge"
+          "en\u0000section\u0000test-country\u0000test-exam\u0000test-track\u0000test-set\u0000test-section"
         );
         expect(tryoutPlacementIdentity(base)).toBe(
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u00001\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question\u0000en"
