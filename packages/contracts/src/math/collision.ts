@@ -1,4 +1,13 @@
-import type { BigDecimal } from "effect";
+import {
+  Array as Arr,
+  type BigDecimal,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Schema,
+} from "effect";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 import type {
   SceneAxis,
@@ -12,9 +21,11 @@ import { radialGeometryPath } from "#contracts/math/scene";
 
 /** Keeps one authored issue path for each exact path value. */
 function uniquePaths(paths: readonly ScenePath[]) {
-  return [
-    ...new Map(paths.map((path) => [JSON.stringify(path), path])).values(),
-  ];
+  const byText = MutableHashMap.empty<string, ScenePath>();
+  for (const path of paths) {
+    MutableHashMap.set(byText, encodeJson(path), path);
+  }
+  return Arr.fromIterable(MutableHashMap.values(byText));
 }
 
 /** Finds reportable scene coordinates that collapse on the same axis. */
@@ -28,7 +39,9 @@ export function coordinateCollisionPaths(
       const entries = coordinates.filter((entry) => entry.axis === axis);
       const unresolved = unresolvedProximityIndexes(entries, threshold);
       return entries.flatMap((entry, index) =>
-        entry.reportable && unresolved.has(index) ? [entry.path] : []
+        entry.reportable && MutableHashSet.has(unresolved, index)
+          ? [entry.path]
+          : []
       );
     })
   );
@@ -39,7 +52,7 @@ export function concentricRadiusCollisionPaths(
   objects: readonly PlaneMathObject[],
   threshold: BigDecimal.BigDecimal
 ) {
-  const groups = new Map<
+  const groups = MutableHashMap.empty<
     string,
     Array<{
       readonly index: number;
@@ -52,15 +65,15 @@ export function concentricRadiusCollisionPaths(
       continue;
     }
     const key = `${object.center.x}:${object.center.y}`;
-    const group = groups.get(key) ?? [];
+    const group = Option.getOrUndefined(MutableHashMap.get(groups, key)) ?? [];
     group.push({ index, kind: object.kind, value: numberRatio(object.radius) });
-    groups.set(key, group);
+    MutableHashMap.set(groups, key, group);
   }
   const paths: ScenePath[] = [];
-  for (const group of groups.values()) {
+  for (const group of MutableHashMap.values(groups)) {
     const unresolved = unresolvedProximityIndexes(group, threshold);
     for (const [entryIndex, entry] of group.entries()) {
-      if (unresolved.has(entryIndex)) {
+      if (MutableHashSet.has(unresolved, entryIndex)) {
         paths.push(radialGeometryPath(entry.kind, entry.index));
       }
     }

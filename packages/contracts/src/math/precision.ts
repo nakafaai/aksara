@@ -1,4 +1,4 @@
-import { BigDecimal, Array as EffectArray } from "effect";
+import { BigDecimal, Array as EffectArray, Record as Rec } from "effect";
 
 import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
@@ -175,13 +175,13 @@ export function polygonAltitudeUnresolved(
       ),
     };
     const crossSquared = BigDecimal.sumAll(
-      Object.values(cross).map((value) => BigDecimal.multiply(value, value))
+      Rec.values(cross).map((value) => BigDecimal.multiply(value, value))
     );
     if (BigDecimal.isZero(crossSquared)) {
       continue;
     }
     const baselineSquared = BigDecimal.sumAll(
-      Object.values(baseline).map((value) => BigDecimal.multiply(value, value))
+      Rec.values(baseline).map((value) => BigDecimal.multiply(value, value))
     );
     if (
       BigDecimal.isLessThan(
