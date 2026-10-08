@@ -45,7 +45,7 @@ function parsedView(
 }
 
 /** Parsed syntax and diagnostics belonging to the same immutable snapshot. */
-export type ParsedTypeScript = ReturnType<typeof parsedView>;
+export type ParsedTypeScript = Readonly<ReturnType<typeof parsedView>>;
 
 /** Scoped native parser shared by one source-discovery or policy operation. */
 export class TypeScriptParser extends Context.Service<
