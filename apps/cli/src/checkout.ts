@@ -10,6 +10,8 @@ export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutErro
   }
 ) {}
 
+const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
+
 /** Reads one package identity without accepting malformed JSON as evidence. */
 const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
   root: string
@@ -21,14 +23,10 @@ const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
     .readFileString(manifestPath, "utf8")
     .pipe(Effect.option);
   return Option.flatMap(source, (manifest) =>
-    Option.flatMap(
-      Option.liftThrowable((value: string): unknown => JSON.parse(value))(
-        manifest
-      ),
-      (value) =>
-        Predicate.isObject(value) && Predicate.isString(value.name)
-          ? Option.some(value.name)
-          : Option.none()
+    Option.flatMap(Schema.decodeOption(JSON_TEXT)(manifest), (value) =>
+      Predicate.isObject(value) && Predicate.isString(value.name)
+        ? Option.some(value.name)
+        : Option.none()
     )
   );
 });

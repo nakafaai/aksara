@@ -31,13 +31,6 @@ export interface LocalPreviewSession {
   >;
 }
 
-interface OpenPreviewInput {
-  readonly appLocale?: AppLocale;
-  readonly cwd: string;
-  readonly environment: PreviewEnvironment;
-  readonly requestedDocument: string;
-}
-
 type PreviewRepositories = Parameters<PreviewProvider["pending"]>[0];
 
 /** Publishes one typed failure without leaking nested unknown causes. */
@@ -148,7 +141,12 @@ export function refreshDocument(
 
 /** Opens the real final-corpus preview without filesystem or published fallback. */
 export const openLocalPreview = Effect.fn("AksaraCli.openLocalPreview")(
-  function* (input: OpenPreviewInput) {
+  function* (input: {
+    readonly appLocale?: AppLocale;
+    readonly cwd: string;
+    readonly environment: PreviewEnvironment;
+    readonly requestedDocument: string;
+  }) {
     const renderer = yield* openRendererSession({
       cwd: input.cwd,
       environment: input.environment,

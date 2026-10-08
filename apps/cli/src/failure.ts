@@ -30,6 +30,7 @@ const ProductionStageSchema = Schema.Literals([
 export type ProductionStage = typeof ProductionStageSchema.Type;
 const ActivationPhaseSchema = Schema.Literals(["cache", "preflight"]);
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Sanitized production failure emitted by the outer CLI boundary. */
 export class ProductionError extends Schema.TaggedError<ProductionError>()(
@@ -55,7 +56,7 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
 ) {
   /** Exposes the complete secret-free production evidence at the CLI boundary. */
   get message() {
-    return `Production ${this.stage} failed with ${this.failure}: ${JSON.stringify(this)}`;
+    return `Production ${this.stage} failed with ${this.failure}: ${encodeJson(this)}`;
   }
 }
 
