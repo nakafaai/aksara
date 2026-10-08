@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { NodeServices } from "@effect/platform-node";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
@@ -231,8 +232,11 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
 const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
   readFileSync(path, "utf8")
 );
+const repositoryFiles = await Effect.runPromise(
+  trackedFiles().pipe(Effect.provide(NodeServices.layer))
+);
 const sourceViolations = await Effect.runPromise(
-  Effect.forEach(typescriptFiles(), (file) =>
+  Effect.forEach(typescriptFiles(repositoryFiles), (file) =>
     Effect.gen(function* () {
       const source = yield* Effect.try({
         catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
@@ -258,7 +262,7 @@ const workspaceSourceCondition = sourceConditionFromConfig(
 );
 enforceViolations(
   "Workspace source conditions must resolve before generated output",
-  trackedFiles()
+  repositoryFiles
     .filter((file) => WORKSPACE_MANIFEST_PATTERN.test(file))
     .flatMap((file) =>
       sourceConditionViolations(

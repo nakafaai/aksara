@@ -26,7 +26,11 @@ import {
   type SourceFile,
 } from "typescript/unstable/ast";
 
-import { enforceViolations, typescriptFiles } from "#scripts/check/files";
+import {
+  enforceViolations,
+  trackedFiles,
+  typescriptFiles,
+} from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
 
@@ -195,7 +199,9 @@ export const documentationReport = Effect.fn(
 
 runEntry(
   import.meta.main,
-  documentationReport(typescriptFiles()).pipe(
+  trackedFiles().pipe(
+    Effect.map(typescriptFiles),
+    Effect.flatMap(documentationReport),
     Effect.provide(TypeScriptParser.layer)
   )
 );

@@ -185,4 +185,4 @@ export const pathReport = Effect.fn("AksaraPolicy.pathReport")(
     })
 );
 
-runEntry(import.meta.main, pathReport(trackedFiles()));
+runEntry(import.meta.main, trackedFiles().pipe(Effect.flatMap(pathReport)));

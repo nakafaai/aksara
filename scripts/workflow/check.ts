@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { Effect } from "effect";
 import { trackedFiles } from "#scripts/check/files";
+import { runEntry } from "#scripts/entry";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
@@ -56,6 +58,7 @@ export interface WorkflowSources {
   readonly cli: string;
   readonly contracts: string;
   readonly release: string;
+  readonly testTargets: readonly string[];
 }
 
 /** Verifies one source-only contract archive and one content release path. */
@@ -65,6 +68,7 @@ export function verifyWorkflows({
   cli,
   contracts,
   release,
+  testTargets,
 }: WorkflowSources): void {
   const releaseCombined = `${ci}\n${contracts}\n${release}`;
   const combined = `${releaseCombined}\n${cli}`;
@@ -88,7 +92,7 @@ export function verifyWorkflows({
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
   verifyWorkflowToolchains([...new Set([ci, cli, contracts, release, ...all])]);
-  verifyCiWorkflow(ci, repositoryTestTargets());
+  verifyCiWorkflow(ci, testTargets);
   verifyCliWorkflow(cli);
   assert.match(
     ci,
@@ -229,15 +233,25 @@ export function verifyWorkflows({
   verifyPublicationWorkflow(release, all);
 }
 
-const workflowPaths = trackedFiles().filter((path) =>
-  WORKFLOW_PATH_PATTERN.test(path)
-);
-const trackedSources = workflowPaths.map((path) => readFileSync(path, "utf8"));
-verifyWorkflows({
-  all: trackedSources,
-  ci: readFileSync(".github/workflows/ci.yml", "utf8"),
-  cli: readFileSync(".github/workflows/cli.yml", "utf8"),
-  contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
-  release: readFileSync(".github/workflows/release.yml", "utf8"),
+/** Verifies the tracked workflow files of this repository and reports success. */
+export const verifyRepositoryWorkflows = Effect.fn(
+  "AksaraWorkflow.verifyRepository"
+)(function* () {
+  const workflowPaths = (yield* trackedFiles()).filter((path) =>
+    WORKFLOW_PATH_PATTERN.test(path)
+  );
+  const trackedSources = workflowPaths.map((path) =>
+    readFileSync(path, "utf8")
+  );
+  verifyWorkflows({
+    all: trackedSources,
+    ci: readFileSync(".github/workflows/ci.yml", "utf8"),
+    cli: readFileSync(".github/workflows/cli.yml", "utf8"),
+    contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
+    release: readFileSync(".github/workflows/release.yml", "utf8"),
+    testTargets: yield* repositoryTestTargets(),
+  });
+  process.stdout.write("Verified immutable contract and content workflows.\n");
 });
-process.stdout.write("Verified immutable contract and content workflows.\n");
+
+runEntry(import.meta.main, verifyRepositoryWorkflows());

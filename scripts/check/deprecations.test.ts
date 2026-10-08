@@ -138,7 +138,15 @@ oldApi();
         .spyOn(process.stderr, "write")
         .mockImplementation(() => true);
 
-      yield* deprecationReport(["tsconfig.json", "source.ts"], root);
+      yield* Effect.acquireUseRelease(
+        Effect.sync(() => {
+          const previous = process.cwd();
+          process.chdir(root);
+          return previous;
+        }),
+        () => deprecationReport(["tsconfig.json", "source.ts"]),
+        (previous) => Effect.sync(() => process.chdir(previous))
+      );
 
       expect(write).toHaveBeenCalledWith(
         "TypeScript APIs must not be deprecated:\nsource.ts:4:1 TS6387 The signature '(): void' of 'oldApi' is deprecated.\n"

@@ -11,7 +11,11 @@ import {
 } from "effect";
 import { isJSDoc, type SourceFile } from "typescript/unstable/ast";
 
-import { enforceViolations, typescriptFiles } from "#scripts/check/files";
+import {
+  enforceViolations,
+  trackedFiles,
+  typescriptFiles,
+} from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
 
@@ -118,5 +122,9 @@ export const lineReport = Effect.fn("AksaraPolicy.lineReport")(function* (
 
 runEntry(
   import.meta.main,
-  lineReport(typescriptFiles()).pipe(Effect.provide(TypeScriptParser.layer))
+  trackedFiles().pipe(
+    Effect.map(typescriptFiles),
+    Effect.flatMap(lineReport),
+    Effect.provide(TypeScriptParser.layer)
+  )
 );

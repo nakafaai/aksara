@@ -281,6 +281,7 @@ const multiple = require("first", "second");
     Effect.gen(function* () {
       vi.resetModules();
       vi.doMock("#scripts/check/files", () => ({
+        trackedFiles: () => Effect.succeed([]),
         typescriptFiles: () => ["test-missing-source.ts"],
       }));
       const failure = yield* Effect.tryPromise(

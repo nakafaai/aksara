@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { posix } from "node:path";
-import { Option, Schema } from "effect";
+import { Effect, Option, Schema } from "effect";
 import { parseDocument } from "yaml";
 import { trackedFiles } from "#scripts/check/files";
 
@@ -85,9 +85,12 @@ export function manifestPaths(
 }
 
 /** Lists every test target the repository owns, read from its tracked manifests. */
-export function repositoryTestTargets(): readonly string[] {
+export const repositoryTestTargets = Effect.fn(
+  "AksaraWorkflow.repositoryTestTargets"
+)(function* () {
+  const trackedPaths = yield* trackedFiles();
   return manifestPaths(
     readFileSync(WORKSPACE_FILE, "utf8"),
-    trackedFiles()
+    trackedPaths
   ).flatMap((path) => manifestTestTargets(path, readFileSync(path, "utf8")));
-}
+});

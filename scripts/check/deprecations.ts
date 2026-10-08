@@ -127,9 +127,10 @@ export const uncoveredTypeScriptViolations = Effect.fn(
   });
 });
 
-/** Audits every project in the repository and reports deprecated API use. */
+/** Audits every project in the working directory and reports deprecated API use. */
 export const deprecationReport = Effect.fn("AksaraPolicy.deprecationReport")(
-  function* (repositoryFiles: readonly string[], currentRoot: string) {
+  function* (repositoryFiles: readonly string[]) {
+    const currentRoot = process.cwd();
     const path = yield* Path.Path;
     const projectAudits = yield* Effect.forEach(
       projectConfigPaths(repositoryFiles),
@@ -152,4 +153,7 @@ export const deprecationReport = Effect.fn("AksaraPolicy.deprecationReport")(
   }
 );
 
-runEntry(import.meta.main, deprecationReport(trackedFiles(), process.cwd()));
+runEntry(
+  import.meta.main,
+  trackedFiles().pipe(Effect.flatMap(deprecationReport))
+);

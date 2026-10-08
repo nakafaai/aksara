@@ -13,7 +13,11 @@ import {
   SyntaxKind,
 } from "typescript/unstable/ast";
 
-import { enforceViolations, typescriptFiles } from "#scripts/check/files";
+import {
+  enforceViolations,
+  trackedFiles,
+  typescriptFiles,
+} from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
 
@@ -111,5 +115,9 @@ export const effectReport = Effect.fn("AksaraPolicy.effectReport")(function* (
 
 runEntry(
   import.meta.main,
-  effectReport(typescriptFiles()).pipe(Effect.provide(TypeScriptParser.layer))
+  trackedFiles().pipe(
+    Effect.map(typescriptFiles),
+    Effect.flatMap(effectReport),
+    Effect.provide(TypeScriptParser.layer)
+  )
 );
