@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { Array as Arr, Option, pipe, Record as Rec, Schema } from "effect";
 import {
   decodeWorkflow,
   exactNeeds,
@@ -8,13 +9,15 @@ import {
   type WorkflowJob,
 } from "#scripts/workflow/decode";
 
-export interface NpmWorkflowContract {
-  readonly packageArtifact: string;
-  readonly publishSha256: string;
-  readonly repository: string;
-  readonly verifierArtifact: string;
-  readonly workflowPath: string;
-}
+const NpmWorkflowContractSchema = Schema.Struct({
+  packageArtifact: Schema.String,
+  publishSha256: Schema.String,
+  repository: Schema.String,
+  verifierArtifact: Schema.String,
+  workflowPath: Schema.String,
+});
+
+export type NpmWorkflowContract = typeof NpmWorkflowContractSchema.Type;
 
 const DOLLAR = "$";
 const DOWNLOAD_ACTION =
@@ -23,6 +26,7 @@ const SETUP_NODE_ACTION =
   "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020";
 const UPLOAD_ACTION =
   "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a";
+const JsonTextSchema = Schema.fromJsonString(Schema.Unknown);
 const FORBIDDEN_CREDENTIAL = /NODE_AUTH_TOKEN|NPM_TOKEN|_authToken/u;
 const FORBIDDEN_SOURCE =
   /@base64d|bundle\.dsseEnvelope\.payload|is_exact_provenance\(\)/u;
@@ -35,12 +39,12 @@ function hasRerunnableArtifacts(
   build: WorkflowJob,
   contract: NpmWorkflowContract
 ) {
-  const uploads = build.steps.filter(({ uses }) => uses === UPLOAD_ACTION);
+  const uploads = Arr.filter(build.steps, ({ uses }) => uses === UPLOAD_ACTION);
   return (
     uploads.length === 2 &&
-    uploads.every(({ with: inputs }) => inputs?.overwrite === true) &&
-    [contract.packageArtifact, contract.verifierArtifact].every((name) =>
-      uploads.some(({ with: inputs }) => inputs?.name === name)
+    Arr.every(uploads, ({ with: inputs }) => inputs?.overwrite === true) &&
+    Arr.every([contract.packageArtifact, contract.verifierArtifact], (name) =>
+      Arr.some(uploads, ({ with: inputs }) => inputs?.name === name)
     )
   );
 }
@@ -137,7 +141,7 @@ export function verifyNpmWorkflow(
     {},
     "npm verification permissions must remain empty"
   );
-  for (const [name, job] of Object.entries(jobs)) {
+  for (const [name, job] of Rec.toEntries(jobs)) {
     if (name !== "build" && name !== "publish") {
       assert.equal(
         job.permissions?.["id-token"],
@@ -220,7 +224,9 @@ export function verifyNpmWorkflow(
     ["publication", publish],
     ["verification", verify],
   ] as const) {
-    const setup = job.steps.find(({ uses }) => uses === SETUP_NODE_ACTION);
+    const setup = Option.getOrUndefined(
+      Arr.findFirst(job.steps, ({ uses }) => uses === SETUP_NODE_ACTION)
+    );
     assert.equal(
       setup?.with?.["node-version"],
       "24.21.0",
@@ -233,10 +239,12 @@ export function verifyNpmWorkflow(
     );
   }
 
-  const publishCommands = publish.steps
-    .flatMap(({ run }) => (run === undefined ? [] : [run]))
-    .map(executableSource)
-    .join("\n");
+  const publishCommands = pipe(
+    publish.steps,
+    Arr.flatMap(({ run }) => (run === undefined ? [] : [run])),
+    Arr.map(executableSource),
+    Arr.join("\n")
+  );
   assert.ok(
     publishCommands.split('npx --yes "$NPM_CLI" publish "$TARBALL"').length ===
       2,
@@ -251,11 +259,14 @@ export function verifyNpmWorkflow(
     "npm publication must not receive the verifier artifact"
   );
   assert.ok(
-    publish.steps.every(({ uses }) => !uses?.startsWith("actions/checkout@")),
+    Arr.every(
+      publish.steps,
+      ({ uses }) => !uses?.startsWith("actions/checkout@")
+    ),
     "npm publication must not checkout repository code"
   );
   const publishSha256 = createHash("sha256")
-    .update(JSON.stringify(publish))
+    .update(Schema.encodeSync(JsonTextSchema)(publish))
     .digest("hex");
   assert.equal(
     publishSha256,
@@ -263,10 +274,12 @@ export function verifyNpmWorkflow(
     "npm publication must match the exact trusted job"
   );
 
-  const verifyCommands = verify.steps
-    .flatMap(({ run }) => (run === undefined ? [] : [run]))
-    .map(executableSource)
-    .join("\n");
+  const verifyCommands = pipe(
+    verify.steps,
+    Arr.flatMap(({ run }) => (run === undefined ? [] : [run])),
+    Arr.map(executableSource),
+    Arr.join("\n")
+  );
   assert.equal(
     verifyCommands.split('node "$VERIFIER"').length,
     2,

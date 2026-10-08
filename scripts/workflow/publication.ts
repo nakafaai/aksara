@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Array as Arr } from "effect";
 import { isSeq, parseDocument } from "yaml";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
@@ -75,7 +76,7 @@ export function verifyPublicationWorkflow(
     "Content releases must validate and pass one explicit scalable scope"
   );
   assert.equal(
-    all.filter((source) => OPERATION_PATTERN.test(source)).length,
+    Arr.filter(all, (source) => OPERATION_PATTERN.test(source)).length,
     1,
     "Only one workflow may own content publication"
   );

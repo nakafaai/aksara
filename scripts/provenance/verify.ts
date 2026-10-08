@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { ProvenanceBundleVerifier } from "#scripts/provenance/bundle";
 import {
   AuditSchema,
@@ -42,7 +42,8 @@ export const verifyProvenance = Effect.fn("AksaraProvenance.verify")(function* (
   }
 
   const expectedUrl = expectedAttestationUrl(expectation);
-  const publications = audit.verified.filter(
+  const publications = Arr.filter(
+    audit.verified,
     (entry) =>
       entry.name === expectation.packageName &&
       entry.version === expectation.packageVersion &&
@@ -56,7 +57,8 @@ export const verifyProvenance = Effect.fn("AksaraProvenance.verify")(function* (
     });
   }
 
-  const bundles = publication.attestationBundles.filter(
+  const bundles = Arr.filter(
+    publication.attestationBundles,
     ({ predicateType }) => predicateType === SLSA_PREDICATE
   );
   const [bundle] = bundles;

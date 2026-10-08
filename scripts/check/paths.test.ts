@@ -1,5 +1,13 @@
-import { describe, expect, it } from "@effect/vitest";
-import { pathViolations } from "#scripts/check/paths";
+import { afterEach, describe, expect, it } from "@effect/vitest";
+import { Effect } from "effect";
+import { pathReport, pathViolations } from "#scripts/check/paths";
+
+const originalExitCode = process.exitCode;
+
+afterEach(() => {
+  process.exitCode = originalExitCode;
+  vi.restoreAllMocks();
+});
 
 describe("path policy", () => {
   it("rejects alternate toolchains, JavaScript, and multi-word names", () => {
@@ -114,4 +122,19 @@ describe("path policy", () => {
       "packages/corpus/question-bank/two-words/item.ts: two-words must be one word",
     ]);
   });
+
+  it.effect("reports every violation through the path report", () =>
+    Effect.gen(function* () {
+      const write = vi
+        .spyOn(process.stderr, "write")
+        .mockImplementation(() => true);
+
+      yield* pathReport(["src/legacy.jsx", "src/ok.ts"]);
+
+      expect(write).toHaveBeenCalledWith(
+        "Repository path policy violations:\nsrc/legacy.jsx: hand-written JavaScript source is not allowed\n"
+      );
+      expect(process.exitCode).toBe(1);
+    })
+  );
 });

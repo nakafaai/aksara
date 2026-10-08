@@ -1,45 +1,62 @@
-import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
 
-const GIT_OUTPUT_LIMIT = 16 * 1024 * 1024;
+import { runGit } from "#scripts/git";
+
 const TYPESCRIPT_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
 const VENDORED_PATH_PREFIX = "repos/";
 const GENERATED_PATH_PATTERN =
   /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
 
-/** Parses Git output while excluding missing files and vendored references. */
-export function parseTrackedFiles(
-  output: string,
-  pathExists: (path: string) => boolean
-): readonly string[] {
-  return output
-    .split("\n")
-    .filter(
-      (file) =>
-        file.length > 0 &&
-        !file.startsWith(VENDORED_PATH_PREFIX) &&
-        pathExists(file)
-    );
-}
+/** Git could not list the repository's tracked files. */
+export class TrackedFilesError extends Schema.TaggedError<TrackedFilesError>()(
+  "TrackedFilesError",
+  { message: Schema.String }
+) {}
+
+/** Runs Git in the working directory and returns its standard output. */
+const gitOutput = Effect.fn("AksaraPolicy.gitOutput")(function* (
+  args: readonly string[]
+) {
+  const result = yield* runGit(args);
+  if (result.exitCode !== 0) {
+    return yield* new TrackedFilesError({
+      message: `git ${Arr.join(args, " ")} failed: ${result.stderr.trim()}`,
+    });
+  }
+  if (result.stderr !== "") {
+    // Git's warnings about a successful listing, such as an unreadable exclude
+    // file, still reach the script's stderr.
+    yield* Effect.sync(() => process.stderr.write(result.stderr));
+  }
+  return result.stdout;
+});
 
 /** Lists Git-known repository files that still exist on disk. */
-export function trackedFiles(): readonly string[] {
-  const output = execFileSync(
-    "git",
-    ["ls-files", "--cached", "--others", "--exclude-standard"],
-    {
-      encoding: "utf8",
-      maxBuffer: GIT_OUTPUT_LIMIT,
-    }
-  );
-  return parseTrackedFiles(output, existsSync);
-}
+export const trackedFiles = Effect.fn("AksaraPolicy.trackedFiles")(
+  function* () {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const output = yield* gitOutput([
+      "ls-files",
+      "--cached",
+      "--others",
+      "--exclude-standard",
+    ]);
+    const listed = Arr.filter(
+      output.split("\n"),
+      (file) => file.length > 0 && !file.startsWith(VENDORED_PATH_PREFIX)
+    );
+    // A listed path that cannot be checked, such as one below a regular file,
+    // is skipped instead of failing the whole listing.
+    return yield* Effect.filter(listed, (file) =>
+      fileSystem.exists(file).pipe(Effect.orElseSucceed(() => false))
+    );
+  }
+);
 
 /** Lists authored TypeScript files while excluding generated directories. */
-export function typescriptFiles(
-  files: readonly string[] = trackedFiles()
-): readonly string[] {
-  return files.filter(
+export function typescriptFiles(files: readonly string[]): readonly string[] {
+  return Arr.filter(
+    files,
     (file) =>
       TYPESCRIPT_PATTERN.test(file) && !GENERATED_PATH_PATTERN.test(file)
   );
@@ -53,6 +70,6 @@ export function enforceViolations(
   if (violations.length === 0) {
     return;
   }
-  process.stderr.write(`${heading}:\n${violations.join("\n")}\n`);
+  process.stderr.write(`${heading}:\n${Arr.join(violations, "\n")}\n`);
   process.exitCode = 1;
 }

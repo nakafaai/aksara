@@ -1,6 +1,15 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path } from "effect";
+import {
+  Array as Arr,
+  Config,
+  Effect,
+  FileSystem,
+  Option,
+  Path,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { stringify } from "yaml";
 
 import {
@@ -17,28 +26,12 @@ import {
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
 
-const runtime = vi.hoisted(() => ({ calls: 0 }));
-
-vi.mock("@effect/platform-node", async (importOriginal) => {
-  const platform =
-    await importOriginal<typeof import("@effect/platform-node")>();
-  return {
-    ...platform,
-    NodeRuntime: {
-      ...platform.NodeRuntime,
-      runMain: vi.fn(() => {
-        runtime.calls += 1;
-      }),
-    },
-  };
-});
-
-const originalPath = process.env.PATH;
+const JsonText = Schema.fromJsonString(Schema.Unknown);
 
 /** Returns the approved declaration for one held dependency. */
 function approved(dependency: string) {
-  const hold = DEPENDENCY_HOLDS.find(
-    (entry) => entry.dependency === dependency
+  const hold = Option.getOrUndefined(
+    Arr.findFirst(DEPENDENCY_HOLDS, (entry) => entry.dependency === dependency)
   );
   assert.ok(hold, `${dependency} has a reviewed hold`);
   return hold.approvedCurrent;
@@ -65,19 +58,19 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       "@types/node": approved("@types/node"),
       ...(input?.omitUltracite ? {} : { ultracite: approved("ultracite") }),
     };
-    const ignoreDeps = expectedIgnoredDependencies().filter(
+    const ignoreDeps = Arr.filter(
+      expectedIgnoredDependencies(),
       (dependency) => dependency !== input?.omitIgnore
     );
 
-    yield* fileSystem.writeFileString(
-      manifest,
+    const manifestText =
       input?.invalidManifest ??
-        JSON.stringify({
-          devDependencies,
-          devEngines: { runtime: { version: approved("node") } },
-          packageManager: `pnpm@${approved("pnpm")}`,
-        })
-    );
+      (yield* Schema.encodeEffect(JsonText)({
+        devDependencies,
+        devEngines: { runtime: { version: approved("node") } },
+        packageManager: `pnpm@${approved("pnpm")}`,
+      }));
+    yield* fileSystem.writeFileString(manifest, manifestText);
     yield* fileSystem.writeFileString(
       workspace,
       input?.invalidWorkspace ??
@@ -108,24 +101,31 @@ const installFakePnpm = Effect.fn("BumpDependenciesTest.installFakePnpm")(
   function* (root: string) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const versions = Object.fromEntries(
-      DEPENDENCY_HOLDS.map(({ registry, reviewedLatest }) => [
-        registry,
-        reviewedLatest,
-      ])
+    const versions = Rec.fromEntries(
+      Arr.map(
+        DEPENDENCY_HOLDS,
+        ({ registry, reviewedLatest }): readonly [string, string] => [
+          registry,
+          reviewedLatest,
+        ]
+      )
     );
     const executable = path.join(root, "pnpm");
+    const versionsText = yield* Schema.encodeEffect(JsonText)(versions);
     yield* fileSystem.writeFileString(
       executable,
       `#!/usr/bin/env node
 const args = process.argv.slice(2);
-const versions = ${JSON.stringify(versions)};
+const versions = ${versionsText};
 if (args[0] === "view") console.log(JSON.stringify(versions[args[1]]));
 if (args[0] === "outdated") { console.log("{}"); process.exitCode = 1; }
 `
     );
     yield* fileSystem.chmod(executable, 0o755);
-    vi.stubEnv("PATH", `${root}:${originalPath ?? ""}`);
+    const originalPath = yield* Config.String("PATH").pipe(
+      Config.withDefault("")
+    );
+    vi.stubEnv("PATH", `${root}:${originalPath}`);
   }
 );
 
@@ -144,8 +144,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           yield* installFakePnpm(config.root);
 
           const reports = yield* makeBumpDependenciesProgram(config);
-          const effectReport = reports.find(
-            ({ dependency }) => dependency === "effect"
+          const effectReport = Option.getOrUndefined(
+            Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
 
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
@@ -153,10 +153,13 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(effectReport.current, approved("effect"));
           assert.strictEqual(
             effectReport.latest,
-            DEPENDENCY_HOLDS.find(({ dependency }) => dependency === "effect")
-              ?.reviewedLatest
+            Option.getOrUndefined(
+              Arr.findFirst(
+                DEPENDENCY_HOLDS,
+                ({ dependency }) => dependency === "effect"
+              )
+            )?.reviewedLatest
           );
-          assert.strictEqual(runtime.calls, 1);
         })
     );
 
@@ -272,7 +275,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const reports = yield* makeBumpDependenciesProgram(config, runner);
         const missingRegistry = yield* runner(config.root, ["view"]);
 
-        assert.ok(reports.every(({ current }) => current !== "missing"));
+        assert.ok(Arr.every(reports, ({ current }) => current !== "missing"));
         assert.deepStrictEqual(missingRegistry, output(0, '"missing"'));
       })
     );

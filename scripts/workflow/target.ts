@@ -1,9 +1,15 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { posix } from "node:path";
-import { Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Option,
+  Path,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { parseDocument } from "yaml";
 import { trackedFiles } from "#scripts/check/files";
+import { readSource } from "#scripts/source";
 
 export const TEST_TASK_PREFIX = "test:";
 const TEST_SCRIPT = "test";
@@ -32,7 +38,7 @@ export function manifestTestTargets(
   assert.ok(Option.isSome(manifest), `${path} must be a package manifest`);
   const scripts = manifest.value.scripts ?? {};
   if (path === MANIFEST_FILE) {
-    return Object.keys(scripts).filter((script) =>
+    return Arr.filter(Rec.keys(scripts), (script) =>
       script.startsWith(TEST_TASK_PREFIX)
     );
   }
@@ -52,7 +58,7 @@ function workspaceDirectories(workspace: string): readonly string[] {
     Option.isSome(decoded),
     "pnpm-workspace.yaml must declare its packages"
   );
-  return decoded.value.packages.map((glob) => {
+  return Arr.map(decoded.value.packages, (glob) => {
     assert.match(
       glob,
       DIRECTORY_GLOB_PATTERN,
@@ -64,30 +70,40 @@ function workspaceDirectories(workspace: string): readonly string[] {
 
 /** Reports whether one tracked path is the manifest of a workspace that a glob names. */
 function isWorkspaceManifest(
-  path: string,
+  path: Path.Path,
+  file: string,
   directories: readonly string[]
 ): boolean {
-  if (posix.basename(path) !== MANIFEST_FILE) {
+  if (path.basename(file) !== MANIFEST_FILE) {
     return false;
   }
-  return directories.includes(posix.dirname(posix.dirname(path)));
+  return directories.includes(path.dirname(path.dirname(file)));
 }
 
 /** Lists the root manifest and every workspace manifest that the pnpm workspace names. */
-export function manifestPaths(
-  workspace: string,
-  trackedPaths: readonly string[]
-): readonly string[] {
-  const directories = workspaceDirectories(workspace);
-  return trackedPaths.filter(
-    (path) => path === MANIFEST_FILE || isWorkspaceManifest(path, directories)
-  );
-}
+export const manifestPaths = Effect.fn("WorkflowTarget.manifestPaths")(
+  function* (workspace: string, trackedPaths: readonly string[]) {
+    const path = yield* Path.Path;
+    const directories = workspaceDirectories(workspace);
+    return Arr.filter(
+      trackedPaths,
+      (file) =>
+        file === MANIFEST_FILE || isWorkspaceManifest(path, file, directories)
+    );
+  }
+);
 
 /** Lists every test target the repository owns, read from its tracked manifests. */
-export function repositoryTestTargets(): readonly string[] {
-  return manifestPaths(
-    readFileSync(WORKSPACE_FILE, "utf8"),
-    trackedFiles()
-  ).flatMap((path) => manifestTestTargets(path, readFileSync(path, "utf8")));
-}
+export const repositoryTestTargets = Effect.fn(
+  "WorkflowTarget.repositoryTestTargets"
+)(function* () {
+  const workspace = yield* readSource(WORKSPACE_FILE);
+  const trackedPaths = yield* trackedFiles();
+  const manifests = yield* manifestPaths(workspace, trackedPaths);
+  const targets = yield* Effect.forEach(manifests, (path) =>
+    readSource(path).pipe(
+      Effect.map((source) => manifestTestTargets(path, source))
+    )
+  );
+  return Arr.flatten(targets);
+});

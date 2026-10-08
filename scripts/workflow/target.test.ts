@@ -1,12 +1,16 @@
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it, layer } from "@effect/vitest";
+import { Effect, Schema } from "effect";
 import { manifestPaths, manifestTestTargets } from "#scripts/workflow/target";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 describe("test target discovery", () => {
   it("lists root test:* tasks and workspaces with a test script", () => {
     expect(
       manifestTestTargets(
         "package.json",
-        JSON.stringify({
+        encodeJson({
           name: "aksara",
           scripts: { test: "turbo run test", "test:root": "vitest run" },
         })
@@ -15,7 +19,7 @@ describe("test target discovery", () => {
     expect(
       manifestTestTargets(
         "packages/corpus/package.json",
-        JSON.stringify({
+        encodeJson({
           name: "@nakafa/aksara-corpus",
           scripts: { test: "vitest run" },
         })
@@ -24,7 +28,7 @@ describe("test target discovery", () => {
     expect(
       manifestTestTargets(
         "packages/testing/package.json",
-        JSON.stringify({
+        encodeJson({
           name: "@nakafa/testing",
           scripts: { build: "tsc" },
         })
@@ -36,7 +40,7 @@ describe("test target discovery", () => {
     expect(
       manifestTestTargets(
         "packages/typescript-config/package.json",
-        JSON.stringify({ name: "@nakafa/typescript-config" })
+        encodeJson({ name: "@nakafa/typescript-config" })
       )
     ).toEqual([]);
   });
@@ -49,31 +53,55 @@ describe("test target discovery", () => {
       manifestTestTargets("packages/broken/package.json", "{")
     ).toThrow("packages/broken/package.json must be a package manifest");
   });
+});
 
-  it("finds workspaces under any pnpm glob, not only the default layout", () => {
-    expect(
-      manifestPaths("packages:\n  - tools/*\n", [
-        "package.json",
-        "apps/www/package.json",
-        "tools/lint/package.json",
-        "tools/lint/src/package.json",
-        "tools/lint/index.ts",
-      ])
-    ).toEqual(["package.json", "tools/lint/package.json"]);
-  });
+layer(NodeServices.layer)("workspace discovery", (test) => {
+  test.effect(
+    "finds workspaces under any pnpm glob, not only the default layout",
+    () =>
+      Effect.gen(function* () {
+        const paths = yield* manifestPaths("packages:\n  - tools/*\n", [
+          "package.json",
+          "apps/www/package.json",
+          "tools/lint/package.json",
+          "tools/lint/src/package.json",
+          "tools/lint/index.ts",
+        ]);
+        expect(paths).toEqual(["package.json", "tools/lint/package.json"]);
+      })
+  );
 
-  it("rejects a workspace glob that is not a plain directory", () => {
-    expect(() => manifestPaths("packages:\n  - packages/**\n", [])).toThrow(
-      "Workspace glob packages/** must be a plain directory followed by /*, such as apps/*"
-    );
-  });
+  test.effect("rejects a workspace glob that is not a plain directory", () =>
+    Effect.gen(function* () {
+      const defect = yield* manifestPaths(
+        "packages:\n  - packages/**\n",
+        []
+      ).pipe(
+        Effect.map(() => "no defect"),
+        Effect.catchDefect((cause) => Effect.succeed(String(cause)))
+      );
+      expect(defect).toContain(
+        "Workspace glob packages/** must be a plain directory followed by /*, such as apps/*"
+      );
+    })
+  );
 
-  it("rejects a workspace file that is not valid YAML or names no packages", () => {
-    expect(() => manifestPaths("packages: [\n", [])).toThrow(
-      "pnpm-workspace.yaml must be valid YAML"
-    );
-    expect(() => manifestPaths("catalog: {}\n", [])).toThrow(
-      "pnpm-workspace.yaml must declare its packages"
-    );
-  });
+  test.effect(
+    "rejects a workspace file that is not valid YAML or names no packages",
+    () =>
+      Effect.gen(function* () {
+        const invalid = yield* manifestPaths("packages: [\n", []).pipe(
+          Effect.map(() => "no defect"),
+          Effect.catchDefect((cause) => Effect.succeed(String(cause)))
+        );
+        const unnamed = yield* manifestPaths("catalog: {}\n", []).pipe(
+          Effect.map(() => "no defect"),
+          Effect.catchDefect((cause) => Effect.succeed(String(cause)))
+        );
+        expect(invalid).toContain("pnpm-workspace.yaml must be valid YAML");
+        expect(unnamed).toContain(
+          "pnpm-workspace.yaml must declare its packages"
+        );
+      })
+  );
 });

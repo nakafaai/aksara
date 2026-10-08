@@ -1,53 +1,36 @@
 import { assert } from "@effect/vitest";
-import { Effect, FileSystem, Path, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/process";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 
 import type { EffectSourceConfig } from "#scripts/effect/source";
+import { runGit } from "#scripts/git";
 
 const installedManifest = "node_modules/effect/package.json";
 const vendoredManifest = "repos/effect/packages/effect/package.json";
+const JsonDocument = Schema.fromJsonString(Schema.Unknown);
 
-export interface RepositoryFixture {
-  readonly config: EffectSourceConfig;
-  readonly root: string;
-}
+/** Builds one fixture value from its root and the source configuration it exposes. */
+const repositoryFixture = (root: string, config: EffectSourceConfig) => ({
+  config,
+  root,
+});
 
-/** Collects one child-process stream as text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
+export type RepositoryFixture = ReturnType<typeof repositoryFixture>;
 
 /** Runs Git in one isolated fixture repository. */
-export const git = Effect.fn("EffectSourceFixture.git")(
-  (root: string, ...args: readonly string[]) =>
-    Effect.scoped(
-      Effect.gen(function* () {
-        const command = yield* ChildProcess.make("git", args, { cwd: root });
-        const [exitCode, stdout, stderr] = yield* Effect.all(
-          [
-            command.exitCode,
-            collectText(command.stdout),
-            collectText(command.stderr),
-          ],
-          { concurrency: 3 }
-        );
-
-        assert.strictEqual(
-          exitCode,
-          0,
-          stderr.trim() || stdout.trim() || `git ${args.join(" ")} failed`
-        );
-        return stdout;
-      })
-    )
-);
+export const git = Effect.fn("EffectSourceFixture.git")(function* (
+  root: string,
+  ...args: readonly string[]
+) {
+  const result = yield* runGit(args, { cwd: root });
+  assert.strictEqual(
+    result.exitCode,
+    0,
+    result.stderr.trim() ||
+      result.stdout.trim() ||
+      `git ${Arr.join(args, " ")} failed`
+  );
+  return result.stdout;
+});
 
 /** Reads one scalar Git result. */
 export const gitValue = Effect.fn("EffectSourceFixture.gitValue")(
@@ -86,7 +69,8 @@ const initializeRepository = Effect.fn(
 export const commitInstalledVersion = Effect.fn(
   "EffectSourceFixture.commitInstalledVersion"
 )(function* (root: string, version: string) {
-  yield* writeManifest(root, installedManifest, JSON.stringify({ version }));
+  const manifest = yield* Schema.encodeEffect(JsonDocument)({ version });
+  yield* writeManifest(root, installedManifest, manifest);
   yield* git(root, "add", "--force", installedManifest);
   yield* git(root, "commit", "--quiet", "-m", `install Effect ${version}`);
 });
@@ -119,15 +103,12 @@ export const createRepository = Effect.fn(
     `git-subtree-split: ${"a".repeat(40)}`
   );
 
-  return {
-    config: {
-      installedManifest,
-      repository: root,
-      sourcePath: "repos/effect",
-      vendoredManifest,
-    },
-    root,
-  } satisfies RepositoryFixture;
+  return repositoryFixture(root, {
+    installedManifest,
+    repository: root,
+    sourcePath: "repos/effect",
+    vendoredManifest,
+  });
 });
 
 /** Creates an upstream Effect repository with immutable release tags. */
@@ -140,11 +121,8 @@ export const createUpstream = Effect.fn("EffectSourceFixture.createUpstream")(
     yield* initializeRepository(root);
 
     for (const version of ["1.0.0", "2.0.0", "3.0.0"]) {
-      yield* writeManifest(
-        root,
-        "packages/effect/package.json",
-        JSON.stringify({ version })
-      );
+      const manifest = yield* Schema.encodeEffect(JsonDocument)({ version });
+      yield* writeManifest(root, "packages/effect/package.json", manifest);
       yield* git(root, "add", ".");
       yield* git(root, "commit", "--quiet", "-m", `Effect ${version}`);
       yield* git(root, "tag", `effect@${version}`);
@@ -198,13 +176,10 @@ export const createOutdatedConsumer = Effect.fn(
   yield* linearizeSubtreeImport(root, split);
   yield* commitInstalledVersion(root, "2.0.0");
 
-  return {
-    config: {
-      installedManifest,
-      repository: upstream,
-      sourcePath: "repos/effect",
-      vendoredManifest,
-    },
-    root,
-  } satisfies RepositoryFixture;
+  return repositoryFixture(root, {
+    installedManifest,
+    repository: upstream,
+    sourcePath: "repos/effect",
+    vendoredManifest,
+  });
 });

@@ -1,12 +1,15 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
-import { Effect, FileSystem, Layer, Result } from "effect";
+import { Effect, FileSystem, Layer, Result, Schema } from "effect";
 import { ProvenanceBundleVerifier } from "#scripts/provenance/bundle";
 import { runProvenanceMain } from "#scripts/provenance/main";
+import { ProvenanceStatementSchema } from "#scripts/provenance/schema";
 
 const PACKAGE_SHA512 =
   "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 const SOURCE_SHA = "0123456789abcdef0123456789abcdef01234567";
+const JsonText = Schema.fromJsonString(Schema.Unknown);
+const StatementText = Schema.fromJsonString(ProvenanceStatementSchema);
 
 /** Creates the exact argument contract for one audit file. */
 function argumentsFor(auditPath: string) {
@@ -25,7 +28,7 @@ function argumentsFor(auditPath: string) {
 
 /** Creates one exact npm audit fixture for the boundary program. */
 function audit() {
-  return JSON.stringify({
+  return Schema.encodeSync(JsonText)({
     invalid: [],
     missing: [],
     verified: [
@@ -49,7 +52,7 @@ function audit() {
 
 /** Creates one authenticated SLSA statement for the boundary program. */
 function statement() {
-  return JSON.stringify({
+  return Schema.encodeSync(StatementText)({
     _type: "https://in-toto.io/Statement/v1",
     predicate: {
       buildDefinition: {

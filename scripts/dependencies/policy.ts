@@ -1,20 +1,24 @@
+import { Array as Arr, Order, pipe, Schema } from "effect";
+
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
-export type DeclarationSource =
-  | "catalog"
-  | "node-runtime"
-  | "package-manager"
-  | "root-dev-dependency";
+const DeclarationSourceSchema = Schema.Literals([
+  "catalog",
+  "node-runtime",
+  "package-manager",
+  "root-dev-dependency",
+]);
 
-export interface DependencyHold {
-  readonly approvedCurrent: string;
-  readonly cohort: string;
-  readonly dependency: string;
-  readonly reason: string;
-  readonly registry: string;
-  readonly reviewedLatest: string;
-  readonly source: DeclarationSource;
-}
+const DependencyHoldSchema = Schema.Struct({
+  approvedCurrent: Schema.String,
+  cohort: Schema.String,
+  dependency: Schema.String,
+  reason: Schema.String,
+  registry: Schema.String,
+  reviewedLatest: Schema.String,
+  source: DeclarationSourceSchema,
+});
+export type DependencyHold = typeof DependencyHoldSchema.Type;
 
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
@@ -140,7 +144,10 @@ export function declaredVersion(spec: string): string | undefined {
 
 /** Returns every dependency that routine pnpm updates must leave untouched. */
 export function expectedIgnoredDependencies() {
-  return DEPENDENCY_HOLDS.filter(({ source }) => source !== "package-manager")
-    .map(({ dependency }) => dependency)
-    .sort();
+  return pipe(
+    DEPENDENCY_HOLDS,
+    Arr.filter(({ source }) => source !== "package-manager"),
+    Arr.map(({ dependency }) => dependency),
+    Arr.sort(Order.String)
+  );
 }

@@ -1,4 +1,7 @@
+import { Array as Arr, Effect, HashSet } from "effect";
+
 import { enforceViolations, trackedFiles } from "#scripts/check/files";
+import { runEntry } from "#scripts/entry";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
@@ -9,7 +12,7 @@ const DOCUMENT_PATTERN = /^[A-Z][A-Z\d]*(?:_[A-Z\d]+)+(?:\.md)?$/u;
 const JAVASCRIPT_PATTERN = /\.[cm]?jsx?$/u;
 const RUNNABLE_TEST_FILE_PATTERN = /\.(?:spec|test)\.[cm]?[jt]sx?$/u;
 const FINAL_TEST_FILE_PATTERN = /\.test\.ts$/u;
-const FORBIDDEN_FILE_NAMES = new Set([
+const FORBIDDEN_FILE_NAMES = HashSet.make(
   ".node-version",
   ".npmrc",
   ".nvmrc",
@@ -18,11 +21,11 @@ const FORBIDDEN_FILE_NAMES = new Set([
   "deno.lock",
   "npm-shrinkwrap.json",
   "package-lock.json",
-  "yarn.lock",
-]);
+  "yarn.lock"
+);
 /** Repository files whose exact names the toolchain mandates. */
-const TOOLCHAIN_FILES = new Set(["pnpm-lock.yaml", "pnpm-workspace.yaml"]);
-const ROLE_SUFFIXES = new Set(["build", "config", "d", "spec", "test"]);
+const TOOLCHAIN_FILES = HashSet.make("pnpm-lock.yaml", "pnpm-workspace.yaml");
+const ROLE_SUFFIXES = HashSet.make("build", "config", "d", "spec", "test");
 /** Roots whose folders are content identities, such as lesson and article slugs. */
 const CONTENT_ROOTS = [
   ["packages", "corpus", "articles"],
@@ -45,20 +48,25 @@ const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 /** Returns the semantic words in one folder name or extensionless file name. */
 function words(segment: string, isFile: boolean): string[] {
   const name = isFile ? segment.replace(EXTENSION_PATTERN, "") : segment;
-  const tokens = name
-    .replace(ACRONYM_WORD_PATTERN, "$1 $2")
-    .replace(CAMEL_WORD_PATTERN, "$1 $2")
-    .split(WORD_SEPARATOR_PATTERN)
-    .filter((word) => word.length > 0);
-  while (ROLE_SUFFIXES.has(tokens.at(-1) ?? "")) {
-    tokens.pop();
-  }
-  return tokens.filter((word) => !NUMBER_PATTERN.test(word));
+  const tokens = Arr.filter(
+    name
+      .replace(ACRONYM_WORD_PATTERN, "$1 $2")
+      .replace(CAMEL_WORD_PATTERN, "$1 $2")
+      .split(WORD_SEPARATOR_PATTERN),
+    (word) => word.length > 0
+  );
+  const semantic = Arr.reverse(
+    Arr.dropWhile(Arr.reverse(tokens), (word) =>
+      HashSet.has(ROLE_SUFFIXES, word)
+    )
+  );
+  return Arr.filter(semantic, (word) => !NUMBER_PATTERN.test(word));
 }
 
 /** Checks whether a path starts with one exact repository-owned prefix. */
 function hasPrefix(segments: readonly string[], prefix: readonly string[]) {
-  return prefix.every(
+  return Arr.every(
+    prefix,
     (segment, prefixIndex) => segments[prefixIndex] === segment
   );
 }
@@ -76,7 +84,7 @@ function isQuestionSource(segments: readonly string[]) {
 
   return (
     hierarchy.length >= 4 &&
-    hierarchy.every((segment) => SOURCE_KEY_PATTERN.test(segment)) &&
+    Arr.every(hierarchy, (segment) => SOURCE_KEY_PATTERN.test(segment)) &&
     question !== undefined &&
     QUESTION_SEGMENT_PATTERN.test(question) &&
     source !== undefined &&
@@ -88,14 +96,16 @@ function isQuestionSource(segments: readonly string[]) {
 function isIdentity(segments: readonly string[], index: number) {
   const isFolder = index < segments.length - 1;
   if (
-    CONTENT_ROOTS.some(
+    Arr.some(
+      CONTENT_ROOTS,
       (root) => isFolder && hasPrefix(segments, root) && index >= root.length
     )
   ) {
     return true;
   }
   if (
-    SKILL_ROOTS.some(
+    Arr.some(
+      SKILL_ROOTS,
       (root) => hasPrefix(segments, root) && index === root.length
     )
   ) {
@@ -112,7 +122,7 @@ function isIdentity(segments: readonly string[], index: number) {
 
 /** Allows toolchain files and uppercase repository documents by convention. */
 function isConventionalFile(file: string, basename: string) {
-  if (TOOLCHAIN_FILES.has(file)) {
+  if (HashSet.has(TOOLCHAIN_FILES, file)) {
     return true;
   }
   const isDocumentPath = file === basename || file === `.github/${basename}`;
@@ -121,11 +131,11 @@ function isConventionalFile(file: string, basename: string) {
 
 /** Collects forbidden toolchains, JavaScript, and multi-word path names. */
 export function pathViolations(files: readonly string[]): readonly string[] {
-  const tracked = new Set(files);
-  return files.flatMap((file) => {
+  const tracked = HashSet.fromIterable(files);
+  return Arr.flatMap(files, (file) => {
     const basename = file.split("/").at(-1);
     const toolchainViolation =
-      basename && FORBIDDEN_FILE_NAMES.has(basename)
+      basename && HashSet.has(FORBIDDEN_FILE_NAMES, basename)
         ? [`${file}: pnpm and package.json own the toolchain contract`]
         : [];
     const sourceViolation = JAVASCRIPT_PATTERN.test(file)
@@ -133,7 +143,7 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       : [];
     const ownerPath = file.replace(FINAL_TEST_FILE_PATTERN, ".ts");
     const ownerViolation =
-      FINAL_TEST_FILE_PATTERN.test(file) && !tracked.has(ownerPath)
+      FINAL_TEST_FILE_PATTERN.test(file) && !HashSet.has(tracked, ownerPath)
         ? [`${file}: final test has no colocated ${ownerPath} owner`]
         : [];
     const testSourceViolation =
@@ -142,7 +152,7 @@ export function pathViolations(files: readonly string[]): readonly string[] {
         ? [`${file}: final tests must use .test.ts`]
         : [];
     const segments = file.split("/");
-    const nameViolations = segments.flatMap((segment, index) => {
+    const nameViolations = Arr.flatMap(segments, (segment, index) => {
       const isFile = index === segments.length - 1;
       if (
         isIdentity(segments, index) ||
@@ -164,7 +174,15 @@ export function pathViolations(files: readonly string[]): readonly string[] {
   });
 }
 
-enforceViolations(
-  "Repository path policy violations",
-  pathViolations(trackedFiles())
+/** Reports every repository path that breaks the path policy. */
+export const pathReport = Effect.fn("AksaraPolicy.pathReport")(
+  (files: readonly string[]) =>
+    Effect.sync(() => {
+      enforceViolations(
+        "Repository path policy violations",
+        pathViolations(files)
+      );
+    })
 );
+
+runEntry(import.meta.main, trackedFiles().pipe(Effect.flatMap(pathReport)));

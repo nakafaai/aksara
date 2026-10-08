@@ -1,7 +1,4 @@
-import { resolve } from "node:path";
-
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, Equivalence, Order, Ref, Schema } from "effect";
 import { parse } from "yaml";
 import {
   DependencyCommandError,
@@ -10,24 +7,24 @@ import {
   type PnpmRunner,
   runPnpm,
 } from "#scripts/dependencies/command";
+import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
   type DependencyHold,
   declaredVersion,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
+import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
-export interface BumpDependenciesConfig {
-  readonly manifest: string;
-  readonly root: string;
-  readonly workspace: string;
-}
+const BumpDependenciesConfigSchema = Schema.Struct({
+  manifest: Schema.String,
+  root: Schema.String,
+  workspace: Schema.String,
+});
 
-const DEFAULT_CONFIG: BumpDependenciesConfig = {
-  manifest: resolve(import.meta.dirname, "../../package.json"),
-  root: resolve(import.meta.dirname, "../.."),
-  workspace: resolve(import.meta.dirname, "../../pnpm-workspace.yaml"),
-};
+/** Paths of the repository files that the dependency policy reads and updates. */
+export type BumpDependenciesConfig = typeof BumpDependenciesConfigSchema.Type;
 
 const RootManifestSchema = Schema.Struct({
   devDependencies: Schema.Record(Schema.String, Schema.String),
@@ -42,6 +39,8 @@ const WorkspaceSchema = Schema.Struct({
   update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
 });
 
+const parseJson = Schema.decodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** A held cohort differs from its explicit repository review decision. */
 export class DependencyPolicyError extends Schema.TaggedError<DependencyPolicyError>()(
   "DependencyPolicyError",
@@ -55,14 +54,11 @@ const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(
     parseSource: (source: string) => unknown,
     schema: Schema.Codec<A, unknown, never, never>
   ) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const source = yield* fileSystem
-      .readFileString(path)
-      .pipe(
-        Effect.mapError(
-          (error) => new DependencyPolicyError({ message: error.message })
-        )
-      );
+    const source = yield* readSource(path).pipe(
+      Effect.mapError(
+        (error) => new DependencyPolicyError({ message: error.message })
+      )
+    );
     const input = yield* Effect.try({
       catch: () =>
         new DependencyPolicyError({ message: `${path} is not valid.` }),
@@ -102,7 +98,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
   function* (config: BumpDependenciesConfig, runner: PnpmRunner = runPnpm) {
     const manifest = yield* readStructuredFile(
       config.manifest,
-      JSON.parse,
+      parseJson,
       RootManifestSchema
     );
     const workspace = yield* readStructuredFile(
@@ -111,15 +107,14 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       WorkspaceSchema
     );
     const expectedIgnores = expectedIgnoredDependencies();
-    const actualIgnores = [...workspace.update.ignoreDeps].sort();
-    const problems: string[] = [];
-    if (JSON.stringify(actualIgnores) !== JSON.stringify(expectedIgnores)) {
-      problems.push(
-        "pnpm update.ignoreDeps does not match the reviewed hold policy."
-      );
-    }
-    if (problems.length > 0) {
-      return yield* new DependencyPolicyError({ message: problems.join("\n") });
+    const actualIgnores = Arr.sort(workspace.update.ignoreDeps, Order.String);
+    if (
+      !Equivalence.Array(Equivalence.String)(actualIgnores, expectedIgnores)
+    ) {
+      return yield* new DependencyPolicyError({
+        message:
+          "pnpm update.ignoreDeps does not match the reviewed hold policy.",
+      });
     }
 
     const update = yield* runner(config.root, [
@@ -133,6 +128,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       });
     }
 
+    const problems = yield* Ref.make<readonly string[]>([]);
     const reports = yield* Effect.forEach(
       DEPENDENCY_HOLDS,
       (hold) =>
@@ -148,13 +144,19 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
           ]);
           const latest = yield* decodeRegistryVersion(output, hold.registry);
           if (declared !== hold.approvedCurrent) {
-            problems.push(
-              `${hold.dependency} declares ${declared ?? "no version"}; approved ${hold.approvedCurrent}.`
+            yield* Ref.update(
+              problems,
+              Arr.append(
+                `${hold.dependency} declares ${declared ?? "no version"}; approved ${hold.approvedCurrent}.`
+              )
             );
           }
           if (latest !== hold.reviewedLatest) {
-            problems.push(
-              `${hold.dependency} upstream is ${latest}; last reviewed ${hold.reviewedLatest}.`
+            yield* Ref.update(
+              problems,
+              Arr.append(
+                `${hold.dependency} upstream is ${latest}; last reviewed ${hold.reviewedLatest}.`
+              )
             );
           }
           return { ...hold, current: declared ?? "missing", latest };
@@ -170,8 +172,11 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
     ]);
     const unresolvedRoutine = yield* decodeOutdatedDependencies(outdatedOutput);
     if (unresolvedRoutine.length > 0) {
-      problems.push(
-        `Routine dependencies remain outdated: ${unresolvedRoutine.sort().join(", ")}.`
+      yield* Ref.update(
+        problems,
+        Arr.append(
+          `Routine dependencies remain outdated: ${Arr.join(Arr.sort(unresolvedRoutine, Order.String), ", ")}.`
+        )
       );
     }
 
@@ -180,8 +185,11 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
         `${report.cohort}: ${report.dependency} ${report.current}; reviewed upstream ${report.latest}. ${report.reason}`
       );
     }
-    if (problems.length > 0) {
-      return yield* new DependencyPolicyError({ message: problems.join("\n") });
+    const found = yield* Ref.get(problems);
+    if (found.length > 0) {
+      return yield* new DependencyPolicyError({
+        message: Arr.join(found, "\n"),
+      });
     }
 
     yield* Effect.logInfo(
@@ -191,8 +199,8 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
   }
 );
 
-NodeRuntime.runMain(
-  makeBumpDependenciesProgram(DEFAULT_CONFIG).pipe(
-    Effect.provide(NodeServices.layer)
-  )
+runEntry(
+  import.meta.main,
+  defaultBumpConfig.pipe(Effect.flatMap(makeBumpDependenciesProgram)),
+  { failureStream: "stdout" }
 );

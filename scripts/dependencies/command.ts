@@ -1,13 +1,15 @@
-import { Effect, Schema, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
+import { Effect, Record as Rec, Schema } from "effect";
 import { ChildProcess, type ChildProcessSpawner } from "effect/process";
+import { collectText } from "#scripts/output";
+
+const CommandOutputSchema = Schema.Struct({
+  exitCode: Schema.Finite,
+  stderr: Schema.String,
+  stdout: Schema.String,
+});
 
 /** Complete output from one repository-owned pnpm command. */
-export interface CommandOutput {
-  readonly exitCode: number;
-  readonly stderr: string;
-  readonly stdout: string;
-}
+export type CommandOutput = typeof CommandOutputSchema.Type;
 
 /** Injectable pnpm process boundary used by dependency policy. */
 export type PnpmRunner = (
@@ -20,23 +22,14 @@ export type PnpmRunner = (
 >;
 
 const OutdatedSchema = Schema.Record(Schema.String, Schema.Unknown);
+const RegistryVersionText = Schema.fromJsonString(Schema.String);
+const OutdatedText = Schema.fromJsonString(OutdatedSchema);
 
 /** A dependency command could not execute or returned unusable output. */
 export class DependencyCommandError extends Schema.TaggedError<DependencyCommandError>()(
   "DependencyCommandError",
   { message: Schema.String }
 ) {}
-
-/** Collects one child-process byte stream as UTF-8 text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
 
 /** Runs pnpm in the repository and preserves its exact terminal output. */
 export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
@@ -70,14 +63,7 @@ export function decodeRegistryVersion(output: CommandOutput, registry: string) {
       })
     );
   }
-  return Effect.try({
-    catch: () =>
-      new DependencyCommandError({
-        message: `${registry} returned invalid JSON.`,
-      }),
-    try: () => JSON.parse(output.stdout) as unknown,
-  }).pipe(
-    Effect.flatMap(Schema.decodeUnknownEffect(Schema.String)),
+  return Schema.decodeEffect(RegistryVersionText)(output.stdout).pipe(
     Effect.mapError(
       () =>
         new DependencyCommandError({
@@ -96,18 +82,10 @@ export function decodeOutdatedDependencies(output: CommandOutput) {
       })
     );
   }
-  const input = output.stdout.trim()
-    ? Effect.try({
-        catch: () =>
-          new DependencyCommandError({
-            message: "pnpm outdated returned invalid JSON.",
-          }),
-        try: () => JSON.parse(output.stdout) as unknown,
-      })
-    : Effect.succeed({});
-  return input.pipe(
-    Effect.flatMap(Schema.decodeUnknownEffect(OutdatedSchema)),
-    Effect.map(Object.keys),
+  // Blank output means pnpm found nothing outdated.
+  const text = output.stdout.trim() ? output.stdout : "{}";
+  return Schema.decodeEffect(OutdatedText)(text).pipe(
+    Effect.map(Rec.keys),
     Effect.mapError(
       () =>
         new DependencyCommandError({

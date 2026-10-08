@@ -1,5 +1,5 @@
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import { Array as Arr, Effect, HashSet } from "effect";
 import {
   isBinaryExpression,
   isBindingElement,
@@ -17,40 +17,25 @@ import {
   isStatement,
   isStringLiteral,
   isStringLiteralLikeNode,
-  isTypeNode,
   isVariableDeclaration,
   type Node,
-  type SourceFile,
   SyntaxKind,
 } from "typescript/unstable/ast";
+import { syntaxNodesSkippingTypes } from "#scripts/check/syntax";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;
 const LEGACY_ADAPTER = "@nakafa/testing/effect";
-const EFFECT_MODULES = new Set(
+const EFFECT_MODULES = HashSet.fromIterable(
   "effect effect/Effect effect/ManagedRuntime".split(" ")
 );
-const EFFECT_RUNNERS = new Set(
+const EFFECT_RUNNERS = HashSet.fromIterable(
   "runCallback runCallbackWith runFork runForkWith runPromise runPromiseExit runPromiseExitWith runPromiseWith runSync runSyncExit runSyncExitWith runSyncWith".split(
     " "
   )
 );
-const MANAGED_RUNTIME_RUNNERS = new Set(
+const MANAGED_RUNTIME_RUNNERS = HashSet.fromIterable(
   "runCallback runFork runPromise runPromiseExit runSync runSyncExit".split(" ")
 );
-
-/** Returns value-position descendants while excluding type-only subtrees. */
-function descendants(sourceFile: SourceFile) {
-  const nodes: Node[] = [sourceFile];
-  for (const node of nodes) {
-    if (isTypeNode(node)) {
-      continue;
-    }
-    node.forEachChild((child) => {
-      nodes.push(child);
-    });
-  }
-  return nodes;
-}
 
 /** Returns a statically named module loaded by import syntax. */
 function importedModule(node: Node) {
@@ -68,47 +53,50 @@ function importedModule(node: Node) {
   }
 }
 
+/** Returns the Effect runtime bindings that one module syntax node exposes, and whether it loads the runtime. */
+function runtimeContribution(node: Node) {
+  const moduleName = importedModule(node);
+  if (moduleName === undefined || !HashSet.has(EFFECT_MODULES, moduleName)) {
+    return { bindings: [], runtime: false };
+  }
+  if (!isImportDeclaration(node)) {
+    return { bindings: [], runtime: true };
+  }
+  const clause = node.importClause;
+  const namedBindings = clause?.namedBindings;
+  if (
+    clause === undefined ||
+    clause.phaseModifier === SyntaxKind.TypeKeyword ||
+    namedBindings === undefined
+  ) {
+    return { bindings: [], runtime: false };
+  }
+  if (isNamespaceImport(namedBindings)) {
+    return { bindings: [namedBindings.name.text], runtime: true };
+  }
+  const named = Arr.filter(
+    namedBindings.elements,
+    (binding) => !binding.isTypeOnly
+  );
+  const rootBindings = Arr.filter(named, (binding) => {
+    const name = binding.propertyName?.text ?? binding.name.text;
+    return name === "Effect" || name === "ManagedRuntime";
+  });
+  return {
+    bindings: Arr.map(rootBindings, (binding) => binding.name.text),
+    runtime:
+      moduleName === "effect" ? rootBindings.length > 0 : named.length > 0,
+  };
+}
+
 /** Collects imports that expose Effect runtime APIs. */
 function runtimeImports(nodes: readonly Node[]) {
-  const bindings: string[] = [];
-  let legacy = false;
-  let runtime = false;
-  for (const node of nodes) {
-    const moduleName = importedModule(node);
-    legacy ||= moduleName === LEGACY_ADAPTER;
-    if (moduleName === undefined || !EFFECT_MODULES.has(moduleName)) {
-      continue;
-    }
-    if (!isImportDeclaration(node)) {
-      runtime = true;
-      continue;
-    }
-    const clause = node.importClause;
-    const namedBindings = clause?.namedBindings;
-    if (
-      clause === undefined ||
-      clause.phaseModifier === SyntaxKind.TypeKeyword ||
-      namedBindings === undefined
-    ) {
-      continue;
-    }
-    if (isNamespaceImport(namedBindings)) {
-      bindings.push(namedBindings.name.text);
-      runtime = true;
-      continue;
-    }
-    const named = namedBindings.elements.filter(
-      (binding) => !binding.isTypeOnly
-    );
-    const rootBindings = named.filter((binding) => {
-      const name = binding.propertyName?.text ?? binding.name.text;
-      return name === "Effect" || name === "ManagedRuntime";
-    });
-    bindings.push(...rootBindings.map((binding) => binding.name.text));
-    runtime ||=
-      moduleName === "effect" ? rootBindings.length > 0 : named.length > 0;
-  }
-  return { bindings, legacy, runtime };
+  const contributions = Arr.map(nodes, runtimeContribution);
+  return {
+    bindings: Arr.flatMap(contributions, ({ bindings }) => bindings),
+    legacy: Arr.some(nodes, (node) => importedModule(node) === LEGACY_ADAPTER),
+    runtime: Arr.some(contributions, ({ runtime }) => runtime),
+  };
 }
 
 /** Returns one statically knowable property name. */
@@ -141,11 +129,11 @@ function reservedName(node: Node) {
   if (isImportSpecifier(node) && !node.isTypeOnly) {
     const moduleName = importedModule(node.parent.parent.parent);
     const name = node.propertyName?.text ?? node.name.text;
-    if (moduleName === "effect/Effect" && EFFECT_RUNNERS.has(name)) {
+    if (moduleName === "effect/Effect" && HashSet.has(EFFECT_RUNNERS, name)) {
       return name;
     }
     return moduleName === "effect/ManagedRuntime" &&
-      MANAGED_RUNTIME_RUNNERS.has(name)
+      HashSet.has(MANAGED_RUNTIME_RUNNERS, name)
       ? name
       : undefined;
   }
@@ -173,10 +161,10 @@ function reservedName(node: Node) {
 /** Reports reserved runner syntax in a value position. */
 function hasReservedRunner(
   nodes: readonly Node[],
-  bindings: ReadonlySet<string>
+  bindings: HashSet.HashSet<string>
 ) {
-  return nodes.some((node) => {
-    if (EFFECT_RUNNERS.has(reservedName(node) ?? "")) {
+  return Arr.some(nodes, (node) => {
+    if (HashSet.has(EFFECT_RUNNERS, reservedName(node) ?? "")) {
       return true;
     }
     if (
@@ -186,7 +174,7 @@ function hasReservedRunner(
     ) {
       return false;
     }
-    return bindings.has(node.expression.text);
+    return HashSet.has(bindings, node.expression.text);
   });
 }
 
@@ -200,23 +188,17 @@ export const effectTestViolations = Effect.fn("AksaraPolicy.effectTests")(
     return yield* parser.inspect(
       { fileName: file, source: sourceText },
       ({ sourceFile }) => {
-        const nodes = descendants(sourceFile);
+        const nodes = syntaxNodesSkippingTypes(sourceFile);
         const imports = runtimeImports(nodes);
-        const violations: string[] = [];
-        if (imports.legacy) {
-          violations.push(
-            `${file}: import Effect test APIs directly from @effect/vitest.`
-          );
-        }
-        if (
-          imports.runtime &&
-          hasReservedRunner(nodes, new Set(imports.bindings))
-        ) {
-          violations.push(
-            `${file}: use @effect/vitest instead of Effect runtime runners.`
-          );
-        }
-        return violations;
+        return [
+          ...(imports.legacy
+            ? [`${file}: import Effect test APIs directly from @effect/vitest.`]
+            : []),
+          ...(imports.runtime &&
+          hasReservedRunner(nodes, HashSet.fromIterable(imports.bindings))
+            ? [`${file}: use @effect/vitest instead of Effect runtime runners.`]
+            : []),
+        ];
       }
     );
   }
