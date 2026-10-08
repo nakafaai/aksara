@@ -15,6 +15,8 @@ import { gitBundle } from "#test/target";
 
 const RELEASE = gitBundle("release-next").release;
 
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** Creates one successful private cache response for the captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
@@ -29,7 +31,7 @@ function cacheResponse(
   headers.set("content-type", "application/json");
   return webResponse(
     responseRequest,
-    JSON.stringify({
+    encodeJson({
       releaseId: body.releaseId,
       revalidated: true,
       scope: body.scope,

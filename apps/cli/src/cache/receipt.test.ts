@@ -8,16 +8,17 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { HttpClientRequest } from "effect/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
 import { webResponse } from "#test/http";
 
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
   scope: "material",
 });
-const VALID_BODY = JSON.stringify({
+const VALID_BODY = encodeJson({
   releaseId: REQUEST.releaseId,
   revalidated: true,
   scope: REQUEST.scope,
@@ -71,7 +72,7 @@ describe("cache receipt", () => {
       },
     ],
     [
-      JSON.stringify({
+      encodeJson({
         releaseId: REQUEST.releaseId,
         revalidated: false,
         scope: REQUEST.scope,
@@ -79,7 +80,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJson({
         extra: true,
         releaseId: REQUEST.releaseId,
         revalidated: true,
@@ -88,7 +89,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJson({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: "article",
@@ -96,7 +97,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJson({
         releaseId: "test-other-release",
         revalidated: true,
         scope: REQUEST.scope,
@@ -104,7 +105,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJson({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,
@@ -113,7 +114,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJson({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,

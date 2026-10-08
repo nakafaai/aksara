@@ -22,10 +22,12 @@ const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   scope: "material",
 });
 
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** Creates one exact private cache receipt for a captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
-  body: ConstructorParameters<typeof Response>[0] = JSON.stringify({
+  body: ConstructorParameters<typeof Response>[0] = encodeJson({
     releaseId: REQUEST.releaseId,
     revalidated: true,
     scope: REQUEST.scope,
@@ -105,7 +107,7 @@ describe("cache invalidation exchange", () => {
         redirect = init?.redirect;
         return Promise.resolve(
           new Response(
-            JSON.stringify({
+            encodeJson({
               releaseId: REQUEST.releaseId,
               revalidated: true,
               scope: REQUEST.scope,
