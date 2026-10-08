@@ -4,7 +4,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Predicate } from "effect";
+import { Effect, Layer, Predicate } from "effect";
 import {
   enforceViolations,
   trackedFiles,
@@ -232,22 +232,30 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
 const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
   readFileSync(path, "utf8")
 );
-const repositoryFiles = await Effect.runPromise(
-  trackedFiles().pipe(Effect.provide(NodeServices.layer))
-);
-const sourceViolations = await Effect.runPromise(
-  Effect.forEach(typescriptFiles(repositoryFiles), (file) =>
-    Effect.gen(function* () {
-      const source = yield* Effect.try({
-        catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
-        try: () => readFileSync(file, "utf8"),
-      });
-      return {
-        imports: yield* importViolations(file, source, repositoryIdentity),
-        tests: yield* effectTestViolations(file, source),
-      };
-    })
-  ).pipe(Effect.provide(TypeScriptParser.layer))
+const { repositoryFiles, sourceViolations } = await Effect.runPromise(
+  trackedFiles().pipe(
+    Effect.flatMap((files) =>
+      Effect.forEach(typescriptFiles(files), (file) =>
+        Effect.gen(function* () {
+          const source = yield* Effect.try({
+            catch: (cause) =>
+              new TypeScriptSourceError({ cause, fileName: file }),
+            try: () => readFileSync(file, "utf8"),
+          });
+          return {
+            imports: yield* importViolations(file, source, repositoryIdentity),
+            tests: yield* effectTestViolations(file, source),
+          };
+        })
+      ).pipe(
+        Effect.map((violations) => ({
+          repositoryFiles: files,
+          sourceViolations: violations,
+        }))
+      )
+    ),
+    Effect.provide(Layer.merge(TypeScriptParser.layer, NodeServices.layer))
+  )
 );
 enforceViolations(
   "TypeScript imports must respect workspace aliases",
