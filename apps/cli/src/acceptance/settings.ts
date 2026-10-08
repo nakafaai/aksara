@@ -4,6 +4,7 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { TrustedKeySchema } from "@nakafa/aksara-contracts/signature/trusted";
 import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
@@ -52,7 +53,9 @@ export const readAcceptanceRenderer = Effect.fn(
 )(function* (path: string) {
   const fs = yield* FileSystem.FileSystem;
   return yield* fs.readFileString(path).pipe(
-    Effect.flatMap(Schema.decodeEffect(Schema.fromJsonString(Schema.Unknown))),
+    Effect.flatMap(
+      Schema.decodeEffect(Schema.fromJsonString(RendererManifestEnvelopeSchema))
+    ),
     Effect.flatMap(validateRendererManifestHash),
     Effect.mapError(
       () => new AcceptanceEnvironmentError({ reason: "renderer" })

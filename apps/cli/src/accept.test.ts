@@ -1,18 +1,12 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  ConfigProvider,
-  Effect,
-  MutableHashMap,
-  Record as Rec,
-  Schema,
-} from "effect";
+import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runAcceptCommand } from "#cli/accept";
 import { captureClient, requestJson, webResponse } from "#test/http";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const releaseId = ReleaseIdSchema.make("release-active");
 const recoveryId = ReleaseIdSchema.make("recovery-active");
 const acceptValues = MutableHashMap.fromIterable([
@@ -24,7 +18,7 @@ const acceptValues = MutableHashMap.fromIterable([
 function acceptResponse(request: HttpClientRequest.HttpClientRequest) {
   return webResponse(
     request,
-    encodeJson({
+    encodeJsonText({
       ok: true,
       operation: "accept",
       value: {

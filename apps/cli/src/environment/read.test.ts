@@ -15,8 +15,8 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
+import { decodeJsonText } from "#cli/text/json";
 
-const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Builds isolated valid production and publication configuration values. */
 function makeEnvironmentFixture() {
@@ -172,7 +172,7 @@ describe("production environment", () => {
         expect(environment).not.toHaveProperty("rendererToken");
         expect(environment).not.toHaveProperty("privateKeyPem");
         expect(
-          yield* Schema.encodeEffect(JSON_TEXT)(environment)
+          yield* Schema.encodeEffect(decodeJsonText)(environment)
         ).not.toContain("publication-token");
       })
   );
@@ -231,13 +231,13 @@ describe("production environment", () => {
       expect(environment.cacheSurface).toBe("deployed");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
-      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+      expect(yield* Schema.encodeEffect(decodeJsonText)(environment)).not.toContain(
         "publication-token"
       );
-      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+      expect(yield* Schema.encodeEffect(decodeJsonText)(environment)).not.toContain(
         "renderer-token"
       );
-      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+      expect(yield* Schema.encodeEffect(decodeJsonText)(environment)).not.toContain(
         "PRIVATE KEY"
       );
     })

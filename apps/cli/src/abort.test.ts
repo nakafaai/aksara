@@ -1,18 +1,12 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  ConfigProvider,
-  Effect,
-  MutableHashMap,
-  Record as Rec,
-  Schema,
-} from "effect";
+import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runAbortCommand } from "#cli/abort";
 import { captureClient, requestJson, webResponse } from "#test/http";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const releaseId = ReleaseIdSchema.make("release-abort");
 const abortValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
@@ -31,7 +25,7 @@ function abortResponse(
 ) {
   return webResponse(
     request,
-    encodeJson({ ok: true, operation: "abort", value }),
+    encodeJsonText({ ok: true, operation: "abort", value }),
     { headers: { "content-type": "application/json" }, status: 200 }
   );
 }

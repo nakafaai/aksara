@@ -8,17 +8,17 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { HttpClientRequest } from "effect/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
 import { webResponse } from "#test/http";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
   scope: "material",
 });
-const VALID_BODY = encodeJson({
+const VALID_BODY = encodeJsonText({
   releaseId: REQUEST.releaseId,
   revalidated: true,
   scope: REQUEST.scope,
@@ -72,7 +72,7 @@ describe("cache receipt", () => {
       },
     ],
     [
-      encodeJson({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: false,
         scope: REQUEST.scope,
@@ -80,7 +80,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      encodeJson({
+      encodeJsonText({
         extra: true,
         releaseId: REQUEST.releaseId,
         revalidated: true,
@@ -89,7 +89,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      encodeJson({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: "article",
@@ -97,7 +97,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      encodeJson({
+      encodeJsonText({
         releaseId: "test-other-release",
         revalidated: true,
         scope: REQUEST.scope,
@@ -105,7 +105,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      encodeJson({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,
@@ -114,7 +114,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      encodeJson({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,

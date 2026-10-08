@@ -8,6 +8,7 @@ import {
   REQUIRED_PACKED_FILES,
   readPackageVersion,
 } from "#cli/package";
+import { decodeJsonText } from "#cli/text/json";
 
 /** An isolated npm smoke command returned a non-zero exit status. */
 class CliTestCommandError extends Schema.TaggedError<CliTestCommandError>()(
@@ -205,7 +206,7 @@ describe("Aksara CLI package", () => {
         ).toBe(true);
         expect(files.every(isAllowedPackedFile)).toBe(true);
         expect(
-          yield* Schema.decodeEffect(Schema.fromJsonString(Schema.Unknown))(
+          yield* Schema.decodeEffect(decodeJsonText)(
             delegated
           )
         ).toEqual({

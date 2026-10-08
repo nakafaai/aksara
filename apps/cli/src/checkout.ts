@@ -1,4 +1,5 @@
 import { Effect, FileSystem, Option, Path, Predicate, Schema } from "effect";
+import { decodeJsonText } from "#cli/text/json";
 
 /** A required Aksara or Nakafa checkout failed exact identity validation. */
 export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutError>()(
@@ -10,7 +11,6 @@ export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutErro
   }
 ) {}
 
-const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Reads one package identity without accepting malformed JSON as evidence. */
 const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
@@ -23,7 +23,7 @@ const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
     .readFileString(manifestPath, "utf8")
     .pipe(Effect.option);
   return Option.flatMap(source, (manifest) =>
-    Option.flatMap(Schema.decodeOption(JSON_TEXT)(manifest), (value) =>
+    Option.flatMap(Schema.decodeOption(decodeJsonText)(manifest), (value) =>
       Predicate.isObject(value) && Predicate.isString(value.name)
         ? Option.some(value.name)
         : Option.none()

@@ -24,13 +24,13 @@ import {
   responseText,
 } from "#test/provider";
 import { ENGLISH_ENTRY } from "#test/real";
+import { encodeJsonText } from "#cli/text/json";
 
 const firstHash = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 const secondHash = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
 const unknownHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 const firstBody = '{"artifact":"first-test"}';
 const secondBody = '{"artifact":"second-test"}';
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Creates the complete immutable provider state shared by transport tests. */
 const makeState = Effect.fn("AksaraCliTest.makePreviewHttpState")(function* () {
@@ -59,7 +59,7 @@ const makeState = Effect.fn("AksaraCliTest.makePreviewHttpState")(function* () {
       [secondHash, secondBody],
     ]),
     manifest,
-    manifestJson: encodeJson(manifest),
+    manifestJson: encodeJsonText(manifest),
   } satisfies PreviewHttpState;
 });
 

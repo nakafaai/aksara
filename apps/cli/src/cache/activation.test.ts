@@ -12,10 +12,10 @@ import {
 } from "#cli/cache/activation";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { gitBundle } from "#test/target";
+import { encodeJsonText } from "#cli/text/json";
 
 const RELEASE = gitBundle("release-next").release;
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Creates one successful private cache response for the captured request. */
 function cacheResponse(
@@ -31,7 +31,7 @@ function cacheResponse(
   headers.set("content-type", "application/json");
   return webResponse(
     responseRequest,
-    encodeJson({
+    encodeJsonText({
       releaseId: body.releaseId,
       revalidated: true,
       scope: body.scope,

@@ -22,7 +22,7 @@ import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import type { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
@@ -43,8 +43,8 @@ import {
   retryPublicationTarget,
 } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 type ProductionServices =
   | FileSystem.FileSystem
@@ -66,7 +66,7 @@ function logPublicationScope(manifest: ContentReleaseManifest) {
       deleteCount: manifest.deleteCount,
       familyScopeCount: manifest.scope.families.length,
       itemCount: manifest.itemCount,
-      scope: encodeJson(canonicalizePublicationScope(manifest.scope)),
+      scope: encodeJsonText(canonicalizePublicationScope(manifest.scope)),
       snapshotScopeCount: manifest.scope.snapshots.length,
       upsertCount: manifest.upsertCount,
     })

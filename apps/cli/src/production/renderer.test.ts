@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Fiber, Logger, Redacted, References, Schema } from "effect";
+import { Effect, Fiber, Logger, Redacted, References } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
@@ -11,19 +11,19 @@ import {
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import { stateBundle } from "#test/state";
+import { encodeJsonText } from "#cli/text/json";
 
 const ENDPOINT = new URL(
   "https://www.example.test/api/internal/content/renderer"
 );
 const TOKEN = Redacted.make("renderer-test-token");
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Creates one valid no-store renderer response for a chosen status. */
 function rendererResponse(
   request: HttpClientRequest.HttpClientRequest,
   status = 200
 ) {
-  return webResponse(request, encodeJson(RENDERER_MANIFEST), {
+  return webResponse(request, encodeJsonText(RENDERER_MANIFEST), {
     headers: {
       "cache-control": "private, no-store",
       "content-type": "application/json",

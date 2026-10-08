@@ -5,7 +5,7 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { prepareAcceptanceRelease } from "@nakafa/aksara-publisher/acceptance/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, HashSet, Schema } from "effect";
+import { Effect, HashSet } from "effect";
 import { publishAcceptance } from "#cli/acceptance/publication";
 import {
   AcceptanceEnvironmentError,
@@ -16,6 +16,7 @@ import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";
+import { encodeJsonText } from "#cli/text/json";
 
 const state = vi.hoisted(() => ({
   allowInsecureLoopback: false,
@@ -111,7 +112,6 @@ vi.mock("@nakafa/aksara-publisher/publication", async () =>
   (await import("#test/acceptance")).acceptancePublicationMock(state)
 );
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Runs the complete outer boundary with network and process fallthrough disabled. */
 const publish = Effect.fn("AcceptancePublicationTest.publish")(() =>
@@ -290,7 +290,7 @@ describe("isolated acceptance publication", () => {
           failure: "ContractDecodeError",
           stage: "publish",
         });
-        expect(encodeJson(error)).not.toContain(
+        expect(encodeJsonText(error)).not.toContain(
           "test-secret-publication-token"
         );
         expect(state.published).toBe(0);

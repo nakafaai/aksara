@@ -8,10 +8,10 @@ import {
 import { Effect, type Redacted, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { makeNakafaAppError } from "#cli/error";
+import { decodeJsonText } from "#cli/text/json";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
 const PREVIEW_NONCE_HEADER = "x-aksara-preview-nonce";
-const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Reads one bounded renderer JSON response with redirects disabled. */
 export const fetchRendererBody = Effect.fn("AksaraCli.fetchRendererBody")(
@@ -74,7 +74,7 @@ export const fetchRendererBody = Effect.fn("AksaraCli.fetchRendererBody")(
           return makeNakafaAppError("body", error.reason === "stream");
         })
       );
-      return yield* Schema.decodeEffect(JSON_TEXT)(source).pipe(
+      return yield* Schema.decodeEffect(decodeJsonText)(source).pipe(
         Effect.mapError(() => makeNakafaAppError("json", false))
       );
     }).pipe(Effect.scoped)

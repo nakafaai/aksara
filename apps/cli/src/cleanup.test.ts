@@ -1,18 +1,12 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  ConfigProvider,
-  Effect,
-  MutableHashMap,
-  Record as Rec,
-  Schema,
-} from "effect";
+import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runCleanupCommand } from "#cli/cleanup";
 import { captureClient, requestJson, webResponse } from "#test/http";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const releaseId = ReleaseIdSchema.make("release-cleanup");
 const cleanupValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
@@ -31,7 +25,7 @@ function cleanupResponse(
 ) {
   return webResponse(
     request,
-    encodeJson({ ok: true, operation: "cleanup", value }),
+    encodeJsonText({ ok: true, operation: "cleanup", value }),
     { headers: { "content-type": "application/json" }, status: 200 }
   );
 }

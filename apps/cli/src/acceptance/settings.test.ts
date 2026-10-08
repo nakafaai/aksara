@@ -2,14 +2,7 @@ import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  ConfigProvider,
-  Effect,
-  FileSystem,
-  Path,
-  Redacted,
-  Schema,
-} from "effect";
+import { ConfigProvider, Effect, FileSystem, Path, Redacted } from "effect";
 import {
   AcceptanceEnvironmentError,
   decodeAcceptanceEndpoint,
@@ -17,8 +10,8 @@ import {
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
 import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";
 
 /** Creates test-owned files and a private config provider for acceptance reads. */
@@ -37,7 +30,7 @@ const makeFixture = Effect.fn("AcceptanceSettingsTest.makeFixture")(
     const privateKeyPath = path.join(directory, "signer.pem");
     const rendererPath = path.join(directory, "renderer.json");
     yield* fs.writeFileString(privateKeyPath, privateKeyPem);
-    yield* fs.writeFileString(rendererPath, encodeJson(RENDERER_MANIFEST));
+    yield* fs.writeFileString(rendererPath, encodeJsonText(RENDERER_MANIFEST));
     return {
       directory,
       fs,
@@ -121,8 +114,8 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
           fixture.privateKeyPem
         );
         expect(Redacted.value(settings.token)).toBe("test-acceptance-token");
-        expect(encodeJson(settings)).not.toContain("PRIVATE KEY");
-        expect(encodeJson(settings)).not.toContain("test-acceptance-token");
+        expect(encodeJsonText(settings)).not.toContain("PRIVATE KEY");
+        expect(encodeJsonText(settings)).not.toContain("test-acceptance-token");
         expect(yield* readAcceptanceRenderer(settings.rendererPath)).toEqual(
           RENDERER_MANIFEST
         );
@@ -228,7 +221,7 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
         const text =
           failure === "invalid-json"
             ? "{"
-            : encodeJson(
+            : encodeJsonText(
                 failure === "invalid-contract"
                   ? {}
                   : {

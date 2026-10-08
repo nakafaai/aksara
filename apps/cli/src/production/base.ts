@@ -11,8 +11,8 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Schema } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const ProductionBaseIdentitySchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
@@ -80,8 +80,8 @@ function recoveryBaseMismatch(
     return expected === actual ? undefined : "presence";
   }
   if (
-    encodeJson(expected.activeAppLocales) !==
-    encodeJson(actual.activeAppLocales)
+    encodeJsonText(expected.activeAppLocales) !==
+    encodeJsonText(actual.activeAppLocales)
   ) {
     return "activeAppLocales";
   }
@@ -97,7 +97,7 @@ function recoveryBaseMismatch(
   ) {
     return "result";
   }
-  return encodeJson(expected.snapshots) === encodeJson(actual.snapshots)
+  return encodeJsonText(expected.snapshots) === encodeJsonText(actual.snapshots)
     ? undefined
     : "snapshots";
 }

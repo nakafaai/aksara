@@ -14,13 +14,13 @@ import {
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { Equal, HashMap, MutableHashMap, Option, Schema } from "effect";
+import { encodeJsonText } from "#cli/text/json";
 
 export const PREVIEW_MANIFEST_PATH = "/manifest";
 export const PREVIEW_EVENTS_PATH = "/events";
 
 const PREVIEW_HEARTBEAT = ": keep-alive\n\n";
 const PREVIEW_HEARTBEAT_INTERVAL_MS = 30_000;
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const PreviewHttpStateSchema = Schema.Struct({
   artifacts: Schema.HashMap(Sha256HashSchema, Schema.String),
@@ -84,7 +84,7 @@ function decodeArtifactHash(path: string) {
 
 /** Serializes one minimal event from the exact committed manifest. */
 function eventJson(manifest: LocalPreviewManifest) {
-  return encodeJson(
+  return encodeJsonText(
     PreviewEventSchema.make({
       format: LOCAL_PREVIEW_FORMAT,
       revision: manifest.revision,

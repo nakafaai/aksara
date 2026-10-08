@@ -13,8 +13,8 @@ import { HttpClient } from "effect/http";
 import { runStatusCommand } from "#cli/status";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";
+import { encodeJsonText } from "#cli/text/json";
 
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const statusValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
   ["AKSARA_PUBLICATION_TOKEN", "publication-token"],
@@ -38,7 +38,7 @@ function statusResponse(
 ) {
   return webResponse(
     request,
-    encodeJson({
+    encodeJsonText({
       ok: true,
       operation: "current",
       value,
