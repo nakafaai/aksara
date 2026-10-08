@@ -8,8 +8,8 @@ export const countryRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "de",
-      countryCode: "ID",
-      countryKey: "indonesia",
+      countryCode: "ZZ",
+      countryKey: "test-country",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:country",
@@ -21,7 +21,7 @@ export const countryRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       },
       kind: "country",
       order: 1,
-      publicPath: "try-out/indonesia",
+      publicPath: "try-out/test-country",
       sourceRevision: "2026-08-12",
       title: "Judul uji é",
     },
@@ -37,9 +37,9 @@ export const examRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "id",
-      countryKey: "indonesia",
+      countryKey: "test-country",
       description: "Deskripsi ujian é",
-      examKey: "snbt",
+      examKey: "test-exam",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:exam",
@@ -51,7 +51,7 @@ export const examRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       },
       kind: "exam",
       order: 1,
-      publicPath: "try-out/indonesia/snbt",
+      publicPath: "try-out/test-country/test-exam",
       scoringStrategy: "irt",
       sourceRevision: "2026-08-12",
       title: "Ujian uji é",
@@ -68,8 +68,8 @@ export const trackRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "en",
-      countryKey: "indonesia",
-      examKey: "snbt",
+      countryKey: "test-country",
+      examKey: "test-exam",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:track",
@@ -81,13 +81,13 @@ export const trackRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       },
       kind: "track",
       order: 1,
-      publicPath: "try-out/indonesia/snbt/2027",
+      publicPath: "try-out/test-country/test-exam/test-track",
       questionCount: 2,
       sectionCount: 2,
       setCount: 1,
       sourceRevision: "2026-08-12",
       title: "Trek uji é",
-      trackKey: "2027",
+      trackKey: "test-track",
       trackKind: "year",
       visibleSectionCount: 0,
     },
@@ -103,8 +103,8 @@ export const setRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "en",
-      countryKey: "indonesia",
-      examKey: "snbt",
+      countryKey: "test-country",
+      examKey: "test-exam",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:set",
@@ -114,17 +114,17 @@ export const setRow = Schema.decodeSync(ContentSnapshotRowSchema)({
         learningObjectId: "lo:material-section:tryout:catalog:set",
         lensId: "lens:material:lesson:tryout",
       },
-      internalEntrySectionKey: "quantitative-knowledge",
+      internalEntrySectionKey: "test-section",
       kind: "set",
       order: 1,
-      publicPath: "try-out/indonesia/snbt/2027/set-1",
+      publicPath: "try-out/test-country/test-exam/test-track/test-set",
       questionCount: 1,
       scoringStrategy: "irt",
       sectionCount: 1,
-      setKey: "set-1",
+      setKey: "test-set",
       sourceRevision: "2026-08-12",
       title: "Set uji é",
-      trackKey: "2027",
+      trackKey: "test-track",
       visibleSectionCount: 0,
     },
     rowHash:
@@ -139,27 +139,27 @@ export const fullSetRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "en",
-      countryKey: "indonesia",
-      examKey: "snbt",
+      countryKey: "test-country",
+      examKey: "test-exam",
       graph: {
         alignmentId:
-          "alignment:material:lesson:tryout:material-section:tryout:catalog:set-2",
+          "alignment:material:lesson:tryout:material-section:tryout:catalog:test-set-2",
         assetId:
-          "asset:en:material:lesson:tryout:material-section:tryout:catalog:set-2",
+          "asset:en:material:lesson:tryout:material-section:tryout:catalog:test-set-2",
         conceptId: "concept:material:lesson:tryout:catalog",
-        learningObjectId: "lo:material-section:tryout:catalog:set-2",
+        learningObjectId: "lo:material-section:tryout:catalog:test-set-2",
         lensId: "lens:material:lesson:tryout",
       },
       kind: "set",
       order: 2,
-      publicPath: "try-out/indonesia/snbt/2027/set-2",
+      publicPath: "try-out/test-country/test-exam/test-track/test-set-2",
       questionCount: 2,
       scoringStrategy: "penalized",
       sectionCount: 2,
-      setKey: "set-2",
+      setKey: "test-set-2",
       sourceRevision: "2026-08-12",
       title: "Set dua é",
-      trackKey: "2027",
+      trackKey: "test-track",
       visibleSectionCount: 2,
     },
     rowHash:
@@ -174,9 +174,9 @@ export const markedSectionRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "en",
-      countryKey: "indonesia",
+      countryKey: "test-country",
       description: "Deskripsi bagian é",
-      examKey: "snbt",
+      examKey: "test-exam",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:section-visible",
@@ -189,16 +189,17 @@ export const markedSectionRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       kind: "section",
       marks: { blank: 0, correct: 4, wrong: -1 },
       order: 1,
-      publicPath: "try-out/indonesia/snbt/2027/set-2/quantitative-knowledge",
+      publicPath:
+        "try-out/test-country/test-exam/test-track/test-set-2/test-section",
       questionCount: 2,
       questionSourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-2",
-      sectionKey: "quantitative-knowledge",
-      setKey: "set-2",
+        "packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set-2",
+      sectionKey: "test-section",
+      setKey: "test-set-2",
       sourceRevision: "2026-08-12",
       timeLimitSeconds: 1800,
       title: "Bagian uji é",
-      trackKey: "2027",
+      trackKey: "test-track",
       visibility: "visible",
     },
     rowHash:
@@ -213,8 +214,8 @@ export const entrySectionRow = Schema.decodeSync(ContentSnapshotRowSchema)({
   record: {
     row: {
       appLocale: "de",
-      countryKey: "indonesia",
-      examKey: "snbt",
+      countryKey: "test-country",
+      examKey: "test-exam",
       graph: {
         alignmentId:
           "alignment:material:lesson:tryout:material-section:tryout:catalog:section-entry",
@@ -228,13 +229,13 @@ export const entrySectionRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       order: 2,
       questionCount: 1,
       questionSourcePath:
-        "packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1",
-      sectionKey: "quantitative-knowledge",
-      setKey: "set-1",
+        "packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set",
+      sectionKey: "test-section",
+      setKey: "test-set",
       sourceRevision: "2026-08-12",
       timeLimitSeconds: 60,
       title: "Test-only Abschnitt ü",
-      trackKey: "2027",
+      trackKey: "test-track",
       visibility: "internal-entry",
     },
     rowHash:
