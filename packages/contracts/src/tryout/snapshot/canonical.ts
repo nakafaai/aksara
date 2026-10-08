@@ -1,3 +1,4 @@
+import { encodeJsonText } from "#contracts/text/json";
 import type { TryoutSnapshotFacts } from "#contracts/tryout/snapshot/spec";
 import { TRYOUT_SNAPSHOT_FORMAT } from "#contracts/tryout/snapshot/spec";
 
@@ -9,7 +10,7 @@ export const TRYOUT_SNAPSHOT_ROWS_DOMAIN = "nakafa.aksara.tryout-rows";
 
 /** Serializes snapshot facts without content-addressed identity. */
 export function canonicalizeTryoutSnapshot(input: TryoutSnapshotFacts) {
-  return JSON.stringify({
+  return encodeJsonText({
     activeAppLocales: input.activeAppLocales,
     catalogDigest: input.catalogDigest,
     counts: input.counts,

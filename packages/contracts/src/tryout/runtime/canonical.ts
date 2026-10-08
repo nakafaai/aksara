@@ -1,4 +1,5 @@
 import type { Sha256Hash } from "#contracts/ids";
+import { encodeJsonText } from "#contracts/text/json";
 import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/spec";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "#contracts/tryout/runtime/spec";
 
@@ -10,7 +11,7 @@ export const TRYOUT_RUNTIME_BUNDLE_SIGNATURE_DOMAIN =
 export function canonicalizeTryoutRuntimeBundlePayload(
   payload: TryoutRuntimeBundlePayload
 ) {
-  return JSON.stringify({
+  return encodeJsonText({
     format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
     rendererManifestHash: payload.rendererManifestHash,
     snapshot: {

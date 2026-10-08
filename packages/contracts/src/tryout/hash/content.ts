@@ -15,6 +15,7 @@ import {
   canonicalQuestionResponse,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
   AssessmentLanguagePolicySchema,
@@ -76,7 +77,7 @@ function dateEpoch(date: DateOnly) {
 
 /** Serializes every current question-pair identity field in stable order. */
 export function canonicalizeTryoutContent(input: TryoutContentInput) {
-  return JSON.stringify({
+  return encodeJsonText({
     answerArtifactLocale: input.answerArtifactLocale,
     answerBody: normalizeBody(input.answerBody),
     appLocale: input.appLocale,

@@ -2,6 +2,7 @@ import type { Stream } from "effect";
 
 import { canonicalQuestionBlueprint } from "#contracts/question/item";
 import { canonicalQuestionResponse } from "#contracts/question/response";
+import { encodeJsonText } from "#contracts/text/json";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import { digestTryoutRecords } from "#contracts/tryout/digest";
 import { tryoutPlacementIdentity } from "#contracts/tryout/identity";
@@ -16,7 +17,7 @@ const PLACEMENT_DOMAIN = "nakafa.aksara.tryout-placements";
 
 /** Serializes one artifact-bound placement with stable field order. */
 export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
-  return JSON.stringify({
+  return encodeJsonText({
     answerArtifactHash: row.answerArtifactHash,
     answerArtifactLocale: row.answerArtifactLocale,
     answerContentKey: row.answerContentKey,

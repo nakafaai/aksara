@@ -7,6 +7,7 @@ import {
   type DeliveryLanguage,
   DeliveryLanguageSchema,
 } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   canonicalAssessmentLanguagePolicy,
   deliveryLanguageForPolicy,
@@ -65,10 +66,10 @@ describe("try-out language", () => {
 
   it("canonically orders both policy variants", () => {
     expect(
-      JSON.stringify(canonicalAssessmentLanguagePolicy({ kind: "app-locale" }))
+      encodeJsonText(canonicalAssessmentLanguagePolicy({ kind: "app-locale" }))
     ).toBe('{"kind":"app-locale"}');
     expect(
-      JSON.stringify(
+      encodeJsonText(
         canonicalAssessmentLanguagePolicy({ kind: "fixed", language: english })
       )
     ).toBe('{"kind":"fixed","language":"en"}');
