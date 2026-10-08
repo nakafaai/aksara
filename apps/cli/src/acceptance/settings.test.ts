@@ -9,8 +9,8 @@ import {
   readAcceptanceRenderer,
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
-import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 import { encodeJsonText } from "#cli/text/json";
+import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";
 

@@ -205,11 +205,7 @@ describe("Aksara CLI package", () => {
           REQUIRED_PACKED_FILES.every((file) => files.includes(file))
         ).toBe(true);
         expect(files.every(isAllowedPackedFile)).toBe(true);
-        expect(
-          yield* Schema.decodeEffect(decodeJsonText)(
-            delegated
-          )
-        ).toEqual({
+        expect(yield* Schema.decodeEffect(decodeJsonText)(delegated)).toEqual({
           args: ["sentinel"],
           cwd: realNested,
         });

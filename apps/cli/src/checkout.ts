@@ -11,7 +11,6 @@ export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutErro
   }
 ) {}
 
-
 /** Reads one package identity without accepting malformed JSON as evidence. */
 const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
   root: string

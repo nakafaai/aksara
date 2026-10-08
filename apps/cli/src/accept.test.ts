@@ -4,8 +4,8 @@ import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runAcceptCommand } from "#cli/accept";
-import { captureClient, requestJson, webResponse } from "#test/http";
 import { encodeJsonText } from "#cli/text/json";
+import { captureClient, requestJson, webResponse } from "#test/http";
 
 const releaseId = ReleaseIdSchema.make("release-active");
 const recoveryId = ReleaseIdSchema.make("recovery-active");

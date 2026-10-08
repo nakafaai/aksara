@@ -10,10 +10,9 @@ import {
   HttpClientRequest,
 } from "effect/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
-import { encodeJsonText } from "#cli/text/json";
-
 
 const RENDERER_URL = new URL(
   "http://127.0.0.1:31234/api/internal/content/renderer"

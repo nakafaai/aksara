@@ -13,7 +13,6 @@ import { Effect, Schema } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
 import { encodeJsonText } from "#cli/text/json";
 
-
 const ProductionBaseIdentitySchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
   manifestHash: Sha256HashSchema,

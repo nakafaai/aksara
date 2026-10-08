@@ -13,6 +13,7 @@ import {
   PREVIEW_MANIFEST_PATH,
   type PreviewHttpState,
 } from "#cli/provider/http";
+import { encodeJsonText } from "#cli/text/json";
 import {
   cancelProviderEvent,
   openPreviewHttpReader,
@@ -24,7 +25,6 @@ import {
   responseText,
 } from "#test/provider";
 import { ENGLISH_ENTRY } from "#test/real";
-import { encodeJsonText } from "#cli/text/json";
 
 const firstHash = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 const secondHash = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);

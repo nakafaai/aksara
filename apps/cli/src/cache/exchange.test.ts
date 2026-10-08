@@ -13,8 +13,8 @@ import {
 } from "effect/http";
 
 import { invalidateContentCache } from "#cli/cache/exchange";
-import { captureClient, webResponse } from "#test/http";
 import { encodeJsonText } from "#cli/text/json";
+import { captureClient, webResponse } from "#test/http";
 
 const ENDPOINT = new URL("https://www.example.test/api/internal/content/cache");
 const TOKEN = Redacted.make("cache-token");
@@ -22,7 +22,6 @@ const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
   scope: "material",
 });
-
 
 /** Creates one exact private cache receipt for a captured request. */
 function cacheResponse(

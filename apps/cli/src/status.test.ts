@@ -11,9 +11,9 @@ import {
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runStatusCommand } from "#cli/status";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";
-import { encodeJsonText } from "#cli/text/json";
 
 const statusValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],

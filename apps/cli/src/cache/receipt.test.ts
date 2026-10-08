@@ -11,8 +11,8 @@ import {
 import { Effect } from "effect";
 import { HttpClientRequest } from "effect/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
-import { webResponse } from "#test/http";
 import { encodeJsonText } from "#cli/text/json";
+import { webResponse } from "#test/http";
 
 const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),

@@ -14,9 +14,9 @@ import {
 import { readCleanAksaraRevision } from "#cli/evidence";
 import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
+import { encodeJsonText } from "#cli/text/json";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";
-import { encodeJsonText } from "#cli/text/json";
 
 const state = vi.hoisted(() => ({
   allowInsecureLoopback: false,
@@ -111,7 +111,6 @@ vi.mock("@nakafa/aksara-publisher/git/source", async () => {
 vi.mock("@nakafa/aksara-publisher/publication", async () =>
   (await import("#test/acceptance")).acceptancePublicationMock(state)
 );
-
 
 /** Runs the complete outer boundary with network and process fallthrough disabled. */
 const publish = Effect.fn("AcceptancePublicationTest.publish")(() =>

@@ -9,10 +9,9 @@ import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
-import { encodeJsonText } from "#cli/text/json";
-
 
 describe("Nakafa app service", () => {
   it.effect("wires renderer discovery and child startup implementations", () =>
