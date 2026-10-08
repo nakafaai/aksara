@@ -1,14 +1,9 @@
-import { Chunk, Effect, Schema, Stream } from "effect";
+import { Chunk, Effect, HashSet, Schema, Stream } from "effect";
 import type { HttpClientResponse } from "effect/http";
 import { joinBytes } from "#utilities/bytes/join";
 
-interface BodyState {
-  readonly chunks: Chunk.Chunk<Uint8Array>;
-  readonly size: number;
-}
-
-const EMPTY_BODY: BodyState = {
-  chunks: Chunk.empty(),
+const EMPTY_BODY = {
+  chunks: Chunk.empty<Uint8Array>(),
   size: 0,
 };
 
@@ -27,10 +22,12 @@ export function hasDirectives(
   value: string | undefined,
   required: readonly string[]
 ) {
-  const directives = new Set(
+  const directives = HashSet.fromIterable(
     value?.split(",").map((directive) => directive.trim().toLowerCase()) ?? []
   );
-  return required.every((directive) => directives.has(directive.toLowerCase()));
+  return required.every((directive) =>
+    HashSet.has(directives, directive.toLowerCase())
+  );
 }
 
 /** Checks an optional declared byte length fits one safe exact ceiling. */
