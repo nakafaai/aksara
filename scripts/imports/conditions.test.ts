@@ -34,6 +34,17 @@ describe("workspace source conditions", () => {
     })
   );
 
+  it.effect("rejects configuration that is not JSON", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* sourceConditionFromConfig("{").pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "SourceConditionError",
+        message: "TypeScript config must be valid JSON.",
+      });
+    })
+  );
+
   it("requires source resolution before generated output", () => {
     const sourceFirst = Schema.encodeSync(JsonText)({
       exports: {

@@ -9,6 +9,8 @@ import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
 
 const CONDITION_CONFIG =
   '{"compilerOptions":{"customConditions":["aksara-source"]}}\n';
+const COMPILER_MANIFEST =
+  '{"name":"@nakafa/aksara-compiler","imports":{"#compiler/*":"./src/*.ts"}}\n';
 
 /** Writes each repository file under root, creating its folders first. */
 const writeRepository = Effect.fn("ImportCheckTest.writeRepository")(function* (
@@ -292,6 +294,8 @@ const multiple = require("first", "second");
       Effect.gen(function* () {
         const root = yield* makeRepository();
         yield* writeRepository(root, {
+          "packages/compiler/package.json": COMPILER_MANIFEST,
+          "packages/compiler/src/owned.ts": 'import "#compiler/other";\n',
           "packages/typescript-config/base.json": CONDITION_CONFIG,
           "scripts/clean.ts": "export const value = 1;\n",
         });
@@ -332,6 +336,26 @@ const multiple = require("first", "second");
         "TypeScript imports must respect workspace aliases:\nscripts/planted.ts:1 ./relative: relative or filesystem module import\nscripts/planted.ts:2 vitest: test APIs must come from @effect/vitest\n"
       );
       expect(exitCode).toBe(1);
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect("fails when a workspace source has no tracked manifest", () =>
+    Effect.gen(function* () {
+      const root = yield* makeRepository();
+      yield* writeRepository(root, {
+        "packages/typescript-config/base.json": CONDITION_CONFIG,
+        "packages/unknown/src/source.ts": 'import "effect";\n',
+      });
+
+      const failure = yield* keepExitCode(
+        inDirectory(root, checkRepository).pipe(Effect.flip)
+      );
+
+      expect(failure).toMatchObject({
+        _tag: "WorkspaceIdentityError",
+        message:
+          "packages/unknown/package.json is not a tracked workspace manifest.",
+      });
     }).pipe(Effect.provide(NodeServices.layer))
   );
 

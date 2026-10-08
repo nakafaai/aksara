@@ -55,6 +55,15 @@ describe("workspace identities", () => {
       );
       expect(noPolicy._tag).toBe("WorkspaceIdentityError");
       expect(noPolicy.message).toContain("has no import-boundary policy");
+
+      const notJson = createWorkspaceIdentityResolver(() =>
+        Effect.succeed("{")
+      );
+      const invalid = yield* notJson("packages/compiler/src/source.ts").pipe(
+        Effect.flip
+      );
+      expect(invalid._tag).toBe("WorkspaceIdentityError");
+      expect(invalid.message).toContain("is not valid JSON");
     })
   );
 });
