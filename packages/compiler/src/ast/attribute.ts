@@ -1,4 +1,4 @@
-import { Predicate } from "effect";
+import { HashSet, Predicate } from "effect";
 import type {
   Expression,
   JSXAttribute,
@@ -30,7 +30,7 @@ function isMeaningfulString(value: unknown): value is string {
 /** Static visibility result for one authored rich metadata value. */
 export type RichAttributeState = "dynamic" | "empty" | "meaningful";
 
-const VISIBLE_RICH_TEXT_ELEMENTS = new Set([
+const VISIBLE_RICH_TEXT_ELEMENTS = HashSet.make(
   "abbr",
   "b",
   "cite",
@@ -51,8 +51,8 @@ const VISIBLE_RICH_TEXT_ELEMENTS = new Set([
   "sup",
   "time",
   "u",
-  "var",
-]);
+  "var"
+);
 
 /** Combines child visibility without treating unknown runtime output as empty. */
 function combineStates(
@@ -211,7 +211,7 @@ function inspectElement(element: JSXElement): RichAttributeState {
   }
   const name = jsxName(element);
   if (
-    !(name && VISIBLE_RICH_TEXT_ELEMENTS.has(name)) ||
+    !(name && HashSet.has(VISIBLE_RICH_TEXT_ELEMENTS, name)) ||
     element.openingElement.attributes.length > 0
   ) {
     return "dynamic";

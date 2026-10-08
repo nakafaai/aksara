@@ -1,10 +1,13 @@
-import { Predicate } from "effect";
+import { HashMap, Option, Predicate } from "effect";
 import type { Node } from "estree-jsx";
 
 type Operation = (...values: number[]) => number;
 
 /** Numeric `Math` constants that an authored expression may read by name. */
-const MATH_CONSTANTS: ReadonlyMap<string, number> = new Map([
+const MATH_CONSTANTS: HashMap.HashMap<string, number> = HashMap.fromIterable<
+  string,
+  number
+>([
   ["E", Math.E],
   ["LN10", Math.LN10],
   ["LN2", Math.LN2],
@@ -21,7 +24,7 @@ const MATH_CONSTANTS: ReadonlyMap<string, number> = new Map([
  * because it returns a different number on every call, and a constant must be
  * the same number on every run.
  */
-const MATH_FUNCTIONS: ReadonlyMap<string, Operation> = new Map<
+const MATH_FUNCTIONS: HashMap.HashMap<string, Operation> = HashMap.fromIterable<
   string,
   Operation
 >([
@@ -59,38 +62,34 @@ const MATH_FUNCTIONS: ReadonlyMap<string, Operation> = new Map<
 ]);
 
 /** Unary operators that keep a number a number, with JavaScript semantics. */
-const UNARY_OPERATORS: ReadonlyMap<string, Operation> = new Map<
-  string,
-  Operation
->([
-  ["+", (value) => +value],
-  ["-", (value) => -value],
-]);
+const UNARY_OPERATORS: HashMap.HashMap<string, Operation> =
+  HashMap.fromIterable<string, Operation>([
+    ["+", (value) => +value],
+    ["-", (value) => -value],
+  ]);
 
 /** Binary arithmetic operators, with the exact semantics JavaScript gives. */
-const BINARY_OPERATORS: ReadonlyMap<string, Operation> = new Map<
-  string,
-  Operation
->([
-  ["%", (left, right) => left % right],
-  ["*", (left, right) => left * right],
-  ["**", (left, right) => left ** right],
-  ["+", (left, right) => left + right],
-  ["-", (left, right) => left - right],
-  ["/", (left, right) => left / right],
-]);
+const BINARY_OPERATORS: HashMap.HashMap<string, Operation> =
+  HashMap.fromIterable<string, Operation>([
+    ["%", (left, right) => left % right],
+    ["*", (left, right) => left * right],
+    ["**", (left, right) => left ** right],
+    ["+", (left, right) => left + right],
+    ["-", (left, right) => left - right],
+    ["/", (left, right) => left / right],
+  ]);
 
 /** Looks up one plain `Math.name` access in a table, or nothing for any other node. */
 function mathMember<Value>(
   node: Node,
-  table: ReadonlyMap<string, Value>
+  table: HashMap.HashMap<string, Value>
 ): Value | undefined {
   return node.type === "MemberExpression" &&
     !node.computed &&
     node.object.type === "Identifier" &&
     node.object.name === "Math" &&
     node.property.type === "Identifier"
-    ? table.get(node.property.name)
+    ? Option.getOrUndefined(HashMap.get(table, node.property.name))
     : undefined;
 }
 
@@ -111,12 +110,15 @@ function evaluate(node: Node): number | undefined {
     case "Literal":
       return Predicate.isNumber(node.value) ? node.value : undefined;
     case "UnaryExpression":
-      return operate(UNARY_OPERATORS.get(node.operator), [node.argument]);
+      return operate(
+        Option.getOrUndefined(HashMap.get(UNARY_OPERATORS, node.operator)),
+        [node.argument]
+      );
     case "BinaryExpression":
-      return operate(BINARY_OPERATORS.get(node.operator), [
-        node.left,
-        node.right,
-      ]);
+      return operate(
+        Option.getOrUndefined(HashMap.get(BINARY_OPERATORS, node.operator)),
+        [node.left, node.right]
+      );
     case "MemberExpression":
       return mathMember(node, MATH_CONSTANTS);
     case "CallExpression":

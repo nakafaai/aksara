@@ -1,3 +1,4 @@
+import { HashSet, MutableHashSet, Schema } from "effect";
 import type { ObjectExpression } from "estree-jsx";
 import type {
   MdxJsxAttribute,
@@ -25,19 +26,12 @@ type StaticResult<Value> =
 
 export type MathVisualElement = MdxJsxFlowElement | MdxJsxTextElement;
 
-export interface SourceLocation {
-  readonly column: number;
-  readonly line: number;
-}
-
-interface EstreeLocation {
-  readonly loc?:
-    | {
-        readonly start: { readonly column: number; readonly line: number };
-      }
-    | null
-    | undefined;
-}
+/** One-based line and column of an authored source location. */
+const SourceLocationSchema = Schema.Struct({
+  column: Schema.Int,
+  line: Schema.Int,
+});
+export type SourceLocation = typeof SourceLocationSchema.Type;
 
 /** Constant MathVisual data retained for contract-level validation. */
 export interface MathVisualCandidate {
@@ -54,7 +48,12 @@ export interface MathVisualInspection {
   readonly violations: readonly MathVisualPolicyViolation[];
 }
 
-const ALLOWED_ATTRIBUTES = new Set(["description", "labels", "scene", "title"]);
+const ALLOWED_ATTRIBUTES = HashSet.make(
+  "description",
+  "labels",
+  "scene",
+  "title"
+);
 
 /** Reads a one-based MDX source location with a deterministic fallback. */
 export function mdxLocation(node: {
@@ -67,7 +66,17 @@ export function mdxLocation(node: {
 }
 
 /** Reads a one-based ESTree source location with an MDX fallback. */
-export function estreeLocation(node: EstreeLocation, fallback: SourceLocation) {
+export function estreeLocation(
+  node: {
+    readonly loc?:
+      | {
+          readonly start: { readonly column: number; readonly line: number };
+        }
+      | null
+      | undefined;
+  },
+  fallback: SourceLocation
+) {
   return node.loc
     ? { column: node.loc.start.column + 1, line: node.loc.start.line }
     : fallback;
@@ -114,7 +123,7 @@ function readRichLabelKeys(
     return failedLabel("labels-object", estreeLocation(expression, fallback));
   }
   const keys: string[] = [];
-  const names = new Set<string>();
+  const names = MutableHashSet.empty<string>();
   for (const property of expression.properties) {
     if (property.type === "SpreadElement") {
       return failedLabel("labels-spread", estreeLocation(property, fallback));
@@ -132,13 +141,13 @@ function readRichLabelKeys(
     if (name === undefined) {
       return failedLabel("labels-property", estreeLocation(property, fallback));
     }
-    if (names.has(name)) {
+    if (MutableHashSet.has(names, name)) {
       return failedLabel(
         "labels-duplicate-property",
         estreeLocation(property, fallback)
       );
     }
-    names.add(name);
+    MutableHashSet.add(names, name);
     keys.push(name);
   }
   return { success: true, value: keys };
@@ -221,7 +230,7 @@ export function inspectMathVisual(
       attribute.type === "mdxJsxAttribute"
   );
   for (const attribute of named) {
-    if (!ALLOWED_ATTRIBUTES.has(attribute.name)) {
+    if (!HashSet.has(ALLOWED_ATTRIBUTES, attribute.name)) {
       violations.push({
         ...mdxLocation(attribute),
         reason: "attribute-unexpected",
