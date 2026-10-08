@@ -14,6 +14,7 @@ import {
   goldenMixed,
   goldenRoot,
 } from "#contracts/test/curriculum";
+import { decodeJson } from "#contracts/test/json";
 
 const merdekaRoute = {
   appLocale: "en",
@@ -62,7 +63,7 @@ describe("curriculum route contract", () => {
   it("decodes and canonicalizes a real localized route", () => {
     const route = Schema.decodeSync(CurriculumRouteSchema)(merdekaRoute);
 
-    expect(JSON.parse(canonicalizeCurriculumRoute(route))).toEqual(
+    expect(decodeJson(canonicalizeCurriculumRoute(route))).toEqual(
       merdekaRoute
     );
   });
@@ -89,7 +90,7 @@ describe("curriculum route contract", () => {
       title: "Linear Equations and Inequalities",
     });
 
-    expect(JSON.parse(canonicalizeCurriculumRoute(route))).toMatchObject({
+    expect(decodeJson(canonicalizeCurriculumRoute(route))).toMatchObject({
       canonicalPath: "subjects/mathematics/linear-equation-inequality",
       materialContextNodeKey: "class-10-mathematics-algebra",
       materialKey: "lesson.mathematics.linear-equation-inequality",

@@ -11,6 +11,9 @@ import {
 import { MaterialKeySchema } from "#contracts/projection/material";
 import { isLowerKebab } from "#contracts/text/syntax";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 const CurriculumNamespaceMapSchema = Schema.Struct({
   de: Schema.Literal("lehrplaene"),
   en: Schema.Literal("curriculum"),
@@ -213,7 +216,7 @@ export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 
 /** Serializes one curriculum route in stable signed field order. */
 export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
-  return JSON.stringify({
+  return encodeJson({
     appLocale: route.appLocale,
     ...(route.canonicalPath === undefined
       ? {}

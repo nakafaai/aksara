@@ -15,6 +15,7 @@ import {
 } from "#contracts/program/snapshot/hash";
 import { ProgramSnapshotFactsSchema } from "#contracts/program/snapshot/spec";
 import { LearningProgramSchema } from "#contracts/program/spec";
+import { decodeJson } from "#contracts/test/json";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,
@@ -163,7 +164,7 @@ describe("program snapshot hashing", () => {
     Effect.gen(function* () {
       const first = yield* makeProgramSnapshot(facts);
       const second = yield* makeProgramSnapshot(facts);
-      expect(JSON.parse(canonicalizeProgramSnapshot(facts))).toMatchObject(
+      expect(decodeJson(canonicalizeProgramSnapshot(facts))).toMatchObject(
         facts
       );
       expect(first.snapshotId).toBe(second.snapshotId);

@@ -7,6 +7,7 @@ import {
   ProgramNavigationIconKeySchema,
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
+import { decodeJson } from "#contracts/test/json";
 
 const source = {
   defaultCoverageStatus: "partial",
@@ -159,7 +160,7 @@ describe("learning program contract", () => {
     const program = Schema.decodeSync(LearningProgramSchema)(source);
     const canonical = canonicalizeLearningProgram(program);
 
-    expect(JSON.parse(canonical)).toEqual(source);
+    expect(decodeJson(canonical)).toEqual(source);
     expect(ProgramNavigationLevelSchema.literals).toContain("domain");
     expect(ProgramNavigationIconKeySchema.literals).toContain("certificate");
   });
@@ -183,7 +184,7 @@ describe("learning program contract", () => {
       },
     });
 
-    expect(JSON.parse(canonicalizeLearningProgram(program))).toMatchObject({
+    expect(decodeJson(canonicalizeLearningProgram(program))).toMatchObject({
       provider: { kind: "official", name: "Provider" },
       sources: [{ label: "Portal", retrievedAt: "2026-06-14" }],
       version: {
@@ -200,12 +201,14 @@ describe("learning program contract", () => {
         startsAt: "2026-01-01",
       },
     });
-    expect(JSON.parse(canonicalizeLearningProgram(startsOnly)).version).toEqual(
-      {
-        label: "2026",
-        startsAt: "2026-01-01",
-      }
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(LearningProgramSchema))(
+        canonicalizeLearningProgram(startsOnly)
+      ).version
+    ).toEqual({
+      label: "2026",
+      startsAt: "2026-01-01",
+    });
   });
 
   it("requires localized program identity in canonical app-locale order", () => {
