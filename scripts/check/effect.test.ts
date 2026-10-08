@@ -4,10 +4,19 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, Layer, Record as Rec } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Layer,
+  Path,
+  Record as Rec,
+} from "effect";
 import { effectReport, effectViolations } from "#scripts/check/effect";
 
 const originalExitCode = process.exitCode;
+const RAW_TRY_SOURCE =
+  "export function read() {\n  try {\n    h();\n  } catch {\n    return null;\n  }\n}\n";
 
 afterEach(() => {
   process.exitCode = originalExitCode;
@@ -86,14 +95,40 @@ layer(Layer.merge(TypeScriptParser.layer, NodeServices.layer))(
 
     it.effect("reports only product modules through the effect report", () =>
       Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-effect-report-",
+        });
+        yield* fileSystem.makeDirectory(path.join(root, "scripts"));
+        yield* fileSystem.makeDirectory(path.join(root, ".agents"));
+        yield* fileSystem.writeFileString(
+          path.join(root, "scripts/probe.ts"),
+          RAW_TRY_SOURCE
+        );
+        yield* fileSystem.writeFileString(
+          path.join(root, ".agents/probe.ts"),
+          RAW_TRY_SOURCE
+        );
         const write = vi
           .spyOn(process.stderr, "write")
           .mockImplementation(() => true);
 
-        yield* effectReport(["README.md", "scripts/check/effect.ts"]);
+        yield* Effect.acquireUseRelease(
+          Effect.sync(() => {
+            const previous = process.cwd();
+            process.chdir(root);
+            return previous;
+          }),
+          () => effectReport(["scripts/probe.ts", ".agents/probe.ts"]),
+          (previous) => Effect.sync(() => process.chdir(previous))
+        );
 
-        expect(write).not.toHaveBeenCalled();
-        expect(process.exitCode).toBe(originalExitCode);
+        expect(write).toHaveBeenCalledTimes(1);
+        expect(write).toHaveBeenCalledWith(
+          "Authored modules must model failure and unknown input natively:\nscripts/probe.ts: model failure with Effect instead of a raw try/catch statement.\n"
+        );
+        expect(process.exitCode).toBe(1);
       })
     );
 
