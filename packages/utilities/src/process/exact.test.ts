@@ -147,6 +147,10 @@ describe("ExactProcess", () => {
     [nodeInput("", { root: "relative" }), "root"],
     [nodeInput("", { stdoutLimit: -1 }), "limit"],
     [nodeInput("", { stderrLimit: 1.5 }), "limit"],
+    [nodeInput("", { args: ["-e", "\0"] }), "spawn"],
+    [nodeInput("", { environment: { "AKSARA\0KEY": "value" } }), "spawn"],
+    [nodeInput("", { environment: { AKSARA_SENTINEL: "va\0lue" } }), "spawn"],
+    [nodeInput("", { root: "/aksara/\0root" }), "spawn"],
   ] as const)("rejects invalid exact input %#", ([input, reason]) =>
     Effect.gen(function* () {
       const failure = yield* rejectLive(input);
