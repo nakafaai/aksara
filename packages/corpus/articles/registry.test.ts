@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
@@ -7,12 +6,15 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, HashSet, Path } from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
 import { decodeArticleRegistry } from "#corpus/articles/registry";
 import { articleSource } from "#corpus/test/article";
 
-const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
+/** Resolves the corpus root through the platform-neutral path service. */
+const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(import.meta.dirname, "..", "..", "..")
+);
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   AppLocaleSchema.make("en"),
   AppLocaleSchema.make("id"),
@@ -47,6 +49,7 @@ layer(NodeServices.layer)("article registry", (it) => {
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
+        const corpusRoot = yield* resolveCorpusRoot;
         const entries = yield* decodeArticleRegistry();
         const authoredPaths = (yield* fileSystem.glob(
           "packages/corpus/articles/**/*.mdx",
@@ -101,9 +104,11 @@ layer(NodeServices.layer)("article registry", (it) => {
       const entries = yield* decodeEmbeddedRegistry([articleSource()]);
 
       expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "id"]);
-      expect(new Set(entries.map(({ route }) => route.contentKey)).size).toBe(
-        1
-      );
+      expect(
+        HashSet.size(
+          HashSet.fromIterable(entries.map(({ route }) => route.contentKey))
+        )
+      ).toBe(1);
       expect(entries.map(({ route }) => route.publicPath)).toEqual([
         "articles/politics/dynastic-politics-asian-values",
         "articles/politik/politik-dinasti-dan-nilai-asia",
