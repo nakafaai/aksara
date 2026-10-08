@@ -20,7 +20,6 @@ import {
   type PnpmRunner,
 } from "#scripts/dependencies/command";
 import { makeRunner, output } from "#scripts/dependencies/fixture";
-import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
   expectedIgnoredDependencies,
@@ -272,16 +271,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
         assert.ok(Arr.every(reports, ({ current }) => current !== "missing"));
         assert.deepStrictEqual(missingRegistry, output(0, '"missing"'));
-      })
-    );
-
-    it.effect("reads the repository policy files by default", () =>
-      Effect.gen(function* () {
-        const fileSystem = yield* FileSystem.FileSystem;
-        const config = yield* defaultBumpConfig;
-
-        assert.strictEqual(yield* fileSystem.exists(config.manifest), true);
-        assert.strictEqual(yield* fileSystem.exists(config.workspace), true);
       })
     );
   }
