@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
 import {
   Array as Arr,
+  Config,
   Effect,
   FileSystem,
   Option,
@@ -27,12 +28,10 @@ import {
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
-const originalPath = process.env.PATH;
-
 /** Returns the approved declaration for one held dependency. */
 function approved(dependency: string) {
-  const hold = DEPENDENCY_HOLDS.find(
-    (entry) => entry.dependency === dependency
+  const hold = Option.getOrUndefined(
+    Arr.findFirst(DEPENDENCY_HOLDS, (entry) => entry.dependency === dependency)
   );
   assert.ok(hold, `${dependency} has a reviewed hold`);
   return hold.approvedCurrent;
@@ -123,7 +122,10 @@ if (args[0] === "outdated") { console.log("{}"); process.exitCode = 1; }
 `
     );
     yield* fileSystem.chmod(executable, 0o755);
-    vi.stubEnv("PATH", `${root}:${originalPath ?? ""}`);
+    const originalPath = yield* Config.String("PATH").pipe(
+      Config.withDefault("")
+    );
+    vi.stubEnv("PATH", `${root}:${originalPath}`);
   }
 );
 
@@ -151,8 +153,12 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(effectReport.current, approved("effect"));
           assert.strictEqual(
             effectReport.latest,
-            DEPENDENCY_HOLDS.find(({ dependency }) => dependency === "effect")
-              ?.reviewedLatest
+            Option.getOrUndefined(
+              Arr.findFirst(
+                DEPENDENCY_HOLDS,
+                ({ dependency }) => dependency === "effect"
+              )
+            )?.reviewedLatest
           );
         })
     );

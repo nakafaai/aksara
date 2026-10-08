@@ -61,13 +61,12 @@ describe("dependency command boundary", () => {
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-command-",
       });
-      const originalPath = process.env.PATH;
-      process.env.PATH = root;
+      vi.stubEnv("PATH", root);
       const error = yield* runPnpm(root, ["--version"]).pipe(
         Effect.flip,
         Effect.ensuring(
           Effect.sync(() => {
-            process.env.PATH = originalPath;
+            vi.unstubAllEnvs();
           })
         )
       );

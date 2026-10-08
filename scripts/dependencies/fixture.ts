@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import type { CommandOutput, PnpmRunner } from "#scripts/dependencies/command";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
@@ -24,8 +24,8 @@ export function makeRunner(input?: {
     }
     const registry = args[1] ?? "missing";
     const configured = input?.registry?.[registry];
-    const reviewed = DEPENDENCY_HOLDS.find(
-      (hold) => hold.registry === registry
+    const reviewed = Option.getOrUndefined(
+      Arr.findFirst(DEPENDENCY_HOLDS, (hold) => hold.registry === registry)
     )?.reviewedLatest;
     return Effect.succeed(
       configured ??
