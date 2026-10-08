@@ -2,7 +2,7 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import type { PreviewRepository } from "@nakafa/aksara-contracts/preview/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, Path } from "effect";
 import { findAksaraRoot, resolveNakafaRoot } from "#cli/checkout";
 import type { RunningNakafa } from "#cli/child/session";
 import {
@@ -110,8 +110,10 @@ export const openRendererSession = Effect.fn("AksaraCli.openRendererSession")(
       input.environment.nakafaAppDir
     );
     const selected = yield* selectDocument(aksaraRoot, input.selection);
+    const path = yield* Path.Path;
     const repositoryEvidence = readRepositories(aksaraRoot, nakafaRoot).pipe(
-      Effect.provideService(ExactProcess, exactProcess)
+      Effect.provideService(ExactProcess, exactProcess),
+      Effect.provideService(Path.Path, path)
     );
     const repositories = yield* repositoryEvidence;
     yield* Effect.all([

@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Context, Effect, Layer, Schema } from "effect";
+import { Context, Effect, Layer, Path, Schema } from "effect";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
@@ -90,49 +90,46 @@ const runGitBytes = Effect.fn("AksaraPublisher.runGitBytes")(
     maxBytes: number,
     stdin?: Uint8Array
   ) =>
-    exactProcess
-      .run(
-        makeExactGitInput({
-          args,
-          root: repositoryRoot,
-          stderrLimit: MAX_GIT_ERROR_BYTES,
-          stdoutLimit: maxBytes,
-          ...(stdin === undefined ? {} : { stdin }),
-        })
-      )
-      .pipe(
-        Effect.mapError(
-          (cause) => new GitBlobError({ cause, message, operation })
-        ),
-        Effect.flatMap(({ exitCode, stderr, stdout }) => {
-          if (exitCode === 0) {
-            return Effect.succeed(stdout);
-          }
-          return decodeGitText(
-            stderr,
-            operation,
-            "Git returned non-UTF-8 diagnostic output."
-          ).pipe(
-            Effect.flatMap((decodedError) =>
-              Effect.fail(
-                new GitBlobError({
-                  cause: { exitCode, stderr: decodedError },
-                  message,
-                  operation,
-                })
-              )
+    makeExactGitInput({
+      args,
+      root: repositoryRoot,
+      stderrLimit: MAX_GIT_ERROR_BYTES,
+      stdoutLimit: maxBytes,
+      ...(stdin === undefined ? {} : { stdin }),
+    }).pipe(
+      Effect.flatMap((input) => exactProcess.run(input)),
+      Effect.mapError(
+        (cause) => new GitBlobError({ cause, message, operation })
+      ),
+      Effect.flatMap(({ exitCode, stderr, stdout }) => {
+        if (exitCode === 0) {
+          return Effect.succeed(stdout);
+        }
+        return decodeGitText(
+          stderr,
+          operation,
+          "Git returned non-UTF-8 diagnostic output."
+        ).pipe(
+          Effect.flatMap((decodedError) =>
+            Effect.fail(
+              new GitBlobError({
+                cause: { exitCode, stderr: decodedError },
+                message,
+                operation,
+              })
             )
-          );
-        })
-      )
+          )
+        );
+      })
+    )
 );
 
 /** Builds an exact-checkout Git implementation for bounded immutable blobs. */
 export function makeGitBlobLive(repositoryRoot: string) {
   return Layer.effect(
     GitBlob,
-    ExactProcess.pipe(
-      Effect.map((exactProcess) => {
+    Effect.all({ exactProcess: ExactProcess, path: Path.Path }).pipe(
+      Effect.map(({ exactProcess, path }) => {
         /** Checks metadata first, then reads only the verified immutable objects. */
         const read = Effect.fn("AksaraPublisher.GitBlob.read")(function* (
           input: GitBlobInput
@@ -233,7 +230,10 @@ export function makeGitBlobLive(repositoryRoot: string) {
           }
           return result;
         });
-        return GitBlob.of({ read });
+        return GitBlob.of({
+          read: (input) =>
+            read(input).pipe(Effect.provideService(Path.Path, path)),
+        });
       })
     )
   );

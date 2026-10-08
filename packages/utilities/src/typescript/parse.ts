@@ -1,8 +1,18 @@
-import { Context, Effect, Layer, Schema, Semaphore } from "effect";
+import {
+  Context,
+  Effect,
+  Layer,
+  MutableHashMap,
+  Option,
+  Schema,
+  Semaphore,
+} from "effect";
 import type { SourceFile } from "typescript/unstable/ast";
-import { API, type Diagnostic } from "typescript/unstable/sync";
+import { API, type Project } from "typescript/unstable/sync";
 
 const ROOT = "/aksara-typescript";
+/** Plain JSON codec whose text is byte-identical to JSON.stringify. */
+const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Exact source text inspected without resolving or executing its imports. */
 export const TypeScriptSource = Schema.Struct({
@@ -22,11 +32,20 @@ export class TypeScriptSourceError extends Schema.TaggedError<TypeScriptSourceEr
   { cause: Schema.Unknown, fileName: Schema.String }
 ) {}
 
-/** Parsed syntax and diagnostics belonging to the same immutable snapshot. */
-export interface ParsedTypeScript {
-  readonly diagnostics: readonly Diagnostic[];
-  readonly sourceFile: SourceFile;
+/** Builds the parsed view of one native source that inspection callers receive. */
+function parsedView(
+  project: Project,
+  filePath: string,
+  sourceFile: SourceFile
+) {
+  return {
+    diagnostics: project.program.getSyntacticDiagnostics(filePath),
+    sourceFile,
+  };
 }
+
+/** Parsed syntax and diagnostics belonging to the same immutable snapshot. */
+export type ParsedTypeScript = Readonly<ReturnType<typeof parsedView>>;
 
 /** Scoped native parser shared by one source-discovery or policy operation. */
 export class TypeScriptParser extends Context.Service<
@@ -42,7 +61,7 @@ export class TypeScriptParser extends Context.Service<
   static readonly layer = Layer.effect(
     TypeScriptParser,
     Effect.gen(function* () {
-      const files = new Map<string, string>();
+      const files = MutableHashMap.empty<string, string>();
       const permit = yield* Semaphore.make(1);
       const api = yield* Effect.acquireRelease(
         Effect.try({
@@ -53,8 +72,9 @@ export class TypeScriptParser extends Context.Service<
               fs: {
                 directoryExists: (path) =>
                   path === "/" || path === ROOT || path.startsWith(`${ROOT}/`),
-                fileExists: (path) => files.has(path),
-                readFile: (path) => files.get(path) ?? null,
+                fileExists: (path) => MutableHashMap.has(files, path),
+                readFile: (path) =>
+                  Option.getOrNull(MutableHashMap.get(files, path)),
               },
             }),
         }),
@@ -75,23 +95,21 @@ export class TypeScriptParser extends Context.Service<
           /** Associates native inspection failures with the requested source. */
           const failure = (cause: unknown) =>
             new TypeScriptSourceError({ cause, fileName: input.fileName });
+          const config = yield* Schema.encodeEffect(JSON_TEXT)({
+            compilerOptions: {
+              allowJs: true,
+              noLib: true,
+              noResolve: true,
+            },
+            files: [filePath],
+          }).pipe(Effect.orDie);
           const snapshot = yield* Effect.acquireRelease(
             Effect.try({
               catch: failure,
               try: () => {
-                files.clear();
-                files.set(filePath, input.source);
-                files.set(
-                  configPath,
-                  JSON.stringify({
-                    compilerOptions: {
-                      allowJs: true,
-                      noLib: true,
-                      noResolve: true,
-                    },
-                    files: [filePath],
-                  })
-                );
+                MutableHashMap.clear(files);
+                MutableHashMap.set(files, filePath, input.source);
+                MutableHashMap.set(files, configPath, config);
                 const next = api.updateSnapshot({
                   closeProjects:
                     previousProject === undefined ? [] : [previousProject],
@@ -120,11 +138,7 @@ export class TypeScriptParser extends Context.Service<
           const { project, sourceFile } = parsed;
           return yield* Effect.try({
             catch: failure,
-            try: () =>
-              read({
-                diagnostics: project.program.getSyntacticDiagnostics(filePath),
-                sourceFile,
-              }),
+            try: () => read(parsedView(project, filePath, sourceFile)),
           });
         },
         Effect.scoped,

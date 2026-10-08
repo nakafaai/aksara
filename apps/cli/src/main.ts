@@ -4,7 +4,7 @@ import {
   NodeServices,
 } from "@effect/platform-node";
 import { ExactProcessLive } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, Layer } from "effect";
 import { readPackageVersion } from "#cli/package";
 import { makeCliProgram } from "#cli/program";
 
@@ -22,11 +22,12 @@ export function makeMainProgram(input: {
     );
     return yield* makeCliProgram({ ...input, version });
   }).pipe(
-    Effect.provide([
-      NodeHttpClient.layerNodeHttp,
-      ExactProcessLive,
-      cliNodeLayer,
-    ])
+    Effect.provide(
+      Layer.provideMerge(
+        Layer.mergeAll(NodeHttpClient.layerNodeHttp, ExactProcessLive),
+        cliNodeLayer
+      )
+    )
   );
 }
 
