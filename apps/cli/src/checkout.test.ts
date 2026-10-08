@@ -15,7 +15,7 @@ layer(NodeServices.layer)("preview checkout resolution", (it) => {
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
       const path = yield* Path.Path;
-      const repository = repositories.create();
+      const repository = yield* repositories.create();
       const [aksaraRoot, defaultNakafa, explicitNakafa] = yield* Effect.all(
         [
           findAksaraRoot(path.dirname(repository.documentPath)),
@@ -41,7 +41,7 @@ layer(NodeServices.layer)("preview checkout resolution", (it) => {
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
       const path = yield* Path.Path;
-      const repository = repositories.create();
+      const repository = yield* repositories.create();
       const missing = path.resolve(repository.root, "missing");
       const missingAksara = yield* findAksaraRoot(missing).pipe(Effect.flip);
       const missingNakafa = yield* resolveNakafaRoot(
@@ -125,7 +125,7 @@ layer(NodeServices.layer)("preview checkout resolution", (it) => {
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
-        const repository = repositories.create();
+        const repository = yield* repositories.create();
         const malformed = path.resolve(repository.root, "malformed");
         const manifest = path.resolve(malformed, "package.json");
         yield* fileSystem.makeDirectory(malformed);

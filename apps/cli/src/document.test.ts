@@ -1,18 +1,8 @@
-import {
-  copyFileSync,
-  readFileSync,
-  realpathSync,
-  renameSync,
-  symlinkSync,
-  unlinkSync,
-  writeFileSync,
-} from "node:fs";
-import { relative, resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
-import { Effect } from "effect";
+import { Effect, FileSystem, Path } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
@@ -35,11 +25,13 @@ const makeCompiler = Effect.fn("AksaraCliTest.makeCompiler")(function* (
   repository: TestRepositories,
   signer?: PublicationSigner
 ) {
-  const aksaraRoot = realpathSync(repository.aksaraRoot);
-  const documentPath = realpathSync(repository.documentPath);
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const aksaraRoot = yield* fileSystem.realPath(repository.aksaraRoot);
+  const documentPath = yield* fileSystem.realPath(repository.documentPath);
   const selected = yield* selectPreviewDocument(
     aksaraRoot,
-    relative(aksaraRoot, documentPath)
+    path.relative(aksaraRoot, documentPath)
   );
   const credentials = yield* makePreviewCredentials();
   const compiler = yield* makePreviewDocumentCompiler({
@@ -54,7 +46,8 @@ const makeCompiler = Effect.fn("AksaraCliTest.makeCompiler")(function* (
 /** Compiles one immutable document directly from the real reviewed checkout. */
 const compileRealDocument = Effect.fn("AksaraCliTest.compileRealDocument")(
   function* (sourcePath: string) {
-    const aksaraRoot = realpathSync(REPOSITORY_ROOT);
+    const fileSystem = yield* FileSystem.FileSystem;
+    const aksaraRoot = yield* fileSystem.realPath(REPOSITORY_ROOT);
     const selected = yield* selectPreviewDocument(aksaraRoot, sourcePath);
     const credentials = yield* makePreviewCredentials();
     const compiler = yield* makePreviewDocumentCompiler({
@@ -72,7 +65,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "compiles the real source once and reuses its exact incremental cache",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const repository = yield* repositories.create();
         const { compiler } = yield* makeCompiler(repository);
         const first = yield* compiler.compile;
         const second = yield* compiler.compile;
@@ -118,8 +111,9 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
 
   it.effect("rejects invalid real metadata and executable source changes", () =>
     Effect.gen(function* () {
-      const repository = repositories.create();
-      writeFileSync(
+      const fileSystem = yield* FileSystem.FileSystem;
+      const repository = yield* repositories.create();
+      yield* fileSystem.writeFileString(
         repository.documentPath,
         REAL_SOURCE.replace(
           'datePublished: "2025-04-27"',
@@ -130,7 +124,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
       const metadataError = yield* invalidMetadata.compiler.compile.pipe(
         Effect.flip
       );
-      writeFileSync(
+      yield* fileSystem.writeFileString(
         repository.documentPath,
         `${REAL_SOURCE}\n\n{process.env.NODE_ENV}\n`
       );
@@ -148,7 +142,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "surfaces signing failures without caching an unsigned result",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const repository = yield* repositories.create();
         const credentials = yield* makePreviewCredentials();
         const signer: PublicationSigner = {
           ...credentials.signer,
@@ -174,22 +168,26 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "rejects a save during signing without committing mixed-state cache",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const fileSystem = yield* FileSystem.FileSystem;
+        const repository = yield* repositories.create();
         const credentials = yield* makePreviewCredentials();
         let signingAttempts = 0;
         const signer: PublicationSigner = {
           ...credentials.signer,
           signArtifact: (payload) =>
-            Effect.sync(() => {
+            Effect.gen(function* () {
               signingAttempts += 1;
               if (signingAttempts === 1) {
-                writeFileSync(repository.documentPath, `${REAL_SOURCE}\n`);
+                yield* fileSystem
+                  .writeFileString(repository.documentPath, `${REAL_SOURCE}\n`)
+                  .pipe(Effect.orDie);
               }
-            }).pipe(Effect.andThen(credentials.signer.signArtifact(payload))),
+              return yield* credentials.signer.signArtifact(payload);
+            }),
         };
         const { compiler } = yield* makeCompiler(repository, signer);
         const error = yield* compiler.compile.pipe(Effect.flip);
-        writeFileSync(repository.documentPath, REAL_SOURCE);
+        yield* fileSystem.writeFileString(repository.documentPath, REAL_SOURCE);
         const recovered = yield* compiler.compile;
 
         expect(error).toMatchObject({
@@ -206,18 +204,19 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "fails closed across rename and delete before accepting a restored file",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const fileSystem = yield* FileSystem.FileSystem;
+        const repository = yield* repositories.create();
         const { compiler } = yield* makeCompiler(repository);
         const renamedPath = `${repository.documentPath}.moved`;
-        renameSync(repository.documentPath, renamedPath);
+        yield* fileSystem.rename(repository.documentPath, renamedPath);
         const renamedError = yield* compiler.compile.pipe(Effect.flip);
-        renameSync(renamedPath, repository.documentPath);
+        yield* fileSystem.rename(renamedPath, repository.documentPath);
         expect(yield* compiler.compile).toMatchObject({
           results: [{ compileKind: "compiled" }],
         });
-        unlinkSync(repository.documentPath);
+        yield* fileSystem.remove(repository.documentPath);
         const deletedError = yield* compiler.compile.pipe(Effect.flip);
-        writeFileSync(repository.documentPath, REAL_SOURCE);
+        yield* fileSystem.writeFileString(repository.documentPath, REAL_SOURCE);
         expect(yield* compiler.compile).toMatchObject({
           results: [{ compileKind: "unchanged" }],
         });
@@ -231,19 +230,21 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "rejects a source replaced by a symlink after initial selection",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const repository = yield* repositories.create();
         const { compiler } = yield* makeCompiler(repository);
-        unlinkSync(repository.documentPath);
-        const indonesianPath = resolve(
+        yield* fileSystem.remove(repository.documentPath);
+        const indonesianPath = path.resolve(
           repository.aksaraRoot,
           "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/id.mdx"
         );
-        symlinkSync(indonesianPath, repository.documentPath);
+        yield* fileSystem.symlink(indonesianPath, repository.documentPath);
         const error = yield* compiler.compile.pipe(Effect.flip);
 
         expect(error).toMatchObject({ reason: "symlink" });
-        unlinkSync(repository.documentPath);
-        copyFileSync(indonesianPath, repository.documentPath);
+        yield* fileSystem.remove(repository.documentPath);
+        yield* fileSystem.copyFile(indonesianPath, repository.documentPath);
       })
   );
 
@@ -251,7 +252,8 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
     "rejects topology that no longer matches the startup registry",
     () =>
       Effect.gen(function* () {
-        const repository = repositories.create();
+        const fileSystem = yield* FileSystem.FileSystem;
+        const repository = yield* repositories.create();
         const { compiler, selected } = yield* makeCompiler(repository);
         const topology = selected.files.find(({ mode }) => mode === "restart");
         if (topology === undefined) {
@@ -259,10 +261,10 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
             "Expected the selected material topology source."
           );
         }
-        const source = readFileSync(topology.absolutePath, "utf8");
-        writeFileSync(topology.absolutePath, `${source}\n`);
+        const source = yield* fileSystem.readFileString(topology.absolutePath);
+        yield* fileSystem.writeFileString(topology.absolutePath, `${source}\n`);
         const error = yield* compiler.compile.pipe(Effect.flip);
-        writeFileSync(topology.absolutePath, source);
+        yield* fileSystem.writeFileString(topology.absolutePath, source);
 
         expect(error).toMatchObject({
           _tag: "PreviewRestartError",

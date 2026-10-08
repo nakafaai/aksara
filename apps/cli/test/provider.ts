@@ -84,10 +84,8 @@ const closePreviewHttp = Effect.fn("AksaraCliTest.closePreviewHttp")(
 /** Acquires one compiled real document and removes its repository on release. */
 function acquirePreviewReady() {
   return Effect.acquireRelease(
-    Effect.sync(() => providerRepositories.create()).pipe(
-      Effect.flatMap(makePreviewReady)
-    ),
-    () => Effect.sync(() => providerRepositories.clear())
+    providerRepositories.create().pipe(Effect.flatMap(makePreviewReady)),
+    () => Effect.promise(() => providerRepositories.clear())
   ).pipe(Effect.provide(NodeServices.layer));
 }
 

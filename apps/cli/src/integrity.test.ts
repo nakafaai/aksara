@@ -27,7 +27,7 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
-        const repository = repositories.create();
+        const repository = yield* repositories.create();
         const aksaraRoot = yield* fileSystem.realPath(repository.aksaraRoot);
         const documentPath = yield* fileSystem.realPath(
           repository.documentPath

@@ -18,9 +18,8 @@ const repositories = makeRepositoryTracker();
 
 /** Acquires one repository pair and removes it when the test scope closes. */
 function acquireRepository() {
-  return Effect.acquireRelease(
-    Effect.sync(() => repositories.create()),
-    () => Effect.sync(() => repositories.clear())
+  return Effect.acquireRelease(repositories.create(), () =>
+    Effect.promise(() => repositories.clear())
   );
 }
 
