@@ -174,6 +174,11 @@ const runExactProcess = Effect.fn("AksaraUtilities.runExactProcess")(function* (
     },
     { concurrency: "unbounded" }
   );
+  if (output.exitCode === 0) {
+    // Unreferenced, the release of a clean exit leaves the group's members
+    // running. The re-reference effect is not needed, so it is dropped.
+    yield* handle.unref.pipe(Effect.asVoid, Effect.orDie);
+  }
   return {
     exitCode: output.exitCode,
     stderr: output.stderr,
