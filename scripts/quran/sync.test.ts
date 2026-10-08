@@ -1,14 +1,14 @@
-import { resolve } from "node:path";
-
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
 
-const sync = vi.hoisted(() => ({ repositoryRoots: [] as string[] }));
+const sync = vi.hoisted((): { repositoryRoots: readonly string[] } => ({
+  repositoryRoots: [],
+}));
 
 vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
   syncGermanQuranSources: vi.fn((repositoryRoot: string) => {
-    sync.repositoryRoots.push(repositoryRoot);
+    sync.repositoryRoots = Arr.append(sync.repositoryRoots, repositoryRoot);
     return Effect.succeed({
       publication: {
         byteCount: 3485,
@@ -31,13 +31,14 @@ describe("German Quran source sync command", () => {
     "runs the source-owned sync capability from the repository root",
     () =>
       Effect.gen(function* () {
+        const path = yield* Path.Path;
         yield* makeQuranSourceSyncProgram().pipe(
           Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp])
         );
 
         assert.deepStrictEqual(sync.repositoryRoots, [
-          resolve(import.meta.dirname, "../.."),
+          path.resolve(import.meta.dirname, "../.."),
         ]);
-      })
+      }).pipe(Effect.provide(NodeServices.layer))
   );
 });
