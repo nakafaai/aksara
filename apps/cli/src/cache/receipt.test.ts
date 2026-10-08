@@ -11,13 +11,14 @@ import {
 import { Effect } from "effect";
 import { HttpClientRequest } from "effect/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
+import { encodeJsonText } from "#cli/text/json";
 import { webResponse } from "#test/http";
 
 const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
   scope: "material",
 });
-const VALID_BODY = JSON.stringify({
+const VALID_BODY = encodeJsonText({
   releaseId: REQUEST.releaseId,
   revalidated: true,
   scope: REQUEST.scope,
@@ -71,7 +72,7 @@ describe("cache receipt", () => {
       },
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: false,
         scope: REQUEST.scope,
@@ -79,7 +80,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         extra: true,
         releaseId: REQUEST.releaseId,
         revalidated: true,
@@ -88,7 +89,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: "article",
@@ -96,7 +97,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         releaseId: "test-other-release",
         revalidated: true,
         scope: REQUEST.scope,
@@ -104,7 +105,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,
@@ -113,7 +114,7 @@ describe("cache receipt", () => {
       undefined,
     ],
     [
-      JSON.stringify({
+      encodeJsonText({
         releaseId: REQUEST.releaseId,
         revalidated: true,
         scope: REQUEST.scope,

@@ -1,23 +1,29 @@
-import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
-
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   baseContentSnapshots,
-  type ContentSnapshotSet,
+  ContentSnapshotSetSchema,
   inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
+import { encodeJsonText } from "#cli/text/json";
+
+const ProductionBaseIdentitySchema = Schema.Struct({
+  activeAppLocales: ActiveAppLocaleListSchema,
+  manifestHash: Sha256HashSchema,
+  releaseId: ReleaseIdSchema,
+  resultCount: Schema.Finite,
+  resultDigest: Sha256HashSchema,
+  snapshots: ContentSnapshotSetSchema,
+});
 
 /** Immutable active catalog identity required to rebuild one candidate release. */
-export interface ProductionBaseIdentity {
-  readonly activeAppLocales: ActiveAppLocaleList;
-  readonly manifestHash: ContentReleaseBundle["release"]["manifestHash"];
-  readonly releaseId: ContentReleaseBundle["release"]["manifest"]["releaseId"];
-  readonly resultCount: number;
-  readonly resultDigest: ContentReleaseBundle["release"]["manifest"]["resultDigest"];
-  readonly snapshots: ContentSnapshotSet;
-}
+export type ProductionBaseIdentity = typeof ProductionBaseIdentitySchema.Type;
 
 /** Selects the authenticated base catalog represented by one source bundle. */
 export function selectSourceBase(bundle: null): null;
@@ -73,8 +79,8 @@ function recoveryBaseMismatch(
     return expected === actual ? undefined : "presence";
   }
   if (
-    JSON.stringify(expected.activeAppLocales) !==
-    JSON.stringify(actual.activeAppLocales)
+    encodeJsonText(expected.activeAppLocales) !==
+    encodeJsonText(actual.activeAppLocales)
   ) {
     return "activeAppLocales";
   }
@@ -90,7 +96,7 @@ function recoveryBaseMismatch(
   ) {
     return "result";
   }
-  return JSON.stringify(expected.snapshots) === JSON.stringify(actual.snapshots)
+  return encodeJsonText(expected.snapshots) === encodeJsonText(actual.snapshots)
     ? undefined
     : "snapshots";
 }

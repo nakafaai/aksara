@@ -1,7 +1,7 @@
-import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
-import { assert, describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { NodeServices } from "@effect/platform-node";
+import { assert, expect, layer } from "@effect/vitest";
+import { Effect, FileSystem, Schema } from "effect";
 import { createCompilerConfigHash } from "#compiler/config";
 import { createTestRendererManifest } from "#compiler/test/content";
 
@@ -33,22 +33,27 @@ const installedVersion = Effect.fn("CompilerConfigTest.installedVersion")(
         packageName,
       });
     }
-    const source = yield* Effect.try({
-      catch: (cause) =>
-        new PackageManifestReadError({
-          cause: String(cause),
-          packageName,
-        }),
-      try: () => readFileSync(manifestPath, "utf8"),
-    });
-    const input = yield* Effect.try({
-      catch: (cause) =>
-        new PackageManifestReadError({
-          cause: String(cause),
-          packageName,
-        }),
-      try: () => JSON.parse(source),
-    });
+    const fileSystem = yield* FileSystem.FileSystem;
+    const source = yield* fileSystem.readFileString(manifestPath, "utf8").pipe(
+      Effect.mapError(
+        (cause) =>
+          new PackageManifestReadError({
+            cause: String(cause),
+            packageName,
+          })
+      )
+    );
+    const input = yield* Schema.decodeEffect(
+      Schema.fromJsonString(Schema.Unknown)
+    )(source).pipe(
+      Effect.mapError(
+        (cause) =>
+          new PackageManifestReadError({
+            cause: String(cause),
+            packageName,
+          })
+      )
+    );
     const manifest = yield* Schema.decodeUnknownEffect(PackageManifestSchema)(
       input
     );
@@ -56,7 +61,7 @@ const installedVersion = Effect.fn("CompilerConfigTest.installedVersion")(
   }
 );
 
-describe("compiler config", () => {
+layer(NodeServices.layer)("compiler config", (it) => {
   it.effect("pins every output-affecting installed tool", () =>
     Effect.gen(function* () {
       const versions = yield* Effect.all(

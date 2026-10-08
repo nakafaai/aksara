@@ -6,6 +6,7 @@ import {
   Effect,
   Fiber,
   FileSystem,
+  HashMap,
   Path,
   PlatformError,
   Ref,
@@ -68,7 +69,6 @@ const selectRealDocument = Effect.fn("AksaraCliTest.selectRealDocument")(
 function updateEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Update", path };
 }
-
 /** Creates one portable filesystem create event. */
 function createEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Create", path };
@@ -170,7 +170,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           focused,
           events,
           refresh,
-          new Map(),
+          HashMap.empty(),
           invalidate
         ).pipe(Effect.forkChild({ startImmediately: true }));
         yield* TestClock.adjust("100 millis");
@@ -244,7 +244,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
       const selected = yield* selectRealDocument(questionPath);
       const [directory] = selected.directories;
       assert(directory !== undefined, "Expected one selected directory.");
-      const changedFiles = new Map([
+      const changedFiles = HashMap.fromIterable([
         [directory.absolutePath, [...directory.files, "draft.mdx"]],
       ]);
       const error = yield* runWatch(

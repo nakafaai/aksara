@@ -9,6 +9,7 @@ import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 
@@ -29,7 +30,7 @@ describe("Nakafa app service", () => {
 
           return webResponse(
             request,
-            JSON.stringify({
+            encodeJsonText({
               format: PREVIEW_RENDERER_AUTH_FORMAT,
               manifest: RENDERER_MANIFEST,
               proof,

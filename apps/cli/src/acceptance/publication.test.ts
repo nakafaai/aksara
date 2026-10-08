@@ -5,7 +5,7 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { prepareAcceptanceRelease } from "@nakafa/aksara-publisher/acceptance/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, HashSet } from "effect";
 import { publishAcceptance } from "#cli/acceptance/publication";
 import {
   AcceptanceEnvironmentError,
@@ -14,6 +14,7 @@ import {
 import { readCleanAksaraRevision } from "#cli/evidence";
 import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
+import { encodeJsonText } from "#cli/text/json";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";
 
@@ -181,7 +182,9 @@ describe("isolated acceptance publication", () => {
         const receipt = yield* publish();
         expect(receipt.releaseId).toBe("test-acceptance-release");
         expect(state.snapshotAttempts).toBe(3);
-        expect(new Set(state.snapshotInputs).size).toBe(1);
+        expect(HashSet.size(HashSet.fromIterable(state.snapshotInputs))).toBe(
+          1
+        );
         expect(state.published).toBe(1);
         expect(prepareAcceptanceRelease).toHaveBeenCalledTimes(1);
         expect(state.cacheDrained).toBe(1);
@@ -286,7 +289,7 @@ describe("isolated acceptance publication", () => {
           failure: "ContractDecodeError",
           stage: "publish",
         });
-        expect(JSON.stringify(error)).not.toContain(
+        expect(encodeJsonText(error)).not.toContain(
           "test-secret-publication-token"
         );
         expect(state.published).toBe(0);

@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { PageEntrySchema } from "@nakafa/aksara-corpus/pages/registry";
-import { Effect, Schema } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 import type { SelectedDocument, SelectedFileCandidate } from "#cli/integrity";
 
 /** Restart-scoped files at fixed paths, so pinned hashes never read the live corpus. */
@@ -25,7 +25,7 @@ export const FIXED_FILES = [
 ] satisfies readonly [SelectedFileCandidate, ...SelectedFileCandidate[]];
 
 /** The exact text of every fixed file, so each pinned hash covers its own bytes. */
-const FIXED_TEXTS = new Map([
+const FIXED_TEXTS = HashMap.fromIterable([
   ["/test/aksara/packages/corpus/test/document.mdx", "Test document café ✓\n"],
   ["/test/aksara/packages/corpus/test/item.ts", "Test item ✓\n"],
   ["/test/aksara/packages/corpus/test/schema.ts", "Test schema é\n"],
@@ -34,7 +34,7 @@ const FIXED_TEXTS = new Map([
 
 /** Serves one fixed text and fails for any path outside the fixture. */
 export function readFixedText(absolutePath: string) {
-  const text = FIXED_TEXTS.get(absolutePath);
+  const text = Option.getOrUndefined(HashMap.get(FIXED_TEXTS, absolutePath));
   return text === undefined
     ? Effect.die(`Unexpected read outside the fixed fixture: ${absolutePath}`)
     : Effect.succeed(text);

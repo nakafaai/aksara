@@ -11,6 +11,7 @@ import {
 import { mapProductionError } from "#cli/failure";
 import type { ParityArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
+import { encodeJsonText } from "#cli/text/json";
 
 /** Paired targets cannot be accepted while their current content differs. */
 export class PublicationParityError extends Schema.TaggedError<PublicationParityError>()(
@@ -95,8 +96,8 @@ export const verifyPublicationParity = Effect.fn(
     });
   }
   if (
-    JSON.stringify([...a.activeAppLocales].sort()) !==
-    JSON.stringify([...b.activeAppLocales].sort())
+    encodeJsonText([...a.activeAppLocales].sort()) !==
+    encodeJsonText([...b.activeAppLocales].sort())
   ) {
     return yield* new PublicationParityError({
       reason: "locales",

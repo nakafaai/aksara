@@ -1,10 +1,10 @@
-import type {
-  CompiledContentPayload,
-  decodeCompileDocumentRequest,
+import {
+  CompiledContentPayloadSchema,
+  type decodeCompileDocumentRequest,
 } from "@nakafa/aksara-contracts/content";
 import type { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import {
   compileValidatedContent,
   validateCompileRequest,
@@ -17,14 +17,15 @@ import type {
   MdxCompilationError,
   RendererComponentMissingError,
 } from "#compiler/errors";
-import type { AuthoredMetadata } from "#compiler/metadata";
+import { AuthoredMetadataSchema } from "#compiler/metadata";
 import type { SourcePolicyError } from "#compiler/policy/source";
 
 /** One generic compile result with its single AST-decoded metadata object. */
-export interface CompiledContentResult {
-  readonly metadata: AuthoredMetadata;
-  readonly payload: CompiledContentPayload;
-}
+export const CompiledContentResultSchema = Schema.Struct({
+  metadata: AuthoredMetadataSchema,
+  payload: CompiledContentPayloadSchema,
+});
+export type CompiledContentResult = typeof CompiledContentResultSchema.Type;
 
 /** Every expected failure surfaced by trusted MDX compilation. */
 export type CompileContentError =

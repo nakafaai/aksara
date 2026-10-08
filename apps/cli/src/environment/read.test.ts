@@ -1,6 +1,12 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { ConfigProvider, Effect, Redacted } from "effect";
+import {
+  ConfigProvider,
+  Effect,
+  MutableHashMap,
+  Redacted,
+  Schema,
+} from "effect";
 import {
   decodePreviewEnvironment,
   readPreviewEnvironment,
@@ -8,72 +14,13 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
-
-/** Builds isolated valid production and publication configuration values. */
-function makeEnvironmentFixture() {
-  return Effect.sync(() => {
-    const privateKeyPem = generateKeyPairSync("ed25519")
-      .privateKey.export({
-        format: "pem",
-        type: "pkcs8",
-      })
-      .toString();
-    const productionValues = new Map([
-      [
-        "AKSARA_PUBLICATION_ENDPOINT",
-        "https://content.example.test/api/publish",
-      ],
-      ["AKSARA_PUBLICATION_TOKEN", "publication-token"],
-      [
-        "AKSARA_RENDERER_ENDPOINT",
-        "https://www.example.test/api/internal/content/renderer",
-      ],
-      ["AKSARA_RENDERER_TOKEN", "renderer-token"],
-      ["AKSARA_SIGNING_KEY_ID", "production-2026"],
-      ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],
-    ]);
-    const publicationValues = new Map(
-      [...productionValues].filter(([variable]) =>
-        variable.startsWith("AKSARA_PUBLICATION_")
-      )
-    );
-    return { privateKeyPem, productionValues, publicationValues };
-  });
-}
-
-/** Provides one Config-backed program with an isolated test provider. */
-function provideConfig<A, E>(
-  program: Effect.Effect<A, E>,
-  values: ReadonlyMap<string, string>
-) {
-  return program.pipe(
-    Effect.provideService(
-      ConfigProvider.ConfigProvider,
-      ConfigProvider.fromUnknown(Object.fromEntries(values), {
-        preserveEmptyStrings: true,
-      })
-    )
-  );
-}
-
-/** Returns one sanitized production configuration failure. */
-function rejectProduction(values: ReadonlyMap<string, string>) {
-  return provideConfig(
-    Effect.gen(function* () {
-      const recovery = yield* readRecoveryEnvironment();
-      return yield* readProductionEnvironment(recovery);
-    }).pipe(Effect.flip),
-    values
-  );
-}
-
-/** Returns one sanitized publication configuration failure. */
-function rejectPublication(values: ReadonlyMap<string, string>) {
-  return provideConfig(
-    readPublicationEnvironment("production").pipe(Effect.flip),
-    values
-  );
-}
+import { JsonTextSchema } from "#cli/text/json";
+import {
+  makeEnvironmentFixture,
+  provideConfig,
+  rejectProduction,
+  rejectPublication,
+} from "#test/environment";
 
 describe("preview environment", () => {
   it.effect("decodes absent and explicit Nakafa checkout paths", () =>
@@ -102,13 +49,15 @@ describe("preview environment", () => {
 
   it.effect("reads absent and approved overrides through Effect Config", () =>
     Effect.gen(function* () {
-      expect(yield* provideConfig(readPreviewEnvironment(), new Map())).toEqual(
-        {}
-      );
+      expect(
+        yield* provideConfig(readPreviewEnvironment(), MutableHashMap.empty())
+      ).toEqual({});
       expect(
         yield* provideConfig(
           readPreviewEnvironment(),
-          new Map([["NAKAFA_APP_DIR", "/code/explicit-nakafa"]])
+          MutableHashMap.fromIterable([
+            ["NAKAFA_APP_DIR", "/code/explicit-nakafa"],
+          ])
         )
       ).toEqual({ nakafaAppDir: "/code/explicit-nakafa" });
     })
@@ -141,7 +90,7 @@ describe("production environment", () => {
     "loads only the endpoint and token shared by lifecycle commands",
     () =>
       Effect.gen(function* () {
-        const { publicationValues } = yield* makeEnvironmentFixture();
+        const { publicationValues } = yield* makeEnvironmentFixture;
         const environment = yield* provideConfig(
           readPublicationEnvironment("production"),
           publicationValues
@@ -156,7 +105,9 @@ describe("production environment", () => {
         expect(environment).not.toHaveProperty("rendererEndpoint");
         expect(environment).not.toHaveProperty("rendererToken");
         expect(environment).not.toHaveProperty("privateKeyPem");
-        expect(JSON.stringify(environment)).not.toContain("publication-token");
+        expect(
+          yield* Schema.encodeEffect(JsonTextSchema)(environment)
+        ).not.toContain("publication-token");
       })
   );
 
@@ -168,12 +119,12 @@ describe("production environment", () => {
     "rejects unsafe publication %s configuration",
     ([variable, value]) =>
       Effect.gen(function* () {
-        const { publicationValues } = yield* makeEnvironmentFixture();
-        const values = new Map(publicationValues);
+        const { publicationValues } = yield* makeEnvironmentFixture;
+        const values = MutableHashMap.fromIterable(publicationValues);
         if (value === undefined) {
-          values.delete(variable);
+          MutableHashMap.remove(values, variable);
         } else {
-          values.set(variable, value);
+          MutableHashMap.set(values, variable, value);
         }
 
         expect(yield* rejectPublication(values)).toMatchObject({
@@ -185,8 +136,7 @@ describe("production environment", () => {
 
   it.effect("loads HTTPS endpoints and keeps every credential redacted", () =>
     Effect.gen(function* () {
-      const { privateKeyPem, productionValues } =
-        yield* makeEnvironmentFixture();
+      const { privateKeyPem, productionValues } = yield* makeEnvironmentFixture;
       const environment = yield* provideConfig(
         Effect.gen(function* () {
           const recovery = yield* readRecoveryEnvironment();
@@ -214,9 +164,15 @@ describe("production environment", () => {
       expect(environment.cacheSurface).toBe("deployed");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
-      expect(JSON.stringify(environment)).not.toContain("publication-token");
-      expect(JSON.stringify(environment)).not.toContain("renderer-token");
-      expect(JSON.stringify(environment)).not.toContain("PRIVATE KEY");
+      expect(
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
+      ).not.toContain("publication-token");
+      expect(
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
+      ).not.toContain("renderer-token");
+      expect(
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
+      ).not.toContain("PRIVATE KEY");
     })
   );
 
@@ -242,12 +198,12 @@ describe("production environment", () => {
     ],
   ] as const)("rejects unsafe %s configuration", ([variable, value]) =>
     Effect.gen(function* () {
-      const { productionValues } = yield* makeEnvironmentFixture();
-      const values = new Map(productionValues);
+      const { productionValues } = yield* makeEnvironmentFixture;
+      const values = MutableHashMap.fromIterable(productionValues);
       if (value === undefined) {
-        values.delete(variable);
+        MutableHashMap.remove(values, variable);
       } else {
-        values.set(variable, value);
+        MutableHashMap.set(values, variable, value);
       }
 
       expect(yield* rejectProduction(values)).toMatchObject({
@@ -259,8 +215,9 @@ describe("production environment", () => {
 
   it.effect("decodes a declared cache surface and rejects an unknown one", () =>
     Effect.gen(function* () {
-      const { productionValues } = yield* makeEnvironmentFixture();
-      const declared = new Map(productionValues).set(
+      const { productionValues } = yield* makeEnvironmentFixture;
+      const declared = MutableHashMap.set(
+        MutableHashMap.fromIterable(productionValues),
         "AKSARA_CACHE_SURFACE",
         "none"
       );
@@ -273,7 +230,8 @@ describe("production environment", () => {
       );
       expect(environment.cacheSurface).toBe("none");
 
-      const unknown = new Map(productionValues).set(
+      const unknown = MutableHashMap.set(
+        MutableHashMap.fromIterable(productionValues),
         "AKSARA_CACHE_SURFACE",
         "absent"
       );
@@ -286,14 +244,18 @@ describe("production environment", () => {
 
   it.effect("rejects a non-Ed25519 signing key", () =>
     Effect.gen(function* () {
-      const { productionValues } = yield* makeEnvironmentFixture();
+      const { productionValues } = yield* makeEnvironmentFixture;
       const rsaPrivateKeyPem = yield* Effect.sync(() =>
         generateKeyPairSync("rsa", { modulusLength: 1024 })
           .privateKey.export({ format: "pem", type: "pkcs8" })
           .toString()
       );
-      const values = new Map(productionValues);
-      values.set("AKSARA_SIGNING_PRIVATE_KEY", rsaPrivateKeyPem);
+      const values = MutableHashMap.fromIterable(productionValues);
+      MutableHashMap.set(
+        values,
+        "AKSARA_SIGNING_PRIVATE_KEY",
+        rsaPrivateKeyPem
+      );
 
       expect(yield* rejectProduction(values)).toMatchObject({
         _tag: "ProductionEnvironmentError",

@@ -9,6 +9,7 @@ import {
   readAcceptanceRenderer,
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
+import { encodeJsonText } from "#cli/text/json";
 import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";
@@ -29,7 +30,7 @@ const makeFixture = Effect.fn("AcceptanceSettingsTest.makeFixture")(
     const privateKeyPath = path.join(directory, "signer.pem");
     const rendererPath = path.join(directory, "renderer.json");
     yield* fs.writeFileString(privateKeyPath, privateKeyPem);
-    yield* fs.writeFileString(rendererPath, JSON.stringify(RENDERER_MANIFEST));
+    yield* fs.writeFileString(rendererPath, encodeJsonText(RENDERER_MANIFEST));
     return {
       directory,
       fs,
@@ -113,8 +114,8 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
           fixture.privateKeyPem
         );
         expect(Redacted.value(settings.token)).toBe("test-acceptance-token");
-        expect(JSON.stringify(settings)).not.toContain("PRIVATE KEY");
-        expect(JSON.stringify(settings)).not.toContain("test-acceptance-token");
+        expect(encodeJsonText(settings)).not.toContain("PRIVATE KEY");
+        expect(encodeJsonText(settings)).not.toContain("test-acceptance-token");
         expect(yield* readAcceptanceRenderer(settings.rendererPath)).toEqual(
           RENDERER_MANIFEST
         );
@@ -220,7 +221,7 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
         const text =
           failure === "invalid-json"
             ? "{"
-            : JSON.stringify(
+            : encodeJsonText(
                 failure === "invalid-contract"
                   ? {}
                   : {

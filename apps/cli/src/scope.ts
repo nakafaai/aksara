@@ -16,10 +16,11 @@ export class ProductionScopeDecodeError extends Schema.TaggedError<ProductionSco
   {}
 ) {}
 
-interface DecodedSelector {
-  readonly kind: "family" | "snapshot";
-  readonly value: string;
-}
+const DecodedSelectorSchema = Schema.Struct({
+  kind: Schema.Literals(["family", "snapshot"]),
+  value: Schema.String,
+});
+type DecodedSelector = typeof DecodedSelectorSchema.Type;
 
 /** Converts one selector into an untrusted structured scope member. */
 function decodeSelector(value: string): Option.Option<DecodedSelector> {

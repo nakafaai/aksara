@@ -1,8 +1,8 @@
-import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { PreviewRepository } from "@nakafa/aksara-contracts/preview/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Path } from "effect";
+import { Effect, Path, Schema } from "effect";
 import { findAksaraRoot, resolveNakafaRoot } from "#cli/checkout";
 import type { RunningNakafa } from "#cli/child/session";
 import {
@@ -19,21 +19,18 @@ import { NakafaApp } from "#cli/nakafa";
 import { openPreviewProvider, type PreviewProvider } from "#cli/provider";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
 
+const RendererSessionSelectionSchema = Schema.Union([
+  Schema.Struct({ kind: Schema.Literal("catalog") }),
+  Schema.Struct({
+    appLocale: Schema.optionalKey(AppLocaleSchema),
+    kind: Schema.Literal("document"),
+    requestedPath: Schema.String,
+  }),
+]);
+
 /** Renderer discovery backed by either one request or the complete catalog. */
 export type RendererSessionSelection =
-  | { readonly kind: "catalog" }
-  | {
-      readonly appLocale?: AppLocale;
-      readonly kind: "document";
-      readonly requestedPath: string;
-    };
-
-/** Inputs required to open one scoped actual Nakafa renderer session. */
-export interface RendererSessionInput {
-  readonly cwd: string;
-  readonly environment: PreviewEnvironment;
-  readonly selection: RendererSessionSelection;
-}
+  typeof RendererSessionSelectionSchema.Type;
 
 /** Shared actual-app resources used by preview and catalog validation. */
 export interface RendererSession {
@@ -101,7 +98,12 @@ function selectDocument(
 
 /** Opens and authenticates one scoped session against the actual Nakafa app. */
 export const openRendererSession = Effect.fn("AksaraCli.openRendererSession")(
-  function* (input: RendererSessionInput) {
+  /** Inputs required to open one scoped actual Nakafa renderer session. */
+  function* (input: {
+    readonly cwd: string;
+    readonly environment: PreviewEnvironment;
+    readonly selection: RendererSessionSelection;
+  }) {
     const app = yield* NakafaApp;
     const exactProcess = yield* ExactProcess;
     const aksaraRoot = yield* findAksaraRoot(input.cwd);

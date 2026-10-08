@@ -1,57 +1,63 @@
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
 import { parseProductionOptions } from "#cli/production/options";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */
-export interface ReleaseArguments {
-  readonly command: "release";
-  readonly rebuild?: true | undefined;
-  readonly recoveryId: ReleaseId;
-  readonly releaseId: ReleaseId;
-  readonly scope: PublicationScope;
-}
+const ReleaseArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("release"),
+  rebuild: Schema.optional(Schema.Literal(true)),
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+  scope: PublicationScopeSchema,
+});
+export type ReleaseArguments = typeof ReleaseArgumentsSchema.Type;
 
 /** Exact invisible release selected for explicit operator abandonment. */
-export interface AbortArguments {
-  readonly command: "abort";
-  readonly releaseId: ReleaseId;
-}
+const AbortArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("abort"),
+  releaseId: ReleaseIdSchema,
+});
+export type AbortArguments = typeof AbortArgumentsSchema.Type;
 
 /** Exact terminal release selected for retention-aware cleanup. */
-export interface CleanupArguments {
-  readonly command: "cleanup";
-  readonly releaseId: ReleaseId;
-}
+const CleanupArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("cleanup"),
+  releaseId: ReleaseIdSchema,
+});
+export type CleanupArguments = typeof CleanupArgumentsSchema.Type;
 
 /** Current publication state requested without selecting a release. */
-export interface StatusArguments {
-  readonly command: "status";
-}
+const StatusArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("status"),
+});
+export type StatusArguments = typeof StatusArgumentsSchema.Type;
 
 /** Exact active and retained inverse selected for healthy acceptance. */
-export interface AcceptArguments {
-  readonly command: "accept";
-  readonly recoveryId: ReleaseId;
-  readonly releaseId: ReleaseId;
-}
+const AcceptArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("accept"),
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+});
+export type AcceptArguments = typeof AcceptArgumentsSchema.Type;
 
 /** Paired publication identities selected for authenticated content parity. */
-export type ParityArguments = Pick<
-  AcceptArguments,
-  "releaseId" | "recoveryId"
-> & {
-  readonly command: "parity";
-};
+const ParityArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("parity"),
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+});
+export type ParityArguments = typeof ParityArgumentsSchema.Type;
 
 /** Exact active and retained inverse selected for emergency recovery. */
-export interface RecoverArguments {
-  readonly command: "recover";
-  readonly recoveryId: ReleaseId;
-  readonly releaseId: ReleaseId;
-}
+const RecoverArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("recover"),
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+});
+export type RecoverArguments = typeof RecoverArgumentsSchema.Type;
 
 /** Complete production command vocabulary accepted at the Aksara CLI boundary. */
 export type ProductionArguments =

@@ -13,6 +13,7 @@ import {
 } from "effect/http";
 
 import { invalidateContentCache } from "#cli/cache/exchange";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 
 const ENDPOINT = new URL("https://www.example.test/api/internal/content/cache");
@@ -25,7 +26,7 @@ const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
 /** Creates one exact private cache receipt for a captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
-  body: ConstructorParameters<typeof Response>[0] = JSON.stringify({
+  body: ConstructorParameters<typeof Response>[0] = encodeJsonText({
     releaseId: REQUEST.releaseId,
     revalidated: true,
     scope: REQUEST.scope,
@@ -105,7 +106,7 @@ describe("cache invalidation exchange", () => {
         redirect = init?.redirect;
         return Promise.resolve(
           new Response(
-            JSON.stringify({
+            encodeJsonText({
               releaseId: REQUEST.releaseId,
               revalidated: true,
               scope: REQUEST.scope,

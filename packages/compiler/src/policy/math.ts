@@ -21,13 +21,9 @@ import {
   type MathVisualPolicyViolation,
 } from "#compiler/errors";
 
-interface StandardPathSegment {
-  readonly key: PropertyKey;
-}
-
 /** Normalizes Standard Schema path values into the compiler contract. */
 export function normalizeSchemaPath(
-  path: readonly (PropertyKey | StandardPathSegment)[] | undefined
+  path: readonly (PropertyKey | { readonly key: PropertyKey })[] | undefined
 ): readonly StaticLiteralPathSegment[] {
   return (path ?? []).map((segment) => {
     const key = Predicate.hasProperty(segment, "key") ? segment.key : segment;

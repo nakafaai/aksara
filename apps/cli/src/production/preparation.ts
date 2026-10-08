@@ -1,16 +1,19 @@
-import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
+import {
+  GitCommitShaSchema,
+  ReleaseIdSchema,
+} from "@nakafa/aksara-contracts/ids";
 import type {
   ContentHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
@@ -19,7 +22,7 @@ import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spe
 import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect, type Scope, Stream } from "effect";
+import { Effect, Schema, type Scope, Stream } from "effect";
 import {
   readCleanAksaraRevision,
   validateStableAksaraRevision,
@@ -37,26 +40,31 @@ import { selectTryoutRuntimeRefresh } from "#cli/production/runtime";
 import { selectTryoutRuntimeTransition } from "#cli/production/transition";
 import { validateRecoveryRevision } from "#cli/recovery";
 
-interface GitPreparationBase {
-  readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
-  readonly checkoutRoot: string;
-  readonly rebuild?: boolean | undefined;
-  readonly releaseId: ReleaseId;
-  readonly scope: PublicationScope;
-}
+const GitPreparationBaseSchema = Schema.Struct({
+  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
+  checkoutRoot: Schema.String,
+  rebuild: Schema.optional(Schema.Boolean),
+  releaseId: ReleaseIdSchema,
+  scope: PublicationScopeSchema,
+});
 
-type GitPreparationInput =
-  | (GitPreparationBase & {
-      readonly baseBundle: ContentReleaseBundle | null;
-      readonly kind: "new";
-      readonly rendererManifest: unknown;
-    })
-  | (GitPreparationBase & {
-      readonly baseBundle: ContentReleaseBundle | null;
-      readonly bundle: ContentReleaseBundle;
-      readonly kind: "rebuild";
-      readonly sha: GitCommitSha;
-    });
+const GitPreparationInputSchema = Schema.Union([
+  Schema.Struct({
+    ...GitPreparationBaseSchema.fields,
+    baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
+    kind: Schema.Literal("new"),
+    rendererManifest: Schema.Unknown,
+  }),
+  Schema.Struct({
+    ...GitPreparationBaseSchema.fields,
+    baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
+    bundle: ContentReleaseBundleSchema,
+    kind: Schema.Literal("rebuild"),
+    sha: GitCommitShaSchema,
+  }),
+]);
+
+type GitPreparationInput = typeof GitPreparationInputSchema.Type;
 
 type PreparedGit = Effect.Success<
   ReturnType<typeof prepareContentRelease<unknown, never>>
