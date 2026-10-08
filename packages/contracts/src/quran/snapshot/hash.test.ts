@@ -9,6 +9,7 @@ import {
   verifyQuranSnapshotHash,
 } from "#contracts/quran/snapshot/hash";
 import { QuranSnapshotFactsSchema } from "#contracts/quran/snapshot/spec";
+import { decodeJson } from "#contracts/test/json";
 
 const failures = vi.hoisted(() => ({ hash: false }));
 
@@ -90,7 +91,7 @@ describe("Quran snapshot hashing", () => {
     Effect.gen(function* () {
       const first = yield* makeQuranSnapshot(facts);
       const second = yield* makeQuranSnapshot(facts);
-      expect(JSON.parse(canonicalizeQuranSnapshot(facts))).toMatchObject(facts);
+      expect(decodeJson(canonicalizeQuranSnapshot(facts))).toMatchObject(facts);
       expect(first.snapshotId).toBe(second.snapshotId);
       expect(yield* verifyQuranSnapshotHash(first)).toBe(first.snapshotId);
     })

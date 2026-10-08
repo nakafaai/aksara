@@ -10,6 +10,9 @@ import {
   QuranSnapshotSchema,
 } from "#contracts/quran/snapshot/spec";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-quran-snapshot";
 
 /** Node could not compute a deterministic Quran snapshot identity. */
@@ -20,7 +23,7 @@ export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHash
 
 /** Serializes Quran snapshot facts in stable signed field order. */
 export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
-  return JSON.stringify({
+  return encodeJson({
     activeAppLocales: input.activeAppLocales,
     attributionCount: input.attributionCount,
     chunkCount: input.chunkCount,

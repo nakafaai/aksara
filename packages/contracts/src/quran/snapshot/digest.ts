@@ -21,6 +21,9 @@ import {
   QURAN_VERSE_COUNT,
 } from "#contracts/quran/spec";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 const RUNTIME_DOMAIN = "nakafa.aksara.quran-runtime";
 const SEARCH_DOMAIN = "nakafa.aksara.quran-search";
 const PROJECTION_DOMAIN = "nakafa.aksara.quran-projection";
@@ -146,11 +149,11 @@ class QuranDigestState {
       : [];
     return payload.verses.every(
       (verse) =>
-        JSON.stringify(
+        encodeJson(
           verse.translations.map((translation) => translation.appLocale)
-        ) === JSON.stringify(this.#activeAppLocales) &&
-        JSON.stringify(verse.tafsir.map((tafsir) => tafsir.appLocale)) ===
-          JSON.stringify(expectedTafsir)
+        ) === encodeJson(this.#activeAppLocales) &&
+        encodeJson(verse.tafsir.map((tafsir) => tafsir.appLocale)) ===
+          encodeJson(expectedTafsir)
     );
   }
 
