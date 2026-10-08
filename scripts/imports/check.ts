@@ -1,4 +1,4 @@
-import { NodeServices } from "@effect/platform-node";
+import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
@@ -206,4 +206,4 @@ const checkRepository = Effect.gen(function* () {
   Effect.provide(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))
 );
 
-await Effect.runPromise(checkRepository);
+NodeRuntime.runMain(checkRepository);
