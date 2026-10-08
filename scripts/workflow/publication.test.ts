@@ -1,24 +1,38 @@
-import { readFileSync } from "node:fs";
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
+import { Effect } from "effect";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { readSource } from "#scripts/workflow/source";
 
-const release = readFileSync(".github/workflows/release.yml", "utf8");
+/** Runs one publication case with the release workflow text that it edits. */
+const withRelease = (test: (release: string) => void) =>
+  readSource(".github/workflows/release.yml").pipe(Effect.map(test));
 
-describe("paired publication policy", () => {
-  it("accepts the protected paired release and target-specific recovery path", () => {
-    expect(() => verifyPublicationWorkflow(release, [release])).not.toThrow();
-  });
+layer(NodeServices.layer)("paired publication policy", (it) => {
+  it.effect(
+    "accepts the protected paired release and target-specific recovery path",
+    () =>
+      withRelease((release) => {
+        expect(() =>
+          verifyPublicationWorkflow(release, [release])
+        ).not.toThrow();
+      })
+  );
 
-  it("rejects a second workflow that can independently publish content", () => {
-    expect(() =>
-      verifyPublicationWorkflow(release, [
-        release,
-        "run: pnpm release -- --release-id drift",
-      ])
-    ).toThrow("Only one workflow may own content publication");
-  });
+  it.effect(
+    "rejects a second workflow that can independently publish content",
+    () =>
+      withRelease((release) => {
+        expect(() =>
+          verifyPublicationWorkflow(release, [
+            release,
+            "run: pnpm release -- --release-id drift",
+          ])
+        ).toThrow("Only one workflow may own content publication");
+      })
+  );
 
-  it.each([
+  it.effect.each<readonly [string, string, string]>([
     [
       "Verify paired acceptance",
       "Skip paired acceptance",
@@ -34,7 +48,6 @@ describe("paired publication policy", () => {
       "vars.AKSARA_PUBLICATION_ENDPOINT",
       "Parity must authenticate both exact target credentials",
     ],
-
     [
       "group: content-publication",
       "group: isolated-target",
@@ -95,9 +108,11 @@ describe("paired publication policy", () => {
       "deployed",
       "Release and recovery must invalidate only their deployed cache surface",
     ],
-  ])("rejects unsafe publication change to %s", (before, after, error) => {
-    const source = release.replaceAll(before, after);
-    expect(source).not.toEqual(release);
-    expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
-  });
+  ])("rejects unsafe publication change to %s", ([before, after, error]) =>
+    withRelease((release) => {
+      const source = release.replaceAll(before, after);
+      expect(source).not.toEqual(release);
+      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
+    })
+  );
 });
