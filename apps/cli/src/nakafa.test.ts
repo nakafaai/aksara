@@ -4,13 +4,15 @@ import {
   PREVIEW_RENDERER_AUTH_FORMAT,
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
-import { Effect, Redacted } from "effect";
+import { Effect, Redacted, Schema } from "effect";
 import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 describe("Nakafa app service", () => {
   it.effect("wires renderer discovery and child startup implementations", () =>
@@ -29,7 +31,7 @@ describe("Nakafa app service", () => {
 
           return webResponse(
             request,
-            JSON.stringify({
+            encodeJson({
               format: PREVIEW_RENDERER_AUTH_FORMAT,
               manifest: RENDERER_MANIFEST,
               proof,
