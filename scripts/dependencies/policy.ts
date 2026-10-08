@@ -8,7 +8,6 @@ const DeclarationSourceSchema = Schema.Literals([
   "package-manager",
   "root-dev-dependency",
 ]);
-export type DeclarationSource = typeof DeclarationSourceSchema.Type;
 
 const DependencyHoldSchema = Schema.Struct({
   approvedCurrent: Schema.String,
