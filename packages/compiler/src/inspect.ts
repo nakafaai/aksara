@@ -1,15 +1,15 @@
 import { createProcessor } from "@mdx-js/mdx";
 import type { CompileDocumentRequest } from "@nakafa/aksara-contracts/content";
-import type {
-  ContentKey,
-  CorpusSourcePath,
-  Sha256Hash,
+import type { ContentKey } from "@nakafa/aksara-contracts/ids";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+  Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, HashSet, Schema } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
@@ -20,32 +20,28 @@ import {
 } from "#compiler/engine";
 import { MdxCompilationError } from "#compiler/errors";
 import { hashUtf8 } from "#compiler/hash";
-import type { AuthoredMetadata, MetadataSourceRange } from "#compiler/metadata";
-import { readMetadataDocument } from "#compiler/metadata";
+import {
+  AuthoredMetadataSchema,
+  type MetadataSourceRange,
+  readMetadataDocument,
+} from "#compiler/metadata";
 import {
   createSourcePolicy,
   type SourcePolicyError,
 } from "#compiler/policy/source";
 
 /** Lightweight source facts used before deciding whether code generation is needed. */
-export interface ContentSourceInspection {
-  readonly artifactLocale: ArtifactLocale;
-  readonly bodyMdx: string;
-  readonly compilerConfigHash: Sha256Hash;
-  readonly contentKey: ContentKey;
-  readonly metadata: AuthoredMetadata;
-  readonly rendererDomain: RendererDomain;
-  readonly sourceHash: Sha256Hash;
-  readonly sourcePath: CorpusSourcePath;
-}
-
-/** Metadata-only facts recovered from one authenticated historical source. */
-export interface HistoricalContentSourceInspection {
-  readonly bodyMdx: string;
-  readonly contentKey: ContentKey;
-  readonly metadata: AuthoredMetadata;
-  readonly sourceHash: Sha256Hash;
-}
+const ContentSourceInspectionSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  bodyMdx: Schema.String,
+  compilerConfigHash: Sha256HashSchema,
+  contentKey: ContentKeySchema,
+  metadata: AuthoredMetadataSchema,
+  rendererDomain: RendererDomainSchema,
+  sourceHash: Sha256HashSchema,
+  sourcePath: CorpusSourcePathSchema,
+});
+export type ContentSourceInspection = typeof ContentSourceInspectionSchema.Type;
 
 const HistoricalContentSourceRequestSchema = Schema.Struct({
   contentKey: ContentKeySchema,
@@ -141,7 +137,7 @@ export const inspectHistoricalContentSource = Effect.fn(
           contentKey: request.contentKey,
           metadata: document.metadata,
           sourceHash: hashUtf8(request.rawMdx),
-        } satisfies HistoricalContentSourceInspection;
+        };
       })
     )
   )

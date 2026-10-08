@@ -41,14 +41,17 @@ const installedVersion = Effect.fn("CompilerConfigTest.installedVersion")(
         }),
       try: () => readFileSync(manifestPath, "utf8"),
     });
-    const input = yield* Effect.try({
-      catch: (cause) =>
-        new PackageManifestReadError({
-          cause: String(cause),
-          packageName,
-        }),
-      try: () => JSON.parse(source),
-    });
+    const input = yield* Schema.decodeEffect(
+      Schema.fromJsonString(Schema.Unknown)
+    )(source).pipe(
+      Effect.mapError(
+        (cause) =>
+          new PackageManifestReadError({
+            cause: String(cause),
+            packageName,
+          })
+      )
+    );
     const manifest = yield* Schema.decodeUnknownEffect(PackageManifestSchema)(
       input
     );
