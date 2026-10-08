@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { Array as Arr, Effect, Schema } from "effect";
+import { Array as Arr, Console, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
 import { readSource } from "#scripts/source";
@@ -260,11 +260,7 @@ export const verifyRepositoryWorkflows = Effect.fn(
   "AksaraWorkflow.verifyRepository"
 )(function* () {
   verifyWorkflows(yield* readWorkflowSources());
-  yield* Effect.sync(() => {
-    process.stdout.write(
-      "Verified immutable contract and content workflows.\n"
-    );
-  });
+  yield* Console.log("Verified immutable contract and content workflows.");
 });
 
 runEntry(import.meta.main, verifyRepositoryWorkflows());
