@@ -1,9 +1,16 @@
-import { afterEach, assert, describe, it } from "@effect/vitest";
-import { Effect, FileSystem } from "effect";
+import { afterEach, assert, describe, expect, it } from "@effect/vitest";
+import { Cause, Data, Effect, Exit, FileSystem, Runtime } from "effect";
+import { TestConsole } from "effect/testing";
 import { runEntry } from "#scripts/entry";
 
 const runtime = vi.hoisted(() => ({
-  runMain: vi.fn<(program: Effect.Effect<unknown, unknown>) => void>(),
+  runMain:
+    vi.fn<
+      (
+        program: Effect.Effect<unknown, unknown>,
+        options?: { readonly disableErrorReporting?: boolean | undefined }
+      ) => void
+    >(),
 }));
 
 vi.mock("@effect/platform-node", async (importOriginal) => {
@@ -18,6 +25,24 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
 afterEach(() => {
   runtime.runMain.mockReset();
 });
+
+/** A failure that its own error marks as already reported to the console. */
+class AlreadyReported extends Data.TaggedError("AlreadyReported")<{
+  readonly message: string;
+}> {
+  readonly [Runtime.errorReported] = false;
+}
+
+/** Returns the program and options that the entry handed to the Node runtime. */
+const handedRuntimeCall = Effect.fn("ScriptEntryTest.handedRuntimeCall")(
+  function* () {
+    const [call] = runtime.runMain.mock.calls;
+    if (call === undefined) {
+      return yield* Effect.die("The entry did not start the Node runtime.");
+    }
+    return call;
+  }
+);
 
 describe("script entry", () => {
   it.effect("leaves an imported module inert", () =>
@@ -37,12 +62,63 @@ describe("script entry", () => {
         })
       );
 
-      const [call] = runtime.runMain.mock.calls;
-      if (call === undefined) {
-        return yield* Effect.die("The entry did not start the Node runtime.");
-      }
+      const [program, options] = yield* handedRuntimeCall();
       assert.strictEqual(runtime.runMain.mock.calls.length, 1);
-      assert.strictEqual(yield* call[0], true);
+      assert.deepStrictEqual(options, { disableErrorReporting: true });
+      assert.strictEqual(yield* program, true);
+    })
+  );
+
+  it.effect("logs a failed program on stderr and keeps stdout quiet", () =>
+    Effect.gen(function* () {
+      runEntry(true, Effect.fail("A script failure."));
+      const [program] = yield* handedRuntimeCall();
+
+      expect(Exit.isFailure(yield* Effect.exit(program))).toBe(true);
+      expect((yield* TestConsole.errorLines).join("\n")).toContain(
+        "A script failure."
+      );
+      expect(yield* TestConsole.logLines).toEqual([]);
+    })
+  );
+
+  it.effect("logs a failed program on stdout when the script asks for it", () =>
+    Effect.gen(function* () {
+      runEntry(true, Effect.fail("A script failure."), {
+        failureStream: "stdout",
+      });
+      const [program] = yield* handedRuntimeCall();
+
+      yield* Effect.exit(program);
+      expect((yield* TestConsole.logLines).join("\n")).toContain(
+        "A script failure."
+      );
+      expect(yield* TestConsole.errorLines).toEqual([]);
+    })
+  );
+
+  it.effect("stays silent when the program is interrupted", () =>
+    Effect.gen(function* () {
+      runEntry(true, Effect.failCause(Cause.interrupt()));
+      const [program] = yield* handedRuntimeCall();
+
+      yield* Effect.exit(program);
+      expect(yield* TestConsole.errorLines).toEqual([]);
+      expect(yield* TestConsole.logLines).toEqual([]);
+    })
+  );
+
+  it.effect("does not repeat a failure its error already reported", () =>
+    Effect.gen(function* () {
+      runEntry(
+        true,
+        Effect.fail(new AlreadyReported({ message: "Already reported." }))
+      );
+      const [program] = yield* handedRuntimeCall();
+
+      yield* Effect.exit(program);
+      expect(yield* TestConsole.errorLines).toEqual([]);
+      expect(yield* TestConsole.logLines).toEqual([]);
     })
   );
 });

@@ -256,4 +256,7 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
   }
 );
 
-runEntry(import.meta.main, makeEffectSourceProgram(process.argv[2]));
+// A failed run reports on stdout, where this script has always reported it.
+runEntry(import.meta.main, makeEffectSourceProgram(process.argv[2]), {
+  failureStream: "stdout",
+});
