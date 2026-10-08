@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, HashMap } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import { defineCurriculum, materialNode } from "#corpus/curriculum/schema";
@@ -31,7 +31,7 @@ describe("curriculum material", () => {
         const projected = yield* resolveCurriculumMaterial(
           curriculum,
           decodedNode,
-          new Map([[material.key, material]]),
+          HashMap.make([material.key, material]),
           domains,
           undefined
         );

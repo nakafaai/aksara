@@ -2,17 +2,14 @@ import {
   type MaterialDomain,
   MaterialDomainSchema,
 } from "@nakafa/aksara-contracts/material/domain";
-import {
-  type CurriculumNodeKey,
-  CurriculumNodeKeySchema,
-} from "@nakafa/aksara-contracts/program/curriculum";
+import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import {
   LearningProgramKeySchema,
   ProgramNavigationIconKeySchema,
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, Array as EffectArray, Schema } from "effect";
+import { Effect, Array as EffectArray, HashMap, Schema } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import {
@@ -20,7 +17,7 @@ import {
   CurriculumMaterialCardMapSchema,
   CurriculumNodeTranslationMapSchema,
   type CurriculumSource,
-  type CurriculumTreeNode,
+  CurriculumTreeNodeSchema,
 } from "#corpus/curriculum/schema";
 import {
   decodeMaterialDomains,
@@ -34,7 +31,6 @@ const CurriculumPathNodeSchema = Schema.Struct({
   materialKeys: Schema.Array(MaterialKeySchema),
   translations: CurriculumNodeTranslationMapSchema,
 });
-type CurriculumPathNode = typeof CurriculumPathNodeSchema.Type;
 
 /** Flat validated curriculum node used to derive localized route rows. */
 export const ProjectedCurriculumNodeSchema = Schema.Struct({
@@ -54,12 +50,14 @@ export const ProjectedCurriculumNodeSchema = Schema.Struct({
 });
 export type ProjectedCurriculumNode = typeof ProjectedCurriculumNodeSchema.Type;
 
-interface PendingCurriculumNode {
-  readonly ancestors: readonly CurriculumPathNode[];
-  readonly inheritedDomain: MaterialDomain | undefined;
-  readonly node: CurriculumTreeNode;
-  readonly parentKey?: CurriculumNodeKey;
-}
+/** A tree node waiting for its ancestors and the material domain it inherits. */
+const PendingCurriculumNodeSchema = Schema.Struct({
+  ancestors: Schema.Array(CurriculumPathNodeSchema),
+  inheritedDomain: Schema.UndefinedOr(MaterialDomainSchema),
+  node: CurriculumTreeNodeSchema,
+  parentKey: Schema.optionalKey(CurriculumNodeKeySchema),
+});
+type PendingCurriculumNode = typeof PendingCurriculumNodeSchema.Type;
 
 /** Maps one resolved tree node and its ancestry onto the flat route model. */
 function makeProjectedNode(
@@ -100,7 +98,7 @@ function makeProjectedNode(
 const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
   function* (
     curriculum: CurriculumSource,
-    materialByKey: ReadonlyMap<string, LessonMaterialSource>,
+    materialByKey: HashMap.HashMap<string, LessonMaterialSource>,
     descriptors: readonly MaterialDomainDescriptor[]
   ) {
     const nodes: ProjectedCurriculumNode[] = [];
@@ -169,8 +167,11 @@ export const projectCurriculumNodes = Effect.fn(
   domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
-  const materialByKey = new Map(
-    materials.map((material) => [material.key, material])
+  const materialByKey = HashMap.fromIterable(
+    materials.map((material): [string, LessonMaterialSource] => [
+      material.key,
+      material,
+    ])
   );
   const projected = yield* Effect.forEach(curricula, (curriculum) =>
     projectCurriculum(curriculum, materialByKey, descriptors)

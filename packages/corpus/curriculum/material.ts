@@ -5,7 +5,7 @@ import {
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Schema } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 import type {
   CurriculumMaterialNode,
   CurriculumNodeTranslationMapSchema,
@@ -97,12 +97,14 @@ export const resolveCurriculumMaterial = Effect.fn(
 )(function* (
   curriculum: CurriculumSource,
   node: CurriculumMaterialNode,
-  materialByKey: ReadonlyMap<string, LessonMaterialSource>,
+  materialByKey: HashMap.HashMap<string, LessonMaterialSource>,
   descriptors: readonly MaterialDomainDescriptor[],
   inheritedDomain: MaterialDomain | undefined
 ) {
   const [firstMaterialKey] = node.materialKeys;
-  const firstMaterial = materialByKey.get(firstMaterialKey);
+  const firstMaterial = Option.getOrUndefined(
+    HashMap.get(materialByKey, firstMaterialKey)
+  );
   if (!firstMaterial) {
     return yield* new CurriculumProjectionError({
       code: "material",
@@ -114,7 +116,9 @@ export const resolveCurriculumMaterial = Effect.fn(
 
   const materials = [firstMaterial];
   for (const materialKey of node.materialKeys.slice(1)) {
-    const material = materialByKey.get(materialKey);
+    const material = Option.getOrUndefined(
+      HashMap.get(materialByKey, materialKey)
+    );
     if (!material) {
       return yield* new CurriculumProjectionError({
         code: "material",
