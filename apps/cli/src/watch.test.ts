@@ -69,7 +69,6 @@ const selectRealDocument = Effect.fn("AksaraCliTest.selectRealDocument")(
 function updateEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Update", path };
 }
-
 /** Creates one portable filesystem create event. */
 function createEvent(path: string): FileSystem.WatchEvent {
   return { _tag: "Create", path };
