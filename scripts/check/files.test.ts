@@ -1,13 +1,13 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Path } from "effect";
 import {
   enforceViolations,
-  parseTrackedFiles,
   TrackedFilesError,
   trackedFiles,
   typescriptFiles,
 } from "#scripts/check/files";
+import { runGit } from "#scripts/git";
 
 const originalExitCode = process.exitCode;
 
@@ -16,16 +16,88 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+/** Runs one effect with the process working directory moved to root. */
+const inDirectory = <A, E, R>(root: string, effect: Effect.Effect<A, E, R>) =>
+  Effect.acquireUseRelease(
+    Effect.sync(() => {
+      const previous = process.cwd();
+      process.chdir(root);
+      return previous;
+    }),
+    () => effect,
+    (previous) => Effect.sync(() => process.chdir(previous))
+  );
+
+/** Creates an empty Git repository in a scoped temporary folder. */
+const makeRepository = Effect.fn("AksaraPolicyTest.makeRepository")(
+  function* () {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const root = yield* fileSystem.makeTempDirectoryScoped({
+      prefix: "aksara-files-",
+    });
+    yield* runGit(["init", "--quiet"], { cwd: root });
+    return root;
+  }
+);
+
 describe("files", () => {
-  it.effect("parses existing nonempty Git paths outside vendored source", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* parseTrackedFiles(
-          "kept.ts\nrepos/effect/source.ts\nmissing.ts\n\n",
-          (path) => Effect.succeed(path !== "missing.ts")
-        )
-      ).toEqual(["kept.ts"]);
-    })
+  it.effect(
+    "lists tracked files that still exist and skips vendored source",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* makeRepository();
+        yield* fileSystem.makeDirectory(path.join(root, "repos/effect"), {
+          recursive: true,
+        });
+        for (const file of ["kept.ts", "gone.ts", "repos/effect/source.ts"]) {
+          yield* fileSystem.writeFileString(
+            path.join(root, file),
+            "export {};\n"
+          );
+        }
+        yield* runGit(
+          ["add", "--", "kept.ts", "gone.ts", "repos/effect/source.ts"],
+          { cwd: root }
+        );
+        yield* fileSystem.remove(path.join(root, "gone.ts"));
+
+        expect(yield* inDirectory(root, trackedFiles())).toEqual(["kept.ts"]);
+      }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect(
+    "keeps the listing when a tracked path sits below a regular file",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* makeRepository();
+        yield* fileSystem.makeDirectory(path.join(root, "blocked"));
+        yield* fileSystem.writeFileString(
+          path.join(root, "blocked/child.ts"),
+          "export {};\n"
+        );
+        yield* fileSystem.writeFileString(
+          path.join(root, "kept.ts"),
+          "export {};\n"
+        );
+        yield* runGit(["add", "--", "blocked/child.ts", "kept.ts"], {
+          cwd: root,
+        });
+        yield* fileSystem.remove(path.join(root, "blocked"), {
+          recursive: true,
+        });
+        yield* fileSystem.writeFileString(
+          path.join(root, "blocked"),
+          "a regular file\n"
+        );
+
+        const files = yield* inDirectory(root, trackedFiles());
+        expect(files).not.toContain("blocked/child.ts");
+        expect(files).toContain("kept.ts");
+      }).pipe(Effect.provide(NodeServices.layer))
   );
 
   it.effect("selects authored TypeScript outside generated directories", () =>
@@ -55,14 +127,8 @@ describe("files", () => {
       const root = yield* fileSystem.makeTempDirectoryScoped({
         prefix: "aksara-files-",
       });
-      const failure = yield* Effect.acquireUseRelease(
-        Effect.sync(() => {
-          const previous = process.cwd();
-          process.chdir(root);
-          return previous;
-        }),
-        () => trackedFiles().pipe(Effect.flip),
-        (previous) => Effect.sync(() => process.chdir(previous))
+      const failure = yield* inDirectory(root, trackedFiles()).pipe(
+        Effect.flip
       );
 
       expect(failure).toBeInstanceOf(TrackedFilesError);
