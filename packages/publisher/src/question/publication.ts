@@ -19,7 +19,16 @@ import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content
 import type { QuestionBankIndex } from "@nakafa/aksara-corpus/question-bank/path";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import type { FileSystem, Path } from "effect";
-import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import {
+  Effect,
+  MutableHashMap,
+  Option,
+  Result,
+  Schema,
+  type Scope,
+  Stream,
+  Tuple,
+} from "effect";
 import { constUndefined } from "effect/Function";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import {
@@ -160,7 +169,9 @@ function mismatchedFamilyField(
     return "sourcePath";
   }
   const { questionSetKey } = questionKeyParts(document.questionKey);
-  const definition = questionBanks.get(questionBankKey(questionSetKey));
+  const definition = Option.getOrUndefined(
+    MutableHashMap.get(questionBanks, questionBankKey(questionSetKey))
+  );
   if (
     definition !== undefined &&
     head.rendererDomain !== definition.rendererDomain
