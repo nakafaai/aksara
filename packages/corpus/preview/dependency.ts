@@ -3,7 +3,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
 import {
   isCallExpression,
   isExportDeclaration,
@@ -146,7 +146,7 @@ export const discoverSourceDependencies = Effect.fn(
   "AksaraCorpus.discoverSourceDependencies"
 )(function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
   const dependencies: [CorpusSourcePath, ...CorpusSourcePath[]] = [sourcePath];
-  const scheduled = new Set<CorpusSourcePath>(dependencies);
+  const scheduled = MutableHashSet.fromIterable(dependencies);
   let processed = 0;
 
   for (const current of dependencies) {
@@ -159,10 +159,10 @@ export const discoverSourceDependencies = Effect.fn(
     processed += 1;
     const direct = yield* readSourceDependencies(corpusRoot, current);
     for (const dependency of direct) {
-      if (scheduled.has(dependency)) {
+      if (MutableHashSet.has(scheduled, dependency)) {
         continue;
       }
-      scheduled.add(dependency);
+      MutableHashSet.add(scheduled, dependency);
       dependencies.push(dependency);
     }
   }

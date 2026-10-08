@@ -64,7 +64,7 @@ const QuestionAnswerEntrySchema = Schema.Struct({
 });
 
 /** Strict question-bank body prepared for its exact delivery boundary. */
-const QuestionEntrySchema = Schema.Union([
+export const QuestionEntrySchema = Schema.Union([
   QuestionPromptEntrySchema,
   QuestionAnswerEntrySchema,
 ]);
