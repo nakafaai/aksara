@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 
 import {
-  Array as Arr,
   Effect,
   MutableHashMap,
   MutableHashSet,
@@ -140,7 +139,7 @@ class ProgramDigestState {
       MutableHashSet.size(this.#slugs) ===
         this.programRowCount * this.#activeAppLocales.length &&
       MutableHashSet.size(expectedRoots) === MutableHashSet.size(this.#roots) &&
-      Arr.every(Arr.fromIterable(expectedRoots), (root) =>
+      [...expectedRoots].every((root) =>
         MutableHashSet.has(this.#roots, root)
       ) &&
       countIdentity(counts) === countIdentity(expectedCounts)

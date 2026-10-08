@@ -13,7 +13,7 @@ import {
 } from "#contracts/math/rational";
 
 /** One exact rational coordinate participating in a proximity comparison. */
-export const ExactProximityEntrySchema = Schema.Struct({
+const ExactProximityEntrySchema = Schema.Struct({
   error: Schema.optionalKey(Schema.BigDecimal),
   value: ExactRatioSchema,
 });
