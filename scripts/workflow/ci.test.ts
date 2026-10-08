@@ -30,93 +30,91 @@ function rejectionFor(repositoryTargets: readonly string[]): Rejects {
   };
 }
 
-layer(workflowSourcesLayer)("CI workflow policy", (it) => {
-  const sourceTest = sourceTestsOf(it);
+layer(workflowSourcesLayer)("CI workflow policy", (layered) => {
+  const sourceTest = sourceTestsOf(layered);
 
   /** Declares one CI policy test over the checked-in CI workflow and its test targets. */
-  const ciTest = (
+  const it = (
     name: string,
-    check: (
-      source: string,
-      rejects: Rejects,
-      targets: readonly string[]
-    ) => void
+    check: (policy: {
+      readonly source: string;
+      readonly rejects: Rejects;
+      readonly targets: readonly string[];
+    }) => void
   ) =>
     sourceTest(name, ({ ci, testTargets }) => {
-      check(ci, rejectionFor(testTargets), testTargets);
+      check({
+        rejects: rejectionFor(testTargets),
+        source: ci,
+        targets: testTargets,
+      });
     });
 
-  ciTest(
-    "accepts parallel checks and four test groups behind one verify job",
-    (source, _rejects, targets) => {
-      expect(() => verifyCiWorkflow(source, targets)).not.toThrow();
-    }
-  );
+  it("accepts parallel checks and four test groups behind one verify job", ({
+    source,
+    targets,
+  }) => {
+    expect(() => verifyCiWorkflow(source, targets)).not.toThrow();
+  });
 
-  ciTest(
-    "runs CI only for pull requests and merge queue groups",
-    (source, rejects) => {
-      rejects(
-        source.replace(
-          "\n\npermissions:",
-          "\n  push:\n    branches: [main]\n\npermissions:"
-        ),
-        "CI must run only for pull requests and merge queue groups"
-      );
-    }
-  );
+  it("runs CI only for pull requests and merge queue groups", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace(
+        "\n\npermissions:",
+        "\n  push:\n    branches: [main]\n\npermissions:"
+      ),
+      "CI must run only for pull requests and merge queue groups"
+    );
+  });
 
-  ciTest("keeps the exact parallel job set", (source, rejects) => {
+  it("keeps the exact parallel job set", ({ source, rejects }) => {
     rejects(
       source.replace("\n  test:\n", "\n  tests:\n"),
       "CI must run checks and tests in parallel behind one verify job"
     );
   });
 
-  ciTest("runs every repository gate", (source, rejects) => {
+  it("runs every repository gate", ({ source, rejects }) => {
     rejects(
       source.replace("run: pnpm typecheck", "run: pnpm names"),
       "CI must run every repository gate"
     );
   });
 
-  ciTest(
-    "compares visuals with the base of the pull request or merge group",
-    (source, rejects) => {
-      const message =
-        "CI must compare lesson visuals with the base of the pull request or merge group";
-      rejects(
-        source.replace(
-          'run: pnpm points --base "$BASE_SHA"',
-          "run: pnpm points"
-        ),
-        message
-      );
-      rejects(
-        source.replace("github.event.merge_group.base_sha", "github.sha"),
-        message
-      );
-      rejects(
-        source.replace(
-          'run: pnpm points --base "$BASE_SHA"',
-          "run: pnpm names"
-        ),
-        "CI must run every repository gate"
-      );
-    }
-  );
+  it("compares visuals with the base of the pull request or merge group", ({
+    source,
+    rejects,
+  }) => {
+    const message =
+      "CI must compare lesson visuals with the base of the pull request or merge group";
+    rejects(
+      source.replace('run: pnpm points --base "$BASE_SHA"', "run: pnpm points"),
+      message
+    );
+    rejects(
+      source.replace("github.event.merge_group.base_sha", "github.sha"),
+      message
+    );
+    rejects(
+      source.replace('run: pnpm points --base "$BASE_SHA"', "run: pnpm names"),
+      "CI must run every repository gate"
+    );
+  });
 
-  ciTest(
-    "runs each test group through its own matrix command",
-    (source, rejects) => {
-      rejects(
-        source.replace(MATRIX_COMMAND_STEP, "run: pnpm test"),
-        "Each CI test group must run only its matrix command"
-      );
-    }
-  );
+  it("runs each test group through its own matrix command", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace(MATRIX_COMMAND_STEP, "run: pnpm test"),
+      "Each CI test group must run only its matrix command"
+    );
+  });
 
-  ciTest("runs no command beyond its matrix command", (source, rejects) => {
+  it("runs no command beyond its matrix command", ({ source, rejects }) => {
     rejects(
       source.replace(
         MATRIX_COMMAND_STEP,
@@ -126,119 +124,120 @@ layer(workflowSourcesLayer)("CI workflow policy", (it) => {
     );
   });
 
-  ciTest(
-    "keeps every test group from passing or being skipped silently",
-    (source, rejects) => {
-      const message =
-        "The test job may carry only the keys that run each test group";
-      rejects(
-        source.replace(
-          "    timeout-minutes: 20\n    strategy:",
-          `    timeout-minutes: 20\n    continue-on-error: ${DOLLAR}{{ matrix.group == 'voice' }}\n    strategy:`
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          MATRIX_COMMAND_STEP,
-          `continue-on-error: true\n        ${MATRIX_COMMAND_STEP}`
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          MATRIX_COMMAND_STEP,
-          `if: matrix.group != 'voice'\n        ${MATRIX_COMMAND_STEP}`
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          MATRIX_COMMAND_STEP,
-          `shell: "true {0}"\n        ${MATRIX_COMMAND_STEP}`
-        ),
-        message
-      );
-    }
-  );
+  it("keeps every test group from passing or being skipped silently", ({
+    source,
+    rejects,
+  }) => {
+    const message =
+      "The test job may carry only the keys that run each test group";
+    rejects(
+      source.replace(
+        "    timeout-minutes: 20\n    strategy:",
+        `    timeout-minutes: 20\n    continue-on-error: ${DOLLAR}{{ matrix.group == 'voice' }}\n    strategy:`
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        MATRIX_COMMAND_STEP,
+        `continue-on-error: true\n        ${MATRIX_COMMAND_STEP}`
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        MATRIX_COMMAND_STEP,
+        `if: matrix.group != 'voice'\n        ${MATRIX_COMMAND_STEP}`
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        MATRIX_COMMAND_STEP,
+        `shell: "true {0}"\n        ${MATRIX_COMMAND_STEP}`
+      ),
+      message
+    );
+  });
 
-  ciTest(
-    "keeps every test group running after one group fails",
-    (source, rejects) => {
-      rejects(
-        source.replace("fail-fast: false", "fail-fast: true"),
-        "Test groups must not cancel one another"
-      );
-    }
-  );
+  it("keeps every test group running after one group fails", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace("fail-fast: false", "fail-fast: true"),
+      "Test groups must not cancel one another"
+    );
+  });
 
-  ciTest(
-    "requires the test job to run one matrix leg per test group",
-    (source, rejects) => {
-      rejects(
-        source.replace(STRATEGY_BLOCK_PATTERN, "    steps:"),
-        "The test job must run one matrix leg per test group"
-      );
-    }
-  );
+  it("requires the test job to run one matrix leg per test group", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace(STRATEGY_BLOCK_PATTERN, "    steps:"),
+      "The test job must run one matrix leg per test group"
+    );
+  });
 
-  ciTest("keeps exactly the four test groups", (source, rejects) => {
+  it("keeps exactly the four test groups", ({ source, rejects }) => {
     const message = "CI must run the four test groups, one matrix leg each";
     rejects(source.replace("- group: voice", "- group: voices"), message);
     rejects(source.replace(`${PUBLISHER_LEG}\n`, ""), message);
   });
 
-  ciTest(
-    "rejects matrix keys and leg keys beyond the four groups",
-    (source, rejects) => {
-      const message = "The test job must run one matrix leg per test group";
-      rejects(
-        source.replace(
-          "      matrix:\n        include:",
-          "      matrix:\n        exclude:\n          - group: voice\n        include:"
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          "      matrix:\n        include:",
-          "      matrix:\n        shard: [1, 2]\n        include:"
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          "- group: voice",
-          "- group: voice\n            os: ubuntu-latest"
-        ),
-        message
-      );
-    }
-  );
+  it("rejects matrix keys and leg keys beyond the four groups", ({
+    source,
+    rejects,
+  }) => {
+    const message = "The test job must run one matrix leg per test group";
+    rejects(
+      source.replace(
+        "      matrix:\n        include:",
+        "      matrix:\n        exclude:\n          - group: voice\n        include:"
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        "      matrix:\n        include:",
+        "      matrix:\n        shard: [1, 2]\n        include:"
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        "- group: voice",
+        "- group: voice\n            os: ubuntu-latest"
+      ),
+      message
+    );
+  });
 
-  ciTest(
-    "runs every test target in exactly one group",
-    (source, rejects, targets) => {
-      rejects(
-        source,
-        "Test target @nakafa/aksara-new must belong to exactly one CI test group",
-        [...targets, "@nakafa/aksara-new"]
-      );
-      rejects(
-        source.replace("--filter=@nakafa/aksara-cli ", ""),
-        "Test target @nakafa/aksara-cli must belong to exactly one CI test group"
-      );
-      rejects(
-        source.replace(
-          "--filter=@nakafa/aksara-publisher ",
-          "--filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-corpus "
-        ),
-        "Test target @nakafa/aksara-corpus must belong to exactly one CI test group"
-      );
-    }
-  );
+  it("runs every test target in exactly one group", ({
+    source,
+    rejects,
+    targets,
+  }) => {
+    rejects(
+      source,
+      "Test target @nakafa/aksara-new must belong to exactly one CI test group",
+      [...targets, "@nakafa/aksara-new"]
+    );
+    rejects(
+      source.replace("--filter=@nakafa/aksara-cli ", ""),
+      "Test target @nakafa/aksara-cli must belong to exactly one CI test group"
+    );
+    rejects(
+      source.replace(
+        "--filter=@nakafa/aksara-publisher ",
+        "--filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-corpus "
+      ),
+      "Test target @nakafa/aksara-corpus must belong to exactly one CI test group"
+    );
+  });
 
-  ciTest("keeps each test group to its own test targets", (source, rejects) => {
+  it("keeps each test group to its own test targets", ({ source, rejects }) => {
     const moved = source
       .replace("--filter=@nakafa/aksara-cli ", "")
       .replace(
@@ -248,70 +247,67 @@ layer(workflowSourcesLayer)("CI workflow policy", (it) => {
     rejects(moved, "Each CI test group must run exactly its own test targets");
   });
 
-  ciTest(
-    "runs root test tasks only with the root package selected",
-    (source, rejects) => {
-      rejects(
-        source.replace("--filter=// ", ""),
-        "A CI test group that selects root test tasks with package filters must include --filter=//"
-      );
-    }
-  );
+  it("runs root test tasks only with the root package selected", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace("--filter=// ", ""),
+      "A CI test group that selects root test tasks with package filters must include --filter=//"
+    );
+  });
 
-  ciTest(
-    "runs every test group through Turbo with one concurrent task",
-    (source, rejects) => {
-      const message =
-        "Each CI test group must run through Turbo with --concurrency=1";
-      rejects(
-        source.replace(
-          "test:lesson-voice --concurrency=1",
-          "test:lesson-voice"
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          "command: pnpm exec turbo run test:lesson-voice",
-          "command: pnpm test:lesson-voice"
-        ),
-        message
-      );
-    }
-  );
+  it("runs every test group through Turbo with one concurrent task", ({
+    source,
+    rejects,
+  }) => {
+    const message =
+      "Each CI test group must run through Turbo with --concurrency=1";
+    rejects(
+      source.replace("test:lesson-voice --concurrency=1", "test:lesson-voice"),
+      message
+    );
+    rejects(
+      source.replace(
+        "command: pnpm exec turbo run test:lesson-voice",
+        "command: pnpm test:lesson-voice"
+      ),
+      message
+    );
+  });
 
-  ciTest(
-    "runs each test group as one Turbo run that executes tests",
-    (source, rejects) => {
-      const message =
-        "Each CI test group must run through Turbo with --concurrency=1";
-      const voice =
-        "command: pnpm exec turbo run test:lesson-voice --concurrency=1";
-      rejects(
-        source.replace(
-          voice,
-          `${voice} && pnpm exec turbo run test --concurrency=1`
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          voice,
-          "command: pnpm exec turbo run test:lesson-voice --dry=json --concurrency=1"
-        ),
-        message
-      );
-      rejects(
-        source.replace(
-          voice,
-          'command: "pnpm exec turbo run test:lesson-voice --concurrency=1\\npnpm test"'
-        ),
-        message
-      );
-    }
-  );
+  it("runs each test group as one Turbo run that executes tests", ({
+    source,
+    rejects,
+  }) => {
+    const message =
+      "Each CI test group must run through Turbo with --concurrency=1";
+    const voice =
+      "command: pnpm exec turbo run test:lesson-voice --concurrency=1";
+    rejects(
+      source.replace(
+        voice,
+        `${voice} && pnpm exec turbo run test --concurrency=1`
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        voice,
+        "command: pnpm exec turbo run test:lesson-voice --dry=json --concurrency=1"
+      ),
+      message
+    );
+    rejects(
+      source.replace(
+        voice,
+        'command: "pnpm exec turbo run test:lesson-voice --concurrency=1\\npnpm test"'
+      ),
+      message
+    );
+  });
 
-  ciTest("names only repository test targets", (source, rejects, targets) => {
+  it("names only repository test targets", ({ source, rejects, targets }) => {
     rejects(
       source,
       "CI test groups must name only repository test targets",
@@ -319,21 +315,21 @@ layer(workflowSourcesLayer)("CI workflow policy", (it) => {
     );
   });
 
-  ciTest(
-    "derives verify from the result of every CI job",
-    (source, rejects) => {
-      rejects(
-        source.replace("needs: [checks, test]", "needs: [checks]"),
-        "The verify check must wait for every CI job"
-      );
-      rejects(
-        source.replace("!cancelled()", "success()"),
-        "The verify check must report when a CI job fails"
-      );
-      rejects(
-        source.replace(' && test "$TEST" = success', ""),
-        "The verify check must fail unless every CI job succeeds"
-      );
-    }
-  );
+  it("derives verify from the result of every CI job", ({
+    source,
+    rejects,
+  }) => {
+    rejects(
+      source.replace("needs: [checks, test]", "needs: [checks]"),
+      "The verify check must wait for every CI job"
+    );
+    rejects(
+      source.replace("!cancelled()", "success()"),
+      "The verify check must report when a CI job fails"
+    );
+    rejects(
+      source.replace(' && test "$TEST" = success', ""),
+      "The verify check must fail unless every CI job succeeds"
+    );
+  });
 });

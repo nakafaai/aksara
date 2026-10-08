@@ -82,38 +82,31 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   ],
 ];
 
-layer(workflowSourcesLayer)("paired publication policy", (it) => {
-  const sourceTest = sourceTestsOf(it);
+layer(workflowSourcesLayer)("paired publication policy", (layered) => {
+  const it = sourceTestsOf(layered);
 
-  sourceTest(
-    "accepts the protected paired release and target-specific recovery path",
-    ({ release }) => {
-      expect(() => verifyPublicationWorkflow(release, [release])).not.toThrow();
-    }
-  );
+  it("accepts the protected paired release and target-specific recovery path", ({
+    release,
+  }) => {
+    expect(() => verifyPublicationWorkflow(release, [release])).not.toThrow();
+  });
 
-  sourceTest(
-    "rejects a second workflow that can independently publish content",
-    ({ release }) => {
-      expect(() =>
-        verifyPublicationWorkflow(release, [
-          release,
-          "run: pnpm release -- --release-id drift",
-        ])
-      ).toThrow("Only one workflow may own content publication");
-    }
-  );
+  it("rejects a second workflow that can independently publish content", ({
+    release,
+  }) => {
+    expect(() =>
+      verifyPublicationWorkflow(release, [
+        release,
+        "run: pnpm release -- --release-id drift",
+      ])
+    ).toThrow("Only one workflow may own content publication");
+  });
 
   for (const [before, after, error] of UNSAFE_PUBLICATION_CHANGES) {
-    sourceTest(
-      `rejects unsafe publication change to ${before}`,
-      ({ release }) => {
-        const source = release.replaceAll(before, after);
-        expect(source).not.toEqual(release);
-        expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
-          error
-        );
-      }
-    );
+    it(`rejects unsafe publication change to ${before}`, ({ release }) => {
+      const source = release.replaceAll(before, after);
+      expect(source).not.toEqual(release);
+      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
+    });
   }
 });
