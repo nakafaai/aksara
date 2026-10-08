@@ -11,13 +11,17 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
-import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
+  changeOneByte,
   signingManifest as manifest,
   signingPayload as payload,
+  signingRuntimeBundle,
+  TEST_ARTIFACT_SIGNATURE,
+  TEST_RELEASE_SIGNATURE,
+  TEST_RUNTIME_BUNDLE_SIGNATURE,
+  verifyRecorded,
 } from "#test/signing";
 
 const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
@@ -60,21 +64,9 @@ describe("Ed25519 publication signing", () => {
         if (manifest.origin.kind !== "git") {
           return;
         }
-        const runtimeBundle = yield* signer.signTryoutRuntimeBundle({
-          format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
-          rendererManifestHash: manifest.rendererManifestHash,
-          snapshot: makeTryoutSnapshot({
-            activeAppLocales: manifest.activeAppLocales,
-            catalogDigest: manifest.itemsDigest,
-            counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-            placementCount: 1,
-            placementDigest: manifest.resultDigest,
-            routeCount: 1,
-          }),
-          sourceGitSha: manifest.origin.sha,
-          sourceManifestHash: release.manifestHash,
-          sourceReleaseId: manifest.releaseId,
-        });
+        const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
+          signingRuntimeBundle(release, manifest.origin.sha)
+        );
 
         expect(artifact.keyId).toBe("test-signing-key");
         expect(
@@ -242,5 +234,56 @@ describe("Ed25519 publication signing", () => {
 
         expect(error._tag).toBe("ArtifactSourceHashMismatchError");
       })
+  );
+});
+
+describe("Ed25519 publication signature vectors", () => {
+  it.effect("pins every signed publication object", () =>
+    Effect.gen(function* () {
+      const { signer } = yield* makeSigner();
+      const artifact = yield* signer.signArtifact(payload);
+      const release = yield* signer.signRelease(manifest);
+      expect(manifest.origin.kind).toBe("git");
+      if (manifest.origin.kind !== "git") {
+        return;
+      }
+      const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
+        signingRuntimeBundle(release, manifest.origin.sha)
+      );
+      expect([
+        artifact.artifactHash,
+        release.manifestHash,
+        runtimeBundle.bundleHash,
+      ]).toEqual([
+        "sha256:a988ede8eb7f5ec4efe3249d10ae5feb8cd6b6691e5c8bf21c461fda0c297f32",
+        "sha256:2920f6035d15b14d7f75537d9da7dc127c8f21a4a52f2339006e9869b03e4293",
+        "sha256:003052adf84cda81dfffda8dfaa15cb7e6e7223630f01bfb835c88c6ca7b8f72",
+      ]);
+      const artifactInput = canonicalizeContentArtifactSigningInput(
+        artifact.artifactHash,
+        artifact.payload
+      );
+      const releaseInput = canonicalizeContentReleaseSigningInput(
+        release.manifestHash,
+        release.manifest
+      );
+      const runtimeBundleInput = canonicalizeTryoutRuntimeBundleSigningInput(
+        runtimeBundle.bundleHash,
+        runtimeBundle.payload
+      );
+      expect([
+        verifyRecorded(artifactInput, TEST_ARTIFACT_SIGNATURE),
+        verifyRecorded(releaseInput, TEST_RELEASE_SIGNATURE),
+        verifyRecorded(runtimeBundleInput, TEST_RUNTIME_BUNDLE_SIGNATURE),
+      ]).toEqual([true, true, true]);
+      expect([
+        verifyRecorded(changeOneByte(artifactInput), TEST_ARTIFACT_SIGNATURE),
+        verifyRecorded(changeOneByte(releaseInput), TEST_RELEASE_SIGNATURE),
+        verifyRecorded(
+          changeOneByte(runtimeBundleInput),
+          TEST_RUNTIME_BUNDLE_SIGNATURE
+        ),
+      ]).toEqual([false, false, false]);
+    })
   );
 });

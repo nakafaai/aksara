@@ -20,19 +20,20 @@ import {
   stateCompleted,
   stateCurrent,
   stateRecovery,
-  stateReleaseId,
 } from "#test/state";
+import { releaseId } from "#test/target";
 
 const args: ParityArguments = {
   command: "parity",
-  recoveryId: stateReleaseId("inverse"),
-  releaseId: stateReleaseId("paired"),
+  recoveryId: releaseId("inverse"),
+  releaseId: releaseId("paired"),
 };
 const active = Schema.decodeSync(ActiveContentReleaseSchema)(
   stateCompleted("paired")
 );
 const current = activeState(active);
 const otherHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+const appLocale = AppLocaleSchema.make;
 
 /** Models a different complete active catalog at the parity comparison seam. */
 function changedManifest(overrides: Partial<ContentReleaseManifest>) {
@@ -59,7 +60,7 @@ describe("complete publication parity", () => {
         });
         const development = changedManifest({
           baseManifestHash: otherHash,
-          baseReleaseId: stateReleaseId("previous"),
+          baseReleaseId: releaseId("previous"),
         });
         const evidence = yield* verifyPublicationParity(
           args,
@@ -70,9 +71,25 @@ describe("complete publication parity", () => {
       })
   );
 
+  it.effect("accepts equal active locale sets listed in another order", () =>
+    Effect.gen(function* () {
+      // Each side lists the same three locales in a different unsorted order,
+      // so removing either sort, or both, changes the comparison.
+      const development = changedManifest({
+        activeAppLocales: [appLocale("id"), appLocale("de"), appLocale("en")],
+      });
+      const production = changedManifest({
+        activeAppLocales: [appLocale("en"), appLocale("id"), appLocale("de")],
+      });
+      expect(
+        yield* verifyPublicationParity(args, development, production)
+      ).toMatchObject({ releaseId: "paired", resultCount: 0 });
+    })
+  );
+
   it.effect.each([
     ["active", { ...current, active: null }],
-    ["active", changedManifest({ releaseId: stateReleaseId("different") })],
+    ["active", changedManifest({ releaseId: releaseId("different") })],
     [
       "candidate",
       {
@@ -100,7 +117,7 @@ describe("complete publication parity", () => {
     [
       "source",
       changedManifest({
-        origin: { kind: "rollback", releaseId: stateReleaseId("previous") },
+        origin: { kind: "rollback", releaseId: releaseId("previous") },
       }),
     ],
     [

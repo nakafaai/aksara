@@ -42,3 +42,26 @@ describe("learning graph identity", () => {
     })
   );
 });
+
+describe("pinned learning graph derivation", () => {
+  it.effect("pins a deeper article identity under the Indonesian locale", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* makeLearningGraphIdentity({
+          appLocale: AppLocaleSchema.make("id"),
+          concept: ["article", "politics", "indonesia"],
+          learningObject: ["article", "politics", "indonesia", "pemilu-2024"],
+          lens: ["article", "politics"],
+        })
+      ).toEqual({
+        alignmentId:
+          "alignment:article:politics:article:politics:indonesia:pemilu-2024",
+        assetId:
+          "asset:id:article:politics:article:politics:indonesia:pemilu-2024",
+        conceptId: "concept:article:politics:indonesia",
+        learningObjectId: "lo:article:politics:indonesia:pemilu-2024",
+        lensId: "lens:article:politics",
+      });
+    })
+  );
+});

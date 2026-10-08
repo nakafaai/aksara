@@ -8,6 +8,7 @@ import {
   ContentSnapshotSetSchema,
   ContentSnapshotStateSchema,
   canonicalizeContentSnapshotSet,
+  canonicalizeContentSnapshotState,
   EMPTY_SNAPSHOT_ROW_DIGEST,
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
@@ -212,5 +213,49 @@ describe("content snapshot state", () => {
         snapshots
       )
     ).toBe(true);
+  });
+
+  it("pins the canonical JSON of one replaced snapshot state", () => {
+    const state = Schema.decodeSync(ContentSnapshotStateSchema)({
+      baseSnapshotId: null,
+      mode: "replace",
+      resultSnapshotId: first,
+      rowCount: 1428,
+      rowDigest: rows,
+    });
+
+    expect(JSON.stringify(canonicalizeContentSnapshotState(state))).toBe(
+      '{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}'
+    );
+  });
+
+  it("pins the canonical JSON of every fixed snapshot family", () => {
+    const snapshots = Schema.decodeSync(ContentSnapshotSetSchema)({
+      program: {
+        baseSnapshotId: null,
+        mode: "inherit",
+        resultSnapshotId: null,
+        rowCount: 0,
+        rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+      },
+      quran: {
+        baseSnapshotId: null,
+        mode: "replace",
+        resultSnapshotId: first,
+        rowCount: 1428,
+        rowDigest: rows,
+      },
+      tryout: {
+        baseSnapshotId: second,
+        mode: "restore",
+        resultSnapshotId: null,
+        rowCount: 0,
+        rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+      },
+    });
+
+    expect(JSON.stringify(canonicalizeContentSnapshotSet(snapshots))).toBe(
+      '{"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"tryout":{"baseSnapshotId":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}}'
+    );
   });
 });

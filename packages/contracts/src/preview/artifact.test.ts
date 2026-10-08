@@ -33,3 +33,13 @@ it("rejects predecessor Question fields from current preview", () => {
     )
   ).toBe(true);
 });
+
+it("pins the content-addressed preview artifact path", () => {
+  expect(
+    localPreviewArtifactPath(
+      "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    )
+  ).toBe(
+    "/artifacts/sha256%3A0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+  );
+});

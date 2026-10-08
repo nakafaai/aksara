@@ -18,6 +18,7 @@ import {
   ContentChangeSchema,
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ARTIFACT_BATCH_COUNT,
@@ -28,6 +29,7 @@ import { Effect, Schema, Stream } from "effect";
 import {
   canonicalizeArtifactBatch,
   canonicalizeReleaseItemBatch,
+  canonicalizeRouteBatch,
   makeArtifactBatches,
   makeReleaseItemBatches,
 } from "#publisher/batching";
@@ -151,4 +153,106 @@ describe("publication batching", () => {
       expect(error.actualBytes).toBeGreaterThan(MAX_ARTIFACT_BATCH_BYTES);
     })
   );
+});
+
+describe("publication batch canonical wire bytes", () => {
+  it.effect("pins a release-item batch in input order", () =>
+    Effect.gen(function* () {
+      const items = yield* Schema.decodeEffect(
+        Schema.NonEmptyArray(ContentReleaseItemSchema)
+      )([
+        {
+          change: {
+            artifactLocale: "en",
+            contentKey: "test:material-b",
+            family: "material",
+            operation: "delete",
+          },
+          index: 0,
+          releaseId: "test-release-batching",
+        },
+        {
+          change: {
+            artifactLocale: "id",
+            contentKey: "test:material-a",
+            family: "material",
+            operation: "delete",
+          },
+          index: 1,
+          releaseId: "test-release-batching",
+        },
+        {
+          change: {
+            artifactHash: `sha256:${"a".repeat(64)}`,
+            artifactLocale: "en",
+            contentKey: "test:material-c",
+            delivery: "public",
+            family: "material",
+            operation: "upsert",
+            rendererDomain: "mathematics",
+            sourcePath: "packages/corpus/test/batching/en.mdx",
+          },
+          index: 2,
+          releaseId: "test-release-batching",
+        },
+      ]);
+      expect(
+        canonicalizeReleaseItemBatch({ batchIndex: 3, items, releaseId })
+      ).toMatchInlineSnapshot(
+        `"{"batchIndex":3,"items":[{"change":{"artifactLocale":"en","contentKey":"test:material-b","family":"material","operation":"delete"},"index":0,"releaseId":"test-release-batching"},{"change":{"artifactLocale":"id","contentKey":"test:material-a","family":"material","operation":"delete"},"index":1,"releaseId":"test-release-batching"},{"change":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","contentKey":"test:material-c","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/batching/en.mdx"},"index":2,"releaseId":"test-release-batching"}],"operation":"stageItemBatch","releaseId":"test-release-batching"}"`
+      );
+    })
+  );
+
+  it("pins a route batch in input order", () => {
+    const routes = Schema.decodeSync(
+      Schema.NonEmptyArray(ContentRouteItemSchema)
+    )([
+      {
+        change: {
+          appLocale: "id",
+          contentKey: "test:route-b",
+          operation: "bind",
+          publicPath: "subjects/test/route-b",
+        },
+        index: 0,
+        releaseId: "test-release-batching",
+      },
+      {
+        change: {
+          appLocale: "en",
+          contentKey: "test:route-a",
+          operation: "bind",
+          publicPath: "subjects/test/route-a",
+        },
+        index: 1,
+        releaseId: "test-release-batching",
+      },
+    ]);
+    expect(
+      canonicalizeRouteBatch({ batchIndex: 0, releaseId, routes })
+    ).toMatchInlineSnapshot(
+      `"{"batchIndex":0,"operation":"stageRouteBatch","releaseId":"test-release-batching","routes":[{"change":{"appLocale":"id","contentKey":"test:route-b","operation":"bind","publicPath":"subjects/test/route-b"},"index":0,"releaseId":"test-release-batching"},{"change":{"appLocale":"en","contentKey":"test:route-a","operation":"bind","publicPath":"subjects/test/route-a"},"index":1,"releaseId":"test-release-batching"}]}"`
+    );
+  });
+
+  it("pins an artifact batch with non-ASCII compiled text", () => {
+    const base = artifact(0);
+    const textual = SignedContentArtifactSchema.make({
+      ...base,
+      payload: CompiledContentPayloadSchema.make({
+        ...base.payload,
+        plainText: "Pelajaran é ✓ 数学",
+      }),
+    });
+    expect(
+      canonicalizeArtifactBatch({
+        artifacts: [textual, artifact(1)],
+        batchIndex: 0,
+        releaseId,
+      })
+    ).toMatchInlineSnapshot(
+      `"{"artifacts":[{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","byteLength":10,"compiledCode":"xxxxxxxxxx","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.1.0","contentKey":"test:artifact-0","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pelajaran é ✓ 数学","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","byteLength":10,"compiledCode":"xxxxxxxxxx","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.1.0","contentKey":"test:artifact-1","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}],"batchIndex":0,"operation":"stageArtifactBatch","releaseId":"test-release-batching"}"`
+    );
+  });
 });

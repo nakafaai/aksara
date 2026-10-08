@@ -1,6 +1,19 @@
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+  PublicPathSchema,
+} from "@nakafa/aksara-contracts/ids";
+import {
+  AppLocaleSchema,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
+import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
+import {
+  decodePageRegistry,
+  type PageEntry,
+} from "@nakafa/aksara-corpus/pages/registry";
 import { Context, Effect, Layer, Path } from "effect";
 import { testRendererDomains } from "#test/renderer";
 
@@ -35,6 +48,33 @@ export const pageManifest = Effect.fn("PageTest.manifest")(
       publishedDomains: ["site"],
     })
 );
+
+/** One fixed test page entry, written out so its digests never follow the live registry. */
+export const fixedPageEntry: PageEntry = {
+  delivery: "public",
+  rendererDomain: "site",
+  route: {
+    appLocale: AppLocaleSchema.make("en"),
+    artifactLocale: ArtifactLocaleSchema.make("en"),
+    contentKey: ContentKeySchema.make("pages/test-page"),
+    pageKey: PageKeySchema.make("test-page"),
+    publicPath: PublicPathSchema.make("test-page"),
+  },
+  sourcePath: CorpusSourcePathSchema.make(
+    "packages/corpus/pages/test-page/en.mdx"
+  ),
+  sourceRoot: "pages/test-page",
+};
+
+/** The authored MDX body of the fixed test page, with non-ASCII text. */
+export const fixedPageSource = `export const metadata = {
+  title: "Test page café ✓",
+  description: "Test public page source.",
+  datePublished: "2026-08-20",
+};
+
+# Test page café ✓
+`;
 
 /** Loads the real page registry and its complete in-memory source map. */
 const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>

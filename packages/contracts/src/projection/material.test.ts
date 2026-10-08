@@ -79,7 +79,7 @@ describe("material projection", () => {
     }
   });
 
-  it("canonicalizes metadata whose optional fields are absent", () => {
+  it("pins canonical bytes for metadata whose optional fields are absent", () => {
     const minimal = Schema.decodeSync(MaterialLessonProjectionSchema)({
       ...projection,
       metadata: {
@@ -88,13 +88,9 @@ describe("material projection", () => {
         title: "Test Minimal Metadata",
       },
     });
-    expect(canonicalizeMaterialProjection(minimal)).not.toContain(
-      "description"
+    expect(canonicalizeMaterialProjection(minimal)).toBe(
+      '{"appLocale":"en","artifactLocale":"en","contentKey":"test:material-a","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[],"datePublished":"2024-02-29","title":"Test Minimal Metadata"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}'
     );
-    expect(canonicalizeMaterialProjection(minimal)).not.toContain(
-      "dateModified"
-    );
-    expect(canonicalizeMaterialProjection(minimal)).not.toContain('"subject":');
   });
 
   it("carries a readable search title beside the navigation title", () => {
@@ -106,8 +102,8 @@ describe("material projection", () => {
       },
     });
 
-    expect(canonicalizeMaterialProjection(searchable)).toContain(
-      '"description":"Test body metadata.","searchTitle":"Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal","subject":"Test Subject"'
+    expect(canonicalizeMaterialProjection(searchable)).toBe(
+      '{"appLocale":"en","artifactLocale":"en","contentKey":"test:material-a","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"dateModified":"2026-02-01","datePublished":"2026-01-31","description":"Test body metadata.","searchTitle":"Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal","subject":"Test Subject","title":"Body Metadata Title"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}'
     );
     expect(JSON.parse(canonicalizeMaterialProjection(searchable))).toEqual(
       searchable

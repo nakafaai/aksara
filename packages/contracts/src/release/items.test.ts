@@ -2,6 +2,7 @@
 
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
+import { Sha256HashSchema } from "#contracts/ids";
 import { verifyContentReleaseItems } from "#contracts/release/items";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import {
@@ -191,6 +192,45 @@ describe("release item integrity", () => {
         manifest,
       }).pipe(Effect.flip);
       expect(error).toBe("source-failed");
+    })
+  );
+
+  it.effect(
+    "reports the recomputed digest of the fixture items for a wrong signed root",
+    () =>
+      Effect.gen(function* () {
+        const manifest = yield* makeManifest();
+        const error = yield* verifyContentReleaseItems({
+          items: Stream.fromIterable(items),
+          manifest: {
+            ...manifest,
+            itemsDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+          },
+        }).pipe(Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "ReleaseItemsDigestMismatchError",
+        });
+        expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
+          "sha256:73afd1e584c5154d2318cfa7d82e3e6d9fa9f451b650c8b8656e3dfd5d6a2c42"
+        );
+      })
+  );
+
+  it.effect("accepts the fixture items only at their pinned signed root", () =>
+    Effect.gen(function* () {
+      const manifest = yield* makeManifest();
+      const summary = yield* verifyContentReleaseItems({
+        items: Stream.fromIterable(items),
+        manifest: {
+          ...manifest,
+          itemsDigest: Sha256HashSchema.make(
+            "sha256:73afd1e584c5154d2318cfa7d82e3e6d9fa9f451b650c8b8656e3dfd5d6a2c42"
+          ),
+        },
+      });
+
+      expect(summary).toEqual({ deleteCount: 1, upsertCount: 1 });
     })
   );
 });

@@ -53,11 +53,26 @@ const payload: TryoutRuntimeBundlePayload = {
   sourceManifestHash: Sha256HashSchema.make(`sha256:${"d".repeat(64)}`),
   sourceReleaseId: ReleaseIdSchema.make("test-runtime-source"),
 };
+// Record again: generate a key, sign the same input, and replace the three literals below.
+const fixedKeyId = SigningKeyIdSchema.make("test-runtime-fixed-key");
+const fixedPublicKeyPem =
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEATj+1o38Blvhe0vWQPC5EyVxW+iyD+np1lHpDsXB9Bqo=\n-----END PUBLIC KEY-----\n";
+const fixedBundleHash = Sha256HashSchema.make(
+  "sha256:552142c2943be6109e359aff32112931f4ef3741031a7710d847a5ca54d6b303"
+);
+const fixedSignature = Ed25519SignatureSchema.make(
+  "V3SKeeoDxnVUEL6C-Njjr82XQMvyJNC7AmHECdf8BHQbzNP7jlGXFl6ATFk4xpwT0jQhTPi1ntpcyoc6KoUMBw"
+);
 const resolver = ContentVerificationKeyResolver.of({
-  resolve: (requestedKeyId) =>
-    requestedKeyId === keyId
-      ? Effect.succeed(publicKeyPem)
-      : Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId })),
+  resolve: (requestedKeyId) => {
+    if (requestedKeyId === keyId) {
+      return Effect.succeed(publicKeyPem);
+    }
+    if (requestedKeyId === fixedKeyId) {
+      return Effect.succeed(fixedPublicKeyPem);
+    }
+    return Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId }));
+  },
 });
 
 /** Produces one correctly hashed and signed bundle for exact test payload bytes. */
@@ -157,5 +172,28 @@ describe("signed try-out runtime bundle verification", () => {
         sourceReleaseId: payload.sourceReleaseId,
       });
     })
+  );
+
+  it.effect(
+    "accepts a bundle signed by a fixed test key and rejects one changed signature character",
+    () =>
+      Effect.gen(function* () {
+        const bundle = SignedTryoutRuntimeBundleSchema.make({
+          bundleHash: fixedBundleHash,
+          keyId: fixedKeyId,
+          payload,
+          signature: fixedSignature,
+        });
+        const changed = Ed25519SignatureSchema.make(
+          `W${fixedSignature.slice(1)}`
+        );
+        const failure = yield* verify({
+          ...bundle,
+          signature: changed,
+        }).pipe(Effect.flip);
+
+        expect(yield* verify(bundle)).toEqual(bundle);
+        expect(failure._tag).toBe("SignatureInvalidError");
+      })
   );
 });

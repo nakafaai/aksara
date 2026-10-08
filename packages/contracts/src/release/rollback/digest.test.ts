@@ -13,6 +13,10 @@ import {
 import { RollbackSnapshotEntrySchema } from "#contracts/release/rollback/spec";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
+import {
+  digestMaterialEntry,
+  digestQuestionEntry,
+} from "#contracts/test/rollback";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-rollback-digest");
@@ -104,6 +108,7 @@ function manifest(
     upsertCount: 0,
   });
 }
+const rollbackEntries = [entry(), digestMaterialEntry, digestQuestionEntry];
 
 describe("rollback snapshot digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
@@ -189,6 +194,87 @@ describe("rollback snapshot digest", () => {
         "RollbackSnapshotHashError",
         "RollbackSnapshotHashError",
       ]);
+    })
+  );
+
+  it.effect(
+    "pins one digest for the whole stream, one-element chunks, and the incremental fold of the same rollback snapshot",
+    () =>
+      Effect.gen(function* () {
+        const whole = yield* digestRollbackSnapshot(
+          releaseId,
+          Stream.fromIterable(rollbackEntries)
+        );
+        const split = yield* digestRollbackSnapshot(
+          releaseId,
+          Stream.fromIterable(rollbackEntries).pipe(Stream.rechunk(1))
+        );
+        const initial = yield* createRollbackSnapshotDigest(releaseId);
+        const updated = yield* Effect.reduce(
+          rollbackEntries,
+          () => initial,
+          (state, value) =>
+            updateRollbackSnapshotDigest(releaseId, state, value)
+        );
+        const incremental = yield* finalizeRollbackSnapshotDigest(
+          releaseId,
+          updated
+        );
+
+        expect(whole).toEqual({
+          count: 3,
+          digest:
+            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+        });
+        expect(split).toEqual({
+          count: 3,
+          digest:
+            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+        });
+        expect(incremental).toBe(
+          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+        );
+      })
+  );
+
+  it.effect(
+    "reports the recomputed digest when a signed rollback root is wrong",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* verifyRollbackSnapshot({
+          entries: Stream.fromIterable(rollbackEntries),
+          manifest: manifest(
+            rollbackEntries.length,
+            Sha256HashSchema.make(`sha256:${"0".repeat(64)}`)
+          ),
+        }).pipe(Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "RollbackSnapshotDigestMismatchError",
+        });
+        expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
+          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+        );
+      })
+  );
+
+  it.effect("accepts the rollback snapshot at its pinned signed root", () =>
+    Effect.gen(function* () {
+      const summary = yield* verifyRollbackSnapshot({
+        entries: Stream.fromIterable(rollbackEntries),
+        manifest: manifest(
+          rollbackEntries.length,
+          Sha256HashSchema.make(
+            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+          )
+        ),
+      });
+
+      expect(summary).toEqual({
+        count: 3,
+        digest:
+          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+      });
     })
   );
 });

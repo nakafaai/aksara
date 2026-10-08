@@ -12,25 +12,59 @@ import {
   canonicalQuestionRubricStructure,
 } from "#contracts/question/rubric";
 import { shortNumber, shortText } from "#contracts/test/answer";
-import { rubric } from "#contracts/test/rubric";
+import {
+  responseBytes,
+  responseCategory,
+  responseMultiple,
+  responseShort,
+  responseSingle,
+  responseStructureBytes,
+  single,
+} from "#contracts/test/question";
+import {
+  goldenRubricCanonical,
+  goldenRubricFrozen,
+  goldenRubricStructure,
+  rubric,
+} from "#contracts/test/rubric";
 
-const single = {
-  kind: "single-choice",
-  options: [
-    {
-      isCorrect: true,
-      label: "A",
-      optionKey: "option-1",
-      order: 1,
-    },
-    {
-      isCorrect: false,
-      label: "B",
-      optionKey: "option-2",
-      order: 2,
-    },
-  ],
-} as const;
+describe("question response golden canonical bytes", () => {
+  it("pins the canonical bytes of every response kind with labels", () => {
+    expect(JSON.stringify(canonicalQuestionResponse(responseSingle))).toBe(
+      responseBytes.single
+    );
+    expect(JSON.stringify(canonicalQuestionResponse(responseMultiple))).toBe(
+      responseBytes.multiple
+    );
+    expect(JSON.stringify(canonicalQuestionResponse(responseCategory))).toBe(
+      responseBytes.category
+    );
+    expect(JSON.stringify(canonicalQuestionResponse(responseShort))).toBe(
+      responseBytes.short
+    );
+    expect(JSON.stringify(canonicalQuestionResponse(goldenRubricFrozen))).toBe(
+      goldenRubricCanonical
+    );
+  });
+
+  it("pins the structure bytes that omit labels and accepted text", () => {
+    expect(
+      JSON.stringify(canonicalQuestionResponseStructure(responseSingle))
+    ).toBe(responseStructureBytes.single);
+    expect(
+      JSON.stringify(canonicalQuestionResponseStructure(responseMultiple))
+    ).toBe(responseStructureBytes.multiple);
+    expect(
+      JSON.stringify(canonicalQuestionResponseStructure(responseCategory))
+    ).toBe(responseStructureBytes.category);
+    expect(
+      JSON.stringify(canonicalQuestionResponseStructure(responseShort))
+    ).toBe(responseStructureBytes.short);
+    expect(
+      JSON.stringify(canonicalQuestionResponseStructure(goldenRubricFrozen))
+    ).toBe(goldenRubricStructure);
+  });
+});
 
 describe("question response", () => {
   it("accepts and canonically orders a frozen response", () => {

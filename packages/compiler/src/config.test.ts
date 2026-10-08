@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { findPackageJSON } from "node:module";
-import { assert, describe, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { createCompilerConfigHash } from "#compiler/config";
 import { createTestRendererManifest } from "#compiler/test/content";
@@ -112,6 +112,22 @@ describe("compiler config", () => {
         assert.strictEqual(unrelatedHash, beforeHash);
         assert.notStrictEqual(changedHash, beforeHash);
         assert.notStrictEqual(chemistryHash, beforeHash);
+      })
+  );
+
+  it.effect(
+    "pins the selected compiler digest for an unsorted renderer selection",
+    () =>
+      Effect.gen(function* () {
+        const manifest = yield* createTestRendererManifest({
+          components: ["InlineMath", "BlockMath"],
+          domains: { mathematics: ["FunctionMachine", "MathVisual"] },
+        });
+        expect(
+          yield* createCompilerConfigHash(manifest, "mathematics")
+        ).toMatchInlineSnapshot(
+          `"sha256:4e4ef9c9b6a51d47f6f0c1efa21477d1859ed0e78f885aa550e3f72c4f5b76a9"`
+        );
       })
   );
 });

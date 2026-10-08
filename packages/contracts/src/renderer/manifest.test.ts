@@ -164,3 +164,106 @@ describe("renderer manifest", () => {
     )
   );
 });
+
+describe("pinned renderer manifest hashes", () => {
+  const pinnedDomains = [
+    { components: [], name: "ai-ds" },
+    { components: [], name: "biology" },
+    { components: ["AtomShellLab"], name: "chemistry" },
+    { components: ["FunctionMachine"], name: "mathematics" },
+    { components: [], name: "physics" },
+    { components: [], name: "politics" },
+    { components: [], name: "site" },
+    { components: [], name: "snbt-general" },
+    { components: [], name: "snbt-math" },
+    { components: [], name: "snbt-plain" },
+    { components: [], name: "snbt-quant" },
+    { components: [], name: "tka-math" },
+  ];
+  const pinnedInput = {
+    base: ["BlockMath", "InlineMath"],
+    domains: pinnedDomains,
+    publishedDomains: ["mathematics"],
+  };
+
+  /** Replaces only the mathematics component list of the pinned domain set. */
+  const withMathematics = (components: readonly string[]) =>
+    pinnedDomains.map((domain) =>
+      domain.name === "mathematics" ? { ...domain, components } : domain
+    );
+
+  it.effect(
+    "pins one authenticated hash for caller-independent input order",
+    () =>
+      Effect.gen(function* () {
+        const manifest = yield* createRendererManifest(pinnedInput);
+        const reversed = yield* createRendererManifest({
+          base: [...pinnedInput.base].reverse(),
+          domains: [...pinnedDomains].reverse(),
+          publishedDomains: pinnedInput.publishedDomains,
+        });
+
+        expect(manifest.hash).toBe(
+          "sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577d"
+        );
+        expect(reversed.hash).toBe(manifest.hash);
+      })
+  );
+
+  it.effect(
+    "pins one hash for unsorted published domains and component lists",
+    () =>
+      Effect.gen(function* () {
+        const canonical = yield* createRendererManifest({
+          base: pinnedInput.base,
+          domains: withMathematics(["FunctionMachine", "NumberLine"]),
+          publishedDomains: ["mathematics", "site"],
+        });
+        const unsorted = yield* createRendererManifest({
+          base: pinnedInput.base,
+          domains: withMathematics(["NumberLine", "FunctionMachine"]),
+          publishedDomains: ["site", "mathematics"],
+        });
+
+        expect(canonical.hash).toBe(
+          "sha256:b2bd44cf3af79ddb68a57c516bbdb397376fa9ebbb00b07db2cead4126df09e3"
+        );
+        expect(unsorted.hash).toBe(canonical.hash);
+      })
+  );
+
+  it.effect(
+    "validates the pinned envelope and rejects one changed hash character",
+    () =>
+      Effect.gen(function* () {
+        const envelope = {
+          base: ["BlockMath", "InlineMath"],
+          domains: [
+            { components: [], name: "ai-ds" },
+            { components: [], name: "biology" },
+            { components: ["AtomShellLab"], name: "chemistry" },
+            { components: ["FunctionMachine"], name: "mathematics" },
+            { components: [], name: "physics" },
+            { components: [], name: "politics" },
+            { components: [], name: "site" },
+            { components: [], name: "snbt-general" },
+            { components: [], name: "snbt-math" },
+            { components: [], name: "snbt-plain" },
+            { components: [], name: "snbt-quant" },
+            { components: [], name: "tka-math" },
+          ],
+          format: "nakafa-mdx-renderer",
+          hash: "sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577d",
+          publishedDomains: ["mathematics"],
+        };
+
+        expect(yield* validateRendererManifestHash(envelope)).toEqual(envelope);
+        const error = yield* validateRendererManifestHash({
+          ...envelope,
+          hash: "sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577e",
+        }).pipe(Effect.flip);
+
+        expect(error._tag).toBe("RendererManifestHashMismatchError");
+      })
+  );
+});

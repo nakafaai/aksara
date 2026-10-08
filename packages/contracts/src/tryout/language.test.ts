@@ -64,11 +64,13 @@ describe("try-out language", () => {
   });
 
   it("canonically orders both policy variants", () => {
-    expect(canonicalAssessmentLanguagePolicy({ kind: "app-locale" })).toEqual({
-      kind: "app-locale",
-    });
     expect(
-      canonicalAssessmentLanguagePolicy({ kind: "fixed", language: english })
-    ).toEqual({ kind: "fixed", language: "en" });
+      JSON.stringify(canonicalAssessmentLanguagePolicy({ kind: "app-locale" }))
+    ).toBe('{"kind":"app-locale"}');
+    expect(
+      JSON.stringify(
+        canonicalAssessmentLanguagePolicy({ kind: "fixed", language: english })
+      )
+    ).toBe('{"kind":"fixed","language":"en"}');
   });
 });

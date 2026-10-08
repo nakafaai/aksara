@@ -130,4 +130,76 @@ describe("release digest", () => {
       ]);
     })
   );
+
+  it.effect(
+    "pins one digest for the whole stream, one-element chunks, and the incremental fold of the same release items",
+    () =>
+      Effect.gen(function* () {
+        const upsert = yield* Schema.decodeEffect(ContentReleaseItemSchema)({
+          change: {
+            artifactHash: `sha256:${"a".repeat(64)}`,
+            artifactLocale: "en",
+            contentKey: "test:digest-upsert",
+            delivery: "public",
+            family: "material",
+            operation: "upsert",
+            rendererDomain: "mathematics",
+            sourcePath: "packages/corpus/test/digest-upsert/en.mdx",
+          },
+          index: 0,
+          releaseId,
+        });
+        const deletion = yield* Schema.decodeEffect(ContentReleaseItemSchema)({
+          change: {
+            artifactLocale: "id",
+            contentKey: "test:digest-delete",
+            family: "material",
+            operation: "delete",
+          },
+          index: 1,
+          releaseId,
+        });
+        const whole = yield* digestItems(
+          releaseId,
+          Stream.make(upsert, deletion)
+        );
+        const split = yield* digestItems(
+          releaseId,
+          Stream.make(upsert, deletion).pipe(Stream.rechunk(1))
+        );
+        const initial = yield* createReleaseItemsDigest(releaseId);
+        const withUpsert = yield* updateReleaseItemsDigest(
+          releaseId,
+          initial,
+          upsert
+        );
+        const withDelete = yield* updateReleaseItemsDigest(
+          releaseId,
+          withUpsert,
+          deletion
+        );
+        const incremental = yield* finalizeReleaseItemsDigest(
+          releaseId,
+          withDelete
+        );
+
+        expect(whole).toEqual({
+          count: 2,
+          deleteCount: 1,
+          digest:
+            "sha256:e1a70bb040e26f8b21d0cad9db8ecdce6899fb439ce07bf82ebf3f74ba76193a",
+          upsertCount: 1,
+        });
+        expect(split).toEqual({
+          count: 2,
+          deleteCount: 1,
+          digest:
+            "sha256:e1a70bb040e26f8b21d0cad9db8ecdce6899fb439ce07bf82ebf3f74ba76193a",
+          upsertCount: 1,
+        });
+        expect(incremental).toBe(
+          "sha256:e1a70bb040e26f8b21d0cad9db8ecdce6899fb439ce07bf82ebf3f74ba76193a"
+        );
+      })
+  );
 });

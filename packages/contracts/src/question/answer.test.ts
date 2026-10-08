@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
-import { BigDecimal, Exit, Option, Schema } from "effect";
+import { BigDecimal, Option, Schema } from "effect";
 
-import type { AppLocaleCode } from "#contracts/locale";
 import {
   canonicalQuestionAnswerKey,
   canonicalQuestionAnswerKeyStructure,
@@ -14,34 +13,44 @@ import {
   QuestionTextKeySchema,
   readNumberAnswer,
 } from "#contracts/question/answer";
+import {
+  city,
+  exact,
+  goldenAbsolute,
+  goldenExact,
+  goldenRelative,
+  goldenText,
+  jakartaText,
+  reading,
+  rejects,
+  tolerantNumber,
+} from "#contracts/test/answer";
 
-/** Returns whether one unknown input fails strict schema decoding. */
-function rejects(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
-  return Exit.isFailure(
-    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
-  );
-}
+describe("question answer golden canonical bytes", () => {
+  it("pins the canonical bytes of a text key with unsorted accepted answers", () => {
+    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenText))).toBe(
+      '{"acceptedAnswers":["jakarta","Jakarta é"],"collapseWhitespace":true,"ignoreCase":true,"kind":"text"}'
+    );
+  });
 
-/** Returns one read learner number as `numerator/denominator` text. */
-function reading(input: string, language: AppLocaleCode) {
-  return Option.map(
-    readNumberAnswer(input, language),
-    ({ denominator, fraction, numerator }) =>
-      `${BigDecimal.format(numerator)}/${BigDecimal.format(denominator)}${fraction ? " fraction" : ""}`
-  );
-}
+  it("pins the canonical bytes of numeric keys with and without tolerance", () => {
+    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenAbsolute))).toBe(
+      '{"acceptsFractions":false,"kind":"number","tolerance":{"kind":"absolute","value":"0.05"},"value":"2.5"}'
+    );
+    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenRelative))).toBe(
+      '{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"relative","value":"0.01"},"value":"-12.75"}'
+    );
+    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenExact))).toBe(
+      '{"acceptsFractions":true,"kind":"number","value":"6"}'
+    );
+  });
 
-const exact = {
-  acceptsFractions: false,
-  kind: "number",
-  value: "2.5",
-} as const;
-const city = {
-  acceptedAnswers: ["Berlin", "Berlin, Germany"],
-  collapseWhitespace: true,
-  ignoreCase: true,
-  kind: "text",
-} as const;
+  it("pins the structure bytes that omit accepted text", () => {
+    expect(
+      JSON.stringify(canonicalQuestionAnswerKeyStructure(goldenText))
+    ).toBe('{"collapseWhitespace":true,"ignoreCase":true,"kind":"text"}');
+  });
+});
 
 describe("question answer key", () => {
   it("accepts canonical decimals that Effect BigDecimal reads exactly", () => {
@@ -135,28 +144,16 @@ describe("question answer key", () => {
   });
 
   it("canonicalizes every answer key in stable field order", () => {
-    const tolerant = Schema.decodeSync(QuestionAnswerKeySchema)({
-      acceptsFractions: true,
-      kind: "number",
-      tolerance: { kind: "absolute", value: "0.1" },
-      value: "-3.5",
-    });
-    const text = Schema.decodeSync(QuestionAnswerKeySchema)({
-      acceptedAnswers: ["Jakarta"],
-      collapseWhitespace: true,
-      ignoreCase: false,
-      kind: "text",
-    });
-    expect(JSON.stringify(canonicalQuestionAnswerKey(tolerant))).toBe(
+    expect(JSON.stringify(canonicalQuestionAnswerKey(tolerantNumber))).toBe(
       '{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"absolute","value":"0.1"},"value":"-3.5"}'
     );
     expect(JSON.stringify(canonicalQuestionAnswerKey(exact))).toBe(
       '{"acceptsFractions":false,"kind":"number","value":"2.5"}'
     );
-    expect(JSON.stringify(canonicalQuestionAnswerKey(text))).toBe(
+    expect(JSON.stringify(canonicalQuestionAnswerKey(jakartaText))).toBe(
       '{"acceptedAnswers":["Jakarta"],"collapseWhitespace":true,"ignoreCase":false,"kind":"text"}'
     );
-    for (const key of [tolerant, exact, text, city]) {
+    for (const key of [tolerantNumber, exact, jakartaText, city]) {
       const stored: QuestionAnswerKey = canonicalQuestionAnswerKey(key);
       expect(Schema.decodeSync(QuestionAnswerKeySchema)(stored)).toEqual(key);
     }

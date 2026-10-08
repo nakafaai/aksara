@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { Buffer } from "node:buffer";
-import { generateKeyPairSync, sign } from "node:crypto";
+import { generateKeyPairSync, sign, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
@@ -201,4 +201,89 @@ describe("verifyEd25519Signature", () => {
         });
       })
   );
+});
+
+describe("pinned Ed25519 signature bytes", () => {
+  const pinnedKeyId = SigningKeyIdSchema.make("pinned-signature-key");
+  /** Public SPKI of the test-only key that signed the pinned message below. */
+  const pinnedPublicKeyPem =
+    "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA+phFviMBGKDmxNNkaxtYDEJvBjGhft40kPYJ2qiN9ew=\n-----END PUBLIC KEY-----\n";
+  // Record again: create a key, sign the same input, and replace the public key and signature literals.
+  const pinnedSignature =
+    "U1p-A8M6WUnT1Pfa_H4fjiPI3lhRQJXldtUys2S3Ll0HPHRUfNfWihSx3xttfN4TOYcwVPWCtiseL2G6CHj6Ag";
+  const pinnedResolver = ContentVerificationKeyResolver.of({
+    /** Resolves only the fixed public key that signed the pinned message. */
+    resolve: (requestedKeyId) =>
+      requestedKeyId === pinnedKeyId
+        ? Effect.succeed(pinnedPublicKeyPem)
+        : Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId })),
+  });
+
+  /** Verifies one pinned signature over the exact supplied bytes. */
+  function verifyPinned(signedMessage: string, signature: string) {
+    return verifyEd25519Signature({
+      keyId: pinnedKeyId,
+      message: signedMessage,
+      signature: Ed25519SignatureSchema.make(signature),
+      subject: "artifact",
+    }).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, pinnedResolver)
+    );
+  }
+
+  it.effect("accepts the pinned signature over exact non-ASCII bytes", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyPinned(
+          "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😀",
+          pinnedSignature
+        )
+      ).toBeUndefined();
+    })
+  );
+
+  it.effect(
+    "rejects the pinned signature over one changed message character",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* verifyPinned(
+          "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😁",
+          pinnedSignature
+        ).pipe(Effect.flip);
+
+        expect(error._tag).toBe("SignatureInvalidError");
+      })
+  );
+
+  it.effect("rejects a changed pinned signature character", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyPinned(
+        "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😀",
+        "A1p-A8M6WUnT1Pfa_H4fjiPI3lhRQJXldtUys2S3Ll0HPHRUfNfWihSx3xttfN4TOYcwVPWCtiseL2G6CHj6Ag"
+      ).pipe(Effect.flip);
+
+      expect(error._tag).toBe("SignatureInvalidError");
+    })
+  );
+
+  it("verifies the pinned signature over exact bytes and rejects one changed byte", () => {
+    const pinnedMessage =
+      "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😀";
+    expect(
+      verifyBytes(
+        null,
+        Buffer.from(pinnedMessage, "utf8"),
+        pinnedPublicKeyPem,
+        Buffer.from(pinnedSignature, "base64url")
+      )
+    ).toBe(true);
+    expect(
+      verifyBytes(
+        null,
+        Buffer.from(pinnedMessage.replace("nakafa", "makafa"), "utf8"),
+        pinnedPublicKeyPem,
+        Buffer.from(pinnedSignature, "base64url")
+      )
+    ).toBe(false);
+  });
 });

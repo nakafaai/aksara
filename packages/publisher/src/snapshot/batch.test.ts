@@ -25,6 +25,7 @@ import {
   makeSnapshotBatches,
 } from "#publisher/snapshot/batch";
 import { materialGraph } from "#test/graph";
+import { tryoutCatalogRecord, tryoutPlacementRecord } from "#test/tryout/rows";
 
 const releaseId = ReleaseIdSchema.make("test-snapshot-batching");
 const snapshotId = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -253,4 +254,42 @@ describe("snapshot batching", () => {
       expect(batches[0]?.rows).toHaveLength(1);
     })
   );
+});
+
+describe("snapshot batch canonical wire bytes", () => {
+  it("pins a try-out snapshot batch with catalog and placement rows", () => {
+    const rows: readonly [ContentSnapshotRow, ...ContentSnapshotRow[]] = [
+      { family: "tryout", record: tryoutCatalogRecord, rowKind: "catalog" },
+      {
+        family: "tryout",
+        record: tryoutPlacementRecord,
+        rowKind: "placement",
+      },
+    ];
+    expect(
+      canonicalizeSnapshotBatch({
+        batchIndex: 0,
+        family: "tryout",
+        releaseId,
+        rows,
+        snapshotId,
+      })
+    ).toMatchInlineSnapshot(
+      `"{"batchIndex":0,"family":"tryout","operation":"stageSnapshotBatch","releaseId":"test-snapshot-batching","rows":[{"family":"tryout","record":{"row":{"appLocale":"en","countryCode":"ZZ","countryKey":"test-country","graph":{"alignmentId":"alignment:test-country","assetId":"asset:test-country","conceptId":"concept:test-country","learningObjectId":"lo:test-country","lensId":"lens:test-country"},"kind":"country","order":1,"publicPath":"try-out/test-country","sourceRevision":"2026-01-01","title":"Test Country"},"rowHash":"sha256:4b55966355fbb5395389147acf42465e939231cc716fb9e9cee862b043253984"},"rowKind":"catalog"},{"family":"tryout","record":{"row":{"answerArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","answerArtifactLocale":"en","answerContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/answer","appLocale":"en","contentHash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","countryKey":"test-country","deliveryLanguage":"en","examKey":"test-exam","languagePolicy":{"kind":"app-locale"},"questionArtifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","questionArtifactLocale":"en","questionContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-1","rendererDomain":"mathematics","response":{"kind":"single-choice","options":[{"isCorrect":false,"label":"Test option one.","optionKey":"option-1","order":1},{"isCorrect":true,"label":"Test option café ✓.","optionKey":"option-2","order":2},{"isCorrect":false,"label":"Test option three.","optionKey":"option-3","order":3}]},"scope":"server","sectionKey":"test-section","setKey":"test-set","sourceRevision":"2026-01-01","trackKey":"test-track"},"rowHash":"sha256:8ac34761f6efe4e11c6cb6c5e6f90321651b97dab3e582616c8f1635aef80f64"},"rowKind":"placement"}],"snapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}"`
+    );
+  });
+
+  it("pins a program snapshot batch with non-ASCII titles", () => {
+    expect(
+      canonicalizeSnapshotBatch({
+        batchIndex: 2,
+        family: "program",
+        releaseId,
+        rows: [programRow(0, "Pelajaran é ✓ 数学"), programRow(1)],
+        snapshotId,
+      })
+    ).toMatchInlineSnapshot(
+      `"{"batchIndex":2,"family":"program","operation":"stageSnapshotBatch","releaseId":"test-snapshot-batching","rows":[{"family":"program","record":{"kind":"program","row":{"defaultCoverageStatus":"planned","displayOrder":1,"iconKey":"school","key":"test-batch-program-0","kind":"school-curriculum","navigation":{"levels":["stage","subject"],"model":"curriculum-tree"},"provider":{"kind":"nakafa","name":"Nakafa test suite"},"sources":[{"label":"Test-only publisher batch source","retrievedAt":"2026-01-01","type":"nakafa-editorial","url":"https://example.test/publisher-batch"}],"translations":[{"appLocale":"en","publicSlug":"test-program-0","title":"Pelajaran é ✓ 数学"},{"appLocale":"id","publicSlug":"program-uji-0","title":"Pelajaran é ✓ 数学"}],"version":{"label":"Test-only version"}},"rowHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}},{"family":"program","record":{"kind":"program","row":{"defaultCoverageStatus":"planned","displayOrder":2,"iconKey":"school","key":"test-batch-program-1","kind":"school-curriculum","navigation":{"levels":["stage","subject"],"model":"curriculum-tree"},"provider":{"kind":"nakafa","name":"Nakafa test suite"},"sources":[{"label":"Test-only publisher batch source","retrievedAt":"2026-01-01","type":"nakafa-editorial","url":"https://example.test/publisher-batch"}],"translations":[{"appLocale":"en","publicSlug":"test-program-1","title":"Test Program"},{"appLocale":"id","publicSlug":"program-uji-1","title":"Test Program"}],"version":{"label":"Test-only version"}},"rowHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}}],"snapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}"`
+    );
+  });
 });

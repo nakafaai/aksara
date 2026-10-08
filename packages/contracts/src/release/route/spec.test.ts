@@ -70,4 +70,46 @@ describe("content routes", () => {
       expect(accepts(ContentRouteChangeSchema, change)).toBe(false);
     }
   });
+
+  it("pins the canonical bytes of a bind route change", () => {
+    const change = Schema.decodeSync(ContentRouteChangeSchema)({
+      appLocale: "en",
+      contentKey: "test:route",
+      operation: "bind",
+      publicPath: "subjects/test/route",
+    });
+
+    expect(canonicalizeContentRouteChange(change)).toBe(
+      '{"appLocale":"en","contentKey":"test:route","operation":"bind","publicPath":"subjects/test/route"}'
+    );
+  });
+
+  it("pins the canonical bytes of a delete route change", () => {
+    const change = Schema.decodeSync(ContentRouteChangeSchema)({
+      appLocale: "id",
+      operation: "delete",
+      publicPath: "subjects/test/rute",
+    });
+
+    expect(canonicalizeContentRouteChange(change)).toBe(
+      '{"appLocale":"id","operation":"delete","publicPath":"subjects/test/rute"}'
+    );
+  });
+
+  it("pins the canonical bytes of an indexed route item", () => {
+    const item = Schema.decodeSync(ContentRouteItemSchema)({
+      change: {
+        appLocale: "de",
+        contentKey: "test:route",
+        operation: "bind",
+        publicPath: "subjects/test/route",
+      },
+      index: 2,
+      releaseId: "test-route",
+    });
+
+    expect(canonicalizeContentRouteItem(item)).toBe(
+      '{"change":{"appLocale":"de","contentKey":"test:route","operation":"bind","publicPath":"subjects/test/route"},"index":2,"releaseId":"test-route"}'
+    );
+  });
 });

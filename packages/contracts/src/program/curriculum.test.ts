@@ -9,6 +9,11 @@ import {
   canonicalizeCurriculumRoute,
   curriculumNamespace,
 } from "#contracts/program/curriculum";
+import {
+  goldenMaterial,
+  goldenMixed,
+  goldenRoot,
+} from "#contracts/test/curriculum";
 
 const merdekaRoute = {
   appLocale: "en",
@@ -32,6 +37,26 @@ function formatFailure(result: Exit.Exit<unknown, Schema.SchemaError>) {
   }
   return String(result.cause);
 }
+
+describe("curriculum route golden canonical bytes", () => {
+  it("pins the canonical bytes of a localized root without optional fields", () => {
+    expect(canonicalizeCurriculumRoute(goldenRoot)).toBe(
+      '{"appLocale":"en","iconKey":"mathematics","kind":"curriculum-context","level":"track","nodeKey":"matematika-dasar:root","order":3,"programKey":"matematika-dasar","publicPath":"curriculum/basic-mathematics","sitemap":true,"sourcePath":"packages/corpus/curriculum/matematika-dasar","title":"Basic Mathematics é"}'
+    );
+  });
+
+  it("pins the canonical bytes of a material route with every optional field", () => {
+    expect(canonicalizeCurriculumRoute(goldenMaterial)).toBe(
+      '{"appLocale":"de","canonicalPath":"lehrplaene/grundlagen-mathematik/bab-1","displayGroupIconKey":"grade-10","displayGroupTitle":"Gruppe é","iconKey":"mathematics","kind":"curriculum-context","level":"subject","materialCardDescription":"Beschreibung é","materialCardTitle":"Kartentitel","materialContextNodeKey":"bab-1","materialContextParentPath":"lehrplaene/grundlagen-mathematik","materialContextPublicPath":"lehrplaene/grundlagen-mathematik/bab-1","materialDomain":"algebra","materialKey":"lesson.grundlagen-mathematik.persamaan-linear","nodeKey":"bab-1","order":1,"parentPath":"lehrplaene/grundlagen-mathematik","programKey":"matematika-dasar","publicPath":"lehrplaene/grundlagen-mathematik/bab-1","sitemap":true,"sourcePath":"packages/corpus/curriculum/matematika-dasar","title":"Bab 1 é"}'
+    );
+  });
+
+  it("pins the canonical bytes of a child route with mixed optional fields", () => {
+    expect(canonicalizeCurriculumRoute(goldenMixed)).toBe(
+      '{"appLocale":"en","displayGroupTitle":"Group é","iconKey":"grade-7","kind":"curriculum-context","level":"class","materialCardTitle":"Card title","nodeKey":"kelas-7","order":2,"parentPath":"curriculum/basic-mathematics","programKey":"matematika-dasar","publicPath":"curriculum/basic-mathematics/kelas-7","sitemap":false,"sourcePath":"packages/corpus/curriculum/matematika-dasar","title":"Kelas 7"}'
+    );
+  });
+});
 
 describe("curriculum route contract", () => {
   it("decodes and canonicalizes a real localized route", () => {

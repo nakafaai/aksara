@@ -233,4 +233,47 @@ describe("structured snapshot verification", () => {
         expect(result).toEqual({ snapshots: previous, stagedRows: 0 });
       })
   );
+
+  it.effect(
+    "pins the derived snapshot set and staged row count of the fixture",
+    () =>
+      Effect.gen(function* () {
+        const snapshotData = yield* makeSnapshotTestData();
+        const result = yield* verify({
+          manifests: snapshotData.manifests,
+          rows: snapshotData.rows,
+        });
+
+        expect(result.stagedRows).toBe(2148);
+        expect(result.snapshots).toEqual({
+          program: {
+            baseSnapshotId: null,
+            mode: "replace",
+            resultSnapshotId:
+              "sha256:a94c1fc351939f10f0c73f4c891be1691dede2d0ecf86dad014d37fc82de9b02",
+            rowCount: 588,
+            rowDigest:
+              "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
+          },
+          quran: {
+            baseSnapshotId: null,
+            mode: "replace",
+            resultSnapshotId:
+              "sha256:b1c76d2ed5ba5dc86776737779ffeb73d9e6f21387a30d6538f7178bb3704a82",
+            rowCount: 1542,
+            rowDigest:
+              "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+          },
+          tryout: {
+            baseSnapshotId: null,
+            mode: "replace",
+            resultSnapshotId:
+              "sha256:3fd42ba02a4f1c50d71d9443ed86b7aa871100f37d7afb9205bbc8781f2fc2ca",
+            rowCount: 18,
+            rowDigest:
+              "sha256:b4bfe8db748e1fbb236c6907bfd50b25da1e3001732ae6e0bfba6462c2ad30f0",
+          },
+        });
+      })
+  );
 });

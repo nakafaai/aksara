@@ -10,6 +10,13 @@ import {
   updateResultCatalogDigest,
   verifyResultCatalog,
 } from "#contracts/release/result/digest";
+import {
+  catalog,
+  firstHead,
+  head,
+  heads,
+  secondHead,
+} from "#contracts/test/result";
 
 const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-result-digest");
@@ -50,28 +57,6 @@ vi.mock("node:crypto", async (importOriginal) => {
     },
   };
 });
-
-/** Builds one canonical compact material head at a test-only identity. */
-function head(contentKey: string) {
-  const slug = contentKey.replace(":", "-");
-  return Schema.decodeSync(MaterialHeadSchema)({
-    artifactHash: `sha256:${"a".repeat(64)}`,
-    artifactLocale: "en",
-    compilerConfigHash: `sha256:${"b".repeat(64)}`,
-    contentKey,
-    delivery: "public",
-    family: "material",
-    projectionHash: `sha256:${"c".repeat(64)}`,
-    publicPath: `subjects/test/${slug}`,
-    rendererDomain: "mathematics",
-    sourceHash: `sha256:${"d".repeat(64)}`,
-    sourcePath: `packages/corpus/test/${slug}/en.mdx`,
-  });
-}
-
-const firstHead = head("test:a");
-const secondHead = head("test:b");
-const heads = [firstHead, secondHead];
 
 describe("result catalog digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
@@ -210,6 +195,91 @@ describe("result catalog digest", () => {
         "ResultCatalogHashError",
         "ResultCatalogHashError",
       ]);
+    })
+  );
+
+  it.effect(
+    "pins the empty and mixed result catalog digests in whole and one-head chunks and through the incremental API",
+    () =>
+      Effect.gen(function* () {
+        const empty = yield* digestResultCatalog(releaseId, Stream.empty);
+        const whole = yield* digestResultCatalog(
+          releaseId,
+          Stream.fromIterable(catalog)
+        );
+        const split = yield* digestResultCatalog(
+          releaseId,
+          Stream.fromIterable(catalog).pipe(Stream.rechunk(1))
+        );
+        const emptyState = yield* createResultCatalogDigest(releaseId);
+        const emptyIncremental = yield* finalizeResultCatalogDigest(
+          releaseId,
+          emptyState
+        );
+        const initial = yield* createResultCatalogDigest(releaseId);
+        const updated = yield* Effect.reduce(
+          catalog,
+          () => initial,
+          (state, catalogHead) =>
+            updateResultCatalogDigest(releaseId, state, catalogHead)
+        );
+        const incremental = yield* finalizeResultCatalogDigest(
+          releaseId,
+          updated
+        );
+
+        expect(empty).toEqual({
+          count: 0,
+          digest:
+            "sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd",
+        });
+        expect(whole).toEqual({
+          count: 3,
+          digest:
+            "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+        });
+        expect(split).toEqual({
+          count: 3,
+          digest:
+            "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+        });
+        expect(emptyIncremental).toBe(
+          "sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd"
+        );
+        expect(incremental).toBe(
+          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+        );
+      })
+  );
+
+  it.effect("verifies the pinned catalog root and reports a wrong root", () =>
+    Effect.gen(function* () {
+      const summary = yield* verifyResultCatalog({
+        expectedCount: 3,
+        expectedDigest: Sha256HashSchema.make(
+          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+        ),
+        heads: Stream.fromIterable(catalog),
+        releaseId,
+      });
+      const error = yield* verifyResultCatalog({
+        expectedCount: 3,
+        expectedDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+        heads: Stream.fromIterable(catalog),
+        releaseId,
+      }).pipe(Effect.flip);
+
+      expect(summary).toEqual({
+        count: 3,
+        digest:
+          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+      });
+      expect(error).toMatchObject({
+        _tag: "ResultCatalogDigestMismatchError",
+      });
+      expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
+        "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+      );
     })
   );
 });

@@ -12,18 +12,18 @@ import {
   stateCompleted,
   stateCurrent,
   stateRecovery,
-  stateReleaseId,
 } from "#test/state";
+import { releaseId } from "#test/target";
 
 /** Creates one exact release command with a distinct inverse identity. */
 function releaseArgs(
-  releaseId: string,
-  recoveryId = `recovery-${releaseId}`
+  id: string,
+  recoveryId = `recovery-${id}`
 ): ReleaseArguments {
   return {
     command: "release",
-    recoveryId: stateReleaseId(recoveryId),
-    releaseId: stateReleaseId(releaseId),
+    recoveryId: releaseId(recoveryId),
+    releaseId: releaseId(id),
     scope: FUNCTION_SCOPE,
   };
 }
@@ -113,7 +113,7 @@ describe("production state", () => {
       ).toMatchObject({ kind: "resume" });
       const rollback = stateCompleted("recovered-active", {
         kind: "rollback",
-        releaseId: stateReleaseId("release-previous"),
+        releaseId: releaseId("release-previous"),
       });
       expect(
         yield* rejectState(

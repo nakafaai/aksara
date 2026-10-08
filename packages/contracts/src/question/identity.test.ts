@@ -13,9 +13,50 @@ import {
   questionSetKeyParts,
   questionSourcePathParts,
 } from "#contracts/question/identity";
+import {
+  answerSourceParts,
+  itemSourceParts,
+  questionParts,
+  setParts,
+} from "#contracts/test/identity";
 
 const setKey = "question-bank/tryout/indonesia/snbt/general-reasoning/set-1";
 const questionKey = `${setKey}/question-1`;
+
+describe("question identity golden derivations", () => {
+  const goldenSetKey =
+    "question-bank/tryout/test-country/test-exam/test-section-2/test-set";
+  const goldenQuestionKey = `${goldenSetKey}/question-1`;
+
+  it("derives the bank, set, and question identities from exact keys", () => {
+    const setId = Schema.decodeSync(QuestionSetKeySchema)(goldenSetKey);
+    const questionId = Schema.decodeSync(QuestionKeySchema)(goldenQuestionKey);
+
+    expect(questionBankKey(setId)).toBe(
+      "question-bank/tryout/test-country/test-exam/test-section-2"
+    );
+    expect(questionSetKeyParts(setId)).toEqual(setParts);
+    expect(questionKeyParts(questionId)).toEqual(questionParts);
+  });
+
+  it("derives the item and answer identities from exact source paths", () => {
+    expect(
+      questionSourcePathParts(
+        Schema.decodeSync(QuestionSourcePathSchema)(
+          `packages/corpus/${goldenQuestionKey}/item.ts`
+        )
+      )
+    ).toEqual(itemSourceParts);
+    expect(
+      questionSourcePathParts(
+        Schema.decodeSync(QuestionSourcePathSchema)(
+          `packages/corpus/${goldenQuestionKey}/answer.id.mdx`
+        )
+      )
+    ).toEqual(answerSourceParts);
+  });
+});
+
 const prompt = {
   artifactLocale: "en",
   bodyKind: "question",
