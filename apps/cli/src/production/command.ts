@@ -22,7 +22,7 @@ import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import type { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { findAksaraRoot } from "#cli/checkout";
@@ -44,11 +44,7 @@ import {
 } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
 
-/** Explicit decoded command input for the production publication boundary. */
-export interface ProductionInput {
-  readonly args: ReleaseArguments;
-  readonly cwd: string;
-}
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 type ProductionServices =
   | FileSystem.FileSystem
@@ -70,7 +66,7 @@ function logPublicationScope(manifest: ContentReleaseManifest) {
       deleteCount: manifest.deleteCount,
       familyScopeCount: manifest.scope.families.length,
       itemCount: manifest.itemCount,
-      scope: JSON.stringify(canonicalizePublicationScope(manifest.scope)),
+      scope: encodeJson(canonicalizePublicationScope(manifest.scope)),
       snapshotScopeCount: manifest.scope.snapshots.length,
       upsertCount: manifest.upsertCount,
     })
@@ -111,9 +107,11 @@ function verifyPendingBundle(
 }
 
 /** Runs one fail-closed production Git release command. */
-export const runProductionCommand: (
-  input: ProductionInput
-) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
+export const runProductionCommand: (input: {
+  /** Explicit decoded command input for the production publication boundary. */
+  readonly args: ReleaseArguments;
+  readonly cwd: string;
+}) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
   Effect.gen(function* () {
     const recoveryEnvironment = yield* readRecoveryEnvironment().pipe(
       Effect.mapError(mapProductionError("environment"))
