@@ -2,13 +2,9 @@ import { Schema, Struct } from "effect";
 import { PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import {
-  type TryoutExam,
   TryoutExamSchema,
-  type TryoutSection,
   TryoutSectionSchema,
-  type TryoutSet,
   TryoutSetSchema,
-  type TryoutTrack,
   TryoutTrackSchema,
 } from "#contracts/tryout/catalog";
 import { TryoutPlacementSourceSchema } from "#contracts/tryout/placement";
@@ -26,15 +22,15 @@ export const PreviewRouteSchema = Schema.Struct({
 export const TryoutPreviewPlacementSchema = TryoutPlacementSourceSchema.pipe(
   (schema) => schema.mapFields(Struct.omit(["response"]))
 );
-type TryoutPreviewPlacement = typeof TryoutPreviewPlacementSchema.Type;
 
-interface TryoutPreviewTargetInput {
-  readonly exam: TryoutExam;
-  readonly placement: TryoutPreviewPlacement;
-  readonly section: TryoutSection;
-  readonly set: TryoutSet;
-  readonly track: TryoutTrack;
-}
+const TryoutPreviewTargetInputSchema = Schema.Struct({
+  exam: TryoutExamSchema,
+  placement: TryoutPreviewPlacementSchema,
+  section: TryoutSectionSchema,
+  set: TryoutSetSchema,
+  track: TryoutTrackSchema,
+});
+type TryoutPreviewTargetInput = typeof TryoutPreviewTargetInputSchema.Type;
 
 /** Checks that every target row belongs to one locale-specific hierarchy. */
 function hasCoherentTryoutHierarchy(input: TryoutPreviewTargetInput) {

@@ -5,6 +5,7 @@ import {
   canonicalizeLearningGraphIdentity,
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
+import { encodeJson } from "#contracts/test/json";
 
 const identity = {
   alignmentId: "alignment:article:politics:article:politics:policy",
@@ -37,7 +38,7 @@ describe("pinned graph identity serialization", () => {
   it("pins the canonical graph identity key order", () => {
     const decoded = Schema.decodeSync(LearningGraphIdentitySchema)(identity);
 
-    expect(JSON.stringify(canonicalizeLearningGraphIdentity(decoded))).toBe(
+    expect(encodeJson(canonicalizeLearningGraphIdentity(decoded))).toBe(
       '{"alignmentId":"alignment:article:politics:article:politics:policy","assetId":"asset:en:article:politics:article:politics:policy","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:policy","lensId":"lens:article:politics"}'
     );
   });

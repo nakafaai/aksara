@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Exit, Record, Schema } from "effect";
 import {
   PUBLICATION_FAILURE_STATUSES,
   PublicationFailureCodeSchema,
@@ -117,9 +117,9 @@ describe("publication failures", () => {
       CONTENT_RELEASE_UNAUTHORIZED: 401,
       CONTENT_RELEASE_UNSUPPORTED: 415,
     });
-    const codes = Schema.decodeUnknownSync(
-      Schema.Array(PublicationFailureCodeSchema)
-    )(Object.keys(PUBLICATION_FAILURE_STATUSES));
+    const codes = Schema.decodeSync(Schema.Array(PublicationFailureCodeSchema))(
+      Record.keys(PUBLICATION_FAILURE_STATUSES)
+    );
     for (const code of codes) {
       expect(
         Schema.decodeSync(PublicationFailureStatusSchema)(

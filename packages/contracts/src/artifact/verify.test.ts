@@ -34,6 +34,7 @@ import {
   pinnedResolver,
   verifyPinnedSignature,
 } from "#contracts/test/artifact";
+import { encodeJson } from "#contracts/test/json";
 import { testRendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
@@ -288,7 +289,7 @@ describe("server-only artifact verification", () => {
       ]);
       expect(topLevel._tag).toBe("ArtifactVerificationDecodeError");
       expect(nested._tag).toBe("ArtifactVerificationDecodeError");
-      expect(JSON.stringify(nested)).not.toContain(privateSourceMarker);
+      expect(encodeJson(nested)).not.toContain(privateSourceMarker);
     })
   );
 });

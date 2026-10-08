@@ -5,6 +5,8 @@ import type { Sha256HashSchema } from "#contracts/ids";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 
 const BASE64URL_SHA256_PATTERN = /^[A-Za-z0-9_-]{43}$/u;
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Stable wire format for one authenticated local renderer response. */
 export const PREVIEW_RENDERER_AUTH_FORMAT = "aksara-renderer-auth-v1";
@@ -46,7 +48,7 @@ export function canonicalizePreviewRendererAuth(input: {
   readonly manifestHash: typeof Sha256HashSchema.Type;
   readonly nonce: PreviewRendererNonce;
 }) {
-  return JSON.stringify([
+  return encodeJson([
     PREVIEW_RENDERER_AUTH_FORMAT,
     input.nonce,
     input.manifestHash,
