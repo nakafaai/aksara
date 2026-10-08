@@ -1,10 +1,7 @@
 import { Buffer } from "node:buffer";
 import { timingSafeEqual } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
-import {
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   LOCAL_PREVIEW_ARTIFACT_PREFIX,
   localPreviewArtifactPath,
@@ -13,22 +10,26 @@ import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document"
 import {
   LOCAL_PREVIEW_FORMAT,
   type LocalPreviewManifest,
+  LocalPreviewManifestSchema,
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { HashMap, Option, Schema } from "effect";
+import { Equal, HashMap, MutableHashMap, Option, Schema } from "effect";
 
 export const PREVIEW_MANIFEST_PATH = "/manifest";
 export const PREVIEW_EVENTS_PATH = "/events";
 
 const PREVIEW_HEARTBEAT = ": keep-alive\n\n";
 const PREVIEW_HEARTBEAT_INTERVAL_MS = 30_000;
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
+const PreviewHttpStateSchema = Schema.Struct({
+  artifacts: Schema.HashMap(Sha256HashSchema, Schema.String),
+  manifest: LocalPreviewManifestSchema,
+  manifestJson: Schema.String,
+});
 
 /** Complete immutable state observed by one HTTP request or SSE event. */
-export interface PreviewHttpState {
-  readonly artifacts: HashMap.HashMap<Sha256Hash, string>;
-  readonly manifest: LocalPreviewManifest;
-  readonly manifestJson: string;
-}
+export type PreviewHttpState = typeof PreviewHttpStateSchema.Type;
 
 /** Authenticated transport around atomically replaced preview state. */
 export interface PreviewHttp {
@@ -83,7 +84,7 @@ function decodeArtifactHash(path: string) {
 
 /** Serializes one minimal event from the exact committed manifest. */
 function eventJson(manifest: LocalPreviewManifest) {
-  return JSON.stringify(
+  return encodeJson(
     PreviewEventSchema.make({
       format: LOCAL_PREVIEW_FORMAT,
       revision: manifest.revision,
@@ -95,7 +96,10 @@ function eventJson(manifest: LocalPreviewManifest) {
 
 /** Creates the authenticated request transport around scoped provider state. */
 export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = new Map<ServerResponse, ReturnType<typeof setInterval>>();
+  const clients = MutableHashMap.empty<
+    ServerResponse,
+    ReturnType<typeof setInterval>
+  >();
 
   /** Handles one authenticated request against one atomic state snapshot. */
   const handle: PreviewHttp["handle"] = (request, response) => {
@@ -124,10 +128,10 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
         () => response.write(PREVIEW_HEARTBEAT),
         input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
       );
-      clients.set(response, heartbeat);
+      MutableHashMap.set(clients, Equal.byReferenceUnsafe(response), heartbeat);
       response.once("close", () => {
         clearInterval(heartbeat);
-        clients.delete(response);
+        MutableHashMap.remove(clients, Equal.byReferenceUnsafe(response));
       });
       response.write(`event: update\ndata: ${eventJson(state.manifest)}\n\n`);
       return;
@@ -152,13 +156,13 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
       clearInterval(heartbeat);
       client.end();
     }
-    clients.clear();
+    MutableHashMap.clear(clients);
   };
 
   /** Notifies every live client after one complete state replacement. */
   const publish = (state: PreviewHttpState) => {
     const event = `event: update\ndata: ${eventJson(state.manifest)}\n\n`;
-    for (const client of clients.keys()) {
+    for (const client of MutableHashMap.keys(clients)) {
       client.write(event);
     }
   };
