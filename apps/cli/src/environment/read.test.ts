@@ -1,6 +1,13 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { ConfigProvider, Effect, Redacted } from "effect";
+import {
+  ConfigProvider,
+  Effect,
+  MutableHashMap,
+  Record as Rec,
+  Redacted,
+  Schema,
+} from "effect";
 import {
   decodePreviewEnvironment,
   readPreviewEnvironment,
@@ -8,6 +15,8 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
+
+const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Builds isolated valid production and publication configuration values. */
 function makeEnvironmentFixture() {
@@ -18,7 +27,7 @@ function makeEnvironmentFixture() {
         type: "pkcs8",
       })
       .toString();
-    const productionValues = new Map([
+    const productionValues = MutableHashMap.fromIterable([
       [
         "AKSARA_PUBLICATION_ENDPOINT",
         "https://content.example.test/api/publish",
@@ -32,7 +41,7 @@ function makeEnvironmentFixture() {
       ["AKSARA_SIGNING_KEY_ID", "production-2026"],
       ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],
     ]);
-    const publicationValues = new Map(
+    const publicationValues = MutableHashMap.fromIterable(
       [...productionValues].filter(([variable]) =>
         variable.startsWith("AKSARA_PUBLICATION_")
       )
@@ -44,12 +53,12 @@ function makeEnvironmentFixture() {
 /** Provides one Config-backed program with an isolated test provider. */
 function provideConfig<A, E>(
   program: Effect.Effect<A, E>,
-  values: ReadonlyMap<string, string>
+  values: MutableHashMap.MutableHashMap<string, string>
 ) {
   return program.pipe(
     Effect.provideService(
       ConfigProvider.ConfigProvider,
-      ConfigProvider.fromUnknown(Object.fromEntries(values), {
+      ConfigProvider.fromUnknown(Rec.fromEntries(values), {
         preserveEmptyStrings: true,
       })
     )
@@ -57,7 +66,9 @@ function provideConfig<A, E>(
 }
 
 /** Returns one sanitized production configuration failure. */
-function rejectProduction(values: ReadonlyMap<string, string>) {
+function rejectProduction(
+  values: MutableHashMap.MutableHashMap<string, string>
+) {
   return provideConfig(
     Effect.gen(function* () {
       const recovery = yield* readRecoveryEnvironment();
@@ -68,7 +79,9 @@ function rejectProduction(values: ReadonlyMap<string, string>) {
 }
 
 /** Returns one sanitized publication configuration failure. */
-function rejectPublication(values: ReadonlyMap<string, string>) {
+function rejectPublication(
+  values: MutableHashMap.MutableHashMap<string, string>
+) {
   return provideConfig(
     readPublicationEnvironment("production").pipe(Effect.flip),
     values
@@ -102,13 +115,15 @@ describe("preview environment", () => {
 
   it.effect("reads absent and approved overrides through Effect Config", () =>
     Effect.gen(function* () {
-      expect(yield* provideConfig(readPreviewEnvironment(), new Map())).toEqual(
-        {}
-      );
+      expect(
+        yield* provideConfig(readPreviewEnvironment(), MutableHashMap.empty())
+      ).toEqual({});
       expect(
         yield* provideConfig(
           readPreviewEnvironment(),
-          new Map([["NAKAFA_APP_DIR", "/code/explicit-nakafa"]])
+          MutableHashMap.fromIterable([
+            ["NAKAFA_APP_DIR", "/code/explicit-nakafa"],
+          ])
         )
       ).toEqual({ nakafaAppDir: "/code/explicit-nakafa" });
     })
@@ -156,7 +171,9 @@ describe("production environment", () => {
         expect(environment).not.toHaveProperty("rendererEndpoint");
         expect(environment).not.toHaveProperty("rendererToken");
         expect(environment).not.toHaveProperty("privateKeyPem");
-        expect(JSON.stringify(environment)).not.toContain("publication-token");
+        expect(
+          yield* Schema.encodeEffect(JSON_TEXT)(environment)
+        ).not.toContain("publication-token");
       })
   );
 
@@ -169,11 +186,11 @@ describe("production environment", () => {
     ([variable, value]) =>
       Effect.gen(function* () {
         const { publicationValues } = yield* makeEnvironmentFixture();
-        const values = new Map(publicationValues);
+        const values = MutableHashMap.fromIterable(publicationValues);
         if (value === undefined) {
-          values.delete(variable);
+          MutableHashMap.remove(values, variable);
         } else {
-          values.set(variable, value);
+          MutableHashMap.set(values, variable, value);
         }
 
         expect(yield* rejectPublication(values)).toMatchObject({
@@ -214,9 +231,15 @@ describe("production environment", () => {
       expect(environment.cacheSurface).toBe("deployed");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
-      expect(JSON.stringify(environment)).not.toContain("publication-token");
-      expect(JSON.stringify(environment)).not.toContain("renderer-token");
-      expect(JSON.stringify(environment)).not.toContain("PRIVATE KEY");
+      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+        "publication-token"
+      );
+      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+        "renderer-token"
+      );
+      expect(yield* Schema.encodeEffect(JSON_TEXT)(environment)).not.toContain(
+        "PRIVATE KEY"
+      );
     })
   );
 
@@ -243,11 +266,11 @@ describe("production environment", () => {
   ] as const)("rejects unsafe %s configuration", ([variable, value]) =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture();
-      const values = new Map(productionValues);
+      const values = MutableHashMap.fromIterable(productionValues);
       if (value === undefined) {
-        values.delete(variable);
+        MutableHashMap.remove(values, variable);
       } else {
-        values.set(variable, value);
+        MutableHashMap.set(values, variable, value);
       }
 
       expect(yield* rejectProduction(values)).toMatchObject({
@@ -260,7 +283,8 @@ describe("production environment", () => {
   it.effect("decodes a declared cache surface and rejects an unknown one", () =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture();
-      const declared = new Map(productionValues).set(
+      const declared = MutableHashMap.set(
+        MutableHashMap.fromIterable(productionValues),
         "AKSARA_CACHE_SURFACE",
         "none"
       );
@@ -273,7 +297,8 @@ describe("production environment", () => {
       );
       expect(environment.cacheSurface).toBe("none");
 
-      const unknown = new Map(productionValues).set(
+      const unknown = MutableHashMap.set(
+        MutableHashMap.fromIterable(productionValues),
         "AKSARA_CACHE_SURFACE",
         "absent"
       );
@@ -292,8 +317,12 @@ describe("production environment", () => {
           .privateKey.export({ format: "pem", type: "pkcs8" })
           .toString()
       );
-      const values = new Map(productionValues);
-      values.set("AKSARA_SIGNING_PRIVATE_KEY", rsaPrivateKeyPem);
+      const values = MutableHashMap.fromIterable(productionValues);
+      MutableHashMap.set(
+        values,
+        "AKSARA_SIGNING_PRIVATE_KEY",
+        rsaPrivateKeyPem
+      );
 
       expect(yield* rejectProduction(values)).toMatchObject({
         _tag: "ProductionEnvironmentError",
