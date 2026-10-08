@@ -2,14 +2,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  HashMap,
-  HashSet,
-  Option,
-} from "effect";
+import { Array as Arr, Effect, HashMap, HashSet, Option } from "effect";
 import {
   enforceViolations,
   trackedFiles,
@@ -29,6 +22,7 @@ import {
   createWorkspaceIdentityResolver,
   type WorkspaceIdentityResolver,
 } from "#scripts/imports/workspace";
+import { readSource } from "#scripts/source";
 
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
@@ -143,17 +137,11 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
   );
 });
 
-/** Reads one repository file as UTF-8 text through the Node file system service. */
-const readText = Effect.fn("AksaraPolicy.readText")(function* (path: string) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  return yield* fileSystem.readFileString(path);
-});
-
 /** Reads one authored TypeScript module, reporting a missing module as a source error. */
 const readTypescriptSource = Effect.fn("AksaraPolicy.readSource")(function* (
   file: string
 ) {
-  return yield* readText(file).pipe(
+  return yield* readSource(file).pipe(
     Effect.mapError(
       (cause) => new TypeScriptSourceError({ cause, fileName: file })
     )
@@ -169,7 +157,7 @@ export const checkRepository = Effect.gen(function* () {
   const manifests = yield* Effect.forEach(
     Arr.filter(files, (file) => WORKSPACE_MANIFEST_PATTERN.test(file)),
     (file) =>
-      readText(file).pipe(
+      readSource(file).pipe(
         Effect.map((text): readonly [string, string] => [file, text])
       )
   );
@@ -194,7 +182,7 @@ export const checkRepository = Effect.gen(function* () {
     Arr.flatMap(results, (result) => result.tests)
   );
   const workspaceSourceCondition = sourceConditionFromConfig(
-    yield* readText("packages/typescript-config/base.json")
+    yield* readSource("packages/typescript-config/base.json")
   );
   enforceViolations(
     "Workspace source conditions must resolve before generated output",

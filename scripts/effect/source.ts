@@ -1,7 +1,8 @@
-import { Array as Arr, Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 import { runEntry } from "#scripts/entry";
 import { runGit } from "#scripts/git";
+import { readSource } from "#scripts/source";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
@@ -77,14 +78,11 @@ const readGitValue = Effect.fn("EffectSource.readGitValue")(
 const readVersion = Effect.fn("EffectSource.readVersion")(function* (
   path: string
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const source = yield* fileSystem
-    .readFileString(path)
-    .pipe(
-      Effect.mapError(
-        (error) => new EffectSourceReadError({ message: error.message })
-      )
-    );
+  const source = yield* readSource(path).pipe(
+    Effect.mapError(
+      (error) => new EffectSourceReadError({ message: error.message })
+    )
+  );
   const input = yield* Schema.decodeEffect(JsonDocument)(source).pipe(
     Effect.mapError(
       () =>

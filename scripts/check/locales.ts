@@ -6,7 +6,6 @@ import {
 import {
   Array as Arr,
   Effect,
-  FileSystem,
   HashSet,
   Order,
   Predicate,
@@ -35,6 +34,7 @@ import {
 } from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
 const LOCALE_POLICY_SCRIPT = "scripts/check/locales.ts";
@@ -204,9 +204,8 @@ export const localePolicyViolations = Effect.fn(
 export const localeReport = Effect.fn("AksaraPolicy.localeReport")(function* (
   files: readonly string[]
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
   const violations = yield* Effect.forEach(files, (file) =>
-    fileSystem.readFileString(file).pipe(
+    readSource(file).pipe(
       Effect.mapError(
         (cause) => new TypeScriptSourceError({ cause, fileName: file })
       ),

@@ -9,7 +9,7 @@ import {
 } from "effect";
 import { parseDocument } from "yaml";
 import { trackedFiles } from "#scripts/check/files";
-import { readSource } from "#scripts/workflow/source";
+import { readSource } from "#scripts/source";
 
 export const TEST_TASK_PREFIX = "test:";
 const TEST_SCRIPT = "test";

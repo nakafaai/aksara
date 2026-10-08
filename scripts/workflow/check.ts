@@ -2,11 +2,11 @@ import assert from "node:assert/strict";
 import { Array as Arr, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
-import { readSource } from "#scripts/workflow/source";
 import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 

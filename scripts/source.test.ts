@@ -1,9 +1,9 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, FileSystem } from "effect";
-import { readSource } from "#scripts/workflow/source";
+import { readSource } from "#scripts/source";
 
-describe("workflow source text", () => {
+describe("tracked source text", () => {
   it.effect("keeps a leading byte order mark in the text it reads", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;

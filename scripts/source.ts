@@ -1,7 +1,7 @@
 import { Effect, FileSystem } from "effect";
 
-/** Reads the UTF-8 text of one repository file through the platform file system. */
-export const readSource = Effect.fn("WorkflowSource.read")(function* (
+/** Reads the UTF-8 text of one tracked repository file, keeping a leading byte order mark. */
+export const readSource = Effect.fn("AksaraSource.read")(function* (
   path: string
 ) {
   const fileSystem = yield* FileSystem.FileSystem;

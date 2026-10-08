@@ -2,7 +2,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, FileSystem } from "effect";
+import { Array as Arr, Effect, type FileSystem } from "effect";
 import {
   type Expression,
   isArrowFunction,
@@ -33,6 +33,7 @@ import {
 } from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
@@ -172,10 +173,12 @@ export const missingDocumentation = Effect.fn(
 export const documentationViolations = Effect.fn("AksaraPolicy.documentation")(
   function* (
     files: readonly string[],
-    readSource: (file: string) => Effect.Effect<string, unknown>
+    readText: (
+      file: string
+    ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
   ) {
     const violations = yield* Effect.forEach(files, (file) =>
-      readSource(file).pipe(
+      readText(file).pipe(
         Effect.mapError(
           (cause) => new TypeScriptSourceError({ cause, fileName: file })
         ),
@@ -190,10 +193,7 @@ export const documentationViolations = Effect.fn("AksaraPolicy.documentation")(
 export const documentationReport = Effect.fn(
   "AksaraPolicy.documentationReport"
 )(function* (files: readonly string[]) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const violations = yield* documentationViolations(files, (file) =>
-    fileSystem.readFileString(file)
-  );
+  const violations = yield* documentationViolations(files, readSource);
   enforceViolations("Named callables require useful JSDoc", violations);
 });
 

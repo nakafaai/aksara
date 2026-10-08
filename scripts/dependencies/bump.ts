@@ -1,12 +1,4 @@
-import {
-  Array as Arr,
-  Effect,
-  Equivalence,
-  FileSystem,
-  Order,
-  Ref,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, Equivalence, Order, Ref, Schema } from "effect";
 import { parse } from "yaml";
 import {
   DependencyCommandError,
@@ -23,6 +15,7 @@ import {
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
   manifest: Schema.String,
@@ -61,14 +54,11 @@ const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(
     parseSource: (source: string) => unknown,
     schema: Schema.Codec<A, unknown, never, never>
   ) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const source = yield* fileSystem
-      .readFileString(path)
-      .pipe(
-        Effect.mapError(
-          (error) => new DependencyPolicyError({ message: error.message })
-        )
-      );
+    const source = yield* readSource(path).pipe(
+      Effect.mapError(
+        (error) => new DependencyPolicyError({ message: error.message })
+      )
+    );
     const input = yield* Effect.try({
       catch: () =>
         new DependencyPolicyError({ message: `${path} is not valid.` }),

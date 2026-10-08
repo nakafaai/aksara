@@ -1,12 +1,4 @@
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  HashSet,
-  Order,
-  Path,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, HashSet, Order, Path, Schema } from "effect";
 import { computeLineStarts } from "typescript/unstable/ast";
 import { API, type Diagnostic } from "typescript/unstable/sync";
 
@@ -16,6 +8,7 @@ import {
   typescriptFiles,
 } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const PROJECT_CONFIG_PATTERN =
   /^(?:tsconfig\.json|(?:apps|packages)\/[^/]+\/tsconfig\.json)$/u;
@@ -41,9 +34,8 @@ const diagnosticViolation = Effect.fn("AksaraPolicy.diagnosticViolation")(
     if (diagnostic.fileName === undefined) {
       return message;
     }
-    const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const source = yield* fileSystem.readFileString(diagnostic.fileName);
+    const source = yield* readSource(diagnostic.fileName);
     let line = 0;
     let character = diagnostic.pos + 1;
     for (const offset of computeLineStarts(source)) {

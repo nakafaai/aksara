@@ -2,7 +2,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, FileSystem, HashSet } from "effect";
+import { Array as Arr, Effect, type FileSystem, HashSet } from "effect";
 import {
   isBinaryExpression,
   isStringLiteralLikeNode,
@@ -20,6 +20,7 @@ import {
 } from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const PRODUCT_PATH_PATTERN = /^(?:apps|packages|scripts)\//u;
 const EQUALITY_OPERATORS = HashSet.make(
@@ -77,11 +78,13 @@ function effectPolicyViolations(file: string, sourceFile: SourceFile) {
 export const effectViolations = Effect.fn("AksaraPolicy.effectViolations")(
   function* (
     files: readonly string[],
-    readSource: (file: string) => Effect.Effect<string, unknown>
+    readText: (
+      file: string
+    ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
   ) {
     const parser = yield* TypeScriptParser;
     const violations = yield* Effect.forEach(files, (file) =>
-      readSource(file).pipe(
+      readText(file).pipe(
         Effect.mapError(
           (cause) => new TypeScriptSourceError({ cause, fileName: file })
         ),
@@ -100,12 +103,11 @@ export const effectViolations = Effect.fn("AksaraPolicy.effectViolations")(
 export const effectReport = Effect.fn("AksaraPolicy.effectReport")(function* (
   files: readonly string[]
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
   // Agent skill tooling under `.agents/` keeps its own conventions and is
   // deliberately outside the product Effect-native policy.
   const violations = yield* effectViolations(
     Arr.filter(files, (file) => PRODUCT_PATH_PATTERN.test(file)),
-    (file) => fileSystem.readFileString(file)
+    readSource
   );
   enforceViolations(
     "Authored modules must model failure and unknown input natively",

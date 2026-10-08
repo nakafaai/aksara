@@ -5,7 +5,7 @@ import {
 import {
   Array as Arr,
   Effect,
-  FileSystem,
+  type FileSystem,
   MutableHashMap,
   MutableHashSet,
 } from "effect";
@@ -18,6 +18,7 @@ import {
 } from "#scripts/check/files";
 import { syntaxNodes } from "#scripts/check/syntax";
 import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
@@ -90,10 +91,12 @@ export const countModuleLines = Effect.fn("AksaraPolicy.countModuleLines")(
 /** Collects authored TypeScript modules that exceed the repository line limit. */
 export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* (
   files: readonly string[],
-  readSource: (file: string) => Effect.Effect<string, unknown>
+  readText: (
+    file: string
+  ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
 ) {
   const violations = yield* Effect.forEach(files, (file) =>
-    readSource(file).pipe(
+    readText(file).pipe(
       Effect.mapError(
         (cause) => new TypeScriptSourceError({ cause, fileName: file })
       ),
@@ -110,10 +113,7 @@ export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* (
 export const lineReport = Effect.fn("AksaraPolicy.lineReport")(function* (
   files: readonly string[]
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const violations = yield* lineViolations(files, (file) =>
-    fileSystem.readFileString(file)
-  );
+  const violations = yield* lineViolations(files, readSource);
   enforceViolations(
     `TypeScript modules may contain at most ${MAXIMUM_LINES} non-JSDoc lines`,
     violations

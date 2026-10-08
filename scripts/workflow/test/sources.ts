@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { Effect } from "effect";
+import { readSource } from "#scripts/source";
 import type { WorkflowSources } from "#scripts/workflow/check";
-import { readSource } from "#scripts/workflow/source";
 import { repositoryTestTargets } from "#scripts/workflow/target";
 
 /** The checked-in workflow texts and test targets that the policy tests read once per test file. */
