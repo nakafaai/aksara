@@ -1,10 +1,6 @@
-import { mkdtempSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { resolve } from "node:path";
-
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, FileSystem } from "effect";
 
 import {
   type CommandOutput,
@@ -65,28 +61,22 @@ describe("dependency command boundary", () => {
   );
 
   it.effect("maps a missing pnpm executable to a typed failure", () =>
-    Effect.acquireUseRelease(
-      Effect.sync(() => {
-        const originalPath = process.env.PATH;
-        const root = mkdtempSync(resolve(tmpdir(), "aksara-command-"));
-        process.env.PATH = root;
-        return { originalPath, root };
-      }),
-      ({ root }) =>
-        runPnpm(root, ["--version"]).pipe(
-          Effect.flip,
-          Effect.tap((error) =>
-            Effect.sync(() => {
-              expect(error).toHaveProperty("_tag", "DependencyCommandError");
-            })
-          ),
-          Effect.provide(NodeServices.layer)
-        ),
-      ({ originalPath, root }) =>
-        Effect.sync(() => {
-          process.env.PATH = originalPath;
-          rmSync(root, { force: true, recursive: true });
-        })
-    )
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const root = yield* fileSystem.makeTempDirectoryScoped({
+        prefix: "aksara-command-",
+      });
+      const originalPath = process.env.PATH;
+      process.env.PATH = root;
+      const error = yield* runPnpm(root, ["--version"]).pipe(
+        Effect.flip,
+        Effect.ensuring(
+          Effect.sync(() => {
+            process.env.PATH = originalPath;
+          })
+        )
+      );
+      expect(error).toHaveProperty("_tag", "DependencyCommandError");
+    }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
   );
 });

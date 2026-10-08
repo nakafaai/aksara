@@ -1,5 +1,5 @@
 import { assert, beforeEach, describe, it } from "@effect/vitest";
-import { Effect, Result } from "effect";
+import { Effect, Result, Schema } from "effect";
 import {
   ProvenanceBundleVerifier,
   publisherPolicy,
@@ -26,7 +26,8 @@ const IDENTITY = {
   sourceSha: "0123456789abcdef0123456789abcdef01234567",
   workflow: ".github/workflows/contracts.yml",
 } satisfies PublisherIdentity;
-const PAYLOAD = JSON.stringify({ authenticated: true });
+const PayloadText = Schema.fromJsonString(Schema.Unknown);
+const PAYLOAD = Schema.encodeSync(PayloadText)({ authenticated: true });
 const SERIALIZED = {
   dsseEnvelope: {
     payload: Buffer.from(PAYLOAD).toString("base64"),

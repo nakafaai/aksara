@@ -1,57 +1,48 @@
-import { afterEach, expect, layer } from "@effect/vitest";
+import { afterEach, assert, expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
-import {
-  createWorkspaceIdentityResolver,
-  importViolations,
-} from "#scripts/imports/check";
+import { Array as Arr, Effect, Schema } from "effect";
+import { importViolations } from "#scripts/imports/check";
+import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
+
+const JsonText = Schema.fromJsonString(Schema.Unknown);
+const runtime = vi.hoisted(
+  (): { program?: Effect.Effect<unknown, unknown> } => ({})
+);
+
+vi.mock("@effect/platform-node", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@effect/platform-node")>()),
+  NodeRuntime: {
+    runMain: vi.fn((program: Effect.Effect<unknown, unknown>) => {
+      runtime.program = program;
+    }),
+  },
+}));
 
 /** Creates one manifest reader for import-boundary policy tests. */
 function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
-  return (path: string) => JSON.stringify(manifests[path]);
+  return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
+}
+
+/** Imports a fresh check module, so its top-level runner call is recorded for the tests. */
+const importCheck = Effect.fn("ImportCheckTest.importCheck")(function* () {
+  vi.resetModules();
+  yield* Effect.tryPromise(() => import("#scripts/imports/check"));
+});
+
+/** Returns the program that the most recently imported check module handed to its runner. */
+function checkProgram() {
+  const { program } = runtime;
+  assert.ok(program, "the check module hands its program to the runner");
+  return program;
 }
 
 afterEach(() => {
+  vi.restoreAllMocks();
   vi.doUnmock("#scripts/check/files");
   vi.resetModules();
 });
 
 layer(TypeScriptParser.layer)("import boundaries", (it) => {
-  it("caches valid workspace identities and skips non-source roots", () => {
-    const readManifest = vi.fn(
-      createManifestReader({
-        "packages/compiler/package.json": {
-          dependencies: { "@nakafa/aksara-contracts": "workspace:*" },
-          imports: { "#compiler/*": "./src/*.ts" },
-          name: "@nakafa/aksara-compiler",
-        },
-      })
-    );
-    const resolveIdentity = createWorkspaceIdentityResolver(readManifest);
-
-    expect(resolveIdentity("README.md")).toBeUndefined();
-    expect(
-      resolveIdentity("packages/typescript-config/base.json")
-    ).toBeUndefined();
-    expect(resolveIdentity("packages/compiler/src/first.ts")).toBeDefined();
-    expect(resolveIdentity("packages/compiler/src/second.ts")).toBeDefined();
-    expect(readManifest).toHaveBeenCalledTimes(1);
-  });
-
-  it("rejects malformed or unowned workspace manifests", () => {
-    const missingName = createWorkspaceIdentityResolver(() => "{}");
-    const unknown = createWorkspaceIdentityResolver(() =>
-      JSON.stringify({ name: "@nakafa/unknown" })
-    );
-
-    expect(() => missingName("packages/compiler/src/source.ts")).toThrow(
-      "has no package name"
-    );
-    expect(() => unknown("packages/unknown/src/source.ts")).toThrow(
-      "has no import-boundary policy"
-    );
-  });
-
   it.effect("finds every static import form that crosses a boundary", () =>
     Effect.gen(function* () {
       const resolveIdentity = createWorkspaceIdentityResolver(
@@ -84,11 +75,14 @@ const multiple = require("first", "second");
 `;
 
       expect(
-        (yield* importViolations(
-          "packages/compiler/src/source.ts",
-          source,
-          resolveIdentity
-        )).map((diagnostic) => diagnostic.split(": ").at(-1))
+        Arr.map(
+          yield* importViolations(
+            "packages/compiler/src/source.ts",
+            source,
+            resolveIdentity
+          ),
+          (diagnostic) => diagnostic.split(": ").at(-1)
+        )
       ).toEqual([
         "private alias owned by another workspace",
         "self-import through public package export",
@@ -277,17 +271,28 @@ const multiple = require("first", "second");
       ).toEqual([]);
     })
   );
+
+  it.effect(
+    "passes the repository import policy without a violation report",
+    () =>
+      Effect.gen(function* () {
+        yield* importCheck();
+        const stderr = vi.spyOn(process.stderr, "write");
+        yield* checkProgram();
+        expect(stderr).not.toHaveBeenCalled();
+      }),
+    { timeout: 60_000 }
+  );
+
   it.effect("fails when a tracked source disappears", () =>
     Effect.gen(function* () {
-      vi.resetModules();
       vi.doMock("#scripts/check/files", () => ({
         trackedFiles: () => Effect.succeed([]),
         typescriptFiles: () => ["test-missing-source.ts"],
       }));
-      const failure = yield* Effect.tryPromise(
-        () => import("#scripts/imports/check")
-      ).pipe(Effect.flip);
-      expect(failure.cause).toMatchObject({
+      yield* importCheck();
+      const failure = yield* checkProgram().pipe(Effect.flip);
+      expect(failure).toMatchObject({
         _tag: "TypeScriptSourceError",
         fileName: "test-missing-source.ts",
       });
