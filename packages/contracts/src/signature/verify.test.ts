@@ -10,7 +10,7 @@ import {
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
-import { encodeJson } from "#contracts/test/json";
+import { encodeJsonText } from "#contracts/text/json";
 
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 const message = "nakafa.aksara.signature.test";
@@ -149,7 +149,7 @@ describe("verifyEd25519Signature", () => {
       const error = yield* reject(resolver, fixture.signature);
 
       expect(error._tag).toBe("SigningKeyNotFoundError");
-      expect(encodeJson(error)).not.toContain("PUBLIC KEY");
+      expect(encodeJsonText(error)).not.toContain("PUBLIC KEY");
     })
   );
 

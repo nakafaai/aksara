@@ -9,10 +9,8 @@ import {
   type RendererDomain,
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Stable format for the one current domain-scoped renderer manifest. */
 export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer";
@@ -149,7 +147,7 @@ export function canonicalizeRendererManifestContract(input: {
   readonly domains: readonly RendererDomainCapability[];
   readonly publishedDomains: RendererPublishedDomains;
 }) {
-  return encodeJson([
+  return encodeJsonText([
     RENDERER_MANIFEST_FORMAT,
     input.base,
     sortRendererDomains(input.domains).map(({ name, components }) => ({

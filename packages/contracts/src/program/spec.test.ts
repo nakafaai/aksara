@@ -7,7 +7,6 @@ import {
   ProgramNavigationIconKeySchema,
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
-import { decodeJson } from "#contracts/test/json";
 
 const source = {
   defaultCoverageStatus: "partial",
@@ -160,7 +159,9 @@ describe("learning program contract", () => {
     const program = Schema.decodeSync(LearningProgramSchema)(source);
     const canonical = canonicalizeLearningProgram(program);
 
-    expect(decodeJson(canonical)).toEqual(source);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(LearningProgramSchema))(canonical)
+    ).toEqual(source);
     expect(ProgramNavigationLevelSchema.literals).toContain("domain");
     expect(ProgramNavigationIconKeySchema.literals).toContain("certificate");
   });
@@ -184,7 +185,11 @@ describe("learning program contract", () => {
       },
     });
 
-    expect(decodeJson(canonicalizeLearningProgram(program))).toMatchObject({
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(LearningProgramSchema))(
+        canonicalizeLearningProgram(program)
+      )
+    ).toMatchObject({
       provider: { kind: "official", name: "Provider" },
       sources: [{ label: "Portal", retrievedAt: "2026-06-14" }],
       version: {

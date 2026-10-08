@@ -18,9 +18,7 @@ import {
   ProgramSnapshotSchema,
 } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+import { encodeJsonText } from "#contracts/text/json";
 
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-program-snapshot";
 const ROW_DOMAIN = "nakafa.aksara.program-row";
@@ -39,7 +37,7 @@ export class ProgramRowHashError extends Schema.TaggedError<ProgramRowHashError>
 
 /** Serializes current program facts in stable signed field order. */
 export function canonicalizeProgramSnapshot(input: ProgramSnapshotFacts) {
-  return encodeJson({
+  return encodeJsonText({
     activeAppLocales: input.activeAppLocales,
     curriculumRowCount: input.curriculumRowCount,
     format: PROGRAM_SNAPSHOT_FORMAT,

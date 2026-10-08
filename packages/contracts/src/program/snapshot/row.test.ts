@@ -8,7 +8,6 @@ import {
   canonicalizeLearningProgram,
   LearningProgramSchema,
 } from "#contracts/program/spec";
-import { decodeJson } from "#contracts/test/json";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,
@@ -90,10 +89,16 @@ describe("program snapshot row contract", () => {
     const route = Schema.decodeSync(CurriculumRouteSchema)(
       makeTestCurriculumRoot(base, AppLocaleSchema.make("en"))
     );
-    expect(decodeJson(canonicalizeLearningProgram(base))).not.toHaveProperty(
-      "recommendedCountry"
-    );
-    expect(decodeJson(canonicalizeLearningProgram(complete))).toMatchObject({
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(LearningProgramSchema))(
+        canonicalizeLearningProgram(base)
+      )
+    ).not.toHaveProperty("recommendedCountry");
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(LearningProgramSchema))(
+        canonicalizeLearningProgram(complete)
+      )
+    ).toMatchObject({
       provider: { homeCountry: "ID" },
       recommendedCountry: "ID",
       version: { endsAt: "2027-12-31", startsAt: "2026-01-01" },

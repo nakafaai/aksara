@@ -12,7 +12,6 @@ import {
   RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
 import { articleGraph, materialGraph } from "#contracts/test/graph";
-import { decodeJson } from "#contracts/test/json";
 
 const article = Schema.decodeSync(ArticleProjectionSchema)({
   appLocale: "en",
@@ -120,14 +119,26 @@ describe("content projection", () => {
   });
 
   it("dispatches canonicalization and family selection exhaustively", () => {
-    expect(decodeJson(canonicalizeContentProjection(article))).toEqual(article);
-    expect(decodeJson(canonicalizeContentProjection(material))).toEqual(
-      material
-    );
-    expect(decodeJson(canonicalizeContentProjection(page))).toEqual(page);
-    expect(decodeJson(canonicalizeContentProjection(question))).toEqual(
-      question
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(article)
+      )
+    ).toEqual(article);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(material)
+      )
+    ).toEqual(material);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(page)
+      )
+    ).toEqual(page);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(question)
+      )
+    ).toEqual(question);
     expect(familyForProjection(article)).toBe("article");
     expect(familyForProjection(material)).toBe("material");
     expect(familyForProjection(page)).toBe("page");

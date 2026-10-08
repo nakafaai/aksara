@@ -11,8 +11,8 @@ import {
   PreviewRendererSecretSchema,
   verifyPreviewRendererProof,
 } from "#contracts/preview/auth";
-import { encodeJson } from "#contracts/test/json";
 import { rendererManifest } from "#contracts/test/request";
+import { encodeJsonText } from "#contracts/text/json";
 
 const failures = vi.hoisted(() => ({ hmac: false }));
 
@@ -78,7 +78,7 @@ describe("preview renderer authentication", () => {
             nonce,
           })
         ).toBe(
-          encodeJson([PREVIEW_RENDERER_AUTH_FORMAT, nonce, manifest.hash])
+          encodeJsonText([PREVIEW_RENDERER_AUTH_FORMAT, nonce, manifest.hash])
         );
       })
   );

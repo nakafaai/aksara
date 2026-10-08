@@ -9,10 +9,8 @@ import {
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
 import { MaterialKeySchema } from "#contracts/projection/material";
+import { encodeJsonText } from "#contracts/text/json";
 import { isLowerKebab } from "#contracts/text/syntax";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const CurriculumNamespaceMapSchema = Schema.Struct({
   de: Schema.Literal("lehrplaene"),
@@ -216,7 +214,7 @@ export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 
 /** Serializes one curriculum route in stable signed field order. */
 export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
-  return encodeJson({
+  return encodeJsonText({
     appLocale: route.appLocale,
     ...(route.canonicalPath === undefined
       ? {}

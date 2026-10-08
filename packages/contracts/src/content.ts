@@ -12,10 +12,8 @@ import { type AppLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import { RendererComponentsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Published content families backed by real Aksara source registries. */
 export const ContentFamilySchema = Schema.Literals([
@@ -122,7 +120,7 @@ const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact";
 export function canonicalizeCompiledContentPayload(
   payload: CompiledContentPayload
 ) {
-  return encodeJson({
+  return encodeJsonText({
     artifactLocale: payload.artifactLocale,
     byteLength: payload.byteLength,
     compiledCode: payload.compiledCode,
@@ -151,7 +149,7 @@ export function canonicalizeContentArtifactSigningInput(
 export function canonicalizeSignedContentArtifact(
   artifact: SignedContentArtifact
 ) {
-  return `{"artifactHash":${encodeJson(artifact.artifactHash)},"keyId":${encodeJson(artifact.keyId)},"payload":${canonicalizeCompiledContentPayload(artifact.payload)},"signature":${encodeJson(artifact.signature)}}`;
+  return `{"artifactHash":${encodeJsonText(artifact.artifactHash)},"keyId":${encodeJsonText(artifact.keyId)},"payload":${canonicalizeCompiledContentPayload(artifact.payload)},"signature":${encodeJsonText(artifact.signature)}}`;
 }
 
 /** Decodes unknown compiler input without throwing parser exceptions. */

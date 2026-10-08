@@ -8,10 +8,8 @@ import {
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 import { isLowerKebab } from "#contracts/text/syntax";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Stable source-owned category segment used below the article route family. */
 export const ArticleCategorySchema = Schema.String.pipe(
@@ -220,7 +218,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
       : { description: projection.metadata.description }),
     title: projection.metadata.title,
   };
-  return encodeJson({
+  return encodeJsonText({
     appLocale: projection.appLocale,
     articleRouteSlug: projection.articleRouteSlug,
     articleSlug: projection.articleSlug,

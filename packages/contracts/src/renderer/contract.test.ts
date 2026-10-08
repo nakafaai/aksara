@@ -11,7 +11,7 @@ import {
   RENDERER_DOMAINS,
   type RendererDomain,
 } from "#contracts/renderer/domain";
-import { encodeJson } from "#contracts/test/json";
+import { encodeJsonText } from "#contracts/text/json";
 
 const hash = `sha256:${"a".repeat(64)}`;
 const base = ["BlockMath"] as const;
@@ -165,7 +165,7 @@ describe("renderer contract", () => {
   });
 
   it("canonicalizes domain order independently from caller order", () => {
-    const expected = encodeJson([
+    const expected = encodeJsonText([
       "nakafa-mdx-renderer",
       ["BlockMath"],
       [

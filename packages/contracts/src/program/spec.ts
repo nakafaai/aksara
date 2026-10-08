@@ -3,10 +3,8 @@ import { Schema } from "effect";
 import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
 import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 import { isHttpsUrl, isLowerKebab } from "#contracts/text/syntax";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Canonical language-neutral identity for one learning program. */
 export const LearningProgramKeySchema = Schema.String.pipe(
@@ -200,7 +198,7 @@ export type LearningProgram = typeof LearningProgramSchema.Type;
 
 /** Serializes one program in stable signed field order. */
 export function canonicalizeLearningProgram(program: LearningProgram) {
-  return encodeJson({
+  return encodeJsonText({
     defaultCoverageStatus: program.defaultCoverageStatus,
     displayOrder: program.displayOrder,
     iconKey: program.iconKey,

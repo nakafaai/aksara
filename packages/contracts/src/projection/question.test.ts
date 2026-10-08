@@ -18,7 +18,6 @@ import {
   QuestionItemSchema,
   QuestionResponseLocaleMissingError,
 } from "#contracts/question/item";
-import { decodeJson } from "#contracts/test/json";
 
 const questionKey = QuestionKeySchema.make(
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1"
@@ -137,9 +136,11 @@ describe("question projection", () => {
         answerProjection(ArtifactLocaleSchema.make("id")),
       ]);
       for (const projection of projections) {
-        expect(decodeJson(canonicalizeQuestionProjection(projection))).toEqual(
-          projection
-        );
+        expect(
+          yield* Schema.decodeEffect(
+            Schema.fromJsonString(QuestionBodyProjectionSchema)
+          )(canonicalizeQuestionProjection(projection))
+        ).toEqual(projection);
       }
     })
   );
@@ -158,9 +159,11 @@ describe("question projection", () => {
         setKey,
       });
 
-      expect(decodeJson(canonicalizeQuestionProjection(projection))).toEqual(
-        projection
-      );
+      expect(
+        yield* Schema.decodeEffect(
+          Schema.fromJsonString(QuestionBodyProjectionSchema)
+        )(canonicalizeQuestionProjection(projection))
+      ).toEqual(projection);
       expect(projection).toMatchObject({
         blueprint: documentedItem.blueprint,
         stimulusKey: "shared-table",
@@ -214,23 +217,31 @@ describe("question projection", () => {
 });
 
 describe("pinned question canonical bytes", () => {
-  const pinnedPrompt = decodeJson(
+  const pinnedPrompt = Schema.decodeSync(
+    Schema.fromJsonString(QuestionBodyProjectionSchema)
+  )(
     '{"artifactLocale": "id", "blueprint": {"cognitiveLevel": "reasoning", "contentDomain": "algebra", "topic": "functions"}, "bodyKind": "question", "contentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question", "kind": "question-body", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-07-02", "datePublished": "2026-07-01", "title": "Soal Ñandú 1"}, "peerContentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer", "questionKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1", "questionNumber": 1, "response": {"kind": "single-choice", "options": [{"isCorrect": true, "label": "Pilihan Ñandú", "optionKey": "option-1", "order": 1}, {"isCorrect": false, "label": "Pilihan café", "optionKey": "option-2", "order": 2}]}, "setKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set", "stimulusKey": "shared-table"}'
   );
-  const pinnedPromptMinimal = decodeJson(
+  const pinnedPromptMinimal = Schema.decodeSync(
+    Schema.fromJsonString(QuestionBodyProjectionSchema)
+  )(
     '{"artifactLocale": "id", "bodyKind": "question", "contentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question", "kind": "question-body", "metadata": {"authors": [], "datePublished": "2026-07-01", "title": "Soal Ñandú 1"}, "peerContentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer", "questionKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1", "questionNumber": 1, "response": {"kind": "single-choice", "options": [{"isCorrect": true, "label": "Pilihan Ñandú", "optionKey": "option-1", "order": 1}, {"isCorrect": false, "label": "Pilihan café", "optionKey": "option-2", "order": 2}]}, "setKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set"}'
   );
-  const pinnedAnswer = decodeJson(
+  const pinnedAnswer = Schema.decodeSync(
+    Schema.fromJsonString(QuestionBodyProjectionSchema)
+  )(
     '{"artifactLocale": "id", "blueprint": {"cognitiveLevel": "reasoning", "contentDomain": "algebra", "topic": "functions"}, "bodyKind": "answer", "contentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer", "kind": "question-body", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-07-02", "datePublished": "2026-07-01", "title": "Kunci Ñandú 1"}, "peerContentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question", "questionKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1", "questionNumber": 1, "setKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set", "stimulusKey": "shared-table"}'
   );
-  const pinnedAnswerMinimal = decodeJson(
+  const pinnedAnswerMinimal = Schema.decodeSync(
+    Schema.fromJsonString(QuestionBodyProjectionSchema)
+  )(
     '{"artifactLocale": "id", "bodyKind": "answer", "contentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer", "kind": "question-body", "metadata": {"authors": [], "datePublished": "2026-07-01", "title": "Kunci Ñandú 1"}, "peerContentKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question", "questionKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1", "questionNumber": 1, "setKey": "question-bank/tryout/test-country/test-exam/test-section-2/test-set"}'
   );
 
   it("pins prompt bytes with blueprint, stimulus, and modification date", () => {
     expect(
       canonicalizeQuestionProjection(
-        Schema.decodeUnknownSync(QuestionBodyProjectionSchema)(pinnedPrompt)
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedPrompt)
       )
     ).toBe(
       '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Pilihan Ñandú","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pilihan café","optionKey":"option-2","order":2}]},"artifactLocale":"id","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2026-07-02","datePublished":"2026-07-01","title":"Soal Ñandú 1"},"peerContentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer","questionKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1","questionNumber":1,"setKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set","stimulusKey":"shared-table"}'
@@ -240,9 +251,7 @@ describe("pinned question canonical bytes", () => {
   it("pins prompt bytes with every optional field absent", () => {
     expect(
       canonicalizeQuestionProjection(
-        Schema.decodeUnknownSync(QuestionBodyProjectionSchema)(
-          pinnedPromptMinimal
-        )
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedPromptMinimal)
       )
     ).toBe(
       '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Pilihan Ñandú","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pilihan café","optionKey":"option-2","order":2}]},"artifactLocale":"id","contentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question","kind":"question-body","metadata":{"authors":[],"datePublished":"2026-07-01","title":"Soal Ñandú 1"},"peerContentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer","questionKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1","questionNumber":1,"setKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set"}'
@@ -252,7 +261,7 @@ describe("pinned question canonical bytes", () => {
   it("pins answer bytes with blueprint, stimulus, and modification date", () => {
     expect(
       canonicalizeQuestionProjection(
-        Schema.decodeUnknownSync(QuestionBodyProjectionSchema)(pinnedAnswer)
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedAnswer)
       )
     ).toBe(
       '{"bodyKind":"answer","artifactLocale":"id","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer","kind":"question-body","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2026-07-02","datePublished":"2026-07-01","title":"Kunci Ñandú 1"},"peerContentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question","questionKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1","questionNumber":1,"setKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set","stimulusKey":"shared-table"}'
@@ -262,9 +271,7 @@ describe("pinned question canonical bytes", () => {
   it("pins answer bytes with every optional field absent", () => {
     expect(
       canonicalizeQuestionProjection(
-        Schema.decodeUnknownSync(QuestionBodyProjectionSchema)(
-          pinnedAnswerMinimal
-        )
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedAnswerMinimal)
       )
     ).toBe(
       '{"bodyKind":"answer","artifactLocale":"id","contentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer","kind":"question-body","metadata":{"authors":[],"datePublished":"2026-07-01","title":"Kunci Ñandú 1"},"peerContentKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question","questionKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1","questionNumber":1,"setKey":"question-bank/tryout/test-country/test-exam/test-section-2/test-set"}'

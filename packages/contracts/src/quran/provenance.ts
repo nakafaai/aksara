@@ -27,9 +27,7 @@ import {
   hasCompleteQuranSourceCopy,
   QuranSourceAttributionSchema,
 } from "#contracts/quran/source";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Quran source fields that require independent provenance decisions. */
 const QuranStaticProvenanceScopeSchema = Schema.Literals([
@@ -183,7 +181,7 @@ const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance";
 
 /** Produces stable JSON for one reviewed Quran provenance record. */
 export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
-  return encodeJson({
+  return encodeJsonText({
     attribution: canonicalizeQuranAttribution(record.attribution),
     evidence: record.evidence,
     scope: record.scope,
@@ -204,7 +202,7 @@ export const hashQuranProvenance = Effect.fn(
       try: () => {
         const hash = createHash("sha256")
           .update(`${PROVENANCE_DOMAIN}\n`)
-          .update(encodeJson(input.activeAppLocales))
+          .update(encodeJsonText(input.activeAppLocales))
           .update("\n");
         for (const record of input.records) {
           hash.update(canonicalizeQuranProvenance(record));

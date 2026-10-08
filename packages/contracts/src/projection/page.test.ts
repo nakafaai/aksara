@@ -8,7 +8,6 @@ import {
   PublicPageProjectionSchema,
   PublicPageRouteSchema,
 } from "#contracts/projection/page";
-import { decodeJson } from "#contracts/test/json";
 
 const route = Schema.decodeSync(PublicPageRouteSchema)({
   appLocale: "en",
@@ -49,9 +48,11 @@ describe("public page projection", () => {
       sitemap: true,
       sourcePath,
     });
-    expect(decodeJson(canonicalizePublicPageProjection(projection))).toEqual(
-      projection
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(PublicPageProjectionSchema))(
+        canonicalizePublicPageProjection(projection)
+      )
+    ).toEqual(projection);
     expect(canonicalizePublicPageProjection(projection)).toContain(
       '"metadata":{"dateModified":"2026-08-21","datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"}'
     );

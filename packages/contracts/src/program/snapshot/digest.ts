@@ -25,10 +25,8 @@ import {
 } from "#contracts/program/snapshot/row";
 import type { ProgramCounts } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const DIGEST_DOMAIN = "nakafa.aksara.program-rows";
 
@@ -149,7 +147,7 @@ class ProgramDigestState {
     return Effect.fail(
       new ProgramDigestError({
         code: "count",
-        identity: encodeJson({
+        identity: encodeJsonText({
           actual: counts,
           expected,
           rootCount: MutableHashSet.size(this.#roots),
@@ -182,7 +180,8 @@ class ProgramDigestState {
     }
     if (
       MutableHashMap.has(this.#programs, row.key) ||
-      encodeJson(translationLocales) !== encodeJson(this.#activeAppLocales)
+      encodeJsonText(translationLocales) !==
+        encodeJsonText(this.#activeAppLocales)
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "key", identity: row.key })

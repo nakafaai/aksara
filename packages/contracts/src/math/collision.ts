@@ -4,10 +4,7 @@ import {
   MutableHashMap,
   MutableHashSet,
   Option,
-  Schema,
 } from "effect";
-
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 import type {
   SceneAxis,
@@ -18,12 +15,13 @@ import type { PlaneMathObject } from "#contracts/math/plane";
 import { unresolvedProximityIndexes } from "#contracts/math/proximity";
 import { numberRatio } from "#contracts/math/rational";
 import { radialGeometryPath } from "#contracts/math/scene";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Keeps one authored issue path for each exact path value. */
 function uniquePaths(paths: readonly ScenePath[]) {
   const byText = MutableHashMap.empty<string, ScenePath>();
   for (const path of paths) {
-    MutableHashMap.set(byText, encodeJson(path), path);
+    MutableHashMap.set(byText, encodeJsonText(path), path);
   }
   return Arr.fromIterable(MutableHashMap.values(byText));
 }

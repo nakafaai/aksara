@@ -20,10 +20,8 @@ import {
   canonicalQuestionResponse,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutKeySchema } from "#contracts/tryout/key";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Exact metadata authored by every current question and answer body. */
 export const QuestionMetadataSchema = withPublicationDates({
@@ -143,7 +141,7 @@ export const makeQuestionBodyProjection = Effect.fn(
 export function canonicalizeQuestionProjection(
   projection: QuestionBodyProjection
 ) {
-  return encodeJson({
+  return encodeJsonText({
     bodyKind: projection.bodyKind,
     ...(projection.bodyKind === "question"
       ? { response: canonicalQuestionResponse(projection.response) }

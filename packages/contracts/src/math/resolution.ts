@@ -41,9 +41,7 @@ import type {
   SpaceMathObject,
   SpaceMathView,
 } from "#contracts/math/space";
-
-/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
-const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+import { encodeJsonText } from "#contracts/text/json";
 
 /** One stable authoring failure for geometry below renderer resolution. */
 export const MATH_VISUAL_RESOLUTION_MESSAGE =
@@ -66,7 +64,7 @@ function issue(path: IssuePath): ResolutionIssue {
 function uniqueIssues(issues: readonly ResolutionIssue[]) {
   const byPath = MutableHashMap.empty<string, ResolutionIssue>();
   for (const candidate of issues) {
-    MutableHashMap.set(byPath, encodeJson(candidate.path), candidate);
+    MutableHashMap.set(byPath, encodeJsonText(candidate.path), candidate);
   }
   return Arr.fromIterable(MutableHashMap.values(byPath));
 }
