@@ -1,17 +1,19 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
-import { repositoryTestTargets } from "#scripts/workflow/target";
+import { workflowSources } from "#scripts/workflow/test/sources";
 
 const DOLLAR = "$";
 const MATRIX_COMMAND_STEP = `run: ${DOLLAR}{{ matrix.command }}`;
 const STRATEGY_BLOCK_PATTERN = / {4}strategy:[\s\S]*?\n {4}steps:/u;
-const source = readFileSync(".github/workflows/ci.yml", "utf8");
-const targets = repositoryTestTargets();
-const PUBLISHER_LEG = [
-  "          - group: publisher",
-  "            command: pnpm exec turbo run test --filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-cli --concurrency=1",
-].join("\n");
+const { ci: source, testTargets: targets } = await workflowSources;
+const PUBLISHER_LEG = Arr.join(
+  [
+    "          - group: publisher",
+    "            command: pnpm exec turbo run test --filter=@nakafa/aksara-publisher --filter=@nakafa/aksara-cli --concurrency=1",
+  ],
+  "\n"
+);
 
 /** Expects the CI policy to reject one workflow source with the given message. */
 function rejects(
@@ -247,7 +249,7 @@ describe("CI workflow policy", () => {
     rejects(
       source,
       "CI test groups must name only repository test targets",
-      targets.filter((target) => target !== "@nakafa/aksara-cli")
+      Arr.filter(targets, (target) => target !== "@nakafa/aksara-cli")
     );
   });
 

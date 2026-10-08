@@ -1,14 +1,24 @@
 import { NodeServices } from "@effect/platform-node";
 import { Effect } from "effect";
+import type { WorkflowSources } from "#scripts/workflow/check";
 import { readSource } from "#scripts/workflow/source";
+import { repositoryTestTargets } from "#scripts/workflow/target";
 
-/** The checked-in workflow texts that the policy tests read once per test file. */
-export const workflowSources = Effect.runPromise(
+/** The checked-in workflow texts and test targets that the policy tests read once per test file. */
+export const workflowSources: Promise<WorkflowSources> = Effect.runPromise(
   Effect.gen(function* () {
     const ci = yield* readSource(".github/workflows/ci.yml");
     const cli = yield* readSource(".github/workflows/cli.yml");
     const contracts = yield* readSource(".github/workflows/contracts.yml");
     const release = yield* readSource(".github/workflows/release.yml");
-    return { ci, cli, contracts, release };
+    const testTargets = yield* repositoryTestTargets();
+    return {
+      all: [ci, cli, contracts, release],
+      ci,
+      cli,
+      contracts,
+      release,
+      testTargets,
+    };
   }).pipe(Effect.provide(NodeServices.layer))
 );

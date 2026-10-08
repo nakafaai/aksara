@@ -1,24 +1,31 @@
-import { readFileSync } from "node:fs";
-import { describe, expect, it } from "@effect/vitest";
-import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
+import { NodeRuntime } from "@effect/platform-node";
+import { assert, describe, expect, it } from "@effect/vitest";
+import { verifyWorkflows } from "#scripts/workflow/check";
+import { workflowSources } from "#scripts/workflow/test/sources";
 import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
+
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const platform =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  return {
+    ...platform,
+    NodeRuntime: { ...platform.NodeRuntime, runMain: vi.fn() },
+  };
+});
 
 const OPERATION_HISTORY_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
 const OPERATION_SETUP_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
+const sources = await workflowSources;
+const workflowCheck = vi.mocked(NodeRuntime.runMain).mock.calls[0]?.[0];
 
-/** Reads the exact workflow set exercised by repository policy. */
-function currentSources(): WorkflowSources {
-  const ci = readFileSync(".github/workflows/ci.yml", "utf8");
-  const cli = readFileSync(".github/workflows/cli.yml", "utf8");
-  const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
-  const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return { all: [ci, cli, contracts, release], ci, cli, contracts, release };
-}
-
-const sources = currentSources();
 describe("workflow policy", () => {
+  it.effect("runs the check program through the main boundary", () => {
+    assert.ok(workflowCheck, "The check must hand its program to the runtime");
+    return workflowCheck;
+  });
+
   it("accepts immutable archives and the direct content release path", () => {
     expect(() => verifyWorkflows(sources)).not.toThrow();
   });

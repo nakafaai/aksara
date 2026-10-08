@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { NodeRuntime, NodeServices } from "@effect/platform-node";
+import { Array as Arr, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { readSource } from "#scripts/workflow/source";
 import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
@@ -50,13 +52,17 @@ const WORKFLOW_PATH_PATTERN = /^\.github\/workflows\/[^/]+\.ya?ml$/u;
 const TOP_LEVEL_JOB_PATTERN = /\n {2}[a-z][a-z_]*:\n/u;
 
 /** Workflow sources whose release controls must remain coherent. */
-export interface WorkflowSources {
-  readonly all: readonly string[];
-  readonly ci: string;
-  readonly cli: string;
-  readonly contracts: string;
-  readonly release: string;
-}
+const WorkflowSourcesSchema = Schema.Struct({
+  all: Schema.Array(Schema.String),
+  ci: Schema.String,
+  cli: Schema.String,
+  contracts: Schema.String,
+  release: Schema.String,
+  testTargets: Schema.Array(Schema.String),
+});
+
+/** Workflow sources and the repository test targets that the CI policy names. */
+export type WorkflowSources = typeof WorkflowSourcesSchema.Type;
 
 /** Verifies one source-only contract archive and one content release path. */
 export function verifyWorkflows({
@@ -65,6 +71,7 @@ export function verifyWorkflows({
   cli,
   contracts,
   release,
+  testTargets,
 }: WorkflowSources): void {
   const releaseCombined = `${ci}\n${contracts}\n${release}`;
   const combined = `${releaseCombined}\n${cli}`;
@@ -74,11 +81,12 @@ export function verifyWorkflows({
     "Workflows must not retain registry or Changesets publication machinery"
   );
   assert.deepEqual(
-    [
-      ...new Set(
-        [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)].map(([url]) => url)
-      ),
-    ],
+    Arr.dedupe(
+      Arr.map(
+        [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)],
+        ([url]) => url
+      )
+    ),
     [NPM_REGISTRY, NPM_ATTESTATION_URL],
     "Registry reads must use only the exact npm attestation endpoint"
   );
@@ -87,8 +95,8 @@ export function verifyWorkflows({
     SWALLOWED_CLI_OUTPUT_PATTERN,
     "Workflow probes must clear failed CLI output instead of treating error bodies as state"
   );
-  verifyWorkflowToolchains([...new Set([ci, cli, contracts, release, ...all])]);
-  verifyCiWorkflow(ci, repositoryTestTargets());
+  verifyWorkflowToolchains(Arr.dedupe([ci, cli, contracts, release, ...all]));
+  verifyCiWorkflow(ci, testTargets);
   verifyCliWorkflow(cli);
   assert.match(
     ci,
@@ -214,7 +222,8 @@ export function verifyWorkflows({
     "Contract release privileges must remain separated by capability"
   );
 
-  const actionReferences = [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)].map(
+  const actionReferences = Arr.map(
+    [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)],
     (match) => match[0]
   );
   assert.ok(actionReferences.length > 0, "Workflows must use pinned actions");
@@ -229,15 +238,32 @@ export function verifyWorkflows({
   verifyPublicationWorkflow(release, all);
 }
 
-const workflowPaths = trackedFiles().filter((path) =>
-  WORKFLOW_PATH_PATTERN.test(path)
+/** Reads every tracked workflow and the release workflows that the policy verifies. */
+const readWorkflowSources = Effect.fn("WorkflowCheck.readSources")(
+  function* () {
+    const all = yield* Effect.forEach(
+      Arr.filter(trackedFiles(), (path) => WORKFLOW_PATH_PATTERN.test(path)),
+      (path) => readSource(path)
+    );
+    const ci = yield* readSource(".github/workflows/ci.yml");
+    const cli = yield* readSource(".github/workflows/cli.yml");
+    const contracts = yield* readSource(".github/workflows/contracts.yml");
+    const release = yield* readSource(".github/workflows/release.yml");
+    const testTargets = yield* repositoryTestTargets();
+    return { all, ci, cli, contracts, release, testTargets };
+  }
 );
-const trackedSources = workflowPaths.map((path) => readFileSync(path, "utf8"));
-verifyWorkflows({
-  all: trackedSources,
-  ci: readFileSync(".github/workflows/ci.yml", "utf8"),
-  cli: readFileSync(".github/workflows/cli.yml", "utf8"),
-  contracts: readFileSync(".github/workflows/contracts.yml", "utf8"),
-  release: readFileSync(".github/workflows/release.yml", "utf8"),
+
+/** Verifies every repository workflow policy and reports success on standard output. */
+const makeWorkflowCheckProgram = Effect.fn("WorkflowCheck.main")(function* () {
+  verifyWorkflows(yield* readWorkflowSources());
+  yield* Effect.sync(() => {
+    process.stdout.write(
+      "Verified immutable contract and content workflows.\n"
+    );
+  });
 });
-process.stdout.write("Verified immutable contract and content workflows.\n");
+
+NodeRuntime.runMain(
+  makeWorkflowCheckProgram().pipe(Effect.provide(NodeServices.layer))
+);
