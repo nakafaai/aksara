@@ -2,7 +2,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, HashMap, HashSet, Option } from "effect";
+import { Array as Arr, Effect, HashMap, HashSet } from "effect";
 import {
   enforceViolations,
   trackedFiles,
@@ -20,6 +20,7 @@ import {
 } from "#scripts/imports/syntax";
 import {
   createWorkspaceIdentityResolver,
+  WorkspaceIdentityError,
   type WorkspaceIdentityResolver,
 } from "#scripts/imports/workspace";
 import { readSource } from "#scripts/source";
@@ -33,11 +34,11 @@ const WORKSPACE_SCRIPT_PATTERN = /^(?:apps|packages)\/[^/]+\/scripts\//u;
 const TESTING_PACKAGE = "@nakafa/testing";
 
 /** Reports one module specifier that crosses an Aksara import boundary. */
-function importViolation(
+const importViolation = Effect.fn("AksaraPolicy.importViolation")(function* (
   file: string,
   specifier: string,
   resolveIdentity: WorkspaceIdentityResolver
-): string | undefined {
+) {
   if (
     specifier === "vitest" ||
     (specifier.startsWith("vitest/") && specifier !== "vitest/config")
@@ -51,7 +52,7 @@ function importViolation(
     return "relative or filesystem module import";
   }
 
-  const identity = resolveIdentity(file);
+  const identity = yield* resolveIdentity(file);
   if (!identity) {
     return;
   }
@@ -93,7 +94,7 @@ function importViolation(
   if (!HashSet.has(identity.runtimeDependencies, packageName)) {
     return "workspace dependency is absent from package dependencies";
   }
-}
+});
 
 /** Collects stable file and line diagnostics for invalid module imports. */
 export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
@@ -102,39 +103,40 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
   resolveIdentity: WorkspaceIdentityResolver
 ) {
   const parser = yield* TypeScriptParser;
-  return yield* parser.inspect(
+  const { specifiers, viBindings } = yield* parser.inspect(
     { fileName: file, source: sourceText },
-    ({ sourceFile }) => {
-      const moduleViolations = Arr.flatMap(
-        moduleSpecifiers(sourceFile),
-        (specifier) => {
-          const violation = importViolation(
-            file,
-            specifier.text,
-            resolveIdentity
-          );
-          if (!violation) {
-            return [];
-          }
-          const line =
-            sourceFile.getLineAndCharacterOfPosition(specifier.getStart())
-              .line + 1;
-          return [`${file}:${line} ${specifier.text}: ${violation}`];
-        }
-      );
-      const viImportViolations = Arr.map(
+    ({ sourceFile }) => ({
+      specifiers: Arr.map(moduleSpecifiers(sourceFile), (specifier) => ({
+        line:
+          sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line +
+          1,
+        text: specifier.text,
+      })),
+      viBindings: Arr.map(
         exposedModuleBindings(sourceFile, "@effect/vitest", "vi"),
-        (specifier) => {
-          const line =
-            sourceFile.getLineAndCharacterOfPosition(specifier.getStart())
-              .line + 1;
-          return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
-        }
-      );
-
-      return [...moduleViolations, ...viImportViolations];
-    }
+        (specifier) =>
+          sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line +
+          1
+      ),
+    })
   );
+  const moduleViolations = yield* Effect.forEach(specifiers, (specifier) =>
+    importViolation(file, specifier.text, resolveIdentity).pipe(
+      Effect.map((violation) =>
+        violation === undefined
+          ? []
+          : [`${file}:${specifier.line} ${specifier.text}: ${violation}`]
+      )
+    )
+  );
+  return [
+    ...Arr.flatten(moduleViolations),
+    ...Arr.map(
+      viBindings,
+      (line) =>
+        `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`
+    ),
+  ];
 });
 
 /** Reads one authored TypeScript module, reporting a failed read as a source error. */
@@ -163,7 +165,14 @@ export const checkRepository = Effect.gen(function* () {
   );
   const manifestTexts = HashMap.fromIterable(manifests);
   const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
-    Option.getOrThrow(HashMap.get(manifestTexts, path))
+    Effect.fromOption(HashMap.get(manifestTexts, path)).pipe(
+      Effect.mapError(
+        () =>
+          new WorkspaceIdentityError({
+            message: `${path} is not a tracked workspace manifest.`,
+          })
+      )
+    )
   );
   const results = yield* Effect.forEach(sources, ({ file, text }) =>
     Effect.gen(function* () {
@@ -181,7 +190,7 @@ export const checkRepository = Effect.gen(function* () {
     "Effect tests must use native Effect Vitest execution",
     Arr.flatMap(results, (result) => result.tests)
   );
-  const workspaceSourceCondition = sourceConditionFromConfig(
+  const workspaceSourceCondition = yield* sourceConditionFromConfig(
     yield* readSource("packages/typescript-config/base.json")
   );
   enforceViolations(

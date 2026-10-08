@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
@@ -8,27 +8,31 @@ import {
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
 describe("workspace source conditions", () => {
-  it("derives the condition from TypeScript configuration", () => {
-    expect(
-      sourceConditionFromConfig(
-        Schema.encodeSync(JsonText)({
-          compilerOptions: { customConditions: ["aksara-source"] },
-        })
-      )
-    ).toBe("aksara-source");
-    expect(() => sourceConditionFromConfig("{}")).toThrow(
-      "TypeScript config must own exactly one workspace source condition"
-    );
-    for (const invalid of [
-      "[]",
-      '{"compilerOptions":{"customConditions":[]}}',
-      '{"compilerOptions":{"customConditions":[1]}}',
-    ]) {
-      expect(() => sourceConditionFromConfig(invalid)).toThrow(
-        "TypeScript config must own exactly one workspace source condition"
-      );
-    }
-  });
+  it.effect("derives the condition from TypeScript configuration", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* sourceConditionFromConfig(
+          yield* Schema.encodeEffect(JsonText)({
+            compilerOptions: { customConditions: ["aksara-source"] },
+          })
+        )
+      ).toBe("aksara-source");
+      for (const invalid of [
+        "{}",
+        "[]",
+        '{"compilerOptions":{"customConditions":[]}}',
+        '{"compilerOptions":{"customConditions":[1]}}',
+      ]) {
+        expect(
+          yield* sourceConditionFromConfig(invalid).pipe(Effect.flip)
+        ).toMatchObject({
+          _tag: "SourceConditionError",
+          message:
+            "TypeScript config must own exactly one workspace source condition",
+        });
+      }
+    })
+  );
 
   it("requires source resolution before generated output", () => {
     const sourceFirst = Schema.encodeSync(JsonText)({

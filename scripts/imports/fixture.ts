@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
@@ -6,5 +6,6 @@ const JsonText = Schema.fromJsonString(Schema.Unknown);
 export function createManifestReader(
   manifests: Readonly<Record<string, unknown>>
 ) {
-  return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
+  return (path: string) =>
+    Effect.succeed(Schema.encodeSync(JsonText)(manifests[path]));
 }

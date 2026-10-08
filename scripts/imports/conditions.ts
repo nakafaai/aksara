@@ -1,10 +1,25 @@
-import { Array as Arr, Predicate, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
+/** TypeScript configuration does not own exactly one workspace source condition. */
+export class SourceConditionError extends Schema.TaggedError<SourceConditionError>()(
+  "SourceConditionError",
+  { message: Schema.String }
+) {}
+
 /** Reads the one workspace source condition owned by TypeScript configuration. */
-export function sourceConditionFromConfig(source: string): string {
-  const config: unknown = Schema.decodeSync(JsonText)(source);
+export const sourceConditionFromConfig = Effect.fn(
+  "AksaraPolicy.sourceCondition"
+)(function* (source: string) {
+  const config: unknown = yield* Schema.decodeEffect(JsonText)(source).pipe(
+    Effect.mapError(
+      () =>
+        new SourceConditionError({
+          message: "TypeScript config must be valid JSON.",
+        })
+    )
+  );
   const compilerOptions = Predicate.isObject(config)
     ? config.compilerOptions
     : undefined;
@@ -16,12 +31,13 @@ export function sourceConditionFromConfig(source: string): string {
     conditions.length !== 1 ||
     typeof conditions[0] !== "string"
   ) {
-    throw new Error(
-      "TypeScript config must own exactly one workspace source condition"
-    );
+    return yield* new SourceConditionError({
+      message:
+        "TypeScript config must own exactly one workspace source condition",
+    });
   }
   return conditions[0];
-}
+});
 
 /** Preserves semantic condition order in one workspace package manifest. */
 export function sourceConditionViolations(

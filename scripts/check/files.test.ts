@@ -7,6 +7,7 @@ import {
   trackedFiles,
   typescriptFiles,
 } from "#scripts/check/files";
+import { inDirectory, makeRepository } from "#scripts/check/fixture";
 import { runGit } from "#scripts/git";
 
 const originalExitCode = process.exitCode;
@@ -15,30 +16,6 @@ afterEach(() => {
   process.exitCode = originalExitCode;
   vi.restoreAllMocks();
 });
-
-/** Runs one effect with the process working directory moved to root. */
-const inDirectory = <A, E, R>(root: string, effect: Effect.Effect<A, E, R>) =>
-  Effect.acquireUseRelease(
-    Effect.sync(() => {
-      const previous = process.cwd();
-      process.chdir(root);
-      return previous;
-    }),
-    () => effect,
-    (previous) => Effect.sync(() => process.chdir(previous))
-  );
-
-/** Creates an empty Git repository in a scoped temporary folder. */
-const makeRepository = Effect.fn("AksaraPolicyTest.makeRepository")(
-  function* () {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const root = yield* fileSystem.makeTempDirectoryScoped({
-      prefix: "aksara-files-",
-    });
-    yield* runGit(["init", "--quiet"], { cwd: root });
-    return root;
-  }
-);
 
 describe("files", () => {
   it.effect(

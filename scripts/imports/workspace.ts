@@ -1,5 +1,6 @@
 import {
   Array as Arr,
+  Effect,
   HashMap,
   HashSet,
   MutableHashMap,
@@ -22,10 +23,16 @@ const WorkspaceIdentitySchema = Schema.Struct({
 });
 type WorkspaceIdentity = typeof WorkspaceIdentitySchema.Type;
 
+/** A workspace manifest does not define the import-boundary identity of its package. */
+export class WorkspaceIdentityError extends Schema.TaggedError<WorkspaceIdentityError>()(
+  "WorkspaceIdentityError",
+  { message: Schema.String }
+) {}
+
 /** Returns the import-boundary identity of the workspace that owns one source file. */
 export type WorkspaceIdentityResolver = (
   file: string
-) => WorkspaceIdentity | undefined;
+) => Effect.Effect<WorkspaceIdentity | undefined, WorkspaceIdentityError>;
 
 const allowedWorkspaceDependencies: HashMap.HashMap<
   string,
@@ -70,10 +77,10 @@ function dependencyNames(input: unknown): readonly string[] {
 
 /** Creates one cached workspace identity resolver from package manifests. */
 export function createWorkspaceIdentityResolver(
-  readManifest: (path: string) => string
+  readManifest: (path: string) => Effect.Effect<string, WorkspaceIdentityError>
 ): WorkspaceIdentityResolver {
   const identities = MutableHashMap.empty<string, WorkspaceIdentity>();
-  return (file) => {
+  return Effect.fn("AksaraPolicy.workspaceIdentity")(function* (file: string) {
     const match: RegExpExecArray | null = WORKSPACE_SOURCE_PATTERN.exec(file);
     const workspaceRoot = match?.[1];
     const workspace = match?.[2];
@@ -84,22 +91,29 @@ export function createWorkspaceIdentityResolver(
     if (Option.isSome(cached)) {
       return cached.value;
     }
-    const manifest: unknown = Schema.decodeSync(JsonText)(
-      readManifest(`${workspaceRoot}/${workspace}/package.json`)
+    const manifest: unknown = yield* Schema.decodeEffect(JsonText)(
+      yield* readManifest(`${workspaceRoot}/${workspace}/package.json`)
+    ).pipe(
+      Effect.mapError(
+        () =>
+          new WorkspaceIdentityError({
+            message: `${workspaceRoot}/${workspace}/package.json is not valid JSON.`,
+          })
+      )
     );
     if (!Predicate.isObject(manifest) || typeof manifest.name !== "string") {
-      throw new Error(
-        `${workspaceRoot}/${workspace}/package.json has no package name`
-      );
+      return yield* new WorkspaceIdentityError({
+        message: `${workspaceRoot}/${workspace}/package.json has no package name`,
+      });
     }
     const allowedDependencies = HashMap.get(
       allowedWorkspaceDependencies,
       workspace
     );
     if (Option.isNone(allowedDependencies)) {
-      throw new Error(
-        `${workspaceRoot}/${workspace} has no import-boundary policy`
-      );
+      return yield* new WorkspaceIdentityError({
+        message: `${workspaceRoot}/${workspace} has no import-boundary policy`,
+      });
     }
     const imports = Predicate.isObject(manifest.imports)
       ? Rec.keys(manifest.imports)
@@ -120,5 +134,5 @@ export function createWorkspaceIdentityResolver(
     } satisfies WorkspaceIdentity;
     MutableHashMap.set(identities, workspace, identity);
     return identity;
-  };
+  });
 }
