@@ -12,6 +12,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "#contracts/quran/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Semantic wire identity of the current localized Quran snapshot. */
 export const QURAN_SNAPSHOT_FORMAT = "localized-quran-snapshot";
@@ -71,8 +72,8 @@ function hasCompleteSnapshotCounts(input: {
     input.verseCount === QURAN_VERSE_COUNT &&
     input.searchCount === QURAN_SURAH_COUNT * input.activeAppLocales.length &&
     input.sourceFileCount === quranSourceFileCount(input.activeAppLocales) &&
-    JSON.stringify(input.tafsirLocales) ===
-      JSON.stringify(hasIndonesian ? ["id"] : [])
+    encodeJsonText(input.tafsirLocales) ===
+      encodeJsonText(hasIndonesian ? ["id"] : [])
   );
 }
 

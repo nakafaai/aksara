@@ -6,6 +6,7 @@ import {
   PublicPathSchema,
 } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 /** Stable source-owned identity for one reviewed public site page. */
@@ -109,7 +110,7 @@ export function canonicalizePublicPageProjection(
     description: projection.metadata.description,
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJsonText({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,

@@ -12,6 +12,7 @@ import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
@@ -271,7 +272,7 @@ export function canonicalizeMaterialProjection(
       : { subject: projection.metadata.subject }),
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJsonText({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,

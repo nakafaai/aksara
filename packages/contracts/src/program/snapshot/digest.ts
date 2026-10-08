@@ -1,6 +1,13 @@
 import { createHash } from "node:crypto";
 
-import { Effect, Schema, Stream } from "effect";
+import {
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Schema,
+  Stream,
+} from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
@@ -18,6 +25,7 @@ import {
 } from "#contracts/program/snapshot/row";
 import type { ProgramCounts } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
 
 const DIGEST_DOMAIN = "nakafa.aksara.program-rows";
@@ -76,12 +84,12 @@ function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
 class ProgramDigestState {
   readonly #activeAppLocales: ActiveAppLocaleList;
   readonly #hash = createHash("sha256").update(`${DIGEST_DOMAIN}\n`);
-  readonly #nodes = new Set<string>();
-  readonly #paths = new Set<string>();
-  readonly #programs = new Map<string, LearningProgram>();
-  readonly #routes = new Set<string>();
-  readonly #roots = new Set<string>();
-  readonly #slugs = new Set<string>();
+  readonly #nodes = MutableHashSet.empty<string>();
+  readonly #paths = MutableHashSet.empty<string>();
+  readonly #programs = MutableHashMap.empty<string, LearningProgram>();
+  readonly #routes = MutableHashSet.empty<string>();
+  readonly #roots = MutableHashSet.empty<string>();
+  readonly #slugs = MutableHashSet.empty<string>();
   #lastCurriculumKey: string | undefined;
   #lastProgramOrder = 0;
   curriculumRowCount = 0;
@@ -100,7 +108,7 @@ class ProgramDigestState {
       programRowCount: this.programRowCount,
       rowCount: this.curriculumRowCount + this.programRowCount,
       sitemapCount: this.sitemapCount,
-      slugCount: this.#slugs.size,
+      slugCount: MutableHashSet.size(this.#slugs),
     };
   }
 
@@ -113,23 +121,25 @@ class ProgramDigestState {
 
   /** Finalizes complete catalog, root, locale, and count evidence. */
   validateComplete(expected?: ProgramCounts) {
-    const expectedRoots = new Set<string>();
-    for (const program of this.#programs.values()) {
+    const expectedRoots = MutableHashSet.empty<string>();
+    for (const program of MutableHashMap.values(this.#programs)) {
       if (program.navigation.model !== "curriculum-tree") {
         continue;
       }
       for (const locale of this.#activeAppLocales) {
-        expectedRoots.add(`${program.key}\0${locale}`);
+        MutableHashSet.add(expectedRoots, `${program.key}\0${locale}`);
       }
     }
     const counts = this.counts();
     const expectedCounts = expected ?? counts;
     if (
       this.programRowCount > 0 &&
-      this.#slugs.size ===
+      MutableHashSet.size(this.#slugs) ===
         this.programRowCount * this.#activeAppLocales.length &&
-      expectedRoots.size === this.#roots.size &&
-      [...expectedRoots].every((root) => this.#roots.has(root)) &&
+      MutableHashSet.size(expectedRoots) === MutableHashSet.size(this.#roots) &&
+      [...expectedRoots].every((root) =>
+        MutableHashSet.has(this.#roots, root)
+      ) &&
       countIdentity(counts) === countIdentity(expectedCounts)
     ) {
       return Effect.void;
@@ -137,10 +147,10 @@ class ProgramDigestState {
     return Effect.fail(
       new ProgramDigestError({
         code: "count",
-        identity: JSON.stringify({
+        identity: encodeJsonText({
           actual: counts,
           expected,
-          rootCount: this.#roots.size,
+          rootCount: MutableHashSet.size(this.#roots),
         }),
       })
     );
@@ -169,9 +179,9 @@ class ProgramDigestState {
       );
     }
     if (
-      this.#programs.has(row.key) ||
-      JSON.stringify(translationLocales) !==
-        JSON.stringify(this.#activeAppLocales)
+      MutableHashMap.has(this.#programs, row.key) ||
+      encodeJsonText(translationLocales) !==
+        encodeJsonText(this.#activeAppLocales)
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "key", identity: row.key })
@@ -179,14 +189,14 @@ class ProgramDigestState {
     }
     for (const translation of row.translations) {
       const slug = `${translation.appLocale}\0${translation.publicSlug}`;
-      if (this.#slugs.has(slug)) {
+      if (MutableHashSet.has(this.#slugs, slug)) {
         return Effect.fail(
           new ProgramDigestError({ code: "slug", identity: slug })
         );
       }
-      this.#slugs.add(slug);
+      MutableHashSet.add(this.#slugs, slug);
     }
-    this.#programs.set(row.key, row);
+    MutableHashMap.set(this.#programs, row.key, row);
     this.#lastProgramOrder = row.displayOrder;
     this.programRowCount += 1;
     return this.#updateDigest(record);
@@ -195,7 +205,9 @@ class ProgramDigestState {
   /** Adds one localized route after validating identity and ancestry. */
   #addCurriculum(record: Extract<ProgramSnapshotRow, { kind: "curriculum" }>) {
     const { row } = record;
-    const program = this.#programs.get(row.programKey);
+    const program = Option.getOrUndefined(
+      MutableHashMap.get(this.#programs, row.programKey)
+    );
     if (
       !this.#activeAppLocales.includes(row.appLocale) ||
       program?.navigation.model !== "curriculum-tree"
@@ -217,9 +229,9 @@ class ProgramDigestState {
     const routeIdentity = `${row.appLocale}\0${row.publicPath}`;
     const nodeIdentity = `${row.programKey}\0${row.appLocale}\0${row.nodeKey}`;
     if (
-      this.#nodes.has(nodeIdentity) ||
-      this.#paths.has(pathIdentity) ||
-      this.#routes.has(routeIdentity)
+      MutableHashSet.has(this.#nodes, nodeIdentity) ||
+      MutableHashSet.has(this.#paths, pathIdentity) ||
+      MutableHashSet.has(this.#routes, routeIdentity)
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "route", identity: routeIdentity })
@@ -232,18 +244,21 @@ class ProgramDigestState {
           new ProgramDigestError({ code: "root", identity: rootIdentity })
         );
       }
-      this.#roots.add(rootIdentity);
+      MutableHashSet.add(this.#roots, rootIdentity);
     } else if (
-      !this.#paths.has(`${row.programKey}\0${row.appLocale}\0${row.parentPath}`)
+      !MutableHashSet.has(
+        this.#paths,
+        `${row.programKey}\0${row.appLocale}\0${row.parentPath}`
+      )
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "parent", identity: nodeIdentity })
       );
     }
     this.#lastCurriculumKey = orderKey;
-    this.#nodes.add(nodeIdentity);
-    this.#paths.add(pathIdentity);
-    this.#routes.add(routeIdentity);
+    MutableHashSet.add(this.#nodes, nodeIdentity);
+    MutableHashSet.add(this.#paths, pathIdentity);
+    MutableHashSet.add(this.#routes, routeIdentity);
     this.curriculumRowCount += 1;
     this.sitemapCount += row.sitemap ? 1 : 0;
     return this.#updateDigest(record);

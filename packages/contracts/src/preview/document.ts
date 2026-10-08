@@ -46,15 +46,13 @@ export const PagePreviewDocumentSchema = Schema.Struct({
 });
 export type PagePreviewDocument = typeof PagePreviewDocumentSchema.Type;
 
-interface QuestionPreviewDocumentInput {
+/** Checks one question body against its active placement and physical source. */
+function hasCoherentQuestionDocument(input: {
   readonly identity: QuestionBodyIdentity;
   readonly rendererDomain: typeof RendererDomainSchema.Type;
   readonly sourcePath: typeof CorpusSourcePathSchema.Type;
   readonly target: TryoutPreviewTarget;
-}
-
-/** Checks one question body against its active placement and physical source. */
-function hasCoherentQuestionDocument(input: QuestionPreviewDocumentInput) {
+}) {
   const { identity, target } = input;
   const contentKeysMatch =
     identity.bodyKind === "question"

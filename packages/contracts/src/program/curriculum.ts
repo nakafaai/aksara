@@ -9,6 +9,7 @@ import {
   ProgramNavigationLevelSchema,
 } from "#contracts/program/spec";
 import { MaterialKeySchema } from "#contracts/projection/material";
+import { encodeJsonText } from "#contracts/text/json";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 const CurriculumNamespaceMapSchema = Schema.Struct({
@@ -213,7 +214,7 @@ export type CurriculumRoute = typeof CurriculumRouteSchema.Type;
 
 /** Serializes one curriculum route in stable signed field order. */
 export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
-  return JSON.stringify({
+  return encodeJsonText({
     appLocale: route.appLocale,
     ...(route.canonicalPath === undefined
       ? {}

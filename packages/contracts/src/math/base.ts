@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { HashSet, MutableHashSet, Schema } from "effect";
 
 const KEY_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/u;
 
@@ -105,14 +105,14 @@ function duplicateKeyIndexes<T>(
   values: readonly T[],
   keyOf: (value: T) => string
 ) {
-  const seen = new Set<string>();
+  const seen = MutableHashSet.empty<string>();
   const duplicates: number[] = [];
   for (const [index, value] of values.entries()) {
     const key = keyOf(value);
-    if (seen.has(key)) {
+    if (MutableHashSet.has(seen, key)) {
       duplicates.push(index);
     } else {
-      seen.add(key);
+      MutableHashSet.add(seen, key);
     }
   }
   return duplicates;
@@ -123,7 +123,7 @@ export function mathVisualIdentityIssues(
   objects: readonly { readonly id: string }[],
   labels: readonly { readonly key: string; readonly objectId: string }[]
 ): readonly Schema.FilterIssue[] {
-  const objectIds = new Set(objects.map(({ id }) => id));
+  const objectIds = HashSet.fromIterable(objects.map(({ id }) => id));
   return [
     ...duplicateKeyIndexes(objects, ({ id }) => id).map((index) => ({
       issue: "Expected a unique mathematical object id.",
@@ -134,7 +134,7 @@ export function mathVisualIdentityIssues(
       path: ["labels", index, "key"],
     })),
     ...labels.flatMap((label, index) =>
-      objectIds.has(label.objectId)
+      HashSet.has(objectIds, label.objectId)
         ? []
         : [
             {

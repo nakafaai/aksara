@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type RendererComponents,
@@ -9,6 +9,7 @@ import {
   type RendererDomain,
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
 
 /** Stable format for the one current domain-scoped renderer manifest. */
@@ -75,10 +76,10 @@ function hasDistinctBaseComponents(manifest: {
   readonly base: RendererComponents;
   readonly domains: readonly RendererDomainCapability[];
 }) {
-  const baseNames = new Set(manifest.base);
+  const baseNames = HashSet.fromIterable(manifest.base);
   for (const domain of manifest.domains) {
     for (const name of domain.components) {
-      if (baseNames.has(name)) {
+      if (HashSet.has(baseNames, name)) {
         return false;
       }
     }
@@ -146,7 +147,7 @@ export function canonicalizeRendererManifestContract(input: {
   readonly domains: readonly RendererDomainCapability[];
   readonly publishedDomains: RendererPublishedDomains;
 }) {
-  return JSON.stringify([
+  return encodeJsonText([
     RENDERER_MANIFEST_FORMAT,
     input.base,
     sortRendererDomains(input.domains).map(({ name, components }) => ({

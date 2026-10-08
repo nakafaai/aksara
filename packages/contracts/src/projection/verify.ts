@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { compareContentHeads, routeIdentity } from "#contracts/content";
 import {
   PublicPathSchema,
@@ -59,15 +59,26 @@ export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestEr
   }
 ) {}
 
-interface ProjectionState {
-  readonly firstIndexByRoute: Map<string, number>;
+/** Creates the replay state that one stream of projections shares while it decodes. */
+function projectionState(): {
+  firstIndexByRoute: MutableHashMap.MutableHashMap<string, number>;
   previous: ContentProjection | undefined;
+} {
+  return {
+    firstIndexByRoute: MutableHashMap.empty<string, number>(),
+    previous: undefined,
+  };
 }
 
+type ProjectionState = ReturnType<typeof projectionState>;
+
+const VerifiedContentProjectionsSchema = Schema.Struct({
+  count: Schema.Finite,
+});
+
 /** Count authenticated without retaining complete projection bodies. */
-export interface VerifiedContentProjections {
-  readonly count: number;
-}
+export type VerifiedContentProjections =
+  typeof VerifiedContentProjectionsSchema.Type;
 
 /** Decodes one row and applies canonical order and route uniqueness rules. */
 const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
@@ -89,7 +100,9 @@ const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
     }
     const { appLocale, publicPath } = projection;
     const identity = routeIdentity({ appLocale, publicPath });
-    const firstIndex = state.firstIndexByRoute.get(identity);
+    const firstIndex = Option.getOrUndefined(
+      MutableHashMap.get(state.firstIndexByRoute, identity)
+    );
     if (firstIndex !== undefined) {
       return yield* new ProjectionRouteError({
         duplicateIndex: projectionIndex,
@@ -97,7 +110,7 @@ const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
         publicPath,
       });
     }
-    state.firstIndexByRoute.set(identity, projectionIndex);
+    MutableHashMap.set(state.firstIndexByRoute, identity, projectionIndex);
     return projection;
   }
 );
@@ -108,10 +121,7 @@ export function decodeContentProjections<E, R>(
 ) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ProjectionState = {
-        firstIndexByRoute: new Map(),
-        previous: undefined,
-      };
+      const state = projectionState();
       return projections.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, projectionIndex]) =>

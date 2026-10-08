@@ -149,13 +149,19 @@ describe("renderer compatibility", () => {
 });
 
 describe("pinned renderer compatibility", () => {
-  const frozenWire = JSON.parse(
+  const frozenWire = Schema.decodeSync(
+    Schema.fromJsonString(RendererManifestEnvelopeSchema)
+  )(
     '{"base": ["BlockMath", "InlineMath"], "domains": [{"components": [], "name": "ai-ds"}, {"components": [], "name": "biology"}, {"components": ["AtomShellLab"], "name": "chemistry"}, {"components": ["FunctionMachine"], "name": "mathematics"}, {"components": [], "name": "physics"}, {"components": [], "name": "politics"}, {"components": [], "name": "site"}, {"components": [], "name": "snbt-general"}, {"components": [], "name": "snbt-math"}, {"components": [], "name": "snbt-plain"}, {"components": [], "name": "snbt-quant"}, {"components": [], "name": "tka-math"}], "format": "nakafa-mdx-renderer", "hash": "sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577d", "publishedDomains": ["mathematics"]}'
   );
-  const liveWire = JSON.parse(
+  const liveWire = Schema.decodeSync(
+    Schema.fromJsonString(RendererManifestEnvelopeSchema)
+  )(
     '{"base": ["BlockMath", "InlineMath", "NumberLine"], "domains": [{"components": [], "name": "ai-ds"}, {"components": [], "name": "biology"}, {"components": ["AtomShellLab"], "name": "chemistry"}, {"components": ["FunctionMachine"], "name": "mathematics"}, {"components": [], "name": "physics"}, {"components": [], "name": "politics"}, {"components": [], "name": "site"}, {"components": [], "name": "snbt-general"}, {"components": [], "name": "snbt-math"}, {"components": [], "name": "snbt-plain"}, {"components": [], "name": "snbt-quant"}, {"components": [], "name": "tka-math"}], "format": "nakafa-mdx-renderer", "hash": "sha256:e5b36991ce4a1a3377606e01d3354a78bdae5ac404064176d5089d9a1fe45b8e", "publishedDomains": ["chemistry", "mathematics"]}'
   );
-  const missingWire = JSON.parse(
+  const missingWire = Schema.decodeSync(
+    Schema.fromJsonString(RendererManifestEnvelopeSchema)
+  )(
     '{"base": ["BlockMath", "NumberLine"], "domains": [{"components": [], "name": "ai-ds"}, {"components": [], "name": "biology"}, {"components": ["AtomShellLab"], "name": "chemistry"}, {"components": ["FunctionMachine"], "name": "mathematics"}, {"components": [], "name": "physics"}, {"components": [], "name": "politics"}, {"components": [], "name": "site"}, {"components": [], "name": "snbt-general"}, {"components": [], "name": "snbt-math"}, {"components": [], "name": "snbt-plain"}, {"components": [], "name": "snbt-quant"}, {"components": [], "name": "tka-math"}], "format": "nakafa-mdx-renderer", "hash": "sha256:b7f109b88bfeae42b33af97d9484ef5330a76e03d1a7574f133c58425f75455e", "publishedDomains": ["chemistry", "mathematics"]}'
   );
   const frozen = Schema.decodeSync(RendererManifestEnvelopeSchema)(frozenWire);

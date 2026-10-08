@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
   canonicalTryoutMarks,
@@ -59,7 +60,7 @@ describe("try-out shared contracts", () => {
     ];
     for (const [marks, canonical] of cases) {
       const decoded = Schema.decodeSync(TryoutMarksSchema)(marks);
-      expect(JSON.stringify(canonicalTryoutMarks(decoded))).toBe(canonical);
+      expect(encodeJsonText(canonicalTryoutMarks(decoded))).toBe(canonical);
     }
   });
 

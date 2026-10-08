@@ -3,6 +3,7 @@ import {
   canonicalQuestionResponse,
   canonicalQuestionResponseStructure,
 } from "#contracts/question/response";
+import { encodeJsonText } from "#contracts/text/json";
 import { canonicalAssessmentLanguagePolicy } from "#contracts/tryout/language";
 import type { TryoutPlacement } from "#contracts/tryout/placement";
 
@@ -10,7 +11,7 @@ import type { TryoutPlacement } from "#contracts/tryout/placement";
 export function canonicalizeAssessedLanguagePlacementFacts(
   row: TryoutPlacement
 ) {
-  return JSON.stringify({
+  return encodeJsonText({
     deliveryLanguage: row.deliveryLanguage,
     questionArtifactHash: row.questionArtifactHash,
     questionArtifactLocale: row.questionArtifactLocale,
@@ -21,7 +22,7 @@ export function canonicalizeAssessedLanguagePlacementFacts(
 
 /** Serializes placement facts that cannot vary with application locale. */
 export function canonicalizeLocaleNeutralPlacementFacts(row: TryoutPlacement) {
-  return JSON.stringify({
+  return encodeJsonText({
     answerContentKey: row.answerContentKey,
     ...(row.blueprint === undefined
       ? {}

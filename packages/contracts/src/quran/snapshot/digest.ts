@@ -20,6 +20,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "#contracts/quran/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 const RUNTIME_DOMAIN = "nakafa.aksara.quran-runtime";
 const SEARCH_DOMAIN = "nakafa.aksara.quran-search";
@@ -146,11 +147,11 @@ class QuranDigestState {
       : [];
     return payload.verses.every(
       (verse) =>
-        JSON.stringify(
+        encodeJsonText(
           verse.translations.map((translation) => translation.appLocale)
-        ) === JSON.stringify(this.#activeAppLocales) &&
-        JSON.stringify(verse.tafsir.map((tafsir) => tafsir.appLocale)) ===
-          JSON.stringify(expectedTafsir)
+        ) === encodeJsonText(this.#activeAppLocales) &&
+        encodeJsonText(verse.tafsir.map((tafsir) => tafsir.appLocale)) ===
+          encodeJsonText(expectedTafsir)
     );
   }
 

@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import {
   ACTIVE_APP_LOCALES,
@@ -44,13 +44,13 @@ export function questionArtifactLocaleForPolicy(
 export function questionArtifactLocalesForPolicy(
   policy: AssessmentLanguagePolicy
 ) {
-  return Object.freeze([
-    ...new Set(
+  return Object.freeze(
+    Arr.dedupe(
       ACTIVE_APP_LOCALES.map((appLocale) =>
         questionArtifactLocaleForPolicy(policy, appLocale)
       )
-    ),
-  ]);
+    )
+  );
 }
 
 /** Returns policy facts in stable field order for signed canonicalizers. */

@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Effect, Exit, Record as Rec, Schema } from "effect";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -173,7 +173,7 @@ describe("Quran provenance", () => {
         }),
       ]);
 
-      expect(Object.keys(reordered)[0]).toBe("status");
+      expect(Rec.keys(reordered)[0]).toBe("status");
       expect(canonicalizeQuranProvenance(reordered)).toBe(
         canonicalizeQuranProvenance(canonical)
       );

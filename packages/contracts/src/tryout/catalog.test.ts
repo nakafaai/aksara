@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Order, Schema } from "effect";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
   TryoutCatalogNodeIdentitySchema,
@@ -26,8 +26,8 @@ describe("try-out catalog contract", () => {
       (row) => Schema.decodeSync(TryoutCatalogRowSchema)(row).kind
     );
 
-    expect(new Set(kinds)).toEqual(
-      new Set(["country", "exam", "track", "set", "section"])
+    expect(Arr.sort(Arr.dedupe(kinds), Order.String)).toEqual(
+      Arr.sort(["country", "exam", "track", "set", "section"], Order.String)
     );
   });
 

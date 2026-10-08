@@ -62,9 +62,11 @@ describe("curriculum route contract", () => {
   it("decodes and canonicalizes a real localized route", () => {
     const route = Schema.decodeSync(CurriculumRouteSchema)(merdekaRoute);
 
-    expect(JSON.parse(canonicalizeCurriculumRoute(route))).toEqual(
-      merdekaRoute
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(CurriculumRouteSchema))(
+        canonicalizeCurriculumRoute(route)
+      )
+    ).toEqual(merdekaRoute);
   });
 
   it("accepts complete material ownership and optional card metadata", () => {
@@ -89,7 +91,11 @@ describe("curriculum route contract", () => {
       title: "Linear Equations and Inequalities",
     });
 
-    expect(JSON.parse(canonicalizeCurriculumRoute(route))).toMatchObject({
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(CurriculumRouteSchema))(
+        canonicalizeCurriculumRoute(route)
+      )
+    ).toMatchObject({
       canonicalPath: "subjects/mathematics/linear-equation-inequality",
       materialContextNodeKey: "class-10-mathematics-algebra",
       materialKey: "lesson.mathematics.linear-equation-inequality",

@@ -26,18 +26,16 @@ export const QuestionRubricLabelSchema = Schema.Record(
 );
 export type QuestionRubricLabel = typeof QuestionRubricLabelSchema.Type;
 
-/** Scale facts shared by authored, frozen, and label-free rubric criteria. */
-interface RubricCriterionScale {
-  readonly finalAnswer?: QuestionAnswerKey;
-  readonly levels: readonly { readonly points: number }[];
-}
-
 /**
  * Checks one criterion scale: two or more levels whose points strictly
  * ascend. A final-answer criterion has exactly two levels and its lower level
- * is worth zero, because a wrong result earns nothing.
+ * is worth zero, because a wrong result earns nothing. The criterion holds the
+ * scale facts shared by authored, frozen, and label-free rubric criteria.
  */
-function hasOrderedScale(criterion: RubricCriterionScale) {
+function hasOrderedScale(criterion: {
+  readonly finalAnswer?: QuestionAnswerKey;
+  readonly levels: readonly { readonly points: number }[];
+}) {
   let previous = -1;
   for (const { points } of criterion.levels) {
     if (points <= previous) {

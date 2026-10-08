@@ -27,41 +27,42 @@ import {
   goldenRubricStructure,
   rubric,
 } from "#contracts/test/rubric";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("question response golden canonical bytes", () => {
   it("pins the canonical bytes of every response kind with labels", () => {
-    expect(JSON.stringify(canonicalQuestionResponse(responseSingle))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(responseSingle))).toBe(
       responseBytes.single
     );
-    expect(JSON.stringify(canonicalQuestionResponse(responseMultiple))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(responseMultiple))).toBe(
       responseBytes.multiple
     );
-    expect(JSON.stringify(canonicalQuestionResponse(responseCategory))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(responseCategory))).toBe(
       responseBytes.category
     );
-    expect(JSON.stringify(canonicalQuestionResponse(responseShort))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(responseShort))).toBe(
       responseBytes.short
     );
-    expect(JSON.stringify(canonicalQuestionResponse(goldenRubricFrozen))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(goldenRubricFrozen))).toBe(
       goldenRubricCanonical
     );
   });
 
   it("pins the structure bytes that omit labels and accepted text", () => {
     expect(
-      JSON.stringify(canonicalQuestionResponseStructure(responseSingle))
+      encodeJsonText(canonicalQuestionResponseStructure(responseSingle))
     ).toBe(responseStructureBytes.single);
     expect(
-      JSON.stringify(canonicalQuestionResponseStructure(responseMultiple))
+      encodeJsonText(canonicalQuestionResponseStructure(responseMultiple))
     ).toBe(responseStructureBytes.multiple);
     expect(
-      JSON.stringify(canonicalQuestionResponseStructure(responseCategory))
+      encodeJsonText(canonicalQuestionResponseStructure(responseCategory))
     ).toBe(responseStructureBytes.category);
     expect(
-      JSON.stringify(canonicalQuestionResponseStructure(responseShort))
+      encodeJsonText(canonicalQuestionResponseStructure(responseShort))
     ).toBe(responseStructureBytes.short);
     expect(
-      JSON.stringify(canonicalQuestionResponseStructure(goldenRubricFrozen))
+      encodeJsonText(canonicalQuestionResponseStructure(goldenRubricFrozen))
     ).toBe(goldenRubricStructure);
   });
 });
@@ -235,7 +236,7 @@ describe("question response", () => {
       kind: "short-answer",
     });
 
-    expect(JSON.stringify(canonicalQuestionResponse(number))).toBe(
+    expect(encodeJsonText(canonicalQuestionResponse(number))).toBe(
       '{"key":{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"absolute","value":"0.01"},"value":"1.25"},"kind":"short-answer"}'
     );
     expect(canonicalQuestionResponseStructure(number)).toEqual(

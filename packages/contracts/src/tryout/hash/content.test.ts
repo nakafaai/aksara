@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Exit, HashSet, Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { rubric as rubricResponse } from "#contracts/test/rubric";
@@ -146,7 +146,11 @@ describe("try-out content hash", () => {
       '"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"}'
     );
     expect(
-      new Set([source, shortAnswer, rubric].map(hashTryoutContent)).size
+      HashSet.size(
+        HashSet.fromIterable(
+          [source, shortAnswer, rubric].map(hashTryoutContent)
+        )
+      )
     ).toBe(3);
   });
 

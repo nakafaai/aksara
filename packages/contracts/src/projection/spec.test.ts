@@ -119,14 +119,26 @@ describe("content projection", () => {
   });
 
   it("dispatches canonicalization and family selection exhaustively", () => {
-    expect(JSON.parse(canonicalizeContentProjection(article))).toEqual(article);
-    expect(JSON.parse(canonicalizeContentProjection(material))).toEqual(
-      material
-    );
-    expect(JSON.parse(canonicalizeContentProjection(page))).toEqual(page);
-    expect(JSON.parse(canonicalizeContentProjection(question))).toEqual(
-      question
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(article)
+      )
+    ).toEqual(article);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(material)
+      )
+    ).toEqual(material);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(page)
+      )
+    ).toEqual(page);
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
+        canonicalizeContentProjection(question)
+      )
+    ).toEqual(question);
     expect(familyForProjection(article)).toBe("article");
     expect(familyForProjection(material)).toBe("material");
     expect(familyForProjection(page)).toBe("page");
@@ -159,10 +171,10 @@ describe("pinned material optional metadata through the dispatcher", () => {
   it("pins canonical text with every optional material field present", () => {
     expect(
       canonicalizeContentProjection(
-        Schema.decodeSync(MaterialLessonProjectionSchema)(
-          JSON.parse(
-            '{"appLocale": "id", "artifactLocale": "id", "contentKey": "materi:pecahan-dasar:bilangan", "graph": {"alignmentId": "alignment:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "assetId": "asset:id:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "conceptId": "concept:material:lesson:matematika:pecahan-dasar", "learningObjectId": "lo:material-section:matematika:pecahan-dasar:bilangan-bulat", "lensId": "lens:material:lesson:matematika"}, "kind": "subject-lesson", "materialKey": "lesson.matematika.pecahan-dasar", "order": 2, "parentPath": "materi/sains/pecahan-dasar", "publicPath": "materi/sains/pecahan-dasar/bilangan", "sectionKey": "bilangan-bulat", "sitemap": true, "topicTitle": "Pecahan Dasar Ñandú", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-02-01", "datePublished": "2026-01-31", "description": "Bilangan bulat dan pecahan 😀", "searchTitle": "Bilangan Bulat Ñandú", "subject": "Matematika", "title": "Bilangan Bulat"}}'
-          )
+        Schema.decodeSync(
+          Schema.fromJsonString(MaterialLessonProjectionSchema)
+        )(
+          '{"appLocale": "id", "artifactLocale": "id", "contentKey": "materi:pecahan-dasar:bilangan", "graph": {"alignmentId": "alignment:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "assetId": "asset:id:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "conceptId": "concept:material:lesson:matematika:pecahan-dasar", "learningObjectId": "lo:material-section:matematika:pecahan-dasar:bilangan-bulat", "lensId": "lens:material:lesson:matematika"}, "kind": "subject-lesson", "materialKey": "lesson.matematika.pecahan-dasar", "order": 2, "parentPath": "materi/sains/pecahan-dasar", "publicPath": "materi/sains/pecahan-dasar/bilangan", "sectionKey": "bilangan-bulat", "sitemap": true, "topicTitle": "Pecahan Dasar Ñandú", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-02-01", "datePublished": "2026-01-31", "description": "Bilangan bulat dan pecahan 😀", "searchTitle": "Bilangan Bulat Ñandú", "subject": "Matematika", "title": "Bilangan Bulat"}}'
         )
       )
     ).toBe(

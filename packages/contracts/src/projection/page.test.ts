@@ -48,9 +48,11 @@ describe("public page projection", () => {
       sitemap: true,
       sourcePath,
     });
-    expect(JSON.parse(canonicalizePublicPageProjection(projection))).toEqual(
-      projection
-    );
+    expect(
+      Schema.decodeSync(Schema.fromJsonString(PublicPageProjectionSchema))(
+        canonicalizePublicPageProjection(projection)
+      )
+    ).toEqual(projection);
     expect(canonicalizePublicPageProjection(projection)).toContain(
       '"metadata":{"dateModified":"2026-08-21","datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"}'
     );

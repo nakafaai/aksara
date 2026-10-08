@@ -1,6 +1,7 @@
 import { Effect, Schema } from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
 export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
@@ -26,7 +27,7 @@ function localeSetIdentity(
   locales: ReadonlySet<AppLocale>,
   activeAppLocales: ActiveAppLocaleList
 ) {
-  return JSON.stringify(
+  return encodeJsonText(
     activeAppLocales.filter((locale) => locales.has(locale))
   );
 }
@@ -43,7 +44,7 @@ export function addLocale(
       new TryoutClosureError({
         actual: appLocale,
         code: "inactive-locale",
-        expected: JSON.stringify(activeAppLocales),
+        expected: encodeJsonText(activeAppLocales),
         identity,
       })
     );
@@ -74,7 +75,7 @@ export function validateLocales(
       new TryoutClosureError({
         actual: "[]",
         code: "missing-locale",
-        expected: JSON.stringify(activeAppLocales),
+        expected: encodeJsonText(activeAppLocales),
         identity: "empty",
       })
     );
@@ -83,7 +84,7 @@ export function validateLocales(
     localesByIdentity,
     ([identity, locales]) => {
       const actual = localeSetIdentity(locales, activeAppLocales);
-      const expected = JSON.stringify(activeAppLocales);
+      const expected = encodeJsonText(activeAppLocales);
       if (actual === expected) {
         return Effect.void;
       }

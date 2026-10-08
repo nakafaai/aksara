@@ -1,31 +1,43 @@
-import { BigDecimal, Array as EffectArray } from "effect";
+import {
+  BigDecimal,
+  Array as EffectArray,
+  MutableHashSet,
+  Schema,
+} from "effect";
 
 import {
   compareRatios,
   type ExactRatio,
+  ExactRatioSchema,
   makeRatio,
 } from "#contracts/math/rational";
 
 /** One exact rational coordinate participating in a proximity comparison. */
-export interface ExactProximityEntry {
-  readonly error?: BigDecimal.BigDecimal;
-  readonly value: ExactRatio;
-}
+const ExactProximityEntrySchema = Schema.Struct({
+  error: Schema.optionalKey(Schema.BigDecimal),
+  value: ExactRatioSchema,
+});
+export type ExactProximityEntry = typeof ExactProximityEntrySchema.Type;
 
-interface ExactInterval {
-  readonly lower: ExactRatio;
-  readonly upper: ExactRatio;
-}
+const ExactIntervalSchema = Schema.Struct({
+  lower: ExactRatioSchema,
+  upper: ExactRatioSchema,
+});
+type ExactInterval = typeof ExactIntervalSchema.Type;
 
-interface RankedRatios {
-  readonly ranks: readonly number[];
-  readonly values: readonly ExactRatio[];
-}
+const RankedRatiosSchema = Schema.Struct({
+  ranks: Schema.Array(Schema.Finite),
+  values: Schema.Array(ExactRatioSchema),
+});
+type RankedRatios = typeof RankedRatiosSchema.Type;
 
-interface RatioTree {
-  readonly base: number;
-  readonly values: (ExactRatio | undefined)[];
-}
+const RatioTreeSchema = Schema.Struct({
+  base: Schema.Finite,
+  values: Schema.mutableKey(
+    Schema.mutable(Schema.Array(Schema.UndefinedOr(ExactRatioSchema)))
+  ),
+});
+type RatioTree = typeof RatioTreeSchema.Type;
 
 type RatioSelector = (
   left: ExactRatio | undefined,
@@ -191,7 +203,7 @@ export function unresolvedProximityIndexes(
   const upper = rankRatios(intervals.map((entry) => entry.upper));
   const leftTree = makeTree(upper.values.length);
   const rightTree = makeTree(lower.values.length);
-  const unresolved = new Set<number>();
+  const unresolved = MutableHashSet.empty<number>();
   for (const [sourceIndex, interval] of intervals.entries()) {
     const leftEnd = firstRank(upper.values, interval.lower, false);
     const closestLeft = queryTree(leftTree, 0, leftEnd, greaterRatio);
@@ -210,7 +222,7 @@ export function unresolvedProximityIndexes(
       (closestRight !== undefined &&
         compareRatios(closestRight, rightThreshold) < 0)
     ) {
-      unresolved.add(sourceIndex);
+      MutableHashSet.add(unresolved, sourceIndex);
     }
     updateTree(
       leftTree,

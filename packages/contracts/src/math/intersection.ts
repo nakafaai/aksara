@@ -1,25 +1,31 @@
-import { type AxisRange, axisContains } from "#contracts/math/extent";
+import { Schema } from "effect";
+
+import { MathAxisRangeSchema } from "#contracts/math/base";
+import { axisContains } from "#contracts/math/extent";
 import {
   compareRatios,
   differenceRatio,
   type ExactRatio,
+  ExactRatioSchema,
   numberRatio,
 } from "#contracts/math/rational";
 
 /** One Cartesian slab traversed by the same parametric path. */
-export interface AxisTraversal {
-  readonly range: AxisRange;
-  readonly start: number;
-  readonly through: number;
-}
+export const AxisTraversalSchema = Schema.Struct({
+  range: MathAxisRangeSchema,
+  start: Schema.Finite,
+  through: Schema.Finite,
+});
+export type AxisTraversal = typeof AxisTraversalSchema.Type;
 
 type InfinitePathKind = "line" | "ray";
 
 /** Exact finite sides of one clipped infinite path parameter interval. */
-export interface InfinitePathInterval {
-  readonly entry: ExactRatio | undefined;
-  readonly exit: ExactRatio | undefined;
-}
+const InfinitePathIntervalSchema = Schema.Struct({
+  entry: Schema.UndefinedOr(ExactRatioSchema),
+  exit: Schema.UndefinedOr(ExactRatioSchema),
+});
+export type InfinitePathInterval = typeof InfinitePathIntervalSchema.Type;
 
 /** Keeps the greater finite side of one lower parameter boundary. */
 function later(

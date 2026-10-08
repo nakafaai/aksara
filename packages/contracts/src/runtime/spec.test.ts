@@ -16,6 +16,7 @@ import {
   found,
   request,
 } from "#contracts/test/runtime/public";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("content runtime contract", () => {
   it.effect("decodes the exact bounded route request", () =>
@@ -40,7 +41,7 @@ describe("content runtime contract", () => {
 
   it.effect("accepts found, missing, and sanitized failure responses", () =>
     Effect.gen(function* () {
-      expect(Buffer.byteLength(JSON.stringify(found), "utf8")).toBeLessThan(
+      expect(Buffer.byteLength(encodeJsonText(found), "utf8")).toBeLessThan(
         MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
       );
       for (const response of [

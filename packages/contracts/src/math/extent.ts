@@ -1,11 +1,11 @@
-import { BigDecimal } from "effect";
+import { BigDecimal, Schema } from "effect";
 
 import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
 import {
   decimal,
   decimalRatio,
-  type ExactRatio,
+  ExactRatioSchema,
   makeRatio,
   numberRatio,
   ratioInRange,
@@ -57,11 +57,12 @@ function arcContainsAngle(start: number, sweep: number, angle: number) {
     : normalizeDegrees(start - angle) <= -sweep;
 }
 
-export interface RadialOffset {
-  readonly error: BigDecimal.BigDecimal;
-  readonly x: BigDecimal.BigDecimal;
-  readonly y: BigDecimal.BigDecimal;
-}
+const RadialOffsetSchema = Schema.Struct({
+  error: Schema.BigDecimal,
+  x: Schema.BigDecimal,
+  y: Schema.BigDecimal,
+});
+export type RadialOffset = typeof RadialOffsetSchema.Type;
 
 /** Resolves exact cardinals or a trig offset with its renderer error envelope. */
 function arcOffset(radius: number, angle: number): RadialOffset {
@@ -159,10 +160,11 @@ function quadraticValue(
 }
 
 /** One exact input and output pair at a quadratic domain extremum. */
-export interface QuadraticExtremum {
-  readonly input: ExactRatio;
-  readonly output: ExactRatio;
-}
+const QuadraticExtremumSchema = Schema.Struct({
+  input: ExactRatioSchema,
+  output: ExactRatioSchema,
+});
+export type QuadraticExtremum = typeof QuadraticExtremumSchema.Type;
 
 /** Returns both domain endpoints and the in-domain vertex of one quadratic. */
 export function quadraticExtrema(
@@ -211,12 +213,13 @@ export function quadraticContained(
   );
 }
 
-export interface CuboidExtent {
-  readonly axis: "x" | "y" | "z";
-  readonly center: number;
-  readonly dimension: "height" | "length" | "width";
-  readonly extent: BigDecimal.BigDecimal;
-}
+const CuboidExtentSchema = Schema.Struct({
+  axis: Schema.Literals(["x", "y", "z"]),
+  center: Schema.Finite,
+  dimension: Schema.Literals(["height", "length", "width"]),
+  extent: Schema.BigDecimal,
+});
+export type CuboidExtent = typeof CuboidExtentSchema.Type;
 
 /** Returns the exact positive half-extent on every cuboid axis. */
 export function cuboidExtents(

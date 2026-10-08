@@ -9,6 +9,7 @@ import {
   type QuranSnapshotFacts,
   QuranSnapshotSchema,
 } from "#contracts/quran/snapshot/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-quran-snapshot";
 
@@ -20,7 +21,7 @@ export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHash
 
 /** Serializes Quran snapshot facts in stable signed field order. */
 export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
-  return JSON.stringify({
+  return encodeJsonText({
     activeAppLocales: input.activeAppLocales,
     attributionCount: input.attributionCount,
     chunkCount: input.chunkCount,

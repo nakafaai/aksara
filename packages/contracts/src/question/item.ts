@@ -1,4 +1,4 @@
-import { Effect, Schema, Struct } from "effect";
+import { Effect, Record as Rec, Schema, Struct } from "effect";
 
 import {
   AppLocaleCodeSchema,
@@ -17,6 +17,7 @@ import {
   freezeQuestionRubric,
   QuestionRubricResponseSourceSchema,
 } from "#contracts/question/rubric";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 const PositiveOrderSchema = Schema.Int.pipe(
@@ -194,20 +195,18 @@ function freezeQuestionResponse(
 
 /** Serializes response shape and answer key for locale comparison. */
 function responseStructure(response: QuestionResponseSource) {
-  return JSON.stringify(
+  return encodeJsonText(
     canonicalQuestionResponseStructure(freezeQuestionResponse(response))
   );
 }
 
 /** Requires locale siblings to preserve one response format and answer key. */
 function hasCoherentLocalizedResponses(input: {
-  readonly responses: {
-    readonly de?: QuestionResponseSource | undefined;
-    readonly en?: QuestionResponseSource | undefined;
-    readonly id?: QuestionResponseSource | undefined;
-  };
+  readonly responses: Readonly<
+    Record<string, QuestionResponseSource | undefined>
+  >;
 }) {
-  const responses = Object.values(input.responses).filter(
+  const responses = Rec.values(input.responses).filter(
     (response) => response !== undefined
   );
   const [first] = responses;
@@ -222,17 +221,13 @@ function hasCoherentLocalizedResponses(input: {
 /** Requires a rubric item to take its worth from the rubric total alone. */
 function hasCoherentPoints(input: {
   readonly points?: number;
-  readonly responses: {
-    readonly de?: QuestionResponseSource | undefined;
-    readonly en?: QuestionResponseSource | undefined;
-    readonly id?: QuestionResponseSource | undefined;
-  };
+  readonly responses: Readonly<
+    Record<string, QuestionResponseSource | undefined>
+  >;
 }) {
   return (
     input.points === undefined ||
-    Object.values(input.responses).every(
-      (response) => response?.kind !== "rubric"
-    )
+    Rec.values(input.responses).every((response) => response?.kind !== "rubric")
   );
 }
 

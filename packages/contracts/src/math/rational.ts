@@ -1,10 +1,11 @@
-import { BigDecimal } from "effect";
+import { BigDecimal, Schema } from "effect";
 
 /** Exact quotient whose denominator is normalized to a positive value. */
-export interface ExactRatio {
-  readonly denominator: BigDecimal.BigDecimal;
-  readonly numerator: BigDecimal.BigDecimal;
-}
+export const ExactRatioSchema = Schema.Struct({
+  denominator: Schema.BigDecimal,
+  numerator: Schema.BigDecimal,
+});
+export type ExactRatio = typeof ExactRatioSchema.Type;
 
 const unit = BigDecimal.fromBigInt(1n);
 

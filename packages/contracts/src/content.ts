@@ -1,7 +1,6 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
 import {
-  type ContentKey,
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
@@ -9,14 +8,11 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import {
-  type AppLocale,
-  type ArtifactLocale,
-  ArtifactLocaleSchema,
-} from "#contracts/locale";
+import { type AppLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import { RendererComponentsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
 
 /** Published content families backed by real Aksara source registries. */
@@ -32,11 +28,13 @@ export type ContentFamily = typeof ContentFamilySchema.Type;
 export const ContentAuthorSchema = Schema.Struct({ name: Schema.String });
 export type ContentAuthor = typeof ContentAuthorSchema.Type;
 
+const ContentHeadIdentitySchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+});
+
 /** Stable language-specific identity shared by artifacts and content heads. */
-export interface ContentHeadIdentity {
-  readonly artifactLocale: ArtifactLocale;
-  readonly contentKey: ContentKey;
-}
+export type ContentHeadIdentity = typeof ContentHeadIdentitySchema.Type;
 
 /** Builds the unambiguous key used for one language-specific content head. */
 export function headIdentity(input: ContentHeadIdentity) {
@@ -122,7 +120,7 @@ const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact";
 export function canonicalizeCompiledContentPayload(
   payload: CompiledContentPayload
 ) {
-  return JSON.stringify({
+  return encodeJsonText({
     artifactLocale: payload.artifactLocale,
     byteLength: payload.byteLength,
     compiledCode: payload.compiledCode,
@@ -151,7 +149,7 @@ export function canonicalizeContentArtifactSigningInput(
 export function canonicalizeSignedContentArtifact(
   artifact: SignedContentArtifact
 ) {
-  return `{"artifactHash":${JSON.stringify(artifact.artifactHash)},"keyId":${JSON.stringify(artifact.keyId)},"payload":${canonicalizeCompiledContentPayload(artifact.payload)},"signature":${JSON.stringify(artifact.signature)}}`;
+  return `{"artifactHash":${encodeJsonText(artifact.artifactHash)},"keyId":${encodeJsonText(artifact.keyId)},"payload":${canonicalizeCompiledContentPayload(artifact.payload)},"signature":${encodeJsonText(artifact.signature)}}`;
 }
 
 /** Decodes unknown compiler input without throwing parser exceptions. */

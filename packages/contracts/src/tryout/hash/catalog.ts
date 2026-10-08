@@ -1,6 +1,7 @@
 import { Effect, type Stream } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
+import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
@@ -75,14 +76,14 @@ export function canonicalizeTryoutCatalogFacts(row: TryoutCatalogRow) {
     sourceRevision: row.sourceRevision,
   };
   if (row.kind === "country") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...shared,
       countryCode: row.countryCode,
       countryKey: row.countryKey,
     });
   }
   if (row.kind === "exam") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...shared,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -90,7 +91,7 @@ export function canonicalizeTryoutCatalogFacts(row: TryoutCatalogRow) {
     });
   }
   if (row.kind === "track") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...shared,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -103,7 +104,7 @@ export function canonicalizeTryoutCatalogFacts(row: TryoutCatalogRow) {
     });
   }
   if (row.kind === "set") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...shared,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -116,7 +117,7 @@ export function canonicalizeTryoutCatalogFacts(row: TryoutCatalogRow) {
       visibleSectionCount: row.visibleSectionCount,
     });
   }
-  return JSON.stringify({
+  return encodeJsonText({
     ...shared,
     countryKey: row.countryKey,
     examKey: row.examKey,
@@ -143,7 +144,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
     title: row.title,
   };
   if (row.kind === "country") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...localized,
       countryCode: row.countryCode,
       countryKey: row.countryKey,
@@ -153,7 +154,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
     });
   }
   if (row.kind === "exam") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...localized,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -164,7 +165,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
     });
   }
   if (row.kind === "track") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...localized,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -180,7 +181,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
     });
   }
   if (row.kind === "set") {
-    return JSON.stringify({
+    return encodeJsonText({
       ...localized,
       countryKey: row.countryKey,
       examKey: row.examKey,
@@ -196,7 +197,7 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
       visibleSectionCount: row.visibleSectionCount,
     });
   }
-  return JSON.stringify({
+  return encodeJsonText({
     ...localized,
     countryKey: row.countryKey,
     examKey: row.examKey,

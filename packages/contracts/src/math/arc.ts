@@ -1,4 +1,4 @@
-import { BigDecimal } from "effect";
+import { BigDecimal, Schema } from "effect";
 
 import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import { decimal } from "#contracts/math/rational";
@@ -14,10 +14,11 @@ const SEVEN_TWENTY = BigDecimal.fromBigInt(720n);
 const TRIGONOMETRIC_ERROR = decimal(GEOMETRY_TOLERANCE);
 const MINIMUM_ERROR = decimal(Number.MIN_VALUE);
 
-interface BoundedDecimal {
-  readonly error: BigDecimal.BigDecimal;
-  readonly value: BigDecimal.BigDecimal;
-}
+const BoundedDecimalSchema = Schema.Struct({
+  error: Schema.BigDecimal,
+  value: Schema.BigDecimal,
+});
+type BoundedDecimal = typeof BoundedDecimalSchema.Type;
 
 /** Bounds a sine estimate for an angle that may fall below Number.MIN_VALUE. */
 function stableSine(

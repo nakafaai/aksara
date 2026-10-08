@@ -1,9 +1,9 @@
-import type { BigDecimal } from "effect";
+import { type BigDecimal, Schema } from "effect";
 
 import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
 import {
-  type AxisTraversal,
+  AxisTraversalSchema,
   infinitePathInterval,
 } from "#contracts/math/intersection";
 import type { PlaneMathFrame } from "#contracts/math/plane";
@@ -14,27 +14,34 @@ import {
 import {
   affineRatio,
   type ExactRatio,
+  ExactRatioSchema,
   numberRatio,
 } from "#contracts/math/rational";
 import type { SpaceMathFrame } from "#contracts/math/space";
 
 export type SceneAxis = "x" | "y" | "z";
-export type ScenePath = Array<number | string>;
+export const ScenePathSchema = Schema.mutable(
+  Schema.Array(Schema.Union([Schema.Finite, Schema.String]))
+);
+export type ScenePath = typeof ScenePathSchema.Type;
 
 /** One ordered exact coordinate projected from a complete visual scene. */
-export interface SceneCoordinate {
-  readonly axis: SceneAxis;
-  readonly error?: BigDecimal.BigDecimal;
-  readonly path: ScenePath;
-  readonly reportable: boolean;
-  readonly value: ExactRatio;
-}
+const SceneCoordinateSchema = Schema.Struct({
+  axis: Schema.Literals(["x", "y", "z"]),
+  error: Schema.optionalKey(Schema.BigDecimal),
+  path: ScenePathSchema,
+  reportable: Schema.Boolean,
+  value: ExactRatioSchema,
+});
+export type SceneCoordinate = typeof SceneCoordinateSchema.Type;
 
 export type SceneFrame = PlaneMathFrame | SpaceMathFrame;
 
-interface SceneAxisTraversal extends AxisTraversal {
-  readonly axis: SceneAxis;
-}
+const SceneAxisTraversalSchema = Schema.Struct({
+  ...AxisTraversalSchema.fields,
+  axis: Schema.Literals(["x", "y", "z"]),
+});
+type SceneAxisTraversal = typeof SceneAxisTraversalSchema.Type;
 
 /** Creates one reportable exact scene coordinate. */
 export function sceneCoordinate(

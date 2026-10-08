@@ -163,9 +163,11 @@ describe("program snapshot hashing", () => {
     Effect.gen(function* () {
       const first = yield* makeProgramSnapshot(facts);
       const second = yield* makeProgramSnapshot(facts);
-      expect(JSON.parse(canonicalizeProgramSnapshot(facts))).toMatchObject(
-        facts
-      );
+      expect(
+        yield* Schema.decodeEffect(
+          Schema.fromJsonString(ProgramSnapshotFactsSchema)
+        )(canonicalizeProgramSnapshot(facts))
+      ).toMatchObject(facts);
       expect(first.snapshotId).toBe(second.snapshotId);
       expect(yield* verifyProgramSnapshotHash(first)).toBe(first.snapshotId);
     })

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 
 import { ContentKeySchema } from "#contracts/ids";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
@@ -58,8 +58,14 @@ describe("try-out placement identity", () => {
     const [first] = sorted;
 
     expect(first).toBeDefined();
-    expect(new Set(sorted.map(tryoutPlacementIdentity)).size).toBe(3);
-    expect(new Set(sorted.map(tryoutPlacementLogicalIdentity)).size).toBe(1);
+    expect(
+      HashSet.size(HashSet.fromIterable(sorted.map(tryoutPlacementIdentity)))
+    ).toBe(3);
+    expect(
+      HashSet.size(
+        HashSet.fromIterable(sorted.map(tryoutPlacementLogicalIdentity))
+      )
+    ).toBe(1);
     if (first !== undefined) {
       expect(compareTryoutPlacements(first, first)).toBe(0);
     }

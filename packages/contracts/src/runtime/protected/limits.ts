@@ -1,3 +1,5 @@
+import { encodeJsonText } from "#contracts/text/json";
+
 /** Maximum protected selectors accepted in one retained-snapshot read. */
 export const MAX_PROTECTED_RUNTIME_SELECTORS = 64;
 
@@ -9,7 +11,7 @@ export const MAX_PROTECTED_RUNTIME_RESPONSE_BYTES = 4 * 1024 * 1024;
 
 /** Measures the exact JSON bytes written by the protected HTTP response. */
 export function protectedRuntimeResponseBytes(response: object) {
-  return new TextEncoder().encode(JSON.stringify(response)).byteLength;
+  return new TextEncoder().encode(encodeJsonText(response)).byteLength;
 }
 
 /** Keeps every found result inside the protected response wire ceiling. */

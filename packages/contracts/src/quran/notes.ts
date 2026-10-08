@@ -49,21 +49,22 @@ export class QuranTranslationNotesError extends Schema.TaggedError<QuranTranslat
   }
 ) {}
 
-interface Marker {
-  readonly end: number;
-  readonly number: number;
-  readonly start: number;
-}
+const MarkerSchema = Schema.Struct({
+  end: Schema.Finite,
+  number: Schema.Finite,
+  start: Schema.Finite,
+});
+type Marker = typeof MarkerSchema.Type;
 
-type TranslationAnalysis =
-  | {
-      readonly _tag: "Failure";
-      readonly reason: QuranTranslationNotesError["reason"];
-    }
-  | {
-      readonly _tag: "Success";
-      readonly document: QuranTranslationDocument;
-    };
+const TranslationAnalysisSchema = Schema.Union([
+  Schema.TaggedStruct("Failure", {
+    reason: QuranTranslationNotesError.fields.reason,
+  }),
+  Schema.TaggedStruct("Success", {
+    document: QuranTranslationDocumentSchema,
+  }),
+]);
+type TranslationAnalysis = typeof TranslationAnalysisSchema.Type;
 
 const QuranTranslationSourceSchema = Schema.Struct({
   footnotes: Schema.String,

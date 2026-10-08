@@ -8,6 +8,7 @@ import {
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
+import { encodeJsonText } from "#contracts/text/json";
 import { isLowerKebab } from "#contracts/text/syntax";
 
 /** Stable source-owned category segment used below the article route family. */
@@ -217,7 +218,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
       : { description: projection.metadata.description }),
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJsonText({
     appLocale: projection.appLocale,
     articleRouteSlug: projection.articleRouteSlug,
     articleSlug: projection.articleSlug,

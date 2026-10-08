@@ -1,25 +1,26 @@
 import { Effect, Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
 import { withPublicationDates } from "#contracts/date";
-import type { ContentKeySchema } from "#contracts/ids";
-import type { ArtifactLocaleSchema } from "#contracts/locale";
+import { ContentKeySchema } from "#contracts/ids";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import {
   QuestionAnswerIdentitySchema,
-  type QuestionBodyKind,
-  type QuestionKey,
+  QuestionBodyKindSchema,
+  QuestionKeySchema,
   QuestionPromptIdentitySchema,
-  type QuestionSetKey,
+  QuestionSetKeySchema,
 } from "#contracts/question/identity";
 import {
   canonicalQuestionBlueprint,
   QuestionBlueprintSchema,
-  type QuestionItem,
+  QuestionItemSchema,
   questionResponseFor,
 } from "#contracts/question/item";
 import {
   canonicalQuestionResponse,
   QuestionResponseSchema,
 } from "#contracts/question/response";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutKeySchema } from "#contracts/tryout/key";
 
 /** Exact metadata authored by every current question and answer body. */
@@ -65,17 +66,18 @@ export const QuestionBodyProjectionSchema = Schema.Union([
 ]);
 export type QuestionBodyProjection = typeof QuestionBodyProjectionSchema.Type;
 
-interface QuestionProjectionInput {
-  readonly artifactLocale: typeof ArtifactLocaleSchema.Type;
-  readonly bodyKind: QuestionBodyKind;
-  readonly contentKey: typeof ContentKeySchema.Type;
-  readonly item: QuestionItem;
-  readonly metadata: QuestionMetadata;
-  readonly peerContentKey: typeof ContentKeySchema.Type;
-  readonly questionKey: QuestionKey;
-  readonly questionNumber: number;
-  readonly setKey: QuestionSetKey;
-}
+const QuestionProjectionInputSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  bodyKind: QuestionBodyKindSchema,
+  contentKey: ContentKeySchema,
+  item: QuestionItemSchema,
+  metadata: QuestionMetadataSchema,
+  peerContentKey: ContentKeySchema,
+  questionKey: QuestionKeySchema,
+  questionNumber: Schema.Finite,
+  setKey: QuestionSetKeySchema,
+});
+type QuestionProjectionInput = typeof QuestionProjectionInputSchema.Type;
 
 /** Shared identity and metadata carried by both question body projections. */
 function questionProjectionFields(input: QuestionProjectionInput) {
@@ -139,7 +141,7 @@ export const makeQuestionBodyProjection = Effect.fn(
 export function canonicalizeQuestionProjection(
   projection: QuestionBodyProjection
 ) {
-  return JSON.stringify({
+  return encodeJsonText({
     bodyKind: projection.bodyKind,
     ...(projection.bodyKind === "question"
       ? { response: canonicalQuestionResponse(projection.response) }

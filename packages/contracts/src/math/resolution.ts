@@ -1,4 +1,4 @@
-import type { Schema } from "effect";
+import { Array as Arr, MutableHashMap, Schema } from "effect";
 
 import {
   arcCurvatureUnresolved,
@@ -9,7 +9,11 @@ import {
   concentricRadiusCollisionPaths,
   coordinateCollisionPaths,
 } from "#contracts/math/collision";
-import { pathAxes, type ScenePath } from "#contracts/math/coordinate";
+import {
+  pathAxes,
+  type ScenePath,
+  ScenePathSchema,
+} from "#contracts/math/coordinate";
 import type {
   PlaneLabelAnchor,
   PlaneMathFrame,
@@ -37,6 +41,7 @@ import type {
   SpaceMathObject,
   SpaceMathView,
 } from "#contracts/math/space";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** One stable authoring failure for geometry below renderer resolution. */
 export const MATH_VISUAL_RESOLUTION_MESSAGE =
@@ -44,10 +49,11 @@ export const MATH_VISUAL_RESOLUTION_MESSAGE =
 
 type IssuePath = ScenePath;
 
-interface ResolutionIssue {
-  readonly issue: typeof MATH_VISUAL_RESOLUTION_MESSAGE;
-  readonly path: IssuePath;
-}
+const ResolutionIssueSchema = Schema.Struct({
+  issue: Schema.Literal(MATH_VISUAL_RESOLUTION_MESSAGE),
+  path: ScenePathSchema,
+});
+type ResolutionIssue = typeof ResolutionIssueSchema.Type;
 
 /** Places the shared resolution failure at one authored schema path. */
 function issue(path: IssuePath): ResolutionIssue {
@@ -56,11 +62,11 @@ function issue(path: IssuePath): ResolutionIssue {
 
 /** Removes repeated issue paths while preserving first-cause order. */
 function uniqueIssues(issues: readonly ResolutionIssue[]) {
-  return [
-    ...new Map(
-      issues.map((candidate) => [JSON.stringify(candidate.path), candidate])
-    ).values(),
-  ];
+  const byPath = MutableHashMap.empty<string, ResolutionIssue>();
+  for (const candidate of issues) {
+    MutableHashMap.set(byPath, encodeJsonText(candidate.path), candidate);
+  }
+  return Arr.fromIterable(MutableHashMap.values(byPath));
 }
 
 /** Reports one non-zero authored measure below the scene threshold. */

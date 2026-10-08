@@ -11,6 +11,7 @@ import {
   QuranSnapshotRowSchema,
 } from "#contracts/quran/snapshot/row";
 import type { QuranTafsirAccess } from "#contracts/quran/source";
+import { encodeJsonText } from "#contracts/text/json";
 
 const ROW_DOMAIN = "nakafa.aksara.quran-row";
 
@@ -71,7 +72,7 @@ function canonicalizeVerse(verse: QuranRuntimeVerse) {
 /** Produces stable JSON for one exhaustive current Quran payload. */
 export function canonicalizeQuranRow(payload: QuranRowPayload) {
   if (payload.kind === "quran-attribution") {
-    return JSON.stringify({
+    return encodeJsonText({
       activeAppLocales: payload.activeAppLocales,
       kind: payload.kind,
       sources: payload.sources.map(canonicalizeQuranAttribution),
@@ -79,7 +80,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
     });
   }
   if (payload.kind === "quran-surah") {
-    return JSON.stringify({
+    return encodeJsonText({
       kind: payload.kind,
       name: {
         arabic: payload.name.arabic,
@@ -99,7 +100,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
     });
   }
   if (payload.kind === "quran-chunk") {
-    return JSON.stringify({
+    return encodeJsonText({
       firstQuranNumber: payload.firstQuranNumber,
       firstVerse: payload.firstVerse,
       kind: payload.kind,
@@ -108,7 +109,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
       verses: payload.verses.map(canonicalizeVerse),
     });
   }
-  return JSON.stringify({
+  return encodeJsonText({
     appLocale: payload.appLocale,
     graph: canonicalizeLearningGraphIdentity(payload.graph),
     kind: payload.kind,

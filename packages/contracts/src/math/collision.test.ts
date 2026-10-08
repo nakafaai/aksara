@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { BigDecimal, Schema } from "effect";
+import { BigDecimal, MutableHashSet, Schema } from "effect";
 
 import {
   PlaneMathFrameSchema,
@@ -96,10 +96,12 @@ describe("mathematical visual collisions", () => {
       [1]
     );
     assert.strictEqual(
-      unresolvedProximityIndexes(
-        [bounded, { value: numberRatio(RESOLUTION / 32) }],
-        THRESHOLD
-      ).size,
+      MutableHashSet.size(
+        unresolvedProximityIndexes(
+          [bounded, { value: numberRatio(RESOLUTION / 32) }],
+          THRESHOLD
+        )
+      ),
       0
     );
   });
@@ -109,7 +111,10 @@ describe("mathematical visual collisions", () => {
       Array.from({ length: 10_000 }, (_, index) => index * RESOLUTION * 2)
     );
 
-    assert.strictEqual(unresolvedProximityIndexes(entries, THRESHOLD).size, 0);
+    assert.strictEqual(
+      MutableHashSet.size(unresolvedProximityIndexes(entries, THRESHOLD)),
+      0
+    );
   });
 
   it("checks frame edges, label anchors, and radial extrema together", () => {

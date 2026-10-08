@@ -3,9 +3,9 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { Effect, Schema } from "effect";
 import type { Sha256HashSchema } from "#contracts/ids";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
+import { encodeJsonText } from "#contracts/text/json";
 
 const BASE64URL_SHA256_PATTERN = /^[A-Za-z0-9_-]{43}$/u;
-
 /** Stable wire format for one authenticated local renderer response. */
 export const PREVIEW_RENDERER_AUTH_FORMAT = "aksara-renderer-auth-v1";
 
@@ -46,7 +46,7 @@ export function canonicalizePreviewRendererAuth(input: {
   readonly manifestHash: typeof Sha256HashSchema.Type;
   readonly nonce: PreviewRendererNonce;
 }) {
-  return JSON.stringify([
+  return encodeJsonText([
     PREVIEW_RENDERER_AUTH_FORMAT,
     input.nonce,
     input.manifestHash,
