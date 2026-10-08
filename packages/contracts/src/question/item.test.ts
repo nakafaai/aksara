@@ -33,11 +33,12 @@ import {
   rubricSource,
   rubricSourceWith,
 } from "#contracts/test/rubric";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("question item golden response bytes", () => {
   it("pins the canonical bytes of a blueprint in signed field order", () => {
     expect(
-      JSON.stringify(
+      encodeJsonText(
         canonicalQuestionBlueprint({
           cognitiveLevel: "reasoning",
           contentDomain: "algebra",
@@ -76,19 +77,19 @@ describe("question item golden response bytes", () => {
           single: yield* questionResponseFor(itemSingle, en),
         };
 
-        expect(JSON.stringify(canonicalQuestionResponse(frozen.single))).toBe(
+        expect(encodeJsonText(canonicalQuestionResponse(frozen.single))).toBe(
           responseBytes.single
         );
-        expect(JSON.stringify(canonicalQuestionResponse(frozen.multiple))).toBe(
+        expect(encodeJsonText(canonicalQuestionResponse(frozen.multiple))).toBe(
           responseBytes.multiple
         );
-        expect(JSON.stringify(canonicalQuestionResponse(frozen.short))).toBe(
+        expect(encodeJsonText(canonicalQuestionResponse(frozen.short))).toBe(
           responseBytes.short
         );
-        expect(JSON.stringify(canonicalQuestionResponse(frozen.category))).toBe(
+        expect(encodeJsonText(canonicalQuestionResponse(frozen.category))).toBe(
           responseBytes.category
         );
-        expect(JSON.stringify(canonicalQuestionResponse(frozen.rubric))).toBe(
+        expect(encodeJsonText(canonicalQuestionResponse(frozen.rubric))).toBe(
           goldenRubricCanonical
         );
       })

@@ -1,4 +1,4 @@
-import { BigDecimal, Option, Schema, String as Str } from "effect";
+import { BigDecimal, HashSet, Option, Schema, String as Str } from "effect";
 
 import type { AppLocaleCode } from "#contracts/locale";
 
@@ -111,10 +111,11 @@ function visibleText(text: string) {
 }
 
 /** Text grading rules that every learner and accepted answer passes through. */
-interface TextKeyRules {
-  readonly collapseWhitespace: boolean;
-  readonly ignoreCase: boolean;
-}
+const TextKeyRulesSchema = Schema.Struct({
+  collapseWhitespace: Schema.Boolean,
+  ignoreCase: Schema.Boolean,
+});
+type TextKeyRules = typeof TextKeyRulesSchema.Type;
 
 /**
  * Normalizes one learner or accepted text answer exactly as graders compare
@@ -138,7 +139,7 @@ function hasDistinctAcceptedAnswers(
   const normalized = key.acceptedAnswers.map((text) =>
     normalizeTextAnswer(text, key)
   );
-  return new Set(normalized).size === normalized.length;
+  return HashSet.size(HashSet.fromIterable(normalized)) === normalized.length;
 }
 
 /**
@@ -171,11 +172,12 @@ export type QuestionAnswerKey = typeof QuestionAnswerKeySchema.Type;
  * positive integer denominator that is one for a typed decimal. `fraction`
  * records that the learner wrote `p/q`.
  */
-export interface QuestionNumberAnswer {
-  readonly denominator: BigDecimal.BigDecimal;
-  readonly fraction: boolean;
-  readonly numerator: BigDecimal.BigDecimal;
-}
+const QuestionNumberAnswerSchema = Schema.Struct({
+  denominator: Schema.BigDecimal,
+  fraction: Schema.Boolean,
+  numerator: Schema.BigDecimal,
+});
+export type QuestionNumberAnswer = typeof QuestionNumberAnswerSchema.Type;
 
 /** Reads one signed ASCII number, where U+2212 is a minus sign. */
 function readSigned(text: string) {

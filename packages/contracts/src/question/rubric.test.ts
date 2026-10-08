@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Effect, Exit, Record as Rec, Schema } from "effect";
 import { Decision, DecisionModel } from "effect/ai";
 
 import {
@@ -25,24 +25,25 @@ import {
   rubricSourceWith,
   rubricSource as source,
 } from "#contracts/test/rubric";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("question rubric golden canonical bytes", () => {
   it("pins the canonical and structure bytes of a frozen rubric", () => {
-    expect(JSON.stringify(canonicalQuestionRubric(goldenRubricFrozen))).toBe(
+    expect(encodeJsonText(canonicalQuestionRubric(goldenRubricFrozen))).toBe(
       goldenRubricCanonical
     );
     expect(
-      JSON.stringify(canonicalQuestionRubricStructure(goldenRubricFrozen))
+      encodeJsonText(canonicalQuestionRubricStructure(goldenRubricFrozen))
     ).toBe(goldenRubricStructure);
   });
 
   it("derives the stable criterion and level keys from authored order", () => {
     const frozen = freezeQuestionRubric(goldenRubricSource);
 
-    expect(JSON.stringify(canonicalQuestionRubric(frozen))).toBe(
+    expect(encodeJsonText(canonicalQuestionRubric(frozen))).toBe(
       goldenRubricCanonical
     );
-    expect(JSON.stringify(canonicalQuestionRubricStructure(frozen))).toBe(
+    expect(encodeJsonText(canonicalQuestionRubricStructure(frozen))).toBe(
       goldenRubricStructure
     );
   });
@@ -96,7 +97,7 @@ describe("question rubric", () => {
 
   it("signs every label with its locales in alphabetical order", () => {
     const reversed = Schema.decodeUnknownSync(QuestionRubricLabelSchema)(
-      Object.fromEntries(Object.entries(label("Approach")).reverse())
+      Rec.fromEntries(Rec.toEntries(label("Approach")).reverse())
     );
     const relabeled = QuestionRubricResponseSchema.make({
       ...rubric,
@@ -105,11 +106,11 @@ describe("question rubric", () => {
       ),
     });
 
-    expect(JSON.stringify(canonicalQuestionRubric(rubric))).toBe(
+    expect(encodeJsonText(canonicalQuestionRubric(rubric))).toBe(
       '{"criteria":[{"criterionKey":"criterion-1","label":{"de":"Approach (de)","en":"Approach (en)","id":"Approach (id)"},"levels":[{"label":{"de":"Missing (de)","en":"Missing (en)","id":"Missing (id)"},"levelKey":"level-1","order":1,"points":0},{"label":{"de":"Partial (de)","en":"Partial (en)","id":"Partial (id)"},"levelKey":"level-2","order":2,"points":1},{"label":{"de":"Complete (de)","en":"Complete (en)","id":"Complete (id)"},"levelKey":"level-3","order":3,"points":2}],"order":1},{"criterionKey":"criterion-2","finalAnswer":{"acceptsFractions":true,"kind":"number","value":"0.5"},"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"},"levels":[{"label":{"de":"Wrong (de)","en":"Wrong (en)","id":"Wrong (id)"},"levelKey":"level-1","order":1,"points":0},{"label":{"de":"Right (de)","en":"Right (en)","id":"Right (id)"},"levelKey":"level-2","order":2,"points":1}],"order":2}],"kind":"rubric"}'
     );
-    expect(JSON.stringify(canonicalQuestionRubric(relabeled))).toBe(
-      JSON.stringify(canonicalQuestionRubric(rubric))
+    expect(encodeJsonText(canonicalQuestionRubric(relabeled))).toBe(
+      encodeJsonText(canonicalQuestionRubric(rubric))
     );
   });
 
@@ -135,7 +136,7 @@ describe("question rubric", () => {
       const judged = rubric.criteria.filter(
         ({ finalAnswer }) => finalAnswer === undefined
       );
-      const decisions = Object.fromEntries(
+      const decisions = Rec.fromEntries(
         judged.map(({ criterionKey, label: criterionLabel, levels }) => [
           criterionKey,
           Decision.rate({
@@ -172,7 +173,7 @@ describe("question rubric", () => {
           )?.points
       );
 
-      expect(Object.keys(decisions)).toEqual(["criterion-1"]);
+      expect(Rec.keys(decisions)).toEqual(["criterion-1"]);
       expect(earned).toEqual([1]);
     })
   );

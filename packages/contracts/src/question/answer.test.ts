@@ -25,29 +25,30 @@ import {
   rejects,
   tolerantNumber,
 } from "#contracts/test/answer";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("question answer golden canonical bytes", () => {
   it("pins the canonical bytes of a text key with unsorted accepted answers", () => {
-    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenText))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(goldenText))).toBe(
       '{"acceptedAnswers":["jakarta","Jakarta é"],"collapseWhitespace":true,"ignoreCase":true,"kind":"text"}'
     );
   });
 
   it("pins the canonical bytes of numeric keys with and without tolerance", () => {
-    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenAbsolute))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(goldenAbsolute))).toBe(
       '{"acceptsFractions":false,"kind":"number","tolerance":{"kind":"absolute","value":"0.05"},"value":"2.5"}'
     );
-    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenRelative))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(goldenRelative))).toBe(
       '{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"relative","value":"0.01"},"value":"-12.75"}'
     );
-    expect(JSON.stringify(canonicalQuestionAnswerKey(goldenExact))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(goldenExact))).toBe(
       '{"acceptsFractions":true,"kind":"number","value":"6"}'
     );
   });
 
   it("pins the structure bytes that omit accepted text", () => {
     expect(
-      JSON.stringify(canonicalQuestionAnswerKeyStructure(goldenText))
+      encodeJsonText(canonicalQuestionAnswerKeyStructure(goldenText))
     ).toBe('{"collapseWhitespace":true,"ignoreCase":true,"kind":"text"}');
   });
 });
@@ -144,13 +145,13 @@ describe("question answer key", () => {
   });
 
   it("canonicalizes every answer key in stable field order", () => {
-    expect(JSON.stringify(canonicalQuestionAnswerKey(tolerantNumber))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(tolerantNumber))).toBe(
       '{"acceptsFractions":true,"kind":"number","tolerance":{"kind":"absolute","value":"0.1"},"value":"-3.5"}'
     );
-    expect(JSON.stringify(canonicalQuestionAnswerKey(exact))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(exact))).toBe(
       '{"acceptsFractions":false,"kind":"number","value":"2.5"}'
     );
-    expect(JSON.stringify(canonicalQuestionAnswerKey(jakartaText))).toBe(
+    expect(encodeJsonText(canonicalQuestionAnswerKey(jakartaText))).toBe(
       '{"acceptedAnswers":["Jakarta"],"collapseWhitespace":true,"ignoreCase":false,"kind":"text"}'
     );
     for (const key of [tolerantNumber, exact, jakartaText, city]) {

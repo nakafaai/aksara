@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { HashSet, Schema } from "effect";
 
 import {
   canonicalQuestionAnswerKey,
@@ -122,7 +122,7 @@ function hasCanonicalCategories(input: {
     readonly statementKey: string;
   }[];
 }) {
-  const categoryKeys = new Set(
+  const categoryKeys = HashSet.fromIterable(
     input.categories.map(({ categoryKey }) => categoryKey)
   );
   return (
@@ -136,7 +136,7 @@ function hasCanonicalCategories(input: {
       ({ correctCategoryKey, order, statementKey }, index) =>
         order === index + 1 &&
         statementKey === `statement-${order}` &&
-        categoryKeys.has(correctCategoryKey)
+        HashSet.has(categoryKeys, correctCategoryKey)
     )
   );
 }
