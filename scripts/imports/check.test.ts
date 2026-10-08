@@ -1,14 +1,14 @@
 import { afterEach, expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
-import {
-  createWorkspaceIdentityResolver,
-  importViolations,
-} from "#scripts/imports/check";
+import { Array as Arr, Effect, Schema } from "effect";
+import { importViolations } from "#scripts/imports/check";
+import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
+
+const JsonText = Schema.fromJsonString(Schema.Unknown);
 
 /** Creates one manifest reader for import-boundary policy tests. */
 function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
-  return (path: string) => JSON.stringify(manifests[path]);
+  return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
 }
 
 afterEach(() => {
@@ -41,7 +41,7 @@ layer(TypeScriptParser.layer)("import boundaries", (it) => {
   it("rejects malformed or unowned workspace manifests", () => {
     const missingName = createWorkspaceIdentityResolver(() => "{}");
     const unknown = createWorkspaceIdentityResolver(() =>
-      JSON.stringify({ name: "@nakafa/unknown" })
+      Schema.encodeSync(JsonText)({ name: "@nakafa/unknown" })
     );
 
     expect(() => missingName("packages/compiler/src/source.ts")).toThrow(
@@ -84,11 +84,14 @@ const multiple = require("first", "second");
 `;
 
       expect(
-        (yield* importViolations(
-          "packages/compiler/src/source.ts",
-          source,
-          resolveIdentity
-        )).map((diagnostic) => diagnostic.split(": ").at(-1))
+        Arr.map(
+          yield* importViolations(
+            "packages/compiler/src/source.ts",
+            source,
+            resolveIdentity
+          ),
+          (diagnostic) => diagnostic.split(": ").at(-1)
+        )
       ).toEqual([
         "private alias owned by another workspace",
         "self-import through public package export",

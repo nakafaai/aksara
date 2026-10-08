@@ -1,9 +1,17 @@
-import { readFileSync } from "node:fs";
+import { NodeServices } from "@effect/platform-node";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Predicate } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashMap,
+  HashSet,
+  Layer,
+  Option,
+} from "effect";
 import {
   enforceViolations,
   trackedFiles,
@@ -18,112 +26,18 @@ import {
   exposedModuleBindings,
   moduleSpecifiers,
 } from "#scripts/imports/syntax";
+import {
+  createWorkspaceIdentityResolver,
+  type WorkspaceIdentityResolver,
+} from "#scripts/imports/workspace";
 
-const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;
 const FILESYSTEM_IMPORT_PATTERN = /^(?:\/|file:|packages\/)/u;
-const IMPORT_WILDCARD_PATTERN = /\*$/u;
 const VITEST_CONFIG_PATTERN = /\/vitest\.config\.ts$/u;
 const TEST_MODULE_PATTERN = /(?:^|\/)(?:test\/.*|[^/]+\.test\.ts)$/u;
 const WORKSPACE_MANIFEST_PATTERN = /^(?:apps|packages)\/[^/]+\/package\.json$/u;
 const WORKSPACE_SCRIPT_PATTERN = /^(?:apps|packages)\/[^/]+\/scripts\//u;
 const TESTING_PACKAGE = "@nakafa/testing";
-
-interface WorkspaceIdentity {
-  readonly allowedDependencies: ReadonlySet<string>;
-  readonly developmentDependencies: ReadonlySet<string>;
-  readonly privatePrefixes: readonly string[];
-  readonly publicName: string;
-  readonly runtimeDependencies: ReadonlySet<string>;
-}
-
-type WorkspaceIdentityResolver = (
-  file: string
-) => WorkspaceIdentity | undefined;
-
-const allowedWorkspaceDependencies: ReadonlyMap<
-  string,
-  ReadonlySet<string>
-> = new Map([
-  [
-    "cli",
-    new Set([
-      "@nakafa/aksara-compiler",
-      "@nakafa/aksara-contracts",
-      "@nakafa/aksara-corpus",
-      "@nakafa/aksara-publisher",
-      "@nakafa/aksara-utilities",
-    ]),
-  ],
-  ["compiler", new Set(["@nakafa/aksara-contracts"])],
-  ["contracts", new Set()],
-  ["corpus", new Set(["@nakafa/aksara-contracts", "@nakafa/aksara-utilities"])],
-  [
-    "publisher",
-    new Set([
-      "@nakafa/aksara-compiler",
-      "@nakafa/aksara-contracts",
-      "@nakafa/aksara-corpus",
-      "@nakafa/aksara-utilities",
-    ]),
-  ],
-  ["testing", new Set()],
-  ["utilities", new Set()],
-]);
-
-/** Returns declared package names from one manifest dependency section. */
-function dependencyNames(input: unknown): readonly string[] {
-  return Predicate.isObject(input) ? Object.keys(input) : [];
-}
-
-/** Creates one cached workspace identity resolver from package manifests. */
-export function createWorkspaceIdentityResolver(
-  readManifest: (path: string) => string
-): WorkspaceIdentityResolver {
-  const identities = new Map<string, WorkspaceIdentity>();
-  return (file) => {
-    const match: RegExpExecArray | null = WORKSPACE_SOURCE_PATTERN.exec(file);
-    const workspaceRoot = match?.[1];
-    const workspace = match?.[2];
-    if (!workspace || workspace === "typescript-config") {
-      return;
-    }
-    const cached = identities.get(workspace);
-    if (cached) {
-      return cached;
-    }
-    const manifest: unknown = JSON.parse(
-      readManifest(`${workspaceRoot}/${workspace}/package.json`)
-    );
-    if (!Predicate.isObject(manifest) || typeof manifest.name !== "string") {
-      throw new Error(
-        `${workspaceRoot}/${workspace}/package.json has no package name`
-      );
-    }
-    const allowedDependencies = allowedWorkspaceDependencies.get(workspace);
-    if (!allowedDependencies) {
-      throw new Error(
-        `${workspaceRoot}/${workspace} has no import-boundary policy`
-      );
-    }
-    const imports = Predicate.isObject(manifest.imports)
-      ? Object.keys(manifest.imports)
-      : [];
-    const identity = {
-      allowedDependencies,
-      developmentDependencies: new Set(
-        dependencyNames(manifest.devDependencies)
-      ),
-      privatePrefixes: imports
-        .filter((specifier) => specifier.startsWith("#"))
-        .map((specifier) => specifier.replace(IMPORT_WILDCARD_PATTERN, "")),
-      publicName: manifest.name,
-      runtimeDependencies: new Set(dependencyNames(manifest.dependencies)),
-    } satisfies WorkspaceIdentity;
-    identities.set(workspace, identity);
-    return identity;
-  };
-}
 
 /** Reports one module specifier that crosses an Aksara import boundary. */
 function importViolation(
@@ -150,7 +64,9 @@ function importViolation(
   }
   if (
     specifier.startsWith("#") &&
-    !identity.privatePrefixes.some((prefix) => specifier.startsWith(prefix))
+    !Arr.some(identity.privatePrefixes, (prefix) =>
+      specifier.startsWith(prefix)
+    )
   ) {
     return "private alias owned by another workspace";
   }
@@ -163,10 +79,10 @@ function importViolation(
   if (!specifier.startsWith("@nakafa/")) {
     return;
   }
-  const packageName = specifier.split("/").slice(0, 2).join("/");
+  const packageName = Arr.join(specifier.split("/").slice(0, 2), "/");
   if (
     WORKSPACE_SCRIPT_PATTERN.test(file) &&
-    identity.developmentDependencies.has(packageName)
+    HashSet.has(identity.developmentDependencies, packageName)
   ) {
     return;
   }
@@ -174,14 +90,14 @@ function importViolation(
     packageName === TESTING_PACKAGE &&
     (VITEST_CONFIG_PATTERN.test(file) || TEST_MODULE_PATTERN.test(file))
   ) {
-    return identity.developmentDependencies.has(packageName)
+    return HashSet.has(identity.developmentDependencies, packageName)
       ? undefined
       : "test dependency is absent from package devDependencies";
   }
-  if (!identity.allowedDependencies.has(packageName)) {
+  if (!HashSet.has(identity.allowedDependencies, packageName)) {
     return "workspace dependency violates the architecture graph";
   }
-  if (!identity.runtimeDependencies.has(packageName)) {
+  if (!HashSet.has(identity.runtimeDependencies, packageName)) {
     return "workspace dependency is absent from package dependencies";
   }
 }
@@ -196,7 +112,8 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
   return yield* parser.inspect(
     { fileName: file, source: sourceText },
     ({ sourceFile }) => {
-      const moduleViolations = moduleSpecifiers(sourceFile).flatMap(
+      const moduleViolations = Arr.flatMap(
+        moduleSpecifiers(sourceFile),
         (specifier) => {
           const violation = importViolation(
             file,
@@ -212,59 +129,81 @@ export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
           return [`${file}:${line} ${specifier.text}: ${violation}`];
         }
       );
-      const viImportViolations = exposedModuleBindings(
-        sourceFile,
-        "@effect/vitest",
-        "vi"
-      ).map((specifier) => {
-        const line =
-          sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line +
-          1;
-        return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
-      });
+      const viImportViolations = Arr.map(
+        exposedModuleBindings(sourceFile, "@effect/vitest", "vi"),
+        (specifier) => {
+          const line =
+            sourceFile.getLineAndCharacterOfPosition(specifier.getStart())
+              .line + 1;
+          return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
+        }
+      );
 
       return [...moduleViolations, ...viImportViolations];
     }
   );
 });
 
-const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
-  readFileSync(path, "utf8")
-);
-const sourceViolations = await Effect.runPromise(
-  Effect.forEach(typescriptFiles(), (file) =>
+/** Reads one repository file as UTF-8 text through the Node file system service. */
+const readText = Effect.fn("AksaraPolicy.readText")(function* (path: string) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  return yield* fileSystem.readFileString(path);
+});
+
+/** Reads one authored TypeScript module, reporting a missing module as a source error. */
+const readTypescriptSource = Effect.fn("AksaraPolicy.readSource")(function* (
+  file: string
+) {
+  return yield* readText(file).pipe(
+    Effect.mapError(
+      (cause) => new TypeScriptSourceError({ cause, fileName: file })
+    )
+  );
+});
+
+/** Runs every repository import, test, and source-condition policy and reports each group. */
+const checkRepository = Effect.gen(function* () {
+  const sources = yield* Effect.forEach(typescriptFiles(), (file) =>
+    readTypescriptSource(file).pipe(Effect.map((text) => ({ file, text })))
+  );
+  const manifests = yield* Effect.forEach(
+    Arr.filter(trackedFiles(), (file) => WORKSPACE_MANIFEST_PATTERN.test(file)),
+    (file) =>
+      readText(file).pipe(
+        Effect.map((text): readonly [string, string] => [file, text])
+      )
+  );
+  const manifestTexts = HashMap.fromIterable(manifests);
+  const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
+    Option.getOrThrow(HashMap.get(manifestTexts, path))
+  );
+  const results = yield* Effect.forEach(sources, ({ file, text }) =>
     Effect.gen(function* () {
-      const source = yield* Effect.try({
-        catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
-        try: () => readFileSync(file, "utf8"),
-      });
       return {
-        imports: yield* importViolations(file, source, repositoryIdentity),
-        tests: yield* effectTestViolations(file, source),
+        imports: yield* importViolations(file, text, repositoryIdentity),
+        tests: yield* effectTestViolations(file, text),
       };
     })
-  ).pipe(Effect.provide(TypeScriptParser.layer))
-);
-enforceViolations(
-  "TypeScript imports must respect workspace aliases",
-  sourceViolations.flatMap((result) => result.imports)
-);
-enforceViolations(
-  "Effect tests must use native Effect Vitest execution",
-  sourceViolations.flatMap((result) => result.tests)
-);
-const workspaceSourceCondition = sourceConditionFromConfig(
-  readFileSync("packages/typescript-config/base.json", "utf8")
-);
-enforceViolations(
-  "Workspace source conditions must resolve before generated output",
-  trackedFiles()
-    .filter((file) => WORKSPACE_MANIFEST_PATTERN.test(file))
-    .flatMap((file) =>
-      sourceConditionViolations(
-        file,
-        readFileSync(file, "utf8"),
-        workspaceSourceCondition
-      )
+  );
+  enforceViolations(
+    "TypeScript imports must respect workspace aliases",
+    Arr.flatMap(results, (result) => result.imports)
+  );
+  enforceViolations(
+    "Effect tests must use native Effect Vitest execution",
+    Arr.flatMap(results, (result) => result.tests)
+  );
+  const workspaceSourceCondition = sourceConditionFromConfig(
+    yield* readText("packages/typescript-config/base.json")
+  );
+  enforceViolations(
+    "Workspace source conditions must resolve before generated output",
+    Arr.flatMap(manifests, ([file, text]) =>
+      sourceConditionViolations(file, text, workspaceSourceCondition)
     )
+  );
+}).pipe(
+  Effect.provide(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))
 );
+
+await Effect.runPromise(checkRepository);
