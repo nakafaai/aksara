@@ -201,5 +201,6 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
 
 runEntry(
   import.meta.main,
-  defaultBumpConfig.pipe(Effect.flatMap(makeBumpDependenciesProgram))
+  defaultBumpConfig.pipe(Effect.flatMap(makeBumpDependenciesProgram)),
+  { failureStream: "stdout" }
 );

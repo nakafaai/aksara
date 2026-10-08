@@ -18,5 +18,6 @@ runEntry(
   import.meta.main,
   Effect.scoped(makeQuranSourceSyncProgram()).pipe(
     Effect.provide(NodeHttpClient.layerNodeHttp)
-  )
+  ),
+  { failureStream: "stdout" }
 );

@@ -62,5 +62,6 @@ runEntry(
   import.meta.main,
   runProvenanceMain(process.argv.slice(2)).pipe(
     Effect.provide(SigstoreProvenanceBundleVerifierLive)
-  )
+  ),
+  { failureStream: "stdout" }
 );
