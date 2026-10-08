@@ -1,9 +1,5 @@
-import { Deferred, Effect, Option, Schema } from "effect";
+import { Deferred, Effect, Option } from "effect";
 import type * as Duration from "effect/Duration";
-
-const ProcessGroupSchema = Schema.Struct({
-  pid: Schema.Finite,
-});
 
 /** Sends one signal to a detached process group without leaking OS races. */
 function signalProcessGroup(pid: number, signal: NodeJS.Signals) {
@@ -31,13 +27,12 @@ function waitForProcess<Exit, Failure>(
  */
 export const terminateProcessGroup = Effect.fn(
   "AksaraUtilities.terminateProcessGroup"
-)(function* <Exit, Failure>(
-  group: typeof ProcessGroupSchema.Type & {
-    readonly exit: Deferred.Deferred<Exit, Failure>;
-    readonly grace: Duration.Input;
-    readonly limit: Duration.Input;
-  }
-) {
+)(function* <Exit, Failure>(group: {
+  readonly exit: Deferred.Deferred<Exit, Failure>;
+  readonly grace: Duration.Input;
+  readonly limit: Duration.Input;
+  readonly pid: number;
+}) {
   if (yield* Deferred.isDone(group.exit)) {
     return;
   }

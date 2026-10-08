@@ -145,7 +145,11 @@ function writeStdin(
   );
 }
 
-/** Runs one exact child process and owns its complete detached process group. */
+/**
+ * Runs one exact child process and owns its complete detached process group.
+ * A clean exit releases the group without a signal. Every other end (a
+ * non-zero exit, a signal, an interrupt, or a pipe failure) stops the group.
+ */
 const runExactProcess = Effect.fn("AksaraUtilities.runExactProcess")(function* (
   input: ExactProcessInput
 ) {
