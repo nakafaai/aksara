@@ -79,7 +79,7 @@ describe("pinned content projection hashes", () => {
           artifactLocale: "en",
           bodyKind: "answer",
           contentKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/answer",
           kind: "question-body",
           metadata: {
             authors: [{ name: "Test Author" }],
@@ -87,15 +87,16 @@ describe("pinned content projection hashes", () => {
             title: "Pecahan Ñandú café",
           },
           peerContentKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1/question",
           questionKey:
-            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set/question-1",
           questionNumber: 1,
-          setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+          setKey:
+            "question-bank/tryout/test-country/test-exam/test-section-2/test-set",
         })
       )
     ).toBe(
-      "sha256:18c48e823c46e6628ba13541b42e08a3575a0ea5b51b520d15a9dd9a8c576e70"
+      "sha256:11605ff105af573f195e31d2d9732cec092176c5f8f8edfae65416422ce905ac"
     );
   });
 });
