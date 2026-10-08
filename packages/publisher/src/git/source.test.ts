@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import {
   type CompileDocumentSource,
@@ -102,7 +103,8 @@ const loadSources = Effect.fn("GitPublicationSourceTest.load")(
           .pipe(Stream.take(limit), Stream.runCollect)
       ),
       Effect.provide(makeGitPublicationSourceLive(TEST_REPOSITORY_ROOT)),
-      Effect.provideService(ExactProcess, process)
+      Effect.provideService(ExactProcess, process),
+      Effect.provide(NodeServices.layer)
     )
 );
 

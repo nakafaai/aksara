@@ -4,6 +4,7 @@ import {
   Effect,
   Fiber,
   FileSystem,
+  Layer,
   Option,
   Path,
   Schedule,
@@ -36,16 +37,21 @@ function nodeInput(
   };
 }
 
-/** Runs one process through the live direct-Node service. */
+/** The live service with the Node platform services it requires. */
+const LiveExactProcess = ExactProcessLive.pipe(
+  Layer.provide(NodeServices.layer)
+);
+
+/** Runs one process through the live ExactProcess service. */
 const runLive = Effect.fn("ExactProcessTest.runLive")(
   (input: ExactProcessInput) =>
     ExactProcess.pipe(
       Effect.flatMap((exactProcess) => exactProcess.run(input)),
-      Effect.provide(ExactProcessLive)
+      Effect.provide(LiveExactProcess)
     )
 );
 
-/** Returns one typed failure from the live direct-Node service. */
+/** Returns one typed failure from the live ExactProcess service. */
 const rejectLive = Effect.fn("ExactProcessTest.rejectLive")(
   (input: ExactProcessInput) => runLive(input).pipe(Effect.flip)
 );
@@ -123,11 +129,28 @@ describe("ExactProcess", () => {
     })
   );
 
+  it.live("closes stdin when no input is supplied", () =>
+    Effect.gen(function* () {
+      const output = yield* runLive(
+        nodeInput(
+          "process.stdin.on('data',()=>{});process.stdin.on('end',()=>process.stdout.write('eof'));"
+        )
+      );
+
+      assert.strictEqual(output.exitCode, 0);
+      assert.strictEqual(new TextDecoder().decode(output.stdout), "eof");
+    })
+  );
+
   it.effect.each([
     [nodeInput("", { executable: "node" }), "executable"],
     [nodeInput("", { root: "relative" }), "root"],
     [nodeInput("", { stdoutLimit: -1 }), "limit"],
     [nodeInput("", { stderrLimit: 1.5 }), "limit"],
+    [nodeInput("", { args: ["-e", "\0"] }), "spawn"],
+    [nodeInput("", { environment: { "AKSARA\0KEY": "value" } }), "spawn"],
+    [nodeInput("", { environment: { AKSARA_SENTINEL: "va\0lue" } }), "spawn"],
+    [nodeInput("", { root: "/aksara/\0root" }), "spawn"],
   ] as const)("rejects invalid exact input %#", ([input, reason]) =>
     Effect.gen(function* () {
       const failure = yield* rejectLive(input);
