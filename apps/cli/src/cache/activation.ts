@@ -7,7 +7,14 @@ import {
 } from "@nakafa/aksara-contracts/cache/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type Redacted, Schedule, Schema, Stream } from "effect";
+import {
+  Effect,
+  HashSet,
+  type Redacted,
+  Schedule,
+  Schema,
+  Stream,
+} from "effect";
 import type { HttpClient } from "effect/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { invalidateContentCache } from "#cli/cache/exchange";
@@ -51,12 +58,12 @@ function makeCacheRequests<E, R>(input: {
 }) {
   return input.cacheChanges.pipe(
     Stream.runFold(
-      () => new Set<ContentCacheScope>(),
-      (scopes, change) => new Set([...scopes, change.scope])
+      () => HashSet.empty<ContentCacheScope>(),
+      (scopes, change) => HashSet.add(scopes, change.scope)
     ),
     Effect.map((scopes) =>
       Stream.fromIterable(ContentCacheScopeSchema.literals).pipe(
-        Stream.filter((scope) => scopes.has(scope)),
+        Stream.filter((scope) => HashSet.has(scopes, scope)),
         Stream.map((scope) =>
           ContentCacheRequestSchema.make({
             releaseId: input.release.manifest.releaseId,

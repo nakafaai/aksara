@@ -14,7 +14,7 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect } from "effect";
+import { Effect, MutableHashSet } from "effect";
 import { selectPreviewDocument } from "#cli/repository";
 
 export const REPOSITORY_ROOT = resolve(import.meta.dirname, "..", "..", "..");
@@ -55,7 +55,7 @@ const selectedDocument = await Effect.runPromise(
     Effect.provide(NodeServices.layer)
   )
 );
-const selectedPaths = new Set([
+const selectedPaths = MutableHashSet.fromIterable([
   ...selectedDocument.files.map(({ sourcePath }) => sourcePath),
   indonesianEntry.sourcePath,
 ]);

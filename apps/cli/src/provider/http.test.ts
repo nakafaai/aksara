@@ -13,6 +13,7 @@ import {
   PREVIEW_MANIFEST_PATH,
   type PreviewHttpState,
 } from "#cli/provider/http";
+import { encodeJsonText } from "#cli/text/json";
 import {
   cancelProviderEvent,
   openPreviewHttpReader,
@@ -58,7 +59,7 @@ const makeState = Effect.fn("AksaraCliTest.makePreviewHttpState")(function* () {
       [secondHash, secondBody],
     ]),
     manifest,
-    manifestJson: JSON.stringify(manifest),
+    manifestJson: encodeJsonText(manifest),
   } satisfies PreviewHttpState;
 });
 

@@ -1,14 +1,15 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { ConfigProvider, Effect } from "effect";
+import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runAcceptCommand } from "#cli/accept";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const releaseId = ReleaseIdSchema.make("release-active");
 const recoveryId = ReleaseIdSchema.make("recovery-active");
-const acceptValues = new Map([
+const acceptValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
   ["AKSARA_PUBLICATION_TOKEN", "publication-token"],
 ]);
@@ -17,7 +18,7 @@ const acceptValues = new Map([
 function acceptResponse(request: HttpClientRequest.HttpClientRequest) {
   return webResponse(
     request,
-    JSON.stringify({
+    encodeJsonText({
       ok: true,
       operation: "accept",
       value: {
@@ -36,7 +37,7 @@ function acceptProgram(client: HttpClient.HttpClient) {
   return runAcceptCommand({ command: "accept", recoveryId, releaseId }).pipe(
     Effect.provideService(
       ConfigProvider.ConfigProvider,
-      ConfigProvider.fromUnknown(Object.fromEntries(acceptValues))
+      ConfigProvider.fromUnknown(Rec.fromEntries(acceptValues))
     ),
     Effect.provideService(HttpClient.HttpClient, client)
   );

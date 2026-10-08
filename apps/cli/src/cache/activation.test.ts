@@ -10,6 +10,7 @@ import {
   makeAbsentCacheInvalidation,
   makeProductionCacheInvalidation,
 } from "#cli/cache/activation";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { gitBundle } from "#test/target";
 
@@ -29,7 +30,7 @@ function cacheResponse(
   headers.set("content-type", "application/json");
   return webResponse(
     responseRequest,
-    JSON.stringify({
+    encodeJsonText({
       releaseId: body.releaseId,
       revalidated: true,
       scope: body.scope,

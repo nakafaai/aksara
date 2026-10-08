@@ -1,20 +1,30 @@
 import { describe, expect, it } from "@effect/vitest";
-import { ConfigProvider, Effect, Logger, References } from "effect";
+import {
+  ConfigProvider,
+  Effect,
+  Logger,
+  MutableHashMap,
+  Record as Rec,
+  References,
+  Schema,
+} from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runStatusCommand } from "#cli/status";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";
 
-const statusValues = new Map([
+const statusValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
   ["AKSARA_PUBLICATION_TOKEN", "publication-token"],
 ]);
 
-interface StatusLog {
-  readonly annotations: Readonly<Record<string, unknown>>;
-  readonly message: unknown;
-}
+const StatusLogSchema = Schema.Struct({
+  annotations: Schema.Record(Schema.String, Schema.Unknown),
+  message: Schema.Unknown,
+});
+type StatusLog = typeof StatusLogSchema.Type;
 
 /** Returns authoritative state for one captured request. */
 function statusResponse(
@@ -28,7 +38,7 @@ function statusResponse(
 ) {
   return webResponse(
     request,
-    JSON.stringify({
+    encodeJsonText({
       ok: true,
       operation: "current",
       value,
@@ -42,7 +52,7 @@ function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
   const program = runStatusCommand.pipe(
     Effect.provideService(
       ConfigProvider.ConfigProvider,
-      ConfigProvider.fromUnknown(Object.fromEntries(statusValues))
+      ConfigProvider.fromUnknown(Rec.fromEntries(statusValues))
     ),
     Effect.provideService(HttpClient.HttpClient, client)
   );
@@ -91,7 +101,7 @@ describe("status command", () => {
         yield* runStatusCommand.pipe(
           Effect.provideService(
             ConfigProvider.ConfigProvider,
-            ConfigProvider.fromUnknown(Object.fromEntries(statusValues))
+            ConfigProvider.fromUnknown(Rec.fromEntries(statusValues))
           ),
           Effect.provideService(HttpClient.HttpClient, captured.client),
           Effect.flip

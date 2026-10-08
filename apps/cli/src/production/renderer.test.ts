@@ -8,6 +8,7 @@ import {
   fetchProductionRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import { stateBundle } from "#test/state";
@@ -22,7 +23,7 @@ function rendererResponse(
   request: HttpClientRequest.HttpClientRequest,
   status = 200
 ) {
-  return webResponse(request, JSON.stringify(RENDERER_MANIFEST), {
+  return webResponse(request, encodeJsonText(RENDERER_MANIFEST), {
     headers: {
       "cache-control": "private, no-store",
       "content-type": "application/json",

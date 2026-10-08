@@ -1,15 +1,17 @@
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 
 import type { ProductionCommand } from "#cli/production/arguments";
 import { productionArgumentsError } from "#cli/production/error";
 
+const RawProductionOptionsSchema = Schema.Struct({
+  rebuild: Schema.mutableKey(Schema.Boolean),
+  recoveryId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
+  releaseId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
+  scope: Schema.mutable(Schema.Array(Schema.String)),
+});
+
 /** Raw named options collected before domain decoding. */
-export interface RawProductionOptions {
-  rebuild: boolean;
-  recoveryId?: string;
-  releaseId?: string;
-  scope: string[];
-}
+type RawProductionOptions = typeof RawProductionOptionsSchema.Type;
 
 type ProductionOption =
   | "--rebuild"

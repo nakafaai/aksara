@@ -1,13 +1,14 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { ConfigProvider, Effect } from "effect";
+import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runCleanupCommand } from "#cli/cleanup";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const releaseId = ReleaseIdSchema.make("release-cleanup");
-const cleanupValues = new Map([
+const cleanupValues = MutableHashMap.fromIterable([
   ["AKSARA_PUBLICATION_ENDPOINT", "https://content.example.test/api/publish"],
   ["AKSARA_PUBLICATION_TOKEN", "publication-token"],
 ]);
@@ -24,7 +25,7 @@ function cleanupResponse(
 ) {
   return webResponse(
     request,
-    JSON.stringify({ ok: true, operation: "cleanup", value }),
+    encodeJsonText({ ok: true, operation: "cleanup", value }),
     { headers: { "content-type": "application/json" }, status: 200 }
   );
 }
@@ -32,12 +33,12 @@ function cleanupResponse(
 /** Builds cleanup with isolated Config and HTTP capabilities. */
 function cleanupProgram(
   client: HttpClient.HttpClient,
-  values: ReadonlyMap<string, string> = cleanupValues
+  values: MutableHashMap.MutableHashMap<string, string> = cleanupValues
 ) {
   return runCleanupCommand({ command: "cleanup", releaseId }).pipe(
     Effect.provideService(
       ConfigProvider.ConfigProvider,
-      ConfigProvider.fromUnknown(Object.fromEntries(values), {
+      ConfigProvider.fromUnknown(Rec.fromEntries(values), {
         preserveEmptyStrings: true,
       })
     ),
@@ -128,7 +129,9 @@ describe("cleanup command", () => {
     Effect.gen(function* () {
       const captured = captureClient(() => Effect.die("Unexpected request."));
       expect(
-        yield* cleanupProgram(captured.client, new Map()).pipe(Effect.flip)
+        yield* cleanupProgram(captured.client, MutableHashMap.empty()).pipe(
+          Effect.flip
+        )
       ).toMatchObject({
         _tag: "ProductionError",
         failure: "ProductionEnvironmentError",

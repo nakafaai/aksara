@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, Path, PlatformError } from "effect";
+import { Effect, FileSystem, HashSet, Path, PlatformError } from "effect";
 import {
   captureSelectedFiles,
   fingerprintSelectedDocument,
@@ -151,9 +151,11 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
         expect(fingerprint.files.map(({ sourcePath }) => sourcePath)).toEqual(
           selected.files.map(({ sourcePath }) => sourcePath)
         );
-        expect(new Set(fingerprint.files.map(({ hash }) => hash)).size).toBe(
-          selected.files.length
-        );
+        expect(
+          HashSet.size(
+            HashSet.fromIterable(fingerprint.files.map(({ hash }) => hash))
+          )
+        ).toBe(selected.files.length);
       })
   );
 

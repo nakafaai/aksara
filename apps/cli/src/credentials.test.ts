@@ -1,6 +1,6 @@
 import { createHash, createPublicKey, type KeyObject } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Redacted } from "effect";
+import { Effect, HashSet, Redacted } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 
 const cryptoControl = vi.hoisted(() => ({
@@ -74,9 +74,13 @@ describe("preview credentials", () => {
           Redacted.value(second.renderer.secret),
           Redacted.value(second.renderer.token),
         ];
-        expect(firstSecrets).toHaveLength(new Set(firstSecrets).size);
+        expect(firstSecrets).toHaveLength(
+          HashSet.size(HashSet.fromIterable(firstSecrets))
+        );
         expect([...firstSecrets, ...secondSecrets]).toHaveLength(
-          new Set([...firstSecrets, ...secondSecrets]).size
+          HashSet.size(
+            HashSet.fromIterable([...firstSecrets, ...secondSecrets])
+          )
         );
         expect(firstSecrets.every((value) => value.length === 43)).toBe(true);
         expect(createPublicKey(first.publicKeyPem).asymmetricKeyType).toBe(

@@ -13,6 +13,7 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
 import { Effect, Redacted, Schema, Stream } from "effect";
+import { encodeJsonText } from "#cli/text/json";
 import {
   completedBundle,
   gitBundle,
@@ -66,7 +67,7 @@ export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {
           stageSnapshotBatch: (batch) =>
             Effect.suspend(() => {
               calls.snapshotAttempts += 1;
-              calls.snapshotInputs.push(JSON.stringify(batch));
+              calls.snapshotInputs.push(encodeJsonText(batch));
               return calls.snapshotAttempts <= calls.snapshotFailures
                 ? Effect.fail(
                     new PublicationTargetTransportError({

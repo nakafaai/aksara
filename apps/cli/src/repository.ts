@@ -2,7 +2,7 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { Effect, type FileSystem, Path } from "effect";
+import { Effect, type FileSystem, MutableHashMap, Path } from "effect";
 import {
   captureSelectedFiles,
   PreviewRepositoryError,
@@ -15,15 +15,15 @@ import {
 
 /** Retains restart semantics when one selected file has multiple owners. */
 function recordSelectedPath(
-  files: Map<
+  files: MutableHashMap.MutableHashMap<
     SelectedFileCandidate["sourcePath"],
     SelectedFileCandidate["mode"]
   >,
   sourcePath: SelectedFileCandidate["sourcePath"],
   mode: SelectedFileCandidate["mode"]
 ) {
-  if (mode === "restart" || !files.has(sourcePath)) {
-    files.set(sourcePath, mode);
+  if (mode === "restart" || !MutableHashMap.has(files, sourcePath)) {
+    MutableHashMap.set(files, sourcePath, mode);
   }
 }
 
@@ -73,17 +73,21 @@ export const selectPreviewDocument: (
   );
   const [first, ...remaining] = selection.sources;
   const firstPath = first.entry.sourcePath;
-  const directoriesByPath = new Map<
+  const directoriesByPath = MutableHashMap.empty<
     SelectedDirectory["sourcePath"],
     SelectedDirectory["files"]
   >();
-  const remainingPaths = new Map<
+  const remainingPaths = MutableHashMap.empty<
     PreviewSource["entry"]["sourcePath"],
     SelectedFileCandidate["mode"]
   >();
   for (const source of selection.sources) {
     for (const directory of source.directories) {
-      directoriesByPath.set(directory.sourcePath, directory.files);
+      MutableHashMap.set(
+        directoriesByPath,
+        directory.sourcePath,
+        directory.files
+      );
     }
     if (source.entry.sourcePath !== firstPath) {
       recordSelectedPath(remainingPaths, source.entry.sourcePath, "reload");

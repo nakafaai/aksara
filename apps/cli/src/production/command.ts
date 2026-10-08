@@ -43,12 +43,7 @@ import {
   retryPublicationTarget,
 } from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
-
-/** Explicit decoded command input for the production publication boundary. */
-export interface ProductionInput {
-  readonly args: ReleaseArguments;
-  readonly cwd: string;
-}
+import { encodeJsonText } from "#cli/text/json";
 
 type ProductionServices =
   | FileSystem.FileSystem
@@ -70,7 +65,7 @@ function logPublicationScope(manifest: ContentReleaseManifest) {
       deleteCount: manifest.deleteCount,
       familyScopeCount: manifest.scope.families.length,
       itemCount: manifest.itemCount,
-      scope: JSON.stringify(canonicalizePublicationScope(manifest.scope)),
+      scope: encodeJsonText(canonicalizePublicationScope(manifest.scope)),
       snapshotScopeCount: manifest.scope.snapshots.length,
       upsertCount: manifest.upsertCount,
     })
@@ -111,9 +106,11 @@ function verifyPendingBundle(
 }
 
 /** Runs one fail-closed production Git release command. */
-export const runProductionCommand: (
-  input: ProductionInput
-) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
+export const runProductionCommand: (input: {
+  /** Explicit decoded command input for the production publication boundary. */
+  readonly args: ReleaseArguments;
+  readonly cwd: string;
+}) => ProductionCommand = Effect.fn("AksaraCli.runProductionCommand")((input) =>
   Effect.gen(function* () {
     const recoveryEnvironment = yield* readRecoveryEnvironment().pipe(
       Effect.mapError(mapProductionError("environment"))

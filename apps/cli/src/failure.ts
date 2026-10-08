@@ -12,6 +12,7 @@ import { Option, Predicate, Schema } from "effect";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 import { NakafaAppError } from "#cli/error";
 import { ProductionStateError } from "#cli/state";
+import { encodeJsonText } from "#cli/text/json";
 
 const ProductionStageSchema = Schema.Literals([
   "abort",
@@ -55,7 +56,7 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
 ) {
   /** Exposes the complete secret-free production evidence at the CLI boundary. */
   get message() {
-    return `Production ${this.stage} failed with ${this.failure}: ${JSON.stringify(this)}`;
+    return `Production ${this.stage} failed with ${this.failure}: ${encodeJsonText(this)}`;
   }
 }
 

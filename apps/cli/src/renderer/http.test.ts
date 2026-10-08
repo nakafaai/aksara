@@ -10,6 +10,7 @@ import {
   HttpClientRequest,
 } from "effect/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 
@@ -42,7 +43,7 @@ function makeIncompleteRendererManifest() {
 /** Adds the renderer endpoint's mandatory response cache directive. */
 function rendererResponse(
   request: HttpClientRequest.HttpClientRequest,
-  body: ConstructorParameters<typeof Response>[0] = JSON.stringify(
+  body: ConstructorParameters<typeof Response>[0] = encodeJsonText(
     RENDERER_MANIFEST
   ),
   init: ResponseInit = {}
@@ -68,7 +69,7 @@ function rejectRenderer(client: HttpClient.HttpClient) {
 describe("renderer HTTP", () => {
   it.effect("reads bounded streamed JSON and sends exact credentials", () =>
     Effect.gen(function* () {
-      const bytes = new TextEncoder().encode(JSON.stringify(RENDERER_MANIFEST));
+      const bytes = new TextEncoder().encode(encodeJsonText(RENDERER_MANIFEST));
       const captured = captureClient((request) => {
         const stream = new ReadableStream<Uint8Array>({
           /** Sends two chunks to exercise bounded incremental assembly. */
@@ -116,7 +117,7 @@ describe("renderer HTTP", () => {
       const fetch: typeof globalThis.fetch = (_input, init) => {
         redirect = init?.redirect;
         return Promise.resolve(
-          new Response(JSON.stringify(RENDERER_MANIFEST), {
+          new Response(encodeJsonText(RENDERER_MANIFEST), {
             headers: {
               "cache-control": "private, no-store",
               "content-type": "application/json",
@@ -280,7 +281,7 @@ describe("renderer HTTP", () => {
       Effect.gen(function* () {
         const incomplete = yield* makeIncompleteRendererManifest();
         const captured = captureClient((request) =>
-          Effect.succeed(rendererResponse(request, JSON.stringify(incomplete)))
+          Effect.succeed(rendererResponse(request, encodeJsonText(incomplete)))
         );
 
         expect(
