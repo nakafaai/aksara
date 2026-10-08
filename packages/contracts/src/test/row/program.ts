@@ -59,8 +59,8 @@ export const optionalProgramRow = Schema.decodeSync(ContentSnapshotRowSchema)({
       key: "test-program-2",
       kind: "admission-exam",
       navigation: { levels: ["section", "set"], model: "exam-domain-set" },
-      provider: { homeCountry: "ID", kind: "official", name: "Lembaga uji é" },
-      recommendedCountry: "ID",
+      provider: { homeCountry: "ZZ", kind: "official", name: "Lembaga uji é" },
+      recommendedCountry: "ZZ",
       sources: [
         {
           label: "Sumber uji é 2",
