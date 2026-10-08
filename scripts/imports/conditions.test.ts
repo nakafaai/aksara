@@ -1,14 +1,17 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Schema } from "effect";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
 } from "#scripts/imports/conditions";
 
+const JsonText = Schema.fromJsonString(Schema.Unknown);
+
 describe("workspace source conditions", () => {
   it("derives the condition from TypeScript configuration", () => {
     expect(
       sourceConditionFromConfig(
-        JSON.stringify({
+        Schema.encodeSync(JsonText)({
           compilerOptions: { customConditions: ["aksara-source"] },
         })
       )
@@ -28,7 +31,7 @@ describe("workspace source conditions", () => {
   });
 
   it("requires source resolution before generated output", () => {
-    const sourceFirst = JSON.stringify({
+    const sourceFirst = Schema.encodeSync(JsonText)({
       exports: {
         "./content": {
           "aksara-source": "./src/content.ts",
