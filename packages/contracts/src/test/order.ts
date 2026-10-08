@@ -1,7 +1,17 @@
 import { Predicate } from "effect";
 
-/** Reverses observable keys without reconstructing a schema-owned value. */
-export function reverseObjectKeys<T extends object>(value: T): T {
+/** A value that also reads as a record, so Record.keys accepts it. */
+type RecordView<T> = T & Readonly<Record<string, unknown>>;
+
+/** Reverses observable keys without reconstructing a schema-owned value, and returns it as a record. */
+export function reverseObjectKeys<T extends Readonly<Record<string, unknown>>>(
+  value: T
+): RecordView<T> {
+  return reverseNestedKeys(value);
+}
+
+/** Reverses observable keys of one object and of every object reached from it. */
+function reverseNestedKeys<T extends object>(value: T): T {
   return new Proxy(value, {
     /** Preserves reversed insertion evidence for every nested record. */
     get(target, property, receiver) {
@@ -9,7 +19,7 @@ export function reverseObjectKeys<T extends object>(value: T): T {
       if (!Predicate.isObjectOrArray(nested)) {
         return nested;
       }
-      return reverseObjectKeys(nested);
+      return reverseNestedKeys(nested);
     },
     ownKeys: (target) => Reflect.ownKeys(target).reverse(),
   });

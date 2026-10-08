@@ -54,10 +54,11 @@ export const QuranNameProvenanceScopeSchema = Schema.TemplateLiteral([
 export type QuranNameProvenanceScope =
   typeof QuranNameProvenanceScopeSchema.Type;
 
-interface QuranNameBinding {
-  readonly scope: QuranNameProvenanceScope;
-  readonly sourceId: QuranEmbeddedSourceId;
-}
+const QuranNameBindingSchema = Schema.Struct({
+  scope: QuranNameProvenanceScopeSchema,
+  sourceId: QuranEmbeddedSourceIdSchema,
+});
+type QuranNameBinding = typeof QuranNameBindingSchema.Type;
 
 const QURAN_NAME_BY_LOCALE = {
   [ENGLISH_APP_LOCALE_CODE]: {
@@ -74,10 +75,11 @@ const QURAN_NAME_BY_LOCALE = {
   },
 } as const satisfies Record<AppLocaleCode, QuranNameBinding>;
 
-interface QuranTranslationBinding {
-  readonly scope: QuranTranslationProvenanceScope;
-  readonly sourceId: QuranEmbeddedSourceId;
-}
+const QuranTranslationBindingSchema = Schema.Struct({
+  scope: QuranTranslationProvenanceScopeSchema,
+  sourceId: QuranEmbeddedSourceIdSchema,
+});
+type QuranTranslationBinding = typeof QuranTranslationBindingSchema.Type;
 
 const QURAN_TRANSLATION_BY_LOCALE = {
   [ENGLISH_APP_LOCALE_CODE]: {
@@ -94,9 +96,10 @@ const QURAN_TRANSLATION_BY_LOCALE = {
   },
 } as const satisfies Record<AppLocaleCode, QuranTranslationBinding>;
 
-interface QuranTafsirBinding {
-  readonly sourceId: QuranSourceId;
-}
+const QuranTafsirBindingSchema = Schema.Struct({
+  sourceId: QuranSourceIdSchema,
+});
+type QuranTafsirBinding = typeof QuranTafsirBindingSchema.Type;
 
 const QURAN_TAFSIR_BY_LOCALE = {
   [ENGLISH_APP_LOCALE_CODE]: { sourceId: "mokhtasar-english" },
