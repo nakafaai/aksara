@@ -32,3 +32,13 @@ describe("learning graph contract", () => {
     expect(String(result)).toContain("Expected");
   });
 });
+
+describe("pinned graph identity serialization", () => {
+  it("pins the canonical graph identity key order", () => {
+    const decoded = Schema.decodeSync(LearningGraphIdentitySchema)(identity);
+
+    expect(JSON.stringify(canonicalizeLearningGraphIdentity(decoded))).toBe(
+      '{"alignmentId":"alignment:article:politics:article:politics:policy","assetId":"asset:en:article:politics:article:politics:policy","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:policy","lensId":"lens:article:politics"}'
+    );
+  });
+});

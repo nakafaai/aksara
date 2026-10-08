@@ -216,3 +216,16 @@ describe("manifest tooling", () => {
     );
   });
 });
+
+describe("pinned release manifest text", () => {
+  it("pins the exact released manifest text for one fixed source", () => {
+    expect(
+      createReleaseManifest(
+        '{"name":"@nakafa/aksara-contracts","version":"0.46.0","description":"Skema Ñandú untuk Nakafa 😀","homepage":"https://github.com/nakafaai/aksara#readme","license":"SEE LICENSE IN LICENSE","repository":{"type":"git","url":"git+https://github.com/nakafaai/aksara.git","directory":"packages/contracts"},"type":"module","engines":{"node":">=24.0.0 <25.0.0"},"peerDependencies":{"effect":"catalog:"},"exports":{"./ids":{"aksara-source":"./src/ids.ts","types":"./dist/ids.d.ts","import":"./dist/ids.js"},"./content":{"aksara-source":"./src/content.ts","types":"./dist/content.d.ts","import":"./dist/content.js"}},"imports":{"#contracts/*":{"aksara-source":"./src/*.ts","types":["./src/*.ts","./dist/*.d.ts"],"default":"./dist/*.js"}},"scripts":{"build":"tsc"},"devDependencies":{"vitest":"catalog:"}}',
+        "4.0.0-rc.112"
+      )
+    ).toBe(
+      '{\n  "name": "@nakafa/aksara-contracts",\n  "version": "0.46.0",\n  "description": "Skema Ñandú untuk Nakafa 😀",\n  "homepage": "https://github.com/nakafaai/aksara#readme",\n  "license": "SEE LICENSE IN LICENSE",\n  "repository": {\n    "type": "git",\n    "url": "git+https://github.com/nakafaai/aksara.git",\n    "directory": "packages/contracts"\n  },\n  "type": "module",\n  "engines": {\n    "node": ">=24.0.0 <25.0.0"\n  },\n  "peerDependencies": {\n    "effect": "4.0.0-rc.112"\n  },\n  "exports": {\n    "./ids": {\n      "types": "./dist/ids.d.ts",\n      "import": "./dist/ids.js"\n    },\n    "./content": {\n      "types": "./dist/content.d.ts",\n      "import": "./dist/content.js"\n    }\n  },\n  "imports": {\n    "#contracts/*": {\n      "default": "./dist/*.js",\n      "types": "./dist/*.d.ts"\n    }\n  }\n}\n'
+    );
+  });
+});

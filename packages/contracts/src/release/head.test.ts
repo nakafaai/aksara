@@ -27,7 +27,7 @@ function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
 }
 
 describe("content head pages", () => {
-  it("canonically serializes routed and route-free heads", () => {
+  it("pins the canonical bytes of routed, route-free, and question heads", () => {
     const routed = materialHead("test:routed");
     const routeFree = Schema.decodeSync(MaterialHeadSchema)({
       ...routed,
@@ -42,6 +42,15 @@ describe("content head pages", () => {
     expect(JSON.parse(canonicalizeContentHead(question))).toEqual(question);
     const page = pageHead("pages/privacy-policy");
     expect(JSON.parse(canonicalizeContentHead(page))).toEqual(page);
+    expect(canonicalizeContentHead(routed)).toBe(
+      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","publicPath":"subjects/test/test-routed","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
+    );
+    expect(canonicalizeContentHead(routeFree)).toBe(
+      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
+    );
+    expect(canonicalizeContentHead(question)).toBe(
+      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"question-bank/test/question","delivery":"authenticated","family":"question","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rendererDomain":"snbt-general","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/question-bank/test/question/en.mdx"}'
+    );
   });
 
   it("accepts bounded requests and canonical terminal pages", () => {

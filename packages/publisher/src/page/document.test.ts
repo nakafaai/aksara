@@ -1,11 +1,21 @@
 import { expect, layer } from "@effect/vitest";
 import { Effect, Path } from "effect";
 import {
+  compilePageDocument,
+  inspectPageDocument,
   loadPageDocument,
   makePageProjectionFromSource,
 } from "#publisher/page/document";
 import { testFileLayer } from "#test/files";
-import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
+import {
+  fixedPageEntry,
+  fixedPageSource,
+  PageTestFixtures,
+  pageManifest,
+  pageTestLayer,
+} from "#test/page/spec";
+
+const fixedCheckoutRoot = "/test/aksara-checkout";
 
 /** Requires the reviewed English page registry fixture. */
 const requireEnglishEntry = Effect.fn("PageDocumentTest.requireEnglishEntry")(
@@ -69,5 +79,39 @@ layer(pageTestLayer)("page document", (it) => {
           });
         }
       })
+  );
+
+  it.effect(
+    "pins the projection and artifact digests of a fixed non-ASCII English page source",
+    () =>
+      Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const rendererManifest = yield* pageManifest();
+        const absolutePath = path.join(
+          fixedCheckoutRoot,
+          fixedPageEntry.sourcePath
+        );
+        const inspected = yield* inspectPageDocument(
+          fixedCheckoutRoot,
+          rendererManifest,
+          fixedPageEntry
+        ).pipe(
+          Effect.provide([
+            testFileLayer(new Map([[absolutePath, fixedPageSource]])),
+            Path.layer,
+          ])
+        );
+        const prepared = yield* compilePageDocument(
+          inspected,
+          rendererManifest
+        );
+
+        expect(inspected.projectionHash).toBe(
+          "sha256:94d242cc4eba93c36fddd48ed5e531d70c5b57a5d7a2f2d47305f25e88fdb316"
+        );
+        expect(prepared.change.artifactHash).toBe(
+          "sha256:1cb7e1bb29750da0f4f33ce3b5241397bf396bfda6970fed4c1ce85efea64e0c"
+        );
+      }).pipe(Effect.provide(Path.layer))
   );
 });

@@ -1,23 +1,19 @@
-import { Effect } from "effect";
-import type { PnpmRunner } from "#scripts/dependencies/command";
+import { Array as Arr, Effect, Option, Schema } from "effect";
+import type { CommandOutput, PnpmRunner } from "#scripts/dependencies/command";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
-interface CommandResult {
-  readonly exitCode: number;
-  readonly stderr: string;
-  readonly stdout: string;
-}
+const RegistryVersionText = Schema.fromJsonString(Schema.String);
 
 /** Creates one exact command observation. */
-export function output(exitCode = 0, stdout = "", stderr = ""): CommandResult {
+export function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
   return { exitCode, stderr, stdout };
 }
 
 /** Builds deterministic pnpm output for one policy test. */
 export function makeRunner(input?: {
-  readonly outdated?: CommandResult;
-  readonly registry?: Readonly<Record<string, CommandResult>>;
-  readonly update?: CommandResult;
+  readonly outdated?: CommandOutput;
+  readonly registry?: Readonly<Record<string, CommandOutput>>;
+  readonly update?: CommandOutput;
 }): PnpmRunner {
   return (_root, args) => {
     if (args[0] === "update") {
@@ -28,11 +24,12 @@ export function makeRunner(input?: {
     }
     const registry = args[1] ?? "missing";
     const configured = input?.registry?.[registry];
-    const reviewed = DEPENDENCY_HOLDS.find(
-      (hold) => hold.registry === registry
+    const reviewed = Option.getOrUndefined(
+      Arr.findFirst(DEPENDENCY_HOLDS, (hold) => hold.registry === registry)
     )?.reviewedLatest;
     return Effect.succeed(
-      configured ?? output(0, JSON.stringify(reviewed ?? "missing"))
+      configured ??
+        output(0, Schema.encodeSync(RegistryVersionText)(reviewed ?? "missing"))
     );
   };
 }

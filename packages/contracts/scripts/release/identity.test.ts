@@ -185,3 +185,113 @@ describe("contract release identity", () => {
       })
   );
 });
+
+describe("pinned release identities", () => {
+  it.effect(
+    "pins the exact identity and release tag of one stable version",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* parseVersion("0.46.0")).toEqual({
+          assetName: "nakafa-aksara-contracts-0.46.0.tgz",
+          major: 0,
+          minor: 46,
+          patch: 0,
+          releaseTag: "@nakafa/aksara-contracts@0.46.0",
+          version: "0.46.0",
+        });
+      })
+  );
+
+  it.effect(
+    "selects the numerically newest release regardless of row order",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* latestIdentity(
+            "@nakafa/aksara-contracts@0.9.0\tnakafa-aksara-contracts-0.9.0.tgz\n@nakafa/aksara-contracts@0.10.0\tnakafa-aksara-contracts-0.10.0.tgz\n@nakafa/aksara-contracts@0.9.1\tnakafa-aksara-contracts-0.9.1.tgz\n"
+          )
+        ).toEqual({
+          assetName: "nakafa-aksara-contracts-0.10.0.tgz",
+          major: 0,
+          minor: 10,
+          patch: 0,
+          releaseTag: "@nakafa/aksara-contracts@0.10.0",
+          version: "0.10.0",
+        });
+      })
+  );
+
+  it.effect("pins the package identity decoded from non-ASCII metadata", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* packageIdentity(
+          '{"name":"@nakafa/aksara-contracts","version":"0.46.0","description":"Skema Ñandú untuk Nakafa 😀"}'
+        )
+      ).toEqual({
+        assetName: "nakafa-aksara-contracts-0.46.0.tgz",
+        major: 0,
+        minor: 46,
+        patch: 0,
+        releaseTag: "@nakafa/aksara-contracts@0.46.0",
+        version: "0.46.0",
+      });
+    })
+  );
+
+  it.effect(
+    "pins the archive SHA-256 and first-release decision for exact bytes",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* decideArchive(
+            { current: yield* parseVersion("0.1.0"), latest: undefined },
+            new TextEncoder().encode("Arsip Ñandú 😀"),
+            undefined
+          )
+        ).toEqual({
+          identity: {
+            assetName: "nakafa-aksara-contracts-0.1.0.tgz",
+            major: 0,
+            minor: 1,
+            patch: 0,
+            releaseTag: "@nakafa/aksara-contracts@0.1.0",
+            version: "0.1.0",
+          },
+          mode: "create",
+          sha256:
+            "798defd9f59b94bb2b7669f149bf988ff51c164021507ae00280e73dbd430f77",
+          size: 18,
+        });
+      })
+  );
+
+  it.effect(
+    "pins the release plan for the current package and newest release",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* resolveIdentity(
+            '{"name":"@nakafa/aksara-contracts","version":"0.46.0"}',
+            "@nakafa/aksara-contracts@0.9.0\tnakafa-aksara-contracts-0.9.0.tgz\n@nakafa/aksara-contracts@0.10.0\tnakafa-aksara-contracts-0.10.0.tgz\n@nakafa/aksara-contracts@0.9.1\tnakafa-aksara-contracts-0.9.1.tgz\n"
+          )
+        ).toEqual({
+          current: {
+            assetName: "nakafa-aksara-contracts-0.46.0.tgz",
+            major: 0,
+            minor: 46,
+            patch: 0,
+            releaseTag: "@nakafa/aksara-contracts@0.46.0",
+            version: "0.46.0",
+          },
+          latest: {
+            assetName: "nakafa-aksara-contracts-0.10.0.tgz",
+            major: 0,
+            minor: 10,
+            patch: 0,
+            releaseTag: "@nakafa/aksara-contracts@0.10.0",
+            version: "0.10.0",
+          },
+        });
+      })
+  );
+});

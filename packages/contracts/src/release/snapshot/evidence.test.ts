@@ -154,4 +154,54 @@ describe("structured snapshot domain verification", () => {
       }),
     30_000
   );
+
+  it.effect(
+    "pins the replayed digest each mismatched family reports",
+    () =>
+      Effect.gen(function* () {
+        const snapshotData = yield* makeSnapshotTestData();
+        const program = yield* manifestFor(snapshotData.manifests, "program");
+        const quran = yield* manifestFor(snapshotData.manifests, "quran");
+        const tryout = yield* manifestFor(snapshotData.manifests, "tryout");
+        if (
+          program.family !== "program" ||
+          quran.family !== "quran" ||
+          tryout.family !== "tryout"
+        ) {
+          return yield* Effect.die("Expected narrowed test manifests.");
+        }
+        const errors = yield* Effect.all([
+          reject(
+            {
+              ...program,
+              manifest: { ...program.manifest, rowDigest: unrelatedHash },
+            },
+            snapshotData.rows
+          ),
+          reject(
+            {
+              ...quran,
+              manifest: { ...quran.manifest, projectionDigest: unrelatedHash },
+            },
+            snapshotData.rows
+          ),
+          reject(
+            {
+              ...tryout,
+              manifest: { ...tryout.manifest, catalogDigest: unrelatedHash },
+            },
+            snapshotData.rows
+          ),
+        ]);
+
+        expect(
+          errors.map((error) => ("actual" in error ? error.actual : undefined))
+        ).toEqual([
+          "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
+          "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+          "sha256:fdff06d2385b467397d6b7e7ed8651504debeacd6b652cd5e4a55da9ecc773b0",
+        ]);
+      }),
+    30_000
+  );
 });

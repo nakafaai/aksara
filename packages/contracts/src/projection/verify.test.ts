@@ -34,7 +34,7 @@ function projection(
     metadata: {
       authors: [{ name: "Test Author" }],
       datePublished: "2026-01-01",
-      title: "Test Projection",
+      title: "Pecahan Ñandú café",
     },
     order: 1,
     parentPath,
@@ -187,6 +187,72 @@ describe("projection integrity", () => {
         ).pipe(Stream.runCollect);
 
         expect([...decoded]).toEqual([questionProjection]);
+      })
+  );
+});
+
+describe("pinned projection stream authentication", () => {
+  const pinnedManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    baseActiveAppLocales: null,
+    baseManifestHash: null,
+    baseReleaseId: null,
+    baseResultCount: 0,
+    baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    deleteCount: 0,
+    format: CONTENT_RELEASE_FORMAT,
+    itemCount: 0,
+    itemsDigest: `sha256:${"b".repeat(64)}`,
+    origin: { kind: "git", sha: "a".repeat(40) },
+    projectionCount: 2,
+    projectionDigest:
+      "sha256:d49b45406b618ef23d9a06f07c10d95f5983c444506286b7b77e5e8d8ad2153d",
+    releaseId: "test-release-projections",
+    rendererManifestHash: `sha256:${"c".repeat(64)}`,
+    resultCount: 0,
+    resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
+    rollbackCount: 0,
+    rollbackDigest: `sha256:${"d".repeat(64)}`,
+    routeCount: 0,
+    routeDigest: `sha256:${"d".repeat(64)}`,
+    scope: {
+      families: ["material"],
+      snapshots: [],
+    },
+    snapshots: inheritContentSnapshots(null),
+    upsertCount: 0,
+  });
+
+  it.effect(
+    "authenticates pinned projection bytes against the pinned digest",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyContentProjections({
+            manifest: pinnedManifest,
+            projections: Stream.fromIterable([
+              firstProjection,
+              secondProjection,
+            ]),
+          })
+        ).toEqual({ count: 2 });
+      })
+  );
+
+  it.effect(
+    "rejects pinned projection bytes against one changed digest character",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* verifyContentProjections({
+          manifest: yield* Schema.decodeEffect(ContentReleaseManifestSchema)({
+            ...pinnedManifest,
+            projectionDigest:
+              "sha256:d49b45406b618ef23d9a06f07c10d95f5983c444506286b7b77e5e8d8ad21530",
+          }),
+          projections: Stream.fromIterable([firstProjection, secondProjection]),
+        }).pipe(Effect.flip);
+
+        expect(error._tag).toBe("ProjectionDigestError");
       })
   );
 });

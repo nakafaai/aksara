@@ -1,16 +1,19 @@
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/process";
+import { runEntry } from "#scripts/entry";
+import { runGit } from "#scripts/git";
+import { readSource } from "#scripts/source";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
-export interface EffectSourceConfig {
-  readonly installedManifest: string;
-  readonly repository: string;
-  readonly sourcePath: string;
-  readonly vendoredManifest: string;
-}
+const EffectSourceConfigSchema = Schema.Struct({
+  installedManifest: Schema.String,
+  repository: Schema.String,
+  sourcePath: Schema.String,
+  vendoredManifest: Schema.String,
+});
+
+export type EffectSourceConfig = typeof EffectSourceConfigSchema.Type;
 
 const DEFAULT_CONFIG: EffectSourceConfig = {
   installedManifest: "node_modules/effect/package.json",
@@ -22,6 +25,8 @@ const DEFAULT_CONFIG: EffectSourceConfig = {
 const PackageManifest = Schema.Struct({
   version: Schema.String.pipe(Schema.check(Schema.isPattern(VERSION_PATTERN))),
 });
+
+const JsonDocument = Schema.fromJsonString(Schema.Unknown);
 
 class EffectSourceReadError extends Schema.TaggedError<EffectSourceReadError>()(
   "EffectSourceReadError",
@@ -43,75 +48,49 @@ class EffectSourceUsageError extends Schema.TaggedError<EffectSourceUsageError>(
   { message: Schema.String }
 ) {}
 
-/** Collects one command stream without leaving a child process unscoped. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
-
 /** Translates one platform command failure into the CLI error contract. */
 function gitPlatformError(error: PlatformError) {
   return new EffectSourceGitError({ message: error.message });
 }
 
-/** Runs Git with structured concurrency and preserves non-zero diagnostics. */
-const runGit = Effect.fn("EffectSource.runGit")((args: readonly string[]) =>
-  Effect.scoped(
-    Effect.gen(function* () {
-      const command = yield* ChildProcess.make("git", args).pipe(
-        Effect.mapError(gitPlatformError)
-      );
-      const [exitCode, stdout, stderr] = yield* Effect.all(
-        [
-          command.exitCode.pipe(Effect.mapError(gitPlatformError)),
-          collectText(command.stdout).pipe(Effect.mapError(gitPlatformError)),
-          collectText(command.stderr).pipe(Effect.mapError(gitPlatformError)),
-        ],
-        { concurrency: 3 }
-      );
-
-      if (exitCode !== 0) {
-        const diagnostic = stderr.trim() || stdout.trim() || "Git failed.";
-        return yield* new EffectSourceGitError({
-          message: `git ${args.join(" ")}: ${diagnostic}`,
-        });
-      }
-
-      return stdout;
-    })
-  )
-);
+/** Runs Git and returns its output, turning a non-zero exit into a typed error. */
+const gitOutput = Effect.fn("EffectSource.gitOutput")(function* (
+  args: readonly string[]
+) {
+  const result = yield* runGit(args).pipe(Effect.mapError(gitPlatformError));
+  if (result.exitCode !== 0) {
+    const diagnostic =
+      result.stderr.trim() || result.stdout.trim() || "Git failed.";
+    return yield* new EffectSourceGitError({
+      message: `git ${Arr.join(args, " ")}: ${diagnostic}`,
+    });
+  }
+  return result.stdout;
+});
 
 /** Runs Git and trims one scalar value from its successful output. */
 const readGitValue = Effect.fn("EffectSource.readGitValue")(
   (args: readonly string[]) =>
-    runGit(args).pipe(Effect.map((output) => output.trim()))
+    gitOutput(args).pipe(Effect.map((output) => output.trim()))
 );
 
 /** Reads and validates one package version through the platform filesystem. */
 const readVersion = Effect.fn("EffectSource.readVersion")(function* (
   path: string
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const source = yield* fileSystem
-    .readFileString(path)
-    .pipe(
-      Effect.mapError(
-        (error) => new EffectSourceReadError({ message: error.message })
-      )
-    );
-  const input = yield* Effect.try({
-    catch: () =>
-      new EffectSourceReadError({
-        message: `${path} does not contain valid JSON.`,
-      }),
-    try: (): unknown => JSON.parse(source),
-  });
+  const source = yield* readSource(path).pipe(
+    Effect.mapError(
+      (error) => new EffectSourceReadError({ message: error.message })
+    )
+  );
+  const input = yield* Schema.decodeEffect(JsonDocument)(source).pipe(
+    Effect.mapError(
+      () =>
+        new EffectSourceReadError({
+          message: `${path} does not contain valid JSON.`,
+        })
+    )
+  );
 
   return yield* Schema.decodeUnknownEffect(PackageManifest)(input).pipe(
     Effect.mapError(
@@ -128,7 +107,7 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
 const inspectSource = Effect.fn("EffectSource.inspect")(function* (
   config: EffectSourceConfig
 ) {
-  const sourceStatus = yield* runGit([
+  const sourceStatus = yield* gitOutput([
     "status",
     "--porcelain",
     "--",
@@ -192,7 +171,7 @@ const checkSource = Effect.fn("EffectSource.check")(function* (
 const requireCleanWorktree = Effect.fn("EffectSource.requireClean")(
   function* () {
     const branchRef = yield* readGitValue(["symbolic-ref", "--quiet", "HEAD"]);
-    const status = yield* runGit(["status", "--porcelain"]);
+    const status = yield* gitOutput(["status", "--porcelain"]);
 
     if (status.trim()) {
       return yield* new EffectSourceMismatch({
@@ -221,7 +200,7 @@ const updateSource = Effect.fn("EffectSource.update")(function* (
 
   const tag = `effect@${state.installedVersion}`;
   const previousHead = yield* readGitValue(["rev-parse", "HEAD"]);
-  yield* runGit([
+  yield* gitOutput([
     "subtree",
     "pull",
     `--prefix=${config.sourcePath}`,
@@ -242,7 +221,7 @@ const updateSource = Effect.fn("EffectSource.update")(function* (
     "-m",
     `git-subtree-dir: ${config.sourcePath}\ngit-subtree-split: ${split}`,
   ]);
-  yield* runGit([
+  yield* gitOutput([
     "update-ref",
     "-m",
     "linearize Effect source update",
@@ -275,8 +254,7 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
   }
 );
 
-NodeRuntime.runMain(
-  makeEffectSourceProgram(process.argv[2]).pipe(
-    Effect.provide(NodeServices.layer)
-  )
-);
+// A failed run reports on stdout, where this script has always reported it.
+runEntry(import.meta.main, makeEffectSourceProgram(process.argv[2]), {
+  failureStream: "stdout",
+});

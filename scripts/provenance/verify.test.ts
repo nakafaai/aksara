@@ -1,7 +1,11 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect, Layer, Result } from "effect";
+import { Effect, Layer, Result, Schema } from "effect";
 import { ProvenanceBundleVerifier } from "#scripts/provenance/bundle";
-import type { ProvenanceExpectation } from "#scripts/provenance/schema";
+import {
+  AuditSchema,
+  type ProvenanceExpectation,
+  ProvenanceStatementSchema,
+} from "#scripts/provenance/schema";
 import { verifyProvenance } from "#scripts/provenance/verify";
 
 const EXPECTATION = {
@@ -17,10 +21,12 @@ const EXPECTATION = {
 } satisfies ProvenanceExpectation;
 
 const BUNDLE = { evidence: "signed" };
+const StatementText = Schema.fromJsonString(ProvenanceStatementSchema);
+const AuditText = Schema.fromJsonString(AuditSchema);
 
 /** Creates one authenticated SLSA statement fixture. */
 function statement(sourceSha = EXPECTATION.sourceSha) {
-  return JSON.stringify({
+  return Schema.encodeSync(StatementText)({
     _type: "https://in-toto.io/Statement/v1",
     predicate: {
       buildDefinition: {
@@ -64,7 +70,7 @@ function audit(
     readonly name?: string;
   } = {}
 ) {
-  return JSON.stringify({
+  return Schema.encodeSync(AuditText)({
     invalid: options.invalid ?? [],
     missing: [],
     verified: [

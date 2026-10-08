@@ -1,3 +1,4 @@
+import { Array as Arr } from "effect";
 import {
   type ExportDeclaration,
   type ImportDeclaration,
@@ -18,6 +19,7 @@ import {
   type StringLiteralLikeNode,
   SyntaxKind,
 } from "typescript/unstable/ast";
+import { syntaxNodes } from "#scripts/check/syntax";
 
 /** Returns the statically knowable module specifier owned by one syntax node. */
 function staticModuleSpecifier(node: Node): StringLiteralLikeNode | undefined {
@@ -67,20 +69,10 @@ function staticModuleSpecifier(node: Node): StringLiteralLikeNode | undefined {
 export function moduleSpecifiers(
   sourceFile: SourceFile
 ): readonly StringLiteralLikeNode[] {
-  const specifiers: StringLiteralLikeNode[] = [];
-  const nodes: Node[] = [sourceFile];
-
-  for (const node of nodes) {
+  return Arr.flatMap(syntaxNodes(sourceFile), (node) => {
     const specifier = staticModuleSpecifier(node);
-    if (specifier) {
-      specifiers.push(specifier);
-    }
-    node.forEachChild((child) => {
-      nodes.push(child);
-    });
-  }
-
-  return specifiers;
+    return specifier === undefined ? [] : [specifier];
+  });
 }
 
 /** Returns exposed bindings from one static import declaration. */
@@ -102,7 +94,8 @@ function importBindings(
   if (isNamespaceImport(namedBindings)) {
     return [namedBindings];
   }
-  return namedBindings.elements.filter(
+  return Arr.filter(
+    namedBindings.elements,
     (specifier) =>
       (specifier.propertyName ?? specifier.name).text === exportName
   );
@@ -123,7 +116,8 @@ function exportBindings(
   if (!node.exportClause || isNamespaceExport(node.exportClause)) {
     return [node.exportClause ?? node];
   }
-  return node.exportClause.elements.filter(
+  return Arr.filter(
+    node.exportClause.elements,
     (specifier) =>
       (specifier.propertyName ?? specifier.name).text === exportName
   );
@@ -156,24 +150,13 @@ export function exposedModuleBindings(
   moduleName: string,
   exportName: string
 ): readonly Node[] {
-  const bindings: Node[] = [];
-  const nodes: Node[] = [sourceFile];
-
-  for (const node of nodes) {
-    bindings.push(
-      ...(isImportDeclaration(node)
-        ? importBindings(node, moduleName, exportName)
-        : []),
-      ...(isExportDeclaration(node)
-        ? exportBindings(node, moduleName, exportName)
-        : []),
-      ...nonStaticBindings(node, moduleName, exportName)
-    );
-
-    node.forEachChild((child) => {
-      nodes.push(child);
-    });
-  }
-
-  return bindings;
+  return Arr.flatMap(syntaxNodes(sourceFile), (node) => [
+    ...(isImportDeclaration(node)
+      ? importBindings(node, moduleName, exportName)
+      : []),
+    ...(isExportDeclaration(node)
+      ? exportBindings(node, moduleName, exportName)
+      : []),
+    ...nonStaticBindings(node, moduleName, exportName),
+  ]);
 }

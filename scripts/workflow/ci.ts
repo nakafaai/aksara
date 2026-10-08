@@ -1,5 +1,12 @@
 import assert from "node:assert/strict";
-import { Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Option,
+  Order,
+  pipe,
+  Record as Rec,
+  Schema,
+} from "effect";
 import {
   decodeWorkflow,
   exactNeeds,
@@ -14,18 +21,24 @@ const TRIGGER_PATTERN =
 const CHECKS_PATTERN =
   /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm points[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm build/u;
 const JOBS = ["checks", "test", "verify"];
-const POINTS_STEP = [
-  'pnpm points --base "$BASE_SHA"',
-  "BASE_SHA",
-  `${DOLLAR}{{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}`,
-].join("\n");
-const RESULT_SOURCE = [
-  'test "$CHECKS" = success && test "$TEST" = success',
-  "CHECKS",
-  `${DOLLAR}{{ needs.checks.result }}`,
-  "TEST",
-  `${DOLLAR}{{ needs.test.result }}`,
-].join("\n");
+const POINTS_STEP = Arr.join(
+  [
+    'pnpm points --base "$BASE_SHA"',
+    "BASE_SHA",
+    `${DOLLAR}{{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}`,
+  ],
+  "\n"
+);
+const RESULT_SOURCE = Arr.join(
+  [
+    'test "$CHECKS" = success && test "$TEST" = success',
+    "CHECKS",
+    `${DOLLAR}{{ needs.checks.result }}`,
+    "TEST",
+    `${DOLLAR}{{ needs.test.result }}`,
+  ],
+  "\n"
+);
 const INSTALL_COMMAND = "pnpm install --frozen-lockfile";
 const TEST_COMMAND = `${DOLLAR}{{ matrix.command }}`;
 // One Turbo run of test tasks and package filters, ending at one concurrent task.
@@ -82,9 +95,9 @@ function requireJob(
 
 /** Lists the sorted test targets that one matrix command runs. */
 function legTargets(command: string): readonly string[] {
-  return command
-    .split(WHITESPACE_PATTERN)
-    .flatMap((token) => {
+  return pipe(
+    command.split(WHITESPACE_PATTERN),
+    Arr.flatMap((token) => {
       if (token.startsWith(TEST_TASK_PREFIX)) {
         return [token];
       }
@@ -92,30 +105,34 @@ function legTargets(command: string): readonly string[] {
         return [token.slice(FILTER_PREFIX.length)];
       }
       return [];
-    })
-    .sort();
+    }),
+    Arr.sort(Order.String)
+  );
 }
 
 /** Reports whether a matrix command filters packages without the root package, which drops the root test tasks it names. */
 function skipsRootTasks(command: string): boolean {
   const tokens = command.split(WHITESPACE_PATTERN);
   return (
-    tokens.some((token) => token.startsWith(TEST_TASK_PREFIX)) &&
-    tokens.some((token) => token.startsWith(FILTER_PREFIX)) &&
+    Arr.some(tokens, (token) => token.startsWith(TEST_TASK_PREFIX)) &&
+    Arr.some(tokens, (token) => token.startsWith(FILTER_PREFIX)) &&
     !tokens.includes(ROOT_FILTER)
   );
 }
 
 /** Reports whether every key of one YAML mapping is among the allowed keys. */
-function hasOnlyKeys(mapping: object, keys: readonly string[]): boolean {
-  return Object.keys(mapping).every((key) => keys.includes(key));
+function hasOnlyKeys(
+  mapping: Readonly<Record<string, unknown>>,
+  keys: readonly string[]
+): boolean {
+  return Arr.every(Rec.keys(mapping), (key) => keys.includes(key));
 }
 
 /** Verifies that the test matrix runs every test target in exactly one group. */
 function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
   assert.ok(
     hasOnlyKeys(job, TEST_JOB_KEYS) &&
-      job.steps.every((step) => hasOnlyKeys(step, TEST_STEP_KEYS)),
+      Arr.every(job.steps, (step) => hasOnlyKeys(step, TEST_STEP_KEYS)),
     "The test job may carry only the keys that run each test group"
   );
   const strategy = decodeTestStrategy(job.strategy);
@@ -130,8 +147,11 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
   );
   const legs = strategy.value.matrix.include;
   assert.deepEqual(
-    legs.map((leg) => leg.group).sort(),
-    Object.keys(TEST_GROUPS).sort(),
+    Arr.sort(
+      Arr.map(legs, (leg) => leg.group),
+      Order.String
+    ),
+    Arr.sort(Rec.keys(TEST_GROUPS), Order.String),
     "CI must run the four test groups, one matrix leg each"
   );
   for (const leg of legs) {
@@ -142,7 +162,7 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
     );
   }
   for (const target of targets) {
-    const owners = legs.filter((leg) =>
+    const owners = Arr.filter(legs, (leg) =>
       legTargets(leg.command).includes(target)
     );
     assert.equal(
@@ -160,12 +180,20 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
     }
   }
   assert.deepEqual(
-    Object.fromEntries(legs.map((leg) => [leg.group, legTargets(leg.command)])),
-    Object.fromEntries(
-      Object.entries(TEST_GROUPS).map(([group, members]) => [
-        group,
-        [...members].sort(),
+    Rec.fromEntries(
+      Arr.map(legs, (leg): readonly [string, readonly string[]] => [
+        leg.group,
+        legTargets(leg.command),
       ])
+    ),
+    Rec.fromEntries(
+      Arr.map(
+        Rec.toEntries(TEST_GROUPS),
+        ([group, members]): readonly [string, readonly string[]] => [
+          group,
+          Arr.sort(members, Order.String),
+        ]
+      )
     ),
     "Each CI test group must run exactly its own test targets"
   );
@@ -176,7 +204,9 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
     );
   }
   assert.deepEqual(
-    job.steps.flatMap((step) => (step.run === undefined ? [] : [step.run])),
+    Arr.flatMap(job.steps, (step) =>
+      step.run === undefined ? [] : [step.run]
+    ),
     [INSTALL_COMMAND, TEST_COMMAND],
     "Each CI test group must run only its matrix command"
   );
@@ -194,7 +224,7 @@ export function verifyCiWorkflow(
   );
   const { jobs } = decodeWorkflow(source);
   assert.deepEqual(
-    Object.keys(jobs),
+    Rec.keys(jobs),
     JOBS,
     "CI must run checks and tests in parallel behind one verify job"
   );

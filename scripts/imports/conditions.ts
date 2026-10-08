@@ -1,8 +1,25 @@
-import { Predicate } from "effect";
+import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
+
+const JsonText = Schema.fromJsonString(Schema.Unknown);
+
+/** TypeScript configuration does not own exactly one workspace source condition. */
+export class SourceConditionError extends Schema.TaggedError<SourceConditionError>()(
+  "SourceConditionError",
+  { message: Schema.String }
+) {}
 
 /** Reads the one workspace source condition owned by TypeScript configuration. */
-export function sourceConditionFromConfig(source: string): string {
-  const config: unknown = JSON.parse(source);
+export const sourceConditionFromConfig = Effect.fn(
+  "AksaraPolicy.sourceCondition"
+)(function* (source: string) {
+  const config: unknown = yield* Schema.decodeEffect(JsonText)(source).pipe(
+    Effect.mapError(
+      () =>
+        new SourceConditionError({
+          message: "TypeScript config must be valid JSON.",
+        })
+    )
+  );
   const compilerOptions = Predicate.isObject(config)
     ? config.compilerOptions
     : undefined;
@@ -10,16 +27,17 @@ export function sourceConditionFromConfig(source: string): string {
     ? compilerOptions.customConditions
     : undefined;
   if (
-    !Array.isArray(conditions) ||
+    !Arr.isArray(conditions) ||
     conditions.length !== 1 ||
     typeof conditions[0] !== "string"
   ) {
-    throw new Error(
-      "TypeScript config must own exactly one workspace source condition"
-    );
+    return yield* new SourceConditionError({
+      message:
+        "TypeScript config must own exactly one workspace source condition",
+    });
   }
   return conditions[0];
-}
+});
 
 /** Preserves semantic condition order in one workspace package manifest. */
 export function sourceConditionViolations(
@@ -27,17 +45,17 @@ export function sourceConditionViolations(
   source: string,
   sourceCondition: string
 ): readonly string[] {
-  const manifest: unknown = JSON.parse(source);
+  const manifest: unknown = Schema.decodeSync(JsonText)(source);
   if (!Predicate.isObject(manifest)) {
     return [`${file}: package manifest must be an object`];
   }
 
-  return ["imports", "exports"].flatMap((section) => {
+  return Arr.flatMap(["imports", "exports"], (section) => {
     const entries = manifest[section];
     if (!Predicate.isObject(entries)) {
       return [];
     }
-    return Object.entries(entries).flatMap(([specifier, descriptor]) =>
+    return Arr.flatMap(Rec.toEntries(entries), ([specifier, descriptor]) =>
       descriptorViolations(
         file,
         `${section}/${specifier}`,
@@ -55,8 +73,8 @@ function descriptorViolations(
   descriptor: unknown,
   sourceCondition: string
 ): readonly string[] {
-  if (Array.isArray(descriptor)) {
-    return descriptor.flatMap((entry, index) =>
+  if (Arr.isArray(descriptor)) {
+    return Arr.flatMap(descriptor, (entry, index) =>
       descriptorViolations(file, `${path}[${index}]`, entry, sourceCondition)
     );
   }
@@ -64,22 +82,19 @@ function descriptorViolations(
     return [];
   }
 
-  const violations: string[] = [];
-  if (
-    sourceCondition in descriptor &&
-    Object.keys(descriptor)[0] !== sourceCondition
-  ) {
-    violations.push(`${file}: ${path} must put ${sourceCondition} first`);
-  }
-  for (const [condition, target] of Object.entries(descriptor)) {
-    violations.push(
-      ...descriptorViolations(
+  const orderViolations =
+    sourceCondition in descriptor && Rec.keys(descriptor)[0] !== sourceCondition
+      ? [`${file}: ${path} must put ${sourceCondition} first`]
+      : [];
+  const nestedViolations = Arr.flatMap(
+    Rec.toEntries(descriptor),
+    ([condition, target]) =>
+      descriptorViolations(
         file,
         `${path}/${condition}`,
         target,
         sourceCondition
       )
-    );
-  }
-  return violations;
+  );
+  return [...orderViolations, ...nestedViolations];
 }

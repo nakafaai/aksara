@@ -112,4 +112,51 @@ describe("route digest", () => {
       ]);
     })
   );
+
+  it.effect(
+    "pins one digest for the whole stream, one-element chunks, and the incremental fold of the same route stream",
+    () =>
+      Effect.gen(function* () {
+        const bind = route();
+        const deletion = yield* Schema.decodeEffect(ContentRouteItemSchema)({
+          change: {
+            appLocale: "id",
+            operation: "delete",
+            publicPath: "subjects/test/rute",
+          },
+          index: 1,
+          releaseId,
+        });
+        const whole = yield* digestRoutes(
+          releaseId,
+          Stream.make(bind, deletion)
+        );
+        const split = yield* digestRoutes(
+          releaseId,
+          Stream.make(bind, deletion).pipe(Stream.rechunk(1))
+        );
+        const initial = yield* createRouteDigest(releaseId);
+        const withBind = yield* updateRouteDigest(releaseId, initial, bind);
+        const withDelete = yield* updateRouteDigest(
+          releaseId,
+          withBind,
+          deletion
+        );
+        const incremental = yield* completeRouteDigest(releaseId, withDelete);
+
+        expect(whole).toEqual({
+          count: 2,
+          digest:
+            "sha256:ffd8ad538a5f6d06609960cf44215f58265e6ed1a9fe028cac084f70edf3e33a",
+        });
+        expect(split).toEqual({
+          count: 2,
+          digest:
+            "sha256:ffd8ad538a5f6d06609960cf44215f58265e6ed1a9fe028cac084f70edf3e33a",
+        });
+        expect(incremental).toBe(
+          "sha256:ffd8ad538a5f6d06609960cf44215f58265e6ed1a9fe028cac084f70edf3e33a"
+        );
+      })
+  );
 });

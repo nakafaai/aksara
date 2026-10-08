@@ -28,6 +28,12 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import {
+  pinnedArtifact,
+  pinnedManifest,
+  pinnedResolver,
+  verifyPinnedSignature,
+} from "#contracts/test/artifact";
 import { testRendererDomains } from "#contracts/test/renderer";
 
 vi.mock("node:crypto", async (importOriginal) => {
@@ -285,4 +291,16 @@ describe("server-only artifact verification", () => {
       expect(JSON.stringify(nested)).not.toContain(privateSourceMarker);
     })
   );
+});
+
+describe("pinned renderer verification", () => {
+  it.effect("authenticates pinned bytes under the pinned renderer", () =>
+    verifySignedContentArtifact(request(pinnedArtifact, pinnedManifest)).pipe(
+      Effect.provideService(ContentVerificationKeyResolver, pinnedResolver),
+      Effect.map((artifact) => expect(artifact).toEqual(pinnedArtifact))
+    )
+  );
+  it("verifies the pinned signature over the exact canonical bytes", () => {
+    expect(verifyPinnedSignature()).toEqual([true, false]);
+  });
 });

@@ -49,4 +49,26 @@ describe("release origin", () => {
       )
     ).toBe(true);
   });
+
+  it("pins the canonical JSON of an exact Git origin", () => {
+    const origin = Schema.decodeSync(ReleaseOriginSchema)({
+      kind: "git",
+      sha: "0123456789abcdef0123456789abcdef01234567",
+    });
+
+    expect(JSON.stringify(canonicalizeReleaseOrigin(origin))).toBe(
+      '{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"}'
+    );
+  });
+
+  it("pins the canonical JSON of a rollback origin", () => {
+    const origin = Schema.decodeSync(ReleaseOriginSchema)({
+      kind: "rollback",
+      releaseId: "release-active",
+    });
+
+    expect(JSON.stringify(canonicalizeReleaseOrigin(origin))).toBe(
+      '{"kind":"rollback","releaseId":"release-active"}'
+    );
+  });
 });

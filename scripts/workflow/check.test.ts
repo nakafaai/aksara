@@ -1,6 +1,14 @@
-import { readFileSync } from "node:fs";
-import { describe, expect, it } from "@effect/vitest";
-import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
+import { Effect } from "effect";
+import {
+  verifyRepositoryWorkflows,
+  verifyWorkflows,
+} from "#scripts/workflow/check";
+import {
+  sourceTestsOf,
+  workflowSourcesLayer,
+} from "#scripts/workflow/test/sources";
 import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
 
 const OPERATION_HISTORY_INPUT =
@@ -8,27 +16,23 @@ const OPERATION_HISTORY_INPUT =
 const OPERATION_SETUP_INPUT =
   /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
 
-/** Reads the exact workflow set exercised by repository policy. */
-function currentSources(): WorkflowSources {
-  const ci = readFileSync(".github/workflows/ci.yml", "utf8");
-  const cli = readFileSync(".github/workflows/cli.yml", "utf8");
-  const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
-  const release = readFileSync(".github/workflows/release.yml", "utf8");
-  return { all: [ci, cli, contracts, release], ci, cli, contracts, release };
-}
+layer(workflowSourcesLayer)("workflow policy", (layered) => {
+  const it = sourceTestsOf(layered);
 
-const sources = currentSources();
-describe("workflow policy", () => {
-  it("accepts immutable archives and the direct content release path", () => {
+  layered.effect("verifies the tracked repository workflows", () =>
+    verifyRepositoryWorkflows().pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it("accepts immutable archives and the direct content release path", (sources) => {
     expect(() => verifyWorkflows(sources)).not.toThrow();
   });
-  it("verifies every tracked workflow source", () => {
+  it("verifies every tracked workflow source", (sources) => {
     const unconfigured = "jobs:\n  verify:\n    steps:\n      - run: pnpm test";
     expect(() =>
       verifyWorkflows({ ...sources, all: [...sources.all, unconfigured] })
     ).toThrow("Every pnpm job must set up the toolchain once");
   });
-  it("always verifies each named release workflow", () => {
+  it("always verifies each named release workflow", (sources) => {
     const release = sources.release.replaceAll(
       TOOLCHAIN_SETUP_ACTION,
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
@@ -37,7 +41,7 @@ describe("workflow policy", () => {
       "Every pnpm job must set up the toolchain once"
     );
   });
-  it("rejects registry publication machinery", () => {
+  it("rejects registry publication machinery", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -54,7 +58,7 @@ describe("workflow policy", () => {
     }
   });
 
-  it("requires CI to use the tested archive identity decision", () => {
+  it("requires CI to use the tested archive identity decision", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -66,7 +70,7 @@ describe("workflow policy", () => {
     ).toThrow("CI must derive release necessity from the tested identity tool");
   });
 
-  it("derives previous bytes only from final immutable releases", () => {
+  it("derives previous bytes only from final immutable releases", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -75,7 +79,7 @@ describe("workflow policy", () => {
     ).toThrow("CI must derive release necessity from the tested identity tool");
   });
 
-  it("rejects shell contract version parsing", () => {
+  it("rejects shell contract version parsing", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -84,7 +88,7 @@ describe("workflow policy", () => {
     ).toThrow("CI must not parse contract versions in shell");
   });
 
-  it("attests the verified archive before privileged transfer", () => {
+  it("attests the verified archive before privileged transfer", (sources) => {
     const contracts = sources.contracts
       .replace("- name: Upload verified package", "- name: Later transfer")
       .replace(
@@ -98,7 +102,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("binds GitHub attestation to one exact source", () => {
+  it("binds GitHub attestation to one exact source", (sources) => {
     const contracts = sources.contracts.replaceAll(
       '--source-digest "$GITHUB_SHA"',
       '--source-digest "unknown"'
@@ -108,7 +112,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("removes only the failed same-SHA mutable release", () => {
+  it("removes only the failed same-SHA mutable release", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -122,7 +126,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("removes mutable releases without requiring a draft tag", () => {
+  it("removes mutable releases without requiring a draft tag", (sources) => {
     const cases = [
       [
         '          if [[ -n "$tag" ]]; then\n            gh api --method DELETE',
@@ -141,7 +145,7 @@ describe("workflow policy", () => {
     }
   });
 
-  it("rejects an impossible repository-setting preflight", () => {
+  it("rejects an impossible repository-setting preflight", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -153,7 +157,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires archive comparison instead of trigger path guesses", () => {
+  it("requires archive comparison instead of trigger path guesses", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -165,7 +169,7 @@ describe("workflow policy", () => {
     ).toThrow("Contract release triggers must not guess archive input paths");
   });
 
-  it("skips full release gates when archive bytes are unchanged", () => {
+  it("skips full release gates when archive bytes are unchanged", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -177,7 +181,7 @@ describe("workflow policy", () => {
     ).toThrow("Unchanged contract archives must skip full release gates");
   });
 
-  it("requires the publish job to read archive attestations", () => {
+  it("requires the publish job to read archive attestations", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -189,7 +193,7 @@ describe("workflow policy", () => {
     ).toThrow("Contract publication must verify archive attestations");
   });
 
-  it("requires exact immutable release rerun handling", () => {
+  it("requires exact immutable release rerun handling", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -203,7 +207,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("allows only same-SHA mutable release recovery", () => {
+  it("allows only same-SHA mutable release recovery", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -217,7 +221,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires exact action commits", () => {
+  it("requires exact action commits", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -229,7 +233,7 @@ describe("workflow policy", () => {
     ).toThrow("Workflow action actions/checkout@main must use an exact commit");
   });
 
-  it("requires complete history for content operations", () => {
+  it("requires complete history for content operations", (sources) => {
     const contract = sources.release.replace(
       "          fetch-depth: 0",
       "          fetch-depth: 1"
@@ -248,7 +252,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("keeps contract proof outside the production environment", () => {
+  it("keeps contract proof outside the production environment", (sources) => {
     const release = sources.release
       .replace("environment: content-production", "environment: moved")
       .replace(
@@ -260,7 +264,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires production operations to use an exact isolated checkout", () => {
+  it("requires production operations to use an exact isolated checkout", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,
@@ -274,7 +278,7 @@ describe("workflow policy", () => {
     );
   });
 
-  it("requires release workflows to pass a validated scalable scope", () => {
+  it("requires release workflows to pass a validated scalable scope", (sources) => {
     expect(() =>
       verifyWorkflows({
         ...sources,

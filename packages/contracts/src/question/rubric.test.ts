@@ -12,37 +12,41 @@ import {
   QuestionRubricScaleSchema,
   questionRubricPoints,
 } from "#contracts/question/rubric";
+import { rejects } from "#contracts/test/answer";
 import {
+  authoredLevels,
+  goldenRubricCanonical,
+  goldenRubricFrozen,
+  goldenRubricSource,
+  goldenRubricStructure,
   rubricLabel as label,
+  oneCriterion,
   rubric,
   rubricSourceWith,
   rubricSource as source,
 } from "#contracts/test/rubric";
 
-/** Returns whether one unknown rubric fails strict decoding. */
-function rejects(
-  schema:
-    | typeof QuestionRubricResponseSchema
-    | typeof QuestionRubricResponseSourceSchema,
-  input: unknown
-) {
-  return Exit.isFailure(
-    Schema.decodeUnknownExit(schema)(input, { onExcessProperty: "error" })
-  );
-}
+describe("question rubric golden canonical bytes", () => {
+  it("pins the canonical and structure bytes of a frozen rubric", () => {
+    expect(JSON.stringify(canonicalQuestionRubric(goldenRubricFrozen))).toBe(
+      goldenRubricCanonical
+    );
+    expect(
+      JSON.stringify(canonicalQuestionRubricStructure(goldenRubricFrozen))
+    ).toBe(goldenRubricStructure);
+  });
 
-/** Builds one authored rubric with a single criterion. */
-function oneCriterion(criterion: unknown) {
-  return { criteria: [criterion], kind: "rubric" };
-}
+  it("derives the stable criterion and level keys from authored order", () => {
+    const frozen = freezeQuestionRubric(goldenRubricSource);
 
-/** Builds authored levels worth the given points, in order. */
-function authoredLevels(...points: number[]) {
-  return points.map((value) => ({
-    label: label(`Level ${value}`),
-    points: value,
-  }));
-}
+    expect(JSON.stringify(canonicalQuestionRubric(frozen))).toBe(
+      goldenRubricCanonical
+    );
+    expect(JSON.stringify(canonicalQuestionRubricStructure(frozen))).toBe(
+      goldenRubricStructure
+    );
+  });
+});
 
 const textResult = rubricSourceWith({
   acceptedAnswers: ["Test-only result"],

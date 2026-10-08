@@ -1,13 +1,22 @@
-import { expect, layer } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, expect, layer } from "@effect/vitest";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import { Array as Arr, Effect, FileSystem, Layer, Order, Path } from "effect";
 import {
+  documentationReport,
   documentationViolations,
   missingDocumentation,
 } from "#scripts/check/docs";
+
+const originalExitCode = process.exitCode;
+
+afterEach(() => {
+  process.exitCode = originalExitCode;
+  vi.restoreAllMocks();
+});
 
 const documentedSource = `
 /** Explains this named function. */
@@ -54,18 +63,20 @@ const object = {
 };
 `;
 
-layer(TypeScriptParser.layer)("JSDoc policy", (it) => {
-  it.effect("accepts every supported documented callable shape", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* missingDocumentation("documented.ts", documentedSource)
-      ).toEqual([]);
-    })
-  );
+layer(Layer.merge(TypeScriptParser.layer, NodeServices.layer))(
+  "JSDoc policy",
+  (it) => {
+    it.effect("accepts every supported documented callable shape", () =>
+      Effect.gen(function* () {
+        expect(
+          yield* missingDocumentation("documented.ts", documentedSource)
+        ).toEqual([]);
+      })
+    );
 
-  it.effect("reports named callables without meaningful prose", () =>
-    Effect.gen(function* () {
-      const source = `
+    it.effect("reports named callables without meaningful prose", () =>
+      Effect.gen(function* () {
+        const source = `
 /**
  * Two words.
  * @returns ignored
@@ -88,45 +99,78 @@ interface Port {
 const object = { task: Effect.fn("task")(() => Effect.void) };
 `;
 
-      expect(
-        (yield* missingDocumentation("missing.ts", source))
-          .map((diagnostic) => diagnostic.split(" ").at(-1))
-          .sort()
-      ).toEqual([
-        "arrow",
-        "callback",
-        "constructor",
-        "expression",
-        "load",
-        "method",
-        "program",
-        "run",
-        "shallow",
-        "task",
-        "value",
-        "value",
-      ]);
-    })
-  );
+        const names = Arr.map(
+          yield* missingDocumentation("missing.ts", source),
+          (diagnostic) => diagnostic.split(" ").at(-1) ?? ""
+        );
+        expect(Arr.sort(names, Order.String)).toEqual([
+          "arrow",
+          "callback",
+          "constructor",
+          "expression",
+          "load",
+          "method",
+          "program",
+          "run",
+          "shallow",
+          "task",
+          "value",
+          "value",
+        ]);
+      })
+    );
 
-  it.effect("aggregates diagnostics across source readers", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* documentationViolations(["one.ts", "two.ts"], (file) =>
-          file === "one.ts" ? "export function missing() {}" : documentedSource
-        )
-      ).toEqual(["one.ts:1 missing"]);
-    })
-  );
-  it.effect("preserves source-reader failures", () =>
-    Effect.gen(function* () {
-      const cause = new Error("test source is unreadable");
-      const failure = yield* documentationViolations(["unreadable.ts"], () => {
-        throw cause;
-      }).pipe(Effect.flip);
-      expect(failure).toEqual(
-        new TypeScriptSourceError({ cause, fileName: "unreadable.ts" })
-      );
-    })
-  );
-});
+    it.effect("aggregates diagnostics across source readers", () =>
+      Effect.gen(function* () {
+        expect(
+          yield* documentationViolations(["one.ts", "two.ts"], (file) =>
+            Effect.succeed(
+              file === "one.ts"
+                ? "export function missing() {}"
+                : documentedSource
+            )
+          )
+        ).toEqual(["one.ts:1 missing"]);
+      })
+    );
+
+    it.effect(
+      "reports undocumented callables through the documentation report",
+      () =>
+        Effect.gen(function* () {
+          const fileSystem = yield* FileSystem.FileSystem;
+          const path = yield* Path.Path;
+          const root = yield* fileSystem.makeTempDirectoryScoped({
+            prefix: "aksara-docs-",
+          });
+          const undocumented = path.join(root, "undocumented.ts");
+          yield* fileSystem.writeFileString(
+            undocumented,
+            "export function missing() {}"
+          );
+          const write = vi
+            .spyOn(process.stderr, "write")
+            .mockImplementation(() => true);
+
+          yield* documentationReport([undocumented]);
+
+          expect(write).toHaveBeenCalledWith(
+            `Named callables require useful JSDoc:\n${undocumented}:1 missing\n`
+          );
+          expect(process.exitCode).toBe(1);
+        })
+    );
+
+    it.effect("preserves source-reader failures", () =>
+      Effect.gen(function* () {
+        const cause = new Error("test source is unreadable");
+        const failure = yield* documentationViolations(["unreadable.ts"], () =>
+          Effect.fail(cause)
+        ).pipe(Effect.flip);
+        expect(failure).toEqual(
+          new TypeScriptSourceError({ cause, fileName: "unreadable.ts" })
+        );
+      })
+    );
+  }
+);

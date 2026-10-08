@@ -8,3 +8,17 @@ describe("code-unit ordering", () => {
     expect(compareCodeUnits("alpha", "alpha")).toBe(0);
   });
 });
+
+describe("pinned code-unit order", () => {
+  it("sorts non-ASCII and astral text by UTF-16 code units", () => {
+    expect(
+      ["\uFF5E", "a", "\u{1F600}", "Z", "é"].sort(compareCodeUnits)
+    ).toEqual(["Z", "a", "é", "\u{1F600}", "\uFF5E"]);
+    expect([
+      compareCodeUnits("\u{1F600}", "\uFF5E"),
+      compareCodeUnits("é", "a"),
+      compareCodeUnits("Z", "a"),
+      compareCodeUnits("a", "a"),
+    ]).toEqual([-1, 1, -1, 0]);
+  });
+});

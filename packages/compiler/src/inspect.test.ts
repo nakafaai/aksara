@@ -113,6 +113,34 @@ describe("content source inspection", () => {
     })
   );
 
+  it.effect(
+    "pins the source and compiler config digests of a fixed non-ASCII source",
+    () =>
+      Effect.gen(function* () {
+        const request = yield* testRequest;
+        const rawMdx =
+          'export const metadata = { title: "Test café ✓" }\n\n## Body café';
+        const current = yield* inspectContentSource({ ...request, rawMdx });
+        const historical = yield* inspectHistoricalContentSource({
+          contentKey: request.contentKey,
+          rawMdx,
+        });
+
+        assert.strictEqual(
+          current.sourceHash,
+          "sha256:836460511c61964ffbaa6925bdd14969bf467bfae7ea3e2f85ce369183cbc06a"
+        );
+        assert.strictEqual(
+          historical.sourceHash,
+          "sha256:836460511c61964ffbaa6925bdd14969bf467bfae7ea3e2f85ce369183cbc06a"
+        );
+        assert.strictEqual(
+          current.compilerConfigHash,
+          "sha256:e499c25031367570f4b5e1367a1ac37b09ccccff69fdf41114a74c47eed1090d"
+        );
+      })
+  );
+
   it.effect.each([
     "packages/corpus/material/lesson/test/en.mdx",
     "packages/corpus/articles/test/en.mdx",

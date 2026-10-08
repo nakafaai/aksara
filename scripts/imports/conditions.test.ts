@@ -1,34 +1,52 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Effect, Schema } from "effect";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
 } from "#scripts/imports/conditions";
 
+const JsonText = Schema.fromJsonString(Schema.Unknown);
+
 describe("workspace source conditions", () => {
-  it("derives the condition from TypeScript configuration", () => {
-    expect(
-      sourceConditionFromConfig(
-        JSON.stringify({
-          compilerOptions: { customConditions: ["aksara-source"] },
-        })
-      )
-    ).toBe("aksara-source");
-    expect(() => sourceConditionFromConfig("{}")).toThrow(
-      "TypeScript config must own exactly one workspace source condition"
-    );
-    for (const invalid of [
-      "[]",
-      '{"compilerOptions":{"customConditions":[]}}',
-      '{"compilerOptions":{"customConditions":[1]}}',
-    ]) {
-      expect(() => sourceConditionFromConfig(invalid)).toThrow(
-        "TypeScript config must own exactly one workspace source condition"
-      );
-    }
-  });
+  it.effect("derives the condition from TypeScript configuration", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* sourceConditionFromConfig(
+          yield* Schema.encodeEffect(JsonText)({
+            compilerOptions: { customConditions: ["aksara-source"] },
+          })
+        )
+      ).toBe("aksara-source");
+      for (const invalid of [
+        "{}",
+        "[]",
+        '{"compilerOptions":{"customConditions":[]}}',
+        '{"compilerOptions":{"customConditions":[1]}}',
+      ]) {
+        expect(
+          yield* sourceConditionFromConfig(invalid).pipe(Effect.flip)
+        ).toMatchObject({
+          _tag: "SourceConditionError",
+          message:
+            "TypeScript config must own exactly one workspace source condition",
+        });
+      }
+    })
+  );
+
+  it.effect("rejects configuration that is not JSON", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* sourceConditionFromConfig("{").pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "SourceConditionError",
+        message: "TypeScript config must be valid JSON.",
+      });
+    })
+  );
 
   it("requires source resolution before generated output", () => {
-    const sourceFirst = JSON.stringify({
+    const sourceFirst = Schema.encodeSync(JsonText)({
       exports: {
         "./content": {
           "aksara-source": "./src/content.ts",

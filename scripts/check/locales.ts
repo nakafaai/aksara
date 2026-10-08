@@ -1,11 +1,16 @@
-import { readFileSync } from "node:fs";
-
 import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  Order,
+  Predicate,
+  Schema,
+} from "effect";
 import {
   type CallExpression,
   isArrayLiteralExpression,
@@ -22,22 +27,41 @@ import {
   type NodeArray,
 } from "typescript/unstable/ast";
 
-import { enforceViolations, typescriptFiles } from "#scripts/check/files";
+import {
+  enforceViolations,
+  trackedFiles,
+  typescriptFiles,
+} from "#scripts/check/files";
+import { syntaxNodes } from "#scripts/check/syntax";
+import { runEntry } from "#scripts/entry";
+import { readSource } from "#scripts/source";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
 const LOCALE_POLICY_SCRIPT = "scripts/check/locales.ts";
-const LOCALE_VOCABULARY_MODULES = new Set([
+const LOCALE_VOCABULARY_MODULES = HashSet.make(
   LOCALE_CONTRACT_MODULE,
-  LOCALE_POLICY_SCRIPT,
-]);
+  LOCALE_POLICY_SCRIPT
+);
 const TEST_SOURCE_PATTERN = /(?:^|\/)(?:test|tests)(?:\/|$)|\.test\.[^.]+$/u;
+const LocaleViolationSchema = Schema.Struct({
+  offset: Schema.Finite,
+  reason: Schema.String,
+});
 
-const localeCodes: ReadonlySet<string> = new Set(AppLocaleCodeSchema.literals);
+const localeCodes = HashSet.fromIterable(AppLocaleCodeSchema.literals);
+
+/** Orders violations by the source offset where their node starts. */
+const byOffset = Order.mapInput(
+  Order.Number,
+  (violation: typeof LocaleViolationSchema.Type) => violation.offset
+);
 
 /** Returns a statically declared locale code from one syntax node. */
 function localeCode(node: Node): string | undefined {
   const value = isLiteralTypeNode(node) ? node.literal : node;
-  if (!(isStringLiteralLikeNode(value) && localeCodes.has(value.text))) {
+  if (
+    !(isStringLiteralLikeNode(value) && HashSet.has(localeCodes, value.text))
+  ) {
     return;
   }
   return value.text;
@@ -66,9 +90,13 @@ function schemaLiteralNodes(node: Node): readonly Node[] {
   return values && isArrayLiteralExpression(values) ? [...values.elements] : [];
 }
 
-/** Returns distinct locale codes declared directly by syntax nodes. */
-function declaredLocaleCodes(nodes: readonly Node[]) {
-  return new Set(nodes.map(localeCode).filter((value) => value !== undefined));
+/** Counts the distinct locale codes that syntax nodes declare directly. */
+function declaredLocaleCount(nodes: readonly Node[]) {
+  return HashSet.size(
+    HashSet.fromIterable(
+      Arr.filter(Arr.map(nodes, localeCode), Predicate.isNotUndefined)
+    )
+  );
 }
 
 /** Detects a Schema.keyof object that declares a second locale vocabulary. */
@@ -84,27 +112,27 @@ function duplicatedLocaleKeyof(node: Node) {
   if (!(fields && isObjectLiteralExpression(fields))) {
     return false;
   }
-  const names = fields.properties.flatMap((property) => {
+  const names = Arr.flatMap(fields.properties, (property) => {
     if (isSpreadAssignment(property)) {
       return [];
     }
     const { name } = property;
     if (isIdentifier(name) || isStringLiteralLikeNode(name)) {
-      return localeCodes.has(name.text) ? [name.text] : [];
+      return HashSet.has(localeCodes, name.text) ? [name.text] : [];
     }
     return [];
   });
-  return new Set(names).size >= 2;
+  return HashSet.size(HashSet.fromIterable(names)) >= 2;
 }
 
 /** Detects one duplicated schema or type-level locale vocabulary. */
 function duplicatedLocaleVocabulary(node: Node) {
   if (isUnionTypeNode(node)) {
-    return declaredLocaleCodes(node.types).size >= 2;
+    return declaredLocaleCount(node.types) >= 2;
   }
   const literalNodes = schemaLiteralNodes(node);
   if (literalNodes.length > 0) {
-    return declaredLocaleCodes(literalNodes).size >= 2;
+    return declaredLocaleCount(literalNodes) >= 2;
   }
   if (duplicatedLocaleKeyof(node)) {
     return true;
@@ -116,10 +144,10 @@ function duplicatedLocaleVocabulary(node: Node) {
   if (!(members && isArrayLiteralExpression(members))) {
     return false;
   }
-  const literals = members.elements.flatMap((member) =>
+  const literals = Arr.flatMap(members.elements, (member) =>
     schemaLiteralNodes(member)
   );
-  return declaredLocaleCodes(literals).size >= 2;
+  return declaredLocaleCount(literals) >= 2;
 }
 
 /** Detects a duplicated multi-locale policy array or tuple. */
@@ -136,7 +164,7 @@ function duplicatedLocaleList(node: Node) {
   if (values === undefined) {
     return false;
   }
-  return declaredLocaleCodes(values).size >= 2;
+  return declaredLocaleCount(values) >= 2;
 }
 
 /** Reports locale vocabularies that bypass the canonical contract module. */
@@ -147,54 +175,54 @@ export const localePolicyViolations = Effect.fn(
   return yield* parser.inspect(
     { fileName: file, source: sourceText },
     ({ sourceFile }) => {
-      const violations: Array<{
-        readonly offset: number;
-        readonly reason: string;
-      }> = [];
-      const nodes: Node[] = [sourceFile];
-      const ownsLocaleVocabulary = LOCALE_VOCABULARY_MODULES.has(file);
+      const ownsLocaleVocabulary = HashSet.has(LOCALE_VOCABULARY_MODULES, file);
       const allowsConcreteLists = TEST_SOURCE_PATTERN.test(file);
-
-      for (const node of nodes) {
+      const violations = Arr.flatMap(syntaxNodes(sourceFile), (node) => {
         const duplicatedVocabulary =
           !ownsLocaleVocabulary && duplicatedLocaleVocabulary(node);
         const hardcodedList =
           !(ownsLocaleVocabulary || allowsConcreteLists) &&
           duplicatedLocaleList(node);
-        if (duplicatedVocabulary || hardcodedList) {
-          const reason = duplicatedVocabulary
-            ? "locale vocabulary must derive from the locale contract"
-            : "locale lists must derive from the locale contract";
-          violations.push({ offset: node.getStart(sourceFile), reason });
+        if (!(duplicatedVocabulary || hardcodedList)) {
+          return [];
         }
-        node.forEachChild((child) => {
-          nodes.push(child);
-        });
-      }
+        const reason = duplicatedVocabulary
+          ? "locale vocabulary must derive from the locale contract"
+          : "locale lists must derive from the locale contract";
+        return [{ offset: node.getStart(sourceFile), reason }];
+      });
 
-      return violations
-        .sort((left, right) => left.offset - right.offset)
-        .map(({ offset, reason }) => {
-          const line =
-            sourceFile.getLineAndCharacterOfPosition(offset).line + 1;
-          return `${file}:${line}: ${reason}`;
-        });
+      return Arr.map(Arr.sort(violations, byOffset), ({ offset, reason }) => {
+        const line = sourceFile.getLineAndCharacterOfPosition(offset).line + 1;
+        return `${file}:${line}: ${reason}`;
+      });
     }
   );
 });
 
-const violations = await Effect.runPromise(
-  Effect.forEach(typescriptFiles(), (file) =>
-    Effect.try({
-      catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
-      try: () => readFileSync(file, "utf8"),
-    }).pipe(Effect.flatMap((source) => localePolicyViolations(file, source)))
-  ).pipe(
-    Effect.map((results) => results.flat()),
+/** Reports locale vocabularies that bypass the contract in the given modules. */
+export const localeReport = Effect.fn("AksaraPolicy.localeReport")(function* (
+  files: readonly string[]
+) {
+  const violations = yield* Effect.forEach(files, (file) =>
+    readSource(file).pipe(
+      Effect.mapError(
+        (cause) => new TypeScriptSourceError({ cause, fileName: file })
+      ),
+      Effect.flatMap((source) => localePolicyViolations(file, source))
+    )
+  );
+  enforceViolations(
+    "Locale vocabularies must have one contract source",
+    Arr.flatten(violations)
+  );
+});
+
+runEntry(
+  import.meta.main,
+  trackedFiles().pipe(
+    Effect.map(typescriptFiles),
+    Effect.flatMap(localeReport),
     Effect.provide(TypeScriptParser.layer)
   )
-);
-enforceViolations(
-  "Locale vocabularies must have one contract source",
-  violations
 );

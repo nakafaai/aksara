@@ -1,7 +1,8 @@
 // @vitest-environment node
-import { generateKeyPairSync } from "node:crypto";
+import { Buffer } from "node:buffer";
+import { generateKeyPairSync, verify } from "node:crypto";
 
-import { assert, describe, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -12,6 +13,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "@nakafa/aksara-contracts/signature/spec";
+import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
@@ -74,7 +76,72 @@ const makeSigner = () =>
       .toString(),
   });
 
+/** Test-only Ed25519 public key that verifies the recorded candidate and recovery bundle signatures. */
+const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEARmu03+ghzMgowRI4IVL/IYJx08mZ7XO6OmMiz556+tg=
+-----END PUBLIC KEY-----
+`;
+// Record again: create a key, sign the same input, and replace the public key and signature literals below.
+const TEST_RESULT_BUNDLE_SIGNATURE =
+  "yLNxwS8jAsjfYnDnX0uRPSCyoawDbqxAj_Qy65NqUvO1uPo8puir8ahOSR2zGGxenknWDmKVnQ33XAXosYQVCw";
+// Record again: create a key, sign the same input, and replace the public key and signature literals below.
+const TEST_RECOVERY_BUNDLE_SIGNATURE =
+  "fXTJBJt7beDx9DWzKbysaF5rTw5lCsOZ5JDdlxt8hx_jeoHyuIKcdTZPARJ6bN1bEugfiOEz9OUZmEBIpukXAg";
+
 describe("publication runtime", () => {
+  it.effect(
+    "pins the bundle hash and signature of candidate and recovery pairs",
+    () =>
+      Effect.gen(function* () {
+        const signer = yield* makeSigner();
+        const release = yield* signer.signRelease(runtimeManifest);
+        const bundles = yield* preparePublicationRuntimes({
+          release,
+          rendererManifest,
+          runtime: { recovery: recoverySnapshot, result: snapshot },
+          signer,
+          sourceGitSha,
+        }).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, resolver)
+        );
+        const recordedSignatures = new Map([
+          [
+            "sha256:436ab25a3c201eff2f15b393b4d748e0f6e31a6387d5166dfeff342612c9d33b",
+            TEST_RESULT_BUNDLE_SIGNATURE,
+          ],
+          [
+            "sha256:3bdbbd2addcabafc44929817b8f5bdbbe104ca38253f97d981dab9edef971e03",
+            TEST_RECOVERY_BUNDLE_SIGNATURE,
+          ],
+        ]);
+        expect(bundles.map((bundle) => bundle.bundleHash)).toEqual([
+          ...recordedSignatures.keys(),
+        ]);
+        /** Verifies each produced bundle over the transformed signing input with its recorded signature. */
+        const verifies = (transform: (input: string) => string) =>
+          bundles.map((bundle) => {
+            const signature = recordedSignatures.get(bundle.bundleHash);
+            const input = canonicalizeTryoutRuntimeBundleSigningInput(
+              bundle.bundleHash,
+              bundle.payload
+            );
+            return (
+              signature !== undefined &&
+              verify(
+                null,
+                Buffer.from(transform(input), "utf8"),
+                TEST_PUBLIC_KEY_PEM,
+                Buffer.from(signature, "base64url")
+              )
+            );
+          });
+        expect(verifies((input) => input)).toEqual([true, true]);
+        expect(verifies((input) => input.replace("aksara", "aksarb"))).toEqual([
+          false,
+          false,
+        ]);
+      })
+  );
   it.effect("skips an unrelated Git release", () =>
     Effect.gen(function* () {
       const signer = yield* makeSigner();

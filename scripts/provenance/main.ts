@@ -1,5 +1,5 @@
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem, Layer, Schema } from "effect";
+import { Effect, FileSystem, Schema } from "effect";
+import { runEntry } from "#scripts/entry";
 import { SigstoreProvenanceBundleVerifierLive } from "#scripts/provenance/bundle";
 import {
   CliArgumentsSchema,
@@ -58,13 +58,10 @@ export const runProvenanceMain = Effect.fn("AksaraProvenance.runMain")(
   }
 );
 
-/* istanbul ignore next -- integration executes the bundled Node entrypoint. */
-if (import.meta.main) {
-  NodeRuntime.runMain(
-    runProvenanceMain(process.argv.slice(2)).pipe(
-      Effect.provide(
-        Layer.mergeAll(SigstoreProvenanceBundleVerifierLive, NodeServices.layer)
-      )
-    )
-  );
-}
+runEntry(
+  import.meta.main,
+  runProvenanceMain(process.argv.slice(2)).pipe(
+    Effect.provide(SigstoreProvenanceBundleVerifierLive)
+  ),
+  { failureStream: "stdout" }
+);

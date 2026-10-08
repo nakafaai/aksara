@@ -4,6 +4,10 @@ import { Effect, Schema, Stream } from "effect";
 import { ACTIVE_APP_LOCALES, DeliveryLanguageSchema } from "#contracts/locale";
 import { makeTryoutTestRows, responseText } from "#contracts/test/tryout";
 import { verifyTryoutLocaleClosure } from "#contracts/tryout/closure/locale";
+import {
+  canonicalizeAssessedLanguagePlacementFacts,
+  canonicalizeLocaleNeutralPlacementFacts,
+} from "#contracts/tryout/closure/placement";
 import { makeTryoutPlacementRecord } from "#contracts/tryout/hash/placement";
 import {
   type TryoutPlacementRecord,
@@ -153,5 +157,79 @@ describe("try-out locale closure placement facts", () => {
         "fact-mismatch"
       );
     })
+  );
+});
+
+describe("try-out closure placement golden facts", () => {
+  it.effect(
+    "pins the locale-neutral facts of a row without optional facts",
+    () =>
+      Effect.gen(function* () {
+        const english = yield* Effect.fromNullishOr(
+          placements.find(({ row }) => row.appLocale === "en")
+        );
+
+        expect(canonicalizeLocaleNeutralPlacementFacts(english.row)).toBe(
+          '{"answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","languagePolicy":{"kind":"app-locale"},"questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"optionKey":"option-1","order":1},{"isCorrect":false,"optionKey":"option-2","order":2}]},"scope":"server","sourceRevision":"2026-08-12"}'
+        );
+      })
+  );
+
+  it.effect(
+    "pins the locale-neutral facts of a row with blueprint, points, and stimulus",
+    () =>
+      Effect.gen(function* () {
+        const english = yield* Effect.fromNullishOr(
+          placements.find(({ row }) => row.appLocale === "en")
+        );
+        const documented = yield* Schema.decodeEffect(TryoutPlacementSchema)({
+          ...english.row,
+          blueprint: {
+            cognitiveLevel: "reasoning",
+            contentDomain: "algebra",
+            topic: "functions",
+          },
+          points: 2,
+          stimulusKey: "shared-table",
+        });
+
+        expect(canonicalizeLocaleNeutralPlacementFacts(documented)).toBe(
+          '{"answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"languagePolicy":{"kind":"app-locale"},"points":2,"questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"optionKey":"option-1","order":1},{"isCorrect":false,"optionKey":"option-2","order":2}]},"scope":"server","sourceRevision":"2026-08-12","stimulusKey":"shared-table"}'
+        );
+      })
+  );
+
+  it.effect(
+    "pins the assessed-language facts with a non-ASCII option label",
+    () =>
+      Effect.gen(function* () {
+        const indonesian = yield* Effect.fromNullishOr(
+          placements.find(({ row }) => row.appLocale === "id")
+        );
+        const localized = yield* Schema.decodeEffect(TryoutPlacementSchema)({
+          ...indonesian.row,
+          response: {
+            kind: "single-choice",
+            options: [
+              {
+                isCorrect: true,
+                label: "Jawaban é",
+                optionKey: "option-1",
+                order: 1,
+              },
+              {
+                isCorrect: false,
+                label: "Pengecoh",
+                optionKey: "option-2",
+                order: 2,
+              },
+            ],
+          },
+        });
+
+        expect(canonicalizeAssessedLanguagePlacementFacts(localized)).toBe(
+          '{"deliveryLanguage":"id","questionArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","questionArtifactLocale":"id","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Jawaban é","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pengecoh","optionKey":"option-2","order":2}]}}'
+        );
+      })
   );
 });

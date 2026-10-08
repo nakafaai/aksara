@@ -2,7 +2,6 @@ import { generateKeyPairSync, sign } from "node:crypto";
 import {
   Ed25519SignatureSchema,
   GitCommitShaSchema,
-  ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
@@ -29,11 +28,6 @@ import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 
 export const STATE_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const SIGNATURE = `${"A".repeat(85)}A`;
-
-/** Creates one contract-owned release identity for state assertions. */
-export function stateReleaseId(value: string) {
-  return ReleaseIdSchema.make(value);
-}
 
 /** Creates one structurally valid signed bundle for state-only assertions. */
 export function stateBundle(

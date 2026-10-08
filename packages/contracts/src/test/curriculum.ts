@@ -1,0 +1,57 @@
+import { Schema } from "effect";
+
+import { CurriculumRouteSchema } from "#contracts/program/curriculum";
+
+export const goldenRoot = Schema.decodeSync(CurriculumRouteSchema)({
+  appLocale: "en",
+  iconKey: "mathematics",
+  kind: "curriculum-context",
+  level: "track",
+  nodeKey: "matematika-dasar:root",
+  order: 3,
+  programKey: "matematika-dasar",
+  publicPath: "curriculum/basic-mathematics",
+  sitemap: true,
+  sourcePath: "packages/corpus/curriculum/matematika-dasar",
+  title: "Basic Mathematics é",
+});
+export const goldenMaterial = Schema.decodeSync(CurriculumRouteSchema)({
+  appLocale: "de",
+  canonicalPath: "lehrplaene/grundlagen-mathematik/bab-1",
+  displayGroupIconKey: "grade-10",
+  displayGroupTitle: "Gruppe é",
+  iconKey: "mathematics",
+  kind: "curriculum-context",
+  level: "subject",
+  materialCardDescription: "Beschreibung é",
+  materialCardTitle: "Kartentitel",
+  materialContextNodeKey: "bab-1",
+  materialContextParentPath: "lehrplaene/grundlagen-mathematik",
+  materialContextPublicPath: "lehrplaene/grundlagen-mathematik/bab-1",
+  materialDomain: "algebra",
+  materialKey: "lesson.grundlagen-mathematik.persamaan-linear",
+  nodeKey: "bab-1",
+  order: 1,
+  parentPath: "lehrplaene/grundlagen-mathematik",
+  programKey: "matematika-dasar",
+  publicPath: "lehrplaene/grundlagen-mathematik/bab-1",
+  sitemap: true,
+  sourcePath: "packages/corpus/curriculum/matematika-dasar",
+  title: "Bab 1 é",
+});
+export const goldenMixed = Schema.decodeSync(CurriculumRouteSchema)({
+  appLocale: "en",
+  displayGroupTitle: "Group é",
+  iconKey: "grade-7",
+  kind: "curriculum-context",
+  level: "class",
+  materialCardTitle: "Card title",
+  nodeKey: "kelas-7",
+  order: 2,
+  parentPath: "curriculum/basic-mathematics",
+  programKey: "matematika-dasar",
+  publicPath: "curriculum/basic-mathematics/kelas-7",
+  sitemap: false,
+  sourcePath: "packages/corpus/curriculum/matematika-dasar",
+  title: "Kelas 7",
+});

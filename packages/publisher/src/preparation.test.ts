@@ -2,18 +2,19 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   ContentKeySchema,
+  PublicPathSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
-  ArtifactLocaleSchema,
+  AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Stream } from "effect";
 import {
+  deletion,
   emptySnapshots,
   prepareTestRelease as prepare,
   priorAppLocales,
@@ -32,23 +33,6 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
     "derives replayable items and projections from one canonical record source",
     () =>
       Effect.gen(function* () {
-        const deletion = {
-          prior: {
-            head: {
-              ...resultHead,
-              contentKey: ContentKeySchema.make("test:publication:z"),
-            },
-            state: "material" as const,
-          },
-          record: {
-            change: ContentDeleteSchema.make({
-              artifactLocale: ArtifactLocaleSchema.make("en"),
-              contentKey: ContentKeySchema.make("test:publication:z"),
-              family: "material",
-              operation: "delete",
-            }),
-          },
-        };
         const prepared = yield* prepare({
           records: Stream.make(baseTransition, deletion),
         });
@@ -213,6 +197,61 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
           releaseId: selfBasedRelease,
         });
         expect(invoked).toBe(false);
+      })
+  );
+
+  it.effect(
+    "pins one set of release digests for two chunkings of the record stream",
+    () =>
+      Effect.gen(function* () {
+        /** Prepares one release from the shared records in one stream chunking. */
+        const digestsFor = Effect.fn("PreparationTest.digestsFor")(function* (
+          chunk: number
+        ) {
+          const route = {
+            current: {
+              appLocale: AppLocaleSchema.make("en"),
+              contentKey: ContentKeySchema.make("test:publication"),
+            },
+            next: {
+              appLocale: AppLocaleSchema.make("en"),
+              contentKey: ContentKeySchema.make("test:publication"),
+              publicPath: PublicPathSchema.make("subjects/test/publication"),
+            },
+          };
+          const { manifest } = yield* prepare({
+            records: Stream.make(baseTransition, deletion).pipe(
+              Stream.rechunk(chunk)
+            ),
+            result: Stream.make(resultHead),
+            routes: Stream.make(route),
+          });
+          return {
+            itemsDigest: manifest.itemsDigest,
+            projectionDigest: manifest.projectionDigest,
+            resultDigest: manifest.resultDigest,
+            rollbackDigest: manifest.rollbackDigest,
+            routeDigest: manifest.routeDigest,
+          };
+        });
+        expect(yield* digestsFor(1)).toMatchInlineSnapshot(`
+          {
+            "itemsDigest": "sha256:d88e0bb8f581eb27f76636497430a430fb63f6824b06bdd82a63326ee11a87a2",
+            "projectionDigest": "sha256:cd18a20e38e04bdbe7cd70d503e75ff85261da7de8ebdb03f7ca1e4441b743cf",
+            "resultDigest": "sha256:3788d304c0b1f434cdf2a8de81bc6a7d0a688230b39b46f62de2aa03d7837fb5",
+            "rollbackDigest": "sha256:f67ceb9f909a48abac2665d28162d6579ee9d1f149caa6c8b6837ae5ba8f0c87",
+            "routeDigest": "sha256:5ebad4292278c4bf6e2c7655b113ce22d01eaf052fa8af090c0b3f95ff18e613",
+          }
+        `);
+        expect(yield* digestsFor(2)).toMatchInlineSnapshot(`
+          {
+            "itemsDigest": "sha256:d88e0bb8f581eb27f76636497430a430fb63f6824b06bdd82a63326ee11a87a2",
+            "projectionDigest": "sha256:cd18a20e38e04bdbe7cd70d503e75ff85261da7de8ebdb03f7ca1e4441b743cf",
+            "resultDigest": "sha256:3788d304c0b1f434cdf2a8de81bc6a7d0a688230b39b46f62de2aa03d7837fb5",
+            "rollbackDigest": "sha256:f67ceb9f909a48abac2665d28162d6579ee9d1f149caa6c8b6837ae5ba8f0c87",
+            "routeDigest": "sha256:5ebad4292278c4bf6e2c7655b113ce22d01eaf052fa8af090c0b3f95ff18e613",
+          }
+        `);
       })
   );
 

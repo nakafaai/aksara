@@ -137,3 +137,62 @@ describe("preview renderer authentication", () => {
     })
   );
 });
+
+describe("pinned preview renderer proof bytes", () => {
+  const pinnedManifestHash = Sha256HashSchema.make(
+    "sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577d"
+  );
+  const pinnedNonce = PreviewRendererNonceSchema.make("n".repeat(43));
+  const pinnedSecret = PreviewRendererSecretSchema.make("s".repeat(43));
+
+  it("pins the canonical challenge text for one renderer identity", () => {
+    expect(
+      canonicalizePreviewRendererAuth({
+        manifestHash: pinnedManifestHash,
+        nonce: pinnedNonce,
+      })
+    ).toBe(
+      '["aksara-renderer-auth-v1","nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn","sha256:6ab191841c3ad581530d7952266f08913d9f0934cc01c49c04d74a0fd1c0577d"]'
+    );
+  });
+
+  it.effect(
+    "pins the HMAC proof for the pinned secret, nonce, and renderer",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* computePreviewRendererProof({
+            manifestHash: pinnedManifestHash,
+            nonce: pinnedNonce,
+            secret: pinnedSecret,
+          })
+        ).toBe("UeXg9QmjcCzuGWkcMaGW3Eyqim_B1uVGjju5H4L1bQk");
+      })
+  );
+
+  it.effect(
+    "verifies the pinned proof and rejects one changed proof character",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyPreviewRendererProof({
+            manifestHash: pinnedManifestHash,
+            nonce: pinnedNonce,
+            proof: "UeXg9QmjcCzuGWkcMaGW3Eyqim_B1uVGjju5H4L1bQk",
+            secret: pinnedSecret,
+          })
+        ).toBeUndefined();
+        const error = yield* verifyPreviewRendererProof({
+          manifestHash: pinnedManifestHash,
+          nonce: pinnedNonce,
+          proof: "VeXg9QmjcCzuGWkcMaGW3Eyqim_B1uVGjju5H4L1bQk",
+          secret: pinnedSecret,
+        }).pipe(Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "PreviewRendererAuthError",
+          reason: "invalid",
+        });
+      })
+  );
+});

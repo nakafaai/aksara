@@ -84,6 +84,53 @@ function reject(rows: readonly QuranSnapshotRow[], locales = activeAppLocales) {
   }).pipe(Effect.flip);
 }
 
+describe("Quran aggregate digest golden vectors", () => {
+  it.effect(
+    "pins the complete aggregate digests of the synthetic Quran test records",
+    () =>
+      Effect.gen(function* () {
+        const records = yield* makeQuranTestRecords();
+        const summary = yield* digestQuranRows({
+          activeAppLocales,
+          rows: Stream.fromIterable(records),
+        });
+
+        expect(summary).toEqual({
+          attributionCount: 1,
+          chunkCount: 1085,
+          projectionCount: 1542,
+          projectionDigest:
+            "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+          runtimeCount: 1200,
+          runtimeDigest:
+            "sha256:ad9a02895067ecc3bf286016aeabd2b1b87547c91b3ac693f3a44531fde7dfd6",
+          searchCount: 342,
+          searchDigest:
+            "sha256:e4a59f0a90d4ef54e516cb7125910e783736ee16f5518485bd54bdf8df65d83e",
+        });
+      })
+  );
+
+  it.effect("keeps every aggregate digest under another stream chunking", () =>
+    Effect.gen(function* () {
+      const records = yield* makeQuranTestRecords();
+      const chunked = yield* digestQuranRows({
+        activeAppLocales,
+        rows: Stream.fromIterable(records).pipe(Stream.rechunk(5)),
+      });
+
+      expect(chunked).toMatchObject({
+        projectionDigest:
+          "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+        runtimeDigest:
+          "sha256:ad9a02895067ecc3bf286016aeabd2b1b87547c91b3ac693f3a44531fde7dfd6",
+        searchDigest:
+          "sha256:e4a59f0a90d4ef54e516cb7125910e783736ee16f5518485bd54bdf8df65d83e",
+      });
+    })
+  );
+});
+
 describe("Quran aggregate digest", () => {
   it.effect("rejects a release that activates German without German rows", () =>
     Effect.gen(function* () {

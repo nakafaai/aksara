@@ -160,6 +160,41 @@ describe("try-out content hash", () => {
     );
   });
 
+  it("pins the canonical bytes and hash of a documented question pair", () => {
+    const documented = Schema.decodeSync(TryoutContentInputSchema)({
+      ...source,
+      blueprint: {
+        cognitiveLevel: "reasoning",
+        contentDomain: "algebra",
+        topic: "functions",
+      },
+      dateModified: "2025-03-05",
+      stimulusKey: "shared-table",
+    });
+
+    expect(canonicalizeTryoutContent(documented)).toBe(
+      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"dateModified":1741132800000,"datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05","stimulusKey":"shared-table"}'
+    );
+    expect(hashTryoutContent(documented)).toBe(
+      "6d06c9022bed215fdefe2ea24586cc79cebaf14aaa2584253dc7251ae6822c03"
+    );
+  });
+
+  it("pins the canonical bytes and hash of localized non-ASCII bodies", () => {
+    const localized = Schema.decodeSync(TryoutContentInputSchema)({
+      ...source,
+      answerBody: "\nJawaban é\n\n\nRincian é\n",
+      questionBody: "\nPertanyaan é\n",
+    });
+
+    expect(canonicalizeTryoutContent(localized)).toBe(
+      '{"answerArtifactLocale":"de","answerBody":"Jawaban é\\n\\nRincian é","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Pertanyaan é","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05"}'
+    );
+    expect(hashTryoutContent(localized)).toBe(
+      "c6e9e26075432b14ed6f4841ac0264067c5edfc77348934aeb055d82678ed572"
+    );
+  });
+
   it("rejects app, answer, delivery, and question locale drift", () => {
     const result = Schema.decodeExit(TryoutContentInputSchema)({
       ...source,

@@ -1,25 +1,21 @@
-import { readFileSync } from "node:fs";
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
+import { mutateJob } from "#scripts/workflow/test/mutation";
+import {
+  sourceTestsOf,
+  workflowSourcesLayer,
+} from "#scripts/workflow/test/sources";
 
-const source = readFileSync(".github/workflows/cli.yml", "utf8");
+layer(workflowSourcesLayer)("CLI workflow policy", (layered) => {
+  const it = sourceTestsOf(layered);
 
-/** Replaces one source fragment only inside its owning job. */
-function mutateJob(workflow: string, job: string, from: string, to: string) {
-  const start = workflow.indexOf(`\n  ${job}:`);
-  const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
-  nextJob.lastIndex = start + 1;
-  const match: RegExpExecArray | null = nextJob.exec(workflow);
-  const end = match?.index ?? workflow.length;
-  return `${workflow.slice(0, start)}${workflow.slice(start, end).replace(from, to)}${workflow.slice(end)}`;
-}
-
-describe("CLI workflow policy", () => {
-  it("accepts isolated publication and unprivileged verification", () => {
+  it("accepts isolated publication and unprivileged verification", ({
+    cli: source,
+  }) => {
     expect(() => verifyCliWorkflow(source)).not.toThrow();
   });
 
-  it("binds OIDC to the protected publish job", () => {
+  it("binds OIDC to the protected publish job", ({ cli: source }) => {
     expect(() =>
       verifyCliWorkflow(
         mutateJob(
@@ -73,7 +69,9 @@ describe("CLI workflow policy", () => {
     ).toThrow("npm workflow must not inherit root run defaults");
   });
 
-  it("rejects credentials and incomplete release ordering", () => {
+  it("rejects credentials and incomplete release ordering", ({
+    cli: source,
+  }) => {
     expect(() =>
       verifyCliWorkflow(`${source}\nNODE_AUTH_TOKEN: secret`)
     ).toThrow("npm workflow must not contain registry credentials");
@@ -94,7 +92,9 @@ describe("CLI workflow policy", () => {
     ).toThrow("npm verification must consume build and publication");
   });
 
-  it("rejects spoofed or privileged provenance verification", () => {
+  it("rejects spoofed or privileged provenance verification", ({
+    cli: source,
+  }) => {
     const commentedVerifier = mutateJob(
       source,
       "verify",
@@ -163,7 +163,9 @@ describe("CLI workflow policy", () => {
     );
   });
 
-  it("requires stable package identity and exact build outputs", () => {
+  it("requires stable package identity and exact build outputs", ({
+    cli: source,
+  }) => {
     expect(() =>
       verifyCliWorkflow(
         source.replace(
