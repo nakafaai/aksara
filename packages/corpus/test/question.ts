@@ -1,7 +1,15 @@
 import { globSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, Layer, Path, PlatformError } from "effect";
+import {
+  Effect,
+  FileSystem,
+  HashMap,
+  Layer,
+  Option,
+  Path,
+  PlatformError,
+} from "effect";
 import {
   indexQuestionBanks,
   questionSourceFiles,
@@ -52,7 +60,7 @@ export const realQuestionBanks = await Effect.runPromise(
 /** Discovers synthetic question sources through the controlled test layer. */
 export function discoverSyntheticQuestionSources(
   directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>,
+  sourceFiles: Iterable<readonly [string, string]>,
   failDirectory = false
 ) {
   return Effect.provide(
@@ -120,18 +128,17 @@ export function questionEntries(root: string, files: readonly string[]) {
 export function itemForQuestion(
   root: string,
   source = validQuestionItemSource
-) {
-  return new Map([
-    [resolve(absoluteQuestionTestSourceRoot, root, "item.ts"), source],
-  ]);
+): readonly (readonly [string, string])[] {
+  return [[resolve(absoluteQuestionTestSourceRoot, root, "item.ts"), source]];
 }
 
 /** Creates a deterministic synthetic question filesystem for source tests. */
 export function makeQuestionSourceLayer(
   directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>,
+  sourceFiles: Iterable<readonly [string, string]>,
   failDirectory = false
 ) {
+  const files = HashMap.fromIterable(sourceFiles);
   return FileSystem.layerNoop({
     readDirectory: (path) => {
       if (failDirectory) {
@@ -140,7 +147,7 @@ export function makeQuestionSourceLayer(
       return Effect.succeed([...directoryEntries]);
     },
     readFileString: (path) => {
-      const source = sourceFiles.get(path);
+      const source = Option.getOrUndefined(HashMap.get(files, path));
       if (source === undefined) {
         return Effect.fail(missing("readFileString", path));
       }
@@ -152,13 +159,13 @@ export function makeQuestionSourceLayer(
 /** Serves synthetic discovery beside the real prompts a whole-bank load reads. */
 export function makeQuestionRegistryLayer(
   directoryEntries: readonly string[],
-  sourceFiles: ReadonlyMap<string, string>
+  sourceFiles: Iterable<readonly [string, string]>
 ) {
   return Layer.merge(
-    makeQuestionSourceLayer(
-      directoryEntries,
-      new Map([...realQuestionPrompts, ...sourceFiles])
-    ),
+    makeQuestionSourceLayer(directoryEntries, [
+      ...realQuestionPrompts,
+      ...sourceFiles,
+    ]),
     Path.layer
   );
 }

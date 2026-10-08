@@ -1,8 +1,5 @@
-import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema } from "effect";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { Effect, HashSet, MutableHashMap, Option, Schema } from "effect";
 import { readQuestionPrompts } from "#corpus/question-bank/prompt";
 import type { QuestionSource } from "#corpus/question-bank/source";
 
@@ -25,11 +22,12 @@ export class QuestionDuplicateError extends Schema.TaggedError<QuestionDuplicate
 ) {}
 
 /** One prompt body reduced to its locale-scoped comparison keys. */
-interface PromptPrint {
-  readonly numbers: string;
-  readonly path: CorpusSourcePath;
-  readonly text: string;
-}
+const PromptPrintSchema = Schema.Struct({
+  numbers: Schema.String,
+  path: CorpusSourcePathSchema,
+  text: Schema.String,
+});
+type PromptPrint = typeof PromptPrintSchema.Type;
 
 /** Removes case, quote, emphasis, and spacing differences that hide a repeat. */
 function normalizePrompt(rawMdx: string) {
@@ -46,12 +44,15 @@ function sharedPrints(
   prints: readonly PromptPrint[],
   key: (print: PromptPrint) => string
 ) {
-  const groups = new Map<string, PromptPrint[]>();
+  const groups = MutableHashMap.empty<string, PromptPrint[]>();
   for (const print of prints) {
     const value = key(print);
-    groups.set(value, [...(groups.get(value) ?? []), print]);
+    MutableHashMap.set(groups, value, [
+      ...Option.getOrElse(MutableHashMap.get(groups, value), () => []),
+      print,
+    ]);
   }
-  return [...groups.values()].filter((group) => group.length > 1);
+  return [...MutableHashMap.values(groups)].filter((group) => group.length > 1);
 }
 
 /** Names one repeat group by its kind and exact prompt paths. */
@@ -76,7 +77,10 @@ export const validateQuestionUniqueness = Effect.fn(
       repeat("text", group)
     ),
     ...sharedPrints(prints, ({ numbers }) => numbers)
-      .filter((group) => new Set(group.map(({ text }) => text)).size > 1)
+      .filter(
+        (group) =>
+          HashSet.size(HashSet.fromIterable(group.map(({ text }) => text))) > 1
+      )
       .map((group) => repeat("numbers", group)),
   ];
   if (repeats.length > 0) {

@@ -5,14 +5,15 @@ import {
 import type { QuranSourceArtifact } from "@nakafa/aksara-contracts/quran/source";
 import { Effect, Stream } from "effect";
 
-import type { QuranRegistrySource } from "#corpus/quran/projection";
+import type { QuranRegistryError } from "#corpus/quran/projection";
 import { streamQuranRegistry } from "#corpus/quran/registry";
+import type { QuranSurah } from "#corpus/quran/schema";
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 import { parseQuranSources } from "#corpus/quran/source/parse";
 
 /** Complete verified source used to prepare one immutable Quran snapshot. */
 export interface VerifiedQuranSource {
-  readonly source: QuranRegistrySource;
+  readonly source: Stream.Stream<QuranSurah, QuranRegistryError>;
   readonly summary: QuranSourceArtifact;
 }
 

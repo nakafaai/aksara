@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
-import { Effect } from "effect";
+import { Effect, HashSet, Record as Rec } from "effect";
 import {
   hasValidQuestionResponse,
   loadTryoutProjectionContent,
@@ -16,13 +16,13 @@ describe("tryout projection", () => {
     () =>
       Effect.gen(function* () {
         const { projection } = yield* loadTryoutProjectionContent();
-        const counts = Object.fromEntries(
+        const counts = Rec.fromEntries(
           ["country", "exam", "track", "set", "section"].map((kind) => [
             kind,
             projection.catalog.filter(({ row }) => row.kind === kind).length,
           ])
         );
-        const bodyHeads = new Set(
+        const bodyHeads = HashSet.fromIterable(
           projection.placements.flatMap((row) => [
             `${row.questionContentKey}\0${row.appLocale}`,
             `${row.answerContentKey}\0${row.appLocale}`,
@@ -40,13 +40,15 @@ describe("tryout projection", () => {
         expect(projection.routeCount).toBe(291);
         expect(projection.placements).toHaveLength(5550);
         expect(
-          new Set(
-            projection.placements.map(
-              ({ questionContentKey }) => questionContentKey
+          HashSet.size(
+            HashSet.fromIterable(
+              projection.placements.map(
+                ({ questionContentKey }) => questionContentKey
+              )
             )
-          ).size
+          )
         ).toBe(1850);
-        expect(bodyHeads.size).toBe(11_100);
+        expect(HashSet.size(bodyHeads)).toBe(11_100);
         expect(
           projection.placements.every(
             ({ response, scope }) =>
@@ -127,11 +129,13 @@ describe("tryout projection", () => {
               ).length
           )
         ).toEqual([75, 75, 100]);
-        expect(new Set(snbt.map(({ setKey }) => setKey))).toEqual(
-          new Set(Array.from({ length: 10 }, (_, index) => `set-${index + 1}`))
+        expect(HashSet.fromIterable(snbt.map(({ setKey }) => setKey))).toEqual(
+          HashSet.fromIterable(
+            Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
+          )
         );
-        expect(new Set(tka.map(({ setKey }) => setKey))).toEqual(
-          new Set(["set-1", "set-2", "set-3", "set-4"])
+        expect(HashSet.fromIterable(tka.map(({ setKey }) => setKey))).toEqual(
+          HashSet.make("set-1", "set-2", "set-3", "set-4")
         );
       }),
     { timeout: 30_000 }

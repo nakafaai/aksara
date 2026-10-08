@@ -1,12 +1,18 @@
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
-import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import {
+  type AppLocale,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import {
   CurriculumRouteDraftSchema,
   curriculumNamespace,
   isRenderableCurriculumLevel,
 } from "@nakafa/aksara-contracts/program/curriculum";
-import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
-import { Effect } from "effect";
+import {
+  type LearningProgram,
+  LearningProgramSchema,
+} from "@nakafa/aksara-contracts/program/spec";
+import { Effect, HashMap, HashSet, Option, Schema } from "effect";
 import {
   curriculumSourcePath,
   requireCurriculumProgram,
@@ -16,19 +22,22 @@ import type { ProjectedCurriculumNode } from "#corpus/curriculum/projection";
 import { requireSourceLocale } from "#corpus/locale/source";
 import {
   type MaterialDomainDescriptor,
+  MaterialDomainDescriptorSchema,
   requireMaterialDomain,
 } from "#corpus/material/domain";
 import { materialTopicPath } from "#corpus/material/route";
-import type { LessonMaterialSource } from "#corpus/material/schema";
+import { LessonMaterialSourceSchema } from "#corpus/material/schema";
+
+const CurriculumRouteContextSchema = Schema.Struct({
+  appLocales: Schema.Array(AppLocaleSchema),
+  domains: Schema.Array(MaterialDomainDescriptorSchema),
+  materialAncestors: Schema.HashSet(Schema.String),
+  materialByKey: Schema.HashMap(Schema.String, LessonMaterialSourceSchema),
+  programByKey: Schema.HashMap(Schema.String, LearningProgramSchema),
+});
 
 /** Complete decoded ownership needed to project curriculum descendants. */
-export interface CurriculumRouteContext {
-  readonly appLocales: readonly AppLocale[];
-  readonly domains: readonly MaterialDomainDescriptor[];
-  readonly materialAncestors: ReadonlySet<string>;
-  readonly materialByKey: ReadonlyMap<string, LessonMaterialSource>;
-  readonly programByKey: ReadonlyMap<string, LearningProgram>;
-}
+export type CurriculumRouteContext = typeof CurriculumRouteContextSchema.Type;
 
 /** Selects the exact icon fallback used by Nakafa curriculum navigation. */
 function routeIcon(
@@ -68,7 +77,7 @@ const projectCurriculumNodeRoute = Effect.fn(
   const material =
     materialKey === undefined
       ? undefined
-      : context.materialByKey.get(materialKey);
+      : Option.getOrUndefined(HashMap.get(context.materialByKey, materialKey));
   const materialDescriptor =
     material === undefined
       ? undefined
@@ -135,7 +144,10 @@ const projectCurriculumNodeRoute = Effect.fn(
     publicPath: PublicPathSchema.make(publicPath),
     sitemap:
       isRenderableCurriculumLevel(node.level) &&
-      context.materialAncestors.has(`${node.curriculumKey}\0${node.key}`),
+      HashSet.has(
+        context.materialAncestors,
+        `${node.curriculumKey}\0${node.key}`
+      ),
     sourcePath: curriculumSourcePath(node.curriculumKey),
     title: nodeTranslation.title,
   });

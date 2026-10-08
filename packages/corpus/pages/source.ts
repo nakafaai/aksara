@@ -92,10 +92,12 @@ export class PageReadError extends Schema.TaggedError<PageReadError>()(
   { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
 ) {}
 
+/** The authored MDX body that a public page document adds to its registry entry. */
+const PageDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });
+
 /** Complete authored public page document passed to release preparation. */
-export type PageDocumentSource = Omit<PageEntry, "sourceRoot"> & {
-  readonly rawMdx: string;
-};
+export type PageDocumentSource = Omit<PageEntry, "sourceRoot"> &
+  typeof PageDocumentBodySchema.Type;
 
 /** Reads one registry-owned public page without escaping the checkout root. */
 export const readPageDocument = Effect.fn("AksaraCorpus.readPageDocument")(

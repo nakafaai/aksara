@@ -1,63 +1,74 @@
-import type { QuranTranslation } from "@nakafa/aksara-contracts/quran/notes";
-import type { QuranSurahMetadataSchema } from "@nakafa/aksara-contracts/quran/spec";
-import type { Schema } from "effect";
+import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
+import { QuranSurahMetadataSchema } from "@nakafa/aksara-contracts/quran/spec";
+import { Schema } from "effect";
 
-import type { LocalizedSourceMap } from "#corpus/locale/source";
+import { localizedSourceMapSchema } from "#corpus/locale/source";
 
-export interface Tafsir {
-  readonly footnotes: null | string;
-  readonly text: string;
-}
+const TafsirSchema = Schema.Struct({
+  footnotes: Schema.NullOr(Schema.String),
+  text: Schema.String,
+});
+export type Tafsir = typeof TafsirSchema.Type;
 
-export interface VerseMetadata {
-  readonly hizbQuarter: number;
-  readonly juz: number;
-  readonly manzil: number;
-  readonly page: number;
-  readonly ruku: number;
-  readonly sajda: null | "obligatory" | "recommended";
-}
+const SajdaSchema = Schema.Literals(["obligatory", "recommended"]);
 
-export interface Verse {
-  readonly meta: VerseMetadata;
-  readonly number: {
-    readonly inQuran: number;
-    readonly inSurah: number;
-  };
-  readonly tafsir: { readonly id: Tafsir };
-  readonly text: { readonly arabic: string };
-  readonly translation: LocalizedSourceMap<QuranTranslation>;
-}
+const VerseMetadataSchema = Schema.Struct({
+  hizbQuarter: Schema.Finite,
+  juz: Schema.Finite,
+  manzil: Schema.Finite,
+  page: Schema.Finite,
+  ruku: Schema.Finite,
+  sajda: Schema.NullOr(SajdaSchema),
+});
+export type VerseMetadata = typeof VerseMetadataSchema.Type;
+
+const VerseSchema = Schema.Struct({
+  meta: VerseMetadataSchema,
+  number: Schema.Struct({
+    inQuran: Schema.Finite,
+    inSurah: Schema.Finite,
+  }),
+  tafsir: Schema.Struct({ id: TafsirSchema }),
+  text: Schema.Struct({ arabic: Schema.String }),
+  translation: localizedSourceMapSchema(QuranTranslationSchema),
+});
+export type Verse = typeof VerseSchema.Type;
 
 /** Encoded metadata emitted before the corpus schema applies its brands. */
 type QuranSurahMetadata = Schema.Codec.Encoded<typeof QuranSurahMetadataSchema>;
 
-export type SurahMetadata = QuranSurahMetadata & {
-  readonly start: number;
-};
+const SurahMetadataSchema = Schema.Struct({
+  ...QuranSurahMetadataSchema.fields,
+  start: Schema.Finite,
+});
+export type SurahMetadata = Schema.Codec.Encoded<typeof SurahMetadataSchema>;
 
-export type Surah = QuranSurahMetadata & {
-  readonly verses: readonly Verse[];
-};
+const SurahVersesSchema = Schema.Struct({
+  verses: Schema.Array(VerseSchema),
+});
+export type Surah = QuranSurahMetadata & typeof SurahVersesSchema.Type;
 
-export interface Marker {
-  readonly index: number;
-  readonly position: number;
-}
+const MarkerSchema = Schema.Struct({
+  index: Schema.Finite,
+  position: Schema.Finite,
+});
+export type Marker = typeof MarkerSchema.Type;
 
-export interface ParsedMetadata {
-  readonly hizbQuarters: readonly Marker[];
-  readonly juzs: readonly Marker[];
-  readonly manzils: readonly Marker[];
-  readonly pages: readonly Marker[];
-  readonly rukus: readonly Marker[];
-  readonly sajdas: ReadonlyMap<number, "obligatory" | "recommended">;
-  readonly surahs: readonly SurahMetadata[];
-}
+const ParsedMetadataSchema = Schema.Struct({
+  hizbQuarters: Schema.Array(MarkerSchema),
+  juzs: Schema.Array(MarkerSchema),
+  manzils: Schema.Array(MarkerSchema),
+  pages: Schema.Array(MarkerSchema),
+  rukus: Schema.Array(MarkerSchema),
+  sajdas: Schema.HashMap(Schema.Finite, SajdaSchema),
+  surahs: Schema.Array(Schema.toEncoded(SurahMetadataSchema)),
+});
+export type ParsedMetadata = typeof ParsedMetadataSchema.Type;
 
-export interface RawSources {
-  readonly arabic: string;
-  readonly metadata: string;
-  readonly tafsir: readonly string[];
-  readonly translations: LocalizedSourceMap<string>;
-}
+export const RawSourcesSchema = Schema.Struct({
+  arabic: Schema.String,
+  metadata: Schema.String,
+  tafsir: Schema.Array(Schema.String),
+  translations: localizedSourceMapSchema(Schema.String),
+});
+export type RawSources = typeof RawSourcesSchema.Type;

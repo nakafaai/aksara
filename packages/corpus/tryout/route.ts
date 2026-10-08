@@ -1,7 +1,7 @@
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 
 /** Two source-derived nodes claim one locale-specific public route. */
 export class TryoutRouteDuplicateError extends Schema.TaggedError<TryoutRouteDuplicateError>()(
@@ -55,13 +55,13 @@ function spellsTitle(row: TryoutCatalogRow, publicPath: string) {
 export const validateTryoutRoutes = Effect.fn(
   "AksaraCorpus.validateTryoutRoutes"
 )(function* (rows: readonly TryoutCatalogRow[]) {
-  const routes = new Set<string>();
+  const routes = MutableHashSet.empty<string>();
   for (const row of rows) {
     if (!("publicPath" in row) || row.publicPath === undefined) {
       continue;
     }
     const identity = `${row.appLocale}\0${row.publicPath}`;
-    if (routes.has(identity)) {
+    if (MutableHashSet.has(routes, identity)) {
       return yield* new TryoutRouteDuplicateError({
         appLocale: row.appLocale,
         publicPath: row.publicPath,
@@ -74,6 +74,6 @@ export const validateTryoutRoutes = Effect.fn(
         title: row.title,
       });
     }
-    routes.add(identity);
+    MutableHashSet.add(routes, identity);
   }
 });

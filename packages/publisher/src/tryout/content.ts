@@ -6,7 +6,7 @@ import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
-import { Effect, Option, Stream } from "effect";
+import { Effect, MutableHashMap, Option, Stream } from "effect";
 import {
   type InspectedQuestionDocument,
   inspectQuestionAnswerDocument,
@@ -57,7 +57,9 @@ function requiredItem(
   itemsByRoot: ReturnType<typeof indexQuestionItems>,
   entry: QuestionEntry
 ) {
-  const item = itemsByRoot.get(entry.sourceRoot);
+  const item = Option.getOrUndefined(
+    MutableHashMap.get(itemsByRoot, entry.sourceRoot)
+  );
   return item === undefined
     ? Effect.fail(
         new TryoutContentMissingError({

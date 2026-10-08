@@ -6,15 +6,27 @@ import {
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
-import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, Path } from "effect";
-import type { QuestionEntry } from "#corpus/question-bank/content";
-import { selectQuestionContent } from "#corpus/question-bank/content";
-import type { QuestionSource } from "#corpus/question-bank/source";
+import {
+  type TryoutCatalogRow,
+  TryoutCatalogRowSchema,
+} from "@nakafa/aksara-contracts/tryout/catalog";
+import { Effect, Path, Schema } from "effect";
+import {
+  type QuestionEntry,
+  QuestionEntrySchema,
+  selectQuestionContent,
+} from "#corpus/question-bank/content";
+import {
+  type QuestionSource,
+  QuestionSourceSchema,
+} from "#corpus/question-bank/source";
 import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import {
+  type TryoutExamSource,
+  TryoutExamSourceSchema,
+} from "#corpus/tryout/schema";
 import { selectTryoutTarget } from "#corpus/tryout/target";
 
 const questionRoot =
@@ -25,13 +37,14 @@ const promptPath = CorpusSourcePathSchema.make(
 const answerPath = CorpusSourcePathSchema.make(`${questionRoot}/answer.id.mdx`);
 type TargetRowKind = Exclude<TryoutCatalogRow["kind"], "country">;
 
-interface TargetFixture {
-  readonly answer: QuestionEntry;
-  readonly prompt: QuestionEntry;
-  readonly question: QuestionSource;
-  readonly rows: readonly TryoutCatalogRow[];
-  readonly sources: readonly TryoutExamSource[];
-}
+const TargetFixtureSchema = Schema.Struct({
+  answer: QuestionEntrySchema,
+  prompt: QuestionEntrySchema,
+  question: QuestionSourceSchema,
+  rows: Schema.Array(TryoutCatalogRowSchema),
+  sources: Schema.Array(TryoutExamSourceSchema),
+});
+type TargetFixture = typeof TargetFixtureSchema.Type;
 
 /** Loads canonical question and hierarchy inputs for target behavior tests. */
 const loadFixture = Effect.fn("AksaraCorpus.test.loadTryoutTargetFixture")(

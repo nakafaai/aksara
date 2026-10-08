@@ -54,10 +54,12 @@ export class ArticleReadError extends Schema.TaggedError<ArticleReadError>()(
   { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
 ) {}
 
+/** The authored MDX body that an article document adds to its registry entry. */
+const ArticleDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });
+
 /** Complete authored article document passed to release preparation. */
-export type ArticleDocumentSource = Omit<ArticleEntry, "sourceRoot"> & {
-  readonly rawMdx: string;
-};
+export type ArticleDocumentSource = Omit<ArticleEntry, "sourceRoot"> &
+  typeof ArticleDocumentBodySchema.Type;
 
 /** Reads one registry-owned article without escaping the checkout root. */
 export const readArticleDocument = Effect.fn(

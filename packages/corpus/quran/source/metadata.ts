@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Effect, HashMap, MutableHashMap, Option } from "effect";
 
 import { readQuranSurahNames } from "#corpus/quran/names";
 import { quranGenerationFailure } from "#corpus/quran/source/error";
@@ -75,7 +75,9 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       const numberOfVerses = Number(attribute(row, "ayas"));
       const order = Number(attribute(row, "order"));
       const start = Number(attribute(row, "start"));
-      const localizedName = localizedNames.get(number);
+      const localizedName = Option.getOrUndefined(
+        MutableHashMap.get(localizedNames, number)
+      );
       if (
         !(name && meaning && transliteration && localizedName) ||
         (place !== "Meccan" && place !== "Medinan") ||
@@ -110,7 +112,8 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       );
     }
 
-    const sajdas = new Map<number, "obligatory" | "recommended">();
+    const sajdaEntries: (readonly [number, "obligatory" | "recommended"])[] =
+      [];
     for (const row of xmlRows(source, "sajda")) {
       const surah = Number(attribute(row, "sura"));
       const aya = Number(attribute(row, "aya"));
@@ -121,7 +124,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
           `Invalid Tanzil sajda marker: ${row}`
         );
       }
-      sajdas.set(position, type);
+      sajdaEntries.push([position, type]);
     }
 
     return {
@@ -130,7 +133,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       manzils: yield* parseMarkers(source, "manzil", surahs),
       pages: yield* parseMarkers(source, "page", surahs),
       rukus: yield* parseMarkers(source, "ruku", surahs),
-      sajdas,
+      sajdas: HashMap.fromIterable(sajdaEntries),
       surahs,
     } satisfies ParsedMetadata;
   }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { CurriculumRouteError } from "#corpus/curriculum/ownership";
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
@@ -38,8 +38,10 @@ describe("curriculum route projection", () => {
         ).toHaveLength(195);
       }
       expect(routes.filter(({ sitemap }) => sitemap)).toHaveLength(78);
-      expect(new Set(routes.map(({ sourcePath }) => sourcePath))).toEqual(
-        new Set([
+      expect(
+        HashSet.fromIterable(routes.map(({ sourcePath }) => sourcePath))
+      ).toEqual(
+        HashSet.fromIterable<string>([
           "packages/corpus/curriculum/cambridge-international",
           "packages/corpus/curriculum/merdeka",
           "packages/corpus/curriculum/singapore-moe",

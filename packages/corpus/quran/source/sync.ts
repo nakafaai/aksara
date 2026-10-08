@@ -14,11 +14,12 @@ import {
 
 const SOURCE_DOWNLOAD_TIMEOUT = Duration.seconds(60);
 
-interface GermanSourceReplacement {
-  readonly backup: string;
-  readonly staging: string;
-  readonly target: string;
-}
+const GermanSourceReplacementSchema = Schema.Struct({
+  backup: Schema.String,
+  staging: Schema.String,
+  target: Schema.String,
+});
+type GermanSourceReplacement = typeof GermanSourceReplacementSchema.Type;
 
 /** Download, integrity, or atomic installation of one German source failed. */
 export class GermanQuranSourceSyncError extends Schema.TaggedError<GermanQuranSourceSyncError>()(

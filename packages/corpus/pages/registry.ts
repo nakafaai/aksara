@@ -14,7 +14,7 @@ import {
   PageKeySchema,
   PublicPageRouteSchema,
 } from "@nakafa/aksara-contracts/projection/page";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
 import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 import { PageRootSchema, type PageSource } from "#corpus/pages/schema";
 import { decodePageSources } from "#corpus/pages/source";
@@ -97,19 +97,19 @@ const expandPage = Effect.fn("AksaraCorpus.expandPage")(function* (
 export const validatePageSources = Effect.fn(
   "AksaraCorpus.validatePageSources"
 )(function* (sources: readonly PageSource[]) {
-  const pageKeys = new Set<string>();
-  const sourceRoots = new Set<string>();
+  const pageKeys = MutableHashSet.empty<string>();
+  const sourceRoots = MutableHashSet.empty<string>();
   for (const source of sources) {
-    if (pageKeys.has(source.pageKey)) {
+    if (MutableHashSet.has(pageKeys, source.pageKey)) {
       return yield* new PageKeyDuplicateError({ pageKey: source.pageKey });
     }
-    if (sourceRoots.has(source.sourceRoot)) {
+    if (MutableHashSet.has(sourceRoots, source.sourceRoot)) {
       return yield* new PageRootDuplicateError({
         sourceRoot: source.sourceRoot,
       });
     }
-    pageKeys.add(source.pageKey);
-    sourceRoots.add(source.sourceRoot);
+    MutableHashSet.add(pageKeys, source.pageKey);
+    MutableHashSet.add(sourceRoots, source.sourceRoot);
   }
   return sources;
 });
@@ -117,13 +117,15 @@ export const validatePageSources = Effect.fn(
 /** Rejects locale route collisions across distinct stable page identities. */
 export const validatePageRoutes = Effect.fn("AksaraCorpus.validatePageRoutes")(
   function* (entries: readonly PageEntry[]) {
-    const contentKeyByRoute = new Map<
+    const contentKeyByRoute = MutableHashMap.empty<
       string,
       PageEntry["route"]["contentKey"]
     >();
     for (const { route } of entries) {
       const identity = `${route.appLocale}\0${route.publicPath}`;
-      const existing = contentKeyByRoute.get(identity);
+      const existing = Option.getOrUndefined(
+        MutableHashMap.get(contentKeyByRoute, identity)
+      );
       if (existing !== undefined && existing !== route.contentKey) {
         return yield* new PageRouteCollisionError({
           appLocale: route.appLocale,
@@ -132,7 +134,7 @@ export const validatePageRoutes = Effect.fn("AksaraCorpus.validatePageRoutes")(
           publicPath: route.publicPath,
         });
       }
-      contentKeyByRoute.set(identity, route.contentKey);
+      MutableHashMap.set(contentKeyByRoute, identity, route.contentKey);
     }
     return entries;
   }

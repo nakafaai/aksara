@@ -21,11 +21,8 @@ import {
   ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
-import {
-  type RendererDomain,
-  RendererDomainSchema,
-} from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Schema } from "effect";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
 import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
@@ -96,11 +93,11 @@ export class ArticleRegistryError extends Schema.TaggedError<ArticleRegistryErro
   { cause: Schema.Unknown }
 ) {}
 
-interface ArticleCategoryIdentity {
-  readonly rendererDomain: RendererDomain;
-  readonly routeSlugs: ArticleSource["category"]["routeSlugs"];
-  readonly titles: ArticleSource["category"]["titles"];
-}
+/** The category fields that every article of one category must agree on. */
+type ArticleCategoryIdentity = Pick<
+  ArticleSource["category"],
+  "rendererDomain" | "routeSlugs" | "titles"
+>;
 
 /** Projects one reviewed source into one exact locale-specific article body. */
 export const projectArticle = Effect.fn("AksaraCorpus.projectArticle")(
@@ -213,21 +210,23 @@ const validateCategory = Effect.fn("AksaraCorpus.validateArticleCategory")(
 export const validateArticleSources = Effect.fn(
   "AksaraCorpus.validateArticleSources"
 )(function* (sources: readonly ArticleSource[]) {
-  const categoryByKey = new Map<string, ArticleCategoryIdentity>();
-  const slugs = new Set<string>();
+  const categoryByKey = MutableHashMap.empty<string, ArticleCategoryIdentity>();
+  const slugs = MutableHashSet.empty<string>();
 
   for (const source of sources) {
     const { category: sourceCategory, slug: sourceSlug } = source;
     const { key } = sourceCategory;
-    const category = categoryByKey.get(key);
+    const category = Option.getOrUndefined(
+      MutableHashMap.get(categoryByKey, key)
+    );
     yield* validateCategory(category, sourceCategory);
-    categoryByKey.set(key, sourceCategory);
+    MutableHashMap.set(categoryByKey, key, sourceCategory);
 
     const slug = `${key}\0${sourceSlug}`;
-    if (slugs.has(slug)) {
+    if (MutableHashSet.has(slugs, slug)) {
       return yield* new ArticleSlugError({ slug: sourceSlug });
     }
-    slugs.add(slug);
+    MutableHashSet.add(slugs, slug);
   }
 
   return sources;
@@ -237,13 +236,15 @@ export const validateArticleSources = Effect.fn(
 export const validateArticleRoutes = Effect.fn(
   "AksaraCorpus.validateArticleRoutes"
 )(function* (entries: readonly ArticleEntry[]) {
-  const contentKeyByRoute = new Map<
+  const contentKeyByRoute = MutableHashMap.empty<
     string,
     ArticleEntry["route"]["contentKey"]
   >();
   for (const { route } of entries) {
     const identity = `${route.appLocale}\0${route.publicPath}`;
-    const existing = contentKeyByRoute.get(identity);
+    const existing = Option.getOrUndefined(
+      MutableHashMap.get(contentKeyByRoute, identity)
+    );
     if (existing !== undefined && existing !== route.contentKey) {
       return yield* new ArticleRouteCollisionError({
         appLocale: route.appLocale,
@@ -252,7 +253,7 @@ export const validateArticleRoutes = Effect.fn(
         publicPath: route.publicPath,
       });
     }
-    contentKeyByRoute.set(identity, route.contentKey);
+    MutableHashMap.set(contentKeyByRoute, identity, route.contentKey);
   }
   return entries;
 });

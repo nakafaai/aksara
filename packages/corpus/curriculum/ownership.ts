@@ -4,7 +4,7 @@ import {
   type LearningProgram,
   LearningProgramKeySchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Schema } from "effect";
+import { Effect, HashMap, Option, Schema } from "effect";
 
 /** Curriculum routes cannot be derived from the supplied source ownership. */
 export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
@@ -20,10 +20,10 @@ export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteErro
 export const requireCurriculumProgram = Effect.fn(
   "AksaraCorpus.requireCurriculumProgram"
 )(function* (
-  programByKey: ReadonlyMap<string, LearningProgram>,
+  programByKey: HashMap.HashMap<string, LearningProgram>,
   programKey: typeof LearningProgramKeySchema.Type
 ) {
-  const program = programByKey.get(programKey);
+  const program = Option.getOrUndefined(HashMap.get(programByKey, programKey));
   if (program?.navigation.model === "curriculum-tree") {
     return program;
   }

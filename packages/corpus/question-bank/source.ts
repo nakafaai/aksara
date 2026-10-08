@@ -8,7 +8,15 @@ import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import {
+  Effect,
+  FileSystem,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Path,
+  Schema,
+} from "effect";
 import { validateQuestionItemLocales } from "#corpus/question-bank/language";
 import {
   decodeQuestionPath,
@@ -33,7 +41,12 @@ export type QuestionSource = typeof QuestionSourceSchema.Type;
 
 /** Indexes canonical items once by their physical question directory. */
 export function indexQuestionItems(sources: readonly QuestionSource[]) {
-  return new Map(sources.map(({ item, sourceRoot }) => [sourceRoot, item]));
+  return MutableHashMap.fromIterable(
+    sources.map(({ item, sourceRoot }): [string, QuestionSource["item"]] => [
+      sourceRoot,
+      item,
+    ])
+  );
 }
 /** Reading a question-bank directory or source file failed. */
 export class QuestionReadError extends Schema.TaggedError<QuestionReadError>()(
@@ -59,7 +72,10 @@ export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceEr
 
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {
-  const filesByRoot = new Map<string, Set<string>>();
+  const filesByRoot = MutableHashMap.empty<
+    string,
+    MutableHashSet.MutableHashSet<string>
+  >();
 
   for (const entry of entries) {
     const located = locateQuestionEntry(entry, separator);
@@ -67,26 +83,29 @@ function groupQuestionFiles(entries: readonly string[], separator: string) {
       continue;
     }
 
-    const files = filesByRoot.get(located.root) ?? new Set<string>();
+    const files = Option.getOrElse(
+      MutableHashMap.get(filesByRoot, located.root),
+      () => MutableHashSet.empty<string>()
+    );
     if (located.file.length > 0) {
-      files.add(located.file);
+      MutableHashSet.add(files, located.file);
     }
-    filesByRoot.set(located.root, files);
+    MutableHashMap.set(filesByRoot, located.root, files);
   }
 
-  return [...filesByRoot.entries()].sort(([left], [right]) =>
+  return [...filesByRoot].sort(([left], [right]) =>
     compareCodeUnits(left, right)
   );
 }
 
 /** Derives every reviewed physical ancestor from the renderer bank index. */
 function questionAncestors(questionBanks: QuestionBankIndex) {
-  const ancestors = new Set<string>();
+  const ancestors = MutableHashSet.empty<string>();
   const prefix = `${QUESTION_BANK_KEY_ROOT}/`;
-  for (const bankKey of questionBanks.keys()) {
+  for (const bankKey of MutableHashMap.keys(questionBanks)) {
     const segments = bankKey.slice(prefix.length).split("/");
     for (let length = 1; length <= segments.length; length += 1) {
-      ancestors.add(segments.slice(0, length).join("/"));
+      MutableHashSet.add(ancestors, segments.slice(0, length).join("/"));
     }
   }
   return ancestors;
@@ -96,9 +115,9 @@ function questionAncestors(questionBanks: QuestionBankIndex) {
 function isQuestionAncestor(
   sourcePath: string,
   questionBanks: QuestionBankIndex,
-  ancestors: ReadonlySet<string>
+  ancestors: MutableHashSet.MutableHashSet<string>
 ) {
-  if (ancestors.has(sourcePath)) {
+  if (MutableHashSet.has(ancestors, sourcePath)) {
     return true;
   }
   const separator = sourcePath.lastIndexOf("/");
@@ -107,7 +126,8 @@ function isQuestionAncestor(
   }
   const bankKey = `${QUESTION_BANK_KEY_ROOT}/${sourcePath.slice(0, separator)}`;
   return (
-    questionBanks.has(bankKey) && isTryoutKey(sourcePath.slice(separator + 1))
+    MutableHashMap.has(questionBanks, bankKey) &&
+    isTryoutKey(sourcePath.slice(separator + 1))
   );
 }
 
@@ -187,11 +207,17 @@ const loadQuestionSource = Effect.fn("AksaraCorpus.loadQuestionSource")(
 /** Validates contiguous numbering within each exact source-owned set. */
 const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
   function* (sources: readonly QuestionSource[]) {
-    const numbersBySet = new Map<QuestionSource["setKey"], Set<number>>();
+    const numbersBySet = MutableHashMap.empty<
+      QuestionSource["setKey"],
+      MutableHashSet.MutableHashSet<number>
+    >();
     for (const source of sources) {
-      const numbers = numbersBySet.get(source.setKey) ?? new Set<number>();
-      numbers.add(source.questionNumber);
-      numbersBySet.set(source.setKey, numbers);
+      const numbers = Option.getOrElse(
+        MutableHashMap.get(numbersBySet, source.setKey),
+        () => MutableHashSet.empty<number>()
+      );
+      MutableHashSet.add(numbers, source.questionNumber);
+      MutableHashMap.set(numbersBySet, source.setKey, numbers);
     }
 
     for (const [setPath, numbers] of numbersBySet) {

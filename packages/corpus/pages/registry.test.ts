@@ -3,7 +3,7 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
+import { Effect, Record as Rec } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { pageSource } from "#corpus/test/page";
 
@@ -26,7 +26,7 @@ describe("public page registry", () => {
 
         expect(entries).toHaveLength(15);
         expect(
-          Object.fromEntries(
+          Rec.fromEntries(
             ["en", "id", "de"].map((appLocale) => [
               appLocale,
               entries.filter((entry) => entry.route.appLocale === appLocale)

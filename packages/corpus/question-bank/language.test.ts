@@ -43,9 +43,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
         /** Reads the language-section item through the synthetic source adapter. */
         const read = (source: string) =>
           readQuestionItem(corpusRoot, location).pipe(
-            Effect.provide(
-              makeQuestionSourceLayer([], new Map([[sourcePath, source]]))
-            )
+            Effect.provide(makeQuestionSourceLayer([], [[sourcePath, source]]))
           );
         const [item, extraLocales, wrongLocale] = yield* Effect.all(
           [
@@ -99,10 +97,7 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
         const basePath = path.join(corpusRoot, location.sourceRoot, "item.ts");
         const item = yield* readQuestionItem(corpusRoot, location).pipe(
           Effect.provide(
-            makeQuestionSourceLayer(
-              [],
-              new Map([[basePath, validQuestionItemSource]])
-            )
+            makeQuestionSourceLayer([], [[basePath, validQuestionItemSource]])
           )
         );
 

@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Path } from "effect";
+import { Effect, HashSet, MutableHashMap, Option, Path } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
   indexQuestionItems,
@@ -35,9 +35,17 @@ layer(Path.layer)("question source", (it) => {
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
 
         expect(sources).toHaveLength(1850);
-        expect(itemsByRoot.size).toBe(1850);
-        expect(itemsByRoot.get(first.sourceRoot)).toBe(first.item);
-        expect(new Set(sources.map(({ setKey }) => setKey)).size).toBe(80);
+        expect(MutableHashMap.size(itemsByRoot)).toBe(1850);
+        expect(
+          Option.getOrUndefined(
+            MutableHashMap.get(itemsByRoot, first.sourceRoot)
+          )
+        ).toBe(first.item);
+        expect(
+          HashSet.size(
+            HashSet.fromIterable(sources.map(({ setKey }) => setKey))
+          )
+        ).toBe(80);
         for (const { count, rendererDomain } of questionRendererCounts) {
           expect(
             sources.filter((source) => source.rendererDomain === rendererDomain)
@@ -63,18 +71,13 @@ layer(Path.layer)("question source", (it) => {
 
   it.effect("allows an empty checkout without inventing question sources", () =>
     Effect.gen(function* () {
-      expect(yield* discoverSyntheticQuestionSources([], new Map())).toEqual(
-        []
-      );
+      expect(yield* discoverSyntheticQuestionSources([], [])).toEqual([]);
     })
   );
 
   it.effect("rejects files outside the canonical question hierarchy", () =>
     Effect.gen(function* () {
-      const error = yield* rejectSyntheticQuestionSources(
-        ["notes.ts"],
-        new Map()
-      );
+      const error = yield* rejectSyntheticQuestionSources(["notes.ts"], []);
 
       expect(error).toMatchObject({
         _tag: "QuestionPathError",
@@ -88,7 +91,7 @@ layer(Path.layer)("question source", (it) => {
       const root = "indonesia/snbt/general-reasoning/set-1/question-1";
       const directoryError = yield* rejectSyntheticQuestionSources(
         [],
-        new Map(),
+        [],
         true
       );
       const location = yield* decodeQuestionPath(realQuestionBanks, root);
@@ -97,14 +100,14 @@ layer(Path.layer)("question source", (it) => {
         location
       ).pipe(
         Effect.provide([
-          makeQuestionSourceLayer([], new Map(), true),
+          makeQuestionSourceLayer([], [], true),
           TypeScriptParser.layer,
         ]),
         Effect.flip
       );
       const itemError = yield* rejectSyntheticQuestionSources(
         questionEntries(root, generalQuestionSourceFiles),
-        new Map()
+        []
       );
 
       expect(directoryError).toMatchObject({
@@ -129,21 +132,21 @@ layer(Path.layer)("question source", (it) => {
           [
             rejectSyntheticQuestionSources(
               questionEntries(root, generalQuestionSourceFiles.slice(1)),
-              new Map()
+              []
             ),
             rejectSyntheticQuestionSources(
               questionEntries(root, [
                 ...generalQuestionSourceFiles.slice(0, 4),
                 "wrong.mdx",
               ]),
-              new Map()
+              []
             ),
             rejectSyntheticQuestionSources(
               questionEntries(root, [
                 ...generalQuestionSourceFiles,
                 "nested/extra.mdx",
               ]),
-              new Map()
+              []
             ),
             rejectSyntheticQuestionSources(
               questionEntries(
@@ -152,7 +155,7 @@ layer(Path.layer)("question source", (it) => {
                   (file) => file !== "question.id.mdx"
                 )
               ),
-              new Map()
+              []
             ),
           ],
           { concurrency: "unbounded" }
@@ -195,10 +198,7 @@ layer(Path.layer)("question source", (it) => {
         ...questionEntries(first, generalQuestionSourceFiles),
         ...questionEntries(third, generalQuestionSourceFiles),
       ];
-      const items = new Map([
-        ...itemForQuestion(first),
-        ...itemForQuestion(third),
-      ]);
+      const items = [...itemForQuestion(first), ...itemForQuestion(third)];
       const error = yield* rejectSyntheticQuestionSources(entries, items);
 
       expect(error).toMatchObject({

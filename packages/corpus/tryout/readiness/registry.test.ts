@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, MutableHashMap, Option } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import {
@@ -185,27 +185,38 @@ describe("assessment readiness registry", () => {
                     questionNumber <= section.questionCount
                 );
                 for (const responseLocale of ["de", "en", "id"] as const) {
-                  const positionsByOptionCount = new Map<number, number[]>();
+                  const positionsByOptionCount = MutableHashMap.empty<
+                    number,
+                    number[]
+                  >();
                   for (const { item } of activeQuestions) {
                     const response = item.responses[responseLocale];
                     if (response?.kind !== "single-choice") {
                       continue;
                     }
                     const positions =
-                      positionsByOptionCount.get(response.options.length) ??
+                      Option.getOrUndefined(
+                        MutableHashMap.get(
+                          positionsByOptionCount,
+                          response.options.length
+                        )
+                      ) ??
                       Array.from({ length: response.options.length }, () => 0);
                     const correctIndex = response.options.findIndex(
                       ({ isCorrect }) => isCorrect
                     );
                     positions[correctIndex] =
                       (positions[correctIndex] ?? 0) + 1;
-                    positionsByOptionCount.set(
+                    MutableHashMap.set(
+                      positionsByOptionCount,
                       response.options.length,
                       positions
                     );
                   }
 
-                  for (const positions of positionsByOptionCount.values()) {
+                  for (const positions of MutableHashMap.values(
+                    positionsByOptionCount
+                  )) {
                     const distribution = positions.join(",");
                     expect(
                       Math.max(...positions) - Math.min(...positions),

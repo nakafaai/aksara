@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
@@ -23,17 +23,18 @@ export const decodeMaterialPreviewEntries = Effect.fn(
   input?: unknown,
   domainDescriptors?: readonly MaterialDomainDescriptor[]
 ) {
-  const selected = new Set(sourcePaths);
+  const selected = HashSet.fromIterable(sourcePaths);
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
   const bindings = yield* validateMaterialSources(sources, descriptors);
   const projected: unknown[] = [];
   for (const binding of bindings) {
     for (const appLocale of ACTIVE_APP_LOCALES) {
-      const selectedSections = new Set(
+      const selectedSections = HashSet.fromIterable(
         binding.source.sections
           .filter((section) =>
-            selected.has(
+            HashSet.has(
+              selected,
               CorpusSourcePathSchema.make(
                 `packages/corpus/${binding.source.assetRoot}/${section.slug}/${appLocaleCode(appLocale)}.mdx`
               )
@@ -41,11 +42,11 @@ export const decodeMaterialPreviewEntries = Effect.fn(
           )
           .map(({ slug }) => slug)
       );
-      if (selectedSections.size === 0) {
+      if (HashSet.size(selectedSections) === 0) {
         continue;
       }
       for (const [sectionIndex, section] of binding.source.sections.entries()) {
-        if (!selectedSections.has(section.slug)) {
+        if (!HashSet.has(selectedSections, section.slug)) {
           continue;
         }
         projected.push(
