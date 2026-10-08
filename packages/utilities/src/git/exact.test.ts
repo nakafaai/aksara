@@ -15,7 +15,7 @@ import {
 const OUTPUT_LIMIT = 4096;
 const COMMIT_SHA_PATTERN = /^[0-9a-f]{40}$/u;
 
-/** Runs one exact process through the live direct-Node implementation. */
+/** Runs one exact process through the live ExactProcess implementation. */
 const runExact = Effect.fn("GitExactTest.runExact")(
   (input: ExactProcessInput) =>
     ExactProcess.pipe(

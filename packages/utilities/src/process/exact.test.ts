@@ -42,7 +42,7 @@ const LiveExactProcess = ExactProcessLive.pipe(
   Layer.provide(NodeServices.layer)
 );
 
-/** Runs one process through the live direct-Node service. */
+/** Runs one process through the live ExactProcess service. */
 const runLive = Effect.fn("ExactProcessTest.runLive")(
   (input: ExactProcessInput) =>
     ExactProcess.pipe(
@@ -51,7 +51,7 @@ const runLive = Effect.fn("ExactProcessTest.runLive")(
     )
 );
 
-/** Returns one typed failure from the live direct-Node service. */
+/** Returns one typed failure from the live ExactProcess service. */
 const rejectLive = Effect.fn("ExactProcessTest.rejectLive")(
   (input: ExactProcessInput) => runLive(input).pipe(Effect.flip)
 );
