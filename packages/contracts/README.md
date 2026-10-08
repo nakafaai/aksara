@@ -54,6 +54,10 @@ Current consumers use unversioned semantic Interfaces:
   `year` track kinds.
 - `projection/page` owns stable public page identities, localized paths, and
   signed metadata for human, agent, and sitemap delivery.
+- `math/base` owns the unversioned base schemas that mathematical visuals
+  share, such as finite plane and space points, ordered axis ranges, appearance
+  roles, and label placements, plus the geometry tolerance and exact point
+  predicates.
 - `math/visual` owns the unversioned, renderer-neutral plane and space scene
   contract, including exact straight geometry, rich-label anchors, and the
   axis-aligned cuboid dimension mapping.
