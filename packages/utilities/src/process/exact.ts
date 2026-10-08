@@ -73,7 +73,8 @@ const EMPTY_OUTPUT = {
 
 /**
  * Validates the operating-system coordinates, output ceilings, and text.
- * Node throws synchronously for NUL bytes, so they are spawn failures.
+ * Node throws synchronously for a NUL byte in the executable, an argument,
+ * or the environment, so those are spawn failures.
  */
 function validateInput(path: Path.Path, input: ExactProcessInput) {
   if (!path.isAbsolute(input.executable)) {
@@ -94,7 +95,6 @@ function validateInput(path: Path.Path, input: ExactProcessInput) {
   }
   const texts = [
     input.executable,
-    input.root,
     ...input.args,
     ...Rec.keys(input.environment),
     ...Rec.values(input.environment),
