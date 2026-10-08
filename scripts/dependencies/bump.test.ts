@@ -13,7 +13,6 @@ import { stringify } from "yaml";
 
 import {
   type BumpDependenciesConfig,
-  defaultBumpConfig,
   makeBumpDependenciesProgram,
 } from "#scripts/dependencies/bump";
 import {
@@ -21,6 +20,7 @@ import {
   type PnpmRunner,
 } from "#scripts/dependencies/command";
 import { makeRunner, output } from "#scripts/dependencies/fixture";
+import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
   expectedIgnoredDependencies,

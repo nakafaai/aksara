@@ -5,7 +5,6 @@ import {
   Equivalence,
   FileSystem,
   Order,
-  Path,
   Ref,
   Schema,
 } from "effect";
@@ -17,6 +16,7 @@ import {
   type PnpmRunner,
   runPnpm,
 } from "#scripts/dependencies/command";
+import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
   type DependencyHold,
@@ -32,16 +32,6 @@ const BumpDependenciesConfigSchema = Schema.Struct({
 
 /** Paths of the repository files that the dependency policy reads and updates. */
 export type BumpDependenciesConfig = typeof BumpDependenciesConfigSchema.Type;
-
-/** Resolves the repository files from this module's location for the script. */
-export const defaultBumpConfig = Effect.gen(function* () {
-  const path = yield* Path.Path;
-  return {
-    manifest: path.resolve(import.meta.dirname, "../../package.json"),
-    root: path.resolve(import.meta.dirname, "../.."),
-    workspace: path.resolve(import.meta.dirname, "../../pnpm-workspace.yaml"),
-  } satisfies BumpDependenciesConfig;
-});
 
 const RootManifestSchema = Schema.Struct({
   devDependencies: Schema.Record(Schema.String, Schema.String),
