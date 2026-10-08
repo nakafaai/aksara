@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/check/files";
-import { repositoryTestTargets, verifyCiWorkflow } from "#scripts/workflow/ci";
+import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
