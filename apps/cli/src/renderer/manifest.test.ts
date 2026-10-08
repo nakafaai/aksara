@@ -7,7 +7,7 @@ import {
   PreviewRendererSecretSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Fiber, Redacted } from "effect";
+import { Effect, Fiber, Redacted, Schema } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
@@ -15,6 +15,8 @@ import type { RendererCredentials } from "#cli/credentials";
 import { fetchRendererManifest, waitForRenderer } from "#cli/renderer/manifest";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const cryptoFailure = vi.hoisted(() => ({ nonce: false }));
 
@@ -61,7 +63,7 @@ function authenticatedBody(
   }).pipe(
     Effect.orDie,
     Effect.map((proof) =>
-      JSON.stringify({
+      encodeJson({
         format: PREVIEW_RENDERER_AUTH_FORMAT,
         ...(includeUnknown ? { unknown: true } : {}),
         manifest,

@@ -5,22 +5,24 @@ import {
   isJsonType,
   readText,
 } from "@nakafa/aksara-utilities/http/response";
-import { Effect, type Redacted } from "effect";
+import { Effect, type Redacted, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { makeNakafaAppError } from "#cli/error";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
 const PREVIEW_NONCE_HEADER = "x-aksara-preview-nonce";
-
-/** Authentication values attached to one renderer HTTP request. */
-export interface RendererHttpRequest {
-  readonly nonce?: typeof PreviewRendererNonceSchema.Type;
-  readonly token: Redacted.Redacted<string>;
-}
+const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Reads one bounded renderer JSON response with redirects disabled. */
 export const fetchRendererBody = Effect.fn("AksaraCli.fetchRendererBody")(
-  (url: URL, input: RendererHttpRequest) =>
+  (
+    url: URL,
+    /** Authentication values attached to one renderer HTTP request. */
+    input: {
+      readonly nonce?: typeof PreviewRendererNonceSchema.Type;
+      readonly token: Redacted.Redacted<string>;
+    }
+  ) =>
     Effect.gen(function* () {
       const client = yield* HttpClient.HttpClient;
       let request = HttpClientRequest.get(url).pipe(
@@ -72,10 +74,9 @@ export const fetchRendererBody = Effect.fn("AksaraCli.fetchRendererBody")(
           return makeNakafaAppError("body", error.reason === "stream");
         })
       );
-      return yield* Effect.try({
-        catch: () => makeNakafaAppError("json", false),
-        try: () => JSON.parse(source),
-      });
+      return yield* Schema.decodeEffect(JSON_TEXT)(source).pipe(
+        Effect.mapError(() => makeNakafaAppError("json", false))
+      );
     }).pipe(Effect.scoped)
 );
 

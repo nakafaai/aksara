@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Redacted } from "effect";
+import { Effect, Redacted, Schema } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -12,6 +12,8 @@ import {
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const RENDERER_URL = new URL(
   "http://127.0.0.1:31234/api/internal/content/renderer"
@@ -42,7 +44,7 @@ function makeIncompleteRendererManifest() {
 /** Adds the renderer endpoint's mandatory response cache directive. */
 function rendererResponse(
   request: HttpClientRequest.HttpClientRequest,
-  body: ConstructorParameters<typeof Response>[0] = JSON.stringify(
+  body: ConstructorParameters<typeof Response>[0] = encodeJson(
     RENDERER_MANIFEST
   ),
   init: ResponseInit = {}
@@ -68,7 +70,7 @@ function rejectRenderer(client: HttpClient.HttpClient) {
 describe("renderer HTTP", () => {
   it.effect("reads bounded streamed JSON and sends exact credentials", () =>
     Effect.gen(function* () {
-      const bytes = new TextEncoder().encode(JSON.stringify(RENDERER_MANIFEST));
+      const bytes = new TextEncoder().encode(encodeJson(RENDERER_MANIFEST));
       const captured = captureClient((request) => {
         const stream = new ReadableStream<Uint8Array>({
           /** Sends two chunks to exercise bounded incremental assembly. */
@@ -116,7 +118,7 @@ describe("renderer HTTP", () => {
       const fetch: typeof globalThis.fetch = (_input, init) => {
         redirect = init?.redirect;
         return Promise.resolve(
-          new Response(JSON.stringify(RENDERER_MANIFEST), {
+          new Response(encodeJson(RENDERER_MANIFEST), {
             headers: {
               "cache-control": "private, no-store",
               "content-type": "application/json",
@@ -280,7 +282,7 @@ describe("renderer HTTP", () => {
       Effect.gen(function* () {
         const incomplete = yield* makeIncompleteRendererManifest();
         const captured = captureClient((request) =>
-          Effect.succeed(rendererResponse(request, JSON.stringify(incomplete)))
+          Effect.succeed(rendererResponse(request, encodeJson(incomplete)))
         );
 
         expect(
