@@ -10,7 +10,7 @@ import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
 import { createCompilerConfigHash } from "#compiler/config";
@@ -155,7 +155,7 @@ const validateSourcePolicy = Effect.fn(
     request.rendererManifest,
     request.rendererDomain
   );
-  const allowedComponents = new Set([
+  const allowedComponents = HashSet.fromIterable([
     ...request.rendererManifest.base,
     ...domain.components,
   ]);

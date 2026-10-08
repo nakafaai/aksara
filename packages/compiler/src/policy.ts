@@ -1,4 +1,4 @@
-import { Predicate } from "effect";
+import { Array as Arr, HashSet, MutableHashMap, Predicate } from "effect";
 import { analyze } from "eslint-scope";
 import type { Node as EstreeNode, JSXAttribute, Program } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
@@ -14,8 +14,8 @@ import type {
 import { collectUnsupportedMdxModules } from "#compiler/policy/module";
 import { inspectPropertyProgram } from "#compiler/policy/property";
 
-const NETWORK_GLOBALS = new Set(["fetch", "WebSocket", "EventSource"]);
-const SAFE_GLOBALS = new Set([
+const NETWORK_GLOBALS = HashSet.make("fetch", "WebSocket", "EventSource");
+const SAFE_GLOBALS = HashSet.make(
   "Array",
   "Boolean",
   "Infinity",
@@ -26,8 +26,8 @@ const SAFE_GLOBALS = new Set([
   "Object",
   "RegExp",
   "String",
-  "undefined",
-]);
+  "undefined"
+);
 /** Narrows unknown values to the minimal unified node contract. */
 function isUnistNode(value: unknown): value is UnistNode {
   return (
@@ -94,12 +94,12 @@ function inspectSyntaxNode(
 /** Finds forbidden syntax and unresolved runtime globals in one program. */
 function inspectProgram(
   program: Program,
-  allowedComponents: ReadonlySet<string>
+  allowedComponents: HashSet.HashSet<string>
 ) {
-  const found = new Map<string, ExecutablePolicyViolation>();
+  const found = MutableHashMap.empty<string, ExecutablePolicyViolation>();
   /** Adds one violation using its stable identity to remove duplicates. */
   const add = (violation: ExecutablePolicyViolation) => {
-    found.set(violationKey(violation), violation);
+    MutableHashMap.set(found, violationKey(violation), violation);
   };
 
   for (const violation of inspectPropertyProgram(program)) {
@@ -114,11 +114,11 @@ function inspectProgram(
   });
   const { globalScope } = scopeManager;
   if (!globalScope) {
-    return [...found.values()];
+    return Arr.fromIterable(MutableHashMap.values(found));
   }
   for (const reference of globalScope.through) {
     const identifier = reference.identifier.name;
-    if (SAFE_GLOBALS.has(identifier)) {
+    if (HashSet.has(SAFE_GLOBALS, identifier)) {
       continue;
     }
     if (identifier === "require") {
@@ -141,23 +141,23 @@ function inspectProgram(
       add({ identifier, rule: "globalThis" });
       continue;
     }
-    if (NETWORK_GLOBALS.has(identifier)) {
+    if (HashSet.has(NETWORK_GLOBALS, identifier)) {
       add({ identifier, rule: "network-global" });
       continue;
     }
-    if (allowedComponents.has(identifier)) {
+    if (HashSet.has(allowedComponents, identifier)) {
       continue;
     }
     add({ identifier, rule: "unknown-free-global" });
   }
 
-  return [...found.values()];
+  return Arr.fromIterable(MutableHashMap.values(found));
 }
 
 /** Appends violations from an ESTree program attached to a unified node. */
 function appendProgramViolations(
   node: UnistNode,
-  allowedComponents: ReadonlySet<string>,
+  allowedComponents: HashSet.HashSet<string>,
   violations: ExecutablePolicyViolation[]
 ) {
   const program = readNodeProgram(node);
@@ -169,7 +169,7 @@ function appendProgramViolations(
 /** Inspects MDX JSX attributes and their embedded expression programs. */
 function inspectMdxJsxAttributes(
   node: UnistNode,
-  allowedComponents: ReadonlySet<string>,
+  allowedComponents: HashSet.HashSet<string>,
   violations: ExecutablePolicyViolation[]
 ) {
   if (
@@ -177,7 +177,7 @@ function inspectMdxJsxAttributes(
   ) {
     return;
   }
-  if (!("attributes" in node && Array.isArray(node.attributes))) {
+  if (!("attributes" in node && Arr.isArray(node.attributes))) {
     return;
   }
   for (const attribute of node.attributes) {
@@ -203,7 +203,7 @@ function inspectMdxJsxAttributes(
 
 /** Rejects MDX module syntax and records unsupported executable capabilities. */
 export function enforceExecutablePolicy(
-  allowedComponents: ReadonlySet<string>,
+  allowedComponents: HashSet.HashSet<string>,
   unsupportedModules: UnsupportedMdxModuleOccurrence[],
   violations: ExecutablePolicyViolation[]
 ): Plugin<[], Root> {
