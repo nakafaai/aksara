@@ -1,16 +1,18 @@
-import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem, Schema, Stream } from "effect";
+import { Array as Arr, Effect, FileSystem, Schema, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/process";
+import { runEntry } from "#scripts/entry";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
-export interface EffectSourceConfig {
-  readonly installedManifest: string;
-  readonly repository: string;
-  readonly sourcePath: string;
-  readonly vendoredManifest: string;
-}
+const EffectSourceConfigSchema = Schema.Struct({
+  installedManifest: Schema.String,
+  repository: Schema.String,
+  sourcePath: Schema.String,
+  vendoredManifest: Schema.String,
+});
+
+export type EffectSourceConfig = typeof EffectSourceConfigSchema.Type;
 
 const DEFAULT_CONFIG: EffectSourceConfig = {
   installedManifest: "node_modules/effect/package.json",
@@ -22,6 +24,8 @@ const DEFAULT_CONFIG: EffectSourceConfig = {
 const PackageManifest = Schema.Struct({
   version: Schema.String.pipe(Schema.check(Schema.isPattern(VERSION_PATTERN))),
 });
+
+const JsonDocument = Schema.fromJsonString(Schema.Unknown);
 
 class EffectSourceReadError extends Schema.TaggedError<EffectSourceReadError>()(
   "EffectSourceReadError",
@@ -78,7 +82,7 @@ const runGit = Effect.fn("EffectSource.runGit")((args: readonly string[]) =>
       if (exitCode !== 0) {
         const diagnostic = stderr.trim() || stdout.trim() || "Git failed.";
         return yield* new EffectSourceGitError({
-          message: `git ${args.join(" ")}: ${diagnostic}`,
+          message: `git ${Arr.join(args, " ")}: ${diagnostic}`,
         });
       }
 
@@ -105,13 +109,14 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
         (error) => new EffectSourceReadError({ message: error.message })
       )
     );
-  const input = yield* Effect.try({
-    catch: () =>
-      new EffectSourceReadError({
-        message: `${path} does not contain valid JSON.`,
-      }),
-    try: (): unknown => JSON.parse(source),
-  });
+  const input = yield* Schema.decodeEffect(JsonDocument)(source).pipe(
+    Effect.mapError(
+      () =>
+        new EffectSourceReadError({
+          message: `${path} does not contain valid JSON.`,
+        })
+    )
+  );
 
   return yield* Schema.decodeUnknownEffect(PackageManifest)(input).pipe(
     Effect.mapError(
@@ -275,8 +280,4 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
   }
 );
 
-NodeRuntime.runMain(
-  makeEffectSourceProgram(process.argv[2]).pipe(
-    Effect.provide(NodeServices.layer)
-  )
-);
+runEntry(import.meta.main, makeEffectSourceProgram(process.argv[2]));

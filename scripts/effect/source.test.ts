@@ -15,22 +15,6 @@ import {
   makeEffectSourceProgram,
 } from "#scripts/effect/source";
 
-const runtime = vi.hoisted(() => ({ calls: 0 }));
-
-vi.mock("@effect/platform-node", async (importOriginal) => {
-  const platform =
-    await importOriginal<typeof import("@effect/platform-node")>();
-  return {
-    ...platform,
-    NodeRuntime: {
-      ...platform.NodeRuntime,
-      runMain: vi.fn(() => {
-        runtime.calls += 1;
-      }),
-    },
-  };
-});
-
 const VersionManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
 );
@@ -66,12 +50,11 @@ afterEach(() => vi.unstubAllEnvs());
 layer(NodeServices.layer, { excludeTestServices: true })(
   "Effect source maintenance",
   (it) => {
-    it.effect("runs one main boundary and accepts matching source", () =>
+    it.effect("accepts matching source and rejects a dropped identity", () =>
       Effect.gen(function* () {
         const fixture = yield* createRepository();
         yield* runProgram(fixture.root, "check", fixture.config);
         yield* runProgram(fixture.root, "check");
-        assert.strictEqual(runtime.calls, 1);
 
         yield* git(
           fixture.root,
