@@ -4,6 +4,7 @@ import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { rubric as rubricResponse } from "#contracts/test/rubric";
 import { responseText } from "#contracts/test/tryout";
+import { JsonTextSchema } from "#contracts/text/json";
 import {
   canonicalizeTryoutContent,
   hashTryoutContent,
@@ -64,7 +65,9 @@ describe("try-out content hash", () => {
       stimulusKey: "shared-table",
     });
 
-    expect(JSON.parse(canonicalizeTryoutContent(documented))).toMatchObject({
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutContent(documented))
+    ).toMatchObject({
       blueprint: documented.blueprint,
       dateModified: Date.UTC(2025, 2, 5),
       stimulusKey: "shared-table",

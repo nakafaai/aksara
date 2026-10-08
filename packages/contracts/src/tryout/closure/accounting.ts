@@ -1,7 +1,13 @@
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import { encodeJsonText } from "#contracts/text/json";
+
+/** The app locales seen for each logical row identity. */
+export type LocalesByIdentity = MutableHashMap.MutableHashMap<
+  string,
+  MutableHashSet.MutableHashSet<AppLocale>
+>;
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
 export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
@@ -24,17 +30,17 @@ export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()
 
 /** Serializes locale sets through the active list's signed canonical order. */
 function localeSetIdentity(
-  locales: ReadonlySet<AppLocale>,
+  locales: MutableHashSet.MutableHashSet<AppLocale>,
   activeAppLocales: ActiveAppLocaleList
 ) {
   return encodeJsonText(
-    activeAppLocales.filter((locale) => locales.has(locale))
+    activeAppLocales.filter((locale) => MutableHashSet.has(locales, locale))
   );
 }
 
 /** Adds one active locale to a logical identity without duplicates. */
 export function addLocale(
-  localesByIdentity: Map<string, Set<AppLocale>>,
+  localesByIdentity: LocalesByIdentity,
   activeAppLocales: ActiveAppLocaleList,
   identity: string,
   appLocale: AppLocale
@@ -49,8 +55,10 @@ export function addLocale(
       })
     );
   }
-  const locales = localesByIdentity.get(identity) ?? new Set<AppLocale>();
-  if (locales.has(appLocale)) {
+  const locales =
+    Option.getOrUndefined(MutableHashMap.get(localesByIdentity, identity)) ??
+    MutableHashSet.empty<AppLocale>();
+  if (MutableHashSet.has(locales, appLocale)) {
     return Effect.fail(
       new TryoutClosureError({
         actual: appLocale,
@@ -60,17 +68,17 @@ export function addLocale(
       })
     );
   }
-  locales.add(appLocale);
-  localesByIdentity.set(identity, locales);
+  MutableHashSet.add(locales, appLocale);
+  MutableHashMap.set(localesByIdentity, identity, locales);
   return Effect.void;
 }
 
 /** Confirms every logical row closes over the exact active locale list. */
 export function validateLocales(
-  localesByIdentity: Map<string, Set<AppLocale>>,
+  localesByIdentity: LocalesByIdentity,
   activeAppLocales: ActiveAppLocaleList
 ) {
-  if (localesByIdentity.size === 0) {
+  if (MutableHashMap.size(localesByIdentity) === 0) {
     return Effect.fail(
       new TryoutClosureError({
         actual: "[]",

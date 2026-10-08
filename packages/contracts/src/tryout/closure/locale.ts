@@ -1,9 +1,16 @@
-import { Effect, Stream } from "effect";
+import {
+  Effect,
+  MutableHashMap,
+  type MutableHashSet,
+  Option,
+  Stream,
+} from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import {
   addLocale,
+  type LocalesByIdentity,
   TryoutClosureError,
   validateLocales,
 } from "#contracts/tryout/closure/accounting";
@@ -26,19 +33,45 @@ import {
   validateTryoutScoringFacts,
 } from "#contracts/tryout/scoring";
 
-interface CatalogClosureState {
-  readonly factsByIdentity: Map<string, string>;
-  readonly localesByIdentity: Map<string, Set<AppLocale>>;
-  readonly scoring: TryoutScoringFacts;
-  readonly sections: Map<string, number>;
+/** Creates the catalog facts that one stream of catalog rows shares while it folds. */
+function catalogClosureState(): {
+  factsByIdentity: MutableHashMap.MutableHashMap<string, string>;
+  localesByIdentity: LocalesByIdentity;
+  scoring: TryoutScoringFacts;
+  sections: MutableHashMap.MutableHashMap<string, number>;
+} {
+  return {
+    factsByIdentity: MutableHashMap.empty<string, string>(),
+    localesByIdentity: MutableHashMap.empty<
+      string,
+      MutableHashSet.MutableHashSet<AppLocale>
+    >(),
+    scoring: makeTryoutScoringFacts(),
+    sections: MutableHashMap.empty<string, number>(),
+  };
 }
 
-interface PlacementClosureState {
-  readonly assessedFacts: Map<string, string>;
-  readonly countsBySectionLocale: Map<string, number>;
-  readonly factsByIdentity: Map<string, string>;
-  readonly localesByIdentity: Map<string, Set<AppLocale>>;
+type CatalogClosureState = ReturnType<typeof catalogClosureState>;
+
+/** Creates the placement facts that one stream of placements shares while it folds. */
+function placementClosureState(): {
+  assessedFacts: MutableHashMap.MutableHashMap<string, string>;
+  countsBySectionLocale: MutableHashMap.MutableHashMap<string, number>;
+  factsByIdentity: MutableHashMap.MutableHashMap<string, string>;
+  localesByIdentity: LocalesByIdentity;
+} {
+  return {
+    assessedFacts: MutableHashMap.empty<string, string>(),
+    countsBySectionLocale: MutableHashMap.empty<string, number>(),
+    factsByIdentity: MutableHashMap.empty<string, string>(),
+    localesByIdentity: MutableHashMap.empty<
+      string,
+      MutableHashSet.MutableHashSet<AppLocale>
+    >(),
+  };
 }
+
+type PlacementClosureState = ReturnType<typeof placementClosureState>;
 
 /** Adds one catalog row and compares its locale-neutral facts. */
 function addCatalogRow(
@@ -48,7 +81,9 @@ function addCatalogRow(
 ) {
   const identity = tryoutCatalogLogicalIdentity(row);
   const facts = canonicalizeTryoutCatalogFacts(row);
-  const expectedFacts = state.factsByIdentity.get(identity);
+  const expectedFacts = Option.getOrUndefined(
+    MutableHashMap.get(state.factsByIdentity, identity)
+  );
   if (expectedFacts !== undefined && expectedFacts !== facts) {
     return Effect.fail(
       new TryoutClosureError({
@@ -59,10 +94,10 @@ function addCatalogRow(
       })
     );
   }
-  state.factsByIdentity.set(identity, facts);
+  MutableHashMap.set(state.factsByIdentity, identity, facts);
   recordTryoutScoringFacts(state.scoring, row);
   if (row.kind === "section") {
-    state.sections.set(identity, row.questionCount);
+    MutableHashMap.set(state.sections, identity, row.questionCount);
   }
   return addLocale(
     state.localesByIdentity,
@@ -81,7 +116,7 @@ function addPlacement(
 ) {
   const identity = tryoutPlacementLogicalIdentity(row);
   const sectionIdentity = tryoutSectionLogicalIdentity(row);
-  if (!catalog.sections.has(sectionIdentity)) {
+  if (!MutableHashMap.has(catalog.sections, sectionIdentity)) {
     return Effect.fail(
       new TryoutClosureError({
         actual: "missing",
@@ -92,7 +127,9 @@ function addPlacement(
     );
   }
   const facts = canonicalizeLocaleNeutralPlacementFacts(row);
-  const expectedFacts = state.factsByIdentity.get(identity);
+  const expectedFacts = Option.getOrUndefined(
+    MutableHashMap.get(state.factsByIdentity, identity)
+  );
   if (expectedFacts !== undefined && expectedFacts !== facts) {
     return Effect.fail(
       new TryoutClosureError({
@@ -103,10 +140,12 @@ function addPlacement(
       })
     );
   }
-  state.factsByIdentity.set(identity, facts);
+  MutableHashMap.set(state.factsByIdentity, identity, facts);
   if (row.languagePolicy.kind === "fixed") {
     const assessedFacts = canonicalizeAssessedLanguagePlacementFacts(row);
-    const expectedAssessedFacts = state.assessedFacts.get(identity);
+    const expectedAssessedFacts = Option.getOrUndefined(
+      MutableHashMap.get(state.assessedFacts, identity)
+    );
     if (
       expectedAssessedFacts !== undefined &&
       expectedAssessedFacts !== assessedFacts
@@ -120,12 +159,17 @@ function addPlacement(
         })
       );
     }
-    state.assessedFacts.set(identity, assessedFacts);
+    MutableHashMap.set(state.assessedFacts, identity, assessedFacts);
   }
   const sectionLocaleIdentity = `${sectionIdentity}\0${row.appLocale}`;
-  state.countsBySectionLocale.set(
+  const count = Option.getOrElse(
+    MutableHashMap.get(state.countsBySectionLocale, sectionLocaleIdentity),
+    () => 0
+  );
+  MutableHashMap.set(
+    state.countsBySectionLocale,
     sectionLocaleIdentity,
-    (state.countsBySectionLocale.get(sectionLocaleIdentity) ?? 0) + 1
+    count + 1
   );
   return validateTryoutPlacementScoring(catalog.scoring, row).pipe(
     Effect.andThen(
@@ -152,9 +196,13 @@ function validateQuestionCounts(
       Effect.forEach(
         activeAppLocales,
         (appLocale) => {
-          const actual =
-            placements.countsBySectionLocale.get(`${identity}\0${appLocale}`) ??
-            0;
+          const actual = Option.getOrElse(
+            MutableHashMap.get(
+              placements.countsBySectionLocale,
+              `${identity}\0${appLocale}`
+            ),
+            () => 0
+          );
           if (actual === questionCount) {
             return Effect.void;
           }
@@ -198,32 +246,16 @@ export const verifyTryoutLocaleClosure = Effect.fn(
   >;
 }) {
   const catalog = yield* input.catalog.pipe(
-    Stream.runFoldEffect(
-      () =>
-        ({
-          factsByIdentity: new Map(),
-          localesByIdentity: new Map(),
-          scoring: makeTryoutScoringFacts(),
-          sections: new Map(),
-        }) satisfies CatalogClosureState,
-      (state, record) =>
-        addCatalogRow(state, input.activeAppLocales, record.row)
+    Stream.runFoldEffect(catalogClosureState, (state, record) =>
+      addCatalogRow(state, input.activeAppLocales, record.row)
     )
   );
   yield* validateLocales(catalog.localesByIdentity, input.activeAppLocales);
   yield* validateTryoutScoringFacts(catalog.scoring);
 
   const placements = yield* input.placements.pipe(
-    Stream.runFoldEffect(
-      () =>
-        ({
-          assessedFacts: new Map(),
-          countsBySectionLocale: new Map(),
-          factsByIdentity: new Map(),
-          localesByIdentity: new Map(),
-        }) satisfies PlacementClosureState,
-      (state, record) =>
-        addPlacement(state, catalog, input.activeAppLocales, record.row)
+    Stream.runFoldEffect(placementClosureState, (state, record) =>
+      addPlacement(state, catalog, input.activeAppLocales, record.row)
     )
   );
   yield* validateLocales(placements.localesByIdentity, input.activeAppLocales);
