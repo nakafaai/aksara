@@ -104,11 +104,8 @@ layer(NodeServices.layer)("article registry", (it) => {
       const entries = yield* decodeEmbeddedRegistry([articleSource()]);
 
       expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "id"]);
-      expect(
-        HashSet.size(
-          HashSet.fromIterable(entries.map(({ route }) => route.contentKey))
-        )
-      ).toBe(1);
+      const contentKeys = entries.map(({ route }) => route.contentKey);
+      expect(HashSet.size(HashSet.fromIterable(contentKeys))).toBe(1);
       expect(entries.map(({ route }) => route.publicPath)).toEqual([
         "articles/politics/dynastic-politics-asian-values",
         "articles/politik/politik-dinasti-dan-nilai-asia",
