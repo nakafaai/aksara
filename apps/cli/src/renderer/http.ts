@@ -8,7 +8,7 @@ import {
 import { Effect, type Redacted, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { makeNakafaAppError } from "#cli/error";
-import { decodeJsonText } from "#cli/text/json";
+import { JsonTextSchema } from "#cli/text/json";
 
 const MAXIMUM_RENDERER_BYTES = 256 * 1024;
 const PREVIEW_NONCE_HEADER = "x-aksara-preview-nonce";
@@ -74,7 +74,7 @@ export const fetchRendererBody = Effect.fn("AksaraCli.fetchRendererBody")(
           return makeNakafaAppError("body", error.reason === "stream");
         })
       );
-      return yield* Schema.decodeEffect(decodeJsonText)(source).pipe(
+      return yield* Schema.decodeEffect(JsonTextSchema)(source).pipe(
         Effect.mapError(() => makeNakafaAppError("json", false))
       );
     }).pipe(Effect.scoped)

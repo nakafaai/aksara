@@ -14,7 +14,7 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
-import { decodeJsonText } from "#cli/text/json";
+import { JsonTextSchema } from "#cli/text/json";
 import {
   makeEnvironmentFixture,
   provideConfig,
@@ -106,7 +106,7 @@ describe("production environment", () => {
         expect(environment).not.toHaveProperty("rendererToken");
         expect(environment).not.toHaveProperty("privateKeyPem");
         expect(
-          yield* Schema.encodeEffect(decodeJsonText)(environment)
+          yield* Schema.encodeEffect(JsonTextSchema)(environment)
         ).not.toContain("publication-token");
       })
   );
@@ -165,13 +165,13 @@ describe("production environment", () => {
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
       expect(
-        yield* Schema.encodeEffect(decodeJsonText)(environment)
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
       ).not.toContain("publication-token");
       expect(
-        yield* Schema.encodeEffect(decodeJsonText)(environment)
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
       ).not.toContain("renderer-token");
       expect(
-        yield* Schema.encodeEffect(decodeJsonText)(environment)
+        yield* Schema.encodeEffect(JsonTextSchema)(environment)
       ).not.toContain("PRIVATE KEY");
     })
   );

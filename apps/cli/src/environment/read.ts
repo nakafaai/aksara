@@ -22,6 +22,14 @@ const PublicationEnvironmentSchema = Schema.Struct({
 /** Narrow target configuration shared by publication lifecycle commands. */
 export type PublicationEnvironment = typeof PublicationEnvironmentSchema.Type;
 
+/** Validated secrets and endpoints required by a production content command. */
+const RecoveryEnvironmentSchema = Schema.Struct({
+  ...PublicationEnvironmentSchema.fields,
+  cacheSurface: CacheSurfaceSchema,
+  rendererEndpoint: Schema.URL,
+  rendererToken: Schema.Redacted(Schema.String),
+});
+
 /** The process environment does not satisfy the narrow preview contract. */
 export class PreviewEnvironmentError extends Schema.TaggedError<PreviewEnvironmentError>()(
   "PreviewEnvironmentError",
@@ -195,12 +203,7 @@ export const readRecoveryEnvironment = Effect.fn(
     cacheSurface,
     rendererEndpoint,
     rendererToken,
-  } satisfies PublicationEnvironment & {
-    /** Validated secrets and endpoints required by a production content command. */
-    readonly cacheSurface: CacheSurface;
-    readonly rendererEndpoint: URL;
-    readonly rendererToken: Redacted.Redacted<string>;
-  };
+  } satisfies typeof RecoveryEnvironmentSchema.Type;
 });
 
 /** Loads and validates only the active production signing key. */
