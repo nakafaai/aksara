@@ -1,13 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
+import { createManifestReader } from "#scripts/imports/fixture";
 import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
-
-/** Creates one manifest reader for workspace identity tests. */
-function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
-  return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
-}
 
 describe("workspace identities", () => {
   it("caches valid workspace identities and skips non-source roots", () => {

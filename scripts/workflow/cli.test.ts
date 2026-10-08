@@ -1,18 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
+import { mutateJob } from "#scripts/workflow/test/mutation";
 import { workflowSources } from "#scripts/workflow/test/sources";
 
 const { cli: source } = await workflowSources;
-
-/** Replaces one source fragment only inside its owning job. */
-function mutateJob(workflow: string, job: string, from: string, to: string) {
-  const start = workflow.indexOf(`\n  ${job}:`);
-  const nextJob = /\n {2}[a-z][a-z_]*:\n/gu;
-  nextJob.lastIndex = start + 1;
-  const match: RegExpExecArray | null = nextJob.exec(workflow);
-  const end = match?.index ?? workflow.length;
-  return `${workflow.slice(0, start)}${workflow.slice(start, end).replace(from, to)}${workflow.slice(end)}`;
-}
 
 describe("CLI workflow policy", () => {
   it("accepts isolated publication and unprivileged verification", () => {

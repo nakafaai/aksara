@@ -1,16 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, Schema } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { importViolations } from "#scripts/imports/check";
+import { createManifestReader } from "#scripts/imports/fixture";
 import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
-
-const JsonText = Schema.fromJsonString(Schema.Unknown);
-
-/** Creates one manifest reader for import-boundary policy tests. */
-function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
-  return (path: string) => Schema.encodeSync(JsonText)(manifests[path]);
-}
 
 /** Imports a fresh check module, so the mocks of one test apply to the program it exports. */
 const importCheck = Effect.fn("ImportCheckTest.importCheck")(function* () {

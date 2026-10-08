@@ -3,16 +3,11 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, FileSystem } from "effect";
 
 import {
-  type CommandOutput,
   decodeOutdatedDependencies,
   decodeRegistryVersion,
   runPnpm,
 } from "#scripts/dependencies/command";
-
-/** Creates one exact command observation. */
-function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
-  return { exitCode, stderr, stdout };
-}
+import { output } from "#scripts/dependencies/fixture";
 
 describe("dependency command boundary", () => {
   it.effect("decodes registry and outdated responses", () =>
