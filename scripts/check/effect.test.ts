@@ -1,100 +1,113 @@
-import { expect, layer } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { afterEach, expect, layer } from "@effect/vitest";
 import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Layer, Record as Rec } from "effect";
+import { effectReport, effectViolations } from "#scripts/check/effect";
 
-import { effectViolations } from "#scripts/check/effect";
+const originalExitCode = process.exitCode;
 
-layer(TypeScriptParser.layer)("effect policy", (it) => {
-  it.effect("reports raw try/catch and typeof-object narrowing", () =>
-    Effect.gen(function* () {
-      const sources = new Map([
-        [
-          "broken.ts",
-          'export function read(value: unknown) {\n  try {\n    h();\n  } catch {\n    return null;\n  }\n  return typeof value === "object";\n}',
-        ],
-      ]);
-
-      expect(
-        yield* effectViolations(
-          [...sources.keys()],
-          (file) => sources.get(file) ?? ""
-        )
-      ).toEqual([
-        "broken.ts: model failure with Effect instead of a raw try/catch statement.",
-        "broken.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-      ]);
-    })
-  );
-
-  it.effect("allows Effect-native failure, narrowing, and cleanup", () =>
-    Effect.gen(function* () {
-      const sources = new Map([
-        [
-          "clean.ts",
-          'import { Effect, Predicate } from "effect";\nexport const read = Effect.fn("read")(function* (value: unknown) {\n  return Predicate.isObject(value);\n});',
-        ],
-        [
-          "cleanup.ts",
-          "export async function clean() {\n  try {\n    await write();\n  } finally {\n    await erase();\n  }\n}",
-        ],
-      ]);
-
-      expect(
-        yield* effectViolations(
-          [...sources.keys()],
-          (file) => sources.get(file) ?? ""
-        )
-      ).toEqual([]);
-    })
-  );
-
-  it.effect("matches every typeof-object comparison form", () =>
-    Effect.gen(function* () {
-      const sources = new Map([
-        [
-          "shapes.ts",
-          [
-            'export const a = typeof value === "object";',
-            'export const b = "object" === typeof value;',
-            'export const c = typeof value === "string";',
-            "export const d = typeof value === other;",
-            "export const e = value === 5;",
-            "export const f = value;",
-            'export const g = typeof value !== "object";',
-            'export const h = typeof value == "object";',
-            'export const i = typeof value != "object";',
-          ].join("\n"),
-        ],
-      ]);
-
-      expect(
-        yield* effectViolations(
-          [...sources.keys()],
-          (file) => sources.get(file) ?? ""
-        )
-      ).toEqual([
-        "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-        "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-        "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-        "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-        "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
-      ]);
-    })
-  );
-
-  it.effect("preserves source-reader failures", () =>
-    Effect.gen(function* () {
-      const cause = new Error("test source is unreadable");
-      const failure = yield* effectViolations(["unreadable.ts"], () => {
-        throw cause;
-      }).pipe(Effect.flip);
-
-      expect(failure).toEqual(
-        new TypeScriptSourceError({ cause, fileName: "unreadable.ts" })
-      );
-    })
-  );
+afterEach(() => {
+  process.exitCode = originalExitCode;
+  vi.restoreAllMocks();
 });
+
+/** Reads one in-memory source, treating an unknown name as empty text. */
+function sourceReader(sources: Readonly<Record<string, string>>) {
+  return (file: string) => Effect.succeed(sources[file] ?? "");
+}
+
+layer(Layer.merge(TypeScriptParser.layer, NodeServices.layer))(
+  "effect policy",
+  (it) => {
+    it.effect("reports raw try/catch and typeof-object narrowing", () =>
+      Effect.gen(function* () {
+        const sources: Readonly<Record<string, string>> = {
+          "broken.ts":
+            'export function read(value: unknown) {\n  try {\n    h();\n  } catch {\n    return null;\n  }\n  return typeof value === "object";\n}',
+        };
+
+        expect(
+          yield* effectViolations(Rec.keys(sources), sourceReader(sources))
+        ).toEqual([
+          "broken.ts: model failure with Effect instead of a raw try/catch statement.",
+          "broken.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+        ]);
+      })
+    );
+
+    it.effect("allows Effect-native failure, narrowing, and cleanup", () =>
+      Effect.gen(function* () {
+        const sources: Readonly<Record<string, string>> = {
+          "clean.ts":
+            'import { Effect, Predicate } from "effect";\nexport const read = Effect.fn("read")(function* (value: unknown) {\n  return Predicate.isObject(value);\n});',
+          "cleanup.ts":
+            "export async function clean() {\n  try {\n    await write();\n  } finally {\n    await erase();\n  }\n}",
+        };
+
+        expect(
+          yield* effectViolations(Rec.keys(sources), sourceReader(sources))
+        ).toEqual([]);
+      })
+    );
+
+    it.effect("matches every typeof-object comparison form", () =>
+      Effect.gen(function* () {
+        const sources: Readonly<Record<string, string>> = {
+          "shapes.ts": Arr.join(
+            [
+              'export const a = typeof value === "object";',
+              'export const b = "object" === typeof value;',
+              'export const c = typeof value === "string";',
+              "export const d = typeof value === other;",
+              "export const e = value === 5;",
+              "export const f = value;",
+              'export const g = typeof value !== "object";',
+              'export const h = typeof value == "object";',
+              'export const i = typeof value != "object";',
+            ],
+            "\n"
+          ),
+        };
+
+        expect(
+          yield* effectViolations(Rec.keys(sources), sourceReader(sources))
+        ).toEqual([
+          "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+          "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+          "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+          "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+          "shapes.ts: narrow unknown input with Predicate or Schema instead of a typeof-object check.",
+        ]);
+      })
+    );
+
+    it.effect("reports only product modules through the effect report", () =>
+      Effect.gen(function* () {
+        const write = vi
+          .spyOn(process.stderr, "write")
+          .mockImplementation(() => true);
+
+        yield* effectReport(["README.md", "scripts/check/effect.ts"]);
+
+        expect(write).not.toHaveBeenCalled();
+        expect(process.exitCode).toBe(originalExitCode);
+      })
+    );
+
+    it.effect("preserves source-reader failures", () =>
+      Effect.gen(function* () {
+        const cause = new Error("test source is unreadable");
+        const failure = yield* effectViolations(["unreadable.ts"], () =>
+          Effect.fail(cause)
+        ).pipe(Effect.flip);
+
+        expect(failure).toEqual(
+          new TypeScriptSourceError({ cause, fileName: "unreadable.ts" })
+        );
+      })
+    );
+  }
+);
