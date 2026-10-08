@@ -15,7 +15,7 @@ import {
 const OUTPUT_LIMIT = 4096;
 const COMMIT_SHA_PATTERN = /^[0-9a-f]{40}$/u;
 
-/** Runs one exact process through the live direct-Node implementation. */
+/** Runs one exact process through the live ExactProcess implementation. */
 const runExact = Effect.fn("GitExactTest.runExact")(
   (input: ExactProcessInput) =>
     ExactProcess.pipe(
@@ -25,61 +25,70 @@ const runExact = Effect.fn("GitExactTest.runExact")(
 );
 
 /** Runs one command against a repository with the canonical exact Git policy. */
-const runGit = Effect.fn("GitExactTest.runGit")(
-  (root: string, args: readonly string[]) =>
-    runExact(
-      makeExactGitInput({
-        args,
-        root,
-        stderrLimit: OUTPUT_LIMIT,
-        stdoutLimit: OUTPUT_LIMIT,
-      })
-    )
-);
+const runGit = Effect.fn("GitExactTest.runGit")(function* (
+  root: string,
+  args: readonly string[]
+) {
+  const input = yield* makeExactGitInput({
+    args,
+    root,
+    stderrLimit: OUTPUT_LIMIT,
+    stdoutLimit: OUTPUT_LIMIT,
+  });
+  return yield* runExact(input);
+});
 
 afterEach(() => {
   vi.unstubAllEnvs();
 });
 
 describe("exact Git process", () => {
-  it("builds one explicit repository command with the minimal environment", () => {
-    const input = makeExactGitInput({
-      args: ["status", "--porcelain=v1"],
-      root: "/code/aksara",
-      stderrLimit: 20,
-      stdoutLimit: 10,
-    });
+  it.effect(
+    "builds one explicit repository command with the minimal environment",
+    () =>
+      Effect.gen(function* () {
+        const input = yield* makeExactGitInput({
+          args: ["status", "--porcelain=v1"],
+          root: "/code/aksara",
+          stderrLimit: 20,
+          stdoutLimit: 10,
+        });
 
-    assert.deepStrictEqual(input, {
-      args: [
-        "--git-dir=/code/aksara/.git",
-        "--work-tree=/code/aksara",
-        "--no-replace-objects",
-        "status",
-        "--porcelain=v1",
-      ],
-      environment: GIT_ENVIRONMENT,
-      executable: GIT_EXECUTABLE,
-      root: "/code/aksara",
-      stderrLimit: 20,
-      stdoutLimit: 10,
-    });
-  });
+        assert.deepStrictEqual(input, {
+          args: [
+            "--git-dir=/code/aksara/.git",
+            "--work-tree=/code/aksara",
+            "--no-replace-objects",
+            "status",
+            "--porcelain=v1",
+          ],
+          environment: GIT_ENVIRONMENT,
+          executable: GIT_EXECUTABLE,
+          root: "/code/aksara",
+          stderrLimit: 20,
+          stdoutLimit: 10,
+        });
+      }).pipe(Effect.provide(NodeServices.layer))
+  );
 
-  it("forwards explicit standard input without changing the Git policy", () => {
-    const stdin = new TextEncoder().encode("batch input");
-    const input = makeExactGitInput({
-      args: ["cat-file", "--batch"],
-      root: "/code/aksara",
-      stderrLimit: 20,
-      stdin,
-      stdoutLimit: 10,
-    });
+  it.effect(
+    "forwards explicit standard input without changing the Git policy",
+    () =>
+      Effect.gen(function* () {
+        const stdin = new TextEncoder().encode("batch input");
+        const input = yield* makeExactGitInput({
+          args: ["cat-file", "--batch"],
+          root: "/code/aksara",
+          stderrLimit: 20,
+          stdin,
+          stdoutLimit: 10,
+        });
 
-    assert.strictEqual(input.stdin, stdin);
-    assert.strictEqual(input.environment, GIT_ENVIRONMENT);
-    assert.strictEqual(input.executable, GIT_EXECUTABLE);
-  });
+        assert.strictEqual(input.stdin, stdin);
+        assert.strictEqual(input.environment, GIT_ENVIRONMENT);
+        assert.strictEqual(input.executable, GIT_EXECUTABLE);
+      }).pipe(Effect.provide(NodeServices.layer))
+  );
 
   it.live("ignores foreign ambient Git coordinates in a real repository", () =>
     Effect.gen(function* () {

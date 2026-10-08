@@ -7,7 +7,7 @@ import {
   type ExactProcessInput,
   ExactProcessLive,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Layer } from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
@@ -47,7 +47,9 @@ describe("GitBlob", () => {
         );
         const fileSystem = yield* FileSystem.FileSystem;
         expect(yield* fileSystem.exists(root)).toBe(false);
-      }).pipe(Effect.provide([NodeServices.layer, ExactProcessLive]))
+      }).pipe(
+        Effect.provide(Layer.provideMerge(ExactProcessLive, NodeServices.layer))
+      )
   );
 
   it.effect("returns an empty batch without starting Git", () =>
@@ -106,7 +108,7 @@ describe("GitBlob", () => {
           TEST_RAW_MDX
         );
         expect(commands).toEqual([
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: [
               "rev-parse",
               "--verify",
@@ -117,7 +119,7 @@ describe("GitBlob", () => {
             stderrLimit: 16 * 1024,
             stdoutLimit: 4096,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["cat-file", "--batch-check"],
             root: TEST_REPOSITORY_ROOT,
             stderrLimit: 16 * 1024,
@@ -126,7 +128,7 @@ describe("GitBlob", () => {
             ),
             stdoutLimit: 96,
           }),
-          makeExactGitInput({
+          yield* makeExactGitInput({
             args: ["cat-file", "--batch"],
             root: TEST_REPOSITORY_ROOT,
             stderrLimit: 16 * 1024,
@@ -134,7 +136,7 @@ describe("GitBlob", () => {
             stdoutLimit: TEST_RAW_BYTES.byteLength + 97,
           }),
         ]);
-      })
+      }).pipe(Effect.provide(NodeServices.layer))
   );
 
   it.effect(

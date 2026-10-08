@@ -51,15 +51,14 @@ const readGit = Effect.fn("AksaraCli.readGitEvidence")(function* (input: {
     repository: input.repository,
     stage: input.stage,
   });
+  const exactInput = yield* makeExactGitInput({
+    args,
+    root: input.root,
+    stderrLimit: MAXIMUM_GIT_ERROR_BYTES,
+    stdoutLimit: MAXIMUM_GIT_OUTPUT_BYTES,
+  });
   const output = yield* exactProcess
-    .run(
-      makeExactGitInput({
-        args,
-        root: input.root,
-        stderrLimit: MAXIMUM_GIT_ERROR_BYTES,
-        stdoutLimit: MAXIMUM_GIT_OUTPUT_BYTES,
-      })
-    )
+    .run(exactInput)
     .pipe(Effect.mapError(() => error));
   if (output.exitCode !== 0) {
     return yield* error;

@@ -1,4 +1,4 @@
-import { join } from "node:path";
+import { Effect, Path } from "effect";
 import type { ExactProcessInput } from "#utilities/process/exact";
 
 /** Approved absolute Git executable for Aksara-controlled environments. */
@@ -14,28 +14,31 @@ export const GIT_ENVIRONMENT = Object.freeze({
 });
 
 /** Builds an exact-repository Git process without ambient repository discovery. */
-export function makeExactGitInput(input: {
-  readonly args: readonly string[];
-  readonly root: string;
-  readonly stderrLimit: number;
-  readonly stdin?: Uint8Array;
-  readonly stdoutLimit: number;
-}): ExactProcessInput {
-  const exactInput: ExactProcessInput = {
-    args: [
-      `--git-dir=${join(input.root, ".git")}`,
-      `--work-tree=${input.root}`,
-      "--no-replace-objects",
-      ...input.args,
-    ],
-    environment: GIT_ENVIRONMENT,
-    executable: GIT_EXECUTABLE,
-    root: input.root,
-    stderrLimit: input.stderrLimit,
-    stdoutLimit: input.stdoutLimit,
-  };
-  if (input.stdin === undefined) {
-    return exactInput;
+export const makeExactGitInput = Effect.fn("AksaraUtilities.makeExactGitInput")(
+  function* (input: {
+    readonly args: readonly string[];
+    readonly root: string;
+    readonly stderrLimit: number;
+    readonly stdin?: Uint8Array;
+    readonly stdoutLimit: number;
+  }) {
+    const path = yield* Path.Path;
+    const exactInput: ExactProcessInput = {
+      args: [
+        `--git-dir=${path.join(input.root, ".git")}`,
+        `--work-tree=${input.root}`,
+        "--no-replace-objects",
+        ...input.args,
+      ],
+      environment: GIT_ENVIRONMENT,
+      executable: GIT_EXECUTABLE,
+      root: input.root,
+      stderrLimit: input.stderrLimit,
+      stdoutLimit: input.stdoutLimit,
+    };
+    if (input.stdin === undefined) {
+      return exactInput;
+    }
+    return { ...exactInput, stdin: input.stdin };
   }
-  return { ...exactInput, stdin: input.stdin };
-}
+);
