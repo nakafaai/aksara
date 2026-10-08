@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 
 import type { AppLocale } from "#contracts/locale";
 import type {
@@ -28,26 +28,21 @@ export class TryoutScoringError extends Schema.TaggedError<TryoutScoringError>()
   }
 ) {}
 
-/** Exam strategies, sets, and sections gathered while a catalog is read. */
-export interface TryoutScoringFacts {
-  readonly exams: Map<string, TryoutScoring>;
-  readonly sections: TryoutSection[];
-  readonly sets: Map<string, TryoutSet>;
-}
-
-/** Locale-specific set reference shared by sections and placements. */
-interface TryoutSetReference {
-  readonly appLocale: AppLocale;
-  readonly countryKey: string;
-  readonly examKey: string;
-  readonly setKey: string;
-  readonly trackKey: string;
-}
-
 /** Creates empty scoring facts for one snapshot verification pass. */
-export function makeTryoutScoringFacts(): TryoutScoringFacts {
-  return { exams: new Map(), sections: [], sets: new Map() };
+export function makeTryoutScoringFacts(): {
+  readonly exams: MutableHashMap.MutableHashMap<string, TryoutScoring>;
+  readonly sections: TryoutSection[];
+  readonly sets: MutableHashMap.MutableHashMap<string, TryoutSet>;
+} {
+  return {
+    exams: MutableHashMap.empty(),
+    sections: [],
+    sets: MutableHashMap.empty(),
+  };
 }
+
+/** Exam strategies, sets, and sections gathered while a catalog is read. */
+export type TryoutScoringFacts = ReturnType<typeof makeTryoutScoringFacts>;
 
 /** Records the scoring facts carried by one localized catalog row. */
 export function recordTryoutScoringFacts(
@@ -55,18 +50,34 @@ export function recordTryoutScoringFacts(
   row: TryoutCatalogRow
 ) {
   if (row.kind === "exam") {
-    facts.exams.set(tryoutCatalogIdentity(row), row.scoringStrategy);
+    MutableHashMap.set(
+      facts.exams,
+      tryoutCatalogIdentity(row),
+      row.scoringStrategy
+    );
   }
   if (row.kind === "set") {
-    facts.sets.set(tryoutCatalogIdentity(row), row);
+    MutableHashMap.set(facts.sets, tryoutCatalogIdentity(row), row);
   }
   if (row.kind === "section") {
     facts.sections.push(row);
   }
 }
 
-/** Returns the strategy of the set that owns one section or placement. */
-function setStrategy(facts: TryoutScoringFacts, row: TryoutSetReference) {
+/**
+ * Returns the strategy of the set that owns one section or placement. The row
+ * is a locale-specific set reference shared by sections and placements.
+ */
+function setStrategy(
+  facts: TryoutScoringFacts,
+  row: {
+    readonly appLocale: AppLocale;
+    readonly countryKey: string;
+    readonly examKey: string;
+    readonly setKey: string;
+    readonly trackKey: string;
+  }
+) {
   const identity = tryoutCatalogNodeIdentity({
     appLocale: row.appLocale,
     countryKey: row.countryKey,
@@ -75,7 +86,8 @@ function setStrategy(facts: TryoutScoringFacts, row: TryoutSetReference) {
     setKey: row.setKey,
     trackKey: row.trackKey,
   });
-  return facts.sets.get(identity)?.scoringStrategy;
+  return Option.getOrUndefined(MutableHashMap.get(facts.sets, identity))
+    ?.scoringStrategy;
 }
 
 /** Requires one set to score with the strategy its exam declares. */
@@ -86,7 +98,10 @@ function validateSetStrategy(facts: TryoutScoringFacts, row: TryoutSet) {
     examKey: row.examKey,
     kind: "exam",
   });
-  if (facts.exams.get(exam) === row.scoringStrategy) {
+  if (
+    Option.getOrUndefined(MutableHashMap.get(facts.exams, exam)) ===
+    row.scoringStrategy
+  ) {
     return Effect.void;
   }
   return Effect.fail(
@@ -119,7 +134,7 @@ export const validateTryoutScoringFacts = Effect.fn(
   "AksaraContracts.validateTryoutScoringFacts"
 )(function* (facts: TryoutScoringFacts) {
   yield* Effect.forEach(
-    facts.sets.values(),
+    MutableHashMap.values(facts.sets),
     (row) => validateSetStrategy(facts, row),
     { discard: true }
   );
