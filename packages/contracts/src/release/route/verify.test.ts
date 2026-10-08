@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
+import { Sha256HashSchema } from "#contracts/ids";
 import { digestRoutes } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import {
@@ -120,5 +121,52 @@ describe("route verification", () => {
       expect(countError._tag).toBe("RouteCountError");
       expect(digestError._tag).toBe("RouteDigestError");
     })
+  );
+
+  it.effect(
+    "reports the recomputed digest of fixture bindings for a wrong signed root",
+    () =>
+      Effect.gen(function* () {
+        const routes = [
+          route(0, "subjects/test/0"),
+          route(1, "subjects/test/1"),
+        ];
+        const error = yield* verifyContentRoutes({
+          manifest: {
+            ...release.manifest,
+            routeCount: routes.length,
+            routeDigest: Sha256HashSchema.make(`sha256:${"0".repeat(64)}`),
+          },
+          routes: Stream.fromIterable(routes),
+        }).pipe(Effect.flip);
+
+        expect(error).toMatchObject({ _tag: "RouteDigestError" });
+        expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
+          "sha256:c9e3716be578aa4932fc928dbf65edc3280aa2e36c041ef7520396818eb43313"
+        );
+      })
+  );
+
+  it.effect(
+    "accepts fixture bindings only at their pinned signed route digest",
+    () =>
+      Effect.gen(function* () {
+        const routes = [
+          route(0, "subjects/test/0"),
+          route(1, "subjects/test/1"),
+        ];
+        const summary = yield* verifyContentRoutes({
+          manifest: {
+            ...release.manifest,
+            routeCount: routes.length,
+            routeDigest: Sha256HashSchema.make(
+              "sha256:c9e3716be578aa4932fc928dbf65edc3280aa2e36c041ef7520396818eb43313"
+            ),
+          },
+          routes: Stream.fromIterable(routes),
+        });
+
+        expect(summary).toEqual({ count: 2 });
+      })
   );
 });

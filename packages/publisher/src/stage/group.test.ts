@@ -6,7 +6,10 @@ import {
   MAX_STAGE_GROUP_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
-import { makeStageGroups } from "#publisher/stage/group";
+import {
+  canonicalizeStageGroup,
+  makeStageGroups,
+} from "#publisher/stage/group";
 import { transportRequests } from "#test/transport/spec";
 
 describe("makeStageGroups", () => {
@@ -84,5 +87,25 @@ describe("makeStageGroups", () => {
         expect(groups).toHaveLength(2);
         expect(groups.flatMap((group) => group.requests)).toEqual(requests);
       })
+  );
+});
+
+describe("stage group canonical wire bytes", () => {
+  it.effect("pins the grouped request body bytes", () =>
+    Effect.gen(function* () {
+      const template = yield* Effect.fromNullishOr(
+        transportRequests.find(
+          (request) => request.operation === "stageItemBatch"
+        )
+      );
+      expect(
+        canonicalizeStageGroup({
+          releaseId: template.releaseId,
+          requests: [template],
+        })
+      ).toMatchInlineSnapshot(
+        `"{"releaseId":"test-http-release","requests":[{"batchIndex":0,"items":[{"change":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","contentKey":"test:http","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/http/en.mdx"},"index":0,"releaseId":"test-http-release"},{"change":{"artifactLocale":"id","contentKey":"test:deleted","family":"material","operation":"delete"},"index":1,"releaseId":"test-http-release"}],"releaseId":"test-http-release","operation":"stageItemBatch"}],"operation":"stageGroup"}"`
+      );
+    })
   );
 });

@@ -89,7 +89,7 @@ function oversizedPage() {
     contentKey: "test:rollback-large",
     format: "mdx-function-body",
     mdxCompilerVersion: "3.1.1",
-    plainText: "Test protocol",
+    plainText: "Pelajaran é ✓ 数学",
     rawMdx: "## Test protocol",
     rendererDomain: "mathematics",
     requiredComponents: [],
@@ -253,6 +253,25 @@ describe("streamRollbackRecords", () => {
       ).pipe(
         Effect.flip,
         Effect.map((error) => expect(error._tag).toBe(expectedTag))
+      )
+  );
+
+  it.effect(
+    "rejects an oversized non-ASCII page and reports its exact byte count",
+    () =>
+      replay(
+        makePublicationTarget({
+          rollbackPage: () => Effect.succeed(oversizedPage()),
+        }),
+        1
+      ).pipe(
+        Effect.flip,
+        Effect.map((error) =>
+          expect(error).toMatchObject({
+            _tag: "RollbackPageByteLimitError",
+            actualBytes: 8_392_356,
+          })
+        )
       )
   );
 

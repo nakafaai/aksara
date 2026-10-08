@@ -48,6 +48,112 @@ const source = {
   version: { label: "Indonesia" },
 } as const;
 
+const goldenFull = Schema.decodeSync(LearningProgramSchema)({
+  defaultCoverageStatus: "available",
+  displayOrder: 3,
+  iconKey: "mathematics",
+  key: "matematika-dasar",
+  kind: "institution-program",
+  navigation: { levels: ["topic", "subject", "unit"], model: "track-topic" },
+  provider: { homeCountry: "ID", kind: "institution", name: "Lembaga Uji é" },
+  recommendedCountry: "ID",
+  sources: [
+    {
+      label: "Zeta sumber é",
+      retrievedAt: "2026-06-14",
+      reviewAfter: "2027-01-01",
+      type: "institution-document",
+      url: "https://example.test/zeta",
+    },
+    {
+      label: "Alpha source",
+      retrievedAt: "2026-06-15",
+      type: "official-portal",
+      url: "https://example.test/alpha",
+    },
+  ],
+  translations: [
+    {
+      appLocale: "en",
+      publicSlug: "basic-mathematics",
+      title: "Basic Mathematics é",
+    },
+    {
+      appLocale: "id",
+      publicSlug: "matematika-dasar",
+      title: "Matematika Dasar",
+    },
+    {
+      appLocale: "de",
+      publicSlug: "grundlagen-mathematik",
+      title: "Grundlagen Mathematik",
+    },
+  ],
+  version: { endsAt: "2027-12-31", label: "2026/2027", startsAt: "2026-07-01" },
+});
+const goldenMinimal = Schema.decodeSync(LearningProgramSchema)({
+  defaultCoverageStatus: "planned",
+  displayOrder: 1,
+  iconKey: "school",
+  key: "minimal-program",
+  kind: "custom-program",
+  navigation: { levels: ["lesson"], model: "course-unit-lesson" },
+  provider: { kind: "learner", name: "Pembelajar" },
+  sources: [
+    {
+      label: "Editorial",
+      retrievedAt: "2026-01-02",
+      type: "nakafa-editorial",
+      url: "https://example.test/editorial",
+    },
+  ],
+  translations: [
+    {
+      appLocale: "en",
+      publicSlug: "minimal-program",
+      title: "Minimal Program",
+    },
+  ],
+  version: { label: "Current" },
+});
+const goldenMixed = Schema.decodeSync(LearningProgramSchema)({
+  ...goldenMinimal,
+  displayOrder: 2,
+  key: "mixed-program",
+  provider: { kind: "official", name: "Kementerian Contoh" },
+  recommendedCountry: "DE",
+  sources: [
+    {
+      label: "Portal",
+      retrievedAt: "2026-03-04",
+      reviewAfter: "2026-12-31",
+      type: "official-portal",
+      url: "https://example.test/portal",
+    },
+  ],
+  version: { label: "2026", startsAt: "2026-01-01" },
+});
+
+describe("learning program golden canonical bytes", () => {
+  it("pins the canonical bytes of a program with every optional field", () => {
+    expect(canonicalizeLearningProgram(goldenFull)).toBe(
+      '{"defaultCoverageStatus":"available","displayOrder":3,"iconKey":"mathematics","key":"matematika-dasar","kind":"institution-program","navigation":{"levels":["topic","subject","unit"],"model":"track-topic"},"provider":{"homeCountry":"ID","kind":"institution","name":"Lembaga Uji é"},"recommendedCountry":"ID","sources":[{"label":"Zeta sumber é","retrievedAt":"2026-06-14","reviewAfter":"2027-01-01","type":"institution-document","url":"https://example.test/zeta"},{"label":"Alpha source","retrievedAt":"2026-06-15","type":"official-portal","url":"https://example.test/alpha"}],"translations":[{"appLocale":"en","publicSlug":"basic-mathematics","title":"Basic Mathematics é"},{"appLocale":"id","publicSlug":"matematika-dasar","title":"Matematika Dasar"},{"appLocale":"de","publicSlug":"grundlagen-mathematik","title":"Grundlagen Mathematik"}],"version":{"endsAt":"2027-12-31","label":"2026/2027","startsAt":"2026-07-01"}}'
+    );
+  });
+
+  it("pins the canonical bytes of a program without optional fields", () => {
+    expect(canonicalizeLearningProgram(goldenMinimal)).toBe(
+      '{"defaultCoverageStatus":"planned","displayOrder":1,"iconKey":"school","key":"minimal-program","kind":"custom-program","navigation":{"levels":["lesson"],"model":"course-unit-lesson"},"provider":{"kind":"learner","name":"Pembelajar"},"sources":[{"label":"Editorial","retrievedAt":"2026-01-02","type":"nakafa-editorial","url":"https://example.test/editorial"}],"translations":[{"appLocale":"en","publicSlug":"minimal-program","title":"Minimal Program"}],"version":{"label":"Current"}}'
+    );
+  });
+
+  it("pins the canonical bytes of a program with a mixed set of optional fields", () => {
+    expect(canonicalizeLearningProgram(goldenMixed)).toBe(
+      '{"defaultCoverageStatus":"planned","displayOrder":2,"iconKey":"school","key":"mixed-program","kind":"custom-program","navigation":{"levels":["lesson"],"model":"course-unit-lesson"},"provider":{"kind":"official","name":"Kementerian Contoh"},"recommendedCountry":"DE","sources":[{"label":"Portal","retrievedAt":"2026-03-04","reviewAfter":"2026-12-31","type":"official-portal","url":"https://example.test/portal"}],"translations":[{"appLocale":"en","publicSlug":"minimal-program","title":"Minimal Program"}],"version":{"label":"2026","startsAt":"2026-01-01"}}'
+    );
+  });
+});
+
 describe("learning program contract", () => {
   it("decodes real localized program metadata and canonicalizes optional fields", () => {
     const program = Schema.decodeSync(LearningProgramSchema)(source);

@@ -152,3 +152,56 @@ describe("replay record", () => {
     })
   );
 });
+
+describe("replay record canonical bytes", () => {
+  it.effect(
+    "pins the encoded data, digest, and byte count of a non-ASCII record",
+    () =>
+      Effect.gen(function* () {
+        const encoded = yield* encodeReplayRecord(
+          { items: [1.5, "x"], sequence: 2, value: "Pelajaran é ✓ 数学" },
+          7
+        );
+        expect(encoded).toMatchInlineSnapshot(`
+          {
+            "bytes": 137,
+            "data": "{"items":[1.5,"x"],"sequence":2,"value":"Pelajaran é ✓ 数学"}",
+            "hash": "sha256:444ff258fd1a44e5957c6f42f68f72f42340e7ad219401c32358ab85508c2bc7",
+          }
+        `);
+      })
+  );
+
+  it.effect(
+    "decodes the pinned stored record and rejects a one-character change",
+    () =>
+      Effect.gen(function* () {
+        const PinnedRecordSchema = Schema.Struct({
+          items: Schema.Array(Schema.Union([Schema.Finite, Schema.String])),
+          sequence: Schema.Finite,
+          value: Schema.String,
+        });
+        const decoded = yield* decodeReplayRecord({
+          data: '{"items":[1.5,"x"],"sequence":2,"value":"Pelajaran é ✓ 数学"}',
+          hash: "sha256:444ff258fd1a44e5957c6f42f68f72f42340e7ad219401c32358ab85508c2bc7",
+          index: 7,
+          schema: PinnedRecordSchema,
+        });
+        expect(decoded).toEqual({
+          items: [1.5, "x"],
+          sequence: 2,
+          value: "Pelajaran é ✓ 数学",
+        });
+
+        const error = yield* reject(
+          decodeReplayRecord({
+            data: '{"items":[1.5,"x"],"sequence":3,"value":"Pelajaran é ✓ 数学"}',
+            hash: "sha256:444ff258fd1a44e5957c6f42f68f72f42340e7ad219401c32358ab85508c2bc7",
+            index: 7,
+            schema: PinnedRecordSchema,
+          })
+        );
+        expect(error).toMatchObject({ index: 7, operation: "hash" });
+      })
+  );
+});

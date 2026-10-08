@@ -5,6 +5,7 @@ import {
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { canonicalizeContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import { Effect, Stream } from "effect";
 import {
   makeRouteItems,
@@ -189,6 +190,28 @@ describe("route derivation", () => {
       ]);
       expect(items.map(({ index }) => index)).toEqual([0, 1, 2]);
       expect(items.every((item) => item.releaseId === releaseId)).toBe(true);
+    })
+  );
+});
+
+describe("route item canonical bytes", () => {
+  it.effect("pins the final delta bytes of binds, a delete, and a skip", () =>
+    Effect.gen(function* () {
+      const items = yield* collect([
+        { current: version("zeta"), next: version("zeta", "zeta") },
+        { current: version("alpha"), next: version("alpha", "alpha") },
+        { current: version("gone", "gone"), next: version("gone") },
+        { current: version("kept", "kept"), next: version("kept", "kept") },
+      ]);
+      expect(
+        items.map((item) => canonicalizeContentRouteItem(item))
+      ).toMatchInlineSnapshot(`
+        [
+          "{"change":{"appLocale":"en","contentKey":"test:alpha","operation":"bind","publicPath":"subjects/test/alpha"},"index":0,"releaseId":"test-routes"}",
+          "{"change":{"appLocale":"en","operation":"delete","publicPath":"subjects/test/gone"},"index":1,"releaseId":"test-routes"}",
+          "{"change":{"appLocale":"en","contentKey":"test:zeta","operation":"bind","publicPath":"subjects/test/zeta"},"index":2,"releaseId":"test-routes"}",
+        ]
+      `);
     })
   );
 });

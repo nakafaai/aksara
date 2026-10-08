@@ -80,3 +80,33 @@ describe("content cache contracts", () => {
     );
   });
 });
+
+describe("pinned content cache tags", () => {
+  it("pins each exact mutable scope tag", () => {
+    expect(
+      ContentCacheScopeSchema.literals.map((scope) =>
+        makeContentCacheTag(scope)
+      )
+    ).toEqual([
+      "content-scope:article",
+      "content-scope:material",
+      "content-scope:page",
+      "content-scope:question",
+      "content-scope:program",
+      "content-scope:quran",
+      "content-scope:tryout",
+    ]);
+  });
+
+  it("pins the immutable artifact tag for one canonical hash", () => {
+    expect(
+      makeArtifactCacheTag(
+        Sha256HashSchema.make(
+          "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        )
+      )
+    ).toBe(
+      "content-artifact:sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    );
+  });
+});

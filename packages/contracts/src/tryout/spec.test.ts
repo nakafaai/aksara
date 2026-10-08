@@ -4,6 +4,7 @@ import { TryoutKeySchema } from "#contracts/tryout/key";
 import {
   canonicalTryoutMarks,
   TryoutContentHashSchema,
+  type TryoutMarks,
   TryoutMarksSchema,
   TryoutScoringSchema,
   TryoutSourceRevisionSchema,
@@ -42,19 +43,23 @@ describe("try-out shared contracts", () => {
   });
 
   it("accepts penalized marks and canonicalizes them in stable order", () => {
-    for (const marks of [
-      { blank: 0, correct: 4, wrong: -1 },
-      { blank: -1, correct: 1, wrong: -1 },
-      { blank: 1, correct: 6, wrong: -2 },
-    ]) {
+    const cases: readonly (readonly [TryoutMarks, string])[] = [
+      [
+        { blank: 0, correct: 4, wrong: -1 },
+        '{"blank":0,"correct":4,"wrong":-1}',
+      ],
+      [
+        { blank: -1, correct: 1, wrong: -1 },
+        '{"blank":-1,"correct":1,"wrong":-1}',
+      ],
+      [
+        { blank: 1, correct: 6, wrong: -2 },
+        '{"blank":1,"correct":6,"wrong":-2}',
+      ],
+    ];
+    for (const [marks, canonical] of cases) {
       const decoded = Schema.decodeSync(TryoutMarksSchema)(marks);
-      expect(JSON.stringify(canonicalTryoutMarks(decoded))).toBe(
-        JSON.stringify({
-          blank: marks.blank,
-          correct: marks.correct,
-          wrong: marks.wrong,
-        })
-      );
+      expect(JSON.stringify(canonicalTryoutMarks(decoded))).toBe(canonical);
     }
   });
 

@@ -103,6 +103,46 @@ function tafsirAccess() {
   ] as const;
 }
 
+describe("Quran source ids golden vectors", () => {
+  it("pins the ordered source identities of the active and single-locale sets", () => {
+    const active = Schema.decodeSync(ActiveAppLocaleListSchema)([
+      "en",
+      "id",
+      "de",
+    ]);
+    const en = Schema.decodeSync(ActiveAppLocaleListSchema)(["en"]);
+    const id = Schema.decodeSync(ActiveAppLocaleListSchema)(["id"]);
+
+    expect(quranSourceIds(active)).toEqual([
+      "tanzil-text",
+      "tanzil-metadata",
+      "kemenag-names",
+      "bubenheim-names",
+      "quranenc-english",
+      "quranenc-indonesian",
+      "quranenc-german",
+      "quranenc-tafsir",
+      "mokhtasar-english",
+      "mokhtasar-german",
+    ]);
+    expect(quranSourceIds(en)).toEqual([
+      "tanzil-text",
+      "tanzil-metadata",
+      "quranenc-english",
+      "mokhtasar-english",
+    ]);
+    expect(quranSourceIds(id)).toEqual([
+      "tanzil-text",
+      "tanzil-metadata",
+      "kemenag-names",
+      "quranenc-indonesian",
+      "quranenc-tafsir",
+    ]);
+    expect(quranSourceFileCount(en)).toBe(3);
+    expect(quranSourceFileCount(id)).toBe(118);
+  });
+});
+
 describe("Quran source contracts", () => {
   it("preserves exact source kinds and Tafsir pairs in inferred types", () => {
     const embedded = source("tanzil-text");

@@ -4,7 +4,10 @@ import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ArticleProjectionSchema } from "@nakafa/aksara-contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import { PublicPageProjectionSchema } from "@nakafa/aksara-contracts/projection/page";
+import { QuestionBodyProjectionSchema } from "@nakafa/aksara-contracts/projection/question";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
@@ -120,6 +123,110 @@ describe("projection batching", () => {
       ).pipe(Stream.runDrain, Effect.flip);
       expect(byteError._tag).toBe("PublicationBatchLimitError");
       expect(byteError.actualBytes).toBeGreaterThan(MAX_PROJECTION_BATCH_BYTES);
+    })
+  );
+});
+
+describe("projection batch canonical wire bytes", () => {
+  it.effect("pins one projection of every kind in batch order", () =>
+    Effect.gen(function* () {
+      const subject = yield* projection(0, "Pelajaran é ✓ 数学");
+      const article = yield* Schema.decodeEffect(ArticleProjectionSchema)({
+        appLocale: "en",
+        articleRouteSlug: "test-article",
+        articleSlug: "test-article",
+        artifactLocale: "en",
+        category: "politics",
+        categoryRouteSlug: "politics",
+        categoryTitle: "Politics",
+        contentKey: "articles/politics/test-article",
+        graph: {
+          alignmentId:
+            "alignment:article:politics:article:politics:test-article",
+          assetId: "asset:en:article:politics:article:politics:test-article",
+          conceptId: "concept:article:politics",
+          learningObjectId: "lo:article:politics:test-article",
+          lensId: "lens:article:politics",
+        },
+        kind: "article",
+        metadata: {
+          authors: [{ name: "Test Author" }],
+          datePublished: "2026-01-01",
+          title: "Test Article",
+        },
+        official: true,
+        parentPath: "articles/politics",
+        publicPath: "articles/politics/test-article",
+        references: [],
+        sitemap: true,
+      });
+      const page = yield* Schema.decodeEffect(PublicPageProjectionSchema)({
+        appLocale: "en",
+        artifactLocale: "en",
+        contentKey: "pages/privacy-policy",
+        kind: "public-page",
+        metadata: {
+          datePublished: "2026-08-20",
+          description: "How Nakafa processes personal data.",
+          title: "Privacy Policy",
+        },
+        pageKey: "privacy-policy",
+        publicPath: "privacy-policy",
+        sitemap: true,
+        sourcePath: "packages/corpus/pages/privacy-policy/en.mdx",
+      });
+      const question = yield* Schema.decodeEffect(QuestionBodyProjectionSchema)(
+        {
+          artifactLocale: "en",
+          bodyKind: "question",
+          contentKey:
+            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
+          kind: "question-body",
+          metadata: {
+            authors: [{ name: "Test Author" }],
+            datePublished: "2026-01-01",
+            title: "Question 1",
+          },
+          peerContentKey:
+            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
+          questionKey:
+            "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
+          questionNumber: 1,
+          response: {
+            kind: "single-choice",
+            options: [
+              { isCorrect: true, label: "A", optionKey: "option-1", order: 1 },
+              { isCorrect: false, label: "B", optionKey: "option-2", order: 2 },
+            ],
+          },
+          setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+        }
+      );
+      expect(
+        canonicalizeProjectionBatch({
+          batchIndex: 1,
+          projections: [question, page, subject, article],
+          releaseId,
+        })
+      ).toMatchInlineSnapshot(
+        `"{"batchIndex":1,"projections":[{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"A","optionKey":"option-1","order":1},{"isCorrect":false,"label":"B","optionKey":"option-2","order":2}]},"artifactLocale":"en","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Question 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"},{"appLocale":"en","artifactLocale":"en","contentKey":"pages/privacy-policy","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"},"pageKey":"privacy-policy","publicPath":"privacy-policy","sitemap":true,"sourcePath":"packages/corpus/pages/privacy-policy/en.mdx"},{"appLocale":"en","artifactLocale":"en","contentKey":"test:projection-0000","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson-0","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson-0","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson-0","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Pelajaran é ✓ 数学"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson-0","sectionKey":"test-lesson-0","sitemap":true,"topicTitle":"Test Material"},{"appLocale":"en","articleRouteSlug":"test-article","articleSlug":"test-article","artifactLocale":"en","category":"politics","categoryRouteSlug":"politics","categoryTitle":"Politics","contentKey":"articles/politics/test-article","graph":{"alignmentId":"alignment:article:politics:article:politics:test-article","assetId":"asset:en:article:politics:article:politics:test-article","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:test-article","lensId":"lens:article:politics"},"kind":"article","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Article"},"official":true,"parentPath":"articles/politics","publicPath":"articles/politics/test-article","references":[],"sitemap":true}],"operation":"stageProjectionBatch","releaseId":"test-release-projections"}"`
+      );
+    })
+  );
+
+  it.effect("pins a projection batch with non-ASCII metadata", () =>
+    Effect.gen(function* () {
+      const first = yield* projection(0, "Pelajaran é ✓ 数学");
+      const second = yield* projection(1);
+      expect(
+        canonicalizeProjectionBatch({
+          batchIndex: 0,
+          projections: [first, second],
+          releaseId,
+        })
+      ).toMatchInlineSnapshot(
+        `"{"batchIndex":0,"projections":[{"appLocale":"en","artifactLocale":"en","contentKey":"test:projection-0000","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson-0","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson-0","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson-0","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Pelajaran é ✓ 数学"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson-0","sectionKey":"test-lesson-0","sitemap":true,"topicTitle":"Test Material"},{"appLocale":"en","artifactLocale":"en","contentKey":"test:projection-0001","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson-1","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson-1","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson-1","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Projection"},"order":2,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson-1","sectionKey":"test-lesson-1","sitemap":true,"topicTitle":"Test Material"}],"operation":"stageProjectionBatch","releaseId":"test-release-projections"}"`
+      );
     })
   );
 });

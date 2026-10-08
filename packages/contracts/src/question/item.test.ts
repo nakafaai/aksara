@@ -9,8 +9,24 @@ import {
   QuestionResponseSourceSchema,
   questionResponseFor,
 } from "#contracts/question/item";
+import { canonicalQuestionResponse } from "#contracts/question/response";
 import { shortNumber, shortText } from "#contracts/test/answer";
 import {
+  COHERENCE_MESSAGE,
+  category,
+  frozenCategory,
+  itemCategory,
+  itemFailure,
+  itemMultiple,
+  itemRubric,
+  itemShort,
+  itemSingle,
+  multipleChoice,
+  responseBytes,
+  singleChoice,
+} from "#contracts/test/question";
+import {
+  goldenRubricCanonical,
   patchRubricCriterion,
   rubric,
   rubricLabel,
@@ -18,42 +34,21 @@ import {
   rubricSourceWith,
 } from "#contracts/test/rubric";
 
-const singleChoice = {
-  kind: "single-choice",
-  options: [
-    { isCorrect: true, label: "A" },
-    { isCorrect: false, label: "B" },
-  ],
-} as const;
-const multipleChoice = {
-  kind: "multiple-choice",
-  options: [
-    { isCorrect: true, label: "A" },
-    { isCorrect: true, label: "B" },
-    { isCorrect: false, label: "C" },
-  ],
-} as const;
-const category = {
-  categories: ["True", "False"],
-  kind: "category",
-  statements: [
-    { correctCategoryOrder: 1, label: "Statement A" },
-    { correctCategoryOrder: 2, label: "Statement B" },
-  ],
-} as const;
-
-const COHERENCE_MESSAGE =
-  "Localized responses must preserve one format, structure, and answer key.";
-
-/** Returns the strict decoding failure of one authored item, if any. */
-function itemFailure(input: unknown) {
-  const exit = Schema.decodeUnknownExit(QuestionItemSchema)(input, {
-    onExcessProperty: "error",
+describe("question item golden response bytes", () => {
+  it("pins the canonical bytes of a blueprint in signed field order", () => {
+    expect(
+      JSON.stringify(
+        canonicalQuestionBlueprint({
+          cognitiveLevel: "reasoning",
+          contentDomain: "algebra",
+          topic: "functions",
+        })
+      )
+    ).toBe(
+      '{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"}'
+    );
   });
-  return Exit.isFailure(exit) ? String(exit.cause) : "";
-}
 
-describe("question item", () => {
   it("canonicalizes the complete editorial blueprint in stable order", () => {
     expect(
       canonicalQuestionBlueprint({
@@ -68,6 +63,39 @@ describe("question item", () => {
     });
   });
 
+  it.effect(
+    "pins the frozen canonical bytes of every authored response kind",
+    () =>
+      Effect.gen(function* () {
+        const en = ArtifactLocaleSchema.make("en");
+        const frozen = {
+          category: yield* questionResponseFor(itemCategory, en),
+          multiple: yield* questionResponseFor(itemMultiple, en),
+          rubric: yield* questionResponseFor(itemRubric, en),
+          short: yield* questionResponseFor(itemShort, en),
+          single: yield* questionResponseFor(itemSingle, en),
+        };
+
+        expect(JSON.stringify(canonicalQuestionResponse(frozen.single))).toBe(
+          responseBytes.single
+        );
+        expect(JSON.stringify(canonicalQuestionResponse(frozen.multiple))).toBe(
+          responseBytes.multiple
+        );
+        expect(JSON.stringify(canonicalQuestionResponse(frozen.short))).toBe(
+          responseBytes.short
+        );
+        expect(JSON.stringify(canonicalQuestionResponse(frozen.category))).toBe(
+          responseBytes.category
+        );
+        expect(JSON.stringify(canonicalQuestionResponse(frozen.rubric))).toBe(
+          goldenRubricCanonical
+        );
+      })
+  );
+});
+
+describe("question item", () => {
   it("accepts every official response source format", () => {
     for (const response of [
       singleChoice,
@@ -177,35 +205,7 @@ describe("question item", () => {
         ArtifactLocaleSchema.make("en")
       );
 
-      expect(response).toEqual({
-        categories: [
-          {
-            categoryKey: "category-1",
-            label: "True",
-            order: 1,
-          },
-          {
-            categoryKey: "category-2",
-            label: "False",
-            order: 2,
-          },
-        ],
-        kind: "category",
-        statements: [
-          {
-            correctCategoryKey: "category-1",
-            label: "Statement A",
-            order: 1,
-            statementKey: "statement-1",
-          },
-          {
-            correctCategoryKey: "category-2",
-            label: "Statement B",
-            order: 2,
-            statementKey: "statement-2",
-          },
-        ],
-      });
+      expect(response).toEqual(frozenCategory);
     })
   );
 

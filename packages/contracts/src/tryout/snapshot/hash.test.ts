@@ -22,6 +22,19 @@ const input = Schema.decodeSync(TryoutSnapshotFactsSchema)({
   routeCount: 48,
 });
 
+describe("try-out snapshot golden identities", () => {
+  it("pins the content-addressed snapshot identity and row evidence", () => {
+    expect(makeTryoutSnapshot(input).snapshotId).toBe(
+      "sha256:b8066804ee09fc79af009a462775813ea3a2683e414e9095a0290f1693a8dfc5"
+    );
+    expect(tryoutSnapshotRowEvidence(input)).toEqual({
+      rowCount: 894,
+      rowDigest:
+        "sha256:72c5ba88dd2f3f5b198e2e28d9e5fd79f829e2569956a03dad584190f0f222e2",
+    });
+  });
+});
+
 describe("try-out snapshot hashing", () => {
   it("binds locale and inventory facts", () => {
     const first = makeTryoutSnapshot(input);

@@ -1,4 +1,5 @@
 import {
+  ContentKeySchema,
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -7,7 +8,9 @@ import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
+  ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
@@ -48,6 +51,25 @@ export const preparationScope = PublicationScopeSchema.make({
   families: ["material"],
   snapshots: [],
 });
+
+/** Deletes the test-owned content key that the publication fixture binds first. */
+export const deletion = {
+  prior: {
+    head: {
+      ...head,
+      contentKey: ContentKeySchema.make("test:publication:z"),
+    },
+    state: "material" as const,
+  },
+  record: {
+    change: ContentDeleteSchema.make({
+      artifactLocale: ArtifactLocaleSchema.make("en"),
+      contentKey: ContentKeySchema.make("test:publication:z"),
+      family: "material",
+      operation: "delete",
+    }),
+  },
+};
 
 /** Runs preparation with direct overrides around one valid retained base. */
 export const prepareTestRelease: PrepareTestRelease = Effect.fn(

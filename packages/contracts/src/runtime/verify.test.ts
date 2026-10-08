@@ -1,31 +1,32 @@
-import { createHash } from "node:crypto";
+import { createHash, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Result } from "effect";
-import { Sha256HashSchema, SigningKeyIdSchema } from "#contracts/ids";
+import { Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import {
   verifyContentRuntimeEvidenceExchange,
   verifyContentRuntimeExchange,
 } from "#contracts/runtime/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
-import { materialGraph } from "#contracts/test/graph";
 import { hash, rendererManifest } from "#contracts/test/request";
 import {
   compatibleManifest,
   createSignedRuntimeRelease,
   incompatibleManifest,
-  release,
   tamperSignature,
   trustedResolver,
 } from "#contracts/test/runtime/fixture";
 import {
-  articleFound,
-  articleRequest,
-  artifact,
   found,
-  pageFound,
-  pageRequest,
+  mismatchedFoundResponses,
+  pinnedArtifactMessage,
+  pinnedPublicKey,
+  pinnedReleaseMessage,
+  pinnedRequest,
+  pinnedResponse,
   request,
+  routedSourceCases,
+  tamperedFoundResponses,
 } from "#contracts/test/runtime/public";
 
 interface RuntimeExchangeInput {
@@ -59,43 +60,8 @@ describe("content runtime verification", () => {
           response: found,
         }).pipe(provideFixtureKey)
       ).toEqual(found);
-      const responses = [
-        {
-          ...found,
-          artifact: {
-            ...artifact,
-            payload: { ...artifact.payload, artifactLocale: "id" },
-          },
-          projection: {
-            ...found.projection,
-            appLocale: "id",
-            artifactLocale: "id",
-            graph: materialGraph("id", "test", "transport", "test-transport"),
-            parentPath: "materi/test",
-            publicPath: "materi/test/transport",
-          },
-        },
-        {
-          ...found,
-          projection: {
-            ...found.projection,
-            publicPath: "subjects/test/other",
-          },
-        },
-        {
-          ...found,
-          sourcePath: "packages/corpus/article/test/other/en.mdx",
-        },
-        {
-          ...found,
-          sourcePath: "packages/corpus/material/lesson/test/transport/id.mdx",
-        },
-        { ...found, activeReleaseId: "test-other-release" },
-        { ...found, activeManifestHash: hash },
-        { ...found, projectionHash: hash },
-      ];
       const outcomes = yield* Effect.forEach(
-        responses,
+        mismatchedFoundResponses,
         (response) => verifyRuntimeExchange({ response }).pipe(Effect.result),
         { concurrency: "unbounded" }
       );
@@ -119,30 +85,7 @@ describe("content runtime verification", () => {
   );
   it.effect("binds routed responses to their physical sources", () =>
     Effect.gen(function* () {
-      const cases = [
-        {
-          invalidSources: [
-            "packages/corpus/articles/politics/dynastic-politics-asian-values/en.mdx",
-            "packages/corpus/articles/politics/dynastic-politics/asian-values/id.mdx",
-            "packages/corpus/articles/politics/flawed-legal/geopolitics/en.mdx",
-            "packages/corpus/material/lesson/politics/dynastic-politics-asian-values/en.mdx",
-          ],
-          request: articleRequest,
-          response: articleFound,
-        },
-        {
-          invalidSources: [
-            "packages/corpus/pages/terms/id.mdx",
-            "packages/corpus/pages/legal/terms/en.mdx",
-            "packages/corpus/pages/terms.old/en.mdx",
-            "packages/corpus/pages/privacy-policy/en.mdx",
-            "packages/corpus/articles/terms/en.mdx",
-          ],
-          request: pageRequest,
-          response: pageFound,
-        },
-      ];
-      for (const sourceCase of cases) {
+      for (const sourceCase of routedSourceCases) {
         expect(
           yield* verifyRuntimeExchange({
             request: sourceCase.request,
@@ -173,31 +116,8 @@ describe("content runtime verification", () => {
     Effect.gen(function* () {
       expect(tamperSignature("A")).toBe("B");
       expect(tamperSignature("B")).toBe("A");
-      const responses = [
-        {
-          ...found,
-          artifact: {
-            ...artifact,
-            signature: tamperSignature(artifact.signature),
-          },
-        },
-        {
-          ...found,
-          artifact: {
-            ...artifact,
-            keyId: SigningKeyIdSchema.make("test-runtime-unknown"),
-          },
-        },
-        {
-          ...found,
-          release: {
-            ...release,
-            signature: tamperSignature(release.signature),
-          },
-        },
-      ];
       const errors = yield* Effect.forEach(
-        responses,
+        tamperedFoundResponses,
         (response) => verifyRuntimeExchange({ response }).pipe(Effect.flip),
         { concurrency: "unbounded" }
       );
@@ -294,6 +214,80 @@ describe("content runtime verification", () => {
         { concurrency: "unbounded" }
       );
       expect(verified).toEqual(responses);
+    })
+  );
+});
+describe("pinned public runtime exchange bytes", () => {
+  const provideKey = Effect.provideService(
+    ContentVerificationKeyResolver,
+    ContentVerificationKeyResolver.of({
+      resolve: () => Effect.succeed(pinnedPublicKey),
+    })
+  );
+  it.effect("pins the accepted response under both policies", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyContentRuntimeEvidenceExchange({
+          request: pinnedRequest,
+          response: pinnedResponse,
+        }).pipe(provideKey)
+      ).toEqual(pinnedResponse);
+      expect(
+        yield* verifyContentRuntimeExchange({
+          rendererManifest: pinnedResponse.rendererManifest,
+          request: pinnedRequest,
+          response: pinnedResponse,
+        }).pipe(provideKey)
+      ).toEqual(pinnedResponse);
+    })
+  );
+  /** Verifies one recorded signature over its exact bytes, then over the same bytes with one changed byte. */
+  function verifyRecorded(message: string, signature: string) {
+    return [message, message.replace("nakafa", "makafa")].map((text) =>
+      verifyBytes(
+        null,
+        new TextEncoder().encode(text),
+        pinnedPublicKey,
+        Buffer.from(signature, "base64url")
+      )
+    );
+  }
+  it("verifies the pinned artifact and release signatures over exact bytes", () => {
+    expect(
+      verifyRecorded(pinnedArtifactMessage, pinnedResponse.artifact.signature)
+    ).toEqual([true, false]);
+    expect(
+      verifyRecorded(pinnedReleaseMessage, pinnedResponse.release.signature)
+    ).toEqual([true, false]);
+  });
+  it.effect("rejects one changed signature or projection hash character", () =>
+    Effect.gen(function* () {
+      const signatureError = yield* verifyContentRuntimeExchange({
+        rendererManifest: pinnedResponse.rendererManifest,
+        request: pinnedRequest,
+        response: {
+          ...pinnedResponse,
+          artifact: {
+            ...pinnedResponse.artifact,
+            signature: tamperSignature(pinnedResponse.artifact.signature),
+          },
+        },
+      }).pipe(provideKey, Effect.flip);
+      expect(signatureError._tag).toBe("SignatureInvalidError");
+
+      const hashError = yield* verifyContentRuntimeExchange({
+        rendererManifest: pinnedResponse.rendererManifest,
+        request: pinnedRequest,
+        response: {
+          ...pinnedResponse,
+          projectionHash:
+            "sha256:d1634d167425c61b00afee9690888872fc66b9896f4c82d22c4155145d2c7f30",
+        },
+      }).pipe(provideKey, Effect.flip);
+      expect(hashError).toMatchObject({
+        _tag: "ContentRuntimeMismatchError",
+        reason: "projectionHash",
+      });
     })
   );
 });

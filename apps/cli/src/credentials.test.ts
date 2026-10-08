@@ -1,9 +1,10 @@
-import { createPublicKey } from "node:crypto";
+import { createHash, createPublicKey, type KeyObject } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 
 const cryptoControl = vi.hoisted(() => ({
+  generatedPublicKey: undefined as KeyObject | undefined,
   mode: "normal" as "generate-failure" | "normal" | "rsa",
 }));
 type CryptoMode = typeof cryptoControl.mode;
@@ -24,7 +25,9 @@ vi.mock("node:crypto", async (importOriginal) => {
       if (algorithm !== "ed25519") {
         throw new TypeError("Test requested an unexpected key algorithm.");
       }
-      return crypto.generateKeyPairSync("ed25519");
+      const keyPair = crypto.generateKeyPairSync("ed25519");
+      cryptoControl.generatedPublicKey = keyPair.publicKey;
+      return keyPair;
     },
   };
 });
@@ -81,6 +84,21 @@ describe("preview credentials", () => {
         );
         expect(first.publicKeyPem).not.toContain("PRIVATE KEY");
       })
+  );
+
+  it.effect("derives the key identity from the generated public key", () =>
+    Effect.gen(function* () {
+      const credentials = yield* makePreviewCredentials();
+      const { generatedPublicKey } = cryptoControl;
+
+      expect(credentials.publicKeyPem).toBe(
+        generatedPublicKey?.export({ format: "pem", type: "spki" }).toString()
+      );
+      // The documented derivation: "local-" plus the first 24 hex digits of the SHA-256 of the SPKI PEM text.
+      expect(credentials.keyId).toBe(
+        `local-${createHash("sha256").update(credentials.publicKeyPem).digest("hex").slice(0, 24)}`
+      );
+    })
   );
 
   it.effect.each([

@@ -32,4 +32,26 @@ describe("publication scope", () => {
       );
     }
   });
+
+  it("pins the canonical JSON of a family and snapshot scope", () => {
+    const scope = Schema.decodeSync(PublicationScopeSchema)({
+      families: ["article", "material"],
+      snapshots: ["program", "tryout"],
+    });
+
+    expect(JSON.stringify(canonicalizePublicationScope(scope))).toBe(
+      '{"families":["article","material"],"snapshots":["program","tryout"]}'
+    );
+  });
+
+  it("pins the canonical JSON of a snapshot-only scope", () => {
+    const scope = Schema.decodeSync(PublicationScopeSchema)({
+      families: [],
+      snapshots: ["quran"],
+    });
+
+    expect(JSON.stringify(canonicalizePublicationScope(scope))).toBe(
+      '{"families":[],"snapshots":["quran"]}'
+    );
+  });
 });

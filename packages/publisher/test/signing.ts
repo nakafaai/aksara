@@ -1,10 +1,14 @@
+import { Buffer } from "node:buffer";
+import { verify } from "node:crypto";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -15,6 +19,11 @@ import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import {
+  TRYOUT_RUNTIME_BUNDLE_FORMAT,
+  type TryoutRuntimeBundlePayload,
+} from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Schema, Stream } from "effect";
 
 import { testRendererDomains } from "#test/renderer";
@@ -33,7 +42,8 @@ const rendererManifest = await Effect.runPromise(
 const source = Schema.decodeSync(CompileDocumentSourceSchema)({
   artifactLocale: "en",
   contentKey: "test:signing",
-  rawMdx: 'export const metadata = {}\n\n<BlockMath math="x" />',
+  rawMdx:
+    'export const metadata = {}\n\nPelajaran é ✓ 数学\n\n<BlockMath math="x" />',
   rendererDomain: "mathematics",
   sourcePath: "packages/corpus/test/signing/en.mdx",
 });
@@ -101,3 +111,55 @@ export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   snapshots: inheritContentSnapshots(null),
   upsertCount: items.length,
 });
+
+/** Builds the try-out runtime bundle payload that signing tests pin. */
+export function signingRuntimeBundle(
+  release: SignedContentRelease,
+  sourceGitSha: GitCommitSha
+): TryoutRuntimeBundlePayload {
+  return {
+    format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
+    rendererManifestHash: signingManifest.rendererManifestHash,
+    snapshot: makeTryoutSnapshot({
+      activeAppLocales: signingManifest.activeAppLocales,
+      catalogDigest: signingManifest.itemsDigest,
+      counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+      placementCount: 1,
+      placementDigest: signingManifest.resultDigest,
+      routeCount: 1,
+    }),
+    sourceGitSha,
+    sourceManifestHash: release.manifestHash,
+    sourceReleaseId: signingManifest.releaseId,
+  };
+}
+
+/** Test-only Ed25519 public key that verifies every recorded publication signature below. */
+export const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEAXtJyj4s/gMRtHHkNahJdbPSs7MoLMSFkstouKPMeLKw=
+-----END PUBLIC KEY-----
+`;
+// Record again: create a key, sign the same input, and replace the public key and signature literals below.
+export const TEST_ARTIFACT_SIGNATURE =
+  "BMT-wVEC3LO2o3K9R8xGdnCmfKb_PRwGc1QFa8CWVOFvEZwlzSGkku8-58nGutHQYxMHvAL7Hpc29G-gkTVoDA";
+// Record again: create a key, sign the same input, and replace the public key and signature literals below.
+export const TEST_RELEASE_SIGNATURE =
+  "ahRX-gZia7IMZiSQmxZTN5BbnpYfbCMSJziXjeA3sy6PFSAFp0RHAdffne7bXkvyFG8uEKmUQa3u-a-pyZNLAQ";
+// Record again: create a key, sign the same input, and replace the public key and signature literals below.
+export const TEST_RUNTIME_BUNDLE_SIGNATURE =
+  "-Rb6vFnC-1vsq5t5AxnYn7txzUVjsA6wbWX14X7p_Sk4Jc5PCWnv0IX1dgZ9TwCLzOgagmaKLDwJz9mVeBYyBg";
+
+/** Verifies one recorded signature over exact canonical bytes with the recorded public key. */
+export function verifyRecorded(input: string, signature: string) {
+  return verify(
+    null,
+    Buffer.from(input, "utf8"),
+    TEST_PUBLIC_KEY_PEM,
+    Buffer.from(signature, "base64url")
+  );
+}
+
+/** Changes one ASCII byte in the domain prefix of a canonical signing input. */
+export function changeOneByte(input: string) {
+  return input.replace("aksara", "aksarb");
+}

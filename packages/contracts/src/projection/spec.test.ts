@@ -137,3 +137,36 @@ describe("content projection", () => {
     expect(projectionPublicPath(question)).toBeUndefined();
   });
 });
+
+describe("pinned content projection dispatch", () => {
+  it("pins canonical text for every dispatched projection family", () => {
+    expect(canonicalizeContentProjection(article)).toBe(
+      '{"appLocale":"en","articleRouteSlug":"test-article","articleSlug":"test-article","artifactLocale":"en","category":"politics","categoryRouteSlug":"politics","categoryTitle":"Politics","contentKey":"articles/politics/test-article","graph":{"alignmentId":"alignment:article:politics:article:politics:test-article","assetId":"asset:en:article:politics:article:politics:test-article","conceptId":"concept:article:politics","learningObjectId":"lo:article:politics:test-article","lensId":"lens:article:politics"},"kind":"article","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Article"},"official":true,"parentPath":"articles/politics","publicPath":"articles/politics/test-article","references":[],"sitemap":true}'
+    );
+    expect(canonicalizeContentProjection(material)).toBe(
+      '{"appLocale":"en","artifactLocale":"en","contentKey":"test:material","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Test Material"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}'
+    );
+    expect(canonicalizeContentProjection(page)).toBe(
+      '{"appLocale":"en","artifactLocale":"en","contentKey":"pages/privacy-policy","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"},"pageKey":"privacy-policy","publicPath":"privacy-policy","sitemap":true,"sourcePath":"packages/corpus/pages/privacy-policy/en.mdx"}'
+    );
+    expect(canonicalizeContentProjection(question)).toBe(
+      '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"A","optionKey":"option-1","order":1},{"isCorrect":false,"label":"B","optionKey":"option-2","order":2}]},"artifactLocale":"en","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Question 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
+    );
+  });
+});
+
+describe("pinned material optional metadata through the dispatcher", () => {
+  it("pins canonical text with every optional material field present", () => {
+    expect(
+      canonicalizeContentProjection(
+        Schema.decodeSync(MaterialLessonProjectionSchema)(
+          JSON.parse(
+            '{"appLocale": "id", "artifactLocale": "id", "contentKey": "materi:pecahan-dasar:bilangan", "graph": {"alignmentId": "alignment:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "assetId": "asset:id:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat", "conceptId": "concept:material:lesson:matematika:pecahan-dasar", "learningObjectId": "lo:material-section:matematika:pecahan-dasar:bilangan-bulat", "lensId": "lens:material:lesson:matematika"}, "kind": "subject-lesson", "materialKey": "lesson.matematika.pecahan-dasar", "order": 2, "parentPath": "materi/sains/pecahan-dasar", "publicPath": "materi/sains/pecahan-dasar/bilangan", "sectionKey": "bilangan-bulat", "sitemap": true, "topicTitle": "Pecahan Dasar Ñandú", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-02-01", "datePublished": "2026-01-31", "description": "Bilangan bulat dan pecahan 😀", "searchTitle": "Bilangan Bulat Ñandú", "subject": "Matematika", "title": "Bilangan Bulat"}}'
+          )
+        )
+      )
+    ).toBe(
+      '{"appLocale":"id","artifactLocale":"id","contentKey":"materi:pecahan-dasar:bilangan","graph":{"alignmentId":"alignment:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat","assetId":"asset:id:material:lesson:matematika:material-section:matematika:pecahan-dasar:bilangan-bulat","conceptId":"concept:material:lesson:matematika:pecahan-dasar","learningObjectId":"lo:material-section:matematika:pecahan-dasar:bilangan-bulat","lensId":"lens:material:lesson:matematika"},"kind":"subject-lesson","materialKey":"lesson.matematika.pecahan-dasar","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2026-02-01","datePublished":"2026-01-31","description":"Bilangan bulat dan pecahan 😀","searchTitle":"Bilangan Bulat Ñandú","subject":"Matematika","title":"Bilangan Bulat"},"order":2,"parentPath":"materi/sains/pecahan-dasar","publicPath":"materi/sains/pecahan-dasar/bilangan","sectionKey":"bilangan-bulat","sitemap":true,"topicTitle":"Pecahan Dasar Ñandú"}'
+    );
+  });
+});

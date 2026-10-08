@@ -15,7 +15,6 @@ import {
 import { testRendererDomains } from "#test/renderer";
 
 const IDENTITY_FAILURE = { _tag: "ContentCatalogIdentityError" };
-const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const control = vi.hoisted(() => ({
   actual: { article: 2, material: 3, page: 1, question: 4 },
   catalogFailure: false,
@@ -196,8 +195,11 @@ describe("content catalog validation", () => {
         questionCount: 4,
         recordCount: 10,
         rendererManifestHash: rendererManifest.hash,
-        resultDigest: expect.stringMatching(SHA256_PATTERN),
+        resultDigest:
+          "sha256:72c630a3cc3fbd839fa9ffb426e143340a55f9d21b405840ff9ba30538626690",
         routeCount: 6,
+        routeDigest:
+          "sha256:a8524abdccbf6327948aaef6aacf3d3e7eee3ae63d20ba6ad99d09217d8449a6",
         snapshots: catalogSnapshotEvidence,
         totalCount: 10,
       });
@@ -253,6 +255,12 @@ describe("content catalog validation", () => {
                 ? "ContentCatalogCountError"
                 : "ContentCatalogDigestError",
             kind: "routes",
+            ...(routeMode === "replace" && {
+              actualDigest:
+                "sha256:65611e33e4c9303b1699ffef7616cd16f6c5678bdf6c433e01c3d1d67aecb893",
+              expectedDigest:
+                "sha256:a8524abdccbf6327948aaef6aacf3d3e7eee3ae63d20ba6ad99d09217d8449a6",
+            }),
           })
         )
       );

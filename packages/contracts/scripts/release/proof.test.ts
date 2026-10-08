@@ -1,7 +1,7 @@
+import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Crypto, Effect, FileSystem, Path, Sink, Stream } from "effect";
-import { Hex } from "effect/encoding";
+import { Effect, FileSystem, Path, Sink, Stream } from "effect";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
@@ -12,6 +12,27 @@ const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);
 const VERSION = "0.1.0";
 const releaseTag = { object: { sha: RELEASE_SHA, type: "commit" } };
+
+/** One exact tar.gz whose package/package.json declares version 0.1.0. */
+const PINNED_ARCHIVE_BASE64 =
+  "H4sIAAVVx2oAA+2V3UrDMBiGq4e7AI9DT9UsSZN0EwZOca64g2lB8PCzy1xd/2jrHIi35n14Lx5Yf4pM54bYOnB9Tj4S8vMm4X3Th2lXwUDF9QicMVwprXgIIaYQ6LXKt5qRV0IYJYgKJqkUjBOBCBWSSA1NS9DyhZskhTiTEsCl6w0hdUfzx92OlPIWrDN7KFSG1DIwCPJT11ctajYp5w2DCWyY3JSMmbImTNSzDtpnh13r/AhPIU1j7IQ+hijyFI7icKICCBzVap9abXvgHduGvd2Z3NZ4E9nZpN7Fokkbm5r12DlJH7aeaqu+h3Xl3fX1MvdY5v+Xxqz/DZNm/hdlispZc//n79///A/g6yQMitkjuw/J+Q/ynxHKq/z/E77J/wbPfuBmlf//ntz/xbv+g2X+J1nnbP5LRoSGSNFC5rHm/r/TA/CVvqfvBzCGIdRhnEAMu04YpDE4aaLv6BMVJ24YZIMIppjo96sWXVFRUVHxa54BpPKwtgASAAA=";
+
+/** Release metadata GitHub reports for exactly the pinned archive bytes. */
+const pinnedRelease = {
+  assets: [
+    {
+      digest:
+        "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b1",
+      name: "nakafa-aksara-contracts-0.1.0.tgz",
+      size: 383,
+    },
+  ],
+  draft: false,
+  immutable: true,
+  prerelease: false,
+  tag_name: "@nakafa/aksara-contracts@0.1.0",
+  target_commitish: RELEASE_SHA,
+};
 
 interface FakeCommandInput {
   readonly downloadArchive: string;
@@ -52,7 +73,7 @@ function makeProcessHandle(output: string, exitCode = 0) {
 /** Creates one minimal contract archive with distinguishable bytes. */
 const createArchive = Effect.fn("ReleaseProofTest.createArchive")(function* (
   root: string,
-  marker = "current"
+  marker: string
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -76,40 +97,18 @@ const createArchive = Effect.fn("ReleaseProofTest.createArchive")(function* (
   return archive;
 });
 
-/** Builds exact release metadata from Effect-owned file and crypto services. */
-const releaseMetadata = Effect.fn("ReleaseProofTest.releaseMetadata")(
-  function* (archive: string) {
-    const crypto = yield* Crypto.Crypto;
-    const fileSystem = yield* FileSystem.FileSystem;
-    const bytes = yield* fileSystem.readFile(archive);
-    const digest = yield* crypto.digest("SHA-256", bytes);
-    const info = yield* fileSystem.stat(archive);
-    return {
-      assets: [
-        {
-          digest: `sha256:${Hex.encode(digest)}`,
-          name: `nakafa-aksara-contracts-${VERSION}.tgz`,
-          size: Number(info.size),
-        },
-      ],
-      draft: false,
-      immutable: true,
-      prerelease: false,
-      tag_name: `@nakafa/aksara-contracts@${VERSION}`,
-      target_commitish: RELEASE_SHA,
-    };
-  }
-);
-
-/** Creates one scoped proof fixture without embedding executable source code. */
+/** Creates one scoped proof fixture from the exact pinned archive bytes. */
 const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
   prefix: string
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const root = yield* fileSystem.makeTempDirectoryScoped({ prefix });
-  const archive = yield* createArchive(root);
-  const release = yield* releaseMetadata(archive);
+  const archive = path.join(root, "current.tgz");
+  yield* fileSystem.writeFile(
+    archive,
+    Buffer.from(PINNED_ARCHIVE_BASE64, "base64")
+  );
   const packagePath = path.join(root, "package.json");
   yield* fileSystem.writeFileString(
     packagePath,
@@ -121,13 +120,7 @@ const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
     repository: "nakafaai/aksara",
     sourceSha: SOURCE_SHA,
   } satisfies ContractProofInput;
-  return {
-    archive,
-    input,
-    release,
-    root,
-    size: Number((yield* fileSystem.stat(archive)).size),
-  };
+  return { archive, input, release: pinnedRelease, root };
 });
 
 /** Models only the exact GitHub and Git commands owned by the proof program. */
@@ -203,11 +196,13 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
           fakeCommands(fixture.archive, fixture.release)
         );
 
-        expect(proof).toMatchObject({
-          assetName: `nakafa-aksara-contracts-${VERSION}.tgz`,
+        expect(proof).toEqual({
+          assetName: "nakafa-aksara-contracts-0.1.0.tgz",
           releaseSha: RELEASE_SHA,
-          releaseTag: `@nakafa/aksara-contracts@${VERSION}`,
-          size: fixture.size,
+          releaseTag: "@nakafa/aksara-contracts@0.1.0",
+          sha256:
+            "d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b1",
+          size: 383,
         });
       })
   );
@@ -253,6 +248,20 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
         const cases: readonly [unknown, unknown, string][] = [
           [{ ...fixture.release, immutable: false }, releaseTag, "final"],
           [{ ...fixture.release, assets: [] }, releaseTag, "archive and size"],
+          [
+            {
+              ...fixture.release,
+              assets: [
+                {
+                  ...fixture.release.assets[0],
+                  digest:
+                    "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b0",
+                },
+              ],
+            },
+            releaseTag,
+            "digest",
+          ],
           [
             {
               ...fixture.release,

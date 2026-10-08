@@ -70,6 +70,23 @@ function verifyRollbackBundle(input: unknown) {
     Effect.provideService(ContentVerificationKeyResolver, trustedResolver)
   );
 }
+/** Pinned manifest hash of the fixture that the test-only Ed25519 key signs. */
+const pinnedManifestHash = Sha256HashSchema.make(
+  "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
+);
+
+/** Test-only Ed25519 public key. Its private key in signing.test.ts signs the pinned fixture. */
+const pinnedPublicKeyPem =
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAgCI4g0xGIYe6KCmUuuCfBLq4QIP7z5P+Fd4dgGRbJF0=\n-----END PUBLIC KEY-----\n";
+
+/** Ed25519 signature of the pinned fixture, made by the test-only private key. */
+const pinnedSignature =
+  "nFwTAzLPhAPe7od0cRFc7rzVivz_3dYuoV0r7fBuRwxpQru7rJS9QyWio4yIHOiD_WycVo_U6F7RERDGDteMBw";
+
+const pinnedResolver = ContentVerificationKeyResolver.of({
+  resolve: () => Effect.succeed(pinnedPublicKeyPem),
+});
+
 describe("server-only release verification", () => {
   it.effect("authenticates the complete constant-size manifest", () =>
     Effect.gen(function* () {
@@ -256,5 +273,34 @@ describe("server-only release verification", () => {
         releaseId: "hash-failure",
       });
     })
+  );
+
+  it.effect(
+    "accepts the pinned Ed25519 signature and rejects a wrong hash",
+    () =>
+      Effect.gen(function* () {
+        const release = yield* verifySignedContentRelease({
+          keyId: "test-pinned-key",
+          manifest,
+          manifestHash: pinnedManifestHash,
+          signature: pinnedSignature,
+        }).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, pinnedResolver)
+        );
+        const error = yield* verifySignedContentRelease({
+          keyId: "test-pinned-key",
+          manifest,
+          manifestHash: `sha256:${"0".repeat(64)}`,
+          signature: pinnedSignature,
+        }).pipe(
+          Effect.provideService(ContentVerificationKeyResolver, pinnedResolver),
+          Effect.flip
+        );
+
+        expect(release.manifestHash).toBe(pinnedManifestHash);
+        expect("actualHash" in error ? error.actualHash : undefined).toBe(
+          pinnedManifestHash
+        );
+      })
   );
 });

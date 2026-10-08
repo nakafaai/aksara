@@ -211,3 +211,58 @@ describe("question projection", () => {
     })
   );
 });
+
+describe("pinned question canonical bytes", () => {
+  const pinnedPrompt = JSON.parse(
+    '{"artifactLocale": "id", "blueprint": {"cognitiveLevel": "reasoning", "contentDomain": "algebra", "topic": "functions"}, "bodyKind": "question", "contentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question", "kind": "question-body", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-07-02", "datePublished": "2026-07-01", "title": "Soal Ñandú 1"}, "peerContentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer", "questionKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1", "questionNumber": 1, "response": {"kind": "single-choice", "options": [{"isCorrect": true, "label": "Pilihan Ñandú", "optionKey": "option-1", "order": 1}, {"isCorrect": false, "label": "Pilihan café", "optionKey": "option-2", "order": 2}]}, "setKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1", "stimulusKey": "shared-table"}'
+  );
+  const pinnedPromptMinimal = JSON.parse(
+    '{"artifactLocale": "id", "bodyKind": "question", "contentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question", "kind": "question-body", "metadata": {"authors": [], "datePublished": "2026-07-01", "title": "Soal Ñandú 1"}, "peerContentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer", "questionKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1", "questionNumber": 1, "response": {"kind": "single-choice", "options": [{"isCorrect": true, "label": "Pilihan Ñandú", "optionKey": "option-1", "order": 1}, {"isCorrect": false, "label": "Pilihan café", "optionKey": "option-2", "order": 2}]}, "setKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
+  );
+  const pinnedAnswer = JSON.parse(
+    '{"artifactLocale": "id", "blueprint": {"cognitiveLevel": "reasoning", "contentDomain": "algebra", "topic": "functions"}, "bodyKind": "answer", "contentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer", "kind": "question-body", "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2026-07-02", "datePublished": "2026-07-01", "title": "Kunci Ñandú 1"}, "peerContentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question", "questionKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1", "questionNumber": 1, "setKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1", "stimulusKey": "shared-table"}'
+  );
+  const pinnedAnswerMinimal = JSON.parse(
+    '{"artifactLocale": "id", "bodyKind": "answer", "contentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer", "kind": "question-body", "metadata": {"authors": [], "datePublished": "2026-07-01", "title": "Kunci Ñandú 1"}, "peerContentKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question", "questionKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1", "questionNumber": 1, "setKey": "question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
+  );
+
+  it("pins prompt bytes with blueprint, stimulus, and modification date", () => {
+    expect(
+      canonicalizeQuestionProjection(
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedPrompt)
+      )
+    ).toBe(
+      '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Pilihan Ñandú","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pilihan café","optionKey":"option-2","order":2}]},"artifactLocale":"id","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2026-07-02","datePublished":"2026-07-01","title":"Soal Ñandú 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1","stimulusKey":"shared-table"}'
+    );
+  });
+
+  it("pins prompt bytes with every optional field absent", () => {
+    expect(
+      canonicalizeQuestionProjection(
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedPromptMinimal)
+      )
+    ).toBe(
+      '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Pilihan Ñandú","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pilihan café","optionKey":"option-2","order":2}]},"artifactLocale":"id","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[],"datePublished":"2026-07-01","title":"Soal Ñandú 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
+    );
+  });
+
+  it("pins answer bytes with blueprint, stimulus, and modification date", () => {
+    expect(
+      canonicalizeQuestionProjection(
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedAnswer)
+      )
+    ).toBe(
+      '{"bodyKind":"answer","artifactLocale":"id","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","kind":"question-body","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2026-07-02","datePublished":"2026-07-01","title":"Kunci Ñandú 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1","stimulusKey":"shared-table"}'
+    );
+  });
+
+  it("pins answer bytes with every optional field absent", () => {
+    expect(
+      canonicalizeQuestionProjection(
+        Schema.decodeSync(QuestionBodyProjectionSchema)(pinnedAnswerMinimal)
+      )
+    ).toBe(
+      '{"bodyKind":"answer","artifactLocale":"id","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","kind":"question-body","metadata":{"authors":[],"datePublished":"2026-07-01","title":"Kunci Ñandú 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
+    );
+  });
+});

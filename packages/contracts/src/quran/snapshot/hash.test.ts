@@ -65,6 +65,26 @@ const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
   verseCount: 6236,
 });
 
+describe("Quran snapshot golden identities", () => {
+  it.effect(
+    "pins the canonical bytes and content identity of the snapshot facts",
+    () =>
+      Effect.gen(function* () {
+        const snapshot = yield* makeQuranSnapshot(facts);
+
+        expect(canonicalizeQuranSnapshot(facts)).toBe(
+          '{"activeAppLocales":["en","id"],"attributionCount":1,"chunkCount":1085,"format":"localized-quran-snapshot","projectionCount":1428,"projectionDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","provenanceDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","provenanceStatus":"blocked","runtimeCount":1200,"runtimeDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","searchCount":228,"searchDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourceBytes":11506941,"sourceDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourceFileCount":119,"surahCount":114,"tafsirLocales":["id"],"verseCount":6236}'
+        );
+        expect(snapshot.snapshotId).toBe(
+          "sha256:7b83cb408fa8539620096eaecef6b585a7648d01d3cd15f9a2c4974821f8f9aa"
+        );
+        expect(yield* verifyQuranSnapshotHash(snapshot)).toBe(
+          "sha256:7b83cb408fa8539620096eaecef6b585a7648d01d3cd15f9a2c4974821f8f9aa"
+        );
+      })
+  );
+});
+
 describe("Quran snapshot hashing", () => {
   it.effect("creates and verifies one reproducible snapshot identity", () =>
     Effect.gen(function* () {

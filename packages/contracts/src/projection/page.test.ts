@@ -123,3 +123,47 @@ describe("public page projection", () => {
     );
   });
 });
+
+describe("pinned public page canonical bytes", () => {
+  const pinnedRoute = {
+    appLocale: "id",
+    artifactLocale: "id",
+    contentKey: "pages/tentang-kami",
+    kind: "public-page",
+    pageKey: "tentang-kami",
+    publicPath: "tentang-kami",
+    sitemap: true,
+    sourcePath: "packages/corpus/pages/tentang-kami/id.mdx",
+  } as const;
+
+  it("pins canonical bytes with the modification date present", () => {
+    const pinnedProjection = Schema.decodeSync(PublicPageProjectionSchema)({
+      ...pinnedRoute,
+      metadata: {
+        dateModified: "2026-08-21",
+        datePublished: "2026-08-20",
+        description: "Halaman tentang café 😀",
+        title: "Tentang Nakafa Ñandú",
+      },
+    });
+
+    expect(canonicalizePublicPageProjection(pinnedProjection)).toBe(
+      '{"appLocale":"id","artifactLocale":"id","contentKey":"pages/tentang-kami","kind":"public-page","metadata":{"dateModified":"2026-08-21","datePublished":"2026-08-20","description":"Halaman tentang café 😀","title":"Tentang Nakafa Ñandú"},"pageKey":"tentang-kami","publicPath":"tentang-kami","sitemap":true,"sourcePath":"packages/corpus/pages/tentang-kami/id.mdx"}'
+    );
+  });
+
+  it("pins canonical bytes with the modification date absent", () => {
+    const pinnedProjection = Schema.decodeSync(PublicPageProjectionSchema)({
+      ...pinnedRoute,
+      metadata: {
+        datePublished: "2026-08-20",
+        description: "Halaman tentang café 😀",
+        title: "Tentang Nakafa Ñandú",
+      },
+    });
+
+    expect(canonicalizePublicPageProjection(pinnedProjection)).toBe(
+      '{"appLocale":"id","artifactLocale":"id","contentKey":"pages/tentang-kami","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"Halaman tentang café 😀","title":"Tentang Nakafa Ñandú"},"pageKey":"tentang-kami","publicPath":"tentang-kami","sitemap":true,"sourcePath":"packages/corpus/pages/tentang-kami/id.mdx"}'
+    );
+  });
+});

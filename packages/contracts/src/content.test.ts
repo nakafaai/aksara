@@ -13,13 +13,34 @@ import {
   routeIdentity,
   SignedContentArtifactSchema,
 } from "#contracts/content";
-import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
+import {
+  ContentKeySchema,
+  PublicPathSchema,
+  Sha256HashSchema,
+} from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 
 const TEST_HEADING = "Protocol Test Heading";
+
+const nonAsciiPayload = Schema.decodeSync(CompiledContentPayloadSchema)({
+  artifactLocale: "id",
+  byteLength: 45,
+  compiledCode: 'return {title: "Pecahan Ñandú café 😀"};',
+  compilerConfigHash: `sha256:${"d".repeat(64)}`,
+  compilerVersion: "0.1.0",
+  contentKey: "articles/science/cell-biology",
+  format: "mdx-function-body",
+  mdxCompilerVersion: "3.1.1",
+  plainText: "Pecahan Ñandú café 😀",
+  rawMdx: "## Pecahan Ñandú café 😀",
+  rendererDomain: "mathematics",
+  requiredComponents: ["BlockMath", "FunctionMachine", "InlineMath"],
+  sourceHash:
+    "sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115",
+});
 
 const validRequest = {
   artifactLocale: "en",
@@ -176,5 +197,62 @@ describe("content", () => {
     expect(
       `sha256:${createHash("sha256").update(canonicalArtifact).digest("hex")}`
     ).toMatch(SHA256_PATTERN);
+  });
+
+  it("pins canonical payload bytes for non-ASCII content and a component list", () => {
+    expect(canonicalizeCompiledContentPayload(nonAsciiPayload)).toBe(
+      '{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
+    );
+  });
+
+  it("pins the domain-separated signing input and wire envelope for non-ASCII content", () => {
+    const artifactHash = Sha256HashSchema.make(
+      "sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5"
+    );
+    const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
+      artifactHash,
+      keyId: "fixture-key",
+      payload: nonAsciiPayload,
+      signature: "A".repeat(86),
+    });
+
+    expect(
+      canonicalizeContentArtifactSigningInput(artifactHash, nonAsciiPayload)
+    ).toBe(
+      'nakafa.aksara.content-artifact\nsha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5\n{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
+    );
+    expect(canonicalizeSignedContentArtifact(artifact)).toBe(
+      '{"artifactHash":"sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5","keyId":"fixture-key","payload":{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}'
+    );
+  });
+
+  it("pins one head order for unsorted input in both caller orders", () => {
+    const heads = [
+      {
+        artifactLocale: ArtifactLocaleSchema.make("en"),
+        contentKey: ContentKeySchema.make("test:b"),
+      },
+      {
+        artifactLocale: ArtifactLocaleSchema.make("id"),
+        contentKey: ContentKeySchema.make("test:a"),
+      },
+      {
+        artifactLocale: ArtifactLocaleSchema.make("en"),
+        contentKey: ContentKeySchema.make("test:a"),
+      },
+      {
+        artifactLocale: ArtifactLocaleSchema.make("de"),
+        contentKey: ContentKeySchema.make("articles:z"),
+      },
+    ];
+    const pinned = [
+      { artifactLocale: "de", contentKey: "articles:z" },
+      { artifactLocale: "en", contentKey: "test:a" },
+      { artifactLocale: "id", contentKey: "test:a" },
+      { artifactLocale: "en", contentKey: "test:b" },
+    ];
+
+    expect([...heads].sort(compareContentHeads)).toEqual(pinned);
+    expect([...heads].reverse().sort(compareContentHeads)).toEqual(pinned);
   });
 });

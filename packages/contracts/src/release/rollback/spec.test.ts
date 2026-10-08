@@ -1,104 +1,29 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { SignedContentArtifactSchema } from "#contracts/content";
-import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import {
-  MaterialHeadSchema,
-  QuestionHeadSchema,
-} from "#contracts/release/head";
 import {
   canonicalizeRollbackPage,
   canonicalizeRollbackRecord,
   canonicalizeRollbackSnapshotEntry,
   isRollbackUpsert,
   MAX_ROLLBACK_PAGE_RECORDS,
-  RollbackDeleteStateSchema,
   RollbackPageRequestSchema,
   RollbackPageSchema,
   RollbackRecordSchema,
-  RollbackSnapshotEntrySchema,
   RollbackUpsertStateSchema,
 } from "#contracts/release/rollback/spec";
-import { ContentUpsertSchema } from "#contracts/release/spec";
-import { materialGraph } from "#contracts/test/graph";
+import {
+  absentEntry,
+  artifact,
+  deletion,
+  materialEntry,
+  projection,
+  questionEntry,
+  record,
+  reverseRecord,
+  richRecord,
+  upsert,
+} from "#contracts/test/rollback";
 
-const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
-  artifactHash: `sha256:${"a".repeat(64)}`,
-  keyId: "test-old-key",
-  payload: {
-    artifactLocale: "en",
-    byteLength: 1,
-    compiledCode: "x",
-    compilerConfigHash: `sha256:${"b".repeat(64)}`,
-    compilerVersion: "0.1.0",
-    contentKey: "test:rollback",
-    format: "mdx-function-body",
-    mdxCompilerVersion: "3.1.1",
-    plainText: "x",
-    rawMdx: "x",
-    rendererDomain: "mathematics",
-    requiredComponents: [],
-    sourceHash: `sha256:${"c".repeat(64)}`,
-  },
-  signature: `${"A".repeat(85)}A`,
-});
-const change = Schema.decodeSync(ContentUpsertSchema)({
-  artifactHash: artifact.artifactHash,
-  artifactLocale: artifact.payload.artifactLocale,
-  contentKey: artifact.payload.contentKey,
-  delivery: "public",
-  family: "material",
-  operation: "upsert",
-  rendererDomain: artifact.payload.rendererDomain,
-  sourcePath: "packages/corpus/test/rollback/en.mdx",
-});
-const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
-  appLocale: "en",
-  artifactLocale: artifact.payload.artifactLocale,
-  contentKey: artifact.payload.contentKey,
-  graph: materialGraph("en", "test", "material", "test-lesson"),
-  kind: "subject-lesson",
-  materialKey: "lesson.test.material",
-  metadata: { authors: [], datePublished: "2026-01-01", title: "Test" },
-  order: 1,
-  parentPath: "subjects/test/material",
-  publicPath: "subjects/test/material/lesson",
-  sectionKey: "test-lesson",
-  sitemap: true,
-  topicTitle: "Test Material",
-});
-const head = Schema.decodeSync(MaterialHeadSchema)({
-  artifactHash: artifact.artifactHash,
-  artifactLocale: change.artifactLocale,
-  compilerConfigHash: artifact.payload.compilerConfigHash,
-  contentKey: change.contentKey,
-  delivery: change.delivery,
-  family: "material",
-  projectionHash: `sha256:${"d".repeat(64)}`,
-  publicPath: projection.publicPath,
-  rendererDomain: change.rendererDomain,
-  sourceHash: artifact.payload.sourceHash,
-  sourcePath: change.sourcePath,
-});
-const upsert = RollbackUpsertStateSchema.make({ artifact, change, projection });
-const deletion = Schema.decodeSync(RollbackDeleteStateSchema)({
-  change: {
-    artifactLocale: change.artifactLocale,
-    contentKey: change.contentKey,
-    family: "material",
-    operation: "delete",
-  },
-});
-const record = RollbackRecordSchema.make({
-  current: upsert,
-  index: 0,
-  prior: deletion,
-});
-const reverseRecord = RollbackRecordSchema.make({
-  current: deletion,
-  index: 1,
-  prior: upsert,
-});
 /** Strictly decodes one page with excess properties rejected. */
 const decodePage = Schema.decodeUnknownExit(RollbackPageSchema, {
   onExcessProperty: "error",
@@ -136,35 +61,7 @@ describe("rollback contracts", () => {
     ).toBe(true);
   });
   it("canonically serializes absent and implemented snapshot states", () => {
-    const questionHead = Schema.decodeSync(QuestionHeadSchema)({
-      ...head,
-      delivery: "authenticated",
-      family: "question",
-      publicPath: undefined,
-      rendererDomain: "snbt-general",
-    });
-    const entries = [
-      Schema.decodeSync(RollbackSnapshotEntrySchema)({
-        index: 0,
-        releaseId: "release-active",
-        snapshot: {
-          artifactLocale: change.artifactLocale,
-          contentKey: change.contentKey,
-          family: "material",
-          state: "absent",
-        },
-      }),
-      Schema.decodeSync(RollbackSnapshotEntrySchema)({
-        index: 1,
-        releaseId: "release-active",
-        snapshot: { head, state: "material" },
-      }),
-      Schema.decodeSync(RollbackSnapshotEntrySchema)({
-        index: 2,
-        releaseId: "release-active",
-        snapshot: { head: questionHead, state: "question" },
-      }),
-    ];
+    const entries = [absentEntry, materialEntry, questionEntry];
     expect(
       entries
         .map(canonicalizeRollbackSnapshotEntry)
@@ -297,5 +194,45 @@ describe("rollback contracts", () => {
       })
     );
     expect(Exit.isFailure(result)).toBe(true);
+  });
+
+  it("pins the canonical bytes of an absent rollback snapshot entry", () => {
+    expect(canonicalizeRollbackSnapshotEntry(absentEntry)).toBe(
+      '{"index":0,"releaseId":"release-active","snapshot":{"artifactLocale":"en","contentKey":"test:rollback","family":"material","state":"absent"}}'
+    );
+  });
+
+  it("pins the canonical bytes of a material rollback snapshot entry", () => {
+    expect(canonicalizeRollbackSnapshotEntry(materialEntry)).toBe(
+      '{"index":1,"releaseId":"release-active","snapshot":{"head":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","contentKey":"test:rollback","delivery":"public","family":"material","projectionHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","publicPath":"subjects/test/material/lesson","rendererDomain":"mathematics","sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","sourcePath":"packages/corpus/test/rollback/en.mdx"},"state":"material"}}'
+    );
+  });
+
+  it("pins the canonical bytes of a route-free question rollback snapshot entry", () => {
+    expect(canonicalizeRollbackSnapshotEntry(questionEntry)).toBe(
+      '{"index":2,"releaseId":"release-active","snapshot":{"head":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","contentKey":"test:rollback","delivery":"authenticated","family":"question","projectionHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","rendererDomain":"snbt-general","sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","sourcePath":"packages/corpus/test/rollback/en.mdx"},"state":"question"}}'
+    );
+  });
+
+  it("pins the canonical bytes of a complete upsert-to-delete rollback record", () => {
+    expect(canonicalizeRollbackRecord(record)).toBe(
+      '{"current":{"artifact":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","keyId":"test-old-key","payload":{"artifactLocale":"en","byteLength":1,"compiledCode":"x","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","compilerVersion":"0.1.0","contentKey":"test:rollback","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"x","rawMdx":"x","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},"change":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","contentKey":"test:rollback","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/rollback/en.mdx"},"projection":{"appLocale":"en","artifactLocale":"en","contentKey":"test:rollback","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[],"datePublished":"2026-01-01","title":"Test"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}},"index":0,"prior":{"change":{"artifactLocale":"en","contentKey":"test:rollback","family":"material","operation":"delete"}}}'
+    );
+  });
+
+  it("pins the canonical bytes of a rollback page with its owner identity", () => {
+    const value = Schema.decodeUnknownSync(RollbackPageSchema)(
+      page({ done: true, nextIndex: 0, records: [richRecord], total: 1 })
+    );
+
+    expect(canonicalizeRollbackPage(value)).toBe(
+      '{"done":true,"nextIndex":0,"records":[{"current":{"artifact":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","keyId":"test-old-key","payload":{"artifactLocale":"en","byteLength":1,"compiledCode":"x","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","compilerVersion":"0.1.0","contentKey":"test:rollback","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"x","rawMdx":"x","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},"change":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","contentKey":"test:rollback","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/rollback/en.mdx"},"projection":{"appLocale":"en","artifactLocale":"en","contentKey":"test:rollback","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[],"dateModified":"2026-02-01","datePublished":"2026-01-01","description":"Deskripsi uji é","searchTitle":"Judul pencarian é","subject":"Matematika é","title":"Tes é"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}},"index":0,"prior":{"change":{"artifactLocale":"en","contentKey":"test:rollback","family":"material","operation":"delete"}}}],"rollbackOfManifestHash":"sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","rollbackOf":"release-active","total":1}'
+    );
+  });
+
+  it("pins the canonical bytes of a complete upsert-to-delete rollback record with projection metadata", () => {
+    expect(canonicalizeRollbackRecord(richRecord)).toBe(
+      '{"current":{"artifact":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","keyId":"test-old-key","payload":{"artifactLocale":"en","byteLength":1,"compiledCode":"x","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","compilerVersion":"0.1.0","contentKey":"test:rollback","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"x","rawMdx":"x","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},"change":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","contentKey":"test:rollback","delivery":"public","family":"material","operation":"upsert","rendererDomain":"mathematics","sourcePath":"packages/corpus/test/rollback/en.mdx"},"projection":{"appLocale":"en","artifactLocale":"en","contentKey":"test:rollback","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[],"dateModified":"2026-02-01","datePublished":"2026-01-01","description":"Deskripsi uji é","searchTitle":"Judul pencarian é","subject":"Matematika é","title":"Tes é"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}},"index":0,"prior":{"change":{"artifactLocale":"en","contentKey":"test:rollback","family":"material","operation":"delete"}}}'
+    );
   });
 });

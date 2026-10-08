@@ -1,4 +1,4 @@
-import { assert, describe, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
@@ -11,6 +11,14 @@ const RAW_MDX = `export const metadata = {
 }
 
 ## Compiler protocol
+
+<BlockMath math="x" />`;
+const VECTOR_MDX = `export const metadata = {
+  title: "Pelajaran é ✓ 数学",
+  ratio: 0.1,
+}
+
+## Pelajaran é ✓ 数学
 
 <BlockMath math="x" />`;
 
@@ -210,5 +218,23 @@ describe("incremental compilation", () => {
       assert.strictEqual(sourceError._tag, "ContractDecodeError");
       assert.strictEqual(headingError._tag, "AuthoredListHeadingError");
     })
+  );
+
+  it.effect(
+    "pins the cache identity and result digests of non-ASCII fractional metadata",
+    () =>
+      Effect.gen(function* () {
+        const request = yield* baseRequest;
+        const { cache } = yield* compileIncremental({
+          ...request,
+          rawMdx: VECTOR_MDX,
+        });
+        expect(cache.identityHash).toMatchInlineSnapshot(
+          `"sha256:c86ee9f5364bda5e4ffdd9576b38b22c994ebf3a622e980566d49c4b762089b0"`
+        );
+        expect(cache.resultHash).toMatchInlineSnapshot(
+          `"sha256:7eae38a099c500c9c52833ff50d7a566462638724718c3341b32742751ca2ee1"`
+        );
+      })
   );
 });

@@ -61,6 +61,26 @@ describe("artifact source", () => {
     })
   );
 
+  it.effect("pins the exact authored source hash of non-ASCII raw MDX", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* verifyCompiledContentSourceHash(
+          payload(
+            "## Pecahan Ñandú café 😀",
+            "sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"
+          )
+        )
+      ).toBeUndefined();
+      const mismatch = yield* verifyCompiledContentSourceHash(
+        payload(
+          "## Pecahan Ñandú café 😀",
+          "sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b116"
+        )
+      ).pipe(Effect.flip);
+      expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
+    })
+  );
+
   it.effect("maps mismatch and computation failures to typed errors", () =>
     Effect.gen(function* () {
       const [mismatch, computation] = yield* Effect.all([

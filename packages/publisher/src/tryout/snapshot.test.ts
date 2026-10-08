@@ -185,6 +185,28 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
     );
 
     it.effect(
+      "keeps the try-out manifest identical when placements arrive in reverse order",
+      () =>
+        Effect.gen(function* () {
+          const fixture = yield* TryoutSnapshotTestFixtures;
+          const ordered = yield* prepare(fixture);
+          const { placements, ...projection } = fixture.content.projection;
+          const reversed = yield* prepare({
+            ...fixture,
+            content: {
+              ...fixture.content,
+              projection: {
+                ...projection,
+                placements: [...placements].reverse(),
+              },
+            },
+          });
+          expect(reversed.manifest).toEqual(ordered.manifest);
+        }),
+      { timeout: 60_000 }
+    );
+
+    it.effect(
       "rejects incomplete renderer domains before snapshot assembly",
       () =>
         Effect.gen(function* () {
