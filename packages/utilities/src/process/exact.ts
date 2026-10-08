@@ -16,7 +16,6 @@ import { joinBytes } from "#utilities/bytes/join";
 
 const TERMINATION_GRACE = "250 millis";
 
-/** Exact operating-system process input with no inherited environment. */
 const ExactProcessInputSchema = Schema.Struct({
   args: Schema.Array(Schema.String),
   environment: Schema.Record(Schema.String, Schema.String),
@@ -30,7 +29,6 @@ const ExactProcessInputSchema = Schema.Struct({
 /** Exact operating-system process input with no inherited environment. */
 export type ExactProcessInput = typeof ExactProcessInputSchema.Type;
 
-/** Bounded output returned by one successfully observed child process. */
 const ExactProcessOutputSchema = Schema.Struct({
   exitCode: Schema.Finite,
   stderr: Schema.Uint8Array,
