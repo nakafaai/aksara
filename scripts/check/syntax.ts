@@ -5,11 +5,7 @@ import {
   type SourceFile,
 } from "typescript/unstable/ast";
 
-/**
- * Lists a module's syntax nodes breadth first, starting with the module
- * itself. Callers keep this order, so their findings keep the order the
- * traversal produced before the walk moved to Effect's mutable list.
- */
+/** Lists a module's syntax nodes breadth first, starting with the module itself. */
 export function syntaxNodes(sourceFile: SourceFile): readonly Node[] {
   return walkSyntax(sourceFile, () => true);
 }
