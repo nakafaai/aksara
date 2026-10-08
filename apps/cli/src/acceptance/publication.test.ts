@@ -5,7 +5,7 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { prepareAcceptanceRelease } from "@nakafa/aksara-publisher/acceptance/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { publishAcceptance } from "#cli/acceptance/publication";
 import {
   AcceptanceEnvironmentError,
@@ -111,6 +111,8 @@ vi.mock("@nakafa/aksara-publisher/publication", async () =>
   (await import("#test/acceptance")).acceptancePublicationMock(state)
 );
 
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** Runs the complete outer boundary with network and process fallthrough disabled. */
 const publish = Effect.fn("AcceptancePublicationTest.publish")(() =>
   publishAcceptance.pipe(
@@ -181,7 +183,9 @@ describe("isolated acceptance publication", () => {
         const receipt = yield* publish();
         expect(receipt.releaseId).toBe("test-acceptance-release");
         expect(state.snapshotAttempts).toBe(3);
-        expect(new Set(state.snapshotInputs).size).toBe(1);
+        expect(HashSet.size(HashSet.fromIterable(state.snapshotInputs))).toBe(
+          1
+        );
         expect(state.published).toBe(1);
         expect(prepareAcceptanceRelease).toHaveBeenCalledTimes(1);
         expect(state.cacheDrained).toBe(1);
@@ -286,7 +290,7 @@ describe("isolated acceptance publication", () => {
           failure: "ContractDecodeError",
           stage: "publish",
         });
-        expect(JSON.stringify(error)).not.toContain(
+        expect(encodeJson(error)).not.toContain(
           "test-secret-publication-token"
         );
         expect(state.published).toBe(0);
