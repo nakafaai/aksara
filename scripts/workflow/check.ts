@@ -4,6 +4,7 @@ import { Array as Arr, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
+import { reportFailure } from "#scripts/workflow/failure";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
 import { readSource } from "#scripts/workflow/source";
@@ -264,6 +265,11 @@ const makeWorkflowCheckProgram = Effect.fn("WorkflowCheck.main")(function* () {
   });
 });
 
+// The runner's default log writes to standard output, so failures go through reportFailure.
 NodeRuntime.runMain(
-  makeWorkflowCheckProgram().pipe(Effect.provide(NodeServices.layer))
+  makeWorkflowCheckProgram().pipe(
+    Effect.tapCause(reportFailure),
+    Effect.provide(NodeServices.layer)
+  ),
+  { disableErrorReporting: true }
 );
