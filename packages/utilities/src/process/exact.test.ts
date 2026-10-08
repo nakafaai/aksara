@@ -129,6 +129,19 @@ describe("ExactProcess", () => {
     })
   );
 
+  it.live("closes stdin when no input is supplied", () =>
+    Effect.gen(function* () {
+      const output = yield* runLive(
+        nodeInput(
+          "process.stdin.on('data',()=>{});process.stdin.on('end',()=>process.stdout.write('eof'));"
+        )
+      );
+
+      assert.strictEqual(output.exitCode, 0);
+      assert.strictEqual(new TextDecoder().decode(output.stdout), "eof");
+    })
+  );
+
   it.effect.each([
     [nodeInput("", { executable: "node" }), "executable"],
     [nodeInput("", { root: "relative" }), "root"],
