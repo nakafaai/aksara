@@ -1,8 +1,8 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
+import { workflowSources } from "#scripts/workflow/test/sources";
 
-const source = readFileSync(".github/workflows/cli.yml", "utf8");
+const { cli: source } = await workflowSources;
 
 /** Replaces one source fragment only inside its owning job. */
 function mutateJob(workflow: string, job: string, from: string, to: string) {

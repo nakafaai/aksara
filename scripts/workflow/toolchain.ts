@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Array as Arr, HashMap, HashSet, Option } from "effect";
 import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
@@ -24,16 +25,11 @@ const PACKAGE_JSON_INPUTS = [
 ] as const;
 const LEGACY_PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
-const TOOLCHAIN_ENV_NAMES = new Set(["NODE_VERSION", "PNPM_VERSION"]);
+const TOOLCHAIN_ENV_NAMES = HashSet.make("NODE_VERSION", "PNPM_VERSION");
 const ENVIRONMENT_ALIAS_PATTERNS = [
   /\$\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
   /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
 ] as const;
-
-interface WorkflowDocument {
-  readonly jobs: readonly YAMLMap[];
-  readonly root: YAMLMap;
-}
 
 /** Returns a string scalar or `undefined` for another YAML node kind. */
 function scalarText(node: unknown): string | undefined {
@@ -62,14 +58,14 @@ function jobSteps(job: YAMLMap): readonly YAMLMap[] {
 
   assert.ok(isSeq(steps), "Workflow job steps must be a sequence");
 
-  return steps.items.map((step) => {
+  return Arr.map(steps.items, (step) => {
     assert.ok(isMap(step), "Every workflow step must be a mapping");
     return step;
   });
 }
 
 /** Parses one workflow and every top-level job mapping it owns. */
-function parseWorkflow(workflow: string): WorkflowDocument {
+function parseWorkflow(workflow: string) {
   const document = parseDocument(workflow);
   assert.equal(
     document.errors.length,
@@ -82,7 +78,7 @@ function parseWorkflow(workflow: string): WorkflowDocument {
   assert.ok(isMap(jobs), "Workflow must define jobs");
   assert.ok(jobs.items.length > 0, "Workflow must define at least one job");
 
-  const jobMaps = jobs.items.map((item) => {
+  const jobMaps = Arr.map(jobs.items, (item) => {
     assert.ok(
       scalarText(item.key) !== undefined,
       "Workflow job identifiers must be strings"
@@ -95,50 +91,56 @@ function parseWorkflow(workflow: string): WorkflowDocument {
 }
 
 /** Returns environment values declared by one workflow scope. */
-function environmentValues(scope: YAMLMap): ReadonlyMap<string, string> {
+function environmentValues(scope: YAMLMap): HashMap.HashMap<string, string> {
   const environment = mapValue(scope, "env");
   if (environment === undefined) {
-    return new Map();
+    return HashMap.empty();
   }
 
   assert.ok(isMap(environment), "Workflow environment must be a mapping");
 
-  const values = new Map<string, string>();
-  for (const item of environment.items) {
-    const name = scalarText(item.key);
-    assert.ok(name !== undefined, "Workflow environment names must be strings");
-    assert.equal(
-      TOOLCHAIN_ENV_NAMES.has(name),
-      false,
-      "Workflows must not duplicate Node or pnpm versions"
-    );
+  return HashMap.fromIterable(
+    Arr.flatMap(
+      environment.items,
+      (item): ReadonlyArray<readonly [string, string]> => {
+        const name = scalarText(item.key);
+        assert.ok(
+          name !== undefined,
+          "Workflow environment names must be strings"
+        );
+        assert.equal(
+          HashSet.has(TOOLCHAIN_ENV_NAMES, name),
+          false,
+          "Workflows must not duplicate Node or pnpm versions"
+        );
 
-    const value = scalarText(item.value);
-    if (value !== undefined) {
-      values.set(name, value);
-    }
-  }
-
-  return values;
+        const value = scalarText(item.value);
+        return value === undefined ? [] : [[name, value]];
+      }
+    )
+  );
 }
 
 /** Merges inherited and local workflow environment values. */
 function mergeEnvironment(
-  inherited: ReadonlyMap<string, string>,
-  local: ReadonlyMap<string, string>
-): ReadonlyMap<string, string> {
-  return new Map([...inherited, ...local]);
+  inherited: HashMap.HashMap<string, string>,
+  local: HashMap.HashMap<string, string>
+): HashMap.HashMap<string, string> {
+  return HashMap.union(inherited, local);
 }
 
 /** Reports whether one shell command executes pnpm through an environment alias. */
 function usesPnpmAlias(
   command: string,
-  environment: ReadonlyMap<string, string>
+  environment: HashMap.HashMap<string, string>
 ): boolean {
   for (const pattern of ENVIRONMENT_ALIAS_PATTERNS) {
     for (const match of command.matchAll(pattern)) {
       const name = match[1] ?? match[2];
-      if (name !== undefined && environment.get(name) === "pnpm") {
+      if (
+        name !== undefined &&
+        Option.contains(HashMap.get(environment, name), "pnpm")
+      ) {
         return true;
       }
     }
@@ -150,9 +152,9 @@ function usesPnpmAlias(
 /** Returns the first step index that executes pnpm. */
 function firstPnpmCommand(
   steps: readonly YAMLMap[],
-  inheritedEnvironment: ReadonlyMap<string, string>
-): number {
-  return steps.findIndex((step) => {
+  inheritedEnvironment: HashMap.HashMap<string, string>
+): Option.Option<number> {
+  return Arr.findFirstIndex(steps, (step) => {
     const command = scalarText(mapValue(step, "run"));
     const environment = mergeEnvironment(
       inheritedEnvironment,
@@ -179,7 +181,8 @@ function setupInputs(step: YAMLMap): YAMLMap | undefined {
 
 /** Returns one case-insensitive action input value. */
 function actionInput(inputs: YAMLMap, key: string): unknown {
-  const matches = inputs.items.filter(
+  const matches = Arr.filter(
+    inputs.items,
     (item) => scalarText(item.key)?.toLowerCase() === key
   );
   assert.ok(
@@ -225,16 +228,16 @@ function verifyPnpmSelectors(
 /** Verifies package.json-owned toolchain setup for one pnpm job. */
 function verifyPnpmJob(
   job: YAMLMap,
-  environment: ReadonlyMap<string, string>
+  environment: HashMap.HashMap<string, string>
 ): void {
   const steps = jobSteps(job);
   const commandIndex = firstPnpmCommand(steps, environment);
-  verifyPnpmSelectors(steps, commandIndex !== -1);
-  if (commandIndex === -1) {
+  verifyPnpmSelectors(steps, Option.isSome(commandIndex));
+  if (Option.isNone(commandIndex)) {
     return;
   }
 
-  const setupSteps = steps.flatMap((step, index) => {
+  const setupSteps = Arr.flatMap(steps, (step, index) => {
     const uses = scalarText(mapValue(step, "uses"));
     return uses?.startsWith(TOOLCHAIN_SETUP_PREFIX) ? [index] : [];
   });
@@ -247,7 +250,7 @@ function verifyPnpmJob(
   const [setupIndex] = setupSteps;
   assert.ok(setupIndex !== undefined, "The toolchain setup step must exist");
   assert.ok(
-    setupIndex < commandIndex,
+    setupIndex < commandIndex.value,
     "Every pnpm job must set up the toolchain before running pnpm"
   );
 

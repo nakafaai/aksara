@@ -1,14 +1,12 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
+import { workflowSources } from "#scripts/workflow/test/sources";
 import {
   TOOLCHAIN_SETUP_ACTION,
   verifyWorkflowToolchains,
 } from "#scripts/workflow/toolchain";
 
-const ci = readFileSync(".github/workflows/ci.yml", "utf8");
-const cli = readFileSync(".github/workflows/cli.yml", "utf8");
-const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
-const release = readFileSync(".github/workflows/release.yml", "utf8");
+const { ci, cli, contracts, release } = await workflowSources;
 const sources = [ci, cli, contracts, release];
 const SETUP_HEADER = `      - name: Setup toolchain
         uses: ${TOOLCHAIN_SETUP_ACTION} # v3.0.0`;
@@ -120,7 +118,7 @@ describe("workflow toolchain policy", () => {
       .replace("run: pnpm install", "run: $PM install");
     const actionsAlias = aliasedPnpm.replace(
       "run: $PM install",
-      ["run: $", "{{ env.PM }} install"].join("")
+      Arr.join(["run: $", "{{ env.PM }} install"], "")
     );
     const numericEnvironment = ci.replace(
       "  checks:\n",

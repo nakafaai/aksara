@@ -1,8 +1,8 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "@effect/vitest";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { workflowSources } from "#scripts/workflow/test/sources";
 
-const release = readFileSync(".github/workflows/release.yml", "utf8");
+const { release } = await workflowSources;
 
 describe("paired publication policy", () => {
   it("accepts the protected paired release and target-specific recovery path", () => {
