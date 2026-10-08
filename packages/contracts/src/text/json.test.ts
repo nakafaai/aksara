@@ -14,7 +14,7 @@ describe("JSON text codec", () => {
   });
 
   it("writes non-ASCII characters without escaping them", () => {
-    const text = "Ñandú café \u{1f600}";
+    const text = "\u{d1}and\u{fa} caf\u{e9} \u{1f600}";
     expect(encodeJsonText(text)).toBe(`"${text}"`);
   });
 
@@ -26,6 +26,6 @@ describe("JSON text codec", () => {
   it("reads JSON text into the value JSON.parse reads", () => {
     expect(
       Schema.decodeSync(JsonTextSchema)('{"items":[1,"\\u00d1"]}')
-    ).toEqual({ items: [1, "Ñ"] });
+    ).toEqual({ items: [1, "\u{d1}"] });
   });
 });
