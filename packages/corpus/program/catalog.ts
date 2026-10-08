@@ -1,5 +1,5 @@
 import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { LearningProgramSourceSchema } from "#corpus/program/schema";
 import { schoolProgramSources } from "#corpus/program/school";
@@ -26,23 +26,23 @@ export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityErro
 
 /** Rejects duplicate identity inside one exact program catalog. */
 function addIdentity(
-  identities: Set<string>,
+  identities: MutableHashSet.MutableHashSet<string>,
   scope: "key" | "order" | "slug",
   value: string
 ) {
-  if (identities.has(value)) {
+  if (MutableHashSet.has(identities, value)) {
     return Effect.fail(new ProgramIdentityError({ scope, value }));
   }
-  identities.add(value);
+  MutableHashSet.add(identities, value);
   return Effect.void;
 }
 
 /** Verifies identities and returns canonical display order. */
 const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
   function* (programs: readonly LearningProgram[]) {
-    const keys = new Set<string>();
-    const orders = new Set<string>();
-    const slugs = new Set<string>();
+    const keys = MutableHashSet.empty<string>();
+    const orders = MutableHashSet.empty<string>();
+    const slugs = MutableHashSet.empty<string>();
 
     for (const program of programs) {
       yield* addIdentity(keys, "key", program.key);
