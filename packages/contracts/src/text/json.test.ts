@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
-import { decodeJsonText, encodeJsonText } from "#contracts/text/json";
+import { Schema } from "effect";
+import { encodeJsonText, JsonTextSchema } from "#contracts/text/json";
 
 describe("JSON text codec", () => {
   it("writes the bytes JSON.stringify writes for a nested object", () => {
@@ -23,8 +24,8 @@ describe("JSON text codec", () => {
   });
 
   it("reads JSON text into the value JSON.parse reads", () => {
-    expect(decodeJsonText('{"items":[1,"\\u00d1"]}')).toEqual({
-      items: [1, "Ñ"],
-    });
+    expect(
+      Schema.decodeSync(JsonTextSchema)('{"items":[1,"\\u00d1"]}')
+    ).toEqual({ items: [1, "Ñ"] });
   });
 });
