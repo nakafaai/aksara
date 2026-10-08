@@ -8,6 +8,7 @@ import {
   PublicPageProjectionSchema,
   PublicPageRouteSchema,
 } from "#contracts/projection/page";
+import { decodeJson } from "#contracts/test/json";
 
 const route = Schema.decodeSync(PublicPageRouteSchema)({
   appLocale: "en",
@@ -48,7 +49,7 @@ describe("public page projection", () => {
       sitemap: true,
       sourcePath,
     });
-    expect(JSON.parse(canonicalizePublicPageProjection(projection))).toEqual(
+    expect(decodeJson(canonicalizePublicPageProjection(projection))).toEqual(
       projection
     );
     expect(canonicalizePublicPageProjection(projection)).toContain(

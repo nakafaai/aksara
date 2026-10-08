@@ -13,6 +13,9 @@ import {
   ArtifactLocaleSchema,
 } from "#contracts/locale";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -271,7 +274,7 @@ export function canonicalizeMaterialProjection(
       : { subject: projection.metadata.subject }),
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJson({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,

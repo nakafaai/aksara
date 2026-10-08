@@ -11,6 +11,7 @@ import {
   materialPublicNamespace,
 } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";
+import { decodeJson } from "#contracts/test/json";
 
 const projection = makeMaterialLessonProjection(
   Schema.decodeSync(MaterialLessonRouteSchema)({
@@ -36,7 +37,7 @@ const projection = makeMaterialLessonProjection(
 
 describe("material projection", () => {
   it("derives route fields while keeping one authored title source", () => {
-    expect(JSON.parse(canonicalizeMaterialProjection(projection))).toEqual(
+    expect(decodeJson(canonicalizeMaterialProjection(projection))).toEqual(
       projection
     );
     expect(projection.metadata.title).toBe("Body Metadata Title");
@@ -105,7 +106,7 @@ describe("material projection", () => {
     expect(canonicalizeMaterialProjection(searchable)).toBe(
       '{"appLocale":"en","artifactLocale":"en","contentKey":"test:material-a","graph":{"alignmentId":"alignment:material:lesson:test:material-section:test:material:test-lesson","assetId":"asset:en:material:lesson:test:material-section:test:material:test-lesson","conceptId":"concept:material:lesson:test:material","learningObjectId":"lo:material-section:test:material:test-lesson","lensId":"lens:material:lesson:test"},"kind":"subject-lesson","materialKey":"lesson.test.material","metadata":{"authors":[{"name":"Test Author"}],"dateModified":"2026-02-01","datePublished":"2026-01-31","description":"Test body metadata.","searchTitle":"Rotasi Fungsi: Rumus 90°, 180°, dan Contoh Soal","subject":"Test Subject","title":"Body Metadata Title"},"order":1,"parentPath":"subjects/test/material","publicPath":"subjects/test/material/lesson","sectionKey":"test-lesson","sitemap":true,"topicTitle":"Test Material"}'
     );
-    expect(JSON.parse(canonicalizeMaterialProjection(searchable))).toEqual(
+    expect(decodeJson(canonicalizeMaterialProjection(searchable))).toEqual(
       searchable
     );
     expect(canonicalizeMaterialProjection(projection)).not.toContain(

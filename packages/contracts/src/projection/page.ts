@@ -8,6 +8,9 @@ import {
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** Stable source-owned identity for one reviewed public site page. */
 export const PageKeySchema = Schema.String.pipe(
   Schema.check(Schema.makeFilter(isLowerKebab)),
@@ -109,7 +112,7 @@ export function canonicalizePublicPageProjection(
     description: projection.metadata.description,
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJson({
     appLocale: projection.appLocale,
     artifactLocale: projection.artifactLocale,
     contentKey: projection.contentKey,

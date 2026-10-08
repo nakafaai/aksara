@@ -10,6 +10,9 @@ import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 
+/** Encodes a value as JSON text with JSON.stringify, changing nothing else. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
 /** Stable source-owned category segment used below the article route family. */
 export const ArticleCategorySchema = Schema.String.pipe(
   Schema.check(Schema.makeFilter(isLowerKebab)),
@@ -217,7 +220,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
       : { description: projection.metadata.description }),
     title: projection.metadata.title,
   };
-  return JSON.stringify({
+  return encodeJson({
     appLocale: projection.appLocale,
     articleRouteSlug: projection.articleRouteSlug,
     articleSlug: projection.articleSlug,

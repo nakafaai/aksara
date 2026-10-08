@@ -10,6 +10,7 @@ import {
   makeArticleProjection,
 } from "#contracts/projection/article";
 import { articleGraph } from "#contracts/test/graph";
+import { decodeJson } from "#contracts/test/json";
 
 const route = Schema.decodeSync(ArticleRouteSchema)({
   appLocale: "en",
@@ -49,7 +50,7 @@ const projection = makeArticleProjection({
 
 describe("article projection", () => {
   it("canonicalizes exact route, metadata, and reference fields", () => {
-    expect(JSON.parse(canonicalizeArticleProjection(projection))).toEqual(
+    expect(decodeJson(canonicalizeArticleProjection(projection))).toEqual(
       projection
     );
   });
@@ -252,17 +253,17 @@ describe("article projection", () => {
 });
 
 describe("pinned article canonical bytes", () => {
-  const pinnedFull = JSON.parse(
+  const pinnedFull = decodeJson(
     '{"appLocale": "id", "articleRouteSlug": "pecahan-ilmu", "articleSlug": "pecahan-ilmu", "artifactLocale": "id", "category": "sains", "categoryRouteSlug": "ilmu", "categoryTitle": "Ilmu Pengetahuan Ñandú", "contentKey": "articles/sains/pecahan-ilmu", "graph": {"alignmentId": "alignment:article:sains:article:sains:pecahan-ilmu", "assetId": "asset:id:article:sains:article:sains:pecahan-ilmu", "conceptId": "concept:article:sains", "learningObjectId": "lo:article:sains:pecahan-ilmu", "lensId": "lens:article:sains"}, "kind": "article", "official": true, "parentPath": "articles/ilmu", "publicPath": "articles/ilmu/pecahan-ilmu", "sitemap": true, "metadata": {"authors": [{"name": "Tim Café"}, {"name": "Nabil Ñandú"}], "dateModified": "2024-03-01", "datePublished": "2024-02-29", "description": "Pecahan 😀 ringkas.", "title": "Pecahan Ñandú café"}, "references": [{"authors": "Tim Café", "citation": "Tim Café (2024)", "details": "Rincian 😀", "publication": "Jurnal Ñandú", "title": "Referensi Pertama", "url": "https://example.com/referensi", "year": 2024}, {"authors": "Nabil Ñandú", "title": "Referensi Kedua", "year": 1998.5}]}'
   );
-  const pinnedMinimal = JSON.parse(
+  const pinnedMinimal = decodeJson(
     '{"appLocale": "id", "articleRouteSlug": "pecahan-ilmu", "articleSlug": "pecahan-ilmu", "artifactLocale": "id", "category": "sains", "categoryRouteSlug": "ilmu", "categoryTitle": "Ilmu Pengetahuan Ñandú", "contentKey": "articles/sains/pecahan-ilmu", "graph": {"alignmentId": "alignment:article:sains:article:sains:pecahan-ilmu", "assetId": "asset:id:article:sains:article:sains:pecahan-ilmu", "conceptId": "concept:article:sains", "learningObjectId": "lo:article:sains:pecahan-ilmu", "lensId": "lens:article:sains"}, "kind": "article", "official": true, "parentPath": "articles/ilmu", "publicPath": "articles/ilmu/pecahan-ilmu", "sitemap": true, "metadata": {"authors": [], "datePublished": "2024-01-01", "title": "Pecahan Ñandú café"}, "references": [{"authors": "Nabil Ñandú", "title": "Referensi Kedua", "year": 1998.5}]}'
   );
 
   it("pins canonical bytes with every optional field present", () => {
     expect(
       canonicalizeArticleProjection(
-        Schema.decodeSync(ArticleProjectionSchema)(pinnedFull)
+        Schema.decodeUnknownSync(ArticleProjectionSchema)(pinnedFull)
       )
     ).toBe(
       '{"appLocale":"id","articleRouteSlug":"pecahan-ilmu","articleSlug":"pecahan-ilmu","artifactLocale":"id","category":"sains","categoryRouteSlug":"ilmu","categoryTitle":"Ilmu Pengetahuan Ñandú","contentKey":"articles/sains/pecahan-ilmu","graph":{"alignmentId":"alignment:article:sains:article:sains:pecahan-ilmu","assetId":"asset:id:article:sains:article:sains:pecahan-ilmu","conceptId":"concept:article:sains","learningObjectId":"lo:article:sains:pecahan-ilmu","lensId":"lens:article:sains"},"kind":"article","metadata":{"authors":[{"name":"Tim Café"},{"name":"Nabil Ñandú"}],"dateModified":"2024-03-01","datePublished":"2024-02-29","description":"Pecahan 😀 ringkas.","title":"Pecahan Ñandú café"},"official":true,"parentPath":"articles/ilmu","publicPath":"articles/ilmu/pecahan-ilmu","references":[{"authors":"Tim Café","citation":"Tim Café (2024)","details":"Rincian 😀","publication":"Jurnal Ñandú","title":"Referensi Pertama","url":"https://example.com/referensi","year":2024},{"authors":"Nabil Ñandú","title":"Referensi Kedua","year":1998.5}],"sitemap":true}'
@@ -272,7 +273,7 @@ describe("pinned article canonical bytes", () => {
   it("pins canonical bytes with every optional field absent", () => {
     expect(
       canonicalizeArticleProjection(
-        Schema.decodeSync(ArticleProjectionSchema)(pinnedMinimal)
+        Schema.decodeUnknownSync(ArticleProjectionSchema)(pinnedMinimal)
       )
     ).toBe(
       '{"appLocale":"id","articleRouteSlug":"pecahan-ilmu","articleSlug":"pecahan-ilmu","artifactLocale":"id","category":"sains","categoryRouteSlug":"ilmu","categoryTitle":"Ilmu Pengetahuan Ñandú","contentKey":"articles/sains/pecahan-ilmu","graph":{"alignmentId":"alignment:article:sains:article:sains:pecahan-ilmu","assetId":"asset:id:article:sains:article:sains:pecahan-ilmu","conceptId":"concept:article:sains","learningObjectId":"lo:article:sains:pecahan-ilmu","lensId":"lens:article:sains"},"kind":"article","metadata":{"authors":[],"datePublished":"2024-01-01","title":"Pecahan Ñandú café"},"official":true,"parentPath":"articles/ilmu","publicPath":"articles/ilmu/pecahan-ilmu","references":[{"authors":"Nabil Ñandú","title":"Referensi Kedua","year":1998.5}],"sitemap":true}'
