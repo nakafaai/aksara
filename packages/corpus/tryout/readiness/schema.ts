@@ -6,7 +6,7 @@ import {
   TryoutMarksSchema,
   TryoutSourceRevisionSchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 
 const PositiveCountSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThan(0))
@@ -92,12 +92,14 @@ function uniqueBy<Value>(
   values: readonly Value[],
   key: (value: Value) => string
 ) {
-  return new Set(values.map(key)).size === values.length;
+  return HashSet.size(HashSet.fromIterable(values.map(key))) === values.length;
 }
 
 /** Checks stable order, unique coverage keys, and complete evidence references. */
 function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
-  const evidenceKeys = new Set(readiness.evidence.map(({ key }) => key));
+  const evidenceKeys = HashSet.fromIterable(
+    readiness.evidence.map(({ key }) => key)
+  );
   if (!uniqueBy(readiness.evidence, ({ key }) => key)) {
     return false;
   }
@@ -111,13 +113,13 @@ function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
     const evidenceExists = expectations.every(
       ({ provenance }) =>
         provenance.kind === "editorial" ||
-        evidenceKeys.has(provenance.evidenceKey)
+        HashSet.has(evidenceKeys, provenance.evidenceKey)
     );
     return (
       section.order === index + 1 &&
       evidenceExists &&
       (blueprint === undefined ||
-        (evidenceKeys.has(blueprint.evidenceKey) &&
+        (HashSet.has(evidenceKeys, blueprint.evidenceKey) &&
           uniqueBy(blueprint.contentDomains, ({ key }) => key) &&
           uniqueBy(blueprint.cognitiveLevels, ({ key }) => key) &&
           uniqueBy(blueprint.responseMinimums, ({ kind }) => kind) &&

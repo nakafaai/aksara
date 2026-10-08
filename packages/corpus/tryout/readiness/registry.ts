@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
@@ -36,16 +36,16 @@ export class AssessmentReadinessRegistryError extends Schema.TaggedError<Assessm
 const indexAssessmentReadiness = Effect.fn(
   "AksaraCorpus.indexAssessmentReadiness"
 )(function* (readiness: readonly AssessmentReadiness[]) {
-  const indexed = new Map<string, AssessmentReadiness>();
+  const indexed = MutableHashMap.empty<string, AssessmentReadiness>();
   for (const entry of readiness) {
     const identity = readinessIdentity(entry);
-    if (indexed.has(identity)) {
+    if (MutableHashMap.has(indexed, identity)) {
       return yield* new AssessmentReadinessRegistryError({
         count: 2,
         identity,
       });
     }
-    indexed.set(identity, entry);
+    MutableHashMap.set(indexed, identity, entry);
   }
   return indexed;
 });
@@ -62,7 +62,9 @@ export const validateAssessmentReadinessEntries = Effect.fn(
   for (const source of sources) {
     for (const track of source.tracks) {
       const identity = readinessIdentity({ ...source, trackKey: track.key });
-      const selected = available.get(identity);
+      const selected = Option.getOrUndefined(
+        MutableHashMap.get(available, identity)
+      );
       if (selected === undefined) {
         return yield* new AssessmentReadinessRegistryError({
           count: 0,
@@ -70,10 +72,12 @@ export const validateAssessmentReadinessEntries = Effect.fn(
         });
       }
       yield* validateAssessmentQuestionReadiness(source, selected, questions);
-      available.delete(identity);
+      MutableHashMap.remove(available, identity);
     }
   }
-  const orphan = available.values().next().value;
+  const orphan = Option.getOrUndefined(
+    Arr.head(Arr.fromIterable(MutableHashMap.values(available)))
+  );
   if (orphan !== undefined) {
     return yield* new AssessmentReadinessRegistryError({
       count: 0,
