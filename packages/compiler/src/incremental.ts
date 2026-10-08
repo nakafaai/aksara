@@ -1,7 +1,4 @@
-import {
-  CompiledContentPayloadSchema,
-  canonicalizeCompiledContentPayload,
-} from "@nakafa/aksara-contracts/content";
+import { canonicalizeCompiledContentPayload } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -9,40 +6,31 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Exit, Predicate, Schema } from "effect";
-import type {
-  CompileContentError,
-  CompiledContentResult,
+import {
+  Array as Arr,
+  Effect,
+  Exit,
+  Predicate,
+  Record as Rec,
+  Schema,
+} from "effect";
+import {
+  type CompileContentError,
+  type CompiledContentResult,
+  CompiledContentResultSchema,
+  compileContent,
 } from "#compiler/compile";
-import { compileContent } from "#compiler/compile";
 import { hashUtf8 } from "#compiler/hash";
 import {
   type ContentSourceInspection,
   inspectContentSource,
 } from "#compiler/inspect";
-import type {
-  AuthoredMetadata,
-  AuthoredMetadataValue,
-} from "#compiler/metadata";
+import type { AuthoredMetadataValue } from "#compiler/metadata";
 
 const CACHE_FORMAT = "aksara-local-compile";
 
-const MetadataValueSchema: Schema.Codec<AuthoredMetadataValue> = Schema.suspend(
-  () =>
-    Schema.Union([
-      Schema.Boolean,
-      Schema.Null,
-      Schema.Finite,
-      Schema.String,
-      Schema.Array(MetadataValueSchema),
-      Schema.Record(Schema.String, MetadataValueSchema),
-    ])
-);
-
-const MetadataSchema: Schema.Codec<AuthoredMetadata> = Schema.Record(
-  Schema.String,
-  MetadataValueSchema
-);
+/** Encodes a value as JSON text with exactly the bytes JSON.stringify writes. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** Complete input identity that decides whether local compilation is reusable. */
 const CompileIdentitySchema = Schema.Struct({
@@ -55,45 +43,39 @@ const CompileIdentitySchema = Schema.Struct({
 });
 type CompileIdentity = typeof CompileIdentitySchema.Type;
 
-const CompileResultSchema = Schema.Struct({
-  metadata: MetadataSchema,
-  payload: CompiledContentPayloadSchema,
-});
-
 /** Strict unsigned cache contract for local authoring persistence only. */
 const LocalCacheSchema = Schema.Struct({
   format: Schema.Literal(CACHE_FORMAT),
   identity: CompileIdentitySchema,
   identityHash: Sha256HashSchema,
-  result: CompileResultSchema,
+  result: CompiledContentResultSchema,
   resultHash: Sha256HashSchema,
 });
 export type LocalCache = typeof LocalCacheSchema.Type;
 
 /** Why an incremental invocation had to compile instead of reuse local output. */
-export type CompileReason = "changed" | "corrupt" | "missing";
+const CompileReasonSchema = Schema.Literals(["changed", "corrupt", "missing"]);
+export type CompileReason = typeof CompileReasonSchema.Type;
 
 /** Explicit local authoring outcome; publication must still compile exact Git. */
-export type IncrementalResult =
-  | {
-      readonly cache: LocalCache;
-      readonly kind: "unchanged";
-      readonly result: CompiledContentResult;
-    }
-  | {
-      readonly cache: LocalCache;
-      readonly kind: "compiled";
-      readonly reason: CompileReason;
-      readonly result: CompiledContentResult;
-    };
-
-type CacheLookup =
-  | { readonly entry: LocalCache; readonly kind: "hit" }
-  | { readonly kind: "miss"; readonly reason: CompileReason };
+const IncrementalResultSchema = Schema.Union([
+  Schema.Struct({
+    cache: LocalCacheSchema,
+    kind: Schema.Literal("unchanged"),
+    result: CompiledContentResultSchema,
+  }),
+  Schema.Struct({
+    cache: LocalCacheSchema,
+    kind: Schema.Literal("compiled"),
+    reason: CompileReasonSchema,
+    result: CompiledContentResultSchema,
+  }),
+]);
+export type IncrementalResult = typeof IncrementalResultSchema.Type;
 
 /** Serializes identity fields in one stable cross-machine order. */
 function canonicalizeIdentity(identity: CompileIdentity) {
-  return JSON.stringify([
+  return encodeJson([
     identity.contentKey,
     identity.artifactLocale,
     identity.sourcePath,
@@ -105,16 +87,14 @@ function canonicalizeIdentity(identity: CompileIdentity) {
 
 /** Serializes recursive metadata with stable object-key ordering. */
 function canonicalizeMetadata(value: AuthoredMetadataValue): string {
-  if (!Predicate.isObjectOrArray(value)) {
-    return JSON.stringify(value);
-  }
-  if (Array.isArray(value)) {
+  if (Arr.isArray<AuthoredMetadataValue>(value)) {
     return `[${value.map(canonicalizeMetadata).join(",")}]`;
   }
-  const fields = Object.entries(value)
-    .map(
-      ([key, item]) => `${JSON.stringify(key)}:${canonicalizeMetadata(item)}`
-    )
+  if (!Predicate.isObject(value)) {
+    return encodeJson(value);
+  }
+  const fields = Rec.toEntries(value)
+    .map(([key, item]) => `${encodeJson(key)}:${canonicalizeMetadata(item)}`)
     .sort();
   return `{${fields.join(",")}}`;
 }
@@ -155,7 +135,7 @@ function makeCache(
 /** Checks that cached payload fields agree with their complete source identity. */
 function payloadIdentity(entry: LocalCache) {
   const { payload } = entry.result;
-  return JSON.stringify([
+  return encodeJson([
     payload.contentKey,
     payload.artifactLocale,
     payload.rendererDomain,
@@ -168,7 +148,7 @@ function payloadIdentity(entry: LocalCache) {
 /** Rejects malformed or internally inconsistent cache values as corruption. */
 function isIntact(entry: LocalCache) {
   const { identity } = entry;
-  const expectedPayloadIdentity = JSON.stringify([
+  const expectedPayloadIdentity = encodeJson([
     identity.contentKey,
     identity.artifactLocale,
     identity.rendererDomain,
@@ -177,12 +157,12 @@ function isIntact(entry: LocalCache) {
     identity.sourceHash,
   ]);
   return (
-    JSON.stringify([
+    encodeJson([
       entry.identityHash,
       entry.resultHash,
       payloadIdentity(entry),
     ]) ===
-    JSON.stringify([
+    encodeJson([
       hashUtf8(canonicalizeIdentity(identity)),
       hashResult(entry.result),
       expectedPayloadIdentity,
@@ -191,7 +171,12 @@ function isIntact(entry: LocalCache) {
 }
 
 /** Decodes unknown local state and classifies every non-hit for recompilation. */
-function lookupCache(input: unknown, identity: CompileIdentity): CacheLookup {
+function lookupCache(
+  input: unknown,
+  identity: CompileIdentity
+):
+  | { readonly entry: LocalCache; readonly kind: "hit" }
+  | { readonly kind: "miss"; readonly reason: CompileReason } {
   if (input === undefined) {
     return { kind: "miss", reason: "missing" };
   }

@@ -8,13 +8,16 @@ import {
   selectRendererDomainCapability,
 } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { hashUtf8 } from "#compiler/hash";
 
 /** Stable provider identifier used by the server-owned MDX registry. */
 export const MDX_PROVIDER_SOURCE = "nakafa-static-renderer-registry";
 
-const COMPILER_CONFIG = JSON.stringify({
+/** Encodes a value as JSON text with exactly the bytes JSON.stringify writes. */
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
+
+const COMPILER_CONFIG = encodeJson({
   compilerVersion: AKSARA_COMPILER_VERSION,
   development: false,
   format: "mdx",
@@ -40,6 +43,6 @@ export const createCompilerConfigHash = Effect.fn(
     ...manifest.base,
     ...domain.components,
   ]);
-  const selection = JSON.stringify(components);
+  const selection = encodeJson(components);
   return hashUtf8(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
 });

@@ -4,13 +4,14 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { compileContent } from "#compiler/compile";
 import { createTestRendererManifest } from "#compiler/test/content";
 import { sceneEndingAt } from "#compiler/test/math";
 
 const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const VALID_METADATA = "export const metadata = {}";
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const testRendererManifest = createTestRendererManifest({
   components: ["BlockMath", "InlineMath", "MathVisual"],
@@ -163,7 +164,7 @@ describe("compileContent", () => {
         assert.deepStrictEqual(error.occurrences, [
           { column: 1, kind: "import", line: 3 },
         ]);
-        assert.ok(!JSON.stringify(error).includes("node:fs"));
+        assert.ok(!encodeJson(error).includes("node:fs"));
         assert.ok(!String(error).includes("readFile"));
       }
     })

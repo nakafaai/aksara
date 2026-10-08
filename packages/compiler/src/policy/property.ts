@@ -1,16 +1,17 @@
+import { HashSet } from "effect";
 import type { MemberExpression, Program, Property } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
 import type { ExecutablePolicyViolation } from "#compiler/errors";
 
-const PROTOTYPE_ESCAPE_PROPERTIES = new Set([
+const PROTOTYPE_ESCAPE_PROPERTIES = HashSet.make(
   "__proto__",
   "constructor",
   "getOwnPropertyDescriptor",
   "getOwnPropertyDescriptors",
   "getPrototypeOf",
   "prototype",
-  "setPrototypeOf",
-]);
+  "setPrototypeOf"
+);
 
 type PropertyExpression = MemberExpression["property"] | Property["key"];
 
@@ -77,7 +78,10 @@ function inspectProperty(
   if (computed && staticName === undefined && !hasSafeNumericKey(property)) {
     return { rule: "dynamic-property-access" };
   }
-  if (staticName !== undefined && PROTOTYPE_ESCAPE_PROPERTIES.has(staticName)) {
+  if (
+    staticName !== undefined &&
+    HashSet.has(PROTOTYPE_ESCAPE_PROPERTIES, staticName)
+  ) {
     return { identifier: staticName, rule: "prototype-chain-access" };
   }
 }
