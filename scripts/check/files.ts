@@ -23,6 +23,11 @@ const gitOutput = Effect.fn("AksaraPolicy.gitOutput")(function* (
       message: `git ${Arr.join(args, " ")} failed: ${result.stderr.trim()}`,
     });
   }
+  if (result.stderr !== "") {
+    // Git's warnings about a successful listing, such as an unreadable exclude
+    // file, still reach the script's stderr.
+    yield* Effect.sync(() => process.stderr.write(result.stderr));
+  }
   return result.stdout;
 });
 

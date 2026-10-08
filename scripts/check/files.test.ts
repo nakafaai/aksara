@@ -100,6 +100,31 @@ describe("files", () => {
       }).pipe(Effect.provide(NodeServices.layer))
   );
 
+  it.effect("passes Git warnings to stderr when the listing succeeds", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* makeRepository();
+      // A link that names itself makes Git warn about the exclude file it names.
+      const excludes = path.join(root, ".git", "excludes");
+      yield* fileSystem.symlink(excludes, excludes);
+      yield* runGit(["config", "core.excludesFile", excludes], { cwd: root });
+      yield* fileSystem.writeFileString(
+        path.join(root, "kept.ts"),
+        "export {};\n"
+      );
+      yield* runGit(["add", "--", "kept.ts"], { cwd: root });
+      const write = vi
+        .spyOn(process.stderr, "write")
+        .mockImplementation(() => true);
+
+      expect(yield* inDirectory(root, trackedFiles())).toEqual(["kept.ts"]);
+      expect(write).toHaveBeenCalledWith(
+        expect.stringContaining("unable to access")
+      );
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
   it.effect("selects authored TypeScript outside generated directories", () =>
     Effect.gen(function* () {
       expect(
