@@ -102,7 +102,7 @@ export class TypeScriptParser extends Context.Service<
               noResolve: true,
             },
             files: [filePath],
-          }).pipe(Effect.mapError(failure));
+          }).pipe(Effect.orDie);
           const snapshot = yield* Effect.acquireRelease(
             Effect.try({
               catch: failure,
