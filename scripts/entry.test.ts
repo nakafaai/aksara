@@ -75,7 +75,7 @@ describe("script entry", () => {
       const [program] = yield* handedRuntimeCall();
 
       expect(Exit.isFailure(yield* Effect.exit(program))).toBe(true);
-      expect((yield* TestConsole.errorLines).join("\n")).toContain(
+      expect(String(yield* TestConsole.errorLines)).toContain(
         "A script failure."
       );
       expect(yield* TestConsole.logLines).toEqual([]);
@@ -90,7 +90,7 @@ describe("script entry", () => {
       const [program] = yield* handedRuntimeCall();
 
       yield* Effect.exit(program);
-      expect((yield* TestConsole.logLines).join("\n")).toContain(
+      expect(String(yield* TestConsole.logLines)).toContain(
         "A script failure."
       );
       expect(yield* TestConsole.errorLines).toEqual([]);
