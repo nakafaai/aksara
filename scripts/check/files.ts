@@ -1,6 +1,6 @@
-import { Array as Arr, Effect, FileSystem, Schema, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/process";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
+
+import { runGit } from "#scripts/git";
 
 const TYPESCRIPT_PATTERN = /\.(?:[cm]?ts|tsx)$/u;
 const VENDORED_PATH_PREFIX = "repos/";
@@ -13,40 +13,17 @@ export class TrackedFilesError extends Schema.TaggedError<TrackedFilesError>()(
   { message: Schema.String }
 ) {}
 
-/** Collects one child-process stream as text without leaving it unscoped. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
-
 /** Runs Git in the working directory and returns its standard output. */
 const gitOutput = Effect.fn("AksaraPolicy.gitOutput")(function* (
   args: readonly string[]
 ) {
-  return yield* Effect.scoped(
-    Effect.gen(function* () {
-      const command = yield* ChildProcess.make("git", args);
-      const [exitCode, stdout, stderr] = yield* Effect.all(
-        [
-          command.exitCode,
-          collectText(command.stdout),
-          collectText(command.stderr),
-        ],
-        { concurrency: 3 }
-      );
-      if (exitCode !== 0) {
-        return yield* new TrackedFilesError({
-          message: `git ${Arr.join(args, " ")} failed: ${stderr.trim()}`,
-        });
-      }
-      return stdout;
-    })
-  );
+  const result = yield* runGit(args);
+  if (result.exitCode !== 0) {
+    return yield* new TrackedFilesError({
+      message: `git ${Arr.join(args, " ")} failed: ${result.stderr.trim()}`,
+    });
+  }
+  return result.stdout;
 });
 
 /** Parses Git output into existing repository paths outside vendored source. */

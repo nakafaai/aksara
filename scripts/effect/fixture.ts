@@ -1,9 +1,8 @@
 import { assert } from "@effect/vitest";
-import { Array as Arr, Effect, FileSystem, Path, Schema, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/process";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 
 import type { EffectSourceConfig } from "#scripts/effect/source";
+import { runGit } from "#scripts/git";
 
 const installedManifest = "node_modules/effect/package.json";
 const vendoredManifest = "repos/effect/packages/effect/package.json";
@@ -17,41 +16,21 @@ const repositoryFixture = (root: string, config: EffectSourceConfig) => ({
 
 export type RepositoryFixture = ReturnType<typeof repositoryFixture>;
 
-/** Collects one child-process stream as text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
-
 /** Runs Git in one isolated fixture repository. */
-export const git = Effect.fn("EffectSourceFixture.git")(
-  (root: string, ...args: readonly string[]) =>
-    Effect.scoped(
-      Effect.gen(function* () {
-        const command = yield* ChildProcess.make("git", args, { cwd: root });
-        const [exitCode, stdout, stderr] = yield* Effect.all(
-          [
-            command.exitCode,
-            collectText(command.stdout),
-            collectText(command.stderr),
-          ],
-          { concurrency: 3 }
-        );
-
-        assert.strictEqual(
-          exitCode,
-          0,
-          stderr.trim() || stdout.trim() || `git ${Arr.join(args, " ")} failed`
-        );
-        return stdout;
-      })
-    )
-);
+export const git = Effect.fn("EffectSourceFixture.git")(function* (
+  root: string,
+  ...args: readonly string[]
+) {
+  const result = yield* runGit(args, { cwd: root });
+  assert.strictEqual(
+    result.exitCode,
+    0,
+    result.stderr.trim() ||
+      result.stdout.trim() ||
+      `git ${Arr.join(args, " ")} failed`
+  );
+  return result.stdout;
+});
 
 /** Reads one scalar Git result. */
 export const gitValue = Effect.fn("EffectSourceFixture.gitValue")(

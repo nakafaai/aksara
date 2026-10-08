@@ -1,7 +1,7 @@
-import { Array as Arr, Effect, FileSystem, Schema, Stream } from "effect";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
 import type { PlatformError } from "effect/PlatformError";
-import { ChildProcess } from "effect/process";
 import { runEntry } from "#scripts/entry";
+import { runGit } from "#scripts/git";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
@@ -47,54 +47,30 @@ class EffectSourceUsageError extends Schema.TaggedError<EffectSourceUsageError>(
   { message: Schema.String }
 ) {}
 
-/** Collects one command stream without leaving a child process unscoped. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
-
 /** Translates one platform command failure into the CLI error contract. */
 function gitPlatformError(error: PlatformError) {
   return new EffectSourceGitError({ message: error.message });
 }
 
-/** Runs Git with structured concurrency and preserves non-zero diagnostics. */
-const runGit = Effect.fn("EffectSource.runGit")((args: readonly string[]) =>
-  Effect.scoped(
-    Effect.gen(function* () {
-      const command = yield* ChildProcess.make("git", args).pipe(
-        Effect.mapError(gitPlatformError)
-      );
-      const [exitCode, stdout, stderr] = yield* Effect.all(
-        [
-          command.exitCode.pipe(Effect.mapError(gitPlatformError)),
-          collectText(command.stdout).pipe(Effect.mapError(gitPlatformError)),
-          collectText(command.stderr).pipe(Effect.mapError(gitPlatformError)),
-        ],
-        { concurrency: 3 }
-      );
-
-      if (exitCode !== 0) {
-        const diagnostic = stderr.trim() || stdout.trim() || "Git failed.";
-        return yield* new EffectSourceGitError({
-          message: `git ${Arr.join(args, " ")}: ${diagnostic}`,
-        });
-      }
-
-      return stdout;
-    })
-  )
-);
+/** Runs Git and returns its output, turning a non-zero exit into a typed error. */
+const gitOutput = Effect.fn("EffectSource.gitOutput")(function* (
+  args: readonly string[]
+) {
+  const result = yield* runGit(args).pipe(Effect.mapError(gitPlatformError));
+  if (result.exitCode !== 0) {
+    const diagnostic =
+      result.stderr.trim() || result.stdout.trim() || "Git failed.";
+    return yield* new EffectSourceGitError({
+      message: `git ${Arr.join(args, " ")}: ${diagnostic}`,
+    });
+  }
+  return result.stdout;
+});
 
 /** Runs Git and trims one scalar value from its successful output. */
 const readGitValue = Effect.fn("EffectSource.readGitValue")(
   (args: readonly string[]) =>
-    runGit(args).pipe(Effect.map((output) => output.trim()))
+    gitOutput(args).pipe(Effect.map((output) => output.trim()))
 );
 
 /** Reads and validates one package version through the platform filesystem. */
@@ -133,7 +109,7 @@ const readVersion = Effect.fn("EffectSource.readVersion")(function* (
 const inspectSource = Effect.fn("EffectSource.inspect")(function* (
   config: EffectSourceConfig
 ) {
-  const sourceStatus = yield* runGit([
+  const sourceStatus = yield* gitOutput([
     "status",
     "--porcelain",
     "--",
@@ -197,7 +173,7 @@ const checkSource = Effect.fn("EffectSource.check")(function* (
 const requireCleanWorktree = Effect.fn("EffectSource.requireClean")(
   function* () {
     const branchRef = yield* readGitValue(["symbolic-ref", "--quiet", "HEAD"]);
-    const status = yield* runGit(["status", "--porcelain"]);
+    const status = yield* gitOutput(["status", "--porcelain"]);
 
     if (status.trim()) {
       return yield* new EffectSourceMismatch({
@@ -226,7 +202,7 @@ const updateSource = Effect.fn("EffectSource.update")(function* (
 
   const tag = `effect@${state.installedVersion}`;
   const previousHead = yield* readGitValue(["rev-parse", "HEAD"]);
-  yield* runGit([
+  yield* gitOutput([
     "subtree",
     "pull",
     `--prefix=${config.sourcePath}`,
@@ -247,7 +223,7 @@ const updateSource = Effect.fn("EffectSource.update")(function* (
     "-m",
     `git-subtree-dir: ${config.sourcePath}\ngit-subtree-split: ${split}`,
   ]);
-  yield* runGit([
+  yield* gitOutput([
     "update-ref",
     "-m",
     "linearize Effect source update",
