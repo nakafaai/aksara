@@ -46,7 +46,7 @@ export function questionArtifactLocalesForPolicy(
 ) {
   return Object.freeze(
     Arr.dedupe(
-      ACTIVE_APP_LOCALES.map((appLocale) =>
+      Arr.map(ACTIVE_APP_LOCALES, (appLocale) =>
         questionArtifactLocaleForPolicy(policy, appLocale)
       )
     )

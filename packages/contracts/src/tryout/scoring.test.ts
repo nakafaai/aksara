@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { rubric } from "#contracts/test/rubric";
@@ -22,7 +22,7 @@ function scoredCatalog(input: {
   readonly marks?: TryoutMarks;
   readonly set: TryoutScoring;
 }) {
-  return rows.catalog.map(({ row }) => {
+  return Arr.map(rows.catalog, ({ row }) => {
     if (row.kind === "exam") {
       return makeTryoutCatalogRecord({ ...row, scoringStrategy: input.exam });
     }
@@ -38,7 +38,7 @@ function scoredCatalog(input: {
 
 /** Rebuilds every localized placement with one rubric response. */
 function rubricPlacements() {
-  return rows.placements.map(({ row }) =>
+  return Arr.map(rows.placements, ({ row }) =>
     makeTryoutPlacementRecord({ ...row, response: rubric })
   );
 }

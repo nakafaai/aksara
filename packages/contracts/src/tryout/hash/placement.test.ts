@@ -1,5 +1,12 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Number as Num,
+  Order,
+  Schema,
+  Stream,
+} from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { AppLocaleCode } from "#contracts/locale";
@@ -149,13 +156,16 @@ describe("try-out placement hashing", () => {
     "digests shuffled placements in identity order under two chunkings",
     () =>
       Effect.gen(function* () {
-        const rows = [
-          placement("en", 2),
-          placement("id", 1),
-          placement("en", 1),
-        ]
-          .map(makeTryoutPlacementRecord)
-          .sort((left, right) => compareTryoutPlacements(left.row, right.row));
+        const rows = Arr.sort(
+          Arr.map(
+            [placement("en", 2), placement("id", 1), placement("en", 1)],
+            makeTryoutPlacementRecord
+          ),
+          Order.make<ReturnType<typeof makeTryoutPlacementRecord>>(
+            (left, right) =>
+              Num.sign(compareTryoutPlacements(left.row, right.row))
+          )
+        );
         const single = yield* digestTryoutPlacements(
           Stream.fromIterable(rows).pipe(Stream.rechunk(1))
         );
@@ -163,7 +173,9 @@ describe("try-out placement hashing", () => {
           Stream.fromIterable(rows).pipe(Stream.rechunk(3))
         );
 
-        expect(rows.map(({ row }) => tryoutPlacementIdentity(row))).toEqual([
+        expect(
+          Arr.map(rows, ({ row }) => tryoutPlacementIdentity(row))
+        ).toEqual([
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u00001\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question\u0000en",
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u00001\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question\u0000id",
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u00002\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-2/question\u0000en",
@@ -190,7 +202,10 @@ describe("try-out placement hashing", () => {
         (failure) => failure.pipe(Effect.flip)
       );
 
-      expect(errors.map(({ code }) => code)).toEqual(["integrity", "order"]);
+      expect(Arr.map(errors, ({ code }) => code)).toEqual([
+        "integrity",
+        "order",
+      ]);
     })
   );
 
@@ -205,8 +220,9 @@ describe("try-out placement hashing", () => {
     "keeps default-point bytes and binds authored points after the policy",
     () =>
       Effect.gen(function* () {
-        const record = yield* Effect.fromNullishOr(
-          makeTryoutTestRows().placements.find(
+        const record = yield* Effect.fromOption(
+          Arr.findFirst(
+            makeTryoutTestRows().placements,
             ({ row }) => row.appLocale === "en"
           )
         );

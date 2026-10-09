@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from "@effect/vitest";
-import { Exit, HashSet, Schema } from "effect";
+import { Array as Arr, Exit, HashSet, Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { rubric as rubricResponse } from "#contracts/test/rubric";
@@ -101,27 +101,28 @@ describe("try-out content hash", () => {
     const variants = [
       {
         ...source.response,
-        options: source.response.options.map((option, index) =>
+        options: Arr.map(source.response.options, (option, index) =>
           index === 0 ? { ...option, label: responseText("Changed") } : option
         ),
       },
       {
         ...source.response,
-        options: source.response.options.map((option) => ({
+        options: Arr.map(source.response.options, (option) => ({
           ...option,
           order: option.order === 1 ? 2 : 1,
         })),
       },
       {
         ...source.response,
-        options: source.response.options.map((option) => ({
+        options: Arr.map(source.response.options, (option) => ({
           ...option,
           isCorrect: !option.isCorrect,
         })),
       },
     ];
     expect(
-      variants.every(
+      Arr.every(
+        variants,
         (response) =>
           hashTryoutContent({ ...source, response }) !==
           hashTryoutContent(source)
@@ -151,7 +152,7 @@ describe("try-out content hash", () => {
     expect(
       HashSet.size(
         HashSet.fromIterable(
-          [source, shortAnswer, rubric].map(hashTryoutContent)
+          Arr.map([source, shortAnswer, rubric], hashTryoutContent)
         )
       )
     ).toBe(3);

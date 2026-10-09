@@ -1,4 +1,11 @@
-import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Schema,
+} from "effect";
 
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import { encodeJsonText } from "#contracts/text/json";
@@ -34,7 +41,9 @@ function localeSetIdentity(
   activeAppLocales: ActiveAppLocaleList
 ) {
   return encodeJsonText(
-    activeAppLocales.filter((locale) => MutableHashSet.has(locales, locale))
+    Arr.filter(activeAppLocales, (locale) =>
+      MutableHashSet.has(locales, locale)
+    )
   );
 }
 

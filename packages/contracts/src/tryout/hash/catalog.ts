@@ -1,4 +1,4 @@
-import { Effect, type Stream } from "effect";
+import { Array as Arr, Effect, type Stream } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { encodeJsonText } from "#contracts/text/json";
@@ -33,14 +33,17 @@ export function compareTryoutCatalog(
 
 /** Builds one locale-neutral hierarchy identity for closure checks. */
 export function tryoutCatalogLogicalIdentity(row: TryoutCatalogRow) {
-  return [
-    row.kind,
-    row.countryKey,
-    "examKey" in row ? row.examKey : "",
-    "trackKey" in row ? row.trackKey : "",
-    "setKey" in row ? row.setKey : "",
-    "sectionKey" in row ? row.sectionKey : "",
-  ].join("\0");
+  return Arr.join(
+    [
+      row.kind,
+      row.countryKey,
+      "examKey" in row ? row.examKey : "",
+      "trackKey" in row ? row.trackKey : "",
+      "setKey" in row ? row.setKey : "",
+      "sectionKey" in row ? row.sectionKey : "",
+    ],
+    "\0"
+  );
 }
 
 /** Builds the locale-neutral catalog identity of one section reference. */
@@ -51,14 +54,17 @@ export function tryoutSectionLogicalIdentity(input: {
   readonly setKey: string;
   readonly trackKey: string;
 }) {
-  return [
-    "section",
-    input.countryKey,
-    input.examKey,
-    input.trackKey,
-    input.setKey,
-    input.sectionKey,
-  ].join("\0");
+  return Arr.join(
+    [
+      "section",
+      input.countryKey,
+      input.examKey,
+      input.trackKey,
+      input.setKey,
+      input.sectionKey,
+    ],
+    "\0"
+  );
 }
 
 /** Serializes locale-neutral catalog facts for cross-locale closure checks. */

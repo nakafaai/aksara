@@ -1,5 +1,12 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, HashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  Number as Num,
+  Order,
+  Schema,
+} from "effect";
 
 import { ContentKeySchema } from "#contracts/ids";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
@@ -14,8 +21,8 @@ import {
 
 describe("try-out placement identity", () => {
   it("derives complete-row identities from the minimal semantic contract", () => {
-    const rows = makeTryoutTestRows().catalog.map(({ row }) => row);
-    const identities = rows.map((row) => {
+    const rows = Arr.map(makeTryoutTestRows().catalog, ({ row }) => row);
+    const identities = Arr.map(rows, (row) => {
       const identity = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)(row, {
         onExcessProperty: "ignore",
       });
@@ -23,7 +30,7 @@ describe("try-out placement identity", () => {
     });
 
     expect(
-      identities.every(([minimal, complete]) => minimal === complete)
+      Arr.every(identities, ([minimal, complete]) => minimal === complete)
     ).toBe(true);
   });
 
@@ -53,17 +60,27 @@ describe("try-out placement identity", () => {
   });
 
   it("orders application-localized placements deterministically", () => {
-    const placements = makeTryoutTestRows().placements.map(({ row }) => row);
-    const sorted = [...placements].sort(compareTryoutPlacements);
+    const placements = Arr.map(
+      makeTryoutTestRows().placements,
+      ({ row }) => row
+    );
+    const sorted = Arr.sort(
+      placements,
+      Order.make<(typeof placements)[number]>((left, right) =>
+        Num.sign(compareTryoutPlacements(left, right))
+      )
+    );
     const [first] = sorted;
 
     expect(first).toBeDefined();
     expect(
-      HashSet.size(HashSet.fromIterable(sorted.map(tryoutPlacementIdentity)))
+      HashSet.size(
+        HashSet.fromIterable(Arr.map(sorted, tryoutPlacementIdentity))
+      )
     ).toBe(3);
     expect(
       HashSet.size(
-        HashSet.fromIterable(sorted.map(tryoutPlacementLogicalIdentity))
+        HashSet.fromIterable(Arr.map(sorted, tryoutPlacementLogicalIdentity))
       )
     ).toBe(1);
     if (first !== undefined) {
@@ -103,11 +120,12 @@ describe("try-out identity golden strings", () => {
           setKey: "test-set",
           trackKey: "test-track",
         });
-        const placements = makeTryoutTestRows().placements.map(
+        const placements = Arr.map(
+          makeTryoutTestRows().placements,
           ({ row }) => row
         );
-        const base = yield* Effect.fromNullishOr(
-          placements.find(({ appLocale }) => appLocale === "en")
+        const base = yield* Effect.fromOption(
+          Arr.findFirst(placements, ({ appLocale }) => appLocale === "en")
         );
 
         expect(tryoutCatalogNodeIdentity(country)).toBe(
@@ -132,11 +150,12 @@ describe("try-out identity golden strings", () => {
     "orders question numbers by identity text, so question ten precedes nine",
     () =>
       Effect.gen(function* () {
-        const placements = makeTryoutTestRows().placements.map(
+        const placements = Arr.map(
+          makeTryoutTestRows().placements,
           ({ row }) => row
         );
-        const base = yield* Effect.fromNullishOr(
-          placements.find(({ appLocale }) => appLocale === "en")
+        const base = yield* Effect.fromOption(
+          Arr.findFirst(placements, ({ appLocale }) => appLocale === "en")
         );
         const ten = {
           ...base,
@@ -154,9 +173,15 @@ describe("try-out identity golden strings", () => {
         };
 
         expect(
-          [ten, base, nine]
-            .sort(compareTryoutPlacements)
-            .map((row) => tryoutPlacementIdentity(row))
+          Arr.map(
+            Arr.sort(
+              [ten, base, nine],
+              Order.make<typeof base>((left, right) =>
+                Num.sign(compareTryoutPlacements(left, right))
+              )
+            ),
+            (row) => tryoutPlacementIdentity(row)
+          )
         ).toEqual([
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u00001\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question\u0000en",
           "indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge\u000010\u0000question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-10/question\u0000en",
