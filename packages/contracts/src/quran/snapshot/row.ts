@@ -29,7 +29,7 @@ export type QuranLocalizedTranslation =
 function hasCanonicalTranslations(
   translations: readonly QuranLocalizedTranslation[]
 ) {
-  return hasCanonicalOrder<string>(
+  return hasCanonicalOrder(
     APP_LOCALE_CODES,
     Arr.map(translations, (translation) => translation.appLocale)
   );

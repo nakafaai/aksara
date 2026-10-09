@@ -126,7 +126,7 @@ export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
 
 /** Checks translations for unique canonical application-locale order. */
 function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
-  return hasCanonicalOrder<string>(
+  return hasCanonicalOrder(
     APP_LOCALE_CODES,
     Arr.map(translations, (translation) => translation.appLocale)
   );

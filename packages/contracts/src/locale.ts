@@ -70,7 +70,7 @@ export function artifactLocaleCode(artifactLocale: ArtifactLocale) {
 
 /** Checks a nonempty locale subset for uniqueness and canonical order. */
 function hasCanonicalActiveAppLocales(locales: readonly AppLocale[]) {
-  return hasCanonicalOrder<string>(APP_LOCALE_CODES, locales);
+  return hasCanonicalOrder(APP_LOCALE_CODES, locales);
 }
 
 /** Nonempty unique active locale subset in canonical contract order. */

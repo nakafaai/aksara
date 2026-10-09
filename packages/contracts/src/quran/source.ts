@@ -174,7 +174,7 @@ export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
-  return hasCanonicalOrder<string>(
+  return hasCanonicalOrder(
     QURAN_SOURCE_IDS,
     Arr.map(sources, (source) => source.id)
   );
