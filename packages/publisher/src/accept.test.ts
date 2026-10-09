@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   acceptContentRelease,
   ReleaseAcceptContractError,
@@ -116,7 +116,8 @@ describe("acceptContentRelease", () => {
           runAccept(input, accept).pipe(Effect.flip)
         );
         expect(errors).toEqual(
-          cases.map(
+          Arr.map(
+            cases,
             () => new ReleaseAcceptContractError({ contract: "receipt" })
           )
         );
