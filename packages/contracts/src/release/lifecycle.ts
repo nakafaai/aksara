@@ -2,7 +2,7 @@ import { Schema } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
   PublicationReceiptSchema,
-  type RollbackSignedContentRelease,
+  RollbackSignedContentReleaseSchema,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -48,10 +48,13 @@ export const ContentReleaseBundleSchema = Schema.Struct({
 );
 export type ContentReleaseBundle = typeof ContentReleaseBundleSchema.Type;
 
+/** Rollback provenance that narrows a bundle to its signed release. */
+const RollbackBundleProvenanceSchema = Schema.Struct({
+  release: RollbackSignedContentReleaseSchema,
+});
 /** Frozen renderer plus one signed rollback release at recovery boundaries. */
-export type RollbackContentReleaseBundle = ContentReleaseBundle & {
-  readonly release: RollbackSignedContentRelease;
-};
+export type RollbackContentReleaseBundle = ContentReleaseBundle &
+  typeof RollbackBundleProvenanceSchema.Type;
 
 /** Exact renderer-bound bundle accepted only for recovery publication. */
 export const RollbackContentReleaseBundleSchema =
