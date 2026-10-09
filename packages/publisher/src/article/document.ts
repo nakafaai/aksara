@@ -35,7 +35,6 @@ export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()
   { cause: Schema.Unknown, checkoutRoot: Schema.String }
 ) {}
 
-/** Lightweight article facts sufficient to decide whether compilation is needed. */
 /** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {
   return (cause: unknown) => new ArticleSourceError({ cause, checkoutRoot });
@@ -124,8 +123,8 @@ export const inspectArticleDocument = Effect.fn(
 });
 
 /** One article source with its inspection, projection, and projection hash. */
-export type InspectedArticleDocument = Effect.Success<
-  ReturnType<typeof inspectArticleDocument>
+export type InspectedArticleDocument = Readonly<
+  Effect.Success<ReturnType<typeof inspectArticleDocument>>
 >;
 
 /** Binds compiled output to its registry-owned article change and projection. */

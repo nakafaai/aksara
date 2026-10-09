@@ -111,8 +111,8 @@ export const inspectMaterialDocument = Effect.fn(
 });
 
 /** Lightweight material facts sufficient to decide whether compilation is needed. */
-export type InspectedMaterialDocument = Effect.Success<
-  ReturnType<typeof inspectMaterialDocument>
+export type InspectedMaterialDocument = Readonly<
+  Effect.Success<ReturnType<typeof inspectMaterialDocument>>
 >;
 
 /** Binds compiled output to its registry-owned change and projection. */

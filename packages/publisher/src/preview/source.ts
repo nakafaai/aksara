@@ -6,21 +6,25 @@ import { readQuestionItem } from "@nakafa/aksara-corpus/question-bank/source";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, MutableHashMap, Option, Schema } from "effect";
 import {
+  type InspectedArticleDocument,
   loadArticleDocument,
   makeArticleCompileSource,
   makeArticleProjectionFromSource,
 } from "#publisher/article/document";
 import {
+  type InspectedMaterialDocument,
   loadMaterialDocument,
   makeMaterialCompileSource,
   makeMaterialProjection,
 } from "#publisher/material/document";
 import {
+  type InspectedPageDocument,
   loadPageDocument,
   makePageCompileSource,
   makePageProjectionFromSource,
 } from "#publisher/page/document";
 import {
+  type InspectedQuestionDocument,
   loadQuestionDocument,
   makeQuestionCompileSource,
   makeQuestionProjectionFromSource,
@@ -34,18 +38,31 @@ type QuestionSourceRoot = QuestionEntry["sourceRoot"];
 
 type PreviewFamily = PreviewSource["family"];
 
-/** Pairs one loaded family with its compile body and source, keeping the family literal. */
-function loadedPreview<Family extends PreviewFamily, Source>(
+/** The loaded document source of each preview family. */
+type LoadedDocument<Family extends PreviewFamily> = Family extends "article"
+  ? InspectedArticleDocument["source"]
+  : Family extends "material"
+    ? InspectedMaterialDocument["source"]
+    : Family extends "page"
+      ? InspectedPageDocument["source"]
+      : InspectedQuestionDocument["source"];
+
+/**
+ * Pairs one loaded family with its compile body and its own document. The
+ * source type follows from the family, so a branch cannot pair a family with
+ * another family's document.
+ */
+function loadedPreview<Family extends PreviewFamily>(
   family: Family,
   body: CompileDocumentSource,
-  source: Source
+  source: LoadedDocument<Family>
 ) {
   return { body, family, source };
 }
 
 /** Complete source vocabulary accepted by incremental preview compilation. */
-export type LoadedPreviewSource = Effect.Success<
-  ReturnType<typeof loadSelectedSource>
+export type LoadedPreviewSource = Readonly<
+  Effect.Success<ReturnType<typeof loadSelectedSource>>
 >;
 
 /** Reading the current item failed at the trusted preview source seam. */

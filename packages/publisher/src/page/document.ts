@@ -34,7 +34,6 @@ export class PageSourceError extends Schema.TaggedError<PageSourceError>()(
   { cause: Schema.Unknown, checkoutRoot: Schema.String }
 ) {}
 
-/** Lightweight page facts sufficient to decide whether compilation is needed. */
 /** Binds one checkout root to the shared public page source error adapter. */
 export function mapPageSourceError(checkoutRoot: string) {
   return (cause: unknown) => new PageSourceError({ cause, checkoutRoot });
@@ -116,8 +115,8 @@ export const inspectPageDocument = Effect.fn(
 });
 
 /** One page source with its inspection, public projection, and projection hash. */
-export type InspectedPageDocument = Effect.Success<
-  ReturnType<typeof inspectPageDocument>
+export type InspectedPageDocument = Readonly<
+  Effect.Success<ReturnType<typeof inspectPageDocument>>
 >;
 
 /** Binds compiled output to its registry-owned page change and projection. */
