@@ -34,7 +34,10 @@ export type QuestionRubricLabel = typeof QuestionRubricLabelSchema.Type;
  */
 function hasOrderedScale(criterion: {
   readonly finalAnswer?: QuestionAnswerKey;
-  readonly levels: readonly { readonly points: number }[];
+  readonly levels: readonly Pick<
+    typeof QuestionRubricLevelSchema.Type,
+    "points"
+  >[];
 }) {
   let previous = -1;
   for (const { points } of criterion.levels) {
