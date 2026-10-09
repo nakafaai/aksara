@@ -10,23 +10,28 @@ import { TryoutCatalogRecordSchema } from "#contracts/tryout/catalog";
 import { TryoutPlacementRecordSchema } from "#contracts/tryout/placement";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
 
+/** Pairs one family literal with the snapshot manifest it selects. */
+function familyManifestSchema<
+  Family extends string,
+  Manifest extends Schema.Top,
+>(family: Family, manifest: Manifest) {
+  return Schema.Struct({ family: Schema.Literal(family), manifest });
+}
+
 /** Program manifest selected by one globally signed content release. */
-const ProgramManifestSchema = Schema.Struct({
-  family: Schema.Literal("program"),
-  manifest: ProgramSnapshotSchema,
-});
+const ProgramManifestSchema = familyManifestSchema(
+  "program",
+  ProgramSnapshotSchema
+);
 
 /** Quran manifest selected by one globally signed content release. */
-const QuranManifestSchema = Schema.Struct({
-  family: Schema.Literal("quran"),
-  manifest: QuranSnapshotSchema,
-});
+const QuranManifestSchema = familyManifestSchema("quran", QuranSnapshotSchema);
 
 /** Try-out manifest selected by one globally signed content release. */
-const TryoutManifestSchema = Schema.Struct({
-  family: Schema.Literal("tryout"),
-  manifest: TryoutSnapshotSchema,
-});
+const TryoutManifestSchema = familyManifestSchema(
+  "tryout",
+  TryoutSnapshotSchema
+);
 
 /** Complete structured snapshot manifest vocabulary staged before its rows. */
 export const ContentSnapshotManifestSchema = Schema.Union([
