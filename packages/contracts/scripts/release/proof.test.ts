@@ -248,33 +248,21 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
     () =>
       Effect.gen(function* () {
         const fixture = yield* proofFixture("aksara-proof-state-");
+        const withDigest = (digest: string) => ({
+          ...fixture.release,
+          assets: [{ ...fixture.release.assets[0], digest }],
+        });
         const cases: readonly [unknown, unknown, string][] = [
           [{ ...fixture.release, immutable: false }, releaseTag, "final"],
           [{ ...fixture.release, assets: [] }, releaseTag, "archive and size"],
           [
-            {
-              ...fixture.release,
-              assets: [
-                {
-                  ...fixture.release.assets[0],
-                  digest:
-                    "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b0",
-                },
-              ],
-            },
+            withDigest(
+              "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b0"
+            ),
             releaseTag,
             "digest",
           ],
-          [
-            {
-              ...fixture.release,
-              assets: [
-                { ...fixture.release.assets[0], digest: "sha256:wrong" },
-              ],
-            },
-            releaseTag,
-            "digest",
-          ],
+          [withDigest("sha256:wrong"), releaseTag, "digest"],
           [
             fixture.release,
             { object: { sha: SOURCE_SHA, type: "commit" } },

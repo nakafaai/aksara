@@ -2,36 +2,11 @@ import { createHash } from "node:crypto";
 import { Effect, FileSystem, Path, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import { verifyArchive } from "#scripts/release/archive";
+import { decodeRelease, decodeTag } from "#scripts/release/github";
 import { packageIdentity, releaseError } from "#scripts/release/identity";
 
 const SHA_PATTERN = /^[0-9a-f]{40}$/u;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u;
-
-const ReleaseSchema = Schema.fromJsonString(
-  Schema.Struct({
-    assets: Schema.Array(
-      Schema.Struct({
-        digest: Schema.String,
-        name: Schema.String,
-        size: Schema.Finite,
-      })
-    ),
-    draft: Schema.Boolean,
-    immutable: Schema.Boolean,
-    prerelease: Schema.Boolean,
-    tag_name: Schema.String,
-    target_commitish: Schema.String,
-  })
-);
-
-const TagSchema = Schema.fromJsonString(
-  Schema.Struct({
-    object: Schema.Struct({
-      sha: Schema.String,
-      type: Schema.String,
-    }),
-  })
-);
 
 const ReleaseToolsSchema = Schema.Struct({
   gh: Schema.String,
@@ -131,28 +106,6 @@ function commandVoid(
         );
       }
     })
-  );
-}
-
-/** Decodes the immutable release metadata returned by GitHub. */
-function decodeRelease(source: string) {
-  return Schema.decodeEffect(ReleaseSchema)(source, {
-    onExcessProperty: "ignore",
-  }).pipe(
-    Effect.mapError(() =>
-      releaseError("release", "GitHub returned malformed release metadata")
-    )
-  );
-}
-
-/** Decodes the exact lightweight tag target returned by GitHub. */
-function decodeTag(source: string) {
-  return Schema.decodeEffect(TagSchema)(source, {
-    onExcessProperty: "ignore",
-  }).pipe(
-    Effect.mapError(() =>
-      releaseError("release", "GitHub returned malformed tag metadata")
-    )
   );
 }
 
