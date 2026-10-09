@@ -4,7 +4,7 @@ import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, Path } from "effect";
 import { NakafaApp } from "#cli/nakafa";
 import {
   openRendererSession,
@@ -30,7 +30,7 @@ const exactProcess = ExactProcess.of({
       exitCode: 0,
       stderr: new Uint8Array(),
       stdout: new TextEncoder().encode(
-        input.args.includes("rev-parse") ? `${"a".repeat(40)}\n` : ""
+        Arr.contains(input.args, "rev-parse") ? `${"a".repeat(40)}\n` : ""
       ),
     }),
 });

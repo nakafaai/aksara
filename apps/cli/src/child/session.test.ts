@@ -46,7 +46,7 @@ describe("Nakafa child process", () => {
           input.credentials.internalContentToken
         );
 
-        expect(started.args.slice(0, 7)).toEqual([
+        expect(Arr.take(started.args, 7)).toEqual([
           "--filter",
           "www",
           "exec",
@@ -55,8 +55,8 @@ describe("Nakafa child process", () => {
           "--hostname",
           "localhost",
         ]);
-        expect(started.args.at(-2)).toBe("--port");
-        expect(started.args.at(-1)).toBe(result.child.origin.port);
+        const { port } = result.child.origin;
+        expect(Arr.takeRight(started.args, 2)).toEqual(["--port", port]);
         expect(result.child.origin.toString()).toBe(
           `http://localhost:${result.child.origin.port}/`
         );

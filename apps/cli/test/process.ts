@@ -251,7 +251,7 @@ const CHILD_HANDLE = "ProcessWrap";
 
 /** Reports whether the running Node process currently keeps a child handle referenced. */
 export const childHandleReferenced = () =>
-  process.getActiveResourcesInfo().includes(CHILD_HANDLE);
+  Arr.contains(process.getActiveResourcesInfo(), CHILD_HANDLE);
 
 /** Waits, within a bound, until the running Node process no longer keeps a child handle. */
 export const waitForChildHandleRelease = Effect.sync(
@@ -270,7 +270,11 @@ const SYSTEM_VARIABLES = ["__CF_USER_TEXT_ENCODING"];
 /** Removes the variables that the operating system adds to every child before its code runs. */
 export const withoutSystemVariables = (
   environment: Readonly<Record<string, string>>
-) => Rec.filter(environment, (_value, key) => !SYSTEM_VARIABLES.includes(key));
+) =>
+  Rec.filter(
+    environment,
+    (_value, key) => !Arr.contains(SYSTEM_VARIABLES, key)
+  );
 
 /** Starts a child that publishes its process identifier, then runs the observer with both values. */
 export function withPublishingProcess<A, E>(

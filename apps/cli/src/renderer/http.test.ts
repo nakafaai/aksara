@@ -24,7 +24,7 @@ const NONCE_HEADER = "x-aksara-preview-nonce";
 /** Builds one correctly hashed incomplete current manifest. */
 function makeIncompleteRendererManifest() {
   return Effect.sync(() => {
-    const domains = RENDERER_MANIFEST.domains.slice(0, -1);
+    const domains = Arr.dropRight(RENDERER_MANIFEST.domains, 1);
     const contract = {
       base: RENDERER_MANIFEST.base,
       domains,

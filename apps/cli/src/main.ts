@@ -4,7 +4,7 @@ import {
   NodeServices,
 } from "@effect/platform-node";
 import { ExactProcessLive } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Layer } from "effect";
+import { Array as Arr, Effect, Layer } from "effect";
 import { readPackageVersion } from "#cli/package";
 import { makeCliProgram } from "#cli/program";
 
@@ -32,5 +32,5 @@ export function makeMainProgram(input: {
 }
 
 NodeRuntime.runMain(
-  makeMainProgram({ args: process.argv.slice(2), cwd: process.cwd() })
+  makeMainProgram({ args: Arr.drop(process.argv, 2), cwd: process.cwd() })
 );

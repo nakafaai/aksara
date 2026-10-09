@@ -1,19 +1,30 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Redacted, Stream } from "effect";
+import { Array as Arr, Effect, Redacted, Schema, Stream } from "effect";
 import { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 import { gitBundle } from "#test/target";
 
-const calls = vi.hoisted(() => ({
-  endpoint: "",
-  fetches: 0,
-  renderer: undefined as RendererManifestEnvelope | undefined,
-  token: "",
-}));
+const ActivationCallsSchema = Schema.Struct({
+  endpoint: Schema.mutableKey(Schema.String),
+  fetches: Schema.mutableKey(Schema.Finite),
+  renderer: Schema.mutableKey(
+    Schema.UndefinedOr(RendererManifestEnvelopeSchema)
+  ),
+  token: Schema.mutableKey(Schema.String),
+});
+type ActivationCalls = typeof ActivationCallsSchema.Type;
+const calls = vi.hoisted(
+  (): ActivationCalls => ({
+    endpoint: "",
+    fetches: 0,
+    renderer: undefined,
+    token: "",
+  })
+);
 const BUNDLE = gitBundle("release-next");
 
 vi.mock("#cli/production/renderer", async (importOriginal) => {
@@ -134,7 +145,7 @@ describe("production activation", () => {
     Effect.gen(function* () {
       const activation = yield* makeActivation;
       calls.renderer = yield* createRendererManifest({
-        base: RENDERER_MANIFEST.base.slice(1),
+        base: Arr.drop(RENDERER_MANIFEST.base, 1),
         domains: RENDERER_MANIFEST.domains,
         publishedDomains: RENDERER_MANIFEST.publishedDomains,
       });

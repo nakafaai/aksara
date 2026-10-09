@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { assert } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -42,22 +43,20 @@ const englishEntry = Arr.findFirst(
   ({ route }) =>
     route.contentKey === functionContentKey && route.appLocale === "en"
 );
-if (Option.isNone(englishEntry)) {
-  throw new Error(
-    "The real English material registry row is required by tests."
-  );
-}
+assert(
+  Option.isSome(englishEntry),
+  "The real English material registry row is required by tests."
+);
 export const ENGLISH_ENTRY = englishEntry.value;
 const indonesianEntry = Arr.findFirst(
   MATERIAL_ENTRIES,
   ({ route }) =>
     route.contentKey === functionContentKey && route.appLocale === "id"
 );
-if (Option.isNone(indonesianEntry)) {
-  throw new Error(
-    "The real Indonesian material registry row is required by tests."
-  );
-}
+assert(
+  Option.isSome(indonesianEntry),
+  "The real Indonesian material registry row is required by tests."
+);
 export const REAL_SOURCE = await runWithNodeServices(
   Effect.gen(function* () {
     const fileSystem = yield* FileSystem.FileSystem;

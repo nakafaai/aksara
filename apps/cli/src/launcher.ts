@@ -3,6 +3,7 @@ import { layer as fileSystemLayer } from "@effect/platform-node/NodeFileSystem";
 import { layer as pathLayer } from "@effect/platform-node/NodePath";
 import { runMain } from "@effect/platform-node/NodeRuntime";
 import {
+  Array as Arr,
   Console,
   Effect,
   FileSystem,
@@ -166,7 +167,7 @@ const launcherLayer = Layer.provideMerge(
 
 runMain(
   makeLauncherProgram({
-    args: process.argv.slice(2),
+    args: Arr.drop(process.argv, 2),
     cwd: process.cwd(),
     executable: process.execPath,
     packageUrl: new URL("../package.json", import.meta.url),
