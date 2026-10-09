@@ -96,6 +96,7 @@ function replaceHead(
   );
 }
 
+/** Reads the page fixtures and the published page fixtures as one record. */
 const planFixture = Effect.fn("PagePlanTest.fixture")(function* () {
   return {
     ...(yield* PageTestFixtures),
