@@ -74,7 +74,7 @@ export interface PreviewProvider {
 }
 
 /** Ordered values exposed only after every required body succeeds together. */
-export type PreviewReadyInput = Parameters<PreviewProvider["ready"]>[0];
+type PreviewReadyInput = Parameters<PreviewProvider["ready"]>[0];
 
 /** Encodes one exact manifest before it can become visible to HTTP callbacks. */
 const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(

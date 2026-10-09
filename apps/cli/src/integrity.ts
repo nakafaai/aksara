@@ -235,7 +235,7 @@ export const SelectedFingerprintSchema = Schema.Struct({
     })
   ),
 });
-export type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
+type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
 
 /** Rejects a closure that changed while its related sources were loaded. */
 export const verifySelectedFingerprint = Effect.fn(
