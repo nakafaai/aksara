@@ -14,12 +14,18 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
-import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
+import {
+  type ContentCatalogPublication,
+  prepareContentCatalog,
+} from "@nakafa/aksara-publisher/catalog/publication";
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
+import {
+  type PreparedReleaseSnapshots,
+  prepareReleaseSnapshots,
+} from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema, type Scope, Stream } from "effect";
@@ -66,8 +72,12 @@ const GitPreparationInputSchema = Schema.Union([
 
 type GitPreparationInput = typeof GitPreparationInputSchema.Type;
 
+/** Replay failures of one release's source streams; the catalog streams share one. */
+type PreparedSourceError =
+  | Stream.Error<ContentCatalogPublication["records"]>
+  | Stream.Error<PreparedReleaseSnapshots["rows"]>;
 type PreparedGit = Effect.Success<
-  ReturnType<typeof prepareContentRelease<unknown, never>>
+  ReturnType<typeof prepareContentRelease<PreparedSourceError, never>>
 >;
 type PreparationServices =
   | ContentVerificationKeyResolver
