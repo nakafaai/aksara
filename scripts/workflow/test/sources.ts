@@ -9,7 +9,7 @@ import { repositoryTestTargets } from "#scripts/workflow/target";
 export class WorkflowSourceSet extends Context.Service<
   WorkflowSourceSet,
   WorkflowSources
->()("WorkflowSourceSet") {}
+>()("aksara/scripts/workflow/test/sources/WorkflowSourceSet") {}
 
 const readWorkflowSources = Effect.gen(function* () {
   const ci = yield* readSource(".github/workflows/ci.yml");

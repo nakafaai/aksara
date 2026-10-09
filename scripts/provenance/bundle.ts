@@ -19,7 +19,7 @@ export class ProvenanceBundleVerifier extends Context.Service<
       identity: PublisherIdentity
     ) => Effect.Effect<string, ProvenanceVerificationError>;
   }
->()("AksaraProvenance/BundleVerifier") {}
+>()("aksara/scripts/provenance/bundle/ProvenanceBundleVerifier") {}
 
 /** Escapes one exact certificate identity for anchored regular-expression matching. */
 function escapeRegex(value: string) {
