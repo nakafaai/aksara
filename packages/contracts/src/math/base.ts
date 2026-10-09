@@ -36,6 +36,10 @@ export const SpacePointSchema = Schema.Struct({
 });
 export type SpacePoint = typeof SpacePointSchema.Type;
 
+/** Cartesian axis names shared by scene coordinates, frames, and resolution. */
+export const SceneAxisSchema = Schema.Literals(["x", "y", "z"]);
+export type SceneAxis = typeof SceneAxisSchema.Type;
+
 /** Ordered visible interval for one Cartesian axis. */
 export const MathAxisRangeSchema = Schema.Struct({
   max: Schema.Finite,

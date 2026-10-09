@@ -22,41 +22,37 @@ import {
   StageSnapshotBatchReceiptSchema,
   StageSnapshotReceiptSchema,
 } from "#contracts/transport/snapshot";
+import { successSchema } from "#contracts/transport/success";
 
 /** Returns authoritative active, candidate, and recovery identities. */
-export const PublicationCurrentSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("current"),
-  value: ContentReleaseCurrentSchema,
-});
+export const PublicationCurrentSuccessSchema = successSchema(
+  "current",
+  ContentReleaseCurrentSchema
+);
 
 /** Returns durable cumulative progress from one release abort page. */
-export const PublicationAbortSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("abort"),
-  value: ReleaseAbortReceiptSchema,
-});
+export const PublicationAbortSuccessSchema = successSchema(
+  "abort",
+  ReleaseAbortReceiptSchema
+);
 
 /** Returns terminal discard evidence for one exact retained inverse. */
-export const PublicationAcceptSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("accept"),
-  value: ReleaseAbortReceiptSchema,
-});
+export const PublicationAcceptSuccessSchema = successSchema(
+  "accept",
+  ReleaseAbortReceiptSchema
+);
 
 /** Returns one bounded authoritative material-head page. */
-export const PublicationHeadPageSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("headPage"),
-  value: HeadPageSchema,
-});
+export const PublicationHeadPageSuccessSchema = successSchema(
+  "headPage",
+  HeadPageSchema
+);
 
 /** Returns exact historical recovery completion or explicit absence. */
-export const PublicationRecoverySuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("recovery"),
-  value: RecoveryLookupSchema,
-});
+export const PublicationRecoverySuccessSchema = successSchema(
+  "recovery",
+  RecoveryLookupSchema
+);
 
 /** Durable release status that proves stageRelease found or created a row. */
 export const StagedReleaseStatusSchema = ContentReleaseStatusSchema.pipe(
@@ -69,116 +65,100 @@ export const StagedReleaseStatusSchema = ContentReleaseStatusSchema.pipe(
 export type StagedReleaseStatus = typeof StagedReleaseStatusSchema.Type;
 
 /** Confirms the exact durable status created or resumed by staging. */
-export const StageReleaseSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageRelease"),
-  value: StagedReleaseStatusSchema,
-});
+export const StageReleaseSuccessSchema = successSchema(
+  "stageRelease",
+  StagedReleaseStatusSchema
+);
 
 /** Confirms the exact durable inverse status created or resumed by staging. */
-export const StageRecoverySuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageRecovery"),
-  value: StagedReleaseStatusSchema,
-});
+export const StageRecoverySuccessSchema = successSchema(
+  "stageRecovery",
+  StagedReleaseStatusSchema
+);
 
 /** Confirms the idempotent outcome of one structured-family manifest. */
-export const StageSnapshotSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageSnapshot"),
-  value: StageSnapshotReceiptSchema,
-});
+export const StageSnapshotSuccessSchema = successSchema(
+  "stageSnapshot",
+  StageSnapshotReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one structured-snapshot row batch. */
-export const StageSnapshotBatchSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageSnapshotBatch"),
-  value: StageSnapshotBatchReceiptSchema,
-});
+export const StageSnapshotBatchSuccessSchema = successSchema(
+  "stageSnapshotBatch",
+  StageSnapshotBatchReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one permanent runtime bundle. */
-export const StageTryoutRuntimeBundleSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageTryoutRuntimeBundle"),
-  value: StageTryoutRuntimeBundleReceiptSchema,
-});
+export const StageTryoutRuntimeBundleSuccessSchema = successSchema(
+  "stageTryoutRuntimeBundle",
+  StageTryoutRuntimeBundleReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one ordered item batch. */
-export const StageItemBatchSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageItemBatch"),
-  value: StageBatchReceiptSchema,
-});
+export const StageItemBatchSuccessSchema = successSchema(
+  "stageItemBatch",
+  StageBatchReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one ordered route batch. */
-export const StageRouteBatchSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageRouteBatch"),
-  value: StageBatchReceiptSchema,
-});
+export const StageRouteBatchSuccessSchema = successSchema(
+  "stageRouteBatch",
+  StageBatchReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one projection batch. */
-export const StageProjectionBatchSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageProjectionBatch"),
-  value: StageBatchReceiptSchema,
-});
+export const StageProjectionBatchSuccessSchema = successSchema(
+  "stageProjectionBatch",
+  StageBatchReceiptSchema
+);
 
 /** Confirms the idempotent outcome of one immutable artifact batch. */
-export const StageArtifactBatchSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageArtifactBatch"),
-  value: StageBatchReceiptSchema,
-});
+export const StageArtifactBatchSuccessSchema = successSchema(
+  "stageArtifactBatch",
+  StageBatchReceiptSchema
+);
 
 /** Returns the durable phase for the requested exact manifest identity. */
-export const PublicationStatusSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("status"),
-  value: ContentReleaseStatusSchema,
-});
+export const PublicationStatusSuccessSchema = successSchema(
+  "status",
+  ContentReleaseStatusSchema
+);
 
 /** Returns bounded progress or final evidence for durable verification. */
-export const VerifyReleaseSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("verify"),
-  value: ReleaseVerificationStatusSchema,
-});
+export const VerifyReleaseSuccessSchema = successSchema(
+  "verify",
+  ReleaseVerificationStatusSchema
+);
 
 /** Returns the atomic activation receipt for one verified release. */
-export const ActivateReleaseSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("activate"),
-  value: PublicationReceiptSchema,
-});
+export const ActivateReleaseSuccessSchema = successSchema(
+  "activate",
+  PublicationReceiptSchema
+);
 
 /** Returns the atomic activation receipt for one retained inverse release. */
-export const ActivateRecoverySuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("activateRecovery"),
-  value: PublicationReceiptSchema,
-});
+export const ActivateRecoverySuccessSchema = successSchema(
+  "activateRecovery",
+  PublicationReceiptSchema
+);
 
 /** Returns one exact bounded page used to build a forward rollback. */
-export const PublicationRollbackSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("rollbackPage"),
-  value: RollbackPageSchema,
-});
+export const PublicationRollbackSuccessSchema = successSchema(
+  "rollbackPage",
+  RollbackPageSchema
+);
 
 /** Returns one bounded prior-owner page used to reverse signed routes. */
-export const PublicationRoutePageSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("routePage"),
-  value: RoutePageSchema,
-});
+export const PublicationRoutePageSuccessSchema = successSchema(
+  "routePage",
+  RoutePageSchema
+);
 
 /** Returns durable cumulative evidence from server-owned cleanup progress. */
-export const PublicationCleanupSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("cleanup"),
-  value: ReleaseCleanupReceiptSchema,
-});
+export const PublicationCleanupSuccessSchema = successSchema(
+  "cleanup",
+  ReleaseCleanupReceiptSchema
+);
 
 /** Complete success vocabulary returned by publication ingress. */
 export const PublicationSuccessSchema = Schema.Union([

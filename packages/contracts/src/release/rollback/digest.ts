@@ -6,6 +6,10 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import {
+  ReleaseCountMismatchFields,
+  ReleaseDigestMismatchFields,
+} from "#contracts/release/mismatch";
+import {
   canonicalizeRollbackSnapshotEntry,
   type RollbackSnapshotEntry,
 } from "#contracts/release/rollback/spec";
@@ -22,27 +26,13 @@ export class RollbackSnapshotHashError extends Schema.TaggedError<RollbackSnapsh
 /** A replayed rollback snapshot has a different signed entry count. */
 export class RollbackSnapshotCountMismatchError extends Schema.TaggedError<RollbackSnapshotCountMismatchError>()(
   "RollbackSnapshotCountMismatchError",
-  {
-    actualCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    expectedCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseCountMismatchFields }
 ) {}
 
 /** A replayed rollback snapshot does not match its signed digest. */
 export class RollbackSnapshotDigestMismatchError extends Schema.TaggedError<RollbackSnapshotDigestMismatchError>()(
   "RollbackSnapshotDigestMismatchError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 /** Keeps mutable Node hash state private behind the incremental digest seam. */

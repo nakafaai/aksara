@@ -1,5 +1,9 @@
 import { Array as Arr, Schema } from "effect";
-import { ContentFamilySchema, compareContentHeads } from "#contracts/content";
+import {
+  type ContentFamily,
+  ContentFamilySchema,
+  compareContentHeads,
+} from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,
@@ -139,70 +143,31 @@ const HeadPageFields = {
   nextCursor: HeadCursorSchema,
 };
 
-const ArticleHeadPageSchema = Schema.Struct({
-  ...HeadPageFields,
-  family: Schema.Literal("article"),
-  heads: Schema.Array(ArticleHeadSchema).pipe(
-    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
-  ),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCanonicalHeadPage, {
-      message:
-        "Expected canonical article heads with coherent cursor progress.",
-    })
-  )
-);
-
-const MaterialHeadPageSchema = Schema.Struct({
-  ...HeadPageFields,
-  family: Schema.Literal("material"),
-  heads: Schema.Array(MaterialHeadSchema).pipe(
-    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
-  ),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCanonicalHeadPage, {
-      message:
-        "Expected canonical material heads with coherent cursor progress.",
-    })
-  )
-);
-
-const PageHeadPageSchema = Schema.Struct({
-  ...HeadPageFields,
-  family: Schema.Literal("page"),
-  heads: Schema.Array(PageHeadSchema).pipe(
-    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
-  ),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCanonicalHeadPage, {
-      message: "Expected canonical page heads with coherent cursor progress.",
-    })
-  )
-);
-
-const QuestionHeadPageSchema = Schema.Struct({
-  ...HeadPageFields,
-  family: Schema.Literal("question"),
-  heads: Schema.Array(QuestionHeadSchema).pipe(
-    Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
-  ),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCanonicalHeadPage, {
-      message:
-        "Expected canonical question heads with coherent cursor progress.",
-    })
-  )
-);
+/** Builds one family-owned head page whose heads share that family's shape. */
+function headPageSchema<
+  Family extends ContentFamily,
+  Head extends Schema.Top & { readonly Type: ContentHead },
+>(family: Family, head: Head) {
+  return Schema.Struct({
+    ...HeadPageFields,
+    family: Schema.Literal(family),
+    heads: Schema.Array(head).pipe(
+      Schema.check(Schema.isMaxLength(MAX_HEAD_PAGE_COUNT))
+    ),
+  }).pipe(
+    Schema.check(
+      Schema.makeFilter(hasCanonicalHeadPage, {
+        message: `Expected canonical ${family} heads with coherent cursor progress.`,
+      })
+    )
+  );
+}
 
 /** Bounded canonical page proving one exact family-owned head inventory. */
 export const HeadPageSchema = Schema.Union([
-  ArticleHeadPageSchema,
-  MaterialHeadPageSchema,
-  PageHeadPageSchema,
-  QuestionHeadPageSchema,
+  headPageSchema("article", ArticleHeadSchema),
+  headPageSchema("material", MaterialHeadSchema),
+  headPageSchema("page", PageHeadSchema),
+  headPageSchema("question", QuestionHeadSchema),
 ]);
 export type HeadPage = typeof HeadPageSchema.Type;

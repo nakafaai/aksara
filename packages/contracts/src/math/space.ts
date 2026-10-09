@@ -2,27 +2,27 @@ import { Schema } from "effect";
 
 import {
   hasUniquePositions,
-  MathAppearanceSchema,
   MathAxisRangeSchema,
-  MathLabelPlacementSchema,
   MathViewPaddingSchema,
-  MathVisualKeySchema,
   mathVisualIdentityIssues,
   PositiveMeasureSchema,
   SpacePointSchema,
   sameSpacePoint,
 } from "#contracts/math/base";
 import { spaceBoundsIssues } from "#contracts/math/bounds";
+import {
+  MATH_LINE_MESSAGE,
+  MATH_POLYLINE_MESSAGE,
+  MATH_RAY_MESSAGE,
+  MATH_SEGMENT_MESSAGE,
+  MathObjectFields,
+  mathLabelAnchorFields,
+} from "#contracts/math/object";
 import { spaceResolutionIssues } from "#contracts/math/resolution";
 import { hasCoplanarArea } from "#contracts/math/vector";
 
-const ObjectFields = {
-  appearance: MathAppearanceSchema,
-  id: MathVisualKeySchema,
-};
-
 const SpacePointObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   at: SpacePointSchema,
   kind: Schema.Literal("point"),
 });
@@ -38,58 +38,58 @@ const SpaceShapeSchema = Schema.TupleWithRest(
 );
 
 const SpaceLineObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   kind: Schema.Literal("line"),
   through: Schema.Tuple([SpacePointSchema, SpacePointSchema]),
 }).pipe(
   Schema.check(
     Schema.makeFilter(({ through: [from, to] }) => !sameSpacePoint(from, to), {
-      message: "Expected a line through two distinct positions.",
+      message: MATH_LINE_MESSAGE,
     })
   )
 );
 
 const SpaceRayObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   from: SpacePointSchema,
   kind: Schema.Literal("ray"),
   through: SpacePointSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(({ from, through }) => !sameSpacePoint(from, through), {
-      message: "Expected a ray through a position distinct from its start.",
+      message: MATH_RAY_MESSAGE,
     })
   )
 );
 
 const SpaceSegmentObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   from: SpacePointSchema,
   kind: Schema.Literal("segment"),
   to: SpacePointSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(({ from, to }) => !sameSpacePoint(from, to), {
-      message: "Expected a segment with distinct ends.",
+      message: MATH_SEGMENT_MESSAGE,
     })
   )
 );
 
 const SpacePolylineObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   kind: Schema.Literal("polyline"),
   vertices: SpacePathSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(
       ({ vertices }) => hasUniquePositions(vertices, sameSpacePoint),
-      { message: "Expected unique polyline vertices." }
+      { message: MATH_POLYLINE_MESSAGE }
     )
   )
 );
 
 const SpacePolygonObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   kind: Schema.Literal("polygon"),
   vertices: SpaceShapeSchema,
 }).pipe(
@@ -110,7 +110,7 @@ const SpacePolygonObjectSchema = Schema.Struct({
  * Axis-aligned cuboid whose length spans x, height spans y, and width spans z.
  */
 const SpaceCuboidObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   center: SpacePointSchema,
   kind: Schema.Literal("cuboid"),
   size: Schema.Struct({
@@ -173,12 +173,9 @@ export const SpaceMathViewSchema = Schema.Union([
 export type SpaceMathView = typeof SpaceMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
-export const SpaceLabelAnchorSchema = Schema.Struct({
-  at: SpacePointSchema,
-  key: MathVisualKeySchema,
-  objectId: MathVisualKeySchema,
-  placement: Schema.optionalKey(MathLabelPlacementSchema),
-});
+export const SpaceLabelAnchorSchema = Schema.Struct(
+  mathLabelAnchorFields(SpacePointSchema)
+);
 export type SpaceLabelAnchor = typeof SpaceLabelAnchorSchema.Type;
 
 /** Complete stable space visual before rich labels are attached. */

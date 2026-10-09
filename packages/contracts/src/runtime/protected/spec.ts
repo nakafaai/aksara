@@ -5,6 +5,10 @@ import {
 } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import {
+  type ProtectedContentDelivery,
+  ProtectedContentDeliverySchema,
+} from "#contracts/delivery";
+import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Sha256HashSchema,
@@ -24,7 +28,7 @@ import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec"
 /** Checks one protected body selector uses its required delivery class. */
 function hasProtectedBodyKind(input: {
   readonly contentKey: string;
-  readonly delivery: "authenticated" | "entitled";
+  readonly delivery: ProtectedContentDelivery;
 }) {
   const separator = input.contentKey.lastIndexOf("/");
   if (separator < 1) {
@@ -44,7 +48,7 @@ function hasProtectedBodyKind(input: {
 export const ProtectedContentRuntimeSelectorSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   contentKey: ContentKeySchema,
-  delivery: Schema.Literals(["authenticated", "entitled"]),
+  delivery: ProtectedContentDeliverySchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasProtectedBodyKind, {
@@ -87,7 +91,7 @@ export type ProtectedContentRuntimeRequest =
 /** One selected artifact inside a protected batch response. */
 export const ProtectedContentRuntimeItemSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
-  delivery: Schema.Literals(["authenticated", "entitled"]),
+  delivery: ProtectedContentDeliverySchema,
   sourcePath: CorpusSourcePathSchema,
 });
 export type ProtectedContentRuntimeItem =
