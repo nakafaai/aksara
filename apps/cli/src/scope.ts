@@ -32,11 +32,11 @@ type DecodedSelector = typeof DecodedSelectorSchema.Type;
 /** Converts one selector into an untrusted structured scope member. */
 function decodeSelector(value: string): Option.Option<DecodedSelector> {
   const segments = value.split(":");
-  const kind = segments.at(0);
-  const selection = segments.at(1);
-  if (selection === undefined || segments.length !== 2) {
+  if (segments.length !== 2) {
     return Option.none();
   }
+  const kind = Option.getOrThrow(EffectArray.head(segments));
+  const selection = Option.getOrThrow(EffectArray.get(segments, 1));
   if (kind === "snapshot" || kind === "family") {
     return Option.some({ kind, value: selection });
   }
@@ -46,14 +46,25 @@ function decodeSelector(value: string): Option.Option<DecodedSelector> {
 /** Canonical ordering for one validated family selection. */
 const familyOrder: Order.Order<ContentFamily> = Order.mapInput(
   Order.Number,
-  (family: ContentFamily) => ContentFamilySchema.literals.indexOf(family)
+  (family: ContentFamily) =>
+    Option.getOrThrow(
+      EffectArray.findFirstIndex(
+        ContentFamilySchema.literals,
+        (literal) => literal === family
+      )
+    )
 );
 
 /** Canonical ordering for one validated snapshot selection. */
 const snapshotOrder: Order.Order<ContentSnapshotKind> = Order.mapInput(
   Order.Number,
   (snapshot: ContentSnapshotKind) =>
-    ContentSnapshotKindSchema.literals.indexOf(snapshot)
+    Option.getOrThrow(
+      EffectArray.findFirstIndex(
+        ContentSnapshotKindSchema.literals,
+        (literal) => literal === snapshot
+      )
+    )
 );
 
 /** Decodes raw family selections, then orders the typed values canonically. */

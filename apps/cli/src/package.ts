@@ -1,5 +1,5 @@
 import { fileURLToPath } from "node:url";
-import { Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 
@@ -50,5 +50,5 @@ export const readPackageVersion = Effect.fn("AksaraCli.readPackageVersion")(
 
 /** Keeps source, tests, and workspace-only files out of the npm tarball. */
 export function isAllowedPackedFile(path: string) {
-  return REQUIRED_PACKED_FILES.includes(path);
+  return Arr.contains(REQUIRED_PACKED_FILES, path);
 }

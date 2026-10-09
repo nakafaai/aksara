@@ -59,7 +59,7 @@ function publicDetail(error: PreviewDocumentError) {
 
 /** Formats a bounded list while retaining evidence that entries were omitted. */
 function diagnosticList(values: readonly string[]) {
-  const visible = values.slice(0, MAX_DIAGNOSTIC_ITEMS);
+  const visible = Arr.take(values, MAX_DIAGNOSTIC_ITEMS);
   const remaining = values.length - visible.length;
   if (remaining === 0) {
     return Arr.join(visible, ", ");

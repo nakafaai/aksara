@@ -2,7 +2,7 @@ import {
   type AppLocale,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Option, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import { InfoCommandSchema, parseInfoArguments } from "#cli/about";
 import {
   isProductionCommand,
@@ -118,6 +118,6 @@ export const parseCliArguments = Effect.fn("AksaraCli.parseCliArguments")(
       const preview = yield* parsePreviewArguments(args);
       return { command: "preview", ...preview } satisfies CliArguments;
     }
-    return yield* parseProductionArguments(command, args.slice(1));
+    return yield* parseProductionArguments(command, Arr.drop(args, 1));
   }
 );

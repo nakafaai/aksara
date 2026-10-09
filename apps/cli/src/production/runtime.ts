@@ -2,7 +2,7 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import type { ReleaseSnapshotInput } from "@nakafa/aksara-publisher/snapshot/release";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import type { ProductionBaseIdentity } from "#cli/production/base";
 import { BaseTryoutRuntimeBundleMismatchError } from "#cli/production/bundle";
@@ -17,7 +17,7 @@ export const selectTryoutRuntimeRefresh = Effect.fn(
   readonly scope: PublicationScope;
 }) {
   const snapshotId = input.base?.snapshots.tryout.resultSnapshotId ?? null;
-  const selectsTryout = input.scope.snapshots.includes("tryout");
+  const selectsTryout = Arr.contains(input.scope.snapshots, "tryout");
   if (snapshotId !== null && input.bundle === null) {
     return yield* new BaseTryoutRuntimeBundleMismatchError({
       reason: "missing-runtime",

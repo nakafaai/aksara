@@ -3,6 +3,7 @@ import {
   Effect,
   FileSystem,
   MutableHashMap,
+  Option,
   Order,
   Path,
   Schema,
@@ -41,14 +42,18 @@ const packageLocation = (input: string, root: string, path: Path.Path) => {
       /[/\\]node_modules[/\\]((?:@[^/\\]+[/\\])?[^/\\]+)[/\\]/gu
     ),
   ];
-  const match = matches.at(-1);
-  const name = match?.[1]?.replaceAll("\\", "/");
-  if (match === undefined || name === undefined) {
+  const match = Arr.last(matches);
+  if (Option.isNone(match)) {
     return;
   }
+  const name = match.value[1]?.replaceAll("\\", "/");
+  if (name === undefined) {
+    return;
+  }
+  const end = (match.value.index ?? 0) + match.value[0].length - 1;
   return {
     name,
-    root: absolute.slice(0, (match.index ?? 0) + match[0].length - 1),
+    root: absolute.slice(0, end),
   } satisfies PackageLocation;
 };
 
