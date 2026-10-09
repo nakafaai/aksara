@@ -22,7 +22,11 @@ import {
   Order,
   Schema,
 } from "effect";
-import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
+import {
+  appLocaleCode,
+  contentHeadOrder,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 import { PageRootSchema, type PageSource } from "#corpus/pages/schema";
 import { decodePageSources } from "#corpus/pages/source";
 
@@ -166,16 +170,7 @@ export const decodePageRegistry = Effect.fn("AksaraCorpus.decodePageRegistry")(
     yield* validatePageRoutes(entries);
     return Arr.sort(
       entries,
-      Order.combine(
-        Order.mapInput(
-          Order.String,
-          (entry: PageEntry) => entry.route.contentKey
-        ),
-        Order.mapInput(
-          Order.String,
-          (entry: PageEntry) => entry.route.artifactLocale
-        )
-      )
+      Order.mapInput(contentHeadOrder, (entry: PageEntry) => entry.route)
     );
   }
 );

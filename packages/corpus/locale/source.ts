@@ -1,11 +1,15 @@
 import {
+  type ContentHeadIdentity,
+  compareContentHeads,
+} from "@nakafa/aksara-contracts/content";
+import {
   APP_LOCALE_CODES,
   type AppLocale,
   type AppLocaleCode,
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, Schema } from "effect";
+import { Array as Arr, Effect, Order, Schema } from "effect";
 
 /** Reviewed source copy keyed only by contract-supported application locales. */
 export type LocalizedSourceMap<Value> = Readonly<
@@ -98,3 +102,13 @@ export const traverseLocalizedSources = Effect.fn(
   }
   return traversed;
 });
+
+/**
+ * Orders content heads by content key, then by artifact locale, in the contracts
+ * code-unit order. The contracts comparator returns a number; Order.Number reduces
+ * it to -1, 0, or 1.
+ */
+export const contentHeadOrder = Order.make(
+  (left: ContentHeadIdentity, right: ContentHeadIdentity) =>
+    Order.Number(compareContentHeads(left, right), 0)
+);

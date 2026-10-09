@@ -1,4 +1,3 @@
-import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   type CorpusSourcePath,
@@ -25,15 +24,8 @@ import {
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Order,
-  Path,
-  Schema,
-  Struct,
-} from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema, Struct } from "effect";
+import { contentHeadOrder } from "#corpus/locale/source";
 import {
   decodeQuestionDocumentPath,
   decodeQuestionPath,
@@ -159,15 +151,6 @@ export function questionContentForEntry(
   return { entries: [prompt, selected], selected, source };
 }
 
-/** Orders content heads by content key, then by artifact locale. */
-const CONTENT_HEAD_ORDER = Order.combine(
-  Order.mapInput(Order.String, (head: ContentHeadIdentity) => head.contentKey),
-  Order.mapInput(
-    Order.String,
-    (head: ContentHeadIdentity) => head.artifactLocale
-  )
-);
-
 /** Projects discovered question sources into the canonical body registry. */
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
   return Arr.sort(
@@ -186,7 +169,7 @@ function projectQuestionEntries(sources: readonly QuestionSource[]) {
       );
       return [...answers, ...prompts];
     }),
-    CONTENT_HEAD_ORDER
+    contentHeadOrder
   );
 }
 

@@ -32,7 +32,11 @@ import {
 } from "effect";
 import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
-import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
+import {
+  appLocaleCode,
+  contentHeadOrder,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 
 export const ArticleEntrySchema = Schema.Struct({
   categoryTitle: ArticleCategoryTitleSchema,
@@ -285,15 +289,6 @@ export const decodeArticleRegistry = Effect.fn(
   yield* validateArticleRoutes(entries);
   return Arr.sort(
     entries,
-    Order.combine(
-      Order.mapInput(
-        Order.String,
-        (entry: ArticleEntry) => entry.route.contentKey
-      ),
-      Order.mapInput(
-        Order.String,
-        (entry: ArticleEntry) => entry.route.artifactLocale
-      )
-    )
+    Order.mapInput(contentHeadOrder, (entry: ArticleEntry) => entry.route)
   );
 });

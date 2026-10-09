@@ -24,7 +24,11 @@ import {
   Order,
   Schema,
 } from "effect";
-import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
+import {
+  appLocaleCode,
+  contentHeadOrder,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
   type MaterialDomainDescriptor,
@@ -212,16 +216,7 @@ export const validateMaterialEntries = Effect.fn(
 
   return Arr.sort(
     entries,
-    Order.combine(
-      Order.mapInput(
-        Order.String,
-        (entry: MaterialEntry) => entry.route.contentKey
-      ),
-      Order.mapInput(
-        Order.String,
-        (entry: MaterialEntry) => entry.route.artifactLocale
-      )
-    )
+    Order.mapInput(contentHeadOrder, (entry: MaterialEntry) => entry.route)
   );
 });
 
