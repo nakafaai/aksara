@@ -51,10 +51,9 @@ export const abortContentRelease = Effect.fn(
   let receipt: ReleaseAbortReceipt;
   do {
     const response = yield* target.abort(request);
-    receipt = yield* Schema.decodeUnknownEffect(ReleaseAbortReceiptSchema)(
-      response,
-      { onExcessProperty: "error" }
-    ).pipe(
+    receipt = yield* Schema.decodeEffect(ReleaseAbortReceiptSchema)(response, {
+      onExcessProperty: "error",
+    }).pipe(
       Effect.mapError(
         () => new ReleaseAbortContractError({ contract: "receipt" })
       )

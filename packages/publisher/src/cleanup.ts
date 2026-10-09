@@ -77,9 +77,10 @@ export const cleanupContentRelease = Effect.fn(
   let previous: ReleaseCleanupReceipt | undefined;
   for (let attempts = 1; attempts <= CLEANUP_CALL_LIMIT; attempts += 1) {
     const response = yield* target.cleanup(request);
-    const receipt = yield* Schema.decodeUnknownEffect(
-      ReleaseCleanupReceiptSchema
-    )(response, { onExcessProperty: "error" }).pipe(
+    const receipt = yield* Schema.decodeEffect(ReleaseCleanupReceiptSchema)(
+      response,
+      { onExcessProperty: "error" }
+    ).pipe(
       Effect.mapError(
         () => new ReleaseCleanupContractError({ contract: "receipt" })
       )
