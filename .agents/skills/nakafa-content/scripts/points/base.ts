@@ -1,4 +1,4 @@
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/process";
 import {
@@ -67,6 +67,11 @@ export const resolveBase = Effect.fn("PointsCheck.resolveBase")(function* (
   return output.trim();
 });
 
+/** Writes one git diff text as the JSON string that JSON.stringify writes. */
+const encodeJsonString = Schema.encodeSync(
+  Schema.fromJsonString(Schema.String)
+);
+
 /**
  * Pairs each changed file with its path at the base revision. Git reports a
  * modified file as `M`, then its path, and a renamed one as `R` and a score,
@@ -84,7 +89,7 @@ export const parseChanges = Effect.fn("PointsCheck.parseChanges")(function* (
     const head = renamed ? to : from;
     if (!(from && head)) {
       return yield* new PointsCheckError({
-        detail: `Unexpected git diff output: ${JSON.stringify(output)}`,
+        detail: `Unexpected git diff output: ${encodeJsonString(output)}`,
         reason: "unreadable-entry",
       });
     }
