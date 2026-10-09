@@ -6,6 +6,7 @@ import {
   canonicalizeContentRouteChange,
   canonicalizeContentRouteItem,
 } from "#contracts/release/route/spec";
+import { JsonTextSchema } from "#contracts/text/json";
 
 const releaseId = "test-route";
 
@@ -30,17 +31,23 @@ describe("content routes", () => {
       publicPath: "subjects/test/rute",
     });
 
-    expect(JSON.parse(canonicalizeContentRouteChange(bind))).toEqual(bind);
-    expect(JSON.parse(canonicalizeContentRouteChange(deletion))).toEqual(
-      deletion
-    );
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentRouteChange(bind))
+    ).toEqual(bind);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(
+        canonicalizeContentRouteChange(deletion)
+      )
+    ).toEqual(deletion);
 
     const item = Schema.decodeSync(ContentRouteItemSchema)({
       change: bind,
       index: 0,
       releaseId,
     });
-    expect(JSON.parse(canonicalizeContentRouteItem(item))).toEqual(item);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentRouteItem(item))
+    ).toEqual(item);
   });
 
   it("rejects incomplete and unsupported route changes", () => {

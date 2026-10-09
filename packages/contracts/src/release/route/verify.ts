@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { routeIdentity } from "#contracts/content";
 import {
   PublicPathSchema,
@@ -48,14 +48,21 @@ export class RouteDigestError extends Schema.TaggedError<RouteDigestError>()(
   }
 ) {}
 
-interface RouteState {
-  readonly firstIndex: Map<string, number>;
+/** Creates the route state that one stream of routes shares while it decodes. */
+function routeState(): {
+  firstIndex: MutableHashMap.MutableHashMap<string, number>;
+} {
+  return { firstIndex: MutableHashMap.empty<string, number>() };
 }
 
+type RouteState = ReturnType<typeof routeState>;
+
+const VerifiedContentRoutesSchema = Schema.Struct({
+  count: Schema.Finite,
+});
+
 /** Count authenticated without retaining complete route rows. */
-export interface VerifiedContentRoutes {
-  readonly count: number;
-}
+export type VerifiedContentRoutes = typeof VerifiedContentRoutesSchema.Type;
 
 /** Decodes one route and applies release, index, and uniqueness invariants. */
 function decodeRoute(
@@ -75,7 +82,9 @@ function decodeRoute(
     ),
     Effect.flatMap((item) => {
       const identity = routeIdentity(item.change);
-      const firstIndex = state.firstIndex.get(identity);
+      const firstIndex = Option.getOrUndefined(
+        MutableHashMap.get(state.firstIndex, identity)
+      );
       if (firstIndex !== undefined) {
         return Effect.fail(
           new RouteDuplicateError({
@@ -84,7 +93,7 @@ function decodeRoute(
           })
         );
       }
-      state.firstIndex.set(identity, item.index);
+      MutableHashMap.set(state.firstIndex, identity, item.index);
       return Effect.succeed(item);
     })
   );
@@ -97,7 +106,7 @@ export function decodeContentRoutes<E, R>(input: {
 }) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: RouteState = { firstIndex: new Map() };
+      const state = routeState();
       return input.routes.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, routeOffset]) =>

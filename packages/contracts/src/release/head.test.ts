@@ -14,6 +14,7 @@ import {
   pageHead,
   questionHead,
 } from "#contracts/test/head";
+import { JsonTextSchema } from "#contracts/text/json";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
@@ -34,14 +35,24 @@ describe("content head pages", () => {
       publicPath: undefined,
     });
 
-    expect(JSON.parse(canonicalizeContentHead(routed))).toEqual(routed);
-    expect(JSON.parse(canonicalizeContentHead(routeFree))).toEqual(routeFree);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(routed))
+    ).toEqual(routed);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(routeFree))
+    ).toEqual(routeFree);
     const article = articleHead("articles/politics/test");
-    expect(JSON.parse(canonicalizeContentHead(article))).toEqual(article);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(article))
+    ).toEqual(article);
     const question = questionHead("question-bank/test/question");
-    expect(JSON.parse(canonicalizeContentHead(question))).toEqual(question);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(question))
+    ).toEqual(question);
     const page = pageHead("pages/privacy-policy");
-    expect(JSON.parse(canonicalizeContentHead(page))).toEqual(page);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(page))
+    ).toEqual(page);
     expect(canonicalizeContentHead(routed)).toBe(
       '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","publicPath":"subjects/test/test-routed","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
     );

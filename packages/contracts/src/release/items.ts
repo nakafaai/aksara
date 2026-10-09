@@ -70,15 +70,23 @@ export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseI
   }
 ) {}
 
+const VerifiedContentReleaseItemsSchema = Schema.Struct({
+  deleteCount: Schema.Finite,
+  upsertCount: Schema.Finite,
+});
+
 /** Counts derived without retaining a complete release-item collection. */
-export interface VerifiedContentReleaseItems {
-  readonly deleteCount: number;
-  readonly upsertCount: number;
+export type VerifiedContentReleaseItems =
+  typeof VerifiedContentReleaseItemsSchema.Type;
+
+/** Creates the order state that one stream of release items shares while it decodes. */
+function itemValidationState(): {
+  previous: ContentReleaseItem | undefined;
+} {
+  return { previous: undefined };
 }
 
-interface ItemValidationState {
-  previous: ContentReleaseItem | undefined;
-}
+type ItemValidationState = ReturnType<typeof itemValidationState>;
 
 /** Verifies one item's signed release identity and sequence position. */
 function validateItemIdentity(
@@ -151,7 +159,7 @@ export function decodeContentReleaseItems<E, R>(input: {
 }) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ItemValidationState = { previous: undefined };
+      const state = itemValidationState();
       return input.items.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, itemOffset]) =>

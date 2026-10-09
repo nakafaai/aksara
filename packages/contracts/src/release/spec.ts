@@ -5,7 +5,6 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
-  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -15,7 +14,10 @@ import {
   type AppLocale,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
-import { ReleaseOriginSchema } from "#contracts/release/origin";
+import {
+  ReleaseOriginSchema,
+  RollbackReleaseOriginSchema,
+} from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
 import {
@@ -170,15 +172,21 @@ export function releaseActivatesAppLocale(
 ) {
   return release.manifest.activeAppLocales.includes(appLocale);
 }
+const RollbackContentReleaseManifestSchema = Schema.Struct({
+  ...ContentReleaseManifestFields,
+  activeAppLocales: ActiveAppLocaleListSchema,
+  format: Schema.Literal(CONTENT_RELEASE_FORMAT),
+  origin: RollbackReleaseOriginSchema,
+});
+
+const RollbackSignedContentReleaseShapeSchema = Schema.Struct({
+  ...SignedContentReleaseSchema.fields,
+  manifest: RollbackContentReleaseManifestSchema,
+});
+
 /** Signed release whose provenance identifies one exact rollback target. */
-export type RollbackSignedContentRelease = SignedContentRelease & {
-  readonly manifest: SignedContentRelease["manifest"] & {
-    readonly origin: {
-      readonly kind: "rollback";
-      readonly releaseId: ReleaseId;
-    };
-  };
-};
+export type RollbackSignedContentRelease =
+  typeof RollbackSignedContentReleaseShapeSchema.Type;
 /** Signed release contract accepted only for rollback-owned operations. */
 export const RollbackSignedContentReleaseSchema =
   SignedContentReleaseSchema.pipe(

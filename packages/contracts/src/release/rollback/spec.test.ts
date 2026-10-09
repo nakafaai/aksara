@@ -23,6 +23,7 @@ import {
   richRecord,
   upsert,
 } from "#contracts/test/rollback";
+import { JsonTextSchema } from "#contracts/text/json";
 
 /** Strictly decodes one page with excess properties rejected. */
 const decodePage = Schema.decodeUnknownExit(RollbackPageSchema, {
@@ -65,7 +66,7 @@ describe("rollback contracts", () => {
     expect(
       entries
         .map(canonicalizeRollbackSnapshotEntry)
-        .map((serialized) => JSON.parse(serialized))
+        .map((serialized) => Schema.decodeSync(JsonTextSchema)(serialized))
     ).toEqual(entries);
   });
   it("decodes and serializes complete current-to-prior transitions", () => {
@@ -80,9 +81,13 @@ describe("rollback contracts", () => {
     expect(isRollbackUpsert(upsert)).toBe(true);
     expect(isRollbackUpsert(deletion)).toBe(false);
     for (const entry of [record, reverseRecord]) {
-      expect(JSON.parse(canonicalizeRollbackRecord(entry))).toEqual(entry);
+      expect(
+        Schema.decodeSync(JsonTextSchema)(canonicalizeRollbackRecord(entry))
+      ).toEqual(entry);
     }
-    expect(JSON.parse(canonicalizeRollbackPage(value))).toEqual(value);
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeRollbackPage(value))
+    ).toEqual(value);
   });
   it("accepts only one canonical empty final page", () => {
     expect(
