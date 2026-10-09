@@ -11,6 +11,7 @@ This guide is a map. It states each Aksara decision once and names the command o
 | Writing Effect v4 | `repos/effect/LLMS.md`, then source and tests under `repos/effect/packages` |
 | Effect-native source rules | `scripts/check/effect.ts`, run by `pnpm lint` |
 | Effect compiler rules | `packages/typescript-config/base.json` |
+| Facts shared with nakafa.com: the compiler rule block, `scripts/osv`, the verifier core in `scripts/provenance`, the Effect cohort pins | nakafa.com owns them; `pnpm native` compares the copies here with the commit pinned in `scripts/check/native.ts` |
 | File and folder names | `pnpm names` |
 | Module length | `pnpm lines` |
 | JSDoc on stable callables | `pnpm jsdocs` |
@@ -30,7 +31,7 @@ This guide is a map. It states each Aksara decision once and names the command o
 - Name every code, script, and document folder and file with exactly one concise domain word. Group a longer capability under its domain, such as `artifact/verify.ts` or `tryout/hash/catalog.ts`, without repeating the parent name. Role suffixes such as `.config.ts`, `.d.ts`, and `.test.ts`, toolchain files, and uppercase repository documents keep their conventional names.
 - Content identities keep their exact names: folders below `packages/corpus/material/lesson`, `packages/corpus/articles`, `packages/corpus/curriculum`, and `packages/corpus/pages`, the `question-bank` root with its source hierarchy, and skill folders. Code in a content root is a one-word file at that root. Never invent a hierarchy or rename a source identity to satisfy code naming, and rename existing code in a dedicated change that rewrites every import, export, and reference in one pass.
 - Put dependencies in the workspace that uses them, with `workspace:*` for internal ones. Same-package imports use the private workspace alias such as `#contracts/*`; cross-package imports use exact `@nakafa/*` package exports. Relative module imports are forbidden; relative config inheritance and CLI filesystem paths are not module imports.
-- Authored executable source is TypeScript: no JavaScript source and no generated JavaScript in Git. The dependency audit `scripts/osv` is the one shell script, because it decides whether the installed packages can be trusted and so imports none of them. Keep it identical to the script in nakafa.com except for the lockfiles it names.
+- Authored executable source is TypeScript: no JavaScript source and no generated JavaScript in Git. The dependency audit `scripts/osv` is the one shell script, because it decides whether the installed packages can be trusted and so imports none of them. It is an exact copy of the script in nakafa.com, which takes extra lockfiles as arguments: change it there first, then copy it and move the pin.
 - Root task scripts delegate to Turbo, except repository-wide tooling such as Ultracite and the source-policy checks. Run focused workspace tests through `pnpm exec turbo run test --filter=...`, because Turbo owns the dependency build order.
 
 ## Content And Publication

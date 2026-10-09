@@ -1,9 +1,9 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import { Effect, FileSystem, Layer, Result, Schema } from "effect";
-import { ProvenanceBundleVerifier } from "#scripts/provenance/bundle";
 import { runProvenanceMain } from "#scripts/provenance/main";
 import { ProvenanceStatementSchema } from "#scripts/provenance/schema";
+import { ProvenanceBundleVerifier } from "#scripts/provenance/service";
 
 const PACKAGE_SHA512 =
   "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
