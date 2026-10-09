@@ -1,23 +1,26 @@
 import { createHash } from "node:crypto";
 import { Effect, MutableHashSet, Schema, Stream } from "effect";
-import { compareContentHeads, routeIdentity } from "#contracts/content";
 import {
-  ContentKeySchema,
+  ContentHeadIdentitySchema,
+  compareContentHeads,
+  routeIdentity,
+} from "#contracts/content";
+import {
   type PublicPath,
   PublicPathSchema,
   type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "#contracts/ids";
-import {
-  AppLocaleSchema,
-  type ArtifactLocale,
-  ArtifactLocaleSchema,
-} from "#contracts/locale";
+import { AppLocaleSchema, type ArtifactLocale } from "#contracts/locale";
 import {
   type ContentHead,
   canonicalizeContentHead,
 } from "#contracts/release/head";
+import {
+  ReleaseCountMismatchFields,
+  ReleaseDigestMismatchFields,
+} from "#contracts/release/mismatch";
 import { RESULT_CATALOG_DIGEST_DOMAIN } from "#contracts/release/result/spec";
 
 /** SHA-256 computation failed before result-catalog integrity was established. */
@@ -30,8 +33,7 @@ export class ResultCatalogHashError extends Schema.TaggedError<ResultCatalogHash
 export class ResultCatalogOrderError extends Schema.TaggedError<ResultCatalogOrderError>()(
   "ResultCatalogOrderError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     releaseId: ReleaseIdSchema,
   }
 ) {}
@@ -40,8 +42,7 @@ export class ResultCatalogOrderError extends Schema.TaggedError<ResultCatalogOrd
 export class ResultCatalogRouteError extends Schema.TaggedError<ResultCatalogRouteError>()(
   "ResultCatalogRouteError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     publicPath: PublicPathSchema,
     releaseId: ReleaseIdSchema,
   }
@@ -50,27 +51,13 @@ export class ResultCatalogRouteError extends Schema.TaggedError<ResultCatalogRou
 /** A replayed result catalog has a different signed head count. */
 export class ResultCatalogCountMismatchError extends Schema.TaggedError<ResultCatalogCountMismatchError>()(
   "ResultCatalogCountMismatchError",
-  {
-    actualCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    expectedCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseCountMismatchFields }
 ) {}
 
 /** A replayed result catalog does not match its signed digest. */
 export class ResultCatalogDigestMismatchError extends Schema.TaggedError<ResultCatalogDigestMismatchError>()(
   "ResultCatalogDigestMismatchError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 /** Keeps mutable hash and ordering state private to one catalog replay. */

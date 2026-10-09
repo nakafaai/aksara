@@ -28,7 +28,8 @@ export type ContentFamily = typeof ContentFamilySchema.Type;
 export const ContentAuthorSchema = Schema.Struct({ name: Schema.String });
 export type ContentAuthor = typeof ContentAuthorSchema.Type;
 
-const ContentHeadIdentitySchema = Schema.Struct({
+/** Language-specific content head identity that artifacts and heads share. */
+export const ContentHeadIdentitySchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
   contentKey: ContentKeySchema,
 });

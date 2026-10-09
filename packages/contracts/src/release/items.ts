@@ -7,8 +7,9 @@ import {
   Stream,
 } from "effect";
 import { compareContentHeads } from "#contracts/content";
-import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { ReleaseIdSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
+import { ReleaseDigestMismatchFields } from "#contracts/release/mismatch";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -70,11 +71,7 @@ export class ReleaseItemScopeError extends Schema.TaggedError<ReleaseItemScopeEr
 /** The separate ordered items do not match the signed digest. */
 export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseItemsDigestMismatchError>()(
   "ReleaseItemsDigestMismatchError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 const VerifiedContentReleaseItemsSchema = Schema.Struct({

@@ -1,15 +1,15 @@
 import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { compareContentHeads, routeIdentity } from "#contracts/content";
-import {
-  PublicPathSchema,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { PublicPathSchema } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
 import {
   type ContentProjection,
   ContentProjectionSchema,
 } from "#contracts/projection/spec";
+import {
+  ReleaseCountMismatchFields,
+  ReleaseDigestMismatchFields,
+} from "#contracts/release/mismatch";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const ProjectionIndexSchema = Schema.Finite.pipe(
@@ -42,21 +42,13 @@ export class ProjectionRouteError extends Schema.TaggedError<ProjectionRouteErro
 /** The streamed projection count differs from the signed manifest. */
 export class ProjectionCountError extends Schema.TaggedError<ProjectionCountError>()(
   "ProjectionCountError",
-  {
-    actualCount: ProjectionIndexSchema,
-    expectedCount: ProjectionIndexSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseCountMismatchFields }
 ) {}
 
 /** The streamed projection digest differs from the signed manifest. */
 export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestError>()(
   "ProjectionDigestError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 /** Creates the replay state that one stream of projections shares while it decodes. */

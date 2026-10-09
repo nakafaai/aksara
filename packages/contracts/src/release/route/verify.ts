@@ -1,10 +1,7 @@
 import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { routeIdentity } from "#contracts/content";
-import {
-  PublicPathSchema,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { PublicPathSchema } from "#contracts/ids";
+import { ReleaseDigestMismatchFields } from "#contracts/release/mismatch";
 import { digestRoutes } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
@@ -41,11 +38,7 @@ export class RouteCountError extends Schema.TaggedError<RouteCountError>()(
 /** The streamed route digest differs from its signed manifest. */
 export class RouteDigestError extends Schema.TaggedError<RouteDigestError>()(
   "RouteDigestError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 /** The item index that first bound each route identity in one stream of routes. */
