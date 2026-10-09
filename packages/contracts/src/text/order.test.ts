@@ -13,7 +13,10 @@ describe("code-unit ordering", () => {
 describe("pinned code-unit order", () => {
   it("sorts non-ASCII and astral text by UTF-16 code units", () => {
     expect(
-      Arr.sort(["\uFF5E", "a", "\u{1F600}", "Z", "é"], Order.String)
+      Arr.sort(
+        ["\uFF5E", "a", "\u{1F600}", "Z", "é"],
+        Order.make(compareCodeUnits)
+      )
     ).toEqual(["Z", "a", "é", "\u{1F600}", "\uFF5E"]);
     expect([
       compareCodeUnits("\u{1F600}", "\uFF5E"),
