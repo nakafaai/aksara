@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
@@ -10,16 +10,23 @@ import { completedRecovery } from "#test/recovery";
 import { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 
-/** Returns the one fixture request of an operation; a missing fixture fails the test. */
-function requestOf(operation: (typeof transportRequests)[number]["operation"]) {
-  const request = Option.getOrUndefined(
+type TransportRequest = (typeof transportRequests)[number];
+
+/** Returns the one fixture request of an operation, typed as that operation; a missing fixture fails the test. */
+function requestOf<Operation extends TransportRequest["operation"]>(
+  operation: Operation
+) {
+  return Option.getOrThrow(
     Arr.findFirst(
       transportRequests,
-      (candidate) => candidate.operation === operation
+      (
+        candidate
+      ): candidate is Extract<
+        TransportRequest,
+        { readonly operation: Operation }
+      > => candidate.operation === operation
     )
   );
-  expect(request).toBeDefined();
-  return request;
 }
 
 describe("publication success evidence", () => {
@@ -42,9 +49,6 @@ describe("publication success evidence", () => {
   });
   it("binds completed recovery evidence to the protected active relation", () => {
     const request = requestOf("recovery");
-    if (request?.operation !== "recovery") {
-      return;
-    }
     expect(
       hasBoundPublicationSuccess(request, completedRecovery(request))
     ).toBe(true);
@@ -57,18 +61,10 @@ describe("publication success evidence", () => {
   });
   it("binds head pages to the requested cursor and row ceiling", () => {
     const request = requestOf("headPage");
-    if (request?.operation !== "headPage") {
-      return;
-    }
     const success = transportSuccess(request);
-    if (success.operation !== "headPage") {
-      return;
-    }
+    assert(success.operation === "headPage");
     const [head] = success.value.heads;
-    expect(head).toBeDefined();
-    if (head === undefined) {
-      return;
-    }
+    assert(head !== undefined);
     const wrongCursor = Schema.decodeSync(PublicationSuccessSchema)({
       ...success,
       value: { ...success.value, cursor: "another-page" },
@@ -96,17 +92,9 @@ describe("publication success evidence", () => {
   });
   it("rejects verification evidence from another signed manifest", () => {
     const request = requestOf("verify");
-    if (request?.operation !== "verify") {
-      return;
-    }
     const success = transportSuccess(request);
-    if (success.operation !== "verify") {
-      return;
-    }
-    expect(success.value.phase).toBe("verified");
-    if (success.value.phase !== "verified") {
-      return;
-    }
+    assert(success.operation === "verify");
+    assert(success.value.phase === "verified");
     const foreignHash = `sha256:${"f".repeat(64)}`;
     const evidenceCases = [
       { ...success.value.evidence, manifestHash: foreignHash },
@@ -147,9 +135,6 @@ describe("publication success evidence", () => {
   });
   it("binds pending verification to the requested release identity", () => {
     const request = requestOf("verify");
-    if (request?.operation !== "verify") {
-      return;
-    }
     const pending = Schema.decodeSync(PublicationSuccessSchema)({
       ok: true,
       operation: "verify",
@@ -179,13 +164,8 @@ describe("publication success evidence", () => {
   });
   it("rejects activation receipts that contradict their signed manifest", () => {
     const request = requestOf("activate");
-    if (request?.operation !== "activate") {
-      return;
-    }
     const success = transportSuccess(request);
-    if (success.operation !== "activate") {
-      return;
-    }
+    assert(success.operation === "activate");
     const foreignHash = `sha256:${"f".repeat(64)}`;
     const receiptCases = [
       { ...success.value, projectionDigest: foreignHash },
@@ -211,9 +191,6 @@ describe("publication success evidence", () => {
 
   it("binds rollback pages to their requested cursor and limit", () => {
     const request = requestOf("rollbackPage");
-    if (request?.operation !== "rollbackPage") {
-      return;
-    }
     const records = Arr.map([0, 1], (index) => {
       const state = {
         change: {
@@ -258,13 +235,8 @@ describe("publication success evidence", () => {
 
   it("binds cumulative cleanup evidence to its requested release", () => {
     const request = requestOf("cleanup");
-    if (request?.operation !== "cleanup") {
-      return;
-    }
     const success = transportSuccess(request);
-    if (success.operation !== "cleanup") {
-      return;
-    }
+    assert(success.operation === "cleanup");
     const progressed = Schema.decodeSync(PublicationSuccessSchema)({
       ...success,
       value: { ...success.value, complete: false, retryAt: 1_800_000_000_000 },
@@ -274,13 +246,8 @@ describe("publication success evidence", () => {
   });
   it("rejects batch receipts with another index or row count", () => {
     const request = requestOf("stageItemBatch");
-    if (request?.operation !== "stageItemBatch") {
-      return;
-    }
     const success = transportSuccess(request);
-    if (success.operation !== "stageItemBatch") {
-      return;
-    }
+    assert(success.operation === "stageItemBatch");
     const responses = [
       Schema.decodeSync(PublicationSuccessSchema)({
         ...success,
