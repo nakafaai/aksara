@@ -1,5 +1,6 @@
-import { Array as Arr, Option, Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type ActiveAppLocaleList,
@@ -171,22 +172,12 @@ export const QuranTafsirAccessSchema = Schema.Union([
 ]);
 export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
-/** Returns the canonical position of one decoded source identity. */
-function sourceIndex(id: QuranSourceAttribution["id"]) {
-  return Option.getOrThrow(
-    Arr.findFirstIndex(QURAN_SOURCE_IDS, (sourceId) => sourceId === id)
-  );
-}
-
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
-  return Arr.every(sources, (source, index) => {
-    const previous = sources[index - 1];
-    return (
-      previous === undefined ||
-      sourceIndex(previous.id) < sourceIndex(source.id)
-    );
-  });
+  return hasCanonicalOrder<string>(
+    QURAN_SOURCE_IDS,
+    Arr.map(sources, (source) => source.id)
+  );
 }
 
 /** Checks every source copy against the exact active locale set and order. */

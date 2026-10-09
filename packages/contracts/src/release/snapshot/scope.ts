@@ -1,5 +1,6 @@
-import { Array as Arr, Schema } from "effect";
+import { Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
 
 /** Fixed structured families selected by the one global release pointer. */
@@ -10,31 +11,14 @@ export const ContentSnapshotKindSchema = Schema.Literals([
 ]);
 export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
 
-/** Checks that a list names each literal once, in the schema's canonical order. */
-function hasCanonicalLiteralOrder<A extends string>(
-  literals: readonly A[],
-  values: readonly A[]
-) {
-  const canonical = Arr.filter(literals, (literal) =>
-    Arr.contains(values, literal)
-  );
-  return (
-    canonical.length === values.length &&
-    Arr.every(values, (value, index) => value === canonical[index])
-  );
-}
-
 /** Checks strict canonical ordering for selected content and snapshot families. */
 function hasCanonicalPublicationScope(input: {
   readonly families: readonly ContentFamily[];
   readonly snapshots: readonly ContentSnapshotKind[];
 }) {
   return (
-    hasCanonicalLiteralOrder(ContentFamilySchema.literals, input.families) &&
-    hasCanonicalLiteralOrder(
-      ContentSnapshotKindSchema.literals,
-      input.snapshots
-    ) &&
+    hasCanonicalOrder(ContentFamilySchema.literals, input.families) &&
+    hasCanonicalOrder(ContentSnapshotKindSchema.literals, input.snapshots) &&
     input.families.length + input.snapshots.length > 0
   );
 }
