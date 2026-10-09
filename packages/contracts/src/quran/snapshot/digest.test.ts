@@ -196,13 +196,13 @@ describe("Quran aggregate digest", () => {
           (candidate) => ({
             ...candidate,
             copy: Arr.filter(candidate.copy, ({ appLocale }) =>
-              ["en", "de"].includes(appLocale)
+              Arr.contains(["en", "de"], appLocale)
             ),
           })
         ),
         tafsirAccess: Arr.filter(
           attributionPayload.tafsirAccess,
-          ({ appLocale }) => ["en", "de"].includes(appLocale)
+          ({ appLocale }) => Arr.contains(["en", "de"], appLocale)
         ),
       });
       const germanVerses = yield* Effect.forEach(chunkPayload.verses, (verse) =>
@@ -281,7 +281,7 @@ describe("Quran aggregate digest", () => {
         failures.construct = false;
         failures.stage = "update";
       });
-      const updateError = yield* reject(records.slice(0, 1));
+      const updateError = yield* reject(Arr.take(records, 1));
       yield* Effect.sync(() => {
         failures.stage = "digest";
       });

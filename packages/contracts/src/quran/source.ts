@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -38,8 +38,8 @@ export function quranSourceIds(
   return [
     "tanzil-text",
     "tanzil-metadata",
-    ...Arr.filter(QURAN_SOURCE_IDS.slice(2), (sourceId) =>
-      sourceIds.includes(sourceId)
+    ...Arr.filter(Arr.drop(QURAN_SOURCE_IDS, 2), (sourceId) =>
+      Arr.contains(sourceIds, sourceId)
     ),
   ];
 }
@@ -50,7 +50,10 @@ export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
     activeAppLocales,
     (appLocale) => quranNameSourceId(appLocale) !== "tanzil-metadata"
   ).length;
-  const tafsirFileCount = activeAppLocales.includes(AppLocaleSchema.make("id"))
+  const tafsirFileCount = Arr.contains(
+    activeAppLocales,
+    AppLocaleSchema.make("id")
+  )
     ? QURAN_SURAH_COUNT
     : 0;
   return (
@@ -168,14 +171,20 @@ export const QuranTafsirAccessSchema = Schema.Union([
 ]);
 export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
+/** Returns the canonical position of one decoded source identity. */
+function sourceIndex(id: QuranSourceAttribution["id"]) {
+  return Option.getOrThrow(
+    Arr.findFirstIndex(QURAN_SOURCE_IDS, (sourceId) => sourceId === id)
+  );
+}
+
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
   return Arr.every(sources, (source, index) => {
     const previous = sources[index - 1];
     return (
       previous === undefined ||
-      QURAN_SOURCE_IDS.indexOf(previous.id) <
-        QURAN_SOURCE_IDS.indexOf(source.id)
+      sourceIndex(previous.id) < sourceIndex(source.id)
     );
   });
 }

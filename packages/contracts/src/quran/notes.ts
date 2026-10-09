@@ -159,7 +159,10 @@ function analyzeTranslation(
   const definitionNumbers = Arr.map(definitions, ({ number }) => number);
   const hasDuplicateDefinition = Arr.some(
     definitionNumbers,
-    (number, index) => definitionNumbers.indexOf(number) !== index
+    (number, index) =>
+      Option.getOrUndefined(
+        Arr.findFirstIndex(definitionNumbers, (value) => value === number)
+      ) !== index
   );
   const hasMismatchedMarkers =
     hasDuplicateDefinition ||

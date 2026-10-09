@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
@@ -24,6 +24,13 @@ export const QuranLocalizedTranslationSchema = Schema.Struct({
 export type QuranLocalizedTranslation =
   typeof QuranLocalizedTranslationSchema.Type;
 
+/** Returns the canonical position of one decoded application locale. */
+function localeIndex(appLocale: QuranLocalizedTranslation["appLocale"]) {
+  return Option.getOrThrow(
+    Arr.findFirstIndex(APP_LOCALE_CODES, (code) => code === appLocale)
+  );
+}
+
 /** Checks translation entries for unique canonical app-locale order. */
 function hasCanonicalTranslations(
   translations: readonly QuranLocalizedTranslation[]
@@ -32,8 +39,7 @@ function hasCanonicalTranslations(
     const previous = translations[index - 1];
     return (
       previous === undefined ||
-      APP_LOCALE_CODES.indexOf(previous.appLocale) <
-        APP_LOCALE_CODES.indexOf(translation.appLocale)
+      localeIndex(previous.appLocale) < localeIndex(translation.appLocale)
     );
   });
 }

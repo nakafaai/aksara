@@ -202,7 +202,7 @@ describe("Quran source contracts", () => {
     );
     expect(quranSourceFileCount(active)).toBe(121);
     expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
-    expect(hasRequiredQuranSources(row.sources.slice(0, -1), active)).toBe(
+    expect(hasRequiredQuranSources(Arr.dropRight(row.sources, 1), active)).toBe(
       false
     );
     expect(
@@ -222,7 +222,7 @@ describe("Quran source contracts", () => {
           kind: "quran-attribution",
           sources: Arr.map(sources, (item) => ({
             ...item,
-            copy: item.copy.slice(0, -1),
+            copy: Arr.dropRight(item.copy, 1),
           })),
           tafsirAccess: access,
         })
