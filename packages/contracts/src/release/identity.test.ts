@@ -28,15 +28,15 @@ const identity = {
 
 describe("active catalog identity", () => {
   it("decodes the complete identity that production readers share", () => {
-    expect(
-      Schema.decodeUnknownSync(ActiveCatalogIdentitySchema)(identity)
-    ).toEqual(identity);
+    expect(Schema.decodeSync(ActiveCatalogIdentitySchema)(identity)).toEqual(
+      identity
+    );
   });
 
   it("requires the integer result count that every release count uses", () => {
     expect(
       Exit.isFailure(
-        Schema.decodeUnknownExit(ActiveCatalogIdentitySchema)({
+        Schema.decodeExit(ActiveCatalogIdentitySchema)({
           ...identity,
           resultCount: 1.5,
         })
