@@ -1,13 +1,17 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Console, Effect, Option, Result } from "effect";
+import { Array as Arr, Console, Effect, Option, Result } from "effect";
 import { parseInfoArguments, printCliInfo } from "#cli/about";
 
 describe("CLI information", () => {
   it.effect("prints stable help and version output", () => {
-    const output: string[] = [];
+    let output: string[] = [];
     const testConsole: Console.Console = Object.assign(Object.create(console), {
       log: (...values: readonly unknown[]) => {
-        output.push(values.join(" "));
+        const line = Arr.join(
+          Arr.map(values, (value) => String(value ?? "")),
+          " "
+        );
+        output = Arr.append(output, line);
       },
     });
 

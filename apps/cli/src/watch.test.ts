@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
+  Array as Arr,
   Deferred,
   Effect,
   Fiber,
@@ -202,20 +203,22 @@ layer(NodeServices.layer)("selected document watch", (it) => {
         ).pipe(Effect.forkChild({ startImmediately: true }));
         const refreshes = yield* awaitRefresh(count);
         yield* Fiber.interrupt(watcher);
-        expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
-          questionPath,
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/item.ts",
-          "packages/corpus/tryout/registry.ts",
-          "packages/corpus/tryout/indonesia/snbt/source.ts",
-          "packages/corpus/tryout/indonesia/country.ts",
-          "packages/corpus/tryout/indonesia/snbt/readiness.ts",
-          "packages/corpus/tryout/readiness/validation.ts",
-          "packages/corpus/tryout/schema.ts",
-          "packages/corpus/tryout/readiness/schema.ts",
-          "packages/corpus/locale/source.ts",
-          "packages/corpus/route/schema.ts",
-          answerPath,
-        ]);
+        expect(Arr.map(selected.files, ({ sourcePath }) => sourcePath)).toEqual(
+          [
+            questionPath,
+            "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/item.ts",
+            "packages/corpus/tryout/registry.ts",
+            "packages/corpus/tryout/indonesia/snbt/source.ts",
+            "packages/corpus/tryout/indonesia/country.ts",
+            "packages/corpus/tryout/indonesia/snbt/readiness.ts",
+            "packages/corpus/tryout/readiness/validation.ts",
+            "packages/corpus/tryout/schema.ts",
+            "packages/corpus/tryout/readiness/schema.ts",
+            "packages/corpus/locale/source.ts",
+            "packages/corpus/route/schema.ts",
+            answerPath,
+          ]
+        );
         expect(refreshes).toBe(1);
       }),
     { timeout: 30_000 }

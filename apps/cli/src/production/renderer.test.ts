@@ -1,6 +1,13 @@
 import { describe, expect, it } from "@effect/vitest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Fiber, Logger, Redacted, References } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Fiber,
+  Logger,
+  Redacted,
+  References,
+} from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
@@ -51,9 +58,9 @@ describe("production renderer", () => {
         domains: RENDERER_MANIFEST.domains,
         publishedDomains: RENDERER_MANIFEST.publishedDomains,
       });
-      const logs: Readonly<Record<string, unknown>>[] = [];
+      let logs: Readonly<Record<string, unknown>>[] = [];
       const logger = Logger.make(({ fiber }) => {
-        logs.push({
+        logs = Arr.append(logs, {
           ...fiber.getRef(References.CurrentLogAnnotations),
         });
       });

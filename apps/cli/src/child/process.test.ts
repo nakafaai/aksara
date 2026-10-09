@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "@effect/vitest";
-import { Effect, Fiber } from "effect";
+import { Array as Arr, Effect, Fiber } from "effect";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
   childHandleReferenced,
@@ -75,12 +75,15 @@ describe("Nakafa process infrastructure", () => {
         vi.stubEnv("AKSARA_TEST_PARENT_SECRET", "must-not-cross");
         const status = yield* processProgram(
           nodeProcess(
-            [
-              "const isolated =",
-              "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
-              'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
-              "process.exit(isolated && allowed ? 0 : 23);",
-            ].join("\n"),
+            Arr.join(
+              [
+                "const isolated =",
+                "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
+                'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
+                "process.exit(isolated && allowed ? 0 : 23);",
+              ],
+              "\n"
+            ),
             { AKSARA_TEST_ALLOWED: "visible" }
           )
         );

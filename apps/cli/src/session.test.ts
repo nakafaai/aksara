@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, Logger, Redacted } from "effect";
+import { Array as Arr, Effect, FileSystem, Logger, Redacted } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { RunningNakafa } from "#cli/child/session";
 import type { PreviewDocumentCompiler } from "#cli/document";
@@ -80,9 +80,9 @@ layer(NodeServices.layer)("preview document refresh", (it) => {
       const repository = yield* acquireRepository();
       const ready = yield* makePreviewReady(repository);
       const control = makeControl();
-      const logs: string[] = [];
+      let logs: string[] = [];
       const logger = Logger.make(({ message }) => {
-        logs.push(String(message));
+        logs = Arr.append(logs, String(message));
       });
       yield* fileSystem.writeFileString(
         repository.documentPath,

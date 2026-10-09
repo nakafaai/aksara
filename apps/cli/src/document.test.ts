@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
-import { Effect, FileSystem, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, Option, Path } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
@@ -99,7 +99,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
         });
         expect(answer.results).toHaveLength(2);
         expect(
-          answer.results.map(({ projection }) => projection)
+          Arr.map(answer.results, ({ projection }) => projection)
         ).toMatchObject([
           { bodyKind: "question", kind: "question-body" },
           { bodyKind: "answer", kind: "question-body" },
@@ -253,12 +253,16 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const repository = yield* repositories.create();
         const { compiler, selected } = yield* makeCompiler(repository);
-        const topology = selected.files.find(({ mode }) => mode === "restart");
-        if (topology === undefined) {
+        const restart = Arr.findFirst(
+          selected.files,
+          ({ mode }) => mode === "restart"
+        );
+        if (Option.isNone(restart)) {
           return yield* Effect.die(
             "Expected the selected material topology source."
           );
         }
+        const topology = restart.value;
         const source = yield* fileSystem.readFileString(topology.absolutePath);
         yield* fileSystem.writeFileString(topology.absolutePath, `${source}\n`);
         const error = yield* compiler.compile.pipe(Effect.flip);

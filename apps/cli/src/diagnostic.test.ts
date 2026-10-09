@@ -3,7 +3,7 @@ import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { describeDocumentFailure } from "#cli/diagnostic";
 import { PreviewRepositoryError, PreviewRestartError } from "#cli/integrity";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -54,7 +54,8 @@ describe("document failure diagnostics", () => {
         ],
         { concurrency: "unbounded" }
       );
-      const diagnostics = failures.map(
+      const diagnostics = Arr.map(
+        failures,
         (failure) => describeDocumentFailure(failure).diagnostic
       );
 
@@ -74,7 +75,8 @@ describe("document failure diagnostics", () => {
     "bounds repeated policy failures and preserves identifier-free rules",
     () =>
       Effect.gen(function* () {
-        const repeated = Array.from({ length: 9 }, () => "{process.env}").join(
+        const repeated = Arr.join(
+          Array.from({ length: 9 }, () => "{process.env}"),
           "\n"
         );
         const [many, identifierFree] = yield* Effect.all(
