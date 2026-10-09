@@ -235,6 +235,17 @@ export const REPORTING_CHILD = Arr.join(
   "\n"
 );
 
+/** Child source that exits 0 only when the parent secret is absent and the allowed variable is visible. */
+export const ISOLATION_CHILD = Arr.join(
+  [
+    "const isolated =",
+    "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
+    'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
+    "process.exit(isolated && allowed ? 0 : 23);",
+  ],
+  "\n"
+);
+
 /** The libuv handle that keeps the event loop alive while a child runs. */
 const CHILD_HANDLE = "ProcessWrap";
 

@@ -75,12 +75,7 @@ export function mdxLocation(node: {
 /** Reads a one-based ESTree source location with an MDX fallback. */
 export function estreeLocation(
   node: {
-    readonly loc?:
-      | {
-          readonly start: { readonly column: number; readonly line: number };
-        }
-      | null
-      | undefined;
+    readonly loc?: { readonly start: SourceLocation } | null | undefined;
   },
   fallback: SourceLocation
 ) {
@@ -132,27 +127,22 @@ function readRichLabelKeys(
   const keys = MutableList.make<string>();
   const names = MutableHashSet.empty<string>();
   for (const property of expression.properties) {
+    const location = estreeLocation(property, fallback);
     if (property.type === "SpreadElement") {
-      return failedLabel("labels-spread", estreeLocation(property, fallback));
+      return failedLabel("labels-spread", location);
     }
     if (property.computed) {
-      return failedLabel(
-        "labels-computed-property",
-        estreeLocation(property, fallback)
-      );
+      return failedLabel("labels-computed-property", location);
     }
     if (property.kind !== "init" || property.method || property.shorthand) {
-      return failedLabel("labels-property", estreeLocation(property, fallback));
+      return failedLabel("labels-property", location);
     }
     const name = staticPropertyName(property);
     if (name === undefined) {
-      return failedLabel("labels-property", estreeLocation(property, fallback));
+      return failedLabel("labels-property", location);
     }
     if (MutableHashSet.has(names, name)) {
-      return failedLabel(
-        "labels-duplicate-property",
-        estreeLocation(property, fallback)
-      );
+      return failedLabel("labels-duplicate-property", location);
     }
     MutableHashSet.add(names, name);
     MutableList.append(keys, name);
@@ -221,9 +211,7 @@ export function inspectMathVisual(
 ): MathVisualInspection {
   const fallback = mdxLocation(node);
   if (node.type === "mdxJsxTextElement") {
-    return {
-      violations: [{ ...fallback, reason: "placement-inline" }],
-    };
+    return { violations: [{ ...fallback, reason: "placement-inline" }] };
   }
   const violations = MutableList.make<MathVisualPolicyViolation>();
   MutableList.appendAll(
