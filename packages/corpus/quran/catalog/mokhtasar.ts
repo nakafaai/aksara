@@ -4,7 +4,7 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { QuranExternalSourceAttributionSchema } from "@nakafa/aksara-contracts/quran/source";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 const MokhtasarEditionSchema = Schema.Struct({
   appLocale: AppLocaleCodeSchema,
@@ -22,7 +22,8 @@ function hasCompleteLocaleCoverage(
 ) {
   return (
     editions.length === APP_LOCALE_CODES.length &&
-    editions.every(
+    Arr.every(
+      editions,
       ({ appLocale }, index) => appLocale === APP_LOCALE_CODES[index]
     )
   );

@@ -16,7 +16,14 @@ import {
   AssessmentLanguagePolicySchema,
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, MutableHashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** Repository-relative root containing every authored Nakafa question. */
@@ -52,13 +59,20 @@ export type QuestionBankIndex = MutableHashMap.MutableHashMap<
 /** Derives exact answer and assessed-language prompt files for one section. */
 export function questionSourceFiles(languagePolicy: AssessmentLanguagePolicy) {
   return Object.freeze(
-    [
-      "item.ts",
-      ...ACTIVE_APP_LOCALES.map((appLocale) => `answer.${appLocale}.mdx`),
-      ...questionArtifactLocalesForPolicy(languagePolicy).map(
-        (artifactLocale) => `question.${artifactLocale}.mdx`
-      ),
-    ].sort()
+    Arr.sort(
+      [
+        "item.ts",
+        ...Arr.map(
+          ACTIVE_APP_LOCALES,
+          (appLocale) => `answer.${appLocale}.mdx`
+        ),
+        ...Arr.map(
+          questionArtifactLocalesForPolicy(languagePolicy),
+          (artifactLocale) => `question.${artifactLocale}.mdx`
+        ),
+      ],
+      Order.String
+    )
   );
 }
 
@@ -75,8 +89,8 @@ export function locateQuestionEntry(entry: string, separator: string) {
     return;
   }
   return {
-    file: segments.slice(questionIndex + 1).join("/"),
-    root: segments.slice(0, questionIndex + 1).join("/"),
+    file: Arr.join(segments.slice(questionIndex + 1), "/"),
+    root: Arr.join(segments.slice(0, questionIndex + 1), "/"),
   };
 }
 
@@ -91,8 +105,10 @@ export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
 
 /** Flattens reviewed hierarchy into the section-owned question-bank seams. */
 function questionBankSections(sources: readonly TryoutExamSource[]) {
-  return sources.flatMap(({ tracks }) =>
-    tracks.flatMap(({ sets }) => sets.flatMap(({ sections }) => sections))
+  return Arr.flatMap(sources, ({ tracks }) =>
+    Arr.flatMap(tracks, ({ sets }) =>
+      Arr.flatMap(sets, ({ sections }) => sections)
+    )
   );
 }
 

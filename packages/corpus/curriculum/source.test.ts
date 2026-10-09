@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import {
   CurriculumCatalogError,
@@ -14,7 +14,7 @@ describe("curriculum source catalog", () => {
       Effect.gen(function* () {
         const curricula = yield* decodeCurriculumCatalog();
 
-        expect(curricula.map(({ programKey }) => programKey)).toEqual([
+        expect(Arr.map(curricula, ({ programKey }) => programKey)).toEqual([
           "cambridge-international",
           "merdeka",
           "singapore-moe",
@@ -27,7 +27,7 @@ describe("curriculum source catalog", () => {
     Effect.gen(function* () {
       const curricula = yield* decodeCurriculumCatalog();
       const canonical = yield* validateCurriculumCatalog(
-        [...curricula].reverse()
+        Arr.reverse(curricula)
       );
 
       expect(canonical).toEqual(curricula);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import {
   AssessmentReadinessSchema,
@@ -112,7 +112,10 @@ describe("assessment readiness schema", () => {
 
       expect(readiness.sections[0]?.marks?.value).toEqual(marks);
       expect(
-        failures.every(({ _tag }) => _tag === "AssessmentReadinessDecodeError")
+        Arr.every(
+          failures,
+          ({ _tag }) => _tag === "AssessmentReadinessDecodeError"
+        )
       ).toBe(true);
       expect(Exit.isFailure(editorial)).toBe(true);
     })
@@ -158,7 +161,10 @@ describe("assessment readiness schema", () => {
       const failures = yield* Effect.all([duplicate, unordered, unresolved]);
 
       expect(
-        failures.every(({ _tag }) => _tag === "AssessmentReadinessDecodeError")
+        Arr.every(
+          failures,
+          ({ _tag }) => _tag === "AssessmentReadinessDecodeError"
+        )
       ).toBe(true);
     })
   );
@@ -211,7 +217,10 @@ describe("assessment readiness schema", () => {
       ]);
 
       expect(
-        failures.every(({ _tag }) => _tag === "AssessmentReadinessDecodeError")
+        Arr.every(
+          failures,
+          ({ _tag }) => _tag === "AssessmentReadinessDecodeError"
+        )
       ).toBe(true);
     })
   );

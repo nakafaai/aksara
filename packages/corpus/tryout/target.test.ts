@@ -10,7 +10,7 @@ import {
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
 } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import {
   type QuestionEntry,
   QuestionEntrySchema,
@@ -150,12 +150,13 @@ layer(questionTestLayer)("tryout target", (it) => {
     () =>
       Effect.gen(function* () {
         const fixture = yield* loadFixture();
-        const snbt = yield* Effect.fromNullishOr(
-          fixture.sources.find(({ examKey }) => examKey === "snbt")
+        const snbt = yield* Effect.fromOption(
+          Arr.findFirst(fixture.sources, ({ examKey }) => examKey === "snbt")
         );
         /** Finds every catalog row that owns the selected hierarchy kind. */
         const matches = (kind: TargetRowKind) =>
-          fixture.rows.filter(
+          Arr.filter(
+            fixture.rows,
             (row) =>
               row.kind === kind &&
               row.examKey === "snbt" &&
@@ -169,27 +170,24 @@ layer(questionTestLayer)("tryout target", (it) => {
           );
         /** Removes the selected row kind from the canonical catalog. */
         const without = (kind: TargetRowKind) =>
-          fixture.rows.filter((row) => !matches(kind).includes(row));
+          Arr.filter(fixture.rows, (row) => !matches(kind).includes(row));
         /** Duplicates the selected row kind in the canonical catalog. */
         const duplicate = (kind: TargetRowKind) => [
           ...fixture.rows,
           ...matches(kind),
         ];
-        const hierarchyFailures = (["exam", "track", "set", "section"] as const)
-          .flatMap((kind) => [without(kind), duplicate(kind)])
-          .map((rows) =>
-            rejectTarget(
-              rows,
-              fixture.sources,
-              fixture.prompt,
-              fixture.question
-            )
-          );
+        const hierarchyRows = Arr.flatMap(
+          ["exam", "track", "set", "section"] as const,
+          (kind) => [without(kind), duplicate(kind)]
+        );
+        const hierarchyFailures = Arr.map(hierarchyRows, (rows) =>
+          rejectTarget(rows, fixture.sources, fixture.prompt, fixture.question)
+        );
         const failures = yield* Effect.all(
           [
             rejectTarget(
               fixture.rows,
-              fixture.sources.filter(({ examKey }) => examKey !== "snbt"),
+              Arr.filter(fixture.sources, ({ examKey }) => examKey !== "snbt"),
               fixture.prompt,
               fixture.question
             ),
@@ -203,11 +201,12 @@ layer(questionTestLayer)("tryout target", (it) => {
           ],
           { concurrency: "unbounded" }
         );
-        const targetFailures = failures.filter(
+        const targetFailures = Arr.filter(
+          failures,
           (error) => error._tag === "TryoutTargetError"
         );
 
-        expect(targetFailures.map(({ rowKind }) => rowKind)).toEqual([
+        expect(Arr.map(targetFailures, ({ rowKind }) => rowKind)).toEqual([
           "context",
           "context",
           "exam",
@@ -219,7 +218,7 @@ layer(questionTestLayer)("tryout target", (it) => {
           "section",
           "section",
         ]);
-        expect(targetFailures.map(({ count }) => count)).toEqual([
+        expect(Arr.map(targetFailures, ({ count }) => count)).toEqual([
           0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
         ]);
       }),
@@ -231,7 +230,7 @@ layer(questionTestLayer)("tryout target", (it) => {
     () =>
       Effect.gen(function* () {
         const fixture = yield* loadFixture();
-        const rows = fixture.rows.map((row) =>
+        const rows = Arr.map(fixture.rows, (row) =>
           row.kind === "set" &&
           row.examKey === "snbt" &&
           row.appLocale === "en" &&
@@ -265,7 +264,7 @@ layer(questionTestLayer)("tryout target", (it) => {
               ),
             }),
             rejectTarget(
-              fixture.rows.filter(({ appLocale }) => appLocale !== "de"),
+              Arr.filter(fixture.rows, ({ appLocale }) => appLocale !== "de"),
               fixture.sources,
               {
                 ...fixture.prompt,

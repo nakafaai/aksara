@@ -12,7 +12,7 @@ import {
   TryoutTrackKindSchema,
   TryoutVisibilitySchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
-import { Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 import {
@@ -52,7 +52,8 @@ export type TryoutSectionSourceInput = typeof TryoutSectionSourceSchema.Encoded;
 
 /** Requires visible sections or one direct-entry section in a try-out set. */
 function hasReachableTryoutSections(source: TryoutSetSourceFields): boolean {
-  const internalEntryCount = source.sections.filter(
+  const internalEntryCount = Arr.filter(
+    source.sections,
     (section) => section.visibility === "internal-entry"
   ).length;
   if (internalEntryCount === 0) {
@@ -114,9 +115,9 @@ type TryoutExamSourceFields = typeof TryoutExamSourceFieldsSchema.Type;
 
 /** Checks every section path against its exact country, exam, section, and set. */
 function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
-  return source.tracks.every((track) =>
-    track.sets.every((set) =>
-      set.sections.every((section) => {
+  return Arr.every(source.tracks, (track) =>
+    Arr.every(track.sets, (set) =>
+      Arr.every(set.sections, (section) => {
         const parts = questionSetKeyParts(section.questionSourcePath);
         return (
           parts.countryKey === source.countryKey &&
@@ -132,9 +133,10 @@ function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
 /** Requires marks on every section of a penalized exam and on no other. */
 function hasScoringMarks(source: TryoutExamSourceFields) {
   const penalized = source.scoringStrategy === "penalized";
-  return source.tracks.every((track) =>
-    track.sets.every((set) =>
-      set.sections.every(
+  return Arr.every(source.tracks, (track) =>
+    Arr.every(track.sets, (set) =>
+      Arr.every(
+        set.sections,
         (section) => (section.marks !== undefined) === penalized
       )
     )

@@ -1,3 +1,5 @@
+import { Array as Arr } from "effect";
+
 import { TKA_QUESTION_ROOT } from "#corpus/tryout/indonesia/tka/identity";
 import type { TryoutTrackSourceInput } from "#corpus/tryout/schema";
 
@@ -11,7 +13,7 @@ export const tkaIndonesianTrack = {
     en: "indonesian",
     id: "bahasa-indonesia",
   },
-  sets: [1, 2, 3].map((setNumber) => {
+  sets: Arr.map([1, 2, 3], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,

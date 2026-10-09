@@ -4,7 +4,7 @@ import {
   type LearningProgram,
   LearningProgramKeySchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, HashMap, Option, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
 
 /** Curriculum routes cannot be derived from the supplied source ownership. */
 export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
@@ -38,11 +38,12 @@ export const requireCurriculumProgram = Effect.fn(
 export const requireProgramTranslation = Effect.fn(
   "AksaraCorpus.requireProgramTranslation"
 )(function* (program: LearningProgram, appLocale: AppLocale) {
-  const translation = program.translations.find(
+  const translation = Arr.findFirst(
+    program.translations,
     (candidate) => candidate.appLocale === appLocale
   );
-  if (translation !== undefined) {
-    return translation;
+  if (Option.isSome(translation)) {
+    return translation.value;
   }
   return yield* new CurriculumRouteError({
     code: "translation",

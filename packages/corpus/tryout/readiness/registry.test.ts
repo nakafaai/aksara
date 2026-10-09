@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect, MutableHashMap, Option } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Option } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import {
@@ -70,8 +70,8 @@ layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
         const { questions, readiness, sources } =
           yield* loadReadinessRegistry();
         const [snbt, ...tka] = readiness;
-        const snbtSource = yield* Effect.fromNullishOr(
-          sources.find(({ examKey }) => examKey === "snbt")
+        const snbtSource = yield* Effect.fromOption(
+          Arr.findFirst(sources, ({ examKey }) => examKey === "snbt")
         );
         const failures = yield* Effect.all([
           validateAssessmentReadinessEntries(
@@ -118,21 +118,23 @@ layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
           yield* loadReadinessRegistry();
         const englishSet =
           "question-bank/tryout/indonesia/tka/english-language/set-1";
-        const textual = yield* Effect.fromNullishOr(
-          questions.find(
+        const textual = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
             ({ item, setKey }) =>
               setKey === englishSet &&
               item.blueprint?.topic === "explicit-information"
           )
         );
-        const inferential = yield* Effect.fromNullishOr(
-          questions.find(
+        const inferential = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
             ({ item, setKey }) =>
               setKey === englishSet &&
               item.blueprint?.topic === "supporting-detail"
           )
         );
-        const swapped = questions.map<QuestionSource>((question) => {
+        const swapped = Arr.map(questions, (question): QuestionSource => {
           const { blueprint } = question.item;
           if (blueprint === undefined) {
             return question;
@@ -181,7 +183,8 @@ layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
           for (const track of source.tracks) {
             for (const set of track.sets) {
               for (const section of set.sections) {
-                const activeQuestions = questions.filter(
+                const activeQuestions = Arr.filter(
+                  questions,
                   ({ questionNumber, setKey }) =>
                     setKey === section.questionSourcePath &&
                     questionNumber <= section.questionCount
@@ -204,8 +207,12 @@ layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
                         )
                       ) ??
                       Array.from({ length: response.options.length }, () => 0);
-                    const correctIndex = response.options.findIndex(
-                      ({ isCorrect }) => isCorrect
+                    const correctIndex = Option.getOrElse(
+                      Arr.findFirstIndex(
+                        response.options,
+                        ({ isCorrect }) => isCorrect
+                      ),
+                      () => -1
                     );
                     positions[correctIndex] =
                       (positions[correctIndex] ?? 0) + 1;
@@ -219,7 +226,10 @@ layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
                   for (const positions of MutableHashMap.values(
                     positionsByOptionCount
                   )) {
-                    const distribution = positions.join(",");
+                    const distribution = Arr.join(
+                      Arr.map(positions, String),
+                      ","
+                    );
                     expect(
                       Math.max(...positions) - Math.min(...positions),
                       `${section.questionSourcePath}:${responseLocale}:${distribution}`

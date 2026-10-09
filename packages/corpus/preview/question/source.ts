@@ -4,7 +4,7 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { questionKeyParts } from "@nakafa/aksara-contracts/question/identity";
-import { Effect, HashMap, Option, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
 import type { QuestionPreviewSource } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
 import {
@@ -66,7 +66,7 @@ export const selectQuestionPreviewSources = Effect.fn(
   questionSources: readonly QuestionSource[]
 ) {
   const sourcesByQuestion = HashMap.fromIterable(
-    questionSources.map((source): [string, QuestionSource] => [
+    Arr.map(questionSources, (source): [string, QuestionSource] => [
       source.questionKey,
       source,
     ])

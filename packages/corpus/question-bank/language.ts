@@ -7,7 +7,7 @@ import {
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import type { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 /** An authored item does not exactly match its section-owned locales. */
 export class QuestionItemLocaleError extends Schema.TaggedError<QuestionItemLocaleError>()(
@@ -21,7 +21,8 @@ export class QuestionItemLocaleError extends Schema.TaggedError<QuestionItemLoca
 
 /** Returns canonical locale keys present in one decoded item. */
 function actualItemLocales(item: typeof QuestionItemSchema.Type) {
-  return APP_LOCALE_CODES.filter(
+  return Arr.filter(
+    APP_LOCALE_CODES,
     (appLocale) => item.responses[appLocale] !== undefined
   );
 }
@@ -37,7 +38,8 @@ export const validateQuestionItemLocales = Effect.fn(
   const actualLocales = actualItemLocales(item);
   const matches =
     actualLocales.length === expectedLocales.length &&
-    expectedLocales.every(
+    Arr.every(
+      expectedLocales,
       (expected, index) => actualLocales[index] === artifactLocaleCode(expected)
     );
   if (!matches) {

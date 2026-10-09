@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   decodePagePreviewEntries,
   decodePagePreviewEntry,
@@ -24,7 +24,7 @@ describe("public page preview projection", () => {
           [pageSource()]
         );
 
-        expect(entries.map(({ route }) => route.appLocale)).toEqual([
+        expect(Arr.map(entries, ({ route }) => route.appLocale)).toEqual([
           "en",
           "de",
         ]);

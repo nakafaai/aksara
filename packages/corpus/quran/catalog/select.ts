@@ -17,7 +17,7 @@ import {
   type QuranSourceCopy,
   quranSourceIds,
 } from "@nakafa/aksara-contracts/quran/source";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 import {
   type QuranCatalogEntry,
@@ -53,7 +53,8 @@ const requireSource = Effect.fn("AksaraCorpus.requireQuranCatalogSource")(
     activeAppLocales: ActiveAppLocaleList,
     catalog: readonly QuranCatalogEntry[]
   ) {
-    const matches = catalog.filter(
+    const matches = Arr.filter(
+      catalog,
       ({ attribution }) => attribution.id === sourceId
     );
     const [entry] = matches;
@@ -83,7 +84,8 @@ const localizeSource = Effect.fn("AksaraCorpus.localizeQuranCatalogSource")(
     const copy = yield* Effect.forEach(
       activeAppLocales,
       (appLocale) => {
-        const matches = attribution.copy.filter(
+        const matches = Arr.filter(
+          attribution.copy,
           (candidate) => candidate.appLocale === appLocale
         );
         const [selected] = matches;
@@ -129,7 +131,7 @@ export const quranAttributionRowFor = Effect.fn(
   const selectedAccess = yield* Effect.forEach(
     activeAppLocales,
     (appLocale) => {
-      const matches = catalog.flatMap(({ tafsirAccess }) =>
+      const matches = Arr.flatMap(catalog, ({ tafsirAccess }) =>
         tafsirAccess?.appLocale === appLocale ? [tafsirAccess] : []
       );
       const [selected] = matches;
@@ -166,13 +168,17 @@ export const quranProvenanceRecordsFor = Effect.fn(
     quranProvenanceScopes(activeAppLocales),
     (scope) =>
       Effect.gen(function* () {
-        const matches = catalog.flatMap((catalogEntry) =>
-          catalogEntry.provenance
-            .filter((provenance) => provenance.scope === scope)
-            .map((provenance) => ({
+        const matches = Arr.flatMap(catalog, (catalogEntry) =>
+          Arr.map(
+            Arr.filter(
+              catalogEntry.provenance,
+              (provenance) => provenance.scope === scope
+            ),
+            (provenance) => ({
               attribution: catalogEntry.attribution,
               provenance,
-            }))
+            })
+          )
         );
         const [selected] = matches;
         if (selected === undefined || matches.length > 1) {

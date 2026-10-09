@@ -9,7 +9,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Option, Schema, Stream } from "effect";
 import { streamQuranRows } from "#corpus/quran/projection";
 import {
   quranTestSourcesLayer,
@@ -32,6 +32,13 @@ function isSearch(row: QuranRowPayload): row is QuranSearchRow {
   return row.kind === "quran-search";
 }
 
+/** Finds the first search row of one locale, or undefined when that locale has none. */
+function findLocaleSearch(rows: readonly QuranSearchRow[], appLocale: string) {
+  return Option.getOrUndefined(
+    Arr.findFirst(rows, (row) => row.appLocale === appLocale)
+  );
+}
+
 layer(quranTestSourcesLayer)("Quran projection", (it) => {
   it.effect(
     "emits the complete bounded runtime and locale search snapshot",
@@ -39,15 +46,17 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
       Effect.gen(function* () {
         const source = yield* testQuranRegistry;
         const rows = yield* Stream.runCollect(streamQuranRows(source));
-        const surahs = rows.filter(({ kind }) => kind === "quran-surah");
-        const attributions = rows.filter(
+        const surahs = Arr.filter(rows, ({ kind }) => kind === "quran-surah");
+        const attributions = Arr.filter(
+          rows,
           ({ kind }) => kind === "quran-attribution"
         );
-        const chunks = rows.filter(isChunk);
-        const searches = rows.filter(isSearch);
-        const verseCount = chunks.reduce(
-          (count, { verses }) => count + verses.length,
-          0
+        const chunks = Arr.filter(rows, isChunk);
+        const searches = Arr.filter(rows, isSearch);
+        const verseCount = Arr.reduce(
+          chunks,
+          0,
+          (count, { verses }) => count + verses.length
         );
         const firstChunks = chunks.slice(0, 2);
         const firstSearches = searches.slice(0, 2);
@@ -116,28 +125,31 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
             title: "1. Al-Faatiha",
           },
         ]);
-        const openingSearches = searches.filter(
+        const openingSearches = Arr.filter(
+          searches,
           ({ surahNumber }) => surahNumber === 1
         );
+        expect(findLocaleSearch(openingSearches, "en")?.text).toContain(
+          "The Opening"
+        );
+        expect(findLocaleSearch(openingSearches, "id")?.text).toContain(
+          "Pembuka"
+        );
+        expect(findLocaleSearch(openingSearches, "de")?.text).toContain(
+          "Die Eröffnende"
+        );
         expect(
-          openingSearches.find(({ appLocale }) => appLocale === "en")?.text
-        ).toContain("The Opening");
-        expect(
-          openingSearches.find(({ appLocale }) => appLocale === "id")?.text
-        ).toContain("Pembuka");
-        expect(
-          openingSearches.find(({ appLocale }) => appLocale === "de")?.text
-        ).toContain("Die Eröffnende");
-        expect(
-          openingSearches
-            .filter(({ appLocale }) => appLocale !== "en")
-            .every(({ text }) => !text.includes("The Opening"))
+          Arr.every(
+            Arr.filter(openingSearches, ({ appLocale }) => appLocale !== "en"),
+            ({ text }) => !text.includes("The Opening")
+          )
         ).toBe(true);
         expect(
-          chunks.every(
+          Arr.every(
+            chunks,
             ({ verses }) =>
               verses.length <= QURAN_CHUNK_SIZE &&
-              verses.every(({ tafsir }) => {
+              Arr.every(verses, ({ tafsir }) => {
                 const [indonesian] = tafsir;
                 return (
                   indonesian?.appLocale === "id" &&
@@ -188,11 +200,11 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
         const rows = yield* streamQuranRows(source, ACTIVE_APP_LOCALES).pipe(
           Stream.runCollect
         );
-        const attribution = rows.find(
-          ({ kind }) => kind === "quran-attribution"
+        const attribution = Option.getOrUndefined(
+          Arr.findFirst(rows, ({ kind }) => kind === "quran-attribution")
         );
-        const firstChunk = rows.find(isChunk);
-        const searches = rows.filter(isSearch);
+        const firstChunk = Option.getOrUndefined(Arr.findFirst(rows, isChunk));
+        const searches = Arr.filter(rows, isSearch);
 
         expect(attribution).toMatchObject({
           activeAppLocales: ["en", "id", "de"],
@@ -215,9 +227,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           ])
         );
         expect(searches).toHaveLength(QURAN_SURAH_COUNT * 3);
-        expect(
-          searches.find(({ appLocale }) => appLocale === "de")
-        ).toMatchObject({
+        expect(findLocaleSearch(searches, "de")).toMatchObject({
           graph: { assetId: "asset:de:quran:quran-surah:1" },
           route: "quran/1",
         });
@@ -274,9 +284,9 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           Stream.runCollect
         );
 
-        expect(
-          searches.find(({ appLocale }) => appLocale === "id")?.text
-        ).toContain("Catatan tafsir.");
+        expect(findLocaleSearch(searches, "id")?.text).toContain(
+          "Catatan tafsir."
+        );
       })
   );
 });

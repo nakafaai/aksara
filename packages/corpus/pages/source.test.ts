@@ -5,6 +5,7 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -68,7 +69,7 @@ layer(Path.layer)("public page source", (it) => {
         const defaults = yield* decodePageSources();
         const injected = yield* decodePageSources([pageSource()]);
 
-        expect(defaults.map(({ pageKey }) => pageKey)).toEqual([
+        expect(Arr.map(defaults, ({ pageKey }) => pageKey)).toEqual([
           "developers",
           "imprint",
           "privacy-policy",
@@ -127,7 +128,7 @@ layer(Path.layer)("public page source", (it) => {
         const corpusRoot = yield* resolveCorpusRoot;
         const entries = yield* decodePageRegistry().pipe(
           Effect.map((registry) =>
-            registry.filter(({ route }) => route.pageKey === "developers")
+            Arr.filter(registry, ({ route }) => route.pageKey === "developers")
           )
         );
         const documents = yield* Effect.forEach(entries, (entry) =>

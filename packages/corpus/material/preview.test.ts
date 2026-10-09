@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import { decodeMaterialDomains } from "#corpus/material/domain";
 import {
@@ -23,8 +23,11 @@ const germanPath = CorpusSourcePathSchema.make(
 const mathematicsDomain = Effect.fn("AksaraCorpus.test.mathematicsDomain")(
   function* () {
     const descriptors = yield* decodeMaterialDomains();
-    const descriptor = descriptors.find(({ key }) => key === "mathematics");
-    return yield* Effect.fromNullishOr(descriptor);
+    const descriptor = Arr.findFirst(
+      descriptors,
+      ({ key }) => key === "mathematics"
+    );
+    return yield* Effect.fromOption(descriptor);
   }
 );
 
@@ -38,9 +41,14 @@ layer(NodeServices.layer)("material preview projection", (it) => {
         [descriptor]
       );
 
-      expect(entries.map(({ route }) => route.appLocale)).toEqual(["de", "en"]);
+      expect(Arr.map(entries, ({ route }) => route.appLocale)).toEqual([
+        "de",
+        "en",
+      ]);
       expect(
-        entries.find(({ route }) => route.appLocale === "de")
+        Option.getOrUndefined(
+          Arr.findFirst(entries, ({ route }) => route.appLocale === "de")
+        )
       ).toMatchObject({
         route: {
           contentKey:

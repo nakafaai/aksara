@@ -1,4 +1,4 @@
-import { HashSet, Schema } from "effect";
+import { Array as Arr, HashSet, Schema } from "effect";
 
 const SHINGLE_SIZE = 3;
 const MASKED_FLOOR = 0.8;
@@ -14,12 +14,12 @@ export type Print = typeof PrintSchema.Type;
 /** Collects the word 3-gram shingles of one word list. */
 export function shingles(list: readonly string[]): HashSet.HashSet<string> {
   if (list.length <= SHINGLE_SIZE) {
-    return HashSet.make(list.join(" "));
+    return HashSet.make(Arr.join(list, " "));
   }
   return HashSet.fromIterable(
-    list
-      .slice(SHINGLE_SIZE - 1)
-      .map((_, index) => list.slice(index, index + SHINGLE_SIZE).join(" "))
+    Arr.map(list.slice(SHINGLE_SIZE - 1), (_, index) =>
+      Arr.join(list.slice(index, index + SHINGLE_SIZE), " ")
+    )
   );
 }
 
@@ -28,7 +28,7 @@ function jaccard(
   left: HashSet.HashSet<string>,
   right: HashSet.HashSet<string>
 ) {
-  const shared = [...left].filter((shingle) =>
+  const shared = Arr.filter(left, (shingle) =>
     HashSet.has(right, shingle)
   ).length;
   return shared / (HashSet.size(left) + HashSet.size(right) - shared);

@@ -3,7 +3,7 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Record as Rec } from "effect";
+import { Array as Arr, Effect, Option, Record as Rec } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { pageSource } from "#corpus/test/page";
 
@@ -27,15 +27,21 @@ describe("public page registry", () => {
         expect(entries).toHaveLength(15);
         expect(
           Rec.fromEntries(
-            ["en", "id", "de"].map((appLocale) => [
+            Arr.map(["en", "id", "de"], (appLocale) => [
               appLocale,
-              entries.filter((entry) => entry.route.appLocale === appLocale)
-                .length,
+              Arr.filter(
+                entries,
+                (entry) => entry.route.appLocale === appLocale
+              ).length,
             ])
           )
         ).toEqual({ de: 5, en: 5, id: 5 });
-        const englishImprint = entries.find(
-          ({ route }) => route.appLocale === "en" && route.pageKey === "imprint"
+        const englishImprint = Option.getOrUndefined(
+          Arr.findFirst(
+            entries,
+            ({ route }) =>
+              route.appLocale === "en" && route.pageKey === "imprint"
+          )
         );
         expect(englishImprint).toMatchObject({
           delivery: "public",

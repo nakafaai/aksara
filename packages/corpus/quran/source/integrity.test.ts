@@ -4,7 +4,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Path, Stream } from "effect";
+import { Array as Arr, Effect, Path, Stream } from "effect";
 
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
@@ -24,7 +24,7 @@ layer(NodeServices.layer)("Quran source integrity", (it) => {
         });
         expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
         expect(
-          surahs.reduce((count, surah) => count + surah.verses.length, 0)
+          Arr.reduce(surahs, 0, (count, surah) => count + surah.verses.length)
         ).toBe(QURAN_VERSE_COUNT);
         const [first] = surahs;
         expect(first?.verses[0]?.translation.de?.text).toBe(

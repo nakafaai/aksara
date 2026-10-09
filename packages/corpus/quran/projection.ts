@@ -20,7 +20,7 @@ import {
   QURAN_CHUNK_SIZE,
   QuranSurahRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, MutableList, Stream } from "effect";
 import {
   appLocaleCode,
   requireSourceLocale,
@@ -85,7 +85,7 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
     (verse) => projectVerse(verse, activeAppLocales),
     { concurrency: "unbounded" }
   );
-  const chunks: QuranRowPayload[] = [];
+  const chunks = MutableList.make<QuranRowPayload>();
   for (const [index, firstVerse] of projectedVerses.entries()) {
     if (index % QURAN_CHUNK_SIZE !== 0) {
       continue;
@@ -99,8 +99,9 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
       ...remaining,
     ];
     const [first] = verses;
-    const last = verses.reduce((_previous, verse) => verse);
-    chunks.push(
+    const last = Arr.lastNonEmpty(verses);
+    MutableList.append<QuranRowPayload>(
+      chunks,
       QuranChunkRowSchema.make({
         firstQuranNumber: first.number.inQuran,
         firstVerse: first.number.inSurah,
@@ -111,7 +112,7 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
       })
     );
   }
-  return chunks;
+  return MutableList.toArray(chunks);
 });
 
 /** Builds one search row only from exact source-owned text. */
@@ -120,32 +121,38 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
   appLocale: AppLocale
 ) {
   const title = `${surah.number}. ${surah.name.transliteration}`;
-  const verseText = (yield* Effect.forEach(
-    surah.verses,
-    (verse) =>
-      requireSourceLocale(
-        verse.translation,
-        appLocale,
-        `Quran search verse ${verse.number.inQuran}`
-      ).pipe(
-        Effect.map((translation) => {
-          const values = [
-            verse.number.inSurah.toString(),
-            verse.text.arabic,
-            translation.text,
-            translation.footnotes,
-          ];
-          if (appLocale === "id") {
-            values.push(verse.tafsir.id.text);
-            if (verse.tafsir.id.footnotes !== null) {
-              values.push(verse.tafsir.id.footnotes);
-            }
-          }
-          return values.join(" ");
-        })
-      ),
-    { concurrency: "unbounded" }
-  )).join(" ");
+  const verseText = Arr.join(
+    yield* Effect.forEach(
+      surah.verses,
+      (verse) =>
+        requireSourceLocale(
+          verse.translation,
+          appLocale,
+          `Quran search verse ${verse.number.inQuran}`
+        ).pipe(
+          Effect.map((translation) => {
+            const values = [
+              verse.number.inSurah.toString(),
+              verse.text.arabic,
+              translation.text,
+              translation.footnotes,
+            ];
+            const tafsirValues =
+              appLocale === "id"
+                ? [
+                    verse.tafsir.id.text,
+                    ...(verse.tafsir.id.footnotes === null
+                      ? []
+                      : [verse.tafsir.id.footnotes]),
+                  ]
+                : [];
+            return Arr.join([...values, ...tafsirValues], " ");
+          })
+        ),
+      { concurrency: "unbounded" }
+    ),
+    " "
+  );
   const graph = yield* makeLearningGraphIdentity({
     appLocale,
     concept: ["quran", "surah", surah.number.toString()],
@@ -158,13 +165,16 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
     kind: "quran-search",
     route: PublicPathSchema.make(`quran/${surah.number}`),
     surahNumber: surah.number,
-    text: [
-      title,
-      surah.name.arabic,
-      surah.name.meaning[appLocaleCode(appLocale)],
-      surah.revelation.place,
-      verseText,
-    ].join(" "),
+    text: Arr.join(
+      [
+        title,
+        surah.name.arabic,
+        surah.name.meaning[appLocaleCode(appLocale)],
+        surah.revelation.place,
+        verseText,
+      ],
+      " "
+    ),
     title,
   });
 });

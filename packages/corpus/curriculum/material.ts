@@ -5,7 +5,14 @@ import {
 import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, HashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 import type {
   CurriculumMaterialNode,
   CurriculumNodeTranslationMapSchema,
@@ -77,7 +84,7 @@ const duplicatesMaterialDisplay = Effect.fn(
     nodeKey,
     programKey
   );
-  return APP_LOCALE_CODES.every((code) => {
+  return Arr.every(APP_LOCALE_CODES, (code) => {
     const appLocale = AppLocaleSchema.make(code);
     const overrideCopy = sourceLocaleValue(override, appLocale);
     if (overrideCopy === undefined) {
@@ -114,7 +121,8 @@ export const resolveCurriculumMaterial = Effect.fn(
     });
   }
 
-  const materials = [firstMaterial];
+  const materialList = MutableList.make<LessonMaterialSource>();
+  MutableList.append(materialList, firstMaterial);
   for (const materialKey of node.materialKeys.slice(1)) {
     const material = Option.getOrUndefined(
       HashMap.get(materialByKey, materialKey)
@@ -127,8 +135,9 @@ export const resolveCurriculumMaterial = Effect.fn(
         value: materialKey,
       });
     }
-    materials.push(material);
+    MutableList.append(materialList, material);
   }
+  const materials = MutableList.toArray(materialList);
 
   const materialDomain = firstMaterial.domain;
   for (const material of materials) {
@@ -158,7 +167,7 @@ export const resolveCurriculumMaterial = Effect.fn(
         code: "multi-material",
         nodeKey: node.key,
         programKey: curriculum.programKey,
-        value: node.materialKeys.join(","),
+        value: Arr.join(node.materialKeys, ","),
       });
     }
     translations = node.displayOverride;

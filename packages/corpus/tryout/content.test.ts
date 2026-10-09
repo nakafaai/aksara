@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   corpusRoot,
   questionLayer,
@@ -20,10 +20,10 @@ layer(realQuestionCorpusLayer)("tryout content", (it) => {
         expect(content.entries).toHaveLength(7400);
         expect(content.projection.placements).toHaveLength(5550);
         expect(
-          content.entries.filter(({ bodyKind }) => bodyKind === "question")
+          Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "question")
         ).toHaveLength(1850);
         expect(
-          content.entries.filter(({ bodyKind }) => bodyKind === "answer")
+          Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "answer")
         ).toHaveLength(5550);
       }),
     { timeout: 30_000 }

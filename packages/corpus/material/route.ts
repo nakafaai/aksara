@@ -1,7 +1,7 @@
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { materialPublicNamespace } from "@nakafa/aksara-contracts/projection/material";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { requireSourceLocale } from "#corpus/locale/source";
 import type { MaterialDomainDescriptor } from "#corpus/material/domain";
 import type {
@@ -24,7 +24,8 @@ export const materialTopicPath = Effect.fn("AksaraCorpus.materialTopicPath")(
       { concurrency: 2 }
     );
     return PublicPathSchema.make(
-      [materialPublicNamespace(appLocale), resolvedDomainSlug, topicSlug].join(
+      Arr.join(
+        [materialPublicNamespace(appLocale), resolvedDomainSlug, topicSlug],
         "/"
       )
     );

@@ -9,7 +9,13 @@ import {
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, Array as EffectArray, HashMap, Schema } from "effect";
+import {
+  Effect,
+  Array as EffectArray,
+  HashMap,
+  MutableList,
+  Schema,
+} from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import {
@@ -101,13 +107,20 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
     materialByKey: HashMap.HashMap<string, LessonMaterialSource>,
     descriptors: readonly MaterialDomainDescriptor[]
   ) {
-    const nodes: ProjectedCurriculumNode[] = [];
-    const pending: PendingCurriculumNode[] = [...curriculum.tree]
-      .reverse()
-      .map((node) => ({ ancestors: [], inheritedDomain: undefined, node }));
-    while (EffectArray.isArrayNonEmpty(pending)) {
-      const current = EffectArray.lastNonEmpty(pending);
-      pending.pop();
+    const nodes = MutableList.make<ProjectedCurriculumNode>();
+    // The head of pending is the next node in pre-order, so pending is a stack.
+    const pending = MutableList.make<PendingCurriculumNode>();
+    MutableList.prependAll(
+      pending,
+      EffectArray.map(curriculum.tree, (node) => ({
+        ancestors: [],
+        inheritedDomain: undefined,
+        node,
+      }))
+    );
+    let next = MutableList.take(pending);
+    while (next !== MutableList.Empty) {
+      const current = next;
       const { inheritedDomain, node } = current;
       const ownsMaterial = "materialKeys" in node;
       let materialDomain = inheritedDomain;
@@ -142,10 +155,11 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
         materialDomain,
         translations
       );
-      nodes.push(projected.node);
+      MutableList.append(nodes, projected.node);
       if ("children" in node && node.children) {
-        pending.push(
-          ...[...node.children].reverse().map((child) => ({
+        MutableList.prependAll(
+          pending,
+          EffectArray.map(node.children, (child) => ({
             ancestors: projected.path,
             inheritedDomain: materialDomain,
             node: child,
@@ -153,8 +167,9 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
           }))
         );
       }
+      next = MutableList.take(pending);
     }
-    return nodes;
+    return MutableList.toArray(nodes);
   }
 );
 
@@ -168,7 +183,7 @@ export const projectCurriculumNodes = Effect.fn(
 ) {
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const materialByKey = HashMap.fromIterable(
-    materials.map((material): [string, LessonMaterialSource] => [
+    EffectArray.map(materials, (material): [string, LessonMaterialSource] => [
       material.key,
       material,
     ])
@@ -176,5 +191,5 @@ export const projectCurriculumNodes = Effect.fn(
   const projected = yield* Effect.forEach(curricula, (curriculum) =>
     projectCurriculum(curriculum, materialByKey, descriptors)
   );
-  return projected.flat();
+  return EffectArray.flatten(projected);
 });

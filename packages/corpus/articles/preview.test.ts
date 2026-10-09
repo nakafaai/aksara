@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import {
   decodeArticlePreviewEntries,
@@ -26,9 +26,14 @@ layer(NodeServices.layer)("article preview projection", (it) => {
         [articleSource()]
       );
 
-      expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "de"]);
+      expect(Arr.map(entries, ({ route }) => route.appLocale)).toEqual([
+        "en",
+        "de",
+      ]);
       expect(
-        entries.find(({ route }) => route.appLocale === "de")
+        Option.getOrUndefined(
+          Arr.findFirst(entries, ({ route }) => route.appLocale === "de")
+        )
       ).toMatchObject({
         categoryTitle: "Politik",
         route: {

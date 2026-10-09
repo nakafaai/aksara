@@ -1,7 +1,15 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { deliveryLanguageForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, HashSet, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  Option,
+  Order,
+  Record as Rec,
+  Schema,
+} from "effect";
 import {
   projectTryoutCatalog,
   TryoutCatalogDecodeError,
@@ -23,8 +31,9 @@ describe("tryout catalog", () => {
           decodeTryoutRegistry(),
           projectTryoutCatalog
         );
-        const trackEn = yield* Effect.fromNullishOr(
-          catalog.find(
+        const trackEn = yield* Effect.fromOption(
+          Arr.findFirst(
+            catalog,
             (row) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
@@ -32,8 +41,9 @@ describe("tryout catalog", () => {
               row.appLocale === "en"
           )
         );
-        const trackId = yield* Effect.fromNullishOr(
-          catalog.find(
+        const trackId = yield* Effect.fromOption(
+          Arr.findFirst(
+            catalog,
             (row) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
@@ -41,8 +51,9 @@ describe("tryout catalog", () => {
               row.appLocale === "id"
           )
         );
-        const internal = yield* Effect.fromNullishOr(
-          catalog.find(
+        const internal = yield* Effect.fromOption(
+          Arr.findFirst(
+            catalog,
             (row) =>
               row.kind === "section" &&
               row.examKey === "tka" &&
@@ -89,9 +100,9 @@ describe("tryout catalog", () => {
           projectTryoutCatalog(sources)
         );
         const counts = Rec.fromEntries(
-          ["country", "exam", "track", "set", "section"].map((kind) => [
+          Arr.map(["country", "exam", "track", "set", "section"], (kind) => [
             kind,
-            rows.filter((row) => row.kind === kind).length,
+            Arr.filter(rows, (row) => row.kind === kind).length,
           ])
         );
 
@@ -104,7 +115,8 @@ describe("tryout catalog", () => {
           track: 12,
         });
         expect(
-          rows.filter(
+          Arr.filter(
+            rows,
             (row) =>
               row.kind === "section" &&
               row.examKey === "tka" &&
@@ -117,9 +129,9 @@ describe("tryout catalog", () => {
   it.effect("keeps exam language independent of every app locale", () =>
     Effect.gen(function* () {
       const sources = yield* decodeTryoutRegistry();
-      const sections = sources.flatMap((source) =>
-        source.tracks.flatMap((track) =>
-          track.sets.flatMap((set) => set.sections)
+      const sections = Arr.flatMap(sources, (source) =>
+        Arr.flatMap(source.tracks, (track) =>
+          Arr.flatMap(track.sets, (set) => set.sections)
         )
       );
       expect(sections).toHaveLength(80);
@@ -138,8 +150,8 @@ describe("tryout catalog", () => {
     () =>
       Effect.gen(function* () {
         const sources = yield* decodeTryoutRegistry();
-        const snbt = yield* Effect.fromNullishOr(
-          sources.find(({ examKey }) => examKey === "snbt")
+        const snbt = yield* Effect.fromOption(
+          Arr.findFirst(sources, ({ examKey }) => examKey === "snbt")
         );
         const track = yield* Effect.fromNullishOr(snbt.tracks[0]);
         const set = yield* Effect.fromNullishOr(track.sets[0]);
@@ -164,7 +176,7 @@ describe("tryout catalog", () => {
         };
         const failure = yield* projectTryoutCatalog([
           invalidSnbt,
-          ...sources.filter(({ examKey }) => examKey !== "snbt"),
+          ...Arr.filter(sources, ({ examKey }) => examKey !== "snbt"),
         ]).pipe(Effect.flip);
 
         expect(failure).toBeInstanceOf(TryoutCatalogDecodeError);
@@ -175,26 +187,29 @@ describe("tryout catalog", () => {
   it.effect("signs institution tracks and penalized section marks", () =>
     Effect.gen(function* () {
       const sources = yield* decodeTryoutRegistry();
-      const tka = yield* Effect.fromNullishOr(
-        sources.find(({ examKey }) => examKey === "tka")
+      const tka = yield* Effect.fromOption(
+        Arr.findFirst(sources, ({ examKey }) => examKey === "tka")
       );
       const marks = { blank: 0, correct: 4, wrong: -1 };
       const rows = yield* projectTryoutCatalog([
         {
           ...tka,
           scoringStrategy: "penalized",
-          tracks: tka.tracks.map((track) => ({
+          tracks: Arr.map(tka.tracks, (track) => ({
             ...track,
             kind: "institution",
-            sets: track.sets.map((set) => ({
+            sets: Arr.map(track.sets, (set) => ({
               ...set,
-              sections: set.sections.map((section) => ({ ...section, marks })),
+              sections: Arr.map(set.sections, (section) => ({
+                ...section,
+                marks,
+              })),
             })),
           })),
         },
       ]);
       const facts = HashSet.fromIterable(
-        rows.map((row) => {
+        Arr.map(rows, (row) => {
           if (row.kind === "section") {
             return Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))(
               row.marks
@@ -207,7 +222,7 @@ describe("tryout catalog", () => {
         })
       );
 
-      expect([...facts].sort()).toEqual([
+      expect(Arr.sort(facts, Order.String)).toEqual([
         "country",
         "institution",
         "penalized",
@@ -253,12 +268,15 @@ describe("tryout catalog", () => {
         const sources = yield* decodeTryoutRegistry();
         const rows = yield* projectTryoutCatalog(sources);
 
-        expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(
-          107
-        );
         expect(
-          rows.find(
-            ({ appLocale, kind }) => appLocale === "de" && kind === "exam"
+          Arr.filter(rows, ({ appLocale }) => appLocale === "de")
+        ).toHaveLength(107);
+        expect(
+          Option.getOrUndefined(
+            Arr.findFirst(
+              rows,
+              ({ appLocale, kind }) => appLocale === "de" && kind === "exam"
+            )
           )
         ).toMatchObject({
           publicPath: "try-out/indonesien/snbt",
