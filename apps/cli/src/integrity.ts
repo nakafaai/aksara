@@ -235,6 +235,7 @@ export const SelectedFingerprintSchema = Schema.Struct({
     })
   ),
 });
+/** Type of the immutable source hashes captured for one atomic compilation attempt. */
 type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
 
 /** Rejects a closure that changed while its related sources were loaded. */

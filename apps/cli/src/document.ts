@@ -31,6 +31,7 @@ const PreviewCompileResultSchema = Schema.Struct({
   compileKind: IncrementalResultKindSchema,
   projection: ContentProjectionSchema,
 });
+/** Type of one signed current body with its renderer projection and compile kind. */
 export type PreviewCompileResult = typeof PreviewCompileResultSchema.Type;
 
 /** Ordered atomic compilation result for the selected preview document. */
@@ -38,6 +39,7 @@ const PreviewDocumentResultSchema = Schema.Struct({
   fingerprint: SelectedFingerprintSchema,
   results: Schema.NonEmptyArray(PreviewCompileResultSchema),
 });
+/** Type of the ordered atomic compilation result for the selected preview document. */
 export type PreviewDocumentResult = typeof PreviewDocumentResultSchema.Type;
 
 /** Every expected failure from one selected-document compilation closure. */
