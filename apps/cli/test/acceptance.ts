@@ -21,20 +21,22 @@ import {
   receiptFor,
 } from "#test/target";
 
-interface AcceptancePublicationCalls {
-  allowInsecureLoopback: boolean;
-  cacheDrained: number;
-  endpoint: string;
-  keyMatches: boolean;
-  published: number;
-  recoveryId: string;
-  snapshotAttempts: number;
-  snapshotFailures: number;
-  snapshotInputs: string[];
-  target: "empty" | "active" | "candidate";
-  targetReads: number;
-  timeout: string;
-}
+/** Observations the acceptance mocks write; the publication test reads and sets them. */
+const AcceptancePublicationCallsSchema = Schema.Struct({
+  allowInsecureLoopback: Schema.mutableKey(Schema.Boolean),
+  cacheDrained: Schema.mutableKey(Schema.Finite),
+  endpoint: Schema.mutableKey(Schema.String),
+  keyMatches: Schema.mutableKey(Schema.Boolean),
+  published: Schema.mutableKey(Schema.Finite),
+  recoveryId: Schema.mutableKey(Schema.String),
+  snapshotAttempts: Schema.mutableKey(Schema.Finite),
+  snapshotFailures: Schema.mutableKey(Schema.Finite),
+  snapshotInputs: Schema.mutable(Schema.Array(Schema.String)),
+  target: Schema.mutableKey(Schema.Literals(["empty", "active", "candidate"])),
+  targetReads: Schema.mutableKey(Schema.Finite),
+  timeout: Schema.mutableKey(Schema.String),
+});
+type AcceptancePublicationCalls = typeof AcceptancePublicationCallsSchema.Type;
 
 /** Supplies native target failures after one exact, real snapshot row is staged. */
 export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {

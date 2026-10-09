@@ -58,9 +58,8 @@ const repositories = makeRepositoryTracker();
 /** Acquires one repository pair and removes it when the test scope closes. */
 const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
   function* () {
-    return yield* Effect.acquireRelease(
-      Effect.sync(() => repositories.create()),
-      () => Effect.sync(() => repositories.clear())
+    return yield* Effect.acquireRelease(repositories.create(), () =>
+      Effect.promise(() => repositories.clear())
     );
   }
 );

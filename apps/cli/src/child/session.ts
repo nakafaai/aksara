@@ -1,5 +1,5 @@
 import { createServer } from "node:net";
-import { Effect, Redacted, Schema } from "effect";
+import { Effect, HashSet, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
 import { NakafaProcess } from "#cli/child/process";
 import type { PreviewCredentials } from "#cli/credentials";
@@ -7,7 +7,7 @@ import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import type { PreviewProvider } from "#cli/provider";
 
-const LOOPBACK_ADDRESSES = new Set(["127.0.0.1", "::1"]);
+const LOOPBACK_ADDRESSES = HashSet.fromIterable(["127.0.0.1", "::1"]);
 const ChildUrlSchema = Schema.String.pipe(
   Schema.check(Schema.isPattern(/^http:\/\/localhost:\d+(?:\/.*)?$/u))
 );
@@ -70,7 +70,10 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
     server.listen({ host: NAKAFA_LOOPBACK_HOST, port: 0 }, () => {
       const address = server.address();
       if (
-        !(isAddressInfo(address) && LOOPBACK_ADDRESSES.has(address.address))
+        !(
+          isAddressInfo(address) &&
+          HashSet.has(LOOPBACK_ADDRESSES, address.address)
+        )
       ) {
         server.close(() =>
           resume(Effect.fail(makeNakafaAppError("start", false)))

@@ -2,7 +2,13 @@ import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import { NodeServices } from "@effect/platform-node";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
-import { Effect, Redacted, Schema } from "effect";
+import { Effect, Record as Rec, Redacted, Schema, Stream } from "effect";
+import {
+  FetchHttpClient,
+  HttpClient,
+  HttpClientRequest,
+  type HttpClientResponse,
+} from "effect/http";
 import { isAddressInfo } from "#cli/address";
 import { openPreviewProvider, type PreviewProvider } from "#cli/provider";
 import { makePreviewHttp, type PreviewHttpState } from "#cli/provider/http";
@@ -84,10 +90,8 @@ const closePreviewHttp = Effect.fn("AksaraCliTest.closePreviewHttp")(
 /** Acquires one compiled real document and removes its repository on release. */
 function acquirePreviewReady() {
   return Effect.acquireRelease(
-    Effect.sync(() => providerRepositories.create()).pipe(
-      Effect.flatMap(makePreviewReady)
-    ),
-    () => Effect.sync(() => providerRepositories.clear())
+    providerRepositories.create().pipe(Effect.flatMap(makePreviewReady)),
+    () => Effect.promise(() => providerRepositories.clear())
   ).pipe(Effect.provide(NodeServices.layer));
 }
 
@@ -156,7 +160,7 @@ export function requestProvider(
   provider: PreviewProvider,
   token: string,
   path: string,
-  init: RequestInit = {}
+  init: Parameters<typeof makePreviewRequest>[1] = {}
 ) {
   const headers = new Headers(init.headers);
   headers.set("authorization", `Bearer ${token}`);
@@ -166,33 +170,55 @@ export function requestProvider(
   });
 }
 
-/** Performs one interruptible fetch against a test-owned preview server. */
+/** Builds one HttpClient request from the URL, method, and headers a test sends. */
+function makePreviewRequest(
+  url: string | URL,
+  init: {
+    readonly headers?: ConstructorParameters<typeof Headers>[0];
+    readonly method?: "GET" | "POST";
+  } = {}
+) {
+  return HttpClientRequest.make(init.method ?? "GET")(url, {
+    headers: Rec.fromEntries(new Headers(init.headers)),
+  });
+}
+
+/** Performs one interruptible request against a test-owned preview server. */
 export const requestPreviewHttp = Effect.fn("AksaraCliTest.requestPreviewHttp")(
-  (url: string | URL, init?: RequestInit) =>
-    Effect.tryPromise({
-      catch: (cause) => new PreviewProviderTestError({ cause, stage: "fetch" }),
-      try: (signal) => fetch(url, { ...init, signal }),
-    })
+  function* (
+    url: string | URL,
+    init?: Parameters<typeof makePreviewRequest>[1]
+  ) {
+    const client = yield* HttpClient.HttpClient;
+    return yield* client
+      .execute(makePreviewRequest(url, init))
+      .pipe(
+        Effect.mapError(
+          (cause) => new PreviewProviderTestError({ cause, stage: "fetch" })
+        )
+      );
+  },
+  Effect.provide(FetchHttpClient.layer)
 );
 
 /** Reads one successful provider response body as unknown JSON. */
 export const responseJson = Effect.fn("AksaraCliTest.responseJson")(
-  (response: Response) =>
-    Effect.tryPromise({
-      catch: (cause) =>
-        new PreviewProviderTestError({ cause, stage: "response" }),
-      try: () => response.json(),
-    })
+  (response: HttpClientResponse.HttpClientResponse) =>
+    response.json.pipe(
+      Effect.mapError(
+        (cause) => new PreviewProviderTestError({ cause, stage: "response" })
+      )
+    )
 );
 
 /** Reads one successful provider response body as text. */
 export const responseText = Effect.fn("AksaraCliTest.responseText")(
-  (response: Response) =>
-    Effect.tryPromise({
-      catch: (cause) =>
-        new PreviewProviderTestError({ cause, stage: "response" }),
-      try: () => response.text(),
-    })
+  (response: HttpClientResponse.HttpClientResponse) =>
+    response.text.pipe(
+      Effect.mapError(
+        (cause) => new PreviewProviderTestError({ cause, stage: "response" })
+      )
+    )
 );
 
 /** Reads one successful provider event-stream chunk. */
@@ -218,14 +244,9 @@ export const cancelProviderEvent = Effect.fn(
 /** Acquires one response stream reader and cancels it during test cleanup. */
 export const openPreviewHttpReader = Effect.fn(
   "AksaraCliTest.openPreviewHttpReader"
-)((response: Response) =>
+)((response: HttpClientResponse.HttpClientResponse) =>
   Effect.acquireRelease(
-    Effect.suspend(() => {
-      const { body } = response;
-      return body
-        ? Effect.succeed(body.getReader())
-        : Effect.fail(new PreviewProviderTestError({ stage: "stream" }));
-    }),
+    Effect.sync(() => Stream.toReadableStream(response.stream).getReader()),
     (reader) => cancelProviderEvent(reader).pipe(Effect.orDie)
   )
 );

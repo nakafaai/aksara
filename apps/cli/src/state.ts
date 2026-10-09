@@ -15,6 +15,7 @@ import {
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
+import { encodeJsonText } from "#cli/text/json";
 
 /**
  * Durable publication state does not permit the requested production command.
@@ -89,8 +90,8 @@ const validateStoredCommand: ValidateStoredCommand = Effect.fn(
 )(function* (args: ReleaseArguments, bundle: ContentReleaseBundle) {
   const { manifest } = bundle.release;
   if (
-    JSON.stringify(canonicalizePublicationScope(args.scope)) !==
-    JSON.stringify(canonicalizePublicationScope(manifest.scope))
+    encodeJsonText(canonicalizePublicationScope(args.scope)) !==
+    encodeJsonText(canonicalizePublicationScope(manifest.scope))
   ) {
     return yield* new ProductionStateError({ reason: "scope-mismatch" });
   }

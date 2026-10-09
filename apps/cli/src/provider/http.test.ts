@@ -65,7 +65,7 @@ const makeState = Effect.fn("AksaraCliTest.makePreviewHttpState")(function* () {
 
 /** Decodes the served manifest directly from its JSON wire representation. */
 const responseManifest = Effect.fn("AksaraCliTest.decodePreviewHttpManifest")(
-  (response: Response) =>
+  (response: Parameters<typeof responseText>[0]) =>
     responseText(response).pipe(
       Effect.flatMap(
         Schema.decodeEffect(Schema.fromJsonString(LocalPreviewManifestSchema))
@@ -188,7 +188,7 @@ describe("preview HTTP transport", () => {
         expect(unauthenticated.status).toBe(401);
         expect(wrongToken.status).toBe(401);
         expect(wrongMethod.status).toBe(405);
-        expect(wrongMethod.headers.get("allow")).toBe("GET");
+        expect(wrongMethod.headers.allow).toBe("GET");
         expect(servedManifest.status).toBe(200);
         expect(yield* responseManifest(servedManifest)).toEqual(state.manifest);
         expect(missing.status).toBe(404);

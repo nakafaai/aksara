@@ -12,6 +12,7 @@ import { ConfigProvider, Effect, Schema } from "effect";
 import { HttpClient } from "effect/http";
 import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import {
   activeState,
@@ -192,7 +193,7 @@ describe("authenticated parity command", () => {
           Effect.succeed(
             webResponse(
               request,
-              JSON.stringify({ ok: true, operation: "current", value }),
+              encodeJsonText({ ok: true, operation: "current", value }),
               { headers: { "content-type": "application/json" }, status: 200 }
             )
           )
@@ -262,7 +263,7 @@ describe("authenticated parity command", () => {
             request,
             failure === "protocol"
               ? "{}"
-              : JSON.stringify({
+              : encodeJsonText({
                   ok: true,
                   operation: "current",
                   value: response,
@@ -292,8 +293,8 @@ describe("authenticated parity command", () => {
           reason: failure === "empty" ? "active" : "target",
         });
       }
-      expect(JSON.stringify(error)).not.toContain("production-token");
-      expect(JSON.stringify(error)).not.toContain("development-token");
+      expect(encodeJsonText(error)).not.toContain("production-token");
+      expect(encodeJsonText(error)).not.toContain("development-token");
     })
   );
 });
