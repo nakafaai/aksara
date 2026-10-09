@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import {
+  Array as Arr,
   Effect,
   Fiber,
   FileSystem,
@@ -79,12 +80,15 @@ describe("ExactProcess", () => {
       Effect.gen(function* () {
         const output = yield* runLive(
           nodeInput(
-            [
-              'const chunk = "x".repeat(128 * 1024);',
-              "process.stdout.write(chunk);",
-              "process.stderr.write(chunk);",
-              "process.stdout.write(JSON.stringify(process.env));",
-            ].join(""),
+            Arr.join(
+              [
+                'const chunk = "x".repeat(128 * 1024);',
+                "process.stdout.write(chunk);",
+                "process.stderr.write(chunk);",
+                "process.stdout.write(JSON.stringify(process.env));",
+              ],
+              ""
+            ),
             { environment: { AKSARA_SENTINEL: "exact" } }
           )
         );
@@ -184,7 +188,7 @@ describe("ExactProcess", () => {
       );
 
       assert.deepStrictEqual(
-        failures.map(({ reason }) => reason),
+        Arr.map(failures, ({ reason }) => reason),
         ["spawn", "spawn", "stdin", "stdout", "stderr", "signal"]
       );
     })
@@ -200,12 +204,15 @@ describe("ExactProcess", () => {
           prefix: "aksara-exact-process-",
         });
         const pidFile = path.join(directory, "pid");
-        const source = [
-          'const fs = require("node:fs");',
-          "fs.writeFileSync(process.argv[1], String(process.pid));",
-          'process.on("SIGTERM", () => {});',
-          "setInterval(() => {}, 1000);",
-        ].join("");
+        const source = Arr.join(
+          [
+            'const fs = require("node:fs");',
+            "fs.writeFileSync(process.argv[1], String(process.pid));",
+            'process.on("SIGTERM", () => {});',
+            "setInterval(() => {}, 1000);",
+          ],
+          ""
+        );
         const fiber = yield* runLive(
           nodeInput(source, { args: ["-e", source, pidFile] })
         ).pipe(Effect.forkChild);
