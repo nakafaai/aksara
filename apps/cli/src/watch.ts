@@ -3,6 +3,7 @@ import {
   Effect,
   FileSystem,
   MutableHashMap,
+  MutableRef,
   Option,
   Path,
   Ref,
@@ -26,19 +27,13 @@ export class PreviewWatchError extends Schema.TaggedError<PreviewWatchError>()(
 ) {}
 
 /** Creates the empty watch state of one physical directory. */
-function emptyWatchedDirectory(): {
-  readonly files: MutableHashMap.MutableHashMap<
-    string,
-    SelectedDocument["files"][number]
-  >;
-  topology: Option.Option<SelectedDirectory>;
-} {
+function emptyWatchedDirectory() {
   return {
     files: MutableHashMap.empty<string, SelectedDocument["files"][number]>(),
-    topology: Option.none<SelectedDirectory>(),
+    topology: MutableRef.make(Option.none<SelectedDirectory>()),
   };
 }
-type WatchedDirectory = ReturnType<typeof emptyWatchedDirectory>;
+type WatchedDirectory = Readonly<ReturnType<typeof emptyWatchedDirectory>>;
 
 /** One acquired watcher and its subscription-ready startup barrier. */
 export interface SelectedWatcher {
@@ -82,8 +77,10 @@ function selectedDirectories(selected: SelectedDocument, path: Path.Path) {
     );
   }
   for (const topology of selected.directories) {
-    watchDirectory(directories, topology.absolutePath).topology =
-      Option.some(topology);
+    MutableRef.set(
+      watchDirectory(directories, topology.absolutePath).topology,
+      Option.some(topology)
+    );
   }
   return directories;
 }
@@ -93,8 +90,9 @@ const inspectWatchEvents = Effect.fn("AksaraCli.inspectWatchEvents")(function* (
   watched: WatchedDirectory,
   generations: Iterable<Option.Option<number>>
 ) {
-  if (Option.isSome(watched.topology)) {
-    yield* verifySelectedDirectory(watched.topology.value);
+  const topology = MutableRef.get(watched.topology);
+  if (Option.isSome(topology)) {
+    yield* verifySelectedDirectory(topology.value);
   }
   let generation = Option.none<number>();
   for (const next of generations) {
