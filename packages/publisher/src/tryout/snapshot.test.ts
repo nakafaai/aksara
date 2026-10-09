@@ -10,7 +10,7 @@ import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapsh
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { Context, Effect, Layer, Path, Stream } from "effect";
+import { Context, Effect, HashMap, Layer, Option, Path, Stream } from "effect";
 import { TryoutHeadMismatchError } from "#publisher/tryout/error";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
 import { testFileLayer } from "#test/files";
@@ -153,7 +153,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
               { family: "tryout"; rowKind: "placement" }
             > => row.family === "tryout" && row.rowKind === "placement"
           );
-          const headByIdentity = new Map(
+          const headByIdentity = HashMap.fromIterable(
             fixture.tryoutHeads.map((head) => [
               `${head.contentKey}\0${head.artifactLocale}`,
               head.artifactHash,
@@ -169,11 +169,17 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
           });
           expect(
             placements.every(({ record: { row } }) => {
-              const question = headByIdentity.get(
-                `${row.questionContentKey}\0${row.questionArtifactLocale}`
+              const question = Option.getOrUndefined(
+                HashMap.get(
+                  headByIdentity,
+                  `${row.questionContentKey}\0${row.questionArtifactLocale}`
+                )
               );
-              const answer = headByIdentity.get(
-                `${row.answerContentKey}\0${row.answerArtifactLocale}`
+              const answer = Option.getOrUndefined(
+                HashMap.get(
+                  headByIdentity,
+                  `${row.answerContentKey}\0${row.answerArtifactLocale}`
+                )
               );
               return (
                 row.questionArtifactHash === question &&

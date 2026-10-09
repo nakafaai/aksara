@@ -6,7 +6,7 @@ import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
-import { Effect, MutableHashMap, Option, Stream } from "effect";
+import { Effect, HashMap, MutableHashMap, Option, Stream } from "effect";
 import {
   type InspectedQuestionDocument,
   inspectQuestionAnswerDocument,
@@ -29,7 +29,7 @@ function entryIdentity(input: {
 
 /** Reads one exact answer or question entry for an active placement. */
 function requiredEntry(
-  entries: ReadonlyMap<string, QuestionEntry>,
+  entries: HashMap.HashMap<string, QuestionEntry>,
   binding: BoundTryoutPlacement,
   bodyKind: typeof TryoutHeadBodySchema.Type
 ) {
@@ -41,7 +41,9 @@ function requiredEntry(
     bodyKind === "answer"
       ? binding.placement.answerArtifactLocale
       : binding.placement.questionArtifactLocale;
-  const entry = entries.get(entryIdentity({ artifactLocale, contentKey }));
+  const entry = Option.getOrUndefined(
+    HashMap.get(entries, entryIdentity({ artifactLocale, contentKey }))
+  );
   return entry === undefined
     ? Effect.fail(
         new TryoutContentMissingError({
@@ -112,7 +114,7 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
   function* (
     checkoutRoot: string,
     rendererManifest: RendererManifestEnvelope,
-    entries: ReadonlyMap<string, QuestionEntry>,
+    entries: HashMap.HashMap<string, QuestionEntry>,
     itemsByRoot: ReturnType<typeof indexQuestionItems>,
     binding: BoundTryoutPlacement
   ) {
@@ -196,7 +198,7 @@ export function bindTryoutContent<E, R>(input: {
   readonly rendererManifest: RendererManifestEnvelope;
   readonly sources: readonly QuestionSource[];
 }) {
-  const entries = new Map(
+  const entries = HashMap.fromIterable(
     input.entries.map((entry) => [entryIdentity(entry), entry])
   );
   const itemsByRoot = indexQuestionItems(input.sources);

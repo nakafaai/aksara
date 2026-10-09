@@ -6,7 +6,7 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Stream } from "effect";
+import { Context, Effect, HashSet, Layer, Stream } from "effect";
 import {
   type BoundTryoutPlacement,
   bindTryoutHeads,
@@ -183,7 +183,11 @@ contentTests("try-out content binding", (it) => {
         expect(record?.row.response).toEqual(frozen);
       }
       const hashes = [baseline, ...(first ?? []).map(({ record }) => record)];
-      expect(new Set(hashes.map((row) => row?.row.contentHash)).size).toBe(3);
+      expect(
+        HashSet.size(
+          HashSet.fromIterable(hashes.map((row) => row?.row.contentHash))
+        )
+      ).toBe(3);
       expect(second?.map(({ record }) => record?.rowHash)).toEqual(
         first?.map(({ record }) => record?.rowHash)
       );
