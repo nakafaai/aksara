@@ -2,7 +2,7 @@
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, sign as signBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import {
   Ed25519SignatureSchema,
@@ -135,7 +135,7 @@ describe("signed try-out runtime bundle verification", () => {
             signature: tamperSignature(bundle.signature),
           }).pipe(Effect.flip),
         ]);
-        expect(failures.map((failure) => failure._tag)).toEqual([
+        expect(Arr.map(failures, (failure) => failure._tag)).toEqual([
           "TryoutRuntimeBundleHashMismatchError",
           "TryoutRuntimeBundleSnapshotMismatchError",
           "TryoutRuntimeBundleRendererMismatchError",

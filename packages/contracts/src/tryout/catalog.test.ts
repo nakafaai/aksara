@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Exit, Order, Schema } from "effect";
+import { Array as Arr, Exit, Option, Order, Schema } from "effect";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
   TryoutCatalogNodeIdentitySchema,
@@ -7,7 +7,8 @@ import {
   TryoutCatalogRowSchema,
 } from "#contracts/tryout/catalog";
 
-const rows: readonly TryoutCatalogRow[] = makeTryoutTestRows().catalog.map(
+const rows: readonly TryoutCatalogRow[] = Arr.map(
+  makeTryoutTestRows().catalog,
   ({ row }) => row
 );
 
@@ -22,7 +23,8 @@ function formatFailure(input: unknown) {
 
 describe("try-out catalog contract", () => {
   it("decodes every current localized hierarchy kind", () => {
-    const kinds = rows.map(
+    const kinds = Arr.map(
+      rows,
       (row) => Schema.decodeSync(TryoutCatalogRowSchema)(row).kind
     );
 
@@ -60,9 +62,15 @@ describe("try-out catalog contract", () => {
   });
 
   it("reports track, set, and section inventory violations", () => {
-    const track = rows.find((row) => row.kind === "track");
-    const set = rows.find((row) => row.kind === "set");
-    const section = rows.find((row) => row.kind === "section");
+    const track = Option.getOrUndefined(
+      Arr.findFirst(rows, (row) => row.kind === "track")
+    );
+    const set = Option.getOrUndefined(
+      Arr.findFirst(rows, (row) => row.kind === "set")
+    );
+    const section = Option.getOrUndefined(
+      Arr.findFirst(rows, (row) => row.kind === "section")
+    );
     if (
       !(
         track?.kind === "track" &&

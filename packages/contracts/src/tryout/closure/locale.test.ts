@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import {
   ACTIVE_APP_LOCALES,
@@ -169,8 +169,11 @@ describe("try-out locale closure", () => {
 
   it.effect("rejects locale-neutral catalog fact drift", () =>
     Effect.gen(function* () {
-      const countryIndex = catalog.findIndex(
-        ({ row }) => row.kind === "country" && row.appLocale === "id"
+      const countryIndex = yield* Effect.fromOption(
+        Arr.findFirstIndex(
+          catalog,
+          ({ row }) => row.kind === "country" && row.appLocale === "id"
+        )
       );
       const country = yield* Effect.fromNullishOr(catalog[countryIndex]);
       const changed = [...catalog];
@@ -185,7 +188,8 @@ describe("try-out locale closure", () => {
 
   it.effect("rejects placements whose catalog section is absent", () =>
     Effect.gen(function* () {
-      const withoutSections = catalog.filter(
+      const withoutSections = Arr.filter(
+        catalog,
         ({ row }) => row.kind !== "section"
       );
       const error = yield* rejectClosure({ catalog: withoutSections });
@@ -254,7 +258,7 @@ describe("try-out locale closure", () => {
   it.effect("rejects a localized section with no placements", () =>
     Effect.gen(function* () {
       const unused = yield* Effect.forEach(
-        catalog.filter(({ row }) => row.kind === "section"),
+        Arr.filter(catalog, ({ row }) => row.kind === "section"),
         (record) =>
           updateCatalog(record, {
             questionSourcePath:
