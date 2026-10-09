@@ -10,6 +10,7 @@ import {
 } from "#contracts/ids";
 import { ArtifactLocaleSchema } from "#contracts/locale";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
+import { encodeJsonText } from "#contracts/text/json";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
 const HeadCursorSchema = Schema.NullOr(
@@ -82,7 +83,7 @@ export type ContentHead = typeof ContentHeadSchema.Type;
 
 /** Serializes one compact head in stable catalog field order. */
 export function canonicalizeContentHead(head: ContentHead) {
-  return JSON.stringify({
+  return encodeJsonText({
     artifactHash: head.artifactHash,
     artifactLocale: head.artifactLocale,
     compilerConfigHash: head.compilerConfigHash,

@@ -7,6 +7,7 @@ import {
 } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import { ReleaseItemIndexSchema } from "#contracts/release/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** One public route bound to a stable locale-specific content identity. */
 export const ContentRouteBindSchema = Schema.Struct({
@@ -43,12 +44,12 @@ export type ContentRouteItem = typeof ContentRouteItemSchema.Type;
 /** Serializes one route change in stable wire field order. */
 export function canonicalizeContentRouteChange(change: ContentRouteChange) {
   if (change.operation === "delete") {
-    return `{"appLocale":${JSON.stringify(change.appLocale)},"operation":"delete","publicPath":${JSON.stringify(change.publicPath)}}`;
+    return `{"appLocale":${encodeJsonText(change.appLocale)},"operation":"delete","publicPath":${encodeJsonText(change.publicPath)}}`;
   }
-  return `{"appLocale":${JSON.stringify(change.appLocale)},"contentKey":${JSON.stringify(change.contentKey)},"operation":"bind","publicPath":${JSON.stringify(change.publicPath)}}`;
+  return `{"appLocale":${encodeJsonText(change.appLocale)},"contentKey":${encodeJsonText(change.contentKey)},"operation":"bind","publicPath":${encodeJsonText(change.publicPath)}}`;
 }
 
 /** Serializes one indexed route item for signed digest computation. */
 export function canonicalizeContentRouteItem(item: ContentRouteItem) {
-  return `{"change":${canonicalizeContentRouteChange(item.change)},"index":${item.index},"releaseId":${JSON.stringify(item.releaseId)}}`;
+  return `{"change":${canonicalizeContentRouteChange(item.change)},"index":${item.index},"releaseId":${encodeJsonText(item.releaseId)}}`;
 }

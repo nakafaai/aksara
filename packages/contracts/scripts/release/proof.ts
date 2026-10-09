@@ -2,42 +2,19 @@ import { createHash } from "node:crypto";
 import { Effect, FileSystem, Path, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import { verifyArchive } from "#scripts/release/archive";
+import { decodeRelease, decodeTag } from "#scripts/release/github";
 import { packageIdentity, releaseError } from "#scripts/release/identity";
 
 const SHA_PATTERN = /^[0-9a-f]{40}$/u;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u;
 
-const ReleaseSchema = Schema.fromJsonString(
-  Schema.Struct({
-    assets: Schema.Array(
-      Schema.Struct({
-        digest: Schema.String,
-        name: Schema.String,
-        size: Schema.Finite,
-      })
-    ),
-    draft: Schema.Boolean,
-    immutable: Schema.Boolean,
-    prerelease: Schema.Boolean,
-    tag_name: Schema.String,
-    target_commitish: Schema.String,
-  })
-);
+const ReleaseToolsSchema = Schema.Struct({
+  gh: Schema.String,
+  git: Schema.String,
+  tar: Schema.String,
+});
 
-const TagSchema = Schema.fromJsonString(
-  Schema.Struct({
-    object: Schema.Struct({
-      sha: Schema.String,
-      type: Schema.String,
-    }),
-  })
-);
-
-interface ReleaseTools {
-  readonly gh: string;
-  readonly git: string;
-  readonly tar: string;
-}
+type ReleaseTools = typeof ReleaseToolsSchema.Type;
 
 const defaultTools: ReleaseTools = {
   gh: "gh",
@@ -45,23 +22,33 @@ const defaultTools: ReleaseTools = {
   tar: "tar",
 };
 
+const ContractProofInputSchema = Schema.Struct({
+  archivePath: Schema.String,
+  packagePath: Schema.String,
+  repository: Schema.String,
+  sourceSha: Schema.String,
+  tools: Schema.optionalKey(
+    Schema.Struct({
+      gh: Schema.optionalKey(Schema.String),
+      git: Schema.optionalKey(Schema.String),
+      tar: Schema.optionalKey(Schema.String),
+    })
+  ),
+});
+
 /** Exact inputs used to prove one remotely distributed contract archive. */
-export interface ContractProofInput {
-  readonly archivePath: string;
-  readonly packagePath: string;
-  readonly repository: string;
-  readonly sourceSha: string;
-  readonly tools?: Partial<ReleaseTools>;
-}
+export type ContractProofInput = typeof ContractProofInputSchema.Type;
+
+const ContractProofSchema = Schema.Struct({
+  assetName: Schema.String,
+  releaseSha: Schema.String,
+  releaseTag: Schema.String,
+  sha256: Schema.String,
+  size: Schema.Finite,
+});
 
 /** Durable facts returned only after every immutable release proof succeeds. */
-export interface ContractProof {
-  readonly assetName: string;
-  readonly releaseSha: string;
-  readonly releaseTag: string;
-  readonly sha256: string;
-  readonly size: number;
-}
+export type ContractProof = typeof ContractProofSchema.Type;
 
 /** Maps one external command failure to its stable proof stage. */
 function commandError(stage: string) {
@@ -119,28 +106,6 @@ function commandVoid(
         );
       }
     })
-  );
-}
-
-/** Decodes the immutable release metadata returned by GitHub. */
-function decodeRelease(source: string) {
-  return Schema.decodeEffect(ReleaseSchema)(source, {
-    onExcessProperty: "ignore",
-  }).pipe(
-    Effect.mapError(() =>
-      releaseError("release", "GitHub returned malformed release metadata")
-    )
-  );
-}
-
-/** Decodes the exact lightweight tag target returned by GitHub. */
-function decodeTag(source: string) {
-  return Schema.decodeEffect(TagSchema)(source, {
-    onExcessProperty: "ignore",
-  }).pipe(
-    Effect.mapError(() =>
-      releaseError("release", "GitHub returned malformed tag metadata")
-    )
   );
 }
 

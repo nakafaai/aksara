@@ -2,6 +2,8 @@ import {
   Deferred,
   Effect,
   FileSystem,
+  MutableHashMap,
+  MutableRef,
   Option,
   Path,
   Ref,
@@ -24,15 +26,14 @@ export class PreviewWatchError extends Schema.TaggedError<PreviewWatchError>()(
   { reason: Schema.Literals(["ended", "filesystem"]) }
 ) {}
 
-interface WatchedDirectory {
-  readonly files: Map<string, SelectedDocument["files"][number]>;
-  topology?: SelectedDirectory;
+/** Creates the empty watch state of one physical directory. */
+function emptyWatchedDirectory() {
+  return {
+    files: MutableHashMap.empty<string, SelectedDocument["files"][number]>(),
+    topology: MutableRef.make(Option.none<SelectedDirectory>()),
+  };
 }
-
-interface PreparedWatchEvent {
-  readonly event: FileSystem.WatchEvent;
-  readonly generation: Option.Option<number>;
-}
+type WatchedDirectory = Readonly<ReturnType<typeof emptyWatchedDirectory>>;
 
 /** One acquired watcher and its subscription-ready startup barrier. */
 export interface SelectedWatcher {
@@ -50,30 +51,36 @@ export interface SelectedWatcher {
 
 /** Returns or creates the selected watch state for one physical directory. */
 function watchDirectory(
-  directories: Map<string, WatchedDirectory>,
+  directories: MutableHashMap.MutableHashMap<string, WatchedDirectory>,
   directory: string
 ): WatchedDirectory {
-  const existing = directories.get(directory);
+  const existing = Option.getOrUndefined(
+    MutableHashMap.get(directories, directory)
+  );
   if (existing !== undefined) {
     return existing;
   }
-  const watched: WatchedDirectory = { files: new Map() };
-  directories.set(directory, watched);
+  const watched = emptyWatchedDirectory();
+  MutableHashMap.set(directories, directory, watched);
   return watched;
 }
 
 /** Builds one deduplicated directory watch plan for files and strict topology. */
 function selectedDirectories(selected: SelectedDocument, path: Path.Path) {
-  const directories = new Map<string, WatchedDirectory>();
+  const directories = MutableHashMap.empty<string, WatchedDirectory>();
   for (const file of selected.files) {
     const directory = path.dirname(file.absolutePath);
-    watchDirectory(directories, directory).files.set(
+    MutableHashMap.set(
+      watchDirectory(directories, directory).files,
       path.basename(file.absolutePath),
       file
     );
   }
   for (const topology of selected.directories) {
-    watchDirectory(directories, topology.absolutePath).topology = topology;
+    MutableRef.set(
+      watchDirectory(directories, topology.absolutePath).topology,
+      Option.some(topology)
+    );
   }
   return directories;
 }
@@ -81,15 +88,16 @@ function selectedDirectories(selected: SelectedDocument, path: Path.Path) {
 /** Decides whether one stable selected-directory event batch needs a refresh. */
 const inspectWatchEvents = Effect.fn("AksaraCli.inspectWatchEvents")(function* (
   watched: WatchedDirectory,
-  events: Iterable<PreparedWatchEvent>
+  generations: Iterable<Option.Option<number>>
 ) {
-  if (watched.topology !== undefined) {
-    yield* verifySelectedDirectory(watched.topology);
+  const topology = MutableRef.get(watched.topology);
+  if (Option.isSome(topology)) {
+    yield* verifySelectedDirectory(topology.value);
   }
   let generation = Option.none<number>();
-  for (const event of events) {
-    if (Option.isSome(event.generation)) {
-      ({ generation } = event);
+  for (const next of generations) {
+    if (Option.isSome(next)) {
+      generation = next;
     }
   }
   return generation;
@@ -102,18 +110,17 @@ const prepareWatchEvent = Effect.fn("AksaraCli.prepareWatchEvent")(function* (
   path: Path.Path,
   invalidate: Effect.Effect<number, PreviewProviderError>
 ) {
-  const file = watched.files.get(path.basename(event.path));
+  const file = Option.getOrUndefined(
+    MutableHashMap.get(watched.files, path.basename(event.path))
+  );
   if (file === undefined) {
-    return { event, generation: Option.none() } satisfies PreparedWatchEvent;
+    return Option.none<number>();
   }
   if (file.mode === "restart") {
     return yield* new PreviewRestartError({ sourcePath: file.sourcePath });
   }
   const generation = yield* invalidate;
-  return {
-    event,
-    generation: Option.some(generation),
-  } satisfies PreparedWatchEvent;
+  return Option.some(generation);
 });
 
 /** Opens selected watchers with an acquisition barrier and generation safety. */
@@ -137,7 +144,7 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
     /** Completes the shared barrier after the final subscription is acquired. */
     const markReady = Ref.updateAndGet(acquired, (count) => count + 1).pipe(
       Effect.flatMap((count) =>
-        count === directories.size
+        count === MutableHashMap.size(directories)
           ? Deferred.succeed(ready, undefined)
           : Effect.void
       )

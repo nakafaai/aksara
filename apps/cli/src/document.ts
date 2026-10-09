@@ -1,10 +1,10 @@
 import {
   compileIncremental,
-  type IncrementalResult,
+  IncrementalResultKindSchema,
   type LocalCache,
 } from "@nakafa/aksara-compiler/incremental";
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import {
   type LoadedPreviewSource,
@@ -13,11 +13,11 @@ import {
 } from "@nakafa/aksara-publisher/preview/source";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import type { FileSystem, Path } from "effect";
-import { Effect, HashMap, Option, Ref } from "effect";
+import { Effect, HashMap, Option, Ref, Schema } from "effect";
 import {
   fingerprintSelectedDocument,
   type SelectedDocument,
-  type SelectedFingerprint,
+  SelectedFingerprintSchema,
   verifySelectedFingerprint,
   verifySelectedTopology,
 } from "#cli/integrity";
@@ -26,17 +26,21 @@ type PreviewBody = LoadedPreviewSource["body"];
 type PreviewCache = HashMap.HashMap<PreviewBody["sourcePath"], LocalCache>;
 
 /** One signed current body and the renderer projection paired with it. */
-export interface PreviewCompileResult {
-  readonly artifact: SignedContentArtifact;
-  readonly compileKind: IncrementalResult["kind"];
-  readonly projection: ContentProjection;
-}
+const PreviewCompileResultSchema = Schema.Struct({
+  artifact: SignedContentArtifactSchema,
+  compileKind: IncrementalResultKindSchema,
+  projection: ContentProjectionSchema,
+});
+/** Type of one signed current body with its renderer projection and compile kind. */
+export type PreviewCompileResult = typeof PreviewCompileResultSchema.Type;
 
 /** Ordered atomic compilation result for the selected preview document. */
-export interface PreviewDocumentResult {
-  readonly fingerprint: SelectedFingerprint;
-  readonly results: readonly [PreviewCompileResult, ...PreviewCompileResult[]];
-}
+const PreviewDocumentResultSchema = Schema.Struct({
+  fingerprint: SelectedFingerprintSchema,
+  results: Schema.NonEmptyArray(PreviewCompileResultSchema),
+});
+/** Type of the ordered atomic compilation result for the selected preview document. */
+export type PreviewDocumentResult = typeof PreviewDocumentResultSchema.Type;
 
 /** Every expected failure from one selected-document compilation closure. */
 export type PreviewDocumentError =
@@ -64,14 +68,6 @@ export interface PreviewDocumentCompiler {
     PreviewDocumentError,
     FileSystem.FileSystem | Path.Path
   >;
-}
-
-/** Dependencies captured by one selected-document compiler. */
-interface PreviewCompilerInput {
-  readonly aksaraRoot: string;
-  readonly rendererManifest: RendererManifestEnvelope;
-  readonly selected: SelectedDocument;
-  readonly signer: PublicationSigner;
 }
 
 /** Compiles and signs one loaded body without mutating the session cache. */
@@ -109,9 +105,12 @@ const compilePreviewSource = Effect.fn("AksaraCli.compilePreviewSource")(
 );
 
 /** Builds one compiler whose unsigned cache never becomes publication input. */
-export const makePreviewDocumentCompiler: (
-  input: PreviewCompilerInput
-) => Effect.Effect<PreviewDocumentCompiler> = Effect.fn(
+export const makePreviewDocumentCompiler: (input: {
+  readonly aksaraRoot: string;
+  readonly rendererManifest: RendererManifestEnvelope;
+  readonly selected: SelectedDocument;
+  readonly signer: PublicationSigner;
+}) => Effect.Effect<PreviewDocumentCompiler> = Effect.fn(
   "AksaraCli.makeDocumentCompiler"
 )(function* (input) {
   const cache = yield* Ref.make(
@@ -154,3 +153,6 @@ export const makePreviewDocumentCompiler: (
       verifySelectedFingerprint(input.selected, document.fingerprint),
   } satisfies PreviewDocumentCompiler;
 });
+
+/** Dependencies captured by one selected-document compiler. */
+type PreviewCompilerInput = Parameters<typeof makePreviewDocumentCompiler>[0];

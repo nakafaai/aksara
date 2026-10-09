@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Schema } from "effect";
 import {
   createConsumerManifest,
   createConsumerSource,
@@ -8,6 +9,7 @@ import {
   executablePath,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
+import { JsonTextSchema } from "#scripts/text/json";
 
 describe("consumer tooling", () => {
   it("removes npm credentials and pins empty configuration", () => {
@@ -45,7 +47,7 @@ describe("consumer tooling", () => {
   });
 
   it("serializes an isolated pnpm consumer manifest", () => {
-    const manifest = JSON.parse(
+    const manifest = Schema.decodeSync(JsonTextSchema)(
       createConsumerManifest({
         effectVersion: "4.0.0-rc.112",
         packageManager: "pnpm@11.25.0",
@@ -82,7 +84,9 @@ describe("consumer tooling", () => {
   });
 
   it("serializes strict compiler and runtime verifier boundaries", () => {
-    expect(JSON.parse(createConsumerTsconfig())).toMatchObject({
+    expect(
+      Schema.decodeSync(JsonTextSchema)(createConsumerTsconfig())
+    ).toMatchObject({
       compilerOptions: {
         lib: ["ES2022", "DOM", "ESNext.Disposable"],
         module: "NodeNext",

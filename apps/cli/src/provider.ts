@@ -2,7 +2,7 @@ import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import {
   canonicalizeSignedContentArtifact,
-  type SignedContentArtifact,
+  SignedContentArtifactSchema,
 } from "@nakafa/aksara-contracts/content";
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
@@ -15,7 +15,7 @@ import {
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import { Effect, HashMap, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
 import {
@@ -43,18 +43,11 @@ type PreviewFailure = Extract<
 >["failure"];
 
 /** One signed body and its matching renderer projection. */
-interface PreviewReadyResult {
-  readonly artifact: SignedContentArtifact;
-  readonly projection: ContentProjection;
-}
-
-/** Ordered values exposed only after every required body succeeds together. */
-export interface PreviewReadyInput {
-  readonly generation: number;
-  readonly rendererManifestHash: Sha256Hash;
-  readonly repositories: PreviewRepositories;
-  readonly results: readonly [PreviewReadyResult, ...PreviewReadyResult[]];
-}
+const PreviewReadyResultSchema = Schema.Struct({
+  artifact: SignedContentArtifactSchema,
+  projection: ContentProjectionSchema,
+});
+type PreviewReadyResult = typeof PreviewReadyResultSchema.Type;
 
 /** Scoped provider controls used by the authoring workflow. */
 export interface PreviewProvider {
@@ -72,16 +65,16 @@ export interface PreviewProvider {
     repositories: PreviewRepositories
   ) => Effect.Effect<number, PreviewProviderError>;
   /** Atomically exposes all ordered signed artifacts and their projections. */
-  readonly ready: (
-    input: PreviewReadyInput
-  ) => Effect.Effect<boolean, PreviewProviderError>;
+  readonly ready: (input: {
+    readonly generation: number;
+    readonly rendererManifestHash: Sha256Hash;
+    readonly repositories: PreviewRepositories;
+    readonly results: readonly [PreviewReadyResult, ...PreviewReadyResult[]];
+  }) => Effect.Effect<boolean, PreviewProviderError>;
 }
 
-interface PreviewProviderInput {
-  readonly document: PreviewDocument;
-  readonly repositories: PreviewRepositories;
-  readonly token: Redacted.Redacted<string>;
-}
+/** Ordered values exposed only after every required body succeeds together. */
+type PreviewReadyInput = Parameters<PreviewProvider["ready"]>[0];
 
 /** Encodes one exact manifest before it can become visible to HTTP callbacks. */
 const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
@@ -180,7 +173,11 @@ function hasCoherentReadyResult(
 
 /** Opens one bearer-protected provider whose artifact state fails closed. */
 export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
-  function* (input: PreviewProviderInput) {
+  function* (input: {
+    readonly document: PreviewDocument;
+    readonly repositories: PreviewRepositories;
+    readonly token: Redacted.Redacted<string>;
+  }) {
     const base = {
       document: input.document,
       format: LOCAL_PREVIEW_FORMAT,
@@ -197,7 +194,8 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
     };
     let generation = 0;
     const token = Redacted.value(input.token);
-    const http = makePreviewHttp({ readState: () => state, token });
+    const context = yield* Effect.context<never>();
+    const http = makePreviewHttp({ context, readState: () => state, token });
     const server = createServer(http.handle);
     const address = yield* Effect.uninterruptibleMask((restore) =>
       restore(listenLoopback(server)).pipe(

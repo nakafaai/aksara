@@ -3,6 +3,7 @@ import { Effect, Schema, Stream } from "effect";
 
 import { materialGraph } from "#contracts/test/graph";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { JsonTextSchema } from "#contracts/text/json";
 import {
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
@@ -20,6 +21,8 @@ import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 const rows: readonly TryoutCatalogRow[] = makeTryoutTestRows().catalog.map(
   ({ row }) => row
 );
+
+const readJson = Schema.decodeEffect(JsonTextSchema);
 
 const countryRow = Schema.decodeSync(TryoutCatalogRowSchema)({
   appLocale: "en",
@@ -164,7 +167,7 @@ describe("try-out catalog identity and hashing", () => {
         "id\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
         "id\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
       ]);
-      expect(JSON.parse(canonicalizeTryoutCatalog(first))).toEqual(first);
+      expect(yield* readJson(canonicalizeTryoutCatalog(first))).toEqual(first);
       expect(summary).toEqual({
         count: 15,
         digest:
@@ -194,7 +197,9 @@ describe("try-out catalog identity and hashing", () => {
       expect(canonicalizeTryoutCatalog(marked)).toContain(
         `"kind":"section",${marks},"order":1`
       );
-      expect(JSON.parse(canonicalizeTryoutCatalog(marked))).toEqual(marked);
+      expect(yield* readJson(canonicalizeTryoutCatalog(marked))).toEqual(
+        marked
+      );
       expect(canonicalizeTryoutCatalogFacts(marked)).toContain(
         `"examKey":"snbt",${marks},"questionCount":1`
       );

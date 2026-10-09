@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Schema } from "effect";
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
@@ -9,6 +10,7 @@ import {
   parseWorkspaceManifest,
   textField,
 } from "#scripts/manifest";
+import { encodeJsonText, JsonTextSchema } from "#scripts/text/json";
 
 const packageManifest = {
   dependencies: { runtime: "1.0.0" },
@@ -31,7 +33,7 @@ const packageManifest = {
 
 describe("manifest tooling", () => {
   it("decodes complete package and workspace manifests", () => {
-    expect(parsePackageManifest(JSON.stringify(packageManifest))).toEqual(
+    expect(parsePackageManifest(encodeJsonText(packageManifest))).toEqual(
       packageManifest
     );
     expect(parseWorkspaceManifest('{"packageManager":"pnpm@11.25.0"}')).toEqual(
@@ -40,9 +42,9 @@ describe("manifest tooling", () => {
   });
 
   it("removes repository-only source conditions from release manifests", () => {
-    const released = JSON.parse(
+    const released = Schema.decodeSync(JsonTextSchema)(
       createReleaseManifest(
-        JSON.stringify({
+        encodeJsonText({
           ...packageManifest,
           exports: {
             "./content": {
@@ -82,8 +84,8 @@ describe("manifest tooling", () => {
     });
     expect(released).not.toHaveProperty("devDependencies");
     expect(released).not.toHaveProperty("scripts");
-    expect(JSON.stringify(released)).not.toContain("aksara-source");
-    expect(JSON.stringify(released)).not.toContain("./src/");
+    expect(encodeJsonText(released)).not.toContain("aksara-source");
+    expect(encodeJsonText(released)).not.toContain("./src/");
   });
 
   it("decodes absent optional dependency maps", () => {
@@ -95,7 +97,7 @@ describe("manifest tooling", () => {
       peerDependencies: undefined,
     };
 
-    expect(parsePackageManifest(JSON.stringify(minimal))).toMatchObject({
+    expect(parsePackageManifest(encodeJsonText(minimal))).toMatchObject({
       dependencies: undefined,
       devDependencies: undefined,
       optionalDependencies: undefined,
@@ -123,7 +125,7 @@ describe("manifest tooling", () => {
   it("decodes exact installed export conditions", () => {
     expect(
       parseInstalledManifest(
-        JSON.stringify({
+        encodeJsonText({
           exports: {
             ".": {
               import: "./dist/index.js",
@@ -144,6 +146,13 @@ describe("manifest tooling", () => {
     });
   });
 
+  it("rejects text that is not JSON in every manifest reader", () => {
+    expect(() => parsePackageManifest("{")).toThrow();
+    expect(() => parseWorkspaceManifest("{")).toThrow();
+    expect(() => parseInstalledManifest("{")).toThrow();
+    expect(() => createReleaseManifest("{", "4.0.0-rc.112")).toThrow();
+  });
+
   it("rejects malformed package fields", () => {
     expect(() => textField(1, "text required")).toThrow("text required");
     expect(() => parsePackageManifest("[]")).toThrow(
@@ -151,29 +160,29 @@ describe("manifest tooling", () => {
     );
     expect(() =>
       parsePackageManifest(
-        JSON.stringify({ ...packageManifest, dependencies: [] })
+        encodeJsonText({ ...packageManifest, dependencies: [] })
       )
     ).toThrow("dependencies must be an object");
     expect(() =>
       parsePackageManifest(
-        JSON.stringify({
+        encodeJsonText({
           ...packageManifest,
           dependencies: { runtime: 1 },
         })
       )
     ).toThrow("runtime must use a text version");
     expect(() =>
-      parsePackageManifest(JSON.stringify({ ...packageManifest, engines: [] }))
+      parsePackageManifest(encodeJsonText({ ...packageManifest, engines: [] }))
     ).toThrow("Package engines must be an object");
     expect(() =>
-      parsePackageManifest(JSON.stringify({ ...packageManifest, exports: [] }))
+      parsePackageManifest(encodeJsonText({ ...packageManifest, exports: [] }))
     ).toThrow("Package exports must be an object");
     expect(() =>
-      parsePackageManifest(JSON.stringify({ ...packageManifest, imports: [] }))
+      parsePackageManifest(encodeJsonText({ ...packageManifest, imports: [] }))
     ).toThrow("Package imports must be an object");
     expect(() =>
       parsePackageManifest(
-        JSON.stringify({ ...packageManifest, repository: [] })
+        encodeJsonText({ ...packageManifest, repository: [] })
       )
     ).toThrow("Package repository must be an object");
     expect(() => createReleaseManifest("[]", "4.0.0-rc.112")).toThrow(
@@ -181,13 +190,13 @@ describe("manifest tooling", () => {
     );
     expect(() =>
       createReleaseManifest(
-        JSON.stringify({ ...packageManifest, peerDependencies: [] }),
+        encodeJsonText({ ...packageManifest, peerDependencies: [] }),
         "4.0.0-rc.112"
       )
     ).toThrow("peerDependencies must exist");
     expect(() =>
       createReleaseManifest(
-        JSON.stringify({ ...packageManifest, exports: { ".": "invalid" } }),
+        encodeJsonText({ ...packageManifest, exports: { ".": "invalid" } }),
         "4.0.0-rc.112"
       )
     ).toThrow("Export . must be an object");

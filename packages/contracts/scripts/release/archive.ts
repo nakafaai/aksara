@@ -1,4 +1,4 @@
-import { Effect, FileSystem, Stream } from "effect";
+import { Effect, FileSystem, Record as Rec, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import {
   type ContractIdentity,
@@ -80,7 +80,7 @@ export const writeOutputs = Effect.fn("AksaraContracts.writeReleaseOutputs")(
   ) {
     const fileSystem = yield* FileSystem.FileSystem;
     const lines: string[] = [];
-    for (const [key, value] of Object.entries(values)) {
+    for (const [key, value] of Rec.toEntries(values)) {
       const text = String(value);
       if (MULTILINE_PATTERN.test(text)) {
         return yield* releaseError(

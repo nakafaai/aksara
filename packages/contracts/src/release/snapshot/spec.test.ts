@@ -22,6 +22,7 @@ import {
   restoreContentSnapshot,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
@@ -224,7 +225,7 @@ describe("content snapshot state", () => {
       rowDigest: rows,
     });
 
-    expect(JSON.stringify(canonicalizeContentSnapshotState(state))).toBe(
+    expect(encodeJsonText(canonicalizeContentSnapshotState(state))).toBe(
       '{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}'
     );
   });
@@ -254,7 +255,7 @@ describe("content snapshot state", () => {
       },
     });
 
-    expect(JSON.stringify(canonicalizeContentSnapshotSet(snapshots))).toBe(
+    expect(encodeJsonText(canonicalizeContentSnapshotSet(snapshots))).toBe(
       '{"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"tryout":{"baseSnapshotId":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}}'
     );
   });

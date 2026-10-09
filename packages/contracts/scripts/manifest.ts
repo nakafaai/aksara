@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import { Record as Rec, Schema } from "effect";
 import { isObject } from "effect/Predicate";
+import { encodePrettyJsonText, JsonTextSchema } from "#scripts/text/json";
 
 export const DEPENDENCY_SECTIONS = [
   "dependencies",
@@ -12,25 +14,30 @@ const SOURCE_CONDITION = "aksara-source";
 
 type DependencySection = (typeof DEPENDENCY_SECTIONS)[number];
 
+const DependencyMapSchema = Schema.Record(Schema.String, Schema.String);
+
 /** Package fields required by isolated tarball verification. */
-export interface PackageManifest {
-  readonly dependencies: Readonly<Record<string, string>> | undefined;
-  readonly description: string;
-  readonly devDependencies: Readonly<Record<string, string>> | undefined;
-  readonly engines: { readonly node: string };
-  readonly exports: Readonly<Record<string, unknown>>;
-  readonly homepage: string;
-  readonly imports: Readonly<Record<string, unknown>>;
-  readonly license: string;
-  readonly name: string;
-  readonly optionalDependencies: Readonly<Record<string, string>> | undefined;
-  readonly peerDependencies: Readonly<Record<string, string>> | undefined;
-  readonly repository: {
-    readonly directory: string;
-    readonly type: string;
-    readonly url: string;
-  };
-}
+export const PackageManifestSchema = Schema.Struct({
+  dependencies: Schema.UndefinedOr(DependencyMapSchema),
+  description: Schema.String,
+  devDependencies: Schema.UndefinedOr(DependencyMapSchema),
+  engines: Schema.Struct({ node: Schema.String }),
+  exports: Schema.Record(Schema.String, Schema.Unknown),
+  homepage: Schema.String,
+  imports: Schema.Record(Schema.String, Schema.Unknown),
+  license: Schema.String,
+  name: Schema.String,
+  optionalDependencies: Schema.UndefinedOr(DependencyMapSchema),
+  peerDependencies: Schema.UndefinedOr(DependencyMapSchema),
+  repository: Schema.Struct({
+    directory: Schema.String,
+    type: Schema.String,
+    url: Schema.String,
+  }),
+});
+
+/** Package fields required by isolated tarball verification, as read from package.json. */
+export type PackageManifest = typeof PackageManifestSchema.Type;
 
 /** Verifies the public identity and provenance metadata of the contracts package. */
 export function assertContractPackageMetadata(manifest: PackageManifest): void {
@@ -57,7 +64,7 @@ export function assertContractPackageMetadata(manifest: PackageManifest): void {
 /** Rejects workspace-only dependency protocols in a portable release archive. */
 export function assertPortableDependencies(manifest: PackageManifest): void {
   for (const section of DEPENDENCY_SECTIONS) {
-    for (const version of Object.values(manifest[section] ?? {})) {
+    for (const version of Rec.values(manifest[section] ?? {})) {
       assert.doesNotMatch(
         version,
         WORKSPACE_PROTOCOL_PATTERN,
@@ -70,18 +77,23 @@ export function assertPortableDependencies(manifest: PackageManifest): void {
 /** Removes repository-only source resolution from one released export map. */
 function releasedExports(value: unknown): Readonly<Record<string, unknown>> {
   assert.ok(isObject(value), "Package exports must be an object");
-  return Object.fromEntries(
-    Object.entries(value).map(([subpath, descriptor]) => {
-      assert.ok(isObject(descriptor), `Export ${subpath} must be an object`);
-      return [
-        subpath,
-        Object.fromEntries(
-          Object.entries(descriptor).filter(
-            ([condition]) => condition !== SOURCE_CONDITION
-          )
-        ),
-      ];
-    })
+  return Rec.fromEntries(
+    Rec.toEntries(value).map(
+      ([subpath, descriptor]): readonly [
+        string,
+        Readonly<Record<string, unknown>>,
+      ] => {
+        assert.ok(isObject(descriptor), `Export ${subpath} must be an object`);
+        return [
+          subpath,
+          Rec.fromEntries(
+            Rec.toEntries(descriptor).filter(
+              ([condition]) => condition !== SOURCE_CONDITION
+            )
+          ),
+        ];
+      }
+    )
   );
 }
 
@@ -90,7 +102,7 @@ export function createReleaseManifest(
   source: string,
   effectVersion: string
 ): string {
-  const parsed: unknown = JSON.parse(source);
+  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(source);
   assert.ok(isObject(parsed), "The package manifest must be an object");
   assert.ok(isObject(parsed.peerDependencies), "peerDependencies must exist");
   const {
@@ -114,19 +126,26 @@ export function createReleaseManifest(
       effect: effectVersion,
     },
   };
-  return `${JSON.stringify(manifest, null, 2)}\n`;
+  return `${encodePrettyJsonText(manifest)}\n`;
 }
 
 /** Root toolchain field inherited by an isolated package consumer. */
-interface WorkspaceManifest {
-  readonly packageManager: string;
-}
+const WorkspaceManifestSchema = Schema.Struct({
+  packageManager: Schema.String,
+});
+
+type WorkspaceManifest = typeof WorkspaceManifestSchema.Type;
 
 /** Installed package fields exercised by the isolated consumer verifier. */
-interface InstalledManifest {
-  readonly exports: Readonly<Record<string, Readonly<Record<string, string>>>>;
-  readonly name: string;
-}
+const InstalledManifestSchema = Schema.Struct({
+  exports: Schema.Record(
+    Schema.String,
+    Schema.Record(Schema.String, Schema.String)
+  ),
+  name: Schema.String,
+});
+
+type InstalledManifest = typeof InstalledManifestSchema.Type;
 
 /** Requires one unknown manifest field to be text. */
 export function textField(value: unknown, message: string): string {
@@ -143,7 +162,7 @@ function exportConditions(
 ): Readonly<Record<string, string>> {
   assert.ok(isObject(value), `Export ${subpath} must be an object`);
   const conditions: Record<string, string> = {};
-  for (const [condition, target] of Object.entries(value)) {
+  for (const [condition, target] of Rec.toEntries(value)) {
     conditions[condition] = textField(
       target,
       `Export ${subpath} condition ${condition} must be text`
@@ -163,7 +182,7 @@ function dependencyMap(
   }
   assert.ok(isObject(value), `${section} must be an object`);
   const dependencies: Record<string, string> = {};
-  for (const [name, version] of Object.entries(value)) {
+  for (const [name, version] of Rec.toEntries(value)) {
     dependencies[name] = textField(version, `${name} must use a text version`);
   }
   return dependencies;
@@ -171,7 +190,7 @@ function dependencyMap(
 
 /** Decodes package fields exercised by the tarball verifier. */
 export function parsePackageManifest(source: string): PackageManifest {
-  const parsed: unknown = JSON.parse(source);
+  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(source);
   assert.ok(isObject(parsed), "The package manifest must be an object");
   const name = textField(parsed.name, "Package name must be text");
   const description = textField(
@@ -226,13 +245,13 @@ export function parsePackageManifest(source: string): PackageManifest {
 
 /** Decodes the installed package fields exercised by module resolution. */
 export function parseInstalledManifest(source: string): InstalledManifest {
-  const parsed: unknown = JSON.parse(source);
+  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(source);
   assert.ok(isObject(parsed), "The installed manifest must be an object");
   const name = textField(parsed.name, "The package name must be text");
   const rawExports = parsed.exports;
   assert.ok(isObject(rawExports), "The package must declare exports");
   const exports: Record<string, Readonly<Record<string, string>>> = {};
-  for (const [subpath, descriptor] of Object.entries(rawExports)) {
+  for (const [subpath, descriptor] of Rec.toEntries(rawExports)) {
     exports[subpath] = exportConditions(descriptor, subpath);
   }
   return { exports, name };
@@ -240,7 +259,7 @@ export function parseInstalledManifest(source: string): InstalledManifest {
 
 /** Decodes the root package-manager contract used by the consumer. */
 export function parseWorkspaceManifest(source: string): WorkspaceManifest {
-  const parsed: unknown = JSON.parse(source);
+  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(source);
   assert.ok(isObject(parsed), "The workspace manifest must be an object");
   const packageManager = textField(
     parsed.packageManager,

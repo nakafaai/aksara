@@ -28,6 +28,7 @@ import {
   ContentUpsertSchema,
   ReleaseItemIndexSchema,
 } from "#contracts/release/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Maximum complete body rollback page below the publication wire ceiling. */
 export const MAX_ROLLBACK_PAGE_BYTES = 4 * 1024 * 1024;
@@ -101,9 +102,9 @@ export function canonicalizeRollbackSnapshotEntry(
 ) {
   const snapshot =
     entry.snapshot.state === "absent"
-      ? `{"artifactLocale":${JSON.stringify(entry.snapshot.artifactLocale)},"contentKey":${JSON.stringify(entry.snapshot.contentKey)},"family":${JSON.stringify(entry.snapshot.family)},"state":"absent"}`
-      : `{"head":${canonicalizeContentHead(entry.snapshot.head)},"state":${JSON.stringify(entry.snapshot.state)}}`;
-  return `{"index":${entry.index},"releaseId":${JSON.stringify(entry.releaseId)},"snapshot":${snapshot}}`;
+      ? `{"artifactLocale":${encodeJsonText(entry.snapshot.artifactLocale)},"contentKey":${encodeJsonText(entry.snapshot.contentKey)},"family":${encodeJsonText(entry.snapshot.family)},"state":"absent"}`
+      : `{"head":${canonicalizeContentHead(entry.snapshot.head)},"state":${encodeJsonText(entry.snapshot.state)}}`;
+  return `{"index":${entry.index},"releaseId":${encodeJsonText(entry.releaseId)},"snapshot":${snapshot}}`;
 }
 
 /** Checks identity coherence across one upsert, artifact, and projection. */
@@ -249,7 +250,7 @@ export function isRollbackUpsert(
 
 /** Serializes one complete rollback state in stable wire field order. */
 function canonicalizeRollbackState(state: RollbackState) {
-  const change = JSON.stringify(canonicalizeContentChange(state.change));
+  const change = encodeJsonText(canonicalizeContentChange(state.change));
   if (!isRollbackUpsert(state)) {
     return `{"change":${change}}`;
   }
@@ -267,5 +268,5 @@ export function canonicalizeRollbackPage(page: RollbackPage) {
     .map(canonicalizeRollbackRecord)
     .join(
       ","
-    )}],"rollbackOfManifestHash":${JSON.stringify(page.rollbackOfManifestHash)},"rollbackOf":${JSON.stringify(page.rollbackOf)},"total":${page.total}}`;
+    )}],"rollbackOfManifestHash":${encodeJsonText(page.rollbackOfManifestHash)},"rollbackOf":${encodeJsonText(page.rollbackOf)},"total":${page.total}}`;
 }

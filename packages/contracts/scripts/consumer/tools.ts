@@ -1,30 +1,56 @@
 import assert from "node:assert/strict";
-import { Effect, Schema } from "effect";
+import { Effect, Record as Rec, Schema } from "effect";
 import { ChildProcess } from "effect/process";
+import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
 
 const CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/iu;
 const CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/iu;
 
-interface ConsumerManifestInput {
-  readonly effectVersion: string;
-  readonly packageManager: string;
-  readonly packageName: string;
-  readonly tarballPath: string;
-}
+const ConsumerManifestInputSchema = Schema.Struct({
+  effectVersion: Schema.String,
+  packageManager: Schema.String,
+  packageName: Schema.String,
+  tarballPath: Schema.String,
+});
+
+type ConsumerManifestInput = typeof ConsumerManifestInputSchema.Type;
 
 /** Executables used to build and inspect the isolated package. */
-export interface ConsumerTools {
-  readonly pnpm: string;
-  readonly tar: string;
-}
+const ConsumerToolsSchema = Schema.Struct({
+  pnpm: Schema.String,
+  tar: Schema.String,
+});
+
+/** Executables used to build and inspect the isolated package. */
+export type ConsumerTools = typeof ConsumerToolsSchema.Type;
 
 /** Host inputs required to stage one isolated consumer package. */
-export interface ConsumerPackageInput {
-  readonly environment: NodeJS.ProcessEnv;
-  readonly platform: NodeJS.Platform;
-  readonly temporaryDirectory?: string;
-  readonly tools?: Partial<ConsumerTools>;
-}
+export const ConsumerPackageInputSchema = Schema.Struct({
+  environment: Schema.Record(Schema.String, Schema.UndefinedOr(Schema.String)),
+  platform: Schema.Literals([
+    "aix",
+    "android",
+    "cygwin",
+    "darwin",
+    "freebsd",
+    "haiku",
+    "linux",
+    "netbsd",
+    "openbsd",
+    "sunos",
+    "win32",
+  ]),
+  temporaryDirectory: Schema.optionalKey(Schema.String),
+  tools: Schema.optionalKey(
+    Schema.Struct({
+      pnpm: Schema.optionalKey(Schema.String),
+      tar: Schema.optionalKey(Schema.String),
+    })
+  ),
+});
+
+/** Host inputs required to stage one isolated consumer package. */
+export type ConsumerPackageInput = typeof ConsumerPackageInputSchema.Type;
 
 /** Removes registry credentials and pins empty package-manager configuration. */
 export function createCredentialFreeEnvironment(
@@ -33,8 +59,8 @@ export function createCredentialFreeEnvironment(
   userConfig: string
 ): NodeJS.ProcessEnv {
   return {
-    ...Object.fromEntries(
-      Object.entries(environment).filter(
+    ...Rec.fromEntries(
+      Rec.toEntries(environment).filter(
         ([name]) =>
           !(
             CREDENTIAL_ENVIRONMENT_PATTERN.test(name) ||
@@ -135,23 +161,19 @@ export function createConsumerManifest({
   packageName,
   tarballPath,
 }: ConsumerManifestInput) {
-  return `${JSON.stringify(
-    {
-      dependencies: {
-        [packageName]: `file:${tarballPath}`,
-        effect: effectVersion,
-      },
-      imports: {
-        "#scripts/*": "./verify/*.ts",
-      },
-      name: "aksara-contracts-external-consumer",
-      packageManager,
-      private: true,
-      type: "module",
+  return `${encodePrettyJsonText({
+    dependencies: {
+      [packageName]: `file:${tarballPath}`,
+      effect: effectVersion,
     },
-    null,
-    2
-  )}\n`;
+    imports: {
+      "#scripts/*": "./verify/*.ts",
+    },
+    name: "aksara-contracts-external-consumer",
+    packageManager,
+    private: true,
+    type: "module",
+  })}\n`;
 }
 
 /** Serializes type proofs for every export and the Effect-native renderer seam. */
@@ -161,7 +183,7 @@ export function createConsumerSource(
 ) {
   const typeImports = publicSpecifiers.map(
     (specifier, index) =>
-      `import type * as Contract${index} from ${JSON.stringify(specifier)};`
+      `import type * as Contract${index} from ${encodeJsonText(specifier)};`
   );
   const typeReferences = publicSpecifiers.map(
     (_specifier, index) => `typeof Contract${index}`
@@ -212,22 +234,18 @@ export type InstalledContractSurface = [${typeReferences.join(", ")}];
 
 /** Serializes the strict NodeNext compiler boundary for the isolated consumer. */
 export function createConsumerTsconfig() {
-  return `${JSON.stringify(
-    {
-      compilerOptions: {
-        lib: ["ES2022", "DOM", "ESNext.Disposable"],
-        module: "NodeNext",
-        moduleResolution: "NodeNext",
-        noEmit: true,
-        skipLibCheck: false,
-        strict: true,
-        target: "ES2022",
-      },
-      files: ["consumer.ts"],
+  return `${encodePrettyJsonText({
+    compilerOptions: {
+      lib: ["ES2022", "DOM", "ESNext.Disposable"],
+      module: "NodeNext",
+      moduleResolution: "NodeNext",
+      noEmit: true,
+      skipLibCheck: false,
+      strict: true,
+      target: "ES2022",
     },
-    null,
-    2
-  )}\n`;
+    files: ["consumer.ts"],
+  })}\n`;
 }
 
 /** Serializes the external Node runtime verifier for the installed tarball. */

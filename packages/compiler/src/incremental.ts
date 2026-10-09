@@ -71,6 +71,10 @@ const IncrementalResultSchema = Schema.Union([
     result: CompiledContentResultSchema,
   }),
 ]);
+/** Kind of one local authoring outcome, derived from the result branches. */
+export const IncrementalResultKindSchema = Schema.Union(
+  IncrementalResultSchema.members.map((member) => member.fields.kind)
+);
 export type IncrementalResult = typeof IncrementalResultSchema.Type;
 
 /** Serializes identity fields in one stable cross-machine order. */

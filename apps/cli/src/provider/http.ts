@@ -13,7 +13,18 @@ import {
   LocalPreviewManifestSchema,
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { Equal, HashMap, MutableHashMap, Option, Schema } from "effect";
+import {
+  type Context,
+  Duration,
+  Effect,
+  Equal,
+  Fiber,
+  HashMap,
+  MutableHashMap,
+  Option,
+  Schedule,
+  Schema,
+} from "effect";
 import { encodeJsonText } from "#cli/text/json";
 
 export const PREVIEW_MANIFEST_PATH = "/manifest";
@@ -42,6 +53,8 @@ export interface PreviewHttp {
 }
 
 interface PreviewHttpInput {
+  /** Services of the fiber that opened the provider; every heartbeat runs with them. */
+  readonly context: Context.Context<never>;
   /** Overrides heartbeat cadence for deterministic transport tests. */
   readonly heartbeatIntervalMs?: number;
   /** Returns the one complete state committed before this request began. */
@@ -94,12 +107,26 @@ function eventJson(manifest: LocalPreviewManifest) {
   );
 }
 
+/** Writes one keep-alive line after each full interval until its fiber is interrupted. */
+const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
+  (response: ServerResponse, intervalMs: number) => {
+    const interval = Duration.millis(intervalMs);
+    return Effect.sync(() => response.write(PREVIEW_HEARTBEAT)).pipe(
+      Effect.repeat(Schedule.spaced(interval)),
+      Effect.delay(interval)
+    );
+  }
+);
+
 /** Creates the authenticated request transport around scoped provider state. */
 export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = MutableHashMap.empty<
-    ServerResponse,
-    ReturnType<typeof setInterval>
-  >();
+  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<number>>();
+  /** Forks one fiber with the services of the fiber that opened the provider. */
+  const runFork = Effect.runForkWith(input.context);
+  /** Interrupts one heartbeat from a Node callback, before its response ends. */
+  const stopHeartbeat = (heartbeat: Fiber.Fiber<number>) => {
+    runFork(Fiber.interrupt(heartbeat));
+  };
 
   /** Handles one authenticated request against one atomic state snapshot. */
   const handle: PreviewHttp["handle"] = (request, response) => {
@@ -124,13 +151,15 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
         connection: "keep-alive",
         "content-type": "text/event-stream; charset=utf-8",
       });
-      const heartbeat = setInterval(
-        () => response.write(PREVIEW_HEARTBEAT),
-        input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
+      const heartbeat = runFork(
+        writeKeepAlives(
+          response,
+          input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
+        )
       );
       MutableHashMap.set(clients, Equal.byReferenceUnsafe(response), heartbeat);
       response.once("close", () => {
-        clearInterval(heartbeat);
+        stopHeartbeat(heartbeat);
         MutableHashMap.remove(clients, Equal.byReferenceUnsafe(response));
       });
       response.write(`event: update\ndata: ${eventJson(state.manifest)}\n\n`);
@@ -153,7 +182,7 @@ export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
   /** Ends every event response without retaining stale scoped clients. */
   const close = () => {
     for (const [client, heartbeat] of clients) {
-      clearInterval(heartbeat);
+      stopHeartbeat(heartbeat);
       client.end();
     }
     MutableHashMap.clear(clients);

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableHashSet, Schema, Stream } from "effect";
 import { compareContentHeads, routeIdentity } from "#contracts/content";
 import {
   ContentKeySchema,
@@ -76,7 +76,7 @@ export class ResultCatalogDigestMismatchError extends Schema.TaggedError<ResultC
 /** Keeps mutable hash and ordering state private to one catalog replay. */
 class ResultCatalogDigestState {
   readonly #hash = createHash("sha256");
-  readonly #routes = new Set<string>();
+  readonly #routes = MutableHashSet.empty<string>();
   count = 0;
   previous: ContentHead | undefined;
 
@@ -92,10 +92,10 @@ class ResultCatalogDigestState {
       appLocale: AppLocaleSchema.make(artifactLocale),
       publicPath,
     });
-    if (this.#routes.has(identity)) {
+    if (MutableHashSet.has(this.#routes, identity)) {
       return false;
     }
-    this.#routes.add(identity);
+    MutableHashSet.add(this.#routes, identity);
     return true;
   }
 

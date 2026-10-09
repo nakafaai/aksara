@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashSet, Schema } from "effect";
 
 const CONTRACT_NAME = "@nakafa/aksara-contracts";
 const FIRST_VERSION = "0.1.0";
@@ -16,28 +16,37 @@ const PackageIdentitySchema = Schema.fromJsonString(
 );
 
 /** Stable contract package identity used by its archive and release tag. */
-export interface ContractIdentity {
-  readonly assetName: string;
-  readonly major: number;
-  readonly minor: number;
-  readonly patch: number;
-  readonly releaseTag: string;
-  readonly version: string;
-}
+const ContractIdentitySchema = Schema.Struct({
+  assetName: Schema.String,
+  major: Schema.Finite,
+  minor: Schema.Finite,
+  patch: Schema.Finite,
+  releaseTag: Schema.String,
+  version: Schema.String,
+});
+
+/** Stable contract package identity used by its archive and release tag. */
+export type ContractIdentity = typeof ContractIdentitySchema.Type;
 
 /** Current package identity and the newest released contract, when one exists. */
-export interface IdentityPlan {
-  readonly current: ContractIdentity;
-  readonly latest: ContractIdentity | undefined;
-}
+const IdentityPlanSchema = Schema.Struct({
+  current: ContractIdentitySchema,
+  latest: Schema.UndefinedOr(ContractIdentitySchema),
+});
+
+/** Current package identity and the newest released contract, when one exists. */
+export type IdentityPlan = typeof IdentityPlanSchema.Type;
 
 /** Exact archive facts and whether publication is required. */
-export interface ArchiveDecision {
-  readonly identity: ContractIdentity;
-  readonly mode: "create" | "unchanged";
-  readonly sha256: string;
-  readonly size: number;
-}
+const ArchiveDecisionSchema = Schema.Struct({
+  identity: ContractIdentitySchema,
+  mode: Schema.Literals(["create", "unchanged"]),
+  sha256: Schema.String,
+  size: Schema.Finite,
+});
+
+/** Exact archive facts and whether publication is required. */
+export type ArchiveDecision = typeof ArchiveDecisionSchema.Type;
 
 /** One expected contract release validation or identity failure. */
 export class ContractReleaseError extends Schema.TaggedError<ContractReleaseError>()(
@@ -127,7 +136,7 @@ export const packageIdentity = Effect.fn("AksaraContracts.packageIdentity")(
 export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
   function* (source: string) {
     const identities: ContractIdentity[] = [];
-    const versions = new Set<string>();
+    const versions = MutableHashSet.empty<string>();
     for (const release of source.split(LINE_PATTERN).filter(Boolean)) {
       const [releaseTag, assetName, ...extra] = release.split("\t");
       if (!(releaseTag && assetName) || extra.length > 0) {
@@ -144,13 +153,13 @@ export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
           "Contract release metadata must reference one stable package archive"
         );
       }
-      if (versions.has(version)) {
+      if (MutableHashSet.has(versions, version)) {
         return yield* releaseError(
           "identity",
           `Contract version ${version} has multiple immutable releases`
         );
       }
-      versions.add(version);
+      MutableHashSet.add(versions, version);
       identities.push(yield* parseVersion(version, releaseTag));
     }
     return identities.sort(compareVersions).at(-1);

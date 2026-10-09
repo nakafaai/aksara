@@ -13,6 +13,7 @@ import {
   replaceItem,
   upsertChange,
 } from "#contracts/test/items";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("release item integrity", () => {
   it.effect(
@@ -181,7 +182,7 @@ describe("release item integrity", () => {
         ]);
         expect(excess._tag).toBe("ReleaseItemDecodeError");
         expect(stale._tag).toBe("ReleaseItemDecodeError");
-        expect(JSON.stringify([excess, stale])).not.toContain(secret);
+        expect(encodeJsonText([excess, stale])).not.toContain(secret);
       })
   );
   it.effect("propagates upstream stream failures unchanged", () =>

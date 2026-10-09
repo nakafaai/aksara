@@ -1,5 +1,5 @@
 import { parseArgs } from "node:util";
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Schema } from "effect";
 import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import {
   decideArchive,
@@ -9,18 +9,20 @@ import {
 import { proveContractRelease } from "#scripts/release/proof";
 
 /** Release identity subcommands available only to protected workflows. */
-type ReleaseCommand = "decide" | "describe" | "prove";
+const ReleaseCommandSchema = Schema.Literals(["decide", "describe", "prove"]);
 
-interface ReleaseArguments {
-  readonly archive: string | undefined;
-  readonly command: ReleaseCommand;
-  readonly output: string | undefined;
-  readonly packagePath: string;
-  readonly previous: string | undefined;
-  readonly releases: string | undefined;
-  readonly repository: string | undefined;
-  readonly sourceSha: string | undefined;
-}
+const ReleaseArgumentsSchema = Schema.Struct({
+  archive: Schema.UndefinedOr(Schema.String),
+  command: ReleaseCommandSchema,
+  output: Schema.UndefinedOr(Schema.String),
+  packagePath: Schema.String,
+  previous: Schema.UndefinedOr(Schema.String),
+  releases: Schema.UndefinedOr(Schema.String),
+  repository: Schema.UndefinedOr(Schema.String),
+  sourceSha: Schema.UndefinedOr(Schema.String),
+});
+
+type ReleaseArguments = typeof ReleaseArgumentsSchema.Type;
 
 /** Parses one exact contract workflow command without exposing thrown CLI errors. */
 const parseReleaseArguments = Effect.fn(

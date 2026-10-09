@@ -21,7 +21,7 @@ const PreviewDependencySchema = Schema.Struct({
 export type PreviewDependency = typeof PreviewDependencySchema.Type;
 
 /** One exact source directory whose authored file set must remain unchanged. */
-const PreviewDirectorySchema = Schema.Struct({
+export const PreviewDirectorySchema = Schema.Struct({
   files: Schema.Array(Schema.String),
   sourcePath: CorpusSourcePathSchema,
 });
@@ -65,14 +65,16 @@ const QuestionPreviewSourceSchema = Schema.Struct({
 export type QuestionPreviewSource = typeof QuestionPreviewSourceSchema.Type;
 
 /** One registry-owned source body supported by trusted preview compilation. */
-export type PreviewSource =
-  | ArticlePreviewSource
-  | MaterialPreviewSource
-  | PagePreviewSource
-  | QuestionPreviewSource;
+export const PreviewSourceSchema = Schema.Union([
+  ArticlePreviewSourceSchema,
+  MaterialPreviewSourceSchema,
+  PagePreviewSourceSchema,
+  QuestionPreviewSourceSchema,
+]);
+export type PreviewSource = typeof PreviewSourceSchema.Type;
 
 /** Exact registry selection and ordered compilation closure for preview. */
-const PreviewSelectionSchema = Schema.Union([
+export const PreviewSelectionSchema = Schema.Union([
   Schema.Struct({
     document: ArticlePreviewDocumentSchema,
     sources: Schema.Tuple([ArticlePreviewSourceSchema]),

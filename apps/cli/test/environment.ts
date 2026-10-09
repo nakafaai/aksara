@@ -48,6 +48,21 @@ export function provideConfig<A, E>(
   );
 }
 
+/** Provides the inherited HOME and the given PATH as the only Config values. */
+export function inheritedEnvironment(path: string) {
+  return ConfigProvider.layer(
+    ConfigProvider.fromUnknown(
+      { HOME: "/home/aksara-test", PATH: path },
+      { preserveEmptyStrings: true }
+    )
+  );
+}
+
+/** Provides exactly the given variables through the production environment provider, which reads empty values as absent. */
+export function inheritedProcessEnvironment(env: Record<string, string>) {
+  return ConfigProvider.layer(ConfigProvider.fromEnv({ env }));
+}
+
 /** Returns one sanitized production configuration failure. */
 export function rejectProduction(
   values: MutableHashMap.MutableHashMap<string, string>

@@ -2,6 +2,7 @@ import type {
   ContentChange,
   ContentReleaseItem,
 } from "#contracts/release/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Serializes one change with stable fields for item digest computation. */
 export function canonicalizeContentChange(change: ContentChange) {
@@ -28,7 +29,7 @@ export function canonicalizeContentChange(change: ContentChange) {
 
 /** Serializes one release item with stable identity, order, and content. */
 export function canonicalizeContentReleaseItem(item: ContentReleaseItem) {
-  return JSON.stringify({
+  return encodeJsonText({
     change: canonicalizeContentChange(item.change),
     index: item.index,
     releaseId: item.releaseId,

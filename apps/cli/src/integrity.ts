@@ -3,11 +3,12 @@ import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type {
-  PreviewSelection,
-  PreviewSource,
+import {
+  PreviewDirectorySchema,
+  PreviewSelectionSchema,
+  PreviewSourceSchema,
 } from "@nakafa/aksara-corpus/preview/source";
-import { Effect, FileSystem, Schema } from "effect";
+import { Effect, FileSystem, HashMap, Option, Schema } from "effect";
 
 /** A requested document failed exact source validation. */
 export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepositoryError>()(
@@ -32,45 +33,55 @@ export class PreviewRestartError extends Schema.TaggedError<PreviewRestartError>
   { sourcePath: CorpusSourcePathSchema }
 ) {}
 
-interface SelectedFileBase {
-  readonly absolutePath: string;
-  readonly sourcePath: PreviewSource["entry"]["sourcePath"];
-}
-
-interface ReloadFileCandidate extends SelectedFileBase {
-  readonly mode: "reload";
-}
-
-interface RestartFileCandidate extends SelectedFileBase {
-  readonly mode: "restart";
-}
+const SelectedFileBaseSchema = Schema.Struct({
+  absolutePath: Schema.String,
+  sourcePath: CorpusSourcePathSchema,
+});
+const ReloadFileCandidateSchema = Schema.Struct({
+  ...SelectedFileBaseSchema.fields,
+  mode: Schema.Literal("reload"),
+});
+const RestartFileCandidateSchema = Schema.Struct({
+  ...SelectedFileBaseSchema.fields,
+  mode: Schema.Literal("restart"),
+});
+const RestartSelectedFileSchema = Schema.Struct({
+  ...RestartFileCandidateSchema.fields,
+  baselineHash: Sha256HashSchema,
+});
+/** One reloadable body or restart-scoped source dependency. */
+const SelectedFileSchema = Schema.Union([
+  ReloadFileCandidateSchema,
+  RestartSelectedFileSchema,
+]);
+type ReloadFileCandidate = typeof ReloadFileCandidateSchema.Type;
+type RestartFileCandidate = typeof RestartFileCandidateSchema.Type;
+type RestartSelectedFile = typeof RestartSelectedFileSchema.Type;
 
 /** One selected file before its restart baseline has been captured. */
 export type SelectedFileCandidate = ReloadFileCandidate | RestartFileCandidate;
 
-interface RestartSelectedFile extends RestartFileCandidate {
-  readonly baselineHash: typeof Sha256HashSchema.Type;
-}
+type SelectedFile = typeof SelectedFileSchema.Type;
 
-/** One reloadable body or restart-scoped source dependency. */
-type SelectedFile = ReloadFileCandidate | RestartSelectedFile;
-
-type SourceDirectory = PreviewSource["directories"][number];
-
+/** Startup-scoped source directory with its absolute path in this checkout. */
+const SelectedDirectorySchema = Schema.Struct({
+  ...PreviewDirectorySchema.fields,
+  absolutePath: Schema.String,
+});
 /** Exact source directory whose authored file membership is startup topology. */
-export interface SelectedDirectory {
-  readonly absolutePath: string;
-  readonly files: SourceDirectory["files"];
-  readonly sourcePath: SourceDirectory["sourcePath"];
-}
+export type SelectedDirectory = typeof SelectedDirectorySchema.Type;
 
 /** Exact selected document and its ordered compilation closure. */
-export interface SelectedDocument {
-  readonly directories: readonly SelectedDirectory[];
-  readonly document: PreviewSelection["document"];
-  readonly files: readonly [SelectedFile, ...SelectedFile[]];
-  readonly sources: readonly [PreviewSource, ...PreviewSource[]];
-}
+const SelectedDocumentSchema = Schema.Struct({
+  directories: Schema.Array(SelectedDirectorySchema),
+  // Each selection variant owns one document Schema, so the field accepts any of them.
+  document: Schema.Union(
+    PreviewSelectionSchema.members.map((member) => member.fields.document)
+  ),
+  files: Schema.NonEmptyArray(SelectedFileSchema),
+  sources: Schema.NonEmptyArray(PreviewSourceSchema),
+});
+export type SelectedDocument = typeof SelectedDocumentSchema.Type;
 
 /** Revalidates selected paths before they are read or watched. */
 const verifySelectedFiles = Effect.fn("AksaraCli.verifySelectedFiles")(
@@ -216,9 +227,16 @@ export const fingerprintSelectedDocument = Effect.fn(
 });
 
 /** Immutable source hashes captured for one atomic compilation attempt. */
-export type SelectedFingerprint = Effect.Success<
-  ReturnType<typeof fingerprintSelectedDocument>
->;
+export const SelectedFingerprintSchema = Schema.Struct({
+  files: Schema.Array(
+    Schema.Struct({
+      hash: Sha256HashSchema,
+      sourcePath: CorpusSourcePathSchema,
+    })
+  ),
+});
+/** Type of the immutable source hashes captured for one atomic compilation attempt. */
+type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
 
 /** Rejects a closure that changed while its related sources were loaded. */
 export const verifySelectedFingerprint = Effect.fn(
@@ -226,11 +244,13 @@ export const verifySelectedFingerprint = Effect.fn(
 )(function* (selected: SelectedDocument, expected: SelectedFingerprint) {
   const actual = yield* fingerprintSelectedDocument(selected);
   yield* verifySelectedTopology(selected);
-  const expectedByPath = new Map(
+  const expectedByPath = HashMap.fromIterable(
     expected.files.map((file) => [file.sourcePath, file.hash])
   );
   const changed = actual.files.find(
-    (file) => expectedByPath.get(file.sourcePath) !== file.hash
+    (file) =>
+      Option.getOrUndefined(HashMap.get(expectedByPath, file.sourcePath)) !==
+      file.hash
   );
   if (changed !== undefined) {
     return yield* new PreviewRepositoryError({
