@@ -8,7 +8,15 @@ import {
   PreviewSelectionSchema,
   PreviewSourceSchema,
 } from "@nakafa/aksara-corpus/preview/source";
-import { Effect, FileSystem, HashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashMap,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 
 /** A requested document failed exact source validation. */
 export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepositoryError>()(
@@ -76,7 +84,7 @@ const SelectedDocumentSchema = Schema.Struct({
   directories: Schema.Array(SelectedDirectorySchema),
   // Each selection variant owns one document Schema, so the field accepts any of them.
   document: Schema.Union(
-    PreviewSelectionSchema.members.map((member) => member.fields.document)
+    Arr.map(PreviewSelectionSchema.members, (member) => member.fields.document)
   ),
   files: Schema.NonEmptyArray(SelectedFileSchema),
   sources: Schema.NonEmptyArray(PreviewSourceSchema),
@@ -188,10 +196,10 @@ export const verifySelectedDirectory = Effect.fn(
         () => new PreviewRestartError({ sourcePath: directory.sourcePath })
       )
     );
-  const actualFiles = [...files].sort();
+  const actualFiles = Arr.sort([...files], Order.String);
   if (
     actualFiles.length !== directory.files.length ||
-    actualFiles.some((file, index) => file !== directory.files[index])
+    Arr.some(actualFiles, (file, index) => file !== directory.files[index])
   ) {
     return yield* new PreviewRestartError({
       sourcePath: directory.sourcePath,
@@ -245,17 +253,18 @@ export const verifySelectedFingerprint = Effect.fn(
   const actual = yield* fingerprintSelectedDocument(selected);
   yield* verifySelectedTopology(selected);
   const expectedByPath = HashMap.fromIterable(
-    expected.files.map((file) => [file.sourcePath, file.hash])
+    Arr.map(expected.files, (file) => [file.sourcePath, file.hash])
   );
-  const changed = actual.files.find(
+  const changed = Arr.findFirst(
+    actual.files,
     (file) =>
       Option.getOrUndefined(HashMap.get(expectedByPath, file.sourcePath)) !==
       file.hash
   );
-  if (changed !== undefined) {
+  if (Option.isSome(changed)) {
     return yield* new PreviewRepositoryError({
       kind: "document",
-      path: changed.sourcePath,
+      path: changed.value.sourcePath,
       reason: "changed",
     });
   }

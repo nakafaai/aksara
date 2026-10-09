@@ -4,6 +4,7 @@ import {
   Effect,
   Logger,
   MutableHashMap,
+  MutableList,
   Record as Rec,
   References,
   Schema,
@@ -48,7 +49,10 @@ function statusResponse(
 }
 
 /** Runs status through isolated Config and HTTP capabilities. */
-function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
+function runStatus(
+  client: HttpClient.HttpClient,
+  logs?: MutableList.MutableList<StatusLog>
+) {
   const program = runStatusCommand.pipe(
     Effect.provideService(
       ConfigProvider.ConfigProvider,
@@ -60,7 +64,7 @@ function runStatus(client: HttpClient.HttpClient, logs?: StatusLog[]) {
     return program;
   }
   const logger = Logger.make(({ fiber, message }) => {
-    logs.push({
+    MutableList.append(logs, {
       annotations: { ...fiber.getRef(References.CurrentLogAnnotations) },
       message,
     });
@@ -125,11 +129,11 @@ describe("status command", () => {
       const captured = captureClient((request) =>
         Effect.succeed(statusResponse(request, current))
       );
-      const logs: StatusLog[] = [];
+      const logs = MutableList.make<StatusLog>();
 
       expect(yield* runStatus(captured.client, logs)).toBeUndefined();
       expect(captured.requests).toHaveLength(1);
-      expect(logs).toEqual([
+      expect(MutableList.toArray(logs)).toEqual([
         {
           annotations: {
             active: "empty",

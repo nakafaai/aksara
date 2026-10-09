@@ -1,6 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 import {
   createMathVisualPolicy,
   normalizeSchemaPath,
@@ -208,13 +208,17 @@ describe("createMathVisualPolicy", () => {
   ] as const)("rejects the unexpected nested %s scene field", ([name, scene]) =>
     Effect.gen(function* () {
       const error = yield* rejectMathVisual(`<MathVisual scene={${scene}} />`);
-      const violation = error.violations.find(
+      const violation = Arr.findFirst(
+        error.violations,
         (candidate) => candidate.reason === "scene-schema"
       );
-      assert.ok(violation);
-      if (violation.reason === "scene-schema") {
-        assert.strictEqual(violation.path.at(-1), name);
-        assert.strictEqual(violation.message, "Expected no excess property");
+      assert.ok(Option.isSome(violation));
+      if (violation.value.reason === "scene-schema") {
+        assert.strictEqual(violation.value.path.at(-1), name);
+        assert.strictEqual(
+          violation.value.message,
+          "Expected no excess property"
+        );
       }
     })
   );

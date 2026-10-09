@@ -18,7 +18,15 @@ import {
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, HashSet, MutableHashSet, Predicate } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableHashSet,
+  Option,
+  Order,
+  Predicate,
+} from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
 import type { Root } from "mdast";
@@ -37,8 +45,8 @@ import {
 } from "#compiler/errors";
 import { hashUtf8 } from "#compiler/hash";
 import {
+  createMetadataCollector,
   extractMetadata,
-  type MetadataCollector,
   validateMetadata,
 } from "#compiler/metadata";
 import { createSourcePolicy } from "#compiler/policy/source";
@@ -106,14 +114,17 @@ function selectRendererRequirements(
   names: Iterable<string>,
   components: readonly RendererComponentName[]
 ) {
-  return Effect.forEach([...names].sort(), (componentName) => {
-    const selected = components.find((name) => name === componentName);
-    if (!selected) {
+  return Effect.forEach(Arr.sort([...names], Order.String), (componentName) => {
+    const selected = Arr.findFirst(
+      components,
+      (name) => name === componentName
+    );
+    if (Option.isNone(selected)) {
       return Effect.fail(
         new RendererComponentMissingError({ componentName, contentKey })
       );
     }
-    return Effect.succeed<RendererComponentName>(selected);
+    return Effect.succeed<RendererComponentName>(selected.value);
   });
 }
 
@@ -146,10 +157,7 @@ export const compileValidatedContent = Effect.fn(
     allowedComponents
   );
   const requiredComponentNames = MutableHashSet.empty<string>();
-  const metadataCollector: MetadataCollector = {
-    candidates: [],
-    syntaxReasons: [],
-  };
+  const metadataCollector = createMetadataCollector();
   let plainText = "";
 
   yield* enforceContentByteLimit(

@@ -1,4 +1,4 @@
-import { Predicate } from "effect";
+import { Array as Arr, Predicate } from "effect";
 import type { PreviewDocumentError } from "#cli/document";
 
 const MAX_DIAGNOSTIC_ITEMS = 8;
@@ -62,9 +62,9 @@ function diagnosticList(values: readonly string[]) {
   const visible = values.slice(0, MAX_DIAGNOSTIC_ITEMS);
   const remaining = values.length - visible.length;
   if (remaining === 0) {
-    return visible.join(", ");
+    return Arr.join(visible, ", ");
   }
-  return `${visible.join(", ")}; ${remaining} more`;
+  return `${Arr.join(visible, ", ")}; ${remaining} more`;
 }
 
 /** Returns compiler-owned remediation context without serializing unknown causes. */
@@ -80,7 +80,7 @@ function compilerDetail(error: PreviewDocumentError) {
       return `${error.field} is ${error.actualBytes} bytes; maximum is ${error.maxBytes}`;
     case "ExecutablePolicyError":
       return `rejected executable syntax: ${diagnosticList(
-        error.violations.map(({ identifier, rule }) => {
+        Arr.map(error.violations, ({ identifier, rule }) => {
           if (identifier === undefined) {
             return rule;
           }
@@ -93,7 +93,8 @@ function compilerDetail(error: PreviewDocumentError) {
       return `register renderer component ${error.componentName} before using it`;
     case "UnsupportedMdxModuleSyntaxError":
       return `remove MDX module syntax at ${diagnosticList(
-        error.occurrences.map(
+        Arr.map(
+          error.occurrences,
           ({ column, kind, line }) => `${line}:${column} (${kind})`
         )
       )}`;
@@ -109,14 +110,10 @@ function failureMessage(
   detail: string | undefined,
   maxLength: number
 ) {
-  const parts = [code];
-  if (location !== undefined) {
-    parts.push(`at ${location}`);
-  }
-  if (detail !== undefined) {
-    parts.push(`(${detail})`);
-  }
-  return `${boundDiagnostic(parts.join(" "), maxLength - 1)}.`;
+  const locationPart = location === undefined ? [] : [`at ${location}`];
+  const detailPart = detail === undefined ? [] : [`(${detail})`];
+  const parts = [code, ...locationPart, ...detailPart];
+  return `${boundDiagnostic(Arr.join(parts, " "), maxLength - 1)}.`;
 }
 
 /** Produces separate public and trusted-CLI views of one document failure. */

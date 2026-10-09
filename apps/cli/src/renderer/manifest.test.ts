@@ -7,7 +7,7 @@ import {
   PreviewRendererSecretSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Fiber, Redacted } from "effect";
+import { Effect, Fiber, MutableList, Redacted } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
@@ -209,9 +209,10 @@ describe("Nakafa renderer discovery", () => {
 
   it.effect("bounds local startup retries and timeout", () =>
     Effect.gen(function* () {
-      const localResponses = [404, 200];
+      const localResponses = MutableList.make<number>();
+      MutableList.appendAll(localResponses, [404, 200]);
       const local = captureClient((request) => {
-        const status = localResponses.shift() ?? 200;
+        const [status = 200] = MutableList.takeN(localResponses, 1);
         if (status !== 200) {
           return rendererResponse(request, null, { status });
         }

@@ -2,7 +2,14 @@ import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import { NodeServices } from "@effect/platform-node";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
-import { Effect, Record as Rec, Redacted, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Record as Rec,
+  Redacted,
+  Schema,
+  Stream,
+} from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -120,7 +127,7 @@ export function makeIncoherentResults(
       },
     }),
   ];
-  return artifacts.map((artifact) => ({ ...compiled, artifact }));
+  return Arr.map(artifacts, (artifact) => ({ ...compiled, artifact }));
 }
 
 /** Creates one exact provider input backed by a temporary real document. */

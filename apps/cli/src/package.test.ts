@@ -1,7 +1,15 @@
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem, Path, Result, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Path,
+  Result,
+  Schema,
+  Stream,
+} from "effect";
 import { ChildProcess } from "effect/process";
 import {
   isAllowedPackedFile,
@@ -64,7 +72,7 @@ const runCommand = Effect.fn("AksaraCliTest.runCommand")(function* (
   const result = yield* readCommand(command, args, cwd);
   if (result.exitCode !== 0) {
     return yield* new CliTestCommandError({
-      command: [command, ...args].join(" "),
+      command: Arr.join([command, ...args], " "),
       exitCode: result.exitCode,
       stderr: result.stderr.trim(),
     });
@@ -139,7 +147,7 @@ describe("Aksara CLI package", () => {
           distributionRoot
         );
         const [pack] = yield* Schema.decodeEffect(PackResultSchema)(packOutput);
-        const files = pack.files.map(({ path: file }) => file);
+        const files = Arr.map(pack.files, ({ path: file }) => file);
         const tarballPath = path.join(directory, pack.filename);
 
         yield* fileSystem.writeFileString(
@@ -202,9 +210,9 @@ describe("Aksara CLI package", () => {
         const version = yield* runCommand(binary, ["--version"], directory);
 
         expect(
-          REQUIRED_PACKED_FILES.every((file) => files.includes(file))
+          Arr.every(REQUIRED_PACKED_FILES, (file) => files.includes(file))
         ).toBe(true);
-        expect(files.every(isAllowedPackedFile)).toBe(true);
+        expect(Arr.every(files, isAllowedPackedFile)).toBe(true);
         expect(yield* Schema.decodeEffect(JsonTextSchema)(delegated)).toEqual({
           args: ["sentinel"],
           cwd: realNested,

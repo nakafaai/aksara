@@ -1,4 +1,12 @@
-import { Effect, FileSystem, MutableHashMap, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableHashMap,
+  Order,
+  Path,
+  Schema,
+} from "effect";
 
 const ManifestSchema = Schema.fromJsonString(
   Schema.Struct({
@@ -82,9 +90,10 @@ const readNotice = Effect.fn("AksaraCliNotice.read")(function* (
           new NoticeError({ cause, path: location.root, stage: "license" })
       )
     );
-  const licenseFiles = entries
-    .filter((entry) => LICENSE_PATTERN.test(entry))
-    .sort();
+  const licenseFiles = Arr.sort(
+    Arr.filter(entries, (entry) => LICENSE_PATTERN.test(entry)),
+    Order.String
+  );
   if (licenseFiles.length === 0) {
     return yield* new NoticeError({
       cause: "No license file found",
@@ -111,6 +120,20 @@ const readNotice = Effect.fn("AksaraCliNotice.read")(function* (
   };
 });
 
+/** Orders notices by package name and version with the locale collation of their keys. */
+const compareNotices = Order.make<{
+  readonly name: string;
+  readonly version: string;
+}>((left, right) => {
+  const order = `${left.name}@${left.version}`.localeCompare(
+    `${right.name}@${right.version}`
+  );
+  if (order < 0) {
+    return -1;
+  }
+  return order > 0 ? 1 : 0;
+});
+
 /** Generates complete notices from the exact third-party bundle inputs. */
 export const generateBundledNotice = Effect.fn("AksaraCliNotice.generate")(
   function* (inputs: readonly string[], root: string) {
@@ -129,18 +152,16 @@ export const generateBundledNotice = Effect.fn("AksaraCliNotice.generate")(
         concurrency: "unbounded",
       }
     );
-    notices.sort((left, right) =>
-      `${left.name}@${left.version}`.localeCompare(
-        `${right.name}@${right.version}`
-      )
-    );
-    const sections = notices.map(
+    const sections = Arr.map(
+      Arr.sort(notices, compareNotices),
       (notice) =>
-        `${notice.name} ${notice.version}\nLicense: ${notice.license}\n\n${notice.licenses
-          .map((license) => license.trim())
-          .join("\n\n")}`
+        `${notice.name} ${notice.version}\nLicense: ${notice.license}\n\n${Arr.join(
+          Arr.map(notice.licenses, (license) => license.trim()),
+          "\n\n"
+        )}`
     );
-    return `Bundled dependency notices\n\nThis file is generated from the exact esbuild bundle inputs.\n\n${sections.join(
+    return `Bundled dependency notices\n\nThis file is generated from the exact esbuild bundle inputs.\n\n${Arr.join(
+      sections,
       "\n\n================================================================\n\n"
     )}\n`;
   }

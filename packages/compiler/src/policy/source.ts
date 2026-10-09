@@ -2,7 +2,7 @@ import type {
   ContentKey,
   CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, type HashSet } from "effect";
+import { Effect, type HashSet, MutableList } from "effect";
 import {
   ExecutablePolicyError,
   type ExecutablePolicyViolation,
@@ -34,8 +34,8 @@ export function createSourcePolicy(
 ) {
   const headingPolicy = createHeadingPolicy(contentKey, sourcePath);
   const mathVisualPolicy = createMathVisualPolicy(contentKey);
-  const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-  const violations: ExecutablePolicyViolation[] = [];
+  const unsupportedModules = MutableList.make<UnsupportedMdxModuleOccurrence>();
+  const violations = MutableList.make<ExecutablePolicyViolation>();
   const remarkPlugins = [
     headingPolicy.remarkPlugin,
     mathVisualPolicy.remarkPlugin,
@@ -48,14 +48,14 @@ export function createSourcePolicy(
       if (unsupportedModules.length > 0) {
         return yield* new UnsupportedMdxModuleSyntaxError({
           contentKey,
-          occurrences: [...unsupportedModules],
+          occurrences: MutableList.toArray(unsupportedModules),
         });
       }
       yield* mathVisualPolicy.validate();
       if (violations.length > 0) {
         return yield* new ExecutablePolicyError({
           contentKey,
-          violations: [...violations],
+          violations: MutableList.toArray(violations),
         });
       }
       yield* headingPolicy.validate();

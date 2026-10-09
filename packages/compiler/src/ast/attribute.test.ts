@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   planeScene,
   rejectMathVisual,
@@ -172,7 +172,7 @@ describe("MathVisual visible metadata", () => {
         `<MathVisual ${attributes} scene={${planeScene()}} />`
       );
       assert.ok(
-        error.violations.some((violation) => violation.reason === reason)
+        Arr.some(error.violations, (violation) => violation.reason === reason)
       );
     })
   );

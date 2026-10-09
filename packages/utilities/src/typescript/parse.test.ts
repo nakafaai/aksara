@@ -1,5 +1,12 @@
 import { afterEach, expect, layer, it as test } from "@effect/vitest";
-import { Effect, Layer, MutableHashMap, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Layer,
+  MutableHashMap,
+  MutableList,
+  Option,
+} from "effect";
 import { isJSDoc } from "typescript/unstable/ast";
 import {
   API,
@@ -14,9 +21,7 @@ import {
 } from "#utilities/typescript/parse";
 
 const nativeFailures = MutableHashMap.empty<string, Error>();
-const nativeFileSystems = vi.hoisted(
-  () => [] as NonNullable<APIOptions["fs"]>[]
-);
+const nativeFileSystems = MutableList.make<NonNullable<APIOptions["fs"]>>();
 
 vi.mock("typescript/unstable/sync", async (importOriginal) => {
   const native =
@@ -36,7 +41,7 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
           "fs" in options &&
           options.fs !== undefined
         ) {
-          nativeFileSystems.push(options.fs);
+          MutableList.append(nativeFileSystems, options.fs);
         }
         super(...args);
       }
@@ -46,7 +51,7 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
 
 afterEach(() => {
   MutableHashMap.clear(nativeFailures);
-  nativeFileSystems.length = 0;
+  MutableList.clear(nativeFileSystems);
   vi.restoreAllMocks();
 });
 
@@ -115,9 +120,12 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
           const [declaration] = sourceFile.statements;
           return {
             declaration: declaration?.getText(sourceFile),
-            documentation: declaration?.jsDoc
-              ?.filter(isJSDoc)
-              .map((doc) => doc.getText(sourceFile)),
+            documentation:
+              declaration?.jsDoc === undefined
+                ? undefined
+                : Arr.map(Arr.filter(declaration.jsDoc, isJSDoc), (doc) =>
+                    doc.getText(sourceFile)
+                  ),
             line: declaration
               ? sourceFile.getLineAndCharacterOfPosition(declaration.getStart())
                   .line
@@ -217,7 +225,7 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
         { fileName: "isolated.ts", source: "export {};" },
         () => true
       );
-      const fileSystem = nativeFileSystems.at(-1);
+      const fileSystem = MutableList.toArray(nativeFileSystems).at(-1);
       expect(fileSystem?.fileExists?.(import.meta.filename)).toBe(false);
       expect(fileSystem?.readFile?.(import.meta.filename)).toBeNull();
     }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)))

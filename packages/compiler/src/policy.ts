@@ -1,4 +1,10 @@
-import { Array as Arr, HashSet, MutableHashMap, Predicate } from "effect";
+import {
+  Array as Arr,
+  HashSet,
+  MutableHashMap,
+  MutableList,
+  Predicate,
+} from "effect";
 import { analyze } from "eslint-scope";
 import type { Node as EstreeNode, JSXAttribute, Program } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
@@ -158,11 +164,14 @@ function inspectProgram(
 function appendProgramViolations(
   node: UnistNode,
   allowedComponents: HashSet.HashSet<string>,
-  violations: ExecutablePolicyViolation[]
+  violations: MutableList.MutableList<ExecutablePolicyViolation>
 ) {
   const program = readNodeProgram(node);
   if (program) {
-    violations.push(...inspectProgram(program, allowedComponents));
+    MutableList.appendAll(
+      violations,
+      inspectProgram(program, allowedComponents)
+    );
   }
 }
 
@@ -170,7 +179,7 @@ function appendProgramViolations(
 function inspectMdxJsxAttributes(
   node: UnistNode,
   allowedComponents: HashSet.HashSet<string>,
-  violations: ExecutablePolicyViolation[]
+  violations: MutableList.MutableList<ExecutablePolicyViolation>
 ) {
   if (
     !(node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement")
@@ -189,7 +198,7 @@ function inspectMdxJsxAttributes(
       "name" in attribute &&
       attribute.name === "dangerouslySetInnerHTML"
     ) {
-      violations.push({
+      MutableList.append(violations, {
         identifier: "dangerouslySetInnerHTML",
         rule: "dangerous-jsx-attribute",
       });
@@ -204,8 +213,8 @@ function inspectMdxJsxAttributes(
 /** Rejects MDX module syntax and records unsupported executable capabilities. */
 export function enforceExecutablePolicy(
   allowedComponents: HashSet.HashSet<string>,
-  unsupportedModules: UnsupportedMdxModuleOccurrence[],
-  violations: ExecutablePolicyViolation[]
+  unsupportedModules: MutableList.MutableList<UnsupportedMdxModuleOccurrence>,
+  violations: MutableList.MutableList<ExecutablePolicyViolation>
 ): Plugin<[], Root> {
   return () => (tree) => {
     visitUnist(tree, (node) => {

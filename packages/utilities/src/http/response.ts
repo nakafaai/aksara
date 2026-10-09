@@ -1,4 +1,4 @@
-import { Chunk, Effect, HashSet, Schema, Stream } from "effect";
+import { Array as Arr, Chunk, Effect, HashSet, Schema, Stream } from "effect";
 import type { HttpClientResponse } from "effect/http";
 import { joinBytes } from "#utilities/bytes/join";
 
@@ -23,9 +23,11 @@ export function hasDirectives(
   required: readonly string[]
 ) {
   const directives = HashSet.fromIterable(
-    value?.split(",").map((directive) => directive.trim().toLowerCase()) ?? []
+    Arr.map(value?.split(",") ?? [], (directive) =>
+      directive.trim().toLowerCase()
+    )
   );
-  return required.every((directive) =>
+  return Arr.every(required, (directive) =>
     HashSet.has(directives, directive.toLowerCase())
   );
 }

@@ -1,4 +1,4 @@
-import { HashMap, Option, Predicate } from "effect";
+import { Array as Arr, HashMap, Option, Predicate } from "effect";
 import type { Node } from "estree-jsx";
 
 type Operation = (...values: number[]) => number;
@@ -98,8 +98,8 @@ function operate(
   operation: Operation | undefined,
   operands: readonly Node[]
 ): number | undefined {
-  const values = operands.map(evaluate);
-  return operation && values.every(Predicate.isNumber)
+  const values = Arr.map(operands, evaluate);
+  return operation && Arr.every(values, Predicate.isNumber)
     ? operation(...values)
     : undefined;
 }

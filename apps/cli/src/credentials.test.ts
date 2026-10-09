@@ -1,6 +1,6 @@
 import { createHash, createPublicKey, type KeyObject } from "node:crypto";
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
-import { Effect, HashSet, Redacted } from "effect";
+import { Array as Arr, Effect, HashSet, Redacted } from "effect";
 import {
   makePreviewCredentials,
   type PreviewCredentials,
@@ -104,7 +104,9 @@ describe("preview credentials", () => {
             HashSet.fromIterable([...firstSecrets, ...secondSecrets])
           )
         );
-        expect(firstSecrets.every((value) => value.length === 43)).toBe(true);
+        expect(Arr.every(firstSecrets, (value) => value.length === 43)).toBe(
+          true
+        );
         expect(createPublicKey(first.publicKeyPem).asymmetricKeyType).toBe(
           "ed25519"
         );
