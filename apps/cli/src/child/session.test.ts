@@ -1,34 +1,18 @@
 import { Server } from "node:net";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
-import { ConfigProvider, Effect, Record as Rec, Redacted } from "effect";
-import {
-  NakafaProcess,
-  type NakafaProcessInput,
-  type RunningProcess,
-} from "#cli/child/process";
+import { Effect, Record as Rec, Redacted } from "effect";
+import { NakafaProcess, type NakafaProcessInput } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
 import { makePreviewCredentials } from "#cli/credentials";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
+import { makeNakafaAppError } from "#cli/error";
 import type { PreviewProvider } from "#cli/provider";
+import { inheritedEnvironment } from "#test/environment";
+import { makeProcess } from "#test/process";
 
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
-
-/** Inherited values that the child reads, supplied without touching process.env. */
-const PARENT_HOME = "/home/aksara-test";
-const PARENT_PATH = "/usr/bin:/bin";
-
-/** Provides the inherited HOME and the given PATH through a Config provider layer. */
-function parentEnvironment(path: string) {
-  return ConfigProvider.layer(
-    ConfigProvider.fromUnknown(
-      { HOME: PARENT_HOME, PATH: path },
-      { preserveEmptyStrings: true }
-    )
-  );
-}
 
 /** Creates one minimal provider input for the real child-process seam. */
 const makeStartInput = Effect.fn("test.makeStartInput")(function* () {
@@ -43,18 +27,6 @@ const makeStartInput = Effect.fn("test.makeStartInput")(function* () {
   };
   return { credentials, provider, root: "/code/nakafa.com" };
 });
-
-/** Captures one process request while returning a deterministic child result. */
-const makeProcess = (
-  capture: { input?: NakafaProcessInput },
-  result: Effect.Effect<RunningProcess, NakafaAppError>
-) =>
-  NakafaProcess.of({
-    start: (input) => {
-      capture.input = input;
-      return result;
-    },
-  });
 
 describe("Nakafa child process", () => {
   it.effect(
@@ -142,7 +114,7 @@ describe("Nakafa child process", () => {
           CONTENT_RUNTIME_TOKEN: Redacted.value(
             input.credentials.contentRuntimeToken
           ),
-          HOME: PARENT_HOME,
+          HOME: "/home/aksara-test",
           INTERNAL_CONTENT_API_KEY: internalContentToken,
           NEXT_PUBLIC_APP_URL: result.child.origin.toString(),
           NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
@@ -157,14 +129,14 @@ describe("Nakafa child process", () => {
           NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
           NEXT_PUBLIC_POSTHOG_UI_HOST: result.child.origin.toString(),
           NEXT_PUBLIC_VERSION: "aksara-preview",
-          PATH: PARENT_PATH,
+          PATH: "/usr/bin:/bin",
           SITE_URL: result.child.origin.toString(),
         });
         expect(started.environment).not.toHaveProperty(
           "AKSARA_TEST_PARENT_SECRET"
         );
         expect(result.exit).toMatchObject({ reason: "exit", status: 0 });
-      }).pipe(Effect.provide(parentEnvironment(PARENT_PATH)))
+      }).pipe(Effect.provide(inheritedEnvironment("/usr/bin:/bin")))
   );
 
   it.effect("rejects invalid preview and operating-system environment", () =>
@@ -186,11 +158,11 @@ describe("Nakafa child process", () => {
       ).pipe(Effect.flip);
       const operatingSystem = yield* Effect.scoped(
         startNakafa(input).pipe(Effect.provideService(NakafaProcess, success))
-      ).pipe(Effect.flip, Effect.provide(parentEnvironment("")));
+      ).pipe(Effect.flip, Effect.provide(inheritedEnvironment("")));
 
       expect(childEnvironment).toMatchObject({ reason: "child-env" });
       expect(operatingSystem).toMatchObject({ reason: "child-env" });
-    }).pipe(Effect.provide(parentEnvironment(PARENT_PATH)))
+    }).pipe(Effect.provide(inheritedEnvironment("/usr/bin:/bin")))
   );
 
   it.effect("maps process start and exit observation failures", () =>
@@ -220,7 +192,7 @@ describe("Nakafa child process", () => {
 
       expect(start).toMatchObject({ reason: "start" });
       expect(exit).toMatchObject({ reason: "exit" });
-    }).pipe(Effect.provide(parentEnvironment(PARENT_PATH)))
+    }).pipe(Effect.provide(inheritedEnvironment("/usr/bin:/bin")))
   );
 
   it.effect(
