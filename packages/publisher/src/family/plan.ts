@@ -2,19 +2,19 @@ import type {
   ContentFamily,
   ContentHeadIdentity,
 } from "@nakafa/aksara-contracts/content";
-import type { ContentDeliveryClass } from "@nakafa/aksara-contracts/delivery";
-import type {
-  CorpusSourcePath,
-  PublicPath,
-  Sha256Hash,
+import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
+import {
+  CorpusSourcePathSchema,
+  type PublicPath,
+  Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Stream } from "effect";
+import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
+import { Effect, Schema, Stream } from "effect";
 import {
   diffScopedFamilyHeads,
   type ScopedFamilyDiff,
@@ -24,19 +24,25 @@ import type {
   PreparedContentUpsert,
 } from "#publisher/preparation/spec";
 
-interface FamilyEntry {
-  readonly delivery: ContentDeliveryClass;
-  readonly rendererDomain: RendererDomain;
-  readonly sourcePath: CorpusSourcePath;
-}
+const FamilyEntrySchema = Schema.Struct({
+  delivery: ContentDeliveryClassSchema,
+  rendererDomain: RendererDomainSchema,
+  sourcePath: CorpusSourcePathSchema,
+});
 
-interface InspectedFamilyDocument {
-  readonly inspection: {
-    readonly compilerConfigHash: Sha256Hash;
-    readonly sourceHash: Sha256Hash;
-  };
-  readonly projectionHash: Sha256Hash;
-}
+/** One authored source entry of a content family, before its document is inspected. */
+type FamilyEntry = typeof FamilyEntrySchema.Type;
+
+const InspectedFamilyDocumentSchema = Schema.Struct({
+  inspection: Schema.Struct({
+    compilerConfigHash: Sha256HashSchema,
+    sourceHash: Sha256HashSchema,
+  }),
+  projectionHash: Sha256HashSchema,
+});
+
+/** The fingerprints of one inspected source document that decide whether it changed. */
+type InspectedFamilyDocument = typeof InspectedFamilyDocumentSchema.Type;
 
 interface FamilyIdentityAdapter<Entry extends FamilyEntry> {
   /** Selects the stable artifactLocale-specific head identity for one source entry. */
