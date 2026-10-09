@@ -24,9 +24,9 @@ describe("Nakafa child process", () => {
       Effect.gen(function* () {
         vi.stubEnv("AKSARA_TEST_PARENT_SECRET", "must-not-cross");
         const input = yield* makeStartInput();
-        const capture: { input?: NakafaProcessInput } = {};
+        const onStart = vi.fn<(input: NakafaProcessInput) => void>();
         const processes = makeProcess(
-          capture,
+          onStart,
           Effect.succeed({ exitCode: Effect.succeed(0) })
         );
         const result = yield* Effect.scoped(
@@ -40,7 +40,7 @@ describe("Nakafa child process", () => {
             Effect.provideService(NakafaProcess, processes)
           )
         );
-        const started = capture.input;
+        const started = onStart.mock.lastCall?.[0];
         assert(started !== undefined, "Expected the child command to start.");
         const internalContentToken = Redacted.value(
           input.credentials.internalContentToken
@@ -135,9 +135,8 @@ describe("Nakafa child process", () => {
         ...input,
         provider: { ...input.provider, origin: new URL("https://127.0.0.1") },
       };
-      const capture: { input?: NakafaProcessInput } = {};
       const success = makeProcess(
-        capture,
+        vi.fn(),
         Effect.succeed({ exitCode: Effect.succeed(0) })
       );
       const childEnvironment = yield* Effect.scoped(
@@ -182,19 +181,18 @@ describe("Nakafa child process", () => {
   it.effect("maps process start and exit observation failures", () =>
     Effect.gen(function* () {
       const input = yield* makeStartInput();
-      const capture: { input?: NakafaProcessInput } = {};
       const startFailure = makeNakafaAppError("start", false);
       const start = yield* Effect.scoped(
         startNakafa(input).pipe(
           Effect.provideService(
             NakafaProcess,
-            makeProcess(capture, Effect.fail(startFailure))
+            makeProcess(vi.fn(), Effect.fail(startFailure))
           )
         )
       ).pipe(Effect.flip);
       const exitFailure = makeNakafaAppError("exit", false);
       const exitProcess = makeProcess(
-        capture,
+        vi.fn(),
         Effect.succeed({ exitCode: Effect.fail(exitFailure) })
       );
       const exit = yield* Effect.scoped(
@@ -214,9 +212,8 @@ describe("Nakafa child process", () => {
     () =>
       Effect.gen(function* () {
         const input = yield* makeStartInput();
-        const capture: { input?: NakafaProcessInput } = {};
         const processes = makeProcess(
-          capture,
+          vi.fn(),
           Effect.succeed({ exitCode: Effect.succeed(0) })
         );
         vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
@@ -261,9 +258,8 @@ describe("Nakafa child process", () => {
     () =>
       Effect.gen(function* () {
         const input = yield* makeStartInput();
-        const capture: { input?: NakafaProcessInput } = {};
         const processes = makeProcess(
-          capture,
+          vi.fn(),
           Effect.succeed({ exitCode: Effect.succeed(0) })
         );
         const originalClose = Server.prototype.close;
