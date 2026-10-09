@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
 import {
   loadQuestionDocument,
   makeQuestionProjectionFromSource,
@@ -15,11 +15,13 @@ import {
   sourceByPath,
 } from "#test/question/spec";
 
-const promptEntry = questionEntries.find(
+const promptEntry = Arr.findFirst(
+  questionEntries,
   ({ bodyKind, artifactLocale }) =>
     bodyKind === "question" && artifactLocale === "id"
 );
-const answerEntry = questionEntries.find(
+const answerEntry = Arr.findFirst(
+  questionEntries,
   ({ bodyKind, artifactLocale }) =>
     bodyKind === "answer" && artifactLocale === "en"
 );
@@ -27,8 +29,8 @@ const answerEntry = questionEntries.find(
 /** Requires the Indonesian question and English answer registry fixtures. */
 const requireEntries = Effect.fn("QuestionDocumentTest.requireEntries")(
   function* () {
-    const prompt = yield* Effect.fromNullishOr(promptEntry);
-    const answer = yield* Effect.fromNullishOr(answerEntry);
+    const prompt = yield* Effect.fromOption(promptEntry);
+    const answer = yield* Effect.fromOption(answerEntry);
     return { answer, prompt };
   }
 );
@@ -78,7 +80,8 @@ describe("question document", () => {
       );
 
       expect(
-        errors.every(
+        Arr.every(
+          errors,
           (error) =>
             error._tag === "QuestionMetadataError" &&
             error.sourcePath === prompt.sourcePath
