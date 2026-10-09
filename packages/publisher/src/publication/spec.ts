@@ -125,11 +125,17 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<Publica
   }
 ) {}
 
+/** Activation steps that can fail closed: renderer preflight and cache convergence. */
+export const PublicationActivationPhaseSchema = Schema.Literals([
+  "cache",
+  "preflight",
+]);
+
 /** Renderer preflight or post-commit cache convergence failed closed. */
 export class PublicationActivationError extends Schema.TaggedError<PublicationActivationError>()(
   "PublicationActivationError",
   {
-    phase: Schema.Literals(["cache", "preflight"]),
+    phase: PublicationActivationPhaseSchema,
     releaseId: ReleaseIdSchema,
   }
 ) {}

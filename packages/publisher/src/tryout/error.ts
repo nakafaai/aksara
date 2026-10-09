@@ -1,8 +1,8 @@
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import { Schema } from "effect";
 
-export const TryoutHeadBodySchema = Schema.Literals(["answer", "question"]);
 const TryoutHeadFieldSchema = Schema.Literals([
   "bodyPair",
   "compilerConfigHash",
@@ -31,7 +31,7 @@ export class TryoutHeadMissingError extends Schema.TaggedError<TryoutHeadMissing
   "TryoutHeadMissingError",
   {
     artifactLocale: ArtifactLocaleSchema,
-    bodyKind: TryoutHeadBodySchema,
+    bodyKind: QuestionBodyKindSchema,
     contentKey: ContentKeySchema,
   }
 ) {}

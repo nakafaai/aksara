@@ -4,6 +4,7 @@ import {
   PublicationRejectionCodeSchema,
 } from "@nakafa/aksara-contracts/transport/failure";
 import { PublicationOperationSchema } from "@nakafa/aksara-contracts/transport/request";
+import { PublicationActivationPhaseSchema } from "@nakafa/aksara-publisher/publication/spec";
 import {
   PublicationTargetTransportError,
   PublicationTransportDetailSchema,
@@ -29,7 +30,6 @@ const ProductionStageSchema = Schema.Literals([
   "target",
 ]);
 export type ProductionStage = typeof ProductionStageSchema.Type;
-const ActivationPhaseSchema = Schema.Literals(["cache", "preflight"]);
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 
 /** Sanitized production failure emitted by the outer CLI boundary. */
@@ -44,7 +44,7 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
       ProductionEnvironmentError.fields.variable
     ),
     failure: Schema.Trimmed.check(Schema.isNonEmpty()),
-    phase: Schema.optional(ActivationPhaseSchema),
+    phase: Schema.optional(PublicationActivationPhaseSchema),
     recoveryReleaseId: Schema.optional(ReleaseIdSchema),
     rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
     stage: ProductionStageSchema,
@@ -114,7 +114,7 @@ function activationPhase(error: unknown) {
     return;
   }
   const phase = Reflect.get(error, "phase");
-  return phase === "cache" || phase === "preflight" ? phase : undefined;
+  return Schema.is(PublicationActivationPhaseSchema)(phase) ? phase : undefined;
 }
 
 /** Preserves only stable target evidence already authenticated by the wire. */

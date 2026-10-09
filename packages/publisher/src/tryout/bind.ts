@@ -8,6 +8,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import {
   type QuestionHead,
   QuestionHeadSchema,
@@ -28,7 +29,6 @@ import {
   Stream,
 } from "effect";
 import {
-  TryoutHeadBodySchema,
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
   TryoutHeadMissingError,
@@ -41,7 +41,7 @@ import {
 
 const HeadRequirementSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
-  bodyKind: TryoutHeadBodySchema,
+  bodyKind: QuestionBodyKindSchema,
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
   placement: TryoutPlacementSourceSchema,
