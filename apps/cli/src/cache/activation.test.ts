@@ -22,8 +22,9 @@ function cacheResponse(
   init: ResponseInit = {},
   responseRequest = request
 ) {
-  const body = Schema.decodeUnknownSync(ContentCacheRequestSchema)(
-    requestJson(request)
+  const body = request.pipe(
+    requestJson,
+    Schema.decodeUnknownSync(ContentCacheRequestSchema)
   );
   const headers = new Headers(init.headers);
   headers.set("cache-control", "private, no-store");
