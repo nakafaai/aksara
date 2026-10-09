@@ -68,7 +68,7 @@ const prepareProgramRelease = Effect.fn(
 });
 
 /** Builds the row-free snapshot inverse of one structured Git release. */
-function prepareSnapshotRollback(source: PreparedGitRelease<unknown, never>) {
+function prepareSnapshotRollback<E>(source: PreparedGitRelease<E, never>) {
   const baseReleaseId = source.manifest.releaseId;
   const manifest = ContentReleaseManifestSchema.make({
     ...source.manifest,

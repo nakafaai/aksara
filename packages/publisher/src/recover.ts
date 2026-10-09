@@ -6,6 +6,7 @@ import { Effect, Schema } from "effect";
 import { allContentCacheChanges } from "#publisher/cache";
 import {
   PublicationActivation,
+  type PublicationActivationError,
   PublicationTarget,
 } from "#publisher/publication/spec";
 import {
@@ -29,9 +30,7 @@ type RecoverContentRelease = (
   | Effect.Error<ReturnType<typeof selectRetainedRecovery>>
   | RecoveryRuntimeMissingError
   | Effect.Error<ReturnType<(typeof PublicationActivation.Service)["verify"]>>
-  | Effect.Error<
-      ReturnType<(typeof PublicationActivation.Service)["invalidate"]>
-    >
+  | PublicationActivationError
   | Effect.Error<(typeof PublicationTarget.Service)["current"]>
   | Effect.Error<
       ReturnType<(typeof PublicationTarget.Service)["activateRecovery"]>
