@@ -26,7 +26,6 @@ type ProviderControl = Parameters<typeof makeProvider>[0];
 function makeControl(): ProviderControl {
   return { failed: 0, pending: 0, ready: 0 };
 }
-
 /** Acquires one repository pair and removes it when the test scope closes. */
 const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
   function* () {
