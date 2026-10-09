@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { CountryCodeSchema } from "#contracts/country";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
@@ -196,6 +196,17 @@ export const TryoutSectionSchema = Schema.Struct({
   )
 );
 export type TryoutSection = typeof TryoutSectionSchema.Type;
+
+/** Counts every question owned by one ordered list of try-out sections. */
+export function countSectionQuestions(
+  sections: readonly Pick<TryoutSection, "questionCount">[]
+) {
+  return Arr.reduce(
+    sections,
+    0,
+    (total, section) => total + section.questionCount
+  );
+}
 
 /** Complete hierarchy vocabulary for try-out publication. */
 export const TryoutCatalogRowSchema = Schema.Union([
