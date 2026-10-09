@@ -248,6 +248,7 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
     () =>
       Effect.gen(function* () {
         const fixture = yield* proofFixture("aksara-proof-state-");
+        /** Replaces the only release asset digest and keeps every other field. */
         const withDigest = (digest: string) => ({
           ...fixture.release,
           assets: [{ ...fixture.release.assets[0], digest }],
