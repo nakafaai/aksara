@@ -50,13 +50,10 @@ export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestEr
 ) {}
 
 /** Creates the replay state that one stream of projections shares while it decodes. */
-function projectionState(): {
-  firstIndexByRoute: MutableHashMap.MutableHashMap<string, number>;
-  previous: ContentProjection | undefined;
-} {
+function projectionState() {
   return {
     firstIndexByRoute: MutableHashMap.empty<string, number>(),
-    previous: undefined,
+    previous: Option.none<ContentProjection>(),
   };
 }
 
@@ -79,12 +76,12 @@ const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
       Effect.mapError(() => new ProjectionDecodeError({ projectionIndex }))
     );
     if (
-      state.previous &&
-      compareContentHeads(state.previous, projection) >= 0
+      Option.isSome(state.previous) &&
+      compareContentHeads(state.previous.value, projection) >= 0
     ) {
       return yield* new ProjectionOrderError({ projectionIndex });
     }
-    state.previous = projection;
+    state.previous = Option.some(projection);
     if (projection.kind === "question-body") {
       return projection;
     }
