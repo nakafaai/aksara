@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
-import { describe, expect, it } from "@effect/vitest";
+import { assert, describe, expect, it } from "@effect/vitest";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
-import { Array as Arr, Effect, MutableList, Redacted } from "effect";
+import { Array as Arr, Effect, MutableList, Redacted, Result } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -60,10 +60,17 @@ function rendererResponse(
 
 /** Returns one renderer transport failure through an injected client. */
 function rejectRenderer(client: HttpClient.HttpClient) {
-  return fetchRendererBody(RENDERER_URL, {
-    nonce: NONCE,
-    token: TOKEN,
-  }).pipe(Effect.flip, Effect.provideService(HttpClient.HttpClient, client));
+  return Effect.gen(function* () {
+    const result = yield* fetchRendererBody(RENDERER_URL, {
+      nonce: NONCE,
+      token: TOKEN,
+    }).pipe(
+      Effect.result,
+      Effect.provideService(HttpClient.HttpClient, client)
+    );
+    assert(Result.isFailure(result));
+    return result.failure;
+  });
 }
 
 describe("renderer HTTP", () => {
@@ -155,13 +162,9 @@ describe("renderer HTTP", () => {
       });
       const statusErrors = yield* Effect.forEach(
         statuses,
-        () =>
-          fetchRendererBody(RENDERER_URL, {
-            nonce: NONCE,
-            token: TOKEN,
-          }).pipe(Effect.flip),
+        () => rejectRenderer(statusClient.client),
         { concurrency: 1 }
-      ).pipe(Effect.provideService(HttpClient.HttpClient, statusClient.client));
+      );
       const wrongRequest = HttpClientRequest.get(
         "http://127.0.0.1:31234/other"
       );
@@ -235,13 +238,9 @@ describe("renderer HTTP", () => {
         });
         const errors = yield* Effect.forEach(
           bodies,
-          () =>
-            fetchRendererBody(RENDERER_URL, {
-              nonce: NONCE,
-              token: TOKEN,
-            }).pipe(Effect.flip),
+          () => rejectRenderer(client.client),
           { concurrency: 1 }
-        ).pipe(Effect.provideService(HttpClient.HttpClient, client.client));
+        );
 
         expect(Arr.map(errors, ({ reason }) => reason)).toEqual([
           "body",
