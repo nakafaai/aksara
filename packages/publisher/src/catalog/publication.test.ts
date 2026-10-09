@@ -3,15 +3,11 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  type ArticleHead,
-  ArticleHeadSchema,
-  type MaterialHead,
-  MaterialHeadSchema,
-  type PageHead,
-  PageHeadSchema,
-  type QuestionHead,
-  QuestionHeadSchema,
+import type {
+  ArticleHead,
+  MaterialHead,
+  PageHead,
+  QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -22,11 +18,11 @@ import {
   Layer,
   MutableHashMap,
   Path,
-  Schema,
   Stream,
 } from "effect";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
+import type { CatalogTestInput } from "#test/catalog";
 import { testFileLayer } from "#test/files";
 import { MaterialTestFixtures, materialTestLayer } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
@@ -75,24 +71,6 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 });
 
 const baseReleaseId = ReleaseIdSchema.make("test-catalog-base");
-
-const CatalogTestInputSchema = Schema.Struct({
-  article: Schema.optionalKey(Schema.Array(ArticleHeadSchema)),
-  base: Schema.optionalKey(
-    Schema.NullOr(
-      Schema.Struct({
-        count: Schema.Finite,
-        digest: Sha256HashSchema,
-        releaseId: ReleaseIdSchema,
-      })
-    )
-  ),
-  material: Schema.optionalKey(Schema.Array(MaterialHeadSchema)),
-  page: Schema.optionalKey(Schema.Array(PageHeadSchema)),
-  question: Schema.optionalKey(Schema.Array(QuestionHeadSchema)),
-});
-
-type CatalogTestInput = typeof CatalogTestInputSchema.Type;
 
 interface CatalogFixtureSource {
   readonly checkoutRoot: string;

@@ -6,13 +6,20 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
+  ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  ArticleHeadSchema,
+  type ContentHead,
+  MaterialHeadSchema,
+  PageHeadSchema,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import { Schema } from "effect";
 
 const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -217,3 +224,21 @@ export function catalogRoutes(
     },
   }));
 }
+
+const CatalogTestInputSchema = Schema.Struct({
+  article: Schema.optionalKey(Schema.Array(ArticleHeadSchema)),
+  base: Schema.optionalKey(
+    Schema.NullOr(
+      Schema.Struct({
+        count: Schema.Finite,
+        digest: Sha256HashSchema,
+        releaseId: ReleaseIdSchema,
+      })
+    )
+  ),
+  material: Schema.optionalKey(Schema.Array(MaterialHeadSchema)),
+  page: Schema.optionalKey(Schema.Array(PageHeadSchema)),
+  question: Schema.optionalKey(Schema.Array(QuestionHeadSchema)),
+});
+
+export type CatalogTestInput = typeof CatalogTestInputSchema.Type;
