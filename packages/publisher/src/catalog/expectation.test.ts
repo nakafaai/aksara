@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 
 const control = vi.hoisted(() => ({
@@ -202,7 +202,7 @@ layer(NodeServices.layer)("content catalog expectation", (it) => {
       Effect.gen(function* () {
         yield* Effect.sync(() => {
           control.articles = [];
-          control.questions.push({
+          control.questions = Arr.append(control.questions, {
             artifactLocale: "id",
             contentKey:
               "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-2/question",
