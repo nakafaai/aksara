@@ -3,7 +3,16 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Path, Schema, Stream } from "effect";
+import {
+  Context,
+  Effect,
+  Layer,
+  MutableHashMap,
+  Option,
+  Path,
+  Schema,
+  Stream,
+} from "effect";
 import {
   planQuestionPublication,
   QuestionItemJoinError,
@@ -111,11 +120,13 @@ layer(Layer.merge(planTestLayer, Path.layer))("question plan", (it) => {
   it.effect("compiles only the real question body whose source changed", () =>
     Effect.gen(function* () {
       const { promptEntry, publishedHeads } = yield* QuestionPlanTestFixtures;
-      const sources = new Map(sourceByPath);
+      const sources = MutableHashMap.fromIterable(sourceByPath);
       const path = yield* Path.Path;
       const absolutePath = path.resolve(checkoutRoot, promptEntry.sourcePath);
-      const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${source}\n`);
+      const source = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+      );
+      MutableHashMap.set(sources, absolutePath, `${source}\n`);
 
       const records = yield* Effect.promise(() =>
         collectQuestionPublication({

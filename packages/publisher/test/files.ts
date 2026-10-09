@@ -1,8 +1,14 @@
-import { Effect, FileSystem, PlatformError } from "effect";
+import {
+  Effect,
+  FileSystem,
+  MutableHashMap,
+  Option,
+  PlatformError,
+} from "effect";
 
 /** Provides deterministic corpus reads and private replay-spool writes in tests. */
-export function testFileLayer(seed: ReadonlyMap<string, string>) {
-  const files = new Map(seed);
+export function testFileLayer(seed: Iterable<readonly [string, string]>) {
+  const files = MutableHashMap.fromIterable(seed);
   let temporaryDirectory = 0;
   return FileSystem.layerNoop({
     makeDirectory: () => Effect.void,
@@ -13,12 +19,12 @@ export function testFileLayer(seed: ReadonlyMap<string, string>) {
       }),
     readDirectory: (root) =>
       Effect.succeed(
-        [...files.keys()]
+        [...MutableHashMap.keys(files)]
           .filter((path) => path.startsWith(`${root}/`))
           .map((path) => path.slice(root.length + 1))
       ),
     readFileString: (path) => {
-      const source = files.get(path);
+      const source = Option.getOrUndefined(MutableHashMap.get(files, path));
       if (source !== undefined) {
         return Effect.succeed(source);
       }
@@ -33,7 +39,7 @@ export function testFileLayer(seed: ReadonlyMap<string, string>) {
     },
     writeFileString: (path, data) =>
       Effect.sync(() => {
-        files.set(path, data);
+        MutableHashMap.set(files, path, data);
       }),
   });
 }

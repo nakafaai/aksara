@@ -50,10 +50,7 @@ describe("question document", () => {
           checkoutRoot,
           prompt,
           questionItem
-        ).pipe(
-          Effect.provide([testFileLayer(new Map()), Path.layer]),
-          Effect.flip
-        );
+        ).pipe(Effect.provide([testFileLayer([]), Path.layer]), Effect.flip);
 
         expect(error).toMatchObject({
           _tag: "QuestionSourceError",

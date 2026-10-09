@@ -67,7 +67,7 @@ export const rendererManifest = await Effect.runPromise(
 export function collectQuestionPublication(input: {
   readonly heads: readonly QuestionHead[];
   readonly renderer?: unknown;
-  readonly sources?: ReadonlyMap<string, string>;
+  readonly sources?: Iterable<readonly [string, string]>;
 }) {
   return Effect.runPromise(
     Effect.scoped(
