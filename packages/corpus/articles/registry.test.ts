@@ -221,101 +221,68 @@ layer(NodeServices.layer)("article registry", (it) => {
       })
   );
 
-  it.effect(
-    "rejects duplicate canonical slugs across distinct pair groupings",
-    () =>
-      Effect.gen(function* () {
-        const duplicateSlug = yield* rejectRegistry([
-          articleSource(),
-          {
-            ...articleSource(),
-            sourceRoot: "articles/politics/dynastic/politics-asian-values",
-          },
-        ]);
-
-        expect(duplicateSlug).toMatchObject({
-          _tag: "ArticleSlugError",
-          slug: "dynastic-politics-asian-values",
-        });
-      })
-  );
-
-  it.effect("rejects conflicting renderers within one category", () =>
-    Effect.gen(function* () {
-      const error = yield* rejectRegistry([
-        articleSource(),
-        articleWithCategory({ rendererDomain: "physics" }),
-      ]);
-
-      expect(error).toMatchObject({
+  it.effect.each([
+    [
+      "rejects duplicate canonical slugs across distinct pair groupings",
+      {
+        ...articleSource(),
+        sourceRoot: "articles/politics/dynastic/politics-asian-values",
+      },
+      { _tag: "ArticleSlugError", slug: "dynastic-politics-asian-values" },
+    ],
+    [
+      "rejects conflicting renderers within one category",
+      articleWithCategory({ rendererDomain: "physics" }),
+      {
         _tag: "ArticleRendererError",
         actual: "physics",
         category: "politics",
         expected: "politics",
-      });
-    })
-  );
-
-  it.effect("rejects conflicting localized titles within one category", () =>
-    Effect.gen(function* () {
-      const error = yield* rejectRegistry([
-        articleSource(),
-        articleWithCategory({
-          titles: { de: "Politik", en: "Politics changed", id: "Politik" },
-        }),
-      ]);
-
-      expect(error).toMatchObject({
+      },
+    ],
+    [
+      "rejects conflicting localized titles within one category",
+      articleWithCategory({
+        titles: { de: "Politik", en: "Politics changed", id: "Politik" },
+      }),
+      {
         _tag: "ArticleTitleError",
         actual: "Politics changed",
         appLocale: "en",
         category: "politics",
         expected: "Politics",
-      });
-    })
-  );
-
-  it.effect("rejects conflicting localized category routes", () =>
-    Effect.gen(function* () {
-      const error = yield* rejectRegistry([
-        articleSource(),
-        articleWithCategory({
-          routeSlugs: { de: "politik", en: "government", id: "politik" },
-        }),
-      ]);
-
-      expect(error).toMatchObject({
+      },
+    ],
+    [
+      "rejects conflicting localized category routes",
+      articleWithCategory({
+        routeSlugs: { de: "politik", en: "government", id: "politik" },
+      }),
+      {
         _tag: "ArticleCategoryRouteError",
         actual: "government",
         appLocale: "en",
         category: "politics",
         expected: "politics",
-      });
+      },
+    ],
+    [
+      "rejects locale route collisions across stable article identities",
+      articleWithCategory({}),
+      {
+        _tag: "ArticleRouteCollisionError",
+        appLocale: "en",
+        conflictingContentKey:
+          "articles/politics/dynastic-politics-asian-values",
+        contentKey: "articles/politics/second-test-article",
+        publicPath: "articles/politics/dynastic-politics-asian-values",
+      },
+    ],
+  ] as const)("%s", ([, second, expected]) =>
+    Effect.gen(function* () {
+      const error = yield* rejectRegistry([articleSource(), second]);
+      expect(error).toMatchObject(expected);
     })
-  );
-
-  it.effect(
-    "rejects locale route collisions across stable article identities",
-    () =>
-      Effect.gen(function* () {
-        const active = yield* rejectRegistry([
-          articleSource(),
-          {
-            ...articleSource(),
-            routeSlugs: articleSource().routeSlugs,
-            slug: "second-test-article",
-            sourceRoot: "articles/politics/second-test/article",
-          },
-        ]);
-        expect(active).toMatchObject({
-          _tag: "ArticleRouteCollisionError",
-          appLocale: "en",
-          conflictingContentKey:
-            "articles/politics/dynastic-politics-asian-values",
-          contentKey: "articles/politics/second-test-article",
-          publicPath: "articles/politics/dynastic-politics-asian-values",
-        });
-      })
   );
 
   it.effect("allows an empty source catalog without inventing entries", () =>

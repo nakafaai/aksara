@@ -8,6 +8,7 @@ import {
   Option,
   Order,
   Predicate,
+  pipe,
   Record as Rec,
   Schema,
   Struct,
@@ -138,13 +139,11 @@ function units(prompts: readonly QuestionPrompt[]) {
     const isShared = (part: string) =>
       Option.getOrUndefined(MutableHashMap.get(counts, part)) !== 1;
     return Arr.map(read, ({ list, prompt }): Omit<Unit, "id"> => {
-      const responses = Arr.map(
+      const answers = pipe(
         Struct.keys(prompt.source.item.responses),
-        (key) => prompt.source.item.responses[key]
-      );
-      const answers = Arr.flatMap(
-        Arr.filter(responses, Predicate.isNotUndefined),
-        labels
+        Arr.map((key) => prompt.source.item.responses[key]),
+        Arr.filter(Predicate.isNotUndefined),
+        Arr.flatMap(labels)
       );
       const own = Arr.filter(list, (part) => !isShared(part));
       return {
@@ -181,12 +180,10 @@ function pairs<Item>(
   isTarget: (item: Item) => boolean
 ) {
   return Arr.flatMap(group, (left, index) =>
-    Arr.map(
-      Arr.filter(
-        group.slice(index + 1),
-        (right) => isTarget(left) || isTarget(right)
-      ),
-      (right) => ({ left, right })
+    pipe(
+      group.slice(index + 1),
+      Arr.filter((right) => isTarget(left) || isTarget(right)),
+      Arr.map((right) => ({ left, right }))
     )
   );
 }
@@ -197,19 +194,16 @@ function itemMatches(
   isTarget: (root: string) => boolean,
   threshold: number
 ) {
-  const siblings = MutableHashMap.empty<
-    string,
-    MutableList.MutableList<Unit>
-  >();
+  const sets = MutableHashMap.empty<string, MutableList.MutableList<Unit>>();
   const shared = MutableHashMap.empty<string, MutableList.MutableList<Unit>>();
   for (const unit of all) {
-    collect(siblings, `${unit.set}\n${unit.locale}`, unit);
+    collect(sets, `${unit.set}\n${unit.locale}`, unit);
     for (const shingle of unit.full.masked) {
       collect(shared, `${unit.locale}\n${shingle}`, unit);
     }
   }
   const siblingGroups = Arr.map(
-    [...MutableHashMap.values(siblings)],
+    [...MutableHashMap.values(sets)],
     MutableList.toArray
   );
   const sharedGroups = Arr.map(
@@ -296,6 +290,7 @@ function passageMatches(
   return Arr.filter(matches, (match) => match.score >= threshold);
 }
 
+/** Orders matches from the most similar, then by path. */
 const RANKING = Order.combineAll([
   Order.flip(
     Order.mapInput(Order.Number, (match: SimilarityMatch) => match.score)
@@ -303,11 +298,6 @@ const RANKING = Order.combineAll([
   Order.mapInput(Order.String, (match: SimilarityMatch) => match.first),
   Order.mapInput(Order.String, (match: SimilarityMatch) => match.second),
 ]);
-
-/** Orders matches from the most similar, then by path. */
-function ranked(matches: readonly SimilarityMatch[]) {
-  return Arr.sort(matches, RANKING);
-}
 
 /** Finds questions and passages under a target that read like others in the bank. */
 export const scanQuestionSimilarity = Effect.fn(
@@ -324,7 +314,7 @@ export const scanQuestionSimilarity = Effect.fn(
   const isTarget = (root: string) =>
     root === target || root.startsWith(`${target}/`);
   return {
-    items: ranked(itemMatches(all, isTarget, threshold)),
-    passages: ranked(passageMatches(all, isTarget, threshold)),
+    items: Arr.sort(itemMatches(all, isTarget, threshold), RANKING),
+    passages: Arr.sort(passageMatches(all, isTarget, threshold), RANKING),
   } satisfies SimilarityReport;
 });
