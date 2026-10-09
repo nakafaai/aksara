@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Stream } from "effect";
+import { Array as Arr, Effect, Option, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
 import {
@@ -84,7 +84,7 @@ describe("program snapshot preparation", () => {
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt" },
       ]);
       expect(curriculumRows).toHaveLength(585);
-      expect(curriculumRows.at(0)?.row).toMatchObject({
+      expect(Option.getOrThrow(Arr.head(curriculumRows)).row).toMatchObject({
         appLocale: "de",
         programKey: "cambridge-international",
         publicPath: "lehrplaene/cambridge-international",

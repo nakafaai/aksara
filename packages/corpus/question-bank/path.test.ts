@@ -131,7 +131,7 @@ describe("question path", () => {
                     : section
                 ),
               },
-              ...track.sets.slice(1),
+              ...Arr.drop(track.sets, 1),
             ],
           },
         ],
@@ -156,7 +156,7 @@ describe("question path", () => {
                     : section
                 ),
               },
-              ...track.sets.slice(1),
+              ...Arr.drop(track.sets, 1),
             ],
           },
         ],

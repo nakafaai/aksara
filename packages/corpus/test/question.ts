@@ -81,7 +81,7 @@ class RealQuestionCorpus extends Context.Service<
 
 /** Tells whether a path lies inside installed dependencies, whose symlinked folders a recursive read would follow. */
 const isInstalledFile = (file: string) =>
-  file.split("/").includes("node_modules");
+  Arr.contains(file.split("/"), "node_modules");
 
 /** Reads the corpus sources and the physical question tree, then decodes the real try-out registry. */
 const loadRealQuestionCorpus = Effect.gen(function* () {

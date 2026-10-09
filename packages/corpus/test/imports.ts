@@ -1,12 +1,4 @@
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Option,
-  Order,
-  Path,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
 
 /** Test-only corpus module discovery or loading failed. */
 export class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
@@ -38,11 +30,13 @@ function globMatcher(glob: string) {
 /** Returns the folders above the first wildcard, the only part of a corpus glob that needs a directory read. */
 function wildcardBase(glob: string) {
   const segments = glob.split("/");
-  const wildcard = Option.getOrElse(
-    Arr.findFirstIndex(segments, (segment) => segment.includes("*")),
-    () => -1
+  return Arr.join(
+    Arr.takeWhile(
+      Arr.dropRight(segments, 1),
+      (segment) => !segment.includes("*")
+    ),
+    "/"
   );
-  return Arr.join(segments.slice(0, wildcard), "/");
 }
 
 /** Imports every production module and preserves its unknown export boundary. */

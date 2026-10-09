@@ -170,12 +170,13 @@ layer(questionTestLayer)("tryout target", (it) => {
           );
         /** Removes the selected row kind from the canonical catalog. */
         const without = (kind: TargetRowKind) =>
-          Arr.filter(fixture.rows, (row) => !matches(kind).includes(row));
+          Arr.filter(
+            fixture.rows,
+            (row) => !Arr.some(matches(kind), (item) => item === row)
+          );
         /** Duplicates the selected row kind in the canonical catalog. */
-        const duplicate = (kind: TargetRowKind) => [
-          ...fixture.rows,
-          ...matches(kind),
-        ];
+        const duplicate = (kind: TargetRowKind) =>
+          Arr.appendAll(fixture.rows, matches(kind));
         const hierarchyRows = Arr.flatMap(
           ["exam", "track", "set", "section"] as const,
           (kind) => [without(kind), duplicate(kind)]

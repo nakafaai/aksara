@@ -107,7 +107,7 @@ function questionAncestors(questionBanks: QuestionBankIndex) {
   for (const bankKey of MutableHashMap.keys(questionBanks)) {
     const segments = bankKey.slice(prefix.length).split("/");
     for (let length = 1; length <= segments.length; length += 1) {
-      MutableHashSet.add(ancestors, Arr.join(segments.slice(0, length), "/"));
+      MutableHashSet.add(ancestors, Arr.join(Arr.take(segments, length), "/"));
     }
   }
   return ancestors;
@@ -167,11 +167,11 @@ const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
     const files = Arr.sort(discoveredFiles, Order.String);
     const missingRequired = Arr.some(
       requiredFiles,
-      (file) => !files.includes(file)
+      (file) => !Arr.contains(files, file)
     );
     const unsupported = Arr.some(
       files,
-      (file) => !requiredFiles.includes(file)
+      (file) => !Arr.contains(requiredFiles, file)
     );
     if (missingRequired || unsupported) {
       return yield* new QuestionFileSetError({
