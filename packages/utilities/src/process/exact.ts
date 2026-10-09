@@ -64,7 +64,7 @@ export class ExactProcess extends Context.Service<
       input: ExactProcessInput
     ) => Effect.Effect<ExactProcessOutput, ExactProcessError>;
   }
->()("AksaraExactProcess") {}
+>()("@nakafa/aksara-utilities/process/exact/ExactProcess") {}
 
 const EMPTY_OUTPUT = {
   chunks: Chunk.empty<Uint8Array>(),

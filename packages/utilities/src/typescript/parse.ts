@@ -57,7 +57,7 @@ export class TypeScriptParser extends Context.Service<
       read: (parsed: ParsedTypeScript) => A
     ) => Effect.Effect<A, TypeScriptSourceError>;
   }
->()("AksaraUtilities.TypeScriptParser") {
+>()("@nakafa/aksara-utilities/typescript/parse/TypeScriptParser") {
   static readonly layer = Layer.effect(
     TypeScriptParser,
     Effect.gen(function* () {
