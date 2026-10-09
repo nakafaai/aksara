@@ -69,13 +69,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.48.1",
+    approvedCurrent: "0.51.1",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.48 ships the standard libraries beside the compiler and adds per-export allow lists for unstable APIs.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, and 0.50 adds the apiStabilityLeak diagnostic, which is off by default.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.48.1",
+    reviewedLatest: "0.51.1",
     source: "root-dev-dependency",
   },
   {
