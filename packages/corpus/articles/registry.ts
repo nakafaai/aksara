@@ -1,4 +1,3 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ContentKeySchema,
@@ -22,7 +21,15 @@ import {
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
@@ -272,11 +279,21 @@ export const decodeArticleRegistry = Effect.fn(
   );
   const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(ArticleEntrySchema)
-  )(expanded.flat(), { onExcessProperty: "error" }).pipe(
+  )(Arr.flatten(expanded), { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new ArticleRegistryError({ cause }))
   );
   yield* validateArticleRoutes(entries);
-  return [...entries].sort((left, right) =>
-    compareContentHeads(left.route, right.route)
+  return Arr.sort(
+    entries,
+    Order.combine(
+      Order.mapInput(
+        Order.String,
+        (entry: ArticleEntry) => entry.route.contentKey
+      ),
+      Order.mapInput(
+        Order.String,
+        (entry: ArticleEntry) => entry.route.artifactLocale
+      )
+    )
   );
 });

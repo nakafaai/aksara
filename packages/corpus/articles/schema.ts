@@ -7,7 +7,7 @@ import {
 } from "@nakafa/aksara-contracts/projection/article";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Checks the stable four-segment grammar of one article source root. */
@@ -16,7 +16,7 @@ function isArticleRoot(sourceRoot: string) {
   return (
     segments.length === 4 &&
     segments[0] === "articles" &&
-    segments.slice(1).every(isLowerKebab)
+    Arr.every(segments.slice(1), isLowerKebab)
   );
 }
 

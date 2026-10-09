@@ -6,7 +6,15 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, HashSet, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashSet,
+  Option,
+  Order,
+  Path,
+} from "effect";
 import { decodeArticlePreviewEntry } from "#corpus/articles/preview";
 import { decodeArticleRegistry } from "#corpus/articles/registry";
 import { articleSource } from "#corpus/test/article";
@@ -51,40 +59,50 @@ layer(NodeServices.layer)("article registry", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const corpusRoot = yield* resolveCorpusRoot;
         const entries = yield* decodeArticleRegistry();
-        const authoredPaths = (yield* fileSystem.glob(
+        const globbed = yield* fileSystem.glob(
           "packages/corpus/articles/**/*.mdx",
           {
             root: corpusRoot,
           }
-        ))
-          .filter((sourcePath) =>
-            ACTIVE_APP_LOCALES.some((locale) =>
+        );
+        const authoredPaths = Arr.sort(
+          Arr.filter(globbed, (sourcePath) =>
+            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
-          )
-          .sort();
+          ),
+          Order.String
+        );
 
         expect(entries).toHaveLength(21);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
-            entries.filter(({ route }) => route.appLocale === locale)
+            Arr.filter(entries, ({ route }) => route.appLocale === locale)
           ).toHaveLength(7);
         }
-        expect(entries.map(({ sourcePath }) => sourcePath).sort()).toEqual(
-          authoredPaths
-        );
         expect(
-          entries.find(({ route }) => route.appLocale === "en")
+          Arr.sort(
+            Arr.map(entries, ({ sourcePath }) => sourcePath),
+            Order.String
+          )
+        ).toEqual(authoredPaths);
+        expect(
+          Option.getOrUndefined(
+            Arr.findFirst(entries, ({ route }) => route.appLocale === "en")
+          )
         ).toMatchObject({
           delivery: "public",
           rendererDomain: "politics",
         });
 
-        const english = entries.find(
-          ({ route }) =>
-            route.contentKey ===
-              "articles/politics/dynastic-politics-asian-values" &&
-            route.appLocale === "en"
+        const english = Option.getOrUndefined(
+          Arr.findFirst(
+            entries,
+            ({ route }) =>
+              route.contentKey ===
+                "articles/politics/dynastic-politics-asian-values" &&
+              route.appLocale === "en"
+          )
         );
         expect(english).toMatchObject({
           route: {
@@ -103,16 +121,19 @@ layer(NodeServices.layer)("article registry", (it) => {
     Effect.gen(function* () {
       const entries = yield* decodeEmbeddedRegistry([articleSource()]);
 
-      expect(entries.map(({ route }) => route.appLocale)).toEqual(["en", "id"]);
-      const contentKeys = entries.map(({ route }) => route.contentKey);
+      expect(Arr.map(entries, ({ route }) => route.appLocale)).toEqual([
+        "en",
+        "id",
+      ]);
+      const contentKeys = Arr.map(entries, ({ route }) => route.contentKey);
       expect(HashSet.size(HashSet.fromIterable(contentKeys))).toBe(1);
-      expect(entries.map(({ route }) => route.publicPath)).toEqual([
+      expect(Arr.map(entries, ({ route }) => route.publicPath)).toEqual([
         "articles/politics/dynastic-politics-asian-values",
         "articles/politik/politik-dinasti-dan-nilai-asia",
       ]);
-      expect(entries.every(({ references }) => references.length === 1)).toBe(
-        true
-      );
+      expect(
+        Arr.every(entries, ({ references }) => references.length === 1)
+      ).toBe(true);
     })
   );
 
@@ -156,20 +177,21 @@ layer(NodeServices.layer)("article registry", (it) => {
             sourceRoot: "articles/test-category/test-group/test-article",
           },
         ]);
-        const testEntries = entries.filter(
+        const testEntries = Arr.filter(
+          entries,
           ({ route }) => route.category === "test-category"
         );
 
         expect(testEntries).toHaveLength(2);
         expect(
-          testEntries.every(
+          Arr.every(
+            testEntries,
             ({ rendererDomain }) => rendererDomain === "physics"
           )
         ).toBe(true);
-        expect(testEntries.map(({ categoryTitle }) => categoryTitle)).toEqual([
-          "Test category",
-          "Kategori uji",
-        ]);
+        expect(
+          Arr.map(testEntries, ({ categoryTitle }) => categoryTitle)
+        ).toEqual(["Test category", "Kategori uji"]);
       })
   );
 
