@@ -8,6 +8,7 @@ import {
   HashMap,
   Layer,
   MutableHashMap,
+  MutableList,
   Option,
   Order,
   Path,
@@ -101,16 +102,26 @@ const loadRealQuestionCorpus = Effect.gen(function* () {
     yield* fileSystem.readDirectory(questionRoot, { recursive: true }),
     Order.String
   );
+  const packageFiles = yield* fileSystem.readDirectory(packageRoot, {
+    recursive: true,
+  });
   const sourcePaths = Arr.sort(
-    (yield* fileSystem.readDirectory(packageRoot, { recursive: true }))
-      .filter((file) => file.endsWith(".ts") && !isInstalledFile(file))
-      .map((file) => path.resolve(packageRoot, file)),
+    Arr.map(
+      Arr.filter(
+        packageFiles,
+        (file) => file.endsWith(".ts") && !isInstalledFile(file)
+      ),
+      (file) => path.resolve(packageRoot, file)
+    ),
     Order.String
   );
   const promptPaths = Arr.sort(
-    entries
-      .filter((entry) => QUESTION_PROMPT_PATTERN.test(path.basename(entry)))
-      .map((entry) => path.resolve(questionRoot, entry)),
+    Arr.map(
+      Arr.filter(entries, (entry) =>
+        QUESTION_PROMPT_PATTERN.test(path.basename(entry))
+      ),
+      (entry) => path.resolve(questionRoot, entry)
+    ),
     Order.String
   );
   const sourceTexts = yield* readTexts(sourcePaths);
@@ -120,7 +131,7 @@ const loadRealQuestionCorpus = Effect.gen(function* () {
     banks: yield* indexQuestionBanks(tryoutSources),
     entries,
     items: MutableHashMap.fromIterable(
-      sourceTexts.filter(([sourcePath]) => sourcePath.endsWith("/item.ts"))
+      Arr.filter(sourceTexts, ([sourcePath]) => sourcePath.endsWith("/item.ts"))
     ),
     prompts: MutableHashMap.fromIterable(promptTexts),
     sources: MutableHashMap.fromIterable([...sourceTexts, ...promptTexts]),
@@ -208,7 +219,7 @@ export const questionRendererCounts = [
 
 /** Creates recursive directory output for one synthetic question directory. */
 export function questionEntries(root: string, files: readonly string[]) {
-  return [root, ...files.map((file) => `${root}/${file}`)];
+  return [root, ...Arr.map(files, (file) => `${root}/${file}`)];
 }
 
 /** Maps a physical synthetic question root to its absolute item source. */
@@ -261,7 +272,7 @@ export function makeQuestionRegistryLayer(
 
 /** Creates a path-faithful question filesystem over the real corpus with optional read evidence. */
 export function makeQuestionLayer(
-  directoryReads: QuestionDirectoryRead[] = [],
+  directoryReads: MutableList.MutableList<QuestionDirectoryRead> = MutableList.make(),
   overrides: QuestionLayerOverrides = {}
 ) {
   return Layer.unwrap(
@@ -272,7 +283,7 @@ export function makeQuestionLayer(
       return FileSystem.layerNoop({
         readDirectory: (path, options) => {
           const recursive = options?.recursive === true;
-          directoryReads.push({ path, recursive });
+          MutableList.append(directoryReads, { path, recursive });
           const directory = Option.getOrUndefined(
             HashMap.get(overrides.directories ?? HashMap.empty(), path)
           );

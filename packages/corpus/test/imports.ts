@@ -1,4 +1,12 @@
-import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Option,
+  Order,
+  Path,
+  Schema,
+} from "effect";
 
 /** Test-only corpus module discovery or loading failed. */
 export class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
@@ -13,15 +21,16 @@ const escapeRegExp = (text: string) =>
 /** Compiles one corpus glob, where `**` spans any folders and `*` any part of one name, into a path test. */
 function globMatcher(glob: string) {
   const segments = glob.split("/");
-  const source = segments
-    .map((segment, index) => {
+  const source = Arr.join(
+    Arr.map(segments, (segment, index) => {
       if (segment === "**") {
         return "(?:[^/]+/)*";
       }
-      const name = segment.split("*").map(escapeRegExp).join("[^/]*");
+      const name = Arr.join(Arr.map(segment.split("*"), escapeRegExp), "[^/]*");
       return index === segments.length - 1 ? name : `${name}/`;
-    })
-    .join("");
+    }),
+    ""
+  );
   const pattern = new RegExp(`^${source}$`, "u");
   return (file: string) => pattern.test(file);
 }
@@ -29,8 +38,11 @@ function globMatcher(glob: string) {
 /** Returns the folders above the first wildcard, the only part of a corpus glob that needs a directory read. */
 function wildcardBase(glob: string) {
   const segments = glob.split("/");
-  const wildcard = segments.findIndex((segment) => segment.includes("*"));
-  return segments.slice(0, wildcard).join("/");
+  const wildcard = Option.getOrElse(
+    Arr.findFirstIndex(segments, (segment) => segment.includes("*")),
+    () => -1
+  );
+  return Arr.join(segments.slice(0, wildcard), "/");
 }
 
 /** Imports every production module and preserves its unknown export boundary. */
@@ -41,7 +53,8 @@ export const importCorpusModules = Effect.fn("AksaraTest.importCorpusModules")(
     const corpusRoot = path.resolve(import.meta.dirname, "..");
     const base = wildcardBase(pattern);
     const included = globMatcher(pattern);
-    const excluded = ["**/*.test.ts", "test/**/*.ts", ...exclude].map(
+    const excluded = Arr.map(
+      ["**/*.test.ts", "test/**/*.ts", ...exclude],
       globMatcher
     );
     const listed = yield* fileSystem
@@ -52,11 +65,11 @@ export const importCorpusModules = Effect.fn("AksaraTest.importCorpusModules")(
         )
       );
     const files = Arr.sort(
-      listed
-        .map((entry) => (base === "" ? entry : `${base}/${entry}`))
-        .filter(
-          (file) => included(file) && !excluded.some((matches) => matches(file))
-        ),
+      Arr.filter(
+        Arr.map(listed, (entry) => (base === "" ? entry : `${base}/${entry}`)),
+        (file) =>
+          included(file) && !Arr.some(excluded, (matches) => matches(file))
+      ),
       Order.String
     );
     return yield* Effect.forEach(
