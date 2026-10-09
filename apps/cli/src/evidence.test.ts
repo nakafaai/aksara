@@ -13,6 +13,7 @@ import {
   readRepositoryEvidence,
   validateStableAksaraRevision,
 } from "#cli/evidence";
+import { encodeJsonText } from "#cli/text/json";
 
 const COMMIT_SHA = "a".repeat(40);
 
@@ -234,7 +235,7 @@ layer(NodeServices.layer)("repository evidence", (it) => {
           _tag: "PreviewEvidenceError",
           repository: "aksara",
         });
-        expect(JSON.stringify(error)).not.toContain("secret");
+        expect(encodeJsonText(error)).not.toContain("secret");
       })
   );
 });

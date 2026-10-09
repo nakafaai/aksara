@@ -7,6 +7,10 @@ import { build } from "esbuild";
 import { generateBundledNotice } from "#scripts/notice";
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
+/** Two-space indented JSON text, the bytes JSON.stringify(value, null, 2) writes. */
+const PrettyJsonTextSchema = Schema.fromJsonString(Schema.Unknown, {
+  space: 2,
+});
 const ManifestSchema = Schema.fromJsonString(
   Schema.Struct({
     bin: Schema.Struct({ aksara: Schema.Literal("dist/main.js") }),
@@ -140,16 +144,16 @@ const buildCli = Effect.fn("AksaraCliBuild.build")(function* () {
     type: manifest.type,
     version: manifest.version,
   };
+  const releaseManifestText = yield* Schema.encodeEffect(PrettyJsonTextSchema)(
+    releaseManifest
+  ).pipe(Effect.orDie);
   yield* Effect.all(
     [
       fileSystem.chmod(outputFile, 0o755),
       fileSystem.copyFile(licensePath, outputLicense),
       fileSystem.copyFile(readmePath, outputReadme),
       fileSystem.writeFileString(outputNotice, notice),
-      fileSystem.writeFileString(
-        outputManifest,
-        `${JSON.stringify(releaseManifest, null, 2)}\n`
-      ),
+      fileSystem.writeFileString(outputManifest, `${releaseManifestText}\n`),
     ],
     { concurrency: 4 }
   ).pipe(Effect.mapError(buildError("permissions")));
