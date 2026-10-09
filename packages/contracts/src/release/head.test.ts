@@ -19,6 +19,7 @@ import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const releaseId = "test-active";
+const decodeJson = Schema.decodeSync(JsonTextSchema);
 
 /** Strictly checks one schema without accepting unknown wire fields. */
 function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
@@ -35,24 +36,14 @@ describe("content head pages", () => {
       publicPath: undefined,
     });
 
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(routed))
-    ).toEqual(routed);
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(routeFree))
-    ).toEqual(routeFree);
+    expect(decodeJson(canonicalizeContentHead(routed))).toEqual(routed);
+    expect(decodeJson(canonicalizeContentHead(routeFree))).toEqual(routeFree);
     const article = articleHead("articles/politics/test");
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(article))
-    ).toEqual(article);
+    expect(decodeJson(canonicalizeContentHead(article))).toEqual(article);
     const question = questionHead("question-bank/test/question");
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(question))
-    ).toEqual(question);
+    expect(decodeJson(canonicalizeContentHead(question))).toEqual(question);
     const page = pageHead("pages/privacy-policy");
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeContentHead(page))
-    ).toEqual(page);
+    expect(decodeJson(canonicalizeContentHead(page))).toEqual(page);
     expect(canonicalizeContentHead(routed)).toBe(
       '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","publicPath":"subjects/test/test-routed","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
     );
