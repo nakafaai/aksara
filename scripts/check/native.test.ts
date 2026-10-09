@@ -146,7 +146,8 @@ layer(NodeServices.layer)("native source check", (it) => {
 
       expect(error).toEqual(
         new NativeCheckError({
-          detail: "NotFound: ChildProcess.spawn (git): spawn git ENOENT",
+          message:
+            "The clone step could not start: NotFound: ChildProcess.spawn (git): spawn git ENOENT",
           step: "clone",
         })
       );
@@ -170,8 +171,9 @@ layer(NodeServices.layer)("native source check", (it) => {
 
         expect(error).toEqual(
           new NativeCheckError({
-            detail: "fatal: unable to access the repository",
             exitCode: 128,
+            message:
+              "The clone step exited with code 128: fatal: unable to access the repository",
             step: "clone",
           })
         );
@@ -196,8 +198,9 @@ layer(NodeServices.layer)("native source check", (it) => {
 
         expect(error).toEqual(
           new NativeCheckError({
-            detail: "ERR_PNPM_LOCKFILE_CONFIG_MISMATCH",
             exitCode: 1,
+            message:
+              "The install step exited with code 1: ERR_PNPM_LOCKFILE_CONFIG_MISMATCH",
             step: "install",
           })
         );
@@ -223,7 +226,11 @@ layer(NodeServices.layer)("native source check", (it) => {
         const checkout = checkoutOf(calls);
 
         expect(error).toEqual(
-          new NativeCheckError({ detail: "", exitCode: 1, step: "check" })
+          new NativeCheckError({
+            exitCode: 1,
+            message: "The check step exited with code 1.",
+            step: "check",
+          })
         );
         expect(calls).toEqual([
           ...cloneCalls(checkout),

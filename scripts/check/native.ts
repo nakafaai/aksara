@@ -11,7 +11,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * The nakafa.com commit whose source check runs here. Move this pin on purpose,
  * in a pull request of its own, after the new engine reports zero findings here.
  */
-export const NAKAFA_COMMIT = "ab8b85444e21882cf5ae01f65441f629abb19afa";
+export const NAKAFA_COMMIT = "904f5a8e1f82bd09d3d196dae0f431217d4eed2c";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
@@ -20,8 +20,8 @@ const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
 export class NativeCheckError extends Schema.TaggedError<NativeCheckError>()(
   "NativeCheckError",
   {
-    detail: Schema.String,
-    exitCode: Schema.optionalKey(Schema.Number),
+    exitCode: Schema.optionalKey(Schema.Finite),
+    message: Schema.String,
     step: NativeStepSchema,
   }
 ) {}
@@ -59,13 +59,21 @@ const runCommand = Effect.fn("AksaraNative.runCommand")(function* (
     })
   ).pipe(
     Effect.mapError(
-      (cause) => new NativeCheckError({ detail: cause.message, step })
+      (cause) =>
+        new NativeCheckError({
+          message: `The ${step} step could not start: ${cause.message}`,
+          step,
+        })
     )
   );
   if (exitCode !== 0) {
+    const output = stderr.trim();
     return yield* new NativeCheckError({
-      detail: stderr.trim(),
       exitCode,
+      message:
+        output === ""
+          ? `The ${step} step exited with code ${exitCode}.`
+          : `The ${step} step exited with code ${exitCode}: ${output}`,
       step,
     });
   }
