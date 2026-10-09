@@ -15,7 +15,7 @@ const ROOT = "/aksara-typescript";
 const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 /** Exact source text inspected without resolving or executing its imports. */
-export const TypeScriptSource = Schema.Struct({
+const TypeScriptSource = Schema.Struct({
   fileName: Schema.String,
   source: Schema.String,
 });
@@ -45,7 +45,7 @@ function parsedView(
 }
 
 /** Parsed syntax and diagnostics belonging to the same immutable snapshot. */
-export type ParsedTypeScript = Readonly<ReturnType<typeof parsedView>>;
+type ParsedTypeScript = Readonly<ReturnType<typeof parsedView>>;
 
 /** Scoped native parser shared by one source-discovery or policy operation. */
 export class TypeScriptParser extends Context.Service<

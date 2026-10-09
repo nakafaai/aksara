@@ -36,7 +36,7 @@ const ExactProcessOutputSchema = Schema.Struct({
 });
 
 /** Bounded output returned by one successfully observed child process. */
-export type ExactProcessOutput = typeof ExactProcessOutputSchema.Type;
+type ExactProcessOutput = typeof ExactProcessOutputSchema.Type;
 
 /** An exact process could not start, stream bounded output, or exit normally. */
 export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(

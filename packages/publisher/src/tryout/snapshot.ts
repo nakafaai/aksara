@@ -26,7 +26,7 @@ import type {
 } from "#publisher/tryout/error";
 
 /** Exact-Git inputs required to prepare one complete try-out snapshot. */
-export interface TryoutSnapshotPreparationInput<E, R> {
+interface TryoutSnapshotPreparationInput<E, R> {
   readonly checkoutRoot: string;
   readonly content: Pick<
     Effect.Success<ReturnType<typeof loadTryoutContent>>,
@@ -43,7 +43,7 @@ type TryoutManifest = Extract<
 >;
 
 /** Replayable verified rows and manifest selected by one global release. */
-export interface PreparedTryoutSnapshot {
+interface PreparedTryoutSnapshot {
   readonly manifest: TryoutManifest;
   /** Replays immutable catalog rows followed by artifact-bound placements. */
   readonly rows: Stream.Stream<ContentSnapshotRow, ReplaySpoolError>;
