@@ -78,9 +78,9 @@ export const verifyTryoutSnapshotRows = Effect.fn(
   rows: SnapshotRowSource<E, R>
 ) {
   const [placementDigest, catalogDigest, catalogEvidence] = yield* Effect.all([
-    digestTryoutPlacements(currentPlacements(rows)),
-    digestTryoutCatalog(currentTryoutCatalog(rows)),
-    summarizeTryoutCatalog(currentTryoutCatalog(rows)),
+    rows.pipe(currentPlacements, digestTryoutPlacements),
+    rows.pipe(currentTryoutCatalog, digestTryoutCatalog),
+    rows.pipe(currentTryoutCatalog, summarizeTryoutCatalog),
   ]);
   yield* verifyTryoutLocaleClosure({
     activeAppLocales: snapshot.manifest.activeAppLocales,
