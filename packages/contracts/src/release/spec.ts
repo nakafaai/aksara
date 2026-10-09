@@ -227,11 +227,10 @@ export const ActiveCatalogIdentitySchema = Schema.Struct({
   resultDigest: Sha256HashSchema,
   snapshots: ContentSnapshotSetSchema,
 });
-export type ActiveCatalogIdentity = typeof ActiveCatalogIdentitySchema.Type;
 
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
-  ...ActiveCatalogIdentitySchema.fields,
+  activeAppLocales: ActiveCatalogIdentitySchema.fields.activeAppLocales,
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
@@ -240,13 +239,18 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   deleteHeads: ReleaseCountSchema,
   itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
+  manifestHash: ActiveCatalogIdentitySchema.fields.manifestHash,
   projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
+  releaseId: ActiveCatalogIdentitySchema.fields.releaseId,
   rendererManifestHash: Sha256HashSchema,
+  resultCount: ActiveCatalogIdentitySchema.fields.resultCount,
+  resultDigest: ActiveCatalogIdentitySchema.fields.resultDigest,
   rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
   routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
+  snapshots: ActiveCatalogIdentitySchema.fields.snapshots,
   stagedArtifacts: ReleaseCountSchema,
   stagedRoutes: ReleaseCountSchema,
   stagedSnapshotRows: ReleaseCountSchema,
