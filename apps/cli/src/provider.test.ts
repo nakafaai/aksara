@@ -250,9 +250,8 @@ describe("local preview provider", () => {
         vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
           this: Server
         ) {
-          queueMicrotask(() =>
-            this.emit("error", new Error("Test bind failure."))
-          );
+          // The caller subscribes to "error" before it listens, so the failure arrives at once.
+          this.emit("error", new Error("Test bind failure."));
           return this;
         });
         const listenError = yield* Effect.scoped(

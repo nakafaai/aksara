@@ -1,10 +1,5 @@
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
-import {
-  type SignedContentArtifact,
-  SignedContentArtifactSchema,
-} from "@nakafa/aksara-contracts/content";
-
-import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
+import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
@@ -32,7 +27,6 @@ import type { FileSystem, Path } from "effect";
 import { Effect, Redacted, type Scope, Stream } from "effect";
 import { contentSnapshotCacheChanges } from "#publisher/cache";
 import {
-  type CompiledReleaseSource,
   CompiledReleaseSourceSchema,
   compileReleaseSources,
 } from "#publisher/compilation";
@@ -40,7 +34,6 @@ import type {
   PreparedContentRelease,
   PreparedGitRelease,
   PreparedRollbackRelease,
-  PreparedTryoutRuntimeTransition,
 } from "#publisher/preparation/prepared";
 import {
   makeGitArtifacts,
@@ -55,7 +48,7 @@ import {
   type PublicationSource,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import { createReplaySpool, type ReplaySpool } from "#publisher/replay/spool";
+import { createReplaySpool } from "#publisher/replay/spool";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
   stagePreparedRelease,
@@ -72,18 +65,6 @@ export type PublicationInvocation<E, R> =
     }
   | {
       readonly input: PreparedRollbackRelease<E, R>;
-      readonly kind: "rollback";
-    };
-
-type PublicationArtifactPlan =
-  | {
-      readonly aksaraSha: GitCommitSha;
-      readonly compiled: ReplaySpool<CompiledReleaseSource>;
-      readonly kind: "git";
-      readonly runtime: PreparedTryoutRuntimeTransition | null;
-    }
-  | {
-      readonly artifacts: ReplaySpool<SignedContentArtifact>;
       readonly kind: "rollback";
     };
 
@@ -212,38 +193,40 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   ).pipe(Stream.concat(contentCacheChanges(decodedItems)));
   yield* validateReleaseRendererManifest(input.manifest, rendererManifest);
 
-  let artifactPlan: PublicationArtifactPlan;
-  if (invocation.kind === "rollback") {
-    yield* validateRollbackMode(invocation.input);
-    const artifacts = yield* createReplaySpool({
-      prefix: "aksara-rollback-artifacts-",
-      schema: SignedContentArtifactSchema,
-      stream: makeRollbackArtifacts({
-        artifacts: invocation.input.artifacts,
-        items: upsertItems(decodedItems),
-        rendererManifest,
-      }),
-    });
-    artifactPlan = { artifacts, kind: "rollback" };
-  } else {
-    const aksaraSha = yield* validateGitMode(invocation.input);
-    const items = upsertItems(decodedItems);
-    const compiled = yield* createReplaySpool({
-      prefix: "aksara-exact-git-",
-      schema: CompiledReleaseSourceSchema,
-      stream: compileReleaseSources({
-        items,
-        rendererManifest,
-        sources: invocation.source.loadExactRevision({ aksaraSha, items }),
-      }),
-    });
-    artifactPlan = {
-      aksaraSha,
-      compiled,
-      kind: "git",
-      runtime: invocation.input.tryoutRuntime,
-    };
-  }
+  /** The artifact source of this mode: reused signed artifacts or an exact-Git compilation. */
+  const artifactPlan = yield* invocation.kind === "rollback"
+    ? Effect.gen(function* () {
+        yield* validateRollbackMode(invocation.input);
+        const artifacts = yield* createReplaySpool({
+          prefix: "aksara-rollback-artifacts-",
+          schema: SignedContentArtifactSchema,
+          stream: makeRollbackArtifacts({
+            artifacts: invocation.input.artifacts,
+            items: upsertItems(decodedItems),
+            rendererManifest,
+          }),
+        });
+        return { artifacts, kind: "rollback" as const };
+      })
+    : Effect.gen(function* () {
+        const aksaraSha = yield* validateGitMode(invocation.input);
+        const items = upsertItems(decodedItems);
+        const compiled = yield* createReplaySpool({
+          prefix: "aksara-exact-git-",
+          schema: CompiledReleaseSourceSchema,
+          stream: compileReleaseSources({
+            items,
+            rendererManifest,
+            sources: invocation.source.loadExactRevision({ aksaraSha, items }),
+          }),
+        });
+        return {
+          aksaraSha,
+          compiled,
+          kind: "git" as const,
+          runtime: invocation.input.tryoutRuntime,
+        };
+      });
 
   const signingKey = yield* PublicationSigningKey;
   const target = yield* PublicationTarget;
