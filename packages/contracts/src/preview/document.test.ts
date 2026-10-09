@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   PreviewDocumentSchema,
   previewDocumentRoute,
@@ -36,12 +36,12 @@ describe("preview document", () => {
     ];
 
     expect(
-      documents.map((document) =>
+      Arr.map(documents, (document) =>
         Schema.decodeSync(PreviewDocumentSchema)(document)
       )
     ).toEqual(documents);
     expect(
-      documents.map(({ delivery, family }) => ({ delivery, family }))
+      Arr.map(documents, ({ delivery, family }) => ({ delivery, family }))
     ).toEqual([
       { delivery: "public", family: "article" },
       { delivery: "public", family: "material" },
@@ -53,13 +53,16 @@ describe("preview document", () => {
 
   it("derives the actual article, material, page, and try-out routes", () => {
     expect(
-      [
-        testArticleDocument,
-        testMaterialDocument,
-        testPageDocument,
-        testPromptDocument,
-        testAnswerDocument,
-      ].map(previewDocumentRoute)
+      Arr.map(
+        [
+          testArticleDocument,
+          testMaterialDocument,
+          testPageDocument,
+          testPromptDocument,
+          testAnswerDocument,
+        ],
+        previewDocumentRoute
+      )
     ).toEqual([
       {
         appLocale: testArticleDocument.route.appLocale,
@@ -172,14 +175,17 @@ describe("preview document", () => {
 
   it("rejects wrong delivery and invented question fields", () => {
     expect(
-      [
-        { ...testArticleDocument, delivery: "authenticated" },
-        { ...testMaterialDocument, family: "article" },
-        { ...testPageDocument, rendererDomain: "politics" },
-        { ...testPromptDocument, delivery: "entitled" },
-        { ...testAnswerDocument, delivery: "authenticated" },
-        { ...testPromptDocument, questionLanguage: "en" },
-      ].every(rejectsDocument)
+      Arr.every(
+        [
+          { ...testArticleDocument, delivery: "authenticated" },
+          { ...testMaterialDocument, family: "article" },
+          { ...testPageDocument, rendererDomain: "politics" },
+          { ...testPromptDocument, delivery: "entitled" },
+          { ...testAnswerDocument, delivery: "authenticated" },
+          { ...testPromptDocument, questionLanguage: "en" },
+        ],
+        rejectsDocument
+      )
     ).toBe(true);
   });
 });

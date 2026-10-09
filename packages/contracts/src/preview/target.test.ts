@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   previewTryoutRoute,
   TryoutPreviewTargetSchema,
@@ -103,7 +103,7 @@ describe("try-out preview target", () => {
       },
     ];
 
-    expect(invalidTargets.every(rejectsTarget)).toBe(true);
+    expect(Arr.every(invalidTargets, rejectsTarget)).toBe(true);
     expect(
       String(
         Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[0])
@@ -159,7 +159,7 @@ describe("try-out preview target", () => {
       },
     ];
 
-    expect(invalidTargets.every(rejectsTarget)).toBe(true);
+    expect(Arr.every(invalidTargets, rejectsTarget)).toBe(true);
     expect(
       String(
         Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[0])
@@ -194,7 +194,7 @@ describe("try-out preview target", () => {
       },
     ];
 
-    expect(invalidTargets.every(rejectsTarget)).toBe(true);
+    expect(Arr.every(invalidTargets, rejectsTarget)).toBe(true);
     expect(
       String(
         Schema.decodeUnknownExit(TryoutPreviewTargetSchema)(invalidTargets[1])

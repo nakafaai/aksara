@@ -1,6 +1,6 @@
 import { createHash, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Result } from "effect";
+import { Array as Arr, Effect, Result } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import {
@@ -65,7 +65,7 @@ describe("content runtime verification", () => {
         { concurrency: "unbounded" }
       );
       expect(
-        outcomes.map((outcome) =>
+        Arr.map(outcomes, (outcome) =>
           Result.isFailure(outcome) &&
           outcome.failure._tag === "ContentRuntimeMismatchError"
             ? outcome.failure.reason
@@ -101,7 +101,7 @@ describe("content runtime verification", () => {
           { concurrency: "unbounded" }
         );
         expect(outcomes).toEqual(
-          sourceCase.invalidSources.map(() =>
+          Arr.map(sourceCase.invalidSources, () =>
             expect.objectContaining({
               _tag: "ContentRuntimeMismatchError",
               reason: "sourcePath",
@@ -120,7 +120,7 @@ describe("content runtime verification", () => {
         (response) => verifyRuntimeExchange({ response }).pipe(Effect.flip),
         { concurrency: "unbounded" }
       );
-      expect(errors.map(({ _tag }) => _tag)).toEqual([
+      expect(Arr.map(errors, ({ _tag }) => _tag)).toEqual([
         "SignatureInvalidError",
         "SigningKeyNotFoundError",
         "SignatureInvalidError",
@@ -195,7 +195,7 @@ describe("content runtime verification", () => {
         ],
         { concurrency: "unbounded" }
       );
-      expect(errors.map(({ _tag }) => _tag)).toEqual([
+      expect(Arr.map(errors, ({ _tag }) => _tag)).toEqual([
         "ReleaseBundleVerificationDecodeError",
         "ReleaseBundleVerificationDecodeError",
       ]);
@@ -242,7 +242,7 @@ describe("pinned public runtime exchange bytes", () => {
   );
   /** Verifies one recorded signature over its exact bytes, then over the same bytes with one changed byte. */
   function verifyRecorded(message: string, signature: string) {
-    return [message, message.replace("nakafa", "makafa")].map((text) =>
+    return Arr.map([message, message.replace("nakafa", "makafa")], (text) =>
       verifyBytes(
         null,
         new TextEncoder().encode(text),
