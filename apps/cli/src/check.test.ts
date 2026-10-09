@@ -7,19 +7,29 @@ import { runCheckCommand } from "#cli/check";
 import { unusedExactProcess } from "#test/process";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const control = vi.hoisted(() => ({
-  dirty: false,
-  rendererCalls: 0,
-  revisionCalls: 0,
-  revisionChanged: false,
-  status: "approved" as "approved" | "blocked",
-  validation: undefined as
+interface ControlState {
+  dirty: boolean;
+  rendererCalls: number;
+  revisionCalls: number;
+  revisionChanged: boolean;
+  status: "approved" | "blocked";
+  validation:
     | {
         readonly checkoutRoot: string;
         readonly rendererManifest: { readonly hash: string };
       }
-    | undefined,
-}));
+    | undefined;
+}
+const control = vi.hoisted(
+  (): ControlState => ({
+    dirty: false,
+    rendererCalls: 0,
+    revisionCalls: 0,
+    revisionChanged: false,
+    status: "approved",
+    validation: undefined,
+  })
+);
 
 vi.mock("#cli/checkout", async () => {
   const { Effect: TestEffect } = await import("effect");

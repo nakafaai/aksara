@@ -15,10 +15,11 @@ import { readCleanAksaraRevision } from "#cli/evidence";
 import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
 import { encodeJsonText } from "#cli/text/json";
+import type { AcceptancePublicationCalls } from "#test/acceptance";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";
 
-const state = vi.hoisted(() => ({
+const state: AcceptancePublicationCalls = vi.hoisted(() => ({
   allowInsecureLoopback: false,
   cacheDrained: 0,
   endpoint: "",
@@ -27,9 +28,9 @@ const state = vi.hoisted(() => ({
   recoveryId: "",
   snapshotAttempts: 0,
   snapshotFailures: 0,
-  snapshotInputs: [] as string[],
+  snapshotInputs: [],
   sourceRoot: "",
-  target: "empty" as "empty" | "active" | "candidate",
+  target: "empty",
   targetReads: 0,
   timeout: "",
 }));

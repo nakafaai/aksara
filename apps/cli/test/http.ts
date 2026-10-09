@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import { type Effect, MutableList, Schema } from "effect";
 import {
   HttpClient,
@@ -42,9 +43,7 @@ export function captureClient(
 
 /** Decodes the strict JSON bytes written by one production HTTP request. */
 export function requestJson(request: HttpClientRequest.HttpClientRequest) {
-  if (request.body._tag !== "Uint8Array") {
-    throw new Error("Expected a JSON request body.");
-  }
+  assert(request.body._tag === "Uint8Array", "Expected a JSON request body.");
   const parsed: unknown = Schema.decodeSync(JsonTextSchema)(
     Buffer.from(request.body.body).toString("utf8")
   );

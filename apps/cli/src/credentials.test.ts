@@ -6,10 +6,16 @@ import {
   type PreviewCredentials,
 } from "#cli/credentials";
 
-const cryptoControl = vi.hoisted(() => ({
-  generatedPublicKey: undefined as KeyObject | undefined,
-  mode: "normal" as "generate-failure" | "normal" | "rsa",
-}));
+interface CryptoControl {
+  generatedPublicKey: KeyObject | undefined;
+  mode: "generate-failure" | "normal" | "rsa";
+}
+const cryptoControl = vi.hoisted(
+  (): CryptoControl => ({
+    generatedPublicKey: undefined,
+    mode: "normal",
+  })
+);
 type CryptoMode = typeof cryptoControl.mode;
 const LOCAL_KEY_ID_PATTERN = /^local-[a-f0-9]{24}$/u;
 /** Resolves to true only when the two types are identical. */

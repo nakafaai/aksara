@@ -8,12 +8,20 @@ import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 import { gitBundle } from "#test/target";
 
-const calls = vi.hoisted(() => ({
-  endpoint: "",
-  fetches: 0,
-  renderer: undefined as RendererManifestEnvelope | undefined,
-  token: "",
-}));
+interface ActivationCalls {
+  endpoint: string;
+  fetches: number;
+  renderer: RendererManifestEnvelope | undefined;
+  token: string;
+}
+const calls = vi.hoisted(
+  (): ActivationCalls => ({
+    endpoint: "",
+    fetches: 0,
+    renderer: undefined,
+    token: "",
+  })
+);
 const BUNDLE = gitBundle("release-next");
 
 vi.mock("#cli/production/renderer", async (importOriginal) => {

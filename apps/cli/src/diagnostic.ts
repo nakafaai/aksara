@@ -1,4 +1,4 @@
-import { Array as Arr, Predicate } from "effect";
+import { Array as Arr, Match, Predicate } from "effect";
 import type { PreviewDocumentError } from "#cli/document";
 
 const MAX_DIAGNOSTIC_ITEMS = 8;
@@ -68,40 +68,37 @@ function diagnosticList(values: readonly string[]) {
 }
 
 /** Returns compiler-owned remediation context without serializing unknown causes. */
-function compilerDetail(error: PreviewDocumentError) {
-  switch (error._tag) {
-    case "AuthoredMetadataDuplicateError":
-      return `found ${error.count} metadata exports; keep exactly one`;
-    case "AuthoredMetadataMissingError":
-      return "add exactly one metadata export";
-    case "AuthoredMetadataSyntaxError":
-      return `unsupported metadata syntax: ${diagnosticList(error.reasons)}`;
-    case "ContentByteLimitExceededError":
-      return `${error.field} is ${error.actualBytes} bytes; maximum is ${error.maxBytes}`;
-    case "ExecutablePolicyError":
-      return `rejected executable syntax: ${diagnosticList(
+const compilerDetail = Match.type<PreviewDocumentError>().pipe(
+  Match.discriminators("_tag")({
+    AuthoredMetadataDuplicateError: (error) =>
+      `found ${error.count} metadata exports; keep exactly one`,
+    AuthoredMetadataMissingError: () => "add exactly one metadata export",
+    AuthoredMetadataSyntaxError: (error) =>
+      `unsupported metadata syntax: ${diagnosticList(error.reasons)}`,
+    ContentByteLimitExceededError: (error) =>
+      `${error.field} is ${error.actualBytes} bytes; maximum is ${error.maxBytes}`,
+    ExecutablePolicyError: (error) =>
+      `rejected executable syntax: ${diagnosticList(
         Arr.map(error.violations, ({ identifier, rule }) => {
           if (identifier === undefined) {
             return rule;
           }
           return `${rule} (${identifier})`;
         })
-      )}`;
-    case "MdxCompilationError":
-      return error.message;
-    case "RendererComponentMissingError":
-      return `register renderer component ${error.componentName} before using it`;
-    case "UnsupportedMdxModuleSyntaxError":
-      return `remove MDX module syntax at ${diagnosticList(
+      )}`,
+    MdxCompilationError: (error) => error.message,
+    RendererComponentMissingError: (error) =>
+      `register renderer component ${error.componentName} before using it`,
+    UnsupportedMdxModuleSyntaxError: (error) =>
+      `remove MDX module syntax at ${diagnosticList(
         Arr.map(
           error.occurrences,
           ({ column, kind, line }) => `${line}:${column} (${kind})`
         )
-      )}`;
-    default:
-      return publicDetail(error);
-  }
-}
+      )}`,
+  }),
+  Match.orElse(publicDetail)
+);
 
 /** Joins one typed failure identity with optional bounded context. */
 function failureMessage(

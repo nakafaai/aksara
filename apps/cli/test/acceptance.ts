@@ -34,11 +34,13 @@ const AcceptancePublicationCallsSchema = Schema.Struct({
   snapshotInputs: Schema.mutableKey(
     Schema.mutable(Schema.Array(Schema.String))
   ),
+  sourceRoot: Schema.mutableKey(Schema.String),
   target: Schema.mutableKey(Schema.Literals(["empty", "active", "candidate"])),
   targetReads: Schema.mutableKey(Schema.Finite),
   timeout: Schema.mutableKey(Schema.String),
 });
-type AcceptancePublicationCalls = typeof AcceptancePublicationCallsSchema.Type;
+export type AcceptancePublicationCalls =
+  typeof AcceptancePublicationCallsSchema.Type;
 
 /** Supplies native target failures after one exact, real snapshot row is staged. */
 export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {

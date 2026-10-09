@@ -22,14 +22,20 @@ import {
 /** Signals to this identifier are always mocked, so no operating-system process can be reached. */
 const FAKE_PID = 424_242;
 
-const childProcessBehavior = vi.hoisted(() => ({
-  enabled: false,
-  pid: 0,
-  spawnOptions: undefined as
-    | import("node:child_process").SpawnOptions
-    | undefined,
-  throwOnSpawn: false,
-}));
+interface ChildProcessBehavior {
+  enabled: boolean;
+  pid: number;
+  spawnOptions: import("node:child_process").SpawnOptions | undefined;
+  throwOnSpawn: boolean;
+}
+const childProcessBehavior = vi.hoisted(
+  (): ChildProcessBehavior => ({
+    enabled: false,
+    pid: 0,
+    spawnOptions: undefined,
+    throwOnSpawn: false,
+  })
+);
 
 vi.mock("node:child_process", async (importOriginal) => {
   const childProcess =
