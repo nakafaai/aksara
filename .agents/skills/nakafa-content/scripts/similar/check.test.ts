@@ -1,24 +1,12 @@
 import { fileURLToPath } from "node:url";
 import { assert, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { TestConsole } from "effect/testing";
+import { capture } from "#nakafa-content/points/test/console";
 import { runMain } from "#nakafa-content/similar/check";
 
 const SET =
   "packages/corpus/question-bank/tryout/indonesia/tka/english-language/set-4";
 const BANK_TIMEOUT = 60_000;
-
-/** Runs one effect with a fresh test console and returns the lines it wrote. */
-function capture<A, E, R>(self: Effect.Effect<A, E, R>) {
-  return Effect.gen(function* () {
-    const code = yield* self;
-    return {
-      code,
-      error: (yield* TestConsole.errorLines).map(String),
-      log: (yield* TestConsole.logLines).map(String),
-    };
-  }).pipe(Effect.provide(TestConsole.layer));
-}
 
 it.effect("rejects missing, extra, unknown, and out-of-range arguments", () =>
   Effect.gen(function* () {

@@ -12,8 +12,8 @@ import { fileURLToPath } from "node:url";
 import { NodeFileSystem } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
 import { Effect, type FileSystem, Schema, type Scope } from "effect";
-import { TestConsole } from "effect/testing";
 
+import { loggedLines } from "#nakafa-content/points/test/console";
 import {
   checkLessonRoot,
   collectLessonFiles,
@@ -24,11 +24,6 @@ import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
 const PASSING_REPORT_PATTERN = /passed for 3 files/u;
 const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
-
-/** Every console log line that the test console has captured so far. */
-const loggedLines = Effect.map(TestConsole.logLines, (lines) =>
-  lines.map(String)
-);
 
 type TestServices = FileSystem.FileSystem | Scope.Scope;
 
