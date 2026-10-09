@@ -35,6 +35,7 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "recovery"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "recovery") {
       return;
     }
@@ -55,14 +56,17 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "headPage"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "headPage") {
       return;
     }
     const success = transportSuccess(request);
+    expect(success.operation).toBe("headPage");
     if (success.operation !== "headPage") {
       return;
     }
     const [head] = success.value.heads;
+    expect(head).toBeDefined();
     if (head === undefined) {
       return;
     }
@@ -98,13 +102,16 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "verify"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "verify") {
       return;
     }
     const success = transportSuccess(request);
+    expect(success.operation).toBe("verify");
     if (success.operation !== "verify") {
       return;
     }
+    expect(success.value.phase).toBe("verified");
     if (success.value.phase !== "verified") {
       return;
     }
@@ -153,6 +160,7 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "verify"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "verify") {
       return;
     }
@@ -190,10 +198,12 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "activate"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "activate") {
       return;
     }
     const success = transportSuccess(request);
+    expect(success.operation).toBe("activate");
     if (success.operation !== "activate") {
       return;
     }
@@ -227,6 +237,7 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "rollbackPage"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "rollbackPage") {
       return;
     }
@@ -279,10 +290,12 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "cleanup"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "cleanup") {
       return;
     }
     const success = transportSuccess(request);
+    expect(success.operation).toBe("cleanup");
     if (success.operation !== "cleanup") {
       return;
     }
@@ -300,10 +313,12 @@ describe("publication success evidence", () => {
         (candidate) => candidate.operation === "stageItemBatch"
       )
     );
+    expect(request).toBeDefined();
     if (request?.operation !== "stageItemBatch") {
       return;
     }
     const success = transportSuccess(request);
+    expect(success.operation).toBe("stageItemBatch");
     if (success.operation !== "stageItemBatch") {
       return;
     }
