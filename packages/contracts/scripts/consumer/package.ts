@@ -12,7 +12,7 @@ import {
   assertContractPackageMetadata,
   assertPortableDependencies,
   createReleaseManifest,
-  type PackageManifest,
+  PackageManifestSchema,
   parsePackageManifest,
   parseWorkspaceManifest,
   textField,
@@ -24,14 +24,16 @@ const EffectManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
 );
 
-interface PackedManifestInput {
-  readonly effectVersion: string;
-  readonly packedLicense: string;
-  readonly packedManifest: PackageManifest;
-  readonly packedReadme: string;
-  readonly sourceLicense: string;
-  readonly sourceManifest: PackageManifest;
-}
+const PackedManifestInputSchema = Schema.Struct({
+  effectVersion: Schema.String,
+  packedLicense: Schema.String,
+  packedManifest: PackageManifestSchema,
+  packedReadme: Schema.String,
+  sourceLicense: Schema.String,
+  sourceManifest: PackageManifestSchema,
+});
+
+type PackedManifestInput = typeof PackedManifestInputSchema.Type;
 
 /** Validates archive metadata while converting assertion throws to typed data. */
 const validatePackedManifest = Effect.fn(
@@ -141,11 +143,17 @@ export const stageConsumerPackage = Effect.fn(
       read(path.join(workspaceRoot, "package.json")),
     ]);
   const sourceManifest = yield* Effect.try({
-    catch: failure("manifest", "Contract package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Contract package manifest ${packageFile("package.json")} is malformed`
+    ),
     try: () => parsePackageManifest(sourceManifestSource),
   });
   const rootManifest = yield* Effect.try({
-    catch: failure("manifest", "Workspace package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Workspace package manifest ${path.join(workspaceRoot, "package.json")} is malformed`
+    ),
     try: () => parseWorkspaceManifest(rootManifestSource),
   });
   const temporaryRoot = yield* fileSystem
@@ -203,7 +211,10 @@ export const stageConsumerPackage = Effect.fn(
     { onExcessProperty: "ignore" }
   ).pipe(
     Effect.mapError(
-      failure("manifest", "Installed Effect manifest is malformed")
+      failure(
+        "manifest",
+        `Installed Effect manifest ${effectManifestPath} is malformed`
+      )
     )
   );
   const releaseManifest = yield* Effect.try({
@@ -267,7 +278,10 @@ export const stageConsumerPackage = Effect.fn(
     ]
   );
   const packedManifest = yield* Effect.try({
-    catch: failure("manifest", "Packed package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Packed package manifest ${path.join(packedRoot, "package.json")} is malformed`
+    ),
     try: () => parsePackageManifest(packedManifestSource),
   });
   const effectVersion = yield* validatePackedManifest({

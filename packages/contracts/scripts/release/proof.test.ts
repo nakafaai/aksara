@@ -1,12 +1,13 @@
 import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Sink, Stream } from "effect";
+import { Effect, FileSystem, Path, Schema, Sink, Stream } from "effect";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
+import { encodeJsonText } from "#scripts/text/json";
 
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);
@@ -34,13 +35,15 @@ const pinnedRelease = {
   target_commitish: RELEASE_SHA,
 };
 
-interface FakeCommandInput {
-  readonly downloadArchive: string;
-  readonly failApi?: boolean;
-  readonly failGit?: boolean;
-  readonly release: unknown;
-  readonly tag: unknown;
-}
+const FakeCommandInputSchema = Schema.Struct({
+  downloadArchive: Schema.String,
+  failApi: Schema.optionalKey(Schema.Boolean),
+  failGit: Schema.optionalKey(Schema.Boolean),
+  release: Schema.Unknown,
+  tag: Schema.Unknown,
+});
+
+type FakeCommandInput = typeof FakeCommandInputSchema.Type;
 
 /** Builds one complete fake command contract with explicit overrides. */
 function fakeCommands(
@@ -146,8 +149,8 @@ function makeFakeSpawner(
       }
       if (command.args[0] === "api") {
         const output = command.args[1]?.includes("/releases/")
-          ? JSON.stringify(input.release)
-          : JSON.stringify(input.tag);
+          ? encodeJsonText(input.release)
+          : encodeJsonText(input.tag);
         return makeProcessHandle(output, input.failApi === true ? 1 : 0);
       }
       if (command.args[0] !== "release" || command.args[1] !== "download") {

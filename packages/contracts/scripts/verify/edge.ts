@@ -1,6 +1,6 @@
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
 import {
   isCallExpression,
   isExportDeclaration,
@@ -115,10 +115,10 @@ export const verifyEdgeEntry = Effect.fn("AksaraContracts.verifyEdgeEntry")(
   function* (distRoot: string, entry: string) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const visited = new Set<string>();
+    const visited = MutableHashSet.empty<string>();
     const pending = [path.resolve(distRoot, `${entry}.js`)];
     for (const file of pending) {
-      if (visited.has(file)) {
+      if (MutableHashSet.has(visited, file)) {
         continue;
       }
       const source = yield* fileSystem
@@ -131,7 +131,7 @@ export const verifyEdgeEntry = Effect.fn("AksaraContracts.verifyEdgeEntry")(
             )
           )
         );
-      visited.add(file);
+      MutableHashSet.add(visited, file);
       const imports = yield* runtimeImports(file, source);
       for (const specifier of imports) {
         if (specifier.startsWith("node:")) {

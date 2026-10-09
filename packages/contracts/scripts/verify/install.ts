@@ -1,10 +1,14 @@
 import { existsSync, readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, join, relative, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Record as Rec, Schema } from "effect";
 import { parseInstalledManifest } from "#scripts/manifest";
 
-const NODE_IMPORT_CONDITIONS = new Set(["node", "import", "default"]);
+const NODE_IMPORT_CONDITIONS = HashSet.fromIterable([
+  "node",
+  "import",
+  "default",
+]);
 
 /** One installed-package contract or operating-system read could not be verified. */
 export class InstallVerificationError extends Schema.TaggedError<InstallVerificationError>()(
@@ -80,7 +84,7 @@ export const verifyInstalledPackage = Effect.fn(
   );
 
   const manifest = yield* tryVerification(
-    `Unable to read the installed ${packageName} manifest.`,
+    `Unable to read the installed manifest ${join(packageRoot, "package.json")}.`,
     () =>
       parseInstalledManifest(
         readFileSync(join(packageRoot, "package.json"), "utf8")
@@ -93,17 +97,17 @@ export const verifyInstalledPackage = Effect.fn(
 
   let importedConditionCount = 0;
   const moduleSpecifiers: string[] = [];
-  for (const [subpath, descriptor] of Object.entries(manifest.exports)) {
+  for (const [subpath, descriptor] of Rec.toEntries(manifest.exports)) {
     yield* requireVerification(
       subpath === "." || (subpath.startsWith("./") && !subpath.includes("*")),
       `Only exact package exports are supported: ${subpath}`
     );
-    const conditionEntries = Object.entries(descriptor);
+    const conditionEntries = Rec.toEntries(descriptor);
     const typesTarget = conditionEntries.find(
       ([condition]) => condition === "types"
     );
     const importTargets = conditionEntries.filter(([condition]) =>
-      NODE_IMPORT_CONDITIONS.has(condition)
+      HashSet.has(NODE_IMPORT_CONDITIONS, condition)
     );
     yield* requireVerification(
       typesTarget !== undefined,
@@ -162,6 +166,6 @@ export const verifyInstalledPackage = Effect.fn(
     discard: true,
   });
   yield* write(
-    `Verified ${Object.keys(manifest.exports).length} exact exports and ${importedConditionCount} Node-importable conditions from the installed tarball.\n`
+    `Verified ${Rec.keys(manifest.exports).length} exact exports and ${importedConditionCount} Node-importable conditions from the installed tarball.\n`
   );
 });

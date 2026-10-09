@@ -1,7 +1,15 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, Layer, Path } from "effect";
+import {
+  Effect,
+  FileSystem,
+  Layer,
+  MutableHashSet,
+  Path,
+  Record as Rec,
+} from "effect";
+import { encodeJsonText } from "#scripts/text/json";
 import {
   EDGE_CONTRACT_EXPORTS,
   EdgeVerificationError,
@@ -29,7 +37,7 @@ const writePackageManifest = Effect.fn("ContractEdgeTest.writePackageManifest")(
   function* (root: string, canonicalCondition: "import" | "node" = "import") {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const exports = Object.fromEntries(
+    const exports = Rec.fromEntries(
       EDGE_CONTRACT_EXPORTS.map((entry) => [
         `./${entry}`,
         {
@@ -41,7 +49,7 @@ const writePackageManifest = Effect.fn("ContractEdgeTest.writePackageManifest")(
     );
     yield* fileSystem.writeFileString(
       path.join(root, "package.json"),
-      JSON.stringify({ exports, name: "@nakafa/aksara-contracts" })
+      encodeJsonText({ exports, name: "@nakafa/aksara-contracts" })
     );
   }
 );
@@ -137,7 +145,7 @@ layer(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))(
 
           const visited = yield* verifyEdgeEntry(root, "entry");
 
-          expect(visited.size).toBe(5);
+          expect(MutableHashSet.size(visited)).toBe(5);
         })
     );
 
@@ -211,15 +219,17 @@ layer(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))(
         );
         expect(invalidError).toMatchObject({
           _tag: "EdgeVerificationError",
+          detail: expect.stringContaining(
+            path.join(invalidRoot, "package.json")
+          ),
           reason: "manifest",
         });
-        expect(invalidError.cause).toBeInstanceOf(SyntaxError);
 
         const missingRoot = path.join(root, "missing-export");
         yield* fileSystem.makeDirectory(missingRoot);
         yield* fileSystem.writeFileString(
           path.join(missingRoot, "package.json"),
-          JSON.stringify({ exports: {}, name: "@nakafa/aksara-contracts" })
+          encodeJsonText({ exports: {}, name: "@nakafa/aksara-contracts" })
         );
         const missingError = yield* verifyEdgeContracts(missingRoot).pipe(
           Effect.flip

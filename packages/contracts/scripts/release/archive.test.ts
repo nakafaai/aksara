@@ -2,7 +2,7 @@ import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path } from "effect";
+import { Effect, FileSystem, Path, Record as Rec } from "effect";
 import { ChildProcess } from "effect/process";
 import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import { parseVersion } from "#scripts/release/identity";
@@ -141,7 +141,7 @@ layer(NodeServices.layer)("contract release archive", (it) => {
         const output = path.join(root, "output.txt");
         yield* writeOutputs(
           output,
-          Object.fromEntries<string | number | boolean>([
+          Rec.fromEntries([
             ["zeta", "1"],
             ["alpha", "Ñandú café"],
             ["has_latest", true],

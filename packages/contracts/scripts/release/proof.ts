@@ -33,11 +33,13 @@ const TagSchema = Schema.fromJsonString(
   })
 );
 
-interface ReleaseTools {
-  readonly gh: string;
-  readonly git: string;
-  readonly tar: string;
-}
+const ReleaseToolsSchema = Schema.Struct({
+  gh: Schema.String,
+  git: Schema.String,
+  tar: Schema.String,
+});
+
+type ReleaseTools = typeof ReleaseToolsSchema.Type;
 
 const defaultTools: ReleaseTools = {
   gh: "gh",
@@ -45,23 +47,33 @@ const defaultTools: ReleaseTools = {
   tar: "tar",
 };
 
+const ContractProofInputSchema = Schema.Struct({
+  archivePath: Schema.String,
+  packagePath: Schema.String,
+  repository: Schema.String,
+  sourceSha: Schema.String,
+  tools: Schema.optionalKey(
+    Schema.Struct({
+      gh: Schema.optionalKey(Schema.String),
+      git: Schema.optionalKey(Schema.String),
+      tar: Schema.optionalKey(Schema.String),
+    })
+  ),
+});
+
 /** Exact inputs used to prove one remotely distributed contract archive. */
-export interface ContractProofInput {
-  readonly archivePath: string;
-  readonly packagePath: string;
-  readonly repository: string;
-  readonly sourceSha: string;
-  readonly tools?: Partial<ReleaseTools>;
-}
+export type ContractProofInput = typeof ContractProofInputSchema.Type;
+
+const ContractProofSchema = Schema.Struct({
+  assetName: Schema.String,
+  releaseSha: Schema.String,
+  releaseTag: Schema.String,
+  sha256: Schema.String,
+  size: Schema.Finite,
+});
 
 /** Durable facts returned only after every immutable release proof succeeds. */
-export interface ContractProof {
-  readonly assetName: string;
-  readonly releaseSha: string;
-  readonly releaseTag: string;
-  readonly sha256: string;
-  readonly size: number;
-}
+export type ContractProof = typeof ContractProofSchema.Type;
 
 /** Maps one external command failure to its stable proof stage. */
 function commandError(stage: string) {
