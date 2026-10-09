@@ -5,14 +5,7 @@ import {
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import {
-  Array as Arr,
-  Effect,
-  HashMap,
-  MutableHashMap,
-  Option,
-  Schema,
-} from "effect";
+import { Effect, Schema } from "effect";
 import {
   collectPagePublication,
   collectPageResult,
@@ -20,6 +13,7 @@ import {
   publishedPageTestLayer,
 } from "#test/page/publication";
 import {
+  changedSources,
   PageTestFixtures,
   pageFamilyScope,
   pageFixtureIdentities,
@@ -102,26 +96,6 @@ function replaceHead(
   );
 }
 
-/** Returns the source entries, in fixture order, with one reviewed page body changed. */
-const changedSources = Effect.fn("PagePlanTest.changedSources")(
-  (
-    fixture: PageTestFixtures["Service"],
-    sourcePath: typeof privacySourcePath
-  ) =>
-    Effect.gen(function* () {
-      const sources = MutableHashMap.fromIterable(fixture.sources);
-      const absolutePath = yield* Effect.fromNullishOr(
-        Option.getOrUndefined(HashMap.get(fixture.absolutePaths, sourcePath))
-      );
-      const source = yield* Effect.fromNullishOr(
-        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
-      );
-      MutableHashMap.set(sources, absolutePath, `${source}\n`);
-      return Arr.fromIterable(sources);
-    })
-);
-
-/** Combines scoped source fixtures with their canonical published heads. */
 const planFixture = Effect.fn("PagePlanTest.fixture")(function* () {
   return {
     ...(yield* PageTestFixtures),

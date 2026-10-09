@@ -14,7 +14,16 @@ import {
   decodePageRegistry,
   type PageEntry,
 } from "@nakafa/aksara-corpus/pages/registry";
-import { Context, Effect, HashMap, Layer, MutableHashMap, Path } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  HashMap,
+  Layer,
+  MutableHashMap,
+  Option,
+  Path,
+} from "effect";
 import { testRendererDomains } from "#test/renderer";
 
 export const pageFamilyScope = PublicationScopeSchema.make({
@@ -123,3 +132,22 @@ export const pageTestLayer: Layer.Layer<PageTestFixtures> = Layer.effect(
   PageTestFixtures,
   makePageTestFixtures()
 ).pipe(Layer.provide(Path.layer), Layer.orDie);
+
+/** Returns the source entries, in fixture order, with one reviewed page body changed. */
+export const changedSources = Effect.fn("PagePlanTest.changedSources")(
+  (
+    fixture: PageTestFixtures["Service"],
+    sourcePath: typeof CorpusSourcePathSchema.Type
+  ) =>
+    Effect.gen(function* () {
+      const sources = MutableHashMap.fromIterable(fixture.sources);
+      const absolutePath = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(HashMap.get(fixture.absolutePaths, sourcePath))
+      );
+      const source = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+      );
+      MutableHashMap.set(sources, absolutePath, `${source}\n`);
+      return Arr.fromIterable(sources);
+    })
+);
