@@ -2,7 +2,14 @@ import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { ConfigProvider, Effect, FileSystem, Path, Redacted } from "effect";
+import {
+  Array as Arr,
+  ConfigProvider,
+  Effect,
+  FileSystem,
+  Path,
+  Redacted,
+} from "effect";
 import {
   AcceptanceEnvironmentError,
   decodeAcceptanceEndpoint,
@@ -231,6 +238,35 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
               );
         yield* fixture.fs.writeFileString(fixture.rendererPath, text);
       }
+      const error = yield* readAcceptanceRenderer(fixture.rendererPath).pipe(
+        Effect.flip
+      );
+      expect(error).toBeInstanceOf(AcceptanceEnvironmentError);
+      expect(error).toMatchObject({ reason: "renderer" });
+    })
+  );
+
+  // The hash covers the known members only, so an unknown key must not pass
+  // by being dropped before the validator reads the file.
+  test.effect.each([
+    ["top-level", { ...RENDERER_MANIFEST, generatedAt: "2026-10-08" }],
+    [
+      "domain",
+      {
+        ...RENDERER_MANIFEST,
+        domains: Arr.map(RENDERER_MANIFEST.domains, (domain) => ({
+          ...domain,
+          note: "unsigned",
+        })),
+      },
+    ],
+  ])("rejects renderer evidence with an unknown %s key", ([, manifest]) =>
+    Effect.gen(function* () {
+      const fixture = yield* makeFixture();
+      yield* fixture.fs.writeFileString(
+        fixture.rendererPath,
+        encodeJsonText(manifest)
+      );
       const error = yield* readAcceptanceRenderer(fixture.rendererPath).pipe(
         Effect.flip
       );

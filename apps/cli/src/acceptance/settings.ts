@@ -4,10 +4,10 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { TrustedKeySchema } from "@nakafa/aksara-contracts/signature/trusted";
 import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
+import { JsonTextSchema } from "#cli/text/json";
 
 /** Acceptance publication cannot escape its exact isolated source and target. */
 export class AcceptanceEnvironmentError extends Schema.TaggedError<AcceptanceEnvironmentError>()(
@@ -52,10 +52,10 @@ export const readAcceptanceRenderer = Effect.fn(
   "AksaraCli.readAcceptanceRenderer"
 )(function* (path: string) {
   const fs = yield* FileSystem.FileSystem;
+  // The text is parsed as plain JSON, so the validator sees every key the file
+  // holds and rejects an unknown one, as it does for the fetched manifest.
   return yield* fs.readFileString(path).pipe(
-    Effect.flatMap(
-      Schema.decodeEffect(Schema.fromJsonString(RendererManifestEnvelopeSchema))
-    ),
+    Effect.flatMap(Schema.decodeEffect(JsonTextSchema)),
     Effect.flatMap(validateRendererManifestHash),
     Effect.mapError(
       () => new AcceptanceEnvironmentError({ reason: "renderer" })
