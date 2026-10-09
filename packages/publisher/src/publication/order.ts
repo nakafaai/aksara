@@ -3,7 +3,7 @@ import {
   type ContentHead,
   ContentHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Effect, Schema, Stream, Tuple } from "effect";
+import { Effect, Option, Schema, Stream, Tuple } from "effect";
 
 const HeadOrderStateSchema = Schema.Struct({
   previous: Schema.UndefinedOr(ContentHeadSchema),
@@ -77,4 +77,12 @@ export function orderPublishedHeads<Head extends ContentHead, E, R, Failure>(
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(Stream.mapAccumEffect(() => initial, validate));
+}
+
+/** Extends a finite stream with explicit absence for a constant-space full zip. */
+export function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
+  return stream.pipe(
+    Stream.map(Option.some),
+    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
+  );
 }

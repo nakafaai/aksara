@@ -11,6 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Schema, Stream } from "effect";
+import { withTrailingAbsence } from "#publisher/publication/order";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
@@ -54,14 +55,6 @@ export function makeCompileSource(
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,
   };
-}
-
-/** Extends a finite stream with explicit absence for a constant-space full zip. */
-function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
-  return stream.pipe(
-    Stream.map(Option.some),
-    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
-  );
 }
 
 /** Strict disk-replay contract for one exact-Git compilation result. */

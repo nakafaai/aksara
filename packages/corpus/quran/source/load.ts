@@ -25,6 +25,7 @@ import {
   QURAN_SOURCE_BUNDLE_DOMAIN,
   QURAN_SOURCE_POLICY,
   QURAN_TAFSIR_BUNDLE_DOMAIN,
+  sha256Hex,
 } from "#corpus/quran/source/policy";
 
 /** One exact official source file or bundle could not be authenticated. */
@@ -49,11 +50,6 @@ const LoadedQuranSourcesSchema = Schema.Struct({
 });
 /** Exact raw source text and byte identity accepted by Quran publication. */
 export type LoadedQuranSources = typeof LoadedQuranSourcesSchema.Type;
-
-/** Returns one lowercase SHA-256 digest without a wire prefix. */
-function digest(bytes: Uint8Array) {
-  return createHash("sha256").update(bytes).digest("hex");
-}
 
 /** Compares two canonical locale lists without weakening their order contract. */
 function matchesExactLocales(
@@ -109,7 +105,7 @@ const authenticateSource = Effect.fn("AksaraCorpus.authenticateQuranSource")(
   function* (source: PinnedQuranFile, bytes: Uint8Array) {
     if (
       bytes.byteLength !== source.artifact.byteCount ||
-      digest(bytes) !== source.artifact.digest.slice("sha256:".length)
+      sha256Hex(bytes) !== source.artifact.digest.slice("sha256:".length)
     ) {
       return yield* new QuranSourceFileError({
         detail: `Pinned source drifted: ${source.name}.`,
