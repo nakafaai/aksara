@@ -3,7 +3,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Order, Stream } from "effect";
 import {
   QuranCountError,
   QuranRevelationError,
@@ -42,21 +42,25 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
   it.effect("emits every canonical surah, verse, and revelation order", () =>
     Effect.gen(function* () {
       const surahs = yield* collect(yield* testQuranRegistry);
-      const verses = surahs.flatMap(({ verses: sourceVerses }) => sourceVerses);
+      const verses = Arr.flatMap(
+        surahs,
+        ({ verses: sourceVerses }) => sourceVerses
+      );
 
       expect(surahs).toHaveLength(QURAN_SURAH_COUNT);
       expect(verses).toHaveLength(QURAN_VERSE_COUNT);
-      expect(surahs.map(({ number }) => number)).toEqual(
+      expect(Arr.map(surahs, ({ number }) => number)).toEqual(
         Array.from({ length: QURAN_SURAH_COUNT }, (_, index) => index + 1)
       );
       expect(
-        surahs
-          .map(({ revelation }) => revelation.order)
-          .sort((left, right) => left - right)
+        Arr.sort(
+          Arr.map(surahs, ({ revelation }) => revelation.order),
+          Order.Number
+        )
       ).toEqual(
         Array.from({ length: QURAN_SURAH_COUNT }, (_, index) => index + 1)
       );
-      expect(verses.map(({ number }) => number.inQuran)).toEqual(
+      expect(Arr.map(verses, ({ number }) => number.inQuran)).toEqual(
         Array.from({ length: QURAN_VERSE_COUNT }, (_, index) => index + 1)
       );
     })

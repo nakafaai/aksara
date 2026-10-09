@@ -4,7 +4,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, Record, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Record, Schema, Stream } from "effect";
 import { QuranSurahSchema } from "#corpus/quran/schema";
 import {
   quranTestSourcesLayer,
@@ -44,12 +44,13 @@ layer(quranTestSourcesLayer)("Quran schema", (it) => {
 
       expect(values).toHaveLength(QURAN_SURAH_COUNT);
       expect(
-        values.reduce((count, surah) => count + surah.verses.length, 0)
+        Arr.reduce(values, 0, (count, surah) => count + surah.verses.length)
       ).toBe(QURAN_VERSE_COUNT);
       expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
       expect(
-        values.every(({ verses }) =>
-          verses.every(
+        Arr.every(values, ({ verses }) =>
+          Arr.every(
+            verses,
             ({ tafsir, translation }) =>
               Record.keys(tafsir).length === 1 && translation.de !== undefined
           )
@@ -109,12 +110,12 @@ layer(quranTestSourcesLayer)("Quran schema", (it) => {
           ],
           { concurrency: "unbounded" }
         );
-        const messages = errors.map(String);
+        const messages = Arr.map(errors, String);
 
         expect(messages[1]).toContain("Quran text cannot be empty.");
         expect(messages[2]).toContain('at ["name"]["meaning"]["id"]');
         expect(
-          messages.filter((message) =>
+          Arr.filter(messages, (message) =>
             message.includes("Expected no excess property")
           )
         ).toHaveLength(4);

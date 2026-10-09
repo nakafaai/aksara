@@ -1,6 +1,6 @@
 import { QuranSurahNumberSchema } from "@nakafa/aksara-contracts/quran/spec";
 import { QuranMeaningfulTextSchema } from "@nakafa/aksara-contracts/quran/text";
-import { Effect, MutableHashMap, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { quranGenerationFailure } from "#corpus/quran/source/error";
 
@@ -15,7 +15,7 @@ const SupplementalNamesSchema = Schema.Array(SupplementalNameSchema).pipe(
     Schema.makeFilter(
       (rows) =>
         rows.length === 114 &&
-        rows.every(([number], index) => number === index + 1),
+        Arr.every(rows, ([number], index) => number === index + 1),
       { message: "Expected all 114 supplemental Quran surah names in order." }
     )
   )
@@ -154,7 +154,7 @@ export const decodeQuranSurahNames = Effect.fn(
   Schema.decodeEffect(SupplementalNamesSchema)(source).pipe(
     Effect.map((rows) =>
       MutableHashMap.fromIterable(
-        rows.map(([number, id, de]) => [number, { de, id }] as const)
+        Arr.map(rows, ([number, id, de]) => [number, { de, id }] as const)
       )
     ),
     Effect.mapError(() =>
