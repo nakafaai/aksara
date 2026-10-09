@@ -25,7 +25,7 @@ import {
   MAX_ITEM_BATCH_BYTES,
   MAX_ITEM_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeArtifactBatch,
   canonicalizeReleaseItemBatch,
@@ -46,7 +46,7 @@ const makeItems = Effect.fn("PublicationBatchingTest.makeItems")(() =>
     }))
   ).pipe(
     Effect.map((changes) =>
-      changes.map((change, index) =>
+      Arr.map(changes, (change, index) =>
         ContentReleaseItemSchema.make({ change, index, releaseId })
       )
     )
@@ -103,11 +103,12 @@ describe("publication batching", () => {
       const batches = yield* collect(
         makeReleaseItemBatches(releaseId, Stream.fromIterable(items))
       );
-      expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
+      expect(Arr.map(batches, ({ batchIndex }) => batchIndex)).toEqual([0, 1]);
       expect(batches[0]?.items).toHaveLength(MAX_ITEM_BATCH_COUNT);
       expect(batches[1]?.items).toHaveLength(1);
       expect(
-        batches.every(
+        Arr.every(
+          batches,
           (batch) =>
             Buffer.byteLength(canonicalizeReleaseItemBatch(batch), "utf8") <=
             MAX_ITEM_BATCH_BYTES
@@ -125,13 +126,14 @@ describe("publication batching", () => {
       const batches = yield* collect(
         makeArtifactBatches(releaseId, Stream.fromIterable(values))
       );
-      expect(batches.map(({ artifacts }) => artifacts.length)).toEqual([
+      expect(Arr.map(batches, ({ artifacts }) => artifacts.length)).toEqual([
         MAX_ARTIFACT_BATCH_COUNT,
         1,
       ]);
       expect(MAX_ARTIFACT_BATCH_BYTES).toBe(4 * 1024 * 1024);
       expect(
-        batches.every(
+        Arr.every(
+          batches,
           (batch) =>
             Buffer.byteLength(canonicalizeArtifactBatch(batch), "utf8") <=
             MAX_ARTIFACT_BATCH_BYTES

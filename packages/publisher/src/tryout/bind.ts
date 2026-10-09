@@ -17,7 +17,16 @@ import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, HashMap, HashSet, Option, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  HashSet,
+  Option,
+  Order,
+  Schema,
+  Stream,
+} from "effect";
 import {
   TryoutHeadBodySchema,
   TryoutHeadDuplicateError,
@@ -119,9 +128,10 @@ function requirementsForPlacement(
 function makeTryoutHeadRequirements(
   placements: readonly TryoutPlacementSource[]
 ) {
-  return placements
-    .flatMap(requirementsForPlacement)
-    .sort((left, right) => compareContentHeads(left, right));
+  return Arr.sort(
+    Arr.flatMap(placements, requirementsForPlacement),
+    Order.make(compareContentHeads)
+  );
 }
 
 /** Validates canonical order across one complete desired question-head stream. */
@@ -151,10 +161,13 @@ function indexTryoutHeads<E, R>(
   heads: Stream.Stream<QuestionHead, E, R>
 ) {
   const requirementByIdentity = HashMap.fromIterable(
-    requirements.map((requirement) => [headIdentity(requirement), requirement])
+    Arr.map(requirements, (requirement) => [
+      headIdentity(requirement),
+      requirement,
+    ])
   );
   const activeRoots = HashSet.fromIterable(
-    requirements.map(({ contentKey }) => questionRoot(contentKey))
+    Arr.map(requirements, ({ contentKey }) => questionRoot(contentKey))
   );
   return validateTryoutHeadStream(heads).pipe(
     Stream.runFoldEffect(
@@ -243,7 +256,9 @@ export function bindTryoutHeads<E, R>(
     validatePlacementPairs(placements).pipe(
       Effect.andThen(indexTryoutHeads(requirements, heads)),
       Effect.map((headsByIdentity) =>
-        Stream.fromIterable([...placements].sort(compareTryoutPlacements)).pipe(
+        Stream.fromIterable(
+          Arr.sort(placements, Order.make(compareTryoutPlacements))
+        ).pipe(
           Stream.mapEffect((placement) =>
             bindPlacement(headsByIdentity, placement)
           )

@@ -16,7 +16,7 @@ import type {
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
-import { Effect, MutableHashMap, Option, Schema } from "effect";
+import { Effect, MutableHashMap, MutableList, Option, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { PublicationTargetRejectedError } from "#publisher/target/errors";
 import { makeStageWriters } from "#test/lifecycle/stage";
@@ -40,7 +40,7 @@ export function makeTarget(release: {
   let candidate: StagedContentRelease | null = null;
   let recovery: StagedRollbackContentRelease | null = null;
   let activationTransitions = 0;
-  const abortOrder: string[] = [];
+  const abortOrder = MutableList.make<string>();
   /** Records the durable identity shared by candidate and recovery staging. */
   function recordBundle(bundle: ContentReleaseBundle) {
     const { release: signed } = bundle;
@@ -141,7 +141,7 @@ export function makeTarget(release: {
   );
   const abort = vi.fn(({ releaseId }) =>
     Effect.sync(() => {
-      abortOrder.push(releaseId);
+      MutableList.append(abortOrder, releaseId);
       const bundle = Option.getOrUndefined(
         MutableHashMap.get(bundles, releaseId)
       );
@@ -173,7 +173,7 @@ export function makeTarget(release: {
     abort,
     accept: ({ recoveryId }) =>
       Effect.sync(() => {
-        abortOrder.push(recoveryId);
+        MutableList.append(abortOrder, recoveryId);
         const bundle = Option.getOrUndefined(
           MutableHashMap.get(bundles, recoveryId)
         );

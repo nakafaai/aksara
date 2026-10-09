@@ -4,7 +4,7 @@ import type {
   ReleaseCleanupReceipt,
   ReleaseCleanupRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   cleanupContentRelease,
   ReleaseCleanupContractError,
@@ -135,7 +135,8 @@ describe("cleanupContentRelease", () => {
       );
 
       expect(errors).toEqual(
-        cases.map(
+        Arr.map(
+          cases,
           () => new ReleaseCleanupContractError({ contract: "receipt" })
         )
       );

@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, Ref, Stream } from "effect";
+import { Array as Arr, Effect, Ref, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 import { encodeJsonText } from "#publisher/text/json";
 
@@ -67,15 +67,18 @@ describe("streamBatches", () => {
         Effect.map((chunk) => [...chunk])
       );
 
-      expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1, 2, 3]);
+      expect(Arr.map(batches, ({ batchIndex }) => batchIndex)).toEqual([
+        0, 1, 2, 3,
+      ]);
       expect(
-        batches.map(({ values: batchValues }) => batchValues.length)
+        Arr.map(batches, ({ values: batchValues }) => batchValues.length)
       ).toEqual([3, 3, 3, 1]);
-      expect(batches.flatMap(({ values: batchValues }) => batchValues)).toEqual(
-        values
-      );
       expect(
-        batches.every(
+        Arr.flatMap(batches, ({ values: batchValues }) => batchValues)
+      ).toEqual(values);
+      expect(
+        Arr.every(
+          batches,
           (batch) =>
             Buffer.byteLength(serializeBatch(batch), "utf8") <= maxBytes
         )

@@ -13,7 +13,15 @@ import {
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  Option,
+  Order,
+  Schema,
+  Stream,
+} from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 
 const RouteVersionSchema = Schema.Struct({
@@ -167,7 +175,8 @@ function finalChange(
 
 /** Produces one canonical final-path delta from compact ownership maps. */
 function routeChanges(state: RoutePlanState) {
-  const changed: IndexedRouteChange[] = [...state.current].flatMap(
+  const changed: IndexedRouteChange[] = Arr.flatMap(
+    Arr.fromIterable(state.current),
     ([identity, current]) => {
       const change = finalChange(
         current,
@@ -176,7 +185,8 @@ function routeChanges(state: RoutePlanState) {
       return change === undefined ? [] : [{ change, identity }];
     }
   );
-  const created: IndexedRouteChange[] = [...state.next].flatMap(
+  const created: IndexedRouteChange[] = Arr.flatMap(
+    Arr.fromIterable(state.next),
     ([identity, next]) =>
       MutableHashMap.has(state.current, identity)
         ? []
@@ -192,9 +202,13 @@ function routeChanges(state: RoutePlanState) {
             },
           ]
   );
-  return [...changed, ...created]
-    .sort((left, right) => compareCodeUnits(left.identity, right.identity))
-    .map(({ change }) => change);
+  const entries: IndexedRouteChange[] = [...changed, ...created];
+  const ordered = Arr.sortWith(
+    entries,
+    ({ identity }) => identity,
+    Order.make(compareCodeUnits)
+  );
+  return Arr.map(ordered, ({ change }) => change);
 }
 
 /** Converts replayable transitions into one canonical final-path delta stream. */

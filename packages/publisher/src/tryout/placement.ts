@@ -1,6 +1,12 @@
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, MutableHashMap, MutableHashSet, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+} from "effect";
 import { TryoutHeadMismatchError } from "#publisher/tryout/error";
 
 /** Returns the logical question root shared by all body head identities. */
@@ -43,7 +49,8 @@ export function validatePlacementPairs(
     if (
       locales === undefined ||
       MutableHashSet.size(locales) !== ACTIVE_APP_LOCALES.length ||
-      ACTIVE_APP_LOCALES.some(
+      Arr.some(
+        ACTIVE_APP_LOCALES,
         (appLocale) => !MutableHashSet.has(locales, appLocale)
       )
     ) {

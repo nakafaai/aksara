@@ -18,7 +18,7 @@ import {
   ContentReleaseItemSchema,
 } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 import { compileReleaseSources } from "#publisher/compilation";
 import { testRendererDomains } from "#test/renderer";
 
@@ -32,11 +32,10 @@ const source = Schema.decodeSync(CompileDocumentSourceSchema)({
 
 /** Builds canonically ordered items for source-compilation tests. */
 function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
-  return [...changes]
-    .sort(compareContentHeads)
-    .map((change, index) =>
-      ContentReleaseItemSchema.make({ change, index, releaseId })
-    );
+  const sorted = Arr.sort(changes, Order.make(compareContentHeads));
+  return Arr.map(sorted, (change, index) =>
+    ContentReleaseItemSchema.make({ change, index, releaseId })
+  );
 }
 
 /** Builds the source upsert authenticated by a selected artifact hash. */

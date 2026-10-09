@@ -7,7 +7,14 @@ import {
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { FileSystem, Path } from "effect";
-import { Effect, Record as Rec, Schema, type Scope, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Record as Rec,
+  Schema,
+  type Scope,
+  Stream,
+} from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 
 const CountSchema = Schema.Int.pipe(
@@ -75,21 +82,21 @@ function selectCompleteManifests(
   if (program?.family !== "program") {
     return Effect.fail(
       new CatalogSnapshotSetError({
-        actualFamilies: manifests.map(({ family }) => family),
+        actualFamilies: Arr.map(manifests, ({ family }) => family),
       })
     );
   }
   if (quran?.family !== "quran") {
     return Effect.fail(
       new CatalogSnapshotSetError({
-        actualFamilies: manifests.map(({ family }) => family),
+        actualFamilies: Arr.map(manifests, ({ family }) => family),
       })
     );
   }
   if (tryout?.family !== "tryout") {
     return Effect.fail(
       new CatalogSnapshotSetError({
-        actualFamilies: manifests.map(({ family }) => family),
+        actualFamilies: Arr.map(manifests, ({ family }) => family),
       })
     );
   }
@@ -103,7 +110,7 @@ function tryoutCatalogCount(
     { readonly family: "tryout" }
   >["manifest"]["counts"]
 ) {
-  return Rec.values(counts).reduce((total, count) => total + count, 0);
+  return Arr.reduce(Rec.values(counts), 0, (total, count) => total + count);
 }
 
 /** Validates every current structured family and returns signed-source facts. */

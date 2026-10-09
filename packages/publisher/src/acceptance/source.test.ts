@@ -11,7 +11,7 @@ import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry"
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { QuestionReadError } from "@nakafa/aksara-corpus/question-bank/source";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Array as Arr, Effect, HashSet, Path } from "effect";
+import { Array as Arr, Effect, HashSet, Order, Path } from "effect";
 import {
   AcceptanceSourceError,
   loadAcceptanceSources,
@@ -23,6 +23,9 @@ const checkoutRoot = Effect.map(Path.Path, (path) =>
 );
 const firstSetSuffix = /:set-1$/;
 const state = vi.hoisted(() => ({ missing: "" }));
+type ArticleEntry = Effect.Success<
+  ReturnType<typeof decodeArticleRegistry>
+>[number];
 
 vi.mock("@nakafa/aksara-corpus/articles/registry", async (importOriginal) => {
   const original =
@@ -36,7 +39,8 @@ vi.mock("@nakafa/aksara-corpus/articles/registry", async (importOriginal) => {
         .decodeArticleRegistry()
         .pipe(
           Effect.map((entries) =>
-            entries.filter(
+            Arr.filter(
+              entries,
               ({ route }) =>
                 `${route.contentKey}:${route.artifactLocale}` !== state.missing
             )
@@ -56,7 +60,8 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry()
         .pipe(
           Effect.map((entries) =>
-            entries.filter(
+            Arr.filter(
+              entries,
               ({ route }) =>
                 `${route.contentKey}:${route.artifactLocale}` !== state.missing
             )
@@ -75,11 +80,11 @@ vi.mock("@nakafa/aksara-corpus/tryout/registry", async (importOriginal) => {
       original.decodeTryoutRegistry().pipe(
         Effect.map((entries) =>
           state.missing === "set-1"
-            ? entries.map((entry) => ({
+            ? Arr.map(entries, (entry) => ({
                 ...entry,
-                tracks: entry.tracks.map((track) => ({
+                tracks: Arr.map(entry.tracks, (track) => ({
                   ...track,
-                  sets: track.sets.filter(({ key }) => key !== "set-1"),
+                  sets: Arr.filter(track.sets, ({ key }) => key !== "set-1"),
                 })),
               }))
             : entries
@@ -102,9 +107,9 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         const articles = yield* decodeArticleRegistry();
         const pages = yield* decodePageRegistry();
         const groups = HashSet.fromIterable(
-          selected.material.map(({ route }) => route.materialKey)
+          Arr.map(selected.material, ({ route }) => route.materialKey)
         );
-        expect([...groups].sort()).toEqual([
+        expect(Arr.sort(groups, Order.String)).toEqual([
           "lesson.mathematics.analytic-geometry",
           "lesson.mathematics.exponential-logarithm",
           "lesson.mathematics.function-composition-inverse-function",
@@ -112,7 +117,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           "lesson.mathematics.trigonometry",
         ]);
         expect(selected.material).toEqual(
-          materials.filter(({ route }) =>
+          Arr.filter(materials, ({ route }) =>
             HashSet.has(groups, route.materialKey)
           )
         );
@@ -120,14 +125,17 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           6 * ACTIVE_APP_LOCALES.length
         );
         expect(selected.article).toEqual(
-          articles
-            .filter(({ route }) =>
+          Arr.sort(
+            Arr.filter(articles, ({ route }) =>
               [
                 "articles/politics/merah-putih-cabinet-analysis",
                 "articles/politics/regional-elections-turmoil",
               ].includes(route.contentKey)
+            ),
+            Order.make((left: ArticleEntry, right: ArticleEntry) =>
+              compareContentHeads(left.route, right.route)
             )
-            .sort((left, right) => compareContentHeads(left.route, right.route))
+          )
         );
         expect(selected.page).toEqual(pages);
         for (const entry of selected.article) {
@@ -136,56 +144,73 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         expect(selected.article).toHaveLength(2 * ACTIVE_APP_LOCALES.length);
         const registry = yield* decodeTryoutRegistry();
         const { tryout } = selected;
-        const expectedRoots = registry.flatMap(({ tracks }) =>
-          tracks.flatMap(({ sets }) =>
-            sets
-              .filter(({ key }) => key === "set-1")
-              .flatMap(({ sections }) =>
-                sections.flatMap((section) =>
-                  Array.from(
-                    { length: section.questionCount },
-                    (_, index) =>
-                      `${section.questionSourcePath}/question-${index + 1}`
+        const expectedRoots = Arr.flatMap(registry, ({ tracks }) =>
+          Arr.flatMap(tracks, ({ sets }) =>
+            Arr.flatMap(sets, (set) =>
+              set.key === "set-1"
+                ? Arr.flatMap(set.sections, (section) =>
+                    Array.from(
+                      { length: section.questionCount },
+                      (_, index) =>
+                        `${section.questionSourcePath}/question-${index + 1}`
+                    )
                   )
-                )
-              )
+                : []
+            )
           )
         );
         expect(
-          tryout.sources.map(({ questionKey }) => questionKey).sort()
-        ).toEqual(Arr.dedupe(expectedRoots).sort());
+          Arr.sort(
+            Arr.map(tryout.sources, ({ questionKey }) => questionKey),
+            Order.String
+          )
+        ).toEqual(Arr.sort(Arr.dedupe(expectedRoots), Order.String));
         expect(tryout.entries).toEqual(
-          [...tryout.entries].sort(compareContentHeads)
+          Arr.sort(tryout.entries, Order.make(compareContentHeads))
         );
         expect(
-          HashSet.size(HashSet.fromIterable(tryout.entries.map(headIdentity)))
+          HashSet.size(
+            HashSet.fromIterable(Arr.map(tryout.entries, headIdentity))
+          )
         ).toBe(tryout.entries.length);
         for (const source of tryout.sources) {
-          const entries = tryout.entries.filter(
+          const entries = Arr.filter(
+            tryout.entries,
             ({ questionKey }) => questionKey === source.questionKey
           );
           expect(
-            entries
-              .filter(({ bodyKind }) => bodyKind === "answer")
-              .map(({ artifactLocale }) => artifactLocale)
-              .sort()
-          ).toEqual([...ACTIVE_APP_LOCALES].sort());
+            Arr.sort(
+              Arr.map(
+                Arr.filter(entries, ({ bodyKind }) => bodyKind === "answer"),
+                ({ artifactLocale }) => artifactLocale
+              ),
+              Order.String
+            )
+          ).toEqual(Arr.sort(ACTIVE_APP_LOCALES, Order.String));
           expect(
-            entries
-              .filter(({ bodyKind }) => bodyKind === "question")
-              .map(({ artifactLocale }) => artifactLocale)
-              .sort()
+            Arr.sort(
+              Arr.map(
+                Arr.filter(entries, ({ bodyKind }) => bodyKind === "question"),
+                ({ artifactLocale }) => artifactLocale
+              ),
+              Order.String
+            )
           ).toEqual(
-            [...questionArtifactLocalesForPolicy(source.languagePolicy)].sort()
+            Arr.sort(
+              questionArtifactLocalesForPolicy(source.languagePolicy),
+              Order.String
+            )
           );
         }
         expect(tryout.projection.placements).toHaveLength(
           expectedRoots.length * ACTIVE_APP_LOCALES.length
         );
-        const catalogTracks = tryout.projection.catalog.filter(
+        const catalogTracks = Arr.filter(
+          tryout.projection.catalog,
           ({ row }) => row.kind === "track"
         );
-        const catalogSets = tryout.projection.catalog.filter(
+        const catalogSets = Arr.filter(
+          tryout.projection.catalog,
           ({ row }) => row.kind === "set"
         );
         expect(catalogSets).toHaveLength(catalogTracks.length);

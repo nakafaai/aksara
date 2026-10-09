@@ -9,7 +9,7 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import type { StageSnapshotBatchInput } from "@nakafa/aksara-contracts/transport/snapshot";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 import { encodeJsonText } from "#publisher/text/json";
 
@@ -30,7 +30,7 @@ export class SnapshotBatchBindingError extends Schema.TaggedError<SnapshotBatchB
 
 /** Serializes one complete snapshot-row request in canonical wire order. */
 export function canonicalizeSnapshotBatch(batch: StageSnapshotBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"family":${encodeJsonText(batch.family)},"operation":"stageSnapshotBatch","releaseId":${encodeJsonText(batch.releaseId)},"rows":[${batch.rows.map(canonicalizeContentSnapshotRow).join(",")}],"snapshotId":${encodeJsonText(batch.snapshotId)}}`;
+  return `{"batchIndex":${batch.batchIndex},"family":${encodeJsonText(batch.family)},"operation":"stageSnapshotBatch","releaseId":${encodeJsonText(batch.releaseId)},"rows":[${Arr.join(Arr.map(batch.rows, canonicalizeContentSnapshotRow), ",")}],"snapshotId":${encodeJsonText(batch.snapshotId)}}`;
 }
 
 /** Verifies one row against the family and snapshot identity of its envelope. */

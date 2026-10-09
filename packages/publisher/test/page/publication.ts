@@ -8,7 +8,15 @@ import {
   type PublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Context, Effect, Layer, Path, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  Layer,
+  Path,
+  Schema,
+  Stream,
+} from "effect";
 import { preparePagePublication } from "#publisher/page/publication";
 import { testFileLayer } from "#test/files";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
@@ -132,7 +140,7 @@ const rejectPagePublicationFrom = Effect.fn("PageTest.rejectFrom")(
 function derivePageHeads(
   records: Effect.Success<ReturnType<typeof collectPagePublicationFrom>>
 ) {
-  return records.flatMap((transition) => {
+  return Arr.flatMap(records, (transition) => {
     const { record } = transition;
     if (!("payload" in record)) {
       return [];
@@ -204,14 +212,16 @@ const makePublishedPageTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* publishedPageHeads();
-    const englishHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const englishHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === "pages/privacy-policy" && artifactLocale === "en"
       )
     );
-    const indonesianHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const indonesianHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === "pages/privacy-policy" && artifactLocale === "id"
       )

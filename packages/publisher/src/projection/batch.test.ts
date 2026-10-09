@@ -12,7 +12,7 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeProjectionBatch,
   makeProjectionBatches,
@@ -74,12 +74,12 @@ describe("projection batching", () => {
           projection(index)
         );
         const batches = yield* collect(Stream.fromIterable(projectionValues));
-        expect(batches.map(({ projections }) => projections.length)).toEqual([
-          MAX_PROJECTION_BATCH_COUNT,
-          1,
-        ]);
         expect(
-          batches.every(
+          Arr.map(batches, ({ projections }) => projections.length)
+        ).toEqual([MAX_PROJECTION_BATCH_COUNT, 1]);
+        expect(
+          Arr.every(
+            batches,
             (batch) =>
               Buffer.byteLength(canonicalizeProjectionBatch(batch), "utf8") <=
               MAX_PROJECTION_BATCH_BYTES
@@ -98,11 +98,12 @@ describe("projection batching", () => {
       ]);
       const batches = yield* collect(Stream.fromIterable(projectionValues));
 
-      expect(batches.map(({ projections }) => projections.length)).toEqual([
-        1, 1, 1,
-      ]);
+      expect(Arr.map(batches, ({ projections }) => projections.length)).toEqual(
+        [1, 1, 1]
+      );
       expect(
-        batches.every(
+        Arr.every(
+          batches,
           (batch) =>
             Buffer.byteLength(canonicalizeProjectionBatch(batch), "utf8") <=
             MAX_PROJECTION_BATCH_BYTES

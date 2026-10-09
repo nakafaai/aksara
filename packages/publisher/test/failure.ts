@@ -1,48 +1,91 @@
+import { Array as Arr, Option } from "effect";
 import { transportRequests } from "#test/transport/spec";
 
 /** Builds authenticated target failures from exact decoded request fixtures. */
 export function publicationFailures() {
-  const current = transportRequests.find(
-    (request) => request.operation === "current"
+  const current = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "current"
+    )
   );
-  const head = transportRequests.find(
-    (request) => request.operation === "headPage"
+  const head = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "headPage"
+    )
   );
-  const release = transportRequests.find(
-    (request) => request.operation === "stageRelease"
+  const release = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageRelease"
+    )
   );
-  const item = transportRequests.find(
-    (request) => request.operation === "stageItemBatch"
+  const item = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageItemBatch"
+    )
   );
-  const projection = transportRequests.find(
-    (request) => request.operation === "stageProjectionBatch"
+  const projection = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageProjectionBatch"
+    )
   );
-  const artifact = transportRequests.find(
-    (request) => request.operation === "stageArtifactBatch"
+  const artifact = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageArtifactBatch"
+    )
   );
-  const snapshot = transportRequests.find(
-    (request) => request.operation === "stageSnapshot"
+  const snapshot = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageSnapshot"
+    )
   );
-  const snapshotBatch = transportRequests.find(
-    (request) => request.operation === "stageSnapshotBatch"
+  const snapshotBatch = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageSnapshotBatch"
+    )
   );
-  const runtimeBundle = transportRequests.find(
-    (request) => request.operation === "stageTryoutRuntimeBundle"
+  const runtimeBundle = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "stageTryoutRuntimeBundle"
+    )
   );
-  const activate = transportRequests.find(
-    (request) => request.operation === "activate"
+  const activate = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "activate"
+    )
   );
-  const statusRequest = transportRequests.find(
-    (request) => request.operation === "status"
+  const statusRequest = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "status"
+    )
   );
-  const verify = transportRequests.find(
-    (request) => request.operation === "verify"
+  const verify = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "verify"
+    )
   );
-  const rollback = transportRequests.find(
-    (request) => request.operation === "rollbackPage"
+  const rollback = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "rollbackPage"
+    )
   );
-  const cleanup = transportRequests.find(
-    (request) => request.operation === "cleanup"
+  const cleanup = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (request) => request.operation === "cleanup"
+    )
   );
   if (
     current?.operation !== "current" ||
@@ -85,22 +128,23 @@ export function publicationFailures() {
         releaseId: null,
       },
     },
-    ...(
+    ...Arr.map(
       [
         { code: "CONTENT_RELEASE_SIZE", status: 413 },
         { code: "CONTENT_RELEASE_UNSUPPORTED", status: 415 },
-      ] as const
-    ).map(({ code, status }) => ({
-      request: release,
-      statuses: [status],
-      tag: "PublicationTargetRejectedError",
-      wire: {
-        code,
-        kind: "rejected",
-        operation: null,
-        releaseId: null,
-      },
-    })),
+      ] as const,
+      ({ code, status }) => ({
+        request: release,
+        statuses: [status],
+        tag: "PublicationTargetRejectedError",
+        wire: {
+          code,
+          kind: "rejected",
+          operation: null,
+          releaseId: null,
+        },
+      })
+    ),
     {
       request: head,
       statuses: [422],
@@ -129,24 +173,27 @@ export function publicationFailures() {
         releaseId: activate.release.manifest.releaseId,
       },
     },
-    ...[
-      { releaseId: release.release.manifest.releaseId, request: release },
-      { releaseId: statusRequest.releaseId, request: statusRequest },
-      { releaseId: verify.release.manifest.releaseId, request: verify },
-      { releaseId: activate.release.manifest.releaseId, request: activate },
-      { releaseId: rollback.rollbackOf, request: rollback },
-      { releaseId: cleanup.releaseId, request: cleanup },
-    ].map(({ releaseId: conflictReleaseId, request }) => ({
-      request,
-      statuses: [409],
-      tag: "PublicationTargetConflictError",
-      wire: {
-        code: "CONTENT_RELEASE_CONFLICT",
-        kind: "conflict",
-        operation: request.operation,
-        releaseId: conflictReleaseId,
-      },
-    })),
+    ...Arr.map(
+      [
+        { releaseId: release.release.manifest.releaseId, request: release },
+        { releaseId: statusRequest.releaseId, request: statusRequest },
+        { releaseId: verify.release.manifest.releaseId, request: verify },
+        { releaseId: activate.release.manifest.releaseId, request: activate },
+        { releaseId: rollback.rollbackOf, request: rollback },
+        { releaseId: cleanup.releaseId, request: cleanup },
+      ],
+      ({ releaseId: conflictReleaseId, request }) => ({
+        request,
+        statuses: [409],
+        tag: "PublicationTargetConflictError",
+        wire: {
+          code: "CONTENT_RELEASE_CONFLICT",
+          kind: "conflict",
+          operation: request.operation,
+          releaseId: conflictReleaseId,
+        },
+      })
+    ),
     {
       request: snapshot,
       statuses: [409],
@@ -160,7 +207,7 @@ export function publicationFailures() {
         snapshotId: snapshot.snapshot.manifest.snapshotId,
       },
     },
-    ...[item, projection, artifact].map((request) => ({
+    ...Arr.map([item, projection, artifact], (request) => ({
       request,
       statuses: [409],
       tag: "PublicationTargetConflictError",

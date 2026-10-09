@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { canonicalizeContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import {
   makeRouteItems,
   RoutePlanConflictError,
@@ -58,7 +58,7 @@ describe("route derivation", () => {
         { current: stable, next: stable },
       ]);
 
-      expect(items.map(({ change }) => change)).toEqual([
+      expect(Arr.map(items, ({ change }) => change)).toEqual([
         {
           appLocale: "en",
           contentKey: created.contentKey,
@@ -78,7 +78,7 @@ describe("route derivation", () => {
         { current: version("new"), next: newOwner },
       ]);
 
-      expect(items.map(({ change }) => change)).toEqual([
+      expect(Arr.map(items, ({ change }) => change)).toEqual([
         {
           appLocale: "en",
           contentKey: newOwner.contentKey,
@@ -98,7 +98,7 @@ describe("route derivation", () => {
         { current: second, next: version("second", "first") },
       ]);
 
-      expect(items.map(({ change }) => change)).toEqual([
+      expect(Arr.map(items, ({ change }) => change)).toEqual([
         {
           appLocale: "en",
           contentKey: second.contentKey,
@@ -127,7 +127,7 @@ describe("route derivation", () => {
           { current: renamed, next },
         ]);
 
-        expect(items.map(({ change }) => change)).toEqual([
+        expect(Arr.map(items, ({ change }) => change)).toEqual([
           {
             appLocale: "en",
             contentKey: next.contentKey,
@@ -188,8 +188,10 @@ describe("route derivation", () => {
           next: version("second", "new"),
         },
       ]);
-      expect(items.map(({ index }) => index)).toEqual([0, 1, 2]);
-      expect(items.every((item) => item.releaseId === releaseId)).toBe(true);
+      expect(Arr.map(items, ({ index }) => index)).toEqual([0, 1, 2]);
+      expect(Arr.every(items, (item) => item.releaseId === releaseId)).toBe(
+        true
+      );
     })
   );
 });
@@ -204,7 +206,7 @@ describe("route item canonical bytes", () => {
         { current: version("kept", "kept"), next: version("kept", "kept") },
       ]);
       expect(
-        items.map((item) => canonicalizeContentRouteItem(item))
+        Arr.map(items, (item) => canonicalizeContentRouteItem(item))
       ).toMatchInlineSnapshot(`
         [
           "{"change":{"appLocale":"en","contentKey":"test:alpha","operation":"bind","publicPath":"subjects/test/alpha"},"index":0,"releaseId":"test-routes"}",

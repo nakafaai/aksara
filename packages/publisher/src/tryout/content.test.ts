@@ -6,7 +6,7 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, HashSet, Layer, Stream } from "effect";
+import { Array as Arr, Context, Effect, HashSet, Layer, Stream } from "effect";
 import {
   type BoundTryoutPlacement,
   bindTryoutHeads,
@@ -98,7 +98,8 @@ function placementEntry(
   bodyKind: QuestionBodyKind
 ) {
   const identity = placementBodyIdentity(binding, bodyKind);
-  return questionEntries.find(
+  return Arr.findFirst(
+    questionEntries,
     (entry) =>
       entry.artifactLocale === identity.artifactLocale &&
       entry.contentKey === identity.contentKey
@@ -111,7 +112,8 @@ function entriesWithout(
   bodyKind: QuestionBodyKind
 ) {
   const identity = placementBodyIdentity(binding, bodyKind);
-  return questionEntries.filter(
+  return Arr.filter(
+    questionEntries,
     (entry) =>
       entry.artifactLocale !== identity.artifactLocale ||
       entry.contentKey !== identity.contentKey
@@ -122,13 +124,13 @@ function entriesWithout(
 const oppositeEntryAt = Effect.fn("TryoutContentTest.oppositeEntryAt")(
   (binding: BoundTryoutPlacement, bodyKind: QuestionBodyKind) =>
     Effect.gen(function* () {
-      const target = yield* Effect.fromNullishOr(
+      const target = yield* Effect.fromOption(
         placementEntry(binding, bodyKind)
       );
-      const replacement = yield* Effect.fromNullishOr(
+      const replacement = yield* Effect.fromOption(
         placementEntry(binding, bodyKind === "answer" ? "question" : "answer")
       );
-      const entries = questionEntries.map((entry) =>
+      const entries = Arr.map(questionEntries, (entry) =>
         entry === target
           ? {
               ...replacement,
@@ -152,11 +154,11 @@ contentTests("try-out content binding", (it) => {
         const { bindings } = yield* TryoutContentTestFixtures;
         const records = yield* collectTryoutContent(bindings, {});
 
-        expect(records.map(({ row }) => row.contentHash)).toEqual(
+        expect(Arr.map(records, ({ row }) => row.contentHash)).toEqual(
           EXPECTED_CONTENT_HASHES
         );
         expect(
-          records.every(({ row }, index) => {
+          Arr.every(records, ({ row }, index) => {
             const current = bindings[index];
             return (
               current !== undefined &&
@@ -182,15 +184,18 @@ contentTests("try-out content binding", (it) => {
         expect(questionDocument.projection).toMatchObject({ response: frozen });
         expect(record?.row.response).toEqual(frozen);
       }
-      const hashes = [baseline, ...(first ?? []).map(({ record }) => record)];
+      const hashes = [
+        baseline,
+        ...Arr.map(first ?? [], ({ record }) => record),
+      ];
       expect(
         HashSet.size(
-          HashSet.fromIterable(hashes.map((row) => row?.row.contentHash))
+          HashSet.fromIterable(Arr.map(hashes, (row) => row?.row.contentHash))
         )
       ).toBe(3);
-      expect(second?.map(({ record }) => record?.rowHash)).toEqual(
-        first?.map(({ record }) => record?.rowHash)
-      );
+      expect(
+        second && Arr.map(second, ({ record }) => record?.rowHash)
+      ).toEqual(first && Arr.map(first, ({ record }) => record?.rowHash));
     })
   );
 

@@ -12,7 +12,7 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import {
   deletion,
   emptySnapshots,
@@ -50,7 +50,9 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
           snapshots: inheritContentSnapshots(null),
         });
         expect("content" in prepared.manifest.scope).toBe(false);
-        expect([...items].map(({ index }) => index)).toEqual([0, 1]);
+        expect(Arr.map(Arr.fromIterable(items), ({ index }) => index)).toEqual([
+          0, 1,
+        ]);
         expect([...projections]).toEqual([contentRecord.projection]);
         expect([...snapshotManifests]).toEqual([]);
         expect([...snapshotRows]).toEqual([]);

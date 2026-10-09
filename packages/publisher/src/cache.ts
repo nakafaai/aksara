@@ -4,11 +4,11 @@ import {
 } from "@nakafa/aksara-contracts/cache/content";
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Stream } from "effect";
+import { Array as Arr, Stream } from "effect";
 
 /** Invalidates every mutable dependency when recovery lacks exact changes. */
 export const allContentCacheChanges = Stream.fromIterable(
-  ContentCacheScopeSchema.literals.map((scope) =>
+  Arr.map(ContentCacheScopeSchema.literals, (scope) =>
     ContentCacheChangeSchema.make({ scope })
   )
 );

@@ -5,7 +5,7 @@ import {
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import {
   collectPagePublication,
   collectPageResult,
@@ -53,7 +53,7 @@ vi.mock("@nakafa/aksara-corpus/pages/registry", async (importOriginal) => {
     ) =>
       original.decodePageRegistry(...args).pipe(
         Effect.map((entries) =>
-          entries.map((entry) =>
+          Arr.map(entries, (entry) =>
             registryState.changedPath &&
             entry.route.pageKey === "privacy-policy" &&
             entry.route.artifactLocale === "en"
@@ -88,7 +88,7 @@ function replaceHead(
   publishedHeads: readonly PageHead[],
   replacement: PageHead
 ) {
-  return publishedHeads.map((head) =>
+  return Arr.map(publishedHeads, (head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
       ? replacement
@@ -218,7 +218,7 @@ layer(publishedPageTestLayer)("page plan", (it) => {
       const records = yield* collectPagePublication({ heads: [] });
       expect(records).toHaveLength(15);
       expect(
-        records.every(({ record }) => record.change.operation === "upsert")
+        Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
       expect(compilerState.calls).toBe(15);
     })
@@ -231,7 +231,7 @@ layer(publishedPageTestLayer)("page plan", (it) => {
         scope: pageFamilyScope,
       });
       expect(
-        records.map(({ record }) => [
+        Arr.map(records, ({ record }) => [
           record.change.contentKey,
           record.change.artifactLocale,
         ])

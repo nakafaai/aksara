@@ -5,7 +5,7 @@ import {
   MAX_STAGE_GROUP_BYTES,
   MAX_STAGE_GROUP_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeStageGroup,
   makeStageGroups,
@@ -18,8 +18,9 @@ describe("makeStageGroups", () => {
     "preserves order while reducing safe requests into bounded groups",
     () =>
       Effect.gen(function* () {
-        const template = yield* Effect.fromNullishOr(
-          transportRequests.find(
+        const template = yield* Effect.fromOption(
+          Arr.findFirst(
+            transportRequests,
             (request) => request.operation === "stageItemBatch"
           )
         );
@@ -37,9 +38,12 @@ describe("makeStageGroups", () => {
         );
 
         expect(groups).toHaveLength(2);
-        expect(groups.flatMap((group) => group.requests)).toEqual(requests);
+        expect(Arr.flatMap(groups, (group) => group.requests)).toEqual(
+          requests
+        );
         expect(
-          groups.every(
+          Arr.every(
+            groups,
             (group) =>
               group.requests.length <= MAX_STAGE_GROUP_COUNT &&
               Buffer.byteLength(
@@ -55,8 +59,9 @@ describe("makeStageGroups", () => {
     "starts a new group before the complete body exceeds its byte ceiling",
     () =>
       Effect.gen(function* () {
-        const template = yield* Effect.fromNullishOr(
-          transportRequests.find(
+        const template = yield* Effect.fromOption(
+          Arr.findFirst(
+            transportRequests,
             (request) => request.operation === "stageProjectionBatch"
           )
         );
@@ -65,7 +70,7 @@ describe("makeStageGroups", () => {
         const requests = yield* Schema.decodeUnknownEffect(
           Schema.NonEmptyArray(StageOperationSchema)
         )(
-          [0, 1].map((batchIndex) => ({
+          Arr.map([0, 1], (batchIndex) => ({
             ...template,
             batchIndex,
             projections: [
@@ -86,7 +91,9 @@ describe("makeStageGroups", () => {
         );
 
         expect(groups).toHaveLength(2);
-        expect(groups.flatMap((group) => group.requests)).toEqual(requests);
+        expect(Arr.flatMap(groups, (group) => group.requests)).toEqual(
+          requests
+        );
       })
   );
 });
@@ -94,8 +101,9 @@ describe("makeStageGroups", () => {
 describe("stage group canonical wire bytes", () => {
   it.effect("pins the grouped request body bytes", () =>
     Effect.gen(function* () {
-      const template = yield* Effect.fromNullishOr(
-        transportRequests.find(
+      const template = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
           (request) => request.operation === "stageItemBatch"
         )
       );

@@ -8,17 +8,16 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import type { Stream } from "effect";
+import { Array as Arr, type Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 import { encodeJsonText } from "#publisher/text/json";
 
 /** Serializes one projection batch in deterministic wire field order. */
 export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"projections":[${batch.projections
-    .map(canonicalizeContentProjection)
-    .join(
-      ","
-    )}],"operation":"stageProjectionBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
+  return `{"batchIndex":${batch.batchIndex},"projections":[${Arr.join(
+    Arr.map(batch.projections, canonicalizeContentProjection),
+    ","
+  )}],"operation":"stageProjectionBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Streams bounded projection envelopes with contiguous batch identities. */
