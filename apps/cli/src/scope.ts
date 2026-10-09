@@ -32,39 +32,33 @@ type DecodedSelector = typeof DecodedSelectorSchema.Type;
 /** Converts one selector into an untrusted structured scope member. */
 function decodeSelector(value: string): Option.Option<DecodedSelector> {
   const segments = value.split(":");
-  if (segments.length !== 2) {
+  const [kind, selection] = segments;
+  if (selection === undefined || segments.length !== 2) {
     return Option.none();
   }
-  const kind = Option.getOrThrow(EffectArray.head(segments));
-  const selection = Option.getOrThrow(EffectArray.get(segments, 1));
   if (kind === "snapshot" || kind === "family") {
     return Option.some({ kind, value: selection });
   }
   return Option.none();
 }
 
-/** Canonical ordering for one validated family selection. */
-const familyOrder: Order.Order<ContentFamily> = Order.mapInput(
-  Order.Number,
-  (family: ContentFamily) =>
+/** Orders the members of one literal list by their position in that list. */
+function literalOrder<Literal>(literals: readonly Literal[]) {
+  return Order.mapInput(Order.Number, (value: Literal) =>
     Option.getOrThrow(
-      EffectArray.findFirstIndex(
-        ContentFamilySchema.literals,
-        (literal) => literal === family
-      )
+      EffectArray.findFirstIndex(literals, (literal) => literal === value)
     )
+  );
+}
+
+/** Canonical ordering for one validated family selection. */
+const familyOrder: Order.Order<ContentFamily> = literalOrder(
+  ContentFamilySchema.literals
 );
 
 /** Canonical ordering for one validated snapshot selection. */
-const snapshotOrder: Order.Order<ContentSnapshotKind> = Order.mapInput(
-  Order.Number,
-  (snapshot: ContentSnapshotKind) =>
-    Option.getOrThrow(
-      EffectArray.findFirstIndex(
-        ContentSnapshotKindSchema.literals,
-        (literal) => literal === snapshot
-      )
-    )
+const snapshotOrder: Order.Order<ContentSnapshotKind> = literalOrder(
+  ContentSnapshotKindSchema.literals
 );
 
 /** Decodes raw family selections, then orders the typed values canonically. */
