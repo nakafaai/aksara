@@ -5,7 +5,7 @@ import type {
   QuestionResponseSource,
 } from "@nakafa/aksara-contracts/question/item";
 import type { QuestionRubricLabel } from "@nakafa/aksara-contracts/question/rubric";
-import { Effect, Schema, Struct } from "effect";
+import { Array as Arr, Effect, Schema, Struct } from "effect";
 import type { InlineCode, Nodes, Text } from "mdast";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -163,7 +163,7 @@ function labelViolation(label: string) {
 
 /** Lists one rubric label in every active app locale with its source path. */
 function rubricLabels(label: QuestionRubricLabel, path: string) {
-  return ACTIVE_APP_LOCALE_CODES.map((locale) => ({
+  return Arr.map(ACTIVE_APP_LOCALE_CODES, (locale) => ({
     label: label[locale],
     path: `${path}.label.${locale}`,
   }));
@@ -173,20 +173,20 @@ function rubricLabels(label: QuestionRubricLabel, path: string) {
 function responseLabels(response: QuestionResponseSource) {
   if (response.kind === "category") {
     return [
-      ...response.categories.map((label, index) => ({
+      ...Arr.map(response.categories, (label, index) => ({
         label,
         path: `categories[${index}]`,
       })),
-      ...response.statements.map(({ label }, index) => ({
+      ...Arr.map(response.statements, ({ label }, index) => ({
         label,
         path: `statements[${index}].label`,
       })),
     ];
   }
   if (response.kind === "rubric") {
-    return response.criteria.flatMap(({ label, levels }, index) => [
+    return Arr.flatMap(response.criteria, ({ label, levels }, index) => [
       ...rubricLabels(label, `criteria[${index}]`),
-      ...levels.flatMap((level, levelIndex) =>
+      ...Arr.flatMap(levels, (level, levelIndex) =>
         rubricLabels(level.label, `criteria[${index}].levels[${levelIndex}]`)
       ),
     ]);
@@ -194,7 +194,7 @@ function responseLabels(response: QuestionResponseSource) {
   if (response.kind === "short-answer") {
     return [];
   }
-  return response.options.map(({ label }, index) => ({
+  return Arr.map(response.options, ({ label }, index) => ({
     label,
     path: `options[${index}].label`,
   }));

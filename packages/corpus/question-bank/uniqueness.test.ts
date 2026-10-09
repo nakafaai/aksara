@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, MutableHashMap, Path } from "effect";
+import { Effect, MutableHashMap, MutableList, Path } from "effect";
 import { questionSourceFiles } from "#corpus/question-bank/path";
 import { validateQuestionUniqueness } from "#corpus/question-bank/uniqueness";
 import {
@@ -55,11 +55,14 @@ function validate(
     const path = yield* Path.Path;
     const repositoryRoot = yield* corpusRoot;
     const questionRoot = yield* absoluteQuestionTestSourceRoot;
-    const entries: string[] = [];
+    const entries = MutableList.make<string>();
     const items = MutableHashMap.empty<string, string>();
     const files = MutableHashMap.empty<string, string>();
     for (const [root, body] of prompts) {
-      entries.push(...questionEntries(root, generalQuestionSourceFiles));
+      MutableList.appendAll(
+        entries,
+        questionEntries(root, generalQuestionSourceFiles)
+      );
       const itemSources = yield* itemForQuestion(root);
       for (const [itemPath, source] of itemSources) {
         MutableHashMap.set(items, itemPath, source);
@@ -71,7 +74,10 @@ function validate(
       );
     }
     if (english !== undefined) {
-      entries.push(...questionEntries(englishRoot, englishFiles));
+      MutableList.appendAll(
+        entries,
+        questionEntries(englishRoot, englishFiles)
+      );
       const englishSources = yield* itemForQuestion(
         englishRoot,
         englishItemSource
@@ -85,7 +91,10 @@ function validate(
         english
       );
     }
-    return yield* discoverSyntheticQuestionSources(entries, items).pipe(
+    return yield* discoverSyntheticQuestionSources(
+      MutableList.toArray(entries),
+      items
+    ).pipe(
       Effect.flatMap((sources) =>
         validateQuestionUniqueness(repositoryRoot, sources)
       ),

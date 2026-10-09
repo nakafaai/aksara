@@ -1,5 +1,12 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, HashSet, MutableHashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableHashMap,
+  Option,
+  Schema,
+} from "effect";
 import { readQuestionPrompts } from "#corpus/question-bank/prompt";
 import type { QuestionSource } from "#corpus/question-bank/source";
 
@@ -52,7 +59,10 @@ function sharedPrints(
       print,
     ]);
   }
-  return [...MutableHashMap.values(groups)].filter((group) => group.length > 1);
+  return Arr.filter(
+    [...MutableHashMap.values(groups)],
+    (group) => group.length > 1
+  );
 }
 
 /** Names one repeat group by its kind and exact prompt paths. */
@@ -60,7 +70,7 @@ function repeat(
   match: QuestionRepeat["match"],
   group: readonly PromptPrint[]
 ): QuestionRepeat {
-  return { match, paths: group.map(({ path }) => path) };
+  return { match, paths: Arr.map(group, ({ path }) => path) };
 }
 
 /** Rejects repeated prompts at source ingestion before any signed publication. */
@@ -68,20 +78,20 @@ export const validateQuestionUniqueness = Effect.fn(
   "AksaraCorpus.validateQuestionUniqueness"
 )(function* (corpusRoot: string, sources: readonly QuestionSource[]) {
   const prompts = yield* readQuestionPrompts(corpusRoot, sources);
-  const prints = prompts.map(({ locale, path, rawMdx }) => {
+  const prints = Arr.map(prompts, ({ locale, path, rawMdx }) => {
     const text = `${locale}\n${normalizePrompt(rawMdx)}`;
     return { numbers: text.replace(NUMBER_PATTERN, "#"), path, text };
   });
+  const numberGroups = Arr.filter(
+    sharedPrints(prints, ({ numbers }) => numbers),
+    (group) =>
+      HashSet.size(HashSet.fromIterable(Arr.map(group, ({ text }) => text))) > 1
+  );
   const repeats = [
-    ...sharedPrints(prints, ({ text }) => text).map((group) =>
+    ...Arr.map(sharedPrints(prints, ({ text }) => text), (group) =>
       repeat("text", group)
     ),
-    ...sharedPrints(prints, ({ numbers }) => numbers)
-      .filter(
-        (group) =>
-          HashSet.size(HashSet.fromIterable(group.map(({ text }) => text))) > 1
-      )
-      .map((group) => repeat("numbers", group)),
+    ...Arr.map(numberGroups, (group) => repeat("numbers", group)),
   ];
   if (repeats.length > 0) {
     return yield* new QuestionDuplicateError({ repeats });
