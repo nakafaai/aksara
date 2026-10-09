@@ -1,19 +1,16 @@
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import {
+  CompiledContentPayloadSchema,
+  compareContentHeads,
+} from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
-  type ContentProjection,
+  ContentProjectionSchema,
   familyForProjection,
 } from "@nakafa/aksara-contracts/projection/spec";
-import {
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
-} from "@nakafa/aksara-contracts/release";
-import {
-  type RollbackSnapshotEntry,
-  RollbackSnapshotEntrySchema,
-} from "@nakafa/aksara-contracts/release/rollback/spec";
+import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
+import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Schema, Stream } from "effect";
 import {
   type CoherenceFieldSchema,
@@ -23,6 +20,7 @@ import {
 } from "#publisher/preparation/errors";
 import {
   type PreparedContentRecord,
+  PreparedContentRecordSchema,
   type PreparedContentStreamError,
   type PreparedContentTransition,
   PreparedContentTransitionSchema,
@@ -30,24 +28,30 @@ import {
   type PreparedContentUpsert,
 } from "#publisher/preparation/spec";
 
-interface RecordState {
-  previous: PreparedContentRecord | undefined;
-}
+const RecordStateSchema = Schema.Struct({
+  previous: Schema.mutableKey(Schema.UndefinedOr(PreparedContentRecordSchema)),
+});
+
+/** The last record accepted by the ordered replay, updated as each record passes. */
+type RecordState = typeof RecordStateSchema.Type;
+
+const DerivedContentRecordSchema = Schema.Union([
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("delete"),
+    rollback: RollbackSnapshotEntrySchema,
+  }),
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("upsert"),
+    payload: CompiledContentPayloadSchema,
+    projection: ContentProjectionSchema,
+    rollback: RollbackSnapshotEntrySchema,
+  }),
+]);
 
 /** One item and its optional content projection derived in the same replay. */
-export type DerivedContentRecord =
-  | {
-      readonly item: ContentReleaseItem;
-      readonly kind: "delete";
-      readonly rollback: RollbackSnapshotEntry;
-    }
-  | {
-      readonly item: ContentReleaseItem;
-      readonly kind: "upsert";
-      readonly payload: PreparedContentUpsert["payload"];
-      readonly projection: ContentProjection;
-      readonly rollback: RollbackSnapshotEntry;
-    };
+export type DerivedContentRecord = typeof DerivedContentRecordSchema.Type;
 
 /** Narrows the nested operation to its complete authored upsert record. */
 function isPreparedContentUpsert(

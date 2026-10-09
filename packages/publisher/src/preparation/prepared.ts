@@ -6,11 +6,11 @@ import type {
   ContentReleaseManifest,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy";
+import { RendererPreflightSchema } from "@nakafa/aksara-contracts/release/policy";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
-import type { Stream } from "effect";
+import { TryoutSnapshotSchema } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
+import { Schema, type Stream } from "effect";
 
 import type { PreparedSnapshotSources } from "#publisher/preparation/snapshot";
 
@@ -34,19 +34,24 @@ interface PreparedContentReleaseBase<E, R>
   readonly [PreparedContentReleaseTypeId]: true;
 }
 
+const PreparedTryoutRuntimeTransitionSchema = Schema.Struct({
+  recovery: Schema.NullOr(TryoutSnapshotSchema),
+  result: TryoutSnapshotSchema,
+});
+
 /** Candidate result plus an optional distinct base pair retained for recovery. */
-export interface PreparedTryoutRuntimeTransition {
-  readonly recovery: TryoutSnapshot | null;
-  readonly result: TryoutSnapshot;
-}
+export type PreparedTryoutRuntimeTransition =
+  typeof PreparedTryoutRuntimeTransitionSchema.Type;
+
+const PreparedGitReleaseFieldsSchema = Schema.Struct({
+  kind: Schema.Literal("git"),
+  rendererPreflight: RendererPreflightSchema,
+  tryoutRuntime: Schema.NullOr(PreparedTryoutRuntimeTransitionSchema),
+});
 
 /** Exact-Git release whose artifacts must be reproducibly recompiled. */
-export interface PreparedGitRelease<E, R>
-  extends PreparedContentReleaseBase<E, R> {
-  readonly kind: "git";
-  readonly rendererPreflight: RendererPreflight;
-  readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
-}
+export type PreparedGitRelease<E, R> = PreparedContentReleaseBase<E, R> &
+  typeof PreparedGitReleaseFieldsSchema.Type;
 
 /** Forward rollback whose existing signed artifacts must remain unchanged. */
 export interface PreparedRollbackRelease<E, R>
