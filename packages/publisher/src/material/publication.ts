@@ -1,18 +1,13 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import type { FileSystem, Path } from "effect";
-import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import { Effect, Result, Schema, type Scope, Stream } from "effect";
 import {
   type MaterialMetadataError,
   type MaterialSourceError,
@@ -23,6 +18,11 @@ import {
   planMaterialPublication,
 } from "#publisher/material/plan";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import {
+  type HeadOrderState,
+  orderPublishedHeads,
+  validateHeadOrder,
+} from "#publisher/publication/order";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import {
@@ -40,31 +40,23 @@ const MaterialFamilyFieldSchema = Schema.Literals([
 /** A target returned the same material identity more than once. */
 export class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
   "MaterialHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned material heads outside canonical content-head order. */
 export class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
   "MaterialHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A material-head page contained a row owned by another content family. */
 export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
   "MaterialHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: MaterialFamilyFieldSchema,
   }
 ) {}
-
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(MaterialHeadSchema),
-});
-
-/** The previous material head in the streamed order, or undefined before the first one. */
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative publication records. */
 export type MaterialPublicationStreamError<E> =
@@ -126,54 +118,25 @@ function mismatchedFamilyField(
 }
 
 /** Validates family ownership and strict ordering before a head enters diffing. */
-function validatePublishedHead(
-  state: HeadOrderState,
-  head: MaterialHead
-): Effect.Effect<
-  readonly [HeadOrderState, readonly MaterialHead[]],
-  MaterialHeadDuplicateError | MaterialHeadFamilyError | MaterialHeadOrderError
-> {
-  const field = mismatchedFamilyField(head);
-  if (field !== undefined) {
-    return Effect.fail(
+function validatePublishedHead(state: HeadOrderState, head: MaterialHead) {
+  return validateHeadOrder(state, head, mismatchedFamilyField, {
+    duplicate: (candidate) =>
+      new MaterialHeadDuplicateError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+    family: (candidate, field) =>
       new MaterialHeadFamilyError({
-        artifactLocale: head.artifactLocale,
-        contentKey: head.contentKey,
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
         field,
-      })
-    );
-  }
-  const { previous } = state;
-  if (previous !== undefined) {
-    const comparison = compareContentHeads(previous, head);
-    if (comparison === 0) {
-      return Effect.fail(
-        new MaterialHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (comparison > 0) {
-      return Effect.fail(
-        new MaterialHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed(Tuple.make({ previous: head }, [head]));
-}
-
-/** Proves every published material head before the constant-space merge. */
-function validatePublishedHeads<E, R>(
-  published: Stream.Stream<MaterialHead, E, R>
-) {
-  const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(
-    Stream.mapAccumEffect(() => initial, validatePublishedHead)
-  );
+      }),
+    order: (candidate) =>
+      new MaterialHeadOrderError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+  });
 }
 
 /**
@@ -197,7 +160,7 @@ export const prepareMaterialPublication: <E, R>(
   const plans = planMaterialPublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published),
+    published: orderPublishedHeads(input.published, validatePublishedHead),
     rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,

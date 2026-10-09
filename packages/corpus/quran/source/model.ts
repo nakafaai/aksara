@@ -1,4 +1,5 @@
 import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
+import { QuranSajdaSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import { QuranSurahMetadataSchema } from "@nakafa/aksara-contracts/quran/spec";
 import { Schema } from "effect";
 
@@ -10,18 +11,18 @@ const TafsirSchema = Schema.Struct({
 });
 export type Tafsir = typeof TafsirSchema.Type;
 
-const SajdaSchema = Schema.Literals(["obligatory", "recommended"]);
-
+/**
+ * Parsed marker numbers stay finite here because the registry decodes every
+ * parsed surah with the exact QuranSurahSchema before accepting it.
+ */
 const VerseMetadataSchema = Schema.Struct({
   hizbQuarter: Schema.Finite,
   juz: Schema.Finite,
   manzil: Schema.Finite,
   page: Schema.Finite,
   ruku: Schema.Finite,
-  sajda: Schema.NullOr(SajdaSchema),
+  sajda: Schema.NullOr(QuranSajdaSchema),
 });
-export type VerseMetadata = typeof VerseMetadataSchema.Type;
-
 const VerseSchema = Schema.Struct({
   meta: VerseMetadataSchema,
   number: Schema.Struct({
@@ -32,8 +33,6 @@ const VerseSchema = Schema.Struct({
   text: Schema.Struct({ arabic: Schema.String }),
   translation: localizedSourceMapSchema(QuranTranslationSchema),
 });
-export type Verse = typeof VerseSchema.Type;
-
 /** Encoded metadata emitted before the corpus schema applies its brands. */
 type QuranSurahMetadata = Schema.Codec.Encoded<typeof QuranSurahMetadataSchema>;
 
@@ -60,7 +59,7 @@ const ParsedMetadataSchema = Schema.Struct({
   manzils: Schema.Array(MarkerSchema),
   pages: Schema.Array(MarkerSchema),
   rukus: Schema.Array(MarkerSchema),
-  sajdas: Schema.HashMap(Schema.Finite, SajdaSchema),
+  sajdas: Schema.HashMap(Schema.Finite, QuranSajdaSchema),
   surahs: Schema.Array(Schema.toEncoded(SurahMetadataSchema)),
 });
 export type ParsedMetadata = typeof ParsedMetadataSchema.Type;

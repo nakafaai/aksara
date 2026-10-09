@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { hashUtf8 } from "@nakafa/aksara-compiler/hash";
 import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
@@ -135,9 +135,7 @@ const readSelectedHash = Effect.fn("AksaraCli.readSelectedHash")(function* (
       )
     );
   return {
-    hash: Sha256HashSchema.make(
-      `sha256:${createHash("sha256").update(source).digest("hex")}`
-    ),
+    hash: hashUtf8(source),
     sourcePath: selectedFile.sourcePath,
   };
 });

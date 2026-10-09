@@ -1,7 +1,11 @@
 import { Effect, MutableList, Schema } from "effect";
 
 import type { ProductionCommand } from "#cli/production/arguments";
-import { productionArgumentsError } from "#cli/production/error";
+import {
+  type ProductionOption,
+  ProductionOptionSchema,
+  productionArgumentsError,
+} from "#cli/production/error";
 
 const RawProductionOptionsSchema = Schema.Struct({
   rebuild: Schema.mutableKey(Schema.Boolean),
@@ -13,11 +17,6 @@ const RawProductionOptionsSchema = Schema.Struct({
 /** Raw named options collected before domain decoding. */
 type RawProductionOptions = typeof RawProductionOptionsSchema.Type;
 
-type ProductionOption =
-  | "--rebuild"
-  | "--recovery-id"
-  | "--release-id"
-  | "--scope";
 type ValueProductionOption = Exclude<ProductionOption, "--rebuild">;
 type UniqueProductionOption = Exclude<ValueProductionOption, "--scope">;
 
@@ -27,16 +26,7 @@ const OPTION_KEYS = {
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
 
 /** Narrows unknown command input to one supported named option. */
-function isProductionOption(
-  value: string | undefined
-): value is ProductionOption {
-  return (
-    value === "--rebuild" ||
-    value === "--recovery-id" ||
-    value === "--release-id" ||
-    value === "--scope"
-  );
-}
+const isProductionOption = Schema.is(ProductionOptionSchema);
 
 /** Checks whether one command owns the selected production option. */
 function acceptsOption(command: ProductionCommand, option: ProductionOption) {

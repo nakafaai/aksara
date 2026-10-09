@@ -1,8 +1,6 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import {
   QuestionKeySchema,
   QuestionSourcePathSchema,
@@ -11,10 +9,7 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionResponseLocaleMissingError } from "@nakafa/aksara-contracts/question/item";
-import {
-  type QuestionHead,
-  QuestionHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -30,10 +25,14 @@ import {
   Schema,
   type Scope,
   Stream,
-  Tuple,
 } from "effect";
 import { constUndefined } from "effect/Function";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import {
+  type HeadOrderState,
+  orderPublishedHeads,
+  validateHeadOrder,
+} from "#publisher/publication/order";
 import {
   mapQuestionSourceError,
   type QuestionMetadataError,
@@ -62,31 +61,23 @@ const QuestionFamilyFieldSchema = Schema.Literals([
 /** A target returned the same question identity more than once. */
 export class QuestionHeadDuplicateError extends Schema.TaggedError<QuestionHeadDuplicateError>()(
   "QuestionHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned question heads outside canonical content-head order. */
 export class QuestionHeadOrderError extends Schema.TaggedError<QuestionHeadOrderError>()(
   "QuestionHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A question-head page contained identity owned by another family or body. */
 export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFamilyError>()(
   "QuestionHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: QuestionFamilyFieldSchema,
   }
 ) {}
-
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(QuestionHeadSchema),
-});
-
-/** The previous question head in the streamed order, or undefined before the first one. */
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative question records. */
 export type QuestionPublicationStreamError<E> =
@@ -191,54 +182,29 @@ function validatePublishedHead(
   questionBanks: QuestionBankIndex,
   state: HeadOrderState,
   head: QuestionHead
-): Effect.Effect<
-  readonly [HeadOrderState, readonly QuestionHead[]],
-  QuestionHeadDuplicateError | QuestionHeadFamilyError | QuestionHeadOrderError
-> {
-  const field = mismatchedFamilyField(questionBanks, head);
-  if (field !== undefined) {
-    return Effect.fail(
-      new QuestionHeadFamilyError({
-        artifactLocale: head.artifactLocale,
-        contentKey: head.contentKey,
-        field,
-      })
-    );
-  }
-  const { previous } = state;
-  if (previous !== undefined) {
-    const comparison = compareContentHeads(previous, head);
-    if (comparison === 0) {
-      return Effect.fail(
-        new QuestionHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (comparison > 0) {
-      return Effect.fail(
-        new QuestionHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed(Tuple.make({ previous: head }, [head]));
-}
-
-/** Proves every published question head before the constant-space merge. */
-function validatePublishedHeads<E, R>(
-  published: Stream.Stream<QuestionHead, E, R>,
-  questionBanks: QuestionBankIndex
 ) {
-  const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(
-    Stream.mapAccumEffect(
-      () => initial,
-      (state, head) => validatePublishedHead(questionBanks, state, head)
-    )
+  return validateHeadOrder(
+    state,
+    head,
+    (candidate) => mismatchedFamilyField(questionBanks, candidate),
+    {
+      duplicate: (candidate) =>
+        new QuestionHeadDuplicateError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+        }),
+      family: (candidate, field) =>
+        new QuestionHeadFamilyError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+          field,
+        }),
+      order: (candidate) =>
+        new QuestionHeadOrderError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+        }),
+    }
   );
 }
 
@@ -264,7 +230,9 @@ export const prepareQuestionPublication: <E, R>(
   const plans = planQuestionPublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published, questionBanks),
+    published: orderPublishedHeads(input.published, (state, head) =>
+      validatePublishedHead(questionBanks, state, head)
+    ),
     rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,

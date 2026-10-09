@@ -11,6 +11,7 @@ import {
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Schema, Stream } from "effect";
 import type { CompiledReleaseSource } from "#publisher/compilation";
+import { withTrailingAbsence } from "#publisher/publication/order";
 import type { PublicationSigner } from "#publisher/signing/service";
 import {
   ReleaseArtifactMismatchError,
@@ -46,14 +47,6 @@ const RollbackArtifactPairSchema = Schema.Union([
 ]);
 
 type RollbackArtifactPair = typeof RollbackArtifactPairSchema.Type;
-
-/** Extends a finite stream with explicit absence for a constant-space full zip. */
-function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
-  return stream.pipe(
-    Stream.map(Option.some),
-    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
-  );
-}
 
 /** Signs and verifies one reproducible exact-Git payload before staging. */
 function signGitArtifact(

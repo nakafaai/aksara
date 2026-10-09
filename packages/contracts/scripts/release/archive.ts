@@ -9,7 +9,6 @@ import {
 import { ChildProcess } from "effect/process";
 import {
   type ContractIdentity,
-  type ContractReleaseError,
   packageIdentity,
   releaseError,
 } from "#scripts/release/identity";
@@ -106,6 +105,3 @@ export const writeOutputs = Effect.fn("AksaraContracts.writeReleaseOutputs")(
       .pipe(Effect.mapError(platformError("output write")));
   }
 );
-
-/** Complete error channel for archive IO operations. */
-export type ReleaseArchiveError = ContractReleaseError;

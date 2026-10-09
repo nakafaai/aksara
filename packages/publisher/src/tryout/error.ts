@@ -1,8 +1,9 @@
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import { Schema } from "effect";
 
-export const TryoutHeadBodySchema = Schema.Literals(["answer", "question"]);
 const TryoutHeadFieldSchema = Schema.Literals([
   "bodyPair",
   "compilerConfigHash",
@@ -17,13 +18,13 @@ const TryoutHeadFieldSchema = Schema.Literals([
 /** A complete desired head stream repeated one artifactLocale-specific identity. */
 export class TryoutHeadDuplicateError extends Schema.TaggedError<TryoutHeadDuplicateError>()(
   "TryoutHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A complete desired head stream is outside canonical content-head order. */
 export class TryoutHeadOrderError extends Schema.TaggedError<TryoutHeadOrderError>()(
   "TryoutHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** One active placement has no desired question or answer artifact head. */
@@ -31,7 +32,7 @@ export class TryoutHeadMissingError extends Schema.TaggedError<TryoutHeadMissing
   "TryoutHeadMissingError",
   {
     artifactLocale: ArtifactLocaleSchema,
-    bodyKind: TryoutHeadBodySchema,
+    bodyKind: QuestionBodyKindSchema,
     contentKey: ContentKeySchema,
   }
 ) {}
@@ -40,8 +41,7 @@ export class TryoutHeadMissingError extends Schema.TaggedError<TryoutHeadMissing
 export class TryoutHeadMismatchError extends Schema.TaggedError<TryoutHeadMismatchError>()(
   "TryoutHeadMismatchError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: TryoutHeadFieldSchema,
   }
 ) {}

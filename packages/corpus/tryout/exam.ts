@@ -3,6 +3,7 @@ import {
   makeLearningGraphIdentity,
 } from "@nakafa/aksara-contracts/graph/identity";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { countSectionQuestions } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Array as Arr, Effect, Option } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
@@ -33,15 +34,6 @@ function localizedFields(input: {
 /** Joins canonical route segments without locale or leading slash. */
 function publicPath(...segments: readonly string[]) {
   return Arr.join(segments, "/");
-}
-
-/** Counts every question across one source-owned section list. */
-function questionCount(sections: readonly TryoutSectionSource[]) {
-  return Arr.reduce(
-    sections,
-    0,
-    (total, section) => total + section.questionCount
-  );
 }
 
 /** Counts only sections that own a physical public route. */
@@ -174,7 +166,7 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
       kind: "set",
       order: set.order,
       publicPath: setPath,
-      questionCount: questionCount(set.sections),
+      questionCount: countSectionQuestions(set.sections),
       scoringStrategy: source.scoringStrategy,
       sectionCount: set.sections.length,
       setKey: set.key,
@@ -227,7 +219,7 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
         kind: "track",
         order: track.order,
         publicPath: trackPath,
-        questionCount: questionCount(sections),
+        questionCount: countSectionQuestions(sections),
         sectionCount: sections.length,
         setCount: track.sets.length,
         trackKey: track.key,

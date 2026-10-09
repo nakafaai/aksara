@@ -8,6 +8,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import {
   type QuestionHead,
   QuestionHeadSchema,
@@ -28,7 +29,10 @@ import {
   Stream,
 } from "effect";
 import {
-  TryoutHeadBodySchema,
+  advanceHeadOrder,
+  type HeadOrderState,
+} from "#publisher/publication/order";
+import {
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
   TryoutHeadMissingError,
@@ -41,7 +45,7 @@ import {
 
 const HeadRequirementSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
-  bodyKind: TryoutHeadBodySchema,
+  bodyKind: QuestionBodyKindSchema,
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
   placement: TryoutPlacementSourceSchema,
@@ -59,41 +63,20 @@ const BoundTryoutPlacementSchema = Schema.Struct({
 /** Exact question and answer hashes bound to one active placement source. */
 export type BoundTryoutPlacement = typeof BoundTryoutPlacementSchema.Type;
 
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(QuestionHeadSchema),
-});
-
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
-
 /** Advances one canonical desired-head stream or reports its exact disorder. */
-function validateHeadOrder(
-  state: HeadOrderState,
-  head: QuestionHead
-): Effect.Effect<
-  readonly [HeadOrderState, readonly QuestionHead[]],
-  TryoutHeadDuplicateError | TryoutHeadOrderError
-> {
-  const { previous } = state;
-  if (previous !== undefined) {
-    const order = compareContentHeads(previous, head);
-    if (order === 0) {
-      return Effect.fail(
-        new TryoutHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (order > 0) {
-      return Effect.fail(
-        new TryoutHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed([{ previous: head }, [head]]);
+function validateHeadOrder(state: HeadOrderState, head: QuestionHead) {
+  return advanceHeadOrder(state, head, {
+    duplicate: (candidate) =>
+      new TryoutHeadDuplicateError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+    order: (candidate) =>
+      new TryoutHeadOrderError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+  });
 }
 
 /** Derives both delivery-specific head requirements from one placement. */

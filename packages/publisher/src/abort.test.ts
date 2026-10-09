@@ -107,6 +107,19 @@ describe("abortContentRelease", () => {
     })
   );
 
+  it.effect("rejects a receipt outside the exact wire contract", () =>
+    Effect.gen(function* () {
+      const unexpectedField = { ...complete, unexpectedField: true };
+      const abort = receiptSequence([unexpectedField]);
+      const error = yield* runAbort({ releaseId }, abort).pipe(Effect.flip);
+
+      expect(error).toEqual(
+        new ReleaseAbortContractError({ contract: "receipt" })
+      );
+      expect(abort).toHaveBeenCalledTimes(1);
+    })
+  );
+
   it.effect(
     "rejects foreign, stalled, decreasing, and changed-total evidence",
     () =>

@@ -1,4 +1,3 @@
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { isHttpsUrl, isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { Array as Arr, Effect, Option, Order, Schema } from "effect";
@@ -6,12 +5,6 @@ import { Array as Arr, Effect, Option, Order, Schema } from "effect";
 import { germanEducationGlossarySource } from "#corpus/locale/german/education";
 import { germanProductGlossarySource } from "#corpus/locale/german/product";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
-
-/** Exact authored glossary sources bound into every German review record. */
-export const GERMAN_GLOSSARY_SOURCE_PATHS = Object.freeze([
-  CorpusSourcePathSchema.make("packages/corpus/locale/german/education.ts"),
-  CorpusSourcePathSchema.make("packages/corpus/locale/german/product.ts"),
-]);
 
 export const GermanGlossaryKeySchema = Schema.String.pipe(
   Schema.check(Schema.makeFilter(isLowerKebab)),

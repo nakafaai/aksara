@@ -119,6 +119,19 @@ describe("cleanupContentRelease", () => {
     })
   );
 
+  it.effect("rejects a receipt outside the exact wire contract", () =>
+    Effect.gen(function* () {
+      const unexpectedField = { ...progress, unexpectedField: true };
+      const cleanup = receiptSequence([unexpectedField]);
+      const error = yield* runCleanup({ releaseId }, cleanup).pipe(Effect.flip);
+
+      expect(error).toEqual(
+        new ReleaseCleanupContractError({ contract: "receipt" })
+      );
+      expect(cleanup).toHaveBeenCalledTimes(1);
+    })
+  );
+
   it.effect("rejects foreign identities and decreasing cumulative counts", () =>
     Effect.gen(function* () {
       const cases = [

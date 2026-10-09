@@ -1,4 +1,5 @@
 import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
+import { QuranRuntimeVerseSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   QuranSurahMetadataSchema,
   QuranTafsirLocaleSchema,
@@ -13,14 +14,7 @@ import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Exact authored contract for one Quran verse. */
 export const QuranVerseSchema = Schema.Struct({
-  meta: Schema.Struct({
-    hizbQuarter: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    juz: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    manzil: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    page: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    ruku: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    sajda: Schema.NullOr(Schema.Literals(["obligatory", "recommended"])),
-  }),
+  meta: QuranRuntimeVerseSchema.fields.meta,
   number: Schema.Struct({
     inQuran: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
     inSurah: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
