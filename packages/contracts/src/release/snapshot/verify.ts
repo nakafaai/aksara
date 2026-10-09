@@ -70,11 +70,14 @@ export class SnapshotStagedCountError extends Schema.TaggedError<SnapshotStagedC
   }
 ) {}
 
+const VerifiedContentSnapshotsSchema = Schema.Struct({
+  snapshots: ContentSnapshotSetSchema,
+  stagedRows: Schema.Finite,
+});
+
 /** Fixed verified snapshot state selected by one global release. */
-export interface VerifiedContentSnapshots {
-  readonly snapshots: ContentSnapshotSet;
-  readonly stagedRows: number;
-}
+export type VerifiedContentSnapshots =
+  typeof VerifiedContentSnapshotsSchema.Type;
 
 const familyOrder: Readonly<Record<ContentSnapshotKind, number>> = {
   program: 0,
@@ -82,9 +85,14 @@ const familyOrder: Readonly<Record<ContentSnapshotKind, number>> = {
   tryout: 2,
 };
 
-interface ManifestOrderState {
+/** Creates the order state that one manifest stream shares while it decodes. */
+function manifestOrderState(): {
   previous: ContentSnapshotKind | undefined;
+} {
+  return { previous: undefined };
 }
+
+type ManifestOrderState = ReturnType<typeof manifestOrderState>;
 
 /** Derives one replacement's aggregate row evidence in its owning runtime. */
 function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
@@ -139,7 +147,7 @@ export function decodeContentSnapshotManifests<E, R>(
 ) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ManifestOrderState = { previous: undefined };
+      const state = manifestOrderState();
       return manifests.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, manifestIndex]) =>

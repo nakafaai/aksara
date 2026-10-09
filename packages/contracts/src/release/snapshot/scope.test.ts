@@ -4,6 +4,7 @@ import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
 } from "#contracts/release/snapshot/scope";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("publication scope", () => {
   it("decodes only non-empty canonical unique families", () => {
@@ -39,7 +40,7 @@ describe("publication scope", () => {
       snapshots: ["program", "tryout"],
     });
 
-    expect(JSON.stringify(canonicalizePublicationScope(scope))).toBe(
+    expect(encodeJsonText(canonicalizePublicationScope(scope))).toBe(
       '{"families":["article","material"],"snapshots":["program","tryout"]}'
     );
   });
@@ -50,7 +51,7 @@ describe("publication scope", () => {
       snapshots: ["quran"],
     });
 
-    expect(JSON.stringify(canonicalizePublicationScope(scope))).toBe(
+    expect(encodeJsonText(canonicalizePublicationScope(scope))).toBe(
       '{"families":[],"snapshots":["quran"]}'
     );
   });

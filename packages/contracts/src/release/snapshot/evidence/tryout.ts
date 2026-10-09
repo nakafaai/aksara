@@ -1,4 +1,4 @@
-import { Effect, Result, Stream } from "effect";
+import { Effect, Result, Schema, Stream } from "effect";
 
 import type {
   ContentSnapshotManifest,
@@ -13,12 +13,14 @@ import { verifyTryoutLocaleClosure } from "#contracts/tryout/closure/locale";
 import { digestTryoutCatalog } from "#contracts/tryout/hash/catalog";
 import { digestTryoutPlacements } from "#contracts/tryout/hash/placement";
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
-import type { TryoutCatalogCounts } from "#contracts/tryout/snapshot/spec";
+import { TryoutCatalogCountsSchema } from "#contracts/tryout/snapshot/spec";
 
-interface TryoutCatalogEvidence {
-  readonly counts: TryoutCatalogCounts;
-  readonly routeCount: number;
-}
+const TryoutCatalogEvidenceSchema = Schema.Struct({
+  counts: TryoutCatalogCountsSchema,
+  routeCount: Schema.Finite,
+});
+
+type TryoutCatalogEvidence = typeof TryoutCatalogEvidenceSchema.Type;
 
 /** Selects current hierarchy rows while preserving source failures. */
 function currentTryoutCatalog<E, R>(

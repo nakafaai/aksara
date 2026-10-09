@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Stream } from "effect";
+import { Effect, Record as Rec, Stream } from "effect";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -16,6 +16,7 @@ import {
   verifyStagedSnapshotRows,
 } from "#contracts/release/snapshot/verify";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Returns one expected typed failure through the native Effect test runtime. */
 function reject<A, E>(effect: Effect.Effect<A, E>) {
@@ -82,9 +83,11 @@ describe("structured snapshot verification", () => {
         });
 
         expect(result.stagedRows).toBe(2148);
-        expect(Object.values(result.snapshots).map(({ mode }) => mode)).toEqual(
-          ["replace", "replace", "replace"]
-        );
+        expect(Rec.values(result.snapshots).map(({ mode }) => mode)).toEqual([
+          "replace",
+          "replace",
+          "replace",
+        ]);
         expect({ manifestReplays, rowReplays }).toEqual({
           manifestReplays: 1,
           rowReplays: 8,
@@ -119,7 +122,7 @@ describe("structured snapshot verification", () => {
         _tag: "SnapshotRowDecodeError",
         rowIndex: 0,
       });
-      expect(JSON.stringify([manifestError, rowError])).not.toContain(
+      expect(encodeJsonText([manifestError, rowError])).not.toContain(
         "private value"
       );
     })
