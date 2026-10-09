@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect, MutableList, Schema } from "effect";
 
 import type { ProductionCommand } from "#cli/production/arguments";
 import { productionArgumentsError } from "#cli/production/error";
@@ -7,7 +7,7 @@ const RawProductionOptionsSchema = Schema.Struct({
   rebuild: Schema.mutableKey(Schema.Boolean),
   recoveryId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
   releaseId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
-  scope: Schema.mutable(Schema.Array(Schema.String)),
+  scope: Schema.mutableKey(Schema.mutable(Schema.Array(Schema.String))),
 });
 
 /** Raw named options collected before domain decoding. */
@@ -60,6 +60,7 @@ export const parseProductionOptions = Effect.fn(
   "AksaraCli.parseProductionOptions"
 )(function* (command: ProductionCommand, args: readonly string[]) {
   const options: RawProductionOptions = { rebuild: false, scope: [] };
+  const scope = MutableList.make<string>();
 
   for (let index = 0; index < args.length; index += 1) {
     const option = args[index];
@@ -81,7 +82,7 @@ export const parseProductionOptions = Effect.fn(
       return yield* productionArgumentsError(command, option, "value");
     }
     if (option === "--scope") {
-      options.scope.push(value);
+      MutableList.append(scope, value);
       index += 1;
       continue;
     }
@@ -93,5 +94,6 @@ export const parseProductionOptions = Effect.fn(
     index += 1;
   }
 
+  options.scope = MutableList.toArray(scope);
   return options;
 });

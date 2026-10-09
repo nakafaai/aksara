@@ -8,7 +8,14 @@ import {
   type PublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect, Array as EffectArray, Option, Order, Schema } from "effect";
+import {
+  Effect,
+  Array as EffectArray,
+  MutableList,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 
 /** One CLI selector does not form a canonical production publication scope. */
 export class ProductionScopeDecodeError extends Schema.TaggedError<ProductionScopeDecodeError>()(
@@ -80,21 +87,25 @@ const decodeOrderedSnapshots = (
 export const decodePublicationScopeSelectors = Effect.fn(
   "AksaraCli.decodePublicationScopeSelectors"
 )(function* (selectors: readonly string[]) {
-  const families: string[] = [];
-  const snapshots: string[] = [];
+  const families = MutableList.make<string>();
+  const snapshots = MutableList.make<string>();
   for (const value of selectors) {
     const selected = decodeSelector(value);
     if (Option.isNone(selected)) {
       return yield* new ProductionScopeDecodeError();
     }
     if (selected.value.kind === "family") {
-      families.push(selected.value.value);
+      MutableList.append(families, selected.value.value);
       continue;
     }
-    snapshots.push(selected.value.value);
+    MutableList.append(snapshots, selected.value.value);
   }
-  const orderedFamilies = yield* decodeOrderedFamilies(families);
-  const orderedSnapshots = yield* decodeOrderedSnapshots(snapshots);
+  const orderedFamilies = yield* decodeOrderedFamilies(
+    MutableList.toArray(families)
+  );
+  const orderedSnapshots = yield* decodeOrderedSnapshots(
+    MutableList.toArray(snapshots)
+  );
   return yield* Schema.decodeEffect(PublicationScopeSchema)({
     families: orderedFamilies,
     snapshots: orderedSnapshots,

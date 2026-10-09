@@ -16,7 +16,7 @@ import {
   LocalPreviewManifestSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
-import { Effect, HashMap, Redacted, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
 import {
   makePreviewHttp,
@@ -140,7 +140,7 @@ function artifactReferences(
   results: PreviewReadyInput["results"]
 ): readonly [PreviewArtifact, ...PreviewArtifact[]] {
   const [first, ...rest] = results;
-  return [artifactReference(first), ...rest.map(artifactReference)];
+  return [artifactReference(first), ...Arr.map(rest, artifactReference)];
 }
 
 /** Converts one signed result into an immutable hash-keyed wire entry. */
@@ -212,7 +212,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
           Effect.map((encoded) => {
             state = {
               ...encoded,
-              artifacts: HashMap.fromIterable(results.map(artifactEntry)),
+              artifacts: HashMap.fromIterable(Arr.map(results, artifactEntry)),
             };
             return http.publish(state);
           })
@@ -257,7 +257,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
             return Effect.succeed(false);
           }
           if (
-            !ready.results.every((result) =>
+            !Arr.every(ready.results, (result) =>
               hasCoherentReadyResult(input.document, result)
             )
           ) {

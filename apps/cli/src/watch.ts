@@ -1,4 +1,5 @@
 import {
+  Array as Arr,
   Deferred,
   Effect,
   FileSystem,
@@ -149,7 +150,7 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
           : Effect.void
       )
     );
-    const streams = [...directories].map(([directory, watched]) =>
+    const streams = Arr.map([...directories], ([directory, watched]) =>
       Stream.fromPull(
         Stream.toPull(fileSystem.watch(directory)).pipe(Effect.tap(markReady))
       ).pipe(
