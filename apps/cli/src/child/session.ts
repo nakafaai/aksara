@@ -53,13 +53,6 @@ export interface RunningNakafa {
   readonly origin: URL;
 }
 
-/** Inputs passed to the actual Nakafa process without writing an env file. */
-export interface NakafaStartInput {
-  readonly credentials: PreviewCredentials;
-  readonly provider: PreviewProvider;
-  readonly root: string;
-}
-
 /** Allocates one currently free localhost port for the actual app child. */
 const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
   Effect.callback<number, NakafaAppError>((resume) => {
@@ -94,7 +87,13 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
 
 /** Decodes every child environment value together before process creation. */
 const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
-  (input: NakafaStartInput, origin: URL) =>
+  (
+    input: {
+      readonly credentials: PreviewCredentials;
+      readonly provider: PreviewProvider;
+    },
+    origin: URL
+  ) =>
     Schema.decodeUnknownEffect(ChildEnvironmentSchema)({
       AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
       AKSARA_PREVIEW_KEY_ID: input.credentials.keyId,
@@ -139,38 +138,45 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
 );
 
 /** Starts the Next app with inherited stdio and explicit preview environment. */
-export const startNakafa = Effect.fn("AksaraCli.startNakafa")(function* (
-  input: NakafaStartInput
-) {
-  const processes = yield* NakafaProcess;
-  const port = yield* reserveNakafaPort();
-  const origin = new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`);
-  const environment = yield* makeChildEnvironment(input, origin);
-  const process = yield* processes
-    .start({
-      args: [
-        "--filter",
-        "www",
-        "exec",
-        "next",
-        "dev",
-        "--hostname",
-        NAKAFA_LOOPBACK_HOST,
-        "--port",
-        String(port),
-      ],
-      command: "pnpm",
-      environment,
-      root: input.root,
-    })
-    .pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
-  return {
-    awaitExit: process.exitCode.pipe(
-      Effect.mapError(() => makeNakafaAppError("exit", false)),
-      Effect.flatMap((status) =>
-        Effect.fail(makeNakafaAppError("exit", false, Number(status)))
-      )
-    ),
-    origin,
-  } satisfies RunningNakafa;
-});
+export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
+  function* (input: {
+    readonly credentials: PreviewCredentials;
+    readonly provider: PreviewProvider;
+    readonly root: string;
+  }) {
+    const processes = yield* NakafaProcess;
+    const port = yield* reserveNakafaPort();
+    const origin = new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`);
+    const environment = yield* makeChildEnvironment(input, origin);
+    const process = yield* processes
+      .start({
+        args: [
+          "--filter",
+          "www",
+          "exec",
+          "next",
+          "dev",
+          "--hostname",
+          NAKAFA_LOOPBACK_HOST,
+          "--port",
+          String(port),
+        ],
+        command: "pnpm",
+        environment,
+        root: input.root,
+      })
+      .pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
+    return {
+      awaitExit: process.exitCode.pipe(
+        Effect.mapError(() => makeNakafaAppError("exit", false)),
+        Effect.flatMap((status) =>
+          Effect.fail(makeNakafaAppError("exit", false, Number(status)))
+        )
+      ),
+      origin,
+    } satisfies RunningNakafa;
+  }
+);
+
+/** Inputs passed to the actual Nakafa process without writing an env file. */
+export type NakafaStartInput = Parameters<typeof startNakafa>[0];
