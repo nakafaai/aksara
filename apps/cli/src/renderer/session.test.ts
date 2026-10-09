@@ -41,9 +41,7 @@ function openSession(input: {
   readonly nakafaRoot: string;
   readonly selection: RendererSessionSelection;
 }) {
-  const capture: {
-    input?: Parameters<typeof NakafaApp.Service.start>[0];
-  } = {};
+  const start = vi.fn<Parameters<typeof makeApp>[0]>();
   return Effect.scoped(
     openRendererSession({
       cwd: input.aksaraRoot,
@@ -54,17 +52,17 @@ function openSession(input: {
         session.repositoryEvidence.pipe(
           Effect.map((evidence) => ({
             aksaraRoot: session.aksaraRoot,
-            capture,
             evidence,
             manifest: session.manifest,
             providerHost: session.provider.origin.hostname,
             selected: session.selected,
+            start,
           }))
         )
       )
     )
   ).pipe(
-    Effect.provideService(NakafaApp, makeApp(capture)),
+    Effect.provideService(NakafaApp, makeApp(start)),
     Effect.provideService(ExactProcess, exactProcess)
   );
 }
@@ -92,7 +90,7 @@ layer(NodeServices.layer)("renderer session", (it) => {
         expect(result.aksaraRoot).toBe(
           yield* fileSystem.realPath(repository.aksaraRoot)
         );
-        expect(result.capture.input?.root).toBe(
+        expect(result.start.mock.lastCall?.[0].root).toBe(
           yield* fileSystem.realPath(repository.nakafaRoot)
         );
         expect(result.evidence.aksara.dirty).toBe(false);
