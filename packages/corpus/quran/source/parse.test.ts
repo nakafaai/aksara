@@ -99,13 +99,11 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
         expect(
           Arr.reduce(surahs, 0, (count, surah) => count + surah.verses.length)
         ).toBe(6236);
+        const firstVerse = surahs[0]?.verses[0];
         expect(
-          Arr.sort(
-            Struct.keys(surahs[0]?.verses[0]?.translation ?? {}),
-            Order.String
-          )
+          Arr.sort(Struct.keys(firstVerse?.translation ?? {}), Order.String)
         ).toEqual(["de", "en", "id"]);
-        expect(surahs[0]?.verses[0]?.translation.de).toEqual({
+        expect(firstVerse?.translation.de).toEqual({
           footnotes: "",
           text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
         });

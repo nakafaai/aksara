@@ -163,18 +163,15 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
     let byteCount = 0;
     for (let number = 1; number <= 114; number += 1) {
       const name = `${number}.json`;
-      const bytes = yield* fileSystem
-        .readFile(
+      const bytes = yield* Effect.mapError(
+        fileSystem.readFile(
           path.join(sourceRoot, QURAN_SOURCE_POLICY.tafsir.directory, name)
-        )
-        .pipe(
-          Effect.mapError(
-            () =>
-              new QuranSourceFileError({
-                detail: `Could not read QuranEnc Tafsir source ${name}.`,
-              })
-          )
-        );
+        ),
+        () =>
+          new QuranSourceFileError({
+            detail: `Could not read QuranEnc Tafsir source ${name}.`,
+          })
+      );
       const text = yield* decodeSource(name, bytes);
       updateBundle(hash, name, bytes);
       byteCount += bytes.byteLength;

@@ -13,6 +13,7 @@ import {
   Order,
   Path,
   PlatformError,
+  pipe,
   Schema,
 } from "effect";
 import {
@@ -102,27 +103,17 @@ const loadRealQuestionCorpus = Effect.gen(function* () {
     yield* fileSystem.readDirectory(questionRoot, { recursive: true }),
     Order.String
   );
-  const packageFiles = yield* fileSystem.readDirectory(packageRoot, {
-    recursive: true,
-  });
-  const sourcePaths = Arr.sort(
-    Arr.map(
-      Arr.filter(
-        packageFiles,
-        (file) => file.endsWith(".ts") && !isInstalledFile(file)
-      ),
-      (file) => path.resolve(packageRoot, file)
-    ),
-    Order.String
+  const sourcePaths = pipe(
+    yield* fileSystem.readDirectory(packageRoot, { recursive: true }),
+    Arr.filter((file) => file.endsWith(".ts") && !isInstalledFile(file)),
+    Arr.map((file) => path.resolve(packageRoot, file)),
+    Arr.sort(Order.String)
   );
-  const promptPaths = Arr.sort(
-    Arr.map(
-      Arr.filter(entries, (entry) =>
-        QUESTION_PROMPT_PATTERN.test(path.basename(entry))
-      ),
-      (entry) => path.resolve(questionRoot, entry)
-    ),
-    Order.String
+  const promptPaths = pipe(
+    entries,
+    Arr.filter((entry) => QUESTION_PROMPT_PATTERN.test(path.basename(entry))),
+    Arr.map((entry) => path.resolve(questionRoot, entry)),
+    Arr.sort(Order.String)
   );
   const sourceTexts = yield* readTexts(sourcePaths);
   const promptTexts = yield* readTexts(promptPaths);
@@ -172,10 +163,9 @@ export const discoverSyntheticQuestionSources = Effect.fn(
 ) {
   const root = yield* corpusRoot;
   const banks = yield* realQuestionBanks;
-  return yield* discoverQuestionSources(root, banks).pipe(
-    Effect.provide(
-      makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
-    )
+  return yield* Effect.provide(
+    discoverQuestionSources(root, banks),
+    makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
   );
 });
 
