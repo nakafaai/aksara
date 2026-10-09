@@ -281,7 +281,7 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
       "rejects an incomplete Tafsir source inventory",
       (sources: RawSources) => ({
         ...sources,
-        tafsir: sources.tafsir.slice(0, -1),
+        tafsir: Arr.dropRight(sources.tafsir, 1),
       }),
       "QuranEnc tafsir is incomplete.",
     ],

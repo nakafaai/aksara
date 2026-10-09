@@ -123,7 +123,7 @@ export const resolveCurriculumMaterial = Effect.fn(
 
   const materialList = MutableList.make<LessonMaterialSource>();
   MutableList.append(materialList, firstMaterial);
-  for (const materialKey of node.materialKeys.slice(1)) {
+  for (const materialKey of Arr.drop(node.materialKeys, 1)) {
     const material = Option.getOrUndefined(
       HashMap.get(materialByKey, materialKey)
     );

@@ -16,7 +16,7 @@ function isArticleRoot(sourceRoot: string) {
   return (
     segments.length === 4 &&
     segments[0] === "articles" &&
-    Arr.every(segments.slice(1), isLowerKebab)
+    Arr.every(Arr.drop(segments, 1), isLowerKebab)
   );
 }
 

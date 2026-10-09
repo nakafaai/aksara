@@ -115,45 +115,50 @@ export const validateAssessmentSourceReadiness = Effect.fn(
   );
   for (const set of track.sets) {
     const setScope = `${source.examKey}:${track.key}:${set.key}`;
-    for (const [index, expected] of readiness.sections.entries()) {
-      const actual = yield* requireReadinessSection(
-        set.sections,
-        expected,
-        index,
-        setScope
-      );
-      const scope = `${setScope}:${expected.key}`;
-      yield* validateReadinessField(
-        actual.key,
-        expected.key,
-        "sectionKey",
-        scope
-      );
-      yield* validateReadinessField(
-        actual.order,
-        expected.order,
-        "order",
-        scope
-      );
-      yield* validateReadinessField(
-        actual.questionCount,
-        expected.questionCount.value,
-        "questionCount",
-        scope
-      );
-      yield* validateReadinessField(
-        actual.timeLimitSeconds,
-        expected.timeLimitSeconds.value,
-        "timeLimitSeconds",
-        scope
-      );
-      yield* validateReadinessField(
-        marksFact(actual.marks),
-        marksFact(expected.marks?.value),
-        "marks",
-        scope
-      );
-    }
+    yield* Effect.forEach(
+      readiness.sections,
+      (expected, index) =>
+        Effect.gen(function* () {
+          const actual = yield* requireReadinessSection(
+            set.sections,
+            expected,
+            index,
+            setScope
+          );
+          const scope = `${setScope}:${expected.key}`;
+          yield* validateReadinessField(
+            actual.key,
+            expected.key,
+            "sectionKey",
+            scope
+          );
+          yield* validateReadinessField(
+            actual.order,
+            expected.order,
+            "order",
+            scope
+          );
+          yield* validateReadinessField(
+            actual.questionCount,
+            expected.questionCount.value,
+            "questionCount",
+            scope
+          );
+          yield* validateReadinessField(
+            actual.timeLimitSeconds,
+            expected.timeLimitSeconds.value,
+            "timeLimitSeconds",
+            scope
+          );
+          yield* validateReadinessField(
+            marksFact(actual.marks),
+            marksFact(expected.marks?.value),
+            "marks",
+            scope
+          );
+        }),
+      { discard: true }
+    );
     yield* validateReadinessField(
       set.sections.length,
       readiness.sections.length,

@@ -289,14 +289,14 @@ export const loadPinnedQuranSources = Effect.fn(
     updateBundle(bundle, name, bytes);
     byteCount += bytes.byteLength;
   }
-  for (const [index, bytes] of tafsir.sourceBytes.entries()) {
+  Arr.forEach(tafsir.sourceBytes, (bytes, index) => {
     updateBundle(
       bundle,
       `${QURAN_SOURCE_POLICY.tafsir.name}/${index + 1}.json`,
       bytes
     );
     byteCount += bytes.byteLength;
-  }
+  });
   const summary = QuranSourceArtifactSchema.make({
     byteCount,
     digest: Sha256HashSchema.make(`sha256:${bundle.digest("hex")}`),
