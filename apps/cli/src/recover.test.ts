@@ -5,20 +5,18 @@ import { HttpClient } from "effect/http";
 import { runRecoverCommand } from "#cli/recover";
 import { captureClient } from "#test/http";
 
-interface RecoverCalls {
-  activationEndpoint: string;
-  activationToken: string;
-  fail: boolean;
-  input:
-    | { readonly recoveryId: string; readonly releaseId: string }
-    | undefined;
-  targetEndpoint: string;
-  targetTimeout: unknown;
-  targetToken: string;
-}
-
 const calls = vi.hoisted(
-  (): RecoverCalls => ({
+  (): {
+    activationEndpoint: string;
+    activationToken: string;
+    fail: boolean;
+    input:
+      | { readonly recoveryId: string; readonly releaseId: string }
+      | undefined;
+    targetEndpoint: string;
+    targetTimeout: unknown;
+    targetToken: string;
+  } => ({
     activationEndpoint: "",
     activationToken: "",
     fail: false,

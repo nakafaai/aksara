@@ -8,12 +8,19 @@ import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { ConfigProvider, Effect, Schema } from "effect";
+import {
+  ConfigProvider,
+  Effect,
+  MutableHashMap,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { HttpClient } from "effect/http";
 import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
 import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
+import { parityConfig } from "#test/parity";
 import {
   activeState,
   signedActiveState,
@@ -174,15 +181,6 @@ describe("complete publication parity", () => {
   );
 });
 
-const config = {
-  AKSARA_DEV_PUBLICATION_ENDPOINT:
-    "https://development.example.test/internal/content/releases",
-  AKSARA_DEV_PUBLICATION_TOKEN: "development-token",
-  AKSARA_PUBLICATION_ENDPOINT:
-    "https://production.example.test/internal/content/releases",
-  AKSARA_PUBLICATION_TOKEN: "production-token",
-};
-
 describe("authenticated parity command", () => {
   it.effect(
     "reads both targets with isolated credentials and verifies actual signatures",
@@ -201,7 +199,7 @@ describe("authenticated parity command", () => {
         const evidence = yield* runParityCommand(args).pipe(
           Effect.provideService(
             ConfigProvider.ConfigProvider,
-            ConfigProvider.fromUnknown(config)
+            ConfigProvider.fromUnknown(parityConfig)
           ),
           Effect.provideService(HttpClient.HttpClient, captured.client),
           Effect.provideService(ContentVerificationKeyResolver, resolver)
@@ -226,14 +224,15 @@ describe("authenticated parity command", () => {
   ] as const)("fails closed for %s target evidence", (failure) =>
     Effect.gen(function* () {
       const { value, resolver } = yield* signedActiveState(active);
-      const values = new Map(Object.entries(config));
+      const values = MutableHashMap.fromIterable(Rec.toEntries(parityConfig));
       if (failure === "missing") {
-        values.delete("AKSARA_DEV_PUBLICATION_TOKEN");
+        MutableHashMap.remove(values, "AKSARA_DEV_PUBLICATION_TOKEN");
       }
       if (failure === "aliased") {
-        values.set(
+        MutableHashMap.set(
+          values,
           "AKSARA_DEV_PUBLICATION_ENDPOINT",
-          config.AKSARA_PUBLICATION_ENDPOINT
+          parityConfig.AKSARA_PUBLICATION_ENDPOINT
         );
       }
       let response =
@@ -275,7 +274,7 @@ describe("authenticated parity command", () => {
       const error = yield* runParityCommand(args).pipe(
         Effect.provideService(
           ConfigProvider.ConfigProvider,
-          ConfigProvider.fromUnknown(Object.fromEntries(values))
+          ConfigProvider.fromUnknown(Rec.fromEntries(values))
         ),
         Effect.provideService(HttpClient.HttpClient, captured.client),
         Effect.provideService(ContentVerificationKeyResolver, resolver),

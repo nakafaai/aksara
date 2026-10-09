@@ -1,31 +1,16 @@
 import { createHash, generateKeyPairSync, randomBytes } from "node:crypto";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  type PreviewRendererSecret,
-  PreviewRendererSecretSchema,
-} from "@nakafa/aksara-contracts/preview/auth";
-import {
-  makeEd25519PublicationSigner,
-  type PublicationSigner,
-} from "@nakafa/aksara-publisher/signing/service";
+import { PreviewRendererSecretSchema } from "@nakafa/aksara-contracts/preview/auth";
+import { makeEd25519PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import { Effect, Redacted, Schema } from "effect";
 
-/** Independent bearer and HMAC values for one local renderer process. */
-export interface RendererCredentials {
-  readonly secret: Redacted.Redacted<PreviewRendererSecret>;
-  readonly token: Redacted.Redacted<string>;
-}
+const RendererCredentialsSchema = Schema.Struct({
+  secret: Schema.Redacted(PreviewRendererSecretSchema),
+  token: Schema.Redacted(Schema.String),
+});
 
-/** Ephemeral authentication and signing values scoped to one preview process. */
-export interface PreviewCredentials {
-  readonly contentRuntimeToken: Redacted.Redacted<string>;
-  readonly internalContentToken: Redacted.Redacted<string>;
-  readonly keyId: typeof SigningKeyIdSchema.Type;
-  readonly providerToken: Redacted.Redacted<string>;
-  readonly publicKeyPem: string;
-  readonly renderer: RendererCredentials;
-  readonly signer: PublicationSigner;
-}
+/** Independent bearer and HMAC values for one local renderer process. */
+export type RendererCredentials = typeof RendererCredentialsSchema.Type;
 
 /** Local Ed25519 key or bearer-token generation failed before serving. */
 export class PreviewCredentialError extends Schema.TaggedError<PreviewCredentialError>()(
@@ -84,5 +69,10 @@ export const makePreviewCredentials = Effect.fn(
     publicKeyPem: generated.publicKeyPem,
     renderer: generated.renderer,
     signer,
-  } satisfies PreviewCredentials;
+  };
 });
+
+/** Ephemeral authentication and signing values scoped to one preview process. */
+export type PreviewCredentials = Effect.Success<
+  ReturnType<typeof makePreviewCredentials>
+>;
