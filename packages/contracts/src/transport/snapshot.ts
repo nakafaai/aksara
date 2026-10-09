@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import {
@@ -53,7 +53,7 @@ function hasBoundSnapshotRows(input: {
   ];
   readonly snapshotId: typeof Sha256HashSchema.Type;
 }) {
-  return input.rows.every((row) => {
+  return Arr.every(input.rows, (row) => {
     if (row.family !== input.family) {
       return false;
     }

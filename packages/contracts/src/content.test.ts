@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Number as Num, Order, Schema } from "effect";
 import {
   CompiledContentPayloadSchema,
+  type ContentHeadIdentity,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,
@@ -49,7 +50,7 @@ const validRequest = {
   rendererDomain: "mathematics",
   rendererManifest: {
     base: ["BlockMath"],
-    domains: RENDERER_DOMAINS.map((name) => ({ components: [], name })),
+    domains: Arr.map(RENDERER_DOMAINS, (name) => ({ components: [], name })),
     format: "nakafa-mdx-renderer",
     hash: `sha256:${"a".repeat(64)}`,
     publishedDomains: ["mathematics"],
@@ -127,7 +128,8 @@ describe("content", () => {
         rendererDomain: "chemistry",
         rendererManifest: {
           ...validRequest.rendererManifest,
-          domains: validRequest.rendererManifest.domains.filter(
+          domains: Arr.filter(
+            validRequest.rendererManifest.domains,
             ({ name }) => name !== "chemistry"
           ),
         },
@@ -252,7 +254,10 @@ describe("content", () => {
       { artifactLocale: "en", contentKey: "test:b" },
     ];
 
-    expect([...heads].sort(compareContentHeads)).toEqual(pinned);
-    expect([...heads].reverse().sort(compareContentHeads)).toEqual(pinned);
+    const contentHeadOrder = Order.make<ContentHeadIdentity>((left, right) =>
+      Num.sign(compareContentHeads(left, right))
+    );
+    expect(Arr.sort(heads, contentHeadOrder)).toEqual(pinned);
+    expect(Arr.sort(Arr.reverse(heads), contentHeadOrder)).toEqual(pinned);
   });
 });

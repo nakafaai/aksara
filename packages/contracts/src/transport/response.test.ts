@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Option, Schema } from "effect";
 import { hash as manifestHash, releaseId } from "#contracts/test/request";
 import { evidence, receipt, successes } from "#contracts/test/response";
 import {
@@ -23,7 +23,12 @@ describe("publication responses", () => {
         expect(accepts(response), response.operation).toBe(true);
       }
       const decoded = yield* decodePublicationResponse(
-        successes.find(({ operation }) => operation === "stageSnapshot")
+        Option.getOrUndefined(
+          Arr.findFirst(
+            successes,
+            ({ operation }) => operation === "stageSnapshot"
+          )
+        )
       );
       expect(decoded).toMatchObject({ ok: true, operation: "stageSnapshot" });
     })

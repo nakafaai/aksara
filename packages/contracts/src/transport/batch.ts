@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
@@ -35,7 +35,8 @@ function hasBoundReleaseItems(input: {
   readonly releaseId: typeof ReleaseIdSchema.Type;
 }) {
   const [first] = input.items;
-  return input.items.every(
+  return Arr.every(
+    input.items,
     (item, offset) =>
       item.releaseId === input.releaseId && item.index === first.index + offset
   );
@@ -92,7 +93,8 @@ function hasBoundRouteItems(input: {
   ];
 }) {
   const [first] = input.routes;
-  return input.routes.every(
+  return Arr.every(
+    input.routes,
     (route, offset) =>
       route.releaseId === input.releaseId &&
       route.index === first.index + offset

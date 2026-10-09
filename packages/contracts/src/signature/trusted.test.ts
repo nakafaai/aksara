@@ -1,6 +1,6 @@
 import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import {
   ACTIVE_SIGNING_KEY_ID,
@@ -32,7 +32,8 @@ describe("trusted content keys", () => {
       },
     ]);
     expect(
-      TRUSTED_CONTENT_KEYS.every(
+      Arr.every(
+        TRUSTED_CONTENT_KEYS,
         ({ publicKeyPem }) =>
           createPublicKey(publicKeyPem).asymmetricKeyType === "ed25519"
       )
