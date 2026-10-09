@@ -5,11 +5,8 @@ import {
   ArcSweepDegreesSchema,
   GEOMETRY_TOLERANCE,
   hasUniquePositions,
-  MathAppearanceSchema,
   MathAxisRangeSchema,
-  MathLabelPlacementSchema,
   MathViewPaddingSchema,
-  MathVisualKeySchema,
   mathVisualIdentityIssues,
   type PlanePoint,
   PlanePointSchema,
@@ -17,12 +14,8 @@ import {
   samePlanePoint,
 } from "#contracts/math/base";
 import { planeBoundsIssues } from "#contracts/math/bounds";
+import { MathObjectFields, makeSharedMathShapes } from "#contracts/math/object";
 import { planeResolutionIssues } from "#contracts/math/resolution";
-
-const ObjectFields = {
-  appearance: MathAppearanceSchema,
-  id: MathVisualKeySchema,
-};
 
 /** Checks a plane polygon has non-zero signed area. */
 function hasPlaneArea(
@@ -71,75 +64,15 @@ function normalizedPlaneOffsets(
   return Arr.map(offsets, ({ x, y }) => ({ x: x / divisor, y: y / divisor }));
 }
 
-const PlanePointObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  at: PlanePointSchema,
-  kind: Schema.Literal("point"),
-});
-
-const PlanePathSchema = Schema.TupleWithRest(
-  Schema.Tuple([PlanePointSchema, PlanePointSchema]),
-  [PlanePointSchema]
-);
+const PlaneShapes = makeSharedMathShapes(PlanePointSchema, samePlanePoint);
 
 const PlaneShapeSchema = Schema.TupleWithRest(
   Schema.Tuple([PlanePointSchema, PlanePointSchema, PlanePointSchema]),
   [PlanePointSchema]
 );
 
-const PlaneLineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("line"),
-  through: Schema.Tuple([PlanePointSchema, PlanePointSchema]),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ through: [from, to] }) => !samePlanePoint(from, to), {
-      message: "Expected a line through two distinct positions.",
-    })
-  )
-);
-
-const PlaneRayObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  from: PlanePointSchema,
-  kind: Schema.Literal("ray"),
-  through: PlanePointSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ from, through }) => !samePlanePoint(from, through), {
-      message: "Expected a ray through a position distinct from its start.",
-    })
-  )
-);
-
-const PlaneSegmentObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  from: PlanePointSchema,
-  kind: Schema.Literal("segment"),
-  to: PlanePointSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ from, to }) => !samePlanePoint(from, to), {
-      message: "Expected a segment with distinct ends.",
-    })
-  )
-);
-
-const PlanePolylineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("polyline"),
-  vertices: PlanePathSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ vertices }) => hasUniquePositions(vertices, samePlanePoint),
-      { message: "Expected unique polyline vertices." }
-    )
-  )
-);
-
 const PlanePolygonObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   kind: Schema.Literal("polygon"),
   vertices: PlaneShapeSchema,
 }).pipe(
@@ -153,14 +86,14 @@ const PlanePolygonObjectSchema = Schema.Struct({
 );
 
 const PlaneCircleObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   center: PlanePointSchema,
   kind: Schema.Literal("circle"),
   radius: PositiveMeasureSchema,
 });
 
 const PlaneArcObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   center: PlanePointSchema,
   kind: Schema.Literal("arc"),
   radius: PositiveMeasureSchema,
@@ -169,7 +102,7 @@ const PlaneArcObjectSchema = Schema.Struct({
 });
 
 const PlaneQuadraticObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   coefficients: Schema.Struct({
     a: Schema.Finite.pipe(
       Schema.check(
@@ -190,13 +123,13 @@ const PlaneQuadraticObjectSchema = Schema.Struct({
 export const PlaneMathObjectSchema = Schema.Union([
   PlaneArcObjectSchema,
   PlaneCircleObjectSchema,
-  PlaneLineObjectSchema,
-  PlanePointObjectSchema,
+  PlaneShapes.line,
+  PlaneShapes.point,
   PlanePolygonObjectSchema,
-  PlanePolylineObjectSchema,
+  PlaneShapes.polyline,
   PlaneQuadraticObjectSchema,
-  PlaneRayObjectSchema,
-  PlaneSegmentObjectSchema,
+  PlaneShapes.ray,
+  PlaneShapes.segment,
 ]);
 export type PlaneMathObject = typeof PlaneMathObjectSchema.Type;
 
@@ -216,12 +149,7 @@ export const PlaneMathViewSchema = Schema.Struct({
 export type PlaneMathView = typeof PlaneMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
-export const PlaneLabelAnchorSchema = Schema.Struct({
-  at: PlanePointSchema,
-  key: MathVisualKeySchema,
-  objectId: MathVisualKeySchema,
-  placement: Schema.optionalKey(MathLabelPlacementSchema),
-});
+export const PlaneLabelAnchorSchema = PlaneShapes.labelAnchor;
 export type PlaneLabelAnchor = typeof PlaneLabelAnchorSchema.Type;
 
 /** Complete stable plane visual before rich labels are attached. */

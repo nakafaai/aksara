@@ -2,94 +2,27 @@ import { Schema } from "effect";
 
 import {
   hasUniquePositions,
-  MathAppearanceSchema,
   MathAxisRangeSchema,
-  MathLabelPlacementSchema,
   MathViewPaddingSchema,
-  MathVisualKeySchema,
   mathVisualIdentityIssues,
   PositiveMeasureSchema,
   SpacePointSchema,
   sameSpacePoint,
 } from "#contracts/math/base";
 import { spaceBoundsIssues } from "#contracts/math/bounds";
+import { MathObjectFields, makeSharedMathShapes } from "#contracts/math/object";
 import { spaceResolutionIssues } from "#contracts/math/resolution";
 import { hasCoplanarArea } from "#contracts/math/vector";
 
-const ObjectFields = {
-  appearance: MathAppearanceSchema,
-  id: MathVisualKeySchema,
-};
-
-const SpacePointObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  at: SpacePointSchema,
-  kind: Schema.Literal("point"),
-});
-
-const SpacePathSchema = Schema.TupleWithRest(
-  Schema.Tuple([SpacePointSchema, SpacePointSchema]),
-  [SpacePointSchema]
-);
+const SpaceShapes = makeSharedMathShapes(SpacePointSchema, sameSpacePoint);
 
 const SpaceShapeSchema = Schema.TupleWithRest(
   Schema.Tuple([SpacePointSchema, SpacePointSchema, SpacePointSchema]),
   [SpacePointSchema]
 );
 
-const SpaceLineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("line"),
-  through: Schema.Tuple([SpacePointSchema, SpacePointSchema]),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ through: [from, to] }) => !sameSpacePoint(from, to), {
-      message: "Expected a line through two distinct positions.",
-    })
-  )
-);
-
-const SpaceRayObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  from: SpacePointSchema,
-  kind: Schema.Literal("ray"),
-  through: SpacePointSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ from, through }) => !sameSpacePoint(from, through), {
-      message: "Expected a ray through a position distinct from its start.",
-    })
-  )
-);
-
-const SpaceSegmentObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  from: SpacePointSchema,
-  kind: Schema.Literal("segment"),
-  to: SpacePointSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ from, to }) => !sameSpacePoint(from, to), {
-      message: "Expected a segment with distinct ends.",
-    })
-  )
-);
-
-const SpacePolylineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("polyline"),
-  vertices: SpacePathSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ vertices }) => hasUniquePositions(vertices, sameSpacePoint),
-      { message: "Expected unique polyline vertices." }
-    )
-  )
-);
-
 const SpacePolygonObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   kind: Schema.Literal("polygon"),
   vertices: SpaceShapeSchema,
 }).pipe(
@@ -110,7 +43,7 @@ const SpacePolygonObjectSchema = Schema.Struct({
  * Axis-aligned cuboid whose length spans x, height spans y, and width spans z.
  */
 const SpaceCuboidObjectSchema = Schema.Struct({
-  ...ObjectFields,
+  ...MathObjectFields,
   center: SpacePointSchema,
   kind: Schema.Literal("cuboid"),
   size: Schema.Struct({
@@ -123,12 +56,12 @@ const SpaceCuboidObjectSchema = Schema.Struct({
 /** Mathematical objects supported by a Cartesian space scene. */
 export const SpaceMathObjectSchema = Schema.Union([
   SpaceCuboidObjectSchema,
-  SpaceLineObjectSchema,
-  SpacePointObjectSchema,
+  SpaceShapes.line,
+  SpaceShapes.point,
   SpacePolygonObjectSchema,
-  SpacePolylineObjectSchema,
-  SpaceRayObjectSchema,
-  SpaceSegmentObjectSchema,
+  SpaceShapes.polyline,
+  SpaceShapes.ray,
+  SpaceShapes.segment,
 ]);
 export type SpaceMathObject = typeof SpaceMathObjectSchema.Type;
 
@@ -173,12 +106,7 @@ export const SpaceMathViewSchema = Schema.Union([
 export type SpaceMathView = typeof SpaceMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
-export const SpaceLabelAnchorSchema = Schema.Struct({
-  at: SpacePointSchema,
-  key: MathVisualKeySchema,
-  objectId: MathVisualKeySchema,
-  placement: Schema.optionalKey(MathLabelPlacementSchema),
-});
+export const SpaceLabelAnchorSchema = SpaceShapes.labelAnchor;
 export type SpaceLabelAnchor = typeof SpaceLabelAnchorSchema.Type;
 
 /** Complete stable space visual before rich labels are attached. */
