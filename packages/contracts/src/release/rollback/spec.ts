@@ -50,32 +50,37 @@ export const RollbackAbsentStateSchema = Schema.Struct({
 });
 export type RollbackAbsentState = typeof RollbackAbsentStateSchema.Type;
 
+/** Builds the compact prior state of one content family from its head schema. */
+function headStateSchema<State extends string, Head extends Schema.Top>(
+  state: State,
+  head: Head
+) {
+  return Schema.Struct({ head, state: Schema.Literal(state) });
+}
+
 /** Compact authoritative prior article head protected by one rollback digest. */
-export const RollbackArticleStateSchema = Schema.Struct({
-  head: ArticleHeadSchema,
-  state: Schema.Literal("article"),
-});
+export const RollbackArticleStateSchema = headStateSchema(
+  "article",
+  ArticleHeadSchema
+);
 export type RollbackArticleState = typeof RollbackArticleStateSchema.Type;
 
 /** Compact authoritative prior head protected by one rollback snapshot digest. */
-export const RollbackMaterialStateSchema = Schema.Struct({
-  head: MaterialHeadSchema,
-  state: Schema.Literal("material"),
-});
+export const RollbackMaterialStateSchema = headStateSchema(
+  "material",
+  MaterialHeadSchema
+);
 export type RollbackMaterialState = typeof RollbackMaterialStateSchema.Type;
 
 /** Compact authoritative prior page head protected by one rollback digest. */
-export const RollbackPageStateSchema = Schema.Struct({
-  head: PageHeadSchema,
-  state: Schema.Literal("page"),
-});
+export const RollbackPageStateSchema = headStateSchema("page", PageHeadSchema);
 export type RollbackPageState = typeof RollbackPageStateSchema.Type;
 
 /** Compact authoritative prior question head protected by one rollback digest. */
-export const RollbackQuestionStateSchema = Schema.Struct({
-  head: QuestionHeadSchema,
-  state: Schema.Literal("question"),
-});
+export const RollbackQuestionStateSchema = headStateSchema(
+  "question",
+  QuestionHeadSchema
+);
 export type RollbackQuestionState = typeof RollbackQuestionStateSchema.Type;
 
 /** Complete compact state vocabulary authenticated for one future rollback. */
