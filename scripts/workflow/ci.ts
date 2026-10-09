@@ -19,7 +19,7 @@ const DOLLAR = "$";
 const TRIGGER_PATTERN =
   /^on:\n {2}pull_request:\n(?: {2}#[^\n]*\n)* {2}merge_group:\n {4}branches: \[main\]\n {4}types: \[checks_requested\]\n\npermissions:/mu;
 const CHECKS_PATTERN =
-  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm points[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm build/u;
+  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm points[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm native[\s\S]*pnpm typecheck[\s\S]*pnpm build/u;
 const JOBS = ["checks", "test", "verify"];
 const POINTS_STEP = Arr.join(
   [

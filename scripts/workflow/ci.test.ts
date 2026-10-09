@@ -4,6 +4,7 @@ import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import {
   MATRIX_COMMAND_STEP,
   MATRIX_KEY_EDITS,
+  NATIVE_STEP_EDITS,
   PUBLISHER_LEG,
   SILENT_PASS_EDITS,
   STRATEGY_BLOCK_PATTERN,
@@ -198,6 +199,15 @@ layer(workflowSourcesLayer)("CI workflow policy", (layered) => {
         "test:lesson-voice --filter=@nakafa/aksara-cli --concurrency=1"
       );
     rejects(moved, "Each CI test group must run exactly its own test targets");
+  });
+
+  it("runs the Effect-native source check between boundaries and typecheck", ({
+    source,
+    rejects,
+  }) => {
+    for (const { from, to } of NATIVE_STEP_EDITS) {
+      rejects(source.replace(from, to), "CI must run every repository gate");
+    }
   });
 
   it("runs root test tasks only with the root package selected", ({

@@ -5,6 +5,23 @@ const DOLLAR = "$";
 /** The step that runs one test group's matrix command in the checked-in CI workflow. */
 export const MATRIX_COMMAND_STEP = `run: ${DOLLAR}{{ matrix.command }}`;
 
+/** The step that runs the Effect-native source check, with the blank line that follows it. */
+const NATIVE_STEP =
+  "      - name: Check Effect-native source\n        run: pnpm native\n\n";
+
+/** The typecheck step of the checked-in CI workflow, with the blank line that follows it. */
+const TYPECHECK_STEP =
+  "      - name: Typecheck\n        run: pnpm typecheck\n\n";
+
+/** Edits that each remove the Effect-native source check, or move it after the typecheck. */
+export const NATIVE_STEP_EDITS = [
+  { from: NATIVE_STEP, to: "" },
+  {
+    from: `${NATIVE_STEP}${TYPECHECK_STEP}`,
+    to: `${TYPECHECK_STEP}${NATIVE_STEP}`,
+  },
+];
+
 /** Matches the strategy block of the test job, which one mutation removes. */
 export const STRATEGY_BLOCK_PATTERN = / {4}strategy:[\s\S]*?\n {4}steps:/u;
 
