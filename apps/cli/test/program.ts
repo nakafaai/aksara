@@ -10,17 +10,11 @@ const ReleaseCommandSchema = Schema.Struct({
   releaseId: Schema.String,
 });
 
-/** Shared release-command observation recorded by CLI dispatch tests. */
-export type ReleaseCommand = typeof ReleaseCommandSchema.Type;
-
 const RecoveryCommandSchema = Schema.Struct({
   command: Schema.String,
   recoveryId: Schema.String,
   releaseId: Schema.String,
 });
-
-/** Recovery command observation with its exact protected recovery identity. */
-export type RecoveryCommand = typeof RecoveryCommandSchema.Type;
 
 const ProgramCallsSchema = Schema.Struct({
   abort: Schema.mutableKey(Schema.UndefinedOr(ReleaseCommandSchema)),

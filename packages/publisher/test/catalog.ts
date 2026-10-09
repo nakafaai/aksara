@@ -53,25 +53,6 @@ export const catalogSnapshotEvidence = {
   },
 };
 
-/** Empty candidate evidence for active full-catalog validation tests. */
-export const emptyCandidateValidationEvidence = {
-  articleCount: 0,
-  compiledBodyCount: 0,
-  glossaryCount: 0,
-  materialCount: 0,
-  pageCount: 0,
-  programCurriculumLocaleCount: 0,
-  programCurriculumRouteCount: 0,
-  programLocaleCount: 0,
-  programReadyLocaleCount: 0,
-  questionCount: 0,
-  quranProvenanceDigest: CATALOG_HASH,
-  quranProvenanceStatus: "approved" as const,
-  quranRowCount: 0,
-  totalCount: 0,
-  tryoutCatalogCount: 0,
-};
-
 const TestCatalogCountsSchema = Schema.Struct({
   article: Schema.Finite,
   material: Schema.Finite,

@@ -122,42 +122,6 @@ export function gitBundle(
   );
 }
 
-/** Creates one exact forward-rollback bundle for recovery tests. */
-export function rollbackBundle(
-  id: string,
-  rollbackOf: ReleaseId,
-  baseManifestHash = HASH
-) {
-  return bundleFromManifest(
-    ContentReleaseManifestSchema.make({
-      activeAppLocales: ACTIVE_APP_LOCALES,
-      baseActiveAppLocales: ACTIVE_APP_LOCALES,
-      baseManifestHash,
-      baseReleaseId: rollbackOf,
-      baseResultCount: 0,
-      baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      deleteCount: 0,
-      format: "localized-content-release",
-      itemCount: 0,
-      itemsDigest: HASH,
-      origin: { kind: "rollback", releaseId: rollbackOf },
-      projectionCount: 0,
-      projectionDigest: OTHER_HASH,
-      releaseId: releaseId(id),
-      rendererManifestHash: RENDERER_MANIFEST.hash,
-      resultCount: 0,
-      resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
-      rollbackCount: 0,
-      rollbackDigest: HASH,
-      routeCount: 0,
-      routeDigest: HASH,
-      scope: FUNCTION_SCOPE,
-      snapshots: inheritContentSnapshots(null),
-      upsertCount: 0,
-    })
-  );
-}
-
 /** Creates the exact verified inverse retained for one candidate or active bundle. */
 export function recoveryBundle(id: string, target: ContentReleaseBundle) {
   const targetManifest = target.release.manifest;
