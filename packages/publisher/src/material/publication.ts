@@ -3,7 +3,10 @@ import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspe
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  type MaterialHead,
+  MaterialHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -56,9 +59,12 @@ export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFami
   }
 ) {}
 
-interface HeadOrderState {
-  readonly previous: MaterialHead | undefined;
-}
+const HeadOrderStateSchema = Schema.Struct({
+  previous: Schema.UndefinedOr(MaterialHeadSchema),
+});
+
+/** The previous material head in the streamed order, or undefined before the first one. */
+type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative publication records. */
 export type MaterialPublicationStreamError<E> =

@@ -1,6 +1,13 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  HashSet,
+  MutableHashMap,
+  Option,
+} from "effect";
 import {
   MaterialPlanTestFixtures,
   materialPlanFingerprintCases,
@@ -40,14 +47,14 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
       original.decodeMaterialRegistry(input).pipe(
         Effect.map((entries) =>
           entries
-            .filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            .filter(({ sourcePath }) => HashSet.has(sourcePaths, sourcePath))
             .map((entry) =>
               registryState.changedOrder &&
               entry.rendererDomain === "mathematics" &&
@@ -87,16 +94,18 @@ layer(materialPlanTestLayer)("material plan", (it) => {
     Effect.gen(function* () {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
       const fixture = yield* MaterialTestFixtures;
-      const sources = new Map(fixture.sources);
+      const sources = MutableHashMap.fromIterable(fixture.sources);
       const absolutePath = yield* Effect.fromNullishOr(
-        fixture.absolutePaths.get(englishPath)
+        Option.getOrUndefined(HashMap.get(fixture.absolutePaths, englishPath))
       );
-      const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${english}\n`);
+      const english = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+      );
+      MutableHashMap.set(sources, absolutePath, `${english}\n`);
 
       const records = yield* collectMaterialPublication({
         heads: publishedHeads,
-        sources,
+        sources: Arr.fromIterable(sources),
       });
 
       expect(records).toHaveLength(1);
@@ -231,12 +240,16 @@ layer(materialPlanTestLayer)("material plan", (it) => {
       Effect.gen(function* () {
         const { publishedHeads } = yield* MaterialPlanTestFixtures;
         const fixture = yield* MaterialTestFixtures;
-        const sources = new Map(fixture.sources);
+        const sources = MutableHashMap.fromIterable(fixture.sources);
         const absolutePath = yield* Effect.fromNullishOr(
-          fixture.absolutePaths.get(atomEnglishPath)
+          Option.getOrUndefined(
+            HashMap.get(fixture.absolutePaths, atomEnglishPath)
+          )
         );
-        const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
-        sources.set(absolutePath, `${source}\n`);
+        const source = yield* Effect.fromNullishOr(
+          Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+        );
+        MutableHashMap.set(sources, absolutePath, `${source}\n`);
 
         const scope = PublicationScopeSchema.make({
           families: ["page"],
@@ -245,12 +258,12 @@ layer(materialPlanTestLayer)("material plan", (it) => {
         const records = yield* collectMaterialPublication({
           heads: publishedHeads,
           scope,
-          sources,
+          sources: Arr.fromIterable(sources),
         });
         const result = yield* collectMaterialResult({
           heads: publishedHeads,
           scope,
-          sources,
+          sources: Arr.fromIterable(sources),
         });
 
         expect(records).toEqual([]);

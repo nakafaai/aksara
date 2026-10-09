@@ -3,7 +3,7 @@ import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Schema } from "effect";
+import { Context, Effect, HashSet, Layer, Schema } from "effect";
 import {
   collectMaterialRoutes,
   materialTestLayer,
@@ -17,7 +17,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
@@ -25,7 +25,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            entries.filter(({ sourcePath }) =>
+              HashSet.has(sourcePaths, sourcePath)
+            )
           )
         ),
   };

@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, Path } from "effect";
+import { Effect, HashMap, MutableHashMap, Option, Path } from "effect";
 import {
   inspectMaterialDocument,
   loadMaterialDocument,
@@ -33,10 +33,7 @@ layer(materialTestLayer)("material document", (it) => {
         const error = yield* loadMaterialDocument(
           fixture.checkoutRoot,
           entry
-        ).pipe(
-          Effect.provide([testFileLayer(new Map()), Path.layer]),
-          Effect.flip
-        );
+        ).pipe(Effect.provide([testFileLayer([]), Path.layer]), Effect.flip);
 
         expect(error).toMatchObject({
           _tag: "MaterialSourceError",
@@ -113,14 +110,20 @@ layer(materialTestLayer)("material document", (it) => {
         const fixture = yield* MaterialTestFixtures;
         const entry = yield* requireEnglishEntry();
         const absolutePath = yield* Effect.fromNullishOr(
-          fixture.absolutePaths.get(englishPath)
+          Option.getOrUndefined(HashMap.get(fixture.absolutePaths, englishPath))
         );
         const authored = yield* Effect.fromNullishOr(
-          fixture.sources.get(absolutePath)
+          Option.getOrUndefined(
+            MutableHashMap.get(
+              MutableHashMap.fromIterable(fixture.sources),
+              absolutePath
+            )
+          )
         );
         /** Adds one search title line to the authored lesson metadata. */
         const withSearchTitle = (title: string) =>
-          new Map(fixture.sources).set(
+          MutableHashMap.set(
+            MutableHashMap.fromIterable(fixture.sources),
             absolutePath,
             authored.replace(
               '  title: "Function Concept",',

@@ -2,10 +2,7 @@ import {
   type CompiledContentResult,
   compileContent,
 } from "@nakafa/aksara-compiler/compile";
-import {
-  type ContentSourceInspection,
-  inspectContentSource,
-} from "@nakafa/aksara-compiler/inspect";
+import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
@@ -36,14 +33,6 @@ export class MaterialSourceError extends Schema.TaggedError<MaterialSourceError>
   "MaterialSourceError",
   { cause: Schema.Unknown, checkoutRoot: Schema.String }
 ) {}
-
-/** Lightweight material facts sufficient to decide whether compilation is needed. */
-export interface InspectedMaterialDocument {
-  readonly inspection: ContentSourceInspection;
-  readonly projection: MaterialLessonProjection;
-  readonly projectionHash: ReturnType<typeof hashContentProjection>;
-  readonly source: MaterialDocumentSource;
-}
 
 /** Wraps every registry and filesystem failure at the checkout source seam. */
 export function mapMaterialSourceError(checkoutRoot: string) {
@@ -118,8 +107,13 @@ export const inspectMaterialDocument = Effect.fn(
     projection,
     projectionHash: hashContentProjection(projection),
     source,
-  } satisfies InspectedMaterialDocument;
+  };
 });
+
+/** Lightweight material facts sufficient to decide whether compilation is needed. */
+export type InspectedMaterialDocument = Effect.Success<
+  ReturnType<typeof inspectMaterialDocument>
+>;
 
 /** Binds compiled output to its registry-owned change and projection. */
 function makeMaterialRecord(

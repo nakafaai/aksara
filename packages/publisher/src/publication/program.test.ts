@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, Path, Stream } from "effect";
+import { Effect, HashMap, MutableHashMap, Option, Path, Stream } from "effect";
 
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -96,6 +96,7 @@ const publishMaterialRelease = Effect.fn("MaterialProgramTest.publishRelease")(
             ...emptySnapshotSources,
           });
           const state = makeTarget(prepared);
+          const sources = MutableHashMap.fromIterable(fixture.sources);
           const source = PublicationSource.of({
             loadExactRevision: ({ items }) =>
               items.pipe(
@@ -105,13 +106,15 @@ const publishMaterialRelease = Effect.fn("MaterialProgramTest.publishRelease")(
                       "Exact-Git source requested for a test tombstone."
                     );
                   }
-                  const absolutePath = fixture.absolutePaths.get(
-                    item.change.sourcePath
+                  const absolutePath = Option.getOrUndefined(
+                    HashMap.get(fixture.absolutePaths, item.change.sourcePath)
                   );
                   const rawMdx =
                     absolutePath === undefined
                       ? undefined
-                      : fixture.sources.get(absolutePath);
+                      : Option.getOrUndefined(
+                          MutableHashMap.get(sources, absolutePath)
+                        );
                   if (rawMdx === undefined) {
                     return Effect.die(
                       `Missing exact test source ${item.change.sourcePath}.`
