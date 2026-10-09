@@ -19,10 +19,12 @@ import {
 } from "#publisher/rollback/errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
-interface RollbackCursor {
-  readonly afterIndex: number;
-  readonly total: number;
-}
+const RollbackCursorSchema = Schema.Struct({
+  afterIndex: Schema.Finite,
+  total: Schema.Finite,
+});
+
+type RollbackCursor = typeof RollbackCursorSchema.Type;
 
 /** Strictly decodes one unknown target response with no excess properties. */
 function decodePage(source: unknown, afterIndex: number) {

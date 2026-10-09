@@ -1,4 +1,4 @@
-import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
@@ -7,7 +7,7 @@ import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapsho
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { FileSystem, Path } from "effect";
-import { Effect, type Scope, Stream } from "effect";
+import { Effect, Schema, type Scope, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
 import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -53,13 +53,15 @@ type ResultCatalogStream = ReturnType<
   typeof mergeRollbackResult<ReplaySpoolError, never, ReplaySpoolError, never>
 >;
 
+const PrepareRollbackInputSchema = Schema.Struct({
+  proofBundle: Schema.Unknown,
+  releaseId: ReleaseIdSchema,
+  rendererManifest: Schema.Unknown,
+  rollbackOf: ReleaseIdSchema,
+});
+
 /** Exact signed proof and identities for one forward rollback. */
-export interface PrepareRollbackInput {
-  readonly proofBundle: unknown;
-  readonly releaseId: ReleaseId;
-  readonly rendererManifest: unknown;
-  readonly rollbackOf: ReleaseId;
-}
+export type PrepareRollbackInput = typeof PrepareRollbackInputSchema.Type;
 
 /** Every typed failure surfaced while authenticating and deriving a rollback. */
 export type PrepareRollbackError =

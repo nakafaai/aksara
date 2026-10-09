@@ -9,24 +9,40 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import {
   type ContentHead,
+  ContentHeadSchema,
   canonicalizeContentHead,
 } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { Effect, Option, Result, Schema, Stream, Tuple } from "effect";
+import {
+  Effect,
+  MutableHashSet,
+  Option,
+  Result,
+  Schema,
+  Stream,
+  Tuple,
+} from "effect";
 import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
 import {
   type DerivedRollbackRecord,
+  DerivedRollbackRecordSchema,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
 
-type CatalogMerge =
-  | { readonly active: ContentHead; readonly kind: "active" }
-  | {
-      readonly active: ContentHead;
-      readonly kind: "both";
-      readonly transition: DerivedRollbackRecord;
-    }
-  | { readonly kind: "transition"; readonly transition: DerivedRollbackRecord };
+const CatalogMergeSchema = Schema.Union([
+  Schema.Struct({ active: ContentHeadSchema, kind: Schema.Literal("active") }),
+  Schema.Struct({
+    active: ContentHeadSchema,
+    kind: Schema.Literal("both"),
+    transition: DerivedRollbackRecordSchema,
+  }),
+  Schema.Struct({
+    kind: Schema.Literal("transition"),
+    transition: DerivedRollbackRecordSchema,
+  }),
+]);
+
+type CatalogMerge = typeof CatalogMergeSchema.Type;
 
 /** A transition's signed current state disagrees with the active catalog. */
 export class RollbackCatalogStateMismatchError extends Schema.TaggedError<RollbackCatalogStateMismatchError>()(
@@ -96,7 +112,10 @@ function headFromSnapshot(snapshot: RollbackSnapshotState) {
 }
 
 /** Rejects duplicate artifactLocale-specific routes across the complete result. */
-function validateResultRoute(routes: Set<string>, head: ContentHead) {
+function validateResultRoute(
+  routes: MutableHashSet.MutableHashSet<string>,
+  head: ContentHead
+) {
   if (head.publicPath === undefined) {
     return Effect.succeed(Tuple.make(routes, [head]));
   }
@@ -104,7 +123,7 @@ function validateResultRoute(routes: Set<string>, head: ContentHead) {
     appLocale: AppLocaleSchema.make(head.artifactLocale),
     publicPath: head.publicPath,
   });
-  if (routes.has(identity)) {
+  if (MutableHashSet.has(routes, identity)) {
     return Effect.fail(
       new RollbackCatalogRouteError({
         appLocale: AppLocaleSchema.make(head.artifactLocale),
@@ -112,7 +131,7 @@ function validateResultRoute(routes: Set<string>, head: ContentHead) {
       })
     );
   }
-  routes.add(identity);
+  MutableHashSet.add(routes, identity);
   return Effect.succeed(Tuple.make(routes, [head]));
 }
 
@@ -141,6 +160,9 @@ export function mergeRollbackResult<E1, R1, E2, R2>(input: {
   }).pipe(
     Stream.mapEffect(resolveMerge),
     Stream.filterMap((head) => Result.fromOption(head, () => undefined)),
-    Stream.mapAccumEffect(() => new Set<string>(), validateResultRoute)
+    Stream.mapAccumEffect(
+      () => MutableHashSet.empty<string>(),
+      validateResultRoute
+    )
   );
 }

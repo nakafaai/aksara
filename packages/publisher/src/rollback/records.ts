@@ -17,7 +17,7 @@ import {
   isRollbackUpsert,
   type RollbackRecord,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema, Stream } from "effect";
 import {
   type ReleaseArtifactMismatchError,
@@ -34,13 +34,16 @@ type ArtifactVerificationContext = Effect.Services<
   | ReturnType<typeof verifySignedContentArtifactIntegrity>
 >;
 
+const RollbackArtifactPolicySchema = Schema.Union([
+  Schema.Struct({ kind: Schema.Literal("integrity") }),
+  Schema.Struct({
+    kind: Schema.Literal("compatible"),
+    rendererManifest: RendererManifestEnvelopeSchema,
+  }),
+]);
+
 /** Explicit authentication policy for one side of a rollback transition. */
-export type RollbackArtifactPolicy =
-  | { readonly kind: "integrity" }
-  | {
-      readonly kind: "compatible";
-      readonly rendererManifest: RendererManifestEnvelope;
-    };
+export type RollbackArtifactPolicy = typeof RollbackArtifactPolicySchema.Type;
 
 const DerivedRollbackDeleteItemSchema = Schema.Struct({
   change: ContentDeleteSchema,
