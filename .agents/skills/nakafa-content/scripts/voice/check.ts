@@ -3,7 +3,7 @@
 import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
-import { Effect, FileSystem } from "effect";
+import { Console, Effect, FileSystem, Schema } from "effect";
 import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
@@ -188,66 +188,58 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
   }
 );
 
+/** Two-space indented JSON text, the bytes JSON.stringify(value, null, 2) writes. */
+const encodePrettyJson = Schema.encodeSync(
+  Schema.fromJsonString(Schema.Unknown, { space: 2 })
+);
+
 /** Prints one report and returns the stable process exit code. */
 const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
   options: CliOptions,
   report: LessonVoiceReport
 ) {
-  // Dynamic global dispatch stays on the globals (not the Console service,
-  // which the Effect test runtime routes to TestConsole): the suite captures
-  // output by reassigning console.log/console.error per test.
   const blockingIssues = options.strictReview
     ? report.issues
     : report.issues.filter(isBlockingLessonVoiceIssue);
   const reviewIssueCount = report.issues.length - blockingIssues.length;
 
   if (options.format === "json") {
-    yield* Effect.sync(() =>
-      console.log(
-        JSON.stringify(
-          {
-            ...report,
-            blockingIssueCount: blockingIssues.length,
-            reviewIssueCount,
-          },
-          null,
-          2
-        )
-      )
+    yield* Console.log(
+      encodePrettyJson({
+        ...report,
+        blockingIssueCount: blockingIssues.length,
+        reviewIssueCount,
+      })
     );
   } else if (report.issues.length === 0) {
-    yield* Effect.sync(() =>
-      console.log(`Lesson voice check passed for ${report.fileCount} files.`)
+    yield* Console.log(
+      `Lesson voice check passed for ${report.fileCount} files.`
     );
   } else {
     const summary = options.strictReview
       ? `Lesson voice strict review found ${blockingIssues.length} issue(s) in ${report.fileCount} files:`
       : `Lesson voice check found ${blockingIssues.length} blocking issue(s) and ${reviewIssueCount} review item(s) in ${report.fileCount} files:`;
-    yield* Effect.sync(() => console.error(summary));
+    yield* Console.error(summary);
     for (const issue of report.issues) {
       const severity =
         options.strictReview || isBlockingLessonVoiceIssue(issue)
           ? "error"
           : "review";
       const line = `${issue.file}:${issue.line}:${issue.column} [${severity}] [${issue.rule}] ${issue.excerpt}`;
-      yield* Effect.sync(() => console.error(line));
+      yield* Console.error(line);
     }
   }
   const { pedagogy } = report;
   if (options.format === "text" && pedagogy) {
     for (const section of pedagogy) {
       if (section.signals.length > 0) {
-        yield* Effect.sync(() =>
-          console.log(
-            `${section.file}:${section.line} [manual] ${section.signals.join(", ")}: ${section.heading}`
-          )
+        yield* Console.log(
+          `${section.file}:${section.line} [manual] ${section.signals.join(", ")}: ${section.heading}`
         );
       }
     }
-    yield* Effect.sync(() =>
-      console.log(
-        `Inventoried ${pedagogy.length} sections. These signals require contextual review, not automatic edits; exit status covers deterministic findings only.`
-      )
+    yield* Console.log(
+      `Inventoried ${pedagogy.length} sections. These signals require contextual review, not automatic edits; exit status covers deterministic findings only.`
     );
   }
   return blockingIssues.length === 0 ? 0 : 1;
@@ -269,7 +261,7 @@ export const runMain = Effect.fn("LessonVoiceCheck.runMain")(function* (
   return yield* Effect.provide(
     runCli(arguments_).pipe(
       Effect.catchTag("LessonVoiceCheckError", (error) =>
-        Effect.sync(() => console.error(error.detail)).pipe(Effect.as(2))
+        Console.error(error.detail).pipe(Effect.as(2))
       )
     ),
     NodeFileSystem.layer
