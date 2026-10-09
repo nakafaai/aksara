@@ -23,31 +23,31 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "effect",
     reason:
       "The contracts and both consumers share one exact Effect v4 peer cohort.",
     registry: "effect@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason: "All Effect ecosystem packages must use one exact cohort.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason: "The test adapter must match the installed Effect cohort.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
