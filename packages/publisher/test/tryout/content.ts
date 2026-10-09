@@ -7,7 +7,7 @@ import {
 } from "@nakafa/aksara-contracts/question/item";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { Effect, Path, Stream } from "effect";
+import { Effect, MutableHashMap, Option, Path, Stream } from "effect";
 import { inspectQuestionDocument } from "#publisher/question/document";
 import type { BoundTryoutPlacement } from "#publisher/tryout/bind";
 import { bindTryoutContent } from "#publisher/tryout/content";
@@ -112,7 +112,7 @@ export const collectEnrichedTryoutContent = Effect.fn(
     path.resolve(checkoutRoot, questionEntry.sourcePath)
   ).pipe(Effect.provide(Path.layer));
   const questionSource = yield* Effect.fromNullishOr(
-    sourceByPath.get(questionPath)
+    Option.getOrUndefined(MutableHashMap.get(sourceByPath, questionPath))
   );
   const modifiedQuestionSource = questionSource
     .replace(DATE_MODIFIED_METADATA, "")

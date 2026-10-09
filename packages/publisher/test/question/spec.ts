@@ -7,7 +7,7 @@ import {
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, FileSystem, Path, Stream } from "effect";
+import { Effect, FileSystem, MutableHashMap, Path, Stream } from "effect";
 import { prepareQuestionPublication } from "#publisher/question/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
@@ -40,7 +40,7 @@ export const questionItem = firstSource.item;
 export const questionPaths = firstSource.files.map(
   (file) => `${firstSource.sourceRoot}/${file}`
 );
-export const sourceByPath = new Map(
+export const sourceByPath = MutableHashMap.fromIterable(
   await Effect.runPromise(
     Effect.forEach(questionPaths, (sourcePath) =>
       Effect.gen(function* () {
