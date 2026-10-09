@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import { layer as fileSystemLayer } from "@effect/platform-node/NodeFileSystem";
 import { layer as pathLayer } from "@effect/platform-node/NodePath";
 import { runMain } from "@effect/platform-node/NodeRuntime";
-import { Effect, FileSystem, Layer, Schema } from "effect";
+import { Effect, FileSystem, Layer, Record as Rec, Schema } from "effect";
 import { build } from "esbuild";
 import { generateBundledNotice } from "#scripts/notice";
 
@@ -126,7 +126,7 @@ const buildCli = Effect.fn("AksaraCliBuild.build")(function* () {
       }),
   });
   const notice = yield* generateBundledNotice(
-    Object.keys(result.metafile.inputs),
+    Rec.keys(result.metafile.inputs),
     packageRoot
   ).pipe(Effect.mapError(buildError("notice")));
   const releaseManifest = {
