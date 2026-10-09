@@ -278,4 +278,17 @@ describe("preview HTTP transport", () => {
     },
     30_000
   );
+
+  it.live("sends a keep-alive on the real clock", () =>
+    Effect.gen(function* () {
+      const state = yield* makeState();
+      const { origin } = yield* openPreviewHttpServer(state, 20);
+      const reader = yield* openEventStream(origin);
+      const readEvent = makeEventReader(reader);
+
+      expect(yield* readEvent()).toContain("event: update\n");
+      expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
+      yield* cancelProviderEvent(reader);
+    })
+  );
 });
