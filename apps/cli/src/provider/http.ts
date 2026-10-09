@@ -107,18 +107,17 @@ function eventJson(manifest: LocalPreviewManifest) {
   );
 }
 
-/** Writes one keep-alive line after each full interval until interruption; a failed write is logged. */
+/**
+ * Writes one keep-alive line after each full interval until its fiber is
+ * interrupted. A write to a peer that is gone does not throw: Node destroys the
+ * response and emits `close`, and the `close` handler interrupts this fiber.
+ */
 const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
   (response: ServerResponse, intervalMs: number) => {
     const interval = Duration.millis(intervalMs);
     return Effect.sync(() => response.write(PREVIEW_HEARTBEAT)).pipe(
       Effect.repeat(Schedule.spaced(interval)),
-      Effect.delay(interval),
-      Effect.catchDefect((defect) =>
-        Effect.logWarning(
-          `Preview keep-alive stopped after a failed write: ${String(defect)}`
-        )
-      )
+      Effect.delay(interval)
     );
   }
 );

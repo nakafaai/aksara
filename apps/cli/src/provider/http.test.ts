@@ -8,7 +8,7 @@ import {
   LocalPreviewManifestSchema,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { Effect, HashMap, Logger, Schema } from "effect";
+import { Effect, HashMap, Schema } from "effect";
 import { TestClock } from "effect/testing";
 import {
   PREVIEW_EVENTS_PATH,
@@ -231,50 +231,6 @@ describe("preview HTTP transport", () => {
         yield* TestClock.adjust(30);
         expect(countLines()).toBe(2);
       }),
-    30_000
-  );
-
-  it.effect(
-    "logs a failed keep-alive write before its heartbeat stops",
-    () => {
-      const logs: string[] = [];
-      return Effect.gen(function* () {
-        const state = yield* makeState();
-        let keepAliveAttempts = 0;
-        const { origin, server } = yield* openPreviewHttpServer(state, 10);
-        server.on("request", (_request, response) => {
-          response.write = (chunk: string | Uint8Array) => {
-            if (chunk === KEEP_ALIVE_LINE) {
-              keepAliveAttempts += 1;
-              throw new Error("socket write failed");
-            }
-            return true;
-          };
-        });
-        const reader = yield* openEventStream(origin);
-        const readEvent = makeEventReader(reader);
-
-        expect(yield* readEvent()).toContain("event: update\n");
-        yield* TestClock.adjust(10);
-        yield* waitFor(() => {
-          expect(keepAliveAttempts).toBe(1);
-          expect(logs).toEqual([
-            expect.stringContaining("socket write failed"),
-          ]);
-        });
-        yield* TestClock.adjust(20);
-        expect(keepAliveAttempts).toBe(1);
-        yield* cancelProviderEvent(reader);
-      }).pipe(
-        Effect.provide(
-          Logger.layer([
-            Logger.make(({ message }) => {
-              logs.push(String(message));
-            }),
-          ])
-        )
-      );
-    },
     30_000
   );
 
