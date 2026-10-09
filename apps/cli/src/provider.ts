@@ -194,7 +194,8 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
     };
     let generation = 0;
     const token = Redacted.value(input.token);
-    const http = makePreviewHttp({ readState: () => state, token });
+    const context = yield* Effect.context<never>();
+    const http = makePreviewHttp({ context, readState: () => state, token });
     const server = createServer(http.handle);
     const address = yield* Effect.uninterruptibleMask((restore) =>
       restore(listenLoopback(server)).pipe(

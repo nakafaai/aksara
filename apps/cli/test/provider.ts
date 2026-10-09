@@ -257,8 +257,10 @@ export const openPreviewHttpServer = Effect.fn(
 )((state: PreviewHttpState, heartbeatIntervalMs?: number) =>
   Effect.acquireRelease(
     Effect.gen(function* () {
+      const context = yield* Effect.context<never>();
       const http = makePreviewHttp({
         ...(heartbeatIntervalMs === undefined ? {} : { heartbeatIntervalMs }),
+        context,
         readState: () => state,
         token: PREVIEW_PROVIDER_TEST_TOKEN,
       });

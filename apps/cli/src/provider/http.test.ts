@@ -1,3 +1,4 @@
+import { ServerResponse } from "node:http";
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { localPreviewArtifactPath } from "@nakafa/aksara-contracts/preview/artifact";
@@ -8,6 +9,7 @@ import {
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { Effect, HashMap, Schema } from "effect";
+import { TestClock } from "effect/testing";
 import {
   PREVIEW_EVENTS_PATH,
   PREVIEW_MANIFEST_PATH,
@@ -116,6 +118,30 @@ const waitFor = Effect.fn("AksaraCliTest.waitForPreviewHttpAssertion")(
     })
 );
 
+const KEEP_ALIVE_LINE = ": keep-alive\n\n";
+
+/** Counts keep-alive lines written to any response until its scope closes. */
+const keepAliveLineCounter = Effect.acquireRelease(
+  Effect.sync(() => vi.spyOn(ServerResponse.prototype, "write")),
+  (spy) => Effect.sync(() => spy.mockRestore())
+).pipe(
+  Effect.map(
+    (spy) => () =>
+      spy.mock.calls.filter(([chunk]) => chunk === KEEP_ALIVE_LINE).length
+  )
+);
+
+/** Opens one authenticated event stream and returns its raw body reader. */
+const openEventStream = Effect.fn("AksaraCliTest.openPreviewEventStream")(
+  function* (origin: URL) {
+    const events = yield* requestPreviewHttp(
+      new URL(PREVIEW_EVENTS_PATH, origin),
+      { headers: { authorization: `Bearer ${PREVIEW_PROVIDER_TEST_TOKEN}` } }
+    );
+    return yield* openPreviewHttpReader(events);
+  }
+);
+
 describe("preview HTTP transport", () => {
   it.live(
     "serves every immutable hash entry and conflicts on unknown hashes",
@@ -202,50 +228,68 @@ describe("preview HTTP transport", () => {
     30_000
   );
 
-  it.live(
+  it.effect(
     "keeps an idle event stream alive without publishing an update",
     () =>
       Effect.gen(function* () {
         const state = yield* makeState();
-        const { clearIntervalSpy, setIntervalSpy } =
-          yield* Effect.acquireRelease(
-            Effect.sync(() => ({
-              clearIntervalSpy: vi.spyOn(globalThis, "clearInterval"),
-              setIntervalSpy: vi.spyOn(globalThis, "setInterval"),
-            })),
-            ({ clearIntervalSpy: clearSpy, setIntervalSpy: setSpy }) =>
-              Effect.sync(() => {
-                clearSpy.mockRestore();
-                setSpy.mockRestore();
-              })
-          );
-        const { http, origin } = yield* openPreviewHttpServer(state, 10);
-        const events = yield* requestPreviewHttp(
-          new URL(PREVIEW_EVENTS_PATH, origin),
-          {
-            headers: {
-              authorization: `Bearer ${PREVIEW_PROVIDER_TEST_TOKEN}`,
-            },
-          }
+        const countLines = yield* keepAliveLineCounter;
+        const { http, origin, server } = yield* openPreviewHttpServer(
+          state,
+          10
         );
-        const reader = yield* openPreviewHttpReader(events);
+        const closedStreams: ServerResponse[] = [];
+        server.on("request", (_request, response) => {
+          response.once("close", () => closedStreams.push(response));
+        });
+        const reader = yield* openEventStream(origin);
         const readEvent = makeEventReader(reader);
 
         expect(yield* readEvent()).toContain("event: update\n");
-        expect(yield* readEvent()).toBe(": keep-alive\n\n");
-        const heartbeatIndex = setIntervalSpy.mock.calls.findIndex(
-          ([, delay]) => delay === 10
-        );
-        const heartbeat = setIntervalSpy.mock.results[heartbeatIndex]?.value;
-        expect(heartbeatIndex).toBeGreaterThanOrEqual(0);
+        yield* TestClock.adjust(9);
+        expect(countLines()).toBe(0);
+        yield* TestClock.adjust(1);
+        expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
+        expect(countLines()).toBe(1);
+        yield* TestClock.adjust(10);
+        expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
+        expect(countLines()).toBe(2);
         yield* cancelProviderEvent(reader);
         yield* waitFor(() => {
-          expect(clearIntervalSpy).toHaveBeenCalledWith(heartbeat);
+          expect(closedStreams).toHaveLength(1);
         });
+        yield* TestClock.adjust(30);
+        expect(countLines()).toBe(2);
         yield* Effect.sync(() => http.close());
-        expect(
-          clearIntervalSpy.mock.calls.filter(([timer]) => timer === heartbeat)
-        ).toHaveLength(1);
+        yield* TestClock.adjust(30);
+        expect(countLines()).toBe(2);
+      }),
+    30_000
+  );
+
+  it.effect(
+    "stops every heartbeat when the transport closes",
+    () =>
+      Effect.gen(function* () {
+        const state = yield* makeState();
+        const countLines = yield* keepAliveLineCounter;
+        const { http, origin } = yield* openPreviewHttpServer(state, 10);
+        const firstReader = yield* openEventStream(origin);
+        const secondReader = yield* openEventStream(origin);
+        const readFirst = makeEventReader(firstReader);
+        const readSecond = makeEventReader(secondReader);
+
+        expect(yield* readFirst()).toContain("event: update\n");
+        expect(yield* readSecond()).toContain("event: update\n");
+        yield* TestClock.adjust(10);
+        expect(yield* readFirst()).toBe(KEEP_ALIVE_LINE);
+        expect(yield* readSecond()).toBe(KEEP_ALIVE_LINE);
+        expect(countLines()).toBe(2);
+        yield* Effect.sync(() => http.close());
+        expect((yield* readProviderEvent(firstReader)).done).toBe(true);
+        expect((yield* readProviderEvent(secondReader)).done).toBe(true);
+        yield* TestClock.adjust(30);
+        expect(countLines()).toBe(2);
       }),
     30_000
   );
