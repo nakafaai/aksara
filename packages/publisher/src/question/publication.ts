@@ -1,7 +1,6 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import {
   QuestionKeySchema,
   QuestionSourcePathSchema,
@@ -62,21 +61,20 @@ const QuestionFamilyFieldSchema = Schema.Literals([
 /** A target returned the same question identity more than once. */
 export class QuestionHeadDuplicateError extends Schema.TaggedError<QuestionHeadDuplicateError>()(
   "QuestionHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned question heads outside canonical content-head order. */
 export class QuestionHeadOrderError extends Schema.TaggedError<QuestionHeadOrderError>()(
   "QuestionHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A question-head page contained identity owned by another family or body. */
 export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFamilyError>()(
   "QuestionHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: QuestionFamilyFieldSchema,
   }
 ) {}

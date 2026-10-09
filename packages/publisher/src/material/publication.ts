@@ -1,7 +1,6 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -41,21 +40,20 @@ const MaterialFamilyFieldSchema = Schema.Literals([
 /** A target returned the same material identity more than once. */
 export class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
   "MaterialHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned material heads outside canonical content-head order. */
 export class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
   "MaterialHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A material-head page contained a row owned by another content family. */
 export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
   "MaterialHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: MaterialFamilyFieldSchema,
   }
 ) {}

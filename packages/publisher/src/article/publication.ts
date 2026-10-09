@@ -1,7 +1,6 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import {
   ArticleCategorySchema,
   ArticleRouteSlugSchema,
@@ -58,21 +57,20 @@ const ArticleFamilyFieldSchema = Schema.Literals([
 /** A target returned the same article identity more than once. */
 export class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
   "ArticleHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned article heads outside canonical content-head order. */
 export class ArticleHeadOrderError extends Schema.TaggedError<ArticleHeadOrderError>()(
   "ArticleHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** An article-head page contained a route or source owned by another family. */
 export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamilyError>()(
   "ArticleHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: ArticleFamilyFieldSchema,
   }
 ) {}

@@ -1,7 +1,6 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import type { PageHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -44,21 +43,20 @@ const PageFamilyFieldSchema = Schema.Literals([
 /** A target returned the same public page identity more than once. */
 export class PageHeadDuplicateError extends Schema.TaggedError<PageHeadDuplicateError>()(
   "PageHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned public page heads outside canonical content-head order. */
 export class PageHeadOrderError extends Schema.TaggedError<PageHeadOrderError>()(
   "PageHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A public page-head response contained a row owned by another family. */
 export class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>()(
   "PageHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: PageFamilyFieldSchema,
   }
 ) {}
