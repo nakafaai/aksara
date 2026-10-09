@@ -241,15 +241,15 @@ checkTest(
     assert.equal(yield* runCli(["--format", "text", "--root", root]), 0);
     assert.match((yield* loggedLines).at(-1) ?? "", PASSING_REPORT_PATTERN);
     assert.equal(yield* runCli(["--format", "json", "--root", root]), 0);
-    assert.deepEqual(
-      Schema.decodeUnknownSync(JSON_TEXT)((yield* loggedLines).at(-1) ?? "{}"),
-      {
-        blockingIssueCount: 0,
-        fileCount: 3,
-        issues: [],
-        reviewIssueCount: 0,
-      }
+    const json = yield* Effect.orDie(
+      Schema.decodeEffect(JSON_TEXT)((yield* loggedLines).at(-1) ?? "{}")
     );
+    assert.deepEqual(json, {
+      blockingIssueCount: 0,
+      fileCount: 3,
+      issues: [],
+      reviewIssueCount: 0,
+    });
     const report = yield* checkLessonRoot(root, true);
     assert.equal(report.pedagogy?.length, 2);
     assert.equal(
