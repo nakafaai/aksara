@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
 
@@ -15,7 +15,7 @@ function hasCanonicalPublicationScope(input: {
   readonly families: readonly ContentFamily[];
   readonly snapshots: readonly ContentSnapshotKind[];
 }) {
-  const snapshotsAreCanonical = input.snapshots.every((family, index) => {
+  const snapshotsAreCanonical = Arr.every(input.snapshots, (family, index) => {
     const previous = input.snapshots[index - 1];
     return (
       previous === undefined ||
@@ -23,7 +23,7 @@ function hasCanonicalPublicationScope(input: {
         ContentSnapshotKindSchema.literals.indexOf(family)
     );
   });
-  const familiesAreCanonical = input.families.every((family, index) => {
+  const familiesAreCanonical = Arr.every(input.families, (family, index) => {
     const previous = input.families[index - 1];
     return (
       previous === undefined ||

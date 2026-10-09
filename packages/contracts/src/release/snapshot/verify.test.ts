@@ -1,5 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Record as Rec, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableList,
+  Record as Rec,
+  Stream,
+} from "effect";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
@@ -26,11 +32,11 @@ function reject<A, E>(effect: Effect.Effect<A, E>) {
 /** Interleaves families without changing any signed per-family order. */
 function interleaveRows(rows: readonly ContentSnapshotRow[]) {
   const groups = {
-    program: rows.filter((row) => row.family === "program"),
-    quran: rows.filter((row) => row.family === "quran"),
-    tryout: rows.filter((row) => row.family === "tryout"),
+    program: Arr.filter(rows, (row) => row.family === "program"),
+    quran: Arr.filter(rows, (row) => row.family === "quran"),
+    tryout: Arr.filter(rows, (row) => row.family === "tryout"),
   };
-  const result: ContentSnapshotRow[] = [];
+  const result = MutableList.make<ContentSnapshotRow>();
   const length = Math.max(
     groups.program.length,
     groups.quran.length,
@@ -40,11 +46,11 @@ function interleaveRows(rows: readonly ContentSnapshotRow[]) {
     for (const family of ["program", "quran", "tryout"] as const) {
       const row = groups[family][index];
       if (row !== undefined) {
-        result.push(row);
+        MutableList.append(result, row);
       }
     }
   }
-  return result;
+  return MutableList.toArray(result);
 }
 
 /** Authenticates one test input through explicit replay factories. */
@@ -83,11 +89,9 @@ describe("structured snapshot verification", () => {
         });
 
         expect(result.stagedRows).toBe(2148);
-        expect(Rec.values(result.snapshots).map(({ mode }) => mode)).toEqual([
-          "replace",
-          "replace",
-          "replace",
-        ]);
+        expect(
+          Arr.map(Rec.values(result.snapshots), ({ mode }) => mode)
+        ).toEqual(["replace", "replace", "replace"]);
         expect({ manifestReplays, rowReplays }).toEqual({
           manifestReplays: 1,
           rowReplays: 8,
@@ -156,11 +160,14 @@ describe("structured snapshot verification", () => {
   it.effect("rejects rows outside replacement ownership", () =>
     Effect.gen(function* () {
       const snapshotData = yield* makeSnapshotTestData();
-      const program = yield* Effect.fromNullishOr(
-        snapshotData.manifests.find((manifest) => manifest.family === "program")
+      const program = yield* Effect.fromOption(
+        Arr.findFirst(
+          snapshotData.manifests,
+          (manifest) => manifest.family === "program"
+        )
       );
-      const quranRow = yield* Effect.fromNullishOr(
-        snapshotData.rows.find((row) => row.family === "quran")
+      const quranRow = yield* Effect.fromOption(
+        Arr.findFirst(snapshotData.rows, (row) => row.family === "quran")
       );
       const error = yield* reject(
         verify({ manifests: [program], rows: [quranRow] })
@@ -177,8 +184,11 @@ describe("structured snapshot verification", () => {
   it.effect("rejects a no-op replacement as an incoherent transition", () =>
     Effect.gen(function* () {
       const snapshotData = yield* makeSnapshotTestData();
-      const program = yield* Effect.fromNullishOr(
-        snapshotData.manifests.find((manifest) => manifest.family === "program")
+      const program = yield* Effect.fromOption(
+        Arr.findFirst(
+          snapshotData.manifests,
+          (manifest) => manifest.family === "program"
+        )
       );
       if (program.family !== "program") {
         return yield* Effect.die("Expected the program test manifest.");
@@ -191,7 +201,10 @@ describe("structured snapshot verification", () => {
         verify({
           manifests: [program],
           previousSnapshots,
-          rows: snapshotData.rows.filter((row) => row.family === "program"),
+          rows: Arr.filter(
+            snapshotData.rows,
+            (row) => row.family === "program"
+          ),
         })
       );
 

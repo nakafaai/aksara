@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, Exit, HashSet, Schema } from "effect";
 
 import {
   ContentSnapshotManifestSchema,
@@ -35,7 +35,7 @@ describe("structured snapshot data", () => {
   it.effect("returns every current domain manifest identity", () =>
     Effect.gen(function* () {
       const snapshotData = yield* makeSnapshotTestData();
-      const identities = snapshotData.manifests.map(contentSnapshotId);
+      const identities = Arr.map(snapshotData.manifests, contentSnapshotId);
 
       expect(identities).toHaveLength(3);
       expect(HashSet.size(HashSet.fromIterable(identities))).toBe(3);
@@ -50,10 +50,12 @@ describe("structured snapshot data", () => {
       });
 
       expect(
-        snapshotData.manifests.every((value) => Exit.isSuccess(decode(value)))
+        Arr.every(snapshotData.manifests, (value) =>
+          Exit.isSuccess(decode(value))
+        )
       ).toBe(true);
       expect(
-        snapshotData.manifests.every((value) =>
+        Arr.every(snapshotData.manifests, (value) =>
           Exit.isFailure(decode({ ...value, extra: true }))
         )
       ).toBe(true);
@@ -68,7 +70,7 @@ describe("structured snapshot data", () => {
       });
 
       expect(
-        snapshotData.rows.every((row) =>
+        Arr.every(snapshotData.rows, (row) =>
           Exit.isSuccess(
             decode(
               Schema.decodeSync(JsonTextSchema)(
@@ -79,9 +81,10 @@ describe("structured snapshot data", () => {
         )
       ).toBe(true);
       expect(
-        snapshotData.rows
-          .filter((row) => row.family === "tryout")
-          .map((row) => row.rowKind)
+        Arr.map(
+          Arr.filter(snapshotData.rows, (row) => row.family === "tryout"),
+          (row) => row.rowKind
+        )
       ).toContain("placement");
     })
   );
@@ -175,12 +178,14 @@ describe("structured snapshot data", () => {
     () =>
       Effect.gen(function* () {
         const snapshotData = yield* makeSnapshotTestData();
-        const quranRows = snapshotData.rows.filter(
+        const quranRows = Arr.filter(
+          snapshotData.rows,
           (row) => row.family === "quran"
         );
-        const canonical = quranRows
-          .map(canonicalizeContentSnapshotRow)
-          .join("\n");
+        const canonical = Arr.join(
+          Arr.map(quranRows, canonicalizeContentSnapshotRow),
+          "\n"
+        );
 
         expect(quranRows.length).toBe(1542);
         expect(createHash("sha256").update(canonical).digest("hex")).toBe(

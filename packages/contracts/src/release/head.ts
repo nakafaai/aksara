@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { ContentFamilySchema, compareContentHeads } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
@@ -118,7 +118,7 @@ function hasCanonicalHeadPage(page: {
   readonly heads: readonly ContentHead[];
   readonly nextCursor: string | null;
 }) {
-  const hasCanonicalOrder = page.heads.every((head, index) => {
+  const hasCanonicalOrder = Arr.every(page.heads, (head, index) => {
     const previous = page.heads[index - 1];
     return previous === undefined || compareContentHeads(previous, head) < 0;
   });

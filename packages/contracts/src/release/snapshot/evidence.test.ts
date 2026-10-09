@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Option, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type {
@@ -16,8 +16,8 @@ function manifestFor(
   manifests: readonly ContentSnapshotManifest[],
   family: ContentSnapshotManifest["family"]
 ) {
-  return Effect.fromNullishOr(
-    manifests.find((candidate) => candidate.family === family)
+  return Effect.fromOption(
+    Arr.findFirst(manifests, (candidate) => candidate.family === family)
   );
 }
 
@@ -96,10 +96,14 @@ describe("structured snapshot domain verification", () => {
     Effect.gen(function* () {
       const snapshotData = yield* makeSnapshotTestData();
       const quran = yield* manifestFor(snapshotData.manifests, "quran");
-      const firstQuranIndex = snapshotData.rows.findIndex(
+      const firstQuranIndex = Arr.findFirstIndex(
+        snapshotData.rows,
         (row) => row.family === "quran"
       );
-      const firstQuran = snapshotData.rows[firstQuranIndex];
+      if (Option.isNone(firstQuranIndex)) {
+        return yield* Effect.die("Expected Quran test values.");
+      }
+      const firstQuran = snapshotData.rows[firstQuranIndex.value];
       if (
         quran.family !== "quran" ||
         firstQuran?.family !== "quran" ||
@@ -108,7 +112,7 @@ describe("structured snapshot domain verification", () => {
         return yield* Effect.die("Expected Quran test values.");
       }
       const rows = snapshotData.rows.slice();
-      rows[firstQuranIndex] = {
+      rows[firstQuranIndex.value] = {
         ...firstQuran,
         record: { ...firstQuran.record, snapshotId: unrelatedHash },
       };
@@ -136,7 +140,7 @@ describe("structured snapshot domain verification", () => {
             ...quran,
             manifest: { ...quran.manifest, snapshotId: unrelatedHash },
           },
-          snapshotData.rows.map((row) =>
+          Arr.map(snapshotData.rows, (row) =>
             row.family === "quran" && !("rowKind" in row)
               ? {
                   ...row,
@@ -195,7 +199,9 @@ describe("structured snapshot domain verification", () => {
         ]);
 
         expect(
-          errors.map((error) => ("actual" in error ? error.actual : undefined))
+          Arr.map(errors, (error) =>
+            "actual" in error ? error.actual : undefined
+          )
         ).toEqual([
           "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
           "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
@@ -10,8 +10,8 @@ const unrelatedHash = Sha256HashSchema.make(`sha256:${"f".repeat(64)}`);
 
 /** Returns the exact Quran manifest owned by the shared structured fixture. */
 function manifestFor(manifests: readonly ContentSnapshotManifest[]) {
-  return Effect.fromNullishOr(
-    manifests.find((candidate) => candidate.family === "quran")
+  return Effect.fromOption(
+    Arr.findFirst(manifests, (candidate) => candidate.family === "quran")
   );
 }
 

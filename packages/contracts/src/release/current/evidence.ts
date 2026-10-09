@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import {
   type ContentReleaseBundle,
@@ -18,7 +18,7 @@ export function hasSameAppLocales(
 ) {
   return (
     left.length === right.length &&
-    left.every((locale, index) => locale === right[index])
+    Arr.every(left, (locale, index) => locale === right[index])
   );
 }
 
