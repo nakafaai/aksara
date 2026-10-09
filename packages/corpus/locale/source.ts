@@ -5,7 +5,7 @@ import {
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 /** Reviewed source copy keyed only by contract-supported application locales. */
 export type LocalizedSourceMap<Value> = Readonly<
@@ -82,14 +82,10 @@ export const traverseLocalizedSources = Effect.fn(
     appLocale: AppLocaleCode
   ) => Effect.Effect<Result, Error, Requirements>
 ) {
-  const present: { readonly code: AppLocaleCode; readonly value: Value }[] = [];
-  for (const code of APP_LOCALE_CODES) {
+  const present = Arr.flatMap(APP_LOCALE_CODES, (code) => {
     const value = source[code];
-    if (value === undefined) {
-      continue;
-    }
-    present.push({ code, value });
-  }
+    return value === undefined ? [] : [{ code, value }];
+  });
   const entries = yield* Effect.forEach(
     present,
     ({ code, value }) =>
