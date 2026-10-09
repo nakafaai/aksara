@@ -10,6 +10,7 @@ import {
   Schedule,
   Schema,
 } from "effect";
+import type * as Scope from "effect/Scope";
 import {
   NakafaProcess,
   type NakafaProcessInput,
@@ -116,9 +117,9 @@ export function nodeProcess(
 }
 
 /** Starts one child in its own scope, lets the observer read it, and closes the scope before returning. */
-export function withProcess<A, E>(
+export function withProcess<A, E, R>(
   input: NakafaProcessInput,
-  observe: (child: RunningProcess) => Effect.Effect<A, E>
+  observe: (child: RunningProcess) => Effect.Effect<A, E, R>
 ) {
   return Effect.scoped(
     NakafaProcess.pipe(
@@ -134,7 +135,9 @@ export function processProgram(input: NakafaProcessInput) {
 }
 
 /** Runs one test body with Node services and a scope that owns its temporary files. */
-export function withNodeFiles<A, E, R>(effect: Effect.Effect<A, E, R>) {
+export function withNodeFiles<A, E>(
+  effect: Effect.Effect<A, E, FileSystem.FileSystem | Path.Path | Scope.Scope>
+) {
   return effect.pipe(Effect.scoped, Effect.provide(NodeServices.layer));
 }
 

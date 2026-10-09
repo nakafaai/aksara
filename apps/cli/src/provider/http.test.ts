@@ -243,13 +243,12 @@ describe("preview HTTP transport", () => {
         let keepAliveAttempts = 0;
         const { origin, server } = yield* openPreviewHttpServer(state, 10);
         server.on("request", (_request, response) => {
-          const write = response.write.bind(response);
-          response.write = (...args: Parameters<typeof write>) => {
-            if (args[0] === KEEP_ALIVE_LINE) {
+          response.write = (chunk: string | Uint8Array) => {
+            if (chunk === KEEP_ALIVE_LINE) {
               keepAliveAttempts += 1;
               throw new Error("socket write failed");
             }
-            return write(...args);
+            return true;
           };
         });
         const reader = yield* openEventStream(origin);
