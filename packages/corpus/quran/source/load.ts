@@ -49,7 +49,7 @@ const LoadedQuranSourcesSchema = Schema.Struct({
   summary: QuranSourceArtifactSchema,
 });
 /** Exact raw source text and byte identity accepted by Quran publication. */
-export type LoadedQuranSources = typeof LoadedQuranSourcesSchema.Type;
+type LoadedQuranSources = typeof LoadedQuranSourcesSchema.Type;
 
 /** Compares two canonical locale lists without weakening their order contract. */
 function matchesExactLocales(

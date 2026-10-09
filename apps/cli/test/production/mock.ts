@@ -89,7 +89,7 @@ const TargetCallsSchema = Schema.Struct({
 });
 
 /** Observable fields shared by focused production mock implementations. */
-export type TargetCalls = typeof TargetCallsSchema.Type;
+type TargetCalls = typeof TargetCallsSchema.Type;
 
 const ProductionCallsSchema = Schema.Struct({
   ...TargetCallsSchema.fields,

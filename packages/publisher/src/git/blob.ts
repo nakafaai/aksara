@@ -40,7 +40,7 @@ const GitBlobInputSchema = Schema.Struct({
     Schema.isMaxLength(MAX_GIT_BATCH_BLOBS)
   ),
 });
-export type GitBlobInput = typeof GitBlobInputSchema.Type;
+type GitBlobInput = typeof GitBlobInputSchema.Type;
 
 /** A repository command or exact-revision validation step failed. */
 export class GitBlobError extends Schema.TaggedError<GitBlobError>()(

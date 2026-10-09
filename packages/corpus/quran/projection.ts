@@ -204,7 +204,7 @@ export type QuranProjectionError =
   | SourceLocaleUnavailableError;
 
 /** Replay factory for the complete strictly validated Quran registry. */
-export type QuranRegistrySource = Stream.Stream<QuranSurah, QuranRegistryError>;
+type QuranRegistrySource = Stream.Stream<QuranSurah, QuranRegistryError>;
 
 /** Emits all runtime rows first and all search rows second deterministically. */
 export function streamQuranRows(

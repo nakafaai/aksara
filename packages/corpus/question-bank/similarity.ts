@@ -69,7 +69,7 @@ const SimilarityReportSchema = Schema.Struct({
   items: Schema.Array(SimilarityMatchSchema),
   passages: Schema.Array(SimilarityMatchSchema),
 });
-export type SimilarityReport = typeof SimilarityReportSchema.Type;
+type SimilarityReport = typeof SimilarityReportSchema.Type;
 
 /** One prompt with its own wording separated from the passage it shares. */
 const UnitSchema = Schema.Struct({

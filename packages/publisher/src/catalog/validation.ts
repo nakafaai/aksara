@@ -1,3 +1,4 @@
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -24,7 +25,7 @@ const CountSchema = Schema.Int.pipe(
 );
 
 /** Exact full-corpus evidence returned by a read-only catalog check. */
-export const ContentCatalogValidationSchema = Schema.Struct({
+const ContentCatalogValidationSchema = Schema.Struct({
   articleCount: CountSchema,
   materialCount: CountSchema,
   pageCount: CountSchema,
@@ -37,8 +38,7 @@ export const ContentCatalogValidationSchema = Schema.Struct({
   snapshots: CatalogSnapshotEvidenceSchema,
   totalCount: CountSchema,
 });
-export type ContentCatalogValidation =
-  typeof ContentCatalogValidationSchema.Type;
+type ContentCatalogValidation = typeof ContentCatalogValidationSchema.Type;
 
 /** One prepared count differs from its authoritative source inventory. */
 export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogCountError>()(
@@ -47,10 +47,7 @@ export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogC
     actualCount: CountSchema,
     expectedCount: CountSchema,
     kind: Schema.Literals([
-      "article",
-      "material",
-      "page",
-      "question",
+      ...ContentFamilySchema.literals,
       "records",
       "routes",
     ]),

@@ -1,7 +1,7 @@
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
 
 /** Test-only corpus module discovery or loading failed. */
-export class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
+class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
   "CorpusImportError",
   { cause: Schema.Unknown, file: Schema.String }
 ) {}

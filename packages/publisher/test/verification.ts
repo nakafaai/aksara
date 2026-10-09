@@ -20,7 +20,7 @@ import { makePublicationTarget } from "#test/target";
 export const verificationBundle = await makeSignedBundle("test-lifecycle");
 export const verificationRelease = verificationBundle.release;
 export const verificationManifest = verificationRelease.manifest;
-export const verificationRollback = await makeRollbackRelease(
+const verificationRollback = await makeRollbackRelease(
   "test-lifecycle-recovery"
 );
 export const verificationRollbackBundle = {

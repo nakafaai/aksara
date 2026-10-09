@@ -23,7 +23,7 @@ const CheckArgumentsSchema = Schema.Struct({
 });
 
 /** Read-only whole-catalog validation requested without production inputs. */
-export type CheckArguments = typeof CheckArgumentsSchema.Type;
+type CheckArguments = typeof CheckArgumentsSchema.Type;
 
 const PreviewCommandArgumentsSchema = Schema.Struct({
   ...PreviewArgumentsSchema.fields,
@@ -35,7 +35,7 @@ const InfoCommandArgumentsSchema = Schema.Struct({
 });
 
 /** Current CLI command decoded through its owning strict boundary. */
-export type CliArguments =
+type CliArguments =
   | typeof PreviewCommandArgumentsSchema.Type
   | CheckArguments
   | typeof InfoCommandArgumentsSchema.Type

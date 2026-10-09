@@ -25,27 +25,30 @@ export const PreviewDirectorySchema = Schema.Struct({
   files: Schema.Array(Schema.String),
   sourcePath: CorpusSourcePathSchema,
 });
+/** Builds the Schema of one selected source of a family with no directory closure. */
+function previewSourceSchema<Entry extends Schema.Top, Family extends string>(
+  family: Family,
+  entry: Entry
+) {
+  return Schema.Struct({
+    dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
+    directories: Schema.Tuple([]),
+    entry,
+    family: Schema.Literal(family),
+  });
+}
 /** One selected article source owned by the article registry. */
-const ArticlePreviewSourceSchema = Schema.Struct({
-  dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
-  directories: Schema.Tuple([]),
-  entry: ArticleEntrySchema,
-  family: Schema.Literal("article"),
-});
+const ArticlePreviewSourceSchema = previewSourceSchema(
+  "article",
+  ArticleEntrySchema
+);
 /** One selected material source owned by the material registry. */
-const MaterialPreviewSourceSchema = Schema.Struct({
-  dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
-  directories: Schema.Tuple([]),
-  entry: MaterialEntrySchema,
-  family: Schema.Literal("material"),
-});
+const MaterialPreviewSourceSchema = previewSourceSchema(
+  "material",
+  MaterialEntrySchema
+);
 /** One selected public page source owned by the page registry. */
-const PagePreviewSourceSchema = Schema.Struct({
-  dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
-  directories: Schema.Tuple([]),
-  entry: PageEntrySchema,
-  family: Schema.Literal("page"),
-});
+const PagePreviewSourceSchema = previewSourceSchema("page", PageEntrySchema);
 /** One selected question body owned by the authored question corpus. */
 const QuestionPreviewSourceSchema = Schema.Struct({
   appLocale: AppLocaleSchema,

@@ -67,7 +67,7 @@ export function earthScienceMaterialSource() {
 }
 
 /** Builds the expected signed graph identity for the representative lesson. */
-export function lessonMaterialGraph(locale: AppLocaleCode) {
+function lessonMaterialGraph(locale: AppLocaleCode) {
   return {
     alignmentId:
       "alignment:material:lesson:mathematics:material-section:mathematics:function-composition-inverse-function:function-concept",

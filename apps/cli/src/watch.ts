@@ -37,7 +37,7 @@ function emptyWatchedDirectory() {
 type WatchedDirectory = Readonly<ReturnType<typeof emptyWatchedDirectory>>;
 
 /** One acquired watcher and its subscription-ready startup barrier. */
-export interface SelectedWatcher {
+interface SelectedWatcher {
   /** Completes only after every selected directory subscription is acquired. */
   readonly ready: Effect.Effect<void>;
   /** Watches until a typed restart, provider, filesystem, or end failure. */

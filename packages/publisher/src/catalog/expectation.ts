@@ -37,8 +37,7 @@ const ContentCatalogExpectationSchema = Schema.Struct({
 });
 
 /** Source-derived body inventory used to prove compiler and route completeness. */
-export type ContentCatalogExpectation =
-  typeof ContentCatalogExpectationSchema.Type;
+type ContentCatalogExpectation = typeof ContentCatalogExpectationSchema.Type;
 
 /** An authoritative source registry failed before expectation projection. */
 export class ContentCatalogExpectationError extends Schema.TaggedError<ContentCatalogExpectationError>()(

@@ -29,7 +29,7 @@ const ProductionStageSchema = Schema.Literals([
   "state",
   "target",
 ]);
-export type ProductionStage = typeof ProductionStageSchema.Type;
+type ProductionStage = typeof ProductionStageSchema.Type;
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 
 /** Sanitized production failure emitted by the outer CLI boundary. */

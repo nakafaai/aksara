@@ -53,25 +53,6 @@ export const catalogSnapshotEvidence = {
   },
 };
 
-/** Empty candidate evidence for active full-catalog validation tests. */
-export const emptyCandidateValidationEvidence = {
-  articleCount: 0,
-  compiledBodyCount: 0,
-  glossaryCount: 0,
-  materialCount: 0,
-  pageCount: 0,
-  programCurriculumLocaleCount: 0,
-  programCurriculumRouteCount: 0,
-  programLocaleCount: 0,
-  programReadyLocaleCount: 0,
-  questionCount: 0,
-  quranProvenanceDigest: CATALOG_HASH,
-  quranProvenanceStatus: "approved" as const,
-  quranRowCount: 0,
-  totalCount: 0,
-  tryoutCatalogCount: 0,
-};
-
 const TestCatalogCountsSchema = Schema.Struct({
   article: Schema.Finite,
   material: Schema.Finite,
@@ -80,7 +61,7 @@ const TestCatalogCountsSchema = Schema.Struct({
 });
 
 /** Compact family counts used by catalog orchestration tests. */
-export type TestCatalogCounts = typeof TestCatalogCountsSchema.Type;
+type TestCatalogCounts = typeof TestCatalogCountsSchema.Type;
 
 const TestCatalogIdentitySchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
@@ -90,7 +71,7 @@ const TestCatalogIdentitySchema = Schema.Struct({
 });
 
 /** Stable source identity used without inventing educational fixture bodies. */
-export type TestCatalogIdentity = typeof TestCatalogIdentitySchema.Type;
+type TestCatalogIdentity = typeof TestCatalogIdentitySchema.Type;
 
 /** Returns one deterministic artifactLocale for compact source identities. */
 function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {

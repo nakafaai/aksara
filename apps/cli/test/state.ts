@@ -26,7 +26,7 @@ import type { ReleaseArguments } from "#cli/production/arguments";
 import { selectProductionAction } from "#cli/state";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 
-export const STATE_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+const STATE_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const SIGNATURE = `${"A".repeat(85)}A`;
 
 /** Creates one structurally valid signed bundle for state-only assertions. */

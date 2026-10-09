@@ -33,7 +33,7 @@ export type RendererSessionSelection =
   typeof RendererSessionSelectionSchema.Type;
 
 /** Shared actual-app resources used by preview and catalog validation. */
-export interface RendererSession {
+interface RendererSession {
   readonly aksaraRoot: string;
   readonly child: RunningNakafa;
   readonly credentials: PreviewCredentials;

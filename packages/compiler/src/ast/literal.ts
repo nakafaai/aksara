@@ -53,13 +53,13 @@ export type StaticLiteralSyntaxReason =
 export type StaticLiteralPathSegment = string | number;
 
 /** One rejected static literal node and its stable syntax reason. */
-export interface StaticLiteralFailure {
+interface StaticLiteralFailure {
   readonly node: Expression | Pattern | Property;
   readonly reason: StaticLiteralSyntaxReason;
 }
 
 /** Result of statically decoding one JavaScript expression. */
-export type StaticLiteralResult =
+type StaticLiteralResult =
   | { readonly failure: StaticLiteralFailure; readonly success: false }
   | { readonly success: true; readonly value: StaticLiteral };
 

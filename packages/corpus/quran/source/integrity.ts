@@ -12,7 +12,7 @@ import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 import { parseQuranSources } from "#corpus/quran/source/parse";
 
 /** Complete verified source used to prepare one immutable Quran snapshot. */
-export interface VerifiedQuranSource {
+interface VerifiedQuranSource {
   readonly source: Stream.Stream<QuranSurah, QuranRegistryError>;
   readonly summary: QuranSourceArtifact;
 }

@@ -27,9 +27,7 @@ import {
 import { materialGraph } from "#test/graph";
 import { projection as baseProjection, contentRecord } from "#test/publication";
 
-export const rollbackFixtureReleaseId = ReleaseIdSchema.make(
-  "test-derived-rollback"
-);
+const rollbackFixtureReleaseId = ReleaseIdSchema.make("test-derived-rollback");
 
 /** Builds one internally coherent derived material state and compact head. */
 export function makeDerivedMaterial(input: {

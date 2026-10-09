@@ -8,7 +8,7 @@ import {
 } from "effect";
 
 /** Node signals that can terminate a delegated CLI process. */
-export const NodeSignalSchema = Schema.Literals([
+const NodeSignalSchema = Schema.Literals([
   "SIGABRT",
   "SIGALRM",
   "SIGBUS",
@@ -49,13 +49,12 @@ export const NodeSignalSchema = Schema.Literals([
 ]);
 
 /** One signal understood by the Node process boundary. */
-export type NodeSignal = typeof NodeSignalSchema.Type;
+type NodeSignal = typeof NodeSignalSchema.Type;
 
 /** A delegated process terminated by a signal instead of an exit code. */
-export const SignalTerminationSchema = Schema.TaggedStruct(
-  "SignalTermination",
-  { signal: NodeSignalSchema }
-);
+const SignalTerminationSchema = Schema.TaggedStruct("SignalTermination", {
+  signal: NodeSignalSchema,
+});
 
 /** A validated delegated signal termination. */
 export type SignalTermination = typeof SignalTerminationSchema.Type;

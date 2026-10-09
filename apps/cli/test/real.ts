@@ -29,9 +29,7 @@ export const REPOSITORY_ROOT = await runWithNodeServices(
     return path.resolve(import.meta.dirname, "..", "..", "..");
   })
 );
-export const MATERIAL_ENTRIES = await Effect.runPromise(
-  decodeMaterialRegistry()
-);
+const MATERIAL_ENTRIES = await Effect.runPromise(decodeMaterialRegistry());
 const functionContentKey =
   "material/lesson/mathematics/function-composition-inverse-function/function-concept";
 export const FUNCTION_SCOPE = PublicationScopeSchema.make({

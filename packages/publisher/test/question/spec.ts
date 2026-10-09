@@ -48,7 +48,7 @@ assert(
   "Expected the real question-bank source and body slice."
 );
 export const questionItem = firstSource.item;
-export const questionPaths = Arr.map(
+const questionPaths = Arr.map(
   firstSource.files,
   (file) => `${firstSource.sourceRoot}/${file}`
 );

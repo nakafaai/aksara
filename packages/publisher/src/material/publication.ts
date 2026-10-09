@@ -59,7 +59,7 @@ export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFami
 ) {}
 
 /** Every failure possible while replaying authoritative publication records. */
-export type MaterialPublicationStreamError<E> =
+type MaterialPublicationStreamError<E> =
   | E
   | CompileContentError
   | ContentSourceInspectionError

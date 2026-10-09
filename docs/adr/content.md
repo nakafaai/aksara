@@ -246,3 +246,8 @@ hashes, runtime compatibility, payload size, cache behavior, and failure modes.
 If RSC/client fidelity or the target platform runtime fails, body migration
 stops. The implementation must not silently pivot to static ESM, HTML, or a
 custom renderer without a new explicit user decision and ADR.
+
+Re-run the same commands on the same machine and exact Nakafa SHA before
+claiming an improvement. Aksara's vertical slice must separately report cold
+build, development readiness, save-to-visible latency, memory, output size, sync
+or publication cost, and warm production response.

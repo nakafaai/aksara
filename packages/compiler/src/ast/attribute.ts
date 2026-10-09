@@ -28,7 +28,7 @@ function isMeaningfulString(value: unknown): value is string {
 }
 
 /** Static visibility result for one authored rich metadata value. */
-export type RichAttributeState = "dynamic" | "empty" | "meaningful";
+type RichAttributeState = "dynamic" | "empty" | "meaningful";
 
 const VISIBLE_RICH_TEXT_ELEMENTS = HashSet.make(
   "abbr",

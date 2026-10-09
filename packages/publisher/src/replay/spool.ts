@@ -12,7 +12,7 @@ import {
 const RECORDS_PER_DIRECTORY = 1000;
 
 /** Immutable disk-backed stream that can be replayed without recomputation. */
-export interface ReplaySpool<A> {
+interface ReplaySpool<A> {
   readonly bytes: number;
   readonly count: number;
   /** Reads one strict record by its stable zero-based spool identity. */

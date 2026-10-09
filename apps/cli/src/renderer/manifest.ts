@@ -18,7 +18,7 @@ const RENDERER_RETRY_DELAY = "1 second";
 const RENDERER_STARTUP_LIMIT = "3 minutes";
 
 /** Actual authenticated renderer capability consumed by the Nakafa service. */
-export type FetchRenderer = (
+type FetchRenderer = (
   origin: URL,
   credentials: RendererCredentials
 ) => Effect.Effect<

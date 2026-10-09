@@ -61,10 +61,10 @@ const PrepareRollbackInputSchema = Schema.Struct({
 });
 
 /** Exact signed proof and identities for one forward rollback. */
-export type PrepareRollbackInput = typeof PrepareRollbackInputSchema.Type;
+type PrepareRollbackInput = typeof PrepareRollbackInputSchema.Type;
 
 /** Every typed failure surfaced while authenticating and deriving a rollback. */
-export type PrepareRollbackError =
+type PrepareRollbackError =
   | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
   | Effect.Error<ReturnType<typeof validateReleaseRendererManifest>>
   | Effect.Error<ReturnType<typeof verifyContentReleaseBundle>>
@@ -84,7 +84,7 @@ export type PrepareRollbackError =
   | Stream.Error<RoutePageStream>;
 
 /** Services required by secure rollback preparation. */
-export type PrepareRollbackContext =
+type PrepareRollbackContext =
   | Effect.Services<ReturnType<typeof verifyContentReleaseBundle>>
   | FileSystem.FileSystem
   | Path.Path
@@ -94,7 +94,7 @@ export type PrepareRollbackContext =
   | Stream.Services<RoutePageStream>;
 
 /** Complete Effect interface for secure rollback preparation. */
-export type PrepareRollback = (
+type PrepareRollback = (
   input: PrepareRollbackInput
 ) => Effect.Effect<
   PreparedRollbackRelease<ReplaySpoolError, never>,

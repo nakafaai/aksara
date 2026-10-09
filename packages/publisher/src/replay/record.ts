@@ -23,7 +23,7 @@ const ReplaySpoolUsageSchema = Schema.Struct({
 });
 
 /** Proposed bounded usage for one replay-spool state transition. */
-export type ReplaySpoolUsage = typeof ReplaySpoolUsageSchema.Type;
+type ReplaySpoolUsage = typeof ReplaySpoolUsageSchema.Type;
 
 /** Rejects proposed disk usage before any replay file is written. */
 export function validateReplaySpoolUsage(usage: ReplaySpoolUsage) {

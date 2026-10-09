@@ -50,7 +50,7 @@ const QuestionBankDefinitionSchema = Schema.Struct({
   languagePolicy: AssessmentLanguagePolicySchema,
   rendererDomain: RendererDomainSchema,
 });
-export type QuestionBankDefinition = typeof QuestionBankDefinitionSchema.Type;
+type QuestionBankDefinition = typeof QuestionBankDefinitionSchema.Type;
 export type QuestionBankIndex = MutableHashMap.MutableHashMap<
   string,
   QuestionBankDefinition

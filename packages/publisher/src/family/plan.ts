@@ -19,9 +19,10 @@ import {
   diffScopedFamilyHeads,
   type ScopedFamilyDiff,
 } from "#publisher/family/scope";
-import type {
-  PreparedContentTransition,
-  PreparedContentUpsert,
+import {
+  type PreparedContentTransition,
+  PreparedContentTransitionSchema,
+  type PreparedContentUpsert,
 } from "#publisher/preparation/spec";
 
 const FamilyEntrySchema = Schema.Struct({
@@ -52,9 +53,25 @@ interface FamilyIdentityAdapter<Entry extends FamilyEntry> {
 }
 
 /** One family-local transition, desired head, or both from one diff row. */
-export interface FamilyPublicationPlan<Head extends ContentHead> {
+interface FamilyPublicationPlan<Head extends ContentHead> {
   readonly record?: PreparedContentTransition;
   readonly result?: Head;
+}
+
+/** Builds the plan Schema of one family, with that family's head Schema as result. */
+export function familyPublicationPlanSchema<Head extends Schema.Top>(
+  head: Head
+) {
+  return Schema.Struct({
+    record: Schema.optional(PreparedContentTransitionSchema),
+    result: Schema.optional(head),
+  }).pipe(
+    Schema.check(
+      Schema.makeFilter(
+        (plan) => plan.record !== undefined || plan.result !== undefined
+      )
+    )
+  );
 }
 
 interface FamilyPlanAdapter<

@@ -133,7 +133,7 @@ function projectQuestionEntry(
 }
 
 /** Builds one selected question closure from an already decoded source row. */
-export function questionContentForEntry(
+function questionContentForEntry(
   source: QuestionSource,
   selected: QuestionEntry
 ): QuestionContentSelection {

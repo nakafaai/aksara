@@ -12,7 +12,7 @@ import {
 import { Array as Arr, Effect, Order, Schema } from "effect";
 
 /** Reviewed source copy keyed only by contract-supported application locales. */
-export type LocalizedSourceMap<Value> = Readonly<
+type LocalizedSourceMap<Value> = Readonly<
   Partial<Record<AppLocaleCode, Value | undefined>>
 >;
 

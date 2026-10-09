@@ -53,7 +53,7 @@ const politicsComponents = [
 ];
 
 /** Creates the current reviewed politics renderer manifest. */
-export const articleManifest = Effect.fn("ArticleTest.articleManifest")(() =>
+const articleManifest = Effect.fn("ArticleTest.articleManifest")(() =>
   createRendererManifest({
     base: baseComponents,
     domains: testRendererDomains({

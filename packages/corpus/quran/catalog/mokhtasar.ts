@@ -59,7 +59,7 @@ export const mokhtasarEnglishEdition = MokhtasarEditionSchema.make({
   version: 7,
 });
 
-export const mokhtasarIndonesianEdition = MokhtasarEditionSchema.make({
+const mokhtasarIndonesianEdition = MokhtasarEditionSchema.make({
   appLocale: "id",
   bookId: 219,
   completed: true,

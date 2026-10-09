@@ -58,7 +58,7 @@ const DerivedRollbackUpsertItemSchema = Schema.Struct({
 });
 
 /** Strict disk-replay contract for one authenticated rollback state. */
-export const DerivedRollbackStateSchema = Schema.Union([
+const DerivedRollbackStateSchema = Schema.Union([
   Schema.Struct({
     item: DerivedRollbackDeleteItemSchema,
     kind: Schema.Literal("delete"),

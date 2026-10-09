@@ -13,7 +13,7 @@ import { Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 
 /** Exact authored contract for one Quran verse. */
-export const QuranVerseSchema = Schema.Struct({
+const QuranVerseSchema = Schema.Struct({
   meta: QuranRuntimeVerseSchema.fields.meta,
   number: Schema.Struct({
     inQuran: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),

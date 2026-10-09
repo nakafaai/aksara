@@ -29,7 +29,7 @@ const CandidateStageResultSchema = Schema.Union([
   Schema.Struct({ kind: Schema.Literal("verified") }),
 ]);
 
-export type CandidateStageResult = typeof CandidateStageResultSchema.Type;
+type CandidateStageResult = typeof CandidateStageResultSchema.Type;
 
 type StageCandidateRelease = <E, R>(
   plan: PublicationPlan<E, R>

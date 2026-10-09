@@ -39,13 +39,13 @@ const ArticleRouteSlugsSchema = localizedSourceMapSchema(
 );
 
 /** One source-owned category identity, renderer, and complete locale titles. */
-export const ArticleCategorySourceSchema = Schema.Struct({
+const ArticleCategorySourceSchema = Schema.Struct({
   key: ArticleCategorySchema,
   rendererDomain: RendererDomainSchema,
   routeSlugs: ArticleRouteSlugsSchema,
   titles: ArticleCategoryTitlesSchema,
 });
-export type ArticleCategorySource = typeof ArticleCategorySourceSchema.Type;
+type ArticleCategorySource = typeof ArticleCategorySourceSchema.Type;
 
 /** Checks one pair-grouped physical root flattens to its canonical route slug. */
 function hasCoherentArticleIdentity(input: {

@@ -36,7 +36,7 @@ export const CacheSurfaceSchema = Schema.Literals(["deployed", "none"]);
 export type CacheSurface = typeof CacheSurfaceSchema.Type;
 
 /** One post-commit cache convergence request for the activated release. */
-export interface CacheInvalidationInput<E, R> {
+interface CacheInvalidationInput<E, R> {
   /** Replays exact source-owned transitions for the activated release. */
   readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
   readonly release: SignedContentRelease;

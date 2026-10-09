@@ -32,14 +32,14 @@ type StaticResult<Value> =
   | { readonly success: false; readonly violation: MathVisualPolicyViolation }
   | { readonly success: true; readonly value: Value };
 
-export type MathVisualElement = MdxJsxFlowElement | MdxJsxTextElement;
+type MathVisualElement = MdxJsxFlowElement | MdxJsxTextElement;
 
 /** One-based line and column of an authored source location. */
 const SourceLocationSchema = Schema.Struct({
   column: Schema.Int,
   line: Schema.Int,
 });
-export type SourceLocation = typeof SourceLocationSchema.Type;
+type SourceLocation = typeof SourceLocationSchema.Type;
 
 /** Constant MathVisual data retained for contract-level validation. */
 export interface MathVisualCandidate {
@@ -51,7 +51,7 @@ export interface MathVisualCandidate {
 }
 
 /** Syntax findings and optional static data from one MathVisual node. */
-export interface MathVisualInspection {
+interface MathVisualInspection {
   readonly candidate?: MathVisualCandidate;
   readonly violations: readonly MathVisualPolicyViolation[];
 }
@@ -64,7 +64,7 @@ const ALLOWED_ATTRIBUTES = HashSet.make(
 );
 
 /** Reads a one-based MDX source location with a deterministic fallback. */
-export function mdxLocation(node: {
+function mdxLocation(node: {
   readonly position?: MathVisualElement["position"];
 }) {
   return {

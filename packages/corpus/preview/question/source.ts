@@ -25,7 +25,7 @@ const QuestionPreviewInputSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
   entry: QuestionEntrySchema,
 });
-export type QuestionPreviewInput = typeof QuestionPreviewInputSchema.Type;
+type QuestionPreviewInput = typeof QuestionPreviewInputSchema.Type;
 
 /** Builds one trusted compile source without inventing a publication target. */
 export const makeQuestionPreviewSource = Effect.fn(

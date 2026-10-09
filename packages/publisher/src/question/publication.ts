@@ -80,7 +80,7 @@ export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFami
 ) {}
 
 /** Every failure possible while replaying authoritative question records. */
-export type QuestionPublicationStreamError<E> =
+type QuestionPublicationStreamError<E> =
   | E
   | CompileContentError
   | ContentSourceInspectionError
@@ -92,7 +92,7 @@ export type QuestionPublicationStreamError<E> =
   | QuestionSourceError;
 
 /** Authoritative question plan consumed by whole-catalog release composition. */
-export interface QuestionPublication {
+interface QuestionPublication {
   /** Replays the exact question delta against supplied active question heads. */
   readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired question head catalog in canonical order. */
@@ -102,7 +102,7 @@ export interface QuestionPublication {
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and question-head stream. */
-export interface QuestionPublicationInput<E, R> {
+interface QuestionPublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<QuestionHead, E, R>;
   readonly rebuild?: boolean | undefined;

@@ -13,11 +13,7 @@ const HeadOrderStateSchema = Schema.Struct({
 export type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** One stream's constructors for a repeated head and a head out of order. */
-export interface HeadSequenceFailures<
-  Head extends ContentHead,
-  Duplicate,
-  Order,
-> {
+interface HeadSequenceFailures<Head extends ContentHead, Duplicate, Order> {
   /** Builds the error for a head that repeats the previous identity. */
   readonly duplicate: (head: Head) => Duplicate;
   /** Builds the error for a head outside canonical content-head order. */
@@ -25,7 +21,7 @@ export interface HeadSequenceFailures<
 }
 
 /** One family's constructors for the three failures a published head can raise. */
-export interface HeadOrderFailures<
+interface HeadOrderFailures<
   Head extends ContentHead,
   Field extends string,
   Family,

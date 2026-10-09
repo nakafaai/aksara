@@ -33,7 +33,7 @@ export type CleanupArguments = typeof CleanupArgumentsSchema.Type;
 const StatusArgumentsSchema = Schema.Struct({
   command: Schema.Literal("status"),
 });
-export type StatusArguments = typeof StatusArgumentsSchema.Type;
+type StatusArguments = typeof StatusArgumentsSchema.Type;
 
 /** Exact active and retained inverse selected for healthy acceptance. */
 const AcceptArgumentsSchema = Schema.Struct({
