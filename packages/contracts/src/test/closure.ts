@@ -141,10 +141,13 @@ export const routeRejectionInputs = Effect.fn(
 )(function* (records: readonly ProgramSnapshotRow[]) {
   const programs = programCatalogRows(records);
   const curricula = curriculumRows(records);
-  const firstRoot = yield* Effect.fromOption(
-    Arr.findFirst(curricula, (record) => record.row.parentPath === undefined)
+  const firstRootIndex = yield* Effect.fromOption(
+    Arr.findFirstIndex(
+      curricula,
+      (record) => record.row.parentPath === undefined
+    )
   );
-  const firstRootIndex = curricula.indexOf(firstRoot);
+  const firstRoot = yield* Effect.fromNullishOr(curricula[firstRootIndex]);
   const firstChild = yield* Effect.fromNullishOr(curricula[firstRootIndex + 1]);
   const secondChild = yield* Effect.fromNullishOr(
     curricula[firstRootIndex + 2]

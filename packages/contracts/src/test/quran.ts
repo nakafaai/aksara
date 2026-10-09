@@ -39,7 +39,7 @@ function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
         notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
         title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
       },
-      ...Arr.map(ACTIVE_APP_LOCALES.slice(1), (appLocale) => ({
+      ...Arr.map(Arr.drop(ACTIVE_APP_LOCALES, 1), (appLocale) => ({
         appLocale,
         notice: `Technical ${appLocale} notice for ${id}.`,
         title: `Technical ${appLocale} source ${id}.`,
@@ -180,7 +180,7 @@ export function quranTestPayloads() {
   const rows = MutableList.make<QuranRowPayload>();
   MutableList.append(rows, quranAttribution());
   let inQuran = 1;
-  for (const [index, numberOfVerses] of quranVerseCounts().entries()) {
+  Arr.forEach(quranVerseCounts(), (numberOfVerses, index) => {
     const surahNumber = index + 1;
     MutableList.append(
       rows,
@@ -223,7 +223,7 @@ export function quranTestPayloads() {
       );
       inQuran += verses.length;
     }
-  }
+  });
   for (
     let surahNumber = 1;
     surahNumber <= QURAN_SURAH_COUNT;

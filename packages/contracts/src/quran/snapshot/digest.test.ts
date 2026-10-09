@@ -75,6 +75,7 @@ vi.mock("node:crypto", async (importOriginal) => {
 });
 
 const activeAppLocales = ACTIVE_APP_LOCALES;
+const enDeLocales = Schema.decodeSync(ActiveAppLocaleListSchema)(["en", "de"]);
 
 /** Returns one typed current Quran digest failure. */
 function reject(rows: readonly QuranSnapshotRow[], locales = activeAppLocales) {
@@ -145,10 +146,7 @@ describe("Quran aggregate digest", () => {
   it.effect("rejects a release that activates German without German rows", () =>
     Effect.gen(function* () {
       const records = yield* makeQuranTestRecords();
-      const germanLocales = yield* Schema.decodeEffect(
-        ActiveAppLocaleListSchema
-      )(["en", "de"]);
-      const error = yield* reject(records, germanLocales);
+      const error = yield* reject(records, enDeLocales);
 
       expect(error).toMatchObject({
         _tag: "QuranRowOrderError",
@@ -161,9 +159,6 @@ describe("Quran aggregate digest", () => {
   it.effect("accepts no Tafsir when Indonesian is inactive", () =>
     Effect.gen(function* () {
       const records = yield* makeQuranTestRecords();
-      const germanLocales = yield* Schema.decodeEffect(
-        ActiveAppLocaleListSchema
-      )(["en", "de"]);
       const attribution = yield* fixtureRow(records, "quran-attribution");
       const surah = yield* fixtureRow(records, "quran-surah");
       const chunk = yield* fixtureRow(records, "quran-chunk");
@@ -180,18 +175,21 @@ describe("Quran aggregate digest", () => {
         QuranAttributionRowSchema
       )({
         ...attributionPayload,
-        activeAppLocales: germanLocales,
+        activeAppLocales: enDeLocales,
         sources: Arr.map(
           Arr.filter(attributionPayload.sources, (candidate) =>
-            [
-              "tanzil-text",
-              "tanzil-metadata",
-              "bubenheim-names",
-              "quranenc-english",
-              "quranenc-german",
-              "mokhtasar-english",
-              "mokhtasar-german",
-            ].includes(candidate.id)
+            Arr.contains(
+              [
+                "tanzil-text",
+                "tanzil-metadata",
+                "bubenheim-names",
+                "quranenc-english",
+                "quranenc-german",
+                "mokhtasar-english",
+                "mokhtasar-german",
+              ],
+              candidate.id
+            )
           ),
           (candidate) => ({
             ...candidate,
@@ -231,7 +229,7 @@ describe("Quran aggregate digest", () => {
         bindQuranRow(surah.snapshotId, surahPayload),
         bindQuranRow(chunk.snapshotId, germanChunk),
       ]);
-      const error = yield* reject(partial, germanLocales);
+      const error = yield* reject(partial, enDeLocales);
 
       expect(error).toMatchObject({
         _tag: "QuranRowOrderError",
