@@ -60,7 +60,10 @@ vi.mock("node:child_process", async (importOriginal) => {
 
       const child = new childProcess.ChildProcess();
       Object.defineProperty(child, "pid", { value: childProcessBehavior.pid });
-      setImmediate(() => child.emit("spawn"));
+      /** A real child reports "spawn" after the caller subscribes; this one answers the subscription. */
+      child.on("newListener", (event, listener) =>
+        event === "spawn" ? listener() : undefined
+      );
       return child;
     },
   };
