@@ -10,11 +10,9 @@ import {
   type ProgramRowHashError,
   type ProgramSnapshotHashError,
 } from "@nakafa/aksara-contracts/program/snapshot/hash";
-import type { ProgramSnapshotRow } from "@nakafa/aksara-contracts/program/snapshot/row";
 import {
   type ProgramCounts,
   ProgramCountsSchema,
-  type ProgramSnapshot,
   ProgramSnapshotFactsSchema,
 } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import { Array as Arr, Effect, Stream } from "effect";
@@ -89,13 +87,6 @@ export type ProgramSnapshotError =
   | ProgramDigestError
   | ProgramRowError
   | ProgramSnapshotHashError;
-
-/** Replayable aggregate snapshot prepared from reviewed programs and curricula. */
-export interface PreparedProgramSnapshot {
-  readonly manifest: ProgramSnapshot;
-  /** Replays all catalog rows followed by canonical localized route rows. */
-  readonly rows: Stream.Stream<ProgramSnapshotRow, ProgramRowError>;
-}
 
 /** Streams catalog rows followed by canonical localized curriculum rows. */
 export function streamProgramRows(programInput?: unknown) {

@@ -20,8 +20,6 @@ const VerseMetadataSchema = Schema.Struct({
   ruku: Schema.Finite,
   sajda: Schema.NullOr(SajdaSchema),
 });
-export type VerseMetadata = typeof VerseMetadataSchema.Type;
-
 const VerseSchema = Schema.Struct({
   meta: VerseMetadataSchema,
   number: Schema.Struct({
@@ -32,8 +30,6 @@ const VerseSchema = Schema.Struct({
   text: Schema.Struct({ arabic: Schema.String }),
   translation: localizedSourceMapSchema(QuranTranslationSchema),
 });
-export type Verse = typeof VerseSchema.Type;
-
 /** Encoded metadata emitted before the corpus schema applies its brands. */
 type QuranSurahMetadata = Schema.Codec.Encoded<typeof QuranSurahMetadataSchema>;
 

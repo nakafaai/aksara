@@ -27,4 +27,3 @@ export const LearningProgramSourceSchema = LearningProgramSchema.pipe(
     )
   )
 );
-export type LearningProgramSource = typeof LearningProgramSourceSchema.Type;

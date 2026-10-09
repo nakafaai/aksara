@@ -25,8 +25,6 @@ export const PreviewDirectorySchema = Schema.Struct({
   files: Schema.Array(Schema.String),
   sourcePath: CorpusSourcePathSchema,
 });
-export type PreviewDirectory = typeof PreviewDirectorySchema.Type;
-
 /** One selected article source owned by the article registry. */
 const ArticlePreviewSourceSchema = Schema.Struct({
   dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
@@ -34,8 +32,6 @@ const ArticlePreviewSourceSchema = Schema.Struct({
   entry: ArticleEntrySchema,
   family: Schema.Literal("article"),
 });
-export type ArticlePreviewSource = typeof ArticlePreviewSourceSchema.Type;
-
 /** One selected material source owned by the material registry. */
 const MaterialPreviewSourceSchema = Schema.Struct({
   dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
@@ -43,8 +39,6 @@ const MaterialPreviewSourceSchema = Schema.Struct({
   entry: MaterialEntrySchema,
   family: Schema.Literal("material"),
 });
-export type MaterialPreviewSource = typeof MaterialPreviewSourceSchema.Type;
-
 /** One selected public page source owned by the page registry. */
 const PagePreviewSourceSchema = Schema.Struct({
   dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
@@ -52,8 +46,6 @@ const PagePreviewSourceSchema = Schema.Struct({
   entry: PageEntrySchema,
   family: Schema.Literal("page"),
 });
-export type PagePreviewSource = typeof PagePreviewSourceSchema.Type;
-
 /** One selected question body owned by the authored question corpus. */
 const QuestionPreviewSourceSchema = Schema.Struct({
   appLocale: AppLocaleSchema,
