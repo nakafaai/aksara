@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import type { ProgramCalls } from "#test/program";
 
@@ -44,9 +44,13 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
   if (args[0] === "status") {
     return Effect.succeed({ command: "status" });
   }
-  const appLocaleIndex = args.indexOf("--app-locale");
-  const appLocale =
-    appLocaleIndex === -1 ? undefined : args[appLocaleIndex + 1];
+  const appLocaleIndex = Arr.findFirstIndex(
+    args,
+    (arg) => arg === "--app-locale"
+  );
+  const appLocale = Option.getOrUndefined(
+    Option.flatMap(appLocaleIndex, (index) => Arr.get(args, index + 1))
+  );
   return Effect.succeed({
     ...(appLocale === undefined ? {} : { appLocale }),
     command: "preview",

@@ -7,7 +7,7 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, MutableList, Schema } from "effect";
+import { Array as Arr, Effect, MutableList, Schema } from "effect";
 import {
   readCleanAksaraRevision,
   readRepositoryEvidence,
@@ -54,7 +54,7 @@ function makeEvidenceProcess(
       if (overrides.failure) {
         return Effect.fail(overrides.failure);
       }
-      const isSha = input.args.includes("rev-parse");
+      const isSha = Arr.contains(input.args, "rev-parse");
       const sha = overrides.shas?.[shaRead] ??
         overrides.sha ?? { stdout: `${COMMIT_SHA}\n` };
       if (isSha) {

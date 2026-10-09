@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Redacted, Stream } from "effect";
+import { Array as Arr, Effect, Redacted, Stream } from "effect";
 import { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
@@ -134,7 +134,7 @@ describe("production activation", () => {
     Effect.gen(function* () {
       const activation = yield* makeActivation;
       calls.renderer = yield* createRendererManifest({
-        base: RENDERER_MANIFEST.base.slice(1),
+        base: Arr.drop(RENDERER_MANIFEST.base, 1),
         domains: RENDERER_MANIFEST.domains,
         publishedDomains: RENDERER_MANIFEST.publishedDomains,
       });
