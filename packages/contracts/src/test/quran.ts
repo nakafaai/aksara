@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import { Array as Arr, Effect, MutableList } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
@@ -150,9 +151,7 @@ export function quranAttribution() {
     quranSourceAttribution
   );
   const [first, ...rest] = sources;
-  if (first === undefined) {
-    throw new Error("Expected technical Quran source identities.");
-  }
+  assert.ok(first !== undefined, "Expected technical Quran source identities.");
   return QuranAttributionRowSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,
     kind: "quran-attribution",

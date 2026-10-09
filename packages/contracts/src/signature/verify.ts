@@ -44,20 +44,15 @@ function decodePublicKeyPem(
   ) {
     return Effect.fail(new PublicKeyParseError({ keyId, subject }));
   }
-  return Effect.try({
-    catch: () => new PublicKeyParseError({ keyId, subject }),
-    try: () => {
-      const body = normalizedPublicKeyPem
-        .slice(PUBLIC_KEY_HEADER.length)
-        .replace(PUBLIC_KEY_FOOTER, "")
-        .replaceAll("\n", "")
-        .trim();
-      if (!PUBLIC_KEY_BASE64_PATTERN.test(body) || body.length % 4 !== 0) {
-        throw new TypeError("Invalid public-key base64");
-      }
-      return decodeBase64(body);
-    },
-  });
+  const body = normalizedPublicKeyPem
+    .slice(PUBLIC_KEY_HEADER.length)
+    .replace(PUBLIC_KEY_FOOTER, "")
+    .replaceAll("\n", "")
+    .trim();
+  if (!PUBLIC_KEY_BASE64_PATTERN.test(body) || body.length % 4 !== 0) {
+    return Effect.fail(new PublicKeyParseError({ keyId, subject }));
+  }
+  return Effect.succeed(decodeBase64(body));
 }
 
 /** Imports one exact Ed25519 SPKI key through Web Crypto. */
